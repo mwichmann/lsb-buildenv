@@ -15,13 +15,10 @@ extern "C"
 #define RLIM_INFINITY	(~0UL)
 #define RLIM_SAVED_CUR	-1
 #define RLIM_SAVED_MAX	-1
-#define PRIO_PROCESS	0
 #define RLIMIT_CPU	0
 #define RUSAGE_SELF	0
-#define PRIO_PGRP	1
 #define RLIMIT_FSIZE	1
 #define RLIM_NLIMITS	11
-#define PRIO_USER	2
 #define RLIMIT_DATA	2
 #define RLIMIT_STACK	3
 #define RLIMIT_CORE	4
@@ -78,7 +75,27 @@ extern "C"
    ;
 
 
-  extern int getpriority (int, int);
+/* Priority limits.*/
+
+
+
+/* The type of the WHICH argument to `getpriority' and `setpriority',
+indicating what flavor of entity the WHO argument specifies.*/
+#define PRIO_PROCESS	0
+#define PRIO_PGRP	1
+#define PRIO_USER	2
+
+
+  enum __priority_which
+  {
+    PRIO_PROCESS = 0,		/* WHO is a process ID. */
+    PRIO_PGRP = 1,		/* WHO is a process group ID. */
+    PRIO_USER = 2		/* WHO is a user ID. */
+  }
+   ;
+
+
+  extern int getpriority (enum __priority_which, id_t);
   extern int getrlimit64 (int, struct rlimit64 *);
   extern int setpriority (int, int, int);
   extern int setrlimit (int, struct rlimit *);
