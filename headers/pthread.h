@@ -203,7 +203,8 @@ extern "C"
 				 void (*destr_func) (void *));
   extern int pthread_key_delete (pthread_key_t);
   extern int pthread_mutex_destroy (pthread_mutex_t *);
-  extern int pthread_mutex_init (pthread_mutex_t *, pthread_mutexattr_t *);
+  extern int pthread_mutex_init (pthread_mutex_t *,
+				 const pthread_mutexattr_t *);
   extern int pthread_mutex_lock (pthread_mutex_t *);
   extern int pthread_mutex_trylock (pthread_mutex_t *);
   extern int pthread_mutex_unlock (pthread_mutex_t *);
