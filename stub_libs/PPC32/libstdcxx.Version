@@ -727,6 +727,7 @@ GLIBCPP_3.2 {
   _ZNSdD1Ev;
   _ZNSi3getERSt15basic_streambufIcSt11char_traitsIcEE;
   _ZNSi3getERSt15basic_streambufIcSt11char_traitsIcEEc;
+  _ZNSi3getERc;
   _ZNSi3getEv;
   _ZNSi4readEPci;
   _ZNSi5seekgElSt12_Ios_Seekdir;
@@ -895,6 +896,7 @@ GLIBCPP_3.2 {
   _ZNSt10bad_typeidD2Ev;
   _ZNSt10istrstreamC1EPKc;
   _ZNSt10istrstreamC1EPKci;
+  _ZNSt10istrstreamD1Ev;
   _ZNSt10money_base20_S_construct_patternEccc;
   _ZNSt10moneypunctIwLb0EE24_M_initialize_moneypunctEP15__locale_structPKc;
   _ZNSt10moneypunctIwLb0EEC1EP15__locale_structPKcj;
@@ -1477,6 +1479,7 @@ GLIBCPP_3.2 {
   _ZNSt19basic_ostringstreamIwSt11char_traitsIwESaIwEED1Ev;
   _ZNSt19basic_ostringstreamIwSt11char_traitsIwESaIwEED2Ev;
   _ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj;
+  _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
   _ZNSt24__default_alloc_templateILb1ELi0EE5_LockC1Ev;
   _ZNSt24__default_alloc_templateILb1ELi0EE5_LockD1Ev;
   _ZNSt24__default_alloc_templateILb1ELi0EE8allocateEj;
