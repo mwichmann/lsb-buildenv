@@ -55,7 +55,6 @@ typedef unsigned long long dev_t;
 typedef unsigned int mode_t;
 typedef unsigned long nlink_t;
 typedef char *caddr_t;
-typedef unsigned short ushort;
 
 
 typedef struct

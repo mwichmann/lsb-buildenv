@@ -22,9 +22,6 @@ typedef struct SVCXPRT
 SVCXPRT;
 
 
-typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
-
-
 struct svc_req
 {
   rpcprog_t rq_prog;
@@ -35,6 +32,9 @@ struct svc_req
   SVCXPRT *rq_xprt;
 }
  ;
+
+
+typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
 
 struct xp_ops

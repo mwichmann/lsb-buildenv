@@ -78,7 +78,7 @@
 
 
 
-
+typedef unsigned char bool;
 
 
 typedef unsigned long chtype;
