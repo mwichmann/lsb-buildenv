@@ -1,6 +1,7 @@
 #ifndef _WCHAR_H_
 #define _WCHAR_H_
 
+#include <sys/types.h>
 #include <wctype.h>
 #include <stdio.h>
 #include <stddef.h>
