@@ -243,7 +243,6 @@ extern "C"
 
 
 /* ioctl() commands which are permitted on sockets.*/
-#define SIOCGIFCONF	0x8912
 #define SIOCGIFFLAGS	0x8913
 #define SIOCGIFADDR	0x8915
 #define SIOCGIFNETMASK	0x891b
