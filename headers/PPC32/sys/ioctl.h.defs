@@ -1,0 +1,3 @@
+
+#define TIOCNOTTY	0x5422
+#define FIONREAD	1074030207
