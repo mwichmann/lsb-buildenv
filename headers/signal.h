@@ -1,23 +1,26 @@
 #ifndef _SIGNAL_H_
 #define _SIGNAL_H_
 
+#include <sys/time.h>
+#include <stddef.h>
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/time.h>
-#include <stddef.h>
-#include <sys/types.h>
+
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIG_BLOCK	0
 #define SIGEV_SIGNAL	0
+#define SIG_BLOCK	0
 #define SIG_UNBLOCK	1
-#define SIG_SETMASK	2
 #define SIGEV_THREAD	2
+#define SIG_SETMASK	2
+#define NSIG	64
 #define SI_MAX_SIZE	64
 
 
@@ -36,37 +39,37 @@ extern "C"
 #define SIG_DFL	((__sighandler_t)0)
 #define SIG_IGN	((__sighandler_t)1)
 #define SIGHUP	1
-#if defined(__powerpc__)
+#if defined(__i386__)
 #define SIGUSR1	10
 #endif
 #if defined(__ia64__)
 #define SIGUSR1	10
 #endif
-#if defined(__i386__)
+#if defined(__powerpc__)
 #define SIGUSR1	10
 #endif
 #define SIGSEGV	11
+#if defined(__i386__)
+#define SIGUSR2	12
+#endif
 #if defined(__ia64__)
 #define SIGUSR2	12
 #endif
 #if defined(__powerpc__)
-#define SIGUSR2	12
-#endif
-#if defined(__i386__)
 #define SIGUSR2	12
 #endif
 #define SIGPIPE	13
 #define SIGALRM	14
 #define SIGTERM	15
-#if defined(__powerpc__)
-#define SIGSTKFLT	16
-#endif
 #if defined(__i386__)
 #define SIGSTKFLT	16
 #endif
 #if defined(__ia64__)
 #define SIGSTKFLT	16
 #endif
+#if defined(__powerpc__)
+#define SIGSTKFLT	16
+#endif
 #if defined(__i386__)
 #define SIGCHLD	17
 #endif
@@ -76,10 +79,10 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGCHLD	17
 #endif
-#if defined(__ia64__)
+#if defined(__i386__)
 #define SIGCONT	18
 #endif
-#if defined(__i386__)
+#if defined(__ia64__)
 #define SIGCONT	18
 #endif
 #if defined(__powerpc__)
@@ -95,6 +98,9 @@ extern "C"
 #define SIGSTOP	19
 #endif
 #define SIGINT	2
+#if defined(__i386__)
+#define SIGTSTP	20
+#endif
 #if defined(__ia64__)
 #define SIGTSTP	20
 #endif
@@ -102,24 +108,21 @@ extern "C"
 #define SIGTSTP	20
 #endif
 #if defined(__i386__)
-#define SIGTSTP	20
+#define SIGTTIN	21
 #endif
 #if defined(__ia64__)
 #define SIGTTIN	21
 #endif
 #if defined(__powerpc__)
 #define SIGTTIN	21
-#endif
-#if defined(__i386__)
-#define SIGTTIN	21
-#endif
-#if defined(__powerpc__)
-#define SIGTTOU	22
 #endif
 #if defined(__i386__)
 #define SIGTTOU	22
 #endif
 #if defined(__ia64__)
+#define SIGTTOU	22
+#endif
+#if defined(__powerpc__)
 #define SIGTTOU	22
 #endif
 #if defined(__i386__)
@@ -140,6 +143,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGXCPU	24
 #endif
+#if defined(__i386__)
+#define SIGXFSZ	25
+#endif
 #if defined(__ia64__)
 #define SIGXFSZ	25
 #endif
@@ -147,34 +153,31 @@ extern "C"
 #define SIGXFSZ	25
 #endif
 #if defined(__i386__)
-#define SIGXFSZ	25
+#define SIGVTALRM	26
 #endif
 #if defined(__ia64__)
 #define SIGVTALRM	26
 #endif
 #if defined(__powerpc__)
 #define SIGVTALRM	26
-#endif
-#if defined(__i386__)
-#define SIGVTALRM	26
-#endif
-#if defined(__ia64__)
-#define SIGPROF	27
-#endif
-#if defined(__powerpc__)
-#define SIGPROF	27
 #endif
 #define SIGPROF	27
 #if defined(__i386__)
 #define SIGPROF	27
 #endif
+#if defined(__ia64__)
+#define SIGPROF	27
+#endif
 #if defined(__powerpc__)
-#define SIGWINCH	28
+#define SIGPROF	27
 #endif
 #if defined(__i386__)
 #define SIGWINCH	28
 #endif
 #if defined(__ia64__)
+#define SIGWINCH	28
+#endif
+#if defined(__powerpc__)
 #define SIGWINCH	28
 #endif
 #if defined(__i386__)
@@ -187,44 +190,44 @@ extern "C"
 #define SIGIO	29
 #endif
 #define SIGQUIT	3
-#if defined(__powerpc__)
-#define SIGPWR	30
-#endif
 #if defined(__i386__)
 #define SIGPWR	30
 #endif
 #if defined(__ia64__)
 #define SIGPWR	30
 #endif
-#if defined(__i386__)
-#define SIGUNUSED	31
+#if defined(__powerpc__)
+#define SIGPWR	30
 #endif
 #if defined(__i386__)
 #define SIGSYS	31
 #endif
 #if defined(__ia64__)
-#define SIGUNUSED	31
+#define SIGSYS	31
 #endif
 #if defined(__powerpc__)
 #define SIGSYS	31
 #endif
-#if defined(__powerpc__)
+#if defined(__i386__)
 #define SIGUNUSED	31
 #endif
 #if defined(__ia64__)
-#define SIGSYS	31
+#define SIGUNUSED	31
+#endif
+#if defined(__powerpc__)
+#define SIGUNUSED	31
 #endif
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGABRT	6
 #define SIGIOT	6
-#if defined(__powerpc__)
-#define SIGBUS	7
-#endif
 #if defined(__i386__)
 #define SIGBUS	7
 #endif
 #if defined(__ia64__)
+#define SIGBUS	7
+#endif
+#if defined(__powerpc__)
 #define SIGBUS	7
 #endif
 #define SIGFPE	8
@@ -467,6 +470,8 @@ extern "C"
 /* Process context when signal delivered*/
 
 
+#if defined(__i386__)
+/* IA32 */
   struct sigcontext
   {
     unsigned short gs;
@@ -500,6 +505,17 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  struct sigcontext;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  struct sigcontext;
+
+#endif
 
   extern __sighandler_t __sysv_signal (void);
   extern char **_sys_siglist;
