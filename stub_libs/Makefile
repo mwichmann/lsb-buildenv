@@ -23,6 +23,9 @@ LSB_COMPILE_FOR_ARCH:=`case \`uname -m\` in \
 	s390x) \
 	echo S390X; \
 	;; \
+	x86_64) \
+	echo x86-64; \
+	;; \
 	*) \
 	echo Unknown; \
 	esac`
