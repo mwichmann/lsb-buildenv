@@ -1,0 +1,32 @@
+This directory contains the code capable of generating stub libraries
+for a LSB compliant build environment. 
+
+Building the stub libraries
+---------------------------
+
+If you have done a CVS update then the files generated for IA32
+against a recent version of the specification will be present in the
+directory. If you want to build for a different architecture or ensure
+that you are building it for the latest version of the specification
+then you will have to have access to the LSB database (see details in
+the dbdump directory of the data module on Source Forge) and generate
+the files from the database.
+
+To compile the stub libraries simply type make.
+
+Generating the necessary files from the LSB database
+----------------------------------------------------
+
+1. Depending on how you have configured your local LSB database you
+may need to edit the dbfiles Makefile target to pass the appropriate
+user, password and database name parameters.
+
+2. Clean out any existing files
+# make distclean
+
+3. Generate the database files
+# make dbfiles
+
+Feedback
+--------
+Please send any feedback you may have to lsb-impl@linuxbase.org
