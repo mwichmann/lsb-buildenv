@@ -247,8 +247,8 @@ if [ -f "$EXTRA_MOUNT_FILES" ]; then
 fi
 
 
-# setup sshd if available
-if [ -f $SSH_DAEMON ]; then
+# setup sshd if available and desired
+if [ -x "$SSH_DAEMON" ]; then
   touch $ROOT$SSH_DAEMON
   bind_mount_ro $SSH_DAEMON $ROOT$SSH_DAEMON
   LD_LIBRARY_PATH=/usr/lib/lib-localsystem chroot $ROOT $SSH_DAEMON -p $SSH_PORT
