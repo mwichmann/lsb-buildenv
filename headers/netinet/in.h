@@ -48,7 +48,7 @@ extern "C"
 
 
 /* Well Know IPv4 addresses*/
-#define INADDR_NONE	((unsigned long int) 0xffffffff)
+#define INADDR_NONE	((in_addr_t) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
 #define INADDR_LOOPBACK	0x7f000001
