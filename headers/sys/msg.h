@@ -33,16 +33,6 @@ extern "C"
   typedef unsigned long msglen_t;
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-  typedef unsigned long msglen_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef unsigned long msgqnum_t;
-
-#endif
 #if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned long msglen_t;
@@ -76,6 +66,16 @@ extern "C"
 #if __x86_64__
 /* x86-64 */
   typedef unsigned long msglen_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long msglen_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long msgqnum_t;
 
 #endif
 
@@ -145,25 +145,6 @@ extern "C"
    ;
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-  struct msqid_ds
-  {
-    struct ipc_perm msg_perm;	/* structure describing operation permission */
-    time_t msg_stime;		/* time of last msgsnd command */
-    time_t msg_rtime;		/* time of last msgrcv command */
-    time_t msg_ctime;		/* time of last change */
-    unsigned long __msg_cbytes;	/* current number of bytes on queue */
-    msgqnum_t msg_qnum;		/* number of messages currently on queue */
-    msglen_t msg_qbytes;	/* max number of bytes allowed on queue */
-    pid_t msg_lspid;		/* pid of last msgsnd() */
-    pid_t msg_lrpid;		/* pid of last msgrcv() */
-    unsigned long __unused4;
-    unsigned long __unused5;
-  }
-   ;
-
-#endif
 #if __s390__ && !__s390x__
 /* S390 */
   struct msqid_ds
@@ -218,6 +199,25 @@ extern "C"
     msgqnum_t msg_qbytes;
     pid_t msg_lspid;
     pid_t msg_lrpid;
+  }
+   ;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  struct msqid_ds
+  {
+    struct ipc_perm msg_perm;	/* structure describing operation permission */
+    time_t msg_stime;		/* time of last msgsnd command */
+    time_t msg_rtime;		/* time of last msgrcv command */
+    time_t msg_ctime;		/* time of last change */
+    unsigned long __msg_cbytes;	/* current number of bytes on queue */
+    msgqnum_t msg_qnum;		/* number of messages currently on queue */
+    msglen_t msg_qbytes;	/* max number of bytes allowed on queue */
+    pid_t msg_lspid;		/* pid of last msgsnd() */
+    pid_t msg_lrpid;		/* pid of last msgrcv() */
+    unsigned long __unused4;
+    unsigned long __unused5;
   }
    ;
 
