@@ -2,7 +2,7 @@
 #define _NETINET_IN_H_
 
 #include <sys/socket.h>
-#include <sys/types.h>
+#include <inttypes.h>
 
 #define INADDR_ANY	0
 

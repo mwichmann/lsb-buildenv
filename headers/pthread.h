@@ -2,8 +2,9 @@
 #define _PTHREAD_H_
 
 #include <sys/time.h>
-#include <sys/types.h>
+#include <stddef.h>
 #include <sched.h>
+#include <sys/types.h>
 
 #define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
 

@@ -1,7 +1,7 @@
 #ifndef _ARPA_INET_H_
 #define _ARPA_INET_H_
 
-#include <sys/types.h>
+#include <inttypes.h>
 #include <netinet/in.h>
 
 

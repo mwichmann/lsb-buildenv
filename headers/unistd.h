@@ -1,6 +1,7 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
+#include <stddef.h>
 #include <sys/types.h>
 #include <sys/time.h>
 
@@ -8,8 +9,8 @@
 #define SEEK_SET	0
 #define STDOUT_FILENO	1
 #define SEEK_CUR	1
-#define SEEK_END	2
 #define STDERR_FILENO	2
+#define SEEK_END	2
 
 
 typedef long long off64_t;
@@ -25,9 +26,6 @@ typedef int *intptr_t;
 
 
 
-#define _POSIX_MESSAGE_PASSING	1
-#define _POSIX_SHARED_MEMORY_OBJECTS	1
-#define _POSIX_MEMLOCK	1
 #define _POSIX_PRIORITY_SCHEDULING	1
 #define _POSIX_SYNCHRONIZED_IO	1
 #define _POSIX_MAPPED_FILES	1
@@ -38,8 +36,11 @@ typedef int *intptr_t;
 #define _POSIX_MEMORY_PROTECTION	1
 #define _POSIX_SEMAPHORES	1
 #define _POSIX_FSYNC	1
-#define _POSIX2_VERSION	199209L
+#define _POSIX_MESSAGE_PASSING	1
+#define _POSIX_SHARED_MEMORY_OBJECTS	1
+#define _POSIX_MEMLOCK	1
 #define _POSIX2_C_VERSION	199209L
+#define _POSIX2_VERSION	199209L
 #define _POSIX_VERSION	199506L
 
 
@@ -91,6 +92,7 @@ typedef int *intptr_t;
 #define _SC_MQ_PRIO_MAX	28
 #define _SC_VERSION	29
 #define _SC_NGROUPS_MAX	3
+#define _SC_PAGESIZE	30
 #define _SC_RTSIG_MAX	31
 #define _SC_SEM_NSEMS_MAX	32
 #define _SC_SEM_VALUE_MAX	33
@@ -160,8 +162,8 @@ typedef int *intptr_t;
 
 
 
-#define _XOPEN_XPG4	1
 #define _XOPEN_REALTIME	1
+#define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
 
@@ -195,7 +197,7 @@ extern int optopt;
 int rename (char *, char *);
 int sethostname (char *, size_t);
 int setpgrp (void);
-void swab (void);
+void swab (void *, void *, ssize_t);
 int sync (void);
 pid_t tcgetpgrp (void);
 int tcsetpgrp (void);

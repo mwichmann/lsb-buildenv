@@ -1,7 +1,7 @@
 #ifndef _REGEX_H_
 #define _REGEX_H_
 
-#include <sys/types.h>
+#include <stddef.h>
 
 
 

@@ -2,14 +2,9 @@
 #define _SYS_TYPES_H_
 
 
-#define NULL	((void*)0)
 
-
-typedef int int32_t;
 
 typedef int int64_t;
-
-typedef unsigned int size_t;
 
 typedef int ptrdiff_t;
 
@@ -27,11 +22,7 @@ typedef unsigned int id_t;
 
 typedef long suseconds_t;
 
-typedef unsigned int uint32_t;
-
 typedef long fd_mask;
-
-typedef long long uint64_t;
 
 typedef int timer_t;
 

@@ -4,7 +4,6 @@
 #include <wctype.h>
 #include <stdio.h>
 #include <stddef.h>
-#include <sys/types.h>
 
 #define WEOF	(0xffffffffu)
 #define WCHAR_MAX	__WCHAR_MAX
@@ -13,8 +12,6 @@
 
 
 
-
-typedef unsigned int wint_t;
 
 typedef struct
 {

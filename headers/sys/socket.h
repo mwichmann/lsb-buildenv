@@ -1,7 +1,7 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
-#include <sys/types.h>
+#include <stddef.h>
 
 #define MSG_WAITALL	0x100
 #define MSG_TRUNC	0x20
@@ -10,6 +10,8 @@
 #define MSG_PEEK	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
+#define PF_INET	AF_INET
+#define PF_INET6	AF_INET6
 #define SHUT_RD	SHUT_RD
 #define SHUT_RDWR	SHUT_RDWR
 #define SHUT_WR	SHUT_WR
@@ -71,8 +73,8 @@ struct msghdr
 
 
 #define AF_UNSPEC	0
-#define AF_LOCAL	1
 #define AF_UNIX	1
+#define AF_LOCAL	1
 #define AF_INET6	10
 #define AF_INET	2
 #define AF_AX25	3
@@ -107,8 +109,8 @@ struct msghdr
 #define SO_TYPE	3
 #define SO_ERROR	4
 #define SO_DONTROUTE	5
-#define SO_BROADCAST	6
 #define SOL_TCP	6
+#define SO_BROADCAST	6
 #define SO_SNDBUF	7
 #define SO_RCVBUF	8
 #define SO_KEEPALIVE	9

@@ -4,7 +4,6 @@
 
 #define NOFILE	256
 #define MAXPATHLEN	4095
-#define MAXPATHLEN	PATH_MAX
 
 
 

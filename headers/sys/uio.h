@@ -1,7 +1,7 @@
 #ifndef _SYS_UIO_H_
 #define _SYS_UIO_H_
 
-#include <sys/types.h>
+#include <stddef.h>
 #include <sys/socket.h>
 
 

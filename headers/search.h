@@ -1,7 +1,7 @@
 #ifndef _SEARCH_H_
 #define _SEARCH_H_
 
-#include <sys/types.h>
+#include <stddef.h>
 #include <stdlib.h>
 
 

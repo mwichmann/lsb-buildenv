@@ -1,7 +1,7 @@
 #ifndef _NETDB_H_
 #define _NETDB_H_
 
-#include <sys/types.h>
+#include <stddef.h>
 #include <sys/socket.h>
 
 #define h_addr	h_addr_list[0]

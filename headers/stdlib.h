@@ -2,7 +2,6 @@
 #define _STDLIB_H_
 
 #include <stddef.h>
-#include <sys/types.h>
 
 #define MB_CUR_MAX	(__ctype_get_mb_cur_max())
 #define EXIT_SUCCESS	0
@@ -57,7 +56,7 @@ unsigned long long __strtoull_internal (char *, char **, int, int);
 long a64l (char *);
 void abort (void);
 int abs (int);
-int atexit (void);
+int atexit (void *(*atexit_func) ());
 double atof (char *);
 int atoi (char *);
 long atol (char *);
@@ -115,4 +114,6 @@ void _Exit (int);
 size_t __ctype_get_mb_cur_max (void);
 extern char **environ;
 char *realpath (char *, char *);
+int setenv (void);
+void unsetenv (void);
 #endif

@@ -28,6 +28,8 @@ struct iovec
 #define MSG_PEEK	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
+#define PF_INET	AF_INET
+#define PF_INET6	AF_INET6
 #define SHUT_RD	SHUT_RD
 #define SHUT_RDWR	SHUT_RDWR
 #define SHUT_WR	SHUT_WR
@@ -59,8 +61,8 @@ struct msghdr
 
 
 #define AF_UNSPEC	0
-#define AF_UNIX	1
 #define AF_LOCAL	1
+#define AF_UNIX	1
 #define AF_INET6	10
 #define AF_INET	2
 #define AF_AX25	3
@@ -79,8 +81,8 @@ struct msghdr
 #define SOCK_SEQPACKET	5
 
 #define SOL_IP	0
-#define SO_DEBUG	1
 #define SOL_SOCKET	1
+#define SO_DEBUG	1
 #define SO_OOBINLINE	10
 #define SO_NO_CHECK	11
 #define SO_PRIORITY	12

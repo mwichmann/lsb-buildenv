@@ -10,9 +10,9 @@
 #define S_ISLNK(m)	(((m)&S_IFMT)==S_IFLNK)
 #define S_ISREG(m)	(((m)&S_IFMT)==S_IFREG)
 #define S_ISSOCK(m)	(((m)&S_IFMT)==S_IFSOCK)
-#define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_IRWXU	(S_IREAD|S_IWRITE|S_IEXEC)
 #define S_IROTH	(S_IRGRP>>3)
 #define S_IRGRP	(S_IRUSR>>3)
@@ -22,6 +22,7 @@
 #define S_IWGRP	(S_IWUSR>>3)
 #define S_IXOTH	(S_IXGRP>>3)
 #define S_IXGRP	(S_IXUSR>>3)
+#define S_ISVTX	01000
 #define S_IXUSR	0x0040
 #define S_IWUSR	0x0080
 #define S_IRUSR	0x0100

@@ -1,6 +1,7 @@
 #ifndef _SYSLOG_H_
 #define _SYSLOG_H_
 
+#include <stdarg.h>
 
 
 
@@ -32,4 +33,5 @@ void closelog (void);
 void openlog (void);
 int setlogmask (void);
 void syslog (void);
+void vsyslog (int, char *, va_list);
 #endif

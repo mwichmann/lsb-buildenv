@@ -1,16 +1,17 @@
 #ifndef _TERMIOS_H_
 #define _TERMIOS_H_
 
+#include <sys/types.h>
 
 #define TCSANOW	0
 #define TCOOFF	0
 #define TCIFLUSH	0
-#define CR0	0000000
 #define NL0	0000000
 #define VT0	0000000
 #define TAB0	0000000
 #define FF0	0000000
 #define BS0	0000000
+#define CR0	0000000
 #define OPOST	0000001
 #define OLCUC	0000002
 #define ONLCR	0000004
@@ -20,8 +21,8 @@
 #define ONLRET	0000040
 #define OFILL	0000100
 #define OFDEL	0000200
-#define NLDLY	0000400
 #define NL1	0000400
+#define NLDLY	0000400
 #define CR1	0001000
 #define IUCLC	0001000
 #define CR2	0002000
@@ -31,15 +32,15 @@
 #define TAB2	0010000
 #define TABDLY	0014000
 #define TAB3	0014000
-#define BS1	0020000
 #define BSDLY	0020000
-#define VTDLY	0040000
+#define BS1	0020000
 #define VT1	0040000
-#define FFDLY	0100000
+#define VTDLY	0040000
 #define FF1	0100000
-#define TCSADRAIN	1
+#define FFDLY	0100000
 #define TCOON	1
 #define TCOFLUSH	1
+#define TCSADRAIN	1
 #define TCSAFLUSH	2
 #define TCIOFF	2
 #define TCIOFLUSH	2
@@ -174,7 +175,7 @@ int cfsetispeed (struct termios *, speed_t);
 int cfsetospeed (struct termios *, speed_t);
 int tcflow (int, int);
 int tcflush (int, int);
-__pid_t tcgetsid (int);
+pid_t tcgetsid (int);
 int tcsendbreak (int, int);
 int tcsetattr (int, int, struct termios *);
 int tcdrain (int);

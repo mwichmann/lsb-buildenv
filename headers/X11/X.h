@@ -36,15 +36,15 @@ typedef XID KeySym;
 
 
 /* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/
-#define AllTemporary	0L
-#define CopyFromParent	0L
-#define AnyPropertyType	0L
 #define CurrentTime	0L
 #define PointerWindow	0L
 #define AnyKey	0L
 #define NoSymbol	0L
 #define None	0L
 #define AnyButton	0L
+#define AllTemporary	0L
+#define CopyFromParent	0L
+#define AnyPropertyType	0L
 #define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
@@ -203,8 +203,8 @@ typedef XID KeySym;
 
 
 /* Property notification*/
-#define PropModeReplace	0
 #define PropertyNewValue	0
+#define PropModeReplace	0
 #define PropertyDelete	1
 
 
@@ -567,10 +567,10 @@ typedef XID KeySym;
 #define KBAutoRepeatMode	(1L<<7)
 #define MappingModifier	0
 #define MappingSuccess	0
-#define MappingBusy	1
 #define MappingKeyboard	1
-#define MappingPointer	2
+#define MappingBusy	1
 #define MappingFailed	2
+#define MappingPointer	2
 
 
 
@@ -579,10 +579,10 @@ typedef XID KeySym;
 #define DontPreferBlanking	0
 #define DisableScreenInterval	0
 #define DontAllowExposures	0
-#define AllowExposures	1
 #define PreferBlanking	1
-#define DefaultBlanking	2
+#define AllowExposures	1
 #define DefaultExposures	2
+#define DefaultBlanking	2
 
 
 

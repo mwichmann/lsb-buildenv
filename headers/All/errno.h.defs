@@ -70,6 +70,7 @@
 #define EL3RST	47
 #define ELNRNG	48
 #define EUNATCH	49
+#define EIO	5
 #define ENOANO	55
 #define EBADRQC	56
 #define EBADSLT	57

@@ -2,17 +2,18 @@
 #define _SIGNAL_H_
 
 #include <sys/time.h>
+#include <stddef.h>
 #include <sys/types.h>
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
 #define SIGEV_SIGNAL	0
-#define SIGEV_THREAD	0
 #define SIG_BLOCK	0
 #define SIG_UNBLOCK	1
 #define SI_MAX_SIZE	128
 #define SIG_SETMASK	2
+#define SIGEV_THREAD	2
 
 
 typedef int sig_atomic_t;
@@ -197,6 +198,7 @@ sigset_t;
 #define SA_RESETHAND	0x80000000
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
+#define sa_handler	__sigaction_handler._sa_handler
 #define sa_sigaction	__sigaction_handler._sa_sigaction
 
 
