@@ -52,6 +52,8 @@ RUNFILE=/var/run/lsbdev.lock
 # Leave SSH_DAEMON undefined if you do not want sshd restarted
 SSH_DAEMON=/usr/sbin/sshd
 SSH_PORT=5436
+# SSH privilege separation directory.  Distro-specific 
+SSH_PRIV=/var/run/sshd
 
 # LSB Include files
 # Where to source the LSB header files from
