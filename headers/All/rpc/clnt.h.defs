@@ -46,3 +46,12 @@ struct clnt_ops
     bool_t (*cl_control) (CLIENT *, int, char *);
 }
  ;
+
+
+typedef struct CLIENT
+{
+  AUTH *cl_auth;
+  struct clnt_ops cl_ops;
+  caddr_t cl_private;
+}
+CLIENT;
