@@ -299,7 +299,12 @@ userlibs=argvinit();
 
 syslibs=argvinit();
 argvaddstring(syslibs,"-lc");
+/*
+ * This has the side effect of making "lsbcc -" (used by imake) blow up,
+ * so try not using it. It apprears that the couple of things in here are in
+ * the shared libc anyway.
 argvaddstring(syslibs,"/usr/lib/libc_nonshared.a");
+ */
 
 gccargs=argvinit();
 argvaddstring(gccargs,"cc");
