@@ -60,16 +60,77 @@ extern "C"
 #define F_RDLCK	0
 #define F_GETFD	1
 #define F_WRLCK	1
+#if __i386__
 #define F_GETLK64	12
+#endif
+#if __powerpc__ && !__powerpc64__
+#define F_GETLK64	12
+#endif
+#if __powerpc64__
+#define F_GETLK64	12
+#endif
+#if __s390__ && !__s390x__
+#define F_GETLK64	12
+#endif
+#if __i386__
 #define F_SETLK64	13
+#endif
+#if __powerpc__ && !__powerpc64__
+#define F_SETLK64	13
+#endif
+#if __powerpc64__
+#define F_SETLK64	13
+#endif
+#if __s390__ && !__s390x__
+#define F_SETLK64	13
+#endif
 #define F_SETLKW64	14
+#if __i386__
+#define F_SETLKW64	14
+#endif
+#if __powerpc__ && !__powerpc64__
+#define F_SETLKW64	14
+#endif
+#if __powerpc64__
+#define F_SETLKW64	14
+#endif
+#if __s390__ && !__s390x__
+#define F_SETLKW64	14
+#endif
 #define F_SETFD	2
 #define F_UNLCK	2
 #define F_GETFL	3
 #define F_SETFL	4
 #define F_GETLK	5
+#if __ia64__
+#define F_GETLK64	5
+#endif
+#if __x86_64__
+#define F_GETLK64	5
+#endif
+#if __s390x__
+#define F_GETLK64	5
+#endif
 #define F_SETLK	6
+#if __ia64__
+#define F_SETLK64	6
+#endif
+#if __x86_64__
+#define F_SETLK64	6
+#endif
+#if __s390x__
+#define F_SETLK64	6
+#endif
 #define F_SETLKW	7
+#if __ia64__
+#define F_SETLKW64	7
+#endif
+#if __x86_64__
+#define F_SETLKW64	7
+#endif
+#if __s390x__
+#define F_SETLKW64	7
+#endif
 #define F_SETOWN	8
 #define F_GETOWN	9
 
