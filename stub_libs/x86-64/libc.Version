@@ -64,7 +64,6 @@ GLIBC_2.2.5 {
   acct;
   adjtime;
   adjtimex;
-  advance;
   alarm;
   asctime;
   asctime_r;
@@ -405,8 +404,6 @@ GLIBC_2.2.5 {
   munlockall;
   munmap;
   nanosleep;
-  nftw;
-  nftw64;
   ngettext;
   nice;
   nl_langinfo;
@@ -429,8 +426,6 @@ GLIBC_2.2.5 {
   poll;
   popen;
   posix_memalign;
-  pread;
-  pread64;
   printf;
   psignal;
   ptsname;
@@ -444,16 +439,12 @@ GLIBC_2.2.5 {
   putw;
   putwc;
   putwchar;
-  pwrite;
-  pwrite64;
   qsort;
   raise;
   rand;
   rand_r;
   random;
   random_r;
-  re_comp;
-  re_exec;
   read;
   readdir;
   readdir64;
@@ -572,7 +563,6 @@ GLIBC_2.2.5 {
   sscanf;
   statvfs;
   statvfs64;
-  step;
   stime;
   stpcpy;
   stpncpy;
@@ -803,8 +793,6 @@ GLIBC_2.2.5 {
   __tzname;
   _environ;
   _nl_msg_cat_cntr;
-  _sys_errlist;
-  _sys_siglist;
   daylight;
   environ;
   getdate_err;
@@ -826,4 +814,10 @@ GLIBC_2.3 {
   __ctype_tolower_loc;
   __ctype_toupper_loc;
   realpath;
+  _sys_errlist;
+};
+GLIBC_2.3.3 {
+  nftw;
+  nftw64;
+  _sys_siglist;
 };

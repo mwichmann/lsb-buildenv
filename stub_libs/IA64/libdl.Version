@@ -3,6 +3,8 @@ GLIBC_2.0 {
   dladdr;
   dlclose;
   dlerror;
-  dlopen;
   dlsym;
+};
+GLIBC_2.1 {
+  dlopen;
 };

@@ -54,12 +54,10 @@ GLIBC_2.0 {
   acct;
   adjtime;
   adjtimex;
-  advance;
   alarm;
   asctime;
   asctime_r;
   asprintf;
-  atexit;
   atof;
   atoi;
   atol;
@@ -362,8 +360,6 @@ GLIBC_2.0 {
   rand_r;
   random;
   random_r;
-  re_comp;
-  re_exec;
   read;
   readdir;
   readdir_r;
@@ -467,7 +463,6 @@ GLIBC_2.0 {
   srand48;
   srandom;
   sscanf;
-  step;
   stime;
   stpcpy;
   stpncpy;
@@ -726,12 +721,8 @@ GLIBC_2.1 {
   open64;
   pclose;
   popen;
-  pread;
-  pread64;
   ptsname;
   pututxline;
-  pwrite;
-  pwrite64;
   setrlimit64;
   setutxent;
   sighold;

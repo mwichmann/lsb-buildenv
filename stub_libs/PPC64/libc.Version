@@ -67,7 +67,6 @@ GLIBC_2.3 {
   acct;
   adjtime;
   adjtimex;
-  advance;
   alarm;
   asctime;
   asctime_r;
@@ -432,8 +431,6 @@ GLIBC_2.3 {
   poll;
   popen;
   posix_memalign;
-  pread;
-  pread64;
   printf;
   psignal;
   ptsname;
@@ -447,16 +444,12 @@ GLIBC_2.3 {
   putw;
   putwc;
   putwchar;
-  pwrite;
-  pwrite64;
   qsort;
   raise;
   rand;
   rand_r;
   random;
   random_r;
-  re_comp;
-  re_exec;
   read;
   readdir;
   readdir64;
@@ -576,7 +569,6 @@ GLIBC_2.3 {
   sscanf;
   statvfs;
   statvfs64;
-  step;
   stime;
   stpcpy;
   stpncpy;

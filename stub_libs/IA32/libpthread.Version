@@ -17,7 +17,6 @@ GLIBC_2.0 {
   pthread_cancel;
   pthread_condattr_destroy;
   pthread_condattr_init;
-  pthread_create;
   pthread_detach;
   pthread_equal;
   pthread_exit;
@@ -51,6 +50,7 @@ GLIBC_2.1 {
   pthread_attr_setguardsize;
   pthread_attr_setstackaddr;
   pthread_attr_setstacksize;
+  pthread_create;
   pthread_mutexattr_gettype;
   pthread_mutexattr_settype;
   pthread_rwlock_destroy;
@@ -78,10 +78,16 @@ GLIBC_2.1.1 {
   sem_unlink;
 };
 GLIBC_2.2 {
+  pread;
+  pread64;
+  pthread_condattr_getpshared;
+  pthread_condattr_setpshared;
   pthread_mutexattr_getpshared;
   pthread_mutexattr_setpshared;
   pthread_rwlock_timedrdlock;
   pthread_rwlock_timedwrlock;
+  pwrite;
+  pwrite64;
   sem_timedwait;
 };
 GLIBC_2.3.2 {

@@ -54,7 +54,6 @@ GLIBC_2.0 {
   acct;
   adjtime;
   adjtimex;
-  advance;
   alarm;
   asctime;
   asctime_r;
@@ -146,7 +145,6 @@ GLIBC_2.0 {
   fflush_unlocked;
   ffs;
   fgetc;
-  fgetpos;
   fgets;
   fileno;
   flock;
@@ -162,7 +160,6 @@ GLIBC_2.0 {
   freopen;
   fscanf;
   fseek;
-  fsetpos;
   fsync;
   ftell;
   ftime;
@@ -186,7 +183,6 @@ GLIBC_2.0 {
   getgid;
   getgrent;
   getgrgid;
-  getgrgid_r;
   getgrnam;
   getgroups;
   gethostbyaddr;
@@ -212,7 +208,6 @@ GLIBC_2.0 {
   getpwent;
   getpwnam;
   getpwuid;
-  getpwuid_r;
   getrusage;
   getservbyname;
   getservbyport;
@@ -291,7 +286,6 @@ GLIBC_2.0 {
   listen;
   llabs;
   lldiv;
-  localeconv;
   localtime;
   localtime_r;
   lockf;
@@ -365,8 +359,6 @@ GLIBC_2.0 {
   rand_r;
   random;
   random_r;
-  re_comp;
-  re_exec;
   read;
   readdir;
   readdir_r;
@@ -400,7 +392,6 @@ GLIBC_2.0 {
   seed48;
   seekdir;
   select;
-  semctl;
   semget;
   semop;
   send;
@@ -471,7 +462,6 @@ GLIBC_2.0 {
   srand48;
   srandom;
   sscanf;
-  step;
   stime;
   stpcpy;
   stpncpy;
@@ -700,7 +690,6 @@ GLIBC_2.1 {
   freopen64;
   fseeko;
   fseeko64;
-  fsetpos64;
   fstatvfs;
   fstatvfs64;
   ftello;
@@ -714,7 +703,6 @@ GLIBC_2.1 {
   getutxent;
   getutxid;
   getutxline;
-  glob64;
   globfree64;
   grantpt;
   iconv;
@@ -731,12 +719,8 @@ GLIBC_2.1 {
   open64;
   pclose;
   popen;
-  pread;
-  pread64;
   ptsname;
   pututxline;
-  pwrite;
-  pwrite64;
   setrlimit64;
   setutxent;
   sighold;
@@ -768,8 +752,6 @@ GLIBC_2.1 {
   wcswcs;
   wordexp;
   wordfree;
-  _sys_errlist;
-  _sys_siglist;
   getdate_err;
 };
 GLIBC_2.1.1 {
@@ -778,8 +760,10 @@ GLIBC_2.1.1 {
   imaxdiv;
 };
 GLIBC_2.1.2 {
+  getgrgid_r;
   getgrnam_r;
   getpwnam_r;
+  getpwuid_r;
 };
 GLIBC_2.1.3 {
   __cxa_atexit;
@@ -793,12 +777,15 @@ GLIBC_2.2 {
   bind_textdomain_codeset;
   dcngettext;
   dngettext;
+  fgetpos;
   fgetpos64;
   fgetwc;
   fgetwc_unlocked;
   fgetws;
   fputwc;
   fputws;
+  fsetpos;
+  fsetpos64;
   fwide;
   fwprintf;
   fwscanf;
@@ -807,6 +794,8 @@ GLIBC_2.2 {
   getrlimit64;
   getwc;
   getwchar;
+  glob64;
+  localeconv;
   memrchr;
   mkstemp64;
   msgctl;
@@ -815,6 +804,7 @@ GLIBC_2.2 {
   putwc;
   putwchar;
   readdir64;
+  semctl;
   setrlimit;
   shmctl;
   swprintf;
@@ -838,4 +828,8 @@ GLIBC_2.3 {
   __ctype_tolower_loc;
   __ctype_toupper_loc;
   realpath;
+  _sys_errlist;
+};
+GLIBC_2.3.3 {
+  _sys_siglist;
 };

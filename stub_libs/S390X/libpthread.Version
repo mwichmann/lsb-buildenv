@@ -2,6 +2,8 @@ LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.2 {
   _pthread_cleanup_pop;
   _pthread_cleanup_push;
+  pread;
+  pread64;
   pthread_atfork;
   pthread_attr_destroy;
   pthread_attr_getdetachstate;
@@ -23,7 +25,9 @@ GLIBC_2.2 {
   pthread_attr_setstacksize;
   pthread_cancel;
   pthread_condattr_destroy;
+  pthread_condattr_getpshared;
   pthread_condattr_init;
+  pthread_condattr_setpshared;
   pthread_create;
   pthread_detach;
   pthread_equal;
@@ -67,6 +71,8 @@ GLIBC_2.2 {
   pthread_setspecific;
   pthread_sigmask;
   pthread_testcancel;
+  pwrite;
+  pwrite64;
   sem_close;
   sem_destroy;
   sem_getvalue;
