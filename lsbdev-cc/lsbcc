@@ -42,7 +42,7 @@ while true ; do
 			;;
 		-l)
 			case $2 in
-				GL|XT|ICE|SM|X11|Xext)
+				GL|Xt|ICE|SM|X11|Xext)
 					userlibs="$userlibs -l$2"
 					;;
 				crypt|pthread|c|util|z|dl|m|ncurses)
