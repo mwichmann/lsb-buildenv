@@ -28,7 +28,7 @@ RPM_SRC=$RPM_DATA_ROOT/src/lsb
 # Name of build environment users. users listed here will have
 # their home directories mounted inside the buildroot area
 # Space separated list of users
-BUILDUSERS="cyeoh vsx0"
+BUILDUSERS=""
 
 # GCC version
 GCC_SPECS_FILE=`gcc -v 2>&1 | head -1 | cut -f4 -d' '`
