@@ -6,8 +6,6 @@ GLIBC_2.0 {
   _IO_puts;
   __assert_fail;
   __ctype_get_mb_cur_max;
-  __dcgettext;
-  __divdi3;
   __errno_location;
   __fxstat;
   __getpagesize;
@@ -22,7 +20,6 @@ GLIBC_2.0 {
   __libc_start_main;
   __lxstat;
   __mempcpy;
-  __moddi3;
   __sigsetjmp;
   __stpcpy;
   __strdup;
@@ -35,8 +32,6 @@ GLIBC_2.0 {
   __strtoul_internal;
   __strtoull_internal;
   __sysv_signal;
-  __udivdi3;
-  __umoddi3;
   __wcstod_internal;
   __wcstof_internal;
   __wcstol_internal;
@@ -61,7 +56,6 @@ GLIBC_2.0 {
   adjtimex;
   advance;
   alarm;
-  alphasort;
   asctime;
   asctime_r;
   asprintf;
@@ -125,7 +119,6 @@ GLIBC_2.0 {
   dup2;
   ecvt;
   endgrent;
-  endhostent;
   endnetent;
   endprotoent;
   endpwent;
@@ -171,7 +164,6 @@ GLIBC_2.0 {
   fscanf;
   fseek;
   fsetpos;
-  fstatfs;
   fsync;
   ftell;
   ftime;
@@ -428,13 +420,11 @@ GLIBC_2.0 {
   setgid;
   setgrent;
   setgroups;
-  sethostent;
   sethostid;
   sethostname;
   setitimer;
   setlocale;
   setlogmask;
-  setmntent;
   setnetent;
   setpgid;
   setpgrp;
@@ -485,7 +475,6 @@ GLIBC_2.0 {
   srand48;
   srandom;
   sscanf;
-  statfs;
   step;
   stime;
   stpcpy;
@@ -701,7 +690,6 @@ GLIBC_2.1 {
   __libc_current_sigrtmax;
   __libc_current_sigrtmin;
   __rawmemchr;
-  alphasort64;
   chown;
   creat64;
   endutxent;
@@ -715,7 +703,6 @@ GLIBC_2.1 {
   fseeko;
   fseeko64;
   fsetpos64;
-  fstatfs64;
   fstatvfs;
   fstatvfs64;
   ftello;
@@ -762,7 +749,6 @@ GLIBC_2.1 {
   sigset;
   sigtimedwait;
   sigwaitinfo;
-  statfs64;
   statvfs;
   statvfs64;
   strcasestr;
@@ -775,7 +761,6 @@ GLIBC_2.1 {
   tmpfile64;
   truncate64;
   unlockpt;
-  waitid;
   wcscasecmp;
   wcsncasecmp;
   wcsnlen;
