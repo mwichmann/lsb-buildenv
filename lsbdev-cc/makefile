@@ -1,6 +1,5 @@
-
 PROGRAMS = lsbcc
-CFLAGS=-g
+CFLAGS=-g -Wall
 
 all: $(PROGRAMS)
 
