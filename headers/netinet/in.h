@@ -10,11 +10,6 @@ extern "C"
 #endif
 
 
-#define IPPROTO_IPV6
-#define IPPROTO_IPV6
-#define IPV6_ADD_MEMBERSHIP
-#define IPV6_DROP_MEMBERSHIP
-#define IPV6_UNICAST_HOPS
 #define IN6_IS_ADDR_LINKLOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfe800000))
 #define IN6_IS_ADDR_SITELOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfec00000))
 #define IN6_IS_ADDR_V4COMPAT(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == 0) && (ntohl (((const uint32_t *) (a))[3]) > 1))
@@ -47,6 +42,7 @@ extern "C"
 #define IPV6_LEAVE_GROUP	21
 #define IPPROTO_RAW	255
 #define INET6_ADDRSTRLEN	46
+#define IPPROTO_IPV6	58
 #define IPPROTO_TCP	6
 #define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
