@@ -178,9 +178,7 @@ GLIBC_2.0 {
   getgid;
   getgrent;
   getgrgid;
-  getgrgid_r;
   getgrnam;
-  getgrnam_r;
   getgroups;
   gethostbyaddr;
   gethostbyname;
@@ -203,7 +201,6 @@ GLIBC_2.0 {
   getprotoent;
   getpwent;
   getpwnam;
-  getpwnam_r;
   getpwuid;
   getrusage;
   getservbyname;
@@ -718,7 +715,6 @@ GLIBC_2.1 {
   strcasestr;
   strtoimax;
   strtoumax;
-  swapcontext;
   tcgetsid;
   tmpfile;
   tmpfile64;
@@ -734,8 +730,6 @@ GLIBC_2.1 {
   wcswcs;
   wordexp;
   wordfree;
-  _sys_errlist;
-  _sys_siglist;
   getdate_err;
 };
 GLIBC_2.1.1 {
@@ -744,6 +738,9 @@ GLIBC_2.1.1 {
   imaxdiv;
 };
 GLIBC_2.1.2 {
+  getgrgid_r;
+  getgrnam_r;
+  getpwnam_r;
   getpwuid_r;
 };
 GLIBC_2.1.3 {
@@ -812,6 +809,7 @@ GLIBC_2.3 {
   __ctype_tolower_loc;
   __ctype_toupper_loc;
   realpath;
+  _sys_errlist;
 };
 GLIBC_2.3.2 {
   __register_atfork;
@@ -820,4 +818,6 @@ GLIBC_2.3.3 {
   getcontext;
   makecontext;
   setcontext;
+  swapcontext;
+  _sys_siglist;
 };

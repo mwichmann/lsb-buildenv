@@ -31,7 +31,6 @@ GLIBC_2.3 {
   __lxstat64;
   __mempcpy;
   __rawmemchr;
-  __sigsetjmp;
   __stpcpy;
   __strdup;
   __strtod_internal;
@@ -53,8 +52,6 @@ GLIBC_2.3 {
   __xstat;
   __xstat64;
   _exit;
-  _longjmp;
-  _setjmp;
   _tolower;
   _toupper;
   a64l;
@@ -218,7 +215,6 @@ GLIBC_2.3 {
   getc_unlocked;
   getchar;
   getchar_unlocked;
-  getcontext;
   getcwd;
   getdate;
   getegid;
@@ -355,7 +351,6 @@ GLIBC_2.3 {
   localtime_r;
   lockf;
   lockf64;
-  longjmp;
   lrand48;
   lsearch;
   lseek;
@@ -399,8 +394,6 @@ GLIBC_2.3 {
   munlockall;
   munmap;
   nanosleep;
-  nftw;
-  nftw64;
   ngettext;
   nice;
   nl_langinfo;
@@ -453,7 +446,6 @@ GLIBC_2.3 {
   recvmsg;
   regcomp;
   regerror;
-  regexec;
   regfree;
   remove;
   remque;
@@ -483,7 +475,6 @@ GLIBC_2.3 {
   sendto;
   setbuf;
   setbuffer;
-  setcontext;
   setegid;
   setenv;
   seteuid;
@@ -528,7 +519,6 @@ GLIBC_2.3 {
   siginterrupt;
   sigisemptyset;
   sigismember;
-  siglongjmp;
   signal;
   sigorset;
   sigpause;
@@ -612,7 +602,6 @@ GLIBC_2.3 {
   svctcp_create;
   svcudp_create;
   swab;
-  swapcontext;
   swprintf;
   swscanf;
   symlink;
@@ -783,7 +772,6 @@ GLIBC_2.3 {
   _environ;
   _nl_msg_cat_cntr;
   _sys_errlist;
-  _sys_siglist;
   daylight;
   environ;
   getdate_err;
@@ -802,4 +790,20 @@ GLIBC_2.3 {
 };
 GLIBC_2.3.2 {
   __register_atfork;
+};
+GLIBC_2.3.3 {
+  nftw;
+  nftw64;
+  _sys_siglist;
+};
+GLIBC_2.3.4 {
+  __sigsetjmp;
+  _longjmp;
+  _setjmp;
+  getcontext;
+  longjmp;
+  regexec;
+  setcontext;
+  siglongjmp;
+  swapcontext;
 };
