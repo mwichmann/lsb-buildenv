@@ -106,19 +106,11 @@ extern "C"
 
 #endif
 
-#define __LITTLE_ENDIAN	1234
 #define __PDP_ENDIAN	3412
-#define __BIG_ENDIAN	4321
-#define BIG_ENDIAN	__BIG_ENDIAN
-#define BYTE_ORDER	__BYTE_ORDER
-#define LITTLE_ENDIAN	__LITTLE_ENDIAN
 #define PDP_ENDIAN	__PDP_ENDIAN
 
 
 
-#if __i386__
-#define __BYTE_ORDER	__LITTLE_ENDIAN
-#endif
 
 
 
