@@ -48,6 +48,18 @@ extern "C"
    ;
 
 #endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef struct _libc_vrstate
+  {
+    unsigned int vrregs;
+    unsigned int vscr;
+    unsigned int vrsave;
+    unsigned int _pad;
+  }
+  vrregset_t __attribute__ ((__aligned__ (16)));
+
+#endif
 
 /* Type for general register.*/
 
@@ -96,6 +108,11 @@ extern "C"
 #if __x86_64__
 /* x86-64 */
   typedef greg_t gregset_t[23];
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef unsigned long gregset_t;
 
 #endif
 
@@ -209,6 +226,28 @@ extern "C"
   typedef struct _libc_fpstate *fpregset_t;
 
 #endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  struct _libc_fpstate
+  {
+    double fpregs;
+    double fpscr;
+    int _pad;
+  }
+   ;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef struct _libc_fpstate
+  {
+    double fpregs;
+    double fpscr;
+    int _pad;
+  }
+  fpregset_t;
+
+#endif
 
 
 
@@ -233,8 +272,8 @@ extern "C"
   typedef struct sigcontext mcontext_t;
 
 #endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
+#if __powerpc64__
+/* PPC64 */
   typedef struct sigcontext mcontext_t;
 
 #endif
@@ -269,6 +308,17 @@ extern "C"
     gregset_t gregs;
     fpregset_t fpregs;
     unsigned long __reserved1;
+  }
+  mcontext_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef struct
+  {
+    gregset_t gregs;
+    fpregset_t fpregs;
+    vrregset_t vrregs;
   }
   mcontext_t;
 
@@ -317,8 +367,10 @@ extern "C"
     unsigned long uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
-    mcontext_t uc_mcontext;
+    int uc_pad[7];
+    union uc_regs_ptr uc_mcontext;
     sigset_t uc_sigmask;
+    char uc_reg_space[50];
   }
   ucontext_t;
 
@@ -370,6 +422,16 @@ extern "C"
     struct _libc_fpstate __fpregs_mem;
   }
   ucontext_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  union uc_regs_ptr
+  {
+    struct pt_regs *regs;
+    mcontext_t *uc_regs;
+  }
+   ;
 
 #endif
 
