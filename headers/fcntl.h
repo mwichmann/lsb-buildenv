@@ -22,6 +22,7 @@ extern "C"
 #define O_NOCTTY	0400
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000
+#define FD_CLOEXEC	1
 
 
   struct flock
