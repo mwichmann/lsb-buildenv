@@ -15,7 +15,6 @@ extern "C"
 #define POLLHUP	0x0010
 #define POLLNVAL	0x0020
 
-typedef unsigned long int nfds_t;
 
   struct pollfd
   {
@@ -24,6 +23,8 @@ typedef unsigned long int nfds_t;
     short revents;		/* Types of events that actually occurred. */
   }
    ;
+
+  typedef unsigned long nfds_t;
 
 
 #ifdef __cplusplus
