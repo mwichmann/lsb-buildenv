@@ -117,10 +117,22 @@ Known Bugs
   please also try using the system include files before reporting
   a bug. 
 
+Variations from LSB specification
+---------------------------------
+
+The following symbols are not in the LSB specification, but are
+included in the C stub library because they are needed for the correct
+compilation of some binaries by gcc. It expected that they will be
+added in the near future.
+
+  _IO_stdin_used
+  __cxa_finalize
+
+
 Feedback
 --------
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2001/11/20
+Last updated 2002/03/01
 
