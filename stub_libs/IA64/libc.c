@@ -65,7 +65,6 @@ void accept() {} ;
 void access() {} ;
 void acct() {} ;
 void adjtime() {} ;
-void adjtimex() {} ;
 void alarm() {} ;
 void asctime() {} ;
 void asctime_r() {} ;
