@@ -1,7 +1,10 @@
 
-all:
+PROGRAMS = lsbcc
+CFLAGS=-g
 
-install:
+all: $(PROGRAMS)
+
+install: $(PROGRAMS)
 	install -d $$LSBHOME/src/build/usr/bin
 	cp lsbcc $$LSBHOME/src/build/usr/bin
 
