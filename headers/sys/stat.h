@@ -308,7 +308,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    long __unused[];
+    long __unused[3];
   }
    ;
 
