@@ -1,0 +1,9 @@
+
+
+
+struct dwarf_eh_base;
+struct _Unwind_Context;
+struct _Unwind_Exception;
+typedef void *_Unwind_Ptr;
+typedef int _Unwind_Word;
+enum _Unwind_Reason_Code;
