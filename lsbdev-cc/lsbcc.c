@@ -187,6 +187,21 @@ for(i=0;i<ag->numargv;i++)
 }
 /* end argv ADT */
 
+/*
+ * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
+ * that corresponds to the bits defined below.
+ */
+
+#define DEBUG_ENV_OVERRIDES	0x0001
+#define DEBUG_ARGUMENTS		0x0002
+#define DEBUG_RECOGNIZED_ARGS	0x0004
+#define DEBUG_UNRECOGNIZED_ARGS	0x0008
+#define DEBUG_INCLUDE_CHANGES	0x0010
+#define DEBUG_LIB_CHANGES	0x0020
+#define DEBUG_MODIFIED_ARGS	0x0040
+
+int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
+
 /* begin option processing routines */
 
 /*
@@ -230,9 +245,8 @@ for(i=0;lsblibs[i];i++) {
 
 /* So it's not an LSB library. Make sure it is getting statically linked */
 
-/*
-fprintf(stderr,"Forcing %s to be linked statically\n",val);
-*/
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Forcing %s to be linked statically\n",val);
 
 argvaddstring(userlibs,"-Wl,-Bstatic");
 argvaddstring(userlibs,strdup(buf));
@@ -268,7 +282,7 @@ char *optstr="cL:l:o:EI:";
 /*
  * gcc has a lot of options that are more than one character long. We'll treat
  * them as long options, but use the "_only" form of getopt so that they will
- * be recognized even though that all are indicated by a single '-'.
+ * be recognized even though they all are indicated by a single '-'.
  */
 
 struct option long_options[] = {
@@ -289,6 +303,14 @@ struct option long_options[] = {
 int lsbccmode=LSBCC;
 
 /*
+ * Set the defalt names of the compiler to call, but allow them to be
+ * changed if needed.
+ */
+
+char *ccname="cc";
+char *cxxname="c++";
+
+/*
  * The program intepreter isn't the same everywhere, so set it here,
  * and just use it below.
  */
@@ -306,10 +328,36 @@ char *proginterpreter =
 
 main(int argc, char *argv[])
 {
-int	c;
+int	c,i;
 int	option_index;
 char	progintbuf[256];
+char	*ptr;
 
+/*
+ * Check for some environment variable, and adjust things if they are found.
+ */
+
+if( (ptr=getenv("LSBCC_DEBUG")) != NULL ) {
+	lsbcc_debug=strtod(ptr,NULL);
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+		fprintf(stderr,"lsbcc debug set to 0x%x\n", lsbcc_debug );
+	}
+
+if( (ptr=getenv("LSBCC")) != NULL ) {
+	ccname=ptr;
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+		fprintf(stderr,"cc name set to %s\n", ccname );
+	}
+	
+if( (ptr=getenv("LSBCXX")) != NULL ) {
+	cxxname=ptr;
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+		fprintf(stderr,"c++ name set to %s\n", cxxname );
+	}
+	
+if( lsbcc_debug&DEBUG_ARGUMENTS )
+	for(i=0;i<argc;i++ )
+		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 /*
  * Determine if we are being called for C or C++
  */
@@ -337,8 +385,14 @@ options=argvinit();
 incpaths=argvinit();
 
 libpaths=argvinit();
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Turning off default libraries with -nodefaultlibs\n");
 argvaddstring(libpaths,"-nodefaultlibs");
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
 argvadd(libpaths,"L",gccbasedir);
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Prepending /opt/lsbdev-base/lib to be linker path\n");
 argvaddstring(libpaths,"-L/opt/lsbdev-base/lib");
 argvaddstring(libpaths,"-L/lib");
 argvaddstring(libpaths,"-L/usr/lib");
@@ -353,6 +407,8 @@ if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(userlibs,"-Wl,-Bdynamic");
 	}
 
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Appending -lm -lc -lc_nonshared -lgcc to the library list\n");
 argvaddstring(syslibs,"-lm");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
@@ -360,9 +416,9 @@ argvaddstring(syslibs,"-lgcc");
 
 gccargs=argvinit();
 if( lsbccmode == LSBCPLUS ) {
-	argvaddstring(gccargs,"g++");
+	argvaddstring(gccargs,cxxname);
 } else {
-	argvaddstring(gccargs,"cc");
+	argvaddstring(gccargs,ccname);
 }
 
 /* Process the options passed in */
@@ -371,14 +427,17 @@ opterr=0;
 while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	switch(c) {
 	case 0:
-		printf("option %s",long_options[option_index].name);
-		if( optarg ) {
-			printf (" with arg %s", optarg);
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
+			fprintf(stderr,"option: -%s",
+				long_options[option_index].name);
+			if( optarg ) {
+				fprintf(stderr, " with arg %s", optarg);
+				}
+			fprintf(stderr,"\n");
 			}
-		printf("\n");
 		argvadd(options,long_options[option_index].name,optarg);
 		/*
-		 * If we are building a shred library, then we need to
+		 * If we are building a shared library, then we need to
 		 * not specify the program interpreter and system libraries.
 		 */
 		if(strcmp( long_options[option_index].name, "shared" ) == 0) {
@@ -388,20 +447,30 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		break;
 	case 'E':
 	case 'c':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -%c\n", c);
 		argvreset(proginterp);
 		argvreset(syslibs);
 		argvaddstring(options,argv[optind-1]);
 		break;
 	case 'o':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -o %s\n", optarg );
 		argvadd(target,"o",optarg);
 		break;
 	case 'I':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -I %s\n", optarg );
 		argvadd(incpaths,"I",optarg);
 		break;
 	case 'l':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: - %s\n", optarg );
 		process_opt_l(optarg);
 		break;
 	case 'L':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -L %s\n", optarg );
 		argvadd(libpaths,"L",optarg);
 		break;
 	case '?':
@@ -409,15 +478,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 * This is an attempt to catch things that we don't
 		 * explicitely recognize, and just pass it through to gcc.
 		 */
-/*
-		printf("adding option %s", argv[optind-1] );
-*/
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: %s\n", argv[optind-1] );
 		argvaddstring(options,argv[optind-1]);
-/*
-		if( optarg )
-			printf (" with arg %s", optarg);
-		printf("\n");
-*/
 		break;
 	default:
 		/* We shouldn't get here */
@@ -429,18 +492,15 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 }
 /* Gather together the non-options arguments */
 if (optind < argc) {
-/*
-	printf ("non-option ARGV-elements: ");
-*/
+	if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS )
+		fprintf(stderr, "non-option ARGV-elements: ");
 	while (optind < argc) {
-/*
-		printf ("%s ", argv[optind]);
-*/
+		if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS )
+			fprintf(stderr,"%s ", argv[optind]);
 		argvaddstring(options,argv[optind++]);
 		}
-/*
-	printf ("\n");
-*/
+	if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS )
+		fprintf(stderr,"\n");
 	}
 
 
@@ -454,6 +514,8 @@ argvappend(gccargs,target);
  * This does make the assumption that application builds are well behaved
  * and don't pass in -I/usr/include themselves.
  */
+if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
+	fprintf(stderr,"Prepending /opt/lsbdev-base/include to include path\n");
 argvaddstring(incpaths,"-I/opt/lsbdev-base/include");
 argvappend(gccargs,incpaths);
 
@@ -462,9 +524,9 @@ argvappend(gccargs,libpaths);
 argvappend(gccargs,userlibs);
 argvappend(gccargs,proginterp);
 argvappend(gccargs,syslibs);
-/*
-argvdump(gccargs);
-*/
+
+if( lsbcc_debug&DEBUG_MODIFIED_ARGS )
+	argvdump(gccargs);
 
 /* exec to gcc */
 
