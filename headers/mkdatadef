@@ -57,7 +57,9 @@ if( $$type{'Ttype'} eq "Const" ) {
 if( $$type{'Ttype'} eq "Typedef" ) {
 	if (!$nameonly) { print "typedef "; }
 	$basetype=$$type{'Tbasetype'};
-	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tselect="SELECT * FROM Type ";
+	$tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+	$tselect.= "WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
 # Something about anon or not & wether to set nameonly
@@ -76,7 +78,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		print $$type{'Tname'}."\t";
 		}
 	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
-		print "[".$$type{'ATsize'}."]";
+		print "[".$entry{'ATsize'}."]";
 		}
 	if( !$nameonly && $$type{'Tattribute'} ) {
 		print "__attribute__ (".$$type{'Tattribute'}.")";
