@@ -62,6 +62,16 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
+  typedef struct _libc_vscr
+  {
+    int __pad;
+    int vscr_word;
+  }
+  vscr_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
   typedef struct _libc_vrstate
   {
     unsigned int vrregs[4];
