@@ -89,12 +89,32 @@ the default
 .I /opt/lsbdev-base/include
 will be used.
 .P
+.TP
+LSBCC_SHAREDLIBS
+A library name or colon-separated list of library names to
+add to the default list. The name should be the base part
+of the library only, for example to add
+.I libfoo.so
+use the name
+.IR foo .
+.IP
+Normally, only LSB-defined libraries should be linked
+as shared libraries, all others are to be linked statically.
+However, if an application provides its own shared library
+which has been carefully checked for LSB conformance, this
+method can be used to turn off
+.IR lsbcc 's
+rule of forcing static linking. The application may not depend
+on such a library being present on a system, so it must either
+be shipped with the application, or with another LSB conforming
+application on which this application depends.  
+.P
 .SH EXAMPLES
 .B "lsbcc hello.c -o hello"
 .P
-.B "make CC=lsbcc"
-.P
 .B "CC=lsbcc CXX=lsbc++ ./configure; make"
+.P
+.B "LSBCC_SHAREDLIBS=tcl:tk CC=lsbcc make"
 .P
 .SH "AUTHORS"
 Stuart Anderson <anderson@freestandards.org>

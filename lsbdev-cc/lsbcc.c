@@ -11,11 +11,12 @@
  * of the original shell script.
  * 
  * The basic premise is this: The LSB development environment provides
- * a set of headers and libraries nominaly found in /usr/lsb/includes and
- * /usr/lsb/libs respectively. These headers and libraries have been carefully
- * built so that they contain only the interfaces provided by the LSB. One
- * item to note is that an LSB conforming application must use ld-lsb.so.1
- * as the program intepreter.   
+ * a set of headers and libraries nominaly found in /opt/lsbdeb-base/includes
+ * and /opt/lsbdev-base/libs respectively. These headers and libraries have
+ * been carefully built so that they contain only the interfaces provided by
+ * the LSB. And LSB conforming application must also use be linked with
+ * a special program intepreter (usually ld-lsb.so.1 but this is described
+ * in each archLSB)
  * 
  * The purpose of the lsbcc tool is to cause programs to be built against
  * these headers and libraries and with the correct program interpreter. 
@@ -81,19 +82,22 @@ struct argvgroup *incpaths;
 struct argvgroup *userlibs;
 struct argvgroup *syslibs;
 struct argvgroup *gccargs;
+struct argvgroup *lsblibs;
 
 /*
- * Find out of we are being used for C++. If so, we need to do a couple
+ * Find out if we are being used for C++. If so, we need to do a couple
  * of extra things.
  */
+
 #define LSBCC		0
 #define LSBCPLUS	1
 
 int lsbccmode=LSBCC;
 
 /*
- * Set the defalt names of the compiler to call, but allow them to be
- * changed if needed.
+ * Set the default names of the compiler to call and the paths
+ * to LSB headers and libraries.  These can be changed through
+ * environment variables.
  */
 
 char *ccname="cc";
@@ -227,10 +231,10 @@ for(i=0;i<ag->numargv;i++)
 
 /*
  * Some options require a little bit of additional processing, so we have
- * a few routines here that are used to to the special processing.
+ * a few routines here that are used to do the special processing.
  */
 
-char *lsblibs[] = {
+char *default_lsblibs[] = {
 	"c",
 	"m",
 	"pthread",
@@ -258,8 +262,9 @@ int	i;
 sprintf(buf,"-l%s",val);
 
 /* First check to see if it is a LSB library. If so, just pass it through */
-for(i=0;lsblibs[i];i++) {
-	if( strcmp(lsblibs[i],val) == 0 ) {
+
+for(i=0;i<lsblibs->numargv;i++) {
+	if( strcmp(lsblibs->argv[i],val) == 0 ) {
 		argvaddstring(userlibs,strdup(buf));
 		return;
 	}
@@ -387,17 +392,37 @@ if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"include prefix set to %s\n", incpath );
 	}
-	
+
+/*
+ * Build the argvgroup for the "known" library names here
+ * Then add to it if the environment variable is set
+ */
+lsblibs=argvinit();
+for(i=0;default_lsblibs[i];i++)
+	argvaddstring(lsblibs,strdup(default_lsblibs[i]));
+
+if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
+	char *libarg, *lib;
+	libarg = strdup(ptr);
+		lib = strtok(libarg, ":");
+		while (lib) {
+			if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+				fprintf(stderr,"added %s to allowed dsos\n", lib);
+			argvaddstring(lsblibs,strdup(lib));
+			lib = strtok(NULL, ":");
+		}
+	}
+
 if( lsbcc_debug&DEBUG_ARGUMENTS )
 	for(i=0;i<argc;i++ )
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
-/*
- * Determine if we are being called for C or C++
- */
+	
+/* Determine if we are being called for C or C++ */
 if(strcmp(basename(argv[0]),"lsbcc") == 0 ) {
-	;/* We are compiling for C - nothing special to do */
+	/* We are compiling C - nothing special to do */
+	;
 } else if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
-	/* We are compiling for C++ set a flag to affect some things later on */
+	/* We are compiling C++ - set a flag to affect some things later on */
 	/*
 	fprintf(stderr,"Using C++ mode\n");
 	*/
