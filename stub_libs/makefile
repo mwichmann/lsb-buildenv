@@ -27,7 +27,7 @@ LSBSRCS=$(LSBLINKSRCS) $(LSBRUNSRCS)
 	$(LD) --version-script Version -o $@.lsb.1 -shared -h $@.lsb.1 $*.run.o /lib/libc.so.6
 
 all:: $(LSBLIBS)
-	echo Libraries done.
+	@echo Libraries done.
 
 $(LSBLIBS): $(LSBOBJS)
 
@@ -35,6 +35,7 @@ $(LSBOBJS): $(LSBSRCS)
 
 all::
 	cc -o testlib testlib.c -L`pwd`
+	LD_LIBRARY_PATH=`pwd` ./testlib
 
 clean:
 	rm -f $(LSBLIBS) $(LSBOBJS) $(LSBSRCS) testlib

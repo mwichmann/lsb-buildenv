@@ -2,5 +2,6 @@ main()
 {
 open("/dev/null");
 fopen("/dev/null");
-printf("Hello!");
+printf("Hello!!!\n");
+exit(0);
 }
