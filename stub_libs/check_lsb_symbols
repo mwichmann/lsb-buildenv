@@ -13,9 +13,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.11 $
+# This is $Revision: 1.12 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.12  2002/04/11 08:19:23  cyeoh
+# Improves version checking to take into account aliases
+#
 # Revision 1.11  2002/04/11 06:58:38  cyeoh
 # check versions of functions too. Adds output suitable
 # for override_versions.txt file
@@ -290,7 +293,7 @@ sub CheckSymbols($$$$$)
   my($row);
   my(%versionInfo);
   my($iface);
-
+  my($viface);
   # Do functions first
   $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM Interface,LibGroup, ".
                        "LGInt LEFT JOIN Version ON Vid=Iversion ".
@@ -306,15 +309,48 @@ sub CheckSymbols($$$$$)
     if (exists($aliases->{$iface}))
     {
       $iface = $aliases->{$iface};
+      
     }
     if ($iface eq "__lsb_cy_dummy_function")
     {
-      # dummy function as its just a weak function. its ok.
+      # dummy function as its just a weak function. its ok but we still
+      # check the version is correct
+      $viface = $row->{Iname};
+
+      if (defined($symbolInfo->{$viface}{VERSION}))
+      {
+        if (!defined($row->{Vname}))
+        {
+          if ($symbolInfo->{$viface}{VERSION} ne "Base")
+          {
+            print "For $viface library has version "
+                . $symbolInfo->{$viface}{VERSION} 
+                . " but not defined in db\n";
+            print "xxx $libName $viface $symbolInfo->{$viface}{VERSION}\n";
+          }
+        }
+        elsif ($symbolInfo->{$viface}{VERSION} ne $row->{Vname})
+        {
+          print "For $viface library has version $symbolInfo->{$viface}{VERSION}"
+              . " but defined as $row->{Vname} in db\n";
+          print "xxx $libName $viface $symbolInfo->{$viface}{VERSION}\n";
+        }
+      }
+      else
+      {
+        if (defined($row->{Vname}))
+        {
+          print "For $viface db has version $row->{Vname}"
+              . " but not defined in library\n";
+        }
+      }
+
       next;
     }
 
 #    print "$row->{Iname}\n";
 #    print "$symbolInfo->{$row->{Iname}}\n";
+
     if (exists($symbolInfo->{$iface}))
     {
       if ($symbolInfo->{$iface}{TYPE} ne "FUNC" 
@@ -322,33 +358,38 @@ sub CheckSymbols($$$$$)
       {
         print "$row->{Iname} is $symbolInfo->{$iface}{TYPE} but recorded as function\n";
       }
-      if (defined($symbolInfo->{$iface}{VERSION}))
+
+      # Version check
+      # Check version of alias not the thing it points to
+      $viface = $row->{Iname};
+      if (defined($symbolInfo->{$viface}{VERSION}))
       {
         if (!defined($row->{Vname}))
         {
-          if ($symbolInfo->{$iface}{VERSION} ne "Base")
+          if ($symbolInfo->{$viface}{VERSION} ne "Base")
           {
-            print "For $iface library has version "
-                . $symbolInfo->{$iface}{VERSION} 
+            print "For $viface library has version "
+                . $symbolInfo->{$viface}{VERSION} 
                 . " but not defined in db\n";
-            print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
+            print "xxx $libName $viface $symbolInfo->{$viface}{VERSION}\n";
           }
         }
-        elsif ($symbolInfo->{$iface}{VERSION} ne $row->{Vname})
+        elsif ($symbolInfo->{$viface}{VERSION} ne $row->{Vname})
         {
-          print "For $iface library has version $symbolInfo->{$iface}{VERSION}"
+          print "For $viface library has version $symbolInfo->{$viface}{VERSION}"
               . " but defined as $row->{Vname} in db\n";
-          print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
+          print "xxx $libName $viface $symbolInfo->{$viface}{VERSION}\n";
         }
       }
       else
       {
         if (defined($row->{Vname}))
         {
-          print "For $iface db has version $row->{Vname}"
+          print "For $viface db has version $row->{Vname}"
               . " but not defined in library\n";
         }
       }
+
     }
     else
     {
@@ -406,30 +447,32 @@ sub CheckSymbols($$$$$)
         print "Size mismatch for $iface. Is $symbolInfo->{$iface}{SIZE} but in db as $row->{ATsize}\n";
       }
 
-      if (defined($symbolInfo->{$iface}{VERSION}))
+      # Version check
+      $viface = $row->{Iname};
+      if (defined($symbolInfo->{$viface}{VERSION}))
       {
         if (!defined($row->{Vname}))
         {
-          if ($symbolInfo->{$iface}{VERSION} ne "Base")
+          if ($symbolInfo->{$viface}{VERSION} ne "Base")
           {
-            print "For $iface library has version "
-                . $symbolInfo->{$iface}{VERSION} 
+            print "For $viface library has version "
+                . $symbolInfo->{$viface}{VERSION} 
                 . " but not defined in db\n";
-            print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
+            print "xxx $libName $viface $symbolInfo->{$viface}{VERSION}\n";
           }
         }
-        elsif ($symbolInfo->{$iface}{VERSION} ne $row->{Vname})
+        elsif ($symbolInfo->{$viface}{VERSION} ne $row->{Vname})
         {
-          print "For $iface library has version $symbolInfo->{$iface}{VERSION}"
+          print "For $viface library has version $symbolInfo->{$viface}{VERSION}"
               . " but defined as $row->{Vname} in db\n";
-          print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
+          print "xxx $libName $viface $symbolInfo->{$viface}{VERSION}\n";
         }
       }
       else
       {
         if (defined($row->{Vname}))
         {
-          print "For $iface db has version $row->{Vname}"
+          print "For $viface db has version $row->{Vname}"
               . " but not defined in library\n";
         }
       }
