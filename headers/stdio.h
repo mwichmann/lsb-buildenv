@@ -138,6 +138,9 @@ extern "C"
   extern int getc_unlocked (FILE *);
   extern void setbuffer (FILE *, char *, size_t);
   extern int vasprintf (char **, const char *, va_list);
+  extern int vfscanf (FILE *, const char *, va_list);
+  extern int vscanf (const char *, va_list);
+  extern int vsscanf (const char *, const char *, va_list);
 #ifdef __cplusplus
 }
 #endif
