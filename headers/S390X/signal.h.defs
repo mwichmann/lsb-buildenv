@@ -38,7 +38,7 @@ struct sigaction
   __sigaction_handler;
   unsigned long sa_flags;
   void (*sa_restorer) (void);
-  __sigset_t sa_mask;
+  sigset_t sa_mask;
 }
  ;
 
