@@ -1,9 +1,9 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 #include <sys/time.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -197,6 +197,13 @@ extern "C"
 #define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
+
+
+
+#define F_ULOCK	0
+#define F_LOCK	1
+#define F_TLOCK	2
+#define F_TEST	3
 
 
 
