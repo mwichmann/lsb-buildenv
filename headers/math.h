@@ -23,6 +23,12 @@ extern "C"
    ;
 
 
+/* ISO C99 defines some generic macros which work on any data type.*/
+#define isinf(x)	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
+#define isnan(x)	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+
+
+
 /* machine-dependent HUGE_VAL value*/
 #define HUGE_VAL	0x1.0p2047
 #define HUGE_VALF	0x1.0p255f
@@ -65,7 +71,6 @@ extern "C"
   extern double copysign (double, double);
   extern int finite (double);
   extern double frexp (double, int *);
-  extern int isinf (double);
   extern double ldexp (double, int);
   extern double modf (double, double *);
   extern double acos (double);
@@ -116,11 +121,6 @@ extern "C"
   extern int finitel (long double);
   extern float frexpf (float, int *);
   extern long double frexpl (long double, int *);
-  extern int isinff (float);
-  extern int isinfl (long double);
-  extern int isnan (double);
-  extern int isnanf (float);
-  extern int isnanl (long double);
   extern float ldexpf (float, int);
   extern long double ldexpl (long double, int);
   extern float modff (float, float *);
