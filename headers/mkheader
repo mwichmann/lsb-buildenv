@@ -371,7 +371,7 @@ if( $$param{'Ttype'} eq "Union" ) {
 	}
 
 if( $$param{'Ttype'} eq "Enum" ) {
-	print $$param{'Tname'};
+	print "enum ".$$param{'Tname'};
 	return;
 	}
 
@@ -573,7 +573,25 @@ if( $typelist ne "" ) {
 $typelist=join ',', keys(%type);
 
 #
-# Get the base types of Struct/Union members
+# Get the base types of Struct/Union/Fptr members
+#
+
+if( $typelist ne "" ) { 
+	$select = "SELECT TMtypeid,TMname FROM TypeMember ";
+	$select.= "WHERE TMmemberof IN ($typelist)";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'TMtypeid'}}=1;
+		#print "TypeMember ".$entry{'TMname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
+
+#
+# Do this once more to get nested Struct/Unions/Fptr members
 #
 
 if( $typelist ne "" ) { 
