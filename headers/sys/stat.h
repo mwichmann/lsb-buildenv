@@ -43,9 +43,6 @@ extern "C"
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
-#if __ia64__
-#define _STAT_VER	1
-#endif
 #define _STAT_VER	3
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR

@@ -1,7 +1,5 @@
 
-#define ULONG_MAX	-1
 #define LONG_MAX	2147483647
-#define PATH_MAX	4095
 
 
 
@@ -10,10 +8,3 @@
 
 #define CHAR_MIN	0
 #define CHAR_MAX	255
-
-
-
-
-
-
-#define __INT_MAX__	2147483647

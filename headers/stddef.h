@@ -16,7 +16,7 @@ extern "C"
   typedef int wchar_t;
 
 #endif
-  typedef unsigned int size_t;
+  typedef unsigned long size_t;
 
   typedef long ptrdiff_t;
 

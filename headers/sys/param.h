@@ -9,9 +9,6 @@ extern "C"
 
 
 #define NOFILE	256
-#if __s390__
-#define MAXPATHLEN	4095
-#endif
 #define MAXPATHLEN	4096
 
 

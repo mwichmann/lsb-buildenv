@@ -8,24 +8,13 @@ extern "C"
 #endif
 
 
-#if __powerpc64__
-#define ULONG_MAX	-1
-#endif
-#if __s390__
-#define ULONG_MAX	-1
-#endif
 #if __ia64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
 #endif
 #if __i386__
 #define LONG_MAX	0x7FFFFFFFL
 #endif
-#if __ia64__
-#define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
-#endif
-#if __i386__
 #define ULONG_MAX	0xFFFFFFFFUL
-#endif
 #if __s390__
 #define LONG_MAX	2147483647
 #endif
@@ -33,13 +22,7 @@ extern "C"
 #define LONG_MAX	2147483647L
 #endif
 #define OPEN_MAX	256
-#if __s390__
-#define PATH_MAX	4095
-#endif
 #define PATH_MAX	4096
-#if __powerpc__ && !__powerpc64__
-#define ULONG_MAX	4294967295UL
-#endif
 #if __powerpc64__
 #define LONG_MAX	9223372036854775807L
 #endif
@@ -102,21 +85,7 @@ extern "C"
 /* Minimum and maximum values a `int' can hold.*/
 #define INT_MIN	(-INT_MAX-1)
 #define INT_MAX	2147483647
-#if __i386__
 #define __INT_MAX__	2147483647
-#endif
-#if __ia64__
-#define __INT_MAX__	2147483647
-#endif
-#if __powerpc__ && !__powerpc64__
-#define __INT_MAX__	2147483647
-#endif
-#if __powerpc64__
-#define __INT_MAX__	2147483647
-#endif
-#if __s390__
-#define __INT_MAX__	2147483647
-#endif
 #define UINT_MAX	4294967295U
 
 

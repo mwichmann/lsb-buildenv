@@ -11,9 +11,6 @@ extern "C"
 #endif
 
 
-#if __ia64__
-#define SHMLBA	(1024*1024)
-#endif
 #define SHMLBA	(__getpagesize())
 #define SHM_RDONLY	010000
 #define SHM_W	0200

@@ -15,23 +15,9 @@ extern "C"
 
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
-#if __i386__
 #define __IO_FILE_SIZE	148
-#endif
-#if __powerpc__ && !__powerpc64__
-#define __IO_FILE_SIZE	152
-#endif
-#if __s390__
-#define __IO_FILE_SIZE	152
-#endif
 #define FOPEN_MAX	16
 #define L_tmpnam	20
-#if __ia64__
-#define __IO_FILE_SIZE	216
-#endif
-#if __s390__
-#define FILENAME_MAX	4095
-#endif
 #define FILENAME_MAX	4096
 #define BUFSIZ	8192
 #define L_ctermid	9

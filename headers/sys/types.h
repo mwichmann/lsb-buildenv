@@ -29,7 +29,7 @@ extern "C"
 
   typedef unsigned int u_int32_t;
 
-  typedef int ssize_t;
+  typedef long ssize_t;
 
   typedef unsigned int uid_t;
 

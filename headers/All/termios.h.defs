@@ -20,7 +20,6 @@
 #define NL1	0000400
 #define NLDLY	0000400
 #define CR1	0001000
-#define IUCLC	0001000
 #define CR2	0002000
 #define CR3	0003000
 #define CRDLY	0003000
@@ -41,6 +40,7 @@
 #define TCIOFLUSH	2
 #define TCSAFLUSH	2
 #define TCION	3
+#define IUCLC	4096
 
 
 struct winsize
@@ -130,7 +130,6 @@ struct termios
 #define ECHOE	0000020
 #define ECHOK	0000040
 #define ECHONL	0000100
-#define NOFLSH	0000200
 #define TOSTOP	0000400
 #define ECHOCTL	0001000
 #define ECHOPRT	0002000
