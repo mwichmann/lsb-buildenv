@@ -47,6 +47,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <libgen.h>
 #include <string.h>
 #include <getopt.h>
 
@@ -275,7 +276,7 @@ struct option long_options[] = {
 	};
 
 /*
- * Find out of we are beuing used for C++. If so, we need to do a couple
+ * Find out of we are being used for C++. If so, we need to do a couple
  * of extra things.
  */
 #define LSBCC		0
@@ -283,10 +284,27 @@ struct option long_options[] = {
 
 int lsbccmode=LSBCC;
 
+/*
+ * The program intepreter isn't the same everywhere, so set it here,
+ * and just use it below.
+ */
+char *proginterpreter =
+#if defined(__i386__)
+	"ld-lsb.so.1";
+#elif defined(__powerpc__)
+	"ld-lsb.so.1";
+#elif defined(__ia64__)
+	"ld-lsb-ia64.so.1";
+#else
+	"Unknown_program_interpreter";
+#endif
+
+
 main(int argc, char *argv[])
 {
 int	c;
 int	option_index;
+char	progintbuf[256];
 
 /*
  * Determine if we are being called for C or C++
@@ -306,7 +324,8 @@ find_gcc_base_dir();
 
 /* Initialize the argv groups */
 proginterp=argvinit();
-argvaddstring(proginterp,"-Wl,--dynamic-linker=/lib/ld-lsb.so.1");
+sprintf(progintbuf,"-Wl,--dynamic-linker=%s",proginterpreter);
+argvaddstring(proginterp,progintbuf);
 
 target=argvinit();
 options=argvinit();
