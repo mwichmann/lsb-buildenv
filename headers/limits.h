@@ -53,6 +53,7 @@ extern "C"
 #if __s390x__
 #define LONG_MAX	9223372036854775807L
 #endif
+#define SSIZE_MAX	INT_MAX
 
 
 
