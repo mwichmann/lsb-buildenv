@@ -914,8 +914,9 @@ $select = "SELECT * FROM Interface ";
 $select.= "LEFT JOIN Header ON Iheader=Hid ";
 $select.= "LEFT JOIN Type ON Ireturn=Tid ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=Iarch ";
+$select.= "LEFT JOIN Architecture ON Iarch=Aid ";
 $select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' )";
-$select.= "AND Iarch=$Aid ";
+#$select.= "AND Iarch=$Aid ";
 $select.= "AND Hname=".$Dbh->quote($headname)." ";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -927,6 +928,10 @@ for(1..$sth->numrows) {
 			print STDERR "Skipping a global function pointer!!\n";
 			next;
 			}
+		if( $entry{'Aid'} && $entry{'Aname'} ne "All" ) {
+			print "#if ".$entry{'Asymbol'}."\n";
+			print "/* ".$entry{'Aname'}." */\n";
+		}
 		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s(",$entry{'Iname'};
@@ -960,7 +965,10 @@ for(1..$sth->numrows) {
 		} else {
 			print "void";
 		}
-	printf ");\n";
+		printf ");\n";
+		if( $entry{'Aid'} && $entry{'Aname'} ne "All" ) {
+			print "#endif\n";
+		}
 	}
 	if( $entry{'Itype'} eq "Data" ) {
 		printf "extern ";
