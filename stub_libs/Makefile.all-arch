@@ -5,6 +5,7 @@ CFILES = $(addsuffix .c,$(STUBLIBS))
 OFILES = $(subst .c,.o,$(CFILES))
 SOFILES = $(subst .c,.so,$(CFILES))
 CFLAGS=-g -Wall  -fno-builtin 
+INSTALL_DIR=$$LSBHOME/src/build/usr/lsb/lib
 
 %.so : %.o
 	ld -shared -o $@ --version-script $(subst .o,.Version,$<) -h `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`  $<
@@ -21,6 +22,6 @@ clean:
 .PHONY: clean distclean libs
 
 install:
-	install -d $$LSBHOME/src/build/usr/lsb/lib
-	install $(SOFILES) $$LSBHOME/src/build/usr/lsb/lib
+	install -d $(INSTALL_DIR)
+	install $(SOFILES) $(INSTALL_DIR)
 
