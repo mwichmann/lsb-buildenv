@@ -371,7 +371,10 @@ extern "C"
     struct ucontext *uc_link;
     stack_t uc_stack;
     int uc_pad[7];
-    union uc_regs_ptr uc_mcontext;
+    union uc_regs_ptr {
+      struct pt_regs *regs;
+      mcontext_t *uc_regs;
+    } uc_mcontext;
     sigset_t uc_sigmask;
     char uc_reg_space[50];
   }
@@ -416,16 +419,6 @@ extern "C"
     struct _libc_fpstate __fpregs_mem;
   }
   ucontext_t;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-  union uc_regs_ptr
-  {
-    struct pt_regs *regs;
-    mcontext_t *uc_regs;
-  }
-   ;
 
 #endif
 
