@@ -18,7 +18,7 @@ extern "C"
 /* PPC32 */
   struct pt_regs
   {
-    unsigned long gpr[];
+    unsigned long gpr[32];
     unsigned long nip;
     unsigned long msr;
     unsigned long orig_gpr3;	/* Used for restarting system calls */
