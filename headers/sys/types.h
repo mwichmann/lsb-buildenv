@@ -46,6 +46,8 @@ extern "C"
 
   typedef long suseconds_t;
 
+  typedef unsigned int u_int;
+
   typedef struct
   {
     int __val[2];

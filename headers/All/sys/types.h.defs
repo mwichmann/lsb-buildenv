@@ -19,6 +19,7 @@ typedef unsigned long off_t;
 typedef int key_t;
 typedef unsigned int id_t;
 typedef long suseconds_t;
+typedef unsigned int u_int;
 typedef struct
 {
   int __val[2];
