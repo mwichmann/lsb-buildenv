@@ -328,9 +328,7 @@ char *optstr="cL:l:o:EI:W::s";
  */
 
 struct option long_options[] = {
-/*
-	{"pedantic",no_argument,0,0},
-*/
+	{"include",required_argument,0,0},
 	{"shared",no_argument,0,0},
 	{NULL,0,0,0}
 	};
@@ -533,7 +531,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	switch(c) {
 	case 0:
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
-			fprintf(stderr,"option: -%s",
+			fprintf(stderr,"option0: -%s",
 				long_options[option_index].name);
 			if( optarg ) {
 				fprintf(stderr, " with arg %s", optarg);
@@ -594,8 +592,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 * explicitely recognize, and just pass it through to gcc.
 		 */
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
-			fprintf(stderr,"option: %s\n", argv[optind-1] );
-		argvaddstring(options,argv[optind-1]);
+			fprintf(stderr,"option?: %s optopt %x %c\n",
+					argv[optind-1], optopt, optopt );
+		if( optopt && optopt != '?' )
+			argvaddstring(options,argv[optind-1]);
 		break;
 	default:
 		/* We shouldn't get here */
