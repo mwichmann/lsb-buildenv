@@ -418,3 +418,10 @@ include(wchar.h)
 include(wctype.h)
 </SCREEN>
 </SECT1>
+<SECT1>
+<TITLE>zlib.h</TITLE>
+<PARA></PARA>
+<SCREEN>
+include(zlib.h)
+</SCREEN>
+</SECT1>
