@@ -425,9 +425,9 @@ extern "C"
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
+    sigset_t sa_mask;
     unsigned long sa_flags;
     void (*sa_restorer) (void);
-    sigset_t sa_mask;
   }
    ;
 
