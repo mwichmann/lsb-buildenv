@@ -123,6 +123,9 @@ Known Bugs
   please also try using the system include files before reporting
   a bug. 
 
+- We don't link against the proper runtime linker, but the 'real'
+  one within that environment
+
 Variations from LSB specification
 ---------------------------------
 
