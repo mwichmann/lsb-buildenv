@@ -1,4 +1,3 @@
-int madvise(void, int);
 int msync(void, int);
 int mlock(void);
 int mlockall(int);

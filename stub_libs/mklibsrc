@@ -23,10 +23,13 @@ if( !$libname ) { usage(); }
 #
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER,$LSBDBPASSWD) || die $Mysql::db_errstr;
 
-$select  = "SELECT DISTINCT Interface.Iname FROM Interface,LGInt,LibGroup,Library ";
+$select  = "SELECT DISTINCT Iname,Vname ";
+$select .= "FROM Interface,LGInt,LibGroup,Library ";
+$select .= "LEFT JOIN Version ON Version.Vid=Interface.Iversion ";
 $select .= "WHERE Interface.Iid=LGInt.LGIint ";
 $select .= "AND LGInt.LGIlibg=LibGroup.LGid ";
 $select .= "AND LibGroup.LGlib=Library.Lid ";
+$select .= "AND Interface.Itype='Function' ";
 $select .= "AND Library.Lname=".$Dbh->quote($libname);
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
@@ -38,8 +41,11 @@ for(1..$sth->numrows) {
 				$entry{'Iname'};
 	printf "__asm__(\"_lsb_%s:\");\n",
 				$entry{'Iname'};
-	printf "__asm__(\"\tjmp %s\");\n",
-				$entry{'Iname'};
-	printf "__asm__(\".symver _lsb_%s,%s\@\@LSB_1.0\");\n",
+	printf "__asm__(\"\tret\");\n";
+	if( $entry{'Vname'} ) {
+	printf "__asm__(\".symver _lsb_%s,%s",
 				$entry{'Iname'},$entry{'Iname'};
+	printf "\@\@%s\"", $entry{'Vname'};
+	printf ");\n";
+	}
 }

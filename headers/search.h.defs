@@ -8,3 +8,6 @@ void	data;
 }
 ENTRY	; 
 
+typedef Unknown Type: ""
+unknown	__action_fn_t	; 
+

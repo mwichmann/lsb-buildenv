@@ -7,5 +7,3 @@ int chmod(char, __mode_t);
 int fchmod(int, __mode_t);
 int mkdir(char, __mode_t);
 __mode_t umask(__mode_t);
-int fstat(int, struct stat);
-int mknod(char, __mode_t, __dev_t);

@@ -1,3 +1,4 @@
+int alphasort(void, void);
 void rewinddir(DIR);
 void seekdir(DIR, long);
 long telldir(DIR);

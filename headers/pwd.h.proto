@@ -1,4 +1,5 @@
 void endpwent(void);
+passwd fgetpwent();
 passwd getpwent(void);
 passwd getpwnam(char);
 passwd getpwuid(__uid_t);

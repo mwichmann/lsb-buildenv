@@ -1,1 +1,2 @@
 int utime(char, struct utimbuf);
+int utimes();
