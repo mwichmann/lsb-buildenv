@@ -198,7 +198,6 @@ GLIBC_2.0 {
   getprotoent;
   getpwent;
   getpwnam;
-  getpwnam_r;
   getpwuid;
   getrusage;
   gets;
@@ -391,6 +390,7 @@ GLIBC_2.0 {
   setbuf;
   setbuffer;
   setcontext;
+  setdomainname;
   setegid;
   setenv;
   seteuid;
@@ -754,6 +754,7 @@ GLIBC_2.1.1 {
 };
 GLIBC_2.1.2 {
   gethostbyname_r;
+  getpwnam_r;
   getpwuid_r;
 };
 GLIBC_2.1.3 {

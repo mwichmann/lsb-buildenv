@@ -1,8 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  __h_errno_location;
-  getpwnam_r;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -19,6 +15,7 @@ GLIBC_2.2 {
   __fxstat64;
   __getpagesize;
   __getpgid;
+  __h_errno_location;
   __libc_current_sigrtmax;
   __libc_current_sigrtmin;
   __libc_start_main;
@@ -249,6 +246,7 @@ GLIBC_2.2 {
   getprotoent;
   getpwent;
   getpwnam;
+  getpwnam_r;
   getpwuid;
   getpwuid_r;
   getrlimit;
@@ -483,6 +481,7 @@ GLIBC_2.2 {
   setbuf;
   setbuffer;
   setcontext;
+  setdomainname;
   setegid;
   setenv;
   seteuid;
