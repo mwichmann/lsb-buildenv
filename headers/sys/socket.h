@@ -25,7 +25,6 @@ extern "C"
 #define SHUT_RDWR	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
-#define PF_LOCAL	AF_LOCAL
 #define PF_UNSPEC	AF_UNSPEC
 
 
