@@ -1,19 +1,33 @@
 #!/usr/bin/perl
 
-use CGI;
-use Carp;
+use Getopt::Long;
 use Mysql;
 
-$query = new CGI(%ARGV);
-$lib=$query->param('Lib');
+use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
-$Dbh = Mysql->connect(localhost) || die $Mysql::db_errstr;
-$Dbh->selectdb("Linux") || die $Dbh->errmsg();
+sub usage()
+{
+print STDERR "mklibsrc -l <libname>\n";
+die;
+}
 
-$select  = "SELECT DISTINCT Interface.Iname FROM Interface,LibGroup,Library ";
-$select .= "WHERE Interface.Ilibgroup=LibGroup.LGid ";
+#
+# 1) process the arguments
+#
+GetOptions("l=s" => \$libname);
+
+if( !$libname ) { usage(); }
+
+#
+# 2) Establish connection to the database
+#
+$Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER,$LSBDBPASSWD) || die $Mysql::db_errstr;
+
+$select  = "SELECT DISTINCT Interface.Iname FROM Interface,LGInt,LibGroup,Library ";
+$select .= "WHERE Interface.Iid=LGInt.LGIint ";
+$select .= "AND LGInt.LGIlibg=LibGroup.LGid ";
 $select .= "AND LibGroup.LGlib=Library.Lid ";
-$select .= "AND Library.Lname=".$Dbh->quote($lib);
+$select .= "AND Library.Lname=".$Dbh->quote($libname);
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
 for(1..$sth->numrows) {
