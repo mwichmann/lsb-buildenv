@@ -1,12 +1,16 @@
 #ifndef _MATH_H_
 #define _MATH_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
+
 #define HUGE_VAL	0x7FF00000UL
+#define DOMAIN	1
+#define SING	2
 
 
   struct exception
