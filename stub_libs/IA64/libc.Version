@@ -1,7 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  xdr_u_int;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -789,6 +786,7 @@ GLIBC_2.2 {
   xdr_short;
   xdr_string;
   xdr_u_char;
+  xdr_u_int;
   xdr_u_long;
   xdr_u_short;
   xdr_union;

@@ -303,7 +303,7 @@ void _XtInherit(void) {} ;
 void _XtIsSubclassOf(void) {} ;
 __asm__(".globl XtCXtToolkitError; .data; .type XtCXtToolkitError,@object; .size XtCXtToolkitError, 8; XtCXtToolkitError: .long 0");
 __asm__(".globl XtShellStrings; .data; .type XtShellStrings,@object; .size XtShellStrings, 1289; XtShellStrings: .long 0");
-__asm__(".globl XtStrings; .data; .type XtStrings,@object; .size XtStrings, 1289; XtStrings: .long 0");
+__asm__(".globl XtStrings; .data; .type XtStrings,@object; .size XtStrings, 2649; XtStrings: .long 0");
 __asm__(".globl _XtInheritTranslations; .data; .type _XtInheritTranslations,@object; .size _XtInheritTranslations, 4; _XtInheritTranslations: .long 0");
 __asm__(".globl applicationShellWidgetClass; .data; .type applicationShellWidgetClass,@object; .size applicationShellWidgetClass, 8; applicationShellWidgetClass: .long 0");
 __asm__(".globl compositeClassRec; .data; .type compositeClassRec,@object; .size compositeClassRec, 264; compositeClassRec: .long 0");

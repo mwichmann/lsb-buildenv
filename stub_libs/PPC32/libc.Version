@@ -540,6 +540,7 @@ GLIBC_2.0 {
   tcsendbreak;
   tcsetattr;
   tcsetpgrp;
+  tdelete;
   telldir;
   tempnam;
   textdomain;
@@ -824,7 +825,6 @@ GLIBC_2.2 {
   shmctl;
   swprintf;
   swscanf;
-  tdelete;
   ungetwc;
   vfwprintf;
   vfwscanf;
