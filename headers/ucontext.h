@@ -183,7 +183,6 @@ extern "C"
     stack_t uc_stack;
     mcontext_t uc_mcontext;
     sigset_t uc_sigmask;
-    struct _libc_fpstate __fpregs_mem;
   }
   ucontext_t;
 

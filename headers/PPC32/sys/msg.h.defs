@@ -11,16 +11,18 @@ typedef unsigned long msgqnum_t;
 struct msqid_ds
 {
   struct ipc_perm msg_perm;
+  unsigned int __unused1;
   time_t msg_stime;
-  unsigned long __unused1;
+  unsigned int __unused2;
   time_t msg_rtime;
-  unsigned long __unused2;
+  unsigned int __unused3;
   time_t msg_ctime;
-  unsigned long __unused3;
   unsigned long __msg_cbytes;
   msgqnum_t msg_qnum;
   msglen_t msg_qbytes;
   pid_t msg_lspid;
   pid_t msg_lrpid;
+  unsigned long __unused4;
+  unsigned long __unused5;
 }
  ;

@@ -64,11 +64,11 @@ extern "C"
     gid_t gid;
     uid_t cuid;
     uid_t cgid;
-    unsigned short mode;
-    unsigned short __pad1;
-    unsigned short __seq;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    mode_t mode;
+    long __seq;
+    int __pad1;
+    unsigned long long __unused1;
+    unsigned long long __unused2;
   }
    ;
 
