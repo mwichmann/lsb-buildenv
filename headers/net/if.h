@@ -42,6 +42,16 @@ extern "C"
 
 
 
+
+
+  struct if_nameindex
+  {
+    unsigned int if_index;	/* 1, 2, ... */
+    char *if_name;		/* null terminated name: */
+  }
+   ;
+
+
 /* The ifaddr structure contains information about one address of an
    interface.  They are maintained by the different address families,
    are allocated and attached when an address is set, and are linked
@@ -130,6 +140,10 @@ extern "C"
    ;
 
 
+  extern void if_freenameindex (void);
+  extern char *if_indextoname (void);
+  extern struct if_nameindex *if_nameindex (void);
+  extern unsigned int if_nametoindex (void);
 #ifdef __cplusplus
 }
 #endif

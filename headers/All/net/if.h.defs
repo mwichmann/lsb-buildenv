@@ -12,6 +12,13 @@
 #define IFF_RUNNING	0x40
 #define IFF_NOARP	0x80
 
+struct if_nameindex
+{
+  unsigned int if_index;
+  char *if_name;
+}
+ ;
+
 struct ifaddr
 {
   struct sockaddr ifa_addr;
