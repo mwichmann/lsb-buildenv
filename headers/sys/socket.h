@@ -7,6 +7,7 @@
 #define MSG_WAITALL	0x100
 #define MSG_TRUNC	0x20
 #define MSG_EOR	0x80
+#define SIOCGIFCONF	0x8912
 #define SHUT_WR	1
 #define MSG_OOB	1
 #define SHUT_RDWR	2

@@ -1,0 +1,78 @@
+
+#define IF_NAMESIZE	16
+
+
+
+#define IFF_UP	0x01
+#define IFF_BROADCAST	0x02
+#define IFF_DEBUG	0x04
+#define IFF_LOOPBACK	0x08
+#define IFF_POINTOPOINT	0x10
+#define IFF_PROMISC	0x100
+#define IFF_MULTICAST	0x1000
+#define IFF_NOTRAILERS	0x20
+#define IFF_RUNNING	0x40
+#define IFF_NOARP	0x80
+
+
+
+
+
+struct ifaddr
+{
+  struct sockaddr ifa_addr;
+  union
+  {
+    struct sockaddr ifu_broadaddr;
+    struct sockaddr ifu_dstaddr;
+  }
+  ifa_ifu;
+}
+ ;
+#define IFNAMSIZ	IF_NAMESIZE
+
+
+struct ifreq
+{
+  union
+  {
+    char ifrn_name[IFNAMSIZ];
+  }
+  ifr_ifrn;
+  union
+  {
+    struct sockaddr ifru_addr;
+    struct sockaddr ifru_dstaddr;
+    struct sockaddr ifru_broadaddr;
+    struct sockaddr ifru_netmask;
+    struct sockaddr ifru_hwaddr;
+    short ifru_flags;
+    int ifru_ivalue;
+    int ifru_mtu;
+    char ifru_slave[IFNAMSIZ];
+    char ifru_newname[IFNAMSIZ];
+    caddr_t ifru_data;
+  }
+  ifr_ifru;
+}
+ ;
+union
+{
+  char ifrn_name[IFNAMSIZ];
+}
+ ;
+union
+{
+  struct sockaddr ifru_addr;
+  struct sockaddr ifru_dstaddr;
+  struct sockaddr ifru_broadaddr;
+  struct sockaddr ifru_netmask;
+  struct sockaddr ifru_hwaddr;
+  short ifru_flags;
+  int ifru_ivalue;
+  int ifru_mtu;
+  char ifru_slave[IFNAMSIZ];
+  char ifru_newname[IFNAMSIZ];
+  caddr_t ifru_data;
+}
+ ;
