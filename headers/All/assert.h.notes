@@ -1,0 +1,8 @@
+The <filename>assert.h</filename> header shall define the
+<function>assert</function> macro. It refers to the macro
+<constant>NDEBUG</constant>, which is not defined in this
+header.
+If <constant>NDEBUG</constant> is defined before the inclusion of
+this header, the <function>assert</function> macro shall be defined
+as described below, otherwise the macro shall behave as described
+in <function>assert</function> in ISO/IEC 9945 POSIX.
