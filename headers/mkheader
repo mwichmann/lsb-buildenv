@@ -696,7 +696,7 @@ if( $constlist ne "" ) {
 		}
 	}
 
-$hdrlist=join '\',\'', keys(%header);
+$hdrlist=join ',', keys(%header);
 
 #
 # Output the headers this header needs to include
