@@ -46,12 +46,14 @@ struct sigaction
 
 
 
-struct sigcontext
+struct sigcontext_struct
 {
   unsigned long _unused;
   int signal;
   unsigned long handler;
   unsigned long oldmask;
-  unsigned long regs;
+  struct pt_regs *regs;
+  elf_gregset_t gp_regs;
+  elf_fpregset_t fp_regs;
 }
  ;
