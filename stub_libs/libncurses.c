@@ -266,5 +266,5 @@ void wsyncup(void) {} ;
 void wtimeout(void) {} ;
 void wtouchln(void) {} ;
 void wvline(void) {} ;
-__asm__(".comm curscr,1000");
-__asm__(".comm stdscr,1000");
+__asm__(".comm curscr,4");
+__asm__(".comm stdscr,4");

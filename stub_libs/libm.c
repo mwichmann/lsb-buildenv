@@ -272,5 +272,5 @@ void y1l(void) {} ;
 void yn(void) {} ;
 void ynf(void) {} ;
 void ynl(void) {} ;
-__asm__(".comm clog,1000");
+__asm__(".comm clog,251");
 __asm__(".comm signgam,4");
