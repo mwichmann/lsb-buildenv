@@ -158,7 +158,3 @@ __asm__(".globl zError");
 __asm__("	.type zError,@function");
 __asm__("zError:");
 __asm__("	ret");
-__asm__(".globl zlibVersion");
-__asm__("	.type zlibVersion,@function");
-__asm__("zlibVersion:");
-__asm__("	ret");

@@ -1,2 +1,1 @@
 int signgam;
-int matherr(exception *);

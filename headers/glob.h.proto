@@ -1,2 +1,4 @@
 int glob(char *, int, int, glob_t *);
+int glob64(char *, int, int, glob64_t *);
 void globfree(glob_t *);
+void globfree64(glob64_t *);

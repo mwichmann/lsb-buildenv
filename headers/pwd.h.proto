@@ -1,8 +1,5 @@
 void endpwent(void);
-passwd * fgetpwent(FILE *);
 passwd * getpwent(void);
 passwd * getpwnam(char *);
 passwd * getpwuid(__uid_t);
 void setpwent(void);
-int getpwnam_r(char *, passwd *, char *, passwd * *);
-int getpwuid_r(__uid_t, passwd *, char *, passwd * *);

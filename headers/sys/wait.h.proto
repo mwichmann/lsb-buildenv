@@ -1,5 +1,4 @@
 int waitid(idtype_t, __id_t, siginfo_t *, int);
-__pid_t wait(__WAIT_STATUS);
+__pid_t wait(int *);
 __pid_t waitpid(__pid_t, int *, int);
-__pid_t wait3(__WAIT_STATUS, int, rusage *);
-__pid_t wait4(__pid_t, __WAIT_STATUS, int, rusage *);
+__pid_t wait3(int *, int, rusage *);

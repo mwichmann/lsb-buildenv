@@ -5,5 +5,3 @@ typedef char	bool	;
 typedef typedef unsigned long	chtype	; 
 attr_t	; 
 
-typedef unsigned long	mmask_t	; 
-

@@ -1,4 +1,5 @@
 int getpriority(enum, enum __priority_which, int);
+int getrlimit64(enum, enum __rlimit_resource, rlimit64 *);
 int setpriority(enum, enum __priority_which, int, int);
 int setrlimit(enum, enum __rlimit_resource, rlimit *);
 int getrlimit(enum, enum __rlimit_resource, rlimit *);

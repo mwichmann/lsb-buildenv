@@ -1,8 +1,8 @@
-int hcreate();
+int hcreate(size_t);
 ENTRY * hsearch(ENTRY, ACTION);
 void insque(void *, void *);
-void * lfind(void *, void *, size_t *);
-void * lsearch(void *, void *, size_t *);
+void * lfind(void *, void *, size_t *, size_t);
+void * lsearch(void *, void *, size_t *, size_t);
 void remque(void *);
 void hdestroy(void);
 void * tfind(void *, void * *);

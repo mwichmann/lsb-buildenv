@@ -1,1 +1,4 @@
 int ftw(char *, __ftw_func_t, int);
+int ftw64(char *, __ftw64_func_t, int);
+int nftw(char *, __nftw_func_t, int, int);
+int nftw64(char *, __nftw64_func_t, int, int);

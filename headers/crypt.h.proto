@@ -1,3 +1,0 @@
-char * crypt(char *, char *);
-void encrypt(char *, int);
-void setkey(char *);

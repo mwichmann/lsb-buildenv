@@ -2878,8 +2878,3 @@ __asm__(".globl XwcTextPropertyToTextList");
 __asm__("	.type XwcTextPropertyToTextList,@function");
 __asm__("XwcTextPropertyToTextList:");
 __asm__("	ret");
-__asm__(".globl shellWidgetClass");
-__asm__("	.type shellWidgetClass,@object");
-__asm__("	.size shellWidgetClass,4");
-__asm__("shellWidgetClass:");
-__asm__("	.long 0");
