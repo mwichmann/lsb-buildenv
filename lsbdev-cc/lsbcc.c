@@ -39,7 +39,7 @@
  * optional parameters (ie -W and -O) and the getopt command wasn't able to
  * communicate this to the rest of the shell script. Another tough one is when
  * strings are passed in as a define (ie -DFOO="A String Here"). The quotes
- * were getting stripped off, os what got passed to gcc was a buch on invalid
+ * were getting stripped off, so what got passed to gcc was a buch of invalid
  * options.
  * 
  */
@@ -339,7 +339,7 @@ incpaths=argvinit();
 libpaths=argvinit();
 argvaddstring(libpaths,"-nodefaultlibs");
 argvadd(libpaths,"L",gccbasedir);
-argvaddstring(libpaths,"-L/usr/lsb/lib");
+argvaddstring(libpaths,"-L/opt/lsbdev-base/lib");
 argvaddstring(libpaths,"-L/lib");
 argvaddstring(libpaths,"-L/usr/lib");
 
@@ -454,7 +454,7 @@ argvappend(gccargs,target);
  * This does make the assumption that application builds are well behaved
  * and don't pass in -I/usr/include themselves.
  */
-argvaddstring(incpaths,"-I/usr/lsb/include");
+argvaddstring(incpaths,"-I/opt/lsbdev-base/include");
 argvappend(gccargs,incpaths);
 
 argvappend(gccargs,options);
