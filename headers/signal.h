@@ -824,7 +824,7 @@ extern "C"
   extern int sigaction (int, const struct sigaction *, struct sigaction *);
   extern int sigwait (const sigset_t *, int *);
   extern int kill (pid_t, int);
-  extern int sigaltstack (const sigaltstack *, struct sigaltstack *);
+  extern int sigaltstack (const stack_t *, stack_t *);
   extern int sigblock (int);
   extern sighandler_t signal (int, sighandler_t);
   extern int sigpause (int);
