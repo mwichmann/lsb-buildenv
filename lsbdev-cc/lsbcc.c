@@ -318,7 +318,7 @@ return;
 /*
  * These are the otpions we need to recognize.
  */
-char *optstr="cL:l:o:EI:vW::";
+char *optstr="cL:l:o:EI:vW::s";
 
 /*
  * gcc has a lot of options that are more than one character long. We'll treat
@@ -550,6 +550,12 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			fprintf(stderr,"option: -W %s\n", optarg );
 		argvaddstring(userlibs,argv[optind-1]);
 		break;
+	case 's':
+		/*
+		 * We must explicitly recognize '-s' to distinguish it
+		 * from '-shared'. We just fall through and treat it like
+		 * any other option.
+		 */
 	case '?':
 		/*
 		 * This is an attempt to catch things that we don't
