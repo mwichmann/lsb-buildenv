@@ -69,12 +69,16 @@ GLIBC_2.1.1 {
   sem_unlink;
 };
 GLIBC_2.2 {
+  pread;
+  pread64;
   pthread_condattr_getpshared;
   pthread_condattr_setpshared;
   pthread_mutexattr_getpshared;
   pthread_mutexattr_setpshared;
   pthread_rwlock_timedrdlock;
   pthread_rwlock_timedwrlock;
+  pwrite;
+  pwrite64;
   sem_timedwait;
   pread;
   pread64;
