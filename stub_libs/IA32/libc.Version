@@ -17,6 +17,7 @@ GLIBC_2.0 {
   __lxstat;
   __mbrlen;
   __mempcpy;
+  __moddi3;
   __secure_getenv;
   __sigpause;
   __sigsetjmp;
@@ -31,6 +32,8 @@ GLIBC_2.0 {
   __strtoul_internal;
   __strtoull_internal;
   __sysv_signal;
+  __udivdi3;
+  __umoddi3;
   __wcstod_internal;
   __wcstof_internal;
   __wcstol_internal;
@@ -110,6 +113,7 @@ GLIBC_2.0 {
   cuserid;
   daemon;
   dcgettext;
+  dgettext;
   difftime;
   dirname;
   div;
@@ -117,6 +121,7 @@ GLIBC_2.0 {
   dup;
   dup2;
   ecvt;
+  endgrent;
   endhostent;
   endnetent;
   endprotoent;
@@ -208,6 +213,7 @@ GLIBC_2.0 {
   getprotoent;
   getpwent;
   getpwnam;
+  getpwnam_r;
   getpwuid;
   getpwuid_r;
   getrusage;
@@ -365,6 +371,7 @@ GLIBC_2.0 {
   re_exec;
   read;
   readdir;
+  readdir_r;
   readlink;
   readv;
   realloc;
@@ -774,6 +781,7 @@ GLIBC_2.1 {
   getdate_err;
 };
 GLIBC_2.1.1 {
+  _Exit;
   imaxabs;
   imaxdiv;
 };
@@ -784,13 +792,14 @@ GLIBC_2.1.3 {
   __cxa_atexit;
 };
 GLIBC_2.2 {
-  _Exit;
   __fpending;
   __fxstat64;
   __lxstat64;
   __sysconf;
   __xstat64;
-  endgrent;
+  bind_textdomain_codeset;
+  dcngettext;
+  dngettext;
   fgetwc;
   fgetwc_unlocked;
   fgetws;

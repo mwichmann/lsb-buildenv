@@ -1,4 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  getpwnam_r;
+};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -78,6 +81,7 @@ GLIBC_2.2 {
   bcmp;
   bcopy;
   bind;
+  bind_textdomain_codeset;
   bindresvport;
   bindtextdomain;
   brk;
@@ -121,9 +125,12 @@ GLIBC_2.2 {
   cuserid;
   daemon;
   dcgettext;
+  dcngettext;
+  dgettext;
   difftime;
   dirname;
   div;
+  dngettext;
   drand48;
   dup;
   dup2;
@@ -446,6 +453,7 @@ GLIBC_2.2 {
   read;
   readdir;
   readdir64;
+  readdir_r;
   readlink;
   readv;
   realloc;

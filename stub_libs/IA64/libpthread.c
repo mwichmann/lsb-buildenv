@@ -50,6 +50,8 @@ void pthread_once(void) {} ;
 void pthread_rwlock_destroy(void) {} ;
 void pthread_rwlock_init(void) {} ;
 void pthread_rwlock_rdlock(void) {} ;
+void pthread_rwlock_timedrdlock(void) {} ;
+void pthread_rwlock_timedwrlock(void) {} ;
 void pthread_rwlock_tryrdlock(void) {} ;
 void pthread_rwlock_trywrlock(void) {} ;
 void pthread_rwlock_unlock(void) {} ;

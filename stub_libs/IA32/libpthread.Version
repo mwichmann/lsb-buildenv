@@ -83,5 +83,7 @@ GLIBC_2.1.1 {
 GLIBC_2.2 {
   pthread_mutexattr_getpshared;
   pthread_mutexattr_setpshared;
+  pthread_rwlock_timedrdlock;
+  pthread_rwlock_timedwrlock;
   sem_timedwait;
 };
