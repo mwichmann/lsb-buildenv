@@ -8,24 +8,14 @@ extern "C"
 #endif
 
 
-#define LC_GLOBAL_LOCALE	((__locale_t) -1L)
-#define LC_CTYPE	0
-#define LC_NUMERIC	1
-#define LC_TELEPHONE	10
-#define LC_MEASUREMENT	11
-#define LC_IDENTIFICATION	12
-#define LC_TIME	2
-#define LC_COLLATE	3
-#define LC_MONETARY	4
-#define LC_MESSAGES	5
-#define LC_ALL	6
-#define LC_PAPER	7
-#define LC_NAME	8
-#define LC_ADDRESS	9
+
+
+
 
 
 
 /* Structure giving information about numeric and monetary notation*/
+#define LC_MEASUREMENT	11
 
 
   struct lconv
@@ -59,6 +49,19 @@ extern "C"
 
 
 /* These are the possibilities for the first argument to setlocale.*/
+#define LC_GLOBAL_LOCALE	((__locale_t) -1L)
+#define LC_CTYPE	0
+#define LC_NUMERIC	1
+#define LC_TELEPHONE	10
+#define LC_IDENTIFICATION	12
+#define LC_TIME	2
+#define LC_COLLATE	3
+#define LC_MONETARY	4
+#define LC_MESSAGES	5
+#define LC_ALL	6
+#define LC_PAPER	7
+#define LC_NAME	8
+#define LC_ADDRESS	9
 
 
 
