@@ -343,7 +343,7 @@ char *proginterpreter =
 #if defined(__i386__)
 	"/lib/ld-lsb.so.1";
 #elif defined(__powerpc__)
-	"/lib/ld-lsb.so.1";
+	"/lib/ld-lsb-ppc32.so.1";
 #elif defined(__ia64__)
 	"/lib/ld-lsb-ia64.so.1";
 #else
