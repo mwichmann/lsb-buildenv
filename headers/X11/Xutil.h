@@ -50,7 +50,7 @@ extern "C"
   extern int XClipBox (Region, XRectangle *);
   extern void XConvertCase (KeySym, KeySym *, KeySym *);
   extern Region XCreateRegion (void);
-  extern char *XDefaultString (void);
+  extern const char *XDefaultString (void);
   extern int XDeleteContext (Display *, XID, XContext);
   extern int XDestroyImage (XImage *);
   extern int XDestroyRegion (Region);
@@ -84,7 +84,7 @@ extern "C"
   extern Region XPolygonRegion (XPoint *, int, int);
   extern int XPutPixel (void);
   extern int XRectInRegion (Region, int, int, unsigned int, unsigned int);
-  extern int XSaveContext (Display *, XID, XContext, char *);
+  extern int XSaveContext (Display *, XID, XContext, const char *);
   extern int XSetClassHint (Display *, Window, XClassHint *);
   extern int XSetIconSizes (Display *, Window, XIconSize *, int);
   extern int XSetNormalHints (Display *, Window, XSizeHints *);
@@ -94,8 +94,9 @@ extern "C"
   extern int XSetSizeHints (Display *, Window, XSizeHints *, Atom);
   extern void XSetStandardColormap (Display *, Window, XStandardColormap *,
 				    Atom);
-  extern int XSetStandardProperties (Display *, Window, char *, char *,
-				     Pixmap, char **, int, XSizeHints *);
+  extern int XSetStandardProperties (Display *, Window, const char *,
+				     const char *, Pixmap, char **, int,
+				     XSizeHints *);
   extern void XSetTextProperty (Display *, Window, XTextProperty *, Atom);
   extern void XSetWMClientMachine (Display *, Window, XTextProperty *);
   extern int XSetWMHints (Display *, Window, XWMHints *);
@@ -114,12 +115,13 @@ extern "C"
   extern int XTextPropertyToStringList (XTextProperty *, char ***, int *);
   extern int XUnionRectWithRegion (XRectangle *, Region, Region);
   extern int XUnionRegion (Region, Region, Region);
-  extern int XWMGeometry (Display *, int, char *, char *, unsigned int,
-			  XSizeHints *, int *, int *, int *, int *, int *);
+  extern int XWMGeometry (Display *, int, const char *, const char *,
+			  unsigned int, XSizeHints *, int *, int *, int *,
+			  int *, int *);
   extern int XXorRegion (Region, Region, Region);
-  extern void XmbSetWMProperties (Display *, Window, char *, char *, char **,
-				  int, XSizeHints *, XWMHints *,
-				  XClassHint *);
+  extern void XmbSetWMProperties (Display *, Window, const char *,
+				  const char *, char **, int, XSizeHints *,
+				  XWMHints *, XClassHint *);
   extern int XmbTextListToTextProperty (Display *, char **, int,
 					XICCEncodingStyle, XTextProperty *);
   extern int XmbTextPropertyToTextList (Display *, XTextProperty *, char ***,

@@ -190,8 +190,8 @@ extern "C"
   extern int XcmsAddFunctionSet (XcmsFunctionSet *);
   extern int XcmsAllocColor (Display *, Colormap, XcmsColor *,
 			     XcmsColorFormat);
-  extern int XcmsAllocNamedColor (Display *, Colormap, char *, XcmsColor *,
-				  XcmsColor *, XcmsColorFormat);
+  extern int XcmsAllocNamedColor (Display *, Colormap, const char *,
+				  XcmsColor *, XcmsColor *, XcmsColorFormat);
   extern XcmsCCC XcmsCCCOfColormap (Display *, Colormap);
   extern int XcmsCIELabClipL (XcmsCCC, XcmsColor *, unsigned int,
 			      unsigned int, int *);
@@ -248,7 +248,7 @@ extern "C"
   extern Display *XcmsDisplayOfCCC (XcmsCCC);
   extern XcmsColorFormat XcmsFormatOfPrefix (char *);
   extern void XcmsFreeCCC (XcmsCCC);
-  extern int XcmsLookupColor (Display *, Colormap, char *, XcmsColor *,
+  extern int XcmsLookupColor (Display *, Colormap, const char *, XcmsColor *,
 			      XcmsColor *, XcmsColorFormat);
   extern char *XcmsPrefixOfFormat (XcmsColorFormat);
   extern int XcmsQueryBlack (XcmsCCC, XcmsColorFormat, XcmsColor *);

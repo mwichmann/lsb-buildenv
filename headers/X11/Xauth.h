@@ -28,10 +28,10 @@ extern "C"
 
   extern void XauDisposeAuth (Xauth *);
   extern char *XauFileName (void);
-  extern Xauth *XauGetBestAuthByAddr (unsigned int, unsigned int, char *,
-				      unsigned int, char *, int, char **,
-				      int *);
-  extern Xauth *XauReadAuth (FILE);
+  extern Xauth *XauGetBestAuthByAddr (unsigned int, unsigned int,
+				      const char *, unsigned int, char *, int,
+				      char **, int *);
+  extern Xauth *XauReadAuth (FILE *);
 #ifdef __cplusplus
 }
 #endif
