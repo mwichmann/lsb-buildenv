@@ -21,8 +21,31 @@ extern "C"
 
   typedef long long off64_t;
 
-  typedef int *intptr_t;
+#if __i386__
+/* IA32 */
+  typedef int intptr_t;
 
+#endif
+#if __ia64__
+/* IA64 */
+  typedef long intptr_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef long intptr_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef int intptr_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef int intptr_t;
+
+#endif
 
 /* Values for the second argument to access.*/
 #define F_OK	0
