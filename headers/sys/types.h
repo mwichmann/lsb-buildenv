@@ -6,8 +6,6 @@
 
 typedef int int64_t;
 
-typedef int ptrdiff_t;
-
 typedef int ssize_t;
 
 typedef unsigned int uid_t;

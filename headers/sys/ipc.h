@@ -12,14 +12,6 @@
 #define IPC_STAT	2
 
 
-struct sembuf
-{
-  short sem_num;
-  short sem_op;
-  short sem_flg;
-}
- ;
-
 struct ipc_perm
 {
   key_t key;

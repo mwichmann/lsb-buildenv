@@ -4,6 +4,7 @@
 #include <X11/Intrinsic.h>
 #include <X11/CompositeP.h>
 
+#define XtConstraintExtensionVersion	1L
 
 
 typedef struct _ConstraintPart ConstraintPart;

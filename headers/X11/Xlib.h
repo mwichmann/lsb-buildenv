@@ -98,8 +98,6 @@ typedef struct XHostAddress;
 /* Data structure for */
 
 
-struct XImagefuncs;
-
 typedef struct _XImage
 {
   int width;

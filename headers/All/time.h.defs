@@ -19,3 +19,9 @@ struct tm
   char *tm_zone;
 }
  ;
+struct itimerspec
+{
+  struct timespec it_interval;
+  struct timespec it_value;
+}
+ ;

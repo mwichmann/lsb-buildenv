@@ -1,4 +1,5 @@
 
+#define XtConstraintExtensionVersion	1L
 
 
 typedef struct _ConstraintPart ConstraintPart;

@@ -1,6 +1,0 @@
-
-
-
-typedef struct _IO_FILE *FILE;
-typedef off_t fpos_t;
-typedef off64_t fpos64_t;

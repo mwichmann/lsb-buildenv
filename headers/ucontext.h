@@ -22,7 +22,7 @@ typedef int greg_t;
 /* Container for all general registers.*/
 
 
-typedef greg_t gregset_t[19];
+typedef greg_t gregset_t[];
 
 
 /* Number of each register is the `gregset_t' array.*/
@@ -78,7 +78,7 @@ fpregset_t;
 /* Context to describe whole processor state.*/
 
 
-typedef struct mcontext
+typedef struct
 {
   gregset_t gregs;
   fpregset_t fpregs;

@@ -8,8 +8,8 @@
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
+#define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
 #define SI_MAX_SIZE	128
 #define SIG_SETMASK	2
@@ -54,8 +54,8 @@ struct sigstack
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGSYS	31
 #define SIGUNUSED	31
+#define SIGSYS	31
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGABRT	6
@@ -92,24 +92,22 @@ sigval_t;
 #define SIGEV_NONE	1
 
 
-union _sigev_un
-{
-  int _pad[SI_PAD_SIZE];
-  struct
-  {
-    void (*sigev_thread_func) (void);
-    void *_attribute;
-  }
-  _sigev_thread;
-}
- ;
-
 typedef struct sigevent
 {
   sigval_t sigev_value;
   int sigev_signo;
   int sigev_notify;
-  union _sigev_un _sigev_un;
+  union
+  {
+    int _pad[SI_PAD_SIZE];
+    struct
+    {
+      void (*sigev_thread_func) (void);
+      void *_attribute;
+    }
+    _sigev_thread;
+  }
+  _sigev_un;
 }
 sigevent_t;
 

@@ -29,8 +29,6 @@ typedef unsigned long pthread_t;
 
 typedef struct _pthread_descr_struct *_pthread_descr;
 
-struct _pthread_descr_struct;
-
 
 
 

@@ -26,6 +26,13 @@ struct tm
 }
  ;
 
+struct itimerspec
+{
+  struct timespec it_interval;
+  struct timespec it_value;
+}
+ ;
+
 
 
 

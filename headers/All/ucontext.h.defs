@@ -10,7 +10,7 @@ typedef int greg_t;
 
 
 
-typedef greg_t gregset_t[19];
+typedef greg_t gregset_t[];
 
 
 
@@ -55,7 +55,7 @@ typedef struct _libc_fpstate
 fpregset_t;
 
 
-typedef struct mcontext
+typedef struct
 {
   gregset_t gregs;
   fpregset_t fpregs;

@@ -57,13 +57,6 @@ struct itimerval
 }
  ;
 
-struct itimerspec
-{
-  struct timespec it_interval;
-  struct timespec it_value;
-}
- ;
-
 
 int getitimer (int, struct itimerval *);
 int setitimer (int, struct itimerval *, struct itimerval *);

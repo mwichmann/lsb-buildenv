@@ -2,6 +2,10 @@
 #define _X11_COMPOSITEP_H_
 
 
+#define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
+#define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
+#define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
+#define XtCompositeExtensionVersion	2L
 
 
 

@@ -9,6 +9,13 @@
 #define SETALL	17
 
 
+struct sembuf
+{
+  short sem_num;
+  short sem_op;
+  short sem_flg;
+}
+ ;
 struct semid_ds
 {
   struct ipc_perm sem_perm;

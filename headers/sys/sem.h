@@ -1,8 +1,8 @@
 #ifndef _SYS_SEM_H_
 #define _SYS_SEM_H_
 
-#include <sys/ipc.h>
 #include <sys/types.h>
+#include <sys/ipc.h>
 
 #define SEM_UNDO	0x1000
 #define GETPID	11
@@ -13,6 +13,14 @@
 #define SETVAL	16
 #define SETALL	17
 
+
+struct sembuf
+{
+  short sem_num;
+  short sem_op;
+  short sem_flg;
+}
+ ;
 
 struct semid_ds
 {
