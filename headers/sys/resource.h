@@ -33,6 +33,8 @@ extern "C"
 
   typedef unsigned long long rlim64_t;
 
+  typedef int __rlimit_resource_t;
+
 
 
 
@@ -88,19 +90,22 @@ indicating what flavor of entity the WHO argument specifies.*/
     PRIO_PROCESS = 0,		/* WHO is a process ID. */
     PRIO_PGRP = 1,		/* WHO is a process group ID. */
     PRIO_USER = 2		/* WHO is a user ID. */
+  }
+   ;
+
+
 #define PRIO_PGRP	PRIO_PGRP
 #define PRIO_PROCESS	PRIO_PROCESS
 #define PRIO_USER	PRIO_USER
-  }
-   ;
+
 
 
   extern int getpriority (enum __priority_which_t, id_t);
   extern int getrlimit64 (id_t, struct rlimit64 *);
   extern int setpriority (enum __priority_which_t, id_t, int);
-  extern int setrlimit (int, const struct rlimit *);
-  extern int setrlimit64 (int, const struct rlimit64 *);
-  extern int getrlimit (int, struct rlimit *);
+  extern int setrlimit (__rlimit_resource_t, const struct rlimit *);
+  extern int setrlimit64 (__rlimit_resource_t, const struct rlimit64 *);
+  extern int getrlimit (__rlimit_resource_t, struct rlimit *);
   extern int getrusage (int, struct rusage *);
 #ifdef __cplusplus
 }
