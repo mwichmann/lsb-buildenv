@@ -7,6 +7,8 @@ extern "C"
 {
 #endif
 
+#error "This header not permitted by the LSB"
+
 
 
 
