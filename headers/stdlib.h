@@ -1,7 +1,7 @@
 typedef struct
 {
-  long quot;
-  long rem;
+  long long quot;
+  long long rem;
 }
 lldiv_t;
 

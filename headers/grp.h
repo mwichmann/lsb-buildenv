@@ -12,3 +12,4 @@ struct group *getgrent (void);
 struct group *getgrgid (__gid_t);
 struct group *getgrnam (char *);
 void setgrent (void);
+int setgroups ();
