@@ -5,7 +5,7 @@ possibly having the same value. This specification also requires
 that <errorcode>ENOTSUP</errorcode> and <errorcode>EOPNOTSUPP</errorcode>
 have the same value.
 <note>
-<para>A defect report against <xref linkend-sts.susv3> has been filed
+<para>A defect report against <XREF LINKEND="STD.SUSv3"> has been filed
 to request that specification also permit these two valus to have the
 same vale.
 </para>
