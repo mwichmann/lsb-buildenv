@@ -28,6 +28,7 @@ void atanh() {} ;
 void atanhf() {} ;
 void atanhl() {} ;
 void atanl() {} ;
+void cabs() {} ;
 void cabsf() {} ;
 void cabsl() {} ;
 void cacos() {} ;

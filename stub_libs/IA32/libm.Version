@@ -165,6 +165,7 @@ GLIBC_2.1 {
   __signbit;
   __signbitf;
   __signbitl;
+  cabs;
   cabsf;
   cabsl;
   cacos;
