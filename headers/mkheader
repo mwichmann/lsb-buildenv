@@ -631,7 +631,7 @@ for(1..$hgh->numrows) {
 			displaytype(\%tentry);
 			print ";";
 			print $tentry{'Tcomment'}."\n\n";
-			print "#endif";
+			print "#endif\n";
 		} else {
 			displaytype(\%tentry);
 			print ";";
