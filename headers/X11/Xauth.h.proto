@@ -1,4 +1,0 @@
-void XauDisposeAuth(Xauth *);
-char * XauFileName(void);
-Xauth * XauGetBestAuthByAddr(unsigned int, unsigned int, char *, unsigned int, char *, int, char * *, int *);
-Xauth * XauReadAuth(FILE *);

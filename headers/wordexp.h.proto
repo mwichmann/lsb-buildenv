@@ -1,2 +1,0 @@
-int wordexp(char *, wordexp_t *, int);
-void wordfree(wordexp_t *);
