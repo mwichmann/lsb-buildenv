@@ -102,7 +102,7 @@ indicating what flavor of entity the WHO argument specifies.*/
   typedef enum __priority_which __priority_which_t;
 
 
-  extern int getpriority (enum __priority_which, id_t);
+  extern int getpriority (__priority_which_t, id_t);
   extern int getrlimit64 (id_t, struct rlimit64 *);
   extern int setpriority (__priority_which_t, id_t, int);
   extern int setrlimit (__rlimit_resource_t, const struct rlimit *);
