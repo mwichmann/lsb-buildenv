@@ -557,7 +557,7 @@ argvappend(gccargs,target);
  */
 if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
 	fprintf(stderr,"Prepending %s to include path\n", incpath);
-sprintf(tmpbuf, "-L%s", incpath);
+sprintf(tmpbuf, "-I%s", incpath);
 argvaddstring(incpaths,tmpbuf);
 argvappend(gccargs,incpaths);
 
