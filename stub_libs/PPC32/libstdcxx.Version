@@ -1126,6 +1126,7 @@ GLIBCPP_3.2 {
   _ZNSt13basic_filebufIcSt11char_traitsIcEE5uflowEv;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE6setbufEPci;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE6xsgetnEPci;
+  _ZNSt13basic_filebufIcSt11char_traitsIcEE6xsputnEPKci;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE7seekoffElSt12_Ios_SeekdirSt13_Ios_Openmode;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE7seekposESt4fposI11__mbstate_tESt13_Ios_Openmode;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE8overflowEi;
@@ -1399,6 +1400,7 @@ GLIBCPP_3.2 {
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6sbumpcEv;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6setbufEPwi;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6snextcEv;
+  _ZNSt15basic_streambufIwSt11char_traitsIwEE6xsgetnEPwi;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6xsputnEPKwi;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE7pubsyncEv;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE7seekoffElSt12_Ios_SeekdirSt13_Ios_Openmode;
@@ -1993,6 +1995,8 @@ GLIBCPP_3.2 {
   _ZStrsIwSt11char_traitsIwEERSt13basic_istreamIT_T0_ES6_St8_Setbase;
   _ZStrsIwSt11char_traitsIwEERSt13basic_istreamIT_T0_ES6_St8_SetfillIS3_E;
   _ZStrsIwSt11char_traitsIwESaIwEERSt13basic_istreamIT_T0_ES7_RSbIS4_S5_T1_E;
+  _ZThn8_NSdD0Ev;
+  _ZThn8_NSdD1Ev;
   _ZThn8_NSt13basic_fstreamIcSt11char_traitsIcEED0Ev;
   _ZThn8_NSt13basic_fstreamIcSt11char_traitsIcEED1Ev;
   _ZThn8_NSt13basic_fstreamIwSt11char_traitsIwEED0Ev;

@@ -1387,6 +1387,7 @@ void _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEEC2ERKSsSt13_Ios_Openmode() 
 void _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEEC2ESt13_Ios_Openmode() {} ;
 void _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEED0Ev() {} ;
 void _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEED1Ev() {} ;
+void _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE14_M_really_syncEmm() {} ;
 void _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE17_M_stringbuf_initESt13_Ios_Openmode() {} ;
 void _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE3strERKSbIwS1_S2_E() {} ;
 void _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE6setbufEPwl() {} ;

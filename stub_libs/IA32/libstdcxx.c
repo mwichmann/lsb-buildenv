@@ -1954,6 +1954,8 @@ void _ZStrsIwSt11char_traitsIwEERSt13basic_istreamIT_T0_ES6_St5_Setw() {} ;
 void _ZStrsIwSt11char_traitsIwEERSt13basic_istreamIT_T0_ES6_St8_Setbase() {} ;
 void _ZStrsIwSt11char_traitsIwEERSt13basic_istreamIT_T0_ES6_St8_SetfillIS3_E() {} ;
 void _ZStrsIwSt11char_traitsIwESaIwEERSt13basic_istreamIT_T0_ES7_RSbIS4_S5_T1_E() {} ;
+void _ZThn8_NSdD0Ev() {} ;
+void _ZThn8_NSdD1Ev() {} ;
 void _ZThn8_NSt13basic_fstreamIcSt11char_traitsIcEED0Ev() {} ;
 void _ZThn8_NSt13basic_fstreamIcSt11char_traitsIcEED1Ev() {} ;
 void _ZThn8_NSt13basic_fstreamIwSt11char_traitsIwEED0Ev() {} ;

@@ -320,12 +320,14 @@ GLIBCPP_3.2 {
   _ZNKSt7codecvtIcc11__mbstate_tE16do_always_noconvEv;
   _ZNKSt7codecvtIcc11__mbstate_tE5do_inERS0_PKcS4_RS4_PcS6_RS6_;
   _ZNKSt7codecvtIcc11__mbstate_tE6do_outERS0_PKcS4_RS4_PcS6_RS6_;
+  _ZNKSt7codecvtIcc11__mbstate_tE9do_lengthERKS0_PKcS5_m;
   _ZNKSt7codecvtIwc11__mbstate_tE10do_unshiftERS0_PcS3_RS3_;
   _ZNKSt7codecvtIwc11__mbstate_tE11do_encodingEv;
   _ZNKSt7codecvtIwc11__mbstate_tE13do_max_lengthEv;
   _ZNKSt7codecvtIwc11__mbstate_tE16do_always_noconvEv;
   _ZNKSt7codecvtIwc11__mbstate_tE5do_inERS0_PKcS4_RS4_PwS6_RS6_;
   _ZNKSt7codecvtIwc11__mbstate_tE6do_outERS0_PKwS4_RS4_PcS6_RS6_;
+  _ZNKSt7codecvtIwc11__mbstate_tE9do_lengthERKS0_PKcS5_m;
   _ZNKSt7collateIcE10_M_compareEPKcS2_;
   _ZNKSt7collateIcE10do_compareEPKcS2_S2_S2_;
   _ZNKSt7collateIcE12do_transformEPKcS2_;
@@ -903,6 +905,7 @@ GLIBCPP_3.2 {
   _ZNSt13basic_filebufIcSt11char_traitsIcEE5closeEv;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE5imbueERKSt6locale;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE5uflowEv;
+  _ZNSt13basic_filebufIcSt11char_traitsIcEE6setbufEPcl;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE6xsgetnEPcl;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE6xsputnEPKcl;
   _ZNSt13basic_filebufIcSt11char_traitsIcEE7seekoffElSt12_Ios_SeekdirSt13_Ios_Openmode;
@@ -929,6 +932,7 @@ GLIBCPP_3.2 {
   _ZNSt13basic_filebufIwSt11char_traitsIwEE5closeEv;
   _ZNSt13basic_filebufIwSt11char_traitsIwEE5imbueERKSt6locale;
   _ZNSt13basic_filebufIwSt11char_traitsIwEE5uflowEv;
+  _ZNSt13basic_filebufIwSt11char_traitsIwEE6setbufEPwl;
   _ZNSt13basic_filebufIwSt11char_traitsIwEE6xsgetnEPwl;
   _ZNSt13basic_filebufIwSt11char_traitsIwEE6xsputnEPKwl;
   _ZNSt13basic_filebufIwSt11char_traitsIwEE7seekoffElSt12_Ios_SeekdirSt13_Ios_Openmode;
@@ -1113,6 +1117,7 @@ GLIBCPP_3.2 {
   _ZNSt15basic_streambufIcSt11char_traitsIcEE5sputcEc;
   _ZNSt15basic_streambufIcSt11char_traitsIcEE5uflowEv;
   _ZNSt15basic_streambufIcSt11char_traitsIcEE6sbumpcEv;
+  _ZNSt15basic_streambufIcSt11char_traitsIcEE6setbufEPcl;
   _ZNSt15basic_streambufIcSt11char_traitsIcEE6snextcEv;
   _ZNSt15basic_streambufIcSt11char_traitsIcEE6xsgetnEPcl;
   _ZNSt15basic_streambufIcSt11char_traitsIcEE6xsputnEPKcl;
@@ -1152,6 +1157,7 @@ GLIBCPP_3.2 {
   _ZNSt15basic_streambufIwSt11char_traitsIwEE5sputcEw;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE5uflowEv;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6sbumpcEv;
+  _ZNSt15basic_streambufIwSt11char_traitsIwEE6setbufEPwl;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6snextcEv;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6xsgetnEPwl;
   _ZNSt15basic_streambufIwSt11char_traitsIwEE6xsputnEPKwl;
@@ -1177,6 +1183,7 @@ GLIBCPP_3.2 {
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE14_M_really_syncEmm;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE17_M_stringbuf_initESt13_Ios_Openmode;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE3strERKSs;
+  _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE6setbufEPcl;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE7seekoffElSt12_Ios_SeekdirSt13_Ios_Openmode;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE7seekposESt4fposI11__mbstate_tESt13_Ios_Openmode;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE8overflowEi;
@@ -1188,8 +1195,10 @@ GLIBCPP_3.2 {
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEEC2ESt13_Ios_Openmode;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEED0Ev;
   _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEED1Ev;
+  _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE14_M_really_syncEmm;
   _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE17_M_stringbuf_initESt13_Ios_Openmode;
   _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE3strERKSbIwS1_S2_E;
+  _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE6setbufEPwl;
   _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE7seekoffElSt12_Ios_SeekdirSt13_Ios_Openmode;
   _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE7seekposESt4fposI11__mbstate_tESt13_Ios_Openmode;
   _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE8overflowEj;
