@@ -144,6 +144,17 @@ $headname =~ s/^\.\///;
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
 #
+# Get the Architecture id
+#
+$select = "SELECT Aid FROM Architecture WHERE Aname='$archname'";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+
+if( !$sth->numrows ) { exit 0; }
+%entry=$sth->fetchhash;
+$Aid=$entry{'Aid'};
+
+#
 # Get the Header id
 #
 $select = "SELECT Hid FROM Header WHERE Hname='$headname'";
@@ -159,7 +170,8 @@ $Hid=$entry{'Hid'};
 #
 $select = "SELECT Ireturn FROM Interface ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND Istatus='Included'";
+$select.= "AND Istatus='Included' ";
+$select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$sth->numrows) {
@@ -173,7 +185,8 @@ for(1..$sth->numrows) {
 $select = "SELECT Ptype FROM Interface,Parameter ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND Pint=Iid ";
-$select.= "AND Istatus='Included'";
+$select.= "AND Istatus='Included' ";
+$select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$sth->numrows) {
@@ -198,6 +211,7 @@ for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
 	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
+	$select.= "AND Tarch=$Aid ";
 	$select.= "AND Tid IN ($typelist)";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();
