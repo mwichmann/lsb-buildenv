@@ -318,7 +318,7 @@ return;
 /*
  * These are the otpions we need to recognize.
  */
-char *optstr="cL:l:o:EI:vW";
+char *optstr="cL:l:o:EI:vW::";
 
 /*
  * gcc has a lot of options that are more than one character long. We'll treat
