@@ -14,8 +14,6 @@ struct timezone
 #define ITIMER_VIRTUAL	1
 #define ITIMER_PROF	2
 
-typedef __time_t time_t;
-
 
 enum __itimer_which;
 
@@ -78,4 +76,8 @@ int adjtime (struct timeval *, struct timeval *);
 int gettimeofday (struct timeval *, struct timezone *);
 struct tm *gmtime_r (time_t *, struct tm *);
 struct tm *localtime_r (time_t *, struct tm *);
+int timer_create (void);
+int timer_delete (void);
+int timer_getoverrun (void);
+int timer_gettime (void);
 #endif

@@ -2,7 +2,6 @@
 #define _DIRENT_H_
 
 #include <sys/types.h>
-#include <unistd.h>
 
 
 typedef struct __dirstream DIR;

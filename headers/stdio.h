@@ -4,7 +4,6 @@
 #include <stddef.h>
 #include <sys/types.h>
 #include <stdarg.h>
-#include <unistd.h>
 
 typedef struct _IO_FILE *FILE;
 
@@ -46,9 +45,9 @@ void rewind (FILE *);
 int scanf (char *, ...);
 int sprintf (char *, char *, ...);
 int sscanf (char *, char *, ...);
-FILE *stderr;
-FILE *stdin;
-FILE *stdout;
+extern FILE *stderr;
+extern FILE *stdin;
+extern FILE *stdout;
 FILE *tmpfile (void);
 char *tmpnam (char *);
 int vfprintf (FILE *, char *, va_list);

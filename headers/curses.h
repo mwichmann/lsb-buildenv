@@ -35,7 +35,6 @@
 #define _SUBWIN	0x01
 #define _ENDLINE	0x02
 #define _FULLWIN	0x04
-#define _SCROLLWIN	0x08
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
 #define TRACE_MAXIMUM	0xffff
@@ -82,8 +81,8 @@ typedef chtype attr_t;
 
 
 #define KEY_CODE_YES	0400
-#define KEY_MIN	0401
 #define KEY_BREAK	0401
+#define KEY_MIN	0401
 #define KEY_DOWN	0402
 #define KEY_UP	0403
 #define KEY_LEFT	0404
@@ -438,6 +437,6 @@ void wsyncup (WINDOW *);
 void wtimeout (WINDOW *, int);
 int wtouchln (WINDOW *, int, int, int);
 int wvline (WINDOW *, chtype, int);
-WINDOW *curscr;
-WINDOW *stdscr;
+extern WINDOW *curscr;
+extern WINDOW *stdscr;
 #endif

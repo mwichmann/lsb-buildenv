@@ -2,6 +2,7 @@
 #define _WCHAR_H_
 
 #include <wctype.h>
+#include <stdio.h>
 #include <stddef.h>
 #include <sys/types.h>
 
@@ -53,7 +54,6 @@ int wmemcmp (wchar_t *, wchar_t *, size_t);
 wchar_t *wmemcpy (wchar_t *, wchar_t *, size_t);
 wchar_t *wmemmove (wchar_t *, wchar_t *, size_t);
 wchar_t *wmemset (wchar_t *, wchar_t, size_t);
-int iswalnum (wint_t);
 int iswalpha (wint_t);
 int iswcntrl (wint_t);
 int iswctype (wint_t, wctype_t);
@@ -75,20 +75,31 @@ size_t wcsrtombs (char *, wchar_t * *, size_t, mbstate_t *);
 double wcstod (wchar_t *, wchar_t * *);
 long wcstol (wchar_t *, wchar_t * *, int);
 unsigned long wcstoul (wchar_t *, wchar_t * *, int);
+wchar_t wcswcs (void);
 long long wcstoll (wchar_t *, wchar_t * *, int);
 unsigned long long wcstoull (wchar_t *, wchar_t * *, int);
 wint_t btowc (int);
 wint_t towctrans (wint_t, wctrans_t);
+wint_t fgetwc (FILE *);
+wchar_t fgetws (void);
+wint_t fputwc (void);
 int fputws (void);
 int fwide (void);
 int fwprintf (void);
 int fwscanf (void);
+wint_t getwc (FILE *);
+wint_t getwchar (void);
+wint_t putwc (void);
+wchar_t putwchar (void);
 int swprintf (void);
 int swscanf (void);
+wint_t ungetwc (void);
 int vfwprintf (void);
+int vswprintf (void);
 int vswscanf (void);
 int vwprintf (void);
 int vwscanf (void);
+size_t wcsftime (void);
 int wprintf (void);
 int wscanf (void);
 #endif

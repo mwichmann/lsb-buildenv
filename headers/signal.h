@@ -3,8 +3,8 @@
 
 #include <sys/time.h>
 #include <stddef.h>
-#include <sys/types.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 struct sigstack;
 
@@ -34,8 +34,8 @@ struct sigcontext;
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGSYS	31
 #define SIGUNUSED	31
+#define SIGSYS	31
 #define SIGRTMIN	32
 #define SIGILL	4
 #define SIGTRAP	5

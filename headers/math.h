@@ -29,7 +29,7 @@ struct exception
 #define M_PI	3.14159265358979323846
 
 
-int signgam;
+extern int signgam;
 double copysign (double, double);
 int finite (double);
 double frexp (double, int *);

@@ -27,6 +27,7 @@ typedef XID GContext;
 typedef XID KeySym;
 
 
+#define CopyFromParent	0L
 #define AnyPropertyType	0L
 #define AnyButton	0L
 #define CurrentTime	0L
@@ -35,10 +36,9 @@ typedef XID KeySym;
 #define AllTemporary	0L
 #define None	0L
 #define NoSymbol	0L
-#define CopyFromParent	0L
+#define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
-#define InputFocus	1L
 
 #define KeyPressMask	(1L<<0)
 #define KeyReleaseMask	(1L<<1)
@@ -133,8 +133,8 @@ typedef XID KeySym;
 #define Button5	5
 
 #define NotifyNormal	0
-#define NotifyGrab	1
 #define NotifyHint	1
+#define NotifyGrab	1
 #define NotifyUngrab	2
 #define NotifyWhileGrabbed	3
 
@@ -158,8 +158,8 @@ typedef XID KeySym;
 #define FamilyDECnet	1
 #define FamilyChaos	2
 
-#define PropertyNewValue	0
 #define PropModeReplace	0
+#define PropertyNewValue	0
 #define PropertyDelete	1
 
 #define ColormapUninstalled	0
@@ -317,8 +317,8 @@ typedef XID KeySym;
 #define ClipByChildren	0
 #define IncludeInferiors	1
 
-#define Unsorted	0
 #define XYBitmap	0
+#define Unsorted	0
 #define YSorted	1
 #define YXSorted	2
 #define YXBanded	3
@@ -382,8 +382,8 @@ typedef XID KeySym;
 
 #define LedModeOff	0
 #define AutoRepeatModeOff	0
-#define AutoRepeatModeOn	1
 #define LedModeOn	1
+#define AutoRepeatModeOn	1
 #define AutoRepeatModeDefault	2
 
 #define KBKeyClickPercent	(1L<<0)
@@ -398,17 +398,17 @@ typedef XID KeySym;
 #define MappingModifier	0
 #define MappingKeyboard	1
 #define MappingBusy	1
-#define MappingFailed	2
 #define MappingPointer	2
+#define MappingFailed	2
 
+#define DisableScreenInterval	0
 #define DisableScreenSaver	0
 #define DontAllowExposures	0
 #define DontPreferBlanking	0
-#define DisableScreenInterval	0
 #define AllowExposures	1
 #define PreferBlanking	1
-#define DefaultExposures	2
 #define DefaultBlanking	2
+#define DefaultExposures	2
 
 #define ScreenSaverReset	0
 #define ScreenSaverActive	1

@@ -2,8 +2,8 @@
 #define _SCHED_H_
 
 #include <sys/time.h>
-#include <sys/types.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 struct sched_param
 {

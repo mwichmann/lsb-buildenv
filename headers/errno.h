@@ -125,5 +125,5 @@
 #define EDEADLOCK	EDEADLK
 #define ENOTSUP	EOPNOTSUPP
 
-int errno;
+int *__errno_location (void);
 #endif

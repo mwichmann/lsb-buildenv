@@ -22,9 +22,9 @@ enum
  ;
 
 
-unsigned short *__ctype_b;
-__int32_t *__ctype_tolower;
-__int32_t *__ctype_toupper;
+extern unsigned short *__ctype_b;
+extern __int32_t *__ctype_tolower;
+extern __int32_t *__ctype_toupper;
 int _tolower (int);
 int _toupper (int);
 int isalnum (int);

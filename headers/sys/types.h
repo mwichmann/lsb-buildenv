@@ -28,9 +28,13 @@ typedef __loff_t loff_t;
 typedef int __key_t;
 
 
+typedef int ino_t;
+
 typedef __gid_t gid_t;
 
 typedef __mode_t mode_t;
+
+typedef int nlink_t;
 
 typedef __kernel_caddr_t caddr_t;
 
@@ -55,6 +59,8 @@ typedef __uid_t uid_t;
 
 typedef int __pid_t;
 
+typedef unsigned long off_t;
+
 typedef __key_t key_t;
 
 typedef __u_quad_t __dev_t;
@@ -62,6 +68,8 @@ typedef __u_quad_t __dev_t;
 typedef __u_int __id_t;
 
 typedef long __time_t;
+
+typedef __time_t time_t;
 
 typedef __kernel_suseconds_t suseconds_t;
 

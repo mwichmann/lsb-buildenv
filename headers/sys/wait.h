@@ -3,6 +3,7 @@
 
 #include <sys/types.h>
 #include <signal.h>
+#include <sys/resource.h>
 
 typedef enum
 {
@@ -19,6 +20,7 @@ idtype_t;
 #define WCOREDUMP(status)	((status) & 0x80)
 #define WIFEXITED(status)	(WTERMSIG(status) == 0)
 #define WNOHANG	0x00000001
+#define WUNTRACED	0x00000002
 #define WCOREFLAG	0x80
 #define WSTOPSIG(status)	WEXITSTATUS(status)
 

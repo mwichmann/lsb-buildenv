@@ -5,30 +5,39 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
-typedef __ssize_t ssize_t;
+typedef int ssize_t;
 
-typedef __pid_t pid_t;
+typedef int pid_t;
 
-typedef __off_t off_t;
+typedef int *intptr_t;
 
+#define STDIN_FILENO	0
 #define SEEK_SET	0
+#define STDOUT_FILENO	1
 #define SEEK_CUR	1
 #define SEEK_END	2
+#define STDERR_FILENO	2
+#define _SC_CLK_TCK	2
+#define _SC_OPEN_MAX	4
 
 #define F_OK	0
 #define X_OK	1
 #define W_OK	2
 #define R_OK	4
 
-char **__environ;
+extern char **__environ;
 void _exit (int);
 unsigned int alarm (unsigned int);
 int chown (char *, uid_t, gid_t);
 int chroot (char *);
+size_t confstr (void);
 int creat (char *, mode_t);
 int creat64 (char *, mode_t);
+char *ctermid (void);
+char *cuserid (void);
 int daemon (int, int);
 int execl (char *, ...);
+int execle (void);
 int execlp (char *, char *, ...);
 int execv (char *, char *);
 int execvp (char *, char *);
@@ -37,13 +46,17 @@ int getopt (int, char *, char *);
 pid_t getpgrp (void);
 int mkstemp (char *);
 int nice (int);
-char *optarg;
-int opterr;
-int optind;
+extern char *optarg;
+extern int opterr;
+extern int optind;
+extern int optopt;
 int rename (char *, char *);
 int sethostname (char *, size_t);
 int setpgrp (void);
+void swab (void);
 int sync (void);
+pid_t tcgetpgrp (void);
+int tcsetpgrp (void);
 char *ttyname (int);
 void usleep (unsigned long);
 int close (int);
@@ -76,6 +89,7 @@ uid_t getuid (void);
 int lchown (char *, uid_t, gid_t);
 int link (char *, char *);
 int mkdir (char *, mode_t);
+long pathconf (void);
 int pipe (int);
 int readlink (char *, char *, size_t);
 int rmdir (char *);
@@ -94,6 +108,7 @@ int unlink (char *);
 pid_t vfork (void);
 int pread (int, void *, size_t, off_t);
 int pwrite (int, void *, size_t, off_t);
+long fpathconf (void);
 int ftruncate (int, off_t);
 char *getcwd (char *, size_t);
 size_t getpagesize (void);

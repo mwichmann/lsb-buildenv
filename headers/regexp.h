@@ -3,9 +3,9 @@
 
 
 
-char *loc1;
-char *loc2;
-char *locs;
+extern char *loc1;
+extern char *loc2;
+extern char *locs;
 int advance (char *, char *);
 int step (char *, char *);
 #endif

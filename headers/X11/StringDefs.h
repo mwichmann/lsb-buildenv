@@ -3,5 +3,5 @@
 
 
 
-char XtStrings;
+extern char XtStrings;
 #endif

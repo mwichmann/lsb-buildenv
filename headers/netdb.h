@@ -39,7 +39,7 @@ struct protoent *getprotoent (void);
 struct servent *getservbyname (char *, char *);
 struct servent *getservbyport (int, char *);
 struct servent *getservent (void);
-int h_errno;
+extern int h_errno;
 void setnetent (int);
 void setprotoent (int);
 int gethostbyname_r (char *, struct hostent *, char *, size_t,

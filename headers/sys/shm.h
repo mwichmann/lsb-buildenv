@@ -3,7 +3,6 @@
 
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys/time.h>
 #include <sys/ipc.h>
 
 struct shmid_ds
@@ -22,6 +21,8 @@ struct shmid_ds
 }
  ;
 
+#define SHMLBA	(__getpagesize())
+#define SHM_RND	020000
 #define SHM_RDONLY	4096
 
 void *shmat (int, void *, int);

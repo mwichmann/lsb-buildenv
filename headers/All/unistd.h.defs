@@ -1,13 +1,18 @@
 
-typedef __ssize_t ssize_t;
+typedef int ssize_t;
 
-typedef __pid_t pid_t;
+typedef int pid_t;
 
-typedef __off_t off_t;
+typedef int *intptr_t;
 
+#define STDIN_FILENO	0
 #define SEEK_SET	0
+#define STDOUT_FILENO	1
 #define SEEK_CUR	1
 #define SEEK_END	2
+#define STDERR_FILENO	2
+#define _SC_CLK_TCK	2
+#define _SC_OPEN_MAX	4
 
 #define F_OK	0
 #define X_OK	1

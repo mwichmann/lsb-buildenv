@@ -3,12 +3,12 @@
 
 
 
-char XtShellStrings;
-WidgetClass applicationShellWidgetClass;
-WidgetClass overrideShellWidgetClass;
-WidgetClass sessionShellWidgetClass;
-WidgetClass shellWidgetClass;
-WidgetClass topLevelShellWidgetClass;
-WidgetClass transientShellWidgetClass;
-WidgetClass wmShellWidgetClass;
+extern char XtShellStrings;
+extern WidgetClass applicationShellWidgetClass;
+extern WidgetClass overrideShellWidgetClass;
+extern WidgetClass sessionShellWidgetClass;
+extern WidgetClass shellWidgetClass;
+extern WidgetClass topLevelShellWidgetClass;
+extern WidgetClass transientShellWidgetClass;
+extern WidgetClass wmShellWidgetClass;
 #endif

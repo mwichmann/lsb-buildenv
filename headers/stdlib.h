@@ -74,6 +74,8 @@ long nrand48 (unsigned short);
 char *ptsname (int);
 int putenv (char *);
 void qsort (void *, size_t, size_t, __compar_fn_t);
+int rand (void);
+int rand_r (unsigned int *);
 unsigned short *seed48 (unsigned short);
 void srand48 (long);
 int unlockpt (int);

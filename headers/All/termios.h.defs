@@ -1,4 +1,48 @@
 
+typedef int speed_t;
+
+#define TCSANOW	0
+#define TCOOFF	0
+#define TCIFLUSH	0
+#define CR0	0000000
+#define FF0	0000000
+#define NL0	0000000
+#define BS0	0000000
+#define TAB0	0000000
+#define VT0	0000000
+#define OPOST	0000001
+#define OLCUC	0000002
+#define ONLCR	0000004
+#define XCASE	0000004
+#define OCRNL	0000010
+#define ONOCR	0000020
+#define ONLRET	0000040
+#define OFILL	0000100
+#define OFDEL	0000200
+#define NLDLY	0000400
+#define NL1	0000400
+#define CR1	0001000
+#define IUCLC	0001000
+#define CR2	0002000
+#define CRDLY	0003000
+#define CR3	0003000
+#define TAB1	0004000
+#define TAB2	0010000
+#define TABDLY	0014000
+#define TAB3	0014000
+#define BSDLY	0020000
+#define BS1	0020000
+#define VTDLY	0040000
+#define VT1	0040000
+#define FFDLY	0100000
+#define FF1	0100000
+#define TCOON	1
+#define TCOFLUSH	1
+#define TCSADRAIN	1
+#define TCSAFLUSH	2
+#define TCIOFF	2
+#define TCIOFLUSH	2
+#define TCION	3
 
 #define VINTR	0
 #define VQUIT	1
@@ -13,7 +57,6 @@
 #define VKILL	3
 #define NCCS	32
 #define VEOF	4
-#define VTIME	5
 #define VMIN	6
 #define VSWTC	7
 #define VSTART	8
@@ -37,15 +80,13 @@
 #define CS5	0000000
 #define CS6	0000020
 #define CS7	0000040
-#define CSIZE	0000060
 #define CS8	0000060
+#define CSIZE	0000060
 #define CSTOPB	0000100
-#define CREAD	0000200
 #define PARENB	0000400
 #define PARODD	0001000
 #define HUPCL	0002000
 #define CLOCAL	0004000
-#define CRTSCTS	020000000000
 
 #define ISIG	0000001
 #define ICANON	0000002
