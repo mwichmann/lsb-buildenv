@@ -17,13 +17,25 @@ extern "C"
 #if __ia64__
 #define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
 #endif
+#if __powerpc64__
+#define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
+#endif
+#if __x86_64__
+#define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
+#endif
+#if __s390x__
+#define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
+#endif
 #if __i386__
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
 #if __powerpc__ && !__powerpc64__
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
+#define ULONG_MAX	0xFFFFFFFFUL
+#endif
+#if __s390__ && !__s390x__
 #define LONG_MAX	2147483647
 #endif
 #if __powerpc__ && !__powerpc64__
@@ -50,7 +62,7 @@ extern "C"
 #if __powerpc64__
 #define CHAR_MIN	0
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CHAR_MIN	0
 #endif
 #define SCHAR_MAX	127
@@ -60,7 +72,7 @@ extern "C"
 #if __powerpc64__
 #define CHAR_MAX	255
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CHAR_MAX	255
 #endif
 #define UCHAR_MAX	255
