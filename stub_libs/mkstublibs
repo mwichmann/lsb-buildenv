@@ -6,9 +6,18 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.5 $
+# This is $Revision: 1.6 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.6  2001/11/20 04:03:57  anderson
+# Change to pick up the DB access into from the environment as is done for
+# all of the other scripts
+# Eliminate most of the workaround required becasue of bad data.
+# Eliminate several of the proceedural heuristics required to work around
+# bad data.
+# The Aliases are still needed until that info can be reflected in the DB.
+# Another pass will be required to finish eliminating workarounds.
+#
 # Revision 1.5  2001/10/24 05:19:56  cyeoh
 # Add workaround for missing symbols
 #
@@ -34,10 +43,12 @@ use strict;
 use DBI;
 use Getopt::Std;
 
-my($DBName) = "lsb";
-my($DBUser) = "";
-my($DBPass)  = "";
-my($DBHost) = "";
+use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
+
+my($DBName) = $LSBDB;
+my($DBUser) = $LSBUSER;
+my($DBPass)  = $LSBDBPASSWD;
+my($DBHost) = $LSBDBHOST;
 my($TargetArch);
 my($TargetArchId);
 my(%Options);
@@ -53,50 +64,6 @@ my(%LibcAliases) = (
   "program_invocation_name" => "__progname_full",
   "program_invocation_short_name" => "__progname",
   "_h_errno" => "h_errno" );
-
-# The following need to sit in the data segment instead of the bss
-my(%LibcData) = ( 
-  "_sys_errlist" => 1,
-  "__tzname" => 1,
-  "__daylight" => 1,
-  "__timezone" => 1,
-  "__environ" => 1,
-  "__curbrk" => 1,
-  "__progname_full" => 1,
-  "__progname" => 1,
-  "h_errno" => 1 );
-
-
-# Work around bugs in database
-# Interfaces which should be a variable but are recorded as a function
-# (or just missing)
-# Zero size means alias 
-my(%OverrideVariables) = 
-    (
-     "libc" => { "_h_errno" => 0x4,
-                 "daylight" => 0,
-                 "tzname" => 0,
-                 "__tzname" => 0x8,
-                 "__daylight" => 0x4,
-                 "__timezone" => 0x4},
-     "libXt" => { "XtShellStrings" => 0x509,
-                  "XtStrings" => 0xa59 }
-     );
-
-# Work around bugs in database
-# Interfaces which should be functions but are recorded as a variable
-my(%OverrideFunctions) = 
-    (
-     "libm" => { "clog" => 1 } 
-     );
-
-# Work around bugs in database
-# Missing libc symbols
-my(%MissingLibcVariables) =
-    ( "__tzname" => "GLIBC_2.0",
-      "__daylight" => "GLIBC_2.0",
-      "__timezone" => "GLIBC_2.0" );
-
 
 #----------------------------------------------------------------------
 # Look through local shared libraries for aliases
@@ -218,6 +185,7 @@ sub GenerateLibrary($$$)
   my($libName) = shift;
   my($libId) = shift;
   my($sth);
+  my($select);
   my($row);
   my(%versionInfo);
   local(*STUBFILE);
@@ -238,18 +206,7 @@ sub GenerateLibrary($$$)
   $sth->execute() || die $sth->errstr;
   while ($row = $sth->fetchrow_hashref())
   {
-    if (exists($OverrideVariables{$libName})
-        && exists($OverrideVariables{$libName}{$row->{Iname}}))
-    {
-      # Skipped because its misclassified in the db
-      # (Still do following versioning information because this is correct
-      # and is written to the same file)
-#      print "Skipping $row->{Iname}\n";
-    }
-    else
-    {
-      print(STUBFILE "void $row->{Iname}(void) {} ;\n");
-    }
+    print(STUBFILE "void $row->{Iname}(void) {} ;\n");
     if (defined($row->{Vname}))
     {
       # Unversioned symbols will not have the Vname field defined
@@ -261,39 +218,23 @@ sub GenerateLibrary($$$)
     }
   }
 
-  if (exists($OverrideFunctions{$libName}))
-  {
-    # Add misclassified interfaces
-    my($missing);
-    foreach $missing (keys %{$OverrideFunctions{$libName}})
-    {
-#    print "Fixing $missing\n";
-      print(STUBFILE "void $missing(void) {} ;\n");
-    }
-  }
-
   # Do variables next
-  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname,Ireturn,ATsize FROM ".
+  $select = "SELECT DISTINCT Iname,Itype,Vname,Ireturn,ATsize FROM ".
                        "Interface,LibGroup,LGInt ".
                        "LEFT JOIN Version ON Vid=Iversion ".
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
                        "ATaid=$TargetArchId WHERE ".
-                       "Itype='Data' AND Interface.Iid=LGInt.LGIint ".
+                       "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) ".
+                       "AND Interface.Iid=LGInt.LGIint ".
                        "AND Istatus='Included' ".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
-                       "AND LibGroup.LGlib=$libId ORDER BY Iname")
-      || die $dbh->errstr;  
+                       "AND LibGroup.LGlib=$libId ORDER BY Iname";
+  #print "$select\n";
+  $sth = $dbh->prepare($select) || die $dbh->errstr;  
   $sth->execute() || die $sth->errstr;
   my($size);
   while ($row = $sth->fetchrow_hashref())
   {
-    if (defined($OverrideFunctions{$libName})
-        && exists($OverrideFunctions{$libName}{$row->{Iname}}))
-    {
-      # Skipped because its misclassified in the db
-    }
-    else
-    {
       # Work out size of data variable
       if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
       {
@@ -303,41 +244,39 @@ sub GenerateLibrary($$$)
         }
         else
         {
-          die "No data for symbol $row->{Iname}\n";
+          print "No data for symbol $row->{Iname}\n";
         }
-#      print STDOUT "Size not available for symbol $row->{Iname}"
-#          . "  Type ($row->{Ireturn})\n";
+      print STDOUT "Size not available for symbol $row->{Iname}"
+          . "  Type ($row->{Ireturn})\n";
 #      $size = 1000; # temporarily make it big to avoid problems
       }
-#      elsif ($row->{"ATsize"} == 0)
-#      {
-#        print STDOUT "Size for symbol $row->{Iname} of Type $row->{Ireturn} is 0\n";
+      elsif ($row->{"ATsize"} == 0)
+      {
+        print STDOUT "Size for symbol $row->{Iname} of Type $row->{Ireturn} is 0\n";
 #        $size = 1000; # temporarily make it big to avoid problems
-#      }
+      }
       else
       {
         $size = $row->{"ATsize"};
       }
       
-      if ($libName ne "libc" || (!exists($LibcAliases{$row->{Iname}})
-                                 && !exists($LibcData{$row->{Iname}})) )
+      if($row->{Itype} eq "Common" )
       {
         print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");
       }
-      elsif (exists($LibcAliases{$row->{Iname}}))
+      elsif($row->{Itype} eq "Alias" )
       {
         print(STUBFILE "__asm__(\".weak $row->{Iname}; $row->{Iname} = $LibcAliases{$row->{Iname}}\");\n");
       }
-      else
+      elsif($row->{Itype} eq "Data" )
       {
         my($varname) = $row->{Iname};
         print(STUBFILE "__asm__(\".globl $varname; .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0\");\n");
       }
-
-
-
-      die "Size 0 symbol for $row->{Iname}\n" unless $size!=0;
-    }
+      else
+      {
+        print "Skipping ",$row->{Iname},"\n";
+      }
 
     if (defined($row->{Vname}))
     {
@@ -349,41 +288,7 @@ sub GenerateLibrary($$$)
       push(@{$versionInfo{$row->{Vname}}}, $row->{Iname});
     }
 
-    # Work around for missing __tzname symbol
-    if ($libName eq "libc" && $row->{Iname} eq "__tzname")
-    {
-      push(@{$versionInfo{"GLIBC_2.0"}}, "__tzname");
-    }
-
-
   }
-
-  if (exists($OverrideVariables{$libName}))
-  {
-#    print "Found for $libName\n";
-    # Add misclassified or missing interfaces
-    my($missing);
-    foreach $missing (keys %{$OverrideVariables{$libName}})
-    {
-#      print "Fixing $missing\n";
-      if ($libName eq "libc")
-      {
-        if (exists($LibcAliases{$missing}))
-        {
-          print(STUBFILE "__asm__(\".weak $missing; $missing = $LibcAliases{$missing}\");\n");
-        }
-        else
-        {
-          print(STUBFILE "__asm__(\".globl $missing; .data; .type $missing,\@object; .size $missing, $size; $missing: .long 0\");\n");
-        }
-      }
-      else
-      {
-        print(STUBFILE "__asm__(\".comm $missing,$OverrideVariables{$libName}{$missing}\");\n");
-      }
-    }
-  }
-
 
   # Dump version information
   my($version);
