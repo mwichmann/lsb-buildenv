@@ -216,7 +216,7 @@ argvdump(struct argvgroup *ag)
 int i;
 
 for(i=0;i<ag->numargv;i++)
-	fprintf(stdout,"%3.3d: %s\n",i,ag->argv[i]);
+	fprintf(stderr,"%3.3d: %s\n",i,ag->argv[i]);
 }
 /* end argv ADT */
 
@@ -418,17 +418,22 @@ userlibs=argvinit();
 syslibs=argvinit();
 
 if( lsbccmode == LSBCPLUS ) {
-	argvaddstring(userlibs,"-Wl,-Bstatic");
-	argvaddstring(userlibs,"-lstdc++");
-	argvaddstring(userlibs,"-Wl,-Bdynamic");
+	argvaddstring(syslibs,"-Wl,-Bstatic");
+	argvaddstring(syslibs,"-lstdc++");
+	argvaddstring(syslibs,"-Wl,-Bdynamic");
 	}
 
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Appending -lm -lc -lc_nonshared -lgcc to the library list\n");
 argvaddstring(syslibs,"-lm");
+argvaddstring(syslibs,"-lgcc");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
-argvaddstring(syslibs,"-lgcc");
+/*
+if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(syslibs,"-lgcc_eh");
+	}
+*/
 
 gccargs=argvinit();
 if( lsbccmode == LSBCPLUS ) {
@@ -546,5 +551,9 @@ if( lsbcc_debug&DEBUG_MODIFIED_ARGS )
 
 /* exec to gcc */
 
-execvp("cc",gccargs->argv);
+if( lsbccmode == LSBCPLUS ) {
+	execvp(cxxname,gccargs->argv);
+} else {
+	execvp(ccname,gccargs->argv);
+}
 }
