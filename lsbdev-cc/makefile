@@ -12,6 +12,15 @@ install: $(PROGRAMS)
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
 
+scripts:
+	cd scripts;make
+	cd lsb_release-1.0;make
+
+install_scripts:
+	cd scripts;make install
+	cd lsb_release-1.0;make install
+
+
 clean:
 	rm -f $(PROGRAMS)
 
