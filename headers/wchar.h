@@ -5,6 +5,7 @@
 #include <wctype.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -29,29 +30,30 @@ extern "C"
   extern int iswblank (void);
   extern wint_t towlower (wint_t);
   extern wint_t towupper (wint_t);
-  extern wchar_t *wcscat (wchar_t *, wchar_t *);
-  extern wchar_t *wcschr (wchar_t *, wchar_t);
-  extern int wcscmp (wchar_t *, wchar_t *);
-  extern int wcscoll (wchar_t *, wchar_t *);
-  extern wchar_t *wcscpy (wchar_t *, wchar_t *);
-  extern size_t wcscspn (wchar_t *, wchar_t *);
-  extern wchar_t *wcsncat (wchar_t *, wchar_t *, size_t);
-  extern int wcsncmp (wchar_t *, wchar_t *, size_t);
-  extern wchar_t *wcsncpy (wchar_t *, wchar_t *, size_t);
-  extern wchar_t *wcspbrk (wchar_t *, wchar_t *);
-  extern wchar_t *wcsrchr (wchar_t *, wchar_t);
-  extern size_t wcsspn (wchar_t *, wchar_t *);
-  extern wchar_t *wcsstr (wchar_t *, wchar_t *);
-  extern wchar_t *wcstok (wchar_t *, wchar_t *, wchar_t * *);
-  extern int wcswidth (wchar_t *, size_t);
-  extern size_t wcsxfrm (wchar_t *, wchar_t *, size_t);
+  extern wchar_t *wcscat (wchar_t *, const wchar_t *);
+  extern wchar_t *wcschr (const wchar_t *, wchar_t);
+  extern int wcscmp (const wchar_t *, wchar_t *);
+  extern int wcscoll (const wchar_t *, const wchar_t *);
+  extern wchar_t *wcscpy (wchar_t *, const wchar_t *);
+  extern size_t wcscspn (const wchar_t *, const wchar_t *);
+  extern wchar_t *wcsncat (wchar_t *, const wchar_t *, size_t);
+  extern int wcsncmp (const wchar_t *, const wchar_t *, size_t);
+  extern wchar_t *wcsncpy (wchar_t *, const wchar_t *, size_t);
+  extern wchar_t *wcspbrk (const wchar_t *, const wchar_t *);
+  extern wchar_t *wcsrchr (const wchar_t *, wchar_t);
+  extern size_t wcsspn (const wchar_t *, const wchar_t *);
+  extern wchar_t *wcsstr (const wchar_t *, const wchar_t *);
+  extern wchar_t *wcstok (wchar_t *, const wchar_t *, wchar_t * *);
+  extern int wcswidth (const wchar_t *, size_t);
+  extern size_t wcsxfrm (wchar_t *, const wchar_t *, size_t);
   extern int wctob (wint_t);
-  extern int wcwidth (wint_t);
-  extern wchar_t *wmemchr (wchar_t *, wchar_t, size_t);
-  extern int wmemcmp (wchar_t *, wchar_t *, size_t);
-  extern wchar_t *wmemcpy (wchar_t *, wchar_t *, size_t);
+  extern int wcwidth (wchar_t);
+  extern wchar_t *wmemchr (const wchar_t *, wchar_t, size_t);
+  extern int wmemcmp (const wchar_t *, const wchar_t *, size_t);
+  extern wchar_t *wmemcpy (wchar_t *, const wchar_t *, size_t);
   extern wchar_t *wmemmove (wchar_t *, wchar_t *, size_t);
   extern wchar_t *wmemset (wchar_t *, wchar_t, size_t);
+  extern int iswalnum (wint_t);
   extern int iswalpha (wint_t);
   extern int iswcntrl (wint_t);
   extern int iswctype (wint_t, wctype_t);
@@ -63,44 +65,47 @@ extern "C"
   extern int iswspace (wint_t);
   extern int iswupper (wint_t);
   extern int iswxdigit (wint_t);
-  extern size_t mbrlen (char *, size_t, mbstate_t *);
-  extern size_t mbrtowc (wchar_t *, char *, size_t, mbstate_t *);
-  extern int mbsinit (mbstate_t *);
-  extern size_t mbsrtowcs (wchar_t *, char **, size_t, mbstate_t *);
+  extern size_t mbrlen (const char *, size_t, mbstate_t *);
+  extern size_t mbrtowc (wchar_t *, const char *, size_t, mbstate_t *);
+  extern int mbsinit (const mbstate_t *);
+  extern size_t mbsrtowcs (wchar_t *, const char **, size_t, mbstate_t *);
   extern size_t wcrtomb (char *, wchar_t, mbstate_t *);
-  extern size_t wcslen (wchar_t *);
-  extern size_t wcsrtombs (char *, wchar_t * *, size_t, mbstate_t *);
-  extern double wcstod (wchar_t *, wchar_t * *);
-  extern long wcstol (wchar_t *, wchar_t * *, int);
-  extern unsigned long wcstoul (wchar_t *, wchar_t * *, int);
-  extern wchar_t wcswcs (void);
-  extern long long wcstoll (wchar_t *, wchar_t * *, int);
-  extern unsigned long long wcstoull (wchar_t *, wchar_t * *, int);
+  extern size_t wcslen (const wchar_t *);
+  extern size_t wcsrtombs (char *, const wchar_t * *, size_t, mbstate_t *);
+  extern double wcstod (const wchar_t *, wchar_t * *);
+  extern float wcstof (const wchar_t *, wchar_t * *, int);
+  extern long wcstol (const wchar_t *, wchar_t * *, int);
+  extern long double wcstold (const wchar_t *, wchar_t * *, int);
+  extern unsigned long wcstoul (const wchar_t *, wchar_t * *, int);
+  extern wchar_t *wcswcs (const wchar_t *, const wchar_t *);
+  extern long long wcstoll (const wchar_t *, wchar_t * *, int);
+  extern unsigned long long wcstoull (const wchar_t *, wchar_t * *, int);
   extern wint_t btowc (int);
   extern wint_t towctrans (wint_t, wctrans_t);
   extern wint_t fgetwc (FILE *);
-  extern wchar_t fgetws (void);
-  extern wint_t fputwc (void);
-  extern int fputws (void);
-  extern int fwide (void);
-  extern int fwprintf (void);
-  extern int fwscanf (void);
+  extern wchar_t *fgetws (wchar_t *, int, FILE *);
+  extern wint_t fputwc (wchar_t, FILE *);
+  extern int fputws (const wchar_t *, FILE *);
+  extern int fwide (FILE *, int);
+  extern int fwprintf (FILE *, const wchar_t *, ...);
+  extern int fwscanf (FILE *, const wchar_t *, ...);
   extern wint_t getwc (FILE *);
   extern wint_t getwchar (void);
-  extern wint_t putwc (void);
-  extern wchar_t putwchar (void);
-  extern int swprintf (void);
-  extern int swscanf (void);
-  extern wint_t ungetwc (void);
-  extern int vfwprintf (void);
-  extern int vfwscanf (void);
-  extern int vswprintf (void);
-  extern int vswscanf (void);
-  extern int vwprintf (void);
-  extern int vwscanf (void);
-  extern size_t wcsftime (void);
-  extern int wprintf (void);
-  extern int wscanf (void);
+  extern wint_t putwc (wchar_t, FILE *);
+  extern wchar_t putwchar (wchar_t);
+  extern int swprintf (wchar_t *, size_t, const wchar_t *, ...);
+  extern int swscanf (const wchar_t *, const wchar_t *, ...);
+  extern wint_t ungetwc (wint_t, FILE *);
+  extern int vfwprintf (FILE *, const wchar_t *, va_list);
+  extern int vfwscanf (FILE *, const wchar_t *, va_list);
+  extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
+  extern int vswscanf (const wchar_t *, const wchar_t *, va_list);
+  extern int vwprintf (const wchar_t *, va_list);
+  extern int vwscanf (const wchar_t *, va_list);
+  extern size_t wcsftime (wchar_t *, size_t, const wchar_t *,
+			  const struct tm *);
+  extern int wprintf (const wchar_t *, const wchar_t *);
+  extern int wscanf (const wchar_t *, ...);
 #ifdef __cplusplus
 }
 #endif

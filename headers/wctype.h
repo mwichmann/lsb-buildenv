@@ -26,7 +26,6 @@ extern "C"
 
 
   extern wctrans_t wctrans (char *);
-  extern int iswalnum (wint_t);
   extern wctype_t wctype (char *);
 #ifdef __cplusplus
 }
