@@ -751,7 +751,7 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct sigcontext_struct
+  struct sigcontext
   {
     unsigned long _unused;
     int signal;
