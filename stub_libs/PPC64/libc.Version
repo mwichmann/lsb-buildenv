@@ -1,0 +1,7 @@
+LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  xdr_u_int;
+};
+GLIBC_2.2 {
+  tdelete;
+};
