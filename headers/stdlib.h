@@ -123,7 +123,7 @@ extern "C"
   extern void *malloc (size_t);
   extern long random (void);
   extern void *realloc (void *, size_t);
-  extern char **setstate (char *);
+  extern char *setstate (char *);
   extern void srand (unsigned int);
   extern void srandom (unsigned int);
   extern double strtod (const char *, char **);

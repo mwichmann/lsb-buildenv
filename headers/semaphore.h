@@ -45,7 +45,7 @@ extern "C"
   extern int sem_trywait (sem_t *);
   extern int sem_unlink (const char *);
   extern int sem_wait (sem_t *);
-  extern int sem_timedwait (sem_t, const struct timespec *);
+  extern int sem_timedwait (sem_t *, const struct timespec *);
 #ifdef __cplusplus
 }
 #endif

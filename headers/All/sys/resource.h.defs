@@ -19,6 +19,7 @@
 
 typedef unsigned long rlim_t;
 typedef unsigned long long rlim64_t;
+typedef int __rlimit_resource_t;
 
 
 struct rlimit

@@ -168,17 +168,18 @@ extern "C"
 
 
 
-  extern void _pthread_cleanup_pop (void);
-  extern void _pthread_cleanup_push (void);
+  extern void _pthread_cleanup_pop (struct _pthread_cleanup_buffer *, int);
+  extern void _pthread_cleanup_push (struct _pthread_cleanup_buffer *,
+				     void (*)(void *), void *);
   extern pid_t pthread_atfork (void (*)(void), void (*)(void),
 			       void (*)(void));
   extern int pthread_attr_destroy (pthread_attr_t *);
-  extern int pthread_attr_getdetachstate (pthread_attr_t *, int *);
-  extern int pthread_attr_getinheritsched (pthread_attr_t *, int *);
-  extern int pthread_attr_getschedparam (pthread_attr_t *,
+  extern int pthread_attr_getdetachstate (const pthread_attr_t *, int *);
+  extern int pthread_attr_getinheritsched (const pthread_attr_t *, int *);
+  extern int pthread_attr_getschedparam (const pthread_attr_t *,
 					 struct sched_param *);
-  extern int pthread_attr_getschedpolicy (pthread_attr_t *, int *);
-  extern int pthread_attr_getscope (pthread_attr_t *, int *);
+  extern int pthread_attr_getschedpolicy (const pthread_attr_t *, int *);
+  extern int pthread_attr_getscope (const pthread_attr_t *, int *);
   extern int pthread_attr_init (pthread_attr_t *);
   extern int pthread_attr_setdetachstate (pthread_attr_t *, int);
   extern int pthread_attr_setinheritsched (pthread_attr_t *, int);
@@ -189,10 +190,10 @@ extern "C"
   extern int pthread_cancel (pthread_t);
   extern int pthread_cond_broadcast (pthread_cond_t *);
   extern int pthread_cond_destroy (pthread_cond_t *);
-  extern int pthread_cond_init (pthread_cond_t *, pthread_condattr_t *);
+  extern int pthread_cond_init (pthread_cond_t *, const pthread_condattr_t *);
   extern int pthread_cond_signal (pthread_cond_t *);
   extern int pthread_cond_timedwait (pthread_cond_t *, pthread_mutex_t *,
-				     struct timespec *);
+				     const struct timespec *);
   extern int pthread_cond_wait (pthread_cond_t *, pthread_mutex_t *);
   extern int pthread_condattr_destroy (pthread_condattr_t *);
   extern int pthread_condattr_init (pthread_condattr_t *);
@@ -227,26 +228,27 @@ extern "C"
   extern int pthread_rwlockattr_getpshared (const pthread_rwlockattr_t *,
 					    int *);
   extern int pthread_rwlockattr_init (pthread_rwlockattr_t *);
-  extern int pthread_rwlockattr_setpshared (const pthread_rwlockattr_t *,
-					    int);
+  extern int pthread_rwlockattr_setpshared (pthread_rwlockattr_t *, int);
   extern pthread_t pthread_self (void);
   extern int pthread_setcancelstate (int, int *);
   extern int pthread_setcanceltype (int, int *);
-  extern int pthread_setschedparam (pthread_t, int, struct sched_param *);
+  extern int pthread_setschedparam (pthread_t, int,
+				    const struct sched_param *);
   extern int pthread_setspecific (pthread_key_t, const void *);
   extern void pthread_testcancel (void);
-  extern int pthread_attr_getguardsize (pthread_attr_t *, size_t *);
-  extern int pthread_attr_setguardsize (void);
+  extern int pthread_attr_getguardsize (const pthread_attr_t *, size_t *);
+  extern int pthread_attr_setguardsize (pthread_attr_t *, size_t);
   extern int pthread_attr_setstackaddr (pthread_attr_t *, void *);
-  extern int pthread_attr_getstackaddr (pthread_attr_t *, void **);
+  extern int pthread_attr_getstackaddr (const pthread_attr_t *, void **);
   extern int pthread_attr_setstacksize (pthread_attr_t *, size_t);
-  extern int pthread_attr_getstacksize (pthread_attr_t *, size_t *);
-  extern int pthread_mutexattr_gettype (pthread_mutexattr_t *, int *);
+  extern int pthread_attr_getstacksize (const pthread_attr_t *, size_t *);
+  extern int pthread_mutexattr_gettype (const pthread_mutexattr_t *, int *);
   extern int pthread_mutexattr_settype (pthread_mutexattr_t *, int);
   extern int pthread_setconcurrency (int);
-  extern int pthread_condattr_getpshared (pthread_condattr_t *, int *);
+  extern int pthread_condattr_getpshared (const pthread_condattr_t *, int *);
   extern int pthread_condattr_setpshared (pthread_condattr_t *, int);
-  extern int pthread_mutexattr_getpshared (pthread_mutexattr_t *, int *);
+  extern int pthread_mutexattr_getpshared (const pthread_mutexattr_t *,
+					   int *);
   extern int pthread_mutexattr_setpshared (pthread_mutexattr_t *, int);
   extern int pthread_rwlock_timedrdlock (pthread_rwlock_t *,
 					 const struct timespec *);

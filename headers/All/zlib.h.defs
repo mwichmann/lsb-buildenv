@@ -18,6 +18,7 @@ typedef uLong uLongf;
 typedef void *voidp;
 typedef unsigned char Byte;
 typedef off_t z_off_t;
+typedef void *const voidpc;
 
 
 typedef voidpf (*alloc_func) (voidpf opaque, uInt items, uInt size);

@@ -38,6 +38,8 @@ extern "C"
 
   typedef off_t z_off_t;
 
+  typedef void *const voidpc;
+
 
 
 
@@ -135,7 +137,7 @@ extern "C"
   extern int gzclose (gzFile);
   extern gzFile gzopen (const char *, const char *);
   extern gzFile gzdopen (int, const char *);
-  extern int gzwrite (gzFile, voidp, unsigned int);
+  extern int gzwrite (gzFile, voidpc, unsigned int);
   extern int gzflush (gzFile, int);
   extern const char *gzerror (gzFile, int *);
   extern uLong adler32 (uLong, const Bytef *, uInt);

@@ -71,7 +71,7 @@ the second and third arguments `setitimer'.*/
 			struct itimerval *);
   extern int adjtime (const struct timeval *, struct timeval *);
   extern int gettimeofday (struct timeval *, struct timezone *);
-  extern int utimes (const char *, struct timeval[]);
+  extern int utimes (const char *, struct timeval *);
 #ifdef __cplusplus
 }
 #endif

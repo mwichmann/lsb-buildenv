@@ -24,7 +24,7 @@ extern "C"
   Dl_info;
 
 
-  extern int dladdr (void *, Dl_info *);
+  extern int dladdr (const void *, Dl_info *);
   extern int dlclose (void *);
   extern char *dlerror (void);
   extern void *dlopen (const char *, int);
