@@ -12,6 +12,12 @@ GLIBC_2.0 {
   __getpagesize;
   __getpgid;
   __h_errno_location;
+  __isinf;
+  __isinff;
+  __isinfl;
+  __isnan;
+  __isnanf;
+  __isnanl;
   __libc_start_main;
   __lxstat;
   __mempcpy;
@@ -179,7 +185,9 @@ GLIBC_2.0 {
   getgid;
   getgrent;
   getgrgid;
+  getgrgid_r;
   getgrnam;
+  getgrnam_r;
   getgroups;
   gethostbyaddr;
   gethostbyname;
@@ -247,6 +255,7 @@ GLIBC_2.0 {
   isdigit;
   isgraph;
   isinf;
+  isinff;
   isinfl;
   islower;
   isnan;
@@ -461,6 +470,7 @@ GLIBC_2.0 {
   srandom;
   sscanf;
   statfs;
+  statvfs64;
   step;
   stime;
   stpcpy;

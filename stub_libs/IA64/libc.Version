@@ -1,4 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  statvfs64;
+};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -16,6 +19,12 @@ GLIBC_2.2 {
   __getpagesize;
   __getpgid;
   __h_errno_location;
+  __isinf;
+  __isinff;
+  __isinfl;
+  __isnan;
+  __isnanf;
+  __isnanl;
   __libc_current_sigrtmax;
   __libc_current_sigrtmin;
   __libc_start_main;
@@ -225,11 +234,14 @@ GLIBC_2.2 {
   getgid;
   getgrent;
   getgrgid;
+  getgrgid_r;
   getgrnam;
   getgroups;
   gethostbyaddr;
+  gethostbyaddr_r;
   gethostbyname;
   gethostbyname_r;
+  gethostent_r;
   gethostid;
   gethostname;
   getitimer;
@@ -310,6 +322,7 @@ GLIBC_2.2 {
   isdigit;
   isgraph;
   isinf;
+  isinff;
   isinfl;
   islower;
   isnan;
