@@ -50,6 +50,7 @@ extern struct servent *getservent (void);
 extern int h_errno;
 extern void setnetent (int);
 extern void setprotoent (int);
+extern void setservent (void);
 extern int gethostbyname_r (char *, struct hostent *, char *, size_t,
 			    struct hostent **, int *);
 #endif

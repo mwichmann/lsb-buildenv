@@ -76,3 +76,16 @@ union
   caddr_t ifru_data;
 }
  ;
+
+
+struct ifconf
+{
+  int ifc_len;
+  union
+  {
+    caddr_t ifcu_buf;
+    struct ifreq *ifcu_req;
+  }
+  ifc_ifcu;
+}
+ ;

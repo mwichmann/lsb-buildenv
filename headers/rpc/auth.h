@@ -2,6 +2,7 @@
 #define _RPC_AUTH_H_
 
 #include <sys/types.h>
+#include <inttypes.h>
 
 
 

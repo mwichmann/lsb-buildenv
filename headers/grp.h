@@ -23,4 +23,5 @@ extern struct group *getgrent (void);
 extern struct group *getgrgid (gid_t);
 extern struct group *getgrnam (const char *);
 extern void setgrent (void);
+extern int setgroups (void);
 #endif

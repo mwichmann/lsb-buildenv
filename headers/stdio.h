@@ -13,8 +13,8 @@
 #define L_tmpnam	20
 #define FILENAME_MAX	4096
 #define BUFSIZ	8192
-#define L_cuserid	9
 #define L_ctermid	9
+#define L_cuserid	9
 
 
 typedef struct _IO_FILE *FILE;
@@ -73,6 +73,9 @@ extern int pclose (FILE *);
 extern void perror (char *);
 extern FILE *popen (char *, char *);
 extern int printf (char *, ...);
+extern int putc_unlocked (void);
+extern int putchar (int);
+extern int putchar_unlocked (void);
 extern int remove (char *);
 extern void rewind (FILE *);
 extern int scanf (char *, ...);
@@ -99,6 +102,7 @@ extern long ftell (FILE *);
 extern size_t fwrite (void *, size_t, size_t, FILE *);
 extern int getc (FILE *);
 extern char *gets (char *);
+extern int putc (int, const FILE *);
 extern int puts (char *);
 extern int setvbuf (FILE *, char *, int, size_t);
 extern int snprintf (char *, size_t, char *, ...);

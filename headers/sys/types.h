@@ -37,12 +37,6 @@ typedef unsigned int id_t;
 
 typedef long suseconds_t;
 
-typedef unsigned char uint8_t;
-
-typedef unsigned short uint16_t;
-
-typedef unsigned int uint32_t;
-
 typedef unsigned long blksize_t;
 
 typedef long fd_mask;

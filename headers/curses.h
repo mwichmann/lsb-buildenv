@@ -139,8 +139,8 @@ struct _win_st
 
 /* Pseudo-character tokens outside ASCII range.*/
 #define KEY_CODE_YES	0400
-#define KEY_MIN	0401
 #define KEY_BREAK	0401
+#define KEY_MIN	0401
 #define KEY_DOWN	0402
 #define KEY_UP	0403
 #define KEY_LEFT	0404

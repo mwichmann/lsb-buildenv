@@ -28,4 +28,6 @@ extern struct passwd *getpwent (void);
 extern struct passwd *getpwnam (const char *);
 extern struct passwd *getpwuid (uid_t);
 extern void setpwent (void);
+extern int getpwnam_r (char *, struct passwd *, char *, size_t,
+		       struct passwd **);
 #endif

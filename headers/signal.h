@@ -59,8 +59,8 @@ struct sigstack
 #define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
-#define SIGABRT	6
 #define SIGIOT	6
+#define SIGABRT	6
 #define SIGBUS	7
 #define SIGFPE	8
 #define SIGKILL	9
@@ -290,8 +290,6 @@ struct _fpstate
 /* Process context when signal delivered*/
 
 
-#if defined(__ia64__)
-/* IA64 */
 struct sigcontext
 {
   unsigned short gs;
@@ -325,7 +323,6 @@ struct sigcontext
 }
  ;
 
-#endif
 
 extern char **_sys_siglist;
 extern int raise (int);
@@ -333,12 +330,19 @@ extern int sigaddset (sigset_t *, int);
 extern int sigdelset (sigset_t *, int);
 extern int sigemptyset (sigset_t *);
 extern int sigfillset (sigset_t *);
+extern int sighold (void);
+extern int siginterrupt (void);
+extern int sigismember (void);
 extern int sigpending (sigset_t *);
+extern int sigrelse (void);
+extern __sighandler_t sigset (void);
 extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
 extern int sigaction (int, struct sigaction *, struct sigaction *);
+extern int sigwait (const sigset_t *, int *);
 extern int kill (pid_t, int);
 extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
 extern __sighandler_t signal (int, __sighandler_t);
+extern int sigpause (void);
 extern int sigprocmask (int, sigset_t *, sigset_t *);
 extern int sigsuspend (sigset_t *);
 extern int sigqueue (void);

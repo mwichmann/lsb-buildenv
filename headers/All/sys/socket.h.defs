@@ -4,8 +4,8 @@
 #define MSG_TRUNC	0x20
 #define MSG_EOR	0x80
 #define SIOCGIFCONF	0x8912
-#define MSG_OOB	1
 #define SHUT_WR	1
+#define MSG_OOB	1
 #define SHUT_RDWR	2
 #define MSG_PEEK	2
 #define MSG_DONTROUTE	4
@@ -59,8 +59,8 @@ struct msghdr
 }
  ;
 #define AF_UNSPEC	0
-#define AF_LOCAL	1
 #define AF_UNIX	1
+#define AF_LOCAL	1
 #define AF_INET6	10
 #define AF_INET	2
 #define AF_AX25	3
@@ -83,8 +83,8 @@ struct msghdr
 
 
 #define SOL_IP	0
-#define SOL_SOCKET	1
 #define SO_DEBUG	1
+#define SOL_SOCKET	1
 #define SO_OOBINLINE	10
 #define SO_NO_CHECK	11
 #define SO_PRIORITY	12

@@ -116,11 +116,11 @@ pthread_rwlockattr_t;
 
 
 /* Values for attributes.*/
+#define PTHREAD_INHERIT_SCHED	0
+#define PTHREAD_PROCESS_PRIVATE	0
 #define PTHREAD_CREATE_JOINABLE	0
 #define PTHREAD_SCOPE_SYSTEM	0
 #define PTHREAD_ONCE_INIT	0
-#define PTHREAD_INHERIT_SCHED	0
-#define PTHREAD_PROCESS_PRIVATE	0
 #define PTHREAD_EXPLICIT_SCHED	1
 #define PTHREAD_PROCESS_SHARED	1
 #define PTHREAD_CREATE_DETACHED	1
@@ -130,8 +130,8 @@ pthread_rwlockattr_t;
 
 /* Cancellation*/
 #define PTHREAD_CANCELED	((void*)-1)
-#define PTHREAD_CANCEL_ENABLE	0
 #define PTHREAD_CANCEL_DEFERRED	0
+#define PTHREAD_CANCEL_ENABLE	0
 #define PTHREAD_CANCEL_ASYNCHRONOUS	1
 #define PTHREAD_CANCEL_DISABLE	1
 
@@ -189,13 +189,19 @@ extern int pthread_rwlock_trywrlock (pthread_rwlock_t *);
 extern int pthread_rwlock_unlock (pthread_rwlock_t *);
 extern int pthread_rwlock_wrlock (pthread_rwlock_t *);
 extern int pthread_rwlockattr_destroy (void);
+extern int pthread_rwlockattr_getkind_np (void);
+extern int pthread_rwlockattr_getpshared (void);
 extern int pthread_rwlockattr_init (void);
+extern int pthread_rwlockattr_setkind_np (void);
+extern int pthread_rwlockattr_setpshared (void);
 extern pthread_t pthread_self (void);
 extern int pthread_setcancelstate (int, int *);
 extern int pthread_setcanceltype (int, int *);
 extern int pthread_setschedparam (pthread_t, int, struct sched_param *);
 extern int pthread_setspecific (pthread_key_t, void *);
 extern void pthread_testcancel (void);
+extern int pthread_attr_getguardsize (void);
+extern int pthread_attr_setguardsize (void);
 extern int pthread_attr_setstackaddr (pthread_attr_t *, void *);
 extern int pthread_attr_getstackaddr (pthread_attr_t *, void **);
 extern int pthread_attr_setstacksize (pthread_attr_t *, size_t);
