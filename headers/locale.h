@@ -77,6 +77,7 @@ extern "C"
   }
    *__locale_t;
 
+  typedef __locale_t locale_t;
 
 
 
