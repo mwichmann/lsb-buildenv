@@ -36,6 +36,14 @@ struct protoent
   int p_proto;
 }
  ;
+struct netent
+{
+  char *n_name;
+  char **n_aliases;
+  int n_addrtype;
+  unsigned long n_net;
+}
+ ;
 #define AI_PASSIVE	0x0001
 #define AI_CANONNAME	0x0002
 #define AI_NUMERICHOST	0x0004

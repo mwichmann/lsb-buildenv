@@ -50,6 +50,15 @@ extern "C"
   }
    ;
 
+  struct netent
+  {
+    char *n_name;
+    char **n_aliases;
+    int n_addrtype;
+    unsigned long n_net;
+  }
+   ;
+
 
 /* Possible values for `ai_flags' field in `addrinfo' structure.*/
 #define AI_PASSIVE	0x0001
