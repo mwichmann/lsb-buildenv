@@ -13,9 +13,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.8 $
+# This is $Revision: 1.9 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.9  2002/04/09 06:32:27  cyeoh
+# Add check for matching versions for interfaces between libraries and db
+#
 # Revision 1.8  2002/04/09 04:46:24  cyeoh
 # skip version of symbols which are not linked against except when
 # called by version
@@ -49,8 +52,10 @@ my(%MissingData);
 
 my(%ArchObjOffsets) = 
 (
- "IA32" => { "OBJLINE" => 46, "SIZE_START" => 24, "SIZE_LENGTH" => 8 },
- "IA64" => { "OBJLINE" => 62, "SIZE_START" => 32, "SIZE_LENGTH" => 16}
+ "IA32" => { "OBJLINE" => 46, "SIZE_START" => 24, "SIZE_LENGTH" => 8,
+           "VERSION_START" => 33},
+ "IA64" => { "OBJLINE" => 62, "SIZE_START" => 32, "SIZE_LENGTH" => 16,
+           "VERSION_START" => 49}
  );
 
 
@@ -226,6 +231,7 @@ sub LoadSymbolData($)
       unless open(OBJDUMPOUT, $tmpfile2);
   my($name);
   my($size);
+  my($version);
   while (defined($line = <OBJDUMPOUT>))
   {
 #    print "$line";
@@ -246,8 +252,15 @@ sub LoadSymbolData($)
       $size =~ s/^\s+//;
       $size =~ s/\s+$//;
 
-#      print "got info for: $name " . $size . "\n";
+      $version = substr($line, $ArchObjOffsets{$TargetArch}{VERSION_START},
+                        $ArchObjOffsets{$TargetArch}{OBJLINE} -
+                        $ArchObjOffsets{$TargetArch}{VERSION_START} -1);
+      $version =~ s/^\s+//;
+      $version =~ s/\s+$//;
+
+#      print "got info for: $name " . $size . "($version)\n";
       $symbolInfo->{$name}{SIZE} = $size;
+      $symbolInfo->{$name}{VERSION} = $version;
     }
   }
   close(OBJDUMPOUT);
@@ -359,6 +372,31 @@ sub CheckSymbols($$$$$)
         print "Size mismatch for $iface. Is $symbolInfo->{$iface}{SIZE}, should be $row->{ATsize}\n";
       }
 
+      if (defined($symbolInfo->{$iface}{VERSION}))
+      {
+        if (!defined($row->{Vname}))
+        {
+          if ($symbolInfo->{$iface}{VERSION} ne "Base")
+          {
+            print "For $iface library has version "
+                . $symbolInfo->{$iface}{VERSION} 
+                . " but not defined in db\n";
+          }
+        }
+        elsif ($symbolInfo->{$iface}{VERSION} ne $row->{Vname})
+        {
+          print "For $iface library has version $symbolInfo->{$iface}{VERSION}"
+              . " but defined as $row->{Vname} in db\n";
+        }
+      }
+      else
+      {
+        if (defined($row->{Vname}))
+        {
+          print "For $iface db has version $row->{Vname}"
+              . " but not defined in library\n";
+        }
+      }
     }
     else
     {
