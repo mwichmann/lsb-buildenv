@@ -12,7 +12,7 @@ extern "C"
 
 
 
-  extern char[] XtShellStrings;
+  extern char XtShellStrings[];
   extern WidgetClass applicationShellWidgetClass;
   extern WidgetClass overrideShellWidgetClass;
   extern WidgetClass sessionShellWidgetClass;

@@ -11,7 +11,7 @@ extern "C"
 
 
 
-  extern char[] XtStrings;
+  extern char XtStrings[];
 #ifdef __cplusplus
 }
 #endif

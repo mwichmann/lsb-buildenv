@@ -37,6 +37,7 @@ extern "C"
   extern int wcscoll (const wchar_t *, const wchar_t *);
   extern wchar_t *wcscpy (wchar_t *, const wchar_t *);
   extern size_t wcscspn (const wchar_t *, const wchar_t *);
+  extern wchar_t *wcsdup (const wchar_t *);
   extern wchar_t *wcsncat (wchar_t *, const wchar_t *, size_t);
   extern int wcsncmp (const wchar_t *, const wchar_t *, size_t);
   extern wchar_t *wcsncpy (wchar_t *, const wchar_t *, size_t);
@@ -69,21 +70,33 @@ extern "C"
   extern size_t mbrlen (const char *, size_t, mbstate_t *);
   extern size_t mbrtowc (wchar_t *, const char *, size_t, mbstate_t *);
   extern int mbsinit (const mbstate_t *);
+  extern size_t mbsnrtowcs (wchar_t *, const char **, size_t, size_t,
+			    mbstate_t *);
   extern size_t mbsrtowcs (wchar_t *, const char **, size_t, mbstate_t *);
+  extern wchar_t *wcpcpy (wchar_t *, const wchar_t *);
+  extern wchar_t *wcpncpy (wchar_t *, const wchar_t *, size_t);
   extern size_t wcrtomb (char *, wchar_t, mbstate_t *);
   extern size_t wcslen (const wchar_t *);
+  extern size_t wcsnrtombs (char *, const wchar_t * *, size_t, size_t,
+			    mbstate_t *);
   extern size_t wcsrtombs (char *, const wchar_t * *, size_t, mbstate_t *);
   extern double wcstod (const wchar_t *, wchar_t * *);
   extern float wcstof (const wchar_t *, wchar_t * *, int);
   extern long wcstol (const wchar_t *, wchar_t * *, int);
   extern long double wcstold (const wchar_t *, wchar_t * *, int);
+  extern long long wcstoq (const wchar_t *, wchar_t *, int);
   extern unsigned long wcstoul (const wchar_t *, wchar_t * *, int);
+  extern unsigned long long wcstouq (const wchar_t *, wchar_t *, int);
   extern wchar_t *wcswcs (const wchar_t *, const wchar_t *);
+  extern int wcscasecmp (wchar_t *, const wchar_t *);
+  extern int wcsncasecmp (const wchar_t *, const wchar_t *, size_t);
+  extern size_t wcsnlen (wchar_t *, size_t);
   extern long long wcstoll (const wchar_t *, wchar_t * *, int);
   extern unsigned long long wcstoull (const wchar_t *, wchar_t * *, int);
   extern wint_t btowc (int);
   extern wint_t towctrans (wint_t, wctrans_t);
   extern wint_t fgetwc (FILE *);
+  extern wint_t fgetwc_unlocked (FILE *);
   extern wchar_t *fgetws (wchar_t *, int, FILE *);
   extern wint_t fputwc (wchar_t, FILE *);
   extern int fputws (const wchar_t *, FILE *);

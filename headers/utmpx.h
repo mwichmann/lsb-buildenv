@@ -9,6 +9,10 @@ extern "C"
 
 
   extern void endutxent (void);
+  extern getutxent (void);
+  extern getutxid (void);
+  extern getutxline (void);
+  extern pututxline (void);
   extern void setutxent (void);
 #ifdef __cplusplus
 }

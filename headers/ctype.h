@@ -53,6 +53,7 @@ extern "C"
   extern int toascii (int);
   extern int tolower (int);
   extern int toupper (int);
+  extern int isblank (int);
 #ifdef __cplusplus
 }
 #endif

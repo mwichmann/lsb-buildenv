@@ -510,7 +510,20 @@ extern "C"
   extern int XDrawText16 (Display *, Drawable, GC, int, int, XTextItem16 *,
 			  int);
   extern XExtData **XEHeadOfExtensionList (XEDataObject);
+  extern XESetBeforeFlush (void);
   extern int *XESetCloseDisplay (void);
+  extern XESetCopyGC (void);
+  extern XESetCreateFont (void);
+  extern XESetCreateGC (void);
+  extern XESetError (void);
+  extern XESetErrorString (void);
+  extern XESetEventToWire (void);
+  extern XESetFlushGC (void);
+  extern XESetFreeFont (void);
+  extern XESetFreeGC (void);
+  extern XESetPrintErrorValues (void);
+  extern XESetWireToError (void);
+  extern XESetWireToEvent (void);
   extern int XEnableAccessControl (Display *);
   extern long XEventMaskOfScreen (Screen *);
   extern int XEventsQueued (Display *, int);

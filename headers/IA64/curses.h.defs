@@ -13,4 +13,4 @@
 
 
 
-typedef int bool;
+typedef unsigned long bool;

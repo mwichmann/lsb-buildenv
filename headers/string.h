@@ -12,11 +12,15 @@ extern "C"
 
 
 
+  extern void *__mempcpy (void *, void *, size_t);
+  extern char *__stpcpy (char *, const char *);
   extern char *__strtok_r (char *, char *, char **);
+  extern char *basename (const char *);
   extern void bcopy (const void *, void *, size_t);
   extern void *memchr (const void *, int, size_t);
   extern int memcmp (const void *, const void *, size_t);
   extern void *memcpy (void *, const void *, size_t);
+  extern void *memmem (const void *, size_t, const char *, size_t);
   extern void *memmove (void *, const void *, size_t);
   extern void *memset (void *, int, size_t);
   extern char *strcat (char *, const char *);
@@ -26,12 +30,14 @@ extern "C"
   extern char *strcpy (char *, const char *);
   extern size_t strcspn (const char *, const char *);
   extern char *strerror (int);
+  extern char *strfry (char *);
   extern size_t strlen (const char *);
   extern char *strncat (char *, const char *, size_t);
   extern int strncmp (const char *, const char *, size_t);
   extern char *strncpy (char *, const char *, size_t);
   extern char *strpbrk (const char *, const char *);
   extern char *strrchr (const char *, int);
+  extern char *strsignal (int);
   extern size_t strspn (const char *, const char *);
   extern char *strstr (const char *, const char *);
   extern char *strtok (char *, const char *);
@@ -46,9 +52,15 @@ extern "C"
   extern char *strdup (const char *);
   extern int strncasecmp (const char *, const char *, size_t);
   extern char *strndup (const char *, size_t);
+  extern size_t strnlen (const char *, size_t);
   extern char *strsep (char **, const char *);
   extern char *strerror_r (int, char *, size_t);
   extern char *strtok_r (char *, const char *, char **);
+  extern char *strcasestr (const char *, const char *);
+  extern int strverscmp (const char *, const char *);
+  extern char *stpcpy (char *, const char *);
+  extern char *stpncpy (char *, const char *, size_t);
+  extern void *memrchr (const char *, int, size_t);
 #ifdef __cplusplus
 }
 #endif

@@ -61,7 +61,7 @@ extern "C"
 
   extern int __daylight;
   extern long __timezone;
-  extern char **__tzname;
+  extern char *__tzname[2];
   extern char *asctime (const struct tm *);
   extern clock_t clock (void);
   extern char *ctime (time_t *);
@@ -79,14 +79,11 @@ extern "C"
   extern int nanosleep (struct timespec *, struct timespec *);
   extern int daylight;
   extern long timezone;
-  extern char *tzname;
+  extern char *tzname[2];
   extern void tzset (void);
   extern char *asctime_r (const struct tm *, char *);
   extern struct tm *gmtime_r (const time_t *, struct tm *);
   extern struct tm *localtime_r (const time_t *, struct tm *);
-  extern int clock_getres (void);
-  extern int clock_gettime (void);
-  extern int clock_settime (void);
 #ifdef __cplusplus
 }
 #endif

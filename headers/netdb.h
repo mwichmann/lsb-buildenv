@@ -121,6 +121,7 @@ extern "C"
   extern struct servent *getservbyname (const char *, const char *);
   extern struct servent *getservbyport (int, const char *);
   extern struct servent *getservent (void);
+  extern void sethostent (int);
   extern void setnetent (int);
   extern void setprotoent (int);
   extern void setservent (void);

@@ -223,6 +223,12 @@ extern "C"
   extern int pthread_mutexattr_gettype (void);
   extern int pthread_mutexattr_settype (void);
   extern int pthread_setconcurrency (void);
+  extern int pthread_mutexattr_getpshared (pthread_mutexattr_t *, int *);
+  extern int pthread_mutexattr_setpshared (pthread_mutexattr_t *, int);
+  extern int pthread_rwlock_timedrdlock (pthread_rwlock_t *,
+					 const struct timespec *);
+  extern int pthread_rwlock_timedwrlock (pthread_rwlock_t *,
+					 const struct timespec *);
 #ifdef __cplusplus
 }
 #endif

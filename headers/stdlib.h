@@ -1,6 +1,7 @@
 #ifndef _STDLIB_H_
 #define _STDLIB_H_
 
+#include <sys/types.h>
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -16,6 +17,18 @@ extern "C"
 
 
   typedef int (*__compar_fn_t) (const void *, const void *);
+
+  struct random_data
+  {
+    int32_t *fptr;		/* Front pointer. */
+    int32_t *rptr;		/* Rear pointer. */
+    int32_t *state;		/* Array of state values. */
+    int rand_type;		/* Type of random number generator. */
+    int rand_deg;		/* Degree of random number generator. */
+    int rand_sep;		/* Distance between front and rear. */
+    int32_t *end_ptr;		/* Pointer behind state table. */
+  }
+   ;
 
 
 /* Returned by `div'.*/
@@ -106,6 +119,7 @@ extern "C"
   extern void free (void *);
   extern void *initstate (unsigned int, void *, size_t);
   extern void *malloc (size_t);
+  extern int random (void);
   extern void *realloc (void *, size_t);
   extern void *setstate (void *);
   extern void srand (unsigned int);
@@ -122,9 +136,13 @@ extern "C"
   extern void _Exit (int);
   extern size_t __ctype_get_mb_cur_max (void);
   extern char **environ;
+  extern int random_r (struct random_data *, int32_t *);
   extern char *realpath (const char *, const char *);
   extern int setenv (const char *, const char *, int);
   extern void unsetenv (const char *);
+  extern int getloadavg (double[], int);
+  extern int mkstemp64 (char *);
+  extern int posix_memalign (void **, size_t, size_t);
 #ifdef __cplusplus
 }
 #endif

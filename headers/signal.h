@@ -490,6 +490,7 @@ extern "C"
   extern void psignal (void);
   extern int raise (int);
   extern int sigaddset (sigset_t *, int);
+  extern int sigandset (sigset_t *, const sigset_t *, const sigset_t *);
   extern int sigdelset (sigset_t *, int);
   extern int sigemptyset (sigset_t *);
   extern int sigfillset (sigset_t *);
@@ -497,7 +498,9 @@ extern "C"
   extern int sighold (void);
   extern int sigignore (void);
   extern int siginterrupt (int, int);
+  extern int sigisemptyset (const sigset_t *);
   extern int sigismember (void);
+  extern int sigorset (sigset_t *, const sigset_t *, const sigset_t *);
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
   extern __sighandler_t sigset (void);

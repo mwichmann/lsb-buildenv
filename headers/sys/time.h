@@ -69,11 +69,6 @@ the second and third arguments `setitimer'.*/
   extern int adjtime (struct timeval *, struct timeval *);
   extern int gettimeofday (struct timeval *, struct timezone *);
   extern int utimes (char *, struct timeval *);
-  extern int timer_create (void);
-  extern int timer_delete (void);
-  extern int timer_getoverrun (void);
-  extern int timer_gettime (void);
-  extern int timer_settime (void);
 #ifdef __cplusplus
 }
 #endif

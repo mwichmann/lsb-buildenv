@@ -97,7 +97,7 @@ extern "C"
 #endif
 #if __ia64__
 /* IA64 */
-  typedef int bool;
+  typedef unsigned long bool;
 
 #endif
 #if __powerpc64__
@@ -357,6 +357,8 @@ extern "C"
   extern bool isendwin (void);
   extern bool is_linetouched (WINDOW *, int);
   extern bool is_wintouched (WINDOW *);
+  extern char *keyname (int);
+  extern int keypad (WINDOW *, bool);
   extern char killchar (void);
   extern int leaveok (WINDOW *, bool);
   extern char *longname (void);

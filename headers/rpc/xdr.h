@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <inttypes.h>
 #include <rpc/types.h>
+#include <rpc/rpc_msg.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -77,6 +78,7 @@ extern "C"
 			   xdrproc_t);
   extern bool_t xdr_bool (struct XDR *, bool_t *);
   extern bool_t xdr_bytes (struct XDR *, char **, u_int *, u_int);
+  extern void xdr_callhdr (struct XDR *, struct rpc_msg *);
   extern bool_t xdr_char (struct XDR *, char *);
   extern bool_t xdr_double (struct XDR *, double *);
   extern bool_t xdr_enum (struct XDR *, enum_t *);
