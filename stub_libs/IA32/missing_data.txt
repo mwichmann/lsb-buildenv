@@ -974,3 +974,4 @@ libstdcxx _ZNSs20_S_empty_rep_storageE 10
 libstdcxx _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE 40
 libstdcxx _ZSt4cerr 8c
 libstdcxx _ZSt4cout 8c
+libstdcxx _ZNKSt12__basic_fileIcE7is_openEv 12
