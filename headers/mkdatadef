@@ -1,0 +1,214 @@
+#!/usr/bin/perl
+
+#
+# This script should be pulling the info from the IntParams table instead
+#
+
+use Getopt::Long;
+use Mysql;
+
+use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
+
+# Uncomment to trace SQL statments
+#$trace=1;
+
+$nameonly=0;
+
+sub
+usage()
+{
+die "mkfuncproto -h <headername> -a <archname>";
+}
+
+sub
+displaytype($)
+{
+local ($type) = @_;
+local (*entry,*tentry,*tmentry);
+local($th);
+
+#print $$type{'Tname'};
+#print $$type{'Ttype'};
+#if( $$type{'Tname'} =~ "anon" ) { return; }
+
+#switch ($ttype{'Ttype'})
+if( $$type{'Ttype'} eq "Intrinsic" ) {
+	print $$type{'Tname'}."\t";
+	return;
+	}
+
+if( $$type{'Ttype'} eq "Typedef" ) {
+	if (!$nameonly) { print "typedef "; }
+	$basetype=$$type{'Tbasetype'};
+	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+	%entry=$tth->fetchhash;
+# Something about anon or not & wether to set nameonly
+	if (!$nameonly) { displaytype(\%entry); }
+	print $$type{'Tname'}."\t";
+	if (!$nameonly) {
+		print "; ";
+		print $$type{'Tcomment'}."\n";
+		}
+	return;
+	}
+
+if( $$type{'Ttype'} eq "Pointer" ) {
+	if (!$nameonly) { print "* "; }
+	$basetype=$$type{'Tbasetype'};
+	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+	%entry=$tth->fetchhash;
+	if (!$nameonly) { displaytype(\%entry); }
+	print $$type{'Tname'}."\t";
+	#print $$type{'Tcomment'}."\n";
+	return;
+	}
+
+if( $$type{'Ttype'} eq "Struct" ) {
+	print "struct ";
+	if( $$type{'Tname'} =~ "anon" ) {
+		$$type{'Tname'} ="";
+		}
+	print $$type{'Tname'}."\t";
+	if (!$nameonly ) { print "{\n"; }
+	$Tid=$$type{'Tid'};
+	if( $nameonly ) { return; }
+	print $$type{'Tcomment'}."\n";
+
+	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
+	$tmselect.=" ORDER BY TMposition";
+	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	for(1..$tmh->numrows) {
+		%tmentry=$tmh->fetchhash;
+		$TMtypeid=$tmentry{'TMtypeid'};
+		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
+		%entry=$th->fetchhash;
+		$nameonly=1;
+		displaytype(\%entry);
+		print $tmentry{'TMname'};
+		if( $tmentry{'TMarray'} ) {
+			print "[".$tmentry{'TMarray'}."]";
+			}
+		print ";\t";
+		print $tmentry{'TMcomment'}."\n";
+		$nameonly=0;
+		}
+	print "}\n";
+	return;
+	}
+
+if( $$type{'Ttype'} eq "Union" ) {
+	print "union ";
+	if (!$nameonly ) { print "{\n"; }
+	$Tid=$$type{'Tid'};
+	if( $$type{'Tname'} =~ "anon" ) {
+		$$type{'Tname'} ="";
+		}
+	print $$type{'Tname'}."\t";
+	if( $nameonly ) { return; }
+	print $$type{'Tcomment'}."\n";
+
+	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
+	$tmselect.=" ORDER BY TMposition";
+	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	for(1..$tmh->numrows) {
+		%tmentry=$tmh->fetchhash;
+		$TMtypeid=$tmentry{'TMtypeid'};
+		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
+		%entry=$th->fetchhash;
+		$nameonly=1;
+		displaytype(\%entry);
+		print $tmentry{'TMname'};
+		if( $tmentry{'TMarray'} ) {
+			print "[".$tmentry{'TMarray'}."]";
+			}
+		print ";\t";
+		print $tmentry{'TMcomment'}."\n";
+		$nameonly=0;
+		}
+	print "}\n";
+	return;
+	}
+
+print "Unknown Type: \"$$type{'Ttype'}\"\n";
+print "unknown\t";
+}
+
+GetOptions("h=s" => \$headname,
+	   "a=s" => \$archname);
+ 
+if( !$headname ) { usage(); }  
+if( !$archname ) { usage(); }  
+
+$Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
+
+#
+# Get the Header id
+#
+$select = "SELECT Hid FROM Header WHERE Hname='$headname'";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+
+if( !$sth->numrows ) { exit 0; }
+%entry=$sth->fetchhash;
+$Hid=$entry{'Hid'};
+
+#
+# Get the return types
+#
+$select = "SELECT Ireturn FROM Interface ";
+$select.= "WHERE Iheader=$Hid ";
+$select.= "AND Istatus='Included'";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	$type{$entry{'Ireturn'}}=1;
+	}
+
+#
+# Get the parameter types
+#
+$select = "SELECT Ptype FROM Interface,Parameter ";
+$select.= "WHERE Iheader=$Hid ";
+$select.= "AND Pint=Iid ";
+$select.= "AND Istatus='Included'";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	$type{$entry{'Ptype'}}=1;
+	}
+
+$typelist=join ',', keys(%type);
+
+if( $typelist eq "" ) { exit 0; }
+#
+# Get the info from the types in the $type hash
+#
+# Use the algorithm from admin/headers.php3
+
+$select = "SELECT HGid FROM HeaderGroup ";
+$select.= "WHERE HGheader=$Hid ";
+$select.= "ORDER BY HGorder";
+print $select,"\n" if $trace;
+$hgh = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$hgh->numrows) {
+	%entry=$hgh->fetchhash;
+	$HGid=$entry{'HGid'};
+	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
+	$select.= "AND Tid IN ($typelist)";
+	print $select,"\n" if $trace;
+	$th = $Dbh->query($select) || die $Dbh->errmsg();
+	print $th->numrows," rows\n" if $trace;
+	for(1..$th->numrows) {
+		%tentry=$th->fetchhash;
+		displaytype(\%tentry);
+		#print $tentry{'Tname'};
+		}
+	}
+
+
