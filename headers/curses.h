@@ -11,7 +11,13 @@ extern "C"
 
 
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))
+#define ERR	(-1)
+#define OK	(0)
 #define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)
+#define getmaxyx(win,y,x)	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
+#define getbegyx(win,y,x)	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
+#define getyx(win,y,x)	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
+#define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
 #define A_NORMAL	0L
 #define A_COLOR	NCURSES_BITS(((1UL)<<8)-1UL,0)
 #define A_REVERSE	NCURSES_BITS(1UL,10)
