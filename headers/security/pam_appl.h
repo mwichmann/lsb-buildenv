@@ -100,15 +100,17 @@ extern "C"
   extern int pam_set_item (pam_handle_t *, int, void *);
   extern int pam_get_item (pam_handle_t *, int, void **);
   extern char *pam_strerror (pam_handle_t *, int);
-  extern int pam_start (char *, char *, struct pam_conv *, pam_handle_t *);
+  extern char **pam_getenvlist (pam_handle_t *);
+  extern int pam_fail_delay (pam_handle_t *, unsigned int);
+  extern int pam_start (const char *, const char *, const struct pam_conv *,
+			pam_handle_t * *);
   extern int pam_end (pam_handle_t *, int);
   extern int pam_authenticate (pam_handle_t *, int);
   extern int pam_setcred (pam_handle_t *, int);
   extern int pam_acct_mgmt (pam_handle_t *, int);
   extern int pam_open_session (pam_handle_t *, int);
   extern int pam_close_session (pam_handle_t *, int);
-  extern int pam_set_data (pam_handle_t *, char *, char *,
-			   int (*cleanup) (void));
+  extern int pam_chauthtok (pam_handle_t *, int);
 #ifdef __cplusplus
 }
 #endif
