@@ -28,6 +28,8 @@ extern "C"
 /* Values for the first argument to `getitimer' and `setitimer'.*/
 
 
+  typedef int __itimer_which_t;
+
 
 
 
@@ -64,8 +66,8 @@ the second and third arguments `setitimer'.*/
    ;
 
 
-  extern int getitimer (int, struct itimerval *);
-  extern int setitimer (int, const struct itimerval *,
+  extern int getitimer (__itimer_which_t, struct itimerval *);
+  extern int setitimer (__itimer_which_t, const struct itimerval *,
 			struct itimerval *);
   extern int adjtime (const struct timeval *, struct timeval *);
   extern int gettimeofday (struct timeval *, struct timezone *);
