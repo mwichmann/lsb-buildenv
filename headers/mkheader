@@ -294,6 +294,10 @@ displaytyperef($)
 local ($param) = @_;
 local(%select,$sth,%type);
 
+if( $$param{'Pconst'} eq "Y" ) {
+	print "const ";
+	}
+
 if( $$param{'Ttype'} eq "Intrinsic" ) {
 	print $$param{'Tname'};
 	return;
@@ -666,7 +670,7 @@ for(1..$sth->numrows) {
 		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s(",$entry{'Iname'};
-		$select = "SELECT Tname,Ttype,Tbasetype,Parsize FROM Type,Parameter ";
+		$select = "SELECT Tname,Ttype,Tbasetype,Parsize,Pconst FROM Type,Parameter ";
 		$select.= "WHERE Pint=".$entry{'Iid'}." AND Ptype=Tid ";
 		$select.= "ORDER BY  Ppos";
 		print $select,"\n" if $trace;
