@@ -272,7 +272,7 @@ extern "C"
     unsigned long f_fsid;
     unsigned long f_flag;
     unsigned long f_namemax;
-    int __f_spare;
+    int __f_spare[6];
   }
    ;
 

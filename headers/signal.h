@@ -636,7 +636,7 @@ extern "C"
     uint32_t mxcr_mask;
     struct _fpxreg _st[8];
     struct _xmmreg _xmm[16];
-    uint32_t padding;
+    uint32_t padding[24];
   }
    ;
 

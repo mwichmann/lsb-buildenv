@@ -71,7 +71,7 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef int greg_t;
+  typedef long greg_t;
 
 #endif
 
@@ -223,9 +223,9 @@ extern "C"
     uint64_t rdp;
     uint32_t mxcsr;
     uint32_t mxcr_mask;
-    struct _libc_fpxreg _st;
-    struct _libc_xmmreg _xmm;
-    uint32_t padding;
+    struct _libc_fpxreg _st[8];
+    struct _libc_xmmreg _xmm[16];
+    uint32_t padding[24];
   }
    ;
 
@@ -310,7 +310,7 @@ extern "C"
   {
     gregset_t gregs;
     fpregset_t fpregs;
-    unsigned long __reserved1;
+    unsigned long __reserved1[8];
   }
   mcontext_t;
 

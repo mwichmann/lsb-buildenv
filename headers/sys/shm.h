@@ -199,14 +199,16 @@ extern "C"
 /* x86-64 */
   struct shmid_ds
   {
-    struct ipc_perm shm_perm;
-    size_t shm_segsz;
-    time_t shm_atime;
-    time_t shm_dtime;
-    time_t shm_ctime;
-    pid_t shm_cpid;
-    pid_t shm_lpid;
-    shmatt_t shm_nattch;
+    struct ipc_perm shm_perm;	/* operation permission struct */
+    size_t shm_segsz;		/* size of segment in bytes */
+    time_t shm_atime;		/* time of last shmat() */
+    time_t shm_dtime;		/* time of last shmdt() */
+    time_t shm_ctime;		/* time of last change by shmctl() */
+    pid_t shm_cpid;		/* pid of creator */
+    pid_t shm_lpid;		/* pid of last shmop */
+    shmatt_t shm_nattch;	/* number of current attaches */
+    unsigned long __unused4;
+    unsigned long __unused5;
   }
    ;
 
