@@ -1,7 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  statvfs64;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -74,6 +71,7 @@ GLIBC_2.2 {
   alphasort64;
   asctime;
   asctime_r;
+  asprintf;
   atexit;
   atof;
   atoi;
@@ -411,6 +409,7 @@ GLIBC_2.2 {
   nanosleep;
   nftw;
   nftw64;
+  ngettext;
   nice;
   nl_langinfo;
   nrand48;
@@ -575,6 +574,7 @@ GLIBC_2.2 {
   sscanf;
   statfs;
   statvfs;
+  statvfs64;
   step;
   stime;
   stpcpy;

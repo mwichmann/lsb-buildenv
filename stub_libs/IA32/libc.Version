@@ -64,6 +64,7 @@ GLIBC_2.0 {
   alphasort;
   asctime;
   asctime_r;
+  asprintf;
   atexit;
   atof;
   atoi;
@@ -481,7 +482,6 @@ GLIBC_2.0 {
   srandom;
   sscanf;
   statfs;
-  statvfs64;
   step;
   stime;
   stpcpy;
@@ -754,6 +754,7 @@ GLIBC_2.1 {
   sigwaitinfo;
   statfs64;
   statvfs;
+  statvfs64;
   strcasestr;
   strtoimax;
   strtoumax;
@@ -817,6 +818,7 @@ GLIBC_2.2 {
   getwchar;
   memrchr;
   mkstemp64;
+  ngettext;
   posix_memalign;
   putwc;
   putwchar;
