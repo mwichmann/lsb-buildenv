@@ -252,19 +252,6 @@ extern "C"
 
 #endif
 
-
-
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-  union uc_regs_ptr
-  {
-    struct pt_regs *regs;
-    mcontext_t *uc_regs;
-  }
-   ;
-
-#endif
-
 /* Context to describe whole processor state.*/
 
 
@@ -334,6 +321,17 @@ extern "C"
     vrregset_t vrregs;
   }
   mcontext_t;
+
+#endif
+
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  union uc_regs_ptr
+  {
+    struct pt_regs *regs;
+    mcontext_t *uc_regs;
+  }
+   ;
 
 #endif
 
