@@ -6,9 +6,14 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.13 $
+# This is $Revision: 1.14 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.14  2002/04/09 02:21:12  cyeoh
+# Removes IA32 stub library code as it is moving to a subdirectory
+# Modifies Makefile to generate stub library code for each architecture
+# in subdirectories
+#
 # Revision 1.13  2002/03/25 23:33:19  anderson
 # Skip entries that don't have a runname. Used to indicate a placehold in the gLSB
 #
@@ -98,6 +103,7 @@ my(%OverrideVariables) =
      "libXt" => { "XtShellStrings" => 0x509,
                   "XtStrings" => 0xa59}
      );
+my($DestinationDirectory) = "";
 
 #----------------------------------------------------------------------
 # Look through local shared libraries for aliases
@@ -225,10 +231,10 @@ sub GenerateLibrary($$$)
   local(*STUBFILE);
   local(*VERSIONFILE);
 
-  open(STUBFILE, ">$libName.c") || die "Could not open $libName.c to write\n";
-  open(VERSIONFILE, ">$libName.Version") 
-      || die "Could not open $libName.c to write\n";
-  
+  open(STUBFILE, ">$DestinationDirectory/$libName.c")
+      || die "Could not open $DestinationDirectory/$libName.c to write\n";
+  open(VERSIONFILE, ">$DestinationDirectory/$libName.Version") 
+      || die "Could not open $DestinationDirectory/$libName.Version to write\n";
   # Do functions first
   $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM Interface,LibGroup, ".
                        "LGInt LEFT JOIN Version ON Vid=Iversion ".
@@ -408,13 +414,19 @@ if (!defined($row))
 else
 {
   $TargetArchId = $row->{Aid};
+  $DestinationDirectory = $TargetArch;
+}
+
+if (! -d $DestinationDirectory)
+{
+  mkdir($DestinationDirectory);
 }
 
 LoadMissingData();
 
 # Map of name to run-time name of shared library
 local(*LIBMAPFILE);
-open(LIBMAPFILE, ">LibNameMap.txt") 
+open(LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt") 
     || die "Could not open file LibNameMap.txt file for writing\n";
 
 # Get list of libraries we want to produce stub libraries for
