@@ -841,8 +841,8 @@ GLIBC_2.2.3 {
   fnmatch;
 };
 GLIBC_2.3 {
-  realpath;
   __ctype_b_loc;
   __ctype_tolower_loc;
   __ctype_toupper_loc;
+  realpath;
 };
