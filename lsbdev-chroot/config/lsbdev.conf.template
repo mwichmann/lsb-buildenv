@@ -49,3 +49,23 @@ RUNFILE=/var/run/lsbdev.lock
 SSH_DAEMON=/usr/sbin/sshd
 SSH_PORT=5436
 
+# LSB Include files
+# Where to source the LSB header files from
+# If not defined it will use the header files from /usr/include
+# LSB_INCLUDE=/home/cyeoh/tmp/src/include/All
+LSB_INCLUDE=
+
+# Fallback static linking for the following libraries
+# If the symbol is not found in the shared library it is looked
+# for in the corresponding static version of the library
+# FALLBACK_STATIC_LINK_LIBRARIES="libc"
+FALLBACK_STATIC_LINK_LIBRARIES=""
+
+# Stub library list
+# Don't edit unless you really know what you're doing
+STUB_LIBRARY_LIST="libGL libICE libSM libX11 libXext libXt libc libcrypt libdl libm libncurses libpthread librt libutil libz"
+
+# Static library search path
+# The setup looks through the following directories for static versions
+# of libraries where fallback static linking is used
+STATIC_LIB_SEARCH_PATH="/usr/lib /usr/X11R6/lib"
