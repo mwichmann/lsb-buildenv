@@ -6,9 +6,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.10 $
+# This is $Revision: 1.11 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.11  2001/12/20 02:28:53  cyeoh
+# Change logic so warning when db size information is overridden by
+# local file. Missing data sizes already exist in missing_data.txt file
+#
 # Revision 1.10  2001/12/19 21:58:34  anderson
 # Opps. Missed on of the Xt things
 #
@@ -83,26 +87,7 @@ my(%OverrideVariables) =
      "libc" => { "__tzname" => 0x8,
                  "_sys_errlist" => 0x1f4},
      "libXt" => { "XtShellStrings" => 0x509,
-                  "XtStrings" => 0xa59,
-                  "_XtInheritTranslations" => 0x004,
-                  "compositeClassRec" => 0x088,
-                  "compositeWidgetClass" => 0x004,
-                  "constraintClassRec" => 0x0a4,
-                  "constraintWidgetClass" => 0x004,
-                  "coreWidgetClass" => 0x004,
-                  "objectClass" => 0x004,
-                  "objectClassRec" => 0x074,
-                  "overrideShellClassRec" => 0x090,
-                  "rectObjClass" => 0x004,
-                  "rectObjClassRec" => 0x074,
-                  "sessionShellClassRec" => 0x0a0,
-                  "shellClassRec" => 0x08c,
-                  "topLevelShellClassRec" => 0x098,
-                  "transientShellClassRec" => 0x098,
-                  "widgetClass" => 0x004,
-                  "widgetClassRec" => 0x074,
-                  "wmShellClassRec" => 0x090
-		 }
+                  "XtStrings" => 0xa59}
      );
 
 #----------------------------------------------------------------------
@@ -280,14 +265,14 @@ sub GenerateLibrary($$$)
       {
         if (defined($MissingData{$row->{Iname}}))
         {
+          print STDOUT "Size not available for symbol $row->{Iname}"
+            . "  but overriding with $MissingData{$row->{Iname}}\n";
           $size = $MissingData{$row->{Iname}};
         }
         else
         {
           print "No data for symbol $row->{Iname}\n";
         }
-        print STDOUT "Size not available for symbol $row->{Iname}"
-            . "  Type ($row->{Ireturn})\n";
 #      $size = 1000; # temporarily make it big to avoid problems
       }
       else
