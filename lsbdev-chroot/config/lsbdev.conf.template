@@ -52,7 +52,7 @@ SSH_PORT=5436
 # LSB Include files
 # Where to source the LSB header files from
 # If not defined it will use the header files from /usr/include
-# LSB_INCLUDE=/home/cyeoh/tmp/src/include/All
+# LSB_INCLUDE=$DATA_ROOT/lsb_header
 LSB_INCLUDE=
 
 # Fallback static linking for the following libraries
