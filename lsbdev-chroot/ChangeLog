@@ -1,3 +1,9 @@
+2001-12-20  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Resynchronise with LSB Spec 1.1 stub libraries
+	* Update LSB header file snapshot
+	
+
 2001-11-18  Christopher Yeoh  <cyeoh@samba.org>
 
 	* Add snapshot of LSB header files (not used by default)
