@@ -52,10 +52,10 @@ extern "C"
 /* PPC32 */
   typedef struct _libc_vrstate
   {
-    unsigned int vrregs;
+    unsigned int vrregs[128];
     unsigned int vscr;
     unsigned int vrsave;
-    unsigned int _pad;
+    unsigned int _pad[2];
   }
   vrregset_t __attribute__ ((__aligned__ (16)));
 
@@ -239,9 +239,9 @@ extern "C"
 /* PPC32 */
   struct _libc_fpstate
   {
-    double fpregs;
+    double fpregs[32];
     double fpscr;
-    int _pad;
+    int _pad[2];
   }
    ;
 
@@ -386,7 +386,7 @@ extern "C"
     int uc_pad[7];
     union uc_regs_ptr uc_mcontext;
     sigset_t uc_sigmask;
-    char uc_reg_space[50];
+    char uc_reg_space[sizeof (mcontext_t) + 12];
   }
   ucontext_t;
 
