@@ -173,10 +173,10 @@ extern "C"
 
 
 
-  extern intmax_t strtoimax (char *, char **, int);
-  extern uintmax_t strtoumax (char *, char **, int);
-  extern intmax_t wcstoimax (wchar_t *, wchar_t * *, int);
-  extern uintmax_t wcstoumax (wchar_t *, wchar_t * *, int);
+  extern intmax_t strtoimax (const char *, char **, int);
+  extern uintmax_t strtoumax (const char *, char **, int);
+  extern intmax_t wcstoimax (const wchar_t *, wchar_t * *, int);
+  extern uintmax_t wcstoumax (const wchar_t *, wchar_t * *, int);
   extern intmax_t imaxabs (intmax_t);
   extern imaxdiv_t imaxdiv (intmax_t, intmax_t);
 #ifdef __cplusplus

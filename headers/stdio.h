@@ -108,7 +108,7 @@ extern "C"
   extern int getw (FILE *);
   extern int pclose (FILE *);
   extern void perror (const char *);
-  extern FILE *popen (char *, char *);
+  extern FILE *popen (const char *, const char *);
   extern int printf (const char *, ...);
   extern int putc_unlocked (int, FILE *);
   extern int putchar (int);
@@ -137,12 +137,12 @@ extern "C"
   extern char *fgets (char *, int, FILE *);
   extern int fputs (const char *, FILE *);
   extern size_t fread (void *, size_t, size_t, FILE *);
-  extern int fsetpos (FILE *, fpos_t *);
+  extern int fsetpos (FILE *, const fpos_t *);
   extern long ftell (FILE *);
   extern size_t fwrite (const void *, size_t, size_t, FILE *);
   extern int getc (FILE *);
   extern char *gets (char *);
-  extern int putc (int, const FILE *);
+  extern int putc (int, FILE *);
   extern int puts (const char *);
   extern int setvbuf (FILE *, char *, int, size_t);
   extern int snprintf (char *, size_t, const char *, ...);
@@ -151,9 +151,9 @@ extern "C"
   extern int vsprintf (char *, const char *, va_list);
   extern void flockfile (FILE *);
   extern int asprintf (char **, const char *, ...);
-  extern int fgetpos64 (FILE *, fpos64_t);
+  extern int fgetpos64 (FILE *, fpos64_t *);
   extern FILE *fopen64 (const char *, const char *);
-  extern int fsetpos64 (FILE *, const fpos64_t);
+  extern int fsetpos64 (FILE *, const fpos64_t *);
   extern int ftrylockfile (FILE *);
   extern void funlockfile (FILE *);
   extern int getc_unlocked (FILE *);

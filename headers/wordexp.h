@@ -54,7 +54,7 @@ extern "C"
    ;
 
 
-  extern int wordexp (char *, wordexp_t *, int);
+  extern int wordexp (const char *, wordexp_t *, int);
   extern void wordfree (wordexp_t *);
 #ifdef __cplusplus
 }

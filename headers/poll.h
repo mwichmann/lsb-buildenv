@@ -12,7 +12,7 @@ extern "C"
 
 
 
-  extern int poll (struct pollfd *, unsigned int, int);
+  extern int poll (struct pollfd *, nfds_t, int);
 #ifdef __cplusplus
 }
 #endif

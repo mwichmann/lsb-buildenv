@@ -23,21 +23,21 @@ XDR;
 
 struct xdr_ops
 {
-  bool_t (*x_getlong) (struct XDR * __xdrs, long *__lp);
-  bool_t (*x_putlong) (struct XDR * __xdrs, long *__lp);
-  bool_t (*x_getbytes) (struct XDR * __xdrs, caddr_t __addr, u_int __len);
-  bool_t (*x_putbytes) (struct XDR * __xdrs, char *__addr, u_int __len);
-  u_int (*x_getpostn) (struct XDR * __xdrs);
-  bool_t (*x_setpostn) (struct XDR * __xdrs, u_int __pos);
-  int32_t *(*x_inline) (struct XDR * __xdrs, int __len);
-  void (*x_destroy) (struct XDR * __xdrs);
-    bool_t (*x_getint32) (struct XDR * __xdrs, int32_t * __ip);
-    bool_t (*x_putint32) (struct XDR * __xdrs, int32_t * __ip);
+  bool_t (*x_getlong) (XDR * __xdrs, long *__lp);
+  bool_t (*x_putlong) (XDR * __xdrs, long *__lp);
+  bool_t (*x_getbytes) (XDR * __xdrs, caddr_t __addr, u_int __len);
+  bool_t (*x_putbytes) (XDR * __xdrs, char *__addr, u_int __len);
+  u_int (*x_getpostn) (XDR * __xdrs);
+  bool_t (*x_setpostn) (XDR * __xdrs, u_int __pos);
+  int32_t *(*x_inline) (XDR * __xdrs, int __len);
+  void (*x_destroy) (XDR * __xdrs);
+    bool_t (*x_getint32) (XDR * __xdrs, int32_t * __ip);
+    bool_t (*x_putint32) (XDR * __xdrs, int32_t * __ip);
 }
  ;
 
 
-typedef bool_t (*xdrproc_t) (struct XDR *, void *, ...);
+typedef bool_t (*xdrproc_t) (XDR *, void *, ...);
 
 
 struct xdr_discrim

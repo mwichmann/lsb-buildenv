@@ -215,10 +215,10 @@ extern "C"
 #endif
 
   extern int __getpagesize (void);
-  extern void *shmat (int, void *, int);
+  extern void *shmat (int, const void *, int);
   extern int shmctl (int, int, struct shmid_ds *);
-  extern int shmdt (void *);
-  extern int shmget (key_t, int, int);
+  extern int shmdt (const void *);
+  extern int shmget (key_t, size_t, int);
 #ifdef __cplusplus
 }
 #endif

@@ -64,11 +64,12 @@ the second and third arguments `setitimer'.*/
    ;
 
 
-  extern int getitimer (int, struct itimerval *);
-  extern int setitimer (int, struct itimerval *, struct itimerval *);
-  extern int adjtime (struct timeval *, struct timeval *);
+  extern int getitimer (__itimer_which_t, struct itimerval *);
+  extern int setitimer (__itimer_which_t, const struct itimerval *,
+			struct itimerval *);
+  extern int adjtime (const struct timeval *, struct timeval *);
   extern int gettimeofday (struct timeval *, struct timezone *);
-  extern int utimes (char *, struct timeval *);
+  extern int utimes (const char *, struct timeval[]);
 #ifdef __cplusplus
 }
 #endif

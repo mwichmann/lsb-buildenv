@@ -442,8 +442,8 @@ extern "C"
 
   extern int getcontext (ucontext_t *);
   extern int makecontext (ucontext_t *, void (*func) (void), int, ...);
-  extern int setcontext (ucontext_t * const);
-  extern int swapcontext (ucontext_t *, ucontext_t *);
+  extern int setcontext (const struct ucontext *);
+  extern int swapcontext (ucontext_t *, const struct ucontext *);
 #ifdef __cplusplus
 }
 #endif

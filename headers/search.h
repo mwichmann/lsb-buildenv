@@ -47,14 +47,16 @@ extern "C"
   extern int hcreate (size_t);
   extern ENTRY *hsearch (ENTRY, ACTION);
   extern void insque (void *, void *);
-  extern void *lfind (void *, void *, size_t *, size_t, __compar_fn_t);
-  extern void *lsearch (void *, void *, size_t *, size_t, __compar_fn_t);
+  extern void *lfind (const void *, const void *, size_t *, size_t,
+		      __compar_fn_t);
+  extern void *lsearch (const void *, void *, size_t *, size_t,
+			__compar_fn_t);
   extern void remque (void *);
   extern void hdestroy (void);
   extern void *tdelete (const void *, void **, __compar_fn_t);
-  extern void *tfind (void *, void **, __compar_fn_t);
-  extern void *tsearch (void *, void **, __compar_fn_t);
-  extern void twalk (void *, __action_fn_t);
+  extern void *tfind (const void *, void *const *, __compar_fn_t);
+  extern void *tsearch (const void *, void **, __compar_fn_t);
+  extern void twalk (const void *, __action_fn_t);
 #ifdef __cplusplus
 }
 #endif

@@ -41,16 +41,16 @@ extern "C"
 
   struct xdr_ops
   {
-    bool_t (*x_getlong) (struct XDR * __xdrs, long *__lp);
-    bool_t (*x_putlong) (struct XDR * __xdrs, long *__lp);
-    bool_t (*x_getbytes) (struct XDR * __xdrs, caddr_t __addr, u_int __len);
-    bool_t (*x_putbytes) (struct XDR * __xdrs, char *__addr, u_int __len);
-    u_int (*x_getpostn) (struct XDR * __xdrs);
-    bool_t (*x_setpostn) (struct XDR * __xdrs, u_int __pos);
-    int32_t *(*x_inline) (struct XDR * __xdrs, int __len);
-    void (*x_destroy) (struct XDR * __xdrs);
-      bool_t (*x_getint32) (struct XDR * __xdrs, int32_t * __ip);
-      bool_t (*x_putint32) (struct XDR * __xdrs, int32_t * __ip);
+    bool_t (*x_getlong) (XDR * __xdrs, long *__lp);
+    bool_t (*x_putlong) (XDR * __xdrs, long *__lp);
+    bool_t (*x_getbytes) (XDR * __xdrs, caddr_t __addr, u_int __len);
+    bool_t (*x_putbytes) (XDR * __xdrs, char *__addr, u_int __len);
+    u_int (*x_getpostn) (XDR * __xdrs);
+    bool_t (*x_setpostn) (XDR * __xdrs, u_int __pos);
+    int32_t *(*x_inline) (XDR * __xdrs, int __len);
+    void (*x_destroy) (XDR * __xdrs);
+      bool_t (*x_getint32) (XDR * __xdrs, int32_t * __ip);
+      bool_t (*x_putint32) (XDR * __xdrs, int32_t * __ip);
   }
    ;
 
@@ -58,7 +58,7 @@ extern "C"
 /* A xdrproc_t exists for each data type which is to be encoded or decoded.*/
 
 
-  typedef bool_t (*xdrproc_t) (struct XDR *, void *, ...);
+  typedef bool_t (*xdrproc_t) (XDR *, void *, ...);
 
 
 /* Support struct for discriminated unions.*/
@@ -72,34 +72,36 @@ extern "C"
    ;
 
 
-  extern bool_t xdr_array (struct XDR *, caddr_t *, u_int *, u_int, u_int,
+  extern bool_t xdr_array (XDR *, caddr_t *, u_int *, u_int, u_int,
 			   xdrproc_t);
-  extern bool_t xdr_bool (struct XDR *, bool_t *);
-  extern bool_t xdr_bytes (struct XDR *, char **, u_int *, u_int);
-  extern bool_t xdr_char (struct XDR *, char *);
-  extern bool_t xdr_double (struct XDR *, double *);
-  extern bool_t xdr_enum (struct XDR *, enum_t *);
-  extern bool_t xdr_float (struct XDR *, float *);
+  extern bool_t xdr_bool (XDR *, bool_t *);
+  extern bool_t xdr_bytes (XDR *, char **, u_int *, u_int);
+  extern bool_t xdr_char (XDR *, char *);
+  extern bool_t xdr_double (XDR *, double *);
+  extern bool_t xdr_enum (XDR *, enum_t *);
+  extern bool_t xdr_float (XDR *, float *);
   extern void xdr_free (xdrproc_t, char *);
-  extern bool_t xdr_int (struct XDR *, int *);
-  extern bool_t xdr_long (struct XDR *, long *);
-  extern bool_t xdr_opaque (struct XDR *, caddr_t, u_int);
-  extern bool_t xdr_pointer (struct XDR *, char **, u_int, xdrproc_t);
-  extern bool_t xdr_reference (struct XDR *, caddr_t *, u_int, xdrproc_t);
-  extern bool_t xdr_short (struct XDR *, short *);
-  extern bool_t xdr_string (struct XDR *, char **, u_int);
-  extern bool_t xdr_u_char (struct XDR *, u_char *);
-  extern bool_t xdr_u_int (struct XDR *, u_int *);
-  extern bool_t xdr_u_long (struct XDR *, u_long *);
-  extern bool_t xdr_u_short (struct XDR *, u_short *);
-  extern bool_t xdr_union (struct XDR *, enum_t *, char *,
-			   struct xdr_discrim *, xdrproc_t);
-  extern bool_t xdr_vector (struct XDR *, char *, u_int, u_int, xdrproc_t);
+  extern bool_t xdr_int (XDR *, int *);
+  extern bool_t xdr_long (XDR *, long *);
+  extern bool_t xdr_opaque (XDR *, caddr_t, u_int);
+  extern bool_t xdr_pointer (XDR *, char **, u_int, xdrproc_t);
+  extern bool_t xdr_reference (XDR *, caddr_t *, u_int, xdrproc_t);
+  extern bool_t xdr_short (XDR *, short *);
+  extern bool_t xdr_string (XDR *, char **, u_int);
+  extern bool_t xdr_u_char (XDR *, u_char *);
+  extern bool_t xdr_u_int (XDR *, u_int *);
+  extern bool_t xdr_u_long (XDR *, u_long *);
+  extern bool_t xdr_u_short (XDR *, u_short *);
+  extern bool_t xdr_union (XDR *, enum_t *, char *,
+			   const struct xdr_discrim *, xdrproc_t);
+  extern bool_t xdr_vector (XDR *, char *, u_int, u_int, xdrproc_t);
   extern bool_t xdr_void (void);
-  extern bool_t xdr_wrapstring (struct XDR *, char **);
-  extern void xdrmem_create (struct XDR *, caddr_t, u_int, enum xdr_op);
-  extern void xdrrec_create (struct XDR *, u_int, u_int, caddr_t, int, int);
-  extern bool_t xdrrec_eof (struct XDR *);
+  extern bool_t xdr_wrapstring (XDR *, char **);
+  extern void xdrmem_create (XDR *, caddr_t, u_int, enum xdr_op);
+  extern void xdrrec_create (XDR *, u_int, u_int, caddr_t,
+			     int (*__readit) (char *, char *, int),
+			     int (*__writeit) (char *, char *, int));
+  extern bool_t xdrrec_eof (XDR *);
 #ifdef __cplusplus
 }
 #endif

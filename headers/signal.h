@@ -824,17 +824,17 @@ extern "C"
   extern int sigaction (int, const struct sigaction *, struct sigaction *);
   extern int sigwait (const sigset_t *, int *);
   extern int kill (pid_t, int);
-  extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
+  extern int sigaltstack (const sigaltstack *, struct sigaltstack *);
   extern int sigblock (int);
   extern sighandler_t signal (int, sighandler_t);
   extern int sigpause (int);
-  extern int sigprocmask (int, sigset_t *, sigset_t *);
+  extern int sigprocmask (int, const sigset_t *, sigset_t *);
   extern int sigreturn (struct sigcontext *);
-  extern int sigsuspend (sigset_t *);
+  extern int sigsuspend (const sigset_t *);
   extern int sigqueue (pid_t, int, const union sigval);
-  extern int sigwaitinfo (const sigset_t *, siginfo_t *,
-			  const struct timespec *);
-  extern int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
+  extern int sigwaitinfo (const sigset_t *, siginfo_t *);
+  extern int sigtimedwait (const sigset_t *, siginfo_t *,
+			   const struct timespec *);
   extern sighandler_t bsd_signal (int, sighandler_t);
 #ifdef __cplusplus
 }

@@ -298,8 +298,8 @@ extern "C"
 
 
   extern int addch (const chtype);
-  extern int addchnstr (const chtype, int);
-  extern int addchstr (const chtype);
+  extern int addchnstr (const chtype *, int);
+  extern int addchstr (const chtype *);
   extern int addnstr (const char *, int);
   extern int addstr (const char *);
   extern int attroff (int);
@@ -376,7 +376,7 @@ extern "C"
   extern bool isendwin (void);
   extern bool is_linetouched (WINDOW *, int);
   extern bool is_wintouched (WINDOW *);
-  extern char *keyname (int);
+  extern const char *keyname (int);
   extern int keypad (WINDOW *, bool);
   extern char killchar (void);
   extern int leaveok (WINDOW *, bool);
@@ -432,7 +432,7 @@ extern "C"
   extern int mvwvline (WINDOW *, int, int, chtype, int);
   extern int napms (int);
   extern WINDOW *newpad (int, int);
-  extern SCREEN *newterm (char *, FILE *, FILE *);
+  extern SCREEN *newterm (const char *, FILE *, FILE *);
   extern WINDOW *newwin (int, int, int, int);
   extern int nl (void);
   extern int nocbreak (void);
@@ -499,8 +499,8 @@ extern "C"
   extern int vidputs (chtype, int (*vidputs_int) (int));
   extern int vline (chtype, int);
   extern int vwprintw (WINDOW *, char *, va_list);
-  extern int vw_printw (WINDOW *, char *, va_list);
-  extern int vwscanw (WINDOW *, char *, va_list);
+  extern int vw_printw (WINDOW *, const char *, va_list);
+  extern int vwscanw (WINDOW *, const char *, va_list);
   extern int vw_scanw (WINDOW *, char *, va_list);
   extern int waddch (WINDOW *, const chtype);
   extern int waddchnstr (WINDOW *, const chtype *, int);
@@ -557,7 +557,7 @@ extern "C"
   extern void wtimeout (WINDOW *, int);
   extern int wtouchln (WINDOW *, int, int, int);
   extern int wvline (WINDOW *, chtype, int);
-  extern char *unctrl (chtype);
+  extern const char *unctrl (chtype);
   extern int COLORS;
   extern int COLOR_PAIRS;
   extern chtype acs_map[128];

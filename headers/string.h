@@ -19,7 +19,7 @@ extern "C"
   extern void *memchr (const void *, int, size_t);
   extern int memcmp (const void *, const void *, size_t);
   extern void *memcpy (void *, const void *, size_t);
-  extern void *memmem (const void *, size_t, const char *, size_t);
+  extern void *memmem (const void *, size_t, const void *, size_t);
   extern void *memmove (void *, const void *, size_t);
   extern void *memset (void *, int, size_t);
   extern char *strcat (char *, const char *);
@@ -59,7 +59,7 @@ extern "C"
   extern int strverscmp (const char *, const char *);
   extern char *stpcpy (char *, const char *);
   extern char *stpncpy (char *, const char *, size_t);
-  extern void *memrchr (const char *, int, size_t);
+  extern void *memrchr (const void *, int, size_t);
 #ifdef __cplusplus
 }
 #endif
