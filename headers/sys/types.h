@@ -20,6 +20,8 @@ typedef unsigned int id_t;
 
 typedef long suseconds_t;
 
+typedef unsigned long blksize_t;
+
 typedef long fd_mask;
 
 typedef int timer_t;
@@ -35,6 +37,10 @@ typedef int clockid_t;
 
 
 typedef long long loff_t;
+
+typedef unsigned long blkcnt_t;
+
+typedef unsigned long long blkcnt64_t;
 
 
 /* Stuff really in linux/types.h*/

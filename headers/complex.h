@@ -39,6 +39,7 @@ float cpowf (float, float);
 long double cpowl (long double, long double);
 float cprojf (float);
 long double cprojl (long double);
+float crealf (float);
 long double creall (long double);
 float csinf (float);
 float csinhf (float);

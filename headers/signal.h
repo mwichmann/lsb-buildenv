@@ -54,12 +54,12 @@ struct sigstack
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
-#define SIGABRT	6
 #define SIGIOT	6
+#define SIGABRT	6
 #define SIGBUS	7
 #define SIGFPE	8
 #define SIGKILL	9
