@@ -30,7 +30,6 @@
 #define getbegyx(win,y,x)	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
 #define getyx(win,y,x)	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
 #define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
-#define COLOR_PAIR(n)	NCURSES_BITS(n,0)
 
 
 
@@ -256,4 +255,5 @@ struct _win_st
 #define A_VERTICAL	NCURSES_BITS(1UL,22)
 #define A_STANDOUT	NCURSES_BITS(1UL,8)
 #define A_UNDERLINE	NCURSES_BITS(1UL,9)
+#define COLOR_PAIR(n)	NCURSES_BITS(n,0)
 #define A_ATTRIBUTES	NCURSES_BITS(~(1UL-1UL),0)
