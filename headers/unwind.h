@@ -94,8 +94,8 @@ extern "C"
 						      *, unsigned int);
   extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
   extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context);
-  extern anon -
-    _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception *);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
   extern void _Unwind_Resume (struct _Unwind_Exception *);
   extern void _Unwind_SetGR (struct _Unwind_Context *, int, unsigned int);
   extern void _Unwind_SetIP (struct _Unwind_Context *, unsigned int);
