@@ -35,6 +35,25 @@ if( $$type{'Ttype'} eq "Intrinsic" ) {
 	return;
 	}
 
+if( $$type{'Ttype'} eq "Literal" ) {
+	print $$type{'Tname'};
+	return;
+	}
+
+if( $$type{'Ttype'} eq "Const" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$$type{'Tbasetype'};
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	%type=$sth->fetchhash;
+	if( $type{'Ttype'} eq "Pointer" ) {
+		displaytype(\%type);
+		print "const ";
+	} else {
+		print "const ";
+		displaytype(\%type);
+	}
+	return;
+	}
+
 if( $$type{'Ttype'} eq "Typedef" ) {
 	if (!$nameonly) { print "typedef "; }
 	$basetype=$$type{'Tbasetype'};
@@ -368,6 +387,7 @@ if( $$param{'Ttype'} eq "FuncPtr" ) {
 	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	%type=$sth->fetchhash;
+	$Tid=$type{'Tid'};
 	displaytyperef(\%type);
 	print "(*";
 	if( $$param{'Tname'} =~ "fptr" ) {
@@ -378,26 +398,31 @@ if( $$param{'Ttype'} eq "FuncPtr" ) {
 
 	print "(";
 
-#	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-#	$tmselect.=" ORDER BY TMposition";
-#	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
-#	for(1..$tmh->numrows) {
-#		%tmentry=$tmh->fetchhash;
-#		$TMtypeid=$tmentry{'TMtypeid'};
-#		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
-#		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
-#		%entry=$th->fetchhash;
-#		$nameonly=1;
-#		displaytyperef(\%entry);
-#		#print $tmentry{'TMname'};
-#		if( $tmentry{'TMarray'} ) {
-#			print "[".$tmentry{'TMarray'}."]";
-#			}
-#		if( $_ != $tmh->numrows ) {
-#			print ",";
-#			}
-#		$nameonly=0;
-#		}
+	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
+	$tmselect.=" ORDER BY TMposition";
+	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	if($tmh->numrows == 0) {
+		print "void";
+		}
+else { print $tmh->numrows." rows found\n";}
+	for(1..$tmh->numrows) {
+		%tmentry=$tmh->fetchhash;
+		$TMtypeid=$tmentry{'TMtypeid'};
+		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
+		%entry=$th->fetchhash;
+		$nameonly=1;
+		displaytype(\%entry);
+		print $tmentry{'TMname'};
+		if( $tmentry{'TMarray'} ) {
+			print "[".$tmentry{'TMarray'}."]";
+			}
+		if( $_ != $tmh->numrows ) {
+			print ",";
+			}
+		$nameonly=0;
+		}
+
 	print ")\n";
 	return;
 	}

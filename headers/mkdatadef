@@ -40,16 +40,16 @@ if( $$type{'Ttype'} eq "Literal" ) {
 	return;
 	}
 
-if( $$param{'Ttype'} eq "Const" ) {
-	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
+if( $$type{'Ttype'} eq "Const" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$$type{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	%type=$sth->fetchhash;
 	if( $type{'Ttype'} eq "Pointer" ) {
-		displaytyperef(\%type);
+		displaytype(\%type);
 		print "const ";
 	} else {
 		print "const ";
-		displaytyperef(\%type);
+		displaytype(\%type);
 	}
 	return;
 	}
