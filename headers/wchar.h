@@ -19,8 +19,17 @@ extern "C"
 #define WCHAR_MIN	0x80000000
 
 
+  typedef struct
+  {
+    int count;
+    wint_t value;
+  }
+  __mbstate_t;
 
 
+
+
+  typedef __mbstate_t mbstate_t;
 
 
   extern double __wcstod_internal (wchar_t *, wchar_t * *, int);

@@ -2,7 +2,6 @@
 #define _SIGNAL_H_
 
 #include <sys/time.h>
-#include <stddef.h>
 #include <pthread.h>
 #include <sys/types.h>
 

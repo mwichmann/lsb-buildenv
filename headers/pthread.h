@@ -2,7 +2,6 @@
 #define _PTHREAD_H_
 
 #include <sys/time.h>
-#include <stddef.h>
 #include <sched.h>
 #include <sys/types.h>
 

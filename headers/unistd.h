@@ -1,8 +1,8 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
-#include <stddef.h>
 #include <sys/types.h>
+#include <stddef.h>
 #include <sys/time.h>
 
 #ifdef __cplusplus

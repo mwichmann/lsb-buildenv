@@ -1,5 +1,6 @@
 
 #define LONG_MAX	0x7FFFFFFFL
+#define ULONG_MAX	0xFFFFFFFFUL
 
 
 

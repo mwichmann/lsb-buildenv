@@ -1,7 +1,6 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
-#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"

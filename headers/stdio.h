@@ -1,7 +1,6 @@
 #ifndef _STDIO_H_
 #define _STDIO_H_
 
-#include <stddef.h>
 #include <stdarg.h>
 #include <sys/types.h>
 #include <unistd.h>

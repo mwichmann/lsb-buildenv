@@ -2,3 +2,14 @@
 #define WEOF	(0xffffffffu)
 #define WCHAR_MAX	0x7FFFFFFF
 #define WCHAR_MIN	0x80000000
+
+
+typedef struct
+{
+  int count;
+  wint_t value;
+}
+__mbstate_t;
+
+
+typedef __mbstate_t mbstate_t;

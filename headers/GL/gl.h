@@ -184,6 +184,7 @@ extern "C"
   extern void glBindTexture (GLenum, GLuint);
   extern void glBitmap (GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat,
 			GLubyte *);
+  extern glBlendFunc (GLenum, GLenum);
   extern void glCallList (GLuint);
   extern void glCallLists (GLsizei, GLenum, GLvoid *);
   extern void glClear (GLbitfield);
@@ -592,6 +593,8 @@ extern "C"
   extern void glGetHistogram (GLenum, GLboolean, GLenum, GLenum, GLvoid *);
   extern void glResetHistogram (GLenum);
   extern void glHistogram (GLenum, GLsizei, GLenum, GLboolean);
+  extern glBlendColor (GLclampf, GLclampf, GLclampf, GLclampf);
+  extern glBlendEquation (GLenum);
   extern void glGetColorTableParameteriv (GLenum, GLenum, GLint *);
   extern void glGetColorTableParameterfv (GLenum, GLenum, GLfloat *);
   extern void glGetColorTable (GLenum, GLenum, GLenum, GLvoid *);

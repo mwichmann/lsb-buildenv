@@ -14,7 +14,15 @@ extern "C"
 #if __i386__
 #define LONG_MAX	0x7FFFFFFFL
 #endif
+#if __ia64__
+#define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
+#endif
+#if __i386__
 #define ULONG_MAX	0xFFFFFFFFUL
+#endif
+#if __powerpc__ && !__powerpc64__
+#define ULONG_MAX	0xFFFFFFFFUL
+#endif
 #if __s390__
 #define LONG_MAX	2147483647
 #endif

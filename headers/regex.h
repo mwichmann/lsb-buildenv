@@ -1,7 +1,6 @@
 #ifndef _REGEX_H_
 #define _REGEX_H_
 
-#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"

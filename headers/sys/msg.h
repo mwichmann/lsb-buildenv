@@ -1,7 +1,6 @@
 #ifndef _SYS_MSG_H_
 #define _SYS_MSG_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
 
@@ -18,10 +17,36 @@ extern "C"
 /* Base types for messages*/
 
 
+#if __i386__
+/* IA32 */
   typedef unsigned long msgqnum_t;
 
+#endif
+#if __i386__
+/* IA32 */
   typedef unsigned long msglen_t;
 
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef unsigned long msglen_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef unsigned long msglen_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef unsigned long msgqnum_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef unsigned long msgqnum_t;
+
+#endif
 
 /* Message Queue structure*/
 
