@@ -29,8 +29,11 @@ extern "C"
 
   typedef unsigned int u_int32_t;
 
-  typedef long ssize_t;
+#if __i386__
+/* IA32 */
+  typedef int ssize_t;
 
+#endif
   typedef unsigned int uid_t;
 
   typedef int pid_t;
@@ -57,6 +60,26 @@ extern "C"
 
   typedef int clockid_t;
 
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef int ssize_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef int64_t ssize_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef int ssize_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef int64_t ssize_t;
+
+#endif
 
 /* Stuff really in asm/posix_types.h*/
 
