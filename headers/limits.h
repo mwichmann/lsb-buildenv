@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define LLONG_MIN	(-LLONG_MAX-1LL)
 #if __ia64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
 #endif
@@ -38,6 +39,7 @@ extern "C"
 #if __s390__ && !__s390x__
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
+#define ULLONG_MAX	18446744073709551615ULL
 #if __s390__ && !__s390x__
 #define LONG_MAX	2147483647
 #endif
@@ -53,6 +55,7 @@ extern "C"
 #if __s390x__
 #define LONG_MAX	9223372036854775807L
 #endif
+#define LLONG_MAX	9223372036854775807LL
 #define SSIZE_MAX	LONG_MAX
 
 
