@@ -15,7 +15,6 @@ extern "C"
   extern void *__mempcpy (void *, void *, size_t);
   extern char *__stpcpy (char *, const char *);
   extern char *__strtok_r (char *, char *, char **);
-  extern char *basename (const char *);
   extern void bcopy (const void *, void *, size_t);
   extern void *memchr (const void *, int, size_t);
   extern int memcmp (const void *, const void *, size_t);
