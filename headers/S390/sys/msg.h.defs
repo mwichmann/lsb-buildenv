@@ -14,8 +14,8 @@ struct msqid_ds
   time_t msg_stime;
   time_t msg_rtime;
   unsigned long __unused1;
-  time_t msg_ctime;
   unsigned long __unused2;
+  time_t msg_ctime;
   unsigned long __unused3;
   unsigned long __msg_cbytes;
   msgqnum_t msg_qnum;

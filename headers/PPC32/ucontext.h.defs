@@ -18,6 +18,14 @@ struct pt_regs
   unsigned long result;
 }
  ;
+typedef struct _libc_vrstate
+{
+  unsigned int vrregs;
+  unsigned int vscr;
+  unsigned int vrsave;
+  unsigned int _pad;
+}
+vrregset_t __attribute__ ((__aligned__ (16)));
 
 
 
@@ -27,6 +35,7 @@ struct pt_regs
 
 
 
+typedef unsigned long gregset_t[48];
 
 
 
@@ -38,14 +47,31 @@ struct pt_regs
 
 
 
+struct _libc_fpstate
+{
+  double fpregs;
+  double fpscr;
+  int _pad;
+}
+ ;
+typedef struct _libc_fpstate *fpregset_t;
 
 
+union uc_regs_ptr
+{
+  struct pt_regs *regs;
+  mcontext_t *uc_regs;
+}
+ ;
 
 
-
-
-
-typedef struct sigcontext mcontext_t;
+typedef struct
+{
+  gregset_t gregs;
+  fpregset_t fpregs;
+  vrregset_t vrregs;
+}
+mcontext_t;
 
 
 typedef struct ucontext
@@ -53,7 +79,9 @@ typedef struct ucontext
   unsigned long uc_flags;
   struct ucontext *uc_link;
   stack_t uc_stack;
-  mcontext_t uc_mcontext;
+  int uc_pad[7];
+  union uc_regs_ptr uc_mcontext;
   sigset_t uc_sigmask;
+  char uc_reg_space[50];
 }
 ucontext_t;

@@ -28,6 +28,12 @@
 
 
 
+
+
+
+
+
+
 struct sigaction
 {
   union
@@ -82,7 +88,9 @@ struct sigcontext
   struct ia64_fpreg sc_fr[128];
   unsigned long sc_rbs_base;
   unsigned long sc_loadrs;
-  unsigned long sc_rsvd[14];
-  unsigned long sc_mask;
+  unsigned long sc_ar25;
+  unsigned long sc_ar26;
+  unsigned long sc_rsvd[12];
+  sigset_t sc_mask;
 }
  ;

@@ -23,6 +23,7 @@ struct _pthread_cleanup_buffer
  ;
 typedef unsigned int pthread_key_t;
 typedef int pthread_once_t;
+typedef long __pthread_cond_align_t;
 
 
 typedef unsigned long pthread_t;
@@ -70,8 +71,11 @@ pthread_attr_t;
 
 typedef struct
 {
-  struct _pthread_fastlock lock;
-  _pthread_descr wait_chain;
+  struct _pthread_fastlock __c_lock;
+  _pthread_descr __c_waiting;
+  char __padding[48 - sizeof (struct _pthread_fastlock) -
+		 sizeof (_pthread_descr) - sizeof (__pthread_cond_align_t)];
+  __pthread_cond_align_t __align;
 }
 pthread_cond_t;
 typedef struct

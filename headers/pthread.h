@@ -245,6 +245,8 @@ extern "C"
   extern int pthread_mutexattr_gettype (pthread_mutexattr_t *, int *);
   extern int pthread_mutexattr_settype (pthread_mutexattr_t *, int);
   extern int pthread_setconcurrency (int);
+  extern int pthread_condattr_getpshared (pthread_condattr_t *, int *);
+  extern int pthread_condattr_setpshared (pthread_condattr_t *, int);
   extern int pthread_mutexattr_getpshared (pthread_mutexattr_t *, int *);
   extern int pthread_mutexattr_setpshared (pthread_mutexattr_t *, int);
   extern int pthread_rwlock_timedrdlock (pthread_rwlock_t *,

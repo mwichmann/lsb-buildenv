@@ -14,6 +14,7 @@ extern "C"
 #define NETDB_INTERNAL	-1
 #define NETDB_SUCCESS	0
 #define HOST_NOT_FOUND	1
+#define IPPORT_RESERVED	1024
 #define NI_MAXHOST	1025
 #define TRY_AGAIN	2
 #define NO_RECOVERY	3
