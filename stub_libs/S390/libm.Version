@@ -45,9 +45,14 @@ GLIBC_2.0 {
   erff;
   erfl;
   exp;
+  exp2;
+  exp2f;
+  exp2l;
   expf;
   expl;
   expm1;
+  expm1f;
+  expm1l;
   fabs;
   fabsf;
   fabsl;
@@ -95,7 +100,14 @@ GLIBC_2.0 {
   log10f;
   log10l;
   log1p;
+  log1pf;
+  log1pl;
+  log2;
+  log2f;
+  log2l;
   logb;
+  logbf;
+  logbl;
   logf;
   logl;
   matherr;
@@ -150,6 +162,12 @@ GLIBC_2.0 {
   signgam;
 };
 GLIBC_2.1 {
+  __finite;
+  __finitef;
+  __finitel;
+  __fpclassify;
+  __fpclassifyf;
+  __fpclassifyl;
   cabs;
   cabsf;
   cabsl;
