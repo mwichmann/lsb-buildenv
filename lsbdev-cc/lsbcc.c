@@ -107,6 +107,10 @@ char *cxxincpath="/opt/lsb/include/c++";
 char *libpath=
 #if __powerpc64__
 	"/opt/lsb/lib64";
+#elif __s390x__
+	"/opt/lsb/lib64";
+#elif __x86_64__
+	"/opt/lsb/lib64";
 #else
 	"/opt/lsb/lib";
 #endif
@@ -503,7 +507,13 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 argvadd(syslibs,"L",gccbasedir);
 
 /* these need to go after user-specified library paths */
-#if defined(__powerpc64__)
+#if __powerpc64__
+	argvaddstring(syslibs,"-L/lib64");
+	argvaddstring(syslibs,"-L/usr/lib64");
+#elif __s390x__
+	argvaddstring(syslibs,"-L/lib64");
+	argvaddstring(syslibs,"-L/usr/lib64");
+#elif __x86_64__
 	argvaddstring(syslibs,"-L/lib64");
 	argvaddstring(syslibs,"-L/usr/lib64");
 #else
