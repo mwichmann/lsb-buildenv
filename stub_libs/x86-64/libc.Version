@@ -2,6 +2,9 @@ LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.2.1 {
   posix_openpt;
 };
+GLIBC_2.2.4 {
+  getgrouplist;
+};
 GLIBC_2.2.5 {
   _Exit;
   _IO_feof;

@@ -802,6 +802,7 @@ GLIBC_2.2.3 {
   fnmatch;
 };
 GLIBC_2.2.4 {
+  getgrouplist;
   sockatmark;
 };
 GLIBC_2.3 {

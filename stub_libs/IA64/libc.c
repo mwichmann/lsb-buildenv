@@ -231,6 +231,7 @@ void getgrgid() {} ;
 void getgrgid_r() {} ;
 void getgrnam() {} ;
 void getgrnam_r() {} ;
+void getgrouplist() {} ;
 void getgroups() {} ;
 void gethostbyaddr() {} ;
 void gethostbyname() {} ;
