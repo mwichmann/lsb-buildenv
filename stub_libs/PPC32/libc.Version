@@ -649,6 +649,7 @@ GLIBC_2.0 {
   xdr_short;
   xdr_string;
   xdr_u_char;
+  xdr_u_int;
   xdr_u_long;
   xdr_u_short;
   xdr_union;
@@ -823,6 +824,7 @@ GLIBC_2.2 {
   shmctl;
   swprintf;
   swscanf;
+  tdelete;
   ungetwc;
   vfwprintf;
   vfwscanf;

@@ -794,6 +794,7 @@ void xdr_replymsg(void) {} ;
 void xdr_short(void) {} ;
 void xdr_string(void) {} ;
 void xdr_u_char(void) {} ;
+void xdr_u_int(void) {} ;
 void xdr_u_long(void) {} ;
 void xdr_u_short(void) {} ;
 void xdr_union(void) {} ;
