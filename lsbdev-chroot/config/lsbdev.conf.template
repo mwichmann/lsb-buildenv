@@ -57,7 +57,7 @@ SSH_PORT=5436
 # Where to source the LSB header files from
 # If not defined it will use the header files from /usr/include
 # LSB_INCLUDE=$DATA_ROOT/lsb_header
-LSB_INCLUDE=
+LSB_INCLUDE="/opt/lsbdev-base/include"
 
 # Fallback static linking for the following libraries
 # If the symbol is not found in the shared library it is looked
@@ -68,7 +68,7 @@ FALLBACK_STATIC_LINK_LIBRARIES=""
 # Stub library list
 # Don't edit unless you really know what you're doing
 # libc is handled in a special manner so do _not_ add it here
-STUB_LIBRARY_LIST="libGL libICE libSM libX11 libXext libXt libcrypt libdl libm libncurses libpthread libutil libz"
+STUB_LIBRARY_LIST="libGL libICE libSM libX11 libXext libXt libcrypt libdl libm libncurses libpthread libutil libz libpam libgcc_s"
 
 # Static library search path
 # The setup looks through the following directories for static versions
