@@ -10,6 +10,6 @@ install: $(PROGRAMS)
 	cp lsbcc $$LSBHOME/src/build/usr/bin/lsbc++
 
 clean:
-	rm $(PROGRAMS)
+	rm -f $(PROGRAMS)
 
 distclean:
