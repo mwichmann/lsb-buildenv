@@ -13,7 +13,7 @@ extern "C"
 
 
 #if !defined(__cplusplus)
-  typedef long wchar_t;
+  typedef int wchar_t;
 
 #endif
   typedef unsigned int size_t;
