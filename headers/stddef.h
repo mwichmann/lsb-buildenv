@@ -9,7 +9,7 @@ extern "C"
 
 
 #define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
-#define NULL	(0)
+#define NULL	((void *)0)
 
 
 #if !defined(__cplusplus)
