@@ -104,6 +104,7 @@ extern "C"
 
 
 
+  extern void endhostent (void);
   extern void endnetent (void);
   extern void endprotoent (void);
   extern void endservent (void);

@@ -47,6 +47,7 @@ extern "C"
    ;
 
 
+  extern int alphasort (struct dirent **, struct dirent **);
   extern void rewinddir (DIR *);
   extern void seekdir (DIR *, long);
   extern long telldir (DIR *);

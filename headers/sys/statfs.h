@@ -14,6 +14,10 @@ extern "C"
 
 
 
+  extern int fstatfs64 (int, struct statfs64 *);
+  extern int statfs64 (const char *, struct stat64 *);
+  extern int fstatfs (int, struct statfs *);
+  extern int statfs (const char *, struct statfs *);
 #ifdef __cplusplus
 }
 #endif
