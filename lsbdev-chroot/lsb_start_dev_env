@@ -186,9 +186,15 @@ bind_mount_ro /usr/lib $ROOT/usr/lib/lib-localsystem
 # Compiler stuff
 bind_mount_ro /usr/lib/gcc-lib $ROOT/usr/lib/gcc-lib
 
-# Need to fix the next line so it looks for the bfd on the system.
-# Only needed by the compiler, not for the runtime
-bind_mount_file_ro $LIBBFD $ROOT$LIBBFD
+# This section does bind mounts on libraries required
+# for the compilation system (these are not LSB runtime needs)
+# Needs to be updated in step with /etc/lsbdev/lsbdev.conf
+if [ x$LIBBFD != x ]; then
+  bind_mount_file_ro $LIBBFD $ROOT$LIBBFD
+fi
+if [ x$LIBOPCODES != x ]; then
+  bind_mount_file_ro $LIBOPCODES $ROOT$LIBOPCODES
+fi
 
 bind_mount_file_ro /usr/lib/crt1.o $ROOT/usr/lib/crt1.o
 bind_mount_file_ro /usr/lib/crti.o $ROOT/usr/lib/crti.o
