@@ -16,7 +16,7 @@ all:
 
 install:
 	install -d $$LSBHOME/src/build/usr/lsb/include
-	find . -name '*.h' -print | cpio -pdu $$LSBHOME/src/build/usr/include/lib
+	find . -name '*.h' -print | cpio -pdu $$LSBHOME/src/build/usr/lsb/include
 
 clean:
 	find . -name '*.html' -print | xargs rm -f
