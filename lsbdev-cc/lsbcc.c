@@ -11,8 +11,8 @@
  * of the original shell script.
  * 
  * The basic premise is this: The LSB development environment provides
- * a set of headers and libraries nominaly found in /opt/lsbdeb-base/includes
- * and /opt/lsbdev-base/libs respectively. These headers and libraries have
+ * a set of headers and libraries nominally found in /opt/lsb/include
+ * and /opt/lsb/lib respectively. These headers and libraries have
  * been carefully built so that they contain only the interfaces provided by
  * the LSB. And LSB conforming application must also use be linked with
  * a special program intepreter (usually ld-lsb.so.1 but this is described
@@ -102,9 +102,9 @@ int lsbccmode=LSBCC;
 
 char *ccname="cc";
 char *cxxname="c++";
-char *libpath="/opt/lsbdev-base/lib";
-char *incpath="/opt/lsbdev-base/include";
-char *cxxincpath="/opt/lsbdev-base/include/c++";
+char *libpath="/opt/lsb/lib";
+char *incpath="/opt/lsb/include";
+char *cxxincpath="/opt/lsb/include/c++";
 
 
 /*
