@@ -13,6 +13,29 @@ extern "C"
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))
 #define ERR	(-1)
 #define OK	(0)
+#define ACS_RARROW	(acs_map['+'])
+#define ACS_LARROW	(acs_map[','])
+#define ACS_DARROW	(acs_map['.'])
+#define ACS_BLOCK	(acs_map['0'])
+#define ACS_CKBOARD	(acs_map['a'])
+#define ACS_DEGREE	(acs_map['f'])
+#define ACS_PLMINUS	(acs_map['g'])
+#define ACS_BOARD	(acs_map['h'])
+#define ACS_LANTERN	(acs_map['i'])
+#define ACS_LRCORNER	(acs_map['j'])
+#define ACS_URCORNER	(acs_map['k'])
+#define ACS_ULCORNER	(acs_map['l'])
+#define ACS_LLCORNER	(acs_map['m'])
+#define ACS_PLUS	(acs_map['n'])
+#define ACS_S1	(acs_map['o'])
+#define ACS_HLINE	(acs_map['q'])
+#define ACS_S9	(acs_map['s'])
+#define ACS_LTEE	(acs_map['t'])
+#define ACS_RTEE	(acs_map['u'])
+#define ACS_BTEE	(acs_map['v'])
+#define ACS_VLINE	(acs_map['x'])
+#define ACS_DIAMOND	(acs_map['`'])
+#define ACS_BULLET	(acs_map['~'])
 #define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)
 #define getmaxyx(win,y,x)	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
 #define getbegyx(win,y,x)	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
@@ -317,6 +340,7 @@ extern "C"
   extern int clrtoeol (void);
   extern int color_content (short, short *, short *, short *);
   extern int color_set (short, void *);
+  extern int COLOR_PAIR (int);
   extern int copywin (WINDOW *, WINDOW *, int, int, int, int, int, int, int);
   extern int curs_set (int);
   extern int def_prog_mode (void);
@@ -436,6 +460,7 @@ extern "C"
   extern int overlay (WINDOW *, WINDOW *);
   extern int overwrite (WINDOW *, WINDOW *);
   extern int pair_content (short, short *, short *);
+  extern int PAIR_NUMBER (int);
   extern int pechochar (WINDOW *, chtype);
   extern int pnoutrefresh (WINDOW *, int, int, int, int, int, int);
   extern int prefresh (WINDOW *, int, int, int, int, int, int);
@@ -461,6 +486,7 @@ extern "C"
   extern int setscrreg (int, int);
   extern SCREEN *set_term (SCREEN *);
   extern int slk_attroff (chtype);
+  extern int slk_attr_off (attr_t, void *);
   extern int slk_attron (chtype);
   extern int slk_attrset (chtype);
   extern int slk_attr_set (attr_t, short, void *);
@@ -548,6 +574,9 @@ extern "C"
   extern void wtimeout (WINDOW *, int);
   extern int wtouchln (WINDOW *, int, int, int);
   extern int wvline (WINDOW *, chtype, int);
+  extern int COLORS;
+  extern int COLOR_PAIRS;
+  extern chtype acs_map[];
   extern WINDOW *curscr;
   extern WINDOW *stdscr;
   extern int COLS;
