@@ -635,6 +635,22 @@ if( $typelist ne "" ) {
 	}
 
 $typelist=join ',', keys(%type);
+
+$select = "SELECT * FROM Constant ";
+$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
+$select.= "LEFT JOIN HeaderGroup ON Cheadgroup=HGid ";
+$select.= "WHERE HGheader=$Hid ";
+$select.= "AND Ctype='macro' ";
+$select.= "AND ( Cstd ='Yes' OR Cstd ='SrcOnly' ) ";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	$const{$entry{'ACvalue'}}=1;
+	#print "Const ".$entry{'ACvalue'}."\n";
+	}
+$constlist=join '\',\'', keys(%const);
+
 #
 # Set up multiple inclusion protection
 #
@@ -647,11 +663,47 @@ print "\n";
 #
 
 if( $typelist ne "" ) { 
-	$select = "SELECT DISTINCT Hname FROM Type ";
+	$select = "SELECT DISTINCT Hid FROM Type ";
 	$select.= "LEFT JOIN HeaderGroup ON HGid=Theadergroup ";
 	$select.= "LEFT JOIN Header ON Hid=HGheader ";
 	$select.= "WHERE Tid IN ($typelist) ";
 	$select.= "AND Tstatus != 'Excluded' ";
+	$select.= "AND Hid != $Hid ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$header{$entry{'Hid'}}=1;
+		}
+	}
+
+#
+# Get the headers containing referenced types
+#
+
+if( $constlist ne "" ) { 
+	$select = "SELECT DISTINCT Hid FROM Constant ";
+	$select.= "LEFT JOIN HeaderGroup ON HGid=Cheadgroup ";
+	$select.= "LEFT JOIN Header ON Hid=HGheader ";
+	$select.= "WHERE Cname IN (\'$constlist\') ";
+	#$select.= "AND Cstatus != 'Excluded' ";
+	$select.= "AND Hid != $Hid ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$header{$entry{'Hid'}}=1;
+		}
+	}
+
+$hdrlist=join '\',\'', keys(%header);
+
+#
+# Output the headers this header needs to include
+#
+if( $hdrlist ne "" ) { 
+	$select = "SELECT DISTINCT Hname FROM Header ";
+	$select.= "WHERE Hid IN ($hdrlist) ";
 	$select.= "AND Hid != $Hid ";
 	print $select,"\n" if $trace;
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
