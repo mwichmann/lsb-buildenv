@@ -28,6 +28,8 @@ void _ZN10__cxxabiv123__fundamental_type_infoD2Ev() {} ;
 void _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev() {} ;
 void _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev() {} ;
 void _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev() {} ;
+void _ZN9__gnu_cxx12__atomic_addEPVii() {} ;
+void _ZN9__gnu_cxx18__exchange_and_addEPVii() {} ;
 void _ZN9__gnu_cxx27__verbose_terminate_handlerEv() {} ;
 void _ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj() {} ;
 void _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE() {} ;

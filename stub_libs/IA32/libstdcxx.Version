@@ -211,6 +211,8 @@ CXXABI_1.3 {
   _ZTVN10__cxxabiv129__pointer_to_member_type_infoE;
 };
 GLIBCXX_3.4 {
+  _ZN9__gnu_cxx12__atomic_addEPVii;
+  _ZN9__gnu_cxx18__exchange_and_addEPVii;
   _ZNKSbIwSt11char_traitsIwESaIwEE12find_last_ofEPKwj;
   _ZNKSbIwSt11char_traitsIwESaIwEE12find_last_ofEPKwjj;
   _ZNKSbIwSt11char_traitsIwESaIwEE12find_last_ofERKS2_j;
