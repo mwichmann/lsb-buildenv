@@ -67,13 +67,8 @@ extern "C"
     char ut_user[UT_NAMESIZE];	/* Username. */
     char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
     struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
-    int ut_session;		/* Session ID, used for windowing. */
-    struct
-    {
-      int32_t tv_sec;
-      int32_t tv_usec;
-    }
-    ut_tv;			/* Time entry was made. */
+    long ut_session;		/* Session ID, used for windowing. */
+    struct timeval ut_tv;	/* Time entry was made. */
     int32_t ut_addr_v6[4];	/* Internet address of remote host. */
     char __unused[20];		/* Reserved for future use. */
   }
@@ -177,13 +172,8 @@ extern "C"
     char ut_user[UT_NAMESIZE];	/* Username. */
     char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
     struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
-    int ut_session;		/* Session ID, used for windowing. */
-    struct
-    {
-      int32_t tv_sec;
-      int32_t tv_usec;
-    }
-    ut_tv;			/* Time entry was made. */
+    long ut_session;		/* Session ID, used for windowing. */
+    struct timeval ut_tv;	/* Time entry was made. */
     int32_t ut_addr_v6[4];	/* Internet address of remote host. */
     char __unused[20];		/* Reserved for future use. */
   }
