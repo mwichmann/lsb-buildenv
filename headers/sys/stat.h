@@ -210,8 +210,8 @@ extern "C"
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt_t st_blocks;		/* Number 512-byte blocks allocated. */
     struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtime;	/* Time of last modification. */
-    struct timespec st_ctime;	/* Time of last status change. */
+    struct timespec st_mtim;	/* Time of last modification. */
+    struct timespec st_ctim;	/* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
