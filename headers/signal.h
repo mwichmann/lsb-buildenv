@@ -77,7 +77,7 @@ extern "C"
 /* Type of a signal handling function.*/
 
 
-  typedef void (*__sighandler_t) (int);
+  typedef void (*sighandler_t) (void);
 
 
 /* POSIX 1003.1b sigval*/
@@ -643,7 +643,7 @@ extern "C"
 
 #endif
 
-  extern __sighandler_t __sysv_signal (int, sighandler_t);
+  extern sighandler_t __sysv_signal (int, sighandler_t);
   extern char **_sys_siglist;
   extern int killpg (pid_t, int);
   extern void psignal (int, const char *);
@@ -662,7 +662,7 @@ extern "C"
   extern int sigorset (sigset_t *, const sigset_t *, const sigset_t *);
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
-  extern __sighandler_t sigset (int, __sighandler_t);
+  extern sighandler_t sigset (int, __sighandler_t);
   extern int sigstack (struct sigstack *, struct sigstack *);
   extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
@@ -671,7 +671,7 @@ extern "C"
   extern int kill (pid_t, int);
   extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
   extern int sigblock (int);
-  extern __sighandler_t signal (int, __sighandler_t);
+  extern sighandler_t signal (int, __sighandler_t);
   extern int sigpause (int);
   extern int sigprocmask (int, sigset_t *, sigset_t *);
   extern int sigreturn (struct sigcontext *);
@@ -680,7 +680,7 @@ extern "C"
   extern int sigwaitinfo (const sigset_t *, siginfo_t *,
 			  const struct timespec *);
   extern int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
-  extern __sighandler_t bsd_signal (int, sighandler_t);
+  extern sighandler_t bsd_signal (int, sighandler_t);
 #ifdef __cplusplus
 }
 #endif
