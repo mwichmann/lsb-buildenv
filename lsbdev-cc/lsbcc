@@ -18,7 +18,7 @@ while getopts "EcI:D:O:f:W:I:Sp:o:s:L:" OPT ; do
 		o)
 			target="-o $OPTARG";
 			;;
-		L|O|W|f|p|s)
+		D|I|L|O|W|f|p|s)
 			opts="$opts -$OPT$OPTARG";
 			;;
 		':')
@@ -35,7 +35,6 @@ while getopts "EcI:D:O:f:W:I:Sp:o:s:L:" OPT ; do
 	esac
 done
 
-set -x
 exec gcc $target $opts -nostdinc -I/usr/lsb/include -I$gccbasedir/include \
 	-nodefaultlibs -L$gccbasedir -L/usr/lsb/lib -L/lib -L/usr/lib \
 	$libs
