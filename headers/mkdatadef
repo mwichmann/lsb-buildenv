@@ -44,8 +44,13 @@ if( $$param{'Ttype'} eq "Const" ) {
 	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	%type=$sth->fetchhash;
-	print "const ";
-	displaytyperef(\%type);
+	if( $type{'Ttype'} eq "Pointer" ) {
+		displaytyperef(\%type);
+		print "const ";
+	} else {
+		print "const ";
+		displaytyperef(\%type);
+	}
 	return;
 	}
 
