@@ -26,3 +26,26 @@ struct stat
   unsigned long __unused5;
 }
  ;
+struct stat64
+{
+  dev_t st_dev;
+  int __pad1;
+  ino_t __st_ino;
+  mode_t st_mode;
+  nlink_t st_nlink;
+  uid_t st_uid;
+  gid_t st_gid;
+  dev_t st_rdev;
+  int __pad2;
+  off64_t st_size;
+  blksize_t st_blksize;
+  blkcnt64_t st_blocks;
+  time_t st_atime;
+  int __unused1;
+  time_t st_mtime;
+  int __unused2;
+  time_t st_ctime;
+  int __unused3;
+  ino64_t st_ino;
+}
+ ;

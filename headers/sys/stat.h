@@ -316,23 +316,23 @@ extern "C"
 /* S390X */
   struct stat64
   {
-    __dev_t st_dev;
-    __ino64_t st_ino;
-    __nlink_t st_nlink;
-    __mode_t st_mode;
-    __uid_t st_uid;
-    __gid_t st_gid;
+    dev_t st_dev;
+    ino64_t st_ino;
+    nlink_t st_nlink;
+    mode_t st_mode;
+    uid_t st_uid;
+    gid_t st_gid;
     int pad0;
-    __dev_t st_rdev;
-    __off_t st_size;
-    __time_t st_atime;
+    dev_t st_rdev;
+    off_t st_size;
+    time_t st_atime;
     int __reserved0;
-    __time_t st_mtime;
+    time_t st_mtime;
     int __reserved1;
-    __time_t st_ctime;
+    time_t st_ctime;
     int __reserved2;
     blksize_t st_blksize;
-    __blkcnt64_t st_blocks;
+    blkcnt64_t st_blocks;
   }
    ;
 
@@ -413,6 +413,33 @@ extern "C"
     time_t st_ctime;
     unsigned long __unused3;
     unsigned long __unused;
+  }
+   ;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  struct stat64
+  {
+    dev_t st_dev;
+    int __pad1;
+    ino_t __st_ino;
+    mode_t st_mode;
+    nlink_t st_nlink;
+    uid_t st_uid;
+    gid_t st_gid;
+    dev_t st_rdev;
+    int __pad2;
+    off64_t st_size;
+    blksize_t st_blksize;
+    blkcnt64_t st_blocks;
+    time_t st_atime;
+    int __unused1;
+    time_t st_mtime;
+    int __unused2;
+    time_t st_ctime;
+    int __unused3;
+    ino64_t st_ino;
   }
    ;
 
