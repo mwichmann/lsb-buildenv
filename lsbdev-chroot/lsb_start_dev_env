@@ -2,7 +2,7 @@
 
 # Config options
 
-. /etc/lsbdev/lsbdev.conf
+. /etc/lsbdev-chroot/lsbdev-chroot.conf
 
 # Directory structure to precreate in chroot environment
 REQUIRED_DIRS="usr/bin var/tmp bin lib proc tmp etc usr/lib/gcc-lib usr/lib/lsb-stub dev usr/include opt usr/sbin usr/lib/lib-localsystem var/run"

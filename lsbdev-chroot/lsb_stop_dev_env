@@ -3,9 +3,12 @@
 # Remove running processes from the runtime environment
 # and unmount the mounted directory structure
 
-# This is $Revision: 1.4 $
+# This is $Revision: 1.5 $
 #
 # $Log: lsb_stop_dev_env,v $
+# Revision 1.5  2002/06/28 19:04:14  cyeoh
+# rename of files for package name change
+#
 # Revision 1.4  2001/11/14 06:34:02  cyeoh
 # Remove uneeded echo
 #
@@ -16,7 +19,7 @@
 #
 
 # Get configuration
-. /etc/lsbdev/lsbdev.conf
+. /etc/lsbdev-chroot/lsbdev-chroot.conf
 
 # Stop LSB build environment
 if [ `id -u` -ne 0 ]; then

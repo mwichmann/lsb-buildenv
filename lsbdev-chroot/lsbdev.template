@@ -22,7 +22,7 @@ restart|force-reload)
     fi
     ;;
 status)
-    . /etc/lsbdev/lsbdev.conf
+    . /etc/lsbdev-chroot/lsbdev-chroot.conf
     if [ -f $RUNFILE ]; then
         exit 0;
     else
