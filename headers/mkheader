@@ -43,8 +43,9 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	%entry=$tth->fetchhash;
 # Something about anon or not & wether to set nameonly
 	if (!$nameonly) {
-		if( $entry{'Ttype'} eq 'Typedef' ||
-		    $entry{'Ttype'} eq 'FuncPtr' ) {
+		if( ( $entry{'Ttype'} eq 'Typedef' ||
+		    $entry{'Ttype'} eq 'FuncPtr' ) ||
+		    $entry{'Theadergroup'} != $HGid ) {
 			$nameonly=1;
 			displaytype(\%entry);
 			$nameonly=0;
@@ -100,7 +101,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 
 	$tmselect = "SELECT * FROM TypeMember ";
 	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
-	#$tmselect.= "LEFT JOIN Architecture ON ATMaid=Aid ";
+	#$tmselect.= "LEFT JOIN Architecture ON ATMaid = Aid ";
 	$tmselect.= "WHERE TMmemberof=$Tid ";
 	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
@@ -108,7 +109,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
-		$tselect = "SELECT * FROM Type WHERE Tid=$TMtypeid ";
+		$tselect = "SELECT * FROM Type WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
 		$nameonly=1;
@@ -280,6 +281,7 @@ if( $$type{'Ttype'} eq "Array" ) {
 	#print "[".$$type{'Tsize'}."]";
 	return;
 	}
+
 print "Unknown Type: \".$$type{'Ttype'}.\"\n";
 }
 
@@ -477,10 +479,11 @@ for(1..$sth->numrows) {
 	#print "Type ".$entry{'Tname'}."\n";
 	}
 
+$typelist=join ',', keys(%type);
+
 #
 # Get the base types of Typedefs
 #
-$typelist=join ',', keys(%type);
 
 if( $typelist ne "" ) { 
 	$select = "SELECT Tbasetype,Tname FROM Type ";
@@ -491,14 +494,14 @@ if( $typelist ne "" ) {
 	for(1..$sth->numrows) {
 		%entry=$sth->fetchhash;
 		$type{$entry{'Tbasetype'}}=1;
-		#print "Typedef ".$entry{'Tname'}."\n";
 		}
 	}
+
+$typelist=join ',', keys(%type);
 
 #
 # Get the base types of Pointers
 #
-$typelist=join ',', keys(%type);
 
 if( $typelist ne "" ) { 
 	$select = "SELECT Tbasetype,Tname FROM Type ";
@@ -515,6 +518,10 @@ if( $typelist ne "" ) {
 
 $typelist=join ',', keys(%type);
 
+#
+# Get the base types of Struct/Union members
+#
+
 if( $typelist ne "" ) { 
 	$select = "SELECT TMtypeid,TMname FROM TypeMember ";
 	$select.= "WHERE TMmemberof IN ($typelist)";
@@ -527,6 +534,8 @@ if( $typelist ne "" ) {
 		}
 	}
 
+$typelist=join ',', keys(%type);
+
 #
 # Set up multiple inclusion protection
 #
@@ -537,7 +546,6 @@ print "\n";
 #
 # Get the headers containing referenced types
 #
-$typelist=join ',', keys(%type);
 
 if( $typelist ne "" ) { 
 	$select = "SELECT DISTINCT Hname FROM Type ";
@@ -555,10 +563,6 @@ if( $typelist ne "" ) {
 			}
 		}
 	}
-
-#$typelist=join ',', keys(%type);
-
-#if( $typelist eq "" ) { exit 0; }
 
 
 #
@@ -579,6 +583,7 @@ for(1..$hgh->numrows) {
 	# Make sure a blank line is present between every group
 	print "\n";
 
+	# Since it's a header, document it 
 	if( $HGorder != 0 && $HGdesc ne "" ) {
 		print "/* ".$HGdesc."*/\n";
 		}
@@ -589,12 +594,14 @@ for(1..$hgh->numrows) {
 	$select.= "LEFT JOIN Architecture ON Aid=ACaid ";
 	$select.= "WHERE Cheadgroup=$HGid ";
 	#$select.= "AND ACaid=$Aid ";
-	$select.= "AND Cstd ='Yes' ";
+	$select.= "AND ( Cstd ='Yes' OR Cstd ='SrcOnly' )";
 	$select.=" ORDER BY ACvalue";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
 	for(1..$ch->numrows) {
 		%centry=$ch->fetchhash;
+		# If it's architecture sensitive, add the #if's to
+		# make it work correctly.
 		if( $centry{'Aid'} && $centry{'Aname'} ne "All" ) {
 			print "#if defined(".$centry{'Asymbol'}.")\n";
 			#print "/* ".$centry{'Aname'}." */\n";
@@ -611,7 +618,7 @@ for(1..$hgh->numrows) {
 	$select.= "LEFT JOIN Architecture ON Tarch=Aid ";
 	$select.= "LEFT JOIN ArchType ON ATaid=Aid AND ATtid=Tid ";
 	$select.= "WHERE Theadergroup=$HGid ";
-	$select.= "AND Tstatus != 'Excluded' ";
+	$select.= "AND Tstatus = 'Referenced' ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();
