@@ -72,6 +72,9 @@ extern "C"
 #if __s390__ && !__s390x__
 #define FE_INEXACT	0x08
 #endif
+#if __s390x__
+#define FE_INEXACT	0x08
+#endif
 #if __i386__
 #define FE_OVERFLOW	0x08
 #endif
@@ -82,6 +85,9 @@ extern "C"
 #define FE_UNDERFLOW	0x10
 #endif
 #if __s390__ && !__s390x__
+#define FE_UNDERFLOW	0x10
+#endif
+#if __s390x__
 #define FE_UNDERFLOW	0x10
 #endif
 #if __x86_64__
@@ -96,10 +102,19 @@ extern "C"
 #if __s390__ && !__s390x__
 #define FE_OVERFLOW	0x20
 #endif
+#if __s390x__
+#define FE_OVERFLOW	0x20
+#endif
 #if __s390__ && !__s390x__
 #define FE_DIVBYZERO	0x40
 #endif
+#if __s390x__
+#define FE_DIVBYZERO	0x40
+#endif
 #if __s390__ && !__s390x__
+#define FE_INVALID	0x80
+#endif
+#if __s390x__
 #define FE_INVALID	0x80
 #endif
 #if __ia64__
