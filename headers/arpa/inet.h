@@ -15,7 +15,6 @@ extern "C"
 
 
   extern unsigned long inet_addr (const char *);
-  extern int inet_aton (char *, struct in_addr *);
   extern char *inet_ntoa (struct in_addr);
   extern char *inet_ntop (int, void *, char *, size_t);
   extern int inet_pton (int, char *, void *);
