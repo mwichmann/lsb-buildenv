@@ -300,6 +300,7 @@ userlibs=argvinit();
 syslibs=argvinit();
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
+argvaddstring(syslibs,"-lgcc");
 
 gccargs=argvinit();
 argvaddstring(gccargs,"cc");
