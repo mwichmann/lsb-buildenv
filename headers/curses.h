@@ -44,6 +44,8 @@ extern "C"
 #define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
 
 
+  struct ldat;
+
 
 /* Stuff needed to make other curses related headers happy*/
 #define __NCURSES_H	1
