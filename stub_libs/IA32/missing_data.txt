@@ -32,8 +32,6 @@ libc _sys_errlist  1f4
 libc _sys_siglist 100
 libc __tzname 8
 # Generating c stubs for libstdcxx library
-libstdcxx  0
-libstdcxx  0
 libstdcxx _ZNSt14numeric_limitsIcE10has_denormE 4
 libstdcxx _ZNSt10ctype_base5digitE 2
 libstdcxx _ZTSSt18basic_stringstreamIcSt11char_traitsIcESaIcEE 31
