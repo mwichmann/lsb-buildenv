@@ -68,14 +68,17 @@ The package contains the following:
     are linked against ld-lsb.so.1 instead of ls-linux.so.2. It also
     adds the lsb stub library directory to the link search path. 
 
-  - rpm binaries
-    A statically linked version of rpm and associated binaries/scripts
-    and other infrastructure needed to package applications. You might
-    not need this if you have a version of rpm capable of generating
-    v3 format packages on your system.
-
   - setup scripts
     scripts to setup the chroot build environment
+
+  - LSB Header files
+
+It will also be useful to have a version of rpm installed which is
+capable of creating V3 format RPM packages. To work properly inside
+the development environment it may be necessary to have a statically
+linked version of the rpm binaries. A suitable version (lsb-rpm) is
+available from ftp://ftp.freestandards.org/pub/lsb/lsbdev. This should
+not be used for general package management.
 
 Partial Static Linking
 ----------------------
@@ -119,5 +122,5 @@ Feedback
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2001/11/18
+Last updated 2001/11/20
 
