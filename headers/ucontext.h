@@ -112,7 +112,7 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef unsigned long gregset_t;
+  typedef unsigned long gregset_t[48];
 
 #endif
 
