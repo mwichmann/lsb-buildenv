@@ -77,10 +77,6 @@ CXXABI_1.2.2 {
   _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev;
   _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev;
   _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev;
-  _ZN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEED0Ev;
-  _ZN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEED1Ev;
-  _ZN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEED0Ev;
-  _ZN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEED1Ev;
   _ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj;
   _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE;
   _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv;
@@ -3087,14 +3083,4 @@ GLIBCPP_3.2 {
 };
 GLIBCPP_3.2.2 {
   _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
-};
-GLIBCPP_3.2.4 {
-  _ZNSt21__ctype_abstract_baseIcED0Ev;
-  _ZNSt21__ctype_abstract_baseIcED1Ev;
-  _ZNSt21__ctype_abstract_baseIwED0Ev;
-  _ZNSt21__ctype_abstract_baseIwED1Ev;
-  _ZNSt23__codecvt_abstract_baseIcc11__mbstate_tED0Ev;
-  _ZNSt23__codecvt_abstract_baseIcc11__mbstate_tED1Ev;
-  _ZNSt23__codecvt_abstract_baseIwc11__mbstate_tED0Ev;
-  _ZNSt23__codecvt_abstract_baseIwc11__mbstate_tED1Ev;
 };
