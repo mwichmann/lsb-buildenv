@@ -1,2 +1,55 @@
-typedef void	__sighandler_t	; 
+typedef union sigval	
+{
+int	sival_int;	
+void	* sival_ptr;	
+}
+sigval_t	
+;
+
+/*
+ * 41 Default HeaderGroup for signal.h
+ */
+typedef void	(*__sighandler_t)()
+
+;
+
+struct sigevent	{
+sigval_t	sigev_value;	
+int	sigev_signo;	
+int	sigev_notify;	
+}
+;
+
+typedef struct 	{
+unsigned long	__val[1];	
+}
+__sigset_t	
+;
+
+typedef __sigset_t	sigset_t	
+;
+
+struct sigaction	;
+
+typedef struct 	{
+int	si_band;	
+int	si_fd;	
+struct 	_sifields;	
+struct 	_sigpoll;	
+}
+siginfo_t	
+;
+
+struct sigaltstack	{
+void	* ss_sp;	
+int	ss_flags;	
+size_t	ss_size;	
+}
+;
+
+struct sigstack	{
+void	* ss_sp;	
+int	ss_onstack;	
+}
+;
 

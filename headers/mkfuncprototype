@@ -18,6 +18,49 @@ die "mkfuncprototype -h <headername>";
 # Uncomment to trace SQL statments
 #$trace=1;
 
+sub
+displaytype($)
+{
+local ($param) = @_;
+local(%select,$sth,%type);
+
+if( $$param{'Ttype'} eq "Intrinsic" ) {
+	print $$param{'Tname'};
+	return;
+	}
+
+if( $$param{'Ttype'} eq "Pointer" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	%type=$sth->fetchhash;
+	displaytype(\%type);
+	print " *";
+	return;
+	}
+
+if( $$param{'Ttype'} eq "Struct" ) {
+	print "struct ".$$param{'Tname'};
+	return;
+	}
+
+if( $$param{'Ttype'} eq "Typedef" ) {
+	print $$param{'Tname'};
+	return;
+	}
+
+if( $$param{'Ttype'} eq "Union" ) {
+	print "union ".$$param{'Tname'};
+	return;
+	}
+
+if( $$param{'Ttype'} eq "Enum" ) {
+	print $$param{'Tname'};
+	return;
+	}
+
+print $$param{'Ttype'};
+}
+
 GetOptions("h=s" => \$headname);
  
 if( !$headname ) { usage(); }  
@@ -26,7 +69,7 @@ $headname =~ s/^\.\///;
 
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
-$select = "SELECT Iid,Itype,Iname,Tname FROM Interface,Header,Type ";
+$select = "SELECT * FROM Interface,Header,Type ";
 $select.= "WHERE Istatus='Included' ";
 $select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
 $select.= "AND Ireturn=Tid";
@@ -36,23 +79,29 @@ $sth = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$sth->numrows) {
 	%entry=$sth->fetchhash;
 	if( $entry{'Itype'} eq "Function" ) {
-		printf "%s %s(",$entry{'Tname'},$entry{'Iname'};
-		$select = "SELECT Tname FROM Type,Parameter ";
+		if( $entry{'Ttype'} eq 'FuncPtr' ) {
+			next;
+			}
+		displaytype(\%entry);
+		printf " %s(",$entry{'Iname'};
+		$select = "SELECT Tname,Ttype,Tbasetype FROM Type,Parameter ";
 		$select.= "WHERE Pint=".$entry{'Iid'}." AND Ptype=Tid ";
 		$select.= "ORDER BY  Ppos";
 		print $select,"\n" if $trace;
 		$sth2 = $Dbh->query($select) || die $Dbh->errmsg();
 		if( $sth2->numrows != 0 ) {
 			%entry2=$sth2->fetchhash;
-			printf "%s",$entry2{'Tname'};
+			displaytype(\%entry2);
 			for(2..$sth2->numrows) {
 				%entry2=$sth2->fetchhash;
-				printf ", %s",$entry2{'Tname'};
+				print ", ";
+				displaytype(\%entry2);
 			}
 		}
 	printf ");\n";
 	}
 	if( $entry{'Itype'} eq "Data" ) {
-		printf "%s %s;\n",$entry{'Tname'},$entry{'Iname'};
+		displaytype(\%entry);
+		printf " %s;\n",$entry{'Iname'};
 	}
 }

@@ -1,10 +1,10 @@
-int __fxstat(int, int, stat *);
-int __fxstat64(int, int, stat64 *);
-int __lxstat(int, char *, stat *);
-int __lxstat64(int, char *, stat64 *);
+int __fxstat(int, int, struct stat *);
+int __fxstat64(int, int, struct stat64 *);
+int __lxstat(int, char *, struct stat *);
+int __lxstat64(int, char *, struct stat64 *);
 int __xmknod(int, char *, __mode_t, __dev_t *);
-int __xstat(int, char *, stat *);
-int __xstat64(int, char *, stat64 *);
+int __xstat(int, char *, struct stat *);
+int __xstat64(int, char *, struct stat64 *);
 int mkfifo(char *, __mode_t);
 int chmod(char *, __mode_t);
 int fchmod(int, __mode_t);

@@ -1,1 +1,1 @@
-int uname(utsname *);
+int uname(struct utsname *);

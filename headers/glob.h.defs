@@ -1,2 +1,41 @@
-Unknown Type: ".."
+/*
+ * 3 Default HeaderGroup for glob.h
+ */
+typedef struct 	{
+__size_t	gl_pathc;	
+char	* * gl_pathv;	
+__size_t	gl_offs;	
+int	gl_flags;	
+void	(*gl_closedir)()
+;	
+struct dirent64	* (*gl_readdir)()
+;	
+void	* (*gl_opendir)()
+;	
+int	(*gl_lstat)()
+;	
+int	(*gl_stat)()
+;	
+}
+glob_t	
+;
+
+typedef struct 	{
+__size_t	gl_pathc;	
+char	* * gl_pathv;	
+__size_t	gl_offs;	
+int	gl_flags;	
+void	(*gl_closedir)()
+;	
+struct dirent64	* (*gl_readdir)()
+;	
+void	* (*gl_opendir)()
+;	
+int	(*gl_lstat)()
+;	
+int	(*gl_stat)()
+;	
+}
+glob64_t	
+;
 

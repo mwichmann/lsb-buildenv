@@ -1,32 +1,125 @@
-typedef struct _SmsConn	* SmsConn	; 
+/*
+ * 119 Generic SM pointer, Connection objects.  Defined in SMlibint.h
+ */
+typedef IcePointer	SmPointer	
+;
 
-typedef void	(*SmcPropReplyProc)()
-; 
+typedef struct _SmcConn	* SmcConn	
+;
 
-typedef void	(*SmcInteractProc)()
-; 
+typedef struct _SmsConn	* SmsConn	
+;
 
-typedef void	(*SmcSaveYourselfPhase2Proc)()
-; 
+/*
+ * 121 Session Management property
+ */
+typedef struct 	{
+int	length;	
+SmPointer	value;	
+}
+SmPropValue	
+;
 
-typedef enum {
-	
+typedef struct 	{
+char	* name;	
+char	* type;	
+int	num_vals;	
+SmPropValue	* vals;	
+}
+SmProp	
+;
+
+/*
+ * 127 SmcCloseConnection status return
+ */
+typedef enum 	
+{
 SmcClosedNow,	
 SmcClosedASAP,	
 SmcConnectionInUse
 }
-SmcCloseStatus	; 
+SmcCloseStatus	
+;
 
-typedef void	(*SmsErrorHandler)()
-; 
+/*
+ * 120 Client callbacks
+ */
+typedef void	(*SmcSaveYourselfPhase2Proc)()
 
-typedef struct _SmcConn	* SmcConn	; 
+;
 
-typedef IcePointer	SmPointer	; 
+typedef void	(*SmcInteractProc)()
 
-typedef void	(*SmcErrorHandler)()
-; 
+;
+
+typedef void	(*SmcDieProc)()
+
+;
+
+typedef void	(*SmcShutdownCancelledProc)()
+
+;
+
+typedef void	(*SmcSaveCompleteProc)()
+
+;
+
+typedef void	(*SmcPropReplyProc)()
+
+;
+
+/*
+ * 122 Callbacks set up at SmcOpenConnection time
+ */
+typedef struct 	{
+SmcShutdownCancelledProc	callback;	
+SmPointer	client_data;	
+struct 	shutdown_cancelled;	
+}
+SmcCallbacks	
+;
+
+/*
+ * 123 Session manager callbacks
+ */
+typedef void	(*SmsSetPropertiesProc)()
+
+;
+
+typedef void	(*SmsDeletePropertiesProc)()
+
+;
+
+typedef void	(*SmsGetPropertiesProc)()
+
+;
+
+/*
+ * 124 Callbacks set up by a session manager when a new client connects.
+ */
+typedef struct 	{
+SmsGetPropertiesProc	callback;	
+SmPointer	manager_data;	
+struct 	get_properties;	
+}
+SmsCallbacks	
+;
 
 typedef int	(*SmsNewClientProc)()
-; 
 
+;
+
+/*
+ * 126 Error handlers
+ */
+typedef void	(*SmcErrorHandler)()
+
+;
+
+typedef void	(*SmsErrorHandler)()
+
+;
+
+/*
+ * 9 Default HeaderGroup for X11/SM/SMlib.h
+ */

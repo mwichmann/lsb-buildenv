@@ -1,14 +1,24 @@
-typedef XID	GLXPixmap	; 
+/*
+ * 2 Default HeaderGroup for GL/glx.h
+ */
+typedef struct __GLXcontextRec	* GLXContext	
+;
 
-typedef struct __GLXcontextRec	* GLXContext	; 
+typedef struct __GLXFBConfigRec	* GLXFBConfig	
+;
 
-typedef struct __GLXFBConfigRec	* GLXFBConfig	; 
+typedef XID	GLXContextID	
+;
 
-typedef XID	GLXContextID	; 
+typedef XID	GLXPixmap	
+;
 
-typedef XID	GLXWindow	; 
+typedef XID	GLXDrawable	
+;
 
-typedef XID	GLXPbuffer	; 
+typedef XID	GLXPbuffer	
+;
 
-typedef XID	GLXDrawable	; 
+typedef XID	GLXWindow	
+;
 

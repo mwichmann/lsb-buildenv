@@ -1,0 +1,15 @@
+/*
+ * 77 Default HeaderGroup for X11/extensions/security.h
+ */
+typedef unsigned long	XSecurityAuthorization	
+;
+
+typedef struct 	{
+unsigned int	timeout;	
+unsigned int	trust_level;	
+XID	group;	
+long	event_mask;	
+}
+XSecurityAuthorizationAttributes	
+;
+

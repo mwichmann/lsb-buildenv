@@ -1,36 +1,26 @@
-typedef union {
-	
-sockaddr *	__sockaddr__;	
-sockaddr_at *	__sockaddr_at__;	
-sockaddr_ax25 *	__sockaddr_ax25__;	
-sockaddr_dl *	__sockaddr_dl__;	
-sockaddr_eon *	__sockaddr_eon__;	
-sockaddr_in *	__sockaddr_in__;	
-sockaddr_in6 *	__sockaddr_in6__;	
-sockaddr_inarp *	__sockaddr_inarp__;	
-sockaddr_ipx *	__sockaddr_ipx__;	
-sockaddr_iso *	__sockaddr_iso__;	
-sockaddr_ns *	__sockaddr_ns__;	
-sockaddr_un *	__sockaddr_un__;	
-sockaddr_x25 *	__sockaddr_x25__;	
-}
-__CONST_SOCKADDR_ARG	; 
+typedef unsigned short	sa_family_t	
+;
 
-typedef union {
-	
-sockaddr *	__sockaddr__;	
-sockaddr_at *	__sockaddr_at__;	
-sockaddr_ax25 *	__sockaddr_ax25__;	
-sockaddr_dl *	__sockaddr_dl__;	
-sockaddr_eon *	__sockaddr_eon__;	
-sockaddr_in *	__sockaddr_in__;	
-sockaddr_in6 *	__sockaddr_in6__;	
-sockaddr_inarp *	__sockaddr_inarp__;	
-sockaddr_ipx *	__sockaddr_ipx__;	
-sockaddr_iso *	__sockaddr_iso__;	
-sockaddr_ns *	__sockaddr_ns__;	
-sockaddr_un *	__sockaddr_un__;	
-sockaddr_x25 *	__sockaddr_x25__;	
+typedef unsigned int	socklen_t	
+;
+
+/*
+ * 48 Default HeaderGroup for sys/socket.h
+ */
+struct sockaddr	{
+sa_family_t	sa_family;	
+char	sa_data[1];	
 }
-__SOCKADDR_ARG	; 
+;
+
+struct msghdr	{
+void	* msg_name;	
+socklen_t	msg_namelen;	
+struct iovec	* msg_iov;	
+size_t	msg_iovlen;	
+void	* msg_control;	
+size_t	msg_controllen;	
+int	msg_flags;	
+}
+;
 

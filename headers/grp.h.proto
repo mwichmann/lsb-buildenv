@@ -1,5 +1,5 @@
 void endgrent(void);
-group * getgrent(void);
-group * getgrgid(__gid_t);
-group * getgrnam(char *);
+struct group * getgrent(void);
+struct group * getgrgid(__gid_t);
+struct group * getgrnam(char *);
 void setgrent(void);

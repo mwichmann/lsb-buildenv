@@ -1,1 +1,1 @@
-clock_t times(tms *);
+ times(struct tms *);

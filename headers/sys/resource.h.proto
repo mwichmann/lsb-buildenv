@@ -1,6 +1,6 @@
-int getpriority(enum, enum __priority_which, int);
-int getrlimit64(enum, enum __rlimit_resource, rlimit64 *);
-int setpriority(enum, enum __priority_which, int, int);
-int setrlimit(enum, enum __rlimit_resource, rlimit *);
-int getrlimit(enum, enum __rlimit_resource, rlimit *);
-int getrusage(enum, enum __rusage_who, rusage *);
+int getpriority(, , int);
+int getrlimit64(, , struct rlimit64 *);
+int setpriority(, , int, int);
+int setrlimit(, , struct rlimit *);
+int getrlimit(, , struct rlimit *);
+int getrusage(, , struct rusage *);

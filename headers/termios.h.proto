@@ -1,11 +1,11 @@
-speed_t cfgetispeed(termios *);
-speed_t cfgetospeed(termios *);
-int cfsetispeed(termios *, speed_t);
-int cfsetospeed(termios *, speed_t);
+ cfgetispeed(struct termios *);
+ cfgetospeed(struct termios *);
+int cfsetispeed(struct termios *, );
+int cfsetospeed(struct termios *, );
 int tcflow(int, int);
 int tcflush(int, int);
 __pid_t tcgetsid(int);
 int tcsendbreak(int, int);
-int tcsetattr(int, int, termios *);
+int tcsetattr(int, int, struct termios *);
 int tcdrain(int);
-int tcgetattr(int, termios *);
+int tcgetattr(int, struct termios *);

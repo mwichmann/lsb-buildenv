@@ -1,12 +1,15 @@
+.SUFFIXES: .h
 
-all: stdio.h
+%.h:
+	./mkfuncprototype -h $@ >$@.proto; \
+	./mkdatadef -a All -h $@ >$@.defs  ; \
+	if [ -f $@.m4 ];then \
+		(cd `dirname $@`;m4 -Uindex -Uformat `basename $@`.m4 | \
+		grep -v '^\# '| indent >`basename $@`);fi; \
 
-stdio.h:
+all:
 	for h in `./getheaderlist`; do \
-		./mkfuncprototype -h $$h >$$h.proto; \
-		./mkdatadef -a All -h $$h >$$h.defs  ; \
-		if [ -f $$h.m4 ];then (cd `dirname $$h`;m4 `basename $$h`.m4 | \
-			grep -v '^\# '| indent >`basename $$h`);fi; \
+		make $$h; \
 	done
 
 install:

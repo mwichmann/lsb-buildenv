@@ -1,0 +1,14 @@
+/*
+ * 39 Default HeaderGroup for semaphore.h
+ */
+typedef struct 	{
+struct 	__sem_lock;	
+long	status;	
+int	__sem_value;	
+int	spinlock;	
+Unknown Type: ".."
+__sem_waiting;	
+}
+sem_t	
+;
+

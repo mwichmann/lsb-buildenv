@@ -22,6 +22,7 @@ displaytype($)
 local ($type) = @_;
 local (*entry,*tentry,*tmentry);
 local($th);
+local($tmh);
 
 #print $$type{'Tname'};
 #print $$type{'Ttype'};
@@ -42,7 +43,8 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	%entry=$tth->fetchhash;
 # Something about anon or not & wether to set nameonly
 	if (!$nameonly) {
-		if( $entry{'Ttype'} eq 'Typedef' ) {
+		if( $entry{'Ttype'} eq 'Typedef' ||
+		    $entry{'Ttype'} eq 'FuncPtr' ) {
 			$nameonly=1;
 			displaytype(\%entry);
 			$nameonly=0;
@@ -50,29 +52,34 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 			displaytype(\%entry);
 			}
 		}
-	if( $entry{'Ttype'} ne 'FuncPtr' ) {
+	if( $entry{'Ttype'} ne 'FuncPtr' || $nameonly ) {
 		print $$type{'Tname'}."\t";
 		}
 	if (!$nameonly) {
-		print "; ";
 		print $$type{'Tcomment'}."\n";
 		}
 	return;
 	}
 
 if( $$type{'Ttype'} eq "Pointer" ) {
-	#if (!$nameonly) { print "* "; }
 	$basetype=$$type{'Tbasetype'};
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
 	if (!$nameonly) {
-		displaytype(\%entry);
+		if( $entry{'Ttype'} eq 'Typedef' ||
+		    $entry{'Ttype'} eq 'FuncPtr' ) {
+			$nameonly=1;
+			displaytype(\%entry);
+			$nameonly=0;
+		} else {
+			displaytype(\%entry);
+			}
 		print "* ";
 	} else {
-		print $$type{'Tname'}."\t";
+		displaytype(\%entry);
+		print "* ";
 	}
-	#print $$type{'Tcomment'}."\n";
 	return;
 	}
 
@@ -99,7 +106,9 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		%entry=$th->fetchhash;
 		$nameonly=1;
 		displaytype(\%entry);
-		print $tmentry{'TMname'};
+		if( $entry{'Ttype'} ne 'FuncPtr' ) {
+			print $tmentry{'TMname'};
+			}
 		if( $tmentry{'TMarray'} ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
@@ -113,18 +122,19 @@ if( $$type{'Ttype'} eq "Struct" ) {
 
 if( $$type{'Ttype'} eq "Union" ) {
 	print "union ";
-	if (!$nameonly ) { print "{\n"; }
-	$Tid=$$type{'Tid'};
+
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
 		}
 	print $$type{'Tname'}."\t";
+	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
-	print $$type{'Tcomment'}."\n";
+	#print $$type{'Tcomment'}."\n";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
@@ -133,7 +143,9 @@ if( $$type{'Ttype'} eq "Union" ) {
 		%entry=$th->fetchhash;
 		$nameonly=1;
 		displaytype(\%entry);
-		print $tmentry{'TMname'};
+		if( $entry{'Ttype'} ne 'FuncPtr' ) {
+			print $tmentry{'TMname'};
+			}
 		if( $tmentry{'TMarray'} ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
@@ -141,13 +153,12 @@ if( $$type{'Ttype'} eq "Union" ) {
 		print $tmentry{'TMcomment'}."\n";
 		$nameonly=0;
 		}
-	print "}\n";
+	if ($tmh->numrows ) { print "}\n"; }
 	return;
 	}
 
 if( $$type{'Ttype'} eq "Enum" ) {
 	print "enum ";
-	if (!$nameonly ) { print "{\n"; }
 	$Tid=$$type{'Tid'};
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
@@ -159,6 +170,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		# It's an enum, don't print out the types, just the names
@@ -178,7 +190,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		print $tmentry{'TMcomment'}."\n";
 		$nameonly=0;
 		}
-	print "}\n";
+	if ($tmh->numrows ) { print "}\n"; }
 	return;
 	}
 
@@ -187,7 +199,13 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
-	displaytype(\%entry);
+	if( !$nameonly ) {
+		$nameonly=1;
+		displaytype(\%entry);
+		$nameonly=0;
+	} else {
+		displaytype(\%entry);
+		}
 	print "(*"; 
 	$Tid=$$type{'Tid'};
 	if( $$type{'Tname'} =~ "fptr" ) {
@@ -323,7 +341,7 @@ if( $typelist eq "" ) { exit 0; }
 #
 # Use the algorithm from admin/headers.php3
 
-$select = "SELECT HGid FROM HeaderGroup ";
+$select = "SELECT HGid,HGdescription FROM HeaderGroup ";
 $select.= "WHERE HGheader=$Hid ";
 $select.= "ORDER BY HGorder";
 print $select,"\n" if $trace;
@@ -331,16 +349,22 @@ $hgh = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
+	$HGdesc=$entry{'HGdescription'};
+	if ($HGdesc ne "" ) {
+		print "/*\n * $HGid $HGdesc\n */\n";
+		}
 	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
 	$select.= "AND Tarch=$Aid ";
-	$select.= "AND Tid IN ($typelist)";
+	$select.= "AND Tstatus != 'Excluded' ";
+	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();
 	print $th->numrows," rows\n" if $trace;
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		displaytype(\%tentry);
-		print "\n";
+		print ";";
+		print $tentry{'Tcomment'}."\n\n";
 		}
 	}
 
