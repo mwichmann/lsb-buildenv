@@ -25,6 +25,8 @@ extern "C"
   }
    ;
 
+#if __i386__
+/* IA32 */
   struct lastlog
   {
     time_t ll_time;
@@ -33,6 +35,73 @@ extern "C"
   }
    ;
 
+#endif
+#if __ia64__
+/* IA64 */
+  struct lastlog
+  {
+    time_t ll_time;
+    char ll_line[UT_LINESIZE];
+    char ll_host[UT_HOSTSIZE];
+  }
+   ;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  struct lastlog
+  {
+    time_t ll_time;
+    char ll_line[UT_LINESIZE];
+    char ll_host[UT_HOSTSIZE];
+  }
+   ;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  struct lastlog
+  {
+    int32_t ll_time;
+    char ll_line[UT_LINESIZE];
+    char ll_host[UT_HOSTSIZE];
+  }
+   ;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  struct lastlog
+  {
+    time_t ll_time;
+    char ll_line[UT_LINESIZE];
+    char ll_host[UT_HOSTSIZE];
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct lastlog
+  {
+    int32_t ll_time;
+    char ll_line[UT_LINESIZE];
+    char ll_host[UT_HOSTSIZE];
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct lastlog
+  {
+    time_t ll_time;
+    char ll_line[UT_LINESIZE];
+    char ll_host[UT_HOSTSIZE];
+  }
+   ;
+
+#endif
 
 /* The structure describing an entry in the user accounting database.*/
 
