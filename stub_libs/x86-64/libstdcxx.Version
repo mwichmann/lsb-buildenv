@@ -47,8 +47,6 @@ CXXABI_1.2 {
   __gxx_personality_v0;
 };
 CXXABI_1.2.2 {
-  _ZN10__cxxabiv111__terminateEPFvvE;
-  _ZN10__cxxabiv112__unexpectedEPFvvE;
   _ZN10__cxxabiv116__enum_type_infoD0Ev;
   _ZN10__cxxabiv116__enum_type_infoD1Ev;
   _ZN10__cxxabiv116__enum_type_infoD2Ev;
@@ -79,14 +77,10 @@ CXXABI_1.2.2 {
   _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev;
   _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev;
   _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev;
-  _ZN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEE2fdEv;
   _ZN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEED0Ev;
   _ZN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEED1Ev;
-  _ZN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEED2Ev;
-  _ZN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEE2fdEv;
   _ZN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEED0Ev;
   _ZN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEED1Ev;
-  _ZN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEED2Ev;
   _ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj;
   _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE;
   _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv;
