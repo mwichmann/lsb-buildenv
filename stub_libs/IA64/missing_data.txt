@@ -31,6 +31,7 @@ libXt wmShellWidgetClass 8
 # libncurses
 libncurses curscr 8
 libncurses stdscr 8
+libncurses acs_map  80
 # libc
 libc _IO_2_1_stderr_ e0
 libc _IO_2_1_stdin_ e0

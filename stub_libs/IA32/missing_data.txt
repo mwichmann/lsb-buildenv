@@ -23,6 +23,7 @@ libXt XtStrings a59
 # Generating c stubs for libm library
 libm clog  fb
 # Generating c stubs for libncurses library
+libncurses acs_map  80
 # Generating c stubs for libc library
 libc _IO_2_1_stderr_  98
 libc _IO_2_1_stdin_  98

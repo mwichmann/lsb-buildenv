@@ -17,6 +17,8 @@ void pthread_attr_setscope() {} ;
 void pthread_attr_setstackaddr() {} ;
 void pthread_attr_setstacksize() {} ;
 void pthread_cancel() {} ;
+void pthread_cleanup_pop() {} ;
+void pthread_cleanup_push() {} ;
 void pthread_cond_broadcast() {} ;
 void pthread_cond_destroy() {} ;
 void pthread_cond_init() {} ;

@@ -1,5 +1,6 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.2 {
+  pthread_atfork;
   pthread_attr_destroy;
   pthread_attr_getdetachstate;
   pthread_attr_getguardsize;
@@ -19,6 +20,8 @@ GLIBC_2.2 {
   pthread_attr_setstackaddr;
   pthread_attr_setstacksize;
   pthread_cancel;
+  pthread_cleanup_pop;
+  pthread_cleanup_push;
   pthread_cond_broadcast;
   pthread_cond_destroy;
   pthread_cond_init;

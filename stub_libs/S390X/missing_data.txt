@@ -1,4 +1,5 @@
 # Numbers are in hex
+libncurses acs_map  80
 # Generating c stubs for libXt library
 libXt _XtInheritTranslations 4
 libXt overrideShellClassRec 118 
