@@ -89,7 +89,7 @@ extern "C"
   extern char **_sys_errlist;
   extern void clearerr (FILE *);
   extern int fclose (FILE *);
-  extern FILE *fdopen (int, char *);
+  extern FILE *fdopen (int, const char *);
   extern int fflush_unlocked (FILE *);
   extern int fileno (FILE *);
   extern FILE *fopen (const char *, const char *);

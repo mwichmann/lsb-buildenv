@@ -13,7 +13,10 @@ extern "C"
 
 
 /* priorities (these are ordered)*/
+#define LOG_MAKEPRI(fac, pri)	(((fac) << 3) | (pri))
+#define LOG_PRI(p)	((p) & LOG_PRIMASK)
 #define LOG_EMERG	0
+#define LOG_PRIMASK	0x07
 #define LOG_ALERT	1
 #define LOG_CRIT	2
 #define LOG_ERR	3
@@ -25,6 +28,7 @@ extern "C"
 
 
 /* facility codes*/
+#define LOG_FAC(p)	(((p) & LOG_FACMASK) >> 3)
 #define LOG_KERN	(0<<3)
 #define LOG_AUTHPRIV	(10<<3)
 #define LOG_FTP	(11<<3)
@@ -37,6 +41,7 @@ extern "C"
 #define LOG_NEWS	(7<<3)
 #define LOG_UUCP	(8<<3)
 #define LOG_CRON	(9<<3)
+#define LOG_FACMASK	0x03f8
 
 
 

@@ -19,7 +19,7 @@ extern "C"
 
 
 
-  extern int fnmatch (char *, char *, int);
+  extern int fnmatch (const char *, const char *, int);
 #ifdef __cplusplus
 }
 #endif

@@ -20,8 +20,10 @@ extern "C"
    ;
 
 
-  extern int getopt_long (int, char **, char *, struct option *, int *);
-  extern int getopt_long_only (int, char **, char *, struct option *, int *);
+  extern int getopt_long (int, char *const[], const char *,
+			  const struct option *, int *);
+  extern int getopt_long_only (int, char *const[], const char *,
+			       const struct option *, int *);
 #ifdef __cplusplus
 }
 #endif
