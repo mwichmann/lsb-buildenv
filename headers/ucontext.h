@@ -254,6 +254,16 @@ extern "C"
 
 
 
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  union uc_regs_ptr
+  {
+    struct pt_regs *regs;
+    mcontext_t *uc_regs;
+  }
+   ;
+
+#endif
 
 /* Context to describe whole processor state.*/
 
@@ -371,25 +381,9 @@ extern "C"
     struct ucontext *uc_link;
     stack_t uc_stack;
     int uc_pad[7];
-    union uc_regs_ptr {
-      struct pt_regs *regs;
-      mcontext_t *uc_regs;
-    } uc_mcontext;
+    union uc_regs_ptr uc_mcontext;
     sigset_t uc_sigmask;
     char uc_reg_space[50];
-  }
-  ucontext_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef struct ucontext
-  {
-    unsigned long uc_flags;
-    struct ucontext *uc_link;
-    stack_t uc_stack;
-    sigset_t uc_sigmask;
-    mcontext_t uc_mcontext;
   }
   ucontext_t;
 
@@ -430,6 +424,19 @@ extern "C"
     mcontext_t uc_mcontext;
     sigset_t uc_sigmask;
     struct _libc_fpstate __fpregs_mem;
+  }
+  ucontext_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    sigset_t uc_sigmask;
+    mcontext_t uc_mcontext;
   }
   ucontext_t;
 
