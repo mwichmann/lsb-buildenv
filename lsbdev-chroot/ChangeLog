@@ -1,3 +1,15 @@
+2002-06-28  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Changes required for package split into lsbdev-base
+	  and lsbdev-chroot
+
+2002-04-11  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Synchronises with latest LSB header files and stub libraries
+	* Adds dynamic gcc spec file mangling
+	* Removes default users from config file
+	
+
 2002-04-10  Christopher Yeoh  <cyeoh@samba.org>
 
 	* Support for IA64 added
