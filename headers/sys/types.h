@@ -56,6 +56,8 @@ extern "C"
   }
   fsid_t;
 
+  typedef unsigned int useconds_t;
+
   typedef unsigned long blksize_t;
 
   typedef long fd_mask;
