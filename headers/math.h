@@ -141,10 +141,6 @@ extern "C"
   extern int __isnanl (long double);
   extern int __signbit (double);
   extern int __signbitf (float);
-#if __s390x__
-/* S390X */
-  extern int __signbitl (long double);
-#endif
   extern int __fpclassify (double);
   extern int __fpclassifyf (float);
 #if __i386__
@@ -245,7 +241,10 @@ extern "C"
   extern long double erfl (long double);
   extern double exp2 (double);
   extern float exp2f (float);
+#if __x86_64__
+/* x86-64 */
   extern long double exp2l (long double);
+#endif
   extern float expf (float);
   extern long double expl (long double);
   extern float expm1f (float);
@@ -381,13 +380,17 @@ extern "C"
 /* IA64 */
   extern int __signbitl (long double);
 #endif
-#if __s390__ && !__s390x__
-/* S390 */
-  extern int __signbitl (long double);
-#endif
 #if __x86_64__
 /* x86-64 */
   extern int __signbitl (long double);
+#endif
+#if __i386__
+/* IA32 */
+  extern long double exp2l (void);
+#endif
+#if __ia64__
+/* IA64 */
+  extern long double exp2l (void);
 #endif
 #ifdef __cplusplus
 }
