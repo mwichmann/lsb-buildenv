@@ -668,7 +668,6 @@ GLIBC_2.0 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
-  __ctype_b;
   __ctype_tolower;
   __ctype_toupper;
   __daylight;

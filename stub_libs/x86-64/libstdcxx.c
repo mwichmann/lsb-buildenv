@@ -152,6 +152,7 @@ void _ZNKSt11__timepunctIwE7_M_ampmEPPKw() {} ;
 void _ZNKSt11__timepunctIwE7_M_daysEPPKw() {} ;
 void _ZNKSt11__timepunctIwE9_M_monthsEPPKw() {} ;
 void _ZNKSt11logic_error4whatEv() {} ;
+void _ZNKSt12__basic_fileIcE7is_openEv() {} ;
 void _ZNKSt12strstreambuf6pcountEv() {} ;
 void _ZNKSt13basic_filebufIcSt11char_traitsIcEE7is_openEv() {} ;
 void _ZNKSt13basic_filebufIwSt11char_traitsIwEE7is_openEv() {} ;

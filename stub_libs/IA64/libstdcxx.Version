@@ -1500,7 +1500,6 @@ GLIBCPP_3.2 {
   _ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvm;
   _ZNSt24__default_alloc_templateILb1ELi0EE10reallocateEPvmm;
   _ZNSt24__default_alloc_templateILb1ELi0EE11_S_round_upEm;
-  _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
   _ZNSt24__default_alloc_templateILb1ELi0EE14_S_chunk_allocEmRi;
   _ZNSt24__default_alloc_templateILb1ELi0EE17_S_freelist_indexEm;
   _ZNSt24__default_alloc_templateILb1ELi0EE5_LockC1Ev;
@@ -2954,4 +2953,7 @@ GLIBCPP_3.2 {
   _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE;
   _ZTVSt9strstream;
   _ZTVSt9type_info;
+};
+GLIBCPP_3.2.2 {
+  _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
 };

@@ -803,7 +803,6 @@ void xdr_wrapstring() {} ;
 void xdrmem_create() {} ;
 void xdrrec_create() {} ;
 void xdrrec_eof() {} ;
-__asm__(".comm __ctype_b,4");
 __asm__(".globl __ctype_tolower; .pushsection .data; .type __ctype_tolower,@object; .size __ctype_tolower, 4; __ctype_tolower: .long 0; .popsection");
 __asm__(".comm __ctype_toupper,4");
 __asm__(".globl __daylight; .pushsection .data; .type __daylight,@object; .size __daylight, 4; __daylight: .long 0; .popsection");

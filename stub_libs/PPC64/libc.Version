@@ -249,7 +249,6 @@ GLIBC_2.2.5 {
   getgroups;
   gethostbyaddr;
   gethostbyname;
-  gethostbyname_r;
   gethostid;
   gethostname;
   getitimer;
@@ -801,7 +800,6 @@ GLIBC_2.2.5 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
-  __ctype_b;
   __ctype_tolower;
   __ctype_toupper;
   __daylight;
@@ -829,5 +827,8 @@ GLIBC_2.2.5 {
   tzname;
 };
 GLIBC_2.3 {
+  __ctype_b_loc;
+  __ctype_tolower_loc;
+  __ctype_toupper_loc;
   realpath;
 };

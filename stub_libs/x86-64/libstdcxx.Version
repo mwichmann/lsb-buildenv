@@ -202,6 +202,7 @@ GLIBCPP_3.2 {
   _ZNKSt11__timepunctIwE7_M_daysEPPKw;
   _ZNKSt11__timepunctIwE9_M_monthsEPPKw;
   _ZNKSt11logic_error4whatEv;
+  _ZNKSt12__basic_fileIcE7is_openEv;
   _ZNKSt12strstreambuf6pcountEv;
   _ZNKSt13basic_filebufIcSt11char_traitsIcEE7is_openEv;
   _ZNKSt13basic_filebufIwSt11char_traitsIwEE7is_openEv;
@@ -1212,7 +1213,6 @@ GLIBCPP_3.2 {
   _ZNSt19basic_ostringstreamIwSt11char_traitsIwESaIwEED0Ev;
   _ZNSt19basic_ostringstreamIwSt11char_traitsIwESaIwEED1Ev;
   _ZNSt19basic_ostringstreamIwSt11char_traitsIwESaIwEED2Ev;
-  _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
   _ZNSt24__default_alloc_templateILb1ELi0EE5_LockC1Ev;
   _ZNSt24__default_alloc_templateILb1ELi0EE5_LockD1Ev;
   _ZNSt5ctypeIcE13classic_tableEv;
@@ -2580,4 +2580,7 @@ GLIBCPP_3.2 {
   _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE;
   _ZTVSt9strstream;
   _ZTVSt9type_info;
+};
+GLIBCPP_3.2.2 {
+  _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
 };
