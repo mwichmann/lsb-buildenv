@@ -28,9 +28,6 @@ libXt widgetClass 8
 libXt widgetClassRec e0
 libXt wmShellClassRec 118
 libXt wmShellWidgetClass 8
-# libncurses
-libncurses curscr 8
-libncurses stdscr 8
 # libc
 libc _IO_2_1_stderr_ e0
 libc _IO_2_1_stdin_ e0
