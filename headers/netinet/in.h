@@ -49,6 +49,22 @@ extern "C"
    ;
 
 
+/* Multicast interfaces to setsockopt()*/
+#define IP_MULTICAST_IF	32
+#define IP_MULTICAST_TTL	33
+#define IP_MULTICAST_LOOP	34
+#define IP_ADD_MEMBERSHIP	35
+#define IP_DROP_MEMBERSHIP	36
+
+
+  struct ip_mreq
+  {
+    struct in_addr imr_multiaddr;	/* IP multicast address of group */
+    struct in_addr imr_interface;	/* local IP address of interface */
+  }
+   ;
+
+
   extern int bindresvport (int, struct sockaddr_in *);
   extern uint32_t htonl (uint32_t);
   extern uint16_t htons (uint16_t);
