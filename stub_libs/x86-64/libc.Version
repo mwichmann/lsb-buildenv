@@ -1,10 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2 {
-  svc_register;
-  svc_sendreply;
-  svctcp_create;
-  svcudp_create;
-};
 GLIBC_2.2.5 {
   _Exit;
   _IO_feof;
@@ -622,6 +616,8 @@ GLIBC_2.2.5 {
   strverscmp;
   strxfrm;
   svc_getreqset;
+  svc_register;
+  svc_sendreply;
   svcerr_auth;
   svcerr_decode;
   svcerr_noproc;
@@ -629,6 +625,8 @@ GLIBC_2.2.5 {
   svcerr_progvers;
   svcerr_systemerr;
   svcerr_weakauth;
+  svctcp_create;
+  svcudp_create;
   swab;
   swapcontext;
   swprintf;
