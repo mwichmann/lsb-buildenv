@@ -2019,6 +2019,8 @@ void _Znam() {} ;
 void _ZnamRKSt9nothrow_t() {} ;
 void _Znwj() {} ;
 void _ZnwjRKSt9nothrow_t() {} ;
+void _Znwm() {} ;
+void _ZnwmRKSt9nothrow_t() {} ;
 void __cxa_allocate_exception() {} ;
 void __cxa_bad_cast() {} ;
 void __cxa_bad_typeid() {} ;

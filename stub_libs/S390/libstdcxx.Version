@@ -2060,6 +2060,8 @@ GLIBCPP_3.2 {
   _ZnamRKSt9nothrow_t;
   _Znwj;
   _ZnwjRKSt9nothrow_t;
+  _Znwm;
+  _ZnwmRKSt9nothrow_t;
   _ZGVNSt10moneypunctIcLb0EE2idE;
   _ZGVNSt10moneypunctIcLb1EE2idE;
   _ZGVNSt10moneypunctIwLb0EE2idE;
