@@ -40,6 +40,15 @@ if( $$type{'Ttype'} eq "Literal" ) {
 	return;
 	}
 
+if( $$param{'Ttype'} eq "Const" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	%type=$sth->fetchhash;
+	print "const ";
+	displaytyperef(\%type);
+	return;
+	}
+
 if( $$type{'Ttype'} eq "Typedef" ) {
 	if (!$nameonly) { print "typedef "; }
 	$basetype=$$type{'Tbasetype'};
