@@ -366,7 +366,11 @@ local ($const) = @_;
 print "#define ";
 print $$const{'Cname'};
 print "\t";
-print $$const{'ACvalue'};
+if( $$const{'Ctype'} eq 'string' ) {
+	print "\"".$$const{'ACvalue'}."\"";
+} else {
+	print $$const{'ACvalue'};
+}
 print "\t";
 if( $const{'Ccomment'} ) {
 	print "/* ".$const{'Ccomment'}." */\n";
