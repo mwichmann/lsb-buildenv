@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <wctype.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C"
