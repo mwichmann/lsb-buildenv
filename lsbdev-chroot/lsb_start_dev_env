@@ -206,36 +206,36 @@ bind_mount_file_ro /usr/lib/crtn.o $ROOT/usr/lib/crtn.o
 # LSB linker
 # Just copy the normal linux linker at the moment
 # Can't bind mount symlinks in 2.4.5
-# Use ld-lsb.so.1 preferentially
+# Use ld-lsb.so.2 preferentially
 native_arch=`uname -m`
 case $native_arch in
   i386|i486|i586|i686|athlon)
         NATIVE_LINKER=/lib/ld-linux.so.2
-        LSB_LINKER=/lib/ld-lsb.so.1
+        LSB_LINKER=/lib/ld-lsb.so.2
         ;;
   ia64)
         NATIVE_LINKER=/lib/ld-linux-ia64.so.2
-        LSB_LINKER=/lib/ld-lsb-ia64.so.1
+        LSB_LINKER=/lib/ld-lsb-ia64.so.2
         ;;
   ppc)
         NATIVE_LINKER=/lib/ld.so.1
-        LSB_LINKER=/lib/ld-lsb-ppc32.so.1
+        LSB_LINKER=/lib/ld-lsb-ppc32.so.2
         ;;
   ppc64)
         NATIVE_LINKER=/lib64/ld64.so.1
-        LSB_LINKER=/lib64/ld-lsb-ppc64.so.1
+        LSB_LINKER=/lib64/ld-lsb-ppc64.so.2
         ;;
   s390)
         NATIVE_LINKER=/lib/ld.so.1
-        LSB_LINKER=/lib/ld-lsb-s390.so.1
+        LSB_LINKER=/lib/ld-lsb-s390.so.2
         ;;
   s390x)
         NATIVE_LINKER=/lib/ld64.so.1
-        LSB_LINKER=/lib64/ld-lsb-s390x.so.1
+        LSB_LINKER=/lib64/ld-lsb-s390x.so.2
         ;;
   x86_64)
         NATIVE_LINKER=/lib/ld-linux-x86-64.so.2
-        LSB_LINKER=/lib64/ld-lsb-x86-64.so.1
+        LSB_LINKER=/lib64/ld-lsb-x86-64.so.2
         ;;
   *)
         echo "Unknown architecture $native_arch"
