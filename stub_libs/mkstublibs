@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.24 $
+# This is $Revision: 1.25 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.25  2003/02/19 16:55:22  anderson
+# Don't include deprecate interfaces in the stub library
+#
 # Revision 1.24  2002/11/01 04:01:08  cyeoh
 # Update PPC32 stub libraries with db sync and add missing
 # variable sizes
@@ -236,7 +239,7 @@ sub GenerateLibrary($$$)
                        "LEFT JOIN ArchInt ON AIint=Iid ".
                        "LEFT JOIN Version ON Vid=AIversion ".
                        "WHERE Itype='Function' ".
-		       "AND ( Istatus='Included' OR Istatus='Deprecated' ) ".
+		       "AND ( Istatus='Included' ) ".
                        "AND LibGroup.LGlib=$libId ".
                        "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId ".
                        "OR ( AIarch!=$TargetArchId AND Iarch=1 ) ".
