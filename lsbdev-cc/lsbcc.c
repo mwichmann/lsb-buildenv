@@ -319,7 +319,7 @@ return;
 /*
  * These are the otpions we need to recognize.
  */
-char *optstr="cL:l:o:EI:W::s";
+char *optstr="cL:l:o:EI:W::sD:";
 
 /*
  * gcc has a lot of options that are more than one character long. We'll treat
@@ -579,6 +579,11 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -W %s\n", optarg );
 		argvaddstring(userlibs,argv[optind-1]);
+		break;
+	case 'D':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -D %s\n", optarg );
+		argvaddstring(options,argv[optind-1]);
 		break;
 	case 's':
 		/*
