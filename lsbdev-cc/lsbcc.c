@@ -298,7 +298,6 @@ userlibs=argvinit();
 
 syslibs=argvinit();
 argvaddstring(syslibs,"-lc");
-argvaddstring(syslibs,"/usr/lib/libc.a");
 argvaddstring(syslibs,"/usr/lib/libc_nonshared.a");
 
 gccargs=argvinit();
