@@ -1,6 +1,9 @@
 #ifndef _FTW_H_
 #define _FTW_H_
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #ifdef __cplusplus
 extern "C"

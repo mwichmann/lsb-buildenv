@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include <rpc/auth.h>
 #include <rpc/xdr.h>
+#include <rpc/types.h>
 
 #ifdef __cplusplus
 extern "C"

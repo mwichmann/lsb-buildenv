@@ -2,6 +2,7 @@
 #define _SEMAPHORE_H_
 
 #include <pthread.h>
+#include <sys/types.h>
 #include <sys/time.h>
 
 #ifdef __cplusplus

@@ -3,6 +3,7 @@
 
 #include <inttypes.h>
 #include <signal.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"

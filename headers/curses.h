@@ -2,6 +2,7 @@
 #define _CURSES_H_
 
 #include <stdio.h>
+#include <stddef.h>
 #include <stdarg.h>
 
 #ifdef __cplusplus

@@ -498,6 +498,12 @@ if( !$sth->numrows ) { exit 0; }
 $Hid=$entry{'Hid'};
 
 #
+# This next section, which tries to determine all of the types for which
+# a dependency exists could probably be replaced by a loop that repeats until
+# no more new type s are added during a pass.
+#
+
+#
 # Get the return types
 #
 $select = "SELECT Ireturn FROM Interface ";
@@ -593,12 +599,68 @@ if( $typelist ne "" ) {
 	for(1..$sth->numrows) {
 		%entry=$sth->fetchhash;
 		$type{$entry{'TMtypeid'}}=1;
-		#print "TypeMember ".$entry{'TMname'}."\n";
+		#print STDERR "TypeMember ".$entry{'TMname'}."\n";
 		}
 	}
 
 $typelist=join ',', keys(%type);
 
+#
+# Get the base types of Pointers found in Struct/Union/Fptr members
+#
+
+if( $typelist ne "" ) { 
+	$select = "SELECT Tbasetype,Tname FROM Type ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	$select.= "AND Ttype = 'Pointer' ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tbasetype'}}=1;
+		#print STDERR "Pointer ".$entry{'Tname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
+
+#
+# Get the base types of Typedefs found in Struct/Union/Fptr members
+#
+
+if( $typelist ne "" ) { 
+	$select = "SELECT Tbasetype,Tname FROM Type ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	$select.= "AND Ttype = 'Typedef' ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tbasetype'}}=1;
+		#print "Typedef ".$entry{'Tname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
+
+
+#
+# Get the base types of type we have picked up in the Struct/Union/Fptr members
+#
+
+if( $typelist ne "" ) { 
+	$select = "SELECT Tbasetype,Tname FROM Type ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tbasetype'}}=1;
+		#print STDERR "Type ".$entry{'Tname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
 #
 # Do this once more to get nested Struct/Unions/Fptr members
 #
@@ -611,7 +673,39 @@ if( $typelist ne "" ) {
 	for(1..$sth->numrows) {
 		%entry=$sth->fetchhash;
 		$type{$entry{'TMtypeid'}}=1;
-		#print "TypeMember ".$entry{'TMname'}."\n";
+		#print STDERR "TypeMember ".$entry{'TMname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
+
+#
+# Get the base types of type we have picked up in the Struct/Union/Fptr members
+#
+
+if( $typelist ne "" ) { 
+	$select = "SELECT Tbasetype,Tname FROM Type ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tbasetype'}}=1;
+		#print STDERR "Type2 ".$entry{'Tname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
+
+if( $typelist ne "" ) { 
+	$select = "SELECT Tbasetype,Tname FROM Type ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tbasetype'}}=1;
+		#print STDERR "Type3 ".$entry{'Tname'}."\n";
 		}
 	}
 
