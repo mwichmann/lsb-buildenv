@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.12 $
+# This is $Revision: 1.13 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.13  2002/03/25 23:33:19  anderson
+# Skip entries that don't have a runname. Used to indicate a placehold in the gLSB
+#
 # Revision 1.12  2002/03/25 19:37:06  anderson
 # Split the Library table into Library and ArchLib, analagous to how other
 # tables have been done. This allows the library runname to be architecture
@@ -419,7 +422,8 @@ $sth = $dbh->prepare("SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
                      . "LEFT JOIN ArchLib ON Lid=ALlid "
                      . "LEFT JOIN Architecture ON Aid=ALaid "
                      . "WHERE Library.Lstd='Yes'"
-                     . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' )")
+                     . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' )"
+                     . "AND ALrunname!=''")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
