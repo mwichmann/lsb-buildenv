@@ -286,6 +286,17 @@ for(1..$sth->numrows) {
 
 $typelist=join ',', keys(%type);
 
+$select = "SELECT Tid from Type ";
+$select.= "WHERE Tbasetype IN ($typelist)";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	$type{$entry{'Tid'}}=1;
+	}
+
+$typelist=join ',', keys(%type);
+
 if( $typelist eq "" ) { exit 0; }
 #
 # Get the info from the types in the $type hash
