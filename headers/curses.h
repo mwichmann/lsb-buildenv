@@ -144,6 +144,13 @@ extern "C"
 
 #endif
 #endif
+#if !defined(__cplusplus)
+#if __s390x__
+/* S390X */
+  typedef int bool;
+
+#endif
+#endif
 
 /* curses related structures*/
 

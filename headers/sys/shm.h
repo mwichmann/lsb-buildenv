@@ -183,11 +183,11 @@ extern "C"
   {
     struct ipc_perm shm_perm;
     size_t shm_segsz;
-    __time_t shm_atime;
-    __time_t shm_dtime;
-    __time_t shm_ctime;
-    __pid_t shm_cpid;
-    __pid_t shm_lpid;
+    time_t shm_atime;
+    time_t shm_dtime;
+    time_t shm_ctime;
+    pid_t shm_cpid;
+    pid_t shm_lpid;
     shmatt_t shm_nattch;
     unsigned long __unused4;
     unsigned long __unused5;

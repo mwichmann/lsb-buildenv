@@ -18,6 +18,12 @@ struct pt_regs
   unsigned long result;
 }
  ;
+
+
+typedef unsigned long elf_greg_t;
+typedef double elf_fpreg_t;
+
+
 typedef elf_greg_t elf_gregset_t[64];
 typedef elf_fpreg_t elf_fpregset_t[33];
 
@@ -64,7 +70,7 @@ struct sigaction
 
 
 
-struct sigcontext_struct
+struct sigcontext
 {
   unsigned long _unused;
   int signal;

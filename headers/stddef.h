@@ -81,6 +81,11 @@ extern "C"
   typedef unsigned long size_t;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef long ptrdiff_t;
+
+#endif
 
 #ifdef __cplusplus
 }

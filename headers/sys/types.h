@@ -91,6 +91,11 @@ extern "C"
   typedef int64_t ssize_t;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef int64_t ssize_t;
+
+#endif
 
 /* Stuff really in asm/posix_types.h*/
 
@@ -149,6 +154,9 @@ extern "C"
 #if __x86_64__
 #define __FDSET_LONGS	16
 #endif
+#if __s390x__
+#define __FDSET_LONGS	16
+#endif
 #if __i386__
 #define __FDSET_LONGS	32
 #endif
@@ -189,6 +197,9 @@ extern "C"
 #define __BYTE_ORDER	__BIG_ENDIAN
 #endif
 #if __s390__ && !__s390x__
+#define __BYTE_ORDER	__BIG_ENDIAN
+#endif
+#if __s390x__
 #define __BYTE_ORDER	__BIG_ENDIAN
 #endif
 #if __i386__

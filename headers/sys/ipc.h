@@ -114,12 +114,12 @@ extern "C"
 /* S390X */
   struct ipc_perm
   {
-    __key_t __key;
-    __uid_t uid;
-    __gid_t gid;
-    __uid_t cuid;
-    __gid_t cgid;
-    __mode_t mode;
+    key_t __key;
+    uid_t uid;
+    gid_t gid;
+    uid_t cuid;
+    gid_t cgid;
+    mode_t mode;
     unsigned short __seq;
     unsigned short __pad2;
     unsigned long __unused1;

@@ -118,6 +118,21 @@ extern "C"
   typedef unsigned long uintmax_t;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef long intmax_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long uintmax_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long uintptr_t;
+
+#endif
 
 #define __PDP_ENDIAN	3412
 #define PDP_ENDIAN	__PDP_ENDIAN
