@@ -94,8 +94,10 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	if( $nameonly ) { return; }
 	#print $$type{'Tcomment'}."\n";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember ";
+	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
+	$tmselect.= "WHERE TMmemberof=$Tid ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
@@ -109,11 +111,13 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
 			}
-		if( $tmentry{'TMarray'} ) {
+		if( $entry{'Ttype'} eq 'Array' ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
 		print ";\t";
-		print $tmentry{'TMcomment'}."\n";
+		if( $tmentry{'TMcomment'} ) {
+			print "/* ".$tmentry{'TMcomment'}." */\n";
+			}
 		$nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
@@ -235,6 +239,26 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		$nameonly=0;
 		}
 	print ")\n";
+	return;
+	}
+
+if( $$type{'Ttype'} eq "Array" ) {
+	$basetype=$$type{'Tbasetype'};
+	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+	%entry=$tth->fetchhash;
+	if( !$nameonly ) {
+		$nameonly=1;
+		displaytype(\%entry);
+		$nameonly=0;
+	} else {
+		displaytype(\%entry);
+		}
+	if( $$type{'Tname'} =~ "fptr" ) {
+		$$type{'Tname'} =~ s/fptr-//;
+		}
+	#print $$type{'Tname'};
+	#print "[".$$type{'Tsize'}."]";
 	return;
 	}
 
