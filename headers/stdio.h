@@ -141,6 +141,7 @@ extern "C"
   extern long ftell (FILE *);
   extern size_t fwrite (const void *, size_t, size_t, FILE *);
   extern int getc (FILE *);
+  extern char *gets (char *);
   extern int putc (int, const FILE *);
   extern int puts (const char *);
   extern int setvbuf (FILE *, char *, int, size_t);
