@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define RTLD_NEXT	((void *) -1l)
 #define RTLD_LOCAL	0
 #define RTLD_LAZY	0x00001
 #define RTLD_NOW	0x00002
