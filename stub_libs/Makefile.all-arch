@@ -24,4 +24,5 @@ clean:
 install:
 	install -d $(INSTALL_DIR)
 	install $(SOFILES) $(INSTALL_DIR)
+	mv $(INSTALL_DIR)/libstdcxx.so $(INSTALL_DIR)/libstdc++.so
 
