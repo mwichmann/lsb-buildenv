@@ -1,3 +1,14 @@
+2002-04-10  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Support for IA64 added
+	* Allow for sshd not to be run even if on system through
+	  configuration of lsbdev.conf
+	* Handle importation libopcode for the assembler on IA64
+	* Add LGPL license
+	* Fix bug in lsbdev init script status option (Matt Taggart)
+	* Adds removal of stub libraries to clean target (Matt Taggart)
+	
+
 2001-12-20  Christopher Yeoh  <cyeoh@samba.org>
 
 	* Resynchronise with LSB Spec 1.1 stub libraries
