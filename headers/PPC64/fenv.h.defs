@@ -12,5 +12,5 @@
 
 typedef unsigned int fexcept_t;
 
-struct fenv_t;
+typedef double fenv_t;
 #define FE_DFL_ENV	(&amp __fe_dfl_env)

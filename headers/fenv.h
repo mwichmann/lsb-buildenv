@@ -260,7 +260,7 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct fenv_t;
+  typedef double fenv_t;
 
 #endif
 #if __ia64__

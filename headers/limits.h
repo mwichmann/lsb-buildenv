@@ -136,10 +136,31 @@ extern "C"
 
 
 /* POSIX Threads values*/
-#define PTHREAD_DESTRUCTOR_ITERATIONS	10
+#define PTHREAD_KEYS_MAX	1024
 #define PTHREAD_STACK_MIN	16384
+#if __i386__
+#define PTHREAD_STACK_MIN	16384
+#endif
+#if __powerpc__ && !__powerpc64__
+#define PTHREAD_STACK_MIN	16384
+#endif
+#if __s390__ && !__s390x__
+#define PTHREAD_STACK_MIN	16384
+#endif
 #define PTHREAD_THREADS_MAX	16384
-#define PTHREAD_KEYS_MAX	7
+#if __ia64__
+#define PTHREAD_STACK_MIN	196608
+#endif
+#if __powerpc64__
+#define PTHREAD_STACK_MIN	196608
+#endif
+#if __x86_64__
+#define PTHREAD_STACK_MIN	196608
+#endif
+#if __s390x__
+#define PTHREAD_STACK_MIN	196608
+#endif
+#define PTHREAD_DESTRUCTOR_ITERATIONS	4
 
 
 

@@ -4,14 +4,15 @@
 #define FE_OVERFLOW	(1UL << 3)
 #define FE_UNDERFLOW	(1UL << 4)
 #define FE_INEXACT	(1UL << 5)
-#define FE_ALL_EXCEPT	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | F
-E_INVALID)
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | FE_INVALID)
 #define FE_UNNORMAL	1UL << 1
+
 #define FE_TONEAREST	0
 #define FE_DOWNWARD	1
 #define FE_UPWARD	2
 #define FE_TOWARDZERO	3
-     typedef unsigned long int fexcept_t;
 
-     typedef unsigned long int fenv_t;
+typedef unsigned long int fexcept_t;
+
+typedef unsigned long int fenv_t;
 #define FE_DFL_ENV	((__const fenv_t *) 0xc009804c0270033fUL)
