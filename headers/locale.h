@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define LC_GLOBAL_LOCALE	((__locale_t) -1L)
 #define LC_CTYPE	0
 #define LC_NUMERIC	1
 #define LC_TELEPHONE	10
