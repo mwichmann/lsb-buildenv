@@ -1,5 +1,4 @@
 
-#define SHMLBA	(__getpagesize())
 #define SHM_RDONLY	010000
 #define SHM_W	0200
 #define SHM_RND	020000

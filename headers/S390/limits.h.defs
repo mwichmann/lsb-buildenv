@@ -1,6 +1,5 @@
 
 #define LONG_MAX	2147483647
-#define PATH_MAX	4095
 
 
 

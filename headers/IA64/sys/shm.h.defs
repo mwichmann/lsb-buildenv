@@ -1,4 +1,5 @@
 
+#define SHMLBA	(1024*1024)
 
 
 
