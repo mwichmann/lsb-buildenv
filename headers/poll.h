@@ -1,16 +1,10 @@
 #ifndef _POLL_H_
 #define _POLL_H_
 
+#include <sys/poll.h>
 
 
 
-struct pollfd
-{
-  int fd;			/* File descriptor to poll. */
-  short events;			/* Types of events poller cares about. */
-  short revents;		/* Types of events that actually occurred. */
-}
- ;
 
-
+extern int poll (struct pollfd *, unsigned int, int);
 #endif

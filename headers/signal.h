@@ -6,10 +6,11 @@
 #include <sys/types.h>
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+#define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIG_BLOCK	0
 #define SIGEV_SIGNAL	0
+#define SIG_BLOCK	0
 #define SIG_UNBLOCK	1
 #define SIG_SETMASK	2
 #define SIGEV_THREAD	2
@@ -54,12 +55,12 @@ struct sigstack
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGSYS	31
 #define SIGUNUSED	31
+#define SIGSYS	31
 #define SIGILL	4
 #define SIGTRAP	5
-#define SIGIOT	6
 #define SIGABRT	6
+#define SIGIOT	6
 #define SIGBUS	7
 #define SIGFPE	8
 #define SIGKILL	9

@@ -1,4 +1,9 @@
 
+#define FD_ISSET(d,set)	((set)->fds_bits[0]&amp (1<<d))
+#define FD_CLR(d,set)	((set)->fds_bits[0]&amp =~(1<<d))
+#define FD_SET(d,set)	((set)->fds_bits[0]|=(1<<d))
+#define FD_SETSIZE	1024
+#define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 
 
 typedef long long int64_t;
@@ -22,6 +27,10 @@ typedef unsigned long long ino64_t;
 typedef long long loff_t;
 typedef unsigned long blkcnt_t;
 typedef unsigned long long blkcnt64_t;
+typedef unsigned char u_char;
+typedef unsigned short u_short;
+typedef unsigned int u_int;
+typedef unsigned long u_long;
 
 
 typedef int ino_t;
@@ -30,6 +39,7 @@ typedef unsigned long long dev_t;
 typedef unsigned int mode_t;
 typedef int nlink_t;
 typedef char *caddr_t;
+typedef unsigned short ushort;
 
 
 typedef struct

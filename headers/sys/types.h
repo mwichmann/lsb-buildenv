@@ -2,6 +2,11 @@
 #define _SYS_TYPES_H_
 
 
+#define FD_ISSET(d,set)	((set)->fds_bits[0]&(1<<d))
+#define FD_CLR(d,set)	((set)->fds_bits[0]&=~(1<<d))
+#define FD_SET(d,set)	((set)->fds_bits[0]|=(1<<d))
+#define FD_SETSIZE	1024
+#define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 
 
 typedef long long int64_t;
@@ -44,6 +49,14 @@ typedef unsigned long blkcnt_t;
 
 typedef unsigned long long blkcnt64_t;
 
+typedef unsigned char u_char;
+
+typedef unsigned short u_short;
+
+typedef unsigned int u_int;
+
+typedef unsigned long u_long;
+
 
 /* Stuff really in linux/types.h*/
 
@@ -59,6 +72,8 @@ typedef unsigned int mode_t;
 typedef int nlink_t;
 
 typedef char *caddr_t;
+
+typedef unsigned short ushort;
 
 
 #if defined(__ia64__)

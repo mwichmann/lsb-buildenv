@@ -13,8 +13,8 @@
 #define L_tmpnam	20
 #define FILENAME_MAX	4096
 #define BUFSIZ	8192
-#define L_ctermid	9
 #define L_cuserid	9
+#define L_ctermid	9
 
 
 typedef struct _IO_FILE *FILE;
@@ -32,20 +32,6 @@ typedef struct
   mbstate_t __state;
 }
 fpos64_t;
-
-struct
-{
-  off_t __pos;
-  mbstate_t __state;
-}
- ;
-
-struct
-{
-  off64_t __pos;
-  mbstate_t __state;
-}
- ;
 
 
 /* The opaque type of streams.*/
