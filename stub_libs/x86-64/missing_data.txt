@@ -6,6 +6,8 @@ libc __tzname 10
 libc stderr 8
 libc stdin 8
 libc stdout 8
+# Generating c stubs for libncurses library
+libncurses acs_map 400
 # Generating c stubs for libXt library
 libXt _XtInheritTranslations 4
 libXt overrideShellClassRec 118
