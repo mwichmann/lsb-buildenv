@@ -970,3 +970,7 @@ libstdcxx _ZTSPKt 4
 libstdcxx _ZNSt14numeric_limitsIsE6digitsE 4
 libstdcxx _ZTVN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEEE 40
 libstdcxx _ZTSSt10moneypunctIwLb0EE 16
+libstdcxx _ZNSs20_S_empty_rep_storageE 10
+libstdcxx _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE 40
+libstdcxx _ZSt4cerr 8c
+libstdcxx _ZSt4cout 8c
