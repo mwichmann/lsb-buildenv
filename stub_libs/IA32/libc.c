@@ -266,7 +266,6 @@ void getpwuid_r() {} ;
 void getrlimit() {} ;
 void getrlimit64() {} ;
 void getrusage() {} ;
-void gets() {} ;
 void getservbyname() {} ;
 void getservbyport() {} ;
 void getservent() {} ;

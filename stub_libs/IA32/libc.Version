@@ -215,7 +215,6 @@ GLIBC_2.0 {
   getpwuid;
   getpwuid_r;
   getrusage;
-  gets;
   getservbyname;
   getservbyport;
   getservent;
