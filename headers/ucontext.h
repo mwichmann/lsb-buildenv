@@ -381,6 +381,19 @@ extern "C"
   ucontext_t;
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    sigset_t uc_sigmask;
+    mcontext_t uc_mcontext;
+  }
+  ucontext_t;
+
+#endif
 #if __s390x__
 /* S390X */
   typedef struct ucontext
