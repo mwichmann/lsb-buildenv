@@ -1,11 +1,10 @@
 #ifndef _WCHAR_H_
 #define _WCHAR_H_
 
-#include <sys/types.h>
 #include <time.h>
-#include <wctype.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <wctype.h>
 #include <stdarg.h>
 
 #ifdef __cplusplus
@@ -28,9 +27,6 @@ extern "C"
   extern long __wcstol_internal (wchar_t *, wchar_t * *, int, int);
   extern long double __wcstold_internal (wchar_t *, wchar_t * *, int);
   extern unsigned long __wcstoul_internal (wchar_t *, wchar_t * *, int, int);
-  extern int iswblank (void);
-  extern wint_t towlower (wint_t);
-  extern wint_t towupper (wint_t);
   extern wchar_t *wcscat (wchar_t *, const wchar_t *);
   extern wchar_t *wcschr (const wchar_t *, wchar_t);
   extern int wcscmp (const wchar_t *, wchar_t *);
@@ -55,18 +51,6 @@ extern "C"
   extern wchar_t *wmemcpy (wchar_t *, const wchar_t *, size_t);
   extern wchar_t *wmemmove (wchar_t *, const wchar_t *, size_t);
   extern wchar_t *wmemset (wchar_t *, wchar_t, size_t);
-  extern int iswalnum (wint_t);
-  extern int iswalpha (wint_t);
-  extern int iswcntrl (wint_t);
-  extern int iswctype (wint_t, wctype_t);
-  extern int iswdigit (wint_t);
-  extern int iswgraph (wint_t);
-  extern int iswlower (wint_t);
-  extern int iswprint (wint_t);
-  extern int iswpunct (wint_t);
-  extern int iswspace (wint_t);
-  extern int iswupper (wint_t);
-  extern int iswxdigit (wint_t);
   extern size_t mbrlen (const char *, size_t, mbstate_t *);
   extern size_t mbrtowc (wchar_t *, const char *, size_t, mbstate_t *);
   extern int mbsinit (const mbstate_t *);
@@ -94,7 +78,6 @@ extern "C"
   extern long long wcstoll (const wchar_t *, wchar_t * *, int);
   extern unsigned long long wcstoull (const wchar_t *, wchar_t * *, int);
   extern wint_t btowc (int);
-  extern wint_t towctrans (wint_t, wctrans_t);
   extern wint_t fgetwc (FILE *);
   extern wint_t fgetwc_unlocked (FILE *);
   extern wchar_t *fgetws (wchar_t *, int, FILE *);
