@@ -8,8 +8,6 @@
 
 struct _XDisplay;
 
-struct _XrmHashBucketRec;
-
 typedef struct XColor;
 
 typedef void *XVaNestedList;

@@ -2,6 +2,7 @@
 #define _SYS_MSG_H_
 
 #include <sys/types.h>
+#include <sys/ipc.h>
 
 #define MSG_NOERROR	010000
 

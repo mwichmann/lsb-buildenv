@@ -22,6 +22,7 @@ typedef int *intptr_t;
 
 
 
+#define _POSIX_TIMERS	1
 #define _POSIX_ASYNCHRONOUS_IO	1
 #define _POSIX_MEMORY_PROTECTION	1
 #define _POSIX_SEMAPHORES	1
@@ -34,7 +35,6 @@ typedef int *intptr_t;
 #define _POSIX_MAPPED_FILES	1
 #define _POSIX_MEMLOCK_RANGE	1
 #define _POSIX_REALTIME_SIGNALS	1
-#define _POSIX_TIMERS	1
 #define _POSIX2_C_VERSION	199209L
 #define _POSIX2_VERSION	199209L
 #define _POSIX_VERSION	199506L

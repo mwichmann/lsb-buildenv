@@ -401,14 +401,14 @@ typedef XID KeySym;
 #define MappingPointer	2
 #define MappingFailed	2
 
-#define DontPreferBlanking	0
-#define DisableScreenInterval	0
 #define DisableScreenSaver	0
 #define DontAllowExposures	0
+#define DontPreferBlanking	0
+#define DisableScreenInterval	0
 #define AllowExposures	1
 #define PreferBlanking	1
-#define DefaultBlanking	2
 #define DefaultExposures	2
+#define DefaultBlanking	2
 
 #define ScreenSaverReset	0
 #define ScreenSaverActive	1

@@ -44,9 +44,14 @@ struct sigcontext
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
 #define SIG_BLOCK	0
+#define SIGEV_THREAD	0
+#define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
 #define SIG_SETMASK	2
 
+#define SIG_ERR	((__sighandler_t)-1)
+#define SIG_DFL	((__sighandler_t)0)
+#define SIG_IGN	((__sighandler_t)1)
 #define SIGHUP	1
 #define SIGUSR1	10
 #define SIGSEGV	11
@@ -62,6 +67,7 @@ struct sigcontext
 #define SIGTSTP	20
 #define SIGTTIN	21
 #define SIGTTOU	22
+#define SIGURG	23
 #define SIGXCPU	24
 #define SIGXFSZ	25
 #define SIGVTALRM	26
@@ -70,8 +76,8 @@ struct sigcontext
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGIOT	6
@@ -84,9 +90,6 @@ struct sigcontext
 
 typedef void (*__sighandler_t) ();
 
-#define SIG_ERR	((__sighandler_t)-1)
-#define SIG_DFL	((__sighandler_t)0)
-#define SIG_IGN	((__sighandler_t)1)
 
 typedef union sigval
 {
@@ -110,6 +113,11 @@ typedef struct siginfo
 }
 siginfo_t;
 
+#define SI_QUEUE	-1
+#define SI_TIMER	-2
+#define SI_MESGQ	-3
+#define SI_ASYNCIO	-4
+#define SI_USER	0
 
 typedef struct
 {
@@ -122,7 +130,7 @@ sigset_t;
 
 struct sigaction
 {
-  union _u;
+  union __sigaction_handler;
   unsigned long sa_flags;
   void (*sa_restorer) ();
   sigset_t sa_mask;

@@ -6,7 +6,9 @@
 
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
+#define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
+#define SIGEV_THREAD	0
 #define SIG_UNBLOCK	1
 #define SIG_SETMASK	2
 
@@ -54,6 +56,9 @@ struct sigcontext
  ;
 
 
+#define SIG_ERR	((__sighandler_t)-1)
+#define SIG_DFL	((__sighandler_t)0)
+#define SIG_IGN	((__sighandler_t)1)
 #define SIGHUP	1
 #define SIGUSR1	10
 #define SIGSEGV	11
@@ -69,6 +74,7 @@ struct sigcontext
 #define SIGTSTP	20
 #define SIGTTIN	21
 #define SIGTTOU	22
+#define SIGURG	23
 #define SIGXCPU	24
 #define SIGXFSZ	25
 #define SIGVTALRM	26
@@ -77,8 +83,8 @@ struct sigcontext
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGSYS	31
 #define SIGUNUSED	31
+#define SIGSYS	31
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGABRT	6
@@ -91,9 +97,6 @@ struct sigcontext
 
 
 
-#define SIG_ERR	((__sighandler_t)-1)
-#define SIG_DFL	((__sighandler_t)0)
-#define SIG_IGN	((__sighandler_t)1)
 
 
 typedef void (*__sighandler_t) ();
@@ -120,7 +123,7 @@ union _sigev_un
   int _pad[SI_PAD_SIZE];
   struct
   {
-    void (*sigev_thread - func) ();
+    void (*sigev_thread_func) ();
     void *_attribute;
   }
   _sigev_thread;
@@ -138,12 +141,17 @@ sigevent_t;
 
 struct
 {
-  void (*sigev_thread - func) ();
+  void (*sigev_thread_func) ();
   void *_attribute;
 }
  ;
 
 
+#define SI_QUEUE	-1
+#define SI_TIMER	-2
+#define SI_MESGQ	-3
+#define SI_ASYNCIO	-4
+#define SI_USER	0
 
 
 typedef struct siginfo
@@ -229,7 +237,7 @@ struct sigaction
     __sighandler_t _sa_handler;
     void (*_sa_sigaction) ();
   }
-  _u;
+  __sigaction_handler;
   unsigned long sa_flags;
   void (*sa_restorer) ();
   sigset_t sa_mask;

@@ -11,6 +11,7 @@
 #define S_ISREG(m)	(((m)&S_IFMT)==S_IFREG)
 #define S_ISSOCK(m)	(((m)&S_IFMT)==S_IFSOCK)
 #define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_IRWXU	(S_IREAD|S_IWRITE|S_IEXEC)
 #define S_IROTH	(S_IRGRP>>3)

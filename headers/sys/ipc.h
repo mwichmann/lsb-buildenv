@@ -20,6 +20,8 @@ struct sembuf
 }
  ;
 
+struct msqid_ds;
+
 struct ipc_perm
 {
   key_t key;

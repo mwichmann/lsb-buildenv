@@ -89,8 +89,8 @@ struct msghdr
 #define SO_TYPE	3
 #define SO_ERROR	4
 #define SO_DONTROUTE	5
-#define SO_BROADCAST	6
 #define SOL_TCP	6
+#define SO_BROADCAST	6
 #define SO_SNDBUF	7
 #define SO_RCVBUF	8
 #define SO_KEEPALIVE	9

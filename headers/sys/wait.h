@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <sys/resource.h>
+#include <sys/time.h>
 
 #define WIFSIGNALED(status)	(!WIFSTOPPED(status) && !WIFEXITED(status))
 #define WIFSTOPPED(status)	(((status) & 0xff) == 0x7f)
