@@ -81,6 +81,45 @@ for(1..$sth->numrows) {
 		printf SRC "__asm__(\"\tret\");\n";
 		}
 	}
+
+$select  = "SELECT DISTINCT Iname,Vname ";
+$select .= "FROM Interface,LGInt,LibGroup ";
+$select .= "LEFT JOIN Version ON Version.Vid=Interface.Iversion ";
+$select .= "WHERE Interface.Iid=LGInt.LGIint ";
+$select .= "AND LGInt.LGIlibg=LibGroup.LGid ";
+$select .= "AND Interface.Itype='Data' ";
+$select .= "AND LibGroup.LGlib=$Lid ";
+print STDERR $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	if( $entry{'Vname'} ) {
+		printf SRC "__asm__(\".globl _lsb_%s\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"\t.type _lsb_%s,\@object\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"\t.size _lsb_%s,4\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"_lsb_%s:\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"\t.long 0\");\n";
+		printf SRC "__asm__(\".symver _lsb_%s,%s",
+				$entry{'Iname'},$entry{'Iname'};
+		printf SRC "\@\@%s\"", $entry{'Vname'};
+		printf SRC ");\n";
+	} else {
+		printf SRC "__asm__(\".globl %s\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"\t.type %s,\@object\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"\t.size %s,4\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"%s:\");\n",
+				$entry{'Iname'};
+		printf SRC "__asm__(\"\t.long 0\");\n";
+		}
+	}
 }
 
 #
