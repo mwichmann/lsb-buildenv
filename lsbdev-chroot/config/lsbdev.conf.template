@@ -39,11 +39,11 @@ LIBOPCODES=`ldd /usr/bin/as | awk '/libopcodes/ { print $3 }'`
 
 # Extra directories to bind mount (order is important) 
 # Specify file containing pairs of directories
-EXTRA_MOUNT_DIRS=/etc/lsbdev/extra_mount_dirs.conf
+EXTRA_MOUNT_DIRS=/etc/lsbdev-chroot/extra_mount_dirs.conf
 
 # Extra files to bind mount (NYI)
 # Specify file containing pairs of files
-EXTRA_MOUNT_FILES=/etc/lsbdev/extra_mount_files.conf
+EXTRA_MOUNT_FILES=/etc/lsbdev-chroot/extra_mount_files.conf
 
 # Lock file 
 RUNFILE=/var/run/lsbdev.lock
