@@ -50,6 +50,7 @@ EXTRA_MOUNT_FILES=/etc/lsbdev/extra_mount_files.conf
 RUNFILE=/var/run/lsbdev.lock
 
 # SSH options
+# Leave SSH_DAEMON undefined if you do not want sshd restarted
 SSH_DAEMON=/usr/sbin/sshd
 SSH_PORT=5436
 
