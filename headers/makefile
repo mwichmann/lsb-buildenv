@@ -15,7 +15,8 @@ all:
 	done
 
 install:
-	@echo "Nowhere to install headers"
+	install -d $$LSBHOME/src/build/usr/lsb/include
+	find . -name '*.h' -print | cpio -pdu $$LSBHOME/src/build/usr/include/lib
 
 clean:
 	find . -name '*.html' -print | xargs rm -f
