@@ -12,6 +12,9 @@ extern "C"
 #if defined(__i386__)
 #define TIOCNOTTY	0x5422
 #endif
+#if defined(__ia64__)
+#define TIOCNOTTY	0x5422
+#endif
 #if defined(__powerpc__)
 #define TIOCNOTTY	0x5422
 #endif

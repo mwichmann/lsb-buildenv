@@ -16,8 +16,26 @@ extern "C"
 
 
 
+#if defined(__i386__)
+/* IA32 */
   typedef int __jmp_buf[6];
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  typedef long __jmp_buf[70];
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  typedef int __jmp_buf[1];
+
+#endif
+#if defined(__s390__)
+/* S390 */
+  typedef int __jmp_buf[1];
+
+#endif
 
 
 

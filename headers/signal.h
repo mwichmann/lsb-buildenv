@@ -427,7 +427,6 @@ extern "C"
 
 /* sigaction*/
 #define SA_NOCLDSTOP	0x00000001
-#define SA_NOCLDWAIT	0x00000002
 #define SA_SIGINFO	0x00000004
 #define SA_ONSTACK	0x08000000
 #define SA_RESTART	0x10000000
@@ -452,7 +451,7 @@ extern "C"
     __sigaction_handler;
     unsigned long sa_flags;
     void (*sa_restorer) (void);
-    sigset_t sa_maskmake;
+    sigset_t sa_mask;
   }
    ;
 

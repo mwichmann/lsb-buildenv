@@ -10,8 +10,6 @@ extern "C"
 
 
 
-  int (*putcproc) (int);
-
 
   extern int putp (char *);
   extern int tigetflag (char *);
