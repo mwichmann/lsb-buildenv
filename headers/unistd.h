@@ -1,20 +1,22 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
 #include <stddef.h>
 #include <sys/types.h>
 #include <sys/time.h>
 
-#define STDIN_FILENO	0
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
 #define SEEK_SET	0
-#define STDOUT_FILENO	1
+#define STDIN_FILENO	0
 #define SEEK_CUR	1
-#define STDERR_FILENO	2
+#define STDOUT_FILENO	1
 #define SEEK_END	2
+#define STDERR_FILENO	2
 
 
   typedef long long off64_t;
@@ -30,21 +32,21 @@ extern "C"
 
 
 
-#define _POSIX_FSYNC	1
-#define _POSIX_MESSAGE_PASSING	1
-#define _POSIX_SHARED_MEMORY_OBJECTS	1
-#define _POSIX_MEMLOCK	1
-#define _POSIX_PRIORITY_SCHEDULING	1
-#define _POSIX_SYNCHRONIZED_IO	1
-#define _POSIX_MAPPED_FILES	1
-#define _POSIX_MEMLOCK_RANGE	1
-#define _POSIX_REALTIME_SIGNALS	1
-#define _POSIX_TIMERS	1
 #define _POSIX_ASYNCHRONOUS_IO	1
+#define _POSIX_FSYNC	1
+#define _POSIX_MAPPED_FILES	1
+#define _POSIX_MEMLOCK	1
+#define _POSIX_MEMLOCK_RANGE	1
 #define _POSIX_MEMORY_PROTECTION	1
+#define _POSIX_MESSAGE_PASSING	1
+#define _POSIX_PRIORITY_SCHEDULING	1
+#define _POSIX_REALTIME_SIGNALS	1
 #define _POSIX_SEMAPHORES	1
-#define _POSIX2_VERSION	199209L
+#define _POSIX_SHARED_MEMORY_OBJECTS	1
+#define _POSIX_SYNCHRONIZED_IO	1
+#define _POSIX_TIMERS	1
 #define _POSIX2_C_VERSION	199209L
+#define _POSIX2_VERSION	199209L
 #define _POSIX_VERSION	199506L
 
 
@@ -166,8 +168,8 @@ extern "C"
 
 
 
-#define _XOPEN_XPG4	1
 #define _XOPEN_REALTIME	1
+#define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
 
@@ -196,7 +198,7 @@ extern "C"
   extern int getdomainname (char *, size_t);
   extern long gethostid (void);
   extern char *getlogin (void);
-  extern int getopt (int, char *[], const char *);
+  extern int getopt (int, char *const[], const char *);
   extern pid_t getpgrp (void);
   extern pid_t getsid (void);
   extern char *getwd (void);

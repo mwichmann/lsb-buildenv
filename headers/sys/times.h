@@ -1,11 +1,13 @@
 #ifndef _SYS_TIMES_H_
 #define _SYS_TIMES_H_
 
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
+
 
 
 

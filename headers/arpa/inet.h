@@ -1,12 +1,14 @@
 #ifndef _ARPA_INET_H_
 #define _ARPA_INET_H_
 
+#include <inttypes.h>
+#include <netinet/in.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <inttypes.h>
-#include <netinet/in.h>
+
 
 
 

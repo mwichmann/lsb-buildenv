@@ -1,11 +1,13 @@
 #ifndef _SYS_IPC_H_
 #define _SYS_IPC_H_
 
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
+
 
 #define IPC_PRIVATE	((key_t)0)
 #define IPC_RMID	0

@@ -1,18 +1,26 @@
 #ifndef _PTHREAD_H_
 #define _PTHREAD_H_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
 #include <sys/time.h>
 #include <stddef.h>
 #include <sched.h>
 #include <sys/types.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
+#define PTHREAD_MUTEX_DEFAULT	1
+#define PTHREAD_MUTEX_NORMAL	1
 #define PTHREAD_MUTEX_TIMED_NP	1
+#define PTHREAD_RWLOCK_INITIALIZER	1
+#define PTHREAD_MUTEX_RECURSIVE	2
+#define PTHREAD_MUTEX_ERRORCHECK	3
 #define __LOCK_INITIALIZER	{ 0, 0 }
 #define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
+#define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
 
 
   typedef unsigned int pthread_key_t;
@@ -120,15 +128,15 @@ extern "C"
 
 
 /* Values for attributes.*/
-#define PTHREAD_INHERIT_SCHED	0
-#define PTHREAD_PROCESS_PRIVATE	0
 #define PTHREAD_CREATE_JOINABLE	0
-#define PTHREAD_SCOPE_SYSTEM	0
+#define PTHREAD_INHERIT_SCHED	0
 #define PTHREAD_ONCE_INIT	0
-#define PTHREAD_SCOPE_PROCESS	1
+#define PTHREAD_PROCESS_PRIVATE	0
+#define PTHREAD_SCOPE_SYSTEM	0
+#define PTHREAD_CREATE_DETACHED	1
 #define PTHREAD_EXPLICIT_SCHED	1
 #define PTHREAD_PROCESS_SHARED	1
-#define PTHREAD_CREATE_DETACHED	1
+#define PTHREAD_SCOPE_PROCESS	1
 
 
 

@@ -1,12 +1,14 @@
 #ifndef _SYS_SHM_H_
 #define _SYS_SHM_H_
 
+#include <sys/types.h>
+#include <sys/ipc.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
-#include <sys/ipc.h>
+
 
 #define SHMLBA	(__getpagesize())
 #define SHM_RND	020000

@@ -1,10 +1,12 @@
 #ifndef _SYS_POLL_H_
 #define _SYS_POLL_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #define POLLIN	0x0001
 #define POLLPRI	0x0002

@@ -1,13 +1,15 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
+#include <sys/time.h>
+#include <stddef.h>
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/time.h>
-#include <stddef.h>
-#include <sys/types.h>
+
 
 #define CLOCK_REALTIME	0
 #define TIMER_ABSTIME	1

@@ -1,29 +1,30 @@
 #ifndef _WCHAR_H_
 #define _WCHAR_H_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
 #include <wctype.h>
 #include <stdio.h>
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
 #define WEOF	(0xffffffffu)
-#if defined(__powerpc__)
-#define WCHAR_MIN	-2147483648
-#endif
-#define WCHAR_MIN	0
-#define WCHAR_MAX	0xffffff
-#if defined(__powerpc__)
-#define WCHAR_MAX	2147483647
-#endif
+#define WCHAR_MAX	0x7FFFFFFF
+#define WCHAR_MIN	0x80000000
 
 
 
 
 
 
+  extern double __wcstod_internal (wchar_t *, wchar_t * *, int);
+  extern float __wcstof_internal (wchar_t *, wchar_t * *, int);
+  extern long __wcstol_internal (wchar_t *, wchar_t * *, int, int);
+  extern long double __wcstold_internal (wchar_t *, wchar_t * *, int);
+  extern unsigned long __wcstoul_internal (wchar_t *, wchar_t * *, int, int);
   extern int iswblank (void);
   extern wint_t towlower (wint_t);
   extern wint_t towupper (wint_t);

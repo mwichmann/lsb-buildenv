@@ -1,11 +1,13 @@
 #ifndef _UCONTEXT_H_
 #define _UCONTEXT_H_
 
+#include <signal.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <signal.h>
+
 
 
 

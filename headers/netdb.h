@@ -1,12 +1,14 @@
 #ifndef _NETDB_H_
 #define _NETDB_H_
 
+#include <stddef.h>
+#include <sys/socket.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
-#include <sys/socket.h>
+
 
 #define h_errno	(*__h_errno_location ())
 #define NETDB_INTERNAL	-1

@@ -1,13 +1,15 @@
 #ifndef _SYS_MSG_H_
 #define _SYS_MSG_H_
 
+#include <stddef.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
+
 
 #define MSG_NOERROR	010000
 

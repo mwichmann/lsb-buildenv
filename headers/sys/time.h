@@ -1,11 +1,13 @@
 #ifndef _SYS_TIME_H_
 #define _SYS_TIME_H_
 
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
+
 
 #define ITIMER_REAL	0
 #define ITIMER_VIRTUAL	1

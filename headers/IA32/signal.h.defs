@@ -19,8 +19,8 @@
 #define SIGWINCH	28
 #define SIGIO	29
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGBUS	7
 
 
@@ -86,5 +86,39 @@ struct _fpstate
   struct _fpxreg _fxsr_st[8];
   struct _xmmreg _xmm[8];
   unsigned long padding[56];
+}
+ ;
+
+
+struct sigcontext
+{
+  unsigned short gs;
+  unsigned short __gsh;
+  unsigned short fs;
+  unsigned short __fsh;
+  unsigned short es;
+  unsigned short __esh;
+  unsigned short ds;
+  unsigned short __dsh;
+  unsigned long edi;
+  unsigned long esi;
+  unsigned long ebp;
+  unsigned long esp;
+  unsigned long ebx;
+  unsigned long edx;
+  unsigned long ecx;
+  unsigned long eax;
+  unsigned long trapno;
+  unsigned long err;
+  unsigned long eip;
+  unsigned short cs;
+  unsigned short __csh;
+  unsigned long eflags;
+  unsigned long esp_at_signal;
+  unsigned short ss;
+  unsigned short __ssh;
+  struct _fpstate fpstate;
+  unsigned long oldmask;
+  unsigned long cr2;
 }
  ;

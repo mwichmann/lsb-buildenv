@@ -1,12 +1,14 @@
 #ifndef _SYS_SEM_H_
 #define _SYS_SEM_H_
 
+#include <sys/types.h>
+#include <sys/ipc.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
-#include <sys/ipc.h>
+
 
 #define SEM_UNDO	0x1000
 #define GETPID	11

@@ -1,19 +1,21 @@
 #ifndef _TERMIOS_H_
 #define _TERMIOS_H_
 
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
 
-#define TCSANOW	0
-#define TCOOFF	0
+
 #define TCIFLUSH	0
+#define TCOOFF	0
+#define TCSANOW	0
 #define BS0	0000000
-#define NL0	0000000
 #define CR0	0000000
 #define FF0	0000000
+#define NL0	0000000
 #define TAB0	0000000
 #define VT0	0000000
 #define OPOST	0000001
@@ -27,8 +29,8 @@ extern "C"
 #define OFDEL	0000200
 #define NL1	0000400
 #define NLDLY	0000400
-#define IUCLC	0001000
 #define CR1	0001000
+#define IUCLC	0001000
 #define CR2	0002000
 #define CR3	0003000
 #define CRDLY	0003000
@@ -40,11 +42,11 @@ extern "C"
 #define BSDLY	0020000
 #define VT1	0040000
 #define VTDLY	0040000
-#define FFDLY	0100000
 #define FF1	0100000
-#define TCSADRAIN	1
-#define TCOON	1
+#define FFDLY	0100000
 #define TCOFLUSH	1
+#define TCOON	1
+#define TCSADRAIN	1
 #if defined(__powerpc__)
 #define TAB1	1024
 #endif
@@ -66,9 +68,9 @@ extern "C"
 #if defined(__powerpc__)
 #define ONLCR	2
 #endif
-#define TCSAFLUSH	2
 #define TCIOFF	2
 #define TCIOFLUSH	2
+#define TCSAFLUSH	2
 #if defined(__powerpc__)
 #define TAB2	2048
 #endif
@@ -142,22 +144,22 @@ extern "C"
 #if defined(__powerpc__)
 #define VWERASE	10
 #endif
+#define VEOL	11
 #if defined(__powerpc__)
 #define VREPRINT	11
 #endif
-#define VEOL	11
 #define VREPRINT	12
 #if defined(__powerpc__)
 #define VSUSP	12
 #endif
+#define VDISCARD	13
 #if defined(__powerpc__)
 #define VSTART	13
 #endif
-#define VDISCARD	13
-#define VWERASE	14
 #if defined(__powerpc__)
 #define VSTOP	14
 #endif
+#define VWERASE	14
 #define VLNEXT	15
 #if defined(__powerpc__)
 #define VDISCARD	16
@@ -169,15 +171,15 @@ extern "C"
 #if defined(__powerpc__)
 #define VMIN	5
 #endif
-#define VMIN	6
 #if defined(__powerpc__)
 #define VEOL	6
 #endif
+#define VMIN	6
 #define VSWTC	7
-#define VSTART	8
 #if defined(__powerpc__)
 #define VEOL2	8
 #endif
+#define VSTART	8
 #define VSTOP	9
 #if defined(__powerpc__)
 #define VSWTC	9

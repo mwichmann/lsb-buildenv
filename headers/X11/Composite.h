@@ -1,11 +1,13 @@
 #ifndef _X11_COMPOSITE_H_
 #define _X11_COMPOSITE_H_
 
+#include <X11/Intrinsic.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <X11/Intrinsic.h>
+
 
 
 

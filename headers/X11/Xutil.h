@@ -1,12 +1,14 @@
 #ifndef _X11_XUTIL_H_
 #define _X11_XUTIL_H_
 
+#include <X11/X.h>
+#include <X11/Xlib.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <X11/X.h>
-#include <X11/Xlib.h>
+
 
 
 

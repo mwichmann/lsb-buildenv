@@ -1,11 +1,13 @@
 #ifndef _X11_EXTENSIONS_DPMS_H_
 #define _X11_EXTENSIONS_DPMS_H_
 
+#include <X11/Xlib.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <X11/Xlib.h>
+
 
 
 

@@ -1,12 +1,14 @@
 #ifndef _SCHED_H_
 #define _SCHED_H_
 
+#include <sys/time.h>
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/time.h>
-#include <sys/types.h>
+
 
 #define SCHED_OTHER	0
 #define SCHED_FIFO	1

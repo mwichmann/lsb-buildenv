@@ -1,12 +1,14 @@
 #ifndef _CURSES_H_
 #define _CURSES_H_
 
+#include <stdio.h>
+#include <stdarg.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stdio.h>
-#include <stdarg.h>
+
 
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))
 #define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)

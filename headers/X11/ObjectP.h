@@ -1,11 +1,13 @@
 #ifndef _X11_OBJECTP_H_
 #define _X11_OBJECTP_H_
 
+#include <X11/Intrinsic.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <X11/Intrinsic.h>
+
 
 #define XtInheritAllocate	((XtAllocateProc) _XtInherit)
 #define XtInheritDeallocate	((XtDeallocateProc) _XtInherit)

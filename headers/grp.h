@@ -1,12 +1,14 @@
 #ifndef _GRP_H_
 #define _GRP_H_
 
+#include <stddef.h>
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
-#include <sys/types.h>
+
 
 
 

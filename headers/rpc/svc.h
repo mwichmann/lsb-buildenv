@@ -1,12 +1,14 @@
 #ifndef _RPC_SVC_H_
 #define _RPC_SVC_H_
 
+#include <netinet/in.h>
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <netinet/in.h>
-#include <sys/types.h>
+
 
 
 

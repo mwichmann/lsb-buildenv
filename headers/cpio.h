@@ -1,10 +1,12 @@
 #ifndef _CPIO_H_
 #define _CPIO_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #define C_IXOTH	000001
 #define C_IWOTH	000002

@@ -1,10 +1,12 @@
 #ifndef _DLFCN_H_
 #define _DLFCN_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #define RTLD_LOCAL	0
 #define RTLD_LAZY	0x00001

@@ -1,12 +1,14 @@
 #ifndef _X11_CONSTRAINP_H_
 #define _X11_CONSTRAINP_H_
 
+#include <X11/Intrinsic.h>
+#include <X11/CompositeP.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <X11/Intrinsic.h>
-#include <X11/CompositeP.h>
+
 
 #define XtConstraintExtensionVersion	1L
 

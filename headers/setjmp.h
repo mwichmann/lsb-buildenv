@@ -1,11 +1,13 @@
 #ifndef _SETJMP_H_
 #define _SETJMP_H_
 
+#include <signal.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <signal.h>
+
 
 #define setjmp(env)	_setjmp(env)
 #define sigsetjmp(a,b)	__sigsetjmp(a,b)

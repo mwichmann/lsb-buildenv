@@ -1,11 +1,13 @@
 #ifndef _SEMAPHORE_H_
 #define _SEMAPHORE_H_
 
+#include <pthread.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <pthread.h>
+
 
 
 

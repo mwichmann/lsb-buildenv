@@ -1,11 +1,13 @@
 #ifndef _ICONV_H_
 #define _ICONV_H_
 
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
+
 
 
 

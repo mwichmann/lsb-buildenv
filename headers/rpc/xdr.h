@@ -1,12 +1,14 @@
 #ifndef _RPC_XDR_H_
 #define _RPC_XDR_H_
 
+#include <sys/types.h>
+#include <inttypes.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
-#include <inttypes.h>
+
 
 
 

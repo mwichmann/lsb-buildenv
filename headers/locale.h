@@ -1,10 +1,12 @@
 #ifndef _LOCALE_H_
 #define _LOCALE_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #define LC_CTYPE	0
 #define LC_NUMERIC	1

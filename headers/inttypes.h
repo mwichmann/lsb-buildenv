@@ -1,12 +1,14 @@
 #ifndef _INTTYPES_H_
 #define _INTTYPES_H_
 
+#include <stdlib.h>
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stdlib.h>
-#include <stddef.h>
+
 
 
 

@@ -1,11 +1,13 @@
 #ifndef _SYS_UN_H_
 #define _SYS_UN_H_
 
+#include <sys/socket.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/socket.h>
+
 
 #define UNIX_PATH_MAX	108
 

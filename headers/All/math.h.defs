@@ -1,5 +1,7 @@
 
 #define HUGE_VAL	0x7FF00000UL
+#define DOMAIN	1
+#define SING	2
 
 
 struct exception

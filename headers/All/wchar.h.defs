@@ -1,4 +1,4 @@
 
 #define WEOF	(0xffffffffu)
-#define WCHAR_MIN	0
-#define WCHAR_MAX	0xffffff
+#define WCHAR_MAX	0x7FFFFFFF
+#define WCHAR_MIN	0x80000000

@@ -1,13 +1,15 @@
 #ifndef _SYS_MMAN_H_
 #define _SYS_MMAN_H_
 
+#include <stddef.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
-#include <sys/types.h>
-#include <unistd.h>
+
 
 #define MAP_FAILED	((void*)-1)
 #define PROT_NONE	0x0
@@ -18,13 +20,13 @@ extern "C"
 #define PROT_WRITE	0x2
 #define MAP_ANONYMOUS	0x20
 #define PROT_EXEC	0x4
-#define MS_ASYNC	1
 #define MCL_CURRENT	1
+#define MS_ASYNC	1
 #if defined(__powerpc__)
 #define MCL_FUTURE	16384
 #endif
-#define MS_INVALIDATE	2
 #define MCL_FUTURE	2
+#define MS_INVALIDATE	2
 #define MS_SYNC	4
 #if defined(__powerpc__)
 #define MCL_CURRENT	8192

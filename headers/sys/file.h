@@ -1,10 +1,12 @@
 #ifndef _SYS_FILE_H_
 #define _SYS_FILE_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #define LOCK_SH	1
 #define LOCK_EX	2

@@ -1,12 +1,14 @@
 #ifndef _SYS_STAT_H_
 #define _SYS_STAT_H_
 
+#include <sys/types.h>
+#include <unistd.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
-#include <unistd.h>
+
 
 #define S_ISBLK(m)	(((m)&S_IFMT)==S_IFBLK)
 #define S_ISCHR(m)	(((m)&S_IFMT)==S_IFCHR)
@@ -15,9 +17,9 @@ extern "C"
 #define S_ISLNK(m)	(((m)&S_IFMT)==S_IFLNK)
 #define S_ISREG(m)	(((m)&S_IFMT)==S_IFREG)
 #define S_ISSOCK(m)	(((m)&S_IFMT)==S_IFSOCK)
+#define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
-#define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_IRWXU	(S_IREAD|S_IWRITE|S_IEXEC)
 #define S_IROTH	(S_IRGRP>>3)
 #define S_IRGRP	(S_IRUSR>>3)

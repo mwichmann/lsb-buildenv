@@ -1,19 +1,21 @@
 #ifndef _NETINET_IN_H_
 #define _NETINET_IN_H_
 
+#include <sys/socket.h>
+#include <inttypes.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/socket.h>
-#include <inttypes.h>
+
 
 #define INADDR_NONE	((unsigned long int) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
 #define IPPROTO_IP	0
-#define IP_TOS	1
 #define IPPROTO_ICMP	1
+#define IP_TOS	1
 #define IPPROTO_UDP	17
 #define IPPROTO_IGMP	2
 #define IPPROTO_RAW	255

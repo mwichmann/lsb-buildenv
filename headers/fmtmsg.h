@@ -1,10 +1,12 @@
 #ifndef _FMTMSG_H_
 #define _FMTMSG_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 
 

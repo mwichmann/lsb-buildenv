@@ -1,11 +1,13 @@
 #ifndef _X11_ICE_ICEUTIL_H_
 #define _X11_ICE_ICEUTIL_H_
 
+#include <stdio.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stdio.h>
+
 
 
 

@@ -1,11 +1,13 @@
 #ifndef _RPC_CLNT_H_
 #define _RPC_CLNT_H_
 
+#include <sys/types.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
+
 
 
 

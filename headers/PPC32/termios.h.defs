@@ -1,14 +1,14 @@
 
 #define TAB1	1024
-#define CRDLY	12288
 #define CR3	12288
+#define CRDLY	12288
 #define FF1	16384
 #define FFDLY	16384
 #define XCASE	16384
 #define ONLCR	2
 #define TAB2	2048
-#define TABDLY	3072
 #define TAB3	3072
+#define TABDLY	3072
 #define BS1	32768
 #define BSDLY	32768
 #define OLCUC	4

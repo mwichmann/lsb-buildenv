@@ -1,13 +1,15 @@
 #ifndef _NL_TYPES_H_
 #define _NL_TYPES_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#define NL_SETD	1
+
 #define NL_CAT_LOCALE	1
+#define NL_SETD	1
 
 
 

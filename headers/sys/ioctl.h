@@ -1,10 +1,12 @@
 #ifndef _SYS_IOCTL_H_
 #define _SYS_IOCTL_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #define FIONREAD	0x541B
 #if defined(__i386__)

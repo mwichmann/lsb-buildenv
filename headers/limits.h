@@ -1,10 +1,12 @@
 #ifndef _LIMITS_H_
 #define _LIMITS_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 
 #if defined(__ia64__)
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
@@ -40,10 +42,10 @@ extern "C"
 #define CHAR_MIN	0
 #endif
 #define SCHAR_MAX	127
-#define UCHAR_MAX	255
 #if defined(__powerpc__)
 #define CHAR_MAX	255
 #endif
+#define UCHAR_MAX	255
 #define CHAR_BIT	8
 #define CHAR_MAX	SCHAR_MAX
 #define CHAR_MIN	SCHAR_MIN
@@ -59,10 +61,10 @@ extern "C"
 
 /* Minimum and maximum values a `int' can hold.*/
 #define INT_MIN	(-INT_MAX-1)
+#define INT_MAX	2147483647
 #if defined(__i386__)
 #define __INT_MAX__	2147483647
 #endif
-#define INT_MAX	2147483647
 #define UINT_MAX	4294967295U
 
 

@@ -1,11 +1,13 @@
 #ifndef _X11_SM_SMLIB_H_
 #define _X11_SM_SMLIB_H_
 
+#include <X11/ICE/ICElib.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <X11/ICE/ICElib.h>
+
 
 
 

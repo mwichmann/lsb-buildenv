@@ -1,17 +1,19 @@
 #ifndef _SYS_RESOURCE_H_
 #define _SYS_RESOURCE_H_
 
+#include <sys/time.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/time.h>
+
 
 #define RLIM_INFINITY	(~0UL)
 #define RLIM_SAVED_CUR	-1
 #define RLIM_SAVED_MAX	-1
-#define RUSAGE_SELF	0
 #define RLIMIT_CPU	0
+#define RUSAGE_SELF	0
 #define RLIMIT_FSIZE	1
 #define RLIMIT_DATA	2
 #define RLIMIT_STACK	3

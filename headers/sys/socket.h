@@ -1,11 +1,13 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
+
 
 #define SHUT_RD	0
 #define MSG_WAITALL	0x100
@@ -14,8 +16,8 @@ extern "C"
 #define SIOCGIFCONF	0x8912
 #define MSG_OOB	1
 #define SHUT_WR	1
-#define SHUT_RDWR	2
 #define MSG_PEEK	2
+#define SHUT_RDWR	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
 #define PF_INET	AF_INET
@@ -114,8 +116,8 @@ extern "C"
 #define SO_TYPE	3
 #define SO_ERROR	4
 #define SO_DONTROUTE	5
-#define SO_BROADCAST	6
 #define SOL_TCP	6
+#define SO_BROADCAST	6
 #define SO_SNDBUF	7
 #define SO_RCVBUF	8
 #define SO_KEEPALIVE	9

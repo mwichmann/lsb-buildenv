@@ -1,14 +1,16 @@
 #ifndef _SYS_WAIT_H_
 #define _SYS_WAIT_H_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
 #include <sys/types.h>
 #include <signal.h>
 #include <sys/resource.h>
 #include <sys/time.h>
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 
 #define WIFSIGNALED(status)	(!WIFSTOPPED(status) && !WIFEXITED(status))
 #define WIFSTOPPED(status)	(((status) & 0xff) == 0x7f)

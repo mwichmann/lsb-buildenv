@@ -1,12 +1,14 @@
 #ifndef _UTMP_H_
 #define _UTMP_H_
 
+#include <sys/types.h>
+#include <sys/time.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <sys/types.h>
-#include <sys/time.h>
+
 
 #define UT_HOSTSIZE	256
 #define UT_LINESIZE	32

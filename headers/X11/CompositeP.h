@@ -1,14 +1,16 @@
 #ifndef _X11_COMPOSITEP_H_
 #define _X11_COMPOSITEP_H_
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
+
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
-#define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
+#define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
 #define XtCompositeExtensionVersion	2L
 
 

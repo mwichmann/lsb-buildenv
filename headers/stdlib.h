@@ -1,11 +1,13 @@
 #ifndef _STDLIB_H_
 #define _STDLIB_H_
 
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stddef.h>
+
 
 #define MB_CUR_MAX	(__ctype_get_mb_cur_max())
 #define EXIT_SUCCESS	0

@@ -67,17 +67,14 @@ extern "C"
 #define EPIPE	32
 #define EDOM	33
 #define ERANGE	34
+#if defined(__i386__)
+#define EDEADLK	35
+#endif
 #if defined(__ia64__)
 #define EDEADLK	35
 #endif
 #if defined(__powerpc__)
 #define EDEADLK	35
-#endif
-#if defined(__i386__)
-#define EDEADLK	35
-#endif
-#if defined(__powerpc__)
-#define ENAMETOOLONG	36
 #endif
 #if defined(__i386__)
 #define ENAMETOOLONG	36
@@ -86,12 +83,15 @@ extern "C"
 #define ENAMETOOLONG	36
 #endif
 #if defined(__powerpc__)
-#define ENOLCK	37
+#define ENAMETOOLONG	36
 #endif
 #if defined(__i386__)
 #define ENOLCK	37
 #endif
 #if defined(__ia64__)
+#define ENOLCK	37
+#endif
+#if defined(__powerpc__)
 #define ENOLCK	37
 #endif
 #if defined(__i386__)
@@ -113,37 +113,37 @@ extern "C"
 #define ENOTEMPTY	39
 #endif
 #define EINTR	4
-#if defined(__powerpc__)
-#define ELOOP	40
-#endif
-#if defined(__ia64__)
-#define ELOOP	40
-#endif
 #if defined(__i386__)
 #define ELOOP	40
 #endif
-#if defined(__powerpc__)
-#define ENOMSG	42
-#endif
 #if defined(__ia64__)
-#define ENOMSG	42
+#define ELOOP	40
+#endif
+#if defined(__powerpc__)
+#define ELOOP	40
 #endif
 #if defined(__i386__)
 #define ENOMSG	42
 #endif
 #if defined(__ia64__)
-#define EIDRM	43
+#define ENOMSG	42
+#endif
+#if defined(__powerpc__)
+#define ENOMSG	42
 #endif
 #if defined(__i386__)
+#define EIDRM	43
+#endif
+#if defined(__ia64__)
 #define EIDRM	43
 #endif
 #if defined(__powerpc__)
 #define EIDRM	43
 #endif
-#if defined(__ia64__)
+#if defined(__i386__)
 #define ECHRNG	44
 #endif
-#if defined(__i386__)
+#if defined(__ia64__)
 #define ECHRNG	44
 #endif
 #if defined(__powerpc__)
@@ -167,17 +167,14 @@ extern "C"
 #if defined(__powerpc__)
 #define EL3HLT	46
 #endif
+#if defined(__i386__)
+#define EL3RST	47
+#endif
 #if defined(__ia64__)
 #define EL3RST	47
 #endif
 #if defined(__powerpc__)
 #define EL3RST	47
-#endif
-#if defined(__i386__)
-#define EL3RST	47
-#endif
-#if defined(__powerpc__)
-#define ELNRNG	48
 #endif
 #if defined(__i386__)
 #define ELNRNG	48
@@ -186,12 +183,15 @@ extern "C"
 #define ELNRNG	48
 #endif
 #if defined(__powerpc__)
-#define EUNATCH	49
+#define ELNRNG	48
 #endif
 #if defined(__i386__)
 #define EUNATCH	49
 #endif
 #if defined(__ia64__)
+#define EUNATCH	49
+#endif
+#if defined(__powerpc__)
 #define EUNATCH	49
 #endif
 #define EIO	5
@@ -213,13 +213,13 @@ extern "C"
 #if defined(__powerpc__)
 #define EBADRQC	56
 #endif
+#if defined(__i386__)
+#define EBADSLT	57
+#endif
 #if defined(__ia64__)
 #define EBADSLT	57
 #endif
 #if defined(__powerpc__)
-#define EBADSLT	57
-#endif
-#if defined(__i386__)
 #define EBADSLT	57
 #endif
 #if defined(__powerpc__)
@@ -244,6 +244,9 @@ extern "C"
 #if defined(__powerpc__)
 #define ENOSTR	60
 #endif
+#if defined(__i386__)
+#define ENODATA	61
+#endif
 #if defined(__ia64__)
 #define ENODATA	61
 #endif
@@ -251,57 +254,54 @@ extern "C"
 #define ENODATA	61
 #endif
 #if defined(__i386__)
-#define ENODATA	61
-#endif
-#if defined(__powerpc__)
-#define ETIME	62
-#endif
-#if defined(__i386__)
 #define ETIME	62
 #endif
 #if defined(__ia64__)
 #define ETIME	62
 #endif
-#if defined(__i386__)
-#define ENOSR	63
-#endif
 #if defined(__powerpc__)
+#define ETIME	62
+#endif
+#if defined(__i386__)
 #define ENOSR	63
 #endif
 #if defined(__ia64__)
 #define ENOSR	63
 #endif
-#if defined(__i386__)
-#define ENONET	64
-#endif
 #if defined(__powerpc__)
+#define ENOSR	63
+#endif
+#if defined(__i386__)
 #define ENONET	64
 #endif
 #if defined(__ia64__)
 #define ENONET	64
 #endif
-#if defined(__i386__)
-#define ENOPKG	65
-#endif
 #if defined(__powerpc__)
+#define ENONET	64
+#endif
+#if defined(__i386__)
 #define ENOPKG	65
 #endif
 #if defined(__ia64__)
 #define ENOPKG	65
 #endif
 #if defined(__powerpc__)
-#define EREMOTE	66
-#endif
-#if defined(__ia64__)
-#define EREMOTE	66
+#define ENOPKG	65
 #endif
 #if defined(__i386__)
 #define EREMOTE	66
 #endif
 #if defined(__ia64__)
+#define EREMOTE	66
+#endif
+#if defined(__powerpc__)
+#define EREMOTE	66
+#endif
+#if defined(__i386__)
 #define ENOLINK	67
 #endif
-#if defined(__i386__)
+#if defined(__ia64__)
 #define ENOLINK	67
 #endif
 #if defined(__powerpc__)
@@ -326,6 +326,9 @@ extern "C"
 #define ESRMNT	69
 #endif
 #define E2BIG	7
+#if defined(__i386__)
+#define ECOMM	70
+#endif
 #if defined(__ia64__)
 #define ECOMM	70
 #endif
@@ -333,24 +336,21 @@ extern "C"
 #define ECOMM	70
 #endif
 #if defined(__i386__)
-#define ECOMM	70
+#define EPROTO	71
 #endif
 #if defined(__ia64__)
 #define EPROTO	71
 #endif
 #if defined(__powerpc__)
 #define EPROTO	71
-#endif
-#if defined(__i386__)
-#define EPROTO	71
-#endif
-#if defined(__powerpc__)
-#define EMULTIHOP	72
 #endif
 #if defined(__i386__)
 #define EMULTIHOP	72
 #endif
 #if defined(__ia64__)
+#define EMULTIHOP	72
+#endif
+#if defined(__powerpc__)
 #define EMULTIHOP	72
 #endif
 #if defined(__i386__)
@@ -365,34 +365,34 @@ extern "C"
 #if defined(__i386__)
 #define EBADMSG	74
 #endif
-#if defined(__powerpc__)
-#define EBADMSG	74
-#endif
 #if defined(__ia64__)
 #define EBADMSG	74
 #endif
 #if defined(__powerpc__)
-#define EOVERFLOW	75
-#endif
-#if defined(__ia64__)
-#define EOVERFLOW	75
+#define EBADMSG	74
 #endif
 #if defined(__i386__)
 #define EOVERFLOW	75
 #endif
-#if defined(__powerpc__)
-#define ENOTUNIQ	76
-#endif
 #if defined(__ia64__)
-#define ENOTUNIQ	76
+#define EOVERFLOW	75
+#endif
+#if defined(__powerpc__)
+#define EOVERFLOW	75
 #endif
 #if defined(__i386__)
 #define ENOTUNIQ	76
 #endif
 #if defined(__ia64__)
+#define ENOTUNIQ	76
+#endif
+#if defined(__powerpc__)
+#define ENOTUNIQ	76
+#endif
+#if defined(__i386__)
 #define EBADFD	77
 #endif
-#if defined(__i386__)
+#if defined(__ia64__)
 #define EBADFD	77
 #endif
 #if defined(__powerpc__)
@@ -401,10 +401,10 @@ extern "C"
 #if defined(__i386__)
 #define EREMCHG	78
 #endif
-#if defined(__powerpc__)
+#if defined(__ia64__)
 #define EREMCHG	78
 #endif
-#if defined(__ia64__)
+#if defined(__powerpc__)
 #define EREMCHG	78
 #endif
 #if defined(__i386__)
@@ -417,6 +417,9 @@ extern "C"
 #define ELIBACC	79
 #endif
 #define ENOEXEC	8
+#if defined(__i386__)
+#define ELIBBAD	80
+#endif
 #if defined(__ia64__)
 #define ELIBBAD	80
 #endif
@@ -424,24 +427,21 @@ extern "C"
 #define ELIBBAD	80
 #endif
 #if defined(__i386__)
-#define ELIBBAD	80
+#define ELIBSCN	81
 #endif
 #if defined(__ia64__)
 #define ELIBSCN	81
 #endif
 #if defined(__powerpc__)
 #define ELIBSCN	81
-#endif
-#if defined(__i386__)
-#define ELIBSCN	81
-#endif
-#if defined(__powerpc__)
-#define ELIBMAX	82
 #endif
 #if defined(__i386__)
 #define ELIBMAX	82
 #endif
 #if defined(__ia64__)
+#define ELIBMAX	82
+#endif
+#if defined(__powerpc__)
 #define ELIBMAX	82
 #endif
 #if defined(__i386__)
@@ -462,28 +462,28 @@ extern "C"
 #if defined(__powerpc__)
 #define EILSEQ	84
 #endif
-#if defined(__powerpc__)
-#define ERESTART	85
-#endif
-#if defined(__ia64__)
-#define ERESTART	85
-#endif
 #if defined(__i386__)
 #define ERESTART	85
 #endif
-#if defined(__powerpc__)
-#define ESTRPIPE	86
-#endif
 #if defined(__ia64__)
-#define ESTRPIPE	86
+#define ERESTART	85
+#endif
+#if defined(__powerpc__)
+#define ERESTART	85
 #endif
 #if defined(__i386__)
 #define ESTRPIPE	86
 #endif
 #if defined(__ia64__)
+#define ESTRPIPE	86
+#endif
+#if defined(__powerpc__)
+#define ESTRPIPE	86
+#endif
+#if defined(__i386__)
 #define EUSERS	87
 #endif
-#if defined(__i386__)
+#if defined(__ia64__)
 #define EUSERS	87
 #endif
 #if defined(__powerpc__)
@@ -492,33 +492,30 @@ extern "C"
 #if defined(__i386__)
 #define ENOTSOCK	88
 #endif
-#if defined(__powerpc__)
+#if defined(__ia64__)
 #define ENOTSOCK	88
 #endif
-#if defined(__ia64__)
+#if defined(__powerpc__)
 #define ENOTSOCK	88
 #endif
 #if defined(__i386__)
 #define EDESTADDRREQ	89
 #endif
-#if defined(__powerpc__)
+#if defined(__ia64__)
 #define EDESTADDRREQ	89
 #endif
-#if defined(__ia64__)
+#if defined(__powerpc__)
 #define EDESTADDRREQ	89
 #endif
 #define EBADF	9
+#if defined(__i386__)
+#define EMSGSIZE	90
+#endif
 #if defined(__ia64__)
 #define EMSGSIZE	90
 #endif
 #if defined(__powerpc__)
 #define EMSGSIZE	90
-#endif
-#if defined(__i386__)
-#define EMSGSIZE	90
-#endif
-#if defined(__powerpc__)
-#define EPROTOTYPE	91
 #endif
 #if defined(__i386__)
 #define EPROTOTYPE	91
@@ -527,12 +524,15 @@ extern "C"
 #define EPROTOTYPE	91
 #endif
 #if defined(__powerpc__)
-#define ENOPROTOOPT	92
+#define EPROTOTYPE	91
 #endif
 #if defined(__i386__)
 #define ENOPROTOOPT	92
 #endif
 #if defined(__ia64__)
+#define ENOPROTOOPT	92
+#endif
+#if defined(__powerpc__)
 #define ENOPROTOOPT	92
 #endif
 #if defined(__i386__)
@@ -553,28 +553,28 @@ extern "C"
 #if defined(__powerpc__)
 #define ESOCKTNOSUPPORT	94
 #endif
-#if defined(__powerpc__)
-#define EOPNOTSUPP	95
-#endif
-#if defined(__ia64__)
-#define EOPNOTSUPP	95
-#endif
 #if defined(__i386__)
 #define EOPNOTSUPP	95
 #endif
 #if defined(__ia64__)
-#define EPFNOSUPPORT	96
+#define EOPNOTSUPP	95
+#endif
+#if defined(__powerpc__)
+#define EOPNOTSUPP	95
 #endif
 #if defined(__i386__)
+#define EPFNOSUPPORT	96
+#endif
+#if defined(__ia64__)
 #define EPFNOSUPPORT	96
 #endif
 #if defined(__powerpc__)
 #define EPFNOSUPPORT	96
 #endif
-#if defined(__ia64__)
+#if defined(__i386__)
 #define EAFNOSUPPORT	97
 #endif
-#if defined(__i386__)
+#if defined(__ia64__)
 #define EAFNOSUPPORT	97
 #endif
 #if defined(__powerpc__)
@@ -583,19 +583,19 @@ extern "C"
 #if defined(__i386__)
 #define EADDRINUSE	98
 #endif
-#if defined(__powerpc__)
+#if defined(__ia64__)
 #define EADDRINUSE	98
 #endif
-#if defined(__ia64__)
+#if defined(__powerpc__)
 #define EADDRINUSE	98
 #endif
 #if defined(__i386__)
 #define EADDRNOTAVAIL	99
 #endif
-#if defined(__powerpc__)
+#if defined(__ia64__)
 #define EADDRNOTAVAIL	99
 #endif
-#if defined(__ia64__)
+#if defined(__powerpc__)
 #define EADDRNOTAVAIL	99
 #endif
 #define EWOULDBLOCK	EAGAIN
