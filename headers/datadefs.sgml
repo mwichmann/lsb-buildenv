@@ -1,3 +1,19 @@
+<SECT1 ID=aio.h>
+<TITLE>aio.h</TITLE>
+<PARA></PARA>
+<SCREEN>
+
+int aio_read(struct aiocb);
+int aio_write(struct aiocb);
+int aio_error(struct aiocb);
+__ssize_t aio_return(struct aiocb);
+int aio_cancel(int, struct aiocb);
+int aio_suspend(struct aiocb, int, struct timespec);
+int aio_fsync(int, struct aiocb);
+
+
+</SCREEN>
+</SECT1>
 <SECT1 ID=arpa/inet.h>
 <TITLE>arpa/inet.h</TITLE>
 <PARA></PARA>

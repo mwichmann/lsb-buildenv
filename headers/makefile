@@ -1,5 +1,5 @@
 
-HEADERS=assert.h cpio.h ctype.h dirent.h errno.h fcntl.h float.h \
+HEADERS=aio.h assert.h cpio.h ctype.h dirent.h errno.h fcntl.h float.h \
 	fnmatch.h ftw.h glob.h grp.h iconv.h langinfo.h limits.h \
 	libgen.h locale.h math.h monetary.h netdb.h nl_types.h poll.h \
 	pthread.h pwd.h regexp.h re_comp.h sched.h search.h setjmp.h \

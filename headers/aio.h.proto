@@ -1,0 +1,7 @@
+int aio_read(struct aiocb);
+int aio_write(struct aiocb);
+int aio_error(struct aiocb);
+__ssize_t aio_return(struct aiocb);
+int aio_cancel(int, struct aiocb);
+int aio_suspend(struct aiocb, int, struct timespec);
+int aio_fsync(int, struct aiocb);
