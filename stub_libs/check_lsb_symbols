@@ -7,6 +7,8 @@
 # defined in the LSB database as a function but is a variable on the
 # system (or vice-versa)
 #
+# Also now check the size of data symbols
+#
 # (C) Copyright 2001 The Free Standards Group  Inc
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
@@ -107,9 +109,7 @@ sub GenerateAliases($)
 }
 
 #----------------------------------------------------------------------
-# Look through local shared libraries for aliases
-# We only do this because the database does not (yet) have this
-# information.
+#
 sub LoadSymbolData($)
 {
   my($libfilename) = shift;
@@ -120,7 +120,9 @@ sub LoadSymbolData($)
   my(%lookup);
   my(@nmLine);
   my($tmpfile) = "/tmp/$0.$$";
+  my($tmpfile2) = "/tmp/$0.$$.1";
   local(*NMOUTPUT);
+  local(*OBJDUMPOUT);
 
   foreach $loop (@searchDirs)
   {
@@ -141,6 +143,12 @@ sub LoadSymbolData($)
     die "nm of shared library failed\n";
   }
   
+  if (system("objdump -T $useDir/$libfilename | egrep 'data|bss' > $tmpfile2")
+      /256!=0)
+  {
+    die "nm of shared library failed\n";
+  }
+  
   my($line);
   if (open(NMOUTPUT, "$tmpfile"))
   {
@@ -155,20 +163,20 @@ sub LoadSymbolData($)
             $nmLine[1] eq "R" || $nmLine[1] eq "S")
         {
           if (defined ($symbolInfo->{$nmLine[2]}) 
-              && $symbolInfo->{$nmLine[2]} ne "DATA")
+              && $symbolInfo->{$nmLine[2]}{TYPE} ne "DATA")
           {
-            print "redefining $nmLine[2] ($symbolInfo->{$nmLine[2]} to DATA)\n";
+            print "redefining $nmLine[2] ($symbolInfo->{$nmLine[2]}{TYPE} to DATA)\n";
           }
-          $symbolInfo->{$nmLine[2]} = "DATA";
+          $symbolInfo->{$nmLine[2]}{TYPE} = "DATA";
         }
         elsif ($nmLine[1] eq "T")
         {
-          if (defined ($symbolInfo->{$nmLine[2]}) 
-              && $symbolInfo->{$nmLine[2]} ne "FUNC")
+          if (defined ($symbolInfo->{$nmLine[2]})
+              && $symbolInfo->{$nmLine[2]}{TYPE} ne "FUNC")
           {
-            print "redefining $nmLine[2] ($symbolInfo->{$nmLine[2]} to FUNC)\n";
+            print "redefining $nmLine[2] ($symbolInfo->{$nmLine[2]}{TYPE} to FUNC)\n";
           }
-          $symbolInfo->{$nmLine[2]} = "FUNC";
+          $symbolInfo->{$nmLine[2]}{TYPE} = "FUNC";
         }
 #          elsif ($nmLine[1] eq "W" || $nmLine[1] eq "V")
 #          {
@@ -187,6 +195,33 @@ sub LoadSymbolData($)
   {
     die "Failed to open temorary file: $tmpfile\n";
   }
+
+  die "Could not open temporary file: $tmpfile2\n"
+      unless open(OBJDUMPOUT, $tmpfile2);
+  my($name);
+  my($size);
+  while (defined($line = <OBJDUMPOUT>))
+  {
+    chomp($line);
+    $line =~ s/\t/ /;
+    $line =~ s/\.rodata /\.rodata/;
+    $line =~ s/\.bss /\.bss   /;
+    if (length($line)>46)
+    {
+      $name = substr($line, 45);
+      $name =~ s/^\s+//;
+      $name =~ s/\s+$//;
+      $size = substr($line, 24, 8);
+      $size =~ s/^\s+//;
+      $size =~ s/\s+$//;
+
+#      print "got info for: $name " . $size . "\n";
+      $symbolInfo->{$name}{SIZE} = $size;
+    }
+  }
+  close(OBJDUMPOUT);
+#  unlink($tmpfile2);
+
   return $symbolInfo;
 }
 
@@ -231,10 +266,10 @@ sub CheckSymbols($$$$$)
 #    print "$symbolInfo->{$row->{Iname}}\n";
     if (exists($symbolInfo->{$iface}))
     {
-      if ($symbolInfo->{$iface} ne "FUNC" 
-          && $symbolInfo->{$iface} ne "ANY")
+      if ($symbolInfo->{$iface}{TYPE} ne "FUNC" 
+          && $symbolInfo->{$iface}{TYPE} ne "ANY")
       {
-        print "$row->{Iname} is $symbolInfo->{$iface} but recorded as function\n";
+        print "$row->{Iname} is $symbolInfo->{$iface}{TYPE} but recorded as function\n";
       }
     }
     else
@@ -270,11 +305,22 @@ sub CheckSymbols($$$$$)
     }
     if (exists($symbolInfo->{$iface}))
     {
-      if ($symbolInfo->{$iface} ne "DATA"
-          && $symbolInfo->{$iface} ne "ANY")
+      if ($symbolInfo->{$iface}{TYPE} ne "DATA"
+          && $symbolInfo->{$iface}{TYPE} ne "ANY")
       {
         print "$iface is $symbolInfo->{$iface} but recorded data\n";
       }
+      if (!defined($symbolInfo->{$iface}{SIZE}))
+      {
+        print "no size for $iface\n";
+        next;
+      }
+      
+      if (hex($symbolInfo->{$iface}{SIZE}) != $row->{ATsize})
+      {
+        print "Size mismatch for $iface. Is $symbolInfo->{$iface}{SIZE}, should be $row->{ATsize}\n";
+      }
+
     }
     else
     {
