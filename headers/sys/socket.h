@@ -10,28 +10,9 @@ extern "C"
 #endif
 
 
-#define SHUT_RD	0
 #define SCM_RIGHTS	0x01
-#define MSG_WAITALL	0x100
-#define MSG_TRUNC	0x20
-#define MSG_EOR	0x80
-#define SIOCGIFCONF	0x8912
-#define SIOCGIFFLAGS	0x8913
-#define SIOCGIFADDR	0x8915
-#define SIOCGIFNETMASK	0x891b
-#define MSG_OOB	1
-#define SHUT_WR	1
-#define SO_BSDCOMPAT	14
-#define SO_RCVLOWAT	18
-#define SO_SNDLOWAT	19
-#define MSG_PEEK	2
-#define SHUT_RDWR	2
-#define SO_RCVTIMEO	20
-#define SO_SNDTIMEO	21
-#define SO_ACCEPTCONN	30
-#define MSG_DONTROUTE	4
-#define MSG_CTRUNC	8
-#define PF_UNSPEC	AF_UNSPEC
+#define SOL_SOCKET	1
+#define SOL_RAW	255
 
 
   struct linger
@@ -132,6 +113,7 @@ extern "C"
    ;
 
 
+/* Address Families*/
 #define AF_UNSPEC	0
 #define AF_UNIX	1
 #define AF_INET6	10
@@ -139,9 +121,11 @@ extern "C"
 
 
 
+/* Protocol Families*/
 #define PF_INET	AF_INET
 #define PF_INET6	AF_INET6
 #define PF_UNIX	AF_UNIX
+#define PF_UNSPEC	AF_UNSPEC
 
 
 
@@ -154,21 +138,132 @@ extern "C"
 
 
 
-#define SOL_SOCKET	1
+/* Socket Options*/
 #define SO_DEBUG	1
 #define SO_OOBINLINE	10
 #define SO_NO_CHECK	11
 #define SO_PRIORITY	12
 #define SO_LINGER	13
+#define SO_BSDCOMPAT	14
+#if __powerpc__ && !__powerpc64__
+#define SO_RCVLOWAT	16
+#endif
+#if __powerpc64__
+#define SO_RCVLOWAT	16
+#endif
+#if __powerpc__ && !__powerpc64__
+#define SO_SNDLOWAT	17
+#endif
+#if __powerpc64__
+#define SO_SNDLOWAT	17
+#endif
+#if __i386__
+#define SO_RCVLOWAT	18
+#endif
+#if __ia64__
+#define SO_RCVLOWAT	18
+#endif
+#if __s390__ && !__s390x__
+#define SO_RCVLOWAT	18
+#endif
+#if __x86_64__
+#define SO_RCVLOWAT	18
+#endif
+#if __s390x__
+#define SO_RCVLOWAT	18
+#endif
+#if __powerpc__ && !__powerpc64__
+#define SO_RCVTIMEO	18
+#endif
+#if __powerpc64__
+#define SO_RCVTIMEO	18
+#endif
+#if __i386__
+#define SO_SNDLOWAT	19
+#endif
+#if __ia64__
+#define SO_SNDLOWAT	19
+#endif
+#if __s390__ && !__s390x__
+#define SO_SNDLOWAT	19
+#endif
+#if __x86_64__
+#define SO_SNDLOWAT	19
+#endif
+#if __s390x__
+#define SO_SNDLOWAT	19
+#endif
+#if __powerpc__ && !__powerpc64__
+#define SO_SNDTIMEO	19
+#endif
+#if __powerpc64__
+#define SO_SNDTIMEO	19
+#endif
 #define SO_REUSEADDR	2
-#define SOL_RAW	255
+#if __i386__
+#define SO_RCVTIMEO	20
+#endif
+#if __ia64__
+#define SO_RCVTIMEO	20
+#endif
+#if __s390__ && !__s390x__
+#define SO_RCVTIMEO	20
+#endif
+#if __x86_64__
+#define SO_RCVTIMEO	20
+#endif
+#if __s390x__
+#define SO_RCVTIMEO	20
+#endif
+#if __i386__
+#define SO_SNDTIMEO	21
+#endif
+#if __ia64__
+#define SO_SNDTIMEO	21
+#endif
+#if __s390__ && !__s390x__
+#define SO_SNDTIMEO	21
+#endif
+#if __x86_64__
+#define SO_SNDTIMEO	21
+#endif
+#if __s390x__
+#define SO_SNDTIMEO	21
+#endif
 #define SO_TYPE	3
+#define SO_ACCEPTCONN	30
 #define SO_ERROR	4
 #define SO_DONTROUTE	5
 #define SO_BROADCAST	6
 #define SO_SNDBUF	7
 #define SO_RCVBUF	8
 #define SO_KEEPALIVE	9
+
+
+
+/* ioctl() commands which are permitted on sockets.*/
+#define SIOCGIFCONF	0x8912
+#define SIOCGIFFLAGS	0x8913
+#define SIOCGIFADDR	0x8915
+#define SIOCGIFNETMASK	0x891b
+
+
+
+/* Flags for the 'how' argument to shutdown()*/
+#define SHUT_RD	0
+#define SHUT_WR	1
+#define SHUT_RDWR	2
+#define MSG_DONTROUTE	4
+
+
+
+/* flags used in recvmsg()*/
+#define MSG_WAITALL	0x100
+#define MSG_TRUNC	0x20
+#define MSG_EOR	0x80
+#define MSG_OOB	1
+#define MSG_PEEK	2
+#define MSG_CTRUNC	8
 
 
 
