@@ -1,6 +1,7 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
+#include <inttypes.h>
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -64,6 +65,14 @@ extern "C"
   {
     sa_family_t sa_family;
     char sa_data[14];
+  }
+   ;
+
+  struct sockaddr_storage
+  {
+    sa_family_t ss_family;
+    uint32_t __ss_align;
+    char __ss_padding[(128 - (2 * sizeof (uint32_t)))];
   }
    ;
 
