@@ -12,22 +12,14 @@ libXt widgetClass 8
 libXt widgetClassRec e0
 libXt wmShellClassRec 118
 # Generating c stubs for libstdcxx library
-libstdcxx _ZNKSbIwSt11char_traitsIwESaIwEE4dataEv 10
-libstdcxx _ZNKSbIwSt11char_traitsIwESaIwEE7_M_dataEv 10
-libstdcxx _ZNKSs4dataEv 10
-libstdcxx _ZNKSs7_M_dataEv 10
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE20_S_empty_rep_storageE 20
-libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep10_M_refdataEv 10
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE 8
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_terminalE 4
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4nposE 8
-libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE7_M_dataEPw 10
 libstdcxx _ZNSs20_S_empty_rep_storageE 20
-libstdcxx _ZNSs4_Rep10_M_refdataEv 10
 libstdcxx _ZNSs4_Rep11_S_max_sizeE 8
 libstdcxx _ZNSs4_Rep11_S_terminalE 1
 libstdcxx _ZNSs4nposE 8
-libstdcxx _ZNSs7_M_dataEPc 10
 libstdcxx _ZNSt10__num_base11_S_atoms_inE 8
 libstdcxx _ZNSt10__num_base12_S_atoms_outE 8
 libstdcxx _ZNSt10__num_base8_S_atomsE 17
