@@ -3,6 +3,7 @@
 
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -63,6 +64,15 @@ extern "C"
 #endif
 #if __s390__ && !__s390x__
 #define _STAT_VER	3
+#endif
+#if __powerpc__ && !__powerpc64__
+#define st_atime	st_atim.tv_sec
+#endif
+#if __powerpc__ && !__powerpc64__
+#define st_ctime	st_ctim.tv_sec
+#endif
+#if __powerpc__ && !__powerpc64__
+#define st_mtime	st_mtim.tv_sec
 #endif
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR
@@ -165,12 +175,9 @@ extern "C"
     off64_t st_size;		/* Size of file, in bytes. */
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
-    time_t st_atime;		/* Time of last access. */
-    unsigned long st_atimensec;	/* atime.nanoseconds. */
-    time_t st_mtime;		/* Time of last modification. */
-    unsigned long st_mtimensec;	/* mtime.nanoseconds. */
-    time_t st_ctime;		/* Time of last status change. */
-    unsigned long st_ctimensec;	/* ctime.nanoseconds. */
+    struct timespec st_atime;	/* Time of last access. */
+    struct timespec st_mtime;	/* Time of last modification. */
+    struct timespec st_ctime;	/* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -193,12 +200,9 @@ extern "C"
     off_t st_size;		/* Size of file, in bytes. */
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt_t st_blocks;		/* Number 512-byte blocks allocated. */
-    time_t st_atime;		/* Time of last access. */
-    unsigned long st_atimensec;	/* Reserved for atime.nanoseconds */
-    time_t st_mtime;		/* Time of last modification. */
-    unsigned long st_mtimensec;	/* Reserved for mtime.nanoseconds. */
-    time_t st_ctime;		/* Time of last status change. */
-    unsigned long st_ctimensec;	/* Reserved for ctime.nanoseconds. */
+    struct timespec st_atime;	/* Time of last access. */
+    struct timespec st_mtime;	/* Time of last modification. */
+    struct timespec st_ctime;	/* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
