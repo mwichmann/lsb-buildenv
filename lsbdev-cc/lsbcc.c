@@ -654,7 +654,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option?: %s optopt %x %c\n",
 					argv[optind-1], optopt, optopt );
-		if( optopt && ((optopt != '?') || (argv[optind-1][0] == '-')) )
+		if( (optopt && (optopt != '?')) || (argv[optind-1][0] == '-') )
 			argvaddstring(options,argv[optind-1]);
 		else
 			fprintf(stderr,"ERROR: Dropping argument %s\n",
