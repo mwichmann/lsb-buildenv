@@ -90,6 +90,20 @@ extern "C"
    ;
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;
+    time_t sem_otime;
+    time_t sem_ctime;
+    unsigned long sem_nsems;
+    unsigned long __unused3;
+    unsigned long __unused4;
+  }
+   ;
+
+#endif
 
   extern int semctl (int, int, int, ...);
   extern int semget (key_t, int, int);

@@ -36,6 +36,11 @@ extern "C"
   typedef int __jmp_buf[14];
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  typedef long __jmp_buf[320];
+
+#endif
 
 
 

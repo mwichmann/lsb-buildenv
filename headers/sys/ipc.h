@@ -92,6 +92,24 @@ extern "C"
    ;
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  struct ipc_perm
+  {
+    key_t __key;
+    uid_t uid;
+    gid_t gid;
+    uid_t cuid;
+    gid_t cgid;
+    mode_t mode;
+    unsigned int __seq;
+    unsigned int __pad1;
+    unsigned long __unused1;
+    unsigned long __unused2;
+  }
+   ;
+
+#endif
 
 /* common mode bits*/
 
