@@ -1,0 +1,10 @@
+
+#define FE_TONEAREST	0
+#define FE_TOWARDZERO	0x1
+#define FE_UPWARD	0x2
+#define FE_DOWNWARD	0x3
+
+typedef unsigned int fexcept_t;
+
+typedef unsigned int fenv_t;
+#define FE_DFL_ENV	((__const fenv_t *) -1)
