@@ -85,6 +85,7 @@ extern "C"
 
 
   extern void _Unwind_DeleteException (struct _Unwind_Exception *);
+  extern fde *_Unwind_Find_FDE (void);
   extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
   extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
   extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
