@@ -42,7 +42,13 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	%entry=$tth->fetchhash;
 # Something about anon or not & wether to set nameonly
 	if (!$nameonly) {
-		displaytype(\%entry);
+		if( $entry{'Ttype'} eq 'Typedef' ) {
+			$nameonly=1;
+			displaytype(\%entry);
+			$nameonly=0;
+		} else {
+			displaytype(\%entry);
+			}
 		}
 	if( $entry{'Ttype'} ne 'FuncPtr' ) {
 		print $$type{'Tname'}."\t";
