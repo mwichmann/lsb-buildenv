@@ -1,18 +1,50 @@
 .TH lsbcc "1" "" "lsbcc (LSB)" LSB
 .SH NAME
-lsbcc \- compiler driver for building LSB conformaning applications
+lsbcc \- compiler driver for building LSB conforming applications
 .SH SYNOPSIS
 .B lsbcc
-.RB [\fIoptions\fR]
+.RI [ compiler-options ]
 .SH DESCRIPTION
-.PP
-This program should be used in place of the
-.IR cc
+.P
+This tool should be used in place of the
+.I cc
 (or
-.IR c++
-) command when
-building a program. The options accepted are the same as those for the regular
-compiler.
+.IR c++ )
+command when
+building an LSB-conforming program.
+.P
+The LSB development environment provides
+a set of headers and libraries nominally found in
+.I /opt/lsbdev-base/include
+and
+.I /opt/lsdev-base/lib
+respectively. These headers and libraries have been
+carefully built so that they contain only the interfaces
+provided by the LSB. 
+.P
+LSB programs also need to be linked with 
+.I ld-lsb.so.1
+.RI ( ld-lsb-ia64.so.1
+for the Itanium architecture)
+as the program intepreter.   
+.P
+.IR lsbcc
+is designed to take care of these build issues 
+(to the extent possible) without requiring changes
+to existing build setups. It takes no options; 
+the rest of the command line will be passed on to the
+regular compiler.
+.IR lsbcc
+first modifies the command line to follow the
+LSB build rules.
+.P
+.SS Invocation Examples
+.B "lsbcc hello.c -o hello"
+.P
+.B "make CC=lsbcc"
+.P
+.B "CC=lsbcc CXX=lsbc++ ./configure; make"
+.P
 .SH ENVIRONMENT
 The following environment variables affect the behavior of
 .IR lsbcc
@@ -43,11 +75,20 @@ Stuart Anderson <anderson@freestandards.org>
 .SH "REPORTING BUGS"
 Report bugs to <lsb-build@linuxbase.org>.
 .SH "BUGS"
-.PP
+.P
 It is a little too easy to confuse lsbcc (and lsbc++). 
 In particular, build systems that include "clever" tools
 to manage which libraries to use, such as GNU libtool
 and pkgconfig, may defeat the checks for non-LSB libraries.
+.SH FILES
+.TP
+/opt/lsbdev-base/include
+the LSB header files
+.TP
+/opt/lsbdev-base/lib
+the LSB stub libraries
+.SH SEE ALSO
+lsbappchk
 .SH COPYRIGHT
 Copyright \(co 2002 Free Standards Group.
 .SH "SEE ALSO"
