@@ -643,6 +643,9 @@ if( lsbccmode == LSBCPLUS ) {
 		fprintf(stderr,"Prepending %s to include path\n", cxxincpath);
 	sprintf(tmpbuf, "-I%s", cxxincpath);
 	argvaddstring(incpaths,strdup(tmpbuf));
+	/* this is grotty: looks like we also need -Icxxincpath/backward */
+	sprintf(tmpbuf, "-I%s/backward", cxxincpath);
+	argvaddstring(incpaths,strdup(tmpbuf));
 	argvappend(gccargs,incpaths);
 }
 
