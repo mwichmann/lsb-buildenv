@@ -64,7 +64,7 @@ extern "C"
 /* PPC64 */
   typedef struct _libc_vscr
   {
-    int __pad;
+    int __pad[3];
     int vscr_word;
   }
   vscr_t;
