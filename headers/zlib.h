@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define ZLIB_VERSION	"1.1.4"
 
 
 

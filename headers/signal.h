@@ -240,7 +240,7 @@ extern "C"
 /* Type of a signal handling function.*/
 
 
-  typedef void (*__sighandler_t) (void);
+  typedef void (*__sighandler_t) (int);
 
 
 /* POSIX 1003.1b sigval*/

@@ -15,7 +15,7 @@ extern "C"
 #define RAND_MAX	2147483647
 
 
-  typedef int (*__compar_fn_t) (void);
+  typedef int (*__compar_fn_t) (const void *, const void *);
 
 
 /* Returned by `div'.*/
@@ -61,7 +61,7 @@ extern "C"
   extern long a64l (char *);
   extern void abort (void);
   extern int abs (int);
-  extern int atexit (void (*atexit_func) ());
+  extern int atexit (void (*atexit_func) (void));
   extern double atof (const char *);
   extern int atoi (const char *);
   extern long atol (const char *);
