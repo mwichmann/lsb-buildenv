@@ -2227,18 +2227,8 @@ GLIBCXX_3.4 {
   _ZnajRKSt9nothrow_t;
   _Znwj;
   _ZnwjRKSt9nothrow_t;
-  atan2l;
-  coshl;
-  cosl;
   expl;
-  hypotl;
-  log10l;
-  logl;
-  powl;
   sinhl;
-  sinl;
-  sqrtl;
-  tanhl;
   tanl;
   _ZGVNSt10moneypunctIcLb0EE2idE;
   _ZGVNSt10moneypunctIcLb1EE2idE;
