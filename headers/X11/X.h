@@ -569,8 +569,8 @@ typedef XID KeySym;
 #define MappingSuccess	0
 #define MappingKeyboard	1
 #define MappingBusy	1
-#define MappingFailed	2
 #define MappingPointer	2
+#define MappingFailed	2
 
 
 

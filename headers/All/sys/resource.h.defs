@@ -16,6 +16,7 @@
 
 
 typedef unsigned long rlim_t;
+typedef unsigned long long rlim64_t;
 
 
 struct rlimit
@@ -26,8 +27,8 @@ struct rlimit
  ;
 struct rlimit64
 {
-  rlim_t rlim_cur;
-  rlim_t rlim_max;
+  rlim64_t rlim_cur;
+  rlim64_t rlim_max;
 }
  ;
 

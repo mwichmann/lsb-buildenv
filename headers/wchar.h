@@ -13,13 +13,6 @@
 
 
 
-typedef struct
-{
-  int count;
-  wint_t value;
-}
-mbstate_t;
-
 
 extern size_t __mbrlen (char *, size_t, mbstate_t *);
 extern double __wcstod_internal (wchar_t *, wchar_t * *, int);

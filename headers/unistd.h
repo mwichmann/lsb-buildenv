@@ -26,6 +26,7 @@ typedef int *intptr_t;
 
 
 
+#define _POSIX_SHARED_MEMORY_OBJECTS	1
 #define _POSIX_MEMLOCK	1
 #define _POSIX_PRIORITY_SCHEDULING	1
 #define _POSIX_SYNCHRONIZED_IO	1
@@ -38,7 +39,6 @@ typedef int *intptr_t;
 #define _POSIX_SEMAPHORES	1
 #define _POSIX_FSYNC	1
 #define _POSIX_MESSAGE_PASSING	1
-#define _POSIX_SHARED_MEMORY_OBJECTS	1
 #define _POSIX2_VERSION	199209L
 #define _POSIX2_C_VERSION	199209L
 #define _POSIX_VERSION	199506L

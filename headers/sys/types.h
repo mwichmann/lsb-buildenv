@@ -4,7 +4,7 @@
 
 
 
-typedef int int64_t;
+typedef long long int64_t;
 
 typedef int ssize_t;
 
@@ -35,6 +35,8 @@ typedef int clockid_t;
 
 /* Stuff that really in bits/types.h*/
 
+
+typedef unsigned long long ino64_t;
 
 typedef long long loff_t;
 

@@ -82,6 +82,13 @@ typedef struct _win_st WINDOW;
 
 typedef chtype attr_t;
 
+typedef struct
+{
+  attr_t attr;
+  wchar_t chars[5];
+}
+cchar_t;
+
 struct pdat
 {
   short _pad_y;
@@ -98,33 +105,34 @@ struct pdat
 
 struct _win_st
 {
-  short _cury;
+  short _cury;			/* current cursor position */
   short _curx;
-  short _maxy;
+  short _maxy;			/* maximums of x and y, NOT window size */
   short _maxx;
-  short _begy;
+  short _begy;			/* screen coords of upper-left-hand corner */
   short _begx;
-  short _flags;
-  attr_t _attrs;
-  chtype _bkgd;
-  bool _notimeout;
-  bool _clear;
-  bool _leaveok;
-  bool _scroll;
-  bool _idlok;
-  bool _idcok;
-  bool _immed;
-  bool _sync;
-  bool _use_keypad;
-  int _delay;
-  struct ldat *_line;
-  short _regtop;
-  short _regbottom;
-  int _parx;
-  int _pary;
-  WINDOW *_parent;
+  short _flags;			/* window state flags */
+  attr_t _attrs;		/* current attribute for non-space character */
+  chtype _bkgd;			/* current background char/attribute pair */
+  bool _notimeout;		/* no time out on function-key entry? */
+  bool _clear;			/* consider all data in the window invalid? */
+  bool _leaveok;		/* OK to not reset cursor on exit? */
+  bool _scroll;			/* OK to scroll this window? */
+  bool _idlok;			/* OK to use insert/delete line? */
+  bool _idcok;			/* OK to use insert/delete char? */
+  bool _immed;			/* window in immed mode? (not yet used) */
+  bool _sync;			/* window in sync mode? */
+  bool _use_keypad;		/* process function keys into KEY_ symbols? */
+  int _delay;			/* 0 = nodelay, <0 = blocking, >0 = delay */
+  struct ldat *_line;		/* the actual line data */
+  short _regtop;		/* top line of scrolling region */
+  short _regbottom;		/* bottom line of scrolling region */
+  int _parx;			/* x coordinate of this window in parent */
+  int _pary;			/* y coordinate of this window in parent */
+  WINDOW *_parent;		/* pointer to parent if a sub-window */
   struct pdat _pad;
-  short _yoffset;
+  short _yoffset;		/* real begy is _begy + _yoffset */
+  cchar_t _bkgrnd;		/* current background char/attribute pair */
 }
  ;
 

@@ -21,6 +21,8 @@
 
 typedef unsigned long rlim_t;
 
+typedef unsigned long long rlim64_t;
+
 
 
 
@@ -33,8 +35,8 @@ struct rlimit
 
 struct rlimit64
 {
-  rlim_t rlim_cur;		/* The current (soft) limit. */
-  rlim_t rlim_max;		/* The hard limit. */
+  rlim64_t rlim_cur;		/* The current (soft) limit. */
+  rlim64_t rlim_max;		/* The hard limit. */
 }
  ;
 

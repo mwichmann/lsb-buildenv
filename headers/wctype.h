@@ -10,6 +10,13 @@ typedef unsigned int wint_t;
 
 typedef int wctrans_t;
 
+typedef struct
+{
+  int count;
+  wint_t value;
+}
+mbstate_t;
+
 
 extern wctrans_t wctrans (char *);
 extern int iswalnum (wint_t);

@@ -69,6 +69,12 @@ typedef char bool;
 typedef struct screen SCREEN;
 typedef struct _win_st WINDOW;
 typedef chtype attr_t;
+typedef struct
+{
+  attr_t attr;
+  wchar_t chars[5];
+}
+cchar_t;
 struct pdat
 {
   short _pad_y;
@@ -110,6 +116,7 @@ struct _win_st
   WINDOW *_parent;
   struct pdat _pad;
   short _yoffset;
+  cchar_t _bkgrnd;
 }
  ;
 #define KEY_CODE_YES	0400

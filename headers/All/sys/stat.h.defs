@@ -63,25 +63,24 @@ struct stat
  ;
 struct stat64
 {
-  unsigned short st_dev;
-  unsigned char __pad0[1];
-  unsigned long __st_ino;
-  unsigned int st_mode;
-  unsigned int st_nlink;
-  unsigned long st_uid;
-  unsigned long st_gid;
-  unsigned short st_rdev;
-  unsigned char __pad3[1];
-  long st_size;
-  unsigned long st_blksize;
-  unsigned long st_blocks;
-  unsigned long __pad4;
-  unsigned long st_atime;
-  unsigned long __pad5;
-  unsigned long st_mtime;
-  unsigned long __pad6;
-  unsigned long st_ctime;
-  unsigned long __pad7;
-  unsigned long st_ino;
+  dev_t st_dev;
+  unsigned int __pad0;
+  ino_t __st_ino;
+  mode_t st_mode;
+  nlink_t st_nlink;
+  uid_t st_uid;
+  gid_t st_gid;
+  dev_t st_rdev;
+  unsigned int __pad2;
+  off64_t st_size;
+  blksize_t st_blksize;
+  blkcnt64_t st_blocks;
+  time_t st_atime;
+  unsigned long __unused1;
+  time_t st_mtime;
+  unsigned long __unused2;
+  time_t st_ctime;
+  unsigned long __unused3;
+  ino64_t st_ino;
 }
  ;

@@ -1,6 +1,7 @@
 #ifndef _SEMAPHORE_H_
 #define _SEMAPHORE_H_
 
+#include <pthread.h>
 
 
 
@@ -10,8 +11,9 @@
 
 typedef struct
 {
-  long status;
-  int spinlock;
+  struct _pthread_fastlock __sem_lock;
+  int __sem_value;
+  _pthread_descr __sem_waiting;
 }
 sem_t;
 

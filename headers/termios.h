@@ -6,12 +6,12 @@
 #define TCOOFF	0
 #define TCIFLUSH	0
 #define TCSANOW	0
+#define CR0	0000000
 #define NL0	0000000
 #define VT0	0000000
 #define TAB0	0000000
 #define FF0	0000000
 #define BS0	0000000
-#define CR0	0000000
 #define OPOST	0000001
 #define OLCUC	0000002
 #define ONLCR	0000004
@@ -34,8 +34,8 @@
 #define TAB3	0014000
 #define BSDLY	0020000
 #define BS1	0020000
-#define VT1	0040000
 #define VTDLY	0040000
+#define VT1	0040000
 #define FFDLY	0100000
 #define FF1	0100000
 #define TCSADRAIN	1

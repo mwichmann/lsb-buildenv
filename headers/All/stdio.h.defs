@@ -10,8 +10,24 @@
 
 
 typedef struct _IO_FILE *FILE;
-typedef off_t fpos_t;
-typedef off64_t fpos64_t;
+typedef struct
+{
+  off_t __pos;
+  mbstate_t __state;
+}
+fpos_t;
+typedef struct
+{
+  off64_t __pos;
+  mbstate_t __state;
+}
+fpos64_t;
+struct
+{
+  off_t __pos;
+  mbstate_t __state;
+}
+ ;
 
 
 

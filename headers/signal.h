@@ -11,9 +11,9 @@
 #define SIG_BLOCK	0
 #define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
-#define SI_MAX_SIZE	128
 #define SIG_SETMASK	2
 #define SIGEV_THREAD	2
+#define SI_MAX_SIZE	64
 
 
 typedef int sig_atomic_t;

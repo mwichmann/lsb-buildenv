@@ -13,16 +13,19 @@ typedef unsigned int pthread_key_t;
 
 typedef int pthread_once_t;
 
-struct _pthread_fastlock
-{
-  int __spinlock;
-}
- ;
+typedef int __atomic_lock_t;
 
 
 
 
 typedef unsigned long pthread_t;
+
+struct _pthread_fastlock
+{
+  long __status;
+  __atomic_lock_t __spinlock;
+}
+ ;
 
 
 
@@ -34,10 +37,11 @@ typedef struct _pthread_descr_struct *_pthread_descr;
 
 typedef struct
 {
-  struct _pthread_fastlock lock;
-  _pthread_descr owner;
-  int kind;
-  unsigned int count;
+  int __m_reserved;		/* Reserved for future use */
+  int __m_count;		/* Depth of recursive locking */
+  _pthread_descr __m_owner;	/* Owner thread (if recursive or errcheck) */
+  int __m_kind;			/* Mutex kind: fast, recursive or errcheck */
+  struct _pthread_fastlock __m_lock;	/* Underlying fast lock */
 }
 pthread_mutex_t;
 
@@ -57,6 +61,8 @@ typedef struct
   struct sched_param __schedparam;
   int __inheritsched;
   int __scope;
+  size_t __guardsize;
+  int __stackaddr_set;
   void *__stackaddr;
   unsigned long __stacksize;
 }

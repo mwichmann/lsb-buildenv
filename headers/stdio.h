@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <wctype.h>
 
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
@@ -18,9 +19,33 @@
 
 typedef struct _IO_FILE *FILE;
 
-typedef off_t fpos_t;
+typedef struct
+{
+  off_t __pos;
+  mbstate_t __state;
+}
+fpos_t;
 
-typedef off64_t fpos64_t;
+typedef struct
+{
+  off64_t __pos;
+  mbstate_t __state;
+}
+fpos64_t;
+
+struct
+{
+  off_t __pos;
+  mbstate_t __state;
+}
+ ;
+
+struct
+{
+  off64_t __pos;
+  mbstate_t __state;
+}
+ ;
 
 
 /* The opaque type of streams.*/
