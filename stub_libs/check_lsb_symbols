@@ -13,9 +13,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.5 $
+# This is $Revision: 1.6 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.6  2002/04/08 05:51:15  cyeoh
+# take into account arch specific dependencies of objdump output
+#
 # Revision 1.5  2002/04/08 04:52:57  cyeoh
 # Fixes script for library table split
 #
@@ -35,6 +38,12 @@ my($TargetArch);
 my($TargetArchId);
 my(%Options);
 my(%MissingData);
+
+my(%ArchObjOffsets) = 
+(
+ "IA32" => { "OBJLINE" => 46, "SIZE_START" => 24, "SIZE_LENGTH" => 8 },
+ "IA64" => { "OBJLINE" => 62, "SIZE_START" => 32, "SIZE_LENGTH" => 16}
+ );
 
 
 #----------------------------------------------------------------------
@@ -211,16 +220,21 @@ sub LoadSymbolData($)
   my($size);
   while (defined($line = <OBJDUMPOUT>))
   {
+#    print "$line";
     chomp($line);
     $line =~ s/\t/ /;
     $line =~ s/\.rodata /\.rodata/;
     $line =~ s/\.bss /\.bss   /;
-    if (length($line)>46)
+    $line =~ s/\.sbss /\.sbss  /;
+#    print "$line\n";
+#    print length($line) . " " . $ArchObjOffsets{$TargetArch}{OBJLINE} . "\n";
+    if (length($line)>$ArchObjOffsets{$TargetArch}{OBJLINE})
     {
-      $name = substr($line, 45);
+      $name = substr($line, $ArchObjOffsets{$TargetArch}{OBJLINE}-1);
       $name =~ s/^\s+//;
       $name =~ s/\s+$//;
-      $size = substr($line, 24, 8);
+      $size = substr($line, $ArchObjOffsets{$TargetArch}{SIZE_START},
+                     $ArchObjOffsets{$TargetArch}{SIZE_LENGTH});
       $size =~ s/^\s+//;
       $size =~ s/\s+$//;
 
@@ -363,6 +377,10 @@ EOM
 if (defined($Options{'a'}))
 {
   $TargetArch = $Options{'a'};
+  if (!defined($ArchObjOffsets{$TargetArch}))
+  {
+    die "Need to define arch objdump output offsets in script\n";
+  }
 }
 else
 {
