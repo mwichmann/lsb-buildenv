@@ -252,6 +252,9 @@ extern "C"
 
 #endif
 
+
+
+
 /* Context to describe whole processor state.*/
 
 
@@ -323,6 +326,8 @@ extern "C"
   mcontext_t;
 
 #endif
+
+
 
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */

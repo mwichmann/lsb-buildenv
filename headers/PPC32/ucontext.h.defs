@@ -57,12 +57,7 @@ struct _libc_fpstate
 typedef struct _libc_fpstate *fpregset_t;
 
 
-union uc_regs_ptr
-{
-  struct pt_regs *regs;
-  mcontext_t *uc_regs;
-}
- ;
+
 
 
 typedef struct
@@ -72,6 +67,14 @@ typedef struct
   vrregset_t vrregs;
 }
 mcontext_t;
+
+
+union uc_regs_ptr
+{
+  struct pt_regs *regs;
+  mcontext_t *uc_regs;
+}
+ ;
 
 
 typedef struct ucontext
