@@ -1,0 +1,13 @@
+# Numbers are in hex
+# Generating c stubs for libXt library
+libXt _XtInheritTranslations 4
+libXt overrideShellClassRec 90 
+libXt rectObjClass 4
+libXt rectObjClassRec 74
+libXt sessionShellClassRec a0
+libXt shellClassRec 8c
+libXt topLevelShellClassRec 98
+libXt transientShellClassRec 98
+libXt widgetClass 4
+libXt widgetClassRec 74
+libXt wmShellClassRec 90

@@ -6,9 +6,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.23 $
+# This is $Revision: 1.24 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.24  2002/11/01 04:01:08  cyeoh
+# Update PPC32 stub libraries with db sync and add missing
+# variable sizes
+#
 # Revision 1.23  2002/10/08 19:35:09  anderson
 # Further cleanups of the symbol version handling
 #
@@ -331,7 +335,7 @@ sub GenerateLibrary($$$)
         # Size is not required for aliases
         if ($row->{Itype} ne "Alias")
         {
-          print "No data for symbol $row->{Iname}\n";
+          print "No data for symbol $row->{Iname} ($row->{Ireturn})\n";
         }
       }
 #      $size = 1000; # temporarily make it big to avoid problems
