@@ -248,13 +248,7 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef struct _libc_fpstate
-  {
-    double fpregs;
-    double fpscr;
-    int _pad;
-  }
-  fpregset_t;
+  typedef struct _libc_fpstate *fpregset_t;
 
 #endif
 
