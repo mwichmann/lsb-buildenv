@@ -1,8 +1,0 @@
-The LSB requires  
-<constant>_XOPEN_REALTIME</constant>
-to be defined to 1, but does not require
-all the set of functions  required by the 
-<xref linkend="std.susv3"> XSI Option Group _XOPEN_REALTIME.  
-For example,
-the asynchronous input/output functions are optional for LSB 
-conforming systems.
