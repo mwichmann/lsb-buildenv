@@ -1,6 +1,8 @@
 #!/bin/bash
 
-libs="-Wl,--dynamic-linker=/lib/ld-lsb.so.1 $* -lc /usr/lib/libc_nonshared.a"
+proginterp="-Wl,--dynamic-linker=/lib/ld-lsb.so.1"
+libs="-lc /usr/lib/libc_nonshared.a"
+userlibs=""
 opts=""
 target=""
 
@@ -9,38 +11,63 @@ gccbasedir=`dirname $libgcc`
 # The LSB 'lib' and 'include' directories are located under here:
 lsbbasedir=/usr/lsb
 
-while getopts "EcI:D:U:O:f:W:I:Sp:o:s:L:" OPT ; do
-	case "$OPT" in
-		E)
-			libs=$*;
+TEMP=`getopt -o l:EgMcD:U:O:f:W:I:Sp:o:s:L: -n 'lsbcc' -- "$@"`
+
+eval set -- "$TEMP"
+
+while true ; do
+	case "$1" in
+		-E)
+			opts="$opts $1 ";
+			libs="";shift
 			;;
-		c)
-			libs=$*;
+		-c)
+			opts="$opts $1 ";
+			libs="";shift
 			;;
-		o)
-			target="-o $OPTARG";
+		-s)
+			opts="$opts $1$2 ";
+			libs="";shift 2
 			;;
-		I|L|O|U|W|f|p|s)
-			opts="$opts -$OPT$OPTARG";
+		-o)
+			target="-o $2";shift 2
 			;;
-		D)
-			opts="$opts -$OPT$OPTARG";
+		-O|-D|-I|-f)
+			opts="$opts $1$2 ";shift 2
 			;;
-		':')
-			echo "Can't handle option $OPTARG";
-			exit 1;
+		-L|-U|-W|-p)
+			opts="$opts $1$2 ";shift 2
 			;;
-		'?')
-			echo "Can't handle option";
-			exit 1;
+		-l)
+			case $2 in
+				GL|XT|ICE|SM|X11|Xext)
+					userlibs="$userlibs -l$2"
+					;;
+				crypt|pthread|c|util|z|dl|m|ncurses)
+					userlibs="$userlibs -l$2"
+					;;
+				*)
+					echo "Statically linking library $1 $2"
+					userlibs="$userlibs -static -l$2 -shared"
+					;;
+			esac
+			shift 2
+			;;
+		-g|-M)
+			opts="$opts $1";shift
+			;;
+		--)
+#echo "End of options: $*"
+			shift; break
 			;;
 		*)
-			opts="$opts -$OPT $OPTARG";
+			echo "Internal error! $1" ; exit 1 
 			;;
 	esac
 done
 
-exec gcc $target $opts -nostdinc -I$lsbbasedir/include -I$gccbasedir/include \
+set -x
+exec gcc $prointerp $target $opts -I$lsbbasedir/include -I$gccbasedir/include \
 	-nodefaultlibs -L$gccbasedir -L$lsbbasedir/lib -L/lib -L/usr/lib \
-	$libs
+	$* $userlibs $libs
 
