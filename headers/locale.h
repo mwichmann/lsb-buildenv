@@ -12,7 +12,6 @@ extern "C"
 
 
 /* Structure giving information about numeric and monetary notation*/
-#define LC_MEASUREMENT	11
 
 
   struct lconv
@@ -50,6 +49,7 @@ extern "C"
 #define LC_CTYPE	0
 #define LC_NUMERIC	1
 #define LC_TELEPHONE	10
+#define LC_MEASUREMENT	11
 #define LC_IDENTIFICATION	12
 #define LC_TIME	2
 #define LC_COLLATE	3
