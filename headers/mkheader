@@ -488,4 +488,12 @@ for(1..$sth->numrows) {
 		displaytyperef(\%entry);
 		printf " %s;\n",$entry{'Iname'};
 	}
+	if( $entry{'Itype'} eq "Alias" ) {
+		displaytyperef(\%entry);
+		printf " %s;\n",$entry{'Iname'};
+	}
+	if( $entry{'Itype'} eq "Common" ) {
+		displaytyperef(\%entry);
+		printf " %s;\n",$entry{'Iname'};
+	}
 }

@@ -104,4 +104,12 @@ for(1..$sth->numrows) {
 		displaytype(\%entry);
 		printf " %s;\n",$entry{'Iname'};
 	}
+	if( $entry{'Itype'} eq "Alias" ) {
+		displaytype(\%entry);
+		printf " %s;\n",$entry{'Iname'};
+	}
+	if( $entry{'Itype'} eq "Common" ) {
+		displaytype(\%entry);
+		printf " %s;\n",$entry{'Iname'};
+	}
 }
