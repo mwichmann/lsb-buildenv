@@ -205,13 +205,34 @@ bind_mount_file_ro /etc/lsbdev/gcc_specs $ROOT$GCC_SPECS_FILE
 # Just copy the normal linux linker at the moment
 # Can't bind mount symlinks in 2.4.5
 # Use ld-lsb.so.1 preferentially
-if [ ! -e $ROOT/lib/ld-lsb.so.1 ]; then
-  if [ -f /lib/ld-lsb.so.1 ]; then
-    cp /lib/ld-lsb.so.1 $ROOT/lib/ld-lsb.so.1
-  else
-    cp /lib/ld-linux.so.2 $ROOT/lib/ld-lsb.so.1
-  fi
+native_arch=`uname -m`
+case $native_arch in
+  i386|i486|i586|i686|athlon)
+        NATIVE_LINKER=/lib/ld-linux.so.2
+        LSB_LINKER=/lib/ld-lsb.so.1
+        ;;
+  ia64)
+        NATIVE_LINKER=/lib/ld-linux-ia64.so.2
+        LSB_LINKER=/lib/ld-lsb-ia64.so.1
+        ;;
+
+  *)
+        echo "Unknown architecture $native_arch"
+        exit 1
+        ;;
+esac
+
+# Use LSB linker preferentially if it exists on the system
+if [ -f $LSB_LINKER ]; then
+    NATIVE_LINKER=$LSB_LINKER
 fi
+
+if [ ! -f $NATIVE_LINKER ]; then
+    echo "Could not find file $NATIVE_LINKER"
+    exit 1
+fi
+
+bind_mount_file_ro $NATIVE_LINKER $ROOT$LSB_LINKER
 
 # Home directories
 setup_home_dirs
