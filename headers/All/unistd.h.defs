@@ -183,7 +183,6 @@ typedef long long int off64_t;
 #define _CS_XBS5_LPBIG_OFFBIG_LIBS	1114
 #define _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS	1115
 
-#define _XOPEN_REALTIME	1
 #define _XOPEN_XPG4	1
 
 #define F_ULOCK	0

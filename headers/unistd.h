@@ -244,7 +244,6 @@ extern "C"
 
 
 
-#define _XOPEN_REALTIME	1
 #define _XOPEN_XPG4	1
 #define _XOPEN_VERSION	500
 
