@@ -83,7 +83,7 @@ extern "C"
 
 
   extern struct lconv *localeconv (void);
-  extern char *setlocale (int, char *);
+  extern char *setlocale (int, const char *);
 #ifdef __cplusplus
 }
 #endif
