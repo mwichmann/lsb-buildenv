@@ -38,8 +38,11 @@ extern "C"
 
   typedef unsigned int uint32_t;
 
-  typedef unsigned int *uintptr_t;
+#if __i386__
+/* IA32 */
+  typedef unsigned int uintptr_t;
 
+#endif
   typedef unsigned long long uint64_t;
 
 #if __ia64__
@@ -80,6 +83,26 @@ extern "C"
 #if __i386__
 /* IA32 */
   typedef unsigned long long uintmax_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef unsigned long uintptr_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef unsigned int uintptr_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long uintptr_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef unsigned int uintptr_t;
 
 #endif
 
