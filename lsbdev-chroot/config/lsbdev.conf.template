@@ -34,11 +34,13 @@ GCC_SPECS_FILE=`gcc -v 2>&1 | head -1 | cut -f4 -d' '`
 # libbfd
 LIBBFD=/usr/lib/`ldd /usr/bin/ld | grep bfd | cut -f2 | cut -f1 -d' '`
 
-# Extra directories to bind mount (order is important) (NYI)
-EXTRA_MOUNT_DIRS=
+# Extra directories to bind mount (order is important) 
+# Specify file containing pairs of directories
+EXTRA_MOUNT_DIRS=/etc/lsbdev/extra_mount_dirs.conf
 
 # Extra files to bind mount (NYI)
-EXTRA_MOUNT_FILES=
+# Specify file containing pairs of files
+EXTRA_MOUNT_FILES=/etc/lsbdev/extra_mount_files.conf
 
 # Lock file 
 RUNFILE=/var/run/lsbdev.lock
