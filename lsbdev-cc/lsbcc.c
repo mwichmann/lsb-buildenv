@@ -631,6 +631,21 @@ if (optind < argc) {
 	argvreset(syslibs);
 	}
 
+#ifdef LSBCC_EXTRAFLAGS_HACK
+/* Gather options passed through environment variable */
+    if ((ptr=getenv("LSBCC_EXTRAFLAGS")) != NULL) {
+	char *flagarg, *flag;
+	flagarg = strdup(ptr);
+	flag = strtok(flagarg, ":");
+	while (flag) {
+	    if (lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS)
+		fprintf(stderr, "added %s to options\n", flag);
+	    argvaddstring(options, strdup(flag));
+	    flag = strtok(NULL, ":");
+	}
+    }
+#endif
+
 
 /* Assemble all of the groups into one to pass to gcc */
 
