@@ -217,7 +217,26 @@ case $native_arch in
         NATIVE_LINKER=/lib/ld-linux-ia64.so.2
         LSB_LINKER=/lib/ld-lsb-ia64.so.1
         ;;
-
+  ppc)
+        NATIVE_LINKER=/lib/ld.so.1
+        LSB_LINKER=/lib/ld-lsb-ppc32.so.1
+        ;;
+  ppc64)
+        NATIVE_LINKER=/lib64/ld64.so.1
+        LSB_LINKER=/lib64/ld-lsb-ppc64.so.1
+        ;;
+  s390)
+        NATIVE_LINKER=/lib/ld.so.1
+        LSB_LINKER=/lib/ld-lsb-s390.so.1
+        ;;
+  s390x)
+        NATIVE_LINKER=/lib/ld64.so.1
+        LSB_LINKER=/lib64/ld-lsb-s390x.so.1
+        ;;
+  x86_64)
+        NATIVE_LINKER=/lib/ld-linux-x86-64.so.2
+        LSB_LINKER=/lib64/ld-lsb-x86-64.so.1
+        ;;
   *)
         echo "Unknown architecture $native_arch"
         exit 1

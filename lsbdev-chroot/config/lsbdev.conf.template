@@ -1,4 +1,4 @@
-# Configuration options for the LSB Build environment application
+#Configuration options for the LSB Build environment application
 #
 # Make sure that the build environment is stopped before
 # changing this this file
@@ -11,10 +11,11 @@ ROOT=
 DATA_ROOT=
 
 # Where the link time stub libraries live
-STUB_LIBS=/opt/lsbdev-base/lib
+STUB_LIBS=/opt/lsb/lib
 
 # RPM Config options
-# (Depends on how it was configured for compilation)
+# needs a statically linked rpm, which is optional in the chroot
+# match the below lines to how that rpm was configured
 # Home of rpm binary
 RPM_INSTALL_ROOT=/opt/lsb-rpm-4.0.3
 RPM_DATA_ROOT=/opt/lsb-rpm-4.0.3
@@ -28,7 +29,7 @@ RPM_SRC=$RPM_DATA_ROOT/src/lsb
 BUILDUSERS=""
 
 # GCC version
-GCC_SPECS_FILE=`gcc -v 2>&1 | head -1 | cut -f4 -d' '`
+GCC_SPECS_FILE=`gcc -v 2>&1 | grep "Reading specs" | cut -f4 -d' '`
 
 # Check dependencies in build tools
 # In lsb_start_dev_env, these will be used if they have a
@@ -39,11 +40,11 @@ LIBOPCODES=`ldd /usr/bin/as | awk '/libopcodes/ { print $3 }'`
 
 # Extra directories to bind mount (order is important) 
 # Specify file containing pairs of directories
-EXTRA_MOUNT_DIRS=/etc/lsbdev-chroot/extra_mount_dirs.conf
+EXTRA_MOUNT_DIRS=/etc/lsb/extra_mount_dirs.conf
 
 # Extra files to bind mount (NYI)
 # Specify file containing pairs of files
-EXTRA_MOUNT_FILES=/etc/lsbdev-chroot/extra_mount_files.conf
+EXTRA_MOUNT_FILES=/etc/lsb/extra_mount_files.conf
 
 # Lock file 
 RUNFILE=/var/run/lsbdev.lock
@@ -59,7 +60,7 @@ SSH_PRIV=/var/run/sshd
 # Where to source the LSB header files from
 # If not defined it will use the header files from /usr/include
 # LSB_INCLUDE=$DATA_ROOT/lsb_header
-LSB_INCLUDE="/opt/lsbdev-base/include"
+LSB_INCLUDE="/opt/lsb/include"
 
 # Fallback static linking for the following libraries
 # If the symbol is not found in the shared library it is looked
