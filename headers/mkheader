@@ -597,14 +597,17 @@ for(1..$sth->numrows) {
 	printf ");\n";
 	}
 	if( $entry{'Itype'} eq "Data" ) {
+		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s;\n",$entry{'Iname'};
 	}
 	if( $entry{'Itype'} eq "Alias" ) {
+		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s;\n",$entry{'Iname'};
 	}
 	if( $entry{'Itype'} eq "Common" ) {
+		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s;\n",$entry{'Iname'};
 	}
