@@ -16,29 +16,36 @@ This tool should be used in place of the
 command when
 building an LSB-conforming program.
 .P
+LSB-conforming programs must link dynamically only with
+LSB-required and application-supplied shared libraries,
+as no other libraries can be guaranteed to be present on
+an LSB-compliant system.  They must only use specified
+interfaces from LSB-required shared libraries. And
+LSB programs need to be linked with 
+a special program interpreter which identifies
+them as LSB conforming.
+.P
 The LSB development environment provides
 a set of replacement system headers and 
 stub dynamic libraries.
 These headers and libraries have been
 carefully built so that they contain only the interfaces
-specified in the LSB. 
-.P
-LSB programs also need to be linked with 
-a special program interpreter which identifies
-them as LSB conforming.
+specified in the LSB. When the stub libraries are
+used for link-time symbol resolution, the use of
+unspecified interfaces in those libraries will
+result in link failures.
 .P
 .I lsbcc
-is designed to take care of these build issues 
-(to the extent possible) without requiring changes
-to existing build setups. 
-.P
-.IR lsbcc
-takes no options; 
+is designed to apply the LSB build rules with a
+minimum of changes to existing build setups.
+When invoked as the compiler, 
 it first modifies the command line to follow the
 LSB build rules, then passes the resulting
 command line on to the regular compiler.
 .P
-Behavior other than the default is controlled
+.IR lsbcc
+takes no options; 
+behavior other than the default is controlled
 by a set of environment variables.
 .P
 .SH ENVIRONMENT
@@ -115,10 +122,10 @@ use the name
 .IR foo .
 .IP
 Normally, only LSB-defined libraries should be linked
-as shared libraries, all others are to be linked statically.
+as shared libraries, all others must be linked statically.
 However, if an application provides its own shared library
 which has been carefully checked for LSB conformance, this
-method can be used to turn off
+method can be used to selectively overrride
 .IR lsbcc 's
 rule of forcing static linking. The application may not depend
 on such a library being present on a system, so it must either
@@ -141,7 +148,8 @@ Report bugs to <lsb-build@linuxbase.org>.
 It is a little too easy to confuse lsbcc (and lsbc++). 
 In particular, build systems that include "clever" tools
 to manage which libraries to use, such as GNU libtool
-and pkgconfig, may defeat the checks for non-LSB libraries.
+and pkgconfig, may defeat the checks for non-LSB libraries
+by silently supplying full pathnames instead of -llib.
 .SH FILES
 .TP
 /opt/lsbdev-base/include
@@ -150,10 +158,10 @@ the LSB header files
 /opt/lsbdev-base/lib
 the LSB stub libraries
 .TP
-ld-lsb.so.1
-The LSB program interpreter (dynamic linker) for IA32.
+/lib/ld-lsb.so.1
+The LSB program interpreter (dynamic linker) for the IA32 architecture
 .TP
-ld-lsb-ia64.so.1
+/lib/ld-lsb-ia64.so.1
 The LSB program interpreter for the Itanium architecture
 .TP
 /lib/ld-lsb-ppc32.so.1
