@@ -127,6 +127,7 @@ char libpath[PATH_MAX];
 
 int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
 int lsbcc_warn=0; 
+int lsbcc_buildingshared=0; 
 
 
 /* begin argv ADT */
@@ -289,7 +290,7 @@ for(i=0;i<lsblibs->numargv;i++) {
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Forcing %s to be linked statically\n",val);
 
-if( lsbcc_warn&WARN_LIB_CHANGES )
+if( lsbcc_warn&WARN_LIB_CHANGES || lsbcc_buildingshared )
 	fprintf(stderr,"Warning: forcing %s to be linked statically\n",val);
 
 argvaddstring(userlibs,"-Wl,-Bstatic");
@@ -594,6 +595,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 */
 		if(strcmp( long_options[option_index].name, "shared" ) == 0) {
 			argvreset(proginterp);
+			lsbcc_buildingshared=1;
 			}
 		/* need to special-case -pthread option too */
 		if(strcmp( long_options[option_index].name, "pthread" ) == 0) {
