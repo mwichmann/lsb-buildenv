@@ -1,2 +1,3 @@
-int creat (const char *, mode_t );
-int fcntl (int , int , ...);
+int creat(char, __mode_t);
+int fcntl(int, int, ...);
+int open(char, int, ...);

@@ -1,5 +1,2 @@
-int hcreate(size_t nel);
-void hdestroy(void);
-ENTRY *hsearch (ENTRY item, ACTION action);
-void insque(void *element, void *pred);
-void remque(void *element);
+void insque(void, void);
+void remque(void);

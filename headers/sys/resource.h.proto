@@ -1,5 +1,5 @@
-int getpriority (int , int );
-int getrlimit (int , struct rlimit *);
-int getrusage (int , struct rusage *);
-int setpriority (int , int , int );
-int setrlimit (int , struct rlimit *);
+int getpriority(enum, enum __priority_which, int);
+int setpriority(enum, enum __priority_which, int, int);
+int setrlimit(enum, enum __rlimit_resource, struct rlimit);
+int getrlimit(enum, enum __rlimit_resource, struct rlimit);
+int getrusage(enum, enum __rusage_who, struct rusage);

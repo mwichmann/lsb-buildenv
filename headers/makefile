@@ -17,15 +17,15 @@ OTHERHEADERS=elf.h
 
 all::
 	for h in $(OTHERHEADERS) $(HEADERS) ; do \
-		./mkfuncprototype Iheader=$$h >$$h.proto; \
+		./mkfuncprototype -h $$h >$$h.proto; \
 		if [ -f $$h.m4 ];then (m4 $$h.m4 | grep -v '^\# '>$$h);fi; \
 	done
 	for h in $(ARPAHEADERS) ; do \
-		./mkfuncprototype Iheader=$$h >$$h.proto; \
+		./mkfuncprototype -h $$h >$$h.proto; \
 		if [ -f $$h.m4 ];then (cd arpa;m4 `basename $$h`.m4 | grep -v '^\# '>`basename $$h`);fi; \
 	done
 	for h in $(SYSHEADERS) ; do \
-		./mkfuncprototype Iheader=$$h >$$h.proto; \
+		./mkfuncprototype -h $$h >$$h.proto; \
 		if [ -f $$h.m4 ];then (cd sys;m4 `basename $$h`.m4 | grep -v '^\# '>`basename $$h`);fi; \
 	done
 

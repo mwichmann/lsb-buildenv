@@ -1,31 +1,53 @@
 #!/usr/bin/perl
 
 #
-# This script should be pulling the infor from the IntParams table instead
+# This script should be pulling the info from the IntParams table instead
 #
 
-use CGI;
+use Getopt::Long;
 use Mysql;
 
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
-$query = new CGI;
+sub
+usage()
+{
+die "mkfuncproto -h <headername>";
+}
 
-#print $query->header;
-#print $query->start_html('Standards Table');
+# Uncomment to trace SQL statments
+#$trace=1;
+
+GetOptions("h=s" => \$headname);
+ 
+if( !$headname ) { usage(); }  
 
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
-$select = "SELECT Iprototype FROM Interface ";
-$select.= "WHERE Iheader='".$query->param('Iheader')."'";
-
-#print $select;
-
+$select = "SELECT Iid,Itype,Iname,Tname FROM Interface,Header,Type ";
+$select.= "WHERE Istatus='Included' ";
+$select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
+$select.= "AND Ireturn=Tid";
+print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
 for(1..$sth->numrows) {
 	%entry=$sth->fetchhash;
-	printf "%s;\n",$entry{'Iprototype'};
+	if( $entry{'Itype'} eq "Function" ) {
+		printf "%s %s(",$entry{'Tname'},$entry{'Iname'};
+		$select = "SELECT Tname FROM Type,Parameter ";
+		$select.= "WHERE Pint=".$entry{'Iid'}." AND Ptype=Tid ";
+		$select.= "ORDER BY  Ppos";
+		print $select,"\n" if $trace;
+		$sth2 = $Dbh->query($select) || die $Dbh->errmsg();
+		if( $sth2->numrows != 0 ) {
+			%entry2=$sth2->fetchhash;
+			printf "%s",$entry2{'Tname'};
+			for(2..$sth2->numrows) {
+				%entry2=$sth2->fetchhash;
+				printf ", %s",$entry2{'Tname'};
+			}
+		}
+	printf ");\n";
+	}
 }
-
-#print $query->end_html;

@@ -1,1 +1,1 @@
-long int ulimit(int cmd, ...);
+long ulimit(int, ...);

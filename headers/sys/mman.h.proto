@@ -1,10 +1,9 @@
-int mlock(const void * addr, size_t len);
-int mlockall(int flags);
-void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);
-int mprotect(void *addr, size_t len, int prot);
-int msync(void *addr, size_t len, int flags);
-int munlock(const void * addr, size_t len);
+int madvise(void, size_t, int);
+int msync(void, size_t, int);
+int mlock(void, size_t);
+int mlockall(int);
+void mmap(void, size_t, int, int, int, __off_t);
+int mprotect(void, size_t, int);
+int munlock(void, size_t);
 int munlockall(void);
-int munmap(void *addr, size_t len);
-int shm_open(const char *name, int oflag, mode_t mode);
-int shm_unlink(const char * name);
+int munmap(void, size_t);

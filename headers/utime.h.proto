@@ -1,1 +1,1 @@
-int utime(const char *path, const struct utimbuf *times);
+int utime(char, struct utimbuf);

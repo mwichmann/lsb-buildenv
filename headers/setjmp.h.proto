@@ -1,6 +1,2 @@
-void _longjmp(jmp_buf env, int val);
-int _setjmp(jmp_buf env);
-void longjmp (jmp_buf , int );
-int setjmp (jmp_buf );
-void siglongjmp (sigjmp_buf , int );
-int sigsetjmp (sigjmp_buf , int );
+int __sigsetjmp(jmp_buf, int);
+void siglongjmp(sigjmp_buf, int);

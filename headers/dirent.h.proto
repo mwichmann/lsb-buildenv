@@ -1,7 +1,6 @@
-int closedir (DIR *);
- DIR* opendir (const char *);
-struct dirent * readdir (DIR *);
-int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
-void rewinddir (DIR *);
-void seekdir (DIR *, off_t );
-off_t telldir (DIR *);
+void rewinddir(DIR);
+void seekdir(DIR, long);
+long telldir(DIR);
+int closedir(DIR);
+DIR opendir(char);
+dirent readdir(DIR);

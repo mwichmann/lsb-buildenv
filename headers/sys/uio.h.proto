@@ -1,1 +1,0 @@
-ssize_t readv(int fildes, const struct iovec *iov, int iovcnt);

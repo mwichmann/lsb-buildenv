@@ -1,32 +1,22 @@
-<SECT1>
+<SECT1 ID=arpa/inet.h>
 <TITLE>arpa/inet.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-uint32_t htonl(uint32_t hostlong);
-unsigned long int inet_addr (const char *);
-int inet_aton (const char *, struct in_addr *);
-int inet_lnaof (struct in_addr );
-struct in_addr inet_makeaddr (int , int );
-int inet_netof (struct in_addr );
-unsigned long int inet_network (const char *);
-char * inet_ntoa (struct in_addr );
-uint32_t ntohl(uint32_t netlong);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=assert.h>
 <TITLE>assert.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-void assert (int );
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=cpio.h>
 <TITLE>cpio.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -57,49 +47,45 @@ void assert (int );
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=ctype.h>
 <TITLE>ctype.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int _tolower(int c);
-int _toupper(int c);
-int isalnum (int );
-int isalpha (int );
-int isascii(int c);
-int iscntrl (int );
-int isdigit (int );
-int isgraph (int );
-int islower (int );
-int isprint (int );
-int ispunct (int );
-int isspace (int );
-int isupper (int );
-int isxdigit (int );
-int toascii(int c);
-int tolower (int );
-int toupper (int );
+int isalnum(int);
+int isalpha(int);
+int isascii(int);
+int iscntrl(int);
+int isdigit(int);
+int isgraph(int);
+int islower(int);
+int isprint(int);
+int ispunct(int);
+int isspace(int);
+int isupper(int);
+int isxdigit(int);
+int tolower(int);
+int toupper(int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=dirent.h>
 <TITLE>dirent.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int closedir (DIR *);
- DIR* opendir (const char *);
-struct dirent * readdir (DIR *);
-int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
-void rewinddir (DIR *);
-void seekdir (DIR *, off_t );
-off_t telldir (DIR *);
+void rewinddir(DIR);
+void seekdir(DIR, long);
+long telldir(DIR);
+int closedir(DIR);
+DIR opendir(char);
+dirent readdir(DIR);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=errno.h>
 <TITLE>errno.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -150,13 +136,11 @@ off_t telldir (DIR *);
 #define	EWOULDBLOCK	EAGAIN	/* Operation would block */
 #define	EDEADLOCK	EDEADLK
 
-int *__errno_location();
-int errno;
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=fcntl.h>
 <TITLE>fcntl.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -200,13 +184,14 @@ struct flock {
 	pid_t l_pid;
 };
 
-int creat (const char *, mode_t );
-int fcntl (int , int , ...);
+int creat(char, __mode_t);
+int fcntl(int, int, ...);
+int open(char, int, ...);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=float.h>
 <TITLE>float.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -215,17 +200,16 @@ int fcntl (int , int , ...);
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=fnmatch.h>
 <TITLE>fnmatch.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int fnmatch (const char *, const char *, int );
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=ftw.h>
 <TITLE>ftw.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -234,53 +218,49 @@ int fnmatch (const char *, const char *, int );
 #define FTW_DNR 2
 #define FTW_NS  3
 
-ftw(const char *, int (*)(const char *, const struct stat*, int) int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=glob.h>
 <TITLE>glob.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int glob (const char *, int , int (*) (const char * , int ), glob_t *);
-void globfree(glob_t *pglob);
+int glob(char, int, int (, glob_t);
+void globfree(glob_t);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=grp.h>
 <TITLE>grp.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
 void endgrent(void);
-struct group *getgrent(void);
-struct group * getgrgid (gid_t );
-int getgrgid_r(gid_t gid, struct group *grp, char *buffer, size_t bufsize, struct group **result);
-struct group *getgrnam(const char *name);
-int getgrnam_r(const char *name, struct group *grp, char *buffer, size_t bufsize, struct group **result);
-int initgroups (const char *, gid_t );
+group fgetgrent();
+group getgrent(void);
+group getgrgid(__gid_t);
+group getgrnam(char);
+int initgroups(char, __gid_t);
 void setgrent(void);
-int setgroups (size_t , gid_t *);
+int getgrgid_r(__gid_t, struct group, char, size_t, struct group);
+int getgrnam_r(char, struct group, char, size_t, struct group);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=iconv.h>
 <TITLE>iconv.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-size_t iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft, char **outbuf, size_t *outbytesleft);
-int iconv_close(iconv_t cd);
-iconv_t iconv_open(const char *tocode, const char *fromcode);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=langinfo.h>
 <TITLE>langinfo.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -449,25 +429,20 @@ typedef enum
 #define THOUSEP 	(-1)	/* These don't seem to exist yet */
 
 
-char *nl_langinfo(nl_item item);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=libgen.h>
 <TITLE>libgen.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-char *basename(char *path);
-char *dirname(char *path);
-char *regcmp (const char *string1 , ... /*, (char *)0 */);
-char *regex (const char *re, const char *subject , ... );
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=limits.h>
 <TITLE>limits.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -531,7 +506,7 @@ char *regex (const char *re, const char *subject , ... );
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=locale.h>
 <TITLE>locale.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -589,13 +564,13 @@ struct lconv
   char n_sign_posn;
 };
 
-struct lconv * localeconv (void);
-char * setlocale (int , const char *);
+lconv localeconv(void);
+char setlocale(int, char);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=math.h>
 <TITLE>math.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -629,297 +604,183 @@ static __huge_val_t __huge_val = { __HUGE_VAL_bytes };
 #define M_SQRT2		1.41421356237309504880
 
 
-double copysign (double , double );
-int finite (double );
-double frexp (double , int *);
-int isinf (double );
-int isnan (double );
-double ldexp (double , int );
-double modf (double , double *);
-double acos (double );
-double acosh (double );
-double asinh (double );
-double atanh (double );
-double asin (double );
-double atan (double );
-double atan2 (double , double );
-double cbrt (double );
-double ceil (double );
-double cos (double );
-double cosh (double );
-double erf(double x);
-double erfc(double x);
-double exp (double );
-double expm1 (double );
-double fabs (double );
-double floor (double );
-double fmod (double , double );
-double gamma(double x);
-double hypot (double , double );
-int ilogb (double x);
-double j0(double x);
-double j1(double x);
-double jn(int n, double x);
-double lgamma(double x);
-double log (double );
-double log10 (double );
-double log1p (double );
-double logb (double );
-double nextafter(double x, double y);
-double pow (double , double );
-double remainder(double x, double y);
-double rint (double );
-double scalb (double , int );
-double sin (double );
-double sinh (double );
-double sqrt (double );
-double tan (double );
-double tanh (double );
-double y0(double x);
-double y1 (double x);
-double yn (int n, double x);
-double cabs (struct { double real, imag; } );
-double drem (double , double );
-double infnan (int );
-extern int signgam;
+int matherr(struct exception);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=monetary.h>
 <TITLE>monetary.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-ssize_t strfmon(char *s, size_t maxsize, const char *, ...);
+ssize_t strfmon(char, size_t, char, ...);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=netdb.h>
 <TITLE>netdb.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-void endnetent (void);
-void endprotoent (void);
-void endservent (void);
-struct hostent * gethostbyaddr (const char *, int , int );
-struct hostent * gethostbyname (const char *);
-struct netent * getnetbyaddr (long , int );
-struct netent * getnetbyname (const char *);
-struct netent * getnetent (void);
-struct protoent * getprotobyname (const char *);
-struct protoent * getprotobynumber (int );
-struct protoent * getprotoent (void);
-struct servent * getservbyname (const char *, const char *);
-struct servent * getservbyport (int , const char *);
-struct servent * getservent (void);
-void sethostent (int );
-void setnetent (int );
-void setprotoent (int );
-void setservent (int );
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=nl_types.h>
 <TITLE>nl_types.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 #define NL_SETD 1
 
 
-int catclose(nl_catd catd);
-char *catgets(nl_catd catd, int set_id, int msg_id, const char *s);
-nl_catd catopen(const char *name, int oflag);
+int catclose(nl_catd);
+char catgets(nl_catd, int, int, char);
+nl_catd catopen(char, int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=poll.h>
 <TITLE>poll.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int poll(struct pollfd fds[], nfds_t nfds, int timeout);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=pthread.h>
 <TITLE>pthread.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int pthread_attr_destroy(pthread_attr_t *attr);
-int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
-int pthread_attr_getinheritsched(const pthread_attr_t *attr, int *inheritsched);
-int pthread_attr_getschedparam(const pthread_attr_t *attr, struct sched_param *param);
-int pthread_attr_getschedpolicy(const pthread_attr_t *attr, int *policy);
-int pthread_attr_getscope(const pthread_attr_t *attr, int *contentionscope);
-int pthread_attr_init(pthread_attr_t *attr);
-int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate);
-int pthread_attr_setinheritsched(pthread_attr_t *attr, int inheritsched);
-int pthread_attr_setschedparam(pthread_attr_t *attr, const struct sched_param *param);
-int pthread_attr_setschedpolicy(pthread_attr_t *attr, int policy);
-int pthread_attr_setscope(pthread_attr_t *attr, int contentionscope);
-int pthread_cond_broadcast(pthread_cond_t *cond);
-int pthread_cond_destroy(pthread_cond_t *cond);
-int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);
-int pthread_cond_signal(pthread_cond_t *cond);
-int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);
-int pthread_condattr_destroy(pthread_condattr_t *attr);
-int pthread_condattr_init(pthread_condattr_t *attr);
-int pthread_equal(pthread_t t1, pthread_t t2);
-void pthread_exit(void *value_ptr);
-int pthread_getschedparam(pthread_t thread, int *policy, struct sched_param *param);
-int pthread_mutex_destroy(pthread_mutex_t *mutex);
-int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
-int pthread_mutex_lock(pthread_mutex_t *mutex);
-int pthread_mutex_unlock(pthread_mutex_t *mutex);
+int pthread_attr_destroy(pthread_attr_t);
+int pthread_attr_getdetachstate(pthread_attr_t, int);
+int pthread_attr_getinheritsched(pthread_attr_t, int);
+int pthread_attr_getschedparam(pthread_attr_t, struct sched_param);
+int pthread_attr_getschedpolicy(pthread_attr_t, int);
+int pthread_attr_getscope(pthread_attr_t, int);
+int pthread_attr_init(pthread_attr_t);
+int pthread_attr_setdetachstate(pthread_attr_t, int);
+int pthread_attr_setinheritsched(pthread_attr_t, int);
+int pthread_attr_setschedparam(pthread_attr_t, struct sched_param);
+int pthread_attr_setschedpolicy(pthread_attr_t, int);
+int pthread_attr_setscope(pthread_attr_t, int);
+int pthread_cancel(pthread_t);
+int pthread_cond_broadcast(pthread_cond_t);
+int pthread_cond_destroy(pthread_cond_t);
+int pthread_cond_init(pthread_cond_t, pthread_condattr_t);
+int pthread_cond_signal(pthread_cond_t);
+int pthread_cond_timedwait(pthread_cond_t, pthread_mutex_t, struct timespec);
+int pthread_cond_wait(pthread_cond_t, pthread_mutex_t);
+int pthread_condattr_destroy(pthread_condattr_t);
+int pthread_condattr_init(pthread_condattr_t);
+int pthread_create(pthread_t, pthread_attr_t, void (, void);
+int pthread_detach(pthread_t);
+int pthread_equal(pthread_t, pthread_t);
+void pthread_exit(void);
+int pthread_getschedparam(pthread_t, int, struct sched_param);
+void pthread_getspecific(pthread_key_t);
+int pthread_join(pthread_t, void);
+int pthread_key_create(pthread_key_t, void ();
+int pthread_key_delete(pthread_key_t);
+int pthread_mutex_destroy(pthread_mutex_t);
+int pthread_mutex_init(pthread_mutex_t, pthread_mutexattr_t);
+int pthread_mutex_lock(pthread_mutex_t);
+int pthread_mutex_trylock(pthread_mutex_t);
+int pthread_mutex_unlock(pthread_mutex_t);
+int pthread_mutexattr_destroy(pthread_mutexattr_t);
+int pthread_once(pthread_once_t, void ();
 pthread_t pthread_self(void);
-int pthread_setcancelstate(int state, int *oldstate);
-int pthread_setcanceltype(int type, int *oldtype);
-int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param *param);
-int pthread_attr_getguardsize(const pthread_attr_t *attr, size_t *guardsize);
-int pthread_attr_setguardsize(pthread_attr_t *attr, size_t guardsize);
-int pthread_attr_setstackaddr(pthread_attr_t *attr, void *stackaddr);
-int pthread_attr_getstackaddr(const pthread_attr_t *attr, void **stackaddr);
-int pthread_attr_setstacksize(pthread_attr_t *attr, size_t stacksize);
-int pthread_attr_getstacksize(const pthread_attr_t *attr, size_t *stacksize);
-int pthread_cancel(pthread_t thread);
-void pthread_cleanup_push(void (*routine)(void*), void *arg);
-void pthread_cleanup_pop(int execute);
-int pthread_cond_timedwait(pthread_cond_t *cond, pthread_mutex_t *mutex, const struct timespec *abstime);
-int pthread_condattr_getpshared(const pthread_condattr_t *attr, int *pshared);
-int pthread_condattr_setpshared(pthread_condattr_t *attr, int pshared);
-int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void*), void *arg);
-int pthread_detach(pthread_t thread);
-int pthread_getconcurrency(void);
-int pthread_setconcurrency(int new_level);
-int pthread_setspecific(pthread_key_t key, const void *value);
-void *pthread_getspecific(pthread_key_t key);
-int pthread_join(pthread_t thread, void **value_ptr);
-int pthread_key_delete(pthread_key_t key);
-int pthread_mutex_setprioceiling(pthread_mutex_t *mutex, int prioceiling, int *old_ceiling);
-int pthread_mutex_getprioceiling(const pthread_mutex_t *mutex, int *prioceiling);
-int pthread_mutex_trylock(pthread_mutex_t *mutex);
-int pthread_mutexattr_init(pthread_mutexattr_t *attr);
-int pthread_mutexattr_destroy(pthread_mutexattr_t *attr);
-int pthread_mutexattr_setprioceiling(pthread_mutexattr_t *attr, int prioceiling);
-int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t *attr, int *prioceiling);
-int pthread_mutexattr_setprotocol(pthread_mutexattr_t *attr, int protocol);
-int pthread_mutexattr_getprotocol(const pthread_mutexattr_t *attr, int *protocol);
-int pthread_mutexattr_getpshared(const pthread_mutexattr_t *attr, int *pshared);
-int pthread_mutexattr_setpshared(pthread_mutexattr_t *attr, int pshared);
-int pthread_mutexattr_gettype(const pthread_mutexattr_t *attr, int *type);
-int pthread_mutexattr_settype(pthread_mutexattr_t *attr, int type);
-int pthread_rwlock_init(pthread_rwlock_t *rwlock, const pthread_rwlockattr_t *attr);
-int pthread_rwlock_destroy(pthread_rwlock_t *rwlock);
-int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock);
-int pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock);
-int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock);
-int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock);
-int pthread_rwlock_unlock(pthread_rwlock_t *rwlock);
-int pthread_rwlockattr_init(pthread_rwlockattr_t *attr);
-int pthread_rwlockattr_destroy(pthread_rwlockattr_t *attr);
-int pthread_rwlockattr_getpshared(const pthread_rwlockattr_t *attr, int *pshared);
-int pthread_rwlockattr_setpshared(pthread_rwlockattr_t *attr, int pshared);
+int pthread_setcancelstate(int, int);
+int pthread_setcanceltype(int, int);
+int pthread_setschedparam(pthread_t, int, struct sched_param);
+int pthread_setspecific(pthread_key_t, void);
 void pthread_testcancel(void);
+int pthread_attr_setstackaddr(pthread_attr_t, void);
+int pthread_attr_getstackaddr(pthread_attr_t, void);
+int pthread_attr_setstacksize(pthread_attr_t, size_t);
+int pthread_attr_getstacksize(pthread_attr_t, size_t);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=pwd.h>
 <TITLE>pwd.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
 void endpwent(void);
-struct passwd * getpwent (void);
-struct passwd * getpwnam (const char *);
-int getpwnam_r(const char *nam, struct passwd *pwd, char *buffer, size_t bufsize, struct passwd **result);
-struct passwd * getpwuid (uid_t );
-int getpwuid_r(uid_t uid, struct passwd *pwd, char *buffer, size_t bufsize, struct passwd **result);
+passwd getpwent(void);
+passwd getpwnam(char);
+passwd getpwuid(__uid_t);
 void setpwent(void);
+int getpwnam_r(char, struct passwd, char, size_t, struct passwd);
+int getpwuid_r(__uid_t, struct passwd, char, size_t, struct passwd);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=re_comp.h>
 <TITLE>re_comp.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-char *re_comp(const char *string);
-int re_exec(const char *string);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=regexp.h>
 <TITLE>regexp.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int advance(const char *string, const char *expbuf);
-extern char* loc1;
-extern char *loc2;
-char *locs;
-int step(const char *string, const char *expbuf);
-char *compile(char *instring, char *expbuf, const char *endbuf, int eof);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sched.h>
 <TITLE>sched.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int sched_get_priority_max(int policy);
-int sched_get_priority_min(int policy);
-int sched_getparam(pid_t pid, struct sched_param *param);
-int sched_getscheduler(pid_t pid);
-int sched_rr_get_interval(pid_t pid, struct timespec *interval);
-int sched_setparam(pid_t pid, const struct sched_param *param);
-int sched_setscheduler(pid_t pid, int policy, const struct sched_param *param);
+int sched_get_priority_max(int);
+int sched_get_priority_min(int);
+int sched_getparam(__pid_t, struct sched_param);
+int sched_getscheduler(__pid_t);
+int sched_rr_get_interval(__pid_t, struct timespec);
+int sched_setparam(__pid_t, struct sched_param);
+int sched_setscheduler(__pid_t, int, struct sched_param);
 int sched_yield(void);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=search.h>
 <TITLE>search.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int hcreate(size_t nel);
-void hdestroy(void);
-ENTRY *hsearch (ENTRY item, ACTION action);
-void insque(void *element, void *pred);
-void remque(void *element);
+void insque(void, void);
+void remque(void);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=setjmp.h>
 <TITLE>setjmp.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-void _longjmp(jmp_buf env, int val);
-int _setjmp(jmp_buf env);
-void longjmp (jmp_buf , int );
-int setjmp (jmp_buf );
-void siglongjmp (sigjmp_buf , int );
-int sigsetjmp (sigjmp_buf , int );
+int __sigsetjmp(jmp_buf, int);
+void siglongjmp(sigjmp_buf, int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=signal.h>
 <TITLE>signal.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -972,55 +833,51 @@ int sigsetjmp (sigjmp_buf , int );
 #define SIG_SETMASK     2
 
 
-int kill (pid_t , int );
-int killpg (int , int );
-void psignal (int , const char *);
-int raise (int );
-int sigaction (int , const struct sigaction *, struct sigaction *);
-int sigaddset (sigset_t *, int );
-int sigaltstack (const struct sigaltstack *, struct sigaltstack *);
-int sigblock (int );
-int sigdelset (sigset_t *, int );
-int sigemptyset (sigset_t *);
-int sigfillset (sigset_t *);
-int siginterrupt (int , int );
-int sigismember (const sigset_t *, int );
-sighandler_t signal (int , sighandler_t );
-int sigpause (int );
-int sigpending (sigset_t *);
-int sigprocmask (int , const sigset_t *, sigset_t *);
-int sigsetmask (int );
-int sigstack (const struct sigstack *, struct sigstack *);
-int sigsuspend (const sigset_t *);
-int sigvec (int , const struct sigvec *,struct sigvec *);
-int sigwait(const sigset_t *set, int *sig);
-int pthread_kill(pthread_t thread, int sig);
-int pthread_sigmask(int how, const sigset_t *set, sigset_t *oset);
-int sighold(int sig);
-int sigignore(int sig);
-int sigrelse(int sig);
-int sigqueue(pid_t pid, int signo, const union sigval value);
-int sigwaitinfo(const sigset_t *set, siginfo *info);
-int sigtimedwait(const sigset_t *set, siginfo_t *info, const struct timespec *timeout);
-int timer_create(clockid_t clockid, struct sigevent *evp, timer_t *timerid);
-int sigmask (int );
+int __libc_current_sigrtmax(void);
+int __libc_current_sigrtmin(void);
+int __sigpause(int, int);
+__sighandler_t __sysv_signal(int, __sighandler_t);
+int killpg(__pid_t, int);
+int raise(int);
+int sigaddset(sigset_t, int);
+int sigdelset(sigset_t, int);
+int sigemptyset(sigset_t);
+int sigfillset(sigset_t);
+int siggetmask(void);
+int siginterrupt(int, int);
+int sigismember(sigset_t, int);
+int sigpending(sigset_t);
+int sigstack(struct sigstack, struct sigstack);
+int sigaction(int, struct sigaction, struct sigaction);
+int sigwait(sigset_t, int);
+int kill(__pid_t, int);
+int sigaltstack(struct sigaltstack, struct sigaltstack);
+int sigblock(int);
+__sighandler_t signal(int, __sighandler_t);
+int sigpause(int);
+int sigprocmask(int, sigset_t, sigset_t);
+int sigreturn(struct sigcontext);
+int sigsetmask(int);
+int sigsuspend(sigset_t);
+int sigvec(int, struct sigvec, struct sigvec);
+int sigqueue(__pid_t, int, , enum sigval);
+int sigwaitinfo(sigset_t, siginfo_t);
+int sigtimedwait(sigset_t, siginfo_t, struct timespec);
+__sighandler_t ssignal(int, __sighandler_t);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=stdarg.h>
 <TITLE>stdarg.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
- va_arg (va_list , );
-void va_end (va_list );
-void va_start (va_list , );
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=stdio.h>
 <TITLE>stdio.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1050,75 +907,63 @@ extern FILE *stdin;
 extern FILE *stdout;
 
 
-void clearerr ( FILE *);
-char * ctermid (char *);
-char * cuserid (char *);
-int fclose (FILE *);
- FILE* fdopen (int , const char *);
-int feof ( FILE *);
-int ferror ( FILE *);
-int fflush ( *);
-int fgetc ( *);
-int fgetpos ( *, fpos_t *);
-char * fgets (char *, int ,  *);
-int fileno ( *);
-void flockfile(FILE *file);
- FILE* fopen (const char *, const char *);
-int fprintf ( *, const char *, ...);
-int fputc (int ,  *);
-int fputs (const char *,  *);
-size_t fread (void *, size_t , size_t ,  *);
- * freopen (const char *, const char *,  *);
-int fscanf ( *, const char *, ...);
-int fseek ( *, long int , int );
-int fsetpos ( *, const fpos_t );
-long int ftell ( *);
-int ftrylockfile(FILE *file);
-void funlockfile(FILE *file);
-size_t fwrite (const void *, size_t , size_t ,  *);
-int getc ( *);
-int getc_unlocked(FILE *stream);
-int getchar (void);
-int getchar_unlocked(void);
-char * gets (char *);
-int getw(FILE *stream);
-int pclose(FILE *stream);
-void perror (const char *);
-FILE *popen(const char *command, const char *mode);
-int printf (const char *, ...);
-int putc (int ,  *);
-int putc_unlocked(int c, FILE *stream);
-int putchar (int );
-int putchar_unlocked(int c);
-int puts (const char *);
-int putw(int w, FILE *stream);
-int remove (const char *);
-int rename (const char *, const char *);
-void rewind ( *);
-int scanf (const char *, ...);
-void setbuf ( *, char *);
-void setbuffer ( *, char *, size_t );
-void setlinebuf ( *);
-int setvbuf ( *, char *, int , size_t );
-int snprintf(char *s, size_t n, const char *, ...);
-int sprintf (char *, const char *, ...);
-int sscanf (const char *, const char *, ...);
-char *tempnam(const char *dir, const char *pfx);
- * tmpfile (void);
-char * tmpnam (char *);
-int ungetc (int ,  *);
-int vfprintf ( *, const char *, va_list );
-int vprintf (const char *, va_list );
-int vsnprintf(char *s, size_t n, const char *, va_list ap);
-int vsprintf (char *, const char *, va_list );
-size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
-int fseeko(FILE *stream, off_t offset, int whence);
-off_t ftello(FILE *stream);
+void clearerr(FILE);
+char ctermid(char);
+int fclose(FILE);
+FILE fdopen(int, char);
+int fileno(FILE);
+FILE fopen(char, char);
+int fprintf(FILE, char, ...);
+int fputc(int, FILE);
+FILE freopen(char, char, FILE);
+int fscanf(FILE, char, ...);
+int fseek(FILE, long, int);
+int getchar(void);
+int getw(FILE);
+int pclose(FILE);
+void perror(char);
+FILE popen(char, char);
+int printf(char, ...);
+int putchar(int);
+int putw(int, FILE);
+int remove(char);
+int rename(char, char);
+void rewind(FILE);
+int scanf(char, ...);
+void setbuf(FILE, char);
+int sprintf(char, char, ...);
+int sscanf(char, char, ...);
+char tempnam(char, char);
+FILE tmpfile(void);
+char tmpnam(char);
+char tmpnam_r(char);
+int vfprintf(FILE, char, __gnuc_va_list);
+int vprintf(char, __gnuc_va_list);
+int feof(FILE);
+int ferror(FILE);
+int fflush(FILE);
+int fgetc(FILE);
+int fgetpos(FILE, fpos_t);
+char fgets(char, int, FILE);
+int fputs(char, FILE);
+size_t fread(void, size_t, size_t, FILE);
+int fsetpos(FILE, fpos_t);
+long ftell(FILE);
+size_t fwrite(void, size_t, size_t, FILE);
+int getc(FILE);
+char gets(char);
+int putc(int, FILE);
+int puts(char);
+int setvbuf(FILE, char, int, size_t);
+int snprintf(char, size_t, char, ...);
+int ungetc(int, FILE);
+int vsnprintf(char, size_t, char, __gnuc_va_list);
+int vsprintf(char, char, __gnuc_va_list);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=stdlib.h>
 <TITLE>stdlib.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1128,248 +973,237 @@ off_t ftello(FILE *stream);
 #define RAND_MAX        2147483647
 
 
-long a64l(const char *s);
-void abort (void);
-int abs (int );
-int atexit (void (*) (void));
-double atof (const char *);
-int atoi (const char *);
-long int atol (const char *);
-void * bsearch (const void *, const void *, size_t , size_t , comparison_fn_t );
-void *calloc(size_t nelem, size_t elsize);
-div_t div (int , int );
+char __secure_getenv(char);
+float __strtof_internal(char, char, int);
+long double __strtold_internal(char, char, int);
+long long __strtoll_internal(char, char, int, int);
+unsigned long __strtoul_internal(char, char, int, int);
+unsigned long long __strtoull_internal(char, char, int, int);
+void abort(void);
+int abs(int);
+int atexit(void ();
+double atof(char);
+int atoi(char);
+long atol(char);
+void bsearch(void, void, size_t, size_t, __compar_fn_t);
+div_t div(int, int);
 double drand48(void);
-char *ecvt(double value, int ndigit, int *decpt, int *sign);
-double erand48(unsigned short int xsubi[3]);
-void exit (int );
-char *fcvt(double value, int ndigit, int *decpt, int *sign);
-void free(void *ptr);
-char *gcvt(double value, int ndigit, char *buf);
-char * getenv (const char *);
-int getsubopt(char **optionp, char * const *tokens, char **valuep);
-void * initstate (unsigned int , void *, size_t );
-long int jrand48(unsigned short int xsubi[3]);
-char *l64a(long value);
-long int labs (long int );
-void lcong48(unsigned short int param[7]);
-ldiv_t ldiv (long int , long int );
-long int lrand48(void);
-void *malloc(size_t size);
-int mblen (const char *, size_t );
-size_t mbstowcs (wchar_t *, const char *, size_t );
-int mbtowc (wchar_t *, const char *, size_t );
-int mkstemp(char *template);
-char *mktemp(char *template);
-long int mrand48(void);
-long int nrand48(unsigned short int xsubi[3]);
-int putenv(char *string);
-void qsort (void *, size_t , size_t , comparison_fn_t );
-int rand (void);
-int rand_r(unsigned int *seed);
-long random(void);
-void *realloc(void *ptr, size_t size);
-char *realpath(const char *file_name, char *resolved_name);
-unsigned short int *seed48(unsigned short int seed16v[3]);
-void * setstate (void *);
-void srand (unsigned int );
-void srand48(long int seedval);
-void srandom (unsigned int );
-double strtod (const char *, char **);
-long int strtol (const char *, char **, int );
-long long int strtoq (const char *, char **, int );
-unsigned long int strtoul (const char *, char **, int );
-unsigned long long int strtouq (const char *, char **, int );
-int system (const char *);
-int ttyslot(void);
-void *valloc(size_t size);
-size_t wcstombs (char *, const wchar_t , size_t );
-int wctomb (char *, wchar_t );
-int grantpt(int fildes);
-char *ptsname(int fildes);
-void setkey(const char *key);
-int unlockpt(int fildes);
+char ecvt(double, int, int, int);
+double erand48(unsigned short);
+void exit(int);
+char fcvt(double, int, int, int);
+char gcvt(double, int, char);
+char getenv(char);
+long jrand48(unsigned short);
+long labs(long);
+ldiv_t ldiv(long, long);
+long lrand48(void);
+int mblen(char, size_t);
+size_t mbstowcs(wchar_t, char, size_t);
+int mbtowc(wchar_t, char, size_t);
+int mkstemp(char);
+char mktemp(char);
+long mrand48(void);
+long nrand48(unsigned short);
+int putenv(char);
+void qsort(void, size_t, size_t, __compar_fn_t);
+int rand(void);
+unsigned short seed48(unsigned short);
+void srand48(long);
+size_t wcstombs(char, wchar_t, size_t);
+int wctomb(char, wchar_t);
+void calloc(size_t, size_t);
+void free(void);
+void initstate(unsigned int, void, size_t);
+void malloc(size_t);
+void realloc(void, size_t);
+void setstate(void);
+void srand(unsigned int);
+void srandom(unsigned int);
+double strtod(char, char);
+long strtol(char, char, int);
+long long strtoll(char, char, int);
+long long strtoq(char, char, int);
+unsigned long strtoul(char, char, int);
+unsigned long long strtoull(char, char, int);
+unsigned long long strtouq(char, char, int);
+size_t __ctype_get_mb_cur_max(void);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=string.h>
 <TITLE>string.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 #define NULL    0
 
-void *memccpy(void *s1, const void *s2, int c, size_t n);
-void * memchr (const void *, int , size_t );
-int memcmp (const void *1, const void *2, size_t );
-void * memcpy (void *, const void *, size_t );
-void * memmove (void *, const void *, size_t );
-void * memset (void *, int , size_t );
-char * strcat (char *, const char *);
-char * strchr (const char *, int );
-int strcmp (const char *1, const char *2);
-int strcoll (const char *1, const char *2);
-char * strcpy (char *, const char *);
-size_t strcspn (const char *, const char *);
-char *strdup(const char *s1);
-char * strerror (int );
-size_t strlen (const char *);
-char * strncat (char *, const char *, size_t );
-int strncmp (const char *1, const char *2, size_t );
-char * strncpy (char *, const char *, size_t );
-char * strpbrk (const char *, const char *);
-char * strrchr (const char *, int );
-char * strsep (char **_, const char *);
-size_t strspn (const char *, const char *);
-char * strstr (const char *, const char *);
-char * strtok (char *, const char *);
-char *strtok_r(char *s, const char *sep, char **lasts);
-size_t strxfrm (char *, const char *, size_t );
+void __bzero(void, size_t);
+char __strdup(char);
+char __strtok_r(char, char, char);
+void bcopy(void, void, size_t);
+void memchr(void, int, size_t);
+int memcmp(void, void, size_t);
+void memcpy(void, void, size_t);
+void memmove(void, void, size_t);
+void memset(void, int, size_t);
+char strcat(char, char);
+char strchr(char, int);
+int strcmp(char, char);
+int strcoll(char, char);
+char strcpy(char, char);
+size_t strcspn(char, char);
+char strerror(int);
+size_t strlen(char);
+char strncat(char, char, size_t);
+int strncmp(char, char, size_t);
+char strncpy(char, char, size_t);
+char strpbrk(char, char);
+char strrchr(char, int);
+size_t strspn(char, char);
+char strstr(char, char);
+char strtok(char, char);
+size_t strxfrm(char, char, size_t);
+int bcmp(void, void, size_t);
+void bzero(void, size_t);
+int ffs(int);
+char -1;
+void memccpy(void, void, int, size_t);
+char rindex(char, int);
+int strcasecmp(char, char);
+char strdup(char);
+int strncasecmp(char, char, size_t);
+char strsep(char, char);
+char strerror_r(int, char, size_t);
+char strtok_r(char, char, char);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=strings.h>
 <TITLE>strings.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int bcmp(const void *s1, const void *s2, size_t n);
-void bcopy(const void *s1, void *s2, size_t n);
-void bzero(void *s, size_t n);
-int ffs(int i);
-char *-1;
-char *rindex(const char *s, int c);
-int strcasecmp(const char *s1, const char *s2);
-int strncasecmp(const char *s1, const char *s2, size_t n);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=stropts.h>
 <TITLE>stropts.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int ioctl(int fildes, int request, ... /* arg */);
-int fattach(int fildes, const char *path);
-int fdetach(const char *path);
-int getmsg(int fildes, struct strbuf *ctlptr, struct strbuf *dataptr, int *flagsp);
-int getpmsg(int fildes, struct strbuf *ctlptr, struct strbuf *dataptr, int *bandp, int *flagsp);
-int isastream(int fildes);
-int putmsg(int fildes, const struct strbuf *ctlptr, const struct strbuf *dataptr, int flags);
-int putpmsg(int fildes, const struct strbuf *ctlptr, const struct strbuf *dataptr, int band, int flags);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/ipc.h>
 <TITLE>sys/ipc.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-key_t ftok(const char *path, int id);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/mman.h>
 <TITLE>sys/mman.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int mlock(const void * addr, size_t len);
-int mlockall(int flags);
-void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);
-int mprotect(void *addr, size_t len, int prot);
-int msync(void *addr, size_t len, int flags);
-int munlock(const void * addr, size_t len);
+int madvise(void, size_t, int);
+int msync(void, size_t, int);
+int mlock(void, size_t);
+int mlockall(int);
+void mmap(void, size_t, int, int, int, __off_t);
+int mprotect(void, size_t, int);
+int munlock(void, size_t);
 int munlockall(void);
-int munmap(void *addr, size_t len);
-int shm_open(const char *name, int oflag, mode_t mode);
-int shm_unlink(const char * name);
+int munmap(void, size_t);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/msg.h>
 <TITLE>sys/msg.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int msgctl(int msqid, int cmd, struct msqid_ds *buf);
-int msgget(key_t key, int msgflg);
-ssize_t msgrcv(int msqid, void *msgp, size_t msgsz, long int msgtyp, int msgflg);
-int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg);
+int msgctl(int, int, struct msqid_ds);
+int msgget(int);
+int msgrcv(int, void, size_t, long, int);
+int msgsnd(int, void, size_t, int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/resource.h>
 <TITLE>sys/resource.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int getpriority (int , int );
-int getrlimit (int , struct rlimit *);
-int getrusage (int , struct rusage *);
-int setpriority (int , int , int );
-int setrlimit (int , struct rlimit *);
+int getpriority(enum, enum __priority_which, int);
+int setpriority(enum, enum __priority_which, int, int);
+int setrlimit(enum, enum __rlimit_resource, struct rlimit);
+int getrlimit(enum, enum __rlimit_resource, struct rlimit);
+int getrusage(enum, enum __rusage_who, struct rusage);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/sem.h>
 <TITLE>sys/sem.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int semctl(int semid, int semnum, int cmd, ...);
-int semget(key_t key, int nsems, int semflg);
-int semop(int semid, struct sembuf *sops, size_t nsops);
+int semctl(int, int, int, ...);
+int semget(int, int);
+int semop(int, struct sembuf, unsigned int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/shm.h>
 <TITLE>sys/shm.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-void *shmat(int shmid, const void *shmaddr, int shmflg);
-int shmctl(int shmid, int cmd, struct shmid_ds *buf);
-int shmdt(const void *shmaddr);
-int shmget(key_t key, size_t size, int shmflg);
+void shmat(int, void, int);
+int shmctl(int, int, struct shmid_ds);
+int shmdt(void);
+int shmget(size_t, int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/socket.h>
 <TITLE>sys/socket.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int accept (int , struct sockaddr *, socklen_t *);
-int bind (int , struct sockaddr *, socklen_t );
-int connect (int , struct sockaddr *, socklen_t );
-int getpeername (int , struct sockaddr *, size_t *);
-int getsockname (int , struct sockaddr *, socklen_t *);
-int getsockopt (int , int , int , void *, socklen_t *);
-int listen (int , unsigned int );
-int recv (int , void *, size_t , int );
-int recvfrom (int , void *, size_t , int , struct sockaddr *, socklen_t *);
-int recvmsg (int , struct msghdr *, int );
-int send (int , void *, size_t , int );
-int sendmsg (int , const struct msghdr *, int );
-int sendto (int , void *. size_t , int , struct sockaddr *, socklen_t );
-int setsockopt (int , int , int , void *, socklen_t );
-int shutdown (int , int );
-int socket (int , int , int );
-int socketpair (int , int , int , int [2]);
+int bind(int, __CONST_SOCKADDR_ARG, socklen_t);
+int getsockname(int, __SOCKADDR_ARG, socklen_t);
+int listen(int, unsigned int);
+int setsockopt(int, int, int, void, socklen_t);
+int accept(int, __SOCKADDR_ARG, socklen_t);
+int connect(int, __CONST_SOCKADDR_ARG, socklen_t);
+int recv(int, void, size_t, int);
+int recvfrom(int, void, size_t, int, __SOCKADDR_ARG, socklen_t);
+int recvmsg(int, struct msghdr, int);
+int send(int, void, size_t, int);
+int sendmsg(int, struct msghdr, int);
+int sendto(int, void, size_t, int, __CONST_SOCKADDR_ARG, socklen_t);
+int getpeername(int, __SOCKADDR_ARG, socklen_t);
+int getsockopt(int, int, int, void, socklen_t);
+int shutdown(int, int);
+int socket(int, int, int);
+int socketpair(int, int, int, int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/stat.h>
 <TITLE>sys/stat.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1400,60 +1234,45 @@ int socketpair (int , int , int , int [2]);
 #define S_IFREG 0100000
 
 
-int chmod (const char *, mode_t );
-int fchmod (int , int );
-int mkdir (const char *, mode_t );
-int mkfifo (const char *, mode_t );
-mode_t umask (mode_t );
-int fstat (int , struct stat *);
-int lstat (const char *, struct stat *);
-int mknod (const char *, int , int );
-int stat (const char *, struct stat *);
+int __fxstat(int, int, struct stat);
+int __xmknod(int, char, __mode_t, __dev_t);
+int mkfifo(char, __mode_t);
+int chmod(char, __mode_t);
+int fchmod(int, __mode_t);
+int mkdir(char, __mode_t);
+__mode_t umask(__mode_t);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/time.h>
 <TITLE>sys/time.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int adjtime (const struct timeval *, struct timeval *);
-int getitimer (int , struct itimerval *);
-int gettimeofday (struct timeval *, struct timezone *);
-int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *errorfds, struct timeval *timeout);
-int setitimer (int , struct itimerval *, struct itimerval *);
-int settimeofday (const struct timeval *, const struct timezone *);
-int utimes (const char *, struct timeval [2]);
-void FD_CLR(int fd, fd_set *fdset);
-int FD_ISSET(int fd, fd_set *fdset);
-void FD_SET(int fd, fd_set *fdset);
-void FD_ZERO(fd_set *fdset);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/timeb.h>
 <TITLE>sys/timeb.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int ftime(struct timeb *tp);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/times.h>
 <TITLE>sys/times.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-clock_t times (struct tms *);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/types.h>
 <TITLE>sys/types.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1475,27 +1294,26 @@ typedef int		uid_t;
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/uio.h>
 <TITLE>sys/uio.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-ssize_t readv(int fildes, const struct iovec *iov, int iovcnt);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/utsname.h>
 <TITLE>sys/utsname.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int uname (struct utsname *);
+int uname(struct utsname);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=sys/wait.h>
 <TITLE>sys/wait.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1511,36 +1329,25 @@ int uname (struct utsname *);
 #define WTERMSIG(s)     ((s) & 0x7f)
 
 
-pid_t wait (int *);
-pid_t wait3 (union wait *, int , struct rusage *);
-pid_t wait4 (pid_t , int *, int , struct rusage *);
-pid_t waitpid (pid_t , int *, int );
-int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);
-int  (int );
-int  (int );
-int  (int );
-int  (int );
-int  (int );
-int  (int );
-int  (int );
+int waitid(idtype_t, __id_t, siginfo_t, int);
+__pid_t wait(__WAIT_STATUS);
+__pid_t waitpid(__pid_t, int, int);
+__pid_t wait3(__WAIT_STATUS, int, struct rusage);
+__pid_t wait4(__pid_t, __WAIT_STATUS, int, struct rusage);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=syslog.h>
 <TITLE>syslog.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-void closelog(void);
-void openlog(const char *ident, int logopt, int facility);
-int setlogmask(int maskpri);
-void syslog(int priority, const char *message, ... /* arguments */);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=tar.h>
 <TITLE>tar.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1575,7 +1382,7 @@ void syslog(int priority, const char *message, ... /* arguments */);
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=termios.h>
 <TITLE>termios.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1671,71 +1478,58 @@ typedef unsigned char cc_t;
 typedef unsigned int  tcflag_t;
 
 
-speed_t cfgetispeed (const struct termios *);
-speed_t cfgetospeed (const struct termios *);
-int cfmakeraw (struct termios *);
-int cfsetispeed (struct termios *, speed_t );
-int cfsetospeed (struct termios *, speed_t );
-int cfsetspeed (struct termios *, speed_t );
-int tcdrain (int );
-int tcflow (int , int );
-int tcflush (int , int );
-int tcgetattr (int , struct termios *);
-int tcsendbreak (int , int );
-int tcsetattr (int , int , const struct termios *);
-pid_t tcgetsid(int fildes);
+speed_t cfgetispeed(struct termios);
+speed_t cfgetospeed(struct termios);
+int cfsetispeed(struct termios, speed_t);
+int cfsetospeed(struct termios, speed_t);
+int cfsetspeed(struct termios, speed_t);
+int tcflow(int, int);
+int tcflush(int, int);
+int tcsendbreak(int, int);
+int tcsetattr(int, int, struct termios);
+int tcdrain(int);
+int tcgetattr(int, struct termios);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=time.h>
 <TITLE>time.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 #define NULL    0
 
-char * asctime (const struct tm *);
-char *asctime_r(const struct tm *tm, char *buf);
-clock_t clock (void);
-char * ctime (const time_t *);
-char *ctime_r(const time_t *clock, char *buf);
-double difftime (time_t, time_t);
-struct tm * gmtime (const time_t *);
-struct tm *gmtime_r(const time_t *clock, struct tm *result);
-struct tm * localtime (const time_t *);
-struct tm *localtime_r(const time_t *clock, struct tm *result);
-time_t mktime (struct tm *);
-int nanosleep(const struct timespec *rqtp, struct timespec *rmtp);
-size_t strftime (char *, size_t , const char *, const struct tm *);
-char *strptime(const char *buf, const char *, struct tm *tm);
-time_t time (time_t *);
-char *tzname[];
-void tzset (void);
-int clock_settime(clockid_t clock_id, const struct timespec *tp);
-int clock_gettime(clockid_t clock_id, struct timespec *tp);
-int clock_getres(clockid_t clock_id, struct timespec *res);
-struct tm *getdate(const char *string);
-int timer_delete(timer_t timerid);
-int timer_settime(timer_t timerid, int flags, const struct itimerspec *value, struct itimerspec *ovalue);
-int timer_gettime(timer_t timerid, struct itimerspec *value);
-int timer_getoverrun(timer_t timerid);
+char asctime(struct tm);
+clock_t clock(void);
+char ctime(time_t);
+double difftime(time_t, time_t);
+tm gmtime(time_t);
+tm localtime(time_t);
+time_t mktime(struct tm);
+size_t strftime(char, size_t, char, struct tm);
+time_t time(time_t);
+int nanosleep(struct timespec, struct timespec);
+int daylight();
+long timezone();
+char tzname();
+void tzset(void);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=ulimit.h>
 <TITLE>ulimit.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 #define UL_GETFSIZE     (-1)	/* unable to find these */
 #define UL_SETFSIZE     (-1)	/* unable to find these */
 
-long int ulimit(int cmd, ...);
+long ulimit(int, ...);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=unistd.h>
 <TITLE>unistd.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1872,96 +1666,79 @@ long int ulimit(int cmd, ...);
 #define	_SC_VERSION	29
 
 
-void _exit (int );
-int access (const char *, int );
-unsigned int alarm (unsigned int );
-int brk(void *addr);
-int chdir (const char *);
-int chown (const char *, uid_t , gid_t );
-int chroot(const char *path);
-int close (int );
-size_t confstr (int , char *, size_t );
-int dup (int );
-int dup2 (int , int );
-int execl (const char *, const char *, ...);
-int execle (const char *, const char *, char *const [], ...);
-int execlp (const char *, const char *, ...);
-int execv (const char *, char *const []);
-int execve (const char *, char *const [], char *const []);
-int execvp (const char *, char *const []);
-int fchdir(int fildes);
-int fchown (int , int , int );
-int fdatasync(int fildes);
-pid_t fork (void);
-long int fpathconf (int , int );
-int fsync(int fildes);
-int ftruncate(int fildes, off_t length);
-char * getcwd (char *, size_t );
-int getdtablesize(void);
-gid_t getegid (void);
-uid_t geteuid (void);
-gid_t getgid (void);
-int getgroups (int , gid_t *);
-long int gethostid (void);
-int gethostname (char *, size_t );
-char * getlogin (void);
-int getlogin_r(char *name, size_t namesize);
-int getopt (int , char **, const char *);
-int getpagesize(void);
-char *getpass(const char *prompt);
-pid_t getpgid(pid_t pid);
-pid_t getpgrp (void);
-pid_t getpid (void);
-pid_t getppid (void);
-pid_t getsid(pid_t pid);
-uid_t getuid (void);
-char * getwd (char *);
-int isatty (int );
-int lchown(const char *path, uid_t owner, gid_t group);
-int link (const char *, const char *);
-int lockf(int fildes, int function, off_t size);
-off_t lseek (int , off_t , int );
-int nice(int incr);
-long int pathconf (const char *, int );
+__pid_t __getpgid(__pid_t);
+int acct(char);
+unsigned int alarm(unsigned int);
+int chown(char, __uid_t, __gid_t);
+int chroot(char);
+int execl(char, char, ...);
+int execle(char, char, ...);
+int execlp(char, char, ...);
+int execv(char, char);
+int execvp(char, char);
+int fdatasync(int);
+long gethostid(void);
+__pid_t getpgrp(void);
+int lockf(int, int, __off_t);
+int nice(int);
+int setegid(__gid_t);
+int seteuid(__uid_t);
+int sethostid(long);
+int sethostname(char, size_t);
+int setpgrp(void);
+int sync(void);
+__pid_t tcgetpgrp(int);
+int tcsetpgrp(int, __pid_t);
+int truncate(char, __off_t);
+char ttyname(int);
+void usleep(unsigned int);
+int close(int);
+int fsync(int);
+__off_t lseek(int, __off_t, int);
 int pause(void);
-int pipe (int [2]);
-ssize_t read (int , void *, size_t );
-int readlink (const char *, char *, size_t );
-int rmdir (const char *);
-void *sbrk(intptr_t incr);
-int setgid (gid_t );
-int sethostid (long int );
-int sethostname (const char *, size_t );
-int setpgid (pid_t , pid_t );
-int setpgrp (pid_t , pid_t );
-int setregid (gid_t , fid_t );
-int setreuid (uid_t , uid_t );
-pid_t setsid (void);
-int setuid (uid_t );
-unsigned int sleep (unsigned int );
-void swab(const void *src, void *dest, ssize_t nbytes);
-int symlink (const char *, const char *);
-void sync(void);
-long int sysconf (int );
-pid_t tcgetpgrp (int );
-int tcsetpgrp (int , pid_t );
-int truncate(const char *path, off_t length);
-char * ttyname (int );
-int ttyname_r(int fildes, char *name, size_t namesize);
-useconds_t ualarm(useconds_t useconds, useconds_t interval);
-int unlink (const char *);
-int usleep(useconds_t useconds);
-pid_t vfork (void);
-ssize_t write (int , const void *, size_t );
-char *crypt (const char *key, const char *salt);
-void encrypt(char block[64], int edflag);
-ssize_t pread(int fildes, void *buf, size_t nbyte, off_t offset);
-ssize_t pwrite(int fildes, const void *buf, size_t nbyte, off_t offset);
+ssize_t read(int, void, size_t);
+ssize_t write(int, void, size_t);
+int access(char, int);
+int brk(void);
+int chdir(char);
+int dup(int);
+int dup2(int, int);
+int execve(char, char, char);
+int fchdir(int);
+int fchown(int, __uid_t, __gid_t);
+__pid_t fork(void);
+__gid_t getegid(void);
+__uid_t geteuid(void);
+__gid_t getgid(void);
+int getgroups(int, __gid_t);
+int gethostname(char, size_t);
+__pid_t getpid(void);
+__uid_t getuid(void);
+int lchown(char, __uid_t, __gid_t);
+int link(char, char);
+long pathconf(char, int);
+int pipe(int);
+int readlink(char, char, size_t);
+int rmdir(char);
+void sbrk(ptrdiff_t);
+int setgid(__gid_t);
+int setpgid(__pid_t, __pid_t);
+int setregid(__gid_t, __gid_t);
+int setreuid(__uid_t, __uid_t);
+__pid_t setsid(void);
+int setuid(__uid_t);
+unsigned int sleep(unsigned int);
+int symlink(char, char);
+int unlink(char);
+__pid_t vfork(void);
+__pid_t getppid(void);
+int isatty(int);
+int ttyname_r(int, char, size_t);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=utime.h>
 <TITLE>utime.h</TITLE>
 <PARA></PARA>
 <SCREEN>
@@ -1970,101 +1747,81 @@ struct utimbuf {
 	time_t modtime;           /* Modification time.  */
 };
 
-int utime(const char *path, const struct utimbuf *times);
+int utime(char, struct utimbuf);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=wchar.h>
 <TITLE>wchar.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-wint_t btowc(int c);
-size_t mbrlen(const char *s, size_t n, mbstate_t *ps);
-size_t mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps);
-int mbsinit(const mbstate_t *ps);
-size_t mbsrtowcs(wchar_t *dst, const char **src, size_t len, mbstate_t *ps);
-wchar_t *wcscat(wchar_t *ws1, const wchar_t *ws2);
-wchar_t *wcschr(const wchar_t *ws, wchar_t wc);
-int wcscmp(const wchar_t *ws1, const wchar_t *ws2);
-int wcscoll(const wchar_t *ws1, const wchar_t *ws2);
-wchar_t *wcscpy(wchar_t *ws1, const wchar_t *ws2);
-size_t wcscspn(const wchar_t *ws1, const wchar_t *ws2);
-size_t wcslen(const wchar_t *ws);
-wchar_t *wcsncat(wchar_t *ws1, const wchar_t *ws2, size_t n);
-int wcsncmp(const wchar_t *ws1, const wchar_t *ws2, size_t n);
-wchar_t *wcsncpy(wchar_t *ws1, const wchar_t *ws2, size_t n);
-wchar_t *wcspbrk(const wchar_t *ws1, const wchar_t *ws2);
-wchar_t *wcsrchr(const wchar_t *ws, wchar_t wc);
-size_t wcsrtombs(char *dst, const wchar_t **src, size_t len, mbstate_t *ps);
-size_t wcsspn(const wchar_t *ws1, const wchar_t *ws2);
-wchar_t *wcsstr(const wchar_t *ws1, const wchar_t *ws2);
-double wcstod(const wchar_t *nptr, wchar_t **endptr);
-wchar_t *wcstok(wchar_t *ws1, const wchar_t *ws2, wchar_t **ptr);
-long int wcstol(const wchar_t *nptr, wchar_t **endptr, int base);
-unsigned long int wcstoul(const wchar_t *nptr, wchar_t **endptr, int base);
-int wcswidth(const wchar_t *pwcs, size_t n);
-size_t wcsxfrm(wchar_t *ws1, const wchar_t *ws2, size_t n);
-int wctob(wint_t c);
-int wcwidth(wchar_t wc);
-wchar_t *wmemchr(const wchar_t *ws, wchar_t wc, size_t n);
-int wmemcmp(const wchar_t *ws1, const wchar_t *ws2, size_t n);
-wchar_t *wmemcpy(wchar_t *ws1, const wchar_t *ws2, size_t n);
-wchar_t *wmemmove(wchar_t *ws1, const wchar_t *ws2, size_t n);
-wchar_t *wmemset(wchar_t *ws, wchar_t wc, size_t n);
-wint_t fgetwc(FILE *stream);
-wchar_t *fgetws(wchar_t *ws, int n, FILE *stream);
-wint_t fputwc(wchar_t wc, FILE *stream);
-int fputws(const wchar_t *ws, FILE *stream);
-int fwide(FILE *stream, int mode);
-int fwprintf(FILE *stream, const wchar_t *, ...);
-int wprintf(const wchar_t *, ...);
-int swprintf(wchar_t *s, size_t n, const wchar_t *, ...);
-int fwscanf(FILE *stream, const wchar_t *, ... );
-int wscanf(const wchar_t *, ... );
-int swscanf(const wchar_t *s, const wchar_t *, ... );
-wint_t getwc(FILE *stream);
-wint_t getwchar(void);
-wint_t putwc(wchar_t wc, FILE *stream);
-wint_t putwchar(wchar_t wc);
-wint_t ungetwc(wint_t wc, FILE *stream);
-int vwprintf(const wchar_t *, va_list arg);
-int vfwprintf(FILE *stream, const wchar_t *, va_list arg);
-int vswprintf(wchar_t *s, size_t n, const wchar_t *, va_list arg);
-size_t wcsftime(wchar_t *wcs, size_t maxsize, const wchar_t *, const struct tm *timptr);
-wchar_t *wcswcs(const wchar_t *ws1, const wchar_t *ws2);
+size_t __mbrlen(char, size_t, mbstate_t);
+double __wcstod_internal(wchar_t, wchar_t, int);
+float __wcstof_internal(wchar_t, wchar_t, int);
+long __wcstol_internal(wchar_t, wchar_t, int, int);
+long double __wcstold_internal(wchar_t, wchar_t, int);
+long long __wcstoll_internal(wchar_t, wchar_t, int, int);
+unsigned long __wcstoul_internal(wchar_t, wchar_t, int, int);
+unsigned long long __wcstoull_internal(wchar_t, wchar_t, int, int);
+wchar_t wcscat(wchar_t, wchar_t);
+wchar_t wcschr(wchar_t, wchar_t);
+int wcscmp(wchar_t, wchar_t);
+int wcscoll(wchar_t, wchar_t);
+wchar_t wcscpy(wchar_t, wchar_t);
+size_t wcscspn(wchar_t, wchar_t);
+wchar_t wcsncat(wchar_t, wchar_t, size_t);
+int wcsncmp(wchar_t, wchar_t, size_t);
+wchar_t wcsncpy(wchar_t, wchar_t, size_t);
+wchar_t wcspbrk(wchar_t, wchar_t);
+wchar_t wcsrchr(wchar_t, wchar_t);
+size_t wcsspn(wchar_t, wchar_t);
+wchar_t wcsstr(wchar_t, wchar_t);
+wchar_t wcstok(wchar_t, wchar_t, wchar_t);
+size_t wcsxfrm(wchar_t, wchar_t, size_t);
+int wctob(wint_t);
+size_t mbrlen(char, size_t, mbstate_t);
+size_t mbrtowc(wchar_t, char, size_t, mbstate_t);
+int mbsinit(mbstate_t);
+size_t mbsrtowcs(wchar_t, char, size_t, mbstate_t);
+size_t wcrtomb(char, wchar_t, mbstate_t);
+size_t wcslen(wchar_t);
+size_t wcsrtombs(char, wchar_t, size_t, mbstate_t);
+double wcstod(wchar_t, wchar_t);
+long wcstol(wchar_t, wchar_t, int);
+unsigned long wcstoul(wchar_t, wchar_t, int);
+wint_t btowc(int);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=wctype.h>
 <TITLE>wctype.h</TITLE>
 <PARA></PARA>
 <SCREEN>
 
-int iswalnum(wint_t wc);
-int iswalpha(wint_t wc);
-int iswcntrl(wint_t wc);
-int iswctype(wint_t wc, wctype_t charclass);
-int iswdigit(wint_t wc);
-int iswgraph(wint_t wc);
-int iswlower(wint_t wc);
-int iswprint(wint_t wc);
-int iswpunct(wint_t wc);
-int iswspace(wint_t wc);
-int iswupper(wint_t wc);
-int iswxdigit(wint_t wc);
-wint_t towctrans(wint_t wc, wctrans_t desc);
-wint_t towlower(wint_t wc);
-wint_t towupper(wint_t wc);
-wctrans_t wctrans(const char *charclass);
-wctype_t wctype(const char *property);
+wint_t towlower(wint_t);
+wint_t towupper(wint_t);
+wctrans_t wctrans(char);
+int iswalnum(wint_t);
+int iswalpha(wint_t);
+int iswcntrl(wint_t);
+int iswctype(wint_t, wctype_t);
+int iswdigit(wint_t);
+int iswgraph(wint_t);
+int iswlower(wint_t);
+int iswprint(wint_t);
+int iswpunct(wint_t);
+int iswspace(wint_t);
+int iswupper(wint_t);
+int iswxdigit(wint_t);
+wctype_t wctype(char);
 
 
 </SCREEN>
 </SECT1>
-<SECT1>
+<SECT1 ID=zlib.h>
 <TITLE>zlib.h</TITLE>
 <PARA></PARA>
 <SCREEN>
