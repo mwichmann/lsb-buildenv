@@ -828,6 +828,9 @@ GLIBC_2.3 {
   __ctype_toupper_loc;
   realpath;
 };
+GLIBC_2.3.2 {
+  __register_atfork;
+};
 GLIBC_2.3.3 {
   getcontext;
   makecontext;

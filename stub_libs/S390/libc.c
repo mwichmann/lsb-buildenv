@@ -29,6 +29,7 @@ void __lxstat() {} ;
 void __lxstat64() {} ;
 void __mempcpy() {} ;
 void __rawmemchr() {} ;
+void __register_atfork() {} ;
 void __sigsetjmp() {} ;
 void __stpcpy() {} ;
 void __strdup() {} ;

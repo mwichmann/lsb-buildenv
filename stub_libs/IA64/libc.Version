@@ -822,6 +822,9 @@ GLIBC_2.3 {
   realpath;
   _sys_errlist;
 };
+GLIBC_2.3.2 {
+  __register_atfork;
+};
 GLIBC_2.3.3 {
   _sys_siglist;
 };

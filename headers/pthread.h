@@ -241,6 +241,8 @@ extern "C"
 					 const struct timespec *);
   extern int pthread_rwlock_timedwrlock (pthread_rwlock_t *,
 					 const struct timespec *);
+  extern int __register_atfork (void (*)(void), void (*)(void),
+				void (*)(void), void *);
 #ifdef __cplusplus
 }
 #endif

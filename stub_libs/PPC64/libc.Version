@@ -817,3 +817,6 @@ GLIBC_2.3 {
   timezone;
   tzname;
 };
+GLIBC_2.3.2 {
+  __register_atfork;
+};

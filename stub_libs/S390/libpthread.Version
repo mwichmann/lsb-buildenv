@@ -80,10 +80,6 @@ GLIBC_2.2 {
   pwrite;
   pwrite64;
   sem_timedwait;
-  pread;
-  pread64;
-  pwrite;
-  pwrite64;
 };
 GLIBC_2.3.2 {
   pthread_cond_broadcast;
