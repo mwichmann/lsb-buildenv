@@ -204,6 +204,15 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
+  struct _libc_xmmreg
+  {
+    uint32_t element[4];
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
   struct _libc_fpstate
   {
     uint16_t cwd;
@@ -399,15 +408,6 @@ extern "C"
     sigset_t uc_sigmask;
   }
   ucontext_t;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-  struct _libc_xmmreg
-  {
-    uint32_t element[4];
-  }
-   ;
 
 #endif
 #if __x86_64__
