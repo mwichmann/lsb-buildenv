@@ -50,8 +50,12 @@ extern "C"
     RPC_RPCBFAILURE = 14,	/* portmapper failed in its call */
     RPC_PROGNOTREGISTERED = 15,	/* remote program is not registered */
     RPC_N2AXLATEFAILURE = 22,	/* Name to addr translation failed */
-    RPC_FAILED = 16, RPC_INTR = 18, RPC_TLIERROR = 20, RPC_UDERROR =
-      23, RPC_INPROGRESS = 24, RPC_STALERACHANDLE = 25
+    RPC_FAILED = 16,
+    RPC_INTR = 18,
+    RPC_TLIERROR = 20,
+    RPC_UDERROR = 23,
+    RPC_INPROGRESS = 24,
+    RPC_STALERACHANDLE = 25
   }
    ;
 
@@ -78,7 +82,7 @@ extern "C"
 
   typedef struct CLIENT
   {
-    struct AUTH *cl_auth;
+    AUTH *cl_auth;
     struct clnt_ops cl_ops;
     caddr_t cl_private;
   }
