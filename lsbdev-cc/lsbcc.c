@@ -258,7 +258,6 @@ target=argvinit();
 options=argvinit();
 
 incpaths=argvinit();
-argvaddstring(incpaths,"-I/usr/lsb/include");
 
 libpaths=argvinit();
 argvaddstring(libpaths,"-nodefaultlibs");
@@ -343,7 +342,16 @@ if (optind < argc) {
 /* Assemble all of the groups into one to pass to gcc */
 
 argvappend(gccargs,target);
+
+/*
+ * The lsb/include directory needs to come after application supplied paths,
+ * but before the default /usr/include path.
+ * This does make the assumption that application builds are well behaved
+ * and don't pass in -I/usr/include themselves.
+ */
+argvaddstring(incpaths,"-I/usr/lsb/include");
 argvappend(gccargs,incpaths);
+
 argvappend(gccargs,libpaths);
 argvappend(gccargs,options);
 argvappend(gccargs,proginterp);
