@@ -285,6 +285,7 @@ extern "C"
   extern int open64 (char *, int, ...);
   extern ssize_t pwrite64 (void);
   extern int ttyname_r (void);
+  extern int mknod (const char *, mode_t, dev_t);
 #ifdef __cplusplus
 }
 #endif
