@@ -2,8 +2,18 @@
 
 LSB_SUPPORTED_ARCHS=IA32 IA64
 
-# Default to compile for IA32
-LSB_COMPILE_FOR_ARCH=IA32
+# Determine arch to compile for from uname
+# Add extra architectures as needed
+LSB_COMPILE_FOR_ARCH:=`case \`uname -m\` in \
+	i686|i586|i486|i386|athlon) \
+	echo IA32; \
+	;; \
+	ia64) \
+	echo IA64; \
+	;; \
+	*) \
+	echo Unknown; \
+	esac`
 
 all: libs
 
