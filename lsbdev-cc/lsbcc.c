@@ -255,8 +255,9 @@ char *default_lsblibs[] = {
 	"ICE",
 	"GL",
 	"stdc++",
+	"gcc_s",
 	0
-	};
+};
 
 void
 process_opt_l(char *val)
