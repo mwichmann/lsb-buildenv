@@ -284,6 +284,18 @@ if( $$param{'Ttype'} eq "Enum" ) {
 print $$param{'Ttype'};
 }
 
+sub
+displayconstant($)
+{
+local ($const) = @_;
+
+print "#define ";
+print $$const{'Cname'};
+print "\t";
+print $$const{'ACvalue'};
+print "\n";
+}
+
 GetOptions("h=s" => \$headname,
 	   "a=s" => \$archname);
  
@@ -393,12 +405,13 @@ for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
 	$HGdesc=$entry{'HGdescription'};
-	# Need to skip the Default group name as well.
-	#if ($HGdesc ne ""  ) {
-	#	print "/*\n * $HGdesc\n */\n";
-	#	}
-	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
-	$select.= "AND Tarch=$Aid ";
+	# Make sure a blank line is present between every group
+	print "\n";
+
+	# Display the Types
+	$select = "SELECT * FROM Type ";
+	$select.= "LEFT JOIN Architecture ON Tarch=Aid ";
+	$select.= "WHERE Theadergroup=$HGid ";
 	$select.= "AND Tstatus != 'Excluded' ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
@@ -406,9 +419,32 @@ for(1..$hgh->numrows) {
 	print $th->numrows," rows\n" if $trace;
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
-		displaytype(\%tentry);
-		print ";";
-		print $tentry{'Tcomment'}."\n\n";
+		if( $tentry{'Aname'} ne "All" ) {
+			print "#if defined(".$tentry{'Asymbol'}.")\n";
+			displaytype(\%tentry);
+			print ";";
+			print $tentry{'Tcomment'}."\n\n";
+			print "#endif";
+		} else {
+			displaytype(\%tentry);
+			print ";";
+			print $tentry{'Tcomment'}."\n\n";
+			}
+		}
+
+	# Display the Constants
+	$select = "SELECT * FROM Constant ";
+	$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
+	$select.= "WHERE Cheadgroup=$HGid ";
+	$select.= "AND ACaid=$Aid ";
+	$select.= "AND Cstd ='Yes' ";
+	$select.=" ORDER BY ACvalue";
+	$ch = $Dbh->query($select) || die $Dbh->errmsg();
+	print $ch->numrows," rows\n" if $trace;
+	for(1..$ch->numrows) {
+		%centry=$ch->fetchhash;
+		displayconstant(\%centry);
+		# Print comment here 
 		}
 	}
 

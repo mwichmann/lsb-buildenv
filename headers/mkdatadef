@@ -249,7 +249,7 @@ local ($const) = @_;
 print "#define ";
 print $$const{'Cname'};
 print "\t";
-print $$const{'Cvalue'};
+print $$const{'ACvalue'};
 print "\n";
 }
 
@@ -367,16 +367,13 @@ $hgh = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
-	#
-	# Since this is a datadef for the document, we don't really want to
-	# print these descriptions
-	#$HGdesc=$entry{'HGdescription'};
-	# Need to skip the Default group name as well.
-	#if ($HGdesc ne "" && !($HGdesc=~/Default HeaderGroup/) ) {
-	#	print "/*\n * $HGdesc\n */\n";
-	#	}
+	# Make sure a blank line is present between every group
+	print "\n";
+	
 	# Display the Types
-	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
+	$select = "SELECT * FROM Type ";
+	#$select.= "LEFT JOIN ArchType ON Tid=ATtid ";
+	$select.= "WHERE Theadergroup=$HGid ";
 	$select.= "AND Tarch=$Aid ";
 	$select.= "AND Tstatus != 'Excluded' ";
 	$select.= "ORDER BY Tid";
@@ -386,14 +383,17 @@ for(1..$hgh->numrows) {
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		displaytype(\%tentry);
-		print ";";
+		#print ";";
 		print $tentry{'Tcomment'}."\n\n";
 		}
+
 	# Display the Constants
-	$select = "SELECT * FROM Constant WHERE Cheadgroup=$HGid ";
-	$select.= "AND Carch=$Aid ";
+	$select = "SELECT * FROM Constant ";
+	$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
+	$select.= "WHERE Cheadgroup=$HGid ";
+	$select.= "AND ACaid=$Aid ";
 	$select.= "AND Cstd ='Yes' ";
-	$select.=" ORDER BY Cvalue";
+	$select.=" ORDER BY ACvalue";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
 	for(1..$ch->numrows) {

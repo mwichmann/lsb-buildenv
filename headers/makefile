@@ -6,8 +6,8 @@ ARCHS = All IA32 IA64
 	for a in $(ARCHS) ; do \
 		mkdir -p `dirname $$a/$@` 2>/dev/null ; \
 		./mkdatadef -a $$a -h $@ | indent >$$a/$@.defs ; \
-		./mkheader -a $$a -h $@ | indent >$$a/$@ ; \
 	done
+	./mkheader -a All -h $@ | indent >$@ ;
 
 all:
 	for h in `./getheaderlist`; do \
