@@ -60,7 +60,6 @@ libstdcxx _ZNKSbIwSt11char_traitsIwESaIwEE4dataEv a
 libstdcxx _ZNKSbIwSt11char_traitsIwESaIwEE7_M_dataEv a
 libstdcxx _ZNKSs4dataEv a
 libstdcxx _ZNKSs7_M_dataEv a
-libstdcxx _ZNKSt12__basic_fileIcE7is_openEv 12
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE20_S_empty_rep_storageE 10
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep10_M_refdataEv b
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE 4
