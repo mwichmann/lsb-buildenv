@@ -386,14 +386,14 @@ char *proginterpreter =
  */
 
 char *featuresettings[] = {
-	"-D_ISOC99_SOURCE",
-	"-D_XOPEN_SOURCE=500",
-	"-D_XOPEN_SOURCE_EXTENDED",
-	"-D_LARGEFILE_SOURCE",
-	"-D_LARGEFILE64_SOURCE",
-	"-D_BSD_SOURCE",
-	"-D_SVID_SOURCE",
-	"-D_GNU_SOURCE"
+	"-D_ISOC99_SOURCE=1",
+	"-D_XOPEN_SOURCE=600",
+	"-D_XOPEN_SOURCE_EXTENDED=1",
+	"-D_LARGEFILE_SOURCE=1",
+	"-D_LARGEFILE64_SOURCE=1",
+	"-D_BSD_SOURCE=1",
+	"-D_SVID_SOURCE=1",
+	"-D_GNU_SOURCE=1"
 	};
 
 int numfeaturesettings=(sizeof(featuresettings)/sizeof(char *));
