@@ -22,6 +22,7 @@ headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(hea
 install:
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
 	find . -name '*.h' -print | cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR)
+	find . -name "*.h" -exec md5sum {} \; > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS
 	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/X11
 	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/GL
 
