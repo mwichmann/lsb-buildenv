@@ -15,8 +15,8 @@ LSBSRCS=$(LSBLINKSRCS) $(LSBRUNSRCS)
 .SUFFIXES: .c .o .so
 
 %.c:
-	mklibsrc Lib=$* >$*.c
-	mkrunlibsrc Lib=$* >$*.run.c
+	./mklibsrc Lib=$* >$*.c
+	./mkrunlibsrc Lib=$* >$*.run.c
 
 .c.o:
 	$(CC) $(CFLAGS) -c $*.c
