@@ -512,6 +512,8 @@ extern "C"
   extern WINDOW *stdscr;
   extern int COLS;
   extern int LINES;
+  extern int touchline (WINDOW *, int, int);
+  extern int touchwin (WINDOW *);
 #ifdef __cplusplus
 }
 #endif
