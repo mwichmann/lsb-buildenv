@@ -7,7 +7,7 @@
 . /etc/lsbdev/lsbdev.conf
 
 # Stop LSB build environment
-if [ $UID -ne 0 ]; then
+if [ `id -u` -ne 0 ]; then
   echo You must run this script as root
   echo Aborting.
   exit 1
