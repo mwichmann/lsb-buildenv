@@ -84,7 +84,6 @@ extern "C"
 #if __s390__ && !__s390x__
 #define F_SETLK64	13
 #endif
-#define F_SETLKW64	14
 #if __i386__
 #define F_SETLKW64	14
 #endif
