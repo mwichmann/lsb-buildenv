@@ -450,7 +450,6 @@ GLIBC_2.0 {
   setutent;
   setvbuf;
   shmat;
-  shmctl;
   shmdt;
   shmget;
   shutdown;
@@ -793,7 +792,6 @@ GLIBC_2.1.1 {
 };
 GLIBC_2.1.2 {
   getgrnam_r;
-  gethostbyaddr_r;
   gethostbyname_r;
   getpwnam_r;
 };
@@ -829,6 +827,7 @@ GLIBC_2.2 {
   putwchar;
   readdir64;
   setrlimit;
+  shmctl;
   swprintf;
   swscanf;
   ungetwc;

@@ -238,7 +238,6 @@ void getgrgid_r(void) {} ;
 void getgrnam(void) {} ;
 void getgroups(void) {} ;
 void gethostbyaddr(void) {} ;
-void gethostbyaddr_r(void) {} ;
 void gethostbyname(void) {} ;
 void gethostbyname_r(void) {} ;
 void gethostid(void) {} ;

@@ -239,7 +239,6 @@ GLIBC_2.2 {
   getgrnam;
   getgroups;
   gethostbyaddr;
-  gethostbyaddr_r;
   gethostbyname;
   gethostbyname_r;
   gethostid;
