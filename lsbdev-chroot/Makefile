@@ -32,7 +32,7 @@ install: configure stubs
 	cd stub_libs && make install INSTALL_DIR=${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs && cd ..
 	mv ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs/libc.so \
 	  ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs/libc.real.so
-	cp config/libc_script ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/libc.so
+	cp config/libc_script ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs/libc.so
 	cp -pr lsb_header ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
 
 clean:
