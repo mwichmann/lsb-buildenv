@@ -40,9 +40,9 @@ directories to the link path.
  
  *link:
 --m elf_i386 %{shared:-shared}   %{!shared:     %{!ibcs:       %{!static: 	
-%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-linux.so.2}} 	%{static:-static}}}
+%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-linux.so.3}} 	%{static:-static}}}
 +-m elf_i386 %{shared:-shared}   %{!shared:     %{!ibcs:       %{!static: 	
-%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-lsb.so.2}} 	%{static:-static}}} -L/usr/lib/lsb-stub
+%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-lsb.so.3}} 	%{static:-static}}} -L/usr/lib/lsb-stub
  
  *lib:
  %{shared: -lc}    %{!shared: %{mieee-fp:-lieee} %{pthread:-lpthread} 	%{profile:-lc_p} %{!profile: -lc}}
