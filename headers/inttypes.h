@@ -41,8 +41,11 @@ extern "C"
   typedef unsigned int uintptr_t;
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
   typedef unsigned long long uint64_t;
 
+#endif
 #if __ia64__
 /* IA64 */
   typedef long intmax_t;
@@ -131,6 +134,36 @@ extern "C"
 #if __s390x__
 /* S390X */
   typedef unsigned long uintptr_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef unsigned long uint64_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef unsigned long long uint64_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long uint64_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef unsigned long uint64_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long uint64_t;
+
+#endif
+#if __i386__
+/* IA32 */
+  typedef unsigned long long uint64_t;
 
 #endif
 
