@@ -60,6 +60,7 @@ $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
 for(1..$sth->numrows) {
 	%entry=$sth->fetchhash;
+delete $entry{'Vname'};
 	if( $entry{'Vname'} ) {
 		printf SRC "__asm__(\".globl _lsb_%s\");\n",
 				$entry{'Iname'};
@@ -96,6 +97,7 @@ $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
 for(1..$sth->numrows) {
 	%entry=$sth->fetchhash;
+delete $entry{'Vname'};
 	if( $entry{'Vname'} ) {
 		printf SRC "__asm__(\".globl _lsb_%s\");\n",
 				$entry{'Iname'};
