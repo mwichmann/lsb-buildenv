@@ -28,7 +28,7 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef int __jmp_buf[58];
+  typedef long __jmp_buf[112] __attribute__ ((aligned (16)));
 
 #endif
 #if __s390__ && !__s390x__
@@ -38,7 +38,7 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef long __jmp_buf[40];
+  typedef long __jmp_buf[64] __attribute__ ((aligned (16)));
 
 #endif
 #if __x86_64__

@@ -53,9 +53,9 @@ extern "C"
   typedef struct _libc_vrstate
   {
     unsigned int vrregs[128];
-    unsigned int vscr;
     unsigned int vrsave;
     unsigned int _pad[2];
+    unsigned int vscr;
   }
   vrregset_t __attribute__ ((__aligned__ (16)));
 
