@@ -1,7 +1,0 @@
-
-
-
-struct term;
-
-
-typedef struct term TERMINAL;
