@@ -12,7 +12,7 @@ extern "C"
 
 
   extern char *basename (const char *);
-  extern char *dirname (const char *);
+  extern char *dirname (char *);
 #ifdef __cplusplus
 }
 #endif

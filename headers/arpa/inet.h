@@ -14,10 +14,10 @@ extern "C"
 
 
 
-  extern unsigned long inet_addr (const char *);
+  extern in_addr_t inet_addr (const char *);
   extern char *inet_ntoa (struct in_addr);
-  extern char *inet_ntop (int, void *, char *, size_t);
-  extern int inet_pton (int, char *, void *);
+  extern const char *inet_ntop (int, const void *, char *, size_t);
+  extern int inet_pton (int, const char *, void *);
 #ifdef __cplusplus
 }
 #endif

@@ -19,19 +19,19 @@ extern "C"
 
 
   extern int putp (const char *);
-  extern int tigetflag (const char *);
-  extern int tigetnum (const char *);
-  extern char *tigetstr (const char *);
+  extern int tigetflag (char *);
+  extern int tigetnum (char *);
+  extern char *tigetstr (char *);
   extern char *tparm (char *, ...);
   extern TERMINAL *set_curterm (TERMINAL *);
   extern int del_curterm (TERMINAL *);
-  extern int restartterm (const char *, int, int *);
-  extern int setupterm (const char *, int, int *);
-  extern char *tgetstr (const char *, char **);
+  extern int restartterm (char *, int, int *);
+  extern int setupterm (char *, int, int *);
+  extern char *tgetstr (char *, char **);
   extern char *tgoto (const char *, int, int);
   extern int tgetent (char *, const char *);
-  extern int tgetflag (const char *);
-  extern int tgetnum (const char *);
+  extern int tgetflag (char *);
+  extern int tgetnum (char *);
   extern int tputs (const char *, int, int (*)(int));
   extern TERMINAL *cur_term;
 #ifdef __cplusplus
