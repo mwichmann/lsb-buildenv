@@ -2,6 +2,7 @@
 #define OPEN_MAX	256
 #define NGROUPS_MAX	32
 #define PATH_MAX	4096
+#define SSIZE_MAX	LONG_MAX
 
 
 
