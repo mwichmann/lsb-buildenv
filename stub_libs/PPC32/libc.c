@@ -653,7 +653,6 @@ void tcgetsid(void) {} ;
 void tcsendbreak(void) {} ;
 void tcsetattr(void) {} ;
 void tcsetpgrp(void) {} ;
-void tdelete(void) {} ;
 void telldir(void) {} ;
 void tempnam(void) {} ;
 void textdomain(void) {} ;
