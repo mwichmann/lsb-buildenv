@@ -12,6 +12,7 @@ extern "C"
 
 #define SCM_RIGHTS	0x01
 #define SOL_SOCKET	1
+#define SOMAXCONN	128
 #define SOL_RAW	255
 
 
