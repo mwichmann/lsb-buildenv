@@ -17,10 +17,7 @@ GLIBC_2.0 {
   pthread_cancel;
   pthread_cond_broadcast;
   pthread_cond_destroy;
-  pthread_cond_init;
   pthread_cond_signal;
-  pthread_cond_timedwait;
-  pthread_cond_wait;
   pthread_condattr_destroy;
   pthread_condattr_init;
   pthread_detach;
@@ -89,4 +86,9 @@ GLIBC_2.2 {
   pthread_rwlock_timedrdlock;
   pthread_rwlock_timedwrlock;
   sem_timedwait;
+};
+GLIBC_2.3.2 {
+  pthread_cond_init;
+  pthread_cond_timedwait;
+  pthread_cond_wait;
 };

@@ -462,7 +462,6 @@ GLIBC_2.2 {
   readlink;
   readv;
   realloc;
-  realpath;
   recv;
   recvfrom;
   recvmsg;
@@ -830,4 +829,7 @@ GLIBC_2.2.2 {
 };
 GLIBC_2.2.3 {
   fnmatch;
+};
+GLIBC_2.3 {
+  realpath;
 };

@@ -330,7 +330,6 @@ GLIBC_2.0 {
   mmap;
   mprotect;
   mrand48;
-  msgctl;
   msgget;
   msgrcv;
   msgsnd;
@@ -379,7 +378,6 @@ GLIBC_2.0 {
   readlink;
   readv;
   realloc;
-  realpath;
   recv;
   recvfrom;
   recvmsg;
@@ -703,7 +701,6 @@ GLIBC_2.1 {
   endutxent;
   fclose;
   fdopen;
-  fgetpos64;
   fmtmsg;
   fopen;
   fopen64;
@@ -721,7 +718,6 @@ GLIBC_2.1 {
   getcontext;
   getdate;
   getnameinfo;
-  getrlimit64;
   getutxent;
   getutxid;
   getutxline;
@@ -805,6 +801,7 @@ GLIBC_2.2 {
   bind_textdomain_codeset;
   dcngettext;
   dngettext;
+  fgetpos64;
   fgetwc;
   fgetwc_unlocked;
   fgetws;
@@ -815,10 +812,12 @@ GLIBC_2.2 {
   fwscanf;
   getloadavg;
   getrlimit;
+  getrlimit64;
   getwc;
   getwchar;
   memrchr;
   mkstemp64;
+  msgctl;
   ngettext;
   posix_memalign;
   putwc;
@@ -841,4 +840,7 @@ GLIBC_2.2 {
 };
 GLIBC_2.2.3 {
   fnmatch;
+};
+GLIBC_2.3 {
+  realpath;
 };

@@ -44,6 +44,7 @@ CXXABI_1.2 {
   __cxa_vec_new2;
   __cxa_vec_new3;
   __dynamic_cast;
+  __gxx_personality_v0;
 };
 CXXABI_1.2.2 {
   _ZN10__cxxabiv116__enum_type_infoD0Ev;
@@ -729,15 +730,31 @@ GLIBCPP_3.2 {
   _ZNSi3getEPclc;
   _ZNSi3getERSt15basic_streambufIcSt11char_traitsIcEE;
   _ZNSi3getERSt15basic_streambufIcSt11char_traitsIcEEc;
+  _ZNSi3getEv;
   _ZNSi4readEPcl;
+  _ZNSi5seekgElSt12_Ios_Seekdir;
   _ZNSi6ignoreEli;
   _ZNSi7getlineEPcl;
   _ZNSi7getlineEPclc;
   _ZNSi8readsomeEPcl;
   _ZNSiC1EPSt15basic_streambufIcSt11char_traitsIcEE;
   _ZNSiC2EPSt15basic_streambufIcSt11char_traitsIcEE;
+  _ZNSiD2Ev;
   _ZNSirsEPFRSt9basic_iosIcSt11char_traitsIcEES3_E;
   _ZNSirsEPSt15basic_streambufIcSt11char_traitsIcEE;
+  _ZNSirsERPv;
+  _ZNSirsERb;
+  _ZNSirsERd;
+  _ZNSirsERe;
+  _ZNSirsERf;
+  _ZNSirsERi;
+  _ZNSirsERj;
+  _ZNSirsERl;
+  _ZNSirsERm;
+  _ZNSirsERs;
+  _ZNSirsERt;
+  _ZNSirsERx;
+  _ZNSirsERy;
   _ZNSo3putEc;
   _ZNSo5flushEv;
   _ZNSo5seekpESt4fposI11__mbstate_tE;
@@ -883,6 +900,7 @@ GLIBCPP_3.2 {
   _ZNSt10bad_typeidD0Ev;
   _ZNSt10bad_typeidD1Ev;
   _ZNSt10bad_typeidD2Ev;
+  _ZNSt10istrstreamC1EPKc;
   _ZNSt10istrstreamC1EPKcl;
   _ZNSt10istrstreamC1EPcl;
   _ZNSt10istrstreamC2EPKcl;
@@ -1481,6 +1499,8 @@ GLIBCPP_3.2 {
   _ZNSt24__default_alloc_templateILb1ELi0EE11_S_round_upEm;
   _ZNSt24__default_alloc_templateILb1ELi0EE14_S_chunk_allocEmRi;
   _ZNSt24__default_alloc_templateILb1ELi0EE17_S_freelist_indexEm;
+  _ZNSt24__default_alloc_templateILb1ELi0EE5_LockC1Ev;
+  _ZNSt24__default_alloc_templateILb1ELi0EE5_LockD1Ev;
   _ZNSt24__default_alloc_templateILb1ELi0EE8allocateEm;
   _ZNSt24__default_alloc_templateILb1ELi0EE9_S_refillEm;
   _ZNSt5ctypeIcE13classic_tableEv;
@@ -2337,6 +2357,7 @@ GLIBCPP_3.2 {
   _ZNSt21__numeric_limits_base9is_moduloE;
   _ZNSt21__numeric_limits_base9is_signedE;
   _ZNSt24__default_alloc_templateILb1ELi0EE11_S_end_freeE;
+  _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE;
   _ZNSt24__default_alloc_templateILb1ELi0EE12_S_heap_sizeE;
   _ZNSt24__default_alloc_templateILb1ELi0EE13_S_start_freeE;
   _ZNSt24__default_alloc_templateILb1ELi0EE22_S_node_allocator_lockE;

@@ -474,7 +474,6 @@ GLIBC_2.2.5 {
   readlink;
   readv;
   realloc;
-  realpath;
   recv;
   recvfrom;
   recvmsg;
@@ -828,4 +827,7 @@ GLIBC_2.2.5 {
   stdout;
   timezone;
   tzname;
+};
+GLIBC_2.3 {
+  realpath;
 };
