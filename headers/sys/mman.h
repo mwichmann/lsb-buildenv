@@ -27,12 +27,6 @@ extern "C"
 #endif
 #define MCL_FUTURE	2
 #define MS_INVALIDATE	2
-#if defined(__ia64__)
-#define MS_SYNC	2
-#endif
-#if defined(__ia64__)
-#define MS_INVALIDATE	4
-#endif
 #define MS_SYNC	4
 #if defined(__powerpc__)
 #define MCL_CURRENT	8192

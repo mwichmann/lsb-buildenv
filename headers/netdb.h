@@ -66,8 +66,12 @@ extern "C"
   extern void setprotoent (int);
   extern void setservent (void);
   extern int *__h_errno_location (void);
+  extern int gethostbyaddr_r (const void *, socklen_t, int, struct hostent *,
+			      char *, size_t, struct hostent **, int *);
   extern int gethostbyname_r (const char *, struct hostent *, char *, size_t,
 			      struct hostent **, int *);
+  extern struct hostent *gethostent_r (struct hostent *, char *, size_t,
+				       struct hostent **, int *);
 #ifdef __cplusplus
 }
 #endif

@@ -141,8 +141,8 @@ extern "C"
 		       socklen_t *);
   extern int recvmsg (int, struct msghdr *, int);
   extern int send (int, const void *, size_t, int);
-  extern int sendmsg (int, struct msghdr *const, int);
-  extern int sendto (int, const void *, size_t, int, struct sockaddr *const,
+  extern int sendmsg (int, const struct msghdr *, int);
+  extern int sendto (int, const void *, size_t, int, const struct sockaddr *,
 		     socklen_t);
   extern int getpeername (int, struct sockaddr *, socklen_t *);
   extern int getsockopt (int, int, int, void *, socklen_t *);

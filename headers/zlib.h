@@ -10,6 +10,8 @@ extern "C"
 
 #define Z_NULL	0
 #define ZLIB_VERSION	"1.1.4"
+#define MAX_WBITS	15
+#define MAX_MEM_LEVEL	9
 #define deflateInit2(strm,level, method, windowBits, memLevel, strat	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),           ZLIB_VERSION, sizeof(z_stream))
 #define deflateInit(strm,level)	deflateInit_((strm), (level),       ZLIB_VERSION, sizeof(z_stream))
 #define inflateInit2(strm,windowBits)	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
@@ -95,6 +97,7 @@ extern "C"
 #define Z_BUF_ERROR	(-5)
 #define Z_OK	0
 #define Z_STREAM_END	1
+#define Z_NEED_DICT	2
 
 
 
