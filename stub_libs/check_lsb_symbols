@@ -13,6 +13,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
+# This is $Revision: 1.5 $
+# 
+# $Log: check_lsb_symbols,v $
+# Revision 1.5  2002/04/08 04:52:57  cyeoh
+# Fixes script for library table split
+#
+#
 
 use strict;
 use DBI;
@@ -394,10 +401,26 @@ else
   $TargetArchId = $row->{Aid};
 }
 
+# Get 'ALL' arch information
+my($AllArch);
+$sth = $dbh->prepare("SELECT Aid from Architecture where Aname='All'")
+    || die $dbh->errstr;
+$sth->execute() || die $sth->errstr;
+$row = $sth->fetchrow_hashref;
+if (!defined($row))
+{
+  die "Cannot find 'all' architecture\n";
+}
+else
+{
+  $AllArch = $row->{Aid};
+}
+
 # Get list of libraries we want to produce stub libraries for
 $sth = $dbh->prepare("SELECT Lid,Lname,ALrunname FROM Library "
-                     . "LEFT JOIN ArchLib ON Lid=ALlid "
-                     . "where Library.Lstd='Yes'")
+                     . "LEFT JOIN ArchLib ON Lid=ALlid AND "
+                     . "(ALAid=$TargetArchId OR ALAid=$AllArch) "
+                     . "where Library.Lstd='Yes' and ALrunname!=''")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
