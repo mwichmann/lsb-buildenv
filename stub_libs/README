@@ -4,14 +4,6 @@ for a LSB compliant build environment.
 Building the stub libraries
 ---------------------------
 
-If you have done a CVS update then the files generated for IA32
-against a recent version of the specification will be present in the
-directory. If you want to build for a different architecture or ensure
-that you are building it for the latest version of the specification
-then you will have to have access to the LSB database (see details in
-the dbdump directory of the data module on Source Forge) and generate
-the files from the database.
-
 To compile the stub libraries simply type make.
 
 Generating the necessary files from the LSB database
