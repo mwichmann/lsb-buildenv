@@ -2682,3 +2682,5 @@ __asm__(".globl _ZTVSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE;
 __asm__(".globl _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE; .pushsection .data; .type _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE,@object; .size _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE, 0; _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE: .long 0; .popsection");
 __asm__(".globl _ZTVSt9strstream; .pushsection .data; .type _ZTVSt9strstream,@object; .size _ZTVSt9strstream, 0; _ZTVSt9strstream: .long 0; .popsection");
 __asm__(".globl _ZTVSt9type_info; .pushsection .data; .type _ZTVSt9type_info,@object; .size _ZTVSt9type_info, 0; _ZTVSt9type_info: .long 0; .popsection");
+__asm__(".globl _ZTv0_n24_NSoD0Ev; .pushsection .data; .type _ZTv0_n24_NSoD0Ev,@object; .size _ZTv0_n24_NSoD0Ev, 0; _ZTv0_n24_NSoD0Ev: .long 0; .popsection");
+__asm__(".globl _ZTv0_n24_NSoD1Ev; .pushsection .data; .type _ZTv0_n24_NSoD1Ev,@object; .size _ZTv0_n24_NSoD1Ev, 0; _ZTv0_n24_NSoD1Ev: .long 0; .popsection");

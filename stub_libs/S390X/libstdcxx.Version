@@ -3034,6 +3034,8 @@ GLIBCPP_3.2 {
   _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE;
   _ZTVSt9strstream;
   _ZTVSt9type_info;
+  _ZTv0_n24_NSoD0Ev;
+  _ZTv0_n24_NSoD1Ev;
 };
 GLIBCPP_3.2.2 {
   _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
