@@ -71,7 +71,15 @@ extern "C"
 
   typedef unsigned long blkcnt_t;
 
+  typedef unsigned long fsblkcnt_t;
+
+  typedef unsigned long fsfilcnt_t;
+
   typedef unsigned long long blkcnt64_t;
+
+  typedef unsigned long long fsblkcnt64_t;
+
+  typedef unsigned long long fsfilcnt64_t;
 
   typedef unsigned char u_char;
 
