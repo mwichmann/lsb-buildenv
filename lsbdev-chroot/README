@@ -36,11 +36,11 @@ A developer can build an application within this build environment by
 first chrooting into the directory structure constructed by the setup
 scripts. This environment by default provides tools installed in /bin
 and /usr/bin and the core runtime libraries needed to compile and link
-a binary. As there currently are not a set of known LSB compliant
-header files available the header files of the system are used.
-Although a complete set of development tools will not be available
-through just /bin and /usr/bin more may be included by individually
-bind mounting them into the chroot area.
+a binary. System (/usr/include) header files are used if the package
+is not configured to use lsb header files. Although a complete set of
+development tools will not be available through just /bin and /usr/bin
+more may be included by individually bind mounting them into the
+chroot area.
 
 If the package is configured to use sshd, an sshd running inside the
 chroot area will be started listening on a high port (5436 by
@@ -107,16 +107,17 @@ in the lsbdev.conf file for more details.
 Known Bugs
 ----------
 
-- No tested LSB compliant header files available yet. /usr/include
-  from system used in place which may not be completely compliant.
-  You can use experimental header files with the development environment
-  by retrieving them from CVS and setting the LSB_INCLUDE option
-  in lsbdev.conf
+- The header files included by with lsbdev are not yet
+  used by default. To enable the use of these header files
+  uncomment the LSB_INCLUDE option in lsbdev.conf. If you encounter
+  compilation problems when using the supplied LSB header files 
+  please also try using the system include files before reporting
+  a bug. 
 
 Feedback
 --------
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2001/11/14
+Last updated 2001/11/18
 
