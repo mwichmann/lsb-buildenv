@@ -11,11 +11,11 @@ struct exception
   double retval;
 }
  ;
-#define FP_NAN	1
-#define FP_INFINITE	2
-#define FP_ZERO	3
-#define FP_SUBNORMAL	4
-#define FP_NORMAL	5
+#define FP_NAN	0
+#define FP_INFINITE	1
+#define FP_ZERO	2
+#define FP_SUBNORMAL	3
+#define FP_NORMAL	4
 
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)
 #define isfinite(x)	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))

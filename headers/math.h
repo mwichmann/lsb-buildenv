@@ -24,11 +24,11 @@ extern "C"
 
 
 /* All floating-point numbers can be put in one of these categories.*/
-#define FP_NAN	1
-#define FP_INFINITE	2
-#define FP_ZERO	3
-#define FP_SUBNORMAL	4
-#define FP_NORMAL	5
+#define FP_NAN	0
+#define FP_INFINITE	1
+#define FP_ZERO	2
+#define FP_SUBNORMAL	3
+#define FP_NORMAL	4
 
 
 
@@ -57,6 +57,27 @@ extern "C"
 #if __i386__
 #define FP_ILOGBNAN	(-2147483647 - 1)
 #endif
+#if __powerpc__ && !__powerpc64__
+#define FP_ILOGB0	-2147483647
+#endif
+#if __powerpc64__
+#define FP_ILOGB0	-2147483647
+#endif
+#if __s390__ && !__s390x__
+#define FP_ILOGB0	-2147483647
+#endif
+#if __s390x__
+#define FP_ILOGB0	-2147483647
+#endif
+#if __ia64__
+#define FP_ILOGB0	-2147483648
+#endif
+#if __x86_64__
+#define FP_ILOGB0	-2147483648
+#endif
+#if __x86_64__
+#define FP_ILOGBNAN	-2147483648
+#endif
 #define M_1_PI	0.31830988618379067154
 #define M_LOG10E	0.43429448190325182765
 #define M_2_PI	0.63661977236758134308
@@ -69,6 +90,21 @@ extern "C"
 #define M_PI_2	1.57079632679489661923
 #define M_LN10	2.30258509299404568402
 #define M_E	2.7182818284590452354
+#if __ia64__
+#define FP_ILOGBNAN	2147483647
+#endif
+#if __powerpc__ && !__powerpc64__
+#define FP_ILOGBNAN	2147483647
+#endif
+#if __powerpc64__
+#define FP_ILOGBNAN	2147483647
+#endif
+#if __s390__ && !__s390x__
+#define FP_ILOGBNAN	2147483647
+#endif
+#if __s390x__
+#define FP_ILOGBNAN	2147483647
+#endif
 #define M_PI	3.14159265358979323846
 #define INFINITY	HUGE_VALF
 
