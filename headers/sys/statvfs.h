@@ -188,9 +188,9 @@ extern "C"
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
     unsigned long f_fsid;
-    int __f_unused;
     unsigned long f_flag;
     unsigned long f_namemax;
+    int __f_spare[6];
   }
    ;
 
@@ -208,9 +208,9 @@ extern "C"
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
     unsigned long f_fsid;
-    int __f_unused;
     unsigned long f_flag;
     unsigned long f_namemax;
+    int __f_spare[6];
   }
    ;
 
