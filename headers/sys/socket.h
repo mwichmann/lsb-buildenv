@@ -58,6 +58,41 @@ extern "C"
 
   typedef unsigned int socklen_t;
 
+#if __i386__
+/* IA32 */
+  typedef uint32_t __ss_aligntype;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef uint64_t __ss_aligntype;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef uint32_t __ss_aligntype;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef uint64_t __ss_aligntype;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef uint32_t __ss_aligntype;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef uint64_t __ss_aligntype;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef uint64_t __ss_aligntype;
+
+#endif
 
 
 
@@ -71,8 +106,8 @@ extern "C"
   struct sockaddr_storage
   {
     sa_family_t ss_family;
-    uint32_t __ss_align;
-    char __ss_padding[(128 - (2 * sizeof (uint32_t)))];
+    __ss_aligntype __ss_align;
+    char __ss_padding[(128 - (2 * sizeof (__ss_aligntype)))];
   }
    ;
 

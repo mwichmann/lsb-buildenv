@@ -51,8 +51,8 @@ struct sockaddr
 struct sockaddr_storage
 {
   sa_family_t ss_family;
-  uint32_t __ss_align;
-  char __ss_padding[(128 - (2 * sizeof (uint32_t)))];
+  __ss_aligntype __ss_align;
+  char __ss_padding[(128 - (2 * sizeof (__ss_aligntype)))];
 }
  ;
 
