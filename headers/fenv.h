@@ -87,10 +87,10 @@ extern "C"
 #if __s390__ && !__s390x__
 #define FE_UNDERFLOW	0x10
 #endif
-#if __s390x__
+#if __x86_64__
 #define FE_UNDERFLOW	0x10
 #endif
-#if __x86_64__
+#if __s390x__
 #define FE_UNDERFLOW	0x10
 #endif
 #if __i386__
