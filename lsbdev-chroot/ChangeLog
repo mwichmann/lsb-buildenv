@@ -1,3 +1,10 @@
+2001-11-14  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Makes shutdown/unmounting more robust
+	* Adds hooks for use of LSB header files instead of always
+	  using /usr/include
+	* Adds fallback static linking functionality in setup of environment
+
 2001-10-22  Christopher Yeoh  <cyeoh@samba.org>
 
 	* Update with new stub libraries
