@@ -1,6 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
   svc_register;
+  svc_sendreply;
   svctcp_create;
   svcudp_create;
 };
@@ -628,7 +629,6 @@ GLIBC_2.2 {
   strxfrm;
   svc_getreqset;
   svc_run;
-  svc_sendreply;
   svcerr_auth;
   svcerr_decode;
   svcerr_noproc;

@@ -278,4 +278,4 @@ void y1l() {} ;
 void yn() {} ;
 void ynf() {} ;
 void ynl() {} ;
-__asm__(".globl signgam; .section .data; .type signgam,@object; .size signgam, 4; signgam: .long 0; .section .text");
+__asm__(".globl signgam; .pushsection .data; .type signgam,@object; .size signgam, 4; signgam: .long 0; .popsection");
