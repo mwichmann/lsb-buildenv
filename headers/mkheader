@@ -605,7 +605,7 @@ for(1..$hgh->numrows) {
 	$select.= "WHERE Cheadgroup=$HGid ";
 	#$select.= "AND ACaid=$Aid ";
 	$select.= "AND ( Cstd ='Yes' OR Cstd ='SrcOnly' )";
-	$select.=" ORDER BY ACvalue";
+	$select.=" ORDER BY ACvalue, Cname";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
 	for(1..$ch->numrows) {
