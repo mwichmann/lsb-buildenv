@@ -103,40 +103,6 @@ extern "C"
 
 #endif
 
-/* PPC64 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
-
-
-#if __powerpc64__
-/* PPC64 */
-  typedef unsigned long elf_greg_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef double elf_fpreg_t;
-
-#endif
-
-/* PPC32 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
-
-
-
-
-
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_greg_t elf_gregset_t[64];
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_fpreg_t elf_fpregset_t[33];
-
-#endif
-
-
-
-
 /* System defined signals.*/
 #define SIG_ERR	((sighandler_t)-1)
 #define SIG_DFL	((sighandler_t)0)
@@ -768,13 +734,13 @@ extern "C"
 /* PPC64 */
   struct sigcontext
   {
-    unsigned long _unused;
+    unsigned long _unused[4];
     int signal;
     unsigned long handler;
     unsigned long oldmask;
     struct pt_regs *regs;
-    elf_gregset_t gp_regs;
-    elf_fpregset_t fp_regs;
+    unsigned long gp_regs[48];
+    double fp_regs[33];
   }
    ;
 
