@@ -22,7 +22,6 @@ GLIBC_2.0 {
   __libc_start_main;
   __lxstat;
   __mempcpy;
-  __moddi3;
   __sigsetjmp;
   __stpcpy;
   __strdup;
@@ -795,7 +794,6 @@ GLIBC_2.1.2 {
   getgrnam_r;
   gethostbyaddr_r;
   gethostbyname_r;
-  gethostent_r;
   getpwnam_r;
 };
 GLIBC_2.1.3 {

@@ -242,7 +242,6 @@ GLIBC_2.2 {
   gethostbyaddr_r;
   gethostbyname;
   gethostbyname_r;
-  gethostent_r;
   gethostid;
   gethostname;
   getitimer;

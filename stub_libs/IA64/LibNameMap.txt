@@ -7,6 +7,7 @@ libXt libXt.so.6
 libc libc.so.6.1
 libcrypt libcrypt.so.1
 libdl libdl.so.2
+libgcc_s libgcc_s.so.1
 libm libm.so.6.1
 libncurses libncurses.so.5
 libpthread libpthread.so.0
