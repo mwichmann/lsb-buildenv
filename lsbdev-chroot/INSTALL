@@ -1,0 +1,81 @@
+Installation/Setup of LSB build environment
+===========================================
+
+Requirements
+------------
+
+A system with a basic development environment.
+  - gcc/binutils
+  - glibc header files
+  - 2.4.x kernel
+  - sshd (optional - see README)
+
+Setup
+-----
+
+1. Configure the package. See the Makefile for various
+installation target options.
+
+# make 
+
+2. Install as root
+
+# make install
+
+3. Edit /etc/lsbdev/lsbdev.conf 
+
+   BUILDUSERS will probably need to be changed. All users
+   listed here will have their home directories bind mounted into
+   the chroot area.
+
+Depending on the version of gcc that you have installed on your system
+you may need to update /etc/lsbdev/gcc_specs. The patch below is an
+example of how my specs file was modified to automatically add extra
+directories to the link path.
+
+--- /usr/lib/gcc-lib/i386-linux/2.95.4/specs	Mon Aug 27 14:32:44 2001
++++ specs	Tue Aug 28 18:10:04 2001
+@@ -17,7 +17,7 @@
+ %{!shared:crtend.o%s} %{shared:crtendS.o%s} crtn.o%s
+ 
+ *link:
+--m elf_i386 %{shared:-shared}   %{!shared:     %{!ibcs:       %{!static: 	
+%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-linux.so.2}} 	%{static:-static}}}
++-m elf_i386 %{shared:-shared}   %{!shared:     %{!ibcs:       %{!static: 	
+%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-lsb.so.1}} 	%{static:-static}}} -L/usr/lib/lsb-stub
+ 
+ *lib:
+ %{shared: -lc}    %{!shared: %{mieee-fp:-lieee} %{pthread:-lpthread} 	%{profile:-lc_p} %{!profile: -lc}}
+
+
+4. Start the environment
+
+# /etc/init.d/lsbdev start
+
+5. Stopping the environment. Note that this will fail if any users
+   are logged into the chroot area or have running processes within it.
+   It is ok to run this script multiple times.
+
+# /etc/init.d/lsbdev stop
+
+NOTES
+-----
+
+- Not all binaries will run due to most shared libraries not being
+  imported into the environment
+
+- Extra build tools can be imported either on a file or directory
+  basis using the following command as root outside of the environment:
+  
+  mount -o ro --bind old_dir_or_file new_dir_or_file
+
+  Depending on your version of the kernel you are running you may
+  have problems unmounting if you:
+  - delete files which are the source of a bind mount
+  - bind mount to symlinks
+
+- It should be possible to do all the editing and debugging
+  of applications outside of the chroot environment with all 
+  the compiling/linking inside. This should minimise the number
+  of extra build tools required to be imported into the environment
+

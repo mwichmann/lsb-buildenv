@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Remove running processes from the runtime environment
+# and unmount the mounted directory structure
+
+# Get configuration
+. /etc/lsbdev/lsbdev.conf
+
+# Stop LSB build environment
+if [ $UID -ne 0 ]; then
+  echo You must run this script as root
+  echo Aborting.
+  exit 1
+fi
+
+# Attempt to stop processes
+# Check to see if sshd was running
+if [ -f $ROOT/var/run/sshd.pid ]; then
+  kill `cat $ROOT/var/run/sshd.pid`
+fi
+
+# Remove existing mounts
+mount_dirs=`cut -d' ' -f2 /proc/mounts  | grep $ROOT | sort -r`
+if [ "$mount_dirs" ]; then
+  umount $mount_dirs
+  if [ $? -ne 0 ]; then
+    echo "Failed to remove some mounts"
+    echo "Remaining mounts are:"
+    mount_dirs=`cut -d' ' -f2 /proc/mounts  | grep $ROOT | sort -r`
+    echo "$mount_dirs"
+    echo "It is recommended to cleanup the remaining mount points before"
+    echo "attempting to restart the build environment"
+    echo 
+    echo "A common cause of unmount failures are remaining processes"
+    echo "or logins in the chroot environment."
+    echo
+    exit 1
+  fi
+fi
+
+# Remove lock file
+rm -f $RUNFILE

@@ -1,0 +1,15 @@
+2001-09-25  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Adds Start/Stop capability to scripts
+	* Reworking to make it easier to package and ease installation
+	  & use of environment
+	* Adds sshd capability
+
+2001-09-07  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Adds local libc_nonshared.a to stub library directory. Fixes
+	problem of apps using (f)stat(64) calls failing to link.
+
+	* Updated stub libraries. Size of in shared libraries variables
+	is now correct.
+

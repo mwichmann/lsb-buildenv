@@ -1,0 +1,49 @@
+# Configuration options for the LSB Build environment application
+#
+# Make sure that the build environment is stopped before
+# changing this this file
+
+
+# Root of chroot environment
+ROOT=
+
+# directory where package has been untarred
+DATA_ROOT=
+
+# Where the link time stub libraries live
+STUB_LIBS=$DATA_ROOT/stub_libs
+
+# Root of opt tree
+OPT_ROOT=$DATA_ROOT/opt_root
+
+# RPM Config options
+# (Depends on how it was configured for compilation)
+# Home of rpm binary
+RPM_INSTALL_ROOT=/opt/rpm-3.0.6
+RPM_DATA_ROOT=$DATA_ROOT/rpm-3.0.6
+RPM_BIN=$RPM_DATA_ROOT/bin/rpm
+
+# Name of build environment users. users listed here will have
+# their home directories mounted inside the buildroot area
+# Space separated list of users
+BUILDUSERS="cyeoh vsx0"
+
+# GCC version
+GCC_SPECS_FILE=`gcc -v 2>&1 | head -1 | cut -f4 -d' '`
+
+# libbfd
+LIBBFD=/usr/lib/`ldd /usr/bin/ld | grep bfd | cut -f2 | cut -f1 -d' '`
+
+# Extra directories to bind mount (order is important) (NYI)
+EXTRA_MOUNT_DIRS=
+
+# Extra files to bind mount (NYI)
+EXTRA_MOUNT_FILES=
+
+# Lock file 
+RUNFILE=/var/run/lsbdev.lock
+
+# SSH options
+SSH_DAEMON=/usr/sbin/sshd
+SSH_PORT=5436
+

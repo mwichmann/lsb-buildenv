@@ -1,0 +1,86 @@
+LSB Build Environment
+=====================
+
+This purpose of this package is to make it easier to build LSB
+compliant applications. It is not meant to necessarily provide an LSB
+runtime environment and is possible/easy to build a binary in the
+build environment which will not actually run in it. Use the LSB
+sample implementation to test the binaries and packages.
+
+See the INSTALL file for instructions on how to install the build
+environment.
+
+Quickstart
+----------
+Configuration file: /etc/lsbdev/lsbdev.conf
+
+Starting:
+# /etc/init.d/lsbdev start
+
+Stopping:
+# /etc/init.d/lsbdev stop
+
+Using the environment
+---------------------
+This build environment should be considered EXPERIMENTAL. Ensure that
+you understand how bind-mounts work before removing files in the build
+environment. Depending on which version of the kernel you are using
+read-only bind mounts may not in fact be read only, so it is possible
+to accidentally remove important files outside of the chroot area from
+within it.  The purpose of the chroot area is not for reasons of
+security, but instead to make it easier to build applications without
+accidentally polluting binaries with information from non-compliant
+header files and libraries (as can easily happen with configure
+scripts).
+
+A developer can build an application within this build environment by
+first chrooting into the directory structure constructed by the setup
+scripts. This environment by default provides tools installed in /bin
+and /usr/bin and the core runtime libraries needed to compile and link
+a binary. As there currently are not a set of known LSB compliant
+header files available the header files of the system are used.
+Although a complete set of development tools will not be available
+through just /bin and /usr/bin more may be included by individually
+bind mounting them into the chroot area.
+
+If the package is configured to use sshd, an sshd running inside the
+chroot area will be started listening on a high port (5436 by
+default). This allows non root privileged users to enter the
+environment (without using chroot).
+
+The package contains the following:
+
+  - LSB stub libraries (stub_libs). 
+    These libraries contain the versioned symbols as required by
+    the LSB specification. Linking against these libraries will ensure
+    that the application attempts to use the correct versions 
+    at runtime. They do not contain the code necessary for
+    a program to operate during runtime.
+
+  - gcc spec file
+    A modified version for gcc (2.95.4). This will ensure that the programs
+    are linked against ld-lsb.so.1 instead of ls-linux.so.2. It also
+    adds the lsb stub library directory to the link search path. 
+
+  - rpm binaries
+    A statically linked version of rpm and associated binaries/scripts
+    and other infrastructure needed to package applications. You might
+    not need this if you have a version of rpm capable of generating
+    v3 format packages on your system.
+
+  - setup scripts
+    scripts to setup the chroot build environment
+
+Known Bugs
+----------
+
+- No tested LSB compliant header files available yet. /usr/include
+  from system used in place which may not be completely compliant.
+
+Feedback
+--------
+Please send any comments you may have to lsb-impl@linuxbase.org
+
+Chris Yeoh <cyeoh@samba.org>
+Last updated 2001/9/25
+

@@ -1,0 +1,148 @@
+#!/bin/sh
+
+# Config options
+
+. /etc/lsbdev/lsbdev.conf
+
+# Directory structure to precreate in chroot environment
+REQUIRED_DIRS="usr/bin var/tmp bin lib proc tmp etc usr/lib/gcc-lib usr/lib/lsb-stub dev usr/include opt usr/sbin usr/lib/lib-localsystem var/run"
+
+# End of configurable parameters
+#
+#----------------------------------------------------------------------
+# Helper functions
+bind_mount_ro()
+{
+  # At least for 2.4.5 kernels read only doesn't work
+  mount -o ro --bind $1 $2
+}
+
+bind_mount_rw()
+{
+  # At least for 2.4.5 kernels read only doesn't work
+  mount --bind $1 $2
+}
+
+bind_mount_file_ro()
+{
+  if [ ! -e $2 ]; then
+    touch $2
+  fi
+  mount --bind $1 $2
+}
+
+remove_old_mounts()
+{
+  mount_dirs=`cut -d' ' -f2 /proc/mounts  | grep $ROOT | sort -r`
+  if [ "$mount_dirs" ]; then
+    umount $mount_dirs
+    if [ $? -ne 0 ]; then
+      echo "Unmount failed. Aborting setup"
+      exit 1
+    fi
+  fi
+}
+
+
+setup_home_dirs()
+{
+# Won't currently work with NIS
+  for user in $BUILDUSERS; do
+    homedir=`grep $user: /etc/passwd | cut -f6 -d:`
+    if [ $? -ne 0 ]; then
+      echo "Failed to get home directory for $user. Skipping user $user"
+    else
+      mkdir -p $ROOT/$homedir
+      bind_mount_rw $homedir $ROOT/$homedir
+    fi
+  done;
+}
+
+#----------------------------------------------------------------------
+# Main bit
+
+if [ $UID -ne 0 ]; then
+  echo You must run this script as root
+  echo Aborting.
+  exit 1
+fi
+
+# Cleanup old build environment
+if [ -e $RUNFILE ]; then
+  echo Build environment is already setup. Aborting.
+  echo If this is not the case remove $RUNFILE and try again.
+  exit 1
+else
+  touch $RUNFILE
+fi
+
+# Setup build environment
+# Make the required directory structure
+for newdir in $REQUIRED_DIRS; do
+  mkdir -p $ROOT/$newdir
+done
+
+# Setup bind mounts
+
+# Basic structure
+bind_mount_ro /bin $ROOT/bin 
+bind_mount_ro /usr/bin $ROOT/usr/bin
+bind_mount_ro /lib $ROOT/lib 
+bind_mount_ro /proc $ROOT/proc
+bind_mount_rw /tmp $ROOT/tmp
+bind_mount_ro /var/tmp $ROOT/var/tmp
+bind_mount_ro /etc $ROOT/etc
+bind_mount_ro /dev $ROOT/dev
+bind_mount_ro /usr/lib $ROOT/usr/lib/lib-localsystem
+
+# Compiler stuff
+bind_mount_ro /usr/lib/gcc-lib $ROOT/usr/lib/gcc-lib
+
+# Need to fix the next line so it looks for the bfd on the system.
+# Only needed by the compiler, not for the runtime
+bind_mount_file_ro $LIBBFD $ROOT/$LIBBFD
+
+bind_mount_file_ro /usr/lib/crt1.o $ROOT/usr/lib/crt1.o
+bind_mount_file_ro /usr/lib/crti.o $ROOT/usr/lib/crti.o
+bind_mount_file_ro /usr/lib/crtn.o $ROOT/usr/lib/crtn.o
+bind_mount_file_ro /etc/lsbdev/gcc_specs $ROOT/$GCC_SPECS_FILE
+
+# LSB linker
+# Just copy the normal linux linker at the moment
+# Can't bind mount symlinks in 2.4.5
+# Use ld-lsb.so.1 preferentially
+if [ ! -e $ROOT/lib/ld-lsb.so.1 ]; then
+  if [ -f /lib/ld-lsb.so.1 ]; then
+    cp /lib/ld-lsb.so.1 $ROOT/lib/ld-lsb.so.1
+  else
+    cp /lib/ld-linux.so.2 $ROOT/lib/ld-lsb.so.1
+  fi
+fi
+
+# Home directories
+setup_home_dirs
+
+# rpm
+mkdir -p $ROOT/$RPM_INSTALL_ROOT
+bind_mount_rw $RPM_DATA_ROOT $ROOT/$RPM_INSTALL_ROOT
+if [ -e $ROOT/usr/bin/rpm ]; then
+  # overlay the rpm we want
+  bind_mount_rw $RPM_BIN $ROOT/usr/bin/rpm
+fi
+
+# Stub libraries
+bind_mount_ro $STUB_LIBS $ROOT/usr/lib/lsb-stub
+bind_mount_file_ro /usr/lib/libc_nonshared.a $ROOT/usr/lib/lsb-stub/libc_nonshared.a
+
+# Standard Header files
+# use straight /usr/include for the moment as we don't have
+# the LSB header files yet
+bind_mount_ro /usr/include $ROOT/usr/include
+
+# setup sshd if available
+if [ -f $SSH_DAEMON ]; then
+  touch $ROOT/$SSH_DAEMON
+  bind_mount_ro $SSH_DAEMON $ROOT/$SSH_DAEMON
+  LD_LIBRARY_PATH=/usr/lib/lib-localsystem chroot $ROOT $SSH_DAEMON -p $SSH_PORT
+fi
+
