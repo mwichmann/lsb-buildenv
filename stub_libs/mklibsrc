@@ -42,9 +42,9 @@ $sth = $Dbh->query($select) || die $select."\n".$Dbh->errmsg();
 %entry=$sth->fetchhash;
 $Aid=$entry{'Aid'};
 
-sub dumplib($)
+sub dumplib($$)
 {
-local($Lid)=@_;
+local($Lname,$Lid)=@_;
 local(%sth);
 
 $select  = "SELECT DISTINCT Iname,Vname ";
@@ -71,6 +71,7 @@ for(1..$sth->numrows) {
 				$entry{'Iname'},$entry{'Iname'};
 		printf SRC "\@\@%s\"", $entry{'Vname'};
 		printf SRC ");\n";
+		$Vername{$entry{'Vname'}}=1;
 	} else {
 		printf SRC "__asm__(\".globl %s\");\n",
 				$entry{'Iname'};
@@ -108,6 +109,7 @@ for(1..$sth->numrows) {
 				$entry{'Iname'},$entry{'Iname'};
 		printf SRC "\@\@%s\"", $entry{'Vname'};
 		printf SRC ");\n";
+		$Vername{$entry{'Vname'}}=1;
 	} else {
 		printf SRC "__asm__(\".globl %s\");\n",
 				$entry{'Iname'};
@@ -119,6 +121,23 @@ for(1..$sth->numrows) {
 				$entry{'Iname'};
 		printf SRC "__asm__(\"\t.long 0\");\n";
 		}
+	}
+
+print LIBLINK "\n$Lname.so: $Lname.o\n";
+
+#
+# Create the Version file
+#
+@vers= keys %Vername;
+if( $#vers > 0 ) {
+	open(VERFILE,">Version.$Lname");
+	foreach $ver (sort(keys(%Vername))) {
+		print VERFILE "$ver {\n\t*;\n\t};\n";
+		}
+	close(VERFILE);
+	print LIBLINK "\t\$(LD) --version-script Version.$Lname -o \$@ -shared -h $Lrunname \$*.o\n\n";
+	} else {
+	print LIBLINK "\t\$(LD) -o \$@ -shared -h $Lrunname \$*.o\n\n";
 	}
 }
 
@@ -143,10 +162,8 @@ for(1..$lth->numrows) {
 	$Lrunname=$entry{'Lrunname'};
 	print LIBLIST "\\\n\t$Lname.so";
 	print LIBSRC "\\\n\t$Lname.c";
-	print LIBLINK "\n$Lname.so: $Lname.o\n";
-	print LIBLINK "\t\$(LD) --version-script Version -o \$@ -shared -h $Lrunname \$*.o\n\n";
 	open(SRC,">$Lname.c") || die "Can't open $Lname.c";
-	dumplib($Lid);
+	dumplib($Lname,$Lid);
 	close(SRC);
 }
 close(LIBLINK);

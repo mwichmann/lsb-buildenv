@@ -1,64 +1,64 @@
 
 libX11.so: libX11.o
-	$(LD) --version-script Version -o $@ -shared -h libX11.so.6 $*.o
+	$(LD) -o $@ -shared -h libX11.so.6 $*.o
 
 
 libXt.so: libXt.o
-	$(LD) --version-script Version -o $@ -shared -h libXt.so.6 $*.o
+	$(LD) -o $@ -shared -h libXt.so.6 $*.o
 
 
 libm.so: libm.o
-	$(LD) --version-script Version -o $@ -shared -h libm.so.6 $*.o
+	$(LD) --version-script Version.libm -o $@ -shared -h libm.so.6 $*.o
 
 
 libGL.so: libGL.o
-	$(LD) --version-script Version -o $@ -shared -h libGL.so.1 $*.o
+	$(LD) --version-script Version.libGL -o $@ -shared -h libGL.so.1 $*.o
 
 
 libXext.so: libXext.o
-	$(LD) --version-script Version -o $@ -shared -h libXext.so.6 $*.o
+	$(LD) --version-script Version.libXext -o $@ -shared -h libXext.so.6 $*.o
 
 
 libICE.so: libICE.o
-	$(LD) --version-script Version -o $@ -shared -h libICE.so.6 $*.o
+	$(LD) --version-script Version.libICE -o $@ -shared -h libICE.so.6 $*.o
 
 
 libSM.so: libSM.o
-	$(LD) --version-script Version -o $@ -shared -h libSM.so.6 $*.o
+	$(LD) --version-script Version.libSM -o $@ -shared -h libSM.so.6 $*.o
 
 
 libdl.so: libdl.o
-	$(LD) --version-script Version -o $@ -shared -h libdl.so.2 $*.o
+	$(LD) --version-script Version.libdl -o $@ -shared -h libdl.so.2 $*.o
 
 
 libcrypt.so: libcrypt.o
-	$(LD) --version-script Version -o $@ -shared -h libcrypt.so.1 $*.o
+	$(LD) --version-script Version.libcrypt -o $@ -shared -h libcrypt.so.1 $*.o
 
 
 libz.so: libz.o
-	$(LD) --version-script Version -o $@ -shared -h libz.so.1 $*.o
+	$(LD) --version-script Version.libz -o $@ -shared -h libz.so.1 $*.o
 
 
 libncurses.so: libncurses.o
-	$(LD) --version-script Version -o $@ -shared -h libncurses.so.5 $*.o
+	$(LD) --version-script Version.libncurses -o $@ -shared -h libncurses.so.5 $*.o
 
 
 libutil.so: libutil.o
-	$(LD) --version-script Version -o $@ -shared -h libutil.so.1 $*.o
+	$(LD) --version-script Version.libutil -o $@ -shared -h libutil.so.1 $*.o
 
 
 libc.so: libc.o
-	$(LD) --version-script Version -o $@ -shared -h libc.so.6 $*.o
+	$(LD) --version-script Version.libc -o $@ -shared -h libc.so.6 $*.o
 
 
 libpthread.so: libpthread.o
-	$(LD) --version-script Version -o $@ -shared -h libpthread.so.0 $*.o
+	$(LD) --version-script Version.libpthread -o $@ -shared -h libpthread.so.0 $*.o
 
 
 proginterp.so: proginterp.o
-	$(LD) --version-script Version -o $@ -shared -h ld-lsb.so.1 $*.o
+	$(LD) --version-script Version.proginterp -o $@ -shared -h ld-lsb.so.1 $*.o
 
 
 librt.so: librt.o
-	$(LD) --version-script Version -o $@ -shared -h librt.so.1 $*.o
+	$(LD) --version-script Version.librt -o $@ -shared -h librt.so.1 $*.o
 
