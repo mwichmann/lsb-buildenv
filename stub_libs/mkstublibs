@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.4 $
+# This is $Revision: 1.5 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.5  2001/10/24 05:19:56  cyeoh
+# Add workaround for missing symbols
+#
 # Revision 1.4  2001/10/22 07:28:47  cyeoh
 # Add temporary work around for symbols either misclassified or missing
 # from the LSB db
@@ -66,13 +69,16 @@ my(%LibcData) = (
 
 # Work around bugs in database
 # Interfaces which should be a variable but are recorded as a function
-# Zero size means alias
+# (or just missing)
+# Zero size means alias 
 my(%OverrideVariables) = 
     (
      "libc" => { "_h_errno" => 0x4,
                  "daylight" => 0,
                  "tzname" => 0,
-                 "__tzname" => 0x8},
+                 "__tzname" => 0x8,
+                 "__daylight" => 0x4,
+                 "__timezone" => 0x4},
      "libXt" => { "XtShellStrings" => 0x509,
                   "XtStrings" => 0xa59 }
      );
@@ -84,6 +90,12 @@ my(%OverrideFunctions) =
      "libm" => { "clog" => 1 } 
      );
 
+# Work around bugs in database
+# Missing libc symbols
+my(%MissingLibcVariables) =
+    ( "__tzname" => "GLIBC_2.0",
+      "__daylight" => "GLIBC_2.0",
+      "__timezone" => "GLIBC_2.0" );
 
 
 #----------------------------------------------------------------------
@@ -349,7 +361,7 @@ sub GenerateLibrary($$$)
   if (exists($OverrideVariables{$libName}))
   {
 #    print "Found for $libName\n";
-    # Add misclassified interfaces
+    # Add misclassified or missing interfaces
     my($missing);
     foreach $missing (keys %{$OverrideVariables{$libName}})
     {
