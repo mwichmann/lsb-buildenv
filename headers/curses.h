@@ -439,4 +439,6 @@ int wtouchln (WINDOW *, int, int, int);
 int wvline (WINDOW *, chtype, int);
 extern WINDOW *curscr;
 extern WINDOW *stdscr;
+extern int COLS;
+extern int LINES;
 #endif

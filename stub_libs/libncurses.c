@@ -266,5 +266,7 @@ void wsyncup(void) {} ;
 void wtimeout(void) {} ;
 void wtouchln(void) {} ;
 void wvline(void) {} ;
+__asm__(".globl COLS; .data; .type COLS,@object; .size COLS, 4; COLS: .long 0");
+__asm__(".globl LINES; .data; .type LINES,@object; .size LINES, 4; LINES: .long 0");
 __asm__(".globl curscr; .data; .type curscr,@object; .size curscr, 4; curscr: .long 0");
 __asm__(".globl stdscr; .data; .type stdscr,@object; .size stdscr, 4; stdscr: .long 0");
