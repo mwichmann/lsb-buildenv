@@ -1,6 +1,7 @@
 #ifndef _SEMAPHORE_H_
 #define _SEMAPHORE_H_
 
+#include <sys/time.h>
 #include <pthread.h>
 
 #ifdef __cplusplus
@@ -43,7 +44,7 @@ extern "C"
   extern int sem_trywait (sem_t *);
   extern int sem_unlink (const char *);
   extern int sem_wait (sem_t *);
-  extern int sem_timedwait (void);
+  extern int sem_timedwait (sem_t, const struct timespec *);
 #ifdef __cplusplus
 }
 #endif
