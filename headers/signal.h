@@ -801,7 +801,7 @@ extern "C"
   extern int sigstack (struct sigstack *, struct sigstack *);
   extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
-  extern int sigaction (int, struct sigaction *, struct sigaction *);
+  extern int sigaction (int, const struct sigaction *, struct sigaction *);
   extern int sigwait (const sigset_t *, int *);
   extern int kill (pid_t, int);
   extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);

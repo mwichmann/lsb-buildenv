@@ -39,7 +39,7 @@ extern "C"
 
   typedef int pthread_once_t;
 
-  typedef long __pthread_cond_align_t;
+  typedef long long __pthread_cond_align_t;
 
 
 /* Base Types*/
@@ -183,7 +183,7 @@ extern "C"
   extern int pthread_attr_setdetachstate (pthread_attr_t *, int);
   extern int pthread_attr_setinheritsched (pthread_attr_t *, int);
   extern int pthread_attr_setschedparam (pthread_attr_t *,
-					 struct sched_param *);
+					 const struct sched_param *);
   extern int pthread_attr_setschedpolicy (pthread_attr_t *, int);
   extern int pthread_attr_setscope (pthread_attr_t *, int);
   extern int pthread_cancel (pthread_t);
@@ -196,7 +196,7 @@ extern "C"
   extern int pthread_cond_wait (pthread_cond_t *, pthread_mutex_t *);
   extern int pthread_condattr_destroy (pthread_condattr_t *);
   extern int pthread_condattr_init (pthread_condattr_t *);
-  extern int pthread_create (pthread_t *, pthread_attr_t *,
+  extern int pthread_create (pthread_t *, const pthread_attr_t *,
 			     void *(*__start_routine) (void *), void *);
   extern int pthread_detach (pthread_t);
   extern int pthread_equal (pthread_t, pthread_t);
