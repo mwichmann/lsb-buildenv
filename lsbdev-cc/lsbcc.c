@@ -426,7 +426,7 @@ argvadd(libpaths,"L",gccbasedir);
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to be linker path\n", libpath);
 sprintf(tmpbuf, "-L%s", libpath);
-argvaddstring(libpaths,tmpbuf);
+argvaddstring(libpaths,strdup(tmpbuf));
 argvaddstring(libpaths,"-L/lib");
 argvaddstring(libpaths,"-L/usr/lib");
 
@@ -558,7 +558,7 @@ argvappend(gccargs,target);
 if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
 	fprintf(stderr,"Prepending %s to include path\n", incpath);
 sprintf(tmpbuf, "-I%s", incpath);
-argvaddstring(incpaths,tmpbuf);
+argvaddstring(incpaths,strdup(tmpbuf));
 argvappend(gccargs,incpaths);
 
 argvappend(gccargs,options);
