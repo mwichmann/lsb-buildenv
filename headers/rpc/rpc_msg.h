@@ -157,6 +157,7 @@ extern "C"
    ;
 
 
+  extern void xdr_callhdr (struct XDR *, struct rpc_msg *);
 #ifdef __cplusplus
 }
 #endif
