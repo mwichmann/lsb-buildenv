@@ -1,4 +1,6 @@
 
+typedef unsigned long reg_syntax_t;
+
 typedef struct re_pattern_buffer
 {
   unsigned char *buffer;
@@ -27,7 +29,6 @@ regmatch_t;
 #define REG_ICASE	(REG_EXTENDED<<1)
 #define REG_NEWLINE	(REG_ICASE<<1)
 #define REG_NOSUB	(REG_NEWLINE<<1)
-#define REG_NOMATCH	-1
 #define REG_EXTENDED	1
 
 #define REG_NOTEOL	(1<<1)
@@ -40,5 +41,3 @@ typedef enum
     REG_ERANGE, REG_ESPACE, REG_BADRPT, REG_EEND, REG_ESIZE, REG_ERPAREN
 }
 reg_errcode_t;
-
-typedef unsigned long reg_syntax_t;

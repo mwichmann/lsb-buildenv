@@ -14,6 +14,11 @@ extern "C"
 
 
 
+  typedef unsigned long reg_syntax_t;
+
+
+
+
   typedef struct re_pattern_buffer
   {
     unsigned char *buffer;
@@ -47,7 +52,6 @@ extern "C"
 #define REG_ICASE	(REG_EXTENDED<<1)
 #define REG_NEWLINE	(REG_ICASE<<1)
 #define REG_NOSUB	(REG_NEWLINE<<1)
-#define REG_NOMATCH	-1
 #define REG_EXTENDED	1
 
 
@@ -83,11 +87,6 @@ extern "C"
     REG_ERPAREN
   }
   reg_errcode_t;
-
-
-
-
-  typedef unsigned long reg_syntax_t;
 
 
   extern int regcomp (regex_t *, const char *, int);
