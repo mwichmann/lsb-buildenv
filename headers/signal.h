@@ -42,13 +42,6 @@ extern "C"
 
   typedef int sig_atomic_t;
 
-  struct sigstack
-  {
-    void *ss_sp;		/* Signal stack pointer. */
-    int ss_onstack;		/* Nonzero if executing on this stack. */
-  }
-   ;
-
 #if __s390x__
 /* S390X */
   typedef struct
@@ -944,7 +937,6 @@ extern "C"
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
   extern sighandler_t sigset (int, sighandler_t);
-  extern int sigstack (struct sigstack *, struct sigstack *);
   extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
   extern int sigaction (int, const struct sigaction *, struct sigaction *);

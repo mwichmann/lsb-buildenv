@@ -8,12 +8,6 @@
 #define NSIG	65
 
 typedef int sig_atomic_t;
-struct sigstack
-{
-  void *ss_sp;
-  int ss_onstack;
-}
- ;
 
 typedef void (*sighandler_t) (int);
 #define SIG_HOLD	((sighandler_t) 2)
