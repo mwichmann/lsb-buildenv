@@ -210,7 +210,6 @@ GLIBC_2.0 {
   getpwnam;
   getpwuid;
   getrusage;
-  gets;
   getservbyname;
   getservbyport;
   getservent;

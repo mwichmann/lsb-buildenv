@@ -262,7 +262,6 @@ GLIBC_2.2 {
   getrlimit;
   getrlimit64;
   getrusage;
-  gets;
   getservbyname;
   getservbyport;
   getservent;

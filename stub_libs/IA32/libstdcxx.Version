@@ -2007,10 +2007,14 @@ GLIBCPP_3.2 {
   _ZThn8_NSt18basic_stringstreamIwSt11char_traitsIwESaIwEED1Ev;
   _ZThn8_NSt9strstreamD0Ev;
   _ZThn8_NSt9strstreamD1Ev;
+  _ZTv0_n12_NSdD0Ev;
+  _ZTv0_n12_NSdD1Ev;
   _ZTv0_n12_NSiD0Ev;
   _ZTv0_n12_NSiD1Ev;
   _ZTv0_n12_NSoD0Ev;
   _ZTv0_n12_NSoD1Ev;
+  _ZTv0_n12_NSt10istrstreamD0Ev;
+  _ZTv0_n12_NSt10istrstreamD1Ev;
   _ZTv0_n12_NSt10ostrstreamD0Ev;
   _ZTv0_n12_NSt10ostrstreamD1Ev;
   _ZTv0_n12_NSt13basic_fstreamIcSt11char_traitsIcEED0Ev;
