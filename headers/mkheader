@@ -387,11 +387,11 @@ if( $$param{'Ttype'} eq "Array" ) {
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	%type=$sth->fetchhash;
 	displaytyperef(\%type);
-	print "[";
-	if( $$param{'Parsize'} != 0 ) {
-		print $$param{'Parsize'};
-		}
-	print "]";
+	#print "[";
+	#if( $$param{'Parsize'} != 0 ) {
+	#	print $$param{'Parsize'};
+	#	}
+	#print "]";
 	return;
 	}
 
@@ -751,11 +751,13 @@ for(1..$hgh->numrows) {
 #
 
 print "\n";
-$select = "SELECT * FROM Interface,Header,Type ";
+$select = "SELECT * FROM Interface ";
+$select.= "LEFT JOIN Header ON Iheader=Hid ";
+$select.= "LEFT JOIN Type ON Ireturn=Tid ";
+$select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=Iarch ";
 $select.= "WHERE ( Istatus='Included' OR Istatus='Deprecated' OR Istatus='SrcOnly' )";
 $select.= "AND Iarch=$Aid ";
-$select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
-$select.= "AND Ireturn=Tid";
+$select.= "AND Hname=".$Dbh->quote($headname)." ";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
@@ -777,10 +779,24 @@ for(1..$sth->numrows) {
 		if( $sth2->numrows != 0 ) {
 			%entry2=$sth2->fetchhash;
 			displaytyperef(\%entry2);
+			if( $entry2{'Ttype'} eq "Array" ) {
+				print "[";
+				if( $entry2{'Parsize'} != 0 ) {
+					print $entry2{'Parsize'};
+					}
+				print "]";
+			}
 			for(2..$sth2->numrows) {
 				%entry2=$sth2->fetchhash;
 				print ", ";
 				displaytyperef(\%entry2);
+				if( $entry2{'Ttype'} eq "Array" ) {
+					print "[";
+					if( $entry2{'Parsize'} != 0 ) {
+						print $entry2{'Parsize'};
+						}
+					print "]";
+				}
 			}
 		} else {
 			print "void";
@@ -790,12 +806,28 @@ for(1..$sth->numrows) {
 	if( $entry{'Itype'} eq "Data" ) {
 		printf "extern ";
 		displaytyperef(\%entry);
-		printf " %s;\n",$entry{'Iname'};
+		printf " %s",$entry{'Iname'};
+		if( $entry{'Ttype'} eq "Array" ) {
+			print "[";
+			if( $entry{'ATsize'} != 0 ) {
+				print $entry{'ATsize'};
+				}
+			print "]";
+		}
+		printf " ;\n";
 	}
 	if( $entry{'Itype'} eq "Alias" ) {
 		printf "extern ";
 		displaytyperef(\%entry);
-		printf " %s;\n",$entry{'Iname'};
+		printf " %s",$entry{'Iname'};
+		if( $entry{'Ttype'} eq "Array" ) {
+			print "[";
+			if( $entry{'ATsize'} != 0 ) {
+				print $entry{'ATsize'};
+				}
+			print "]";
+		}
+		printf " ;\n";
 	}
 	if( $entry{'Itype'} eq "Common" ) {
 		printf "extern ";
