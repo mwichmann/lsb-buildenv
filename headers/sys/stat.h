@@ -86,11 +86,11 @@ extern "C"
     blksize_t st_blksize;
     blkcnt_t st_blocks;
     time_t st_atime;
-    unsigned long __unused1;
+    unsigned long st_atimensec;
     time_t st_mtime;
-    unsigned long __unused2;
+    unsigned long st_mtimensec;
     time_t st_ctime;
-    unsigned long __unused3;
+    unsigned long st_ctimensec;
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -114,11 +114,11 @@ extern "C"
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
     time_t st_atime;
-    unsigned long __unused1;
+    unsigned long st_atimensec;
     time_t st_mtime;
-    unsigned long __unused2;
+    unsigned long st_mtimensec;
     time_t st_ctime;
-    unsigned long __unused3;
+    unsigned long st_ctimensec;
     ino64_t st_ino;
   }
    ;
@@ -166,11 +166,11 @@ extern "C"
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
     time_t st_atime;		/* Time of last access. */
-    unsigned long __unused1;	/* Reserved for atime.nanoseconds. */
+    unsigned long st_atimensec;	/* atime.nanoseconds. */
     time_t st_mtime;		/* Time of last modification. */
-    unsigned long __unused2;	/* Reserved for mtime.nanoseconds. */
+    unsigned long st_mtimensec;	/* mtime.nanoseconds. */
     time_t st_ctime;		/* Time of last status change. */
-    unsigned long __unused3;	/* Reserved for ctime.nanoseconds. */
+    unsigned long st_ctimensec;	/* ctime.nanoseconds. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -194,11 +194,11 @@ extern "C"
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt_t st_blocks;		/* Number 512-byte blocks allocated. */
     time_t st_atime;		/* Time of last access. */
-    unsigned long __unused1;	/* Reserved for atime.nanoseconds */
+    unsigned long st_atimensec;	/* Reserved for atime.nanoseconds */
     time_t st_mtime;		/* Time of last modification. */
-    unsigned long __unused2;	/* Reserved for mtime.nanoseconds. */
+    unsigned long st_mtimensec;	/* Reserved for mtime.nanoseconds. */
     time_t st_ctime;		/* Time of last status change. */
-    unsigned long __unused3;	/* Reserved for ctime.nanoseconds. */
+    unsigned long st_ctimensec;	/* Reserved for ctime.nanoseconds. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -354,11 +354,11 @@ extern "C"
     blksize_t st_blksize;
     blkcnt_t st_blocks;
     time_t st_atime;
-    unsigned long __unused1;
+    unsigned long st_atimensec;
     time_t st_mtime;
-    unsigned long __unused2;
+    unsigned long st_mtimensec;
     time_t st_ctime;
-    unsigned long __unused3;
+    unsigned long st_ctimensec;
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -375,17 +375,14 @@ extern "C"
     mode_t st_mode;
     uid_t st_uid;
     gid_t st_gid;
-    int __pad0;
+    int pad0;
     dev_t st_rdev;
     off_t st_size;
     blksize_t st_blksize;
     blkcnt_t st_blocks;
     time_t st_atime;
-    unsigned long __unused1;
     time_t st_mtime;
-    unsigned long __unused2;
     time_t st_ctime;
-    unsigned long __unused3;
     unsigned long __unused;
   }
    ;
@@ -401,17 +398,14 @@ extern "C"
     mode_t st_mode;
     uid_t st_uid;
     gid_t st_gid;
-    int __pad0;
+    int pad0;
     dev_t st_rdev;
     off_t st_size;
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
     time_t st_atime;
-    unsigned long __unused1;
     time_t st_mtime;
-    unsigned long __unused2;
     time_t st_ctime;
-    unsigned long __unused3;
     unsigned long __unused;
   }
    ;
@@ -434,11 +428,11 @@ extern "C"
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
     time_t st_atime;
-    int __unused1;
+    int st_atimensec;
     time_t st_mtime;
-    int __unused2;
+    int st_mtimensec;
     time_t st_ctime;
-    int __unused3;
+    int st_ctimensec;
     ino64_t st_ino;
   }
    ;
