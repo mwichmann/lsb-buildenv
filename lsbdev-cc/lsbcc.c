@@ -463,7 +463,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 */
 		if(strcmp( long_options[option_index].name, "shared" ) == 0) {
 			argvreset(proginterp);
-			argvreset(syslibs);
 			}
 		break;
 	case 'E':
