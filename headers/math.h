@@ -23,9 +23,22 @@ extern "C"
    ;
 
 
+/* All floating-point numbers can be put in one of these categories.*/
+#define FP_NAN	1
+#define FP_INFINITE	2
+#define FP_ZERO	3
+#define FP_SUBNORMAL	4
+#define FP_NORMAL	5
+
+
+
 /* ISO C99 defines some generic macros which work on any data type.*/
+#define isnormal(x)	(fpclassify (x) == FP_NORMAL)
+#define isfinite(x)	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
+#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #define isinf(x)	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
 #define isnan(x)	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 
 
 
@@ -38,6 +51,12 @@ extern "C"
 
 /* Some useful constants*/
 #define NAN	((float)0x7fc00000UL)
+#if __i386__
+#define FP_ILOGB0	(-2147483647 - 1)
+#endif
+#if __i386__
+#define FP_ILOGBNAN	(-2147483647 - 1)
+#endif
 #define M_1_PI	0.31830988618379067154
 #define M_LOG10E	0.43429448190325182765
 #define M_2_PI	0.63661977236758134308
@@ -61,12 +80,35 @@ extern "C"
 
 
 
+/* ISO C99 defines some macros to compare number while taking care
+   for unordered numbers.  Since many FPUs provide special
+   instructions to support these operations and these tests are
+   defined in <bits/mathinline.h>, we define the generic macros at
+   this late point and only if they are not defined yet.*/
+#define isunordered(u, v)	(__extension__({ __typeof__(u) __u = (u); __typeof__(v) __v = (v);fpclassify (__u) == FP_NAN || fpclassify (__v) == FP_NAN; }))
+#define islessgreater(x, y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && (__x < __y || __y < __x); }))
+#define isless(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x < __y; }))
+#define islessequal(x, y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x <= __y; }))
+#define isgreater(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x > __y; }))
+#define isgreaterequal(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x >= __y; }))
+
+
+
+  extern int __finite (double);
+  extern int __finitef (float);
+  extern int __finitel (long double);
   extern int __isinf (double);
   extern int __isinff (float);
   extern int __isinfl (long double);
   extern int __isnan (double);
   extern int __isnanf (float);
   extern int __isnanl (long double);
+  extern int __signbit (double);
+  extern int __signbitf (float);
+  extern int __signbitl (long double);
+  extern int __fpclassify (double);
+  extern int __fpclassifyf (float);
+  extern int __fpclassifyl (long double);
   extern int signgam;
   extern double copysign (double, double);
   extern int finite (double);
@@ -159,8 +201,13 @@ extern "C"
   extern long double erfcl (long double);
   extern float erff (float);
   extern long double erfl (long double);
+  extern double exp2 (double);
+  extern float exp2f (float);
+  extern long double exp2l (long double);
   extern float expf (float);
   extern long double expl (long double);
+  extern float expm1f (float);
+  extern long double expm1l (long double);
   extern float fabsf (float);
   extern long double fabsl (long double);
   extern double fdim (double, double);
@@ -204,6 +251,13 @@ extern "C"
   extern long long llroundl (long double);
   extern float log10f (float);
   extern long double log10l (long double);
+  extern float log1pf (float);
+  extern long double log1pl (long double);
+  extern double log2 (double);
+  extern float log2f (float);
+  extern long double log2l (long double);
+  extern float logbf (float);
+  extern long double logbl (long double);
   extern float logf (float);
   extern long double logl (long double);
   extern long lrint (double);
