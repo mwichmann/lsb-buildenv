@@ -346,13 +346,13 @@ char *proginterpreter =
 #elif __powerpc__ && !__powerpc64__
 	"/lib/ld-lsb-ppc32.so.1";
 #elif __powerpc64__
-	"/lib/ld-lsb-ppc64.so.1";
+	"/lib64/ld-lsb-ppc64.so.1";
 #elif __ia64__
 	"/lib/ld-lsb-ia64.so.1";
 #elif __s390__ && !__s390x__
 	"/lib/ld-lsb-s390.so.1";
 #elif __s390x__
-	"/lib/ld-lsb-s390x.so.1";
+	"/lib64/ld-lsb-s390x.so.1";
 #else
 	"Unknown_program_interpreter";
 #endif
