@@ -27,8 +27,6 @@ extern "C"
 
   typedef int pthread_once_t;
 
-  typedef int __atomic_lock_t;
-
 
 /* Base Types*/
 
@@ -38,7 +36,7 @@ extern "C"
   struct _pthread_fastlock
   {
     long __status;
-    __atomic_lock_t __spinlock;
+    int __spinlock;
   }
    ;
 
