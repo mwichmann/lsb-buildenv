@@ -28,7 +28,7 @@ extern "C"
 
   struct _pthread_cleanup_buffer
   {
-    void (*void (*)) (int);
+    void (*__routine) (void);
     void *__arg;
     int __canceltype;
     struct _pthread_cleanup_buffer *__prev;
