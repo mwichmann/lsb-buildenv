@@ -1,3 +1,11 @@
+2001-10-08  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Removes bashisms from scripts. Now works with /bin/sh set
+	  to ash
+
+	* Adds capability to specify installation specific directories
+	  and files to be bind mounted in the chroot area
+
 2001-09-25  Christopher Yeoh  <cyeoh@samba.org>
 
 	* Adds Start/Stop capability to scripts

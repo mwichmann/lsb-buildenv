@@ -48,6 +48,13 @@ chroot area will be started listening on a high port (5436 by
 default). This allows non root privileged users to enter the
 environment (without using chroot).
 
+It is possible to configure the package such that extra installation
+specific directories and files are included in the chroot area. See
+the INSTALL file for more details. This mechanism in general should
+only be used for importing programs into the chroot area and not
+include files or shared libraries as this may allow for the generation
+of non compliant binaries.
+
 The package contains the following:
 
   - LSB stub libraries (stub_libs). 
@@ -82,5 +89,5 @@ Feedback
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2001/9/25
+Last updated 2001/10/8
 

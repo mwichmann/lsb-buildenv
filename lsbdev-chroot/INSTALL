@@ -47,12 +47,15 @@ directories to the link path.
  *lib:
  %{shared: -lc}    %{!shared: %{mieee-fp:-lieee} %{pthread:-lpthread} 	%{profile:-lc_p} %{!profile: -lc}}
 
+4. Edit /etc/lsbdev/extra_mount_dirs.conf and 
+   /etc/lsbdev/extra_mount_files.conf to specify extra directories and
+   files that you want included into the chroot area.
 
-4. Start the environment
+5. Start the environment
 
 # /etc/init.d/lsbdev start
 
-5. Stopping the environment. Note that this will fail if any users
+6. Stopping the environment. Note that this will fail if any users
    are logged into the chroot area or have running processes within it.
    It is ok to run this script multiple times.
 
