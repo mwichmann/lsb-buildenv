@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.22 $
+# This is $Revision: 1.23 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.23  2002/10/08 19:35:09  anderson
+# Further cleanups of the symbol version handling
+#
 # Revision 1.22  2002/10/08 19:08:42  anderson
 # Do a better job with missing symbol version information
 #
@@ -244,12 +247,13 @@ sub GenerateLibrary($$$)
 #if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
     if( $row->{AIarch} && $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
 
-    if( !$row->{AIarch} ){print "$row->{Iname}\tNULL AIarch\n";}
+    #if( !$row->{AIarch} ){print "$row->{Iname}\tNULL AIarch\n";}
     if( !$row->{AIarch} && 
 	( $row->{Iarch}!=$TargetArchId && $row->{Iarch}!=1 ) )
 		{ print "Skipping bad AIarch for $row->{Iname}\n";next; }
     #if( !$row->{Vname} ){print "$row->{Iname}\tNULL Vname\n";}
-    if( !$row->{Vname} && $row->{AIarch}!=$TargetArchId && $row->{Iarch}!=1
+    if( !$row->{Vname} && $row->{AIarch}
+	&& $row->{AIarch}!=$TargetArchId && $row->{Iarch}!=1
 	&& $row->{Iarch} != $row->{AIarch} )
 		{ print "Skipping bad Vname for $row->{Iname}\n";next; }
 
@@ -308,7 +312,7 @@ sub GenerateLibrary($$$)
   $lastint="";
   while ($row = $sth->fetchrow_hashref())
   {
-    if( $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
+    if( $row->{AIarch} && $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
     if( $row->{Iname} eq $lastint ) { print "skipping dup $lastint\n";next; }
     $lastint=$row->{Iname};
     # Work out size of data variable
