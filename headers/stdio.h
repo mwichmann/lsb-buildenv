@@ -27,12 +27,12 @@ extern "C"
 #if __powerpc__ && !__powerpc64__
 #define __IO_FILE_SIZE	152
 #endif
-#if __powerpc64__
-#define __IO_FILE_SIZE	152
-#endif
 #define FOPEN_MAX	16
 #define L_tmpnam	20
 #if __ia64__
+#define __IO_FILE_SIZE	216
+#endif
+#if __powerpc64__
 #define __IO_FILE_SIZE	216
 #endif
 #if __s390__ && !__s390x__
