@@ -234,6 +234,9 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	if($tmh->numrows == 0) {
+		print "void";
+		}
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
