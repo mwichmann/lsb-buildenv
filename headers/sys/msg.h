@@ -48,6 +48,16 @@ extern "C"
   typedef unsigned long msgqnum_t;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long msgqnum_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long msglen_t;
+
+#endif
 
 /* Message Queue structure*/
 
@@ -131,6 +141,25 @@ extern "C"
     msglen_t msg_qbytes;	/* max number of bytes allowed on queue */
     pid_t msg_lspid;		/* pid of last msgsnd() */
     pid_t msg_lrpid;		/* pid of last msgrcv() */
+    unsigned long __unused4;
+    unsigned long __unused5;
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct msqid_ds
+  {
+    struct ipc_perm msg_perm;
+    __time_t msg_stime;
+    __time_t msg_rtime;
+    __time_t msg_ctime;
+    unsigned long __msg_cbytes;
+    msgqnum_t msg_qnum;
+    msglen_t msg_qbytes;
+    __pid_t msg_lspid;
+    __pid_t msg_lrpid;
     unsigned long __unused4;
     unsigned long __unused5;
   }

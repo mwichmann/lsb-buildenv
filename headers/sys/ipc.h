@@ -110,6 +110,24 @@ extern "C"
    ;
 
 #endif
+#if __s390x__
+/* S390X */
+  struct ipc_perm
+  {
+    __key_t __key;
+    __uid_t uid;
+    __gid_t gid;
+    __uid_t cuid;
+    __gid_t cgid;
+    __mode_t mode;
+    unsigned short __seq;
+    unsigned short __pad2;
+    unsigned long __unused1;
+    unsigned long __unused2;
+  }
+   ;
+
+#endif
 
 /* common mode bits*/
 

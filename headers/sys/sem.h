@@ -104,6 +104,20 @@ extern "C"
    ;
 
 #endif
+#if __s390x__
+/* S390X */
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;
+    __time_t sem_otime;
+    __time_t sem_ctime;
+    unsigned long sem_nsems;
+    unsigned long __unused3;
+    unsigned long __unused4;
+  }
+   ;
+
+#endif
 
   extern int semctl (int, int, int, ...);
   extern int semget (key_t, int, int);

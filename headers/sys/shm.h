@@ -64,6 +64,11 @@ extern "C"
   typedef unsigned long shmatt_t;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long shmatt_t;
+
+#endif
 
 
 
@@ -163,6 +168,24 @@ extern "C"
     shmatt_t shm_nattch;
     unsigned long __unused5;
     unsigned long __unused6;
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct shmid_ds
+  {
+    struct ipc_perm shm_perm;
+    size_t shm_segsz;
+    __time_t shm_atime;
+    __time_t shm_dtime;
+    __time_t shm_ctime;
+    __pid_t shm_cpid;
+    __pid_t shm_lpid;
+    shmatt_t shm_nattch;
+    unsigned long __unused4;
+    unsigned long __unused5;
   }
    ;
 

@@ -175,6 +175,46 @@ extern "C"
    ;
 
 #endif
+#if __s390x__
+/* S390X */
+  struct statvfs
+  {
+    unsigned long f_bsize;
+    unsigned long f_frsize;
+    __fsblkcnt64_t f_blocks;
+    __fsblkcnt64_t f_bfree;
+    __fsblkcnt64_t f_bavail;
+    __fsfilcnt64_t f_files;
+    __fsfilcnt64_t f_ffree;
+    __fsfilcnt64_t f_favail;
+    unsigned long f_fsid;
+    int __f_unused;
+    unsigned long f_flag;
+    unsigned long f_namemax;
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct statvfs64
+  {
+    unsigned long f_bsize;
+    unsigned long f_frsize;
+    __fsblkcnt64_t f_blocks;
+    __fsblkcnt64_t f_bfree;
+    __fsblkcnt64_t f_bavail;
+    __fsfilcnt64_t f_files;
+    __fsfilcnt64_t f_ffree;
+    __fsfilcnt64_t f_favail;
+    unsigned long f_fsid;
+    int __f_unused;
+    unsigned long f_flag;
+    unsigned long f_namemax;
+  }
+   ;
+
+#endif
 
   extern int fstatvfs (int, struct statvfs *);
   extern int fstatvfs64 (int, struct statvfs64 *);

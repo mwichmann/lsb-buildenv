@@ -287,6 +287,56 @@ extern "C"
    ;
 
 #endif
+#if __s390x__
+/* S390X */
+  struct stat
+  {
+    __dev_t st_dev;
+    __ino_t st_ino;
+    __nlink_t st_nlink;
+    __mode_t st_mode;
+    __uid_t st_uid;
+    __gid_t st_gid;
+    int pad0;
+    __dev_t st_rdev;
+    __off_t st_size;
+    __time_t st_atime;
+    long __reserved0;
+    __time_t st_mtime;
+    long __reserved1;
+    __time_t st_ctime;
+    long __reserved2;
+    blksize_t st_blksize;
+    __blkcnt_t st_blocks;
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct stat64
+  {
+    __dev_t st_dev;
+    __ino64_t st_ino;
+    __nlink_t st_nlink;
+    __mode_t st_mode;
+    __uid_t st_uid;
+    __gid_t st_gid;
+    int pad0;
+    __dev_t st_rdev;
+    __off_t st_size;
+    __time_t st_atime;
+    int __reserved0;
+    __time_t st_mtime;
+    int __reserved1;
+    __time_t st_ctime;
+    int __reserved2;
+    blksize_t st_blksize;
+    __blkcnt64_t st_blocks;
+  }
+   ;
+
+#endif
 
 
 
