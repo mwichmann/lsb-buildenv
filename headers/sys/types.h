@@ -173,7 +173,22 @@ extern "C"
 
 
 /* Per Architecture settings*/
+#if __powerpc__ && !__powerpc64__
+#define __BYTE_ORDER	__BIG_ENDIAN
+#endif
+#if __powerpc64__
+#define __BYTE_ORDER	__BIG_ENDIAN
+#endif
+#if __s390__ && !__s390x__
+#define __BYTE_ORDER	__BIG_ENDIAN
+#endif
 #if __i386__
+#define __BYTE_ORDER	__LITTLE_ENDIAN
+#endif
+#if __ia64__
+#define __BYTE_ORDER	__LITTLE_ENDIAN
+#endif
+#if __x86_64__
 #define __BYTE_ORDER	__LITTLE_ENDIAN
 #endif
 
