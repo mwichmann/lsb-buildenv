@@ -1,0 +1,4 @@
+# Generating c stubs for libc library
+libc stdin 8
+libc stdout 8
+libc stderr 8
