@@ -184,9 +184,9 @@ extern "C"
     off64_t st_size;		/* Size of file, in bytes. */
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
-    struct timespec st_atime;	/* Time of last access. */
-    struct timespec st_mtime;	/* Time of last modification. */
-    struct timespec st_ctime;	/* Time of last status change. */
+    struct timespec st_atim;	/* Time of last access. */
+    struct timespec st_mtim;	/* Time of last modification. */
+    struct timespec st_ctim;	/* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -209,7 +209,7 @@ extern "C"
     off_t st_size;		/* Size of file, in bytes. */
     blksize_t st_blksize;	/* Optimal block size for I/O. */
     blkcnt_t st_blocks;		/* Number 512-byte blocks allocated. */
-    struct timespec st_atime;	/* Time of last access. */
+    struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtime;	/* Time of last modification. */
     struct timespec st_ctime;	/* Time of last status change. */
     unsigned long __unused4;
@@ -393,9 +393,9 @@ extern "C"
     off_t st_size;
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    struct timespec st_atime;
-    struct timespec st_mtime;
-    struct timespec st_ctime;
+    struct timespec st_atim;
+    struct timespec st_mtim;
+    struct timespec st_ctim;
     unsigned long __unused;
   }
    ;
@@ -416,9 +416,9 @@ extern "C"
     off_t st_size;
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    time_t st_atime;
-    time_t st_mtime;
-    time_t st_ctime;
+    struct timespec st_atim;
+    struct timespec st_mtim;
+    struct timespec st_ctim;
     unsigned long __unused;
   }
    ;
