@@ -2,7 +2,6 @@
 #define _SYS_SOCKET_H_
 
 #include <stddef.h>
-#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -55,6 +54,8 @@ extern "C"
 
 
   typedef unsigned short sa_family_t;
+
+  typedef unsigned int socklen_t;
 
 
 

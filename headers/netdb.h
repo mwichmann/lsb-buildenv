@@ -2,7 +2,7 @@
 #define _NETDB_H_
 
 #include <stddef.h>
-#include <sys/types.h>
+#include <sys/socket.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -37,7 +37,7 @@ extern "C"
     char *h_name;
     char **h_aliases;
     int h_addrtype;
-    socklen_t h_length;
+    int h_length;
     char **h_addr_list;
   }
    ;
