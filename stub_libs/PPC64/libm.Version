@@ -1,17 +1,12 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2.5 {
-  log2;
-};
 GLIBC_2.3 {
   __finite;
   __finitef;
   __finitel;
   __fpclassify;
   __fpclassifyf;
-  __fpclassifyl;
   __signbit;
   __signbitf;
-  __signbitl;
   acos;
   acosf;
   acosh;
@@ -212,6 +207,7 @@ GLIBC_2.3 {
   log1p;
   log1pf;
   log1pl;
+  log2;
   log2f;
   log2l;
   logb;

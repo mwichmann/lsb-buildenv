@@ -424,6 +424,7 @@ void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE3putES3_RSt8io
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE3putES3_RSt8ios_basecm() {} ;
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE3putES3_RSt8ios_basecx() {} ;
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE3putES3_RSt8ios_basecy() {} ;
+void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6_M_padEclRSt8ios_basePcPKcRi() {} ;
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_RSt8ios_basecPKv() {} ;
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_RSt8ios_basecb() {} ;
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_RSt8ios_basecd() {} ;
@@ -435,6 +436,7 @@ void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_RSt
 void _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertES3_RSt8ios_basecPKci() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE12_M_group_intERKSswRSt8ios_basePwS9_Ri() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE12_M_widen_intES3_RSt8ios_basewPci() {} ;
+void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE14_M_convert_intIlEES3_S3_RSt8ios_basewT_() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE14_M_convert_intIlEES3_S3_RSt8ios_basewccT_() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE14_M_convert_intImEES3_S3_RSt8ios_basewT_() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE14_M_convert_intImEES3_S3_RSt8ios_basewccT_() {} ;
@@ -454,6 +456,7 @@ void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE3putES3_RSt8io
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE3putES3_RSt8ios_basewm() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE3putES3_RSt8ios_basewx() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE3putES3_RSt8ios_basewy() {} ;
+void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6_M_padEwlRSt8ios_basePwPKwRi() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES3_RSt8ios_basewPKv() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES3_RSt8ios_basewb() {} ;
 void _ZNKSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES3_RSt8ios_basewd() {} ;
@@ -1969,6 +1972,8 @@ void _ZTv0_n24_NSdD0Ev() {} ;
 void _ZTv0_n24_NSdD1Ev() {} ;
 void _ZTv0_n24_NSiD0Ev() {} ;
 void _ZTv0_n24_NSiD1Ev() {} ;
+void _ZTv0_n24_NSoD0Ev() {} ;
+void _ZTv0_n24_NSoD1Ev() {} ;
 void _ZTv0_n24_NSt10istrstreamD0Ev() {} ;
 void _ZTv0_n24_NSt10istrstreamD1Ev() {} ;
 void _ZTv0_n24_NSt10ostrstreamD0Ev() {} ;
@@ -3094,5 +3099,3 @@ __asm__(".globl _ZTVSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE;
 __asm__(".globl _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE; .pushsection .data; .type _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE,@object; .size _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE, 80; _ZTVSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE: .long 0; .popsection");
 __asm__(".globl _ZTVSt9strstream; .pushsection .data; .type _ZTVSt9strstream,@object; .size _ZTVSt9strstream, 168; _ZTVSt9strstream: .long 0; .popsection");
 __asm__(".globl _ZTVSt9type_info; .pushsection .data; .type _ZTVSt9type_info,@object; .size _ZTVSt9type_info, 112; _ZTVSt9type_info: .long 0; .popsection");
-__asm__(".globl _ZTv0_n24_NSoD0Ev; .pushsection .data; .type _ZTv0_n24_NSoD0Ev,@object; .size _ZTv0_n24_NSoD0Ev, 0; _ZTv0_n24_NSoD0Ev: .long 0; .popsection");
-__asm__(".globl _ZTv0_n24_NSoD1Ev; .pushsection .data; .type _ZTv0_n24_NSoD1Ev,@object; .size _ZTv0_n24_NSoD1Ev, 0; _ZTv0_n24_NSoD1Ev: .long 0; .popsection");

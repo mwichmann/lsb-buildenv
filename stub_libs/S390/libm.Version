@@ -162,7 +162,6 @@ GLIBC_2.1 {
   __finitel;
   __fpclassify;
   __fpclassifyf;
-  __fpclassifyl;
   cabs;
   cabsf;
   cabsl;
@@ -302,4 +301,7 @@ GLIBC_2.1 {
   trunc;
   truncf;
   truncl;
+};
+GLIBC_2.2 {
+  __signbitl;
 };
