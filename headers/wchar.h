@@ -24,10 +24,10 @@ extern "C"
 
   extern double __wcstod_internal (const wchar_t *, wchar_t * *, int);
   extern float __wcstof_internal (const wchar_t *, wchar_t * *, int);
-  extern long __wcstol_internal (const wchar_t *, wchar_t * *, int, int);
+  extern long int __wcstol_internal (const wchar_t *, wchar_t * *, int, int);
   extern long double __wcstold_internal (const wchar_t *, wchar_t * *, int);
-  extern unsigned long __wcstoul_internal (const wchar_t *, wchar_t * *, int,
-					   int);
+  extern unsigned long int __wcstoul_internal (const wchar_t *, wchar_t * *,
+					       int, int);
   extern wchar_t *wcscat (wchar_t *, const wchar_t *);
   extern wchar_t *wcschr (const wchar_t *, wchar_t);
   extern int wcscmp (const wchar_t *, const wchar_t *);
@@ -67,17 +67,17 @@ extern "C"
   extern size_t wcsrtombs (char *, const wchar_t * *, size_t, mbstate_t *);
   extern double wcstod (const wchar_t *, wchar_t * *);
   extern float wcstof (const wchar_t *, wchar_t * *);
-  extern long wcstol (const wchar_t *, wchar_t * *, int);
+  extern long int wcstol (const wchar_t *, wchar_t * *, int);
   extern long double wcstold (const wchar_t *, wchar_t * *);
-  extern long long wcstoq (const wchar_t *, wchar_t * *, int);
-  extern unsigned long wcstoul (const wchar_t *, wchar_t * *, int);
-  extern unsigned long long wcstouq (const wchar_t *, wchar_t * *, int);
+  extern long long int wcstoq (const wchar_t *, wchar_t * *, int);
+  extern unsigned long int wcstoul (const wchar_t *, wchar_t * *, int);
+  extern unsigned long long int wcstouq (const wchar_t *, wchar_t * *, int);
   extern wchar_t *wcswcs (const wchar_t *, const wchar_t *);
   extern int wcscasecmp (const wchar_t *, const wchar_t *);
   extern int wcsncasecmp (const wchar_t *, const wchar_t *, size_t);
   extern size_t wcsnlen (const wchar_t *, size_t);
-  extern long long wcstoll (const wchar_t *, wchar_t * *, int);
-  extern unsigned long long wcstoull (const wchar_t *, wchar_t * *, int);
+  extern long long int wcstoll (const wchar_t *, wchar_t * *, int);
+  extern unsigned long long int wcstoull (const wchar_t *, wchar_t * *, int);
   extern wint_t btowc (int);
   extern wint_t fgetwc (FILE *);
   extern wint_t fgetwc_unlocked (FILE *);

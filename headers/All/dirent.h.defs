@@ -3,7 +3,7 @@ typedef struct __dirstream DIR;
 
 struct dirent
 {
-  long d_ino;
+  long int d_ino;
   off_t d_off;
   unsigned short d_reclen;
   unsigned char d_type;

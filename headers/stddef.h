@@ -18,7 +18,7 @@ extern "C"
 #endif
 #if __ia64__
 /* IA64 */
-  typedef long ptrdiff_t;
+  typedef long int ptrdiff_t;
 
 #endif
 #if __i386__
@@ -28,7 +28,7 @@ extern "C"
 #endif
 #if __ia64__
 /* IA64 */
-  typedef unsigned long size_t;
+  typedef unsigned long int size_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
@@ -38,12 +38,12 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef unsigned long size_t;
+  typedef unsigned long int size_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef unsigned long size_t;
+  typedef unsigned long int size_t;
 
 #endif
 #if __i386__
@@ -63,27 +63,27 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef long ptrdiff_t;
+  typedef long int ptrdiff_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef unsigned long size_t;
+  typedef unsigned long int size_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef long ptrdiff_t;
+  typedef long int ptrdiff_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef unsigned long size_t;
+  typedef unsigned long int size_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef long ptrdiff_t;
+  typedef long int ptrdiff_t;
 
 #endif
 

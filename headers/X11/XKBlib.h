@@ -43,8 +43,8 @@ extern "C"
   extern int XkbGetAutoRepeatRate (Display *, unsigned int, unsigned int *,
 				   unsigned int *);
   extern int XkbGetCompatMap (Display *, unsigned int,);
-  extern int XkbGetControls (Display *, unsigned long,);
-  extern int XkbGetIndicatorMap (Display *, unsigned long,);
+  extern int XkbGetControls (Display *, unsigned long int,);
+  extern int XkbGetIndicatorMap (Display *, unsigned long int,);
   extern int XkbGetIndicatorState (Display *, unsigned int, unsigned int *);
   extern XkbGetKeyActions (Display *, unsigned int, unsigned int,);
   extern XkbGetKeyBehaviors (Display *, unsigned int, unsigned int,);
@@ -92,7 +92,7 @@ extern "C"
   extern KeySym *XkbResizeKeySyms (, int, int);
   extern int XkbResizeKeyType (, int, int, int, int);
   extern int XkbSelectEventDetails (Display *, unsigned int, unsigned int,
-				    unsigned long, unsigned long);
+				    unsigned long int, unsigned long int);
   extern int XkbSelectEvents (Display *, unsigned int, unsigned int,
 			      unsigned int);
   extern void XkbSetAtomFuncs (XkbInternAtomFunc, XkbGetAtomNameFunc);
@@ -101,14 +101,14 @@ extern "C"
   extern int XkbSetAutoResetControls (Display *, unsigned int, unsigned int *,
 				      unsigned int *);
   extern int XkbSetCompatMap (Display *, unsigned int,, int);
-  extern int XkbSetControls (Display *, unsigned long,);
+  extern int XkbSetControls (Display *, unsigned long int,);
   extern int XkbSetDebuggingFlags (Display *, unsigned int, unsigned int,
 				   char *, unsigned int, unsigned int,
 				   unsigned int *, unsigned int *);
   extern int XkbSetDetectableAutoRepeat (Display *, int, int *);
   extern int XkbSetIgnoreLockMods (Display *, unsigned int, unsigned int,
 				   unsigned int, unsigned int, unsigned int);
-  extern int XkbSetIndicatorMap (Display *, unsigned long,);
+  extern int XkbSetIndicatorMap (Display *, unsigned long int,);
   extern int XkbSetMap (Display *, unsigned int,);
   extern int XkbSetNamedIndicator (Display *, Atom, int, int, int,);
   extern int XkbSetNames (Display *, unsigned int, unsigned int,

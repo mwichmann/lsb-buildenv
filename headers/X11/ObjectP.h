@@ -87,7 +87,7 @@ extern "C"
   {
     XtPointer next_extension;	/* 1st 4 required for all extension records */
     XrmQuark record_type;	/* NULLQUARK; when on ObjectClassPart */
-    long version;		/* must be XtObjectExtensionVersion */
+    long int version;		/* must be XtObjectExtensionVersion */
     Cardinal record_size;	/* sizeof(ObjectClassExtensionRec) */
     XtAllocateProc allocate;
     XtDeallocateProc deallocate;
@@ -101,7 +101,7 @@ extern "C"
   {
     XtPointer next_extension;	/* 1st 4 required for all extension records */
     XrmQuark record_type;	/* NULLQUARK; when on ObjectClassPart */
-    long version;		/* must be XtObjectExtensionVersion */
+    long int version;		/* must be XtObjectExtensionVersion */
     Cardinal record_size;	/* sizeof(ObjectClassExtensionRec) */
     XtAllocateProc allocate;
     XtDeallocateProc deallocate;
@@ -112,7 +112,7 @@ extern "C"
   {
     XtPointer next_extension;	/* 1st 4 required for all extension records */
     XrmQuark record_type;	/* NULLQUARK; when on ObjectClassPart */
-    long version;		/* must be XtObjectExtensionVersion */
+    long int version;		/* must be XtObjectExtensionVersion */
     Cardinal record_size;	/* sizeof(ObjectClassExtensionRec) */
     XtAllocateProc allocate;
     XtDeallocateProc deallocate;

@@ -13,14 +13,14 @@ extern "C"
 
 
 
-  typedef unsigned long XSecurityAuthorization;
+  typedef unsigned long int XSecurityAuthorization;
 
   typedef struct
   {
     unsigned int timeout;
     unsigned int trust_level;
     XID group;
-    long event_mask;
+    long int event_mask;
   }
   XSecurityAuthorizationAttributes;
 
@@ -28,7 +28,7 @@ extern "C"
   extern Xauth *XSecurityAllocXauth (void);
   extern void XSecurityFreeXauth (Xauth *);
   extern Xauth *XSecurityGenerateAuthorization (Display *, Xauth *,
-						unsigned long,
+						unsigned long int,
 						XSecurityAuthorizationAttributes
 						*, XSecurityAuthorization *);
   extern int XSecurityQueryExtension (Display *, int *, int *);

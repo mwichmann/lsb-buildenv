@@ -47,8 +47,8 @@ extern "C"
 
   typedef struct
   {
-    long quot;
-    long rem;
+    long int quot;
+    long int rem;
   }
   ldiv_t;
 
@@ -58,28 +58,29 @@ extern "C"
 
   typedef struct
   {
-    long long quot;
-    long long rem;
+    long long int quot;
+    long long int rem;
   }
   lldiv_t;
 
 
   extern double __strtod_internal (const char *, char **, int);
   extern float __strtof_internal (const char *, char **, int);
-  extern long __strtol_internal (const char *, char **, int, int);
+  extern long int __strtol_internal (const char *, char **, int, int);
   extern long double __strtold_internal (const char *, char **, int);
-  extern long long __strtoll_internal (const char *, char **, int, int);
-  extern unsigned long __strtoul_internal (const char *, char **, int, int);
-  extern unsigned long long __strtoull_internal (const char *, char **, int,
-						 int);
-  extern long a64l (const char *);
+  extern long long int __strtoll_internal (const char *, char **, int, int);
+  extern unsigned long int __strtoul_internal (const char *, char **, int,
+					       int);
+  extern unsigned long long int __strtoull_internal (const char *, char **,
+						     int, int);
+  extern long int a64l (const char *);
   extern void abort (void);
   extern int abs (int);
   extern int atexit (void (*)(void));
   extern double atof (const char *);
   extern int atoi (const char *);
-  extern long atol (const char *);
-  extern long long atoll (const char *);
+  extern long int atol (const char *);
+  extern long long int atoll (const char *);
   extern void *bsearch (const void *, const void *, size_t, size_t,
 			__compar_fn_t);
   extern div_t div (int, int);
@@ -92,27 +93,27 @@ extern "C"
   extern char *getenv (const char *);
   extern int getsubopt (char **, char *const *, char **);
   extern int grantpt (int);
-  extern long jrand48 (unsigned short[3]);
-  extern char *l64a (long);
-  extern long labs (long);
+  extern long int jrand48 (unsigned short[3]);
+  extern char *l64a (long int);
+  extern long int labs (long int);
   extern void lcong48 (unsigned short[7]);
-  extern ldiv_t ldiv (long, long);
-  extern long long llabs (long long);
-  extern lldiv_t lldiv (long long, long long);
-  extern long lrand48 (void);
+  extern ldiv_t ldiv (long int, long int);
+  extern long long int llabs (long long int);
+  extern lldiv_t lldiv (long long int, long long int);
+  extern long int lrand48 (void);
   extern int mblen (const char *, size_t);
   extern size_t mbstowcs (wchar_t *, const char *, size_t);
   extern int mbtowc (wchar_t *, const char *, size_t);
   extern char *mktemp (char *);
-  extern long mrand48 (void);
-  extern long nrand48 (unsigned short[3]);
+  extern long int mrand48 (void);
+  extern long int nrand48 (unsigned short[3]);
   extern char *ptsname (int);
   extern int putenv (char *);
   extern void qsort (void *, size_t, size_t, const __compar_fn_t);
   extern int rand (void);
   extern int rand_r (unsigned int *);
   extern unsigned short *seed48 (unsigned short[]);
-  extern void srand48 (long);
+  extern void srand48 (long int);
   extern int unlockpt (int);
   extern size_t wcstombs (char *, const wchar_t *, size_t);
   extern int wctomb (char *, wchar_t);
@@ -121,20 +122,20 @@ extern "C"
   extern void free (void *);
   extern char *initstate (unsigned int, char *, size_t);
   extern void *malloc (size_t);
-  extern long random (void);
+  extern long int random (void);
   extern void *realloc (void *, size_t);
   extern char *setstate (char *);
   extern void srand (unsigned int);
   extern void srandom (unsigned int);
   extern double strtod (const char *, char **);
   extern float strtof (const char *, char **);
-  extern long strtol (const char *, char **, int);
+  extern long int strtol (const char *, char **, int);
   extern long double strtold (const char *, char **);
-  extern long long strtoll (const char *, char **, int);
-  extern long long strtoq (const char *, char **, int);
-  extern unsigned long strtoul (const char *, char **, int);
-  extern unsigned long long strtoull (const char *, char **, int);
-  extern unsigned long long strtouq (const char *, char **, int);
+  extern long long int strtoll (const char *, char **, int);
+  extern long long int strtoq (const char *, char **, int);
+  extern unsigned long int strtoul (const char *, char **, int);
+  extern unsigned long long int strtoull (const char *, char **, int);
+  extern unsigned long long int strtouq (const char *, char **, int);
   extern void _Exit (int);
   extern size_t __ctype_get_mb_cur_max (void);
   extern char **environ;

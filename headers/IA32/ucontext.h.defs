@@ -13,15 +13,15 @@ struct _libc_fpreg
 
 struct _libc_fpstate
 {
-  unsigned long cw;
-  unsigned long sw;
-  unsigned long tag;
-  unsigned long ipoff;
-  unsigned long cssel;
-  unsigned long dataoff;
-  unsigned long datasel;
+  unsigned long int cw;
+  unsigned long int sw;
+  unsigned long int tag;
+  unsigned long int ipoff;
+  unsigned long int cssel;
+  unsigned long int dataoff;
+  unsigned long int datasel;
   struct _libc_fpreg _st[8];
-  unsigned long status;
+  unsigned long int status;
 }
  ;
 typedef struct _libc_fpstate *fpregset_t;
@@ -30,14 +30,14 @@ typedef struct
 {
   gregset_t gregs;
   fpregset_t fpregs;
-  unsigned long oldmask;
-  unsigned long cr2;
+  unsigned long int oldmask;
+  unsigned long int cr2;
 }
 mcontext_t;
 
 typedef struct ucontext
 {
-  unsigned long uc_flags;
+  unsigned long int uc_flags;
   struct ucontext *uc_link;
   stack_t uc_stack;
   mcontext_t uc_mcontext;

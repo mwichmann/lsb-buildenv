@@ -25,7 +25,7 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  typedef long long int64_t;
+  typedef long long int int64_t;
 
 #endif
   typedef unsigned char u_int8_t;
@@ -38,11 +38,11 @@ extern "C"
 
   typedef int pid_t;
 
-  typedef unsigned long off_t;
+  typedef unsigned long int off_t;
 
   typedef int key_t;
 
-  typedef long suseconds_t;
+  typedef long int suseconds_t;
 
   typedef unsigned int u_int;
 
@@ -54,9 +54,9 @@ extern "C"
 
   typedef unsigned int useconds_t;
 
-  typedef unsigned long blksize_t;
+  typedef unsigned long int blksize_t;
 
-  typedef long fd_mask;
+  typedef long int fd_mask;
 
   typedef int timer_t;
 
@@ -64,32 +64,32 @@ extern "C"
 
 #if __ia64__
 /* IA64 */
-  typedef long int64_t;
+  typedef long int int64_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef long int64_t;
+  typedef long int int64_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef long int64_t;
+  typedef long int int64_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef long int64_t;
+  typedef long int int64_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef long long int64_t;
+  typedef long long int int64_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef long long int64_t;
+  typedef long long int int64_t;
 
 #endif
 
@@ -137,41 +137,41 @@ extern "C"
 /* Stuff that really in bits/types.h*/
 
 
-  typedef unsigned long long ino64_t;
+  typedef unsigned long long int ino64_t;
 
-  typedef long long loff_t;
+  typedef long long int loff_t;
 
-  typedef unsigned long blkcnt_t;
+  typedef unsigned long int blkcnt_t;
 
-  typedef unsigned long fsblkcnt_t;
+  typedef unsigned long int fsblkcnt_t;
 
-  typedef unsigned long fsfilcnt_t;
+  typedef unsigned long int fsfilcnt_t;
 
-  typedef unsigned long long blkcnt64_t;
+  typedef unsigned long long int blkcnt64_t;
 
-  typedef unsigned long long fsblkcnt64_t;
+  typedef unsigned long long int fsblkcnt64_t;
 
-  typedef unsigned long long fsfilcnt64_t;
+  typedef unsigned long long int fsfilcnt64_t;
 
   typedef unsigned char u_char;
 
   typedef unsigned short u_short;
 
-  typedef unsigned long u_long;
+  typedef unsigned long int u_long;
 
 
 /* Stuff really in linux/types.h*/
 
 
-  typedef unsigned long ino_t;
+  typedef unsigned long int ino_t;
 
   typedef unsigned int gid_t;
 
-  typedef unsigned long long dev_t;
+  typedef unsigned long long int dev_t;
 
   typedef unsigned int mode_t;
 
-  typedef unsigned long nlink_t;
+  typedef unsigned long int nlink_t;
 
   typedef char *caddr_t;
 
@@ -201,7 +201,7 @@ extern "C"
 
   typedef struct
   {
-    unsigned long fds_bits[__FDSET_LONGS];
+    unsigned long int fds_bits[__FDSET_LONGS];
   }
   fd_set;
 
@@ -209,9 +209,9 @@ extern "C"
 /* Time related types*/
 
 
-  typedef long clock_t;
+  typedef long int clock_t;
 
-  typedef long time_t;
+  typedef long int time_t;
 
 
 /* Setup some values*/

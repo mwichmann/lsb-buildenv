@@ -1,2 +1,2 @@
 
-typedef long intptr_t;
+typedef long int intptr_t;

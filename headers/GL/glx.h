@@ -31,7 +31,7 @@ extern "C"
 
   extern XVisualInfo *glXChooseVisual (Display *, int, int *);
   extern void glXCopyContext (Display *, GLXContext, GLXContext,
-			      unsigned long);
+			      unsigned long int);
   extern GLXContext glXCreateContext (Display *, XVisualInfo *, GLXContext,
 				      int);
   extern GLXPixmap glXCreateGLXPixmap (Display *, XVisualInfo *, Pixmap);
@@ -56,8 +56,9 @@ extern "C"
   extern void glXUseXFont (Font, int, int, int);
   extern void glXWaitGL (void);
   extern void glXWaitX (void);
-  extern void glXGetSelectedEvent (Display *, GLXDrawable, unsigned long *);
-  extern void glXSelectEvent (Display *, GLXDrawable, unsigned long);
+  extern void glXGetSelectedEvent (Display *, GLXDrawable,
+				   unsigned long int *);
+  extern void glXSelectEvent (Display *, GLXDrawable, unsigned long int);
   extern int glXQueryContext (Display *, GLXContext, int, int *);
   extern GLXDrawable glXGetCurrentReadDrawable (void);
   extern int glXMakeContextCurrent (Display *, GLXDrawable, GLXDrawable,

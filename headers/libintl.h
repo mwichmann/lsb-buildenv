@@ -18,10 +18,10 @@ extern "C"
   extern char *textdomain (const char *);
   extern char *bind_textdomain_codeset (const char *, const char *);
   extern char *dcngettext (const char *, const char *, const char *,
-			   unsigned long, int);
+			   unsigned long int, int);
   extern char *dngettext (const char *, const char *, const char *,
-			  unsigned long);
-  extern char *ngettext (const char *, const char *, unsigned long);
+			  unsigned long int);
+  extern char *ngettext (const char *, const char *, unsigned long int);
 #ifdef __cplusplus
 }
 #endif

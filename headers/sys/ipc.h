@@ -31,8 +31,8 @@ extern "C"
     unsigned short __pad1;
     unsigned short __seq;
     unsigned short __pad2;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    unsigned long int __unused1;
+    unsigned long int __unused2;
   }
    ;
 
@@ -49,8 +49,8 @@ extern "C"
     mode_t mode;		/* Read/write permission. */
     unsigned short __seq;	/* Sequence number. */
     unsigned short __pad1;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    unsigned long int __unused1;
+    unsigned long int __unused2;
   }
    ;
 
@@ -65,10 +65,10 @@ extern "C"
     uid_t cuid;
     uid_t cgid;
     mode_t mode;
-    long __seq;
+    long int __seq;
     int __pad1;
-    unsigned long long __unused1;
-    unsigned long long __unused2;
+    unsigned long long int __unused1;
+    unsigned long long int __unused2;
   }
    ;
 
@@ -86,8 +86,8 @@ extern "C"
     unsigned short __pad1;
     unsigned short __seq;
     unsigned short __pad2;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    unsigned long int __unused1;
+    unsigned long int __unused2;
   }
    ;
 
@@ -104,8 +104,8 @@ extern "C"
     mode_t mode;
     unsigned int __seq;
     unsigned int __pad1;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    unsigned long int __unused1;
+    unsigned long int __unused2;
   }
    ;
 
@@ -122,8 +122,8 @@ extern "C"
     mode_t mode;
     unsigned short __seq;
     unsigned short __pad2;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    unsigned long int __unused1;
+    unsigned long int __unused2;
   }
    ;
 
@@ -141,8 +141,8 @@ extern "C"
     unsigned short __pad1;
     unsigned short __seq;
     unsigned short __pad2;
-    unsigned long __unused1;
-    unsigned long __unused2;
+    unsigned long int __unused1;
+    unsigned long int __unused2;
   }
    ;
 

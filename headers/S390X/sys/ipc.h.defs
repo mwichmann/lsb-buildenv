@@ -9,7 +9,7 @@ struct ipc_perm
   mode_t mode;
   unsigned short __seq;
   unsigned short __pad2;
-  unsigned long __unused1;
-  unsigned long __unused2;
+  unsigned long int __unused1;
+  unsigned long int __unused2;
 }
  ;

@@ -118,9 +118,9 @@ extern "C"
     int depth;
     int bytes_per_line;
     int bits_per_pixel;
-    unsigned long red_mask;
-    unsigned long green_mask;
-    unsigned long blue_mask;
+    unsigned long int red_mask;
+    unsigned long int green_mask;
+    unsigned long int blue_mask;
     XPointer obdata;
     struct funcs f;
   }
@@ -296,7 +296,7 @@ extern "C"
     XMappingEvent xmapping;
     XErrorEvent xerror;
     XKeymapEvent xkeymap;
-    long pad[1];
+    long int pad[1];
   }
   XEvent;
 
@@ -367,13 +367,14 @@ extern "C"
   extern int XAddHosts (Display *, XHostAddress *, int);
   extern int XAddToExtensionList (struct _XExtData **, XExtData *);
   extern int XAddToSaveSet (Display *, Window);
-  extern unsigned long XAllPlanes (void);
+  extern unsigned long int XAllPlanes (void);
   extern int XAllocColor (Display *, Colormap, XColor *);
-  extern int XAllocColorCells (Display *, Colormap, int, unsigned long *,
-			       unsigned int, unsigned long *, unsigned int);
-  extern int XAllocColorPlanes (Display *, Colormap, int, unsigned long *,
-				int, int, int, int, unsigned long *,
-				unsigned long *, unsigned long *);
+  extern int XAllocColorCells (Display *, Colormap, int, unsigned long int *,
+			       unsigned int, unsigned long int *,
+			       unsigned int);
+  extern int XAllocColorPlanes (Display *, Colormap, int, unsigned long int *,
+				int, int, int, int, unsigned long int *,
+				unsigned long int *, unsigned long int *);
   extern int XAllocNamedColor (Display *, Colormap, const char *, XColor *,
 			       XColor *);
   extern int XAllowEvents (Display *, int, Time);
@@ -384,26 +385,26 @@ extern "C"
   extern int XBitmapBitOrder (Display *);
   extern int XBitmapPad (Display *);
   extern int XBitmapUnit (Display *);
-  extern unsigned long XBlackPixel (Display *, int);
-  extern unsigned long XBlackPixelOfScreen (Screen *);
+  extern unsigned long int XBlackPixel (Display *, int);
+  extern unsigned long int XBlackPixelOfScreen (Screen *);
   extern int XCellsOfScreen (Screen *);
   extern int XChangeActivePointerGrab (Display *, unsigned int, Cursor, Time);
-  extern int XChangeGC (Display *, GC, unsigned long, XGCValues *);
-  extern int XChangeKeyboardControl (Display *, unsigned long,
+  extern int XChangeGC (Display *, GC, unsigned long int, XGCValues *);
+  extern int XChangeKeyboardControl (Display *, unsigned long int,
 				     XKeyboardControl *);
   extern int XChangeKeyboardMapping (Display *, int, int, KeySym *, int);
   extern int XChangePointerControl (Display *, int, int, int, int, int);
   extern int XChangeProperty (Display *, Window, Atom, Atom, int, int,
 			      const unsigned char *, int);
   extern int XChangeSaveSet (Display *, Window, int);
-  extern int XChangeWindowAttributes (Display *, Window, unsigned long,
+  extern int XChangeWindowAttributes (Display *, Window, unsigned long int,
 				      XSetWindowAttributes *);
   extern int XCheckIfEvent (Display *, XEvent *,
 			    struct anon -X11 / Xlib.h - 2379, XPointer);
-  extern int XCheckMaskEvent (Display *, long, XEvent *);
+  extern int XCheckMaskEvent (Display *, long int, XEvent *);
   extern int XCheckTypedEvent (Display *, int, XEvent *);
   extern int XCheckTypedWindowEvent (Display *, Window, int, XEvent *);
-  extern int XCheckWindowEvent (Display *, Window, long, XEvent *);
+  extern int XCheckWindowEvent (Display *, Window, long int, XEvent *);
   extern int XCirculateSubwindows (Display *, Window, int);
   extern int XCirculateSubwindowsDown (Display *, Window);
   extern int XCirculateSubwindowsUp (Display *, Window);
@@ -422,16 +423,17 @@ extern "C"
   extern int XCopyArea (Display *, Drawable, Drawable, GC, int, int,
 			unsigned int, unsigned int, int, int);
   extern Colormap XCopyColormapAndFree (Display *, Colormap);
-  extern int XCopyGC (Display *, GC, unsigned long, GC);
+  extern int XCopyGC (Display *, GC, unsigned long int, GC);
   extern int XCopyPlane (Display *, Drawable, Drawable, GC, int, int,
-			 unsigned int, unsigned int, int, int, unsigned long);
+			 unsigned int, unsigned int, int, int,
+			 unsigned long int);
   extern Pixmap XCreateBitmapFromData (Display *, Drawable, const char *,
 				       unsigned int, unsigned int);
   extern Colormap XCreateColormap (Display *, Window, Visual *, int);
   extern Cursor XCreateFontCursor (Display *, unsigned int);
   extern XFontSet XCreateFontSet (Display *, const char *, char ***, int *,
 				  char **);
-  extern GC XCreateGC (Display *, Drawable, unsigned long, XGCValues *);
+  extern GC XCreateGC (Display *, Drawable, unsigned long int, XGCValues *);
   extern Cursor XCreateGlyphCursor (Display *, Font, Font, unsigned int,
 				    unsigned int, XColor *, XColor *);
   extern XIC XCreateIC (XIM, ...);
@@ -444,14 +446,14 @@ extern "C"
 				     XColor *, unsigned int, unsigned int);
   extern Pixmap XCreatePixmapFromBitmapData (Display *, Drawable, char *,
 					     unsigned int, unsigned int,
-					     unsigned long, unsigned long,
-					     unsigned int);
+					     unsigned long int,
+					     unsigned long int, unsigned int);
   extern Window XCreateSimpleWindow (Display *, Window, int, int,
 				     unsigned int, unsigned int, unsigned int,
-				     unsigned long, unsigned long);
+				     unsigned long int, unsigned long int);
   extern Window XCreateWindow (Display *, Window, int, int, unsigned int,
 			       unsigned int, unsigned int, int, unsigned int,
-			       Visual *, unsigned long,
+			       Visual *, unsigned long int,
 			       XSetWindowAttributes *);
   extern Colormap XDefaultColormap (Display *, int);
   extern Colormap XDefaultColormapOfScreen (Screen *);
@@ -478,7 +480,7 @@ extern "C"
   extern int XDisplayHeight (Display *, int);
   extern int XDisplayHeightMM (Display *, int);
   extern int XDisplayKeycodes (Display *, int *, int *);
-  extern unsigned long XDisplayMotionBufferSize (Display *);
+  extern unsigned long int XDisplayMotionBufferSize (Display *);
   extern char *XDisplayName (const char *);
   extern Display *XDisplayOfIM (XIM);
   extern Display *XDisplayOfOM (XOM);
@@ -527,9 +529,9 @@ extern "C"
   extern int XESetWireToError (void);
   extern int XESetWireToEvent (void);
   extern int XEnableAccessControl (Display *);
-  extern long XEventMaskOfScreen (Screen *);
+  extern long int XEventMaskOfScreen (Screen *);
   extern int XEventsQueued (Display *, int);
-  extern long XExtendedMaxRequestSize (Display *);
+  extern long int XExtendedMaxRequestSize (Display *);
   extern XFontSetExtents *XExtentsOfFontSet (XFontSet);
   extern char *XFetchBuffer (Display *, int *, int);
   extern char *XFetchBytes (Display *, int *);
@@ -549,8 +551,8 @@ extern "C"
   extern int XForceScreenSaver (Display *, int);
   extern int XFree (void *);
   extern int XFreeColormap (Display *, Colormap);
-  extern int XFreeColors (Display *, Colormap, unsigned long *, int,
-			  unsigned long);
+  extern int XFreeColors (Display *, Colormap, unsigned long int *, int,
+			  unsigned long int);
   extern int XFreeCursor (Display *, Cursor);
   extern int XFreeExtensionList (char **);
   extern int XFreeFont (Display *, XFontStruct *);
@@ -574,8 +576,8 @@ extern "C"
 				    const char *, char *, int);
   extern int XGetErrorText (Display *, int, char *, int);
   extern char **XGetFontPath (Display *, int *);
-  extern int XGetFontProperty (XFontStruct *, Atom, unsigned long *);
-  extern int XGetGCValues (Display *, GC, unsigned long, XGCValues *);
+  extern int XGetFontProperty (XFontStruct *, Atom, unsigned long int *);
+  extern int XGetGCValues (Display *, GC, unsigned long int, XGCValues *);
   extern int XGetGeometry (Display *, Drawable, Window *, int *, int *,
 			   unsigned int *, unsigned int *, unsigned int *,
 			   unsigned int *);
@@ -583,7 +585,7 @@ extern "C"
   extern char *XGetIMValues (XIM, ...);
   extern int XGetIconName (Display *, Window, char **);
   extern XImage *XGetImage (Display *, Drawable, int, int, unsigned int,
-			    unsigned int, unsigned long, int);
+			    unsigned int, unsigned long int, int);
   extern int XGetInputFocus (Display *, Window *, int *);
   extern int XGetKeyboardControl (Display *, XKeyboardState *);
   extern KeySym *XGetKeyboardMapping (Display *, unsigned int, int, int *);
@@ -596,15 +598,16 @@ extern "C"
   extern int XGetScreenSaver (Display *, int *, int *, int *, int *);
   extern Window XGetSelectionOwner (Display *, Atom);
   extern XImage *XGetSubImage (Display *, Drawable, int, int, unsigned int,
-			       unsigned int, unsigned long, int, XImage *,
+			       unsigned int, unsigned long int, int, XImage *,
 			       int, int);
   extern int XGetTransientForHint (Display *, Window, Window *);
   extern int XGetWMColormapWindows (Display *, Window, Window * *, int *);
   extern int XGetWMProtocols (Display *, Window, Atom * *, int *);
   extern int XGetWindowAttributes (Display *, Window, XWindowAttributes *);
-  extern int XGetWindowProperty (Display *, Window, Atom, long, long, int,
-				 Atom, Atom *, int *, unsigned long *,
-				 unsigned long *, unsigned char **);
+  extern int XGetWindowProperty (Display *, Window, Atom, long int, long int,
+				 int, Atom, Atom *, int *,
+				 unsigned long int *, unsigned long int *,
+				 unsigned char **);
   extern int XGrabButton (Display *, unsigned int, unsigned int, Window, int,
 			  unsigned int, int, int, Window, Cursor);
   extern int XGrabKey (Display *, int, unsigned int, Window, int, int, int);
@@ -631,7 +634,7 @@ extern "C"
   extern KeyCode XKeysymToKeycode (Display *, KeySym);
   extern char *XKeysymToString (KeySym);
   extern int XKillClient (Display *, XID);
-  extern unsigned long XLastKnownRequestProcessed (Display *);
+  extern unsigned long int XLastKnownRequestProcessed (Display *);
   extern int *XListDepths (Display *, int, int *);
   extern char **XListExtensions (Display *, int *);
   extern char **XListFonts (Display *, const char *, int, int *);
@@ -654,16 +657,16 @@ extern "C"
   extern int XMapRaised (Display *, Window);
   extern int XMapSubwindows (Display *, Window);
   extern int XMapWindow (Display *, Window);
-  extern int XMaskEvent (Display *, long, XEvent *);
+  extern int XMaskEvent (Display *, long int, XEvent *);
   extern int XMaxCmapsOfScreen (Screen *);
-  extern long XMaxRequestSize (Display *);
+  extern long int XMaxRequestSize (Display *);
   extern int XMinCmapsOfScreen (Screen *);
   extern int XMoveResizeWindow (Display *, Window, int, int, unsigned int,
 				unsigned int);
   extern int XMoveWindow (Display *, Window, int, int);
   extern XModifierKeymap *XNewModifiermap (int);
   extern int XNextEvent (Display *, XEvent *);
-  extern unsigned long XNextRequest (Display *);
+  extern unsigned long int XNextRequest (Display *);
   extern int XNoOp (Display *);
   extern XOM XOMOfOC (XOC);
   extern Display *XOpenDisplay (const char *);
@@ -740,14 +743,14 @@ extern "C"
   extern int XScreenNumberOfScreen (Screen *);
   extern Screen *XScreenOfDisplay (Display *, int);
   extern char *XScreenResourceString (Screen *);
-  extern int XSelectInput (Display *, Window, long);
-  extern int XSendEvent (Display *, Window, int, long, XEvent *);
+  extern int XSelectInput (Display *, Window, long int);
+  extern int XSendEvent (Display *, Window, int, long int, XEvent *);
   extern char *XServerVendor (Display *);
   extern int XSetAccessControl (Display *, int);
   extern int (*) (void) XSetAfterFunction;
   extern int XSetArcMode (Display *, GC, int);
   extern void XSetAuthorization (char *, int, char *, int);
-  extern int XSetBackground (Display *, GC, unsigned long);
+  extern int XSetBackground (Display *, GC, unsigned long int);
   extern int XSetClipMask (Display *, GC, Pixmap);
   extern int XSetClipOrigin (Display *, GC, int, int);
   extern int XSetClipRectangles (Display *, GC, int, int, XRectangle *, int,
@@ -760,7 +763,7 @@ extern "C"
   extern int XSetFillStyle (Display *, GC, int);
   extern int XSetFont (Display *, GC, Font);
   extern int XSetFontPath (Display *, char **, int);
-  extern int XSetForeground (Display *, GC, unsigned long);
+  extern int XSetForeground (Display *, GC, unsigned long int);
   extern int XSetFunction (Display *, GC, int);
   extern int XSetGraphicsExposures (Display *, GC, int);
   extern void XSetICFocus (XIC);
@@ -773,12 +776,12 @@ extern "C"
   extern int XSetModifierMapping (Display *, XModifierKeymap *);
   extern char *XSetOCValues (XOC, ...);
   extern char *XSetOMValues (XOM, ...);
-  extern int XSetPlaneMask (Display *, GC, unsigned long);
+  extern int XSetPlaneMask (Display *, GC, unsigned long int);
   extern int XSetPointerMapping (Display *, const unsigned char *, int);
   extern int XSetScreenSaver (Display *, int, int, int, int);
   extern int XSetSelectionOwner (Display *, Atom, Window, Time);
-  extern int XSetState (Display *, GC, unsigned long, unsigned long, int,
-			unsigned long);
+  extern int XSetState (Display *, GC, unsigned long int, unsigned long int,
+			int, unsigned long int);
   extern int XSetStipple (Display *, GC, Pixmap);
   extern int XSetSubwindowMode (Display *, GC, int);
   extern int XSetTSOrigin (Display *, GC, int, int);
@@ -786,9 +789,9 @@ extern "C"
   extern int XSetTransientForHint (Display *, Window, Window);
   extern int XSetWMColormapWindows (Display *, Window, Window *, int);
   extern int XSetWMProtocols (Display *, Window, Atom *, int);
-  extern int XSetWindowBackground (Display *, Window, unsigned long);
+  extern int XSetWindowBackground (Display *, Window, unsigned long int);
   extern int XSetWindowBackgroundPixmap (Display *, Window, Pixmap);
-  extern int XSetWindowBorder (Display *, Window, unsigned long);
+  extern int XSetWindowBorder (Display *, Window, unsigned long int);
   extern int XSetWindowBorderPixmap (Display *, Window, Pixmap);
   extern int XSetWindowBorderWidth (Display *, Window, unsigned int);
   extern int XSetWindowColormap (Display *, Window, Colormap);
@@ -798,7 +801,7 @@ extern "C"
   extern int XStoreColors (Display *, Colormap, XColor *, int);
   extern int XStoreName (Display *, Window, const char *);
   extern int XStoreNamedColor (Display *, Colormap, const char *,
-			       unsigned long, int);
+			       unsigned long int, int);
   extern KeySym XStringToKeysym (const char *);
   extern int XSupportsLocale (void);
   extern int XSync (Display *, int);
@@ -832,11 +835,11 @@ extern "C"
   extern VisualID XVisualIDFromVisual (Visual *);
   extern int XWarpPointer (Display *, Window, Window, int, int, unsigned int,
 			   unsigned int, int, int);
-  extern unsigned long XWhitePixel (Display *, int);
-  extern unsigned long XWhitePixelOfScreen (Screen *);
+  extern unsigned long int XWhitePixel (Display *, int);
+  extern unsigned long int XWhitePixelOfScreen (Screen *);
   extern int XWidthMMOfScreen (Screen *);
   extern int XWidthOfScreen (Screen *);
-  extern int XWindowEvent (Display *, Window, long, XEvent *);
+  extern int XWindowEvent (Display *, Window, long int, XEvent *);
   extern int XWithdrawWindow (Display *, Window, int);
   extern int XWriteBitmapFile (Display *, const char *, Pixmap, unsigned int,
 			       unsigned int, int, int);

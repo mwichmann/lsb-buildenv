@@ -7,7 +7,7 @@ typedef struct _XcmsFunctionSet
 }
 XcmsFunctionSet;
 
-typedef unsigned long XcmsColorFormat;
+typedef unsigned long int XcmsColorFormat;
 typedef double XcmsFloat;
 typedef struct
 {

@@ -14,7 +14,7 @@ extern "C"
 
 
 
-  typedef unsigned long reg_syntax_t;
+  typedef unsigned long int reg_syntax_t;
 
 
 
@@ -22,8 +22,8 @@ extern "C"
   typedef struct re_pattern_buffer
   {
     unsigned char *buffer;
-    unsigned long allocated;
-    unsigned long used;
+    unsigned long int allocated;
+    unsigned long int used;
     reg_syntax_t syntax;
     char *fastmap;
     char *translate;

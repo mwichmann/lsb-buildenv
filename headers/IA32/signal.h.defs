@@ -12,7 +12,7 @@ struct sigaction
   }
   __sigaction_handler;
   sigset_t sa_mask;
-  unsigned long sa_flags;
+  unsigned long int sa_flags;
   void (*sa_restorer) (void);
 }
  ;
@@ -34,28 +34,28 @@ struct _fpxreg
  ;
 struct _xmmreg
 {
-  unsigned long element[4];
+  unsigned long int element[4];
 }
  ;
 
 struct _fpstate
 {
-  unsigned long cw;
-  unsigned long sw;
-  unsigned long tag;
-  unsigned long ipoff;
-  unsigned long cssel;
-  unsigned long dataoff;
-  unsigned long datasel;
+  unsigned long int cw;
+  unsigned long int sw;
+  unsigned long int tag;
+  unsigned long int ipoff;
+  unsigned long int cssel;
+  unsigned long int dataoff;
+  unsigned long int datasel;
   struct _fpreg _st[8];
   unsigned short status;
   unsigned short magic;
-  unsigned long _fxsr_env[6];
-  unsigned long mxcsr;
-  unsigned long reserved;
+  unsigned long int _fxsr_env[6];
+  unsigned long int mxcsr;
+  unsigned long int reserved;
   struct _fpxreg _fxsr_st[8];
   struct _xmmreg _xmm[8];
-  unsigned long padding[56];
+  unsigned long int padding[56];
 }
  ;
 
@@ -69,25 +69,25 @@ struct sigcontext
   unsigned short __esh;
   unsigned short ds;
   unsigned short __dsh;
-  unsigned long edi;
-  unsigned long esi;
-  unsigned long ebp;
-  unsigned long esp;
-  unsigned long ebx;
-  unsigned long edx;
-  unsigned long ecx;
-  unsigned long eax;
-  unsigned long trapno;
-  unsigned long err;
-  unsigned long eip;
+  unsigned long int edi;
+  unsigned long int esi;
+  unsigned long int ebp;
+  unsigned long int esp;
+  unsigned long int ebx;
+  unsigned long int edx;
+  unsigned long int ecx;
+  unsigned long int eax;
+  unsigned long int trapno;
+  unsigned long int err;
+  unsigned long int eip;
   unsigned short cs;
   unsigned short __csh;
-  unsigned long eflags;
-  unsigned long esp_at_signal;
+  unsigned long int eflags;
+  unsigned long int esp_at_signal;
   unsigned short ss;
   unsigned short __ssh;
   struct _fpstate *fpstate;
-  unsigned long oldmask;
-  unsigned long cr2;
+  unsigned long int oldmask;
+  unsigned long int cr2;
 }
  ;

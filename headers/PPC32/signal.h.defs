@@ -12,7 +12,7 @@ struct sigaction
   }
   __sigaction_handler;
   sigset_t sa_mask;
-  unsigned long sa_flags;
+  unsigned long int sa_flags;
   void (*sa_restorer) (void);
 }
  ;
@@ -21,10 +21,10 @@ struct sigaction
 
 struct sigcontext
 {
-  long _unused[4];
+  long int _unused[4];
   int signal;
-  unsigned long handler;
-  unsigned long oldmask;
+  unsigned long int handler;
+  unsigned long int oldmask;
   struct pt_regs *regs;
 }
  ;

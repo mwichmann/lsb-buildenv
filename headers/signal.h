@@ -46,8 +46,8 @@ extern "C"
 /* S390X */
   typedef struct
   {
-    unsigned long mask;
-    unsigned long addr;
+    unsigned long int mask;
+    unsigned long int addr;
   } __attribute__ ((aligned (8))) _psw_t;
 
 #endif
@@ -55,8 +55,8 @@ extern "C"
 /* S390 */
   typedef struct
   {
-    unsigned long mask;
-    unsigned long addr;
+    unsigned long int mask;
+    unsigned long int addr;
   } __attribute__ ((aligned (8))) _psw_t;
 
 #endif
@@ -65,7 +65,7 @@ extern "C"
   typedef struct
   {
     _psw_t psw;
-    unsigned long gprs[__NUM_GPRS];
+    unsigned long int gprs[__NUM_GPRS];
     unsigned int acrs[__NUM_ACRS];
   }
   _s390_regs_common;
@@ -75,19 +75,19 @@ extern "C"
 /* PPC64 */
   struct pt_regs
   {
-    unsigned long gpr[32];
-    unsigned long nip;
-    unsigned long msr;
-    unsigned long orig_gpr3;
-    unsigned long ctr;
-    unsigned long link;
-    unsigned long xer;
-    unsigned long ccr;
-    unsigned long softe;
-    unsigned long trap;
-    unsigned long dar;
-    unsigned long dsisr;
-    unsigned long result;
+    unsigned long int gpr[32];
+    unsigned long int nip;
+    unsigned long int msr;
+    unsigned long int orig_gpr3;
+    unsigned long int ctr;
+    unsigned long int link;
+    unsigned long int xer;
+    unsigned long int ccr;
+    unsigned long int softe;
+    unsigned long int trap;
+    unsigned long int dar;
+    unsigned long int dsisr;
+    unsigned long int result;
   }
    ;
 
@@ -97,7 +97,7 @@ extern "C"
   typedef struct
   {
     _psw_t psw;
-    unsigned long gprs[16];
+    unsigned long int gprs[16];
     unsigned int acrs[16];
   }
   _s390_regs_common;
@@ -406,7 +406,7 @@ extern "C"
 
   typedef struct
   {
-    unsigned long sig[_SIGSET_NWORDS];
+    unsigned long int sig[_SIGSET_NWORDS];
   }
   sigset_t;
 
@@ -437,7 +437,7 @@ extern "C"
     }
     __sigaction_handler;
     sigset_t sa_mask;
-    unsigned long sa_flags;
+    unsigned long int sa_flags;
     void (*sa_restorer) (void);
   }
    ;
@@ -453,7 +453,7 @@ extern "C"
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
-    unsigned long sa_flags;
+    unsigned long int sa_flags;
     sigset_t sa_mask;		/* mask last for extensibility */
   }
    ;
@@ -470,7 +470,7 @@ extern "C"
     }
     __sigaction_handler;
     sigset_t sa_mask;
-    unsigned long sa_flags;
+    unsigned long int sa_flags;
     void (*sa_restorer) (void);
   }
    ;
@@ -487,7 +487,7 @@ extern "C"
     }
     __sigaction_handler;
     sigset_t sa_mask;
-    unsigned long sa_flags;
+    unsigned long int sa_flags;
     void (*sa_restorer) (void);
   }
    ;
@@ -520,7 +520,7 @@ extern "C"
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
-    unsigned long sa_flags;
+    unsigned long int sa_flags;
     void (*sa_restorer) (void);
     sigset_t sa_mask;
   }
@@ -633,7 +633,7 @@ extern "C"
 /* IA32 */
   struct _xmmreg
   {
-    unsigned long element[4];
+    unsigned long int element[4];
   }
    ;
 
@@ -644,7 +644,7 @@ extern "C"
   {
     union
     {
-      unsigned long bits[2];
+      unsigned long int bits[2];
       long double __dummy;	/* force 16-byte alignment */
     }
     u;
@@ -720,22 +720,22 @@ extern "C"
 /* IA32 */
   struct _fpstate
   {
-    unsigned long cw;
-    unsigned long sw;
-    unsigned long tag;
-    unsigned long ipoff;
-    unsigned long cssel;
-    unsigned long dataoff;
-    unsigned long datasel;
+    unsigned long int cw;
+    unsigned long int sw;
+    unsigned long int tag;
+    unsigned long int ipoff;
+    unsigned long int cssel;
+    unsigned long int dataoff;
+    unsigned long int datasel;
     struct _fpreg _st[8];
     unsigned short status;
     unsigned short magic;
-    unsigned long _fxsr_env[6];
-    unsigned long mxcsr;
-    unsigned long reserved;
+    unsigned long int _fxsr_env[6];
+    unsigned long int mxcsr;
+    unsigned long int reserved;
     struct _fpxreg _fxsr_st[8];
     struct _xmmreg _xmm[8];
-    unsigned long padding[56];
+    unsigned long int padding[56];
   }
    ;
 
@@ -775,26 +775,26 @@ extern "C"
     unsigned short __esh;
     unsigned short ds;
     unsigned short __dsh;
-    unsigned long edi;
-    unsigned long esi;
-    unsigned long ebp;
-    unsigned long esp;
-    unsigned long ebx;
-    unsigned long edx;
-    unsigned long ecx;
-    unsigned long eax;
-    unsigned long trapno;
-    unsigned long err;
-    unsigned long eip;
+    unsigned long int edi;
+    unsigned long int esi;
+    unsigned long int ebp;
+    unsigned long int esp;
+    unsigned long int ebx;
+    unsigned long int edx;
+    unsigned long int ecx;
+    unsigned long int eax;
+    unsigned long int trapno;
+    unsigned long int err;
+    unsigned long int eip;
     unsigned short cs;
     unsigned short __csh;
-    unsigned long eflags;
-    unsigned long esp_at_signal;
+    unsigned long int eflags;
+    unsigned long int esp_at_signal;
     unsigned short ss;
     unsigned short __ssh;
     struct _fpstate *fpstate;
-    unsigned long oldmask;
-    unsigned long cr2;
+    unsigned long int oldmask;
+    unsigned long int cr2;
   }
    ;
 
@@ -803,30 +803,30 @@ extern "C"
 /* IA64 */
   struct sigcontext
   {
-    unsigned long sc_flags;
-    unsigned long sc_nat;
+    unsigned long int sc_flags;
+    unsigned long int sc_nat;
     stack_t sc_stack;
-    unsigned long sc_ip;
-    unsigned long sc_cfm;
-    unsigned long sc_um;
-    unsigned long sc_ar_rsc;
-    unsigned long sc_ar_bsp;
-    unsigned long sc_ar_rnat;
-    unsigned long sc_ar_ccv;
-    unsigned long sc_ar_unat;
-    unsigned long sc_ar_fpsr;
-    unsigned long sc_ar_pfs;
-    unsigned long sc_ar_lc;
-    unsigned long sc_pr;
-    unsigned long sc_br[8];
-    unsigned long sc_gr[32];
+    unsigned long int sc_ip;
+    unsigned long int sc_cfm;
+    unsigned long int sc_um;
+    unsigned long int sc_ar_rsc;
+    unsigned long int sc_ar_bsp;
+    unsigned long int sc_ar_rnat;
+    unsigned long int sc_ar_ccv;
+    unsigned long int sc_ar_unat;
+    unsigned long int sc_ar_fpsr;
+    unsigned long int sc_ar_pfs;
+    unsigned long int sc_ar_lc;
+    unsigned long int sc_pr;
+    unsigned long int sc_br[8];
+    unsigned long int sc_gr[32];
     struct ia64_fpreg sc_fr[128];
-    unsigned long sc_rbs_base;	/* NULL or new base of sighandler's rbs */
-    unsigned long sc_loadrs;	/* see description above */
-    unsigned long sc_ar25;	/* cmp8xchg16 uses this */
-    unsigned long sc_ar26;	/*  rsvd for scratch use */
-    unsigned long sc_rsvd[12];
-    unsigned long sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
+    unsigned long int sc_rbs_base;	/* NULL or new base of sighandler's rbs */
+    unsigned long int sc_loadrs;	/* see description above */
+    unsigned long int sc_ar25;	/* cmp8xchg16 uses this */
+    unsigned long int sc_ar26;	/*  rsvd for scratch use */
+    unsigned long int sc_rsvd[12];
+    unsigned long int sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
   }
    ;
 
@@ -835,10 +835,10 @@ extern "C"
 /* PPC32 */
   struct sigcontext
   {
-    long _unused[4];
+    long int _unused[4];
     int signal;
-    unsigned long handler;
-    unsigned long oldmask;
+    unsigned long int handler;
+    unsigned long int oldmask;
     struct pt_regs *regs;
   }
    ;
@@ -848,34 +848,34 @@ extern "C"
 /* x86-64 */
   struct sigcontext
   {
-    unsigned long r8;
-    unsigned long r9;
-    unsigned long r10;
-    unsigned long r11;
-    unsigned long r12;
-    unsigned long r13;
-    unsigned long r14;
-    unsigned long r15;
-    unsigned long rdi;
-    unsigned long rsi;
-    unsigned long rbp;
-    unsigned long rbx;
-    unsigned long rdx;
-    unsigned long rax;
-    unsigned long rcx;
-    unsigned long rsp;
-    unsigned long rip;
-    unsigned long eflags;
+    unsigned long int r8;
+    unsigned long int r9;
+    unsigned long int r10;
+    unsigned long int r11;
+    unsigned long int r12;
+    unsigned long int r13;
+    unsigned long int r14;
+    unsigned long int r15;
+    unsigned long int rdi;
+    unsigned long int rsi;
+    unsigned long int rbp;
+    unsigned long int rbx;
+    unsigned long int rdx;
+    unsigned long int rax;
+    unsigned long int rcx;
+    unsigned long int rsp;
+    unsigned long int rip;
+    unsigned long int eflags;
     unsigned short cs;
     unsigned short gs;
     unsigned short fs;
     unsigned short __pad0;
-    unsigned long err;
-    unsigned long trapno;
-    unsigned long oldmask;
-    unsigned long cr2;
+    unsigned long int err;
+    unsigned long int trapno;
+    unsigned long int oldmask;
+    unsigned long int cr2;
     struct _fpstate *fpstate;
-    unsigned long __reserved1[8];
+    unsigned long int __reserved1[8];
   }
    ;
 
@@ -884,12 +884,12 @@ extern "C"
 /* PPC64 */
   struct sigcontext
   {
-    unsigned long _unused[4];
+    unsigned long int _unused[4];
     int signal;
-    unsigned long handler;
-    unsigned long oldmask;
+    unsigned long int handler;
+    unsigned long int oldmask;
     struct pt_regs *regs;
-    unsigned long gp_regs[48];
+    unsigned long int gp_regs[48];
     double fp_regs[33];
   }
    ;
@@ -899,7 +899,7 @@ extern "C"
 /* S390 */
   struct sigcontext
   {
-    unsigned long oldmask[2];
+    unsigned long int oldmask[2];
     _sigregs *sregs;
   }
    ;
@@ -909,7 +909,7 @@ extern "C"
 /* S390X */
   struct sigcontext
   {
-    unsigned long oldmask;
+    unsigned long int oldmask;
     _sigregs *sregs;
   }
    ;

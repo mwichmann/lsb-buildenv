@@ -62,7 +62,7 @@ struct
 {
   XtPointer next_extension;
   XrmQuark record_type;
-  long version;
+  long int version;
   Cardinal record_size;
   XtAllocateProc allocate;
   XtDeallocateProc deallocate;
@@ -73,7 +73,7 @@ typedef struct
 {
   XtPointer next_extension;
   XrmQuark record_type;
-  long version;
+  long int version;
   Cardinal record_size;
   XtAllocateProc allocate;
   XtDeallocateProc deallocate;
@@ -83,7 +83,7 @@ typedef struct
 {
   XtPointer next_extension;
   XrmQuark record_type;
-  long version;
+  long int version;
   Cardinal record_size;
   XtAllocateProc allocate;
   XtDeallocateProc deallocate;

@@ -39,7 +39,7 @@ extern "C"
 
 
 
-  extern int fmtmsg (long, const char *, int, const char *, const char *,
+  extern int fmtmsg (long int, const char *, int, const char *, const char *,
 		     const char *);
 #ifdef __cplusplus
 }

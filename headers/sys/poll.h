@@ -24,7 +24,7 @@ extern "C"
   }
    ;
 
-  typedef unsigned long nfds_t;
+  typedef unsigned long int nfds_t;
 
 
 #ifdef __cplusplus

@@ -7,9 +7,9 @@ struct ipc_perm
   uid_t cuid;
   uid_t cgid;
   mode_t mode;
-  long __seq;
+  long int __seq;
   int __pad1;
-  unsigned long long __unused1;
-  unsigned long long __unused2;
+  unsigned long long int __unused1;
+  unsigned long long int __unused2;
 }
  ;

@@ -28,7 +28,7 @@ extern "C"
 
   struct dirent
   {
-    long d_ino;
+    long int d_ino;
     off_t d_off;
     unsigned short d_reclen;
     unsigned char d_type;
@@ -48,8 +48,8 @@ extern "C"
 
 
   extern void rewinddir (DIR *);
-  extern void seekdir (DIR *, long);
-  extern long telldir (DIR *);
+  extern void seekdir (DIR *, long int);
+  extern long int telldir (DIR *);
   extern int closedir (DIR *);
   extern DIR *opendir (const char *);
   extern struct dirent *readdir (DIR *);

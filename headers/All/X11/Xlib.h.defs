@@ -51,9 +51,9 @@ typedef struct _XImage
   int depth;
   int bytes_per_line;
   int bits_per_pixel;
-  unsigned long red_mask;
-  unsigned long green_mask;
-  unsigned long blue_mask;
+  unsigned long int red_mask;
+  unsigned long int green_mask;
+  unsigned long int blue_mask;
   XPointer obdata;
   struct funcs f;
 }
@@ -151,7 +151,7 @@ typedef union _XEvent
   XMappingEvent xmapping;
   XErrorEvent xerror;
   XKeymapEvent xkeymap;
-  long pad[1];
+  long int pad[1];
 }
 XEvent;
 

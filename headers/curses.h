@@ -107,7 +107,7 @@ extern "C"
 /* curses related structures*/
 
 
-  typedef unsigned long chtype;
+  typedef unsigned long int chtype;
 
   typedef struct screen SCREEN;
 

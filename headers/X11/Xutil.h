@@ -60,20 +60,22 @@ extern "C"
   extern int XGetClassHint (Display *, Window, XClassHint *);
   extern int XGetIconSizes (Display *, Window, XIconSize * *, int *);
   extern int XGetNormalHints (Display *, Window, XSizeHints *);
-  extern unsigned long XGetPixel (void);
+  extern unsigned long int XGetPixel (void);
   extern int XGetRGBColormaps (Display *, Window, XStandardColormap * *,
 			       int *, Atom);
   extern int XGetSizeHints (Display *, Window, XSizeHints *, Atom);
   extern int XGetStandardColormap (Display *, Window, XStandardColormap *,
 				   Atom);
   extern int XGetTextProperty (Display *, Window, XTextProperty *, Atom);
-  extern XVisualInfo *XGetVisualInfo (Display *, long, XVisualInfo *, int *);
+  extern XVisualInfo *XGetVisualInfo (Display *, long int, XVisualInfo *,
+				      int *);
   extern int XGetWMClientMachine (Display *, Window, XTextProperty *);
   extern XWMHints *XGetWMHints (Display *, Window);
   extern int XGetWMIconName (Display *, Window, XTextProperty *);
   extern int XGetWMName (Display *, Window, XTextProperty *);
-  extern int XGetWMNormalHints (Display *, Window, XSizeHints *, long *);
-  extern int XGetWMSizeHints (Display *, Window, XSizeHints *, long *, Atom);
+  extern int XGetWMNormalHints (Display *, Window, XSizeHints *, long int *);
+  extern int XGetWMSizeHints (Display *, Window, XSizeHints *, long int *,
+			      Atom);
   extern int XGetZoomHints (Display *, Window, XSizeHints *);
   extern int XIntersectRegion (Region, Region, Region);
   extern int XLookupString (XKeyEvent *, char *, int, KeySym *,

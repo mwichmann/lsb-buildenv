@@ -30,7 +30,7 @@ extern "C"
 
   typedef unsigned int uInt;
 
-  typedef unsigned long uLong;
+  typedef unsigned long int uLong;
 
   typedef uLong uLongf;
 

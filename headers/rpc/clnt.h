@@ -83,8 +83,8 @@ extern "C"
       RE_vers;
       struct
       {
-	long s1;
-	long s2;
+	long int s1;
+	long int s2;
       }
       RE_lb;
     }

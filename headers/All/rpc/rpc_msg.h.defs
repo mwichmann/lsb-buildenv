@@ -29,8 +29,8 @@ struct accepted_reply
   {
     struct
     {
-      unsigned long low;
-      unsigned long high;
+      unsigned long int low;
+      unsigned long int high;
     }
     AR_versions;
     struct
@@ -51,8 +51,8 @@ struct rejected_reply
   {
     struct
     {
-      unsigned long low;
-      unsigned long high;
+      unsigned long int low;
+      unsigned long int high;
     }
     RJ_versions;
     enum auth_stat RJ_why;
@@ -75,10 +75,10 @@ struct reply_body
 
 struct call_body
 {
-  unsigned long cb_rpcvers;
-  unsigned long cb_prog;
-  unsigned long cb_vers;
-  unsigned long cb_proc;
+  unsigned long int cb_rpcvers;
+  unsigned long int cb_prog;
+  unsigned long int cb_vers;
+  unsigned long int cb_proc;
   struct opaque_auth cb_cred;
   struct opaque_auth cb_verf;
 }
@@ -86,7 +86,7 @@ struct call_body
 
 struct rpc_msg
 {
-  unsigned long rm_xid;
+  unsigned long int rm_xid;
   enum msg_type rm_direction;
   union
   {

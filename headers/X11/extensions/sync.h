@@ -85,10 +85,10 @@ extern "C"
 
 
   extern int XSyncAwait (Display *, XSyncWaitCondition *, int);
-  extern int XSyncChangeAlarm (Display *, XSyncAlarm, unsigned long,
+  extern int XSyncChangeAlarm (Display *, XSyncAlarm, unsigned long int,
 			       XSyncAlarmAttributes *);
   extern int XSyncChangeCounter (Display *, XSyncCounter, XSyncValue);
-  extern XSyncAlarm XSyncCreateAlarm (Display *, unsigned long,
+  extern XSyncAlarm XSyncCreateAlarm (Display *, unsigned long int,
 				      XSyncAlarmAttributes *);
   extern XSyncCounter XSyncCreateCounter (Display *, XSyncValue);
   extern int XSyncDestroyAlarm (Display *, XSyncAlarm);

@@ -17,8 +17,8 @@ XDR;
 
 struct xdr_ops
 {
-  bool_t (*x_getlong) (XDR * __xdrs, long *__lp);
-  bool_t (*x_putlong) (XDR * __xdrs, long *__lp);
+  bool_t (*x_getlong) (XDR * __xdrs, long int *__lp);
+  bool_t (*x_putlong) (XDR * __xdrs, long int *__lp);
   bool_t (*x_getbytes) (XDR * __xdrs, caddr_t __addr, u_int __len);
   bool_t (*x_putbytes) (XDR * __xdrs, char *__addr, u_int __len);
   u_int (*x_getpostn) (XDR * __xdrs);

@@ -78,7 +78,7 @@ extern "C"
 
   typedef struct
   {
-    unsigned long sequence_of_request;
+    unsigned long int sequence_of_request;
     int major_opcode_of_request;
     int minor_opcode_of_request;
     IcePointer reply;
@@ -142,7 +142,7 @@ extern "C"
 
   extern IceConn IceAcceptConnection (IceListenObj, IceAcceptStatus *);
   extern int IceAddConnectionWatch (IceWatchProc, IcePointer);
-  extern char *IceAllocScratch (IceConn, unsigned long);
+  extern char *IceAllocScratch (IceConn, unsigned long int);
   extern void IceAppLockConn (IceConn);
   extern void IceAppUnlockConn (IceConn);
   extern int IceCheckShutdownNegotiation (IceConn);
@@ -159,8 +159,8 @@ extern "C"
   extern char *IceGetListenConnectionString (IceListenObj);
   extern int IceGetOutBufSize (IceConn);
   extern int IceInitThreads (void);
-  extern unsigned long IceLastReceivedSequenceNumber (IceConn);
-  extern unsigned long IceLastSentSequenceNumber (IceConn);
+  extern unsigned long int IceLastReceivedSequenceNumber (IceConn);
+  extern unsigned long int IceLastSentSequenceNumber (IceConn);
   extern int IceListenForConnections (int *, IceListenObj * *, int, char *);
   extern int IceListenForWellKnownConnections (char *, int *,
 					       IceListenObj * *, int, char *);

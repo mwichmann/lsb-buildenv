@@ -5,13 +5,13 @@
 
 typedef struct
 {
-  unsigned long mask;
-  unsigned long addr;
+  unsigned long int mask;
+  unsigned long int addr;
 } __attribute__ ((aligned (8))) _psw_t;
 typedef struct
 {
   _psw_t psw;
-  unsigned long gprs[__NUM_GPRS];
+  unsigned long int gprs[__NUM_GPRS];
   unsigned int acrs[__NUM_ACRS];
 }
 _s390_regs_common;
@@ -29,7 +29,7 @@ struct sigaction
   }
   __sigaction_handler;
   sigset_t sa_mask;
-  unsigned long sa_flags;
+  unsigned long int sa_flags;
   void (*sa_restorer) (void);
 }
  ;
@@ -51,7 +51,7 @@ _sigregs;
 
 struct sigcontext
 {
-  unsigned long oldmask[2];
+  unsigned long int oldmask[2];
   _sigregs *sregs;
 }
  ;

@@ -41,8 +41,8 @@ extern "C"
 
   struct xdr_ops
   {
-    bool_t (*x_getlong) (XDR * __xdrs, long *__lp);
-    bool_t (*x_putlong) (XDR * __xdrs, long *__lp);
+    bool_t (*x_getlong) (XDR * __xdrs, long int *__lp);
+    bool_t (*x_putlong) (XDR * __xdrs, long int *__lp);
     bool_t (*x_getbytes) (XDR * __xdrs, caddr_t __addr, u_int __len);
     bool_t (*x_putbytes) (XDR * __xdrs, char *__addr, u_int __len);
     u_int (*x_getpostn) (XDR * __xdrs);
@@ -82,7 +82,7 @@ extern "C"
   extern bool_t xdr_float (XDR *, float *);
   extern void xdr_free (xdrproc_t, char *);
   extern bool_t xdr_int (XDR *, int *);
-  extern bool_t xdr_long (XDR *, long *);
+  extern bool_t xdr_long (XDR *, long int *);
   extern bool_t xdr_opaque (XDR *, caddr_t, u_int);
   extern bool_t xdr_pointer (XDR *, char **, u_int, xdrproc_t);
   extern bool_t xdr_reference (XDR *, caddr_t *, u_int, xdrproc_t);

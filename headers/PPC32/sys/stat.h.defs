@@ -17,8 +17,8 @@ struct stat64
   struct timespec st_atim;
   struct timespec st_mtim;
   struct timespec st_ctim;
-  unsigned long __unused4;
-  unsigned long __unused5;
+  unsigned long int __unused4;
+  unsigned long int __unused5;
 }
  ;
 struct stat
@@ -38,7 +38,7 @@ struct stat
   struct timespec st_atim;
   struct timespec st_mtim;
   struct timespec st_ctim;
-  unsigned long __unused4;
-  unsigned long __unused5;
+  unsigned long int __unused4;
+  unsigned long int __unused5;
 }
  ;

@@ -20,19 +20,19 @@ extern "C"
 /* PPC32 */
   struct pt_regs
   {
-    unsigned long gpr[32];
-    unsigned long nip;
-    unsigned long msr;
-    unsigned long orig_gpr3;	/* Used for restarting system calls */
-    unsigned long ctr;
-    unsigned long link;
-    unsigned long xer;
-    unsigned long ccr;
-    unsigned long mq;		/* 601 only (not used at present). Used on APUS to hold IPL val */
-    unsigned long trap;		/* Reason for being here */
-    unsigned long dar;		/* Fault registers */
-    unsigned long dsisr;
-    unsigned long result;	/* Result of a system call */
+    unsigned long int gpr[32];
+    unsigned long int nip;
+    unsigned long int msr;
+    unsigned long int orig_gpr3;	/* Used for restarting system calls */
+    unsigned long int ctr;
+    unsigned long int link;
+    unsigned long int xer;
+    unsigned long int ccr;
+    unsigned long int mq;	/* 601 only (not used at present). Used on APUS to hold IPL val */
+    unsigned long int trap;	/* Reason for being here */
+    unsigned long int dar;	/* Fault registers */
+    unsigned long int dsisr;
+    unsigned long int result;	/* Result of a system call */
   }
    ;
 
@@ -62,18 +62,12 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef struct _libc_vscr
-  {
-    unsigned int __pad[3];
-    unsigned int vscr_word;
-  } vscr_t;
-
   typedef struct _libc_vrstate
   {
-    unsigned int vrregs[32][4];
+    unsigned int vrregs[4];
     vscr_t vscr;
     unsigned int vrsave;
-    unsigned int __pad[3];
+    unsigned int __pad;
   }
   vrregset_t __attribute__ ((__aligned__ (16)));
 
@@ -89,7 +83,7 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef long greg_t;
+  typedef long int greg_t;
 
 #endif
 
@@ -130,12 +124,12 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef unsigned long gregset_t[48];
+  typedef unsigned long int gregset_t[48];
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef unsigned long gregset_t[48];
+  typedef unsigned long int gregset_t[48];
 
 #endif
 
@@ -187,15 +181,15 @@ extern "C"
 /* IA32 */
   struct _libc_fpstate
   {
-    unsigned long cw;
-    unsigned long sw;
-    unsigned long tag;
-    unsigned long ipoff;
-    unsigned long cssel;
-    unsigned long dataoff;
-    unsigned long datasel;
+    unsigned long int cw;
+    unsigned long int sw;
+    unsigned long int tag;
+    unsigned long int ipoff;
+    unsigned long int cssel;
+    unsigned long int dataoff;
+    unsigned long int datasel;
     struct _libc_fpreg _st[8];
-    unsigned long status;
+    unsigned long int status;
   }
    ;
 
@@ -287,8 +281,8 @@ extern "C"
   {
     gregset_t gregs;
     fpregset_t fpregs;
-    unsigned long oldmask;
-    unsigned long cr2;
+    unsigned long int oldmask;
+    unsigned long int cr2;
   }
   mcontext_t;
 
@@ -302,16 +296,16 @@ extern "C"
 /* PPC64 */
   typedef struct
   {
-    unsigned long __unused[4];
+    unsigned long int __unused;
     int signal;
     int pad0;
-    unsigned long handler;
-    unsigned long oldmask;
+    unsigned long int handler;
+    unsigned long int oldmask;
     struct pt_regs *regs;
     gregset_t gp_regs;
     fpregset_t fp_regs;
     vrregset_t *v_regs;
-    long vmx_reserve[69];
+    long int vmx_reserve;
   }
   mcontext_t;
 
@@ -321,7 +315,7 @@ extern "C"
   typedef struct
   {
     _psw_t psw;
-    unsigned long gregs[16];
+    unsigned long int gregs[16];
     unsigned int aregs[16];
     fpregset_t fpregs;
   }
@@ -333,7 +327,7 @@ extern "C"
   typedef struct
   {
     _psw_t psw;
-    unsigned long gregs[16];
+    unsigned long int gregs[16];
     unsigned int aregs[16];
     fpregset_t fpregs;
   }
@@ -346,7 +340,7 @@ extern "C"
   {
     gregset_t gregs;
     fpregset_t fpregs;
-    unsigned long __reserved1[8];
+    unsigned long int __reserved1[8];
   }
   mcontext_t;
 
@@ -383,7 +377,7 @@ extern "C"
 /* IA32 */
   typedef struct ucontext
   {
-    unsigned long uc_flags;
+    unsigned long int uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     mcontext_t uc_mcontext;
@@ -402,7 +396,7 @@ extern "C"
       mcontext_t _mc;
       struct
       {
-	unsigned long _pad[_SC_GR0_OFFSET / 8];
+	unsigned long int _pad[_SC_GR0_OFFSET / 8];
 	struct ucontext *_link;
       }
       _uc;
@@ -416,7 +410,7 @@ extern "C"
 /* PPC32 */
   typedef struct ucontext
   {
-    unsigned long uc_flags;
+    unsigned long int uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     int uc_pad[7];
@@ -431,7 +425,7 @@ extern "C"
 /* S390X */
   typedef struct ucontext
   {
-    unsigned long uc_flags;
+    unsigned long int uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     mcontext_t uc_mcontext;
@@ -444,7 +438,7 @@ extern "C"
 /* S390 */
   typedef struct ucontext
   {
-    unsigned long uc_flags;
+    unsigned long int uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     mcontext_t uc_mcontext;
@@ -457,7 +451,7 @@ extern "C"
 /* x86-64 */
   typedef struct ucontext
   {
-    unsigned long uc_flags;
+    unsigned long int uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     mcontext_t uc_mcontext;
@@ -471,7 +465,7 @@ extern "C"
 /* PPC64 */
   typedef struct ucontext
   {
-    unsigned long uc_flags;
+    unsigned long int uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     sigset_t uc_sigmask;

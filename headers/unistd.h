@@ -19,7 +19,7 @@ extern "C"
 #define STDERR_FILENO	2
 
 
-  typedef long long off64_t;
+  typedef long long int off64_t;
 
 #if __i386__
 /* IA32 */
@@ -28,12 +28,12 @@ extern "C"
 #endif
 #if __ia64__
 /* IA64 */
-  typedef long intptr_t;
+  typedef long int intptr_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef long intptr_t;
+  typedef long int intptr_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
@@ -48,7 +48,7 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef long intptr_t;
+  typedef long int intptr_t;
 
 #endif
 
@@ -278,7 +278,7 @@ extern "C"
   extern int execvp (const char *, char *const[]);
   extern int fdatasync (int);
   extern int ftruncate64 (int, off64_t);
-  extern long gethostid (void);
+  extern long int gethostid (void);
   extern char *getlogin (void);
   extern int getopt (int, char *const[], const char *);
   extern pid_t getpgrp (void);
@@ -335,7 +335,7 @@ extern "C"
   extern int lchown (const char *, uid_t, gid_t);
   extern int link (const char *, const char *);
   extern int mkdir (const char *, mode_t);
-  extern long pathconf (const char *, int);
+  extern long int pathconf (const char *, int);
   extern int pipe (int[2]);
   extern int readlink (const char *, char *, size_t);
   extern int rmdir (const char *);
@@ -349,13 +349,13 @@ extern "C"
   extern int setuid (uid_t);
   extern unsigned int sleep (unsigned int);
   extern int symlink (const char *, const char *);
-  extern long sysconf (int);
+  extern long int sysconf (int);
   extern int unlink (const char *);
   extern pid_t vfork (void);
   extern ssize_t pread (int, void *, size_t, off_t);
   extern ssize_t pwrite (int, const void *, size_t, off_t);
   extern char **_environ;
-  extern long fpathconf (int, int);
+  extern long int fpathconf (int, int);
   extern int ftruncate (int, off_t);
   extern char *getcwd (char *, size_t);
   extern int getpagesize (void);

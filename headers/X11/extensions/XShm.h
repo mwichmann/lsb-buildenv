@@ -23,7 +23,7 @@ extern "C"
   extern int XShmDetach (Display *, XShmSegmentInfo *);
   extern int XShmGetEventBase (Display *);
   extern int XShmGetImage (Display *, Drawable, XImage *, int, int,
-			   unsigned long);
+			   unsigned long int);
   extern int XShmPixmapFormat (Display *);
   extern int XShmPutImage (Display *, Drawable, GC, XImage *, int, int, int,
 			   int, unsigned int, unsigned int, int);

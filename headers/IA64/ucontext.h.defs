@@ -10,7 +10,7 @@ typedef struct ucontext
     mcontext_t _mc;
     struct
     {
-      unsigned long _pad[_SC_GR0_OFFSET / 8];
+      unsigned long int _pad[_SC_GR0_OFFSET / 8];
       struct ucontext *_link;
     }
     _uc;

@@ -28,7 +28,7 @@ extern "C"
     int tm_wday;
     int tm_yday;
     int tm_isdst;
-    long tm_gmtoff;
+    long int tm_gmtoff;
     char *tm_zone;
   }
    ;
@@ -61,7 +61,7 @@ extern "C"
 
 
   extern int __daylight;
-  extern long __timezone;
+  extern long int __timezone;
   extern char *__tzname[2];
   extern char *asctime (const struct tm *);
   extern clock_t clock (void);
@@ -79,7 +79,7 @@ extern "C"
   extern time_t time (time_t *);
   extern int nanosleep (const struct timespec *, struct timespec *);
   extern int daylight;
-  extern long timezone;
+  extern long int timezone;
   extern char *tzname[2];
   extern void tzset (void);
   extern char *asctime_r (const struct tm *, char *);

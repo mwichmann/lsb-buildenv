@@ -15,7 +15,7 @@ struct tm
   int tm_wday;
   int tm_yday;
   int tm_isdst;
-  long tm_gmtoff;
+  long int tm_gmtoff;
   char *tm_zone;
 }
  ;

@@ -27,25 +27,25 @@ extern "C"
 
   typedef struct _XtAppStruct *XtAppContext;
 
-  typedef unsigned long XtValueMask;
+  typedef unsigned long int XtValueMask;
 
-  typedef unsigned long XtIntervalId;
+  typedef unsigned long int XtIntervalId;
 
-  typedef unsigned long XtInputId;
+  typedef unsigned long int XtInputId;
 
-  typedef unsigned long XtSignalId;
+  typedef unsigned long int XtSignalId;
 
   typedef unsigned int XtGeometryMask;
 
-  typedef unsigned long XtGCMask;
+  typedef unsigned long int XtGCMask;
 
-  typedef unsigned long Pixel;
+  typedef unsigned long int Pixel;
 
   typedef int XtCacheType;
 
   typedef char Boolean;
 
-  typedef long XtArgVal;
+  typedef long int XtArgVal;
 
   typedef unsigned char XtEnum;
 
@@ -73,7 +73,7 @@ extern "C"
 			       XtPointer);
   extern void XtAddRawEventHandler (Widget, EventMask, int, XtEventHandler,
 				    XtPointer);
-  extern XtIntervalId XtAddTimeOut (unsigned long, XtTimerCallbackProc,
+  extern XtIntervalId XtAddTimeOut (unsigned long int, XtTimerCallbackProc,
 				    XtPointer);
   extern XtWorkProcId XtAddWorkProc (XtWorkProc, XtPointer);
   extern GC XtAllocateGC (Widget, Cardinal, XtGCMask, XGCValues *, XtGCMask,
@@ -89,7 +89,7 @@ extern "C"
 				  XtInputCallbackProc, XtPointer);
   extern XtSignalId XtAppAddSignal (XtAppContext, XtSignalCallbackProc,
 				    XtPointer);
-  extern XtIntervalId XtAppAddTimeOut (XtAppContext, unsigned long,
+  extern XtIntervalId XtAppAddTimeOut (XtAppContext, unsigned long int,
 				       XtTimerCallbackProc, XtPointer);
   extern XtWorkProcId XtAppAddWorkProc (XtAppContext, XtWorkProc, XtPointer);
   extern Widget XtAppCreateShell (char *, char *, WidgetClass, Display *,
@@ -101,7 +101,7 @@ extern "C"
   extern void XtAppGetErrorDatabaseText (XtAppContext, char *, char *, char *,
 					 char *, String, int, XrmDatabase);
   extern Boolean XtAppGetExitFlag (XtAppContext);
-  extern unsigned long XtAppGetSelectionTimeout (XtAppContext);
+  extern unsigned long int XtAppGetSelectionTimeout (XtAppContext);
   extern Widget XtAppInitialize (XtAppContext *, char *, XrmOptionDescList,
 				 Cardinal, int *, String *, String *, ArgList,
 				 Cardinal);
@@ -117,7 +117,7 @@ extern "C"
 						    XtErrorMsgHandler);
   extern void XtAppSetExitFlag (XtAppContext);
   extern void XtAppSetFallbackResources (XtAppContext, String *);
-  extern void XtAppSetSelectionTimeout (XtAppContext, unsigned long);
+  extern void XtAppSetSelectionTimeout (XtAppContext, unsigned long int);
   extern void XtAppSetTypeConverter (XtAppContext, char *, char *,
 				     XtTypeConverter, XtConvertArgList,
 				     Cardinal, XtCacheType, XtDestructor);
@@ -264,8 +264,8 @@ extern "C"
   extern void XtGetApplicationNameAndClass (Display *, String *, String *);
   extern void XtGetApplicationResources (Widget, XtPointer, XtResourceList,
 					 Cardinal, ArgList, Cardinal);
-  extern XtPointer XtGetClassExtension (WidgetClass, Cardinal, XrmQuark, long,
-					Cardinal);
+  extern XtPointer XtGetClassExtension (WidgetClass, Cardinal, XrmQuark,
+					long int, Cardinal);
   extern void XtGetConstraintResourceList (WidgetClass, XtResourceList *,
 					   Cardinal *);
   extern void XtGetDisplays (XtAppContext, Display * **, Cardinal *);
@@ -278,10 +278,11 @@ extern "C"
   extern int XtGetMultiClickTime (Display *);
   extern void XtGetResourceList (WidgetClass, XtResourceList *, Cardinal *);
   extern void XtGetSelectionParameters (Widget, Atom, XtRequestId, Atom *,
-					XtPointer *, unsigned long *, int *);
+					XtPointer *, unsigned long int *,
+					int *);
   extern XSelectionRequestEvent *XtGetSelectionRequest (Widget, Atom,
 							XtRequestId);
-  extern unsigned long XtGetSelectionTimeout (void);
+  extern unsigned long int XtGetSelectionTimeout (void);
   extern void XtGetSelectionValue (Widget, Atom, Atom,
 				   XtSelectionCallbackProc, XtPointer, Time);
   extern void XtGetSelectionValueIncremental (Widget, Atom, Atom,
@@ -426,8 +427,8 @@ extern "C"
   extern void XtSetMappedWhenManaged (Widget, int);
   extern void XtSetMultiClickTime (Display *, int);
   extern void XtSetSelectionParameters (Widget, Atom, Atom, XtPointer,
-					unsigned long, int);
-  extern void XtSetSelectionTimeout (unsigned long);
+					unsigned long int, int);
+  extern void XtSetSelectionTimeout (unsigned long int);
   extern void XtSetSensitive (Widget, int);
   extern void XtSetSubvalues (XtPointer, XtResourceList, Cardinal, ArgList,
 			      Cardinal);

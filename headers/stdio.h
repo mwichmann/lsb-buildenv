@@ -98,7 +98,7 @@ extern "C"
   extern FILE *freopen (const char *, const char *, FILE *);
   extern FILE *freopen64 (const char *, const char *, FILE *);
   extern int fscanf (FILE *, const char *, ...);
-  extern int fseek (FILE *, long, int);
+  extern int fseek (FILE *, long int, int);
   extern int fseeko (FILE *, off_t, int);
   extern int fseeko64 (FILE *, loff_t, int);
   extern off_t ftello (FILE *);
@@ -138,7 +138,7 @@ extern "C"
   extern int fputs (const char *, FILE *);
   extern size_t fread (void *, size_t, size_t, FILE *);
   extern int fsetpos (FILE *, const fpos_t *);
-  extern long ftell (FILE *);
+  extern long int ftell (FILE *);
   extern size_t fwrite (const void *, size_t, size_t, FILE *);
   extern int getc (FILE *);
   extern char *gets (char *);

@@ -53,7 +53,7 @@ extern "C"
 
 
 
-  extern int ioctl (int, unsigned long, ...);
+  extern int ioctl (int, unsigned long int, ...);
 #ifdef __cplusplus
 }
 #endif

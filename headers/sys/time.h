@@ -36,7 +36,7 @@ extern "C"
   struct timespec
   {
     time_t tv_sec;
-    long tv_nsec;
+    long int tv_nsec;
   }
    ;
 

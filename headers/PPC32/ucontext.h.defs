@@ -1,19 +1,19 @@
 
 struct pt_regs
 {
-  unsigned long gpr[32];
-  unsigned long nip;
-  unsigned long msr;
-  unsigned long orig_gpr3;
-  unsigned long ctr;
-  unsigned long link;
-  unsigned long xer;
-  unsigned long ccr;
-  unsigned long mq;
-  unsigned long trap;
-  unsigned long dar;
-  unsigned long dsisr;
-  unsigned long result;
+  unsigned long int gpr[32];
+  unsigned long int nip;
+  unsigned long int msr;
+  unsigned long int orig_gpr3;
+  unsigned long int ctr;
+  unsigned long int link;
+  unsigned long int xer;
+  unsigned long int ccr;
+  unsigned long int mq;
+  unsigned long int trap;
+  unsigned long int dar;
+  unsigned long int dsisr;
+  unsigned long int result;
 }
  ;
 typedef struct _libc_vrstate
@@ -27,7 +27,7 @@ vrregset_t __attribute__ ((__aligned__ (16)));
 
 #define NGREG	48
 
-typedef unsigned long gregset_t[48];
+typedef unsigned long int gregset_t[48];
 
 typedef struct _libc_fpstate
 {
@@ -54,7 +54,7 @@ union uc_regs_ptr
 
 typedef struct ucontext
 {
-  unsigned long uc_flags;
+  unsigned long int uc_flags;
   struct ucontext *uc_link;
   stack_t uc_stack;
   int uc_pad[7];

@@ -7,7 +7,7 @@ struct _libc_fpxreg
 }
  ;
 
-typedef long greg_t;
+typedef long int greg_t;
 #define NGREG	23
 
 typedef greg_t gregset_t[23];
@@ -38,13 +38,13 @@ typedef struct
 {
   gregset_t gregs;
   fpregset_t fpregs;
-  unsigned long __reserved1[8];
+  unsigned long int __reserved1[8];
 }
 mcontext_t;
 
 typedef struct ucontext
 {
-  unsigned long uc_flags;
+  unsigned long int uc_flags;
   struct ucontext *uc_link;
   stack_t uc_stack;
   mcontext_t uc_mcontext;

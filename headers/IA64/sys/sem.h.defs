@@ -4,8 +4,8 @@ struct semid_ds
   struct ipc_perm sem_perm;
   time_t sem_otime;
   time_t sem_ctime;
-  unsigned long sem_nsems;
-  unsigned long __unused1;
-  unsigned long __unused2;
+  unsigned long int sem_nsems;
+  unsigned long int __unused1;
+  unsigned long int __unused2;
 }
  ;

@@ -38,17 +38,17 @@ extern "C"
 
   typedef int pthread_once_t;
 
-  typedef long long __pthread_cond_align_t;
+  typedef long long int __pthread_cond_align_t;
 
 
 /* Base Types*/
 
 
-  typedef unsigned long pthread_t;
+  typedef unsigned long int pthread_t;
 
   struct _pthread_fastlock
   {
-    long __status;
+    long int __status;
     int __spinlock;
   }
    ;
@@ -93,7 +93,7 @@ extern "C"
     size_t __guardsize;
     int __stackaddr_set;
     void *__stackaddr;
-    unsigned long __stacksize;
+    unsigned long int __stacksize;
   }
   pthread_attr_t;
 

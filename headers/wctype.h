@@ -11,7 +11,7 @@ extern "C"
 
 
 
-  typedef unsigned long wctype_t;
+  typedef unsigned long int wctype_t;
 
   typedef unsigned int wint_t;
 

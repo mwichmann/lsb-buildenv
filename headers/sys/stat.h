@@ -79,7 +79,7 @@ extern "C"
   {
     dev_t st_dev;
     unsigned short __pad1;
-    unsigned long st_ino;
+    unsigned long int st_ino;
     mode_t st_mode;
     nlink_t st_nlink;
     pid_t st_uid;
@@ -92,8 +92,8 @@ extern "C"
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long __unused4;
-    unsigned long __unused5;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
   }
    ;
 
@@ -140,7 +140,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    unsigned long __unused[3];
+    unsigned long int __unused[3];
   }
    ;
 
@@ -163,8 +163,8 @@ extern "C"
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long __unused4;
-    unsigned long __unused5;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
   }
    ;
 
@@ -188,8 +188,8 @@ extern "C"
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long __unused4;
-    unsigned long __unused5;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
   }
    ;
 
@@ -212,7 +212,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    unsigned long __unused[3];
+    unsigned long int __unused[3];
   }
    ;
 
@@ -235,9 +235,9 @@ extern "C"
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long __unused4;
-    unsigned long __unused5;
-    unsigned long __unused6;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
+    unsigned long int __unused6;
   }
    ;
 
@@ -260,9 +260,9 @@ extern "C"
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long __unused4;
-    unsigned long __unused5;
-    unsigned long __unused6;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
+    unsigned long int __unused6;
   }
    ;
 
@@ -285,7 +285,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    long __unused[3];
+    long int __unused[3];
   }
    ;
 
@@ -308,7 +308,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    long __unused[3];
+    long int __unused[3];
   }
    ;
 
@@ -332,8 +332,8 @@ extern "C"
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long __unused4;
-    unsigned long __unused5;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
   }
    ;
 
@@ -356,7 +356,7 @@ extern "C"
     struct timespec st_atim;
     struct timespec st_mtim;
     struct timespec st_ctim;
-    unsigned long __unused[3];
+    unsigned long int __unused[3];
   }
    ;
 
@@ -379,7 +379,7 @@ extern "C"
     struct timespec st_atim;
     struct timespec st_mtim;
     struct timespec st_ctim;
-    unsigned long __unused[3];
+    unsigned long int __unused[3];
   }
    ;
 

@@ -204,7 +204,7 @@ siginfo_t;
 
 typedef struct
 {
-  unsigned long sig[_SIGSET_NWORDS];
+  unsigned long int sig[_SIGSET_NWORDS];
 }
 sigset_t;
 #define SA_NOCLDSTOP	0x00000001

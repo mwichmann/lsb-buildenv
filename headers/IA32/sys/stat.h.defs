@@ -5,7 +5,7 @@ struct stat
 {
   dev_t st_dev;
   unsigned short __pad1;
-  unsigned long st_ino;
+  unsigned long int st_ino;
   mode_t st_mode;
   nlink_t st_nlink;
   pid_t st_uid;
@@ -18,8 +18,8 @@ struct stat
   struct timespec st_atim;
   struct timespec st_mtim;
   struct timespec st_ctim;
-  unsigned long __unused4;
-  unsigned long __unused5;
+  unsigned long int __unused4;
+  unsigned long int __unused5;
 }
  ;
 struct stat64

@@ -20,12 +20,12 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  typedef long long intmax_t;
+  typedef long long int intmax_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef unsigned long long uintmax_t;
+  typedef unsigned long long int uintmax_t;
 
 #endif
   typedef unsigned char uint8_t;
@@ -41,52 +41,52 @@ extern "C"
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef unsigned long long uint64_t;
+  typedef unsigned long long int uint64_t;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef long intmax_t;
+  typedef long int intmax_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef long intmax_t;
+  typedef long int intmax_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef long long intmax_t;
+  typedef long long int intmax_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef long long intmax_t;
+  typedef long long int intmax_t;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef unsigned long uintmax_t;
+  typedef unsigned long int uintmax_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef unsigned long uintmax_t;
+  typedef unsigned long int uintmax_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef unsigned long long uintmax_t;
+  typedef unsigned long long int uintmax_t;
 
 #endif
 #if __i386__
 /* IA32 */
-  typedef unsigned long long uintmax_t;
+  typedef unsigned long long int uintmax_t;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef unsigned long uintptr_t;
+  typedef unsigned long int uintptr_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
@@ -96,7 +96,7 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef unsigned long uintptr_t;
+  typedef unsigned long int uintptr_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -106,62 +106,62 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef long intmax_t;
+  typedef long int intmax_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef unsigned long uintptr_t;
+  typedef unsigned long int uintptr_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef unsigned long uintmax_t;
+  typedef unsigned long int uintmax_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef long intmax_t;
+  typedef long int intmax_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef unsigned long uintmax_t;
+  typedef unsigned long int uintmax_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef unsigned long uintptr_t;
+  typedef unsigned long int uintptr_t;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef unsigned long uint64_t;
+  typedef unsigned long int uint64_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef unsigned long long uint64_t;
+  typedef unsigned long long int uint64_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef unsigned long uint64_t;
+  typedef unsigned long int uint64_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef unsigned long uint64_t;
+  typedef unsigned long int uint64_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef unsigned long uint64_t;
+  typedef unsigned long int uint64_t;
 
 #endif
 #if __i386__
 /* IA32 */
-  typedef unsigned long long uint64_t;
+  typedef unsigned long long int uint64_t;
 
 #endif
 

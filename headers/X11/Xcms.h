@@ -23,7 +23,7 @@ extern "C"
 
 
 
-  typedef unsigned long XcmsColorFormat;
+  typedef unsigned long int XcmsColorFormat;
 
   typedef double XcmsFloat;
 

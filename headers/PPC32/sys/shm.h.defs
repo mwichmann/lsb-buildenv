@@ -1,7 +1,7 @@
 
 #define SHMLBA	(__getpagesize())
 
-typedef unsigned long shmatt_t;
+typedef unsigned long int shmatt_t;
 
 struct shmid_ds
 {
@@ -17,7 +17,7 @@ struct shmid_ds
   pid_t shm_cpid;
   pid_t shm_lpid;
   shmatt_t shm_nattch;
-  unsigned long __unused5;
-  unsigned long __unused6;
+  unsigned long int __unused5;
+  unsigned long int __unused6;
 }
  ;

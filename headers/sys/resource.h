@@ -33,9 +33,9 @@ extern "C"
 
 
 
-  typedef unsigned long rlim_t;
+  typedef unsigned long int rlim_t;
 
-  typedef unsigned long long rlim64_t;
+  typedef unsigned long long int rlim64_t;
 
   typedef int __rlimit_resource_t;
 
@@ -63,20 +63,20 @@ extern "C"
   {
     struct timeval ru_utime;	/* Total amount of user time used. */
     struct timeval ru_stime;	/* Total amount of system time used. */
-    long ru_maxrss;		/* Maximum resident set size (in kilobytes). */
-    long ru_ixrss;		/* Amount of sharing of text segment memory        with other p */
-    long ru_idrss;		/* Amount of data segment memory used (kilobyte-seconds). */
-    long ru_isrss;		/* Amount of stack memory used (kilobyte-seconds). */
-    long ru_minflt;		/* Number of soft page faults (i.e. those serviced by reclaimin */
-    long ru_majflt;		/* Number of hard page faults (i.e. those that required I/O). */
-    long ru_nswap;		/* Number of times a process was swapped out of physical memory */
-    long ru_inblock;		/* Number of input operations via the file system.  Note: This */
-    long ru_oublock;		/* Number of output operations via the file system. */
-    long ru_msgsnd;		/* Number of IPC messages sent. */
-    long ru_msgrcv;		/* Number of IPC messages received. */
-    long ru_nsignals;		/* Number of signals delivered. */
-    long ru_nvcsw;		/* Number of voluntary context switches, i.e. because the proce */
-    long ru_nivcsw;		/* Number of involuntary context switches, i.e. a higher priori */
+    long int ru_maxrss;		/* Maximum resident set size (in kilobytes). */
+    long int ru_ixrss;		/* Amount of sharing of text segment memory        with other p */
+    long int ru_idrss;		/* Amount of data segment memory used (kilobyte-seconds). */
+    long int ru_isrss;		/* Amount of stack memory used (kilobyte-seconds). */
+    long int ru_minflt;		/* Number of soft page faults (i.e. those serviced by reclaimin */
+    long int ru_majflt;		/* Number of hard page faults (i.e. those that required I/O). */
+    long int ru_nswap;		/* Number of times a process was swapped out of physical memory */
+    long int ru_inblock;	/* Number of input operations via the file system.  Note: This */
+    long int ru_oublock;	/* Number of output operations via the file system. */
+    long int ru_msgsnd;		/* Number of IPC messages sent. */
+    long int ru_msgrcv;		/* Number of IPC messages received. */
+    long int ru_nsignals;	/* Number of signals delivered. */
+    long int ru_nvcsw;		/* Number of voluntary context switches, i.e. because the proce */
+    long int ru_nivcsw;		/* Number of involuntary context switches, i.e. a higher priori */
   }
    ;
 

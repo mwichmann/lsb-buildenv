@@ -14,13 +14,13 @@ extern "C"
 
   typedef int enum_t;
 
-  typedef unsigned long rpcprog_t;
+  typedef unsigned long int rpcprog_t;
 
-  typedef unsigned long rpcvers_t;
+  typedef unsigned long int rpcvers_t;
 
-  typedef unsigned long rpcproc_t;
+  typedef unsigned long int rpcproc_t;
 
-  typedef unsigned long rpcprot_t;
+  typedef unsigned long int rpcprot_t;
 
 
 #ifdef __cplusplus

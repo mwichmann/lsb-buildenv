@@ -38,7 +38,7 @@ extern "C"
   extern void IceFreeAuthFileEntry (IceAuthFileEntry *);
   extern char *IceGenerateMagicCookie (int);
   extern IceAuthFileEntry *IceGetAuthFileEntry (char *, char *, char *);
-  extern int IceLockAuthFile (char *, int, int, long);
+  extern int IceLockAuthFile (char *, int, int, long int);
   extern IceAuthFileEntry *IceReadAuthFileEntry (FILE);
   extern void IceSetPaAuthData (int, IceAuthDataEntry *);
   extern void IceUnlockAuthFile (char *);

@@ -14,13 +14,13 @@ extern "C"
 /* Resources*/
 
 
-  typedef unsigned long XID;
+  typedef unsigned long int XID;
 
-  typedef unsigned long Atom;
+  typedef unsigned long int Atom;
 
-  typedef unsigned long VisualID;
+  typedef unsigned long int VisualID;
 
-  typedef unsigned long Time;
+  typedef unsigned long int Time;
 
   typedef XID Window;
 

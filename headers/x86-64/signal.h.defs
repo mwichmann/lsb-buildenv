@@ -50,33 +50,33 @@ struct _fpstate
 
 struct sigcontext
 {
-  unsigned long r8;
-  unsigned long r9;
-  unsigned long r10;
-  unsigned long r11;
-  unsigned long r12;
-  unsigned long r13;
-  unsigned long r14;
-  unsigned long r15;
-  unsigned long rdi;
-  unsigned long rsi;
-  unsigned long rbp;
-  unsigned long rbx;
-  unsigned long rdx;
-  unsigned long rax;
-  unsigned long rcx;
-  unsigned long rsp;
-  unsigned long rip;
-  unsigned long eflags;
+  unsigned long int r8;
+  unsigned long int r9;
+  unsigned long int r10;
+  unsigned long int r11;
+  unsigned long int r12;
+  unsigned long int r13;
+  unsigned long int r14;
+  unsigned long int r15;
+  unsigned long int rdi;
+  unsigned long int rsi;
+  unsigned long int rbp;
+  unsigned long int rbx;
+  unsigned long int rdx;
+  unsigned long int rax;
+  unsigned long int rcx;
+  unsigned long int rsp;
+  unsigned long int rip;
+  unsigned long int eflags;
   unsigned short cs;
   unsigned short gs;
   unsigned short fs;
   unsigned short __pad0;
-  unsigned long err;
-  unsigned long trapno;
-  unsigned long oldmask;
-  unsigned long cr2;
+  unsigned long int err;
+  unsigned long int trapno;
+  unsigned long int oldmask;
+  unsigned long int cr2;
   struct _fpstate *fpstate;
-  unsigned long __reserved1[8];
+  unsigned long int __reserved1[8];
 }
  ;

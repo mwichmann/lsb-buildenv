@@ -1,7 +1,7 @@
 
 typedef struct _libc_vrstate
 {
-  unsigned int vrregs[32][4];
+  unsigned int vrregs[4];
   vscr_t vscr;
   unsigned int vrsave;
   unsigned int __pad;
@@ -10,28 +10,28 @@ vrregset_t __attribute__ ((__aligned__ (16)));
 
 #define NGREG	48
 
-typedef unsigned long gregset_t[48];
+typedef unsigned long int gregset_t[48];
 
 typedef double fpregset_t[33];
 
 typedef struct
 {
-  unsigned long __unused;
+  unsigned long int __unused;
   int signal;
   int pad0;
-  unsigned long handler;
-  unsigned long oldmask;
+  unsigned long int handler;
+  unsigned long int oldmask;
   struct pt_regs *regs;
   gregset_t gp_regs;
   fpregset_t fp_regs;
   vrregset_t *v_regs;
-  long vmx_reserve;
+  long int vmx_reserve;
 }
 mcontext_t;
 
 typedef struct ucontext
 {
-  unsigned long uc_flags;
+  unsigned long int uc_flags;
   struct ucontext *uc_link;
   stack_t uc_stack;
   sigset_t uc_sigmask;

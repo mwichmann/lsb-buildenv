@@ -124,9 +124,9 @@ extern "C"
   extern int SmcGetProperties (SmcConn, SmcPropReplyProc, SmPointer);
   extern void SmcInteractDone (SmcConn, int);
   extern int SmcInteractRequest (SmcConn, int, SmcInteractProc, SmPointer);
-  extern void SmcModifyCallbacks (SmcConn, unsigned long, SmcCallbacks *);
+  extern void SmcModifyCallbacks (SmcConn, unsigned long int, SmcCallbacks *);
   extern SmcConn SmcOpenConnection (char *, SmPointer, int, int,
-				    unsigned long, SmcCallbacks *, char *,
+				    unsigned long int, SmcCallbacks *, char *,
 				    char **, int, char *);
   extern int SmcProtocolRevision (SmcConn);
   extern int SmcProtocolVersion (SmcConn);

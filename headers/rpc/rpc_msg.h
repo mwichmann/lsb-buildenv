@@ -63,8 +63,8 @@ extern "C"
     {
       struct
       {
-	unsigned long low;
-	unsigned long high;
+	unsigned long int low;
+	unsigned long int high;
       }
       AR_versions;
       struct
@@ -91,8 +91,8 @@ extern "C"
     {
       struct
       {
-	unsigned long low;
-	unsigned long high;
+	unsigned long int low;
+	unsigned long int high;
       }
       RJ_versions;
       enum auth_stat RJ_why;	/* why authentication did not work */
@@ -125,10 +125,10 @@ extern "C"
 
   struct call_body
   {
-    unsigned long cb_rpcvers;	/* must be equal to two */
-    unsigned long cb_prog;
-    unsigned long cb_vers;
-    unsigned long cb_proc;
+    unsigned long int cb_rpcvers;	/* must be equal to two */
+    unsigned long int cb_prog;
+    unsigned long int cb_vers;
+    unsigned long int cb_proc;
     struct opaque_auth cb_cred;
     struct opaque_auth cb_verf;	/* protocol specific - provided by client */
   }
@@ -144,7 +144,7 @@ extern "C"
 
   struct rpc_msg
   {
-    unsigned long rm_xid;
+    unsigned long int rm_xid;
     enum msg_type rm_direction;
     union
     {

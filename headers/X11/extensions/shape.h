@@ -24,14 +24,14 @@ extern "C"
 				  int, int);
   extern XRectangle *XShapeGetRectangles (Display *, Window, int, int *,
 					  int *);
-  extern unsigned long XShapeInputSelected (Display *, Window);
+  extern unsigned long int XShapeInputSelected (Display *, Window);
   extern void XShapeOffsetShape (Display *, Window, int, int, int);
   extern int XShapeQueryExtension (Display *, int *, int *);
   extern int XShapeQueryExtents (Display *, Window, int *, int *, int *,
 				 unsigned int *, unsigned int *, int *, int *,
 				 int *, unsigned int *, unsigned int *);
   extern int XShapeQueryVersion (Display *, int *, int *);
-  extern void XShapeSelectInput (Display *, Window, unsigned long);
+  extern void XShapeSelectInput (Display *, Window, unsigned long int);
 #ifdef __cplusplus
 }
 #endif

@@ -15,18 +15,18 @@ extern "C"
 /* IA32 */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt_t f_blocks;
     fsblkcnt_t f_bfree;
     fsblkcnt_t f_bavail;
     fsfilcnt_t f_files;
     fsfilcnt_t f_ffree;
     fsfilcnt_t f_favail;
-    unsigned long f_fsid;
+    unsigned long int f_fsid;
     int __f_unused;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -36,18 +36,18 @@ extern "C"
 /* IA32 */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
+    unsigned long int f_fsid;
     int __f_unused;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -57,17 +57,17 @@ extern "C"
 /* IA64 */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     unsigned int __f_spare[6];
   }
    ;
@@ -77,17 +77,17 @@ extern "C"
 /* IA64 */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     unsigned int __f_spare[6];
   }
    ;
@@ -97,18 +97,18 @@ extern "C"
 /* PPC32 */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt_t f_blocks;
     fsblkcnt_t f_bfree;
     fsblkcnt_t f_bavail;
     fsfilcnt_t f_files;
     fsfilcnt_t f_ffree;
     fsfilcnt_t f_favail;
-    unsigned long f_fsid;
+    unsigned long int f_fsid;
     int __f_unused;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -118,18 +118,18 @@ extern "C"
 /* PPC32 */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
+    unsigned long int f_fsid;
     int __f_unused;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -139,17 +139,17 @@ extern "C"
 /* PPC64 */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt_t f_blocks;
     fsblkcnt_t f_bfree;
     fsblkcnt_t f_bavail;
     fsfilcnt_t f_files;
     fsfilcnt_t f_ffree;
     fsfilcnt_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -159,17 +159,17 @@ extern "C"
 /* PPC64 */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -179,17 +179,17 @@ extern "C"
 /* S390X */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -199,17 +199,17 @@ extern "C"
 /* S390X */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -219,18 +219,18 @@ extern "C"
 /* S390 */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt_t f_blocks;
     fsblkcnt_t f_bfree;
     fsblkcnt_t f_bavail;
     fsfilcnt_t f_files;
     fsfilcnt_t f_ffree;
     fsfilcnt_t f_favail;
-    unsigned long f_fsid;
+    unsigned long int f_fsid;
     int __f_unused;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -240,18 +240,18 @@ extern "C"
 /* S390 */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
+    unsigned long int f_fsid;
     int __f_unused;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -261,17 +261,17 @@ extern "C"
 /* x86-64 */
   struct statvfs64
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt64_t f_blocks;
     fsblkcnt64_t f_bfree;
     fsblkcnt64_t f_bavail;
     fsfilcnt64_t f_files;
     fsfilcnt64_t f_ffree;
     fsfilcnt64_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
@@ -281,17 +281,17 @@ extern "C"
 /* x86-64 */
   struct statvfs
   {
-    unsigned long f_bsize;
-    unsigned long f_frsize;
+    unsigned long int f_bsize;
+    unsigned long int f_frsize;
     fsblkcnt_t f_blocks;
     fsblkcnt_t f_bfree;
     fsblkcnt_t f_bavail;
     fsfilcnt_t f_files;
     fsfilcnt_t f_ffree;
     fsfilcnt_t f_favail;
-    unsigned long f_fsid;
-    unsigned long f_flag;
-    unsigned long f_namemax;
+    unsigned long int f_fsid;
+    unsigned long int f_flag;
+    unsigned long int f_namemax;
     int __f_spare[6];
   }
    ;
