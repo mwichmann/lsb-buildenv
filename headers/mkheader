@@ -412,7 +412,7 @@ if( $$param{'Ttype'} eq "FuncPtr" ) {
 	if( $$param{'Tname'} =~ "fptr" ) {
 		$$param{'Tname'} =~ s/fptr-//;
 		}
-	print $$param{'Tname'};
+	#print $$param{'Tname'};
 	print ")";
 
 	print "(";

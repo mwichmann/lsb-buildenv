@@ -32,7 +32,7 @@ extern "C"
   extern int tgetent (char *, const char *);
   extern int tgetflag (const char *);
   extern int tgetnum (const char *);
-  extern int tputs (const char *, int, int (*putcproc) (int));
+  extern int tputs (const char *, int, int (*)(int));
   extern TERMINAL *cur_term;
 #ifdef __cplusplus
 }

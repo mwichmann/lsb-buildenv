@@ -170,8 +170,8 @@ extern "C"
 
   extern void _pthread_cleanup_pop (void);
   extern void _pthread_cleanup_push (void);
-  extern pid_t pthread_atfork (void (*prepare) (void), void (*parent) (void),
-			       void (*child) (void));
+  extern pid_t pthread_atfork (void (*)(void), void (*)(void),
+			       void (*)(void));
   extern int pthread_attr_destroy (pthread_attr_t *);
   extern int pthread_attr_getdetachstate (pthread_attr_t *, int *);
   extern int pthread_attr_getinheritsched (pthread_attr_t *, int *);
@@ -197,15 +197,14 @@ extern "C"
   extern int pthread_condattr_destroy (pthread_condattr_t *);
   extern int pthread_condattr_init (pthread_condattr_t *);
   extern int pthread_create (pthread_t *, const pthread_attr_t *,
-			     void *(*__start_routine) (void *), void *);
+			     void *(*)(void *), void *);
   extern int pthread_detach (pthread_t);
   extern int pthread_equal (pthread_t, pthread_t);
   extern void pthread_exit (void *);
   extern int pthread_getschedparam (pthread_t, int *, struct sched_param *);
   extern void *pthread_getspecific (pthread_key_t);
   extern int pthread_join (pthread_t, void **);
-  extern int pthread_key_create (pthread_key_t *,
-				 void (*destr_func) (void *));
+  extern int pthread_key_create (pthread_key_t *, void (*)(void *));
   extern int pthread_key_delete (pthread_key_t);
   extern int pthread_mutex_destroy (pthread_mutex_t *);
   extern int pthread_mutex_init (pthread_mutex_t *,
@@ -215,7 +214,7 @@ extern "C"
   extern int pthread_mutex_unlock (pthread_mutex_t *);
   extern int pthread_mutexattr_destroy (pthread_mutexattr_t *);
   extern int pthread_mutexattr_init (pthread_mutexattr_t *);
-  extern int pthread_once (pthread_once_t *, void (*init_routine) (void));
+  extern int pthread_once (pthread_once_t *, void (*)(void));
   extern int pthread_rwlock_destroy (pthread_rwlock_t *);
   extern int pthread_rwlock_init (pthread_rwlock_t *,
 				  const pthread_rwlockattr_t *);

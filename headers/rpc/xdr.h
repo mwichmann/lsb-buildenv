@@ -99,8 +99,9 @@ extern "C"
   extern bool_t xdr_wrapstring (XDR *, char **);
   extern void xdrmem_create (XDR *, caddr_t, u_int, enum xdr_op);
   extern void xdrrec_create (XDR *, u_int, u_int, caddr_t,
-			     int (*__readit) (char *, char *, int),
-			     int (*__writeit) (char *, char *, int));
+			     int (*)(char *, char *, int), int (*)(char *,
+								   char *,
+								   int));
   extern bool_t xdrrec_eof (XDR *);
 #ifdef __cplusplus
 }

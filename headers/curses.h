@@ -457,7 +457,7 @@ extern "C"
   extern int resetty (void);
   extern int reset_prog_mode (void);
   extern int reset_shell_mode (void);
-  extern int ripoffline (int, int (*init) (WINDOW *, int));
+  extern int ripoffline (int, int (*)(WINDOW *, int));
   extern int savetty (void);
   extern int scanw (char *, ...);
   extern int scr_dump (const char *);
@@ -496,7 +496,7 @@ extern "C"
   extern int untouchwin (WINDOW *);
   extern void use_env (bool);
   extern int vidattr (chtype);
-  extern int vidputs (chtype, int (*vidputs_int) (int));
+  extern int vidputs (chtype, int (*)(int));
   extern int vline (chtype, int);
   extern int vwprintw (WINDOW *, char *, va_list);
   extern int vw_printw (WINDOW *, const char *, va_list);

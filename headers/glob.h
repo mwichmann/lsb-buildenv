@@ -75,10 +75,8 @@ extern "C"
   glob64_t;
 
 
-  extern int glob (const char *, int, int (*__errfunc) (const char *, int),
-		   glob_t *);
-  extern int glob64 (char *, int, int (*__errfunc) (const char *, int),
-		     glob64_t *);
+  extern int glob (const char *, int, int (*)(const char *, int), glob_t *);
+  extern int glob64 (char *, int, int (*)(const char *, int), glob64_t *);
   extern void globfree (glob_t *);
   extern void globfree64 (glob64_t *);
 #ifdef __cplusplus
