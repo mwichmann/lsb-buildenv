@@ -18,6 +18,7 @@ struct stat
   struct timespec st_ctim;
   blksize_t st_blksize;
   blkcnt_t st_blocks;
+  long __unused[3];
 }
  ;
 struct stat64
@@ -36,5 +37,6 @@ struct stat64
   struct timespec st_ctim;
   blksize_t st_blksize;
   blkcnt64_t st_blocks;
+  long __unused[];
 }
  ;

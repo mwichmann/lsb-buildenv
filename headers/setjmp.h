@@ -48,7 +48,7 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
-  typedef int __jmp_buf[18];
+  typedef long __jmp_buf[];
 
 #endif
 

@@ -47,6 +47,9 @@ extern "C"
 #if __ia64__
 #define _STAT_VER	1
 #endif
+#if __powerpc64__
+#define _STAT_VER	1
+#endif
 #if __x86_64__
 #define _STAT_VER	1
 #endif
@@ -57,9 +60,6 @@ extern "C"
 #define _STAT_VER	3
 #endif
 #if __powerpc__ && !__powerpc64__
-#define _STAT_VER	3
-#endif
-#if __powerpc64__
 #define _STAT_VER	3
 #endif
 #if __s390__ && !__s390x__
@@ -285,6 +285,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt_t st_blocks;
+    long __unused[3];
   }
    ;
 
@@ -307,6 +308,7 @@ extern "C"
     struct timespec st_ctim;	/* Time of last status change. */
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
+    long __unused[];
   }
    ;
 

@@ -114,8 +114,8 @@ extern "C"
   typedef struct
   {
     _psw_t psw;
-    unsigned long gprs;
-    unsigned long acrs;
+    unsigned long gprs[16];
+    unsigned int acrs[16];
   }
   _s390_regs_common;
 
@@ -579,7 +579,7 @@ extern "C"
   typedef struct
   {
     unsigned int fpc;
-    double fprs;
+    double fprs[__NUM_FPRS];
   }
   _s390_fp_regs;
 
@@ -781,7 +781,7 @@ extern "C"
 /* S390 */
   struct sigcontext
   {
-    unsigned long oldmask;
+    unsigned long oldmask[2];
     _sigregs *sregs;
   }
    ;

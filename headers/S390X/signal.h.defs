@@ -13,8 +13,8 @@ __attribute__ ((aligned (8))) _psw_t;
 typedef struct
 {
   _psw_t psw;
-  unsigned long gprs;
-  unsigned long acrs;
+  unsigned long gprs[16];
+  unsigned int acrs[16];
 }
 _s390_regs_common;
 
@@ -70,7 +70,7 @@ struct sigaction
 typedef struct
 {
   unsigned int fpc;
-  double fprs;
+  double fprs[__NUM_FPRS];
 }
 _s390_fp_regs;
 typedef struct
