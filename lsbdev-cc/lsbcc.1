@@ -46,8 +46,8 @@ The following environment variables affect the behavior of
 .I lsbcc
 .TP
 LSBCC_DEBUG
-A numeric value which represents a bit pattern that specifies what
-kind of debugging output to produce. The bits in this pattern are
+A numeric value which represents a bit pattern specifying what
+kinds of debugging output to produce. The bits in this pattern are
 .nf
 
 0x0001   Display enviromental overrides
@@ -57,6 +57,14 @@ kind of debugging output to produce. The bits in this pattern are
 0x0010   Display changes made to the include arguments
 0x0020   Display changes made to the library arguments
 0x0040   Display the modified argument list
+.fi
+.TP
+LSBCC_WARN
+A numeric value which represents a bit pattern specifying what
+kinds of warnings to emit. The bits in this pattern are
+.nf
+
+0x0001   Warn about libraries being changed to static linking
 .fi
 .TP
 LSBCC
@@ -143,7 +151,8 @@ the LSB header files
 the LSB stub libraries
 .TP
 ld-lsb.so.1
-The LSB program interpreter (dynamic linker)
+The LSB program interpreter (dynamic linker) for IA32.
+This value will be different on other architectures.
 .TP
 ld-lsb-ia64.so.1
 The LSB program interpreter for the Itanium architecture
@@ -154,12 +163,23 @@ lsbappchk
 .P
 .I lsbcc
 is commonly delivered as a package named
-.IR lsbdev-cc .
+.IR lsb-build-cc .
 If this package is used, the support package
-.I lsbdev-base
+.I lsb-build-base
 must also be installed.
+.P
+.I lsb-build-c++
+supplies necessary header files for C++ compilation.
+.P
+For commercial applications, developers need to be aware of the
+licenses of the libraries they link to. Since some licenses
+allow dynamic but not static linking to the library, and
+.I lsbcc
+may silently change (apparent) dynamic links to static, the
+.B LSBCC_WARN
+envirnonment variable should be used to notify of such changes.
 .SH COPYRIGHT
-Copyright \(co 2002 Free Standards Group.
+Copyright \(co 2002, 2003, 2004 Free Standards Group.
 .SH "SEE ALSO"
 Linux Standard Base specification and other documents at
 http://www.linuxbase.org/

@@ -123,7 +123,10 @@ char libpath[PATH_MAX];
 #define DEBUG_LIB_CHANGES	0x0020
 #define DEBUG_MODIFIED_ARGS	0x0040
 
+#define WARN_LIB_CHANGES	0x0001
+
 int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
+int lsbcc_warn=0; 
 
 
 /* begin argv ADT */
@@ -284,6 +287,9 @@ for(i=0;i<lsblibs->numargv;i++) {
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Forcing %s to be linked statically\n",val);
 
+if( lsbcc_warn&WARN_LIB_CHANGES )
+	fprintf(stderr,"Warning: forcing %s to be linked statically\n",val);
+
 argvaddstring(userlibs,"-Wl,-Bstatic");
 argvaddstring(userlibs,strdup(buf));
 argvaddstring(userlibs,"-Wl,-Bdynamic");
@@ -414,6 +420,10 @@ snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
 /*
  * Check for some environment variable, and adjust things if they are found.
  */
+
+if( (ptr=getenv("LSBCC_WARN")) != NULL ) {
+	lsbcc_warn=strtod(ptr,NULL);
+	}
 
 if( (ptr=getenv("LSBCC_DEBUG")) != NULL ) {
 	lsbcc_debug=strtod(ptr,NULL);
