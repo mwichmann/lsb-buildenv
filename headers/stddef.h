@@ -20,6 +20,31 @@ extern "C"
 
   typedef long ptrdiff_t;
 
+#if __i386__
+/* IA32 */
+  typedef unsigned int size_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef unsigned long size_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef unsigned long size_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long size_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef unsigned long size_t;
+
+#endif
 
 #ifdef __cplusplus
 }
