@@ -17,7 +17,7 @@
 %{!shared:crtend.o%s} %{shared:crtendS.o%s} crtn.o%s
 
 *link:
--m elf_i386 %{shared:-shared}   %{!shared:     %{!ibcs:       %{!static: 	%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-lsb.so.1}} 	%{static:-static}}} -L/usr/lib/lsb-stub
+-m elf_i386 %{shared:-shared}   %{!shared:     %{!ibcs:       %{!static: 	%{rdynamic:-export-dynamic} 	%{!dynamic-linker:-dynamic-linker /lib/ld-lsb.so.2}} 	%{static:-static}}} -L/usr/lib/lsb-stub
 
 *lib:
 %{shared: -lc}    %{!shared: %{mieee-fp:-lieee} %{pthread:-lpthread} 	%{profile:-lc_p} %{!profile: -lc}}

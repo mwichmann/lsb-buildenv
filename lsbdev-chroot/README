@@ -65,7 +65,7 @@ The package contains the following:
 
   - gcc spec file
     A modified version for gcc (2.95.4). This will ensure that the programs
-    are linked against ld-lsb.so.1 instead of ls-linux.so.2. It also
+    are linked against ld-lsb.so.2 instead of ls-linux.so.2. It also
     adds the lsb stub library directory to the link search path. 
 
   - setup scripts
