@@ -16,8 +16,6 @@ extern "C"
   typedef int wchar_t;
 
 #endif
-  typedef unsigned long size_t;
-
   typedef long ptrdiff_t;
 
 #if __i386__
