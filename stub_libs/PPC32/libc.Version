@@ -114,7 +114,6 @@ GLIBC_2.0 {
   dup2;
   ecvt;
   endgrent;
-  endnetent;
   endprotoent;
   endpwent;
   endservent;
@@ -189,7 +188,6 @@ GLIBC_2.0 {
   gethostname;
   getitimer;
   getlogin;
-  getnetbyaddr;
   getopt;
   getopt_long;
   getopt_long_only;
@@ -400,7 +398,6 @@ GLIBC_2.0 {
   setitimer;
   setlocale;
   setlogmask;
-  setnetent;
   setpgid;
   setpgrp;
   setpriority;
