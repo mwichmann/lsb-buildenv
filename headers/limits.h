@@ -22,6 +22,9 @@ extern "C"
 #define LONG_MAX	2147483647L
 #endif
 #define OPEN_MAX	256
+#if __s390__
+#define PATH_MAX	4095
+#endif
 #define PATH_MAX	4096
 #if __powerpc64__
 #define LONG_MAX	9223372036854775807L
