@@ -3,7 +3,8 @@
 libgcc=`gcc -print-libgcc-file-name`
 gccbasedir=`dirname $libgcc`
 
-exec gcc -nostdinc -I$gccbasedir/include -I/usr/lsb/include \
+exec gcc -nostdinc -I/usr/lsb/include -I$gccbasedir/include \
 	-nodefaultlibs -L$gccbasedir -L/usr/lsb/lib -L/lib -L/usr/lib \
-	-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 $* \
-	-lc /usr/lib/libc_nonshared.a
+	-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 \
+	$* -lc /usr/lib/libc_nonshared.a
+
