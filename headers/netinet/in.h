@@ -32,7 +32,6 @@ extern "C"
 
 
 /* Standard well-known ports.*/
-#define s6_addr16
 
 
 
@@ -57,8 +56,9 @@ extern "C"
 
 
 /* Address structures for IPv6*/
-#define s6_addr
-#define s6_addr32
+#define s6_addr16	in6_u.u6_addr16
+#define s6_addr32	in6_u.u6_addr32
+#define s6_addr	in6_u.u6_addr8
 
 
   struct in6_addr
