@@ -1,5 +1,5 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
+GLIBC_2.2 {
   crypt;
   encrypt;
   setkey;

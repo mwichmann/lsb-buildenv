@@ -1,4 +1,14 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  pmap_getport;
+  pmap_set;
+  pmap_unset;
+  svc_register;
+  svc_run;
+  svc_sendreply;
+  svctcp_create;
+  svcudp_create;
+};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -8,7 +18,6 @@ GLIBC_2.2 {
   __assert_fail;
   __ctype_get_mb_cur_max;
   __cxa_atexit;
-  __dcgettext;
   __errno_location;
   __fpending;
   __fxstat;
@@ -67,8 +76,6 @@ GLIBC_2.2 {
   adjtimex;
   advance;
   alarm;
-  alphasort;
-  alphasort64;
   asctime;
   asctime_r;
   asprintf;
@@ -137,7 +144,6 @@ GLIBC_2.2 {
   dup2;
   ecvt;
   endgrent;
-  endhostent;
   endnetent;
   endprotoent;
   endpwent;
@@ -199,8 +205,6 @@ GLIBC_2.2 {
   fseeko64;
   fsetpos;
   fsetpos64;
-  fstatfs;
-  fstatfs64;
   fstatvfs;
   fstatvfs64;
   fsync;
@@ -509,13 +513,11 @@ GLIBC_2.2 {
   setgid;
   setgrent;
   setgroups;
-  sethostent;
   sethostid;
   sethostname;
   setitimer;
   setlocale;
   setlogmask;
-  setmntent;
   setnetent;
   setpgid;
   setpgrp;
@@ -577,7 +579,6 @@ GLIBC_2.2 {
   srand48;
   srandom;
   sscanf;
-  statfs;
   statvfs;
   statvfs64;
   step;
@@ -709,7 +710,6 @@ GLIBC_2.2 {
   wait;
   wait3;
   wait4;
-  waitid;
   waitpid;
   warn;
   warnx;
