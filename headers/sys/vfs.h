@@ -11,6 +11,10 @@ extern "C"
 
 
 
+/* The interfaces in this header are not included in the LSB. This empty file is provided to make the development environment happy.*/
+
+
+
 #ifdef __cplusplus
 }
 #endif
