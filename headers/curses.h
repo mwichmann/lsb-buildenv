@@ -98,46 +98,8 @@ extern "C"
 
 
 #if !defined(__cplusplus)
-#if __i386__
-/* IA32 */
   typedef unsigned char bool;
 
-#endif
-#endif
-#if !defined(__cplusplus)
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-  typedef int bool;
-
-#endif
-#endif
-#if !defined(__cplusplus)
-#if __ia64__
-/* IA64 */
-  typedef unsigned long bool;
-
-#endif
-#endif
-#if !defined(__cplusplus)
-#if __powerpc64__
-/* PPC64 */
-  typedef int bool;
-
-#endif
-#endif
-#if !defined(__cplusplus)
-#if __s390__ && !__s390x__
-/* S390 */
-  typedef int bool;
-
-#endif
-#endif
-#if !defined(__cplusplus)
-#if __s390x__
-/* S390X */
-  typedef int bool;
-
-#endif
 #endif
 
 /* curses related structures*/
