@@ -54,6 +54,7 @@ extern "C"
   extern DIR *opendir (const char *);
   extern struct dirent *readdir (DIR *);
   extern struct dirent64 *readdir64 (DIR *);
+  extern int readdir_r (DIR *, struct dirent *, struct dirent **);
 #ifdef __cplusplus
 }
 #endif
