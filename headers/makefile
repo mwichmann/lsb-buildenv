@@ -15,10 +15,10 @@ all:
 	done
 
 install:
-	install -d $$LSBHOME/src/build/usr/lsb/include
-	find . -name '*.h' -print | cpio -pdu $$LSBHOME/src/build/usr/lsb/include
-	rm -rf $$LSBHOME/src/build/usr/lsb/include/X11
-	rm -rf $$LSBHOME/src/build/usr/lsb/include/GL
+	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
+	find . -name '*.h' -print | cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR)
+	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/X11
+	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/GL
 
 clean:
 
