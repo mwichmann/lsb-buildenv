@@ -13,9 +13,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.9 $
+# This is $Revision: 1.10 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.10  2002/04/09 09:13:50  cyeoh
+# clarify warning message
+#
 # Revision 1.9  2002/04/09 06:32:27  cyeoh
 # Add check for matching versions for interfaces between libraries and db
 #
@@ -369,7 +372,7 @@ sub CheckSymbols($$$$$)
       }
       elsif (hex($symbolInfo->{$iface}{SIZE}) != $row->{ATsize})
       {
-        print "Size mismatch for $iface. Is $symbolInfo->{$iface}{SIZE}, should be $row->{ATsize}\n";
+        print "Size mismatch for $iface. Is $symbolInfo->{$iface}{SIZE} but in db as $row->{ATsize}\n";
       }
 
       if (defined($symbolInfo->{$iface}{VERSION}))
