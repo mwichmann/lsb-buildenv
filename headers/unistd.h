@@ -9,6 +9,9 @@ typedef __pid_t pid_t;
 
 typedef __off_t off_t;
 
+#define SEEK_SET	0
+#define SEEK_CUR	1
+#define SEEK_END	2
 
 #define F_OK	0
 #define X_OK	1

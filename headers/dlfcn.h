@@ -2,6 +2,15 @@
 #define _DLFCN_H_
 
 
+typedef struct
+{
+  char *dli_fname;
+  void *dli_fbase;
+  char *dli_sname;
+  void *dli_saddr;
+}
+Dl_info;
+
 #define RTLD_LOCAL	0
 #define RTLD_LAZY	0x00001
 #define RTLD_NOW	0x00002

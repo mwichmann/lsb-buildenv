@@ -37,6 +37,41 @@ struct msghdr
  ;
 
 
+#define AF_UNSPEC	0
+#define AF_UNIX	1
+#define AF_LOCAL	1
+#define AF_INET6	10
+#define AF_INET	2
+#define AF_AX25	3
+#define AF_IPX	4
+#define AF_APPLETALK	5
+#define AF_NETROM	6
+#define AF_BRIDGE	7
+#define AF_ATMPVC	8
+#define AF_X25	9
+
+#define SOCK_STREAM	1
+#define SOCK_PACKET	10
+#define SOCK_DGRAM	2
+#define SOCK_RAW	3
+#define SOCK_RDM	4
+#define SOCK_SEQPACKET	5
+
+#define SO_DEBUG	1
+#define SOL_SOCKET	1
+#define SO_OOBINLINE	10
+#define SO_NO_CHECK	11
+#define SO_PRIORITY	12
+#define SO_LINGER	13
+#define SO_REUSEADDR	2
+#define SO_TYPE	3
+#define SO_ERROR	4
+#define SO_DONTROUTE	5
+#define SO_BROADCAST	6
+#define SO_SNDBUF	7
+#define SO_RCVBUF	8
+#define SO_KEEPALIVE	9
+
 int bind (int, struct sockaddr *, socklen_t);
 int getsockname (int, struct sockaddr *, socklen_t *);
 int listen (int, int);

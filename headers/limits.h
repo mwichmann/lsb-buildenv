@@ -3,6 +3,7 @@
 
 
 #define HUGE_VAL	0xFFFFFFFF
+#define OPEN_MAX	256
 
 #define MB_LEN_MAX	16
 

@@ -2,7 +2,6 @@
 #define _ASSERT_H_
 
 
-#define assert(expr)	(__ASSERT_VOID_CAST((expr)?0:(__assert_fail(__STRING(expr),_
-
+#define assert(expr) /**/
 void __assert_fail (char *, char *, unsigned int, char *);
 #endif

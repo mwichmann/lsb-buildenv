@@ -2,6 +2,7 @@
 #define _STDIO_H_
 
 #include <sys/types.h>
+#include <stdarg.h>
 #include <unistd.h>
 
 typedef struct _IO_FILE *FILE;

@@ -3,18 +3,11 @@
 
 #include <sys/time.h>
 #include <sys/types.h>
-
-typedef struct
-{
-  unsigned long __val[1];
-}
-__sigset_t;
-
-struct sigaction;
-
-struct sigaltstack;
+#include <unistd.h>
 
 struct sigstack;
+
+struct sigcontext;
 
 
 #define SIGHUP	1
@@ -59,20 +52,43 @@ typedef void (*__sighandler_t) ();
 #define SIG_DFL	((__sighandler_t)0)
 #define SIG_IGN	((__sighandler_t)1)
 
-typedef union sigval sigval_t;
+typedef union sigval
+{
+  int sival_int;
+  void *sival_ptr;
+}
+sigval_t;
 
 #define SV_ONSTACK	(1<<0)
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
 
-struct sigevent;
+
+typedef struct siginfo
+{
+  int si_signo;
+  int si_errno;
+  int si_code;
+  union _sifields;
+}
+siginfo_t;
 
 
-typedef struct siginfo_t;
+typedef struct
+{
+  unsigned long sig[1];
+}
+sigset_t;
 
 
-typedef __sigset_t sigset_t;
-
+struct sigaction
+{
+  union _u;
+  unsigned long sa_flags;
+  void (*sa_restorer) ();
+  sigset_t sa_mask;
+}
+ ;
 
 #define SA_NOCLDSTOP	0x00000001
 #define SA_NOCLDWAIT	0x00000002
@@ -85,42 +101,26 @@ typedef __sigset_t sigset_t;
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
 
-typedef struct sigaltstack stack_t;
+typedef struct sigaltstack
+{
+  void *ss_sp;
+  int ss_flags;
+  size_t ss_size;
+}
+stack_t;
 
 
-int __libc_current_sigrtmax (void);
-int __libc_current_sigrtmin (void);
-int __sigpause (int, int);
-__sighandler_t __sysv_signal (int, __sighandler_t);
-char *_sys_siglist;
-int killpg (__pid_t, int);
-void psignal (int, char *);
 int raise (int);
 int sigaddset (sigset_t *, int);
 int sigdelset (sigset_t *, int);
 int sigemptyset (sigset_t *);
 int sigfillset (sigset_t *);
-int siggetmask (void);
-int sighold (int);
-int sigignore (int);
-int siginterrupt (int, int);
-int sigismember (sigset_t *, int);
 int sigpending (sigset_t *);
-int sigrelse (int);
-__sighandler_t sigset (int, __sighandler_t);
-int sigstack (struct sigstack *, struct sigstack *);
 int sigaction (int, struct sigaction *, struct sigaction *);
-int sigwait (sigset_t *, int *);
-int kill (__pid_t, int);
+int kill (pid_t, int);
 int sigaltstack (struct sigaltstack *, struct sigaltstack *);
-int sigblock (int);
 __sighandler_t signal (int, __sighandler_t);
-int sigpause (int);
 int sigprocmask (int, sigset_t *, sigset_t *);
-int sigreturn (struct sigcontext *);
 int sigsuspend (sigset_t *);
-int sigqueue (__pid_t, int, union sigval);
-int sigwaitinfo (sigset_t *, siginfo_t *);
 int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
-__sighandler_t bsd_signal (int, __sighandler_t);
 #endif

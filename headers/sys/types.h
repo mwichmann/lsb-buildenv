@@ -19,6 +19,8 @@ typedef __u_int __mode_t;
 
 typedef __u_int __gid_t;
 
+typedef unsigned int __u32;
+
 typedef __quad_t __loff_t;
 
 typedef __loff_t loff_t;
@@ -45,8 +47,6 @@ typedef __loff_t __off64_t;
 
 typedef int __int32_t;
 
-typedef void *va_list;
-
 typedef int ptrdiff_t;
 
 typedef __u_int __uid_t;
@@ -54,8 +54,6 @@ typedef __u_int __uid_t;
 typedef __uid_t uid_t;
 
 typedef int __pid_t;
-
-typedef void *__gnuc_va_list;
 
 typedef __key_t key_t;
 
@@ -66,6 +64,8 @@ typedef __u_int __id_t;
 typedef long __time_t;
 
 typedef __kernel_suseconds_t suseconds_t;
+
+typedef __u32 uint32_t;
 
 typedef long fd_mask;
 

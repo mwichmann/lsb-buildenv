@@ -62,19 +62,19 @@ struct stat64
 #define S_IXOTH	(S_IXGRP>>3)
 #define S_IXGRP	(S_IXUSR>>3)
 #define S_IRWXU	(__S_IREAD|__S_IWRITE|__S_IEXEC)
-#define S_IXUSR	__S_IEXEC
-#define S_IFBLK	__S_IFBLK
-#define S_IFCHR	__S_IFCHR
-#define S_IFDIR	__S_IFDIR
-#define S_IFIFO	__S_IFIFO
-#define S_IFLNK	__S_IFLNK
-#define S_IFMT	__S_IFMT
-#define S_IFREG	__S_IFREG
-#define S_IFSOCK	__S_IFSOCK
-#define S_IRUSR	__S_IREAD
-#define S_ISGID	__S_ISGID
-#define S_ISUID	__S_ISUID
-#define S_IWUSR	__S_IWRITE
+#define S_IFLNK	1
+#define S_ISUID	1
+#define S_IRUSR	1
+#define S_IFDIR	1
+#define S_IXUSR	1
+#define S_IFBLK	1
+#define S_IFIFO	1
+#define S_IFSOCK	1
+#define S_ISGID	1
+#define S_IFMT	1
+#define S_IWUSR	1
+#define S_IFCHR	1
+#define S_IFREG	1
 
 int mkfifo (char *, mode_t);
 int chmod (char *, mode_t);
