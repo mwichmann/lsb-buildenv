@@ -6,6 +6,8 @@ target=""
 
 libgcc=`gcc -print-libgcc-file-name`
 gccbasedir=`dirname $libgcc`
+# The LSB 'lib' and 'include' directories are located under here:
+lsbbasedir=/usr/lsb
 
 while getopts "EcI:D:U:O:f:W:I:Sp:o:s:L:" OPT ; do
 	case "$OPT" in
@@ -38,7 +40,7 @@ while getopts "EcI:D:U:O:f:W:I:Sp:o:s:L:" OPT ; do
 	esac
 done
 
-exec gcc $target $opts -nostdinc -I/usr/lsb/include -I$gccbasedir/include \
-	-nodefaultlibs -L$gccbasedir -L/usr/lsb/lib -L/lib -L/usr/lib \
+exec gcc $target $opts -nostdinc -I$lsbbasedir/include -I$gccbasedir/include \
+	-nodefaultlibs -L$gccbasedir -L$lsbbasedir/lib -L/lib -L/usr/lib \
 	$libs
 
