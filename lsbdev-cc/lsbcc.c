@@ -545,6 +545,9 @@ argvappend(gccargs,userlibs);
 argvappend(gccargs,proginterp);
 argvappend(gccargs,syslibs);
 
+/* ensure argument list is null terminated */
+gccargs->argv[gccargs->numargv] = NULL;
+
 if( lsbcc_debug&DEBUG_MODIFIED_ARGS )
 	argvdump(gccargs);
 
