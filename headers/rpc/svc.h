@@ -41,11 +41,6 @@ extern "C"
 
 
 
-  typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
-
-
-
-
   struct svc_req
   {
     rpcprog_t rq_prog;
@@ -56,6 +51,11 @@ extern "C"
     SVCXPRT *rq_xprt;
   }
    ;
+
+
+
+
+  typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
 
 
