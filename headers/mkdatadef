@@ -259,8 +259,9 @@ $Hid=$entry{'Hid'};
 # Get the return types
 #
 $select = "SELECT Ireturn FROM Interface ";
-$select.= "WHERE Iheader=$Hid ";
-$select.= "AND Istatus='Included' ";
+#$select.= "WHERE Iheader=$Hid ";
+#$select.= "AND Istatus='Included' ";
+$select.= "WHERE Istatus='Included' ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -273,8 +274,9 @@ for(1..$sth->numrows) {
 # Get the parameter types
 #
 $select = "SELECT Ptype FROM Interface,Parameter ";
-$select.= "WHERE Iheader=$Hid ";
-$select.= "AND Pint=Iid ";
+#$select.= "WHERE Iheader=$Hid ";
+#$select.= "AND Pint=Iid ";
+$select.= "WHERE Pint=Iid ";
 $select.= "AND Istatus='Included' ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
@@ -286,14 +288,32 @@ for(1..$sth->numrows) {
 
 $typelist=join ',', keys(%type);
 
-$select = "SELECT Tid from Type ";
-$select.= "WHERE Tbasetype IN ($typelist)";
-print $select,"\n" if $trace;
-$sth = $Dbh->query($select) || die $Dbh->errmsg();
-for(1..$sth->numrows) {
-	%entry=$sth->fetchhash;
-	$type{$entry{'Tid'}}=1;
+if( $typelist ne "" ) { 
+	$select = "SELECT TMtypeid from TypeMember ";
+	$select.= "WHERE TMmemberof IN ($typelist)";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tid'}}=1;
+		}
 	}
+
+#
+# Get the type referenced by types
+#
+#$typelist=join ',', keys(%type);
+#
+#if( $typelist ne "" ) { 
+#	$select = "SELECT Tid from Type ";
+#	$select.= "WHERE Tbasetype IN ($typelist)";
+#	print $select,"\n" if $trace;
+#	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+#	for(1..$sth->numrows) {
+#		%entry=$sth->fetchhash;
+#		$type{$entry{'Tid'}}=1;
+#		}
+#	}
 
 $typelist=join ',', keys(%type);
 
