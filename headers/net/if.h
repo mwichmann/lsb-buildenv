@@ -1,8 +1,8 @@
 #ifndef _NET_IF_H_
 #define _NET_IF_H_
 
-#include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/socket.h>
 
 #ifdef __cplusplus
 extern "C"

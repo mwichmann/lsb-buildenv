@@ -91,7 +91,7 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef greg_t gregset_t[];
+  typedef greg_t gregset_t[23];
 
 #endif
 
@@ -373,7 +373,7 @@ extern "C"
     struct ucontext *uc_link;
     stack_t uc_stack;
     mcontext_t uc_mcontext;
-    __sigset_t uc_sigmask;
+    sigset_t uc_sigmask;
   }
   ucontext_t;
 

@@ -154,3 +154,10 @@ typedef long long off64_t;
 #define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
+
+
+
+#define F_ULOCK	0
+#define F_LOCK	1
+#define F_TLOCK	2
+#define F_TEST	3

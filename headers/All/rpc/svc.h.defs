@@ -1,7 +1,20 @@
 
+#define svc_freeargs(xprt,xargs, argsp)	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))
+#define svc_getargs(xprt,xargs, argsp)	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
+#define RPC_ANYSOCK	-1
 
 
-
+struct svc_req
+{
+  rpcprog_t rq_prog;
+  rpcvers_t rq_vers;
+  rpcproc_t rq_proc;
+  struct opaque_auth rq_cred;
+  caddr_t rq_clntcred;
+  SVCXPRT *rq_xprt;
+}
+ ;
+typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
 
 typedef struct SVCXPRT
@@ -21,13 +34,13 @@ SVCXPRT;
 
 struct xp_ops
 {
-  bool_t (*xp_recv) (struct SVCXPRT * __xprt, struct rpc_msg * __msg);
-  enum xprt_stat (*xp_stat) (struct SVCXPRT * __xprt);
-    bool_t (*xp_getargs) (struct SVCXPRT * __xprt, xdrproc_t __xdr_args,
+  bool_t (*xp_recv) (SVCXPRT * __xprt, struct rpc_msg * __msg);
+  enum xprt_stat (*xp_stat) (SVCXPRT * __xprt);
+    bool_t (*xp_getargs) (SVCXPRT * __xprt, xdrproc_t __xdr_args,
 			  caddr_t args_ptr);
-    bool_t (*xp_reply) (struct SVCXPRT * __xprt, struct rpc_msg * __msg);
-    bool_t (*xp_freeargs) (struct SVCXPRT * __xprt, xdrproc_t __xdr_args,
+    bool_t (*xp_reply) (SVCXPRT * __xprt, struct rpc_msg * __msg);
+    bool_t (*xp_freeargs) (SVCXPRT * __xprt, xdrproc_t __xdr_args,
 			   caddr_t args_ptr);
-  void (*xp_destroy) (struct SVCXPRT * __xprt);
+  void (*xp_destroy) (SVCXPRT * __xprt);
 }
  ;

@@ -619,6 +619,29 @@ extern "C"
    ;
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  struct sigcontext
+  {
+    unsigned long _unused;
+    int signal;
+    unsigned long handler;
+    unsigned long oldmask;
+    unsigned long regs;
+  }
+   ;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  struct sigcontext;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct sigcontext;
+
+#endif
 
   extern __sighandler_t __sysv_signal (int, sighandler_t);
   extern char **_sys_siglist;

@@ -26,7 +26,7 @@ struct sigaction
 {
   union
   {
-    __sighandler_t _sa_handler;
+    sighandler_t _sa_handler;
     void (*_sa_sigaction) (int, siginfo_t *, void *);
   }
   __sigaction_handler;
@@ -44,10 +44,11 @@ struct ia64_fpreg
   union
   {
     unsigned long bits[2];
+    long double __dummy;
   }
   u;
 }
-__attribute__ ((aligned (16)));
+ ;
 
 
 

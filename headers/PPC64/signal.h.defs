@@ -35,3 +35,23 @@ struct sigaction
   void (*sa_restorer) (void);
 }
  ;
+
+
+
+
+
+
+
+
+
+
+
+struct sigcontext
+{
+  unsigned long _unused;
+  int signal;
+  unsigned long handler;
+  unsigned long oldmask;
+  unsigned long regs;
+}
+ ;

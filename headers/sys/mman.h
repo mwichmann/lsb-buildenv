@@ -1,9 +1,9 @@
 #ifndef _SYS_MMAN_H_
 #define _SYS_MMAN_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"

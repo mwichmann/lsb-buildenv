@@ -1286,10 +1286,10 @@ extern "C"
 
   extern speed_t cfgetispeed (const struct termios *);
   extern speed_t cfgetospeed (const struct termios *);
-  extern void cfmakeraw (void);
+  extern void cfmakeraw (struct termios *);
   extern int cfsetispeed (struct termios *, speed_t);
   extern int cfsetospeed (struct termios *, speed_t);
-  extern int cfsetspeed (void);
+  extern int cfsetspeed (struct termios *, speed_t);
   extern int tcflow (int, int);
   extern int tcflush (int, int);
   extern pid_t tcgetsid (int);

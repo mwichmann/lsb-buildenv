@@ -1,10 +1,10 @@
 #ifndef _WCHAR_H_
 #define _WCHAR_H_
 
-#include <time.h>
 #include <stdio.h>
-#include <stddef.h>
+#include <time.h>
 #include <wctype.h>
+#include <stddef.h>
 #include <stdarg.h>
 
 #ifdef __cplusplus

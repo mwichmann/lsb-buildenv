@@ -1,8 +1,8 @@
 #ifndef _SEMAPHORE_H_
 #define _SEMAPHORE_H_
 
-#include <sys/time.h>
 #include <pthread.h>
+#include <sys/time.h>
 
 #ifdef __cplusplus
 extern "C"

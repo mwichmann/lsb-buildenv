@@ -1,8 +1,8 @@
 #ifndef _SCHED_H_
 #define _SCHED_H_
 
-#include <sys/time.h>
 #include <sys/types.h>
+#include <sys/time.h>
 
 #ifdef __cplusplus
 extern "C"

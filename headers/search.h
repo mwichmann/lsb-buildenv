@@ -1,8 +1,8 @@
 #ifndef _SEARCH_H_
 #define _SEARCH_H_
 
-#include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"

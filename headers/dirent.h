@@ -1,8 +1,8 @@
 #ifndef _DIRENT_H_
 #define _DIRENT_H_
 
-#include <sys/types.h>
 #include <inttypes.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"

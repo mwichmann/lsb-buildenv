@@ -14,9 +14,9 @@ struct sigstack
   int ss_onstack;
 }
  ;
-#define SIG_ERR	((__sighandler_t)-1)
-#define SIG_DFL	((__sighandler_t)0)
-#define SIG_IGN	((__sighandler_t)1)
+#define SIG_ERR	((sighandler_t)-1)
+#define SIG_DFL	((sighandler_t)0)
+#define SIG_IGN	((sighandler_t)1)
 #define SIGHUP	1
 #define SIGUSR1	10
 #define SIGSEGV	11
@@ -84,7 +84,7 @@ typedef struct sigevent
     int _pad[SIGEV_PAD_SIZE];
     struct
     {
-      void (*sigev_thread_func) (void);
+      void (*sigev_thread_func) (sigval_t);
       void *_attribute;
     }
     _sigev_thread;

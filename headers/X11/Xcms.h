@@ -1,8 +1,8 @@
 #ifndef _X11_XCMS_H_
 #define _X11_XCMS_H_
 
-#include <X11/X.h>
 #include <X11/Xlib.h>
+#include <X11/X.h>
 
 #ifdef __cplusplus
 extern "C"
