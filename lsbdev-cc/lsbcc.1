@@ -17,19 +17,15 @@ command when
 building an LSB-conforming program.
 .P
 The LSB development environment provides
-a set of headers and libraries nominally found in
-.I /opt/lsbdev-base/include
-and
-.I /opt/lsdev-base/lib
-respectively. These headers and libraries have been
+a set of replacement system headers and 
+stub dynamic libraries.
+These headers and libraries have been
 carefully built so that they contain only the interfaces
 specified in the LSB. 
 .P
 LSB programs also need to be linked with 
-.I ld-lsb.so.1
-.RI ( ld-lsb-ia64.so.1
-for the Itanium architecture)
-as the program intepreter.   
+a special program interpreter which identifies
+them as LSB conforming.
 .P
 .I lsbcc
 is designed to take care of these build issues 
@@ -77,6 +73,22 @@ the default
 .I c++
 will be used.
 .P
+.TP
+LSBCC_LIBS
+Specifies the location of the LSB stub libraries that will
+be linked against.  If this environment variable is not found,
+the default 
+.I /opt/lsbdev-base/lib
+will be used.
+.P
+.TP
+LSBCC_INCLUDES
+Specifies the location of the LSB header files that will
+be linked against.  If this environment variable is not found,
+the default 
+.I /opt/lsbdev-base/include
+will be used.
+.P
 .SH EXAMPLES
 .B "lsbcc hello.c -o hello"
 .P
@@ -101,6 +113,12 @@ the LSB header files
 .TP
 /opt/lsbdev-base/lib
 the LSB stub libraries
+.TP
+ld-lsb.so.1
+The LSB program interpreter (dynamic linker)
+.TP
+ld-lsb-ia64.so.1
+The LSB program interpreter for the Itanium architecture
 .SH SEE ALSO
 lsbappchk
 .P
