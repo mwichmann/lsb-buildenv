@@ -8,7 +8,6 @@ extern "C"
 #endif
 
 
-#define HUGE_VAL	0x7FF00000UL
 #define DOMAIN	1
 #define SING	2
 
@@ -22,6 +21,13 @@ extern "C"
     double retval;
   }
    ;
+
+
+/* machine-dependent HUGE_VAL value*/
+#define HUGE_VAL	0x1.0p2047
+#define HUGE_VALF	0x1.0p255f
+#define HUGE_VALL	0x1.0p32767L
+
 
 
 /* Some useful constants*/
@@ -42,7 +48,9 @@ extern "C"
 
 
 
-/* machine-dependent HUGE_VAL value*/
+/* Bitmasks for the math_errhandling macro.*/
+#define MATH_ERRNO	1
+#define MATH_ERREXCEPT	2
 
 
 
