@@ -9,7 +9,6 @@ extern "C"
 #endif
 
 
-#define Z_VERSION_ERROR	(-6)
 #define Z_NULL	0
 #define ZLIB_VERSION	"1.2.2"
 #define MAX_WBITS	15
@@ -98,11 +97,13 @@ extern "C"
 
 
 
+/* Return status of flush operations*/
 #define Z_ERRNO	(-1)
 #define Z_STREAM_ERROR	(-2)
 #define Z_DATA_ERROR	(-3)
 #define Z_MEM_ERROR	(-4)
 #define Z_BUF_ERROR	(-5)
+#define Z_VERSION_ERROR	(-6)
 #define Z_OK	0
 #define Z_STREAM_END	1
 #define Z_NEED_DICT	2
