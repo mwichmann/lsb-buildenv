@@ -22,6 +22,8 @@ OPT_ROOT=$DATA_ROOT/opt_root
 RPM_INSTALL_ROOT=/opt/lsb-rpm-4.0.3
 RPM_DATA_ROOT=/opt/lsb-rpm-4.0.3
 RPM_BIN=$RPM_DATA_ROOT/bin/rpm
+# Where the lsb-rpm package puts sources
+RPM_SRC=$RPM_DATA_ROOT/src/lsb
 
 # Name of build environment users. users listed here will have
 # their home directories mounted inside the buildroot area

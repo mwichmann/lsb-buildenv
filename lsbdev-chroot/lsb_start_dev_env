@@ -244,6 +244,8 @@ if [ -e $ROOT/usr/bin/rpm ]; then
   # overlay the rpm we want
   bind_mount_file_ro $RPM_BIN $ROOT/usr/bin/rpm
 fi
+# lsb-rpm source dir
+bind_mount_rw $RPM_SRC $ROOT$RPM_SRC
 
 # Stub libraries
 setup_stub_libraries
