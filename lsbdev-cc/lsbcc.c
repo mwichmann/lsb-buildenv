@@ -102,10 +102,14 @@ int lsbccmode=LSBCC;
 
 char *ccname="cc";
 char *cxxname="c++";
-char *libpath="/opt/lsb/lib";
 char *incpath="/opt/lsb/include";
 char *cxxincpath="/opt/lsb/include/c++";
-
+char *libpath=
+#if __powerpc64__
+	"/opt/lsb/lib64";
+#else
+	"/opt/lsb/lib";
+#endif
 
 /*
  * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
@@ -500,7 +504,8 @@ argvadd(syslibs,"L",gccbasedir);
 
 /* these need to go after user-specified library paths */
 #if defined(__powerpc64__)
-	argvaddstring(syslibs,"-L/opt/cross/powerpc64-linux/lib");
+	argvaddstring(syslibs,"-L/lib64");
+	argvaddstring(syslibs,"-L/usr/lib64");
 #else
 	argvaddstring(syslibs,"-L/lib");
 	argvaddstring(syslibs,"-L/usr/lib");
