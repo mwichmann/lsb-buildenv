@@ -201,6 +201,7 @@ char *lsblibs[] = {
 	"dl",
 	"crypt",
 	"curses",
+	"z",
 	"X11",
 	"Xt",
 	"Xext",
