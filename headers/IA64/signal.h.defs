@@ -73,7 +73,9 @@ struct sigcontext
   unsigned long sc_br[8];
   unsigned long sc_gr[32];
   struct ia64_fpreg sc_fr[128];
-  unsigned long sc_rsvd[16];
+  unsigned long sc_rbs_base;
+  unsigned long sc_loadrs;
+  unsigned long sc_rsvd[14];
   unsigned long sc_mask;
 }
  ;

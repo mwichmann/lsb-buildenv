@@ -265,9 +265,9 @@ extern "C"
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
+    sigset_t sa_mask;
     unsigned long sa_flags;
     void (*sa_restorer) (void);
-    sigset_t sa_mask;
   }
    ;
 
@@ -470,7 +470,9 @@ extern "C"
     unsigned long sc_br[8];
     unsigned long sc_gr[32];
     struct ia64_fpreg sc_fr[128];
-    unsigned long sc_rsvd[16];
+    unsigned long sc_rbs_base;	/* NULL or new base of sighandler's rbs */
+    unsigned long sc_loadrs;	/* see description above */
+    unsigned long sc_rsvd[14];
     unsigned long sc_mask;
   }
    ;
