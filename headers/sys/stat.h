@@ -113,6 +113,12 @@ extern "C"
   extern int chmod (char *, mode_t);
   extern int fchmod (int, mode_t);
   extern mode_t umask (mode_t);
+  extern int stat (const char *, struct stat *);
+  extern int fstat (int, struct stat *);
+  extern int lstat (const char *, struct stat *);
+  extern int stat64 (const char *, struct stat64 *);
+  extern int fstat64 (int, struct stat64 *);
+  extern int lstat64 (const char *, struct stat64 *);
 #ifdef __cplusplus
 }
 #endif
