@@ -142,8 +142,7 @@ extern "C"
     mode_t st_mode;		/* File mode. */
     nlink_t st_nlink;		/* Link count. */
     gid_t st_uid;		/* User ID of the file's owner. */
-    __gid_t st_gid;
-     */gid_t st_gid;		/* Group ID of the file's group. */
+    gid_t st_gid;		/* Group ID of the file's group. */
     dev_t st_rdev;		/* Device number, if device. */
     unsigned short __pad2;
     off64_t st_size;		/* Size of file, in bytes. */
