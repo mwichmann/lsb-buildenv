@@ -11,12 +11,10 @@ GLIBC_2.0 {
   __fxstat;
   __getpagesize;
   __getpgid;
+  __h_errno_location;
   __libc_start_main;
   __lxstat;
-  __mbrlen;
   __mempcpy;
-  __secure_getenv;
-  __sigpause;
   __sigsetjmp;
   __stpcpy;
   __strdup;
@@ -29,13 +27,6 @@ GLIBC_2.0 {
   __strtoul_internal;
   __strtoull_internal;
   __sysv_signal;
-  __wcstod_internal;
-  __wcstof_internal;
-  __wcstol_internal;
-  __wcstold_internal;
-  __wcstoll_internal;
-  __wcstoul_internal;
-  __wcstoull_internal;
   __xmknod;
   __xstat;
   _exit;
@@ -657,7 +648,6 @@ GLIBC_2.0 {
   _nl_msg_cat_cntr;
   daylight;
   environ;
-  h_errno;
   loc1;
   loc2;
   locs;
@@ -680,7 +670,6 @@ GLIBC_2.1 {
   creat64;
   endutxent;
   fclose;
-  fdetach;
   fdopen;
   fmtmsg;
   fopen;
@@ -697,7 +686,6 @@ GLIBC_2.1 {
   ftw64;
   getcontext;
   getdate;
-  getmsg;
   getutxent;
   getutxid;
   getutxline;
@@ -755,9 +743,6 @@ GLIBC_2.1 {
   wcswcs;
   wordexp;
   wordfree;
-  _IO_2_1_stderr_;
-  _IO_2_1_stdin_;
-  _IO_2_1_stdout_;
   _sys_errlist;
   _sys_siglist;
   getdate_err;

@@ -798,3 +798,5 @@ __asm__(".comm stdin,8");
 __asm__(".comm stdout,8");
 __asm__(".weak timezone; timezone = __timezone");
 __asm__(".weak tzname; tzname = __tzname");
+extern const int _IO_stdin_used;
+__asm__(".weak _IO_stdin_used;.weak _LSB_IO_stdin_used; _LSB_IO_stdin_used=_IO_stdin_used ");
