@@ -7,7 +7,7 @@ struct stat64
   ino64_t st_ino;
   mode_t st_mode;
   nlink_t st_nlink;
-  gid_t st_uid;
+  uid_t st_uid;
   gid_t st_gid;
   dev_t st_rdev;
   unsigned short __pad2;

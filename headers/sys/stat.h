@@ -141,7 +141,7 @@ extern "C"
     ino64_t st_ino;		/* File serial number. */
     mode_t st_mode;		/* File mode. */
     nlink_t st_nlink;		/* Link count. */
-    gid_t st_uid;		/* User ID of the file's owner. */
+    uid_t st_uid;		/* User ID of the file's owner. */
     gid_t st_gid;		/* Group ID of the file's group. */
     dev_t st_rdev;		/* Device number, if device. */
     unsigned short __pad2;
