@@ -798,8 +798,6 @@ GLIBC_2.3 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
-  __ctype_tolower;
-  __ctype_toupper;
   __daylight;
   __environ;
   __timezone;
