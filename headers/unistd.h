@@ -9,8 +9,8 @@
 #define SEEK_SET	0
 #define STDOUT_FILENO	1
 #define SEEK_CUR	1
-#define SEEK_END	2
 #define STDERR_FILENO	2
+#define SEEK_END	2
 
 
 typedef long long off64_t;
@@ -26,9 +26,6 @@ typedef int *intptr_t;
 
 
 
-#define _POSIX_SHARED_MEMORY_OBJECTS	1
-#define _POSIX_MEMLOCK	1
-#define _POSIX_PRIORITY_SCHEDULING	1
 #define _POSIX_SYNCHRONIZED_IO	1
 #define _POSIX_MAPPED_FILES	1
 #define _POSIX_MEMLOCK_RANGE	1
@@ -39,8 +36,11 @@ typedef int *intptr_t;
 #define _POSIX_SEMAPHORES	1
 #define _POSIX_FSYNC	1
 #define _POSIX_MESSAGE_PASSING	1
-#define _POSIX2_VERSION	199209L
+#define _POSIX_SHARED_MEMORY_OBJECTS	1
+#define _POSIX_MEMLOCK	1
+#define _POSIX_PRIORITY_SCHEDULING	1
 #define _POSIX2_C_VERSION	199209L
+#define _POSIX2_VERSION	199209L
 #define _POSIX_VERSION	199506L
 
 
@@ -162,8 +162,8 @@ typedef int *intptr_t;
 
 
 
-#define _XOPEN_XPG4	1
 #define _XOPEN_REALTIME	1
+#define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
 
@@ -186,7 +186,7 @@ extern int execlp (char *, char *, ...);
 extern int execv (char *, char *[]);
 extern int execvp (char *, char *[]);
 extern char *getlogin (void);
-extern int getopt (int, char *[], char *);
+extern int getopt (int, char *[], const char *);
 extern pid_t getpgrp (void);
 extern int mkstemp (char *);
 extern int nice (int);
@@ -210,7 +210,7 @@ extern int open (char *, int, ...);
 extern int pause (void);
 extern int read (int, void *, size_t);
 extern int write (int, void *, size_t);
-extern char *crypt (char *, char *);
+extern char *crypt (const char *, const char *);
 extern void encrypt (char, int);
 extern void setkey (char *);
 extern int access (char *, int);
@@ -218,7 +218,7 @@ extern int brk (void *);
 extern int chdir (char *);
 extern int dup (int);
 extern int dup2 (int, int);
-extern int execve (char *, char *[], char *[]);
+extern int execve (const char *, const char *[], const char *[]);
 extern int fchdir (int);
 extern int fchown (int, uid_t, gid_t);
 extern pid_t fork (void);

@@ -9,8 +9,8 @@
 #define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
+#define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
 #define SIG_SETMASK	2
 #define SIGEV_THREAD	2
@@ -55,8 +55,8 @@ struct sigstack
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGABRT	6
@@ -290,6 +290,8 @@ struct _fpstate
 /* Process context when signal delivered*/
 
 
+#if defined(__ia64__)
+/* IA64 */
 struct sigcontext
 {
   unsigned short gs;
@@ -323,6 +325,7 @@ struct sigcontext
 }
  ;
 
+#endif
 
 extern char **_sys_siglist;
 extern int raise (int);
@@ -331,7 +334,7 @@ extern int sigdelset (sigset_t *, int);
 extern int sigemptyset (sigset_t *);
 extern int sigfillset (sigset_t *);
 extern int sigpending (sigset_t *);
-extern int pthread_sigmask (void);
+extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
 extern int sigaction (int, struct sigaction *, struct sigaction *);
 extern int kill (pid_t, int);
 extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);

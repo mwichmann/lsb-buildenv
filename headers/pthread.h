@@ -6,6 +6,8 @@
 #include <sched.h>
 #include <sys/types.h>
 
+#define PTHREAD_MUTEX_TIMED_NP	1
+#define __LOCK_INITIALIZER	{ 0, 0 }
 #define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
 
 
@@ -16,6 +18,7 @@ typedef int pthread_once_t;
 typedef int __atomic_lock_t;
 
 
+/* Base Types*/
 
 
 typedef unsigned long pthread_t;
@@ -28,11 +31,13 @@ struct _pthread_fastlock
  ;
 
 
+/* Description structure*/
 
 
 typedef struct _pthread_descr_struct *_pthread_descr;
 
 
+/* Mutex Structures*/
 
 
 typedef struct
@@ -52,6 +57,7 @@ typedef struct
 pthread_mutexattr_t;
 
 
+/* Attribute Structures*/
 
 
 typedef struct
@@ -69,6 +75,7 @@ typedef struct
 pthread_attr_t;
 
 
+/* Conition Variables*/
 
 
 typedef struct
@@ -81,16 +88,39 @@ pthread_cond_t;
 typedef void *pthread_condattr_t;
 
 
+/* Lock structures*/
+
+
+typedef struct _pthread_rwlock_t
+{
+  struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+  int __rw_readers;		/* Number of readers */
+  _pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+  _pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+  _pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+  int __rw_kind;		/* Reader/Writer preference selection */
+  int __rw_pshared;		/* Shared between processes or not */
+}
+pthread_rwlock_t;
+
+typedef struct
+{
+  int __lockkind;
+  int __pshared;
+}
+pthread_rwlockattr_t;
+
+
 /* Initializers*/
 
 
 
 /* Values for attributes.*/
-#define PTHREAD_INHERIT_SCHED	0
-#define PTHREAD_PROCESS_PRIVATE	0
 #define PTHREAD_CREATE_JOINABLE	0
 #define PTHREAD_SCOPE_SYSTEM	0
 #define PTHREAD_ONCE_INIT	0
+#define PTHREAD_INHERIT_SCHED	0
+#define PTHREAD_PROCESS_PRIVATE	0
 #define PTHREAD_EXPLICIT_SCHED	1
 #define PTHREAD_PROCESS_SHARED	1
 #define PTHREAD_CREATE_DETACHED	1
@@ -100,8 +130,8 @@ typedef void *pthread_condattr_t;
 
 /* Cancellation*/
 #define PTHREAD_CANCELED	((void*)-1)
-#define PTHREAD_CANCEL_DEFERRED	0
 #define PTHREAD_CANCEL_ENABLE	0
+#define PTHREAD_CANCEL_DEFERRED	0
 #define PTHREAD_CANCEL_ASYNCHRONOUS	1
 #define PTHREAD_CANCEL_DISABLE	1
 
@@ -147,16 +177,17 @@ extern int pthread_mutex_init (pthread_mutex_t *, pthread_mutexattr_t *);
 extern int pthread_mutex_lock (pthread_mutex_t *);
 extern int pthread_mutex_trylock (pthread_mutex_t *);
 extern int pthread_mutex_unlock (pthread_mutex_t *);
-extern int pthread_mutexattr_destroy (void);
-extern int pthread_mutexattr_init (void);
+extern int pthread_mutexattr_destroy (pthread_mutexattr_t *);
+extern int pthread_mutexattr_init (pthread_mutexattr_t *);
 extern int pthread_once (pthread_once_t *, void (*init_routine) ());
-extern int pthread_rwlock_destroy (void);
-extern int pthread_rwlock_init (void);
-extern int pthread_rwlock_rdlock (void);
-extern int pthread_rwlock_tryrdlock (void);
-extern int pthread_rwlock_trywrlock (void);
-extern int pthread_rwlock_unlock (void);
-extern int pthread_rwlock_wrlock (void);
+extern int pthread_rwlock_destroy (pthread_rwlock_t *);
+extern int pthread_rwlock_init (pthread_rwlock_t *,
+				const pthread_rwlockattr_t *);
+extern int pthread_rwlock_rdlock (pthread_rwlock_t *);
+extern int pthread_rwlock_tryrdlock (pthread_rwlock_t *);
+extern int pthread_rwlock_trywrlock (pthread_rwlock_t *);
+extern int pthread_rwlock_unlock (pthread_rwlock_t *);
+extern int pthread_rwlock_wrlock (pthread_rwlock_t *);
 extern int pthread_rwlockattr_destroy (void);
 extern int pthread_rwlockattr_init (void);
 extern pthread_t pthread_self (void);

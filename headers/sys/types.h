@@ -9,7 +9,19 @@
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 
 
+typedef int int8_t;
+
+typedef int int16_t;
+
+typedef int int32_t;
+
 typedef long long int64_t;
+
+typedef unsigned int u_int8_t;
+
+typedef unsigned int u_int16_t;
+
+typedef unsigned int u_int32_t;
 
 typedef int ssize_t;
 
@@ -24,6 +36,12 @@ typedef int key_t;
 typedef unsigned int id_t;
 
 typedef long suseconds_t;
+
+typedef unsigned char uint8_t;
+
+typedef unsigned short uint16_t;
+
+typedef unsigned int uint32_t;
 
 typedef unsigned long blksize_t;
 
@@ -52,8 +70,6 @@ typedef unsigned long long blkcnt64_t;
 typedef unsigned char u_char;
 
 typedef unsigned short u_short;
-
-typedef unsigned int u_int;
 
 typedef unsigned long u_long;
 

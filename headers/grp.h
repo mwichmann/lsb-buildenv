@@ -21,6 +21,6 @@ struct group
 extern void endgrent (void);
 extern struct group *getgrent (void);
 extern struct group *getgrgid (gid_t);
-extern struct group *getgrnam (char *);
+extern struct group *getgrnam (const char *);
 extern void setgrent (void);
 #endif

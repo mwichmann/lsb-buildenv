@@ -11,9 +11,9 @@
 #define S_ISLNK(m)	(((m)&S_IFMT)==S_IFLNK)
 #define S_ISREG(m)	(((m)&S_IFMT)==S_IFREG)
 #define S_ISSOCK(m)	(((m)&S_IFMT)==S_IFSOCK)
-#define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_IRWXU	(S_IREAD|S_IWRITE|S_IEXEC)
 #define S_IROTH	(S_IRGRP>>3)
 #define S_IRGRP	(S_IRUSR>>3)
@@ -37,9 +37,13 @@
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
+#define _STAT_VER	3
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR
 #define S_IEXEC	S_IXUSR
+#define fstat(fd,buf)	__fxstat(_STAT_VER,fd,buf)
+#define lstat(path,buf)	__lxstat (_STAT_VER,path,buf)
+#define stat(path,buf)	__xstat(_STAT_VER,path,buf)
 
 
 struct stat
@@ -95,6 +99,9 @@ struct stat64
 
 
 
+extern int __fxstat (int, int, struct stat *);
+extern int __lxstat (int, const char *, struct stat *);
+extern int __xstat (int, const char *, struct stat *);
 extern int mkfifo (char *, mode_t);
 extern int chmod (char *, mode_t);
 extern int fchmod (int, mode_t);

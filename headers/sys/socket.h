@@ -73,8 +73,8 @@ struct msghdr
 
 
 #define AF_UNSPEC	0
-#define AF_LOCAL	1
 #define AF_UNIX	1
+#define AF_LOCAL	1
 #define AF_INET6	10
 #define AF_INET	2
 #define AF_AX25	3
@@ -109,8 +109,8 @@ struct msghdr
 #define SO_TYPE	3
 #define SO_ERROR	4
 #define SO_DONTROUTE	5
-#define SO_BROADCAST	6
 #define SOL_TCP	6
+#define SO_BROADCAST	6
 #define SO_SNDBUF	7
 #define SO_RCVBUF	8
 #define SO_KEEPALIVE	9

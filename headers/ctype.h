@@ -1,7 +1,7 @@
 #ifndef _CTYPE_H_
 #define _CTYPE_H_
 
-#include <inttypes.h>
+#include <sys/types.h>
 
 
 

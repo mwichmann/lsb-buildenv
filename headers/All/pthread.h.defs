@@ -1,4 +1,6 @@
 
+#define PTHREAD_MUTEX_TIMED_NP	1
+#define __LOCK_INITIALIZER	{ 0, 0 }
 #define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
 
 
@@ -59,16 +61,35 @@ pthread_cond_t;
 typedef void *pthread_condattr_t;
 
 
+typedef struct _pthread_rwlock_t
+{
+  struct _pthread_fastlock __rw_lock;
+  int __rw_readers;
+  _pthread_descr __rw_writer;
+  _pthread_descr __rw_read_waiting;
+  _pthread_descr __rw_write_waiting;
+  int __rw_kind;
+  int __rw_pshared;
+}
+pthread_rwlock_t;
+typedef struct
+{
+  int __lockkind;
+  int __pshared;
+}
+pthread_rwlockattr_t;
+
+
 
 #define PTHREAD_CREATE_JOINABLE	0
 #define PTHREAD_INHERIT_SCHED	0
 #define PTHREAD_SCOPE_SYSTEM	0
 #define PTHREAD_PROCESS_PRIVATE	0
 #define PTHREAD_ONCE_INIT	0
-#define PTHREAD_CREATE_DETACHED	1
-#define PTHREAD_EXPLICIT_SCHED	1
 #define PTHREAD_SCOPE_PROCESS	1
 #define PTHREAD_PROCESS_SHARED	1
+#define PTHREAD_CREATE_DETACHED	1
+#define PTHREAD_EXPLICIT_SCHED	1
 
 
 

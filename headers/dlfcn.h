@@ -21,6 +21,6 @@ Dl_info;
 extern int dladdr (void *, Dl_info *);
 extern int dlclose (void *);
 extern char *dlerror (void);
-extern void *dlopen (char *, int);
-extern void *dlsym (void *, char *);
+extern void *dlopen (const char *, int);
+extern void *dlsym (void *, const char *);
 #endif

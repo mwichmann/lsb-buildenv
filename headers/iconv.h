@@ -14,5 +14,5 @@ typedef void *iconv_t;
 
 extern size_t iconv (iconv_t, char **, size_t *, char **, size_t *);
 extern int iconv_close (iconv_t);
-extern iconv_t iconv_open (char *, char *);
+extern iconv_t iconv_open (const char *, const char *);
 #endif
