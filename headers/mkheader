@@ -698,8 +698,7 @@ for(1..$hgh->numrows) {
 
 print "\n";
 $select = "SELECT * FROM Interface,Header,Type ";
-$select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' ";
-$select.= " OR Istatus='Deprecated' ) ";
+$select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' )";
 $select.= "AND Iarch=$Aid ";
 $select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
 $select.= "AND Ireturn=Tid";
