@@ -1,4 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.2.1 {
+  posix_openpt;
+};
 GLIBC_2.3 {
   _Exit;
   _IO_feof;
@@ -775,9 +778,6 @@ GLIBC_2.3 {
   daylight;
   environ;
   getdate_err;
-  loc1;
-  loc2;
-  locs;
   optarg;
   opterr;
   optind;

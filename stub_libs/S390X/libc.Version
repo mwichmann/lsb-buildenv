@@ -781,9 +781,6 @@ GLIBC_2.2 {
   daylight;
   environ;
   getdate_err;
-  loc1;
-  loc2;
-  locs;
   optarg;
   opterr;
   optind;
@@ -793,6 +790,9 @@ GLIBC_2.2 {
   stdout;
   timezone;
   tzname;
+};
+GLIBC_2.2.1 {
+  posix_openpt;
 };
 GLIBC_2.2.3 {
   fnmatch;

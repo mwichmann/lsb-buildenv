@@ -640,9 +640,6 @@ GLIBC_2.0 {
   _nl_msg_cat_cntr;
   daylight;
   environ;
-  loc1;
-  loc2;
-  locs;
   optarg;
   opterr;
   optind;
@@ -797,6 +794,9 @@ GLIBC_2.2 {
   wcsftime;
   wprintf;
   wscanf;
+};
+GLIBC_2.2.1 {
+  posix_openpt;
 };
 GLIBC_2.2.3 {
   fnmatch;
