@@ -65,10 +65,10 @@ extern "C"
   extern char *__tzname[2];
   extern char *asctime (const struct tm *);
   extern clock_t clock (void);
-  extern char *ctime (time_t *);
-  extern char *ctime_r (time_t *, char *);
+  extern char *ctime (const time_t *);
+  extern char *ctime_r (const time_t *, char *);
   extern double difftime (time_t, time_t);
-  extern struct tm *getdate (char *);
+  extern struct tm *getdate (const char *);
   extern int getdate_err;
   extern struct tm *gmtime (const time_t *);
   extern struct tm *localtime (const time_t *);

@@ -26,8 +26,8 @@ extern "C"
 
 
   extern int catclose (nl_catd);
-  extern char *catgets (nl_catd, int, int, char *);
-  extern nl_catd catopen (char *, int);
+  extern char *catgets (nl_catd, int, int, const char *);
+  extern nl_catd catopen (const char *, int);
 #ifdef __cplusplus
 }
 #endif

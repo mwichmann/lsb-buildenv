@@ -14,9 +14,9 @@ extern "C"
 
   enum xdr_op
   {
-    XDR_ENCODE,
-    XDR_DECODE,
-    XDR_FREE
+    XDR_ENCODE =,
+    XDR_DECODE =,
+    XDR_FREE =
   }
    ;
 

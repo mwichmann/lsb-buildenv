@@ -24,17 +24,17 @@ extern "C"
 
   typedef enum
   {
-    FIND,
-    ENTER
+    FIND =,
+    ENTER =
   }
   ACTION;
 
   typedef enum
   {
-    preorder,
-    postorder,
-    endorder,
-    leaf
+    preorder =,
+    postorder =,
+    endorder =,
+    leaf =
   }
   VISIT;
 

@@ -14,62 +14,62 @@ extern "C"
 
   typedef enum
   {
-    IcePoAuthHaveReply,
-    IcePoAuthRejected,
-    IcePoAuthFailed,
-    IcePoAuthDoneCleanup
+    IcePoAuthHaveReply =,
+    IcePoAuthRejected =,
+    IcePoAuthFailed =,
+    IcePoAuthDoneCleanup =
   }
   IcePoAuthStatus;
 
   typedef enum
   {
-    IcePaAuthContinue,
-    IcePaAuthAccepted,
-    IcePaAuthRejected,
-    IcePaAuthFailed
+    IcePaAuthContinue =,
+    IcePaAuthAccepted =,
+    IcePaAuthRejected =,
+    IcePaAuthFailed =
   }
   IcePaAuthStatus;
 
   typedef enum
   {
-    IceConnectPending,
-    IceConnectAccepted,
-    IceConnectRejected,
-    IceConnectIOError
+    IceConnectPending =,
+    IceConnectAccepted =,
+    IceConnectRejected =,
+    IceConnectIOError =
   }
   IceConnectStatus;
 
   typedef enum
   {
-    IceProtocolSetupSuccess,
-    IceProtocolSetupFailure,
-    IceProtocolSetupIOError,
-    IceProtocolAlreadyActive
+    IceProtocolSetupSuccess =,
+    IceProtocolSetupFailure =,
+    IceProtocolSetupIOError =,
+    IceProtocolAlreadyActive =
   }
   IceProtocolSetupStatus;
 
   typedef enum
   {
-    IceAcceptSuccess,
-    IceAcceptFailure,
-    IceAcceptBadMalloc
+    IceAcceptSuccess =,
+    IceAcceptFailure =,
+    IceAcceptBadMalloc =
   }
   IceAcceptStatus;
 
   typedef enum
   {
-    IceClosedNow,
-    IceClosedASAP,
-    IceConnectionInUse,
-    IceStartedShutdownNegotiation
+    IceClosedNow =,
+    IceClosedASAP =,
+    IceConnectionInUse =,
+    IceStartedShutdownNegotiation =
   }
   IceCloseStatus;
 
   typedef enum
   {
-    IceProcessMessagesSuccess,
-    IceProcessMessagesIOError,
-    IceProcessMessagesConnectionClosed
+    IceProcessMessagesSuccess =,
+    IceProcessMessagesIOError =,
+    IceProcessMessagesConnectionClosed =
   }
   IceProcessMessagesStatus;
 

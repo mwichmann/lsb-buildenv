@@ -61,25 +61,25 @@ extern "C"
 
   typedef enum
   {
-    XSyncAbsolute,
-    XSyncRelative
+    XSyncAbsolute =,
+    XSyncRelative =
   }
   XSyncValueType;
 
   typedef enum
   {
-    XSyncPositiveTransition,
-    XSyncNegativeTransition,
-    XSyncPositiveComparison,
-    XSyncNegativeComparison
+    XSyncPositiveTransition =,
+    XSyncNegativeTransition =,
+    XSyncPositiveComparison =,
+    XSyncNegativeComparison =
   }
   XSyncTestType;
 
   typedef enum
   {
-    XSyncAlarmActive,
-    XSyncAlarmInactive,
-    XSyncAlarmDestroyed
+    XSyncAlarmActive =,
+    XSyncAlarmInactive =,
+    XSyncAlarmDestroyed =
   }
   XSyncAlarmState;
 

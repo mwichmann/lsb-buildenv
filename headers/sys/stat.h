@@ -416,7 +416,7 @@ extern "C"
   extern int __fxstat64 (int, int, struct stat64 *);
   extern int __lxstat (int, const char *, struct stat *);
   extern int __lxstat64 (int, const char *, struct stat64 *);
-  extern int __xmknod (int, const char *, mode_t, dev_t);
+  extern int __xmknod (int, const char *, mode_t, dev_t *);
   extern int __xstat (int, const char *, struct stat *);
   extern int __xstat64 (int, const char *, struct stat64 *);
   extern int mkfifo (const char *, mode_t);

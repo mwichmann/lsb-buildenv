@@ -23,7 +23,7 @@ struct _pthread_cleanup_buffer
  ;
 typedef unsigned int pthread_key_t;
 typedef int pthread_once_t;
-typedef long __pthread_cond_align_t;
+typedef long long __pthread_cond_align_t;
 
 
 typedef unsigned long pthread_t;

@@ -27,13 +27,13 @@ extern "C"
 
   enum
   {
-    FTW_F,
-    FTW_D,
-    FTW_DNR,
-    FTW_NS,
-    FTW_SL,
-    FTW_DP,
-    FTW_SLN
+    FTW_F =,
+    FTW_D =,
+    FTW_DNR =,
+    FTW_NS =,
+    FTW_SL =,
+    FTW_DP =,
+    FTW_SLN =
   }
    ;
 
@@ -43,10 +43,10 @@ extern "C"
 
   enum
   {
-    FTW_PHYS,
-    FTW_MOUNT,
-    FTW_CHDIR,
-    FTW_DEPTH
+    FTW_PHYS =,
+    FTW_MOUNT =,
+    FTW_CHDIR =,
+    FTW_DEPTH =
   }
    ;
 
@@ -78,8 +78,8 @@ extern "C"
 				  int __flag, struct FTW * __info);
 
 
-  extern int ftw (char *, __ftw_func_t, int);
-  extern int ftw64 (char *, __ftw64_func_t, int);
+  extern int ftw (const char *, __ftw_func_t, int);
+  extern int ftw64 (const char *, __ftw64_func_t, int);
   extern int nftw (char *, __nftw_func_t, int, int);
   extern int nftw64 (char *, __nftw64_func_t, int, int);
 #ifdef __cplusplus

@@ -214,13 +214,13 @@ extern "C"
 
 
   extern char **__environ;
-  extern pid_t __getpgid (void);
+  extern pid_t __getpgid (pid_t);
   extern void _exit (int);
   extern int acct (const char *);
   extern unsigned int alarm (unsigned int);
   extern int chown (const char *, uid_t, gid_t);
   extern int chroot (const char *);
-  extern size_t confstr (int, const char *, const size_t);
+  extern size_t confstr (int, char *, size_t);
   extern int creat (const char *, mode_t);
   extern int creat64 (const char *, mode_t);
   extern char *ctermid (char *);

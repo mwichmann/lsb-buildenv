@@ -19,21 +19,21 @@ extern "C"
 
   enum msg_type
   {
-    CALL,
+    CALL = 0,
     REPLY = 1
   }
    ;
 
   enum reply_stat
   {
-    MSG_ACCEPTED,
+    MSG_ACCEPTED = 0,
     MSG_DENIED = 1
   }
    ;
 
   enum accept_stat
   {
-    SUCCESS,
+    SUCCESS = 0,
     PROG_UNAVAIL = 1,
     PROG_MISMATCH = 2,
     PROC_UNAVAIL = 3,
@@ -44,7 +44,7 @@ extern "C"
 
   enum reject_stat
   {
-    RPC_MISMATCH,
+    RPC_MISMATCH = 0,
     AUTH_ERROR = 1
   }
    ;

@@ -43,9 +43,9 @@ extern "C"
 
   typedef enum
   {
-    SmcClosedNow,
-    SmcClosedASAP,
-    SmcConnectionInUse
+    SmcClosedNow =,
+    SmcClosedASAP =,
+    SmcConnectionInUse =
   }
   SmcCloseStatus;
 

@@ -39,7 +39,7 @@ extern "C"
 
   enum clnt_stat
   {
-    RPC_SUCCESS,		/* call succeeded */
+    RPC_SUCCESS = 0,		/* call succeeded */
     RPC_CANTENCODEARGS = 1,	/* can't encode arguments */
     RPC_CANTDECODERES = 2,	/* can't decode results */
     RPC_CANTSEND = 3,		/* failure in sending call */
@@ -122,13 +122,14 @@ extern "C"
    ;
 
 
-  extern struct CLIENT *clnt_create (char *, u_long, u_long, char *);
-  extern void clnt_pcreateerror (char *);
+  extern struct CLIENT *clnt_create (const char *, const u_long, const u_long,
+				     const char *);
+  extern void clnt_pcreateerror (const char *);
   extern void clnt_perrno (enum clnt_stat);
-  extern void clnt_perror (struct CLIENT *, char *);
-  extern char *clnt_spcreateerror (char *);
+  extern void clnt_perror (struct CLIENT *, const char *);
+  extern char *clnt_spcreateerror (const char *);
   extern char *clnt_sperrno (enum clnt_stat);
-  extern char *clnt_sperror (struct CLIENT *, char *);
+  extern char *clnt_sperror (struct CLIENT *, const char *);
 #ifdef __cplusplus
 }
 #endif

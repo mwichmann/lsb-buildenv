@@ -64,17 +64,17 @@ extern "C"
   lldiv_t;
 
 
-  extern double __strtod_internal (char *, char **, int);
-  extern float __strtof_internal (char *, char **, int);
-  extern long __strtol_internal (char *, char **, int, int);
-  extern long double __strtold_internal (char *, char **, int);
-  extern long long __strtoll_internal (char *, char **, int, int);
-  extern unsigned long __strtoul_internal (char *, char **, int, int);
-  extern unsigned long long __strtoull_internal (char *, char **, int, int);
-  extern long a64l (char *);
+  extern double __strtod_internal (const char *, char **, int);
+  extern float __strtof_internal (const char *, char **, int);
+  extern long __strtol_internal (const char *, char **, int, int);
+  extern long double __strtold_internal (const char *, char **, int);
+  extern long long __strtoll_internal (const char *, char **, int, int);
+  extern unsigned long __strtoul_internal (const char *, char **, int, int);
+  extern unsigned long long __strtoull_internal (const char *, char **, int,
+						 int);
+  extern long a64l (const char *);
   extern void abort (void);
   extern int abs (int);
-  extern int atexit (void (*atexit_func) (void));
   extern double atof (const char *);
   extern int atoi (const char *);
   extern long atol (const char *);

@@ -19,7 +19,7 @@ extern "C"
 
   enum auth_stat
   {
-    AUTH_OK,
+    AUTH_OK = 0,
     AUTH_BADCRED = 1,		/* bogus credentials (seal broken) */
     AUTH_REJECTEDCRED = 2,	/* client should begin new session */
     AUTH_BADVERF = 3,		/* bogus verifier (seal broken) */
