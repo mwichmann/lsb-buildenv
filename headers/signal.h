@@ -42,14 +42,6 @@ extern "C"
 
   typedef int sig_atomic_t;
 
-  typedef struct sigaltstack
-  {
-    void *ss_sp;
-    int ss_flags;
-    size_t ss_size;
-  }
-  stack_t;
-
   struct sigstack
   {
     void *ss_sp;		/* Signal stack pointer. */
@@ -125,6 +117,9 @@ extern "C"
 
 
 
+
+
+
 /* PPC32 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
 
 
@@ -132,13 +127,21 @@ extern "C"
 
 
 
+/* Type of a signal handling function.*/
+
+
+  typedef void (*sighandler_t) (int);
+
+
+/* Special Signal values*/
+#define SIG_HOLD	((sighandler_t) 2
+#define SIG_ERR	((sighandler_t)-1)
+#define SIG_DFL	((sighandler_t)0)
+#define SIG_IGN	((sighandler_t)1)
 
 
 
 /* System defined signals.*/
-#define SIG_ERR	((sighandler_t)-1)
-#define SIG_DFL	((sighandler_t)0)
-#define SIG_IGN	((sighandler_t)1)
 #define SIGHUP	1
 #define SIGUSR1	10
 #define SIGSEGV	11
@@ -175,12 +178,6 @@ extern "C"
 #define SIGCLD	SIGCHLD
 #define SIGPOLL	SIGIO
 
-
-
-/* Type of a signal handling function.*/
-
-
-  typedef void (*sighandler_t) (int);
 
 
 /* POSIX 1003.1b sigval*/
@@ -267,11 +264,6 @@ extern "C"
 #if __s390x__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 #endif
-#define SI_QUEUE	-1
-#define SI_TIMER	-2
-#define SI_MESGQ	-3
-#define SI_ASYNCIO	-4
-#define SI_USER	0
 #define SI_MAX_SIZE	128
 #define si_pid	_sifields._kill._pid
 #define si_uid	_sifields._kill._uid
@@ -341,6 +333,83 @@ extern "C"
   siginfo_t;
 
 
+/* Values for `si_code'.  Positive values are reserved for kernel-generated
+   signals.*/
+#define SI_QUEUE	-1
+#define SI_TIMER	-2
+#define SI_MESGQ	-3
+#define SI_ASYNCIO	-4
+#define SI_SIGIO	-5
+#define SI_TKILL	-6
+#define SI_ASYNCNL	-60
+#define SI_USER	0
+#define SI_KERNEL	0x80
+
+
+
+/* `si_code' values for SIGILL signal.*/
+#define ILL_ILLOPC	1
+#define ILL_ILLOPN	2
+#define ILL_ILLADR	3
+#define ILL_ILLTRP	4
+#define ILL_PRVOPC	5
+#define ILL_PRVREG	6
+#define ILL_COPROC	7
+#define ILL_BADSTK	8
+
+
+
+/* `si_code' values for SIGFPE signal.*/
+#define FPE_INTDIV	1
+#define FPE_INTOVF	2
+#define FPE_FLTDIV	3
+#define FPE_FLTOVF	4
+#define FPE_FLTUND	5
+#define FPE_FLTRES	6
+#define FPE_FLTINV	7
+#define FPE_FLTSUB	8
+
+
+
+/* `si_code' values for SIGSEGV signal.*/
+#define SEGV_MAPERR	1
+#define SEGV_ACCERR	2
+
+
+
+/* `si_code' values for SIGBUS signal.*/
+#define BUS_ADRALN	1
+#define BUS_ADRERR	2
+#define BUS_OBJERR	3
+
+
+
+/* `si_code' values for SIGTRAP signal.*/
+#define TRAP_BRKPT	1
+#define TRAP_TRACE	2
+
+
+
+/* `si_code' values for SIGCHLD signal.*/
+#define CLD_EXITED	1
+#define CLD_KILLED	2
+#define CLD_DUMPED	3
+#define CLD_TRAPPED	4
+#define CLD_STOPPED	5
+#define CLD_CONTINUED	6
+
+
+
+/* `si_code' values for SIGPOLL signal.*/
+#define POLL_IN	1
+#define POLL_OUT	2
+#define POLL_MSG	3
+#define POLL_ERR	4
+#define POLL_PRI	5
+#define POLL_HUP	6
+
+
+
 /* sigset_t*/
 
 
@@ -353,6 +422,7 @@ extern "C"
 
 /* sigaction*/
 #define SA_NOCLDSTOP	0x00000001
+#define SA_NOCLDWAIT	0x00000002
 #define SA_SIGINFO	0x00000004
 #define SA_ONSTACK	0x08000000
 #define SA_RESTART	0x10000000
@@ -485,9 +555,66 @@ extern "C"
 #endif
 
 /* Structure used in sigaltstack call.*/
+#if __ia64__
+#define MINSIGSTKSZ	131027
+#endif
+#if __i386__
+#define MINSIGSTKSZ	2048
+#endif
+#if __powerpc__ && !__powerpc64__
+#define MINSIGSTKSZ	2048
+#endif
+#if __powerpc64__
+#define MINSIGSTKSZ	2048
+#endif
+#if __s390__ && !__s390x__
+#define MINSIGSTKSZ	2048
+#endif
+#if __x86_64__
+#define MINSIGSTKSZ	2048
+#endif
+#if __s390x__
+#define MINSIGSTKSZ	2048
+#endif
+#if __ia64__
+#define SIGSTKSZ	262144
+#endif
+#if __i386__
+#define SIGSTKSZ	8192
+#endif
+#if __powerpc__ && !__powerpc64__
+#define SIGSTKSZ	8192
+#endif
+#if __powerpc64__
+#define SIGSTKSZ	8192
+#endif
+#if __s390__ && !__s390x__
+#define SIGSTKSZ	8192
+#endif
+#if __x86_64__
+#define SIGSTKSZ	8192
+#endif
+#if __s390x__
+#define SIGSTKSZ	8192
+#endif
+
+
+  typedef struct sigaltstack
+  {
+    void *ss_sp;
+    int ss_flags;
+    size_t ss_size;
+  }
+  stack_t;
+
+
+/* Possible values for `ss_flags.'.*/
+#define SS_ONSTACK	1
+#define SS_DISABLE	2
 
 
 
+/* FP registers*/
 
 
 #if __i386__
@@ -798,6 +925,8 @@ extern "C"
 
 #endif
 
+  extern int __libc_current_sigrtmax (void);
+  extern int __libc_current_sigrtmin (void);
   extern sighandler_t __sysv_signal (int, sighandler_t);
   extern char *const _sys_siglist[64];
   extern int killpg (pid_t, int);
