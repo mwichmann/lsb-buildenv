@@ -1,0 +1,9 @@
+
+char XtShellStrings;
+WidgetClass applicationShellWidgetClass;
+WidgetClass overrideShellWidgetClass;
+WidgetClass sessionShellWidgetClass;
+WidgetClass shellWidgetClass;
+WidgetClass topLevelShellWidgetClass;
+WidgetClass transientShellWidgetClass;
+WidgetClass wmShellWidgetClass;

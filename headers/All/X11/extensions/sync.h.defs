@@ -1,37 +1,3 @@
-typedef XID XSyncCounter;
-
-typedef XID XSyncAlarm;
-
-typedef struct _XSyncValue
-{
-  int hi;
-  unsigned int lo;
-}
-XSyncValue;
-
-typedef enum
-{
-  XSyncAbsolute,
-  XSyncRelative
-}
-XSyncValueType;
-
-typedef enum
-{
-  XSyncPositiveTransition,
-  XSyncNegativeTransition,
-  XSyncPositiveComparison,
-  XSyncNegativeComparison
-}
-XSyncTestType;
-
-typedef enum
-{
-  XSyncAlarmActive,
-  XSyncAlarmInactive,
-  XSyncAlarmDestroyed
-}
-XSyncAlarmState;
 
 typedef struct _XSyncSystemCounter
 {
@@ -39,29 +5,46 @@ typedef struct _XSyncSystemCounter
   XSyncCounter counter;
   XSyncValue resolution;
 }
-XSyncSystemCounter;
-
-typedef struct
+XSyncSystemCounter typedef struct
 {
   XSyncCounter counter;
   XSyncValueType value_type;
   XSyncValue wait_value;
   XSyncTestType test_type;
 }
-XSyncTrigger;
-
-typedef struct
+XSyncTrigger typedef struct
 {
   XSyncTrigger trigger;
   XSyncValue event_threshold;
 }
-XSyncWaitCondition;
-
-typedef struct
+XSyncWaitCondition typedef struct
 {
   XSyncTrigger trigger;
   XSyncValue delta;
   int events;
   XSyncAlarmState state;
 }
-XSyncAlarmAttributes;
+XSyncAlarmAttributes typedef XID XSyncCounter typedef XID XSyncAlarm typedef struct _XSyncValue
+{
+  int hi;
+  unsigned int lo;
+}
+XSyncValue typedef enum
+{
+  XSyncAbsolute,
+  XSyncRelative
+}
+XSyncValueType typedef enum
+{
+  XSyncPositiveTransition,
+  XSyncNegativeTransition,
+  XSyncPositiveComparison,
+  XSyncNegativeComparison
+}
+XSyncTestType typedef enum
+{
+  XSyncAlarmActive,
+  XSyncAlarmInactive,
+  XSyncAlarmDestroyed
+}
+XSyncAlarmState

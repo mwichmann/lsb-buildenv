@@ -1,11 +1,12 @@
-typedef long __clock_t;
 
-struct timespec
+
+typedef __clock_t clock_t typedef long __clock_t typedef __time_t time_t struct timespec
 {
   long tv_sec;
   long tv_nsec;
 }
- ;
+
+
 
 struct tm
 {
@@ -21,8 +22,3 @@ struct tm
   long __tm_gmtoff;
   char *__tm_zone;
 }
- ;
-
-typedef __clock_t clock_t;
-
-typedef __time_t time_t;

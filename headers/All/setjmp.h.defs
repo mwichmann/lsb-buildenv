@@ -1,4 +1,4 @@
-typedef int __jmp_buf;
+
 
 typedef struct __jmp_buf_tag
 {
@@ -6,6 +6,4 @@ typedef struct __jmp_buf_tag
   int __mask_was_saved;
   __sigset_t __saved_mask;
 }
-jmp_buf;
-
-typedef jmp_buf sigjmp_buf;
+jmp_buf typedef jmp_buf sigjmp_buf typedef int __jmp_buf

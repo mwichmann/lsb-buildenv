@@ -1,3 +1,2 @@
-typedef unsigned long wctype_t;
 
-typedef __int32_t *wctrans_t;
+typedef unsigned long wctype_t typedef __int32_t *wctrans_t

@@ -1,0 +1,56 @@
+
+
+enum
+{
+  FTW_F,
+  FTW_D,
+  FTW_DNR,
+  FTW_NS,
+  FTW_SL,
+  FTW_DP,
+  FTW_SLN
+}
+ ;
+
+#define FTW_D	FTW_D
+#define FTW_DNR	FTW_DNR
+#define FTW_DP	FTW_DP
+#define FTW_F	FTW_F
+#define FTW_NS	FTW_NS
+#define FTW_SL	FTW_SL
+#define FTW_SLN	FTW_SLN
+
+enum
+{
+  FTW_PHYS,
+  FTW_MOUNT,
+  FTW_CHDIR,
+  FTW_DEPTH
+}
+ ;
+
+
+struct FTW
+{
+  int base;
+  int level;
+}
+ ;
+
+
+typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,
+			     int __flag);
+
+typedef int (*__ftw64_func_t) (char *__filename, struct stat64 * __status,
+			       int __flag);
+
+typedef int (*__nftw_func_t) (char *__filename, struct stat * __status,
+			      int __flag, struct FTW * __info);
+
+typedef int (*__nftw64_func_t) (char *__filename, struct stat64 * __status,
+				int __flag, struct FTW * __info);
+
+int ftw (char *, __ftw_func_t, int);
+int ftw64 (char *, __ftw64_func_t, int);
+int nftw (char *, __nftw_func_t, int, int);
+int nftw64 (char *, __nftw64_func_t, int, int);

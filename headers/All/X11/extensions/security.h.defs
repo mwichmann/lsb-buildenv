@@ -1,10 +1,9 @@
-typedef unsigned long XSecurityAuthorization;
 
-typedef struct
+typedef unsigned long XSecurityAuthorization typedef struct
 {
   unsigned int timeout;
   unsigned int trust_level;
   XID group;
   long event_mask;
 }
-XSecurityAuthorizationAttributes;
+XSecurityAuthorizationAttributes

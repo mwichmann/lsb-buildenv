@@ -1,0 +1,2 @@
+
+int adjtimex (struct timex *);

@@ -1,3 +1,5 @@
+
+
 struct passwd
 {
   char *pw_name;
@@ -8,4 +10,3 @@ struct passwd
   char *pw_dir;
   char *pw_shell;
 }
- ;

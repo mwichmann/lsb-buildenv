@@ -1,5 +1,6 @@
-typedef __ssize_t ssize_t;
 
-typedef __pid_t pid_t;
-
-typedef __off_t off_t;
+typedef __ssize_t ssize_t typedef __pid_t pid_t typedef __off_t off_t
+#define F_OK	0
+#define X_OK	1
+#define W_OK	2
+#define R_OK	4
