@@ -80,6 +80,9 @@ extern "C"
 #if defined(__i386__)
 #define __INT_MAX__	2147483647
 #endif
+#if defined(__ia64__)
+#define __INT_MAX__	2147483647
+#endif
 #if defined(__s390__)
 #define __INT_MAX__	2147483647
 #endif

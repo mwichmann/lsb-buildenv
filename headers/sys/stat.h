@@ -52,6 +52,8 @@ extern "C"
 #define S_IEXEC	S_IXUSR
 
 
+#if defined(__i386__)
+/* IA32 */
   struct stat
   {
     dev_t st_dev;
@@ -77,6 +79,9 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__i386__)
+/* IA32 */
   struct stat64
   {
     dev_t st_dev;
@@ -101,6 +106,38 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  struct stat
+  {
+    unsigned long st_dev;
+    unsigned long st_ino;
+    unsigned long st_nlink;
+    unsigned int st_mode;
+    unsigned int st_uid;
+    unsigned int st_gid;
+    unsigned int pad0;
+    unsigned long st_rdev;
+    unsigned long st_size;
+    unsigned long st_atime;
+    unsigned long __reserved0;
+    unsigned long st_mtime;
+    unsigned long __reserved1;
+    unsigned long st_ctime;
+    unsigned long __reserved2;
+    unsigned long st_blksize;
+    long st_blocks;
+    unsigned long __unused[3];
+  }
+   ;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  struct stat64;
+
+#endif
 
 
 

@@ -1,4 +1,5 @@
 
+#define _SC_GR0_OFFSET	(((char *) &amp ((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 
 
 
@@ -26,7 +27,6 @@
 
 
 typedef struct sigcontext mcontext_t;
-#define _SC_GR0_OFFSET	(((char *) &amp ((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 
 
 typedef struct ia64ucontext

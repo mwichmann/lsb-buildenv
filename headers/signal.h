@@ -440,6 +440,41 @@ extern "C"
 #define sa_sigaction	__sigaction_handler._sa_sigaction
 
 
+#if defined(__i386__)
+/* IA32 */
+  struct sigaction
+  {
+    union
+    {
+      __sighandler_t _sa_handler;
+      void (*_sa_sigaction) (int, siginfo_t *, void *);
+    }
+    __sigaction_handler;
+    unsigned long sa_flags;
+    void (*sa_restorer) (void);
+    sigset_t sa_maskmake;
+  }
+   ;
+
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  struct sigaction
+  {
+    union
+    {
+      __sighandler_t _sa_handler;
+      void (*_sa_sigaction) (int, siginfo_t *, void *);
+    }
+    __sigaction_handler;
+    unsigned long sa_flags;
+    sigset_t sa_mask;		/* mask last for extensibility */
+  }
+   ;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
   struct sigaction
   {
     union
@@ -454,6 +489,24 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__s390__)
+/* S390 */
+  struct sigaction
+  {
+    union
+    {
+      __sighandler_t _sa_handler;
+      void (*_sa_sigaction) (int, siginfo_t *, void *);
+    }
+    __sigaction_handler;
+    unsigned long sa_flags;
+    void (*sa_restorer) (void);
+    sigset_t sa_mask;
+  }
+   ;
+
+#endif
 
 /* Structure used in sigaltstack call.*/
 

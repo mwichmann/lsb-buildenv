@@ -1,3 +1,16 @@
 
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
 #define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
+
+
+
+
+
+
+
+
+
+
+
+
+#define __INT_MAX__	2147483647

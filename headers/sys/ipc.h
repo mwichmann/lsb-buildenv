@@ -18,6 +18,8 @@ extern "C"
 #define IPC_STAT	2
 
 
+#if defined(__i386__)
+/* IA32 */
   struct ipc_perm
   {
     key_t __key;
@@ -34,6 +36,63 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  struct ipc_perm
+  {
+    key_t __key;		/* Key. */
+    uid_t uid;			/* Owner's user ID. */
+    gid_t gid;			/* Owner's group ID. */
+    uid_t cuid;			/* Creator's user ID. */
+    uid_t cgid;			/* Creator's group ID. */
+    mode_t mode;		/* Read/write permission. */
+    unsigned short __seq;	/* Sequence number. */
+    unsigned short __pad1;
+    unsigned long __unused1;
+    unsigned long __unused2;
+  }
+   ;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  struct ipc_perm
+  {
+    key_t __key;
+    uid_t uid;
+    gid_t gid;
+    uid_t cuid;
+    uid_t cgid;
+    unsigned short mode;
+    unsigned short __pad1;
+    unsigned short __seq;
+    unsigned short __pad2;
+    unsigned long __unused1;
+    unsigned long __unused2;
+  }
+   ;
+
+#endif
+#if defined(__s390__)
+/* S390 */
+  struct ipc_perm
+  {
+    key_t __key;
+    uid_t uid;
+    gid_t gid;
+    uid_t cuid;
+    uid_t cgid;
+    unsigned short mode;
+    unsigned short __pad1;
+    unsigned short __seq;
+    unsigned short __pad2;
+    unsigned long __unused1;
+    unsigned long __unused2;
+  }
+   ;
+
+#endif
 
 /* common mode bits*/
 

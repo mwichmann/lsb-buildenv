@@ -28,6 +28,8 @@ extern "C"
   }
    ;
 
+#if defined(__i386__)
+/* IA32 */
   struct semid_ds
   {
     struct ipc_perm sem_perm;	/* operation permission struct */
@@ -41,6 +43,52 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;	/* operation permission struct */
+    time_t sem_otime;		/* last semop() time */
+    time_t sem_ctime;		/* last time changed by semctl() */
+    unsigned long __unused1;
+    unsigned long __unused2;
+  }
+   ;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;	/* operation permission struct */
+    time_t sem_otime;		/* last semop() time */
+    unsigned long __unused1;
+    time_t sem_ctime;		/* last time changed by semctl() */
+    unsigned long __unused2;
+    unsigned long sem_nsems;	/* number of semaphores in set */
+    unsigned long __unused3;
+    unsigned long __unused4;
+  }
+   ;
+
+#endif
+#if defined(__s390__)
+/* S390 */
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;	/* operation permission struct */
+    time_t sem_otime;		/* last semop() time */
+    unsigned long __unused1;
+    time_t sem_ctime;		/* last time changed by semctl() */
+    unsigned long __unused2;
+    unsigned long sem_nsems;	/* number of semaphores in set */
+    unsigned long __unused3;
+    unsigned long __unused4;
+  }
+   ;
+
+#endif
 
   extern int semctl (int, int, int, ...);
   extern int semget (key_t, int, int);

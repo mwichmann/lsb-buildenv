@@ -9,6 +9,9 @@ extern "C"
 #endif
 
 
+#if defined(__ia64__)
+#define _SC_GR0_OFFSET	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
+#endif
 
 
 
@@ -24,6 +27,9 @@ extern "C"
 /* Number of general registers.*/
 #if defined(__i386__)
 #define NGREG	19
+#endif
+#if defined(__s390__)
+#define NGREG	36
 #endif
 #if defined(__powerpc__)
 #define NGREG	48
@@ -121,9 +127,6 @@ extern "C"
 #endif
 
 /* Userlevel context.*/
-#if defined(__ia64__)
-#define _SC_GR0_OFFSET	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
-#endif
 
 
 #if defined(__i386__)

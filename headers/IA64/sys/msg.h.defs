@@ -1,0 +1,24 @@
+
+
+
+
+
+
+
+
+
+struct msqid_ds
+{
+  struct ipc_perm msg_perm;
+  time_t msg_stime;
+  time_t msg_rtime;
+  time_t msg_ctime;
+  unsigned long __msg_cbytes;
+  unsigned long msg_qnum;
+  unsigned long msg_qbytes;
+  pid_t msg_lspid;
+  pid_t msg_lrpid;
+  unsigned long __unused1;
+  unsigned long __unused2;
+}
+ ;

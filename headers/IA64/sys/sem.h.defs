@@ -1,0 +1,12 @@
+
+
+
+struct semid_ds
+{
+  struct ipc_perm sem_perm;
+  time_t sem_otime;
+  time_t sem_ctime;
+  unsigned long __unused1;
+  unsigned long __unused2;
+}
+ ;
