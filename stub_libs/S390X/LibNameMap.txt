@@ -12,8 +12,7 @@ libm libm.so.6
 libncurses libncurses.so.5
 libpam libpam.so.0
 libpthread libpthread.so.0
-libstdcxx libstdc++.so.5
-libstdcxx6 libstdc++.so.6
+libstdcxx libstdc++.so.6
 libutil libutil.so.1
 libz libz.so.1
 proginterp /lib64/ld-lsb-s390x.so.2
