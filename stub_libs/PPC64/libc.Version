@@ -318,13 +318,7 @@ GLIBC_2.3 {
   iscntrl;
   isdigit;
   isgraph;
-  isinf;
-  isinff;
-  isinfl;
   islower;
-  isnan;
-  isnanf;
-  isnanl;
   isprint;
   ispunct;
   isspace;
