@@ -178,6 +178,8 @@ extern "C"
   extern int uncompress (Bytef *, uLongf *, const Bytef *, uLong);
   extern const char *zError (int);
   extern char *zlibVersion (void);
+  extern uLong deflateBound (z_streamp, uLong);
+  extern uLong compressBound (uLong);
 #ifdef __cplusplus
 }
 #endif
