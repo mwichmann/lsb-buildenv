@@ -507,7 +507,6 @@ argvadd(syslibs,"L",gccbasedir);
 if( lsbccmode == LSBCPLUS ) {
 	if( lsbcc_debug&DEBUG_LIB_CHANGES )
 		fprintf(stderr,"Appending -lstdc++ -lgcc_s to the library list\n");
-	argvaddstring(syslibs,"-Wl,-Bdynamic");
 	argvaddstring(syslibs,"-lstdc++");
 	argvaddstring(syslibs,"-lgcc_s");
 }
