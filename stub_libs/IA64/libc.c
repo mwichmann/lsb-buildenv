@@ -509,7 +509,6 @@ void setpwent(void) {} ;
 void setregid(void) {} ;
 void setreuid(void) {} ;
 void setrlimit(void) {} ;
-void setrlimit64(void) {} ;
 void setservent(void) {} ;
 void setsid(void) {} ;
 void setsockopt(void) {} ;
