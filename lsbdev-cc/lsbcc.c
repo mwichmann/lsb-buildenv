@@ -195,7 +195,10 @@ for(i=0;i<ag->numargv;i++)
 void
 process_opt_l(char *val)
 {
-argvadd(userlibs,"l",val);
+char	buf[32];
+
+sprintf(buf,"-l%s",val);
+argvaddstring(userlibs,strdup(buf));
 }
 
 /* end option processing routines */
@@ -346,8 +349,9 @@ argvappend(gccargs,target);
 argvaddstring(incpaths,"-I/usr/lsb/include");
 argvappend(gccargs,incpaths);
 
-argvappend(gccargs,libpaths);
 argvappend(gccargs,options);
+argvappend(gccargs,libpaths);
+argvappend(gccargs,userlibs);
 argvappend(gccargs,proginterp);
 argvappend(gccargs,syslibs);
 /*
