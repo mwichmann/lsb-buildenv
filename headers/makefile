@@ -1,4 +1,4 @@
-ARCHS = All IA32 IA64 PPC32 S390 PPC64 S390X X86-64
+ARCHS = All IA32 IA64 PPC32 S390 PPC64 S390X x86-64
 HEADERFILELIST := $(shell ./getheaderlist)
 
 all: $(foreach arch,$(ARCHS),headers-$(arch))
