@@ -21,3 +21,6 @@ void lio_listio(void) {} ;
 void lio_listio64(void) {} ;
 void shm_open(void) {} ;
 void shm_unlink(void) {} ;
+void timer_create(void) {} ;
+void timer_delete(void) {} ;
+void timer_gettime(void) {} ;

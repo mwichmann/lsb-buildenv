@@ -180,6 +180,7 @@ GLIBC_2.1 {
   cimag;
   cimagf;
   cimagl;
+  clog;
   clog10;
   clog10f;
   clog10l;
@@ -277,5 +278,4 @@ GLIBC_2.1 {
   trunc;
   truncf;
   truncl;
-  clog;
 };
