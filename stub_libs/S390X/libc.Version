@@ -1,4 +1,13 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  utmpname;
+};
+GLIBC_2.1 {
+  if_freenameindex;
+  if_indextoname;
+  if_nameindex;
+  if_nametoindex;
+};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -51,8 +60,6 @@ GLIBC_2.2 {
   __xstat64;
   _exit;
   _longjmp;
-  _obstack_begin;
-  _obstack_newchunk;
   _setjmp;
   _tolower;
   _toupper;
@@ -220,7 +227,6 @@ GLIBC_2.2 {
   getcontext;
   getcwd;
   getdate;
-  getdomainname;
   getegid;
   getenv;
   geteuid;
@@ -404,7 +410,6 @@ GLIBC_2.2 {
   nrand48;
   ntohl;
   ntohs;
-  obstack_free;
   open;
   open64;
   opendir;
@@ -438,7 +443,6 @@ GLIBC_2.2 {
   rand;
   rand_r;
   random;
-  random_r;
   read;
   readdir;
   readdir64;
@@ -482,14 +486,12 @@ GLIBC_2.2 {
   setbuf;
   setbuffer;
   setcontext;
-  setdomainname;
   setegid;
   setenv;
   seteuid;
   setgid;
   setgrent;
   setgroups;
-  sethostid;
   sethostname;
   setitimer;
   setlocale;
@@ -521,11 +523,9 @@ GLIBC_2.2 {
   sigaddset;
   sigaltstack;
   sigandset;
-  sigblock;
   sigdelset;
   sigemptyset;
   sigfillset;
-  siggetmask;
   sighold;
   sigignore;
   siginterrupt;
@@ -572,7 +572,6 @@ GLIBC_2.2 {
   strerror;
   strerror_r;
   strfmon;
-  strfry;
   strftime;
   strlen;
   strncasecmp;
@@ -601,7 +600,6 @@ GLIBC_2.2 {
   strtoull;
   strtoumax;
   strtouq;
-  strverscmp;
   strxfrm;
   svc_getreqset;
   svc_register;
@@ -688,7 +686,6 @@ GLIBC_2.2 {
   vwprintf;
   vwscanf;
   wait;
-  wait3;
   wait4;
   waitpid;
   warn;
@@ -807,6 +804,9 @@ GLIBC_2.2 {
 };
 GLIBC_2.2.3 {
   fnmatch;
+};
+GLIBC_2.2.4 {
+  sockatmark;
 };
 GLIBC_2.3 {
   __ctype_b_loc;

@@ -42,6 +42,7 @@ GLIBC_2.1 {
   pthread_attr_setstackaddr;
   pthread_attr_setstacksize;
   pthread_create;
+  pthread_getconcurrency;
   pthread_mutexattr_gettype;
   pthread_mutexattr_settype;
   pthread_rwlock_destroy;
@@ -71,6 +72,8 @@ GLIBC_2.1.1 {
 GLIBC_2.2 {
   pread;
   pread64;
+  pthread_attr_getstack;
+  pthread_attr_setstack;
   pthread_condattr_getpshared;
   pthread_condattr_setpshared;
   pthread_mutexattr_getpshared;

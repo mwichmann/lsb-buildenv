@@ -41,8 +41,6 @@ GLIBC_2.0 {
   __xstat;
   _exit;
   _longjmp;
-  _obstack_begin;
-  _obstack_newchunk;
   _setjmp;
   _tolower;
   _toupper;
@@ -175,7 +173,6 @@ GLIBC_2.0 {
   getchar;
   getchar_unlocked;
   getcwd;
-  getdomainname;
   getegid;
   getenv;
   geteuid;
@@ -325,7 +322,6 @@ GLIBC_2.0 {
   nrand48;
   ntohl;
   ntohs;
-  obstack_free;
   open;
   opendir;
   openlog;
@@ -351,7 +347,6 @@ GLIBC_2.0 {
   rand;
   rand_r;
   random;
-  random_r;
   read;
   readdir;
   readdir_r;
@@ -393,14 +388,12 @@ GLIBC_2.0 {
   setbuf;
   setbuffer;
   setcontext;
-  setdomainname;
   setegid;
   setenv;
   seteuid;
   setgid;
   setgrent;
   setgroups;
-  sethostid;
   sethostname;
   setitimer;
   setlocale;
@@ -428,11 +421,9 @@ GLIBC_2.0 {
   sigaddset;
   sigaltstack;
   sigandset;
-  sigblock;
   sigdelset;
   sigemptyset;
   sigfillset;
-  siggetmask;
   siginterrupt;
   sigisemptyset;
   sigismember;
@@ -469,7 +460,6 @@ GLIBC_2.0 {
   strerror;
   strerror_r;
   strfmon;
-  strfry;
   strftime;
   strlen;
   strncasecmp;
@@ -554,6 +544,7 @@ GLIBC_2.0 {
   usleep;
   utime;
   utimes;
+  utmpname;
   vasprintf;
   vdprintf;
   verrx;
@@ -567,7 +558,6 @@ GLIBC_2.0 {
   vsscanf;
   vsyslog;
   wait;
-  wait3;
   wait4;
   waitpid;
   warn;
@@ -701,6 +691,10 @@ GLIBC_2.1 {
   iconv;
   iconv_close;
   iconv_open;
+  if_freenameindex;
+  if_indextoname;
+  if_nameindex;
+  if_nametoindex;
   iswblank;
   key_decryptsession;
   lockf64;
@@ -728,7 +722,6 @@ GLIBC_2.1 {
   strcasestr;
   strtoimax;
   strtoumax;
-  strverscmp;
   swapcontext;
   tcgetsid;
   tmpfile;
@@ -815,6 +808,9 @@ GLIBC_2.2 {
 };
 GLIBC_2.2.3 {
   fnmatch;
+};
+GLIBC_2.2.4 {
+  sockatmark;
 };
 GLIBC_2.3 {
   __ctype_b_loc;

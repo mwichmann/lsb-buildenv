@@ -45,9 +45,6 @@ GLIBC_2.0 {
   erff;
   erfl;
   exp;
-  exp2;
-  exp2f;
-  exp2l;
   expf;
   expl;
   expm1;
@@ -102,9 +99,6 @@ GLIBC_2.0 {
   log1p;
   log1pf;
   log1pl;
-  log2;
-  log2f;
-  log2l;
   logb;
   logbf;
   logbl;
@@ -240,6 +234,9 @@ GLIBC_2.1 {
   ctanhf;
   ctanhl;
   ctanl;
+  exp2;
+  exp2f;
+  exp2l;
   fdim;
   fdimf;
   fdiml;
@@ -262,6 +259,9 @@ GLIBC_2.1 {
   llround;
   llroundf;
   llroundl;
+  log2;
+  log2f;
+  log2l;
   lrint;
   lrintf;
   lrintl;

@@ -1,4 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.1 {
+  pthread_getconcurrency;
+};
 GLIBC_2.2 {
   _pthread_cleanup_pop;
   _pthread_cleanup_push;
@@ -8,6 +11,7 @@ GLIBC_2.2 {
   pthread_attr_getdetachstate;
   pthread_attr_getguardsize;
   pthread_attr_getschedparam;
+  pthread_attr_getstack;
   pthread_attr_getstackaddr;
   pthread_attr_getstacksize;
   pthread_attr_init;

@@ -38,3 +38,4 @@ void inflateSync() {} ;
 void inflateSyncPoint() {} ;
 void uncompress() {} ;
 void zError() {} ;
+void zlibVersion() {} ;
