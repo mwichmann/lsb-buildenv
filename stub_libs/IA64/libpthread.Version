@@ -63,6 +63,7 @@ GLIBC_2.2 {
   pthread_self;
   pthread_setcancelstate;
   pthread_setcanceltype;
+  pthread_setconcurrency;
   pthread_setschedparam;
   pthread_setspecific;
   pthread_sigmask;

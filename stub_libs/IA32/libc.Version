@@ -283,6 +283,7 @@ GLIBC_2.0 {
   l64a;
   labs;
   lchown;
+  lcong48;
   ldiv;
   lfind;
   link;

@@ -3,6 +3,7 @@ GLIBC_2.0 {
   __bzero;
   __divdi3;
   atexit;
+  lcong48;
 };
 GLIBC_2.2 {
   _Exit;
@@ -512,6 +513,7 @@ GLIBC_2.2 {
   setregid;
   setreuid;
   setrlimit;
+  setrlimit64;
   setservent;
   setsid;
   setsockopt;
