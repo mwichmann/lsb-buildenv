@@ -18,10 +18,16 @@ extern "C"
 
   typedef lldiv_t imaxdiv_t;
 
+#if __i386__
+/* IA32 */
   typedef long long intmax_t;
 
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
   typedef unsigned long long uintmax_t;
 
+#endif
   typedef unsigned int u_int;
 
   typedef unsigned int uint;
@@ -36,6 +42,46 @@ extern "C"
 
   typedef long long uint64_t;
 
+#if __ia64__
+/* IA64 */
+  typedef long intmax_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef long intmax_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef long long intmax_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef long long intmax_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef unsigned long uintmax_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long uintmax_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef unsigned long long uintmax_t;
+
+#endif
+#if __i386__
+/* IA32 */
+  typedef unsigned long long uintmax_t;
+
+#endif
 
 #define __LITTLE_ENDIAN	1234
 #define __PDP_ENDIAN	3412
