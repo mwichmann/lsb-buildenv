@@ -1,7 +1,6 @@
 #ifndef _COMPLEX_H_
 #define _COMPLEX_H_
 
-#include <math.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -9,6 +8,7 @@ extern "C"
 #endif
 
 
+#define complex	_Complex
 
 
 
