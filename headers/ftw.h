@@ -27,13 +27,13 @@ extern "C"
 
   enum
   {
-    FTW_F =,
-    FTW_D =,
-    FTW_DNR =,
-    FTW_NS =,
-    FTW_SL =,
-    FTW_DP =,
-    FTW_SLN =
+    FTW_F,
+    FTW_D,
+    FTW_DNR,
+    FTW_NS,
+    FTW_SL,
+    FTW_DP,
+    FTW_SLN
   }
    ;
 
@@ -43,10 +43,10 @@ extern "C"
 
   enum
   {
-    FTW_PHYS =,
-    FTW_MOUNT =,
-    FTW_CHDIR =,
-    FTW_DEPTH =
+    FTW_PHYS,
+    FTW_MOUNT,
+    FTW_CHDIR,
+    FTW_DEPTH
   }
    ;
 

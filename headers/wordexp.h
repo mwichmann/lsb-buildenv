@@ -16,13 +16,13 @@ extern "C"
 
   enum
   {
-    WRDE_DOOFFS =,
-    WRDE_APPEND =,
-    WRDE_NOCMD =,
-    WRDE_REUSE =,
-    WRDE_SHOWERR =,
-    WRDE_UNDEF =,
-    __WRDE_FLAGS =
+    WRDE_DOOFFS,
+    WRDE_APPEND,
+    WRDE_NOCMD,
+    WRDE_REUSE,
+    WRDE_SHOWERR,
+    WRDE_UNDEF,
+    __WRDE_FLAGS
   }
    ;
 
@@ -44,12 +44,12 @@ extern "C"
 
   enum
   {
-    WRDE_NOSYS =,
-    WRDE_NOSPACE =,
-    WRDE_BADCHAR =,
-    WRDE_BADVAL =,
-    WRDE_CMDSUB =,
-    WRDE_SYNTAX =
+    WRDE_NOSYS,
+    WRDE_NOSPACE,
+    WRDE_BADCHAR,
+    WRDE_BADVAL,
+    WRDE_CMDSUB,
+    WRDE_SYNTAX
   }
    ;
 

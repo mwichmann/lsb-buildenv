@@ -17,18 +17,18 @@ extern "C"
 
   enum
   {
-    _ISupper =,
-    _ISlower =,
-    _ISalpha =,
-    _ISdigit =,
-    _ISxdigit =,
-    _ISspace =,
-    _ISprint =,
-    _ISgraph =,
-    _ISblank =,
-    _IScntrl =,
-    _ISpunct =,
-    _ISalnum =
+    _ISupper,
+    _ISlower,
+    _ISalpha,
+    _ISdigit,
+    _ISxdigit,
+    _ISspace,
+    _ISprint,
+    _ISgraph,
+    _ISblank,
+    _IScntrl,
+    _ISpunct,
+    _ISalnum
   }
    ;
 
