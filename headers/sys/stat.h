@@ -291,23 +291,23 @@ extern "C"
 /* S390X */
   struct stat
   {
-    __dev_t st_dev;
-    __ino_t st_ino;
-    __nlink_t st_nlink;
-    __mode_t st_mode;
-    __uid_t st_uid;
-    __gid_t st_gid;
+    dev_t st_dev;
+    ino_t st_ino;
+    nlink_t st_nlink;
+    mode_t st_mode;
+    uid_t st_uid;
+    gid_t st_gid;
     int pad0;
-    __dev_t st_rdev;
-    __off_t st_size;
-    __time_t st_atime;
+    dev_t st_rdev;
+    off_t st_size;
+    time_t st_atime;
     long __reserved0;
-    __time_t st_mtime;
+    time_t st_mtime;
     long __reserved1;
-    __time_t st_ctime;
+    time_t st_ctime;
     long __reserved2;
     blksize_t st_blksize;
-    __blkcnt_t st_blocks;
+    blkcnt_t st_blocks;
   }
    ;
 
@@ -341,26 +341,78 @@ extern "C"
 /* S390 */
   struct stat
   {
-    __dev_t st_dev;
+    dev_t st_dev;
     unsigned int __pad1;
-    __ino_t st_ino;
-    __mode_t st_mode;
-    __nlink_t st_nlink;
-    __uid_t st_uid;
-    __gid_t st_gid;
-    __dev_t st_rdev;
+    ino_t st_ino;
+    mode_t st_mode;
+    nlink_t st_nlink;
+    uid_t st_uid;
+    gid_t st_gid;
+    dev_t st_rdev;
     unsigned int __pad2;
-    __off_t st_size;
+    off_t st_size;
     blksize_t st_blksize;
-    __blkcnt_t st_blocks;
-    __time_t st_atime;
+    blkcnt_t st_blocks;
+    time_t st_atime;
     unsigned long __unused1;
-    __time_t st_mtime;
+    time_t st_mtime;
     unsigned long __unused2;
-    __time_t st_ctime;
+    time_t st_ctime;
     unsigned long __unused3;
     unsigned long __unused4;
     unsigned long __unused5;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct stat
+  {
+    dev_t st_dev;
+    ino_t st_ino;
+    nlink_t st_nlink;
+    mode_t st_mode;
+    uid_t st_uid;
+    gid_t st_gid;
+    int __pad0;
+    dev_t st_rdev;
+    off_t st_size;
+    blksize_t st_blksize;
+    blkcnt_t st_blocks;
+    time_t st_atime;
+    unsigned long __unused1;
+    time_t st_mtime;
+    unsigned long __unused2;
+    time_t st_ctime;
+    unsigned long __unused3;
+    unsigned long __unused;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct stat64
+  {
+    dev_t st_dev;
+    ino64_t st_ino;
+    nlink_t st_nlink;
+    mode_t st_mode;
+    uid_t st_uid;
+    gid_t st_gid;
+    int __pad0;
+    dev_t st_rdev;
+    off_t st_size;
+    blksize_t st_blksize;
+    blkcnt64_t st_blocks;
+    time_t st_atime;
+    unsigned long __unused1;
+    time_t st_mtime;
+    unsigned long __unused2;
+    time_t st_ctime;
+    unsigned long __unused3;
+    unsigned long __unused;
   }
    ;
 
