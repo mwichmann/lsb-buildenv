@@ -435,6 +435,10 @@ if( lsbccmode == LSBCPLUS ) {
 	}
 */
 
+if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(syslibs,"-lgcc_s");
+	}
+
 gccargs=argvinit();
 if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(gccargs,cxxname);
