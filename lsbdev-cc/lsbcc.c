@@ -449,12 +449,12 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Turning off default libraries with -nodefaultlibs\n");
 argvaddstring(libpaths,"-nodefaultlibs");
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
-argvadd(libpaths,"L",gccbasedir);
-if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to be linker path\n", libpath);
 sprintf(tmpbuf, "-L%s", libpath);
 argvaddstring(libpaths,strdup(tmpbuf));
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
+argvadd(libpaths,"L",gccbasedir);
 
 userlibs=argvinit();
 
@@ -469,11 +469,11 @@ if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(syslibs,"-Wl,-Bstatic");
 	argvaddstring(syslibs,"-lstdc++");
 	argvaddstring(syslibs,"-Wl,-Bdynamic");
-	argvaddstring(syslibs,"-lm");
 	argvaddstring(syslibs,"-lgcc_s");
 }
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Appending -lc -lc_nonshared -lgcc to the library list\n");
+argvaddstring(syslibs,"-lm");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
 argvaddstring(syslibs,"-lgcc");
