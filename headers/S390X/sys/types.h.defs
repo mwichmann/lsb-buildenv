@@ -1,5 +1,7 @@
 
 
 
-typedef int64_t ssize_t;
 typedef long int64_t;
+
+
+typedef int64_t ssize_t;

@@ -34,11 +34,6 @@ extern "C"
 
   typedef unsigned int u_int32_t;
 
-#if __i386__
-/* IA32 */
-  typedef int ssize_t;
-
-#endif
   typedef unsigned int uid_t;
 
   typedef int pid_t;
@@ -69,36 +64,6 @@ extern "C"
 
   typedef int clockid_t;
 
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-  typedef int ssize_t;
-
-#endif
-#if __ia64__
-/* IA64 */
-  typedef int64_t ssize_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-  typedef int ssize_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef int64_t ssize_t;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-  typedef int64_t ssize_t;
-
-#endif
-#if __s390x__
-/* S390X */
-  typedef int64_t ssize_t;
-
-#endif
 #if __ia64__
 /* IA64 */
   typedef long int64_t;
@@ -130,9 +95,44 @@ extern "C"
 
 #endif
 
-/* Stuff really in asm/posix_types.h*/
+/* These types are derived from the ones above*/
 
 
+#if __i386__
+/* IA32 */
+  typedef int32_t ssize_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef int32_t ssize_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef int64_t ssize_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef int32_t ssize_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef int64_t ssize_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef int64_t ssize_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef int64_t ssize_t;
+
+#endif
 
 /* Stuff that really in bits/types.h*/
 
