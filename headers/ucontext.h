@@ -49,6 +49,9 @@ extern "C"
 #if __i386__
 #define NGREG	19
 #endif
+#if __x86_64__
+#define NGREG	21
+#endif
 #if __s390x__
 #define NGREG	27
 #endif
@@ -303,19 +306,6 @@ extern "C"
     __sigset_t uc_sigmask;
   }
   ucontext_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-  struct ucontext
-  {
-    unsigned long uc_flags;
-    struct ucontext *uc_link;
-    stack_t uc_stack;
-    mcontext_t uc_mcontext;
-    __sigset_t uc_sigmask;
-  }
-   ;
 
 #endif
 #if __s390__ && !__s390x__

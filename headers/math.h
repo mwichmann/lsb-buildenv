@@ -25,6 +25,7 @@ extern "C"
 
 
 /* Some useful constants*/
+#define NAN	((float)0x7fc00000UL)
 #define M_1_PI	0.31830988618379067154
 #define M_LOG10E	0.43429448190325182765
 #define M_2_PI	0.63661977236758134308
@@ -203,7 +204,7 @@ extern "C"
   extern long lroundf (float);
   extern long lroundl (long double);
   extern int matherr (struct exception *);
-  extern double nan (char *);
+  extern double nan (const char *);
   extern float nanf (char *);
   extern long double nanl (char *);
   extern double nearbyint (double);

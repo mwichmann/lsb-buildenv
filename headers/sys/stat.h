@@ -46,6 +46,9 @@ extern "C"
 #if __ia64__
 #define _STAT_VER	1
 #endif
+#if __x86_64__
+#define _STAT_VER	1
+#endif
 #if __s390x__
 #define _STAT_VER	1
 #endif
@@ -59,9 +62,6 @@ extern "C"
 #define _STAT_VER	3
 #endif
 #if __s390__ && !__s390x__
-#define _STAT_VER	3
-#endif
-#if __x86_64__
 #define _STAT_VER	3
 #endif
 #define S_IREAD	S_IRUSR
@@ -351,7 +351,7 @@ extern "C"
     __dev_t st_rdev;
     unsigned int __pad2;
     __off_t st_size;
-    Unknown Type:".." st_blksize;
+    blksize_t st_blksize;
     __blkcnt_t st_blocks;
     __time_t st_atime;
     unsigned long __unused1;

@@ -44,6 +44,9 @@ extern "C"
 #if __s390__ && !__s390x__
 #define TIOCNOTTY	21538
 #endif
+#if __x86_64__
+#define TIOCNOTTY	21538
+#endif
 #if __s390x__
 #define TIOCNOTTY	21538
 #endif

@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define no_argument	0
 
 
   struct option

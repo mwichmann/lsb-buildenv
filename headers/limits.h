@@ -11,6 +11,9 @@ extern "C"
 #if __ia64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
 #endif
+#if __x86_64__
+#define LONG_MAX	0x7FFFFFFFFFFFFFFFL
+#endif
 #if __i386__
 #define LONG_MAX	0x7FFFFFFFL
 #endif
@@ -70,6 +73,9 @@ extern "C"
 #endif
 #if __s390x__
 #define CHAR_MIN	0
+#endif
+#if __x86_64__
+#define CHAR_MAX	127
 #endif
 #define SCHAR_MAX	127
 #if __powerpc__ && !__powerpc64__

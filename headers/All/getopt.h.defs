@@ -1,4 +1,5 @@
 
+#define no_argument	0
 
 
 struct option
