@@ -1,58 +1,36 @@
 typedef union {
 	
-Unknown Type: ""
-unknown	__sockaddr__;	
-Unknown Type: ""
-unknown	__sockaddr_at__;	
-Unknown Type: ""
-unknown	__sockaddr_ax25__;	
-Unknown Type: ""
-unknown	__sockaddr_dl__;	
-Unknown Type: ""
-unknown	__sockaddr_eon__;	
-Unknown Type: ""
-unknown	__sockaddr_in__;	
-struct sockaddr_in6	__sockaddr_in6__;	
-Unknown Type: ""
-unknown	__sockaddr_inarp__;	
-Unknown Type: ""
-unknown	__sockaddr_ipx__;	
-Unknown Type: ""
-unknown	__sockaddr_iso__;	
-Unknown Type: ""
-unknown	__sockaddr_ns__;	
-Unknown Type: ""
-unknown	__sockaddr_un__;	
-struct sockaddr_x25	__sockaddr_x25__;	
+sockaddr *	__sockaddr__;	
+sockaddr_at *	__sockaddr_at__;	
+sockaddr_ax25 *	__sockaddr_ax25__;	
+sockaddr_dl *	__sockaddr_dl__;	
+sockaddr_eon *	__sockaddr_eon__;	
+sockaddr_in *	__sockaddr_in__;	
+sockaddr_in6 *	__sockaddr_in6__;	
+sockaddr_inarp *	__sockaddr_inarp__;	
+sockaddr_ipx *	__sockaddr_ipx__;	
+sockaddr_iso *	__sockaddr_iso__;	
+sockaddr_ns *	__sockaddr_ns__;	
+sockaddr_un *	__sockaddr_un__;	
+sockaddr_x25 *	__sockaddr_x25__;	
 }
 __SOCKADDR_ARG	; 
 
 typedef union {
 	
-Unknown Type: ""
-unknown	__sockaddr__;	
-Unknown Type: ""
-unknown	__sockaddr_at__;	
-Unknown Type: ""
-unknown	__sockaddr_ax25__;	
-Unknown Type: ""
-unknown	__sockaddr_dl__;	
-Unknown Type: ""
-unknown	__sockaddr_eon__;	
-Unknown Type: ""
-unknown	__sockaddr_in__;	
-struct sockaddr_in6	__sockaddr_in6__;	
-Unknown Type: ""
-unknown	__sockaddr_inarp__;	
-Unknown Type: ""
-unknown	__sockaddr_ipx__;	
-Unknown Type: ""
-unknown	__sockaddr_iso__;	
-Unknown Type: ""
-unknown	__sockaddr_ns__;	
-Unknown Type: ""
-unknown	__sockaddr_un__;	
-struct sockaddr_x25	__sockaddr_x25__;	
+sockaddr *	__sockaddr__;	
+sockaddr_at *	__sockaddr_at__;	
+sockaddr_ax25 *	__sockaddr_ax25__;	
+sockaddr_dl *	__sockaddr_dl__;	
+sockaddr_eon *	__sockaddr_eon__;	
+sockaddr_in *	__sockaddr_in__;	
+sockaddr_in6 *	__sockaddr_in6__;	
+sockaddr_inarp *	__sockaddr_inarp__;	
+sockaddr_ipx *	__sockaddr_ipx__;	
+sockaddr_iso *	__sockaddr_iso__;	
+sockaddr_ns *	__sockaddr_ns__;	
+sockaddr_un *	__sockaddr_un__;	
+sockaddr_x25 *	__sockaddr_x25__;	
 }
 __CONST_SOCKADDR_ARG	; 
 

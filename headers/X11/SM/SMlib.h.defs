@@ -1,47 +1,24 @@
-typedef typedef void	IcePointer	; 
+typedef typedef * void	void *	IcePointer	; 
 SmPointer	; 
 
-typedef Unknown Type: ""
-unknown	SmcConn	; 
+typedef * Unknown Type: ""
+unknown	_SmcConn *	SmcConn	; 
 
-typedef Unknown Type: ""
-unknown	SmsConn	; 
-
-typedef struct 	{
-
-char	name;	
-char	type;	
-int	num_vals;	
-SmPropValue	vals;	
-}
-SmProp	; 
+typedef * Unknown Type: ""
+unknown	_SmsConn *	SmsConn	; 
 
 typedef Unknown Type: ""
 unknown	SmcCloseStatus	; 
 
-typedef Unknown Type: ""
-unknown	SmcSaveYourselfPhase2Proc	; 
+typedef void	SmcSaveYourselfPhase2Proc	; 
 
-typedef Unknown Type: ""
-unknown	SmcInteractProc	; 
+typedef void	SmcInteractProc	; 
 
-typedef Unknown Type: ""
-unknown	SmcPropReplyProc	; 
+typedef void	SmcPropReplyProc	; 
 
-typedef struct 	{
+typedef int	SmsNewClientProc	; 
 
-SmcShutdownCancelledProc	callback;	
-SmPointer	client_data;	
-struct 	shutdown_cancelled;	
-}
-SmcCallbacks	; 
+typedef void	SmcErrorHandler	; 
 
-typedef Unknown Type: ""
-unknown	SmsNewClientProc	; 
-
-typedef Unknown Type: ""
-unknown	SmcErrorHandler	; 
-
-typedef Unknown Type: ""
-unknown	SmsErrorHandler	; 
+typedef void	SmsErrorHandler	; 
 

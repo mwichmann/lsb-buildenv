@@ -1,2 +1,2 @@
-typedef void	nl_catd	; 
+typedef * void	void *	nl_catd	; 
 

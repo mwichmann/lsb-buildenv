@@ -1,8 +1,8 @@
-int msync(void, int);
-int mlock(void);
+int msync(void *, int);
+int mlock(void *);
 int mlockall(int);
-void mmap(void, int, int, int, __off_t);
-int mprotect(void, int);
-int munlock(void);
+void * mmap(void *, int, int, int, __off_t);
+int mprotect(void *, int);
+int munlock(void *);
 int munlockall(void);
-int munmap(void);
+int munmap(void *);

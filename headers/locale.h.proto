@@ -1,2 +1,2 @@
-lconv localeconv(void);
-char setlocale(int, char);
+lconv * localeconv(void);
+char * setlocale(int, char *);

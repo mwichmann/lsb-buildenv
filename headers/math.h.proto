@@ -1,2 +1,2 @@
 int signgam;
-int matherr(struct exception);
+int matherr(exception *);

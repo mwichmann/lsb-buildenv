@@ -1,9 +1,9 @@
-char IceAuthFileName(void);
-void IceFreeAuthFileEntry(IceAuthFileEntry);
-char IceGenerateMagicCookie(int);
-IceAuthFileEntry IceGetAuthFileEntry(char, char, char);
-int IceLockAuthFile(char, int, int, long);
-IceAuthFileEntry IceReadAuthFileEntry();
-void IceSetPaAuthData(int, IceAuthDataEntry);
-void IceUnlockAuthFile(char);
-int IceWriteAuthFileEntry(IceAuthFileEntry);
+char * IceAuthFileName(void);
+void IceFreeAuthFileEntry(IceAuthFileEntry *);
+char * IceGenerateMagicCookie(int);
+IceAuthFileEntry * IceGetAuthFileEntry(char *, char *, char *);
+int IceLockAuthFile(char *, int, int, long);
+IceAuthFileEntry * IceReadAuthFileEntry(FILE *);
+void IceSetPaAuthData(int, IceAuthDataEntry *);
+void IceUnlockAuthFile(char *);
+int IceWriteAuthFileEntry(FILE *, IceAuthFileEntry *);

@@ -13,9 +13,9 @@ unknown	GLXPbuffer	;
 typedef Unknown Type: ""
 unknown	GLXWindow	; 
 
-typedef Unknown Type: ""
-unknown	GLXContext	; 
+typedef * Unknown Type: ""
+unknown	__GLXcontextRec *	GLXContext	; 
 
-typedef Unknown Type: ""
-unknown	GLXFBConfig	; 
+typedef * Unknown Type: ""
+unknown	__GLXFBConfigRec *	GLXFBConfig	; 
 

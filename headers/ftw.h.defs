@@ -1,3 +1,2 @@
-typedef Unknown Type: ""
-unknown	__ftw_func_t	; 
+typedef int	__ftw_func_t	; 
 

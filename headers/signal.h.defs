@@ -1,6 +1,2 @@
-typedef Unknown Type: ""
-unknown	sigset_t	; 
-
-typedef Unknown Type: ""
-unknown	__sighandler_t	; 
+typedef void	__sighandler_t	; 
 

@@ -2,63 +2,10 @@ typedef unsigned long	XcmsColorFormat	;
 
 typedef double	XcmsFloat	; 
 
-typedef union {
-	
-union 	spec;	
-XcmsRGB	RGB;	
-unsigned long	pixel;	
-XcmsRGBi	RGBi;	
-XcmsColorFormat	format;	
-XcmsCIEXYZ	CIEXYZ;	
-XcmsCIEuvY	CIEuvY;	
-XcmsCIExyY	CIExyY;	
-XcmsCIELab	CIELab;	
-XcmsCIELuv	CIELuv;	
-XcmsTekHVC	TekHVC;	
-XcmsPad	Pad;	
-}
-XcmsColor	; 
+typedef * Unknown Type: ""
+unknown	_XcmsCCC *	XcmsCCC	; 
 
-typedef struct _XcmsCCC	{
+typedef int	XcmsCompressionProc	; 
 
-Unknown Type: ""
-unknown	dpy;	
-int	screenNumber;	
-Unknown Type: ""
-unknown	visual;	
-XcmsColor	clientWhitePt;	
-XcmsCompressionProc	gamutCompProc;	
-Unknown Type: ""
-unknown	gamutCompClientData;	
-XcmsWhiteAdjustProc	whitePtAdjProc;	
-Unknown Type: ""
-unknown	whitePtAdjClientData;	
-XcmsPerScrnInfo	pPerScrnInfo;	
-}
-XcmsCCC	; 
-
-typedef Unknown Type: ""
-unknown	XcmsCompressionProc	; 
-
-typedef Unknown Type: ""
-unknown	XcmsWhiteAdjustProc	; 
-
-typedef struct _XcmsColorSpace	{
-
-char	prefix;	
-XcmsColorFormat	id;	
-XcmsParseStringProc	parseString;	
-XcmsFuncListPtr	to_CIEXYZ;	
-XcmsFuncListPtr	from_CIEXYZ;	
-int	inverse_flag;	
-}
-XcmsColorSpace	; 
-
-typedef struct _XcmsFunctionSet	{
-
-XcmsColorSpace	DDColorSpaces;	
-XcmsScreenInitProc	screenInitProc;	
-XcmsScreenFreeProc	screenFreeProc;	
-}
-XcmsFunctionSet	; 
+typedef int	XcmsWhiteAdjustProc	; 
 

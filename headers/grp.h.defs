@@ -1,9 +1,0 @@
-struct group	{
-
-char	gr_name;	
-char	gr_passwd;	
-Unknown Type: ""
-unknown	gr_gid;	
-char	gr_mem;	
-}
-

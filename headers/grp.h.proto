@@ -1,9 +1,9 @@
 void endgrent(void);
-group fgetgrent();
-group getgrent(void);
-group getgrgid(__gid_t);
-group getgrnam(char);
-int initgroups(char, __gid_t);
+group * fgetgrent(FILE *);
+group * getgrent(void);
+group * getgrgid(__gid_t);
+group * getgrnam(char *);
+int initgroups(char *, __gid_t);
 void setgrent(void);
-int getgrgid_r(__gid_t, struct group, char, struct group);
-int getgrnam_r(char, struct group, char, struct group);
+int getgrgid_r(__gid_t, group *, char *, group * *);
+int getgrnam_r(char *, group *, char *, group * *);

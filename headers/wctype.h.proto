@@ -1,4 +1,4 @@
-wctrans_t wctrans(char);
+wctrans_t wctrans(char *);
 int iswalnum();
 int iswalpha();
 int iswcntrl();
@@ -11,4 +11,4 @@ int iswpunct();
 int iswspace();
 int iswupper();
 int iswxdigit();
-wctype_t wctype(char);
+wctype_t wctype(char *);

@@ -1,7 +1,7 @@
-int alphasort(void, void);
-void rewinddir(DIR);
-void seekdir(DIR, long);
-long telldir(DIR);
-int closedir(DIR);
-DIR opendir(char);
-dirent readdir(DIR);
+int alphasort(void *, void *);
+void rewinddir(DIR *);
+void seekdir(DIR *, long);
+long telldir(DIR *);
+int closedir(DIR *);
+DIR * opendir(char *);
+dirent * readdir(DIR *);

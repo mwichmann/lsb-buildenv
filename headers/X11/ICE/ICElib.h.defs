@@ -1,4 +1,4 @@
-typedef void	IcePointer	; 
+typedef * void	void *	IcePointer	; 
 
 typedef Unknown Type: ""
 unknown	IceConnectStatus	; 
@@ -7,72 +7,30 @@ typedef Unknown Type: ""
 unknown	IceProtocolSetupStatus	; 
 
 typedef Unknown Type: ""
-unknown	IceAcceptStatus	; 
-
-typedef Unknown Type: ""
 unknown	IceCloseStatus	; 
 
 typedef Unknown Type: ""
 unknown	IceProcessMessagesStatus	; 
 
-typedef struct 	{
+typedef * Unknown Type: ""
+unknown	_IceConn *	IceConn	; 
 
-unsigned long	sequence_of_request;	
-int	major_opcode_of_request;	
-int	minor_opcode_of_request;	
-IcePointer	reply;	
-}
-IceReplyWaitInfo	; 
+typedef * Unknown Type: ""
+unknown	_IceListenObj *	IceListenObj	; 
 
-typedef Unknown Type: ""
-unknown	IceConn	; 
+typedef void	IceWatchProc	; 
 
-typedef Unknown Type: ""
-unknown	IceListenObj	; 
+typedef int	IceHostBasedAuthProc	; 
 
-typedef Unknown Type: ""
-unknown	IceWatchProc	; 
+typedef int	IceProtocolSetupProc	; 
 
-typedef struct 	{
+typedef void	IceProtocolActivateProc	; 
 
-int	major_version;	
-int	minor_version;	
-IcePoProcessMsgProc	process_msg_proc;	
-}
-IcePoVersionRec	; 
+typedef void	IceIOErrorProc	; 
 
-typedef struct 	{
+typedef void	IcePingReplyProc	; 
 
-int	major_version;	
-int	minor_version;	
-IcePaProcessMsgProc	process_msg_proc;	
-}
-IcePaVersionRec	; 
+typedef void	IceErrorHandler	; 
 
-typedef Unknown Type: ""
-unknown	IcePoAuthProc	; 
-
-typedef Unknown Type: ""
-unknown	IcePaAuthProc	; 
-
-typedef Unknown Type: ""
-unknown	IceHostBasedAuthProc	; 
-
-typedef Unknown Type: ""
-unknown	IceProtocolSetupProc	; 
-
-typedef Unknown Type: ""
-unknown	IceProtocolActivateProc	; 
-
-typedef Unknown Type: ""
-unknown	IceIOErrorProc	; 
-
-typedef Unknown Type: ""
-unknown	IcePingReplyProc	; 
-
-typedef Unknown Type: ""
-unknown	IceErrorHandler	; 
-
-typedef Unknown Type: ""
-unknown	IceIOErrorHandler	; 
+typedef void	IceIOErrorHandler	; 
 

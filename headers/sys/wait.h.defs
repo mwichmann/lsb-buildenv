@@ -1,8 +1,7 @@
 typedef union {
 	
-Unknown Type: ""
-unknown	__uptr;	
-int	__iptr;	
+wait *	__uptr;	
+int *	__iptr;	
 }
 __WAIT_STATUS	; 
 

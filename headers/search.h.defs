@@ -3,11 +3,10 @@ unknown	ACTION	;
 
 typedef struct entry	{
 
-char	key;	
-void	data;	
+char *	key;	
+void *	data;	
 }
 ENTRY	; 
 
-typedef Unknown Type: ""
-unknown	__action_fn_t	; 
+typedef void	__action_fn_t	; 
 
