@@ -387,7 +387,7 @@ if( $$param{'Ttype'} eq "FuncPtr" ) {
 	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	%type=$sth->fetchhash;
-	$Tid=$type{'Tid'};
+	$Tid=$$param{'Tid'};
 	displaytyperef(\%type);
 	print "(*";
 	if( $$param{'Tname'} =~ "fptr" ) {
@@ -404,7 +404,6 @@ if( $$param{'Ttype'} eq "FuncPtr" ) {
 	if($tmh->numrows == 0) {
 		print "void";
 		}
-else { print $tmh->numrows." rows found\n";}
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
@@ -413,7 +412,7 @@ else { print $tmh->numrows." rows found\n";}
 		%entry=$th->fetchhash;
 		$nameonly=1;
 		displaytype(\%entry);
-		print $tmentry{'TMname'};
+		#print $tmentry{'TMname'};
 		if( $tmentry{'TMarray'} ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
@@ -717,7 +716,7 @@ for(1..$sth->numrows) {
 		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s(",$entry{'Iname'};
-		$select = "SELECT Tname,Ttype,Tbasetype,Parsize,Pconst FROM Type,Parameter ";
+		$select = "SELECT Tid,Tname,Ttype,Tbasetype,Parsize,Pconst FROM Type,Parameter ";
 		$select.= "WHERE Pint=".$entry{'Iid'}." AND Ptype=Tid ";
 		$select.= "ORDER BY  Ppos";
 		print $select,"\n" if $trace;
