@@ -51,6 +51,7 @@ extern "C"
   extern void *lsearch (void *, void *, size_t *, size_t, __compar_fn_t);
   extern void remque (void *);
   extern void hdestroy (void);
+  extern void *tdelete (const void *, void **, __compar_fn_t);
   extern void *tfind (void *, void **, __compar_fn_t);
   extern void *tsearch (void *, void **, __compar_fn_t);
   extern void twalk (void *, __action_fn_t);
