@@ -272,6 +272,9 @@ sprintf(buf,"-l%s",val);
 for(i=0;i<lsblibs->numargv;i++) {
 	if( strcmp(lsblibs->argv[i],val) == 0 ) {
 		argvaddstring(userlibs,strdup(buf));
+		if( strcmp(val,"pthread") == 0 ) {
+			argvaddstring(userlibs,"-lpthread_nonshared");
+		}
 		return;
 	}
 }
