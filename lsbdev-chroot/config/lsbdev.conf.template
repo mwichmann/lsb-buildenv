@@ -19,8 +19,8 @@ OPT_ROOT=$DATA_ROOT/opt_root
 # RPM Config options
 # (Depends on how it was configured for compilation)
 # Home of rpm binary
-RPM_INSTALL_ROOT=/opt/rpm-3.0.6
-RPM_DATA_ROOT=$DATA_ROOT/rpm-3.0.6
+RPM_INSTALL_ROOT=/opt/lsb-rpm-4.0.3
+RPM_DATA_ROOT=/opt/lsb-rpm-4.0.3
 RPM_BIN=$RPM_DATA_ROOT/bin/rpm
 
 # Name of build environment users. users listed here will have
