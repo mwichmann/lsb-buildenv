@@ -100,16 +100,23 @@ and bind mounting /usr/lib/libc.a into the chroot environment as
 - Depending on how your program is licenced you may not be permitted
   to distribute binaries statically linked against libc (LGPL)
 
+lsbdev now supports automatically setting up fallback static linking
+on a per library basis. See the FALLBACK_STATIC_LINK_LIBRARIES option
+in the lsbdev.conf file for more details.
+
 Known Bugs
 ----------
 
 - No tested LSB compliant header files available yet. /usr/include
   from system used in place which may not be completely compliant.
+  You can use experimental header files with the development environment
+  by retrieving them from CVS and setting the LSB_INCLUDE option
+  in lsbdev.conf
 
 Feedback
 --------
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2001/10/22
+Last updated 2001/11/14
 
