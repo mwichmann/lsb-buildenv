@@ -7,8 +7,15 @@ SOFILES = $(subst .c,.so,$(CFILES))
 CFLAGS=-g -Wall  -fno-builtin 
 INSTALL_DIR=$(INSTALL_ROOT)/$(LIBDIR)
 
+# For ppc64 platform add flag to generate 64-bit shared libs
+ifeq ($(shell arch),ppc64)
+	LD=ld -m elf64ppc
+else
+	LD=ld
+endif
+
 %.so : %.o
-	ld -shared -o $@ --version-script $(subst .o,.Version,$<) -h `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`  $<
+	$(LD) -shared -o $@ --version-script $(subst .o,.Version,$<) -h `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`  $<
 
 libs: $(OFILES) $(SOFILES)
 
