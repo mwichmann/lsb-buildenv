@@ -76,8 +76,7 @@ extern "C"
 #define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
 #if __ia64__
-#define FE_ALL_EXCEPT	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | F
-  E_INVALID)
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | FE_INVALID)
 #endif
 #if __i386__
 #define FE_INVALID	0x01
@@ -127,6 +126,9 @@ extern "C"
 #if __ia64__
 #define FE_UNNORMAL	1UL << 1
 #endif
+
+
+
 /* Rounding modes*/
 #if __i386__
 #define FE_TONEAREST	0
@@ -206,7 +208,12 @@ extern "C"
 #if __ia64__
 #define FE_TOWARDZERO	3
 #endif
+
+
+
 /* Type representing exception flags.*/
+
+
 #if __i386__
 /* IA32 */
   typedef unsigned short fexcept_t;
@@ -283,8 +290,8 @@ extern "C"
     unsigned short __unused3;
     unsigned int __eip;
     unsigned short __cs_selector;
-    unsigned int __opcode;
-    unsigned int __unused4;
+    unsigned int __opcode:11;
+    unsigned int __unused4:5;
     unsigned int __data_offset;
     unsigned short __data_selector;
     unsigned short __unused5;
