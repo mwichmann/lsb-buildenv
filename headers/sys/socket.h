@@ -135,6 +135,12 @@ extern "C"
 
 
   extern int bind (int, const struct sockaddr *, socklen_t);
+  extern void freeaddrinfo (struct addrinfo *);
+  extern char *gai_strerror (int);
+  extern int getaddrinfo (char *, char *, struct addrinfo *,
+			  struct addrinfo **);
+  extern int getnameinfo (struct sockaddr *, socklen_t, char *, size_t,
+			  char *, size_t, int);
   extern int getsockname (int, struct sockaddr *, socklen_t *);
   extern int listen (int, int);
   extern int setsockopt (int, int, int, const void *, socklen_t);
