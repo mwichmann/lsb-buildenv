@@ -57,6 +57,19 @@ extern "C"
 #define AI_NUMERICHOST	0x0004
 
 
+  struct addrinfo
+  {
+    int ai_flags;
+    int ai_family;
+    int ai_socktype;
+    int ai_protocol;
+    size_t ai_addrlen;
+    struct sockaddr *ai_addr;
+    char *ai_canonname;
+    struct addrinfo *ai_next;
+  }
+   ;
+
 
 /* Values to use as hints*/
 #define NI_NUMERICHOST	1
@@ -82,7 +95,6 @@ extern "C"
 
 
 
-  extern void endhostent (void);
   extern void endnetent (void);
   extern void endprotoent (void);
   extern void endservent (void);
@@ -101,12 +113,8 @@ extern "C"
   extern void setprotoent (int);
   extern void setservent (void);
   extern int *__h_errno_location (void);
-  extern int gethostbyaddr_r (const void *, socklen_t, int, struct hostent *,
-			      char *, size_t, struct hostent **, int *);
   extern int gethostbyname_r (const char *, struct hostent *, char *, size_t,
 			      struct hostent **, int *);
-  extern struct hostent *gethostent_r (struct hostent *, char *, size_t,
-				       struct hostent **, int *);
 #ifdef __cplusplus
 }
 #endif

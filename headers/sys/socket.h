@@ -2,6 +2,7 @@
 #define _SYS_SOCKET_H_
 
 #include <stddef.h>
+#include <netdb.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -47,19 +48,6 @@ extern "C"
   {
     void *iov_base;
     size_t iov_len;
-  }
-   ;
-
-  struct addrinfo
-  {
-    int ai_flags;
-    int ai_family;
-    int ai_socktype;
-    int ai_protocol;
-    size_t ai_addrlen;
-    struct sockaddr *ai_addr;
-    char *ai_canonname;
-    struct addrinfo *ai_next;
   }
    ;
 

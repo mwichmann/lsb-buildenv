@@ -41,7 +41,18 @@ struct protoent
 #define AI_NUMERICHOST	0x0004
 
 
-
+struct addrinfo
+{
+  int ai_flags;
+  int ai_family;
+  int ai_socktype;
+  int ai_protocol;
+  size_t ai_addrlen;
+  struct sockaddr *ai_addr;
+  char *ai_canonname;
+  struct addrinfo *ai_next;
+}
+ ;
 #define NI_NUMERICHOST	1
 #define NI_DGRAM	16
 #define NI_NUMERICSERV	2
