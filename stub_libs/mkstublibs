@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.27 $
+# This is $Revision: 1.28 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.28  2003/05/14 15:52:24  mwichmann
+# Use .pushsection/.popsection instead for the emitted __asm__ statements
+#
 # Revision 1.27  2003/05/13 23:12:35  mwichmann
 # Work around stricter assembler on some platforms - make sure to
 # switch back to text section after using __asm__ to add a data
@@ -376,7 +379,7 @@ sub GenerateLibrary($$$)
     elsif($row->{Itype} eq "Data" )
     {
       my($varname) = $row->{Iname};
-      print(STUBFILE "__asm__(\".globl $varname; .section .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0; .section .text\");\n");
+      print(STUBFILE "__asm__(\".globl $varname; .pushsection .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0; .popsection\");\n");
     }
     else
     {
