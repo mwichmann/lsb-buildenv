@@ -104,6 +104,7 @@ char *ccname="cc";
 char *cxxname="c++";
 char *libpath="/opt/lsbdev-base/lib";
 char *incpath="/opt/lsbdev-base/include";
+char *cxxincpath="/opt/lsbdev-base/include/c++";
 
 
 /*
@@ -410,6 +411,12 @@ if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
 		fprintf(stderr,"include prefix set to %s\n", incpath );
 	}
 
+if( (ptr=getenv("LSBCXX_INCLUDES")) != NULL ) {
+	cxxincpath=ptr;
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+		fprintf(stderr,"c++ include prefix set to %s\n", cxxincpath );
+	}
+
 /*
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
@@ -464,8 +471,10 @@ for(i=0;i<numfeaturesettings;i++) {
 	}
 
 incpaths=argvinit();
-
 libpaths=argvinit();
+userlibs=argvinit();
+syslibs=argvinit();
+
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Turning off default libraries with -nodefaultlibs\n");
 argvaddstring(libpaths,"-nodefaultlibs");
@@ -475,11 +484,8 @@ sprintf(tmpbuf, "-L%s", libpath);
 argvaddstring(libpaths,strdup(tmpbuf));
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
-argvadd(libpaths,"L",gccbasedir);
+argvadd(syslibs,"L",gccbasedir);
 
-userlibs=argvinit();
-
-syslibs=argvinit();
 /* these need to go after user-specified library paths */
 #if defined(__powerpc64__)
 	argvaddstring(syslibs,"-L/opt/cross/powerpc64-linux/lib");
@@ -626,6 +632,13 @@ if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
 sprintf(tmpbuf, "-I%s", incpath);
 argvaddstring(incpaths,strdup(tmpbuf));
 argvappend(gccargs,incpaths);
+if( lsbccmode == LSBCPLUS ) {
+	if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
+		fprintf(stderr,"Prepending %s to include path\n", cxxincpath);
+	sprintf(tmpbuf, "-I%s", cxxincpath);
+	argvaddstring(incpaths,strdup(tmpbuf));
+	argvappend(gccargs,incpaths);
+}
 
 argvappend(gccargs,options);
 argvappend(gccargs,libpaths);
