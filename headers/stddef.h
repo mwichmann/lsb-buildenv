@@ -16,7 +16,7 @@ extern "C"
 
   typedef unsigned int size_t;
 
-  typedef int ptrdiff_t;
+  typedef long ptrdiff_t;
 
 
 #ifdef __cplusplus
