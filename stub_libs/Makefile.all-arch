@@ -5,7 +5,7 @@ CFILES = $(addsuffix .c,$(STUBLIBS))
 OFILES = $(subst .c,.o,$(CFILES))
 SOFILES = $(subst .c,.so,$(CFILES))
 CFLAGS=-g -Wall  -fno-builtin 
-INSTALL_DIR=$$LSBHOME/src/build/usr/lsb/lib
+INSTALL_DIR=$(INSTALL_ROOT)/$(LIBDIR)
 
 %.so : %.o
 	ld -shared -o $@ --version-script $(subst .o,.Version,$<) -h `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`  $<
