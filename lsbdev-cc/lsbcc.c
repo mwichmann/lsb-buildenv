@@ -455,12 +455,13 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to be linker path\n", libpath);
 sprintf(tmpbuf, "-L%s", libpath);
 argvaddstring(libpaths,strdup(tmpbuf));
-argvaddstring(libpaths,"-L/lib");
-argvaddstring(libpaths,"-L/usr/lib");
 
 userlibs=argvinit();
 
 syslibs=argvinit();
+/* these need to go after user-specified library paths */
+argvaddstring(syslibs,"-L/lib");
+argvaddstring(syslibs,"-L/usr/lib");
 
 if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(syslibs,"-Wl,-Bstatic");
