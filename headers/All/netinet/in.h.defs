@@ -1,26 +1,39 @@
 
+
+
+
+#define IPPROTO_IP	0
+#define IPPROTO_ICMP	1
+#define IPPROTO_UDP	17
+#define IPPROTO_IGMP	2
+#define IPPROTO_RAW	255
+#define IPPROTO_IPV6	41
+#define IPPROTO_ICMPV6	58
+#define IPPROTO_TCP	6
+
+
+
+
+
+typedef uint16_t in_port_t;
+#define IPPORT_RESERVED	1024
+
+
+
+
+
+struct in_addr
+{
+  uint32_t s_addr;
+}
+ ;
+typedef uint32_t in_addr_t;
 #define INADDR_NONE	((unsigned long int) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
-#define IPPROTO_IP	0
-#define SOL_IP	0
-#define IPPROTO_ICMP	1
-#define IP_TOS	1
-#define INET_ADDRSTRLEN	16
-#define IPV6_UNICAST_HOPS	16
-#define IPPROTO_UDP	17
-#define IPV6_MULTICAST_IF	17
-#define IPV6_MULTICAST_HOPS	18
-#define IPV6_MULTICAST_LOOP	19
-#define IPPROTO_IGMP	2
-#define IPV6_JOIN_GROUP	20
-#define IPV6_LEAVE_GROUP	21
-#define IPPROTO_RAW	255
-#define INET6_ADDRSTRLEN	46
-#define IPPROTO_IPV6	58
-#define IPPROTO_TCP	6
-#define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
-#define IN6ADDR_LOOPBACK_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
+
+
+
 
 
 struct in6_addr
@@ -34,22 +47,12 @@ struct in6_addr
   in6_u;
 }
  ;
-struct in6_ifreq
-{
-  struct in6_addr ifr6_addr;
-  uint32_t ifr6_prefixlen;
-  int ifr6_ifindex;
-}
- ;
+#define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
+#define IN6ADDR_LOOPBACK_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
 
 
-struct in_addr
-{
-  uint32_t s_addr;
-}
- ;
-typedef uint32_t in_addr_t;
-typedef uint16_t in_port_t;
+
+#define INET_ADDRSTRLEN	16
 
 
 struct sockaddr_in
@@ -60,6 +63,27 @@ struct sockaddr_in
   unsigned char sin_zero[8];
 }
  ;
+#define INET6_ADDRSTRLEN	46
+
+
+struct sockaddr_in6
+{
+  unsigned short sin6_family;
+  uint16_t sin6_port;
+  uint32_t sin6_flowinfo;
+  struct in6_addr sin6_addr;
+  uint32_t sin6_scope_id;
+}
+ ;
+#define SOL_IP	0
+#define IP_TOS	1
+#define IPV6_UNICAST_HOPS	16
+#define IPV6_MULTICAST_IF	17
+#define IPV6_MULTICAST_HOPS	18
+#define IPV6_MULTICAST_LOOP	19
+#define IPV6_JOIN_GROUP	20
+#define IPV6_LEAVE_GROUP	21
+#define IPV6_V6ONLY	26
 #define IP_MULTICAST_IF	32
 #define IP_MULTICAST_TTL	33
 #define IP_MULTICAST_LOOP	34
@@ -67,6 +91,15 @@ struct sockaddr_in
 #define IP_DROP_MEMBERSHIP	36
 
 
+
+
+
+struct ipv6_mreq
+{
+  struct in6_addr ipv6mr_multiaddr;
+  int ipv6mr_interface;
+}
+ ;
 struct ip_mreq
 {
   struct in_addr imr_multiaddr;

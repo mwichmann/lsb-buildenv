@@ -2,8 +2,3 @@
 
 
 typedef int intptr_t;
-
-
-
-#define _POSIX2_VERSION	200112
-#define _POSIX_VERSION	200112
