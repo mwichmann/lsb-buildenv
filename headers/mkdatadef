@@ -1,9 +1,5 @@
 #!/usr/bin/perl
 
-#
-# This script should be pulling the info from the IntParams table instead
-#
-
 use Getopt::Long;
 use Mysql;
 
@@ -17,7 +13,7 @@ $nameonly=0;
 sub
 usage()
 {
-die "mkfuncproto -h <headername> -a <archname>";
+die "mkdatadef -h <headername> -a <archname>";
 }
 
 sub
@@ -207,7 +203,7 @@ for(1..$hgh->numrows) {
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		displaytype(\%tentry);
-		#print $tentry{'Tname'};
+		print;
 		}
 	}
 
