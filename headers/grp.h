@@ -36,6 +36,7 @@ extern "C"
 			 struct group **);
   extern int getgrnam_r (const char *, struct group *, char *, size_t,
 			 struct group **);
+  extern int getgrouplist (const char *, gid_t, gid_t *, int *);
 #ifdef __cplusplus
 }
 #endif
