@@ -70,8 +70,10 @@
 
 
 
+
+
+
 typedef unsigned long chtype;
-typedef int bool;
 typedef struct screen SCREEN;
 typedef struct _win_st WINDOW;
 typedef chtype attr_t;

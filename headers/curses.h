@@ -82,12 +82,39 @@ extern "C"
 
 
 
+/* Boolean type*/
+
+
+#if __i386__
+/* IA32 */
+  typedef unsigned char bool;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef int bool;
+
+#endif
+#if __ia64__
+/* IA64 */
+  typedef int bool;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef int bool;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef int bool;
+
+#endif
+
 /* curses related structures*/
 
 
   typedef unsigned long chtype;
-
-  typedef int bool;
 
   typedef struct screen SCREEN;
 
