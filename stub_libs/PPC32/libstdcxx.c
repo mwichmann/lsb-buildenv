@@ -2014,6 +2014,7 @@ void _ZdaPv() {} ;
 void _ZdaPvRKSt9nothrow_t() {} ;
 void _ZdlPv() {} ;
 void _ZdlPvRKSt9nothrow_t() {} ;
+void _Znaj() {} ;
 void _ZnajRKSt9nothrow_t() {} ;
 void _Znam() {} ;
 void _ZnamRKSt9nothrow_t() {} ;

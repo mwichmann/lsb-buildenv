@@ -1648,6 +1648,7 @@ GLIBCPP_3.2 {
   _ZdaPvRKSt9nothrow_t;
   _ZdlPv;
   _ZdlPvRKSt9nothrow_t;
+  _Znaj;
   _ZnajRKSt9nothrow_t;
   _Znam;
   _ZnamRKSt9nothrow_t;
