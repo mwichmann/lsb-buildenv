@@ -15,7 +15,7 @@
  * and /opt/lsb/lib respectively. These headers and libraries have
  * been carefully built so that they contain only the interfaces provided by
  * the LSB. And LSB conforming application must also use be linked with
- * a special program intepreter (usually ld-lsb.so.1 but this is described
+ * a special program intepreter (usually ld-lsb.so.2 but this is described
  * in each archLSB)
  * 
  * The purpose of the lsbcc tool is to cause programs to be built against
