@@ -792,7 +792,7 @@ extern "C"
 #endif
 
   extern sighandler_t __sysv_signal (int, sighandler_t);
-  extern char **_sys_siglist;
+  extern char *const _sys_siglist[64];
   extern int killpg (pid_t, int);
   extern void psignal (int, const char *);
   extern int raise (int);

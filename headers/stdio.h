@@ -86,7 +86,7 @@ extern "C"
 
 
 
-  extern char **_sys_errlist;
+  extern char *const _sys_errlist[128];
   extern void clearerr (FILE *);
   extern int fclose (FILE *);
   extern FILE *fdopen (int, const char *);
@@ -141,7 +141,6 @@ extern "C"
   extern long ftell (FILE *);
   extern size_t fwrite (const void *, size_t, size_t, FILE *);
   extern int getc (FILE *);
-  extern char *gets (char *);
   extern int putc (int, const FILE *);
   extern int puts (const char *);
   extern int setvbuf (FILE *, char *, int, size_t);
