@@ -1,0 +1,46 @@
+# Numbers are in hex
+# libXt
+libXt XtCXtToolkitError 8
+libXt XtShellStrings 509
+libXt XtStrings a59
+libXt _XtInheritTranslations 4
+libXt applicationShellWidgetClass 8
+libXt compositeClassRec 108
+libXt compositeWidgetClass 8
+libXt constraintClassRec 138
+libXt constraintWidgetClass 8
+libXt coreWidgetClass 8
+libXt objectClass 8
+libXt objectClassRec e0
+libXt overrideShellClassRec 118
+libXt overrideShellWidgetClass 8
+libXt rectObjClass 8
+libXt rectObjClassRec e0
+libXt sessionShellClassRec 138
+libXt sessionShellWidgetClass 8
+libXt shellClassRec 110
+libXt shellWidgetClass 8
+libXt topLevelShellClassRec 128
+libXt topLevelShellWidgetClass 8
+libXt transientShellClassRec 128
+libXt transientShellWidgetClass 8
+libXt widgetClass 8
+libXt widgetClassRec e0
+libXt wmShellClassRec 118
+libXt wmShellWidgetClass 8
+# libncurses
+libncurses curscr 8
+libncurses stdscr 8
+# libc
+libc _IO_2_1_stderr_ e0
+libc _IO_2_1_stdin_ e0
+libc _IO_2_1_stdout_ e0
+libc __ctype_b 8
+libc __environ 8
+libc __tzname 10
+libc _sys_errlist 3e8
+libc _sys_siglist 200
+libc loc1 8
+libc loc2 8
+libc locs 8
+libc optarg 8
