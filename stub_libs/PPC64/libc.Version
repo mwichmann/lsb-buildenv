@@ -1,10 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2.1 {
-  posix_openpt;
-};
-GLIBC_2.2.4 {
-  getgrouplist;
-};
 GLIBC_2.3 {
   _Exit;
   _IO_feof;
@@ -234,6 +228,7 @@ GLIBC_2.3 {
   getgrgid_r;
   getgrnam;
   getgrnam_r;
+  getgrouplist;
   getgroups;
   gethostbyaddr;
   gethostbyname;
@@ -424,6 +419,7 @@ GLIBC_2.3 {
   poll;
   popen;
   posix_memalign;
+  posix_openpt;
   printf;
   psignal;
   ptsname;
