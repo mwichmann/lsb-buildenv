@@ -5,7 +5,7 @@ HEADERS=assert.h cpio.h ctype.h dirent.h errno.h fcntl.h float.h \
 	pthread.h pwd.h regexp.h re_comp.h sched.h search.h setjmp.h \
 	 signal.h stdarg.h stdio.h stdlib.h string.h strings.h stropts.h \
 	syslog.h tar.h termios.h time.h ulimit.h unistd.h utime.h wchar.h \
-	wctype.h
+	wctype.h zlib.h
 
 ARPAHEADERS=arpa/inet.h
 
@@ -17,15 +17,15 @@ OTHERHEADERS=elf.h
 
 all::
 	for h in $(OTHERHEADERS) $(HEADERS) ; do \
-		../../admin-bin/mkfuncprototype Iheader=$$h >$$h.proto; \
+		mkfuncprototype Iheader=$$h >$$h.proto; \
 		if [ -f $$h.m4 ];then (m4 $$h.m4 | grep -v '^\# '>$$h);fi; \
 	done
 	for h in $(ARPAHEADERS) ; do \
-		../../admin-bin/mkfuncprototype Iheader=$$h >$$h.proto; \
+		mkfuncprototype Iheader=$$h >$$h.proto; \
 		if [ -f $$h.m4 ];then (cd arpa;m4 `basename $$h`.m4 | grep -v '^\# '>`basename $$h`);fi; \
 	done
 	for h in $(SYSHEADERS) ; do \
-		../../admin-bin/mkfuncprototype Iheader=$$h >$$h.proto; \
+		mkfuncprototype Iheader=$$h >$$h.proto; \
 		if [ -f $$h.m4 ];then (cd sys;m4 `basename $$h`.m4 | grep -v '^\# '>`basename $$h`);fi; \
 	done
 

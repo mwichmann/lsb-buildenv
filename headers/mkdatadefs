@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 
 #print "<PART>\n";
 #print "<TITLE>Standard C Library Data Definitions</TITLE>\n";
