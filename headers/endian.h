@@ -1,6 +1,7 @@
 #ifndef _ENDIAN_H_
 #define _ENDIAN_H_
 
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -8,19 +9,6 @@ extern "C"
 #endif
 
 
-
-
-
-/* Setup some values*/
-#define __LITTLE_ENDIAN	1234
-#define __BIG_ENDIAN	4321
-
-
-
-/* Per Architecture settings*/
-#if __i386__
-#define __BYTE_ORDER	__LITTLE_ENDIAN
-#endif
 
 
 
