@@ -1,6 +1,6 @@
 #!/bin/bash
 
-libs="-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 $* -lc /usr/lib/libc_nonshared.a"
+libs="-Wl,--dynamic-linker=/lib/ld-lsb.so.1 $* -lc /usr/lib/libc_nonshared.a"
 opts=""
 target=""
 
@@ -18,7 +18,10 @@ while getopts "EcI:D:U:O:f:W:I:Sp:o:s:L:" OPT ; do
 		o)
 			target="-o $OPTARG";
 			;;
-		D|I|L|O|U|W|f|p|s)
+		I|L|O|U|W|f|p|s)
+			opts="$opts -$OPT$OPTARG";
+			;;
+		D)
 			opts="$opts -$OPT$OPTARG";
 			;;
 		':')
