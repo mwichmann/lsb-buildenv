@@ -268,8 +268,8 @@ extern "C"
   extern off_t lseek (int, off_t, int);
   extern int open (const char *, int, ...);
   extern int pause (void);
-  extern int read (int, void *, size_t);
-  extern int write (int, const void *, size_t);
+  extern ssize_t read (int, void *, size_t);
+  extern ssize_t write (int, const void *, size_t);
   extern char *crypt (const char *, const char *);
   extern void encrypt (char *, int);
   extern void setkey (const char *);
