@@ -43,7 +43,7 @@ extern "C"
     sa_family_t sin_family;
     unsigned short sin_port;
     struct in_addr sin_addr;
-    unsigned char __pad[8];
+    unsigned char sin_zero[8];
   }
    ;
 

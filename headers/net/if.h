@@ -43,8 +43,8 @@ extern "C"
       struct sockaddr ifu_dstaddr;
     }
     ifa_ifu;
-    void *__pad1;
-    void *__pad2;
+    void *ifa_ifp;
+    void *ifa_next;
   }
    ;
 
