@@ -224,8 +224,10 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		#$nameonly=1;
 		#displaytype(\%entry);
 		print $tmentry{'TMname'};
+		# An array doesn't make sense for an enum, so use this to
+		# specify a fixed value.
 		if( $tmentry{'TMarray'} ) {
-			print "[".$tmentry{'TMarray'}."]";
+			print " = ".$tmentry{'TMarray'};
 			}
 		if( $_ != $tmh->numrows ) {
 			print ",\t";
