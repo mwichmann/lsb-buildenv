@@ -1,0 +1,18 @@
+
+#define ULONG_MAX	-1
+#define LONG_MAX	9223372036854775807L
+
+
+
+
+
+
+#define CHAR_MIN	0
+#define CHAR_MAX	255
+
+
+
+
+
+
+#define __INT_MAX__	2147483647
