@@ -245,6 +245,7 @@ for(i=0;i<ag->numargv;i++)
 char *default_lsblibs[] = {
 	"c",
 	"m",
+	"rt",
 	"pthread",
 	"pam",
 	"util",
