@@ -145,11 +145,23 @@ Stuart Anderson <anderson@freestandards.org>
 Report bugs to <lsb-build@linuxbase.org>.
 .SH "BUGS"
 .P
-It is a little too easy to confuse lsbcc (and lsbc++). 
+It is possible to confuse lsbcc's (and lsbc++) automatic
+library processing.
 In particular, build systems that include "clever" tools
 to manage which libraries to use, such as GNU libtool
 and pkgconfig, may defeat the checks for non-LSB libraries
-by silently supplying full pathnames instead of -llib.
+by silently supplying full pathnames instead of the 
+\fB-l\fIlib\fP form.
+.P
+Long options which take an argument need special handling.
+lsbcc is not guaranteed to keep the option and argument
+together, which leads to incorrect results.
+Handling for a few key options of this form is built in to
+lsbcc (\fB-include\fP, \fB-rpath\fP, \fB-rpath-link\fP);
+the remainder can be worked around by using the \fB-Wx,\fIoption\fP
+syntax (where x is one of l (linker), p (preprocessor) or
+a (assembler)) as this form combines the option and argument
+into a single word and avoids the issue.
 .SH FILES
 .TP
 /opt/lsbdev-base/include
