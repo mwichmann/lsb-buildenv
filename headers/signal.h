@@ -33,9 +33,9 @@ extern "C"
 
 
 /* System defined signals.*/
-#define SIG_ERR	((__sighandler_t)-1)
-#define SIG_DFL	((__sighandler_t)0)
-#define SIG_IGN	((__sighandler_t)1)
+#define SIG_ERR	((sighandler_t)-1)
+#define SIG_DFL	((sighandler_t)0)
+#define SIG_IGN	((sighandler_t)1)
 #define SIGHUP	1
 #define SIGUSR1	10
 #define SIGSEGV	11
@@ -262,7 +262,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
@@ -279,7 +279,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
@@ -295,7 +295,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
@@ -312,7 +312,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
@@ -346,7 +346,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
@@ -363,7 +363,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
