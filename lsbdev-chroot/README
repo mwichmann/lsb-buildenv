@@ -22,16 +22,15 @@ Stopping:
 
 Using the environment
 ---------------------
-This build environment should be considered EXPERIMENTAL. Ensure that
-you understand how bind-mounts work before removing files in the build
-environment. Depending on which version of the kernel you are using
-read-only bind mounts may not in fact be read only, so it is possible
-to accidentally remove important files outside of the chroot area from
-within it.  The purpose of the chroot area is not for reasons of
-security, but instead to make it easier to build applications without
-accidentally polluting binaries with information from non-compliant
-header files and libraries (as can easily happen with configure
-scripts).
+Ensure that you understand how bind-mounts work before removing files
+in the build environment. Depending on which version of the kernel you
+are using read-only bind mounts may not in fact be read only, so it is
+possible to accidentally remove important files outside of the chroot
+area from within it.  The purpose of the chroot area is not for
+reasons of security, but instead to make it easier to build
+applications without accidentally polluting binaries with information
+from non-compliant header files and libraries (as can easily happen
+with configure scripts).
 
 A developer can build an application within this build environment by
 first chrooting into the directory structure constructed by the setup
@@ -78,6 +77,29 @@ The package contains the following:
   - setup scripts
     scripts to setup the chroot build environment
 
+Partial Static Linking
+----------------------
+
+If your application uses an interface in libc which is not part of the
+LSB specification it may be necessary to statically link parts of the
+program against libc. You can do this by editing the libc.so in the
+chroot environment from:
+
+GROUP ( /usr/lib/lsb-stub/libc.real.so  /usr/lib/lsb-stub/libc_nonshared.a )
+
+to:
+
+GROUP ( /usr/lib/lsb-stub/libc.real.so  /usr/lib/lsb-stub/libc_nonshared.a /usr/lib/lsb-stub/libc_static.a )
+
+and bind mounting /usr/lib/libc.a into the chroot environment as
+/usr/lib/libc_static.a. A couple of things to note with this approach:
+
+- Be aware of the potential compatability problems (syscalls) with
+  statically linking against libc
+
+- Depending on how your program is licenced you may not be permitted
+  to distribute binaries statically linked against libc (LGPL)
+
 Known Bugs
 ----------
 
@@ -89,5 +111,5 @@ Feedback
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2001/10/8
+Last updated 2001/10/22
 
