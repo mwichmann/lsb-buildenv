@@ -1,3 +1,14 @@
+2001-10-22  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Update with new stub libraries
+
+2001-10-18  Christopher Yeoh  <cyeoh@samba.org>
+
+	* Fix for installation specific dirs
+	* Cosmetic fixes for mounting (avoid // apearing in paths)
+	  (Arnold Hayden)
+	* Fix for bad homedir mounting error handling (Arnold Hayden)
+
 2001-10-08  Christopher Yeoh  <cyeoh@samba.org>
 
 	* Removes bashisms from scripts. Now works with /bin/sh set
