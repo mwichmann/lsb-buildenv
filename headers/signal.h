@@ -134,7 +134,7 @@ extern "C"
 
 
 /* Special Signal values*/
-#define SIG_HOLD	((sighandler_t) 2
+#define SIG_HOLD	((sighandler_t) 2)
 #define SIG_ERR	((sighandler_t)-1)
 #define SIG_DFL	((sighandler_t)0)
 #define SIG_IGN	((sighandler_t)1)
