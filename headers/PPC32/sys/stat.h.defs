@@ -16,11 +16,11 @@ struct stat64
   blksize_t st_blksize;
   blkcnt64_t st_blocks;
   time_t st_atime;
-  unsigned long __unused1;
+  unsigned long st_atimensec;
   time_t st_mtime;
-  unsigned long __unused2;
+  unsigned long st_mtimensec;
   time_t st_ctime;
-  unsigned long __unused3;
+  unsigned long st_ctimensec;
   unsigned long __unused4;
   unsigned long __unused5;
 }
@@ -40,11 +40,11 @@ struct stat
   blksize_t st_blksize;
   blkcnt_t st_blocks;
   time_t st_atime;
-  unsigned long __unused1;
+  unsigned long st_atimensec;
   time_t st_mtime;
-  unsigned long __unused2;
+  unsigned long st_mtimensec;
   time_t st_ctime;
-  unsigned long __unused3;
+  unsigned long st_ctimensec;
   unsigned long __unused4;
   unsigned long __unused5;
 }
