@@ -6,9 +6,14 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.26 $
+# This is $Revision: 1.27 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.27  2003/05/13 23:12:35  mwichmann
+# Work around stricter assembler on some platforms - make sure to
+# switch back to text section after using __asm__ to add a data
+# section symbol.
+#
 # Revision 1.26  2003/05/13 23:10:47  mwichmann
 # Avoid complaints from stricter gcc 3.3
 #
@@ -371,7 +376,7 @@ sub GenerateLibrary($$$)
     elsif($row->{Itype} eq "Data" )
     {
       my($varname) = $row->{Iname};
-      print(STUBFILE "__asm__(\".globl $varname; .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0\");\n");
+      print(STUBFILE "__asm__(\".globl $varname; .section .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0; .section .text\");\n");
     }
     else
     {
