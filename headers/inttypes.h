@@ -40,7 +40,7 @@ extern "C"
 
   typedef unsigned int *uintptr_t;
 
-  typedef long long uint64_t;
+  typedef unsigned long long uint64_t;
 
 #if __ia64__
 /* IA64 */
