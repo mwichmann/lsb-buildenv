@@ -2227,9 +2227,6 @@ GLIBCXX_3.4 {
   _ZnamRKSt9nothrow_t;
   _Znwm;
   _ZnwmRKSt9nothrow_t;
-  expl;
-  sinhl;
-  tanl;
   _ZGVNSt10moneypunctIcLb0EE2idE;
   _ZGVNSt10moneypunctIcLb1EE2idE;
   _ZGVNSt10moneypunctIwLb0EE2idE;
@@ -3083,12 +3080,4 @@ GLIBCXX_3.4.2 {
   _ZN9__gnu_cxx17__pool_alloc_base9_M_refillEm;
   _ZN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEE4fileEv;
   _ZN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEE4fileEv;
-};
-GLIBCXX_3.4.3 {
-  acosl;
-  asinl;
-  atanl;
-  frexpl;
-  ldexpl;
-  modfl;
 };

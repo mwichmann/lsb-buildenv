@@ -2227,9 +2227,6 @@ GLIBCXX_3.4 {
   _ZnamRKSt9nothrow_t;
   _Znwm;
   _ZnwmRKSt9nothrow_t;
-  expl;
-  sinhl;
-  tanl;
   _ZGVNSt10moneypunctIcLb0EE2idE;
   _ZGVNSt10moneypunctIcLb1EE2idE;
   _ZGVNSt10moneypunctIwLb0EE2idE;
