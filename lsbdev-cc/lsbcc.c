@@ -355,6 +355,7 @@ char *optstr="cL:l:o:ESI:W::su:";
 struct option long_options[] = {
 	{"include",required_argument,0,0},
 	{"pthread",no_argument,0,0},
+	{"rpath-link",required_argument,0,0},
 	{"shared",no_argument,0,0},
 	{NULL,0,0,0}
 	};
