@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
+#include <ucontext.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -31,14 +32,15 @@ extern "C"
   }
    ;
 
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_greg_t elf_gregset_t[64];
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_fpreg_t elf_fpregset_t[33];
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef struct
+  {
+    _psw_t psw;
+    unsigned long gprs;
+    unsigned int acrs;
+  }
+  _s390_regs_common;
 
 #endif
 
@@ -463,6 +465,26 @@ extern "C"
    ;
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef struct
+  {
+    unsigned int fpc;
+    double fprs;
+  }
+  _s390_fp_regs;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef struct
+  {
+    _s390_regs_common regs;
+    _s390_fp_regs fpregs;
+  }
+  _sigregs;
+
+#endif
 
 /* FPU state information*/
 
@@ -646,7 +668,12 @@ extern "C"
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  struct sigcontext;
+  struct sigcontext
+  {
+    unsigned long oldmask;
+    _sigregs *sregs;
+  }
+   ;
 
 #endif
 #if __s390x__
