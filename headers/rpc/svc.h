@@ -20,17 +20,6 @@ extern "C"
 #define RPC_ANYSOCK	-1
 
 
-  struct svc_req
-  {
-    rpcprog_t rq_prog;
-    rpcvers_t rq_vers;
-    rpcproc_t rq_proc;
-    struct opaque_auth rq_cred;
-    caddr_t rq_clntcred;
-    SVCXPRT *rq_xprt;
-  }
-   ;
-
 
 /* Server side transport handle*/
 
@@ -53,6 +42,20 @@ extern "C"
 
 
   typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
+
+
+
+
+  struct svc_req
+  {
+    rpcprog_t rq_prog;
+    rpcvers_t rq_vers;
+    rpcproc_t rq_proc;
+    struct opaque_auth rq_cred;
+    caddr_t rq_clntcred;
+    SVCXPRT *rq_xprt;
+  }
+   ;
 
 
 
