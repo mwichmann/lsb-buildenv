@@ -1,10 +1,10 @@
 #ifndef _SIGNAL_H_
 #define _SIGNAL_H_
 
-#include <sys/time.h>
-#include <stddef.h>
 #include <pthread.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -408,10 +408,11 @@ extern "C"
     union
     {
       unsigned long bits[2];
+      long double __dummy;	/* force 16-byte alignment */
     }
     u;
   }
-  __attribute__ ((aligned (16)));
+   ;
 
 #endif
 
@@ -545,7 +546,7 @@ extern "C"
   extern int sigorset (sigset_t *, const sigset_t *, const sigset_t *);
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
-  extern __sighandler_t sigset (void);
+  extern __sighandler_t sigset (int, __sighandler_t);
   extern int sigstack (void);
   extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
