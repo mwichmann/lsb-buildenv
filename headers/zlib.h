@@ -9,6 +9,7 @@ extern "C"
 #endif
 
 
+#define Z_VERSION_ERROR	(-6)
 #define Z_NULL	0
 #define ZLIB_VERSION	"1.1.3"
 #define MAX_WBITS	15
@@ -18,6 +19,8 @@ extern "C"
 #define inflateInit2(strm,windowBits)	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
 #define inflateInit(strm)	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 
+
+  typedef char charf;
 
   typedef int intf;
 

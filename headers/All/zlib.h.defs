@@ -1,4 +1,5 @@
 
+#define Z_VERSION_ERROR	(-6)
 #define Z_NULL	0
 #define MAX_WBITS	15
 #define MAX_MEM_LEVEL	9
@@ -7,6 +8,7 @@
 #define inflateInit2(strm,windowBits)	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
 #define inflateInit(strm)	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 
+typedef char charf;
 typedef int intf;
 
 typedef void *voidpf;
