@@ -68,10 +68,19 @@ extern "C"
 #if __powerpc__ && !__powerpc64__
 #define st_atime	st_atim.tv_sec
 #endif
+#if __x86_64__
+#define st_atime	st_atim.tv_sec
+#endif
 #if __powerpc__ && !__powerpc64__
 #define st_ctime	st_ctim.tv_sec
 #endif
+#if __x86_64__
+#define st_ctime	st_ctim.tv_sec
+#endif
 #if __powerpc__ && !__powerpc64__
+#define st_mtime	st_mtim.tv_sec
+#endif
+#if __x86_64__
 #define st_mtime	st_mtim.tv_sec
 #endif
 #define S_IREAD	S_IRUSR
@@ -384,9 +393,9 @@ extern "C"
     off_t st_size;
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    time_t st_atime;
-    time_t st_mtime;
-    time_t st_ctime;
+    struct timespec st_atime;
+    struct timespec st_mtime;
+    struct timespec st_ctime;
     unsigned long __unused;
   }
    ;
