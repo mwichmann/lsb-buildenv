@@ -1,0 +1,365 @@
+#!/usr/bin/perl -w
+
+# Check function/variable classification of  LSB required interfaces 
+# against libraries installed on system
+#
+# An error message will be displayed if the an interface has been
+# defined in the LSB database as a function but is a variable on the
+# system (or vice-versa)
+#
+# (C) Copyright 2001 The Free Standards Group  Inc
+#
+# Chris Yeoh (cyeoh@samba.org), IBM
+#
+
+use strict;
+use DBI;
+use Getopt::Std;
+
+my($DBName) = "lsb";
+my($DBUser) = "";
+my($DBPass)  = "";
+my($DBHost) = "";
+my($TargetArch);
+my($TargetArchId);
+my(%Options);
+my(%MissingData);
+
+
+#----------------------------------------------------------------------
+# Look through local shared libraries for aliases
+# We only do this because the database does not (yet) have this
+# information.
+sub GenerateAliases($)
+{
+  my($libfilename) = shift;
+  my($aliases) = {};
+  my(@searchDirs) = ("/", "/lib", "/usr/lib", "/usr/X11R6/lib");
+  my($loop);
+  my($useDir);
+  my(%lookup);
+  my(@nmLine);
+  
+  local(*NMOUTPUT);
+
+  foreach $loop (@searchDirs)
+  {
+    if (-f "$loop/$libfilename")
+    {
+      $useDir = $loop;
+      last;
+    }
+  }
+  if (!defined($useDir))
+  {
+    die "Could not find $libfilename in search path (for aliases): @searchDirs\n";
+  }
+  
+  if (system("nm -D $useDir/$libfilename | sort > /tmp/mkstublibs.$$")
+      /256!=0)
+  {
+    die "nm of shared library failed\n";
+  }
+  
+  my($line);
+  if (open(NMOUTPUT, "/tmp/mkstublibs.$$"))
+  {
+    while (defined($line = <NMOUTPUT>))
+    {
+      chomp($line);
+      @nmLine = split(/ /, $line);
+      if ($#nmLine==2)
+      {
+        if ($nmLine[1] eq "D" || $nmLine[1] eq "T")
+        {
+          $lookup{$nmLine[0]} = $nmLine[2];
+        }
+      }
+    }
+    seek(NMOUTPUT, 0, 0);
+    while (defined($line = <NMOUTPUT>))
+    {
+      chomp($line);
+      @nmLine = split(/ /, $line);
+      if ($#nmLine==2)
+      {
+        if ($nmLine[1] eq "V" || $nmLine[1] eq "W")
+        {
+          if (exists($lookup{$nmLine[0]}))
+          {
+#            print "Found alias: $nmLine[2] is alias to $lookup{$nmLine[0]}\n";
+            $aliases->{$nmLine[2]} = $lookup{$nmLine[0]};
+          }
+          elsif ($nmLine[1] eq "W")
+          {
+            $aliases->{$nmLine[2]} = "__lsb_cy_dummy_function";
+          }
+        }
+      }
+    }
+  }
+  else
+  {
+    die "Failed to open temorary file: /tmp/mkstublibs.$$\n";
+  }
+
+  return $aliases;
+}
+
+#----------------------------------------------------------------------
+# Look through local shared libraries for aliases
+# We only do this because the database does not (yet) have this
+# information.
+sub LoadSymbolData($)
+{
+  my($libfilename) = shift;
+  my($symbolInfo) = {};
+  my(@searchDirs) = ("/", "/lib", "/usr/lib", "/usr/X11R6/lib");
+  my($loop);
+  my($useDir);
+  my(%lookup);
+  my(@nmLine);
+  my($tmpfile) = "/tmp/$0.$$";
+  local(*NMOUTPUT);
+
+  foreach $loop (@searchDirs)
+  {
+    if (-f "$loop/$libfilename")
+    {
+      $useDir = $loop;
+      last;
+    }
+  }
+  if (!defined($useDir))
+  {
+    die "Could not find $libfilename in search path : @searchDirs\n";
+  }
+  
+  if (system("nm -D $useDir/$libfilename | sort > $tmpfile")
+      /256!=0)
+  {
+    die "nm of shared library failed\n";
+  }
+  
+  my($line);
+  if (open(NMOUTPUT, "$tmpfile"))
+  {
+    while (defined($line = <NMOUTPUT>))
+    {
+      chomp($line);
+      @nmLine = split(/ /, $line);
+      if ($#nmLine==2)
+      {
+        if ($nmLine[1] eq "B" || $nmLine[1] eq "C" || 
+            $nmLine[1] eq "D" || $nmLine[1] eq "G" ||
+            $nmLine[1] eq "R" || $nmLine[1] eq "S")
+        {
+          if (defined ($symbolInfo->{$nmLine[2]}) 
+              && $symbolInfo->{$nmLine[2]} ne "DATA")
+          {
+            print "redefining $nmLine[2] ($symbolInfo->{$nmLine[2]} to DATA)\n";
+          }
+          $symbolInfo->{$nmLine[2]} = "DATA";
+        }
+        elsif ($nmLine[1] eq "T")
+        {
+          if (defined ($symbolInfo->{$nmLine[2]}) 
+              && $symbolInfo->{$nmLine[2]} ne "FUNC")
+          {
+            print "redefining $nmLine[2] ($symbolInfo->{$nmLine[2]} to FUNC)\n";
+          }
+          $symbolInfo->{$nmLine[2]} = "FUNC";
+        }
+#          elsif ($nmLine[1] eq "W" || $nmLine[1] eq "V")
+#          {
+#            $symbolInfo->{$nmLine[2]} = "ANY";
+#          }
+        else
+        {
+#          print STDERR "Ignoring unknown symbol type $nmLine[1] ($nmLine[2])\n";
+        }
+      }
+    }
+    close(NMOUTPUT);
+    unlink($tmpfile);
+  }
+  else
+  {
+    die "Failed to open temorary file: $tmpfile\n";
+  }
+  return $symbolInfo;
+}
+
+
+######################################################################
+# Generate C stub code for a library
+sub CheckSymbols($$$$$)
+{
+  my($dbh) = shift;
+  my($libName) = shift;
+  my($libId) = shift;
+  my($symbolInfo) = shift;
+  my($aliases) = shift;
+  my($sth);
+  my($row);
+  my(%versionInfo);
+  my($iface);
+
+  # Do functions first
+  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM Interface,LibGroup, ".
+                       "LGInt LEFT JOIN Version ON Vid=Iversion ".
+                       "WHERE Itype='Function' AND ".
+                       "Interface.Iid=LGInt.LGIint AND Istatus='Included'".
+                       "AND LGInt.LGIlibg=LibGroup.LGid ".
+                       "AND LibGroup.LGlib=$libId ORDER BY Iname")
+      || die $dbh->errstr;  
+  $sth->execute() || die $sth->errstr;
+  while ($row = $sth->fetchrow_hashref())
+  {
+    $iface = $row->{Iname};
+    if (exists($aliases->{$iface}))
+    {
+      $iface = $aliases->{$iface};
+    }
+    if ($iface eq "__lsb_cy_dummy_function")
+    {
+      # dummy function as its just a weak function. its ok.
+      next;
+    }
+
+#    print "$row->{Iname}\n";
+#    print "$symbolInfo->{$row->{Iname}}\n";
+    if (exists($symbolInfo->{$iface}))
+    {
+      if ($symbolInfo->{$iface} ne "FUNC" 
+          && $symbolInfo->{$iface} ne "ANY")
+      {
+        print "$row->{Iname} is $symbolInfo->{$iface} but recorded as function\n";
+      }
+    }
+    else
+    {
+      print "No info on symbol $iface\n";
+    }
+  }
+
+  # Do variables next
+  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname,Ireturn,ATsize FROM ".
+                       "Interface,LibGroup,LGInt ".
+                       "LEFT JOIN Version ON Vid=Iversion ".
+                       "LEFT JOIN ArchType ON ATtid=Ireturn and ".
+                       "ATaid=$TargetArchId WHERE ".
+                       "Itype='Data' AND Interface.Iid=LGInt.LGIint ".
+                       "AND Istatus='Included' ".
+                       "AND LGInt.LGIlibg=LibGroup.LGid ".
+                       "AND LibGroup.LGlib=$libId ORDER BY Iname")
+      || die $dbh->errstr;  
+  $sth->execute() || die $sth->errstr;
+  my($size);
+  while ($row = $sth->fetchrow_hashref())
+  {
+    $iface = $row->{Iname};
+    if (exists($aliases->{$iface}))
+    {
+      $iface = $aliases->{$iface};
+    }
+    if ($iface eq "__lsb_cy_dummy_function")
+    {
+      print "$row->{Iname} missing target weak in spec (also maybe its meant to be a function?\n";
+      next;
+    }
+    if (exists($symbolInfo->{$iface}))
+    {
+      if ($symbolInfo->{$iface} ne "DATA"
+          && $symbolInfo->{$iface} ne "ANY")
+      {
+        print "$iface is $symbolInfo->{$iface} but recorded data\n";
+      }
+    }
+    else
+    {
+      print "No info on symbol $iface\n";
+    }
+  }
+}
+
+
+######################################################################
+# Main bit
+getopts('d:u:p:o:ha:', \%Options);
+
+if (exists($Options{'h'}))
+{
+  print STDERR <<"EOM"
+Usage $0 -a arch [-d db_name] [-u username] [-p password] [-o hostname] [-h]
+    -h           Display this help
+    -d db_name   Database name
+    -u username  Name of user for db access
+    -p password  Password for db access
+    -o hostname  Hostname for DB
+    -a arch      Architecture to generate shared libraries for
+                 (Note this is not magic - you have to compile it on
+                  the correct platform still!)
+EOM
+    ;
+  exit(1);
+}
+
+if (defined($Options{'a'}))
+{
+  $TargetArch = $Options{'a'};
+}
+else
+{
+  die "Must define target architecture\n";
+}
+
+$DBUser = $Options{'u'} if exists($Options{'u'});
+$DBPass = $Options{'p'} if exists($Options{'p'});
+$DBHost = $Options{'o'} if exists($Options{'o'});
+$DBName = $Options{'d'} if exists($Options{'d'});
+
+my($dbh);
+my($sth);
+my($row);
+my($data_source) = "DBI:mysql:database=$DBName";
+if ($DBHost ne "")
+{
+  $data_source .= ";host=$DBHost";
+}
+
+$dbh = DBI->connect($data_source, $DBUser, $DBPass)
+    || die "Could not connect to database\n";
+
+
+# Get architecture information
+$sth = $dbh->prepare("SELECT Aid from Architecture where Aname='$TargetArch'")
+    || die $dbh->errstr;
+$sth->execute() || die $sth->errstr;
+$row = $sth->fetchrow_hashref;
+if (!defined($row))
+{
+  die "Unknown Architecture $TargetArch\n";
+}
+else
+{
+  $TargetArchId = $row->{Aid};
+}
+
+# Get list of libraries we want to produce stub libraries for
+$sth = $dbh->prepare("SELECT Lid,Lname,Lrunname FROM Library "
+                     . "where Library.Lstd='Yes'")
+    || die $dbh->errstr;
+$sth->execute() || die $sth->errstr;
+
+my($symInfo);
+my($aliases);
+while ($row = $sth->fetchrow_hashref)
+{
+  print "Checking library ($row->{Lrunname})\n";
+  $symInfo = LoadSymbolData($row->{Lrunname});
+  $aliases = GenerateAliases($row->{Lrunname});
+  CheckSymbols($dbh, $row->{Lname}, $row->{Lid}, $symInfo, $aliases);
+}
+
+
