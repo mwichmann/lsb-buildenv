@@ -1,9 +1,9 @@
 #ifndef _SYS_MSG_H_
 #define _SYS_MSG_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 
+#define MSG_NOERROR	010000
 
 
 

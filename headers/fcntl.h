@@ -24,8 +24,8 @@
 
 
 
-#define F_RDLCK	0
 #define F_DUPFD	0
+#define F_RDLCK	0
 #define F_GETFD	1
 #define F_WRLCK	1
 #define F_UNLCK	2

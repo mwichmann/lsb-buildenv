@@ -3,6 +3,8 @@
 
 
 #define RLIM_INFINITY	(~0UL)
+#define RLIM_SAVED_CUR	-1
+#define RLIM_SAVED_MAX	-1
 #define RLIMIT_CPU	0
 #define RLIMIT_FSIZE	1
 #define RLIMIT_DATA	2
@@ -13,6 +15,8 @@
 
 
 struct rusage;
+
+typedef unsigned long rlim_t;
 
 
 int getpriority (,, int);

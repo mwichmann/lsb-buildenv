@@ -1,7 +1,6 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 
 
@@ -78,8 +77,8 @@ struct msghdr
 
 
 #define SOL_IP	0
-#define SO_DEBUG	1
 #define SOL_SOCKET	1
+#define SO_DEBUG	1
 #define SO_OOBINLINE	10
 #define SO_NO_CHECK	11
 #define SO_PRIORITY	12

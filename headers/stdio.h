@@ -1,12 +1,17 @@
 #ifndef _STDIO_H_
 #define _STDIO_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 #include <stdarg.h>
 
 #define EOF	(-1)
+#define L_tmpnam	128
+#define FOPEN_MAX	16
+#define FILENAME_MAX	4095
 #define BUFSIZ	8192
+#define L_ctermid	9
+#define L_cuserid	9
+#define P_tmpdir	"<pathname>"
 
 
 typedef struct _IO_FILE *FILE;

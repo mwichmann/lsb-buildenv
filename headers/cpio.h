@@ -22,7 +22,7 @@
 #define C_ISCHR	020000
 #define C_ISDIR	040000
 #define C_ISBLK	060000
-#define MAGIC	070707
+#define MAGIC	"070707"
 
 
 

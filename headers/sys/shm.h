@@ -1,7 +1,6 @@
 #ifndef _SYS_SHM_H_
 #define _SYS_SHM_H_
 
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
 

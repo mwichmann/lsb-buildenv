@@ -2,6 +2,8 @@
 #define _NL_TYPES_H_
 
 
+#define NL_SETD	1
+#define NL_CAT_LOCALE	1
 
 
 

@@ -34,6 +34,7 @@ typedef XID GContext;
 typedef XID KeySym;
 
 
+#define None	0L
 #define AnyButton	0L
 #define AllTemporary	0L
 #define CopyFromParent	0L
@@ -42,10 +43,9 @@ typedef XID KeySym;
 #define PointerWindow	0L
 #define AnyKey	0L
 #define NoSymbol	0L
-#define None	0L
+#define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
-#define InputFocus	1L
 
 
 
@@ -154,8 +154,8 @@ typedef XID KeySym;
 
 
 #define NotifyNormal	0
-#define NotifyGrab	1
 #define NotifyHint	1
+#define NotifyGrab	1
 #define NotifyUngrab	2
 #define NotifyWhileGrabbed	3
 
@@ -189,8 +189,8 @@ typedef XID KeySym;
 
 
 
-#define PropModeReplace	0
 #define PropertyNewValue	0
+#define PropModeReplace	0
 #define PropertyDelete	1
 
 
@@ -286,8 +286,8 @@ typedef XID KeySym;
 
 
 
-#define UnmapGravity	0
 #define ForgetGravity	0
+#define UnmapGravity	0
 #define NorthWestGravity	1
 #define StaticGravity	10
 #define NorthGravity	2
@@ -493,10 +493,10 @@ typedef XID KeySym;
 
 
 
-#define LedModeOff	0
 #define AutoRepeatModeOff	0
-#define AutoRepeatModeOn	1
+#define LedModeOff	0
 #define LedModeOn	1
+#define AutoRepeatModeOn	1
 #define AutoRepeatModeDefault	2
 
 
@@ -518,10 +518,10 @@ typedef XID KeySym;
 
 
 
-#define DontAllowExposures	0
-#define DisableScreenSaver	0
 #define DontPreferBlanking	0
 #define DisableScreenInterval	0
+#define DontAllowExposures	0
+#define DisableScreenSaver	0
 #define PreferBlanking	1
 #define AllowExposures	1
 #define DefaultBlanking	2

@@ -11,6 +11,7 @@
 #define FIFOTYPE	'6'
 #define CONTTYPE	'7'
 #define AREGTYPE	'\0'
+#define TVERSION	"00"
 #define TOEXEC	00001
 #define TOWRITE	00002
 #define TOREAD	00004
@@ -25,6 +26,7 @@
 #define TSUID	04000
 #define TVERSLEN	2
 #define TMAGLEN	6
+#define TMAGIC	"ustar"
 
 
 

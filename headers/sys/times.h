@@ -1,6 +1,7 @@
 #ifndef _SYS_TIMES_H_
 #define _SYS_TIMES_H_
 
+#include <sys/types.h>
 #include <time.h>
 
 

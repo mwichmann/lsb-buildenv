@@ -5,6 +5,9 @@
 #include <sys/types.h>
 
 #define MB_CUR_MAX	(__ctype_get_mb_cur_max())
+#define EXIT_SUCCESS	0
+#define EXIT_FAILURE	1
+#define RAND_MAX	2147483647
 
 
 typedef int (*__compar_fn_t) ();

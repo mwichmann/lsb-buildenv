@@ -2,9 +2,11 @@
 #define _SCHED_H_
 
 #include <sys/time.h>
-#include <unistd.h>
 #include <sys/types.h>
 
+#define SCHED_OTHER	0
+#define SCHED_FIFO	1
+#define SCHED_RR	2
 
 
 struct sched_param

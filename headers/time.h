@@ -2,7 +2,6 @@
 #define _TIME_H_
 
 #include <sys/time.h>
-#include <stddef.h>
 #include <sys/types.h>
 
 #define CLOCK_REALTIME	0
@@ -17,8 +16,6 @@ typedef long __clock_t;
 
 
 
-
-typedef __clock_t clock_t;
 
 
 

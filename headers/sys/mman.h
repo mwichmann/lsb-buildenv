@@ -1,12 +1,13 @@
 #ifndef _SYS_MMAN_H_
 #define _SYS_MMAN_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 
 #define MAP_SHARED	0x01
 #define MAP_PRIVATE	0x02
 #define PROT_READ	0x1
+#define MCL_CURRENT	1
+#define MCL_FUTURE	2
 
 
 

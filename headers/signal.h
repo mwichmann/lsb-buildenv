@@ -2,13 +2,16 @@
 #define _SIGNAL_H_
 
 #include <sys/time.h>
-#include <stddef.h>
-#include <unistd.h>
 #include <sys/types.h>
 
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
+#define SIG_BLOCK	0
+#define SIG_UNBLOCK	1
+#define SIG_SETMASK	2
 
+
+typedef __sig_atomic_t sig_atomic_t;
 
 struct sigstack
 {
@@ -109,8 +112,7 @@ typedef union sigval
 sigval_t;
 
 
-#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
-#define SI_MAX_SIZE	128
+#define SIGEV_NONE	1
 
 
 union _sigev_un
