@@ -3,6 +3,7 @@
 
 #include <sys/types.h>
 #include <stdarg.h>
+#include <unistd.h>
 
 #define EOF	(-1)
 #define L_tmpnam	128
@@ -16,9 +17,9 @@
 
 typedef struct _IO_FILE *FILE;
 
-typedef __off_t fpos_t;
+typedef off_t fpos_t;
 
-typedef __off64_t fpos64_t;
+typedef off64_t fpos64_t;
 
 
 /* The opaque type of streams.*/

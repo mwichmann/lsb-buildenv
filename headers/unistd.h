@@ -12,6 +12,8 @@
 #define STDERR_FILENO	2
 
 
+typedef long long off64_t;
+
 typedef int *intptr_t;
 
 

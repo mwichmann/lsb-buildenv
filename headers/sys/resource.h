@@ -15,6 +15,14 @@
 #define RLIMIT_AS	9
 
 
+
+
+
+typedef unsigned long rlim_t;
+
+
+
+
 struct rlimit
 {
   rlim_t rlim_cur;		/* The current (soft) limit. */
@@ -28,6 +36,9 @@ struct rlimit64
   rlim_t rlim_max;		/* The hard limit. */
 }
  ;
+
+
+
 
 struct rusage
 {
@@ -49,8 +60,6 @@ struct rusage
   long ru_nivcsw;		/* Number of involuntary context switches, i.e. a higher priori */
 }
  ;
-
-typedef unsigned long rlim_t;
 
 
 int getpriority (,, int);

@@ -1,5 +1,5 @@
 
-typedef __sig_atomic_t sig_atomic_t;
+typedef int sig_atomic_t;
 
 struct sigstack
 {
@@ -8,45 +8,14 @@ struct sigstack
 }
  ;
 
-struct sigcontext
-{
-  unsigned short gs;
-  unsigned short __gsh;
-  unsigned short fs;
-  unsigned short __fsh;
-  unsigned short es;
-  unsigned short __esh;
-  unsigned short ds;
-  unsigned short __dsh;
-  unsigned long edi;
-  unsigned long esi;
-  unsigned long ebp;
-  unsigned long esp;
-  unsigned long ebx;
-  unsigned long edx;
-  unsigned long ecx;
-  unsigned long eax;
-  unsigned long trapno;
-  unsigned long err;
-  unsigned long eip;
-  unsigned short cs;
-  unsigned short __csh;
-  unsigned long eflags;
-  unsigned long esp_at_signal;
-  unsigned short ss;
-  unsigned short __ssh;
-  struct _fpstate fpstate;
-  unsigned long oldmask;
-  unsigned long cr2;
-}
- ;
-
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
+#define SIGEV_THREAD	0
 #define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
-#define SIGEV_THREAD	0
 #define SIG_UNBLOCK	1
+#define SI_MAX_SIZE	128
 #define SIG_SETMASK	2
 
 #define SIG_ERR	((__sighandler_t)-1)
@@ -137,18 +106,6 @@ struct sigaction
 }
  ;
 
-union
-{
-  int _pad[__SI_PAD_SIZE];
-  struct _kill;
-  struct _timer;
-  struct _rt;
-  struct _sigchld;
-  struct _sigfault;
-  struct _sigpoll;
-}
- ;
-
 #define SA_NOCLDSTOP	0x00000001
 #define SA_NOCLDWAIT	0x00000002
 #define SA_SIGINFO	0x00000004
@@ -167,3 +124,45 @@ typedef struct sigaltstack
   size_t ss_size;
 }
 stack_t;
+
+
+struct _xmmreg
+{
+  unsigned long element[4];
+}
+ ;
+
+
+
+struct sigcontext
+{
+  unsigned short gs;
+  unsigned short __gsh;
+  unsigned short fs;
+  unsigned short __fsh;
+  unsigned short es;
+  unsigned short __esh;
+  unsigned short ds;
+  unsigned short __dsh;
+  unsigned long edi;
+  unsigned long esi;
+  unsigned long ebp;
+  unsigned long esp;
+  unsigned long ebx;
+  unsigned long edx;
+  unsigned long ecx;
+  unsigned long eax;
+  unsigned long trapno;
+  unsigned long err;
+  unsigned long eip;
+  unsigned short cs;
+  unsigned short __csh;
+  unsigned long eflags;
+  unsigned long esp_at_signal;
+  unsigned short ss;
+  unsigned short __ssh;
+  struct _fpstate fpstate;
+  unsigned long oldmask;
+  unsigned long cr2;
+}
+ ;

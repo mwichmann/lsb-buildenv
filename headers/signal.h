@@ -4,54 +4,23 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
 #define SIG_BLOCK	0
-#define SIGEV_THREAD	0
 #define SIGEV_SIGNAL	0
+#define SIGEV_THREAD	0
 #define SIG_UNBLOCK	1
+#define SI_MAX_SIZE	128
 #define SIG_SETMASK	2
 
 
-typedef __sig_atomic_t sig_atomic_t;
+typedef int sig_atomic_t;
 
 struct sigstack
 {
   void *ss_sp;			/* Signal stack pointer. */
   int ss_onstack;		/* Nonzero if executing on this stack. */
-}
- ;
-
-struct sigcontext
-{
-  unsigned short gs;
-  unsigned short __gsh;
-  unsigned short fs;
-  unsigned short __fsh;
-  unsigned short es;
-  unsigned short __esh;
-  unsigned short ds;
-  unsigned short __dsh;
-  unsigned long edi;
-  unsigned long esi;
-  unsigned long ebp;
-  unsigned long esp;
-  unsigned long ebx;
-  unsigned long edx;
-  unsigned long ecx;
-  unsigned long eax;
-  unsigned long trapno;
-  unsigned long err;
-  unsigned long eip;
-  unsigned short cs;
-  unsigned short __csh;
-  unsigned long eflags;
-  unsigned long esp_at_signal;
-  unsigned short ss;
-  unsigned short __ssh;
-  struct _fpstate fpstate;
-  unsigned long oldmask;
-  unsigned long cr2;
 }
  ;
 
@@ -143,13 +112,6 @@ typedef struct sigevent
 }
 sigevent_t;
 
-struct
-{
-  void (*sigev_thread_func) (void);
-  void *_attribute;
-}
- ;
-
 
 /* POSIX 1003.1b siginfo*/
 #define SI_QUEUE	-1
@@ -166,7 +128,7 @@ typedef struct siginfo
   int si_code;			/* Signal code. */
   union
   {
-    int _pad[__SI_PAD_SIZE];
+    int _pad[SI_PAD_SIZE];
     struct
     {
       pid_t si_pid;
@@ -251,51 +213,6 @@ struct sigaction
 }
  ;
 
-union
-{
-  int _pad[__SI_PAD_SIZE];
-  struct
-  {
-    pid_t si_pid;
-    uid_t si_uid;
-  }
-  _kill;
-  struct
-  {
-    unsigned int _timer1;
-    unsigned int _timer2;
-  }
-  _timer;
-  struct
-  {
-    pid_t _pid;
-    uid_t _uid;
-    sigval_t _sigval;
-  }
-  _rt;
-  struct
-  {
-    pid_t _pid;
-    uid_t _uid;
-    int _status;
-    clock_t _utime;
-    clock_t _stime;
-  }
-  _sigchld;
-  struct
-  {
-    void *_addr;
-  }
-  _sigfault;
-  struct
-  {
-    int _band;
-    int _fd;
-  }
-  _sigpoll;
-}
- ;
-
 
 /* Structure used in sigaltstack call.*/
 
@@ -309,6 +226,31 @@ typedef struct sigaltstack
 stack_t;
 
 
+
+
+struct _fpreg
+{
+  unsigned short significand[4];
+  unsigned short exponent;
+}
+ ;
+
+struct _fpxreg
+{
+  unsigned short significand[4];
+  unsigned short exponent;
+  unsigned short padding[3];
+}
+ ;
+
+struct _xmmreg
+{
+  unsigned long element[4];
+}
+ ;
+
+
+/* FPU state information*/
 
 
 struct _fpstate
@@ -328,14 +270,44 @@ struct _fpstate
   unsigned long reserved;
   struct _fpxreg _fxsr_st[8];
   struct _xmmreg _xmm[8];
-  unsigned long padding[];
+  unsigned long padding[56];
 }
  ;
 
-struct _fpreg
+
+/* Process context when signal delivered*/
+
+
+struct sigcontext
 {
-  unsigned short significand[4];
-  unsigned short exponent;
+  unsigned short gs;
+  unsigned short __gsh;
+  unsigned short fs;
+  unsigned short __fsh;
+  unsigned short es;
+  unsigned short __esh;
+  unsigned short ds;
+  unsigned short __dsh;
+  unsigned long edi;
+  unsigned long esi;
+  unsigned long ebp;
+  unsigned long esp;
+  unsigned long ebx;
+  unsigned long edx;
+  unsigned long ecx;
+  unsigned long eax;
+  unsigned long trapno;
+  unsigned long err;
+  unsigned long eip;
+  unsigned short cs;
+  unsigned short __csh;
+  unsigned long eflags;
+  unsigned long esp_at_signal;
+  unsigned short ss;
+  unsigned short __ssh;
+  struct _fpstate fpstate;
+  unsigned long oldmask;
+  unsigned long cr2;
 }
  ;
 

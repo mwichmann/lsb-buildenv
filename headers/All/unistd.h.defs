@@ -1,4 +1,6 @@
 
+typedef long long off64_t;
+
 typedef int *intptr_t;
 
 #define STDIN_FILENO	0

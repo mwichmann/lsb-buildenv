@@ -1,7 +1,6 @@
 #ifndef _SYS_TIME_H_
 #define _SYS_TIME_H_
 
-#include <time.h>
 #include <sys/types.h>
 
 #define ITIMER_REAL	0
@@ -66,14 +65,10 @@ struct itimerspec
  ;
 
 
-struct tm *gmtime (time_t *);
-struct tm *localtime (time_t *);
 int getitimer (int, struct itimerval *);
 int setitimer (int, struct itimerval *, struct itimerval *);
 int adjtime (struct timeval *, struct timeval *);
 int gettimeofday (struct timeval *, struct timezone *);
-struct tm *gmtime_r (time_t *, struct tm *);
-struct tm *localtime_r (time_t *, struct tm *);
 int timer_create (void);
 int timer_delete (void);
 int timer_getoverrun (void);
