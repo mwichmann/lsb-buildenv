@@ -1,10 +1,10 @@
 int hcreate(size_t);
 ENTRY * hsearch(ENTRY, ACTION);
 void insque(void *, void *);
-void * lfind(void *, void *, size_t *, size_t);
-void * lsearch(void *, void *, size_t *, size_t);
+void * lfind(void *, void *, size_t *, size_t, __compar_fn_t);
+void * lsearch(void *, void *, size_t *, size_t, __compar_fn_t);
 void remque(void *);
 void hdestroy(void);
-void * tfind(void *, void * *);
-void * tsearch(void *, void * *);
+void * tfind(void *, void * *, __compar_fn_t);
+void * tsearch(void *, void * *, __compar_fn_t);
 void twalk(void *, __action_fn_t);

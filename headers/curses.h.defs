@@ -1,7 +1,6 @@
-typedef unsigned long	chtype	; 
+typedef chtype	attr_t	; 
 
 typedef char	bool	; 
 
-typedef typedef unsigned long	chtype	; 
-attr_t	; 
+typedef unsigned long	chtype	; 
 

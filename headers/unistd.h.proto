@@ -45,7 +45,6 @@ ssize_t read(int, void *, size_t);
 ssize_t write(int, void *, size_t);
 char * crypt(char *, char *);
 void encrypt(char *, int);
-void setkey(char *);
 int access(char *, int);
 int brk(void *);
 int chdir(char *);

@@ -39,7 +39,7 @@ int XSetClassHint(Display *, Window, XClassHint *);
 int XSetIconSizes(Display *, Window, XIconSize *, int);
 int XSetNormalHints(Display *, Window, XSizeHints *);
 void XSetRGBColormaps(Display *, Window, XStandardColormap *, int, Atom);
-int XSetRegion(Display *, Region);
+int XSetRegion(Display *, GC, Region);
 int XSetSizeHints(Display *, Window, XSizeHints *, Atom);
 void XSetStandardColormap(Display *, Window, XStandardColormap *, Atom);
 int XSetStandardProperties(Display *, Window, char *, char *, Pixmap, char * *, int, XSizeHints *);

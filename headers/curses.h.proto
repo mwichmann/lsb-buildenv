@@ -261,5 +261,4 @@ void wtimeout(WINDOW *, int);
 int wtouchln(WINDOW *, int, int, int);
 int wvline(WINDOW *, chtype, int);
 WINDOW * curscr;
-WINDOW * newscr;
 WINDOW * stdscr;

@@ -1,24 +1,32 @@
-typedef typedef * void	void *	IcePointer	; 
-SmPointer	; 
+typedef struct _SmsConn	* SmsConn	; 
 
-typedef * Unknown Type: ""
-unknown	_SmcConn *	SmcConn	; 
+typedef void	(*SmcPropReplyProc)()
+; 
 
-typedef * Unknown Type: ""
-unknown	_SmsConn *	SmsConn	; 
+typedef void	(*SmcInteractProc)()
+; 
 
-typedef Unknown Type: ""
-unknown	SmcCloseStatus	; 
+typedef void	(*SmcSaveYourselfPhase2Proc)()
+; 
 
-typedef void	SmcSaveYourselfPhase2Proc	; 
+typedef enum {
+	
+SmcClosedNow,	
+SmcClosedASAP,	
+SmcConnectionInUse
+}
+SmcCloseStatus	; 
 
-typedef void	SmcInteractProc	; 
+typedef void	(*SmsErrorHandler)()
+; 
 
-typedef void	SmcPropReplyProc	; 
+typedef struct _SmcConn	* SmcConn	; 
 
-typedef int	SmsNewClientProc	; 
+typedef IcePointer	SmPointer	; 
 
-typedef void	SmcErrorHandler	; 
+typedef void	(*SmcErrorHandler)()
+; 
 
-typedef void	SmsErrorHandler	; 
+typedef int	(*SmsNewClientProc)()
+; 
 

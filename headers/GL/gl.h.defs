@@ -1,28 +1,28 @@
-typedef unsigned int	GLenum	; 
-
-typedef unsigned char	GLboolean	; 
-
-typedef unsigned int	GLbitfield	; 
-
-typedef char	GLbyte	; 
-
-typedef short	GLshort	; 
-
-typedef int	GLint	; 
-
-typedef unsigned char	GLubyte	; 
-
-typedef unsigned short	GLushort	; 
-
-typedef unsigned int	GLuint	; 
-
-typedef int	GLsizei	; 
+typedef float	GLclampf	; 
 
 typedef float	GLfloat	; 
 
-typedef float	GLclampf	; 
+typedef int	GLsizei	; 
+
+typedef unsigned int	GLuint	; 
+
+typedef unsigned short	GLushort	; 
+
+typedef unsigned char	GLubyte	; 
+
+typedef int	GLint	; 
+
+typedef short	GLshort	; 
+
+typedef char	GLbyte	; 
+
+typedef unsigned int	GLbitfield	; 
+
+typedef unsigned char	GLboolean	; 
 
 typedef double	GLdouble	; 
 
 typedef double	GLclampd	; 
+
+typedef unsigned int	GLenum	; 
 

@@ -1,2 +1,4 @@
-typedef * void	void *	nl_catd	; 
+typedef void	* nl_catd	; 
+
+typedef int	nl_item	; 
 

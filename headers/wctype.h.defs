@@ -1,5 +1,5 @@
 typedef unsigned long	wctype_t	; 
 
-typedef * Unknown Type: ""
-unknown	__int32_t *	wctrans_t	; 
+typedef Unknown Type: ".."
+* wctrans_t	; 
 

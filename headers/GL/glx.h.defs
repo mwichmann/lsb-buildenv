@@ -1,21 +1,14 @@
-typedef Unknown Type: ""
-unknown	GLXContextID	; 
+typedef XID	GLXPixmap	; 
 
-typedef Unknown Type: ""
-unknown	GLXPixmap	; 
+typedef struct __GLXcontextRec	* GLXContext	; 
 
-typedef Unknown Type: ""
-unknown	GLXDrawable	; 
+typedef struct __GLXFBConfigRec	* GLXFBConfig	; 
 
-typedef Unknown Type: ""
-unknown	GLXPbuffer	; 
+typedef XID	GLXContextID	; 
 
-typedef Unknown Type: ""
-unknown	GLXWindow	; 
+typedef XID	GLXWindow	; 
 
-typedef * Unknown Type: ""
-unknown	__GLXcontextRec *	GLXContext	; 
+typedef XID	GLXPbuffer	; 
 
-typedef * Unknown Type: ""
-unknown	__GLXFBConfigRec *	GLXFBConfig	; 
+typedef XID	GLXDrawable	; 
 

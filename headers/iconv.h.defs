@@ -1,2 +1,2 @@
-typedef * void	void *	iconv_t	; 
+typedef void	* iconv_t	; 
 

@@ -1,7 +1,12 @@
-typedef * char	char *	XPointer	; 
+typedef void	* XVaNestedList	; 
 
-typedef * Unknown Type: ""
-unknown	_XGC *	GC	; 
+typedef struct _XIC	* XIC	; 
+
+typedef struct _XIM	* XIM	; 
+
+typedef struct _XOC	* XFontSet	; 
+
+typedef struct _XOC	* XOC	; 
 
 typedef union {
 	
@@ -14,28 +19,25 @@ XFontStruct *	font;
 }
 XEDataObject	; 
 
-typedef * Unknown Type: ""
-unknown	_XOM *	XOM	; 
+typedef struct _XOM	* XOM	; 
 
-typedef * Unknown Type: ""
-unknown	_XOC *	XOC	; 
+typedef struct _XGC	* GC	; 
 
-typedef * Unknown Type: ""
-unknown	_XOC *	XFontSet	; 
+typedef char	* XPointer	; 
 
-typedef * Unknown Type: ""
-unknown	_XIM *	XIM	; 
+typedef void	(*XIDProc)()
+; 
 
-typedef * Unknown Type: ""
-unknown	_XIC *	XIC	; 
+int	(*XSynchronize)()
 
-typedef void	XIDProc	; 
+int	(*XSetAfterFunction)()
 
-typedef * void	void *	XVaNestedList	; 
+typedef int	(*XErrorHandler)()
+; 
 
-typedef int	XErrorHandler	; 
+typedef int	(*XIOErrorHandler)()
+; 
 
-typedef int	XIOErrorHandler	; 
-
-typedef void	XConnectionWatchProc	; 
+typedef void	(*XConnectionWatchProc)()
+; 
 

@@ -1,0 +1,26 @@
+typedef XID	Font	; 
+
+typedef XID	Pixmap	; 
+
+typedef unsigned long	XID	; 
+
+typedef unsigned long	Atom	; 
+
+typedef unsigned char	KeyCode	; 
+
+typedef XID	Window	; 
+
+typedef unsigned long	Time	; 
+
+typedef unsigned long	VisualID	; 
+
+typedef XID	KeySym	; 
+
+typedef XID	GContext	; 
+
+typedef XID	Colormap	; 
+
+typedef XID	Cursor	; 
+
+typedef XID	Drawable	; 
+

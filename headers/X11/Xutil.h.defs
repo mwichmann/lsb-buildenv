@@ -1,8 +1,14 @@
-typedef Unknown Type: ""
-unknown	XICCEncodingStyle	; 
+typedef struct _XRegion	* Region	; 
 
-typedef * Unknown Type: ""
-unknown	_XRegion *	Region	; 
+typedef enum {
+	
+XStringStyle,	
+XCompoundTextStyle,	
+XTextStyle,	
+XStdICCTextStyle,	
+XUTF8StringStyle
+}
+XICCEncodingStyle	; 
 
 typedef int	XContext	; 
 

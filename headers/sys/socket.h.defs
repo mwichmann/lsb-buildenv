@@ -14,7 +14,7 @@ sockaddr_ns *	__sockaddr_ns__;
 sockaddr_un *	__sockaddr_un__;	
 sockaddr_x25 *	__sockaddr_x25__;	
 }
-__SOCKADDR_ARG	; 
+__CONST_SOCKADDR_ARG	; 
 
 typedef union {
 	
@@ -32,5 +32,5 @@ sockaddr_ns *	__sockaddr_ns__;
 sockaddr_un *	__sockaddr_un__;	
 sockaddr_x25 *	__sockaddr_x25__;	
 }
-__CONST_SOCKADDR_ARG	; 
+__SOCKADDR_ARG	; 
 

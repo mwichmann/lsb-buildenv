@@ -1,12 +1,15 @@
-typedef Unknown Type: ""
-unknown	ACTION	; 
+typedef void	__action_fn_t	; 
 
 typedef struct entry	{
-
 char *	key;	
 void *	data;	
 }
 ENTRY	; 
 
-typedef void	__action_fn_t	; 
+typedef enum {
+	
+FIND,	
+ENTER
+}
+ACTION	; 
 

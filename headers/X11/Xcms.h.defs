@@ -1,11 +1,23 @@
-typedef unsigned long	XcmsColorFormat	; 
+typedef int	(*XcmsWhiteAdjustProc)()
+; 
+
+typedef int	(*XcmsCompressionProc)()
+; 
+
+typedef struct _XcmsCCC	{
+Display *	dpy;	
+int	screenNumber;	
+Visual *	visual;	
+XcmsColor	clientWhitePt;	
+gamutCompProc;	
+XPointer	gamutCompClientData;	
+whitePtAdjProc;	
+XPointer	whitePtAdjClientData;	
+XcmsPerScrnInfo *	pPerScrnInfo;	
+}
+* XcmsCCC	; 
 
 typedef double	XcmsFloat	; 
 
-typedef * Unknown Type: ""
-unknown	_XcmsCCC *	XcmsCCC	; 
-
-typedef int	XcmsCompressionProc	; 
-
-typedef int	XcmsWhiteAdjustProc	; 
+typedef unsigned long	XcmsColorFormat	; 
 

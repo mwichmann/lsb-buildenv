@@ -1,36 +1,65 @@
-typedef * void	void *	IcePointer	; 
+typedef struct _IceConn	* IceConn	; 
 
-typedef Unknown Type: ""
-unknown	IceConnectStatus	; 
+typedef struct _IceListenObj	* IceListenObj	; 
 
-typedef Unknown Type: ""
-unknown	IceProtocolSetupStatus	; 
+typedef void	(*IceIOErrorHandler)()
+; 
 
-typedef Unknown Type: ""
-unknown	IceCloseStatus	; 
+typedef void	(*IceErrorHandler)()
+; 
 
-typedef Unknown Type: ""
-unknown	IceProcessMessagesStatus	; 
+typedef void	(*IcePingReplyProc)()
+; 
 
-typedef * Unknown Type: ""
-unknown	_IceConn *	IceConn	; 
+typedef void	(*IceIOErrorProc)()
+; 
 
-typedef * Unknown Type: ""
-unknown	_IceListenObj *	IceListenObj	; 
+typedef void	(*IceProtocolActivateProc)()
+; 
 
-typedef void	IceWatchProc	; 
+typedef int	(*IceProtocolSetupProc)()
+; 
 
-typedef int	IceHostBasedAuthProc	; 
+typedef int	(*IceHostBasedAuthProc)()
+; 
 
-typedef int	IceProtocolSetupProc	; 
+typedef void	(*IceWatchProc)()
+; 
 
-typedef void	IceProtocolActivateProc	; 
+typedef enum {
+	
+IceProcessMessagesSuccess,	
+IceProcessMessagesIOError,	
+IceProcessMessagesConnectionClosed
+}
+IceProcessMessagesStatus	; 
 
-typedef void	IceIOErrorProc	; 
+typedef enum {
+	
+IceClosedNow,	
+IceClosedASAP,	
+IceConnectionInUse,	
+IceStartedShutdownNegotiation
+}
+IceCloseStatus	; 
 
-typedef void	IcePingReplyProc	; 
+typedef void	* IcePointer	; 
 
-typedef void	IceErrorHandler	; 
+typedef enum {
+	
+IceProtocolSetupSuccess,	
+IceProtocolSetupFailure,	
+IceProtocolSetupIOError,	
+IceProtocolAlreadyActive
+}
+IceProtocolSetupStatus	; 
 
-typedef void	IceIOErrorHandler	; 
+typedef enum {
+	
+IceConnectPending,	
+IceConnectAccepted,	
+IceConnectRejected,	
+IceConnectIOError
+}
+IceConnectStatus	; 
 

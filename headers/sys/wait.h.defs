@@ -1,3 +1,8 @@
-typedef Unknown Type: ""
-unknown	idtype_t	; 
+typedef enum {
+	
+P_ALL,	
+P_PID,	
+P_PGID
+}
+idtype_t	; 
 

@@ -1,8 +1,2 @@
-typedef typedef struct 	{
-
-long	quot;	
-long	rem;	
-}
-lldiv_t	; 
-imaxdiv_t	; 
+typedef lldiv_t	imaxdiv_t	; 
 
