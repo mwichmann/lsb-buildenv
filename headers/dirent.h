@@ -25,6 +25,7 @@ struct dirent
   long d_ino;
   off_t d_off;
   unsigned short d_reclen;
+  unsigned char d_type;
   char d_name[256];
 }
  ;
@@ -35,7 +36,7 @@ struct dirent64
   int64_t d_off;
   unsigned short d_reclen;
   unsigned char d_type;
-  char d_name[1];
+  char d_name[256];
 }
  ;
 
