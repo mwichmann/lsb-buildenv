@@ -72,6 +72,7 @@ __pid_t vfork(void);
 long fpathconf(int, int);
 int ftruncate(int, __off_t);
 char getcwd(char);
+int getpagesize(void);
 __pid_t getppid(void);
 int isatty(int);
 int ttyname_r(int, char);

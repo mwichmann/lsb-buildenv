@@ -9,7 +9,7 @@ LSBSRC = \
 	libdl.c\
 	libcrypt.c\
 	libz.c\
-	libcurses.c\
+	libncurses.c\
 	libutil.c\
 	libc.c\
 	libpthread.c\

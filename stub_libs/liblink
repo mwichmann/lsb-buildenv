@@ -39,7 +39,7 @@ libz.so: libz.o
 	$(LD) --version-script Version -o $@ -shared -h libz.so.1 $*.o
 
 
-libcurses.so: libcurses.o
+libncurses.so: libncurses.o
 	$(LD) --version-script Version -o $@ -shared -h libncurses.so.5 $*.o
 
 

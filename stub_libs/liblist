@@ -9,7 +9,7 @@ LSBLIBS = \
 	libdl.so\
 	libcrypt.so\
 	libz.so\
-	libcurses.so\
+	libncurses.so\
 	libutil.so\
 	libc.so\
 	libpthread.so\
