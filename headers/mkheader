@@ -385,15 +385,20 @@ if( $$param{'Ttype'} eq "Enum" ) {
 	}
 
 if( $$param{'Ttype'} eq "Array" ) {
-	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	%type=$sth->fetchhash;
-	displaytyperef(\%type);
-	#print "[";
-	#if( $$param{'Parsize'} != 0 ) {
-	#	print $$param{'Parsize'};
-	#	}
-	#print "]";
+	$basetype=$$param{'Tbasetype'};
+	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+	%type=$tth->fetchhash;
+	if( !$nameonly ) {
+		$nameonly=1;
+		displaytyperef(\%type);
+		$nameonly=0;
+	} else {
+		displaytyperef(\%type);
+		}
+	if( $$param{'Tname'} =~ "fptr" ) {
+		$$param{'Tname'} =~ s/fptr-//;
+		}
 	return;
 	}
 
@@ -981,7 +986,15 @@ for(1..$sth->numrows) {
 	if( $entry{'Itype'} eq "Common" ) {
 		printf "extern ";
 		displaytyperef(\%entry);
-		printf " %s;\n",$entry{'Iname'};
+		printf " %s",$entry{'Iname'};
+		if( $entry{'Ttype'} eq "Array" ) {
+			print "[";
+			if( $entry{'ATsize'} != 0 ) {
+				print $entry{'ATsize'};
+				}
+			print "]";
+		}
+		printf " ;\n";
 	}
 }
 print "#ifdef __cplusplus\n";
