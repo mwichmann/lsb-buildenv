@@ -1,5 +1,7 @@
 
-all:
+all: stdio.h
+
+stdio.h:
 	for h in `./getheaderlist`; do \
 		./mkfuncprototype -h $$h >$$h.proto; \
 		./mkdatadef -a All -h $$h >$$h.defs  ; \
