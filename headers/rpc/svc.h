@@ -1,12 +1,12 @@
 #ifndef _RPC_SVC_H_
 #define _RPC_SVC_H_
 
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <rpc/auth.h>
-#include <rpc/types.h>
 #include <rpc/xdr.h>
+#include <netinet/in.h>
+#include <rpc/types.h>
 #include <rpc/rpc_msg.h>
 
 #ifdef __cplusplus
@@ -15,7 +15,19 @@ extern "C"
 #endif
 
 
+#define RPC_ANYSOCK	-1
 
+
+  struct svc_req
+  {
+    rpcprog_t rq_prog;
+    rpcvers_t rq_vers;
+    rpcproc_t rq_proc;
+    struct opaque_auth rq_cred;
+    caddr_t rq_clntcred;
+    struct SVCXPRT *rq_xprt;
+  }
+   ;
 
 
 /* Server side transport handle*/

@@ -1,8 +1,8 @@
 #ifndef _NETINET_IN_H_
 #define _NETINET_IN_H_
 
-#include <sys/socket.h>
 #include <inttypes.h>
+#include <sys/socket.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -49,6 +49,7 @@ extern "C"
    ;
 
 
+  extern int bindresvport (int, struct sockaddr_in *);
   extern uint32_t htonl (uint32_t);
   extern uint16_t htons (uint16_t);
   extern uint32_t ntohl (uint32_t);

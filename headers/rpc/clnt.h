@@ -12,6 +12,12 @@ extern "C"
 #endif
 
 
+#define clnt_control(cl,rq,in)	((*(cl)->cl_ops->cl_control)(cl,rq,in))
+#define clnt_abort(rh)	((*(rh)->cl_ops->cl_abort)(rh))
+#define clnt_call(rh, proc, xargs, argsp, xres, resp, secs)	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
+#define clnt_destroy(rh)	((*(rh)->cl_ops->cl_destroy)(rh))
+#define clnt_freeres(rh,xres,resp)	((*(rh)->cl_ops->cl_freeres)(rh,xres,resp))
+#define clnt_geterr(rh,errp)	((*(rh)->cl_ops->cl_geterr)(rh, errp))
 #define NULLPROC	((u_long)0)
 #define CLSET_TIMEOUT	1
 #define CLGET_XID	10

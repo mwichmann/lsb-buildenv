@@ -11,6 +11,8 @@ extern "C"
 #define FD_ISSET(d,set)	((set)->fds_bits[0]&(1<<d))
 #define FD_CLR(d,set)	((set)->fds_bits[0]&=~(1<<d))
 #define FD_SET(d,set)	((set)->fds_bits[0]|=(1<<d))
+#define FALSE	0
+#define TRUE	1
 #define FD_SETSIZE	1024
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 

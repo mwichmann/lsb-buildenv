@@ -3,8 +3,8 @@
 
 #include <sys/types.h>
 #include <rpc/auth.h>
-#include <rpc/types.h>
 #include <rpc/xdr.h>
+#include <rpc/types.h>
 
 #ifdef __cplusplus
 extern "C"
