@@ -504,6 +504,7 @@ for(1..$hgh->numrows) {
 	print $th->numrows," rows\n" if $trace;
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
+		if( $tentry{'Aid'} && $tentry{'Aname'} eq "None" ) { next; }
 		displaytype(\%tentry);
 		print ";";
 		#print $tentry{'Tcomment'}."\n\n";

@@ -725,6 +725,7 @@ for(1..$hgh->numrows) {
 	print $th->numrows," rows\n" if $trace;
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
+		if( $tentry{'Aid'} && $tentry{'Aname'} eq "None" ) { next; }
 		if( $tentry{'Tstatus'} eq "Conly" ) {
 			print "#if !defined(__cplusplus)\n";
 			}
