@@ -4,6 +4,7 @@
 #include <sys/time.h>
 #include <stddef.h>
 #include <sys/types.h>
+#include <signal.h>
 
 
 
@@ -94,18 +95,18 @@ struct aiocb64
 
 int aio_read (struct aiocb *);
 int aio_write (struct aiocb *);
-int lio_listio (int, struct aiocb *, int);
+int lio_listio (int, struct aiocb *[], int, struct sigevent *);
 int aio_error (struct aiocb *);
 __ssize_t aio_return (struct aiocb *);
 int aio_cancel (int, struct aiocb *);
-int aio_suspend (struct aiocb *, int, struct timespec *);
+int aio_suspend (struct aiocb *[], int, struct timespec *);
 int aio_fsync (int, struct aiocb *);
 int aio_cancel64 (int, struct aiocb64 *);
 int aio_error64 (struct aiocb64 *);
 int aio_fsync64 (int, struct aiocb64 *);
 int aio_read64 (struct aiocb64 *);
 __ssize_t aio_return64 (struct aiocb64 *);
-int aio_suspend64 (struct aiocb64 *, int, struct timespec *);
+int aio_suspend64 (struct aiocb64 *[], int, struct timespec *);
 int aio_write64 (struct aiocb64 *);
-int lio_listio64 (int, struct aiocb64 *, int);
+int lio_listio64 (int, struct aiocb64 *[], int);
 #endif

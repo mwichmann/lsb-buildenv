@@ -133,4 +133,5 @@ int getpeername (int, struct sockaddr *, socklen_t *);
 int getsockopt (int, int, int, void *, socklen_t *);
 int shutdown (int, int);
 int socket (int, int, int);
+int socketpair (int, int, int, int[2]);
 #endif

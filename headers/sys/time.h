@@ -69,6 +69,7 @@ int getitimer (int, struct itimerval *);
 int setitimer (int, struct itimerval *, struct itimerval *);
 int adjtime (struct timeval *, struct timeval *);
 int gettimeofday (struct timeval *, struct timezone *);
+int utimes (char *, struct timeval *);
 int timer_create (void);
 int timer_delete (void);
 int timer_getoverrun (void);

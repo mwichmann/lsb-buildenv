@@ -88,6 +88,6 @@ regmatch_t;
 
 int regcomp (regex_t *, char *, int);
 size_t regerror (int, regex_t *, char *, size_t);
-int regexec (regex_t *, char *, size_t, regmatch_t, int);
+int regexec (regex_t *, char *, size_t, regmatch_t[], int);
 void regfree (regex_t *);
 #endif

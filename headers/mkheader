@@ -329,7 +329,9 @@ if( $$param{'Ttype'} eq "Array" ) {
 	%type=$sth->fetchhash;
 	displaytyperef(\%type);
 	print "[";
-	print $$param{'Parsize'};
+	if( $$param{'Parsize'} != 0 ) {
+		print $$param{'Parsize'};
+		}
 	print "]";
 	return;
 	}
