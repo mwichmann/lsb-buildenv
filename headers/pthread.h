@@ -212,7 +212,7 @@ extern "C"
   extern int pthread_setcancelstate (int, int *);
   extern int pthread_setcanceltype (int, int *);
   extern int pthread_setschedparam (pthread_t, int, struct sched_param *);
-  extern int pthread_setspecific (pthread_key_t, void *);
+  extern int pthread_setspecific (pthread_key_t, const void *);
   extern void pthread_testcancel (void);
   extern int pthread_attr_getguardsize (void);
   extern int pthread_attr_setguardsize (void);
