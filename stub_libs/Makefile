@@ -24,3 +24,7 @@ clean:
 
 .PHONY: clean distclean dbfiles libs
 
+install:
+	install -d $$LSBHOME/src/build/usr/lsb/lib
+	install $(SOFILES) $$LSBHOME/src/build/usr/lsb/lib
+
