@@ -15,8 +15,20 @@ extern "C"
 
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
+#if defined(__i386__)
+#define __IO_FILE_SIZE	148
+#endif
+#if defined(__powerpc__)
+#define __IO_FILE_SIZE	152
+#endif
+#if defined(__s390__)
+#define __IO_FILE_SIZE	152
+#endif
 #define FOPEN_MAX	16
 #define L_tmpnam	20
+#if defined(__ia64__)
+#define __IO_FILE_SIZE	216
+#endif
 #if defined(__s390__)
 #define FILENAME_MAX	4095
 #endif
@@ -26,7 +38,11 @@ extern "C"
 #define L_cuserid	9
 
 
-  typedef struct _IO_FILE FILE;
+  struct _IO_FILE
+  {
+    char dummy[__IO_FILE_SIZE];
+  }
+   ;
 
   typedef struct
   {
@@ -45,6 +61,8 @@ extern "C"
 
 /* The opaque type of streams.*/
 
+
+  typedef struct _IO_FILE FILE;
 
 
 /* The possibilities for the third argument to `setvbuf'.*/
