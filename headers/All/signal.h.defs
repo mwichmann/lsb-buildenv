@@ -1,4 +1,5 @@
 
+#define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
 #define SIG_BLOCK	0
@@ -69,6 +70,7 @@ sigval_t;
 #define SIGEV_SIGNAL	0
 #define SIGEV_NONE	1
 #define SIGEV_THREAD	2
+#define SIGEV_MAX_SIZE	64
 
 typedef struct sigevent
 {
@@ -88,6 +90,7 @@ typedef struct sigevent
   _sigev_un;
 }
 sigevent_t;
+#define SI_MAX_SIZE	128
 #define si_pid	_sifields._kill._pid
 #define si_uid	_sifields._kill._uid
 #define si_value	_sifields._rt._sigval

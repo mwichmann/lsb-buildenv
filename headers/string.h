@@ -29,7 +29,6 @@ extern "C"
   extern char *strcpy (char *, const char *);
   extern size_t strcspn (const char *, const char *);
   extern char *strerror (int);
-  extern char *strfry (char *);
   extern size_t strlen (const char *);
   extern char *strncat (char *, const char *, size_t);
   extern int strncmp (const char *, const char *, size_t);
@@ -56,7 +55,6 @@ extern "C"
   extern char *strerror_r (int, char *, size_t);
   extern char *strtok_r (char *, const char *, char **);
   extern char *strcasestr (const char *, const char *);
-  extern int strverscmp (const char *, const char *);
   extern char *stpcpy (char *, const char *);
   extern char *stpncpy (char *, const char *, size_t);
   extern void *memrchr (const void *, int, size_t);

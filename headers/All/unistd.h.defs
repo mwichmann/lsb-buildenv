@@ -187,7 +187,6 @@ typedef long long off64_t;
 
 #define _XOPEN_REALTIME	1
 #define _XOPEN_XPG4	1
-#define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
 
 #define F_ULOCK	0

@@ -55,8 +55,7 @@ extern "C"
   {
     unsigned long mask;
     unsigned long addr;
-  }
-  __attribute__ ((aligned (8))) _psw_t;
+  } __attribute__ ((aligned (8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -65,8 +64,7 @@ extern "C"
   {
     unsigned long mask;
     unsigned long addr;
-  }
-  __attribute__ ((aligned (8))) _psw_t;
+  } __attribute__ ((aligned (8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -937,7 +935,6 @@ extern "C"
   extern int sigdelset (sigset_t *, int);
   extern int sigemptyset (sigset_t *);
   extern int sigfillset (sigset_t *);
-  extern int siggetmask (void);
   extern int sighold (int);
   extern int sigignore (int);
   extern int siginterrupt (int, int);
@@ -954,7 +951,6 @@ extern "C"
   extern int sigwait (const sigset_t *, int *);
   extern int kill (pid_t, int);
   extern int sigaltstack (const struct sigaltstack *, struct sigaltstack *);
-  extern int sigblock (int);
   extern sighandler_t signal (int, sighandler_t);
   extern int sigpause (int);
   extern int sigprocmask (int, const sigset_t *, sigset_t *);

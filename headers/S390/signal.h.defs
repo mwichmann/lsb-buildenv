@@ -7,8 +7,7 @@ typedef struct
 {
   unsigned long mask;
   unsigned long addr;
-}
-__attribute__ ((aligned (8))) _psw_t;
+} __attribute__ ((aligned (8))) _psw_t;
 typedef struct
 {
   _psw_t psw;
@@ -16,6 +15,10 @@ typedef struct
   unsigned int acrs[__NUM_ACRS];
 }
 _s390_regs_common;
+
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 
 struct sigaction
 {

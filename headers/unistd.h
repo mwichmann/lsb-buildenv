@@ -246,7 +246,6 @@ extern "C"
 
 #define _XOPEN_REALTIME	1
 #define _XOPEN_XPG4	1
-#define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
 
 
@@ -279,7 +278,6 @@ extern "C"
   extern int execvp (const char *, char *const[]);
   extern int fdatasync (int);
   extern int ftruncate64 (int, off64_t);
-  extern int getdomainname (char *, size_t);
   extern long gethostid (void);
   extern char *getlogin (void);
   extern int getopt (int, char *const[], const char *);
@@ -294,7 +292,6 @@ extern "C"
   extern int optind;
   extern int optopt;
   extern int rename (const char *, const char *);
-  extern int setdomainname (const char *, size_t);
   extern int setegid (gid_t);
   extern int seteuid (uid_t);
   extern int sethostid (long);

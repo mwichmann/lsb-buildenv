@@ -174,6 +174,7 @@ extern "C"
   extern int inflateSyncPoint (z_streamp);
   extern int uncompress (Bytef *, uLongf *, const Bytef *, uLong);
   extern const char *zError (int);
+  extern char *zlibVersion (void);
 #ifdef __cplusplus
 }
 #endif

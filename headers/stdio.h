@@ -163,6 +163,7 @@ extern "C"
   extern int vfscanf (FILE *, const char *, va_list);
   extern int vscanf (const char *, va_list);
   extern int vsscanf (const char *, const char *, va_list);
+  extern size_t __fpending (FILE *);
 #ifdef __cplusplus
 }
 #endif

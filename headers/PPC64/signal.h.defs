@@ -17,6 +17,10 @@ struct pt_regs
 }
  ;
 
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
+
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
+
 struct sigaction
 {
   union

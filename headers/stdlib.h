@@ -138,7 +138,6 @@ extern "C"
   extern void _Exit (int);
   extern size_t __ctype_get_mb_cur_max (void);
   extern char **environ;
-  extern int random_r (struct random_data *, int32_t *);
   extern char *realpath (const char *, char *);
   extern int setenv (const char *, const char *, int);
   extern int unsetenv (const char *);
