@@ -6,6 +6,17 @@
 
 
 typedef int (*__compar_fn_t) (const void *, const void *);
+struct random_data
+{
+  int32_t *fptr;
+  int32_t *rptr;
+  int32_t *state;
+  int rand_type;
+  int rand_deg;
+  int rand_sep;
+  int32_t *end_ptr;
+}
+ ;
 
 
 typedef struct

@@ -64,7 +64,6 @@
 #define _FULLWIN	0x04
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
-#define TRACE_MAXIMUM	0xffff
 
 
 

@@ -78,7 +78,6 @@ extern "C"
 #define _FULLWIN	0x04
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
-#define TRACE_MAXIMUM	0xffff
 
 
 
@@ -178,6 +177,7 @@ extern "C"
 
 
 /* Pseudo-character tokens outside ASCII range.*/
+#define KEY_F(n)	(KEY_F0+(n))
 #define KEY_CODE_YES	0400
 #define KEY_BREAK	0401
 #define KEY_MIN	0401

@@ -119,7 +119,7 @@ extern "C"
   extern void free (void *);
   extern void *initstate (unsigned int, void *, size_t);
   extern void *malloc (size_t);
-  extern int random (void);
+  extern long random (void);
   extern void *realloc (void *, size_t);
   extern void *setstate (void *);
   extern void srand (unsigned int);
