@@ -32,6 +32,5 @@ install: configure
 
 clean:
 	rm -f config/lsbdev.conf lsbdev
-	(cd stub_libs; make clean)
 
 .PHONY: configure install clean
