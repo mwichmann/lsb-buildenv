@@ -277,6 +277,6 @@ __asm__(".globl COLORS; .pushsection .data; .type COLORS,@object; .size COLORS, 
 __asm__(".globl COLOR_PAIRS; .pushsection .data; .type COLOR_PAIRS,@object; .size COLOR_PAIRS, 4; COLOR_PAIRS: .long 0; .popsection");
 __asm__(".globl COLS; .pushsection .data; .type COLS,@object; .size COLS, 4; COLS: .long 0; .popsection");
 __asm__(".globl LINES; .pushsection .data; .type LINES,@object; .size LINES, 4; LINES: .long 0; .popsection");
-__asm__(".globl acs_map; .pushsection .data; .type acs_map,@object; .size acs_map, 128; acs_map: .long 0; .popsection");
+__asm__(".globl acs_map; .pushsection .data; .type acs_map,@object; .size acs_map, 512; acs_map: .long 0; .popsection");
 __asm__(".globl curscr; .pushsection .data; .type curscr,@object; .size curscr, 4; curscr: .long 0; .popsection");
 __asm__(".globl stdscr; .pushsection .data; .type stdscr,@object; .size stdscr, 4; stdscr: .long 0; .popsection");
