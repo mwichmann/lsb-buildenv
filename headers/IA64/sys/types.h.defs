@@ -2,6 +2,7 @@
 
 
 typedef long int64_t;
+typedef int32_t __suseconds32_t;
 
 
 typedef int64_t ssize_t;

@@ -37,6 +37,8 @@ extern "C"
 /* The structure describing an entry in the user accounting database.*/
 
 
+#if __i386__
+/* IA32 */
   struct utmp
   {
     short ut_type;		/* Type of login. */
@@ -53,6 +55,121 @@ extern "C"
   }
    ;
 
+#endif
+#if __ia64__
+/* IA64 */
+  struct utmp
+  {
+    short ut_type;		/* Type of login. */
+    pid_t ut_pid;		/* Process ID of login process. */
+    char ut_line[UT_LINESIZE];	/* Devicename. */
+    char ut_id[4];		/* Inittab ID. */
+    char ut_user[UT_NAMESIZE];	/* Username. */
+    char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+    struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+    int ut_session;		/* Session ID, used for windowing. */
+    struct timeval32 ut_tv;	/* Time entry was made. */
+    int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+    char __unused[20];		/* Reserved for future use. */
+  }
+   ;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  struct utmp
+  {
+    short ut_type;		/* Type of login. */
+    pid_t ut_pid;		/* Process ID of login process. */
+    char ut_line[UT_LINESIZE];	/* Devicename. */
+    char ut_id[4];		/* Inittab ID. */
+    char ut_user[UT_NAMESIZE];	/* Username. */
+    char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+    struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+    long ut_session;		/* Session ID, used for windowing. */
+    struct timeval ut_tv;	/* Time entry was made. */
+    int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+    char __unused[20];		/* Reserved for future use. */
+  }
+   ;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  struct utmp
+  {
+    short ut_type;		/* Type of login. */
+    pid_t ut_pid;		/* Process ID of login process. */
+    char ut_line[UT_LINESIZE];	/* Devicename. */
+    char ut_id[4];		/* Inittab ID. */
+    char ut_user[UT_NAMESIZE];	/* Username. */
+    char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+    struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+    int ut_session;		/* Session ID, used for windowing. */
+    struct timeval32 ut_tv;	/* Time entry was made. */
+    int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+    char __unused[20];		/* Reserved for future use. */
+  }
+   ;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  struct utmp
+  {
+    short ut_type;		/* Type of login. */
+    pid_t ut_pid;		/* Process ID of login process. */
+    char ut_line[UT_LINESIZE];	/* Devicename. */
+    char ut_id[4];		/* Inittab ID. */
+    char ut_user[UT_NAMESIZE];	/* Username. */
+    char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+    struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+    long ut_session;		/* Session ID, used for windowing. */
+    struct timeval ut_tv;	/* Time entry was made. */
+    int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+    char __unused[20];		/* Reserved for future use. */
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct utmp
+  {
+    short ut_type;		/* Type of login. */
+    pid_t ut_pid;		/* Process ID of login process. */
+    char ut_line[UT_LINESIZE];	/* Devicename. */
+    char ut_id[4];		/* Inittab ID. */
+    char ut_user[UT_NAMESIZE];	/* Username. */
+    char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+    struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+    int ut_session;		/* Session ID, used for windowing. */
+    struct timeval32 ut_tv;	/* Time entry was made. */
+    int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+    char __unused[20];		/* Reserved for future use. */
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct utmp
+  {
+    short ut_type;		/* Type of login. */
+    pid_t ut_pid;		/* Process ID of login process. */
+    char ut_line[UT_LINESIZE];	/* Devicename. */
+    char ut_id[4];		/* Inittab ID. */
+    char ut_user[UT_NAMESIZE];	/* Username. */
+    char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+    struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+    int ut_session;		/* Session ID, used for windowing. */
+    struct timeval32 ut_tv;	/* Time entry was made. */
+    int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+    char __unused[20];		/* Reserved for future use. */
+  }
+   ;
+
+#endif
 
 /* Values for the `ut_type' field of a `struct utmp'.*/
 #define EMPTY	0

@@ -24,8 +24,21 @@ extern "C"
 
 
 
-  typedef int32_t time32_t;
+#if __ia64__
+/* IA64 */
+  typedef int32_t __time32_t;
 
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef int32_t __time32_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef int32_t __time32_t;
+
+#endif
 
 /* Values for the first argument to `getitimer' and `setitimer'.*/
 
@@ -53,13 +66,26 @@ extern "C"
   }
    ;
 
+#if __ia64__
+/* IA64 */
   struct timeval32
   {
-    time32_t tv_sec;
-    suseconds32_t tv_usec;
+    __time32_t tv_sec;
+    __suseconds32_t tv_usec;
   }
    ;
 
+#endif
+#if __powerpc64__
+/* PPC64 */
+  struct timeval32
+  {
+    __time32_t tv_sec;
+    __suseconds32_t tv_usec;
+  }
+   ;
+
+#endif
 
 /* Type of the second argument to `getitimer' and
 the second and third arguments `setitimer'.*/
@@ -72,6 +98,16 @@ the second and third arguments `setitimer'.*/
   }
    ;
 
+#if __x86_64__
+/* x86-64 */
+  struct timeval32
+  {
+    __time32_t tv_sec;
+    __suseconds32_t tv_usec;
+  }
+   ;
+
+#endif
 
   extern int getitimer (int, struct itimerval *);
   extern int setitimer (int, struct itimerval *, struct itimerval *);

@@ -94,8 +94,21 @@ extern "C"
   typedef long long int64_t;
 
 #endif
-  typedef int32_t suseconds32_t;
+#if __ia64__
+/* IA64 */
+  typedef int32_t __suseconds32_t;
 
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef int32_t __suseconds32_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef int32_t __suseconds32_t;
+
+#endif
 
 /* These types are derived from the ones above*/
 

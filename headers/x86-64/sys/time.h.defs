@@ -1,0 +1,27 @@
+
+
+
+
+
+
+typedef int32_t __time32_t;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct timeval32
+{
+  __time32_t tv_sec;
+  __suseconds32_t tv_usec;
+}
+ ;
