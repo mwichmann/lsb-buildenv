@@ -1,8 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2 {
-  pthread_condattr_getpshared;
-  pthread_condattr_setpshared;
-};
 GLIBC_2.3 {
   _pthread_cleanup_pop;
   _pthread_cleanup_push;
@@ -22,7 +18,9 @@ GLIBC_2.3 {
   pthread_attr_setstacksize;
   pthread_cancel;
   pthread_condattr_destroy;
+  pthread_condattr_getpshared;
   pthread_condattr_init;
+  pthread_condattr_setpshared;
   pthread_create;
   pthread_detach;
   pthread_equal;
