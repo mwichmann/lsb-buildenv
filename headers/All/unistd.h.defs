@@ -1,20 +1,22 @@
 
-typedef long long off64_t;
-
-typedef int *intptr_t;
-
-#define SEEK_SET	0
 #define STDIN_FILENO	0
+#define SEEK_SET	0
 #define STDOUT_FILENO	1
 #define SEEK_CUR	1
 #define STDERR_FILENO	2
 #define SEEK_END	2
 
+
+typedef long long off64_t;
+typedef int *intptr_t;
 #define F_OK	0
 #define X_OK	1
 #define W_OK	2
 #define R_OK	4
 
+
+
+#define _POSIX_MAPPED_FILES	1
 #define _POSIX_SYNCHRONIZED_IO	1
 #define _POSIX_FSYNC	1
 #define _POSIX_MEMLOCK_RANGE	1
@@ -27,10 +29,11 @@ typedef int *intptr_t;
 #define _POSIX_MEMORY_PROTECTION	1
 #define _POSIX_PRIORITY_SCHEDULING	1
 #define _POSIX_SEMAPHORES	1
-#define _POSIX_MAPPED_FILES	1
 #define _POSIX2_VERSION	199209L
 #define _POSIX2_C_VERSION	199209L
 #define _POSIX_VERSION	199506L
+
+
 
 #define _PC_LINK_MAX	0
 #define _PC_MAX_CANON	1
@@ -45,6 +48,8 @@ typedef int *intptr_t;
 #define _PC_NO_TRUNC	7
 #define _PC_VDISABLE	8
 #define _PC_SYNC_IO	9
+
+
 
 #define _SC_ARG_MAX	0
 #define _SC_CHILD_MAX	1
@@ -122,6 +127,8 @@ typedef int *intptr_t;
 #define _SC_2_C_VERSION	96
 #define _SC_2_UPE	97
 
+
+
 #define _CS_PATH	0
 #define _CS_XBS5_ILP32_OFF32_CFLAGS	1100
 #define _CS_XBS5_ILP32_OFF32_LDFLAGS	1101
@@ -140,7 +147,9 @@ typedef int *intptr_t;
 #define _CS_XBS5_LPBIG_OFFBIG_LIBS	1114
 #define _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS	1115
 
-#define _XOPEN_XPG4	1
+
+
 #define _XOPEN_REALTIME	1
+#define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500

@@ -1,0 +1,5 @@
+
+
+
+typedef long long off64_t;
+typedef int *intptr_t;

@@ -1,5 +1,9 @@
 
 
+
+
+
+
 typedef struct
 {
   __size_t gl_pathc;
@@ -28,8 +32,6 @@ typedef struct
   int (*gl_stat) (void);
 }
 glob64_t;
-
-
 #define GLOB_ERR	(1<<0)
 #define GLOB_MARK	(1<<1)
 #define GLOB_BRACE	(1<<10)
@@ -45,6 +47,8 @@ glob64_t;
 #define GLOB_PERIOD	(1<<7)
 #define GLOB_MAGCHAR	(1<<8)
 #define GLOB_ALTDIRFUNC	(1<<9)
+
+
 
 #define GLOB_NOSPACE	1
 #define GLOB_ABORTED	2

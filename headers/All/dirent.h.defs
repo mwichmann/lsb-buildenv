@@ -1,6 +1,12 @@
 
 
+
+
+
+
 typedef struct __dirstream DIR;
+
+
 
 
 
@@ -12,7 +18,6 @@ struct dirent
   char d_name[256];
 }
  ;
-
 struct dirent64
 {
   uint64_t d_ino;

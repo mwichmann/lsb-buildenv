@@ -1,0 +1,11 @@
+
+
+
+typedef struct
+{
+  char *dli_fname;
+  void *dli_fbase;
+  char *dli_sname;
+  void *dli_saddr;
+}
+Dl_info;

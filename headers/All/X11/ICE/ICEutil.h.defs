@@ -1,4 +1,6 @@
 
+
+
 typedef struct
 {
   char *protocol_name;
@@ -10,7 +12,6 @@ typedef struct
   char *auth_data;
 }
 IceAuthFileEntry;
-
 typedef struct
 {
   char *protocol_name;

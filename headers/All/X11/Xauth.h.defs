@@ -1,4 +1,6 @@
 
+
+
 typedef struct xauth
 {
   unsigned short family;

@@ -1,4 +1,5 @@
 
-typedef z_stream *z_streamp;
 
+
+typedef z_stream *z_streamp;
 typedef voidp gzFile;

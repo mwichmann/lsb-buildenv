@@ -4,6 +4,12 @@
 #define SHM_RDONLY	4096
 
 
+
+
+
+typedef unsigned long shmatt_t;
+
+
 struct shmid_ds
 {
   struct ipc_perm shm_perm;

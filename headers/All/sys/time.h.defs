@@ -1,4 +1,9 @@
 
+#define ITIMER_REAL	0
+#define ITIMER_VIRTUAL	1
+#define ITIMER_PROF	2
+
+
 struct timezone
 {
   int tz_minuteswest;
@@ -6,9 +11,10 @@ struct timezone
 }
  ;
 
-#define ITIMER_REAL	0
-#define ITIMER_VIRTUAL	1
-#define ITIMER_PROF	2
+
+
+
+
 
 
 
@@ -18,6 +24,8 @@ struct timespec
   long tv_nsec;
 }
  ;
+
+
 
 
 
@@ -33,5 +41,11 @@ struct itimerval
 {
   struct timeval it_interval;
   struct timeval it_value;
+}
+ ;
+struct itimerspec
+{
+  struct timespec it_interval;
+  struct timespec it_value;
 }
  ;

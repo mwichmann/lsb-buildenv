@@ -1,0 +1,12 @@
+
+
+
+
+
+
+typedef struct
+{
+  long status;
+  int spinlock;
+}
+sem_t;

@@ -36,11 +36,11 @@
 #define BS1	0020000
 #define VT1	0040000
 #define VTDLY	0040000
-#define FF1	0100000
 #define FFDLY	0100000
+#define FF1	0100000
+#define TCSADRAIN	1
 #define TCOON	1
 #define TCOFLUSH	1
-#define TCSADRAIN	1
 #define TCSAFLUSH	2
 #define TCIOFF	2
 #define TCIOFLUSH	2

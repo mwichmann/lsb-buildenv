@@ -15,7 +15,7 @@
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
 #define OPEN_MAX	256
-#define PATH_MAX	4095
+#define PATH_MAX	4096
 
 
 

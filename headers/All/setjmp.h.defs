@@ -2,7 +2,11 @@
 #define setjmp(env)	_setjmp(env)
 #define sigsetjmp(a,b)	__sigsetjmp(a,b)
 
-typedef int __jmp_buf;
+
+
+
+
+typedef int __jmp_buf[6];
 
 
 struct __jmp_buf_tag
@@ -14,6 +18,5 @@ struct __jmp_buf_tag
  ;
 
 
-typedef struct __jmp_buf_tag jmp_buf;
-
+typedef struct __jmp_buf_tag jmp_buf[1];
 typedef jmp_buf sigjmp_buf;

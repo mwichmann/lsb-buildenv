@@ -1,0 +1,2 @@
+
+#define TIOCNOTTY	0x5422

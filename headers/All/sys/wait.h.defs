@@ -1,12 +1,4 @@
 
-typedef enum
-{
-  P_ALL,
-  P_PID,
-  P_PGID
-}
-idtype_t;
-
 #define WIFSIGNALED(status)	(!WIFSTOPPED(status) &amp & !WIFEXITED(status))
 #define WIFSTOPPED(status)	(((status) &amp  0xff) == 0x7f)
 #define WEXITSTATUS(status)	(((status) &amp  0xff00) >> 8)
@@ -17,3 +9,10 @@ idtype_t;
 #define WUNTRACED	0x00000002
 #define WCOREFLAG	0x80
 #define WSTOPSIG(status)	WEXITSTATUS(status)
+
+
+typedef enum
+{
+  P_ALL, P_PID, P_PGID
+}
+idtype_t;

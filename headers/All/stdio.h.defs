@@ -1,18 +1,18 @@
 
-typedef struct _IO_FILE *FILE;
-
-typedef off_t fpos_t;
-
-typedef off64_t fpos64_t;
-
 #define EOF	(-1)
-#define L_tmpnam	128
+#define P_tmpdir	"/tmp"
 #define FOPEN_MAX	16
-#define FILENAME_MAX	4095
+#define L_tmpnam	20
+#define FILENAME_MAX	4096
 #define BUFSIZ	8192
 #define L_cuserid	9
 #define L_ctermid	9
-#define P_tmpdir	"<pathname>"
+
+
+typedef struct _IO_FILE *FILE;
+typedef off_t fpos_t;
+typedef off64_t fpos64_t;
+
 
 
 #define _IOFBF	0

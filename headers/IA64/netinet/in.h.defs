@@ -1,0 +1,21 @@
+
+
+
+
+
+
+struct in_addr
+{
+  uint32_t s_addr;
+}
+ ;
+
+
+struct sockaddr_in
+{
+  sa_family_t sin_family;
+  unsigned short sin_port;
+  struct in_addr sin_addr;
+  unsigned char __pad[1];
+}
+ ;

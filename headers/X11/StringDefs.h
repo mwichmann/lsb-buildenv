@@ -5,5 +5,5 @@
 
 
 
-extern char XtStrings;
+extern char[] XtStrings;
 #endif

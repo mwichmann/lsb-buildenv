@@ -7,13 +7,13 @@
 #include <unistd.h>
 
 #define EOF	(-1)
-#define L_tmpnam	128
+#define P_tmpdir	"/tmp"
 #define FOPEN_MAX	16
-#define FILENAME_MAX	4095
+#define L_tmpnam	20
+#define FILENAME_MAX	4096
 #define BUFSIZ	8192
 #define L_cuserid	9
 #define L_ctermid	9
-#define P_tmpdir	"<pathname>"
 
 
 typedef struct _IO_FILE *FILE;
@@ -65,6 +65,7 @@ int printf (char *, ...);
 int remove (char *);
 void rewind (FILE *);
 int scanf (char *, ...);
+void setbuf (FILE *, char *);
 int sprintf (char *, char *, ...);
 int sscanf (char *, char *, ...);
 extern FILE *stderr;
@@ -94,4 +95,5 @@ int ungetc (int, FILE *);
 int vsnprintf (char *, size_t, char *, va_list);
 int vsprintf (char *, char *, va_list);
 void flockfile (void);
+void setbuffer (FILE *, char *, size_t);
 #endif

@@ -3,6 +3,10 @@
 #define WCHAR_MAX	__WCHAR_MAX
 #define WCHAR_MIN	__WCHAR_MIN
 
+
+
+
+
 typedef struct
 {
   int count;

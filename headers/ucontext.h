@@ -42,6 +42,10 @@ struct _libc_fpreg
 
 
 
+
+/* Structure to describe FPU registers.*/
+
+
 struct _libc_fpstate
 {
   unsigned long cw;
@@ -55,10 +59,6 @@ struct _libc_fpstate
   unsigned long status;
 }
  ;
-
-
-/* Structure to describe FPU registers.*/
-
 
 typedef struct _libc_fpstate
 {

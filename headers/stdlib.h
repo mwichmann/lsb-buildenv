@@ -56,7 +56,7 @@ unsigned long long __strtoull_internal (char *, char **, int, int);
 long a64l (char *);
 void abort (void);
 int abs (int);
-int atexit (void *(*atexit_func) ());
+int atexit (void (*atexit_func) ());
 double atof (char *);
 int atoi (char *);
 long atol (char *);
@@ -115,6 +115,6 @@ void _Exit (int);
 size_t __ctype_get_mb_cur_max (void);
 extern char **environ;
 char *realpath (char *, char *);
-int setenv (void);
-void unsetenv (void);
+int setenv (char *, char *, int);
+void unsetenv (char *);
 #endif

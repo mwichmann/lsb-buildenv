@@ -1,6 +1,7 @@
 
-typedef unsigned long XSecurityAuthorization;
 
+
+typedef unsigned long XSecurityAuthorization;
 typedef struct
 {
   unsigned int timeout;

@@ -9,12 +9,6 @@
 #define SCHED_RR	2
 
 
-struct sched_param
-{
-  int sched_priority;
-}
- ;
-
 
 int sched_get_priority_max (int);
 int sched_get_priority_min (int);

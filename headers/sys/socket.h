@@ -52,7 +52,7 @@ typedef unsigned int socklen_t;
 struct sockaddr
 {
   sa_family_t sa_family;
-  char sa_data[1];
+  char sa_data[14];
 }
  ;
 

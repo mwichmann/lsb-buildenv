@@ -1,64 +1,43 @@
 
-typedef void *IcePointer;
 
+
+typedef void *IcePointer;
 typedef enum
 {
-  IcePoAuthHaveReply,
-  IcePoAuthRejected,
-  IcePoAuthFailed,
-  IcePoAuthDoneCleanup
+  IcePoAuthHaveReply, IcePoAuthRejected, IcePoAuthFailed, IcePoAuthDoneCleanup
 }
 IcePoAuthStatus;
-
 typedef enum
 {
-  IcePaAuthContinue,
-  IcePaAuthAccepted,
-  IcePaAuthRejected,
-  IcePaAuthFailed
+  IcePaAuthContinue, IcePaAuthAccepted, IcePaAuthRejected, IcePaAuthFailed
 }
 IcePaAuthStatus;
-
 typedef enum
 {
-  IceConnectPending,
-  IceConnectAccepted,
-  IceConnectRejected,
-  IceConnectIOError
+  IceConnectPending, IceConnectAccepted, IceConnectRejected, IceConnectIOError
 }
 IceConnectStatus;
-
 typedef enum
 {
-  IceProtocolSetupSuccess,
-  IceProtocolSetupFailure,
-  IceProtocolSetupIOError,
-  IceProtocolAlreadyActive
+  IceProtocolSetupSuccess, IceProtocolSetupFailure, IceProtocolSetupIOError,
+    IceProtocolAlreadyActive
 }
 IceProtocolSetupStatus;
-
 typedef enum
 {
-  IceAcceptSuccess,
-  IceAcceptFailure,
-  IceAcceptBadMalloc
+  IceAcceptSuccess, IceAcceptFailure, IceAcceptBadMalloc
 }
 IceAcceptStatus;
-
 typedef enum
 {
-  IceClosedNow,
-  IceClosedASAP,
-  IceConnectionInUse,
-  IceStartedShutdownNegotiation
+  IceClosedNow, IceClosedASAP, IceConnectionInUse,
+    IceStartedShutdownNegotiation
 }
 IceCloseStatus;
-
 typedef enum
 {
-  IceProcessMessagesSuccess,
-  IceProcessMessagesIOError,
-  IceProcessMessagesConnectionClosed
+  IceProcessMessagesSuccess, IceProcessMessagesIOError,
+    IceProcessMessagesConnectionClosed
 }
 IceProcessMessagesStatus;
 
@@ -74,32 +53,20 @@ IceReplyWaitInfo;
 
 
 typedef struct _IceConn *IceConn;
-
 typedef struct _IceListenObj *IceListenObj;
 
 
 typedef void (*IceWatchProc) (void);
-
 typedef void (*IcePoProcessMsgProc) (void);
-
 typedef void (*IcePaProcessMsgProc) (void);
-
 typedef IcePoAuthStatus (*IcePoAuthProc) (void);
-
 typedef IcePaAuthStatus (*IcePaAuthProc) (void);
-
 typedef int (*IceHostBasedAuthProc) (void);
-
 typedef int (*IceProtocolSetupProc) (void);
-
 typedef void (*IceProtocolActivateProc) (void);
-
 typedef void (*IceIOErrorProc) (void);
-
 typedef void (*IcePingReplyProc) (void);
-
 typedef void (*IceErrorHandler) (void);
-
 typedef void (*IceIOErrorHandler) (void);
 
 
@@ -110,7 +77,6 @@ typedef struct
   IcePoProcessMsgProc process_msg_proc;
 }
 IcePoVersionRec;
-
 typedef struct
 {
   int major_version;

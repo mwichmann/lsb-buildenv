@@ -1,4 +1,6 @@
 
+
+
 typedef struct _XcmsFunctionSet
 {
   XcmsColorSpace **DDColorSpaces;
@@ -9,9 +11,7 @@ XcmsFunctionSet;
 
 
 typedef unsigned long XcmsColorFormat;
-
 typedef double XcmsFloat;
-
 typedef struct
 {
   unsigned short red;
@@ -19,7 +19,6 @@ typedef struct
   unsigned short blue;
 }
 XcmsRGB;
-
 typedef struct
 {
   XcmsFloat red;
@@ -27,7 +26,6 @@ typedef struct
   XcmsFloat blue;
 }
 XcmsRGBi;
-
 typedef struct
 {
   XcmsFloat X;
@@ -35,7 +33,6 @@ typedef struct
   XcmsFloat Z;
 }
 XcmsCIEXYZ;
-
 typedef struct
 {
   XcmsFloat u_prime;
@@ -43,7 +40,6 @@ typedef struct
   XcmsFloat Y;
 }
 XcmsCIEuvY;
-
 typedef struct
 {
   XcmsFloat x;
@@ -51,7 +47,6 @@ typedef struct
   XcmsFloat Y;
 }
 XcmsCIExyY;
-
 typedef struct
 {
   XcmsFloat L_star;
@@ -59,7 +54,6 @@ typedef struct
   XcmsFloat b_star;
 }
 XcmsCIELab;
-
 typedef struct
 {
   XcmsFloat L_star;
@@ -67,7 +61,6 @@ typedef struct
   XcmsFloat v_star;
 }
 XcmsCIELuv;
-
 typedef struct
 {
   XcmsFloat H;
@@ -75,7 +68,6 @@ typedef struct
   XcmsFloat C;
 }
 XcmsTekHVC;
-
 typedef struct
 {
   XcmsFloat pad0;
@@ -113,15 +105,10 @@ XcmsPerScrnInfo;
 
 
 typedef int (*XcmsCompressionProc) (void);
-
 typedef int (*XcmsWhiteAdjustProc) (void);
-
 typedef int (*XcmsScreenInitProc) (void);
-
 typedef void (*XcmsScreenFreeProc) (void);
-
 typedef int (*XcmsConversionProc) (void);
-
 typedef int (*XcmsParseStringProc) (void);
 
 

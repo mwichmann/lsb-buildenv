@@ -1,9 +1,8 @@
 
-typedef long wchar_t;
-
-typedef unsigned int size_t;
-
-typedef unsigned int wint_t;
-
 #define offsetof(TYPE,MEMBER)	((size_t)&amp ((TYPE*)0)->MEMBER)
 #define NULL	((void*)0)
+
+
+typedef long wchar_t;
+typedef unsigned int size_t;
+typedef unsigned int wint_t;

@@ -1,14 +1,11 @@
 
+
+
 struct _XDisplay;
-
 typedef struct XColor;
-
 typedef void *XVaNestedList;
-
 typedef int (*XErrorHandler) (void);
-
 typedef int (*XIOErrorHandler) (void);
-
 typedef void (*XConnectionWatchProc) (void);
 
 
@@ -23,7 +20,6 @@ typedef struct _XExtData
   XPointer private_data;
 }
 XExtData;
-
 typedef struct XExtCodes;
 
 
@@ -49,7 +45,6 @@ typedef struct ScreenFormat;
 
 
 typedef struct XSetWindowAttributes;
-
 typedef struct XWindowAttributes;
 
 
@@ -57,7 +52,6 @@ typedef struct XHostAddress;
 
 
 struct XImagefuncs;
-
 typedef struct _XImage
 {
   int width;
@@ -85,11 +79,8 @@ typedef struct XWindowChanges;
 
 
 typedef struct XSegment;
-
 typedef struct XPoint;
-
 typedef struct XRectangle;
-
 typedef struct XArc;
 
 
@@ -109,83 +100,44 @@ typedef struct _XDisplay Display;
 
 
 typedef struct XKeyEvent;
-
 typedef XKeyEvent XKeyPressedEvent;
-
 typedef XKeyEvent XKeyReleasedEvent;
-
 typedef struct XButtonEvent;
-
 typedef XButtonEvent XButtonPressedEvent;
-
 typedef XButtonEvent XButtonReleasedEvent;
-
 typedef struct XMotionEvent;
-
 typedef XMotionEvent XPointerMovedEvent;
-
 typedef struct XCrossingEvent;
-
 typedef XCrossingEvent XEnterWindowEvent;
-
 typedef XCrossingEvent XLeaveWindowEvent;
-
 typedef struct XFocusChangeEvent;
-
 typedef XFocusChangeEvent XFocusInEvent;
-
 typedef XFocusChangeEvent XFocusOutEvent;
-
 typedef struct XKeymapEvent;
-
 typedef struct XExposeEvent;
-
 typedef struct XGraphicsExposeEvent;
-
 typedef struct XNoExposeEvent;
-
 typedef struct XVisibilityEvent;
-
 typedef struct XCreateWindowEvent;
-
 typedef struct XDestroyWindowEvent;
-
 typedef struct XUnmapEvent;
-
 typedef struct XMapEvent;
-
 typedef struct XMapRequestEvent;
-
 typedef struct XReparentEvent;
-
 typedef struct XConfigureEvent;
-
 typedef struct XGravityEvent;
-
 typedef struct XResizeRequestEvent;
-
 typedef struct XConfigureRequestEvent;
-
 typedef struct XCirculateEvent;
-
 typedef struct XCirculateRequestEvent;
-
 typedef struct XPropertyEvent;
-
 typedef struct XSelectionClearEvent;
-
 typedef struct XSelectionRequestEvent;
-
 typedef struct XSelectionEvent;
-
 typedef struct XColormapEvent;
-
 typedef union XClientMessageEvent;
-
 typedef struct XMappingEvent;
-
 typedef struct XErrorEvent;
-
 typedef struct XAnyEvent;
 
 
@@ -232,16 +184,12 @@ typedef struct XCharStruct;
 
 
 typedef struct XFontProp;
-
 typedef struct XFontStruct;
-
 typedef struct XFontSetExtents;
 
 
 typedef struct XTextItem;
-
 typedef struct XChar2b;
-
 typedef struct XTextItem16;
 
 
@@ -249,20 +197,17 @@ typedef union XEDataObject;
 
 
 typedef struct _XOM *XOM;
-
 typedef struct _XOC *XOC;
-
 typedef struct _XOC *XFontSet;
 
 
 typedef struct XmbTextItem;
-
 typedef struct XwcTextItem;
 
 
 
+
+
 typedef struct _XIM *XIM;
-
 typedef struct _XIC *XIC;
-
 typedef void (*XIDProc) (void);

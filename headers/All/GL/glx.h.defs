@@ -1,14 +1,10 @@
 
+
+
 typedef struct __GLXcontextRec *GLXContext;
-
 typedef struct __GLXFBConfigRec *GLXFBConfig;
-
 typedef XID GLXContextID;
-
 typedef XID GLXPixmap;
-
 typedef XID GLXDrawable;
-
 typedef XID GLXPbuffer;
-
 typedef XID GLXWindow;

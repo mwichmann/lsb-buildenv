@@ -1,21 +1,20 @@
 
+#define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
+
+
 typedef unsigned int pthread_key_t;
-
 typedef int pthread_once_t;
-
 struct _pthread_fastlock
 {
   int __spinlock;
 }
  ;
 
-#define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
 
 typedef unsigned long pthread_t;
 
 
 typedef struct _pthread_descr_struct *_pthread_descr;
-
 struct _pthread_descr_struct;
 
 
@@ -27,7 +26,6 @@ typedef struct
   unsigned int count;
 }
 pthread_mutex_t;
-
 typedef struct
 {
   int __mutexkind;
@@ -54,7 +52,6 @@ typedef struct
   _pthread_descr wait_chain;
 }
 pthread_cond_t;
-
 typedef void *pthread_condattr_t;
 
 
@@ -68,6 +65,8 @@ typedef void *pthread_condattr_t;
 #define PTHREAD_PROCESS_SHARED	PTHREAD_PROCESS_SHARED
 #define PTHREAD_SCOPE_PROCESS	PTHREAD_SCOPE_PROCESS
 #define PTHREAD_SCOPE_SYSTEM	PTHREAD_SCOPE_SYSTEM
+
+
 
 #define PTHREAD_CANCELED	((void*)-1)
 #define PTHREAD_CANCEL_ASYNCHRONOUS	PTHREAD_CANCEL_ASYNCHRONOUS
