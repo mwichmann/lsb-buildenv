@@ -15,6 +15,8 @@ extern "C"
 #endif
 
 
+#define svc_freeargs(xprt,xargs, argsp)	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))
+#define svc_getargs(xprt,xargs, argsp)	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
 #define RPC_ANYSOCK	-1
 
 
@@ -65,6 +67,10 @@ extern "C"
 
 
   extern void svc_getreqset (fd_set *);
+  extern bool_t svc_register (struct SVCXPRT *, rpcprog_t, rpcvers_t,
+			      __dispatch_fn_t, rpcprot_t);
+  extern void svc_run (void);
+  extern bool_t svc_sendreply (struct SVCXPRT *, xdrproc_t, caddr_t);
   extern void svcerr_auth (struct SVCXPRT *, enum auth_stat);
   extern void svcerr_decode (struct SVCXPRT *);
   extern void svcerr_noproc (struct SVCXPRT *);
@@ -72,6 +78,8 @@ extern "C"
   extern void svcerr_progvers (struct SVCXPRT *, rpcvers_t, rpcvers_t);
   extern void svcerr_systemerr (struct SVCXPRT *);
   extern void svcerr_weakauth (struct SVCXPRT *);
+  extern struct SVCXPRT *svctcp_create (int, u_int, u_int);
+  extern struct SVCXPRT *svcudp_create (int);
 #ifdef __cplusplus
 }
 #endif
