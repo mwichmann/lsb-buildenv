@@ -251,6 +251,7 @@ char *default_lsblibs[] = {
 	"SM",
 	"ICE",
 	"GL",
+	"stdc++",
 	0
 	};
 
