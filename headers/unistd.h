@@ -200,6 +200,7 @@ extern "C"
 
 
 
+/* Flags for lockf()*/
 #define F_ULOCK	0
 #define F_LOCK	1
 #define F_TLOCK	2
@@ -234,7 +235,7 @@ extern "C"
   extern pid_t getpgrp (void);
   extern pid_t getsid (void);
   extern char *getwd (void);
-  extern int lockf (void);
+  extern int lockf (int, int, off_t);
   extern int mkstemp (char *);
   extern int nice (int);
   extern char *optarg;
