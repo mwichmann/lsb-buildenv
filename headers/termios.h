@@ -349,8 +349,8 @@ extern "C"
 
 
 
-  extern speed_t cfgetispeed (struct termios *const);
-  extern speed_t cfgetospeed (struct termios *const);
+  extern speed_t cfgetispeed (const struct termios *);
+  extern speed_t cfgetospeed (const struct termios *);
   extern void cfmakeraw (void);
   extern int cfsetispeed (struct termios *, speed_t);
   extern int cfsetospeed (struct termios *, speed_t);
@@ -359,7 +359,7 @@ extern "C"
   extern int tcflush (int, int);
   extern pid_t tcgetsid (int);
   extern int tcsendbreak (int, int);
-  extern int tcsetattr (int, int, struct termios *const);
+  extern int tcsetattr (int, int, const struct termios *);
   extern int tcdrain (int);
   extern int tcgetattr (int, struct termios *);
 #ifdef __cplusplus

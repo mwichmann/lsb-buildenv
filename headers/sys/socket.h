@@ -139,7 +139,7 @@ extern "C"
   extern int listen (int, int);
   extern int setsockopt (int, int, int, const void *, socklen_t);
   extern int accept (int, struct sockaddr *, socklen_t *);
-  extern int connect (int, struct sockaddr *, socklen_t);
+  extern int connect (int, const struct sockaddr *, socklen_t);
   extern int recv (int, void *, size_t, int);
   extern int recvfrom (int, void *, size_t, int, struct sockaddr *,
 		       socklen_t *);

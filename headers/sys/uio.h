@@ -12,8 +12,8 @@ extern "C"
 
 
 
-  extern int readv (int, struct iovec *const, size_t);
-  extern int writev (int, struct iovec *const, size_t);
+  extern int readv (int, const struct iovec *, size_t);
+  extern int writev (int, const struct iovec *, size_t);
 #ifdef __cplusplus
 }
 #endif

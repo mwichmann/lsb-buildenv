@@ -73,7 +73,7 @@ extern "C"
   extern struct tm *localtime (const time_t *);
   extern time_t mktime (struct tm *);
   extern int stime (void);
-  extern size_t strftime (char *, size_t, char *, const struct tm *);
+  extern size_t strftime (char *, size_t, const char *, const struct tm *);
   extern char *strptime (char *, char *, struct tm *);
   extern time_t time (time_t *);
   extern int nanosleep (struct timespec *, struct timespec *);

@@ -19,7 +19,7 @@ extern "C"
    ;
 
 
-  extern int utime (const char *, struct utimbuf *const);
+  extern int utime (const char *, const struct utimbuf *);
 #ifdef __cplusplus
 }
 #endif

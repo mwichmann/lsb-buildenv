@@ -297,7 +297,7 @@ extern "C"
   extern int getch (void);
   extern int getnstr (char *, int);
   extern int getstr (char *);
-  extern WINDOW *getwin (FILE);
+  extern WINDOW *getwin (FILE *);
   extern int halfdelay (int);
   extern bool has_colors (void);
   extern bool has_ic (void);
@@ -377,7 +377,7 @@ extern "C"
   extern int mvwvline (WINDOW *, int, int, chtype, int);
   extern int napms (int);
   extern WINDOW *newpad (int, int);
-  extern SCREEN *newterm (char *, FILE, FILE);
+  extern SCREEN *newterm (char *, FILE *, FILE *);
   extern WINDOW *newwin (int, int, int, int);
   extern int nl (void);
   extern int nocbreak (void);
@@ -394,8 +394,7 @@ extern "C"
   extern int pnoutrefresh (WINDOW *, int, int, int, int, int, int);
   extern int prefresh (WINDOW *, int, int, int, int, int, int);
   extern int printw (char *, ...);
-  extern int putp (char *);
-  extern int putwin (WINDOW *, FILE);
+  extern int putwin (WINDOW *, FILE *);
   extern void qiflush (void);
   extern int raw (void);
   extern int redrawwin (WINDOW *);
@@ -436,11 +435,7 @@ extern "C"
   extern int syncok (WINDOW *, bool);
   extern chtype termattrs (void);
   extern char *termname (void);
-  extern int tigetflag (char *);
-  extern int tigetnum (char *);
-  extern char *tigetstr (char *);
   extern void timeout (int);
-  extern char *tparm (char *, ...);
   extern int typeahead (int);
   extern int ungetch (int);
   extern int untouchwin (WINDOW *);
@@ -507,7 +502,6 @@ extern "C"
   extern void wtimeout (WINDOW *, int);
   extern int wtouchln (WINDOW *, int, int, int);
   extern int wvline (WINDOW *, chtype, int);
-  extern int setupterm (void);
   extern WINDOW *curscr;
   extern WINDOW *stdscr;
   extern int COLS;

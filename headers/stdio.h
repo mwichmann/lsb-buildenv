@@ -69,7 +69,7 @@ extern "C"
   extern int fprintf (FILE *, const char *, ...);
   extern int fputc (int, FILE *);
   extern FILE *freopen (const char *, const char *, FILE *);
-  extern FILE freopen64 (const char *, const char *, FILE *);
+  extern FILE *freopen64 (const char *, const char *, FILE *);
   extern int fscanf (FILE *, const char *, ...);
   extern int fseek (FILE *, long, int);
   extern int fseeko (FILE *, off_t, int);
@@ -77,7 +77,7 @@ extern "C"
   extern off_t ftello (FILE *);
   extern loff_t ftello64 (FILE *);
   extern int getchar (void);
-  extern int getchar_unlocked (FILE *);
+  extern int getchar_unlocked (void);
   extern int getw (FILE *);
   extern int pclose (FILE *);
   extern void perror (const char *);
@@ -85,9 +85,9 @@ extern "C"
   extern int printf (const char *, ...);
   extern int putc_unlocked (int, FILE *);
   extern int putchar (int);
-  extern int putchar_unlocked (void);
-  extern int putw (void);
-  extern int remove (char *);
+  extern int putchar_unlocked (int);
+  extern int putw (int, FILE *);
+  extern int remove (const char *);
   extern void rewind (FILE *);
   extern int scanf (const char *, ...);
   extern void setbuf (FILE *, char *);
@@ -123,6 +123,7 @@ extern "C"
   extern int vsnprintf (char *, size_t, const char *, va_list);
   extern int vsprintf (char *, const char *, va_list);
   extern void flockfile (FILE *);
+  extern int asprintf (char **, const char *, ...);
   extern int fgetpos64 (void);
   extern FILE *fopen64 (const char *, const char *);
   extern int fsetpos64 (void);

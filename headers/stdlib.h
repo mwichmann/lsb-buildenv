@@ -100,7 +100,7 @@ extern "C"
   extern int unlockpt (int);
   extern size_t wcstombs (char *, wchar_t *, size_t);
   extern int wctomb (char *, wchar_t);
-  extern int system (char *);
+  extern int system (const char *);
   extern void *calloc (size_t, size_t);
   extern void free (void *);
   extern void *initstate (unsigned int, void *, size_t);

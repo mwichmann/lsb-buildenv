@@ -69,7 +69,7 @@ extern "C"
 
 
   extern void closelog (void);
-  extern void openlog (char *, int, int);
+  extern void openlog (const char *, int, int);
   extern int setlogmask (int);
   extern void syslog (int, const char *, ...);
   extern void vsyslog (int, const char *, va_list);
