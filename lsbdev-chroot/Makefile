@@ -14,7 +14,11 @@ lsbdev: lsbdev.template
 	@sed -e 's,^PATH=,PATH=${INSTALL_ROOT}/sbin:$$PATH,' \
 	lsbdev.template > lsbdev
 
-install: configure
+stubs:
+	cd stub_libs && make libs && cp libc.so libc.real.so \
+	&& cp ../config/libc_script libc.so
+
+install: configure stubs
 	mkdir -p ${OVERRIDE_ROOT}/etc/init.d
 	install lsbdev ${OVERRIDE_ROOT}/etc/init.d
 	mkdir -p ${OVERRIDE_ROOT}/${INSTALL_ROOT}/sbin
