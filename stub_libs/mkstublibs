@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.6 $
+# This is $Revision: 1.7 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.7  2001/12/18 01:04:58  cyeoh
+# Remove warning message
+#
 # Revision 1.6  2001/11/20 04:03:57  anderson
 # Change to pick up the DB access into from the environment as is done for
 # all of the other scripts
@@ -351,7 +354,7 @@ my($dbh);
 my($sth);
 my($row);
 my($data_source) = "DBI:mysql:database=$DBName";
-if ($DBHost ne "")
+if (defined($DBHost) && $DBHost ne "")
 {
   $data_source .= ";host=$DBHost";
 }
