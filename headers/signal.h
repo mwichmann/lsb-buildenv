@@ -43,8 +43,6 @@ extern "C"
   _s390_regs_common;
 
 #endif
-  struct;
-
 #if __s390x__
 /* S390X */
   typedef struct
