@@ -77,7 +77,7 @@ extern "C"
 /* Type of a signal handling function.*/
 
 
-  typedef void (*sighandler_t) (void);
+  typedef void (*sighandler_t) (int);
 
 
 /* POSIX 1003.1b sigval*/

@@ -57,7 +57,7 @@ struct sigstack
 
 
 
-typedef void (*sighandler_t) (void);
+typedef void (*sighandler_t) (int);
 #define SV_ONSTACK	(1<<0)
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
