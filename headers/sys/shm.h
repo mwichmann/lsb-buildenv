@@ -1,6 +1,7 @@
 #ifndef _SYS_SHM_H_
 #define _SYS_SHM_H_
 
+#include <stddef.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
 
@@ -10,6 +11,9 @@ extern "C"
 #endif
 
 
+#if defined(__ia64__)
+#define SHMLBA	(1024*1024)
+#endif
 #define SHMLBA	(__getpagesize())
 #define SHM_RDONLY	010000
 #define SHM_W	0200
@@ -31,6 +35,8 @@ extern "C"
 
 
 
+#if defined(__i386__)
+/* IA32 */
   struct shmid_ds
   {
     struct ipc_perm shm_perm;
@@ -49,6 +55,30 @@ extern "C"
   }
    ;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  struct shmid_ds
+  {
+    struct ipc_perm shm_perm;	/* operation permission struct */
+    size_t shm_segsz;		/* size of segment in bytes */
+    time_t shm_atime;		/* time of last shmat() */
+    time_t shm_dtime;		/* time of last shmdt() */
+    time_t shm_ctime;		/* time of last change by shmctl() */
+    pid_t shm_cpid;		/* pid of creator */
+    pid_t shm_lpid;		/* pid of last shmop */
+    unsigned long shm_nattch;	/* number of current attaches */
+    unsigned long;		/* __unused1 */
+    unsigned long;		/* __unused2 */
+  }
+   ;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  struct shmid_ds;
+
+#endif
 
   extern int __getpagesize (void);
   extern void *shmat (int, void *, int);
