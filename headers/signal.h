@@ -174,13 +174,11 @@ siginfo_t;
 
 
 /* sigset_t*/
-#define _NSIG_WORDS	((_NSIG/sizeof(long))>>3)
-#define _NSIG	64
 
 
 typedef struct
 {
-  unsigned long sig[_NSIG_WORDS];
+  unsigned long sig[_SIGSET_NWORDS];
 }
 sigset_t;
 

@@ -62,13 +62,13 @@ typedef struct re_pattern_buffer
   char *fastmap;
   char *translate;
   size_t re_nsub;
-  unsigned int can_be_null;
-  unsigned int regs_allocated;
-  unsigned int fastmap_accurate;
-  unsigned int no_sub;
-  unsigned int not_bol;
-  unsigned int not_eol;
-  unsigned int newline_anchor;
+  unsigned int can_be_null:1;
+  unsigned int regs_allocated:2;
+  unsigned int fastmap_accurate:1;
+  unsigned int no_sub:1;
+  unsigned int not_bol:1;
+  unsigned int not_eol:1;
+  unsigned int newline_anchor:1;
 }
 regex_t;
 

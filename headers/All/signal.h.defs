@@ -149,12 +149,11 @@ typedef struct siginfo
   _sifields;
 }
 siginfo_t;
-#define _NSIG	64
 
 
 typedef struct
 {
-  unsigned long sig[_NSIG_WORDS];
+  unsigned long sig[_SIGSET_NWORDS];
 }
 sigset_t;
 #define SA_NOCLDSTOP	0x00000001

@@ -57,4 +57,5 @@ struct lconv
 
 extern struct lconv *localeconv (void);
 extern char *setlocale (int, char *);
+extern char *bindtextdomain (void);
 #endif

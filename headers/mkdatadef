@@ -120,6 +120,9 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		if( $entry{'Ttype'} eq 'Array' ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
+		if( $tmentry{'TMbitfield'} != 0 ) {
+			print ":".$tmentry{'TMbitfield'};
+			}
 		print ";\t";
 		#if( $tmentry{'TMcomment'} ) {
 		#	print "/* ".$tmentry{'TMcomment'}." */";

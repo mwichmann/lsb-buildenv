@@ -57,7 +57,7 @@ struct _libc_fpreg
 
 #if defined(__i386__)
 /* IA32 */
-typedef struct _libc_fpstate
+struct _libc_fpstate
 {
   unsigned long cw;
   unsigned long sw;
@@ -69,7 +69,12 @@ typedef struct _libc_fpstate
   struct _libc_fpreg _st[8];
   unsigned long status;
 }
-fpregset_t;
+ ;
+
+#endif
+#if defined(__i386__)
+/* IA32 */
+typedef struct _libc_fpstate *fpregset_t;
 
 #endif
 
