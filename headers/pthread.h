@@ -26,6 +26,15 @@ extern "C"
 #define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
 
 
+  struct _pthread_cleanup_buffer
+  {
+    void (*void (*)) (int);
+    void *__arg;
+    int __canceltype;
+    struct _pthread_cleanup_buffer *__prev;
+  }
+   ;
+
   typedef unsigned int pthread_key_t;
 
   typedef int pthread_once_t;
