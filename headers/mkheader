@@ -616,6 +616,24 @@ if( $typelist ne "" ) {
 $typelist=join ',', keys(%type);
 
 #
+# Get the base types of Const
+#
+
+if( $typelist ne "" ) { 
+	$select = "SELECT Tbasetype,Tname FROM Type ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	$select.= "AND Ttype = 'Const' ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$type{$entry{'Tbasetype'}}=1;
+		#print "Pointer ".$entry{'Tname'}."\n";
+		}
+	}
+
+$typelist=join ',', keys(%type);
+#
 # Set up multiple inclusion protection
 #
 print "#ifndef $protect\n";
