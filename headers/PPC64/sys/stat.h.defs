@@ -1,5 +1,5 @@
 
-#define _STAT_VER	1
+#define _STAT_VER	3
 
 
 struct stat

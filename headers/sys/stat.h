@@ -47,9 +47,6 @@ extern "C"
 #if __ia64__
 #define _STAT_VER	1
 #endif
-#if __powerpc64__
-#define _STAT_VER	1
-#endif
 #if __x86_64__
 #define _STAT_VER	1
 #endif
@@ -60,6 +57,9 @@ extern "C"
 #define _STAT_VER	3
 #endif
 #if __powerpc__ && !__powerpc64__
+#define _STAT_VER	3
+#endif
+#if __powerpc64__
 #define _STAT_VER	3
 #endif
 #if __s390__ && !__s390x__
