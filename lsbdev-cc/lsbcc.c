@@ -318,16 +318,21 @@ return;
 /* end utility functions */
 
 /*
- * These are the otpions we need to recognize.
+ * lsbcc takes no command-line options of its own, but must recognize
+ * some compiler options for appropriate handling. Since gcc has a lot
+ * of options that are more than one character long, and these start
+ * with only a single dash for historical reasons, we'll use the
+ * getopt_long_only routine for parsing.
+ *
+ * WARNING: a long option that's not in 'long_options', and has the
+ * same first letter as a short option in 'optstr', will be recognized
+ * as the short option.  This is documented in the getopt_long_only
+ * manpage. This means where there is such an overlap, the long option
+ * needs to go into 'long_options', even if there was no other reason
+ * to list it for "special handling".  Only do this for long options
+ * that are really used...
  */
 char *optstr="cL:l:o:EI:W::s";
-
-/*
- * gcc has a lot of options that are more than one character long. We'll treat
- * them as long options, but use the "_only" form of getopt so that they will
- * be recognized even though they all are indicated by a single '-'.
- */
-
 struct option long_options[] = {
 	{"include",required_argument,0,0},
 	{"shared",no_argument,0,0},
@@ -501,18 +506,18 @@ argvadd(syslibs,"L",gccbasedir);
 
 if( lsbccmode == LSBCPLUS ) {
 	if( lsbcc_debug&DEBUG_LIB_CHANGES )
-		fprintf(stderr,"Appending -lstdc++ -lm -lgcc_s to the library list\n");
-	argvaddstring(syslibs,"-Wl,-Bstatic");
-	argvaddstring(syslibs,"-lstdc++");
+		fprintf(stderr,"Appending -lstdc++ -lgcc_s to the library list\n");
 	argvaddstring(syslibs,"-Wl,-Bdynamic");
+	argvaddstring(syslibs,"-lstdc++");
 	argvaddstring(syslibs,"-lgcc_s");
 }
-argvaddstring(syslibs,"-lgcc");
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Appending -lgcc -lc -lc_nonshared -lgcc to the library list\n");
+	fprintf(stderr,"Appending -lgcc -lm -lc -lc_nonshared -lgcc to the library list\n");
+argvaddstring(syslibs,"-lgcc");
 argvaddstring(syslibs,"-lm");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
+/* to be pedantic, we do gcc_s and gcc again */
 if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(syslibs,"-lgcc_s");
 }
