@@ -99,6 +99,8 @@ indicating what flavor of entity the WHO argument specifies.*/
 #define PRIO_USER	PRIO_USER
 
 
+  typedef enum __priority_which __priority_which_t;
+
 
   extern int getpriority (enum __priority_which, id_t);
   extern int getrlimit64 (id_t, struct rlimit64 *);
