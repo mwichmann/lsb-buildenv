@@ -61,6 +61,7 @@ void pthread_rwlockattr_setpshared(void) {} ;
 void pthread_self(void) {} ;
 void pthread_setcancelstate(void) {} ;
 void pthread_setcanceltype(void) {} ;
+void pthread_setconcurrency(void) {} ;
 void pthread_setschedparam(void) {} ;
 void pthread_setspecific(void) {} ;
 void pthread_sigmask(void) {} ;
