@@ -40,7 +40,7 @@ extern "C"
 /* IA64 */
   struct lastlog
   {
-    int32_t ll_time;
+    time_t ll_time;
     char ll_line[UT_LINESIZE];
     char ll_host[UT_HOSTSIZE];
   }
@@ -95,7 +95,7 @@ extern "C"
 /* S390X */
   struct lastlog
   {
-    int32_t ll_time;
+    time_t ll_time;
     char ll_line[UT_LINESIZE];
     char ll_host[UT_HOSTSIZE];
   }
