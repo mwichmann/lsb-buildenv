@@ -167,6 +167,7 @@ GLIBC_2.0 {
   getchar;
   getchar_unlocked;
   getcwd;
+  getdomainname;
   getegid;
   getenv;
   geteuid;
@@ -708,7 +709,6 @@ GLIBC_2.1 {
   pread;
   pread64;
   ptsname;
-  putmsg;
   pututxline;
   pwrite;
   pwrite64;

@@ -169,6 +169,7 @@ void scroll(void) {} ;
 void scrollok(void) {} ;
 void set_term(void) {} ;
 void setscrreg(void) {} ;
+void setupterm(void) {} ;
 void slk_attr_set(void) {} ;
 void slk_attroff(void) {} ;
 void slk_attron(void) {} ;

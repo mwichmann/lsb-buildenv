@@ -266,6 +266,7 @@ void glPixelStorei(void) {} ;
 void glPixelTransferf(void) {} ;
 void glPixelTransferi(void) {} ;
 void glPixelZoom(void) {} ;
+void glPointParameterfvEXT(void) {} ;
 void glPointSize(void) {} ;
 void glPolygonMode(void) {} ;
 void glPolygonOffset(void) {} ;

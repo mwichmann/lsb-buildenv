@@ -216,6 +216,7 @@ GLIBC_2.2 {
   getcontext;
   getcwd;
   getdate;
+  getdomainname;
   getegid;
   getenv;
   geteuid;
@@ -423,7 +424,6 @@ GLIBC_2.2 {
   putchar;
   putchar_unlocked;
   putenv;
-  putmsg;
   puts;
   pututxline;
   putw;
