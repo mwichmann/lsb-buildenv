@@ -1,7 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.1 {
-  __signbitf;
-};
 GLIBC_2.2 {
   __finite;
   __finitef;
@@ -10,6 +7,7 @@ GLIBC_2.2 {
   __fpclassifyf;
   __fpclassifyl;
   __signbit;
+  __signbitf;
   __signbitl;
   acos;
   acosf;

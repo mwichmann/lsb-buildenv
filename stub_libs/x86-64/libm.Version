@@ -1,8 +1,6 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.1 {
-  __finite;
-};
 GLIBC_2.2.5 {
+  __finite;
   __finitef;
   __finitel;
   __fpclassify;

@@ -45,8 +45,6 @@ GLIBC_2.0 {
   erff;
   erfl;
   exp;
-  exp2;
-  exp2f;
   exp2l;
   expf;
   expl;
@@ -234,6 +232,8 @@ GLIBC_2.1 {
   ctanhf;
   ctanhl;
   ctanl;
+  exp2;
+  exp2f;
   fdim;
   fdimf;
   fdiml;

@@ -1,14 +1,6 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  exp2;
-  exp2f;
-};
-GLIBC_2.2 {
+GLIBC_2.2.5 {
   log2;
-  log2f;
-  log2l;
-  logbf;
-  logbl;
 };
 GLIBC_2.3 {
   __finite;
@@ -134,6 +126,8 @@ GLIBC_2.3 {
   erff;
   erfl;
   exp;
+  exp2;
+  exp2f;
   exp2l;
   expf;
   expl;
@@ -218,7 +212,11 @@ GLIBC_2.3 {
   log1p;
   log1pf;
   log1pl;
+  log2f;
+  log2l;
   logb;
+  logbf;
+  logbl;
   logf;
   logl;
   lrint;
