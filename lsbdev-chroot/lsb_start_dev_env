@@ -280,7 +280,7 @@ if [ -x "$SSH_DAEMON" ]; then
   touch $ROOT$SSH_DAEMON
   bind_mount_ro $SSH_DAEMON $ROOT$SSH_DAEMON
   # /var/run/sshd needed for privilege separation feature in newer sshds
-  mkdir $ROOT/var/run/sshd
+  mkdir -p $ROOT/var/run/sshd
   LD_LIBRARY_PATH=/usr/lib/lib-localsystem chroot $ROOT $SSH_DAEMON -p $SSH_PORT
 fi
 
