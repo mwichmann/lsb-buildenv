@@ -49,10 +49,10 @@ extern "C"
    ;
 
 
-  extern unsigned long htonl (unsigned long);
-  extern unsigned short htons (unsigned short);
-  extern unsigned long ntohl (unsigned long);
-  extern unsigned short ntohs (unsigned short);
+  extern uint32_t htonl (uint32_t);
+  extern uint16_t htons (uint16_t);
+  extern uint32_t ntohl (uint32_t);
+  extern uint16_t ntohs (uint16_t);
 #ifdef __cplusplus
 }
 #endif
