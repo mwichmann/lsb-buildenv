@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.19 $
+# This is $Revision: 1.20 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.20  2002/06/05 04:39:20  cyeoh
+# Adds necessary internal glibc symbol to stub libraries.
+#
 # Revision 1.19  2002/04/25 13:33:49  anderson
 # Changes to work with the new per Architecture symbols versions.
 #
@@ -387,6 +390,20 @@ sub GenerateLibrary($$$)
     }
     print VERSIONFILE "};\n";
   }
+
+  # Big Ugly Hack Alert!
+  if ($libName eq "libc")
+  {
+    # We need to tack the following onto the libc stub library
+    # _IO_stdin_used is an internal glibc symbol and shouldn't be used
+    # but unless its present in the stub library then IO falls into a
+    # big heap.
+    print STUBFILE <<EOF
+extern const int _IO_stdin_used;
+__asm__(".weak _IO_stdin_used;.weak _LSB_IO_stdin_used; _LSB_IO_stdin_used=_IO_stdin_used ");
+EOF
+  }
+
 
   close(STUBFILE);
   close(VERSIONFILE);
