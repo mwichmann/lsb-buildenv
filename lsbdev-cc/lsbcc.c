@@ -82,6 +82,39 @@ struct argvgroup *userlibs;
 struct argvgroup *syslibs;
 struct argvgroup *gccargs;
 
+/*
+ * Find out of we are being used for C++. If so, we need to do a couple
+ * of extra things.
+ */
+#define LSBCC		0
+#define LSBCPLUS	1
+
+int lsbccmode=LSBCC;
+
+/*
+ * Set the defalt names of the compiler to call, but allow them to be
+ * changed if needed.
+ */
+
+char *ccname="cc";
+char *cxxname="c++";
+
+/*
+ * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
+ * that corresponds to the bits defined below.
+ */
+
+#define DEBUG_ENV_OVERRIDES	0x0001
+#define DEBUG_ARGUMENTS		0x0002
+#define DEBUG_RECOGNIZED_ARGS	0x0004
+#define DEBUG_UNRECOGNIZED_ARGS	0x0008
+#define DEBUG_INCLUDE_CHANGES	0x0010
+#define DEBUG_LIB_CHANGES	0x0020
+#define DEBUG_MODIFIED_ARGS	0x0040
+
+int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
+
+
 /* begin argv ADT */
 /*
  * Create an abstract data type to maintain the options that are collected
@@ -187,21 +220,6 @@ for(i=0;i<ag->numargv;i++)
 }
 /* end argv ADT */
 
-/*
- * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
- * that corresponds to the bits defined below.
- */
-
-#define DEBUG_ENV_OVERRIDES	0x0001
-#define DEBUG_ARGUMENTS		0x0002
-#define DEBUG_RECOGNIZED_ARGS	0x0004
-#define DEBUG_UNRECOGNIZED_ARGS	0x0008
-#define DEBUG_INCLUDE_CHANGES	0x0010
-#define DEBUG_LIB_CHANGES	0x0020
-#define DEBUG_MODIFIED_ARGS	0x0040
-
-int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
-
 /* begin option processing routines */
 
 /*
@@ -260,17 +278,31 @@ argvaddstring(userlibs,"-Wl,-Bdynamic");
 
 /* We need to figure out what the path to the gcc base directory is */
 char *gccbasedir;
+
 void
 find_gcc_base_dir()
 {
-/* XXXSTU
- * Hard code this for now, but make it dynamic by using 
- * popen("gcc -print-libgcc-file-name");
- */
+FILE	*cccmd;
+char	cmd[BUFSIZ];
+char	buf[BUFSIZ];
+
+/* Set a default value */
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
-/*
-fprintf(stderr,"FIXME - Hardcoding /usr/lib/gcc-lib/i386-linux/2.95.4\n");
-*/
+
+sprintf(cmd, "%s -print-libgcc-file-name", ccname );
+if( (cccmd=popen(cmd,"r")) == NULL ) {
+	fprintf(stderr,"Failed to popen \"%s\"\n", cmd );
+	return;
+	}
+
+if( fgets(buf,BUFSIZ,cccmd) == NULL ) {
+	fprintf(stderr,"nothing to read from \"%s\"\n", cmd );
+	return;
+	}
+
+gccbasedir=dirname(buf);
+
+return;
 }
 /* end utility functions */
 
@@ -293,22 +325,6 @@ struct option long_options[] = {
 	{NULL,0,0,0}
 	};
 
-/*
- * Find out of we are being used for C++. If so, we need to do a couple
- * of extra things.
- */
-#define LSBCC		0
-#define LSBCPLUS	1
-
-int lsbccmode=LSBCC;
-
-/*
- * Set the defalt names of the compiler to call, but allow them to be
- * changed if needed.
- */
-
-char *ccname="cc";
-char *cxxname="c++";
 
 /*
  * The program intepreter isn't the same everywhere, so set it here,
