@@ -207,8 +207,6 @@ extern "C"
     pid_t shm_cpid;
     pid_t shm_lpid;
     shmatt_t shm_nattch;
-    unsigned long __unused1;
-    unsigned long __unused2;
   }
    ;
 

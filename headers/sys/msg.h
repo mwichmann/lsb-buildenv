@@ -189,8 +189,6 @@ extern "C"
     msgqnum_t msg_qbytes;
     pid_t msg_lspid;
     pid_t msg_lrpid;
-    unsigned long __unused1;
-    unsigned long __unused2;
   }
    ;
 
