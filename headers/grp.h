@@ -32,6 +32,10 @@ extern "C"
   extern int initgroups (const char *, gid_t);
   extern void setgrent (void);
   extern int setgroups (size_t, gid_t *);
+  extern int getgrgid_r (gid_t, struct group *, char *, size_t,
+			 struct group **);
+  extern int getgrnam_r (char *, struct group *, char *, size_t,
+			 struct group **);
 #ifdef __cplusplus
 }
 #endif
