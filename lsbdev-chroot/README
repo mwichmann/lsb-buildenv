@@ -107,6 +107,12 @@ lsbdev now supports automatically setting up fallback static linking
 on a per library basis. See the FALLBACK_STATIC_LINK_LIBRARIES option
 in the lsbdev.conf file for more details.
 
+Kernel Requirements
+-------------------
+
+A kernel of version 2.4.6 or greater which supports bind mounting of
+symlinks is required to use this program.
+
 Known Bugs
 ----------
 
