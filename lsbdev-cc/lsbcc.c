@@ -357,6 +357,8 @@ char *proginterpreter =
 	"/lib/ld-lsb-s390.so.1";
 #elif __s390x__
 	"/lib64/ld-lsb-s390x.so.1";
+#elif __x86_64__
+	"/lib64/ld-lsb-x86-64.so.1";
 #else
 	"Unknown_program_interpreter";
 #endif
