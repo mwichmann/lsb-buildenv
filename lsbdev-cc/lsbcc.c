@@ -290,11 +290,11 @@ int lsbccmode=LSBCC;
  */
 char *proginterpreter =
 #if defined(__i386__)
-	"ld-lsb.so.1";
+	"/lib/ld-lsb.so.1";
 #elif defined(__powerpc__)
-	"ld-lsb.so.1";
+	"/lib/ld-lsb.so.1";
 #elif defined(__ia64__)
-	"ld-lsb-ia64.so.1";
+	"/lib/ld-lsb-ia64.so.1";
 #else
 	"Unknown_program_interpreter";
 #endif
