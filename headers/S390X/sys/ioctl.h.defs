@@ -1,0 +1,3 @@
+
+#define FIONREAD	21531
+#define TIOCNOTTY	21538
