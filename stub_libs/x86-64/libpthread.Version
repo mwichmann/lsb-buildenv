@@ -24,9 +24,6 @@ GLIBC_2.2.5 {
   pthread_attr_setstackaddr;
   pthread_attr_setstacksize;
   pthread_cancel;
-  pthread_cond_broadcast;
-  pthread_cond_destroy;
-  pthread_cond_signal;
   pthread_condattr_destroy;
   pthread_condattr_init;
   pthread_create;
@@ -84,7 +81,10 @@ GLIBC_2.2.5 {
   sem_wait;
 };
 GLIBC_2.3.2 {
+  pthread_cond_broadcast;
+  pthread_cond_destroy;
   pthread_cond_init;
+  pthread_cond_signal;
   pthread_cond_timedwait;
   pthread_cond_wait;
 };
