@@ -30,16 +30,6 @@ extern "C"
   }
    ;
 
-#if __powerpc64__
-/* PPC64 */
-  union
-  {
-    __sighandler_t sa_handler;
-    void (*_sa_sigaction) (int, siginfo_t *, void *);
-  }
-   ;
-
-#endif
 
 /* System defined signals.*/
 #define SIG_ERR	((__sighandler_t)-1)
@@ -338,11 +328,11 @@ extern "C"
   {
     union
     {
-      __sighandler_t sa_handler;
+      __sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
-    __sigset_t sa_mask;
+    sigset_t sa_mask;
     int sa_flags;
     void (*sa_restorer) (void);
   }
