@@ -287,7 +287,7 @@ extern "C"
     mode_t st_mode;
     uid_t st_uid;
     gid_t st_gid;
-    int __pad1;
+    int __pad2;
     dev_t st_rdev;
     off_t st_size;
     blksize_t st_blksize;
@@ -312,7 +312,7 @@ extern "C"
     mode_t st_mode;
     uid_t st_uid;
     gid_t st_gid;
-    int __pad1;
+    int __pad2;
     dev_t st_rdev;
     off64_t st_size;
     blksize_t st_blksize;
