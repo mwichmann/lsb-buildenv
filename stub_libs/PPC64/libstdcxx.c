@@ -2165,7 +2165,7 @@ __asm__(".globl _ZNSt10ctype_base5spaceE; .pushsection .data; .type _ZNSt10ctype
 __asm__(".globl _ZNSt10ctype_base5upperE; .pushsection .data; .type _ZNSt10ctype_base5upperE,@object; .size _ZNSt10ctype_base5upperE, 2; _ZNSt10ctype_base5upperE: .long 0; .popsection");
 __asm__(".globl _ZNSt10ctype_base6xdigitE; .pushsection .data; .type _ZNSt10ctype_base6xdigitE,@object; .size _ZNSt10ctype_base6xdigitE, 2; _ZNSt10ctype_base6xdigitE: .long 0; .popsection");
 __asm__(".globl _ZNSt10money_base18_S_default_patternE; .pushsection .data; .type _ZNSt10money_base18_S_default_patternE,@object; .size _ZNSt10money_base18_S_default_patternE, 4; _ZNSt10money_base18_S_default_patternE: .long 0; .popsection");
-__asm__(".globl _ZNSt10money_base8_S_atomsE; .pushsection .data; .type _ZNSt10money_base8_S_atomsE,@object; .size _ZNSt10money_base8_S_atomsE, 0; _ZNSt10money_base8_S_atomsE: .long 0; .popsection");
+__asm__(".globl _ZNSt10money_base8_S_atomsE; .pushsection .data; .type _ZNSt10money_base8_S_atomsE,@object; .size _ZNSt10money_base8_S_atomsE, 8; _ZNSt10money_base8_S_atomsE: .long 0; .popsection");
 __asm__(".globl _ZNSt10moneypunctIcLb0EE2idE; .pushsection .data; .type _ZNSt10moneypunctIcLb0EE2idE,@object; .size _ZNSt10moneypunctIcLb0EE2idE, 8; _ZNSt10moneypunctIcLb0EE2idE: .long 0; .popsection");
 __asm__(".globl _ZNSt10moneypunctIcLb0EE4intlE; .pushsection .data; .type _ZNSt10moneypunctIcLb0EE4intlE,@object; .size _ZNSt10moneypunctIcLb0EE4intlE, 1; _ZNSt10moneypunctIcLb0EE4intlE: .long 0; .popsection");
 __asm__(".globl _ZNSt10moneypunctIcLb1EE2idE; .pushsection .data; .type _ZNSt10moneypunctIcLb1EE2idE,@object; .size _ZNSt10moneypunctIcLb1EE2idE, 8; _ZNSt10moneypunctIcLb1EE2idE: .long 0; .popsection");
