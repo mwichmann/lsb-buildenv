@@ -6,3 +6,43 @@
 
 
 #define NGREG	48
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef struct
+{
+  gregset_t gregs;
+  fpregset_t fpregs;
+  unsigned long oldmask;
+  unsigned long cr2;
+}
+mcontext_t;
+
+
+typedef struct ucontext
+{
+  unsigned long uc_flags;
+  struct ucontext *uc_link;
+  stack_t uc_stack;
+  mcontext_t uc_mcontext;
+  sigset_t uc_sigmask;
+  struct _libc_fpstate __fpregs_mem;
+}
+ucontext_t;

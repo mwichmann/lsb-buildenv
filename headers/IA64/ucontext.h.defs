@@ -1,0 +1,46 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef struct sigcontext mcontext_t;
+#define _SC_GR0_OFFSET	(((char *) &amp ((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
+
+
+typedef struct ia64ucontext
+{
+  union
+  {
+    mcontext_t _mc;
+    struct
+    {
+      unsigned long _pad[_SC_GRO_OFFSET / 8];
+      struct ia64ucontext *_link;
+    }
+     ;
+  }
+   ;
+}
+ucontext_t;

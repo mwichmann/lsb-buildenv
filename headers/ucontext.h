@@ -90,6 +90,8 @@ extern "C"
 /* Context to describe whole processor state.*/
 
 
+#if defined(__i386__)
+/* IA32 */
   typedef struct
   {
     gregset_t gregs;
@@ -99,10 +101,33 @@ extern "C"
   }
   mcontext_t;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  typedef struct sigcontext mcontext_t;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  typedef struct
+  {
+    gregset_t gregs;
+    fpregset_t fpregs;
+    unsigned long oldmask;
+    unsigned long cr2;
+  }
+  mcontext_t;
+
+#endif
 
 /* Userlevel context.*/
+#if defined(__ia64__)
+#define _SC_GR0_OFFSET	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
+#endif
 
 
+#if defined(__i386__)
+/* IA32 */
   typedef struct ucontext
   {
     unsigned long uc_flags;
@@ -114,6 +139,40 @@ extern "C"
   }
   ucontext_t;
 
+#endif
+#if defined(__ia64__)
+/* IA64 */
+  typedef struct ia64ucontext
+  {
+    union
+    {
+      mcontext_t _mc;
+      struct
+      {
+	unsigned long _pad[_SC_GRO_OFFSET / 8];
+	struct ia64ucontext *_link;
+      }
+       ;
+    }
+     ;
+  }
+  ucontext_t;
+
+#endif
+#if defined(__powerpc__)
+/* PPC32 */
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    sigset_t uc_sigmask;
+    struct _libc_fpstate __fpregs_mem;
+  }
+  ucontext_t;
+
+#endif
 
   extern int getcontext (ucontext_t *);
   extern int makecontext (ucontext_t *, void (*func) (void), int, ...);
