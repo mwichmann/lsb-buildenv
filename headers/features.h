@@ -8,11 +8,11 @@ extern "C"
 #endif
 
 
+#define __GLIBC__	0
 
 
 
 #define _ISOC99_SOURCE	1
-#define __STDC_ISO_10646__	1
 #define __USE_BSD	1
 #define __USE_ISOC99	1
 #define __USE_LARGEFILE	1
@@ -28,7 +28,8 @@ extern "C"
 #define __USE_XOPEN	1
 #define __USE_XOPEN_EXTENDED	1
 #define _POSIX_C_SOURCE	199506L
-#define _XOPEN_SOURCE	500
+#define __STDC_ISO_10646__	200009L
+#define _XOPEN_SOURCE	600
 
 
 
