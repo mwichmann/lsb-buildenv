@@ -51,6 +51,7 @@
 #include <libgen.h>
 #include <string.h>
 #include <getopt.h>
+#include <limits.h>
 
 /* begin lsbcc.h */
 
@@ -99,21 +100,15 @@ int lsbccmode=LSBCC;
  * to LSB headers and libraries.  These can be changed through
  * environment variables.
  */
+#ifndef BASE_PATH
+#define BASE_PATH "/opt/lsb"
+#endif
 
 char *ccname="cc";
 char *cxxname="c++";
-char *incpath="/opt/lsb/include";
-char *cxxincpath="/opt/lsb/include/c++";
-char *libpath=
-#if __powerpc64__
-	"/opt/lsb/lib64";
-#elif __s390x__
-	"/opt/lsb/lib64";
-#elif __x86_64__
-	"/opt/lsb/lib64";
-#else
-	"/opt/lsb/lib";
-#endif
+char incpath[PATH_MAX];
+char cxxincpath[PATH_MAX];
+char libpath[PATH_MAX];
 
 /*
  * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
@@ -302,8 +297,8 @@ void
 find_gcc_base_dir()
 {
 FILE	*cccmd;
-char	cmd[BUFSIZ];
-char	buf[BUFSIZ];
+char	cmd[PATH_MAX];
+char	buf[PATH_MAX];
 
 /* Set a default value */
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
@@ -314,7 +309,7 @@ if( (cccmd=popen(cmd,"r")) == NULL ) {
 	return;
 	}
 
-if( fgets(buf,BUFSIZ,cccmd) == NULL ) {
+if( fgets(buf,PATH_MAX,cccmd) == NULL ) {
 	fprintf(stderr,"nothing to read from \"%s\"\n", cmd );
 	return;
 	}
@@ -398,6 +393,13 @@ char	tmpbuf[256];
 char	*ptr;
 
 /*
+ * Set up the paths we will need
+ */
+snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
+snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
+snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib");
+
+/*
  * Check for some environment variable, and adjust things if they are found.
  */
 
@@ -420,19 +422,22 @@ if( (ptr=getenv("LSBCXX")) != NULL ) {
 	}
 
 if( (ptr=getenv("LSBCC_LIBS")) != NULL ) {
-	libpath=ptr;
+	memset(libpath, 0, strlen(libpath));
+	strcpy(libpath, ptr);
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"library prefix set to %s\n", libpath );
 	}
 
 if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
-	incpath=ptr;
+	memset(incpath, 0, strlen(libpath));
+	strcpy(incpath, ptr);
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"include prefix set to %s\n", incpath );
 	}
 
 if( (ptr=getenv("LSBCXX_INCLUDES")) != NULL ) {
-	cxxincpath=ptr;
+	memset(cxxincpath, 0, strlen(libpath));
+	strcpy(cxxincpath, ptr);
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"c++ include prefix set to %s\n", cxxincpath );
 	}
