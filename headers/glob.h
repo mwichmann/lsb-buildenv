@@ -13,11 +13,11 @@ typedef struct
   char **gl_pathv;
   __size_t gl_offs;
   int gl_flags;
-  void (*gl_closedir) ();
-  Unknown Type:".." (*gl_readdir) ();
-  void *(*gl_opendir) ();
-  int (*gl_lstat) ();
-  int (*gl_stat) ();
+  void (*gl_closedir) (void);
+  struct dirent *(*gl_readdir) (void);
+  void *(*gl_opendir) (void);
+  int (*gl_lstat) (void);
+  int (*gl_stat) (void);
 }
 glob_t;
 
@@ -30,11 +30,11 @@ typedef struct
   char **gl_pathv;
   __size_t gl_offs;
   int gl_flags;
-  void (*gl_closedir) ();
-  Unknown Type:".." (*gl_readdir) ();
-  void *(*gl_opendir) ();
-  int (*gl_lstat) ();
-  int (*gl_stat) ();
+  void (*gl_closedir) (void);
+  struct dirent *(*gl_readdir) (void);
+  void *(*gl_opendir) (void);
+  int (*gl_lstat) (void);
+  int (*gl_stat) (void);
 }
 glob64_t;
 

@@ -20,8 +20,6 @@ struct sembuf
 }
  ;
 
-struct msqid_ds;
-
 struct ipc_perm
 {
   key_t key;
@@ -34,7 +32,6 @@ struct ipc_perm
 }
  ;
 
-struct semid_ds;
 
 
 
@@ -42,5 +39,5 @@ struct semid_ds;
 
 
 
-
+key_t ftok (void);
 #endif

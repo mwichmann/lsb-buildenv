@@ -57,6 +57,23 @@ typedef unsigned char cc_t;
 typedef unsigned int tcflag_t;
 
 
+#define NCCS	32
+
+
+struct termios
+{
+  tcflag_t c_iflag;		/* input mode flags */
+  tcflag_t c_oflag;		/* output mode flags */
+  tcflag_t c_cflag;		/* control mode flags */
+  tcflag_t c_lflag;		/* local mode flags */
+  cc_t c_line;			/* line discipline */
+  cc_t c_cc[NCCS];		/* control characters */
+  speed_t c_ispeed;		/* input speed */
+  speed_t c_ospeed;		/* output speed */
+}
+ ;
+
+
 #define VINTR	0
 #define VQUIT	1
 #define VSUSP	10
@@ -68,7 +85,6 @@ typedef unsigned int tcflag_t;
 #define VEOL2	16
 #define VERASE	2
 #define VKILL	3
-#define NCCS	32
 #define VEOF	4
 #define VMIN	6
 #define VSWTC	7

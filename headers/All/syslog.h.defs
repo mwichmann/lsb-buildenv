@@ -1,0 +1,8 @@
+
+
+
+#define LOG_MAIL	(2<<3)
+
+
+#define LOG_UPTO(pri)	((1 << ((pri)+1)) - 1)
+#define LOG_MASK(pri)	(1 << (pri))

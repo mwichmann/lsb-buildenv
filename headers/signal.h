@@ -339,11 +339,14 @@ int sigdelset (sigset_t *, int);
 int sigemptyset (sigset_t *);
 int sigfillset (sigset_t *);
 int sigpending (sigset_t *);
+int pthread_sigmask (void);
 int sigaction (int, struct sigaction *, struct sigaction *);
 int kill (pid_t, int);
 int sigaltstack (struct sigaltstack *, struct sigaltstack *);
 __sighandler_t signal (int, __sighandler_t);
 int sigprocmask (int, sigset_t *, sigset_t *);
 int sigsuspend (sigset_t *);
+int sigqueue (void);
+int sigwaitinfo (void);
 int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
 #endif

@@ -14,6 +14,19 @@
 #define SETALL	17
 
 
+struct semid_ds
+{
+  struct ipc_perm sem_perm;	/* operation permission struct */
+  time_t sem_otime;		/* last semop() time */
+  unsigned long __unused1;
+  time_t sem_ctime;		/* last time changed by semctl() */
+  unsigned long __unused2;
+  unsigned long sem_nsems;	/* number of semaphores in set */
+  unsigned long __unused3;
+  unsigned long __unused4;
+}
+ ;
+
 
 int semctl (int, int, int, ...);
 int semget (key_t, int, int);

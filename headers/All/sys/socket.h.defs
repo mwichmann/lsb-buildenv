@@ -6,6 +6,14 @@ struct linger
 }
  ;
 
+struct cmsghdr
+{
+  size_t cmsg_len;
+  int cmsg_level;
+  int cmsg_type;
+}
+ ;
+
 struct iovec
 {
   void *iov_base;
@@ -13,6 +21,16 @@ struct iovec
 }
  ;
 
+#define MSG_WAITALL	0x100
+#define MSG_TRUNC	0x20
+#define MSG_EOR	0x80
+#define MSG_OOB	1
+#define MSG_PEEK	2
+#define MSG_DONTROUTE	4
+#define MSG_CTRUNC	8
+#define SHUT_RD	SHUT_RD
+#define SHUT_RDWR	SHUT_RDWR
+#define SHUT_WR	SHUT_WR
 
 typedef unsigned short sa_family_t;
 
