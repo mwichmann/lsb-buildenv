@@ -25,6 +25,7 @@ bind_mount_rw()
 
 bind_mount_file_ro()
 {
+  mkdir -p `dirname $2`
   if [ ! -e $2 ]; then
     touch $2
   fi
@@ -58,10 +59,47 @@ setup_home_dirs()
   done;
 }
 
+process_system_mount_dirs()
+{
+  while read -r from_dir to_dir; do
+    echo "$from_dir" | grep '^#' - > /dev/null
+    if [ $? -ne 0 -a -n "$from_dir" ]; then
+      if [ -z "$to_dir" ]; then
+        echo "Error in config file: $from_dir"
+      else 
+        if [ -d "$from_dir" ]; then
+          mkdir -p "$ROOT/$to_dir"
+        else
+          echo "Source directory is not a directory: $from_dir"
+        fi
+      fi
+    fi
+  done
+}
+
+
+process_system_mount_files()
+{
+  while read -r from_file to_file; do
+    echo "$from_file" | grep '^#' - > /dev/null
+    if [ $? -ne 0 -a -n "$from_file" ]; then
+      if [ -z "$to_file" ]; then
+        echo "Error in config file: $from_file"
+      else 
+        if [ -f "$from_file" ]; then
+          bind_mount_file_ro "$from_file" "$ROOT/$to_file"
+        else
+          echo "Source file is not a file: $from_file"
+        fi
+      fi
+    fi
+  done
+}
+
 #----------------------------------------------------------------------
 # Main bit
 
-if [ $UID -ne 0 ]; then
+if [ `id -u` -ne 0 ]; then
   echo You must run this script as root
   echo Aborting.
   exit 1
@@ -138,6 +176,16 @@ bind_mount_file_ro /usr/lib/libc_nonshared.a $ROOT/usr/lib/lsb-stub/libc_nonshar
 # use straight /usr/include for the moment as we don't have
 # the LSB header files yet
 bind_mount_ro /usr/include $ROOT/usr/include
+
+# System specific mounts
+if [ -f "$EXTRA_MOUNT_DIRS" ]; then
+  process_system_mount_dirs < "$EXTRA_MOUNT_DIRS"
+fi
+
+if [ -f "$EXTRA_MOUNT_FILES" ]; then
+  process_system_mount_files < "$EXTRA_MOUNT_FILES"
+fi
+
 
 # setup sshd if available
 if [ -f $SSH_DAEMON ]; then
