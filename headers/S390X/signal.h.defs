@@ -1,11 +1,15 @@
 
+#define __NUM_ACRS	16
+#define __NUM_FPRS	16
+#define __NUM_GPRS	16
 
 
 typedef struct
 {
   unsigned long mask;
   unsigned long addr;
-} __attribute__ ((aligned (8))) _psw_t;
+}
+__attribute__ ((aligned (8))) _psw_t;
 typedef struct
 {
   _psw_t psw;

@@ -18,6 +18,24 @@ extern "C"
 #define SIGRTMIN	(__libc_current_sigrtmin ())
 #define SIG_BLOCK	0
 #define SIG_UNBLOCK	1
+#if __s390__ && !__s390x__
+#define __NUM_ACRS	16
+#endif
+#if __s390x__
+#define __NUM_ACRS	16
+#endif
+#if __s390__ && !__s390x__
+#define __NUM_FPRS	16
+#endif
+#if __s390x__
+#define __NUM_FPRS	16
+#endif
+#if __s390__ && !__s390x__
+#define __NUM_GPRS	16
+#endif
+#if __s390x__
+#define __NUM_GPRS	16
+#endif
 #define SIG_SETMASK	2
 #define NSIG	65
 
@@ -45,7 +63,8 @@ extern "C"
   {
     unsigned long mask;
     unsigned long addr;
-  } __attribute__ ((aligned (8))) _psw_t;
+  }
+  __attribute__ ((aligned (8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -54,7 +73,8 @@ extern "C"
   {
     unsigned long mask;
     unsigned long addr;
-  } __attribute__ ((aligned (8))) _psw_t;
+  }
+  __attribute__ ((aligned (8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -62,8 +82,8 @@ extern "C"
   typedef struct
   {
     _psw_t psw;
-    unsigned long gprs;
-    unsigned int acrs;
+    unsigned long gprs[__NUM_GPRS];
+    unsigned int acrs[__NUM_ACRS];
   }
   _s390_regs_common;
 
@@ -539,7 +559,7 @@ extern "C"
   typedef struct
   {
     unsigned int fpc;
-    double fprs;
+    double fprs[__NUM_FPRS];
   }
   _s390_fp_regs;
 

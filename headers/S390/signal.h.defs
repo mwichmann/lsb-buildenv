@@ -1,16 +1,20 @@
 
+#define __NUM_ACRS	16
+#define __NUM_FPRS	16
+#define __NUM_GPRS	16
 
 
 typedef struct
 {
   unsigned long mask;
   unsigned long addr;
-} __attribute__ ((aligned (8))) _psw_t;
+}
+__attribute__ ((aligned (8))) _psw_t;
 typedef struct
 {
   _psw_t psw;
-  unsigned long gprs;
-  unsigned int acrs;
+  unsigned long gprs[__NUM_GPRS];
+  unsigned int acrs[__NUM_ACRS];
 }
 _s390_regs_common;
 
@@ -66,7 +70,7 @@ struct sigaction
 typedef struct
 {
   unsigned int fpc;
-  double fprs;
+  double fprs[__NUM_FPRS];
 }
 _s390_fp_regs;
 typedef struct
@@ -82,7 +86,7 @@ _sigregs;
 
 struct sigcontext
 {
-  unsigned long oldmask;
+  unsigned long oldmask[2];
   _sigregs *sregs;
 }
  ;
