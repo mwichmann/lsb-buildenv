@@ -28,7 +28,7 @@ extern "C"
   }
    ;
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct semid_ds
   {
@@ -44,7 +44,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct semid_ds
   {
@@ -57,7 +57,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct semid_ds
   {
@@ -73,7 +73,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__s390__)
+#if __s390__
 /* S390 */
   struct semid_ds
   {

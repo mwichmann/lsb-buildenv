@@ -9,3 +9,10 @@
 
 #define CHAR_MIN	0
 #define CHAR_MAX	255
+
+
+
+
+
+
+#define __INT_MAX__	2147483647

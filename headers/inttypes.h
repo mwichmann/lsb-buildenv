@@ -47,7 +47,7 @@ extern "C"
 
 
 
-#if defined(__i386__)
+#if __i386__
 #define __BYTE_ORDER	__LITTLE_ENDIAN
 #endif
 

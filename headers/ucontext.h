@@ -9,7 +9,7 @@ extern "C"
 #endif
 
 
-#if defined(__ia64__)
+#if __ia64__
 #define _SC_GR0_OFFSET	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 #endif
 
@@ -18,20 +18,20 @@ extern "C"
 /* Type for general register.*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   typedef int greg_t;
 
 #endif
 
 /* Number of general registers.*/
-#if defined(__i386__)
+#if __i386__
 #define NGREG	19
 #endif
-#if defined(__s390__)
+#if __s390__
 #define NGREG	36
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define NGREG	48
 #endif
 
@@ -40,7 +40,7 @@ extern "C"
 /* Container for all general registers.*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   typedef greg_t gregset_t[19];
 
@@ -53,7 +53,7 @@ extern "C"
 /* Definitions taken from the kernel headers.*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct _libc_fpreg
   {
@@ -70,7 +70,7 @@ extern "C"
 /* Structure to describe FPU registers.*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct _libc_fpstate
   {
@@ -87,7 +87,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   typedef struct _libc_fpstate *fpregset_t;
 
@@ -96,7 +96,7 @@ extern "C"
 /* Context to describe whole processor state.*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   typedef struct
   {
@@ -108,12 +108,12 @@ extern "C"
   mcontext_t;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   typedef struct sigcontext mcontext_t;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   typedef struct
   {
@@ -129,7 +129,7 @@ extern "C"
 /* Userlevel context.*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   typedef struct ucontext
   {
@@ -143,7 +143,7 @@ extern "C"
   ucontext_t;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   typedef struct ia64ucontext
   {
@@ -162,7 +162,7 @@ extern "C"
   ucontext_t;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   typedef struct ucontext
   {

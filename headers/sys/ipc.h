@@ -18,7 +18,7 @@ extern "C"
 #define IPC_STAT	2
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct ipc_perm
   {
@@ -37,7 +37,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct ipc_perm
   {
@@ -55,7 +55,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct ipc_perm
   {
@@ -67,14 +67,13 @@ extern "C"
     unsigned short mode;
     unsigned short __pad1;
     unsigned short __seq;
-    unsigned short __pad2;
     unsigned long __unused1;
     unsigned long __unused2;
   }
    ;
 
 #endif
-#if defined(__s390__)
+#if __s390__
 /* S390 */
   struct ipc_perm
   {

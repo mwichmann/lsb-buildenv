@@ -9,19 +9,25 @@ extern "C"
 
 
 #define FIONREAD	0x541B
-#if defined(__i386__)
+#if __i386__
 #define TIOCNOTTY	0x5422
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define TIOCNOTTY	0x5422
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define TIOCNOTTY	0x5422
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define FIONREAD	1074030207
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define FIONREAD	1074030207
+#endif
+#if __powerpc64__
+#define TIOCNOTTY	21538
+#endif
+#if __s390__
 #define TIOCNOTTY	21538
 #endif
 

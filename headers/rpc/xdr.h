@@ -90,6 +90,7 @@ extern "C"
   extern bool_t xdr_short (struct XDR *, short *);
   extern bool_t xdr_string (struct XDR *, char **, u_int);
   extern bool_t xdr_u_char (struct XDR *, u_char *);
+  extern bool_t xdr_u_int (struct XDR *, u_int *);
   extern bool_t xdr_u_long (struct XDR *, u_long *);
   extern bool_t xdr_u_short (struct XDR *, u_short *);
   extern bool_t xdr_union (struct XDR *, enum_t *, char *,

@@ -26,7 +26,7 @@ extern "C"
 /* Message Queue structure*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct msqid_ds
   {
@@ -48,7 +48,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct msqid_ds
   {
@@ -67,13 +67,13 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct msqid_ds
   {
     struct ipc_perm msg_perm;	/* structure describing operation permission */
     time_t msg_stime;		/* time of last msgsnd command */
-    unsigned long __unsued1;
+    unsigned long __unused1;
     time_t msg_rtime;		/* time of last msgrcv command */
     unsigned long __unused2;
     time_t msg_ctime;		/* time of last change */
@@ -87,7 +87,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__s390__)
+#if __s390__
 /* S390 */
   struct msqid_ds
   {

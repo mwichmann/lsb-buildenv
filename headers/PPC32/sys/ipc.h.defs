@@ -11,7 +11,6 @@ struct ipc_perm
   unsigned short mode;
   unsigned short __pad1;
   unsigned short __seq;
-  unsigned short __pad2;
   unsigned long __unused1;
   unsigned long __unused2;
 }

@@ -43,7 +43,7 @@ extern "C"
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
-#if defined(__ia64__)
+#if __ia64__
 #define _STAT_VER	1
 #endif
 #define _STAT_VER	3
@@ -52,7 +52,7 @@ extern "C"
 #define S_IEXEC	S_IXUSR
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct stat
   {
@@ -80,7 +80,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct stat64
   {
@@ -107,7 +107,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct stat
   {
@@ -133,7 +133,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct stat64;
 

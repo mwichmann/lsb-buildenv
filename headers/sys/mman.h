@@ -22,13 +22,19 @@ extern "C"
 #define PROT_EXEC	0x4
 #define MCL_CURRENT	1
 #define MS_ASYNC	1
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
+#define MCL_FUTURE	16384
+#endif
+#if __powerpc64__
 #define MCL_FUTURE	16384
 #endif
 #define MCL_FUTURE	2
 #define MS_INVALIDATE	2
 #define MS_SYNC	4
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
+#define MCL_CURRENT	8192
+#endif
+#if __powerpc64__
 #define MCL_CURRENT	8192
 #endif
 #define MAP_ANON	MAP_ANONYMOUS

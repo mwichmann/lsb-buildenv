@@ -106,10 +106,10 @@ extern "C"
   typedef unsigned short ushort;
 
 
-#if defined(__ia64__)
+#if __ia64__
 #define __FDSET_LONGS	16
 #endif
-#if defined(__i386__)
+#if __i386__
 #define __FDSET_LONGS	32
 #endif
 

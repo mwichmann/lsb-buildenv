@@ -36,252 +36,309 @@ extern "C"
 #define SIG_DFL	((__sighandler_t)0)
 #define SIG_IGN	((__sighandler_t)1)
 #define SIGHUP	1
-#if defined(__i386__)
+#if __i386__
 #define SIGUSR1	10
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGUSR1	10
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGUSR1	10
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGUSR1	10
+#endif
+#if __s390__
 #define SIGUSR1	10
 #endif
 #define SIGSEGV	11
-#if defined(__i386__)
+#if __i386__
 #define SIGUSR2	12
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGUSR2	12
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGUSR2	12
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGUSR2	12
+#endif
+#if __s390__
 #define SIGUSR2	12
 #endif
 #define SIGPIPE	13
 #define SIGALRM	14
 #define SIGTERM	15
-#if defined(__i386__)
+#if __i386__
 #define SIGSTKFLT	16
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGSTKFLT	16
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGSTKFLT	16
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGSTKFLT	16
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGSTKFLT	16
+#endif
+#if __i386__
 #define SIGCHLD	17
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGCHLD	17
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGCHLD	17
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGCHLD	17
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGCHLD	17
+#endif
+#if __i386__
 #define SIGCONT	18
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGCONT	18
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGCONT	18
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGCONT	18
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGCONT	18
+#endif
+#if __i386__
 #define SIGSTOP	19
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGSTOP	19
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGSTOP	19
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGSTOP	19
+#endif
+#if __s390__
 #define SIGSTOP	19
 #endif
 #define SIGINT	2
-#if defined(__i386__)
+#if __i386__
 #define SIGTSTP	20
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGTSTP	20
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGTSTP	20
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGTSTP	20
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGTSTP	20
+#endif
+#if __i386__
 #define SIGTTIN	21
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGTTIN	21
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGTTIN	21
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGTTIN	21
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGTTIN	21
+#endif
+#if __i386__
 #define SIGTTOU	22
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGTTOU	22
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGTTOU	22
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGTTOU	22
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGTTOU	22
+#endif
+#if __i386__
 #define SIGURG	23
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGURG	23
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGURG	23
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGURG	23
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGURG	23
+#endif
+#if __i386__
 #define SIGXCPU	24
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGXCPU	24
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGXCPU	24
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGXCPU	24
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGXCPU	24
+#endif
+#if __i386__
 #define SIGXFSZ	25
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGXFSZ	25
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGXFSZ	25
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGXFSZ	25
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGXFSZ	25
+#endif
+#if __i386__
 #define SIGVTALRM	26
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGVTALRM	26
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGVTALRM	26
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGVTALRM	26
+#endif
+#if __s390__
 #define SIGVTALRM	26
 #endif
 #define SIGPROF	27
-#if defined(__i386__)
+#if __i386__
 #define SIGPROF	27
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGPROF	27
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGPROF	27
 #endif
-#if defined(__i386__)
+#if __i386__
 #define SIGWINCH	28
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGWINCH	28
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGWINCH	28
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGWINCH	28
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGWINCH	28
+#endif
+#if __i386__
 #define SIGIO	29
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGIO	29
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGIO	29
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGIO	29
+#endif
+#if __s390__
 #define SIGIO	29
 #endif
 #define SIGQUIT	3
-#if defined(__i386__)
+#if __i386__
 #define SIGPWR	30
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGPWR	30
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGPWR	30
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGPWR	30
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGPWR	30
+#endif
+#if __i386__
 #define SIGSYS	31
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGSYS	31
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGSYS	31
 #endif
-#if defined(__s390__)
+#if __powerpc64__
 #define SIGSYS	31
 #endif
-#if defined(__i386__)
+#if __s390__
+#define SIGSYS	31
+#endif
+#if __i386__
 #define SIGUNUSED	31
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGUNUSED	31
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGUNUSED	31
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGUNUSED	31
+#endif
+#if __s390__
 #define SIGUNUSED	31
 #endif
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGABRT	6
 #define SIGIOT	6
-#if defined(__i386__)
+#if __i386__
 #define SIGBUS	7
 #endif
-#if defined(__ia64__)
+#if __ia64__
 #define SIGBUS	7
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 #define SIGBUS	7
 #endif
-#if defined(__s390__)
+#if __powerpc64__
+#define SIGBUS	7
+#endif
+#if __s390__
 #define SIGBUS	7
 #endif
 #define SIGFPE	8
@@ -439,7 +496,7 @@ extern "C"
 #define sa_sigaction	__sigaction_handler._sa_sigaction
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct sigaction
   {
@@ -456,7 +513,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct sigaction
   {
@@ -472,7 +529,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct sigaction
   {
@@ -489,7 +546,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__s390__)
+#if __s390__
 /* S390 */
   struct sigaction
   {
@@ -521,7 +578,7 @@ extern "C"
 
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct _fpreg
   {
@@ -531,7 +588,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct _fpxreg
   {
@@ -542,7 +599,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct _xmmreg
   {
@@ -551,7 +608,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct ia64_fpreg
   {
@@ -568,7 +625,7 @@ extern "C"
 /* FPU state information*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct _fpstate
   {
@@ -596,7 +653,7 @@ extern "C"
 /* Process context when signal delivered*/
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct sigcontext
   {
@@ -632,7 +689,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct sigcontext
   {
@@ -660,7 +717,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct sigcontext;
 

@@ -11,7 +11,7 @@ extern "C"
 #endif
 
 
-#if defined(__ia64__)
+#if __ia64__
 #define SHMLBA	(1024*1024)
 #endif
 #define SHMLBA	(__getpagesize())
@@ -27,7 +27,7 @@ extern "C"
 
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   typedef unsigned long shmatt_t;
 
@@ -35,7 +35,7 @@ extern "C"
 
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct shmid_ds
   {
@@ -56,7 +56,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct shmid_ds
   {
@@ -74,7 +74,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__powerpc__)
+#if __powerpc__ && !__powerpc64__
 /* PPC32 */
   struct shmid_ds;
 

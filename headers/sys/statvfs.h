@@ -11,7 +11,7 @@ extern "C"
 
 
 
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct statvfs
   {
@@ -32,7 +32,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__i386__)
+#if __i386__
 /* IA32 */
   struct statvfs64
   {
@@ -53,7 +53,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct statvfs
   {
@@ -73,7 +73,7 @@ extern "C"
    ;
 
 #endif
-#if defined(__ia64__)
+#if __ia64__
 /* IA64 */
   struct statvfs64
   {
