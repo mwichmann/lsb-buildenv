@@ -2,6 +2,7 @@
 #define _X11_INTRINSICP_H_
 
 #include <X11/Xlib.h>
+#include <X11/Intrinsic.h>
 
 #ifdef __cplusplus
 extern "C"

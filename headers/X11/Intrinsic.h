@@ -13,6 +13,52 @@ extern "C"
 
 
 
+  typedef struct _WidgetRec *Widget;
+
+  typedef Widget *WidgetList;
+
+  typedef struct _WidgetClassRec *WidgetClass;
+
+  typedef struct _CompositeRec *CompositeWidget;
+
+  typedef struct _XtActionsRec *XtActionList;
+
+  typedef struct _XtEventRec *XtEventTable;
+
+  typedef struct _XtAppStruct *XtAppContext;
+
+  typedef unsigned long XtValueMask;
+
+  typedef unsigned long XtIntervalId;
+
+  typedef unsigned long XtInputId;
+
+  typedef unsigned long XtSignalId;
+
+  typedef unsigned int XtGeometryMask;
+
+  typedef unsigned long XtGCMask;
+
+  typedef unsigned long Pixel;
+
+  typedef int XtCacheType;
+
+  typedef char Boolean;
+
+  typedef long XtArgVal;
+
+  typedef unsigned char XtEnum;
+
+  typedef unsigned int Cardinal;
+
+  typedef unsigned short Dimension;
+
+  typedef short Position;
+
+  typedef void *XtPointer;
+
+  typedef XtPointer Opaque;
+
 
   extern void XtAddActions (XtActionList, Cardinal);
   extern void XtAddCallback (Widget, char *, XtCallbackProc, XtPointer);
