@@ -50,11 +50,11 @@ setup_home_dirs()
 # Won't currently work with NIS
   for user in $BUILDUSERS; do
     homedir=`grep $user: /etc/passwd | cut -f6 -d:`
-    if [ $? -ne 0 ]; then
+    if [ ! $homedir ]; then
       echo "Failed to get home directory for $user. Skipping user $user"
     else
-      mkdir -p $ROOT/$homedir
-      bind_mount_rw $homedir $ROOT/$homedir
+      mkdir -p $ROOT$homedir
+      bind_mount_rw $homedir $ROOT$homedir
     fi
   done;
 }
@@ -68,7 +68,7 @@ process_system_mount_dirs()
         echo "Error in config file: $from_dir"
       else 
         if [ -d "$from_dir" ]; then
-          mkdir -p "$ROOT/$to_dir"
+          mkdir -p "$ROOT$to_dir"
         else
           echo "Source directory is not a directory: $from_dir"
         fi
@@ -87,7 +87,7 @@ process_system_mount_files()
         echo "Error in config file: $from_file"
       else 
         if [ -f "$from_file" ]; then
-          bind_mount_file_ro "$from_file" "$ROOT/$to_file"
+          bind_mount_file_ro "$from_file" "$ROOT$to_file"
         else
           echo "Source file is not a file: $from_file"
         fi
@@ -117,7 +117,7 @@ fi
 # Setup build environment
 # Make the required directory structure
 for newdir in $REQUIRED_DIRS; do
-  mkdir -p $ROOT/$newdir
+  mkdir -p $ROOT$newdir
 done
 
 # Setup bind mounts
@@ -138,12 +138,12 @@ bind_mount_ro /usr/lib/gcc-lib $ROOT/usr/lib/gcc-lib
 
 # Need to fix the next line so it looks for the bfd on the system.
 # Only needed by the compiler, not for the runtime
-bind_mount_file_ro $LIBBFD $ROOT/$LIBBFD
+bind_mount_file_ro $LIBBFD $ROOT$LIBBFD
 
 bind_mount_file_ro /usr/lib/crt1.o $ROOT/usr/lib/crt1.o
 bind_mount_file_ro /usr/lib/crti.o $ROOT/usr/lib/crti.o
 bind_mount_file_ro /usr/lib/crtn.o $ROOT/usr/lib/crtn.o
-bind_mount_file_ro /etc/lsbdev/gcc_specs $ROOT/$GCC_SPECS_FILE
+bind_mount_file_ro /etc/lsbdev/gcc_specs $ROOT$GCC_SPECS_FILE
 
 # LSB linker
 # Just copy the normal linux linker at the moment
@@ -161,8 +161,8 @@ fi
 setup_home_dirs
 
 # rpm
-mkdir -p $ROOT/$RPM_INSTALL_ROOT
-bind_mount_rw $RPM_DATA_ROOT $ROOT/$RPM_INSTALL_ROOT
+mkdir -p $ROOT$RPM_INSTALL_ROOT
+bind_mount_rw $RPM_DATA_ROOT $ROOT$RPM_INSTALL_ROOT
 if [ -e $ROOT/usr/bin/rpm ]; then
   # overlay the rpm we want
   bind_mount_rw $RPM_BIN $ROOT/usr/bin/rpm
@@ -189,8 +189,8 @@ fi
 
 # setup sshd if available
 if [ -f $SSH_DAEMON ]; then
-  touch $ROOT/$SSH_DAEMON
-  bind_mount_ro $SSH_DAEMON $ROOT/$SSH_DAEMON
+  touch $ROOT$SSH_DAEMON
+  bind_mount_ro $SSH_DAEMON $ROOT$SSH_DAEMON
   LD_LIBRARY_PATH=/usr/lib/lib-localsystem chroot $ROOT $SSH_DAEMON -p $SSH_PORT
 fi
 
