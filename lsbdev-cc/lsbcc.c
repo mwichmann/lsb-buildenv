@@ -397,7 +397,15 @@ char	*ptr;
  */
 snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
 snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
-snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib");
+
+/*
+ * Set up the library path according to arch using lib64 where necessary
+ */
+#if __powerpc64__ || __s390x__ || __x86_64__
+	snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib64");
+#else
+	snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib");
+#endif
 
 /*
  * Check for some environment variable, and adjust things if they are found.
@@ -512,13 +520,7 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 argvadd(syslibs,"L",gccbasedir);
 
 /* these need to go after user-specified library paths */
-#if __powerpc64__
-	argvaddstring(syslibs,"-L/lib64");
-	argvaddstring(syslibs,"-L/usr/lib64");
-#elif __s390x__
-	argvaddstring(syslibs,"-L/lib64");
-	argvaddstring(syslibs,"-L/usr/lib64");
-#elif __x86_64__
+#if __powerpc64__ || __s390x__ || __x86_64__
 	argvaddstring(syslibs,"-L/lib64");
 	argvaddstring(syslibs,"-L/usr/lib64");
 #else
