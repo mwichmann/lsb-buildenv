@@ -2,7 +2,7 @@
 #define _NETDB_H_
 
 #include <stddef.h>
-#include <sys/socket.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -98,6 +98,8 @@ extern "C"
   extern void endnetent (void);
   extern void endprotoent (void);
   extern void endservent (void);
+  extern void freeaddrinfo (struct addrinfo *);
+  extern char *gai_strerror (int);
   extern int getaddrinfo (const char *, const char *, const struct addrinfo *,
 			  struct addrinfo **);
   extern struct hostent *gethostbyaddr (const void *, socklen_t, int);

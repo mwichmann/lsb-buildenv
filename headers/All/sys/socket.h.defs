@@ -39,7 +39,6 @@ struct iovec
 
 
 typedef unsigned short sa_family_t;
-typedef unsigned int socklen_t;
 
 
 struct sockaddr

@@ -2,7 +2,7 @@
 #define _SYS_SOCKET_H_
 
 #include <stddef.h>
-#include <netdb.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -55,8 +55,6 @@ extern "C"
 
 
   typedef unsigned short sa_family_t;
-
-  typedef unsigned int socklen_t;
 
 
 
@@ -136,8 +134,6 @@ extern "C"
 
 
   extern int bind (int, const struct sockaddr *, socklen_t);
-  extern void freeaddrinfo (struct addrinfo *);
-  extern char *gai_strerror (int);
   extern int getnameinfo (struct sockaddr *, socklen_t, char *, size_t,
 			  char *, size_t, int);
   extern int getsockname (int, struct sockaddr *, socklen_t *);

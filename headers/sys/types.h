@@ -39,6 +39,8 @@ extern "C"
 
   typedef int key_t;
 
+  typedef unsigned int socklen_t;
+
   typedef unsigned int id_t;
 
   typedef long suseconds_t;
