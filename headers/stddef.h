@@ -9,7 +9,7 @@ extern "C"
 
 
 #define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
-#define NULL	(0)
+#define NULL	(0L)
 
 
 #if !defined(__cplusplus)
@@ -64,6 +64,11 @@ extern "C"
 #if __powerpc64__
 /* PPC64 */
   typedef long ptrdiff_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef unsigned long size_t;
 
 #endif
 
