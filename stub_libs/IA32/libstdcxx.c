@@ -222,6 +222,7 @@ void _ZNKSt11__timepunctIwE7_M_ampmEPPKw() {} ;
 void _ZNKSt11__timepunctIwE7_M_daysEPPKw() {} ;
 void _ZNKSt11__timepunctIwE9_M_monthsEPPKw() {} ;
 void _ZNKSt11logic_error4whatEv() {} ;
+void _ZNKSt12__basic_fileIcE7is_openEv() {} ;
 void _ZNKSt12strstreambuf6pcountEv() {} ;
 void _ZNKSt13basic_filebufIcSt11char_traitsIcEE7is_openEv() {} ;
 void _ZNKSt13basic_filebufIwSt11char_traitsIwEE7is_openEv() {} ;
@@ -1970,7 +1971,7 @@ __asm__(".globl _ZNSbIwSt11char_traitsIwESaIwEE20_S_empty_rep_storageE; .pushsec
 __asm__(".globl _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE; .pushsection .data; .type _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE,@object; .size _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE, 4; _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE: .long 0; .popsection");
 __asm__(".globl _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_terminalE; .pushsection .data; .type _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_terminalE,@object; .size _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_terminalE, 4; _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_terminalE: .long 0; .popsection");
 __asm__(".globl _ZNSbIwSt11char_traitsIwESaIwEE4nposE; .pushsection .data; .type _ZNSbIwSt11char_traitsIwESaIwEE4nposE,@object; .size _ZNSbIwSt11char_traitsIwESaIwEE4nposE, 4; _ZNSbIwSt11char_traitsIwESaIwEE4nposE: .long 0; .popsection");
-__asm__(".globl _ZNSs20_S_empty_rep_storageE; .pushsection .data; .type _ZNSs20_S_empty_rep_storageE,@object; .size _ZNSs20_S_empty_rep_storageE, 0; _ZNSs20_S_empty_rep_storageE: .long 0; .popsection");
+__asm__(".globl _ZNSs20_S_empty_rep_storageE; .pushsection .data; .type _ZNSs20_S_empty_rep_storageE,@object; .size _ZNSs20_S_empty_rep_storageE, 16; _ZNSs20_S_empty_rep_storageE: .long 0; .popsection");
 __asm__(".globl _ZNSs4_Rep11_S_max_sizeE; .pushsection .data; .type _ZNSs4_Rep11_S_max_sizeE,@object; .size _ZNSs4_Rep11_S_max_sizeE, 4; _ZNSs4_Rep11_S_max_sizeE: .long 0; .popsection");
 __asm__(".globl _ZNSs4_Rep11_S_terminalE; .pushsection .data; .type _ZNSs4_Rep11_S_terminalE,@object; .size _ZNSs4_Rep11_S_terminalE, 1; _ZNSs4_Rep11_S_terminalE: .long 0; .popsection");
 __asm__(".globl _ZNSs4nposE; .pushsection .data; .type _ZNSs4nposE,@object; .size _ZNSs4nposE, 4; _ZNSs4nposE: .long 0; .popsection");
@@ -2378,7 +2379,7 @@ __asm__(".globl _ZNSt21__numeric_limits_base9is_iec559E; .pushsection .data; .ty
 __asm__(".globl _ZNSt21__numeric_limits_base9is_moduloE; .pushsection .data; .type _ZNSt21__numeric_limits_base9is_moduloE,@object; .size _ZNSt21__numeric_limits_base9is_moduloE, 1; _ZNSt21__numeric_limits_base9is_moduloE: .long 0; .popsection");
 __asm__(".globl _ZNSt21__numeric_limits_base9is_signedE; .pushsection .data; .type _ZNSt21__numeric_limits_base9is_signedE,@object; .size _ZNSt21__numeric_limits_base9is_signedE, 1; _ZNSt21__numeric_limits_base9is_signedE: .long 0; .popsection");
 __asm__(".globl _ZNSt24__default_alloc_templateILb1ELi0EE11_S_end_freeE; .pushsection .data; .type _ZNSt24__default_alloc_templateILb1ELi0EE11_S_end_freeE,@object; .size _ZNSt24__default_alloc_templateILb1ELi0EE11_S_end_freeE, 4; _ZNSt24__default_alloc_templateILb1ELi0EE11_S_end_freeE: .long 0; .popsection");
-__asm__(".globl _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE; .pushsection .data; .type _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE,@object; .size _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE, 0; _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE: .long 0; .popsection");
+__asm__(".globl _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE; .pushsection .data; .type _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE,@object; .size _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE, 64; _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE: .long 0; .popsection");
 __asm__(".globl _ZNSt24__default_alloc_templateILb1ELi0EE12_S_heap_sizeE; .pushsection .data; .type _ZNSt24__default_alloc_templateILb1ELi0EE12_S_heap_sizeE,@object; .size _ZNSt24__default_alloc_templateILb1ELi0EE12_S_heap_sizeE, 4; _ZNSt24__default_alloc_templateILb1ELi0EE12_S_heap_sizeE: .long 0; .popsection");
 __asm__(".globl _ZNSt24__default_alloc_templateILb1ELi0EE13_S_start_freeE; .pushsection .data; .type _ZNSt24__default_alloc_templateILb1ELi0EE13_S_start_freeE,@object; .size _ZNSt24__default_alloc_templateILb1ELi0EE13_S_start_freeE, 4; _ZNSt24__default_alloc_templateILb1ELi0EE13_S_start_freeE: .long 0; .popsection");
 __asm__(".globl _ZNSt24__default_alloc_templateILb1ELi0EE22_S_node_allocator_lockE; .pushsection .data; .type _ZNSt24__default_alloc_templateILb1ELi0EE22_S_node_allocator_lockE,@object; .size _ZNSt24__default_alloc_templateILb1ELi0EE22_S_node_allocator_lockE, 24; _ZNSt24__default_alloc_templateILb1ELi0EE22_S_node_allocator_lockE: .long 0; .popsection");
@@ -2481,9 +2482,9 @@ __asm__(".globl _ZSt13moneypunct_fw; .pushsection .data; .type _ZSt13moneypunct_
 __asm__(".globl _ZSt13moneypunct_tc; .pushsection .data; .type _ZSt13moneypunct_tc,@object; .size _ZSt13moneypunct_tc, 0; _ZSt13moneypunct_tc: .long 0; .popsection");
 __asm__(".globl _ZSt13moneypunct_tw; .pushsection .data; .type _ZSt13moneypunct_tw,@object; .size _ZSt13moneypunct_tw, 0; _ZSt13moneypunct_tw: .long 0; .popsection");
 __asm__(".globl _ZSt3cin; .pushsection .data; .type _ZSt3cin,@object; .size _ZSt3cin, 0; _ZSt3cin: .long 0; .popsection");
-__asm__(".globl _ZSt4cerr; .pushsection .data; .type _ZSt4cerr,@object; .size _ZSt4cerr, 0; _ZSt4cerr: .long 0; .popsection");
+__asm__(".globl _ZSt4cerr; .pushsection .data; .type _ZSt4cerr,@object; .size _ZSt4cerr, 140; _ZSt4cerr: .long 0; .popsection");
 __asm__(".globl _ZSt4clog; .pushsection .data; .type _ZSt4clog,@object; .size _ZSt4clog, 0; _ZSt4clog: .long 0; .popsection");
-__asm__(".globl _ZSt4cout; .pushsection .data; .type _ZSt4cout,@object; .size _ZSt4cout, 0; _ZSt4cout: .long 0; .popsection");
+__asm__(".globl _ZSt4cout; .pushsection .data; .type _ZSt4cout,@object; .size _ZSt4cout, 140; _ZSt4cout: .long 0; .popsection");
 __asm__(".globl _ZSt4wcin; .pushsection .data; .type _ZSt4wcin,@object; .size _ZSt4wcin, 0; _ZSt4wcin: .long 0; .popsection");
 __asm__(".globl _ZSt5wcerr; .pushsection .data; .type _ZSt5wcerr,@object; .size _ZSt5wcerr, 0; _ZSt5wcerr: .long 0; .popsection");
 __asm__(".globl _ZSt5wclog; .pushsection .data; .type _ZSt5wclog,@object; .size _ZSt5wclog, 0; _ZSt5wclog: .long 0; .popsection");

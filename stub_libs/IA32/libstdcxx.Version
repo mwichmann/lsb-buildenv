@@ -272,6 +272,7 @@ GLIBCPP_3.2 {
   _ZNKSt11__timepunctIwE7_M_daysEPPKw;
   _ZNKSt11__timepunctIwE9_M_monthsEPPKw;
   _ZNKSt11logic_error4whatEv;
+  _ZNKSt12__basic_fileIcE7is_openEv;
   _ZNKSt12strstreambuf6pcountEv;
   _ZNKSt13basic_filebufIcSt11char_traitsIcEE7is_openEv;
   _ZNKSt13basic_filebufIwSt11char_traitsIwEE7is_openEv;
