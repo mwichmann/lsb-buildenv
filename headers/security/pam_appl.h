@@ -13,6 +13,8 @@ extern "C"
 
 
 
+  typedef struct pam_handle pam_handle_t;
+
   struct pam_message
   {
     int msg_style;
