@@ -1,10 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  atoll;
-  vfscanf;
-  vscanf;
-  vsscanf;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -82,6 +76,7 @@ GLIBC_2.2 {
   atof;
   atoi;
   atol;
+  atoll;
   authnone_create;
   basename;
   bcmp;
@@ -160,6 +155,7 @@ GLIBC_2.2 {
   execve;
   execvp;
   exit;
+  expl;
   fchdir;
   fchmod;
   fchown;
@@ -373,6 +369,10 @@ GLIBC_2.2 {
   localtime_r;
   lockf;
   lockf64;
+  log10f;
+  log10l;
+  logf;
+  logl;
   longjmp;
   lrand48;
   lsearch;
@@ -698,11 +698,14 @@ GLIBC_2.2 {
   verrx;
   vfork;
   vfprintf;
+  vfscanf;
   vfwprintf;
   vfwscanf;
   vprintf;
+  vscanf;
   vsnprintf;
   vsprintf;
+  vsscanf;
   vswprintf;
   vswscanf;
   vsyslog;
