@@ -7,7 +7,7 @@ target=""
 libgcc=`gcc -print-libgcc-file-name`
 gccbasedir=`dirname $libgcc`
 
-while getopts "EcI:D:O:f:W:I:Sp:o:s:L:" OPT ; do
+while getopts "EcI:D:U:O:f:W:I:Sp:o:s:L:" OPT ; do
 	case "$OPT" in
 		E)
 			libs=$*;
@@ -18,7 +18,7 @@ while getopts "EcI:D:O:f:W:I:Sp:o:s:L:" OPT ; do
 		o)
 			target="-o $OPTARG";
 			;;
-		D|I|L|O|W|f|p|s)
+		D|I|L|O|U|W|f|p|s)
 			opts="$opts -$OPT$OPTARG";
 			;;
 		':')
