@@ -15,7 +15,7 @@ extern "C"
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 
 
-  typedef char int8_t;
+  typedef signed char int8_t;
 
   typedef short int16_t;
 
