@@ -44,8 +44,10 @@ Stuart Anderson <anderson@freestandards.org>
 Report bugs to <lsb-build@linuxbase.org>.
 .SH "BUGS"
 .PP
-It is a little to easy to confuse lsbcc (and lsbc++). In particular, the libtool
-mechanism often makes it hard to cause the right thing to happen.
+It is a little too easy to confuse lsbcc (and lsbc++). 
+In particular, build systems that include "clever" tools
+to manage which libraries to use, such as GNU libtool
+and pkgconfig, may defeat the checks for non-LSB libraries.
 .SH COPYRIGHT
 Copyright \(co 2002 Free Standards Group.
 .SH "SEE ALSO"
