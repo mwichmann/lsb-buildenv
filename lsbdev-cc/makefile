@@ -9,4 +9,7 @@ install: $(PROGRAMS)
 	cp lsbcc $$LSBHOME/src/build/usr/bin
 	cp lsbcc $$LSBHOME/src/build/usr/bin/lsbc++
 
+clean:
+	rm $(PROGRAMS)
+
 distclean:
