@@ -330,6 +330,7 @@ if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(userlibs,"-Wl,-Bdynamic");
 	}
 
+argvaddstring(syslibs,"-lm");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
 argvaddstring(syslibs,"-lgcc");
