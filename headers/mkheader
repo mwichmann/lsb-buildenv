@@ -494,13 +494,14 @@ $Aid=$entry{'Aid'};
 #
 # Get the Header id
 #
-$select = "SELECT Hid FROM Header WHERE Hname='$headname'";
+$select = "SELECT Hid,Hstd FROM Header WHERE Hname='$headname'";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
 if( !$sth->numrows ) { exit 0; }
 %entry=$sth->fetchhash;
 $Hid=$entry{'Hid'};
+$Hstd=$entry{'Hstd'};
 
 #
 # This next section, which tries to determine all of the types for which
@@ -817,6 +818,10 @@ if( $hdrlist ne "" ) {
 print "\n#ifdef __cplusplus\n";
 print "extern \"C\" {\n";
 print "#endif\n\n";
+
+if( $Hstd eq 'SrcError' ) {
+	print "#error \"This header not permitted by the LSB\"\n\n";
+}
 
 #
 # Get the info from the types in the $type hash
