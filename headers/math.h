@@ -149,6 +149,7 @@ extern "C"
   extern long double erfcl (long double);
   extern float erff (float);
   extern long double erfl (long double);
+  extern long double expl (long double);
   extern float fabsf (float);
   extern long double fabsl (long double);
   extern double fdim (double, double);
@@ -190,6 +191,10 @@ extern "C"
   extern long long llround (double);
   extern long long llroundf (float);
   extern long long llroundl (long double);
+  extern float log10f (float);
+  extern long double log10l (long double);
+  extern float logf (float);
+  extern long double logl (long double);
   extern long lrint (double);
   extern long lrintf (float);
   extern long lrintl (long double);
