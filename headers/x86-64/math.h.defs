@@ -1,3 +1,6 @@
 
+#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+
 #define FP_ILOGB0	-2147483648
 #define FP_ILOGBNAN	-2147483648

@@ -19,10 +19,8 @@ struct exception
 
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)
 #define isfinite(x)	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #define isinf(x)	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
 #define isnan(x)	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 
 #define HUGE_VAL	0x1.0p2047
 #define HUGE_VALF	0x1.0p255f
