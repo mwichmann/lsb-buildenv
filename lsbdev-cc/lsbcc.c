@@ -98,6 +98,9 @@ int lsbccmode=LSBCC;
 
 char *ccname="cc";
 char *cxxname="c++";
+char *libpath="/opt/lsbdev-base/lib";
+char *incpath="/opt/lsbdev-base/include";
+
 
 /*
  * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
@@ -347,6 +350,7 @@ main(int argc, char *argv[])
 int	c,i;
 int	option_index;
 char	progintbuf[256];
+char	tmpbuf[256];
 char	*ptr;
 
 /*
@@ -369,6 +373,18 @@ if( (ptr=getenv("LSBCXX")) != NULL ) {
 	cxxname=ptr;
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"c++ name set to %s\n", cxxname );
+	}
+
+if( (ptr=getenv("LSBCC_LIBS")) != NULL ) {
+	libpath=ptr;
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+		fprintf(stderr,"library prefix set to %s\n", libpath );
+	}
+
+if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
+	incpath=ptr;
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+		fprintf(stderr,"include prefix set to %s\n", incpath );
 	}
 	
 if( lsbcc_debug&DEBUG_ARGUMENTS )
@@ -408,8 +424,9 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
 argvadd(libpaths,"L",gccbasedir);
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Prepending /opt/lsbdev-base/lib to be linker path\n");
-argvaddstring(libpaths,"-L/opt/lsbdev-base/lib");
+	fprintf(stderr,"Prepending %s to be linker path\n", libpath);
+sprintf(tmpbuf, "-L%s", libpath);
+argvaddstring(libpaths,tmpbuf);
 argvaddstring(libpaths,"-L/lib");
 argvaddstring(libpaths,"-L/usr/lib");
 
@@ -539,8 +556,9 @@ argvappend(gccargs,target);
  * and don't pass in -I/usr/include themselves.
  */
 if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
-	fprintf(stderr,"Prepending /opt/lsbdev-base/include to include path\n");
-argvaddstring(incpaths,"-I/opt/lsbdev-base/include");
+	fprintf(stderr,"Prepending %s to include path\n", incpath);
+sprintf(tmpbuf, "-L%s", incpath);
+argvaddstring(incpaths,tmpbuf);
 argvappend(gccargs,incpaths);
 
 argvappend(gccargs,options);
