@@ -82,7 +82,7 @@ extern "C"
     unsigned long link;
     unsigned long xer;
     unsigned long ccr;
-    unsigned long mq;
+    unsigned long softe;
     unsigned long trap;
     unsigned long dar;
     unsigned long dsisr;
