@@ -1,10 +1,24 @@
-#!/bin/bash 
+#!/bin/bash
+
+libs="-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 $* -lc /usr/lib/libc_nonshared.a"
 
 libgcc=`gcc -print-libgcc-file-name`
 gccbasedir=`dirname $libgcc`
 
+while getopts "EcI:D:" OPT ; do
+	case "$OPT" in
+		E)
+			libs=$*;
+			;;
+		c)
+			libs=$*;
+			;;
+		*)
+			;;
+	esac
+done
+
 exec gcc -nostdinc -I/usr/lsb/include -I$gccbasedir/include \
 	-nodefaultlibs -L$gccbasedir -L/usr/lsb/lib -L/lib -L/usr/lib \
-	-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 \
-	$* -lc /usr/lib/libc_nonshared.a
+	$libs
 
