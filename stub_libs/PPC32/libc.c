@@ -808,7 +808,7 @@ __asm__(".comm __ctype_toupper,4");
 __asm__(".globl __daylight; .data; .type __daylight,@object; .size __daylight, 4; __daylight: .long 0");
 __asm__(".globl __environ; .data; .type __environ,@object; .size __environ, 4; __environ: .long 0");
 __asm__(".globl __timezone; .data; .type __timezone,@object; .size __timezone, 4; __timezone: .long 0");
-__asm__(".globl __tzname; .data; .type __tzname,@object; .size __tzname, 4; __tzname: .long 0");
+__asm__(".globl __tzname; .data; .type __tzname,@object; .size __tzname, 0; __tzname: .long 0");
 __asm__(".weak _environ; _environ = __environ");
 __asm__(".comm _nl_msg_cat_cntr,4");
 __asm__(".globl _sys_errlist; .data; .type _sys_errlist,@object; .size _sys_errlist, 4; _sys_errlist: .long 0");
