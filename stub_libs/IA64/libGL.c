@@ -432,6 +432,7 @@ void glXGetCurrentDisplay(void) {} ;
 void glXGetCurrentDrawable(void) {} ;
 void glXGetCurrentReadDrawable(void) {} ;
 void glXGetFBConfigAttrib(void) {} ;
+void glXGetProcAddressARB(void) {} ;
 void glXGetSelectedEvent(void) {} ;
 void glXGetVisualFromFBConfig(void) {} ;
 void glXImportContextEXT(void) {} ;

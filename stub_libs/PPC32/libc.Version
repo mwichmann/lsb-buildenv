@@ -65,6 +65,7 @@ GLIBC_2.0 {
   atof;
   atoi;
   atol;
+  atoll;
   authnone_create;
   basename;
   bcmp;
@@ -575,9 +576,12 @@ GLIBC_2.0 {
   verrx;
   vfork;
   vfprintf;
+  vfscanf;
   vprintf;
+  vscanf;
   vsnprintf;
   vsprintf;
+  vsscanf;
   vsyslog;
   wait;
   wait3;

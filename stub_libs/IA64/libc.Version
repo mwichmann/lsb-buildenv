@@ -1,4 +1,10 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  atoll;
+  vfscanf;
+  vscanf;
+  vsscanf;
+};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
