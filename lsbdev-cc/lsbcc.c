@@ -15,7 +15,7 @@
  * and /opt/lsb/lib respectively. These headers and libraries have
  * been carefully built so that they contain only the interfaces provided by
  * the LSB. And LSB conforming application must also use be linked with
- * a special program intepreter (usually ld-lsb.so.2 but this is described
+ * a special program intepreter (usually ld-lsb.so.3 but this is described
  * in each archLSB)
  * 
  * The purpose of the lsbcc tool is to cause programs to be built against
@@ -368,19 +368,19 @@ struct option long_options[] = {
  */
 char *proginterpreter =
 #if   __i386__
-	"/lib/ld-lsb.so.2";
+	"/lib/ld-lsb.so.3";
 #elif __powerpc__ && !__powerpc64__
-	"/lib/ld-lsb-ppc32.so.2";
+	"/lib/ld-lsb-ppc32.so.3";
 #elif __powerpc64__
-	"/lib64/ld-lsb-ppc64.so.2";
+	"/lib64/ld-lsb-ppc64.so.3";
 #elif __ia64__
-	"/lib/ld-lsb-ia64.so.2";
+	"/lib/ld-lsb-ia64.so.3";
 #elif __s390__ && !__s390x__
-	"/lib/ld-lsb-s390.so.2";
+	"/lib/ld-lsb-s390.so.3";
 #elif __s390x__
-	"/lib64/ld-lsb-s390x.so.2";
+	"/lib64/ld-lsb-s390x.so.3";
 #elif __x86_64__
-	"/lib64/ld-lsb-x86-64.so.2";
+	"/lib64/ld-lsb-x86-64.so.3";
 #else
 	"Unknown_program_interpreter";
 #endif
