@@ -11,7 +11,7 @@ typedef int greg_t;
 
 
 
-
+typedef greg_t gregset_t[19];
 
 
 

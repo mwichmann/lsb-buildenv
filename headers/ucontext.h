@@ -64,6 +64,11 @@ extern "C"
 /* Container for all general registers.*/
 
 
+#if __i386__
+/* IA32 */
+  typedef greg_t gregset_t[19];
+
+#endif
 
 /* Number of each register is the `gregset_t' array.*/
 
