@@ -50,7 +50,7 @@ extern "C"
 
 
 
-  typedef struct __jmp_buf_tag jmp_buf[];
+  typedef struct __jmp_buf_tag jmp_buf[1];
 
   typedef jmp_buf sigjmp_buf;
 

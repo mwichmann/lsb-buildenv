@@ -4,4 +4,4 @@
 
 
 
-typedef long __jmp_buf[70];
+typedef long __jmp_buf[70] __attribute__ ((aligned (16)));
