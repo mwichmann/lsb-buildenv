@@ -19,11 +19,35 @@ extern "C"
 #define INADDR_LOOPBACK	0x7f000001
 #define IPPROTO_ICMP	1
 #define IP_TOS	1
+#define INET_ADDRSTRLEN	16
 #define IPPROTO_UDP	17
 #define IPPROTO_IGMP	2
 #define IPPROTO_RAW	255
+#define INET6_ADDRSTRLEN	46
 #define IPPROTO_TCP	6
+#define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
+#define IN6ADDR_LOOPBACK_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
 
+
+  struct in6_addr
+  {
+    union
+    {
+      uint8_t u6_addr8;
+      uint16_t u6_addr16;
+      uint32_t u6_addr32;
+    }
+    in6_u;
+  }
+   ;
+
+  struct in6_ifreq
+  {
+    struct in6_addr ifr6_addr;
+    uint32_t ifr6_prefixlen;
+    int ifr6_ifindex;
+  }
+   ;
 
 
 
@@ -35,6 +59,8 @@ extern "C"
    ;
 
   typedef uint32_t in_addr_t;
+
+  typedef uint16_t in_port_t;
 
 
 
