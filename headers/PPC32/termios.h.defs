@@ -62,7 +62,7 @@
 
 
 
-#define NOFLSH	-2147483648
+#define NOFLSH	0x80000000
 #define ECHOKE	1
 #define IEXTEN	1024
 #define ISIG	128

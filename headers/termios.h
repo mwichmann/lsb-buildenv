@@ -987,9 +987,6 @@ extern "C"
 
 
 /* "Local" flags - dumping ground for other state*/
-#if __powerpc__ && !__powerpc64__
-#define NOFLSH	-2147483648
-#endif
 #if __i386__
 #define ISIG	0000001
 #endif
@@ -1146,6 +1143,9 @@ extern "C"
 #endif
 #if __x86_64__
 #define IEXTEN	0100000
+#endif
+#if __powerpc__ && !__powerpc64__
+#define NOFLSH	0x80000000
 #endif
 #if __powerpc64__
 #define NOFLSH	0x80000000
