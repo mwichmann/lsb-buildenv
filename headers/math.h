@@ -45,6 +45,12 @@ extern "C"
 
 
 
+  extern int __isinf (double);
+  extern int __isinff (float);
+  extern int __isinfl (long double);
+  extern int __isnan (double);
+  extern int __isnanf (float);
+  extern int __isnanl (long double);
   extern int signgam;
   extern double copysign (double, double);
   extern int finite (double);
@@ -100,6 +106,7 @@ extern "C"
   extern int finitel (long double);
   extern float frexpf (float, int *);
   extern long double frexpl (long double, int *);
+  extern int isinff (float);
   extern int isinfl (long double);
   extern int isnan (double);
   extern int isnanf (float);
