@@ -31,6 +31,8 @@ extern "C"
   }
    ;
 
+  typedef void (*__dispatch_fn_t) (void);
+
 
 /* Server side transport handle*/
 
