@@ -1,3 +1,3 @@
-void crypt(void) {} ;
-void encrypt(void) {} ;
-void setkey(void) {} ;
+void crypt() {} ;
+void encrypt() {} ;
+void setkey() {} ;

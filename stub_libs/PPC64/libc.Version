@@ -1,11 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
   atoll;
-  pmap_getport;
-  pmap_set;
-  pmap_unset;
   svc_register;
-  svc_run;
   svc_sendreply;
   svctcp_create;
   svcudp_create;
