@@ -1,7 +1,7 @@
 OVERRIDE_ROOT=
 INSTALL_ROOT=/usr/local
-CHROOT_DATA_DIR=/var/lib/lsbdev
-CHROOT_ROOT=/var/lib/lsbdev/root
+CHROOT_DATA_DIR=/var/lib/lsbdev-chroot
+CHROOT_ROOT=/var/lib/lsbdev-chroot/root
 
 all: configure 
 
@@ -18,7 +18,7 @@ lsbdev: lsbdev.template
 
 install: configure
 	mkdir -p ${OVERRIDE_ROOT}/etc/init.d
-	install lsbdev ${OVERRIDE_ROOT}/etc/init.d
+	install lsbdev ${OVERRIDE_ROOT}/etc/init.d/lsbdev-chroot
 	mkdir -p ${OVERRIDE_ROOT}/${INSTALL_ROOT}/sbin
 	install lsb_start_dev_env lsb_stop_dev_env ${OVERRIDE_ROOT}/${INSTALL_ROOT}/sbin
 	mkdir -p ${OVERRIDE_ROOT}/etc/lsbdev-chroot
