@@ -187,7 +187,7 @@ extern "C"
   extern int shutdown (int, int);
   extern int socket (int, int, int);
   extern int socketpair (int, int, int, int[2]);
-  extern int sockatmark (void);
+  extern int sockatmark (int);
 #ifdef __cplusplus
 }
 #endif

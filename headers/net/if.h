@@ -140,10 +140,10 @@ extern "C"
    ;
 
 
-  extern void if_freenameindex (void);
-  extern char *if_indextoname (void);
+  extern void if_freenameindex (struct if_nameindex *);
+  extern char *if_indextoname (unsigned int, char *);
   extern struct if_nameindex *if_nameindex (void);
-  extern unsigned int if_nametoindex (void);
+  extern unsigned int if_nametoindex (const char *);
 #ifdef __cplusplus
 }
 #endif
