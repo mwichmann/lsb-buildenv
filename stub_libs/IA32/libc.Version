@@ -352,6 +352,9 @@ GLIBC_2.0 {
   pause;
   perror;
   pipe;
+  pmap_getport;
+  pmap_set;
+  pmap_unset;
   poll;
   printf;
   psignal;
@@ -519,6 +522,9 @@ GLIBC_2.0 {
   strtouq;
   strxfrm;
   svc_getreqset;
+  svc_register;
+  svc_run;
+  svc_sendreply;
   svcerr_auth;
   svcerr_decode;
   svcerr_noproc;
@@ -526,6 +532,8 @@ GLIBC_2.0 {
   svcerr_progvers;
   svcerr_systemerr;
   svcerr_weakauth;
+  svctcp_create;
+  svcudp_create;
   swab;
   symlink;
   sync;
