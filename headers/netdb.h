@@ -1,7 +1,6 @@
 #ifndef _NETDB_H_
 #define _NETDB_H_
 
-#include <inttypes.h>
 #include <sys/socket.h>
 #include <stddef.h>
 
@@ -106,7 +105,6 @@ extern "C"
 
 
 
-  extern void endnetent (void);
   extern void endprotoent (void);
   extern void endservent (void);
   extern void freeaddrinfo (struct addrinfo *);
@@ -115,14 +113,12 @@ extern "C"
 			  struct addrinfo **);
   extern struct hostent *gethostbyaddr (const void *, socklen_t, int);
   extern struct hostent *gethostbyname (const char *);
-  extern struct netent *getnetbyaddr (uint32_t, int);
   extern struct protoent *getprotobyname (const char *);
   extern struct protoent *getprotobynumber (int);
   extern struct protoent *getprotoent (void);
   extern struct servent *getservbyname (const char *, const char *);
   extern struct servent *getservbyport (int, const char *);
   extern struct servent *getservent (void);
-  extern void setnetent (int);
   extern void setprotoent (int);
   extern void setservent (int);
   extern int *__h_errno_location (void);
