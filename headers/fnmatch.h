@@ -1,6 +1,10 @@
 #ifndef _FNMATCH_H_
 #define _FNMATCH_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 
 
@@ -13,5 +17,8 @@
 
 
 
-extern int fnmatch (char *, char *, int);
+  extern int fnmatch (char *, char *, int);
+#ifdef __cplusplus
+}
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _FMTMSG_H_
 #define _FMTMSG_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 
 
@@ -33,5 +37,8 @@
 
 
 
-extern int fmtmsg (void);
+  extern int fmtmsg (void);
+#ifdef __cplusplus
+}
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _SYS_STAT_H_
 #define _SYS_STAT_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -43,68 +47,71 @@
 #define S_IEXEC	S_IXUSR
 
 
-struct stat
-{
-  dev_t st_dev;
-  unsigned short __pad1;
-  unsigned long st_ino;
-  mode_t st_mode;
-  nlink_t st_nlink;
-  pid_t st_uid;
-  gid_t st_gid;
-  dev_t st_rdev;
-  unsigned short __pad2;
-  off_t st_size;
-  blksize_t st_blksize;
-  blkcnt_t st_blocks;
-  time_t st_atime;
-  unsigned long __unused1;
-  time_t st_mtime;
-  unsigned long __unused2;
-  time_t st_ctime;
-  unsigned long __unused3;
-  unsigned long __unused4;
-  unsigned long __unused5;
+  struct stat
+  {
+    dev_t st_dev;
+    unsigned short __pad1;
+    unsigned long st_ino;
+    mode_t st_mode;
+    nlink_t st_nlink;
+    pid_t st_uid;
+    gid_t st_gid;
+    dev_t st_rdev;
+    unsigned short __pad2;
+    off_t st_size;
+    blksize_t st_blksize;
+    blkcnt_t st_blocks;
+    time_t st_atime;
+    unsigned long __unused1;
+    time_t st_mtime;
+    unsigned long __unused2;
+    time_t st_ctime;
+    unsigned long __unused3;
+    unsigned long __unused4;
+    unsigned long __unused5;
+  }
+   ;
+
+  struct stat64
+  {
+    dev_t st_dev;
+    unsigned int __pad0;
+    ino_t __st_ino;
+    mode_t st_mode;
+    nlink_t st_nlink;
+    uid_t st_uid;
+    gid_t st_gid;
+    dev_t st_rdev;
+    unsigned int __pad2;
+    off64_t st_size;
+    blksize_t st_blksize;
+    blkcnt64_t st_blocks;
+    time_t st_atime;
+    unsigned long __unused1;
+    time_t st_mtime;
+    unsigned long __unused2;
+    time_t st_ctime;
+    unsigned long __unused3;
+    ino64_t st_ino;
+  }
+   ;
+
+
+
+
+
+  extern int __fxstat (int, int, struct stat *);
+  extern int __fxstat64 (void);
+  extern int __lxstat (int, const char *, struct stat *);
+  extern int __lxstat64 (void);
+  extern int __xmknod (void);
+  extern int __xstat (int, const char *, struct stat *);
+  extern int __xstat64 (void);
+  extern int mkfifo (char *, mode_t);
+  extern int chmod (char *, mode_t);
+  extern int fchmod (int, mode_t);
+  extern mode_t umask (mode_t);
+#ifdef __cplusplus
 }
- ;
-
-struct stat64
-{
-  dev_t st_dev;
-  unsigned int __pad0;
-  ino_t __st_ino;
-  mode_t st_mode;
-  nlink_t st_nlink;
-  uid_t st_uid;
-  gid_t st_gid;
-  dev_t st_rdev;
-  unsigned int __pad2;
-  off64_t st_size;
-  blksize_t st_blksize;
-  blkcnt64_t st_blocks;
-  time_t st_atime;
-  unsigned long __unused1;
-  time_t st_mtime;
-  unsigned long __unused2;
-  time_t st_ctime;
-  unsigned long __unused3;
-  ino64_t st_ino;
-}
- ;
-
-
-
-
-
-extern int __fxstat (int, int, struct stat *);
-extern int __fxstat64 (void);
-extern int __lxstat (int, const char *, struct stat *);
-extern int __lxstat64 (void);
-extern int __xmknod (void);
-extern int __xstat (int, const char *, struct stat *);
-extern int __xstat64 (void);
-extern int mkfifo (char *, mode_t);
-extern int chmod (char *, mode_t);
-extern int fchmod (int, mode_t);
-extern mode_t umask (mode_t);
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _SYS_WAIT_H_
 #define _SYS_WAIT_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/types.h>
 #include <signal.h>
 #include <sys/resource.h>
@@ -18,17 +22,20 @@
 #define WSTOPSIG(status)	WEXITSTATUS(status)
 
 
-typedef enum
-{
-  P_ALL,
-  P_PID,
-  P_PGID
+  typedef enum
+  {
+    P_ALL,
+    P_PID,
+    P_PGID
+  }
+  idtype_t;
+
+
+  extern int waitid (idtype_t, id_t, siginfo_t *, int);
+  extern pid_t wait (int *);
+  extern pid_t waitpid (pid_t, int *, int);
+  extern pid_t wait3 (int *, int, struct rusage *);
+#ifdef __cplusplus
 }
-idtype_t;
-
-
-extern int waitid (idtype_t, id_t, siginfo_t *, int);
-extern pid_t wait (int *);
-extern pid_t waitpid (pid_t, int *, int);
-extern pid_t wait3 (int *, int, struct rusage *);
+#endif
 #endif

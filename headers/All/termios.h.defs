@@ -1,7 +1,7 @@
 
+#define TCSANOW	0
 #define TCOOFF	0
 #define TCIFLUSH	0
-#define TCSANOW	0
 #define NL0	0000000
 #define BS0	0000000
 #define TAB0	0000000
@@ -30,8 +30,8 @@
 #define TABDLY	0014000
 #define BSDLY	0020000
 #define BS1	0020000
-#define VT1	0040000
 #define VTDLY	0040000
+#define VT1	0040000
 #define FFDLY	0100000
 #define FF1	0100000
 #define TCSADRAIN	1

@@ -1,6 +1,10 @@
 #ifndef _SETJMP_H_
 #define _SETJMP_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <signal.h>
 
 #define setjmp(env)	_setjmp(env)
@@ -10,30 +14,33 @@
 
 
 
-typedef int __jmp_buf[6];
+  typedef int __jmp_buf[6];
 
 
 
 
-struct __jmp_buf_tag
-{
-  __jmp_buf __jmpbuf;
-  int __mask_was_saved;
-  sigset_t __saved_mask;
+  struct __jmp_buf_tag
+  {
+    __jmp_buf __jmpbuf;
+    int __mask_was_saved;
+    sigset_t __saved_mask;
+  }
+   ;
+
+
+
+
+  typedef struct __jmp_buf_tag jmp_buf[1];
+
+  typedef jmp_buf sigjmp_buf;
+
+
+  extern int __sigsetjmp (jmp_buf, int);
+  extern void longjmp (jmp_buf, int);
+  extern void siglongjmp (sigjmp_buf, int);
+  extern void _longjmp (void);
+  extern int _setjmp (jmp_buf);
+#ifdef __cplusplus
 }
- ;
-
-
-
-
-typedef struct __jmp_buf_tag jmp_buf[1];
-
-typedef jmp_buf sigjmp_buf;
-
-
-extern int __sigsetjmp (jmp_buf, int);
-extern void longjmp (jmp_buf, int);
-extern void siglongjmp (sigjmp_buf, int);
-extern void _longjmp (void);
-extern int _setjmp (jmp_buf);
+#endif
 #endif

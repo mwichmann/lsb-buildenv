@@ -1,20 +1,27 @@
 #ifndef _SYS_UTSNAME_H_
 #define _SYS_UTSNAME_H_
 
-
-
-
-struct utsname
+#ifdef __cplusplus
+extern "C"
 {
-  char sysname[65];
-  char nodename[65];
-  char release[65];
-  char version[65];
-  char machine[65];
-  char domainname[65];
+#endif
+
+
+
+  struct utsname
+  {
+    char sysname[65];
+    char nodename[65];
+    char release[65];
+    char version[65];
+    char machine[65];
+    char domainname[65];
+  }
+   ;
+
+
+  extern int uname (struct utsname *);
+#ifdef __cplusplus
 }
- ;
-
-
-extern int uname (struct utsname *);
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _TERMIOS_H_
 #define _TERMIOS_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/types.h>
 
 #define TCSANOW	0
@@ -14,8 +18,8 @@
 #define VT0	0000000
 #define OPOST	0000001
 #define OLCUC	0000002
-#define XCASE	0000004
 #define ONLCR	0000004
+#define XCASE	0000004
 #define OCRNL	0000010
 #define ONOCR	0000020
 #define ONLRET	0000040
@@ -36,8 +40,8 @@
 #define BSDLY	0020000
 #define VT1	0040000
 #define VTDLY	0040000
-#define FF1	0100000
 #define FFDLY	0100000
+#define FF1	0100000
 #define TCSADRAIN	1
 #define TCOON	1
 #define TCOFLUSH	1
@@ -85,10 +89,10 @@
 #define OLCUC	4
 #endif
 #if defined(__powerpc__)
-#define IUCLC	4096
+#define CR1	4096
 #endif
 #if defined(__powerpc__)
-#define CR1	4096
+#define IUCLC	4096
 #endif
 #if defined(__powerpc__)
 #define VT1	65536
@@ -107,28 +111,28 @@
 
 
 
-typedef int speed_t;
+  typedef int speed_t;
 
-typedef unsigned char cc_t;
+  typedef unsigned char cc_t;
 
-typedef unsigned int tcflag_t;
+  typedef unsigned int tcflag_t;
 
 
 #define NCCS	32
 
 
-struct termios
-{
-  tcflag_t c_iflag;		/* input mode flags */
-  tcflag_t c_oflag;		/* output mode flags */
-  tcflag_t c_cflag;		/* control mode flags */
-  tcflag_t c_lflag;		/* local mode flags */
-  cc_t c_line;			/* line discipline */
-  cc_t c_cc[NCCS];		/* control characters */
-  speed_t c_ispeed;		/* input speed */
-  speed_t c_ospeed;		/* output speed */
-}
- ;
+  struct termios
+  {
+    tcflag_t c_iflag;		/* input mode flags */
+    tcflag_t c_oflag;		/* output mode flags */
+    tcflag_t c_cflag;		/* control mode flags */
+    tcflag_t c_lflag;		/* local mode flags */
+    cc_t c_line;		/* line discipline */
+    cc_t c_cc[NCCS];		/* control characters */
+    speed_t c_ispeed;		/* input speed */
+    speed_t c_ospeed;		/* output speed */
+  }
+   ;
 
 
 /* Special Control Characters*/
@@ -155,20 +159,20 @@ struct termios
 #define VSTOP	14
 #endif
 #define VLNEXT	15
-#define VEOL2	16
 #if defined(__powerpc__)
 #define VDISCARD	16
 #endif
+#define VEOL2	16
 #define VERASE	2
 #define VKILL	3
 #define VEOF	4
 #if defined(__powerpc__)
 #define VMIN	5
 #endif
+#define VMIN	6
 #if defined(__powerpc__)
 #define VEOL	6
 #endif
-#define VMIN	6
 #define VSWTC	7
 #define VSTART	8
 #if defined(__powerpc__)
@@ -334,17 +338,20 @@ struct termios
 
 
 
-extern speed_t cfgetispeed (struct termios *);
-extern speed_t cfgetospeed (struct termios *);
-extern void cfmakeraw (void);
-extern int cfsetispeed (struct termios *, speed_t);
-extern int cfsetospeed (struct termios *, speed_t);
-extern int cfsetspeed (void);
-extern int tcflow (int, int);
-extern int tcflush (int, int);
-extern pid_t tcgetsid (int);
-extern int tcsendbreak (int, int);
-extern int tcsetattr (int, int, struct termios *);
-extern int tcdrain (int);
-extern int tcgetattr (int, struct termios *);
+  extern speed_t cfgetispeed (struct termios *);
+  extern speed_t cfgetospeed (struct termios *);
+  extern void cfmakeraw (void);
+  extern int cfsetispeed (struct termios *, speed_t);
+  extern int cfsetospeed (struct termios *, speed_t);
+  extern int cfsetspeed (void);
+  extern int tcflow (int, int);
+  extern int tcflush (int, int);
+  extern pid_t tcgetsid (int);
+  extern int tcsendbreak (int, int);
+  extern int tcsetattr (int, int, struct termios *);
+  extern int tcdrain (int);
+  extern int tcgetattr (int, struct termios *);
+#ifdef __cplusplus
+}
+#endif
 #endif

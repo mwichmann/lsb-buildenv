@@ -1,6 +1,10 @@
 #ifndef _UCONTEXT_H_
 #define _UCONTEXT_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <signal.h>
 
 
@@ -11,7 +15,7 @@
 
 #if defined(__i386__)
 /* IA32 */
-typedef int greg_t;
+  typedef int greg_t;
 
 #endif
 
@@ -30,7 +34,7 @@ typedef int greg_t;
 
 #if defined(__i386__)
 /* IA32 */
-typedef greg_t gregset_t[19];
+  typedef greg_t gregset_t[19];
 
 #endif
 
@@ -43,12 +47,12 @@ typedef greg_t gregset_t[19];
 
 #if defined(__i386__)
 /* IA32 */
-struct _libc_fpreg
-{
-  unsigned short significand[4];
-  unsigned short exponent;
-}
- ;
+  struct _libc_fpreg
+  {
+    unsigned short significand[4];
+    unsigned short exponent;
+  }
+   ;
 
 #endif
 
@@ -60,57 +64,60 @@ struct _libc_fpreg
 
 #if defined(__i386__)
 /* IA32 */
-struct _libc_fpstate
-{
-  unsigned long cw;
-  unsigned long sw;
-  unsigned long tag;
-  unsigned long ipoff;
-  unsigned long cssel;
-  unsigned long dataoff;
-  unsigned long datasel;
-  struct _libc_fpreg _st[8];
-  unsigned long status;
-}
- ;
+  struct _libc_fpstate
+  {
+    unsigned long cw;
+    unsigned long sw;
+    unsigned long tag;
+    unsigned long ipoff;
+    unsigned long cssel;
+    unsigned long dataoff;
+    unsigned long datasel;
+    struct _libc_fpreg _st[8];
+    unsigned long status;
+  }
+   ;
 
 #endif
 #if defined(__i386__)
 /* IA32 */
-typedef struct _libc_fpstate *fpregset_t;
+  typedef struct _libc_fpstate *fpregset_t;
 
 #endif
 
 /* Context to describe whole processor state.*/
 
 
-typedef struct
-{
-  gregset_t gregs;
-  fpregset_t fpregs;
-  unsigned long oldmask;
-  unsigned long cr2;
-}
-mcontext_t;
+  typedef struct
+  {
+    gregset_t gregs;
+    fpregset_t fpregs;
+    unsigned long oldmask;
+    unsigned long cr2;
+  }
+  mcontext_t;
 
 
 /* Userlevel context.*/
 
 
-typedef struct ucontext
-{
-  unsigned long uc_flags;
-  struct ucontext *uc_link;
-  stack_t uc_stack;
-  mcontext_t uc_mcontext;
-  sigset_t uc_sigmask;
-  struct _libc_fpstate __fpregs_mem;
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    sigset_t uc_sigmask;
+    struct _libc_fpstate __fpregs_mem;
+  }
+  ucontext_t;
+
+
+  extern int getcontext (void);
+  extern int makecontext (void);
+  extern int setcontext (void);
+  extern int swapcontext (void);
+#ifdef __cplusplus
 }
-ucontext_t;
-
-
-extern int getcontext (void);
-extern int makecontext (void);
-extern int setcontext (void);
-extern int swapcontext (void);
+#endif
 #endif

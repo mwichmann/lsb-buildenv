@@ -1,6 +1,10 @@
 #ifndef _X11_X_H_
 #define _X11_X_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 
 
@@ -8,31 +12,31 @@
 /* Resources*/
 
 
-typedef unsigned long XID;
+  typedef unsigned long XID;
 
-typedef unsigned long Atom;
+  typedef unsigned long Atom;
 
-typedef unsigned long VisualID;
+  typedef unsigned long VisualID;
 
-typedef unsigned long Time;
+  typedef unsigned long Time;
 
-typedef XID Window;
+  typedef XID Window;
 
-typedef XID Font;
+  typedef XID Font;
 
-typedef XID Pixmap;
+  typedef XID Pixmap;
 
-typedef unsigned char KeyCode;
+  typedef unsigned char KeyCode;
 
-typedef XID Drawable;
+  typedef XID Drawable;
 
-typedef XID Cursor;
+  typedef XID Cursor;
 
-typedef XID Colormap;
+  typedef XID Colormap;
 
-typedef XID GContext;
+  typedef XID GContext;
 
-typedef XID KeySym;
+  typedef XID KeySym;
 
 
 /* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/
@@ -45,9 +49,9 @@ typedef XID KeySym;
 #define NoSymbol	0L
 #define None	0L
 #define AnyButton	0L
+#define PointerRoot	1L
 #define InputFocus	1L
 #define ParentRelative	1L
-#define PointerRoot	1L
 
 
 
@@ -575,10 +579,10 @@ typedef XID KeySym;
 
 
 /* SCREEN SAVER STUFF*/
+#define DontAllowExposures	0
 #define DisableScreenSaver	0
 #define DontPreferBlanking	0
 #define DisableScreenInterval	0
-#define DontAllowExposures	0
 #define AllowExposures	1
 #define PreferBlanking	1
 #define DefaultBlanking	2
@@ -624,4 +628,7 @@ typedef XID KeySym;
 
 
 
+#ifdef __cplusplus
+}
+#endif
 #endif

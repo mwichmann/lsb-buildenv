@@ -1,6 +1,10 @@
 #ifndef _FCNTL_H_
 #define _FCNTL_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/types.h>
 
 #define O_RDONLY	00
@@ -18,25 +22,25 @@
 #define O_NDELAY	04000
 
 
-struct flock
-{
-  short l_type;
-  short l_whence;
-  off_t l_start;
-  off_t l_len;
-  pid_t l_pid;
-}
- ;
+  struct flock
+  {
+    short l_type;
+    short l_whence;
+    off_t l_start;
+    off_t l_len;
+    pid_t l_pid;
+  }
+   ;
 
-struct flock64
-{
-  short l_type;
-  short l_whence;
-  loff_t l_start;
-  loff_t l_len;
-  pid_t l_pid;
-}
- ;
+  struct flock64
+  {
+    short l_type;
+    short l_whence;
+    loff_t l_start;
+    loff_t l_len;
+    pid_t l_pid;
+  }
+   ;
 
 
 /* flags for open(2)*/
@@ -64,6 +68,9 @@ struct flock64
 
 
 
-extern int lockf64 (void);
-extern int fcntl (int, int, ...);
+  extern int lockf64 (void);
+  extern int fcntl (int, int, ...);
+#ifdef __cplusplus
+}
+#endif
 #endif

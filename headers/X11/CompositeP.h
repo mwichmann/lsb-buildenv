@@ -1,6 +1,10 @@
 #ifndef _X11_COMPOSITEP_H_
 #define _X11_COMPOSITEP_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
@@ -19,7 +23,7 @@
 /* Additional class fields for widgets of (sub)class 'Composite'*/
 
 
-typedef struct _CompositeClassPart CompositeClassPart;
+  typedef struct _CompositeClassPart CompositeClassPart;
 
 
 
@@ -27,8 +31,11 @@ typedef struct _CompositeClassPart CompositeClassPart;
 
 
 
-typedef struct _CompositeClassRec CompositeClassRec;
+  typedef struct _CompositeClassRec CompositeClassRec;
 
 
-extern CompositeClassRec compositeClassRec;
+  extern CompositeClassRec compositeClassRec;
+#ifdef __cplusplus
+}
+#endif
 #endif

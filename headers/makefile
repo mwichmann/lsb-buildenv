@@ -17,6 +17,8 @@ all:
 install:
 	install -d $$LSBHOME/src/build/usr/lsb/include
 	find . -name '*.h' -print | cpio -pdu $$LSBHOME/src/build/usr/lsb/include
+	rm -rf $$LSBHOME/src/build/usr/lsb/include/X11
+	rm -rf $$LSBHOME/src/build/usr/lsb/include/GL
 
 clean:
 

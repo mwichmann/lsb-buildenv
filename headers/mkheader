@@ -571,6 +571,9 @@ if( $typelist ne "" ) {
 		}
 	}
 
+print "\n#ifdef __cplusplus\n";
+print "extern \"C\" {\n";
+print "#endif\n\n";
 
 #
 # Get the info from the types in the $type hash
@@ -704,4 +707,7 @@ for(1..$sth->numrows) {
 		printf " %s;\n",$entry{'Iname'};
 	}
 }
+print "#ifdef __cplusplus\n";
+print "}\n";
+print "#endif\n";
 print "#endif\n";

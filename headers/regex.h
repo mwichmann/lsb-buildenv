@@ -1,6 +1,10 @@
 #ifndef _REGEX_H_
 #define _REGEX_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <stddef.h>
 
 
@@ -47,7 +51,7 @@
 #define RE_SYNTAX_SED	RE_SYNTAX_POSIX_BASIC
 
 
-typedef unsigned long reg_syntax_t;
+  typedef unsigned long reg_syntax_t;
 
 
 /* regex error codes*/
@@ -56,33 +60,33 @@ typedef unsigned long reg_syntax_t;
 
 
 
-typedef struct re_pattern_buffer
-{
-  unsigned char *buffer;
-  unsigned long allocated;
-  unsigned long used;
-  reg_syntax_t syntax;
-  char *fastmap;
-  char *translate;
-  size_t re_nsub;
-  unsigned int can_be_null:1;
-  unsigned int regs_allocated:2;
-  unsigned int fastmap_accurate:1;
-  unsigned int no_sub:1;
-  unsigned int not_bol:1;
-  unsigned int not_eol:1;
-  unsigned int newline_anchor:1;
-}
-regex_t;
+  typedef struct re_pattern_buffer
+  {
+    unsigned char *buffer;
+    unsigned long allocated;
+    unsigned long used;
+    reg_syntax_t syntax;
+    char *fastmap;
+    char *translate;
+    size_t re_nsub;
+    unsigned int can_be_null:1;
+    unsigned int regs_allocated:2;
+    unsigned int fastmap_accurate:1;
+    unsigned int no_sub:1;
+    unsigned int not_bol:1;
+    unsigned int not_eol:1;
+    unsigned int newline_anchor:1;
+  }
+  regex_t;
 
-typedef int regoff_t;
+  typedef int regoff_t;
 
-typedef struct
-{
-  regoff_t rm_so;
-  regoff_t rm_eo;
-}
-regmatch_t;
+  typedef struct
+  {
+    regoff_t rm_so;
+    regoff_t rm_eo;
+  }
+  regmatch_t;
 
 
 /* POSIX `cflags' bits (i.e., information for `regcomp').*/
@@ -96,8 +100,11 @@ regmatch_t;
 
 
 
-extern int regcomp (regex_t *, char *, int);
-extern size_t regerror (int, regex_t *, char *, size_t);
-extern int regexec (regex_t *, char *, size_t, regmatch_t[], int);
-extern void regfree (regex_t *);
+  extern int regcomp (regex_t *, char *, int);
+  extern size_t regerror (int, regex_t *, char *, size_t);
+  extern int regexec (regex_t *, char *, size_t, regmatch_t[], int);
+  extern void regfree (regex_t *);
+#ifdef __cplusplus
+}
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _NETINET_IN_H_
 #define _NETINET_IN_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/socket.h>
 #include <inttypes.h>
 
@@ -19,27 +23,30 @@
 
 
 
-struct in_addr
-{
-  uint32_t s_addr;
+  struct in_addr
+  {
+    uint32_t s_addr;
+  }
+   ;
+
+
+
+
+  struct sockaddr_in
+  {
+    sa_family_t sin_family;
+    unsigned short sin_port;
+    struct in_addr sin_addr;
+    unsigned char __pad[8];
+  }
+   ;
+
+
+  extern unsigned long htonl (unsigned long);
+  extern unsigned short htons (unsigned short);
+  extern unsigned long ntohl (unsigned long);
+  extern unsigned short ntohs (unsigned short);
+#ifdef __cplusplus
 }
- ;
-
-
-
-
-struct sockaddr_in
-{
-  sa_family_t sin_family;
-  unsigned short sin_port;
-  struct in_addr sin_addr;
-  unsigned char __pad[8];
-}
- ;
-
-
-extern unsigned long htonl (unsigned long);
-extern unsigned short htons (unsigned short);
-extern unsigned long ntohl (unsigned long);
-extern unsigned short ntohs (unsigned short);
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <stddef.h>
 
 #define SHUT_RD	0
@@ -8,8 +12,8 @@
 #define MSG_TRUNC	0x20
 #define MSG_EOR	0x80
 #define SIOCGIFCONF	0x8912
-#define SHUT_WR	1
 #define MSG_OOB	1
+#define SHUT_WR	1
 #define SHUT_RDWR	2
 #define MSG_PEEK	2
 #define MSG_DONTROUTE	4
@@ -18,59 +22,59 @@
 #define PF_INET6	AF_INET6
 
 
-struct linger
-{
-  int l_onoff;
-  int l_linger;
-}
- ;
+  struct linger
+  {
+    int l_onoff;
+    int l_linger;
+  }
+   ;
 
-struct cmsghdr
-{
-  size_t cmsg_len;
-  int cmsg_level;
-  int cmsg_type;
-}
- ;
+  struct cmsghdr
+  {
+    size_t cmsg_len;
+    int cmsg_level;
+    int cmsg_type;
+  }
+   ;
 
-struct iovec
-{
-  void *iov_base;
-  size_t iov_len;
-}
- ;
-
-
-
-
-typedef unsigned short sa_family_t;
-
-typedef unsigned int socklen_t;
+  struct iovec
+  {
+    void *iov_base;
+    size_t iov_len;
+  }
+   ;
 
 
 
 
-struct sockaddr
-{
-  sa_family_t sa_family;
-  char sa_data[14];
-}
- ;
+  typedef unsigned short sa_family_t;
+
+  typedef unsigned int socklen_t;
 
 
 
 
-struct msghdr
-{
-  void *msg_name;
-  int msg_namelen;
-  struct iovec *msg_iov;
-  size_t msg_iovlen;
-  void *msg_control;
-  size_t msg_controllen;
-  unsigned int msg_flags;
-}
- ;
+  struct sockaddr
+  {
+    sa_family_t sa_family;
+    char sa_data[14];
+  }
+   ;
+
+
+
+
+  struct msghdr
+  {
+    void *msg_name;
+    int msg_namelen;
+    struct iovec *msg_iov;
+    size_t msg_iovlen;
+    void *msg_control;
+    size_t msg_controllen;
+    unsigned int msg_flags;
+  }
+   ;
 
 
 #define AF_UNSPEC	0
@@ -118,22 +122,25 @@ struct msghdr
 
 
 
-extern int bind (int, struct sockaddr *, socklen_t);
-extern int getsockname (int, struct sockaddr *, socklen_t *);
-extern int listen (int, int);
-extern int setsockopt (int, int, int, void *, socklen_t);
-extern int accept (int, struct sockaddr *, socklen_t *);
-extern int connect (int, struct sockaddr *, socklen_t);
-extern int recv (int, void *, size_t, int);
-extern int recvfrom (int, void *, size_t, int, struct sockaddr *,
-		     socklen_t *);
-extern int recvmsg (int, struct msghdr *, int);
-extern int send (int, void *, size_t, int);
-extern int sendmsg (int, struct msghdr *, int);
-extern int sendto (int, void *, size_t, int, struct sockaddr *, socklen_t);
-extern int getpeername (int, struct sockaddr *, socklen_t *);
-extern int getsockopt (int, int, int, void *, socklen_t *);
-extern int shutdown (int, int);
-extern int socket (int, int, int);
-extern int socketpair (int, int, int, int[2]);
+  extern int bind (int, struct sockaddr *, socklen_t);
+  extern int getsockname (int, struct sockaddr *, socklen_t *);
+  extern int listen (int, int);
+  extern int setsockopt (int, int, int, void *, socklen_t);
+  extern int accept (int, struct sockaddr *, socklen_t *);
+  extern int connect (int, struct sockaddr *, socklen_t);
+  extern int recv (int, void *, size_t, int);
+  extern int recvfrom (int, void *, size_t, int, struct sockaddr *,
+		       socklen_t *);
+  extern int recvmsg (int, struct msghdr *, int);
+  extern int send (int, void *, size_t, int);
+  extern int sendmsg (int, struct msghdr *, int);
+  extern int sendto (int, void *, size_t, int, struct sockaddr *, socklen_t);
+  extern int getpeername (int, struct sockaddr *, socklen_t *);
+  extern int getsockopt (int, int, int, void *, socklen_t *);
+  extern int shutdown (int, int);
+  extern int socket (int, int, int);
+  extern int socketpair (int, int, int, int[2]);
+#ifdef __cplusplus
+}
+#endif
 #endif

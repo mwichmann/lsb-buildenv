@@ -1,6 +1,10 @@
 #ifndef _TAR_H_
 #define _TAR_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #define REGTYPE	'0'
 #define LNKTYPE	'1'
@@ -30,4 +34,7 @@
 
 
 
+#ifdef __cplusplus
+}
+#endif
 #endif

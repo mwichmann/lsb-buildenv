@@ -1,6 +1,10 @@
 #ifndef _NET_IF_H_
 #define _NET_IF_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/socket.h>
 #include <sys/types.h>
 
@@ -28,17 +32,17 @@
    together so all addresses for an interface can be located.*/
 
 
-struct ifaddr
-{
-  struct sockaddr ifa_addr;	/* Address of interface. */
-  union
+  struct ifaddr
   {
-    struct sockaddr ifu_broadaddr;
-    struct sockaddr ifu_dstaddr;
+    struct sockaddr ifa_addr;	/* Address of interface. */
+    union
+    {
+      struct sockaddr ifu_broadaddr;
+      struct sockaddr ifu_dstaddr;
+    }
+    ifa_ifu;
   }
-  ifa_ifu;
-}
- ;
+   ;
 
 
 /* Interface request structure used for socket ioctl's.  All interface
@@ -49,13 +53,37 @@ struct ifaddr
 #define IFNAMSIZ	IF_NAMESIZE
 
 
-struct ifreq
-{
+  struct ifreq
+  {
+    union
+    {
+      char ifrn_name[IFNAMSIZ];
+    }
+    ifr_ifrn;
+    union
+    {
+      struct sockaddr ifru_addr;
+      struct sockaddr ifru_dstaddr;
+      struct sockaddr ifru_broadaddr;
+      struct sockaddr ifru_netmask;
+      struct sockaddr ifru_hwaddr;
+      short ifru_flags;
+      int ifru_ivalue;
+      int ifru_mtu;
+      char ifru_slave[IFNAMSIZ];
+      char ifru_newname[IFNAMSIZ];
+      caddr_t ifru_data;
+    }
+    ifr_ifru;
+  }
+   ;
+
   union
   {
     char ifrn_name[IFNAMSIZ];
   }
-  ifr_ifrn;
+   ;
+
   union
   {
     struct sockaddr ifru_addr;
@@ -70,31 +98,7 @@ struct ifreq
     char ifru_newname[IFNAMSIZ];
     caddr_t ifru_data;
   }
-  ifr_ifru;
-}
- ;
-
-union
-{
-  char ifrn_name[IFNAMSIZ];
-}
- ;
-
-union
-{
-  struct sockaddr ifru_addr;
-  struct sockaddr ifru_dstaddr;
-  struct sockaddr ifru_broadaddr;
-  struct sockaddr ifru_netmask;
-  struct sockaddr ifru_hwaddr;
-  short ifru_flags;
-  int ifru_ivalue;
-  int ifru_mtu;
-  char ifru_slave[IFNAMSIZ];
-  char ifru_newname[IFNAMSIZ];
-  caddr_t ifru_data;
-}
- ;
+   ;
 
 
 /* Structure used in SIOCGIFCONF request.  Used to retrieve interface
@@ -104,17 +108,20 @@ union
 #define ifc_req	ifc_ifcu.ifcu_req
 
 
-struct ifconf
-{
-  int ifc_len;
-  union
+  struct ifconf
   {
-    caddr_t ifcu_buf;
-    struct ifreq *ifcu_req;
+    int ifc_len;
+    union
+    {
+      caddr_t ifcu_buf;
+      struct ifreq *ifcu_req;
+    }
+    ifc_ifcu;
   }
-  ifc_ifcu;
+   ;
+
+
+#ifdef __cplusplus
 }
- ;
-
-
+#endif
 #endif

@@ -1,6 +1,10 @@
 #ifndef _SYSLOG_H_
 #define _SYSLOG_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <stdarg.h>
 
 
@@ -62,9 +66,12 @@
 
 
 
-extern void closelog (void);
-extern void openlog (char *, int, int);
-extern int setlogmask (void);
-extern void syslog (int, char *, ...);
-extern void vsyslog (int, char *, va_list);
+  extern void closelog (void);
+  extern void openlog (char *, int, int);
+  extern int setlogmask (void);
+  extern void syslog (int, char *, ...);
+  extern void vsyslog (int, char *, va_list);
+#ifdef __cplusplus
+}
+#endif
 #endif

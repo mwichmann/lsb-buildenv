@@ -1,6 +1,10 @@
 #ifndef _SYS_MMAN_H_
 #define _SYS_MMAN_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <stddef.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -29,13 +33,16 @@
 
 
 
-extern int msync (void *, size_t, int);
-extern int mlock (void *, size_t);
-extern int mlockall (int);
-extern void *mmap (void *, size_t, int, int, int, off_t);
-extern int mprotect (void *, size_t, int);
-extern int munlock (void *, size_t);
-extern int munlockall (void);
-extern int munmap (void *, size_t);
-extern void *mmap64 (void *, size_t, int, int, int, off64_t);
+  extern int msync (void *, size_t, int);
+  extern int mlock (void *, size_t);
+  extern int mlockall (int);
+  extern void *mmap (void *, size_t, int, int, int, off_t);
+  extern int mprotect (void *, size_t, int);
+  extern int munlock (void *, size_t);
+  extern int munlockall (void);
+  extern int munmap (void *, size_t);
+  extern void *mmap64 (void *, size_t, int, int, int, off64_t);
+#ifdef __cplusplus
+}
+#endif
 #endif

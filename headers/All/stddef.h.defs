@@ -1,6 +1,6 @@
 
 #define offsetof(TYPE,MEMBER)	((size_t)&amp ((TYPE*)0)->MEMBER)
-#define NULL	((void*)0)
+#define NULL	(0)
 
 
 typedef long wchar_t;

@@ -1,6 +1,10 @@
 #ifndef _LIMITS_H_
 #define _LIMITS_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #if defined(__ia64__)
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
@@ -68,4 +72,7 @@
 
 
 
+#ifdef __cplusplus
+}
+#endif
 #endif

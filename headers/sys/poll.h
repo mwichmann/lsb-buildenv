@@ -1,6 +1,10 @@
 #ifndef _SYS_POLL_H_
 #define _SYS_POLL_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #define POLLIN	0x0001
 #define POLLPRI	0x0002
@@ -10,13 +14,16 @@
 #define POLLNVAL	0x0020
 
 
-struct pollfd
-{
-  int fd;			/* File descriptor to poll. */
-  short events;			/* Types of events poller cares about. */
-  short revents;		/* Types of events that actually occurred. */
+  struct pollfd
+  {
+    int fd;			/* File descriptor to poll. */
+    short events;		/* Types of events poller cares about. */
+    short revents;		/* Types of events that actually occurred. */
+  }
+   ;
+
+
+#ifdef __cplusplus
 }
- ;
-
-
+#endif
 #endif

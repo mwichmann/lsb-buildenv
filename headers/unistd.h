@@ -1,6 +1,10 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <stddef.h>
 #include <sys/types.h>
 #include <sys/time.h>
@@ -9,13 +13,13 @@
 #define SEEK_SET	0
 #define STDOUT_FILENO	1
 #define SEEK_CUR	1
-#define SEEK_END	2
 #define STDERR_FILENO	2
+#define SEEK_END	2
 
 
-typedef long long off64_t;
+  typedef long long off64_t;
 
-typedef int *intptr_t;
+  typedef int *intptr_t;
 
 
 /* Values for the second argument to access.*/
@@ -169,112 +173,117 @@ typedef int *intptr_t;
 
 
 
-extern char **__environ;
-extern pid_t __getpgid (void);
-extern void _exit (int);
-extern int acct (void);
-extern unsigned int alarm (unsigned int);
-extern int chown (char *, uid_t, gid_t);
-extern int chroot (char *);
-extern size_t confstr (void);
-extern int creat (char *, mode_t);
-extern int creat64 (char *, mode_t);
-extern char *ctermid (void);
-extern char *cuserid (void);
-extern int daemon (int, int);
-extern int execl (char *, char *, ...);
-extern int execle (char *, char *, ...);
-extern int execlp (char *, char *, ...);
-extern int execv (char *, char *[]);
-extern int execvp (char *, char *[]);
-extern int fdatasync (void);
-extern int ftruncate64 (int, off64_t);
-extern long gethostid (void);
-extern char *getlogin (void);
-extern int getopt (int, char *[], const char *);
-extern pid_t getpgrp (void);
-extern pid_t getsid (void);
-extern char *getwd (void);
-extern int lockf (void);
-extern int mkstemp (char *);
-extern int nice (int);
-extern char *optarg;
-extern int opterr;
-extern int optind;
-extern int optopt;
-extern int rename (char *, char *);
-extern int setegid (void);
-extern int seteuid (void);
-extern int sethostid (void);
-extern int sethostname (char *, size_t);
-extern int setpgrp (void);
-extern void swab (void *, void *, ssize_t);
-extern int sync (void);
-extern pid_t tcgetpgrp (void);
-extern int tcsetpgrp (void);
-extern int truncate (void);
-extern int truncate64 (void);
-extern char *ttyname (int);
-extern unsigned int ualarm (void);
-extern void usleep (unsigned long);
-extern int close (int);
-extern int fsync (int);
-extern off_t lseek (int, off_t, int);
-extern int open (char *, int, ...);
-extern int pause (void);
-extern int read (int, void *, size_t);
-extern int write (int, void *, size_t);
-extern char *crypt (const char *, const char *);
-extern void encrypt (char, int);
-extern void setkey (char *);
-extern int access (char *, int);
-extern int brk (void *);
-extern int chdir (char *);
-extern int dup (int);
-extern int dup2 (int, int);
-extern int execve (const char *, const char *[], const char *[]);
-extern int fchdir (int);
-extern int fchown (int, uid_t, gid_t);
-extern pid_t fork (void);
-extern gid_t getegid (void);
-extern uid_t geteuid (void);
-extern gid_t getgid (void);
-extern int getgroups (int, gid_t[]);
-extern int gethostname (char *, size_t);
-extern pid_t getpgid (pid_t);
-extern pid_t getpid (void);
-extern uid_t getuid (void);
-extern int lchown (char *, uid_t, gid_t);
-extern int link (char *, char *);
-extern int mkdir (char *, mode_t);
-extern long pathconf (void);
-extern int pipe (int[2]);
-extern int readlink (char *, char *, size_t);
-extern int rmdir (char *);
-extern void *sbrk (ptrdiff_t);
-extern int select (int, fd_set *, fd_set *, fd_set *, struct timeval *);
-extern int setgid (gid_t);
-extern int setpgid (pid_t, pid_t);
-extern int setregid (gid_t, gid_t);
-extern int setreuid (uid_t, uid_t);
-extern pid_t setsid (void);
-extern int setuid (uid_t);
-extern unsigned int sleep (unsigned int);
-extern int symlink (char *, char *);
-extern long sysconf (int);
-extern int unlink (char *);
-extern pid_t vfork (void);
-extern int pread (int, void *, size_t, off_t);
-extern int pwrite (int, void *, size_t, off_t);
-extern char **_environ;
-extern long fpathconf (void);
-extern int ftruncate (int, off_t);
-extern char *getcwd (char *, size_t);
-extern size_t getpagesize (void);
-extern pid_t getppid (void);
-extern int isatty (int);
-extern loff_t lseek64 (int, loff_t, int);
-extern int open64 (char *, int, ...);
-extern ssize_t pwrite64 (void);
-extern int ttyname_r (void);
+  extern char **__environ;
+  extern pid_t __getpgid (void);
+  extern void _exit (int);
+  extern int acct (void);
+  extern unsigned int alarm (unsigned int);
+  extern int chown (char *, uid_t, gid_t);
+  extern int chroot (char *);
+  extern size_t confstr (void);
+  extern int creat (char *, mode_t);
+  extern int creat64 (char *, mode_t);
+  extern char *ctermid (void);
+  extern char *cuserid (void);
+  extern int daemon (int, int);
+  extern int execl (char *, char *, ...);
+  extern int execle (char *, char *, ...);
+  extern int execlp (char *, char *, ...);
+  extern int execv (char *, char *[]);
+  extern int execvp (char *, char *[]);
+  extern int fdatasync (void);
+  extern int ftruncate64 (int, off64_t);
+  extern int getdomainname (char *, size_t);
+  extern long gethostid (void);
+  extern char *getlogin (void);
+  extern int getopt (int, char *[], const char *);
+  extern pid_t getpgrp (void);
+  extern pid_t getsid (void);
+  extern char *getwd (void);
+  extern int lockf (void);
+  extern int mkstemp (char *);
+  extern int nice (int);
+  extern char *optarg;
+  extern int opterr;
+  extern int optind;
+  extern int optopt;
+  extern int rename (char *, char *);
+  extern int setdomainname (char *, size_t);
+  extern int setegid (void);
+  extern int seteuid (void);
+  extern int sethostid (void);
+  extern int sethostname (char *, size_t);
+  extern int setpgrp (void);
+  extern void swab (void *, void *, ssize_t);
+  extern int sync (void);
+  extern pid_t tcgetpgrp (void);
+  extern int tcsetpgrp (void);
+  extern int truncate (void);
+  extern int truncate64 (void);
+  extern char *ttyname (int);
+  extern unsigned int ualarm (void);
+  extern void usleep (unsigned long);
+  extern int close (int);
+  extern int fsync (int);
+  extern off_t lseek (int, off_t, int);
+  extern int open (char *, int, ...);
+  extern int pause (void);
+  extern int read (int, void *, size_t);
+  extern int write (int, void *, size_t);
+  extern char *crypt (const char *, const char *);
+  extern void encrypt (char, int);
+  extern void setkey (char *);
+  extern int access (char *, int);
+  extern int brk (void *);
+  extern int chdir (char *);
+  extern int dup (int);
+  extern int dup2 (int, int);
+  extern int execve (const char *, const char *[], const char *[]);
+  extern int fchdir (int);
+  extern int fchown (int, uid_t, gid_t);
+  extern pid_t fork (void);
+  extern gid_t getegid (void);
+  extern uid_t geteuid (void);
+  extern gid_t getgid (void);
+  extern int getgroups (int, gid_t[]);
+  extern int gethostname (char *, size_t);
+  extern pid_t getpgid (pid_t);
+  extern pid_t getpid (void);
+  extern uid_t getuid (void);
+  extern int lchown (char *, uid_t, gid_t);
+  extern int link (char *, char *);
+  extern int mkdir (char *, mode_t);
+  extern long pathconf (void);
+  extern int pipe (int[2]);
+  extern int readlink (char *, char *, size_t);
+  extern int rmdir (char *);
+  extern void *sbrk (ptrdiff_t);
+  extern int select (int, fd_set *, fd_set *, fd_set *, struct timeval *);
+  extern int setgid (gid_t);
+  extern int setpgid (pid_t, pid_t);
+  extern int setregid (gid_t, gid_t);
+  extern int setreuid (uid_t, uid_t);
+  extern pid_t setsid (void);
+  extern int setuid (uid_t);
+  extern unsigned int sleep (unsigned int);
+  extern int symlink (char *, char *);
+  extern long sysconf (int);
+  extern int unlink (char *);
+  extern pid_t vfork (void);
+  extern int pread (int, void *, size_t, off_t);
+  extern int pwrite (int, void *, size_t, off_t);
+  extern char **_environ;
+  extern long fpathconf (void);
+  extern int ftruncate (int, off_t);
+  extern char *getcwd (char *, size_t);
+  extern size_t getpagesize (void);
+  extern pid_t getppid (void);
+  extern int isatty (int);
+  extern loff_t lseek64 (int, loff_t, int);
+  extern int open64 (char *, int, ...);
+  extern ssize_t pwrite64 (void);
+  extern int ttyname_r (void);
+#ifdef __cplusplus
+}
+#endif
 #endif

@@ -7,6 +7,12 @@
 #include <unistd.h>
 #include <wctype.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
 #define FOPEN_MAX	16
@@ -17,21 +23,21 @@
 #define L_cuserid	9
 
 
-typedef struct _IO_FILE *FILE;
+  typedef struct _IO_FILE *FILE;
 
-typedef struct
-{
-  off_t __pos;
-  mbstate_t __state;
-}
-fpos_t;
+  typedef struct
+  {
+    off_t __pos;
+    mbstate_t __state;
+  }
+  fpos_t;
 
-typedef struct
-{
-  off64_t __pos;
-  mbstate_t __state;
-}
-fpos64_t;
+  typedef struct
+  {
+    off64_t __pos;
+    mbstate_t __state;
+  }
+  fpos64_t;
 
 
 /* The opaque type of streams.*/
@@ -53,76 +59,79 @@ fpos64_t;
 
 
 
-extern char **_sys_errlist;
-extern void clearerr (FILE *);
-extern int fclose (FILE *);
-extern FILE *fdopen (int, char *);
-extern int fflush_unlocked (void);
-extern int fileno (FILE *);
-extern FILE *fopen (char *, char *);
-extern int fprintf (FILE *, char *, ...);
-extern int fputc (int, FILE *);
-extern FILE *freopen (char *, char *, FILE *);
-extern FILE freopen64 (void);
-extern int fscanf (FILE *, char *, ...);
-extern int fseek (FILE *, long, int);
-extern int fseeko (FILE *, off_t, int);
-extern int fseeko64 (FILE *, loff_t, int);
-extern off_t ftello (FILE *);
-extern loff_t ftello64 (FILE *);
-extern int getchar (void);
-extern int getchar_unlocked (void);
-extern int getw (void);
-extern int pclose (FILE *);
-extern void perror (char *);
-extern FILE *popen (char *, char *);
-extern int printf (char *, ...);
-extern int putc_unlocked (void);
-extern int putchar (int);
-extern int putchar_unlocked (void);
-extern int putw (void);
-extern int remove (char *);
-extern void rewind (FILE *);
-extern int scanf (char *, ...);
-extern void setbuf (FILE *, char *);
-extern int sprintf (char *, char *, ...);
-extern int sscanf (char *, char *, ...);
-extern FILE *stderr;
-extern FILE *stdin;
-extern FILE *stdout;
-extern char *tempnam (void);
-extern FILE tmpfile64 (void);
-extern FILE *tmpfile (void);
-extern char *tmpnam (char *);
-extern int vfprintf (FILE *, char *, va_list);
-extern int vprintf (char *, va_list);
-extern int feof (FILE *);
-extern int ferror (FILE *);
-extern int fflush (FILE *);
-extern int fgetc (FILE *);
-extern int fgetpos (FILE *, fpos_t *);
-extern char *fgets (char *, int, FILE *);
-extern int fputs (char *, FILE *);
-extern size_t fread (void *, size_t, size_t, FILE *);
-extern int fsetpos (FILE *, fpos_t *);
-extern long ftell (FILE *);
-extern size_t fwrite (void *, size_t, size_t, FILE *);
-extern int getc (FILE *);
-extern char *gets (char *);
-extern int putc (int, const FILE *);
-extern int puts (char *);
-extern int setvbuf (FILE *, char *, int, size_t);
-extern int snprintf (char *, size_t, char *, ...);
-extern int ungetc (int, FILE *);
-extern int vsnprintf (char *, size_t, char *, va_list);
-extern int vsprintf (char *, char *, va_list);
-extern void flockfile (void);
-extern int fgetpos64 (void);
-extern FILE fopen64 (const char *, const char *);
-extern int fsetpos64 (void);
-extern int ftrylockfile (void);
-extern void funlockfile (void);
-extern int getc_unlocked (void);
-extern void setbuffer (FILE *, char *, size_t);
-extern int vasprintf (char **, const char *, va_list);
+  extern char **_sys_errlist;
+  extern void clearerr (FILE *);
+  extern int fclose (FILE *);
+  extern FILE *fdopen (int, char *);
+  extern int fflush_unlocked (void);
+  extern int fileno (FILE *);
+  extern FILE *fopen (const char *, char *);
+  extern int fprintf (FILE *, char *, ...);
+  extern int fputc (int, FILE *);
+  extern FILE *freopen (char *, char *, FILE *);
+  extern FILE freopen64 (void);
+  extern int fscanf (FILE *, char *, ...);
+  extern int fseek (FILE *, long, int);
+  extern int fseeko (FILE *, off_t, int);
+  extern int fseeko64 (FILE *, loff_t, int);
+  extern off_t ftello (FILE *);
+  extern loff_t ftello64 (FILE *);
+  extern int getchar (void);
+  extern int getchar_unlocked (void);
+  extern int getw (void);
+  extern int pclose (FILE *);
+  extern void perror (const char *);
+  extern FILE *popen (char *, char *);
+  extern int printf (char *, ...);
+  extern int putc_unlocked (void);
+  extern int putchar (int);
+  extern int putchar_unlocked (void);
+  extern int putw (void);
+  extern int remove (char *);
+  extern void rewind (FILE *);
+  extern int scanf (char *, ...);
+  extern void setbuf (FILE *, char *);
+  extern int sprintf (char *, char *, ...);
+  extern int sscanf (char *, char *, ...);
+  extern FILE *stderr;
+  extern FILE *stdin;
+  extern FILE *stdout;
+  extern char *tempnam (void);
+  extern FILE tmpfile64 (void);
+  extern FILE *tmpfile (void);
+  extern char *tmpnam (char *);
+  extern int vfprintf (FILE *, char *, va_list);
+  extern int vprintf (char *, va_list);
+  extern int feof (FILE *);
+  extern int ferror (FILE *);
+  extern int fflush (FILE *);
+  extern int fgetc (FILE *);
+  extern int fgetpos (FILE *, fpos_t *);
+  extern char *fgets (char *, int, FILE *);
+  extern int fputs (char *, FILE *);
+  extern size_t fread (void *, size_t, size_t, FILE *);
+  extern int fsetpos (FILE *, fpos_t *);
+  extern long ftell (FILE *);
+  extern size_t fwrite (void *, size_t, size_t, FILE *);
+  extern int getc (FILE *);
+  extern char *gets (char *);
+  extern int putc (int, const FILE *);
+  extern int puts (char *);
+  extern int setvbuf (FILE *, char *, int, size_t);
+  extern int snprintf (char *, size_t, char *, ...);
+  extern int ungetc (int, FILE *);
+  extern int vsnprintf (char *, size_t, char *, va_list);
+  extern int vsprintf (char *, char *, va_list);
+  extern void flockfile (void);
+  extern int fgetpos64 (void);
+  extern FILE fopen64 (const char *, const char *);
+  extern int fsetpos64 (void);
+  extern int ftrylockfile (void);
+  extern void funlockfile (void);
+  extern int getc_unlocked (void);
+  extern void setbuffer (FILE *, char *, size_t);
+  extern int vasprintf (char **, const char *, va_list);
+#ifdef __cplusplus
+}
+#endif
 #endif

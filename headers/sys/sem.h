@@ -1,6 +1,10 @@
 #ifndef _SYS_SEM_H_
 #define _SYS_SEM_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <sys/types.h>
 #include <sys/ipc.h>
 
@@ -14,29 +18,32 @@
 #define SETALL	17
 
 
-struct sembuf
-{
-  short sem_num;
-  short sem_op;
-  short sem_flg;
+  struct sembuf
+  {
+    short sem_num;
+    short sem_op;
+    short sem_flg;
+  }
+   ;
+
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;	/* operation permission struct */
+    time_t sem_otime;		/* last semop() time */
+    unsigned long __unused1;
+    time_t sem_ctime;		/* last time changed by semctl() */
+    unsigned long __unused2;
+    unsigned long sem_nsems;	/* number of semaphores in set */
+    unsigned long __unused3;
+    unsigned long __unused4;
+  }
+   ;
+
+
+  extern int semctl (int, int, int, ...);
+  extern int semget (key_t, int, int);
+  extern int semop (int, struct sembuf *, unsigned int);
+#ifdef __cplusplus
 }
- ;
-
-struct semid_ds
-{
-  struct ipc_perm sem_perm;	/* operation permission struct */
-  time_t sem_otime;		/* last semop() time */
-  unsigned long __unused1;
-  time_t sem_ctime;		/* last time changed by semctl() */
-  unsigned long __unused2;
-  unsigned long sem_nsems;	/* number of semaphores in set */
-  unsigned long __unused3;
-  unsigned long __unused4;
-}
- ;
-
-
-extern int semctl (int, int, int, ...);
-extern int semget (key_t, int, int);
-extern int semop (int, struct sembuf *, unsigned int);
+#endif
 #endif
