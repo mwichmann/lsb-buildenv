@@ -80,8 +80,7 @@ XcmsPad
 /*
  * 129 XCMS Color Structure
  */
-typedef union 	
-{
+typedef union 	{
 union 	spec;	
 XcmsRGB	RGB;	
 unsigned long	pixel;	

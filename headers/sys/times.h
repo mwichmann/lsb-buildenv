@@ -2,11 +2,11 @@
  * 53 Default HeaderGroup for sys/times.h
  */
 struct tms {
-    Unknown Type:".." tms_utime;
-    Unknown Type:".." tms_stime;
-    Unknown Type:".." tms_cutime;
-    Unknown Type:".." tms_cstime;
+    clock_t tms_utime;
+    clock_t tms_stime;
+    clock_t tms_cutime;
+    clock_t tms_cstime;
 };
 
 
-times(struct tms *);
+clock_t times(struct tms *);

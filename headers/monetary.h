@@ -2,4 +2,4 @@
  * 30 Default HeaderGroup for monetary.h
  */
 
-strfmon(char *, size_t, char *, ...);
+ssize_t strfmon(char *, size_t, char *, ...);

@@ -42,6 +42,8 @@ typedef __u_int __mode_t;
 
 typedef __u_int __gid_t;
 
+typedef int ptrdiff_t;
+
 typedef __u_int __uid_t;
 
 typedef int __pid_t;
