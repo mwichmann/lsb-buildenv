@@ -1,6 +1,7 @@
 #ifndef _NETDB_H_
 #define _NETDB_H_
 
+#include <stddef.h>
 #include <sys/socket.h>
 
 #ifdef __cplusplus
