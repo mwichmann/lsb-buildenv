@@ -343,7 +343,8 @@ extern "C"
   extern int color_content (short, short *, short *, short *);
   extern int color_set (short, void *);
   extern int COLOR_PAIR (int);
-  extern int copywin (WINDOW *, WINDOW *, int, int, int, int, int, int, int);
+  extern int copywin (const WINDOW *, WINDOW *, int, int, int, int, int, int,
+		      int);
   extern int curs_set (int);
   extern int def_prog_mode (void);
   extern int def_shell_mode (void);
@@ -401,8 +402,8 @@ extern "C"
   extern int meta (WINDOW *, bool);
   extern int move (int, int);
   extern int mvaddch (int, int, const chtype);
-  extern int mvaddchnstr (int, int, chtype *, int);
-  extern int mvaddchstr (int, int, chtype *);
+  extern int mvaddchnstr (int, int, const chtype *, int);
+  extern int mvaddchstr (int, int, const chtype *);
   extern int mvaddnstr (int, int, const char *, int);
   extern int mvaddstr (int, int, const char *);
   extern int mvchgat (int, int, int, attr_t, short, const void *);
@@ -425,8 +426,8 @@ extern "C"
   extern int mvscanw (int, int, char *, ...);
   extern int mvvline (int, int, chtype, int);
   extern int mvwaddch (WINDOW *, int, int, const chtype);
-  extern int mvwaddchnstr (WINDOW *, int, int, chtype *, int);
-  extern int mvwaddchstr (WINDOW *, int, int, chtype *);
+  extern int mvwaddchnstr (WINDOW *, int, int, const chtype *, int);
+  extern int mvwaddchstr (WINDOW *, int, int, const chtype *);
   extern int mvwaddnstr (WINDOW *, int, int, const char *, int);
   extern int mvwaddstr (WINDOW *, int, int, const char *);
   extern int mvwchgat (WINDOW *, int, int, int, attr_t, short, const void *);
@@ -459,8 +460,8 @@ extern "C"
   extern void noqiflush (void);
   extern int noraw (void);
   extern int notimeout (WINDOW *, bool);
-  extern int overlay (WINDOW *, WINDOW *);
-  extern int overwrite (WINDOW *, WINDOW *);
+  extern int overlay (const WINDOW *, WINDOW *);
+  extern int overwrite (const WINDOW *, WINDOW *);
   extern int pair_content (short, short *, short *);
   extern int PAIR_NUMBER (int);
   extern int pechochar (WINDOW *, chtype);
@@ -521,8 +522,8 @@ extern "C"
   extern int vwscanw (WINDOW *, char *, va_list);
   extern int vw_scanw (WINDOW *, char *, va_list);
   extern int waddch (WINDOW *, const chtype);
-  extern int waddchnstr (WINDOW *, chtype *, int);
-  extern int waddchstr (WINDOW *, chtype *);
+  extern int waddchnstr (WINDOW *, const chtype *, int);
+  extern int waddchstr (WINDOW *, const chtype *);
   extern int waddnstr (WINDOW *, const char *, int);
   extern int waddstr (WINDOW *, const char *);
   extern int wattron (WINDOW *, int);
