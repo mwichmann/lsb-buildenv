@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+
+#
+# This script should be pulling the info from the IntParams table instead
+#
+
+use Getopt::Long;
+use Mysql;
+
+use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
+
+# Uncomment to trace SQL statments
+#$trace=1;
+
+
+$Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
+
+#
+# Get the Header id
+#
+$select = "SELECT Hname FROM Header WHERE Hstd='Yes'";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	print "./$entry{'Hname'} ";
+	}
+
+
