@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.8 $
+# This is $Revision: 1.9 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.9  2001/12/19 21:48:00  anderson
+# Add overrides for the Xt structures that aren't quite right in the DB
+#
 # Revision 1.8  2001/12/19 03:34:28  cyeoh
 # Add overriding fixes for variables with incorrect data sizes
 # in the db
@@ -77,7 +80,25 @@ my(%OverrideVariables) =
      "libc" => { "__tzname" => 0x8,
                  "_sys_errlist" => 0x1f4},
      "libXt" => { "XtShellStrings" => 0x509,
-                  "XtStrings" => 0xa59 }
+                  "XtStrings" => 0xa59,
+                  "compositeClassRec" => 0x088,
+                  "compositeWidgetClass" => 004,
+                  "constraintClassRec" => 0x0a4,
+                  "constraintWidgetClass" => 0x004,
+                  "coreWidgetClass" => 0x004,
+                  "objectClass" => 0x004,
+                  "objectClassRec" => 0x074,
+                  "overrideShellClassRec" => 0x090,
+                  "rectObjClass" => 0x004,
+                  "rectObjClassRec" => 0x074,
+                  "sessionShellClassRec" => 0x0a0,
+                  "shellClassRec" => 0x08c,
+                  "topLevelShellClassRec" => 0x098,
+                  "transientShellClassRec" => 0x098,
+                  "widgetClass" => 0x004,
+                  "widgetClassRec" => 0x074,
+                  "wmShellClassRec" => 0x090
+		 }
      );
 
 #----------------------------------------------------------------------
