@@ -61,7 +61,6 @@ struct pam_conv
 #define PAM_AUTHTOK_DISABLE_AGING	23
 #define PAM_TRY_AGAIN	24
 #define PAM_ABORT	26
-#define PAM_AUTHTOKEN_REQD	27
 #define PAM_AUTHTOK_EXPIRED	27
 #define PAM_BAD_ITEM	29
 #define PAM_SERVICE_ERR	3
