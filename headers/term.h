@@ -10,6 +10,13 @@ extern "C"
 
 
 
+  struct term;
+
+
+
+
+  typedef struct term TERMINAL;
+
 
   extern int putp (const char *);
   extern int tigetflag (char *);
