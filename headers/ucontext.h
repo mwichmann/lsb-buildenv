@@ -3,6 +3,7 @@
 
 #include <inttypes.h>
 #include <signal.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -14,6 +15,14 @@ extern "C"
 #define _SC_GR0_OFFSET	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 #endif
 
+
+  typedef struct sigaltstack
+  {
+    void *ss_sp;
+    int ss_flags;
+    size_t ss_size;
+  }
+  stack_t;
 
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
@@ -372,26 +381,13 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
-  struct ucontext
-  {
-    unsigned long uc_flags;
-    struct ucontext *uc_link;
-    stack_t uc_stack;
-    mcontext_t uc_mcontext;
-    __sigset_t uc_sigmask;
-  }
-   ;
-
-#endif
-#if __s390x__
-/* S390X */
   typedef struct ucontext
   {
     unsigned long uc_flags;
     struct ucontext *uc_link;
     stack_t uc_stack;
     mcontext_t uc_mcontext;
-    __sigset_t uc_sigmask;
+    sigset_t uc_sigmask;
   }
   ucontext_t;
 
@@ -414,20 +410,6 @@ extern "C"
   struct _libc_xmmreg
   {
     uint32_t element[4];
-  }
-   ;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-  struct ucontext
-  {
-    unsigned long uc_flags;
-    struct ucontext *uc_link;
-    stack_t uc_stack;
-    mcontext_t uc_mcontext;
-    sigset_t uc_sigmask;
-    struct _libc_fpstate __fpregs_mem;
   }
    ;
 

@@ -375,7 +375,7 @@ extern "C"
     __sigaction_handler;
     unsigned long sa_flags;
     void (*sa_restorer) (void);
-    __sigset_t sa_mask;
+    sigset_t sa_mask;
   }
    ;
 
@@ -400,14 +400,6 @@ extern "C"
 
 /* Structure used in sigaltstack call.*/
 
-
-  typedef struct sigaltstack
-  {
-    void *ss_sp;
-    int ss_flags;
-    size_t ss_size;
-  }
-  stack_t;
 
 
 
