@@ -8,9 +8,9 @@ extern "C"
 #endif
 
 
-#define FD_ISSET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&(1<<d))
-#define FD_CLR(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1<<d))
-#define FD_SET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<d))
+#define FD_ISSET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&(1<<((d)%(8*sizeof(long)))))
+#define FD_CLR(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1<<((d)%(8*sizeof(long)))))
+#define FD_SET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
 #define FALSE	0
 #define TRUE	1
 #define FD_SETSIZE	1024
