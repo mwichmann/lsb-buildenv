@@ -6,9 +6,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.1 $
+# This is $Revision: 1.2 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.2  2001/09/04 02:27:42  cyeoh
+# Load data file containing symbol/size pairs. This is a workaround
+# for missing data in the LSB database. It is also IA32 specific.
+#
 # Revision 1.1  2001/08/27 08:01:08  cyeoh
 # Adds core files needed for lsb stub library generation
 #
@@ -25,72 +29,42 @@ my($DBHost) = "";
 my($TargetArch);
 my($TargetArchId);
 my(%Options);
+my(%MissingData);
 
-######################################################################
-# Determine type for an interface given the Ireturn field for it
-# Returns a string of the C type
-#  sub DetermineType($$)
-#  {
-#    my($dbh) = shift;
-#    my($typeNum) = shift;
-#    my($sth);
-#    my($row);
-  
-#    if ($typeNum==0)
-#    {
-#      print STDERR "Passed type number 0. Using int\n";
-#      return "int";
-#    }
-
-#    $sth = $dbh->prepare("SELECT Tname,Ttype,Tbasetype from Type where Tid=$typeNum")
-#        || die $dbh->errstr;
-#    $sth->execute() || die $sth->errstr;
-
-#    $row = $sth->fetchrow_hashref();
-#    if (!defined($row))
-#    {
-#      print "Unable to find type num $typeNum. Making up a value.\n";
-#      return "int";
-#    }
-
-#    if ($row->{Ttype} eq "Intrinsic")
-#    {
-#      return $row->{Tname};
-#    }
-#    elsif ($row->{Ttype} eq "Funcptr" || $row->{Ttype} eq "Pointer")
-#    {
-#      return "void *";
-#    }
-#    elsif ($row->{Ttype} eq "Enum")
-#    {
-#      return "int";
-#    }
-#    elsif ($row->{Ttype} eq "Typedef")
-#    {
-#      return DetermineType($dbh, $row->{Tbasetype});
-#    }
-#    elsif ($row->{Ttype} eq "Struct")
-#    {
-#      print "Oops. Don't know how to handle a struct\n";
-#      return "int";
-#    }
-#    elsif ($row->{Ttype} eq "Union")
-#    {
-#      print "Oops. Don't know how to handle a union\n";
-#      return "int";
-#    }
-#    elsif ($row->{Ttype} eq "Unknown")
-#    {
-#      print "Hey, whats an unknown type doing in the database\n";
-#      return "int";
-#    }
-#    else
-#    {
-#      print "Unknown Ttype enum: $row->{Ttype}\n";
-#      return int;
-#    };
-
-#  }
+# Load data missing from database for size of variables
+# IA32 specific!
+sub LoadMissingData()
+{
+  local(*DATAFILE);
+  my($line);
+  my($symbol, $size);
+  if (open(DATAFILE, "missing_data.txt"))
+  {
+    while (defined($line = <DATAFILE>))
+    {
+      if ($line =~ /^\#/)
+      {
+        # Comment
+        next;
+      }
+      else
+      {
+        chomp($line);
+        ($symbol, $size) = split(/\s+/, $line);
+        if (defined($MissingData{$symbol}))
+        {
+          print "Warning: $symbol defined twice in missing_data.txt\n";
+        }
+        $MissingData{$symbol} = hex($size);
+      }
+    }
+    close(DATAFILE);
+  }
+  else
+  {
+    print "Could not open missing_data.txt\n";
+  }
+}
 
 ######################################################################
 # Generate C stub code for a library
@@ -148,22 +122,31 @@ sub GenerateLibrary($$$)
   while ($row = $sth->fetchrow_hashref())
   {
     # Work out size of data variable
-    if (!defined($row->{"ATsize"}))
+    if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
     {
-      print STDERR "Size not available for symbol $row->{Iname}"
-          . "  Type ($row->{Ireturn})\n";
-      $size = 1000; # temporarily make it big to avoid problems
+      if (defined($MissingData{$row->{Iname}}))
+      {
+        $size = $MissingData{$row->{Iname}};
+      }
+      else
+      {
+        die "No data for symbol $row->{Iname}\n";
+      }
+#      print STDOUT "Size not available for symbol $row->{Iname}"
+#          . "  Type ($row->{Ireturn})\n";
+#      $size = 1000; # temporarily make it big to avoid problems
     }
-    elsif ($row->{"ATsize"} == 0)
-    {
-      print STDERR "Size for symbol $row->{Iname} of Type $row->{Ireturn} is 0\n";
-      $size = 1000; # temporarily make it big to avoid problems
-    }
+#      elsif ($row->{"ATsize"} == 0)
+#      {
+#        print STDOUT "Size for symbol $row->{Iname} of Type $row->{Ireturn} is 0\n";
+#        $size = 1000; # temporarily make it big to avoid problems
+#      }
     else
     {
       $size = $row->{"ATsize"};
     }
     print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");
+    die "Size 0 symbol for $row->{Iname}\n" unless $size!=0;
 
     if (defined($row->{Vname}))
     {
@@ -259,6 +242,8 @@ else
 {
   $TargetArchId = $row->{Aid};
 }
+
+LoadMissingData();
 
 # Map of name to run-time name of shared library
 local(*LIBMAPFILE);
