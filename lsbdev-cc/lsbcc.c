@@ -471,11 +471,15 @@ if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(syslibs,"-Wl,-Bdynamic");
 	argvaddstring(syslibs,"-lgcc_s");
 }
+argvaddstring(syslibs,"-lgcc");
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Appending -lc -lc_nonshared -lgcc to the library list\n");
+	fprintf(stderr,"Appending -lgcc -lc -lc_nonshared -lgcc to the library list\n");
 argvaddstring(syslibs,"-lm");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
+if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(syslibs,"-lgcc_s");
+}
 argvaddstring(syslibs,"-lgcc");
 
 gccargs=argvinit();
