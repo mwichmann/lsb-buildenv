@@ -350,6 +350,23 @@ char *proginterpreter =
 	"Unknown_program_interpreter";
 #endif
 
+/*
+ * We need to set some defines to correctly describe the assumed environment.
+ */
+
+char *featuresettings[] = {
+	"-D_ISOC99_SOURCE",
+	"-D_XOPEN_SOURCE=500",
+	"-D_XOPEN_SOURCE_EXTENDED",
+	"-D_LARGEFILE_SOURCE",
+	"-D_LARGEFILE64_SOURCE",
+	"-D_BSD_SOURCE",
+	"-D_SVID_SOURCE",
+	"-D_GNU_SOURCE"
+	};
+
+int numfeaturesettings=(sizeof(featuresettings)/sizeof(char *));
+
 
 main(int argc, char *argv[])
 {
@@ -414,7 +431,7 @@ if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 	}
 
 if( lsbcc_debug&DEBUG_ARGUMENTS )
-	for(i=0;i<argc;i++ )
+	for(i=0;i<argc;i++)
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 	
 /* Determine if we are being called for C or C++ */
@@ -441,6 +458,10 @@ argvaddstring(proginterp,progintbuf);
 
 target=argvinit();
 options=argvinit();
+
+for(i=0;i<numfeaturesettings;i++) {
+	argvaddstring(options,featuresettings[i]);
+	}
 
 incpaths=argvinit();
 
