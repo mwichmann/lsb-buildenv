@@ -234,6 +234,7 @@ char *lsblibs[] = {
 	"c",
 	"m",
 	"pthread",
+	"pam",
 	"util",
 	"dl",
 	"crypt",
