@@ -46,6 +46,7 @@ sub dumplib($$)
 {
 local($Lname,$Lid)=@_;
 local(%sth);
+local(%Vername);
 
 $select  = "SELECT DISTINCT Iname,Vname ";
 $select .= "FROM Interface,LGInt,LibGroup ";
@@ -129,7 +130,7 @@ print LIBLINK "\n$Lname.so: $Lname.o\n";
 # Create the Version file
 #
 @vers= keys %Vername;
-if( $#vers > 0 ) {
+if( $#vers >= 0 ) {
 	open(VERFILE,">Version.$Lname");
 	foreach $ver (sort(keys(%Vername))) {
 		print VERFILE "$ver {\n\t*;\n\t};\n";
