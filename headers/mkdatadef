@@ -28,6 +28,7 @@ local($th);
 #if( $$type{'Tname'} =~ "anon" ) { return; }
 
 #switch ($ttype{'Ttype'})
+
 if( $$type{'Ttype'} eq "Intrinsic" ) {
 	print $$type{'Tname'}."\t";
 	return;
@@ -40,8 +41,12 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
 # Something about anon or not & wether to set nameonly
-	if (!$nameonly) { displaytype(\%entry); }
-	print $$type{'Tname'}."\t";
+	if (!$nameonly) {
+		displaytype(\%entry);
+		}
+	if( $entry{'Ttype'} ne 'FuncPtr' ) {
+		print $$type{'Tname'}."\t";
+		}
 	if (!$nameonly) {
 		print "; ";
 		print $$type{'Tcomment'}."\n";
@@ -50,31 +55,36 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	}
 
 if( $$type{'Ttype'} eq "Pointer" ) {
-	if (!$nameonly) { print "* "; }
+	#if (!$nameonly) { print "* "; }
 	$basetype=$$type{'Tbasetype'};
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
-	if (!$nameonly) { displaytype(\%entry); }
-	print $$type{'Tname'}."\t";
+	if (!$nameonly) {
+		displaytype(\%entry);
+		print "* ";
+	} else {
+		print $$type{'Tname'}."\t";
+	}
 	#print $$type{'Tcomment'}."\n";
 	return;
 	}
 
 if( $$type{'Ttype'} eq "Struct" ) {
 	print "struct ";
+
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
 		}
 	print $$type{'Tname'}."\t";
-	if (!$nameonly ) { print "{\n"; }
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
-	print $$type{'Tcomment'}."\n";
+	#print $$type{'Tcomment'}."\n";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
@@ -91,7 +101,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		print $tmentry{'TMcomment'}."\n";
 		$nameonly=0;
 		}
-	print "}\n";
+	if ($tmh->numrows ) { print "}\n"; }
 	return;
 	}
 
@@ -129,8 +139,82 @@ if( $$type{'Ttype'} eq "Union" ) {
 	return;
 	}
 
-print "Unknown Type: \"$$type{'Ttype'}\"\n";
-print "unknown\t";
+if( $$type{'Ttype'} eq "Enum" ) {
+	print "enum ";
+	if (!$nameonly ) { print "{\n"; }
+	$Tid=$$type{'Tid'};
+	if( $$type{'Tname'} =~ "anon" ) {
+		$$type{'Tname'} ="";
+		}
+	print $$type{'Tname'}."\t";
+	if( $nameonly ) { return; }
+	print $$type{'Tcomment'}."\n";
+
+	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
+	$tmselect.=" ORDER BY TMposition";
+	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	for(1..$tmh->numrows) {
+		%tmentry=$tmh->fetchhash;
+		# It's an enum, don't print out the types, just the names
+		#$TMtypeid=$tmentry{'TMtypeid'};
+		#$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		#$th = $Dbh->query($tselect) || die $Dbh->errmsg();
+		#%entry=$th->fetchhash;
+		#$nameonly=1;
+		#displaytype(\%entry);
+		print $tmentry{'TMname'};
+		if( $tmentry{'TMarray'} ) {
+			print "[".$tmentry{'TMarray'}."]";
+			}
+		if( $_ != $tmh->numrows ) {
+			print ",\t";
+			}
+		print $tmentry{'TMcomment'}."\n";
+		$nameonly=0;
+		}
+	print "}\n";
+	return;
+	}
+
+if( $$type{'Ttype'} eq "FuncPtr" ) {
+	$basetype=$$type{'Tbasetype'};
+	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+	%entry=$tth->fetchhash;
+	displaytype(\%entry);
+	print "(*"; 
+	$Tid=$$type{'Tid'};
+	if( $$type{'Tname'} =~ "fptr" ) {
+		$$type{'Tname'} =~ s/fptr-//;
+		}
+	print $$type{'Tname'}.")";
+	print $$type{'Tcomment'}."(";
+
+	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
+	$tmselect.=" ORDER BY TMposition";
+	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	for(1..$tmh->numrows) {
+		%tmentry=$tmh->fetchhash;
+		$TMtypeid=$tmentry{'TMtypeid'};
+		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
+		%entry=$th->fetchhash;
+		$nameonly=1;
+		displaytype(\%entry);
+		print $tmentry{'TMname'};
+		if( $tmentry{'TMarray'} ) {
+			print "[".$tmentry{'TMarray'}."]";
+			}
+		if( $_ != $tmh->numrows ) {
+			print ",";
+			}
+		$nameonly=0;
+		}
+	print ")\n";
+	return;
+	}
+
+print "Unknown Type: \".$$type{'Ttype'}.\"\n";
 }
 
 GetOptions("h=s" => \$headname,
