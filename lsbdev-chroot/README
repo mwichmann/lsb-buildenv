@@ -128,11 +128,18 @@ added in the near future.
   _IO_stdin_used
   __cxa_finalize
 
+Licence
+-------
+
+lsbdev is Copyright 2001 The Free Standards Group Inc, and distributed
+under the terms of the GNU Lesser General Public License (LGPL). See
+the License file for details.
+
 
 Feedback
 --------
 Please send any comments you may have to lsb-impl@linuxbase.org
 
 Chris Yeoh <cyeoh@samba.org>
-Last updated 2002/03/01
+Last updated 2002/04/10
 
