@@ -1,7 +1,6 @@
 #ifndef _SYSLOG_H_
 #define _SYSLOG_H_
 
-#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C"

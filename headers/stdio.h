@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <wctype.h>
 #include <stddef.h>
-#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C"
