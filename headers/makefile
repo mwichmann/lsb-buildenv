@@ -19,6 +19,8 @@ install:
 	find . -name '*.h' -print | cpio -pdu $$LSBHOME/src/build/usr/lsb/include
 
 clean:
+
+distclean: clean
 	find . -name '*.html' -print | xargs rm -f
 	find . -name '*.h' -print | xargs rm -f
 	find . -name '*.defs' -print | xargs rm -f
@@ -27,4 +29,3 @@ clean:
 	find . -name '*.cpp' -print | xargs rm -f
 	find . -name '*.txt' -print | xargs rm -f
 
-distclean: clean
