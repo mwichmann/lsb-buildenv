@@ -1,5 +1,3 @@
-void COLOR_PAIR() {} ;
-void PAIR_NUMBER() {} ;
 void addch() {} ;
 void addchnstr() {} ;
 void addchstr() {} ;
