@@ -42,8 +42,6 @@ extern "C"
 
   typedef int key_t;
 
-  typedef unsigned int id_t;
-
   typedef long suseconds_t;
 
   typedef unsigned int u_int;
@@ -103,6 +101,8 @@ extern "C"
   typedef int32_t ssize_t;
 
 #endif
+  typedef unsigned int id_t;
+
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
   typedef int32_t ssize_t;
