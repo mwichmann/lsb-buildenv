@@ -46,6 +46,9 @@ extern "C"
 #if __powerpc64__
 #define LONG_MAX	9223372036854775807L
 #endif
+#if __s390x__
+#define LONG_MAX	9223372036854775807L
+#endif
 
 
 
@@ -65,6 +68,9 @@ extern "C"
 #if __s390__ && !__s390x__
 #define CHAR_MIN	0
 #endif
+#if __s390x__
+#define CHAR_MIN	0
+#endif
 #define SCHAR_MAX	127
 #if __powerpc__ && !__powerpc64__
 #define CHAR_MAX	255
@@ -73,6 +79,9 @@ extern "C"
 #define CHAR_MAX	255
 #endif
 #if __s390__ && !__s390x__
+#define CHAR_MAX	255
+#endif
+#if __s390x__
 #define CHAR_MAX	255
 #endif
 #define UCHAR_MAX	255

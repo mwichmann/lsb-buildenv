@@ -497,7 +497,15 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  struct sigcontext;
+  struct sigcontext
+  {
+    long _unused[];
+    int signal;
+    unsigned long handler;
+    unsigned long oldmask;
+    struct pt_regs *regs;
+  }
+   ;
 
 #endif
 

@@ -35,10 +35,16 @@ extern "C"
 #if __powerpc64__
 #define FIONREAD	1074030207
 #endif
+#if __s390x__
+#define FIONREAD	21531
+#endif
 #if __powerpc64__
 #define TIOCNOTTY	21538
 #endif
 #if __s390__ && !__s390x__
+#define TIOCNOTTY	21538
+#endif
+#if __s390x__
 #define TIOCNOTTY	21538
 #endif
 

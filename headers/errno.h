@@ -68,6 +68,9 @@ extern "C"
 #define EDOM	33
 #define ERANGE	34
 #define EDEADLK	35
+#if __s390x__
+#define EDEADLOCK	35
+#endif
 #define ENAMETOOLONG	36
 #define ENOLCK	37
 #define ENOSYS	38

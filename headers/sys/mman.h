@@ -32,6 +32,9 @@ extern "C"
 #if __x86_64__
 #define MCL_CURRENT	1
 #endif
+#if __s390x__
+#define MCL_CURRENT	1
+#endif
 #define MS_ASYNC	1
 #if __powerpc__ && !__powerpc64__
 #define MCL_FUTURE	16384
@@ -49,6 +52,9 @@ extern "C"
 #define MCL_FUTURE	2
 #endif
 #if __x86_64__
+#define MCL_FUTURE	2
+#endif
+#if __s390x__
 #define MCL_FUTURE	2
 #endif
 #define MS_INVALIDATE	2

@@ -1,7 +1,23 @@
 
 
 
-
+struct pt_regs
+{
+  unsigned long gpr[];
+  unsigned long nip;
+  unsigned long msr;
+  unsigned long orig_gpr3;
+  unsigned long ctr;
+  unsigned long link;
+  unsigned long xer;
+  unsigned long ccr;
+  unsigned long mq;
+  unsigned long trap;
+  unsigned long dar;
+  unsigned long dsisr;
+  unsigned long result;
+}
+ ;
 
 
 
@@ -26,14 +42,7 @@
 
 
 
-typedef struct
-{
-  gregset_t gregs;
-  fpregset_t fpregs;
-  unsigned long oldmask;
-  unsigned long cr2;
-}
-mcontext_t;
+typedef struct sigcontext mcontext_t;
 
 
 typedef struct ucontext

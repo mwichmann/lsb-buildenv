@@ -14,6 +14,27 @@ extern "C"
 #endif
 
 
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  struct pt_regs
+  {
+    unsigned long gpr[];
+    unsigned long nip;
+    unsigned long msr;
+    unsigned long orig_gpr3;	/* Used for restarting system calls */
+    unsigned long ctr;
+    unsigned long link;
+    unsigned long xer;
+    unsigned long ccr;
+    unsigned long mq;		/* 601 only (not used at present). Used on APUS to hold IPL val */
+    unsigned long trap;		/* Reason for being here */
+    unsigned long dar;		/* Fault registers */
+    unsigned long dsisr;
+    unsigned long result;	/* Result of a system call */
+  }
+   ;
+
+#endif
 
 /* Type for general register.*/
 
@@ -28,6 +49,9 @@ extern "C"
 #if __i386__
 #define NGREG	19
 #endif
+#if __s390x__
+#define NGREG	27
+#endif
 #if __s390__ && !__s390x__
 #define NGREG	36
 #endif
@@ -40,11 +64,6 @@ extern "C"
 /* Container for all general registers.*/
 
 
-#if __i386__
-/* IA32 */
-  typedef greg_t gregset_t[19];
-
-#endif
 
 /* Number of each register is the `gregset_t' array.*/
 
@@ -115,14 +134,7 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef struct
-  {
-    gregset_t gregs;
-    fpregset_t fpregs;
-    unsigned long oldmask;
-    unsigned long cr2;
-  }
-  mcontext_t;
+  typedef struct sigcontext mcontext_t;
 
 #endif
 

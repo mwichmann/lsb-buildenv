@@ -46,4 +46,12 @@ struct sigaction
 
 
 
-struct sigcontext;
+struct sigcontext
+{
+  long _unused[];
+  int signal;
+  unsigned long handler;
+  unsigned long oldmask;
+  struct pt_regs *regs;
+}
+ ;

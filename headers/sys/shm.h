@@ -36,6 +36,9 @@ extern "C"
 #define SHM_REMAP	040000
 #define SHM_LOCK	11
 #define SHM_UNLOCK	12
+#if __s390x__
+#define SHMLBA	4096
+#endif
 
 
 

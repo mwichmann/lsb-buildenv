@@ -46,6 +46,9 @@ extern "C"
 #if __ia64__
 #define _STAT_VER	1
 #endif
+#if __s390x__
+#define _STAT_VER	1
+#endif
 #if __i386__
 #define _STAT_VER	3
 #endif
