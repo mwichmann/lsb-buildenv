@@ -10,7 +10,9 @@ extern "C"
 #endif
 
 
+#define CMSG_DATA(cmsg)	((void*)((char*)(cmsg)+CMSG_ALIGN(sizeof(structcmsghdr))))
 #define SHUT_RD	0
+#define SCM_RIGHTS	0x01
 #define MSG_WAITALL	0x100
 #define MSG_TRUNC	0x20
 #define MSG_EOR	0x80
@@ -21,11 +23,18 @@ extern "C"
 #define MSG_OOB	1
 #define SHUT_WR	1
 #define SO_BSDCOMPAT	14
+#define SO_RCVLOWAT	18
+#define SO_SNDLOWAT	19
 #define MSG_PEEK	2
 #define SHUT_RDWR	2
+#define SO_RCVTIMEO	20
+#define SO_SNDTIMEO	21
+#define SO_ACCEPTCONN	30
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
 #define PF_UNSPEC	AF_UNSPEC
+#define CMSG_NXTHDR(mhdr,	cmsg)cmsg_nxthdr((mhdr),(cmsg))
+#define CMSG_FIRSTHDR(msg)	__CMSG_FIRSTHDR((msg)->msg_control,(msg)->msg_controllen)
 
 
   struct linger
