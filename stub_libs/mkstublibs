@@ -6,9 +6,14 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.2 $
+# This is $Revision: 1.3 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.3  2001/10/19 07:19:45  cyeoh
+# Applies workaround for variables which are in reality just aliases to
+# other variables but this information is not stored in the database
+# so we use a hardcoded lookup table.
+#
 # Revision 1.2  2001/09/04 02:27:42  cyeoh
 # Load data file containing symbol/size pairs. This is a workaround
 # for missing data in the LSB database. It is also IA32 specific.
@@ -30,7 +35,108 @@ my($TargetArch);
 my($TargetArchId);
 my(%Options);
 my(%MissingData);
+my(%LibcAliases) = (
+  "sys_errlist" => "_sys_errlist",
+  "tzname" => "__tzname",
+  "daylight" => "__daylight",
+  "timezone" => "__timezone",
+  "_environ" => "__environ",
+  "environ" => "__environ",
+  "___brk_addr" => "__curbrk",
+  "program_invocation_name" => "__progname_full",
+  "program_invocation_short_name" => "__progname",
+  "_h_errno" => "h_errno" );
 
+# The following need to sit in the data segment instead of the bss
+my(%LibcData) = ( 
+  "_sys_errlist" => 1,
+  "__tzname" => 1,
+  "__daylight" => 1,
+  "__timezone" => 1,
+  "__environ" => 1,
+  "__curbrk" => 1,
+  "__progname_full" => 1,
+  "__progname" => 1,
+  "h_errno" => 1 );
+
+
+#----------------------------------------------------------------------
+# Look through local shared libraries for aliases
+# We only do this because the database does not (yet) have this
+# information.
+sub GenerateAliases($)
+{
+  my($libfilename) = shift;
+  my($aliases) = {};
+  my(@searchDirs) = ("/", "/lib", "/usr/lib", "/usr/X11R6/lib");
+  my($loop);
+  my($useDir);
+  my(%lookup);
+  my(@nmLine);
+  
+  local(*NMOUTPUT);
+
+  foreach $loop (@searchDirs)
+  {
+    if (-f "$loop/$libfilename")
+    {
+      $useDir = $loop;
+      last;
+    }
+  }
+  if (!defined($useDir))
+  {
+    die "Could not find $libfilename in search path (for aliases): @searchDirs\n";
+  }
+  
+  if (system("nm -D $useDir/$libfilename | sort > /tmp/mkstublibs.$$")
+      /256!=0)
+  {
+    die "nm of shared library failed\n";
+  }
+  
+  my($line);
+  if (open(NMOUTPUT, "/tmp/mkstublibs.$$"))
+  {
+    while (defined($line = <NMOUTPUT>))
+    {
+      chomp($line);
+      @nmLine = split(/ /, $line);
+      if ($#nmLine==2)
+      {
+        if ($nmLine[1] eq "D")
+        {
+          $lookup{$nmLine[0]} = $nmLine[2];
+        }
+      }
+    }
+    seek(NMOUTPUT, 0, 0);
+    while (defined($line = <NMOUTPUT>))
+    {
+      chomp($line);
+      @nmLine = split(/ /, $line);
+      if ($#nmLine==2)
+      {
+        if ($nmLine[1] eq "V")
+        {
+          if (exists($lookup{$nmLine[0]}))
+          {
+            print "Found alias: $nmLine[2] is alias to $lookup{$nmLine[0]}\n";
+            $aliases->{$nmLine[2]} = $lookup{$nmLine[0]};
+          }
+        }
+      }
+    }
+  }
+  else
+  {
+    die "Failed to open temorary file: /tmp/mkstublibs.$$\n";
+  }
+
+}
+
+
+#----------------------------------------------------------------------
 # Load data missing from database for size of variables
 # IA32 specific!
 sub LoadMissingData()
@@ -145,7 +251,24 @@ sub GenerateLibrary($$$)
     {
       $size = $row->{"ATsize"};
     }
-    print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");
+    
+    if ($libName ne "libc" || (!exists($LibcAliases{$row->{Iname}})
+                               && !exists($LibcData{$row->{Iname}})) )
+    {
+      print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");
+    }
+    elsif (exists($LibcAliases{$row->{Iname}}))
+    {
+      print(STUBFILE "__asm__(\".weak $row->{Iname}; $row->{Iname} = $LibcAliases{$row->{Iname}}\");\n");
+    }
+    else
+    {
+      my($varname) = $row->{Iname};
+      print(STUBFILE "__asm__(\".globl $varname; .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0\");\n");
+    }
+
+
+
     die "Size 0 symbol for $row->{Iname}\n" unless $size!=0;
 
     if (defined($row->{Vname}))
@@ -256,10 +379,12 @@ $sth = $dbh->prepare("SELECT Lid,Lname,Lrunname FROM Library "
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
+my($dataAliases);
 while ($row = $sth->fetchrow_hashref)
 {
-  print "Generating c stubs for $row->{Lname} library\n";
+  print "Generating c stubs for $row->{Lname} library ($row->{Lrunname})\n";
   print LIBMAPFILE "$row->{Lname} $row->{Lrunname}\n";
+#  $dataAliases = GenerateAliases($row->{Lrunname});
   GenerateLibrary($dbh, $row->{Lname}, $row->{Lid});
 }
 
