@@ -1,0 +1,30 @@
+.TH lsbcc "1" "" "lsbcc (LSB)" LSB
+.SH NAME
+lsbcc \- compiler driver for building LSB conformaning applications
+.SH SYNOPSIS
+.B lsbcc
+[\fIoptions\fR]
+.SH DESCRIPTION
+.PP
+This program should be used in place of the cc (or c++) command when
+building a program. The options accepted are the same as those for the regular
+compiler.
+.SH "AUTHORS"
+The contributors to the Linux Standard Base.
+.SH "REPORTING BUGS"
+Report bugs to <lsb-build@linuxbase.org>.
+.SH "BUGS"
+.PP
+Currently gcc or g++ is always called. There should be a way to override this.
+.PP
+The location of the gcc libdir is currently hard-coded. This should really
+be determined at run-time.
+.PP
+There is no way to enable some debugging, such as showing how the paramters
+are changed before being passed to the real compiler.
+.PP
+It is a little to easy to confuse lsbcc (and lsbc++). In particular, the libtool
+mechanism often makes it hard to cause the right thing to happen.
+.SH "SEE ALSO"
+Linux Standard Base specification and other documents at
+http://www.linuxbase.org/
