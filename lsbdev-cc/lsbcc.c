@@ -207,6 +207,7 @@ char *lsblibs[] = {
 	"Xext",
 	"SM",
 	"ICE",
+	"GL",
 	0
 	};
 
@@ -250,6 +251,7 @@ find_gcc_base_dir()
  * popen("gcc -print-libgcc-file-name");
  */
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
+fprintf(stderr,"FIXME - Hardcoding /usr/lib/gcc-lib/i386-linux/2.95.4\n");
 }
 /* end utility functions */
 
@@ -272,11 +274,34 @@ struct option long_options[] = {
 	{NULL,0,0,0}
 	};
 
+/*
+ * Find out of we are beuing used for C++. If so, we need to do a couple
+ * of extra things.
+ */
+#define LSBCC		0
+#define LSBCPLUS	1
+
+int lsbccmode=LSBCC;
+
 main(int argc, char *argv[])
 {
 int	c;
 int	option_index;
 
+/*
+ * Determine if we are being called for C or C++
+ */
+if(strcmp(basename(argv[0]),"lsbcc") == 0 ) {
+	;/* We are compiling for C - nothing special to do */
+} else if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
+	/* We are compiling for C++ set a flag to affect some things later on */
+	fprintf(stderr,"Using C++ mode\n");
+	lsbccmode=LSBCPLUS;
+}
+
+/*
+ * Determine where the GCC specific file are located.
+ */
 find_gcc_base_dir();
 
 /* Initialize the argv groups */
@@ -298,12 +323,23 @@ argvaddstring(libpaths,"-L/usr/lib");
 userlibs=argvinit();
 
 syslibs=argvinit();
+
+if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(userlibs,"-Wl,-Bstatic");
+	argvaddstring(userlibs,"-lstdc++");
+	argvaddstring(userlibs,"-Wl,-Bdynamic");
+	}
+
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
 argvaddstring(syslibs,"-lgcc");
 
 gccargs=argvinit();
-argvaddstring(gccargs,"cc");
+if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(gccargs,"g++");
+} else {
+	argvaddstring(gccargs,"cc");
+}
 
 /* Process the options passed in */
 opterr=0;
