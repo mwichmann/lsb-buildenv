@@ -9,7 +9,7 @@ extern "C"
 
 
 #define Z_NULL	0
-#define ZLIB_VERSION	"1.1.4"
+#define ZLIB_VERSION	"1.1.3"
 #define MAX_WBITS	15
 #define MAX_MEM_LEVEL	9
 #define deflateInit2(strm,level, method, windowBits, memLevel, stratgey)	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),           ZLIB_VERSION, sizeof(z_stream))
