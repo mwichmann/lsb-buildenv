@@ -43,6 +43,12 @@ extern "C"
 
   typedef long suseconds_t;
 
+  typedef struct
+  {
+    int __val[2];
+  }
+  fsid_t;
+
   typedef unsigned long blksize_t;
 
   typedef long fd_mask;

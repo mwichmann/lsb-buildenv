@@ -20,6 +20,11 @@ typedef unsigned long off_t;
 typedef int key_t;
 typedef unsigned int id_t;
 typedef long suseconds_t;
+typedef struct
+{
+  int __val[2];
+}
+fsid_t;
 typedef unsigned long blksize_t;
 typedef long fd_mask;
 typedef int timer_t;
