@@ -88,32 +88,45 @@ if( $$type{'Ttype'} eq "Struct" ) {
 
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
+		$nameonly = 0;
 		}
 	print $$type{'Tname'}."\t";
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
 	#print $$type{'Tcomment'}."\n";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember ";
+	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
+	#$tmselect.= "LEFT JOIN Architecture ON ATMaid=Aid ";
+	$tmselect.= "WHERE TMmemberof=$Tid ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
-		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$tselect = "SELECT * FROM Type WHERE Tid=$TMtypeid ";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
 		$nameonly=1;
+		#if( $tmentry{'Aid'} && $tmentry{'Aname'} ne "All" ) {
+		#	print "#if defined(".$tmentry{'Asymbol'}.")\n";
+		#	}
 		displaytype(\%entry);
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
 			}
-		if( $tmentry{'TMarray'} ) {
+		if( $entry{'Ttype'} eq 'Array' ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
 		print ";\t";
-		print $tmentry{'TMcomment'}."\n";
+		if( $tmentry{'TMcomment'} ) {
+			print "/* ".$tmentry{'TMcomment'}." */";
+			}
+		print "\n";
+		#if( $tmentry{'Aid'} && $tmentry{'Aname'} ne "All" ) {
+		#	print "#endif /* ".$tmentry{'Asymbol'}." */\n";
+		#	}
 		$nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
@@ -125,6 +138,7 @@ if( $$type{'Ttype'} eq "Union" ) {
 
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
+		$nameonly = 0;
 		}
 	print $$type{'Tname'}."\t";
 	$Tid=$$type{'Tid'};
@@ -146,11 +160,14 @@ if( $$type{'Ttype'} eq "Union" ) {
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
 			}
-		if( $tmentry{'TMarray'} ) {
+		if( $entry{'Ttype'} eq 'Array' ) {
 			print "[".$tmentry{'TMarray'}."]";
 			}
 		print ";\t";
-		print $tmentry{'TMcomment'}."\n";
+		if( $tmentry{'TMcomment'} ) {
+			print "/* ".$tmentry{'TMcomment'}." */";
+			}
+		print "\n";
 		$nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
@@ -238,6 +255,25 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	return;
 	}
 
+if( $$type{'Ttype'} eq "Array" ) {
+	$basetype=$$type{'Tbasetype'};
+	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
+	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+	%entry=$tth->fetchhash;
+	if( !$nameonly ) {
+		$nameonly=1;
+		displaytype(\%entry);
+		$nameonly=0;
+	} else {
+		displaytype(\%entry);
+		}
+	if( $$type{'Tname'} =~ "fptr" ) {
+		$$type{'Tname'} =~ s/fptr-//;
+		}
+	#print $$type{'Tname'};
+	#print "[".$$type{'Tsize'}."]";
+	return;
+	}
 print "Unknown Type: \".$$type{'Ttype'}.\"\n";
 }
 
@@ -331,6 +367,10 @@ print "#define ";
 print $$const{'Cname'};
 print "\t";
 print $$const{'ACvalue'};
+print "\t";
+if( $const{'Ccomment'} ) {
+	print "/* ".$const{'Ccomment'}." */\n";
+	}
 print "\n";
 }
 
@@ -515,6 +555,29 @@ for(1..$hgh->numrows) {
 	# Make sure a blank line is present between every group
 	print "\n";
 
+	# Display the Constants
+	$select = "SELECT * FROM Constant ";
+	$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
+	$select.= "LEFT JOIN Architecture ON Aid=ACaid ";
+	$select.= "WHERE Cheadgroup=$HGid ";
+	#$select.= "AND ACaid=$Aid ";
+	$select.= "AND Cstd ='Yes' ";
+	$select.=" ORDER BY ACvalue";
+	$ch = $Dbh->query($select) || die $Dbh->errmsg();
+	print $ch->numrows," rows\n" if $trace;
+	for(1..$ch->numrows) {
+		%centry=$ch->fetchhash;
+		if( $centry{'Aid'} && $centry{'Aname'} ne "All" ) {
+			print "#if defined(".$centry{'Asymbol'}.")\n";
+			#print "/* ".$centry{'Aname'}." */\n";
+			displayconstant(\%centry);
+			print "#endif\n";
+		} else {
+			displayconstant(\%centry);
+			}
+		}
+	print "\n\n";
+
 	# Display the Types
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN Architecture ON Tarch=Aid ";
@@ -538,21 +601,6 @@ for(1..$hgh->numrows) {
 			print ";";
 			print $tentry{'Tcomment'}."\n\n";
 			}
-		}
-
-	# Display the Constants
-	$select = "SELECT * FROM Constant ";
-	$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
-	$select.= "WHERE Cheadgroup=$HGid ";
-	$select.= "AND ACaid=$Aid ";
-	$select.= "AND Cstd ='Yes' ";
-	$select.=" ORDER BY ACvalue";
-	$ch = $Dbh->query($select) || die $Dbh->errmsg();
-	print $ch->numrows," rows\n" if $trace;
-	for(1..$ch->numrows) {
-		%centry=$ch->fetchhash;
-		displayconstant(\%centry);
-		# Print comment here 
 		}
 	}
 
