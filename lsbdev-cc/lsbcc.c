@@ -464,25 +464,19 @@ argvaddstring(syslibs,"-L/lib");
 argvaddstring(syslibs,"-L/usr/lib");
 
 if( lsbccmode == LSBCPLUS ) {
+	if( lsbcc_debug&DEBUG_LIB_CHANGES )
+		fprintf(stderr,"Appending -lstdc++ -lm -lgcc_s to the library list\n");
 	argvaddstring(syslibs,"-Wl,-Bstatic");
 	argvaddstring(syslibs,"-lstdc++");
 	argvaddstring(syslibs,"-Wl,-Bdynamic");
-	}
-
-if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Appending -lm -lc -lc_nonshared -lgcc to the library list\n");
-argvaddstring(syslibs,"-lm");
-if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(syslibs,"-lm");
 	argvaddstring(syslibs,"-lgcc_s");
-	if( lsbcc_debug&DEBUG_LIB_CHANGES )
-		fprintf(stderr,"Using shared libgcc\n");
-} else {
-	if( lsbcc_debug&DEBUG_LIB_CHANGES )
-		fprintf(stderr,"Using non-shared libgcc\n");
-	argvaddstring(syslibs,"-lgcc");
-	}
+}
+if( lsbcc_debug&DEBUG_LIB_CHANGES )
+	fprintf(stderr,"Appending -lc -lc_nonshared -lgcc to the library list\n");
 argvaddstring(syslibs,"-lc");
 argvaddstring(syslibs,"-lc_nonshared");
+argvaddstring(syslibs,"-lgcc");
 
 gccargs=argvinit();
 if( lsbccmode == LSBCPLUS ) {
