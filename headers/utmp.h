@@ -27,7 +27,7 @@ extern "C"
 
   struct lastlog
   {
-    timer_t ll_time;
+    time_t ll_time;
     char ll_line[UT_LINESIZE];
     char ll_host[UT_HOSTSIZE];
   }

@@ -18,6 +18,9 @@
 
 
 
+
+
+
 struct ifaddr
 {
   struct sockaddr ifa_addr;
@@ -54,6 +57,7 @@ struct ifreq
     char ifru_slave[IFNAMSIZ];
     char ifru_newname[IFNAMSIZ];
     caddr_t ifru_data;
+    struct ifmap ifru_map;
   }
   ifr_ifru;
 }

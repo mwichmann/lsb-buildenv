@@ -94,7 +94,24 @@ extern "C"
 
 
 /* POSIX 1003.1b sigevent*/
+#if __i386__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+#endif
+#if __powerpc__ && !__powerpc64__
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+#endif
+#if __s390__
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+#endif
+#if __ia64__
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
+#endif
+#if __powerpc64__
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
+#endif
+#if __x86_64__
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
+#endif
 #define SIGEV_SIGNAL	0
 #define SIGEV_NONE	1
 #define SIGEV_THREAD	2
@@ -122,7 +139,24 @@ extern "C"
 
 
 /* POSIX 1003.1b siginfo*/
+#if __i386__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+#endif
+#if __powerpc__ && !__powerpc64__
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+#endif
+#if __s390__
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+#endif
+#if __ia64__
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
+#endif
+#if __powerpc64__
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
+#endif
+#if __x86_64__
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
+#endif
 #define SI_QUEUE	-1
 #define SI_TIMER	-2
 #define SI_MESGQ	-3

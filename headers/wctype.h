@@ -1,6 +1,7 @@
 #ifndef _WCTYPE_H_
 #define _WCTYPE_H_
 
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -14,7 +15,7 @@ extern "C"
 
   typedef unsigned int wint_t;
 
-  typedef int wctrans_t;
+  typedef int32_t *wctrans_t;
 
   typedef struct
   {

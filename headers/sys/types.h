@@ -91,7 +91,7 @@ extern "C"
 /* Stuff really in linux/types.h*/
 
 
-  typedef int ino_t;
+  typedef unsigned long ino_t;
 
   typedef unsigned int gid_t;
 
@@ -99,7 +99,7 @@ extern "C"
 
   typedef unsigned int mode_t;
 
-  typedef int nlink_t;
+  typedef unsigned long nlink_t;
 
   typedef char *caddr_t;
 

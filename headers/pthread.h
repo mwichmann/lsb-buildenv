@@ -95,7 +95,11 @@ extern "C"
   }
   pthread_cond_t;
 
-  typedef void *pthread_condattr_t;
+  typedef struct
+  {
+    int __dummy;
+  }
+  pthread_condattr_t;
 
 
 /* Lock structures*/

@@ -13,6 +13,17 @@ extern "C"
 #define IF_NAMESIZE	16
 
 
+  struct ifmap
+  {
+    unsigned long mem_start;
+    unsigned long mem_end;
+    unsigned short base_addr;
+    unsigned char irq;
+    unsigned char dma;
+    unsigned char port;
+  }
+   ;
+
 
 /* Standard interface flags.*/
 #define IFF_UP	0x01
@@ -25,6 +36,9 @@ extern "C"
 #define IFF_NOTRAILERS	0x20
 #define IFF_RUNNING	0x40
 #define IFF_NOARP	0x80
+
+
+
 
 
 
@@ -89,6 +103,7 @@ extern "C"
       char ifru_slave[IFNAMSIZ];
       char ifru_newname[IFNAMSIZ];
       caddr_t ifru_data;
+      struct ifmap ifru_map;
     }
     ifr_ifru;
   }

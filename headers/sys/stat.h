@@ -43,7 +43,24 @@ extern "C"
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
+#if __ia64__
+#define _STAT_VER	1
+#endif
+#if __i386__
 #define _STAT_VER	3
+#endif
+#if __powerpc__ && !__powerpc64__
+#define _STAT_VER	3
+#endif
+#if __powerpc64__
+#define _STAT_VER	3
+#endif
+#if __s390__
+#define _STAT_VER	3
+#endif
+#if __x86_64__
+#define _STAT_VER	3
+#endif
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR
 #define S_IEXEC	S_IXUSR
@@ -181,6 +198,32 @@ extern "C"
     unsigned long __unused3;	/* Reserved for ctime.nanoseconds. */
     unsigned long __unused4;
     unsigned long __unused5;
+  }
+   ;
+
+#endif
+#if __ia64__
+/* IA64 */
+  struct stat64
+  {
+    unsigned long st_dev;
+    unsigned long st_ino;
+    unsigned long st_nlink;
+    unsigned int st_mode;
+    unsigned int st_uid;
+    unsigned int st_gid;
+    unsigned int pad0;
+    unsigned long st_rdev;
+    unsigned long st_size;
+    unsigned long st_atime;
+    unsigned long __reserved0;
+    unsigned long st_mtime;
+    unsigned long __reserved1;
+    unsigned long st_ctime;
+    unsigned long __reserved2;
+    unsigned long st_blksize;
+    long st_blocks;
+    unsigned long __unused[3];
   }
    ;
 

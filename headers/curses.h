@@ -87,7 +87,7 @@ extern "C"
 
   typedef unsigned long chtype;
 
-  typedef char bool;
+  typedef int bool;
 
   typedef struct screen SCREEN;
 

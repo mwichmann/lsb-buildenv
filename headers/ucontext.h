@@ -145,19 +145,19 @@ extern "C"
 #endif
 #if __ia64__
 /* IA64 */
-  typedef struct ia64ucontext
+  typedef struct ucontext
   {
     union
     {
       mcontext_t _mc;
       struct
       {
-	unsigned long _pad[_SC_GRO_OFFSET / 8];
-	struct ia64ucontext *_link;
+	unsigned long _pad[_SC_GR0_OFFSET / 8];
+	struct ucontext *_link;
       }
-       ;
+      _uc;
     }
-     ;
+    _u;
   }
   ucontext_t;
 

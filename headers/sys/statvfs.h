@@ -68,7 +68,7 @@ extern "C"
     unsigned long f_fsid;
     unsigned long f_flag;
     unsigned long f_namemax;
-    unsigned long __f_spare[6];
+    unsigned int __f_spare[6];
   }
    ;
 
@@ -88,7 +88,7 @@ extern "C"
     unsigned long f_fsid;
     unsigned long f_flag;
     unsigned long f_namemax;
-    unsigned long __f_spare[6];
+    unsigned int __f_spare[6];
   }
    ;
 

@@ -55,7 +55,7 @@ extern "C"
     char *n_name;
     char **n_aliases;
     int n_addrtype;
-    unsigned long n_net;
+    unsigned int n_net;
   }
    ;
 

@@ -51,6 +51,7 @@ extern "C"
     struct ipc_perm sem_perm;	/* operation permission struct */
     time_t sem_otime;		/* last semop() time */
     time_t sem_ctime;		/* last time changed by semctl() */
+    unsigned long sem_nsems;	/* number of semaphores in set */
     unsigned long __unused1;
     unsigned long __unused2;
   }
