@@ -103,6 +103,21 @@ extern "C"
   typedef unsigned int uintptr_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  typedef long intmax_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef unsigned long uintptr_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef unsigned long uintmax_t;
+
+#endif
 
 #define __PDP_ENDIAN	3412
 #define PDP_ENDIAN	__PDP_ENDIAN

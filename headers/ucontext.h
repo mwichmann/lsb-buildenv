@@ -1,6 +1,7 @@
 #ifndef _UCONTEXT_H_
 #define _UCONTEXT_H_
 
+#include <inttypes.h>
 #include <signal.h>
 
 #ifdef __cplusplus
@@ -35,6 +36,17 @@ extern "C"
    ;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  struct _libc_fpxreg
+  {
+    unsigned short significand[4];
+    unsigned short exponent;
+    unsigned short padding[3];
+  }
+   ;
+
+#endif
 
 /* Type for general register.*/
 
@@ -44,13 +56,18 @@ extern "C"
   typedef int greg_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  typedef int greg_t;
+
+#endif
 
 /* Number of general registers.*/
 #if __i386__
 #define NGREG	19
 #endif
 #if __x86_64__
-#define NGREG	21
+#define NGREG	23
 #endif
 #if __s390x__
 #define NGREG	27
@@ -70,6 +87,11 @@ extern "C"
 #if __i386__
 /* IA32 */
   typedef greg_t gregset_t[19];
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef greg_t gregset_t[];
 
 #endif
 
@@ -159,6 +181,30 @@ extern "C"
   fpregset_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  struct _libc_fpstate
+  {
+    uint16_t cwd;
+    uint16_t swd;
+    uint16_t ftw;
+    uint16_t fop;
+    uint64_t rip;
+    uint64_t rdp;
+    uint32_t mxcsr;
+    uint32_t mxcr_mask;
+    struct _libc_fpxreg _st;
+    struct _libc_xmmreg _xmm;
+    uint32_t padding;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef struct _libc_fpstate *fpregset_t;
+
+#endif
 
 
 
@@ -228,6 +274,17 @@ extern "C"
     unsigned long gregs[16];
     unsigned int aregs[16];
     fpregset_t fpregs;
+  }
+  mcontext_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef struct
+  {
+    gregset_t gregs;
+    fpregset_t fpregs;
+    unsigned long __reserved1;
   }
   mcontext_t;
 
@@ -317,6 +374,43 @@ extern "C"
     stack_t uc_stack;
     mcontext_t uc_mcontext;
     __sigset_t uc_sigmask;
+  }
+  ucontext_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct _libc_xmmreg
+  {
+    uint32_t element[4];
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    sigset_t uc_sigmask;
+    struct _libc_fpstate __fpregs_mem;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    sigset_t uc_sigmask;
+    struct _libc_fpstate __fpregs_mem;
   }
   ucontext_t;
 

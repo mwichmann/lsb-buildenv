@@ -84,6 +84,11 @@ extern "C"
   typedef int64_t ssize_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  typedef int64_t ssize_t;
+
+#endif
 
 /* Stuff really in asm/posix_types.h*/
 

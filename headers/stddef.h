@@ -71,6 +71,16 @@ extern "C"
   typedef unsigned long size_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  typedef long ptrdiff_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef unsigned long size_t;
+
+#endif
 
 #ifdef __cplusplus
 }

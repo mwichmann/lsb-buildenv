@@ -1,6 +1,7 @@
 #ifndef _SIGNAL_H_
 #define _SIGNAL_H_
 
+#include <inttypes.h>
 #include <pthread.h>
 #include <sys/types.h>
 #include <sys/time.h>
@@ -356,6 +357,23 @@ extern "C"
    ;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  struct sigaction
+  {
+    union
+    {
+      __sighandler_t _sa_handler;
+      void (*_sa_sigaction) (int, siginfo_t *, void *);
+    }
+    __sigaction_handler;
+    sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer) (void);
+  }
+   ;
+
+#endif
 
 /* Structure used in sigaltstack call.*/
 
@@ -415,6 +433,26 @@ extern "C"
    ;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  struct _fpxreg
+  {
+    unsigned short significand[4];
+    unsigned short exponent;
+    unsigned short padding[3];
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct _xmmreg
+  {
+    uint32_t element[4];
+  }
+   ;
+
+#endif
 
 /* FPU state information*/
 
@@ -439,6 +477,25 @@ extern "C"
     struct _fpxreg _fxsr_st[8];
     struct _xmmreg _xmm[8];
     unsigned long padding[56];
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct _fpstate
+  {
+    uint16_t cwd;
+    uint16_t swd;
+    uint16_t ftw;
+    uint16_t fop;
+    uint64_t rip;
+    uint64_t rdp;
+    uint32_t mxcsr;
+    uint32_t mxcr_mask;
+    struct _fpxreg _st[8];
+    struct _xmmreg _xmm[16];
+    uint32_t padding;
   }
    ;
 
@@ -522,6 +579,42 @@ extern "C"
     unsigned long handler;
     unsigned long oldmask;
     struct pt_regs *regs;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct sigcontext
+  {
+    unsigned long r8;
+    unsigned long r9;
+    unsigned long r10;
+    unsigned long r11;
+    unsigned long r12;
+    unsigned long r13;
+    unsigned long r14;
+    unsigned long r15;
+    unsigned long rdi;
+    unsigned long rsi;
+    unsigned long rbp;
+    unsigned long rbx;
+    unsigned long rdx;
+    unsigned long rax;
+    unsigned long rcx;
+    unsigned long rsp;
+    unsigned long rip;
+    unsigned long eflags;
+    unsigned short cs;
+    unsigned short gs;
+    unsigned short fs;
+    unsigned short __pad0;
+    unsigned long err;
+    unsigned long trapno;
+    unsigned long oldmask;
+    unsigned long cr2;
+    struct _fpstate *fpstate;
+    unsigned long __reserved1[8];
   }
    ;
 

@@ -118,6 +118,22 @@ extern "C"
    ;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  struct semid_ds
+  {
+    struct ipc_perm sem_perm;
+    time_t sem_otime;
+    unsigned long __unused1;
+    time_t sem_ctime;
+    unsigned long __unused2;
+    unsigned long sem_nsems;
+    unsigned long __unused3;
+    unsigned long __unused4;
+  }
+   ;
+
+#endif
 
   extern int semctl (int, int, int, ...);
   extern int semget (key_t, int, int);

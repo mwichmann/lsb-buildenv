@@ -41,6 +41,11 @@ extern "C"
   typedef long __jmp_buf[40];
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  typedef long __jmp_buf[8];
+
+#endif
 
 
 

@@ -46,6 +46,11 @@ extern "C"
   typedef int intptr_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+  typedef long intptr_t;
+
+#endif
 
 /* Values for the second argument to access.*/
 #define F_OK	0

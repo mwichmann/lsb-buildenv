@@ -1,9 +1,9 @@
 #ifndef _SYS_SHM_H_
 #define _SYS_SHM_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -66,6 +66,11 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
+  typedef unsigned long shmatt_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
   typedef unsigned long shmatt_t;
 
 #endif
@@ -186,6 +191,24 @@ extern "C"
     shmatt_t shm_nattch;
     unsigned long __unused4;
     unsigned long __unused5;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct shmid_ds
+  {
+    struct ipc_perm shm_perm;
+    size_t shm_segsz;
+    time_t shm_atime;
+    time_t shm_dtime;
+    time_t shm_ctime;
+    pid_t shm_cpid;
+    pid_t shm_lpid;
+    shmatt_t shm_nattch;
+    unsigned long __unused1;
+    unsigned long __unused2;
   }
    ;
 

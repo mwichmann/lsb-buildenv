@@ -1,9 +1,9 @@
 #ifndef _SYS_MSG_H_
 #define _SYS_MSG_H_
 
-#include <stddef.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -55,6 +55,16 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
+  typedef unsigned long msglen_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  typedef unsigned long msgqnum_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
   typedef unsigned long msglen_t;
 
 #endif
@@ -162,6 +172,25 @@ extern "C"
     __pid_t msg_lrpid;
     unsigned long __unused4;
     unsigned long __unused5;
+  }
+   ;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+  struct msqid_ds
+  {
+    struct ipc_perm msg_perm;
+    time_t msg_stime;
+    time_t msg_rtime;
+    time_t msg_ctime;
+    unsigned long __msg_cbytes;
+    msglen_t msg_qnum;
+    msgqnum_t msg_qbytes;
+    pid_t msg_lspid;
+    pid_t msg_lrpid;
+    unsigned long __unused1;
+    unsigned long __unused2;
   }
    ;
 
