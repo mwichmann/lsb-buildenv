@@ -488,8 +488,7 @@ $Hid=$entry{'Hid'};
 #
 $select = "SELECT Ireturn FROM Interface ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND Istatus='Included' ";
-#$select.= "WHERE Istatus='Included' ";
+$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -505,7 +504,7 @@ $select = "SELECT Ptype FROM Interface,Parameter ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND Pint=Iid ";
 #$select.= "WHERE Pint=Iid ";
-$select.= "AND Istatus='Included' ";
+$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -699,7 +698,8 @@ for(1..$hgh->numrows) {
 
 print "\n";
 $select = "SELECT * FROM Interface,Header,Type ";
-$select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' ) ";
+$select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' ";
+$select.= " OR Istatus='Deprecated' ) ";
 $select.= "AND Iarch=$Aid ";
 $select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
 $select.= "AND Ireturn=Tid";

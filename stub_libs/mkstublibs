@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.20 $
+# This is $Revision: 1.21 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.21  2002/08/22 00:12:47  anderson
+# Add support for Interfaces which are Deprecated
+#
 # Revision 1.20  2002/06/05 04:39:20  cyeoh
 # Adds necessary internal glibc symbol to stub libraries.
 #
@@ -222,7 +225,8 @@ sub GenerateLibrary($$$)
                        "LEFT JOIN LibGroup ON LGIlibg=LGid ".
                        "LEFT JOIN ArchInt ON AIint=Iid ".
                        "LEFT JOIN Version ON Vid=AIversion ".
-                       "WHERE Itype='Function' AND Istatus='Included'".
+                       "WHERE Itype='Function' ".
+		       "AND ( Istatus='Included' OR Istatus='Deprecated' ) ".
                        "AND LibGroup.LGlib=$libId ".
                        "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId ".
                        "OR ( AIarch!=$TargetArchId AND Iarch=1 ) ) ".
@@ -279,7 +283,7 @@ sub GenerateLibrary($$$)
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
                        "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) ".
-                       "AND Istatus='Included' ".
+		       "AND ( Istatus='Included' OR Istatus='Deprecated' ) ".
                        "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId OR IArch=1) ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname";
 # print "$select\n";

@@ -354,8 +354,7 @@ $Hid=$entry{'Hid'};
 #
 $select = "SELECT Ireturn FROM Interface ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND Istatus='Included' ";
-#$select.= "WHERE Istatus='Included' ";
+$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -371,7 +370,7 @@ $select = "SELECT Ptype FROM Interface,Parameter ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND Pint=Iid ";
 #$select.= "WHERE Pint=Iid ";
-$select.= "AND Istatus='Included' ";
+$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
