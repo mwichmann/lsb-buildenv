@@ -2074,6 +2074,8 @@ __asm__(".globl _ZNSs20_S_empty_rep_storageE; .pushsection .data; .type _ZNSs20_
 __asm__(".globl _ZNSs4_Rep11_S_max_sizeE; .pushsection .data; .type _ZNSs4_Rep11_S_max_sizeE,@object; .size _ZNSs4_Rep11_S_max_sizeE, 8; _ZNSs4_Rep11_S_max_sizeE: .long 0; .popsection");
 __asm__(".globl _ZNSs4_Rep11_S_terminalE; .pushsection .data; .type _ZNSs4_Rep11_S_terminalE,@object; .size _ZNSs4_Rep11_S_terminalE, 1; _ZNSs4_Rep11_S_terminalE: .long 0; .popsection");
 __asm__(".globl _ZNSs4nposE; .pushsection .data; .type _ZNSs4nposE,@object; .size _ZNSs4nposE, 8; _ZNSs4nposE: .long 0; .popsection");
+__asm__(".globl _ZNSt10__num_base11_S_atoms_inE; .pushsection .data; .type _ZNSt10__num_base11_S_atoms_inE,@object; .size _ZNSt10__num_base11_S_atoms_inE, 8; _ZNSt10__num_base11_S_atoms_inE: .long 0; .popsection");
+__asm__(".globl _ZNSt10__num_base12_S_atoms_outE; .pushsection .data; .type _ZNSt10__num_base12_S_atoms_outE,@object; .size _ZNSt10__num_base12_S_atoms_outE, 8; _ZNSt10__num_base12_S_atoms_outE: .long 0; .popsection");
 __asm__(".globl _ZNSt10__num_base8_S_atomsE; .pushsection .data; .type _ZNSt10__num_base8_S_atomsE,@object; .size _ZNSt10__num_base8_S_atomsE, 23; _ZNSt10__num_base8_S_atomsE: .long 0; .popsection");
 __asm__(".globl _ZNSt10ctype_base5alnumE; .pushsection .data; .type _ZNSt10ctype_base5alnumE,@object; .size _ZNSt10ctype_base5alnumE, 2; _ZNSt10ctype_base5alnumE: .long 0; .popsection");
 __asm__(".globl _ZNSt10ctype_base5alphaE; .pushsection .data; .type _ZNSt10ctype_base5alphaE,@object; .size _ZNSt10ctype_base5alphaE, 2; _ZNSt10ctype_base5alphaE: .long 0; .popsection");

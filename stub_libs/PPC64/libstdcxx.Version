@@ -3084,3 +3084,7 @@ GLIBCPP_3.2 {
 GLIBCPP_3.2.2 {
   _ZNSt24__default_alloc_templateILb1ELi0EE12_S_force_newE;
 };
+GLIBCPP_3.2.3 {
+  _ZNSt10__num_base11_S_atoms_inE;
+  _ZNSt10__num_base12_S_atoms_outE;
+};
