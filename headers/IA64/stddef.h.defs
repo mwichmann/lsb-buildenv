@@ -1,4 +1,5 @@
 
 
 
+typedef long ptrdiff_t;
 typedef unsigned long size_t;

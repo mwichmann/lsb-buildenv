@@ -4,4 +4,3 @@
 
 
 typedef int wchar_t;
-typedef long ptrdiff_t;

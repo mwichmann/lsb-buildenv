@@ -16,8 +16,11 @@ extern "C"
   typedef int wchar_t;
 
 #endif
+#if __ia64__
+/* IA64 */
   typedef long ptrdiff_t;
 
+#endif
 #if __i386__
 /* IA32 */
   typedef unsigned int size_t;
@@ -41,6 +44,26 @@ extern "C"
 #if __s390__
 /* S390 */
   typedef unsigned long size_t;
+
+#endif
+#if __i386__
+/* IA32 */
+  typedef int ptrdiff_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  typedef int ptrdiff_t;
+
+#endif
+#if __s390__
+/* S390 */
+  typedef int ptrdiff_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef long ptrdiff_t;
 
 #endif
 
