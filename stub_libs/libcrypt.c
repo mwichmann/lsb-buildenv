@@ -1,0 +1,15 @@
+__asm__(".globl _lsb_crypt");
+__asm__("	.type _lsb_crypt,@function");
+__asm__("_lsb_crypt:");
+__asm__("	ret");
+__asm__(".symver _lsb_crypt,crypt@@GLIBC_2.0");
+__asm__(".globl _lsb_encrypt");
+__asm__("	.type _lsb_encrypt,@function");
+__asm__("_lsb_encrypt:");
+__asm__("	ret");
+__asm__(".symver _lsb_encrypt,encrypt@@GLIBC_2.0");
+__asm__(".globl _lsb_setkey");
+__asm__("	.type _lsb_setkey,@function");
+__asm__("_lsb_setkey:");
+__asm__("	ret");
+__asm__(".symver _lsb_setkey,setkey@@GLIBC_2.0");

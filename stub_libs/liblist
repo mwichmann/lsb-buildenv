@@ -1,0 +1,17 @@
+LSBLIBS = \
+	libX11.so\
+	libXt.so\
+	libm.so\
+	libGL.so\
+	libXext.so\
+	libICE.so\
+	libSM.so\
+	libdl.so\
+	libcrypt.so\
+	libz.so\
+	libcurses.so\
+	libutil.so\
+	libc.so\
+	libpthread.so\
+	proginterp.so\
+	librt.so
