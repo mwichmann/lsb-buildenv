@@ -6,9 +6,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.7 $
+# This is $Revision: 1.8 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.8  2001/12/19 03:34:28  cyeoh
+# Add overriding fixes for variables with incorrect data sizes
+# in the db
+#
 # Revision 1.7  2001/12/18 01:04:58  cyeoh
 # Remove warning message
 #
@@ -67,6 +71,14 @@ my(%LibcAliases) = (
   "program_invocation_name" => "__progname_full",
   "program_invocation_short_name" => "__progname",
   "_h_errno" => "h_errno" );
+
+my(%OverrideVariables) = 
+    (
+     "libc" => { "__tzname" => 0x8,
+                 "_sys_errlist" => 0x1f4},
+     "libXt" => { "XtShellStrings" => 0x509,
+                  "XtStrings" => 0xa59 }
+     );
 
 #----------------------------------------------------------------------
 # Look through local shared libraries for aliases
@@ -249,18 +261,20 @@ sub GenerateLibrary($$$)
         {
           print "No data for symbol $row->{Iname}\n";
         }
-      print STDOUT "Size not available for symbol $row->{Iname}"
-          . "  Type ($row->{Ireturn})\n";
+        print STDOUT "Size not available for symbol $row->{Iname}"
+            . "  Type ($row->{Ireturn})\n";
 #      $size = 1000; # temporarily make it big to avoid problems
-      }
-      elsif ($row->{"ATsize"} == 0)
-      {
-        print STDOUT "Size for symbol $row->{Iname} of Type $row->{Ireturn} is 0\n";
-#        $size = 1000; # temporarily make it big to avoid problems
       }
       else
       {
         $size = $row->{"ATsize"};
+      }
+
+      if (exists($OverrideVariables{$libName}{$row->{Iname}}))
+      {
+        print STDOUT "Overriding size of $row->{Iname} from $size to "
+            . $OverrideVariables{$libName}{$row->{Iname}} . "\n";
+        $size = $OverrideVariables{$libName}{$row->{Iname}};
       }
       
       if($row->{Itype} eq "Common" )
