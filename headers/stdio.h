@@ -1,11 +1,11 @@
 #ifndef _STDIO_H_
 #define _STDIO_H_
 
-#include <stddef.h>
-#include <stdarg.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <wctype.h>
+#include <stddef.h>
+#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -124,7 +124,7 @@ extern "C"
   extern FILE *stdin;
   extern FILE *stdout;
   extern char *tempnam (const char *, const char *);
-  extern FILE tmpfile64 (void);
+  extern FILE *tmpfile64 (void);
   extern FILE *tmpfile (void);
   extern char *tmpnam (char *);
   extern int vfprintf (FILE *, const char *, va_list);
@@ -151,9 +151,9 @@ extern "C"
   extern int vsprintf (char *, const char *, va_list);
   extern void flockfile (FILE *);
   extern int asprintf (char **, const char *, ...);
-  extern int fgetpos64 (void);
+  extern int fgetpos64 (FILE *, fpos64_t);
   extern FILE *fopen64 (const char *, const char *);
-  extern int fsetpos64 (void);
+  extern int fsetpos64 (FILE *, const fpos64_t);
   extern int ftrylockfile (FILE *);
   extern void funlockfile (FILE *);
   extern int getc_unlocked (FILE *);

@@ -71,7 +71,7 @@ extern "C"
   extern void endutent (void);
   extern struct utmp *getutent (void);
   extern void setutent (void);
-  extern struct utmp *getutent_r (void);
+  extern struct utmp *getutent_r (struct utmp *, struct utmp **);
   extern int login_tty (int);
   extern void login (const struct utmp *);
   extern int logout (const char *);

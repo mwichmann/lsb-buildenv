@@ -1,10 +1,10 @@
 #ifndef _PTHREAD_H_
 #define _PTHREAD_H_
 
-#include <sys/time.h>
-#include <stddef.h>
 #include <sched.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -203,27 +203,30 @@ extern "C"
   extern int pthread_rwlock_trywrlock (pthread_rwlock_t *);
   extern int pthread_rwlock_unlock (pthread_rwlock_t *);
   extern int pthread_rwlock_wrlock (pthread_rwlock_t *);
-  extern int pthread_rwlockattr_destroy (void);
-  extern int pthread_rwlockattr_getkind_np (void);
-  extern int pthread_rwlockattr_getpshared (void);
-  extern int pthread_rwlockattr_init (void);
-  extern int pthread_rwlockattr_setkind_np (void);
-  extern int pthread_rwlockattr_setpshared (void);
+  extern int pthread_rwlockattr_destroy (pthread_rwlockattr_t *);
+  extern int pthread_rwlockattr_getkind_np (const pthread_rwlockattr_t *,
+					    int *);
+  extern int pthread_rwlockattr_getpshared (const pthread_rwlockattr_t *,
+					    int *);
+  extern int pthread_rwlockattr_init (pthread_rwlockattr_t *);
+  extern int pthread_rwlockattr_setkind_np (pthread_rwlockattr_t *, int);
+  extern int pthread_rwlockattr_setpshared (const pthread_rwlockattr_t *,
+					    int);
   extern pthread_t pthread_self (void);
   extern int pthread_setcancelstate (int, int *);
   extern int pthread_setcanceltype (int, int *);
   extern int pthread_setschedparam (pthread_t, int, struct sched_param *);
   extern int pthread_setspecific (pthread_key_t, const void *);
   extern void pthread_testcancel (void);
-  extern int pthread_attr_getguardsize (void);
+  extern int pthread_attr_getguardsize (pthread_attr_t *, size_t *);
   extern int pthread_attr_setguardsize (void);
   extern int pthread_attr_setstackaddr (pthread_attr_t *, void *);
   extern int pthread_attr_getstackaddr (pthread_attr_t *, void **);
   extern int pthread_attr_setstacksize (pthread_attr_t *, size_t);
   extern int pthread_attr_getstacksize (pthread_attr_t *, size_t *);
-  extern int pthread_mutexattr_gettype (void);
-  extern int pthread_mutexattr_settype (void);
-  extern int pthread_setconcurrency (void);
+  extern int pthread_mutexattr_gettype (pthread_mutexattr_t *, int *);
+  extern int pthread_mutexattr_settype (pthread_mutexattr_t *, int);
+  extern int pthread_setconcurrency (int);
   extern int pthread_mutexattr_getpshared (pthread_mutexattr_t *, int *);
   extern int pthread_mutexattr_setpshared (pthread_mutexattr_t *, int);
   extern int pthread_rwlock_timedrdlock (pthread_rwlock_t *,

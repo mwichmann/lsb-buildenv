@@ -129,7 +129,7 @@ extern "C"
       int _pad[SIGEV_PAD_SIZE];
       struct
       {
-	void (*sigev_thread_func) (void);
+	void (*sigev_thread_func) (sigval_t);
 	void *_attribute;
       }
       _sigev_thread;
@@ -620,10 +620,10 @@ extern "C"
 
 #endif
 
-  extern __sighandler_t __sysv_signal (void);
+  extern __sighandler_t __sysv_signal (int, sighandler_t);
   extern char **_sys_siglist;
   extern int killpg (pid_t, int);
-  extern void psignal (void);
+  extern void psignal (int, const char *);
   extern int raise (int);
   extern int sigaddset (sigset_t *, int);
   extern int sigandset (sigset_t *, const sigset_t *, const sigset_t *);
@@ -631,8 +631,8 @@ extern "C"
   extern int sigemptyset (sigset_t *);
   extern int sigfillset (sigset_t *);
   extern int siggetmask (void);
-  extern int sighold (void);
-  extern int sigignore (void);
+  extern int sighold (int);
+  extern int sigignore (int);
   extern int siginterrupt (int, int);
   extern int sigisemptyset (const sigset_t *);
   extern int sigismember (const sigset_t *, int);
@@ -640,23 +640,24 @@ extern "C"
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
   extern __sighandler_t sigset (int, __sighandler_t);
-  extern int sigstack (void);
+  extern int sigstack (struct sigstack *, struct sigstack *);
   extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
   extern int sigaction (int, struct sigaction *, struct sigaction *);
   extern int sigwait (const sigset_t *, int *);
   extern int kill (pid_t, int);
   extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
-  extern int sigblock (void);
+  extern int sigblock (int);
   extern __sighandler_t signal (int, __sighandler_t);
-  extern int sigpause (void);
+  extern int sigpause (int);
   extern int sigprocmask (int, sigset_t *, sigset_t *);
-  extern int sigreturn (void);
+  extern int sigreturn (struct sigcontext *);
   extern int sigsuspend (sigset_t *);
-  extern int sigqueue (void);
-  extern int sigwaitinfo (void);
+  extern int sigqueue (pid_t, int, const union sigval);
+  extern int sigwaitinfo (const sigset_t *, siginfo_t *,
+			  const struct timespec *);
   extern int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
-  extern __sighandler_t bsd_signal (void);
+  extern __sighandler_t bsd_signal (int, sighandler_t);
 #ifdef __cplusplus
 }
 #endif

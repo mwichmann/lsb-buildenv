@@ -31,7 +31,7 @@ extern "C"
   typedef __mbstate_t mbstate_t;
 
 
-  extern int iswblank (void);
+  extern int iswblank (wint_t);
   extern wint_t towlower (wint_t);
   extern wint_t towupper (wint_t);
   extern wctrans_t wctrans (const char *);

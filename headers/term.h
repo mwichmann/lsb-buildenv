@@ -16,7 +16,7 @@ extern "C"
   extern int tigetnum (char *);
   extern char *tigetstr (char *);
   extern char *tparm (char *, ...);
-  extern int setupterm (void);
+  extern int setupterm (const char *, int, int *);
   extern char *tgetstr (char *, char **);
   extern char *tgoto (char *, int, int);
   extern int tgetent (char *, const char *);

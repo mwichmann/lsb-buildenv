@@ -20,11 +20,11 @@ extern "C"
     char **gl_pathv;
     size_t gl_offs;
     int gl_flags;
-    void (*gl_closedir) (void);
-    struct dirent *(*gl_readdir) (void);
-    void *(*gl_opendir) (void);
-    int (*gl_lstat) (void);
-    int (*gl_stat) (void);
+    void (*gl_closedir) (void *);
+    struct dirent *(*gl_readdir) (void *);
+    void *(*gl_opendir) (const char *);
+    int (*gl_lstat) (const char *, struct stat *);
+    int (*gl_stat) (const char *, struct stat *);
   }
   glob_t;
 
@@ -37,11 +37,11 @@ extern "C"
     char **gl_pathv;
     size_t gl_offs;
     int gl_flags;
-    void (*gl_closedir) (void);
-    struct dirent *(*gl_readdir) (void);
-    void *(*gl_opendir) (void);
-    int (*gl_lstat) (void);
-    int (*gl_stat) (void);
+    void (*gl_closedir) (void *);
+    struct dirent64 *(*gl_readdir64) (void *);
+    void *(*gl_opendir) (const char *);
+    int (*gl_lstat) (const char *, struct stat *);
+    int (*gl_stat) (const char *, struct stat *);
   }
   glob64_t;
 

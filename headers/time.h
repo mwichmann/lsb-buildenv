@@ -1,9 +1,9 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
+#include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
-#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -72,7 +72,7 @@ extern "C"
   extern struct tm *gmtime (const time_t *);
   extern struct tm *localtime (const time_t *);
   extern time_t mktime (struct tm *);
-  extern int stime (void);
+  extern int stime (const time_t *);
   extern size_t strftime (char *, size_t, const char *, const struct tm *);
   extern char *strptime (char *, char *, struct tm *);
   extern time_t time (time_t *);

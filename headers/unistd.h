@@ -238,8 +238,8 @@ extern "C"
   extern char *getlogin (void);
   extern int getopt (int, char *const[], const char *);
   extern pid_t getpgrp (void);
-  extern pid_t getsid (void);
-  extern char *getwd (void);
+  extern pid_t getsid (pid_t);
+  extern char *getwd (char *);
   extern int lockf (int, int, off_t);
   extern int mkstemp (char *);
   extern int nice (int);
@@ -251,7 +251,7 @@ extern "C"
   extern int setdomainname (char *, size_t);
   extern int setegid (gid_t);
   extern int seteuid (uid_t);
-  extern int sethostid (void);
+  extern int sethostid (long);
   extern int sethostname (const char *, size_t);
   extern int setpgrp (void);
   extern void swab (void *, void *, ssize_t);
@@ -261,7 +261,7 @@ extern "C"
   extern int truncate (const char *, off_t);
   extern int truncate64 (const char *, off64_t);
   extern char *ttyname (int);
-  extern unsigned int ualarm (void);
+  extern unsigned int ualarm (useconds_t, useconds_t);
   extern void usleep (unsigned long);
   extern int close (int);
   extern int fsync (int);
@@ -323,7 +323,7 @@ extern "C"
   extern int open64 (const char *, int, ...);
   extern ssize_t pread64 (int, void *, size_t, off64_t);
   extern ssize_t pwrite64 (int, const void *, size_t, off64_t);
-  extern int ttyname_r (void);
+  extern int ttyname_r (int, char *, size_t);
   extern int mknod (const char *, mode_t, dev_t);
 #ifdef __cplusplus
 }

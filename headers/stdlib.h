@@ -129,10 +129,10 @@ extern "C"
   extern long strtol (const char *, char **, int);
   extern long double strtold (const char *, char **);
   extern long long strtoll (const char *, char **, int);
-  extern long long strtoq (void);
+  extern long long strtoq (const char *, char **, int);
   extern unsigned long strtoul (const char *, char **, int);
   extern unsigned long long strtoull (const char *, char **, int);
-  extern unsigned long long strtouq (void);
+  extern unsigned long long strtouq (const char *, char **, int);
   extern void _Exit (int);
   extern size_t __ctype_get_mb_cur_max (void);
   extern char **environ;

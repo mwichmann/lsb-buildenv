@@ -2,6 +2,7 @@
 #define _FCNTL_H_
 
 #include <sys/types.h>
+#include <unistd.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -71,7 +72,7 @@ extern "C"
 
 
 
-  extern int lockf64 (void);
+  extern int lockf64 (int, int, off64_t);
   extern int fcntl (int, int, ...);
 #ifdef __cplusplus
 }

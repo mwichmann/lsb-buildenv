@@ -27,11 +27,11 @@ extern "C"
     rpcproc_t rq_proc;
     struct opaque_auth rq_cred;
     caddr_t rq_clntcred;
-    struct SVCXPRT *rq_xprt;
+    SVCXPRT *rq_xprt;
   }
    ;
 
-  typedef void (*__dispatch_fn_t) (void);
+  typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
 
 /* Server side transport handle*/
@@ -56,32 +56,32 @@ extern "C"
 
   struct xp_ops
   {
-    bool_t (*xp_recv) (struct SVCXPRT * __xprt, struct rpc_msg * __msg);
-    enum xprt_stat (*xp_stat) (struct SVCXPRT * __xprt);
-      bool_t (*xp_getargs) (struct SVCXPRT * __xprt, xdrproc_t __xdr_args,
+    bool_t (*xp_recv) (SVCXPRT * __xprt, struct rpc_msg * __msg);
+    enum xprt_stat (*xp_stat) (SVCXPRT * __xprt);
+      bool_t (*xp_getargs) (SVCXPRT * __xprt, xdrproc_t __xdr_args,
 			    caddr_t args_ptr);
-      bool_t (*xp_reply) (struct SVCXPRT * __xprt, struct rpc_msg * __msg);
-      bool_t (*xp_freeargs) (struct SVCXPRT * __xprt, xdrproc_t __xdr_args,
+      bool_t (*xp_reply) (SVCXPRT * __xprt, struct rpc_msg * __msg);
+      bool_t (*xp_freeargs) (SVCXPRT * __xprt, xdrproc_t __xdr_args,
 			     caddr_t args_ptr);
-    void (*xp_destroy) (struct SVCXPRT * __xprt);
+    void (*xp_destroy) (SVCXPRT * __xprt);
   }
    ;
 
 
   extern void svc_getreqset (fd_set *);
-  extern bool_t svc_register (struct SVCXPRT *, rpcprog_t, rpcvers_t,
+  extern bool_t svc_register (SVCXPRT *, rpcprog_t, rpcvers_t,
 			      __dispatch_fn_t, rpcprot_t);
   extern void svc_run (void);
-  extern bool_t svc_sendreply (struct SVCXPRT *, xdrproc_t, caddr_t);
-  extern void svcerr_auth (struct SVCXPRT *, enum auth_stat);
-  extern void svcerr_decode (struct SVCXPRT *);
-  extern void svcerr_noproc (struct SVCXPRT *);
-  extern void svcerr_noprog (struct SVCXPRT *);
-  extern void svcerr_progvers (struct SVCXPRT *, rpcvers_t, rpcvers_t);
-  extern void svcerr_systemerr (struct SVCXPRT *);
-  extern void svcerr_weakauth (struct SVCXPRT *);
-  extern struct SVCXPRT *svctcp_create (int, u_int, u_int);
-  extern struct SVCXPRT *svcudp_create (int);
+  extern bool_t svc_sendreply (SVCXPRT *, xdrproc_t, caddr_t);
+  extern void svcerr_auth (SVCXPRT *, enum auth_stat);
+  extern void svcerr_decode (SVCXPRT *);
+  extern void svcerr_noproc (SVCXPRT *);
+  extern void svcerr_noprog (SVCXPRT *);
+  extern void svcerr_progvers (SVCXPRT *, rpcvers_t, rpcvers_t);
+  extern void svcerr_systemerr (SVCXPRT *);
+  extern void svcerr_weakauth (SVCXPRT *);
+  extern SVCXPRT *svctcp_create (int, u_int, u_int);
+  extern SVCXPRT *svcudp_create (int);
 #ifdef __cplusplus
 }
 #endif

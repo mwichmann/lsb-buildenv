@@ -1,8 +1,8 @@
 #ifndef _NETDB_H_
 #define _NETDB_H_
 
-#include <stddef.h>
 #include <sys/socket.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -122,7 +122,7 @@ extern "C"
   extern struct servent *getservent (void);
   extern void setnetent (int);
   extern void setprotoent (int);
-  extern void setservent (void);
+  extern void setservent (int);
   extern int *__h_errno_location (void);
   extern int gethostbyname_r (const char *, struct hostent *, char *, size_t,
 			      struct hostent **, int *);
