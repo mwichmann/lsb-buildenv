@@ -395,7 +395,8 @@ else
 }
 
 # Get list of libraries we want to produce stub libraries for
-$sth = $dbh->prepare("SELECT Lid,Lname,Lrunname FROM Library "
+$sth = $dbh->prepare("SELECT Lid,Lname,ALrunname FROM Library "
+                     . "LEFT JOIN ArchLib ON Lid=ALlid "
                      . "where Library.Lstd='Yes'")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
@@ -404,9 +405,9 @@ my($symInfo);
 my($aliases);
 while ($row = $sth->fetchrow_hashref)
 {
-  print "Checking library ($row->{Lrunname})\n";
-  $symInfo = LoadSymbolData($row->{Lrunname});
-  $aliases = GenerateAliases($row->{Lrunname});
+  print "Checking library ($row->{ALrunname})\n";
+  $symInfo = LoadSymbolData($row->{ALrunname});
+  $aliases = GenerateAliases($row->{ALrunname});
   CheckSymbols($dbh, $row->{Lname}, $row->{Lid}, $symInfo, $aliases);
 }
 

@@ -6,9 +6,15 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.11 $
+# This is $Revision: 1.12 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.12  2002/03/25 19:37:06  anderson
+# Split the Library table into Library and ArchLib, analagous to how other
+# tables have been done. This allows the library runname to be architecture
+# sensitvie. Scripts and the resulting output C code should now correctly
+# reflect the right library names.
+#
 # Revision 1.11  2001/12/20 02:28:53  cyeoh
 # Change logic so warning when db size information is overridden by
 # local file. Missing data sizes already exist in missing_data.txt file
@@ -409,17 +415,20 @@ open(LIBMAPFILE, ">LibNameMap.txt")
     || die "Could not open file LibNameMap.txt file for writing\n";
 
 # Get list of libraries we want to produce stub libraries for
-$sth = $dbh->prepare("SELECT Lid,Lname,Lrunname FROM Library "
-                     . "where Library.Lstd='Yes'")
+$sth = $dbh->prepare("SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
+                     . "LEFT JOIN ArchLib ON Lid=ALlid "
+                     . "LEFT JOIN Architecture ON Aid=ALaid "
+                     . "WHERE Library.Lstd='Yes'"
+                     . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' )")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
 my($dataAliases);
 while ($row = $sth->fetchrow_hashref)
 {
-  print "Generating c stubs for $row->{Lname} library ($row->{Lrunname})\n";
-  print LIBMAPFILE "$row->{Lname} $row->{Lrunname}\n";
-#  $dataAliases = GenerateAliases($row->{Lrunname});
+  print "Generating c stubs for $row->{Lname} library ($row->{ALrunname})\n";
+  print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
+#  $dataAliases = GenerateAliases($row->{ALrunname});
   GenerateLibrary($dbh, $row->{Lname}, $row->{Lid});
 }
 
