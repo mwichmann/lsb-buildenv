@@ -1,5 +1,6 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
+  __h_errno_location;
   getpwnam_r;
 };
 GLIBC_2.2 {
@@ -23,11 +24,8 @@ GLIBC_2.2 {
   __libc_start_main;
   __lxstat;
   __lxstat64;
-  __mbrlen;
   __mempcpy;
   __rawmemchr;
-  __secure_getenv;
-  __sigpause;
   __sigsetjmp;
   __stpcpy;
   __strdup;
@@ -41,13 +39,6 @@ GLIBC_2.2 {
   __strtoull_internal;
   __sysconf;
   __sysv_signal;
-  __wcstod_internal;
-  __wcstof_internal;
-  __wcstol_internal;
-  __wcstold_internal;
-  __wcstoll_internal;
-  __wcstoul_internal;
-  __wcstoull_internal;
   __xmknod;
   __xstat;
   __xstat64;
@@ -161,7 +152,6 @@ GLIBC_2.2 {
   fcntl;
   fcvt;
   fdatasync;
-  fdetach;
   fdopen;
   feof;
   ferror;
@@ -242,7 +232,6 @@ GLIBC_2.2 {
   getitimer;
   getloadavg;
   getlogin;
-  getmsg;
   getnetbyaddr;
   getopt;
   getopt_long;
@@ -785,9 +774,6 @@ GLIBC_2.2 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
-  _IO_2_1_stderr_;
-  _IO_2_1_stdin_;
-  _IO_2_1_stdout_;
   __ctype_b;
   __ctype_tolower;
   __ctype_toupper;
@@ -802,7 +788,6 @@ GLIBC_2.2 {
   daylight;
   environ;
   getdate_err;
-  h_errno;
   loc1;
   loc2;
   locs;

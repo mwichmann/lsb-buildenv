@@ -297,6 +297,7 @@ void XtWidgetToApplicationContext(void) {} ;
 void XtWindow(void) {} ;
 void XtWindowOfObject(void) {} ;
 void XtWindowToWidget(void) {} ;
+void _XtCheckSubclassFlag(void) {} ;
 void _XtCopyFromArg(void) {} ;
 void _XtInherit(void) {} ;
 void _XtIsSubclassOf(void) {} ;
