@@ -19,10 +19,12 @@ while true ; do
 	case "$1" in
 		-E)
 			opts="$opts $1 ";
+			proginterp="";
 			libs="";shift
 			;;
 		-c)
 			opts="$opts $1 ";
+			proginterp="";
 			libs="";shift
 			;;
 		-s)
@@ -47,8 +49,8 @@ while true ; do
 					userlibs="$userlibs -l$2"
 					;;
 				*)
-					echo "Statically linking library $1 $2"
-					userlibs="$userlibs -static -l$2 -shared"
+					#echo "Statically linking library $1 $2"
+					userlibs="$userlibs -Wl,-Bstatic -l$2 -Wl,-Bdynamic"
 					;;
 			esac
 			shift 2
@@ -67,7 +69,7 @@ while true ; do
 done
 
 set -x
-exec gcc $prointerp $target $opts -I$lsbbasedir/include -I$gccbasedir/include \
+exec gcc $proginterp $target $opts -I$lsbbasedir/include -I$gccbasedir/include \
 	-nodefaultlibs -L$gccbasedir -L$lsbbasedir/lib -L/lib -L/usr/lib \
 	$* $userlibs $libs
 
