@@ -396,7 +396,7 @@ extern "C"
     struct timespec st_atim;
     struct timespec st_mtim;
     struct timespec st_ctim;
-    unsigned long __unused;
+    unsigned long __unused[3];
   }
    ;
 
@@ -419,7 +419,7 @@ extern "C"
     struct timespec st_atim;
     struct timespec st_mtim;
     struct timespec st_ctim;
-    unsigned long __unused;
+    unsigned long __unused[3];
   }
    ;
 
