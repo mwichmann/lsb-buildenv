@@ -492,8 +492,8 @@ for(1..$hgh->numrows) {
 	$select.= "LEFT JOIN Architecture ON Tarch=Aid ";
 	$select.= "LEFT JOIN ArchType ON ATaid=Aid AND ATtid=Tid ";
 	$select.= "WHERE Theadergroup=$HGid ";
-	$select.= "AND Tstatus = 'Referenced' ";
-	$select.= "AND Aid = $Aid ";
+	$select.= "AND ( Tstatus = 'Referenced' OR Tstatus = 'Conly' )";
+	$select.= "AND Tarch = $Aid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();

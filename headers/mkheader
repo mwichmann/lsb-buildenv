@@ -672,13 +672,16 @@ for(1..$hgh->numrows) {
 	$select.= "LEFT JOIN Architecture ON Tarch=Aid ";
 	$select.= "LEFT JOIN ArchType ON ATaid=Aid AND ATtid=Tid ";
 	$select.= "WHERE Theadergroup=$HGid ";
-	$select.= "AND ( Tstatus = 'Referenced' OR Tstatus = 'SrcOnly' ) ";
+	$select.= "AND ( Tstatus = 'Referenced' OR Tstatus = 'SrcOnly' OR Tstatus = 'Conly' ) ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();
 	print $th->numrows," rows\n" if $trace;
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
+		if( $tentry{'Tstatus'} eq "Conly" ) {
+			print "#if !defined(__cplusplus)\n";
+			}
 		if( $tentry{'Aid'} && $tentry{'Aname'} ne "All" ) {
 			print "#if defined(".$tentry{'Asymbol'}.")\n";
 			print "/* ".$tentry{'Aname'}." */\n";
@@ -690,6 +693,9 @@ for(1..$hgh->numrows) {
 			displaytype(\%tentry);
 			print ";";
 			print $tentry{'Tcomment'}."\n\n";
+			}
+		if( $tentry{'Tstatus'} eq "Conly" ) {
+			print "#endif\n";
 			}
 		}
 	}
