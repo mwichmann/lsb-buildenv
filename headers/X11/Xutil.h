@@ -51,7 +51,7 @@ extern "C"
   extern Region XCreateRegion (void);
   extern char *XDefaultString (void);
   extern int XDeleteContext (Display *, XID, XContext);
-  extern XDestroyImage (void);
+  extern int XDestroyImage (XImage *);
   extern int XDestroyRegion (Region);
   extern int XEmptyRegion (Region);
   extern int XEqualRegion (Region, Region);

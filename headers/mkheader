@@ -755,7 +755,7 @@ $select = "SELECT * FROM Interface ";
 $select.= "LEFT JOIN Header ON Iheader=Hid ";
 $select.= "LEFT JOIN Type ON Ireturn=Tid ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=Iarch ";
-$select.= "WHERE ( Istatus='Included' OR Istatus='Deprecated' OR Istatus='SrcOnly' )";
+$select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' )";
 $select.= "AND Iarch=$Aid ";
 $select.= "AND Hname=".$Dbh->quote($headname)." ";
 print $select,"\n" if $trace;

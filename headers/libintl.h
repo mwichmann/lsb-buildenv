@@ -11,7 +11,6 @@ extern "C"
 
 
 
-  extern char *__dcgettext (void);
   extern char *bindtextdomain (const char *, const char *);
   extern char *dcgettext (const char *, const char *, int);
   extern char *dgettext (const char *, const char *);
