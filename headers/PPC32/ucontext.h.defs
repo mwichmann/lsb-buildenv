@@ -47,13 +47,6 @@ typedef unsigned long gregset_t[48];
 
 
 
-struct _libc_fpstate
-{
-  double fpregs[32];
-  double fpscr;
-  int _pad[2];
-}
- ;
 typedef struct _libc_fpstate
 {
   double fpregs[32];
