@@ -1,10 +1,9 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 libgcc=`gcc -print-libgcc-file-name`
 gccbasedir=`dirname $libgcc`
 
-LSBROOT=$LSBHOME/src/build
-
-exec gcc -nostdinc -I$gccbasedir/include -I$LSBROOT/usr/lsb/include \
-	-nodefaultlibs -L$gccbasedir -L$LSBROOT/usr/lsb/lib -L/lib -L/usr/lib \
-	-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 $* -lc
+exec gcc -nostdinc -I$gccbasedir/include -I/usr/lsb/include \
+	-nodefaultlibs -L$gccbasedir -L/usr/lsb/lib -L/lib -L/usr/lib \
+	-Wl,--dynamic-linker=/lib/lsb/ld-lsb.so.1 $* \
+	-lc /usr/lib/libc_nonshared.a
