@@ -17,6 +17,8 @@ typedef XID Cursor;
 typedef XID Colormap;
 typedef XID GContext;
 typedef XID KeySym;
+#define AnyButton	0L
+#define CurrentTime	0L
 #define PointerWindow	0L
 #define AnyKey	0L
 #define AllTemporary	0L
@@ -24,8 +26,6 @@ typedef XID KeySym;
 #define NoSymbol	0L
 #define CopyFromParent	0L
 #define AnyPropertyType	0L
-#define AnyButton	0L
-#define CurrentTime	0L
 #define ParentRelative	1L
 #define PointerRoot	1L
 #define InputFocus	1L
@@ -492,12 +492,12 @@ typedef XID KeySym;
 #define KBLedMode	(1L<<5)
 #define KBKey	(1L<<6)
 #define KBAutoRepeatMode	(1L<<7)
-#define MappingModifier	0
 #define MappingSuccess	0
+#define MappingModifier	0
 #define MappingKeyboard	1
 #define MappingBusy	1
-#define MappingPointer	2
 #define MappingFailed	2
+#define MappingPointer	2
 
 
 

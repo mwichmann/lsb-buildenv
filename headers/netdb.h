@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <sys/socket.h>
 
+#define h_errno	(*__h_errno_location ())
 #define NETDB_INTERNAL	-1
 #define NETDB_SUCCESS	0
 #define HOST_NOT_FOUND	1
@@ -47,10 +48,10 @@ extern struct protoent *getprotoent (void);
 extern struct servent *getservbyname (char *, char *);
 extern struct servent *getservbyport (int, char *);
 extern struct servent *getservent (void);
-extern int h_errno;
 extern void setnetent (int);
 extern void setprotoent (int);
 extern void setservent (void);
-extern int gethostbyname_r (char *, struct hostent *, char *, size_t,
+extern int *__h_errno_location (void);
+extern int gethostbyname_r (const char *, struct hostent *, char *, size_t,
 			    struct hostent **, int *);
 #endif

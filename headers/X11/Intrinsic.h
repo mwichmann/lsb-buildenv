@@ -259,11 +259,23 @@ extern void XtInsertRawEventHandler (Widget, EventMask, int, XtEventHandler,
 				     XtPointer, XtListPosition);
 extern void XtInstallAccelerators (Widget, Widget);
 extern void XtInstallAllAccelerators (Widget, Widget);
+extern Boolean XtIsApplicationShell (void);
+extern Boolean XtIsComposite (void);
+extern Boolean XtIsConstraint (void);
 extern Boolean XtIsManaged (Widget);
 extern Boolean XtIsObject (Widget);
+extern Boolean XtIsOverrideShell (void);
 extern Boolean XtIsRealized (Widget);
+extern Boolean XtIsRectObj (void);
 extern Boolean XtIsSensitive (Widget);
+extern Boolean XtIsSessionShell (void);
+extern Boolean XtIsShell (void);
 extern Boolean XtIsSubclass (Widget, WidgetClass);
+extern Boolean XtIsTopLevelShell (void);
+extern Boolean XtIsTransientShell (void);
+extern Boolean XtIsVendorShell (void);
+extern Boolean XtIsWMShell (void);
+extern Boolean XtIsWidget (void);
 extern void XtKeysymToKeycodeList (Display *, KeySym, KeyCode * *,
 				   Cardinal *);
 extern XEvent *XtLastEventProcessed (Display *);
@@ -275,10 +287,12 @@ extern XtGeometryResult XtMakeResizeRequest (Widget, unsigned int,
 					     unsigned int, Dimension *,
 					     Dimension *);
 extern char *XtMalloc (Cardinal);
+extern void XtMapWidget (void);
 extern void XtMenuPopupAction (Widget, XEvent *, String *, Cardinal *);
 extern ArgList XtMergeArgLists (ArgList, Cardinal, ArgList, Cardinal);
 extern String XtName (Widget);
 extern Widget XtNameToWidget (Widget, char *);
+extern String XtNewString (void);
 extern void XtNextEvent (XEvent *);
 extern void XtNoticeSignal (XtSignalId);
 extern Widget XtOpenApplication (XtAppContext *, char *, XrmOptionDescList,
@@ -377,6 +391,7 @@ extern void XtUngrabKey (Widget, unsigned int, Modifiers);
 extern void XtUngrabKeyboard (Widget, Time);
 extern void XtUngrabPointer (Widget, Time);
 extern void XtUninstallTranslations (Widget);
+extern void XtUnmapWidget (void);
 extern void XtUnrealizeWidget (Widget);
 extern void XtUnregisterDrawable (Display *, Drawable);
 extern Widget XtVaAppCreateShell (char *, char *, WidgetClass, Display *,
@@ -405,6 +420,7 @@ extern XtAppContext XtWidgetToApplicationContext (Widget);
 extern Window XtWindow (Widget);
 extern Window XtWindowOfObject (Widget);
 extern Widget XtWindowToWidget (Display *, Window);
+extern Boolean _XtCheckSubclassFlag (Widget, unsigned int);
 extern Boolean _XtIsSubclassOf (Widget, WidgetClass, WidgetClass,
 				unsigned int);
 #endif

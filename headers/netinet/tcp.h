@@ -2,6 +2,7 @@
 #define _NETINET_TCP_H_
 
 
+#define TCP_NODELAY	1
 
 
 

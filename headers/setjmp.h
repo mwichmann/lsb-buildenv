@@ -34,5 +34,6 @@ typedef jmp_buf sigjmp_buf;
 extern int __sigsetjmp (jmp_buf, int);
 extern void longjmp (jmp_buf, int);
 extern void siglongjmp (sigjmp_buf, int);
+extern void _longjmp (void);
 extern int _setjmp (jmp_buf);
 #endif

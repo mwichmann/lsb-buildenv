@@ -22,6 +22,7 @@ extern void endgrent (void);
 extern struct group *getgrent (void);
 extern struct group *getgrgid (gid_t);
 extern struct group *getgrnam (const char *);
+extern int initgroups (const char *, gid_t);
 extern void setgrent (void);
 extern int setgroups (void);
 #endif

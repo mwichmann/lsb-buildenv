@@ -80,6 +80,9 @@
 #define ENOANO	55
 #define EBADRQC	56
 #define EBADSLT	57
+#if defined(__powerpc__)
+#define EDEADLOCK	58
+#endif
 #define EBFONT	59
 #define ENXIO	6
 #define ENOSTR	60

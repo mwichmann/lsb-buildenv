@@ -12,12 +12,20 @@
 #define PROT_READ	0x1
 #define MAP_FIXED	0x10
 #define PROT_WRITE	0x2
+#define MAP_ANONYMOUS	0x20
 #define PROT_EXEC	0x4
-#define MCL_CURRENT	1
 #define MS_ASYNC	1
-#define MCL_FUTURE	2
+#define MCL_CURRENT	1
+#if defined(__powerpc__)
+#define MCL_FUTURE	16384
+#endif
 #define MS_INVALIDATE	2
+#define MCL_FUTURE	2
 #define MS_SYNC	4
+#if defined(__powerpc__)
+#define MCL_CURRENT	8192
+#endif
+#define MAP_ANON	MAP_ANONYMOUS
 
 
 

@@ -19,6 +19,9 @@ typedef int greg_t;
 #if defined(__i386__)
 #define NGREG	19
 #endif
+#if defined(__powerpc__)
+#define NGREG	48
+#endif
 
 
 

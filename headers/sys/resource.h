@@ -4,8 +4,8 @@
 #include <sys/time.h>
 
 #define RLIM_INFINITY	(~0UL)
-#define RLIM_SAVED_MAX	-1
 #define RLIM_SAVED_CUR	-1
+#define RLIM_SAVED_MAX	-1
 #define RUSAGE_SELF	0
 #define RLIMIT_CPU	0
 #define RLIMIT_FSIZE	1

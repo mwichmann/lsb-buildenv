@@ -35,8 +35,8 @@ struct utmp
 }
  ;
 #define EMPTY	0
-#define BOOT_TIME	1
-#define RUN_LVL	2
+#define RUN_LVL	1
+#define BOOT_TIME	2
 #define NEW_TIME	3
 #define OLD_TIME	4
 #define INIT_PROCESS	5

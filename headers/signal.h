@@ -12,8 +12,8 @@
 #define SIG_BLOCK	0
 #define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
-#define SIG_SETMASK	2
 #define SIGEV_THREAD	2
+#define SIG_SETMASK	2
 #define SI_MAX_SIZE	64
 
 
@@ -324,28 +324,38 @@ struct sigcontext
  ;
 
 
+extern int __sigpause (void);
+extern __sighandler_t __sysv_signal (void);
 extern char **_sys_siglist;
+extern int killpg (pid_t, int);
+extern void psignal (void);
 extern int raise (int);
 extern int sigaddset (sigset_t *, int);
 extern int sigdelset (sigset_t *, int);
 extern int sigemptyset (sigset_t *);
 extern int sigfillset (sigset_t *);
+extern int siggetmask (void);
 extern int sighold (void);
+extern int sigignore (void);
 extern int siginterrupt (void);
 extern int sigismember (void);
 extern int sigpending (sigset_t *);
 extern int sigrelse (void);
 extern __sighandler_t sigset (void);
+extern int sigstack (void);
 extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
 extern int sigaction (int, struct sigaction *, struct sigaction *);
 extern int sigwait (const sigset_t *, int *);
 extern int kill (pid_t, int);
 extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
+extern int sigblock (void);
 extern __sighandler_t signal (int, __sighandler_t);
 extern int sigpause (void);
 extern int sigprocmask (int, sigset_t *, sigset_t *);
+extern int sigreturn (void);
 extern int sigsuspend (sigset_t *);
 extern int sigqueue (void);
 extern int sigwaitinfo (void);
 extern int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
+extern __sighandler_t bsd_signal (void);
 #endif

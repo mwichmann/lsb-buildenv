@@ -120,4 +120,8 @@ extern int XwcTextListToTextProperty (Display *, wchar_t * *, int,
 				      XICCEncodingStyle, XTextProperty *);
 extern int XwcTextPropertyToTextList (Display *, XTextProperty *,
 				      wchar_t * **, int *);
+extern int Xutf8TextPropertyToTextList (Display *, XTextProperty *, char ***,
+					int *);
+extern int Xutf8TextListToTextProperty (Display *, char **, int,
+					XICCEncodingStyle, XTextProperty *);
 #endif

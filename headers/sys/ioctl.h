@@ -6,6 +6,12 @@
 #if defined(__i386__)
 #define TIOCNOTTY	0x5422
 #endif
+#if defined(__powerpc__)
+#define TIOCNOTTY	0x5422
+#endif
+#if defined(__powerpc__)
+#define FIONREAD	1074030207
+#endif
 
 
 

@@ -499,6 +499,7 @@ extern int XDrawText (Display *, Drawable, GC, int, int, XTextItem *, int);
 extern int XDrawText16 (Display *, Drawable, GC, int, int, XTextItem16 *,
 			int);
 extern XExtData **XEHeadOfExtensionList (XEDataObject);
+extern int *XESetCloseDisplay (void);
 extern int XEnableAccessControl (Display *);
 extern long XEventMaskOfScreen (Screen *);
 extern int XEventsQueued (Display *, int);

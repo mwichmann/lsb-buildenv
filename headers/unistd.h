@@ -26,6 +26,8 @@ typedef int *intptr_t;
 
 
 
+#define _POSIX_MESSAGE_PASSING	1
+#define _POSIX_SHARED_MEMORY_OBJECTS	1
 #define _POSIX_MEMLOCK	1
 #define _POSIX_PRIORITY_SCHEDULING	1
 #define _POSIX_SYNCHRONIZED_IO	1
@@ -37,8 +39,6 @@ typedef int *intptr_t;
 #define _POSIX_MEMORY_PROTECTION	1
 #define _POSIX_SEMAPHORES	1
 #define _POSIX_FSYNC	1
-#define _POSIX_MESSAGE_PASSING	1
-#define _POSIX_SHARED_MEMORY_OBJECTS	1
 #define _POSIX2_VERSION	199209L
 #define _POSIX2_C_VERSION	199209L
 #define _POSIX_VERSION	199506L
@@ -170,7 +170,9 @@ typedef int *intptr_t;
 
 
 extern char **__environ;
+extern pid_t __getpgid (void);
 extern void _exit (int);
+extern int acct (void);
 extern unsigned int alarm (unsigned int);
 extern int chown (char *, uid_t, gid_t);
 extern int chroot (char *);
@@ -186,9 +188,14 @@ extern int execlp (char *, char *, ...);
 extern int execv (char *, char *[]);
 extern int execvp (char *, char *[]);
 extern int fdatasync (void);
+extern int ftruncate64 (void);
+extern long gethostid (void);
 extern char *getlogin (void);
 extern int getopt (int, char *const[], const char *);
 extern pid_t getpgrp (void);
+extern pid_t getsid (void);
+extern char *getwd (void);
+extern int lockf (void);
 extern int mkstemp (char *);
 extern int nice (int);
 extern char *optarg;
@@ -198,13 +205,17 @@ extern int optopt;
 extern int rename (char *, char *);
 extern int setegid (void);
 extern int seteuid (void);
+extern int sethostid (void);
 extern int sethostname (char *, size_t);
 extern int setpgrp (void);
 extern void swab (void *, void *, ssize_t);
 extern int sync (void);
 extern pid_t tcgetpgrp (void);
 extern int tcsetpgrp (void);
+extern int truncate (void);
+extern int truncate64 (void);
 extern char *ttyname (int);
+extern unsigned int ualarm (void);
 extern void usleep (unsigned long);
 extern int close (int);
 extern int fsync (int);
@@ -264,4 +275,6 @@ extern pid_t getppid (void);
 extern int isatty (int);
 extern loff_t lseek64 (int, loff_t, int);
 extern int open64 (char *, int, ...);
+extern ssize_t pwrite64 (void);
+extern int ttyname_r (void);
 #endif

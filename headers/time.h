@@ -66,6 +66,7 @@ extern int getdate_err;
 extern struct tm *gmtime (time_t *);
 extern struct tm *localtime (time_t *);
 extern time_t mktime (struct tm *);
+extern int stime (void);
 extern size_t strftime (char *, size_t, const char *, struct tm *);
 extern char *strptime (char *, char *, struct tm *);
 extern time_t time (time_t *);

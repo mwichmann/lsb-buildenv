@@ -14,8 +14,14 @@
 #if defined(__i386__)
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
+#if defined(__powerpc__)
+#define LONG_MAX	2147483647L
+#endif
 #define OPEN_MAX	256
 #define PATH_MAX	4096
+#if defined(__powerpc__)
+#define ULONG_MAX	4294967295UL
+#endif
 
 
 
@@ -26,8 +32,14 @@
 
 /* Number of bits in a `char'.*/
 #define SCHAR_MIN	(-128)
+#if defined(__powerpc__)
+#define CHAR_MIN	0
+#endif
 #define SCHAR_MAX	127
 #define UCHAR_MAX	255
+#if defined(__powerpc__)
+#define CHAR_MAX	255
+#endif
 #define CHAR_BIT	8
 #define CHAR_MAX	SCHAR_MAX
 #define CHAR_MIN	SCHAR_MIN

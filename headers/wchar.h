@@ -6,8 +6,14 @@
 #include <stddef.h>
 
 #define WEOF	(0xffffffffu)
+#if defined(__powerpc__)
+#define WCHAR_MIN	-2147483648
+#endif
 #define WCHAR_MIN	0
 #define WCHAR_MAX	0xffffff
+#if defined(__powerpc__)
+#define WCHAR_MAX	2147483647
+#endif
 
 
 

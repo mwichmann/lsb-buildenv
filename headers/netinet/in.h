@@ -4,8 +4,15 @@
 #include <sys/socket.h>
 #include <inttypes.h>
 
+#define INADDR_NONE	((unsigned long int) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
+#define IPPROTO_IP	0
+#define IPPROTO_ICMP	1
+#define IPPROTO_UDP	17
+#define IPPROTO_IGMP	2
+#define IPPROTO_RAW	255
+#define IPPROTO_TCP	6
 
 
 
