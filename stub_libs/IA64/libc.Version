@@ -36,6 +36,11 @@ GLIBC_2.2 {
   __strtoull_internal;
   __sysconf;
   __sysv_signal;
+  __wcstod_internal;
+  __wcstof_internal;
+  __wcstol_internal;
+  __wcstold_internal;
+  __wcstoul_internal;
   __xmknod;
   __xstat;
   __xstat64;
@@ -246,7 +251,6 @@ GLIBC_2.2 {
   getprotoent;
   getpwent;
   getpwnam;
-  getpwnam_r;
   getpwuid;
   getpwuid_r;
   getrlimit;

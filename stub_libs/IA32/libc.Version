@@ -31,6 +31,11 @@ GLIBC_2.0 {
   __sysv_signal;
   __udivdi3;
   __umoddi3;
+  __wcstod_internal;
+  __wcstof_internal;
+  __wcstol_internal;
+  __wcstold_internal;
+  __wcstoul_internal;
   __xmknod;
   __xstat;
   _exit;
@@ -204,7 +209,6 @@ GLIBC_2.0 {
   getprotoent;
   getpwent;
   getpwnam;
-  getpwnam_r;
   getpwuid;
   getpwuid_r;
   getrusage;
@@ -772,6 +776,7 @@ GLIBC_2.1.1 {
 };
 GLIBC_2.1.2 {
   gethostbyname_r;
+  getpwnam_r;
 };
 GLIBC_2.1.3 {
   __cxa_atexit;
