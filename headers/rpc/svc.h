@@ -3,6 +3,7 @@
 
 #include <netinet/in.h>
 #include <sys/types.h>
+#include <rpc/rpc.h>
 
 #ifdef __cplusplus
 extern "C"

@@ -11,6 +11,14 @@ extern "C"
 
 
 
+  struct CLIENT
+  {
+    struct AUTH *cl_auth;
+    struct clnt_ops cl_ops;
+    caddr_t cl_private;
+  }
+   ;
+
 
   extern struct CLIENT *clnt_create (char *, u_long, u_long, char *);
   extern void clnt_pcreateerror (char *);
