@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.25 $
+# This is $Revision: 1.26 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.26  2003/05/13 23:10:47  mwichmann
+# Avoid complaints from stricter gcc 3.3
+#
 # Revision 1.25  2003/02/19 16:55:22  anderson
 # Don't include deprecate interfaces in the stub library
 #
@@ -268,7 +271,7 @@ sub GenerateLibrary($$$)
     if( $row->{Iname} eq $lastint ) { next; }
 #if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
     $lastint=$row->{Iname};
-    print(STUBFILE "void $row->{Iname}(void) {} ;\n");
+    print(STUBFILE "void $row->{Iname}() {} ;\n");
 
     # Add ability to override versions of functions
     undef($version);
