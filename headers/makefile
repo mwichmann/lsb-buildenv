@@ -26,3 +26,5 @@ clean:
 	find . -name '*.m4' -print | xargs rm -f
 	find . -name '*.cpp' -print | xargs rm -f
 	find . -name '*.txt' -print | xargs rm -f
+
+distclean: clean
