@@ -482,7 +482,6 @@ extern "C"
   extern int overlay (const WINDOW *, WINDOW *);
   extern int overwrite (const WINDOW *, WINDOW *);
   extern int pair_content (short, short *, short *);
-  extern int PAIR_NUMBER (int);
   extern int pechochar (WINDOW *, chtype);
   extern int pnoutrefresh (WINDOW *, int, int, int, int, int, int);
   extern int prefresh (WINDOW *, int, int, int, int, int, int);
