@@ -7,6 +7,7 @@ ARCHS = All IA32 IA64 PPC32
 		mkdir -p `dirname $$a/$@` 2>/dev/null ; \
 		./mkdatadef -a $$a -h $@ | indent | sed -e 's/\&/\&amp /' >$$a/$@.defs ; \
 	done
+	mkdir -p `dirname $@` 2>/dev/null ; \
 	./mkheader -a All -h $@ | indent >$@ ;
 
 all:
