@@ -70,7 +70,6 @@ void alarm() {} ;
 void asctime() {} ;
 void asctime_r() {} ;
 void asprintf() {} ;
-void atexit() {} ;
 void atof() {} ;
 void atoi() {} ;
 void atol() {} ;

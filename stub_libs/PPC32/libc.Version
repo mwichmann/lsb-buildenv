@@ -59,7 +59,6 @@ GLIBC_2.0 {
   asctime;
   asctime_r;
   asprintf;
-  atexit;
   atof;
   atoi;
   atol;
