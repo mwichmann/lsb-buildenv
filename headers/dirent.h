@@ -52,7 +52,7 @@ extern "C"
   extern void seekdir (DIR *, long);
   extern long telldir (DIR *);
   extern int closedir (DIR *);
-  extern DIR *opendir (char *);
+  extern DIR *opendir (const char *);
   extern struct dirent *readdir (DIR *);
   extern struct dirent64 *readdir64 (DIR *);
 #ifdef __cplusplus

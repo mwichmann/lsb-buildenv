@@ -257,8 +257,8 @@ extern "C"
   extern uid_t getuid (void);
   extern int lchown (const char *, uid_t, gid_t);
   extern int link (const char *, const char *);
-  extern int mkdir (char *, mode_t);
-  extern long pathconf (char *, int);
+  extern int mkdir (const char *, mode_t);
+  extern long pathconf (const char *, int);
   extern int pipe (int[2]);
   extern int readlink (const char *, char *, size_t);
   extern int rmdir (const char *);

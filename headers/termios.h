@@ -110,10 +110,19 @@ extern "C"
 #endif
 
 
+  struct winsize
+  {
+    unsigned short ws_row;
+    unsigned short ws_col;
+    unsigned short ws_xpixel;
+    unsigned short ws_ypixel;
+  }
+   ;
 
 
 
-  typedef int speed_t;
+
+  typedef unsigned int speed_t;
 
   typedef unsigned char cc_t;
 
@@ -340,8 +349,8 @@ extern "C"
 
 
 
-  extern speed_t cfgetispeed (struct termios *);
-  extern speed_t cfgetospeed (struct termios *);
+  extern speed_t cfgetispeed (struct termios *const);
+  extern speed_t cfgetospeed (struct termios *const);
   extern void cfmakeraw (void);
   extern int cfsetispeed (struct termios *, speed_t);
   extern int cfsetospeed (struct termios *, speed_t);
@@ -350,7 +359,7 @@ extern "C"
   extern int tcflush (int, int);
   extern pid_t tcgetsid (int);
   extern int tcsendbreak (int, int);
-  extern int tcsetattr (int, int, struct termios *);
+  extern int tcsetattr (int, int, struct termios *const);
   extern int tcdrain (int);
   extern int tcgetattr (int, struct termios *);
 #ifdef __cplusplus

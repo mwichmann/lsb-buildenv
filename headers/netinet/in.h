@@ -10,6 +10,7 @@ extern "C"
 #endif
 
 
+#define IN_MULTICAST(a)	((((in_addr_t)(a))&0xf0000000)==0xe0000000)
 #define INADDR_NONE	((unsigned long int) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0

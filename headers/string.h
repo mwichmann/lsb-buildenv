@@ -19,35 +19,35 @@ extern "C"
   extern void *memcpy (void *, const void *, size_t);
   extern void *memmove (void *, void *, size_t);
   extern void *memset (void *, int, size_t);
-  extern char *strcat (char *, char *);
+  extern char *strcat (char *, const char *);
   extern char *strchr (const char *, int);
   extern int strcmp (const char *, const char *);
-  extern int strcoll (char *, char *);
+  extern int strcoll (const char *, const char *);
   extern char *strcpy (char *, const char *);
-  extern size_t strcspn (char *, char *);
+  extern size_t strcspn (const char *, const char *);
   extern char *strerror (int);
   extern size_t strlen (const char *);
   extern char *strncat (char *, const char *, size_t);
   extern int strncmp (const char *, const char *, size_t);
   extern char *strncpy (char *, const char *, size_t);
-  extern char *strpbrk (char *, char *);
+  extern char *strpbrk (const char *, const char *);
   extern char *strrchr (const char *, int);
-  extern size_t strspn (char *, char *);
+  extern size_t strspn (const char *, const char *);
   extern char *strstr (const char *, const char *);
-  extern char *strtok (char *, char *);
-  extern size_t strxfrm (char *, char *, size_t);
+  extern char *strtok (char *, const char *);
+  extern size_t strxfrm (char *, const char *, size_t);
   extern int bcmp (const void *, const void *, size_t);
   extern void bzero (void *, size_t);
   extern int ffs (int);
   extern char *index (const char *, int);
-  extern void *memccpy (void *, void *, int, size_t);
+  extern void *memccpy (void *, const void *, int, size_t);
   extern char *rindex (const char *, int);
   extern int strcasecmp (const char *, const char *);
   extern char *strdup (const char *);
   extern int strncasecmp (const char *, const char *, size_t);
   extern char *strsep (char **, char *);
   extern char *strerror_r (int, char *, size_t);
-  extern char *strtok_r (char *, char *, char **);
+  extern char *strtok_r (char *, const char *, char **);
 #ifdef __cplusplus
 }
 #endif

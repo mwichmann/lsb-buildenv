@@ -14,8 +14,12 @@ extern "C"
 #define MSG_TRUNC	0x20
 #define MSG_EOR	0x80
 #define SIOCGIFCONF	0x8912
+#define SIOCGIFFLAGS	0x8913
+#define SIOCGIFADDR	0x8915
+#define SIOCGIFNETMASK	0x891b
 #define MSG_OOB	1
 #define SHUT_WR	1
+#define SO_BSDCOMPAT	14
 #define MSG_PEEK	2
 #define SHUT_RDWR	2
 #define MSG_DONTROUTE	4
@@ -130,7 +134,7 @@ extern "C"
 
 
 
-  extern int bind (int, struct sockaddr *, socklen_t);
+  extern int bind (int, const struct sockaddr *, socklen_t);
   extern int getsockname (int, struct sockaddr *, socklen_t *);
   extern int listen (int, int);
   extern int setsockopt (int, int, int, const void *, socklen_t);

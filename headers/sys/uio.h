@@ -2,7 +2,6 @@
 #define _SYS_UIO_H_
 
 #include <stddef.h>
-#include <sys/socket.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -13,8 +12,8 @@ extern "C"
 
 
 
-  extern int readv (int, struct iovec *, size_t);
-  extern int writev (int, struct iovec *, size_t);
+  extern int readv (int, struct iovec *const, size_t);
+  extern int writev (int, struct iovec *const, size_t);
 #ifdef __cplusplus
 }
 #endif

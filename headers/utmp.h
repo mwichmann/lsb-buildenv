@@ -72,6 +72,10 @@ extern "C"
   extern struct utmp *getutent (void);
   extern void setutent (void);
   extern struct utmp *getutent_r (void);
+  extern int login_tty (int);
+  extern void login (const utmp *);
+  extern int logout (const char *);
+  extern void logwtmp (const char *, const char *, const char *);
 #ifdef __cplusplus
 }
 #endif

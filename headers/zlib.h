@@ -20,8 +20,6 @@ extern "C"
 
   typedef int intf;
 
-  typedef uInt uIntf;
-
 
 
 
@@ -51,6 +49,8 @@ extern "C"
    ;
 
   typedef Byte Bytef;
+
+  typedef uInt uIntf;
 
 
 

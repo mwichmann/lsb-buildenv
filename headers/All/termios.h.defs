@@ -43,10 +43,17 @@
 #define TCION	3
 
 
+struct winsize
+{
+  unsigned short ws_row;
+  unsigned short ws_col;
+  unsigned short ws_xpixel;
+  unsigned short ws_ypixel;
+}
+ ;
 
 
-
-typedef int speed_t;
+typedef unsigned int speed_t;
 typedef unsigned char cc_t;
 typedef unsigned int tcflag_t;
 #define NCCS	32
