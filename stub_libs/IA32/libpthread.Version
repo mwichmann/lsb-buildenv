@@ -1,5 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
+  _pthread_cleanup_pop;
+  _pthread_cleanup_push;
   pthread_atfork;
   pthread_attr_destroy;
   pthread_attr_getdetachstate;
