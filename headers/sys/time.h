@@ -1,9 +1,7 @@
 #ifndef _SYS_TIME_H_
 #define _SYS_TIME_H_
 
-#include <signal.h>
 #include <sys/types.h>
-#include <time.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -74,12 +72,6 @@ the second and third arguments `setitimer'.*/
   extern int adjtime (const struct timeval *, struct timeval *);
   extern int gettimeofday (struct timeval *, struct timezone *);
   extern int utimes (const char *, const struct timeval *);
-  extern int timer_create (clockid_t, struct sigevent *, timer_t *);
-  extern int timer_delete (timer_t);
-  extern int timer_getoverrun (timer_t);
-  extern int timer_gettime (timer_t, struct itimerspec *);
-  extern int timer_settime (timer_t, int, struct itimerspec *,
-			    struct itimerspec *);
 #ifdef __cplusplus
 }
 #endif

@@ -1,6 +1,7 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
@@ -88,8 +89,15 @@ extern "C"
   extern int clock_getcpuclockid (pid_t, clockid_t *);
   extern int clock_getres (clockid_t, struct timespec *);
   extern int clock_gettime (clockid_t, struct timespec *);
-  extern int clock_nanosleep (clockid_t, int, struct timespec *);
+  extern int clock_nanosleep (clockid_t, int, const struct timespec *,
+			      struct timespec *);
   extern int clock_settime (clockid_t, const struct timespec *);
+  extern int timer_create (clockid_t, struct sigevent *, timer_t *);
+  extern int timer_delete (timer_t);
+  extern int timer_getoverrun (timer_t);
+  extern int timer_gettime (timer_t, struct itimerspec *);
+  extern int timer_settime (timer_t, int, const struct itimerspec *,
+			    struct itimerspec *);
 #ifdef __cplusplus
 }
 #endif
