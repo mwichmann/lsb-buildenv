@@ -33,8 +33,6 @@ extern "C"
    ;
 
 
-  extern int32_t *__ctype_tolower;
-  extern int32_t *__ctype_toupper;
   extern int _tolower (int);
   extern int _toupper (int);
   extern int isalnum (int);
