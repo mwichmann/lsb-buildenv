@@ -55,6 +55,9 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	if( $entry{'Ttype'} ne 'FuncPtr' || $nameonly ) {
 		print $$type{'Tname'}."\t";
 		}
+	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
+		print "[".$$type{'ATsize'}."]";
+		}
 	if (!$nameonly) {
 		print $$type{'Tcomment'}."\n";
 		}
@@ -550,7 +553,7 @@ if( $typelist ne "" ) {
 #
 # Use the algorithm from admin/headers.php3
 
-$select = "SELECT HGid,HGdescription FROM HeaderGroup ";
+$select = "SELECT HGid,HGdescription,HGorder FROM HeaderGroup ";
 $select.= "WHERE HGheader=$Hid ";
 $select.= "ORDER BY HGorder";
 print $select,"\n" if $trace;
@@ -559,8 +562,13 @@ for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
 	$HGdesc=$entry{'HGdescription'};
+	$HGorder=$entry{'HGorder'};
 	# Make sure a blank line is present between every group
 	print "\n";
+
+	if( $HGorder != 0 && $HGdesc ne "" ) {
+		print "/* ".$HGdesc."*/\n";
+		}
 
 	# Display the Constants
 	$select = "SELECT * FROM Constant ";
@@ -588,6 +596,7 @@ for(1..$hgh->numrows) {
 	# Display the Types
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN Architecture ON Tarch=Aid ";
+	$select.= "LEFT JOIN ArchType ON ATaid=Aid AND ATtid=Tid ";
 	$select.= "WHERE Theadergroup=$HGid ";
 	$select.= "AND Tstatus != 'Excluded' ";
 	$select.= "ORDER BY Tid";
