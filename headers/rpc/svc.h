@@ -3,12 +3,15 @@
 
 #include <netinet/in.h>
 #include <sys/types.h>
-#include <rpc/rpc.h>
+#include <rpc/auth.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+
+
 
 
 
@@ -25,6 +28,24 @@ extern "C"
     void (*xp_destroy) (struct SVCXPRT * __xprt);
   }
    ;
+
+
+/* Server side transport handle*/
+
+
+  typedef struct SVCXPRT
+  {
+    int xp_sock;
+    u_short xp_port;
+    struct xp_ops xp_ops;
+    int xp_addrlen;
+    struct sockaddr_in xp_raddr;
+    struct opaque_auth xp_verf;
+    caddr_t xp_p1;
+    caddr_t xp_p2;
+    char xp_pad;
+  }
+  SVCXPRT;
 
 
   extern void svc_getreqset (fd_set *);

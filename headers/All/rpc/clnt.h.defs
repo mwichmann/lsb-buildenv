@@ -1,13 +1,48 @@
 
+#define NULLPROC	((u_long)0)
+#define CLSET_TIMEOUT	1
+#define CLGET_XID	10
+#define CLSET_XID	11
+#define CLGET_VERS	12
+#define CLSET_VERS	13
+#define CLGET_PROG	14
+#define CLSET_PROG	15
+#define CLGET_TIMEOUT	2
+#define CLGET_SERVER_ADDR	3
+#define CLSET_RETRY_TIMEOUT	4
+#define CLGET_RETRY_TIMEOUT	5
+#define CLGET_FD	6
+#define CLGET_SVC_ADDR	7
+#define CLSET_FD_CLOSE	8
+#define CLSET_FD_NCLOSE	9
+
+
+enum clnt_stat
+{
+  RPC_SUCCESS, RPC_CANTENCODEARGS = 1, RPC_CANTDECODERES = 2, RPC_CANTSEND =
+    3, RPC_CANTRECV = 4, RPC_TIMEDOUT = 5, RPC_VERSMISMATCH =
+    6, RPC_AUTHERROR = 7, RPC_PROGUNAVAIL = 8, RPC_PROGVERSMISMATCH =
+    9, RPC_PROCUNAVAIL = 10, RPC_CANTDECODEARGS = 11, RPC_SYSTEMERROR =
+    12, RPC_NOBROADCAST = 21, RPC_UNKNOWNHOST = 13, RPC_UNKNOWNPROTO =
+    17, RPC_UNKNOWNADDR = 19, RPC_RPCBFAILURE = 14, RPC_PROGNOTREGISTERED =
+    15, RPC_N2AXLATEFAILURE = 22, RPC_FAILED = 16, RPC_INTR =
+    18, RPC_TLIERROR = 20, RPC_UDERROR = 23, RPC_INPROGRESS =
+    24, RPC_STALERACHANDLE = 25
+}
+ ;
+
+
+
 
 
 struct clnt_ops
 {
-  enum clnt_stat (*cl_call) (void);
+  enum clnt_stat (*cl_call) (CLIENT *, u_long, xdrproc_t, caddr_t, xdrproc_t,
+			     caddr_t, struct timeval);
   void (*cl_abort) (void);
-  void (*cl_geterr) (void);
-    bool_t (*cl_freeres) (void);
-  void (*cl_destroy) (void);
-    bool_t (*cl_control) (void);
+  void (*cl_geterr) (CLIENT *, struct rpc_err *);
+    bool_t (*cl_freeres) (CLIENT *, xdrproc_t, caddr_t);
+  void (*cl_destroy) (CLIENT *);
+    bool_t (*cl_control) (CLIENT *, int, char *);
 }
  ;

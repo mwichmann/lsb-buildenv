@@ -3,7 +3,7 @@
 
 #include <sys/types.h>
 #include <inttypes.h>
-#include <rpc/rpc.h>
+#include <rpc/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -18,6 +18,17 @@ extern "C"
     XDR_ENCODE,
     XDR_DECODE,
     XDR_FREE
+  }
+   ;
+
+  struct XDR
+  {
+    enum xdr_op x_op;
+    struct xdr_ops x_ops;
+    caddr_t x_public;
+    caddr_t x_private;
+    caddr_t x_base;
+    int x_handy;
   }
    ;
 
