@@ -15,10 +15,10 @@ extern "C"
 #define PTHREAD_MUTEX_DEFAULT	1
 #define PTHREAD_MUTEX_NORMAL	1
 #define PTHREAD_MUTEX_TIMED_NP	1
-#define PTHREAD_RWLOCK_INITIALIZER	1
 #define PTHREAD_MUTEX_RECURSIVE	2
 #define PTHREAD_MUTEX_ERRORCHECK	3
 #define __LOCK_INITIALIZER	{ 0, 0 }
+#define PTHREAD_RWLOCK_INITIALIZER	{ __LOCK_INITIALIZER, 0, NULL, NULL, NULL,PTHREAD_RWLOCK_DEFAULT_NP, PTHREAD_PROCESS_PRIVATE }
 #define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
 #define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
 
@@ -184,7 +184,6 @@ extern "C"
   extern int pthread_key_create (pthread_key_t *,
 				 void (*destructor) (void *));
   extern int pthread_key_delete (pthread_key_t);
-  extern int pthread_kill (void);
   extern int pthread_mutex_destroy (pthread_mutex_t *);
   extern int pthread_mutex_init (pthread_mutex_t *, pthread_mutexattr_t *);
   extern int pthread_mutex_lock (pthread_mutex_t *);

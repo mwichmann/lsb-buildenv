@@ -36,6 +36,8 @@ extern "C"
   extern void setpwent (void);
   extern int getpwnam_r (const char *, struct passwd *, char *, size_t,
 			 struct passwd **);
+  extern int getpwuid_r (uid_t, struct passwd *, char *, size_t,
+			 struct passwd **);
 #ifdef __cplusplus
 }
 #endif

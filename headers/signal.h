@@ -3,6 +3,7 @@
 
 #include <sys/time.h>
 #include <stddef.h>
+#include <pthread.h>
 #include <sys/types.h>
 
 #ifdef __cplusplus
@@ -538,6 +539,7 @@ extern "C"
   extern int sigrelse (int);
   extern __sighandler_t sigset (void);
   extern int sigstack (void);
+  extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
   extern int sigaction (int, struct sigaction *, struct sigaction *);
   extern int sigwait (const sigset_t *, int *);

@@ -40,7 +40,7 @@ extern "C"
   extern int __sigsetjmp (jmp_buf, int);
   extern void longjmp (jmp_buf, int);
   extern void siglongjmp (sigjmp_buf, int);
-  extern void _longjmp (void);
+  extern void _longjmp (jmp_buf, int);
   extern int _setjmp (jmp_buf);
 #ifdef __cplusplus
 }
