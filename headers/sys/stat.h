@@ -337,6 +337,34 @@ extern "C"
    ;
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
+  struct stat
+  {
+    __dev_t st_dev;
+    unsigned int __pad1;
+    __ino_t st_ino;
+    __mode_t st_mode;
+    __nlink_t st_nlink;
+    __uid_t st_uid;
+    __gid_t st_gid;
+    __dev_t st_rdev;
+    unsigned int __pad2;
+    __off_t st_size;
+    Unknown Type:".." st_blksize;
+    __blkcnt_t st_blocks;
+    __time_t st_atime;
+    unsigned long __unused1;
+    __time_t st_mtime;
+    unsigned long __unused2;
+    __time_t st_ctime;
+    unsigned long __unused3;
+    unsigned long __unused4;
+    unsigned long __unused5;
+  }
+   ;
+
+#endif
 
 
 

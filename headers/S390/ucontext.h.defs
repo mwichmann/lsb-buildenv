@@ -6,3 +6,60 @@
 
 
 #define NGREG	36
+
+
+
+
+
+
+
+
+
+
+
+typedef union
+{
+  double d;
+  float f;
+}
+fpreg_t;
+
+
+
+
+
+typedef struct
+{
+  unsigned int fpc;
+  fpreg_t fprs[16];
+}
+fpregset_t;
+
+
+typedef struct
+{
+  unsigned long mask;
+  unsigned long addr;
+}
+__psw_t;
+
+
+typedef struct
+{
+  __psw_t psw;
+  unsigned long gregs[16];
+  unsigned int aregs[16];
+  fpregset_t fpregs;
+}
+mcontext_t;
+
+
+typedef struct ucontext
+{
+  unsigned long uc_flags;
+  struct ucontext *uc_link;
+  stack_t uc_stack;
+  mcontext_t uc_mcontext;
+  __sigset_t uc_sigmask;
+}
+ucontext_t;

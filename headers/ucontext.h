@@ -97,6 +97,16 @@ extern "C"
   fpreg_t;
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef union
+  {
+    double d;
+    float f;
+  }
+  fpreg_t;
+
+#endif
 
 
 
@@ -136,11 +146,31 @@ extern "C"
   fpregset_t;
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef struct
+  {
+    unsigned int fpc;
+    fpreg_t fprs[16];
+  }
+  fpregset_t;
+
+#endif
 
 
 
 #if __s390x__
 /* S390X */
+  typedef struct
+  {
+    unsigned long mask;
+    unsigned long addr;
+  }
+  __psw_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
   typedef struct
   {
     unsigned long mask;
@@ -177,6 +207,18 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
+  typedef struct
+  {
+    __psw_t psw;
+    unsigned long gregs[16];
+    unsigned int aregs[16];
+    fpregset_t fpregs;
+  }
+  mcontext_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
   typedef struct
   {
     __psw_t psw;
@@ -252,6 +294,32 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    __sigset_t uc_sigmask;
+  }
+  ucontext_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    __sigset_t uc_sigmask;
+  }
+   ;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
   typedef struct ucontext
   {
     unsigned long uc_flags;
