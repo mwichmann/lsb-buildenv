@@ -397,7 +397,9 @@ if(strcmp(basename(argv[0]),"lsbcc") == 0 ) {
 	;/* We are compiling for C - nothing special to do */
 } else if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
 	/* We are compiling for C++ set a flag to affect some things later on */
+	/*
 	fprintf(stderr,"Using C++ mode\n");
+	*/
 	lsbccmode=LSBCPLUS;
 }
 
@@ -443,18 +445,17 @@ if( lsbccmode == LSBCPLUS ) {
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Appending -lm -lc -lc_nonshared -lgcc to the library list\n");
 argvaddstring(syslibs,"-lm");
-argvaddstring(syslibs,"-lgcc");
-argvaddstring(syslibs,"-lc");
-argvaddstring(syslibs,"-lc_nonshared");
-/*
-if( lsbccmode == LSBCPLUS ) {
-	argvaddstring(syslibs,"-lgcc_eh");
-	}
-*/
-
 if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(syslibs,"-lgcc_s");
+	if( lsbcc_debug&DEBUG_LIB_CHANGES )
+		fprintf(stderr,"Using shared libgcc\n");
+} else {
+	if( lsbcc_debug&DEBUG_LIB_CHANGES )
+		fprintf(stderr,"Using non-shared libgcc\n");
+	argvaddstring(syslibs,"-lgcc");
 	}
+argvaddstring(syslibs,"-lc");
+argvaddstring(syslibs,"-lc_nonshared");
 
 gccargs=argvinit();
 if( lsbccmode == LSBCPLUS ) {
