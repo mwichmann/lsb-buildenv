@@ -189,6 +189,7 @@ GLIBC_2.2 {
   fputws;
   fread;
   free;
+  freeaddrinfo;
   freopen;
   freopen64;
   fscanf;
@@ -217,7 +218,9 @@ GLIBC_2.2 {
   fwprintf;
   fwrite;
   fwscanf;
+  gai_strerror;
   gcvt;
+  getaddrinfo;
   getc;
   getc_unlocked;
   getchar;
@@ -245,6 +248,7 @@ GLIBC_2.2 {
   getitimer;
   getloadavg;
   getlogin;
+  getnameinfo;
   getnetbyaddr;
   getopt;
   getopt_long;
@@ -307,6 +311,8 @@ GLIBC_2.2 {
   inet_addr;
   inet_aton;
   inet_ntoa;
+  inet_ntop;
+  inet_pton;
   initgroups;
   initstate;
   insque;

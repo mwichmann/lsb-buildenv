@@ -165,6 +165,7 @@ GLIBC_2.0 {
   fputs;
   fread;
   free;
+  freeaddrinfo;
   freopen;
   fscanf;
   fseek;
@@ -180,6 +181,7 @@ GLIBC_2.0 {
   funlockfile;
   fwrite;
   gcvt;
+  getaddrinfo;
   getc;
   getc_unlocked;
   getchar;
@@ -248,6 +250,8 @@ GLIBC_2.0 {
   inet_addr;
   inet_aton;
   inet_ntoa;
+  inet_ntop;
+  inet_pton;
   initgroups;
   initstate;
   insque;
@@ -714,8 +718,10 @@ GLIBC_2.1 {
   ftello64;
   ftruncate64;
   ftw64;
+  gai_strerror;
   getcontext;
   getdate;
+  getnameinfo;
   getrlimit64;
   getutxent;
   getutxid;
