@@ -1,6 +1,7 @@
 #ifndef _ZLIB_H_
 #define _ZLIB_H_
 
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -34,6 +35,8 @@ extern "C"
   typedef void *voidp;
 
   typedef unsigned char Byte;
+
+  typedef off_t z_off_t;
 
 
 
@@ -130,44 +133,45 @@ extern "C"
 
   extern int gzread (gzFile, voidp, unsigned int);
   extern int gzclose (gzFile);
-  extern gzFile gzopen (char *, char *);
-  extern gzFile gzdopen (int, char *);
+  extern gzFile gzopen (const char *, const char *);
+  extern gzFile gzdopen (int, const char *);
   extern int gzwrite (gzFile, voidp, unsigned int);
   extern int gzflush (gzFile, int);
-  extern char *gzerror (gzFile, int *);
-  extern uLong adler32 (uLong, Bytef *, uInt);
-  extern int compress (Bytef *, uLongf *, Bytef *, uLong);
-  extern int compress2 (Bytef *, uLongf *, Bytef *, uLong, int);
-  extern uLong crc32 (uLong, Bytef *, uInt);
+  extern const char *gzerror (gzFile, int *);
+  extern uLong adler32 (uLong, const Bytef *, uInt);
+  extern int compress (Bytef *, uLongf *, const Bytef *, uLong);
+  extern int compress2 (Bytef *, uLongf *, const Bytef *, uLong, int);
+  extern uLong crc32 (uLong, const Bytef *, uInt);
   extern int deflate (z_streamp, int);
   extern int deflateCopy (z_streamp, z_streamp);
   extern int deflateEnd (z_streamp);
-  extern int deflateInit2_ (z_streamp, int, int, int, int, int, char *, int);
-  extern int deflateInit_ (z_streamp, int, char *, int);
+  extern int deflateInit2_ (z_streamp, int, int, int, int, int, const char *,
+			    int);
+  extern int deflateInit_ (z_streamp, int, const char *, int);
   extern int deflateParams (z_streamp, int, int);
   extern int deflateReset (z_streamp);
-  extern int deflateSetDictionary (z_streamp, Bytef *, uInt);
-  extern uLongf *get_crc_table (void);
+  extern int deflateSetDictionary (z_streamp, const Bytef *, uInt);
+  extern const uLongf *get_crc_table (void);
   extern int gzeof (gzFile);
   extern int gzgetc (gzFile);
   extern char *gzgets (gzFile, char *, int);
-  extern int gzprintf (gzFile, char *, ...);
+  extern int gzprintf (gzFile, const char *, ...);
   extern int gzputc (gzFile, int);
-  extern int gzputs (gzFile, char *);
+  extern int gzputs (gzFile, const char *);
   extern int gzrewind (gzFile);
-  extern long gzseek (gzFile, long, int);
+  extern z_off_t gzseek (gzFile, z_off_t, int);
   extern int gzsetparams (gzFile, int, int);
-  extern long gztell (gzFile);
+  extern z_off_t gztell (gzFile);
   extern int inflate (z_streamp, int);
   extern int inflateEnd (z_streamp);
-  extern int inflateInit2_ (z_streamp, int, char *, int);
-  extern int inflateInit_ (z_streamp, char *, int);
+  extern int inflateInit2_ (z_streamp, int, const char *, int);
+  extern int inflateInit_ (z_streamp, const char *, int);
   extern int inflateReset (z_streamp);
-  extern int inflateSetDictionary (z_streamp, Bytef *, uInt);
+  extern int inflateSetDictionary (z_streamp, const Bytef *, uInt);
   extern int inflateSync (z_streamp);
   extern int inflateSyncPoint (z_streamp);
-  extern int uncompress (Bytef *, uLongf *, Bytef *, uLong);
-  extern char *zError (int);
+  extern int uncompress (Bytef *, uLongf *, const Bytef *, uLong);
+  extern const char *zError (int);
 #ifdef __cplusplus
 }
 #endif
