@@ -1,0 +1,2 @@
+
+#define assert(expr)	(__ASSERT_VOID_CAST((expr)?0:(__assert_fail(__STRING(expr),_

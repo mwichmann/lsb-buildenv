@@ -3,6 +3,7 @@ typedef unsigned long wctype_t;
 
 typedef __int32_t *wctrans_t;
 
+int iswblank ();
 wint_t towlower (wint_t);
 wint_t towupper (wint_t);
 wctrans_t wctrans (char *);
