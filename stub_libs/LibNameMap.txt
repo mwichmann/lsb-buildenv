@@ -12,5 +12,7 @@ libncurses libncurses.so.5
 libutil libutil.so.1
 libc libc.so.6
 libpthread libpthread.so.0
-proginterp ld-lsb.so.1
+proginterp-ia32 /lib/ld-lsb.so.1
 librt librt.so.1
+proginterp-ia64 /lib/ld-lsb-ia64.so.1
+libc-ia64 libc.so.6.1

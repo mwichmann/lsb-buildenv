@@ -20,6 +20,7 @@ GLIBC_2.0 {
   pthread_cond_wait;
   pthread_condattr_destroy;
   pthread_condattr_init;
+  pthread_create;
   pthread_detach;
   pthread_equal;
   pthread_exit;
@@ -53,7 +54,6 @@ GLIBC_2.1 {
   pthread_attr_setguardsize;
   pthread_attr_setstackaddr;
   pthread_attr_setstacksize;
-  pthread_create;
   pthread_mutexattr_gettype;
   pthread_mutexattr_settype;
   pthread_rwlock_destroy;

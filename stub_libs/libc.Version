@@ -224,6 +224,7 @@ GLIBC_2.0 {
   gettimeofday;
   getuid;
   getutent;
+  getutent_r;
   getw;
   getwd;
   glob;
@@ -761,6 +762,9 @@ GLIBC_2.1 {
   wcswcs;
   wordexp;
   wordfree;
+  _IO_2_1_stderr_;
+  _IO_2_1_stdin_;
+  _IO_2_1_stdout_;
   _sys_errlist;
   _sys_siglist;
   getdate_err;
