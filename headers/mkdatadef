@@ -355,18 +355,26 @@ if( $typelist eq "" ) { exit 0; }
 
 $select = "SELECT HGid,HGdescription FROM HeaderGroup ";
 $select.= "WHERE HGheader=$Hid ";
-$select.= "AND HGorder!=0 ";
+#
+# The 1.0 data has some problems, so we can't exclude these groups
+#
+# The 1.1 data has been corrected, and we can undo this then.
+#
+#$select.= "AND HGorder!=0 ";
 $select.= "ORDER BY HGorder";
 print $select,"\n" if $trace;
 $hgh = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
-	$HGdesc=$entry{'HGdescription'};
+	#
+	# Since this is a datadef for the document, we don't really want to
+	# print these descriptions
+	#$HGdesc=$entry{'HGdescription'};
 	# Need to skip the Default group name as well.
-	if ($HGdesc ne ""  ) {
-		print "/*\n * $HGdesc\n */\n";
-		}
+	#if ($HGdesc ne "" && !($HGdesc=~/Default HeaderGroup/) ) {
+	#	print "/*\n * $HGdesc\n */\n";
+	#	}
 	# Display the Types
 	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
 	$select.= "AND Tarch=$Aid ";
