@@ -1,4 +1,8 @@
+#ifndef _ERRNO_H_
+#define _ERRNO_H_
 
+
+#define errno	(*__errno_location())
 
 #define EPERM	1
 #define ECHILD	10
@@ -120,3 +124,6 @@
 #define EWOULDBLOCK	EAGAIN
 #define EDEADLOCK	EDEADLK
 #define ENOTSUP	EOPNOTSUPP
+
+int errno;
+#endif

@@ -1,3 +1,8 @@
+#ifndef _SYS_MMAN_H_
+#define _SYS_MMAN_H_
+
+#include <sys/types.h>
+
 
 int msync (void *, size_t, int);
 int mlock (void *, size_t);
@@ -8,3 +13,4 @@ int munlock (void *, size_t);
 int munlockall (void);
 int munmap (void *, size_t);
 void *mmap64 (void *, size_t, int, int, int, __off64_t);
+#endif

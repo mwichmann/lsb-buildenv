@@ -1,3 +1,6 @@
+#ifndef _SYS_UTSNAME_H_
+#define _SYS_UTSNAME_H_
+
 
 struct utsname
 {
@@ -10,4 +13,6 @@ struct utsname
 }
  ;
 
+
 int uname (struct utsname *);
+#endif

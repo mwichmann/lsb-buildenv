@@ -1,3 +1,9 @@
+#ifndef _AIO_H_
+#define _AIO_H_
+
+#include <sys/time.h>
+#include <signal.h>
+#include <sys/types.h>
 
 
 enum
@@ -71,6 +77,7 @@ struct aiocb64
 }
  ;
 
+
 int aio_read (struct aiocb *);
 int aio_write (struct aiocb *);
 int lio_listio (int, struct aiocb *, int, struct sigevent *);
@@ -87,3 +94,4 @@ __ssize_t aio_return64 (struct aiocb64 *);
 int aio_suspend64 (struct aiocb64 *, int, struct timespec *);
 int aio_write64 (struct aiocb64 *);
 int lio_listio64 (int, struct aiocb64 *, int, struct sigevent *);
+#endif

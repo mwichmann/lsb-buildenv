@@ -1,3 +1,8 @@
+#ifndef _X11_XLIB_H_
+#define _X11_XLIB_H_
+
+#include <X11/X.h>
+#include <stddef.h>
 
 struct _XDisplay;
 
@@ -268,6 +273,7 @@ typedef struct _XIM *XIM;
 typedef struct _XIC *XIC;
 
 typedef void (*XIDProc) ();
+
 
 int XActivateScreenSaver (Display *);
 int XAddConnectionWatch (Display *, XConnectionWatchProc, XPointer);
@@ -725,3 +731,4 @@ int XwcTextExtents (XFontSet, wchar_t *, int, XRectangle *, XRectangle *);
 int XwcTextPerCharExtents (XFontSet, wchar_t *, int, XRectangle *,
 			   XRectangle *, int, int *, XRectangle *,
 			   XRectangle *);
+#endif

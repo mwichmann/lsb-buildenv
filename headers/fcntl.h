@@ -1,3 +1,7 @@
+#ifndef _FCNTL_H_
+#define _FCNTL_H_
+
+#include <sys/types.h>
 
 
 #define O_RDONLY	00
@@ -28,8 +32,10 @@
 #define F_SETLKW	7
 #define F_SETOWN	8
 #define F_GETOWN	9
+
 int creat (char *, __mode_t);
 int creat64 (char *, __mode_t);
 int fcntl (int, int, ...);
 int open (char *, int, ...);
 int open64 (char *, int, ...);
+#endif

@@ -1,5 +1,7 @@
+#ifndef _CPIO_H_
+#define _CPIO_H_
 
-#define MAGIC
+
 #define C_IXOTH	000001
 #define C_IWOTH	000002
 #define C_IROTH	000004
@@ -20,3 +22,6 @@
 #define C_ISCHR	020000
 #define C_ISDIR	040000
 #define C_ISBLK	060000
+#define MAGIC	070707
+
+#endif

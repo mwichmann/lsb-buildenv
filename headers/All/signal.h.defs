@@ -3,7 +3,15 @@ typedef struct
 {
   unsigned long __val[1];
 }
-__sigset_t struct sigaction struct sigaltstack struct sigstack
+__sigset_t;
+
+struct sigaction;
+
+struct sigaltstack;
+
+struct sigstack;
+
+
 #define SIGHUP	1
 #define SIGUSR1	10
 #define SIGSEGV	11
@@ -27,8 +35,8 @@ __sigset_t struct sigaction struct sigaltstack struct sigstack
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGRTMIN	32
 #define SIGILL	4
 #define SIGTRAP	5
@@ -39,15 +47,28 @@ __sigset_t struct sigaction struct sigaltstack struct sigstack
 #define SIGKILL	9
 #define SIGCLD	SIGCHLD
 #define SIGPOLL	SIGIO
-typedef void (*__sighandler_t) ()
+
+typedef void (*__sighandler_t) ();
+
 #define SIG_ERR	((__sighandler_t)-1)
 #define SIG_DFL	((__sighandler_t)0)
 #define SIG_IGN	((__sighandler_t)1)
-     typedef union sigval sigval_t
+
+typedef union sigval sigval_t;
+
 #define SV_ONSTACK	(1<<0)
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
-     struct sigevent typedef struct siginfo_t typedef __sigset_t sigset_t
+
+struct sigevent;
+
+
+typedef struct siginfo_t;
+
+
+typedef __sigset_t sigset_t;
+
+
 #define SA_NOCLDSTOP	0x00000001
 #define SA_NOCLDWAIT	0x00000002
 #define SA_SIGINFO	0x00000004
@@ -58,4 +79,5 @@ typedef void (*__sighandler_t) ()
 #define SA_RESETHAND	0x80000000
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
-     typedef struct sigaltstack stack_t
+
+typedef struct sigaltstack stack_t;

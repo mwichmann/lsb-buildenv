@@ -11,4 +11,4 @@ typedef struct xauth
   unsigned short data_length;
   char *data;
 }
-Xauth
+Xauth;

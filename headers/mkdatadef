@@ -383,7 +383,7 @@ for(1..$hgh->numrows) {
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		displaytype(\%tentry);
-		#print ";";
+		print ";";
 		print $tentry{'Tcomment'}."\n\n";
 		}
 

@@ -1,3 +1,8 @@
+#ifndef _X11_EXTENSIONS_SYNC_H_
+#define _X11_EXTENSIONS_SYNC_H_
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
 
 typedef struct _XSyncSystemCounter
 {
@@ -68,6 +73,7 @@ typedef enum
 }
 XSyncAlarmState;
 
+
 int XSyncAwait (Display *, XSyncWaitCondition *, int);
 int XSyncChangeAlarm (Display *, XSyncAlarm, unsigned long,
 		      XSyncAlarmAttributes *);
@@ -102,3 +108,4 @@ int XSyncValueLessOrEqual (XSyncValue, XSyncValue);
 int XSyncValueLessThan (XSyncValue, XSyncValue);
 unsigned int XSyncValueLow32 (XSyncValue);
 void XSyncValueSubtract (XSyncValue *, XSyncValue, XSyncValue, int *);
+#endif

@@ -1,3 +1,10 @@
+#ifndef _X11_INTRINSIC_H_
+#define _X11_INTRINSIC_H_
+
+#include <X11/Xlib.h>
+#include <X11/X.h>
+#include <X11/Xutil.h>
+
 
 void XtAddActions (XtActionList, Cardinal);
 void XtAddCallback (Widget, char *, XtCallbackProc, XtPointer);
@@ -357,3 +364,4 @@ Window XtWindow (Widget);
 Window XtWindowOfObject (Widget);
 Widget XtWindowToWidget (Display *, Window);
 Boolean _XtIsSubclassOf (Widget, WidgetClass, WidgetClass, unsigned int);
+#endif

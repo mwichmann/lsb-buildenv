@@ -1,3 +1,8 @@
+#ifndef _RPC_XDR_H_
+#define _RPC_XDR_H_
+
+#include <sys/types.h>
+
 
 xdr_array (*, caddr_t *, u_int *, u_int, u_int, xdrproc_t);
 xdr_bool (*, *);
@@ -24,3 +29,4 @@ xdr_wrapstring (*, char **);
 void xdrmem_create (*, caddr_t, u_int,,);
 void xdrrec_create (*, u_int, u_int, caddr_t, int, int);
 xdrrec_eof (*);
+#endif

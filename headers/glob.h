@@ -1,3 +1,6 @@
+#ifndef _GLOB_H_
+#define _GLOB_H_
+
 
 
 typedef struct
@@ -50,7 +53,9 @@ glob64_t;
 #define GLOB_ABORTED	2
 #define GLOB_NOMATCH	3
 #define GLOB_NOSYS	4
+
 int glob (char *, int, int, glob_t *);
 int glob64 (char *, int, int, glob64_t *);
 void globfree (glob_t *);
 void globfree64 (glob64_t *);
+#endif

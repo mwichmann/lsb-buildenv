@@ -1,3 +1,6 @@
+#ifndef _DIRENT_H_
+#define _DIRENT_H_
+
 
 
 typedef struct __dirstream DIR;
@@ -31,6 +34,7 @@ struct dirent;
 
 struct dirent64;
 
+
 void rewinddir (DIR *);
 void seekdir (DIR *, long);
 long telldir (DIR *);
@@ -38,3 +42,4 @@ int closedir (DIR *);
 DIR *opendir (char *);
 struct dirent *readdir (DIR *);
 struct dirent64 *readdir64 (DIR *);
+#endif

@@ -1,3 +1,6 @@
+#ifndef _X11_ICE_ICELIB_H_
+#define _X11_ICE_ICELIB_H_
+
 
 typedef void *IcePointer;
 
@@ -119,6 +122,7 @@ typedef struct
 }
 IcePaVersionRec;
 
+
 IceConn IceAcceptConnection (IceListenObj, IceAcceptStatus *);
 int IceAddConnectionWatch (IceWatchProc, IcePointer);
 char *IceAllocScratch (IceConn, unsigned long);
@@ -169,3 +173,4 @@ IceIOErrorHandler IceSetIOErrorHandler (IceIOErrorHandler);
 void IceSetShutdownNegotiation (IceConn, int);
 int IceSwapping (IceConn);
 char *IceVendor (IceConn);
+#endif

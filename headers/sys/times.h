@@ -1,3 +1,7 @@
+#ifndef _SYS_TIMES_H_
+#define _SYS_TIMES_H_
+
+#include <time.h>
 
 struct tms
 {
@@ -8,4 +12,6 @@ struct tms
 }
  ;
 
+
 clock_t times (struct tms *);
+#endif

@@ -1,3 +1,8 @@
+#ifndef _X11_XUTIL_H_
+#define _X11_XUTIL_H_
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
 
 typedef struct XSizeHints;
 
@@ -25,6 +30,7 @@ typedef struct XStandardColormap;
 typedef int XContext;
 
 typedef enum XICCEncodingStyle;
+
 
 XClassHint *XAllocClassHint (void);
 XIconSize *XAllocIconSize (void);
@@ -101,3 +107,4 @@ int XwcTextListToTextProperty (Display *, wchar_t * *, int, XICCEncodingStyle,
 			       XTextProperty *);
 int XwcTextPropertyToTextList (Display *, XTextProperty *, wchar_t * **,
 			       int *);
+#endif

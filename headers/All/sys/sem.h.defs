@@ -5,3 +5,4 @@ struct sembuf
   short sem_op;
   short sem_flg;
 }
+ ;

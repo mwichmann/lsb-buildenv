@@ -1,4 +1,8 @@
+#ifndef _LIMITS_H_
+#define _LIMITS_H_
 
+
+#define HUGE_VAL	0xFFFFFFFF
 
 #define MB_LEN_MAX	16
 
@@ -20,3 +24,5 @@
 #define LONG_MIN	(-LONG_MAX-1L)
 #define LONG_MAX	2147483647L
 #define ULONG_MAX	4294967295UL
+
+#endif

@@ -1,3 +1,7 @@
+#ifndef _UNISTD_H_
+#define _UNISTD_H_
+
+#include <sys/types.h>
 
 typedef __ssize_t ssize_t;
 
@@ -10,6 +14,7 @@ typedef __off_t off_t;
 #define X_OK	1
 #define W_OK	2
 #define R_OK	4
+
 char **__environ;
 __pid_t __getpgid (__pid_t);
 void _exit (int);
@@ -104,3 +109,4 @@ int isatty (int);
 __off64_t lseek64 (int, __off64_t, int);
 ssize_t pwrite64 (int, void *, size_t, __off64_t);
 int ttyname_r (int, char *, size_t);
+#endif

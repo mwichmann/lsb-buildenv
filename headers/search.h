@@ -1,3 +1,8 @@
+#ifndef _SEARCH_H_
+#define _SEARCH_H_
+
+#include <sys/types.h>
+#include <stdlib.h>
 
 
 typedef struct entry
@@ -25,6 +30,7 @@ typedef enum
 }
 VISIT;
 
+
 int hcreate (size_t);
 ENTRY *hsearch (ENTRY, ACTION);
 void insque (void *, void *);
@@ -35,3 +41,4 @@ void hdestroy (void);
 void *tfind (void *, void **, __compar_fn_t);
 void *tsearch (void *, void **, __compar_fn_t);
 void twalk (void *, __action_fn_t);
+#endif

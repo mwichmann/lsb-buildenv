@@ -1,3 +1,7 @@
+#ifndef _COMPLEX_H_
+#define _COMPLEX_H_
+
+
 
 float cabsf (float);
 long double cabsl (long double);
@@ -44,3 +48,4 @@ float ctanf (float);
 float ctanhf (float);
 long double ctanhl (long double);
 long double ctanl (long double);
+#endif

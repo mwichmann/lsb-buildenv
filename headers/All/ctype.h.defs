@@ -15,3 +15,4 @@ enum
   _ISpunct,
   _ISalnum
 }
+ ;

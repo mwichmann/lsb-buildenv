@@ -1,3 +1,6 @@
+#ifndef _WORDEXP_H_
+#define _WORDEXP_H_
+
 
 
 enum
@@ -33,5 +36,7 @@ enum
 }
  ;
 
+
 int wordexp (char *, wordexp_t *, int);
 void wordfree (wordexp_t *);
+#endif

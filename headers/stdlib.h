@@ -1,3 +1,8 @@
+#ifndef _STDLIB_H_
+#define _STDLIB_H_
+
+#include <stddef.h>
+#include <sys/types.h>
 
 typedef int (*__compar_fn_t) ();
 
@@ -24,6 +29,7 @@ typedef struct
   long rem;
 }
 lldiv_t;
+
 
 char *__secure_getenv (char *);
 double __strtod_internal (char *, char **, int);
@@ -92,3 +98,4 @@ unsigned long long strtoull (char *, char **, int);
 void _Exit (int);
 size_t __ctype_get_mb_cur_max (void);
 char *realpath (char *, char *);
+#endif

@@ -1,3 +1,7 @@
+#ifndef _X11_XAUTH_H_
+#define _X11_XAUTH_H_
+
+#include <stdio.h>
 
 typedef struct xauth
 {
@@ -13,8 +17,10 @@ typedef struct xauth
 }
 Xauth;
 
+
 void XauDisposeAuth (Xauth *);
 char *XauFileName (void);
 Xauth *XauGetBestAuthByAddr (unsigned int, unsigned int, char *, unsigned int,
 			     char *, int, char **, int *);
-Xauth *XauReadAuth (FILE *);
+Xauth *XauReadAuth (FILE);
+#endif

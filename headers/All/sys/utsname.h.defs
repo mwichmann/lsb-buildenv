@@ -8,3 +8,4 @@ struct utsname
   char machine[1];
   char __domainname[1];
 }
+ ;

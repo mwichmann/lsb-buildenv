@@ -1,3 +1,7 @@
+#ifndef _CTYPE_H_
+#define _CTYPE_H_
+
+#include <sys/types.h>
 
 
 enum
@@ -16,6 +20,7 @@ enum
   _ISalnum
 }
  ;
+
 
 unsigned short *__ctype_b;
 __int32_t *__ctype_tolower;
@@ -37,3 +42,4 @@ int isxdigit (int);
 int toascii (int);
 int tolower (int);
 int toupper (int);
+#endif

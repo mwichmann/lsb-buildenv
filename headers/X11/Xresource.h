@@ -1,3 +1,8 @@
+#ifndef _X11_XRESOURCE_H_
+#define _X11_XRESOURCE_H_
+
+#include <X11/Xlib.h>
+
 
 void XrmCombineDatabase (XrmDatabase, XrmDatabase *, int);
 int XrmCombineFileDatabase (char *, XrmDatabase *, int);
@@ -33,3 +38,4 @@ void XrmStringToBindingQuarkList (char *, XrmBindingList, XrmQuarkList);
 XrmQuark XrmStringToQuark (char *);
 void XrmStringToQuarkList (char *, XrmQuarkList);
 XrmQuark XrmUniqueQuark (void);
+#endif

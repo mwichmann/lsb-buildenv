@@ -10,7 +10,7 @@ enum
   WRDE_UNDEF,
   __WRDE_FLAGS
 }
-
+ ;
 
 
 typedef struct
@@ -19,7 +19,10 @@ typedef struct
   char **we_wordv;
   int we_offs;
 }
-wordexp_t enum
+wordexp_t;
+
+
+enum
 {
   WRDE_NOSYS,
   WRDE_NOSPACE,
@@ -28,3 +31,4 @@ wordexp_t enum
   WRDE_CMDSUB,
   WRDE_SYNTAX
 }
+ ;

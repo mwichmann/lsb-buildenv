@@ -1,6 +1,9 @@
 
 
-typedef struct __dirstream DIR enum
+typedef struct __dirstream DIR;
+
+
+enum
 {
   DT_UNKNOWN,
   DT_FIFO,
@@ -12,7 +15,7 @@ typedef struct __dirstream DIR enum
   DT_SOCK,
   DT_WHT
 }
-
+ ;
 
 #define DT_BLK	DT_BLK
 #define DT_CHR	DT_CHR
@@ -24,4 +27,6 @@ typedef struct __dirstream DIR enum
 #define DT_UNKNOWN	DT_UNKNOWN
 #define DT_WHT	DT_WHT
 
-struct dirent struct dirent64
+struct dirent;
+
+struct dirent64;

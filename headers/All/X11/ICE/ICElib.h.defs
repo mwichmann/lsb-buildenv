@@ -1,82 +1,120 @@
 
-typedef void *IcePointer typedef enum
+typedef void *IcePointer;
+
+typedef enum
 {
   IcePoAuthHaveReply,
   IcePoAuthRejected,
   IcePoAuthFailed,
   IcePoAuthDoneCleanup
 }
-IcePoAuthStatus typedef enum
+IcePoAuthStatus;
+
+typedef enum
 {
   IcePaAuthContinue,
   IcePaAuthAccepted,
   IcePaAuthRejected,
   IcePaAuthFailed
 }
-IcePaAuthStatus typedef enum
+IcePaAuthStatus;
+
+typedef enum
 {
   IceConnectPending,
   IceConnectAccepted,
   IceConnectRejected,
   IceConnectIOError
 }
-IceConnectStatus typedef enum
+IceConnectStatus;
+
+typedef enum
 {
   IceProtocolSetupSuccess,
   IceProtocolSetupFailure,
   IceProtocolSetupIOError,
   IceProtocolAlreadyActive
 }
-IceProtocolSetupStatus typedef enum
+IceProtocolSetupStatus;
+
+typedef enum
 {
   IceAcceptSuccess,
   IceAcceptFailure,
   IceAcceptBadMalloc
 }
-IceAcceptStatus typedef enum
+IceAcceptStatus;
+
+typedef enum
 {
   IceClosedNow,
   IceClosedASAP,
   IceConnectionInUse,
   IceStartedShutdownNegotiation
 }
-IceCloseStatus typedef enum
+IceCloseStatus;
+
+typedef enum
 {
   IceProcessMessagesSuccess,
   IceProcessMessagesIOError,
   IceProcessMessagesConnectionClosed
 }
-IceProcessMessagesStatus typedef struct
+IceProcessMessagesStatus;
+
+
+typedef struct
 {
   unsigned long sequence_of_request;
   int major_opcode_of_request;
   int minor_opcode_of_request;
   IcePointer reply;
 }
-IceReplyWaitInfo
-  typedef struct _IceConn *IceConn
-  typedef struct _IceListenObj *IceListenObj typedef void (*IceWatchProc) ()
-     typedef void (*IcePoProcessMsgProc) ()
-     typedef void (*IcePaProcessMsgProc) ()
-     typedef IcePoAuthStatus (*IcePoAuthProc) ()
-     typedef IcePaAuthStatus (*IcePaAuthProc) ()
-     typedef int (*IceHostBasedAuthProc) ()
-     typedef int (*IceProtocolSetupProc) ()
-     typedef void (*IceProtocolActivateProc) ()
-     typedef void (*IceIOErrorProc) ()
-     typedef void (*IcePingReplyProc) ()
-     typedef void (*IceErrorHandler) ()
-     typedef void (*IceIOErrorHandler) ()
-     typedef struct
-     {
-       int major_version;
-       int minor_version;
-       IcePoProcessMsgProc process_msg_proc;
-     }
-     IcePoVersionRec typedef struct
-     {
-       int major_version;
-       int minor_version;
-       IcePaProcessMsgProc process_msg_proc;
-     }
-IcePaVersionRec
+IceReplyWaitInfo;
+
+
+typedef struct _IceConn *IceConn;
+
+typedef struct _IceListenObj *IceListenObj;
+
+
+typedef void (*IceWatchProc) ();
+
+typedef void (*IcePoProcessMsgProc) ();
+
+typedef void (*IcePaProcessMsgProc) ();
+
+typedef IcePoAuthStatus (*IcePoAuthProc) ();
+
+typedef IcePaAuthStatus (*IcePaAuthProc) ();
+
+typedef int (*IceHostBasedAuthProc) ();
+
+typedef int (*IceProtocolSetupProc) ();
+
+typedef void (*IceProtocolActivateProc) ();
+
+typedef void (*IceIOErrorProc) ();
+
+typedef void (*IcePingReplyProc) ();
+
+typedef void (*IceErrorHandler) ();
+
+typedef void (*IceIOErrorHandler) ();
+
+
+typedef struct
+{
+  int major_version;
+  int minor_version;
+  IcePoProcessMsgProc process_msg_proc;
+}
+IcePoVersionRec;
+
+typedef struct
+{
+  int major_version;
+  int minor_version;
+  IcePaProcessMsgProc process_msg_proc;
+}
+IcePaVersionRec;

@@ -1,4 +1,7 @@
 
 
-typedef lldiv_t imaxdiv_t
-  typedef long long intmax_t typedef unsigned long long uintmax_t
+typedef lldiv_t imaxdiv_t;
+
+typedef long long intmax_t;
+
+typedef unsigned long long uintmax_t;

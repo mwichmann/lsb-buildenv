@@ -1,4 +1,5 @@
 
+#define errno	(*__errno_location())
 
 #define EPERM	1
 #define ECHILD	10

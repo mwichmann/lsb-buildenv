@@ -6,3 +6,4 @@ struct group
   __gid_t gr_gid;
   char **gr_mem;
 }
+ ;

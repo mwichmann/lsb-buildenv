@@ -1,3 +1,6 @@
+#ifndef _GL_GL_H_
+#define _GL_GL_H_
+
 
 
 typedef unsigned int GLenum;
@@ -98,6 +101,7 @@ typedef double GLclampd;
 #define GL_MODELVIEW	0x1700
 #define GL_PROJECTION	0x1701
 #define GL_TEXTURE	0x1702
+
 
 
 
@@ -532,3 +536,4 @@ void glTexSubImage3D (GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei,
 void glTexImage3D (GLenum, GLint, GLint, GLsizei, GLsizei, GLsizei, GLint,
 		   GLenum, GLenum, GLvoid *);
 void glDrawRangeElements (GLenum, GLuint, GLuint, GLsizei, GLenum, GLvoid *);
+#endif

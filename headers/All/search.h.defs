@@ -5,18 +5,22 @@ typedef struct entry
   char *key;
   void *data;
 }
-ENTRY
-  typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level)
-     typedef enum
-     {
-       FIND,
-       ENTER
-     }
-     ACTION typedef enum
-     {
-       preorder,
-       postorder,
-       endorder,
-       leaf
-     }
-     VISIT
+ENTRY;
+
+typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);
+
+typedef enum
+{
+  FIND,
+  ENTER
+}
+ACTION;
+
+typedef enum
+{
+  preorder,
+  postorder,
+  endorder,
+  leaf
+}
+VISIT;

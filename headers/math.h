@@ -1,3 +1,6 @@
+#ifndef _MATH_H_
+#define _MATH_H_
+
 
 
 #define M_1_PI	0.31830988618379067154
@@ -14,7 +17,7 @@
 #define M_E	2.7182818284590452354
 #define M_PI	3.14159265358979323846
 
-#define HUGE_VAL	(__extension__((union{unsigned__l__attribute__((__mode__(__DI__)));double__d;}){__l:0x000000007ff00000ULL}).__d)
+
 int signgam;
 double copysign (double, double);
 int finite (double);
@@ -216,3 +219,4 @@ float y1f (float);
 long double y1l (long double);
 float ynf (int, float);
 long double ynl (int, long double);
+#endif

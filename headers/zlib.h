@@ -1,3 +1,7 @@
+#ifndef _ZLIB_H_
+#define _ZLIB_H_
+
+
 
 int gzread (gzFile,, unsigned int);
 int gzclose (gzFile);
@@ -39,3 +43,4 @@ int inflateSync (z_streamp);
 int inflateSyncPoint (z_streamp);
 int uncompress (*, *, *,);
 char *zError (int);
+#endif

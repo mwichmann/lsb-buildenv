@@ -1,3 +1,7 @@
+#ifndef _SYS_SEM_H_
+#define _SYS_SEM_H_
+
+#include <sys/types.h>
 
 struct sembuf
 {
@@ -7,6 +11,8 @@ struct sembuf
 }
  ;
 
+
 int semctl (int, int, int, ...);
 int semget (key_t, int, int);
 int semop (int, struct sembuf *, unsigned int);
+#endif

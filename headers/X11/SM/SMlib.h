@@ -1,3 +1,7 @@
+#ifndef _X11_SM_SMLIB_H_
+#define _X11_SM_SMLIB_H_
+
+#include <X11/ICE/ICElib.h>
 
 typedef IcePointer SmPointer;
 
@@ -76,6 +80,7 @@ typedef void (*SmcErrorHandler) ();
 typedef void (*SmsErrorHandler) ();
 
 
+
 void SmFreeProperty (SmProp *);
 void SmFreeReasons (int, char **);
 char *SmcClientID (SmcConn);
@@ -116,3 +121,4 @@ void SmsSaveYourself (SmsConn, int, int, int, int);
 void SmsSaveYourselfPhase2 (SmsConn);
 SmsErrorHandler SmsSetErrorHandler (SmsErrorHandler);
 void SmsShutdownCancelled (SmsConn);
+#endif

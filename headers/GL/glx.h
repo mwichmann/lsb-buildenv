@@ -1,3 +1,9 @@
+#ifndef _GL_GLX_H_
+#define _GL_GLX_H_
+
+#include <X11/X.h>
+#include <X11/Xutil.h>
+#include <X11/Xlib.h>
 
 typedef struct __GLXcontextRec *GLXContext;
 
@@ -12,6 +18,7 @@ typedef XID GLXDrawable;
 typedef XID GLXPbuffer;
 
 typedef XID GLXWindow;
+
 
 XVisualInfo *glXChooseVisual (Display *, int, int *);
 void glXCopyContext (Display *, GLXContext, GLXContext, unsigned long);
@@ -54,3 +61,4 @@ GLXWindow glXCreateWindow (Display *, GLXFBConfig, Window, int *);
 XVisualInfo *glXGetVisualFromFBConfig (Display *, GLXFBConfig);
 int glXGetFBConfigAttrib (Display *, GLXFBConfig, int, int *);
 GLXFBConfig *glXChooseFBConfig (Display *, int, int *, int *);
+#endif

@@ -1,3 +1,9 @@
+#ifndef _X11_XKBLIB_H_
+#define _X11_XKBLIB_H_
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
+
 
 int XkbAllocClientMap (, unsigned int, unsigned int);
 int XkbAllocCompatMap (, unsigned int, unsigned int);
@@ -84,3 +90,4 @@ unsigned int XkbSetXlibControls (Display *, unsigned int, unsigned int);
 char XkbToControl (char);
 int XkbUseExtension (Display *, int *, int *);
 int XkbVirtualModsToReal (, unsigned int, unsigned int *);
+#endif

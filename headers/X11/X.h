@@ -1,3 +1,6 @@
+#ifndef _X11_X_H_
+#define _X11_X_H_
+
 
 
 typedef unsigned long XID;
@@ -27,18 +30,18 @@ typedef XID GContext;
 typedef XID KeySym;
 
 
+#define AnyPropertyType	0L
+#define AnyButton	0L
+#define CurrentTime	0L
+#define PointerWindow	0L
 #define AnyKey	0L
 #define AllTemporary	0L
 #define None	0L
 #define NoSymbol	0L
 #define CopyFromParent	0L
-#define AnyPropertyType	0L
-#define AnyButton	0L
-#define CurrentTime	0L
-#define PointerWindow	0L
-#define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
+#define InputFocus	1L
 
 #define KeyPressMask	(1L<<0)
 #define KeyReleaseMask	(1L<<1)
@@ -134,8 +137,8 @@ typedef XID KeySym;
 #define Button5	5
 
 #define NotifyNormal	0
-#define NotifyHint	1
 #define NotifyGrab	1
+#define NotifyHint	1
 #define NotifyUngrab	2
 #define NotifyWhileGrabbed	3
 
@@ -382,10 +385,10 @@ typedef XID KeySym;
 #define TileShape	1
 #define StippleShape	2
 
-#define AutoRepeatModeOff	0
 #define LedModeOff	0
-#define LedModeOn	1
+#define AutoRepeatModeOff	0
 #define AutoRepeatModeOn	1
+#define LedModeOn	1
 #define AutoRepeatModeDefault	2
 
 #define KBKeyClickPercent	(1L<<0)
@@ -396,17 +399,17 @@ typedef XID KeySym;
 #define KBLedMode	(1L<<5)
 #define KBKey	(1L<<6)
 #define KBAutoRepeatMode	(1L<<7)
-#define MappingModifier	0
 #define MappingSuccess	0
-#define MappingBusy	1
+#define MappingModifier	0
 #define MappingKeyboard	1
-#define MappingPointer	2
+#define MappingBusy	1
 #define MappingFailed	2
+#define MappingPointer	2
 
-#define DontPreferBlanking	0
-#define DisableScreenInterval	0
 #define DisableScreenSaver	0
 #define DontAllowExposures	0
+#define DontPreferBlanking	0
+#define DisableScreenInterval	0
 #define AllowExposures	1
 #define PreferBlanking	1
 #define DefaultExposures	2
@@ -431,3 +434,5 @@ typedef XID KeySym;
 
 #define LSBFirst	0
 #define MSBFirst	1
+
+#endif

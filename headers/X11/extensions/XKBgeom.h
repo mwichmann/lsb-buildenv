@@ -1,3 +1,9 @@
+#ifndef _X11_EXTENSIONS_XKBGEOM_H_
+#define _X11_EXTENSIONS_XKBGEOM_H_
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
+
 
 int XkbAllocGeomColors (, int);
 int XkbAllocGeomDoodads (, int);
@@ -36,3 +42,4 @@ void XkbFreeGeometry (, unsigned int, int);
 int XkbGetGeometry (Display *,);
 int XkbGetNamedGeometry (Display *,, Atom);
 int XkbSetGeometry (Display *, unsigned int,);
+#endif

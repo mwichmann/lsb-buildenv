@@ -1,3 +1,9 @@
+#ifndef _X11_EXTENSIONS_XSHM_H_
+#define _X11_EXTENSIONS_XSHM_H_
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
+
 
 int XShmAttach (Display *, XShmSegmentInfo *);
 XImage *XShmCreateImage (Display *, Visual *, unsigned int, int, char *,
@@ -12,3 +18,4 @@ int XShmPutImage (Display *, Drawable, GC, XImage *, int, int, int, int,
 		  unsigned int, unsigned int, int);
 int XShmQueryExtension (Display *);
 int XShmQueryVersion (Display *, int *, int *, int *);
+#endif

@@ -1,3 +1,7 @@
+#ifndef _X11_ICE_ICEUTIL_H_
+#define _X11_ICE_ICEUTIL_H_
+
+#include <stdio.h>
 
 typedef struct
 {
@@ -21,12 +25,14 @@ typedef struct
 }
 IceAuthDataEntry;
 
+
 char *IceAuthFileName (void);
 void IceFreeAuthFileEntry (IceAuthFileEntry *);
 char *IceGenerateMagicCookie (int);
 IceAuthFileEntry *IceGetAuthFileEntry (char *, char *, char *);
 int IceLockAuthFile (char *, int, int, long);
-IceAuthFileEntry *IceReadAuthFileEntry (FILE *);
+IceAuthFileEntry *IceReadAuthFileEntry (FILE);
 void IceSetPaAuthData (int, IceAuthDataEntry *);
 void IceUnlockAuthFile (char *);
-int IceWriteAuthFileEntry (FILE *, IceAuthFileEntry *);
+int IceWriteAuthFileEntry (FILE, IceAuthFileEntry *);
+#endif

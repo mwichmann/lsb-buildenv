@@ -1,4 +1,8 @@
+#ifndef _LOCALE_H_
+#define _LOCALE_H_
 
+
+#define LC_CTYPE	1
 
 struct lconv
 {
@@ -27,7 +31,6 @@ struct lconv
 #define LC_ADDRESS	__LC_ADDRESS
 #define LC_ALL	__LC_ALL
 #define LC_COLLATE	__LC_COLLATE
-#define LC_CTYPE	__LC_CTYPE
 #define LC_IDENTIFICATION	__LC_IDENTIFICATION
 #define LC_MEASUREMENT	__LC_MEASUREMENT
 #define LC_MESSAGES	__LC_MESSAGES
@@ -37,5 +40,7 @@ struct lconv
 #define LC_PAPER	__LC_PAPER
 #define LC_TELEPHONE	__LC_TELEPHONE
 #define LC_TIME	__LC_TIME
+
 struct lconv *localeconv (void);
 char *setlocale (int, char *);
+#endif

@@ -1,4 +1,5 @@
 
+#define LC_CTYPE	1
 
 struct lconv
 {
@@ -21,13 +22,12 @@ struct lconv
   char p_sign_posn;
   char n_sign_posn;
 }
-
+ ;
 
 
 #define LC_ADDRESS	__LC_ADDRESS
 #define LC_ALL	__LC_ALL
 #define LC_COLLATE	__LC_COLLATE
-#define LC_CTYPE	__LC_CTYPE
 #define LC_IDENTIFICATION	__LC_IDENTIFICATION
 #define LC_MEASUREMENT	__LC_MEASUREMENT
 #define LC_MESSAGES	__LC_MESSAGES

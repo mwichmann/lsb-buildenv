@@ -1,3 +1,7 @@
+#ifndef _PWD_H_
+#define _PWD_H_
+
+#include <sys/types.h>
 
 
 struct passwd
@@ -12,7 +16,9 @@ struct passwd
 }
  ;
 
+
 void endpwent (void);
 struct passwd *getpwent (void);
 struct passwd *getpwnam (char *);
 void setpwent (void);
+#endif

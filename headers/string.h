@@ -1,3 +1,8 @@
+#ifndef _STRING_H_
+#define _STRING_H_
+
+#include <sys/types.h>
+
 
 void __bzero (void *, size_t);
 char *__strtok_r (char *, char *, char **);
@@ -36,3 +41,4 @@ int strncasecmp (char *, char *, size_t);
 char *strsep (char **, char *);
 char *strerror_r (int, char *, size_t);
 char *strtok_r (char *, char *, char **);
+#endif

@@ -5,4 +5,4 @@ typedef enum
   P_PID,
   P_PGID
 }
-idtype_t
+idtype_t;

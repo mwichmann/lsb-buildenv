@@ -1,3 +1,10 @@
+#ifndef _X11_EXTENSIONS_SHAPE_H_
+#define _X11_EXTENSIONS_SHAPE_H_
+
+#include <X11/X.h>
+#include <X11/Xutil.h>
+#include <X11/Xlib.h>
+
 
 void XShapeCombineMask (Display *, Window, int, int, int, Pixmap, int);
 void XShapeCombineRectangles (Display *, Window, int, int, int, XRectangle *,
@@ -13,3 +20,4 @@ int XShapeQueryExtents (Display *, Window, int *, int *, int *,
 			unsigned int *, unsigned int *);
 int XShapeQueryVersion (Display *, int *, int *);
 void XShapeSelectInput (Display *, Window, unsigned long);
+#endif

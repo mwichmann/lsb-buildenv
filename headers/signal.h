@@ -1,3 +1,8 @@
+#ifndef _SIGNAL_H_
+#define _SIGNAL_H_
+
+#include <sys/time.h>
+#include <sys/types.h>
 
 typedef struct
 {
@@ -35,8 +40,8 @@ struct sigstack;
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGRTMIN	32
 #define SIGILL	4
 #define SIGTRAP	5
@@ -82,6 +87,7 @@ typedef __sigset_t sigset_t;
 
 typedef struct sigaltstack stack_t;
 
+
 int __libc_current_sigrtmax (void);
 int __libc_current_sigrtmin (void);
 int __sigpause (int, int);
@@ -117,3 +123,4 @@ int sigqueue (__pid_t, int, union sigval);
 int sigwaitinfo (sigset_t *, siginfo_t *);
 int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
 __sighandler_t bsd_signal (int, __sighandler_t);
+#endif

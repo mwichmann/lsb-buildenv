@@ -1,3 +1,7 @@
+#ifndef _TERMIOS_H_
+#define _TERMIOS_H_
+
+#include <sys/types.h>
 
 
 #define VINTR	0
@@ -22,8 +26,8 @@
 #define IGNBRK	0000001
 #define BRKINT	0000002
 #define IGNPAR	0000004
-#define OCRNL	0000010
 #define PARMRK	0000010
+#define OCRNL	0000010
 #define INPCK	0000020
 #define ISTRIP	0000040
 #define INLCR	0000100
@@ -83,6 +87,7 @@
 #define B9600	0000015
 #define B19200	0000016
 #define B38400	0000017
+
 cfgetispeed (struct termios *);
 cfgetospeed (struct termios *);
 int cfsetispeed (struct termios *,);
@@ -94,3 +99,4 @@ int tcsendbreak (int, int);
 int tcsetattr (int, int, struct termios *);
 int tcdrain (int);
 int tcgetattr (int, struct termios *);
+#endif

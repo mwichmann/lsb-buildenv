@@ -1,4 +1,5 @@
 
+#define HUGE_VAL	0xFFFFFFFF
 
 #define MB_LEN_MAX	16
 

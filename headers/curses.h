@@ -1,3 +1,8 @@
+#ifndef _CURSES_H_
+#define _CURSES_H_
+
+#include <stdio.h>
+#include <sys/types.h>
 
 
 #define WA_ALTCHARSET	A_ALTCHARSET
@@ -77,8 +82,8 @@ typedef chtype attr_t;
 
 
 #define KEY_CODE_YES	0400
-#define KEY_BREAK	0401
 #define KEY_MIN	0401
+#define KEY_BREAK	0401
 #define KEY_DOWN	0402
 #define KEY_UP	0403
 #define KEY_LEFT	0404
@@ -171,6 +176,7 @@ typedef chtype attr_t;
 #define KEY_RESIZE	0632
 #define KEY_MAX	0777
 
+
 int addch (chtype);
 int addchnstr (chtype *, int);
 int addchstr (chtype *);
@@ -222,7 +228,7 @@ chtype getbkgd (WINDOW *);
 int getch (void);
 int getnstr (char *, int);
 int getstr (char *);
-WINDOW *getwin (FILE *);
+WINDOW *getwin (FILE);
 int halfdelay (int);
 bool has_colors (void);
 bool has_ic (void);
@@ -302,7 +308,7 @@ int mvwscanw (WINDOW *, int, int, char *, ...);
 int mvwvline (WINDOW *, int, int, chtype, int);
 int napms (int);
 WINDOW *newpad (int, int);
-SCREEN *newterm (char *, FILE *, FILE *);
+SCREEN *newterm (char *, FILE, FILE);
 WINDOW *newwin (int, int, int, int);
 int nl (void);
 int nocbreak (void);
@@ -320,7 +326,7 @@ int pnoutrefresh (WINDOW *, int, int, int, int, int, int);
 int prefresh (WINDOW *, int, int, int, int, int, int);
 int printw (char *, ...);
 int putp (char *);
-int putwin (WINDOW *, FILE *);
+int putwin (WINDOW *, FILE);
 void qiflush (void);
 int raw (void);
 int redrawwin (WINDOW *);
@@ -434,3 +440,4 @@ int wtouchln (WINDOW *, int, int, int);
 int wvline (WINDOW *, chtype, int);
 WINDOW *curscr;
 WINDOW *stdscr;
+#endif

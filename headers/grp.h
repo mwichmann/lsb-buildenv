@@ -1,3 +1,7 @@
+#ifndef _GRP_H_
+#define _GRP_H_
+
+#include <sys/types.h>
 
 struct group
 {
@@ -9,8 +13,10 @@ struct group
  ;
 
 
+
 void endgrent (void);
 struct group *getgrent (void);
 struct group *getgrgid (__gid_t);
 struct group *getgrnam (char *);
 void setgrent (void);
+#endif
