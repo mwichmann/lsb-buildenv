@@ -65,7 +65,7 @@ extern "C"
   extern double atof (const char *);
   extern int atoi (const char *);
   extern long atol (const char *);
-  extern long long atoll (char *);
+  extern long long atoll (const char *);
   extern void *bsearch (void *, void *, size_t, size_t, __compar_fn_t);
   extern div_t div (int, int);
   extern double drand48 (void);
