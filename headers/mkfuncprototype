@@ -12,7 +12,7 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 sub
 usage()
 {
-die "mkfuncproto -h <headername>";
+die "mkfuncprototype -h <headername>";
 }
 
 # Uncomment to trace SQL statments
@@ -21,6 +21,8 @@ die "mkfuncproto -h <headername>";
 GetOptions("h=s" => \$headname);
  
 if( !$headname ) { usage(); }  
+
+$headname =~ s/^\.\///;
 
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 

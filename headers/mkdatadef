@@ -139,6 +139,8 @@ GetOptions("h=s" => \$headname,
 if( !$headname ) { usage(); }  
 if( !$archname ) { usage(); }  
 
+$headname =~ s/^\.\///;
+
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
 #
@@ -203,7 +205,7 @@ for(1..$hgh->numrows) {
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		displaytype(\%tentry);
-		print;
+		print "\n";
 		}
 	}
 
