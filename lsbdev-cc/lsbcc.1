@@ -1,8 +1,11 @@
 .TH lsbcc "1" "" "lsbcc (LSB)" LSB
 .SH NAME
-lsbcc \- compiler driver for building LSB conforming applications
+lsbcc, lsbc++ \- compiler driver for building LSB conforming applications
 .SH SYNOPSIS
 .B lsbcc
+.RI [ compiler-options ]
+.br
+.B lsbc++
 .RI [ compiler-options ]
 .SH DESCRIPTION
 .P
@@ -20,7 +23,7 @@ and
 .I /opt/lsdev-base/lib
 respectively. These headers and libraries have been
 carefully built so that they contain only the interfaces
-provided by the LSB. 
+specified in the LSB. 
 .P
 LSB programs also need to be linked with 
 .I ld-lsb.so.1
@@ -28,29 +31,26 @@ LSB programs also need to be linked with
 for the Itanium architecture)
 as the program intepreter.   
 .P
-.IR lsbcc
+.I lsbcc
 is designed to take care of these build issues 
 (to the extent possible) without requiring changes
-to existing build setups. It takes no options; 
-the rest of the command line will be passed on to the
-regular compiler.
+to existing build setups. 
+.P
 .IR lsbcc
-first modifies the command line to follow the
-LSB build rules.
+takes no options; 
+it first modifies the command line to follow the
+LSB build rules, then passes the resulting
+command line on to the regular compiler.
 .P
-.SS Invocation Examples
-.B "lsbcc hello.c -o hello"
-.P
-.B "make CC=lsbcc"
-.P
-.B "CC=lsbcc CXX=lsbc++ ./configure; make"
+Behavior other than the default is controlled
+by a set of environment variables.
 .P
 .SH ENVIRONMENT
 The following environment variables affect the behavior of
-.IR lsbcc
+.I lsbcc
 .TP
 LSBCC_DEBUG
-This is a numeric value which represents a bit pattern that specifies what
+A numeric value which represents a bit pattern that specifies what
 kind of debugging output to produce. The bits in this pattern are
 .nf
 
@@ -64,12 +64,26 @@ kind of debugging output to produce. The bits in this pattern are
 .fi
 .TP
 LSBCC
-This specifies the name of the C compiler to invoke with the modifed
-argument set.
+Specifies the name of the C compiler to invoke with the modifed
+argument set. If this environment variable is not found,
+the default 
+.I cc
+will be used.
 .TP
 LSBCXX
-This specifies the name of the C++ compiler to invoke with the modifed
-argument set.
+Specifies the name of the C++ compiler to invoke with the modifed
+argument set. If this environment variable is not found,
+the default 
+.I c++
+will be used.
+.P
+.SH EXAMPLES
+.B "lsbcc hello.c -o hello"
+.P
+.B "make CC=lsbcc"
+.P
+.B "CC=lsbcc CXX=lsbc++ ./configure; make"
+.P
 .SH "AUTHORS"
 Stuart Anderson <anderson@freestandards.org>
 .SH "REPORTING BUGS"
@@ -89,6 +103,15 @@ the LSB header files
 the LSB stub libraries
 .SH SEE ALSO
 lsbappchk
+.P
+.SH NOTES
+.P
+.I lsbcc
+is commonly delivered as a package named
+.IR lsbdev-cc .
+If this package is used, the support package
+.I lsbdev-base
+must also be installed.
 .SH COPYRIGHT
 Copyright \(co 2002 Free Standards Group.
 .SH "SEE ALSO"
