@@ -22,7 +22,7 @@ restart|force-reload)
     fi
     ;;
 status)
-    . /etc/lsbdev.conf
+    . /etc/lsbdev/lsbdev.conf
     if [ -f $RUNFILE ]; then
         exit 0;
     else
