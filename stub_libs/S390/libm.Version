@@ -222,11 +222,14 @@ GLIBC_2.1 {
   fdim;
   fdimf;
   fdiml;
+  feclearexcept;
   fegetenv;
   fegetexceptflag;
   fegetround;
   feholdexcept;
   feraiseexcept;
+  fesetenv;
+  fesetexceptflag;
   fesetround;
   fetestexcept;
   feupdateenv;
@@ -281,9 +284,4 @@ GLIBC_2.1 {
   trunc;
   truncf;
   truncl;
-};
-GLIBC_2.2 {
-  feclearexcept;
-  fesetenv;
-  fesetexceptflag;
 };
