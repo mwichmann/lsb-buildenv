@@ -1,4 +1,5 @@
 void endgrent(void);
 group * getgrent(void);
 group * getgrgid(__gid_t);
+group * getgrnam(char *);
 void setgrent(void);

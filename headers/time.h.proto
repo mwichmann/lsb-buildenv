@@ -12,6 +12,6 @@ char * strptime(char *, char *, tm *);
 time_t time(time_t *);
 int nanosleep(timespec *, timespec *);
 int daylight();
-long timezone();
+long timezone;
 char * tzname();
 void tzset(void);
