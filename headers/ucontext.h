@@ -60,6 +60,18 @@ extern "C"
   vrregset_t __attribute__ ((__aligned__ (16)));
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  typedef struct _libc_vrstate
+  {
+    unsigned int vrregs[32][4];
+    vscr_t vscr;
+    unsigned int vrsave;
+    unsigned int __pad;
+  }
+  vrregset_t __attribute__ ((__aligned__ (16)));
+
+#endif
 
 /* Type for general register.*/
 
@@ -112,6 +124,11 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
+  typedef unsigned long gregset_t[48];
+
+#endif
+#if __powerpc64__
+/* PPC64 */
   typedef unsigned long gregset_t[48];
 
 #endif
@@ -246,6 +263,11 @@ extern "C"
   fpregset_t;
 
 #endif
+#if __powerpc64__
+/* PPC64 */
+  typedef double fpregset_t[33];
+
+#endif
 
 
 
@@ -272,7 +294,20 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef struct sigcontext mcontext_t;
+  typedef struct
+  {
+    unsigned long __unused;
+    int signal;
+    int pad0;
+    unsigned long handler;
+    unsigned long oldmask;
+    struct pt_regs *regs;
+    gregset_t gp_regs;
+    fpregset_t fp_regs;
+    vrregset_t *v_regs;
+    long vmx_reserve;
+  }
+  mcontext_t;
 
 #endif
 #if __s390x__
