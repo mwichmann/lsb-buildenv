@@ -4,6 +4,21 @@
 
 
 
+typedef struct SVCXPRT
+{
+  int xp_sock;
+  u_short xp_port;
+  struct xp_ops *xp_ops;
+  int xp_addrlen;
+  struct sockaddr_in xp_raddr;
+  struct opaque_auth xp_verf;
+  caddr_t xp_p1;
+  caddr_t xp_p2;
+  char xp_pad[256];
+}
+SVCXPRT;
+
+
 struct xp_ops
 {
   bool_t (*xp_recv) (struct SVCXPRT * __xprt, struct rpc_msg * __msg);
@@ -16,18 +31,3 @@ struct xp_ops
   void (*xp_destroy) (struct SVCXPRT * __xprt);
 }
  ;
-
-
-typedef struct SVCXPRT
-{
-  int xp_sock;
-  u_short xp_port;
-  struct xp_ops xp_ops;
-  int xp_addrlen;
-  struct sockaddr_in xp_raddr;
-  struct opaque_auth xp_verf;
-  caddr_t xp_p1;
-  caddr_t xp_p2;
-  char xp_pad;
-}
-SVCXPRT;

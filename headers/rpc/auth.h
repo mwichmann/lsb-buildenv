@@ -59,19 +59,6 @@ extern "C"
    ;
 
 
-
-
-  struct auth_ops
-  {
-    void (*ah_nextverf) (AUTH *);
-    int (*ah_marshal) (AUTH *, struct XDR *);	/* nextverf & serialize */
-    int (*ah_validate) (AUTH *, struct opaque_auth *);	/* validate verifier */
-    int (*ah_refresh) (AUTH *);	/* refresh credentials */
-    void (*ah_destroy) (AUTH *);	/* Rpc calls return an enum clnt_stat. */
-  }
-   ;
-
-
 /* Auth handle, interface to client side authenticators.*/
 
 
@@ -80,13 +67,26 @@ extern "C"
     struct opaque_auth ah_cred;
     struct opaque_auth ah_verf;
     union des_block ah_key;
-    struct auth_ops ah_ops;
+    struct auth_ops *ah_ops;
     caddr_t ah_private;
   }
   AUTH;
 
 
-  extern AUTH *authnone_create (void);
+
+
+  struct auth_ops
+  {
+    void (*ah_nextverf) (struct AUTH *);
+    int (*ah_marshal) (struct AUTH *, struct XDR *);	/* nextverf & serialize */
+    int (*ah_validate) (struct AUTH *, struct opaque_auth *);	/* validate verifier */
+    int (*ah_refresh) (struct AUTH *);	/* refresh credentials */
+    void (*ah_destroy) (struct AUTH *);	/* Rpc calls return an enum clnt_stat. */
+  }
+   ;
+
+
+  extern struct AUTH *authnone_create (void);
   extern int key_decryptsession (char *, union des_block *);
   extern bool_t xdr_opaque_auth (struct XDR *, struct opaque_auth *);
 #ifdef __cplusplus

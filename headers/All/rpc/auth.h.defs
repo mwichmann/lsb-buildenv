@@ -35,23 +35,23 @@ struct opaque_auth
  ;
 
 
-struct auth_ops
-{
-  void (*ah_nextverf) (AUTH *);
-  int (*ah_marshal) (AUTH *, struct XDR *);
-  int (*ah_validate) (AUTH *, struct opaque_auth *);
-  int (*ah_refresh) (AUTH *);
-  void (*ah_destroy) (AUTH *);
-}
- ;
-
-
 typedef struct AUTH
 {
   struct opaque_auth ah_cred;
   struct opaque_auth ah_verf;
   union des_block ah_key;
-  struct auth_ops ah_ops;
+  struct auth_ops *ah_ops;
   caddr_t ah_private;
 }
 AUTH;
+
+
+struct auth_ops
+{
+  void (*ah_nextverf) (struct AUTH *);
+  int (*ah_marshal) (struct AUTH *, struct XDR *);
+  int (*ah_validate) (struct AUTH *, struct opaque_auth *);
+  int (*ah_refresh) (struct AUTH *);
+  void (*ah_destroy) (struct AUTH *);
+}
+ ;

@@ -2,6 +2,9 @@
 #define _RPC_CLNT_H_
 
 #include <sys/types.h>
+#include <sys/time.h>
+#include <rpc/auth.h>
+#include <rpc/xdr.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -9,7 +12,6 @@ extern "C"
 #endif
 
 
-#define NULLPROC
 #define NULLPROC	((u_long)0)
 #define CLSET_TIMEOUT	1
 #define CLGET_XID	10
@@ -59,43 +61,67 @@ extern "C"
   }
    ;
 
-
-
-
-
-
-
-  struct clnt_ops
+  struct rpc_err
   {
-    enum clnt_stat (*cl_call) (CLIENT *, u_long, xdrproc_t, caddr_t,
-			       xdrproc_t, caddr_t, struct timeval);
-    void (*cl_abort) (void);
-    void (*cl_geterr) (CLIENT *, struct rpc_err *);
-      bool_t (*cl_freeres) (CLIENT *, xdrproc_t, caddr_t);
-    void (*cl_destroy) (CLIENT *);
-      bool_t (*cl_control) (CLIENT *, int, char *);
+    enum clnt_stat re_status;
+    union
+    {
+      int RE_errno;
+      enum auth_stat RE_why;
+      struct
+      {
+	u_long low;
+	u_long high;
+      }
+      RE_vers;
+      struct
+      {
+	long s1;
+	long s2;
+      }
+      RE_lb;
+    }
+    ru;
   }
    ;
 
 
 
 
+
+
+
   typedef struct CLIENT
   {
-    AUTH *cl_auth;
-    struct clnt_ops cl_ops;
+    struct AUTH *cl_auth;
+    struct clnt_ops *cl_ops;
     caddr_t cl_private;
   }
   CLIENT;
 
 
-  extern CLIENT *clnt_create (char *, u_long, u_long, char *);
+
+
+  struct clnt_ops
+  {
+    enum clnt_stat (*cl_call) (struct CLIENT *, u_long, xdrproc_t, caddr_t,
+			       xdrproc_t, caddr_t, struct timeval);
+    void (*cl_abort) (void);
+    void (*cl_geterr) (struct CLIENT *, struct rpc_err *);
+      bool_t (*cl_freeres) (struct CLIENT *, xdrproc_t, caddr_t);
+    void (*cl_destroy) (struct CLIENT *);
+      bool_t (*cl_control) (struct CLIENT *, int, char *);
+  }
+   ;
+
+
+  extern struct CLIENT *clnt_create (char *, u_long, u_long, char *);
   extern void clnt_pcreateerror (char *);
-  extern void clnt_perrno (,);
-  extern void clnt_perror (CLIENT *, char *);
+  extern void clnt_perrno (enum clnt_stat);
+  extern void clnt_perror (struct CLIENT *, char *);
   extern char *clnt_spcreateerror (char *);
-  extern char *clnt_sperrno (,);
-  extern char *clnt_sperror (CLIENT *, char *);
+  extern char *clnt_sperrno (enum clnt_stat);
+  extern char *clnt_sperror (struct CLIENT *, char *);
 #ifdef __cplusplus
 }
 #endif

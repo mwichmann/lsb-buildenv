@@ -21,16 +21,24 @@ extern "C"
   }
    ;
 
-  struct XDR
+  typedef struct XDR
   {
     enum xdr_op x_op;
-    struct xdr_ops x_ops;
+    struct xdr_ops *x_ops;
     caddr_t x_public;
     caddr_t x_private;
     caddr_t x_base;
     int x_handy;
   }
-   ;
+  XDR;
+
+
+/* Contains operation which is being applied to the stream, an operations vector for the particular implementation and two private fields for the use of the particular implementation.*/
+
+
+
+/*  XDR_ENCODE causes the type to be encoded into the stream.  XDR_DECODE causes the type to be extracted from the stream. XDR_FREE can be used to release the space allocated by an XDR_DECODE request.*/
+
 
   struct xdr_ops
   {
@@ -44,6 +52,23 @@ extern "C"
     void (*x_destroy) (struct XDR * __xdrs);
       bool_t (*x_getint32) (struct XDR * __xdrs, int32_t * __ip);
       bool_t (*x_putint32) (struct XDR * __xdrs, int32_t * __ip);
+  }
+   ;
+
+
+/* A xdrproc_t exists for each data type which is to be encoded or decoded.*/
+
+
+  typedef bool_t (*xdrproc_t) (struct XDR *, void *, ...);
+
+
+/* Support struct for discriminated unions.*/
+
+
+  struct xdr_discrim
+  {
+    int value;
+    xdrproc_t proc;
   }
    ;
 
@@ -72,7 +97,7 @@ extern "C"
   extern bool_t xdr_vector (struct XDR *, char *, u_int, u_int, xdrproc_t);
   extern bool_t xdr_void (void);
   extern bool_t xdr_wrapstring (struct XDR *, char **);
-  extern void xdrmem_create (struct XDR *, caddr_t, u_int,,);
+  extern void xdrmem_create (struct XDR *, caddr_t, u_int, enum xdr_op);
   extern void xdrrec_create (struct XDR *, u_int, u_int, caddr_t, int, int);
   extern bool_t xdrrec_eof (struct XDR *);
 #ifdef __cplusplus
