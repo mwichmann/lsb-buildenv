@@ -13,6 +13,9 @@ headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 %.h:
 	./mkheader -a All -h $@ | indent >$@
 
+%:
+	./mkheader -a All -h $@ | indent >$@
+
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
