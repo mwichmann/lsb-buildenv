@@ -49,7 +49,6 @@ extern "C"
    ;
 
 
-  extern int adjtimex (struct timex *);
 #ifdef __cplusplus
 }
 #endif
