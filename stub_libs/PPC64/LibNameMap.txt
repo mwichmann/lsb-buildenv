@@ -12,6 +12,7 @@ libm libm.so.6
 libncurses libncurses.so.5
 libpam libpam.so.0
 libpthread libpthread.so.0
+librt librt.so.1
 libstdcxx libstdc++.so.6
 libutil libutil.so.1
 libz libz.so.1
