@@ -1,11 +1,6 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
   atoll;
-  expl;
-  log10f;
-  log10l;
-  logf;
-  logl;
   vfscanf;
   vscanf;
   vsscanf;

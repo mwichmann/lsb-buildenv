@@ -155,7 +155,6 @@ GLIBC_2.2 {
   execve;
   execvp;
   exit;
-  expl;
   fchdir;
   fchmod;
   fchown;
@@ -369,10 +368,6 @@ GLIBC_2.2 {
   localtime_r;
   lockf;
   lockf64;
-  log10f;
-  log10l;
-  logf;
-  logl;
   longjmp;
   lrand48;
   lsearch;

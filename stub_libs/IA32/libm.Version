@@ -45,6 +45,8 @@ GLIBC_2.0 {
   erff;
   erfl;
   exp;
+  expf;
+  expl;
   expm1;
   fabs;
   fabsf;
@@ -90,8 +92,12 @@ GLIBC_2.0 {
   lgammal_r;
   log;
   log10;
+  log10f;
+  log10l;
   log1p;
   logb;
+  logf;
+  logl;
   matherr;
   modf;
   modff;
