@@ -36,9 +36,6 @@
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR
 #define S_IEXEC	S_IXUSR
-#define fstat(fd,buf)	__fxstat(_STAT_VER,fd,buf)
-#define lstat(path,buf)	__lxstat (_STAT_VER,path,buf)
-#define stat(path,buf)	__xstat(_STAT_VER,path,buf)
 
 
 struct stat

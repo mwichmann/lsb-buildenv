@@ -26,6 +26,7 @@ typedef int *intptr_t;
 
 
 
+#define _POSIX_FSYNC	1
 #define _POSIX_MESSAGE_PASSING	1
 #define _POSIX_SHARED_MEMORY_OBJECTS	1
 #define _POSIX_MEMLOCK	1
@@ -38,7 +39,6 @@ typedef int *intptr_t;
 #define _POSIX_ASYNCHRONOUS_IO	1
 #define _POSIX_MEMORY_PROTECTION	1
 #define _POSIX_SEMAPHORES	1
-#define _POSIX_FSYNC	1
 #define _POSIX2_VERSION	199209L
 #define _POSIX2_C_VERSION	199209L
 #define _POSIX_VERSION	199506L
@@ -188,10 +188,10 @@ extern int execlp (char *, char *, ...);
 extern int execv (char *, char *[]);
 extern int execvp (char *, char *[]);
 extern int fdatasync (void);
-extern int ftruncate64 (void);
+extern int ftruncate64 (int, off64_t);
 extern long gethostid (void);
 extern char *getlogin (void);
-extern int getopt (int, char *const[], const char *);
+extern int getopt (int, char *[], const char *);
 extern pid_t getpgrp (void);
 extern pid_t getsid (void);
 extern char *getwd (void);

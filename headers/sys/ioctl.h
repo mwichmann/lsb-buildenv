@@ -15,5 +15,5 @@
 
 
 
-extern int ioctl (int, int, ...);
+extern int ioctl (int, unsigned long, ...);
 #endif

@@ -1,6 +1,7 @@
 #ifndef _GRP_H_
 #define _GRP_H_
 
+#include <stddef.h>
 #include <sys/types.h>
 
 
@@ -24,5 +25,5 @@ extern struct group *getgrgid (gid_t);
 extern struct group *getgrnam (const char *);
 extern int initgroups (const char *, gid_t);
 extern void setgrent (void);
-extern int setgroups (void);
+extern int setgroups (size_t, gid_t *);
 #endif

@@ -18,6 +18,8 @@ typedef unsigned long long uintmax_t;
 
 typedef unsigned int u_int;
 
+typedef unsigned int uint;
+
 typedef unsigned char uint8_t;
 
 typedef unsigned short uint16_t;
@@ -27,6 +29,22 @@ typedef unsigned int uint32_t;
 typedef unsigned int *uintptr_t;
 
 typedef long long uint64_t;
+
+
+#define __LITTLE_ENDIAN	1234
+#define __PDP_ENDIAN	3412
+#define __BIG_ENDIAN	4321
+#define BIG_ENDIAN	__BIG_ENDIAN
+#define BYTE_ORDER	__BYTE_ORDER
+#define LITTLE_ENDIAN	__LITTLE_ENDIAN
+#define PDP_ENDIAN	__PDP_ENDIAN
+
+
+
+#if defined(__i386__)
+#define __BYTE_ORDER	__LITTLE_ENDIAN
+#endif
+
 
 
 extern intmax_t strtoimax (char *, char **, int);

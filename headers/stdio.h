@@ -118,11 +118,11 @@ extern int vsnprintf (char *, size_t, char *, va_list);
 extern int vsprintf (char *, char *, va_list);
 extern void flockfile (void);
 extern int fgetpos64 (void);
-extern FILE fopen64 (void);
+extern FILE fopen64 (const char *, const char *);
 extern int fsetpos64 (void);
 extern int ftrylockfile (void);
 extern void funlockfile (void);
 extern int getc_unlocked (void);
 extern void setbuffer (FILE *, char *, size_t);
-extern int vasprintf (void);
+extern int vasprintf (char **, const char *, va_list);
 #endif

@@ -12,8 +12,8 @@
 #define SIG_BLOCK	0
 #define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
-#define SIGEV_THREAD	2
 #define SIG_SETMASK	2
+#define SIGEV_THREAD	2
 #define SI_MAX_SIZE	64
 
 
@@ -59,8 +59,8 @@ struct sigstack
 #define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
-#define SIGIOT	6
 #define SIGABRT	6
+#define SIGIOT	6
 #define SIGBUS	7
 #define SIGFPE	8
 #define SIGKILL	9
@@ -119,6 +119,18 @@ sigevent_t;
 #define SI_MESGQ	-3
 #define SI_ASYNCIO	-4
 #define SI_USER	0
+#define si_pid	_sifields._kill._pid
+#define si_uid	_sifields._kill._uid
+#define si_value	_sifields._rt._sigval
+#define si_int	_sifields._rt._sigval.sival_int
+#define si_ptr	_sifields._rt._sigval.sival_ptr
+#define si_status	_sifields._sigchld._status
+#define si_stime	_sifields._sigchld._stime
+#define si_utime	_sifields._sigchld._utime
+#define si_addr	_sifields._sigfault._addr
+#define si_band	_sifields._sigpoll._band
+#define si_fd	_sifields._sigpoll._fd
+#define si_timer1	_sifields._timer._timer1
 
 
 typedef struct siginfo
@@ -131,8 +143,8 @@ typedef struct siginfo
     int _pad[SI_PAD_SIZE];
     struct
     {
-      pid_t si_pid;
-      uid_t si_uid;
+      pid_t _pid;
+      uid_t _uid;
     }
     _kill;
     struct
@@ -324,7 +336,6 @@ struct sigcontext
  ;
 
 
-extern int __sigpause (void);
 extern __sighandler_t __sysv_signal (void);
 extern char **_sys_siglist;
 extern int killpg (pid_t, int);
