@@ -618,7 +618,7 @@ extern "C"
     }
     u;
   }
-   ;
+  __attribute__ ((aligned (16)));
 
 #endif
 

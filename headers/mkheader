@@ -78,6 +78,9 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
 		print "[".$$type{'ATsize'}."]";
 		}
+	if( $$type{'Tattribute'} ) {
+		print "__attribute__ (".$$type{'Tattribute'}.")";
+		}
 	if (!$nameonly) {
 		print $$type{'Tcomment'}."\n";
 		}
@@ -155,7 +158,11 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		#	}
 		$nameonly=0;
 		}
-	if ($tmh->numrows ) { print "}\n"; }
+	if ($tmh->numrows ) { print "}"; }
+	if( $$type{'Tattribute'} ) {
+		print "__attribute__ (".$$type{'Tattribute'}.")";
+		}
+	print "\n";
 	return;
 	}
 

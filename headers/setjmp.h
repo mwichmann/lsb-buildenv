@@ -23,7 +23,7 @@ extern "C"
 #endif
 #if __ia64__
 /* IA64 */
-  typedef long __jmp_buf[70];
+  typedef long __jmp_buf[70] __attribute__ ((aligned (16)));
 
 #endif
 #if __powerpc__ && !__powerpc64__
