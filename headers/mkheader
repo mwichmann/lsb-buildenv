@@ -232,7 +232,9 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		if( $_ != $tmh->numrows ) {
 			print ",\t";
 			}
-		print $tmentry{'TMcomment'}."\n";
+		if( $tmentry{'TMcomment'} ) {
+			print "/* ".$tmentry{'TMcomment'}."*/\n";
+			}
 		$nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
