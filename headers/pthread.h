@@ -38,11 +38,9 @@ extern "C"
   struct _pthread_fastlock
   {
     long __status;
-    atomic_lock_t __spinlock;
+    __atomic_lock_t __spinlock;
   }
    ;
-
-  typedef int atomic_lock_t;
 
 
 /* Description structure*/

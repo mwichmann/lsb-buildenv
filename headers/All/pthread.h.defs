@@ -19,10 +19,9 @@ typedef unsigned long pthread_t;
 struct _pthread_fastlock
 {
   long __status;
-  atomic_lock_t __spinlock;
+  __atomic_lock_t __spinlock;
 }
  ;
-typedef int atomic_lock_t;
 
 
 typedef struct _pthread_descr_struct *_pthread_descr;

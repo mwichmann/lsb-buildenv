@@ -68,8 +68,8 @@ extern "C"
     pid_t shm_cpid;		/* pid of creator */
     pid_t shm_lpid;		/* pid of last shmop */
     unsigned long shm_nattch;	/* number of current attaches */
-    unsigned long;		/* __unused1 */
-    unsigned long;		/* __unused2 */
+    unsigned long __unused1;
+    unsigned long __unused2;
   }
    ;
 

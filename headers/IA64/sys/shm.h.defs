@@ -18,7 +18,7 @@ struct shmid_ds
   pid_t shm_cpid;
   pid_t shm_lpid;
   unsigned long shm_nattch;
-  unsigned long;
-  unsigned long;
+  unsigned long __unused1;
+  unsigned long __unused2;
 }
  ;

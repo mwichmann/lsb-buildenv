@@ -28,7 +28,7 @@ extern "C"
     fsblkcnt_t f_files;		/* total file nodes in file system */
     fsblkcnt_t f_ffree;		/* free file nodes in fs */
     fsid_t f_fsid;		/* file system id */
-    int f_namlen;		/* maximum length of filenames */
+    int f_namelen;		/* maximum length of filenames */
     int f_spare[6];		/* spare for later */
   }
    ;
@@ -43,7 +43,7 @@ extern "C"
     fsblkcnt64_t f_files;	/* total file nodes in file system */
     fsblkcnt64_t f_ffree;	/* free file nodes in fs */
     fsid_t f_fsid;		/* file system id */
-    int f_namlen;		/* maximum length of filenames */
+    int f_namelen;		/* maximum length of filenames */
     int f_spare[6];		/* spare for later */
   }
    ;
