@@ -386,11 +386,11 @@ extern "C"
 #endif
 #if __i386__
 /* IA32 */
-  extern long double exp2l (void);
+  extern long double exp2l (long double);
 #endif
 #if __ia64__
 /* IA64 */
-  extern long double exp2l (void);
+  extern long double exp2l (long double);
 #endif
 #ifdef __cplusplus
 }
