@@ -2,7 +2,9 @@ typedef long wchar_t;
 
 typedef unsigned int wint_t;
 
-typedef struct {
-    int count;
-    wint_t value;
-} mbstate_t;
+typedef struct
+{
+  int count;
+  wint_t value;
+}
+mbstate_t;

@@ -2,127 +2,149 @@ typedef unsigned long XcmsColorFormat;
 
 typedef double XcmsFloat;
 
-typedef struct {
-    unsigned short red;
-    unsigned short green;
-    unsigned short blue;
-} XcmsRGB;
+typedef struct
+{
+  unsigned short red;
+  unsigned short green;
+  unsigned short blue;
+}
+XcmsRGB;
 
-typedef struct {
-    XcmsFloat red;
-    XcmsFloat green;
-    XcmsFloat blue;
-} XcmsRGBi;
+typedef struct
+{
+  XcmsFloat red;
+  XcmsFloat green;
+  XcmsFloat blue;
+}
+XcmsRGBi;
 
-typedef struct {
-    XcmsFloat X;
-    XcmsFloat Y;
-    XcmsFloat Z;
-} XcmsCIEXYZ;
+typedef struct
+{
+  XcmsFloat X;
+  XcmsFloat Y;
+  XcmsFloat Z;
+}
+XcmsCIEXYZ;
 
-typedef struct {
-    XcmsFloat u_prime;
-    XcmsFloat v_prime;
-    XcmsFloat Y;
-} XcmsCIEuvY;
+typedef struct
+{
+  XcmsFloat u_prime;
+  XcmsFloat v_prime;
+  XcmsFloat Y;
+}
+XcmsCIEuvY;
 
-typedef struct {
-    XcmsFloat x;
-    XcmsFloat y;
-    XcmsFloat Y;
-} XcmsCIExyY;
+typedef struct
+{
+  XcmsFloat x;
+  XcmsFloat y;
+  XcmsFloat Y;
+}
+XcmsCIExyY;
 
-typedef struct {
-    XcmsFloat L_star;
-    XcmsFloat a_star;
-    XcmsFloat b_star;
-} XcmsCIELab;
+typedef struct
+{
+  XcmsFloat L_star;
+  XcmsFloat a_star;
+  XcmsFloat b_star;
+}
+XcmsCIELab;
 
-typedef struct {
-    XcmsFloat L_star;
-    XcmsFloat u_star;
-    XcmsFloat v_star;
-} XcmsCIELuv;
+typedef struct
+{
+  XcmsFloat L_star;
+  XcmsFloat u_star;
+  XcmsFloat v_star;
+}
+XcmsCIELuv;
 
-typedef struct {
-    XcmsFloat H;
-    XcmsFloat V;
-    XcmsFloat C;
-} XcmsTekHVC;
+typedef struct
+{
+  XcmsFloat H;
+  XcmsFloat V;
+  XcmsFloat C;
+}
+XcmsTekHVC;
 
-typedef struct {
-    XcmsFloat pad0;
-    XcmsFloat pad1;
-    XcmsFloat pad2;
-    XcmsFloat pad3;
-} XcmsPad;
+typedef struct
+{
+  XcmsFloat pad0;
+  XcmsFloat pad1;
+  XcmsFloat pad2;
+  XcmsFloat pad3;
+}
+XcmsPad;
 
-typedef union {
-    union spec;
-    XcmsRGB RGB;
-    unsigned long pixel;
-    XcmsRGBi RGBi;
-    XcmsColorFormat format;
-    XcmsCIEXYZ CIEXYZ;
-    XcmsCIEuvY CIEuvY;
-    XcmsCIExyY CIExyY;
-    XcmsCIELab CIELab;
-    XcmsCIELuv CIELuv;
-    XcmsTekHVC TekHVC;
-    XcmsPad Pad;
-} XcmsColor;
+typedef union
+{
+  union spec;
+  XcmsRGB RGB;
+  unsigned long pixel;
+  XcmsRGBi RGBi;
+  XcmsColorFormat format;
+  XcmsCIEXYZ CIEXYZ;
+  XcmsCIEuvY CIEuvY;
+  XcmsCIExyY CIExyY;
+  XcmsCIELab CIELab;
+  XcmsCIELuv CIELuv;
+  XcmsTekHVC TekHVC;
+  XcmsPad Pad;
+}
+XcmsColor;
 
-typedef struct _XcmsPerScrnInfo {
-    XcmsColor screenWhitePt;
-    XPointer functionSet;
-    XPointer screenData;
-    unsigned char state;
-    char pad[1];
-} XcmsPerScrnInfo;
+typedef struct _XcmsPerScrnInfo
+{
+  XcmsColor screenWhitePt;
+  XPointer functionSet;
+  XPointer screenData;
+  unsigned char state;
+  char pad[1];
+}
+XcmsPerScrnInfo;
 
-typedef int (*XcmsCompressionProc) ()
-;
+typedef int (*XcmsCompressionProc) ();
 
-typedef int (*XcmsWhiteAdjustProc) ()
-;
+typedef int (*XcmsWhiteAdjustProc) ();
 
-typedef int (*XcmsScreenInitProc) ()
-;
+typedef int (*XcmsScreenInitProc) ();
 
-typedef void (*XcmsScreenFreeProc) ()
-;
+typedef void (*XcmsScreenFreeProc) ();
 
-typedef int (*XcmsConversionProc) ()
-;
+typedef int (*XcmsConversionProc) ();
 
-typedef int (*XcmsParseStringProc) ()
-;
+typedef int (*XcmsParseStringProc) ();
 
-typedef struct _XcmsCCC {
-    Display *dpy;
-    int screenNumber;
-    Visual *visual;
-    XcmsColor clientWhitePt;
-    XcmsCompressionProc gamutCompProc;
-    XPointer gamutCompClientData;
-    XcmsWhiteAdjustProc whitePtAdjProc;
-    XPointer whitePtAdjClientData;
-    XcmsPerScrnInfo *pPerScrnInfo;
-} *XcmsCCC;
+typedef struct _XcmsCCC
+{
+  Display *dpy;
+  int screenNumber;
+  Visual *visual;
+  XcmsColor clientWhitePt;
+  XcmsCompressionProc gamutCompProc;
+  XPointer gamutCompClientData;
+  XcmsWhiteAdjustProc whitePtAdjProc;
+  XPointer whitePtAdjClientData;
+  XcmsPerScrnInfo *pPerScrnInfo;
+}
+ *XcmsCCC;
 
 typedef XcmsConversionProc *XcmsFuncListPtr;
 
-typedef struct _XcmsColorSpace {
-    char *prefix;
-    XcmsColorFormat id;
-    XcmsParseStringProc parseString;
-    XcmsFuncListPtr to_CIEXYZ;
-    XcmsFuncListPtr from_CIEXYZ;
-    int inverse_flag;
-} XcmsColorSpace;
+typedef struct _XcmsColorSpace
+{
+  char *prefix;
+  XcmsColorFormat id;
+  XcmsParseStringProc parseString;
+  XcmsFuncListPtr to_CIEXYZ;
+  XcmsFuncListPtr from_CIEXYZ;
+  int inverse_flag;
+}
+XcmsColorSpace;
 
-typedef struct _XcmsFunctionSet {
-    XcmsColorSpace **DDColorSpaces;
-    XcmsScreenInitProc screenInitProc;
-    XcmsScreenFreeProc screenFreeProc;
-} XcmsFunctionSet;
+typedef struct _XcmsFunctionSet
+{
+  XcmsColorSpace **DDColorSpaces;
+  XcmsScreenInitProc screenInitProc;
+  XcmsScreenFreeProc screenFreeProc;
+}
+XcmsFunctionSet;

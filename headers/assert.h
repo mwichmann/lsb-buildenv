@@ -1,2 +1,2 @@
 
-void __assert_fail(char *, char *, unsigned int, char *);
+void __assert_fail (char *, char *, unsigned int, char *);

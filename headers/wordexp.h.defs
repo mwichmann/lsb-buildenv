@@ -1,5 +1,7 @@
-typedef struct {
-    int we_wordc;
-    char **we_wordv;
-    int we_offs;
-} wordexp_t;
+typedef struct
+{
+  int we_wordc;
+  char **we_wordv;
+  int we_offs;
+}
+wordexp_t;

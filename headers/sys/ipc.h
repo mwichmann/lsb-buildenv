@@ -1,2 +1,2 @@
 
-key_t ftok(char *, int);
+key_t ftok (char *, int);

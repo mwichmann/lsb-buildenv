@@ -1,2 +1,2 @@
 
-long ulimit(int, ...);
+long ulimit (int, ...);

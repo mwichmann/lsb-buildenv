@@ -1,2 +1,2 @@
 
-int fnmatch(char *, char *, int);
+int fnmatch (char *, char *, int);
