@@ -14,8 +14,10 @@ extern "C"
 #define NETDB_INTERNAL	-1
 #define NETDB_SUCCESS	0
 #define HOST_NOT_FOUND	1
+#define NI_MAXHOST	1025
 #define TRY_AGAIN	2
 #define NO_RECOVERY	3
+#define NI_MAXSERV	32
 #define NO_DATA	4
 #define h_addr	h_addr_list[0]
 #define NO_ADDRESS	NO_DATA
@@ -49,10 +51,43 @@ extern "C"
    ;
 
 
+/* Possible values for `ai_flags' field in `addrinfo' structure.*/
+#define AI_PASSIVE	0x0001
+#define AI_CANONNAME	0x0002
+#define AI_NUMERICHOST	0x0004
+
+
+
+/* Values to use as hints*/
+#define NI_NUMERICHOST	1
+#define NI_DGRAM	16
+#define NI_NUMERICSERV	2
+#define NI_NOFQDN	4
+#define NI_NAMEREQD	8
+
+
+
+/* Error values for `getaddrinfo' function.*/
+#define EAI_BADFLAGS	-1
+#define EAI_MEMORY	-10
+#define EAI_SYSTEM	-11
+#define EAI_NONAME	-2
+#define EAI_AGAIN	-3
+#define EAI_FAIL	-4
+#define EAI_NODATA	-5
+#define EAI_FAMILY	-6
+#define EAI_SOCKTYPE	-7
+#define EAI_SERVICE	-8
+#define EAI_ADDRFAMILY	-9
+
+
+
   extern void endhostent (void);
   extern void endnetent (void);
   extern void endprotoent (void);
   extern void endservent (void);
+  extern int getaddrinfo (const char *, const char *, const struct addrinfo *,
+			  struct addrinfo **);
   extern struct hostent *gethostbyaddr (const void *, socklen_t, int);
   extern struct hostent *gethostbyname (const char *);
   extern struct netent *getnetbyaddr (unsigned long, int);
