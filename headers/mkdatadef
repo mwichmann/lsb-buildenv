@@ -35,6 +35,11 @@ if( $$type{'Ttype'} eq "Intrinsic" ) {
 	return;
 	}
 
+if( $$type{'Ttype'} eq "Literal" ) {
+	print $$type{'Tname'}."\t";
+	return;
+	}
+
 if( $$type{'Ttype'} eq "Typedef" ) {
 	if (!$nameonly) { print "typedef "; }
 	$basetype=$$type{'Tbasetype'};
@@ -458,7 +463,7 @@ for(1..$hgh->numrows) {
 	$select.= "WHERE Cheadgroup=$HGid ";
 	$select.= "AND ACaid=$Aid ";
 	$select.= "AND Cstd ='Yes' ";
-	$select.=" ORDER BY ACvalue, Cname";
+	$select.=" ORDER BY ACvalue, Cname, ACaid";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
 	for(1..$ch->numrows) {

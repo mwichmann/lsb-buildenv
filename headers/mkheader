@@ -303,6 +303,11 @@ if( $$param{'Ttype'} eq "Intrinsic" ) {
 	return;
 	}
 
+if( $$param{'Ttype'} eq "Literal" ) {
+	print $$param{'Tname'};
+	return;
+	}
+
 if( $$param{'Ttype'} eq "Pointer" ) {
 	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -605,7 +610,7 @@ for(1..$hgh->numrows) {
 	$select.= "WHERE Cheadgroup=$HGid ";
 	#$select.= "AND ACaid=$Aid ";
 	$select.= "AND ( Cstd ='Yes' OR Cstd ='SrcOnly' )";
-	$select.=" ORDER BY ACvalue, Cname";
+	$select.=" ORDER BY ACvalue, Cname, Aid";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
 	for(1..$ch->numrows) {
