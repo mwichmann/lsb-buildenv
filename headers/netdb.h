@@ -124,8 +124,6 @@ extern "C"
   extern void setprotoent (int);
   extern void setservent (int);
   extern int *__h_errno_location (void);
-  extern int gethostbyname_r (const char *, struct hostent *, char *, size_t,
-			      struct hostent **, int *);
 #ifdef __cplusplus
 }
 #endif

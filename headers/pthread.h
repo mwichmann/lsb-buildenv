@@ -220,12 +220,9 @@ extern "C"
   extern int pthread_rwlock_unlock (pthread_rwlock_t *);
   extern int pthread_rwlock_wrlock (pthread_rwlock_t *);
   extern int pthread_rwlockattr_destroy (pthread_rwlockattr_t *);
-  extern int pthread_rwlockattr_getkind_np (const pthread_rwlockattr_t *,
-					    int *);
   extern int pthread_rwlockattr_getpshared (const pthread_rwlockattr_t *,
 					    int *);
   extern int pthread_rwlockattr_init (pthread_rwlockattr_t *);
-  extern int pthread_rwlockattr_setkind_np (pthread_rwlockattr_t *, int);
   extern int pthread_rwlockattr_setpshared (const pthread_rwlockattr_t *,
 					    int);
   extern pthread_t pthread_self (void);
