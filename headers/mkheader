@@ -678,7 +678,7 @@ for(1..$hgh->numrows) {
 		# If it's architecture sensitive, add the #if's to
 		# make it work correctly.
 		if( $centry{'Aid'} && $centry{'Aname'} ne "All" ) {
-			print "#if defined(".$centry{'Asymbol'}.")\n";
+			print "#if ".$centry{'Asymbol'}."\n";
 			#print "/* ".$centry{'Aname'}." */\n";
 			displayconstant(\%centry);
 			print "#endif\n";
@@ -704,7 +704,7 @@ for(1..$hgh->numrows) {
 			print "#if !defined(__cplusplus)\n";
 			}
 		if( $tentry{'Aid'} && $tentry{'Aname'} ne "All" ) {
-			print "#if defined(".$tentry{'Asymbol'}.")\n";
+			print "#if ".$tentry{'Asymbol'}."\n";
 			print "/* ".$tentry{'Aname'}." */\n";
 			displaytype(\%tentry);
 			print ";";
