@@ -6,6 +6,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 void XShapeCombineMask (Display *, Window, int, int, int, Pixmap, int);
 void XShapeCombineRectangles (Display *, Window, int, int, int, XRectangle *,
 			      int, int, int);

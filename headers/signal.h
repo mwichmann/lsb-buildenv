@@ -6,12 +6,50 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-struct sigstack;
-
-struct sigcontext;
-
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
+
+
+struct sigstack
+{
+  void *ss_sp;			/* Signal stack pointer. */
+  int ss_onstack;		/* Nonzero if executing on this stack. */
+}
+ ;
+
+struct sigcontext
+{
+  unsigned short gs;
+  unsigned short __gsh;
+  unsigned short fs;
+  unsigned short __fsh;
+  unsigned short es;
+  unsigned short __esh;
+  unsigned short ds;
+  unsigned short __dsh;
+  unsigned long edi;
+  unsigned long esi;
+  unsigned long ebp;
+  unsigned long esp;
+  unsigned long ebx;
+  unsigned long edx;
+  unsigned long ecx;
+  unsigned long eax;
+  unsigned long trapno;
+  unsigned long err;
+  unsigned long eip;
+  unsigned short cs;
+  unsigned short __csh;
+  unsigned long eflags;
+  unsigned long esp_at_signal;
+  unsigned short ss;
+  unsigned short __ssh;
+  struct _fpstate fpstate;
+  unsigned long oldmask;
+  unsigned long cr2;
+}
+ ;
+
 
 #define SIGHUP	1
 #define SIGUSR1	10
@@ -36,23 +74,32 @@ struct sigcontext;
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
-#define SIGIOT	6
 #define SIGABRT	6
+#define SIGIOT	6
 #define SIGBUS	7
 #define SIGFPE	8
 #define SIGKILL	9
 #define SIGCLD	SIGCHLD
 #define SIGPOLL	SIGIO
 
-typedef void (*__sighandler_t) ();
+
 
 #define SIG_ERR	((__sighandler_t)-1)
 #define SIG_DFL	((__sighandler_t)0)
 #define SIG_IGN	((__sighandler_t)1)
+
+
+typedef void (*__sighandler_t) ();
+
+
+#define SV_ONSTACK	(1<<0)
+#define SV_INTERRUPT	(1<<1)
+#define SV_RESETHAND	(1<<2)
+
 
 typedef union sigval
 {
@@ -61,36 +108,105 @@ typedef union sigval
 }
 sigval_t;
 
-#define SV_ONSTACK	(1<<0)
-#define SV_INTERRUPT	(1<<1)
-#define SV_RESETHAND	(1<<2)
+
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+#define SI_MAX_SIZE	128
+
+
+union _sigev_un
+{
+  int _pad[SI_PAD_SIZE];
+  struct
+  {
+    void (*sigev_thread - func) ();
+    void *_attribute;
+  }
+  _sigev_thread;
+}
+ ;
+
+typedef struct sigevent
+{
+  sigval_t sigev_value;
+  int sigev_signo;
+  int sigev_notify;
+  union _sigev_un _sigev_un;
+}
+sigevent_t;
+
+struct
+{
+  void (*sigev_thread - func) ();
+  void *_attribute;
+}
+ ;
+
+
 
 
 typedef struct siginfo
 {
-  int si_signo;
+  int si_signo;			/* Signal number. */
   int si_errno;
-  int si_code;
-  union _sifields;
+  int si_code;			/* Signal code. */
+  union
+  {
+    int _pad[__SI_PAD_SIZE];
+    struct
+    {
+      pid_t si_pid;
+      uid_t si_uid;
+    }
+    _kill;
+    struct
+    {
+      unsigned int _timer1;
+      unsigned int _timer2;
+    }
+    _timer;
+    struct
+    {
+      pid_t _pid;
+      uid_t _uid;
+      sigval_t _sigval;
+    }
+    _rt;
+    struct
+    {
+      pid_t _pid;
+      uid_t _uid;
+      int _status;
+      clock_t _utime;
+      clock_t _stime;
+    }
+    _sigchld;
+    struct
+    {
+      void *_addr;
+    }
+    _sigfault;
+    struct
+    {
+      int _band;
+      int _fd;
+    }
+    _sigpoll;
+  }
+  _sifields;
 }
 siginfo_t;
 
 
+#define _NSIG_WORDS	((_NSIG/sizeof(long))>>3)
+#define _NSIG	64
+
+
 typedef struct
 {
-  unsigned long sig[1];
+  unsigned long sig[_NSIG_WORDS];
 }
 sigset_t;
 
-
-struct sigaction
-{
-  union _u;
-  unsigned long sa_flags;
-  void (*sa_restorer) ();
-  sigset_t sa_mask;
-}
- ;
 
 #define SA_NOCLDSTOP	0x00000001
 #define SA_NOCLDWAIT	0x00000002
@@ -103,6 +219,69 @@ struct sigaction
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
 
+
+struct sigaction
+{
+  union
+  {
+    __sighandler_t _sa_handler;
+    void (*_sa_sigaction) ();
+  }
+  _u;
+  unsigned long sa_flags;
+  void (*sa_restorer) ();
+  sigset_t sa_mask;
+}
+ ;
+
+union
+{
+  int _pad[__SI_PAD_SIZE];
+  struct
+  {
+    pid_t si_pid;
+    uid_t si_uid;
+  }
+  _kill;
+  struct
+  {
+    unsigned int _timer1;
+    unsigned int _timer2;
+  }
+  _timer;
+  struct
+  {
+    pid_t _pid;
+    uid_t _uid;
+    sigval_t _sigval;
+  }
+  _rt;
+  struct
+  {
+    pid_t _pid;
+    uid_t _uid;
+    int _status;
+    clock_t _utime;
+    clock_t _stime;
+  }
+  _sigchld;
+  struct
+  {
+    void *_addr;
+  }
+  _sigfault;
+  struct
+  {
+    int _band;
+    int _fd;
+  }
+  _sigpoll;
+}
+ ;
+
+
+
+
 typedef struct sigaltstack
 {
   void *ss_sp;
@@ -110,6 +289,37 @@ typedef struct sigaltstack
   size_t ss_size;
 }
 stack_t;
+
+
+
+
+struct _fpstate
+{
+  unsigned long cw;
+  unsigned long sw;
+  unsigned long tag;
+  unsigned long ipoff;
+  unsigned long cssel;
+  unsigned long dataoff;
+  unsigned long datasel;
+  struct _fpreg _st[8];
+  unsigned short status;
+  unsigned short magic;
+  unsigned long _fxsr_env[6];
+  unsigned long mxcsr;
+  unsigned long reserved;
+  struct _fpxreg _fxsr_st[8];
+  struct _xmmreg _xmm[8];
+  unsigned long padding[];
+}
+ ;
+
+struct _fpreg
+{
+  unsigned short significand[4];
+  unsigned short exponent;
+}
+ ;
 
 
 extern char **_sys_siglist;

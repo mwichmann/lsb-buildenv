@@ -4,7 +4,15 @@
 #include <sys/types.h>
 
 
+
+
+
+
 typedef struct __dirstream DIR;
+
+
+
+
 
 
 
@@ -13,7 +21,7 @@ struct dirent
   long d_ino;
   off_t d_off;
   unsigned short d_reclen;
-  char d_name[1];
+  char d_name[256];
 }
  ;
 

@@ -4,6 +4,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 int DPMSCapable (Display *);
 int DPMSDisable (Display *);
 int DPMSEnable (Display *);

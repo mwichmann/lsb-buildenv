@@ -3,6 +3,8 @@
 
 #include <sys/types.h>
 
+
+
 struct ipc_perm
 {
   key_t key;
@@ -14,6 +16,10 @@ struct ipc_perm
   unsigned short seq;
 }
  ;
+
+
+
+
 
 
 

@@ -5,6 +5,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 XdbeBackBuffer XdbeAllocateBackBufferName (Display *, Window, XdbeSwapAction);
 int XdbeBeginIdiom (Display *);
 int XdbeDeallocateBackBufferName (Display *, XdbeBackBuffer);

@@ -2,6 +2,9 @@
 #define _MATH_H_
 
 
+#define HUGE_VAL	0x7FF00000UL
+
+
 struct exception
 {
   int type;
@@ -12,7 +15,6 @@ struct exception
 }
  ;
 
-#define HUGE_VAL	0x7FF00000UL
 
 #define M_1_PI	0.31830988618379067154
 #define M_LOG10E	0.43429448190325182765
@@ -27,6 +29,10 @@ struct exception
 #define M_LN10	2.30258509299404568402
 #define M_E	2.7182818284590452354
 #define M_PI	3.14159265358979323846
+
+
+
+
 
 
 extern int signgam;

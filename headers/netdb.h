@@ -5,6 +5,9 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#define h_addr	h_addr_list[0]
+
+
 struct servent
 {
   char *s_name;
@@ -24,7 +27,6 @@ struct hostent
 }
  ;
 
-#define h_addr	h_addr_list[0]
 
 void endhostent (void);
 void endnetent (void);

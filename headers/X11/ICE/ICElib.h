@@ -2,6 +2,8 @@
 #define _X11_ICE_ICELIB_H_
 
 
+
+
 typedef void *IcePointer;
 
 typedef enum
@@ -66,6 +68,8 @@ typedef enum
 IceProcessMessagesStatus;
 
 
+
+
 typedef struct
 {
   unsigned long sequence_of_request;
@@ -76,9 +80,13 @@ typedef struct
 IceReplyWaitInfo;
 
 
+
+
 typedef struct _IceConn *IceConn;
 
 typedef struct _IceListenObj *IceListenObj;
+
+
 
 
 typedef void (*IceWatchProc) ();
@@ -104,6 +112,8 @@ typedef void (*IcePingReplyProc) ();
 typedef void (*IceErrorHandler) ();
 
 typedef void (*IceIOErrorHandler) ();
+
+
 
 
 typedef struct

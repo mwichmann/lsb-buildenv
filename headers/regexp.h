@@ -3,6 +3,8 @@
 
 
 
+
+
 extern char *loc1;
 extern char *loc2;
 extern char *locs;

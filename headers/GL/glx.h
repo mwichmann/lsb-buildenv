@@ -5,6 +5,8 @@
 #include <X11/Xutil.h>
 #include <X11/Xlib.h>
 
+
+
 typedef struct __GLXcontextRec *GLXContext;
 
 typedef struct __GLXFBConfigRec *GLXFBConfig;

@@ -11,6 +11,12 @@ typedef long __kernel_suseconds_t;
 
 typedef char *__kernel_caddr_t;
 
+typedef struct
+{
+  unsigned long fds_bits[__FDSET_LONGS];
+}
+fd_set;
+
 
 typedef __u_int __mode_t;
 
@@ -73,12 +79,6 @@ typedef __kernel_suseconds_t suseconds_t;
 typedef __u32 uint32_t;
 
 typedef long fd_mask;
-
-typedef struct
-{
-  unsigned long fds_bits[1];
-}
-fd_set;
 
 typedef long long uint64_t;
 

@@ -2,6 +2,8 @@
 #define _ZLIB_H_
 
 
+
+
 typedef z_stream *z_streamp;
 
 typedef voidp gzFile;

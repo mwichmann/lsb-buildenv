@@ -4,5 +4,7 @@
 #include <nl_types.h>
 
 
+
+
 char *nl_langinfo (nl_item);
 #endif

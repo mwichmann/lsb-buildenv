@@ -2,6 +2,14 @@
 #define _SYS_TYPES_H_
 
 
+#if defined(__ia64__)
+#define __FDSET_LONGS	16
+#endif
+#if defined(__i386__)
+#define __FDSET_LONGS	32
+#endif
+
+
 typedef unsigned int __kernel_size_t;
 
 typedef unsigned int __u_int;
@@ -13,6 +21,14 @@ typedef long long __quad_t;
 typedef long __kernel_suseconds_t;
 
 typedef char *__kernel_caddr_t;
+
+typedef struct
+{
+  unsigned long fds_bits[__FDSET_LONGS];
+}
+fd_set;
+
+
 
 
 typedef __u_int __mode_t;
@@ -28,6 +44,8 @@ typedef __loff_t loff_t;
 typedef int __key_t;
 
 
+
+
 typedef int ino_t;
 
 typedef __gid_t gid_t;
@@ -37,6 +55,9 @@ typedef __mode_t mode_t;
 typedef int nlink_t;
 
 typedef __kernel_caddr_t caddr_t;
+
+
+#define NULL	((void*)0)
 
 
 typedef int int32_t;
@@ -77,14 +98,7 @@ typedef __u32 uint32_t;
 
 typedef long fd_mask;
 
-typedef struct
-{
-  unsigned long fds_bits[1];
-}
-fd_set;
-
 typedef long long uint64_t;
 
-#define NULL	((void*)0)
 
 #endif

@@ -3,6 +3,11 @@
 
 #include <sys/types.h>
 
+#define ITIMER_REAL	0
+#define ITIMER_VIRTUAL	1
+#define ITIMER_PROF	2
+
+
 struct timezone
 {
   int tz_minuteswest;
@@ -10,14 +15,17 @@ struct timezone
 }
  ;
 
-#define ITIMER_REAL	0
-#define ITIMER_VIRTUAL	1
-#define ITIMER_PROF	2
+
+
+
+
 
 
 enum __itimer_which;
 
 typedef int __itimer_which_t;
+
+
 
 
 struct timespec
@@ -26,6 +34,8 @@ struct timespec
   long tv_nsec;
 }
  ;
+
+
 
 
 struct tm
@@ -45,12 +55,16 @@ struct tm
  ;
 
 
+
+
 struct timeval
 {
   time_t tv_sec;
   suseconds_t tv_usec;
 }
  ;
+
+
 
 
 struct itimerval

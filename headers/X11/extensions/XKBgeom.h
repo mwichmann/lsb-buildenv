@@ -5,6 +5,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 int XkbAllocGeomColors (, int);
 int XkbAllocGeomDoodads (, int);
 int XkbAllocGeomKeyAliases (, int);

@@ -5,14 +5,6 @@
 #include <signal.h>
 #include <sys/resource.h>
 
-typedef enum
-{
-  P_ALL,
-  P_PID,
-  P_PGID
-}
-idtype_t;
-
 #define WIFSIGNALED(status)	(!WIFSTOPPED(status) && !WIFEXITED(status))
 #define WIFSTOPPED(status)	(((status) & 0xff) == 0x7f)
 #define WEXITSTATUS(status)	(((status) & 0xff00) >> 8)
@@ -23,6 +15,16 @@ idtype_t;
 #define WUNTRACED	0x00000002
 #define WCOREFLAG	0x80
 #define WSTOPSIG(status)	WEXITSTATUS(status)
+
+
+typedef enum
+{
+  P_ALL,
+  P_PID,
+  P_PGID
+}
+idtype_t;
+
 
 int waitid (idtype_t, __id_t, siginfo_t *, int);
 __pid_t wait (int *);

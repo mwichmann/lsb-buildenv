@@ -4,6 +4,8 @@
 #include <X11/X.h>
 #include <X11/Xlib.h>
 
+
+
 typedef struct _XcmsFunctionSet
 {
   XcmsColorSpace **DDColorSpaces;
@@ -11,6 +13,8 @@ typedef struct _XcmsFunctionSet
   XcmsScreenFreeProc screenFreeProc;
 }
 XcmsFunctionSet;
+
+
 
 
 typedef unsigned long XcmsColorFormat;
@@ -91,6 +95,8 @@ typedef struct
 XcmsPad;
 
 
+
+
 typedef union
 {
   XcmsRGB RGB;
@@ -106,6 +112,8 @@ typedef union
 XcmsColor;
 
 
+
+
 typedef struct _XcmsPerScrnInfo
 {
   XcmsColor screenWhitePt;
@@ -115,6 +123,8 @@ typedef struct _XcmsPerScrnInfo
   char pad[1];
 }
 XcmsPerScrnInfo;
+
+
 
 
 typedef int (*XcmsCompressionProc) ();
@@ -128,6 +138,8 @@ typedef void (*XcmsScreenFreeProc) ();
 typedef int (*XcmsConversionProc) ();
 
 typedef int (*XcmsParseStringProc) ();
+
+
 
 
 typedef struct _XcmsCCC
@@ -145,7 +157,11 @@ typedef struct _XcmsCCC
  *XcmsCCC;
 
 
+
+
 typedef XcmsConversionProc *XcmsFuncListPtr;
+
+
 
 
 typedef struct _XcmsColorSpace

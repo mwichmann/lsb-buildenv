@@ -3,6 +3,10 @@
 
 
 
+
+
+
+
 enum
 {
   WRDE_DOOFFS,
@@ -16,6 +20,8 @@ enum
  ;
 
 
+
+
 typedef struct
 {
   int we_wordc;
@@ -23,6 +29,8 @@ typedef struct
   int we_offs;
 }
 wordexp_t;
+
+
 
 
 enum

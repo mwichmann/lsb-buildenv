@@ -5,7 +5,7 @@
 #include <sys/types.h>
 
 
-typedef unsigned long reg_syntax_t;
+
 
 #define RE_SYNTAX_GNU_AWK	((RE_SYNTAX_POSIX_EXTENDED|RE_BACKSLASH_ESCAPE_IN_LISTS|RE_DEBUG)& ~(RE_DOT_NOT_NULL | RE_INTERVALS | RE_CONTEXT_INDEP_OPS))
 #define RE_BACKSLASH_ESCAPE_IN_LISTS	((unsigned long int)1)
@@ -35,6 +35,14 @@ typedef unsigned long reg_syntax_t;
 #define RE_SYNTAX_POSIX_MINIMAL_BASIC	(_RE_SYNTAX_POSIX_COMMON|RE_LIMITED_OPS)
 #define RE_SYNTAX_ED	RE_SYNTAX_POSIX_BASIC
 #define RE_SYNTAX_SED	RE_SYNTAX_POSIX_BASIC
+
+
+typedef unsigned long reg_syntax_t;
+
+
+
+
+
 
 
 typedef struct re_pattern_buffer
@@ -73,6 +81,8 @@ regmatch_t;
 #define REG_NOMATCH	-1
 #define REG_EXTENDED	1
 #define REG_NOTBOL	1
+
+
 
 int regcomp (regex_t *, char *, int);
 size_t regerror (int, regex_t *, char *, size_t);

@@ -3,6 +3,10 @@
 
 
 
+
+
+
+
 typedef unsigned int GLenum;
 
 typedef unsigned char GLboolean;
@@ -35,6 +39,8 @@ typedef double GLclampd;
 
 
 
+
+
 #define GL_UNSIGNED_BYTE	0x1401
 #define GL_SHORT	0x1402
 #define GL_UNSIGNED_SHORT	0x1403
@@ -46,6 +52,8 @@ typedef double GLclampd;
 #define GL_4_BYTES	0x1409
 #define GL_DOUBLE	0x140A
 
+
+
 #define GL_POINTS	0x0000
 #define GL_LINES	0x0001
 #define GL_LINE_LOOP	0x0002
@@ -56,6 +64,8 @@ typedef double GLclampd;
 #define GL_QUADS	0x0007
 #define GL_QUAD_STRIP	0x0008
 #define GL_POLYGON	0x0009
+
+
 
 #define GL_V2F	0x2A20
 #define GL_V3F	0x2A21
@@ -97,10 +107,38 @@ typedef double GLclampd;
 #define GL_INDEX_ARRAY_POINTER	0x8091
 #define GL_TEXTURE_COORD_ARRAY_POINTER	0x8092
 
+
+
 #define GL_MATRIX_MODE	0x0BA0
 #define GL_MODELVIEW	0x1700
 #define GL_PROJECTION	0x1701
 #define GL_TEXTURE	0x1702
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

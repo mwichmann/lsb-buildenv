@@ -3,6 +3,8 @@
 
 #include <sys/types.h>
 
+
+
 struct group
 {
   char *gr_name;
@@ -11,6 +13,8 @@ struct group
   char **gr_mem;
 }
  ;
+
+
 
 
 

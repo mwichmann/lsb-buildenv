@@ -5,25 +5,29 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
+#define STDIN_FILENO	0
+#define SEEK_SET	0
+#define SEEK_CUR	1
+#define STDOUT_FILENO	1
+#define STDERR_FILENO	2
+#define SEEK_END	2
+#define _SC_CLK_TCK	2
+#define _SC_OPEN_MAX	4
+
+
 typedef int ssize_t;
 
 typedef int pid_t;
 
 typedef int *intptr_t;
 
-#define SEEK_SET	0
-#define STDIN_FILENO	0
-#define STDOUT_FILENO	1
-#define SEEK_CUR	1
-#define _SC_CLK_TCK	2
-#define SEEK_END	2
-#define STDERR_FILENO	2
-#define _SC_OPEN_MAX	4
 
 #define F_OK	0
 #define X_OK	1
 #define W_OK	2
 #define R_OK	4
+
+
 
 extern char **__environ;
 void _exit (int);

@@ -3,6 +3,17 @@
 
 
 
+
+
+#define FTW_D	FTW_D
+#define FTW_DNR	FTW_DNR
+#define FTW_DP	FTW_DP
+#define FTW_F	FTW_F
+#define FTW_NS	FTW_NS
+#define FTW_SL	FTW_SL
+#define FTW_SLN	FTW_SLN
+
+
 enum
 {
   FTW_F,
@@ -15,13 +26,8 @@ enum
 }
  ;
 
-#define FTW_D	FTW_D
-#define FTW_DNR	FTW_DNR
-#define FTW_DP	FTW_DP
-#define FTW_F	FTW_F
-#define FTW_NS	FTW_NS
-#define FTW_SL	FTW_SL
-#define FTW_SLN	FTW_SLN
+
+
 
 enum
 {
@@ -33,12 +39,16 @@ enum
  ;
 
 
+
+
 struct FTW
 {
   int base;
   int level;
 }
  ;
+
+
 
 
 typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,

@@ -5,6 +5,11 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 
+#define SHMLBA	(__getpagesize())
+#define SHM_RND	020000
+#define SHM_RDONLY	4096
+
+
 struct shmid_ds
 {
   struct ipc_perm shm_perm;
@@ -21,9 +26,6 @@ struct shmid_ds
 }
  ;
 
-#define SHMLBA	(__getpagesize())
-#define SHM_RND	020000
-#define SHM_RDONLY	4096
 
 int __getpagesize (void);
 void *shmat (int, void *, int);

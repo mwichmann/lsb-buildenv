@@ -3,6 +3,10 @@
 
 
 
+
+
+
+
 typedef struct
 {
   __size_t gl_pathc;
@@ -16,6 +20,8 @@ typedef struct
   int (*gl_stat) ();
 }
 glob_t;
+
+
 
 
 typedef struct
@@ -49,10 +55,14 @@ glob64_t;
 #define GLOB_MAGCHAR	(1<<8)
 #define GLOB_ALTDIRFUNC	(1<<9)
 
+
+
 #define GLOB_NOSPACE	1
 #define GLOB_ABORTED	2
 #define GLOB_NOMATCH	3
 #define GLOB_NOSYS	4
+
+
 
 int glob (char *, int, int, glob_t *);
 int glob64 (char *, int, int, glob64_t *);

@@ -4,5 +4,7 @@
 #include <sys/time.h>
 
 
+
+
 int adjtimex (struct timex *);
 #endif

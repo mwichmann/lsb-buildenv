@@ -4,6 +4,8 @@
 #include <X11/X.h>
 #include <X11/Xlib.h>
 
+
+
 typedef struct _XSyncSystemCounter
 {
   char *name;
@@ -36,6 +38,8 @@ typedef struct
   XSyncAlarmState state;
 }
 XSyncAlarmAttributes;
+
+
 
 
 typedef XID XSyncCounter;

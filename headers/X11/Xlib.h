@@ -4,6 +4,8 @@
 #include <X11/X.h>
 #include <stddef.h>
 
+
+
 struct _XDisplay;
 
 struct _XrmHashBucketRec;
@@ -19,7 +21,11 @@ typedef int (*XIOErrorHandler) ();
 typedef void (*XConnectionWatchProc) ();
 
 
+
+
 typedef char *XPointer;
+
+
 
 
 typedef struct _XExtData
@@ -34,25 +40,41 @@ XExtData;
 typedef struct XExtCodes;
 
 
+
+
 typedef struct XPixmapFormatValues;
+
+
 
 
 typedef struct XGCValues;
 
 
+
+
 typedef struct _XGC *GC;
+
+
 
 
 typedef struct Visual;
 
 
+
+
 typedef struct Depth;
+
+
 
 
 typedef struct Screen;
 
 
+
+
 typedef struct ScreenFormat;
+
+
 
 
 typedef struct XSetWindowAttributes;
@@ -60,7 +82,11 @@ typedef struct XSetWindowAttributes;
 typedef struct XWindowAttributes;
 
 
+
+
 typedef struct XHostAddress;
+
+
 
 
 struct XImagefuncs;
@@ -88,7 +114,11 @@ typedef struct _XImage
 XImage;
 
 
+
+
 typedef struct XWindowChanges;
+
+
 
 
 typedef struct XSegment;
@@ -100,19 +130,31 @@ typedef struct XRectangle;
 typedef struct XArc;
 
 
+
+
 typedef struct XKeyboardControl;
+
+
 
 
 typedef struct XKeyboardState;
 
 
+
+
 typedef struct XTimeCoord;
+
+
 
 
 typedef struct XModifierKeymap;
 
 
+
+
 typedef struct _XDisplay Display;
+
+
 
 
 typedef struct XKeyEvent;
@@ -196,6 +238,8 @@ typedef struct XErrorEvent;
 typedef struct XAnyEvent;
 
 
+
+
 typedef union _XEvent
 {
   int type;
@@ -235,7 +279,11 @@ typedef union _XEvent
 XEvent;
 
 
+
+
 typedef struct XCharStruct;
+
+
 
 
 typedef struct XFontProp;
@@ -245,6 +293,8 @@ typedef struct XFontStruct;
 typedef struct XFontSetExtents;
 
 
+
+
 typedef struct XTextItem;
 
 typedef struct XChar2b;
@@ -252,7 +302,11 @@ typedef struct XChar2b;
 typedef struct XTextItem16;
 
 
+
+
 typedef union XEDataObject;
+
+
 
 
 typedef struct _XOM *XOM;
@@ -262,9 +316,15 @@ typedef struct _XOC *XOC;
 typedef struct _XOC *XFontSet;
 
 
+
+
 typedef struct XmbTextItem;
 
 typedef struct XwcTextItem;
+
+
+
+
 
 
 

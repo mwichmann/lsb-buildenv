@@ -4,9 +4,13 @@
 #include <stddef.h>
 #include <sys/types.h>
 
+#define MB_CUR_MAX	(__ctype_get_mb_cur_max())
+
+
 typedef int (*__compar_fn_t) ();
 
-#define MB_CUR_MAX	(__ctype_get_mb_cur_max())
+
+
 
 typedef struct
 {
@@ -16,12 +20,16 @@ typedef struct
 div_t;
 
 
+
+
 typedef struct
 {
   long quot;
   long rem;
 }
 ldiv_t;
+
+
 
 
 typedef struct

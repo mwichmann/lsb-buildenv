@@ -3,14 +3,6 @@
 
 #include <sys/types.h>
 
-struct sembuf
-{
-  short sem_num;
-  short sem_op;
-  short sem_flg;
-}
- ;
-
 #define IPC_PRIVATE	((key_t)0)
 #define IPC_RMID	0
 #define IPC_CREAT	00001000
@@ -26,6 +18,16 @@ struct sembuf
 #define SETVAL	16
 #define SETALL	17
 #define IPC_STAT	2
+
+
+struct sembuf
+{
+  short sem_num;
+  short sem_op;
+  short sem_flg;
+}
+ ;
+
 
 int semctl (int, int, int, ...);
 int semget (key_t, int, int);

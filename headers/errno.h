@@ -4,6 +4,8 @@
 
 #define errno	(*__errno_location())
 
+
+
 #define EPERM	1
 #define ECHILD	10
 #define ENETDOWN	100
@@ -124,6 +126,8 @@
 #define EWOULDBLOCK	EAGAIN
 #define EDEADLOCK	EDEADLK
 #define ENOTSUP	EOPNOTSUPP
+
+
 
 int *__errno_location (void);
 #endif

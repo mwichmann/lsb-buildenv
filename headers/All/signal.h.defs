@@ -1,7 +1,43 @@
 
-struct sigstack;
+struct sigstack
+{
+  void *ss_sp;			/* Signal stack pointer. */
+  int ss_onstack;		/* Nonzero if executing on this stack. */
+}
+ ;
 
-struct sigcontext;
+struct sigcontext
+{
+  unsigned short gs;
+  unsigned short __gsh;
+  unsigned short fs;
+  unsigned short __fsh;
+  unsigned short es;
+  unsigned short __esh;
+  unsigned short ds;
+  unsigned short __dsh;
+  unsigned long edi;
+  unsigned long esi;
+  unsigned long ebp;
+  unsigned long esp;
+  unsigned long ebx;
+  unsigned long edx;
+  unsigned long ecx;
+  unsigned long eax;
+  unsigned long trapno;
+  unsigned long err;
+  unsigned long eip;
+  unsigned short cs;
+  unsigned short __csh;
+  unsigned long eflags;
+  unsigned long esp_at_signal;
+  unsigned short ss;
+  unsigned short __ssh;
+  struct _fpstate fpstate;
+  unsigned long oldmask;
+  unsigned long cr2;
+}
+ ;
 
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
@@ -29,8 +65,8 @@ struct sigcontext;
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGIOT	6
@@ -58,12 +94,14 @@ sigval_t;
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
 
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+#define SI_MAX_SIZE	128
 
 typedef struct siginfo
 {
-  int si_signo;
+  int si_signo;			/* Signal number. */
   int si_errno;
-  int si_code;
+  int si_code;			/* Signal code. */
   union _sifields;
 }
 siginfo_t;
@@ -71,10 +109,12 @@ siginfo_t;
 
 typedef struct
 {
-  unsigned long sig[1];
+  unsigned long sig[_NSIG_WORDS];
 }
 sigset_t;
 
+#define _NSIG_WORDS	((_NSIG/sizeof(long))>>3)
+#define _NSIG	64
 
 struct sigaction
 {
@@ -82,6 +122,18 @@ struct sigaction
   unsigned long sa_flags;
   void (*sa_restorer) ();
   sigset_t sa_mask;
+}
+ ;
+
+union
+{
+  int _pad[__SI_PAD_SIZE];
+  struct _kill;
+  struct _timer;
+  struct _rt;
+  struct _sigchld;
+  struct _sigfault;
+  struct _sigpoll;
 }
  ;
 

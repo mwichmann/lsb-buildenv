@@ -5,6 +5,10 @@
 #include <sys/types.h>
 
 
+
+
+
+
 struct passwd
 {
   char *pw_name;

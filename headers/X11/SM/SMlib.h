@@ -3,11 +3,15 @@
 
 #include <X11/ICE/ICElib.h>
 
+
+
 typedef IcePointer SmPointer;
 
 typedef struct _SmcConn *SmcConn;
 
 typedef struct _SmsConn *SmsConn;
+
+
 
 
 typedef struct
@@ -27,6 +31,8 @@ typedef struct
 SmProp;
 
 
+
+
 typedef enum
 {
   SmcClosedNow,
@@ -34,6 +40,8 @@ typedef enum
   SmcConnectionInUse
 }
 SmcCloseStatus;
+
+
 
 
 typedef void (*SmcSaveYourselfPhase2Proc) ();
@@ -49,6 +57,8 @@ typedef void (*SmcSaveCompleteProc) ();
 typedef void (*SmcPropReplyProc) ();
 
 
+
+
 typedef struct
 {
   SmcShutdownCancelledProc callback;
@@ -57,11 +67,15 @@ typedef struct
 SmcCallbacks;
 
 
+
+
 typedef void (*SmsSetPropertiesProc) ();
 
 typedef void (*SmsDeletePropertiesProc) ();
 
 typedef void (*SmsGetPropertiesProc) ();
+
+
 
 
 typedef struct
@@ -72,12 +86,18 @@ typedef struct
 SmsCallbacks;
 
 
+
+
 typedef int (*SmsNewClientProc) ();
+
+
 
 
 typedef void (*SmcErrorHandler) ();
 
 typedef void (*SmsErrorHandler) ();
+
+
 
 
 

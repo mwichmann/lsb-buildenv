@@ -9,10 +9,22 @@
 #define TIMER_ABSTIME	1
 #define CLOCKS_PER_SEC	1000000l
 
+
+
+
+
 typedef long __clock_t;
 
 
+
+
 typedef __clock_t clock_t;
+
+
+
+
+
+
 
 
 

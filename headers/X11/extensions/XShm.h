@@ -5,6 +5,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 int XShmAttach (Display *, XShmSegmentInfo *);
 XImage *XShmCreateImage (Display *, Visual *, unsigned int, int, char *,
 			 XShmSegmentInfo *, unsigned int, unsigned int);

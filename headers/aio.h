@@ -6,6 +6,13 @@
 #include <sys/types.h>
 
 
+
+
+#define AIO_ALLDONE	AIO_ALLDONE
+#define AIO_CANCELED	AIO_CANCELED
+#define AIO_NOTCANCELED	AIO_NOTCANCELED
+
+
 enum
 {
   AIO_CANCELED,
@@ -14,9 +21,11 @@ enum
 }
  ;
 
-#define AIO_ALLDONE	AIO_ALLDONE
-#define AIO_CANCELED	AIO_CANCELED
-#define AIO_NOTCANCELED	AIO_NOTCANCELED
+
+#define LIO_NOP	LIO_NOP
+#define LIO_READ	LIO_READ
+#define LIO_WAIT	LIO_WAIT
+
 
 enum
 {
@@ -26,9 +35,10 @@ enum
 }
  ;
 
-#define LIO_NOP	LIO_NOP
-#define LIO_READ	LIO_READ
-#define LIO_WAIT	LIO_WAIT
+
+#define LIO_NOWAIT	LIO_NOWAIT
+#define LIO_WRITE	LIO_WRITE
+
 
 enum
 {
@@ -37,23 +47,23 @@ enum
 }
  ;
 
-#define LIO_NOWAIT	LIO_NOWAIT
-#define LIO_WRITE	LIO_WRITE
+
+
 
 struct aiocb
 {
-  int aio_fildes;
-  int aio_lio_opcode;
-  int aio_reqprio;
-  void *aio_buf;
-  size_t aio_nbytes;
-  Unknown Type:".." aio_sigevent;
+  int aio_fildes;		/* File desriptor. */
+  int aio_lio_opcode;		/* Operation to be performed. */
+  int aio_reqprio;		/* Request priority offset. */
+  void *aio_buf;		/* Location of buffer. */
+  size_t aio_nbytes;		/* Length of transfer. */
+  struct sigevent aio_sigevent;	/* Signal number and value. */
   struct aiocb *__next_prio;
   int __abs_prio;
   int __policy;
   int __error_code;
   __ssize_t __return_value;
-  __off_t aio_offset;
+  __off_t aio_offset;		/* File offset. */
   char __pad[1];
   char __unused[1];
 }
@@ -66,7 +76,7 @@ struct aiocb64
   int aio_reqprio;
   void *aio_buf;
   size_t aio_nbytes;
-  Unknown Type:".." aio_sigevent;
+  struct sigevent aio_sigevent;
   struct aiocb *__next_prio;
   int __abs_prio;
   int __policy;

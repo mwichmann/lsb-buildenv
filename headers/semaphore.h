@@ -3,6 +3,10 @@
 
 
 
+
+
+
+
 typedef struct
 {
   long status;
@@ -13,7 +17,11 @@ sem_t;
 
 #define SEM_FAILED	((sem_t*)0)
 
+
+
 #define SEM_VALUE_MAX	((int)((~0u)>>1))
+
+
 
 int sem_close (sem_t *);
 int sem_destroy (sem_t *);

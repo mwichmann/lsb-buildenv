@@ -5,19 +5,29 @@
 #include <sys/types.h>
 #include <stdarg.h>
 
+#define EOF	(-1)
+#define BUFSIZ	8192
+
+
 typedef struct _IO_FILE *FILE;
 
 typedef __off_t fpos_t;
 
 typedef __off64_t fpos64_t;
 
-#define EOF	(-1)
-#define BUFSIZ	8192
+
+
 
 
 #define _IOFBF	0
 #define _IOLBF	1
 #define _IONBF	2
+
+
+
+
+
+
 
 
 

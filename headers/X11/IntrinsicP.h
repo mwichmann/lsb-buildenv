@@ -4,6 +4,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 void XtConfigureWidget (Widget, int, int, unsigned int, unsigned int,
 			unsigned int);
 void XtCreateWindow (Widget, unsigned int, Visual *, XtValueMask,

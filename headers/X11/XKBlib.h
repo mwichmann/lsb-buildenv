@@ -5,6 +5,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 int XkbAllocClientMap (, unsigned int, unsigned int);
 int XkbAllocCompatMap (, unsigned int, unsigned int);
 int XkbAllocControls (, unsigned int);

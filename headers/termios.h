@@ -3,16 +3,14 @@
 
 #include <sys/types.h>
 
-typedef int speed_t;
-
 #define TCSANOW	0
 #define TCOOFF	0
 #define TCIFLUSH	0
-#define TAB0	0000000
-#define VT0	0000000
 #define CR0	0000000
-#define FF0	0000000
 #define NL0	0000000
+#define VT0	0000000
+#define TAB0	0000000
+#define FF0	0000000
 #define BS0	0000000
 #define OPOST	0000001
 #define OLCUC	0000002
@@ -25,8 +23,8 @@ typedef int speed_t;
 #define OFDEL	0000200
 #define NLDLY	0000400
 #define NL1	0000400
-#define IUCLC	0001000
 #define CR1	0001000
+#define IUCLC	0001000
 #define CR2	0002000
 #define CRDLY	0003000
 #define CR3	0003000
@@ -34,12 +32,12 @@ typedef int speed_t;
 #define TAB2	0010000
 #define TABDLY	0014000
 #define TAB3	0014000
-#define BSDLY	0020000
 #define BS1	0020000
+#define BSDLY	0020000
 #define VTDLY	0040000
 #define VT1	0040000
-#define FFDLY	0100000
 #define FF1	0100000
+#define FFDLY	0100000
 #define TCSADRAIN	1
 #define TCOON	1
 #define TCOFLUSH	1
@@ -47,6 +45,10 @@ typedef int speed_t;
 #define TCIOFF	2
 #define TCIOFLUSH	2
 #define TCION	3
+
+
+typedef int speed_t;
+
 
 #define VINTR	0
 #define VQUIT	1
@@ -66,6 +68,8 @@ typedef int speed_t;
 #define VSTART	8
 #define VSTOP	9
 
+
+
 #define IGNBRK	0000001
 #define BRKINT	0000002
 #define IGNPAR	0000004
@@ -81,6 +85,10 @@ typedef int speed_t;
 #define IMAXBEL	0020000
 
 
+
+
+
+
 #define CS5	0000000
 #define CS6	0000020
 #define CS7	0000040
@@ -91,6 +99,8 @@ typedef int speed_t;
 #define PARODD	0001000
 #define HUPCL	0002000
 #define CLOCAL	0004000
+
+
 
 #define ISIG	0000001
 #define ICANON	0000002
@@ -106,6 +116,8 @@ typedef int speed_t;
 #define FLUSHO	0010000
 #define PENDIN	0040000
 #define IEXTEN	0100000
+
+
 
 #define B0	0000000
 #define B50	0000001
@@ -123,6 +135,8 @@ typedef int speed_t;
 #define B9600	0000015
 #define B19200	0000016
 #define B38400	0000017
+
+
 
 speed_t cfgetispeed (struct termios *);
 speed_t cfgetospeed (struct termios *);

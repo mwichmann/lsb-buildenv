@@ -10,6 +10,10 @@
 #define WCHAR_MAX	__WCHAR_MAX
 #define WCHAR_MIN	__WCHAR_MIN
 
+
+
+
+
 typedef unsigned int wint_t;
 
 typedef struct
@@ -95,6 +99,7 @@ int swprintf (void);
 int swscanf (void);
 wint_t ungetwc (void);
 int vfwprintf (void);
+int vfwscanf (void);
 int vswprintf (void);
 int vswscanf (void);
 int vwprintf (void);

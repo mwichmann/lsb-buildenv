@@ -16,6 +16,10 @@
 #define LC_NAME	8
 #define LC_ADDRESS	9
 
+
+
+
+
 struct lconv
 {
   char *decimal_point;
@@ -38,6 +42,8 @@ struct lconv
   char n_sign_posn;
 }
  ;
+
+
 
 
 

@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include <sched.h>
 
+
+
 typedef unsigned int pthread_key_t;
 
 typedef int pthread_once_t;
@@ -17,12 +19,18 @@ struct _pthread_fastlock
  ;
 
 
+
+
 typedef unsigned long pthread_t;
+
+
 
 
 typedef struct _pthread_descr_struct *_pthread_descr;
 
 struct _pthread_descr_struct;
+
+
 
 
 typedef struct
@@ -41,6 +49,8 @@ typedef struct
 pthread_mutexattr_t;
 
 
+
+
 typedef struct
 {
   int __detachstate;
@@ -54,6 +64,8 @@ typedef struct
 pthread_attr_t;
 
 
+
+
 typedef struct
 {
   struct _pthread_fastlock lock;
@@ -62,6 +74,8 @@ typedef struct
 pthread_cond_t;
 
 typedef void *pthread_condattr_t;
+
+
 
 
 
@@ -75,11 +89,15 @@ typedef void *pthread_condattr_t;
 #define PTHREAD_SCOPE_PROCESS	PTHREAD_SCOPE_PROCESS
 #define PTHREAD_SCOPE_SYSTEM	PTHREAD_SCOPE_SYSTEM
 
+
+
 #define PTHREAD_CANCELED	((void*)-1)
 #define PTHREAD_CANCEL_ASYNCHRONOUS	PTHREAD_CANCEL_ASYNCHRONOUS
 #define PTHREAD_CANCEL_DEFERRED	PTHREAD_CANCEL_DEFERRED
 #define PTHREAD_CANCEL_DISABLE	PTHREAD_CANCEL_DISABLE
 #define PTHREAD_CANCEL_ENABLE	PTHREAD_CANCEL_ENABLE
+
+
 
 int pthread_attr_destroy (pthread_attr_t *);
 int pthread_attr_getdetachstate (pthread_attr_t *, int *);

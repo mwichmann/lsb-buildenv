@@ -6,6 +6,8 @@
 #include <X11/Xutil.h>
 
 
+
+
 void XtAddActions (XtActionList, Cardinal);
 void XtAddCallback (Widget, char *, XtCallbackProc, XtPointer);
 void XtAddCallbacks (Widget, char *, XtCallbackList);

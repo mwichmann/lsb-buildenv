@@ -5,6 +5,8 @@
 #include <stdarg.h>
 
 
+
+
 #define WA_ALTCHARSET	A_ALTCHARSET
 #define WA_ATTRIBUTES	A_ATTRIBUTES
 #define WA_BLINK	A_BLINK
@@ -23,6 +25,8 @@
 #define WA_UNDERLINE	A_UNDERLINE
 #define WA_VERTICAL	A_VERTICAL
 
+
+
 #define COLOR_BLACK	0
 #define COLOR_RED	1
 #define COLOR_GREEN	2
@@ -32,12 +36,18 @@
 #define COLOR_CYAN	6
 #define COLOR_WHITE	7
 
+
+
 #define _SUBWIN	0x01
 #define _ENDLINE	0x02
 #define _FULLWIN	0x04
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
 #define TRACE_MAXIMUM	0xffff
+
+
+
+
 
 typedef unsigned long chtype;
 
@@ -81,8 +91,8 @@ typedef chtype attr_t;
 
 
 #define KEY_CODE_YES	0400
-#define KEY_BREAK	0401
 #define KEY_MIN	0401
+#define KEY_BREAK	0401
 #define KEY_DOWN	0402
 #define KEY_UP	0403
 #define KEY_LEFT	0404
@@ -174,6 +184,10 @@ typedef chtype attr_t;
 #define KEY_MOUSE	0631
 #define KEY_RESIZE	0632
 #define KEY_MAX	0777
+
+
+
+
 
 
 int addch (chtype);

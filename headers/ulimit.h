@@ -2,8 +2,10 @@
 #define _ULIMIT_H_
 
 
-#define UL_GETFSIZE	UL_GETFSIZE
-#define UL_SETFSIZE	UL_SETFSIZE
+#define UL_GETFSIZE	1
+#define UL_SETFSIZE	2
+
+
 
 long ulimit (int, ...);
 #endif

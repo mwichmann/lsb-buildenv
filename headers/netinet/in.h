@@ -6,11 +6,17 @@
 
 #define INADDR_ANY	0
 
+
+
+
+
 struct in_addr
 {
   uint32_t s_addr;
 }
  ;
+
+
 
 
 struct sockaddr_in

@@ -4,6 +4,8 @@
 #include <X11/Xlib.h>
 
 
+
+
 void XrmCombineDatabase (XrmDatabase, XrmDatabase *, int);
 int XrmCombineFileDatabase (char *, XrmDatabase *, int);
 void XrmDestroyDatabase (XrmDatabase);

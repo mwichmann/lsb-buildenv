@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+
+
 typedef struct xauth
 {
   unsigned short family;
