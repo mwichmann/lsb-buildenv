@@ -141,7 +141,8 @@ setup_stub_libraries()
   # Special case for statically linked components of libc shared library.
   # and the 'real' libc shared library as libc.so is an ld script
   bind_mount_file_ro /usr/lib/libc_nonshared.a $ROOT/usr/lib/lsb-stub/libc_nonshared.a
-  bind_mount_file_ro $STUB_LIBS/libc.real.so $ROOT/usr/lib/lsb-stub/libc.real.so
+  bind_mount_file_ro $STUB_LIBS/libc.so $ROOT/usr/lib/lsb-stub/libc.real.so
+  bind_mount_file_ro /etc/lsbdev-chroot/libc_script $ROOT/usr/lib/lsb-stub/libc.so
 
 }
 
