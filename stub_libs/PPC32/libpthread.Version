@@ -4,15 +4,22 @@ GLIBC_2.0 {
   _pthread_cleanup_push;
   pthread_attr_destroy;
   pthread_attr_getdetachstate;
+  pthread_attr_getinheritsched;
   pthread_attr_getschedparam;
+  pthread_attr_getschedpolicy;
+  pthread_attr_getscope;
   pthread_attr_setdetachstate;
+  pthread_attr_setinheritsched;
   pthread_attr_setschedparam;
+  pthread_attr_setschedpolicy;
+  pthread_attr_setscope;
   pthread_cancel;
   pthread_condattr_destroy;
   pthread_condattr_init;
   pthread_detach;
   pthread_equal;
   pthread_exit;
+  pthread_getschedparam;
   pthread_getspecific;
   pthread_join;
   pthread_key_create;
@@ -29,6 +36,7 @@ GLIBC_2.0 {
   pthread_self;
   pthread_setcancelstate;
   pthread_setcanceltype;
+  pthread_setschedparam;
   pthread_setspecific;
   pthread_sigmask;
   pthread_testcancel;
@@ -90,4 +98,7 @@ GLIBC_2.3.2 {
   pthread_cond_signal;
   pthread_cond_timedwait;
   pthread_cond_wait;
+};
+GLIBC_2.3.4 {
+  pthread_setschedprio;
 };
