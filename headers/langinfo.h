@@ -39,7 +39,6 @@ extern "C"
 
 
 /* Abbreviated month names.*/
-#define ABMON_10	0x00217
 #define ABMON_1	0x2000E
 #define ABMON_2	0x2000F
 #define ABMON_3	0x20010
@@ -49,6 +48,7 @@ extern "C"
 #define ABMON_7	0x20014
 #define ABMON_8	0x20015
 #define ABMON_9	0x20016
+#define ABMON_10	0x20017
 #define ABMON_11	0x20018
 #define ABMON_12	0x20019
 
@@ -75,9 +75,18 @@ extern "C"
 
 
 
+#define D_T_FMT	0x20028
+#define D_FMT	0x20029
+#define T_FMT	0x2002A
+#define T_FMT_AMPM	0x2002B
 
 
 
+#define ERA	0x2002C
+#define ERA_D_FMT	0x2002E
+#define ALT_DIGITS	0x2002F
+#define ERA_D_T_FMT	0x20030
+#define ERA_T_FMT	0x20031
 
 
 
@@ -91,10 +100,17 @@ extern "C"
 
 
 /* LC_MONETARY category: formatting of monetary quantities. These items each correspond to a member of `struct lconv', defined in <locale.h>.*/
+#define CRNCYSTR	0x4000F
 
 
 
 /* LC_NUMERIC category: formatting of numbers. These also correspond to members of `struct lconv'; see <locale.h>.*/
+#define RADIXCHAR	0x10000
+#define THOUSEP	0x10001
+#define YESEXPR	0x50000
+#define NOEXPR	0x50001
+#define YESSTR	0x50002
+#define NOSTR	0x50003
 
 
 
