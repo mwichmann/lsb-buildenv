@@ -4,20 +4,6 @@
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
 #define XtCompositeExtensionVersion	2L
 
-
-
-
-
-
-
-
-
-
-
 typedef struct _CompositeClassPart CompositeClassPart;
-
-
-
-
 
 typedef struct _CompositeClassRec CompositeClassRec;

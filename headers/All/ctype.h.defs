@@ -1,9 +1,4 @@
 
-
-
-
-
-
 enum
 {
   _ISupper, _ISlower, _ISalpha, _ISdigit, _ISxdigit, _ISspace, _ISprint,

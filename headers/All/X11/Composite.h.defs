@@ -1,6 +1,4 @@
 
-
-
 typedef Cardinal (*XtOrderProc) (Widget child);
 typedef void (*XtDoChangeProc) (Widget composite_parent,
 				WidgetList unmanage_children,

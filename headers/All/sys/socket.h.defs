@@ -16,7 +16,6 @@
 #define PF_LOCAL	AF_LOCAL
 #define PF_UNSPEC	AF_UNSPEC
 
-
 struct linger
 {
   int l_onoff;
@@ -37,10 +36,8 @@ struct iovec
 }
  ;
 
-
 typedef unsigned short sa_family_t;
 typedef unsigned int socklen_t;
-
 
 struct sockaddr
 {
@@ -55,7 +52,6 @@ struct sockaddr_storage
   char __ss_padding[(128 - (2 * sizeof (__ss_aligntype)))];
 }
  ;
-
 
 struct msghdr
 {
@@ -73,13 +69,9 @@ struct msghdr
 #define AF_INET6	10
 #define AF_INET	2
 
-
-
 #define PF_INET	AF_INET
 #define PF_INET6	AF_INET6
 #define PF_UNIX	AF_UNIX
-
-
 
 #define SOCK_STREAM	1
 #define SOCK_PACKET	10
@@ -87,8 +79,6 @@ struct msghdr
 #define SOCK_RAW	3
 #define SOCK_RDM	4
 #define SOCK_SEQPACKET	5
-
-
 
 #define SOL_SOCKET	1
 #define SO_DEBUG	1

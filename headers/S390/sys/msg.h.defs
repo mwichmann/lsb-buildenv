@@ -1,12 +1,6 @@
 
-
-
-
-
-
 typedef unsigned long msglen_t;
 typedef unsigned long msgqnum_t;
-
 
 struct msqid_ds
 {

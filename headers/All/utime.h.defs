@@ -1,6 +1,4 @@
 
-
-
 struct utimbuf
 {
   time_t actime;

@@ -10,7 +10,6 @@
 #define WCOREFLAG	0x80
 #define WSTOPSIG(status)	WEXITSTATUS(status)
 
-
 typedef enum
 {
   P_ALL, P_PID, P_PGID

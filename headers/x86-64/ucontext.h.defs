@@ -1,6 +1,4 @@
 
-
-
 struct _libc_fpxreg
 {
   unsigned short significand[4];
@@ -9,25 +7,10 @@ struct _libc_fpxreg
 }
  ;
 
-
 typedef long greg_t;
 #define NGREG	23
 
-
-
-
-
 typedef greg_t gregset_t[23];
-
-
-
-
-
-
-
-
-
-
 
 struct _libc_xmmreg
 {
@@ -51,10 +34,6 @@ struct _libc_fpstate
  ;
 typedef struct _libc_fpstate *fpregset_t;
 
-
-
-
-
 typedef struct
 {
   gregset_t gregs;
@@ -62,10 +41,6 @@ typedef struct
   unsigned long __reserved1[8];
 }
 mcontext_t;
-
-
-
-
 
 typedef struct ucontext
 {

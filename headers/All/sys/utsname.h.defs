@@ -1,7 +1,6 @@
 
 #define SYS_NMLN	65
 
-
 struct utsname
 {
   char sysname[65];

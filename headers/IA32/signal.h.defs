@@ -1,66 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct sigaction
 {
   union
@@ -76,13 +14,6 @@ struct sigaction
  ;
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
-
-
-
-
-
-
-
 
 struct _fpreg
 {
@@ -102,7 +33,6 @@ struct _xmmreg
   unsigned long element[4];
 }
  ;
-
 
 struct _fpstate
 {
@@ -124,7 +54,6 @@ struct _fpstate
   unsigned long padding[56];
 }
  ;
-
 
 struct sigcontext
 {

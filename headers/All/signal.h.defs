@@ -6,7 +6,6 @@
 #define SIG_SETMASK	2
 #define NSIG	65
 
-
 typedef int sig_atomic_t;
 struct sigstack
 {
@@ -15,26 +14,11 @@ struct sigstack
 }
  ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 typedef void (*sighandler_t) (int);
-#define SIG_HOLD	((sighandler_t) 2
+#define SIG_HOLD	((sighandler_t) 2)
 #define SIG_ERR	((sighandler_t)-1)
 #define SIG_DFL	((sighandler_t)0)
 #define SIG_IGN	((sighandler_t)1)
-
-
 
 #define SIGHUP	1
 #define SIGUSR1	10
@@ -72,12 +56,9 @@ typedef void (*sighandler_t) (int);
 #define SIGCLD	SIGCHLD
 #define SIGPOLL	SIGIO
 
-
-
 #define SV_ONSTACK	(1<<0)
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
-
 
 typedef union sigval
 {
@@ -88,7 +69,6 @@ sigval_t;
 #define SIGEV_SIGNAL	0
 #define SIGEV_NONE	1
 #define SIGEV_THREAD	2
-
 
 typedef struct sigevent
 {
@@ -121,7 +101,6 @@ sigevent_t;
 #define si_fd	_sifields._sigpoll._fd
 #define si_timer1	_sifields._timer._timer1
 #define si_timer2	_sifields._timer._timer2
-
 
 typedef struct siginfo
 {
@@ -184,8 +163,6 @@ siginfo_t;
 #define SI_USER	0
 #define SI_KERNEL	0x80
 
-
-
 #define ILL_ILLOPC	1
 #define ILL_ILLOPN	2
 #define ILL_ILLADR	3
@@ -194,8 +171,6 @@ siginfo_t;
 #define ILL_PRVREG	6
 #define ILL_COPROC	7
 #define ILL_BADSTK	8
-
-
 
 #define FPE_INTDIV	1
 #define FPE_INTOVF	2
@@ -206,23 +181,15 @@ siginfo_t;
 #define FPE_FLTINV	7
 #define FPE_FLTSUB	8
 
-
-
 #define SEGV_MAPERR	1
 #define SEGV_ACCERR	2
-
-
 
 #define BUS_ADRALN	1
 #define BUS_ADRERR	2
 #define BUS_OBJERR	3
 
-
-
 #define TRAP_BRKPT	1
 #define TRAP_TRACE	2
-
-
 
 #define CLD_EXITED	1
 #define CLD_KILLED	2
@@ -231,18 +198,12 @@ siginfo_t;
 #define CLD_STOPPED	5
 #define CLD_CONTINUED	6
 
-
-
 #define POLL_IN	1
 #define POLL_OUT	2
 #define POLL_MSG	3
 #define POLL_ERR	4
 #define POLL_PRI	5
 #define POLL_HUP	6
-
-
-
-
 
 typedef struct
 {
@@ -259,10 +220,6 @@ sigset_t;
 #define SA_RESETHAND	0x80000000
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
-
-
-
-
 
 typedef struct sigaltstack
 {

@@ -1,7 +1,2 @@
 
-
-
-
-
-
 typedef int __jmp_buf[14];

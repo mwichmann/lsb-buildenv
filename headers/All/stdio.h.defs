@@ -8,7 +8,6 @@
 #define L_ctermid	9
 #define L_cuserid	9
 
-
 typedef struct
 {
   off_t __pos;
@@ -21,7 +20,6 @@ typedef struct
   mbstate_t __state;
 }
 fpos64_t;
-
 
 typedef struct _IO_FILE FILE;
 #define _IOFBF	0

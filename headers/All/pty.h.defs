@@ -1,6 +1,4 @@
 
-
-
 struct winsize
 {
   unsigned short ws_row;

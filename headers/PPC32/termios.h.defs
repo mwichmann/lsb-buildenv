@@ -19,14 +19,6 @@
 #define NLDLY	768
 #define CR2	8192
 
-
-
-
-
-
-
-
-
 #define VWERASE	10
 #define VREPRINT	11
 #define VSUSP	12
@@ -38,15 +30,8 @@
 #define VEOL2	8
 #define VSWTC	9
 
-
-
 #define IXOFF	1024
 #define IXON	512
-
-
-
-
-
 
 #define CSTOPB	1024
 #define HUPCL	16384
@@ -59,8 +44,6 @@
 #define CS8	768
 #define CSIZE	768
 #define PARODD	8192
-
-
 
 #define NOFLSH	0x80000000
 #define ECHOKE	1

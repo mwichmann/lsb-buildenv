@@ -12,7 +12,6 @@
 #define h_addr	h_addr_list[0]
 #define NO_ADDRESS	NO_DATA
 
-
 struct servent
 {
   char *s_name;
@@ -49,7 +48,6 @@ struct netent
 #define AI_CANONNAME	0x0002
 #define AI_NUMERICHOST	0x0004
 
-
 struct addrinfo
 {
   int ai_flags;
@@ -67,8 +65,6 @@ struct addrinfo
 #define NI_NUMERICSERV	2
 #define NI_NOFQDN	4
 #define NI_NAMEREQD	8
-
-
 
 #define EAI_BADFLAGS	-1
 #define EAI_MEMORY	-10

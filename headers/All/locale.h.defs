@@ -13,10 +13,6 @@
 #define LC_NAME	8
 #define LC_ADDRESS	9
 
-
-
-
-
 struct lconv
 {
   char *decimal_point;
@@ -45,10 +41,6 @@ struct lconv
   char int_n_sign_posn;
 }
  ;
-
-
-
-
 
 typedef struct __locale_struct
 {

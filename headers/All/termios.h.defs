@@ -23,15 +23,10 @@
 #define TCSAFLUSH	2
 #define TCION	3
 
-
-
-
-
 typedef unsigned int speed_t;
 typedef unsigned char cc_t;
 typedef unsigned int tcflag_t;
 #define NCCS	32
-
 
 struct termios
 {
@@ -52,8 +47,6 @@ struct termios
 #define VKILL	3
 #define VEOF	4
 
-
-
 #define IGNBRK	0000001
 #define BRKINT	0000002
 #define IGNPAR	0000004
@@ -66,18 +59,9 @@ struct termios
 #define IXANY	0004000
 #define IMAXBEL	0020000
 
-
-
-
-
-
 #define CS5	0000000
 
-
-
 #define ECHO	0000010
-
-
 
 #define B0	0000000
 #define B50	0000001

@@ -1,6 +1,4 @@
 
-
-
 typedef unsigned long wctype_t;
 typedef unsigned int wint_t;
 typedef const int32_t *wctrans_t;
@@ -10,6 +8,5 @@ typedef struct
   wint_t value;
 }
 __mbstate_t;
-
 
 typedef __mbstate_t mbstate_t;

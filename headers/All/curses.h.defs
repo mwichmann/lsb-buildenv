@@ -31,11 +31,6 @@
 #define getyx(win,y,x)	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
 #define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
 
-
-
-
-
-
 #define WA_ALTCHARSET	A_ALTCHARSET
 #define WA_ATTRIBUTES	A_ATTRIBUTES
 #define WA_BLINK	A_BLINK
@@ -55,8 +50,6 @@
 #define WA_VERTICAL	A_VERTICAL
 #define A_REVERSE	NCURSES_BITS(1UL,10)
 
-
-
 #define COLOR_BLACK	0
 #define COLOR_RED	1
 #define COLOR_GREEN	2
@@ -66,20 +59,13 @@
 #define COLOR_CYAN	6
 #define COLOR_WHITE	7
 
-
-
 #define _SUBWIN	0x01
 #define _ENDLINE	0x02
 #define _FULLWIN	0x04
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
 
-
-
-
-
 typedef unsigned char bool;
-
 
 typedef unsigned long chtype;
 typedef struct screen SCREEN;
@@ -101,7 +87,6 @@ struct pdat
   short _pad_right;
 }
  ;
-
 
 struct _win_st
 {
@@ -229,11 +214,6 @@ struct _win_st
 #define KEY_MOUSE	0631
 #define KEY_RESIZE	0632
 #define KEY_MAX	0777
-
-
-
-
-
 
 #define PAIR_NUMBER(a)	(((a)&amp A_COLOR)>>8)
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))

@@ -13,14 +13,9 @@
 #define RLIMIT_NOFILE	7
 #define RLIMIT_AS	9
 
-
-
-
-
 typedef unsigned long rlim_t;
 typedef unsigned long long rlim64_t;
 typedef int __rlimit_resource_t;
-
 
 struct rlimit
 {
@@ -34,7 +29,6 @@ struct rlimit64
   rlim64_t rlim_max;
 }
  ;
-
 
 struct rusage
 {
@@ -57,10 +51,6 @@ struct rusage
 }
  ;
 
-
-
-
-
 enum __priority_which
 {
   PRIO_PROCESS, PRIO_PGRP = 1, PRIO_USER = 2
@@ -69,6 +59,5 @@ enum __priority_which
 #define PRIO_PGRP	PRIO_PGRP
 #define PRIO_PROCESS	PRIO_PROCESS
 #define PRIO_USER	PRIO_USER
-
 
 typedef enum __priority_which __priority_which_t;

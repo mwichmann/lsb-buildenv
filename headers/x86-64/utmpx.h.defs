@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 struct utmpx
 {
   short ut_type;

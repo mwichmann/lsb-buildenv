@@ -1,6 +1,4 @@
 
-
-
 struct dwarf_eh_base
 {
   void *tbase;
@@ -10,10 +8,8 @@ struct dwarf_eh_base
  ;
 struct _Unwind_Context;
 
-
 typedef unsigned int _Unwind_Ptr;
 typedef unsigned int _Unwind_Word;
-
 
 typedef enum
 {
@@ -23,10 +19,6 @@ typedef enum
     7, _URC_CONTINUE_UNWIND = 8
 }
 _Unwind_Reason_Code;
-
-
-
-
 
 struct _Unwind_Exception
 {

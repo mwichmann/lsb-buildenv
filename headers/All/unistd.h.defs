@@ -6,14 +6,11 @@
 #define SEEK_END	2
 #define STDERR_FILENO	2
 
-
 typedef long long off64_t;
 #define F_OK	0
 #define X_OK	1
 #define W_OK	2
 #define R_OK	4
-
-
 
 #define _POSIX_VDISABLE	'\0'
 #define _POSIX_CHOWN_RESTRICTED	1
@@ -34,8 +31,6 @@ typedef long long off64_t;
 #define _POSIX2_VERSION	200112L
 #define _POSIX_VERSION	200112L
 
-
-
 #define _PC_LINK_MAX	0
 #define _PC_MAX_CANON	1
 #define _PC_ASYNC_IO	10
@@ -49,8 +44,6 @@ typedef long long off64_t;
 #define _PC_NO_TRUNC	7
 #define _PC_VDISABLE	8
 #define _PC_SYNC_IO	9
-
-
 
 #define _SC_ARG_MAX	0
 #define _SC_CHILD_MAX	1
@@ -129,8 +122,6 @@ typedef long long off64_t;
 #define _SC_2_C_VERSION	96
 #define _SC_2_UPE	97
 
-
-
 #define _CS_PATH	0
 #define _CS_XBS5_ILP32_OFF32_CFLAGS	1100
 #define _CS_XBS5_ILP32_OFF32_LDFLAGS	1101
@@ -149,14 +140,10 @@ typedef long long off64_t;
 #define _CS_XBS5_LPBIG_OFFBIG_LIBS	1114
 #define _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS	1115
 
-
-
 #define _XOPEN_REALTIME	1
 #define _XOPEN_XPG4	1
 #define _XOPEN_XCU_VERSION	4
 #define _XOPEN_VERSION	500
-
-
 
 #define F_ULOCK	0
 #define F_LOCK	1

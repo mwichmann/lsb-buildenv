@@ -8,7 +8,6 @@
 #define SETVAL	16
 #define SETALL	17
 
-
 struct sembuf
 {
   short sem_num;

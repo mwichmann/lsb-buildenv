@@ -1,6 +1,4 @@
 
-
-
 typedef struct XSizeHints;
 typedef struct XWMHints;
 typedef struct XTextProperty;

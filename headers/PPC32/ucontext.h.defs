@@ -1,6 +1,4 @@
 
-
-
 struct pt_regs
 {
   unsigned long gpr[32];
@@ -27,25 +25,9 @@ typedef struct _libc_vrstate
 }
 vrregset_t __attribute__ ((__aligned__ (16)));
 
-
-
 #define NGREG	48
 
-
-
-
-
 typedef unsigned long gregset_t[48];
-
-
-
-
-
-
-
-
-
-
 
 typedef struct _libc_fpstate
 {
@@ -55,10 +37,6 @@ typedef struct _libc_fpstate
 }
 fpregset_t;
 
-
-
-
-
 typedef struct
 {
   gregset_t gregs;
@@ -67,14 +45,12 @@ typedef struct
 }
 mcontext_t;
 
-
 union uc_regs_ptr
 {
   struct pt_regs *regs;
   mcontext_t *uc_regs;
 }
  ;
-
 
 typedef struct ucontext
 {

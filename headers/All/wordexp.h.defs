@@ -1,16 +1,10 @@
 
-
-
-
-
-
 enum
 {
   WRDE_DOOFFS, WRDE_APPEND, WRDE_NOCMD, WRDE_REUSE, WRDE_SHOWERR, WRDE_UNDEF,
     __WRDE_FLAGS
 }
  ;
-
 
 typedef struct
 {
@@ -19,7 +13,6 @@ typedef struct
   int we_offs;
 }
 wordexp_t;
-
 
 enum
 {

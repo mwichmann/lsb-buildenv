@@ -1,9 +1,4 @@
 
-
-
-
-
-
 enum msg_type
 {
   CALL, REPLY = 1
@@ -25,7 +20,6 @@ enum reject_stat
   RPC_MISMATCH, AUTH_ERROR = 1
 }
  ;
-
 
 struct accepted_reply
 {
@@ -50,7 +44,6 @@ struct accepted_reply
 }
  ;
 
-
 struct rejected_reply
 {
   enum reject_stat rj_stat;
@@ -68,7 +61,6 @@ struct rejected_reply
 }
  ;
 
-
 struct reply_body
 {
   enum reply_stat rp_stat;
@@ -81,7 +73,6 @@ struct reply_body
 }
  ;
 
-
 struct call_body
 {
   unsigned long cb_rpcvers;
@@ -92,7 +83,6 @@ struct call_body
   struct opaque_auth cb_verf;
 }
  ;
-
 
 struct rpc_msg
 {

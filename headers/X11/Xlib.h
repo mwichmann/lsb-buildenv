@@ -374,7 +374,7 @@ extern "C"
   extern int XAllocColorPlanes (Display *, Colormap, int, unsigned long *,
 				int, int, int, int, unsigned long *,
 				unsigned long *, unsigned long *);
-  extern int XAllocNamedColor (Display *, Colormap, char *, XColor *,
+  extern int XAllocNamedColor (Display *, Colormap, const char *, XColor *,
 			       XColor *);
   extern int XAllowEvents (Display *, int, Time);
   extern int XAutoRepeatOff (Display *);
@@ -394,11 +394,12 @@ extern "C"
   extern int XChangeKeyboardMapping (Display *, int, int, KeySym *, int);
   extern int XChangePointerControl (Display *, int, int, int, int, int);
   extern int XChangeProperty (Display *, Window, Atom, Atom, int, int,
-			      unsigned char *, int);
+			      const unsigned char *, int);
   extern int XChangeSaveSet (Display *, Window, int);
   extern int XChangeWindowAttributes (Display *, Window, unsigned long,
 				      XSetWindowAttributes *);
-  extern int XCheckIfEvent (Display *, XEvent *, int, XPointer);
+  extern int XCheckIfEvent (Display *, XEvent *,
+			    struct anon -X11 / Xlib.h - 2379, XPointer);
   extern int XCheckMaskEvent (Display *, long, XEvent *);
   extern int XCheckTypedEvent (Display *, int, XEvent *);
   extern int XCheckTypedWindowEvent (Display *, Window, int, XEvent *);
@@ -663,7 +664,7 @@ extern "C"
   extern unsigned long XNextRequest (Display *);
   extern int XNoOp (Display *);
   extern XOM XOMOfOC (XOC);
-  extern Display *XOpenDisplay (char *);
+  extern Display *XOpenDisplay (const char *);
   extern XIM XOpenIM (Display *, struct _XrmHashBucketRec *, char *, char *);
   extern XOM XOpenOM (Display *, struct _XrmHashBucketRec *, char *, char *);
   extern int XParseColor (Display *, Colormap, char *, XColor *);
@@ -738,6 +739,7 @@ extern "C"
   extern int XSendEvent (Display *, Window, int, long, XEvent *);
   extern char *XServerVendor (Display *);
   extern int XSetAccessControl (Display *, int);
+  extern int (*) (void) XSetAfterFunction;
   extern int XSetArcMode (Display *, GC, int);
   extern void XSetAuthorization (char *, int, char *, int);
   extern int XSetBackground (Display *, GC, unsigned long);
@@ -795,6 +797,7 @@ extern "C"
   extern KeySym XStringToKeysym (char *);
   extern int XSupportsLocale (void);
   extern int XSync (Display *, int);
+  extern int (*) (void) XSynchronize;
   extern int XTextExtents (XFontStruct *, char *, int, int *, int *, int *,
 			   XCharStruct *);
   extern int XTextExtents16 (XFontStruct *, XChar2b *, int, int *, int *,

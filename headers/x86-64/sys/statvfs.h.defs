@@ -1,6 +1,4 @@
 
-
-
 struct statvfs64
 {
   unsigned long f_bsize;

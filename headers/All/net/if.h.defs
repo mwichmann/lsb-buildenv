@@ -1,8 +1,6 @@
 
 #define IF_NAMESIZE	16
 
-
-
 #define IFF_UP	0x01
 #define IFF_BROADCAST	0x02
 #define IFF_DEBUG	0x04
@@ -13,13 +11,6 @@
 #define IFF_NOTRAILERS	0x20
 #define IFF_RUNNING	0x40
 #define IFF_NOARP	0x80
-
-
-
-
-
-
-
 
 struct ifaddr
 {
@@ -35,7 +26,6 @@ struct ifaddr
 }
  ;
 #define IFNAMSIZ	IF_NAMESIZE
-
 
 struct ifreq
 {
@@ -62,7 +52,6 @@ struct ifreq
   ifr_ifru;
 }
  ;
-
 
 struct ifconf
 {

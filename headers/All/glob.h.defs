@@ -1,7 +1,4 @@
 
-
-
-
 #define GLOB_ERR	(1<<0)
 #define GLOB_MARK	(1<<1)
 #define GLOB_BRACE	(1<<10)
@@ -18,16 +15,10 @@
 #define GLOB_MAGCHAR	(1<<8)
 #define GLOB_ALTDIRFUNC	(1<<9)
 
-
-
 #define GLOB_NOSPACE	1
 #define GLOB_ABORTED	2
 #define GLOB_NOMATCH	3
 #define GLOB_NOSYS	4
-
-
-
-
 
 typedef struct
 {
@@ -42,7 +33,6 @@ typedef struct
   int (*gl_stat) (const char *, struct stat *);
 }
 glob_t;
-
 
 typedef struct
 {

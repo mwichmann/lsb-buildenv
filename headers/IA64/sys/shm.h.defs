@@ -1,13 +1,6 @@
 
 #define SHMLBA	(1024*1024)
 
-
-
-
-
-
-
-
 struct shmid_ds
 {
   struct ipc_perm shm_perm;

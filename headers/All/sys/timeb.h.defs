@@ -1,6 +1,4 @@
 
-
-
 struct timeb
 {
   time_t time;

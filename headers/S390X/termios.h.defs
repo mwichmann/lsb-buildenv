@@ -19,14 +19,6 @@
 #define BS1	8192
 #define BSDLY	8192
 
-
-
-
-
-
-
-
-
 #define VSUSP	10
 #define VEOL	11
 #define VREPRINT	12
@@ -38,15 +30,8 @@
 #define VSTART	8
 #define VSTOP	9
 
-
-
 #define IXON	1024
 #define IXOFF	4096
-
-
-
-
-
 
 #define HUPCL	1024
 #define CREAD	128
@@ -59,8 +44,6 @@
 #define VTIME	5
 #define PARODD	512
 #define CSTOPB	64
-
-
 
 #define ISIG	1
 #define ECHOPRT	1024

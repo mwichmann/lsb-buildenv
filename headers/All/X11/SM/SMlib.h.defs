@@ -1,10 +1,7 @@
 
-
-
 typedef IcePointer SmPointer;
 typedef struct _SmcConn *SmcConn;
 typedef struct _SmsConn *SmsConn;
-
 
 typedef struct
 {
@@ -21,13 +18,11 @@ typedef struct
 }
 SmProp;
 
-
 typedef enum
 {
   SmcClosedNow, SmcClosedASAP, SmcConnectionInUse
 }
 SmcCloseStatus;
-
 
 typedef void (*SmcSaveYourselfPhase2Proc) (void);
 typedef void (*SmcInteractProc) (void);
@@ -36,7 +31,6 @@ typedef void (*SmcShutdownCancelledProc) (void);
 typedef void (*SmcSaveCompleteProc) (void);
 typedef void (*SmcPropReplyProc) (void);
 
-
 typedef struct
 {
   SmcShutdownCancelledProc callback;
@@ -44,11 +38,9 @@ typedef struct
 }
 SmcCallbacks;
 
-
 typedef void (*SmsSetPropertiesProc) (void);
 typedef void (*SmsDeletePropertiesProc) (void);
 typedef void (*SmsGetPropertiesProc) (void);
-
 
 typedef struct
 {
@@ -57,9 +49,7 @@ typedef struct
 }
 SmsCallbacks;
 
-
 typedef int (*SmsNewClientProc) (void);
-
 
 typedef void (*SmcErrorHandler) (void);
 typedef void (*SmsErrorHandler) (void);

@@ -1,21 +1,5 @@
 
-
-
-
-
-
-
 #define NGREG	27
-
-
-
-
-
-
-
-
-
-
 
 typedef union
 {
@@ -24,20 +8,12 @@ typedef union
 }
 fpreg_t;
 
-
-
-
-
 typedef struct
 {
   unsigned int fpc;
   fpreg_t fprs[16];
 }
 fpregset_t;
-
-
-
-
 
 typedef struct
 {
@@ -47,10 +23,6 @@ typedef struct
   fpregset_t fpregs;
 }
 mcontext_t;
-
-
-
-
 
 typedef struct ucontext
 {

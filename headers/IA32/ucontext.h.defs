@@ -1,21 +1,8 @@
 
-
-
-
-
-
 typedef int greg_t;
 #define NGREG	19
 
-
-
-
-
 typedef greg_t gregset_t[19];
-
-
-
-
 
 struct _libc_fpreg
 {
@@ -23,10 +10,6 @@ struct _libc_fpreg
   unsigned short exponent;
 }
  ;
-
-
-
-
 
 struct _libc_fpstate
 {
@@ -43,10 +26,6 @@ struct _libc_fpstate
  ;
 typedef struct _libc_fpstate *fpregset_t;
 
-
-
-
-
 typedef struct
 {
   gregset_t gregs;
@@ -55,10 +34,6 @@ typedef struct
   unsigned long cr2;
 }
 mcontext_t;
-
-
-
-
 
 typedef struct ucontext
 {

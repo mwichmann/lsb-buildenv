@@ -4,7 +4,6 @@
 #define EXIT_FAILURE	1
 #define RAND_MAX	2147483647
 
-
 typedef int (*__compar_fn_t) (const void *, const void *);
 struct random_data
 {
@@ -18,7 +17,6 @@ struct random_data
 }
  ;
 
-
 typedef struct
 {
   int quot;
@@ -26,14 +24,12 @@ typedef struct
 }
 div_t;
 
-
 typedef struct
 {
   long quot;
   long rem;
 }
 ldiv_t;
-
 
 typedef struct
 {

@@ -12,7 +12,6 @@
 #define pthread_cleanup_push(routine,arg)	{struct _pthread_cleanup_buffer _buffer;_pthread_cleanup_push(&amp _buffer,(routine),(arg));
 #define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
 
-
 struct _pthread_cleanup_buffer
 {
   void (*__routine) (void *);
@@ -25,7 +24,6 @@ typedef unsigned int pthread_key_t;
 typedef int pthread_once_t;
 typedef long long __pthread_cond_align_t;
 
-
 typedef unsigned long pthread_t;
 struct _pthread_fastlock
 {
@@ -34,9 +32,7 @@ struct _pthread_fastlock
 }
  ;
 
-
 typedef struct _pthread_descr_struct *_pthread_descr;
-
 
 typedef struct
 {
@@ -53,7 +49,6 @@ typedef struct
 }
 pthread_mutexattr_t;
 
-
 typedef struct
 {
   int __detachstate;
@@ -67,7 +62,6 @@ typedef struct
   unsigned long __stacksize;
 }
 pthread_attr_t;
-
 
 typedef struct
 {
@@ -83,7 +77,6 @@ typedef struct
   int __dummy;
 }
 pthread_condattr_t;
-
 
 typedef struct _pthread_rwlock_t
 {
@@ -103,8 +96,6 @@ typedef struct
 }
 pthread_rwlockattr_t;
 
-
-
 #define PTHREAD_CREATE_JOINABLE	0
 #define PTHREAD_INHERIT_SCHED	0
 #define PTHREAD_ONCE_INIT	0
@@ -114,8 +105,6 @@ pthread_rwlockattr_t;
 #define PTHREAD_EXPLICIT_SCHED	1
 #define PTHREAD_PROCESS_SHARED	1
 #define PTHREAD_SCOPE_PROCESS	1
-
-
 
 #define PTHREAD_CANCELED	((void*)-1)
 #define PTHREAD_CANCEL_DEFERRED	0

@@ -1,6 +1,4 @@
 
-
-
 struct lastlog
 {
   int32_t ll_time;
@@ -8,7 +6,6 @@ struct lastlog
   char ll_host[UT_HOSTSIZE];
 }
  ;
-
 
 struct utmp
 {

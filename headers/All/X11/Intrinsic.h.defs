@@ -1,6 +1,4 @@
 
-
-
 typedef struct _WidgetRec *Widget;
 typedef Widget *WidgetList;
 typedef struct _WidgetClassRec *WidgetClass;

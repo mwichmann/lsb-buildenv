@@ -1,6 +1,4 @@
 
-
-
 struct pt_regs
 {
   unsigned long gpr[32];
@@ -19,64 +17,6 @@ struct pt_regs
 }
  ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct sigaction
 {
   union
@@ -92,19 +32,6 @@ struct sigaction
  ;
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 struct sigcontext
 {

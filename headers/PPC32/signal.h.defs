@@ -1,66 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct sigaction
 {
   union
@@ -76,19 +14,6 @@ struct sigaction
  ;
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 struct sigcontext
 {

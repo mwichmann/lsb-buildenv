@@ -1,66 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct sigaction
 {
   union
@@ -76,13 +14,6 @@ struct sigaction
 #define MINSIGSTKSZ	131027
 #define SIGSTKSZ	262144
 
-
-
-
-
-
-
-
 struct ia64_fpreg
 {
   union
@@ -93,10 +24,6 @@ struct ia64_fpreg
   u;
 }
  ;
-
-
-
-
 
 struct sigcontext
 {

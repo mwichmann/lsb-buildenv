@@ -14,7 +14,6 @@
 #define O_NONBLOCK	04000
 #define FD_CLOEXEC	1
 
-
 struct flock
 {
   short l_type;
@@ -33,11 +32,6 @@ struct flock64
   pid_t l_pid;
 }
  ;
-
-
-
-
-
 
 #define F_DUPFD	0
 #define F_RDLCK	0

@@ -1,9 +1,4 @@
 
-
-
-
-
-
 typedef struct entry
 {
   char *key;
@@ -20,6 +15,5 @@ typedef enum
   preorder, postorder, endorder, leaf
 }
 VISIT;
-
 
 typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);

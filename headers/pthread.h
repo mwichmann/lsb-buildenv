@@ -171,8 +171,6 @@ extern "C"
   extern void _pthread_cleanup_pop (struct _pthread_cleanup_buffer *, int);
   extern void _pthread_cleanup_push (struct _pthread_cleanup_buffer *,
 				     void (*)(void *), void *);
-  extern pid_t pthread_atfork (void (*)(void), void (*)(void),
-			       void (*)(void));
   extern int pthread_attr_destroy (pthread_attr_t *);
   extern int pthread_attr_getdetachstate (const pthread_attr_t *, int *);
   extern int pthread_attr_getschedparam (const pthread_attr_t *,

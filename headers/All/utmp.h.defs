@@ -3,15 +3,12 @@
 #define UT_LINESIZE	32
 #define UT_NAMESIZE	32
 
-
 struct exit_status
 {
   short e_termination;
   short e_exit;
 }
  ;
-
-
 
 #define EMPTY	0
 #define RUN_LVL	1

@@ -1,6 +1,4 @@
 
-
-
 typedef struct
 {
   char *protocol_name;

@@ -1,6 +1,4 @@
 
-
-
 struct group
 {
   char *gr_name;

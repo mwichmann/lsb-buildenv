@@ -1,7 +1,6 @@
 
 #define XtConstraintExtensionVersion	1L
 
-
 typedef struct _ConstraintPart ConstraintPart;
 typedef struct _ConstraintClassPart ConstraintClassPart;
 typedef struct _ConstraintClassRec

@@ -19,14 +19,6 @@
 #define FF1	0100000
 #define FFDLY	0100000
 
-
-
-
-
-
-
-
-
 #define VSUSP	10
 #define VEOL	11
 #define VREPRINT	12
@@ -38,15 +30,8 @@
 #define VSTART	8
 #define VSTOP	9
 
-
-
 #define IXON	0002000
 #define IXOFF	0010000
-
-
-
-
-
 
 #define CS6	0000020
 #define CS7	0000040
@@ -59,8 +44,6 @@
 #define HUPCL	0002000
 #define CLOCAL	0004000
 #define VTIME	5
-
-
 
 #define ISIG	0000001
 #define ICANON	0000002

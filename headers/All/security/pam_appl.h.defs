@@ -1,9 +1,4 @@
 
-
-
-
-
-
 typedef struct pam_handle pam_handle_t;
 struct pam_message
 {
@@ -18,7 +13,6 @@ struct pam_response
 }
  ;
 
-
 struct pam_conv
 {
   int (*conv) (int num_msg, const struct pam_message * *msg,
@@ -31,8 +25,6 @@ struct pam_conv
 #define PAM_ERROR_MSG	3
 #define PAM_TEXT_INFO	4
 
-
-
 #define PAM_SERVICE	1
 #define PAM_USER	2
 #define PAM_TTY	3
@@ -40,8 +32,6 @@ struct pam_conv
 #define PAM_CONV	5
 #define PAM_RUSER	8
 #define PAM_USER_PROMPT	9
-
-
 
 #define PAM_SUCCESS	0
 #define PAM_OPEN_ERR	1
@@ -70,8 +60,6 @@ struct pam_conv
 #define PAM_AUTH_ERR	7
 #define PAM_CRED_INSUFFICIENT	8
 #define PAM_AUTHINFO_UNAVAIL	9
-
-
 
 #define PAM_DISALLOW_NULL_AUTHTOK	0x0001U
 #define PAM_ESTABLISH_CRED	0x0002U

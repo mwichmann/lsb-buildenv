@@ -22,7 +22,6 @@
 #define CLSET_FD_CLOSE	8
 #define CLSET_FD_NCLOSE	9
 
-
 enum clnt_stat
 {
   RPC_SUCCESS, RPC_CANTENCODEARGS = 1, RPC_CANTDECODERES = 2, RPC_CANTSEND =
@@ -60,10 +59,6 @@ struct rpc_err
 }
  ;
 
-
-
-
-
 typedef struct CLIENT
 {
   struct AUTH *cl_auth;
@@ -71,7 +66,6 @@ typedef struct CLIENT
   caddr_t cl_private;
 }
 CLIENT;
-
 
 struct clnt_ops
 {

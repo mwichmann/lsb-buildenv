@@ -1,6 +1,4 @@
 
-
-
 enum xdr_op
 {
   XDR_ENCODE, XDR_DECODE, XDR_FREE
@@ -17,10 +15,6 @@ typedef struct XDR
 }
 XDR;
 
-
-
-
-
 struct xdr_ops
 {
   bool_t (*x_getlong) (XDR * __xdrs, long *__lp);
@@ -36,9 +30,7 @@ struct xdr_ops
 }
  ;
 
-
 typedef bool_t (*xdrproc_t) (XDR *, void *, ...);
-
 
 struct xdr_discrim
 {

@@ -1,7 +1,6 @@
 
 #define _STAT_VER	1
 
-
 struct stat
 {
   dev_t st_dev;

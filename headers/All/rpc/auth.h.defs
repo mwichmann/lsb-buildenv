@@ -1,9 +1,4 @@
 
-
-
-
-
-
 enum auth_stat
 {
   AUTH_OK, AUTH_BADCRED = 1, AUTH_REJECTEDCRED = 2, AUTH_BADVERF =
@@ -11,7 +6,6 @@ enum auth_stat
     6, AUTH_FAILED = 7
 }
  ;
-
 
 union des_block
 {
@@ -25,7 +19,6 @@ union des_block
 }
  ;
 
-
 struct opaque_auth
 {
   enum_t oa_flavor;
@@ -33,7 +26,6 @@ struct opaque_auth
   u_int oa_length;
 }
  ;
-
 
 typedef struct AUTH
 {
@@ -44,7 +36,6 @@ typedef struct AUTH
   caddr_t ah_private;
 }
 AUTH;
-
 
 struct auth_ops
 {

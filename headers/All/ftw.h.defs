@@ -1,7 +1,4 @@
 
-
-
-
 #define FTW_D	FTW_D
 #define FTW_DNR	FTW_DNR
 #define FTW_DP	FTW_DP
@@ -10,13 +7,11 @@
 #define FTW_SL	FTW_SL
 #define FTW_SLN	FTW_SLN
 
-
 enum
 {
   FTW_F, FTW_D, FTW_DNR, FTW_NS, FTW_SL, FTW_DP, FTW_SLN
 }
  ;
-
 
 enum
 {
@@ -24,14 +19,12 @@ enum
 }
  ;
 
-
 struct FTW
 {
   int base;
   int level;
 }
  ;
-
 
 typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,
 			     int __flag);
