@@ -273,4 +273,4 @@ void y1l(void) {} ;
 void yn(void) {} ;
 void ynf(void) {} ;
 void ynl(void) {} ;
-__asm__(".globl signgam; .data; .type signgam,@object; .size signgam, 0; signgam: .long 0");
+__asm__(".globl signgam; .data; .type signgam,@object; .size signgam, 4; signgam: .long 0");

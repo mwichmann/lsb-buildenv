@@ -7,10 +7,11 @@ libXt libXt.so.6
 libc libc.so.6
 libcrypt libcrypt.so.1
 libdl libdl.so.2
+libgcc_s libgcc_s.so.1
 libm libm.so.6
 libncurses libncurses.so.5
+libpam libpam.so.0
 libpthread libpthread.so.0
 libutil libutil.so.1
 libz libz.so.1
 proginterp /lib/ld-lsb.so.1
-libgcc_s libgcc_s.so.1
