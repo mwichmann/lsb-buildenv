@@ -240,6 +240,7 @@ void gethostname() {} ;
 void getitimer() {} ;
 void getloadavg() {} ;
 void getlogin() {} ;
+void getlogin_r() {} ;
 void getnameinfo() {} ;
 void getopt() {} ;
 void getopt_long() {} ;

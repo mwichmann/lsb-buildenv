@@ -187,6 +187,7 @@ GLIBC_2.0 {
   gethostname;
   getitimer;
   getlogin;
+  getlogin_r;
   getopt;
   getopt_long;
   getopt_long_only;

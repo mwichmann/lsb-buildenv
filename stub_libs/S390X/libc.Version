@@ -234,6 +234,7 @@ GLIBC_2.2 {
   getitimer;
   getloadavg;
   getlogin;
+  getlogin_r;
   getnameinfo;
   getopt;
   getopt_long;

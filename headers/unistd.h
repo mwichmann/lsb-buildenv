@@ -279,6 +279,7 @@ extern "C"
   extern int ftruncate64 (int, off64_t);
   extern long int gethostid (void);
   extern char *getlogin (void);
+  extern int getlogin_r (char *, size_t);
   extern int getopt (int, char *const[], const char *);
   extern pid_t getpgrp (void);
   extern pid_t getsid (pid_t);
