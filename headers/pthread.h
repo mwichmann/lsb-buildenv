@@ -35,6 +35,7 @@ int pthread_mutex_lock (*);
 int pthread_mutex_trylock (*);
 int pthread_mutex_unlock (*);
 int pthread_mutexattr_destroy (*);
+int pthread_mutexattr_init (*);
 int pthread_once (*, void);
 int pthread_rwlock_destroy (*);
 int pthread_rwlock_init (*, *);
