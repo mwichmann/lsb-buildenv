@@ -315,9 +315,9 @@ extern "C"
   extern int fegetexceptflag (fexcept_t *, int);
   extern int fegetround (void);
   extern int feholdexcept (fenv_t *);
-  extern int feraiseexcept (void);
+  extern int feraiseexcept (int);
   extern int fesetenv (const fenv_t *);
-  extern int fesetexceptflag (const fenv_t *, int);
+  extern int fesetexceptflag (const fexcept_t *, int);
   extern int fesetround (int);
   extern int fetestexcept (int);
   extern int feupdateenv (const fenv_t *);
