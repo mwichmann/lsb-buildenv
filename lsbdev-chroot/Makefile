@@ -20,7 +20,9 @@ install: configure
 	mkdir -p ${OVERRIDE_ROOT}/${INSTALL_ROOT}/sbin
 	install lsb_start_dev_env lsb_stop_dev_env ${OVERRIDE_ROOT}/${INSTALL_ROOT}/sbin
 	mkdir -p ${OVERRIDE_ROOT}/etc/lsbdev
-	install -m 644 config/lsbdev.conf config/gcc_specs ${OVERRIDE_ROOT}/etc/lsbdev
+	install -m 644 config/lsbdev.conf config/gcc_specs \
+	  config/extra_mount_dirs.conf config/extra_mount_files.conf \
+	  ${OVERRIDE_ROOT}/etc/lsbdev
 	mkdir -p ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
 	cp -pr rpm-3.0.6 ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
 	cp -pr stub_libs ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
