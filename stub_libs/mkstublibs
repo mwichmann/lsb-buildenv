@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.18 $
+# This is $Revision: 1.19 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.19  2002/04/25 13:33:49  anderson
+# Changes to work with the new per Architecture symbols versions.
+#
 # Revision 1.18  2002/04/11 08:20:03  cyeoh
 # Adds ability to overide version of functions
 #
@@ -204,29 +207,42 @@ sub GenerateLibrary($$$)
   local(*STUBFILE);
   local(*VERSIONFILE);
   my($version);
+  my($lastint);
 
   open(STUBFILE, ">$DestinationDirectory/$libName.c")
       || die "Could not open $DestinationDirectory/$libName.c to write\n";
   open(VERSIONFILE, ">$DestinationDirectory/$libName.Version") 
       || die "Could not open $DestinationDirectory/$libName.Version to write\n";
   # Do functions first
-  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM Interface,LibGroup, ".
-                       "LGInt LEFT JOIN Version ON Vid=Iversion ".
-                       "WHERE Itype='Function' AND ".
-                       "Interface.Iid=LGInt.LGIint AND Istatus='Included'".
-                       "AND LGInt.LGIlibg=LibGroup.LGid ".
-                       "AND LibGroup.LGlib=$libId ORDER BY Iname")
-      || die $dbh->errstr;  
+  $select = "SELECT DISTINCT Iname,AIarch,Vname FROM Interface ".
+                       "LEFT JOIN LGInt ON LGIint=Iid ".
+                       "LEFT JOIN LibGroup ON LGIlibg=LGid ".
+                       "LEFT JOIN ArchInt ON AIint=Iid ".
+                       "LEFT JOIN Version ON Vid=AIversion ".
+                       "WHERE Itype='Function' AND Istatus='Included'".
+                       "AND LibGroup.LGlib=$libId ".
+                       "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId ".
+                       "OR ( AIarch!=$TargetArchId AND Iarch=1 ) ) ".
+                       "ORDER BY Iname";
+#  print STDERR $select,"\n";
+  $sth = $dbh->prepare($select) || die $dbh->errstr;  
   $sth->execute() || die $sth->errstr;
+  $lastint="";
   while ($row = $sth->fetchrow_hashref())
   {
+#if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
+    if( $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
+    if( $row->{Iname} eq $lastint ) { print "skipping dup $lastint\n";next; }
+#if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
+    $lastint=$row->{Iname};
     print(STUBFILE "void $row->{Iname}(void) {} ;\n");
 
     # Add ability to override versions of functions
     undef($version);
     $version = $row->{Vname} unless !defined($row->{Vname});
     if (defined($OverrideVersions{$libName})
-        && defined($OverrideVersions{$libName}{$row->{Iname}}))
+        && defined($OverrideVersions{$libName}{$row->{Iname}})
+        && $OverrideVersions{$libName}{$row->{Iname}} ne $version)
     {
       print "Overriding $row->{Iname} with symbol version '$OverrideVersions{$libName}{$row->{Iname}}' ";
       if (defined($version))
@@ -252,22 +268,27 @@ sub GenerateLibrary($$$)
   }
 
   # Do variables next
-  $select = "SELECT DISTINCT Iname,Itype,Vname,Ireturn,ATsize FROM ".
-                       "Interface,LibGroup,LGInt ".
-                       "LEFT JOIN Version ON Vid=Iversion ".
+  $select = "SELECT DISTINCT Iname,AIarch,Itype,Vname,Ireturn,ATsize FROM Interface ".
+                       "LEFT JOIN LGInt ON LGIint=Iid ".
+                       "LEFT JOIN LibGroup ON LGIlibg=LGid ".
+                       "LEFT JOIN ArchInt ON AIint=Iid ".
+                       "LEFT JOIN Version ON Vid=AIversion ".
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
                        "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) ".
-                       "AND Interface.Iid=LGInt.LGIint ".
                        "AND Istatus='Included' ".
-                       "AND LGInt.LGIlibg=LibGroup.LGid ".
+                       "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId OR IArch=1) ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname";
 # print "$select\n";
   $sth = $dbh->prepare($select) || die $dbh->errstr;  
   $sth->execute() || die $sth->errstr;
   my($size);
+  $lastint="";
   while ($row = $sth->fetchrow_hashref())
   {
+    if( $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
+    if( $row->{Iname} eq $lastint ) { print "skipping dup $lastint\n";next; }
+    $lastint=$row->{Iname};
     # Work out size of data variable
     $size = 0;
     if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
@@ -294,7 +315,8 @@ sub GenerateLibrary($$$)
       $size = $row->{"ATsize"};
 
       if (defined($MissingData{$libName}) 
-          && defined($MissingData{$libName}{$row->{Iname}}))
+          && defined($MissingData{$libName}{$row->{Iname}})
+          && $MissingData{$libName}{$row->{Iname}} != $size)
       {
         print STDOUT "Overriding size of $row->{Iname} from $size to "
             . $MissingData{$libName}{$row->{Iname}} . "\n";
@@ -323,7 +345,8 @@ sub GenerateLibrary($$$)
     undef($version);
     $version = $row->{Vname} unless !defined($row->{Vname});
     if (defined($OverrideVersions{$libName})
-        && defined($OverrideVersions{$libName}{$row->{Iname}}))
+        && defined($OverrideVersions{$libName}{$row->{Iname}})
+        && $OverrideVersions{$libName}{$row->{Iname}} ne $version)
     {
       print "Overriding $row->{Iname} with symbol version '$OverrideVersions{$libName}{$row->{Iname}}' ";
       if (defined($version))
@@ -450,14 +473,20 @@ open(LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt")
 $sth = $dbh->prepare("SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
                      . "LEFT JOIN ArchLib ON Lid=ALlid "
                      . "LEFT JOIN Architecture ON Aid=ALaid "
-                     . "WHERE Library.Lstd='Yes'"
-                     . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' )"
-                     . "AND ALrunname!=''")
+                     . "WHERE Library.Lstd='Yes' "
+                     . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' ) "
+                     . "AND ALrunname!='' "
+                     . "ORDER BY Lname")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
+my($lastlib);
+
+$lastlib="";
 while ($row = $sth->fetchrow_hashref)
 {
+  if( $row->{Lname} eq $lastlib ) {next; }
+  $lastlib=$row->{Lname};
   print "Generating c stubs for $row->{Lname} library ($row->{ALrunname})\n";
   print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
   GenerateLibrary($dbh, $row->{Lname}, $row->{Lid});
