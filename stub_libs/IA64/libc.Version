@@ -1,10 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  __bzero;
-  __divdi3;
-  atexit;
-  lcong48;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -75,6 +69,7 @@ GLIBC_2.2 {
   alphasort64;
   asctime;
   asctime_r;
+  atexit;
   atof;
   atoi;
   atol;
@@ -307,8 +302,6 @@ GLIBC_2.2 {
   initstate;
   insque;
   ioctl;
-  ioperm;
-  iopl;
   isalnum;
   isalpha;
   isascii;
@@ -348,6 +341,7 @@ GLIBC_2.2 {
   l64a;
   labs;
   lchown;
+  lcong48;
   ldiv;
   lfind;
   link;
@@ -493,6 +487,7 @@ GLIBC_2.2 {
   setbuffer;
   setcontext;
   setegid;
+  setenv;
   seteuid;
   setgid;
   setgrent;
@@ -670,6 +665,7 @@ GLIBC_2.2 {
   ungetwc;
   unlink;
   unlockpt;
+  unsetenv;
   usleep;
   utime;
   utimes;
@@ -685,6 +681,7 @@ GLIBC_2.2 {
   vsprintf;
   vswprintf;
   vswscanf;
+  vsyslog;
   vwprintf;
   vwscanf;
   wait;
