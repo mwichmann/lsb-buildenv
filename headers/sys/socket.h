@@ -10,7 +10,6 @@ extern "C"
 #endif
 
 
-#define CMSG_NXTHDR(mhdr,
 #define SHUT_RD	0
 #define SCM_RIGHTS	0x01
 #define MSG_WAITALL	0x100
