@@ -6,9 +6,14 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.14 $
+# This is $Revision: 1.15 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.15  2002/04/09 04:47:40  cyeoh
+# Moves missing_data.txt file into arch specific directory
+# Moves overrides from perl script into missing_data.txt file
+# since they are architecture specific
+#
 # Revision 1.14  2002/04/09 02:21:12  cyeoh
 # Removes IA32 stub library code as it is moving to a subdirectory
 # Modifies Makefile to generate stub library code for each architecture
@@ -96,13 +101,6 @@ my(%LibcAliases) = (
   "program_invocation_short_name" => "__progname",
   "_h_errno" => "h_errno" );
 
-my(%OverrideVariables) = 
-    (
-     "libc" => { "__tzname" => 0x8,
-                 "_sys_errlist" => 0x1f4},
-     "libXt" => { "XtShellStrings" => 0x509,
-                  "XtStrings" => 0xa59}
-     );
 my($DestinationDirectory) = "";
 
 #----------------------------------------------------------------------
@@ -188,8 +186,9 @@ sub LoadMissingData()
 {
   local(*DATAFILE);
   my($line);
-  my($symbol, $size);
-  if (open(DATAFILE, "missing_data.txt"))
+  my($library, $symbol, $size);
+  my($missing_file) = "$DestinationDirectory/missing_data.txt";
+  if (open(DATAFILE, $missing_file))
   {
     while (defined($line = <DATAFILE>))
     {
@@ -201,19 +200,19 @@ sub LoadMissingData()
       else
       {
         chomp($line);
-        ($symbol, $size) = split(/\s+/, $line);
-        if (defined($MissingData{$symbol}))
+        ($library, $symbol, $size) = split(/\s+/, $line);
+        if (defined($MissingData{$library}{$symbol}))
         {
-          print "Warning: $symbol defined twice in missing_data.txt\n";
+          print "Warning: $symbol defined twice in $missing_file\n";
         }
-        $MissingData{$symbol} = hex($size);
+        $MissingData{$library}{$symbol} = hex($size);
       }
     }
     close(DATAFILE);
   }
   else
   {
-    print "Could not open missing_data.txt\n";
+    print "Could not open $missing_file\n";
   }
 }
 
@@ -276,13 +275,15 @@ sub GenerateLibrary($$$)
   while ($row = $sth->fetchrow_hashref())
   {
       # Work out size of data variable
+      $size = 0;
       if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
       {
-        if (defined($MissingData{$row->{Iname}}))
+        if (defined($MissingData{$libName}) 
+            && defined($MissingData{$libName}{$row->{Iname}}))
         {
           print STDOUT "Size not available for symbol $row->{Iname}"
-            . "  but overriding with $MissingData{$row->{Iname}}\n";
-          $size = $MissingData{$row->{Iname}};
+            . "  but overriding with $MissingData{$libName}{$row->{Iname}}\n";
+          $size = $MissingData{$libName}{$row->{Iname}};
         }
         else
         {
@@ -293,15 +294,16 @@ sub GenerateLibrary($$$)
       else
       {
         $size = $row->{"ATsize"};
+
+        if (defined($MissingData{$libName}) 
+            && defined($MissingData{$libName}{$row->{Iname}}))
+        {
+          print STDOUT "Overriding size of $row->{Iname} from $size to "
+              . $MissingData{$libName}{$row->{Iname}} . "\n";
+          $size = $MissingData{$libName}{$row->{Iname}};
+        }
       }
 
-      if (exists($OverrideVariables{$libName}{$row->{Iname}}))
-      {
-        print STDOUT "Overriding size of $row->{Iname} from $size to "
-            . $OverrideVariables{$libName}{$row->{Iname}} . "\n";
-        $size = $OverrideVariables{$libName}{$row->{Iname}};
-      }
-      
       if($row->{Itype} eq "Common" )
       {
         print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");

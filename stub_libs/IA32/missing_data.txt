@@ -1,0 +1,32 @@
+# Numbers are in hex
+# Generating c stubs for libXt library
+libXt _XtInheritTranslations  4
+libXt compositeClassRec  88
+libXt compositeWidgetClass 4 
+libXt constraintClassRec  a4
+libXt constraintWidgetClass 4 
+libXt coreWidgetClass  4
+libXt objectClass  4
+libXt objectClassRec 74  
+libXt overrideShellClassRec  90
+libXt rectObjClass  4
+libXt rectObjClassRec 74  
+libXt sessionShellClassRec  a0
+libXt shellClassRec  8c
+libXt topLevelShellClassRec  98
+libXt transientShellClassRec  98
+libXt widgetClass  4
+libXt widgetClassRec 74  
+libXt wmShellClassRec  90
+libXt XtShellStrings 509
+libXt XtStrings a59
+# Generating c stubs for libm library
+libm clog  fb
+# Generating c stubs for libncurses library
+# Generating c stubs for libc library
+libc _IO_2_1_stderr_  98
+libc _IO_2_1_stdin_  98
+libc _IO_2_1_stdout_  98
+libc _sys_errlist  1f4
+libc _sys_siglist 100
+libc __tzname 8

@@ -789,7 +789,7 @@ __asm__(".globl __tzname; .data; .type __tzname,@object; .size __tzname, 8; __tz
 __asm__(".weak _environ; _environ = __environ");
 __asm__(".comm _nl_msg_cat_cntr,4");
 __asm__(".globl _sys_errlist; .data; .type _sys_errlist,@object; .size _sys_errlist, 500; _sys_errlist: .long 0");
-__asm__(".comm _sys_siglist,4");
+__asm__(".comm _sys_siglist,256");
 __asm__(".weak daylight; daylight = __daylight");
 __asm__(".weak environ; environ = __environ");
 __asm__(".comm getdate_err,4");
