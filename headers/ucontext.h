@@ -246,7 +246,7 @@ extern "C"
     unsigned long mask;
     unsigned long addr;
   }
-  _psw_t;
+  __attribute__ (((aligned (8)))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__

@@ -43,6 +43,19 @@ extern "C"
   _s390_regs_common;
 
 #endif
+  struct;
+
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    _psw_t psw;
+    unsigned long gprs;
+    unsigned long acrs;
+  }
+  _s390_regs_common;
+
+#endif
 
 /* System defined signals.*/
 #define SIG_ERR	((sighandler_t)-1)
@@ -485,6 +498,26 @@ extern "C"
   _sigregs;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    unsigned int fpc;
+    double fprs;
+  }
+  _s390_fp_regs;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    _s390_regs_common regs;
+    _s390_fp_regs fpregs;
+  }
+  _sigregs;
+
+#endif
 
 /* FPU state information*/
 
@@ -678,7 +711,12 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
-  struct sigcontext;
+  struct sigcontext
+  {
+    unsigned long oldmask;
+    _sigregs *sregs;
+  }
+   ;
 
 #endif
 
