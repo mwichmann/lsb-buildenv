@@ -1,15 +1,9 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  utmpname;
-};
 GLIBC_2.1 {
   if_freenameindex;
   if_indextoname;
   if_nameindex;
   if_nametoindex;
-};
-GLIBC_2.2.4 {
-  sockatmark;
 };
 GLIBC_2.3 {
   _Exit;
@@ -556,6 +550,7 @@ GLIBC_2.3 {
   sigwaitinfo;
   sleep;
   snprintf;
+  sockatmark;
   socket;
   socketpair;
   sprintf;
@@ -675,6 +670,7 @@ GLIBC_2.3 {
   usleep;
   utime;
   utimes;
+  utmpname;
   vasprintf;
   vdprintf;
   verrx;

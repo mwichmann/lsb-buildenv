@@ -2,18 +2,6 @@ LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
   exp2;
   exp2f;
-  exp2l;
-};
-GLIBC_2.1 {
-  __finite;
-  __finitef;
-  __finitel;
-  __fpclassify;
-  __fpclassifyf;
-  __fpclassifyl;
-  __signbit;
-  __signbitf;
-  __signbitl;
 };
 GLIBC_2.2 {
   log2;
@@ -23,6 +11,15 @@ GLIBC_2.2 {
   logbl;
 };
 GLIBC_2.3 {
+  __finite;
+  __finitef;
+  __finitel;
+  __fpclassify;
+  __fpclassifyf;
+  __fpclassifyl;
+  __signbit;
+  __signbitf;
+  __signbitl;
   acos;
   acosf;
   acosh;
@@ -137,6 +134,7 @@ GLIBC_2.3 {
   erff;
   erfl;
   exp;
+  exp2l;
   expf;
   expl;
   expm1;

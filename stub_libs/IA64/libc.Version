@@ -1,13 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  utmpname;
-};
-GLIBC_2.1 {
-  if_freenameindex;
-  if_indextoname;
-  if_nameindex;
-  if_nametoindex;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -301,6 +292,10 @@ GLIBC_2.2 {
   iconv;
   iconv_close;
   iconv_open;
+  if_freenameindex;
+  if_indextoname;
+  if_nameindex;
+  if_nametoindex;
   imaxabs;
   imaxdiv;
   index;
@@ -667,6 +662,7 @@ GLIBC_2.2 {
   usleep;
   utime;
   utimes;
+  utmpname;
   vasprintf;
   vdprintf;
   verrx;

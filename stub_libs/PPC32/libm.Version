@@ -102,9 +102,6 @@ GLIBC_2.0 {
   log1p;
   log1pf;
   log1pl;
-  log2;
-  log2f;
-  log2l;
   logb;
   logbf;
   logbl;
@@ -262,6 +259,9 @@ GLIBC_2.1 {
   llround;
   llroundf;
   llroundl;
+  log2;
+  log2f;
+  log2l;
   lrint;
   lrintf;
   lrintl;
