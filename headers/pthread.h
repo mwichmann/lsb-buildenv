@@ -231,7 +231,11 @@ extern "C"
   extern int pthread_attr_getstacksize (const pthread_attr_t *, size_t *);
   extern int pthread_mutexattr_gettype (const pthread_mutexattr_t *, int *);
   extern int pthread_mutexattr_settype (pthread_mutexattr_t *, int);
+  extern int pthread_getconcurrency (void);
   extern int pthread_setconcurrency (int);
+  extern int pthread_attr_getstack (const pthread_attr_t *, void **,
+				    size_t *);
+  extern int pthread_attr_setstack (pthread_attr_t *, void *, size_t);
   extern int pthread_condattr_getpshared (const pthread_condattr_t *, int *);
   extern int pthread_condattr_setpshared (pthread_condattr_t *, int);
   extern int pthread_mutexattr_getpshared (const pthread_mutexattr_t *,

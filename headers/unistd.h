@@ -294,7 +294,6 @@ extern "C"
   extern int rename (const char *, const char *);
   extern int setegid (gid_t);
   extern int seteuid (uid_t);
-  extern int sethostid (long);
   extern int sethostname (const char *, size_t);
   extern int setpgrp (void);
   extern void swab (const void *, void *, ssize_t);
