@@ -488,6 +488,7 @@ extern "C"
   extern int slk_attroff (chtype);
   extern int slk_attr_off (attr_t, void *);
   extern int slk_attron (chtype);
+  extern int slk_attr_on (attr_t, void *);
   extern int slk_attrset (chtype);
   extern int slk_attr_set (attr_t, short, void *);
   extern int slk_clear (void);
