@@ -94,6 +94,8 @@ extern "C"
   typedef long long int64_t;
 
 #endif
+  typedef int32_t suseconds32_t;
+
 
 /* These types are derived from the ones above*/
 

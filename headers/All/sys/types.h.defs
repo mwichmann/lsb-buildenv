@@ -31,6 +31,7 @@ typedef unsigned long blksize_t;
 typedef long fd_mask;
 typedef int timer_t;
 typedef int clockid_t;
+typedef int32_t suseconds32_t;
 
 
 

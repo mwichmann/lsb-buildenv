@@ -12,7 +12,7 @@ struct timezone
  ;
 
 
-
+typedef int32_t time32_t;
 
 
 
@@ -33,6 +33,12 @@ struct timeval
 {
   time_t tv_sec;
   suseconds_t tv_usec;
+}
+ ;
+struct timeval32
+{
+  time32_t tv_sec;
+  suseconds32_t tv_usec;
 }
  ;
 

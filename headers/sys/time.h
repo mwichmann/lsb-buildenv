@@ -24,6 +24,8 @@ extern "C"
 
 
 
+  typedef int32_t time32_t;
+
 
 /* Values for the first argument to `getitimer' and `setitimer'.*/
 
@@ -48,6 +50,13 @@ extern "C"
   {
     time_t tv_sec;
     suseconds_t tv_usec;
+  }
+   ;
+
+  struct timeval32
+  {
+    time32_t tv_sec;
+    suseconds32_t tv_usec;
   }
    ;
 
