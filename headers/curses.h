@@ -37,11 +37,11 @@ extern "C"
 #define ACS_VLINE	(acs_map['x'])
 #define ACS_DIAMOND	(acs_map['`'])
 #define ACS_BULLET	(acs_map['~'])
-#define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)
 #define getmaxyx(win,y,x)	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
 #define getbegyx(win,y,x)	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
 #define getyx(win,y,x)	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
 #define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
+#define COLOR_PAIR(n)	NCURSES_BITS(n,0)
 
 
 
@@ -310,8 +310,11 @@ extern "C"
 
 
 /* attributes*/
+#define PAIR_NUMBER(a)	(((a)&A_COLOR)>>8)
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))
+#define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)
 #define A_NORMAL	0L
+#define NCURSES_ATTR_SHIFT	8
 #define A_COLOR	NCURSES_BITS(((1UL)<<8)-1UL,0)
 #define A_BLINK	NCURSES_BITS(1UL,11)
 #define A_DIM	NCURSES_BITS(1UL,12)
@@ -359,7 +362,6 @@ extern "C"
   extern int clrtoeol (void);
   extern int color_content (short, short *, short *, short *);
   extern int color_set (short, void *);
-  extern int COLOR_PAIR (int);
   extern int copywin (const WINDOW *, WINDOW *, int, int, int, int, int, int,
 		      int);
   extern int curs_set (int);
