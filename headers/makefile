@@ -1,6 +1,6 @@
 .SUFFIXES: .h
 
-ARCHS = All IA32 IA64 PPC32
+ARCHS = All IA32 IA64 PPC32 S390
 
 %.h:
 	for a in $(ARCHS) ; do \
