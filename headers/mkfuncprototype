@@ -50,4 +50,7 @@ for(1..$sth->numrows) {
 		}
 	printf ");\n";
 	}
+	if( $entry{'Itype'} eq "Data" ) {
+		printf "%s %s;\n",$entry{'Tname'},$entry{'Iname'};
+	}
 }
