@@ -442,6 +442,19 @@ extern "C"
    ;
 
 #endif
+#if defined(__ia64__)
+/* IA64 */
+  struct ia64_fpreg
+  {
+    union
+    {
+      unsigned long bits[2];
+    }
+    u;
+  }
+   ;
+
+#endif
 
 /* FPU state information*/
 
@@ -512,7 +525,30 @@ extern "C"
 #endif
 #if defined(__ia64__)
 /* IA64 */
-  struct sigcontext;
+  struct sigcontext
+  {
+    unsigned long sc_flags;
+    unsigned long sc_nat;
+    stack_t sc_stack;
+    unsigned long sc_ip;
+    unsigned long sc_cfm;
+    unsigned long sc_um;
+    unsigned long sc_ar_rsc;
+    unsigned long sc_ar_bsp;
+    unsigned long sc_ar_rnat;
+    unsigned long sc_ar_ccv;
+    unsigned long sc_ar_unat;
+    unsigned long sc_ar_fpsr;
+    unsigned long sc_ar_pfs;
+    unsigned long sc_ar_lc;
+    unsigned long sc_pr;
+    unsigned long sc_br[8];
+    unsigned long sc_gr[32];
+    struct ia64_fpreg sc_fr[128];
+    unsigned long sc_rsvd[16];
+    unsigned long sc_mask;
+  }
+   ;
 
 #endif
 #if defined(__powerpc__)
