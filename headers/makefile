@@ -19,7 +19,7 @@ all::
 	for h in `./getheaderlist`; do \
 		./mkfuncprototype -h $$h >$$h.proto; \
 		./mkdatadef -a All -h $$h >$$h.defs  ; \
-		if [ -f $$h.m4 ];then (set -x;cd `dirname $$h`;m4 `basename $$h`.m4 | \
+		if [ -f $$h.m4 ];then (cd `dirname $$h`;m4 `basename $$h`.m4 | \
 			grep -v '^\# '| indent >`basename $$h`);fi; \
 	done
 #	for h in $(ARPAHEADERS) ; do \
