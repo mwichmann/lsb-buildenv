@@ -74,7 +74,7 @@ extern "C"
    ;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   struct semid_ds
   {

@@ -14,7 +14,7 @@ extern "C"
 #if __ia64__
 #define FIONREAD	0x541B
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define FIONREAD	0x541B
 #endif
 #if __x86_64__
@@ -38,7 +38,7 @@ extern "C"
 #if __powerpc64__
 #define TIOCNOTTY	21538
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define TIOCNOTTY	21538
 #endif
 

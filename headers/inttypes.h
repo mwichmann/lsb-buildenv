@@ -60,7 +60,7 @@ extern "C"
   typedef long long intmax_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef long long intmax_t;
 
@@ -75,7 +75,7 @@ extern "C"
   typedef unsigned long uintmax_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned long long uintmax_t;
 
@@ -100,7 +100,7 @@ extern "C"
   typedef unsigned long uintptr_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned int uintptr_t;
 

@@ -23,7 +23,7 @@ extern "C"
 #if __powerpc64__
 #define SHMLBA	(__getpagesize())
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define SHMLBA	(__getpagesize())
 #endif
 #if __x86_64__
@@ -51,7 +51,7 @@ extern "C"
   typedef unsigned long shmatt_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned long shmatt_t;
 
@@ -125,7 +125,7 @@ extern "C"
    ;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   struct shmid_ds
   {

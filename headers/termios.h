@@ -25,7 +25,7 @@ extern "C"
 #if __ia64__
 #define OLCUC	0000002
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define OLCUC	0000002
 #endif
 #if __x86_64__
@@ -37,7 +37,7 @@ extern "C"
 #if __ia64__
 #define ONLCR	0000004
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ONLCR	0000004
 #endif
 #if __x86_64__
@@ -49,7 +49,7 @@ extern "C"
 #if __ia64__
 #define XCASE	0000004
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define XCASE	0000004
 #endif
 #if __x86_64__
@@ -67,7 +67,7 @@ extern "C"
 #if __ia64__
 #define NLDLY	0000400
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define NLDLY	0000400
 #endif
 #if __x86_64__
@@ -79,7 +79,7 @@ extern "C"
 #if __ia64__
 #define CR1	0001000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CR1	0001000
 #endif
 #if __x86_64__
@@ -91,7 +91,7 @@ extern "C"
 #if __ia64__
 #define IUCLC	0001000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define IUCLC	0001000
 #endif
 #if __x86_64__
@@ -103,7 +103,7 @@ extern "C"
 #if __ia64__
 #define CR2	0002000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CR2	0002000
 #endif
 #if __x86_64__
@@ -115,7 +115,7 @@ extern "C"
 #if __ia64__
 #define CR3	0003000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CR3	0003000
 #endif
 #if __x86_64__
@@ -127,7 +127,7 @@ extern "C"
 #if __ia64__
 #define CRDLY	0003000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CRDLY	0003000
 #endif
 #if __x86_64__
@@ -139,7 +139,7 @@ extern "C"
 #if __ia64__
 #define TAB1	0004000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define TAB1	0004000
 #endif
 #if __x86_64__
@@ -151,7 +151,7 @@ extern "C"
 #if __ia64__
 #define TAB2	0010000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define TAB2	0010000
 #endif
 #if __x86_64__
@@ -163,7 +163,7 @@ extern "C"
 #if __ia64__
 #define TAB3	0014000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define TAB3	0014000
 #endif
 #if __x86_64__
@@ -175,7 +175,7 @@ extern "C"
 #if __ia64__
 #define TABDLY	0014000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define TABDLY	0014000
 #endif
 #if __x86_64__
@@ -187,7 +187,7 @@ extern "C"
 #if __ia64__
 #define BS1	0020000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define BS1	0020000
 #endif
 #if __x86_64__
@@ -199,7 +199,7 @@ extern "C"
 #if __ia64__
 #define BSDLY	0020000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define BSDLY	0020000
 #endif
 #if __x86_64__
@@ -211,7 +211,7 @@ extern "C"
 #if __ia64__
 #define VT1	0040000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VT1	0040000
 #endif
 #if __x86_64__
@@ -223,7 +223,7 @@ extern "C"
 #if __ia64__
 #define VTDLY	0040000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VTDLY	0040000
 #endif
 #if __x86_64__
@@ -235,7 +235,7 @@ extern "C"
 #if __ia64__
 #define FF1	0100000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define FF1	0100000
 #endif
 #if __x86_64__
@@ -247,7 +247,7 @@ extern "C"
 #if __ia64__
 #define FFDLY	0100000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define FFDLY	0100000
 #endif
 #if __x86_64__
@@ -421,7 +421,7 @@ extern "C"
 #if __ia64__
 #define VSUSP	10
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VSUSP	10
 #endif
 #if __x86_64__
@@ -439,7 +439,7 @@ extern "C"
 #if __ia64__
 #define VEOL	11
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VEOL	11
 #endif
 #if __x86_64__
@@ -457,7 +457,7 @@ extern "C"
 #if __ia64__
 #define VREPRINT	12
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VREPRINT	12
 #endif
 #if __x86_64__
@@ -475,7 +475,7 @@ extern "C"
 #if __ia64__
 #define VDISCARD	13
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VDISCARD	13
 #endif
 #if __x86_64__
@@ -499,7 +499,7 @@ extern "C"
 #if __ia64__
 #define VWERASE	14
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VWERASE	14
 #endif
 #if __x86_64__
@@ -518,7 +518,7 @@ extern "C"
 #if __ia64__
 #define VEOL2	16
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VEOL2	16
 #endif
 #if __x86_64__
@@ -545,7 +545,7 @@ extern "C"
 #if __ia64__
 #define VMIN	6
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VMIN	6
 #endif
 #if __x86_64__
@@ -557,7 +557,7 @@ extern "C"
 #if __ia64__
 #define VSWTC	7
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VSWTC	7
 #endif
 #if __x86_64__
@@ -575,7 +575,7 @@ extern "C"
 #if __ia64__
 #define VSTART	8
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VSTART	8
 #endif
 #if __x86_64__
@@ -587,7 +587,7 @@ extern "C"
 #if __ia64__
 #define VSTOP	9
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VSTOP	9
 #endif
 #if __x86_64__
@@ -618,7 +618,7 @@ extern "C"
 #if __ia64__
 #define IXON	0002000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define IXON	0002000
 #endif
 #if __x86_64__
@@ -631,7 +631,7 @@ extern "C"
 #if __ia64__
 #define IXOFF	0010000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define IXOFF	0010000
 #endif
 #if __x86_64__
@@ -665,7 +665,7 @@ extern "C"
 #if __ia64__
 #define CS6	0000020
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CS6	0000020
 #endif
 #if __x86_64__
@@ -677,7 +677,7 @@ extern "C"
 #if __ia64__
 #define CS7	0000040
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CS7	0000040
 #endif
 #if __x86_64__
@@ -689,7 +689,7 @@ extern "C"
 #if __ia64__
 #define CS8	0000060
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CS8	0000060
 #endif
 #if __x86_64__
@@ -701,7 +701,7 @@ extern "C"
 #if __ia64__
 #define CSIZE	0000060
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CSIZE	0000060
 #endif
 #if __x86_64__
@@ -713,7 +713,7 @@ extern "C"
 #if __ia64__
 #define CSTOPB	0000100
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CSTOPB	0000100
 #endif
 #if __x86_64__
@@ -725,7 +725,7 @@ extern "C"
 #if __ia64__
 #define CREAD	0000200
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CREAD	0000200
 #endif
 #if __x86_64__
@@ -737,7 +737,7 @@ extern "C"
 #if __ia64__
 #define PARENB	0000400
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define PARENB	0000400
 #endif
 #if __x86_64__
@@ -749,7 +749,7 @@ extern "C"
 #if __ia64__
 #define PARODD	0001000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define PARODD	0001000
 #endif
 #if __x86_64__
@@ -761,7 +761,7 @@ extern "C"
 #if __ia64__
 #define HUPCL	0002000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define HUPCL	0002000
 #endif
 #if __x86_64__
@@ -773,7 +773,7 @@ extern "C"
 #if __ia64__
 #define CLOCAL	0004000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define CLOCAL	0004000
 #endif
 #if __x86_64__
@@ -821,7 +821,7 @@ extern "C"
 #if __ia64__
 #define VTIME	5
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define VTIME	5
 #endif
 #if __x86_64__
@@ -870,7 +870,7 @@ extern "C"
 #if __ia64__
 #define ISIG	0000001
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ISIG	0000001
 #endif
 #if __x86_64__
@@ -882,7 +882,7 @@ extern "C"
 #if __ia64__
 #define ICANON	0000002
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ICANON	0000002
 #endif
 #if __x86_64__
@@ -895,7 +895,7 @@ extern "C"
 #if __ia64__
 #define ECHOE	0000020
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ECHOE	0000020
 #endif
 #if __x86_64__
@@ -907,7 +907,7 @@ extern "C"
 #if __ia64__
 #define ECHOK	0000040
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ECHOK	0000040
 #endif
 #if __x86_64__
@@ -919,7 +919,7 @@ extern "C"
 #if __ia64__
 #define ECHONL	0000100
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ECHONL	0000100
 #endif
 #if __x86_64__
@@ -931,7 +931,7 @@ extern "C"
 #if __ia64__
 #define NOFLSH	0000200
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define NOFLSH	0000200
 #endif
 #if __x86_64__
@@ -943,7 +943,7 @@ extern "C"
 #if __ia64__
 #define TOSTOP	0000400
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define TOSTOP	0000400
 #endif
 #if __x86_64__
@@ -955,7 +955,7 @@ extern "C"
 #if __ia64__
 #define ECHOCTL	0001000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ECHOCTL	0001000
 #endif
 #if __x86_64__
@@ -967,7 +967,7 @@ extern "C"
 #if __ia64__
 #define ECHOPRT	0002000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ECHOPRT	0002000
 #endif
 #if __x86_64__
@@ -979,7 +979,7 @@ extern "C"
 #if __ia64__
 #define ECHOKE	0004000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define ECHOKE	0004000
 #endif
 #if __x86_64__
@@ -991,7 +991,7 @@ extern "C"
 #if __ia64__
 #define FLUSHO	0010000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define FLUSHO	0010000
 #endif
 #if __x86_64__
@@ -1003,7 +1003,7 @@ extern "C"
 #if __ia64__
 #define PENDIN	0040000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define PENDIN	0040000
 #endif
 #if __x86_64__
@@ -1015,7 +1015,7 @@ extern "C"
 #if __ia64__
 #define IEXTEN	0100000
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define IEXTEN	0100000
 #endif
 #if __x86_64__

@@ -41,7 +41,7 @@ extern "C"
   typedef unsigned long size_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned long size_t;
 
@@ -56,7 +56,7 @@ extern "C"
   typedef int ptrdiff_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef int ptrdiff_t;
 

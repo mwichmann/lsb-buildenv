@@ -28,7 +28,7 @@ extern "C"
 #if __i386__
 #define NGREG	19
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define NGREG	36
 #endif
 #if __powerpc__ && !__powerpc64__

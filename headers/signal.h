@@ -100,7 +100,7 @@ extern "C"
 #if __powerpc__ && !__powerpc64__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 #endif
 #if __ia64__
@@ -145,7 +145,7 @@ extern "C"
 #if __powerpc__ && !__powerpc64__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #endif
 #if __ia64__
@@ -305,7 +305,7 @@ extern "C"
    ;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   struct sigaction
   {

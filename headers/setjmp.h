@@ -31,14 +31,14 @@ extern "C"
   typedef int __jmp_buf[58];
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef int __jmp_buf[14];
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef long __jmp_buf[320];
+  typedef long __jmp_buf[40];
 
 #endif
 

@@ -144,7 +144,7 @@ extern "C"
 #if __ia64__
 #define EDEADLOCK	EDEADLK
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define EDEADLOCK	EDEADLK
 #endif
 #if __x86_64__

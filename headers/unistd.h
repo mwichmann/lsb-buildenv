@@ -41,7 +41,7 @@ extern "C"
   typedef int intptr_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef int intptr_t;
 

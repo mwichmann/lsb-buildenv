@@ -26,7 +26,7 @@ extern "C"
 #if __ia64__
 #define MCL_CURRENT	1
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define MCL_CURRENT	1
 #endif
 #if __x86_64__
@@ -45,7 +45,7 @@ extern "C"
 #if __ia64__
 #define MCL_FUTURE	2
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 #define MCL_FUTURE	2
 #endif
 #if __x86_64__

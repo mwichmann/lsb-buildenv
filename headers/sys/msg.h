@@ -33,12 +33,12 @@ extern "C"
   typedef unsigned long msglen_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned long msglen_t;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef unsigned long msgqnum_t;
 
@@ -113,7 +113,7 @@ extern "C"
    ;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   struct msqid_ds
   {

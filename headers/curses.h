@@ -104,7 +104,7 @@ extern "C"
   typedef int bool;
 
 #endif
-#if __s390__
+#if __s390__ && !__s390x__
 /* S390 */
   typedef int bool;
 
