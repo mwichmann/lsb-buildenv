@@ -13,9 +13,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.10 $
+# This is $Revision: 1.11 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.11  2002/04/11 06:58:38  cyeoh
+# check versions of functions too. Adds output suitable
+# for override_versions.txt file
+#
 # Revision 1.10  2002/04/09 09:13:50  cyeoh
 # clarify warning message
 #
@@ -177,7 +181,7 @@ sub LoadSymbolData($)
     die "nm of shared library failed\n";
   }
   
-  if (system("objdump -T $useDir/$libfilename | egrep 'data|bss' | grep -v '(' > $tmpfile2")
+  if (system("objdump -T $useDir/$libfilename | egrep 'data|bss|text' | grep -v '(' > $tmpfile2")
       /256!=0)
   {
     die "objdump of shared library failed\n";
@@ -318,6 +322,33 @@ sub CheckSymbols($$$$$)
       {
         print "$row->{Iname} is $symbolInfo->{$iface}{TYPE} but recorded as function\n";
       }
+      if (defined($symbolInfo->{$iface}{VERSION}))
+      {
+        if (!defined($row->{Vname}))
+        {
+          if ($symbolInfo->{$iface}{VERSION} ne "Base")
+          {
+            print "For $iface library has version "
+                . $symbolInfo->{$iface}{VERSION} 
+                . " but not defined in db\n";
+            print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
+          }
+        }
+        elsif ($symbolInfo->{$iface}{VERSION} ne $row->{Vname})
+        {
+          print "For $iface library has version $symbolInfo->{$iface}{VERSION}"
+              . " but defined as $row->{Vname} in db\n";
+          print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
+        }
+      }
+      else
+      {
+        if (defined($row->{Vname}))
+        {
+          print "For $iface db has version $row->{Vname}"
+              . " but not defined in library\n";
+        }
+      }
     }
     else
     {
@@ -384,12 +415,14 @@ sub CheckSymbols($$$$$)
             print "For $iface library has version "
                 . $symbolInfo->{$iface}{VERSION} 
                 . " but not defined in db\n";
+            print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
           }
         }
         elsif ($symbolInfo->{$iface}{VERSION} ne $row->{Vname})
         {
           print "For $iface library has version $symbolInfo->{$iface}{VERSION}"
               . " but defined as $row->{Vname} in db\n";
+          print "xxx $libName $iface $symbolInfo->{$iface}{VERSION}\n";
         }
       }
       else
