@@ -45,8 +45,7 @@ extern "C"
   {
     unsigned long mask;
     unsigned long addr;
-  }
-  __attribute__ ((aligned (8))) _psw_t;
+  } __attribute__ ((aligned (8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -55,8 +54,7 @@ extern "C"
   {
     unsigned long mask;
     unsigned long addr;
-  }
-  __attribute__ ((aligned (8))) _psw_t;
+  } __attribute__ ((aligned (8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -102,6 +100,20 @@ extern "C"
   _s390_regs_common;
 
 #endif
+
+/* PPC64 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
+
+
+
+/* PPC32 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
+
+
+
+
+
+
+
+
 
 /* System defined signals.*/
 #define SIG_ERR	((sighandler_t)-1)
