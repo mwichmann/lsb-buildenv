@@ -4,6 +4,10 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <inttypes.h>
+#include <rpc/auth.h>
+#include <rpc/clnt.h>
+#include <rpc/xdr.h>
+#include <rpc/svc.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -13,13 +17,17 @@ extern "C"
 
 
 
+  typedef int bool_t;
+
   struct opaque_auth
   {
-    Unknown Type:".." oa_flavor;
+    enum_t oa_flavor;
     caddr_t oa_base;
     u_int oa_length;
   }
    ;
+
+  typedef int enum_t;
 
   struct AUTH
   {

@@ -1,13 +1,15 @@
 
 
 
+typedef int bool_t;
 struct opaque_auth
 {
-  Unknown Type:".." oa_flavor;
+  enum_t oa_flavor;
   caddr_t oa_base;
   u_int oa_length;
 }
  ;
+typedef int enum_t;
 struct AUTH
 {
   struct opaque_auth ah_cred;

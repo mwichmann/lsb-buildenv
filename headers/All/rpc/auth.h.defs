@@ -1,0 +1,23 @@
+
+
+
+union des_block
+{
+  struct
+  {
+    u_int32_t high;
+    u_int32_t low;
+  }
+  key;
+  char c;
+}
+ ;
+struct auth_ops
+{
+  void (*ah_nextverf) (void);
+  int (*ah_marshal) (void);
+  int (*ah_validate) (void);
+  int (*ah_refresh) (void);
+  void (*ah_destroy) (void);
+}
+ ;

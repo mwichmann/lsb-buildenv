@@ -12,6 +12,17 @@ extern "C"
 
 
 
+  struct clnt_ops
+  {
+    enum clnt_stat (*cl_call) (void);
+    void (*cl_abort) (void);
+    void (*cl_geterr) (void);
+      bool_t (*cl_freeres) (void);
+    void (*cl_destroy) (void);
+      bool_t (*cl_control) (void);
+  }
+   ;
+
 
   extern struct CLIENT *clnt_create (char *, u_long, u_long, char *);
   extern void clnt_pcreateerror (char *);
