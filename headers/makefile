@@ -1,26 +1,20 @@
 ARCHS = All IA32 IA64 PPC32 S390 PPC64 S390X
 HEADERFILELIST := $(shell ./getheaderlist)
 
-all:
-	@for a in $(ARCHS); do \
-		make headers-$$a; \
-	done
+all: $(foreach arch,$(ARCHS),headers-$(arch))
 
-headers-%:
-	@echo Making header files for $*
-	@for header in $(HEADERFILELIST); do \
-		mkdir -p `dirname $*/$$header` ; \
-		./mkdatadef -a $* -h $$header | indent | sed -e 's/\&/\&amp /' >$*/$$header.defs ; \
-	done
+headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
+	@echo Made header files for $*
 
-headers-All:
-	@echo Making All component of header files 
-	@for header in $(HEADERFILELIST); do \
-		mkdir -p `dirname $$header` ; \
-		./mkdatadef -a All -h $$header | indent | sed -e 's/\&/\&amp /' >All/$$header.defs ; \
-		./mkheader -a All -h $$header | indent >$$header ; \
-	done
+%.defs: 
+	mkdir -p $(dir $@)
+	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)')   | indent | sed -e 's/\&/\&amp /' > $@
 
+%.h:
+	./mkheader -a All -h $@ | indent >$@
+
+headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
+	@echo Made All component of header files 
 
 install:
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
@@ -38,4 +32,6 @@ distclean: clean
 	find . -name '*.m4' -print | xargs rm -f
 	find . -name '*.cpp' -print | xargs rm -f
 	find . -name '*.txt' -print | xargs rm -f
+
+.SECONDARY:
 
