@@ -195,6 +195,7 @@ for(i=0;i<ag->numargv;i++)
 
 char *lsblibs[] = {
 	"c",
+	"m",
 	"pthread",
 	"util",
 	"dl",
@@ -226,6 +227,8 @@ for(i=0;lsblibs[i];i++) {
 
 /* So it's not an LSB library. Make sure it is getting statically linked */
 
+fprintf(stderr,"Forcing %s to be linked statically\n",val);
+
 argvaddstring(userlibs,"-Wl,-Bstatic");
 argvaddstring(userlibs,strdup(buf));
 argvaddstring(userlibs,"-Wl,-Bdynamic");
@@ -252,7 +255,7 @@ gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
 /*
  * These are the otpions we need to recognize.
  */
-char *optstr="cl:o:EI:";
+char *optstr="cL:l:o:EI:";
 
 /*
  * gcc has a lot of options that are more than one character long. We'll treat
@@ -263,8 +266,8 @@ char *optstr="cl:o:EI:";
 struct option long_options[] = {
 /*
 	{"pedantic",no_argument,0,0},
-	{"shared",no_argument,0,0},
 */
+	{"shared",no_argument,0,0},
 	{NULL,0,0,0}
 	};
 
@@ -313,6 +316,14 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			}
 		printf("\n");
 		argvadd(options,long_options[option_index].name,optarg);
+		/*
+		 * If we are building a shred library, then we need to
+		 * not specify the program interpreter and system libraries.
+		 */
+		if(strcmp( long_options[option_index].name, "shared" ) == 0) {
+			argvreset(proginterp);
+			argvreset(syslibs);
+			}
 		break;
 	case 'E':
 	case 'c':
@@ -328,6 +339,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		break;
 	case 'l':
 		process_opt_l(optarg);
+		break;
+	case 'L':
+		argvadd(libpaths,"L",optarg);
 		break;
 	case '?':
 		/*
