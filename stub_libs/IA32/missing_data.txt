@@ -31,6 +31,9 @@ libc _IO_2_1_stdout_  98
 libc _sys_errlist  1f4
 libc _sys_siglist 100
 libc __tzname 8
+libc __ctype_b_loc 71
+libc __ctype_tolower_loc 71
+libc __ctype_toupper_loc 71
 # Generating c stubs for libstdcxx library
 libstdcxx _ZGVNSt10moneypunctIcLb0EE2idE 8
 libstdcxx _ZGVNSt10moneypunctIcLb1EE2idE 8

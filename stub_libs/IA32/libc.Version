@@ -786,7 +786,6 @@ GLIBC_2.1.1 {
 };
 GLIBC_2.1.2 {
   getgrnam_r;
-  gethostbyname_r;
   getpwnam_r;
 };
 GLIBC_2.1.3 {
@@ -843,4 +842,7 @@ GLIBC_2.2.3 {
 };
 GLIBC_2.3 {
   realpath;
+  __ctype_b_loc;
+  __ctype_tolower_loc;
+  __ctype_toupper_loc;
 };
