@@ -350,9 +350,10 @@ for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
 	$HGdesc=$entry{'HGdescription'};
-	if ($HGdesc ne "" ) {
-		print "/*\n * $HGid $HGdesc\n */\n";
-		}
+	# Need to skip the Default group name as well.
+	#if ($HGdesc ne ""  ) {
+	#	print "/*\n * $HGdesc\n */\n";
+	#	}
 	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
 	$select.= "AND Tarch=$Aid ";
 	$select.= "AND Tstatus != 'Excluded' ";
