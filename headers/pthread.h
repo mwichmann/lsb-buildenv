@@ -39,6 +39,8 @@ extern "C"
 
   typedef int pthread_once_t;
 
+  typedef long __pthread_cond_align_t;
+
 
 /* Base Types*/
 
@@ -102,8 +104,10 @@ extern "C"
 
   typedef struct
   {
-    struct _pthread_fastlock lock;
-    _pthread_descr wait_chain;
+    struct _pthread_fastlock __c_lock;
+    _pthread_descr __c_waiting;
+    char __padding[36];
+    __pthread_cond_align_t __align;
   }
   pthread_cond_t;
 
