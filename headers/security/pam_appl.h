@@ -8,7 +8,6 @@ extern "C"
 #endif
 
 
-#define PAM_OPEN_ERR
 
 
 
@@ -40,12 +39,22 @@ extern "C"
    ;
 
 
+/* Valid choices for msg_style*/
+#define PAM_PROMPT_ECHO_OFF	1
+#define PAM_PROMPT_ECHO_ON	2
+#define PAM_ERROR_MSG	3
+#define PAM_TEXT_INFO	4
+
+
+
 /* Possible Values for Item_type*/
 #define PAM_SERVICE	1
 #define PAM_USER	2
 #define PAM_TTY	3
 #define PAM_RHOST	4
 #define PAM_CONV	5
+#define PAM_RUSER	8
+#define PAM_USER_PROMPT	9
 
 
 
@@ -58,6 +67,7 @@ extern "C"
 #define PAM_CRED_UNAVAIL	15
 #define PAM_CRED_EXPIRED	16
 #define PAM_CRED_ERR	17
+#define PAM_CONV_ERR	19
 #define PAM_AUTHTOK_ERR	20
 #define PAM_AUTHTOK_RECOVER_ERR	21
 #define PAM_AUTHTOK_LOCK_BUSY	22
@@ -74,9 +84,20 @@ extern "C"
 
 
 
+/* PAM Flags*/
+#define PAM_DISALLOW_NULL_AUTHTOK	0x0001U
+#define PAM_ESTABLISH_CRED	0x0002U
+#define PAM_DELETE_CRED	0x0004U
+#define PAM_REINITIALIZE_CRED	0x0008U
+#define PAM_REFRESH_CRED	0x0010U
+#define PAM_CHANGE_EXPIRED_AUTHTOK	0x0020U
+#define PAM_SILENT	0x8000U
+
+
+
   extern int pam_set_item (pam_handle_t *, int, void *);
   extern int pam_get_item (pam_handle_t *, int, void **);
-  extern char *pam_strerror (int);
+  extern char *pam_strerror (pam_handle_t *, int);
   extern int pam_start (char *, char *, struct pam_conv *, pam_handle_t *);
   extern int pam_end (pam_handle_t *, int);
   extern int pam_authenticate (pam_handle_t *, int);
