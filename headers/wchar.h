@@ -51,7 +51,7 @@ extern "C"
   extern wchar_t *wmemchr (const wchar_t *, wchar_t, size_t);
   extern int wmemcmp (const wchar_t *, const wchar_t *, size_t);
   extern wchar_t *wmemcpy (wchar_t *, const wchar_t *, size_t);
-  extern wchar_t *wmemmove (wchar_t *, wchar_t *, size_t);
+  extern wchar_t *wmemmove (wchar_t *, const wchar_t *, size_t);
   extern wchar_t *wmemset (wchar_t *, wchar_t, size_t);
   extern int iswalnum (wint_t);
   extern int iswalpha (wint_t);
