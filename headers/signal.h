@@ -688,7 +688,7 @@ extern "C"
     unsigned long sc_ar25;	/* cmp8xchg16 uses this */
     unsigned long sc_ar26;	/*  rsvd for scratch use */
     unsigned long sc_rsvd[12];
-    sigset_t sc_mask;
+    unsigned long sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
   }
    ;
 

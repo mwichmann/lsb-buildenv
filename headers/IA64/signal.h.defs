@@ -91,6 +91,6 @@ struct sigcontext
   unsigned long sc_ar25;
   unsigned long sc_ar26;
   unsigned long sc_rsvd[12];
-  sigset_t sc_mask;
+  unsigned long sc_mask;
 }
  ;
