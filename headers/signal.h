@@ -499,7 +499,7 @@ extern "C"
 /* PPC32 */
   struct sigcontext
   {
-    long _unused[];
+    long _unused[4];
     int signal;
     unsigned long handler;
     unsigned long oldmask;
