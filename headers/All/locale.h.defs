@@ -29,7 +29,7 @@ struct lconv
   char int_n_sign_posn;
 }
  ;
-#define LC_GLOBAL_LOCALE	((__locale_t) -1L)
+#define LC_GLOBAL_LOCALE	((locale_t) -1L)
 #define LC_CTYPE	0
 #define LC_NUMERIC	1
 #define LC_TELEPHONE	10
@@ -43,12 +43,4 @@ struct lconv
 #define LC_NAME	8
 #define LC_ADDRESS	9
 
-typedef struct __locale_struct
-{
-  struct locale_data *__locales[13];
-  const unsigned short *__ctype_b;
-  const int *__ctype_tolower;
-  const int *__ctype_toupper;
-  const char *__names[13];
-}
- *__locale_t;
+typedef void *locale_t;

@@ -11,9 +11,6 @@ extern "C"
 
 
 
-
-
-
 /* Structure giving information about numeric and monetary notation*/
 #define LC_MEASUREMENT	11
 
@@ -49,7 +46,7 @@ extern "C"
 
 
 /* These are the possibilities for the first argument to setlocale.*/
-#define LC_GLOBAL_LOCALE	((__locale_t) -1L)
+#define LC_GLOBAL_LOCALE	((locale_t) -1L)
 #define LC_CTYPE	0
 #define LC_NUMERIC	1
 #define LC_TELEPHONE	10
@@ -67,22 +64,13 @@ extern "C"
 
 
 
-  typedef struct __locale_struct
-  {
-    struct locale_data *__locales[13];
-    const unsigned short *__ctype_b;
-    const int *__ctype_tolower;
-    const int *__ctype_toupper;
-    const char *__names[13];
-  }
-   *__locale_t;
-
-  typedef __locale_t locale_t;
 
 
 
 
 
+
+  typedef void *locale_t;
 
 
   extern struct lconv *localeconv (void);
