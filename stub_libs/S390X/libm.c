@@ -3,7 +3,6 @@ void __finitef() {} ;
 void __finitel() {} ;
 void __fpclassify() {} ;
 void __fpclassifyf() {} ;
-void __signbitl() {} ;
 void acos() {} ;
 void acosf() {} ;
 void acosh() {} ;
