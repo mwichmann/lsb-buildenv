@@ -18,6 +18,9 @@ extern "C"
 #if defined(__powerpc__)
 #define FIONREAD	1074030207
 #endif
+#if defined(__s390__)
+#define TIOCNOTTY	21538
+#endif
 
 
 

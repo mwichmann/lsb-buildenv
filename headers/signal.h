@@ -45,6 +45,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGUSR1	10
 #endif
+#if defined(__s390__)
+#define SIGUSR1	10
+#endif
 #define SIGSEGV	11
 #if defined(__i386__)
 #define SIGUSR2	12
@@ -53,6 +56,9 @@ extern "C"
 #define SIGUSR2	12
 #endif
 #if defined(__powerpc__)
+#define SIGUSR2	12
+#endif
+#if defined(__s390__)
 #define SIGUSR2	12
 #endif
 #define SIGPIPE	13
@@ -67,6 +73,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGSTKFLT	16
 #endif
+#if defined(__s390__)
+#define SIGSTKFLT	16
+#endif
 #if defined(__i386__)
 #define SIGCHLD	17
 #endif
@@ -76,6 +85,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGCHLD	17
 #endif
+#if defined(__s390__)
+#define SIGCHLD	17
+#endif
 #if defined(__i386__)
 #define SIGCONT	18
 #endif
@@ -83,6 +95,9 @@ extern "C"
 #define SIGCONT	18
 #endif
 #if defined(__powerpc__)
+#define SIGCONT	18
+#endif
+#if defined(__s390__)
 #define SIGCONT	18
 #endif
 #if defined(__i386__)
@@ -92,6 +107,9 @@ extern "C"
 #define SIGSTOP	19
 #endif
 #if defined(__powerpc__)
+#define SIGSTOP	19
+#endif
+#if defined(__s390__)
 #define SIGSTOP	19
 #endif
 #define SIGINT	2
@@ -104,6 +122,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGTSTP	20
 #endif
+#if defined(__s390__)
+#define SIGTSTP	20
+#endif
 #if defined(__i386__)
 #define SIGTTIN	21
 #endif
@@ -113,6 +134,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGTTIN	21
 #endif
+#if defined(__s390__)
+#define SIGTTIN	21
+#endif
 #if defined(__i386__)
 #define SIGTTOU	22
 #endif
@@ -120,6 +144,9 @@ extern "C"
 #define SIGTTOU	22
 #endif
 #if defined(__powerpc__)
+#define SIGTTOU	22
+#endif
+#if defined(__s390__)
 #define SIGTTOU	22
 #endif
 #if defined(__i386__)
@@ -129,6 +156,9 @@ extern "C"
 #define SIGURG	23
 #endif
 #if defined(__powerpc__)
+#define SIGURG	23
+#endif
+#if defined(__s390__)
 #define SIGURG	23
 #endif
 #if defined(__i386__)
@@ -138,6 +168,9 @@ extern "C"
 #define SIGXCPU	24
 #endif
 #if defined(__powerpc__)
+#define SIGXCPU	24
+#endif
+#if defined(__s390__)
 #define SIGXCPU	24
 #endif
 #if defined(__i386__)
@@ -147,6 +180,9 @@ extern "C"
 #define SIGXFSZ	25
 #endif
 #if defined(__powerpc__)
+#define SIGXFSZ	25
+#endif
+#if defined(__s390__)
 #define SIGXFSZ	25
 #endif
 #if defined(__i386__)
@@ -156,6 +192,9 @@ extern "C"
 #define SIGVTALRM	26
 #endif
 #if defined(__powerpc__)
+#define SIGVTALRM	26
+#endif
+#if defined(__s390__)
 #define SIGVTALRM	26
 #endif
 #define SIGPROF	27
@@ -175,6 +214,9 @@ extern "C"
 #define SIGWINCH	28
 #endif
 #if defined(__powerpc__)
+#define SIGWINCH	28
+#endif
+#if defined(__s390__)
 #define SIGWINCH	28
 #endif
 #if defined(__i386__)
@@ -184,6 +226,9 @@ extern "C"
 #define SIGIO	29
 #endif
 #if defined(__powerpc__)
+#define SIGIO	29
+#endif
+#if defined(__s390__)
 #define SIGIO	29
 #endif
 #define SIGQUIT	3
@@ -196,6 +241,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGPWR	30
 #endif
+#if defined(__s390__)
+#define SIGPWR	30
+#endif
 #if defined(__i386__)
 #define SIGSYS	31
 #endif
@@ -205,6 +253,9 @@ extern "C"
 #if defined(__powerpc__)
 #define SIGSYS	31
 #endif
+#if defined(__s390__)
+#define SIGSYS	31
+#endif
 #if defined(__i386__)
 #define SIGUNUSED	31
 #endif
@@ -212,6 +263,9 @@ extern "C"
 #define SIGUNUSED	31
 #endif
 #if defined(__powerpc__)
+#define SIGUNUSED	31
+#endif
+#if defined(__s390__)
 #define SIGUNUSED	31
 #endif
 #define SIGILL	4
@@ -225,6 +279,9 @@ extern "C"
 #define SIGBUS	7
 #endif
 #if defined(__powerpc__)
+#define SIGBUS	7
+#endif
+#if defined(__s390__)
 #define SIGBUS	7
 #endif
 #define SIGFPE	8

@@ -17,6 +17,9 @@ extern "C"
 #define P_tmpdir	"/tmp"
 #define FOPEN_MAX	16
 #define L_tmpnam	20
+#if defined(__s390__)
+#define FILENAME_MAX	4095
+#endif
 #define FILENAME_MAX	4096
 #define BUFSIZ	8192
 #define L_ctermid	9
