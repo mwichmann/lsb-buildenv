@@ -804,7 +804,11 @@ GLIBC_2.3 {
   __ctype_b_loc;
   __ctype_tolower_loc;
   __ctype_toupper_loc;
+  duplocale;
+  freelocale;
+  newlocale;
   realpath;
+  uselocale;
   _sys_errlist;
 };
 GLIBC_2.3.2 {

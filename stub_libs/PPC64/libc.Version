@@ -130,6 +130,7 @@ GLIBC_2.3 {
   drand48;
   dup;
   dup2;
+  duplocale;
   ecvt;
   endgrent;
   endprotoent;
@@ -185,6 +186,7 @@ GLIBC_2.3 {
   fread;
   free;
   freeaddrinfo;
+  freelocale;
   freopen;
   freopen64;
   fscanf;
@@ -397,6 +399,7 @@ GLIBC_2.3 {
   munlockall;
   munmap;
   nanosleep;
+  newlocale;
   ngettext;
   nice;
   nl_langinfo;
@@ -653,6 +656,7 @@ GLIBC_2.3 {
   unlink;
   unlockpt;
   unsetenv;
+  uselocale;
   usleep;
   utime;
   utimes;
