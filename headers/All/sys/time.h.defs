@@ -15,7 +15,7 @@ struct timezone
 
 
 
-
+typedef int __itimer_which_t;
 
 
 struct timespec
