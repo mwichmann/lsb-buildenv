@@ -78,6 +78,8 @@ extern "C"
   extern int munlockall (void);
   extern int munmap (void *, size_t);
   extern void *mmap64 (void *, size_t, int, int, int, off64_t);
+  extern int shm_open (const char *, int, mode_t);
+  extern int shm_unlink (const char *);
 #ifdef __cplusplus
 }
 #endif

@@ -85,6 +85,11 @@ extern "C"
   extern char *asctime_r (const struct tm *, char *);
   extern struct tm *gmtime_r (const time_t *, struct tm *);
   extern struct tm *localtime_r (const time_t *, struct tm *);
+  extern int clock_getcpuclockid (pid_t, clockid_t *);
+  extern int clock_getres (clockid_t, struct timespec *);
+  extern int clock_gettime (clockid_t, struct timespec *);
+  extern int clock_nanosleep (clockid_t, int, struct timespec *);
+  extern int clock_settime (clockid_t, const struct timespec *);
 #ifdef __cplusplus
 }
 #endif
