@@ -263,8 +263,22 @@ if [ -z "$LSB_INCLUDE" ]; then
     echo Warning. No LSB header files available. Using system include
     echo files. The binaries produced may not be LSB compliant.
     LSB_INCLUDE=/usr/include
+    bind_mount_ro $LSB_INCLUDE $ROOT/usr/include
+else
+    bind_mount_ro $LSB_INCLUDE $ROOT/usr/include
+    # if using LSB headers: the usual rule of gcc headers followed 
+    # by system headers breaks if a fixincluded gcc header duplicates
+    # an LSB header.  So we bind-mount LSB headers on top of those...
+    CC_INCDIR=`dirname $GCC_SPECS_FILE`/include
+    if [ -d $ROOT/$CC_INCDIR ] ; then
+	for file in $ROOT/$CC_INCDIR/* ; do
+	    f=`basename $file`
+	    if [ -f $LSB_INCLUDE/$f ] ; then
+		bind_mount_ro $LSB_INCLUDE/$f $file
+	    fi
+	done
+    fi
 fi
-bind_mount_ro $LSB_INCLUDE $ROOT/usr/include
 
 # System specific mounts
 if [ -f "$EXTRA_MOUNT_DIRS" ]; then
