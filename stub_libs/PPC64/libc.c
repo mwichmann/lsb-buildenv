@@ -304,7 +304,6 @@ void imaxabs() {} ;
 void imaxdiv() {} ;
 void index() {} ;
 void inet_addr() {} ;
-void inet_aton() {} ;
 void inet_ntoa() {} ;
 void inet_ntop() {} ;
 void inet_pton() {} ;

@@ -1,5 +1,5 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2.5 {
+GLIBC_2.3 {
   _pthread_cleanup_pop;
   _pthread_cleanup_push;
   pthread_attr_destroy;
@@ -23,7 +23,10 @@ GLIBC_2.2.5 {
   pthread_cancel;
   pthread_cond_broadcast;
   pthread_cond_destroy;
+  pthread_cond_init;
   pthread_cond_signal;
+  pthread_cond_timedwait;
+  pthread_cond_wait;
   pthread_condattr_destroy;
   pthread_condattr_init;
   pthread_create;
@@ -79,9 +82,4 @@ GLIBC_2.2.5 {
   sem_trywait;
   sem_unlink;
   sem_wait;
-};
-GLIBC_2.3.2 {
-  pthread_cond_init;
-  pthread_cond_timedwait;
-  pthread_cond_wait;
 };
