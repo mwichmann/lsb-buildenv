@@ -135,7 +135,58 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  struct stat64;
+  struct stat64
+  {
+    dev_t st_dev;		/* Device. */
+    ino64_t st_ino;		/* File serial number. */
+    mode_t st_mode;		/* File mode. */
+    nlink_t st_nlink;		/* Link count. */
+    gid_t st_uid;		/* User ID of the file's owner. */
+    __gid_t st_gid;
+     */gid_t st_gid;		/* Group ID of the file's group. */
+    dev_t st_rdev;		/* Device number, if device. */
+    unsigned short __pad2;
+    off64_t st_size;		/* Size of file, in bytes. */
+    blksize_t st_blksize;	/* Optimal block size for I/O. */
+    blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
+    time_t st_atime;		/* Time of last access. */
+    unsigned long __unused1;	/* Reserved for atime.nanoseconds. */
+    time_t st_mtime;		/* Time of last modification. */
+    unsigned long __unused2;	/* Reserved for mtime.nanoseconds. */
+    time_t st_ctime;		/* Time of last status change. */
+    unsigned long __unused3;	/* Reserved for ctime.nanoseconds. */
+    unsigned long __unused4;
+    unsigned long __unused5;
+  }
+   ;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  struct stat
+  {
+    dev_t st_dev;		/* Device. */
+    unsigned short __pad1;
+    ino_t st_ino;		/* File serial number. */
+    mode_t st_mode;		/* File mode. */
+    nlink_t st_nlink;		/* Link count. */
+    uid_t st_uid;		/* User ID of the file's owner. */
+    gid_t st_gid;		/* Group ID of the file's group. */
+    dev_t st_rdev;		/* Device number, if device. */
+    unsigned short __pad2;
+    off_t st_size;		/* Size of file, in bytes. */
+    blksize_t st_blksize;	/* Optimal block size for I/O. */
+    blkcnt_t st_blocks;		/* Number 512-byte blocks allocated. */
+    time_t st_atime;		/* Time of last access. */
+    unsigned long __unused1;	/* Reserved for atime.nanoseconds */
+    time_t st_mtime;		/* Time of last modification. */
+    unsigned long __unused2;	/* Reserved for mtime.nanoseconds. */
+    time_t st_ctime;		/* Time of last status change. */
+    unsigned long __unused3;	/* Reserved for ctime.nanoseconds. */
+    unsigned long __unused4;
+    unsigned long __unused5;
+  }
+   ;
 
 #endif
 
