@@ -137,7 +137,7 @@ ag->argv[ag->numargv++]=str;
  * and then add it and possibly an argument to the argvgroup.
  */
 void
-argvadd(struct argvgroup *ag, char *opt, char *val)
+argvadd(struct argvgroup *ag, const char *opt, char *val)
 {
 char *dashopt;
 
