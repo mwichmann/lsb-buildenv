@@ -132,21 +132,21 @@ extern "C"
 
 
   extern int bind (int, const struct sockaddr *, socklen_t);
-  extern int getnameinfo (const struct sockaddr *, socklen_t, char *, size_t,
-			  char *, size_t, unsigned int);
+  extern int getnameinfo (const struct sockaddr *, socklen_t, char *,
+			  socklen_t, char *, socklen_t, unsigned int);
   extern int getsockname (int, struct sockaddr *, socklen_t *);
   extern int listen (int, int);
   extern int setsockopt (int, int, int, const void *, socklen_t);
   extern int accept (int, struct sockaddr *, socklen_t *);
   extern int connect (int, const struct sockaddr *, socklen_t);
-  extern int recv (int, void *, size_t, int);
-  extern int recvfrom (int, void *, size_t, int, struct sockaddr *,
-		       socklen_t *);
-  extern int recvmsg (int, struct msghdr *, int);
-  extern int send (int, const void *, size_t, int);
-  extern int sendmsg (int, const struct msghdr *, int);
-  extern int sendto (int, const void *, size_t, int, const struct sockaddr *,
-		     socklen_t);
+  extern ssize_t recv (int, void *, size_t, int);
+  extern ssize_t recvfrom (int, void *, size_t, int, struct sockaddr *,
+			   socklen_t *);
+  extern ssize_t recvmsg (int, struct msghdr *, int);
+  extern ssize_t send (int, const void *, size_t, int);
+  extern ssize_t sendmsg (int, const struct msghdr *, int);
+  extern ssize_t sendto (int, const void *, size_t, int,
+			 const struct sockaddr *, socklen_t);
   extern int getpeername (int, struct sockaddr *, socklen_t *);
   extern int getsockopt (int, int, int, void *, socklen_t *);
   extern int shutdown (int, int);

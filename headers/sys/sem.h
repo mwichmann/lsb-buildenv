@@ -3,6 +3,7 @@
 
 #include <sys/types.h>
 #include <sys/ipc.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -137,7 +138,7 @@ extern "C"
 
   extern int semctl (int, int, int, ...);
   extern int semget (key_t, int, int);
-  extern int semop (int, struct sembuf *, unsigned int);
+  extern int semop (int, struct sembuf *, size_t);
 #ifdef __cplusplus
 }
 #endif
