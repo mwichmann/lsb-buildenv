@@ -2,9 +2,9 @@
 #define _TERMIOS_H_
 
 
+#define TCSANOW	0
 #define TCOOFF	0
 #define TCIFLUSH	0
-#define TCSANOW	0
 #define CR0	0000000
 #define NL0	0000000
 #define VT0	0000000

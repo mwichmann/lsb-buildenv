@@ -9,6 +9,14 @@
 #define SHM_RDONLY	4096
 
 
+
+
+
+typedef unsigned long shmatt_t;
+
+
+
+
 struct shmid_ds
 {
   struct ipc_perm shm_perm;
@@ -26,8 +34,6 @@ struct shmid_ds
   unsigned long __unused5;
 }
  ;
-
-typedef unsigned long shmatt_t;
 
 
 int __getpagesize (void);

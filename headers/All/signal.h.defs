@@ -11,9 +11,9 @@ struct sigstack
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIGEV_THREAD	0
 #define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
+#define SIGEV_THREAD	0
 #define SIG_UNBLOCK	1
 #define SI_MAX_SIZE	128
 #define SIG_SETMASK	2
@@ -45,8 +45,8 @@ struct sigstack
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGABRT	6
@@ -116,6 +116,7 @@ struct sigaction
 #define SA_RESETHAND	0x80000000
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
+#define sa_sigaction	__sigaction_handler._sa_sigaction
 
 typedef struct sigaltstack
 {

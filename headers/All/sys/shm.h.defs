@@ -1,4 +1,9 @@
 
+#define SHMLBA	(__getpagesize())
+#define SHM_RND	020000
+#define SHM_RDONLY	4096
+
+
 struct shmid_ds
 {
   struct ipc_perm shm_perm;
@@ -16,7 +21,3 @@ struct shmid_ds
   unsigned long __unused5;
 }
  ;
-
-#define SHMLBA	(__getpagesize())
-#define SHM_RND	020000
-#define SHM_RDONLY	4096
