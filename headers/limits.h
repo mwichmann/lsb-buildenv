@@ -135,6 +135,14 @@ extern "C"
 
 
 
+/* POSIX Threads values*/
+#define PTHREAD_DESTRUCTOR_ITERATIONS	10
+#define PTHREAD_STACK_MIN	16384
+#define PTHREAD_THREADS_MAX	16384
+#define PTHREAD_KEYS_MAX	7
+
+
+
 #ifdef __cplusplus
 }
 #endif
