@@ -35,8 +35,6 @@ GLIBC_2.0 {
   pthread_testcancel;
 };
 GLIBC_2.1 {
-  pread;
-  pread64;
   pthread_attr_getguardsize;
   pthread_attr_getstackaddr;
   pthread_attr_getstacksize;
@@ -59,8 +57,6 @@ GLIBC_2.1 {
   pthread_rwlockattr_init;
   pthread_rwlockattr_setpshared;
   pthread_setconcurrency;
-  pwrite;
-  pwrite64;
   sem_destroy;
   sem_getvalue;
   sem_init;
@@ -81,6 +77,10 @@ GLIBC_2.2 {
   pthread_rwlock_timedrdlock;
   pthread_rwlock_timedwrlock;
   sem_timedwait;
+  pread;
+  pread64;
+  pwrite;
+  pwrite64;
 };
 GLIBC_2.3.2 {
   pthread_cond_broadcast;
