@@ -5,7 +5,7 @@ ARCHS = All IA32 IA64
 %.h:
 	for a in $(ARCHS) ; do \
 		mkdir -p `dirname $$a/$@` 2>/dev/null ; \
-		./mkdatadef -a $$a -h $@ | indent >$$a/$@.defs ; \
+		./mkdatadef -a $$a -h $@ | indent | sed -e 's/\&/\&amp /' >$$a/$@.defs ; \
 	done
 	./mkheader -a All -h $@ | indent >$@ ;
 
