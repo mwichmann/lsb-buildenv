@@ -144,6 +144,7 @@ extern "C"
   extern int getloadavg (double[], int);
   extern int mkstemp64 (char *);
   extern int posix_memalign (void **, size_t, size_t);
+  extern int posix_openpt (int);
 #ifdef __cplusplus
 }
 #endif
