@@ -79,6 +79,9 @@ extern "C"
 #if __powerpc__ && !__powerpc64__
 #define NGREG	48
 #endif
+#if __powerpc64__
+#define NGREG	48
+#endif
 
 
 
