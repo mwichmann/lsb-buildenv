@@ -300,7 +300,6 @@ GLIBC_2.2 {
   imaxdiv;
   index;
   inet_addr;
-  inet_aton;
   inet_ntoa;
   inet_ntop;
   inet_pton;
@@ -460,7 +459,6 @@ GLIBC_2.2 {
   readlink;
   readv;
   realloc;
-  realpath;
   recv;
   recvfrom;
   recvmsg;
@@ -796,8 +794,6 @@ GLIBC_2.2 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
-  __ctype_tolower;
-  __ctype_toupper;
   __daylight;
   __environ;
   __timezone;
@@ -832,4 +828,5 @@ GLIBC_2.3 {
   __ctype_b_loc;
   __ctype_tolower_loc;
   __ctype_toupper_loc;
+  realpath;
 };

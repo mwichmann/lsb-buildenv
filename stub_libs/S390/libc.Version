@@ -235,7 +235,6 @@ GLIBC_2.0 {
   htons;
   index;
   inet_addr;
-  inet_aton;
   inet_ntoa;
   inet_ntop;
   inet_pton;
@@ -655,8 +654,6 @@ GLIBC_2.0 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
-  __ctype_tolower;
-  __ctype_toupper;
   __daylight;
   __environ;
   __timezone;
