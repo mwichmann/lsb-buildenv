@@ -31,8 +31,6 @@ extern "C"
   }
    ;
 
-  typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
-
 
 /* Server side transport handle*/
 
@@ -50,6 +48,11 @@ extern "C"
     char xp_pad[256];
   }
   SVCXPRT;
+
+
+
+
+  typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
 
 
