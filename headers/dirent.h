@@ -1,40 +1,35 @@
 #ifndef _DIRENT_H_
 #define _DIRENT_H_
 
+#include <sys/types.h>
+#include <unistd.h>
 
 
 typedef struct __dirstream DIR;
 
 
-enum
+
+struct dirent
 {
-  DT_UNKNOWN,
-  DT_FIFO,
-  DT_CHR,
-  DT_DIR,
-  DT_BLK,
-  DT_REG,
-  DT_LNK,
-  DT_SOCK,
-  DT_WHT
+  long d_ino;
+  off_t d_off;
+  unsigned short d_reclen;
+  char d_name[1];
 }
  ;
 
-#define DT_BLK	DT_BLK
-#define DT_CHR	DT_CHR
-#define DT_DIR	DT_DIR
-#define DT_FIFO	DT_FIFO
-#define DT_LNK	DT_LNK
-#define DT_REG	DT_REG
-#define DT_SOCK	DT_SOCK
-#define DT_UNKNOWN	DT_UNKNOWN
-#define DT_WHT	DT_WHT
-
-struct dirent;
-
-struct dirent64;
+struct dirent64
+{
+  uint64_t d_ino;
+  int64_t d_off;
+  unsigned short d_reclen;
+  unsigned char d_type;
+  char d_name[1];
+}
+ ;
 
 
+int alphasort (struct dirent **, struct dirent **);
 void rewinddir (DIR *);
 void seekdir (DIR *, long);
 long telldir (DIR *);

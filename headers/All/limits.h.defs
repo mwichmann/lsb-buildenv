@@ -1,6 +1,6 @@
 
-#define HUGE_VAL	0xFFFFFFFF
 #define OPEN_MAX	256
+#define PATH_MAX	4095
 
 #define MB_LEN_MAX	16
 

@@ -3,6 +3,8 @@
 
 #include <signal.h>
 
+#define setjmp(env)	_setjmp(env)
+#define sigsetjmp(a,b)	__sigsetjmp(a,b)
 
 typedef int __jmp_buf;
 
@@ -21,4 +23,5 @@ typedef jmp_buf sigjmp_buf;
 int __sigsetjmp (jmp_buf, int);
 void longjmp (jmp_buf, int);
 void siglongjmp (sigjmp_buf, int);
+int _setjmp (jmp_buf);
 #endif

@@ -10,6 +10,9 @@ struct timezone
 }
  ;
 
+#define ITIMER_REAL	0
+#define ITIMER_VIRTUAL	1
+#define ITIMER_PROF	2
 
 typedef __time_t time_t;
 

@@ -2,6 +2,17 @@
 #define _MATH_H_
 
 
+struct exception
+{
+  int type;
+  char *name;
+  double arg1;
+  double arg2;
+  double retval;
+}
+ ;
+
+#define HUGE_VAL	0xFFFFFFFF
 
 #define M_1_PI	0.31830988618379067154
 #define M_LOG10E	0.43429448190325182765

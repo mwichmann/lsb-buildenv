@@ -68,7 +68,6 @@ long lrand48 (void);
 int mblen (char *, size_t);
 size_t mbstowcs (wchar_t *, char *, size_t);
 int mbtowc (wchar_t *, char *, size_t);
-int mkstemp (char *);
 char *mktemp (char *);
 long mrand48 (void);
 long nrand48 (unsigned short);
