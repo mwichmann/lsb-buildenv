@@ -7,7 +7,7 @@
 
 
 
-typedef unsigned long shmatt_t;
+
 
 
 struct shmid_ds

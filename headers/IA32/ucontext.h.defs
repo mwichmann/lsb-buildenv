@@ -4,5 +4,40 @@
 
 
 
-
+typedef int greg_t;
 #define NGREG	19
+
+
+
+
+
+typedef greg_t gregset_t[76];
+
+
+
+
+
+struct _libc_fpreg
+{
+  unsigned short significand[4];
+  unsigned short exponent;
+}
+ ;
+
+
+
+
+
+struct _libc_fpstate
+{
+  unsigned long cw;
+  unsigned long sw;
+  unsigned long tag;
+  unsigned long ipoff;
+  unsigned long cssel;
+  unsigned long dataoff;
+  unsigned long datasel;
+  struct _libc_fpreg _st[8];
+  unsigned long status;
+}
+ ;

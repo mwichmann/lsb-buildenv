@@ -12,8 +12,8 @@
 #define L_tmpnam	20
 #define FILENAME_MAX	4096
 #define BUFSIZ	8192
-#define L_cuserid	9
 #define L_ctermid	9
+#define L_cuserid	9
 
 
 typedef struct _IO_FILE *FILE;

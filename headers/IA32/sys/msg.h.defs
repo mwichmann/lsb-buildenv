@@ -1,0 +1,8 @@
+
+
+
+
+
+
+typedef unsigned long msgqnum_t;
+typedef unsigned long msglen_t;

@@ -32,8 +32,8 @@
 #define TAB2	0010000
 #define TABDLY	0014000
 #define TAB3	0014000
-#define BSDLY	0020000
 #define BS1	0020000
+#define BSDLY	0020000
 #define VT1	0040000
 #define VTDLY	0040000
 #define FF1	0100000

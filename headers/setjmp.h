@@ -10,7 +10,7 @@
 
 
 
-typedef int __jmp_buf[6];
+typedef int __jmp_buf[560];
 
 
 

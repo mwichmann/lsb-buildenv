@@ -10,8 +10,6 @@ typedef long wchar_t;
 
 typedef unsigned int size_t;
 
-typedef unsigned int wint_t;
-
 typedef int ptrdiff_t;
 
 

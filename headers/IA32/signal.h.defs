@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct _fpreg
+{
+  unsigned short significand[4];
+  unsigned short exponent;
+}
+ ;
+struct _fpxreg
+{
+  unsigned short significand[4];
+  unsigned short exponent;
+  unsigned short padding[3];
+}
+ ;
+struct _xmmreg
+{
+  unsigned long element[4];
+}
+ ;
+
+
+struct _fpstate
+{
+  unsigned long cw;
+  unsigned long sw;
+  unsigned long tag;
+  unsigned long ipoff;
+  unsigned long cssel;
+  unsigned long dataoff;
+  unsigned long datasel;
+  struct _fpreg _st[8];
+  unsigned short status;
+  unsigned short magic;
+  unsigned long _fxsr_env[6];
+  unsigned long mxcsr;
+  unsigned long reserved;
+  struct _fpxreg _fxsr_st[8];
+  struct _xmmreg _xmm[8];
+  unsigned long padding[56];
+}
+ ;

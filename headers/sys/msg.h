@@ -12,10 +12,16 @@
 /* Base types for messages*/
 
 
+#if defined(__i386__)
+/* IA32 */
 typedef unsigned long msgqnum_t;
 
+#endif
+#if defined(__i386__)
+/* IA32 */
 typedef unsigned long msglen_t;
 
+#endif
 
 /* Message Queue structure*/
 

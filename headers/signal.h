@@ -229,6 +229,8 @@ stack_t;
 
 
 
+#if defined(__i386__)
+/* IA32 */
 struct _fpreg
 {
   unsigned short significand[4];
@@ -236,6 +238,9 @@ struct _fpreg
 }
  ;
 
+#endif
+#if defined(__i386__)
+/* IA32 */
 struct _fpxreg
 {
   unsigned short significand[4];
@@ -244,16 +249,22 @@ struct _fpxreg
 }
  ;
 
+#endif
+#if defined(__i386__)
+/* IA32 */
 struct _xmmreg
 {
   unsigned long element[4];
 }
  ;
 
+#endif
 
 /* FPU state information*/
 
 
+#if defined(__i386__)
+/* IA32 */
 struct _fpstate
 {
   unsigned long cw;
@@ -275,6 +286,7 @@ struct _fpstate
 }
  ;
 
+#endif
 
 /* Process context when signal delivered*/
 

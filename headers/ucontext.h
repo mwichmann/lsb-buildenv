@@ -9,8 +9,11 @@
 /* Type for general register.*/
 
 
+#if defined(__i386__)
+/* IA32 */
 typedef int greg_t;
 
+#endif
 
 /* Number of general registers.*/
 #if defined(__i386__)
@@ -22,8 +25,11 @@ typedef int greg_t;
 /* Container for all general registers.*/
 
 
-typedef greg_t gregset_t[];
+#if defined(__i386__)
+/* IA32 */
+typedef greg_t gregset_t[76];
 
+#endif
 
 /* Number of each register is the `gregset_t' array.*/
 
@@ -32,6 +38,8 @@ typedef greg_t gregset_t[];
 /* Definitions taken from the kernel headers.*/
 
 
+#if defined(__i386__)
+/* IA32 */
 struct _libc_fpreg
 {
   unsigned short significand[4];
@@ -39,6 +47,7 @@ struct _libc_fpreg
 }
  ;
 
+#endif
 
 
 
@@ -46,6 +55,8 @@ struct _libc_fpreg
 /* Structure to describe FPU registers.*/
 
 
+#if defined(__i386__)
+/* IA32 */
 struct _libc_fpstate
 {
   unsigned long cw;
@@ -60,6 +71,7 @@ struct _libc_fpstate
 }
  ;
 
+#endif
 typedef struct _libc_fpstate
 {
   unsigned long cw;

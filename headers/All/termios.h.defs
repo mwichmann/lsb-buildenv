@@ -2,12 +2,12 @@
 #define TCSANOW	0
 #define TCOOFF	0
 #define TCIFLUSH	0
-#define TAB0	0000000
-#define VT0	0000000
 #define CR0	0000000
 #define FF0	0000000
 #define NL0	0000000
 #define BS0	0000000
+#define TAB0	0000000
+#define VT0	0000000
 #define OPOST	0000001
 #define OLCUC	0000002
 #define XCASE	0000004

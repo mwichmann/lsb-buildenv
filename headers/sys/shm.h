@@ -12,8 +12,11 @@
 
 
 
+#if defined(__i386__)
+/* IA32 */
 typedef unsigned long shmatt_t;
 
+#endif
 
 
 

@@ -36,7 +36,6 @@ typedef XID KeySym;
 
 
 /* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/
-#define AnyKey	0L
 #define NoSymbol	0L
 #define None	0L
 #define AnyButton	0L
@@ -45,6 +44,7 @@ typedef XID KeySym;
 #define AnyPropertyType	0L
 #define CurrentTime	0L
 #define PointerWindow	0L
+#define AnyKey	0L
 #define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
@@ -581,8 +581,8 @@ typedef XID KeySym;
 #define DisableScreenSaver	0
 #define PreferBlanking	1
 #define AllowExposures	1
-#define DefaultExposures	2
 #define DefaultBlanking	2
+#define DefaultExposures	2
 
 
 

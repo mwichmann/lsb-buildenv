@@ -1,11 +1,12 @@
 #ifndef _WCTYPE_H_
 #define _WCTYPE_H_
 
-#include <stddef.h>
 
 
 
 typedef unsigned long wctype_t;
+
+typedef unsigned int wint_t;
 
 typedef int wctrans_t;
 
