@@ -71,14 +71,6 @@ extern "C"
   }
    ;
 
-  struct in6_ifreq
-  {
-    struct in6_addr ifr6_addr;
-    uint32_t ifr6_prefixlen;
-    int ifr6_ifindex;
-  }
-   ;
-
 
 /* Well known IPV6 addresses*/
 #define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
