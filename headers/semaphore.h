@@ -24,4 +24,5 @@ int sem_post (sem_t *);
 int sem_trywait (sem_t *);
 int sem_unlink (char *);
 int sem_wait (sem_t *);
+int sem_timedwait (void);
 #endif

@@ -113,6 +113,7 @@ void *pthread_getspecific (pthread_key_t);
 int pthread_join (pthread_t, void **);
 int pthread_key_create (pthread_key_t *, void (*destructor) ());
 int pthread_key_delete (pthread_key_t);
+int pthread_kill (void);
 int pthread_mutex_destroy (pthread_mutex_t *);
 int pthread_mutex_init (pthread_mutex_t *, pthread_mutexattr_t *);
 int pthread_mutex_lock (pthread_mutex_t *);

@@ -3,6 +3,8 @@ struct sigstack;
 
 struct sigcontext;
 
+#define SIGRTMAX	(__libc_current_sigrtmax ())
+#define SIGRTMIN	(__libc_current_sigrtmin ())
 
 #define SIGHUP	1
 #define SIGUSR1	10
@@ -29,7 +31,6 @@ struct sigcontext;
 #define SIGPWR	30
 #define SIGUNUSED	31
 #define SIGSYS	31
-#define SIGRTMIN	32
 #define SIGILL	4
 #define SIGTRAP	5
 #define SIGIOT	6

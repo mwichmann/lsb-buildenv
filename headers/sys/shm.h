@@ -25,6 +25,7 @@ struct shmid_ds
 #define SHM_RND	020000
 #define SHM_RDONLY	4096
 
+int __getpagesize (void);
 void *shmat (int, void *, int);
 int shmctl (int, int, struct shmid_ds *);
 int shmdt (void *);
