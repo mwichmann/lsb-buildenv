@@ -1,2 +1,2 @@
 
-#define FIONREAD	1
+#define FIONREAD	0x541B

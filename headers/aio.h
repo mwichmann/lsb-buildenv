@@ -2,7 +2,7 @@
 #define _AIO_H_
 
 #include <sys/time.h>
-#include <signal.h>
+#include <stddef.h>
 #include <sys/types.h>
 
 
@@ -47,7 +47,7 @@ struct aiocb
   int aio_reqprio;
   void *aio_buf;
   size_t aio_nbytes;
-  struct sigevent aio_sigevent;
+  Unknown Type:".." aio_sigevent;
   struct aiocb *__next_prio;
   int __abs_prio;
   int __policy;
@@ -66,7 +66,7 @@ struct aiocb64
   int aio_reqprio;
   void *aio_buf;
   size_t aio_nbytes;
-  struct sigevent aio_sigevent;
+  Unknown Type:".." aio_sigevent;
   struct aiocb *__next_prio;
   int __abs_prio;
   int __policy;
@@ -80,7 +80,7 @@ struct aiocb64
 
 int aio_read (struct aiocb *);
 int aio_write (struct aiocb *);
-int lio_listio (int, struct aiocb *, int, struct sigevent *);
+int lio_listio (int, struct aiocb *, int);
 int aio_error (struct aiocb *);
 __ssize_t aio_return (struct aiocb *);
 int aio_cancel (int, struct aiocb *);
@@ -93,5 +93,5 @@ int aio_read64 (struct aiocb64 *);
 __ssize_t aio_return64 (struct aiocb64 *);
 int aio_suspend64 (struct aiocb64 *, int, struct timespec *);
 int aio_write64 (struct aiocb64 *);
-int lio_listio64 (int, struct aiocb64 *, int, struct sigevent *);
+int lio_listio64 (int, struct aiocb64 *, int);
 #endif

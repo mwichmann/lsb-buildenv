@@ -10,7 +10,7 @@ typedef struct
   __size_t gl_offs;
   int gl_flags;
   void (*gl_closedir) ();
-  struct dirent64 *(*gl_readdir) ();
+  Unknown Type:".." (*gl_readdir) ();
   void *(*gl_opendir) ();
   int (*gl_lstat) ();
   int (*gl_stat) ();
@@ -25,7 +25,7 @@ typedef struct
   __size_t gl_offs;
   int gl_flags;
   void (*gl_closedir) ();
-  struct dirent64 *(*gl_readdir) ();
+  Unknown Type:".." (*gl_readdir) ();
   void *(*gl_opendir) ();
   int (*gl_lstat) ();
   int (*gl_stat) ();

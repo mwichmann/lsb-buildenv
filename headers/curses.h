@@ -2,7 +2,7 @@
 #define _CURSES_H_
 
 #include <stdio.h>
-#include <sys/types.h>
+#include <stdarg.h>
 
 
 #define WA_ALTCHARSET	A_ALTCHARSET

@@ -2,7 +2,7 @@
 #define _SYS_IOCTL_H_
 
 
-#define FIONREAD	1
+#define FIONREAD	0x541B
 
 int ioctl (int, int, ...);
 #endif

@@ -41,7 +41,7 @@ struct aiocb
   int aio_reqprio;
   void *aio_buf;
   size_t aio_nbytes;
-  struct sigevent aio_sigevent;
+  Unknown Type:".." aio_sigevent;
   struct aiocb *__next_prio;
   int __abs_prio;
   int __policy;
@@ -60,7 +60,7 @@ struct aiocb64
   int aio_reqprio;
   void *aio_buf;
   size_t aio_nbytes;
-  struct sigevent aio_sigevent;
+  Unknown Type:".." aio_sigevent;
   struct aiocb *__next_prio;
   int __abs_prio;
   int __policy;
