@@ -787,6 +787,7 @@ GLIBC_2.2 {
   __sysconf;
   __xstat64;
   fgetwc;
+  fgetwc_unlocked;
   fgetws;
   fputwc;
   fputws;
@@ -799,6 +800,7 @@ GLIBC_2.2 {
   getwchar;
   memrchr;
   mkstemp64;
+  posix_memalign;
   putwc;
   putwchar;
   readdir64;
@@ -807,6 +809,7 @@ GLIBC_2.2 {
   swscanf;
   ungetwc;
   vfwprintf;
+  vfwscanf;
   vswprintf;
   vswscanf;
   vwprintf;
