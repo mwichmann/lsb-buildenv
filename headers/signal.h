@@ -635,7 +635,7 @@ extern "C"
   extern int sigignore (void);
   extern int siginterrupt (int, int);
   extern int sigisemptyset (const sigset_t *);
-  extern int sigismember (void);
+  extern int sigismember (const sigset_t *, int);
   extern int sigorset (sigset_t *, const sigset_t *, const sigset_t *);
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
