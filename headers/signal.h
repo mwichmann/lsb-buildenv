@@ -117,6 +117,10 @@ extern "C"
 
 #endif
 
+/* PPC32 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
+
+
+
 
 
 #if __powerpc64__
@@ -129,6 +133,9 @@ extern "C"
   typedef elf_fpreg_t elf_fpregset_t[33];
 
 #endif
+
+
+
 
 /* System defined signals.*/
 #define SIG_ERR	((sighandler_t)-1)
@@ -700,8 +707,10 @@ extern "C"
     struct ia64_fpreg sc_fr[128];
     unsigned long sc_rbs_base;	/* NULL or new base of sighandler's rbs */
     unsigned long sc_loadrs;	/* see description above */
-    unsigned long sc_rsvd[14];
-    unsigned long sc_mask;
+    unsigned long sc_ar25;	/* cmp8xchg16 uses this */
+    unsigned long sc_ar26;	/*  rsvd for scratch use */
+    unsigned long sc_rsvd[12];
+    sigset_t sc_mask;
   }
    ;
 
