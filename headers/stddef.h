@@ -12,8 +12,10 @@ extern "C"
 #define NULL	(0)
 
 
+#if !defined(__cplusplus)
   typedef long wchar_t;
 
+#endif
   typedef unsigned int size_t;
 
   typedef long ptrdiff_t;
