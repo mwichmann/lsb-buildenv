@@ -45,6 +45,7 @@ extern "C"
   extern int strcasecmp (const char *, const char *);
   extern char *strdup (const char *);
   extern int strncasecmp (const char *, const char *, size_t);
+  extern char *strndup (const char *, size_t);
   extern char *strsep (char **, const char *);
   extern char *strerror_r (int, char *, size_t);
   extern char *strtok_r (char *, const char *, char **);

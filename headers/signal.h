@@ -388,7 +388,7 @@ extern "C"
     union
     {
       __sighandler_t _sa_handler;
-      void (*_sa_sigaction) (void);
+      void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
     unsigned long sa_flags;
