@@ -1,0 +1,5 @@
+int getpriority (int , int );
+int getrlimit (int , struct rlimit *);
+int getrusage (int , struct rusage *);
+int setpriority (int , int , int );
+int setrlimit (int , struct rlimit *);

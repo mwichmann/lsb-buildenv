@@ -1,0 +1,8 @@
+int ioctl(int fildes, int request, ... /* arg */);
+int fattach(int fildes, const char *path);
+int fdetach(const char *path);
+int getmsg(int fildes, struct strbuf *ctlptr, struct strbuf *dataptr, int *flagsp);
+int getpmsg(int fildes, struct strbuf *ctlptr, struct strbuf *dataptr, int *bandp, int *flagsp);
+int isastream(int fildes);
+int putmsg(int fildes, const struct strbuf *ctlptr, const struct strbuf *dataptr, int flags);
+int putpmsg(int fildes, const struct strbuf *ctlptr, const struct strbuf *dataptr, int band, int flags);

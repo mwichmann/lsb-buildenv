@@ -1,0 +1,1 @@
+int ftime(struct timeb *tp);

@@ -1,0 +1,3 @@
+ va_arg (va_list , );
+void va_end (va_list );
+void va_start (va_list , );

@@ -1,0 +1,2 @@
+int glob (const char *, int , int (*) (const char * , int ), glob_t *);
+void globfree(glob_t *pglob);

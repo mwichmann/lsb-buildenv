@@ -1,0 +1,25 @@
+#define NULL    	0
+
+#define BUFSIZ  	8192
+#define EOF     	(-1)
+#define FOPEN_MAX       255
+
+#define L_ctermid       9
+#define L_cuserid       9
+#define L_tmpnam        9
+#define P_tmpdir        "/tmp"
+
+#define SEEK_SET        0
+#define SEEK_CUR        1
+#define SEEK_END        2
+
+#define _IOFBF          0
+#define _IOLBF          1
+#define _IONBF          2
+
+#define TMP_MAX 	238328
+
+extern FILE *stderr;
+extern FILE *stdin;
+extern FILE *stdout;
+

@@ -1,0 +1,2 @@
+#define UL_GETFSIZE     (-1)	/* unable to find these */
+#define UL_SETFSIZE     (-1)	/* unable to find these */

@@ -1,0 +1,1 @@
+ftw(const char *, int (*)(const char *, const struct stat*, int) int);

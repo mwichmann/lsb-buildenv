@@ -1,0 +1,6 @@
+int advance(const char *string, const char *expbuf);
+extern char* loc1;
+extern char *loc2;
+char *locs;
+int step(const char *string, const char *expbuf);
+char *compile(char *instring, char *expbuf, const char *endbuf, int eof);

@@ -1,0 +1,9 @@
+int chmod (const char *, mode_t );
+int fchmod (int , int );
+int mkdir (const char *, mode_t );
+int mkfifo (const char *, mode_t );
+mode_t umask (mode_t );
+int fstat (int , struct stat *);
+int lstat (const char *, struct stat *);
+int mknod (const char *, int , int );
+int stat (const char *, struct stat *);
