@@ -2,6 +2,7 @@
 #define _WCHAR_H_
 
 #include <sys/types.h>
+#include <time.h>
 #include <wctype.h>
 #include <stdio.h>
 #include <stddef.h>

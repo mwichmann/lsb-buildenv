@@ -15,7 +15,7 @@ extern "C"
 
   typedef unsigned int wint_t;
 
-  typedef int32_t *wctrans_t;
+  typedef const int32_t *wctrans_t;
 
   typedef struct
   {
@@ -25,8 +25,8 @@ extern "C"
   mbstate_t;
 
 
-  extern wctrans_t wctrans (char *);
-  extern wctype_t wctype (char *);
+  extern wctrans_t wctrans (const char *);
+  extern wctype_t wctype (const char *);
 #ifdef __cplusplus
 }
 #endif
