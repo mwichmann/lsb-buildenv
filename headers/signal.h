@@ -329,7 +329,7 @@ extern "C"
   {
     union
     {
-      __sighandler_t _sa_handler;
+      sighandler_t _sa_handler;
       void (*_sa_sigaction) (int, siginfo_t *, void *);
     }
     __sigaction_handler;
@@ -662,7 +662,7 @@ extern "C"
   extern int sigorset (sigset_t *, const sigset_t *, const sigset_t *);
   extern int sigpending (sigset_t *);
   extern int sigrelse (int);
-  extern sighandler_t sigset (int, __sighandler_t);
+  extern sighandler_t sigset (int, sighandler_t);
   extern int sigstack (struct sigstack *, struct sigstack *);
   extern int pthread_kill (pthread_t, int);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
@@ -671,7 +671,7 @@ extern "C"
   extern int kill (pid_t, int);
   extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
   extern int sigblock (int);
-  extern sighandler_t signal (int, __sighandler_t);
+  extern sighandler_t signal (int, sighandler_t);
   extern int sigpause (int);
   extern int sigprocmask (int, sigset_t *, sigset_t *);
   extern int sigreturn (struct sigcontext *);
