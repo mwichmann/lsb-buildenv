@@ -1,14 +1,16 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
   atoll;
-  svc_register;
-  svc_sendreply;
-  svctcp_create;
-  svcudp_create;
   vfscanf;
   vscanf;
   vsscanf;
   xdr_u_int;
+};
+GLIBC_2.2 {
+  svc_register;
+  svc_sendreply;
+  svctcp_create;
+  svcudp_create;
 };
 GLIBC_2.2.5 {
   _Exit;
