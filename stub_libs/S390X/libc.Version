@@ -533,7 +533,6 @@ GLIBC_2.2 {
   sigrelse;
   sigreturn;
   sigset;
-  sigstack;
   sigsuspend;
   sigtimedwait;
   sigwait;

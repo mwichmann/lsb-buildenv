@@ -431,7 +431,6 @@ GLIBC_2.0 {
   sigpending;
   sigprocmask;
   sigreturn;
-  sigstack;
   sigsuspend;
   sigwait;
   sleep;

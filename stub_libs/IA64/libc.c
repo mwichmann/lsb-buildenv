@@ -537,7 +537,6 @@ void sigqueue() {} ;
 void sigrelse() {} ;
 void sigreturn() {} ;
 void sigset() {} ;
-void sigstack() {} ;
 void sigsuspend() {} ;
 void sigtimedwait() {} ;
 void sigwait() {} ;
