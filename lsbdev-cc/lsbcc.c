@@ -1,7 +1,7 @@
 /*
  * (C) Copyright 2002 The Free Standards Group Inc
  *
- * 2002/03/19 Chris Yeoh, IBM
+ * 2002/05/09 Stuart Anderson, Free Standards Group
  *
  */
 /*
@@ -47,6 +47,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include <getopt.h>
 
 /* begin lsbcc.h */
@@ -192,13 +193,43 @@ for(i=0;i<ag->numargv;i++)
  * a few routines here that are used to to the special processing.
  */
 
+char *lsblibs[] = {
+	"c",
+	"pthread",
+	"util",
+	"dl",
+	"crypt",
+	"curses",
+	"X11",
+	"Xt",
+	"Xext",
+	"SM",
+	"ICE",
+	0
+	};
+
 void
 process_opt_l(char *val)
 {
 char	buf[32];
+int	i;
 
 sprintf(buf,"-l%s",val);
+
+/* First check to see if it is a LSB library. If so, just pass it through */
+for(i=0;lsblibs[i];i++) {
+	if( strcmp(lsblibs[i],val) == 0 ) {
+		argvaddstring(userlibs,strdup(buf));
+		return;
+	}
+}
+
+/* So it's not an LSB library. Make sure it is getting statically linked */
+
+argvaddstring(userlibs,"-Wl,-Bstatic");
 argvaddstring(userlibs,strdup(buf));
+argvaddstring(userlibs,"-Wl,-Bdynamic");
+
 }
 
 /* end option processing routines */
@@ -332,7 +363,9 @@ if (optind < argc) {
 */
 		argvaddstring(options,argv[optind++]);
 		}
+/*
 	printf ("\n");
+*/
 	}
 
 
