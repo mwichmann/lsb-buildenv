@@ -47,6 +47,9 @@ extern "C"
 #if __ia64__
 #define _STAT_VER	1
 #endif
+#if __powerpc64__
+#define _STAT_VER	1
+#endif
 #if __x86_64__
 #define _STAT_VER	1
 #endif
@@ -57,9 +60,6 @@ extern "C"
 #define _STAT_VER	3
 #endif
 #if __powerpc__ && !__powerpc64__
-#define _STAT_VER	3
-#endif
-#if __powerpc64__
 #define _STAT_VER	3
 #endif
 #if __s390__ && !__s390x__
@@ -126,20 +126,20 @@ extern "C"
 /* IA64 */
   struct stat
   {
-    unsigned long st_dev;
-    unsigned long st_ino;
-    unsigned long st_nlink;
-    unsigned int st_mode;
-    unsigned int st_uid;
-    unsigned int st_gid;
+    dev_t st_dev;
+    ino_t st_ino;
+    nlink_t st_nlink;
+    mode_t st_mode;
+    uid_t st_uid;
+    gid_t st_gid;
     unsigned int pad0;
-    unsigned long st_rdev;
-    unsigned long st_size;
-    unsigned long st_blksize;
-    long st_blocks;
+    dev_t st_rdev;
+    off_t st_size;
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
+    blksize_t st_blksize;
+    blkcnt_t st_blocks;
     unsigned long __unused[3];
   }
    ;
@@ -198,20 +198,20 @@ extern "C"
 /* IA64 */
   struct stat64
   {
-    unsigned long st_dev;
-    unsigned long st_ino;
-    unsigned long st_nlink;
-    unsigned int st_mode;
-    unsigned int st_uid;
-    unsigned int st_gid;
+    dev_t st_dev;
+    ino64_t st_ino;
+    nlink_t st_nlink;
+    mode_t st_mode;
+    uid_t st_uid;
+    gid_t st_gid;
     unsigned int pad0;
-    unsigned long st_rdev;
-    unsigned long st_size;
-    unsigned long st_blksize;
-    long st_blocks;
+    dev_t st_rdev;
+    off_t st_size;
     struct timespec st_atim;	/* Time of last access. */
     struct timespec st_mtim;	/* Time of last modification. */
     struct timespec st_ctim;	/* Time of last status change. */
+    blksize_t st_blksize;
+    blkcnt64_t st_blocks;
     unsigned long __unused[3];
   }
    ;
