@@ -22,6 +22,7 @@ GLIBC_2.0 {
   __libc_start_main;
   __lxstat;
   __mempcpy;
+  __moddi3;
   __sigsetjmp;
   __stpcpy;
   __strdup;
