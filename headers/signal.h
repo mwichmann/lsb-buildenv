@@ -529,7 +529,7 @@ extern "C"
   extern int siggetmask (void);
   extern int sighold (void);
   extern int sigignore (void);
-  extern int siginterrupt (void);
+  extern int siginterrupt (int, int);
   extern int sigismember (void);
   extern int sigpending (sigset_t *);
   extern int sigrelse (void);
