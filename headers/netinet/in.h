@@ -10,9 +10,24 @@ extern "C"
 #endif
 
 
+#define IPPROTO_IPV6
+#define IPPROTO_IPV6
+#define IPV6_ADD_MEMBERSHIP
+#define IPV6_DROP_MEMBERSHIP
+#define IPV6_UNICAST_HOPS
+#define IN6_IS_ADDR_LINKLOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfe800000))
+#define IN6_IS_ADDR_SITELOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfec00000))
 #define IN_MULTICAST(a)	((((in_addr_t)(a))&0xf0000000)==0xe0000000)
+#define IN6_IS_ADDR_UNSPECIFIED(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == 0)
+#define IN6_IS_ADDR_LOOPBACK(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == htonl (1))
+#define IN6_IS_ADDR_MULTICAST(a)	(((const uint8_t *) (a))[0] == 0xff)
 #define INADDR_NONE	((unsigned long int) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
+#define IN6_IS_ADDR_MC_NODELOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x1))
+#define IN6_IS_ADDR_MC_LINKLOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x2))
+#define IN6_IS_ADDR_MC_SITELOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x5))
+#define IN6_IS_ADDR_MC_ORGLOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x8))
+#define IN6_IS_ADDR_MC_GLOBAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0xe))
 #define INADDR_ANY	0
 #define IPPROTO_IP	0
 #define SOL_IP	0
@@ -20,11 +35,19 @@ extern "C"
 #define IPPROTO_ICMP	1
 #define IP_TOS	1
 #define INET_ADDRSTRLEN	16
+#define IPV6_UNICAST_HOPS	16
 #define IPPROTO_UDP	17
+#define IPV6_MULTICAST_IF	17
+#define IPV6_MULTICAST_HOPS	18
+#define IPV6_MULTICAST_LOOP	19
 #define IPPROTO_IGMP	2
+#define IPV6_JOIN_GROUP	20
+#define IPV6_LEAVE_GROUP	21
 #define IPPROTO_RAW	255
 #define INET6_ADDRSTRLEN	46
 #define IPPROTO_TCP	6
+#define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
+#define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
 #define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
 #define IN6ADDR_LOOPBACK_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
 
