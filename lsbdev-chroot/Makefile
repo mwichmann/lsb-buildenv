@@ -24,9 +24,8 @@ install: configure
 	  config/extra_mount_dirs.conf config/extra_mount_files.conf \
 	  ${OVERRIDE_ROOT}/etc/lsbdev
 	mkdir -p ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
-	cp -pr rpm-3.0.6 ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
 	cp -pr stub_libs ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
-
+	cp -pr lsb_header ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
 
 clean:
 	rm -f config/lsbdev.conf lsbdev
