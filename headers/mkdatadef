@@ -241,6 +241,18 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 print "Unknown Type: \".$$type{'Ttype'}.\"\n";
 }
 
+sub
+displayconstant($)
+{
+local ($const) = @_;
+
+print "#define ";
+print $$const{'Cname'};
+print "\t";
+print $$const{'Cvalue'};
+print "\n";
+}
+
 GetOptions("h=s" => \$headname,
 	   "a=s" => \$archname);
  
@@ -343,6 +355,7 @@ if( $typelist eq "" ) { exit 0; }
 
 $select = "SELECT HGid,HGdescription FROM HeaderGroup ";
 $select.= "WHERE HGheader=$Hid ";
+$select.= "AND HGorder!=0 ";
 $select.= "ORDER BY HGorder";
 print $select,"\n" if $trace;
 $hgh = $Dbh->query($select) || die $Dbh->errmsg();
@@ -351,9 +364,10 @@ for(1..$hgh->numrows) {
 	$HGid=$entry{'HGid'};
 	$HGdesc=$entry{'HGdescription'};
 	# Need to skip the Default group name as well.
-	#if ($HGdesc ne ""  ) {
-	#	print "/*\n * $HGdesc\n */\n";
-	#	}
+	if ($HGdesc ne ""  ) {
+		print "/*\n * $HGdesc\n */\n";
+		}
+	# Display the Types
 	$select = "SELECT * FROM Type WHERE Theadergroup=$HGid ";
 	$select.= "AND Tarch=$Aid ";
 	$select.= "AND Tstatus != 'Excluded' ";
@@ -366,6 +380,18 @@ for(1..$hgh->numrows) {
 		displaytype(\%tentry);
 		print ";";
 		print $tentry{'Tcomment'}."\n\n";
+		}
+	# Display the Constants
+	$select = "SELECT * FROM Constant WHERE Cheadgroup=$HGid ";
+	$select.= "AND Carch=$Aid ";
+	$select.= "AND Cstd ='Yes' ";
+	$select.=" ORDER BY Cvalue";
+	$ch = $Dbh->query($select) || die $Dbh->errmsg();
+	print $ch->numrows," rows\n" if $trace;
+	for(1..$ch->numrows) {
+		%centry=$ch->fetchhash;
+		displayconstant(\%centry);
+		# Print comment here 
 		}
 	}
 
