@@ -66,6 +66,20 @@ struct argvgroup {
 
 /* end lsbcc.h */
 
+/*
+ * These are the catagories of options that we are going to be grouping
+ * together.
+ */
+
+struct argvgroup *proginterp;
+struct argvgroup *target;
+struct argvgroup *options;
+struct argvgroup *libpaths;
+struct argvgroup *incpaths;
+struct argvgroup *userlibs;
+struct argvgroup *syslibs;
+struct argvgroup *gccargs;
+
 /* begin argv ADT */
 /*
  * Create an abstract data type to maintain the options that are collected
@@ -179,18 +193,9 @@ for(i=0;i<ag->numargv;i++)
  */
 
 void
-process_opt_D(char *opt, char *val)
+process_opt_l(char *val)
 {
-}
-
-void
-process_opt_L(char *opt, char *val)
-{
-}
-
-void
-process_opt_W(char *opt, char *val)
-{
+argvadd(userlibs,"l",val);
 }
 
 /* end option processing routines */
@@ -209,20 +214,6 @@ find_gcc_base_dir()
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
 }
 /* end utility functions */
-
-/*
- * These are the catagories of options that we are going to be grouping
- * together.
- */
-
-struct argvgroup *proginterp;
-struct argvgroup *target;
-struct argvgroup *options;
-struct argvgroup *libpaths;
-struct argvgroup *incpaths;
-struct argvgroup *userlibs;
-struct argvgroup *syslibs;
-struct argvgroup *gccargs;
 
 /*
  * These are the otpions we need to recognize.
@@ -300,6 +291,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		break;
 	case 'I':
 		argvadd(incpaths,"I",optarg);
+		break;
+	case 'l':
+		process_opt_l(optarg);
 		break;
 	case '?':
 		/*
