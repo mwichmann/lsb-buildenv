@@ -8,7 +8,6 @@ GLIBC_2.3 {
   _pthread_cleanup_push;
   pread;
   pread64;
-  pthread_atfork;
   pthread_attr_destroy;
   pthread_attr_getdetachstate;
   pthread_attr_getguardsize;
