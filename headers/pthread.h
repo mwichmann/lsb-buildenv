@@ -18,9 +18,11 @@ extern "C"
 #define PTHREAD_MUTEX_RECURSIVE	2
 #define PTHREAD_RWLOCK_DEFAULT_NP	2
 #define PTHREAD_MUTEX_ERRORCHECK	3
+#define pthread_cleanup_pop(execute)	_pthread_cleanup_pop(&_buffer,(execute));}
 #define __LOCK_INITIALIZER	{ 0, 0 }
 #define PTHREAD_RWLOCK_INITIALIZER	{ __LOCK_INITIALIZER, 0, NULL, NULL, NULL,PTHREAD_RWLOCK_DEFAULT_NP, PTHREAD_PROCESS_PRIVATE }
 #define PTHREAD_MUTEX_INITIALIZER	{0,0,0,PTHREAD_MUTEX_TIMED_NP,__LOCK_INITIALIZER}
+#define pthread_cleanup_push(routine,arg)	{struct _pthread_cleanup_buffer _buffer;_pthread_cleanup_push(&_buffer,(routine),(arg));
 #define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
 
 
@@ -152,6 +154,10 @@ extern "C"
 
 
 
+  extern void _pthread_cleanup_pop (void);
+  extern void _pthread_cleanup_push (void);
+  extern pid_t pthread_atfork (void (*prepare) (void), void (*parent) (void),
+			       void (*child) (void));
   extern int pthread_attr_destroy (pthread_attr_t *);
   extern int pthread_attr_getdetachstate (pthread_attr_t *, int *);
   extern int pthread_attr_getinheritsched (pthread_attr_t *, int *);
