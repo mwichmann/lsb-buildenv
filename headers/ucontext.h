@@ -62,12 +62,18 @@ extern "C"
 #endif
 #if __powerpc64__
 /* PPC64 */
+  typedef struct _libc_vscr
+  {
+    unsigned int __pad[3];
+    unsigned int vscr_word;
+  } vscr_t;
+
   typedef struct _libc_vrstate
   {
     unsigned int vrregs[32][4];
     vscr_t vscr;
     unsigned int vrsave;
-    unsigned int __pad;
+    unsigned int __pad[3];
   }
   vrregset_t __attribute__ ((__aligned__ (16)));
 
@@ -296,7 +302,7 @@ extern "C"
 /* PPC64 */
   typedef struct
   {
-    unsigned long __unused;
+    unsigned long __unused[4];
     int signal;
     int pad0;
     unsigned long handler;
@@ -305,7 +311,7 @@ extern "C"
     gregset_t gp_regs;
     fpregset_t fp_regs;
     vrregset_t *v_regs;
-    long vmx_reserve;
+    long vmx_reserve[69];
   }
   mcontext_t;
 
