@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.16 $
+# This is $Revision: 1.17 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.17  2002/04/09 09:10:33  cyeoh
+# Adds ability to override symbol versions in db
+#
 # Revision 1.16  2002/04/09 08:42:16  cyeoh
 # Remove dead alias code
 # No need to check size if variable is an alias
@@ -93,6 +96,7 @@ my($TargetArch);
 my($TargetArchId);
 my(%Options);
 my(%MissingData);
+my(%OverrideVersions);
 my(%LibcAliases) = (
   "sys_errlist" => "_sys_errlist",
   "tzname" => "__tzname",
@@ -144,6 +148,45 @@ sub LoadMissingData()
   }
 }
 
+#----------------------------------------------------------------------
+# Load overriding symbol version data
+sub LoadOverrideSymbolData()
+{
+  local(*DATAFILE);
+  my($line);
+  my($library, $symbol, $version);
+  my($missing_file) = "$DestinationDirectory/override_versions.txt";
+  if (open(DATAFILE, $missing_file))
+  {
+    while (defined($line = <DATAFILE>))
+    {
+      if ($line =~ /^\#/)
+      {
+        # Comment
+        next;
+      }
+      else
+      {
+        chomp($line);
+        ($library, $symbol, $version) = split(/\s+/, $line);
+        $version =~ s/^\s+//;
+        $version =~ s/\s+$//;
+        if (defined($OverrideVersions{$library}{$symbol}))
+        {
+          print "Warning: $symbol defined twice in $missing_file\n";
+        }
+        $OverrideVersions{$library}{$symbol} = $version;
+#        print "Got $library, $symbol, $version\n"
+      }
+    }
+    close(DATAFILE);
+  }
+  else
+  {
+    print "Could not open $missing_file\n";
+  }
+}
+
 ######################################################################
 # Generate C stub code for a library
 sub GenerateLibrary($$$)
@@ -157,6 +200,7 @@ sub GenerateLibrary($$$)
   my(%versionInfo);
   local(*STUBFILE);
   local(*VERSIONFILE);
+  my($version);
 
   open(STUBFILE, ">$DestinationDirectory/$libName.c")
       || die "Could not open $DestinationDirectory/$libName.c to write\n";
@@ -202,72 +246,87 @@ sub GenerateLibrary($$$)
   my($size);
   while ($row = $sth->fetchrow_hashref())
   {
-      # Work out size of data variable
-      $size = 0;
-      if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
-      {
-        if (defined($MissingData{$libName}) 
-            && defined($MissingData{$libName}{$row->{Iname}}))
-        {
-          print STDOUT "Size not available for symbol $row->{Iname}"
-            . "  but overriding with $MissingData{$libName}{$row->{Iname}}\n";
-          $size = $MissingData{$libName}{$row->{Iname}};
-        }
-        else
-        {
-          # Size is not required for aliases
-          if ($row->{Itype} ne "Alias")
-          {
-            print "No data for symbol $row->{Iname}\n";
-          }
-        }
-#      $size = 1000; # temporarily make it big to avoid problems
-      }
-      else
-      {
-        $size = $row->{"ATsize"};
-
-        if (defined($MissingData{$libName}) 
-            && defined($MissingData{$libName}{$row->{Iname}}))
-        {
-          print STDOUT "Overriding size of $row->{Iname} from $size to "
-              . $MissingData{$libName}{$row->{Iname}} . "\n";
-          $size = $MissingData{$libName}{$row->{Iname}};
-        }
-      }
-
-      if($row->{Itype} eq "Common" )
-      {
-        print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");
-      }
-      elsif($row->{Itype} eq "Alias" )
-      {
-        print(STUBFILE "__asm__(\".weak $row->{Iname}; $row->{Iname} = $LibcAliases{$row->{Iname}}\");\n");
-      }
-      elsif($row->{Itype} eq "Data" )
-      {
-        my($varname) = $row->{Iname};
-        print(STUBFILE "__asm__(\".globl $varname; .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0\");\n");
-      }
-      else
-      {
-        print "Skipping ",$row->{Iname},"\n";
-      }
-
-    if (defined($row->{Vname}))
+    # Work out size of data variable
+    $size = 0;
+    if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
     {
-      # Unversioned symbols will not have the Vname field defined
-      if (!defined($versionInfo{$row->{Vname}}))
+      if (defined($MissingData{$libName}) 
+          && defined($MissingData{$libName}{$row->{Iname}}))
       {
-        $versionInfo{$row->{Vname}} = ();
+        print STDOUT "Size not available for symbol $row->{Iname}"
+            . "  but overriding with $MissingData{$libName}{$row->{Iname}}\n";
+        $size = $MissingData{$libName}{$row->{Iname}};
       }
-      push(@{$versionInfo{$row->{Vname}}}, $row->{Iname});
+      else
+      {
+        # Size is not required for aliases
+        if ($row->{Itype} ne "Alias")
+        {
+          print "No data for symbol $row->{Iname}\n";
+        }
+      }
+#      $size = 1000; # temporarily make it big to avoid problems
+    }
+    else
+    {
+      $size = $row->{"ATsize"};
+
+      if (defined($MissingData{$libName}) 
+          && defined($MissingData{$libName}{$row->{Iname}}))
+      {
+        print STDOUT "Overriding size of $row->{Iname} from $size to "
+            . $MissingData{$libName}{$row->{Iname}} . "\n";
+        $size = $MissingData{$libName}{$row->{Iname}};
+      }
     }
 
+    if($row->{Itype} eq "Common" )
+    {
+      print(STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n");
+    }
+    elsif($row->{Itype} eq "Alias" )
+    {
+      print(STUBFILE "__asm__(\".weak $row->{Iname}; $row->{Iname} = $LibcAliases{$row->{Iname}}\");\n");
+    }
+    elsif($row->{Itype} eq "Data" )
+    {
+      my($varname) = $row->{Iname};
+      print(STUBFILE "__asm__(\".globl $varname; .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0\");\n");
+    }
+    else
+    {
+      print "Skipping ",$row->{Iname},"\n";
+    }
+
+    undef($version);
+    $version = $row->{Vname} unless !defined($row->{Vname});
+    if (defined($OverrideVersions{$libName})
+        && defined($OverrideVersions{$libName}{$row->{Iname}}))
+    {
+      print "Overriding $row->{Iname} with symbol version '$OverrideVersions{$libName}{$row->{Iname}}' ";
+      if (defined($version))
+      {
+        print "was '$version'\n";
+      }
+      else
+      {
+        print "was unversioned\n";
+      }
+    }
+    
+    if (defined($version))
+    {
+      # Unversioned symbols will not have the Vname field defined
+      if (!defined($versionInfo{$version}))
+      {
+        $versionInfo{$version} = ();
+      }
+      push(@{$versionInfo{$version}}, $row->{Iname});
+    }
+    
   }
 
   # Dump version information
-  my($version);
   my($symbol);
   my($symbols);
   print VERSIONFILE "LSB_DUMMY { __LSB_DUMMY; };\n";
@@ -357,6 +416,7 @@ if (! -d $DestinationDirectory)
 }
 
 LoadMissingData();
+LoadOverrideSymbolData();
 
 # Map of name to run-time name of shared library
 local(*LIBMAPFILE);
