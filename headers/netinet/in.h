@@ -17,6 +17,8 @@ extern "C"
 #define IPV6_UNICAST_HOPS
 #define IN6_IS_ADDR_LINKLOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfe800000))
 #define IN6_IS_ADDR_SITELOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfec00000))
+#define IN6_IS_ADDR_V4COMPAT(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == 0) && (ntohl (((const uint32_t *) (a))[3]) > 1))
+#define IN6_IS_ADDR_V4MAPPED(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == htonl (0xffff)))
 #define IN_MULTICAST(a)	((((in_addr_t)(a))&0xf0000000)==0xe0000000)
 #define IN6_IS_ADDR_UNSPECIFIED(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == 0)
 #define IN6_IS_ADDR_LOOPBACK(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == htonl (1))
