@@ -205,8 +205,8 @@ extern "C"
   extern long lroundl (long double);
   extern int matherr (struct exception *);
   extern double nan (const char *);
-  extern float nanf (char *);
-  extern long double nanl (char *);
+  extern float nanf (const char *);
+  extern long double nanl (const char *);
   extern double nearbyint (double);
   extern float nearbyintf (float);
   extern long double nearbyintl (long double);
