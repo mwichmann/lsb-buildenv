@@ -737,5 +737,7 @@ __asm__(".comm stdout,4");
 __asm__(".weak timezone; timezone = __timezone");
 __asm__(".weak tzname; tzname = __tzname");
 __asm__(".weak daylight; daylight = __daylight");
+__asm__(".globl __timezone; .data; .type __timezone,@object; .size __timezone, 4; __timezone: .long 0");
+__asm__(".globl __daylight; .data; .type __daylight,@object; .size __daylight, 4; __daylight: .long 0");
 __asm__(".weak _h_errno; _h_errno = h_errno");
 __asm__(".globl __tzname; .data; .type __tzname,@object; .size __tzname, 4; __tzname: .long 0");
