@@ -984,3 +984,8 @@ libstdcxx _ZTSPKt 4
 libstdcxx _ZNSt14numeric_limitsIsE6digitsE 4
 libstdcxx _ZTVN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEEE f0
 libstdcxx _ZTSSt10moneypunctIwLb0EE 16
+libstdcxx _ZNSs20_S_empty_rep_storageE 20
+libstdcxx _ZNSt24__default_alloc_templateILb1ELi0EE12_S_free_listE 80
+libstdcxx _ZSt4cerr 110
+libstdcxx _ZSt4cout 110
+libstdcxx _ZNKSt12__basic_fileIcE7is_openEv 20
