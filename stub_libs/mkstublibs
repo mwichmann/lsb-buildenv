@@ -6,9 +6,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.15 $
+# This is $Revision: 1.16 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.16  2002/04/09 08:42:16  cyeoh
+# Remove dead alias code
+# No need to check size if variable is an alias
+#
 # Revision 1.15  2002/04/09 04:47:40  cyeoh
 # Moves missing_data.txt file into arch specific directory
 # Moves overrides from perl script into missing_data.txt file
@@ -104,82 +108,6 @@ my(%LibcAliases) = (
 my($DestinationDirectory) = "";
 
 #----------------------------------------------------------------------
-# Look through local shared libraries for aliases
-# We only do this because the database does not (yet) have this
-# information.
-sub GenerateAliases($)
-{
-  my($libfilename) = shift;
-  my($aliases) = {};
-  my(@searchDirs) = ("/", "/lib", "/usr/lib", "/usr/X11R6/lib");
-  my($loop);
-  my($useDir);
-  my(%lookup);
-  my(@nmLine);
-  
-  local(*NMOUTPUT);
-
-  foreach $loop (@searchDirs)
-  {
-    if (-f "$loop/$libfilename")
-    {
-      $useDir = $loop;
-      last;
-    }
-  }
-  if (!defined($useDir))
-  {
-    die "Could not find $libfilename in search path (for aliases): @searchDirs\n";
-  }
-  
-  if (system("nm -D $useDir/$libfilename | sort > /tmp/mkstublibs.$$")
-      /256!=0)
-  {
-    die "nm of shared library failed\n";
-  }
-  
-  my($line);
-  if (open(NMOUTPUT, "/tmp/mkstublibs.$$"))
-  {
-    while (defined($line = <NMOUTPUT>))
-    {
-      chomp($line);
-      @nmLine = split(/ /, $line);
-      if ($#nmLine==2)
-      {
-        if ($nmLine[1] eq "D")
-        {
-          $lookup{$nmLine[0]} = $nmLine[2];
-        }
-      }
-    }
-    seek(NMOUTPUT, 0, 0);
-    while (defined($line = <NMOUTPUT>))
-    {
-      chomp($line);
-      @nmLine = split(/ /, $line);
-      if ($#nmLine==2)
-      {
-        if ($nmLine[1] eq "V")
-        {
-          if (exists($lookup{$nmLine[0]}))
-          {
-            print "Found alias: $nmLine[2] is alias to $lookup{$nmLine[0]}\n";
-            $aliases->{$nmLine[2]} = $lookup{$nmLine[0]};
-          }
-        }
-      }
-    }
-  }
-  else
-  {
-    die "Failed to open temorary file: /tmp/mkstublibs.$$\n";
-  }
-
-}
-
-
-#----------------------------------------------------------------------
 # Load data missing from database for size of variables
 # IA32 specific!
 sub LoadMissingData()
@@ -268,7 +196,7 @@ sub GenerateLibrary($$$)
                        "AND Istatus='Included' ".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname";
-  #print "$select\n";
+# print "$select\n";
   $sth = $dbh->prepare($select) || die $dbh->errstr;  
   $sth->execute() || die $sth->errstr;
   my($size);
@@ -287,7 +215,11 @@ sub GenerateLibrary($$$)
         }
         else
         {
-          print "No data for symbol $row->{Iname}\n";
+          # Size is not required for aliases
+          if ($row->{Itype} ne "Alias")
+          {
+            print "No data for symbol $row->{Iname}\n";
+          }
         }
 #      $size = 1000; # temporarily make it big to avoid problems
       }
@@ -441,12 +373,10 @@ $sth = $dbh->prepare("SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
-my($dataAliases);
 while ($row = $sth->fetchrow_hashref)
 {
   print "Generating c stubs for $row->{Lname} library ($row->{ALrunname})\n";
   print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
-#  $dataAliases = GenerateAliases($row->{ALrunname});
   GenerateLibrary($dbh, $row->{Lname}, $row->{Lid});
 }
 
