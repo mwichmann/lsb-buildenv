@@ -91,16 +91,6 @@ extern "C"
    ;
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_greg_t elf_gregset_t[64];
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_fpreg_t elf_fpregset_t[33];
-
-#endif
 #if __s390x__
 /* S390X */
   typedef struct
@@ -110,6 +100,33 @@ extern "C"
     unsigned long acrs;
   }
   _s390_regs_common;
+
+#endif
+
+/* PPC64 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
+
+
+#if __powerpc64__
+/* PPC64 */
+  typedef unsigned long elf_greg_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef double elf_fpreg_t;
+
+#endif
+
+
+
+#if __powerpc64__
+/* PPC64 */
+  typedef elf_greg_t elf_gregset_t[64];
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef elf_fpreg_t elf_fpregset_t[33];
 
 #endif
 
