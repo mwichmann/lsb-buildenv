@@ -30,7 +30,7 @@ extern "C"
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef unsigned long size_t;
+  typedef unsigned int size_t;
 
 #endif
 #if __powerpc64__
