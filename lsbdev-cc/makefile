@@ -14,11 +14,11 @@ install: $(PROGRAMS)
 
 scripts:
 	cd scripts;make
-	cd lsb_release-1.0;make
+	#cd lsb_release-1.0;make
 
 install_scripts:
 	cd scripts;make install
-	cd lsb_release-1.0;make install
+	#cd lsb_release-1.0;make install
 
 
 clean:
