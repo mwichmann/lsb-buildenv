@@ -62,6 +62,14 @@ extern "C"
   }
    ;
 
+  struct CLIENT
+  {
+    struct AUTH *cl_auth;
+    struct clnt_ops cl_ops;
+    caddr_t cl_private;
+  }
+   ;
+
   struct XDR
   {
     enum xdr_op x_op;
