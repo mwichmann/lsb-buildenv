@@ -124,7 +124,6 @@ GLIBC_2.2 {
   exp;
   exp2;
   exp2f;
-  exp2l;
   expf;
   expl;
   expm1;

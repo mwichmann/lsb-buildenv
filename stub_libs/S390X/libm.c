@@ -120,7 +120,6 @@ void erfl() {} ;
 void exp() {} ;
 void exp2() {} ;
 void exp2f() {} ;
-void exp2l() {} ;
 void expf() {} ;
 void expl() {} ;
 void expm1() {} ;

@@ -123,7 +123,6 @@ GLIBC_2.3 {
   exp;
   exp2;
   exp2f;
-  exp2l;
   expf;
   expl;
   expm1;
