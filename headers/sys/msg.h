@@ -1,6 +1,3 @@
-/*
- * 50 Default HeaderGroup for sys/msg.h
- */
 
 int msgctl(int, int, struct msqid_ds *);
 int msgget(key_t, int);

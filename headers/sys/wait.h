@@ -1,12 +1,8 @@
-/*
- * 55 Default HeaderGroup for sys/wait.h
- */
 typedef enum {
     P_ALL,
     P_PID,
     P_PGID
 } idtype_t;
-
 
 int waitid(idtype_t, __id_t, siginfo_t *, int);
 __pid_t wait(int *);

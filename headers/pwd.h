@@ -1,6 +1,3 @@
-/*
- * 34 Default HeaderGroup for pwd.h
- */
 struct passwd {
     char *pw_name;
     char *pw_passwd;
@@ -10,7 +7,6 @@ struct passwd {
     char *pw_dir;
     char *pw_shell;
 };
-
 
 void endpwent(void);
 struct passwd *getpwent(void);

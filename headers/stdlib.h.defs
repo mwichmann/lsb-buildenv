@@ -1,28 +1,17 @@
-/*
- * 43 Default HeaderGroup for stdlib.h
- */
-typedef struct 	{
-long	quot;	
-long	rem;	
-}
-lldiv_t	
+typedef struct {
+    long quot;
+    long rem;
+} lldiv_t;
+
+typedef struct {
+    int quot;
+    int rem;
+} div_t;
+
+typedef struct {
+    long quot;
+    long rem;
+} ldiv_t;
+
+typedef int (*__compar_fn_t) ()
 ;
-
-typedef struct 	{
-int	quot;	
-int	rem;	
-}
-div_t	
-;
-
-typedef struct 	{
-long	quot;	
-long	rem;	
-}
-ldiv_t	
-;
-
-typedef int	(*__compar_fn_t)()
-
-;
-

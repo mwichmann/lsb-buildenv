@@ -1,6 +1,3 @@
-/*
- * 64 Default HeaderGroup for wchar.h
- */
 typedef long wchar_t;
 
 typedef unsigned int wint_t;
@@ -9,7 +6,6 @@ typedef struct {
     int count;
     wint_t value;
 } mbstate_t;
-
 
 size_t __mbrlen(char *, size_t, mbstate_t *);
 double __wcstod_internal(wchar_t *, wchar_t * *, int);

@@ -1,6 +1,3 @@
-/*
- * 44 Default HeaderGroup for string.h
- */
 
 void __bzero(void *, size_t);
 char *__strdup(char *);

@@ -1,6 +1,3 @@
-/*
- * 8 Default HeaderGroup for X11/ICE/ICEutil.h
- */
 typedef struct {
     char *protocol_name;
     unsigned short protocol_data_length;
@@ -18,7 +15,6 @@ typedef struct {
     unsigned short auth_data_length;
     char *auth_data;
 } IceAuthDataEntry;
-
 
 char *IceAuthFileName(void);
 void IceFreeAuthFileEntry(IceAuthFileEntry *);

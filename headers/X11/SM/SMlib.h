@@ -1,15 +1,9 @@
-/*
- * 119 Generic SM pointer, Connection objects.  Defined in SMlibint.h
- */
 typedef IcePointer SmPointer;
 
 typedef struct _SmcConn *SmcConn;
 
 typedef struct _SmsConn *SmsConn;
 
-/*
- * 121 Session Management property
- */
 typedef struct {
     int length;
     SmPointer value;
@@ -22,81 +16,47 @@ typedef struct {
     SmPropValue *vals;
 } SmProp;
 
-/*
- * 127 SmcCloseConnection status return
- */
 typedef enum {
     SmcClosedNow,
     SmcClosedASAP,
     SmcConnectionInUse
 } SmcCloseStatus;
 
-/*
- * 120 Client callbacks
- */
-typedef void (*SmcSaveYourselfPhase2Proc) ()
-;
+typedef void (*SmcSaveYourselfPhase2Proc) ();
 
-typedef void (*SmcInteractProc) ()
-;
+typedef void (*SmcInteractProc) ();
 
-typedef void (*SmcDieProc) ()
-;
+typedef void (*SmcDieProc) ();
 
-typedef void (*SmcShutdownCancelledProc) ()
-;
+typedef void (*SmcShutdownCancelledProc) ();
 
-typedef void (*SmcSaveCompleteProc) ()
-;
+typedef void (*SmcSaveCompleteProc) ();
 
-typedef void (*SmcPropReplyProc) ()
-;
+typedef void (*SmcPropReplyProc) ();
 
-/*
- * 122 Callbacks set up at SmcOpenConnection time
- */
 typedef struct {
     SmcShutdownCancelledProc callback;
     SmPointer client_data;
     struct shutdown_cancelled;
 } SmcCallbacks;
 
-/*
- * 123 Session manager callbacks
- */
-typedef void (*SmsSetPropertiesProc) ()
-;
+typedef void (*SmsSetPropertiesProc) ();
 
-typedef void (*SmsDeletePropertiesProc) ()
-;
+typedef void (*SmsDeletePropertiesProc) ();
 
-typedef void (*SmsGetPropertiesProc) ()
-;
+typedef void (*SmsGetPropertiesProc) ();
 
-/*
- * 124 Callbacks set up by a session manager when a new client connects.
- */
 typedef struct {
     SmsGetPropertiesProc callback;
     SmPointer manager_data;
     struct get_properties;
 } SmsCallbacks;
 
-typedef int (*SmsNewClientProc) ()
-;
+typedef int (*SmsNewClientProc) ();
 
-/*
- * 126 Error handlers
- */
-typedef void (*SmcErrorHandler) ()
-;
+typedef void (*SmcErrorHandler) ();
 
-typedef void (*SmsErrorHandler) ()
-;
-
-/*
- * 9 Default HeaderGroup for X11/SM/SMlib.h
- */
+typedef void (*SmsErrorHandler) ();
 
 void SmFreeProperty(SmProp *);
 void SmFreeReasons(int, char **);

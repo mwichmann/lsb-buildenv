@@ -1,6 +1,3 @@
-/*
- * 36 Default HeaderGroup for regexp.h
- */
 
 char *loc1;
 char *loc2;

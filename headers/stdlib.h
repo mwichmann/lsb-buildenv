@@ -1,6 +1,3 @@
-/*
- * 43 Default HeaderGroup for stdlib.h
- */
 typedef struct {
     long quot;
     long rem;
@@ -16,9 +13,7 @@ typedef struct {
     long rem;
 } ldiv_t;
 
-typedef int (*__compar_fn_t) ()
-;
-
+typedef int (*__compar_fn_t) ();
 
 char *__secure_getenv(char *);
 double __strtod_internal(char *, char **, int);

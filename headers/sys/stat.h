@@ -1,6 +1,3 @@
-/*
- * 52 Default HeaderGroup for sys/stat.h
- */
 
 int __fxstat(int, int, struct stat *);
 int __fxstat64(int, int, struct stat64 *);

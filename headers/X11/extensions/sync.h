@@ -25,9 +25,6 @@ typedef enum {
     XSyncAlarmDestroyed
 } XSyncAlarmState;
 
-/*
- * 79 Default HeaderGroup for X11/extensions/sync.h
- */
 typedef struct _XSyncSystemCounter {
     char *name;
     XSyncCounter counter;
@@ -52,7 +49,6 @@ typedef struct {
     int events;
     XSyncAlarmState state;
 } XSyncAlarmAttributes;
-
 
 int XSyncAwait(Display *, XSyncWaitCondition *, int);
 int XSyncChangeAlarm(Display *, XSyncAlarm, unsigned long,

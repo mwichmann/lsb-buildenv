@@ -1,8 +1,5 @@
 typedef unsigned long XID;
 
-/*
- * 68 Default HeaderGroup for X11/X.h
- */
 typedef unsigned long Atom;
 
 typedef unsigned long VisualID;

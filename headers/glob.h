@@ -1,6 +1,3 @@
-/*
- * 3 Default HeaderGroup for glob.h
- */
 typedef struct {
     __size_t gl_pathc;
     char **gl_pathv;
@@ -24,7 +21,6 @@ typedef struct {
     int (*gl_lstat) ();
     int (*gl_stat) ();
 } glob64_t;
-
 
 int glob(char *, int, int, glob_t *);
 int glob64(char *, int, int, glob64_t *);

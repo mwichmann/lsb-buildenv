@@ -1,6 +1,3 @@
-/*
- * 135 Default HeaderGroup for X11/Xauth.h
- */
 typedef struct xauth {
     unsigned short family;
     unsigned short address_length;
@@ -12,7 +9,6 @@ typedef struct xauth {
     unsigned short data_length;
     char *data;
 } Xauth;
-
 
 void XauDisposeAuth(Xauth *);
 char *XauFileName(void);

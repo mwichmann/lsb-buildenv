@@ -1,6 +1,3 @@
-/*
- * 37 Default HeaderGroup for sched.h
- */
 
 int sched_get_priority_max(int);
 int sched_get_priority_min(int);

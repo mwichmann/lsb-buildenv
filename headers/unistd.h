@@ -1,12 +1,8 @@
-/*
- * 62 Default HeaderGroup for unistd.h
- */
 typedef __ssize_t ssize_t;
 
 typedef __pid_t pid_t;
 
 typedef __off_t off_t;
-
 
 char **__environ;
 __pid_t __getpgid(__pid_t);

@@ -1,6 +1,3 @@
-/*
- * 27 Default HeaderGroup for locale.h
- */
 struct lconv {
     char *decimal_point;
     char *thousands_sep;
@@ -21,7 +18,6 @@ struct lconv {
     char p_sign_posn;
     char n_sign_posn;
 };
-
 
 struct lconv *localeconv(void);
 char *setlocale(int, char *);

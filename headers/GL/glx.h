@@ -1,6 +1,3 @@
-/*
- * 2 Default HeaderGroup for GL/glx.h
- */
 typedef struct __GLXcontextRec *GLXContext;
 
 typedef struct __GLXFBConfigRec *GLXFBConfig;
@@ -14,7 +11,6 @@ typedef XID GLXDrawable;
 typedef XID GLXPbuffer;
 
 typedef XID GLXWindow;
-
 
 XVisualInfo *glXChooseVisual(Display *, int, int *);
 void glXCopyContext(Display *, GLXContext, GLXContext, unsigned long);

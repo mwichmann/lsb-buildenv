@@ -1,12 +1,8 @@
-/*
- * 47 Default HeaderGroup for sys/sem.h
- */
 struct sembuf {
     short sem_num;
     short sem_op;
     short sem_flg;
 };
-
 
 int semctl(int, int, int, ...);
 int semget(key_t, int, int);

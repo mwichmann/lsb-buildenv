@@ -57,9 +57,6 @@ typedef struct {
     XcmsFloat pad3;
 } XcmsPad;
 
-/*
- * 129 XCMS Color Structure
- */
 typedef union {
     union spec;
     XcmsRGB RGB;
@@ -75,9 +72,6 @@ typedef union {
     XcmsPad Pad;
 } XcmsColor;
 
-/*
- * 130 XCMS Per Screen related data
- */
 typedef struct _XcmsPerScrnInfo {
     XcmsColor screenWhitePt;
     XPointer functionSet;
@@ -86,27 +80,18 @@ typedef struct _XcmsPerScrnInfo {
     char pad[1];
 } XcmsPerScrnInfo;
 
-typedef int (*XcmsCompressionProc) ()
-;
+typedef int (*XcmsCompressionProc) ();
 
-typedef int (*XcmsWhiteAdjustProc) ()
-;
+typedef int (*XcmsWhiteAdjustProc) ();
 
-typedef int (*XcmsScreenInitProc) ()
-;
+typedef int (*XcmsScreenInitProc) ();
 
-typedef void (*XcmsScreenFreeProc) ()
-;
+typedef void (*XcmsScreenFreeProc) ();
 
-typedef int (*XcmsConversionProc) ()
-;
+typedef int (*XcmsConversionProc) ();
 
-typedef int (*XcmsParseStringProc) ()
-;
+typedef int (*XcmsParseStringProc) ();
 
-/*
- * 132 XCMS Color Conversion Context
- */
 typedef struct _XcmsCCC {
     Display *dpy;
     int screenNumber;
@@ -121,9 +106,6 @@ typedef struct _XcmsCCC {
 
 typedef XcmsConversionProc *XcmsFuncListPtr;
 
-/*
- * 133 Color Space -- per Color Space related data (Device-Independent or Device-Dependent)
- */
 typedef struct _XcmsColorSpace {
     char *prefix;
     XcmsColorFormat id;
@@ -133,15 +115,11 @@ typedef struct _XcmsColorSpace {
     int inverse_flag;
 } XcmsColorSpace;
 
-/*
- * 6 Default HeaderGroup for X11/Xcms.h
- */
 typedef struct _XcmsFunctionSet {
     XcmsColorSpace **DDColorSpaces;
     XcmsScreenInitProc screenInitProc;
     XcmsScreenFreeProc screenFreeProc;
 } XcmsFunctionSet;
-
 
 int XcmsAddColorSpace(XcmsColorSpace *);
 int XcmsAddFunctionSet(XcmsFunctionSet *);

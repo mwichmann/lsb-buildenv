@@ -1,8 +1,5 @@
 typedef char *XPointer;
 
-/*
- * 82 Extensions need a way to hang private data on some structures.
- */
 typedef struct _XExtData {
     int number;
     struct _XExtData *next;
@@ -17,18 +14,12 @@ typedef struct {
     int first_error;
 } XExtCodes;
 
-/*
- * 83 Data structure for retrieving info about pixmap formats.
- */
 typedef struct {
     int depth;
     int bits_per_pixel;
     int scanline_pad;
 } XPixmapFormatValues;
 
-/*
- * 84 Data structure for setting graphics context
- */
 typedef struct {
     int function;
     unsigned long plane_mask;
@@ -55,14 +46,8 @@ typedef struct {
     char dashes;
 } XGCValues;
 
-/*
- * 85  Graphics context.  The contents of this structure are implementation dependent.  A GC should be treated as opaque by application code.
- */
 typedef struct _XGC *GC;
 
-/*
- * 86 Visual structure; contains information about colormapping possible.
- */
 typedef struct {
     XExtData *ext_data;
     VisualID visualid;
@@ -74,18 +59,12 @@ typedef struct {
     int map_entries;
 } Visual;
 
-/*
- * 87 Depth structure; contains information for each possible depth.
- */
 typedef struct {
     int depth;
     int nvisuals;
     Visual *visuals;
 } Depth;
 
-/*
- * 88 Information about the screen.  The contents of this structure are implementation dependent.  A Screen should be treated as opaque by application code.
- */
 typedef struct {
     XExtData *ext_data;
     struct _XDisplay *display;
@@ -109,9 +88,6 @@ typedef struct {
     long root_input_mask;
 } Screen;
 
-/*
- * 89  Format structure; describes ZFormat data the screen will understand.
- */
 typedef struct {
     XExtData *ext_data;
     int depth;
@@ -119,9 +95,6 @@ typedef struct {
     int scanline_pad;
 } ScreenFormat;
 
-/*
- * 90 Data structure for setting window attributes.
- */
 typedef struct {
     Pixmap background_pixmap;
     unsigned long background_pixel;
@@ -166,18 +139,12 @@ typedef struct {
     Screen *screen;
 } XWindowAttributes;
 
-/*
- * 91 Data structure for host setting; getting routines.
- */
 typedef struct {
     int family;
     int length;
     char *address;
 } XHostAddress;
 
-/*
- * 92 Data structure for 
- */
 struct XImagefuncs;
 
 typedef struct _XImage {
@@ -199,9 +166,6 @@ typedef struct _XImage {
     XPointer obdata;
 } XImage;
 
-/*
- * 93 Data structure for XReconfigureWindow
- */
 typedef struct {
     int x;
     int y;
@@ -212,9 +176,6 @@ typedef struct {
     int stack_mode;
 } XWindowChanges;
 
-/*
- * 94 Data structures for graphics operations.  On most machines, these are congruent with the wire protocol structures, so reformatting the datacan be avoided on these architectures. 
- */
 typedef struct {
     short x1;
     short y1;
@@ -243,9 +204,6 @@ typedef struct {
     short angle2;
 } XArc;
 
-/*
- * 95 Data structure for XChangeKeyboardControl
- */
 typedef struct {
     int key_click_percent;
     int bell_percent;
@@ -257,9 +215,6 @@ typedef struct {
     int auto_repeat_mode;
 } XKeyboardControl;
 
-/*
- * 96 Data structure for XGetKeyboardControl
- */
 typedef struct {
     int key_click_percent;
     int bell_percent;
@@ -270,31 +225,19 @@ typedef struct {
     char auto_repeats[1];
 } XKeyboardState;
 
-/*
- * 97 Data structure for XGetMotionEvents.
- */
 typedef struct {
     Time time;
     short x;
     short y;
 } XTimeCoord;
 
-/*
- * 98 Data structure for X{Set,Get}ModifierMapping
- */
 typedef struct {
     int max_keypermod;
     KeyCode *modifiermap;
 } XModifierKeymap;
 
-/*
- * 99 Display datatype maintaining display specific data. The contents of this structure are implementation dependent.A Display should be treated as opaque by application code. 
- */
 typedef struct _XDisplay Display;
 
-/*
- * 100 Definitions of specific events.
- */
 typedef struct {
     int type;
     unsigned long serial;
@@ -686,9 +629,6 @@ typedef struct {
     Window window;
 } XAnyEvent;
 
-/*
- * 101 this union is defined so Xlib can always use the same sized event structure internally, to avoid memory fragmentation.
- */
 typedef union _XEvent {
     int type;
     XAnyEvent xany;
@@ -725,9 +665,6 @@ typedef union _XEvent {
     long pad[1];
 } XEvent;
 
-/*
- * 102 per character font metric information.
- */
 typedef struct {
     short lbearing;
     short rbearing;
@@ -737,9 +674,6 @@ typedef struct {
     unsigned short attributes;
 } XCharStruct;
 
-/*
- * 103 To allow arbitrary information with fonts, there are additional properties returned.
- */
 typedef struct {
     Atom name;
     unsigned long card32;
@@ -769,9 +703,6 @@ typedef struct {
     XRectangle max_logical_extent;
 } XFontSetExtents;
 
-/*
- * 104 PolyText routines take these as arguments.
- */
 typedef struct {
     char *chars;
     int nchars;
@@ -824,12 +755,8 @@ typedef struct _XIM *XIM;
 
 typedef struct _XIC *XIC;
 
-typedef void (*XIDProc) ()
-;
+typedef void (*XIDProc) ();
 
-/*
- * 5 Default HeaderGroup for X11/Xlib.h
- */
 struct _XDisplay;
 
 struct _XrmHashBucketRec;
@@ -845,15 +772,11 @@ typedef struct {
 
 typedef void *XVaNestedList;
 
-typedef int (*XErrorHandler) ()
-;
+typedef int (*XErrorHandler) ();
 
-typedef int (*XIOErrorHandler) ()
-;
+typedef int (*XIOErrorHandler) ();
 
-typedef void (*XConnectionWatchProc) ()
-;
-
+typedef void (*XConnectionWatchProc) ();
 
 int XActivateScreenSaver(Display *);
 int XAddConnectionWatch(Display *, XConnectionWatchProc, XPointer);

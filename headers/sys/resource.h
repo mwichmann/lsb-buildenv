@@ -1,6 +1,3 @@
-/*
- * 57 Default HeaderGroup for sys/resource.h
- */
 
 int getpriority(,, int);
 int getrlimit64(,, struct rlimit64 *);

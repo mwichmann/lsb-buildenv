@@ -1,6 +1,3 @@
-/*
- * 56 Default HeaderGroup for sys/mman.h
- */
 
 int msync(void *, size_t, int);
 int mlock(void *, size_t);

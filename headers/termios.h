@@ -1,6 +1,3 @@
-/*
- * 59 Default HeaderGroup for termios.h
- */
 
 cfgetispeed(struct termios *);
 cfgetospeed(struct termios *);

@@ -1,10 +1,5 @@
-/*
- * 47 Default HeaderGroup for sys/sem.h
- */
-struct sembuf	{
-short	sem_num;	
-short	sem_op;	
-short	sem_flg;	
-}
-;
-
+struct sembuf {
+    short sem_num;
+    short sem_op;
+    short sem_flg;
+};

@@ -1,12 +1,8 @@
-/*
- * 42 Default HeaderGroup for stdio.h
- */
 typedef struct _IO_FILE FILE;
 
 typedef __off_t fpos_t;
 
 typedef __off64_t fpos64_t;
-
 
 void clearerr(FILE *);
 int fclose(FILE *);

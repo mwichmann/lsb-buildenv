@@ -1,12 +1,8 @@
-/*
- * 23 Default HeaderGroup for inttypes.h
- */
 typedef lldiv_t imaxdiv_t;
 
 typedef long long intmax_t;
 
 typedef unsigned long long uintmax_t;
-
 
 intmax_t strtoimax(char *, char **, int);
 uintmax_t strtoumax(char *, char **, int);

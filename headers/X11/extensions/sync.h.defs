@@ -1,76 +1,51 @@
-typedef XID	XSyncCounter	
-;
+typedef XID XSyncCounter;
 
-typedef XID	XSyncAlarm	
-;
+typedef XID XSyncAlarm;
 
-typedef struct _XSyncValue	{
-int	hi;	
-unsigned int	lo;	
-}
-XSyncValue	
-;
+typedef struct _XSyncValue {
+    int hi;
+    unsigned int lo;
+} XSyncValue;
 
-typedef enum 	
-{
-XSyncAbsolute,	
-XSyncRelative
-}
-XSyncValueType	
-;
+typedef enum {
+    XSyncAbsolute,
+    XSyncRelative
+} XSyncValueType;
 
-typedef enum 	
-{
-XSyncPositiveTransition,	
-XSyncNegativeTransition,	
-XSyncPositiveComparison,	
-XSyncNegativeComparison
-}
-XSyncTestType	
-;
+typedef enum {
+    XSyncPositiveTransition,
+    XSyncNegativeTransition,
+    XSyncPositiveComparison,
+    XSyncNegativeComparison
+} XSyncTestType;
 
-typedef enum 	
-{
-XSyncAlarmActive,	
-XSyncAlarmInactive,	
-XSyncAlarmDestroyed
-}
-XSyncAlarmState	
-;
+typedef enum {
+    XSyncAlarmActive,
+    XSyncAlarmInactive,
+    XSyncAlarmDestroyed
+} XSyncAlarmState;
 
-/*
- * 79 Default HeaderGroup for X11/extensions/sync.h
- */
-typedef struct _XSyncSystemCounter	{
-char	* name;	
-XSyncCounter	counter;	
-XSyncValue	resolution;	
-}
-XSyncSystemCounter	
-;
+typedef struct _XSyncSystemCounter {
+    char *name;
+    XSyncCounter counter;
+    XSyncValue resolution;
+} XSyncSystemCounter;
 
-typedef struct 	{
-XSyncCounter	counter;	
-XSyncValueType	value_type;	
-XSyncValue	wait_value;	
-XSyncTestType	test_type;	
-}
-XSyncTrigger	
-;
+typedef struct {
+    XSyncCounter counter;
+    XSyncValueType value_type;
+    XSyncValue wait_value;
+    XSyncTestType test_type;
+} XSyncTrigger;
 
-typedef struct 	{
-XSyncTrigger	trigger;	
-XSyncValue	event_threshold;	
-}
-XSyncWaitCondition	
-;
+typedef struct {
+    XSyncTrigger trigger;
+    XSyncValue event_threshold;
+} XSyncWaitCondition;
 
-typedef struct 	{
-XSyncTrigger	trigger;	
-XSyncValue	delta;	
-int	events;	
-XSyncAlarmState	state;	
-}
-XSyncAlarmAttributes	
-;
-
+typedef struct {
+    XSyncTrigger trigger;
+    XSyncValue delta;
+    int events;
+    XSyncAlarmState state;
+} XSyncAlarmAttributes;

@@ -1,6 +1,3 @@
-/*
- * 51 Default HeaderGroup for sys/shm.h
- */
 
 void *shmat(int, void *, int);
 int shmctl(int, int, struct shmid_ds *);

@@ -1,125 +1,71 @@
-/*
- * 119 Generic SM pointer, Connection objects.  Defined in SMlibint.h
- */
-typedef IcePointer	SmPointer	
+typedef IcePointer SmPointer;
+
+typedef struct _SmcConn *SmcConn;
+
+typedef struct _SmsConn *SmsConn;
+
+typedef struct {
+    int length;
+    SmPointer value;
+} SmPropValue;
+
+typedef struct {
+    char *name;
+    char *type;
+    int num_vals;
+    SmPropValue *vals;
+} SmProp;
+
+typedef enum {
+    SmcClosedNow,
+    SmcClosedASAP,
+    SmcConnectionInUse
+} SmcCloseStatus;
+
+typedef void (*SmcSaveYourselfPhase2Proc) ()
 ;
 
-typedef struct _SmcConn	* SmcConn	
+typedef void (*SmcInteractProc) ()
 ;
 
-typedef struct _SmsConn	* SmsConn	
+typedef void (*SmcDieProc) ()
 ;
 
-/*
- * 121 Session Management property
- */
-typedef struct 	{
-int	length;	
-SmPointer	value;	
-}
-SmPropValue	
+typedef void (*SmcShutdownCancelledProc) ()
 ;
 
-typedef struct 	{
-char	* name;	
-char	* type;	
-int	num_vals;	
-SmPropValue	* vals;	
-}
-SmProp	
+typedef void (*SmcSaveCompleteProc) ()
 ;
 
-/*
- * 127 SmcCloseConnection status return
- */
-typedef enum 	
-{
-SmcClosedNow,	
-SmcClosedASAP,	
-SmcConnectionInUse
-}
-SmcCloseStatus	
+typedef void (*SmcPropReplyProc) ()
 ;
 
-/*
- * 120 Client callbacks
- */
-typedef void	(*SmcSaveYourselfPhase2Proc)()
+typedef struct {
+    SmcShutdownCancelledProc callback;
+    SmPointer client_data;
+    struct shutdown_cancelled;
+} SmcCallbacks;
 
+typedef void (*SmsSetPropertiesProc) ()
 ;
 
-typedef void	(*SmcInteractProc)()
-
+typedef void (*SmsDeletePropertiesProc) ()
 ;
 
-typedef void	(*SmcDieProc)()
-
+typedef void (*SmsGetPropertiesProc) ()
 ;
 
-typedef void	(*SmcShutdownCancelledProc)()
+typedef struct {
+    SmsGetPropertiesProc callback;
+    SmPointer manager_data;
+    struct get_properties;
+} SmsCallbacks;
 
+typedef int (*SmsNewClientProc) ()
 ;
 
-typedef void	(*SmcSaveCompleteProc)()
-
+typedef void (*SmcErrorHandler) ()
 ;
 
-typedef void	(*SmcPropReplyProc)()
-
+typedef void (*SmsErrorHandler) ()
 ;
-
-/*
- * 122 Callbacks set up at SmcOpenConnection time
- */
-typedef struct 	{
-SmcShutdownCancelledProc	callback;	
-SmPointer	client_data;	
-struct 	shutdown_cancelled;	
-}
-SmcCallbacks	
-;
-
-/*
- * 123 Session manager callbacks
- */
-typedef void	(*SmsSetPropertiesProc)()
-
-;
-
-typedef void	(*SmsDeletePropertiesProc)()
-
-;
-
-typedef void	(*SmsGetPropertiesProc)()
-
-;
-
-/*
- * 124 Callbacks set up by a session manager when a new client connects.
- */
-typedef struct 	{
-SmsGetPropertiesProc	callback;	
-SmPointer	manager_data;	
-struct 	get_properties;	
-}
-SmsCallbacks	
-;
-
-typedef int	(*SmsNewClientProc)()
-
-;
-
-/*
- * 126 Error handlers
- */
-typedef void	(*SmcErrorHandler)()
-
-;
-
-typedef void	(*SmsErrorHandler)()
-
-;
-
-/*
- * 9 Default HeaderGroup for X11/SM/SMlib.h
- */

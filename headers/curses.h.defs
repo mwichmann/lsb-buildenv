@@ -1,45 +1,35 @@
-typedef unsigned long	chtype	
-;
+typedef unsigned long chtype;
 
-typedef char	bool	
-;
+typedef char bool;
 
-typedef chtype	attr_t	
-;
+typedef chtype attr_t;
 
-/*
- * 70 Default HeaderGroup for curses.h
- */
-typedef struct screen	SCREEN	
-;
+typedef struct screen SCREEN;
 
-typedef struct _win_st	{
-short	_cury;	
-short	_curx;	
-short	_maxy;	
-short	_maxx;	
-short	_begy;	
-short	_begx;	
-short	_flags;	
-attr_t	_attrs;	
-chtype	_bkgd;	
-bool	_notimeout;	
-bool	_clear;	
-bool	_leaveok;	
-bool	_scroll;	
-bool	_idlok;	
-bool	_idcok;	
-bool	_immed;	
-bool	_sync;	
-bool	_use_keypad;	
-int	_delay;	
-struct ldat	* _line;	
-short	_regtop;	
-short	_regbottom;	
-int	_parx;	
-int	_pary;	
-struct _win_st	* _parent;	
-}
-WINDOW	
-;
-
+typedef struct _win_st {
+    short _cury;
+    short _curx;
+    short _maxy;
+    short _maxx;
+    short _begy;
+    short _begx;
+    short _flags;
+    attr_t _attrs;
+    chtype _bkgd;
+    bool _notimeout;
+    bool _clear;
+    bool _leaveok;
+    bool _scroll;
+    bool _idlok;
+    bool _idcok;
+    bool _immed;
+    bool _sync;
+    bool _use_keypad;
+    int _delay;
+    struct ldat *_line;
+    short _regtop;
+    short _regbottom;
+    int _parx;
+    int _pary;
+    struct _win_st *_parent;
+} WINDOW;

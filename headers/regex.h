@@ -1,6 +1,3 @@
-/*
- * 35 Default HeaderGroup for regex.h
- */
 typedef unsigned long reg_syntax_t;
 
 typedef struct re_pattern_buffer {
@@ -26,7 +23,6 @@ typedef struct {
     regoff_t rm_so;
     regoff_t rm_eo;
 } regmatch_t;
-
 
 int regcomp(regex_t *, char *, int);
 size_t regerror(int, regex_t *, char *, size_t);

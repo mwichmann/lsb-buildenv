@@ -2,9 +2,6 @@ typedef unsigned short sa_family_t;
 
 typedef unsigned int socklen_t;
 
-/*
- * 48 Default HeaderGroup for sys/socket.h
- */
 struct sockaddr {
     sa_family_t sa_family;
     char sa_data[1];
@@ -19,7 +16,6 @@ struct msghdr {
     size_t msg_controllen;
     int msg_flags;
 };
-
 
 int bind(int, struct sockaddr *, socklen_t);
 int getsockname(int, struct sockaddr *, socklen_t *);

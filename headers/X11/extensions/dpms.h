@@ -1,6 +1,3 @@
-/*
- * 76 Default HeaderGroup for X11/extensions/dpms.h
- */
 
 int DPMSCapable(Display *);
 int DPMSDisable(Display *);

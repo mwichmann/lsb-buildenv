@@ -1,8 +1,4 @@
-/*
- * 15 Default HeaderGroup for dirent.h
- */
 typedef struct __dirstream DIR;
-
 
 void rewinddir(DIR *);
 void seekdir(DIR *, long);

@@ -1,10 +1,6 @@
-/*
- * 32 Default HeaderGroup for nl_types.h
- */
 typedef void *nl_catd;
 
 typedef int nl_item;
-
 
 int catclose(nl_catd);
 char *catgets(nl_catd, int, int, char *);

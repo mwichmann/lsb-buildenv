@@ -4,9 +4,6 @@ typedef char bool;
 
 typedef chtype attr_t;
 
-/*
- * 70 Default HeaderGroup for curses.h
- */
 typedef struct screen SCREEN;
 
 typedef struct _win_st {
@@ -36,7 +33,6 @@ typedef struct _win_st {
     int _pary;
     struct _win_st *_parent;
 } WINDOW;
-
 
 int addch(chtype);
 int addchnstr(chtype *, int);

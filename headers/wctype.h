@@ -1,10 +1,6 @@
-/*
- * 65 Default HeaderGroup for wctype.h
- */
 typedef unsigned long wctype_t;
 
 typedef __int32_t *wctrans_t;
-
 
 wint_t towlower(wint_t);
 wint_t towupper(wint_t);

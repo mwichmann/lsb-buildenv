@@ -1,181 +1,128 @@
-typedef unsigned long	XcmsColorFormat	
+typedef unsigned long XcmsColorFormat;
+
+typedef double XcmsFloat;
+
+typedef struct {
+    unsigned short red;
+    unsigned short green;
+    unsigned short blue;
+} XcmsRGB;
+
+typedef struct {
+    XcmsFloat red;
+    XcmsFloat green;
+    XcmsFloat blue;
+} XcmsRGBi;
+
+typedef struct {
+    XcmsFloat X;
+    XcmsFloat Y;
+    XcmsFloat Z;
+} XcmsCIEXYZ;
+
+typedef struct {
+    XcmsFloat u_prime;
+    XcmsFloat v_prime;
+    XcmsFloat Y;
+} XcmsCIEuvY;
+
+typedef struct {
+    XcmsFloat x;
+    XcmsFloat y;
+    XcmsFloat Y;
+} XcmsCIExyY;
+
+typedef struct {
+    XcmsFloat L_star;
+    XcmsFloat a_star;
+    XcmsFloat b_star;
+} XcmsCIELab;
+
+typedef struct {
+    XcmsFloat L_star;
+    XcmsFloat u_star;
+    XcmsFloat v_star;
+} XcmsCIELuv;
+
+typedef struct {
+    XcmsFloat H;
+    XcmsFloat V;
+    XcmsFloat C;
+} XcmsTekHVC;
+
+typedef struct {
+    XcmsFloat pad0;
+    XcmsFloat pad1;
+    XcmsFloat pad2;
+    XcmsFloat pad3;
+} XcmsPad;
+
+typedef union {
+    union spec;
+    XcmsRGB RGB;
+    unsigned long pixel;
+    XcmsRGBi RGBi;
+    XcmsColorFormat format;
+    XcmsCIEXYZ CIEXYZ;
+    XcmsCIEuvY CIEuvY;
+    XcmsCIExyY CIExyY;
+    XcmsCIELab CIELab;
+    XcmsCIELuv CIELuv;
+    XcmsTekHVC TekHVC;
+    XcmsPad Pad;
+} XcmsColor;
+
+typedef struct _XcmsPerScrnInfo {
+    XcmsColor screenWhitePt;
+    XPointer functionSet;
+    XPointer screenData;
+    unsigned char state;
+    char pad[1];
+} XcmsPerScrnInfo;
+
+typedef int (*XcmsCompressionProc) ()
 ;
 
-typedef double	XcmsFloat	
+typedef int (*XcmsWhiteAdjustProc) ()
 ;
 
-typedef struct 	{
-unsigned short	red;	
-unsigned short	green;	
-unsigned short	blue;	
-}
-XcmsRGB	
+typedef int (*XcmsScreenInitProc) ()
 ;
 
-typedef struct 	{
-XcmsFloat	red;	
-XcmsFloat	green;	
-XcmsFloat	blue;	
-}
-XcmsRGBi	
+typedef void (*XcmsScreenFreeProc) ()
 ;
 
-typedef struct 	{
-XcmsFloat	X;	
-XcmsFloat	Y;	
-XcmsFloat	Z;	
-}
-XcmsCIEXYZ	
+typedef int (*XcmsConversionProc) ()
 ;
 
-typedef struct 	{
-XcmsFloat	u_prime;	
-XcmsFloat	v_prime;	
-XcmsFloat	Y;	
-}
-XcmsCIEuvY	
+typedef int (*XcmsParseStringProc) ()
 ;
 
-typedef struct 	{
-XcmsFloat	x;	
-XcmsFloat	y;	
-XcmsFloat	Y;	
-}
-XcmsCIExyY	
-;
+typedef struct _XcmsCCC {
+    Display *dpy;
+    int screenNumber;
+    Visual *visual;
+    XcmsColor clientWhitePt;
+    XcmsCompressionProc gamutCompProc;
+    XPointer gamutCompClientData;
+    XcmsWhiteAdjustProc whitePtAdjProc;
+    XPointer whitePtAdjClientData;
+    XcmsPerScrnInfo *pPerScrnInfo;
+} *XcmsCCC;
 
-typedef struct 	{
-XcmsFloat	L_star;	
-XcmsFloat	a_star;	
-XcmsFloat	b_star;	
-}
-XcmsCIELab	
-;
+typedef XcmsConversionProc *XcmsFuncListPtr;
 
-typedef struct 	{
-XcmsFloat	L_star;	
-XcmsFloat	u_star;	
-XcmsFloat	v_star;	
-}
-XcmsCIELuv	
-;
+typedef struct _XcmsColorSpace {
+    char *prefix;
+    XcmsColorFormat id;
+    XcmsParseStringProc parseString;
+    XcmsFuncListPtr to_CIEXYZ;
+    XcmsFuncListPtr from_CIEXYZ;
+    int inverse_flag;
+} XcmsColorSpace;
 
-typedef struct 	{
-XcmsFloat	H;	
-XcmsFloat	V;	
-XcmsFloat	C;	
-}
-XcmsTekHVC	
-;
-
-typedef struct 	{
-XcmsFloat	pad0;	
-XcmsFloat	pad1;	
-XcmsFloat	pad2;	
-XcmsFloat	pad3;	
-}
-XcmsPad	
-;
-
-/*
- * 129 XCMS Color Structure
- */
-typedef union 	{
-union 	spec;	
-XcmsRGB	RGB;	
-unsigned long	pixel;	
-XcmsRGBi	RGBi;	
-XcmsColorFormat	format;	
-XcmsCIEXYZ	CIEXYZ;	
-XcmsCIEuvY	CIEuvY;	
-XcmsCIExyY	CIExyY;	
-XcmsCIELab	CIELab;	
-XcmsCIELuv	CIELuv;	
-XcmsTekHVC	TekHVC;	
-XcmsPad	Pad;	
-}
-XcmsColor	
-;
-
-/*
- * 130 XCMS Per Screen related data
- */
-typedef struct _XcmsPerScrnInfo	{
-XcmsColor	screenWhitePt;	
-XPointer	functionSet;	
-XPointer	screenData;	
-unsigned char	state;	
-char	pad[1];	
-}
-XcmsPerScrnInfo	
-;
-
-typedef int	(*XcmsCompressionProc)()
-
-;
-
-typedef int	(*XcmsWhiteAdjustProc)()
-
-;
-
-typedef int	(*XcmsScreenInitProc)()
-
-;
-
-typedef void	(*XcmsScreenFreeProc)()
-
-;
-
-typedef int	(*XcmsConversionProc)()
-
-;
-
-typedef int	(*XcmsParseStringProc)()
-
-;
-
-/*
- * 132 XCMS Color Conversion Context
- */
-typedef struct _XcmsCCC	{
-Display	* dpy;	
-int	screenNumber;	
-Visual	* visual;	
-XcmsColor	clientWhitePt;	
-XcmsCompressionProc	gamutCompProc;	
-XPointer	gamutCompClientData;	
-XcmsWhiteAdjustProc	whitePtAdjProc;	
-XPointer	whitePtAdjClientData;	
-XcmsPerScrnInfo	* pPerScrnInfo;	
-}
-* XcmsCCC	
-;
-
-typedef XcmsConversionProc	* XcmsFuncListPtr	
-;
-
-/*
- * 133 Color Space -- per Color Space related data (Device-Independent or Device-Dependent)
- */
-typedef struct _XcmsColorSpace	{
-char	* prefix;	
-XcmsColorFormat	id;	
-XcmsParseStringProc	parseString;	
-XcmsFuncListPtr	to_CIEXYZ;	
-XcmsFuncListPtr	from_CIEXYZ;	
-int	inverse_flag;	
-}
-XcmsColorSpace	
-;
-
-/*
- * 6 Default HeaderGroup for X11/Xcms.h
- */
-typedef struct _XcmsFunctionSet	{
-XcmsColorSpace	* * DDColorSpaces;	
-XcmsScreenInitProc	screenInitProc;	
-XcmsScreenFreeProc	screenFreeProc;	
-}
-XcmsFunctionSet	
-;
-
+typedef struct _XcmsFunctionSet {
+    XcmsColorSpace **DDColorSpaces;
+    XcmsScreenInitProc screenInitProc;
+    XcmsScreenFreeProc screenFreeProc;
+} XcmsFunctionSet;

@@ -1,6 +1,3 @@
-/*
- * 69 Default HeaderGroup for X11/Xutil.h
- */
 typedef struct {
     int x;
     int y;
@@ -85,7 +82,6 @@ typedef enum {
     XStdICCTextStyle,
     XUTF8StringStyle
 } XICCEncodingStyle;
-
 
 XClassHint *XAllocClassHint(void);
 XIconSize *XAllocIconSize(void);

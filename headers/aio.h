@@ -1,6 +1,3 @@
-/*
- * 10 Default HeaderGroup for aio.h
- */
 struct aiocb {
     int aio_fildes;
     int aio_lio_opcode;
@@ -33,7 +30,6 @@ struct aiocb64 {
     __off64_t aio_offset;
     char __unused[1];
 };
-
 
 int aio_read(struct aiocb *);
 int aio_write(struct aiocb *);

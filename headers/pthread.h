@@ -1,6 +1,3 @@
-/*
- * 33 Default HeaderGroup for pthread.h
- */
 
 int pthread_attr_destroy(*);
 int pthread_attr_getdetachstate(*, int *);

@@ -1,6 +1,1 @@
-/*
- * 22 Default HeaderGroup for iconv.h
- */
-typedef void	* iconv_t	
-;
-
+typedef void *iconv_t;

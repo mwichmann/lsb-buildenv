@@ -1,6 +1,3 @@
-/*
- * 14 Default HeaderGroup for ctype.h
- */
 
 unsigned short *__ctype_b;
 __int32_t *__ctype_tolower;

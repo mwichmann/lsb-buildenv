@@ -1,6 +1,3 @@
-/*
- * 1 Default HeaderGroup for GL/gl.h
- */
 typedef unsigned int GLenum;
 
 typedef unsigned char GLboolean;
@@ -30,7 +27,6 @@ typedef float GLclampf;
 typedef double GLdouble;
 
 typedef double GLclampd;
-
 
 void glAccum(GLenum, GLfloat);
 void glAlphaFunc(GLenum, GLclampf);

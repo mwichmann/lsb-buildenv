@@ -1,48 +1,29 @@
-/*
- * 1 Default HeaderGroup for GL/gl.h
- */
-typedef unsigned int	GLenum	
-;
+typedef unsigned int GLenum;
 
-typedef unsigned char	GLboolean	
-;
+typedef unsigned char GLboolean;
 
-typedef unsigned int	GLbitfield	
-;
+typedef unsigned int GLbitfield;
 
-typedef void	GLvoid	
-;
+typedef void GLvoid;
 
-typedef char	GLbyte	
-;
+typedef char GLbyte;
 
-typedef short	GLshort	
-;
+typedef short GLshort;
 
-typedef int	GLint	
-;
+typedef int GLint;
 
-typedef unsigned char	GLubyte	
-;
+typedef unsigned char GLubyte;
 
-typedef unsigned short	GLushort	
-;
+typedef unsigned short GLushort;
 
-typedef unsigned int	GLuint	
-;
+typedef unsigned int GLuint;
 
-typedef int	GLsizei	
-;
+typedef int GLsizei;
 
-typedef float	GLfloat	
-;
+typedef float GLfloat;
 
-typedef float	GLclampf	
-;
+typedef float GLclampf;
 
-typedef double	GLdouble	
-;
+typedef double GLdouble;
 
-typedef double	GLclampd	
-;
-
+typedef double GLclampd;

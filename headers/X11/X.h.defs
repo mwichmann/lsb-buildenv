@@ -1,42 +1,25 @@
-typedef unsigned long	XID	
-;
+typedef unsigned long XID;
 
-/*
- * 68 Default HeaderGroup for X11/X.h
- */
-typedef unsigned long	Atom	
-;
+typedef unsigned long Atom;
 
-typedef unsigned long	VisualID	
-;
+typedef unsigned long VisualID;
 
-typedef unsigned long	Time	
-;
+typedef unsigned long Time;
 
-typedef XID	Window	
-;
+typedef XID Window;
 
-typedef XID	Font	
-;
+typedef XID Font;
 
-typedef XID	Pixmap	
-;
+typedef XID Pixmap;
 
-typedef unsigned char	KeyCode	
-;
+typedef unsigned char KeyCode;
 
-typedef XID	Drawable	
-;
+typedef XID Drawable;
 
-typedef XID	Cursor	
-;
+typedef XID Cursor;
 
-typedef XID	Colormap	
-;
+typedef XID Colormap;
 
-typedef XID	GContext	
-;
+typedef XID GContext;
 
-typedef XID	KeySym	
-;
-
+typedef XID KeySym;

@@ -3,11 +3,7 @@ typedef union sigval {
     void *sival_ptr;
 } sigval_t;
 
-/*
- * 41 Default HeaderGroup for signal.h
- */
-typedef void (*__sighandler_t) ()
-;
+typedef void (*__sighandler_t) ();
 
 struct sigevent {
     sigval_t sigev_value;
@@ -40,7 +36,6 @@ struct sigstack {
     void *ss_sp;
     int ss_onstack;
 };
-
 
 int __libc_current_sigrtmax(void);
 int __libc_current_sigrtmin(void);

@@ -58,45 +58,30 @@ typedef struct _IceConn *IceConn;
 
 typedef struct _IceListenObj *IceListenObj;
 
-typedef void (*IceWatchProc) ()
-;
+typedef void (*IceWatchProc) ();
 
-typedef void (*IcePoProcessMsgProc) ()
-;
+typedef void (*IcePoProcessMsgProc) ();
 
-typedef void (*IcePaProcessMsgProc) ()
-;
+typedef void (*IcePaProcessMsgProc) ();
 
-typedef IcePoAuthStatus(*IcePoAuthProc) ()
-;
+typedef IcePoAuthStatus(*IcePoAuthProc) ();
 
-typedef IcePaAuthStatus(*IcePaAuthProc) ()
-;
+typedef IcePaAuthStatus(*IcePaAuthProc) ();
 
-typedef int (*IceHostBasedAuthProc) ()
-;
+typedef int (*IceHostBasedAuthProc) ();
 
-typedef int (*IceProtocolSetupProc) ()
-;
+typedef int (*IceProtocolSetupProc) ();
 
-typedef void (*IceProtocolActivateProc) ()
-;
+typedef void (*IceProtocolActivateProc) ();
 
-typedef void (*IceIOErrorProc) ()
-;
+typedef void (*IceIOErrorProc) ();
 
-typedef void (*IcePingReplyProc) ()
-;
+typedef void (*IcePingReplyProc) ();
 
-typedef void (*IceErrorHandler) ()
-;
+typedef void (*IceErrorHandler) ();
 
-typedef void (*IceIOErrorHandler) ()
-;
+typedef void (*IceIOErrorHandler) ();
 
-/*
- * 7 Default HeaderGroup for X11/ICE/ICElib.h
- */
 typedef struct {
     int major_version;
     int minor_version;
@@ -108,7 +93,6 @@ typedef struct {
     int minor_version;
     IcePaProcessMsgProc process_msg_proc;
 } IcePaVersionRec;
-
 
 IceConn IceAcceptConnection(IceListenObj, IceAcceptStatus *);
 int IceAddConnectionWatch(IceWatchProc, IcePointer);

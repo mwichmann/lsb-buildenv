@@ -1,6 +1,3 @@
-/*
- * 77 Default HeaderGroup for X11/extensions/security.h
- */
 typedef unsigned long XSecurityAuthorization;
 
 typedef struct {
@@ -9,7 +6,6 @@ typedef struct {
     XID group;
     long event_mask;
 } XSecurityAuthorizationAttributes;
-
 
 Xauth *XSecurityAllocXauth(void);
 void XSecurityFreeXauth(Xauth *);

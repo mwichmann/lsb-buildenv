@@ -1,6 +1,3 @@
-/*
- * 54 Default HeaderGroup for sys/utsname.h
- */
 struct utsname {
     char sysname[1];
     char nodename[1];
@@ -9,6 +6,5 @@ struct utsname {
     char machine[1];
     char __domainname[1];
 };
-
 
 int uname(struct utsname *);

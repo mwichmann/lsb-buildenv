@@ -1,8 +1,5 @@
 typedef long __clock_t;
 
-/*
- * 60 Default HeaderGroup for time.h
- */
 struct timespec {
     long tv_sec;
     long tv_nsec;
@@ -25,7 +22,6 @@ struct tm {
 typedef __clock_t clock_t;
 
 typedef __time_t time_t;
-
 
 char *asctime(struct tm *);
 clock_t clock(void);

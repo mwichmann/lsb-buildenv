@@ -1,6 +1,3 @@
-/*
- * 39 Default HeaderGroup for semaphore.h
- */
 typedef struct {
     struct __sem_lock;
     long status;
@@ -8,7 +5,6 @@ typedef struct {
     int spinlock;
     Unknown Type:".." __sem_waiting;
 } sem_t;
-
 
 int sem_close(sem_t *);
 int sem_destroy(sem_t *);

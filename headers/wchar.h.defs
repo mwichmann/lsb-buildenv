@@ -1,16 +1,8 @@
-/*
- * 64 Default HeaderGroup for wchar.h
- */
-typedef long	wchar_t	
-;
+typedef long wchar_t;
 
-typedef unsigned int	wint_t	
-;
+typedef unsigned int wint_t;
 
-typedef struct 	{
-int	count;	
-wint_t	value;	
-}
-mbstate_t	
-;
-
+typedef struct {
+    int count;
+    wint_t value;
+} mbstate_t;

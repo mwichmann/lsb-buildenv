@@ -10,17 +10,12 @@ typedef enum {
     leaf
 } VISIT;
 
-/*
- * 38 Default HeaderGroup for search.h
- */
 typedef struct entry {
     char *key;
     void *data;
 } ENTRY;
 
-typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level)
-;
-
+typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);
 
 int hcreate(size_t);
 ENTRY *hsearch(ENTRY, ACTION);
