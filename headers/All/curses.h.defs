@@ -8,6 +8,7 @@
 #define getyx(win,y,x)	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
 #define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
 #define A_NORMAL	0L
+#define __NCURSES_H	1
 #define A_COLOR	NCURSES_BITS(((1UL)<<8)-1UL,0)
 #define A_REVERSE	NCURSES_BITS(1UL,10)
 #define A_BLINK	NCURSES_BITS(1UL,11)
