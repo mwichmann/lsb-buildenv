@@ -32,7 +32,7 @@ extern "C"
 
 
 /* Standard well-known ports.*/
-#define IPPORT_RESERVED	1024
+#define s6_addr16
 
 
 
@@ -57,15 +57,17 @@ extern "C"
 
 
 /* Address structures for IPv6*/
+#define s6_addr
+#define s6_addr32
 
 
   struct in6_addr
   {
     union
     {
-      uint8_t u6_addr8;
-      uint16_t u6_addr16;
-      uint32_t u6_addr32;
+      uint8_t u6_addr8[16];
+      uint16_t u6_addr16[8];
+      uint32_t u6_addr32[4];
     }
     in6_u;
   }
