@@ -33,7 +33,6 @@ extern "C"
    ;
 
 
-  extern unsigned short *__ctype_b;
   extern int32_t *__ctype_tolower;
   extern int32_t *__ctype_toupper;
   extern int _tolower (int);
@@ -54,6 +53,9 @@ extern "C"
   extern int tolower (int);
   extern int toupper (int);
   extern int isblank (int);
+  extern const unsigned short **__ctype_b_loc (void);
+  extern const int32_t **__ctype_toupper_loc (void);
+  extern const int32_t **__ctype_tolower_loc (void);
 #ifdef __cplusplus
 }
 #endif
