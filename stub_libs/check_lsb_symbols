@@ -13,9 +13,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.6 $
+# This is $Revision: 1.7 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.7  2002/04/08 06:48:51  cyeoh
+# DB query changes to handle db changes
+# Handles variables with undefined (not just 0) size in db
+#
 # Revision 1.6  2002/04/08 05:51:15  cyeoh
 # take into account arch specific dependencies of objdump output
 #
@@ -164,7 +168,7 @@ sub LoadSymbolData($)
   if (system("objdump -T $useDir/$libfilename | egrep 'data|bss' > $tmpfile2")
       /256!=0)
   {
-    die "nm of shared library failed\n";
+    die "objdump of shared library failed\n";
   }
   
   my($line);
@@ -307,7 +311,8 @@ sub CheckSymbols($$$$$)
                        "LEFT JOIN Version ON Vid=Iversion ".
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
                        "ATaid=$TargetArchId WHERE ".
-                       "Itype='Data' AND Interface.Iid=LGInt.LGIint ".
+                       "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) " .
+                       "AND Interface.Iid=LGInt.LGIint ".
                        "AND Istatus='Included' ".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname")
@@ -317,6 +322,7 @@ sub CheckSymbols($$$$$)
   while ($row = $sth->fetchrow_hashref())
   {
     $iface = $row->{Iname};
+#    print "checking interface: $iface\n";
     if (exists($aliases->{$iface}))
     {
       $iface = $aliases->{$iface};
@@ -339,7 +345,12 @@ sub CheckSymbols($$$$$)
         next;
       }
       
-      if (hex($symbolInfo->{$iface}{SIZE}) != $row->{ATsize})
+      if (!defined($row->{ATsize}))
+      {
+        print "Size for $iface is not in database but in "
+            . "the library as $symbolInfo->{$iface}{SIZE}\n";
+      }
+      elsif (hex($symbolInfo->{$iface}{SIZE}) != $row->{ATsize})
       {
         print "Size mismatch for $iface. Is $symbolInfo->{$iface}{SIZE}, should be $row->{ATsize}\n";
       }
