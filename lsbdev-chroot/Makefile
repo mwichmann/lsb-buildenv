@@ -29,7 +29,7 @@ install: configure stubs
 	  config/extra_mount_dirs.conf config/extra_mount_files.conf \
 	  ${OVERRIDE_ROOT}/etc/lsbdev
 	mkdir -p ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
-	cp -pr stub_libs ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}
+	cd stub_libs && make install INSTALL_DIR=${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs && cd ..
 	mv ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs/libc.so \
 	  ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/stub_libs/libc.real.so
 	cp ../config/libc_script ${OVERRIDE_ROOT}/${CHROOT_DATA_DIR}/libc.so
