@@ -339,6 +339,23 @@ extern "C"
    ;
 
 #endif
+#if __s390x__
+/* S390X */
+  struct sigaction
+  {
+    union
+    {
+      __sighandler_t _sa_handler;
+      void (*_sa_sigaction) (int, siginfo_t *, void *);
+    }
+    __sigaction_handler;
+    unsigned long sa_flags;
+    void (*sa_restorer) (void);
+    __sigset_t sa_mask;
+  }
+   ;
+
+#endif
 
 /* Structure used in sigaltstack call.*/
 

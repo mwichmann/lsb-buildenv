@@ -87,6 +87,16 @@ extern "C"
    ;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef union
+  {
+    double d;
+    float f;
+  }
+  fpreg_t;
+
+#endif
 
 
 
@@ -116,6 +126,29 @@ extern "C"
   typedef struct _libc_fpstate *fpregset_t;
 
 #endif
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    unsigned int fpc;
+    fpreg_t fprs[16];
+  }
+  fpregset_t;
+
+#endif
+
+
+
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    unsigned long mask;
+    unsigned long addr;
+  }
+  __psw_t;
+
+#endif
 
 /* Context to describe whole processor state.*/
 
@@ -140,6 +173,18 @@ extern "C"
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
   typedef struct sigcontext mcontext_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    __psw_t psw;
+    unsigned long gregs[16];
+    unsigned int aregs[16];
+    fpregset_t fpregs;
+  }
+  mcontext_t;
 
 #endif
 
@@ -188,6 +233,32 @@ extern "C"
     stack_t uc_stack;
     mcontext_t uc_mcontext;
     sigset_t uc_sigmask;
+  }
+  ucontext_t;
+
+#endif
+#if __s390x__
+/* S390X */
+  struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    __sigset_t uc_sigmask;
+  }
+   ;
+
+#endif
+#if __s390x__
+/* S390X */
+  typedef struct ucontext
+  {
+    unsigned long uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    __sigset_t uc_sigmask;
   }
   ucontext_t;
 
