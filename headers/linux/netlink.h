@@ -1,5 +1,5 @@
-#ifndef _SYS_SENDFILE_H_
-#define _SYS_SENDFILE_H_
+#ifndef _LINUX_NETLINK_H_
+#define _LINUX_NETLINK_H_
 
 #ifdef __cplusplus
 extern "C"

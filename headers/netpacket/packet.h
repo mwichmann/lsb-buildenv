@@ -1,5 +1,5 @@
-#ifndef _SYS_SENDFILE_H_
-#define _SYS_SENDFILE_H_
+#ifndef _NETPACKET_PACKET_H_
+#define _NETPACKET_PACKET_H_
 
 #ifdef __cplusplus
 extern "C"
