@@ -1,0 +1,31 @@
+#!/usr/local/bin/perl
+
+use CGI;
+use Carp;
+use Mysql;
+
+$query = new CGI(%ARGV);
+$lib=$query->param('Lib');
+
+$Dbh = Mysql->connect(localhost) || die $Mysql::db_errstr;
+$Dbh->selectdb("Linux") || die $Dbh->errmsg();
+
+$select  = "SELECT DISTINCT Interface.Iname FROM Interface,LibGroup,Library ";
+$select .= "WHERE Interface.Ilibgroup=LibGroup.LGid ";
+$select .= "AND LibGroup.LGlib=Library.Lid ";
+$select .= "AND Library.Lname=".$Dbh->quote($lib);
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	printf "__asm__(\".globl _lsb_%s\");\n",
+				$entry{'Iname'};
+	printf "__asm__(\"\t.type _lsb_%s,\@function\");\n",
+				$entry{'Iname'};
+	printf "__asm__(\"_lsb_%s:\");\n",
+				$entry{'Iname'};
+	printf "__asm__(\"\tjmp %s\");\n",
+				$entry{'Iname'};
+	printf "__asm__(\".symver _lsb_%s,%s\@LSB_1.0\");\n",
+				$entry{'Iname'},$entry{'Iname'};
+}
