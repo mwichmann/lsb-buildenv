@@ -57,7 +57,28 @@ extern "C"
 #if __ia64__
 #define FE_INEXACT	(1UL << 5)
 #endif
+#if __i386__
 #define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#endif
+#if __powerpc__ && !__powerpc64__
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#endif
+#if __powerpc64__
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#endif
+#if __s390__ && !__s390x__
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#endif
+#if __x86_64__
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#endif
+#if __s390x__
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#endif
+#if __ia64__
+#define FE_ALL_EXCEPT	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | F
+  E_INVALID)
+#endif
 #if __i386__
 #define FE_INVALID	0x01
 #endif
@@ -103,9 +124,9 @@ extern "C"
 #if __s390__ && !__s390x__
 #define FE_INVALID	0x80
 #endif
-
-
-
+#if __ia64__
+#define FE_UNNORMAL	1UL << 1
+#endif
 /* Rounding modes*/
 #if __i386__
 #define FE_TONEAREST	0
@@ -176,9 +197,6 @@ extern "C"
 #if __ia64__
 #define FE_UPWARD	2
 #endif
-#if __mc68000__
-#define FE_UPWARD	2
-#endif
 #if __powerpc__ && !__powerpc64__
 #define FE_DOWNWARD	3
 #endif
@@ -188,12 +206,7 @@ extern "C"
 #if __ia64__
 #define FE_TOWARDZERO	3
 #endif
-
-
-
 /* Type representing exception flags.*/
-
-
 #if __i386__
 /* IA32 */
   typedef unsigned short fexcept_t;
