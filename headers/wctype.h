@@ -17,7 +17,7 @@ extern "C"
 
   typedef const int32_t *wctrans_t;
 
-  typedef struct
+  typedef struct __mbstate_t
   {
     int count;
     wint_t value;
