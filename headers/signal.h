@@ -6,7 +6,6 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
-#include <ucontext.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -25,6 +24,14 @@ extern "C"
 
   typedef int sig_atomic_t;
 
+  typedef struct sigaltstack
+  {
+    void *ss_sp;
+    int ss_flags;
+    size_t ss_size;
+  }
+  stack_t;
+
   struct sigstack
   {
     void *ss_sp;		/* Signal stack pointer. */
@@ -32,6 +39,26 @@ extern "C"
   }
    ;
 
+#if __s390x__
+/* S390X */
+  typedef struct
+  {
+    unsigned long mask;
+    unsigned long addr;
+  }
+  __attribute__ ((aligned (8))) _psw_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  typedef struct
+  {
+    unsigned long mask;
+    unsigned long addr;
+  }
+  __attribute__ ((aligned (8))) _psw_t;
+
+#endif
 #if __s390__ && !__s390x__
 /* S390 */
   typedef struct
@@ -41,6 +68,37 @@ extern "C"
     unsigned int acrs;
   }
   _s390_regs_common;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  struct pt_regs
+  {
+    unsigned long gpr[32];
+    unsigned long nip;
+    unsigned long msr;
+    unsigned long orig_gpr3;
+    unsigned long ctr;
+    unsigned long link;
+    unsigned long xer;
+    unsigned long ccr;
+    unsigned long mq;
+    unsigned long trap;
+    unsigned long dar;
+    unsigned long dsisr;
+    unsigned long result;
+  }
+   ;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef elf_greg_t elf_gregset_t[64];
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+  typedef elf_fpreg_t elf_fpregset_t[33];
 
 #endif
 #if __s390x__

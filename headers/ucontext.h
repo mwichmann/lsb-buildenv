@@ -3,7 +3,6 @@
 
 #include <inttypes.h>
 #include <signal.h>
-#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -15,14 +14,6 @@ extern "C"
 #define _SC_GR0_OFFSET	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 #endif
 
-
-  typedef struct sigaltstack
-  {
-    void *ss_sp;
-    int ss_flags;
-    size_t ss_size;
-  }
-  stack_t;
 
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
@@ -52,27 +43,6 @@ extern "C"
     unsigned short significand[4];
     unsigned short exponent;
     unsigned short padding[3];
-  }
-   ;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  struct pt_regs
-  {
-    unsigned long gpr[32];
-    unsigned long nip;
-    unsigned long msr;
-    unsigned long orig_gpr3;
-    unsigned long ctr;
-    unsigned long link;
-    unsigned long xer;
-    unsigned long ccr;
-    unsigned long mq;
-    unsigned long trap;
-    unsigned long dar;
-    unsigned long dsisr;
-    unsigned long result;
   }
    ;
 
@@ -122,11 +92,6 @@ extern "C"
 #if __x86_64__
 /* x86-64 */
   typedef greg_t gregset_t[23];
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_greg_t elf_gregset_t[64];
 
 #endif
 
@@ -240,34 +205,9 @@ extern "C"
   typedef struct _libc_fpstate *fpregset_t;
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-  typedef elf_fpreg_t elf_fpregset_t[33];
-
-#endif
 
 
 
-#if __s390x__
-/* S390X */
-  typedef struct
-  {
-    unsigned long mask;
-    unsigned long addr;
-  }
-  __attribute__ (((aligned (8)))) _psw_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-  typedef struct
-  {
-    unsigned long mask;
-    unsigned long addr;
-  }
-  __attribute__ (((aligned (8)))) _psw_t;
-
-#endif
 
 /* Context to describe whole processor state.*/
 
