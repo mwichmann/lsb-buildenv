@@ -6,9 +6,12 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.17 $
+# This is $Revision: 1.18 $
 #
 # $Log: mkstublibs,v $
+# Revision 1.18  2002/04/11 08:20:03  cyeoh
+# Adds ability to overide version of functions
+#
 # Revision 1.17  2002/04/09 09:10:33  cyeoh
 # Adds ability to override symbol versions in db
 #
@@ -218,14 +221,33 @@ sub GenerateLibrary($$$)
   while ($row = $sth->fetchrow_hashref())
   {
     print(STUBFILE "void $row->{Iname}(void) {} ;\n");
-    if (defined($row->{Vname}))
+
+    # Add ability to override versions of functions
+    undef($version);
+    $version = $row->{Vname} unless !defined($row->{Vname});
+    if (defined($OverrideVersions{$libName})
+        && defined($OverrideVersions{$libName}{$row->{Iname}}))
+    {
+      print "Overriding $row->{Iname} with symbol version '$OverrideVersions{$libName}{$row->{Iname}}' ";
+      if (defined($version))
+      {
+        print "was '$version'\n";
+      }
+      else
+      {
+        print "was unversioned\n";
+      }
+      $version = $OverrideVersions{$libName}{$row->{Iname}};
+    }
+
+    if (defined($version))
     {
       # Unversioned symbols will not have the Vname field defined
-      if (!defined($versionInfo{$row->{Vname}}))
+      if (!defined($versionInfo{$version}))
       {
-        $versionInfo{$row->{Vname}} = ();
+        $versionInfo{$version} = ();
       }
-      push(@{$versionInfo{$row->{Vname}}}, $row->{Iname});
+      push(@{$versionInfo{$version}}, $row->{Iname});
     }
   }
 
@@ -312,6 +334,7 @@ sub GenerateLibrary($$$)
       {
         print "was unversioned\n";
       }
+      $version = $OverrideVersions{$libName}{$row->{Iname}};
     }
     
     if (defined($version))
