@@ -1,0 +1,183 @@
+#!/usr/bin/perl -w
+
+# Look for cases where a constant is defined in ArchConst
+# for both all architectures and individual architectures separately.
+# Look for cases where a constant is defined for all architectures but 
+# has the same value
+# Can fix above problems
+#
+# (C) Copyright 2002 The Free Standards Group  Inc
+#
+# Chris Yeoh (cyeoh@samba.org), IBM
+#
+
+use strict;
+use DBI;
+use Getopt::Std;
+use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
+
+my($DBName) = $LSBDB;
+my($DBUser) = $LSBUSER;
+my($DBPass)  = $LSBDBPASSWD;
+my($DBHost) = $LSBDBHOST;
+my(%ArchHash);
+my(%ConstHash);
+
+# Supported architectures
+# Should update this when we support new architectures
+my(@SupportedArchs) = (2,3,6,9,10,11);
+
+my($dbh);
+my($sth);
+my($row);
+my($data_source) = "DBI:mysql:database=$DBName";
+my(%Options);
+
+######################################################################
+# Main bit
+getopts('f', \%Options);
+
+if (defined($DBHost) && $DBHost ne "")
+{
+  $data_source .= ";host=$DBHost";
+}
+
+$dbh = DBI->connect($data_source, $DBUser, $DBPass, {AutoCommit=>0})
+    || die "Could not connect to database\n";
+
+# Get Architectures
+$sth = $dbh->prepare("SELECT * from Architecture") || die $dbh->errstr;
+$sth->execute() || die $sth->errstr;
+
+while ($row=$sth->fetchrow_hashref)
+{
+  $ArchHash{$row->{Aid}} = $row->{Aname};
+}
+
+# Get Constants
+$sth = $dbh->prepare("SELECT * from Constant") || die $dbh->errstr;
+$sth->execute() || die $sth->errstr;
+
+while ($row=$sth->fetchrow_hashref)
+{
+  $ConstHash{$row->{Cid}} = $row->{Cname};
+}
+
+$sth = $dbh->prepare("SELECT * from ArchConst ORDER BY ACcid,ACaid") 
+    || die $dbh->errstr;
+$sth->execute() || die $sth->errstr;
+
+my($lastCidWithAll) = 0;
+my($lastCid) = 0;
+my($lastValue) = "";
+my($canReduce) = 0;
+my(%constantsToExpand);
+my(%constantsToReduce);
+my($firstPair) = 1;
+while ($row=$sth->fetchrow_hashref)
+{
+  if ($row->{ACcid} == $lastCidWithAll)
+  {
+    print "Constant $ConstHash{$row->{ACcid}} ($row->{ACcid}) "
+        . "defined for $ArchHash{$row->{ACaid}} when defined for all\n";
+    $constantsToExpand{$row->{ACcid}} = 1;
+  }
+  if ($lastCid==$row->{ACcid})
+  {
+    if ($lastValue eq $row->{ACvalue} && $firstPair)
+    {
+      $canReduce = 1;
+      $firstPair = 0;
+    }
+    elsif ($lastValue ne $row->{ACvalue})
+    {
+      $canReduce = 0;
+    }
+  }
+  elsif ($lastCid!=$row->{ACcid})
+  {
+    if ($canReduce)
+    {
+      print "All values for Constant $ConstHash{$lastCid} ($lastCid) are same\n";
+      $constantsToReduce{$lastCid} = 1;
+    }
+    $canReduce = 0;
+    $firstPair = 1;
+  }
+
+  if ($row->{ACaid} == 1)
+  {
+    $lastCidWithAll = $row->{ACcid};
+  } 
+  $lastCid = $row->{ACcid};
+  $lastValue = $row->{ACvalue};
+}
+
+if (defined($Options{'f'}))
+{
+  my($cid);
+  my($cvalue);
+  my($arch);
+  my($confirm);
+  foreach $cid (keys %constantsToExpand)
+  {
+    my(%existsForArch);
+    print "Expand constant $ConstHash{$cid}?";
+    $confirm = <STDIN>;
+    chomp($confirm);
+    if ($confirm eq "y" || $confirm eq "Y")
+    {
+
+      $sth = $dbh->prepare("SELECT * from ArchConst where ACcid=$cid ORDER BY ACaid");
+      $sth->execute() || die $sth->errstr;
+      $row = $sth->fetchrow_hashref;
+      die "First arch entry should for all (ACcid=$row->{ACaid})"
+          unless $row->{ACaid}==1;
+      $cvalue = $row->{ACvalue};
+
+      while ($row=$sth->fetchrow_hashref)
+      {
+        $existsForArch{$row->{ACaid}} = 1;
+      }
+
+      foreach $arch (@SupportedArchs)
+      {
+        if (!exists($existsForArch{$arch}))
+        {
+          print "  Creating entry for $ArchHash{$arch}\n";
+          $sth = $dbh->prepare("INSERT INTO ArchConst (ACaid, ACcid, ACvalue) VALUES ($arch, $cid, \'$cvalue\')");
+#        print "INSERT INTO ArchConst (ACaid, ACcid, ACvalue) VALUES ($arch, $cid, \'$cvalue\')";
+          $sth->execute() || die $sth->errstr;
+        }
+      }
+      $sth = $dbh->prepare("DELETE FROM ArchConst where ACcid=$cid and ACaid=1");
+      $sth->execute() || die $sth->errstr;
+      $dbh->commit();
+    }
+  }
+
+
+  foreach $cid (keys %constantsToReduce)
+  {
+    my($confirm);
+    my($cvalue);
+    print "Reduce constant $ConstHash{$cid} ($cid) ?";
+    $confirm = <STDIN>;
+    chomp($confirm);
+    if ($confirm eq "y" || $confirm eq "Y")
+    {
+      $sth = $dbh->prepare("SELECT * from ArchConst where ACcid=$cid");
+      $sth->execute() || die $sth->errstr;
+      $row = $sth->fetchrow_hashref;
+      $cvalue = $row->{ACvalue};
+
+      $sth = $dbh->prepare("DELETE from ArchConst where ACcid=$cid");
+      $sth->execute() || die $sth->errstr;
+      
+      $sth = $dbh->prepare("INSERT INTO ArchConst (ACaid, ACcid, ACvalue) VALUES (1, $cid, \'$cvalue\')");
+      $sth->execute() || die $sth->errstr;
+      $dbh->commit();
+    }
+  }
+}
+$dbh->disconnect();
