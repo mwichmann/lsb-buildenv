@@ -230,7 +230,9 @@ for(i=0;lsblibs[i];i++) {
 
 /* So it's not an LSB library. Make sure it is getting statically linked */
 
+/*
 fprintf(stderr,"Forcing %s to be linked statically\n",val);
+*/
 
 argvaddstring(userlibs,"-Wl,-Bstatic");
 argvaddstring(userlibs,strdup(buf));
@@ -252,7 +254,9 @@ find_gcc_base_dir()
  * popen("gcc -print-libgcc-file-name");
  */
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
+/*
 fprintf(stderr,"FIXME - Hardcoding /usr/lib/gcc-lib/i386-linux/2.95.4\n");
+*/
 }
 /* end utility functions */
 
