@@ -340,7 +340,7 @@ return;
  * to list it for "special handling".  Only do this for long options
  * that are really used...
  */
-char *optstr="cL:l:o:EI:W::s";
+char *optstr="cL:l:o:EI:W::su:";
 struct option long_options[] = {
 	{"include",required_argument,0,0},
 	{"shared",no_argument,0,0},
@@ -581,6 +581,11 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -o %s\n", optarg );
 		argvadd(target,"o",optarg);
+		break;
+	case 'u':
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -u %s\n", optarg );
+		argvadd(target,"u",optarg);
 		break;
 	case 'I':
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
