@@ -13,9 +13,13 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.7 $
+# This is $Revision: 1.8 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.8  2002/04/09 04:46:24  cyeoh
+# skip version of symbols which are not linked against except when
+# called by version
+#
 # Revision 1.7  2002/04/08 06:48:51  cyeoh
 # DB query changes to handle db changes
 # Handles variables with undefined (not just 0) size in db
@@ -165,7 +169,7 @@ sub LoadSymbolData($)
     die "nm of shared library failed\n";
   }
   
-  if (system("objdump -T $useDir/$libfilename | egrep 'data|bss' > $tmpfile2")
+  if (system("objdump -T $useDir/$libfilename | egrep 'data|bss' | grep -v '(' > $tmpfile2")
       /256!=0)
   {
     die "objdump of shared library failed\n";
