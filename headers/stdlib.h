@@ -75,6 +75,7 @@ extern "C"
   extern long a64l (const char *);
   extern void abort (void);
   extern int abs (int);
+  extern int atexit (void (*)(void));
   extern double atof (const char *);
   extern int atoi (const char *);
   extern long atol (const char *);
