@@ -1,0 +1,10 @@
+In addition to the values below, the <filename>zlib.h</filename> 
+header shall define the
+<constant>ZLIB_VERSION</constant> macro. This macro may be used
+to check that the version of the library at run time matches that
+at compile time.
+</PARA>
+<PARA>
+See also the <FUNCTION>zlibVersion</FUNCTION> function, which returns
+the library version at run time. The first character of the version 
+at compile time should always match the first character at run time.
