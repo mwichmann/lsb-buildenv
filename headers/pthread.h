@@ -170,12 +170,18 @@ extern "C"
 				     void (*)(void *), void *);
   extern int pthread_attr_destroy (pthread_attr_t *);
   extern int pthread_attr_getdetachstate (const pthread_attr_t *, int *);
+  extern int pthread_attr_getinheritsched (const pthread_attr_t *, int *);
   extern int pthread_attr_getschedparam (const pthread_attr_t *,
 					 struct sched_param *);
+  extern int pthread_attr_getschedpolicy (const pthread_attr_t *, int *);
+  extern int pthread_attr_getscope (const pthread_attr_t *, int *);
   extern int pthread_attr_init (pthread_attr_t *);
   extern int pthread_attr_setdetachstate (pthread_attr_t *, int);
+  extern int pthread_attr_setinheritsched (pthread_attr_t *, int);
   extern int pthread_attr_setschedparam (pthread_attr_t *,
 					 const struct sched_param *);
+  extern int pthread_attr_setschedpolicy (pthread_attr_t *, int);
+  extern int pthread_attr_setscope (pthread_attr_t *, int);
   extern int pthread_cancel (pthread_t);
   extern int pthread_cond_broadcast (pthread_cond_t *);
   extern int pthread_cond_destroy (pthread_cond_t *);
@@ -191,6 +197,7 @@ extern "C"
   extern int pthread_detach (pthread_t);
   extern int pthread_equal (pthread_t, pthread_t);
   extern void pthread_exit (void *);
+  extern int pthread_getschedparam (pthread_t, int *, struct sched_param *);
   extern void *pthread_getspecific (pthread_key_t);
   extern int pthread_join (pthread_t, void **);
   extern int pthread_key_create (pthread_key_t *, void (*)(void *));
@@ -220,6 +227,8 @@ extern "C"
   extern pthread_t pthread_self (void);
   extern int pthread_setcancelstate (int, int *);
   extern int pthread_setcanceltype (int, int *);
+  extern int pthread_setschedparam (pthread_t, int,
+				    const struct sched_param *);
   extern int pthread_setspecific (pthread_key_t, const void *);
   extern void pthread_testcancel (void);
   extern int pthread_attr_getguardsize (const pthread_attr_t *, size_t *);
@@ -246,6 +255,7 @@ extern "C"
 					 const struct timespec *);
   extern int __register_atfork (void (*)(void), void (*)(void),
 				void (*)(void), void *);
+  extern int pthread_setschedprio (pthread_t, int);
 #ifdef __cplusplus
 }
 #endif
