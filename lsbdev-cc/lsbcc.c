@@ -460,8 +460,12 @@ userlibs=argvinit();
 
 syslibs=argvinit();
 /* these need to go after user-specified library paths */
-argvaddstring(syslibs,"-L/lib");
-argvaddstring(syslibs,"-L/usr/lib");
+#if defined(__powerpc64__)
+	argvaddstring(syslibs,"-L/opt/cross/powerpc64-linux/lib");
+#else
+	argvaddstring(syslibs,"-L/lib");
+	argvaddstring(syslibs,"-L/usr/lib");
+#endif
 
 if( lsbccmode == LSBCPLUS ) {
 	if( lsbcc_debug&DEBUG_LIB_CHANGES )
