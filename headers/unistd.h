@@ -73,6 +73,42 @@ extern "C"
 #define _POSIX2_C_VERSION	199209L
 #define _POSIX2_VERSION	199209L
 #define _POSIX_VERSION	199506L
+#if __i386__
+#define _POSIX_ASYNCHRONOUS_IO	200112
+#endif
+#if __i386__
+#define _POSIX_FSYNC	200112
+#endif
+#if __i386__
+#define _POSIX_MAPPED_FILES	200112
+#endif
+#if __i386__
+#define _POSIX_MEMLOCK	200112
+#endif
+#if __i386__
+#define _POSIX_MEMLOCK_RANGE	200112
+#endif
+#if __i386__
+#define _POSIX_MEMORY_PROTECTION	200112
+#endif
+#if __i386__
+#define _POSIX_PRIORITY_SCHEDULING	200112
+#endif
+#if __i386__
+#define _POSIX_REALTIME_SIGNALS	200112
+#endif
+#if __i386__
+#define _POSIX_SEMAPHORES	200112
+#endif
+#if __i386__
+#define _POSIX_SHARED_MEMORY_OBJECTS	200112
+#endif
+#if __i386__
+#define _POSIX_SYNCHRONIZED_IO	200112
+#endif
+#if __i386__
+#define _POSIX_TIMERS	200112
+#endif
 
 
 

@@ -2,7 +2,6 @@
 #define _RPC_RPC_MSG_H_
 
 #include <sys/types.h>
-#include <inttypes.h>
 #include <rpc/auth.h>
 #include <rpc/types.h>
 #include <rpc/xdr.h>

@@ -2,7 +2,6 @@
 #define _RPC_XDR_H_
 
 #include <sys/types.h>
-#include <inttypes.h>
 #include <rpc/types.h>
 
 #ifdef __cplusplus
