@@ -69,6 +69,7 @@ GLIBC_2.2 {
   asctime;
   asctime_r;
   asprintf;
+  atexit;
   atof;
   atoi;
   atol;
@@ -231,6 +232,7 @@ GLIBC_2.2 {
   getgrgid;
   getgrgid_r;
   getgrnam;
+  getgrnam_r;
   getgroups;
   gethostbyaddr;
   gethostbyname;
@@ -256,6 +258,7 @@ GLIBC_2.2 {
   getprotoent;
   getpwent;
   getpwnam;
+  getpwnam_r;
   getpwuid;
   getpwuid_r;
   getrlimit;
@@ -420,6 +423,9 @@ GLIBC_2.2 {
   pclose;
   perror;
   pipe;
+  pmap_getport;
+  pmap_set;
+  pmap_unset;
   poll;
   popen;
   posix_memalign;
@@ -615,6 +621,7 @@ GLIBC_2.2 {
   strxfrm;
   svc_getreqset;
   svc_register;
+  svc_run;
   svc_sendreply;
   svcerr_auth;
   svcerr_decode;

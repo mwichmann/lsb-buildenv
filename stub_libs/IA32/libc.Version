@@ -247,8 +247,6 @@ GLIBC_2.0 {
   initstate;
   insque;
   ioctl;
-  ioperm;
-  iopl;
   isalnum;
   isalpha;
   isascii;
@@ -544,6 +542,7 @@ GLIBC_2.0 {
   tcsendbreak;
   tcsetattr;
   tcsetpgrp;
+  tdelete;
   telldir;
   tempnam;
   textdomain;

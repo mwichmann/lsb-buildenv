@@ -232,6 +232,7 @@ GLIBC_2.2 {
   getgrgid;
   getgrgid_r;
   getgrnam;
+  getgrnam_r;
   getgroups;
   gethostbyaddr;
   gethostbyname;
@@ -257,6 +258,7 @@ GLIBC_2.2 {
   getprotoent;
   getpwent;
   getpwnam;
+  getpwnam_r;
   getpwuid;
   getpwuid_r;
   getrlimit;

@@ -1,5 +1,6 @@
 void _pthread_cleanup_pop() {} ;
 void _pthread_cleanup_push() {} ;
+void pthread_atfork() {} ;
 void pthread_attr_destroy() {} ;
 void pthread_attr_getdetachstate() {} ;
 void pthread_attr_getguardsize() {} ;

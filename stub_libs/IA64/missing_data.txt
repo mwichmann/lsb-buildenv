@@ -28,19 +28,6 @@ libXt widgetClass 8
 libXt widgetClassRec e0
 libXt wmShellClassRec 118
 libXt wmShellWidgetClass 8
-# libc
-libc _IO_2_1_stderr_ e0
-libc _IO_2_1_stdin_ e0
-libc _IO_2_1_stdout_ e0
-libc __ctype_b 8
-libc __environ 8
-libc __tzname 10
-libc _sys_errlist 3e8
-libc _sys_siglist 200
-libc loc1 8
-libc loc2 8
-libc locs 8
-libc optarg 8
 # libstdcxx
 libstdcxx _ZGVNSt10moneypunctIcLb0EE2idE 8
 libstdcxx _ZGVNSt10moneypunctIcLb1EE2idE 8

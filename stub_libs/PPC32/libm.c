@@ -257,6 +257,7 @@ void sinhl() {} ;
 void sinl() {} ;
 void sqrt() {} ;
 void sqrtf() {} ;
+void sqrtl() {} ;
 void tan() {} ;
 void tanf() {} ;
 void tanh() {} ;
