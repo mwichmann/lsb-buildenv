@@ -73,6 +73,23 @@ extern "C"
   typedef void *locale_t;
 
 
+/* These are the bits that can be set in the CATEGORY_MASK argument to newlocale().*/
+#define LC_ADDRESS_MASK	(1 << LC_ADDRESS)
+#define LC_COLLATE_MASK	(1 << LC_COLLATE)
+#define LC_IDENTIFICATION_MASK	(1 << LC_IDENTIFICATION)
+#define LC_MEASUREMENT_MASK	(1 << LC_MEASUREMENT)
+#define LC_MESSAGES_MASK	(1 << LC_MESSAGES)
+#define LC_MONETARY_MASK	(1 << LC_MONETARY)
+#define LC_NAME_MASK	(1 << LC_NAME)
+#define LC_NUMERIC_MASK	(1 << LC_NUMERIC)
+#define LC_PAPER_MASK	(1 << LC_PAPER)
+#define LC_TELEPHONE_MASK	(1 << LC_TELEPHONE)
+#define LC_TIME_MASK	(1 << LC_TIME)
+#define LC_CTYPE_MASK	(1<<LC_CTYPE)
+#define LC_ALL_MASK	(LC_CTYPE_MASK| LC_NUMERIC_MASK| LC_TIME_MASK| LC_COLLATE_MASK| LC_MONETARY_MASK| LC_MESSAGES_MASK| LC_PAPER_MASK| LC_NAME_MASK| LC_ADDRESS_MASK| LC_TELEPHONE_MASK| LC_MEASUREMENT_MASK| LC_IDENTIFICATION_MASK)
+
+
+
   extern struct lconv *localeconv (void);
   extern char *setlocale (int, const char *);
   extern locale_t uselocale (locale_t);
