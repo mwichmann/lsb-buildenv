@@ -20,7 +20,7 @@ extern "C"
 
   typedef unsigned long rpcproc_t;
 
-    rpcprot_t;
+  typedef unsigned long rpcprot_t;
 
 
 #ifdef __cplusplus
