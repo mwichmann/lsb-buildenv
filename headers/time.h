@@ -18,6 +18,9 @@ typedef __clock_t clock_t;
 
 
 
+extern int __daylight;
+extern long __timezone;
+extern char **__tzname;
 char *asctime (struct tm *);
 clock_t clock (void);
 char *ctime (time_t *);

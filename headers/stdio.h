@@ -21,6 +21,7 @@ typedef __off64_t fpos64_t;
 
 
 
+extern char **_sys_errlist;
 void clearerr (FILE *);
 int fclose (FILE *);
 FILE *fdopen (int, char *);

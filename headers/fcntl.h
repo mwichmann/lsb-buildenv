@@ -13,15 +13,15 @@
 #define O_APPEND	02000
 #define O_ASYNC	020000
 #define O_NOCTTY	0400
-#define O_NDELAY	04000
 #define O_NONBLOCK	04000
+#define O_NDELAY	04000
 
 
 
-#define F_RDLCK	0
 #define F_DUPFD	0
-#define F_GETFD	1
+#define F_RDLCK	0
 #define F_WRLCK	1
+#define F_GETFD	1
 #define F_SETFD	2
 #define F_UNLCK	2
 #define F_GETFL	3

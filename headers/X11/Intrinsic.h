@@ -64,6 +64,7 @@ void XtAppWarningMsg (XtAppContext, char *, char *, char *, char *, String *,
 		      Cardinal *);
 void XtAugmentTranslations (Widget, XtTranslations);
 EventMask XtBuildEventMask (Widget);
+extern String XtCXtToolkitError;
 Boolean XtCallAcceptFocus (Widget, Time *);
 void XtCallActionProc (Widget, char *, XEvent *, String *, Cardinal);
 void XtCallCallbackList (Widget, XtCallbackList, XtPointer);

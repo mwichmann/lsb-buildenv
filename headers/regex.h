@@ -71,8 +71,8 @@ regmatch_t;
 #define REG_NEWLINE	(REG_ICASE<<1)
 #define REG_NOSUB	(REG_NEWLINE<<1)
 #define REG_NOMATCH	-1
-#define REG_NOTBOL	1
 #define REG_EXTENDED	1
+#define REG_NOTBOL	1
 
 int regcomp (regex_t *, char *, int);
 size_t regerror (int, regex_t *, char *, size_t);

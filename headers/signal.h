@@ -111,6 +111,7 @@ typedef struct sigaltstack
 stack_t;
 
 
+extern char **_sys_siglist;
 int raise (int);
 int sigaddset (sigset_t *, int);
 int sigdelset (sigset_t *, int);

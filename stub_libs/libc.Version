@@ -11,6 +11,7 @@ GLIBC_2.0 {
   __divdi3;
   __errno_location;
   __fxstat;
+  __getpagesize;
   __getpgid;
   __libc_start_main;
   __lxstat;
@@ -58,6 +59,7 @@ GLIBC_2.0 {
   alarm;
   alphasort;
   asctime;
+  asctime_r;
   atexit;
   atof;
   atoi;
@@ -104,6 +106,7 @@ GLIBC_2.0 {
   creat;
   ctermid;
   ctime;
+  ctime_r;
   cuserid;
   daemon;
   dcgettext;
@@ -226,6 +229,7 @@ GLIBC_2.0 {
   glob;
   globfree;
   gmtime;
+  gmtime_r;
   hcreate;
   hdestroy;
   hsearch;
@@ -286,6 +290,7 @@ GLIBC_2.0 {
   lldiv;
   localeconv;
   localtime;
+  localtime_r;
   lockf;
   longjmp;
   lrand48;
@@ -352,7 +357,9 @@ GLIBC_2.0 {
   qsort;
   raise;
   rand;
+  rand_r;
   random;
+  random_r;
   re_comp;
   re_exec;
   read;
@@ -407,6 +414,7 @@ GLIBC_2.0 {
   sethostname;
   setitimer;
   setlocale;
+  setlogmask;
   setmntent;
   setnetent;
   setpgid;
@@ -614,6 +622,7 @@ GLIBC_2.0 {
   xdr_array;
   xdr_bool;
   xdr_bytes;
+  xdr_callhdr;
   xdr_callmsg;
   xdr_char;
   xdr_double;
@@ -648,11 +657,9 @@ GLIBC_2.0 {
   __timezone;
   __tzname;
   _environ;
-  _h_errno;
   _nl_msg_cat_cntr;
   daylight;
   environ;
-  errno;
   h_errno;
   loc1;
   loc2;
@@ -707,6 +714,7 @@ GLIBC_2.1 {
   iconv_close;
   iconv_open;
   iswblank;
+  key_decryptsession;
   lockf64;
   lseek64;
   makecontext;
@@ -717,6 +725,7 @@ GLIBC_2.1 {
   pclose;
   popen;
   pread;
+  pread64;
   ptsname;
   putmsg;
   pututxline;
@@ -752,9 +761,6 @@ GLIBC_2.1 {
   wcswcs;
   wordexp;
   wordfree;
-  _IO_2_1_stderr_;
-  _IO_2_1_stdin_;
-  _IO_2_1_stdout_;
   _sys_errlist;
   _sys_siglist;
   getdate_err;
@@ -763,6 +769,9 @@ GLIBC_2.1.1 {
   _Exit;
   imaxabs;
   imaxdiv;
+};
+GLIBC_2.1.2 {
+  gethostbyname_r;
 };
 GLIBC_2.1.3 {
   __cxa_atexit;
@@ -773,6 +782,7 @@ GLIBC_2.2 {
   __lxstat64;
   __sysconf;
   __xstat64;
+  fgetwc;
   fgetws;
   fputwc;
   fputws;
@@ -781,6 +791,8 @@ GLIBC_2.2 {
   fwscanf;
   getloadavg;
   getrlimit;
+  getwc;
+  getwchar;
   memrchr;
   mkstemp64;
   putwc;
@@ -791,6 +803,7 @@ GLIBC_2.2 {
   swscanf;
   ungetwc;
   vfwprintf;
+  vswprintf;
   vswscanf;
   vwprintf;
   vwscanf;

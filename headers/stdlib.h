@@ -99,5 +99,6 @@ unsigned long strtoul (char *, char **, int);
 unsigned long long strtoull (char *, char **, int);
 void _Exit (int);
 size_t __ctype_get_mb_cur_max (void);
+extern char **environ;
 char *realpath (char *, char *);
 #endif

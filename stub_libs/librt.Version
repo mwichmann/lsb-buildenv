@@ -25,4 +25,9 @@ GLIBC_2.2 {
   clock_settime;
   shm_open;
   shm_unlink;
+  timer_create;
+  timer_delete;
+  timer_getoverrun;
+  timer_gettime;
+  timer_settime;
 };

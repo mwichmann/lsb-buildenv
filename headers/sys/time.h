@@ -80,4 +80,5 @@ int timer_create (void);
 int timer_delete (void);
 int timer_getoverrun (void);
 int timer_gettime (void);
+int timer_settime (void);
 #endif

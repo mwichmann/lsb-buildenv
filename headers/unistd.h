@@ -11,13 +11,13 @@ typedef int pid_t;
 
 typedef int *intptr_t;
 
-#define STDIN_FILENO	0
 #define SEEK_SET	0
+#define STDIN_FILENO	0
 #define STDOUT_FILENO	1
 #define SEEK_CUR	1
+#define _SC_CLK_TCK	2
 #define SEEK_END	2
 #define STDERR_FILENO	2
-#define _SC_CLK_TCK	2
 #define _SC_OPEN_MAX	4
 
 #define F_OK	0
@@ -108,6 +108,7 @@ int unlink (char *);
 pid_t vfork (void);
 int pread (int, void *, size_t, off_t);
 int pwrite (int, void *, size_t, off_t);
+extern char **_environ;
 long fpathconf (void);
 int ftruncate (int, off_t);
 char *getcwd (char *, size_t);

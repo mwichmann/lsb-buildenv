@@ -23,4 +23,6 @@ void shm_open(void) {} ;
 void shm_unlink(void) {} ;
 void timer_create(void) {} ;
 void timer_delete(void) {} ;
+void timer_getoverrun(void) {} ;
 void timer_gettime(void) {} ;
+void timer_settime(void) {} ;
