@@ -276,6 +276,8 @@ for(i=0;i<lsblibs->numargv;i++) {
 	if( strcmp(lsblibs->argv[i],val) == 0 ) {
 		argvaddstring(userlibs,strdup(buf));
 		if( strcmp(val,"pthread") == 0 ) {
+			if( lsbcc_debug&DEBUG_LIB_CHANGES )
+				fprintf(stderr,"Appending -lpthread_nonshared to the library list\n");
 			argvaddstring(userlibs,"-lpthread_nonshared");
 		}
 		return;
@@ -300,7 +302,10 @@ argvaddstring(userlibs,"-Wl,-Bdynamic");
 
 /* begin utility functions */
 
-/* We need to figure out what the path to the gcc base directory is */
+/* We need to figure out what the path to the gcc base directory is
+ * This is one place where lsbcc is be more gcc-dependent than one
+ * might like.
+ */
 char *gccbasedir;
 
 void
@@ -310,7 +315,7 @@ FILE	*cccmd;
 char	cmd[PATH_MAX];
 char	buf[PATH_MAX];
 
-/* Set a default value */
+/* Set a fictitious default value */
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
 
 sprintf(cmd, "%s -print-libgcc-file-name", ccname );
