@@ -1,0 +1,2 @@
+char crypt(char, char);
+void setkey(char);

@@ -3,6 +3,7 @@ int __libc_current_sigrtmin(void);
 int __sigpause(int, int);
 __sighandler_t __sysv_signal(int, __sighandler_t);
 int killpg(__pid_t, int);
+void psignal(int, char);
 int raise(int);
 int sigaddset(sigset_t, int);
 int sigdelset(sigset_t, int);

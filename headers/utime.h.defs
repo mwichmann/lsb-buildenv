@@ -1,4 +1,0 @@
-struct utimbuf {
-	time_t actime;            /* Access time.  */
-	time_t modtime;           /* Modification time.  */
-};

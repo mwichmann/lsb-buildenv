@@ -1,0 +1,10 @@
+typedef Unknown Type: ""
+unknown	ACTION	; 
+
+typedef struct entry	{
+
+char	key;	
+void	data;	
+}
+ENTRY	; 
+

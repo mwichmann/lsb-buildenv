@@ -1,0 +1,58 @@
+typedef union {
+	
+Unknown Type: ""
+unknown	__sockaddr__;	
+Unknown Type: ""
+unknown	__sockaddr_at__;	
+Unknown Type: ""
+unknown	__sockaddr_ax25__;	
+Unknown Type: ""
+unknown	__sockaddr_dl__;	
+Unknown Type: ""
+unknown	__sockaddr_eon__;	
+Unknown Type: ""
+unknown	__sockaddr_in__;	
+struct sockaddr_in6	__sockaddr_in6__;	
+Unknown Type: ""
+unknown	__sockaddr_inarp__;	
+Unknown Type: ""
+unknown	__sockaddr_ipx__;	
+Unknown Type: ""
+unknown	__sockaddr_iso__;	
+Unknown Type: ""
+unknown	__sockaddr_ns__;	
+Unknown Type: ""
+unknown	__sockaddr_un__;	
+struct sockaddr_x25	__sockaddr_x25__;	
+}
+__SOCKADDR_ARG	; 
+
+typedef union {
+	
+Unknown Type: ""
+unknown	__sockaddr__;	
+Unknown Type: ""
+unknown	__sockaddr_at__;	
+Unknown Type: ""
+unknown	__sockaddr_ax25__;	
+Unknown Type: ""
+unknown	__sockaddr_dl__;	
+Unknown Type: ""
+unknown	__sockaddr_eon__;	
+Unknown Type: ""
+unknown	__sockaddr_in__;	
+struct sockaddr_in6	__sockaddr_in6__;	
+Unknown Type: ""
+unknown	__sockaddr_inarp__;	
+Unknown Type: ""
+unknown	__sockaddr_ipx__;	
+Unknown Type: ""
+unknown	__sockaddr_iso__;	
+Unknown Type: ""
+unknown	__sockaddr_ns__;	
+Unknown Type: ""
+unknown	__sockaddr_un__;	
+struct sockaddr_x25	__sockaddr_x25__;	
+}
+__CONST_SOCKADDR_ARG	; 
+

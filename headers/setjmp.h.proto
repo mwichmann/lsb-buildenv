@@ -1,2 +1,3 @@
 int __sigsetjmp(jmp_buf, int);
+void longjmp(jmp_buf, int);
 void siglongjmp(sigjmp_buf, int);

@@ -1,7 +1,11 @@
 int __fxstat(int, int, struct stat);
+int __lxstat(int, char, struct stat);
 int __xmknod(int, char, __mode_t, __dev_t);
+int __xstat(int, char, struct stat);
 int mkfifo(char, __mode_t);
 int chmod(char, __mode_t);
 int fchmod(int, __mode_t);
 int mkdir(char, __mode_t);
 __mode_t umask(__mode_t);
+int fstat(int, struct stat);
+int mknod(char, __mode_t, __dev_t);

@@ -1,0 +1,13 @@
+reg_syntax_t re_syntax_options;
+int regcomp(regex_t, char, int);
+size_t regerror(int, regex_t, char, size_t);
+int regexec(regex_t, char, size_t, regmatch_t, int);
+void regfree(regex_t);
+int re_compile_fastmap(struct re_pattern_buffer);
+char re_compile_pattern(char, size_t, struct re_pattern_buffer);
+int re_match(struct re_pattern_buffer, char, int, int, struct re_registers);
+int re_match_2(struct re_pattern_buffer, char, int, char, int, int, struct re_registers, int);
+int re_search(struct re_pattern_buffer, char, int, int, int, struct re_registers);
+int re_search_2(struct re_pattern_buffer, char, int, char, int, int, int, struct re_registers, int);
+void re_set_registers(struct re_pattern_buffer, struct re_registers, unsigned int, regoff_t, regoff_t);
+reg_syntax_t re_set_syntax(reg_syntax_t);

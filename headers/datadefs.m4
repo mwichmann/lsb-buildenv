@@ -180,6 +180,13 @@ include(pwd.h)
 include(re_comp.h)
 </SCREEN>
 </SECT1>
+<SECT1 ID=regex.h>
+<TITLE>regex.h</TITLE>
+<PARA></PARA>
+<SCREEN>
+include(regex.h)
+</SCREEN>
+</SECT1>
 <SECT1 ID=regexp.h>
 <TITLE>regexp.h</TITLE>
 <PARA></PARA>

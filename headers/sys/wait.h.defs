@@ -1,11 +1,11 @@
-#define WEXITSTATUS(s)  (((s) & 0xff00) >> 8)
-#define WIFEXITED(s)    ( (s) & 0xff )
-#define WIFSTOPPED(s)   (((status) & 0xff) == 0x7f)
-#define WIFSIGNALED(s)  (!WIFSTOPPED(s) && !WIFEXITED(s))
+typedef union {
+	
+Unknown Type: ""
+unknown	__uptr;	
+int	__iptr;	
+}
+__WAIT_STATUS	; 
 
-#define WNOHANG         1
-#define WUNTRACED       2
-
-#define WSTOPSIG(s)     (-1)
-#define WTERMSIG(s)     ((s) & 0x7f)
+typedef Unknown Type: ""
+unknown	idtype_t	; 
 

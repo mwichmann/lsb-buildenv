@@ -1,2 +1,2 @@
-#define NL_SETD 1
+typedef void	nl_catd	; 
 

@@ -3,5 +3,5 @@ passwd getpwent(void);
 passwd getpwnam(char);
 passwd getpwuid(__uid_t);
 void setpwent(void);
-int getpwnam_r(char, struct passwd, char, size_t, struct passwd);
-int getpwuid_r(__uid_t, struct passwd, char, size_t, struct passwd);
+int getpwnam_r(char, struct passwd, char, struct passwd);
+int getpwuid_r(__uid_t, struct passwd, char, struct passwd);

@@ -1,0 +1,19 @@
+typedef struct 	{
+
+__size_t	gl_pathc;	
+char	gl_pathv;	
+__size_t	gl_offs;	
+int	gl_flags;	
+Unknown Type: ""
+unknown	gl_closedir;	
+Unknown Type: ""
+unknown	gl_readdir;	
+Unknown Type: ""
+unknown	gl_opendir;	
+Unknown Type: ""
+unknown	gl_lstat;	
+Unknown Type: ""
+unknown	gl_stat;	
+}
+glob_t	; 
+

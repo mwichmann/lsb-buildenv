@@ -1,5 +1,17 @@
-#define EXIT_FAILURE    1
-#define EXIT_SUCCESS    0
-#define NULL    	0
-#define RAND_MAX        2147483647
+typedef Unknown Type: ""
+unknown	__compar_fn_t	; 
+
+typedef struct 	{
+
+int	quot;	
+int	rem;	
+}
+div_t	; 
+
+typedef struct 	{
+
+long	quot;	
+long	rem;	
+}
+ldiv_t	; 
 

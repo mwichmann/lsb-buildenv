@@ -1,0 +1,8 @@
+typedef struct 	{
+
+int	count;	
+Unknown Type: ""
+unknown	value;	
+}
+mbstate_t	; 
+

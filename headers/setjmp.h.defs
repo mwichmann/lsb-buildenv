@@ -1,0 +1,21 @@
+typedef struct __jmp_buf_tag	{
+
+Unknown Type: ""
+unknown	__jmpbuf;	
+int	__mask_was_saved;	
+Unknown Type: ""
+unknown	__saved_mask;	
+}
+jmp_buf	; 
+
+typedef typedef struct __jmp_buf_tag	{
+
+Unknown Type: ""
+unknown	__jmpbuf;	
+int	__mask_was_saved;	
+Unknown Type: ""
+unknown	__saved_mask;	
+}
+jmp_buf	; 
+sigjmp_buf	; 
+

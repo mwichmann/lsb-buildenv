@@ -1,2 +1,6 @@
+int hcreate();
+ENTRY hsearch(ENTRY, ACTION);
 void insque(void, void);
+void lsearch(void, void, __compar_fn_t);
 void remque(void);
+void hdestroy(void);

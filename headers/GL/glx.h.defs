@@ -1,0 +1,21 @@
+typedef Unknown Type: ""
+unknown	GLXContextID	; 
+
+typedef Unknown Type: ""
+unknown	GLXPixmap	; 
+
+typedef Unknown Type: ""
+unknown	GLXDrawable	; 
+
+typedef Unknown Type: ""
+unknown	GLXPbuffer	; 
+
+typedef Unknown Type: ""
+unknown	GLXWindow	; 
+
+typedef Unknown Type: ""
+unknown	GLXContext	; 
+
+typedef Unknown Type: ""
+unknown	GLXFBConfig	; 
+

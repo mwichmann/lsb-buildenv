@@ -5,7 +5,7 @@ double difftime(time_t, time_t);
 tm gmtime(time_t);
 tm localtime(time_t);
 time_t mktime(struct tm);
-size_t strftime(char, size_t, char, struct tm);
+int stime(time_t);
 time_t time(time_t);
 int nanosleep(struct timespec, struct timespec);
 int daylight();

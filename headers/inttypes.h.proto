@@ -1,0 +1,4 @@
+intmax_t strtoimax(char, char, int);
+uintmax_t strtoumax(char, char, int);
+intmax_t wcstoimax(int);
+uintmax_t wcstoumax(int);

@@ -1,0 +1,10 @@
+typedef struct 	{
+
+struct 	__sem_lock;	
+long	status;	
+int	__sem_value;	
+int	spinlock;	
+_pthread_descr	__sem_waiting;	
+}
+sem_t	; 
+
