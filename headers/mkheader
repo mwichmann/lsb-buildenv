@@ -323,6 +323,17 @@ if( $$param{'Ttype'} eq "Enum" ) {
 	return;
 	}
 
+if( $$param{'Ttype'} eq "Array" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	%type=$sth->fetchhash;
+	displaytyperef(\%type);
+	print "[";
+	print $$param{'Parsize'};
+	print "]";
+	return;
+	}
+
 if( $$param{'Ttype'} eq "FuncPtr" ) {
 	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -642,7 +653,7 @@ for(1..$sth->numrows) {
 			}
 		displaytyperef(\%entry);
 		printf " %s(",$entry{'Iname'};
-		$select = "SELECT Tname,Ttype,Tbasetype FROM Type,Parameter ";
+		$select = "SELECT Tname,Ttype,Tbasetype,Parsize FROM Type,Parameter ";
 		$select.= "WHERE Pint=".$entry{'Iid'}." AND Ptype=Tid ";
 		$select.= "ORDER BY  Ppos";
 		print $select,"\n" if $trace;
