@@ -40,6 +40,14 @@ extern "C"
   }
    ;
 
+  struct protoent
+  {
+    char *p_name;
+    char **p_aliases;
+    int p_proto;
+  }
+   ;
+
 
   extern void endhostent (void);
   extern void endnetent (void);
@@ -48,11 +56,11 @@ extern "C"
   extern struct hostent *gethostbyaddr (void *, socklen_t, int);
   extern struct hostent *gethostbyname (char *);
   extern struct netent *getnetbyaddr (unsigned long, int);
-  extern struct protoent *getprotobyname (char *);
+  extern struct protoent *getprotobyname (const char *);
   extern struct protoent *getprotobynumber (int);
   extern struct protoent *getprotoent (void);
-  extern struct servent *getservbyname (char *, char *);
-  extern struct servent *getservbyport (int, char *);
+  extern struct servent *getservbyname (const char *, const char *);
+  extern struct servent *getservbyport (int, const char *);
   extern struct servent *getservent (void);
   extern void setnetent (int);
   extern void setprotoent (int);

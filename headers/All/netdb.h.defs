@@ -27,3 +27,10 @@ struct hostent
   char **h_addr_list;
 }
  ;
+struct protoent
+{
+  char *p_name;
+  char **p_aliases;
+  int p_proto;
+}
+ ;

@@ -56,26 +56,6 @@ struct ifreq
   ifr_ifru;
 }
  ;
-union
-{
-  char ifrn_name[IFNAMSIZ];
-}
- ;
-union
-{
-  struct sockaddr ifru_addr;
-  struct sockaddr ifru_dstaddr;
-  struct sockaddr ifru_broadaddr;
-  struct sockaddr ifru_netmask;
-  struct sockaddr ifru_hwaddr;
-  short ifru_flags;
-  int ifru_ivalue;
-  int ifru_mtu;
-  char ifru_slave[IFNAMSIZ];
-  char ifru_newname[IFNAMSIZ];
-  caddr_t ifru_data;
-}
- ;
 
 
 struct ifconf

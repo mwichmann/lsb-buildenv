@@ -20,8 +20,6 @@ extern "C"
 #define SHUT_RDWR	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
-#define PF_INET	AF_INET
-#define PF_INET6	AF_INET6
 
 
   struct linger
@@ -91,6 +89,12 @@ extern "C"
 #define AF_BRIDGE	7
 #define AF_ATMPVC	8
 #define AF_X25	9
+
+
+
+#define PF_INET	AF_INET
+#define PF_INET6	AF_INET6
+#define PF_UNIX	AF_UNIX
 
 
 

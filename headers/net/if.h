@@ -50,8 +50,20 @@ extern "C"
 /* Interface request structure used for socket ioctl's.  All interface
    ioctl's must have parameter definitions which begin with ifr_name.
    The remainder may be interface specific.*/
+#define ifr_hwaddr	ifr_ifrn.ifrn_name
 #define ifr_name	ifr_ifrn.ifrn_name
 #define ifr_addr	ifr_ifru.ifru_addr
+#define ifr_broadaddr	ifr_ifru.ifru_broadaddr
+#define ifr_data	ifr_ifru.ifru_data
+#define ifr_dstaddr	ifr_ifru.ifru_dstaddr
+#define ifr_flags	ifr_ifru.ifru_flags
+#define ifr_bandwidth	ifr_ifru.ifru_ivalue
+#define ifr_ifindex	ifr_ifru.ifru_ivalue
+#define ifr_metric	ifr_ifru.ifru_ivalue
+#define ifr_qlen	ifr_ifru.ifru_ivalue
+#define ifr_mtu	ifr_ifru.ifru_mtu
+#define ifr_netmask	ifr_ifru.ifru_netmask
+#define ifr_slave	ifr_ifru.ifru_slave
 #define IFNAMSIZ	IF_NAMESIZE
 
 
@@ -77,28 +89,6 @@ extern "C"
       caddr_t ifru_data;
     }
     ifr_ifru;
-  }
-   ;
-
-  union
-  {
-    char ifrn_name[IFNAMSIZ];
-  }
-   ;
-
-  union
-  {
-    struct sockaddr ifru_addr;
-    struct sockaddr ifru_dstaddr;
-    struct sockaddr ifru_broadaddr;
-    struct sockaddr ifru_netmask;
-    struct sockaddr ifru_hwaddr;
-    short ifru_flags;
-    int ifru_ivalue;
-    int ifru_mtu;
-    char ifru_slave[IFNAMSIZ];
-    char ifru_newname[IFNAMSIZ];
-    caddr_t ifru_data;
   }
    ;
 

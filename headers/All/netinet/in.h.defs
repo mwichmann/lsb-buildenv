@@ -19,6 +19,7 @@ struct in_addr
   uint32_t s_addr;
 }
  ;
+typedef uint32_t in_addr_t;
 
 
 struct sockaddr_in

@@ -12,9 +12,13 @@ extern "C"
 #define RLIM_INFINITY	(~0UL)
 #define RLIM_SAVED_CUR	-1
 #define RLIM_SAVED_MAX	-1
+#define PRIO_PROCESS	0
 #define RLIMIT_CPU	0
 #define RUSAGE_SELF	0
+#define PRIO_PGRP	1
 #define RLIMIT_FSIZE	1
+#define RLIM_NLIMITS	11
+#define PRIO_USER	2
 #define RLIMIT_DATA	2
 #define RLIMIT_STACK	3
 #define RLIMIT_CORE	4

@@ -62,7 +62,7 @@ extern "C"
   extern void abort (void);
   extern int abs (int);
   extern int atexit (void (*atexit_func) ());
-  extern double atof (char *);
+  extern double atof (const char *);
   extern int atoi (const char *);
   extern long atol (const char *);
   extern void *bsearch (void *, void *, size_t, size_t, __compar_fn_t);
@@ -73,7 +73,7 @@ extern "C"
   extern void exit (int);
   extern char *fcvt (double, int, int *, int *);
   extern char *gcvt (double, int, char *);
-  extern char *getenv (char *);
+  extern char *getenv (const char *);
   extern int getsubopt (char **, char **, char **);
   extern int grantpt (int);
   extern long jrand48 (unsigned short[3]);
