@@ -137,7 +137,6 @@ extern "C"
 
 /* POSIX Threads values*/
 #define PTHREAD_KEYS_MAX	1024
-#define PTHREAD_STACK_MIN	16384
 #if __i386__
 #define PTHREAD_STACK_MIN	16384
 #endif
