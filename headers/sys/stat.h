@@ -65,19 +65,64 @@ extern "C"
 #if __s390__ && !__s390x__
 #define _STAT_VER	3
 #endif
+#if __i386__
+#define st_atime	st_atim.tv_sec
+#endif
+#if __ia64__
+#define st_atime	st_atim.tv_sec
+#endif
 #if __powerpc__ && !__powerpc64__
+#define st_atime	st_atim.tv_sec
+#endif
+#if __powerpc64__
+#define st_atime	st_atim.tv_sec
+#endif
+#if __s390__ && !__s390x__
+#define st_atime	st_atim.tv_sec
+#endif
+#if __s390x__
 #define st_atime	st_atim.tv_sec
 #endif
 #if __x86_64__
 #define st_atime	st_atim.tv_sec
 #endif
+#if __i386__
+#define st_ctime	st_ctim.tv_sec
+#endif
+#if __ia64__
+#define st_ctime	st_ctim.tv_sec
+#endif
 #if __powerpc__ && !__powerpc64__
+#define st_ctime	st_ctim.tv_sec
+#endif
+#if __powerpc64__
+#define st_ctime	st_ctim.tv_sec
+#endif
+#if __s390__ && !__s390x__
+#define st_ctime	st_ctim.tv_sec
+#endif
+#if __s390x__
 #define st_ctime	st_ctim.tv_sec
 #endif
 #if __x86_64__
 #define st_ctime	st_ctim.tv_sec
 #endif
+#if __i386__
+#define st_mtime	st_mtim.tv_sec
+#endif
+#if __ia64__
+#define st_mtime	st_mtim.tv_sec
+#endif
 #if __powerpc__ && !__powerpc64__
+#define st_mtime	st_mtim.tv_sec
+#endif
+#if __powerpc64__
+#define st_mtime	st_mtim.tv_sec
+#endif
+#if __s390__ && !__s390x__
+#define st_mtime	st_mtim.tv_sec
+#endif
+#if __s390x__
 #define st_mtime	st_mtim.tv_sec
 #endif
 #if __x86_64__
@@ -104,12 +149,9 @@ extern "C"
     off_t st_size;
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    time_t st_atime;
-    unsigned long st_atimensec;
-    time_t st_mtime;
-    unsigned long st_mtimensec;
-    time_t st_ctime;
-    unsigned long st_ctimensec;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -132,12 +174,9 @@ extern "C"
     off64_t st_size;
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    time_t st_atime;
-    unsigned long st_atimensec;
-    time_t st_mtime;
-    unsigned long st_mtimensec;
-    time_t st_ctime;
-    unsigned long st_ctimensec;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     ino64_t st_ino;
   }
    ;
@@ -156,14 +195,11 @@ extern "C"
     unsigned int pad0;
     unsigned long st_rdev;
     unsigned long st_size;
-    unsigned long st_atime;
-    unsigned long __reserved0;
-    unsigned long st_mtime;
-    unsigned long __reserved1;
-    unsigned long st_ctime;
-    unsigned long __reserved2;
     unsigned long st_blksize;
     long st_blocks;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     unsigned long __unused[3];
   }
    ;
@@ -231,14 +267,11 @@ extern "C"
     unsigned int pad0;
     unsigned long st_rdev;
     unsigned long st_size;
-    unsigned long st_atime;
-    unsigned long __reserved0;
-    unsigned long st_mtime;
-    unsigned long __reserved1;
-    unsigned long st_ctime;
-    unsigned long __reserved2;
     unsigned long st_blksize;
     long st_blocks;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     unsigned long __unused[3];
   }
    ;
@@ -259,12 +292,9 @@ extern "C"
     off_t st_size;
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    time_t st_atime;
-    unsigned long __unused1;
-    time_t st_mtime;
-    unsigned long __unused2;
-    time_t st_ctime;
-    unsigned long __unused3;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
     unsigned long __unused6;
@@ -287,12 +317,9 @@ extern "C"
     off64_t st_size;
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    time_t st_atime;
-    unsigned long __unused1;
-    time_t st_mtime;
-    unsigned long __unused2;
-    time_t st_ctime;
-    unsigned long __unused3;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
     unsigned long __unused6;
@@ -313,12 +340,9 @@ extern "C"
     int pad0;
     dev_t st_rdev;
     off_t st_size;
-    time_t st_atime;
-    long __reserved0;
-    time_t st_mtime;
-    long __reserved1;
-    time_t st_ctime;
-    long __reserved2;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     blksize_t st_blksize;
     blkcnt_t st_blocks;
   }
@@ -338,12 +362,9 @@ extern "C"
     int pad0;
     dev_t st_rdev;
     off_t st_size;
-    time_t st_atime;
-    int __reserved0;
-    time_t st_mtime;
-    int __reserved1;
-    time_t st_ctime;
-    int __reserved2;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
   }
@@ -366,12 +387,9 @@ extern "C"
     off_t st_size;
     blksize_t st_blksize;
     blkcnt_t st_blocks;
-    time_t st_atime;
-    unsigned long st_atimensec;
-    time_t st_mtime;
-    unsigned long st_mtimensec;
-    time_t st_ctime;
-    unsigned long st_ctimensec;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     unsigned long __unused4;
     unsigned long __unused5;
   }
@@ -440,12 +458,9 @@ extern "C"
     off64_t st_size;
     blksize_t st_blksize;
     blkcnt64_t st_blocks;
-    time_t st_atime;
-    int st_atimensec;
-    time_t st_mtime;
-    int st_mtimensec;
-    time_t st_ctime;
-    int st_ctimensec;
+    struct timespec st_atim;    /* Time of last access. */
+    struct timespec st_mtim;    /* Time of last modification. */
+    struct timespec st_ctim;    /* Time of last status change. */
     ino64_t st_ino;
   }
    ;
