@@ -353,6 +353,7 @@ return;
 char *optstr="cL:l:o:ESI:W::su:";
 struct option long_options[] = {
 	{"include",required_argument,0,0},
+	{"pthread",no_argument,0,0},
 	{"shared",no_argument,0,0},
 	{NULL,0,0,0}
 	};
@@ -593,6 +594,11 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 */
 		if(strcmp( long_options[option_index].name, "shared" ) == 0) {
 			argvreset(proginterp);
+			}
+		/* need to special-case -pthread option too */
+		if(strcmp( long_options[option_index].name, "pthread" ) == 0) {
+			argvaddstring(syslibs,"-lpthread");
+			argvaddstring(syslibs,"-lpthread_nonshared");
 			}
 		break;
 	case 'E':
