@@ -6,38 +6,39 @@
 
 
 
-void XrmCombineDatabase (XrmDatabase, XrmDatabase *, int);
-int XrmCombineFileDatabase (char *, XrmDatabase *, int);
-void XrmDestroyDatabase (XrmDatabase);
-int XrmEnumerateDatabase (XrmDatabase, XrmNameList, XrmClassList, int, int,
-			  XPointer);
-XrmDatabase XrmGetDatabase (Display *);
-XrmDatabase XrmGetFileDatabase (char *);
-int XrmGetResource (XrmDatabase, char *, char *, char **, XrmValue *);
-XrmDatabase XrmGetStringDatabase (char *);
-char *XrmLocaleOfDatabase (XrmDatabase);
-void XrmMergeDatabases (XrmDatabase, XrmDatabase *);
-void XrmParseCommand (XrmDatabase *, XrmOptionDescList, int, char *, int *,
-		      char **);
-XrmQuark XrmPermStringToQuark (char *);
-void XrmPutFileDatabase (XrmDatabase, char *);
-void XrmPutLineResource (XrmDatabase *, char *);
-void XrmPutResource (XrmDatabase *, char *, char *, XrmValue *);
-void XrmPutStringResource (XrmDatabase *, char *, char *);
-int XrmQGetResource (XrmDatabase, XrmNameList, XrmClassList,
-		     XrmRepresentation *, XrmValue *);
-int XrmQGetSearchList (XrmDatabase, XrmNameList, XrmClassList, XrmSearchList,
-		       int);
-int XrmQGetSearchResource (XrmSearchList, XrmName, XrmClass,
-			   XrmRepresentation *, XrmValue *);
-void XrmQPutResource (XrmDatabase *, XrmBindingList, XrmQuarkList,
-		      XrmRepresentation, XrmValue *);
-void XrmQPutStringResource (XrmDatabase *, XrmBindingList, XrmQuarkList,
-			    char *);
-XrmString XrmQuarkToString (XrmQuark);
-void XrmSetDatabase (Display *, XrmDatabase);
-void XrmStringToBindingQuarkList (char *, XrmBindingList, XrmQuarkList);
-XrmQuark XrmStringToQuark (char *);
-void XrmStringToQuarkList (char *, XrmQuarkList);
-XrmQuark XrmUniqueQuark (void);
+extern void XrmCombineDatabase (XrmDatabase, XrmDatabase *, int);
+extern int XrmCombineFileDatabase (char *, XrmDatabase *, int);
+extern void XrmDestroyDatabase (XrmDatabase);
+extern int XrmEnumerateDatabase (XrmDatabase, XrmNameList, XrmClassList, int,
+				 int, XPointer);
+extern XrmDatabase XrmGetDatabase (Display *);
+extern XrmDatabase XrmGetFileDatabase (char *);
+extern int XrmGetResource (XrmDatabase, char *, char *, char **, XrmValue *);
+extern XrmDatabase XrmGetStringDatabase (char *);
+extern char *XrmLocaleOfDatabase (XrmDatabase);
+extern void XrmMergeDatabases (XrmDatabase, XrmDatabase *);
+extern void XrmParseCommand (XrmDatabase *, XrmOptionDescList, int, char *,
+			     int *, char **);
+extern XrmQuark XrmPermStringToQuark (char *);
+extern void XrmPutFileDatabase (XrmDatabase, char *);
+extern void XrmPutLineResource (XrmDatabase *, char *);
+extern void XrmPutResource (XrmDatabase *, char *, char *, XrmValue *);
+extern void XrmPutStringResource (XrmDatabase *, char *, char *);
+extern int XrmQGetResource (XrmDatabase, XrmNameList, XrmClassList,
+			    XrmRepresentation *, XrmValue *);
+extern int XrmQGetSearchList (XrmDatabase, XrmNameList, XrmClassList,
+			      XrmSearchList, int);
+extern int XrmQGetSearchResource (XrmSearchList, XrmName, XrmClass,
+				  XrmRepresentation *, XrmValue *);
+extern void XrmQPutResource (XrmDatabase *, XrmBindingList, XrmQuarkList,
+			     XrmRepresentation, XrmValue *);
+extern void XrmQPutStringResource (XrmDatabase *, XrmBindingList,
+				   XrmQuarkList, char *);
+extern XrmString XrmQuarkToString (XrmQuark);
+extern void XrmSetDatabase (Display *, XrmDatabase);
+extern void XrmStringToBindingQuarkList (char *, XrmBindingList,
+					 XrmQuarkList);
+extern XrmQuark XrmStringToQuark (char *);
+extern void XrmStringToQuarkList (char *, XrmQuarkList);
+extern XrmQuark XrmUniqueQuark (void);
 #endif

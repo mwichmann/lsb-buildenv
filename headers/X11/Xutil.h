@@ -34,83 +34,90 @@ typedef int XContext;
 typedef enum XICCEncodingStyle;
 
 
-int XAddPixel (void);
-XClassHint *XAllocClassHint (void);
-XIconSize *XAllocIconSize (void);
-XSizeHints *XAllocSizeHints (void);
-XStandardColormap *XAllocStandardColormap (void);
-XWMHints *XAllocWMHints (void);
-int XClipBox (Region, XRectangle *);
-void XConvertCase (KeySym, KeySym *, KeySym *);
-Region XCreateRegion (void);
-char *XDefaultString (void);
-int XDeleteContext (Display *, XID, XContext);
-int XDestroyRegion (Region);
-int XEmptyRegion (Region);
-int XEqualRegion (Region, Region);
-int XFindContext (Display *, XID, XContext, XPointer *);
-int XGetClassHint (Display *, Window, XClassHint *);
-int XGetIconSizes (Display *, Window, XIconSize * *, int *);
-int XGetNormalHints (Display *, Window, XSizeHints *);
-unsigned long XGetPixel (void);
-int XGetRGBColormaps (Display *, Window, XStandardColormap * *, int *, Atom);
-int XGetSizeHints (Display *, Window, XSizeHints *, Atom);
-int XGetStandardColormap (Display *, Window, XStandardColormap *, Atom);
-int XGetTextProperty (Display *, Window, XTextProperty *, Atom);
-XVisualInfo *XGetVisualInfo (Display *, long, XVisualInfo *, int *);
-int XGetWMClientMachine (Display *, Window, XTextProperty *);
-XWMHints *XGetWMHints (Display *, Window);
-int XGetWMIconName (Display *, Window, XTextProperty *);
-int XGetWMName (Display *, Window, XTextProperty *);
-int XGetWMNormalHints (Display *, Window, XSizeHints *, long *);
-int XGetWMSizeHints (Display *, Window, XSizeHints *, long *, Atom);
-int XGetZoomHints (Display *, Window, XSizeHints *);
-int XIntersectRegion (Region, Region, Region);
-int XLookupString (XKeyEvent *, char *, int, KeySym *, XComposeStatus *);
-int XMatchVisualInfo (Display *, int, int, int, XVisualInfo *);
-int XOffsetRegion (Region, int, int);
-int XPointInRegion (Region, int, int);
-Region XPolygonRegion (XPoint *, int, int);
-int XPutPixel (void);
-int XRectInRegion (Region, int, int, unsigned int, unsigned int);
-int XSaveContext (Display *, XID, XContext, char *);
-int XSetClassHint (Display *, Window, XClassHint *);
-int XSetIconSizes (Display *, Window, XIconSize *, int);
-int XSetNormalHints (Display *, Window, XSizeHints *);
-void XSetRGBColormaps (Display *, Window, XStandardColormap *, int, Atom);
-int XSetRegion (Display *, GC, Region);
-int XSetSizeHints (Display *, Window, XSizeHints *, Atom);
-void XSetStandardColormap (Display *, Window, XStandardColormap *, Atom);
-int XSetStandardProperties (Display *, Window, char *, char *, Pixmap,
-			    char **, int, XSizeHints *);
-void XSetTextProperty (Display *, Window, XTextProperty *, Atom);
-void XSetWMClientMachine (Display *, Window, XTextProperty *);
-int XSetWMHints (Display *, Window, XWMHints *);
-void XSetWMIconName (Display *, Window, XTextProperty *);
-void XSetWMName (Display *, Window, XTextProperty *);
-void XSetWMNormalHints (Display *, Window, XSizeHints *);
-void XSetWMProperties (Display *, Window, XTextProperty *, XTextProperty *,
-		       char **, int, XSizeHints *, XWMHints *, XClassHint *);
-void XSetWMSizeHints (Display *, Window, XSizeHints *, Atom);
-int XSetZoomHints (Display *, Window, XSizeHints *);
-int XShrinkRegion (Region, int, int);
-int XStringListToTextProperty (char **, int, XTextProperty *);
-XImage *XSubImage (void);
-int XSubtractRegion (Region, Region, Region);
-int XTextPropertyToStringList (XTextProperty *, char ***, int *);
-int XUnionRectWithRegion (XRectangle *, Region, Region);
-int XUnionRegion (Region, Region, Region);
-int XWMGeometry (Display *, int, char *, char *, unsigned int, XSizeHints *,
-		 int *, int *, int *, int *, int *);
-int XXorRegion (Region, Region, Region);
-void XmbSetWMProperties (Display *, Window, char *, char *, char **, int,
-			 XSizeHints *, XWMHints *, XClassHint *);
-int XmbTextListToTextProperty (Display *, char **, int, XICCEncodingStyle,
-			       XTextProperty *);
-int XmbTextPropertyToTextList (Display *, XTextProperty *, char ***, int *);
-void XwcFreeStringList (wchar_t * *);
-int XwcTextListToTextProperty (Display *, wchar_t * *, int, XICCEncodingStyle,
-			       XTextProperty *);
-int XwcTextPropertyToTextList (Display *, XTextProperty *, wchar_t * **,
-			       int *);
+extern int XAddPixel (void);
+extern XClassHint *XAllocClassHint (void);
+extern XIconSize *XAllocIconSize (void);
+extern XSizeHints *XAllocSizeHints (void);
+extern XStandardColormap *XAllocStandardColormap (void);
+extern XWMHints *XAllocWMHints (void);
+extern int XClipBox (Region, XRectangle *);
+extern void XConvertCase (KeySym, KeySym *, KeySym *);
+extern Region XCreateRegion (void);
+extern char *XDefaultString (void);
+extern int XDeleteContext (Display *, XID, XContext);
+extern int XDestroyRegion (Region);
+extern int XEmptyRegion (Region);
+extern int XEqualRegion (Region, Region);
+extern int XFindContext (Display *, XID, XContext, XPointer *);
+extern int XGetClassHint (Display *, Window, XClassHint *);
+extern int XGetIconSizes (Display *, Window, XIconSize * *, int *);
+extern int XGetNormalHints (Display *, Window, XSizeHints *);
+extern unsigned long XGetPixel (void);
+extern int XGetRGBColormaps (Display *, Window, XStandardColormap * *, int *,
+			     Atom);
+extern int XGetSizeHints (Display *, Window, XSizeHints *, Atom);
+extern int XGetStandardColormap (Display *, Window, XStandardColormap *,
+				 Atom);
+extern int XGetTextProperty (Display *, Window, XTextProperty *, Atom);
+extern XVisualInfo *XGetVisualInfo (Display *, long, XVisualInfo *, int *);
+extern int XGetWMClientMachine (Display *, Window, XTextProperty *);
+extern XWMHints *XGetWMHints (Display *, Window);
+extern int XGetWMIconName (Display *, Window, XTextProperty *);
+extern int XGetWMName (Display *, Window, XTextProperty *);
+extern int XGetWMNormalHints (Display *, Window, XSizeHints *, long *);
+extern int XGetWMSizeHints (Display *, Window, XSizeHints *, long *, Atom);
+extern int XGetZoomHints (Display *, Window, XSizeHints *);
+extern int XIntersectRegion (Region, Region, Region);
+extern int XLookupString (XKeyEvent *, char *, int, KeySym *,
+			  XComposeStatus *);
+extern int XMatchVisualInfo (Display *, int, int, int, XVisualInfo *);
+extern int XOffsetRegion (Region, int, int);
+extern int XPointInRegion (Region, int, int);
+extern Region XPolygonRegion (XPoint *, int, int);
+extern int XPutPixel (void);
+extern int XRectInRegion (Region, int, int, unsigned int, unsigned int);
+extern int XSaveContext (Display *, XID, XContext, char *);
+extern int XSetClassHint (Display *, Window, XClassHint *);
+extern int XSetIconSizes (Display *, Window, XIconSize *, int);
+extern int XSetNormalHints (Display *, Window, XSizeHints *);
+extern void XSetRGBColormaps (Display *, Window, XStandardColormap *, int,
+			      Atom);
+extern int XSetRegion (Display *, GC, Region);
+extern int XSetSizeHints (Display *, Window, XSizeHints *, Atom);
+extern void XSetStandardColormap (Display *, Window, XStandardColormap *,
+				  Atom);
+extern int XSetStandardProperties (Display *, Window, char *, char *, Pixmap,
+				   char **, int, XSizeHints *);
+extern void XSetTextProperty (Display *, Window, XTextProperty *, Atom);
+extern void XSetWMClientMachine (Display *, Window, XTextProperty *);
+extern int XSetWMHints (Display *, Window, XWMHints *);
+extern void XSetWMIconName (Display *, Window, XTextProperty *);
+extern void XSetWMName (Display *, Window, XTextProperty *);
+extern void XSetWMNormalHints (Display *, Window, XSizeHints *);
+extern void XSetWMProperties (Display *, Window, XTextProperty *,
+			      XTextProperty *, char **, int, XSizeHints *,
+			      XWMHints *, XClassHint *);
+extern void XSetWMSizeHints (Display *, Window, XSizeHints *, Atom);
+extern int XSetZoomHints (Display *, Window, XSizeHints *);
+extern int XShrinkRegion (Region, int, int);
+extern int XStringListToTextProperty (char **, int, XTextProperty *);
+extern XImage *XSubImage (void);
+extern int XSubtractRegion (Region, Region, Region);
+extern int XTextPropertyToStringList (XTextProperty *, char ***, int *);
+extern int XUnionRectWithRegion (XRectangle *, Region, Region);
+extern int XUnionRegion (Region, Region, Region);
+extern int XWMGeometry (Display *, int, char *, char *, unsigned int,
+			XSizeHints *, int *, int *, int *, int *, int *);
+extern int XXorRegion (Region, Region, Region);
+extern void XmbSetWMProperties (Display *, Window, char *, char *, char **,
+				int, XSizeHints *, XWMHints *, XClassHint *);
+extern int XmbTextListToTextProperty (Display *, char **, int,
+				      XICCEncodingStyle, XTextProperty *);
+extern int XmbTextPropertyToTextList (Display *, XTextProperty *, char ***,
+				      int *);
+extern void XwcFreeStringList (wchar_t * *);
+extern int XwcTextListToTextProperty (Display *, wchar_t * *, int,
+				      XICCEncodingStyle, XTextProperty *);
+extern int XwcTextPropertyToTextList (Display *, XTextProperty *,
+				      wchar_t * **, int *);
 #endif

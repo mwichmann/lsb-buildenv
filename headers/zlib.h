@@ -4,49 +4,104 @@
 
 
 
+
+
+
+typedef void *voidpf;
+
+typedef unsigned int uInt;
+
+typedef unsigned long uLong;
+
+typedef uLong uLongf;
+
+typedef void *voidp;
+
+typedef unsigned char Byte;
+
+
+
+
+typedef voidpf (*alloc_func) (voidpf opaque, uInt items, uInt size);
+
+typedef void (*free_func) (voidpf opaque, voidpf address);
+
+struct internal_state
+{
+  int dummy;
+}
+ ;
+
+typedef Byte Bytef;
+
+
+
+
+typedef struct z_stream_s
+{
+  Bytef *next_in;
+  uInt avail_in;
+  uLong total_in;
+  Bytef *next_out;
+  uInt avail_out;
+  uLong total_out;
+  char *msg;
+  struct internal_state *state;
+  alloc_func zalloc;
+  free_func zfree;
+  voidpf opaque;
+  int data_type;
+  uLong adler;
+  uLong reserved;
+}
+z_stream;
+
+
+
+
 typedef z_stream *z_streamp;
 
 typedef voidp gzFile;
 
 
-int gzread (gzFile, voidp, unsigned int);
-int gzclose (gzFile);
-gzFile gzopen (char *, char *);
-gzFile gzdopen (int, char *);
-int gzwrite (gzFile, voidp, unsigned int);
-int gzflush (gzFile, int);
-char *gzerror (gzFile, int *);
-uLong adler32 (uLong, Bytef *, uInt);
-int compress (Bytef *, uLongf *, Bytef *, uLong);
-int compress2 (Bytef *, uLongf *, Bytef *, uLong, int);
-uLong crc32 (uLong, Bytef *, uInt);
-int deflate (z_streamp, int);
-int deflateCopy (z_streamp, z_streamp);
-int deflateEnd (z_streamp);
-int deflateInit2_ (z_streamp, int, int, int, int, int, char *, int);
-int deflateInit_ (z_streamp, int, char *, int);
-int deflateParams (z_streamp, int, int);
-int deflateReset (z_streamp);
-int deflateSetDictionary (z_streamp, Bytef *, uInt);
-uLongf *get_crc_table (void);
-int gzeof (gzFile);
-int gzgetc (gzFile);
-char *gzgets (gzFile, char *, int);
-int gzprintf (gzFile, char *, ...);
-int gzputc (gzFile, int);
-int gzputs (gzFile, char *);
-int gzrewind (gzFile);
-long gzseek (gzFile, long, int);
-int gzsetparams (gzFile, int, int);
-long gztell (gzFile);
-int inflate (z_streamp, int);
-int inflateEnd (z_streamp);
-int inflateInit2_ (z_streamp, int, char *, int);
-int inflateInit_ (z_streamp, char *, int);
-int inflateReset (z_streamp);
-int inflateSetDictionary (z_streamp, Bytef *, uInt);
-int inflateSync (z_streamp);
-int inflateSyncPoint (z_streamp);
-int uncompress (Bytef *, uLongf *, Bytef *, uLong);
-char *zError (int);
+extern int gzread (gzFile, voidp, unsigned int);
+extern int gzclose (gzFile);
+extern gzFile gzopen (char *, char *);
+extern gzFile gzdopen (int, char *);
+extern int gzwrite (gzFile, voidp, unsigned int);
+extern int gzflush (gzFile, int);
+extern char *gzerror (gzFile, int *);
+extern uLong adler32 (uLong, Bytef *, uInt);
+extern int compress (Bytef *, uLongf *, Bytef *, uLong);
+extern int compress2 (Bytef *, uLongf *, Bytef *, uLong, int);
+extern uLong crc32 (uLong, Bytef *, uInt);
+extern int deflate (z_streamp, int);
+extern int deflateCopy (z_streamp, z_streamp);
+extern int deflateEnd (z_streamp);
+extern int deflateInit2_ (z_streamp, int, int, int, int, int, char *, int);
+extern int deflateInit_ (z_streamp, int, char *, int);
+extern int deflateParams (z_streamp, int, int);
+extern int deflateReset (z_streamp);
+extern int deflateSetDictionary (z_streamp, Bytef *, uInt);
+extern uLongf *get_crc_table (void);
+extern int gzeof (gzFile);
+extern int gzgetc (gzFile);
+extern char *gzgets (gzFile, char *, int);
+extern int gzprintf (gzFile, char *, ...);
+extern int gzputc (gzFile, int);
+extern int gzputs (gzFile, char *);
+extern int gzrewind (gzFile);
+extern long gzseek (gzFile, long, int);
+extern int gzsetparams (gzFile, int, int);
+extern long gztell (gzFile);
+extern int inflate (z_streamp, int);
+extern int inflateEnd (z_streamp);
+extern int inflateInit2_ (z_streamp, int, char *, int);
+extern int inflateInit_ (z_streamp, char *, int);
+extern int inflateReset (z_streamp);
+extern int inflateSetDictionary (z_streamp, Bytef *, uInt);
+extern int inflateSync (z_streamp);
+extern int inflateSyncPoint (z_streamp);
+extern int uncompress (Bytef *, uLongf *, Bytef *, uLong);
+extern char *zError (int);
 #endif

@@ -78,38 +78,38 @@ typedef enum
 XSyncAlarmState;
 
 
-int XSyncAwait (Display *, XSyncWaitCondition *, int);
-int XSyncChangeAlarm (Display *, XSyncAlarm, unsigned long,
-		      XSyncAlarmAttributes *);
-int XSyncChangeCounter (Display *, XSyncCounter, XSyncValue);
-XSyncAlarm XSyncCreateAlarm (Display *, unsigned long,
+extern int XSyncAwait (Display *, XSyncWaitCondition *, int);
+extern int XSyncChangeAlarm (Display *, XSyncAlarm, unsigned long,
 			     XSyncAlarmAttributes *);
-XSyncCounter XSyncCreateCounter (Display *, XSyncValue);
-int XSyncDestroyAlarm (Display *, XSyncAlarm);
-int XSyncDestroyCounter (Display *, XSyncCounter);
-void XSyncFreeSystemCounterList (XSyncSystemCounter *);
-int XSyncGetPriority (Display *, XID, int *);
-int XSyncInitialize (Display *, int *, int *);
-void XSyncIntToValue (XSyncValue *, int);
-void XSyncIntsToValue (XSyncValue *, unsigned int, int);
-XSyncSystemCounter *XSyncListSystemCounters (Display *, int *);
-void XSyncMaxValue (XSyncValue *);
-void XSyncMinValue (XSyncValue *);
-int XSyncQueryAlarm (Display *, XSyncAlarm, XSyncAlarmAttributes *);
-int XSyncQueryCounter (Display *, XSyncCounter, XSyncValue *);
-int XSyncQueryExtension (Display *, int *, int *);
-int XSyncSetCounter (Display *, XSyncCounter, XSyncValue);
-int XSyncSetPriority (Display *, XID, int);
-void XSyncValueAdd (XSyncValue *, XSyncValue, XSyncValue, int *);
-int XSyncValueEqual (XSyncValue, XSyncValue);
-int XSyncValueGreaterOrEqual (XSyncValue, XSyncValue);
-int XSyncValueGreaterThan (XSyncValue, XSyncValue);
-int XSyncValueHigh32 (XSyncValue);
-int XSyncValueIsNegative (XSyncValue);
-int XSyncValueIsPositive (XSyncValue);
-int XSyncValueIsZero (XSyncValue);
-int XSyncValueLessOrEqual (XSyncValue, XSyncValue);
-int XSyncValueLessThan (XSyncValue, XSyncValue);
-unsigned int XSyncValueLow32 (XSyncValue);
-void XSyncValueSubtract (XSyncValue *, XSyncValue, XSyncValue, int *);
+extern int XSyncChangeCounter (Display *, XSyncCounter, XSyncValue);
+extern XSyncAlarm XSyncCreateAlarm (Display *, unsigned long,
+				    XSyncAlarmAttributes *);
+extern XSyncCounter XSyncCreateCounter (Display *, XSyncValue);
+extern int XSyncDestroyAlarm (Display *, XSyncAlarm);
+extern int XSyncDestroyCounter (Display *, XSyncCounter);
+extern void XSyncFreeSystemCounterList (XSyncSystemCounter *);
+extern int XSyncGetPriority (Display *, XID, int *);
+extern int XSyncInitialize (Display *, int *, int *);
+extern void XSyncIntToValue (XSyncValue *, int);
+extern void XSyncIntsToValue (XSyncValue *, unsigned int, int);
+extern XSyncSystemCounter *XSyncListSystemCounters (Display *, int *);
+extern void XSyncMaxValue (XSyncValue *);
+extern void XSyncMinValue (XSyncValue *);
+extern int XSyncQueryAlarm (Display *, XSyncAlarm, XSyncAlarmAttributes *);
+extern int XSyncQueryCounter (Display *, XSyncCounter, XSyncValue *);
+extern int XSyncQueryExtension (Display *, int *, int *);
+extern int XSyncSetCounter (Display *, XSyncCounter, XSyncValue);
+extern int XSyncSetPriority (Display *, XID, int);
+extern void XSyncValueAdd (XSyncValue *, XSyncValue, XSyncValue, int *);
+extern int XSyncValueEqual (XSyncValue, XSyncValue);
+extern int XSyncValueGreaterOrEqual (XSyncValue, XSyncValue);
+extern int XSyncValueGreaterThan (XSyncValue, XSyncValue);
+extern int XSyncValueHigh32 (XSyncValue);
+extern int XSyncValueIsNegative (XSyncValue);
+extern int XSyncValueIsPositive (XSyncValue);
+extern int XSyncValueIsZero (XSyncValue);
+extern int XSyncValueLessOrEqual (XSyncValue, XSyncValue);
+extern int XSyncValueLessThan (XSyncValue, XSyncValue);
+extern unsigned int XSyncValueLow32 (XSyncValue);
+extern void XSyncValueSubtract (XSyncValue *, XSyncValue, XSyncValue, int *);
 #endif

@@ -28,13 +28,13 @@ typedef struct
 IceAuthDataEntry;
 
 
-char *IceAuthFileName (void);
-void IceFreeAuthFileEntry (IceAuthFileEntry *);
-char *IceGenerateMagicCookie (int);
-IceAuthFileEntry *IceGetAuthFileEntry (char *, char *, char *);
-int IceLockAuthFile (char *, int, int, long);
-IceAuthFileEntry *IceReadAuthFileEntry (FILE);
-void IceSetPaAuthData (int, IceAuthDataEntry *);
-void IceUnlockAuthFile (char *);
-int IceWriteAuthFileEntry (FILE, IceAuthFileEntry *);
+extern char *IceAuthFileName (void);
+extern void IceFreeAuthFileEntry (IceAuthFileEntry *);
+extern char *IceGenerateMagicCookie (int);
+extern IceAuthFileEntry *IceGetAuthFileEntry (char *, char *, char *);
+extern int IceLockAuthFile (char *, int, int, long);
+extern IceAuthFileEntry *IceReadAuthFileEntry (FILE);
+extern void IceSetPaAuthData (int, IceAuthDataEntry *);
+extern void IceUnlockAuthFile (char *);
+extern int IceWriteAuthFileEntry (FILE, IceAuthFileEntry *);
 #endif

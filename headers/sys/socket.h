@@ -6,15 +6,15 @@
 #define MSG_WAITALL	0x100
 #define MSG_TRUNC	0x20
 #define MSG_EOR	0x80
+#define SHUT_RD	1
 #define MSG_OOB	1
+#define SHUT_RDWR	2
 #define MSG_PEEK	2
+#define SHUT_WR	3
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
 #define PF_INET	AF_INET
 #define PF_INET6	AF_INET6
-#define SHUT_RD	SHUT_RD
-#define SHUT_RDWR	SHUT_RDWR
-#define SHUT_WR	SHUT_WR
 
 
 struct linger
@@ -117,21 +117,22 @@ struct msghdr
 
 
 
-int bind (int, struct sockaddr *, socklen_t);
-int getsockname (int, struct sockaddr *, socklen_t *);
-int listen (int, int);
-int setsockopt (int, int, int, void *, socklen_t);
-int accept (int, struct sockaddr *, socklen_t *);
-int connect (int, struct sockaddr *, socklen_t);
-int recv (int, void *, size_t, int);
-int recvfrom (int, void *, size_t, int, struct sockaddr *, socklen_t *);
-int recvmsg (int, struct msghdr *, int);
-int send (int, void *, size_t, int);
-int sendmsg (int, struct msghdr *, int);
-int sendto (int, void *, size_t, int, struct sockaddr *, socklen_t);
-int getpeername (int, struct sockaddr *, socklen_t *);
-int getsockopt (int, int, int, void *, socklen_t *);
-int shutdown (int, int);
-int socket (int, int, int);
-int socketpair (int, int, int, int[2]);
+extern int bind (int, struct sockaddr *, socklen_t);
+extern int getsockname (int, struct sockaddr *, socklen_t *);
+extern int listen (int, int);
+extern int setsockopt (int, int, int, void *, socklen_t);
+extern int accept (int, struct sockaddr *, socklen_t *);
+extern int connect (int, struct sockaddr *, socklen_t);
+extern int recv (int, void *, size_t, int);
+extern int recvfrom (int, void *, size_t, int, struct sockaddr *,
+		     socklen_t *);
+extern int recvmsg (int, struct msghdr *, int);
+extern int send (int, void *, size_t, int);
+extern int sendmsg (int, struct msghdr *, int);
+extern int sendto (int, void *, size_t, int, struct sockaddr *, socklen_t);
+extern int getpeername (int, struct sockaddr *, socklen_t *);
+extern int getsockopt (int, int, int, void *, socklen_t *);
+extern int shutdown (int, int);
+extern int socket (int, int, int);
+extern int socketpair (int, int, int, int[2]);
 #endif

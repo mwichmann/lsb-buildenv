@@ -326,20 +326,20 @@ struct sigcontext
 
 
 extern char **_sys_siglist;
-int raise (int);
-int sigaddset (sigset_t *, int);
-int sigdelset (sigset_t *, int);
-int sigemptyset (sigset_t *);
-int sigfillset (sigset_t *);
-int sigpending (sigset_t *);
-int pthread_sigmask (void);
-int sigaction (int, struct sigaction *, struct sigaction *);
-int kill (pid_t, int);
-int sigaltstack (struct sigaltstack *, struct sigaltstack *);
-__sighandler_t signal (int, __sighandler_t);
-int sigprocmask (int, sigset_t *, sigset_t *);
-int sigsuspend (sigset_t *);
-int sigqueue (void);
-int sigwaitinfo (void);
-int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
+extern int raise (int);
+extern int sigaddset (sigset_t *, int);
+extern int sigdelset (sigset_t *, int);
+extern int sigemptyset (sigset_t *);
+extern int sigfillset (sigset_t *);
+extern int sigpending (sigset_t *);
+extern int pthread_sigmask (void);
+extern int sigaction (int, struct sigaction *, struct sigaction *);
+extern int kill (pid_t, int);
+extern int sigaltstack (struct sigaltstack *, struct sigaltstack *);
+extern __sighandler_t signal (int, __sighandler_t);
+extern int sigprocmask (int, sigset_t *, sigset_t *);
+extern int sigsuspend (sigset_t *);
+extern int sigqueue (void);
+extern int sigwaitinfo (void);
+extern int sigtimedwait (sigset_t *, siginfo_t *, struct timespec *);
 #endif

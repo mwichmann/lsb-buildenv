@@ -15,11 +15,11 @@ typedef void (*XtDoChangeProc) (Widget composite_parent,
 				XtPointer client_data);
 
 
-void XtChangeManagedSet (WidgetList, Cardinal, XtDoChangeProc, XtPointer,
-			 WidgetList, Cardinal);
-void XtManageChild (Widget);
-void XtManageChildren (WidgetList, Cardinal);
-void XtUnmanageChild (Widget);
-void XtUnmanageChildren (WidgetList, Cardinal);
+extern void XtChangeManagedSet (WidgetList, Cardinal, XtDoChangeProc,
+				XtPointer, WidgetList, Cardinal);
+extern void XtManageChild (Widget);
+extern void XtManageChildren (WidgetList, Cardinal);
+extern void XtUnmanageChild (Widget);
+extern void XtUnmanageChildren (WidgetList, Cardinal);
 extern WidgetClass compositeWidgetClass;
 #endif

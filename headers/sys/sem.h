@@ -36,7 +36,7 @@ struct semid_ds
  ;
 
 
-int semctl (int, int, int, ...);
-int semget (key_t, int, int);
-int semop (int, struct sembuf *, unsigned int);
+extern int semctl (int, int, int, ...);
+extern int semget (key_t, int, int);
+extern int semop (int, struct sembuf *, unsigned int);
 #endif

@@ -9,5 +9,5 @@
 
 
 
-int ioctl (int, int, ...);
+extern int ioctl (int, int, ...);
 #endif

@@ -24,13 +24,13 @@ struct sockaddr_in
   sa_family_t sin_family;
   unsigned short sin_port;
   struct in_addr sin_addr;
-  unsigned char __pad[1];
+  unsigned char __pad[8];
 }
  ;
 
 
-unsigned long htonl (unsigned long);
-unsigned short htons (unsigned short);
-unsigned long ntohl (unsigned long);
-unsigned short ntohs (unsigned short);
+extern unsigned long htonl (unsigned long);
+extern unsigned short htons (unsigned short);
+extern unsigned long ntohl (unsigned long);
+extern unsigned short ntohs (unsigned short);
 #endif

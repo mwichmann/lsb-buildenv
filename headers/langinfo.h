@@ -6,5 +6,5 @@
 
 
 
-char *nl_langinfo (nl_item);
+extern char *nl_langinfo (nl_item);
 #endif

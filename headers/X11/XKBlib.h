@@ -7,89 +7,95 @@
 
 
 
-int XkbAllocClientMap (, unsigned int, unsigned int);
-int XkbAllocCompatMap (, unsigned int, unsigned int);
-int XkbAllocControls (, unsigned int);
-int XkbAllocIndicatorMaps ();
-XkbAllocKeyboard (void);
-int XkbAllocNames (, unsigned int, int, int);
-int XkbAllocServerMap (, unsigned int, unsigned int);
-int XkbBell (Display *, Window, int, Atom);
-int XkbBellEvent (Display *, Window, int, Atom);
-int XkbComputeEffectiveMap (,, unsigned char *);
-int XkbCopyKeyType (,);
-int XkbCopyKeyTypes (,, int);
-int XkbForceBell (Display *, int);
-void XkbFreeClientMap (, unsigned int, int);
-void XkbFreeCompatMap (, unsigned int, int);
-void XkbFreeComponentList ();
-void XkbFreeControls (, unsigned int, int);
-void XkbFreeIndicatorMaps ();
-void XkbFreeKeyboard (, unsigned int, int);
-void XkbFreeNames (, unsigned int, int);
-void XkbFreeServerMap (, unsigned int, int);
-int XkbGetAutoRepeatRate (Display *, unsigned int, unsigned int *,
-			  unsigned int *);
-int XkbGetCompatMap (Display *, unsigned int,);
-int XkbGetControls (Display *, unsigned long,);
-int XkbGetIndicatorMap (Display *, unsigned long,);
-int XkbGetIndicatorState (Display *, unsigned int, unsigned int *);
-XkbGetMap (Display *, unsigned int, unsigned int);
-int XkbGetMapChanges (Display *,,);
-int XkbGetNamedIndicator (Display *, Atom, int *, int *,, int *);
-int XkbGetNames (Display *, unsigned int,);
-int XkbGetState (Display *, unsigned int,);
-int XkbGetUpdatedMap (Display *, unsigned int,);
-int XkbGetVirtualMods (Display *, unsigned int,);
-unsigned int XkbGetXlibControls (Display *);
-int XkbIgnoreExtension (int);
-int XkbInitCanonicalKeyTypes (, unsigned int, int);
-int XkbKeyTypesForCoreSymbols (, int, KeySym *, unsigned int, int *,
-			       KeySym *);
-KeySym XkbKeycodeToKeysym (Display *, unsigned int, int, int);
-unsigned int XkbKeysymToModifiers (Display *, KeySym);
-int XkbLatchGroup (Display *, unsigned int, unsigned int);
-int XkbLatchModifiers (Display *, unsigned int, unsigned int, unsigned int);
-int XkbLibraryVersion (int *, int *);
-XkbListComponents (Display *, unsigned int,, int *);
-int XkbLockGroup (Display *, unsigned int, unsigned int);
-int XkbLockModifiers (Display *, unsigned int, unsigned int, unsigned int);
-int XkbLookupKeyBinding (Display *, KeySym, unsigned int, char *, int, int *);
-int XkbLookupKeySym (Display *, KeyCode, unsigned int, unsigned int *,
-		     KeySym *);
-void XkbNoteControlsChanges (, XkbControlsNotifyEvent *, unsigned int);
-void XkbNoteMapChanges (, XkbMapNotifyEvent *, unsigned int);
-void XkbNoteNameChanges (, XkbNamesNotifyEvent *, unsigned int);
-Display *XkbOpenDisplay (char *, int *, int *, int *, int *, int *);
-int XkbQueryExtension (Display *, int *, int *, int *, int *, int *);
-int XkbRefreshKeyboardMapping (XkbMapNotifyEvent *);
-*XkbResizeKeyActions (, int, int);
-KeySym *XkbResizeKeySyms (, int, int);
-int XkbResizeKeyType (, int, int, int, int);
-int XkbSelectEventDetails (Display *, unsigned int, unsigned int,
-			   unsigned long, unsigned long);
-int XkbSelectEvents (Display *, unsigned int, unsigned int, unsigned int);
-void XkbSetAtomFuncs (XkbInternAtomFunc, XkbGetAtomNameFunc);
-int XkbSetAutoRepeatRate (Display *, unsigned int, unsigned int,
-			  unsigned int);
-int XkbSetAutoResetControls (Display *, unsigned int, unsigned int *,
-			     unsigned int *);
-int XkbSetCompatMap (Display *, unsigned int,, int);
-int XkbSetControls (Display *, unsigned long,);
-int XkbSetDebuggingFlags (Display *, unsigned int, unsigned int, char *,
-			  unsigned int, unsigned int, unsigned int *,
-			  unsigned int *);
-int XkbSetDetectableAutoRepeat (Display *, int, int *);
-int XkbSetIgnoreLockMods (Display *, unsigned int, unsigned int, unsigned int,
-			  unsigned int, unsigned int);
-int XkbSetIndicatorMap (Display *, unsigned long,);
-int XkbSetMap (Display *, unsigned int,);
-int XkbSetNamedIndicator (Display *, Atom, int, int, int,);
-int XkbSetNames (Display *, unsigned int, unsigned int, unsigned int,);
-int XkbSetServerInternalMods (Display *, unsigned int, unsigned int,
-			      unsigned int, unsigned int, unsigned int);
-unsigned int XkbSetXlibControls (Display *, unsigned int, unsigned int);
-char XkbToControl (char);
-int XkbUseExtension (Display *, int *, int *);
-int XkbVirtualModsToReal (, unsigned int, unsigned int *);
+extern int XkbAllocClientMap (, unsigned int, unsigned int);
+extern int XkbAllocCompatMap (, unsigned int, unsigned int);
+extern int XkbAllocControls (, unsigned int);
+extern int XkbAllocIndicatorMaps ();
+extern XkbAllocKeyboard (void);
+extern int XkbAllocNames (, unsigned int, int, int);
+extern int XkbAllocServerMap (, unsigned int, unsigned int);
+extern int XkbBell (Display *, Window, int, Atom);
+extern int XkbBellEvent (Display *, Window, int, Atom);
+extern int XkbComputeEffectiveMap (,, unsigned char *);
+extern int XkbCopyKeyType (,);
+extern int XkbCopyKeyTypes (,, int);
+extern int XkbForceBell (Display *, int);
+extern void XkbFreeClientMap (, unsigned int, int);
+extern void XkbFreeCompatMap (, unsigned int, int);
+extern void XkbFreeComponentList ();
+extern void XkbFreeControls (, unsigned int, int);
+extern void XkbFreeIndicatorMaps ();
+extern void XkbFreeKeyboard (, unsigned int, int);
+extern void XkbFreeNames (, unsigned int, int);
+extern void XkbFreeServerMap (, unsigned int, int);
+extern int XkbGetAutoRepeatRate (Display *, unsigned int, unsigned int *,
+				 unsigned int *);
+extern int XkbGetCompatMap (Display *, unsigned int,);
+extern int XkbGetControls (Display *, unsigned long,);
+extern int XkbGetIndicatorMap (Display *, unsigned long,);
+extern int XkbGetIndicatorState (Display *, unsigned int, unsigned int *);
+extern XkbGetMap (Display *, unsigned int, unsigned int);
+extern int XkbGetMapChanges (Display *,,);
+extern int XkbGetNamedIndicator (Display *, Atom, int *, int *,, int *);
+extern int XkbGetNames (Display *, unsigned int,);
+extern int XkbGetState (Display *, unsigned int,);
+extern int XkbGetUpdatedMap (Display *, unsigned int,);
+extern int XkbGetVirtualMods (Display *, unsigned int,);
+extern unsigned int XkbGetXlibControls (Display *);
+extern int XkbIgnoreExtension (int);
+extern int XkbInitCanonicalKeyTypes (, unsigned int, int);
+extern int XkbKeyTypesForCoreSymbols (, int, KeySym *, unsigned int, int *,
+				      KeySym *);
+extern KeySym XkbKeycodeToKeysym (Display *, unsigned int, int, int);
+extern unsigned int XkbKeysymToModifiers (Display *, KeySym);
+extern int XkbLatchGroup (Display *, unsigned int, unsigned int);
+extern int XkbLatchModifiers (Display *, unsigned int, unsigned int,
+			      unsigned int);
+extern int XkbLibraryVersion (int *, int *);
+extern XkbListComponents (Display *, unsigned int,, int *);
+extern int XkbLockGroup (Display *, unsigned int, unsigned int);
+extern int XkbLockModifiers (Display *, unsigned int, unsigned int,
+			     unsigned int);
+extern int XkbLookupKeyBinding (Display *, KeySym, unsigned int, char *, int,
+				int *);
+extern int XkbLookupKeySym (Display *, KeyCode, unsigned int, unsigned int *,
+			    KeySym *);
+extern void XkbNoteControlsChanges (, XkbControlsNotifyEvent *, unsigned int);
+extern void XkbNoteMapChanges (, XkbMapNotifyEvent *, unsigned int);
+extern void XkbNoteNameChanges (, XkbNamesNotifyEvent *, unsigned int);
+extern Display *XkbOpenDisplay (char *, int *, int *, int *, int *, int *);
+extern int XkbQueryExtension (Display *, int *, int *, int *, int *, int *);
+extern int XkbRefreshKeyboardMapping (XkbMapNotifyEvent *);
+extern *XkbResizeKeyActions (, int, int);
+extern KeySym *XkbResizeKeySyms (, int, int);
+extern int XkbResizeKeyType (, int, int, int, int);
+extern int XkbSelectEventDetails (Display *, unsigned int, unsigned int,
+				  unsigned long, unsigned long);
+extern int XkbSelectEvents (Display *, unsigned int, unsigned int,
+			    unsigned int);
+extern void XkbSetAtomFuncs (XkbInternAtomFunc, XkbGetAtomNameFunc);
+extern int XkbSetAutoRepeatRate (Display *, unsigned int, unsigned int,
+				 unsigned int);
+extern int XkbSetAutoResetControls (Display *, unsigned int, unsigned int *,
+				    unsigned int *);
+extern int XkbSetCompatMap (Display *, unsigned int,, int);
+extern int XkbSetControls (Display *, unsigned long,);
+extern int XkbSetDebuggingFlags (Display *, unsigned int, unsigned int,
+				 char *, unsigned int, unsigned int,
+				 unsigned int *, unsigned int *);
+extern int XkbSetDetectableAutoRepeat (Display *, int, int *);
+extern int XkbSetIgnoreLockMods (Display *, unsigned int, unsigned int,
+				 unsigned int, unsigned int, unsigned int);
+extern int XkbSetIndicatorMap (Display *, unsigned long,);
+extern int XkbSetMap (Display *, unsigned int,);
+extern int XkbSetNamedIndicator (Display *, Atom, int, int, int,);
+extern int XkbSetNames (Display *, unsigned int, unsigned int, unsigned int,);
+extern int XkbSetServerInternalMods (Display *, unsigned int, unsigned int,
+				     unsigned int, unsigned int,
+				     unsigned int);
+extern unsigned int XkbSetXlibControls (Display *, unsigned int,
+					unsigned int);
+extern char XkbToControl (char);
+extern int XkbUseExtension (Display *, int *, int *);
+extern int XkbVirtualModsToReal (, unsigned int, unsigned int *);
 #endif

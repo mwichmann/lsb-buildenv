@@ -1,5 +1,46 @@
 
 
 
+
+
+
+typedef void *voidpf;
+typedef unsigned int uInt;
+typedef unsigned long uLong;
+typedef uLong uLongf;
+typedef void *voidp;
+typedef unsigned char Byte;
+
+
+typedef voidpf (*alloc_func) (voidpf opaque, uInt items, uInt size);
+typedef void (*free_func) (voidpf opaque, voidpf address);
+struct internal_state
+{
+  int dummy;
+}
+ ;
+typedef Byte Bytef;
+
+
+typedef struct z_stream_s
+{
+  Bytef *next_in;
+  uInt avail_in;
+  uLong total_in;
+  Bytef *next_out;
+  uInt avail_out;
+  uLong total_out;
+  char *msg;
+  struct internal_state *state;
+  alloc_func zalloc;
+  free_func zfree;
+  voidpf opaque;
+  int data_type;
+  uLong adler;
+  uLong reserved;
+}
+z_stream;
+
+
 typedef z_stream *z_streamp;
 typedef voidp gzFile;

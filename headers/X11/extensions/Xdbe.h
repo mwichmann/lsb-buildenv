@@ -7,14 +7,15 @@
 
 
 
-XdbeBackBuffer XdbeAllocateBackBufferName (Display *, Window, XdbeSwapAction);
-int XdbeBeginIdiom (Display *);
-int XdbeDeallocateBackBufferName (Display *, XdbeBackBuffer);
-int XdbeEndIdiom (Display *);
-void XdbeFreeVisualInfo (*);
-XdbeBackBufferAttributes *XdbeGetBackBufferAttributes (Display *,
-						       XdbeBackBuffer);
-*XdbeGetVisualInfo (Display *, Drawable *, int *);
-int XdbeQueryExtension (Display *, int *, int *);
-int XdbeSwapBuffers (Display *, XdbeSwapInfo *, int);
+extern XdbeBackBuffer XdbeAllocateBackBufferName (Display *, Window,
+						  XdbeSwapAction);
+extern int XdbeBeginIdiom (Display *);
+extern int XdbeDeallocateBackBufferName (Display *, XdbeBackBuffer);
+extern int XdbeEndIdiom (Display *);
+extern void XdbeFreeVisualInfo (*);
+extern XdbeBackBufferAttributes *XdbeGetBackBufferAttributes (Display *,
+							      XdbeBackBuffer);
+extern *XdbeGetVisualInfo (Display *, Drawable *, int *);
+extern int XdbeQueryExtension (Display *, int *, int *);
+extern int XdbeSwapBuffers (Display *, XdbeSwapInfo *, int);
 #endif

@@ -27,22 +27,22 @@ struct hostent
  ;
 
 
-void endhostent (void);
-void endnetent (void);
-void endprotoent (void);
-void endservent (void);
-struct hostent *gethostbyaddr (void *, socklen_t, int);
-struct hostent *gethostbyname (char *);
-struct netent *getnetbyaddr (unsigned long, int);
-struct protoent *getprotobyname (char *);
-struct protoent *getprotobynumber (int);
-struct protoent *getprotoent (void);
-struct servent *getservbyname (char *, char *);
-struct servent *getservbyport (int, char *);
-struct servent *getservent (void);
+extern void endhostent (void);
+extern void endnetent (void);
+extern void endprotoent (void);
+extern void endservent (void);
+extern struct hostent *gethostbyaddr (void *, socklen_t, int);
+extern struct hostent *gethostbyname (char *);
+extern struct netent *getnetbyaddr (unsigned long, int);
+extern struct protoent *getprotobyname (char *);
+extern struct protoent *getprotobynumber (int);
+extern struct protoent *getprotoent (void);
+extern struct servent *getservbyname (char *, char *);
+extern struct servent *getservbyport (int, char *);
+extern struct servent *getservent (void);
 extern int h_errno;
-void setnetent (int);
-void setprotoent (int);
-int gethostbyname_r (char *, struct hostent *, char *, size_t,
-		     struct hostent **, int *);
+extern void setnetent (int);
+extern void setprotoent (int);
+extern int gethostbyname_r (char *, struct hostent *, char *, size_t,
+			    struct hostent **, int *);
 #endif

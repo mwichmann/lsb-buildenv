@@ -62,9 +62,9 @@
 
 
 
-void closelog (void);
-void openlog (char *, int, int);
-int setlogmask (void);
-void syslog (int, char *, ...);
-void vsyslog (int, char *, va_list);
+extern void closelog (void);
+extern void openlog (char *, int, int);
+extern int setlogmask (void);
+extern void syslog (int, char *, ...);
+extern void vsyslog (int, char *, va_list);
 #endif

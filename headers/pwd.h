@@ -23,9 +23,9 @@ struct passwd
  ;
 
 
-void endpwent (void);
-struct passwd *getpwent (void);
-struct passwd *getpwnam (char *);
-struct passwd *getpwuid (uid_t);
-void setpwent (void);
+extern void endpwent (void);
+extern struct passwd *getpwent (void);
+extern struct passwd *getpwnam (char *);
+extern struct passwd *getpwuid (uid_t);
+extern void setpwent (void);
 #endif

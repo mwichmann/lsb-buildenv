@@ -18,9 +18,9 @@ typedef struct
 Dl_info;
 
 
-int dladdr (void *, Dl_info *);
-int dlclose (void *);
-char *dlerror (void);
-void *dlopen (char *, int);
-void *dlsym (void *, char *);
+extern int dladdr (void *, Dl_info *);
+extern int dlclose (void *);
+extern char *dlerror (void);
+extern void *dlopen (char *, int);
+extern void *dlsym (void *, char *);
 #endif

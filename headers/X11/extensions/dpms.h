@@ -6,13 +6,13 @@
 
 
 
-int DPMSCapable (Display *);
-int DPMSDisable (Display *);
-int DPMSEnable (Display *);
-int DPMSForceLevel (Display *,);
-int DPMSGetTimeouts (Display *, *, *, *);
-int DPMSGetVersion (Display *, int *, int *);
-int DPMSInfo (Display *, *, *);
-int DPMSQueryExtension (Display *, int *, int *);
-int DPMSSetTimeouts (Display *,,,);
+extern int DPMSCapable (Display *);
+extern int DPMSDisable (Display *);
+extern int DPMSEnable (Display *);
+extern int DPMSForceLevel (Display *,);
+extern int DPMSGetTimeouts (Display *, *, *, *);
+extern int DPMSGetVersion (Display *, int *, int *);
+extern int DPMSInfo (Display *, *, *);
+extern int DPMSQueryExtension (Display *, int *, int *);
+extern int DPMSSetTimeouts (Display *,,,);
 #endif

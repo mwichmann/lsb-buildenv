@@ -27,7 +27,7 @@ typedef int greg_t;
 
 #if defined(__i386__)
 /* IA32 */
-typedef greg_t gregset_t[76];
+typedef greg_t gregset_t[19];
 
 #endif
 
@@ -57,21 +57,6 @@ struct _libc_fpreg
 
 #if defined(__i386__)
 /* IA32 */
-struct _libc_fpstate
-{
-  unsigned long cw;
-  unsigned long sw;
-  unsigned long tag;
-  unsigned long ipoff;
-  unsigned long cssel;
-  unsigned long dataoff;
-  unsigned long datasel;
-  struct _libc_fpreg _st[8];
-  unsigned long status;
-}
- ;
-
-#endif
 typedef struct _libc_fpstate
 {
   unsigned long cw;
@@ -86,6 +71,7 @@ typedef struct _libc_fpstate
 }
 fpregset_t;
 
+#endif
 
 /* Context to describe whole processor state.*/
 
@@ -115,8 +101,8 @@ typedef struct ucontext
 ucontext_t;
 
 
-int getcontext (void);
-int makecontext (void);
-int setcontext (void);
-int swapcontext (void);
+extern int getcontext (void);
+extern int makecontext (void);
+extern int setcontext (void);
+extern int swapcontext (void);
 #endif

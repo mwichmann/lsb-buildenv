@@ -18,9 +18,9 @@ struct group
 
 
 
-void endgrent (void);
-struct group *getgrent (void);
-struct group *getgrgid (gid_t);
-struct group *getgrnam (char *);
-void setgrent (void);
+extern void endgrent (void);
+extern struct group *getgrent (void);
+extern struct group *getgrgid (gid_t);
+extern struct group *getgrnam (char *);
+extern void setgrent (void);
 #endif

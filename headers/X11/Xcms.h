@@ -180,93 +180,110 @@ typedef struct _XcmsColorSpace
 XcmsColorSpace;
 
 
-int XcmsAddColorSpace (XcmsColorSpace *);
-int XcmsAddFunctionSet (XcmsFunctionSet *);
-int XcmsAllocColor (Display *, Colormap, XcmsColor *, XcmsColorFormat);
-int XcmsAllocNamedColor (Display *, Colormap, char *, XcmsColor *,
-			 XcmsColor *, XcmsColorFormat);
-XcmsCCC XcmsCCCOfColormap (Display *, Colormap);
-int XcmsCIELabClipL (XcmsCCC, XcmsColor *, unsigned int, unsigned int, int *);
-int XcmsCIELabClipLab (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
-		       int *);
-int XcmsCIELabClipab (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
-		      int *);
-int XcmsCIELabQueryMaxC (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsCIELabQueryMaxL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsCIELabQueryMaxLC (XcmsCCC, XcmsFloat, XcmsColor *);
-int XcmsCIELabQueryMinL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsCIELabToCIEXYZ (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIELabWhiteShiftColors (XcmsCCC, XcmsColor *, XcmsColor *,
-				XcmsColorFormat, XcmsColor *, unsigned int,
-				int *);
-int XcmsCIELuvClipL (XcmsCCC, XcmsColor *, unsigned int, unsigned int, int *);
-int XcmsCIELuvClipLuv (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
-		       int *);
-int XcmsCIELuvClipuv (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
-		      int *);
-int XcmsCIELuvQueryMaxC (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsCIELuvQueryMaxL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsCIELuvQueryMaxLC (XcmsCCC, XcmsFloat, XcmsColor *);
-int XcmsCIELuvQueryMinL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsCIELuvToCIEuvY (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIELuvWhiteShiftColors (XcmsCCC, XcmsColor *, XcmsColor *,
-				XcmsColorFormat, XcmsColor *, unsigned int,
-				int *);
-int XcmsCIEXYZToCIELab (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIEXYZToCIEuvY (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIEXYZToCIExyY (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIEXYZToRGBi (XcmsCCC, XcmsColor *, unsigned int, int *);
-int XcmsCIEuvYToCIELuv (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIEuvYToCIEXYZ (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIEuvYToTekHVC (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsCIExyYToCIEXYZ (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-XcmsColor *XcmsClientWhitePointOfCCC (XcmsCCC);
-int XcmsConvertColors (XcmsCCC, XcmsColor *, unsigned int, XcmsColorFormat,
-		       int *);
-XcmsCCC XcmsCreateCCC (Display *, int, Visual *, XcmsColor *,
-		       XcmsCompressionProc, XPointer, XcmsWhiteAdjustProc,
-		       XPointer);
-XcmsCCC XcmsDefaultCCC (Display *, int);
-Display *XcmsDisplayOfCCC (XcmsCCC);
-XcmsColorFormat XcmsFormatOfPrefix (char *);
-void XcmsFreeCCC (XcmsCCC);
-int XcmsLookupColor (Display *, Colormap, char *, XcmsColor *, XcmsColor *,
-		     XcmsColorFormat);
-char *XcmsPrefixOfFormat (XcmsColorFormat);
-int XcmsQueryBlack (XcmsCCC, XcmsColorFormat, XcmsColor *);
-int XcmsQueryBlue (XcmsCCC, XcmsColorFormat, XcmsColor *);
-int XcmsQueryColor (Display *, Colormap, XcmsColor *, XcmsColorFormat);
-int XcmsQueryColors (Display *, Colormap, XcmsColor *, unsigned int,
-		     XcmsColorFormat);
-int XcmsQueryGreen (XcmsCCC, XcmsColorFormat, XcmsColor *);
-int XcmsQueryRed (XcmsCCC, XcmsColorFormat, XcmsColor *);
-int XcmsQueryWhite (XcmsCCC, XcmsColorFormat, XcmsColor *);
-int XcmsRGBToRGBi (XcmsCCC, XcmsColor *, unsigned int, int *);
-int XcmsRGBiToCIEXYZ (XcmsCCC, XcmsColor *, unsigned int, int *);
-int XcmsRGBiToRGB (XcmsCCC, XcmsColor *, unsigned int, int *);
-int XcmsScreenNumberOfCCC (XcmsCCC);
-XcmsColor *XcmsScreenWhitePointOfCCC (XcmsCCC);
-XcmsCCC XcmsSetCCCOfColormap (Display *, Colormap, XcmsCCC);
-XcmsCompressionProc XcmsSetCompressionProc (XcmsCCC, XcmsCompressionProc,
-					    XPointer);
-XcmsWhiteAdjustProc XcmsSetWhiteAdjustProc (XcmsCCC, XcmsWhiteAdjustProc,
-					    XPointer);
-int XcmsSetWhitePoint (XcmsCCC, XcmsColor *);
-int XcmsStoreColor (Display *, Colormap, XcmsColor *);
-int XcmsStoreColors (Display *, Colormap, XcmsColor *, unsigned int, int *);
-int XcmsTekHVCClipC (XcmsCCC, XcmsColor *, unsigned int, unsigned int, int *);
-int XcmsTekHVCClipV (XcmsCCC, XcmsColor *, unsigned int, unsigned int, int *);
-int XcmsTekHVCClipVC (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
-		      int *);
-int XcmsTekHVCQueryMaxC (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsTekHVCQueryMaxV (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsTekHVCQueryMaxVC (XcmsCCC, XcmsFloat, XcmsColor *);
-int XcmsTekHVCQueryMaxVSamples (XcmsCCC, XcmsFloat, XcmsColor *,
-				unsigned int);
-int XcmsTekHVCQueryMinV (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
-int XcmsTekHVCToCIEuvY (XcmsCCC, XcmsColor *, XcmsColor *, unsigned int);
-int XcmsTekHVCWhiteShiftColors (XcmsCCC, XcmsColor *, XcmsColor *,
-				XcmsColorFormat, XcmsColor *, unsigned int,
-				int *);
-Visual *XcmsVisualOfCCC (XcmsCCC);
+extern int XcmsAddColorSpace (XcmsColorSpace *);
+extern int XcmsAddFunctionSet (XcmsFunctionSet *);
+extern int XcmsAllocColor (Display *, Colormap, XcmsColor *, XcmsColorFormat);
+extern int XcmsAllocNamedColor (Display *, Colormap, char *, XcmsColor *,
+				XcmsColor *, XcmsColorFormat);
+extern XcmsCCC XcmsCCCOfColormap (Display *, Colormap);
+extern int XcmsCIELabClipL (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			    int *);
+extern int XcmsCIELabClipLab (XcmsCCC, XcmsColor *, unsigned int,
+			      unsigned int, int *);
+extern int XcmsCIELabClipab (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			     int *);
+extern int XcmsCIELabQueryMaxC (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsCIELabQueryMaxL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsCIELabQueryMaxLC (XcmsCCC, XcmsFloat, XcmsColor *);
+extern int XcmsCIELabQueryMinL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsCIELabToCIEXYZ (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIELabWhiteShiftColors (XcmsCCC, XcmsColor *, XcmsColor *,
+				       XcmsColorFormat, XcmsColor *,
+				       unsigned int, int *);
+extern int XcmsCIELuvClipL (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			    int *);
+extern int XcmsCIELuvClipLuv (XcmsCCC, XcmsColor *, unsigned int,
+			      unsigned int, int *);
+extern int XcmsCIELuvClipuv (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			     int *);
+extern int XcmsCIELuvQueryMaxC (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsCIELuvQueryMaxL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsCIELuvQueryMaxLC (XcmsCCC, XcmsFloat, XcmsColor *);
+extern int XcmsCIELuvQueryMinL (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsCIELuvToCIEuvY (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIELuvWhiteShiftColors (XcmsCCC, XcmsColor *, XcmsColor *,
+				       XcmsColorFormat, XcmsColor *,
+				       unsigned int, int *);
+extern int XcmsCIEXYZToCIELab (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIEXYZToCIEuvY (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIEXYZToCIExyY (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIEXYZToRGBi (XcmsCCC, XcmsColor *, unsigned int, int *);
+extern int XcmsCIEuvYToCIELuv (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIEuvYToCIEXYZ (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIEuvYToTekHVC (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsCIExyYToCIEXYZ (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern XcmsColor *XcmsClientWhitePointOfCCC (XcmsCCC);
+extern int XcmsConvertColors (XcmsCCC, XcmsColor *, unsigned int,
+			      XcmsColorFormat, int *);
+extern XcmsCCC XcmsCreateCCC (Display *, int, Visual *, XcmsColor *,
+			      XcmsCompressionProc, XPointer,
+			      XcmsWhiteAdjustProc, XPointer);
+extern XcmsCCC XcmsDefaultCCC (Display *, int);
+extern Display *XcmsDisplayOfCCC (XcmsCCC);
+extern XcmsColorFormat XcmsFormatOfPrefix (char *);
+extern void XcmsFreeCCC (XcmsCCC);
+extern int XcmsLookupColor (Display *, Colormap, char *, XcmsColor *,
+			    XcmsColor *, XcmsColorFormat);
+extern char *XcmsPrefixOfFormat (XcmsColorFormat);
+extern int XcmsQueryBlack (XcmsCCC, XcmsColorFormat, XcmsColor *);
+extern int XcmsQueryBlue (XcmsCCC, XcmsColorFormat, XcmsColor *);
+extern int XcmsQueryColor (Display *, Colormap, XcmsColor *, XcmsColorFormat);
+extern int XcmsQueryColors (Display *, Colormap, XcmsColor *, unsigned int,
+			    XcmsColorFormat);
+extern int XcmsQueryGreen (XcmsCCC, XcmsColorFormat, XcmsColor *);
+extern int XcmsQueryRed (XcmsCCC, XcmsColorFormat, XcmsColor *);
+extern int XcmsQueryWhite (XcmsCCC, XcmsColorFormat, XcmsColor *);
+extern int XcmsRGBToRGBi (XcmsCCC, XcmsColor *, unsigned int, int *);
+extern int XcmsRGBiToCIEXYZ (XcmsCCC, XcmsColor *, unsigned int, int *);
+extern int XcmsRGBiToRGB (XcmsCCC, XcmsColor *, unsigned int, int *);
+extern int XcmsScreenNumberOfCCC (XcmsCCC);
+extern XcmsColor *XcmsScreenWhitePointOfCCC (XcmsCCC);
+extern XcmsCCC XcmsSetCCCOfColormap (Display *, Colormap, XcmsCCC);
+extern XcmsCompressionProc XcmsSetCompressionProc (XcmsCCC,
+						   XcmsCompressionProc,
+						   XPointer);
+extern XcmsWhiteAdjustProc XcmsSetWhiteAdjustProc (XcmsCCC,
+						   XcmsWhiteAdjustProc,
+						   XPointer);
+extern int XcmsSetWhitePoint (XcmsCCC, XcmsColor *);
+extern int XcmsStoreColor (Display *, Colormap, XcmsColor *);
+extern int XcmsStoreColors (Display *, Colormap, XcmsColor *, unsigned int,
+			    int *);
+extern int XcmsTekHVCClipC (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			    int *);
+extern int XcmsTekHVCClipV (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			    int *);
+extern int XcmsTekHVCClipVC (XcmsCCC, XcmsColor *, unsigned int, unsigned int,
+			     int *);
+extern int XcmsTekHVCQueryMaxC (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsTekHVCQueryMaxV (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsTekHVCQueryMaxVC (XcmsCCC, XcmsFloat, XcmsColor *);
+extern int XcmsTekHVCQueryMaxVSamples (XcmsCCC, XcmsFloat, XcmsColor *,
+				       unsigned int);
+extern int XcmsTekHVCQueryMinV (XcmsCCC, XcmsFloat, XcmsFloat, XcmsColor *);
+extern int XcmsTekHVCToCIEuvY (XcmsCCC, XcmsColor *, XcmsColor *,
+			       unsigned int);
+extern int XcmsTekHVCWhiteShiftColors (XcmsCCC, XcmsColor *, XcmsColor *,
+				       XcmsColorFormat, XcmsColor *,
+				       unsigned int, int *);
+extern Visual *XcmsVisualOfCCC (XcmsCCC);
 #endif

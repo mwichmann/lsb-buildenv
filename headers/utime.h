@@ -13,5 +13,5 @@ struct utimbuf
  ;
 
 
-int utime (char *, struct utimbuf *);
+extern int utime (char *, struct utimbuf *);
 #endif

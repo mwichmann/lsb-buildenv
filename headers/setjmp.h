@@ -31,8 +31,8 @@ typedef struct __jmp_buf_tag jmp_buf[1];
 typedef jmp_buf sigjmp_buf;
 
 
-int __sigsetjmp (jmp_buf, int);
-void longjmp (jmp_buf, int);
-void siglongjmp (sigjmp_buf, int);
-int _setjmp (jmp_buf);
+extern int __sigsetjmp (jmp_buf, int);
+extern void longjmp (jmp_buf, int);
+extern void siglongjmp (sigjmp_buf, int);
+extern int _setjmp (jmp_buf);
 #endif

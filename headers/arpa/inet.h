@@ -7,7 +7,7 @@
 
 
 
-unsigned long inet_addr (char *);
-int inet_aton (char *, struct in_addr *);
-char *inet_ntoa (struct in_addr);
+extern unsigned long inet_addr (char *);
+extern int inet_aton (char *, struct in_addr *);
+extern char *inet_ntoa (struct in_addr);
 #endif

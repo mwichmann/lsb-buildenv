@@ -19,11 +19,12 @@ typedef struct
 XSecurityAuthorizationAttributes;
 
 
-Xauth *XSecurityAllocXauth (void);
-void XSecurityFreeXauth (Xauth *);
-Xauth *XSecurityGenerateAuthorization (Display *, Xauth *, unsigned long,
-				       XSecurityAuthorizationAttributes *,
-				       XSecurityAuthorization *);
-int XSecurityQueryExtension (Display *, int *, int *);
-int XSecurityRevokeAuthorization (Display *, XSecurityAuthorization);
+extern Xauth *XSecurityAllocXauth (void);
+extern void XSecurityFreeXauth (Xauth *);
+extern Xauth *XSecurityGenerateAuthorization (Display *, Xauth *,
+					      unsigned long,
+					      XSecurityAuthorizationAttributes
+					      *, XSecurityAuthorization *);
+extern int XSecurityQueryExtension (Display *, int *, int *);
+extern int XSecurityRevokeAuthorization (Display *, XSecurityAuthorization);
 #endif

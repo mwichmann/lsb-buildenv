@@ -2,5 +2,5 @@
 #define _SYS_FILE_H_
 
 
-int flock (void);
+extern int flock (void);
 #endif

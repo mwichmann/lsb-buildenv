@@ -11,7 +11,7 @@ typedef unsigned int wint_t;
 typedef int wctrans_t;
 
 
-wctrans_t wctrans (char *);
-int iswalnum (wint_t);
-wctype_t wctype (char *);
+extern wctrans_t wctrans (char *);
+extern int iswalnum (wint_t);
+extern wctype_t wctype (char *);
 #endif

@@ -49,6 +49,6 @@ struct lconv
 
 
 
-struct lconv *localeconv (void);
-char *setlocale (int, char *);
+extern struct lconv *localeconv (void);
+extern char *setlocale (int, char *);
 #endif

@@ -15,5 +15,5 @@ struct tms
  ;
 
 
-clock_t times (struct tms *);
+extern clock_t times (struct tms *);
 #endif

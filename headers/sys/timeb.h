@@ -16,5 +16,5 @@ struct timeb
  ;
 
 
-int ftime (void);
+extern int ftime (void);
 #endif

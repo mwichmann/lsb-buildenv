@@ -11,7 +11,7 @@ typedef int greg_t;
 
 
 
-typedef greg_t gregset_t[76];
+typedef greg_t gregset_t[19];
 
 
 
@@ -28,7 +28,7 @@ struct _libc_fpreg
 
 
 
-struct _libc_fpstate
+typedef struct _libc_fpstate
 {
   unsigned long cw;
   unsigned long sw;
@@ -40,4 +40,4 @@ struct _libc_fpstate
   struct _libc_fpreg _st[8];
   unsigned long status;
 }
- ;
+fpregset_t;

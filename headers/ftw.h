@@ -68,8 +68,8 @@ typedef int (*__nftw64_func_t) (char *__filename, struct stat64 * __status,
 				int __flag, struct FTW * __info);
 
 
-int ftw (char *, __ftw_func_t, int);
-int ftw64 (char *, __ftw64_func_t, int);
-int nftw (char *, __nftw_func_t, int, int);
-int nftw64 (char *, __nftw64_func_t, int, int);
+extern int ftw (char *, __ftw_func_t, int);
+extern int ftw64 (char *, __ftw64_func_t, int);
+extern int nftw (char *, __nftw_func_t, int, int);
+extern int nftw64 (char *, __nftw64_func_t, int, int);
 #endif

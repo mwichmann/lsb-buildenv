@@ -39,9 +39,9 @@ struct shmid_ds
  ;
 
 
-int __getpagesize (void);
-void *shmat (int, void *, int);
-int shmctl (int, int, struct shmid_ds *);
-int shmdt (void *);
-int shmget (key_t, int, int);
+extern int __getpagesize (void);
+extern void *shmat (int, void *, int);
+extern int shmctl (int, int, struct shmid_ds *);
+extern int shmdt (void *);
+extern int shmget (key_t, int, int);
 #endif

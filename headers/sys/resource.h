@@ -4,8 +4,8 @@
 #include <sys/time.h>
 
 #define RLIM_INFINITY	(~0UL)
-#define RLIM_SAVED_CUR	-1
 #define RLIM_SAVED_MAX	-1
+#define RLIM_SAVED_CUR	-1
 #define RUSAGE_SELF	0
 #define RLIMIT_CPU	0
 #define RLIMIT_FSIZE	1
@@ -63,11 +63,11 @@ struct rusage
  ;
 
 
-int getpriority (int, int);
-int getrlimit64 (int, struct rlimit64 *);
-int setpriority (int, int, int);
-int setrlimit (int, struct rlimit *);
-int setrlimit64 (int, struct rlimit64 *);
-int getrlimit (int, struct rlimit *);
-int getrusage (int, struct rusage *);
+extern int getpriority (int, int);
+extern int getrlimit64 (int, struct rlimit64 *);
+extern int setpriority (int, int, int);
+extern int setrlimit (int, struct rlimit *);
+extern int setrlimit64 (int, struct rlimit64 *);
+extern int getrlimit (int, struct rlimit *);
+extern int getrusage (int, struct rusage *);
 #endif

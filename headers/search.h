@@ -16,8 +16,6 @@ typedef struct entry
 }
 ENTRY;
 
-typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);
-
 typedef enum
 {
   FIND,
@@ -35,14 +33,19 @@ typedef enum
 VISIT;
 
 
-int hcreate (size_t);
-ENTRY *hsearch (ENTRY, ACTION);
-void insque (void *, void *);
-void *lfind (void *, void *, size_t *, size_t, __compar_fn_t);
-void *lsearch (void *, void *, size_t *, size_t, __compar_fn_t);
-void remque (void *);
-void hdestroy (void);
-void *tfind (void *, void **, __compar_fn_t);
-void *tsearch (void *, void **, __compar_fn_t);
-void twalk (void *, __action_fn_t);
+
+
+typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);
+
+
+extern int hcreate (size_t);
+extern ENTRY *hsearch (ENTRY, ACTION);
+extern void insque (void *, void *);
+extern void *lfind (void *, void *, size_t *, size_t, __compar_fn_t);
+extern void *lsearch (void *, void *, size_t *, size_t, __compar_fn_t);
+extern void remque (void *);
+extern void hdestroy (void);
+extern void *tfind (void *, void **, __compar_fn_t);
+extern void *tsearch (void *, void **, __compar_fn_t);
+extern void twalk (void *, __action_fn_t);
 #endif

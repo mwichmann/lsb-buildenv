@@ -7,6 +7,6 @@
 
 
 
-int readv (int, struct iovec *, size_t);
-int writev (int, struct iovec *, size_t);
+extern int readv (int, struct iovec *, size_t);
+extern int writev (int, struct iovec *, size_t);
 #endif

@@ -1,6 +1,7 @@
 #ifndef _GLOB_H_
 #define _GLOB_H_
 
+#include <stddef.h>
 
 
 
@@ -9,9 +10,9 @@
 
 typedef struct
 {
-  __size_t gl_pathc;
+  size_t gl_pathc;
   char **gl_pathv;
-  __size_t gl_offs;
+  size_t gl_offs;
   int gl_flags;
   void (*gl_closedir) (void);
   struct dirent *(*gl_readdir) (void);
@@ -26,9 +27,9 @@ glob_t;
 
 typedef struct
 {
-  __size_t gl_pathc;
+  size_t gl_pathc;
   char **gl_pathv;
-  __size_t gl_offs;
+  size_t gl_offs;
   int gl_flags;
   void (*gl_closedir) (void);
   struct dirent *(*gl_readdir) (void);
@@ -64,8 +65,8 @@ glob64_t;
 
 
 
-int glob (char *, int, int, glob_t *);
-int glob64 (char *, int, int, glob64_t *);
-void globfree (glob_t *);
-void globfree64 (glob64_t *);
+extern int glob (char *, int, int, glob_t *);
+extern int glob64 (char *, int, int, glob64_t *);
+extern void globfree (glob_t *);
+extern void globfree64 (glob64_t *);
 #endif

@@ -81,87 +81,89 @@ typedef void *pthread_condattr_t;
 
 /* Values for attributes.*/
 #define PTHREAD_ONCE_INIT	0
-#define PTHREAD_CREATE_DETACHED	PTHREAD_CREATE_DETACHED
-#define PTHREAD_CREATE_JOINABLE	PTHREAD_CREATE_JOINABLE
-#define PTHREAD_EXPLICIT_SCHED	PTHREAD_EXPLICIT_SCHED
-#define PTHREAD_INHERIT_SCHED	PTHREAD_INHERIT_SCHED
-#define PTHREAD_PROCESS_PRIVATE	PTHREAD_PROCESS_PRIVATE
-#define PTHREAD_PROCESS_SHARED	PTHREAD_PROCESS_SHARED
-#define PTHREAD_SCOPE_PROCESS	PTHREAD_SCOPE_PROCESS
-#define PTHREAD_SCOPE_SYSTEM	PTHREAD_SCOPE_SYSTEM
+#define PTHREAD_CREATE_DETACHED	1
+#define PTHREAD_CREATE_JOINABLE	2
+#define PTHREAD_EXPLICIT_SCHED	3
+#define PTHREAD_INHERIT_SCHED	4
+#define PTHREAD_PROCESS_PRIVATE	5
+#define PTHREAD_PROCESS_SHARED	6
+#define PTHREAD_SCOPE_PROCESS	7
+#define PTHREAD_SCOPE_SYSTEM	8
 
 
 
 /* Cancellation*/
 #define PTHREAD_CANCELED	((void*)-1)
-#define PTHREAD_CANCEL_ASYNCHRONOUS	PTHREAD_CANCEL_ASYNCHRONOUS
-#define PTHREAD_CANCEL_DEFERRED	PTHREAD_CANCEL_DEFERRED
-#define PTHREAD_CANCEL_DISABLE	PTHREAD_CANCEL_DISABLE
-#define PTHREAD_CANCEL_ENABLE	PTHREAD_CANCEL_ENABLE
+#define PTHREAD_CANCEL_ASYNCHRONOUS	2
+#define PTHREAD_CANCEL_DEFERRED	3
+#define PTHREAD_CANCEL_DISABLE	4
+#define PTHREAD_CANCEL_ENABLE	5
 
 
 
-int pthread_attr_destroy (pthread_attr_t *);
-int pthread_attr_getdetachstate (pthread_attr_t *, int *);
-int pthread_attr_getinheritsched (pthread_attr_t *, int *);
-int pthread_attr_getschedparam (pthread_attr_t *, struct sched_param *);
-int pthread_attr_getschedpolicy (pthread_attr_t *, int *);
-int pthread_attr_getscope (pthread_attr_t *, int *);
-int pthread_attr_init (pthread_attr_t *);
-int pthread_attr_setdetachstate (pthread_attr_t *, int);
-int pthread_attr_setinheritsched (pthread_attr_t *, int);
-int pthread_attr_setschedparam (pthread_attr_t *, struct sched_param *);
-int pthread_attr_setschedpolicy (pthread_attr_t *, int);
-int pthread_attr_setscope (pthread_attr_t *, int);
-int pthread_cancel (pthread_t);
-int pthread_cond_broadcast (pthread_cond_t *);
-int pthread_cond_destroy (pthread_cond_t *);
-int pthread_cond_init (pthread_cond_t *, pthread_condattr_t *);
-int pthread_cond_signal (pthread_cond_t *);
-int pthread_cond_timedwait (pthread_cond_t *, pthread_mutex_t *,
-			    struct timespec *);
-int pthread_cond_wait (pthread_cond_t *, pthread_mutex_t *);
-int pthread_condattr_destroy (pthread_condattr_t *);
-int pthread_condattr_init (pthread_condattr_t *);
-int pthread_create (pthread_t *, pthread_attr_t *,
-		    void *(*__start_routine) (), void *);
-int pthread_detach (pthread_t);
-int pthread_equal (pthread_t, pthread_t);
-void pthread_exit (void *);
-int pthread_getschedparam (pthread_t, int *, struct sched_param *);
-void *pthread_getspecific (pthread_key_t);
-int pthread_join (pthread_t, void **);
-int pthread_key_create (pthread_key_t *, void (*destructor) ());
-int pthread_key_delete (pthread_key_t);
-int pthread_kill (void);
-int pthread_mutex_destroy (pthread_mutex_t *);
-int pthread_mutex_init (pthread_mutex_t *, pthread_mutexattr_t *);
-int pthread_mutex_lock (pthread_mutex_t *);
-int pthread_mutex_trylock (pthread_mutex_t *);
-int pthread_mutex_unlock (pthread_mutex_t *);
-int pthread_mutexattr_destroy (void);
-int pthread_mutexattr_init (void);
-int pthread_once (pthread_once_t *, void (*init_routine) ());
-int pthread_rwlock_destroy (void);
-int pthread_rwlock_init (void);
-int pthread_rwlock_rdlock (void);
-int pthread_rwlock_tryrdlock (void);
-int pthread_rwlock_trywrlock (void);
-int pthread_rwlock_unlock (void);
-int pthread_rwlock_wrlock (void);
-int pthread_rwlockattr_destroy (void);
-int pthread_rwlockattr_init (void);
-pthread_t pthread_self (void);
-int pthread_setcancelstate (int, int *);
-int pthread_setcanceltype (int, int *);
-int pthread_setschedparam (pthread_t, int, struct sched_param *);
-int pthread_setspecific (pthread_key_t, void *);
-void pthread_testcancel (void);
-int pthread_attr_setstackaddr (pthread_attr_t *, void *);
-int pthread_attr_getstackaddr (pthread_attr_t *, void **);
-int pthread_attr_setstacksize (pthread_attr_t *, size_t);
-int pthread_attr_getstacksize (pthread_attr_t *, size_t *);
-int pthread_mutexattr_gettype (void);
-int pthread_mutexattr_settype (void);
-int pthread_setconcurrency (void);
+extern int pthread_attr_destroy (pthread_attr_t *);
+extern int pthread_attr_getdetachstate (pthread_attr_t *, int *);
+extern int pthread_attr_getinheritsched (pthread_attr_t *, int *);
+extern int pthread_attr_getschedparam (pthread_attr_t *,
+				       struct sched_param *);
+extern int pthread_attr_getschedpolicy (pthread_attr_t *, int *);
+extern int pthread_attr_getscope (pthread_attr_t *, int *);
+extern int pthread_attr_init (pthread_attr_t *);
+extern int pthread_attr_setdetachstate (pthread_attr_t *, int);
+extern int pthread_attr_setinheritsched (pthread_attr_t *, int);
+extern int pthread_attr_setschedparam (pthread_attr_t *,
+				       struct sched_param *);
+extern int pthread_attr_setschedpolicy (pthread_attr_t *, int);
+extern int pthread_attr_setscope (pthread_attr_t *, int);
+extern int pthread_cancel (pthread_t);
+extern int pthread_cond_broadcast (pthread_cond_t *);
+extern int pthread_cond_destroy (pthread_cond_t *);
+extern int pthread_cond_init (pthread_cond_t *, pthread_condattr_t *);
+extern int pthread_cond_signal (pthread_cond_t *);
+extern int pthread_cond_timedwait (pthread_cond_t *, pthread_mutex_t *,
+				   struct timespec *);
+extern int pthread_cond_wait (pthread_cond_t *, pthread_mutex_t *);
+extern int pthread_condattr_destroy (pthread_condattr_t *);
+extern int pthread_condattr_init (pthread_condattr_t *);
+extern int pthread_create (pthread_t *, pthread_attr_t *,
+			   void *(*__start_routine) (), void *);
+extern int pthread_detach (pthread_t);
+extern int pthread_equal (pthread_t, pthread_t);
+extern void pthread_exit (void *);
+extern int pthread_getschedparam (pthread_t, int *, struct sched_param *);
+extern void *pthread_getspecific (pthread_key_t);
+extern int pthread_join (pthread_t, void **);
+extern int pthread_key_create (pthread_key_t *, void (*destructor) ());
+extern int pthread_key_delete (pthread_key_t);
+extern int pthread_kill (void);
+extern int pthread_mutex_destroy (pthread_mutex_t *);
+extern int pthread_mutex_init (pthread_mutex_t *, pthread_mutexattr_t *);
+extern int pthread_mutex_lock (pthread_mutex_t *);
+extern int pthread_mutex_trylock (pthread_mutex_t *);
+extern int pthread_mutex_unlock (pthread_mutex_t *);
+extern int pthread_mutexattr_destroy (void);
+extern int pthread_mutexattr_init (void);
+extern int pthread_once (pthread_once_t *, void (*init_routine) ());
+extern int pthread_rwlock_destroy (void);
+extern int pthread_rwlock_init (void);
+extern int pthread_rwlock_rdlock (void);
+extern int pthread_rwlock_tryrdlock (void);
+extern int pthread_rwlock_trywrlock (void);
+extern int pthread_rwlock_unlock (void);
+extern int pthread_rwlock_wrlock (void);
+extern int pthread_rwlockattr_destroy (void);
+extern int pthread_rwlockattr_init (void);
+extern pthread_t pthread_self (void);
+extern int pthread_setcancelstate (int, int *);
+extern int pthread_setcanceltype (int, int *);
+extern int pthread_setschedparam (pthread_t, int, struct sched_param *);
+extern int pthread_setspecific (pthread_key_t, void *);
+extern void pthread_testcancel (void);
+extern int pthread_attr_setstackaddr (pthread_attr_t *, void *);
+extern int pthread_attr_getstackaddr (pthread_attr_t *, void **);
+extern int pthread_attr_setstacksize (pthread_attr_t *, size_t);
+extern int pthread_attr_getstacksize (pthread_attr_t *, size_t *);
+extern int pthread_mutexattr_gettype (void);
+extern int pthread_mutexattr_settype (void);
+extern int pthread_setconcurrency (void);
 #endif

@@ -6,29 +6,29 @@
 
 
 
-xdr_array (*, caddr_t *, u_int *, u_int, u_int, xdrproc_t);
-xdr_bool (*, *);
-xdr_bytes (*, char **, u_int *, u_int);
-xdr_char (*, char *);
-xdr_double (*, double *);
-xdr_enum (*, *);
-xdr_float (*, float *);
-void xdr_free (xdrproc_t, char *);
-xdr_int (*, int *);
-xdr_long (*, long *);
-xdr_opaque (*, caddr_t, u_int);
-xdr_pointer (*, char **, u_int, xdrproc_t);
-xdr_reference (*, caddr_t *, u_int, xdrproc_t);
-xdr_short (*, short *);
-xdr_string (*, char **, u_int);
-xdr_u_char (*, u_char *);
-xdr_u_long (*, u_long *);
-xdr_u_short (*, u_short *);
-xdr_union (*, *, char *, struct xdr_discrim *, xdrproc_t);
-xdr_vector (*, char *, u_int, u_int, xdrproc_t);
-xdr_void (void);
-xdr_wrapstring (*, char **);
-void xdrmem_create (*, caddr_t, u_int,,);
-void xdrrec_create (*, u_int, u_int, caddr_t, int, int);
-xdrrec_eof (*);
+extern xdr_array (*, caddr_t *, u_int *, u_int, u_int, xdrproc_t);
+extern xdr_bool (*, *);
+extern xdr_bytes (*, char **, u_int *, u_int);
+extern xdr_char (*, char *);
+extern xdr_double (*, double *);
+extern xdr_enum (*, *);
+extern xdr_float (*, float *);
+extern void xdr_free (xdrproc_t, char *);
+extern xdr_int (*, int *);
+extern xdr_long (*, long *);
+extern xdr_opaque (*, caddr_t, u_int);
+extern xdr_pointer (*, char **, u_int, xdrproc_t);
+extern xdr_reference (*, caddr_t *, u_int, xdrproc_t);
+extern xdr_short (*, short *);
+extern xdr_string (*, char **, u_int);
+extern xdr_u_char (*, u_char *);
+extern xdr_u_long (*, u_long *);
+extern xdr_u_short (*, u_short *);
+extern xdr_union (*, *, char *, struct xdr_discrim *, xdrproc_t);
+extern xdr_vector (*, char *, u_int, u_int, xdrproc_t);
+extern xdr_void (void);
+extern xdr_wrapstring (*, char **);
+extern void xdrmem_create (*, caddr_t, u_int,,);
+extern void xdrrec_create (*, u_int, u_int, caddr_t, int, int);
+extern xdrrec_eof (*);
 #endif

@@ -13,5 +13,5 @@
 
 
 
-int fnmatch (char *, char *, int);
+extern int fnmatch (char *, char *, int);
 #endif

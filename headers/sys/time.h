@@ -58,14 +58,14 @@ struct itimerval
  ;
 
 
-int getitimer (int, struct itimerval *);
-int setitimer (int, struct itimerval *, struct itimerval *);
-int adjtime (struct timeval *, struct timeval *);
-int gettimeofday (struct timeval *, struct timezone *);
-int utimes (char *, struct timeval *);
-int timer_create (void);
-int timer_delete (void);
-int timer_getoverrun (void);
-int timer_gettime (void);
-int timer_settime (void);
+extern int getitimer (int, struct itimerval *);
+extern int setitimer (int, struct itimerval *, struct itimerval *);
+extern int adjtime (struct timeval *, struct timeval *);
+extern int gettimeofday (struct timeval *, struct timezone *);
+extern int utimes (char *, struct timeval *);
+extern int timer_create (void);
+extern int timer_delete (void);
+extern int timer_getoverrun (void);
+extern int timer_gettime (void);
+extern int timer_settime (void);
 #endif

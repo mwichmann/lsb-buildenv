@@ -33,5 +33,5 @@
 
 
 
-int fmtmsg (void);
+extern int fmtmsg (void);
 #endif

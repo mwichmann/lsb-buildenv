@@ -7,5 +7,5 @@
 
 
 
-ssize_t strfmon (char *, size_t, char *, ...);
+extern ssize_t strfmon (char *, size_t, char *, ...);
 #endif

@@ -7,5 +7,5 @@
 
 
 
-long ulimit (int, ...);
+extern long ulimit (int, ...);
 #endif

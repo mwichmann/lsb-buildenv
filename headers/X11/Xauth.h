@@ -20,9 +20,10 @@ typedef struct xauth
 Xauth;
 
 
-void XauDisposeAuth (Xauth *);
-char *XauFileName (void);
-Xauth *XauGetBestAuthByAddr (unsigned int, unsigned int, char *, unsigned int,
-			     char *, int, char **, int *);
-Xauth *XauReadAuth (FILE);
+extern void XauDisposeAuth (Xauth *);
+extern char *XauFileName (void);
+extern Xauth *XauGetBestAuthByAddr (unsigned int, unsigned int, char *,
+				    unsigned int, char *, int, char **,
+				    int *);
+extern Xauth *XauReadAuth (FILE);
 #endif

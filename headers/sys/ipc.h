@@ -33,5 +33,5 @@ struct ipc_perm
 
 
 
-key_t ftok (void);
+extern key_t ftok (char *, int);
 #endif

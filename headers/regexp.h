@@ -8,6 +8,6 @@
 extern char *loc1;
 extern char *loc2;
 extern char *locs;
-int advance (char *, char *);
-int step (char *, char *);
+extern int advance (char *, char *);
+extern int step (char *, char *);
 #endif

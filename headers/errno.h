@@ -131,5 +131,5 @@
 
 
 
-int *__errno_location (void);
+extern int *__errno_location (void);
 #endif

@@ -6,14 +6,14 @@
 
 
 
-void XtConfigureWidget (Widget, int, int, unsigned int, unsigned int,
-			unsigned int);
-void XtCreateWindow (Widget, unsigned int, Visual *, XtValueMask,
-		     XSetWindowAttributes *);
-void XtMoveWidget (Widget, int, int);
-void XtProcessLock (void);
-void XtProcessUnlock (void);
-void XtResizeWidget (Widget, unsigned int, unsigned int, unsigned int);
-void XtResizeWindow (Widget);
-void _XtInherit (void);
+extern void XtConfigureWidget (Widget, int, int, unsigned int, unsigned int,
+			       unsigned int);
+extern void XtCreateWindow (Widget, unsigned int, Visual *, XtValueMask,
+			    XSetWindowAttributes *);
+extern void XtMoveWidget (Widget, int, int);
+extern void XtProcessLock (void);
+extern void XtProcessUnlock (void);
+extern void XtResizeWidget (Widget, unsigned int, unsigned int, unsigned int);
+extern void XtResizeWindow (Widget);
+extern void _XtInherit (void);
 #endif

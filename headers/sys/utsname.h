@@ -16,5 +16,5 @@ struct utsname
  ;
 
 
-int uname (struct utsname *);
+extern int uname (struct utsname *);
 #endif

@@ -18,15 +18,21 @@ typedef long long intmax_t;
 
 typedef unsigned long long uintmax_t;
 
+typedef unsigned char uint8_t;
+
+typedef unsigned short uint16_t;
+
 typedef unsigned int uint32_t;
+
+typedef unsigned int *uintptr_t;
 
 typedef long long uint64_t;
 
 
-intmax_t strtoimax (char *, char **, int);
-uintmax_t strtoumax (char *, char **, int);
-intmax_t wcstoimax (wchar_t *, wchar_t * *, int);
-uintmax_t wcstoumax (wchar_t *, wchar_t * *, int);
-intmax_t imaxabs (intmax_t);
-imaxdiv_t imaxdiv (intmax_t, intmax_t);
+extern intmax_t strtoimax (char *, char **, int);
+extern uintmax_t strtoumax (char *, char **, int);
+extern intmax_t wcstoimax (wchar_t *, wchar_t * *, int);
+extern uintmax_t wcstoumax (wchar_t *, wchar_t * *, int);
+extern intmax_t imaxabs (intmax_t);
+extern imaxdiv_t imaxdiv (intmax_t, intmax_t);
 #endif

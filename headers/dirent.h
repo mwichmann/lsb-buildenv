@@ -41,12 +41,12 @@ struct dirent64
  ;
 
 
-int alphasort (struct dirent **, struct dirent **);
-void rewinddir (DIR *);
-void seekdir (DIR *, long);
-long telldir (DIR *);
-int closedir (DIR *);
-DIR *opendir (char *);
-struct dirent *readdir (DIR *);
-struct dirent64 *readdir64 (DIR *);
+extern int alphasort (struct dirent **, struct dirent **);
+extern void rewinddir (DIR *);
+extern void seekdir (DIR *, long);
+extern long telldir (DIR *);
+extern int closedir (DIR *);
+extern DIR *opendir (char *);
+extern struct dirent *readdir (DIR *);
+extern struct dirent64 *readdir64 (DIR *);
 #endif

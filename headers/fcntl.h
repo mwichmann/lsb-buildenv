@@ -14,8 +14,8 @@
 #define O_APPEND	02000
 #define O_ASYNC	020000
 #define O_NOCTTY	0400
-#define O_NONBLOCK	04000
 #define O_NDELAY	04000
+#define O_NONBLOCK	04000
 
 
 struct flock
@@ -64,5 +64,5 @@ struct flock64
 
 
 
-int fcntl (int, int, ...);
+extern int fcntl (int, int, ...);
 #endif

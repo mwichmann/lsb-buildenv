@@ -6,5 +6,5 @@
 
 
 
-int adjtimex (struct timex *);
+extern int adjtimex (struct timex *);
 #endif

@@ -48,6 +48,6 @@ enum
  ;
 
 
-int wordexp (char *, wordexp_t *, int);
-void wordfree (wordexp_t *);
+extern int wordexp (char *, wordexp_t *, int);
+extern void wordfree (wordexp_t *);
 #endif

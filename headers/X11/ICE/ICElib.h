@@ -134,54 +134,56 @@ typedef struct
 IcePaVersionRec;
 
 
-IceConn IceAcceptConnection (IceListenObj, IceAcceptStatus *);
-int IceAddConnectionWatch (IceWatchProc, IcePointer);
-char *IceAllocScratch (IceConn, unsigned long);
-void IceAppLockConn (IceConn);
-void IceAppUnlockConn (IceConn);
-int IceCheckShutdownNegotiation (IceConn);
-IceCloseStatus IceCloseConnection (IceConn);
-char *IceComposeNetworkIdList (int, IceListenObj *);
-int IceConnectionNumber (IceConn);
-IceConnectStatus IceConnectionStatus (IceConn);
-char *IceConnectionString (IceConn);
-int IceFlush (IceConn);
-void IceFreeListenObjs (int, IceListenObj *);
-IcePointer IceGetConnectionContext (IceConn);
-int IceGetInBufSize (IceConn);
-int IceGetListenConnectionNumber (IceListenObj);
-char *IceGetListenConnectionString (IceListenObj);
-int IceGetOutBufSize (IceConn);
-int IceInitThreads (void);
-unsigned long IceLastReceivedSequenceNumber (IceConn);
-unsigned long IceLastSentSequenceNumber (IceConn);
-int IceListenForConnections (int *, IceListenObj * *, int, char *);
-int IceListenForWellKnownConnections (char *, int *, IceListenObj * *, int,
-				      char *);
-IceConn IceOpenConnection (char *, IcePointer, int, int, int, char *);
-int IcePing (IceConn, IcePingReplyProc, IcePointer);
-IceProcessMessagesStatus IceProcessMessages (IceConn, IceReplyWaitInfo *,
-					     int *);
-int IceProtocolRevision (IceConn);
-IceProtocolSetupStatus IceProtocolSetup (IceConn, int, IcePointer, int, int *,
-					 int *, char **, char **, int,
-					 char *);
-int IceProtocolShutdown (IceConn, int);
-int IceProtocolVersion (IceConn);
-int IceRegisterForProtocolReply (char *, char *, char *, int,
-				 IcePaVersionRec *, int, char **,
-				 IcePaAuthProc *, IceHostBasedAuthProc,
-				 IceProtocolSetupProc,
-				 IceProtocolActivateProc, IceIOErrorProc);
-int IceRegisterForProtocolSetup (char *, char *, char *, int,
-				 IcePoVersionRec *, int, char **,
-				 IcePoAuthProc *, IceIOErrorProc);
-char *IceRelease (IceConn);
-void IceRemoveConnectionWatch (IceWatchProc, IcePointer);
-IceErrorHandler IceSetErrorHandler (IceErrorHandler);
-void IceSetHostBasedAuthProc (IceListenObj, IceHostBasedAuthProc);
-IceIOErrorHandler IceSetIOErrorHandler (IceIOErrorHandler);
-void IceSetShutdownNegotiation (IceConn, int);
-int IceSwapping (IceConn);
-char *IceVendor (IceConn);
+extern IceConn IceAcceptConnection (IceListenObj, IceAcceptStatus *);
+extern int IceAddConnectionWatch (IceWatchProc, IcePointer);
+extern char *IceAllocScratch (IceConn, unsigned long);
+extern void IceAppLockConn (IceConn);
+extern void IceAppUnlockConn (IceConn);
+extern int IceCheckShutdownNegotiation (IceConn);
+extern IceCloseStatus IceCloseConnection (IceConn);
+extern char *IceComposeNetworkIdList (int, IceListenObj *);
+extern int IceConnectionNumber (IceConn);
+extern IceConnectStatus IceConnectionStatus (IceConn);
+extern char *IceConnectionString (IceConn);
+extern int IceFlush (IceConn);
+extern void IceFreeListenObjs (int, IceListenObj *);
+extern IcePointer IceGetConnectionContext (IceConn);
+extern int IceGetInBufSize (IceConn);
+extern int IceGetListenConnectionNumber (IceListenObj);
+extern char *IceGetListenConnectionString (IceListenObj);
+extern int IceGetOutBufSize (IceConn);
+extern int IceInitThreads (void);
+extern unsigned long IceLastReceivedSequenceNumber (IceConn);
+extern unsigned long IceLastSentSequenceNumber (IceConn);
+extern int IceListenForConnections (int *, IceListenObj * *, int, char *);
+extern int IceListenForWellKnownConnections (char *, int *, IceListenObj * *,
+					     int, char *);
+extern IceConn IceOpenConnection (char *, IcePointer, int, int, int, char *);
+extern int IcePing (IceConn, IcePingReplyProc, IcePointer);
+extern IceProcessMessagesStatus IceProcessMessages (IceConn,
+						    IceReplyWaitInfo *,
+						    int *);
+extern int IceProtocolRevision (IceConn);
+extern IceProtocolSetupStatus IceProtocolSetup (IceConn, int, IcePointer, int,
+						int *, int *, char **,
+						char **, int, char *);
+extern int IceProtocolShutdown (IceConn, int);
+extern int IceProtocolVersion (IceConn);
+extern int IceRegisterForProtocolReply (char *, char *, char *, int,
+					IcePaVersionRec *, int, char **,
+					IcePaAuthProc *, IceHostBasedAuthProc,
+					IceProtocolSetupProc,
+					IceProtocolActivateProc,
+					IceIOErrorProc);
+extern int IceRegisterForProtocolSetup (char *, char *, char *, int,
+					IcePoVersionRec *, int, char **,
+					IcePoAuthProc *, IceIOErrorProc);
+extern char *IceRelease (IceConn);
+extern void IceRemoveConnectionWatch (IceWatchProc, IcePointer);
+extern IceErrorHandler IceSetErrorHandler (IceErrorHandler);
+extern void IceSetHostBasedAuthProc (IceListenObj, IceHostBasedAuthProc);
+extern IceIOErrorHandler IceSetIOErrorHandler (IceIOErrorHandler);
+extern void IceSetShutdownNegotiation (IceConn, int);
+extern int IceSwapping (IceConn);
+extern char *IceVendor (IceConn);
 #endif

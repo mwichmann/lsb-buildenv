@@ -660,6 +660,7 @@ for(1..$sth->numrows) {
 			print STDERR "Skipping a global function pointer!!\n";
 			next;
 			}
+		printf "extern ";
 		displaytyperef(\%entry);
 		printf " %s(",$entry{'Iname'};
 		$select = "SELECT Tname,Ttype,Tbasetype,Parsize FROM Type,Parameter ";
