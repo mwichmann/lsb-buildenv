@@ -7,6 +7,8 @@
 
 
 
+#define CHAR_MAX	SCHAR_MAX
+#define CHAR_MIN	SCHAR_MIN
 
 
 

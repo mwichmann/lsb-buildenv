@@ -109,7 +109,19 @@ extern "C"
 #if __ia64__
 #define __FDSET_LONGS	16
 #endif
+#if __powerpc64__
+#define __FDSET_LONGS	16
+#endif
+#if __x86_64__
+#define __FDSET_LONGS	16
+#endif
 #if __i386__
+#define __FDSET_LONGS	32
+#endif
+#if __powerpc__ && !__powerpc64__
+#define __FDSET_LONGS	32
+#endif
+#if __s390__
 #define __FDSET_LONGS	32
 #endif
 

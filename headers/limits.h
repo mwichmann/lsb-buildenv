@@ -74,8 +74,21 @@ extern "C"
 #endif
 #define UCHAR_MAX	255
 #define CHAR_BIT	8
+#if __i386__
 #define CHAR_MAX	SCHAR_MAX
+#endif
+#if __ia64__
+#define CHAR_MAX	SCHAR_MAX
+#endif
+#if __i386__
 #define CHAR_MIN	SCHAR_MIN
+#endif
+#if __ia64__
+#define CHAR_MIN	SCHAR_MIN
+#endif
+#if __x86_64__
+#define CHAR_MIN	SCHAR_MIN
+#endif
 
 
 

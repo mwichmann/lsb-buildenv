@@ -8,7 +8,18 @@ extern "C"
 #endif
 
 
+#if __i386__
 #define FIONREAD	0x541B
+#endif
+#if __ia64__
+#define FIONREAD	0x541B
+#endif
+#if __s390__
+#define FIONREAD	0x541B
+#endif
+#if __x86_64__
+#define FIONREAD	0x541B
+#endif
 #if __i386__
 #define TIOCNOTTY	0x5422
 #endif

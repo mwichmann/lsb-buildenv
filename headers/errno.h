@@ -950,7 +950,18 @@ extern "C"
 #define EADDRNOTAVAIL	99
 #endif
 #define EWOULDBLOCK	EAGAIN
+#if __i386__
 #define EDEADLOCK	EDEADLK
+#endif
+#if __ia64__
+#define EDEADLOCK	EDEADLK
+#endif
+#if __s390__
+#define EDEADLOCK	EDEADLK
+#endif
+#if __x86_64__
+#define EDEADLOCK	EDEADLK
+#endif
 #define ENOTSUP	EOPNOTSUPP
 
 
