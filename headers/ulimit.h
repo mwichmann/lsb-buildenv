@@ -13,7 +13,7 @@ extern "C"
 
 
 
-  extern long ulimit (int, ...);
+  extern long ulimit (int, long);
 #ifdef __cplusplus
 }
 #endif
