@@ -364,19 +364,19 @@ struct option long_options[] = {
  */
 char *proginterpreter =
 #if   __i386__
-	"/lib/ld-lsb.so.1";
+	"/lib/ld-lsb.so.2";
 #elif __powerpc__ && !__powerpc64__
-	"/lib/ld-lsb-ppc32.so.1";
+	"/lib/ld-lsb-ppc32.so.2";
 #elif __powerpc64__
-	"/lib64/ld-lsb-ppc64.so.1";
+	"/lib64/ld-lsb-ppc64.so.2";
 #elif __ia64__
-	"/lib/ld-lsb-ia64.so.1";
+	"/lib/ld-lsb-ia64.so.2";
 #elif __s390__ && !__s390x__
-	"/lib/ld-lsb-s390.so.1";
+	"/lib/ld-lsb-s390.so.2";
 #elif __s390x__
-	"/lib64/ld-lsb-s390x.so.1";
+	"/lib64/ld-lsb-s390x.so.2";
 #elif __x86_64__
-	"/lib64/ld-lsb-x86-64.so.1";
+	"/lib64/ld-lsb-x86-64.so.2";
 #else
 	"Unknown_program_interpreter";
 #endif
