@@ -199,7 +199,8 @@ fi
 bind_mount_file_ro /usr/lib/crt1.o $ROOT/usr/lib/crt1.o
 bind_mount_file_ro /usr/lib/crti.o $ROOT/usr/lib/crti.o
 bind_mount_file_ro /usr/lib/crtn.o $ROOT/usr/lib/crtn.o
-bind_mount_file_ro /etc/lsbdev/gcc_specs $ROOT$GCC_SPECS_FILE
+
+
 
 # LSB linker
 # Just copy the normal linux linker at the moment
@@ -233,6 +234,10 @@ if [ ! -f $NATIVE_LINKER ]; then
 fi
 
 bind_mount_file_ro $NATIVE_LINKER $ROOT$LSB_LINKER
+
+# copy GCC specs. modify copy to use lsb linker and lsb libraries
+sed -e "s,\(dynamic-linker \)[^}]*\(.*\)$,\1$LSB_LINKER\2 -L /usr/lib/lsb-stub," $GCC_SPECS_FILE > $DATA_ROOT/gcc.specs.modified
+bind_mount_file_ro $DATA_ROOT/gcc.specs.modified $ROOT/$GCC_SPECS_FILE
 
 # Home directories
 setup_home_dirs
