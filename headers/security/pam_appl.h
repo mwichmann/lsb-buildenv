@@ -105,7 +105,7 @@ extern "C"
 
 
   extern int pam_set_item (pam_handle_t *, int, const void *);
-  extern int pam_get_item (pam_handle_t *, int, const void **);
+  extern int pam_get_item (const pam_handle_t *, int, const void **);
   extern const char *pam_strerror (pam_handle_t *, int);
   extern char **pam_getenvlist (pam_handle_t *);
   extern int pam_fail_delay (pam_handle_t *, unsigned int);
