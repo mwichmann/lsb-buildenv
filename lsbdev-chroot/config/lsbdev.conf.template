@@ -26,13 +26,17 @@ RPM_BIN=$RPM_DATA_ROOT/bin/rpm
 # Name of build environment users. users listed here will have
 # their home directories mounted inside the buildroot area
 # Space separated list of users
-BUILDUSERS=""
+BUILDUSERS="cyeoh vsx0"
 
 # GCC version
 GCC_SPECS_FILE=`gcc -v 2>&1 | head -1 | cut -f4 -d' '`
 
-# libbfd
-LIBBFD=/usr/lib/`ldd /usr/bin/ld | grep bfd | cut -f2 | cut -f1 -d' '`
+# Check dependencies in build tools
+# In lsb_start_dev_env, these will be used if they have a
+# value, indicating ldd detected the dependency
+# TODO: awk was the quickest way, but is it the most portable?
+LIBBFD=`ldd /usr/bin/as | awk '/libbfd/ { print $3 }'`
+LIBOPCODES=`ldd /usr/bin/as | awk '/libopcodes/ { print $3 }'`
 
 # Extra directories to bind mount (order is important) 
 # Specify file containing pairs of directories
