@@ -1,6 +1,6 @@
 # Makefile for creation of LSB stub libraries
 
-LSB_SUPPORTED_ARCHS=IA32 IA64 PPC32 S390 PPC64 S390X
+LSB_SUPPORTED_ARCHS=IA32 IA64 PPC32 S390 PPC64 S390X x86-64
 
 # Determine arch to compile for from uname
 # Add extra architectures as needed
