@@ -28,5 +28,5 @@ clean:
 	rm -f $(LSBLIBS) $(LSBSRC) testlib
 
 install:
-	install -d $$LSBHOME/src/build/usr/lsb/lib
-	install $(LSBLIBS) $$LSBHOME/src/build/usr/lsb/lib
+	install -d $$LSBHOME/src/build/usr/lib/lsb-stub
+	install $(LSBLIBS) $$LSBHOME/src/build/usr/lib/lsb-stub

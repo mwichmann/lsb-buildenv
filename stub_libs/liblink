@@ -8,7 +8,7 @@ libXt.so: libXt.o
 
 
 libm.so: libm.o
-	$(LD) --version-script Version.libm -o $@ -shared -h libm.so.6 $*.o
+	$(LD) -o $@ -shared -h libm.so.6 $*.o
 
 
 libGL.so: libGL.o
@@ -28,11 +28,11 @@ libSM.so: libSM.o
 
 
 libdl.so: libdl.o
-	$(LD) --version-script Version.libdl -o $@ -shared -h libdl.so.2 $*.o
+	$(LD) -o $@ -shared -h libdl.so.2 $*.o
 
 
 libcrypt.so: libcrypt.o
-	$(LD) --version-script Version.libcrypt -o $@ -shared -h libcrypt.so.1 $*.o
+	$(LD) -o $@ -shared -h libcrypt.so.1 $*.o
 
 
 libz.so: libz.o
@@ -48,11 +48,11 @@ libutil.so: libutil.o
 
 
 libc.so: libc.o
-	$(LD) --version-script Version.libc -o $@ -shared -h libc.so.6 $*.o
+	$(LD) -o $@ -shared -h libc.so.6 $*.o
 
 
 libpthread.so: libpthread.o
-	$(LD) --version-script Version.libpthread -o $@ -shared -h libpthread.so.0 $*.o
+	$(LD) -o $@ -shared -h libpthread.so.0 $*.o
 
 
 proginterp.so: proginterp.o
@@ -60,5 +60,5 @@ proginterp.so: proginterp.o
 
 
 librt.so: librt.o
-	$(LD) --version-script Version.librt -o $@ -shared -h librt.so.1 $*.o
+	$(LD) -o $@ -shared -h librt.so.1 $*.o
 
