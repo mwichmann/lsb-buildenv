@@ -4,4 +4,4 @@
 
 
 
-typedef long __jmp_buf[];
+typedef long __jmp_buf[18];
