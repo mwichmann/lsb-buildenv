@@ -98,9 +98,9 @@ extern "C"
 
 
 
-  extern int regcomp (regex_t *, char *, int);
+  extern int regcomp (regex_t *, const char *, int);
   extern size_t regerror (int, regex_t *, char *, size_t);
-  extern int regexec (regex_t *, char *, size_t, regmatch_t[], int);
+  extern int regexec (regex_t *, const char *, size_t, regmatch_t[], int);
   extern void regfree (regex_t *);
 #ifdef __cplusplus
 }

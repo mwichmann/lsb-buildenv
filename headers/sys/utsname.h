@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define SYS_NMLN	65
 
 
   struct utsname

@@ -11,6 +11,7 @@ extern "C"
 #endif
 
 
+#define CLK_TCK	((clock_t)__sysconf(2))
 #define CLOCK_REALTIME	0
 #define TIMER_ABSTIME	1
 #define CLOCKS_PER_SEC	1000000l

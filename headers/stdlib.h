@@ -99,7 +99,7 @@ extern "C"
   extern lldiv_t lldiv (long long, long long);
   extern long lrand48 (void);
   extern int mblen (char *, size_t);
-  extern size_t mbstowcs (wchar_t *, char *, size_t);
+  extern size_t mbstowcs (wchar_t *, const char *, size_t);
   extern int mbtowc (wchar_t *, char *, size_t);
   extern char *mktemp (char *);
   extern long mrand48 (void);
