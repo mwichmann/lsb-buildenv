@@ -11,17 +11,13 @@ extern "C"
 #endif
 
 
-#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
 #define SIG_UNBLOCK	1
-#define SIGEV_THREAD	2
 #define SIG_SETMASK	2
 #define NSIG	64
-#define SI_MAX_SIZE	64
 
 
   typedef int sig_atomic_t;
@@ -258,7 +254,11 @@ extern "C"
 
 
 /* POSIX 1003.1b sigevent*/
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+#define SIGEV_SIGNAL	0
 #define SIGEV_NONE	1
+#define SIGEV_THREAD	2
+#define SIGEV_MAX_SIZE	64
 
 
   typedef struct sigevent
@@ -268,7 +268,7 @@ extern "C"
     int sigev_notify;
     union
     {
-      int _pad[SI_PAD_SIZE];
+      int _pad[SIGEV_PAD_SIZE];
       struct
       {
 	void (*sigev_thread_func) (void);
@@ -282,11 +282,13 @@ extern "C"
 
 
 /* POSIX 1003.1b siginfo*/
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #define SI_QUEUE	-1
 #define SI_TIMER	-2
 #define SI_MESGQ	-3
 #define SI_ASYNCIO	-4
 #define SI_USER	0
+#define SI_MAX_SIZE	128
 #define si_pid	_sifields._kill._pid
 #define si_uid	_sifields._kill._uid
 #define si_value	_sifields._rt._sigval
@@ -299,6 +301,7 @@ extern "C"
 #define si_band	_sifields._sigpoll._band
 #define si_fd	_sifields._sigpoll._fd
 #define si_timer1	_sifields._timer._timer1
+#define si_timer2	_sifields._timer._timer2
 
 
   typedef struct siginfo
@@ -499,7 +502,7 @@ extern "C"
     unsigned long esp_at_signal;
     unsigned short ss;
     unsigned short __ssh;
-    struct _fpstate fpstate;
+    struct _fpstate *fpstate;
     unsigned long oldmask;
     unsigned long cr2;
   }
@@ -532,7 +535,7 @@ extern "C"
   extern int siginterrupt (int, int);
   extern int sigismember (void);
   extern int sigpending (sigset_t *);
-  extern int sigrelse (void);
+  extern int sigrelse (int);
   extern __sighandler_t sigset (void);
   extern int sigstack (void);
   extern int pthread_sigmask (int, const sigset_t *, sigset_t *);

@@ -20,6 +20,8 @@ extern "C"
 #define SHUT_RDWR	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
+#define PF_LOCAL	AF_LOCAL
+#define PF_UNSPEC	AF_UNSPEC
 
 
   struct linger
@@ -131,16 +133,17 @@ extern "C"
   extern int bind (int, struct sockaddr *, socklen_t);
   extern int getsockname (int, struct sockaddr *, socklen_t *);
   extern int listen (int, int);
-  extern int setsockopt (int, int, int, void *, socklen_t);
+  extern int setsockopt (int, int, int, const void *, socklen_t);
   extern int accept (int, struct sockaddr *, socklen_t *);
   extern int connect (int, struct sockaddr *, socklen_t);
   extern int recv (int, void *, size_t, int);
   extern int recvfrom (int, void *, size_t, int, struct sockaddr *,
 		       socklen_t *);
   extern int recvmsg (int, struct msghdr *, int);
-  extern int send (int, void *, size_t, int);
-  extern int sendmsg (int, struct msghdr *, int);
-  extern int sendto (int, void *, size_t, int, struct sockaddr *, socklen_t);
+  extern int send (int, const void *, size_t, int);
+  extern int sendmsg (int, struct msghdr *const, int);
+  extern int sendto (int, const void *, size_t, int, struct sockaddr *const,
+		     socklen_t);
   extern int getpeername (int, struct sockaddr *, socklen_t *);
   extern int getsockopt (int, int, int, void *, socklen_t *);
   extern int shutdown (int, int);

@@ -9,7 +9,7 @@
 #define L_cuserid	9
 
 
-typedef struct _IO_FILE *FILE;
+typedef struct _IO_FILE FILE;
 typedef struct
 {
   off_t __pos;

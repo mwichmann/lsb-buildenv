@@ -43,6 +43,8 @@ extern "C"
       struct sockaddr ifu_dstaddr;
     }
     ifa_ifu;
+    void *__pad1;
+    void *__pad2;
   }
    ;
 
@@ -50,7 +52,6 @@ extern "C"
 /* Interface request structure used for socket ioctl's.  All interface
    ioctl's must have parameter definitions which begin with ifr_name.
    The remainder may be interface specific.*/
-#define ifr_hwaddr	ifr_ifrn.ifrn_name
 #define ifr_name	ifr_ifrn.ifrn_name
 #define ifr_addr	ifr_ifru.ifru_addr
 #define ifr_broadaddr	ifr_ifru.ifru_broadaddr
@@ -64,6 +65,7 @@ extern "C"
 #define ifr_mtu	ifr_ifru.ifru_mtu
 #define ifr_netmask	ifr_ifru.ifru_netmask
 #define ifr_slave	ifr_ifru.ifru_slave
+#define ifr_hwaddr	ifr_ifru_hwaddr
 #define IFNAMSIZ	IF_NAMESIZE
 
 

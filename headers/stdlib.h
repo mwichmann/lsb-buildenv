@@ -110,20 +110,20 @@ extern "C"
   extern void srand (unsigned int);
   extern void srandom (unsigned int);
   extern double strtod (const char *, char **);
-  extern float strtof (char *, char **);
+  extern float strtof (const char *, char **);
   extern long strtol (const char *, char **, int);
-  extern long double strtold (char *, char **);
-  extern long long strtoll (char *, char **, int);
+  extern long double strtold (const char *, char **);
+  extern long long strtoll (const char *, char **, int);
   extern long long strtoq (void);
-  extern unsigned long strtoul (char *, char **, int);
-  extern unsigned long long strtoull (char *, char **, int);
+  extern unsigned long strtoul (const char *, char **, int);
+  extern unsigned long long strtoull (const char *, char **, int);
   extern unsigned long long strtouq (void);
   extern void _Exit (int);
   extern size_t __ctype_get_mb_cur_max (void);
   extern char **environ;
-  extern char *realpath (char *, char *);
-  extern int setenv (char *, char *, int);
-  extern void unsetenv (char *);
+  extern char *realpath (const char *, const char *);
+  extern int setenv (const char *, const char *, int);
+  extern void unsetenv (const char *);
 #ifdef __cplusplus
 }
 #endif

@@ -53,8 +53,8 @@ extern "C"
   extern void endnetent (void);
   extern void endprotoent (void);
   extern void endservent (void);
-  extern struct hostent *gethostbyaddr (void *, socklen_t, int);
-  extern struct hostent *gethostbyname (char *);
+  extern struct hostent *gethostbyaddr (const void *, socklen_t, int);
+  extern struct hostent *gethostbyname (const char *);
   extern struct netent *getnetbyaddr (unsigned long, int);
   extern struct protoent *getprotobyname (const char *);
   extern struct protoent *getprotobynumber (int);

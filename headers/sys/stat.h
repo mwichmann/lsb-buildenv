@@ -43,6 +43,9 @@ extern "C"
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
+#if defined(__ia64__)
+#define _STAT_VER	1
+#endif
 #define _STAT_VER	3
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR
@@ -109,8 +112,8 @@ extern "C"
   extern int __xmknod (void);
   extern int __xstat (int, const char *, struct stat *);
   extern int __xstat64 (void);
-  extern int mkfifo (char *, mode_t);
-  extern int chmod (char *, mode_t);
+  extern int mkfifo (const char *, mode_t);
+  extern int chmod (const char *, mode_t);
   extern int fchmod (int, mode_t);
   extern mode_t umask (mode_t);
   extern int stat (const char *, struct stat *);

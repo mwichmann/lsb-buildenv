@@ -8,8 +8,17 @@ extern "C"
 #endif
 
 
+#define Z_NULL	0
 #define ZLIB_VERSION	"1.1.4"
+#define deflateInit2(strm,level, method, windowBits, memLevel, strat	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),           ZLIB_VERSION, sizeof(z_stream))
+#define deflateInit(strm,level)	deflateInit_((strm), (level),       ZLIB_VERSION, sizeof(z_stream))
+#define inflateInit2(strm,windowBits)	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
+#define inflateInit(strm)	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 
+
+  typedef int intf;
+
+  typedef uInt uIntf;
 
 
 
@@ -69,6 +78,51 @@ extern "C"
   typedef z_stream *z_streamp;
 
   typedef voidp gzFile;
+
+
+#define Z_NO_FLUSH	0
+#define Z_PARTIAL_FLUSH	1
+#define Z_SYNC_FLUSH	2
+#define Z_FULL_FLUSH	3
+#define Z_FINISH	4
+
+
+
+#define Z_ERRNO	(-1)
+#define Z_STREAM_ERROR	(-2)
+#define Z_DATA_ERROR	(-3)
+#define Z_MEM_ERROR	(-4)
+#define Z_BUF_ERROR	(-5)
+#define Z_OK	0
+#define Z_STREAM_END	1
+
+
+
+/* Return codes for the compression/decompression functions. Negative values are errors, positive values are used for special but normal events.*/
+#define Z_DEFAULT_COMPRESSION	(-1)
+#define Z_NO_COMPRESSION	0
+#define Z_BEST_SPEED	1
+#define Z_BEST_COMPRESSION	9
+
+
+
+/* compression levels*/
+#define Z_DEFAULT_STRATEGY	0
+#define Z_FILTERED	1
+#define Z_HUFFMAN_ONLY	2
+
+
+
+/* compression strategy*/
+#define Z_BINARY	0
+#define Z_ASCII	1
+#define Z_UNKNOWN	2
+
+
+
+/* Possible values of the data_type field*/
+#define Z_DEFLATED	8
+
 
 
   extern int gzread (gzFile, voidp, unsigned int);

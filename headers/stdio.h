@@ -23,7 +23,7 @@ extern "C"
 #define L_cuserid	9
 
 
-  typedef struct _IO_FILE *FILE;
+  typedef struct _IO_FILE FILE;
 
   typedef struct
   {
@@ -124,7 +124,7 @@ extern "C"
   extern int vsprintf (char *, const char *, va_list);
   extern void flockfile (void);
   extern int fgetpos64 (void);
-  extern FILE fopen64 (const char *, const char *);
+  extern FILE *fopen64 (const char *, const char *);
   extern int fsetpos64 (void);
   extern int ftrylockfile (void);
   extern void funlockfile (void);

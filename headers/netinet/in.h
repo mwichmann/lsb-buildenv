@@ -14,6 +14,7 @@ extern "C"
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
 #define IPPROTO_IP	0
+#define INADDR_LOOPBACK	0x7f000001
 #define IPPROTO_ICMP	1
 #define IP_TOS	1
 #define IPPROTO_UDP	17

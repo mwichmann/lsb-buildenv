@@ -117,7 +117,7 @@ struct sigcontext
   unsigned long esp_at_signal;
   unsigned short ss;
   unsigned short __ssh;
-  struct _fpstate fpstate;
+  struct _fpstate *fpstate;
   unsigned long oldmask;
   unsigned long cr2;
 }
