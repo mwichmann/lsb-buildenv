@@ -69,6 +69,7 @@ process_system_mount_dirs()
       else 
         if [ -d "$from_dir" ]; then
           mkdir -p "$ROOT$to_dir"
+          bind_mount_rw "$from_dir" "$ROOT$to_dir"
         else
           echo "Source directory is not a directory: $from_dir"
         fi
@@ -117,7 +118,7 @@ fi
 # Setup build environment
 # Make the required directory structure
 for newdir in $REQUIRED_DIRS; do
-  mkdir -p $ROOT$newdir
+  mkdir -p $ROOT/$newdir
 done
 
 # Setup bind mounts
