@@ -5,6 +5,7 @@
 
 
 
+/* Datatypes*/
 
 
 typedef unsigned int GLenum;
@@ -38,9 +39,11 @@ typedef double GLdouble;
 typedef double GLclampd;
 
 
+/* Constants*/
 
 
 
+/* Data types*/
 #define GL_UNSIGNED_BYTE	0x1401
 #define GL_SHORT	0x1402
 #define GL_UNSIGNED_SHORT	0x1403
@@ -54,6 +57,7 @@ typedef double GLclampd;
 
 
 
+/* Primitives*/
 #define GL_POINTS	0x0000
 #define GL_LINES	0x0001
 #define GL_LINE_LOOP	0x0002
@@ -67,6 +71,7 @@ typedef double GLclampd;
 
 
 
+/* Vertex Arrays*/
 #define GL_V2F	0x2A20
 #define GL_V3F	0x2A21
 #define GL_C4UB_V2F	0x2A22
@@ -109,6 +114,7 @@ typedef double GLclampd;
 
 
 
+/* Matrix Mode*/
 #define GL_MATRIX_MODE	0x0BA0
 #define GL_MODELVIEW	0x1700
 #define GL_PROJECTION	0x1701
@@ -116,39 +122,51 @@ typedef double GLclampd;
 
 
 
+/* Points*/
 
 
 
+/* Lines*/
 
 
 
+/* Polygons*/
 
 
 
+/* Display Lists*/
 
 
 
+/* Depth buffer*/
 
 
 
+/* Lighting*/
 
 
 
+/* User clipping planes*/
 
 
 
+/* Accumulation buffer*/
 
 
 
+/* Alpha testing*/
 
 
 
+/* Blending*/
 
 
 
+/* Render Mode*/
 
 
 
+/* Feedback*/
 
 
 

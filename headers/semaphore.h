@@ -5,6 +5,7 @@
 
 
 
+/* System specific semaphore definition*/
 
 
 typedef struct
@@ -15,10 +16,12 @@ typedef struct
 sem_t;
 
 
+/* Value returned if `sem_open' failed*/
 #define SEM_FAILED	((sem_t*)0)
 
 
 
+/* Maximum value the semaphore can have*/
 #define SEM_VALUE_MAX	((int)((~0u)>>1))
 
 

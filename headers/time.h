@@ -28,18 +28,20 @@ struct tm
 
 
 
-typedef long __clock_t;
+
+/* Returned by clock()*/
 
 
 
+/* Returned by `time'*/
 
 
 
+/* POSIX.1b structure for a time value.*/
 
 
 
-
-
+/* Used by other time functions.*/
 
 
 

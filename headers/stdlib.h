@@ -10,9 +10,10 @@
 #define RAND_MAX	2147483647
 
 
-typedef int (*__compar_fn_t) ();
+typedef int (*__compar_fn_t) (void);
 
 
+/* Returned by `div'.*/
 
 
 typedef struct
@@ -23,6 +24,7 @@ typedef struct
 div_t;
 
 
+/* Returned by `ldiv'.*/
 
 
 typedef struct
@@ -33,6 +35,7 @@ typedef struct
 ldiv_t;
 
 
+/* Returned by `lldiv'.*/
 
 
 typedef struct

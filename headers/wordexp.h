@@ -5,6 +5,7 @@
 
 
 
+/* Bits set in the FLAGS argument to `wordexp'.*/
 
 
 enum
@@ -20,6 +21,7 @@ enum
  ;
 
 
+/* Structure describing a word-expansion run.*/
 
 
 typedef struct
@@ -31,6 +33,7 @@ typedef struct
 wordexp_t;
 
 
+/* Possible nonzero return values from `wordexp'.*/
 
 
 enum

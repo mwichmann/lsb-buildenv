@@ -21,18 +21,22 @@ typedef __off_t fpos_t;
 typedef __off64_t fpos64_t;
 
 
+/* The opaque type of streams.*/
 
 
 
+/* The possibilities for the third argument to `setvbuf'.*/
 #define _IOFBF	0
 #define _IOLBF	1
 #define _IONBF	2
 
 
 
+/* The possibilities for the third argument to `fseek'.*/
 
 
 
+/* End of file character.*/
 
 
 
@@ -87,4 +91,5 @@ int snprintf (char *, size_t, char *, ...);
 int ungetc (int, FILE *);
 int vsnprintf (char *, size_t, char *, va_list);
 int vsprintf (char *, char *, va_list);
+void flockfile (void);
 #endif

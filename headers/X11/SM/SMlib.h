@@ -12,6 +12,7 @@ typedef struct _SmcConn *SmcConn;
 typedef struct _SmsConn *SmsConn;
 
 
+/* Session Management property*/
 
 
 typedef struct
@@ -31,6 +32,7 @@ typedef struct
 SmProp;
 
 
+/* SmcCloseConnection status return*/
 
 
 typedef enum
@@ -42,21 +44,23 @@ typedef enum
 SmcCloseStatus;
 
 
+/* Client callbacks*/
 
 
-typedef void (*SmcSaveYourselfPhase2Proc) ();
+typedef void (*SmcSaveYourselfPhase2Proc) (void);
 
-typedef void (*SmcInteractProc) ();
+typedef void (*SmcInteractProc) (void);
 
-typedef void (*SmcDieProc) ();
+typedef void (*SmcDieProc) (void);
 
-typedef void (*SmcShutdownCancelledProc) ();
+typedef void (*SmcShutdownCancelledProc) (void);
 
-typedef void (*SmcSaveCompleteProc) ();
+typedef void (*SmcSaveCompleteProc) (void);
 
-typedef void (*SmcPropReplyProc) ();
+typedef void (*SmcPropReplyProc) (void);
 
 
+/* Callbacks set up at SmcOpenConnection time*/
 
 
 typedef struct
@@ -67,15 +71,17 @@ typedef struct
 SmcCallbacks;
 
 
+/* Session manager callbacks*/
 
 
-typedef void (*SmsSetPropertiesProc) ();
+typedef void (*SmsSetPropertiesProc) (void);
 
-typedef void (*SmsDeletePropertiesProc) ();
+typedef void (*SmsDeletePropertiesProc) (void);
 
-typedef void (*SmsGetPropertiesProc) ();
+typedef void (*SmsGetPropertiesProc) (void);
 
 
+/* Callbacks set up by a session manager when a new client connects.*/
 
 
 typedef struct
@@ -88,16 +94,18 @@ SmsCallbacks;
 
 
 
-typedef int (*SmsNewClientProc) ();
+typedef int (*SmsNewClientProc) (void);
 
 
+/* Error handlers*/
 
 
-typedef void (*SmcErrorHandler) ();
+typedef void (*SmcErrorHandler) (void);
 
-typedef void (*SmsErrorHandler) ();
+typedef void (*SmsErrorHandler) (void);
 
 
+/* Default HeaderGroup for X11/SM/SMlib.h*/
 
 
 

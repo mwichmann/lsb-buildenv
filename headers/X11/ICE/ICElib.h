@@ -89,31 +89,32 @@ typedef struct _IceListenObj *IceListenObj;
 
 
 
-typedef void (*IceWatchProc) ();
+typedef void (*IceWatchProc) (void);
 
-typedef void (*IcePoProcessMsgProc) ();
+typedef void (*IcePoProcessMsgProc) (void);
 
-typedef void (*IcePaProcessMsgProc) ();
+typedef void (*IcePaProcessMsgProc) (void);
 
-typedef IcePoAuthStatus (*IcePoAuthProc) ();
+typedef IcePoAuthStatus (*IcePoAuthProc) (void);
 
-typedef IcePaAuthStatus (*IcePaAuthProc) ();
+typedef IcePaAuthStatus (*IcePaAuthProc) (void);
 
-typedef int (*IceHostBasedAuthProc) ();
+typedef int (*IceHostBasedAuthProc) (void);
 
-typedef int (*IceProtocolSetupProc) ();
+typedef int (*IceProtocolSetupProc) (void);
 
-typedef void (*IceProtocolActivateProc) ();
+typedef void (*IceProtocolActivateProc) (void);
 
-typedef void (*IceIOErrorProc) ();
+typedef void (*IceIOErrorProc) (void);
 
-typedef void (*IcePingReplyProc) ();
+typedef void (*IcePingReplyProc) (void);
 
-typedef void (*IceErrorHandler) ();
+typedef void (*IceErrorHandler) (void);
 
-typedef void (*IceIOErrorHandler) ();
+typedef void (*IceIOErrorHandler) (void);
 
 
+/* Default HeaderGroup for X11/ICE/ICElib.h*/
 
 
 typedef struct

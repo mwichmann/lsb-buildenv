@@ -16,6 +16,7 @@ struct exception
  ;
 
 
+/* Some useful constants*/
 #define M_1_PI	0.31830988618379067154
 #define M_LOG10E	0.43429448190325182765
 #define M_2_PI	0.63661977236758134308
@@ -32,6 +33,7 @@ struct exception
 
 
 
+/* machine-dependent HUGE_VAL value*/
 
 
 

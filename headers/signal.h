@@ -6,9 +6,9 @@
 
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIGEV_SIGNAL	0
 #define SIG_BLOCK	0
 #define SIGEV_THREAD	0
+#define SIGEV_SIGNAL	0
 #define SIG_UNBLOCK	1
 #define SIG_SETMASK	2
 
@@ -56,6 +56,7 @@ struct sigcontext
  ;
 
 
+/* System defined signals.*/
 #define SIG_ERR	((__sighandler_t)-1)
 #define SIG_DFL	((__sighandler_t)0)
 #define SIG_IGN	((__sighandler_t)1)
@@ -83,12 +84,12 @@ struct sigcontext
 #define SIGIO	29
 #define SIGQUIT	3
 #define SIGPWR	30
-#define SIGUNUSED	31
 #define SIGSYS	31
+#define SIGUNUSED	31
 #define SIGILL	4
 #define SIGTRAP	5
-#define SIGABRT	6
 #define SIGIOT	6
+#define SIGABRT	6
 #define SIGBUS	7
 #define SIGFPE	8
 #define SIGKILL	9
@@ -97,11 +98,13 @@ struct sigcontext
 
 
 
+/* Type of a signal handling function.*/
 
 
-typedef void (*__sighandler_t) ();
+typedef void (*__sighandler_t) (void);
 
 
+/* POSIX 1003.1b sigval*/
 #define SV_ONSTACK	(1<<0)
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
@@ -115,6 +118,7 @@ typedef union sigval
 sigval_t;
 
 
+/* POSIX 1003.1b sigevent*/
 #define SIGEV_NONE	1
 
 
@@ -123,7 +127,7 @@ union _sigev_un
   int _pad[SI_PAD_SIZE];
   struct
   {
-    void (*sigev_thread_func) ();
+    void (*sigev_thread_func) (void);
     void *_attribute;
   }
   _sigev_thread;
@@ -141,12 +145,13 @@ sigevent_t;
 
 struct
 {
-  void (*sigev_thread_func) ();
+  void (*sigev_thread_func) (void);
   void *_attribute;
 }
  ;
 
 
+/* POSIX 1003.1b siginfo*/
 #define SI_QUEUE	-1
 #define SI_TIMER	-2
 #define SI_MESGQ	-3
@@ -207,6 +212,7 @@ typedef struct siginfo
 siginfo_t;
 
 
+/* sigset_t*/
 #define _NSIG_WORDS	((_NSIG/sizeof(long))>>3)
 #define _NSIG	64
 
@@ -218,6 +224,7 @@ typedef struct
 sigset_t;
 
 
+/* sigaction*/
 #define SA_NOCLDSTOP	0x00000001
 #define SA_NOCLDWAIT	0x00000002
 #define SA_SIGINFO	0x00000004
@@ -235,11 +242,11 @@ struct sigaction
   union
   {
     __sighandler_t _sa_handler;
-    void (*_sa_sigaction) ();
+    void (*_sa_sigaction) (void);
   }
   __sigaction_handler;
   unsigned long sa_flags;
-  void (*sa_restorer) ();
+  void (*sa_restorer) (void);
   sigset_t sa_mask;
 }
  ;
@@ -290,6 +297,7 @@ union
  ;
 
 
+/* Structure used in sigaltstack call.*/
 
 
 typedef struct sigaltstack

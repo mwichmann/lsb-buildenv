@@ -6,6 +6,7 @@
 
 
 
+/* The passwd structure.*/
 
 
 struct passwd

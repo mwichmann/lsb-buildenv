@@ -1,6 +1,7 @@
 #ifndef _FCNTL_H_
 #define _FCNTL_H_
 
+#include <sys/types.h>
 
 #define O_RDONLY	00
 #define O_ACCMODE	0003
@@ -17,19 +18,42 @@
 #define O_NDELAY	04000
 
 
+struct flock
+{
+  short l_type;
+  short l_whence;
+  off_t l_start;
+  off_t l_len;
+  pid_t l_pid;
+}
+ ;
+
+struct flock64
+{
+  short l_type;
+  short l_whence;
+  loff_t l_start;
+  loff_t l_len;
+  pid_t l_pid;
+}
+ ;
+
+
+/* flags for open(2)*/
 
 
 
+/* flags for access(2)*/
 
 
 
-
-#define F_DUPFD	0
+/* Constants used for fcntl(2)*/
 #define F_RDLCK	0
-#define F_GETFD	1
+#define F_DUPFD	0
 #define F_WRLCK	1
-#define F_UNLCK	2
+#define F_GETFD	1
 #define F_SETFD	2
+#define F_UNLCK	2
 #define F_GETFL	3
 #define F_SETFL	4
 #define F_GETLK	5

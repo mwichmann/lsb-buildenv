@@ -12,8 +12,8 @@
 #define PROT_EXEC	0x4
 #define MCL_CURRENT	1
 #define MS_ASYNC	1
-#define MS_INVALIDATE	2
 #define MCL_FUTURE	2
+#define MS_INVALIDATE	2
 #define MS_SYNC	4
 
 

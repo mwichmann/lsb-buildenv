@@ -18,6 +18,7 @@
 
 
 
+/* Structure giving information about numeric and monetary notation*/
 
 
 struct lconv
@@ -44,6 +45,7 @@ struct lconv
  ;
 
 
+/* These are the possibilities for the first argument to setlocale.*/
 
 
 

@@ -6,6 +6,7 @@
 
 
 
+/* The following bits are used to determine the regexp syntax we    recognize.  The set/not-set meanings are chosen so that Emacs syntax    remains the value 0.  The bits are given in alphabetical order, and    the definitions shifted by one from the previous bit; thus, when we    add or remove a bit, only one other definition need change.*/
 #define RE_SYNTAX_GNU_AWK	((RE_SYNTAX_POSIX_EXTENDED|RE_BACKSLASH_ESCAPE_IN_LISTS|RE_DEBUG)& ~(RE_DOT_NOT_NULL | RE_INTERVALS | RE_CONTEXT_INDEP_OPS))
 #define RE_BACKSLASH_ESCAPE_IN_LISTS	((unsigned long int)1)
 #define RE_BK_PLUS_QM	(RE_BACKSLASH_ESCAPE_IN_LISTS<<1)
@@ -32,13 +33,14 @@
 #define RE_SYNTAX_POSIX_EXTENDED	(_RE_SYNTAX_POSIX_COMMON|RE_CONTEXT_INDEP_ANCHORS|RE_CONTEXT_INDEP_OPS|RE_NO_BK_BRACES|RE_NO_BK_PARENS|RE_NO_BK_VBAR|RE_CONTEXT_INVALID_OPS|RE_UNMATCHED_RIGHT_PAREN_ORD)
 #define RE_SYNTAX_POSIX_MINIMAL_EXTENDED	(_RE_SYNTAX_POSIX_COMMON|RE_CONTEXT_INDEP_ANCHORS|RE_CONTEXT_INVALID_OPS|RE_NO_BK_BRACES|RE_NO_BK_PARENS|RE_NO_BK_REFS|RE_NO_BK_VBAR|RE_UNMATCHED_RIGHT_PAREN_ORD)
 #define RE_SYNTAX_POSIX_MINIMAL_BASIC	(_RE_SYNTAX_POSIX_COMMON|RE_LIMITED_OPS)
-#define RE_SYNTAX_SED	RE_SYNTAX_POSIX_BASIC
 #define RE_SYNTAX_ED	RE_SYNTAX_POSIX_BASIC
+#define RE_SYNTAX_SED	RE_SYNTAX_POSIX_BASIC
 
 
 typedef unsigned long reg_syntax_t;
 
 
+/* regex error codes*/
 
 
 
@@ -73,6 +75,7 @@ typedef struct
 regmatch_t;
 
 
+/* POSIX `cflags' bits (i.e., information for `regcomp').*/
 #define REG_NOTEOL	(1<<1)
 #define REG_ICASE	(REG_EXTENDED<<1)
 #define REG_NEWLINE	(REG_ICASE<<1)

@@ -112,17 +112,17 @@ typedef struct _XcmsPerScrnInfo
 XcmsPerScrnInfo;
 
 
-typedef int (*XcmsCompressionProc) ();
+typedef int (*XcmsCompressionProc) (void);
 
-typedef int (*XcmsWhiteAdjustProc) ();
+typedef int (*XcmsWhiteAdjustProc) (void);
 
-typedef int (*XcmsScreenInitProc) ();
+typedef int (*XcmsScreenInitProc) (void);
 
-typedef void (*XcmsScreenFreeProc) ();
+typedef void (*XcmsScreenFreeProc) (void);
 
-typedef int (*XcmsConversionProc) ();
+typedef int (*XcmsConversionProc) (void);
 
-typedef int (*XcmsParseStringProc) ();
+typedef int (*XcmsParseStringProc) (void);
 
 
 typedef struct _XcmsCCC

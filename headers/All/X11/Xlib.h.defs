@@ -5,11 +5,11 @@ typedef struct XColor;
 
 typedef void *XVaNestedList;
 
-typedef int (*XErrorHandler) ();
+typedef int (*XErrorHandler) (void);
 
-typedef int (*XIOErrorHandler) ();
+typedef int (*XIOErrorHandler) (void);
 
-typedef void (*XConnectionWatchProc) ();
+typedef void (*XConnectionWatchProc) (void);
 
 
 typedef char *XPointer;
@@ -265,4 +265,4 @@ typedef struct _XIM *XIM;
 
 typedef struct _XIC *XIC;
 
-typedef void (*XIDProc) ();
+typedef void (*XIDProc) (void);

@@ -10,8 +10,8 @@ typedef __off64_t fpos64_t;
 #define FOPEN_MAX	16
 #define FILENAME_MAX	4095
 #define BUFSIZ	8192
-#define L_ctermid	9
 #define L_cuserid	9
+#define L_ctermid	9
 #define P_tmpdir	"<pathname>"
 
 

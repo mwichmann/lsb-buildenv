@@ -19,10 +19,12 @@
 
 
 
+/* Maximum length of any multibyte character in any locale.*/
 #define MB_LEN_MAX	16
 
 
 
+/* Number of bits in a `char'.*/
 #define SCHAR_MIN	(-128)
 #define SCHAR_MAX	127
 #define UCHAR_MAX	255
@@ -32,21 +34,24 @@
 
 
 
+/* Minimum and maximum values a `signed short int' can hold.*/
 #define SHRT_MIN	(-32768)
 #define SHRT_MAX	32767
 #define USHRT_MAX	65535
 
 
 
+/* Minimum and maximum values a `int' can hold.*/
 #define INT_MIN	(-INT_MAX-1)
-#define INT_MAX	2147483647
 #if defined(__i386__)
 #define __INT_MAX__	2147483647
 #endif
+#define INT_MAX	2147483647
 #define UINT_MAX	4294967295U
 
 
 
+/* Minimum and maximum values a `long int' can hold.*/
 #define LONG_MIN	(-LONG_MAX-1L)
 
 

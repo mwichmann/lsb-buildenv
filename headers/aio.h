@@ -7,6 +7,7 @@
 
 
 
+/* Returned by aio_cancel*/
 #define AIO_ALLDONE	AIO_ALLDONE
 #define AIO_CANCELED	AIO_CANCELED
 #define AIO_NOTCANCELED	AIO_NOTCANCELED
@@ -21,6 +22,7 @@ enum
  ;
 
 
+/* LIO opcodes*/
 #define LIO_NOP	LIO_NOP
 #define LIO_READ	LIO_READ
 #define LIO_WAIT	LIO_WAIT
@@ -35,6 +37,7 @@ enum
  ;
 
 
+/* LIO modes*/
 #define LIO_NOWAIT	LIO_NOWAIT
 #define LIO_WRITE	LIO_WRITE
 
@@ -47,6 +50,7 @@ enum
  ;
 
 
+/* I/O control block*/
 
 
 struct aiocb

@@ -7,11 +7,13 @@
 
 
 
+/* Message catalog descriptor type*/
 
 
 typedef void *nl_catd;
 
 
+/* Type used by `nl_langinfo'*/
 
 
 typedef int nl_item;

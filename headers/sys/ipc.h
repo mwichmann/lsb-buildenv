@@ -33,9 +33,11 @@ struct ipc_perm
  ;
 
 
+/* common mode bits*/
 
 
 
+/* SVID required constants (same values as system 5)*/
 
 
 

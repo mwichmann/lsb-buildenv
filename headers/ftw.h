@@ -5,6 +5,7 @@
 
 
 
+/* Values for the FLAG argument to the user function passed to `ftw' and 'nftw'.*/
 #define FTW_D	FTW_D
 #define FTW_DNR	FTW_DNR
 #define FTW_DP	FTW_DP
@@ -27,6 +28,7 @@ enum
  ;
 
 
+/* Flags for fourth argument of `nftw'.*/
 
 
 enum
@@ -39,6 +41,7 @@ enum
  ;
 
 
+/* Structure used for fourth argument to callback function for `nftw'.*/
 
 
 struct FTW
@@ -49,6 +52,7 @@ struct FTW
  ;
 
 
+/* Convenient types for callback functions.*/
 
 
 typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,

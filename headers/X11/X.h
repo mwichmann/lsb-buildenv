@@ -5,6 +5,7 @@
 
 
 
+/* Resources*/
 
 
 typedef unsigned long XID;
@@ -34,8 +35,7 @@ typedef XID GContext;
 typedef XID KeySym;
 
 
-#define None	0L
-#define AnyButton	0L
+/* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/
 #define AllTemporary	0L
 #define CopyFromParent	0L
 #define AnyPropertyType	0L
@@ -43,12 +43,15 @@ typedef XID KeySym;
 #define PointerWindow	0L
 #define AnyKey	0L
 #define NoSymbol	0L
+#define None	0L
+#define AnyButton	0L
 #define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
 
 
 
+/* EVENT DEFINITIONS*/
 #define KeyPressMask	(1L<<0)
 #define KeyReleaseMask	(1L<<1)
 #define Button3MotionMask	(1L<<10)
@@ -76,6 +79,7 @@ typedef XID KeySym;
 
 
 
+/* Event names*/
 #define NoEventMask	0L
 #define FocusOut	10
 #define KeymapNotify	11
@@ -114,6 +118,7 @@ typedef XID KeySym;
 
 
 
+/* Key masks*/
 #define ShiftMask	(1<<0)
 #define LockMask	(1<<1)
 #define ControlMask	(1<<2)
@@ -125,6 +130,7 @@ typedef XID KeySym;
 
 
 
+/* modifier names*/
 #define ShiftMapIndex	0
 #define LockMapIndex	1
 #define ControlMapIndex	2
@@ -136,6 +142,7 @@ typedef XID KeySym;
 
 
 
+/* button masks*/
 #define Button3Mask	(1<<10)
 #define Button4Mask	(1<<11)
 #define Button5Mask	(1<<12)
@@ -145,6 +152,7 @@ typedef XID KeySym;
 
 
 
+/* button names*/
 #define Button1	1
 #define Button2	2
 #define Button3	3
@@ -153,6 +161,7 @@ typedef XID KeySym;
 
 
 
+/* Notify modes*/
 #define NotifyNormal	0
 #define NotifyHint	1
 #define NotifyGrab	1
@@ -161,6 +170,7 @@ typedef XID KeySym;
 
 
 
+/* Notify detail*/
 #define NotifyAncestor	0
 #define NotifyVirtual	1
 #define NotifyInferior	2
@@ -172,39 +182,46 @@ typedef XID KeySym;
 
 
 
+/* Visibility notify*/
 #define VisibilityUnobscured	0
 #define VisibilityPartiallyObscured	1
 #define VisibilityFullyObscured	2
 
 
 
+/* Circulation request*/
 #define PlaceOnTop	0
 #define PlaceOnBottom	1
 
 
 
+/* protocol families*/
 #define FamilyInternet	0
 #define FamilyDECnet	1
 #define FamilyChaos	2
 
 
 
-#define PropertyNewValue	0
+/* Property notification*/
 #define PropModeReplace	0
+#define PropertyNewValue	0
 #define PropertyDelete	1
 
 
 
+/* Color Map notification*/
 #define ColormapUninstalled	0
 #define ColormapInstalled	1
 
 
 
+/* GrabPointer, GrabButton, GrabKeyboard, GrabKey Modes*/
 #define GrabModeSync	0
 #define GrabModeAsync	1
 
 
 
+/* GrabPointer, GrabKeyboard reply status*/
 #define GrabSuccess	0
 #define AlreadyGrabbed	1
 #define GrabInvalidTime	2
@@ -213,6 +230,7 @@ typedef XID KeySym;
 
 
 
+/* AllowEvents modes*/
 #define AsyncPointer	0
 #define SyncPointer	1
 #define ReplayPointer	2
@@ -224,12 +242,14 @@ typedef XID KeySym;
 
 
 
+/* Used in SetInputFocus, GetInputFocus*/
 #define RevertToNone	(int)None
 #define RevertToPointerRoot	(int)PointerRoot
 #define RevertToParent	2
 
 
 
+/* ERROR CODES*/
 #define Success	0
 #define BadRequest	1
 #define BadAccess	10
@@ -253,12 +273,14 @@ typedef XID KeySym;
 
 
 
+/* Window classes used by CreateWindow*/
 #define CWX	(1<<0)
 #define InputOutput	1
 #define InputOnly	2
 
 
 
+/* Window attributes for CreateWindow and ChangeWindowAttributes*/
 #define CWBackPixmap	(1L<<0)
 #define CWBackPixel	(1L<<1)
 #define CWSaveUnder	(1L<<10)
@@ -277,6 +299,7 @@ typedef XID KeySym;
 
 
 
+/* ConfigureWindow structure*/
 #define CWY	(1<<1)
 #define CWWidth	(1<<2)
 #define CWHeight	(1<<3)
@@ -286,8 +309,9 @@ typedef XID KeySym;
 
 
 
-#define ForgetGravity	0
+/* Bit Gravity*/
 #define UnmapGravity	0
+#define ForgetGravity	0
 #define NorthWestGravity	1
 #define StaticGravity	10
 #define NorthGravity	2
@@ -301,32 +325,38 @@ typedef XID KeySym;
 
 
 
+/* Window gravity + bit gravity above*/
 
 
 
+/* Used in CreateWindow for backing-store hint*/
 #define NotUseful	0
 #define WhenMapped	1
 #define Always	2
 
 
 
+/* Used in GetWindowAttributes reply*/
 #define IsUnmapped	0
 #define IsUnviewable	1
 #define IsViewable	2
 
 
 
+/* Used in ChangeSaveSet*/
 #define SetModeInsert	0
 #define SetModeDelete	1
 
 
 
+/* Used in ChangeCloseDownMode*/
 #define DestroyAll	0
 #define RetainPermanent	1
 #define RetainTemporary	2
 
 
 
+/* Window stacking method (in configureWindow)*/
 #define Above	0
 #define Below	1
 #define TopIf	2
@@ -334,19 +364,23 @@ typedef XID KeySym;
 
 
 
+/* Circulation direction*/
 #define RaiseLowest	0
 #define LowerHighest	1
 
 
 
+/* Property modes*/
 #define PropModePrepend	1
 #define PropModeAppend	2
 
 
 
+/* GRAPHICS DEFINITIONS*/
 
 
 
+/* graphics functions, as in GC.alu*/
 #define GXclear	0x0
 #define GXand	0x1
 #define GXandReverse	0x2
@@ -366,12 +400,14 @@ typedef XID KeySym;
 
 
 
+/* LineStyle*/
 #define LineSolid	0
 #define LineOnOffDash	1
 #define LineDoubleDash	2
 
 
 
+/* capStyle*/
 #define CapNotLast	0
 #define CapButt	1
 #define CapRound	2
@@ -379,12 +415,14 @@ typedef XID KeySym;
 
 
 
+/* joinStyle*/
 #define JoinMiter	0
 #define JoinRound	1
 #define JoinBevel	2
 
 
 
+/* fillStyle*/
 #define FillSolid	0
 #define FillTiled	1
 #define FillStippled	2
@@ -392,16 +430,19 @@ typedef XID KeySym;
 
 
 
+/* fillRule*/
 #define EvenOddRule	0
 #define WindingRule	1
 
 
 
+/* subwindow mode*/
 #define ClipByChildren	0
 #define IncludeInferiors	1
 
 
 
+/* SetClipRectangles ordering*/
 #define Unsorted	0
 #define XYBitmap	0
 #define YSorted	1
@@ -410,22 +451,26 @@ typedef XID KeySym;
 
 
 
+/* CoordinateMode for drawing routines*/
 #define CoordModeOrigin	0
 #define CoordModePrevious	1
 
 
 
+/* Polygon shapes*/
 #define Complex	0
 #define Nonconvex	1
 #define Convex	2
 
 
 
+/* Arc modes for PolyFillArc*/
 #define ArcChord	0
 #define ArcPieSlice	1
 
 
 
+/* GC components: masks used in CreateGC, CopyGC, ChangeGC, OR'ed into    GC.stateChanges*/
 #define GCFunction	(1L<<0)
 #define GCPlaneMask	(1L<<1)
 #define GCTile	(1L<<10)
@@ -454,53 +499,64 @@ typedef XID KeySym;
 
 
 
+/* FONTS*/
 
 
 
+/* used in QueryFont -- draw direction*/
 #define FontLeftToRight	0
 #define FontRightToLeft	1
 
 
 
+/* IMAGING*/
 
 
 
+/* ImageFormat -- PutImage, GetImage*/
 #define XYPixmap	1
 #define ZPixmap	2
 
 
 
+/* COLOR MAP STUFF*/
 
 
 
+/* For CreateColormap*/
 #define AllocNone	0
 #define AllocAll	1
 
 
 
+/* Flags used in StoreNamedColor, StoreColors*/
 #define DoRed	(1<<0)
 #define DoGreen	(1<<1)
 #define DoBlue	(1<<2)
 
 
 
+/* CURSOR STUFF*/
 
 
 
+/* QueryBestSize Class*/
 #define CursorShape	0
 #define TileShape	1
 #define StippleShape	2
 
 
 
-#define AutoRepeatModeOff	0
+/* KEYBOARD/POINTER STUFF*/
 #define LedModeOff	0
+#define AutoRepeatModeOff	0
 #define LedModeOn	1
 #define AutoRepeatModeOn	1
 #define AutoRepeatModeDefault	2
 
 
 
+/* masks for ChangeKeyboardControl*/
 #define KBKeyClickPercent	(1L<<0)
 #define KBBellPercent	(1L<<1)
 #define KBBellPitch	(1L<<2)
@@ -509,44 +565,50 @@ typedef XID KeySym;
 #define KBLedMode	(1L<<5)
 #define KBKey	(1L<<6)
 #define KBAutoRepeatMode	(1L<<7)
-#define MappingSuccess	0
 #define MappingModifier	0
-#define MappingKeyboard	1
+#define MappingSuccess	0
 #define MappingBusy	1
+#define MappingKeyboard	1
 #define MappingPointer	2
 #define MappingFailed	2
 
 
 
+/* SCREEN SAVER STUFF*/
+#define DisableScreenSaver	0
 #define DontPreferBlanking	0
 #define DisableScreenInterval	0
 #define DontAllowExposures	0
-#define DisableScreenSaver	0
-#define PreferBlanking	1
 #define AllowExposures	1
+#define PreferBlanking	1
 #define DefaultBlanking	2
 #define DefaultExposures	2
 
 
 
+/* for ForceScreenSaver*/
 #define ScreenSaverReset	0
 #define ScreenSaverActive	1
 
 
 
+/* HOSTS AND CONNECTIONS*/
 
 
 
+/* for ChangeHosts*/
 #define HostInsert	0
 #define HostDelete	1
 
 
 
+/* for ChangeAccessControl*/
 #define DisableAccess	0
 #define EnableAccess	1
 
 
 
+/* Display classes  used in opening the connection Note that the statically allocated ones are even numbered and the dynamically changeable ones are odd numbered*/
 #define StaticGray	0
 #define GrayScale	1
 #define StaticColor	2
@@ -556,6 +618,7 @@ typedef XID KeySym;
 
 
 
+/* Byte order  used in imageByteOrder and bitmapBitOrder*/
 #define LSBFirst	0
 #define MSBFirst	1
 

@@ -7,8 +7,8 @@
 
 struct utimbuf
 {
-  __time_t actime;
-  __time_t modtime;
+  time_t actime;
+  time_t modtime;
 }
  ;
 

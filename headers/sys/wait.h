@@ -1,7 +1,6 @@
 #ifndef _SYS_WAIT_H_
 #define _SYS_WAIT_H_
 
-#include <sys/types.h>
 #include <signal.h>
 #include <sys/resource.h>
 #include <sys/time.h>

@@ -6,6 +6,7 @@
 
 
 
+/* These are all the characteristics of characters*/
 
 
 enum

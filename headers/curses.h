@@ -27,6 +27,7 @@
 
 
 
+/* colors*/
 #define COLOR_BLACK	0
 #define COLOR_RED	1
 #define COLOR_GREEN	2
@@ -38,6 +39,7 @@
 
 
 
+/* values for the _flags member*/
 #define _SUBWIN	0x01
 #define _ENDLINE	0x02
 #define _FULLWIN	0x04
@@ -47,6 +49,7 @@
 
 
 
+/* curses related structures*/
 
 
 typedef unsigned long chtype;
@@ -90,9 +93,10 @@ WINDOW;
 typedef chtype attr_t;
 
 
+/* Pseudo-character tokens outside ASCII range.*/
 #define KEY_CODE_YES	0400
-#define KEY_MIN	0401
 #define KEY_BREAK	0401
+#define KEY_MIN	0401
 #define KEY_DOWN	0402
 #define KEY_UP	0403
 #define KEY_LEFT	0404
@@ -187,6 +191,7 @@ typedef chtype attr_t;
 
 
 
+/* event masks*/
 
 
 

@@ -20,11 +20,8 @@ struct timezone
 
 
 
+/* Values for the first argument to `getitimer' and `setitimer'.*/
 
-
-enum __itimer_which;
-
-typedef int __itimer_which_t;
 
 
 
@@ -50,6 +47,8 @@ struct timeval
  ;
 
 
+/* Type of the second argument to `getitimer' and
+the second and third arguments `setitimer'.*/
 
 
 struct itimerval

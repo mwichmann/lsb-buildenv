@@ -76,9 +76,11 @@ pthread_cond_t;
 typedef void *pthread_condattr_t;
 
 
+/* Initializers*/
 
 
 
+/* Values for attributes.*/
 #define PTHREAD_ONCE_INIT	0
 #define PTHREAD_CREATE_DETACHED	PTHREAD_CREATE_DETACHED
 #define PTHREAD_CREATE_JOINABLE	PTHREAD_CREATE_JOINABLE
@@ -91,6 +93,7 @@ typedef void *pthread_condattr_t;
 
 
 
+/* Cancellation*/
 #define PTHREAD_CANCELED	((void*)-1)
 #define PTHREAD_CANCEL_ASYNCHRONOUS	PTHREAD_CANCEL_ASYNCHRONOUS
 #define PTHREAD_CANCEL_DEFERRED	PTHREAD_CANCEL_DEFERRED

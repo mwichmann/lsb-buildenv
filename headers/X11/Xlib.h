@@ -12,11 +12,11 @@ typedef struct XColor;
 
 typedef void *XVaNestedList;
 
-typedef int (*XErrorHandler) ();
+typedef int (*XErrorHandler) (void);
 
-typedef int (*XIOErrorHandler) ();
+typedef int (*XIOErrorHandler) (void);
 
-typedef void (*XConnectionWatchProc) ();
+typedef void (*XConnectionWatchProc) (void);
 
 
 
@@ -24,6 +24,7 @@ typedef void (*XConnectionWatchProc) ();
 typedef char *XPointer;
 
 
+/* Extensions need a way to hang private data on some structures.*/
 
 
 typedef struct _XExtData
@@ -38,41 +39,49 @@ XExtData;
 typedef struct XExtCodes;
 
 
+/* Data structure for retrieving info about pixmap formats.*/
 
 
 typedef struct XPixmapFormatValues;
 
 
+/* Data structure for setting graphics context*/
 
 
 typedef struct XGCValues;
 
 
+/*  Graphics context.  The contents of this structure are implementation dependent.  A GC should be treated as opaque by application code.*/
 
 
 typedef struct _XGC *GC;
 
 
+/* Visual structure; contains information about colormapping possible.*/
 
 
 typedef struct Visual;
 
 
+/* Depth structure; contains information for each possible depth.*/
 
 
 typedef struct Depth;
 
 
+/* Information about the screen.  The contents of this structure are implementation dependent.  A Screen should be treated as opaque by application code.*/
 
 
 typedef struct Screen;
 
 
+/*  Format structure; describes ZFormat data the screen will understand.*/
 
 
 typedef struct ScreenFormat;
 
 
+/* Data structure for setting window attributes.*/
 
 
 typedef struct XSetWindowAttributes;
@@ -80,11 +89,13 @@ typedef struct XSetWindowAttributes;
 typedef struct XWindowAttributes;
 
 
+/* Data structure for host setting; getting routines.*/
 
 
 typedef struct XHostAddress;
 
 
+/* Data structure for */
 
 
 struct XImagefuncs;
@@ -112,11 +123,13 @@ typedef struct _XImage
 XImage;
 
 
+/* Data structure for XReconfigureWindow*/
 
 
 typedef struct XWindowChanges;
 
 
+/* Data structures for graphics operations.  On most machines, these are congruent with the wire protocol structures, so reformatting the datacan be avoided on these architectures. */
 
 
 typedef struct XSegment;
@@ -128,31 +141,37 @@ typedef struct XRectangle;
 typedef struct XArc;
 
 
+/* Data structure for XChangeKeyboardControl*/
 
 
 typedef struct XKeyboardControl;
 
 
+/* Data structure for XGetKeyboardControl*/
 
 
 typedef struct XKeyboardState;
 
 
+/* Data structure for XGetMotionEvents.*/
 
 
 typedef struct XTimeCoord;
 
 
+/* Data structure for X{Set,Get}ModifierMapping*/
 
 
 typedef struct XModifierKeymap;
 
 
+/* Display datatype maintaining display specific data. The contents of this structure are implementation dependent.A Display should be treated as opaque by application code. */
 
 
 typedef struct _XDisplay Display;
 
 
+/* Definitions of specific events.*/
 
 
 typedef struct XKeyEvent;
@@ -236,6 +255,7 @@ typedef struct XErrorEvent;
 typedef struct XAnyEvent;
 
 
+/* this union is defined so Xlib can always use the same sized event structure internally, to avoid memory fragmentation.*/
 
 
 typedef union _XEvent
@@ -277,11 +297,13 @@ typedef union _XEvent
 XEvent;
 
 
+/* per character font metric information.*/
 
 
 typedef struct XCharStruct;
 
 
+/* To allow arbitrary information with fonts, there are additional properties returned.*/
 
 
 typedef struct XFontProp;
@@ -291,6 +313,7 @@ typedef struct XFontStruct;
 typedef struct XFontSetExtents;
 
 
+/* PolyText routines take these as arguments.*/
 
 
 typedef struct XTextItem;
@@ -330,7 +353,7 @@ typedef struct _XIM *XIM;
 
 typedef struct _XIC *XIC;
 
-typedef void (*XIDProc) ();
+typedef void (*XIDProc) (void);
 
 
 int XActivateScreenSaver (Display *);

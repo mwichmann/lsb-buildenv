@@ -4,17 +4,18 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
-#define SEEK_SET	0
 #define STDIN_FILENO	0
+#define SEEK_SET	0
 #define STDOUT_FILENO	1
 #define SEEK_CUR	1
-#define STDERR_FILENO	2
 #define SEEK_END	2
+#define STDERR_FILENO	2
 
 
 typedef int *intptr_t;
 
 
+/* Values for the second argument to access.*/
 #define F_OK	0
 #define X_OK	1
 #define W_OK	2
@@ -22,11 +23,6 @@ typedef int *intptr_t;
 
 
 
-#define _POSIX_TIMERS	1
-#define _POSIX_ASYNCHRONOUS_IO	1
-#define _POSIX_MEMORY_PROTECTION	1
-#define _POSIX_SEMAPHORES	1
-#define _POSIX_FSYNC	1
 #define _POSIX_MESSAGE_PASSING	1
 #define _POSIX_SHARED_MEMORY_OBJECTS	1
 #define _POSIX_MEMLOCK	1
@@ -35,12 +31,18 @@ typedef int *intptr_t;
 #define _POSIX_MAPPED_FILES	1
 #define _POSIX_MEMLOCK_RANGE	1
 #define _POSIX_REALTIME_SIGNALS	1
-#define _POSIX2_C_VERSION	199209L
+#define _POSIX_TIMERS	1
+#define _POSIX_ASYNCHRONOUS_IO	1
+#define _POSIX_MEMORY_PROTECTION	1
+#define _POSIX_SEMAPHORES	1
+#define _POSIX_FSYNC	1
 #define _POSIX2_VERSION	199209L
+#define _POSIX2_C_VERSION	199209L
 #define _POSIX_VERSION	199506L
 
 
 
+/* `pathconf' NAME values.*/
 #define _PC_LINK_MAX	0
 #define _PC_MAX_CANON	1
 #define _PC_ASYNC_IO	10
@@ -57,6 +59,7 @@ typedef int *intptr_t;
 
 
 
+/* `sysconf' NAME values.*/
 #define _SC_ARG_MAX	0
 #define _SC_CHILD_MAX	1
 #define _SC_PRIORITY_SCHEDULING	10
@@ -134,6 +137,7 @@ typedef int *intptr_t;
 
 
 
+/* `confstr' NAME values.*/
 #define _CS_PATH	0
 #define _CS_XBS5_ILP32_OFF32_CFLAGS	1100
 #define _CS_XBS5_ILP32_OFF32_LDFLAGS	1101

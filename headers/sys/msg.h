@@ -8,6 +8,7 @@
 
 
 
+/* Base types for messages*/
 
 
 typedef unsigned long msgqnum_t;
@@ -15,6 +16,7 @@ typedef unsigned long msgqnum_t;
 typedef unsigned long msglen_t;
 
 
+/* Message Queue structure*/
 
 
 struct msqid_ds

@@ -6,6 +6,7 @@
 
 
 
+/* errno values*/
 #define EPERM	1
 #define ECHILD	10
 #define ENETDOWN	100

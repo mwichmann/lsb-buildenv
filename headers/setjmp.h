@@ -10,18 +10,23 @@
 
 
 
-typedef int __jmp_buf;
+typedef int __jmp_buf[6];
 
 
 
 
-typedef struct __jmp_buf_tag
+struct __jmp_buf_tag
 {
   __jmp_buf __jmpbuf;
   int __mask_was_saved;
   sigset_t __saved_mask;
 }
-jmp_buf;
+ ;
+
+
+
+
+typedef struct __jmp_buf_tag jmp_buf[1];
 
 typedef jmp_buf sigjmp_buf;
 

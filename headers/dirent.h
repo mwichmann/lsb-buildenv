@@ -6,14 +6,17 @@
 
 
 
+/* structure describing an open directory*/
 
 
 typedef struct __dirstream DIR;
 
 
+/* File types for `d_type'*/
 
 
 
+/* structure describing a directory entry*/
 
 
 struct dirent

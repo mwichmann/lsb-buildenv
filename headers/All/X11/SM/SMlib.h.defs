@@ -32,17 +32,17 @@ typedef enum
 SmcCloseStatus;
 
 
-typedef void (*SmcSaveYourselfPhase2Proc) ();
+typedef void (*SmcSaveYourselfPhase2Proc) (void);
 
-typedef void (*SmcInteractProc) ();
+typedef void (*SmcInteractProc) (void);
 
-typedef void (*SmcDieProc) ();
+typedef void (*SmcDieProc) (void);
 
-typedef void (*SmcShutdownCancelledProc) ();
+typedef void (*SmcShutdownCancelledProc) (void);
 
-typedef void (*SmcSaveCompleteProc) ();
+typedef void (*SmcSaveCompleteProc) (void);
 
-typedef void (*SmcPropReplyProc) ();
+typedef void (*SmcPropReplyProc) (void);
 
 
 typedef struct
@@ -53,11 +53,11 @@ typedef struct
 SmcCallbacks;
 
 
-typedef void (*SmsSetPropertiesProc) ();
+typedef void (*SmsSetPropertiesProc) (void);
 
-typedef void (*SmsDeletePropertiesProc) ();
+typedef void (*SmsDeletePropertiesProc) (void);
 
-typedef void (*SmsGetPropertiesProc) ();
+typedef void (*SmsGetPropertiesProc) (void);
 
 
 typedef struct
@@ -68,9 +68,9 @@ typedef struct
 SmsCallbacks;
 
 
-typedef int (*SmsNewClientProc) ();
+typedef int (*SmsNewClientProc) (void);
 
 
-typedef void (*SmcErrorHandler) ();
+typedef void (*SmcErrorHandler) (void);
 
-typedef void (*SmsErrorHandler) ();
+typedef void (*SmsErrorHandler) (void);
