@@ -28,8 +28,6 @@ extern "C"
   typedef unsigned long long uintmax_t;
 
 #endif
-  typedef unsigned int uint;
-
   typedef unsigned char uint8_t;
 
   typedef unsigned short uint16_t;

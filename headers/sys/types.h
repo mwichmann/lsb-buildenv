@@ -175,8 +175,6 @@ extern "C"
 
   typedef char *caddr_t;
 
-  typedef unsigned short ushort;
-
 
 #if __ia64__
 #define __FDSET_LONGS	16
