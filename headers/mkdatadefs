@@ -5,7 +5,7 @@
 #print "<PARA></PARA>\n";
 
 foreach $hdr (sort @ARGV) {
-	printf "<SECT1>\n";
+	printf "<SECT1 ID=%s>\n", $hdr;
 	printf "<TITLE>%s</TITLE>\n", $hdr;
 	printf "<PARA></PARA>\n";
 	printf "<SCREEN>\n";
