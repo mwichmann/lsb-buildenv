@@ -19,10 +19,10 @@ extern "C"
 
 
   extern int putp (const char *);
-  extern int tigetflag (char *);
-  extern int tigetnum (char *);
-  extern char *tigetstr (char *);
-  extern char *tparm (char *, ...);
+  extern int tigetflag (const char *);
+  extern int tigetnum (const char *);
+  extern char *tigetstr (const char *);
+  extern char *tparm (const char *, ...);
   extern TERMINAL *set_curterm (TERMINAL *);
   extern int del_curterm (TERMINAL *);
   extern int restartterm (char *, int, int *);
