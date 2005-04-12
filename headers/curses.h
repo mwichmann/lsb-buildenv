@@ -378,7 +378,7 @@ extern "C"
   extern bool isendwin (void);
   extern bool is_linetouched (WINDOW *, int);
   extern bool is_wintouched (WINDOW *);
-  extern char *keyname (int);
+  extern const char *keyname (int);
   extern int keypad (WINDOW *, bool);
   extern char killchar (void);
   extern int leaveok (WINDOW *, bool);
@@ -407,7 +407,7 @@ extern "C"
   extern int mvinsstr (int, int, const char *);
   extern int mvinstr (int, int, char *);
   extern int mvprintw (int, int, char *, ...);
-  extern int mvscanw (int, int, char *, ...);
+  extern int mvscanw (int, int, const char *, ...);
   extern int mvvline (int, int, chtype, int);
   extern int mvwaddch (WINDOW *, int, int, const chtype);
   extern int mvwaddchnstr (WINDOW *, int, int, const chtype *, int);
@@ -430,11 +430,11 @@ extern "C"
   extern int mvwinsstr (WINDOW *, int, int, const char *);
   extern int mvwinstr (WINDOW *, int, int, char *);
   extern int mvwprintw (WINDOW *, int, int, char *, ...);
-  extern int mvwscanw (WINDOW *, int, int, char *, ...);
+  extern int mvwscanw (WINDOW *, int, int, const char *, ...);
   extern int mvwvline (WINDOW *, int, int, chtype, int);
   extern int napms (int);
   extern WINDOW *newpad (int, int);
-  extern SCREEN *newterm (char *, FILE *, FILE *);
+  extern SCREEN *newterm (const char *, FILE *, FILE *);
   extern WINDOW *newwin (int, int, int, int);
   extern int nl (void);
   extern int nocbreak (void);
@@ -461,7 +461,7 @@ extern "C"
   extern int reset_shell_mode (void);
   extern int ripoffline (int, int (*)(WINDOW *, int));
   extern int savetty (void);
-  extern int scanw (char *, ...);
+  extern int scanw (const char *, ...);
   extern int scr_dump (const char *);
   extern int scr_init (const char *);
   extern int scrl (int);
@@ -502,8 +502,8 @@ extern "C"
   extern int vline (chtype, int);
   extern int vwprintw (WINDOW *, char *, va_list);
   extern int vw_printw (WINDOW *, const char *, va_list);
-  extern int vwscanw (WINDOW *, char *, va_list);
-  extern int vw_scanw (WINDOW *, char *, va_list);
+  extern int vwscanw (WINDOW *, const char *, va_list);
+  extern int vw_scanw (WINDOW *, const char *, va_list);
   extern int waddch (WINDOW *, const chtype);
   extern int waddchnstr (WINDOW *, const chtype *, int);
   extern int waddchstr (WINDOW *, const chtype *);
@@ -549,7 +549,7 @@ extern "C"
   extern int wprintw (WINDOW *, char *, ...);
   extern int wredrawln (WINDOW *, int, int);
   extern int wrefresh (WINDOW *);
-  extern int wscanw (WINDOW *, char *, ...);
+  extern int wscanw (WINDOW *, const char *, ...);
   extern int wscrl (WINDOW *, int);
   extern int wsetscrreg (WINDOW *, int, int);
   extern int wstandout (WINDOW *);
