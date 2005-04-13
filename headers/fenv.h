@@ -288,12 +288,22 @@ extern "C"
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef unsigned int fenv_t;
+  typedef struct
+  {
+    fexcept_t fpc;
+    void *ieee_instruction_pointer;
+  }
+  fenv_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef unsigned int fenv_t;
+  typedef struct
+  {
+    fexcept_t fpc;
+    void *ieee_instruction_pointer;
+  }
+  fenv_t;
 
 #endif
 #if __i386__

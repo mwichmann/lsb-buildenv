@@ -14,5 +14,10 @@
 
 typedef unsigned int fexcept_t;
 
-typedef unsigned int fenv_t;
+typedef struct
+{
+  fexcept_t fpc;
+  void *ieee_instruction_pointer;
+}
+fenv_t;
 #define FE_DFL_ENV	((__const fenv_t *) -1)
