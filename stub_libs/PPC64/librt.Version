@@ -1,5 +1,5 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2 {
+GLIBC_2.3 {
   clock_getcpuclockid;
   clock_getres;
   clock_gettime;

@@ -74,3 +74,6 @@ void XdbeGetBackBufferAttributes() {} ;
 void XdbeGetVisualInfo() {} ;
 void XdbeQueryExtension() {} ;
 void XdbeSwapBuffers() {} ;
+void XeviGetVisualInfo() {} ;
+void XeviQueryExtension() {} ;
+void XeviQueryVersion() {} ;

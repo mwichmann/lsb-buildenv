@@ -9,7 +9,9 @@ GLIBC_2.2 {
   shm_unlink;
   timer_create;
   timer_delete;
+  timer_settime;
+};
+GLIBC_2.3.3 {
   timer_getoverrun;
   timer_gettime;
-  timer_settime;
 };

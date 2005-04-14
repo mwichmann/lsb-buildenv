@@ -1,5 +1,5 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.2 {
+GLIBC_2.2.5 {
   clock_getcpuclockid;
   clock_getres;
   clock_gettime;
@@ -7,6 +7,8 @@ GLIBC_2.2 {
   clock_settime;
   shm_open;
   shm_unlink;
+};
+GLIBC_2.3.3 {
   timer_create;
   timer_delete;
   timer_getoverrun;
