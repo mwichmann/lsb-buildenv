@@ -1689,6 +1689,16 @@ GLIBCXX_3.4 {
   _ZNSt6gslice8_IndexerC2EjRKSt8valarrayIjES4_;
   _ZNSt6locale11_M_coalesceERKS_S1_i;
   _ZNSt6locale21_S_normalize_categoryEi;
+  _ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE;
+  _ZNSt6locale5_Impl16_M_replace_facetEPKS0_PKNS_2idE;
+  _ZNSt6locale5_ImplC1EPKcj;
+  _ZNSt6locale5_ImplC1ERKS0_j;
+  _ZNSt6locale5_ImplC1Ej;
+  _ZNSt6locale5_ImplC2EPKcj;
+  _ZNSt6locale5_ImplC2ERKS0_j;
+  _ZNSt6locale5_ImplC2Ej;
+  _ZNSt6locale5_ImplD1Ev;
+  _ZNSt6locale5_ImplD2Ev;
   _ZNSt6locale5facet15_S_get_c_localeEv;
   _ZNSt6locale5facet17_S_clone_c_localeERP15__locale_struct;
   _ZNSt6locale5facet18_S_create_c_localeERP15__locale_structPKcS2_;
