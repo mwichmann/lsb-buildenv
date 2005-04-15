@@ -757,18 +757,6 @@ GLIBCXX_3.4 {
   _ZNKSt9type_info11__do_upcastEPKN10__cxxabiv117__class_type_infoEPPv;
   _ZNKSt9type_info14__is_pointer_pEv;
   _ZNKSt9type_info15__is_function_pEv;
-  _ZNSaIcEC1ERKS_;
-  _ZNSaIcEC1Ev;
-  _ZNSaIcEC2ERKS_;
-  _ZNSaIcEC2Ev;
-  _ZNSaIcED1Ev;
-  _ZNSaIcED2Ev;
-  _ZNSaIwEC1ERKS_;
-  _ZNSaIwEC1Ev;
-  _ZNSaIwEC2ERKS_;
-  _ZNSaIwEC2Ev;
-  _ZNSaIwED1Ev;
-  _ZNSaIwED2Ev;
   _ZNSbIwSt11char_traitsIwESaIwEE12_Alloc_hiderC1EPwRKS1_;
   _ZNSbIwSt11char_traitsIwESaIwEE12_Alloc_hiderC2EPwRKS1_;
   _ZNSbIwSt11char_traitsIwESaIwEE12_M_leak_hardEv;
