@@ -2553,6 +2553,8 @@ GLIBCXX_3.4 {
   _ZNSt14numeric_limitsIyE9is_iec559E;
   _ZNSt14numeric_limitsIyE9is_moduloE;
   _ZNSt14numeric_limitsIyE9is_signedE;
+  _ZNSt17__timepunct_cacheIcE12_S_timezonesE;
+  _ZNSt17__timepunct_cacheIwE12_S_timezonesE;
   _ZNSt17moneypunct_bynameIcLb0EE4intlE;
   _ZNSt17moneypunct_bynameIcLb1EE4intlE;
   _ZNSt17moneypunct_bynameIwLb0EE4intlE;
