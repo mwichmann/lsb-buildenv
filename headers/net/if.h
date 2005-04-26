@@ -82,6 +82,7 @@ extern "C"
 #define ifr_data	ifr_ifru.ifru_data
 #define ifr_dstaddr	ifr_ifru.ifru_dstaddr
 #define ifr_flags	ifr_ifru.ifru_flags
+#define ifr_hwaddr	ifr_ifru.ifru_hwaddr
 #define ifr_bandwidth	ifr_ifru.ifru_ivalue
 #define ifr_ifindex	ifr_ifru.ifru_ivalue
 #define ifr_metric	ifr_ifru.ifru_ivalue
@@ -89,7 +90,6 @@ extern "C"
 #define ifr_mtu	ifr_ifru.ifru_mtu
 #define ifr_netmask	ifr_ifru.ifru_netmask
 #define ifr_slave	ifr_ifru.ifru_slave
-#define ifr_hwaddr	ifr_ifru_hwaddr
 #define IFNAMSIZ	IF_NAMESIZE
 
 
