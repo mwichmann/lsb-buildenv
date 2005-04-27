@@ -398,8 +398,6 @@ GLIBC_2.2.5 {
   munlockall;
   munmap;
   nanosleep;
-  nftw;
-  nftw64;
   ngettext;
   nice;
   nl_langinfo;
@@ -452,7 +450,6 @@ GLIBC_2.2.5 {
   recvmsg;
   regcomp;
   regerror;
-  regexec;
   regfree;
   remove;
   remque;
@@ -809,5 +806,10 @@ GLIBC_2.3.2 {
   __register_atfork;
 };
 GLIBC_2.3.3 {
+  nftw;
+  nftw64;
   _sys_siglist;
+};
+GLIBC_2.3.4 {
+  regexec;
 };

@@ -358,7 +358,6 @@ GLIBC_2.0 {
   recvmsg;
   regcomp;
   regerror;
-  regexec;
   regfree;
   remove;
   remque;
@@ -697,8 +696,6 @@ GLIBC_2.1 {
   lseek64;
   makecontext;
   mmap64;
-  nftw;
-  nftw64;
   open64;
   pclose;
   popen;
@@ -735,7 +732,6 @@ GLIBC_2.1 {
   wordexp;
   wordfree;
   _sys_errlist;
-  _sys_siglist;
   getdate_err;
 };
 GLIBC_2.1.1 {
@@ -824,4 +820,12 @@ GLIBC_2.3 {
 };
 GLIBC_2.3.2 {
   __register_atfork;
+};
+GLIBC_2.3.3 {
+  nftw;
+  nftw64;
+  _sys_siglist;
+};
+GLIBC_2.3.4 {
+  regexec;
 };

@@ -357,7 +357,6 @@ GLIBC_2.0 {
   recvmsg;
   regcomp;
   regerror;
-  regexec;
   regfree;
   remove;
   remque;
@@ -692,8 +691,6 @@ GLIBC_2.1 {
   lockf64;
   lseek64;
   mmap64;
-  nftw;
-  nftw64;
   open64;
   pclose;
   popen;
@@ -823,7 +820,12 @@ GLIBC_2.3.2 {
 GLIBC_2.3.3 {
   getcontext;
   makecontext;
+  nftw;
+  nftw64;
   setcontext;
   swapcontext;
   _sys_siglist;
+};
+GLIBC_2.3.4 {
+  regexec;
 };
