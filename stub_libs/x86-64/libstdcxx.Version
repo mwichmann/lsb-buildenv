@@ -2982,3 +2982,13 @@ GLIBCXX_3.4 {
   _ZTVSt9strstream;
   _ZTVSt9type_info;
 };
+GLIBCXX_3.4.1 {
+  _ZNSt12__basic_fileIcE4fileEv;
+};
+GLIBCXX_3.4.2 {
+  _ZN9__gnu_cxx17__pool_alloc_base12_M_get_mutexEv;
+  _ZN9__gnu_cxx17__pool_alloc_base16_M_get_free_listEm;
+  _ZN9__gnu_cxx17__pool_alloc_base9_M_refillEm;
+  _ZN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEE4fileEv;
+  _ZN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEE4fileEv;
+};
