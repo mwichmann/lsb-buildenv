@@ -315,7 +315,7 @@ find_gcc_base_dir()
 {
 FILE	*cccmd;
 char	cmd[PATH_MAX];
-char	buf[PATH_MAX];
+static char	buf[PATH_MAX];
 
 /* Set a fictitious default value */
 gccbasedir="/usr/lib/gcc-lib/i386-linux/2.95.4";
@@ -536,9 +536,8 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Turning off default libraries with -nodefaultlibs\n");
 argvaddstring(libpaths,"-nodefaultlibs");
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Prepending %s to be linker path\n", libpath);
-sprintf(tmpbuf, "-L%s", libpath);
-argvaddstring(libpaths,strdup(tmpbuf));
+	fprintf(stderr,"Prepending %s to the linker path\n", libpath);
+argvadd(libpaths,"L",libpath);
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
 argvadd(syslibs,"L",gccbasedir);
