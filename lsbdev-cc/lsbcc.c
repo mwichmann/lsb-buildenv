@@ -190,7 +190,7 @@ argvadd(struct argvgroup *ag, const char *opt, char *val)
 {
 char *dashopt;
 
-if( (dashopt=(char *)malloc(strlen(opt)+1)) == NULL ) {
+if( (dashopt=(char *)malloc(strlen(opt)+2)) == NULL ) {
 	fprintf(stderr,"Unable to allocate memory for an option string\n");
 	exit(4);
 	}
