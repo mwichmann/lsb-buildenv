@@ -306,7 +306,7 @@ extern "C"
 /* PPC64 */
   typedef struct
   {
-    unsigned long int __unused;
+    unsigned long int __unused[4];
     int signal;
     int pad0;
     unsigned long int handler;
@@ -315,7 +315,7 @@ extern "C"
     gregset_t gp_regs;
     fpregset_t fp_regs;
     vrregset_t *v_regs;
-    long int vmx_reserve;
+    long int vmx_reserve[69];
   }
   mcontext_t;
 
