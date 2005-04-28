@@ -74,7 +74,7 @@ extern "C"
 /* PPC64 */
   typedef struct _libc_vrstate
   {
-    unsigned int vrregs[4];
+    unsigned int vrregs[128];
     vscr_t vscr;
     unsigned int vrsave;
     unsigned int __pad;
