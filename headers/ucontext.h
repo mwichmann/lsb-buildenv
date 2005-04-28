@@ -77,7 +77,7 @@ extern "C"
     unsigned int vrregs[128];
     vscr_t vscr;
     unsigned int vrsave;
-    unsigned int __pad;
+    unsigned int __pad[3];
   }
   vrregset_t __attribute__ ((__aligned__ (16)));
 
