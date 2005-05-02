@@ -3,7 +3,7 @@ libICE libICE.so.6
 libSM libSM.so.6
 libX11 libX11.so.6
 libXext libXext.so.6
-libXi ibXi.so.6
+libXi libXi.so.6
 libXt libXt.so.6
 libc libc.so.6
 libcrypt libcrypt.so.1
