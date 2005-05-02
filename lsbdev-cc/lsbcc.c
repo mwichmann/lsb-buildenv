@@ -243,24 +243,25 @@ for(i=0;i<ag->numargv;i++)
  */
 
 char *default_lsblibs[] = {
-	"c",
-	"m",
-	"rt",
-	"pthread",
-	"pam",
-	"util",
-	"dl",
+	"c",		/* core module */
 	"crypt",
-	"ncurses",
-	"z",
-	"X11",
-	"Xt",
-	"Xext",
-	"SM",
-	"ICE",
-	"GL",
-	"stdc++",
+	"dl",
 	"gcc_s",
+	"m",
+	"ncurses",
+	"pam",
+	"pthread",
+	"rt",
+	"util",
+	"z",
+	"stdc++",	/* c++ module */
+	"GL",		/* graphics module */
+	"ICE",
+	"SM",
+	"X11",
+	"Xext",
+	"Xi",
+	"Xt",
 	0
 };
 
