@@ -2611,6 +2611,8 @@ GLIBCXX_3.4 {
   _ZSt7nothrow;
   _ZTIN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEEE;
   _ZTIN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEEE;
+  _ZTIN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE;
+  _ZTIN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE;
   _ZTINSt6locale5facetE;
   _ZTINSt8ios_base7failureE;
   _ZTISd;
@@ -2713,6 +2715,8 @@ GLIBCXX_3.4 {
   _ZTISt9type_info;
   _ZTSN9__gnu_cxx13stdio_filebufIcSt11char_traitsIcEEE;
   _ZTSN9__gnu_cxx13stdio_filebufIwSt11char_traitsIwEEE;
+  _ZTSN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE;
+  _ZTSN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE;
   _ZTSNSt6locale5facetE;
   _ZTSNSt8ios_base7failureE;
   _ZTSSd;
@@ -2831,6 +2835,8 @@ GLIBCXX_3.4 {
   _ZTTSt19basic_istringstreamIwSt11char_traitsIwESaIwEE;
   _ZTTSt19basic_ostringstreamIcSt11char_traitsIcESaIcEE;
   _ZTTSt19basic_ostringstreamIwSt11char_traitsIwESaIwEE;
+  _ZTVN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE;
+  _ZTVN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE;
   _ZTVNSt6locale5facetE;
   _ZTVNSt8ios_base7failureE;
   _ZTVSd;

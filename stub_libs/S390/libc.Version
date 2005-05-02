@@ -20,7 +20,6 @@ GLIBC_2.0 {
   __libc_start_main;
   __lxstat;
   __mempcpy;
-  __sigsetjmp;
   __stpcpy;
   __strdup;
   __strtod_internal;
@@ -179,7 +178,6 @@ GLIBC_2.0 {
   getgrent;
   getgrgid;
   getgrnam;
-  getgrnam_r;
   getgroups;
   gethostbyaddr;
   gethostbyname;
@@ -741,6 +739,7 @@ GLIBC_2.1.1 {
 };
 GLIBC_2.1.2 {
   getgrgid_r;
+  getgrnam_r;
   getpwnam_r;
   getpwuid_r;
 };
@@ -812,6 +811,7 @@ GLIBC_2.3 {
   __ctype_b_loc;
   __ctype_tolower_loc;
   __ctype_toupper_loc;
+  __sigsetjmp;
   duplocale;
   freelocale;
   newlocale;

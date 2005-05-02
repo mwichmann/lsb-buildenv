@@ -28,7 +28,6 @@ GLIBC_2.2 {
   __lxstat64;
   __mempcpy;
   __rawmemchr;
-  __sigsetjmp;
   __stpcpy;
   __strdup;
   __strtod_internal;
@@ -774,7 +773,6 @@ GLIBC_2.2 {
   __tzname;
   _environ;
   _nl_msg_cat_cntr;
-  _sys_errlist;
   daylight;
   environ;
   getdate_err;
@@ -802,11 +800,13 @@ GLIBC_2.3 {
   __ctype_b_loc;
   __ctype_tolower_loc;
   __ctype_toupper_loc;
+  __sigsetjmp;
   duplocale;
   freelocale;
   newlocale;
   realpath;
   uselocale;
+  _sys_errlist;
 };
 GLIBC_2.3.2 {
   __register_atfork;

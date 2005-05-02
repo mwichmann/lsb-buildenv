@@ -20,7 +20,6 @@ GLIBC_2.0 {
   __libc_start_main;
   __lxstat;
   __mempcpy;
-  __sigsetjmp;
   __stpcpy;
   __strdup;
   __strtod_internal;
@@ -40,8 +39,6 @@ GLIBC_2.0 {
   __xmknod;
   __xstat;
   _exit;
-  _longjmp;
-  _setjmp;
   _tolower;
   _toupper;
   a64l;
@@ -278,7 +275,6 @@ GLIBC_2.0 {
   localtime;
   localtime_r;
   lockf;
-  longjmp;
   lrand48;
   lsearch;
   lseek;
@@ -423,7 +419,6 @@ GLIBC_2.0 {
   siginterrupt;
   sigisemptyset;
   sigismember;
-  siglongjmp;
   signal;
   sigorset;
   sigpause;
@@ -818,14 +813,19 @@ GLIBC_2.3.2 {
   __register_atfork;
 };
 GLIBC_2.3.3 {
-  getcontext;
-  makecontext;
   nftw;
   nftw64;
-  setcontext;
   swapcontext;
   _sys_siglist;
 };
 GLIBC_2.3.4 {
+  __sigsetjmp;
+  _longjmp;
+  _setjmp;
+  getcontext;
+  longjmp;
+  makecontext;
   regexec;
+  setcontext;
+  siglongjmp;
 };
