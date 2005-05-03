@@ -1,4 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.0 {
+  __sigsetjmp;
+};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -800,7 +803,6 @@ GLIBC_2.3 {
   __ctype_b_loc;
   __ctype_tolower_loc;
   __ctype_toupper_loc;
-  __sigsetjmp;
   duplocale;
   freelocale;
   newlocale;

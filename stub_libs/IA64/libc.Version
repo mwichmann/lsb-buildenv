@@ -28,6 +28,7 @@ GLIBC_2.2 {
   __lxstat64;
   __mempcpy;
   __rawmemchr;
+  __sigsetjmp;
   __stpcpy;
   __strdup;
   __strtod_internal;
@@ -818,6 +819,5 @@ GLIBC_2.3.3 {
   _sys_siglist;
 };
 GLIBC_2.3.4 {
-  __sigsetjmp;
   regexec;
 };
