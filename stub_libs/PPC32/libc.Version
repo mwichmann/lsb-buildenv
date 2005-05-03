@@ -815,7 +815,6 @@ GLIBC_2.3.2 {
 GLIBC_2.3.3 {
   nftw;
   nftw64;
-  swapcontext;
   _sys_siglist;
 };
 GLIBC_2.3.4 {
@@ -828,4 +827,5 @@ GLIBC_2.3.4 {
   regexec;
   setcontext;
   siglongjmp;
+  swapcontext;
 };

@@ -729,7 +729,6 @@ GLIBC_2.1 {
   wcswcs;
   wordexp;
   wordfree;
-  _sys_errlist;
   getdate_err;
 };
 GLIBC_2.1.1 {
@@ -817,6 +816,7 @@ GLIBC_2.3 {
   newlocale;
   realpath;
   uselocale;
+  _sys_errlist;
 };
 GLIBC_2.3.2 {
   __register_atfork;

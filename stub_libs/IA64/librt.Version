@@ -7,6 +7,8 @@ GLIBC_2.2 {
   clock_settime;
   shm_open;
   shm_unlink;
+};
+GLIBC_2.3.3 {
   timer_create;
   timer_delete;
   timer_getoverrun;
