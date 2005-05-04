@@ -1,7 +1,4 @@
 LSB_DUMMY { __LSB_DUMMY; };
-GLIBC_2.0 {
-  __sigsetjmp;
-};
 GLIBC_2.2 {
   _Exit;
   _IO_feof;
@@ -31,6 +28,7 @@ GLIBC_2.2 {
   __lxstat64;
   __mempcpy;
   __rawmemchr;
+  __sigsetjmp;
   __stpcpy;
   __strdup;
   __strtod_internal;
