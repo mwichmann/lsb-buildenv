@@ -8,6 +8,7 @@ extern "C"
 #endif
 
 
+#define TIOCGWINSZ	0x5413
 #if __i386__
 #define FIONREAD	0x541B
 #endif
