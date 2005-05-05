@@ -11,15 +11,6 @@ extern "C"
 
 
 
-  struct winsize
-  {
-    unsigned short ws_row;	/* Rows, in characters. */
-    unsigned short ws_col;	/* Columns, in characters. */
-    unsigned short ws_xpixel;	/* Horizontal pixels. */
-    unsigned short ws_ypixel;	/* Vertical pixels. */
-  }
-   ;
-
 
   extern int openpty (int *, int *, char *, struct termios *,
 		      struct winsize *);
