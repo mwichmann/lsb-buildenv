@@ -279,5 +279,5 @@ __asm__(".globl COLS; .pushsection .data; .type COLS,@object; .size COLS, 4; COL
 __asm__(".globl LINES; .pushsection .data; .type LINES,@object; .size LINES, 4; LINES: .long 0; .popsection");
 __asm__(".globl acs_map; .pushsection .data; .type acs_map,@object; .size acs_map, 1024; acs_map: .long 0; .popsection");
 __asm__(".globl cur_term; .pushsection .data; .type cur_term,@object; .size cur_term, 8; cur_term: .long 0; .popsection");
-__asm__(".globl curscr; .pushsection .data; .type curscr,@object; .size curscr, 4; curscr: .long 0; .popsection");
-__asm__(".globl stdscr; .pushsection .data; .type stdscr,@object; .size stdscr, 4; stdscr: .long 0; .popsection");
+__asm__(".globl curscr; .pushsection .data; .type curscr,@object; .size curscr, 8; curscr: .long 0; .popsection");
+__asm__(".globl stdscr; .pushsection .data; .type stdscr,@object; .size stdscr, 8; stdscr: .long 0; .popsection");
