@@ -1,14 +1,7 @@
 
-struct dwarf_eh_base
-{
-  void *tbase;
-  void *dbase;
-  void *func;
-}
- ;
 struct _Unwind_Context;
 
-typedef unsigned int _Unwind_Ptr;
+typedef void *_Unwind_Ptr;
 typedef unsigned int _Unwind_Word;
 
 typedef enum
@@ -22,10 +15,10 @@ _Unwind_Reason_Code;
 
 struct _Unwind_Exception
 {
-  _Unwind_Exception_Class;
-  _Unwind_Exception_Cleanup_Fn;
-  _Unwind_Word;
-  _Unwind_Word;
+  u_int64_t exception_class;
+  _Unwind_Exception_Cleanup_Fn exception_cleanup;
+  u_int64_t private_1;
+  u_int64_t private_2;
 }
  ;
 #define _UA_SEARCH_PHASE	1

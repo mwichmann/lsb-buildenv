@@ -10,22 +10,16 @@ extern "C"
 
 
 
-  struct dwarf_eh_base
-  {
-    void *tbase;
-    void *dbase;
-    void *func;
-  }
-   ;
-
   struct _Unwind_Context;
 
 
 
 
-  typedef unsigned int _Unwind_Ptr;
+  typedef void *_Unwind_Ptr;
 
   typedef unsigned int _Unwind_Word;
+
+  typedef u_int64_t _Unwind_Exception_Class;
 
 
 /* The unwind interface uses reason codes in several contexts to
@@ -62,14 +56,12 @@ extern "C"
 
   struct _Unwind_Exception
   {
-    _Unwind_Exception_Class;
-    _Unwind_Exception_Cleanup_Fn;
-    _Unwind_Word;
-    _Unwind_Word;
+    u_int64_t exception_class;
+    _Unwind_Exception_Cleanup_Fn exception_cleanup;
+    u_int64_t private_1;
+    u_int64_t private_2;
   }
    ;
-
-  typedef unsigned int _Unwind_Exception_Class;
 
 
 /* The ACTIONS argument to the personality routine is a bitwise OR of one
@@ -84,433 +76,312 @@ extern "C"
   typedef int _Unwind_Action;
 
 
+
+
+  typedef _Unwind_Reason_Code (*_Unwind_Stop_fn) (int version,
+						  _Unwind_Action actions,
+						  _Unwind_Exception_Class
+						  exceptionClass,
+						  struct _Unwind_Exception *
+						  exceptionObject,
+						  struct _Unwind_Context *
+						  context,
+						  void *stop_parameter);
+
+
+
+
+  typedef _Unwind_Reason_Code (*_Unwind_Trace_Fn) (struct _Unwind_Context *,
+						   void *);
+
+
 #if __i386__
 /* IA32 */
   extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __i386__
 /* IA32 */
-  extern fde *_Unwind_Find_FDE (void);
+  extern fde *_Unwind_Find_FDE (void *, struct dwarf_eh_base *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern void _Unwind_DeleteException (void);
+  extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
+  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (struct _Unwind_Context
+						      *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __ia64__
 /* IA64 */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __ia64__
 /* IA64 */
-  extern void _Unwind_SetIP (void);
-#endif
-#if __arm__
-/* ARM */
-  extern void _Unwind_DeleteException (void);
-#endif
-#if __arm__
-/* ARM */
-  extern fde *_Unwind_Find_FDE (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Word _Unwind_GetGR (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
-#endif
-#if __arm__
-/* ARM */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
-#endif
-#if __arm__
-/* ARM */
-  extern void _Unwind_Resume (void);
-#endif
-#if __arm__
-/* ARM */
-  extern void _Unwind_SetGR (void);
-#endif
-#if __arm__
-/* ARM */
-  extern void _Unwind_SetIP (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern void _Unwind_DeleteException (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern fde *_Unwind_Find_FDE (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Word _Unwind_GetGR (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern void _Unwind_Resume (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern void _Unwind_SetGR (void);
-#endif
-#if __mc68000__
-/* M68K */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern void _Unwind_DeleteException (void);
+  extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern fde *_Unwind_Find_FDE (void);
+  extern fde *_Unwind_Find_FDE (void *, struct dwarf_eh_base *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
+  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (struct _Unwind_Context
+						      *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  extern void _Unwind_SetIP (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern void _Unwind_DeleteException (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern fde *_Unwind_Find_FDE (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Word _Unwind_GetGR (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern void _Unwind_Resume (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern void _Unwind_SetGR (void);
-#endif
-#if __alpha__
-/* Alpha */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
+  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (struct _Unwind_Context
+						      *);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context *);
 #endif
 #if __i386__
 /* IA32 */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __i386__
 /* IA32 */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __i386__
 /* IA32 */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __i386__
 /* IA32 */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern void _Unwind_DeleteException (void);
+  extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern fde *_Unwind_Find_FDE (void);
+  extern fde *_Unwind_Find_FDE (void *, struct dwarf_eh_base *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
+  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (struct _Unwind_Context
+						      *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __powerpc64__
 /* PPC64 */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern void _Unwind_DeleteException (void);
+  extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern fde *_Unwind_Find_FDE (void);
+  extern fde *_Unwind_Find_FDE (void *, struct dwarf_eh_base *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (void);
+  extern _Unwind_Ptr _Unwind_GetLanguageSpecificData (struct _Unwind_Context
+						      *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern void _Unwind_DeleteException (void);
+  extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern fde *_Unwind_Find_FDE (void);
+  extern fde *_Unwind_Find_FDE (void *, struct dwarf_eh_base *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __x86_64__
 /* x86-64 */
@@ -518,51 +389,53 @@ extern "C"
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __x86_64__
 /* x86-64 */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 #if __s390x__
 /* S390X */
-  extern void _Unwind_DeleteException (void);
+  extern void _Unwind_DeleteException (struct _Unwind_Exception *);
 #endif
 #if __s390x__
 /* S390X */
-  extern fde *_Unwind_Find_FDE (void);
+  extern fde *_Unwind_Find_FDE (void *, struct dwarf_eh_base *);
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Ptr _Unwind_ForcedUnwind (void);
+  extern _Unwind_Ptr _Unwind_ForcedUnwind (struct _Unwind_Exception *,
+					   _Unwind_Stop_Fn, void *);
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Ptr _Unwind_GetDataRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetDataRelBase (struct _Unwind_Context *);
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Word _Unwind_GetGR (void);
+  extern _Unwind_Word _Unwind_GetGR (struct _Unwind_Context *, int);
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Ptr _Unwind_GetIP (void);
+  extern _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
 #endif
 #if __s390x__
 /* S390X */
@@ -570,27 +443,175 @@ extern "C"
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Ptr _Unwind_GetRegionStart (void);
+  extern _Unwind_Ptr _Unwind_GetRegionStart (struct _Unwind_Context *);
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Ptr _Unwind_GetTextRelBase (void);
+  extern _Unwind_Ptr _Unwind_GetTextRelBase (struct _Unwind_Context *);
 #endif
 #if __s390x__
 /* S390X */
-  extern _Unwind_Reason_Code _Unwind_RaiseException (void);
+  extern _Unwind_Reason_Code _Unwind_RaiseException (struct _Unwind_Exception
+						     *);
 #endif
 #if __s390x__
 /* S390X */
-  extern void _Unwind_Resume (void);
+  extern void _Unwind_Resume (struct _Unwind_Exception *);
 #endif
 #if __s390x__
 /* S390X */
-  extern void _Unwind_SetGR (void);
+  extern void _Unwind_SetGR (struct _Unwind_Context *, int, u_int64_t);
 #endif
 #if __s390x__
 /* S390X */
-  extern void _Unwind_SetIP (void);
+  extern void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __i386__
+/* IA32 */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __ia64__
+/* IA64 */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __powerpc64__
+/* PPC64 */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __x86_64__
+/* x86-64 */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __s390x__
+/* S390X */
+  extern _Unwind_Reason_Code _Unwind_Backtrace (_Unwind_Trace_Fn, void *);
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __i386__
+/* IA32 */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __ia64__
+/* IA64 */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __powerpc64__
+/* PPC64 */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __x86_64__
+/* x86-64 */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __s390x__
+/* S390X */
+  extern _Unwind_Reason_Code _Unwind_GetCFA (struct _Unwind_Context *);
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __i386__
+/* IA32 */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __ia64__
+/* IA64 */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __powerpc64__
+/* PPC64 */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __x86_64__
+/* x86-64 */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __s390x__
+/* S390X */
+  extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow (struct
+							_Unwind_Exception *);
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __i386__
+/* IA32 */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __ia64__
+/* IA64 */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __powerpc64__
+/* PPC64 */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __x86_64__
+/* x86-64 */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __s390x__
+/* S390X */
+  extern void *_Unwind_FindEnclosingFunction (void *);
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
+#endif
+#if __i386__
+/* IA32 */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
+#endif
+#if __ia64__
+/* IA64 */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
+#endif
+#if __powerpc64__
+/* PPC64 */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
+#endif
+#if __x86_64__
+/* x86-64 */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
+#endif
+#if __s390x__
+/* S390X */
+  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
 #endif
 #ifdef __cplusplus
 }
