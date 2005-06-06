@@ -5,4 +5,4 @@
 #define CHAR_MIN	0
 #define CHAR_MAX	255
 
-#define PTHREAD_STACK_MIN	196608
+#define PTHREAD_STACK_MIN	16384

@@ -15,4 +15,4 @@ typedef struct
   unsigned int num_colormap_conflicts;
   VisualID *colormap_conflicts;
 }
-ExtendedVisualInfo;;
+ExtendedVisualInfo;

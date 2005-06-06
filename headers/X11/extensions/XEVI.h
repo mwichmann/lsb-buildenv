@@ -34,11 +34,10 @@ extern "C"
     VisualID *colormap_conflicts;
   }
   ExtendedVisualInfo;
-   ;
 
 
-  extern XeviGetVisualInfo (Display *, Visual *, int, ExtendedVisualInfo;
-			    **, int *);
+  extern XeviGetVisualInfo (Display *, Visual *, int, ExtendedVisualInfo * *,
+			    int *);
   extern XeviQueryExtension (Display *);
   extern XeviQueryVersion (Display *, int *, int *);
 #ifdef __cplusplus
