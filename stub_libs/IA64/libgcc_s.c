@@ -3,6 +3,7 @@ void _Unwind_DeleteException() {} ;
 void _Unwind_FindEnclosingFunction() {} ;
 void _Unwind_ForcedUnwind() {} ;
 void _Unwind_GetBSP() {} ;
+void _Unwind_GetCFA() {} ;
 void _Unwind_GetGR() {} ;
 void _Unwind_GetIP() {} ;
 void _Unwind_GetLanguageSpecificData() {} ;
