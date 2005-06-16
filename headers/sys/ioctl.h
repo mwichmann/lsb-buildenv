@@ -53,6 +53,15 @@ extern "C"
 #endif
 
 
+  struct winsize
+  {
+    unsigned short ws_row;	/* Rows, in characters. */
+    unsigned short ws_col;	/* Columns, in characters. */
+    unsigned short ws_xpixel;	/* Horizontal pixels. */
+    unsigned short ws_ypixel;	/* Vertical pixels. */
+  }
+   ;
+
 
   extern int ioctl (int, unsigned long int, ...);
 #ifdef __cplusplus
