@@ -2,6 +2,8 @@ LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.2 {
   _pthread_cleanup_pop;
   _pthread_cleanup_push;
+  lseek64;
+  open64;
   pread;
   pread64;
   pthread_attr_destroy;

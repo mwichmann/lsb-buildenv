@@ -1,5 +1,7 @@
 void _pthread_cleanup_pop() {} ;
 void _pthread_cleanup_push() {} ;
+void lseek64() {} ;
+void open64() {} ;
 void pread() {} ;
 void pread64() {} ;
 void pthread_attr_destroy() {} ;

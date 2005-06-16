@@ -42,6 +42,8 @@ GLIBC_2.0 {
   pthread_testcancel;
 };
 GLIBC_2.1 {
+  lseek64;
+  open64;
   pthread_attr_getguardsize;
   pthread_attr_getstackaddr;
   pthread_attr_getstacksize;

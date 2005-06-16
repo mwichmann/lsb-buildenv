@@ -356,7 +356,6 @@ GLIBC_2.2 {
   lrand48;
   lsearch;
   lseek;
-  lseek64;
   makecontext;
   malloc;
   mblen;
@@ -403,7 +402,6 @@ GLIBC_2.2 {
   ntohl;
   ntohs;
   open;
-  open64;
   opendir;
   openlog;
   pathconf;
