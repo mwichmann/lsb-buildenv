@@ -278,6 +278,7 @@ sprintf(buf,"-l%s",val);
 for(i=0;i<lsblibs->numargv;i++) {
 	if( strcmp(lsblibs->argv[i],val) == 0 ) {
 		argvaddstring(userlibs,strdup(buf));
+		/* with auto-add pthread, this isn't really needed */
 		if( strcmp(val,"pthread") == 0 ) {
 			if( lsbcc_debug&DEBUG_LIB_CHANGES )
 				fprintf(stderr,"Appending -lpthread_nonshared to the library list\n");
@@ -409,6 +410,7 @@ int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
+int 	auto_pthread;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
@@ -578,7 +580,8 @@ if( lsbccmode == LSBCPLUS ) {
 }
 
 /* Process the options passed in */
-opterr=0;
+opterr = 0;
+auto_pthread = 1;
 
 while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	switch(c) {
@@ -614,6 +617,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		argvreset(proginterp);
 		argvreset(syslibs);
 		argvaddstring(options,argv[optind-1]);
+		auto_pthread = 0;	/* too noisy if not linking */
 		break;
 	case 'o':
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
@@ -673,6 +677,15 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		printf("\n");
 	}
 }
+
+/* experipment: force pthread always */
+if (auto_pthread) {
+    if (lsbcc_debug&DEBUG_LIB_CHANGES)
+	fprintf(stderr,"Appending -lpthread -lpthread_nonshared to the library list\n");
+    argvaddstring(userlibs,"-lpthread");
+    argvaddstring(userlibs,"-lpthread_nonshared");
+}
+
 /* Gather together the non-options arguments */
 if (optind < argc) {
 	if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS )
