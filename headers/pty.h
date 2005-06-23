@@ -2,6 +2,7 @@
 #define _PTY_H_
 
 #include <termios.h>
+#include <sys/ioctl.h>
 
 #ifdef __cplusplus
 extern "C"

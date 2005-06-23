@@ -585,32 +585,8 @@ extern "C"
 /* S390X */
   extern void *_Unwind_FindEnclosingFunction (void *);
 #endif
-#if __s390__ && !__s390x__
-/* S390 */
-  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
-#endif
-#if __i386__
-/* IA32 */
-  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
-#endif
 #if __ia64__
 /* IA64 */
-  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
-#endif
-#if __powerpc64__
-/* PPC64 */
-  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
-#endif
-#if __x86_64__
-/* x86-64 */
-  extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
-#endif
-#if __s390x__
-/* S390X */
   extern _Unwind_Word _Unwind_GetBSP (struct _Unwind_Context *);
 #endif
 #ifdef __cplusplus
