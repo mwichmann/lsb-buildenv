@@ -8,7 +8,27 @@ extern "C"
 #endif
 
 
+#if __powerpc__ && !__powerpc64__
+#define TIOCGWINSZ	0x40087468
+#endif
+#if __powerpc64__
+#define TIOCGWINSZ	0x40087468
+#endif
+#if __i386__
 #define TIOCGWINSZ	0x5413
+#endif
+#if __ia64__
+#define TIOCGWINSZ	0x5413
+#endif
+#if __s390__ && !__s390x__
+#define TIOCGWINSZ	0x5413
+#endif
+#if __x86_64__
+#define TIOCGWINSZ	0x5413
+#endif
+#if __s390x__
+#define TIOCGWINSZ	0x5413
+#endif
 #if __i386__
 #define FIONREAD	0x541B
 #endif

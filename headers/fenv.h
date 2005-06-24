@@ -218,6 +218,12 @@ extern "C"
 #define FE_UPWARD	2
 #endif
 #if __powerpc__ && !__powerpc64__
+#define FE_UPWARD	2
+#endif
+#if __powerpc64__
+#define FE_UPWARD	2
+#endif
+#if __powerpc__ && !__powerpc64__
 #define FE_DOWNWARD	3
 #endif
 #if __powerpc64__
