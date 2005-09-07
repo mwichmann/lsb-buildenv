@@ -469,6 +469,8 @@ $select.= "WHERE HGheader=$Hid ";
 $select.= "ORDER BY HGorder";
 print $select,"\n" if $trace;
 $hgh = $Dbh->query($select) || die $Dbh->errmsg();
+print $hgh->numrows," rows\n" if $trace;
+$totrows = 0;
 for(1..$hgh->numrows) {
 	%entry=$hgh->fetchhash;
 	$HGid=$entry{'HGid'};
@@ -490,6 +492,7 @@ for(1..$hgh->numrows) {
 	for(1..$ch->numrows) {
 		%centry=$ch->fetchhash;
 		displayconstant(\%centry);
+		$totrows++;
 		}
 	print "\n\n";
 	
@@ -508,7 +511,16 @@ for(1..$hgh->numrows) {
 		%tentry=$th->fetchhash;
 		if( $tentry{'Aid'} && $tentry{'Aname'} eq "None" ) { next; }
 		displaytype(\%tentry);
-		print ";";
+		print ";\n";
+		$totrows++;
 		#print $tentry{'Tcomment'}."\n\n";
 		}
 	}
+if($totrows == 0) {
+	printf "/*\n";
+	printf " * This header is architecture %s\n", 
+		$Aid == 1 ? "dependent" : "neutral";
+	printf " * Please refer to the %s specification for details\n",
+		$Aid == 1 ? "specific architecture" : "generic";
+	printf " */\n";
+}
