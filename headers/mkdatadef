@@ -526,11 +526,16 @@ if($totrows == 0) {
 	# Check to see if there is ANY data ... same queries, but not arch
 	# dependant
 	#
+	# if HGid is not defined, then this is a bogus header.
+	#
+	if(!defined($HGid)) {
+		exit 0;
+	}
 	$select = "SELECT * FROM Constant ";
 	$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
 	$select.= "WHERE Cheadgroup=$HGid ";
 	$select.= "AND Cstd ='Yes'";
-	print $select,"\n" if $trace;
+	print STDERR $select,"\n" if $trace;
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	if ($ch->numrows == 0) {
 		$select = "SELECT * FROM Type ";
@@ -538,7 +543,7 @@ if($totrows == 0) {
 		$select.= "LEFT JOIN ArchType ON ATaid=Aid AND ATtid=Tid ";
 		$select.= "WHERE Theadergroup=$HGid ";
 		$select.= "AND ( Tstatus = 'Referenced' OR Tstatus = 'Conly' )";
-		print $select,"\n" if $trace;
+		print STDERR $select,"\n" if $trace;
 		$th = $Dbh->query($select) || die $Dbh->errmsg();
 		if ($th->numrows == 0) {
 			exit 0;
