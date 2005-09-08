@@ -7,6 +7,7 @@
 #define STDERR_FILENO	2
 
 typedef long long int off64_t;
+
 #define F_OK	0
 #define X_OK	1
 #define W_OK	2

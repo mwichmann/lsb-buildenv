@@ -26,6 +26,7 @@
 typedef unsigned int speed_t;
 typedef unsigned char cc_t;
 typedef unsigned int tcflag_t;
+
 #define NCCS	32
 
 struct termios
@@ -40,6 +41,7 @@ struct termios
   speed_t c_ospeed;
 }
  ;
+
 #define VINTR	0
 #define VQUIT	1
 #define VLNEXT	15

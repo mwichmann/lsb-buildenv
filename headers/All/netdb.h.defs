@@ -43,6 +43,7 @@ struct netent
   unsigned int n_net;
 }
  ;
+
 #define AI_PASSIVE	0x0001
 #define AI_CANONNAME	0x0002
 #define AI_NUMERICHOST	0x0004
@@ -59,6 +60,7 @@ struct addrinfo
   struct addrinfo *ai_next;
 }
  ;
+
 #define NI_NUMERICHOST	1
 #define NI_DGRAM	16
 #define NI_NUMERICSERV	2

@@ -2,10 +2,14 @@
 #define Z_NULL	0
 #define MAX_WBITS	15
 #define MAX_MEM_LEVEL	9
-#define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),ZLIB_VERSION,sizeof(z_stream))
-#define deflateInit(strm,level)	deflateInit_((strm), (level),       ZLIB_VERSION, sizeof(z_stream))
-#define inflateInit2(strm,windowBits)	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
-#define inflateInit(strm)	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
+#define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	\
+	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),ZLIB_VERSION,sizeof(z_stream))
+#define deflateInit(strm,level)	\
+	deflateInit_((strm), (level),       ZLIB_VERSION, sizeof(z_stream))
+#define inflateInit2(strm,windowBits)	\
+	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
+#define inflateInit(strm)	\
+	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 
 typedef char charf;
 typedef int intf;
@@ -50,6 +54,7 @@ z_stream;
 
 typedef z_stream *z_streamp;
 typedef voidp gzFile;
+
 #define Z_NO_FLUSH	0
 #define Z_PARTIAL_FLUSH	1
 #define Z_SYNC_FLUSH	2

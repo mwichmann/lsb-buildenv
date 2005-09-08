@@ -38,10 +38,14 @@ extern "C"
 #define ACS_VLINE	(acs_map['x'])
 #define ACS_DIAMOND	(acs_map['`'])
 #define ACS_BULLET	(acs_map['~'])
-#define getmaxyx(win,y,x)	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
-#define getbegyx(win,y,x)	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
-#define getyx(win,y,x)	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
-#define getparyx(win,y,x)	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
+#define getmaxyx(win,y,x)	\
+	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
+#define getbegyx(win,y,x)	\
+	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
+#define getyx(win,y,x)	\
+	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
+#define getparyx(win,y,x)	\
+	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
 
 
   struct ldat;

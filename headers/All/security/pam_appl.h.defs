@@ -20,6 +20,7 @@ struct pam_conv
   void *appdata_ptr;
 }
  ;
+
 #define PAM_PROMPT_ECHO_OFF	1
 #define PAM_PROMPT_ECHO_ON	2
 #define PAM_ERROR_MSG	3

@@ -5,7 +5,8 @@
 #define FE_DIVBYZERO	(1 << (31 - 5))
 #define FE_INEXACT	(1 << (31 - 6))
 
-#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#define FE_ALL_EXCEPT	\
+	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 
 #define FE_TONEAREST	0
 #define FE_TOWARDZERO	1
@@ -15,4 +16,5 @@
 typedef unsigned int fexcept_t;
 
 typedef double fenv_t;
-#define FE_DFL_ENV	(&amp __fe_dfl_env)
+
+#define FE_DFL_ENV	(&amp;__fe_dfl_env)

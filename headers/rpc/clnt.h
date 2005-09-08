@@ -15,7 +15,6 @@ extern "C"
 
 #define clnt_control(cl,rq,in)	((*(cl)->cl_ops->cl_control)(cl,rq,in))
 #define clnt_abort(rh)	((*(rh)->cl_ops->cl_abort)(rh))
-#define clnt_call(rh, proc, xargs, argsp, xres, resp, secs)	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
 #define clnt_destroy(rh)	((*(rh)->cl_ops->cl_destroy)(rh))
 #define clnt_freeres(rh,xres,resp)	((*(rh)->cl_ops->cl_freeres)(rh,xres,resp))
 #define clnt_geterr(rh,errp)	((*(rh)->cl_ops->cl_geterr)(rh, errp))
@@ -35,6 +34,8 @@ extern "C"
 #define CLGET_SVC_ADDR	7
 #define CLSET_FD_CLOSE	8
 #define CLSET_FD_NCLOSE	9
+#define clnt_call(rh, proc, xargs, argsp, xres, resp, secs)	\
+	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
 
 
   enum clnt_stat

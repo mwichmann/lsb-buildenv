@@ -1,11 +1,14 @@
 
-#define FD_ISSET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&amp (1<<((d)%(8*sizeof(long)))))
-#define FD_CLR(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&amp =~(1<<((d)%(8*sizeof(long)))))
-#define FD_SET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
 #define FALSE	0
 #define TRUE	1
 #define FD_SETSIZE	1024
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
+#define FD_ISSET(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]&amp;(1<<((d)%(8*sizeof(long)))))
+#define FD_CLR(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]&amp;=~(1<<((d)%(8*sizeof(long)))))
+#define FD_SET(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
 
 typedef signed char int8_t;
 typedef short int16_t;
@@ -15,7 +18,7 @@ typedef unsigned short u_int16_t;
 typedef unsigned int u_int32_t;
 typedef unsigned int uid_t;
 typedef int pid_t;
-typedef unsigned long int off_t;
+typedef long int off_t;
 typedef int key_t;
 typedef long int suseconds_t;
 typedef unsigned int u_int;

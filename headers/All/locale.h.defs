@@ -27,6 +27,7 @@ struct lconv
   char int_n_sign_posn;
 }
  ;
+
 #define LC_GLOBAL_LOCALE	((locale_t) -1L)
 #define LC_CTYPE	0
 #define LC_NUMERIC	1
@@ -53,6 +54,7 @@ typedef struct __locale_struct
  *__locale_t;
 
 typedef struct __locale_struct *locale_t;
+
 #define LC_ADDRESS_MASK	(1 << LC_ADDRESS)
 #define LC_COLLATE_MASK	(1 << LC_COLLATE)
 #define LC_IDENTIFICATION_MASK	(1 << LC_IDENTIFICATION)
@@ -65,4 +67,7 @@ typedef struct __locale_struct *locale_t;
 #define LC_TELEPHONE_MASK	(1 << LC_TELEPHONE)
 #define LC_TIME_MASK	(1 << LC_TIME)
 #define LC_CTYPE_MASK	(1<<LC_CTYPE)
-#define LC_ALL_MASK	(LC_CTYPE_MASK| LC_NUMERIC_MASK| LC_TIME_MASK| LC_COLLATE_MASK| LC_MONETARY_MASK| LC_MESSAGES_MASK| LC_PAPER_MASK| LC_NAME_MASK| LC_ADDRESS_MASK| LC_TELEPHONE_MASK| LC_MEASUREMENT_MASK| LC_IDENTIFICATION_MASK)
+#define LC_ALL_MASK	\
+        (LC_CTYPE_MASK| LC_NUMERIC_MASK| LC_TIME_MASK| LC_COLLATE_MASK| LC_MONETARY_MASK|\
+         LC_MESSAGES_MASK| LC_PAPER_MASK| LC_NAME_MASK| LC_ADDRESS_MASK| LC_TELEPHONE_MASK|\
+         LC_MEASUREMENT_MASK| LC_IDENTIFICATION_MASK)

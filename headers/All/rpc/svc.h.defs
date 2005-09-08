@@ -1,7 +1,15 @@
 
-#define svc_freeargs(xprt,xargs, argsp)	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))
-#define svc_getargs(xprt,xargs, argsp)	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
 #define RPC_ANYSOCK	-1
+#define svc_freeargs(xprt,xargs, argsp)	\
+	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))
+#define svc_getargs(xprt,xargs, argsp)	\
+	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
+
+enum xprt_stat
+{
+  XPRT_DIED, XPRT_MOREREQS, XPRT_IDLE
+}
+ ;
 
 typedef struct SVCXPRT
 {

@@ -32,6 +32,7 @@ struct ifaddr
   void *ifa_next;
 }
  ;
+
 #define IFNAMSIZ	IF_NAMESIZE
 
 struct ifreq

@@ -5,7 +5,8 @@
 #define FE_UNDERFLOW	0x10
 #define FE_INEXACT	0x20
 
-#define FE_ALL_EXCEPT	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#define FE_ALL_EXCEPT	\
+	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 
 #define FE_TONEAREST	0
 #define FE_DOWNWARD	0x400
@@ -31,4 +32,5 @@ typedef struct
   unsigned short __unused5;
 }
 fenv_t;
+
 #define FE_DFL_ENV	((__const fenv_t *) -1)

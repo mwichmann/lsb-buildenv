@@ -15,6 +15,7 @@ struct sigaction
   sigset_t sa_mask;
 }
  ;
+
 #define MINSIGSTKSZ	131027
 #define SIGSTKSZ	262144
 

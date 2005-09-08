@@ -13,10 +13,14 @@ extern "C"
 #define ZLIB_VERSION	"1.2.2"
 #define MAX_WBITS	15
 #define MAX_MEM_LEVEL	9
-#define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),ZLIB_VERSION,sizeof(z_stream))
-#define deflateInit(strm,level)	deflateInit_((strm), (level),       ZLIB_VERSION, sizeof(z_stream))
-#define inflateInit2(strm,windowBits)	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
-#define inflateInit(strm)	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
+#define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	\
+	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),ZLIB_VERSION,sizeof(z_stream))
+#define deflateInit(strm,level)	\
+	deflateInit_((strm), (level),       ZLIB_VERSION, sizeof(z_stream))
+#define inflateInit2(strm,windowBits)	\
+	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
+#define inflateInit(strm)	\
+	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 
 
   typedef char charf;

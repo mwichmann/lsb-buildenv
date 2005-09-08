@@ -12,6 +12,7 @@ typedef XID Cursor;
 typedef XID Colormap;
 typedef XID GContext;
 typedef XID KeySym;
+
 #define AllTemporary	0L
 #define AnyButton	0L
 #define AnyKey	0L

@@ -34,50 +34,67 @@ extern "C"
 
 /* ISO C99 defines some generic macros which work on any data type.*/
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)
-#define isfinite(x)	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
+#define isfinite(x)	\
+	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
 #if __powerpc__ && !__powerpc64__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
 #if __powerpc64__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
 #if __s390__ && !__s390x__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
 #if __s390x__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
 #if __i386__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
 #if __ia64__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
 #if __x86_64__
-#define fpclassify(x)	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
-#define isinf(x)	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
-#define isnan(x)	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#define isinf(x)	\
+	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
+#define isnan(x)	\
+	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
 #if __i386__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
 #if __ia64__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
 #if __x86_64__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
 #if __powerpc__ && !__powerpc64__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
 #if __powerpc64__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
 #if __s390__ && !__s390x__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
 #if __s390x__
-#define signbit(x)	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
 
 
@@ -161,12 +178,18 @@ extern "C"
    instructions to support these operations and these tests are
    defined in <bits/mathinline.h>, we define the generic macros at
    this late point and only if they are not defined yet.*/
-#define isunordered(u, v)	(__extension__({ __typeof__(u) __u = (u); __typeof__(v) __v = (v);fpclassify (__u) == FP_NAN || fpclassify (__v) == FP_NAN; }))
-#define islessgreater(x, y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && (__x < __y || __y < __x); }))
-#define isless(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x < __y; }))
-#define islessequal(x, y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x <= __y; }))
-#define isgreater(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x > __y; }))
-#define isgreaterequal(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x >= __y; }))
+#define isunordered(u, v)	\
+	(__extension__({ __typeof__(u) __u = (u); __typeof__(v) __v = (v);fpclassify (__u) == FP_NAN || fpclassify (__v) == FP_NAN; }))
+#define islessgreater(x, y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && (__x < __y || __y < __x); }))
+#define isless(x,y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x < __y; }))
+#define islessequal(x, y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x <= __y; }))
+#define isgreater(x,y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x > __y; }))
+#define isgreaterequal(x,y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x >= __y; }))
 
 
 

@@ -8,13 +8,16 @@ extern "C"
 #endif
 
 
-#define FD_ISSET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&(1<<((d)%(8*sizeof(long)))))
-#define FD_CLR(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1<<((d)%(8*sizeof(long)))))
-#define FD_SET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
 #define FALSE	0
 #define TRUE	1
 #define FD_SETSIZE	1024
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
+#define FD_ISSET(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]&(1<<((d)%(8*sizeof(long)))))
+#define FD_CLR(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1<<((d)%(8*sizeof(long)))))
+#define FD_SET(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
 
 
   typedef signed char int8_t;
@@ -38,7 +41,7 @@ extern "C"
 
   typedef int pid_t;
 
-  typedef unsigned long int off_t;
+  typedef long int off_t;
 
   typedef int key_t;
 

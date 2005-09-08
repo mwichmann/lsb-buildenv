@@ -8,6 +8,7 @@ struct _libc_fpxreg
  ;
 
 typedef long int greg_t;
+
 #define NGREG	23
 
 typedef greg_t gregset_t[23];

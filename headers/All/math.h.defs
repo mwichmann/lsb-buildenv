@@ -11,6 +11,7 @@ struct exception
   double retval;
 }
  ;
+
 #define FP_NAN	0
 #define FP_INFINITE	1
 #define FP_ZERO	2
@@ -18,9 +19,12 @@ struct exception
 #define FP_NORMAL	4
 
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)
-#define isfinite(x)	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
-#define isinf(x)	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
-#define isnan(x)	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#define isfinite(x)	\
+	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
+#define isinf(x)	\
+	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
+#define isnan(x)	\
+	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
 
 #define HUGE_VAL	0x1.0p2047
 #define HUGE_VALF	0x1.0p255f
@@ -45,9 +49,15 @@ struct exception
 #define MATH_ERRNO	1
 #define MATH_ERREXCEPT	2
 
-#define isunordered(u, v)	(__extension__({ __typeof__(u) __u = (u); __typeof__(v) __v = (v);fpclassify (__u) == FP_NAN || fpclassify (__v) == FP_NAN; }))
-#define islessgreater(x, y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp & (__x < __y || __y < __x); }))
-#define isless(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp & __x < __y; }))
-#define islessequal(x, y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp & __x <= __y; }))
-#define isgreater(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp & __x > __y; }))
-#define isgreaterequal(x,y)	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp & __x >= __y; }))
+#define isunordered(u, v)	\
+	(__extension__({ __typeof__(u) __u = (u); __typeof__(v) __v = (v);fpclassify (__u) == FP_NAN || fpclassify (__v) == FP_NAN; }))
+#define islessgreater(x, y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp;&amp; (__x < __y || __y < __x); }))
+#define isless(x,y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp;&amp; __x < __y; }))
+#define islessequal(x, y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp;&amp; __x <= __y; }))
+#define isgreater(x,y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp;&amp; __x > __y; }))
+#define isgreaterequal(x,y)	\
+	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) &amp;&amp; __x >= __y; }))

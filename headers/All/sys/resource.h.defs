@@ -56,6 +56,7 @@ enum __priority_which
   PRIO_PROCESS, PRIO_PGRP = 1, PRIO_USER = 2
 }
  ;
+
 #define PRIO_PGRP	PRIO_PGRP
 #define PRIO_PROCESS	PRIO_PROCESS
 #define PRIO_USER	PRIO_USER
