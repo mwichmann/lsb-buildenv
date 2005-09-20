@@ -8,13 +8,13 @@ headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 
 %.defs: 
 	mkdir -p $(dir $@)
-	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)')   | indent -sob| sed -e 's/\&/\&amp;/g' > $@
+	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob| sed -e 's/\&/\&amp;/g' > $@
 
 %.h:
-	./mkheader -a All -h $@ | indent >$@
+	./mkheader -a All -h $@ | indent -kr >$@
 
 %:
-	./mkheader -a All -h $@ | indent >$@
+	./mkheader -a All -h $@ | indent -kr >$@
 
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
