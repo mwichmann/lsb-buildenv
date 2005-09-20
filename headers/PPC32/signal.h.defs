@@ -3,29 +3,23 @@
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 
-struct sigaction
-{
-  union
-  {
-    sighandler_t _sa_handler;
-    void (*_sa_sigaction) (int, siginfo_t *, void *);
-  }
-  __sigaction_handler;
-  sigset_t sa_mask;
-  unsigned long int sa_flags;
-  void (*sa_restorer) (void);
-}
- ;
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    sigset_t sa_mask;
+    unsigned long int sa_flags;
+    void (*sa_restorer) (void);
+};
 
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
 
-struct sigcontext
-{
-  long int _unused[4];
-  int signal;
-  unsigned long int handler;
-  unsigned long int oldmask;
-  struct pt_regs *regs;
-}
- ;
+struct sigcontext {
+    long int _unused[4];
+    int signal;
+    unsigned long int handler;
+    unsigned long int oldmask;
+    struct pt_regs *regs;
+};

@@ -1,6 +1,7 @@
 
 struct _XDisplay;
-typedef struct XColor;
+typedef struct
+    XColor;
 typedef void *XVaNestedList;
 typedef int (*XErrorHandler) (void);
 typedef int (*XIOErrorHandler) (void);
@@ -8,162 +9,212 @@ typedef void (*XConnectionWatchProc) (void);
 
 typedef char *XPointer;
 
-typedef struct _XExtData
-{
-  int number;
-  struct _XExtData *next;
-  int (*free_private) (struct _XExtData * extension);
-  XPointer private_data;
-}
-XExtData;
-typedef struct XExtCodes;
+typedef struct _XExtData {
+    int number;
+    struct _XExtData *next;
+    int (*free_private) (struct _XExtData * extension);
+    XPointer private_data;
+} XExtData;
+typedef struct
+    XExtCodes;
 
-typedef struct XPixmapFormatValues;
+typedef struct
+    XPixmapFormatValues;
 
-typedef struct XGCValues;
+typedef struct
+    XGCValues;
 
 typedef struct _XGC *GC;
 
-typedef struct Visual;
+typedef struct
+    Visual;
 
-typedef struct Depth;
+typedef struct
+    Depth;
 
-typedef struct Screen;
+typedef struct
+    Screen;
 
-typedef struct ScreenFormat;
+typedef struct
+    ScreenFormat;
 
-typedef struct XSetWindowAttributes;
-typedef struct XWindowAttributes;
+typedef struct
+    XSetWindowAttributes;
+typedef struct
+    XWindowAttributes;
 
-typedef struct XHostAddress;
+typedef struct
+    XHostAddress;
 
-typedef struct _XImage
-{
-  int width;
-  int height;
-  int xoffset;
-  int format;
-  char *data;
-  int byte_order;
-  int bitmap_unit;
-  int bitmap_bit_order;
-  int bitmap_pad;
-  int depth;
-  int bytes_per_line;
-  int bits_per_pixel;
-  unsigned long int red_mask;
-  unsigned long int green_mask;
-  unsigned long int blue_mask;
-  XPointer obdata;
-  struct funcs f;
-}
-XImage;
+typedef struct _XImage {
+    int width;
+    int height;
+    int xoffset;
+    int format;
+    char *data;
+    int byte_order;
+    int bitmap_unit;
+    int bitmap_bit_order;
+    int bitmap_pad;
+    int depth;
+    int bytes_per_line;
+    int bits_per_pixel;
+    unsigned long int red_mask;
+    unsigned long int green_mask;
+    unsigned long int blue_mask;
+    XPointer obdata;
+    struct funcs f;
+} XImage;
 
-typedef struct XWindowChanges;
+typedef struct
+    XWindowChanges;
 
-typedef struct XSegment;
-typedef struct XPoint;
-typedef struct XRectangle;
-typedef struct XArc;
+typedef struct
+    XSegment;
+typedef struct
+    XPoint;
+typedef struct
+    XRectangle;
+typedef struct
+    XArc;
 
-typedef struct XKeyboardControl;
+typedef struct
+    XKeyboardControl;
 
-typedef struct XKeyboardState;
+typedef struct
+    XKeyboardState;
 
-typedef struct XTimeCoord;
+typedef struct
+    XTimeCoord;
 
-typedef struct XModifierKeymap;
+typedef struct
+    XModifierKeymap;
 
 typedef struct _XDisplay Display;
 
-typedef struct XKeyEvent;
+typedef struct
+    XKeyEvent;
 typedef XKeyEvent XKeyPressedEvent;
 typedef XKeyEvent XKeyReleasedEvent;
-typedef struct XButtonEvent;
+typedef struct
+    XButtonEvent;
 typedef XButtonEvent XButtonPressedEvent;
 typedef XButtonEvent XButtonReleasedEvent;
-typedef struct XMotionEvent;
+typedef struct
+    XMotionEvent;
 typedef XMotionEvent XPointerMovedEvent;
-typedef struct XCrossingEvent;
+typedef struct
+    XCrossingEvent;
 typedef XCrossingEvent XEnterWindowEvent;
 typedef XCrossingEvent XLeaveWindowEvent;
-typedef struct XFocusChangeEvent;
+typedef struct
+    XFocusChangeEvent;
 typedef XFocusChangeEvent XFocusInEvent;
 typedef XFocusChangeEvent XFocusOutEvent;
-typedef struct XKeymapEvent;
-typedef struct XExposeEvent;
-typedef struct XGraphicsExposeEvent;
-typedef struct XNoExposeEvent;
-typedef struct XVisibilityEvent;
-typedef struct XCreateWindowEvent;
-typedef struct XDestroyWindowEvent;
-typedef struct XUnmapEvent;
-typedef struct XMapEvent;
-typedef struct XMapRequestEvent;
-typedef struct XReparentEvent;
-typedef struct XConfigureEvent;
-typedef struct XGravityEvent;
-typedef struct XResizeRequestEvent;
-typedef struct XConfigureRequestEvent;
-typedef struct XCirculateEvent;
-typedef struct XCirculateRequestEvent;
-typedef struct XPropertyEvent;
-typedef struct XSelectionClearEvent;
-typedef struct XSelectionRequestEvent;
-typedef struct XSelectionEvent;
-typedef struct XColormapEvent;
+typedef struct
+    XKeymapEvent;
+typedef struct
+    XExposeEvent;
+typedef struct
+    XGraphicsExposeEvent;
+typedef struct
+    XNoExposeEvent;
+typedef struct
+    XVisibilityEvent;
+typedef struct
+    XCreateWindowEvent;
+typedef struct
+    XDestroyWindowEvent;
+typedef struct
+    XUnmapEvent;
+typedef struct
+    XMapEvent;
+typedef struct
+    XMapRequestEvent;
+typedef struct
+    XReparentEvent;
+typedef struct
+    XConfigureEvent;
+typedef struct
+    XGravityEvent;
+typedef struct
+    XResizeRequestEvent;
+typedef struct
+    XConfigureRequestEvent;
+typedef struct
+    XCirculateEvent;
+typedef struct
+    XCirculateRequestEvent;
+typedef struct
+    XPropertyEvent;
+typedef struct
+    XSelectionClearEvent;
+typedef struct
+    XSelectionRequestEvent;
+typedef struct
+    XSelectionEvent;
+typedef struct
+    XColormapEvent;
 typedef union XClientMessageEvent;
-typedef struct XMappingEvent;
-typedef struct XErrorEvent;
-typedef struct XAnyEvent;
+typedef struct
+    XMappingEvent;
+typedef struct
+    XErrorEvent;
+typedef struct
+    XAnyEvent;
 
-typedef union _XEvent
-{
-  int type;
-  XAnyEvent xany;
-  XKeyEvent xkey;
-  XButtonEvent xbutton;
-  XMotionEvent xmotion;
-  XCrossingEvent xcrossing;
-  XFocusChangeEvent xfocus;
-  XExposeEvent xexpose;
-  XGraphicsExposeEvent xgraphicsexpose;
-  XNoExposeEvent xnoexpose;
-  XVisibilityEvent xvisibility;
-  XCreateWindowEvent xcreatewindow;
-  XDestroyWindowEvent xdestroywindow;
-  XUnmapEvent xunmap;
-  XMapEvent xmap;
-  XMapRequestEvent xmaprequest;
-  XReparentEvent xreparent;
-  XConfigureEvent xconfigure;
-  XGravityEvent xgravity;
-  XResizeRequestEvent xresizerequest;
-  XConfigureRequestEvent xconfigurerequest;
-  XCirculateEvent xcirculate;
-  XCirculateRequestEvent xcirculaterequest;
-  XPropertyEvent xproperty;
-  XSelectionClearEvent xselectionclear;
-  XSelectionRequestEvent xselectionrequest;
-  XSelectionEvent xselection;
-  XColormapEvent xcolormap;
-  XClientMessageEvent xclient;
-  XMappingEvent xmapping;
-  XErrorEvent xerror;
-  XKeymapEvent xkeymap;
-  long int pad[1];
-}
-XEvent;
+typedef union _XEvent {
+    int type;
+    XAnyEvent xany;
+    XKeyEvent xkey;
+    XButtonEvent xbutton;
+    XMotionEvent xmotion;
+    XCrossingEvent xcrossing;
+    XFocusChangeEvent xfocus;
+    XExposeEvent xexpose;
+    XGraphicsExposeEvent xgraphicsexpose;
+    XNoExposeEvent xnoexpose;
+    XVisibilityEvent xvisibility;
+    XCreateWindowEvent xcreatewindow;
+    XDestroyWindowEvent xdestroywindow;
+    XUnmapEvent xunmap;
+    XMapEvent xmap;
+    XMapRequestEvent xmaprequest;
+    XReparentEvent xreparent;
+    XConfigureEvent xconfigure;
+    XGravityEvent xgravity;
+    XResizeRequestEvent xresizerequest;
+    XConfigureRequestEvent xconfigurerequest;
+    XCirculateEvent xcirculate;
+    XCirculateRequestEvent xcirculaterequest;
+    XPropertyEvent xproperty;
+    XSelectionClearEvent xselectionclear;
+    XSelectionRequestEvent xselectionrequest;
+    XSelectionEvent xselection;
+    XColormapEvent xcolormap;
+    XClientMessageEvent xclient;
+    XMappingEvent xmapping;
+    XErrorEvent xerror;
+    XKeymapEvent xkeymap;
+    long int pad[1];
+} XEvent;
 
-typedef struct XCharStruct;
+typedef struct
+    XCharStruct;
 
-typedef struct XFontProp;
-typedef struct XFontStruct;
-typedef struct XFontSetExtents;
+typedef struct
+    XFontProp;
+typedef struct
+    XFontStruct;
+typedef struct
+    XFontSetExtents;
 
-typedef struct XTextItem;
-typedef struct XChar2b;
-typedef struct XTextItem16;
+typedef struct
+    XTextItem;
+typedef struct
+    XChar2b;
+typedef struct
+    XTextItem16;
 
 typedef union XEDataObject;
 
@@ -171,8 +222,10 @@ typedef struct _XOM *XOM;
 typedef struct _XOC *XOC;
 typedef struct _XOC *XFontSet;
 
-typedef struct XmbTextItem;
-typedef struct XwcTextItem;
+typedef struct
+    XmbTextItem;
+typedef struct
+    XwcTextItem;
 
 typedef struct _XIM *XIM;
 typedef struct _XIC *XIC;

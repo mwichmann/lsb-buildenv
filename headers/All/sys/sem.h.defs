@@ -8,10 +8,8 @@
 #define SETVAL	16
 #define SETALL	17
 
-struct sembuf
-{
-  short sem_num;
-  short sem_op;
-  short sem_flg;
-}
- ;
+struct sembuf {
+    short sem_num;
+    short sem_op;
+    short sem_flg;
+};

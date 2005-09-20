@@ -3,15 +3,14 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
 
-  extern char XtStrings[];
+    extern char XtStrings[];
 #ifdef __cplusplus
 }
 #endif

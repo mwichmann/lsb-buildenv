@@ -6,33 +6,32 @@
 #include <X11/Xauth.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
-  typedef unsigned long int XSecurityAuthorization;
+    typedef unsigned long int XSecurityAuthorization;
 
-  typedef struct
-  {
-    unsigned int timeout;
-    unsigned int trust_level;
-    XID group;
-    long int event_mask;
-  }
-  XSecurityAuthorizationAttributes;
+    typedef struct {
+	unsigned int timeout;
+	unsigned int trust_level;
+	XID group;
+	long int event_mask;
+    } XSecurityAuthorizationAttributes;
 
 
-  extern Xauth *XSecurityAllocXauth (void);
-  extern void XSecurityFreeXauth (Xauth *);
-  extern Xauth *XSecurityGenerateAuthorization (Display *, Xauth *,
-						unsigned long int,
-						XSecurityAuthorizationAttributes
-						*, XSecurityAuthorization *);
-  extern int XSecurityQueryExtension (Display *, int *, int *);
-  extern int XSecurityRevokeAuthorization (Display *, XSecurityAuthorization);
+    extern Xauth *XSecurityAllocXauth(void);
+    extern void XSecurityFreeXauth(Xauth *);
+    extern Xauth *XSecurityGenerateAuthorization(Display *, Xauth *,
+						 unsigned long int,
+						 XSecurityAuthorizationAttributes
+						 *,
+						 XSecurityAuthorization *);
+    extern int XSecurityQueryExtension(Display *, int *, int *);
+    extern int XSecurityRevokeAuthorization(Display *,
+					    XSecurityAuthorization);
 #ifdef __cplusplus
 }
 #endif

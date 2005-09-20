@@ -3,11 +3,9 @@
 #define required_argument	1
 #define optional_argument	2
 
-struct option
-{
-  char *name;
-  int has_arg;
-  int *flag;
-  int val;
-}
- ;
+struct option {
+    char *name;
+    int has_arg;
+    int *flag;
+    int val;
+};

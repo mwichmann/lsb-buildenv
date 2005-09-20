@@ -1,2 +1,2 @@
 
-typedef long int __jmp_buf[64] __attribute__ ((aligned (16)));
+typedef long int __jmp_buf[64] __attribute__ ((aligned(16)));

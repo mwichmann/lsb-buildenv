@@ -6,17 +6,16 @@
 #include <X11/ConstrainP.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
-  typedef struct _ConstraintClassRec *ConstraintWidgetClass;
+    typedef struct _ConstraintClassRec *ConstraintWidgetClass;
 
 
-  extern WidgetClass constraintWidgetClass;
+    extern WidgetClass constraintWidgetClass;
 #ifdef __cplusplus
 }
 #endif

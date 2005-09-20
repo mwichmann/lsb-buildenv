@@ -3,24 +3,23 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
-  typedef int bool_t;
+    typedef int bool_t;
 
-  typedef int enum_t;
+    typedef int enum_t;
 
-  typedef unsigned long int rpcprog_t;
+    typedef unsigned long int rpcprog_t;
 
-  typedef unsigned long int rpcvers_t;
+    typedef unsigned long int rpcvers_t;
 
-  typedef unsigned long int rpcproc_t;
+    typedef unsigned long int rpcproc_t;
 
-  typedef unsigned long int rpcprot_t;
+    typedef unsigned long int rpcprot_t;
 
 
 #ifdef __cplusplus

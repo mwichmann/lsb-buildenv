@@ -6,8 +6,7 @@
 #include <stddef.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -69,17 +68,17 @@ extern "C"
 
 
 
-  extern int msync (void *, size_t, int);
-  extern int mlock (const void *, size_t);
-  extern int mlockall (int);
-  extern void *mmap (void *, size_t, int, int, int, off_t);
-  extern int mprotect (void *, size_t, int);
-  extern int munlock (const void *, size_t);
-  extern int munlockall (void);
-  extern int munmap (void *, size_t);
-  extern void *mmap64 (void *, size_t, int, int, int, off64_t);
-  extern int shm_open (const char *, int, mode_t);
-  extern int shm_unlink (const char *);
+    extern int msync(void *, size_t, int);
+    extern int mlock(const void *, size_t);
+    extern int mlockall(int);
+    extern void *mmap(void *, size_t, int, int, int, off_t);
+    extern int mprotect(void *, size_t, int);
+    extern int munlock(const void *, size_t);
+    extern int munlockall(void);
+    extern int munmap(void *, size_t);
+    extern void *mmap64(void *, size_t, int, int, int, off64_t);
+    extern int shm_open(const char *, int, mode_t);
+    extern int shm_unlink(const char *);
 #ifdef __cplusplus
 }
 #endif

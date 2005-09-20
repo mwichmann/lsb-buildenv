@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -13,20 +12,18 @@ extern "C"
 #define optional_argument	2
 
 
-  struct option
-  {
-    char *name;
-    int has_arg;
-    int *flag;
-    int val;
-  }
-   ;
+    struct option {
+	char *name;
+	int has_arg;
+	int *flag;
+	int val;
+    };
 
 
-  extern int getopt_long (int, char *const[], const char *,
-			  const struct option *, int *);
-  extern int getopt_long_only (int, char *const[], const char *,
-			       const struct option *, int *);
+    extern int getopt_long(int, char *const[], const char *,
+			   const struct option *, int *);
+    extern int getopt_long_only(int, char *const[], const char *,
+				const struct option *, int *);
 #ifdef __cplusplus
 }
 #endif

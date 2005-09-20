@@ -5,11 +5,9 @@
 #define RTLD_NOW	0x00002
 #define RTLD_GLOBAL	0x00100
 
-typedef struct
-{
-  char *dli_fname;
-  void *dli_fbase;
-  char *dli_sname;
-  void *dli_saddr;
-}
-Dl_info;
+typedef struct {
+    char *dli_fname;
+    void *dli_fbase;
+    char *dli_sname;
+    void *dli_saddr;
+} Dl_info;

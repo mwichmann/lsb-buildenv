@@ -6,8 +6,7 @@
 #include <sys/time.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -23,18 +22,16 @@ extern "C"
 #define WSTOPSIG(status)	WEXITSTATUS(status)
 
 
-  typedef enum
-  {
-    P_ALL,
-    P_PID,
-    P_PGID
-  }
-  idtype_t;
+    typedef enum {
+	P_ALL,
+	P_PID,
+	P_PGID
+    } idtype_t;
 
 
-  extern pid_t wait (int *);
-  extern pid_t waitpid (pid_t, int *, int);
-  extern pid_t wait4 (pid_t, int *, int, struct rusage *);
+    extern pid_t wait(int *);
+    extern pid_t waitpid(pid_t, int *, int);
+    extern pid_t wait4(pid_t, int *, int, struct rusage *);
 #ifdef __cplusplus
 }
 #endif

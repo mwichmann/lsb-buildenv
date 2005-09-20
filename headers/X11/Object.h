@@ -4,15 +4,14 @@
 #include <X11/Intrinsic.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
 
-  extern WidgetClass objectClass;
+    extern WidgetClass objectClass;
 #ifdef __cplusplus
 }
 #endif

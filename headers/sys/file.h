@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -15,7 +14,7 @@ extern "C"
 
 
 
-  extern int flock (int, int);
+    extern int flock(int, int);
 #ifdef __cplusplus
 }
 #endif

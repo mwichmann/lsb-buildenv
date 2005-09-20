@@ -56,36 +56,28 @@ typedef void (*sighandler_t) (int);
 #define SV_INTERRUPT	(1<<1)
 #define SV_RESETHAND	(1<<2)
 
-typedef union sigval
-{
-  int sival_int;
-  void *sival_ptr;
-}
-sigval_t;
+typedef union sigval {
+    int sival_int;
+    void *sival_ptr;
+} sigval_t;
 
 #define SIGEV_SIGNAL	0
 #define SIGEV_NONE	1
 #define SIGEV_THREAD	2
 #define SIGEV_MAX_SIZE	64
 
-typedef struct sigevent
-{
-  sigval_t sigev_value;
-  int sigev_signo;
-  int sigev_notify;
-  union
-  {
-    int _pad[SIGEV_PAD_SIZE];
-    struct
-    {
-      void (*sigev_thread_func) (sigval_t);
-      void *_attribute;
-    }
-    _sigev_thread;
-  }
-  _sigev_un;
-}
-sigevent_t;
+typedef struct sigevent {
+    sigval_t sigev_value;
+    int sigev_signo;
+    int sigev_notify;
+    union {
+	int _pad[SIGEV_PAD_SIZE];
+	struct {
+	    void (*sigev_thread_func) (sigval_t);
+	    void *_attribute;
+	} _sigev_thread;
+    } _sigev_un;
+} sigevent_t;
 
 #define SI_MAX_SIZE	128
 #define si_pid	_sifields._kill._pid
@@ -102,57 +94,41 @@ sigevent_t;
 #define si_timer1	_sifields._timer._timer1
 #define si_timer2	_sifields._timer._timer2
 
-typedef struct siginfo
-{
-  int si_signo;
-  int si_errno;
-  int si_code;
-  union
-  {
-    int _pad[SI_PAD_SIZE];
-    struct
-    {
-      pid_t _pid;
-      uid_t _uid;
-    }
-    _kill;
-    struct
-    {
-      unsigned int _timer1;
-      unsigned int _timer2;
-    }
-    _timer;
-    struct
-    {
-      pid_t _pid;
-      uid_t _uid;
-      sigval_t _sigval;
-    }
-    _rt;
-    struct
-    {
-      pid_t _pid;
-      uid_t _uid;
-      int _status;
-      clock_t _utime;
-      clock_t _stime;
-    }
-    _sigchld;
-    struct
-    {
-      void *_addr;
-    }
-    _sigfault;
-    struct
-    {
-      int _band;
-      int _fd;
-    }
-    _sigpoll;
-  }
-  _sifields;
-}
-siginfo_t;
+typedef struct siginfo {
+    int si_signo;
+    int si_errno;
+    int si_code;
+    union {
+	int _pad[SI_PAD_SIZE];
+	struct {
+	    pid_t _pid;
+	    uid_t _uid;
+	} _kill;
+	struct {
+	    unsigned int _timer1;
+	    unsigned int _timer2;
+	} _timer;
+	struct {
+	    pid_t _pid;
+	    uid_t _uid;
+	    sigval_t _sigval;
+	} _rt;
+	struct {
+	    pid_t _pid;
+	    uid_t _uid;
+	    int _status;
+	    clock_t _utime;
+	    clock_t _stime;
+	} _sigchld;
+	struct {
+	    void *_addr;
+	} _sigfault;
+	struct {
+	    int _band;
+	    int _fd;
+	} _sigpoll;
+    } _sifields;
+} siginfo_t;
 
 #define SI_QUEUE	-1
 #define SI_TIMER	-2
@@ -206,11 +182,9 @@ siginfo_t;
 #define POLL_PRI	5
 #define POLL_HUP	6
 
-typedef struct
-{
-  unsigned long int sig[_SIGSET_NWORDS];
-}
-sigset_t;
+typedef struct {
+    unsigned long int sig[_SIGSET_NWORDS];
+} sigset_t;
 
 #define SA_NOCLDSTOP	0x00000001
 #define SA_NOCLDWAIT	0x00000002
@@ -223,13 +197,11 @@ sigset_t;
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
 
-typedef struct sigaltstack
-{
-  void *ss_sp;
-  int ss_flags;
-  size_t ss_size;
-}
-stack_t;
+typedef struct sigaltstack {
+    void *ss_sp;
+    int ss_flags;
+    size_t ss_size;
+} stack_t;
 
 #define SS_ONSTACK	1
 #define SS_DISABLE	2

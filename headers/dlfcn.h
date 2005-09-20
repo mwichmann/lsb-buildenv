@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -15,21 +14,19 @@ extern "C"
 #define RTLD_GLOBAL	0x00100
 
 
-  typedef struct
-  {
-    char *dli_fname;
-    void *dli_fbase;
-    char *dli_sname;
-    void *dli_saddr;
-  }
-  Dl_info;
+    typedef struct {
+	char *dli_fname;
+	void *dli_fbase;
+	char *dli_sname;
+	void *dli_saddr;
+    } Dl_info;
 
 
-  extern int dladdr (const void *, Dl_info *);
-  extern int dlclose (void *);
-  extern char *dlerror (void);
-  extern void *dlopen (const char *, int);
-  extern void *dlsym (void *, const char *);
+    extern int dladdr(const void *, Dl_info *);
+    extern int dlclose(void *);
+    extern char *dlerror(void);
+    extern void *dlopen(const char *, int);
+    extern void *dlsym(void *, const char *);
 #ifdef __cplusplus
 }
 #endif

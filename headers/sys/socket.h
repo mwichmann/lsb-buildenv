@@ -5,8 +5,7 @@
 #include <stddef.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -34,102 +33,90 @@ extern "C"
           (struct cmsghdr *)((u_char *)(cmsg) + CMSG_ALIGN((cmsg)->cmsg_len))))
 
 
-  struct linger
-  {
-    int l_onoff;
-    int l_linger;
-  }
-   ;
+    struct linger {
+	int l_onoff;
+	int l_linger;
+    };
 
-  struct cmsghdr
-  {
-    size_t cmsg_len;
-    int cmsg_level;
-    int cmsg_type;
-  }
-   ;
+    struct cmsghdr {
+	size_t cmsg_len;
+	int cmsg_level;
+	int cmsg_type;
+    };
 
-  struct iovec
-  {
-    void *iov_base;
-    size_t iov_len;
-  }
-   ;
+    struct iovec {
+	void *iov_base;
+	size_t iov_len;
+    };
 
 
 
 
-  typedef unsigned short sa_family_t;
+    typedef unsigned short sa_family_t;
 
-  typedef unsigned int socklen_t;
+    typedef unsigned int socklen_t;
 
 #if __i386__
 /* IA32 */
-  typedef uint32_t __ss_aligntype;
+    typedef uint32_t __ss_aligntype;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef uint64_t __ss_aligntype;
+    typedef uint64_t __ss_aligntype;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef uint32_t __ss_aligntype;
+    typedef uint32_t __ss_aligntype;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef uint64_t __ss_aligntype;
+    typedef uint64_t __ss_aligntype;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef uint32_t __ss_aligntype;
+    typedef uint32_t __ss_aligntype;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef uint64_t __ss_aligntype;
+    typedef uint64_t __ss_aligntype;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef uint64_t __ss_aligntype;
+    typedef uint64_t __ss_aligntype;
 
 #endif
 
 
 
-  struct sockaddr
-  {
-    sa_family_t sa_family;
-    char sa_data[14];
-  }
-   ;
+    struct sockaddr {
+	sa_family_t sa_family;
+	char sa_data[14];
+    };
 
-  struct sockaddr_storage
-  {
-    sa_family_t ss_family;
-    __ss_aligntype __ss_align;
-    char __ss_padding[(128 - (2 * sizeof (__ss_aligntype)))];
-  }
-   ;
+    struct sockaddr_storage {
+	sa_family_t ss_family;
+	__ss_aligntype __ss_align;
+	char __ss_padding[(128 - (2 * sizeof(__ss_aligntype)))];
+    };
 
 
 
 
-  struct msghdr
-  {
-    void *msg_name;
-    int msg_namelen;
-    struct iovec *msg_iov;
-    size_t msg_iovlen;
-    void *msg_control;
-    size_t msg_controllen;
-    unsigned int msg_flags;
-  }
-   ;
+    struct msghdr {
+	void *msg_name;
+	int msg_namelen;
+	struct iovec *msg_iov;
+	size_t msg_iovlen;
+	void *msg_control;
+	size_t msg_controllen;
+	unsigned int msg_flags;
+    };
 
 
 /* Address Families*/
@@ -286,28 +273,28 @@ extern "C"
 
 
 
-  extern int bind (int, const struct sockaddr *, socklen_t);
-  extern int getnameinfo (const struct sockaddr *, socklen_t, char *,
-			  socklen_t, char *, socklen_t, unsigned int);
-  extern int getsockname (int, struct sockaddr *, socklen_t *);
-  extern int listen (int, int);
-  extern int setsockopt (int, int, int, const void *, socklen_t);
-  extern int accept (int, struct sockaddr *, socklen_t *);
-  extern int connect (int, const struct sockaddr *, socklen_t);
-  extern ssize_t recv (int, void *, size_t, int);
-  extern ssize_t recvfrom (int, void *, size_t, int, struct sockaddr *,
-			   socklen_t *);
-  extern ssize_t recvmsg (int, struct msghdr *, int);
-  extern ssize_t send (int, const void *, size_t, int);
-  extern ssize_t sendmsg (int, const struct msghdr *, int);
-  extern ssize_t sendto (int, const void *, size_t, int,
-			 const struct sockaddr *, socklen_t);
-  extern int getpeername (int, struct sockaddr *, socklen_t *);
-  extern int getsockopt (int, int, int, void *, socklen_t *);
-  extern int shutdown (int, int);
-  extern int socket (int, int, int);
-  extern int socketpair (int, int, int, int[2]);
-  extern int sockatmark (int);
+    extern int bind(int, const struct sockaddr *, socklen_t);
+    extern int getnameinfo(const struct sockaddr *, socklen_t, char *,
+			   socklen_t, char *, socklen_t, unsigned int);
+    extern int getsockname(int, struct sockaddr *, socklen_t *);
+    extern int listen(int, int);
+    extern int setsockopt(int, int, int, const void *, socklen_t);
+    extern int accept(int, struct sockaddr *, socklen_t *);
+    extern int connect(int, const struct sockaddr *, socklen_t);
+    extern ssize_t recv(int, void *, size_t, int);
+    extern ssize_t recvfrom(int, void *, size_t, int, struct sockaddr *,
+			    socklen_t *);
+    extern ssize_t recvmsg(int, struct msghdr *, int);
+    extern ssize_t send(int, const void *, size_t, int);
+    extern ssize_t sendmsg(int, const struct msghdr *, int);
+    extern ssize_t sendto(int, const void *, size_t, int,
+			  const struct sockaddr *, socklen_t);
+    extern int getpeername(int, struct sockaddr *, socklen_t *);
+    extern int getsockopt(int, int, int, void *, socklen_t *);
+    extern int shutdown(int, int);
+    extern int socket(int, int, int);
+    extern int socketpair(int, int, int, int[2]);
+    extern int sockatmark(int);
 #ifdef __cplusplus
 }
 #endif

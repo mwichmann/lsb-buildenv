@@ -5,8 +5,7 @@
 #include <unistd.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -26,25 +25,21 @@ extern "C"
 #define FD_CLOEXEC	1
 
 
-  struct flock
-  {
-    short l_type;
-    short l_whence;
-    off_t l_start;
-    off_t l_len;
-    pid_t l_pid;
-  }
-   ;
+    struct flock {
+	short l_type;
+	short l_whence;
+	off_t l_start;
+	off_t l_len;
+	pid_t l_pid;
+    };
 
-  struct flock64
-  {
-    short l_type;
-    short l_whence;
-    loff_t l_start;
-    loff_t l_len;
-    pid_t l_pid;
-  }
-   ;
+    struct flock64 {
+	short l_type;
+	short l_whence;
+	loff_t l_start;
+	loff_t l_len;
+	pid_t l_pid;
+    };
 
 
 /* flags for open(2)*/
@@ -135,8 +130,8 @@ extern "C"
 
 
 
-  extern int lockf64 (int, int, off64_t);
-  extern int fcntl (int, int, ...);
+    extern int lockf64(int, int, off64_t);
+    extern int fcntl(int, int, ...);
 #ifdef __cplusplus
 }
 #endif

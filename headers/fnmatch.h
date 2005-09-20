@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -19,7 +18,7 @@ extern "C"
 
 
 
-  extern int fnmatch (const char *, const char *, int);
+    extern int fnmatch(const char *, const char *, int);
 #ifdef __cplusplus
 }
 #endif

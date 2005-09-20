@@ -4,8 +4,7 @@
 #include <sys/socket.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -23,41 +22,33 @@ extern "C"
 #define NO_ADDRESS	NO_DATA
 
 
-  struct servent
-  {
-    char *s_name;
-    char **s_aliases;
-    int s_port;
-    char *s_proto;
-  }
-   ;
+    struct servent {
+	char *s_name;
+	char **s_aliases;
+	int s_port;
+	char *s_proto;
+    };
 
-  struct hostent
-  {
-    char *h_name;
-    char **h_aliases;
-    int h_addrtype;
-    int h_length;
-    char **h_addr_list;
-  }
-   ;
+    struct hostent {
+	char *h_name;
+	char **h_aliases;
+	int h_addrtype;
+	int h_length;
+	char **h_addr_list;
+    };
 
-  struct protoent
-  {
-    char *p_name;
-    char **p_aliases;
-    int p_proto;
-  }
-   ;
+    struct protoent {
+	char *p_name;
+	char **p_aliases;
+	int p_proto;
+    };
 
-  struct netent
-  {
-    char *n_name;
-    char **n_aliases;
-    int n_addrtype;
-    unsigned int n_net;
-  }
-   ;
+    struct netent {
+	char *n_name;
+	char **n_aliases;
+	int n_addrtype;
+	unsigned int n_net;
+    };
 
 
 /* Possible values for `ai_flags' field in `addrinfo' structure.*/
@@ -66,18 +57,16 @@ extern "C"
 #define AI_NUMERICHOST	0x0004
 
 
-  struct addrinfo
-  {
-    int ai_flags;
-    int ai_family;
-    int ai_socktype;
-    int ai_protocol;
-    socklen_t ai_addrlen;
-    struct sockaddr *ai_addr;
-    char *ai_canonname;
-    struct addrinfo *ai_next;
-  }
-   ;
+    struct addrinfo {
+	int ai_flags;
+	int ai_family;
+	int ai_socktype;
+	int ai_protocol;
+	socklen_t ai_addrlen;
+	struct sockaddr *ai_addr;
+	char *ai_canonname;
+	struct addrinfo *ai_next;
+    };
 
 
 /* Values to use as hints*/
@@ -104,23 +93,23 @@ extern "C"
 
 
 
-  extern void endprotoent (void);
-  extern void endservent (void);
-  extern void freeaddrinfo (struct addrinfo *);
-  extern const char *gai_strerror (int);
-  extern int getaddrinfo (const char *, const char *, const struct addrinfo *,
-			  struct addrinfo **);
-  extern struct hostent *gethostbyaddr (const void *, socklen_t, int);
-  extern struct hostent *gethostbyname (const char *);
-  extern struct protoent *getprotobyname (const char *);
-  extern struct protoent *getprotobynumber (int);
-  extern struct protoent *getprotoent (void);
-  extern struct servent *getservbyname (const char *, const char *);
-  extern struct servent *getservbyport (int, const char *);
-  extern struct servent *getservent (void);
-  extern void setprotoent (int);
-  extern void setservent (int);
-  extern int *__h_errno_location (void);
+    extern void endprotoent(void);
+    extern void endservent(void);
+    extern void freeaddrinfo(struct addrinfo *);
+    extern const char *gai_strerror(int);
+    extern int getaddrinfo(const char *, const char *,
+			   const struct addrinfo *, struct addrinfo **);
+    extern struct hostent *gethostbyaddr(const void *, socklen_t, int);
+    extern struct hostent *gethostbyname(const char *);
+    extern struct protoent *getprotobyname(const char *);
+    extern struct protoent *getprotobynumber(int);
+    extern struct protoent *getprotoent(void);
+    extern struct servent *getservbyname(const char *, const char *);
+    extern struct servent *getservbyport(int, const char *);
+    extern struct servent *getservent(void);
+    extern void setprotoent(int);
+    extern void setservent(int);
+    extern int *__h_errno_location(void);
 #ifdef __cplusplus
 }
 #endif

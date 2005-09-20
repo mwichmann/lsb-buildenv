@@ -1,11 +1,9 @@
 
-typedef struct
-{
-  struct _pthread_fastlock __sem_lock;
-  int __sem_value;
-  _pthread_descr __sem_waiting;
-}
-sem_t;
+typedef struct {
+    struct _pthread_fastlock __sem_lock;
+    int __sem_value;
+    _pthread_descr __sem_waiting;
+} sem_t;
 
 #define SEM_FAILED	((sem_t*)0)
 

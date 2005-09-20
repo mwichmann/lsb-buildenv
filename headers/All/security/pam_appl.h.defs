@@ -1,25 +1,19 @@
 
 typedef struct pam_handle pam_handle_t;
-struct pam_message
-{
-  int msg_style;
-  const char *msg;
-}
- ;
-struct pam_response
-{
-  char *resp;
-  int resp_retcode;
-}
- ;
+struct pam_message {
+    int msg_style;
+    const char *msg;
+};
+struct pam_response {
+    char *resp;
+    int resp_retcode;
+};
 
-struct pam_conv
-{
-  int (*conv) (int num_msg, const struct pam_message * *msg,
-	       struct pam_response * *resp, void *appdata_ptr);
-  void *appdata_ptr;
-}
- ;
+struct pam_conv {
+    int (*conv) (int num_msg, const struct pam_message * *msg,
+		 struct pam_response * *resp, void *appdata_ptr);
+    void *appdata_ptr;
+};
 
 #define PAM_PROMPT_ECHO_OFF	1
 #define PAM_PROMPT_ECHO_ON	2

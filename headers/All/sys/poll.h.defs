@@ -6,11 +6,9 @@
 #define POLLHUP	0x0010
 #define POLLNVAL	0x0020
 
-struct pollfd
-{
-  int fd;
-  short events;
-  short revents;
-}
- ;
+struct pollfd {
+    int fd;
+    short events;
+    short revents;
+};
 typedef unsigned long int nfds_t;

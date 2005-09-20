@@ -8,8 +8,7 @@
 #include <stddef.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -40,67 +39,61 @@ extern "C"
 #define NSIG	65
 
 
-  typedef int sig_atomic_t;
+    typedef int sig_atomic_t;
 
 #if __s390x__
 /* S390X */
-  typedef struct
-  {
-    unsigned long int mask;
-    unsigned long int addr;
-  } __attribute__ ((aligned (8))) _psw_t;
+    typedef struct {
+	unsigned long int mask;
+	unsigned long int addr;
+    } __attribute__ ((aligned(8)))
+	_psw_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef struct
-  {
-    unsigned long int mask;
-    unsigned long int addr;
-  } __attribute__ ((aligned (8))) _psw_t;
+    typedef struct {
+	unsigned long int mask;
+	unsigned long int addr;
+    } __attribute__ ((aligned(8)))
+	_psw_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef struct
-  {
-    _psw_t psw;
-    unsigned long int gprs[__NUM_GPRS];
-    unsigned int acrs[__NUM_ACRS];
-  }
-  _s390_regs_common;
+    typedef struct {
+	_psw_t psw;
+	unsigned long int gprs[__NUM_GPRS];
+	unsigned int acrs[__NUM_ACRS];
+    } _s390_regs_common;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct pt_regs
-  {
-    unsigned long int gpr[32];
-    unsigned long int nip;
-    unsigned long int msr;
-    unsigned long int orig_gpr3;
-    unsigned long int ctr;
-    unsigned long int link;
-    unsigned long int xer;
-    unsigned long int ccr;
-    unsigned long int softe;
-    unsigned long int trap;
-    unsigned long int dar;
-    unsigned long int dsisr;
-    unsigned long int result;
-  }
-   ;
+    struct pt_regs {
+	unsigned long int gpr[32];
+	unsigned long int nip;
+	unsigned long int msr;
+	unsigned long int orig_gpr3;
+	unsigned long int ctr;
+	unsigned long int link;
+	unsigned long int xer;
+	unsigned long int ccr;
+	unsigned long int softe;
+	unsigned long int trap;
+	unsigned long int dar;
+	unsigned long int dsisr;
+	unsigned long int result;
+    };
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef struct
-  {
-    _psw_t psw;
-    unsigned long int gprs[16];
-    unsigned int acrs[16];
-  }
-  _s390_regs_common;
+    typedef struct {
+	_psw_t psw;
+	unsigned long int gprs[16];
+	unsigned int acrs[16];
+    } _s390_regs_common;
 
 #endif
 
@@ -121,7 +114,8 @@ extern "C"
 /* Type of a signal handling function.*/
 
 
-  typedef void (*sighandler_t) (int);
+    typedef void (*sighandler_t) (int)
+    ;
 
 
 /* Special Signal values*/
@@ -177,12 +171,10 @@ extern "C"
 #define SV_RESETHAND	(1<<2)
 
 
-  typedef union sigval
-  {
-    int sival_int;
-    void *sival_ptr;
-  }
-  sigval_t;
+    typedef union sigval {
+	int sival_int;
+	void *sival_ptr;
+    } sigval_t;
 
 
 /* POSIX 1003.1b sigevent*/
@@ -213,24 +205,18 @@ extern "C"
 #define SIGEV_MAX_SIZE	64
 
 
-  typedef struct sigevent
-  {
-    sigval_t sigev_value;
-    int sigev_signo;
-    int sigev_notify;
-    union
-    {
-      int _pad[SIGEV_PAD_SIZE];
-      struct
-      {
-	void (*sigev_thread_func) (sigval_t);
-	void *_attribute;
-      }
-      _sigev_thread;
-    }
-    _sigev_un;
-  }
-  sigevent_t;
+    typedef struct sigevent {
+	sigval_t sigev_value;
+	int sigev_signo;
+	int sigev_notify;
+	union {
+	    int _pad[SIGEV_PAD_SIZE];
+	    struct {
+		void (*sigev_thread_func) (sigval_t);
+		void *_attribute;
+	    } _sigev_thread;
+	} _sigev_un;
+    } sigevent_t;
 
 
 /* POSIX 1003.1b siginfo*/
@@ -271,57 +257,41 @@ extern "C"
 #define si_timer2	_sifields._timer._timer2
 
 
-  typedef struct siginfo
-  {
-    int si_signo;		/* Signal number. */
-    int si_errno;
-    int si_code;		/* Signal code. */
-    union
-    {
-      int _pad[SI_PAD_SIZE];
-      struct
-      {
-	pid_t _pid;
-	uid_t _uid;
-      }
-      _kill;
-      struct
-      {
-	unsigned int _timer1;
-	unsigned int _timer2;
-      }
-      _timer;
-      struct
-      {
-	pid_t _pid;
-	uid_t _uid;
-	sigval_t _sigval;
-      }
-      _rt;
-      struct
-      {
-	pid_t _pid;
-	uid_t _uid;
-	int _status;
-	clock_t _utime;
-	clock_t _stime;
-      }
-      _sigchld;
-      struct
-      {
-	void *_addr;
-      }
-      _sigfault;
-      struct
-      {
-	int _band;
-	int _fd;
-      }
-      _sigpoll;
-    }
-    _sifields;
-  }
-  siginfo_t;
+    typedef struct siginfo {
+	int si_signo;		/* Signal number. */
+	int si_errno;
+	int si_code;		/* Signal code. */
+	union {
+	    int _pad[SI_PAD_SIZE];
+	    struct {
+		pid_t _pid;
+		uid_t _uid;
+	    } _kill;
+	    struct {
+		unsigned int _timer1;
+		unsigned int _timer2;
+	    } _timer;
+	    struct {
+		pid_t _pid;
+		uid_t _uid;
+		sigval_t _sigval;
+	    } _rt;
+	    struct {
+		pid_t _pid;
+		uid_t _uid;
+		int _status;
+		clock_t _utime;
+		clock_t _stime;
+	    } _sigchld;
+	    struct {
+		void *_addr;
+	    } _sigfault;
+	    struct {
+		int _band;
+		int _fd;
+	    } _sigpoll;
+	} _sifields;
+    } siginfo_t;
 
 
 /* Values for `si_code'.  Positive values are reserved for kernel-generated
@@ -404,11 +374,9 @@ extern "C"
 /* sigset_t*/
 
 
-  typedef struct
-  {
-    unsigned long int sig[_SIGSET_NWORDS];
-  }
-  sigset_t;
+    typedef struct {
+	unsigned long int sig[_SIGSET_NWORDS];
+    } sigset_t;
 
 
 /* sigaction*/
@@ -428,120 +396,92 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    sigset_t sa_mask;
-    unsigned long int sa_flags;
-    void (*sa_restorer) (void);
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	unsigned long int sa_flags;
+	void (*sa_restorer) (void);
+    };
 
 #endif
 #if __ia64__
 /* IA64 */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    unsigned long int sa_flags;
-    sigset_t sa_mask;		/* mask last for extensibility */
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	unsigned long int sa_flags;
+	sigset_t sa_mask;	/* mask last for extensibility */
+    };
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    sigset_t sa_mask;
-    unsigned long int sa_flags;
-    void (*sa_restorer) (void);
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	unsigned long int sa_flags;
+	void (*sa_restorer) (void);
+    };
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    sigset_t sa_mask;
-    unsigned long int sa_flags;
-    void (*sa_restorer) (void);
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	unsigned long int sa_flags;
+	void (*sa_restorer) (void);
+    };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    sigset_t sa_mask;
-    int sa_flags;
-    void (*sa_restorer) (void);
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	int sa_flags;
+	void (*sa_restorer) (void);
+    };
 
 #endif
 #if __s390x__
 /* S390X */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    unsigned long int sa_flags;
-    void (*sa_restorer) (void);
-    sigset_t sa_mask;
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	unsigned long int sa_flags;
+	void (*sa_restorer) (void);
+	sigset_t sa_mask;
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct sigaction
-  {
-    union
-    {
-      sighandler_t _sa_handler;
-      void (*_sa_sigaction) (int, siginfo_t *, void *);
-    }
-    __sigaction_handler;
-    sigset_t sa_mask;
-    int sa_flags;
-    void (*sa_restorer) (void);
-  }
-   ;
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	int sa_flags;
+	void (*sa_restorer) (void);
+    };
 
 #endif
 
@@ -590,13 +530,11 @@ extern "C"
 #endif
 
 
-  typedef struct sigaltstack
-  {
-    void *ss_sp;
-    int ss_flags;
-    size_t ss_size;
-  }
-  stack_t;
+    typedef struct sigaltstack {
+	void *ss_sp;
+	int ss_flags;
+	size_t ss_size;
+    } stack_t;
 
 
 /* Possible values for `ss_flags.'.*/
@@ -610,106 +548,84 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  struct _fpreg
-  {
-    unsigned short significand[4];
-    unsigned short exponent;
-  }
-   ;
+    struct _fpreg {
+	unsigned short significand[4];
+	unsigned short exponent;
+    };
 
 #endif
 #if __i386__
 /* IA32 */
-  struct _fpxreg
-  {
-    unsigned short significand[4];
-    unsigned short exponent;
-    unsigned short padding[3];
-  }
-   ;
+    struct _fpxreg {
+	unsigned short significand[4];
+	unsigned short exponent;
+	unsigned short padding[3];
+    };
 
 #endif
 #if __i386__
 /* IA32 */
-  struct _xmmreg
-  {
-    unsigned long int element[4];
-  }
-   ;
+    struct _xmmreg {
+	unsigned long int element[4];
+    };
 
 #endif
 #if __ia64__
 /* IA64 */
-  struct ia64_fpreg
-  {
-    union
-    {
-      unsigned long int bits[2];
-      long double __dummy;	/* force 16-byte alignment */
-    }
-    u;
-  }
-   ;
+    struct ia64_fpreg {
+	union {
+	    unsigned long int bits[2];
+	    long double __dummy;	/* force 16-byte alignment */
+	} u;
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct _fpxreg
-  {
-    unsigned short significand[4];
-    unsigned short exponent;
-    unsigned short padding[3];
-  }
-   ;
+    struct _fpxreg {
+	unsigned short significand[4];
+	unsigned short exponent;
+	unsigned short padding[3];
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct _xmmreg
-  {
-    uint32_t element[4];
-  }
-   ;
+    struct _xmmreg {
+	uint32_t element[4];
+    };
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef struct
-  {
-    unsigned int fpc;
-    double fprs[__NUM_FPRS];
-  }
-  _s390_fp_regs;
+    typedef struct {
+	unsigned int fpc;
+	double fprs[__NUM_FPRS];
+    } _s390_fp_regs;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef struct
-  {
-    _s390_regs_common regs;
-    _s390_fp_regs fpregs;
-  }
-  _sigregs;
+    typedef struct {
+	_s390_regs_common regs;
+	_s390_fp_regs fpregs;
+    } _sigregs;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef struct
-  {
-    unsigned int fpc;
-    double fprs[__NUM_FPRS];
-  }
-  _s390_fp_regs;
+    typedef struct {
+	unsigned int fpc;
+	double fprs[__NUM_FPRS];
+    } _s390_fp_regs;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef struct
-  {
-    _s390_regs_common regs;
-    _s390_fp_regs fpregs;
-  }
-  _sigregs;
+    typedef struct {
+	_s390_regs_common regs;
+	_s390_fp_regs fpregs;
+    } _sigregs;
 
 #endif
 
@@ -718,45 +634,41 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  struct _fpstate
-  {
-    unsigned long int cw;
-    unsigned long int sw;
-    unsigned long int tag;
-    unsigned long int ipoff;
-    unsigned long int cssel;
-    unsigned long int dataoff;
-    unsigned long int datasel;
-    struct _fpreg _st[8];
-    unsigned short status;
-    unsigned short magic;
-    unsigned long int _fxsr_env[6];
-    unsigned long int mxcsr;
-    unsigned long int reserved;
-    struct _fpxreg _fxsr_st[8];
-    struct _xmmreg _xmm[8];
-    unsigned long int padding[56];
-  }
-   ;
+    struct _fpstate {
+	unsigned long int cw;
+	unsigned long int sw;
+	unsigned long int tag;
+	unsigned long int ipoff;
+	unsigned long int cssel;
+	unsigned long int dataoff;
+	unsigned long int datasel;
+	struct _fpreg _st[8];
+	unsigned short status;
+	unsigned short magic;
+	unsigned long int _fxsr_env[6];
+	unsigned long int mxcsr;
+	unsigned long int reserved;
+	struct _fpxreg _fxsr_st[8];
+	struct _xmmreg _xmm[8];
+	unsigned long int padding[56];
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct _fpstate
-  {
-    uint16_t cwd;
-    uint16_t swd;
-    uint16_t ftw;
-    uint16_t fop;
-    uint64_t rip;
-    uint64_t rdp;
-    uint32_t mxcsr;
-    uint32_t mxcr_mask;
-    struct _fpxreg _st[8];
-    struct _xmmreg _xmm[16];
-    uint32_t padding[24];
-  }
-   ;
+    struct _fpstate {
+	uint16_t cwd;
+	uint16_t swd;
+	uint16_t ftw;
+	uint16_t fop;
+	uint64_t rip;
+	uint64_t rdp;
+	uint32_t mxcsr;
+	uint32_t mxcr_mask;
+	struct _fpxreg _st[8];
+	struct _xmmreg _xmm[16];
+	uint32_t padding[24];
+    };
 
 #endif
 
@@ -765,194 +677,182 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  struct sigcontext
-  {
-    unsigned short gs;
-    unsigned short __gsh;
-    unsigned short fs;
-    unsigned short __fsh;
-    unsigned short es;
-    unsigned short __esh;
-    unsigned short ds;
-    unsigned short __dsh;
-    unsigned long int edi;
-    unsigned long int esi;
-    unsigned long int ebp;
-    unsigned long int esp;
-    unsigned long int ebx;
-    unsigned long int edx;
-    unsigned long int ecx;
-    unsigned long int eax;
-    unsigned long int trapno;
-    unsigned long int err;
-    unsigned long int eip;
-    unsigned short cs;
-    unsigned short __csh;
-    unsigned long int eflags;
-    unsigned long int esp_at_signal;
-    unsigned short ss;
-    unsigned short __ssh;
-    struct _fpstate *fpstate;
-    unsigned long int oldmask;
-    unsigned long int cr2;
-  }
-   ;
+    struct sigcontext {
+	unsigned short gs;
+	unsigned short __gsh;
+	unsigned short fs;
+	unsigned short __fsh;
+	unsigned short es;
+	unsigned short __esh;
+	unsigned short ds;
+	unsigned short __dsh;
+	unsigned long int edi;
+	unsigned long int esi;
+	unsigned long int ebp;
+	unsigned long int esp;
+	unsigned long int ebx;
+	unsigned long int edx;
+	unsigned long int ecx;
+	unsigned long int eax;
+	unsigned long int trapno;
+	unsigned long int err;
+	unsigned long int eip;
+	unsigned short cs;
+	unsigned short __csh;
+	unsigned long int eflags;
+	unsigned long int esp_at_signal;
+	unsigned short ss;
+	unsigned short __ssh;
+	struct _fpstate *fpstate;
+	unsigned long int oldmask;
+	unsigned long int cr2;
+    };
 
 #endif
 #if __ia64__
 /* IA64 */
-  struct sigcontext
-  {
-    unsigned long int sc_flags;
-    unsigned long int sc_nat;
-    stack_t sc_stack;
-    unsigned long int sc_ip;
-    unsigned long int sc_cfm;
-    unsigned long int sc_um;
-    unsigned long int sc_ar_rsc;
-    unsigned long int sc_ar_bsp;
-    unsigned long int sc_ar_rnat;
-    unsigned long int sc_ar_ccv;
-    unsigned long int sc_ar_unat;
-    unsigned long int sc_ar_fpsr;
-    unsigned long int sc_ar_pfs;
-    unsigned long int sc_ar_lc;
-    unsigned long int sc_pr;
-    unsigned long int sc_br[8];
-    unsigned long int sc_gr[32];
-    struct ia64_fpreg sc_fr[128];
-    unsigned long int sc_rbs_base;	/* NULL or new base of sighandler's rbs */
-    unsigned long int sc_loadrs;	/* see description above */
-    unsigned long int sc_ar25;	/* cmp8xchg16 uses this */
-    unsigned long int sc_ar26;	/*  rsvd for scratch use */
-    unsigned long int sc_rsvd[12];
-    unsigned long int sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
-  }
-   ;
+    struct sigcontext {
+	unsigned long int sc_flags;
+	unsigned long int sc_nat;
+	stack_t sc_stack;
+	unsigned long int sc_ip;
+	unsigned long int sc_cfm;
+	unsigned long int sc_um;
+	unsigned long int sc_ar_rsc;
+	unsigned long int sc_ar_bsp;
+	unsigned long int sc_ar_rnat;
+	unsigned long int sc_ar_ccv;
+	unsigned long int sc_ar_unat;
+	unsigned long int sc_ar_fpsr;
+	unsigned long int sc_ar_pfs;
+	unsigned long int sc_ar_lc;
+	unsigned long int sc_pr;
+	unsigned long int sc_br[8];
+	unsigned long int sc_gr[32];
+	struct ia64_fpreg sc_fr[128];
+	unsigned long int sc_rbs_base;	/* NULL or new base of sighandler's rbs */
+	unsigned long int sc_loadrs;	/* see description above */
+	unsigned long int sc_ar25;	/* cmp8xchg16 uses this */
+	unsigned long int sc_ar26;	/*  rsvd for scratch use */
+	unsigned long int sc_rsvd[12];
+	unsigned long int sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
+    };
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  struct sigcontext
-  {
-    long int _unused[4];
-    int signal;
-    unsigned long int handler;
-    unsigned long int oldmask;
-    struct pt_regs *regs;
-  }
-   ;
+    struct sigcontext {
+	long int _unused[4];
+	int signal;
+	unsigned long int handler;
+	unsigned long int oldmask;
+	struct pt_regs *regs;
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct sigcontext
-  {
-    unsigned long int r8;
-    unsigned long int r9;
-    unsigned long int r10;
-    unsigned long int r11;
-    unsigned long int r12;
-    unsigned long int r13;
-    unsigned long int r14;
-    unsigned long int r15;
-    unsigned long int rdi;
-    unsigned long int rsi;
-    unsigned long int rbp;
-    unsigned long int rbx;
-    unsigned long int rdx;
-    unsigned long int rax;
-    unsigned long int rcx;
-    unsigned long int rsp;
-    unsigned long int rip;
-    unsigned long int eflags;
-    unsigned short cs;
-    unsigned short gs;
-    unsigned short fs;
-    unsigned short __pad0;
-    unsigned long int err;
-    unsigned long int trapno;
-    unsigned long int oldmask;
-    unsigned long int cr2;
-    struct _fpstate *fpstate;
-    unsigned long int __reserved1[8];
-  }
-   ;
+    struct sigcontext {
+	unsigned long int r8;
+	unsigned long int r9;
+	unsigned long int r10;
+	unsigned long int r11;
+	unsigned long int r12;
+	unsigned long int r13;
+	unsigned long int r14;
+	unsigned long int r15;
+	unsigned long int rdi;
+	unsigned long int rsi;
+	unsigned long int rbp;
+	unsigned long int rbx;
+	unsigned long int rdx;
+	unsigned long int rax;
+	unsigned long int rcx;
+	unsigned long int rsp;
+	unsigned long int rip;
+	unsigned long int eflags;
+	unsigned short cs;
+	unsigned short gs;
+	unsigned short fs;
+	unsigned short __pad0;
+	unsigned long int err;
+	unsigned long int trapno;
+	unsigned long int oldmask;
+	unsigned long int cr2;
+	struct _fpstate *fpstate;
+	unsigned long int __reserved1[8];
+    };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct sigcontext
-  {
-    unsigned long int _unused[4];
-    int signal;
-    unsigned long int handler;
-    unsigned long int oldmask;
-    struct pt_regs *regs;
-    unsigned long int gp_regs[48];
-    double fp_regs[33];
-  }
-   ;
+    struct sigcontext {
+	unsigned long int _unused[4];
+	int signal;
+	unsigned long int handler;
+	unsigned long int oldmask;
+	struct pt_regs *regs;
+	unsigned long int gp_regs[48];
+	double fp_regs[33];
+    };
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  struct sigcontext
-  {
-    unsigned long int oldmask[2];
-    _sigregs *sregs;
-  }
-   ;
+    struct sigcontext {
+	unsigned long int oldmask[2];
+	_sigregs *sregs;
+    };
 
 #endif
 #if __s390x__
 /* S390X */
-  struct sigcontext
-  {
-    unsigned long int oldmask;
-    _sigregs *sregs;
-  }
-   ;
+    struct sigcontext {
+	unsigned long int oldmask;
+	_sigregs *sregs;
+    };
 
 #endif
 
-  extern int __libc_current_sigrtmax (void);
-  extern int __libc_current_sigrtmin (void);
-  extern sighandler_t __sysv_signal (int, sighandler_t);
-  extern char *const _sys_siglist[64];
-  extern int killpg (pid_t, int);
-  extern void psignal (int, const char *);
-  extern int raise (int);
-  extern int sigaddset (sigset_t *, int);
-  extern int sigandset (sigset_t *, const sigset_t *, const sigset_t *);
-  extern int sigdelset (sigset_t *, int);
-  extern int sigemptyset (sigset_t *);
-  extern int sigfillset (sigset_t *);
-  extern int sighold (int);
-  extern int sigignore (int);
-  extern int siginterrupt (int, int);
-  extern int sigisemptyset (const sigset_t *);
-  extern int sigismember (const sigset_t *, int);
-  extern int sigorset (sigset_t *, const sigset_t *, const sigset_t *);
-  extern int sigpending (sigset_t *);
-  extern int sigrelse (int);
-  extern sighandler_t sigset (int, sighandler_t);
-  extern int pthread_kill (pthread_t, int);
-  extern int pthread_sigmask (int, const sigset_t *, sigset_t *);
-  extern int sigaction (int, const struct sigaction *, struct sigaction *);
-  extern int sigwait (const sigset_t *, int *);
-  extern int kill (pid_t, int);
-  extern int sigaltstack (const struct sigaltstack *, struct sigaltstack *);
-  extern sighandler_t signal (int, sighandler_t);
-  extern int sigpause (int);
-  extern int sigprocmask (int, const sigset_t *, sigset_t *);
-  extern int sigreturn (struct sigcontext *);
-  extern int sigsuspend (const sigset_t *);
-  extern int sigqueue (pid_t, int, const union sigval);
-  extern int sigwaitinfo (const sigset_t *, siginfo_t *);
-  extern int sigtimedwait (const sigset_t *, siginfo_t *,
-			   const struct timespec *);
-  extern sighandler_t bsd_signal (int, sighandler_t);
+    extern int __libc_current_sigrtmax(void);
+    extern int __libc_current_sigrtmin(void);
+    extern sighandler_t __sysv_signal(int, sighandler_t);
+    extern char *const _sys_siglist[64];
+    extern int killpg(pid_t, int);
+    extern void psignal(int, const char *);
+    extern int raise(int);
+    extern int sigaddset(sigset_t *, int);
+    extern int sigandset(sigset_t *, const sigset_t *, const sigset_t *);
+    extern int sigdelset(sigset_t *, int);
+    extern int sigemptyset(sigset_t *);
+    extern int sigfillset(sigset_t *);
+    extern int sighold(int);
+    extern int sigignore(int);
+    extern int siginterrupt(int, int);
+    extern int sigisemptyset(const sigset_t *);
+    extern int sigismember(const sigset_t *, int);
+    extern int sigorset(sigset_t *, const sigset_t *, const sigset_t *);
+    extern int sigpending(sigset_t *);
+    extern int sigrelse(int);
+    extern sighandler_t sigset(int, sighandler_t);
+    extern int pthread_kill(pthread_t, int);
+    extern int pthread_sigmask(int, const sigset_t *, sigset_t *);
+    extern int sigaction(int, const struct sigaction *,
+			 struct sigaction *);
+    extern int sigwait(const sigset_t *, int *);
+    extern int kill(pid_t, int);
+    extern int sigaltstack(const struct sigaltstack *,
+			   struct sigaltstack *);
+    extern sighandler_t signal(int, sighandler_t);
+    extern int sigpause(int);
+    extern int sigprocmask(int, const sigset_t *, sigset_t *);
+    extern int sigreturn(struct sigcontext *);
+    extern int sigsuspend(const sigset_t *);
+    extern int sigqueue(pid_t, int, const union sigval);
+    extern int sigwaitinfo(const sigset_t *, siginfo_t *);
+    extern int sigtimedwait(const sigset_t *, siginfo_t *,
+			    const struct timespec *);
+    extern sighandler_t bsd_signal(int, sighandler_t);
 #ifdef __cplusplus
 }
 #endif

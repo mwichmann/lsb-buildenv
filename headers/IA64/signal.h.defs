@@ -3,58 +3,48 @@
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 
-struct sigaction
-{
-  union
-  {
-    sighandler_t _sa_handler;
-    void (*_sa_sigaction) (int, siginfo_t *, void *);
-  }
-  __sigaction_handler;
-  unsigned long int sa_flags;
-  sigset_t sa_mask;
-}
- ;
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    unsigned long int sa_flags;
+    sigset_t sa_mask;
+};
 
 #define MINSIGSTKSZ	131027
 #define SIGSTKSZ	262144
 
-struct ia64_fpreg
-{
-  union
-  {
-    unsigned long int bits[2];
-    long double __dummy;
-  }
-  u;
-}
- ;
+struct ia64_fpreg {
+    union {
+	unsigned long int bits[2];
+	long double __dummy;
+    } u;
+};
 
-struct sigcontext
-{
-  unsigned long int sc_flags;
-  unsigned long int sc_nat;
-  stack_t sc_stack;
-  unsigned long int sc_ip;
-  unsigned long int sc_cfm;
-  unsigned long int sc_um;
-  unsigned long int sc_ar_rsc;
-  unsigned long int sc_ar_bsp;
-  unsigned long int sc_ar_rnat;
-  unsigned long int sc_ar_ccv;
-  unsigned long int sc_ar_unat;
-  unsigned long int sc_ar_fpsr;
-  unsigned long int sc_ar_pfs;
-  unsigned long int sc_ar_lc;
-  unsigned long int sc_pr;
-  unsigned long int sc_br[8];
-  unsigned long int sc_gr[32];
-  struct ia64_fpreg sc_fr[128];
-  unsigned long int sc_rbs_base;
-  unsigned long int sc_loadrs;
-  unsigned long int sc_ar25;
-  unsigned long int sc_ar26;
-  unsigned long int sc_rsvd[12];
-  unsigned long int sc_mask;
-}
- ;
+struct sigcontext {
+    unsigned long int sc_flags;
+    unsigned long int sc_nat;
+    stack_t sc_stack;
+    unsigned long int sc_ip;
+    unsigned long int sc_cfm;
+    unsigned long int sc_um;
+    unsigned long int sc_ar_rsc;
+    unsigned long int sc_ar_bsp;
+    unsigned long int sc_ar_rnat;
+    unsigned long int sc_ar_ccv;
+    unsigned long int sc_ar_unat;
+    unsigned long int sc_ar_fpsr;
+    unsigned long int sc_ar_pfs;
+    unsigned long int sc_ar_lc;
+    unsigned long int sc_pr;
+    unsigned long int sc_br[8];
+    unsigned long int sc_gr[32];
+    struct ia64_fpreg sc_fr[128];
+    unsigned long int sc_rbs_base;
+    unsigned long int sc_loadrs;
+    unsigned long int sc_ar25;
+    unsigned long int sc_ar26;
+    unsigned long int sc_rsvd[12];
+    unsigned long int sc_mask;
+};

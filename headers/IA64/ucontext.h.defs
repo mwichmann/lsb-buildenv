@@ -4,18 +4,12 @@
 
 typedef struct sigcontext mcontext_t;
 
-typedef struct ucontext
-{
-  union
-  {
-    mcontext_t _mc;
-    struct
-    {
-      unsigned long int _pad[_SC_GR0_OFFSET / 8];
-      struct ucontext *_link;
-    }
-    _uc;
-  }
-  _u;
-}
-ucontext_t;
+typedef struct ucontext {
+    union {
+	mcontext_t _mc;
+	struct {
+	    unsigned long int _pad[_SC_GR0_OFFSET / 8];
+	    struct ucontext *_link;
+	} _uc;
+    } _u;
+} ucontext_t;

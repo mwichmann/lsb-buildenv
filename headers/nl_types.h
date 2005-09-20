@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -16,18 +15,18 @@ extern "C"
 /* Message catalog descriptor type*/
 
 
-  typedef void *nl_catd;
+    typedef void *nl_catd;
 
 
 /* Type used by `nl_langinfo'*/
 
 
-  typedef int nl_item;
+    typedef int nl_item;
 
 
-  extern int catclose (nl_catd);
-  extern char *catgets (nl_catd, int, int, const char *);
-  extern nl_catd catopen (const char *, int);
+    extern int catclose(nl_catd);
+    extern char *catgets(nl_catd, int, int, const char *);
+    extern nl_catd catopen(const char *, int);
 #ifdef __cplusplus
 }
 #endif

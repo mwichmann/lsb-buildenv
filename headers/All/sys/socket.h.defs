@@ -22,54 +22,42 @@
           (struct cmsghdr *)NULL : \
           (struct cmsghdr *)((u_char *)(cmsg) + CMSG_ALIGN((cmsg)->cmsg_len))))
 
-struct linger
-{
-  int l_onoff;
-  int l_linger;
-}
- ;
-struct cmsghdr
-{
-  size_t cmsg_len;
-  int cmsg_level;
-  int cmsg_type;
-}
- ;
-struct iovec
-{
-  void *iov_base;
-  size_t iov_len;
-}
- ;
+struct linger {
+    int l_onoff;
+    int l_linger;
+};
+struct cmsghdr {
+    size_t cmsg_len;
+    int cmsg_level;
+    int cmsg_type;
+};
+struct iovec {
+    void *iov_base;
+    size_t iov_len;
+};
 
 typedef unsigned short sa_family_t;
 typedef unsigned int socklen_t;
 
-struct sockaddr
-{
-  sa_family_t sa_family;
-  char sa_data[14];
-}
- ;
-struct sockaddr_storage
-{
-  sa_family_t ss_family;
-  __ss_aligntype __ss_align;
-  char __ss_padding[(128 - (2 * sizeof (__ss_aligntype)))];
-}
- ;
+struct sockaddr {
+    sa_family_t sa_family;
+    char sa_data[14];
+};
+struct sockaddr_storage {
+    sa_family_t ss_family;
+    __ss_aligntype __ss_align;
+    char __ss_padding[(128 - (2 * sizeof(__ss_aligntype)))];
+};
 
-struct msghdr
-{
-  void *msg_name;
-  int msg_namelen;
-  struct iovec *msg_iov;
-  size_t msg_iovlen;
-  void *msg_control;
-  size_t msg_controllen;
-  unsigned int msg_flags;
-}
- ;
+struct msghdr {
+    void *msg_name;
+    int msg_namelen;
+    struct iovec *msg_iov;
+    size_t msg_iovlen;
+    void *msg_control;
+    size_t msg_controllen;
+    unsigned int msg_flags;
+};
 
 #define AF_UNSPEC	0
 #define AF_UNIX	1

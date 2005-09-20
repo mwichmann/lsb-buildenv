@@ -4,22 +4,19 @@
 #include <sys/types.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
-  struct utimbuf
-  {
-    time_t actime;
-    time_t modtime;
-  }
-   ;
+    struct utimbuf {
+	time_t actime;
+	time_t modtime;
+    };
 
 
-  extern int utime (const char *, const struct utimbuf *);
+    extern int utime(const char *, const struct utimbuf *);
 #ifdef __cplusplus
 }
 #endif

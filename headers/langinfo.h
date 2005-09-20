@@ -4,8 +4,7 @@
 #include <nl_types.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -114,7 +113,7 @@ extern "C"
 
 
 
-  extern char *nl_langinfo (nl_item);
+    extern char *nl_langinfo(nl_item);
 #ifdef __cplusplus
 }
 #endif

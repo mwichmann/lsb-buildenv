@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -13,7 +12,7 @@ extern "C"
 
 
 
-  extern long int ulimit (int, ...);
+    extern long int ulimit(int, ...);
 #ifdef __cplusplus
 }
 #endif

@@ -6,18 +6,17 @@
 #include <netinet/in.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
 
-  extern in_addr_t inet_addr (const char *);
-  extern char *inet_ntoa (struct in_addr);
-  extern const char *inet_ntop (int, const void *, char *, socklen_t);
-  extern int inet_pton (int, const char *, void *);
+    extern in_addr_t inet_addr(const char *);
+    extern char *inet_ntoa(struct in_addr);
+    extern const char *inet_ntop(int, const void *, char *, socklen_t);
+    extern int inet_pton(int, const char *, void *);
 #ifdef __cplusplus
 }
 #endif

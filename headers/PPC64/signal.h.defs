@@ -1,51 +1,43 @@
 
-struct pt_regs
-{
-  unsigned long int gpr[32];
-  unsigned long int nip;
-  unsigned long int msr;
-  unsigned long int orig_gpr3;
-  unsigned long int ctr;
-  unsigned long int link;
-  unsigned long int xer;
-  unsigned long int ccr;
-  unsigned long int softe;
-  unsigned long int trap;
-  unsigned long int dar;
-  unsigned long int dsisr;
-  unsigned long int result;
-}
- ;
+struct pt_regs {
+    unsigned long int gpr[32];
+    unsigned long int nip;
+    unsigned long int msr;
+    unsigned long int orig_gpr3;
+    unsigned long int ctr;
+    unsigned long int link;
+    unsigned long int xer;
+    unsigned long int ccr;
+    unsigned long int softe;
+    unsigned long int trap;
+    unsigned long int dar;
+    unsigned long int dsisr;
+    unsigned long int result;
+};
 
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 
-struct sigaction
-{
-  union
-  {
-    sighandler_t _sa_handler;
-    void (*_sa_sigaction) (int, siginfo_t *, void *);
-  }
-  __sigaction_handler;
-  sigset_t sa_mask;
-  int sa_flags;
-  void (*sa_restorer) (void);
-}
- ;
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer) (void);
+};
 
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
 
-struct sigcontext
-{
-  unsigned long int _unused[4];
-  int signal;
-  unsigned long int handler;
-  unsigned long int oldmask;
-  struct pt_regs *regs;
-  unsigned long int gp_regs[48];
-  double fp_regs[33];
-}
- ;
+struct sigcontext {
+    unsigned long int _unused[4];
+    int signal;
+    unsigned long int handler;
+    unsigned long int oldmask;
+    struct pt_regs *regs;
+    unsigned long int gp_regs[48];
+    double fp_regs[33];
+};

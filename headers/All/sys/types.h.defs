@@ -22,11 +22,9 @@ typedef long int off_t;
 typedef int key_t;
 typedef long int suseconds_t;
 typedef unsigned int u_int;
-typedef struct
-{
-  int __val[2];
-}
-fsid_t;
+typedef struct {
+    int __val[2];
+} fsid_t;
 typedef unsigned int useconds_t;
 typedef unsigned long int blksize_t;
 typedef long int fd_mask;
@@ -54,11 +52,9 @@ typedef unsigned int mode_t;
 typedef unsigned long int nlink_t;
 typedef char *caddr_t;
 
-typedef struct
-{
-  unsigned long int fds_bits[__FDSET_LONGS];
-}
-fd_set;
+typedef struct {
+    unsigned long int fds_bits[__FDSET_LONGS];
+} fd_set;
 
 typedef long int clock_t;
 typedef long int time_t;

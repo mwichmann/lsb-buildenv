@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -157,7 +156,7 @@ extern "C"
 
 
 
-  extern int *__errno_location (void);
+    extern int *__errno_location(void);
 #ifdef __cplusplus
 }
 #endif

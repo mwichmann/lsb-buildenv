@@ -4,8 +4,7 @@
 #include <X11/Intrinsic.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -26,7 +25,7 @@ extern "C"
 /* Additional class fields for widgets of (sub)class 'Composite'*/
 
 
-  typedef struct _CompositeClassPart CompositeClassPart;
+    typedef struct _CompositeClassPart CompositeClassPart;
 
 
 
@@ -34,10 +33,10 @@ extern "C"
 
 
 
-  typedef struct _CompositeClassRec CompositeClassRec;
+    typedef struct _CompositeClassRec CompositeClassRec;
 
 
-  extern CompositeClassRec compositeClassRec;
+    extern CompositeClassRec compositeClassRec;
 #ifdef __cplusplus
 }
 #endif

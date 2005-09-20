@@ -3,81 +3,69 @@
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 
-struct sigaction
-{
-  union
-  {
-    sighandler_t _sa_handler;
-    void (*_sa_sigaction) (int, siginfo_t *, void *);
-  }
-  __sigaction_handler;
-  sigset_t sa_mask;
-  int sa_flags;
-  void (*sa_restorer) (void);
-}
- ;
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer) (void);
+};
 
 #define MINSIGSTKSZ	2048
 #define SIGSTKSZ	8192
 
-struct _fpxreg
-{
-  unsigned short significand[4];
-  unsigned short exponent;
-  unsigned short padding[3];
-}
- ;
-struct _xmmreg
-{
-  uint32_t element[4];
-}
- ;
+struct _fpxreg {
+    unsigned short significand[4];
+    unsigned short exponent;
+    unsigned short padding[3];
+};
+struct _xmmreg {
+    uint32_t element[4];
+};
 
-struct _fpstate
-{
-  uint16_t cwd;
-  uint16_t swd;
-  uint16_t ftw;
-  uint16_t fop;
-  uint64_t rip;
-  uint64_t rdp;
-  uint32_t mxcsr;
-  uint32_t mxcr_mask;
-  struct _fpxreg _st[8];
-  struct _xmmreg _xmm[16];
-  uint32_t padding[24];
-}
- ;
+struct _fpstate {
+    uint16_t cwd;
+    uint16_t swd;
+    uint16_t ftw;
+    uint16_t fop;
+    uint64_t rip;
+    uint64_t rdp;
+    uint32_t mxcsr;
+    uint32_t mxcr_mask;
+    struct _fpxreg _st[8];
+    struct _xmmreg _xmm[16];
+    uint32_t padding[24];
+};
 
-struct sigcontext
-{
-  unsigned long int r8;
-  unsigned long int r9;
-  unsigned long int r10;
-  unsigned long int r11;
-  unsigned long int r12;
-  unsigned long int r13;
-  unsigned long int r14;
-  unsigned long int r15;
-  unsigned long int rdi;
-  unsigned long int rsi;
-  unsigned long int rbp;
-  unsigned long int rbx;
-  unsigned long int rdx;
-  unsigned long int rax;
-  unsigned long int rcx;
-  unsigned long int rsp;
-  unsigned long int rip;
-  unsigned long int eflags;
-  unsigned short cs;
-  unsigned short gs;
-  unsigned short fs;
-  unsigned short __pad0;
-  unsigned long int err;
-  unsigned long int trapno;
-  unsigned long int oldmask;
-  unsigned long int cr2;
-  struct _fpstate *fpstate;
-  unsigned long int __reserved1[8];
-}
- ;
+struct sigcontext {
+    unsigned long int r8;
+    unsigned long int r9;
+    unsigned long int r10;
+    unsigned long int r11;
+    unsigned long int r12;
+    unsigned long int r13;
+    unsigned long int r14;
+    unsigned long int r15;
+    unsigned long int rdi;
+    unsigned long int rsi;
+    unsigned long int rbp;
+    unsigned long int rbx;
+    unsigned long int rdx;
+    unsigned long int rax;
+    unsigned long int rcx;
+    unsigned long int rsp;
+    unsigned long int rip;
+    unsigned long int eflags;
+    unsigned short cs;
+    unsigned short gs;
+    unsigned short fs;
+    unsigned short __pad0;
+    unsigned long int err;
+    unsigned long int trapno;
+    unsigned long int oldmask;
+    unsigned long int cr2;
+    struct _fpstate *fpstate;
+    unsigned long int __reserved1[8];
+};

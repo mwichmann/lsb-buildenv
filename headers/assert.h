@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -12,8 +11,8 @@ extern "C"
 
 
 
-  extern void __assert_fail (const char *, const char *, unsigned int,
-			     const char *);
+    extern void __assert_fail(const char *, const char *, unsigned int,
+			      const char *);
 #ifdef __cplusplus
 }
 #endif

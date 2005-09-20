@@ -4,15 +4,14 @@
 #include <sys/poll.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
 
-  extern int poll (struct pollfd *, nfds_t, int);
+    extern int poll(struct pollfd *, nfds_t, int);
 #ifdef __cplusplus
 }
 #endif

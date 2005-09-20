@@ -1,10 +1,8 @@
 
 typedef unsigned long int XSecurityAuthorization;
-typedef struct
-{
-  unsigned int timeout;
-  unsigned int trust_level;
-  XID group;
-  long int event_mask;
-}
-XSecurityAuthorizationAttributes;
+typedef struct {
+    unsigned int timeout;
+    unsigned int trust_level;
+    XID group;
+    long int event_mask;
+} XSecurityAuthorizationAttributes;

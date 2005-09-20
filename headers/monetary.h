@@ -5,15 +5,14 @@
 #include <stddef.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
 
-  extern ssize_t strfmon (char *, size_t, const char *, ...);
+    extern ssize_t strfmon(char *, size_t, const char *, ...);
 #ifdef __cplusplus
 }
 #endif

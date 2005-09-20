@@ -6,8 +6,7 @@
 #include <stddef.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -43,43 +42,40 @@ extern "C"
 
 
 
-  typedef struct
-  {
-    size_t gl_pathc;
-    char **gl_pathv;
-    size_t gl_offs;
-    int gl_flags;
-    void (*gl_closedir) (void *);
-    struct dirent *(*gl_readdir) (void *);
-    void *(*gl_opendir) (const char *);
-    int (*gl_lstat) (const char *, struct stat *);
-    int (*gl_stat) (const char *, struct stat *);
-  }
-  glob_t;
+    typedef struct {
+	size_t gl_pathc;
+	char **gl_pathv;
+	size_t gl_offs;
+	int gl_flags;
+	void (*gl_closedir) (void *);
+	struct dirent *(*gl_readdir) (void *);
+	void *(*gl_opendir) (const char *);
+	int (*gl_lstat) (const char *, struct stat *);
+	int (*gl_stat) (const char *, struct stat *);
+    } glob_t;
 
 
 
 
-  typedef struct
-  {
-    size_t gl_pathc;
-    char **gl_pathv;
-    size_t gl_offs;
-    int gl_flags;
-    void (*gl_closedir) (void *);
-    struct dirent64 *(*gl_readdir64) (void *);
-    void *(*gl_opendir) (const char *);
-    int (*gl_lstat) (const char *, struct stat *);
-    int (*gl_stat) (const char *, struct stat *);
-  }
-  glob64_t;
+    typedef struct {
+	size_t gl_pathc;
+	char **gl_pathv;
+	size_t gl_offs;
+	int gl_flags;
+	void (*gl_closedir) (void *);
+	struct dirent64 *(*gl_readdir64) (void *);
+	void *(*gl_opendir) (const char *);
+	int (*gl_lstat) (const char *, struct stat *);
+	int (*gl_stat) (const char *, struct stat *);
+    } glob64_t;
 
 
-  extern int glob (const char *, int, int (*)(const char *, int), glob_t *);
-  extern int glob64 (const char *, int, int (*)(const char *, int),
-		     glob64_t *);
-  extern void globfree (glob_t *);
-  extern void globfree64 (glob64_t *);
+    extern int glob(const char *, int, int (*)(const char *, int)
+		    , glob_t *);
+    extern int glob64(const char *, int, int (*)(const char *, int)
+		      , glob64_t *);
+    extern void globfree(glob_t *);
+    extern void globfree64(glob64_t *);
 #ifdef __cplusplus
 }
 #endif

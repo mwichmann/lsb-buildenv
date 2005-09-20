@@ -8,8 +8,7 @@
 #include <rpc/types.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -38,60 +37,50 @@ extern "C"
 	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
 
 
-  enum clnt_stat
-  {
-    RPC_SUCCESS = 0,		/* call succeeded */
-    RPC_CANTENCODEARGS = 1,	/* can't encode arguments */
-    RPC_CANTDECODERES = 2,	/* can't decode results */
-    RPC_CANTSEND = 3,		/* failure in sending call */
-    RPC_CANTRECV = 4,		/* failure in receiving result */
-    RPC_TIMEDOUT = 5,		/* call timed out */
-    RPC_VERSMISMATCH = 6,	/* rpc versions not compatible */
-    RPC_AUTHERROR = 7,		/* authentication error */
-    RPC_PROGUNAVAIL = 8,	/* program not available */
-    RPC_PROGVERSMISMATCH = 9,	/* program version mismatched */
-    RPC_PROCUNAVAIL = 10,	/* procedure unavailable */
-    RPC_CANTDECODEARGS = 11,	/* decode arguments error */
-    RPC_SYSTEMERROR = 12,	/* generic "other problem" */
-    RPC_NOBROADCAST = 21,	/* Broadcasting not supported */
-    RPC_UNKNOWNHOST = 13,	/* unknown host name */
-    RPC_UNKNOWNPROTO = 17,	/* unknown protocol */
-    RPC_UNKNOWNADDR = 19,	/* Remote address unknown */
-    RPC_RPCBFAILURE = 14,	/* portmapper failed in its call */
-    RPC_PROGNOTREGISTERED = 15,	/* remote program is not registered */
-    RPC_N2AXLATEFAILURE = 22,	/* Name to addr translation failed */
-    RPC_FAILED = 16,
-    RPC_INTR = 18,
-    RPC_TLIERROR = 20,
-    RPC_UDERROR = 23,
-    RPC_INPROGRESS = 24,
-    RPC_STALERACHANDLE = 25
-  }
-   ;
+    enum clnt_stat {
+	RPC_SUCCESS = 0,	/* call succeeded */
+	RPC_CANTENCODEARGS = 1,	/* can't encode arguments */
+	RPC_CANTDECODERES = 2,	/* can't decode results */
+	RPC_CANTSEND = 3,	/* failure in sending call */
+	RPC_CANTRECV = 4,	/* failure in receiving result */
+	RPC_TIMEDOUT = 5,	/* call timed out */
+	RPC_VERSMISMATCH = 6,	/* rpc versions not compatible */
+	RPC_AUTHERROR = 7,	/* authentication error */
+	RPC_PROGUNAVAIL = 8,	/* program not available */
+	RPC_PROGVERSMISMATCH = 9,	/* program version mismatched */
+	RPC_PROCUNAVAIL = 10,	/* procedure unavailable */
+	RPC_CANTDECODEARGS = 11,	/* decode arguments error */
+	RPC_SYSTEMERROR = 12,	/* generic "other problem" */
+	RPC_NOBROADCAST = 21,	/* Broadcasting not supported */
+	RPC_UNKNOWNHOST = 13,	/* unknown host name */
+	RPC_UNKNOWNPROTO = 17,	/* unknown protocol */
+	RPC_UNKNOWNADDR = 19,	/* Remote address unknown */
+	RPC_RPCBFAILURE = 14,	/* portmapper failed in its call */
+	RPC_PROGNOTREGISTERED = 15,	/* remote program is not registered */
+	RPC_N2AXLATEFAILURE = 22,	/* Name to addr translation failed */
+	RPC_FAILED = 16,
+	RPC_INTR = 18,
+	RPC_TLIERROR = 20,
+	RPC_UDERROR = 23,
+	RPC_INPROGRESS = 24,
+	RPC_STALERACHANDLE = 25
+    };
 
-  struct rpc_err
-  {
-    enum clnt_stat re_status;
-    union
-    {
-      int RE_errno;
-      enum auth_stat RE_why;
-      struct
-      {
-	u_long low;
-	u_long high;
-      }
-      RE_vers;
-      struct
-      {
-	long int s1;
-	long int s2;
-      }
-      RE_lb;
-    }
-    ru;
-  }
-   ;
+    struct rpc_err {
+	enum clnt_stat re_status;
+	union {
+	    int RE_errno;
+	    enum auth_stat RE_why;
+	    struct {
+		u_long low;
+		u_long high;
+	    } RE_vers;
+	    struct {
+		long int s1;
+		long int s2;
+	    } RE_lb;
+	} ru;
+    };
 
 
 
@@ -99,38 +88,35 @@ extern "C"
 
 
 
-  typedef struct CLIENT
-  {
-    struct AUTH *cl_auth;
-    struct clnt_ops *cl_ops;
-    caddr_t cl_private;
-  }
-  CLIENT;
+    typedef struct CLIENT {
+	struct AUTH *cl_auth;
+	struct clnt_ops *cl_ops;
+	caddr_t cl_private;
+    } CLIENT;
 
 
 
 
-  struct clnt_ops
-  {
-    enum clnt_stat (*cl_call) (struct CLIENT *, u_long, xdrproc_t, caddr_t,
-			       xdrproc_t, caddr_t, struct timeval);
-    void (*cl_abort) (void);
-    void (*cl_geterr) (struct CLIENT *, struct rpc_err *);
-      bool_t (*cl_freeres) (struct CLIENT *, xdrproc_t, caddr_t);
-    void (*cl_destroy) (struct CLIENT *);
-      bool_t (*cl_control) (struct CLIENT *, int, char *);
-  }
-   ;
+    struct clnt_ops {
+	enum clnt_stat (*cl_call) (struct CLIENT *, u_long, xdrproc_t,
+				   caddr_t, xdrproc_t, caddr_t,
+				   struct timeval);
+	void (*cl_abort) (void);
+	void (*cl_geterr) (struct CLIENT *, struct rpc_err *);
+	 bool_t(*cl_freeres) (struct CLIENT *, xdrproc_t, caddr_t);
+	void (*cl_destroy) (struct CLIENT *);
+	 bool_t(*cl_control) (struct CLIENT *, int, char *);
+    };
 
 
-  extern struct CLIENT *clnt_create (const char *, const u_long, const u_long,
-				     const char *);
-  extern void clnt_pcreateerror (const char *);
-  extern void clnt_perrno (enum clnt_stat);
-  extern void clnt_perror (struct CLIENT *, const char *);
-  extern char *clnt_spcreateerror (const char *);
-  extern char *clnt_sperrno (enum clnt_stat);
-  extern char *clnt_sperror (struct CLIENT *, const char *);
+    extern struct CLIENT *clnt_create(const char *, const u_long,
+				      const u_long, const char *);
+    extern void clnt_pcreateerror(const char *);
+    extern void clnt_perrno(enum clnt_stat);
+    extern void clnt_perror(struct CLIENT *, const char *);
+    extern char *clnt_spcreateerror(const char *);
+    extern char *clnt_sperrno(enum clnt_stat);
+    extern char *clnt_sperror(struct CLIENT *, const char *);
 #ifdef __cplusplus
 }
 #endif

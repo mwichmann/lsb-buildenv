@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -14,31 +13,31 @@ extern "C"
 /* Resources*/
 
 
-  typedef unsigned long int XID;
+    typedef unsigned long int XID;
 
-  typedef unsigned long int Atom;
+    typedef unsigned long int Atom;
 
-  typedef unsigned long int VisualID;
+    typedef unsigned long int VisualID;
 
-  typedef unsigned long int Time;
+    typedef unsigned long int Time;
 
-  typedef XID Window;
+    typedef XID Window;
 
-  typedef XID Font;
+    typedef XID Font;
 
-  typedef XID Pixmap;
+    typedef XID Pixmap;
 
-  typedef unsigned char KeyCode;
+    typedef unsigned char KeyCode;
 
-  typedef XID Drawable;
+    typedef XID Drawable;
 
-  typedef XID Cursor;
+    typedef XID Cursor;
 
-  typedef XID Colormap;
+    typedef XID Colormap;
 
-  typedef XID GContext;
+    typedef XID GContext;
 
-  typedef XID KeySym;
+    typedef XID KeySym;
 
 
 /* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/

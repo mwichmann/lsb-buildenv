@@ -4,24 +4,21 @@
 #include <sys/types.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
-  struct tms
-  {
-    clock_t tms_utime;
-    clock_t tms_stime;
-    clock_t tms_cutime;
-    clock_t tms_cstime;
-  }
-   ;
+    struct tms {
+	clock_t tms_utime;
+	clock_t tms_stime;
+	clock_t tms_cutime;
+	clock_t tms_cstime;
+    };
 
 
-  extern clock_t times (struct tms *);
+    extern clock_t times(struct tms *);
 #ifdef __cplusplus
 }
 #endif

@@ -6,8 +6,7 @@
 #include <sys/time.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -75,360 +74,332 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  struct stat
-  {
-    dev_t st_dev;
-    unsigned short __pad1;
-    unsigned long int st_ino;
-    mode_t st_mode;
-    nlink_t st_nlink;
-    pid_t st_uid;
-    gid_t st_gid;
-    dev_t st_rdev;
-    unsigned short __pad2;
-    off_t st_size;
-    blksize_t st_blksize;
-    blkcnt_t st_blocks;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long int __unused4;
-    unsigned long int __unused5;
-  }
-   ;
+    struct stat {
+	dev_t st_dev;
+	unsigned short __pad1;
+	unsigned long int st_ino;
+	mode_t st_mode;
+	nlink_t st_nlink;
+	pid_t st_uid;
+	gid_t st_gid;
+	dev_t st_rdev;
+	unsigned short __pad2;
+	off_t st_size;
+	blksize_t st_blksize;
+	blkcnt_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+    };
 
 #endif
 #if __i386__
 /* IA32 */
-  struct stat64
-  {
-    dev_t st_dev;
-    unsigned int __pad1;
-    ino_t __st_ino;
-    mode_t st_mode;
-    nlink_t st_nlink;
-    uid_t st_uid;
-    gid_t st_gid;
-    dev_t st_rdev;
-    unsigned int __pad2;
-    off64_t st_size;
-    blksize_t st_blksize;
-    blkcnt64_t st_blocks;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    ino64_t st_ino;
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;
+	unsigned int __pad1;
+	ino_t __st_ino;
+	mode_t st_mode;
+	nlink_t st_nlink;
+	uid_t st_uid;
+	gid_t st_gid;
+	dev_t st_rdev;
+	unsigned int __pad2;
+	off64_t st_size;
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	ino64_t st_ino;
+    };
 
 #endif
 #if __ia64__
 /* IA64 */
-  struct stat
-  {
-    dev_t st_dev;
-    ino_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    unsigned int pad0;
-    dev_t st_rdev;
-    off_t st_size;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    blksize_t st_blksize;
-    blkcnt_t st_blocks;
-    unsigned long int __unused[3];
-  }
-   ;
+    struct stat {
+	dev_t st_dev;
+	ino_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	unsigned int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	blksize_t st_blksize;
+	blkcnt_t st_blocks;
+	unsigned long int __unused[3];
+    };
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  struct stat64
-  {
-    dev_t st_dev;		/* Device. */
-    ino64_t st_ino;		/* File serial number. */
-    mode_t st_mode;		/* File mode. */
-    nlink_t st_nlink;		/* Link count. */
-    uid_t st_uid;		/* User ID of the file's owner. */
-    gid_t st_gid;		/* Group ID of the file's group. */
-    dev_t st_rdev;		/* Device number, if device. */
-    unsigned short __pad2;
-    off64_t st_size;		/* Size of file, in bytes. */
-    blksize_t st_blksize;	/* Optimal block size for I/O. */
-    blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long int __unused4;
-    unsigned long int __unused5;
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;		/* Device. */
+	ino64_t st_ino;		/* File serial number. */
+	mode_t st_mode;		/* File mode. */
+	nlink_t st_nlink;	/* Link count. */
+	uid_t st_uid;		/* User ID of the file's owner. */
+	gid_t st_gid;		/* Group ID of the file's group. */
+	dev_t st_rdev;		/* Device number, if device. */
+	unsigned short __pad2;
+	off64_t st_size;	/* Size of file, in bytes. */
+	blksize_t st_blksize;	/* Optimal block size for I/O. */
+	blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+    };
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  struct stat
-  {
-    dev_t st_dev;		/* Device. */
-    unsigned short __pad1;
-    ino_t st_ino;		/* File serial number. */
-    mode_t st_mode;		/* File mode. */
-    nlink_t st_nlink;		/* Link count. */
-    uid_t st_uid;		/* User ID of the file's owner. */
-    gid_t st_gid;		/* Group ID of the file's group. */
-    dev_t st_rdev;		/* Device number, if device. */
-    unsigned short __pad2;
-    off_t st_size;		/* Size of file, in bytes. */
-    blksize_t st_blksize;	/* Optimal block size for I/O. */
-    blkcnt_t st_blocks;		/* Number 512-byte blocks allocated. */
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long int __unused4;
-    unsigned long int __unused5;
-  }
-   ;
+    struct stat {
+	dev_t st_dev;		/* Device. */
+	unsigned short __pad1;
+	ino_t st_ino;		/* File serial number. */
+	mode_t st_mode;		/* File mode. */
+	nlink_t st_nlink;	/* Link count. */
+	uid_t st_uid;		/* User ID of the file's owner. */
+	gid_t st_gid;		/* Group ID of the file's group. */
+	dev_t st_rdev;		/* Device number, if device. */
+	unsigned short __pad2;
+	off_t st_size;		/* Size of file, in bytes. */
+	blksize_t st_blksize;	/* Optimal block size for I/O. */
+	blkcnt_t st_blocks;	/* Number 512-byte blocks allocated. */
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+    };
 
 #endif
 #if __ia64__
 /* IA64 */
-  struct stat64
-  {
-    dev_t st_dev;
-    ino64_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    unsigned int pad0;
-    dev_t st_rdev;
-    off_t st_size;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    blksize_t st_blksize;
-    blkcnt64_t st_blocks;
-    unsigned long int __unused[3];
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	unsigned int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	unsigned long int __unused[3];
+    };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct stat
-  {
-    dev_t st_dev;
-    ino_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    int __pad2;
-    dev_t st_rdev;
-    off_t st_size;
-    blksize_t st_blksize;
-    blkcnt_t st_blocks;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long int __unused4;
-    unsigned long int __unused5;
-    unsigned long int __unused6;
-  }
-   ;
+    struct stat {
+	dev_t st_dev;
+	ino_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int __pad2;
+	dev_t st_rdev;
+	off_t st_size;
+	blksize_t st_blksize;
+	blkcnt_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+	unsigned long int __unused6;
+    };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  struct stat64
-  {
-    dev_t st_dev;
-    ino64_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    int __pad2;
-    dev_t st_rdev;
-    off64_t st_size;
-    blksize_t st_blksize;
-    blkcnt64_t st_blocks;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long int __unused4;
-    unsigned long int __unused5;
-    unsigned long int __unused6;
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int __pad2;
+	dev_t st_rdev;
+	off64_t st_size;
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+	unsigned long int __unused6;
+    };
 
 #endif
 #if __s390x__
 /* S390X */
-  struct stat
-  {
-    dev_t st_dev;
-    ino_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    int pad0;
-    dev_t st_rdev;
-    off_t st_size;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    blksize_t st_blksize;
-    blkcnt_t st_blocks;
-    long int __unused[3];
-  }
-   ;
+    struct stat {
+	dev_t st_dev;
+	ino_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	blksize_t st_blksize;
+	blkcnt_t st_blocks;
+	long int __unused[3];
+    };
 
 #endif
 #if __s390x__
 /* S390X */
-  struct stat64
-  {
-    dev_t st_dev;
-    ino64_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    int pad0;
-    dev_t st_rdev;
-    off_t st_size;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    blksize_t st_blksize;
-    blkcnt64_t st_blocks;
-    long int __unused[3];
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	long int __unused[3];
+    };
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  struct stat
-  {
-    dev_t st_dev;
-    unsigned int __pad1;
-    ino_t st_ino;
-    mode_t st_mode;
-    nlink_t st_nlink;
-    uid_t st_uid;
-    gid_t st_gid;
-    dev_t st_rdev;
-    unsigned int __pad2;
-    off_t st_size;
-    blksize_t st_blksize;
-    blkcnt_t st_blocks;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    unsigned long int __unused4;
-    unsigned long int __unused5;
-  }
-   ;
+    struct stat {
+	dev_t st_dev;
+	unsigned int __pad1;
+	ino_t st_ino;
+	mode_t st_mode;
+	nlink_t st_nlink;
+	uid_t st_uid;
+	gid_t st_gid;
+	dev_t st_rdev;
+	unsigned int __pad2;
+	off_t st_size;
+	blksize_t st_blksize;
+	blkcnt_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct stat
-  {
-    dev_t st_dev;
-    ino_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    int pad0;
-    dev_t st_rdev;
-    off_t st_size;
-    blksize_t st_blksize;
-    blkcnt_t st_blocks;
-    struct timespec st_atim;
-    struct timespec st_mtim;
-    struct timespec st_ctim;
-    unsigned long int __unused[3];
-  }
-   ;
+    struct stat {
+	dev_t st_dev;
+	ino_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	blksize_t st_blksize;
+	blkcnt_t st_blocks;
+	struct timespec st_atim;
+	struct timespec st_mtim;
+	struct timespec st_ctim;
+	unsigned long int __unused[3];
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  struct stat64
-  {
-    dev_t st_dev;
-    ino64_t st_ino;
-    nlink_t st_nlink;
-    mode_t st_mode;
-    uid_t st_uid;
-    gid_t st_gid;
-    int pad0;
-    dev_t st_rdev;
-    off_t st_size;
-    blksize_t st_blksize;
-    blkcnt64_t st_blocks;
-    struct timespec st_atim;
-    struct timespec st_mtim;
-    struct timespec st_ctim;
-    unsigned long int __unused[3];
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	struct timespec st_atim;
+	struct timespec st_mtim;
+	struct timespec st_ctim;
+	unsigned long int __unused[3];
+    };
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  struct stat64
-  {
-    dev_t st_dev;
-    int __pad1;
-    ino_t __st_ino;
-    mode_t st_mode;
-    nlink_t st_nlink;
-    uid_t st_uid;
-    gid_t st_gid;
-    dev_t st_rdev;
-    int __pad2;
-    off64_t st_size;
-    blksize_t st_blksize;
-    blkcnt64_t st_blocks;
-    struct timespec st_atim;	/* Time of last access. */
-    struct timespec st_mtim;	/* Time of last modification. */
-    struct timespec st_ctim;	/* Time of last status change. */
-    ino64_t st_ino;
-  }
-   ;
+    struct stat64 {
+	dev_t st_dev;
+	int __pad1;
+	ino_t __st_ino;
+	mode_t st_mode;
+	nlink_t st_nlink;
+	uid_t st_uid;
+	gid_t st_gid;
+	dev_t st_rdev;
+	int __pad2;
+	off64_t st_size;
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	ino64_t st_ino;
+    };
 
 #endif
 
 
 
 
-  extern int __fxstat (int, int, struct stat *);
-  extern int __fxstat64 (int, int, struct stat64 *);
-  extern int __lxstat (int, const char *, struct stat *);
-  extern int __lxstat64 (int, const char *, struct stat64 *);
-  extern int __xmknod (int, const char *, mode_t, dev_t *);
-  extern int __xstat (int, const char *, struct stat *);
-  extern int __xstat64 (int, const char *, struct stat64 *);
-  extern int mkfifo (const char *, mode_t);
-  extern int chmod (const char *, mode_t);
-  extern int fchmod (int, mode_t);
-  extern mode_t umask (mode_t);
-  extern int stat (const char *, struct stat *);
-  extern int fstat (int, struct stat *);
-  extern int lstat (const char *, struct stat *);
-  extern int stat64 (const char *, struct stat64 *);
-  extern int fstat64 (int, struct stat64 *);
-  extern int lstat64 (const char *, struct stat64 *);
+    extern int __fxstat(int, int, struct stat *);
+    extern int __fxstat64(int, int, struct stat64 *);
+    extern int __lxstat(int, const char *, struct stat *);
+    extern int __lxstat64(int, const char *, struct stat64 *);
+    extern int __xmknod(int, const char *, mode_t, dev_t *);
+    extern int __xstat(int, const char *, struct stat *);
+    extern int __xstat64(int, const char *, struct stat64 *);
+    extern int mkfifo(const char *, mode_t);
+    extern int chmod(const char *, mode_t);
+    extern int fchmod(int, mode_t);
+    extern mode_t umask(mode_t);
+    extern int stat(const char *, struct stat *);
+    extern int fstat(int, struct stat *);
+    extern int lstat(const char *, struct stat *);
+    extern int stat64(const char *, struct stat64 *);
+    extern int fstat64(int, struct stat64 *);
+    extern int lstat64(const char *, struct stat64 *);
 #ifdef __cplusplus
 }
 #endif

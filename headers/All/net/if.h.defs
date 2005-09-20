@@ -12,63 +12,47 @@
 #define IFF_RUNNING	0x40
 #define IFF_NOARP	0x80
 
-struct if_nameindex
-{
-  unsigned int if_index;
-  char *if_name;
-}
- ;
+struct if_nameindex {
+    unsigned int if_index;
+    char *if_name;
+};
 
-struct ifaddr
-{
-  struct sockaddr ifa_addr;
-  union
-  {
-    struct sockaddr ifu_broadaddr;
-    struct sockaddr ifu_dstaddr;
-  }
-  ifa_ifu;
-  void *ifa_ifp;
-  void *ifa_next;
-}
- ;
+struct ifaddr {
+    struct sockaddr ifa_addr;
+    union {
+	struct sockaddr ifu_broadaddr;
+	struct sockaddr ifu_dstaddr;
+    } ifa_ifu;
+    void *ifa_ifp;
+    void *ifa_next;
+};
 
 #define IFNAMSIZ	IF_NAMESIZE
 
-struct ifreq
-{
-  union
-  {
-    char ifrn_name[IFNAMSIZ];
-  }
-  ifr_ifrn;
-  union
-  {
-    struct sockaddr ifru_addr;
-    struct sockaddr ifru_dstaddr;
-    struct sockaddr ifru_broadaddr;
-    struct sockaddr ifru_netmask;
-    struct sockaddr ifru_hwaddr;
-    short ifru_flags;
-    int ifru_ivalue;
-    int ifru_mtu;
-    char ifru_slave[IFNAMSIZ];
-    char ifru_newname[IFNAMSIZ];
-    caddr_t ifru_data;
-    struct ifmap ifru_map;
-  }
-  ifr_ifru;
-}
- ;
+struct ifreq {
+    union {
+	char ifrn_name[IFNAMSIZ];
+    } ifr_ifrn;
+    union {
+	struct sockaddr ifru_addr;
+	struct sockaddr ifru_dstaddr;
+	struct sockaddr ifru_broadaddr;
+	struct sockaddr ifru_netmask;
+	struct sockaddr ifru_hwaddr;
+	short ifru_flags;
+	int ifru_ivalue;
+	int ifru_mtu;
+	char ifru_slave[IFNAMSIZ];
+	char ifru_newname[IFNAMSIZ];
+	caddr_t ifru_data;
+	struct ifmap ifru_map;
+    } ifr_ifru;
+};
 
-struct ifconf
-{
-  int ifc_len;
-  union
-  {
-    caddr_t ifcu_buf;
-    struct ifreq *ifcu_req;
-  }
-  ifc_ifcu;
-}
- ;
+struct ifconf {
+    int ifc_len;
+    union {
+	caddr_t ifcu_buf;
+	struct ifreq *ifcu_req;
+    } ifc_ifcu;
+};

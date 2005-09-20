@@ -5,28 +5,25 @@
 #include <X11/CompositeP.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 #define XtConstraintExtensionVersion	1L
 
 
-  typedef struct _ConstraintPart ConstraintPart;
+    typedef struct _ConstraintPart ConstraintPart;
 
-  typedef struct _ConstraintClassPart ConstraintClassPart;
+    typedef struct _ConstraintClassPart ConstraintClassPart;
 
-  typedef struct _ConstraintClassRec
-  {
-    CoreClassPart core_class;
-    CompositeClassPart composite_class;
-    ConstraintClassPart constraint_class;
-  }
-  ConstraintClassRec;
+    typedef struct _ConstraintClassRec {
+	CoreClassPart core_class;
+	CompositeClassPart composite_class;
+	ConstraintClassPart constraint_class;
+    } ConstraintClassRec;
 
 
-  extern ConstraintClassRec constraintClassRec;
+    extern ConstraintClassRec constraintClassRec;
 #ifdef __cplusplus
 }
 #endif

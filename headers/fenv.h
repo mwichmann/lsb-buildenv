@@ -3,8 +3,7 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -247,37 +246,37 @@ extern "C"
 
 #if __i386__
 /* IA32 */
-  typedef unsigned short fexcept_t;
+    typedef unsigned short fexcept_t;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef unsigned long int fexcept_t;
+    typedef unsigned long int fexcept_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef unsigned int fexcept_t;
+    typedef unsigned int fexcept_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef unsigned int fexcept_t;
+    typedef unsigned int fexcept_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef unsigned int fexcept_t;
+    typedef unsigned int fexcept_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef unsigned int fexcept_t;
+    typedef unsigned int fexcept_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef unsigned short fexcept_t;
+    typedef unsigned short fexcept_t;
 
 #endif
 
@@ -286,80 +285,72 @@ extern "C"
 
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-  typedef double fenv_t;
+    typedef double fenv_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-  typedef double fenv_t;
+    typedef double fenv_t;
 
 #endif
 #if __ia64__
 /* IA64 */
-  typedef unsigned long int fenv_t;
+    typedef unsigned long int fenv_t;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-  typedef struct
-  {
-    fexcept_t fpc;
-    void *ieee_instruction_pointer;
-  }
-  fenv_t;
+    typedef struct {
+	fexcept_t fpc;
+	void *ieee_instruction_pointer;
+    } fenv_t;
 
 #endif
 #if __s390x__
 /* S390X */
-  typedef struct
-  {
-    fexcept_t fpc;
-    void *ieee_instruction_pointer;
-  }
-  fenv_t;
+    typedef struct {
+	fexcept_t fpc;
+	void *ieee_instruction_pointer;
+    } fenv_t;
 
 #endif
 #if __i386__
 /* IA32 */
-  typedef struct
-  {
-    unsigned short __control_word;
-    unsigned short __unused1;
-    unsigned short __status_word;
-    unsigned short __unused2;
-    unsigned short __tags;
-    unsigned short __unused3;
-    unsigned int __eip;
-    unsigned short __cs_selector;
-    unsigned int __opcode:11;
-    unsigned int __unused4:5;
-    unsigned int __data_offset;
-    unsigned short __data_selector;
-    unsigned short __unused5;
-  }
-  fenv_t;
+    typedef struct {
+	unsigned short __control_word;
+	unsigned short __unused1;
+	unsigned short __status_word;
+	unsigned short __unused2;
+	unsigned short __tags;
+	unsigned short __unused3;
+	unsigned int __eip;
+	unsigned short __cs_selector;
+	unsigned int __opcode:11;
+	unsigned int __unused4:5;
+	unsigned int __data_offset;
+	unsigned short __data_selector;
+	unsigned short __unused5;
+    } fenv_t;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-  typedef struct
-  {
-    unsigned short __control_word;
-    unsigned short __unused1;
-    unsigned short __status_word;
-    unsigned short __unused2;
-    unsigned short __tags;
-    unsigned short __unused3;
-    unsigned int __eip;
-    unsigned short __cs_selector;
-    unsigned int __opcode:11;
-    unsigned int __unused4:5;
-    unsigned int __data_offset;
-    unsigned short __data_selector;
-    unsigned short __unused5;
-    unsigned int __mxcsr;
-  }
-  fenv_t;
+    typedef struct {
+	unsigned short __control_word;
+	unsigned short __unused1;
+	unsigned short __status_word;
+	unsigned short __unused2;
+	unsigned short __tags;
+	unsigned short __unused3;
+	unsigned int __eip;
+	unsigned short __cs_selector;
+	unsigned int __opcode:11;
+	unsigned int __unused4:5;
+	unsigned int __data_offset;
+	unsigned short __data_selector;
+	unsigned short __unused5;
+	unsigned int __mxcsr;
+    } fenv_t;
 
 #endif
 
@@ -388,17 +379,17 @@ extern "C"
 
 
 
-  extern int feclearexcept (int);
-  extern int fegetenv (fenv_t *);
-  extern int fegetexceptflag (fexcept_t *, int);
-  extern int fegetround (void);
-  extern int feholdexcept (fenv_t *);
-  extern int feraiseexcept (int);
-  extern int fesetenv (const fenv_t *);
-  extern int fesetexceptflag (const fexcept_t *, int);
-  extern int fesetround (int);
-  extern int fetestexcept (int);
-  extern int feupdateenv (const fenv_t *);
+    extern int feclearexcept(int);
+    extern int fegetenv(fenv_t *);
+    extern int fegetexceptflag(fexcept_t *, int);
+    extern int fegetround(void);
+    extern int feholdexcept(fenv_t *);
+    extern int feraiseexcept(int);
+    extern int fesetenv(const fenv_t *);
+    extern int fesetexceptflag(const fexcept_t *, int);
+    extern int fesetround(int);
+    extern int fetestexcept(int);
+    extern int feupdateenv(const fenv_t *);
 #ifdef __cplusplus
 }
 #endif

@@ -17,45 +17,37 @@ typedef unsigned long int rlim_t;
 typedef unsigned long long int rlim64_t;
 typedef int __rlimit_resource_t;
 
-struct rlimit
-{
-  rlim_t rlim_cur;
-  rlim_t rlim_max;
-}
- ;
-struct rlimit64
-{
-  rlim64_t rlim_cur;
-  rlim64_t rlim_max;
-}
- ;
+struct rlimit {
+    rlim_t rlim_cur;
+    rlim_t rlim_max;
+};
+struct rlimit64 {
+    rlim64_t rlim_cur;
+    rlim64_t rlim_max;
+};
 
-struct rusage
-{
-  struct timeval ru_utime;
-  struct timeval ru_stime;
-  long int ru_maxrss;
-  long int ru_ixrss;
-  long int ru_idrss;
-  long int ru_isrss;
-  long int ru_minflt;
-  long int ru_majflt;
-  long int ru_nswap;
-  long int ru_inblock;
-  long int ru_oublock;
-  long int ru_msgsnd;
-  long int ru_msgrcv;
-  long int ru_nsignals;
-  long int ru_nvcsw;
-  long int ru_nivcsw;
-}
- ;
+struct rusage {
+    struct timeval ru_utime;
+    struct timeval ru_stime;
+    long int ru_maxrss;
+    long int ru_ixrss;
+    long int ru_idrss;
+    long int ru_isrss;
+    long int ru_minflt;
+    long int ru_majflt;
+    long int ru_nswap;
+    long int ru_inblock;
+    long int ru_oublock;
+    long int ru_msgsnd;
+    long int ru_msgrcv;
+    long int ru_nsignals;
+    long int ru_nvcsw;
+    long int ru_nivcsw;
+};
 
-enum __priority_which
-{
-  PRIO_PROCESS, PRIO_PGRP = 1, PRIO_USER = 2
-}
- ;
+enum __priority_which {
+    PRIO_PROCESS, PRIO_PGRP = 1, PRIO_USER = 2
+};
 
 #define PRIO_PGRP	PRIO_PGRP
 #define PRIO_PROCESS	PRIO_PROCESS

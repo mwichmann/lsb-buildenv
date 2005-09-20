@@ -4,8 +4,7 @@
 #include <sys/types.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -436,28 +435,26 @@ extern "C"
 
 
 
-  typedef unsigned int speed_t;
+    typedef unsigned int speed_t;
 
-  typedef unsigned char cc_t;
+    typedef unsigned char cc_t;
 
-  typedef unsigned int tcflag_t;
+    typedef unsigned int tcflag_t;
 
 
 #define NCCS	32
 
 
-  struct termios
-  {
-    tcflag_t c_iflag;		/* input mode flags */
-    tcflag_t c_oflag;		/* output mode flags */
-    tcflag_t c_cflag;		/* control mode flags */
-    tcflag_t c_lflag;		/* local mode flags */
-    cc_t c_line;		/* line discipline */
-    cc_t c_cc[NCCS];		/* control characters */
-    speed_t c_ispeed;		/* input speed */
-    speed_t c_ospeed;		/* output speed */
-  }
-   ;
+    struct termios {
+	tcflag_t c_iflag;	/* input mode flags */
+	tcflag_t c_oflag;	/* output mode flags */
+	tcflag_t c_cflag;	/* control mode flags */
+	tcflag_t c_lflag;	/* local mode flags */
+	cc_t c_line;		/* line discipline */
+	cc_t c_cc[NCCS];	/* control characters */
+	speed_t c_ispeed;	/* input speed */
+	speed_t c_ospeed;	/* output speed */
+    };
 
 
 /* Special Control Characters*/
@@ -1275,19 +1272,19 @@ extern "C"
 
 
 
-  extern speed_t cfgetispeed (const struct termios *);
-  extern speed_t cfgetospeed (const struct termios *);
-  extern void cfmakeraw (struct termios *);
-  extern int cfsetispeed (struct termios *, speed_t);
-  extern int cfsetospeed (struct termios *, speed_t);
-  extern int cfsetspeed (struct termios *, speed_t);
-  extern int tcflow (int, int);
-  extern int tcflush (int, int);
-  extern pid_t tcgetsid (int);
-  extern int tcsendbreak (int, int);
-  extern int tcsetattr (int, int, const struct termios *);
-  extern int tcdrain (int);
-  extern int tcgetattr (int, struct termios *);
+    extern speed_t cfgetispeed(const struct termios *);
+    extern speed_t cfgetospeed(const struct termios *);
+    extern void cfmakeraw(struct termios *);
+    extern int cfsetispeed(struct termios *, speed_t);
+    extern int cfsetospeed(struct termios *, speed_t);
+    extern int cfsetspeed(struct termios *, speed_t);
+    extern int tcflow(int, int);
+    extern int tcflush(int, int);
+    extern pid_t tcgetsid(int);
+    extern int tcsendbreak(int, int);
+    extern int tcsetattr(int, int, const struct termios *);
+    extern int tcdrain(int);
+    extern int tcgetattr(int, struct termios *);
 #ifdef __cplusplus
 }
 #endif

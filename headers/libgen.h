@@ -3,16 +3,15 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
 
-  extern char *basename (const char *);
-  extern char *dirname (char *);
+    extern char *basename(const char *);
+    extern char *dirname(char *);
 #ifdef __cplusplus
 }
 #endif

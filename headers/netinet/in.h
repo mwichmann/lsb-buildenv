@@ -5,8 +5,7 @@
 #include <sys/socket.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -28,7 +27,7 @@ extern "C"
 /* Type to represent a port.*/
 
 
-  typedef uint16_t in_port_t;
+    typedef uint16_t in_port_t;
 
 
 /* Standard well-known ports.*/
@@ -38,13 +37,11 @@ extern "C"
 /* Address structures for IPv4*/
 
 
-  struct in_addr
-  {
-    uint32_t s_addr;
-  }
-   ;
+    struct in_addr {
+	uint32_t s_addr;
+    };
 
-  typedef uint32_t in_addr_t;
+    typedef uint32_t in_addr_t;
 
 
 /* Well Know IPv4 addresses*/
@@ -61,17 +58,13 @@ extern "C"
 #define s6_addr	in6_u.u6_addr8
 
 
-  struct in6_addr
-  {
-    union
-    {
-      uint8_t u6_addr8[16];
-      uint16_t u6_addr16[8];
-      uint32_t u6_addr32[4];
-    }
-    in6_u;
-  }
-   ;
+    struct in6_addr {
+	union {
+	    uint8_t u6_addr8[16];
+	    uint16_t u6_addr16[8];
+	    uint32_t u6_addr32[4];
+	} in6_u;
+    };
 
 
 /* Well known IPV6 addresses*/
@@ -85,14 +78,12 @@ extern "C"
 #define INET_ADDRSTRLEN	16
 
 
-  struct sockaddr_in
-  {
-    sa_family_t sin_family;
-    unsigned short sin_port;
-    struct in_addr sin_addr;
-    unsigned char sin_zero[8];
-  }
-   ;
+    struct sockaddr_in {
+	sa_family_t sin_family;
+	unsigned short sin_port;
+	struct in_addr sin_addr;
+	unsigned char sin_zero[8];
+    };
 
 
 /* Structure describing an Internet socket V6 address.*/
@@ -111,15 +102,13 @@ extern "C"
 #define INET6_ADDRSTRLEN	46
 
 
-  struct sockaddr_in6
-  {
-    unsigned short sin6_family;	/* AF_INET6 */
-    uint16_t sin6_port;		/* Transport layer port # */
-    uint32_t sin6_flowinfo;	/* IPv6 flow information */
-    struct in6_addr sin6_addr;	/* IPv6 address */
-    uint32_t sin6_scope_id;	/* scope id (new in RFC2553) */
-  }
-   ;
+    struct sockaddr_in6 {
+	unsigned short sin6_family;	/* AF_INET6 */
+	uint16_t sin6_port;	/* Transport layer port # */
+	uint32_t sin6_flowinfo;	/* IPv6 flow information */
+	struct in6_addr sin6_addr;	/* IPv6 address */
+	uint32_t sin6_scope_id;	/* scope id (new in RFC2553) */
+    };
 
 
 /* IP Socket options*/
@@ -147,26 +136,22 @@ extern "C"
 /* Multicast interfaces to setsockopt()*/
 
 
-  struct ipv6_mreq
-  {
-    struct in6_addr ipv6mr_multiaddr;	/* IPv6 multicast address of group */
-    int ipv6mr_interface;	/* local IPv6 address of interface */
-  }
-   ;
+    struct ipv6_mreq {
+	struct in6_addr ipv6mr_multiaddr;	/* IPv6 multicast address of group */
+	int ipv6mr_interface;	/* local IPv6 address of interface */
+    };
 
-  struct ip_mreq
-  {
-    struct in_addr imr_multiaddr;	/* IP multicast address of group */
-    struct in_addr imr_interface;	/* local IP address of interface */
-  }
-   ;
+    struct ip_mreq {
+	struct in_addr imr_multiaddr;	/* IP multicast address of group */
+	struct in_addr imr_interface;	/* local IP address of interface */
+    };
 
 
-  extern int bindresvport (int, struct sockaddr_in *);
-  extern uint32_t htonl (uint32_t);
-  extern uint16_t htons (uint16_t);
-  extern uint32_t ntohl (uint32_t);
-  extern uint16_t ntohs (uint16_t);
+    extern int bindresvport(int, struct sockaddr_in *);
+    extern uint32_t htonl(uint32_t);
+    extern uint16_t htons(uint16_t);
+    extern uint32_t ntohl(uint32_t);
+    extern uint16_t ntohs(uint16_t);
 #ifdef __cplusplus
 }
 #endif

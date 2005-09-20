@@ -3,44 +3,37 @@
 
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
 
 
-  struct pam_handle;
+    struct pam_handle;
 
 
 
 
-  typedef struct pam_handle pam_handle_t;
+    typedef struct pam_handle pam_handle_t;
 
-  struct pam_message
-  {
-    int msg_style;
-    const char *msg;
-  }
-   ;
+    struct pam_message {
+	int msg_style;
+	const char *msg;
+    };
 
-  struct pam_response
-  {
-    char *resp;
-    int resp_retcode;		/* currently un-used, zero expected */
-  }
-   ;
+    struct pam_response {
+	char *resp;
+	int resp_retcode;	/* currently un-used, zero expected */
+    };
 
 
 
 
-  struct pam_conv
-  {
-    int (*conv) (int num_msg, const struct pam_message * *msg,
-		 struct pam_response * *resp, void *appdata_ptr);
-    void *appdata_ptr;
-  }
-   ;
+    struct pam_conv {
+	int (*conv) (int num_msg, const struct pam_message * *msg,
+		     struct pam_response * *resp, void *appdata_ptr);
+	void *appdata_ptr;
+    };
 
 
 /* Valid choices for msg_style*/
@@ -104,20 +97,20 @@ extern "C"
 
 
 
-  extern int pam_set_item (pam_handle_t *, int, const void *);
-  extern int pam_get_item (const pam_handle_t *, int, const void **);
-  extern const char *pam_strerror (pam_handle_t *, int);
-  extern char **pam_getenvlist (pam_handle_t *);
-  extern int pam_fail_delay (pam_handle_t *, unsigned int);
-  extern int pam_start (const char *, const char *, const struct pam_conv *,
-			pam_handle_t * *);
-  extern int pam_end (pam_handle_t *, int);
-  extern int pam_authenticate (pam_handle_t *, int);
-  extern int pam_setcred (pam_handle_t *, int);
-  extern int pam_acct_mgmt (pam_handle_t *, int);
-  extern int pam_open_session (pam_handle_t *, int);
-  extern int pam_close_session (pam_handle_t *, int);
-  extern int pam_chauthtok (pam_handle_t *, int);
+    extern int pam_set_item(pam_handle_t *, int, const void *);
+    extern int pam_get_item(const pam_handle_t *, int, const void **);
+    extern const char *pam_strerror(pam_handle_t *, int);
+    extern char **pam_getenvlist(pam_handle_t *);
+    extern int pam_fail_delay(pam_handle_t *, unsigned int);
+    extern int pam_start(const char *, const char *,
+			 const struct pam_conv *, pam_handle_t * *);
+    extern int pam_end(pam_handle_t *, int);
+    extern int pam_authenticate(pam_handle_t *, int);
+    extern int pam_setcred(pam_handle_t *, int);
+    extern int pam_acct_mgmt(pam_handle_t *, int);
+    extern int pam_open_session(pam_handle_t *, int);
+    extern int pam_close_session(pam_handle_t *, int);
+    extern int pam_chauthtok(pam_handle_t *, int);
 #ifdef __cplusplus
 }
 #endif
