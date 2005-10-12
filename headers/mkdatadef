@@ -516,6 +516,42 @@ for(1..$hgh->numrows) {
 		#print $tentry{'Tcomment'}."\n\n";
 		}
 	}
+#
+# now dump out the function prototypes --- see bug 1089
+# while it is questionable if these are really part of "Data Definitions",
+# it can be argued that they are, and that including them increases
+# readability ...
+#
+$nameonly = 1;
+$select  = "SELECT * from Interface ";
+$select .= "LEFT JOIN Type on Ireturn = Tid ";
+$select .= "WHERE Iheader = $Hid AND ";
+$select .= "Istatus in ('Included','Deprecated')";
+print $select,"\n" if $trace;
+$eh = $Dbh->query($select) || die $Dbh->errmsg();
+for (1..$eh->numrows) {
+	%eentry=$eh->fetchhash;
+	printf "extern ";
+	displaytype(\%eentry);
+	printf "%s(", $eentry{'Iname'};
+	$select  = "SELECT * FROM Parameter ";
+	$select .= "LEFT JOIN Type on Ptype=Tid ";
+	$select .= "WHERE Pint=$eentry{'Iid'}";
+	print $select,"\n" if $trace;
+	$ph = $Dbh->query($select) || die $Dbh->errmsg();
+	$moreargs = 0;
+	if ($ph->numrows) {
+		for (1..$ph->numrows) {
+			%pentry = $ph->fetchhash;
+			printf ", " if ($moreargs++);
+			displaytype(\%pentry);
+		}
+	} else {
+		printf "void";
+	}
+	printf ");\n";
+	$totrows++;
+}
 if($totrows == 0) {
 	#
 	# one of two things ....
