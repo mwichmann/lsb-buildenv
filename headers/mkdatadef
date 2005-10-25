@@ -536,7 +536,8 @@ for (1..$eh->numrows) {
 	printf "%s(", $eentry{'Iname'};
 	$select  = "SELECT * FROM Parameter ";
 	$select .= "LEFT JOIN Type on Ptype=Tid ";
-	$select .= "WHERE Pint=$eentry{'Iid'}";
+	$select .= "WHERE Pint=$eentry{'Iid'} ";
+	$select .= "ORDER BY Ppos";
 	print $select,"\n" if $trace;
 	$ph = $Dbh->query($select) || die $Dbh->errmsg();
 	$moreargs = 0;
