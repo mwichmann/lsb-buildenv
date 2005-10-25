@@ -1,0 +1,13 @@
+#ifndef _IOSTREAM_
+#define _IOSTREAM_
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+#endif

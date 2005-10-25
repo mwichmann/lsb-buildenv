@@ -1,0 +1,17 @@
+#ifndef _TYPEINFO_
+#define _TYPEINFO_
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+
+
+    extern _ZTISt9type_info;
+#ifdef __cplusplus
+}
+#endif
+#endif

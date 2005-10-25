@@ -1,0 +1,37 @@
+#ifndef _CTYPE_
+#define _CTYPE_
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+
+
+    extern _ZNSt12ctype_bynameIcED0Ev(void);
+    extern _ZNSt12ctype_bynameIcED1Ev(void);
+    extern _ZNSt12ctype_bynameIcED2Ev(void);
+    extern _ZTISt12ctype_bynameIcE;
+    extern _ZTVSt12ctype_bynameIcE;
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    extern _ZNSt12ctype_bynameIcEC1EPKcj(void);
+#endif
+#if __i386__
+/* IA32 */
+    extern _ZNSt12ctype_bynameIcEC1EPKcj(void);
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    extern _ZNSt12ctype_bynameIcEC2EPKcj(void);
+#endif
+#if __i386__
+/* IA32 */
+    extern _ZNSt12ctype_bynameIcEC2EPKcj(void);
+#endif
+#ifdef __cplusplus
+}
+#endif
+#endif
