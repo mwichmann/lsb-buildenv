@@ -15,3 +15,11 @@ struct dirent64 {
     unsigned char d_type;
     char d_name[256];
 };
+extern void rewinddir(DIR *);
+extern void seekdir(DIR *, long int);
+extern long int telldir(DIR *);
+extern int closedir(DIR *);
+extern DIR *opendir(const char *);
+extern struct dirent *readdir(DIR *);
+extern struct dirent64 *readdir64(DIR *);
+extern int readdir_r(DIR *, struct dirent *, struct dirent **);

@@ -1,5 +1,3 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern int wordexp(const char *, wordexp_t *, int);
+extern void wordfree(wordexp_t *);

@@ -3,3 +3,10 @@ typedef long long int intmax_t;
 typedef unsigned int uintptr_t;
 typedef unsigned long long int uintmax_t;
 typedef unsigned long long int uint64_t;
+
+extern intmax_t strtoimax(const char *, char **, int);
+extern uintmax_t strtoumax(const char *, char **, int);
+extern intmax_t wcstoimax(const wchar_t *, wchar_t * *, int);
+extern uintmax_t wcstoumax(const wchar_t *, wchar_t * *, int);
+extern intmax_t imaxabs(intmax_t);
+extern imaxdiv_t imaxdiv(intmax_t, intmax_t);

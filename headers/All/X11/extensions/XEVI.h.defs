@@ -14,3 +14,7 @@ typedef struct {
     unsigned int num_colormap_conflicts;
     VisualID *colormap_conflicts;
 } ExtendedVisualInfo;
+extern Unknown Type:".."
+XeviGetVisualInfo(Display *, Visual *, int, ExtendedVisualInfo * *, int *);
+extern Unknown Type:".." XeviQueryExtension(Display *);
+extern Unknown Type:".." XeviQueryVersion(Display *, int *, int *);

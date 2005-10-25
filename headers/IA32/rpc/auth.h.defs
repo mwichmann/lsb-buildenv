@@ -1,5 +1,4 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern struct AUTH *authnone_create(void);
+extern int key_decryptsession(char *, union des_block *);
+extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);

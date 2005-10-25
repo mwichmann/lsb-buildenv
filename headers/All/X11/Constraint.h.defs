@@ -1,2 +1,3 @@
 
 typedef struct _ConstraintClassRec *ConstraintWidgetClass;
+extern WidgetClass constraintWidgetClass(void);

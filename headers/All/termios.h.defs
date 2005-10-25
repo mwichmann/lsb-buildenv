@@ -79,3 +79,17 @@ struct termios {
 #define B9600	0000015
 #define B19200	0000016
 #define B38400	0000017
+
+extern speed_t cfgetispeed(const struct termios *);
+extern speed_t cfgetospeed(const struct termios *);
+extern void cfmakeraw(struct termios *);
+extern int cfsetispeed(struct termios *, speed_t);
+extern int cfsetospeed(struct termios *, speed_t);
+extern int cfsetspeed(struct termios *, speed_t);
+extern int tcflow(int, int);
+extern int tcflush(int, int);
+extern pid_t tcgetsid(int);
+extern int tcsendbreak(int, int);
+extern int tcsetattr(int, int, const struct termios *);
+extern int tcdrain(int);
+extern int tcgetattr(int, struct termios *);

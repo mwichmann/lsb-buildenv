@@ -11,3 +11,8 @@ typedef struct {
     char *dli_sname;
     void *dli_saddr;
 } Dl_info;
+extern int dladdr(const void *, Dl_info *);
+extern int dlclose(void *);
+extern char *dlerror(void);
+extern void *dlopen(char *, int);
+extern void *dlsym(void *, char *);

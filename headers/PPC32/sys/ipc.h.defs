@@ -11,3 +11,5 @@ struct ipc_perm {
     unsigned long long int __unused1;
     unsigned long long int __unused2;
 };
+
+extern key_t ftok(char *, int);

@@ -10,3 +10,9 @@ typedef struct xauth {
     unsigned short data_length;
     char *data;
 } Xauth;
+extern void XauDisposeAuth(Xauth *);
+extern char *XauFileName(void);
+extern Xauth *XauGetBestAuthByAddr(unsigned int, unsigned int,
+				   const char *, unsigned int, char *, int,
+				   char **, int *);
+extern Xauth *XauReadAuth(FILE *);

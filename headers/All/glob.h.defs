@@ -43,3 +43,11 @@ typedef struct {
     int (*gl_lstat) (const char *, struct stat *);
     int (*gl_stat) (const char *, struct stat *);
 } glob64_t;
+extern int glob(const char *, int,
+		int (*__errfunc) (const char *p1, int p2)
+		, glob_t *);
+extern int glob64(const char *, int,
+		  int (*__errfunc) (const char *p1, int p2)
+		  , glob64_t *);
+extern void globfree(glob_t *);
+extern void globfree64(glob64_t *);

@@ -1,5 +1,9 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern void rewinddir(DIR *);
+extern void seekdir(DIR *, long int);
+extern long int telldir(DIR *);
+extern int closedir(DIR *);
+extern DIR *opendir(const char *);
+extern struct dirent *readdir(DIR *);
+extern struct dirent64 *readdir64(DIR *);
+extern int readdir_r(DIR *, struct dirent *, struct dirent **);

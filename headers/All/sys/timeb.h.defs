@@ -5,3 +5,4 @@ struct timeb {
     short timezone;
     short dstflag;
 };
+extern int ftime(struct timeb *);

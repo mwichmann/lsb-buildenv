@@ -10,3 +10,8 @@ struct __jmp_buf_tag {
 
 typedef struct __jmp_buf_tag jmp_buf[1];
 typedef jmp_buf sigjmp_buf;
+extern int __sigsetjmp(jmp_buf, int);
+extern void longjmp(jmp_buf, int);
+extern void siglongjmp(sigjmp_buf, int);
+extern void _longjmp(jmp_buf, int);
+extern int _setjmp(jmp_buf);

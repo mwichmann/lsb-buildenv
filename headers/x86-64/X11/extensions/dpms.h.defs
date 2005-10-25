@@ -1,0 +1,12 @@
+
+extern int DPMSCapable(Display *);
+extern int DPMSDisable(Display *);
+extern int DPMSEnable(Display *);
+extern int DPMSForceLevel(Display *, Unknown Type:"..");
+extern int DPMSGetTimeouts(Display *, Unknown Type:".."
+			   *, Unknown Type:".." *, Unknown Type:".." *);
+extern int DPMSGetVersion(Display *, int *, int *);
+extern int DPMSInfo(Display *, Unknown Type:".." *, Unknown Type:".." *);
+extern int DPMSQueryExtension(Display *, int *, int *);
+extern int DPMSSetTimeouts(Display *, Unknown Type:"..", Unknown Type:"..",
+			   Unknown Type:"..");

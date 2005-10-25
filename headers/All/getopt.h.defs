@@ -9,3 +9,7 @@ struct option {
     int *flag;
     int val;
 };
+extern int getopt_long(int, char *const, const char *,
+		       const struct option *, int *);
+extern int getopt_long_only(int, char *const, const char *,
+			    const struct option *, int *);

@@ -5,3 +5,4 @@ struct winsize {
     unsigned short ws_xpixel;
     unsigned short ws_ypixel;
 };
+extern int ioctl(int, unsigned long int, ...);

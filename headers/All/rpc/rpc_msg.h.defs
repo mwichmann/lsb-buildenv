@@ -64,3 +64,4 @@ struct rpc_msg {
 	struct reply_body RM_rmb;
     } ru;
 };
+extern bool_t xdr_callhdr(XDR *, struct rpc_msg *);

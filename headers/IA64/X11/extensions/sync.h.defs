@@ -1,5 +1,36 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern int XSyncAwait(Display *, XSyncWaitCondition *, int);
+extern int XSyncChangeAlarm(Display *, XSyncAlarm, unsigned long int,
+			    XSyncAlarmAttributes *);
+extern int XSyncChangeCounter(Display *, XSyncCounter, XSyncValue);
+extern XSyncAlarm XSyncCreateAlarm(Display *, unsigned long int,
+				   XSyncAlarmAttributes *);
+extern XSyncCounter XSyncCreateCounter(Display *, XSyncValue);
+extern int XSyncDestroyAlarm(Display *, XSyncAlarm);
+extern int XSyncDestroyCounter(Display *, XSyncCounter);
+extern void XSyncFreeSystemCounterList(XSyncSystemCounter *);
+extern int XSyncGetPriority(Display *, XID, int *);
+extern int XSyncInitialize(Display *, int *, int *);
+extern void XSyncIntToValue(XSyncValue *, int);
+extern void XSyncIntsToValue(XSyncValue *, unsigned int, int);
+extern XSyncSystemCounter *XSyncListSystemCounters(Display *, int *);
+extern void XSyncMaxValue(XSyncValue *);
+extern void XSyncMinValue(XSyncValue *);
+extern int XSyncQueryAlarm(Display *, XSyncAlarm, XSyncAlarmAttributes *);
+extern int XSyncQueryCounter(Display *, XSyncCounter, XSyncValue *);
+extern int XSyncQueryExtension(Display *, int *, int *);
+extern int XSyncSetCounter(Display *, XSyncCounter, XSyncValue);
+extern int XSyncSetPriority(Display *, XID, int);
+extern void XSyncValueAdd(XSyncValue *, XSyncValue, XSyncValue, int *);
+extern int XSyncValueEqual(XSyncValue, XSyncValue);
+extern int XSyncValueGreaterOrEqual(XSyncValue, XSyncValue);
+extern int XSyncValueGreaterThan(XSyncValue, XSyncValue);
+extern int XSyncValueHigh32(XSyncValue);
+extern int XSyncValueIsNegative(XSyncValue);
+extern int XSyncValueIsPositive(XSyncValue);
+extern int XSyncValueIsZero(XSyncValue);
+extern int XSyncValueLessOrEqual(XSyncValue, XSyncValue);
+extern int XSyncValueLessThan(XSyncValue, XSyncValue);
+extern unsigned int XSyncValueLow32(XSyncValue);
+extern void XSyncValueSubtract(XSyncValue *, XSyncValue, XSyncValue,
+			       int *);

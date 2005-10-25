@@ -7,3 +7,4 @@
 typedef struct _CompositeClassPart CompositeClassPart;
 
 typedef struct _CompositeClassRec CompositeClassRec;
+extern CompositeClassRec compositeClassRec(void);

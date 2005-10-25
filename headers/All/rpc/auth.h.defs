@@ -34,3 +34,6 @@ struct auth_ops {
     int (*ah_refresh) (struct AUTH *);
     void (*ah_destroy) (struct AUTH *);
 };
+extern struct AUTH *authnone_create(void);
+extern int key_decryptsession(char *, union des_block *);
+extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);

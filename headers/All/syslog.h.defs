@@ -41,3 +41,9 @@
 #define LOG_NDELAY	0x08
 #define LOG_NOWAIT	0x10
 #define LOG_PERROR	0x20
+
+extern void closelog(void);
+extern void openlog(const char *, int, int);
+extern int setlogmask(int);
+extern void syslog(int, const char *, ...);
+extern void vsyslog(int, const char *, va_list);

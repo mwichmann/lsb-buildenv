@@ -1,5 +1,4 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern pid_t wait(int *);
+extern pid_t waitpid(pid_t, int *, int);
+extern pid_t wait4(pid_t, int *, int, struct rusage *);

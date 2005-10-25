@@ -121,3 +121,5 @@
 #define EADDRNOTAVAIL	99
 #define EWOULDBLOCK	EAGAIN
 #define ENOTSUP	EOPNOTSUPP
+
+extern int *__errno_location(void);

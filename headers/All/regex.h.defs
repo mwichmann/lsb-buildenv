@@ -37,3 +37,7 @@ typedef enum {
 	REG_EBRACE, REG_BADBR, REG_ERANGE, REG_ESPACE, REG_BADRPT,
 	REG_EEND, REG_ESIZE, REG_ERPAREN
 } reg_errcode_t;
+extern int regcomp(regex_t *, const char *, int);
+extern size_t regerror(int, const regex_t *, char *, size_t);
+extern int regexec(const regex_t *, const char *, size_t, regmatch_t, int);
+extern void regfree(regex_t *);

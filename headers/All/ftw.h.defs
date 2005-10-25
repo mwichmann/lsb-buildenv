@@ -28,3 +28,7 @@ typedef int (*__nftw_func_t) (char *__filename, struct stat * __status,
 			      int __flag, struct FTW * __info);
 typedef int (*__nftw64_func_t) (char *__filename, struct stat64 * __status,
 				int __flag, struct FTW * __info);
+extern int ftw(const char *, __ftw_func_t, int);
+extern int ftw64(const char *, __ftw64_func_t, int);
+extern int nftw(const char *, __nftw_func_t, int, int);
+extern int nftw64(const char *, __nftw64_func_t, int, int);

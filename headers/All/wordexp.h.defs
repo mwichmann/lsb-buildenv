@@ -14,3 +14,5 @@ enum {
     WRDE_NOSYS, WRDE_NOSPACE, WRDE_BADCHAR, WRDE_BADVAL, WRDE_CMDSUB,
 	WRDE_SYNTAX
 };
+extern int wordexp(const char *, wordexp_t *, int);
+extern void wordfree(wordexp_t *);

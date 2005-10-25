@@ -148,10 +148,6 @@ extern "C" {
 
 
     extern int bindresvport(int, struct sockaddr_in *);
-    extern uint32_t htonl(uint32_t);
-    extern uint16_t htons(uint16_t);
-    extern uint32_t ntohl(uint32_t);
-    extern uint16_t ntohs(uint16_t);
 #ifdef __cplusplus
 }
 #endif

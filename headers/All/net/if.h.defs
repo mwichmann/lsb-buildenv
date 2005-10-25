@@ -56,3 +56,7 @@ struct ifconf {
 	struct ifreq *ifcu_req;
     } ifc_ifcu;
 };
+extern void if_freenameindex(struct if_nameindex *);
+extern char *if_indextoname(unsigned int, char *);
+extern struct if_nameindex *if_nameindex(void);
+extern unsigned int if_nametoindex(const char *);

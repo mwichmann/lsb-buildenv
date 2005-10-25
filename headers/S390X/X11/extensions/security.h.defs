@@ -1,5 +1,9 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern Xauth *XSecurityAllocXauth(void);
+extern void XSecurityFreeXauth(Xauth *);
+extern Xauth *XSecurityGenerateAuthorization(Display *, Xauth *,
+					     unsigned long int,
+					     XSecurityAuthorizationAttributes
+					     *, XSecurityAuthorization *);
+extern int XSecurityQueryExtension(Display *, int *, int *);
+extern int XSecurityRevokeAuthorization(Display *, XSecurityAuthorization);

@@ -1,5 +1,7 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+extern void XauDisposeAuth(Xauth *);
+extern char *XauFileName(void);
+extern Xauth *XauGetBestAuthByAddr(unsigned int, unsigned int,
+				   const char *, unsigned int, char *, int,
+				   char **, int *);
+extern Xauth *XauReadAuth(FILE *);

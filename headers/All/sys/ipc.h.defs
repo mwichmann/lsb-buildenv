@@ -6,3 +6,5 @@
 #define IPC_NOWAIT	00004000
 #define IPC_SET	1
 #define IPC_STAT	2
+
+extern key_t ftok(char *, int);

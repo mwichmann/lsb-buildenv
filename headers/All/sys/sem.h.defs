@@ -13,3 +13,6 @@ struct sembuf {
     short sem_op;
     short sem_flg;
 };
+extern int semctl(int, int, int, ...);
+extern int semget(key_t, int, int);
+extern int semop(int, struct sembuf *, size_t);
