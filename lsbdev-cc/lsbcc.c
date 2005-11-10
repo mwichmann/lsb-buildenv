@@ -354,7 +354,7 @@ return;
  * to list it for "special handling".  Only do this for long options
  * that are really used...
  */
-char *optstr="cL:l:o:ESI:W::su:";
+char *optstr="cL:l:o:ESI:W::su:v";
 struct option long_options[] = {
 	{"include",required_argument,0,0},
 	{"pthread",no_argument,0,0},
@@ -655,6 +655,34 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 * from '-shared'. We just fall through and treat it like
 		 * any other option.
 		 */
+	case 'v':
+		/* Handle the '-v' argument specially to make sure it only
+		 * calls the compiler with the '-v' option and doesn't
+		 * try to send all the other arguments to avoid the need
+		 * of having the compiler call the linker.
+		 */
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -%c\n", c);
+		options=argvinit();
+		gccargs=argvinit();
+		argvaddstring(options,"-v");
+		if( lsbccmode == LSBCPLUS ) {
+		        argvaddstring(gccargs,cxxname);
+		} else {
+		        argvaddstring(gccargs,ccname);
+		}
+		argvappend(gccargs,options);
+
+		/* ensure argument list is null terminated */
+		gccargs->argv[gccargs->numargv] = NULL;
+
+		if( lsbccmode == LSBCPLUS ) {
+		        execvp(cxxname,gccargs->argv);
+		} else {
+		        execvp(ccname,gccargs->argv);
+		}
+
+		exit (EXIT_FAILURE); /* exec must have failed! */
 	case '?':
 		/*
 		 * This is an attempt to catch things that we don't
