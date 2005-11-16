@@ -526,6 +526,7 @@ $nameonly = 1;
 $select  = "SELECT * from Interface ";
 $select .= "LEFT JOIN Type on Ireturn = Tid ";
 $select .= "WHERE Iheader = $Hid AND ";
+$select .= "Iarch = $Aid AND ";
 $select .= "Istatus in ('Included','Deprecated')";
 print $select,"\n" if $trace;
 $eh = $Dbh->query($select) || die $Dbh->errmsg();
