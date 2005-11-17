@@ -8,6 +8,8 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 # Uncomment to trace SQL statments
 #$trace=1;
 
+$funcptrname="";
+
 sub
 usage()
 {
@@ -28,6 +30,10 @@ local($tmh);
 
 #switch ($ttype{'Ttype'})
 
+#if( $$type{'Ttype'} eq "Volatile" ) {
+#	print $$type{'Tname'}."\t";
+#	return;
+#	}
 if( $$type{'Ttype'} eq "Intrinsic" ) {
 	print $$type{'Tname'}."\t";
 	return;
@@ -65,6 +71,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
 		    $entry{'Ttype'} eq 'FuncPtr' ) ||
 		    $entry{'Theadergroup'} != $HGid ) {
+			$funcPtrName=$$type{'Tname'};
 			displaytype(\%entry,1);
 		} else {
 			displaytype(\%entry,$nameonly);
@@ -124,16 +131,18 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
-		$tselect = "SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$tselect  = "SELECT * FROM Type ";
+		$tselect .= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+		$tselect .= "WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
-		# $nameonly=1;
+		$funcPtrName=$tmentry{'TMname'};
 		displaytype(\%entry,1);
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			print "[".$tmentry{'TMarray'}."]";
+			print "[".$entry{'ATsize'}."]";
 			}
 		if( $tmentry{'TMbitfield'} != 0 ) {
 			print ":".$tmentry{'TMbitfield'};
@@ -172,10 +181,12 @@ if( $$type{'Ttype'} eq "Union" ) {
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
-		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$tselect ="SELECT * FROM Type ";
+		$tselect.="LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+		$tselect.="WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
-		# $nameonly=1;
+		$funcPtrName=$tmentry{'TMname'};
 		displaytype(\%entry,1);
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
@@ -220,11 +231,11 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		print $tmentry{'TMname'};
 		# An array doesn't make sense for an enum, so use this to
 		# specify a fixed value.
-		if( $tmentry{'TMarray'} ) {
-			print " = ".$tmentry{'TMarray'};
+		if( $tmentry{'TMposition'} ) {
+			print " = ".$tmentry{'TMposition'};
 			}
 		if( $_ != $tmh->numrows ) {
-			print ",\t";
+			print ",\n";
 			}
 		#print $tmentry{'TMcomment'}."\n";
 		# $nameonly=0;
@@ -241,10 +252,11 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	displaytype(\%entry,1);
 	print "(*"; 
 	$Tid=$$type{'Tid'};
-	if( $$type{'Tname'} =~ "fptr" ) {
-		$$type{'Tname'} =~ s/fptr-//;
-		}
-	print $$type{'Tname'}.")";
+#	if( $$type{'Tname'} =~ "fptr" ) {
+#		$$type{'Tname'} =~ s/fptr-//;
+#		}
+#	print $$type{'Tname'}.")";
+	print $funcPtrName.")";
 	print $$type{'Tcomment'}."(";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
@@ -256,19 +268,19 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
-		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
+		$tselect ="SELECT * FROM Type ";
+		$tselect.="LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+		$tselect.="WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
-		#$nameonly=1;
 		displaytype(\%entry,1);
 		print $tmentry{'TMname'};
-		if( $tmentry{'TMarray'} ) {
-			print "[".$tmentry{'TMarray'}."]";
+		if( $entry{'ATsize'} ) {
+			print "[".$entry{'ATsize'}."]";
 			}
 		if( $_ != $tmh->numrows ) {
 			print ",";
 			}
-		#$nameonly=0;
 		}
 	print ")\n";
 	return;
@@ -280,9 +292,9 @@ if( $$type{'Ttype'} eq "Array" ) {
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
 	displaytype(\%entry,1);
-	if( $$type{'Tname'} =~ "fptr" ) {
-		$$type{'Tname'} =~ s/fptr-//;
-		}
+#	if( $$type{'Tname'} =~ "fptr" ) {
+#		$$type{'Tname'} =~ s/fptr-//;
+#		}
 	#print $$type{'Tname'};
 	#print "[".$$type{'Tsize'}."]";
 	return;
