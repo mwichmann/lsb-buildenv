@@ -649,12 +649,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			fprintf(stderr,"option: -W %s\n", optarg );
 		argvaddstring(userlibs,argv[optind-1]);
 		break;
-	case 's':
-		/*
-		 * We must explicitly recognize '-s' to distinguish it
-		 * from '-shared'. We just fall through and treat it like
-		 * any other option.
-		 */
 	case 'v':
 		/* Handle the '-v' argument specially to make sure it only
 		 * calls the compiler with the '-v' option and doesn't
@@ -683,6 +677,12 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		}
 
 		exit (EXIT_FAILURE); /* exec must have failed! */
+	case 's':
+		/*
+		 * We must explicitly recognize '-s' to distinguish it
+		 * from '-shared'. We just fall through and treat it like
+		 * any other option.
+		 */
 	case '?':
 		/*
 		 * This is an attempt to catch things that we don't
