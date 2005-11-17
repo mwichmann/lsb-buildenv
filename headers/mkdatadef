@@ -240,11 +240,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
-	if( !$nameonly ) {
-		displaytype(\%entry,1);
-	} else {
-		displaytype(\%entry,0);
-		}
+	displaytype(\%entry,1);
 	print "(*"; 
 	$Tid=$$type{'Tid'};
 	if( $$type{'Tname'} =~ "fptr" ) {
