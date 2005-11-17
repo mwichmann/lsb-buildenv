@@ -8,8 +8,6 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 # Uncomment to trace SQL statments
 #$trace=1;
 
-$nameonly=0;
-
 sub
 usage()
 {
@@ -494,7 +492,7 @@ for(1..$hgh->numrows) {
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		if( $tentry{'Aid'} && $tentry{'Aname'} eq "None" ) { next; }
-		displaytype(\%tentry,$nameonly);
+		displaytype(\%tentry,0);
 		print ";\n";
 		$totrows++;
 		#print $tentry{'Tcomment'}."\n\n";
@@ -506,7 +504,6 @@ for(1..$hgh->numrows) {
 # it can be argued that they are, and that including them increases
 # readability ...
 #
-# $nameonly = 1;
 $select  = "SELECT * from Interface ";
 $select .= "LEFT JOIN Type on Ireturn = Tid ";
 $select .= "WHERE Iheader = $Hid AND ";
