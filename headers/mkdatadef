@@ -17,9 +17,9 @@ die "mkdatadef -h <headername> -a <archname>";
 }
 
 sub
-displaytype($)
+displaytype($$)
 {
-local ($type) = @_;
+local ($type,$nameonly) = @_;
 local (*entry,*tentry,*tmentry);
 local($th);
 local($tmh);
@@ -45,11 +45,11 @@ if( $$type{'Ttype'} eq "Const" ) {
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	%type=$sth->fetchhash;
 	if( $type{'Ttype'} eq "Pointer" ) {
-		displaytype(\%type);
+		displaytype(\%type,$nameonly);
 		print "const ";
 	} else {
 		print "const ";
-		displaytype(\%type);
+		displaytype(\%type,$nameonly);
 	}
 	return;
 	}
@@ -67,11 +67,9 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
 		    $entry{'Ttype'} eq 'FuncPtr' ) ||
 		    $entry{'Theadergroup'} != $HGid ) {
-			$nameonly=1;
-			displaytype(\%entry);
-			$nameonly=0;
+			displaytype(\%entry,1);
 		} else {
-			displaytype(\%entry);
+			displaytype(\%entry,$nameonly);
 			}
 		}
 	if( $entry{'Ttype'} ne 'FuncPtr' || $nameonly ) {
@@ -94,15 +92,13 @@ if( $$type{'Ttype'} eq "Pointer" ) {
 	if (!$nameonly) {
 		if( $entry{'Ttype'} eq 'Typedef' ||
 		    $entry{'Ttype'} eq 'FuncPtr' ) {
-			$nameonly=1;
-			displaytype(\%entry);
-			$nameonly=0;
+			displaytype(\%entry,1);
 		} else {
-			displaytype(\%entry);
+			displaytype(\%entry,0);
 			}
 		print "* ";
 	} else {
-		displaytype(\%entry);
+		displaytype(\%entry,1);
 		print "* ";
 	}
 	return;
@@ -133,8 +129,8 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		$tselect = "SELECT * FROM Type WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
-		$nameonly=1;
-		displaytype(\%entry);
+		# $nameonly=1;
+		displaytype(\%entry,1);
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
 			}
@@ -149,7 +145,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		#	print "/* ".$tmentry{'TMcomment'}." */";
 		#	}
 		print "\n";
-		$nameonly=0;
+		# $nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}"; }
 	if( $$type{'Tattribute'} ) {
@@ -181,8 +177,8 @@ if( $$type{'Ttype'} eq "Union" ) {
 		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
-		$nameonly=1;
-		displaytype(\%entry);
+		# $nameonly=1;
+		displaytype(\%entry,1);
 		if( $entry{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry{'TMname'};
 			}
@@ -194,7 +190,7 @@ if( $$type{'Ttype'} eq "Union" ) {
 		#	print "/* ".$tmentry{'TMcomment'}." */";
 		#	}
 		print "\n";
-		$nameonly=0;
+		# $nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
 	return;
@@ -222,7 +218,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		#$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		#%entry=$th->fetchhash;
 		#$nameonly=1;
-		#displaytype(\%entry);
+		#displaytype(\%entry,1);
 		print $tmentry{'TMname'};
 		# An array doesn't make sense for an enum, so use this to
 		# specify a fixed value.
@@ -233,7 +229,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 			print ",\t";
 			}
 		#print $tmentry{'TMcomment'}."\n";
-		$nameonly=0;
+		# $nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
 	return;
@@ -245,11 +241,9 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
 	if( !$nameonly ) {
-		$nameonly=1;
-		displaytype(\%entry);
-		$nameonly=0;
+		displaytype(\%entry,1);
 	} else {
-		displaytype(\%entry);
+		displaytype(\%entry,0);
 		}
 	print "(*"; 
 	$Tid=$$type{'Tid'};
@@ -271,8 +265,8 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
-		$nameonly=1;
-		displaytype(\%entry);
+		#$nameonly=1;
+		displaytype(\%entry,1);
 		print $tmentry{'TMname'};
 		if( $tmentry{'TMarray'} ) {
 			print "[".$tmentry{'TMarray'}."]";
@@ -280,7 +274,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		if( $_ != $tmh->numrows ) {
 			print ",";
 			}
-		$nameonly=0;
+		#$nameonly=0;
 		}
 	print ")\n";
 	return;
@@ -291,13 +285,7 @@ if( $$type{'Ttype'} eq "Array" ) {
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
-	if( !$nameonly ) {
-		$nameonly=1;
-		displaytype(\%entry);
-		$nameonly=0;
-	} else {
-		displaytype(\%entry);
-		}
+	displaytype(\%entry,1);
 	if( $$type{'Tname'} =~ "fptr" ) {
 		$$type{'Tname'} =~ s/fptr-//;
 		}
@@ -510,7 +498,7 @@ for(1..$hgh->numrows) {
 	for(1..$th->numrows) {
 		%tentry=$th->fetchhash;
 		if( $tentry{'Aid'} && $tentry{'Aname'} eq "None" ) { next; }
-		displaytype(\%tentry);
+		displaytype(\%tentry,$nameonly);
 		print ";\n";
 		$totrows++;
 		#print $tentry{'Tcomment'}."\n\n";
@@ -522,7 +510,7 @@ for(1..$hgh->numrows) {
 # it can be argued that they are, and that including them increases
 # readability ...
 #
-$nameonly = 1;
+# $nameonly = 1;
 $select  = "SELECT * from Interface ";
 $select .= "LEFT JOIN Type on Ireturn = Tid ";
 $select .= "WHERE Iheader = $Hid AND ";
@@ -533,7 +521,7 @@ $eh = $Dbh->query($select) || die $Dbh->errmsg();
 for (1..$eh->numrows) {
 	%eentry=$eh->fetchhash;
 	printf "extern ";
-	displaytype(\%eentry);
+	displaytype(\%eentry,1);
 	printf "%s(", $eentry{'Iname'};
 	$select  = "SELECT * FROM Parameter ";
 	$select .= "LEFT JOIN Type on Ptype=Tid ";
@@ -546,7 +534,7 @@ for (1..$eh->numrows) {
 		for (1..$ph->numrows) {
 			%pentry = $ph->fetchhash;
 			printf ", " if ($moreargs++);
-			displaytype(\%pentry);
+			displaytype(\%pentry,1);
 		}
 	} else {
 		printf "void";
