@@ -729,7 +729,18 @@ if (optind < argc) {
 	/* There are no input file, so don't try to link anything */
 	argvreset(proginterp);
 	argvreset(syslibs);
-	}
+}
+
+/*
+ * Check if any parameters/options are passed. 
+ * If not print an error similar to running "gcc"
+ * without any parameters/options
+ */
+if(argc <= 1) {
+    fprintf(stderr, "%s: no input files\n", basename(argv[0]));
+    exit(EXIT_FAILURE);
+}
+
 
 #ifdef LSBCC_EXTRAFLAGS_HACK
 /* Gather options passed through environment variable */
