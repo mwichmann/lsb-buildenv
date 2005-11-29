@@ -30,10 +30,6 @@ local($tmh);
 
 #switch ($ttype{'Ttype'})
 
-#if( $$type{'Ttype'} eq "Volatile" ) {
-#	print $$type{'Tname'}."\t";
-#	return;
-#	}
 if( $$type{'Ttype'} eq "Intrinsic" ) {
 	print $$type{'Tname'}."\t";
 	return;
@@ -44,6 +40,20 @@ if( $$type{'Ttype'} eq "Literal" ) {
 	return;
 	}
 
+if( $$type{'Ttype'} eq "Volatile" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$$type{'Tbasetype'};
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	%type=$sth->fetchhash;
+	if( $type{'Ttype'} eq "Pointer" ) {
+		displaytype(\%type,$nameonly);
+		print "volatile ";
+	} else {
+		print "volatile ";
+		displaytype(\%type,$nameonly);
+	}
+	return;
+	}
+	
 if( $$type{'Ttype'} eq "Const" ) {
 	$select = "SELECT * FROM Type WHERE Tid=".$$type{'Tbasetype'};
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -301,6 +311,8 @@ if( $$type{'Ttype'} eq "Array" ) {
 	}
 
 print "Unknown Type: \".$$type{'Ttype'}.\"\n";
+print STDERR "Unknown Type: \".$$type{'Ttype'}.\"\n";
+exit 2;
 }
 
 sub
@@ -525,6 +537,7 @@ print $select,"\n" if $trace;
 $eh = $Dbh->query($select) || die $Dbh->errmsg();
 for (1..$eh->numrows) {
 	%eentry=$eh->fetchhash;
+	next if ($eentry{'Iname'} =~ m/^_Z.*/);	# skip C++ names
 	printf "extern ";
 	displaytype(\%eentry,1);
 	printf "%s(", $eentry{'Iname'};
