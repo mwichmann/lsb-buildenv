@@ -1,0 +1,449 @@
+2005-11-18	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Patch from bug 1120 for calling with no action specified
+
+2005-11-16	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   need to have -s argument right before -? argument so it will
+	   fall through properly
+
+2005-11-09	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   add special handling for the -v option to make sure the compiler
+	   is only called with this option and avoid the situation where
+	   the compiler gets called with incomplete arguments.
+
+2005-11-08	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.1
+	   fix man page for lsbcc to use /opt/lsb instead of
+	   /opt/lsbdev-base
+
+2005-06-21	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Make pthread always get added
+
+2005-05-02	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Add libXi to builtin list
+
+2005-04-28	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Make sure sure gccbasedir sticks around after utility function
+	   exits
+
+2005-04-01	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Add librt to lib set
+
+2005-02-03	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	  lsbcc.1
+	   change lsb linker to .so.3 for lsbcc
+
+2004-12-20	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   also recognize the -rpath options
+
+2004-12-20	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.1
+	   Fix up formatting brainwarp (R, not P, for "regular" font)
+
+2004-12-16	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   bug 545 - recognize & pass through rpath-link , keeping it's
+	   argument with it
+
+2004-08-13	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Group the parens different. put both terms involving optopt
+	   together
+
+2004-08-12	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* makefile
+	  lsbcc.c
+	   Warning cleanups
+
+2004-07-27	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Handle -pthread option
+
+2004-07-19	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	  lsbcc.1
+	   Fix up documentation for LSB 2.0 linker name (no functional
+	   change in lsbcc)
+
+2004-07-15	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Update program intepreter to .2
+
+2004-06-06	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Bug #250: XOPEN_SOURCE=600 for SUSv3.
+
+2004-05-18	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.1
+	   Wording tweaks
+
+2004-05-16	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	  lsbcc.1
+	  lsbcc.c
+	   Some more tweaks: fill in rest of dynamic linkers (manpage), add
+	   debug print on pthread_nonshared
+
+2004-03-18	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   bug 60 add libpthread_nonshared
+
+2003-12-18	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Don't fail builds which list -lgcc_s. Previously, lsbc++ added
+	   automatically, but it wasn't in the library list so if it
+	   appeared on the cmd line it was turned into a static link. 
+	   THere's no static libgcc_s ...
+
+2003-12-16	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   fix libpath setting for platforms that have libs in lib64 and
+	   cleanup code where /lib64 and /usr/lib64 get added to command
+
+2003-12-15	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   First pass at making lsbcc's paths build-time configurable
+
+2003-12-01	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Recognize, and correctly pass through the 'u' option
+
+2003-11-24	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   add s390x and x86_64 as architectures that usr lib64 for
+	   libraries
+
+2003-11-20	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   changes to handle ppc64 using lib64 for its 64 bit libs
+
+2003-11-19	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Add AMD64
+
+2003-11-03	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Change default path to match new package locations:
+	   /opt/lsb/{lib,include}
+
+2003-10-23	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Don't need the -Bdynamic that used to match the -Bstatic just
+	   taken out
+
+2003-10-07	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Add c++ library to recognized list
+
+2003-08-21	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Generalize the previous fix by recognizing unknown options that
+	   start with '-', and treating them as an option anyway
+
+2003-08-13	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Better handle commandline processing. Need to recognize -include
+	   explicitely
+
+2003-06-06	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   dynamic linker for ppc64 and s390x go in /lib64
+
+2003-04-23	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Looks like we also need -I{C++ include path}/backward, at least
+	   to compile Celestia.  gcc includes this directory and the
+	   target-specific c++ directory as well; we fix the latter in
+	   lsbdev-c++ by simply moving the bits/ files from here into the
+	   main C++ include/bits directory
+
+2003-04-02	Christopher Yeoh <cyeoh_at_samba.org>
+	* lsbcc.c
+	   Adds program interpreter for other architectures
+
+2003-04-01	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	  lsbcc.1
+	   1. Move arglist initialization earlier 2. add gccbasedir to
+	   syslibs instead of libpaths 3. also include
+	   /opt/lsbdev-base/include/c++ in C++ mode 4. add option to
+	   specify alternate C++ include path (and document it)
+
+2003-03-20	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Add the set of feature defines that the LSB is assuming
+
+2003-02-21	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Don't recognize -v. Just let is pass thorugh as an unreognized
+	   option. Instead of reseting the linking stuff when seeing -v (ie
+	   gcc -v to get info), reset it if we have no input files, or more
+	   precisely if there are no arguments that aren't options.
+
+2003-01-28	Christopher Yeoh <cyeoh_at_samba.org>
+	* lsbcc.c
+	   -W option does not take an argument
+
+2003-01-28	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   Make W arg optional
+
+2003-01-16	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   fix the runtime linker for PPC32
+
+2003-01-10	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Need to preserver the position of -Wl, options, like static &
+	   dynamic
+
+2002-11-25	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   use different library search path for ppc64
+
+2002-11-21	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Recognice -v, and don't try to link an app if present
+
+2002-11-20	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Make sure -lgcc_s (if needed) and -lgcc are on the link line
+	   both before and after -lc, to match how gcc/g++ do it. Intends
+	   to eliminate things like __divdi3@@GLIBC_2.0 from appearing as
+	   undefined and needing to be satisfied by glibc. Note that gcc
+	   3.2 also add -lgcc_eh on the link line if not in g++ mode;
+	   that's not reflected here since there is no gcc_eh on pre-3.x
+	   compilers.
+
+2002-11-16	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* makefile
+	   Don't build lsb_release here (removed stuff)
+
+2002-11-14	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Always provide libm. Some configure scripts seem to expect math
+	   symbols to be resolved even though they don't pass in -lm
+
+2002-11-13	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Simplify library rules and add back in -lgcc for c++ builds
+
+2002-11-01	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   System paths were being examined before user-specified paths;
+	   that's not how the compiler is supposed to work.  This fix moves
+	   the system paths to a different argument collection, the one
+	   that's put on the command line last.
+
+2002-10-29	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	  lsbcc.1
+	   Add LSBCC_SHAREDLIBS processing to enable application-supplied
+	   DSOs
+
+2002-10-28	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Add libpam as a LSB library
+
+2002-10-25	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.1
+	   Document recent environment variable additions
+
+2002-10-23	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Try a different algorothm for specifying which libgcc to use.
+	   Further improvement may still be required
+
+2002-10-18	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   Use strdup for tmpbuf to avoid lsb include stepping on lsb lib
+
+2002-10-17	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Add a way to point to non-default libs and/or headers
+
+2002-10-16	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.1
+	   Some more polish (no kraut)
+
+2002-10-11	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   Append -lgcc_s when in c++ mode
+
+2002-09-05	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	  lsbcc.1
+	   Beefed up the manpage a bit
+
+2002-08-30	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   Set end of arg array to null to avoid seg fault
+
+2002-08-14	Stuart Anderson <anderson_at_freestandards.org>
+	* makefile
+	   Add dummy scirps for install/remove _initd, and the needed
+	   makefils to allow the packagins stuff to get to them.
+
+2002-07-11	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Need to link against the system libraries when building a shared
+	   object, so don't reset syslibs
+
+2002-07-10	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Arrange the stdc++ and gcc libs in a better order Check the
+	   lsbccmode to see if we should be execing ccname or cxxname
+	   instead of always execing "cc"
+
+2002-07-08	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	  lsbcc.1
+	  lsbcc.c
+	   Correctly figure out the path to the gcc lib directory
+
+2002-06-28	Stuart Anderson <anderson_at_freestandards.org>
+	* makefile
+	  lsbcc.1
+	  lsbcc.c
+	  makefile
+	   Fix the installs to use the new scheme required by the package
+	   reorganization. also, add an initial man page.
+
+2002-06-21	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Some configure script seem to be sensitvie to extra compiler
+	   output, so comment out our messages
+
+2002-06-19	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Duh... fix the full paths to the program intepreters
+	* lsbcc.c
+	   64 bit fixes 1) Get the prototype for basename from libgen.h 2)
+	   Make the program intepreter architecture sensitive.
+
+2002-06-13	Stuart Anderson <anderson_at_freestandards.org>
+	* makefile
+	  lsbcc.c
+	   Add support for building C++ apps with lsbc++
+
+2002-06-11	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Since we turn off all std libs, we also need to put libgcc at
+	   the end of the command line. This provides some of those odd
+	   helper functions such as __cmpdi3.
+
+2002-06-10	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   It probably is useful to have libc_nonshared.a, but specify it
+	   using -l instead of the absolute path of the file. This lets gcc
+	   handle things right when no files are specified on the command
+	   line.
+
+2002-06-07	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Don't put /usr/lib/libc_nonshared.a at the end of the command
+	   being passed to gcc.  This solves the problem where imake blows
+	   up when it calls "lsbcc -". It apprears that the couple of
+	   things in here are in the shared libc anyway.
+
+2002-06-06	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Oops, left libz out of the list of LSB libraries
+
+2002-05-30	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   The idea was to include /usr/lib/libc.a _After_ everything else
+	   to try and catch any function that otherwise would just not be
+	   available. It turns out that this doesn't work because it can
+	   cause too much stuff to be pulled into the final executable, and
+	   you end up with a hybrid static/shared file that crashes before
+	   main().
+
+2002-05-21	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   Make an arg 'const'
+
+2002-05-20	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc.c
+	   1) libm is an LSB library, so don't force it to be static 2)
+	   Recognize -L options so that -L/usr/lsb/lib ends up being at the
+	   front    of the list to ensure those librariesd get found first.
+	   3) Recognize the "-shared" option and don't specify the system
+	   libraries, etc    if it's found.
+
+2002-05-10	Stuart Anderson <anderson_at_freestandards.org>
+	* makefile
+	  lsbcc
+	  lsbcc.c
+	   The shell script ran out of steam so this is a reimplementation
+	   in C. This fixes most of the problems the shell script was
+	   having, and has the added advantage of giving me the opportunity
+	   to write up the documentation for this. I'm still running this
+	   through the tests/app battery, but so far it seems to be
+	   behaving fine, and handles configure scripts will. I will be
+	   makign another pass through, adding some env variable mechanism
+	   to turn on some debugging, once I finish deciding what might be
+	   interesting to see.
+
+2002-05-08	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   s/XT/Xt/
+
+2002-05-07	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   Why do the GNU tools have to take something simple and make it
+	   hard??? Use the right set of options to get the desired
+	   behaviour of causing non-LSB libraries to be linked statically.
+
+2002-05-01	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc
+	   Added an 'lsbbasedir' define at the top to avoid building in a
+	   path like /usr/lsb far down in the script
+
+2002-04-25	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   Duh.. fix the program intepreter name
+
+2002-04-08	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   Recognize -U
+
+2002-04-07	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   Handle enough of the option to actualyy build XFree86
+
+2002-03-05	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   The time has finally arrived to make lsbcc smarter. I hope this
+	   doesn't get out of hand.  Recognize options that prohibit
+	   linking (E & c) and don't specify all of the library stuff if
+	   they are found. This eliminated some complaints from gcc.
+
+2001-12-18	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   Make sure to hit the lsb headers, even before the gcc headers.
+
+2001-12-17	Stuart Anderson <anderson_at_freestandards.org>
+	* makefile
+	   Add all & distclean targets
+
+2001-11-26	Stuart Anderson <anderson_at_freestandards.org>
+	* lsbcc
+	   Take out the local environment stuff, and link against the
+	   non-shared libc also.
+
+2001-11-20	Stuart Anderson <anderson_at_freestandards.org>
+	* makefile
+	  lsbcc
+	   Add a wrapper lsbcc script that seems to do the right sort of
+	   things
+
+1133373952
