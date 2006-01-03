@@ -152,7 +152,10 @@ if( $$type{'Ttype'} eq "Struct" ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			print "[".$entry{'ATsize'}."]";
+			my $asize = $tmentry{'TMarray'};
+			$asize ||= $entry{'ATSize'};
+			
+			print "[".$asize."]";
 			}
 		if( $tmentry{'TMbitfield'} != 0 ) {
 			print ":".$tmentry{'TMbitfield'};
@@ -202,7 +205,10 @@ if( $$type{'Ttype'} eq "Union" ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			print "[".$tmentry{'TMarray'}."]";
+			my $asize = $tmentry{'TMarray'};
+			$asize ||= $entry{'ATSize'};
+			
+			print "[".$asize."]";
 			}
 		print ";\t";
 		#if( $tmentry{'TMcomment'} ) {
