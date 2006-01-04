@@ -146,7 +146,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		$TMtypeid=$tmentry{'TMtypeid'};
 		$tselect  = "SELECT * FROM Type ";
 		$tselect .= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
-		$tselect.= "LEFT JOIN TypeMember ON TMtypeid=Tid ";
+		# $tselect.= "LEFT JOIN TypeMember ON TMtypeid=Tid ";
 		$tselect .= "WHERE Tid=$TMtypeid";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
@@ -156,7 +156,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			my $bound = $entry{'TMarray'};
+			my $bound = $tmentry{'TMarray'};
 			$bound ||= $entry{'ATsize'};
 			print "[".$bound."]";
 			}
