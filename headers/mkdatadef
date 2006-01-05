@@ -30,6 +30,11 @@ local($tmh);
 
 #switch ($ttype{'Ttype'})
 
+# handle opaque types better ...
+if ($nameonly && $$type{'Ttype'} eq "") {
+	print $$type{'Tname'}; 
+	return; 
+}
 if( $$type{'Ttype'} eq "Intrinsic" ) {
 	print $$type{'Tname'}."\t";
 	return;
@@ -319,8 +324,8 @@ if( $$type{'Ttype'} eq "Array" ) {
 	return;
 	}
 
-print "Unknown Type: \".$$type{'Ttype'}.\"\n";
-print STDERR "Unknown Type: \".$$type{'Ttype'}.\"\n";
+print "Unknown Type: \"$$type{'Ttype'}\"\n";
+print STDERR "Unknown Type: \"$$type{'Ttype'}\" for Tid $$type{'Tid'}\n";
 exit 2;
 }
 
