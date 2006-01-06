@@ -33,10 +33,10 @@ extern "C" {
     } ExtendedVisualInfo;
 
 
-    extern XeviGetVisualInfo(Display *, Visual *, int,
-			     ExtendedVisualInfo * *, int *);
-    extern XeviQueryExtension(Display *);
-    extern XeviQueryVersion(Display *, int *, int *);
+    extern int XeviGetVisualInfo(Display *, Visual *, int,
+				 ExtendedVisualInfo * *, int *);
+    extern int XeviQueryExtension(Display *);
+    extern int XeviQueryVersion(Display *, int *, int *);
 #ifdef __cplusplus
 }
 #endif

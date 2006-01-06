@@ -19,14 +19,14 @@ extern "C" {
     extern XkbAllocKeyboard(void);
     extern int XkbAllocNames(, unsigned int, int, int);
     extern int XkbAllocServerMap(, unsigned int, unsigned int);
-    extern XkbApplyCompatMapToKey(, KeyCode,);
+    extern int XkbApplyCompatMapToKey(, KeyCode,);
     extern int XkbBell(Display *, Window, int, Atom);
     extern int XkbBellEvent(Display *, Window, int, Atom);
-    extern XkbChangeEnabledControls(Display *, unsigned int, unsigned int,
-				    unsigned int);
-    extern XkbChangeMap(Display *,,);
-    extern XkbChangeNames(Display *,,);
-    extern XkbChangeTypesOfKey(, int, int, unsigned int, int *,);
+    extern int XkbChangeEnabledControls(Display *, unsigned int,
+					unsigned int, unsigned int);
+    extern int XkbChangeMap(Display *,,);
+    extern int XkbChangeNames(Display *,,);
+    extern int XkbChangeTypesOfKey(, int, int, unsigned int, int *,);
     extern int XkbComputeEffectiveMap(,, unsigned char *);
     extern int XkbCopyKeyType(,);
     extern int XkbCopyKeyTypes(,, int);
@@ -46,13 +46,14 @@ extern "C" {
     extern int XkbGetIndicatorMap(Display *, unsigned long int,);
     extern int XkbGetIndicatorState(Display *, unsigned int,
 				    unsigned int *);
-    extern XkbGetKeyActions(Display *, unsigned int, unsigned int,);
-    extern XkbGetKeyBehaviors(Display *, unsigned int, unsigned int,);
-    extern XkbGetKeyExplicitComponents(Display *, unsigned int,
-				       unsigned int,);
-    extern XkbGetKeyModifierMap(Display *, unsigned int, unsigned int,);
-    extern XkbGetKeySyms(Display *, unsigned int, unsigned int,);
-    extern XkbGetKeyTypes(Display *, unsigned int, unsigned int,);
+    extern int XkbGetKeyActions(Display *, unsigned int, unsigned int,);
+    extern int XkbGetKeyBehaviors(Display *, unsigned int, unsigned int,);
+    extern int XkbGetKeyExplicitComponents(Display *, unsigned int,
+					   unsigned int,);
+    extern int XkbGetKeyModifierMap(Display *, unsigned int,
+				    unsigned int,);
+    extern int XkbGetKeySyms(Display *, unsigned int, unsigned int,);
+    extern int XkbGetKeyTypes(Display *, unsigned int, unsigned int,);
     extern XkbGetKeyboard(Display *, unsigned int, unsigned int);
     extern XkbGetKeyboardByName(Display *, unsigned int,, unsigned int,
 				unsigned int, int);
@@ -123,11 +124,11 @@ extern "C" {
     extern unsigned int XkbSetXlibControls(Display *, unsigned int,
 					   unsigned int);
     extern char XkbToControl(char);
-    extern XkbTranslateKeyCode(, KeyCode, unsigned int, unsigned int *,
-			       KeySym *);
-    extern XkbTranslateKeySym(Display *, KeySym *, unsigned int, char *,
-			      int, int *);
-    extern XkbUpdateMapFromCore(, KeyCode, int, int, KeySym *,);
+    extern int XkbTranslateKeyCode(, KeyCode, unsigned int, unsigned int *,
+				   KeySym *);
+    extern int XkbTranslateKeySym(Display *, KeySym *, unsigned int,
+				  char *, int, int *);
+    extern int XkbUpdateMapFromCore(, KeyCode, int, int, KeySym *,);
     extern int XkbUseExtension(Display *, int *, int *);
     extern int XkbVirtualModsToReal(, unsigned int, unsigned int *);
 #ifdef __cplusplus
