@@ -18,15 +18,3 @@ typedef unsigned int fexcept_t;
 typedef double fenv_t;
 
 #define FE_DFL_ENV	(&amp;__fe_dfl_env)
-
-extern int feclearexcept(int);
-extern int fegetenv(fenv_t *);
-extern int fegetexceptflag(fexcept_t *, int);
-extern int fegetround(void);
-extern int feholdexcept(fenv_t *);
-extern int feraiseexcept(int);
-extern int fesetenv(const fenv_t *);
-extern int fesetexceptflag(const fexcept_t *, int);
-extern int fesetround(int);
-extern int fetestexcept(int);
-extern int feupdateenv(const fenv_t *);

@@ -1,2 +1,5 @@
 
-extern int utime(const char *, const struct utimbuf *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

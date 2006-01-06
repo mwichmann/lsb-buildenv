@@ -1,2 +1,0 @@
-
-extern int poll(struct pollfd *, nfds_t, int);

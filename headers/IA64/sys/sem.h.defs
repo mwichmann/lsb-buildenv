@@ -7,6 +7,3 @@ struct semid_ds {
     unsigned long int __unused1;
     unsigned long int __unused2;
 };
-extern int semctl(int, int, int, ...);
-extern int semget(key_t, int, int);
-extern int semop(int, struct sembuf *, size_t);

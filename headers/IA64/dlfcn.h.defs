@@ -1,6 +1,5 @@
 
-extern int dladdr(const void *, Dl_info *);
-extern int dlclose(void *);
-extern char *dlerror(void);
-extern void *dlopen(char *, int);
-extern void *dlsym(void *, char *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

@@ -1,10 +1,5 @@
 
-extern char *IceAuthFileName(void);
-extern void IceFreeAuthFileEntry(IceAuthFileEntry *);
-extern char *IceGenerateMagicCookie(int);
-extern IceAuthFileEntry *IceGetAuthFileEntry(char *, char *, char *);
-extern int IceLockAuthFile(char *, int, int, long int);
-extern IceAuthFileEntry *IceReadAuthFileEntry(FILE);
-extern void IceSetPaAuthData(int, IceAuthDataEntry *);
-extern void IceUnlockAuthFile(char *);
-extern int IceWriteAuthFileEntry(FILE, IceAuthFileEntry *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

@@ -15,7 +15,9 @@ typedef struct {
 } SmProp;
 
 typedef enum {
-    SmcClosedNow, SmcClosedASAP, SmcConnectionInUse
+    SmcClosedNow,
+    SmcClosedASAP,
+    SmcConnectionInUse
 } SmcCloseStatus;
 
 typedef void (*SmcSaveYourselfPhase2Proc) (void);

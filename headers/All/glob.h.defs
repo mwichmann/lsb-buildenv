@@ -38,16 +38,15 @@ typedef struct {
     size_t gl_offs;
     int gl_flags;
     void (*gl_closedir) (void *);
-    struct dirent64 *(*gl_readdir64) (void *);
+    struct dirent64 *(*gl_readdir) (void *);
     void *(*gl_opendir) (const char *);
     int (*gl_lstat) (const char *, struct stat *);
     int (*gl_stat) (const char *, struct stat *);
 } glob64_t;
-extern int glob(const char *, int,
-		int (*__errfunc) (const char *p1, int p2)
+extern int glob(const char *, int, int (*gl_stat) (const char *p1, int p2)
 		, glob_t *);
 extern int glob64(const char *, int,
-		  int (*__errfunc) (const char *p1, int p2)
+		  int (*gl_stat) (const char *p1, int p2)
 		  , glob64_t *);
 extern void globfree(glob_t *);
 extern void globfree64(glob64_t *);

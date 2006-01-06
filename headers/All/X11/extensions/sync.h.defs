@@ -28,14 +28,19 @@ typedef struct _XSyncValue {
     unsigned int lo;
 } XSyncValue;
 typedef enum {
-    XSyncAbsolute, XSyncRelative
+    XSyncAbsolute,
+    XSyncRelative
 } XSyncValueType;
 typedef enum {
-    XSyncPositiveTransition, XSyncNegativeTransition,
-	XSyncPositiveComparison, XSyncNegativeComparison
+    XSyncPositiveTransition,
+    XSyncNegativeTransition,
+    XSyncPositiveComparison,
+    XSyncNegativeComparison
 } XSyncTestType;
 typedef enum {
-    XSyncAlarmActive, XSyncAlarmInactive, XSyncAlarmDestroyed
+    XSyncAlarmActive,
+    XSyncAlarmInactive,
+    XSyncAlarmDestroyed
 } XSyncAlarmState;
 extern int XSyncAwait(Display *, XSyncWaitCondition *, int);
 extern int XSyncChangeAlarm(Display *, XSyncAlarm, unsigned long int,

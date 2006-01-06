@@ -1,4 +1,2 @@
 
 #define EDEADLOCK	58
-
-extern int *__errno_location(void);

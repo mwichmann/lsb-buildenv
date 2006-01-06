@@ -1,9 +1,0 @@
-
-extern char XtShellStrings(void);
-extern WidgetClass applicationShellWidgetClass(void);
-extern WidgetClass overrideShellWidgetClass(void);
-extern WidgetClass sessionShellWidgetClass(void);
-extern WidgetClass shellWidgetClass(void);
-extern WidgetClass topLevelShellWidgetClass(void);
-extern WidgetClass transientShellWidgetClass(void);
-extern WidgetClass wmShellWidgetClass(void);

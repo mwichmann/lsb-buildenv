@@ -1,8 +1,2 @@
 
 typedef long int __jmp_buf[70] __attribute__ ((aligned(16)));
-
-extern int __sigsetjmp(jmp_buf, int);
-extern void longjmp(jmp_buf, int);
-extern void siglongjmp(sigjmp_buf, int);
-extern void _longjmp(jmp_buf, int);
-extern int _setjmp(jmp_buf);

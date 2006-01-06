@@ -46,7 +46,9 @@ struct rusage {
 };
 
 enum __priority_which {
-    PRIO_PROCESS, PRIO_PGRP = 1, PRIO_USER = 2
+    PRIO_PROCESS = 0,
+    PRIO_PGRP = 1,
+    PRIO_USER = 2
 };
 
 #define PRIO_PGRP	PRIO_PGRP

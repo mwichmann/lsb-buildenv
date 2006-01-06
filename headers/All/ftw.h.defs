@@ -8,11 +8,20 @@
 #define FTW_SLN	FTW_SLN
 
 enum {
-    FTW_F, FTW_D, FTW_DNR, FTW_NS, FTW_SL, FTW_DP, FTW_SLN
+    FTW_F,
+    FTW_D,
+    FTW_DNR,
+    FTW_NS,
+    FTW_SL,
+    FTW_DP,
+    FTW_SLN
 };
 
 enum {
-    FTW_PHYS, FTW_MOUNT, FTW_CHDIR, FTW_DEPTH
+    FTW_PHYS,
+    FTW_MOUNT,
+    FTW_CHDIR,
+    FTW_DEPTH
 };
 
 struct FTW {

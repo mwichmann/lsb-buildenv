@@ -397,7 +397,7 @@ extern int refresh(void);
 extern int resetty(void);
 extern int reset_prog_mode(void);
 extern int reset_shell_mode(void);
-extern int ripoffline(int, int (*init) (WINDOW *, int)
+extern int ripoffline(int, int (*_bkgrnd) (WINDOW *, int)
     );
 extern int savetty(void);
 extern int scanw(const char *, ...);
@@ -405,15 +405,15 @@ extern int scr_dump(const char *);
 extern int scr_init(const char *);
 extern int scrl(int);
 extern int scroll(WINDOW *);
-extern int scrollok(WINDOW *, typedef unsigned char bool);
+extern int scrollok(WINDOW *, bool);
 extern int scr_restore(const char *);
 extern int scr_set(const char *);
 extern int setscrreg(int, int);
 extern SCREEN *set_term(SCREEN *);
-extern int slk_attroff(const typedef unsigned long int chtype);
-extern int slk_attron(const typedef unsigned long int chtype);
-extern int slk_attrset(const typedef unsigned long int chtype);
-extern int slk_attr_set(const typedef chtype attr_t, short, void *);
+extern int slk_attroff(const chtype);
+extern int slk_attron(const chtype);
+extern int slk_attrset(const chtype);
+extern int slk_attr_set(const attr_t, short, void *);
 extern int slk_clear(void);
 extern int slk_color(short);
 extern int slk_init(int);
@@ -428,48 +428,39 @@ extern int standend(void);
 extern int start_color(void);
 extern WINDOW *subpad(WINDOW *, int, int, int, int);
 extern WINDOW *subwin(WINDOW *, int, int, int, int);
-extern int syncok(WINDOW *, typedef unsigned char bool);
-extern typedef unsigned long int chtype termattrs(void);
+extern int syncok(WINDOW *, bool);
+extern chtype termattrs(void);
 extern char *termname(void);
 extern void timeout(int);
 extern int typeahead(int);
 extern int ungetch(int);
 extern int untouchwin(WINDOW *);
-extern void use_env(typedef unsigned char bool);
-extern int vidattr(typedef unsigned long int chtype);
-extern int vidputs(typedef unsigned long int chtype,
-		   int (*vidputs_int) (int)
+extern void use_env(bool);
+extern int vidattr(chtype);
+extern int vidputs(chtype, int (*_bkgrnd) (int)
     );
-extern int vline(typedef unsigned long int chtype, int);
-extern int vwprintw(WINDOW *, char *, typedef void *va_list);
-extern int vw_printw(WINDOW *, const char *, typedef void *va_list);
-extern int vwscanw(WINDOW *, const char *, typedef void *va_list);
-extern int vw_scanw(WINDOW *, const char *, typedef void *va_list);
-extern int waddch(WINDOW *, const typedef unsigned long int chtype);
-extern int waddchnstr(WINDOW *, const typedef unsigned long int chtype *,
-		      int);
-extern int waddchstr(WINDOW *, const typedef unsigned long int chtype *);
+extern int vline(chtype, int);
+extern int vwprintw(WINDOW *, char *, va_list);
+extern int vw_printw(WINDOW *, const char *, va_list);
+extern int vwscanw(WINDOW *, const char *, va_list);
+extern int vw_scanw(WINDOW *, const char *, va_list);
+extern int waddch(WINDOW *, const chtype);
+extern int waddchnstr(WINDOW *, const chtype *, int);
+extern int waddchstr(WINDOW *, const chtype *);
 extern int waddnstr(WINDOW *, const char *, int);
 extern int waddstr(WINDOW *, const char *);
 extern int wattron(WINDOW *, int);
 extern int wattroff(WINDOW *, int);
 extern int wattrset(WINDOW *, int);
 extern int wattr_get(WINDOW *, attr_t *, short *, void *);
-extern int wattr_on(WINDOW *, typedef chtype attr_t, void *);
-extern int wattr_off(WINDOW *, typedef chtype attr_t, void *);
-extern int wattr_set(WINDOW *, typedef chtype attr_t, short, void *);
-extern int wbkgd(WINDOW *, typedef unsigned long int chtype);
-extern void wbkgdset(WINDOW *, typedef unsigned long int chtype);
-extern int wborder(WINDOW *, typedef unsigned long int chtype,
-		   typedef unsigned long int chtype,
-		   typedef unsigned long int chtype,
-		   typedef unsigned long int chtype,
-		   typedef unsigned long int chtype,
-		   typedef unsigned long int chtype,
-		   typedef unsigned long int chtype,
-		   typedef unsigned long int chtype);
-extern int wchgat(WINDOW *, int, typedef chtype attr_t, short,
-		  const void *);
+extern int wattr_on(WINDOW *, attr_t, void *);
+extern int wattr_off(WINDOW *, attr_t, void *);
+extern int wattr_set(WINDOW *, attr_t, short, void *);
+extern int wbkgd(WINDOW *, chtype);
+extern void wbkgdset(WINDOW *, chtype);
+extern int wborder(WINDOW *, chtype, chtype, chtype, chtype, chtype,
+		   chtype, chtype, chtype);
+extern int wchgat(WINDOW *, int, attr_t, short, const void *);
 extern int wclear(WINDOW *);
 extern int wclrtobot(WINDOW *);
 extern int wclrtoeol(WINDOW *);
@@ -477,17 +468,17 @@ extern int wcolor_set(WINDOW *, short, void *);
 extern void wcursyncup(WINDOW *);
 extern int wdelch(WINDOW *);
 extern int wdeleteln(WINDOW *);
-extern int wechochar(WINDOW *, const typedef unsigned long int chtype);
+extern int wechochar(WINDOW *, const chtype);
 extern int werase(WINDOW *);
 extern int wgetch(WINDOW *);
 extern int wgetnstr(WINDOW *, char *, int);
 extern int wgetstr(WINDOW *, char *);
-extern int whline(WINDOW *, typedef unsigned long int chtype, int);
-extern typedef unsigned long int chtype winch(WINDOW *);
+extern int whline(WINDOW *, chtype, int);
+extern chtype winch(WINDOW *);
 extern int winchnstr(WINDOW *, chtype *, int);
 extern int winchstr(WINDOW *, chtype *);
 extern int winnstr(WINDOW *, char *, int);
-extern int winsch(WINDOW *, typedef unsigned long int chtype);
+extern int winsch(WINDOW *, chtype);
 extern int winsdelln(WINDOW *, int);
 extern int winsertln(WINDOW *);
 extern int winsnstr(WINDOW *, const char *, int);
@@ -507,8 +498,8 @@ extern void wsyncdown(WINDOW *);
 extern void wsyncup(WINDOW *);
 extern void wtimeout(WINDOW *, int);
 extern int wtouchln(WINDOW *, int, int, int);
-extern int wvline(WINDOW *, typedef unsigned long int chtype, int);
-extern char *unctrl(typedef unsigned long int chtype);
+extern int wvline(WINDOW *, chtype, int);
+extern char *unctrl(chtype);
 extern int COLORS(void);
 extern int COLOR_PAIRS(void);
 extern chtype acs_map(void);

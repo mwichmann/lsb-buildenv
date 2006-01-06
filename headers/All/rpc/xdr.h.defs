@@ -1,6 +1,8 @@
 
 enum xdr_op {
-    XDR_ENCODE, XDR_DECODE, XDR_FREE
+    XDR_ENCODE,
+    XDR_DECODE,
+    XDR_FREE
 };
 typedef struct XDR {
     enum xdr_op x_op;
@@ -57,7 +59,7 @@ extern bool_t xdr_void(void);
 extern bool_t xdr_wrapstring(XDR *, char **);
 extern void xdrmem_create(XDR *, caddr_t, u_int, enum xdr_op);
 extern void xdrrec_create(XDR *, u_int, u_int, caddr_t,
-			  int (*__readit) (char *p1, char *p2, int p3)
-			  , int (*__writeit) (char *p1, char *p2, int p3)
+			  int (*proc) (char *p1, char *p2, int p3)
+			  , int (*proc) (char *p1, char *p2, int p3)
     );
-extern typedef int bool_t xdrrec_eof(XDR *);
+extern bool_t xdrrec_eof(XDR *);

@@ -32,10 +32,24 @@ typedef struct {
 #define REG_NOTBOL	1
 
 typedef enum {
-    REG_ENOSYS, REG_NOERROR, REG_NOMATCH, REG_BADPAT, REG_ECOLLATE,
-	REG_ECTYPE, REG_EESCAPE, REG_ESUBREG, REG_EBRACK, REG_EPAREN,
-	REG_EBRACE, REG_BADBR, REG_ERANGE, REG_ESPACE, REG_BADRPT,
-	REG_EEND, REG_ESIZE, REG_ERPAREN
+    REG_ENOSYS,
+    REG_NOERROR,
+    REG_NOMATCH,
+    REG_BADPAT,
+    REG_ECOLLATE,
+    REG_ECTYPE,
+    REG_EESCAPE,
+    REG_ESUBREG,
+    REG_EBRACK,
+    REG_EPAREN,
+    REG_EBRACE,
+    REG_BADBR,
+    REG_ERANGE,
+    REG_ESPACE,
+    REG_BADRPT,
+    REG_EEND,
+    REG_ESIZE,
+    REG_ERPAREN
 } reg_errcode_t;
 extern int regcomp(regex_t *, const char *, int);
 extern size_t regerror(int, const regex_t *, char *, size_t);

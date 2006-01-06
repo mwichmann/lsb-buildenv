@@ -15,10 +15,3 @@ struct utmpx {
     int32_t ut_addr_v6[4];
     char __unused[20];
 };
-
-extern void endutxent(void);
-extern struct utmpx *getutxent(void);
-extern struct utmpx *getutxid(const struct utmpx *);
-extern struct utmpx *getutxline(const struct utmpx *);
-extern struct utmpx *pututxline(const struct utmpx *);
-extern void setutxent(void);

@@ -2,6 +2,3 @@
 #define F_GETLK64	12
 #define F_SETLK64	13
 #define F_SETLKW64	14
-
-extern int lockf64(int, int, off64_t);
-extern int fcntl(int, int, ...);

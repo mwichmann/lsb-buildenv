@@ -1,4 +1,5 @@
 
-extern size_t iconv(iconv_t, char **, size_t *, char **, size_t *);
-extern int iconv_close(iconv_t);
-extern iconv_t iconv_open(char *, char *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

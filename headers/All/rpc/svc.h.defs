@@ -6,7 +6,9 @@
 	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
 
 enum xprt_stat {
-    XPRT_DIED, XPRT_MOREREQS, XPRT_IDLE
+    XPRT_DIED,
+    XPRT_MOREREQS,
+    XPRT_IDLE
 };
 
 typedef struct SVCXPRT {

@@ -1,9 +1,5 @@
 
-extern int glob(const char *, int,
-		int (*__errfunc) (const char *p1, int p2)
-		, glob_t *);
-extern int glob64(const char *, int,
-		  int (*__errfunc) (const char *p1, int p2)
-		  , glob64_t *);
-extern void globfree(glob_t *);
-extern void globfree64(glob64_t *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

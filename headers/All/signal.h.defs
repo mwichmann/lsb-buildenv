@@ -73,7 +73,7 @@ typedef struct sigevent {
     union {
 	int _pad[SIGEV_PAD_SIZE];
 	struct {
-	    void (*sigev_thread_func) (sigval_t);
+	    void (*_function) (sigval_t);
 	    void *_attribute;
 	} _sigev_thread;
     } _sigev_un;

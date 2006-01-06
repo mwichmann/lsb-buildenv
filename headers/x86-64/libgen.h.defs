@@ -1,3 +1,0 @@
-
-extern char *basename(const char *);
-extern char *dirname(char *);

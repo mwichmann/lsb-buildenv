@@ -1,16 +1,23 @@
 
 enum msg_type {
-    CALL, REPLY = 1
+    CALL = 0,
+    REPLY = 1
 };
 enum reply_stat {
-    MSG_ACCEPTED, MSG_DENIED = 1
+    MSG_ACCEPTED = 0,
+    MSG_DENIED = 1
 };
 enum accept_stat {
-    SUCCESS, PROG_UNAVAIL = 1, PROG_MISMATCH = 2, PROC_UNAVAIL =
-	3, GARBAGE_ARGS = 4, SYSTEM_ERR = 5
+    SUCCESS = 0,
+    PROG_UNAVAIL = 1,
+    PROG_MISMATCH = 2,
+    PROC_UNAVAIL = 3,
+    GARBAGE_ARGS = 4,
+    SYSTEM_ERR = 5
 };
 enum reject_stat {
-    RPC_MISMATCH, AUTH_ERROR = 1
+    RPC_MISMATCH = 0,
+    AUTH_ERROR = 1
 };
 
 struct accepted_reply {

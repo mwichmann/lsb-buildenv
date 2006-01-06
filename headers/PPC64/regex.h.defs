@@ -1,5 +1,5 @@
 
-extern int regcomp(regex_t *, const char *, int);
-extern size_t regerror(int, const regex_t *, char *, size_t);
-extern int regexec(const regex_t *, const char *, size_t, regmatch_t, int);
-extern void regfree(regex_t *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

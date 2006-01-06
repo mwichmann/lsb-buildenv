@@ -1,6 +1,5 @@
 
-extern void closelog(void);
-extern void openlog(const char *, int, int);
-extern int setlogmask(int);
-extern void syslog(int, const char *, ...);
-extern void vsyslog(int, const char *, va_list);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */
