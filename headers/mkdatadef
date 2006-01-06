@@ -213,7 +213,9 @@ if( $$type{'Ttype'} eq "Union" ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			print "[".$tmentry{'TMarray'}."]";
+			my $bound = $tmentry{'TMarray'};
+			$bound ||= $entry{'ATsize'};
+			print "[".$bound."]";
 			}
 		print ";\t";
 		#if( $tmentry{'TMcomment'} ) {
