@@ -242,7 +242,7 @@ for(i=0;i<ag->numargv;i++)
  * a few routines here that are used to do the special processing.
  */
 
-char *lsb_corelibs[] = {
+char *default_lsblibs[] = {
 	"c",		/* core module */
 	"crypt",
 	"dl",
@@ -254,6 +254,7 @@ char *lsb_corelibs[] = {
 	"rt",
 	"util",
 	"z",
+	"stdc++",	/* c++ module */
 	"GL",		/* graphics module */
 	"ICE",
 	"SM",
@@ -261,32 +262,7 @@ char *lsb_corelibs[] = {
 	"Xext",
 	"Xi",
 	"Xt",
-	NULL
-};
-
-char *lsb_cpluslibs[] = {
-	"stdc++",
-	NULL
-};
-
-char *lsb_desktop[] = {
-	"glib-2.0",
-	"gthread-2.0",
-	"gobject-2.0",
-	"gmodule-2.0",
-	"atk-1.0",
-	"pango-1.0",
-	"pangoxft-1.0",
-	"pangoft2-1.0",
-	"gdk-x11-2.0",
-	"gdk_pixbux_xlib-2.0",
-	"gdk_pixbuf-2.0",
-	"gtk-x11-2.0",
-	"xml2",
-	"jpeg",
-	"png12",
-	"fontconfig",
-	NULL
+	0
 };
 
 void
@@ -385,7 +361,6 @@ struct option long_options[] = {
 	{"rpath",required_argument,0,0},
 	{"rpath-link",required_argument,0,0},
 	{"shared",no_argument,0,0},
-	{"lsb-product", required_argument, 0, 1},
 	{NULL,0,0,0}
 	};
 
@@ -433,14 +408,12 @@ int numfeaturesettings=(sizeof(featuresettings)/sizeof(char *));
 
 int main(int argc, char *argv[])
 {
-int		c,i, ignored_args=0;
-int		option_index;
-int		desktop_product = 0;
-int		auto_pthread;
+int	c,i;
+int	option_index;
+int 	auto_pthread;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
-char	**tmp_argv;
 
 /*
  * Set up the paths we will need
@@ -504,40 +477,13 @@ if( (ptr=getenv("LSBCXX_INCLUDES")) != NULL ) {
 		fprintf(stderr,"c++ include prefix set to %s\n", cxxincpath );
 	}
 
-
-if( lsbcc_debug&DEBUG_ARGUMENTS ) {
-	for(i=0;i<argc;i++)
-		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
-}
-	
-/* Determine if we are being called for C or C++ */
-if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
-	/* We are compiling C++ - set a flag to affect some things later on */
-	/*
-	fprintf(stderr,"Using C++ mode\n");
-	*/
-	lsbccmode=LSBCPLUS;
-}
-
-
 /*
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
  */
 lsblibs=argvinit();
-for(i=0;lsb_corelibs[i]; i++)
-	argvaddstring(lsblibs, strdup(lsb_corelibs[i]));
-
-if(LSBCPLUS == lsbccmode) {
-	for(i=0;lsb_cpluslibs[i]; i++)
-		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
-}
-
-if((ptr = getenv("LSB_PRODUCT")) != NULL) {
-	if(strcasecmp(ptr, "all") || strcasecmp(ptr, "desktop"))
-		desktop_product = 1;
-} else
-	desktop_product = 0;
+for(i=0;default_lsblibs[i];i++)
+	argvaddstring(lsblibs,strdup(default_lsblibs[i]));
 
 if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 	char *libarg, *lib;
@@ -550,6 +496,22 @@ if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 			lib = strtok(NULL, ":");
 		}
 	}
+
+if( lsbcc_debug&DEBUG_ARGUMENTS )
+	for(i=0;i<argc;i++)
+		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
+	
+/* Determine if we are being called for C or C++ */
+if(strcmp(basename(argv[0]),"lsbcc") == 0 ) {
+	/* We are compiling C - nothing special to do */
+	;
+} else if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
+	/* We are compiling C++ - set a flag to affect some things later on */
+	/*
+	fprintf(stderr,"Using C++ mode\n");
+	*/
+	lsbccmode=LSBCPLUS;
+}
 
 /*
  * Determine where the GCC specific file are located.
@@ -621,47 +583,6 @@ if( lsbccmode == LSBCPLUS ) {
 opterr = 0;
 auto_pthread = 1;
 
-/* so this is a bit a ugly, but works.  essentially, we do *two* passes of args, first looking for lsb-product,
-   second doing actual processing.  Reasoning being, that --lsb-product=desktop could be tail end of args- by the
-   time we see it, we've already converted -lsome_lib, and that conversion may or may not be accurate for the 
-   final lsb product specified.  So we do two passes.
-*/
-
-tmp_argv = malloc(sizeof(char *)*argc);
-for(i=0; i < argc; i++)
-	tmp_argv[i] = argv[i];
-
-while((c=getopt_long_only(argc, tmp_argv, optstr, long_options, &option_index)) != -1) { 
-	if(1 == c) {
-		/* lsb_product */
-		if(strcasecmp(optarg, "desktop") == 0 || strcasecmp(optarg, "all") == 0)
-			desktop_product = 1;
-		else if(strcasecmp(optarg, "core") == 0)
-			desktop_product = 0;
-		else {
-			fprintf(stderr, "--lsb-product must be one of the following- [core|desktop]\n");
-			exit(1);
-		}
-		ignored_args+=2;
-		break;
-	} else if('?' == c) {
-		/* unknown opt, or known opt but missing arg */
-
-		if(0 == strcmp(argv[optind - 1], "--lsb-product")) {
-			/* missing arg */
-			fprintf(stderr, "--lsb-product requires an arg- [core|desktop]\n");
-			exit(1);
-		}
-	} /* else we don't care. */
-}
-
-free(tmp_argv);
-
-if(desktop_product) {
-	for(i=0;lsb_desktop[i]; i++)
-		argvaddstring(lsblibs, strdup(lsb_desktop[i]));
-}
-
 while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	switch(c) {
 	case 0:
@@ -687,9 +608,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			argvaddstring(syslibs,"-lpthread");
 			argvaddstring(syslibs,"-lpthread_nonshared");
 			}
-		break;
-	case 1:
-		/* lsb product.  ignore it for this phase */
 		break;
 	case 'E':
 	case 'S':
@@ -780,10 +698,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 							argv[optind-1] );
 		break;
 	default:
-		/* We shouldn't get here 
-		Should only be reachable if getopt is returning ':' instead of '?', which
-		is only possible when optstr[0] == ':'.
-		 */
+		/* We shouldn't get here */
 		printf("unhandled option %c", c );
 		if( optarg )
 			printf (" with arg %s", optarg);
@@ -821,7 +736,7 @@ if (optind < argc) {
  * If not print an error similar to running "gcc"
  * without any parameters/options
  */
-if(argc - ignored_args <= 1) {
+if(argc <= 1) {
     fprintf(stderr, "%s: no input files\n", basename(argv[0]));
     exit(EXIT_FAILURE);
 }
