@@ -11,6 +11,7 @@ headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob| sed -e 's/\&/\&amp;/g' > $@
 
 %.h:
+	mkdir -p $(dir $@)
 	./mkheader -a All -h $@ | indent -kr >$@
 
 %:
