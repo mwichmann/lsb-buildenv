@@ -242,7 +242,7 @@ for(i=0;i<ag->numargv;i++)
  * a few routines here that are used to do the special processing.
  */
 
-char *default_lsblibs[] = {
+char *lsb_corelibs[] = {
 	"c",		/* core module */
 	"crypt",
 	"dl",
@@ -254,7 +254,6 @@ char *default_lsblibs[] = {
 	"rt",
 	"util",
 	"z",
-	"stdc++",	/* c++ module */
 	"GL",		/* graphics module */
 	"ICE",
 	"SM",
@@ -262,7 +261,32 @@ char *default_lsblibs[] = {
 	"Xext",
 	"Xi",
 	"Xt",
-	0
+	NULL
+};
+
+char *lsb_cpluslibs[] = {
+	"stdc++",
+	NULL
+};
+
+char *lsb_desktoplibs[] = {
+	"glib-2.0",
+	"gthread-2.0",
+	"gobject-2.0",
+	"gmodule-2.0",
+	"atk-1.0",
+	"pango-1.0",
+	"pangoxft-1.0",
+	"pangoft2-1.0",
+	"gdk-x11-2.0",
+	"gdk_pixbux_xlib-2.0",
+	"gdk_pixbuf-2.0",
+	"gtk-x11-2.0",
+	"xml2",
+	"jpeg",
+	"png12",
+	"fontconfig",
+	NULL
 };
 
 void
@@ -410,7 +434,7 @@ int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
-int 	auto_pthread;
+int 	auto_pthread, desktop_product;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
@@ -477,13 +501,51 @@ if( (ptr=getenv("LSBCXX_INCLUDES")) != NULL ) {
 		fprintf(stderr,"c++ include prefix set to %s\n", cxxincpath );
 	}
 
+
+if( lsbcc_debug&DEBUG_ARGUMENTS ) {
+	for(i=0;i<argc;i++)
+		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
+}
+	
+/* Determine if we are being called for C or C++ */
+if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
+	/* We are compiling C++ - set a flag to affect some things later on */
+	/*
+	fprintf(stderr,"Using C++ mode\n");
+	*/
+	lsbccmode=LSBCPLUS;
+}
+
+
 /*
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
  */
 lsblibs=argvinit();
-for(i=0;default_lsblibs[i];i++)
-	argvaddstring(lsblibs,strdup(default_lsblibs[i]));
+for(i=0;lsb_corelibs[i]; i++)
+	argvaddstring(lsblibs, strdup(lsb_corelibs[i]));
+
+if(LSBCPLUS == lsbccmode) {
+	for(i=0;lsb_cpluslibs[i]; i++)
+		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
+}
+
+if((ptr = getenv("LSB_PRODUCT")) != NULL) {
+	if(strcasecmp(ptr, "all") == 0 || strcasecmp(ptr, "desktop") == 0)
+		desktop_product = 1;
+	else if (strcasecmp(ptr, "core") != 0) {
+		fprintf(stderr, "warning: LSB_PRODUCT target '%s' isn't valid, must be [core|desktop],"
+		" forcing it to core\n", ptr);
+		desktop_product = 0;
+	}
+} else
+	desktop_product = 0;
+
+
+if(desktop_product) {
+	for(i=0;lsb_desktoplibs[i];i++)
+		argvaddstring(lsblibs, strdup(lsb_desktoplibs[i]));
+}
 
 if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 	char *libarg, *lib;
@@ -496,22 +558,6 @@ if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 			lib = strtok(NULL, ":");
 		}
 	}
-
-if( lsbcc_debug&DEBUG_ARGUMENTS )
-	for(i=0;i<argc;i++)
-		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
-	
-/* Determine if we are being called for C or C++ */
-if(strcmp(basename(argv[0]),"lsbcc") == 0 ) {
-	/* We are compiling C - nothing special to do */
-	;
-} else if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
-	/* We are compiling C++ - set a flag to affect some things later on */
-	/*
-	fprintf(stderr,"Using C++ mode\n");
-	*/
-	lsbccmode=LSBCPLUS;
-}
 
 /*
  * Determine where the GCC specific file are located.
