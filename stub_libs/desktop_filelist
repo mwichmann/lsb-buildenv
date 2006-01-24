@@ -10,13 +10,6 @@ libgdk_pixbuf-2.0.so.0
 libgdk_pixbuf_xlib-2.0.so
 libgdk-x11-2.0.so.0
 libgtk-x11-2.0.so.0
-libQtCore.so.4
-libQtGui.so.4
-libQtNetwork.so.4
-libQtXml.so.4
-libQtOpenGL.so.4
-libQtSql.so.4
-libQtSvg.so.4
 libfontconfig.so.1
 libpng12.so.0
 libjpeg.so.62
