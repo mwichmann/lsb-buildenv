@@ -10,8 +10,13 @@ import MySQLdb
 # in the database.
 
 core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp"]
-desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Graphics_Ext", "LSB_XML"]
-ignore_modules = ["LSB_Toolkit_Qt"]
+desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt", 
+		   "LSB_Graphics_Ext", "LSB_XML"]
+
+# For some modules, we should only include the stub libraries;
+# the headers are expected to come from some other source.
+
+lib_only_modules = ["LSB_Toolkit_Qt"]
 
 # List file names.  These are relative to the stub_libs and headers
 # directories, making for a total of four files.
@@ -57,13 +62,13 @@ def main():
     # Collate the data into four lists, corresponding to the four lists
     # created above.
 
-    for (query, core_list, desktop_list) \
-	in ((header_query, core_headers, desktop_headers),
-	    (lib_query, core_libs, desktop_libs)):
+    for (query, core_list, desktop_list, ignore_list) \
+	in ((header_query, core_headers, desktop_headers, lib_only_modules),
+	    (lib_query, core_libs, desktop_libs, [])):
 	itemlist = connection.cursor()
 	itemlist.execute(query)
 	for (module, item) in itemlist.fetchall():
-	    if module in ignore_modules:
+	    if module in ignore_list:
 		continue
 	    elif module in core_modules:
 		core_list.append(item)
