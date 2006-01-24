@@ -6,6 +6,9 @@ all: $(foreach arch,$(ARCHS),headers-$(arch))
 headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 	@echo Made header files for $*
 
+core_filelist desktop_filelist:
+	cd .. && ./mkfilelists
+
 %.defs: 
 	mkdir -p $(dir $@)
 	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob| sed -e 's/\&/\&amp;/g' > $@
@@ -20,7 +23,7 @@ headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
-install:
+install: core_filelist desktop_filelist
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
 	find . \( -name '*.h' -o -type d \) -print | cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR)
 	find . -name "*.h" -exec md5sum {} \; > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS
@@ -37,6 +40,7 @@ distclean: clean
 	find . -name '*.m4' -print | xargs rm -f
 	find . -name '*.cpp' -print | xargs rm -f
 	find . -name '*.txt' -print | xargs rm -f
+	rm -f core_filelist desktop_filelist
 
 .SECONDARY:
 

@@ -32,7 +32,10 @@ LSB_COMPILE_FOR_ARCH:=`case \`uname -m\` in \
 
 all: libs
 
-dbfiles:
+core_filelist desktop_filelist:
+	cd .. && ./mkfilelists
+
+dbfiles: core_filelist desktop_filelist
 	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch; done;
 
 install:
@@ -44,6 +47,7 @@ libs:
 # Distclean means will need database to rebuild
 distclean: 
 	for arch in $(LSB_SUPPORTED_ARCHS); do cd $$arch && make distclean && cd ..; done;
+	rm -f core_filelist desktop_filelist
 
 # Only remove compiler generated files
 clean:

@@ -1,0 +1,99 @@
+#!/usr/bin/python
+
+# mkfilelists - create lists of headers and libs for core and desktop
+# Copyright 2006 Free Standards Group, Inc.
+
+import os
+import MySQLdb
+
+# Lists of names of the modules in core and desktop as they appear
+# in the database.
+
+core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp"]
+desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt", 
+		   "LSB_Graphics_Ext", "LSB_XML"]
+
+# List file names.  These are relative to the stub_libs and headers
+# directories, making for a total of four files.
+
+core_fn = "core_filelist"
+desktop_fn = "desktop_filelist"
+
+# Queries to use to retrieve the header and library information
+# from the database.
+
+header_query = """SELECT Module.Mname, Header.Hname 
+                  FROM { 
+                    OJ ( Library 
+                      RIGHT OUTER JOIN ( Module 
+                        LEFT OUTER JOIN ModLib ON Module.Mid = ModLib.MLmid ) 
+                      ON Library.Lid = ModLib.MLlid ) 
+                    LEFT OUTER JOIN Header ON Library.Lid = Header.Hlib 
+                  }"""
+lib_query = """SELECT Module.Mname, Library.Lrunname 
+               FROM Module, ModLib, Library 
+               WHERE ( Module.Mid = ModLib.MLmid AND 
+                       Library.Lid = ModLib.MLlid )"""
+
+def main():
+    # Create the lists.
+
+    core_headers = []
+    core_libs = []
+    desktop_headers = []
+    desktop_libs = []
+
+    # Connect to the database, using the regular conventions for
+    # setting the database connection settings.
+
+    if "LSBDBPASSWD" not in os.environ:
+	os.environ["LSBDBPASSWD"] = ""
+
+    connection = MySQLdb.connect(host = os.environ["LSBDBHOST"],
+				 user = os.environ["LSBUSER"],
+				 passwd = os.environ["LSBDBPASSWD"],
+				 db = os.environ["LSBDB"])
+
+    # Collate the data into four lists, corresponding to the four lists
+    # created above.
+
+    for (query, core_list, desktop_list) \
+	in ((header_query, core_headers, desktop_headers),
+	    (lib_query, core_libs, desktop_libs)):
+	itemlist = connection.cursor()
+	itemlist.execute(query)
+	for (module, item) in itemlist.fetchall():
+	    if module in core_modules:
+		core_list.append(item)
+	    elif module in desktop_modules:
+		desktop_list.append(item)
+	    else:
+		raise ValueError, "unknown module found: " + module
+	itemlist.close()
+
+    # For some reason, some of the header info returned will include
+    # some Nones.  Filter those out.
+
+    core_headers = [x for x in core_headers if x]
+    desktop_headers = [x for x in desktop_headers if x]
+
+    # The database contains at least one entry with information
+    # in the library name field that isn't a library name.  For
+    # now, filter that out by removing all entries containing
+    # spaces.
+
+    core_libs = [x for x in core_libs if " " not in x]
+    desktop_libs = [x for x in desktop_libs if " " not in x]
+
+    # Write the lists.
+
+    for (fn, flist) in (("headers/" + core_fn, core_headers),
+			("stub_libs/" + core_fn, core_libs),
+			("headers/" + desktop_fn, desktop_headers),
+			("stub_libs/" + desktop_fn, desktop_libs)):
+	headerfile = open(fn, "w")
+	headerfile.write("\n".join(flist))
+	headerfile.close()
+
+if __name__ == "__main__":
+    main()
