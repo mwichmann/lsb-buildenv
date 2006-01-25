@@ -35,10 +35,12 @@ header_query = """SELECT Module.Mname, Header.Hname
                       ON Library.Lid = ModLib.MLlid ) 
                     LEFT OUTER JOIN Header ON Library.Lid = Header.Hlib 
                   }"""
-lib_query = """SELECT Module.Mname, Library.Lrunname 
+
+lib_query = """SELECT Module.Mname, Library.Lname 
                FROM Module, ModLib, Library 
                WHERE ( Module.Mid = ModLib.MLmid AND 
-                       Library.Lid = ModLib.MLlid )"""
+                       Library.Lid = ModLib.MLlid ) 
+               AND ( ( Library.Lstd = 'Yes' AND Library.Larch != 0 ) )"""
 
 def main():
     # Create the lists.
