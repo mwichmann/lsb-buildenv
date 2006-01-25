@@ -16,7 +16,7 @@ desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt",
 # For some modules, we should only include the stub libraries;
 # the headers are expected to come from some other source.
 
-lib_only_modules = ["LSB_Toolkit_Qt"]
+lib_only_modules = ["LSB_Toolkit_Qt", "LSB_Cpp"]
 
 # List file names.  These are relative to the stub_libs and headers
 # directories, making for a total of four files.
@@ -27,14 +27,11 @@ desktop_fn = "desktop_filelist"
 # Queries to use to retrieve the header and library information
 # from the database.
 
-header_query = """SELECT Module.Mname, Header.Hname 
-                  FROM { 
-                    OJ ( Library 
-                      RIGHT OUTER JOIN ( Module 
-                        LEFT OUTER JOIN ModLib ON Module.Mid = ModLib.MLmid ) 
-                      ON Library.Lid = ModLib.MLlid ) 
-                    LEFT OUTER JOIN Header ON Library.Lid = Header.Hlib 
-                  }"""
+header_query = """SELECT Mname, Hname 
+                  FROM Module, Header, ModLib, Library 
+                  WHERE Module.Mid = ModLib.MLmid 
+                  AND Library.Lid = ModLib.MLlid 
+                  AND Library.Lid = Header.Hlib"""
 
 lib_query = """SELECT Module.Mname, Library.Lname 
                FROM Module, ModLib, Library 
