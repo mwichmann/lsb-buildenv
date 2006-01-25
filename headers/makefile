@@ -23,12 +23,19 @@ core_filelist desktop_filelist:
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
-install: core_filelist desktop_filelist
+install: install-core
+
+install-core: core_filelist
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
-	find . \( -name '*.h' -o -type d \) -print | cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR)
-	find . -name "*.h" -exec md5sum {} \; > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS
+	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < core_filelist
+	xargs md5sum < core_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS || true
 	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/X11
 	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/GL
+
+install-desktop: desktop_filelist
+	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
+	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < desktop_filelist
+	xargs md5sum < desktop_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS
 
 clean:
 

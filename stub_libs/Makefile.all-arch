@@ -1,9 +1,15 @@
 # Arch independent components for creating stub libraries
 
-STUBLIBS=$(subst .Version,,$(wildcard *.Version))
-CFILES = $(addsuffix .c,$(STUBLIBS))
-OFILES = $(subst .c,.o,$(CFILES))
-SOFILES = $(subst .c,.so,$(CFILES))
+CORE_STUBLIBS = $(shell cat ../core_filelist)
+DESKTOP_STUBLIBS = $(shell cat ../desktop_filelist)
+
+CORE_CFILES = $(addsuffix .c,$(CORE_STUBLIBS))
+CORE_OFILES = $(addsuffix .o,$(CORE_STUBLIBS))
+CORE_SOFILES = $(addsuffix .so,$(CORE_STUBLIBS))
+DESKTOP_CFILES = $(addsuffix .c,$(DESKTOP_STUBLIBS))
+DESKTOP_OFILES = $(addsuffix .o,$(DESKTOP_STUBLIBS))
+DESKTOP_SOFILES = $(addsuffix .so,$(DESKTOP_STUBLIBS))
+
 CFLAGS=-g -Wall  -fno-builtin 
 INSTALL_DIR=$(INSTALL_ROOT)/$(LIBDIR)
 
@@ -17,19 +23,28 @@ endif
 %.so : %.o
 	$(LD) -shared -o $@ --version-script $(subst .o,.Version,$<) -h `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`  $<
 
-libs: $(OFILES) $(SOFILES)
+libs: core-libs desktop-libs
+
+core-libs: $(CORE_OFILES) $(CORE_SOFILES)
+
+desktop-libs: $(DESKTOP_OFILES) $(DESKTOP_SOFILES)
 
 distclean: clean
 	rm -f  *.c *.Version LibNameMap.txt
 
 clean:
-	rm -f $(OFILES) *.so
+	rm -f $(CORE_OFILES) $(DESKTOP_OFILES) *.so
 
 
 .PHONY: clean distclean libs
 
-install:
+install: install-core
+
+install-core:
 	install -d $(INSTALL_DIR)
-	install $(SOFILES) $(INSTALL_DIR)
+	install $(CORE_SOFILES) $(INSTALL_DIR)
 	mv $(INSTALL_DIR)/libstdcxx.so $(INSTALL_DIR)/libstdc++.so
 
+install-desktop:
+	install -d $(INSTALL_DIR)
+	install $(DESKTOP_SOFILES) $(INSTALL_DIR)

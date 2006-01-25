@@ -38,11 +38,21 @@ core_filelist desktop_filelist:
 dbfiles: core_filelist desktop_filelist
 	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch; done;
 
-install:
-	cd $(LSB_COMPILE_FOR_ARCH) && make install
+install: install-core
 
-libs:
-	cd $(LSB_COMPILE_FOR_ARCH) && make libs
+install-core:
+	cd $(LSB_COMPILE_FOR_ARCH) && make install-core
+
+install-desktop:
+	cd $(LSB_COMPILE_FOR_ARCH) && make install-desktop
+
+libs: core-libs
+
+core-libs:
+	cd $(LSB_COMPILE_FOR_ARCH) && make core-libs
+
+desktop-libs:
+	cd $(LSB_COMPILE_FOR_ARCH) && make desktop-libs
 
 # Distclean means will need database to rebuild
 distclean: 
