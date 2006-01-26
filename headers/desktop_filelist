@@ -1,3 +1,8 @@
+fontconfig/fontconfig.h
+fontconfig/fcfreetype.h
+fontconfig/fcprivate.h
+png.h
+jpeglib.h
 glib-2.0/glib.h
 glib-2.0/glib/gprintf.h
 glib-2.0/glib/gstdio.h
@@ -19,11 +24,6 @@ gtk-2.0/gdk/gdk.h
 gtk-2.0/gdk/gdkkeysyms.h
 gtk-2.0/gdk/gdkx.h
 gtk-2.0/gtk/gtk.h
-fontconfig/fontconfig.h
-fontconfig/fcfreetype.h
-fontconfig/fcprivate.h
-png.h
-jpeglib.h
 libxml2/libxml/xmlexports.h
 libxml2/libxml/xmlversion.h
 libxml2/libxml/xmlmodule.h

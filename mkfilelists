@@ -39,6 +39,30 @@ lib_query = """SELECT Module.Mname, Library.Lname
                        Library.Lid = ModLib.MLlid ) 
                AND ( ( Library.Lstd = 'Yes' AND Library.Larch != 0 ) )"""
 
+# For core, it appears that the database is not the final word,
+# so munge the core header list by adding and removing these
+# headers.
+# XXX: Fix this!
+
+core_headers_add = ["cpio.h", "linux/netlink.h", "linux/rtnetlink.h", 
+		    "linux/socket.h", "strings.h", "stropts.h", "sys/vfs.h", 
+		    "tar.h"]
+
+core_headers_remove = ["err.h", "features.h", "float.h", "GL/gl.h", "GL/glx.h", 
+		       "rpc/pmap_clnt.h", "rpc/rpc.h", "X11/Composite.h", 
+		       "X11/CompositeP.h", "X11/ConstrainP.h", 
+		       "X11/Constraint.h", "X11/Core.h", 
+		       "X11/extensions/dpms.h", "X11/extensions/security.h", 
+		       "X11/extensions/shape.h", "X11/extensions/sync.h", 
+		       "X11/extensions/Xdbe.h", "X11/extensions/XEVI.h", 
+                       "X11/extensions/XKBgeom.h", "X11/extensions/XShm.h", 
+                       "X11/ICE/ICElib.h", "X11/ICE/ICEutil.h", 
+                       "X11/Intrinsic.h", "X11/IntrinsicP.h", "X11/Object.h", 
+                       "X11/ObjectP.h", "X11/Shell.h", "X11/SM/SMlib.h", 
+                       "X11/StringDefs.h", "X11/Xauth.h", "X11/Xcms.h", 
+                       "X11/X.h", "X11/XKBlib.h", "X11/Xlib.h", 
+                       "X11/Xresource.h", "X11/Xutil.h"]
+
 def main():
     # Create the lists.
 
@@ -82,6 +106,11 @@ def main():
 
     core_headers = [x for x in core_headers if x]
     desktop_headers = [x for x in desktop_headers if x]
+
+    # Apply the core header munging mentioned above.
+
+    core_headers = [x for x in core_headers + core_headers_add
+		    if x not in core_headers_remove]
 
     # The database contains at least one entry with information
     # in the library name field that isn't a library name.  For
