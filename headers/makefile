@@ -33,7 +33,7 @@ install-core: core_filelist
 install-desktop: desktop_filelist
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
 	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < desktop_filelist
-	find $(INSTALL_ROOT/$INCLUDEDIR) -type d -exec chmod 755 {} \;
+	find $(INSTALL_ROOT)/$(INCLUDEDIR) -type d -exec chmod 755 {} \;
 	xargs md5sum < desktop_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS.desktop
 
 clean:
