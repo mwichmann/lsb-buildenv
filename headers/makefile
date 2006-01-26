@@ -17,9 +17,6 @@ core_filelist desktop_filelist:
 	mkdir -p $(dir $@)
 	./mkheader -a All -h $@ | indent -kr >$@
 
-%:
-	./mkheader -a All -h $@ | indent -kr >$@
-
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
@@ -28,14 +25,16 @@ install: install-core
 install-core: core_filelist
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
 	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < core_filelist
-	xargs md5sum < core_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS || true
+	find $(INSTALL_ROOT)/$(INCLUDEDIR) -type d -exec chmod 755 {} \;
+	xargs md5sum < core_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS.core || true
 	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/X11
 	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/GL
 
 install-desktop: desktop_filelist
 	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
 	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < desktop_filelist
-	xargs md5sum < desktop_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS
+	find $(INSTALL_ROOT/$INCLUDEDIR) -type d -exec chmod 755 {} \;
+	xargs md5sum < desktop_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS.desktop
 
 clean:
 
