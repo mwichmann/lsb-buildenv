@@ -279,7 +279,7 @@ char *lsb_desktoplibs[] = {
 	"pangoxft-1.0",
 	"pangoft2-1.0",
 	"gdk-x11-2.0",
-	"gdk_pixbux_xlib-2.0",
+	"gdk_pixbuf_xlib-2.0",
 	"gdk_pixbuf-2.0",
 	"gtk-x11-2.0",
 	"xml2",
