@@ -1,0 +1,10 @@
+
+extern gint g_sprintf(gchar *, const gchar *, ...);
+extern gint g_fprintf(FILE *, const gchar *, ...);
+extern gint g_vasprintf(gchar * *, const gchar *, va_list);
+extern gint g_vprintf(const gchar *, va_list);
+extern gint g_printf(const gchar *, ...);
+extern gint g_vfprintf(FILE *, const gchar *, va_list);
+extern gint g_vsnprintf(gchar *, gulong, const gchar *, va_list);
+extern gint g_vsprintf(gchar *, const gchar *, va_list);
+extern gint g_snprintf(gchar *, gulong, const gchar *, ...);

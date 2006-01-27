@@ -1,0 +1,12 @@
+
+typedef struct _xmlModule
+ xmlModule;
+typedef xmlModule *xmlModulePtr;
+typedef enum {
+    XML_MODULE_LAZY = 1,
+    XML_MODULE_LOCAL = 2
+} xmlModuleOption;
+extern int xmlModuleClose(xmlModulePtr);
+extern int xmlModuleFree(xmlModulePtr);
+extern int xmlModuleSymbol(xmlModulePtr, const char *, void **);
+extern xmlModulePtr xmlModuleOpen(const char *, int);

@@ -1,0 +1,33 @@
+
+enum N2Qt11GlobalColorE {
+    color0,
+    color1,
+    black,
+    white,
+    darkGray,
+    gray,
+    lightGray,
+    red,
+    green,
+    blue,
+    cyan,
+    magenta,
+    yellow,
+    darkRed,
+    darkGreen,
+    darkBlue,
+    darkCyan,
+    darkMagenta,
+    darkYellow,
+    transparent
+};
+enum N2Qt16KeyboardModifierE {
+    KeyboardModifierMask,
+    NoModifier,
+    ShiftModifier,
+    ControlModifier,
+    AltModifier,
+    MetaModifier,
+    KeypadModifier
+};
+Unknown Type:"Class"

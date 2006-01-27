@@ -1,0 +1,12 @@
+
+enum N2Qt15HitTestAccuracyE {
+    ExactHit,
+    FuzzyHit
+};
+enum N2Qt14WhiteSpaceModeE {
+    WhiteSpaceModeUndefined,
+    WhiteSpaceNormal,
+    WhiteSpacePre,
+    WhiteSpaceNoWrap
+};
+Unknown Type:"Class"

@@ -1,0 +1,14 @@
+
+enum N4QSql8LocationE {
+    AfterLastRow,
+    AfterLast,
+    BeforeFirstRow,
+    BeforeFirst
+};
+enum N4QSql13ParamTypeFlagE {
+    In,
+    Out,
+    InOut,
+    Binary
+};
+Unknown Type:"Class"

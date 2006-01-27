@@ -1,0 +1,16 @@
+
+struct QUuid;
+enum N5QUuid7VariantE {
+    VarUnknown,
+    NCS,
+    DCE,
+    Microsoft,
+    Reserved
+};
+enum N5QUuid7VersionE {
+    VerUnknown,
+    Time,
+    EmbeddedPOSIX,
+    Name,
+    Random
+};
