@@ -286,13 +286,13 @@ char *lsb_desktoplibs[] = {
 	"jpeg",
 	"png12",
 	"fontconfig",
-	"qtcore",
-	"qtgui",
-	"qtnetwork",
-	"qtxml",
-	"qtopengl",
-	"qtsql",
-	"qtsvg",
+	"QtCore",
+	"QtGui",
+	"QtNetwork",
+	"QtXml",
+	"QtOpenGL",
+	"QtSql",
+	"QtSvg",
 	NULL
 };
 
