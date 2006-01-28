@@ -2044,7 +2044,6 @@ __asm__(".globl _ZTI15QObjectUserData; .pushsection .data; .type _ZTI15QObjectUs
 __asm__(".globl _ZTI15QSocketNotifier; .pushsection .data; .type _ZTI15QSocketNotifier,@object; .size _ZTI15QSocketNotifier, 12; _ZTI15QSocketNotifier: .long 0; .popsection");
 __asm__(".globl _ZTI16QCoreApplication; .pushsection .data; .type _ZTI16QCoreApplication,@object; .size _ZTI16QCoreApplication, 12; _ZTI16QCoreApplication: .long 0; .popsection");
 __asm__(".globl _ZTI16QIODevicePrivate; .pushsection .data; .type _ZTI16QIODevicePrivate,@object; .size _ZTI16QIODevicePrivate, 12; _ZTI16QIODevicePrivate: .long 0; .popsection");
-__asm__(".globl _ZTI16QSettingsPrivate; .pushsection .data; .type _ZTI16QSettingsPrivate,@object; .size _ZTI16QSettingsPrivate, 12; _ZTI16QSettingsPrivate: .long 0; .popsection");
 __asm__(".globl _ZTI16QTextCodecPlugin; .pushsection .data; .type _ZTI16QTextCodecPlugin,@object; .size _ZTI16QTextCodecPlugin, 32; _ZTI16QTextCodecPlugin: .long 0; .popsection");
 __asm__(".globl _ZTI17QFactoryInterface; .pushsection .data; .type _ZTI17QFactoryInterface,@object; .size _ZTI17QFactoryInterface, 8; _ZTI17QFactoryInterface: .long 0; .popsection");
 __asm__(".globl _ZTI18QAbstractItemModel; .pushsection .data; .type _ZTI18QAbstractItemModel,@object; .size _ZTI18QAbstractItemModel, 12; _ZTI18QAbstractItemModel: .long 0; .popsection");
@@ -2055,7 +2054,6 @@ __asm__(".globl _ZTI20QEventDispatcherUNIX; .pushsection .data; .type _ZTI20QEve
 __asm__(".globl _ZTI21QObjectCleanupHandler; .pushsection .data; .type _ZTI21QObjectCleanupHandler,@object; .size _ZTI21QObjectCleanupHandler, 12; _ZTI21QObjectCleanupHandler: .long 0; .popsection");
 __asm__(".globl _ZTI23QCoreApplicationPrivate; .pushsection .data; .type _ZTI23QCoreApplicationPrivate,@object; .size _ZTI23QCoreApplicationPrivate, 12; _ZTI23QCoreApplicationPrivate: .long 0; .popsection");
 __asm__(".globl _ZTI24QAbstractEventDispatcher; .pushsection .data; .type _ZTI24QAbstractEventDispatcher,@object; .size _ZTI24QAbstractEventDispatcher, 12; _ZTI24QAbstractEventDispatcher: .long 0; .popsection");
-__asm__(".globl _ZTI25QAbstractItemModelPrivate; .pushsection .data; .type _ZTI25QAbstractItemModelPrivate,@object; .size _ZTI25QAbstractItemModelPrivate, 12; _ZTI25QAbstractItemModelPrivate: .long 0; .popsection");
 __asm__(".globl _ZTI26QAbstractFileEngineHandler; .pushsection .data; .type _ZTI26QAbstractFileEngineHandler,@object; .size _ZTI26QAbstractFileEngineHandler, 8; _ZTI26QAbstractFileEngineHandler: .long 0; .popsection");
 __asm__(".globl _ZTI26QTextCodecFactoryInterface; .pushsection .data; .type _ZTI26QTextCodecFactoryInterface,@object; .size _ZTI26QTextCodecFactoryInterface, 12; _ZTI26QTextCodecFactoryInterface: .long 0; .popsection");
 __asm__(".globl _ZTI27QEventDispatcherUNIXPrivate; .pushsection .data; .type _ZTI27QEventDispatcherUNIXPrivate,@object; .size _ZTI27QEventDispatcherUNIXPrivate, 12; _ZTI27QEventDispatcherUNIXPrivate: .long 0; .popsection");
@@ -2092,7 +2090,6 @@ __asm__(".globl _ZTV15QObjectUserData; .pushsection .data; .type _ZTV15QObjectUs
 __asm__(".globl _ZTV15QSocketNotifier; .pushsection .data; .type _ZTV15QSocketNotifier,@object; .size _ZTV15QSocketNotifier, 56; _ZTV15QSocketNotifier: .long 0; .popsection");
 __asm__(".globl _ZTV16QCoreApplication; .pushsection .data; .type _ZTV16QCoreApplication,@object; .size _ZTV16QCoreApplication, 64; _ZTV16QCoreApplication: .long 0; .popsection");
 __asm__(".globl _ZTV16QIODevicePrivate; .pushsection .data; .type _ZTV16QIODevicePrivate,@object; .size _ZTV16QIODevicePrivate, 16; _ZTV16QIODevicePrivate: .long 0; .popsection");
-__asm__(".globl _ZTV16QSettingsPrivate; .pushsection .data; .type _ZTV16QSettingsPrivate,@object; .size _ZTV16QSettingsPrivate, 52; _ZTV16QSettingsPrivate: .long 0; .popsection");
 __asm__(".globl _ZTV16QTextCodecPlugin; .pushsection .data; .type _ZTV16QTextCodecPlugin,@object; .size _ZTV16QTextCodecPlugin, 108; _ZTV16QTextCodecPlugin: .long 0; .popsection");
 __asm__(".globl _ZTV17QFactoryInterface; .pushsection .data; .type _ZTV17QFactoryInterface,@object; .size _ZTV17QFactoryInterface, 20; _ZTV17QFactoryInterface: .long 0; .popsection");
 __asm__(".globl _ZTV18QAbstractItemModel; .pushsection .data; .type _ZTV18QAbstractItemModel,@object; .size _ZTV18QAbstractItemModel, 168; _ZTV18QAbstractItemModel: .long 0; .popsection");
@@ -2103,7 +2100,6 @@ __asm__(".globl _ZTV20QEventDispatcherUNIX; .pushsection .data; .type _ZTV20QEve
 __asm__(".globl _ZTV21QObjectCleanupHandler; .pushsection .data; .type _ZTV21QObjectCleanupHandler,@object; .size _ZTV21QObjectCleanupHandler, 56; _ZTV21QObjectCleanupHandler: .long 0; .popsection");
 __asm__(".globl _ZTV23QCoreApplicationPrivate; .pushsection .data; .type _ZTV23QCoreApplicationPrivate,@object; .size _ZTV23QCoreApplicationPrivate, 24; _ZTV23QCoreApplicationPrivate: .long 0; .popsection");
 __asm__(".globl _ZTV24QAbstractEventDispatcher; .pushsection .data; .type _ZTV24QAbstractEventDispatcher,@object; .size _ZTV24QAbstractEventDispatcher, 108; _ZTV24QAbstractEventDispatcher: .long 0; .popsection");
-__asm__(".globl _ZTV25QAbstractItemModelPrivate; .pushsection .data; .type _ZTV25QAbstractItemModelPrivate,@object; .size _ZTV25QAbstractItemModelPrivate, 16; _ZTV25QAbstractItemModelPrivate: .long 0; .popsection");
 __asm__(".globl _ZTV26QAbstractFileEngineHandler; .pushsection .data; .type _ZTV26QAbstractFileEngineHandler,@object; .size _ZTV26QAbstractFileEngineHandler, 20; _ZTV26QAbstractFileEngineHandler: .long 0; .popsection");
 __asm__(".globl _ZTV26QTextCodecFactoryInterface; .pushsection .data; .type _ZTV26QTextCodecFactoryInterface,@object; .size _ZTV26QTextCodecFactoryInterface, 24; _ZTV26QTextCodecFactoryInterface: .long 0; .popsection");
 __asm__(".globl _ZTV27QEventDispatcherUNIXPrivate; .pushsection .data; .type _ZTV27QEventDispatcherUNIXPrivate,@object; .size _ZTV27QEventDispatcherUNIXPrivate, 16; _ZTV27QEventDispatcherUNIXPrivate: .long 0; .popsection");
