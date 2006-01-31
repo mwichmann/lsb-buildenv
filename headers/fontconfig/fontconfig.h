@@ -186,6 +186,8 @@ extern "C" {
 	FcLangDifferentLang = 2
     } FcLangResult;
 
+    typedef short unsigned int FcChar16;
+
 
 
 
