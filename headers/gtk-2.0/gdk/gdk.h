@@ -1695,7 +1695,6 @@ extern "C" {
 								*);
     extern GSList *gdk_display_manager_list_displays(GdkDisplayManager *);
     extern void gdk_gc_set_subwindow(GdkGC *, GdkSubwindowMode);
-    extern void gdk_pre_parse_libgtk_only(void);
     extern void gdk_gc_set_colormap(GdkGC *, GdkColormap *);
     extern GType gdk_grab_status_get_type(void);
     extern GType gdk_visual_get_type(void);
@@ -1828,7 +1827,6 @@ extern "C" {
     extern void gdk_draw_polygon(GdkDrawable *, GdkGC *, gboolean,
 				 GdkPoint *, gint);
     extern gboolean gdk_font_equal(const GdkFont *, const GdkFont *);
-    extern GdkDisplay *gdk_display_open_default_libgtk_only(void);
     extern GType gdk_function_get_type(void);
     extern void gdk_display_close(GdkDisplay *);
     extern gint gdk_screen_get_n_monitors(GdkScreen *);
@@ -1947,9 +1945,6 @@ extern "C" {
 							  gint *);
     extern GdkColormap *gdk_image_get_colormap(GdkImage *);
     extern gint gdk_window_get_origin(GdkWindow *, gint *, gint *);
-    extern gboolean gdk_keyboard_grab_info_libgtk_only(GdkDisplay *,
-						       GdkWindow * *,
-						       gboolean *);
     extern void gdk_set_double_click_time(guint);
     extern void gdk_gc_get_values(GdkGC *, GdkGCValues *);
     extern GdkColor *gdk_color_copy(const GdkColor *);
@@ -2026,9 +2021,6 @@ extern "C" {
     extern GList *gdk_display_list_devices(GdkDisplay *);
     extern GdkVisual *gdk_screen_get_rgb_visual(GdkScreen *);
     extern void gdk_set_sm_client_id(const gchar *);
-    extern gboolean gdk_pointer_grab_info_libgtk_only(GdkDisplay *,
-						      GdkWindow * *,
-						      gboolean *);
     extern void gdk_region_destroy(GdkRegion *);
     extern void gdk_display_manager_set_default_display(GdkDisplayManager
 							*, GdkDisplay *);
@@ -2048,10 +2040,6 @@ extern "C" {
 						  GdkNativeWindow);
     extern void gdk_window_set_geometry_hints(GdkWindow *, GdkGeometry *,
 					      GdkWindowHints);
-    extern gboolean gdk_draw_rectangle_alpha_libgtk_only(GdkDrawable *,
-							 gint, gint, gint,
-							 gint, GdkColor *,
-							 guint16);
     extern GType gdk_window_class_get_type(void);
     extern guint gdk_unicode_to_keyval(guint32);
     extern void gdk_draw_arc(GdkDrawable *, GdkGC *, gboolean, gint, gint,
@@ -2078,7 +2066,6 @@ extern "C" {
     extern void gdk_window_hide(GdkWindow *);
     extern void gdk_window_register_dnd(GdkWindow *);
     extern GType gdk_notify_type_get_type(void);
-    extern void gdk_add_option_entries_libgtk_only(GOptionGroup *);
     extern void gdk_window_invalidate_rect(GdkWindow *, GdkRectangle *,
 					   gboolean);
     extern void gdk_window_unmaximize(GdkWindow *);
