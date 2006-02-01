@@ -68,6 +68,111 @@ extern "C" {
 #define JMETHOD(type,methodname,arglist)	type (*methodname) arglist
 
 
+    typedef struct jpeg_common_struct *j_common_ptr;
+
+    typedef unsigned char JSAMPLE;
+
+    typedef JSAMPLE *JSAMPROW;
+
+    typedef JSAMPROW *JSAMPARRAY;
+
+    typedef unsigned int JDIMENSION;
+
+    typedef short int JCOEF;
+
+    typedef JCOEF JBLOCK[64];
+
+    typedef JBLOCK *JBLOCKROW;
+
+    typedef JBLOCKROW *JBLOCKARRAY;
+
+    typedef struct jvirt_sarray_control *jvirt_sarray_ptr;
+
+    typedef int boolean;
+
+    typedef struct jvirt_barray_control *jvirt_barray_ptr;
+
+    typedef unsigned char JOCTET;
+
+    typedef struct jpeg_decompress_struct *j_decompress_ptr;
+
+    typedef enum {
+	JCS_UNKNOWN = 0,
+	JCS_GRAYSCALE = 1,
+	JCS_RGB = 2,
+	JCS_YCbCr = 3,
+	JCS_CMYK = 4,
+	JCS_YCCK = 5
+    } J_COLOR_SPACE;
+
+    typedef enum {
+	JDCT_ISLOW = 0,
+	JDCT_IFAST = 1,
+	JDCT_FLOAT = 2
+    } J_DCT_METHOD;
+
+    typedef enum {
+	JDITHER_NONE = 0,
+	JDITHER_ORDERED = 1,
+	JDITHER_FS = 2
+    } J_DITHER_MODE;
+
+    typedef short unsigned int UINT16;
+
+    typedef struct {
+	UINT16 quantval[64];
+	boolean sent_table;
+    } JQUANT_TBL;
+
+    typedef unsigned char UINT8;
+
+    typedef struct {
+	UINT8 bits[17];
+	UINT8 huffval[256];
+	boolean sent_table;
+    } JHUFF_TBL;
+
+    typedef struct {
+	int component_id;
+	int component_index;
+	int h_samp_factor;
+	int v_samp_factor;
+	int quant_tbl_no;
+	int dc_tbl_no;
+	int ac_tbl_no;
+	JDIMENSION width_in_blocks;
+	JDIMENSION height_in_blocks;
+	int DCT_scaled_size;
+	JDIMENSION downsampled_width;
+	JDIMENSION downsampled_height;
+	boolean component_needed;
+	int MCU_width;
+	int MCU_height;
+	int MCU_blocks;
+	int MCU_sample_width;
+	int last_col_width;
+	int last_row_height;
+	JQUANT_TBL *quant_table;
+	void *dct_table;
+    } jpeg_component_info;
+
+    typedef struct jpeg_marker_struct *jpeg_saved_marker_ptr;
+
+    typedef struct jpeg_compress_struct *j_compress_ptr;
+
+    typedef struct {
+	int comps_in_scan;
+	int component_index[4];
+	int Ss;
+	int Se;
+	int Ah;
+	int Al;
+    } jpeg_scan_info;
+
+    typedef JSAMPARRAY *JSAMPIMAGE;
+
+    typedef boolean(*jpeg_marker_parser_method) (j_decompress_ptr);
+
     struct jpeg_decompress_struct {
 	struct jpeg_error_mgr *err;
 	struct jpeg_memory_mgr *mem;
@@ -213,37 +318,6 @@ extern "C" {
 	long int max_alloc_chunk;
     };
 
-    typedef struct jpeg_common_struct {
-	struct jpeg_error_mgr *err;
-	struct jpeg_memory_mgr *mem;
-	struct jpeg_progress_mgr *progress;
-	void *client_data;
-	boolean is_decompressor;
-	int global_state;
-    } *j_common_ptr;
-
-    typedef unsigned char JSAMPLE;
-
-    typedef JSAMPLE *JSAMPROW;
-
-    typedef JSAMPROW *JSAMPARRAY;
-
-    typedef unsigned int JDIMENSION;
-
-    typedef short int JCOEF;
-
-    typedef JCOEF JBLOCK[64];
-
-    typedef JBLOCK *JBLOCKROW;
-
-    typedef JBLOCKROW *JBLOCKARRAY;
-
-    typedef struct jvirt_sarray_control *jvirt_sarray_ptr;
-
-    typedef int boolean;
-
-    typedef struct jvirt_barray_control *jvirt_barray_ptr;
-
     struct jpeg_progress_mgr {
 	void (*progress_monitor) (j_common_ptr);
 	long int pass_counter;
@@ -262,159 +336,6 @@ extern "C" {
 	void (*term_source) (j_decompress_ptr);
     };
 
-    typedef unsigned char JOCTET;
-
-    typedef struct jpeg_decompress_struct {
-	struct jpeg_error_mgr *err;
-	struct jpeg_memory_mgr *mem;
-	struct jpeg_progress_mgr *progress;
-	void *client_data;
-	boolean is_decompressor;
-	int global_state;
-	struct jpeg_source_mgr *src;
-	JDIMENSION image_width;
-	JDIMENSION image_height;
-	int num_components;
-	J_COLOR_SPACE jpeg_color_space;
-	J_COLOR_SPACE out_color_space;
-	unsigned int scale_num;
-	unsigned int scale_denom;
-	double output_gamma;
-	boolean buffered_image;
-	boolean raw_data_out;
-	J_DCT_METHOD dct_method;
-	boolean do_fancy_upsampling;
-	boolean do_block_smoothing;
-	boolean quantize_colors;
-	J_DITHER_MODE dither_mode;
-	boolean two_pass_quantize;
-	int desired_number_of_colors;
-	boolean enable_1pass_quant;
-	boolean enable_external_quant;
-	boolean enable_2pass_quant;
-	JDIMENSION output_width;
-	JDIMENSION output_height;
-	int out_color_components;
-	int output_components;
-	int rec_outbuf_height;
-	int actual_number_of_colors;
-	JSAMPARRAY colormap;
-	JDIMENSION output_scanline;
-	int input_scan_number;
-	JDIMENSION input_iMCU_row;
-	int output_scan_number;
-	JDIMENSION output_iMCU_row;
-	int *coef_bits;
-	JQUANT_TBL *quant_tbl_ptrs[4];
-	JHUFF_TBL *dc_huff_tbl_ptrs[4];
-	JHUFF_TBL *ac_huff_tbl_ptrs[4];
-	int data_precision;
-	jpeg_component_info *comp_info;
-	boolean progressive_mode;
-	boolean arith_code;
-	UINT8 arith_dc_L[16];
-	UINT8 arith_dc_U[16];
-	UINT8 arith_ac_K[16];
-	unsigned int restart_interval;
-	boolean saw_JFIF_marker;
-	UINT8 JFIF_major_version;
-	UINT8 JFIF_minor_version;
-	UINT8 density_unit;
-	UINT16 X_density;
-	UINT16 Y_density;
-	boolean saw_Adobe_marker;
-	UINT8 Adobe_transform;
-	boolean CCIR601_sampling;
-	jpeg_saved_marker_ptr marker_list;
-	int max_h_samp_factor;
-	int max_v_samp_factor;
-	int min_DCT_scaled_size;
-	JDIMENSION total_iMCU_rows;
-	JSAMPLE *sample_range_limit;
-	int comps_in_scan;
-	jpeg_component_info *cur_comp_info[4];
-	JDIMENSION MCUs_per_row;
-	JDIMENSION MCU_rows_in_scan;
-	int blocks_in_MCU;
-	int MCU_membership[10];
-	int Ss;
-	int Se;
-	int Ah;
-	int Al;
-	int unread_marker;
-	struct jpeg_decomp_master *master;
-	struct jpeg_d_main_controller *main;
-	struct jpeg_d_coef_controller *coef;
-	struct jpeg_d_post_controller *post;
-	struct jpeg_input_controller *inputctl;
-	struct jpeg_marker_reader *marker;
-	struct jpeg_entropy_decoder *entropy;
-	struct jpeg_inverse_dct *idct;
-	struct jpeg_upsampler *upsample;
-	struct jpeg_color_deconverter *cconvert;
-	struct jpeg_color_quantizer *cquantize;
-    } *j_decompress_ptr;
-
-    typedef enum {
-	JCS_UNKNOWN = 0,
-	JCS_GRAYSCALE = 1,
-	JCS_RGB = 2,
-	JCS_YCbCr = 3,
-	JCS_CMYK = 4,
-	JCS_YCCK = 5
-    } J_COLOR_SPACE;
-
-    typedef enum {
-	JDCT_ISLOW = 0,
-	JDCT_IFAST = 1,
-	JDCT_FLOAT = 2
-    } J_DCT_METHOD;
-
-    typedef enum {
-	JDITHER_NONE = 0,
-	JDITHER_ORDERED = 1,
-	JDITHER_FS = 2
-    } J_DITHER_MODE;
-
-    typedef short unsigned int UINT16;
-
-    typedef struct {
-	UINT16 quantval[64];
-	boolean sent_table;
-    } JQUANT_TBL;
-
-    typedef unsigned char UINT8;
-
-    typedef struct {
-	UINT8 bits[17];
-	UINT8 huffval[256];
-	boolean sent_table;
-    } JHUFF_TBL;
-
-    typedef struct {
-	int component_id;
-	int component_index;
-	int h_samp_factor;
-	int v_samp_factor;
-	int quant_tbl_no;
-	int dc_tbl_no;
-	int ac_tbl_no;
-	JDIMENSION width_in_blocks;
-	JDIMENSION height_in_blocks;
-	int DCT_scaled_size;
-	JDIMENSION downsampled_width;
-	JDIMENSION downsampled_height;
-	boolean component_needed;
-	int MCU_width;
-	int MCU_height;
-	int MCU_blocks;
-	int MCU_sample_width;
-	int last_col_width;
-	int last_row_height;
-	JQUANT_TBL *quant_table;
-	void *dct_table;
-    } jpeg_component_info;
-
     struct jpeg_marker_struct {
 	jpeg_saved_marker_ptr next;
 	UINT8 marker;
@@ -422,14 +343,6 @@ extern "C" {
 	unsigned int data_length;
 	JOCTET *data;
     };
-
-    typedef struct jpeg_marker_struct {
-	jpeg_saved_marker_ptr next;
-	UINT8 marker;
-	unsigned int original_length;
-	unsigned int data_length;
-	JOCTET *data;
-    } *jpeg_saved_marker_ptr;
 
     struct jpeg_compress_struct {
 	struct jpeg_error_mgr *err;
@@ -506,87 +419,6 @@ extern "C" {
 	 boolean(*empty_output_buffer) (j_compress_ptr);
 	void (*term_destination) (j_compress_ptr);
     };
-
-    typedef struct jpeg_compress_struct {
-	struct jpeg_error_mgr *err;
-	struct jpeg_memory_mgr *mem;
-	struct jpeg_progress_mgr *progress;
-	void *client_data;
-	boolean is_decompressor;
-	int global_state;
-	struct jpeg_destination_mgr *dest;
-	JDIMENSION image_width;
-	JDIMENSION image_height;
-	int input_components;
-	J_COLOR_SPACE in_color_space;
-	double input_gamma;
-	int data_precision;
-	int num_components;
-	J_COLOR_SPACE jpeg_color_space;
-	jpeg_component_info *comp_info;
-	JQUANT_TBL *quant_tbl_ptrs[4];
-	JHUFF_TBL *dc_huff_tbl_ptrs[4];
-	JHUFF_TBL *ac_huff_tbl_ptrs[4];
-	UINT8 arith_dc_L[16];
-	UINT8 arith_dc_U[16];
-	UINT8 arith_ac_K[16];
-	int num_scans;
-	const jpeg_scan_info *scan_info;
-	boolean raw_data_in;
-	boolean arith_code;
-	boolean optimize_coding;
-	boolean CCIR601_sampling;
-	int smoothing_factor;
-	J_DCT_METHOD dct_method;
-	unsigned int restart_interval;
-	int restart_in_rows;
-	boolean write_JFIF_header;
-	UINT8 JFIF_major_version;
-	UINT8 JFIF_minor_version;
-	UINT8 density_unit;
-	UINT16 X_density;
-	UINT16 Y_density;
-	boolean write_Adobe_marker;
-	JDIMENSION next_scanline;
-	boolean progressive_mode;
-	int max_h_samp_factor;
-	int max_v_samp_factor;
-	JDIMENSION total_iMCU_rows;
-	int comps_in_scan;
-	jpeg_component_info *cur_comp_info[4];
-	JDIMENSION MCUs_per_row;
-	JDIMENSION MCU_rows_in_scan;
-	int blocks_in_MCU;
-	int MCU_membership[10];
-	int Ss;
-	int Se;
-	int Ah;
-	int Al;
-	struct jpeg_comp_master *master;
-	struct jpeg_c_main_controller *main;
-	struct jpeg_c_prep_controller *prep;
-	struct jpeg_c_coef_controller *coef;
-	struct jpeg_marker_writer *marker;
-	struct jpeg_color_converter *cconvert;
-	struct jpeg_downsampler *downsample;
-	struct jpeg_forward_dct *fdct;
-	struct jpeg_entropy_encoder *entropy;
-	jpeg_scan_info *script_space;
-	int script_space_size;
-    } *j_compress_ptr;
-
-    typedef struct {
-	int comps_in_scan;
-	int component_index[4];
-	int Ss;
-	int Se;
-	int Ah;
-	int Al;
-    } jpeg_scan_info;
-
-    typedef JSAMPARRAY *JSAMPIMAGE;
-
-    typedef boolean(*jpeg_marker_parser_method) (j_decompress_ptr);
 
 
     extern void jpeg_save_markers(j_decompress_ptr, int, unsigned int);
