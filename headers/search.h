@@ -14,10 +14,7 @@ extern "C" {
 
 
 
-    typedef struct entry {
-	char *key;
-	void *data;
-    } ENTRY;
+    typedef struct entry ENTRY;
 
     typedef enum {
 	FIND,
@@ -32,11 +29,16 @@ extern "C" {
     } VISIT;
 
 
+    struct entry {
+	char *key;
+	void *data;
+    };
+
+
 
 
     typedef void (*__action_fn_t) (void *__nodep, VISIT __value,
-				   int __level)
-    ;
+				   int __level);
 
 
     extern int hcreate(size_t);

@@ -15,8 +15,7 @@ extern "C" {
 #define RAND_MAX	2147483647
 
 
-    typedef int (*__compar_fn_t) (const void *, const void *)
-    ;
+    typedef int (*__compar_fn_t) (const void *, const void *);
 
     struct random_data {
 	int32_t *fptr;		/* Front pointer. */

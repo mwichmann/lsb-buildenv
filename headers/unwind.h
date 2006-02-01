@@ -42,8 +42,7 @@ extern "C" {
 
     typedef void (*_Unwind_Exception_Cleanup_Fn) (enum,
 						  struct _Unwind_Exception
-						  *)
-    ;
+						  *);
 
 
 /* The unwind interface uses a pointer to an exception header object
@@ -75,7 +74,7 @@ extern "C" {
 
 
 
-    typedef _Unwind_Reason_Code(*_Unwind_Stop_fn) (int version,
+    typedef _Unwind_Reason_Code(*_Unwind_Stop_Fn) (int version,
 						   _Unwind_Action actions,
 						   _Unwind_Exception_Class
 						   exceptionClass,
@@ -83,15 +82,13 @@ extern "C" {
 						   * exceptionObject,
 						   struct _Unwind_Context *
 						   context,
-						   void *stop_parameter)
-    ;
+						   void *stop_parameter);
 
 
 
 
     typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *)
-    ;
+						    *, void *);
 
 
 #if __i386__

@@ -18,7 +18,17 @@ extern "C" {
 
 
 
-    typedef struct re_pattern_buffer {
+    typedef struct re_pattern_buffer regex_t;
+
+    typedef int regoff_t;
+
+    typedef struct {
+	regoff_t rm_so;
+	regoff_t rm_eo;
+    } regmatch_t;
+
+
+    struct re_pattern_buffer {
 	unsigned char *buffer;
 	unsigned long int allocated;
 	unsigned long int used;
@@ -33,14 +43,7 @@ extern "C" {
 	unsigned int not_bol:1;
 	unsigned int not_eol:1;
 	unsigned int newline_anchor:1;
-    } regex_t;
-
-    typedef int regoff_t;
-
-    typedef struct {
-	regoff_t rm_so;
-	regoff_t rm_eo;
-    } regmatch_t;
+    };
 
 
 /* Values for the cflags parameter to the regcomp() function*/

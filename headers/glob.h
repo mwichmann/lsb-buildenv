@@ -63,7 +63,7 @@ extern "C" {
 	size_t gl_offs;
 	int gl_flags;
 	void (*gl_closedir) (void *);
-	struct dirent64 *(*gl_readdir64) (void *);
+	struct dirent64 *(*gl_readdir) (void *);
 	void *(*gl_opendir) (const char *);
 	int (*gl_lstat) (const char *, struct stat *);
 	int (*gl_stat) (const char *, struct stat *);

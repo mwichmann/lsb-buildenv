@@ -43,10 +43,6 @@ extern "C" {
 #define L_cuserid	9
 
 
-    struct _IO_FILE {
-	char dummy[__IO_FILE_SIZE];
-    };
-
     typedef struct {
 	off_t __pos;
 	mbstate_t __state;
@@ -57,11 +53,18 @@ extern "C" {
 	mbstate_t __state;
     } fpos64_t;
 
+    struct _IO_FILE {
+	char dummy[__IO_FILE_SIZE];
+    };
+
 
 /* The opaque type of streams.*/
 
 
     typedef struct _IO_FILE FILE;
+
+
+
 
 
 /* The possibilities for the third argument to `setvbuf'.*/

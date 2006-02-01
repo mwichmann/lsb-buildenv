@@ -31,18 +31,18 @@ extern "C" {
 #define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
 
 
+    typedef unsigned int pthread_key_t;
+
+    typedef int pthread_once_t;
+
+    typedef long long int __pthread_cond_align_t;
+
     struct _pthread_cleanup_buffer {
 	void (*__routine) (void *);
 	void *__arg;
 	int __canceltype;
 	struct _pthread_cleanup_buffer *__prev;
     };
-
-    typedef unsigned int pthread_key_t;
-
-    typedef int pthread_once_t;
-
-    typedef long long int __pthread_cond_align_t;
 
 
 /* Base Types*/
@@ -114,7 +114,15 @@ extern "C" {
 /* Lock structures*/
 
 
-    typedef struct _pthread_rwlock_t {
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+    typedef struct {
+	int __lockkind;
+	int __pshared;
+    } pthread_rwlockattr_t;
+
+
+    struct _pthread_rwlock_t {
 	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
 	int __rw_readers;	/* Number of readers */
 	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
@@ -122,12 +130,7 @@ extern "C" {
 	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
 	int __rw_kind;		/* Reader/Writer preference selection */
 	int __rw_pshared;	/* Shared between processes or not */
-    } pthread_rwlock_t;
-
-    typedef struct {
-	int __lockkind;
-	int __pshared;
-    } pthread_rwlockattr_t;
+    };
 
 
 /* Initializers*/

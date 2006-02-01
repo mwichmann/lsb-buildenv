@@ -22,12 +22,12 @@ extern "C" {
 #endif
 #if __ia64__
 /* IA64 */
-    typedef long int __jmp_buf[70] __attribute__ ((aligned(16)));
+    typedef long int __jmp_buf[70];
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    typedef long int __jmp_buf[112] __attribute__ ((aligned(16)));
+    typedef long int __jmp_buf[112];
 
 #endif
 #if __s390__ && !__s390x__
@@ -37,7 +37,7 @@ extern "C" {
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef long int __jmp_buf[64] __attribute__ ((aligned(16)));
+    typedef long int __jmp_buf[64];
 
 #endif
 #if __x86_64__

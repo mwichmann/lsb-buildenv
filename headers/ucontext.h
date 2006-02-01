@@ -18,6 +18,21 @@ extern "C" {
 
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
+    typedef struct _libc_vrstate vrregset_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef struct _libc_vscr vscr_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef struct _libc_vrstate vrregset_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
     struct pt_regs {
 	unsigned long int gpr[32];
 	unsigned long int nip;
@@ -46,30 +61,33 @@ extern "C" {
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    typedef struct _libc_vrstate {
+
+    struct _libc_vrstate {
 	unsigned int vrregs[128];
 	unsigned int vrsave;
 	unsigned int _pad[2];
 	unsigned int vscr;
-    } vrregset_t __attribute__ ((__aligned__(16)));
+    } __attribute__ ((__aligned__(16)));
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef struct _libc_vscr {
+
+    struct _libc_vscr {
 	int __pad[3];
 	int vscr_word;
-    } vscr_t;
+    };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef struct _libc_vrstate {
+
+    struct _libc_vrstate {
 	unsigned int vrregs[128];
 	vscr_t vscr;
 	unsigned int vrsave;
 	unsigned int __pad[3];
-    } vrregset_t __attribute__ ((__aligned__(16)));
+    } __attribute__ ((__aligned__(16)));
 
 #endif
 
@@ -140,14 +158,6 @@ extern "C" {
 /* Definitions taken from the kernel headers.*/
 
 
-#if __i386__
-/* IA32 */
-    struct _libc_fpreg {
-	unsigned short significand[4];
-	unsigned short exponent;
-    };
-
-#endif
 #if __s390x__
 /* S390X */
     typedef union {
@@ -164,6 +174,14 @@ extern "C" {
     } fpreg_t;
 
 #endif
+#if __i386__
+/* IA32 */
+    struct _libc_fpreg {
+	unsigned short significand[4];
+	unsigned short exponent;
+    };
+
+#endif
 
 
 
@@ -171,21 +189,6 @@ extern "C" {
 /* Structure to describe FPU registers.*/
 
 
-#if __i386__
-/* IA32 */
-    struct _libc_fpstate {
-	unsigned long int cw;
-	unsigned long int sw;
-	unsigned long int tag;
-	unsigned long int ipoff;
-	unsigned long int cssel;
-	unsigned long int dataoff;
-	unsigned long int datasel;
-	struct _libc_fpreg _st[8];
-	unsigned long int status;
-    };
-
-#endif
 #if __i386__
 /* IA32 */
     typedef struct _libc_fpstate *fpregset_t;
@@ -205,6 +208,36 @@ extern "C" {
 	unsigned int fpc;
 	fpreg_t fprs[16];
     } fpregset_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef struct _libc_fpstate *fpregset_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef struct _libc_fpstate fpregset_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef double fpregset_t[33];
+
+#endif
+#if __i386__
+/* IA32 */
+    struct _libc_fpstate {
+	unsigned long int cw;
+	unsigned long int sw;
+	unsigned long int tag;
+	unsigned long int ipoff;
+	unsigned long int cssel;
+	unsigned long int dataoff;
+	unsigned long int datasel;
+	struct _libc_fpreg _st[8];
+	unsigned long int status;
+    };
 
 #endif
 #if __x86_64__
@@ -231,23 +264,14 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
-/* x86-64 */
-    typedef struct _libc_fpstate *fpregset_t;
-
-#endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    typedef struct _libc_fpstate {
+
+    struct _libc_fpstate {
 	double fpregs[32];
 	double fpscr;
 	int _pad[2];
-    } fpregset_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-    typedef double fpregset_t[33];
+    };
 
 #endif
 
@@ -326,6 +350,12 @@ extern "C" {
     } mcontext_t;
 
 #endif
+#if __ia64__
+/* IA64 */
+
+
+
+#endif
 
 
 
@@ -343,19 +373,56 @@ extern "C" {
 
 #if __i386__
 /* IA32 */
-    typedef struct ucontext {
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __ia64__
+/* IA64 */
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef struct ucontext ucontext_t;
+
+#endif
+#if __i386__
+/* IA32 */
+
+    struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
 	stack_t uc_stack;
 	mcontext_t uc_mcontext;
 	sigset_t uc_sigmask;
 	struct _libc_fpstate __fpregs_mem;
-    } ucontext_t;
+    };
 
 #endif
 #if __ia64__
 /* IA64 */
-    typedef struct ucontext {
+
+    struct ucontext {
 	union {
 	    mcontext_t _mc;
 	    struct {
@@ -363,12 +430,13 @@ extern "C" {
 		struct ucontext *_link;
 	    } _uc;
 	} _u;
-    } ucontext_t;
+    };
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    typedef struct ucontext {
+
+    struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
 	stack_t uc_stack;
@@ -376,52 +444,56 @@ extern "C" {
 	union uc_regs_ptr uc_mcontext;
 	sigset_t uc_sigmask;
 	char uc_reg_space[sizeof(mcontext_t) + 12];
-    } ucontext_t;
+    };
 
 #endif
 #if __s390x__
 /* S390X */
-    typedef struct ucontext {
+
+    struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
 	stack_t uc_stack;
 	mcontext_t uc_mcontext;
 	sigset_t uc_sigmask;
-    } ucontext_t;
+    };
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-    typedef struct ucontext {
+
+    struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
 	stack_t uc_stack;
 	mcontext_t uc_mcontext;
 	sigset_t uc_sigmask;
-    } ucontext_t;
+    };
 
 #endif
 #if __x86_64__
 /* x86-64 */
-    typedef struct ucontext {
+
+    struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
 	stack_t uc_stack;
 	mcontext_t uc_mcontext;
 	sigset_t uc_sigmask;
 	struct _libc_fpstate __fpregs_mem;
-    } ucontext_t;
+    };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef struct ucontext {
+
+    struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
 	stack_t uc_stack;
 	sigset_t uc_sigmask;
 	mcontext_t uc_mcontext;
-    } ucontext_t;
+    };
 
 #endif
 

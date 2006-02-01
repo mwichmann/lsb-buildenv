@@ -135,6 +135,12 @@ extern "C" {
 
 
 
+
+
+
+
+
+
     struct _win_st {
 	short _cury;		/* current cursor position */
 	short _curx;

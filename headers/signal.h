@@ -46,8 +46,7 @@ extern "C" {
     typedef struct {
 	unsigned long int mask;
 	unsigned long int addr;
-    } __attribute__ ((aligned(8)))
-	_psw_t;
+    } __attribute__ ((aligned(8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -55,8 +54,7 @@ extern "C" {
     typedef struct {
 	unsigned long int mask;
 	unsigned long int addr;
-    } __attribute__ ((aligned(8)))
-	_psw_t;
+    } __attribute__ ((aligned(8))) _psw_t;
 
 #endif
 #if __s390__ && !__s390x__
@@ -65,6 +63,15 @@ extern "C" {
 	_psw_t psw;
 	unsigned long int gprs[__NUM_GPRS];
 	unsigned int acrs[__NUM_ACRS];
+    } _s390_regs_common;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef struct {
+	_psw_t psw;
+	unsigned long int gprs[16];
+	unsigned int acrs[16];
     } _s390_regs_common;
 
 #endif
@@ -87,15 +94,6 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
-/* S390X */
-    typedef struct {
-	_psw_t psw;
-	unsigned long int gprs[16];
-	unsigned int acrs[16];
-    } _s390_regs_common;
-
-#endif
 
 /* PPC64 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
 
@@ -114,8 +112,7 @@ extern "C" {
 /* Type of a signal handling function.*/
 
 
-    typedef void (*sighandler_t) (int)
-    ;
+    typedef void (*sighandler_t) (int);
 
 
 /* Special Signal values*/
@@ -171,10 +168,12 @@ extern "C" {
 #define SV_RESETHAND	(1<<2)
 
 
-    typedef union sigval {
+    typedef union sigval sigval_t;
+
+    union sigval {
 	int sival_int;
 	void *sival_ptr;
-    } sigval_t;
+    };
 
 
 /* POSIX 1003.1b sigevent*/
@@ -205,18 +204,21 @@ extern "C" {
 #define SIGEV_MAX_SIZE	64
 
 
-    typedef struct sigevent {
+    typedef struct sigevent sigevent_t;
+
+
+    struct sigevent {
 	sigval_t sigev_value;
 	int sigev_signo;
 	int sigev_notify;
 	union {
 	    int _pad[SIGEV_PAD_SIZE];
 	    struct {
-		void (*sigev_thread_func) (sigval_t);
+		void (*_function) (sigval_t);
 		void *_attribute;
 	    } _sigev_thread;
 	} _sigev_un;
-    } sigevent_t;
+    };
 
 
 /* POSIX 1003.1b siginfo*/
@@ -257,7 +259,10 @@ extern "C" {
 #define si_timer2	_sifields._timer._timer2
 
 
-    typedef struct siginfo {
+    typedef struct siginfo siginfo_t;
+
+
+    struct siginfo {
 	int si_signo;		/* Signal number. */
 	int si_errno;
 	int si_code;		/* Signal code. */
@@ -291,7 +296,7 @@ extern "C" {
 		int _fd;
 	    } _sigpoll;
 	} _sifields;
-    } siginfo_t;
+    };
 
 
 /* Values for `si_code'.  Positive values are reserved for kernel-generated
@@ -450,7 +455,7 @@ extern "C" {
     struct sigaction {
 	union {
 	    sighandler_t _sa_handler;
-	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	    void (*sa_sigaction) (int, siginfo_t *, void *);
 	} __sigaction_handler;
 	sigset_t sa_mask;
 	int sa_flags;
@@ -530,11 +535,14 @@ extern "C" {
 #endif
 
 
-    typedef struct sigaltstack {
+    typedef struct sigaltstack stack_t;
+
+
+    struct sigaltstack {
 	void *ss_sp;
 	int ss_flags;
 	size_t ss_size;
-    } stack_t;
+    };
 
 
 /* Possible values for `ss_flags.'.*/
@@ -546,6 +554,38 @@ extern "C" {
 /* FP registers*/
 
 
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef struct {
+	unsigned int fpc;
+	double fprs[__NUM_FPRS];
+    } _s390_fp_regs;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef struct {
+	_s390_regs_common regs;
+	_s390_fp_regs fpregs;
+    } _sigregs;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef struct {
+	unsigned int fpc;
+	double fprs[__NUM_FPRS];
+    } _s390_fp_regs;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef struct {
+	_s390_regs_common regs;
+	_s390_fp_regs fpregs;
+    } _sigregs;
+
+#endif
 #if __i386__
 /* IA32 */
     struct _fpreg {
@@ -594,38 +634,6 @@ extern "C" {
     struct _xmmreg {
 	uint32_t element[4];
     };
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef struct {
-	unsigned int fpc;
-	double fprs[__NUM_FPRS];
-    } _s390_fp_regs;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef struct {
-	_s390_regs_common regs;
-	_s390_fp_regs fpregs;
-    } _sigregs;
-
-#endif
-#if __s390x__
-/* S390X */
-    typedef struct {
-	unsigned int fpc;
-	double fprs[__NUM_FPRS];
-    } _s390_fp_regs;
-
-#endif
-#if __s390x__
-/* S390X */
-    typedef struct {
-	_s390_regs_common regs;
-	_s390_fp_regs fpregs;
-    } _sigregs;
 
 #endif
 

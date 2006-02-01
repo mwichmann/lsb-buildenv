@@ -48,24 +48,25 @@ extern "C" {
 
 
 
-    typedef voidpf(*alloc_func) (voidpf opaque, uInt items, uInt size)
-    ;
+    typedef voidpf(*alloc_func) (voidpf opaque, uInt items, uInt size);
 
-    typedef void (*free_func) (voidpf opaque, voidpf address)
-    ;
-
-    struct internal_state {
-	int dummy;
-    };
+    typedef void (*free_func) (voidpf opaque, voidpf address);
 
     typedef Byte Bytef;
 
     typedef uInt uIntf;
 
+    struct internal_state {
+	int dummy;
+    };
 
 
 
-    typedef struct z_stream_s {
+
+    typedef struct z_stream_s z_stream;
+
+
+    struct z_stream_s {
 	Bytef *next_in;		/* next input byte */
 	uInt avail_in;		/* number of bytes available at next_in */
 	uLong total_in;		/* total nb of input bytes read so far */
@@ -80,7 +81,7 @@ extern "C" {
 	int data_type;		/* best guess about the data type: ascii or binary */
 	uLong adler;		/* adler32 value of the uncompressed data */
 	uLong reserved;		/* reserved for future use */
-    } z_stream;
+    };
 
 
 
