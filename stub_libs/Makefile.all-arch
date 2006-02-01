@@ -47,4 +47,7 @@ install-core:
 
 install-desktop:
 	install -d $(INSTALL_DIR)
+	install -d $(INSTALL_DIR)/pkgconfig
 	install $(DESKTOP_SOFILES) $(INSTALL_DIR)
+	install ../pkgconfig/*.pc $(INSTALL_DIR)/pkgconfig
+
