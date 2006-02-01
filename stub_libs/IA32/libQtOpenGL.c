@@ -176,6 +176,9 @@ void _ZNK9QGLWidget7isValidEv() {} ;
 void _ZNK9QGLWidget8colormapEv() {} ;
 void _ZNK9QGLWidget8qglColorERK6QColor() {} ;
 void _ZNK9QGLWidget9isSharingEv() {} ;
+void _ZThn8_N9QGLWidgetD0Ev() {} ;
+void _ZThn8_N9QGLWidgetD1Ev() {} ;
+void _ZThn8_NK9QGLWidget11paintEngineEv() {} ;
 void _ZeqRK9QGLFormatS1_() {} ;
 void _ZneRK9QGLFormatS1_() {} ;
 __asm__(".globl _ZN10QGLContext10currentCtxE; .pushsection .data; .type _ZN10QGLContext10currentCtxE,@object; .size _ZN10QGLContext10currentCtxE, 4; _ZN10QGLContext10currentCtxE: .long 0; .popsection");
@@ -188,6 +191,3 @@ __asm__(".globl _ZTV10QGLContext; .pushsection .data; .type _ZTV10QGLContext,@ob
 __asm__(".globl _ZTV12QDashStroker; .pushsection .data; .type _ZTV12QDashStroker,@object; .size _ZTV12QDashStroker, 28; _ZTV12QDashStroker: .long 0; .popsection");
 __asm__(".globl _ZTV14QGLPixelBuffer; .pushsection .data; .type _ZTV14QGLPixelBuffer,@object; .size _ZTV14QGLPixelBuffer, 28; _ZTV14QGLPixelBuffer: .long 0; .popsection");
 __asm__(".globl _ZTV9QGLWidget; .pushsection .data; .type _ZTV9QGLWidget,@object; .size _ZTV9QGLWidget, 292; _ZTV9QGLWidget: .long 0; .popsection");
-__asm__(".globl _ZThn8_N9QGLWidgetD0Ev; .pushsection .data; .type _ZThn8_N9QGLWidgetD0Ev,@object; .size _ZThn8_N9QGLWidgetD0Ev, 0; _ZThn8_N9QGLWidgetD0Ev: .long 0; .popsection");
-__asm__(".globl _ZThn8_N9QGLWidgetD1Ev; .pushsection .data; .type _ZThn8_N9QGLWidgetD1Ev,@object; .size _ZThn8_N9QGLWidgetD1Ev, 0; _ZThn8_N9QGLWidgetD1Ev: .long 0; .popsection");
-__asm__(".globl _ZThn8_NK9QGLWidget11paintEngineEv; .pushsection .data; .type _ZThn8_NK9QGLWidget11paintEngineEv,@object; .size _ZThn8_NK9QGLWidget11paintEngineEv, 0; _ZThn8_NK9QGLWidget11paintEngineEv: .long 0; .popsection");
