@@ -88,11 +88,14 @@ extern "C" {
 
 
 
-    typedef struct CLIENT {
+    typedef struct CLIENT CLIENT;
+
+
+    struct CLIENT {
 	struct AUTH *cl_auth;
 	struct clnt_ops *cl_ops;
 	caddr_t cl_private;
-    } CLIENT;
+    };
 
 
 

@@ -15,13 +15,13 @@ extern "C" {
 #define POLLNVAL	0x0020
 
 
+    typedef unsigned long int nfds_t;
+
     struct pollfd {
 	int fd;			/* File descriptor to poll. */
 	short events;		/* Types of events poller cares about. */
 	short revents;		/* Types of events that actually occurred. */
     };
-
-    typedef unsigned long int nfds_t;
 
 
 #ifdef __cplusplus

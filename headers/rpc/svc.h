@@ -31,7 +31,10 @@ extern "C" {
 /* Server side transport handle*/
 
 
-    typedef struct SVCXPRT {
+    typedef struct SVCXPRT SVCXPRT;
+
+
+    struct SVCXPRT {
 	int xp_sock;
 	u_short xp_port;
 	struct xp_ops *xp_ops;
@@ -41,7 +44,7 @@ extern "C" {
 	caddr_t xp_p1;
 	caddr_t xp_p2;
 	char xp_pad[256];
-    } SVCXPRT;
+    };
 
 
 
@@ -58,8 +61,7 @@ extern "C" {
 
 
 
-    typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *)
-    ;
+    typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
 
 

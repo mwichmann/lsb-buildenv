@@ -11,20 +11,23 @@ extern "C" {
 
 
 
+    typedef struct XDR XDR;
+
     enum xdr_op {
 	XDR_ENCODE,
 	XDR_DECODE,
 	XDR_FREE
     };
 
-    typedef struct XDR {
+
+    struct XDR {
 	enum xdr_op x_op;
 	struct xdr_ops *x_ops;
 	caddr_t x_public;
 	caddr_t x_private;
 	caddr_t x_base;
 	int x_handy;
-    } XDR;
+    };
 
 
 /* Contains operation which is being applied to the stream, an operations vector for the particular implementation and two private fields for the use of the particular implementation.*/
@@ -51,8 +54,7 @@ extern "C" {
 /* A xdrproc_t exists for each data type which is to be encoded or decoded.*/
 
 
-    typedef bool_t(*xdrproc_t) (XDR *, void *, ...)
-    ;
+    typedef bool_t(*xdrproc_t) (XDR *, void *, ...);
 
 
 /* Support struct for discriminated unions.*/

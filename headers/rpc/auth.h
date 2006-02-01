@@ -52,13 +52,16 @@ extern "C" {
 /* Auth handle, interface to client side authenticators.*/
 
 
-    typedef struct AUTH {
+    typedef struct AUTH AUTH;
+
+
+    struct AUTH {
 	struct opaque_auth ah_cred;
 	struct opaque_auth ah_verf;
 	union des_block ah_key;
 	struct auth_ops *ah_ops;
 	caddr_t ah_private;
-    } AUTH;
+    };
 
 
 
