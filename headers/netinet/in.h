@@ -37,11 +37,11 @@ extern "C" {
 /* Address structures for IPv4*/
 
 
+    typedef uint32_t in_addr_t;
+
     struct in_addr {
 	uint32_t s_addr;
     };
-
-    typedef uint32_t in_addr_t;
 
 
 /* Well Know IPv4 addresses*/
