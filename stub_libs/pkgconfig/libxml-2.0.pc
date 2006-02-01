@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+
+
+Name: libXML
+Version: 2.6.22
+Description: libXML library version2.
+Requires:
+Libs: -L${libdir} -lxml2 -lpthread -lz  -lm 
+Cflags: -I${includedir}/libxml2 -I${includedir}/libxml2 
