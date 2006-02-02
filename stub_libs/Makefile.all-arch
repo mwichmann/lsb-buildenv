@@ -10,7 +10,7 @@ DESKTOP_CFILES = $(addsuffix .c,$(DESKTOP_STUBLIBS))
 DESKTOP_OFILES = $(addsuffix .o,$(DESKTOP_STUBLIBS))
 DESKTOP_SOFILES = $(addsuffix .so,$(DESKTOP_STUBLIBS))
 
-CFLAGS=-g -Wall  -fno-builtin 
+CFLAGS=-g -Wall  -fno-builtin -fPIC
 INSTALL_DIR=$(INSTALL_ROOT)/$(LIBDIR)
 
 # For ppc64 platform add flag to generate 64-bit shared libs
