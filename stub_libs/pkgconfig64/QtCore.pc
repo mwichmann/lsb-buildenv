@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib64
+includedir=/opt/lsb/include/QtCore
+qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass qt warn_on release incremental link_prl release stl qt_no_framework release shared dll largefile stl sse dylib create_prl link_prl depend_includepath QTDIR_build release ReleaseBuild Release build_pass qt_install_headers qt warn_on depend_includepath qmake_cache target_qt debug_and_release create_libtool create_pc explicitlib release ReleaseBuild Release build_pass no_autoqmake moc thread shared dll
+
+Name: Qtcore
+Description: Qtcore Library
+Version: 4.1.1
+Libs: -L${libdir} -lQtCore -lz -lm -lpthread -ldl  
+Cflags: -DQT_SHARED -I/opt/lsb/include -I${includedir}
