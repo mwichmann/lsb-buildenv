@@ -73,47 +73,34 @@ extern "C" {
 
     typedef struct _IceConn *IceConn;
 
-    typedef struct _IceListenObj
-    *IceListenObj;
+    typedef struct _IceListenObj *IceListenObj;
 
 
 
 
-    typedef void (*IceWatchProc) (void)
-    ;
+    typedef void (*IceWatchProc) (void);
 
-    typedef void (*IcePoProcessMsgProc) (void)
-    ;
+    typedef void (*IcePoProcessMsgProc) (void);
 
-    typedef void (*IcePaProcessMsgProc) (void)
-    ;
+    typedef void (*IcePaProcessMsgProc) (void);
 
-    typedef IcePoAuthStatus(*IcePoAuthProc) (void)
-    ;
+    typedef IcePoAuthStatus(*IcePoAuthProc) (void);
 
-    typedef IcePaAuthStatus(*IcePaAuthProc) (void)
-    ;
+    typedef IcePaAuthStatus(*IcePaAuthProc) (void);
 
-    typedef int (*IceHostBasedAuthProc) (void)
-    ;
+    typedef int (*IceHostBasedAuthProc) (void);
 
-    typedef int (*IceProtocolSetupProc) (void)
-    ;
+    typedef int (*IceProtocolSetupProc) (void);
 
-    typedef void (*IceProtocolActivateProc) (void)
-    ;
+    typedef void (*IceProtocolActivateProc) (void);
 
-    typedef void (*IceIOErrorProc) (void)
-    ;
+    typedef void (*IceIOErrorProc) (void);
 
-    typedef void (*IcePingReplyProc) (void)
-    ;
+    typedef void (*IcePingReplyProc) (void);
 
-    typedef void (*IceErrorHandler) (void)
-    ;
+    typedef void (*IceErrorHandler) (void);
 
-    typedef void (*IceIOErrorHandler) (void)
-    ;
+    typedef void (*IceIOErrorHandler) (void);
 
 
 /* Default HeaderGroup for X11/ICE/ICElib.h*/

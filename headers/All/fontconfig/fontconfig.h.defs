@@ -194,6 +194,7 @@ typedef enum _FcLangResult {
     FcLangDifferentCountry = 1,
     FcLangDifferentLang = 2
 } FcLangResult;
+typedef short unsigned int FcChar16;
 extern FcBool FcPatternAdd(FcPattern *, const char *, FcValue, FcBool);
 extern FcStrList *FcConfigGetConfigFiles(FcConfig *);
 extern FcBool FcStrSetAdd(FcStrSet *, const FcChar8 *);

@@ -46,23 +46,17 @@ extern "C" {
 /* Client callbacks*/
 
 
-    typedef void (*SmcSaveYourselfPhase2Proc) (void)
-    ;
+    typedef void (*SmcSaveYourselfPhase2Proc) (void);
 
-    typedef void (*SmcInteractProc) (void)
-    ;
+    typedef void (*SmcInteractProc) (void);
 
-    typedef void (*SmcDieProc) (void)
-    ;
+    typedef void (*SmcDieProc) (void);
 
-    typedef void (*SmcShutdownCancelledProc) (void)
-    ;
+    typedef void (*SmcShutdownCancelledProc) (void);
 
-    typedef void (*SmcSaveCompleteProc) (void)
-    ;
+    typedef void (*SmcSaveCompleteProc) (void);
 
-    typedef void (*SmcPropReplyProc) (void)
-    ;
+    typedef void (*SmcPropReplyProc) (void);
 
 
 /* Callbacks set up at SmcOpenConnection time*/
@@ -77,14 +71,11 @@ extern "C" {
 /* Session manager callbacks*/
 
 
-    typedef void (*SmsSetPropertiesProc) (void)
-    ;
+    typedef void (*SmsSetPropertiesProc) (void);
 
-    typedef void (*SmsDeletePropertiesProc) (void)
-    ;
+    typedef void (*SmsDeletePropertiesProc) (void);
 
-    typedef void (*SmsGetPropertiesProc) (void)
-    ;
+    typedef void (*SmsGetPropertiesProc) (void);
 
 
 /* Callbacks set up by a session manager when a new client connects.*/
@@ -98,18 +89,15 @@ extern "C" {
 
 
 
-    typedef int (*SmsNewClientProc) (void)
-    ;
+    typedef int (*SmsNewClientProc) (void);
 
 
 /* Error handlers*/
 
 
-    typedef void (*SmcErrorHandler) (void)
-    ;
+    typedef void (*SmcErrorHandler) (void);
 
-    typedef void (*SmsErrorHandler) (void)
-    ;
+    typedef void (*SmsErrorHandler) (void);
 
 
 /* Default HeaderGroup for X11/SM/SMlib.h*/

@@ -16,11 +16,20 @@ extern "C" {
 
     typedef struct _ConstraintClassPart ConstraintClassPart;
 
-    typedef struct _ConstraintClassRec {
+    typedef struct _ConstraintClassRec ConstraintClassRec;
+
+
+
+
+
+
+
+
+    struct _ConstraintClassRec {
 	CoreClassPart core_class;
 	CompositeClassPart composite_class;
 	ConstraintClassPart constraint_class;
-    } ConstraintClassRec;
+    };
 
 
     extern ConstraintClassRec constraintClassRec;

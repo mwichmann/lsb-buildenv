@@ -3565,11 +3565,6 @@ extern "C" {
     typedef gboolean(*GtkAccelGroupActivate) (GtkAccelGroup *, GObject *,
 					      guint, GdkModifierType);
 
-    enum {
-	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID = -1,
-	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
-    };
-
     typedef enum {
 	GTK_IM_PREEDIT_NOTHING,
 	GTK_IM_PREEDIT_CALLBACK,
@@ -3719,6 +3714,11 @@ extern "C" {
 	GTK_DOUBLE_BUFFERED = 1 << 21,
 	GTK_NO_SHOW_ALL = 1 << 22
     } GtkWidgetFlags;
+
+    enum {
+	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID = -1,
+	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
+    };
 
 
 

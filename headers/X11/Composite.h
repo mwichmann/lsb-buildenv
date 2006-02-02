@@ -10,16 +10,14 @@ extern "C" {
 
 
 
-    typedef Cardinal(*XtOrderProc) (Widget child)
-    ;
+    typedef Cardinal(*XtOrderProc) (Widget child);
 
     typedef void (*XtDoChangeProc) (Widget composite_parent,
 				    WidgetList unmanage_children,
 				    Cardinal * num_unmanage_children,
 				    WidgetList manage_children,
 				    Cardinal * num_manage_children,
-				    XtPointer client_data)
-    ;
+				    XtPointer client_data);
 
 
     extern void XtChangeManagedSet(WidgetList, Cardinal, XtDoChangeProc,

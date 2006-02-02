@@ -15,4 +15,4 @@ extern int tgetflag(char *);
 extern int tgetnum(char *);
 extern int tputs(const char *, int, int (*)(int)
     );
-extern TERMINAL *cur_term(void);
+extern TERMINAL *cur_term;

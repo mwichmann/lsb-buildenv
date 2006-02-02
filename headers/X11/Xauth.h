@@ -10,7 +10,10 @@ extern "C" {
 
 
 
-    typedef struct xauth {
+    typedef struct xauth Xauth;
+
+
+    struct xauth {
 	unsigned short family;
 	unsigned short address_length;
 	char *address;
@@ -20,7 +23,7 @@ extern "C" {
 	char *name;
 	unsigned short data_length;
 	char *data;
-    } Xauth;
+    };
 
 
     extern void XauDisposeAuth(Xauth *);

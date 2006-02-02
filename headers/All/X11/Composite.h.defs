@@ -12,4 +12,4 @@ extern void XtManageChild(Widget);
 extern void XtManageChildren(WidgetList, Cardinal);
 extern void XtUnmanageChild(Widget);
 extern void XtUnmanageChildren(WidgetList, Cardinal);
-extern WidgetClass compositeWidgetClass(void);
+extern WidgetClass compositeWidgetClass;

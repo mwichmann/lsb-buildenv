@@ -12,38 +12,34 @@ extern "C" {
 
 
 
-    typedef struct
-	XSizeHints;
+    typedef struct XSizeHints;
 
-    typedef struct
-	XWMHints;
+    typedef struct XWMHints;
 
-    typedef struct
-	XTextProperty;
+    typedef struct XTextProperty;
 
-    typedef struct
-	XIconSize;
+    typedef struct XIconSize;
 
-    typedef struct
-	XClassHint;
+    typedef struct XClassHint;
 
-    typedef struct _XComposeStatus {
-	XPointer compose_ptr;
-	int chars_matched;
-    } XComposeStatus;
+    typedef struct _XComposeStatus XComposeStatus;
 
     typedef struct _XRegion *Region;
 
-    typedef struct
-	XVisualInfo;
+    typedef struct XVisualInfo;
 
-    typedef struct
-	XStandardColormap;
+    typedef struct XStandardColormap;
 
     typedef int XContext;
 
     typedef enum
 	XICCEncodingStyle;
+
+
+    struct _XComposeStatus {
+	XPointer compose_ptr;
+	int chars_matched;
+    };
 
 
     extern int XAddPixel(void);

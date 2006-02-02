@@ -33,7 +33,13 @@ extern "C" {
 
 
 
+
+
+
     typedef struct _CompositeClassRec CompositeClassRec;
+
+
+
 
 
     extern CompositeClassRec compositeClassRec;

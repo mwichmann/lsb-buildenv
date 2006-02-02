@@ -1,1 +1,1 @@
-extern WidgetClass coreWidgetClass(void);
+extern WidgetClass coreWidgetClass;

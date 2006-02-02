@@ -1,2 +1,2 @@
 
-extern WidgetClass objectClass(void);
+extern WidgetClass objectClass;

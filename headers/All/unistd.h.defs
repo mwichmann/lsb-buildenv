@@ -191,7 +191,7 @@ typedef long long int off64_t;
 #define F_TLOCK	2
 #define F_TEST	3
 
-extern char **__environ(void);
+extern char **__environ;
 extern pid_t __getpgid(pid_t);
 extern void _exit(int);
 extern int acct(const char *);
@@ -221,10 +221,10 @@ extern char *getwd(char *);
 extern int lockf(int, int, off_t);
 extern int mkstemp(char *);
 extern int nice(int);
-extern char *optarg(void);
-extern int opterr(void);
-extern int optind(void);
-extern int optopt(void);
+extern char *optarg;
+extern int opterr;
+extern int optind;
+extern int optopt;
 extern int rename(const char *, const char *);
 extern int setegid(gid_t);
 extern int seteuid(uid_t);
@@ -288,7 +288,7 @@ extern int unlink(const char *);
 extern pid_t vfork(void);
 extern ssize_t pread(int, void *, size_t, off_t);
 extern ssize_t pwrite(int, const void *, size_t, off_t);
-extern char **_environ(void);
+extern char **_environ;
 extern long int fpathconf(int, int);
 extern int ftruncate(int, off_t);
 extern char *getcwd(char *, size_t);

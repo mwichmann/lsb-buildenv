@@ -11,21 +11,17 @@ extern "C" {
 
 
 
-    struct _XDisplay;
-
-    typedef struct
-	XColor;
+    typedef struct XColor;
 
     typedef void *XVaNestedList;
 
-    typedef int (*XErrorHandler) (void)
-    ;
+    typedef int (*XErrorHandler) (void);
 
-    typedef int (*XIOErrorHandler) (void)
-    ;
+    typedef int (*XIOErrorHandler) (void);
 
-    typedef void (*XConnectionWatchProc) (void)
-    ;
+    typedef void (*XConnectionWatchProc) (void);
+
+    struct _XDisplay;
 
 
 
@@ -36,29 +32,29 @@ extern "C" {
 /* Extensions need a way to hang private data on some structures.*/
 
 
-    typedef struct _XExtData {
+    typedef struct _XExtData XExtData;
+
+    typedef struct XExtCodes;
+
+
+    struct _XExtData {
 	int number;
 	struct _XExtData *next;
 	int (*free_private) (struct _XExtData * extension);
 	XPointer private_data;
-    } XExtData;
-
-    typedef struct
-	XExtCodes;
+    };
 
 
 /* Data structure for retrieving info about pixmap formats.*/
 
 
-    typedef struct
-	XPixmapFormatValues;
+    typedef struct XPixmapFormatValues;
 
 
 /* Data structure for setting graphics context*/
 
 
-    typedef struct
-	XGCValues;
+    typedef struct XGCValues;
 
 
 /*  Graphics context.  The contents of this structure are implementation dependent.  A GC should be treated as opaque by application code.*/
@@ -70,52 +66,48 @@ extern "C" {
 /* Visual structure; contains information about colormapping possible.*/
 
 
-    typedef struct
-	Visual;
+    typedef struct Visual;
 
 
 /* Depth structure; contains information for each possible depth.*/
 
 
-    typedef struct
-	Depth;
+    typedef struct Depth;
 
 
 /* Information about the screen.  The contents of this structure are implementation dependent.  A Screen should be treated as opaque by application code.*/
 
 
-    typedef struct
-	Screen;
+    typedef struct Screen;
 
 
 /*  Format structure; describes ZFormat data the screen will understand.*/
 
 
-    typedef struct
-	ScreenFormat;
+    typedef struct ScreenFormat;
 
 
 /* Data structure for setting window attributes.*/
 
 
-    typedef struct
-	XSetWindowAttributes;
+    typedef struct XSetWindowAttributes;
 
-    typedef struct
-	XWindowAttributes;
+    typedef struct XWindowAttributes;
 
 
 /* Data structure for host setting; getting routines.*/
 
 
-    typedef struct
-	XHostAddress;
+    typedef struct XHostAddress;
 
 
 /* Data structure for */
 
 
-    typedef struct _XImage {
+    typedef struct _XImage XImage;
+
+
+    struct _XImage {
 	int width;
 	int height;
 	int xoffset;
@@ -133,58 +125,49 @@ extern "C" {
 	unsigned long int blue_mask;
 	XPointer obdata;
 	struct funcs f;
-    } XImage;
+    };
 
 
 /* Data structure for XReconfigureWindow*/
 
 
-    typedef struct
-	XWindowChanges;
+    typedef struct XWindowChanges;
 
 
 /* Data structures for graphics operations.  On most machines, these are congruent with the wire protocol structures, so reformatting the datacan be avoided on these architectures. */
 
 
-    typedef struct
-	XSegment;
+    typedef struct XSegment;
 
-    typedef struct
-	XPoint;
+    typedef struct XPoint;
 
-    typedef struct
-	XRectangle;
+    typedef struct XRectangle;
 
-    typedef struct
-	XArc;
+    typedef struct XArc;
 
 
 /* Data structure for XChangeKeyboardControl*/
 
 
-    typedef struct
-	XKeyboardControl;
+    typedef struct XKeyboardControl;
 
 
 /* Data structure for XGetKeyboardControl*/
 
 
-    typedef struct
-	XKeyboardState;
+    typedef struct XKeyboardState;
 
 
 /* Data structure for XGetMotionEvents.*/
 
 
-    typedef struct
-	XTimeCoord;
+    typedef struct XTimeCoord;
 
 
 /* Data structure for X{Set,Get}ModifierMapping*/
 
 
-    typedef struct
-	XModifierKeymap;
+    typedef struct XModifierKeymap;
 
 
 /* Display datatype maintaining display specific data. The contents of this structure are implementation dependent.A Display should be treated as opaque by application code. */
@@ -193,124 +176,99 @@ extern "C" {
     typedef struct _XDisplay Display;
 
 
+
+
+
 /* Definitions of specific events.*/
 
 
-    typedef struct
-	XKeyEvent;
+    typedef struct XKeyEvent;
 
     typedef XKeyEvent XKeyPressedEvent;
 
     typedef XKeyEvent XKeyReleasedEvent;
 
-    typedef struct
-	XButtonEvent;
+    typedef struct XButtonEvent;
 
     typedef XButtonEvent XButtonPressedEvent;
 
     typedef XButtonEvent XButtonReleasedEvent;
 
-    typedef struct
-	XMotionEvent;
+    typedef struct XMotionEvent;
 
     typedef XMotionEvent XPointerMovedEvent;
 
-    typedef struct
-	XCrossingEvent;
+    typedef struct XCrossingEvent;
 
     typedef XCrossingEvent XEnterWindowEvent;
 
     typedef XCrossingEvent XLeaveWindowEvent;
 
-    typedef struct
-	XFocusChangeEvent;
+    typedef struct XFocusChangeEvent;
 
     typedef XFocusChangeEvent XFocusInEvent;
 
     typedef XFocusChangeEvent XFocusOutEvent;
 
-    typedef struct
-	XKeymapEvent;
+    typedef struct XKeymapEvent;
 
-    typedef struct
-	XExposeEvent;
+    typedef struct XExposeEvent;
 
-    typedef struct
-	XGraphicsExposeEvent;
+    typedef struct XGraphicsExposeEvent;
 
-    typedef struct
-	XNoExposeEvent;
+    typedef struct XNoExposeEvent;
 
-    typedef struct
-	XVisibilityEvent;
+    typedef struct XVisibilityEvent;
 
-    typedef struct
-	XCreateWindowEvent;
+    typedef struct XCreateWindowEvent;
 
-    typedef struct
-	XDestroyWindowEvent;
+    typedef struct XDestroyWindowEvent;
 
-    typedef struct
-	XUnmapEvent;
+    typedef struct XUnmapEvent;
 
-    typedef struct
-	XMapEvent;
+    typedef struct XMapEvent;
 
-    typedef struct
-	XMapRequestEvent;
+    typedef struct XMapRequestEvent;
 
-    typedef struct
-	XReparentEvent;
+    typedef struct XReparentEvent;
 
-    typedef struct
-	XConfigureEvent;
+    typedef struct XConfigureEvent;
 
-    typedef struct
-	XGravityEvent;
+    typedef struct XGravityEvent;
 
-    typedef struct
-	XResizeRequestEvent;
+    typedef struct XResizeRequestEvent;
 
-    typedef struct
-	XConfigureRequestEvent;
+    typedef struct XConfigureRequestEvent;
 
-    typedef struct
-	XCirculateEvent;
+    typedef struct XCirculateEvent;
 
-    typedef struct
-	XCirculateRequestEvent;
+    typedef struct XCirculateRequestEvent;
 
-    typedef struct
-	XPropertyEvent;
+    typedef struct XPropertyEvent;
 
-    typedef struct
-	XSelectionClearEvent;
+    typedef struct XSelectionClearEvent;
 
-    typedef struct
-	XSelectionRequestEvent;
+    typedef struct XSelectionRequestEvent;
 
-    typedef struct
-	XSelectionEvent;
+    typedef struct XSelectionEvent;
 
-    typedef struct
-	XColormapEvent;
+    typedef struct XColormapEvent;
 
     typedef union XClientMessageEvent;
 
-    typedef struct
-	XMappingEvent;
+    typedef struct XMappingEvent;
 
-    typedef struct
-	XErrorEvent;
+    typedef struct XErrorEvent;
 
-    typedef struct
-	XAnyEvent;
+    typedef struct XAnyEvent;
 
 
 /* this union is defined so Xlib can always use the same sized event structure internally, to avoid memory fragmentation.*/
 
 
-    typedef union _XEvent {
+    typedef union _XEvent XEvent;
+
+    union _XEvent {
 	int type;
 	XAnyEvent xany;
 	XKeyEvent xkey;
@@ -344,40 +302,33 @@ extern "C" {
 	XErrorEvent xerror;
 	XKeymapEvent xkeymap;
 	long int pad[1];
-    } XEvent;
+    };
 
 
 /* per character font metric information.*/
 
 
-    typedef struct
-	XCharStruct;
+    typedef struct XCharStruct;
 
 
 /* To allow arbitrary information with fonts, there are additional properties returned.*/
 
 
-    typedef struct
-	XFontProp;
+    typedef struct XFontProp;
 
-    typedef struct
-	XFontStruct;
+    typedef struct XFontStruct;
 
-    typedef struct
-	XFontSetExtents;
+    typedef struct XFontSetExtents;
 
 
 /* PolyText routines take these as arguments.*/
 
 
-    typedef struct
-	XTextItem;
+    typedef struct XTextItem;
 
-    typedef struct
-	XChar2b;
+    typedef struct XChar2b;
 
-    typedef struct
-	XTextItem16;
+    typedef struct XTextItem16;
 
 
 
@@ -396,11 +347,9 @@ extern "C" {
 
 
 
-    typedef struct
-	XmbTextItem;
+    typedef struct XmbTextItem;
 
-    typedef struct
-	XwcTextItem;
+    typedef struct XwcTextItem;
 
 
 
@@ -412,8 +361,7 @@ extern "C" {
 
     typedef struct _XIC *XIC;
 
-    typedef void (*XIDProc) (void)
-    ;
+    typedef void (*XIDProc) (void);
 
 
     extern int XActivateScreenSaver(Display *);

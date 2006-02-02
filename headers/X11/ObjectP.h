@@ -17,7 +17,10 @@ extern "C" {
 /* Object Instance Data Structures*/
 
 
-    typedef struct _ObjectPart {
+    typedef struct _ObjectPart ObjectPart;
+
+
+    struct _ObjectPart {
 	Widget self;		/* pointer to widget itself */
 	WidgetClass widget_class;	/* pointer to Widget's ClassRec */
 	Widget parent;		/* parent widget */
@@ -25,20 +28,26 @@ extern "C" {
 	Boolean being_destroyed;	/* marked for destroy */
 	XtCallbackList destroy_callbacks;	/* who to call when widget destroyed */
 	XtPointer constraints;	/* constraint record */
-    } ObjectPart;
+    };
 
 
 
 
-    typedef struct _ObjectRec {
+    typedef struct _ObjectRec ObjectRec;
+
+
+    struct _ObjectRec {
 	ObjectPart object;
-    } ObjectRec;
+    };
 
 
 /* Object Class Data Structures*/
 
 
-    typedef struct _ObjectClassPart {
+    typedef struct _ObjectClassPart ObjectClassPart;
+
+
+    struct _ObjectClassPart {
 	WidgetClass superclass;	/* pointer to superclass ClassRec */
 	String class_name;	/* widget resource class name */
 	Cardinal widget_size;	/* size in bytes of widget record */
@@ -71,7 +80,7 @@ extern "C" {
 	XtProc obj13;
 	XtProc obj14;
 	XtPointer extension;	/* pointer to extension record */
-    } ObjectClassPart;
+    };
 
 
 
@@ -109,9 +118,12 @@ extern "C" {
 
 
 
-    typedef struct _ObjectClassRec {
+    typedef struct _ObjectClassRec ObjectClassRec;
+
+
+    struct _ObjectClassRec {
 	ObjectClassPart object_class;
-    } ObjectClassRec;
+    };
 
 
     extern ObjectClassRec objectClassRec;

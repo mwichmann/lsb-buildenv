@@ -92,7 +92,7 @@ extern void XtAppWarningMsg(XtAppContext, char *, char *, char *, char *,
 			    String *, Cardinal *);
 extern void XtAugmentTranslations(Widget, XtTranslations);
 extern EventMask XtBuildEventMask(Widget);
-extern String XtCXtToolkitError(void);
+extern String XtCXtToolkitError;
 extern Boolean XtCallAcceptFocus(Widget, Time *);
 extern void XtCallActionProc(Widget, char *, XEvent *, String *, Cardinal);
 extern void XtCallCallbackList(Widget, XtCallbackList, XtPointer);

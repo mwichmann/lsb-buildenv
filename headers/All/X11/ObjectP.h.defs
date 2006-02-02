@@ -81,4 +81,4 @@ typedef struct {
 typedef struct _ObjectClassRec {
     ObjectClassPart object_class;
 } ObjectClassRec;
-extern ObjectClassRec objectClassRec(void);
+extern ObjectClassRec objectClassRec;

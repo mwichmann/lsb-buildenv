@@ -11,11 +11,7 @@ extern "C" {
 
 
 
-    typedef struct _XSyncSystemCounter {
-	char *name;
-	XSyncCounter counter;
-	XSyncValue resolution;
-    } XSyncSystemCounter;
+    typedef struct _XSyncSystemCounter XSyncSystemCounter;
 
     typedef struct {
 	XSyncCounter counter;
@@ -37,16 +33,20 @@ extern "C" {
     } XSyncAlarmAttributes;
 
 
+    struct _XSyncSystemCounter {
+	char *name;
+	XSyncCounter counter;
+	XSyncValue resolution;
+    };
+
+
 
 
     typedef XID XSyncCounter;
 
     typedef XID XSyncAlarm;
 
-    typedef struct _XSyncValue {
-	int hi;
-	unsigned int lo;
-    } XSyncValue;
+    typedef struct _XSyncValue XSyncValue;
 
     typedef enum {
 	XSyncAbsolute,
@@ -65,6 +65,12 @@ extern "C" {
 	XSyncAlarmInactive,
 	XSyncAlarmDestroyed
     } XSyncAlarmState;
+
+
+    struct _XSyncValue {
+	int hi;
+	unsigned int lo;
+    };
 
 
     extern int XSyncAwait(Display *, XSyncWaitCondition *, int);

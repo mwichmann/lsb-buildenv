@@ -11,11 +11,14 @@ extern "C" {
 
 
 
-    typedef struct _XcmsFunctionSet {
+    typedef struct _XcmsFunctionSet XcmsFunctionSet;
+
+
+    struct _XcmsFunctionSet {
 	XcmsColorSpace **DDColorSpaces;
 	XcmsScreenInitProc screenInitProc;
 	XcmsScreenFreeProc screenFreeProc;
-    } XcmsFunctionSet;
+    };
 
 
 
@@ -99,50 +102,37 @@ extern "C" {
 /* XCMS Per Screen related data*/
 
 
-    typedef struct _XcmsPerScrnInfo {
+    typedef struct _XcmsPerScrnInfo XcmsPerScrnInfo;
+
+
+    struct _XcmsPerScrnInfo {
 	XcmsColor screenWhitePt;
 	XPointer functionSet;
 	XPointer screenData;
 	unsigned char state;
 	char pad[1];
-    } XcmsPerScrnInfo;
+    };
 
 
 
 
-    typedef int (*XcmsCompressionProc) (void)
-    ;
+    typedef int (*XcmsCompressionProc) (void);
 
-    typedef int (*XcmsWhiteAdjustProc) (void)
-    ;
+    typedef int (*XcmsWhiteAdjustProc) (void);
 
-    typedef int (*XcmsScreenInitProc) (void)
-    ;
+    typedef int (*XcmsScreenInitProc) (void);
 
-    typedef void (*XcmsScreenFreeProc) (void)
-    ;
+    typedef void (*XcmsScreenFreeProc) (void);
 
-    typedef int (*XcmsConversionProc) (void)
-    ;
+    typedef int (*XcmsConversionProc) (void);
 
-    typedef int (*XcmsParseStringProc) (void)
-    ;
+    typedef int (*XcmsParseStringProc) (void);
 
 
 /* XCMS Color Conversion Context*/
 
 
-    typedef struct _XcmsCCC {
-	Display *dpy;
-	int screenNumber;
-	Visual *visual;
-	XcmsColor clientWhitePt;
-	XcmsCompressionProc gamutCompProc;
-	XPointer gamutCompClientData;
-	XcmsWhiteAdjustProc whitePtAdjProc;
-	XPointer whitePtAdjClientData;
-	XcmsPerScrnInfo *pPerScrnInfo;
-    } *XcmsCCC;
+    typedef struct _XcmsCCC *XcmsCCC;
 
 
 
@@ -153,14 +143,17 @@ extern "C" {
 /* Color Space -- per Color Space related data (Device-Independent or Device-Dependent)*/
 
 
-    typedef struct _XcmsColorSpace {
+    typedef struct _XcmsColorSpace XcmsColorSpace;
+
+
+    struct _XcmsColorSpace {
 	char *prefix;
 	XcmsColorFormat id;
 	XcmsParseStringProc parseString;
 	XcmsFuncListPtr to_CIEXYZ;
 	XcmsFuncListPtr from_CIEXYZ;
 	int inverse_flag;
-    } XcmsColorSpace;
+    };
 
 
     extern int XcmsAddColorSpace(XcmsColorSpace *);

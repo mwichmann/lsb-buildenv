@@ -73,7 +73,7 @@ extern int __signbit(double);
 extern int __signbitf(float);
 extern int __fpclassify(double);
 extern int __fpclassifyf(float);
-extern int signgam(void);
+extern int signgam;
 extern double copysign(double, double);
 extern int finite(double);
 extern double frexp(double, int *);
