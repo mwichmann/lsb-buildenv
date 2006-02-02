@@ -455,7 +455,7 @@ extern "C" {
     struct sigaction {
 	union {
 	    sighandler_t _sa_handler;
-	    void (*sa_sigaction) (int, siginfo_t *, void *);
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
 	} __sigaction_handler;
 	sigset_t sa_mask;
 	int sa_flags;
