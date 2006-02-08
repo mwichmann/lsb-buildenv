@@ -71,6 +71,7 @@ extern "C" {
 #define PNG_READ_tIME_SUPPORTED
 #define PNG_READ_tRNS_SUPPORTED
 #define PNG_READ_zTXt_SUPPORTED
+#define PNG_SETJMP_SUPPORTED
 #define PNG_SET_USER_LIMITS_SUPPORTED
 #define PNG_TEXT_SUPPORTED
 #define PNG_TIME_RFC1123_SUPPORTED
@@ -130,6 +131,7 @@ extern "C" {
 #define PNG_tIME_SUPPORTED
 #define PNG_tRNS_SUPPORTED
 #define PNG_zTXt_SUPPORTED
+#define PNG_HEADER_VERSION_STRING	" libpng version 1.2.8 - December 3, 2004 (header)\n"
 #define PNG_MMX_READ_FLAGS	 \
 	( PNG_ASM_FLAG_MMX_READ_COMBINE_ROW | PNG_ASM_FLAG_MMX_READ_INTERLACE \
 	| PNG_ASM_FLAG_MMX_READ_FILTER_SUB | PNG_ASM_FLAG_MMX_READ_FILTER_UP | \
@@ -158,7 +160,6 @@ extern "C" {
 	(png_uint_32)(alpha)) + (png_uint_32)32768L); (composite) = \
 	(png_uint_16)((temp + (temp >> 16)) >> 16); }
 #define PNG_MMX_WRITE_FLAGS	( 0 )
-#define png_jmpbuf(png_ptr)	((png_ptr)->jmpbuf)
 #define PNG_SIZE_MAX	((png_size_t)(-1))
 #define PNG_UINT_32_MAX	((png_uint_32)(-1))
 #define PNG_UINT_31_MAX	((png_uint_32)0x7fffffffL)
@@ -170,15 +171,11 @@ extern "C" {
 #define png_doublep_NULL	(png_doublep)NULL
 #define png_error_ptr_NULL	(png_error_ptr)NULL
 #define png_flush_ptr_NULL	(png_flush_ptr)NULL
-#define png_free_ptr_NULL	(png_free_ptr)NULL
 #define png_infopp_NULL	(png_infopp)NULL
-#define png_malloc_ptr_NULL	(png_malloc_ptr)NULL
-#define png_read_status_ptr_NULL	(png_read_status_ptr)NULL
 #define png_rw_ptr_NULL	(png_rw_ptr)NULL
 #define png_structp_NULL	(png_structp)NULL
 #define png_uint_16p_NULL	(png_uint_16p)NULL
 #define png_voidp_NULL	(png_voidp)NULL
-#define png_write_status_ptr_NULL	(png_write_status_ptr)NULL
 #define CVT_PTR(ptr)	(ptr)
 #define CVT_PTR_NOCHECK(ptr)	(ptr)
 #define PNG_TEXT_COMPRESSION_NONE	-1
@@ -333,10 +330,10 @@ extern "C" {
 #define PNG_ABORT()	abort()
 #define PNG_CONST	const
 #define PNG_EXPORT_VAR(type)	extern PNG_IMPEXP type
-#define PNG_HEADER_VERSION_STRING	"libpng version 1.2.8 - December 3, 2004 (header)\n"
 #define png_memcmp	memcmp
 #define png_memcpy	memcpy
 #define png_memset	memset
+#define PNGARG(arglist)	OF(arglist)
 #define PNG_COLOR_TYPE_GA	PNG_COLOR_TYPE_GRAY_ALPHA
 #define PNG_COLOR_TYPE_RGBA	PNG_COLOR_TYPE_RGB_ALPHA
 #define PNG_COMPRESSION_TYPE_DEFAULT	PNG_COMPRESSION_TYPE_BASE
@@ -367,7 +364,7 @@ extern "C" {
 
     typedef png_byte *png_bytep;
 
-    typedef long unsigned int png_uint_32;
+    typedef unsigned int png_uint_32;
 
     typedef void (*png_progressive_row_ptr) (png_structp, png_bytep,
 					     png_uint_32, int);
@@ -390,7 +387,7 @@ extern "C" {
 
     typedef png_byte **png_bytepp;
 
-    typedef short unsigned int png_uint_16;
+    typedef unsigned short png_uint_16;
 
     typedef struct png_color_16_struct png_color_16;
 
@@ -427,6 +424,54 @@ extern "C" {
     typedef png_row_info *png_row_infop;
 
     typedef png_structp version_1_2_8;
+
+    typedef png_uint_32 *png_uint_32p;
+
+    typedef png_uint_16 **png_uint_16pp;
+
+    typedef png_int_32 png_fixed_point;
+
+    typedef double *png_doublep;
+
+    typedef charf *png_zcharp;
+
+    typedef png_fixed_point *png_fixed_point_p;
+
+    typedef png_int_32 *png_int_32p;
+
+    typedef z_stream *png_zstreamp;
+
+    typedef short png_int_16;
+
+    typedef png_int_16 *png_int_16p;
+
+    typedef png_int_16 **png_int_16pp;
+
+    typedef png_int_32 **png_int_32pp;
+
+    typedef png_uint_32 **png_uint_32pp;
+
+    typedef charf **png_zcharpp;
+
+    typedef char ***png_charppp;
+
+    typedef const char **png_const_charpp;
+
+    typedef double **png_doublepp;
+
+    typedef png_colorp *png_colorpp;
+
+    typedef png_color_16p *png_color_16pp;
+
+    typedef png_color_8p *png_color_8pp;
+
+    typedef png_fixed_point **png_fixed_point_pp;
+
+    typedef png_row_info **png_row_infopp;
+
+    typedef png_textp *png_textpp;
+
+    typedef png_timep *png_timepp;
 
 
 
@@ -507,7 +552,7 @@ extern "C" {
     extern png_uint_32 png_get_text(png_structp, png_infop, png_textp *,
 				    int *);
     extern void png_write_rows(png_structp, png_bytepp, png_uint_32);
-    extern const char const png_libpng_ver[18];
+    extern const char png_libpng_ver[18];
     extern png_uint_32 png_access_version_number(void);
     extern png_voidp png_get_progressive_ptr(png_structp);
     extern png_uint_32 png_get_rowbytes(png_structp, png_infop);
