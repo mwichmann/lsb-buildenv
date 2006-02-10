@@ -1,6 +1,7 @@
 #ifndef _GLIB_2_0_GLIB_H_
 #define _GLIB_2_0_GLIB_H_
 
+#include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -549,7 +550,7 @@ extern "C" {
 
     typedef struct _GSList GSList;
 
-    typedef unsigned int gsize;
+    typedef size_t gsize;
 
     typedef struct _GString GString;
 
@@ -594,7 +595,7 @@ extern "C" {
 
     typedef struct _GMarkupParseContext GMarkupParseContext;
 
-    typedef int gssize;
+    typedef ssize_t gssize;
 
     typedef struct _GData GData;
 

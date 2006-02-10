@@ -1,6 +1,7 @@
 #ifndef _GLIB_2_0_GLIB_OBJECT_H_
 #define _GLIB_2_0_GLIB_OBJECT_H_
 
+#include <stddef.h>
 #include <stdarg.h>
 #include <glib-2.0/glib.h>
 
@@ -660,6 +661,10 @@ extern "C" {
     typedef void (*GObjectSetPropertyFunc) (GObject *, guint,
 					    const GValue *, GParamSpec *);
 
+    typedef gchar *gchararray;
+
+    typedef gchar **GStrv;
+
 
     struct _GTypeClass {
 	GType g_type;
@@ -1189,14 +1194,14 @@ extern "C" {
 						gpointer, gpointer);
     extern guint64 g_value_get_uint64(const GValue *);
     extern GType *g_type_children(GType, guint *);
-    extern gchar *g_type_name(GType);
+    extern const gchar *g_type_name(GType);
     extern GTypeClass *g_type_check_class_cast(GTypeClass *, GType);
     extern void g_cclosure_marshal_VOID__UCHAR(GClosure *, GValue *, guint,
 					       const GValue *, gpointer,
 					       gpointer);
     extern gpointer g_object_new(GType, const gchar *, ...);
     extern void g_type_class_unref_uncached(gpointer);
-    extern gchar *g_type_name_from_class(GTypeClass *);
+    extern const gchar *g_type_name_from_class(GTypeClass *);
     extern void g_object_set(gpointer, const gchar *, ...);
     extern void g_signal_emit_valist(gpointer, guint, GQuark, va_list);
     extern GSignalInvocationHint *g_signal_get_invocation_hint(gpointer);
@@ -1251,7 +1256,7 @@ extern "C" {
 						 GQuark, GClosure *,
 						 gpointer, gpointer);
     extern gpointer g_boxed_copy(GType, gconstpointer);
-    extern gchar *g_value_get_string(const GValue *);
+    extern const gchar *g_value_get_string(const GValue *);
     extern void g_object_thaw_notify(GObject *);
     extern void g_signal_handler_block(gpointer, gulong);
     extern void g_type_plugin_complete_type_info(GTypePlugin *, GType,
@@ -1406,8 +1411,8 @@ extern "C" {
 					   const gchar *, guint64, guint64,
 					   guint64, GParamFlags);
     extern GType g_type_next_base(GType, GType);
-    extern gchar *g_type_name_from_instance(GTypeInstance *);
-    extern gchar *g_param_spec_get_name(GParamSpec *);
+    extern const gchar *g_type_name_from_instance(GTypeInstance *);
+    extern const gchar *g_param_spec_get_name(GParamSpec *);
     extern gulong g_signal_add_emission_hook(guint, GQuark,
 					     GSignalEmissionHook, gpointer,
 					     GDestroyNotify);
@@ -1484,7 +1489,7 @@ extern "C" {
     extern gboolean g_type_check_is_value_type(GType);
     extern void g_value_set_double(GValue *, gdouble);
     extern void g_value_set_static_string(GValue *, const gchar *);
-    extern gchar *g_param_spec_get_nick(GParamSpec *);
+    extern const gchar *g_param_spec_get_nick(GParamSpec *);
     extern GClosure *g_cclosure_new(GCallback, gpointer, GClosureNotify);
     extern guint g_value_get_uint(const GValue *);
     extern GClosure *g_cclosure_new_swap(GCallback, gpointer,
@@ -1555,10 +1560,10 @@ extern "C" {
 					    const GInterfaceInfo *);
     extern gpointer g_param_spec_steal_qdata(GParamSpec *, GQuark);
     extern gboolean g_type_check_class_is_a(GTypeClass *, GType);
-    extern gchar *g_param_spec_get_blurb(GParamSpec *);
+    extern const gchar *g_param_spec_get_blurb(GParamSpec *);
     extern void g_value_set_uint(GValue *, guint);
     extern GParamSpecPool *g_param_spec_pool_new(gboolean);
-    extern gchar *g_signal_name(guint);
+    extern const gchar *g_signal_name(guint);
     extern GParamSpec *g_param_spec_int64(const gchar *, const gchar *,
 					  const gchar *, gint64, gint64,
 					  gint64, GParamFlags);
