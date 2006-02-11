@@ -1826,7 +1826,6 @@ extern "C" {
     extern void gdk_set_program_class(const char *);
     extern void gdk_draw_polygon(GdkDrawable *, GdkGC *, gboolean,
 				 GdkPoint *, gint);
-    extern gboolean gdk_font_equal(const GdkFont *, const GdkFont *);
     extern GType gdk_function_get_type(void);
     extern void gdk_display_close(GdkDisplay *);
     extern gint gdk_screen_get_n_monitors(GdkScreen *);
@@ -1912,7 +1911,6 @@ extern "C" {
     extern GCallback gdk_threads_unlock;
     extern GType gdk_modifier_type_get_type(void);
     extern gint gdk_visual_get_best_depth(void);
-    extern GdkFont *gdk_font_ref(GdkFont *);
     extern gboolean gdk_setting_get(const gchar *, GValue *);
     extern GType gdk_screen_get_type(void);
     extern guint32 gdk_drag_get_protocol_for_display(GdkDisplay *, guint32,
@@ -2055,7 +2053,6 @@ extern "C" {
     extern gint gdk_color_parse(const gchar *, GdkColor *);
     extern void gdk_window_set_skip_taskbar_hint(GdkWindow *, gboolean);
     extern GType gdk_gc_get_type(void);
-    extern void gdk_font_unref(GdkFont *);
     extern GdkRegion *gdk_pango_layout_get_clip_region(PangoLayout *, gint,
 						       gint, gint *, gint);
     extern void gdk_window_fullscreen(GdkWindow *);
@@ -2222,7 +2219,6 @@ extern "C" {
 						   GdkDrawable * *, gint *,
 						   gint *);
     extern gboolean gdk_window_is_viewable(GdkWindow *);
-    extern gint gdk_font_id(const GdkFont *);
     extern struct _GdkDrawable *gdk_bitmap_create_from_data(GdkDrawable *,
 							    const gchar *,
 							    gint, gint);

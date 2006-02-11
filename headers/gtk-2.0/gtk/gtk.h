@@ -1,6 +1,7 @@
 #ifndef _GTK_2_0_GTK_GTK_H_
 #define _GTK_2_0_GTK_GTK_H_
 
+#include <sys/types.h>
 #include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
@@ -61,10 +62,6 @@ extern "C" {
 	(gtk_cell_renderer_toggle_get_type ())
 #define GTK_ICON_VIEW(obj)	 \
 	(GTK_CHECK_CAST ((obj), GTK_TYPE_ICON_VIEW, GtkIconView))
-#define GTK_LIST_ITEM(obj)	 \
-	(GTK_CHECK_CAST ((obj), GTK_TYPE_LIST_ITEM, GtkListItem))
-#define GTK_PROGRESS(obj)	 \
-	(GTK_CHECK_CAST ((obj), GTK_TYPE_PROGRESS, GtkProgress))
 #define GTK_OBJECT(object)	 \
 	(GTK_CHECK_CAST ((object), GTK_TYPE_OBJECT, GtkObject))
 #define GTK_ICON_VIEW_CLASS(klass)	 \
@@ -72,31 +69,18 @@ extern "C" {
 	GtkIconViewClass))
 #define GTK_LIST_CLASS(klass)	 \
 	(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_LIST, GtkListClass))
-#define GTK_LIST_ITEM_CLASS(klass)	 \
-	(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_LIST_ITEM, \
-	GtkListItemClass))
 #define GTK_OBJECT_CLASS(klass)	 \
 	(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_OBJECT, GtkObjectClass))
-#define GTK_PROGRESS_CLASS(klass)	 \
-	(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_PROGRESS, GtkProgressClass))
 #define GTK_IS_ICON_VIEW_CLASS(klass)	 \
 	(GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_ICON_VIEW))
 #define GTK_IS_LIST_CLASS(klass)	 \
 	(GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_LIST))
-#define GTK_IS_LIST_ITEM_CLASS(klass)	 \
-	(GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_LIST_ITEM))
 #define GTK_IS_OBJECT_CLASS(klass)	 \
 	(GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_OBJECT))
-#define GTK_IS_PROGRESS_CLASS(klass)	 \
-	(GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_PROGRESS))
 #define GTK_ICON_VIEW_GET_CLASS(obj)	 \
 	(GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_ICON_VIEW, GtkIconViewClass))
 #define GTK_LIST_GET_CLASS(obj)	 \
 	(GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_LIST, GtkListClass))
-#define GTK_LIST_ITEM_GET_CLASS(obj)	 \
-	(GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_LIST_ITEM, GtkListItemClass))
-#define GTK_PROGRESS_GET_CLASS(obj)	 \
-	(GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_PROGRESS, GtkProgressClass))
 #define GTK_OBJECT_GET_CLASS(object)	 \
 	(GTK_CHECK_GET_CLASS ((object), GTK_TYPE_OBJECT, GtkObjectClass))
 #define GTK_TYPE_COLOR_SELECTION_DIALOG	 \
@@ -1801,38 +1785,6 @@ extern "C" {
 	GtkTreeSortableIface))
 #define GTK_OBJECT_TYPE_NAME(object)	 \
 	(g_type_name (GTK_OBJECT_TYPE (object)))
-#define gtk_marshal_BOOL__POINTER_INT_INT	 \
-	gtk_marshal_BOOLEAN__POINTER_INT_INT
-#define gtk_marshal_BOOL__POINTER_INT_INT_UINT	 \
-	gtk_marshal_BOOLEAN__POINTER_INT_INT_UINT
-#define gtk_marshal_BOOL__POINTER_POINTER_INT_INT	 \
-	gtk_marshal_BOOLEAN__POINTER_POINTER_INT_INT
-#define gtk_marshal_BOOL__POINTER_STRING_STRING_POINTER	 \
-	gtk_marshal_BOOLEAN__POINTER_STRING_STRING_POINTER
-#define gtk_marshal_NONE__ENUM_FLOAT_BOOL	 \
-	gtk_marshal_VOID__ENUM_FLOAT_BOOLEAN
-#define gtk_marshal_NONE__INT_INT_POINTER	 \
-	gtk_marshal_VOID__INT_INT_POINTER
-#define gtk_marshal_NONE__POINTER_INT_INT_POINTER_UINT_UINT	 \
-	gtk_marshal_VOID__POINTER_INT_INT_POINTER_UINT_UINT
-#define gtk_marshal_NONE__POINTER_POINTER	 \
-	gtk_marshal_VOID__POINTER_POINTER
-#define gtk_marshal_NONE__POINTER_POINTER_POINTER	 \
-	gtk_marshal_VOID__POINTER_POINTER_POINTER
-#define gtk_marshal_NONE__POINTER_POINTER_UINT_UINT	 \
-	gtk_marshal_VOID__POINTER_POINTER_UINT_UINT
-#define gtk_marshal_NONE__POINTER_STRING_STRING	 \
-	gtk_marshal_VOID__POINTER_STRING_STRING
-#define gtk_marshal_NONE__POINTER_UINT_ENUM	 \
-	gtk_marshal_VOID__POINTER_UINT_ENUM
-#define gtk_marshal_NONE__POINTER_UINT_UINT	 \
-	gtk_marshal_VOID__POINTER_UINT_UINT
-#define gtk_marshal_NONE__STRING_INT_POINTER	 \
-	gtk_marshal_VOID__STRING_INT_POINTER
-#define gtk_marshal_NONE__UINT_POINTER_UINT_ENUM_ENUM_POINTER	 \
-	gtk_marshal_VOID__UINT_POINTER_UINT_ENUM_ENUM_POINTER
-#define gtk_marshal_NONE__UINT_POINTER_UINT_UINT_ENUM	 \
-	gtk_marshal_VOID__UINT_POINTER_UINT_UINT_ENUM
 #define GTK_CONTAINER_WARN_INVALID_CHILD_PROPERTY_ID(object,property_id,pspec)	 \
 	G_OBJECT_WARN_INVALID_PSPEC ((object), "child property id", \
 	(property_id), (pspec))
@@ -1889,8 +1841,6 @@ extern "C" {
 #define GTK_TYPE_CHECK_MENU_ITEM	(gtk_check_menu_item_get_type ())
 #define GTK_IS_ICON_VIEW(obj)	(GTK_CHECK_TYPE ((obj), GTK_TYPE_ICON_VIEW))
 #define GTK_IS_LIST(obj)	(GTK_CHECK_TYPE ((obj), GTK_TYPE_LIST))
-#define GTK_IS_LIST_ITEM(obj)	(GTK_CHECK_TYPE ((obj), GTK_TYPE_LIST_ITEM))
-#define GTK_IS_PROGRESS(obj)	(GTK_CHECK_TYPE ((obj), GTK_TYPE_PROGRESS))
 #define GTK_IS_OBJECT(object)	(GTK_CHECK_TYPE ((object), GTK_TYPE_OBJECT))
 #define GTK_TYPE_CLIPBOARD	(gtk_clipboard_get_type ())
 #define GTK_TYPE_COLOR_BUTTON	(gtk_color_button_get_type ())
@@ -1962,7 +1912,6 @@ extern "C" {
 #define GTK_TYPE_LABEL	(gtk_label_get_type ())
 #define GTK_TYPE_LAYOUT	(gtk_layout_get_type ())
 #define GTK_TYPE_LIST	(gtk_list_get_type ())
-#define GTK_TYPE_LIST_ITEM	(gtk_list_item_get_type ())
 #define GTK_TYPE_LIST_STORE	(gtk_list_store_get_type ())
 #define GTK_TYPE_MATCH_TYPE	(gtk_match_type_get_type())
 #define GTK_TYPE_MENU_BAR	(gtk_menu_bar_get_type ())
@@ -1993,7 +1942,6 @@ extern "C" {
 #define GTK_TYPE_POSITION_TYPE	(gtk_position_type_get_type())
 #define GTK_TYPE_PROGRESS_BAR	(gtk_progress_bar_get_type ())
 #define GTK_TYPE_PROGRESS_BAR_STYLE	(gtk_progress_bar_style_get_type())
-#define GTK_TYPE_PROGRESS	(gtk_progress_get_type ())
 #define GTK_TYPE_RADIO_ACTION	(gtk_radio_action_get_type ())
 #define GTK_TYPE_RADIO_BUTTON	(gtk_radio_button_get_type ())
 #define GTK_TYPE_RADIO_MENU_ITEM	(gtk_radio_menu_item_get_type ())
@@ -2196,31 +2144,6 @@ extern "C" {
 #define gtk_accel_label_accelerator_width	gtk_accel_label_get_accel_width
 #define gtk_binding_entry_add	gtk_binding_entry_clear
 #define GTK_ICON_THEME_ERROR	gtk_icon_theme_error_quark ()
-#define gtk_marshal_BOOL__POINTER	gtk_marshal_BOOLEAN__POINTER
-#define gtk_marshal_BOOL__NONE	gtk_marshal_BOOLEAN__VOID
-#define gtk_marshal_NONE__BOOL	gtk_marshal_VOID__BOOLEAN
-#define gtk_marshal_NONE__BOXED	gtk_marshal_VOID__BOXED
-#define gtk_marshal_NONE__ENUM	gtk_marshal_VOID__ENUM
-#define gtk_marshal_NONE__ENUM_FLOAT	gtk_marshal_VOID__ENUM_FLOAT
-#define gtk_marshal_NONE__INT	gtk_marshal_VOID__INT
-#define gtk_marshal_NONE__INT_INT	gtk_marshal_VOID__INT_INT
-#define gtk_marshal_NONE__OBJECT	gtk_marshal_VOID__OBJECT
-#define gtk_marshal_NONE__POINTER	gtk_marshal_VOID__POINTER
-#define gtk_marshal_NONE__POINTER_INT	gtk_marshal_VOID__POINTER_INT
-#define gtk_marshal_NONE__POINTER_UINT	gtk_marshal_VOID__POINTER_UINT
-#define gtk_marshal_NONE__STRING	gtk_marshal_VOID__STRING
-#define gtk_marshal_NONE__UINT	gtk_marshal_VOID__UINT
-#define gtk_marshal_NONE__UINT_STRING	gtk_marshal_VOID__UINT_STRING
-#define gtk_marshal_NONE__NONE	gtk_marshal_VOID__VOID
-#define gtk_marshal_VOID__BOOLEAN	g_cclosure_marshal_VOID__BOOLEAN
-#define gtk_marshal_VOID__BOXED	g_cclosure_marshal_VOID__BOXED
-#define gtk_marshal_VOID__ENUM	g_cclosure_marshal_VOID__ENUM
-#define gtk_marshal_VOID__INT	g_cclosure_marshal_VOID__INT
-#define gtk_marshal_VOID__OBJECT	g_cclosure_marshal_VOID__OBJECT
-#define gtk_marshal_VOID__POINTER	g_cclosure_marshal_VOID__POINTER
-#define gtk_marshal_VOID__STRING	g_cclosure_marshal_VOID__STRING
-#define gtk_marshal_VOID__UINT	g_cclosure_marshal_VOID__UINT
-#define gtk_marshal_VOID__VOID	g_cclosure_marshal_VOID__VOID
 #define GTK_CHECK_CLASS_CAST	G_TYPE_CHECK_CLASS_CAST
 #define GTK_CHECK_CLASS_TYPE	G_TYPE_CHECK_CLASS_TYPE
 #define GTK_CHECK_CAST	G_TYPE_CHECK_INSTANCE_CAST
@@ -4686,28 +4609,7 @@ extern "C" {
     };
 
 
-    struct _GtkArg {
-	GtkType type;
-	gchar *name;
-	union {
-	    gchar char_data;
-	    guchar uchar_data;
-	    gboolean bool_data;
-	    gint int_data;
-	    guint uint_data;
-	    glong long_data;
-	    gulong ulong_data;
-	    gfloat float_data;
-	    gdouble double_data;
-	    gchar *string_data;
-	    GtkObject *object_data;
-	    gpointer pointer_data;
-	    struct {
-		GtkSignalFunc f;
-		gpointer d;
-	    } signal_data;
-	} d;
-    };
+
 
 
     struct _GtkMenuShell {
@@ -7426,7 +7328,6 @@ extern "C" {
     extern GType gtk_file_chooser_action_get_type(void);
     extern void gtk_text_buffer_get_start_iter(GtkTextBuffer *,
 					       GtkTextIter *);
-    extern GtkType gtk_list_get_type(void);
     extern gint gtk_combo_box_get_column_span_column(GtkComboBox *);
     extern void gtk_misc_set_padding(GtkMisc *, gint, gint);
     extern guint gtk_statusbar_push(GtkStatusbar *, guint, const gchar *);
@@ -7735,9 +7636,6 @@ extern "C" {
 					 GtkWidget *, gint);
     extern GType gtk_table_get_type(void);
     extern GtkWidget *gtk_menu_item_get_submenu(GtkMenuItem *);
-    extern void gtk_marshal_VOID__INT_INT_POINTER(GClosure *, GValue *,
-						  guint, const GValue *,
-						  gpointer, gpointer);
     extern gboolean gtk_text_view_scroll_to_iter(GtkTextView *,
 						 GtkTextIter *, gdouble,
 						 gboolean, gdouble,
@@ -7779,12 +7677,6 @@ extern "C" {
     extern GtkWidget *gtk_radio_menu_item_new_with_mnemonic(GSList *,
 							    const gchar *);
     extern gboolean gtk_window_get_focus_on_map(GtkWindow *);
-    extern void gtk_marshal_VOID__POINTER_POINTER_UINT_UINT(GClosure *,
-							    GValue *,
-							    guint,
-							    const GValue *,
-							    gpointer,
-							    gpointer);
     extern GType gtk_radio_menu_item_get_type(void);
     extern const gchar *gtk_entry_get_text(GtkEntry *);
     extern GtkUIManager *gtk_ui_manager_new(void);
@@ -7825,7 +7717,6 @@ extern "C" {
 							 *);
     extern void gtk_expander_set_use_underline(GtkExpander *, gboolean);
     extern GtkBindingSet *gtk_binding_set_new(const gchar *);
-    extern GType gtk_progress_get_type(void);
     extern gchar *gtk_accelerator_name(guint, GdkModifierType);
     extern gboolean gtk_expander_get_use_underline(GtkExpander *);
     extern GtkPositionType gtk_handle_box_get_handle_position(GtkHandleBox
@@ -7931,9 +7822,6 @@ extern "C" {
 							 ...);
     extern gboolean gtk_statusbar_get_has_resize_grip(GtkStatusbar *);
     extern GdkGravity gtk_window_get_gravity(GtkWindow *);
-    extern void gtk_marshal_VOID__INT_INT(GClosure *, GValue *, guint,
-					  const GValue *, gpointer,
-					  gpointer);
     extern GtkWidget *gtk_image_menu_item_new(void);
     extern void gtk_button_leave(GtkButton *);
     extern void gtk_text_buffer_insert_pixbuf(GtkTextBuffer *,
@@ -8066,9 +7954,6 @@ extern "C" {
     extern gboolean gtk_file_chooser_set_uri(GtkFileChooser *,
 					     const char *);
     extern void gtk_tree_model_filter_refilter(GtkTreeModelFilter *);
-    extern void gtk_marshal_VOID__POINTER_UINT_UINT(GClosure *, GValue *,
-						    guint, const GValue *,
-						    gpointer, gpointer);
     extern void gtk_tooltips_force_window(GtkTooltips *);
     extern GtkWidget *gtk_tree_view_new_with_model(GtkTreeModel *);
     extern void gtk_tree_model_row_inserted(GtkTreeModel *, GtkTreePath *,
@@ -8272,9 +8157,6 @@ extern "C" {
     extern GtkTreeModel *gtk_entry_completion_get_model(GtkEntryCompletion
 							*);
     extern GtkPositionType gtk_notebook_get_tab_pos(GtkNotebook *);
-    extern void gtk_marshal_VOID__POINTER_POINTER(GClosure *, GValue *,
-						  guint, const GValue *,
-						  gpointer, gpointer);
     extern GtkTreeViewRowSeparatorFunc
 	gtk_combo_box_get_row_separator_func(GtkComboBox *);
     extern void gtk_accel_map_save(const gchar *);
@@ -8362,9 +8244,6 @@ extern "C" {
 					      gboolean);
     extern void gtk_tool_item_set_expand(GtkToolItem *, gboolean);
     extern GType gtk_icon_info_get_type(void);
-    extern void gtk_marshal_BOOLEAN__VOID(GClosure *, GValue *, guint,
-					  const GValue *, gpointer,
-					  gpointer);
     extern gint gtk_tree_model_iter_n_children(GtkTreeModel *,
 					       GtkTreeIter *);
     extern GtkReliefStyle gtk_toolbar_get_relief_style(GtkToolbar *);
@@ -8417,7 +8296,6 @@ extern "C" {
     extern GtkWidget *gtk_cell_view_new_with_text(const gchar *);
     extern void gtk_editable_select_region(GtkEditable *, gint, gint);
     extern gchar *gtk_clipboard_wait_for_text(GtkClipboard *);
-    extern gboolean gtk_selection_clear(GtkWidget *, GdkEventSelection *);
     extern gboolean gtk_color_selection_get_has_palette(GtkColorSelection
 							*);
     extern GType gtk_text_search_flags_get_type(void);
@@ -8441,9 +8319,6 @@ extern "C" {
 						  const gchar *);
     extern GtkWidget *gtk_color_selection_dialog_new(const gchar *);
     extern GtkEntryCompletion *gtk_entry_get_completion(GtkEntry *);
-    extern void gtk_marshal_VOID__POINTER_UINT(GClosure *, GValue *, guint,
-					       const GValue *, gpointer,
-					       gpointer);
     extern GtkToggleAction *gtk_toggle_action_new(const gchar *,
 						  const gchar *,
 						  const gchar *,
@@ -8595,12 +8470,6 @@ extern "C" {
 						       GtkTextIter *,
 						       const gchar *, gint,
 						       gboolean);
-    extern void gtk_marshal_BOOLEAN__POINTER_POINTER_INT_INT(GClosure *,
-							     GValue *,
-							     guint,
-							     const GValue
-							     *, gpointer,
-							     gpointer);
     extern void gtk_table_attach_defaults(GtkTable *, GtkWidget *, guint,
 					  guint, guint, guint);
     extern void gtk_notebook_reorder_child(GtkNotebook *, GtkWidget *,
@@ -8712,12 +8581,6 @@ extern "C" {
 							    *);
     extern void gtk_frame_get_label_align(GtkFrame *, gfloat *, gfloat *);
     extern GtkIconSet *gtk_icon_set_ref(GtkIconSet *);
-    extern void gtk_marshal_VOID__UINT_POINTER_UINT_UINT_ENUM(GClosure *,
-							      GValue *,
-							      guint,
-							      const GValue
-							      *, gpointer,
-							      gpointer);
     extern GType gtk_hpaned_get_type(void);
     extern void gtk_about_dialog_set_website_label(GtkAboutDialog *,
 						   const gchar *);
@@ -8805,11 +8668,6 @@ extern "C" {
     extern void gtk_menu_reorder_child(GtkMenu *, GtkWidget *, gint);
     extern gboolean gtk_widget_event(GtkWidget *, GdkEvent *);
     extern gchar *gtk_font_selection_get_font_name(GtkFontSelection *);
-    extern void gtk_marshal_BOOLEAN__POINTER_INT_INT_UINT(GClosure *,
-							  GValue *, guint,
-							  const GValue *,
-							  gpointer,
-							  gpointer);
     extern GdkPixbuf *gtk_icon_info_load_icon(GtkIconInfo *, GError * *);
     extern gboolean gtk_label_get_selection_bounds(GtkLabel *, gint *,
 						   gint *);
@@ -9041,9 +8899,6 @@ extern "C" {
     extern void gtk_tree_view_column_set_sort_column_id(GtkTreeViewColumn
 							*, gint);
     extern gboolean gtk_text_mark_get_deleted(GtkTextMark *);
-    extern void gtk_marshal_INT__POINTER(GClosure *, GValue *, guint,
-					 const GValue *, gpointer,
-					 gpointer);
     extern GtkWidget *gtk_combo_box_new_with_model(GtkTreeModel *);
     extern GtkWidget *gtk_icon_view_new_with_model(GtkTreeModel *);
     extern GType gtk_side_type_get_type(void);
@@ -9169,9 +9024,6 @@ extern "C" {
     extern const gchar *gtk_about_dialog_get_copyright(GtkAboutDialog *);
     extern void gtk_window_begin_move_drag(GtkWindow *, gint, gint, gint,
 					   guint32);
-    extern void gtk_marshal_VOID__POINTER_INT(GClosure *, GValue *, guint,
-					      const GValue *, gpointer,
-					      gpointer);
     extern void gtk_range_set_adjustment(GtkRange *, GtkAdjustment *);
     extern gboolean gtk_text_iter_is_cursor_position(const GtkTextIter *);
     extern gboolean gtk_text_iter_ends_sentence(const GtkTextIter *);
@@ -9257,11 +9109,6 @@ extern "C" {
     extern void gtk_menu_set_active(GtkMenu *, guint);
     extern gboolean gtk_text_buffer_get_modified(GtkTextBuffer *);
     extern void gtk_icon_view_select_path(GtkIconView *, GtkTreePath *);
-    extern void gtk_marshal_VOID__POINTER_STRING_STRING(GClosure *,
-							GValue *, guint,
-							const GValue *,
-							gpointer,
-							gpointer);
     extern gboolean gtk_widget_can_activate_accel(GtkWidget *, guint);
     extern void gtk_box_pack_end(GtkBox *, GtkWidget *, gboolean, gboolean,
 				 guint);
@@ -9451,16 +9298,6 @@ extern "C" {
 					    GtkTreePath *);
     extern void gtk_window_remove_accel_group(GtkWindow *,
 					      GtkAccelGroup *);
-    extern void gtk_marshal_BOOLEAN__POINTER_STRING_STRING_POINTER(GClosure
-								   *,
-								   GValue
-								   *,
-								   guint,
-								   const
-								   GValue
-								   *,
-								   gpointer,
-								   gpointer);
     extern gint gtk_notebook_append_page(GtkNotebook *, GtkWidget *,
 					 GtkWidget *);
     extern void gtk_container_set_focus_vadjustment(GtkContainer *,
@@ -9731,11 +9568,6 @@ extern "C" {
 					       GtkTreeIter *,
 					       GtkTreeIter *);
     extern GtkWidget *gtk_vscale_new(GtkAdjustment *);
-    extern void gtk_marshal_VOID__POINTER_POINTER_POINTER(GClosure *,
-							  GValue *, guint,
-							  const GValue *,
-							  gpointer,
-							  gpointer);
     extern GtkWidget *gtk_spin_button_new_with_range(gdouble, gdouble,
 						     gdouble);
     extern GtkWidget *gtk_image_new(void);
@@ -9751,21 +9583,11 @@ extern "C" {
     extern void gtk_editable_insert_text(GtkEditable *, const gchar *,
 					 gint, gint *);
     extern guint gtk_key_snooper_install(GtkKeySnoopFunc, gpointer);
-    extern void
-	gtk_marshal_VOID__UINT_POINTER_UINT_ENUM_ENUM_POINTER(GClosure *,
-							      GValue *,
-							      guint,
-							      const GValue
-							      *, gpointer,
-							      gpointer);
     extern void gtk_object_sink(GtkObject *);
     extern void gtk_widget_style_get(GtkWidget *, const gchar *, ...);
     extern GList *gtk_icon_theme_list_icons(GtkIconTheme *, const char *);
     extern void gtk_cell_renderer_get_fixed_size(GtkCellRenderer *, gint *,
 						 gint *);
-    extern void gtk_marshal_BOOLEAN__POINTER(GClosure *, GValue *, guint,
-					     const GValue *, gpointer,
-					     gpointer);
     extern void gtk_button_released(GtkButton *);
     extern void gtk_icon_source_set_size_wildcarded(GtkIconSource *,
 						    gboolean);
@@ -9803,8 +9625,6 @@ extern "C" {
 				      gpointer, GDestroyNotify);
     extern gboolean gtk_check_menu_item_get_inconsistent(GtkCheckMenuItem
 							 *);
-    extern void gtk_marshal_ENUM__ENUM(GClosure *, GValue *, guint,
-				       const GValue *, gpointer, gpointer);
     extern gchar *gtk_set_locale(void);
     extern void gtk_icon_theme_set_screen(GtkIconTheme *, GdkScreen *);
     extern gint gtk_editable_get_position(GtkEditable *);
@@ -9994,9 +9814,6 @@ extern "C" {
     extern GtkWidget *gtk_ui_manager_get_widget(GtkUIManager *,
 						const gchar *);
     extern GtkIconSize gtk_icon_size_register(const gchar *, gint, gint);
-    extern void gtk_marshal_INT__POINTER_CHAR_CHAR(GClosure *, GValue *,
-						   guint, const GValue *,
-						   gpointer, gpointer);
     extern gboolean gtk_text_view_get_accepts_tab(GtkTextView *);
     extern GtkWidget *gtk_radio_button_new_from_widget(GtkRadioButton *);
     extern char *gtk_file_chooser_get_preview_filename(GtkFileChooser *);
@@ -10073,7 +9890,6 @@ extern "C" {
 							       *);
     extern GtkWidget *gtk_widget_new(GType, const gchar *, ...);
     extern GtkWidget *gtk_combo_box_entry_new_text(void);
-    extern void gtk_paned_compute_position(GtkPaned *, gint, gint, gint);
     extern GType gtk_resize_mode_get_type(void);
     extern void gtk_entry_completion_set_match_func(GtkEntryCompletion *,
 						    GtkEntryCompletionMatchFunc,
@@ -10081,9 +9897,6 @@ extern "C" {
 						    GDestroyNotify);
     extern void gtk_spin_button_get_increments(GtkSpinButton *, gdouble *,
 					       gdouble *);
-    extern void gtk_marshal_VOID__UINT_STRING(GClosure *, GValue *, guint,
-					      const GValue *, gpointer,
-					      gpointer);
     extern void gtk_font_button_set_use_font(GtkFontButton *, gboolean);
     extern GdkColormap *gtk_widget_get_colormap(GtkWidget *);
     extern GtkToolItem *gtk_radio_tool_button_new(GSList *);
@@ -10156,15 +9969,9 @@ extern "C" {
     extern void gtk_menu_detach(GtkMenu *);
     extern void gtk_container_resize_children(GtkContainer *);
     extern GType gtk_text_mark_get_type(void);
-    extern void gtk_marshal_VOID__STRING_INT_POINTER(GClosure *, GValue *,
-						     guint, const GValue *,
-						     gpointer, gpointer);
     extern gint gtk_entry_get_max_length(GtkEntry *);
     extern GSList *gtk_radio_menu_item_get_group(GtkRadioMenuItem *);
     extern GType gtk_text_attributes_get_type(void);
-    extern void gtk_marshal_BOOLEAN__POINTER_INT_INT(GClosure *, GValue *,
-						     guint, const GValue *,
-						     gpointer, gpointer);
     extern gboolean gtk_text_mark_get_left_gravity(GtkTextMark *);
     extern GdkRegion *gtk_widget_region_intersect(GtkWidget *,
 						  GdkRegion *);
@@ -10250,9 +10057,6 @@ extern "C" {
     extern GParamSpec
 	**gtk_widget_class_list_style_properties(GtkWidgetClass *,
 						 guint *);
-    extern void gtk_marshal_VOID__ENUM_FLOAT_BOOLEAN(GClosure *, GValue *,
-						     guint, const GValue *,
-						     gpointer, gpointer);
     extern gint
 	gtk_entry_completion_get_minimum_key_length(GtkEntryCompletion *);
     extern void gtk_text_buffer_move_mark(GtkTextBuffer *, GtkTextMark *,
@@ -10311,9 +10115,6 @@ extern "C" {
     extern GType gtk_separator_get_type(void);
     extern void gtk_table_set_col_spacing(GtkTable *, guint, guint);
     extern gboolean gtk_text_view_get_editable(GtkTextView *);
-    extern void gtk_marshal_VOID__ENUM_FLOAT(GClosure *, GValue *, guint,
-					     const GValue *, gpointer,
-					     gpointer);
     extern GdkWindow *gtk_widget_get_parent_window(GtkWidget *);
     extern void gtk_color_selection_get_current_color(GtkColorSelection *,
 						      GdkColor *);
@@ -10329,19 +10130,11 @@ extern "C" {
     extern gchar *gtk_text_iter_get_visible_slice(const GtkTextIter *,
 						  const GtkTextIter *);
     extern void gtk_drag_source_add_uri_targets(GtkWidget *);
-    extern void
-	gtk_marshal_VOID__POINTER_INT_INT_POINTER_UINT_UINT(GClosure *,
-							    GValue *,
-							    guint,
-							    const GValue *,
-							    gpointer,
-							    gpointer);
     extern gboolean gtk_font_selection_set_font_name(GtkFontSelection *,
 						     const gchar *);
     extern void gtk_entry_set_completion(GtkEntry *, GtkEntryCompletion *);
     extern gboolean gtk_action_group_get_sensitive(GtkActionGroup *);
     extern void gtk_label_set_ellipsize(GtkLabel *, PangoEllipsizeMode);
-    extern GtkType gtk_list_item_get_type(void);
     extern GType gtk_arg_flags_get_type(void);
     extern void gtk_rc_parse(const gchar *);
     extern gboolean gtk_text_iter_has_tag(const GtkTextIter *,
@@ -10537,7 +10330,6 @@ extern "C" {
 					   GtkTextIter *);
     extern gboolean gtk_widget_is_focus(GtkWidget *);
     extern gboolean gtk_check_menu_item_get_active(GtkCheckMenuItem *);
-    extern void gtk_cell_renderer_editing_canceled(GtkCellRenderer *);
     extern gint gtk_icon_view_get_item_width(GtkIconView *);
     extern gboolean gtk_check_menu_item_get_draw_as_radio(GtkCheckMenuItem
 							  *);
@@ -10683,9 +10475,6 @@ extern "C" {
     extern void gtk_target_list_add(GtkTargetList *, GdkAtom, guint,
 				    guint);
     extern GList *gtk_tree_view_get_columns(GtkTreeView *);
-    extern void gtk_marshal_VOID__POINTER_UINT_ENUM(GClosure *, GValue *,
-						    guint, const GValue *,
-						    gpointer, gpointer);
     extern GtkIconSource *gtk_icon_source_new(void);
     extern void gtk_check_menu_item_set_active(GtkCheckMenuItem *,
 					       gboolean);
