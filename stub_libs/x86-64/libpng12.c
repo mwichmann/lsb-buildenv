@@ -97,4 +97,4 @@ void png_write_info() {} ;
 void png_write_png() {} ;
 void png_write_row() {} ;
 void png_write_rows() {} ;
-__asm__(".globl png_libpng_ver; .pushsection .data; .type png_libpng_ver,@object; .size png_libpng_ver, 18; png_libpng_ver: .long 0; .popsection");
+__asm__(".globl png_libpng_ver; .pushsection .data; .type png_libpng_ver,@object; .size png_libpng_ver, 0; png_libpng_ver: .long 0; .popsection");
