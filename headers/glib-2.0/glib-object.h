@@ -1,7 +1,6 @@
 #ifndef _GLIB_2_0_GLIB_OBJECT_H_
 #define _GLIB_2_0_GLIB_OBJECT_H_
 
-#include <stddef.h>
 #include <stdarg.h>
 #include <glib-2.0/glib.h>
 

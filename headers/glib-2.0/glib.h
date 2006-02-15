@@ -1,7 +1,6 @@
 #ifndef _GLIB_2_0_GLIB_H_
 #define _GLIB_2_0_GLIB_H_
 
-#include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -245,8 +244,34 @@ extern "C" {
 	__attribute__((__format__ (__scanf__, format_idx, arg_idx)))
 #define G_STATIC_RW_LOCK_INIT	 \
 	{ G_STATIC_MUTEX_INIT, NULL, NULL, 0, FALSE, 0, 0 }
+#if __ia64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if __powerpc64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if __x86_64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if __s390x__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if __i386__
 #define G_STATIC_MUTEX_INIT	 \
 	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if __s390__ && !__s390x__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
 #define G_STRINGIFY_ARG(contents)	#contents
 #define G_DIR_SEPARATOR	'/'
 #define g_chunk_new(type,chunk)	( (type *) g_mem_chunk_alloc (chunk) )
@@ -261,7 +286,15 @@ extern "C" {
 #define G_STRFUNC	((const char*) (__PRETTY_FUNCTION__))
 #define G_LOG_DOMAIN	((gchar*) 0)
 #define G_HOOK(hook)	((GHook*) (hook))
+#if __i386__
 #define GPOINTER_TO_INT(p)	((gint) (p))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GPOINTER_TO_INT(p)	((gint) (p))
+#endif
+#if __s390__ && !__s390x__
+#define GPOINTER_TO_INT(p)	((gint) (p))
+#endif
 #define GINT_TO_BE(val)	((gint) GINT32_TO_BE (val))
 #define GINT_TO_LE(val)	((gint) GINT32_TO_LE (val))
 #define GINT16_TO_LE(val)	((gint16) (val))
@@ -276,13 +309,113 @@ extern "C" {
 #define GINT64_TO_BE(val)	((gint64) GUINT64_SWAP_LE_BE (val))
 #define G_MAXINT8	((gint8) 0x7f)
 #define G_MININT8	((gint8) 0x80)
+#if __ia64__
+#define GPOINTER_TO_INT(p)	((glong) (p))
+#endif
+#if __powerpc64__
+#define GPOINTER_TO_INT(p)	((glong) (p))
+#endif
+#if __x86_64__
+#define GPOINTER_TO_INT(p)	((glong) (p))
+#endif
+#if __s390x__
+#define GPOINTER_TO_INT(p)	((glong) (p))
+#endif
+#if __i386__
 #define GLONG_TO_BE(val)	((glong) GINT32_TO_BE (val))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLONG_TO_BE(val)	((glong) GINT32_TO_BE (val))
+#endif
+#if __s390__ && !__s390x__
+#define GLONG_TO_BE(val)	((glong) GINT32_TO_BE (val))
+#endif
+#if __i386__
 #define GLONG_TO_LE(val)	((glong) GINT32_TO_LE (val))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLONG_TO_LE(val)	((glong) GINT32_TO_LE (val))
+#endif
+#if __s390__ && !__s390x__
+#define GLONG_TO_LE(val)	((glong) GINT32_TO_LE (val))
+#endif
+#if __ia64__
+#define GLONG_TO_BE(val)	((glong) GINT64_TO_BE (val))
+#endif
+#if __powerpc64__
+#define GLONG_TO_BE(val)	((glong) GINT64_TO_BE (val))
+#endif
+#if __x86_64__
+#define GLONG_TO_BE(val)	((glong) GINT64_TO_BE (val))
+#endif
+#if __s390x__
+#define GLONG_TO_BE(val)	((glong) GINT64_TO_BE (val))
+#endif
+#if __ia64__
+#define GLONG_TO_LE(val)	((glong) GINT64_TO_LE (val))
+#endif
+#if __powerpc64__
+#define GLONG_TO_LE(val)	((glong) GINT64_TO_LE (val))
+#endif
+#if __x86_64__
+#define GLONG_TO_LE(val)	((glong) GINT64_TO_LE (val))
+#endif
+#if __s390x__
+#define GLONG_TO_LE(val)	((glong) GINT64_TO_LE (val))
+#endif
+#if __ia64__
+#define GINT_TO_POINTER(i)	((gpointer) (glong) (i))
+#endif
+#if __powerpc64__
+#define GINT_TO_POINTER(i)	((gpointer) (glong) (i))
+#endif
+#if __x86_64__
+#define GINT_TO_POINTER(i)	((gpointer) (glong) (i))
+#endif
+#if __s390x__
+#define GINT_TO_POINTER(i)	((gpointer) (glong) (i))
+#endif
 #define GSIZE_TO_POINTER(s)	((gpointer) (gsize) (s))
+#if __ia64__
+#define GUINT_TO_POINTER(u)	((gpointer) (gulong) (u))
+#endif
+#if __powerpc64__
+#define GUINT_TO_POINTER(u)	((gpointer) (gulong) (u))
+#endif
+#if __x86_64__
+#define GUINT_TO_POINTER(u)	((gpointer) (gulong) (u))
+#endif
+#if __s390x__
+#define GUINT_TO_POINTER(u)	((gpointer) (gulong) (u))
+#endif
+#if __i386__
 #define GINT_TO_POINTER(i)	((gpointer) (i))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GINT_TO_POINTER(i)	((gpointer) (i))
+#endif
+#if __s390__ && !__s390x__
+#define GINT_TO_POINTER(i)	((gpointer) (i))
+#endif
+#if __i386__
 #define GUINT_TO_POINTER(u)	((gpointer) (u))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GUINT_TO_POINTER(u)	((gpointer) (u))
+#endif
+#if __s390__ && !__s390x__
+#define GUINT_TO_POINTER(u)	((gpointer) (u))
+#endif
 #define GPOINTER_TO_SIZE(p)	((gsize) (p))
+#if __i386__
 #define GPOINTER_TO_UINT(p)	((guint) (p))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GPOINTER_TO_UINT(p)	((guint) (p))
+#endif
+#if __s390__ && !__s390x__
+#define GPOINTER_TO_UINT(p)	((guint) (p))
+#endif
 #define GUINT_TO_BE(val)	((guint) GUINT32_TO_BE (val))
 #define GUINT_TO_LE(val)	((guint) GUINT32_TO_LE (val))
 #define GUINT16_SWAP_LE_PDP(val)	((guint16) (val))
@@ -292,8 +425,60 @@ extern "C" {
 #define G_MAXUINT32	((guint32) 0xffffffff)
 #define GUINT64_TO_LE(val)	((guint64) (val))
 #define G_MAXUINT8	((guint8) 0xff)
+#if __ia64__
+#define GPOINTER_TO_UINT(p)	((gulong) (p))
+#endif
+#if __powerpc64__
+#define GPOINTER_TO_UINT(p)	((gulong) (p))
+#endif
+#if __x86_64__
+#define GPOINTER_TO_UINT(p)	((gulong) (p))
+#endif
+#if __s390x__
+#define GPOINTER_TO_UINT(p)	((gulong) (p))
+#endif
+#if __i386__
 #define GULONG_TO_BE(val)	((gulong) GUINT32_TO_BE (val))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GULONG_TO_BE(val)	((gulong) GUINT32_TO_BE (val))
+#endif
+#if __s390__ && !__s390x__
+#define GULONG_TO_BE(val)	((gulong) GUINT32_TO_BE (val))
+#endif
+#if __i386__
 #define GULONG_TO_LE(val)	((gulong) GUINT32_TO_LE (val))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GULONG_TO_LE(val)	((gulong) GUINT32_TO_LE (val))
+#endif
+#if __s390__ && !__s390x__
+#define GULONG_TO_LE(val)	((gulong) GUINT32_TO_LE (val))
+#endif
+#if __ia64__
+#define GULONG_TO_BE(val)	((gulong) GUINT64_TO_BE (val))
+#endif
+#if __powerpc64__
+#define GULONG_TO_BE(val)	((gulong) GUINT64_TO_BE (val))
+#endif
+#if __x86_64__
+#define GULONG_TO_BE(val)	((gulong) GUINT64_TO_BE (val))
+#endif
+#if __s390x__
+#define GULONG_TO_BE(val)	((gulong) GUINT64_TO_BE (val))
+#endif
+#if __ia64__
+#define GULONG_TO_LE(val)	((gulong) GUINT64_TO_LE (val))
+#endif
+#if __powerpc64__
+#define GULONG_TO_LE(val)	((gulong) GUINT64_TO_LE (val))
+#endif
+#if __x86_64__
+#define GULONG_TO_LE(val)	((gulong) GUINT64_TO_LE (val))
+#endif
+#if __s390x__
+#define GULONG_TO_LE(val)	((gulong) GUINT64_TO_LE (val))
+#endif
 #define g_random_boolean()	((g_random_int () & (1 << 15)) != 0)
 #define g_rand_boolean(rand_)	((g_rand_int (rand_) & (1 << 15)) != 0)
 #define g_list_next(list)	((list) ? (((GList *)(list))->next) : NULL)
@@ -346,7 +531,27 @@ extern "C" {
 #define GULONG_FROM_BE(val)	(GULONG_TO_BE (val))
 #define GULONG_FROM_LE(val)	(GULONG_TO_LE (val))
 #define g_atomic_int_inc(atomic)	(g_atomic_int_add ((atomic), 1))
+#if __ia64__
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##L))
+#endif
+#if __powerpc64__
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##L))
+#endif
+#if __x86_64__
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##L))
+#endif
+#if __s390x__
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##L))
+#endif
+#if __i386__
 #define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##LL))
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##LL))
+#endif
+#if __s390__ && !__s390x__
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##LL))
+#endif
 #define G_HOOK_FLAGS(hook)	(G_HOOK (hook)->flags)
 #define G_LOG_FATAL_MASK	(G_LOG_FLAG_RECURSION | G_LOG_LEVEL_ERROR)
 #define G_OPTION_ERROR	(g_option_error_quark ())
@@ -374,6 +579,18 @@ extern "C" {
 #define G_HAVE_ISO_VARARGS	1
 #define G_HAVE___INLINE	1
 #define G_HAVE___INLINE__	1
+#if __ia64__
+#define G_VA_COPY_AS_ARRAY	1
+#endif
+#if __powerpc64__
+#define G_VA_COPY_AS_ARRAY	1
+#endif
+#if __x86_64__
+#define G_VA_COPY_AS_ARRAY	1
+#endif
+#if __s390x__
+#define G_VA_COPY_AS_ARRAY	1
+#endif
 #define G_SQRT2	1.4142135623730950488016887242096980785696718753769
 #define G_PI_2	1.5707963267948966192313216916397514420985846996876
 #define G_PRIORITY_HIGH_IDLE	100
@@ -384,15 +601,117 @@ extern "C" {
 #define G_LN10	2.3025850929940456840179914546843642076011014886288
 #define G_E	2.7182818284590452353602874713526624977572470937000
 #define G_PRIORITY_DEFAULT_IDLE	200
+#if __i386__
+#define GLIB_LSB_PADDING_SIZE	24
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLIB_LSB_PADDING_SIZE	24
+#endif
+#if __s390__ && !__s390x__
+#define GLIB_LSB_PADDING_SIZE	24
+#endif
 #define G_PI	3.1415926535897932384626433832795028841971693993751
 #define G_PRIORITY_LOW	300
 #define G_PDP_ENDIAN	3412
+#if __i386__
+#define GLIB_LSB_DATA_SIZE	4
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLIB_LSB_DATA_SIZE	4
+#endif
+#if __s390__ && !__s390x__
+#define GLIB_LSB_DATA_SIZE	4
+#endif
+#if __i386__
 #define GLIB_SIZEOF_LONG	4
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLIB_SIZEOF_LONG	4
+#endif
+#if __s390__ && !__s390x__
+#define GLIB_SIZEOF_LONG	4
+#endif
+#if __i386__
 #define GLIB_SIZEOF_SIZE_T	4
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLIB_SIZEOF_SIZE_T	4
+#endif
+#if __s390__ && !__s390x__
+#define GLIB_SIZEOF_SIZE_T	4
+#endif
+#if __i386__
 #define GLIB_SIZEOF_VOID_P	4
+#endif
+#if __powerpc__ && !__powerpc64__
+#define GLIB_SIZEOF_VOID_P	4
+#endif
+#if __s390__ && !__s390x__
+#define GLIB_SIZEOF_VOID_P	4
+#endif
+#if __ia64__
+#define GLIB_LSB_PADDING_SIZE	40
+#endif
+#if __powerpc64__
+#define GLIB_LSB_PADDING_SIZE	40
+#endif
+#if __x86_64__
+#define GLIB_LSB_PADDING_SIZE	40
+#endif
+#if __s390x__
+#define GLIB_LSB_PADDING_SIZE	40
+#endif
 #define G_BIG_ENDIAN	4321
 #define GLIB_MICRO_VERSION	6
 #define GLIB_MINOR_VERSION	6
+#if __ia64__
+#define GLIB_LSB_DATA_SIZE	8
+#endif
+#if __powerpc64__
+#define GLIB_LSB_DATA_SIZE	8
+#endif
+#if __x86_64__
+#define GLIB_LSB_DATA_SIZE	8
+#endif
+#if __s390x__
+#define GLIB_LSB_DATA_SIZE	8
+#endif
+#if __ia64__
+#define GLIB_SIZEOF_LONG	8
+#endif
+#if __powerpc64__
+#define GLIB_SIZEOF_LONG	8
+#endif
+#if __x86_64__
+#define GLIB_SIZEOF_LONG	8
+#endif
+#if __s390x__
+#define GLIB_SIZEOF_LONG	8
+#endif
+#if __ia64__
+#define GLIB_SIZEOF_SIZE_T	8
+#endif
+#if __powerpc64__
+#define GLIB_SIZEOF_SIZE_T	8
+#endif
+#if __x86_64__
+#define GLIB_SIZEOF_SIZE_T	8
+#endif
+#if __s390x__
+#define GLIB_SIZEOF_SIZE_T	8
+#endif
+#if __ia64__
+#define GLIB_SIZEOF_VOID_P	8
+#endif
+#if __powerpc64__
+#define GLIB_SIZEOF_VOID_P	8
+#endif
+#if __x86_64__
+#define GLIB_SIZEOF_VOID_P	8
+#endif
+#if __s390x__
+#define GLIB_SIZEOF_VOID_P	8
+#endif
 #define G_SEARCHPATH_SEPARATOR	:
 #define G_SEARCHPATH_SEPARATOR_S	":"
 #define GLIB_SYSDEF_POLLIN	=1
@@ -439,7 +758,27 @@ extern "C" {
 #define g_debug(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, __VA_ARGS__)
 #define g_error(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, __VA_ARGS__)
 #define G_MARKUP_ERROR	g_markup_error_quark ()
+#if __i386__
 #define G_MAXSIZE	G_MAXUINT
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_MAXSIZE	G_MAXUINT
+#endif
+#if __s390__ && !__s390x__
+#define G_MAXSIZE	G_MAXUINT
+#endif
+#if __ia64__
+#define G_MAXSIZE	G_MAXULONG
+#endif
+#if __powerpc64__
+#define G_MAXSIZE	G_MAXULONG
+#endif
+#if __x86_64__
+#define G_MAXSIZE	G_MAXULONG
+#endif
+#if __s390x__
+#define G_MAXSIZE	G_MAXULONG
+#endif
 #define G_SHELL_ERROR	g_shell_error_quark ()
 #define G_SPAWN_ERROR	g_spawn_error_quark ()
 #define G_LOCK(name)	g_static_mutex_lock (&G_LOCK_NAME (name))
@@ -466,11 +805,71 @@ extern "C" {
 #define G_GSSIZE_FORMAT	"i"
 #define G_MAXINT	INT_MAX
 #define G_MININT	INT_MIN
+#if __ia64__
+#define G_GINT64_MODIFIER	"l"
+#endif
+#if __powerpc64__
+#define G_GINT64_MODIFIER	"l"
+#endif
+#if __x86_64__
+#define G_GINT64_MODIFIER	"l"
+#endif
+#if __s390x__
+#define G_GINT64_MODIFIER	"l"
+#endif
+#if __ia64__
+#define G_GINT64_FORMAT	"li"
+#endif
+#if __powerpc64__
+#define G_GINT64_FORMAT	"li"
+#endif
+#if __x86_64__
+#define G_GINT64_FORMAT	"li"
+#endif
+#if __s390x__
+#define G_GINT64_FORMAT	"li"
+#endif
+#if __i386__
 #define G_GINT64_MODIFIER	"ll"
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GINT64_MODIFIER	"ll"
+#endif
+#if __s390__ && !__s390x__
+#define G_GINT64_MODIFIER	"ll"
+#endif
+#if __i386__
 #define G_GINT64_FORMAT	"lli"
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GINT64_FORMAT	"lli"
+#endif
+#if __s390__ && !__s390x__
+#define G_GINT64_FORMAT	"lli"
+#endif
+#if __i386__
 #define G_GUINT64_FORMAT	"llu"
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GUINT64_FORMAT	"llu"
+#endif
+#if __s390__ && !__s390x__
+#define G_GUINT64_FORMAT	"llu"
+#endif
 #define G_MAXLONG	LONG_MAX
 #define G_MINLONG	LONG_MIN
+#if __ia64__
+#define G_GUINT64_FORMAT	"lu"
+#endif
+#if __powerpc64__
+#define G_GUINT64_FORMAT	"lu"
+#endif
+#if __x86_64__
+#define G_GUINT64_FORMAT	"lu"
+#endif
+#if __s390x__
+#define G_GUINT64_FORMAT	"lu"
+#endif
 #define G_MAXSHORT	SHRT_MAX
 #define G_MINSHORT	SHRT_MIN
 #define G_MODULE_SUFFIX	"so"
@@ -550,8 +949,11 @@ extern "C" {
 
     typedef struct _GSList GSList;
 
-    typedef size_t gsize;
+#if __i386__
+/* IA32 */
+    typedef unsigned int gsize;
 
+#endif
     typedef struct _GString GString;
 
     typedef struct _GPtrArray GPtrArray;
@@ -595,8 +997,11 @@ extern "C" {
 
     typedef struct _GMarkupParseContext GMarkupParseContext;
 
-    typedef ssize_t gssize;
+#if __i386__
+/* IA32 */
+    typedef int gssize;
 
+#endif
     typedef struct _GData GData;
 
     typedef enum {
@@ -608,8 +1013,11 @@ extern "C" {
 
     typedef struct _GIOChannel GIOChannel;
 
+#if __i386__
+/* IA32 */
     typedef long long int gint64;
 
+#endif
     typedef enum {
 	G_SEEK_CUR = 0,
 	G_SEEK_SET = 1,
@@ -740,8 +1148,11 @@ extern "C" {
 	G_TOKEN_LAST = 270
     } GTokenType;
 
+#if __i386__
+/* IA32 */
     typedef long long unsigned int guint64;
 
+#endif
     typedef unsigned char guchar;
 
     typedef union _GTokenValue GTokenValue;
@@ -1165,6 +1576,126 @@ extern "C" {
 	G_SHELL_ERROR_FAILED
     } GShellError;
 
+#if __ia64__
+/* IA64 */
+    typedef long int gint64;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef long long int gint64;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef long int gint64;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef long long int gint64;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef long int gint64;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef long int gint64;
+
+#endif
+#if __ia64__
+/* IA64 */
+    typedef unsigned long int guint64;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef long long unsigned int guint64;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef unsigned long int guint64;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef long long unsigned int guint64;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef unsigned long int guint64;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef unsigned long int guint64;
+
+#endif
+#if __ia64__
+/* IA64 */
+    typedef long int gssize;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef int gssize;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef long int gssize;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef int gssize;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef long int gssize;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef long int gssize;
+
+#endif
+#if __ia64__
+/* IA64 */
+    typedef unsigned long int gsize;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef unsigned int gsize;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef unsigned long int gsize;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef unsigned int gsize;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef unsigned long int gsize;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef unsigned long int gsize;
+
+#endif
 
     struct _GThread {
 	GThreadFunc func;
@@ -1279,7 +1810,7 @@ extern "C" {
     struct _GStaticMutex {
 	struct _GMutex *runtime_mutex;
 	union {
-	    char pad[24];
+	    char pad[GLIB_LSB_PADDING_SIZE];
 	    double dummy_double;
 	    void *dummy_pointer;
 	    long int dummy_long;
@@ -1287,7 +1818,7 @@ extern "C" {
     };
 
     union _GSystemThread {
-	char data[4];
+	char data[GLIB_LSB_DATA_SIZE];
 	double dummy_double;
 	void *dummy_pointer;
 	long int dummy_long;
