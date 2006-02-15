@@ -13,6 +13,7 @@ extern "C" {
 #endif
 
 
+#define GDK_WINDOWING_X11
 #define GDK_PIXMAP_OBJECT(object)	 \
 	((GdkPixmapObject *) GDK_PIXMAP (object))
 #define GDK_WINDOW_OBJECT(object)	 \
@@ -255,6 +256,8 @@ extern "C" {
 #define GDK_PRIORITY_EVENTS	(G_PRIORITY_DEFAULT)
 #define GDK_PRIORITY_REDRAW	(G_PRIORITY_HIGH_IDLE + 20)
 #define GDK_CURRENT_TIME	0L
+#define GDK_HAVE_WCHAR_H	1
+#define GDK_HAVE_WCTYPE_H	1
 #define GDK_MAX_TIMECOORD_AXES	128
 #define GDK_PARENT_RELATIVE	1L
 #define GDKVAR	extern

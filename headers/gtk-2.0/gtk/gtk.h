@@ -1,7 +1,6 @@
 #ifndef _GTK_2_0_GTK_GTK_H_
 #define _GTK_2_0_GTK_GTK_H_
 
-#include <sys/types.h>
 #include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
