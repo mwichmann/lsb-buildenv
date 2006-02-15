@@ -285,6 +285,7 @@ char *lsb_desktoplibs[] = {
 	"xml2",
 	"jpeg",
 	"png12",
+	"png",
 	"fontconfig",
 	"QtCore",
 	"QtGui",
