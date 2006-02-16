@@ -1,3 +1,31 @@
+2006-02-14	Brian Harring <brianx.d.harring_at_intel.com>
+	* lsbcc.c
+	   bug #1217 added a symlink'ing of libpng12 -> libpng; need to
+	   update the whitelists in lsbcc whenever this occurs.
+
+2006-01-27	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   need to capitalize letters in qt libs to match those on system
+
+2006-01-26	Rajesh Banginwar <rajesh.banginwar_at_intel.com>
+	* lsbcc.c
+	   adding Qt libraries
+
+2006-01-21	Brian Harring <brianx.d.harring_at_intel.com>
+	* lsbcc.c
+	  lsbcc.1
+	   Man page update for LSB_PRODUCT
+
+2006-01-18	Brian Harring <brianx.d.harring_at_intel.com>
+	* lsbcc.c
+	   Added --lsb-product and LSB_PRODUCT=[core|export] support.
+
+2006-01-18	Marvin Heffler <heffler_at_us.ibm.com>
+	* lsbcc.c
+	   backing out changes in revision 1.86 since they have not been
+	   approved. also, the changes break lsbcc when run with the
+	   --version option
+
 2005-11-18	Mats Wichmann <mats.d.wichmann_at_intel.com>
 	* lsbcc.c
 	   Patch from bug 1120 for calling with no action specified
@@ -446,4 +474,4 @@
 	   Add a wrapper lsbcc script that seems to do the right sort of
 	   things
 
-1133373952
+1140050261
