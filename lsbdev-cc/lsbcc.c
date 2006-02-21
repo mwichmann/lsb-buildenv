@@ -369,6 +369,76 @@ gccbasedir=dirname(buf);
 
 return;
 }
+
+/*
+ * Although the C++ ABI was supposed to be the same for gcc 3.4 and
+ * 4.0, a small change was made to the ABI to fix a problem with
+ * rethrowing exception objects with complex constructors.  In order
+ * to use gcc 4.x for building LSB-compliant applications, we have to
+ * generate code using the old ABI.
+ *
+ * The ABI changes have been collapsed into a static library that
+ * lsbcc can add to the link path and resolve those symbols.  We
+ * should link that library, therefore, to all C++ applications, but
+ * only when we're using gcc 4.x.  The following function can detect
+ * when we need the compatibility library.
+ *
+ * In any situation where there's doubt, this function will report
+ * that the compatibility library is not needed.
+ */
+
+char gccversion[16] = "\0";
+
+int
+need_gcc34_compat()
+{
+  FILE *cccmd;
+  char cmd[PATH_MAX];
+  size_t resultlen;
+
+  if (gccversion[0] == '\0') {
+    /* Ask gcc for its version, if we haven't already. */
+    sprintf(cmd, "%s -dumpversion", ccname);
+
+    if ((cccmd = popen(cmd, "r")) == NULL) {
+      fprintf(stderr, "Failed to popen \"%s\"\n", cmd);
+      return 0;
+    }
+
+    fgets(gccversion, 16, cccmd);
+    pclose(cccmd);
+
+    /* Strip the trailing newline. */
+    resultlen = strlen(gccversion);
+    if (resultlen > 0) {
+      gccversion[resultlen - 1] = '\0';
+    }
+  }
+
+  /* Figure out what we need by looking at the gcc major version
+     number. */
+  switch (gccversion[0]) {
+
+  case '\0':
+    /* Read error of some kind on the gcc pipe. */
+    fprintf(stderr, "could not read gcc version\n");
+    return 0;
+
+  case '3':
+    /* gcc 3.x */
+    return 0;
+
+  case '4':
+    /* gcc 4.x */
+    return 1;
+
+  default:
+    /* Some other value we don't recognize. */
+    fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
+    return 0;
+  }
+}
+
 /* end utility functions */
 
 /*
@@ -609,6 +679,13 @@ argvadd(syslibs,"L",gccbasedir);
 #endif
 
 if( lsbccmode == LSBCPLUS ) {
+	if ( need_gcc34_compat() ) {
+		if( lsbcc_debug&DEBUG_LIB_CHANGES )
+			fprintf(stderr,"Appending -lgcc34compat -ldl to the library list\n");
+		argvaddstring(syslibs, "-lgcc34compat");
+		argvaddstring(syslibs, "-ldl");
+	}
+
 	if( lsbcc_debug&DEBUG_LIB_CHANGES )
 		fprintf(stderr,"Appending -lstdc++ -lgcc_s to the library list\n");
 	argvaddstring(syslibs,"-lstdc++");
