@@ -39,8 +39,6 @@ void _ZNK12QSvgRenderer17animationDurationEv() {} ;
 void _ZNK12QSvgRenderer7isValidEv() {} ;
 void _ZNK12QSvgRenderer7viewBoxEv() {} ;
 void _ZNK12QSvgRenderer8animatedEv() {} ;
-void _ZThn8_N10QSvgWidgetD0Ev() {} ;
-void _ZThn8_N10QSvgWidgetD1Ev() {} ;
 __asm__(".globl _ZN10QSvgWidget16staticMetaObjectE; .pushsection .data; .type _ZN10QSvgWidget16staticMetaObjectE,@object; .size _ZN10QSvgWidget16staticMetaObjectE, 16; _ZN10QSvgWidget16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN12QSvgRenderer16staticMetaObjectE; .pushsection .data; .type _ZN12QSvgRenderer16staticMetaObjectE,@object; .size _ZN12QSvgRenderer16staticMetaObjectE, 16; _ZN12QSvgRenderer16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZTI10QSvgWidget; .pushsection .data; .type _ZTI10QSvgWidget,@object; .size _ZTI10QSvgWidget, 12; _ZTI10QSvgWidget: .long 0; .popsection");
@@ -63,3 +61,5 @@ __asm__(".globl _ZTV16QXmlErrorHandler; .pushsection .data; .type _ZTV16QXmlErro
 __asm__(".globl _ZTV18QXmlContentHandler; .pushsection .data; .type _ZTV18QXmlContentHandler,@object; .size _ZTV18QXmlContentHandler, 64; _ZTV18QXmlContentHandler: .long 0; .popsection");
 __asm__(".globl _ZTV18QXmlEntityResolver; .pushsection .data; .type _ZTV18QXmlEntityResolver,@object; .size _ZTV18QXmlEntityResolver, 24; _ZTV18QXmlEntityResolver: .long 0; .popsection");
 __asm__(".globl _ZTV18QXmlLexicalHandler; .pushsection .data; .type _ZTV18QXmlLexicalHandler,@object; .size _ZTV18QXmlLexicalHandler, 48; _ZTV18QXmlLexicalHandler: .long 0; .popsection");
+__asm__(".globl _ZThn8_N10QSvgWidgetD0Ev; .pushsection .data; .type _ZThn8_N10QSvgWidgetD0Ev,@object; .size _ZThn8_N10QSvgWidgetD0Ev, 0; _ZThn8_N10QSvgWidgetD0Ev: .long 0; .popsection");
+__asm__(".globl _ZThn8_N10QSvgWidgetD1Ev; .pushsection .data; .type _ZThn8_N10QSvgWidgetD1Ev,@object; .size _ZThn8_N10QSvgWidgetD1Ev, 0; _ZThn8_N10QSvgWidgetD1Ev: .long 0; .popsection");

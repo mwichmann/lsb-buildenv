@@ -312,4 +312,4 @@ void g_value_transform() {} ;
 void g_value_type_compatible() {} ;
 void g_value_type_transformable() {} ;
 void g_value_unset() {} ;
-__asm__(".globl g_param_spec_types; .pushsection .data; .type g_param_spec_types,@object; .size g_param_spec_types, 8; g_param_spec_types: .long 0; .popsection");
+__asm__(".globl g_param_spec_types; .pushsection .data; .type g_param_spec_types,@object; .size g_param_spec_types, 0; g_param_spec_types: .long 0; .popsection");

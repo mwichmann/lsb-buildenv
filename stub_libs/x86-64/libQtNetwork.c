@@ -395,6 +395,11 @@ __asm__(".globl _ZTI11QHttpHeader; .pushsection .data; .type _ZTI11QHttpHeader,@
 __asm__(".globl _ZTI15QAbstractSocket; .pushsection .data; .type _ZTI15QAbstractSocket,@object; .size _ZTI15QAbstractSocket, 24; _ZTI15QAbstractSocket: .long 0; .popsection");
 __asm__(".globl _ZTI18QHttpRequestHeader; .pushsection .data; .type _ZTI18QHttpRequestHeader,@object; .size _ZTI18QHttpRequestHeader, 24; _ZTI18QHttpRequestHeader: .long 0; .popsection");
 __asm__(".globl _ZTI19QHttpResponseHeader; .pushsection .data; .type _ZTI19QHttpResponseHeader,@object; .size _ZTI19QHttpResponseHeader, 24; _ZTI19QHttpResponseHeader: .long 0; .popsection");
+__asm__(".globl _ZTI19QNativeSocketEngine; .pushsection .data; .type _ZTI19QNativeSocketEngine,@object; .size _ZTI19QNativeSocketEngine, 24; _ZTI19QNativeSocketEngine: .long 0; .popsection");
+__asm__(".globl _ZTI19QSocks5SocketEngine; .pushsection .data; .type _ZTI19QSocks5SocketEngine,@object; .size _ZTI19QSocks5SocketEngine, 24; _ZTI19QSocks5SocketEngine: .long 0; .popsection");
+__asm__(".globl _ZTI20QSocketEngineHandler; .pushsection .data; .type _ZTI20QSocketEngineHandler,@object; .size _ZTI20QSocketEngineHandler, 16; _ZTI20QSocketEngineHandler: .long 0; .popsection");
+__asm__(".globl _ZTI21QAbstractSocketEngine; .pushsection .data; .type _ZTI21QAbstractSocketEngine,@object; .size _ZTI21QAbstractSocketEngine, 24; _ZTI21QAbstractSocketEngine: .long 0; .popsection");
+__asm__(".globl _ZTI26QSocks5SocketEngineHandler; .pushsection .data; .type _ZTI26QSocks5SocketEngineHandler,@object; .size _ZTI26QSocks5SocketEngineHandler, 24; _ZTI26QSocks5SocketEngineHandler: .long 0; .popsection");
 __asm__(".globl _ZTI4QFtp; .pushsection .data; .type _ZTI4QFtp,@object; .size _ZTI4QFtp, 24; _ZTI4QFtp: .long 0; .popsection");
 __asm__(".globl _ZTI5QHttp; .pushsection .data; .type _ZTI5QHttp,@object; .size _ZTI5QHttp, 24; _ZTI5QHttp: .long 0; .popsection");
 __asm__(".globl _ZTI8QUrlInfo; .pushsection .data; .type _ZTI8QUrlInfo,@object; .size _ZTI8QUrlInfo, 16; _ZTI8QUrlInfo: .long 0; .popsection");
@@ -405,6 +410,11 @@ __asm__(".globl _ZTV11QHttpHeader; .pushsection .data; .type _ZTV11QHttpHeader,@
 __asm__(".globl _ZTV15QAbstractSocket; .pushsection .data; .type _ZTV15QAbstractSocket,@object; .size _ZTV15QAbstractSocket, 240; _ZTV15QAbstractSocket: .long 0; .popsection");
 __asm__(".globl _ZTV18QHttpRequestHeader; .pushsection .data; .type _ZTV18QHttpRequestHeader,@object; .size _ZTV18QHttpRequestHeader, 64; _ZTV18QHttpRequestHeader: .long 0; .popsection");
 __asm__(".globl _ZTV19QHttpResponseHeader; .pushsection .data; .type _ZTV19QHttpResponseHeader,@object; .size _ZTV19QHttpResponseHeader, 64; _ZTV19QHttpResponseHeader: .long 0; .popsection");
+__asm__(".globl _ZTV19QNativeSocketEngine; .pushsection .data; .type _ZTV19QNativeSocketEngine,@object; .size _ZTV19QNativeSocketEngine, 328; _ZTV19QNativeSocketEngine: .long 0; .popsection");
+__asm__(".globl _ZTV19QSocks5SocketEngine; .pushsection .data; .type _ZTV19QSocks5SocketEngine,@object; .size _ZTV19QSocks5SocketEngine, 328; _ZTV19QSocks5SocketEngine: .long 0; .popsection");
+__asm__(".globl _ZTV20QSocketEngineHandler; .pushsection .data; .type _ZTV20QSocketEngineHandler,@object; .size _ZTV20QSocketEngineHandler, 48; _ZTV20QSocketEngineHandler: .long 0; .popsection");
+__asm__(".globl _ZTV21QAbstractSocketEngine; .pushsection .data; .type _ZTV21QAbstractSocketEngine,@object; .size _ZTV21QAbstractSocketEngine, 328; _ZTV21QAbstractSocketEngine: .long 0; .popsection");
+__asm__(".globl _ZTV26QSocks5SocketEngineHandler; .pushsection .data; .type _ZTV26QSocks5SocketEngineHandler,@object; .size _ZTV26QSocks5SocketEngineHandler, 48; _ZTV26QSocks5SocketEngineHandler: .long 0; .popsection");
 __asm__(".globl _ZTV4QFtp; .pushsection .data; .type _ZTV4QFtp,@object; .size _ZTV4QFtp, 112; _ZTV4QFtp: .long 0; .popsection");
 __asm__(".globl _ZTV5QHttp; .pushsection .data; .type _ZTV5QHttp,@object; .size _ZTV5QHttp, 112; _ZTV5QHttp: .long 0; .popsection");
 __asm__(".globl _ZTV8QUrlInfo; .pushsection .data; .type _ZTV8QUrlInfo,@object; .size _ZTV8QUrlInfo, 120; _ZTV8QUrlInfo: .long 0; .popsection");

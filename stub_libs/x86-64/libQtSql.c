@@ -368,8 +368,6 @@ void _ZNK9QSqlQuery8isActiveEv() {} ;
 void _ZNK9QSqlQuery8isSelectEv() {} ;
 void _ZNK9QSqlQuery9lastErrorEv() {} ;
 void _ZNK9QSqlQuery9lastQueryEv() {} ;
-void _ZThn16_N16QSqlDriverPluginD0Ev() {} ;
-void _ZThn16_N16QSqlDriverPluginD1Ev() {} ;
 void _Zls6QDebugRK10QSqlRecord() {} ;
 void _Zls6QDebugRK12QSqlDatabase() {} ;
 void _Zls6QDebugRK9QSqlError() {} ;
@@ -398,3 +396,5 @@ __asm__(".globl _ZTV16QSqlDriverPlugin; .pushsection .data; .type _ZTV16QSqlDriv
 __asm__(".globl _ZTV17QFactoryInterface; .pushsection .data; .type _ZTV17QFactoryInterface,@object; .size _ZTV17QFactoryInterface, 40; _ZTV17QFactoryInterface: .long 0; .popsection");
 __asm__(".globl _ZTV24QSqlRelationalTableModel; .pushsection .data; .type _ZTV24QSqlRelationalTableModel,@object; .size _ZTV24QSqlRelationalTableModel, 456; _ZTV24QSqlRelationalTableModel: .long 0; .popsection");
 __asm__(".globl _ZTV26QSqlDriverFactoryInterface; .pushsection .data; .type _ZTV26QSqlDriverFactoryInterface,@object; .size _ZTV26QSqlDriverFactoryInterface, 48; _ZTV26QSqlDriverFactoryInterface: .long 0; .popsection");
+__asm__(".globl _ZThn16_N16QSqlDriverPluginD0Ev; .pushsection .data; .type _ZThn16_N16QSqlDriverPluginD0Ev,@object; .size _ZThn16_N16QSqlDriverPluginD0Ev, 0; _ZThn16_N16QSqlDriverPluginD0Ev: .long 0; .popsection");
+__asm__(".globl _ZThn16_N16QSqlDriverPluginD1Ev; .pushsection .data; .type _ZThn16_N16QSqlDriverPluginD1Ev,@object; .size _ZThn16_N16QSqlDriverPluginD1Ev, 0; _ZThn16_N16QSqlDriverPluginD1Ev: .long 0; .popsection");
