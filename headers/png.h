@@ -552,7 +552,7 @@ extern "C" {
     extern png_uint_32 png_get_text(png_structp, png_infop, png_textp *,
 				    int *);
     extern void png_write_rows(png_structp, png_bytepp, png_uint_32);
-    extern const char png_libpng_ver[18];
+    extern const char png_libpng_ver[];
     extern png_uint_32 png_access_version_number(void);
     extern png_voidp png_get_progressive_ptr(png_structp);
     extern png_uint_32 png_get_rowbytes(png_structp, png_infop);

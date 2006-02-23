@@ -1,4 +1,5 @@
 
+#define GDK_WINDOWING_X11
 #define GDK_PIXMAP_OBJECT(object)	 \
 	((GdkPixmapObject *) GDK_PIXMAP (object))
 #define GDK_WINDOW_OBJECT(object)	 \
@@ -241,6 +242,8 @@
 #define GDK_PRIORITY_EVENTS	(G_PRIORITY_DEFAULT)
 #define GDK_PRIORITY_REDRAW	(G_PRIORITY_HIGH_IDLE + 20)
 #define GDK_CURRENT_TIME	0L
+#define GDK_HAVE_WCHAR_H	1
+#define GDK_HAVE_WCTYPE_H	1
 #define GDK_MAX_TIMECOORD_AXES	128
 #define GDK_PARENT_RELATIVE	1L
 #define GDKVAR	extern
@@ -1466,7 +1469,6 @@ extern GType gdk_event_mask_get_type(void);
 extern void gdk_set_program_class(const char *);
 extern void gdk_draw_polygon(GdkDrawable *, GdkGC *, gboolean, GdkPoint *,
 			     gint);
-extern gboolean gdk_font_equal(const GdkFont *, const GdkFont *);
 extern GType gdk_function_get_type(void);
 extern void gdk_display_close(GdkDisplay *);
 extern gint gdk_screen_get_n_monitors(GdkScreen *);
@@ -1546,7 +1548,6 @@ extern gboolean gdk_keyval_is_lower(guint);
 extern GCallback gdk_threads_unlock;
 extern GType gdk_modifier_type_get_type(void);
 extern gint gdk_visual_get_best_depth(void);
-extern GdkFont *gdk_font_ref(GdkFont *);
 extern gboolean gdk_setting_get(const gchar *, GValue *);
 extern GType gdk_screen_get_type(void);
 extern guint32 gdk_drag_get_protocol_for_display(GdkDisplay *, guint32,
@@ -1678,7 +1679,6 @@ extern void gdk_window_get_root_origin(GdkWindow *, gint *, gint *);
 extern gint gdk_color_parse(const gchar *, GdkColor *);
 extern void gdk_window_set_skip_taskbar_hint(GdkWindow *, gboolean);
 extern GType gdk_gc_get_type(void);
-extern void gdk_font_unref(GdkFont *);
 extern GdkRegion *gdk_pango_layout_get_clip_region(PangoLayout *, gint,
 						   gint, gint *, gint);
 extern void gdk_window_fullscreen(GdkWindow *);
@@ -1832,7 +1832,6 @@ extern void gdk_window_get_internal_paint_info(GdkWindow *,
 					       GdkDrawable * *, gint *,
 					       gint *);
 extern gboolean gdk_window_is_viewable(GdkWindow *);
-extern gint gdk_font_id(const GdkFont *);
 extern struct _GdkDrawable *gdk_bitmap_create_from_data(GdkDrawable *,
 							const gchar *,
 							gint, gint);
