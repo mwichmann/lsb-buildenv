@@ -542,5 +542,5 @@ void gdk_xid_table_lookup() {} ;
 void gdk_xid_table_lookup_for_display() {} ;
 void gdkx_visual_get() {} ;
 __asm__(".globl gdk_display; .pushsection .data; .type gdk_display,@object; .size gdk_display, 8; gdk_display: .long 0; .popsection");
-__asm__(".globl gdk_threads_lock; .pushsection .data; .type gdk_threads_lock,@object; .size gdk_threads_lock, 0; gdk_threads_lock: .long 0; .popsection");
-__asm__(".globl gdk_threads_unlock; .pushsection .data; .type gdk_threads_unlock,@object; .size gdk_threads_unlock, 0; gdk_threads_unlock: .long 0; .popsection");
+__asm__(".globl gdk_threads_lock; .pushsection .data; .type gdk_threads_lock,@object; .size gdk_threads_lock, 4; gdk_threads_lock: .long 0; .popsection");
+__asm__(".globl gdk_threads_unlock; .pushsection .data; .type gdk_threads_unlock,@object; .size gdk_threads_unlock, 4; gdk_threads_unlock: .long 0; .popsection");
