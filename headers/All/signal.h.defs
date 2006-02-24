@@ -209,7 +209,7 @@ typedef struct sigaltstack {
 extern int __libc_current_sigrtmax(void);
 extern int __libc_current_sigrtmin(void);
 extern sighandler_t __sysv_signal(int, sighandler_t);
-extern char *const _sys_siglist(void);
+extern char *const _sys_siglist[];
 extern int killpg(pid_t, int);
 extern void psignal(int, const char *);
 extern int raise(int);
