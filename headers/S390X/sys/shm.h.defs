@@ -1,5 +1,5 @@
 
-#define SHMLBA	4096
+#define SHMLBA	(__getpagesize())
 
 typedef unsigned long int shmatt_t;
 

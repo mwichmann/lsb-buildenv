@@ -582,7 +582,13 @@ extern "C" {
 #if __ia64__
 #define G_VA_COPY_AS_ARRAY	1
 #endif
+#if __powerpc__ && !__powerpc64__
+#define G_VA_COPY_AS_ARRAY	1
+#endif
 #if __powerpc64__
+#define G_VA_COPY_AS_ARRAY	1
+#endif
+#if __s390__ && !__s390x__
 #define G_VA_COPY_AS_ARRAY	1
 #endif
 #if __x86_64__

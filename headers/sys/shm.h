@@ -28,6 +28,9 @@ extern "C" {
 #if __x86_64__
 #define SHMLBA	(__getpagesize())
 #endif
+#if __s390x__
+#define SHMLBA	(__getpagesize())
+#endif
 #define SHM_RDONLY	010000
 #define SHM_W	0200
 #define SHM_RND	020000
@@ -35,9 +38,6 @@ extern "C" {
 #define SHM_REMAP	040000
 #define SHM_LOCK	11
 #define SHM_UNLOCK	12
-#if __s390x__
-#define SHMLBA	4096
-#endif
 
 
 
