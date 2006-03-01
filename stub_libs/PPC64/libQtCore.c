@@ -1,6 +1,6 @@
 void _Z10forcepointR11QTextStream() {} ;
 void _Z10noshowbaseR11QTextStream() {} ;
-void _Z10qvsnprintfPcmPKcP13__va_list_tag() {} ;
+void _Z10qvsnprintfPcmPKcS_() {} ;
 void _Z10scientificR11QTextStream() {} ;
 void _Z11noforcesignR11QTextStream() {} ;
 void _Z11qUncompressPKhi() {} ;
