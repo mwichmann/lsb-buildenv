@@ -364,7 +364,7 @@ extern "C" {
 
     typedef png_byte *png_bytep;
 
-    typedef unsigned int png_uint_32;
+    typedef unsigned long int png_uint_32;
 
     typedef void (*png_progressive_row_ptr) (png_structp, png_bytep,
 					     png_uint_32, int);
