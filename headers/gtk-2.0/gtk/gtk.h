@@ -4553,8 +4553,8 @@ extern "C" {
 	gint month;
 	gint year;
 	gint selected_day;
-	gint day_month[6];
-	gint day[6];
+	gint day_month[6][7];
+	gint day[6][7];
 	gint num_marked_dates;
 	gint marked_date[31];
 	GtkCalendarDisplayOptions display_flags;
