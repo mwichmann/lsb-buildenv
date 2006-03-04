@@ -223,7 +223,17 @@ if( $$type{'Ttype'} eq "Struct" ) {
 			if($tmentry{'TMarray'}){
 				print "[".$tmentry{'TMarray'}."]";
 			}else{
-				print "[".$entry{'ATsize'}."]";
+				# check the basetype of this array
+				$tselect="SELECT * FROM Type ";
+				$tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+				$tselect.="WHERE Tid=$entry{'Tbasetype'}";
+				$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+				%bentry=$tth->fetchhash;
+				if ($bentry{'Ttype'} eq 'Array') {
+					print "[".$bentry{'ATsize'}."]"."[".$entry{'ATsize'}."]";
+				} else {
+					print "[".$entry{'ATsize'}."]";
+				}
 				}
 			}
 		if( $tmentry{'TMbitfield'} != 0) {
