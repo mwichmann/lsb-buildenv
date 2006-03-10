@@ -302,10 +302,21 @@ if( $$type{'Ttype'} eq "Union" ) {
 		if( $entry{'Ttype'} eq 'Array' ) {
 			if($tmentry{'TMarray'}){
 				print "[".$tmentry{'TMarray'}."]";
-			}else{
-				print "[".$entry{'ATsize'}."]";
+			}else{				
+				# check the basetype of this array
+				$tselect="SELECT * FROM Type ";
+				$tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+				$tselect.="WHERE Tid=$entry{'Tbasetype'}";
+				$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+				%bentry=$tth->fetchhash;
+				if ($bentry{'Ttype'} eq 'Array') {
+					print "[".$bentry{'ATsize'}."]"."[".$entry{'ATsize'}."]";
+				} else {
+					print "[".$entry{'ATsize'}."]";
 				}
+
 			}
+		 }
 		print ";\t";
 		if( $tmentry{'TMcomment'} ) {
 			print "/* ".$tmentry{'TMcomment'}." */";
@@ -403,10 +414,20 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		if( $tmentry{'Ttype'} eq 'Array' ) {
 			if( $tmentry{'TMarray'} ) {
 				print "[".$tmentry{'TMarray'}."]";
-			}elsif($entry{'ATsize'}){
-				print "[".$entry{'ATsize'}."]";
+			}elsif($entry{'ATsize'}){	
+				# check the basetype of this array
+				$tselect="SELECT * FROM Type ";
+				$tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+				$tselect.="WHERE Tid=$entry{'Tbasetype'}";
+				$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+				%bentry=$tth->fetchhash;
+				if ($bentry{'Ttype'} eq 'Array') {
+					print "[".$bentry{'ATsize'}."]"."[".$entry{'ATsize'}."]";
+				} else {
+				      print "[".$entry{'ATsize'}."]";
+				}
 			}
-		}
+		}			
 		if( $_ != $tmh->numrows ) {
 			print ",";
 			}

@@ -161,10 +161,22 @@ if( $$type{'Ttype'} eq "Struct" ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			my $bound = $tmentry{'TMarray'};
-			$bound ||= $entry{'ATsize'};
-			print "[".$bound."]";
+			if($tmentry{'TMarray'}){
+                            print "[".$tmentry{'TMarray'}."]";
+			}else {
+			# check the basetype of this array
+                       $tselect="SELECT * FROM Type ";
+                       $tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+                       $tselect.="WHERE Tid=$entry{'Tbasetype'}";
+                       $tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+                       %bentry=$tth->fetchhash;
+                       if ($bentry{'Ttype'} eq 'Array') {
+                            print "[".$bentry{'ATsize'}."]"."[".$entry{'ATsize'}."]";
+                       } else {
+                            print "[".$entry{'ATsize'}."]";
+	              		}
 			}
+		 }	
 		if( $tmentry{'TMbitfield'} != 0 ) {
 			print ":".$tmentry{'TMbitfield'};
 			}
@@ -213,10 +225,22 @@ if( $$type{'Ttype'} eq "Union" ) {
 			print $tmentry{'TMname'};
 			}
 		if( $entry{'Ttype'} eq 'Array' ) {
-			my $bound = $tmentry{'TMarray'};
-			$bound ||= $entry{'ATsize'};
-			print "[".$bound."]";
+			if($tmentry{'TMarray'}){
+                            print "[".$tmentry{'TMarray'}."]";
+			}else {
+			# check the basetype of this array
+                       $tselect="SELECT * FROM Type ";
+                       $tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+                       $tselect.="WHERE Tid=$entry{'Tbasetype'}";
+                       $tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+                       %bentry=$tth->fetchhash;
+                       if ($bentry{'Ttype'} eq 'Array') {
+                            print "[".$bentry{'ATsize'}."]"."[".$entry{'ATsize'}."]";
+                       } else {
+                            print "[".$entry{'ATsize'}."]";
+	              		}
 			}
+		 }
 		print ";\t";
 		#if( $tmentry{'TMcomment'} ) {
 		#	print "/* ".$tmentry{'TMcomment'}." */";
@@ -297,11 +321,22 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		%entry=$th->fetchhash;
 		displaytype(\%entry,1);
 		print $tmentry{'TMname'};
-		if( $tmentry{'Ttype'} eq 'Array' ) {
-			if( $entry{'ATsize'} ) {
-				my $bound = $entry{'TMarray'};
-				$bound ||= $entry{'ATsize'};
-				print "[".$bound."]";
+		if( $tmentry{'Ttype'} eq 'Array' ) {	
+			if($tmentry{'TMarray'}){
+                            print "[".$tmentry{'TMarray'}."]";
+			}else {
+			# check the basetype of this array
+                       $tselect="SELECT * FROM Type ";
+                       $tselect.= "LEFT JOIN ArchType ON ATaid=Tarch AND ATtid=Tid ";
+                       $tselect.="WHERE Tid=$entry{'Tbasetype'}";
+                       $tth = $Dbh->query($tselect) || die $Dbh->errmsg();
+                       %bentry=$tth->fetchhash;
+                       if ($bentry{'Ttype'} eq 'Array') {
+                            print "[".$bentry{'ATsize'}."]"."[".$entry{'ATsize'}."]";
+                       } else {
+                            print "[".$entry{'ATsize'}."]";
+	              		}
+
 			}
 		}
 		if( $_ != $tmh->numrows ) {
