@@ -15,18 +15,18 @@ extern "C" {
 
 
     enum {
-	_ISupper,
-	_ISlower,
-	_ISalpha,
-	_ISdigit,
-	_ISxdigit,
-	_ISspace,
-	_ISprint,
-	_ISgraph,
-	_ISblank,
-	_IScntrl,
-	_ISpunct,
-	_ISalnum
+	_ISupper = 256,
+	_ISlower = 512,
+	_ISalpha = 1024,
+	_ISdigit = 2048,
+	_ISxdigit = 4096,
+	_ISspace = 8192,
+	_ISprint = 16384,
+	_ISgraph = 32768,
+	_ISblank = 1,
+	_IScntrl = 2,
+	_ISpunct = 4,
+	_ISalnum = 8
     };
 
 

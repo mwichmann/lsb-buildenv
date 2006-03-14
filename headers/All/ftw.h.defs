@@ -18,10 +18,10 @@ enum {
 };
 
 enum {
-    FTW_PHYS,
-    FTW_MOUNT,
-    FTW_CHDIR,
-    FTW_DEPTH
+    FTW_PHYS = 1,
+    FTW_MOUNT = 2,
+    FTW_CHDIR = 4,
+    FTW_DEPTH = 8
 };
 
 struct FTW {
