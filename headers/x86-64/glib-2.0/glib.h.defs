@@ -18,7 +18,10 @@
 #define GLIB_SIZEOF_VOID_P	8
 #define G_MAXSIZE	G_MAXULONG
 #define G_GINT64_MODIFIER	"l"
+#define G_GSIZE_MODIFIER	"l"
 #define G_GINT64_FORMAT	"li"
+#define G_GSSIZE_FORMAT	"li"
+#define G_GSIZE_FORMAT	"lu"
 #define G_GUINT64_FORMAT	"lu"
 
 typedef long int gint64;

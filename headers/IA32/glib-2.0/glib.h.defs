@@ -1,4 +1,5 @@
 
+#define G_GSIZE_MODIFIER	""
 #define G_STATIC_MUTEX_INIT	 \
 	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
 #define GPOINTER_TO_INT(p)	((gint) (p))
@@ -16,9 +17,11 @@
 #define GLIB_SIZEOF_SIZE_T	4
 #define GLIB_SIZEOF_VOID_P	4
 #define G_MAXSIZE	G_MAXUINT
+#define G_GSSIZE_FORMAT	"i"
 #define G_GINT64_MODIFIER	"ll"
 #define G_GINT64_FORMAT	"lli"
 #define G_GUINT64_FORMAT	"llu"
+#define G_GSIZE_FORMAT	"u"
 
 typedef int gssize;
 typedef long long int gint64;

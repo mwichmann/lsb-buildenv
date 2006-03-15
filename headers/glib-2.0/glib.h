@@ -15,7 +15,15 @@ extern "C" {
 #define G_GINT32_MODIFIER	""
 #define G_GNUC_FUNCTION	""
 #define G_GNUC_PRETTY_FUNCTION	""
+#if __i386__
 #define G_GSIZE_MODIFIER	""
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GSIZE_MODIFIER	""
+#endif
+#if __s390__ && !__s390x__
+#define G_GSIZE_MODIFIER	""
+#endif
 #define G_OPTION_REMAINING	""
 #define G_OS_UNIX
 #define G_THREADS_ENABLED
@@ -808,7 +816,15 @@ extern "C" {
 #define G_GINT16_FORMAT	"hi"
 #define G_GUINT16_FORMAT	"hu"
 #define G_GINT32_FORMAT	"i"
+#if __i386__
 #define G_GSSIZE_FORMAT	"i"
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GSSIZE_FORMAT	"i"
+#endif
+#if __s390__ && !__s390x__
+#define G_GSSIZE_FORMAT	"i"
+#endif
 #define G_MAXINT	INT_MAX
 #define G_MININT	INT_MIN
 #if __ia64__
@@ -824,6 +840,18 @@ extern "C" {
 #define G_GINT64_MODIFIER	"l"
 #endif
 #if __ia64__
+#define G_GSIZE_MODIFIER	"l"
+#endif
+#if __powerpc64__
+#define G_GSIZE_MODIFIER	"l"
+#endif
+#if __x86_64__
+#define G_GSIZE_MODIFIER	"l"
+#endif
+#if __s390x__
+#define G_GSIZE_MODIFIER	"l"
+#endif
+#if __ia64__
 #define G_GINT64_FORMAT	"li"
 #endif
 #if __powerpc64__
@@ -834,6 +862,18 @@ extern "C" {
 #endif
 #if __s390x__
 #define G_GINT64_FORMAT	"li"
+#endif
+#if __ia64__
+#define G_GSSIZE_FORMAT	"li"
+#endif
+#if __powerpc64__
+#define G_GSSIZE_FORMAT	"li"
+#endif
+#if __x86_64__
+#define G_GSSIZE_FORMAT	"li"
+#endif
+#if __s390x__
+#define G_GSSIZE_FORMAT	"li"
 #endif
 #if __i386__
 #define G_GINT64_MODIFIER	"ll"
@@ -865,6 +905,18 @@ extern "C" {
 #define G_MAXLONG	LONG_MAX
 #define G_MINLONG	LONG_MIN
 #if __ia64__
+#define G_GSIZE_FORMAT	"lu"
+#endif
+#if __powerpc64__
+#define G_GSIZE_FORMAT	"lu"
+#endif
+#if __x86_64__
+#define G_GSIZE_FORMAT	"lu"
+#endif
+#if __s390x__
+#define G_GSIZE_FORMAT	"lu"
+#endif
+#if __ia64__
 #define G_GUINT64_FORMAT	"lu"
 #endif
 #if __powerpc64__
@@ -880,7 +932,15 @@ extern "C" {
 #define G_MINSHORT	SHRT_MIN
 #define G_MODULE_SUFFIX	"so"
 #define G_LOCK_DEFINE_STATIC(name)	static G_LOCK_DEFINE (name)
+#if __i386__
 #define G_GSIZE_FORMAT	"u"
+#endif
+#if __powerpc__ && !__powerpc64__
+#define G_GSIZE_FORMAT	"u"
+#endif
+#if __s390__ && !__s390x__
+#define G_GSIZE_FORMAT	"u"
+#endif
 #define G_GUINT32_FORMAT	"u"
 #define G_MAXUINT	UINT_MAX
 #define G_MAXULONG	ULONG_MAX

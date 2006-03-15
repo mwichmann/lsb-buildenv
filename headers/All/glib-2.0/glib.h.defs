@@ -4,7 +4,6 @@
 #define G_GINT32_MODIFIER	""
 #define G_GNUC_FUNCTION	""
 #define G_GNUC_PRETTY_FUNCTION	""
-#define G_GSIZE_MODIFIER	""
 #define G_OPTION_REMAINING	""
 #define G_OS_UNIX
 #define G_THREADS_ENABLED
@@ -436,7 +435,6 @@
 #define G_GINT16_FORMAT	"hi"
 #define G_GUINT16_FORMAT	"hu"
 #define G_GINT32_FORMAT	"i"
-#define G_GSSIZE_FORMAT	"i"
 #define G_MAXINT	INT_MAX
 #define G_MININT	INT_MIN
 #define G_MAXLONG	LONG_MAX
@@ -445,7 +443,6 @@
 #define G_MINSHORT	SHRT_MIN
 #define G_MODULE_SUFFIX	"so"
 #define G_LOCK_DEFINE_STATIC(name)	static G_LOCK_DEFINE (name)
-#define G_GSIZE_FORMAT	"u"
 #define G_GUINT32_FORMAT	"u"
 #define G_MAXUINT	UINT_MAX
 #define G_MAXULONG	ULONG_MAX
