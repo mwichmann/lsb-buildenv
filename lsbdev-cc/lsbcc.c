@@ -287,6 +287,11 @@ char *lsb_desktoplibs[] = {
 	"png12",
 	"png",
 	"fontconfig",
+        "qt-mt",
+	NULL
+};
+
+char *lsb_desktoplibs_qt4[] = {
 	"QtCore",
 	"QtGui",
 	"QtNetwork",
@@ -512,7 +517,7 @@ int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
-int 	auto_pthread, desktop_product;
+int 	auto_pthread, desktop_product, desktop_qt4_product;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
@@ -608,9 +613,14 @@ if(LSBCPLUS == lsbccmode) {
 		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
 }
 
+desktop_qt4_product = 0;
 if((ptr = getenv("LSB_PRODUCT")) != NULL) {
 	if(strcasecmp(ptr, "all") == 0 || strcasecmp(ptr, "desktop") == 0)
 		desktop_product = 1;
+        else if (strcasecmp(ptr, "desktop_qt4") == 0) {
+                desktop_product = 1;
+                desktop_qt4_product = 1;
+        }
 	else if (strcasecmp(ptr, "core") != 0) {
 		fprintf(stderr, "warning: LSB_PRODUCT target '%s' isn't valid, must be [core|desktop],"
 		" forcing it to core\n", ptr);
@@ -623,6 +633,10 @@ if((ptr = getenv("LSB_PRODUCT")) != NULL) {
 if(desktop_product) {
 	for(i=0;lsb_desktoplibs[i];i++)
 		argvaddstring(lsblibs, strdup(lsb_desktoplibs[i]));
+}
+if(desktop_qt4_product) {
+        for(i=0;lsb_desktoplibs_qt4[i];i++)
+                argvaddstring(lsblibs, strdup(lsb_desktoplibs_qt4[i]));
 }
 
 if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
