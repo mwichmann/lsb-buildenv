@@ -35,6 +35,7 @@ libpangoft2-1.0 libpangoft2-1.0.so.0
 libpangoxft-1.0 libpangoxft-1.0.so.0
 libpng12 libpng12.so.0
 libpthread libpthread.so.0
+libqt-mt libqt-mt.so.3
 librt librt.so.1
 libstdcxx libstdc++.so.6
 libutil libutil.so.1
