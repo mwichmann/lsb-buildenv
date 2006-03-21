@@ -11,12 +11,12 @@ import MySQLdb
 
 core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp"]
 desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt", 
-		   "LSB_Graphics_Ext", "LSB_XML"]
+		   "LSB_Graphics_Ext", "LSB_XML", "LSB_Toolkit_Qt3"]
 
 # For some modules, we should only include the stub libraries;
 # the headers are expected to come from some other source.
 
-lib_only_modules = ["LSB_Toolkit_Qt", "LSB_Cpp"]
+lib_only_modules = ["LSB_Toolkit_Qt", "LSB_Cpp", "LSB_Toolkit_Qt3"]
 
 # List file names.  These are relative to the stub_libs and headers
 # directories, making for a total of four files.
