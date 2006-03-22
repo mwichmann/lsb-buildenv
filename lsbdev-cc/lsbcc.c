@@ -615,15 +615,20 @@ if(LSBCPLUS == lsbccmode) {
 
 desktop_qt4_product = 0;
 if((ptr = getenv("LSB_PRODUCT")) != NULL) {
-	if(strcasecmp(ptr, "all") == 0 || strcasecmp(ptr, "desktop") == 0)
+	if(strcasecmp(ptr, "desktop") == 0) {
 		desktop_product = 1;
+	}
         else if (strcasecmp(ptr, "desktop_qt4") == 0) {
                 desktop_product = 1;
                 desktop_qt4_product = 1;
         }
+        else if (strcasecmp(ptr, "all") == 0) {		/* undocumented */
+                desktop_product = 1;
+                desktop_qt4_product = 1;
+        }
 	else if (strcasecmp(ptr, "core") != 0) {
-		fprintf(stderr, "warning: LSB_PRODUCT target '%s' isn't valid, must be [core|desktop],"
-		" forcing it to core\n", ptr);
+		fprintf(stderr, "warning: LSB_PRODUCT target '%s' not valid, "
+		"must be [core|desktop|desktop_qt4], defaulting to core\n", ptr);
 		desktop_product = 0;
 	}
 } else
