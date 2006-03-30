@@ -137,7 +137,7 @@
 	(PNG_FILTER_NONE | PNG_FILTER_SUB | PNG_FILTER_UP | PNG_FILTER_AVG | \
 	PNG_FILTER_PAETH)
 #define png_info_init(info_ptr)	 \
-	png_info_init_3(&amp;info_ptr, png_sizeof(png_info));
+	png_info_init_3(&info_ptr, png_sizeof(png_info));
 #define png_composite(composite,fg,alpha,bg)	 \
 	{ png_uint_16 temp = (png_uint_16)((png_uint_16)(fg) * \
 	(png_uint_16)(alpha) + (png_uint_16)(bg)*(png_uint_16)(255 - \

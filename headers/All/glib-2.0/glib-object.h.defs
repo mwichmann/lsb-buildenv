@@ -21,16 +21,16 @@
 	((GType) ((x) << G_TYPE_FUNDAMENTAL_SHIFT))
 #define _G_TYPE_CCT(cp,gt)	 \
 	(G_GNUC_EXTENSION ({ GTypeClass *__class = (GTypeClass*) cp; GType \
-	__t = gt; gboolean __r; if (__class &amp;&amp; __class->g_type == __t) __r = \
+	__t = gt; gboolean __r; if (__class && __class->g_type == __t) __r = \
 	TRUE; else __r = g_type_check_class_is_a (__class, __t); __r; }))
 #define _G_TYPE_CIT(ip,gt)	 \
 	(G_GNUC_EXTENSION ({ GTypeInstance *__inst = (GTypeInstance*) ip; \
-	GType __t = gt; gboolean __r; if (__inst &amp;&amp; __inst->g_class &amp;&amp; \
+	GType __t = gt; gboolean __r; if (__inst && __inst->g_class && \
 	__inst->g_class->g_type == __t) __r = TRUE; else __r = \
 	g_type_check_instance_is_a (__inst, __t); __r; }))
 #define _G_TYPE_CVH(vl,gt)	 \
 	(G_GNUC_EXTENSION ({ GValue *__val = (GValue*) vl; GType __t = gt; \
-	gboolean __r; if (__val &amp;&amp; __val->g_type == __t) __r = TRUE; else __r \
+	gboolean __r; if (__val && __val->g_type == __t) __r = TRUE; else __r \
 	= g_type_check_value_holds (__val, __t); __r; }))
 #define G_ENUM_CLASS(class)	 \
 	(G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_ENUM, GEnumClass))
@@ -325,12 +325,12 @@
 	type_name ##_class_intern_init, (GClassFinalizeFunc) NULL, NULL, \
 	sizeof (TypeName), 0, (GInstanceInitFunc) type_name ##_init, NULL }; \
 	g_define_type_id = g_type_register_static (TYPE_PARENT, #TypeName, \
-	&amp;g_define_type_info, (GTypeFlags) flags); { CODE ; } } return \
+	&g_define_type_info, (GTypeFlags) flags); { CODE ; } } return \
 	g_define_type_id; }
 #define G_IMPLEMENT_INTERFACE(TYPE_IFACE,iface_init)	 \
 	{ static const GInterfaceInfo g_implement_interface_info = { \
 	(GInterfaceInitFunc) iface_init }; g_type_add_interface_static \
-	(g_define_type_id, TYPE_IFACE, &amp;g_implement_interface_info); }
+	(g_define_type_id, TYPE_IFACE, &g_implement_interface_info); }
 #define G_TYPE_FROM_CLASS(g_class)	(((GTypeClass*) (g_class))->g_type)
 #define G_VALUE_TYPE(value)	(((GValue*) (value))->g_type)
 #define _G_TYPE_IGC(ip,gt,ct)	((ct*) (((GTypeInstance*) ip)->g_class))

@@ -1,17 +1,17 @@
 
 #define xmlXPathStackIsNodeSet(ctxt)	 \
-	(((ctxt)->value != NULL) &amp;&amp; (((ctxt)->value->type == XPATH_NODESET) \
+	(((ctxt)->value != NULL) && (((ctxt)->value->type == XPATH_NODESET) \
 	|| ((ctxt)->value->type == XPATH_XSLT_TREE)))
 #define xmlXPathStackIsExternal(ctxt)	 \
-	((ctxt->value != NULL) &amp;&amp; (ctxt->value->type == XPATH_USERS))
+	((ctxt->value != NULL) && (ctxt->value->type == XPATH_USERS))
 #define CAST_TO_BOOLEAN	 \
-	if ((ctxt->value != NULL) &amp;&amp; (ctxt->value->type != XPATH_BOOLEAN)) \
+	if ((ctxt->value != NULL) && (ctxt->value->type != XPATH_BOOLEAN)) \
 	xmlXPathBooleanFunction(ctxt, 1);
 #define CAST_TO_NUMBER	 \
-	if ((ctxt->value != NULL) &amp;&amp; (ctxt->value->type != XPATH_NUMBER)) \
+	if ((ctxt->value != NULL) && (ctxt->value->type != XPATH_NUMBER)) \
 	xmlXPathNumberFunction(ctxt, 1);
 #define CAST_TO_STRING	 \
-	if ((ctxt->value != NULL) &amp;&amp; (ctxt->value->type != XPATH_STRING)) \
+	if ((ctxt->value != NULL) && (ctxt->value->type != XPATH_STRING)) \
 	xmlXPathStringFunction(ctxt, 1);
 #define CHECK_TYPE(typeval)	 \
 	if ((ctxt->value == NULL) || (ctxt->value->type != typeval)) \

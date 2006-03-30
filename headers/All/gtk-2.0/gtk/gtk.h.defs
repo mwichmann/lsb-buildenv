@@ -1,41 +1,41 @@
 
 #define GTK_NOTE(type,action)
 #define GTK_OBJECT_FLOATING(obj)	 \
-	((GTK_OBJECT_FLAGS (obj) &amp; GTK_FLOATING) != 0)
+	((GTK_OBJECT_FLAGS (obj) & GTK_FLOATING) != 0)
 #define GTK_WIDGET_APP_PAINTABLE(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_APP_PAINTABLE) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_APP_PAINTABLE) != 0)
 #define GTK_WIDGET_CAN_DEFAULT(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_CAN_DEFAULT) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_CAN_DEFAULT) != 0)
 #define GTK_WIDGET_CAN_FOCUS(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_CAN_FOCUS) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_CAN_FOCUS) != 0)
 #define GTK_WIDGET_COMPOSITE_CHILD(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_COMPOSITE_CHILD) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_COMPOSITE_CHILD) != 0)
 #define GTK_WIDGET_DOUBLE_BUFFERED(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_DOUBLE_BUFFERED) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_DOUBLE_BUFFERED) != 0)
 #define GTK_WIDGET_HAS_DEFAULT(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_HAS_DEFAULT) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_HAS_DEFAULT) != 0)
 #define GTK_WIDGET_HAS_FOCUS(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_HAS_FOCUS) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_HAS_FOCUS) != 0)
 #define GTK_WIDGET_HAS_GRAB(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_HAS_GRAB) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_HAS_GRAB) != 0)
 #define GTK_WIDGET_MAPPED(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_MAPPED) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_MAPPED) != 0)
 #define GTK_WIDGET_NO_WINDOW(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_NO_WINDOW) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_NO_WINDOW) != 0)
 #define GTK_WIDGET_PARENT_SENSITIVE(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_PARENT_SENSITIVE) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_PARENT_SENSITIVE) != 0)
 #define GTK_WIDGET_RC_STYLE(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_RC_STYLE) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_RC_STYLE) != 0)
 #define GTK_WIDGET_REALIZED(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_REALIZED) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_REALIZED) != 0)
 #define GTK_WIDGET_RECEIVES_DEFAULT(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_RECEIVES_DEFAULT) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_RECEIVES_DEFAULT) != 0)
 #define GTK_WIDGET_SENSITIVE(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_SENSITIVE) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_SENSITIVE) != 0)
 #define GTK_WIDGET_TOPLEVEL(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_TOPLEVEL) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_TOPLEVEL) != 0)
 #define GTK_WIDGET_VISIBLE(wid)	 \
-	((GTK_WIDGET_FLAGS (wid) &amp; GTK_VISIBLE) != 0)
+	((GTK_WIDGET_FLAGS (wid) & GTK_VISIBLE) != 0)
 #define GTK_TYPE_CALENDAR_DISPLAY_OPTIONS	 \
 	(gtk_calendar_display_options_get_type())
 #define GTK_TYPE_CELL_RENDERER_PIXBUF	 \
@@ -72,12 +72,12 @@
 #define GTK_TYPE_FONT_SELECTION_DIALOG	 \
 	(gtk_font_selection_dialog_get_type ())
 #define GTK_IS_RESIZE_CONTAINER(widget)	 \
-	(GTK_IS_CONTAINER (widget) &amp;&amp; ((GtkContainer*) (widget))->resize_mode \
+	(GTK_IS_CONTAINER (widget) && ((GtkContainer*) (widget))->resize_mode \
 	!= GTK_RESIZE_PARENT)
 #define GTK_CHECK_VERSION(major,minor,micro)	 \
-	(GTK_MAJOR_VERSION > (major) || (GTK_MAJOR_VERSION == (major) &amp;&amp; \
-	GTK_MINOR_VERSION > (minor)) || (GTK_MAJOR_VERSION == (major) &amp;&amp; \
-	GTK_MINOR_VERSION == (minor) &amp;&amp; GTK_MICRO_VERSION >= (micro)))
+	(GTK_MAJOR_VERSION > (major) || (GTK_MAJOR_VERSION == (major) && \
+	GTK_MINOR_VERSION > (minor)) || (GTK_MAJOR_VERSION == (major) && \
+	GTK_MINOR_VERSION == (minor) && GTK_MICRO_VERSION >= (micro)))
 #define GTK_TYPE_PROGRESS_BAR_ORIENTATION	 \
 	(gtk_progress_bar_orientation_get_type())
 #define GTK_TYPE_SPIN_BUTTON_UPDATE_POLICY	 \
@@ -89,9 +89,9 @@
 #define GTK_TYPE_UI_MANAGER_ITEM_TYPE	 \
 	(gtk_ui_manager_item_type_get_type())
 #define GTK_WIDGET_IS_SENSITIVE(wid)	 \
-	(GTK_WIDGET_SENSITIVE (wid) &amp;&amp; GTK_WIDGET_PARENT_SENSITIVE (wid))
+	(GTK_WIDGET_SENSITIVE (wid) && GTK_WIDGET_PARENT_SENSITIVE (wid))
 #define GTK_WIDGET_DRAWABLE(wid)	 \
-	(GTK_WIDGET_VISIBLE (wid) &amp;&amp; GTK_WIDGET_MAPPED (wid))
+	(GTK_WIDGET_VISIBLE (wid) && GTK_WIDGET_MAPPED (wid))
 #define GTK_ABOUT_DIALOG_CLASS(klass)	 \
 	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_ABOUT_DIALOG, \
 	GtkAboutDialogClass))
@@ -1773,11 +1773,11 @@
 	G_OBJECT_WARN_INVALID_PSPEC ((object), "child property id", \
 	(property_id), (pspec))
 #define GTK_OBJECT_UNSET_FLAGS(obj,flag)	 \
-	G_STMT_START{ (GTK_OBJECT_FLAGS (obj) &amp;= ~(flag)); }G_STMT_END
+	G_STMT_START{ (GTK_OBJECT_FLAGS (obj) &= ~(flag)); }G_STMT_END
 #define GTK_OBJECT_SET_FLAGS(obj,flag)	 \
 	G_STMT_START{ (GTK_OBJECT_FLAGS (obj) |= (flag)); }G_STMT_END
 #define GTK_WIDGET_UNSET_FLAGS(wid,flag)	 \
-	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) &amp;= ~(flag)); }G_STMT_END
+	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) &= ~(flag)); }G_STMT_END
 #define GTK_WIDGET_SET_FLAGS(wid,flag)	 \
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) |= (flag)); }G_STMT_END
 #define GTK_SIGNAL_FUNC(f)	((GtkSignalFunc) (f))

@@ -214,7 +214,7 @@ struct _win_st {
 #define KEY_RESIZE	0632
 #define KEY_MAX	0777
 
-#define PAIR_NUMBER(a)	(((a)&amp;A_COLOR)>>8)
+#define PAIR_NUMBER(a)	(((a)&A_COLOR)>>8)
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))
 #define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)
 #define A_NORMAL	0L

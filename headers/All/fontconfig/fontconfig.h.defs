@@ -3,8 +3,8 @@
 #define _FCFUNCPROTOEND
 #define FC_USER_CACHE_FILE	".fonts.cache-"FC_CACHE_VERSION
 #define FC_DIR_CACHE_FILE	"fonts.cache-"FC_CACHE_VERSION
-#define FcIsUpper(c)	((0101 <= (c) &amp;&amp; (c) <= 0132))
-#define FcIsLower(c)	((0141 <= (c) &amp;&amp; (c) <= 0172))
+#define FcIsUpper(c)	((0101 <= (c) && (c) <= 0132))
+#define FcIsLower(c)	((0141 <= (c) && (c) <= 0172))
 #define FC_CHARSET_DONE	((FcChar32) -1)
 #define FC_VERSION	((FC_MAJOR * 10000) + (FC_MINOR * 100) + (FC_REVISION))
 #define FcMatrixInit(m)	((m)->xx = (m)->yy = 1, (m)->xy = (m)->yx = 0)

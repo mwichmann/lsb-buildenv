@@ -5,7 +5,7 @@
 	__ob__ = __first__; while (__ob__) { if (!FcObjectSetAdd (__os__, \
 	__ob__)) goto _FcObjectSetVapBuild_bail1; __ob__ = va_arg (__va__, \
 	const char *); } __ret__ = __os__; _FcObjectSetVapBuild_bail1: if \
-	(!__ret__ &amp;&amp; __os__) FcObjectSetDestroy (__os__); \
+	(!__ret__ && __os__) FcObjectSetDestroy (__os__); \
 	_FcObjectSetVapBuild_bail0: ; }
 #define FcPatternVapBuild(result,orig,va)	 \
 	{ FcPattern *__p__ = (orig); const char *__o__; FcValue __v__; if \

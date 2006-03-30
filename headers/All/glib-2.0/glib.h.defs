@@ -21,69 +21,69 @@
 	( g_mem_chunk_new (#type " mem chunks (" #pre_alloc ")", sizeof \
 	(type), sizeof (type) * (pre_alloc), (alloc_type)) )
 #define G_NODE_IS_ROOT(node)	 \
-	(((GNode*) (node))->parent == NULL &amp;&amp; ((GNode*) (node))->prev == NULL \
-	&amp;&amp; ((GNode*) (node))->next == NULL)
+	(((GNode*) (node))->parent == NULL && ((GNode*) (node))->prev == NULL \
+	&& ((GNode*) (node))->next == NULL)
 #define g_once(once,func,arg)	 \
 	(((once)->status == G_ONCE_STATUS_READY) ? (once)->retval : \
 	g_once_impl ((once), (func), (arg)))
 #define CLAMP(x,low,high)	 \
 	(((x) > (high)) ? (high) : (((x) < (low)) ? (low) : (x)))
 #define G_STRUCT_OFFSET(struct_type,member)	 \
-	((glong) ((guint8*) &amp;((struct_type*) 0)->member))
+	((glong) ((guint8*) &((struct_type*) 0)->member))
 #define G_STRUCT_MEMBER_P(struct_p,struct_offset)	 \
 	((gpointer) ((guint8*) (struct_p) + (glong) (struct_offset)))
 #define GUINT16_SWAP_LE_BE_CONSTANT(val)	 \
 	((guint16) ( (guint16) ((guint16) (val) >> 8) | (guint16) ((guint16) \
 	(val) << 8)))
 #define GUINT32_SWAP_LE_BE_CONSTANT(val)	 \
-	((guint32) ( (((guint32) (val) &amp; (guint32) 0x000000ffU) << 24) | \
-	(((guint32) (val) &amp; (guint32) 0x0000ff00U) << 8) | (((guint32) (val) &amp; \
-	(guint32) 0x00ff0000U) >> 8) | (((guint32) (val) &amp; (guint32) \
+	((guint32) ( (((guint32) (val) & (guint32) 0x000000ffU) << 24) | \
+	(((guint32) (val) & (guint32) 0x0000ff00U) << 8) | (((guint32) (val) & \
+	(guint32) 0x00ff0000U) >> 8) | (((guint32) (val) & (guint32) \
 	0xff000000U) >> 24)))
 #define GUINT32_SWAP_LE_PDP(val)	 \
-	((guint32) ( (((guint32) (val) &amp; (guint32) 0x0000ffffU) << 16) | \
-	(((guint32) (val) &amp; (guint32) 0xffff0000U) >> 16)))
+	((guint32) ( (((guint32) (val) & (guint32) 0x0000ffffU) << 16) | \
+	(((guint32) (val) & (guint32) 0xffff0000U) >> 16)))
 #define GUINT32_SWAP_BE_PDP(val)	 \
-	((guint32) ( (((guint32) (val) &amp; (guint32) 0x00ff00ffU) << 8) | \
-	(((guint32) (val) &amp; (guint32) 0xff00ff00U) >> 8)))
+	((guint32) ( (((guint32) (val) & (guint32) 0x00ff00ffU) << 8) | \
+	(((guint32) (val) & (guint32) 0xff00ff00U) >> 8)))
 #define GUINT64_SWAP_LE_BE_CONSTANT(val)	 \
-	((guint64) ( (((guint64) (val) &amp; (guint64) G_GINT64_CONSTANT \
-	(0x00000000000000ffU)) << 56) | (((guint64) (val) &amp; (guint64) \
-	G_GINT64_CONSTANT (0x000000000000ff00U)) << 40) | (((guint64) (val) &amp; \
+	((guint64) ( (((guint64) (val) & (guint64) G_GINT64_CONSTANT \
+	(0x00000000000000ffU)) << 56) | (((guint64) (val) & (guint64) \
+	G_GINT64_CONSTANT (0x000000000000ff00U)) << 40) | (((guint64) (val) & \
 	(guint64) G_GINT64_CONSTANT (0x0000000000ff0000U)) << 24) | \
-	(((guint64) (val) &amp; (guint64) G_GINT64_CONSTANT (0x00000000ff000000U)) \
-	<< 8) | (((guint64) (val) &amp; (guint64) G_GINT64_CONSTANT \
-	(0x000000ff00000000U)) >> 8) | (((guint64) (val) &amp; (guint64) \
-	G_GINT64_CONSTANT (0x0000ff0000000000U)) >> 24) | (((guint64) (val) &amp; \
+	(((guint64) (val) & (guint64) G_GINT64_CONSTANT (0x00000000ff000000U)) \
+	<< 8) | (((guint64) (val) & (guint64) G_GINT64_CONSTANT \
+	(0x000000ff00000000U)) >> 8) | (((guint64) (val) & (guint64) \
+	G_GINT64_CONSTANT (0x0000ff0000000000U)) >> 24) | (((guint64) (val) & \
 	(guint64) G_GINT64_CONSTANT (0x00ff000000000000U)) >> 40) | \
-	(((guint64) (val) &amp; (guint64) G_GINT64_CONSTANT (0xff00000000000000U)) \
+	(((guint64) (val) & (guint64) G_GINT64_CONSTANT (0xff00000000000000U)) \
 	>> 56)))
 #define g_ascii_isalnum(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_ALNUM) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_ALNUM) != 0)
 #define g_ascii_isalpha(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_ALPHA) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_ALPHA) != 0)
 #define g_ascii_iscntrl(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_CNTRL) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_CNTRL) != 0)
 #define g_ascii_isdigit(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_DIGIT) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_DIGIT) != 0)
 #define g_ascii_isgraph(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_GRAPH) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_GRAPH) != 0)
 #define g_ascii_islower(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_LOWER) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_LOWER) != 0)
 #define g_ascii_isprint(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_PRINT) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_PRINT) != 0)
 #define g_ascii_ispunct(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_PUNCT) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_PUNCT) != 0)
 #define g_ascii_isspace(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_SPACE) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_SPACE) != 0)
 #define g_ascii_isupper(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_UPPER) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_UPPER) != 0)
 #define g_ascii_isxdigit(c)	 \
-	((g_ascii_table[(guchar) (c)] &amp; G_ASCII_XDIGIT) != 0)
+	((g_ascii_table[(guchar) (c)] & G_ASCII_XDIGIT) != 0)
 #define G_HOOK_ACTIVE(hook)	 \
-	((G_HOOK_FLAGS (hook) &amp; G_HOOK_FLAG_ACTIVE) != 0)
+	((G_HOOK_FLAGS (hook) & G_HOOK_FLAG_ACTIVE) != 0)
 #define G_HOOK_IN_CALL(hook)	 \
-	((G_HOOK_FLAGS (hook) &amp; G_HOOK_FLAG_IN_CALL) != 0)
+	((G_HOOK_FLAGS (hook) & G_HOOK_FLAG_IN_CALL) != 0)
 #define g_node_first_child(node)	 \
 	((node) ? ((GNode*) (node))->children : NULL)
 #define g_node_next_sibling(node)	 \
@@ -107,9 +107,9 @@
 #define G_THREAD_UF(op,arglist)	 \
 	(*g_thread_functions_for_glib_use . op) arglist
 #define GLIB_CHECK_VERSION(major,minor,micro)	 \
-	(GLIB_MAJOR_VERSION > (major) || (GLIB_MAJOR_VERSION == (major) &amp;&amp; \
-	GLIB_MINOR_VERSION > (minor)) || (GLIB_MAJOR_VERSION == (major) &amp;&amp; \
-	GLIB_MINOR_VERSION == (minor) &amp;&amp; GLIB_MICRO_VERSION >= (micro)))
+	(GLIB_MAJOR_VERSION > (major) || (GLIB_MAJOR_VERSION == (major) && \
+	GLIB_MINOR_VERSION > (minor)) || (GLIB_MAJOR_VERSION == (major) && \
+	GLIB_MINOR_VERSION == (minor) && GLIB_MICRO_VERSION >= (micro)))
 #define g_atomic_int_dec_and_test(atomic)	 \
 	(g_atomic_int_exchange_and_add ((atomic), -1) == 1)
 #define g_static_mutex_get_mutex_impl_shortcut(mutex)	 \
@@ -120,11 +120,11 @@
 #define g_dataset_get_data(l,k)	 \
 	(g_dataset_id_get_data ((l), g_quark_try_string (k)))
 #define G_HOOK_IS_VALID(hook)	 \
-	(G_HOOK (hook)->hook_id != 0 &amp;&amp; (G_HOOK_FLAGS (hook) &amp; \
+	(G_HOOK (hook)->hook_id != 0 && (G_HOOK_FLAGS (hook) & \
 	G_HOOK_FLAG_ACTIVE))
 #define G_HOOK_IS_UNLINKED(hook)	 \
-	(G_HOOK (hook)->next == NULL &amp;&amp; G_HOOK (hook)->prev == NULL &amp;&amp; G_HOOK \
-	(hook)->hook_id == 0 &amp;&amp; G_HOOK (hook)->ref_count == 0)
+	(G_HOOK (hook)->next == NULL && G_HOOK (hook)->prev == NULL && G_HOOK \
+	(hook)->hook_id == 0 && G_HOOK (hook)->ref_count == 0)
 #define g_thread_create(func,data,joinable,error)	 \
 	(g_thread_create_full (func, data, 0, joinable, FALSE, \
 	G_THREAD_PRIORITY_NORMAL, error))
@@ -135,8 +135,8 @@
 #define G_THREAD_CF(op,fail,arg)	 \
 	(g_thread_supported () ? G_THREAD_UF (op, arg) : (fail))
 #define g_static_mutex_get_mutex(mutex)	 \
-	(g_thread_use_default_impl ? ((GMutex*) &amp;((mutex)->static_mutex)) : \
-	g_static_mutex_get_mutex_impl_shortcut (&amp;((mutex)->runtime_mutex)))
+	(g_thread_use_default_impl ? ((GMutex*) &((mutex)->static_mutex)) : \
+	g_static_mutex_get_mutex_impl_shortcut (&((mutex)->runtime_mutex)))
 #define G_LOCK_DEFINE(name)	 \
 	GStaticMutex G_LOCK_NAME (name) = G_STATIC_MUTEX_INIT
 #define g_datalist_remove_no_notify(dl,k)	 \
@@ -271,8 +271,8 @@
 #define G_MAXUINT32	((guint32) 0xffffffff)
 #define GUINT64_TO_LE(val)	((guint64) (val))
 #define G_MAXUINT8	((guint8) 0xff)
-#define g_random_boolean()	((g_random_int () &amp; (1 << 15)) != 0)
-#define g_rand_boolean(rand_)	((g_rand_int (rand_) &amp; (1 << 15)) != 0)
+#define g_random_boolean()	((g_random_int () & (1 << 15)) != 0)
+#define g_rand_boolean(rand_)	((g_rand_int (rand_) & (1 << 15)) != 0)
 #define g_list_next(list)	((list) ? (((GList *)(list))->next) : NULL)
 #define g_list_previous(list)	((list) ? (((GList *)(list))->prev) : NULL)
 #define g_slist_next(slist)	((slist) ? (((GSList *)(slist))->next) : NULL)
@@ -386,9 +386,9 @@
 #define G_MAXFLOAT	FLT_MAX
 #define G_MINFLOAT	FLT_MIN
 #define G_MEM_ALIGN	GLIB_SIZEOF_LONG
-#define g_array_append_val(a,v)	g_array_append_vals (a, &amp;(v), 1)
-#define g_array_insert_val(a,i,v)	g_array_insert_vals (a, i, &amp;(v), 1)
-#define g_array_prepend_val(a,v)	g_array_prepend_vals (a, &amp;(v), 1)
+#define g_array_append_val(a,v)	g_array_append_vals (a, &(v), 1)
+#define g_array_insert_val(a,i,v)	g_array_insert_vals (a, i, &(v), 1)
+#define g_array_prepend_val(a,v)	g_array_prepend_vals (a, &(v), 1)
 #define ATEXIT(proc)	g_ATEXIT(proc)
 #define G_CONVERT_ERROR	g_convert_error_quark()
 #define g_date_day	g_date_get_day
@@ -414,9 +414,9 @@
 #define G_MARKUP_ERROR	g_markup_error_quark ()
 #define G_SHELL_ERROR	g_shell_error_quark ()
 #define G_SPAWN_ERROR	g_spawn_error_quark ()
-#define G_LOCK(name)	g_static_mutex_lock (&amp;G_LOCK_NAME (name))
-#define G_TRYLOCK(name)	g_static_mutex_trylock (&amp;G_LOCK_NAME (name))
-#define G_UNLOCK(name)	g_static_mutex_unlock (&amp;G_LOCK_NAME (name))
+#define G_LOCK(name)	g_static_mutex_lock (&G_LOCK_NAME (name))
+#define G_TRYLOCK(name)	g_static_mutex_trylock (&G_LOCK_NAME (name))
+#define G_UNLOCK(name)	g_static_mutex_unlock (&G_LOCK_NAME (name))
 #define g_strstrip(string)	g_strchomp (g_strchug (string))
 #define G_STRINGIFY(macro_or_string)	G_STRINGIFY_ARG (macro_or_string)
 #define g_cond_free(cond)	G_THREAD_CF (cond_free, (void)0, (cond))

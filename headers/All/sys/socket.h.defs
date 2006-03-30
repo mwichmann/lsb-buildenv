@@ -5,7 +5,7 @@
 #define SOMAXCONN	128
 #define SOL_RAW	255
 #define CMSG_ALIGN(len)	\
-	(((len)+sizeof(size_t)-1)&amp;(size_t)~(sizeof(size_t)-1))
+	(((len)+sizeof(size_t)-1)&(size_t)~(sizeof(size_t)-1))
 #define CMSG_DATA(cmsg)	\
 	((unsigned char *) (cmsg) + CMSG_ALIGN(sizeof(struct cmsghdr)))
 #define CMSG_SPACE(len)	\

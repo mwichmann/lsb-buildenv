@@ -1,6 +1,6 @@
 
 #define xmlXPathNodeSetItem(ns,index)	 \
-	((((ns) != NULL) &amp;&amp; ((index) >= 0) &amp;&amp; ((index) < (ns)->nodeNr)) ? \
+	((((ns) != NULL) && ((index) >= 0) && ((index) < (ns)->nodeNr)) ? \
 	(ns)->nodeTab[(index)] : NULL)
 #define xmlXPathNodeSetIsEmpty(ns)	 \
 	(((ns) == NULL) || ((ns)->nodeNr == 0) || ((ns)->nodeTab == NULL))

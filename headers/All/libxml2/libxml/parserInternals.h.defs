@@ -1,11 +1,11 @@
 
 #define IS_ASCII_LETTER(c)	 \
-	(((0x41 <= (c)) &amp;&amp; ((c) <= 0x5a)) || ((0x61 <= (c)) &amp;&amp; ((c) <= \
+	(((0x41 <= (c)) && ((c) <= 0x5a)) || ((0x61 <= (c)) && ((c) <= \
 	0x7a)))
 #define SKIP_EOL(p)	 \
 	if (*(p) == 0x13) { p++ ; if (*(p) == 0x10) p++; } if (*(p) == 0x10) \
 	{ p++ ; if (*(p) == 0x13) p++; }
-#define IS_ASCII_DIGIT(c)	((0x30 <= (c)) &amp;&amp; ((c) <= 0x39))
+#define IS_ASCII_DIGIT(c)	((0x30 <= (c)) && ((c) <= 0x39))
 #define IS_LETTER(c)	(IS_BASECHAR(c) || IS_IDEOGRAPHIC(c))
 #define IS_COMBINING_CH(c)	0
 #define XML_SUBSTITUTE_NONE	0
@@ -14,8 +14,8 @@
 #define XML_SUBSTITUTE_PEREF	2
 #define INPUT_CHUNK	250
 #define XML_SUBSTITUTE_BOTH	3
-#define MOVETO_STARTTAG(p)	while ((*p) &amp;&amp; (*(p) != '<')) (p)++
-#define MOVETO_ENDTAG(p)	while ((*p) &amp;&amp; (*(p) != '>')) (p)++
+#define MOVETO_STARTTAG(p)	while ((*p) && (*(p) != '<')) (p)++
+#define MOVETO_ENDTAG(p)	while ((*p) && (*(p) != '>')) (p)++
 #define IS_BASECHAR(c)	xmlIsBaseCharQ(c)
 #define IS_LETTER_CH(c)	xmlIsBaseChar_ch(c)
 #define IS_BLANK(c)	xmlIsBlankQ(c)
