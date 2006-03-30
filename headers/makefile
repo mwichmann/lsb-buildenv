@@ -11,7 +11,7 @@ core_filelist desktop_filelist:
 
 %.defs: 
 	mkdir -p $(dir $@)
-	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob| sed -e 's/\&/\&amp;/g' > $@
+	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob > $@
 
 %.h:
 	mkdir -p $(dir $@)
