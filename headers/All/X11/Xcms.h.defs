@@ -81,17 +81,7 @@ typedef void (*XcmsScreenFreeProc) (void);
 typedef int (*XcmsConversionProc) (void);
 typedef int (*XcmsParseStringProc) (void);
 
-typedef struct _XcmsCCC {
-    Display *dpy;
-    int screenNumber;
-    Visual *visual;
-    XcmsColor clientWhitePt;
-    XcmsCompressionProc gamutCompProc;
-    XPointer gamutCompClientData;
-    XcmsWhiteAdjustProc whitePtAdjProc;
-    XPointer whitePtAdjClientData;
-    XcmsPerScrnInfo *pPerScrnInfo;
-} *XcmsCCC;
+typedef struct _XcmsCCC *XcmsCCC;
 
 typedef XcmsConversionProc *XcmsFuncListPtr;
 

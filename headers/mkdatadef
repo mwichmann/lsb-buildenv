@@ -116,9 +116,14 @@ if( $$type{'Ttype'} eq "Pointer" ) {
 		if( $entry{'Ttype'} eq 'Typedef' ||
 		    $entry{'Ttype'} eq 'FuncPtr' ) {
 			displaytype(\%entry,1);
-		} else {
-			displaytype(\%entry,0);
+		}else {
+            if (($entry{'Ttype'} eq 'Struct' ||
+            $entry{'Ttype'} eq 'Union') ) {
+               displaytype(\%entry,1);
+			} else {
+				displaytype(\%entry,0);
 			}
+		}
 		print "* ";
 	} else {
 		displaytype(\%entry,1);

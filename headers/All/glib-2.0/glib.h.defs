@@ -677,8 +677,7 @@ typedef struct _GIOFuncs {
      GIOStatus(*io_set_flags) (GIOChannel *, GIOFlags, GError * *);
      GIOFlags(*io_get_flags) (GIOChannel *);
 } GIOFuncs;
-typedef struct _GIConv
-*GIConv;
+typedef struct _GIConv *GIConv;
 typedef struct _GOptionGroup GOptionGroup;
 typedef enum {
     G_SPAWN_LEAVE_DESCRIPTORS_OPEN = 1,

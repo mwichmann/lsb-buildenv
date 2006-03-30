@@ -48,13 +48,7 @@ struct __locale_struct {
     const int *__ctype_toupper;
     const char *__names[13];
 };
-typedef struct __locale_struct {
-    struct locale_data *__locales[13];
-    const unsigned short *__ctype_b;
-    const int *__ctype_tolower;
-    const int *__ctype_toupper;
-    const char *__names[13];
-} *__locale_t;
+typedef struct __locale_struct *__locale_t;
 
 typedef struct __locale_struct *locale_t;
 

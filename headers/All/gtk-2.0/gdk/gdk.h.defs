@@ -521,8 +521,7 @@ typedef struct _GdkKeymap {
     GObject parent_instance;
     GdkDisplay *display;
 } GdkKeymap;
-typedef struct _GdkAtom
-*GdkAtom;
+typedef struct _GdkAtom *GdkAtom;
 typedef enum {
     GDK_FILTER_CONTINUE = 0,
     GDK_FILTER_TRANSLATE = 1,
