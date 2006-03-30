@@ -613,27 +613,24 @@ if(LSBCPLUS == lsbccmode) {
 		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
 }
 
-desktop_qt4_product = 0;
 if((ptr = getenv("LSB_PRODUCT")) != NULL) {
 	if(strcasecmp(ptr, "desktop") == 0) {
 		desktop_product = 1;
 	}
-        else if (strcasecmp(ptr, "desktop_qt4") == 0) {
-                desktop_product = 1;
-                desktop_qt4_product = 1;
-        }
-        else if (strcasecmp(ptr, "all") == 0) {		/* undocumented */
-                desktop_product = 1;
-                desktop_qt4_product = 1;
-        }
 	else if (strcasecmp(ptr, "core") != 0) {
 		fprintf(stderr, "warning: LSB_PRODUCT target '%s' not valid, "
-		"must be [core|desktop|desktop_qt4], defaulting to core\n", ptr);
+		"must be [core|desktop], defaulting to core\n", ptr);
 		desktop_product = 0;
 	}
 } else
 	desktop_product = 0;
 
+desktop_qt4_product = 0;
+if((ptr = getenv("LSB_MODULES")) != NULL) {
+	if(strcasecmp(ptr, "qt4") == 0) {
+		desktop_qt4_product = 1;
+	}
+}
 
 if(desktop_product) {
 	for(i=0;lsb_desktoplibs[i];i++)
