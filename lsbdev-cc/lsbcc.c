@@ -613,6 +613,8 @@ if(LSBCPLUS == lsbccmode) {
 		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
 }
 
+desktop_product = 1;
+/* remove LSB_PRODUCT env var processing for LSB 3.1
 if((ptr = getenv("LSB_PRODUCT")) != NULL) {
 	if(strcasecmp(ptr, "desktop") == 0) {
 		desktop_product = 1;
@@ -624,7 +626,7 @@ if((ptr = getenv("LSB_PRODUCT")) != NULL) {
 	}
 } else
 	desktop_product = 0;
-
+*/
 desktop_qt4_product = 0;
 if((ptr = getenv("LSB_MODULES")) != NULL) {
 	if(strcasecmp(ptr, "qt4") == 0) {
