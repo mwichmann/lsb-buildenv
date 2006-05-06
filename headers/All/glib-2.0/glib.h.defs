@@ -408,7 +408,6 @@
 #define G_MAXUINT64	G_GINT64_CONSTANT(0xffffffffffffffffU)
 #define G_IO_CHANNEL_ERROR	g_io_channel_error_quark()
 #define G_KEY_FILE_ERROR	g_key_file_error_quark()
-#define G_BYTE_ORDER	G_LITTLE_ENDIAN
 #define g_debug(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, __VA_ARGS__)
 #define g_error(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, __VA_ARGS__)
 #define G_MARKUP_ERROR	g_markup_error_quark ()

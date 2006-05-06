@@ -750,6 +750,18 @@ extern "C" {
 #define g_array_insert_val(a,i,v)	g_array_insert_vals (a, i, &(v), 1)
 #define g_array_prepend_val(a,v)	g_array_prepend_vals (a, &(v), 1)
 #define ATEXIT(proc)	g_ATEXIT(proc)
+#if __powerpc__ && !__powerpc64__
+#define G_BYTE_ORDER	G_BIG_ENDIAN
+#endif
+#if __powerpc64__
+#define G_BYTE_ORDER	G_BIG_ENDIAN
+#endif
+#if __s390__ && !__s390x__
+#define G_BYTE_ORDER	G_BIG_ENDIAN
+#endif
+#if __s390x__
+#define G_BYTE_ORDER	G_BIG_ENDIAN
+#endif
 #define G_CONVERT_ERROR	g_convert_error_quark()
 #define g_date_day	g_date_get_day
 #define g_date_days_in_month	g_date_get_days_in_month
@@ -768,7 +780,15 @@ extern "C" {
 #define G_MAXUINT64	G_GINT64_CONSTANT(0xffffffffffffffffU)
 #define G_IO_CHANNEL_ERROR	g_io_channel_error_quark()
 #define G_KEY_FILE_ERROR	g_key_file_error_quark()
+#if __i386__
 #define G_BYTE_ORDER	G_LITTLE_ENDIAN
+#endif
+#if __ia64__
+#define G_BYTE_ORDER	G_LITTLE_ENDIAN
+#endif
+#if __x86_64__
+#define G_BYTE_ORDER	G_LITTLE_ENDIAN
+#endif
 #define g_debug(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, __VA_ARGS__)
 #define g_error(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, __VA_ARGS__)
 #define G_MARKUP_ERROR	g_markup_error_quark ()
