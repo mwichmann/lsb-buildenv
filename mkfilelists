@@ -46,7 +46,7 @@ lib_query = """SELECT Module.Mname, Library.Lname
 
 core_headers_add = ["cpio.h", "linux/netlink.h", "linux/rtnetlink.h", 
 		    "linux/socket.h", "strings.h", "stropts.h", "sys/vfs.h", 
-		    "tar.h"]
+		    "tar.h", "netpacket/packet.h"]
 
 core_headers_remove = ["err.h", "features.h", "float.h", "GL/gl.h", "GL/glx.h", 
 		       "rpc/pmap_clnt.h", "rpc/rpc.h", "X11/Composite.h", 
