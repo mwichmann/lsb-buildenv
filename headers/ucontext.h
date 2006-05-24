@@ -18,7 +18,8 @@ extern "C" {
 
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    typedef struct _libc_vrstate vrregset_t;
+    typedef struct _libc_vrstate vrregset_t
+	__attribute__ ((__aligned__(16)));
 
 #endif
 #if __powerpc64__
@@ -28,7 +29,8 @@ extern "C" {
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef struct _libc_vrstate vrregset_t;
+    typedef struct _libc_vrstate vrregset_t
+	__attribute__ ((__aligned__(16)));
 
 #endif
 #if __powerpc__ && !__powerpc64__
@@ -67,7 +69,7 @@ extern "C" {
 	unsigned int vrsave;
 	unsigned int _pad[2];
 	unsigned int vscr;
-    } __attribute__ ((__aligned__(16)));
+    };
 
 #endif
 #if __powerpc64__
@@ -87,7 +89,7 @@ extern "C" {
 	vscr_t vscr;
 	unsigned int vrsave;
 	unsigned int __pad[3];
-    } __attribute__ ((__aligned__(16)));
+    };
 
 #endif
 

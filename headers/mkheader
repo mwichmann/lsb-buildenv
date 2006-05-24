@@ -131,7 +131,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
 		print "[".$entry{'ATsize'}."]";
 		}
-	if( !$nameonly && $$type{'Tattribute'} && $typeflag ) {
+	if( !$nameonly && $$type{'Tattribute'} && !$typeflag ) {
 			print "__attribute__ (".$$type{'Tattribute'}.")";
 		}
 	if (!$nameonly) {
