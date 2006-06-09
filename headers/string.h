@@ -13,6 +13,7 @@ extern "C" {
 
     extern void *__mempcpy(void *, const void *, size_t);
     extern char *__stpcpy(char *, const char *);
+    extern char *__strdup(const char *);
     extern char *__strtok_r(char *, const char *, char **);
     extern void bcopy(const void *, void *, size_t);
     extern void *memchr(const void *, int, size_t);
