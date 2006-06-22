@@ -1,3 +1,31 @@
+2006-03-31	Rajesh Banginwar <rajesh.banginwar_at_intel.com>
+	* lsbcc.c
+	   removed LSB_PRODUCT env var processing; made desktop default
+
+2006-03-30	Rajesh Banginwar <rajesh.banginwar_at_intel.com>
+	* lsbcc.c
+	   replace desktop_qt4 by LSB_MODULES env var
+
+2006-03-22	Mats Wichmann <mats.d.wichmann_at_intel.com>
+	* lsbcc.c
+	   Temporary fix for packaging/lsblibchk till we decide how to lay
+	   these out
+
+2006-03-21	Rajesh Banginwar <rajesh.banginwar_at_intel.com>
+	* lsbcc.c
+	   replacing Qt4 by Qt3. Keeping desktop_qt4 as undocumented option
+
+2006-02-21	Jeff Licquia <licquia_at_freestandards.org>
+	* makefile
+	  gcc34-compat.cc
+	  lsbcc.c
+	   Add a static library to lsbcc.  This provides the new symbol
+	   that is emitted by gcc 4.x when compiling some C++ code, so that
+	   the resulting binary can be run on systems with libstdc++6 based
+	   on gcc 3.4.	Also, lsbcc now checks the gcc version, and adds
+	   the new library to the link line when an application is compiled
+	   with gcc 4.x.
+
 2006-02-14	Brian Harring <brianx.d.harring_at_intel.com>
 	* lsbcc.c
 	   bug #1217 added a symlink'ing of libpng12 -> libpng; need to
@@ -474,4 +502,4 @@
 	   Add a wrapper lsbcc script that seems to do the right sort of
 	   things
 
-1140050261
+1150998822
