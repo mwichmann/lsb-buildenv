@@ -2,7 +2,7 @@
 prefix=/usr
 exec_prefix=${prefix}
 libdir=/opt/lsb/lib
-includedir=opt/lsb/include
+includedir=/opt/lsb/include
 
 Name: libpng12
 Description: Loads and saves PNG files
