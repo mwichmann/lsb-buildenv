@@ -1,0 +1,90 @@
+# Shell script to execute the 'rpmbuild' command with
+# the required configuration and macro files
+# that will make the RPM Package LSB compliant.
+
+# CHECK 1
+# To see whether the current user is a super user or not. Exit in case the user is not a super user.
+#if [ $(id -u) != "0" ]
+#then
+#	echo "You must be super user to run this script. Please login as \"root\" and then run the script." >&2
+#	exit 1
+#fi
+
+#CHECK 2
+#To see whether any command line argument is specified. The command line argument carries the SPEC file path.
+if [ $# = "0" ] 
+then
+	echo "No command line parameters found." >&2
+	echo "Command Usage: lsbpkgbuild <LSB COMPLIANT SPEC FILE>"
+	exit 1
+fi
+
+#CHECK 3
+#To see whether the command line argument given is a valid file name or not.
+if [ ! -e $1 ]
+then
+	echo "The command line argument is not a valid file name." >&2
+	exit 1
+fi
+
+#CHECK4
+#To check whether the rpmrc file is present in the current directory.
+if [ ! -e rpmrc ]
+then
+	echo "File \`rpmrc\` which is required to build LSB compliant RPM package is missing. Please make sure the file is present in the current directory." >&2
+	exit 1
+fi
+
+#CHECK5
+#To check whether the rpmmacros file is present in the current directory.
+if [ ! -e rpmmacros ]
+then
+	echo "File \`rpmmacros\` which is required to build LSB compliant RPM package is missing. Please make sure the file is present in the current directory." >&2
+	exit 1
+fi
+
+#Create the rpm directory if not there.
+if [ ! -d rpm ]
+then
+	echo "The directory \`rpm\` does not exist. Creating it ... "
+	mkdir rpm
+	first=1
+fi
+
+#Check if the SPEC file contains RPM triggers. If so abort the building process as LSB does not support Triggers.
+no_of_triggers=$(grep -i '%trigger' $1 | wc -l)
+if [ $no_of_triggers != 0 ]
+then
+	echo "Triggers present in the SPEC file. Aborting LSB compliant RPM building."
+	exit 2
+else
+	echo "No triggers present. Proceeding..."
+fi
+
+#See whether the distro builds using rpmbuild or rpm command and build the package.
+if [ -f /usr/bin/rpmbuild ]
+then
+	echo "Build started using rpmbuild ..." && \
+	echo "" && \
+	rpmbuild --rcfile "/usr/lib/rpm/rpmrc:rpmrc" -bb $1 && \
+	echo "" ;
+else
+	echo "Build started using rpm ..." && \
+	echo "" && \
+	rpm --rcfile "/usr/lib/rpm/rpmrc:rpmrc" -bb $1 && \
+	echo "" ;
+fi
+
+if [ $? = "1" ]
+then
+	echo "Error building the RPM package."
+	if [ $first = 1 ]
+	then
+		echo "LSB RPM not built. Deleting the newly created 'rpm' directory" ;
+		rm -rf rpm ;
+	fi
+	exit 1
+else
+	echo "RPM package created successfully."
+	exit 0
+fi

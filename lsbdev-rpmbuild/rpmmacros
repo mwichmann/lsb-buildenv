@@ -1,0 +1,26 @@
+#Overrides for LSB packaging
+%currdir		%(pwd)
+%_topdir		%{currdir}
+%_rpmdir		%{_topdir}/rpm
+%_specdir	%{_topdir}
+%_builddir	%{_topdir}/rpm
+%_sourcedir	%{_topdir}/rpm
+%_srcrpmdir	%{_topdir}/rpm
+%pkgroot		%{_topdir}/pkgroot
+
+%_messagelevel	0	
+
+#Replace the "buildpolicy" defined in the distro's brp-{distro} file.
+#Forces uncompressed manpages, so the specfiles don't vary.
+#%__os_install_post					\
+#	/usr/lib/rpm/brp-strip			\
+#	/usr/lib/rpm/brp-strip-comment-note
+
+#Unpackages files in a build root do not terminate a build.
+#%_unpackaged_files_terminate_build	0
+
+#Missing %doc files in the build directory do not terminate a build.
+#%_missing_doc_files_terminate_build	0
+
+#Force gzip payload
+%_binary_payload					w9.gzdio

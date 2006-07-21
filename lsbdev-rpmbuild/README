@@ -1,0 +1,19 @@
+﻿LSB RPM Packaging
+
+The LSB RPM packaging tool is a shell script which wraps on top of "rpmbuild" command with the necessary configuration files like 'rpmmacros' and 'rpmrc' to create LSB compliant RPM packages.
+
+The modifications to the rpmrc and the rpmmacros file makes sure that the rpmbuild command does not include anything extra into the RPM package which will make the built RPM package not LSB compliant.
+
+The RPM package built by the "lsbrpmbuild" tool is verified for LSB compliance using the "lsbpkgcheck" tool.
+
+Pre-reqs
+
+1.The source package has to be compiled into its binary form before building it into a RPM package. The "rpmbuild" command which work inside the LSB RPM packaging tool starts to build the RPM with the binary files and does not compile the source files.
+2.The binary files have to satisfy the LANANA file system standard supported by LSB.
+
+Usage:
+lsbrpmbuild <SPEC_FILE>
+
+The two configuration files "rpmrc" and "rpmmacros" have to be in the same directory as the "lsbrpmbuild" command. The binary source as per the above pre-reqs should be in its uncompressed form with the name as specified in the spec file, inside a sub-directory named "pkgroot".
+
+The generated RPM will be saved in a directory named i486 under the rpm directory which is under the current directory.
