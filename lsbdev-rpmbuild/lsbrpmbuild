@@ -55,10 +55,50 @@ fi
 no_of_triggers=$(grep -i '%trigger' $1 | wc -l)
 if [ $no_of_triggers != 0 ]
 then
-	echo "Triggers present in the SPEC file. Aborting LSB compliant RPM building."
+	echo "--> Triggers present in the SPEC file. Aborting LSB compliant RPM building."
 	exit 2
 else
-	echo "No triggers present. Proceeding..."
+	echo "--> No triggers present. Proceeding..."
+fi
+
+#Check if the SPEC file contains Copyright info.If so abort the building process.
+cat $1 | sed -e 's/[\t|\ |\n|\r]//g' | grep -i 'Copyright:' >/dev/null
+if [ $? = "0" ]
+then
+	echo "--> Copyright info found. Aborting LSB compliant RPM building."
+	exit 3
+else
+	echo "--> No Copyright info found. Proceeding..."
+fi
+
+#Check if the SPEC file contains documentation files.If so abort the building process.
+cat $1 | sed -e 's/[\t|\ |\n|\r]//g' | grep -i '%doc' >/dev/null
+if [ $? = "0" ]
+then
+	echo "--> Documentation (%doc) support found. Aborting LSB compliant RPM building."
+	exit 4
+else
+	echo "--> No Documentation (%doc) support found. Proceeding..."
+fi
+
+#Check if the SPEC file contains verify scripts.If so abort the building process.
+cat $1 | sed -e 's/[\t|\ |\n|\r]//g' | grep -i '%verify' >/dev/null
+if [ $? = "0" ]
+then
+	echo "--> Verify scripts found. Aborting LSB compliant RPM building."
+	exit 5
+else
+	echo "--> No verify scripts info found. Proceeding..."
+fi
+
+#Check if the SPEC file contains Ghost files. If so abort the building process.
+cat $1 | sed -e 's/[\t|\ |\n|\r]//g' | grep -i '%ghost' >/dev/null
+if [ $? = "0" ]
+then
+	echo "--> Ghost files supported. Aborting LSB compliant RPM building."
+	exit 6
+else
+	echo "--> No ghost files supported. Proceeding..."
 fi
 
 #See whether the distro builds using rpmbuild or rpm command and build the package.
