@@ -109,3 +109,4 @@ strings.h
 stropts.h
 sys/vfs.h
 tar.h
+netpacket/packet.h
