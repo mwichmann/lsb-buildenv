@@ -1,6 +1,7 @@
 #ifndef _WORDEXP_H_
 #define _WORDEXP_H_
 
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,9 +29,9 @@ extern "C" {
 
 
     typedef struct {
-	int we_wordc;
+	size_t we_wordc;
 	char **we_wordv;
-	int we_offs;
+	size_t we_offs;
     } wordexp_t;
 
 
