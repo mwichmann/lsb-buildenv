@@ -1,0 +1,9 @@
+
+extern void bcopy(void *, void *, size_t);
+extern int bcmp(void *, void *, size_t);
+extern void bzero(void *, size_t);
+extern int ffs(int);
+extern char *index(char *, int);
+extern char *rindex(char *, int);
+extern int strcasecmp(char *, char *);
+extern int strncasecmp(char *, char *, size_t);
