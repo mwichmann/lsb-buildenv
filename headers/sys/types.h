@@ -10,7 +10,7 @@ extern "C" {
 #define FALSE	0
 #define TRUE	1
 #define FD_SETSIZE	1024
-#define FD_ZERO(fdsetp)	memset((char *)(p), '\0', sizeof(*(p)))
+#define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 #define FD_ISSET(d,set)	\
 	((set)->fds_bits[((d)/(8*sizeof(long)))]&(1<<((d)%(8*sizeof(long)))))
 #define FD_CLR(d,set)	\
