@@ -54,7 +54,7 @@ extern "C" {
 
     typedef unsigned int useconds_t;
 
-    typedef unsigned long int blksize_t;
+    typedef long int blksize_t;
 
     typedef long int fd_mask;
 
@@ -141,13 +141,13 @@ extern "C" {
 
     typedef long long int loff_t;
 
-    typedef unsigned long int blkcnt_t;
+    typedef long int blkcnt_t;
 
     typedef unsigned long int fsblkcnt_t;
 
     typedef unsigned long int fsfilcnt_t;
 
-    typedef unsigned long long int blkcnt64_t;
+    typedef long long int blkcnt64_t;
 
     typedef unsigned long long int fsblkcnt64_t;
 

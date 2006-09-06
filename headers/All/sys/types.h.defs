@@ -26,7 +26,7 @@ typedef struct {
     int __val[2];
 } fsid_t;
 typedef unsigned int useconds_t;
-typedef unsigned long int blksize_t;
+typedef long int blksize_t;
 typedef long int fd_mask;
 typedef int timer_t;
 typedef int clockid_t;
@@ -35,10 +35,10 @@ typedef unsigned int id_t;
 
 typedef unsigned long long int ino64_t;
 typedef long long int loff_t;
-typedef unsigned long int blkcnt_t;
+typedef long int blkcnt_t;
 typedef unsigned long int fsblkcnt_t;
 typedef unsigned long int fsfilcnt_t;
-typedef unsigned long long int blkcnt64_t;
+typedef long long int blkcnt64_t;
 typedef unsigned long long int fsblkcnt64_t;
 typedef unsigned long long int fsfilcnt64_t;
 typedef unsigned char u_char;
