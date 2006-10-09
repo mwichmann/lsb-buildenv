@@ -3,9 +3,11 @@
 lsbcc, lsbc++ \- compiler driver for building LSB conforming applications
 .SH SYNOPSIS
 .B lsbcc
+.RI [ lsbcc-options ]
 .RI [ compiler-options ]
 .br
 .B lsbc++
+.RI [ lsbcc-options ]
 .RI [ compiler-options ]
 .SH DESCRIPTION
 .P
@@ -20,8 +22,8 @@ LSB-conforming programs must link dynamically only with
 LSB-required and application-supplied shared libraries,
 as no other libraries can be guaranteed to be present on
 an LSB-compliant system.  They must only use specified
-interfaces from LSB-required shared libraries. And
-LSB programs need to be linked with 
+interfaces from LSB-required shared libraries. 
+LSB programs also need to be linked with 
 a special program interpreter which identifies
 them as LSB conforming.
 .P
@@ -36,46 +38,115 @@ unspecified interfaces in those libraries will
 result in link failures.
 .P
 .I lsbcc
-is designed to apply the LSB build rules with a
+is designed to apply the LSB build conventions with a
 minimum of changes to existing build setups.
 When invoked as the compiler, 
 it first modifies the command line to follow the
-LSB build rules, then passes the resulting
-command line on to the regular compiler.
+LSB build conventions, then passes the resulting
+command line on to the regular compiler, so
+.I lsbcc
+is effectively a wrapper program.
 .P
 .IR lsbcc
-takes no options; 
-behavior other than the default is controlled
-by a set of environment variables.
+takes a number of options prefixed with --lsb-, or
+alternatively; 
+behavior other than the default can be controlled
+by a set of environment variables.  Typically command
+line options will override options set through envionment
+varibles.
+
+.P
+.SH LSBCC OPTIONS
+.TP 
+--lsb-help
+Display help message.  The compiler 
+.I --help 
+option will also display the output from --lsb-help.
+.TP 
+--lsb-version
+Display the version of LSB this tool can build for.
+.TP 
+--lsb-verbose
+The complete command line passed to either the C or C++ compiler
+will be printed to stderr just prior to execution.  This helps
+see the effects of lsbcc and options.
+.TP 
+--lsb-cc=<path to c compiler>
+Specifies the name of the C compiler to invoke with the modifed
+argument set. If this environment variable is not found,
+the default 
+.I cc
+will be used.  This setting overrides the LSBCC environment setting.
+.TP 
+--lsb-cxx=<path to c++ compiler>
+Specifies the name of the C++ compiler to invoke with the modifed
+argument set. If this environment variable is not found,
+the default 
+.I c++
+will be used.  This setting overrides the LSBCXX environment setting.
+.TP 
+--lsb-forcefeatures
+This causes lsbcc to insert macro defines for all of the 
+interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
+These macros are not needed for the LSB headers but may
+select necessary behavior in non-LSB headers that have
+conditionals. However, predefining the macros may collide with
+application defintions of the macros, so this is no longer
+the default behavior for lsbcc.
+.TP 
+--lsb-libpath=<lsb_lib_path>
+Specifies the location of the LSB stub libraries that will
+be linked against.  If this option or the LSBCC_LIBS environment
+variable is not set, the default 
+.I /opt/lsb/lib
+will be used.  This option overrides the LSBCC_LIBS envionment setting.
+.TP 
+--lsb-includepath=<include_path>
+Specifies the location of the LSB header files that will
+be linked against.  If this option or the LSBCC_INCLUDES environment
+variable is not set, the default 
+.I /opt/lsb/include
+will be used.  This option overrides the LSBCC_INCLUDES envionment setting.
+.TP 
+--lsb-cxx-includepath=<include_path>
+Specifies the location of the LSB header files that will
+be linked against.  If this option or the LSBCXX_INCLUDES environment
+variable is not set, the default 
+.I /opt/lsb/include
+will be used.  This option overrides the LSBCXX_INCLUDES envionment setting.
+.TP 
+--lsb-shared-libs=<shared_lib:...>
+This option adds libraries to the list of non-lsb libraries to link as
+shared libraries (such as product internal shared libraries). 
+A library name or colon-separated list of library names to
+add to the default list. The name should be the base part
+of the library only, for example to add
+.I libfoo.so
+use the name
+.IR foo .
+.IP
+Normally, only LSB-defined libraries should be linked
+as shared libraries, all others must be linked statically.
+However, if an application provides its own shared libraries
+which have been carefully checked for LSB conformance, this
+method can be used to selectively overrride
+.IR lsbcc 's
+rule of forcing static linking. The application may not depend
+on such a library being present on a system, so it must either
+be shipped with the application, or with another LSB conforming
+application on which this application depends.  
+Libs added with this option will be in addition to any libs added through the LSBCC_SHAREDLIBS environment setting.  Shared libs added with this option must appear on the command line before any -l options to have effect.
+.TP 
+--lsb-modules=<module,..>
+Enable support for the optional LSB modules listed.  
+Currently the only supported optional module is 'qt4'.
+Modules will added in addition to any added from the
+LSBCC_MODULES environment setting.
+
 .P
 .SH ENVIRONMENT
 The following environment variables affect the behavior of
 .I lsbcc
-.TP
-LSB_PRODUCT
-Specify which LSB Product to load modules for- either core, or desktop.
-.TP
-LSBCC_DEBUG
-A numeric value which represents a bit pattern specifying what
-kinds of debugging output to produce. The bits in this pattern are
-.nf
-
-0x0001   Display enviromental overrides
-0x0002   Display the arguments passed in
-0x0004   Display the arguments that are specifically recognized
-0x0008   Display the arguments that are not recognized
-0x0010   Display changes made to the include arguments
-0x0020   Display changes made to the library arguments
-0x0040   Display the modified argument list
-.fi
-.TP
-LSBCC_WARN
-A numeric value which represents a bit pattern specifying what
-kinds of warnings to emit. The bits in this pattern are
-.nf
-
-0x0001   Warn about libraries being changed to static linking
-.fi
 .TP
 LSBCC
 Specifies the name of the C compiler to invoke with the modifed
@@ -97,7 +168,7 @@ Specifies the location of the LSB stub libraries that will
 be linked against.  If this environment variable is not found,
 the default 
 .I /opt/lsb/lib
-will be used.
+will be used (or /opt/lsb/lib64 on certain 64-bit architectures).
 .P
 .TP
 LSBCC_INCLUDES
@@ -134,6 +205,47 @@ rule of forcing static linking. The application may not depend
 on such a library being present on a system, so it must either
 be shipped with the application, or with another LSB conforming
 application on which this application depends.  
+.TP
+LSB_MODULES
+Specify which optional LSB modules to include interfaces for.
+Currently 'qt4' is the only supported optional module.
+.TP
+LSBCC_FORCEFEATURES
+This causes lsbcc to insert macro defines for all of the 
+interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
+This can be helpful in some situations and was formerly
+the default behavior for lsbcc, but also can collide with
+feature macro definitions from other sources, so is no longer
+the default behavior for lsbcc.
+.TP
+LSBCC_DEBUG
+A numeric value which represents a bit pattern specifying what
+kinds of debugging output to produce. The bits in this pattern are
+.nf
+
+0x0001   Display enviromental overrides
+0x0002   Display the arguments passed in
+0x0004   Display the arguments that are specifically recognized
+0x0008   Display the arguments that are not recognized
+0x0010   Display changes made to the include arguments
+0x0020   Display changes made to the library arguments
+0x0040   Display the modified argument list
+.fi
+.TP
+LSBCC_WARN
+A numeric value which represents a bit pattern specifying what
+kinds of warnings to emit. The bits in this pattern are
+.nf
+
+0x0001   Warn about libraries being changed to static linking
+.fi
+The 01 value is now on by default, to disable it specify
+an LSBCC_WARN where the low bit is set to zero.
+.TP
+LSB_VERBOSE
+The complete command line passed to either the C or C++ compiler
+will be printed to stderr just prior to execution.  This helps
+see the effects of lsbcc and options.
 .P
 .SH EXAMPLES
 .B "lsbcc hello.c -o hello"
@@ -144,8 +256,9 @@ application on which this application depends.
 .P
 .SH "AUTHORS"
 Stuart Anderson <anderson@freestandards.org>
+and other LSB contributors.
 .SH "REPORTING BUGS"
-Report bugs to <lsb-build@linuxbase.org>.
+Report bugs at http://bugs.linuxbase.org.
 .SH "BUGS"
 .P
 It is possible to confuse lsbcc's (and lsbc++) automatic
@@ -209,7 +322,29 @@ If this package is used, the support package
 must also be installed.
 .P
 .I lsb-build-c++
-supplies necessary header files for C++ compilation.
+supplies necessary header files for C++ compilation;
+it is a separate package as the c++ headers come
+from a different source than the base headers.
+.\" .P
+.\" lsbcc will add 
+.\" .I -Wl,--as-needed
+'\" to all compiler commands that will invoke the linker.  This option causes
+'\" the linker to only include explicit dependencies on shared libraries
+'\" that are mentioned on the command line if they contain symbols needed
+'\" by the objects being linked together.  Traditionaly on some systems
+'\" it was necissary to also link in shared libraries that where needed
+'\" by shared libraries that the objects being linked required but where
+'\" not also referenced by the objects being linked.  This is no longer
+'\" necissary and this option reduces the number of direct run-time shared
+'\" library dependencies.  If either
+.\" .I -Wl,--as-needed 
+.\" or 
+.\" .I -Wl,--no-as-needed 
+.\" are passed in the compiler options to lsbcc, lsbcc will not insert 
+.\" -IR -Wl,--as-needed .
+.\" See the
+.\" .BI ld
+.\" man page for more information.
 .P
 For commercial applications, developers need to be aware of the
 licenses of the libraries they link to. Since some licenses
@@ -219,7 +354,7 @@ may silently change (apparent) dynamic links to static, the
 .B LSBCC_WARN
 envirnonment variable should be used to notify of such changes.
 .SH COPYRIGHT
-Copyright \(co 2002, 2003, 2004 Free Standards Group.
+Copyright \(co 2002-2006 Free Standards Group.
 .SH "SEE ALSO"
 Linux Standard Base specification and other documents at
 http://www.linuxbase.org/

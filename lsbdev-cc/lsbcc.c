@@ -52,8 +52,11 @@
 #include <string.h>
 #include <getopt.h>
 #include <limits.h>
+#include <assert.h>
 
 /* begin lsbcc.h */
+
+static char lsbcc_lsb_version [] = "LSB version 3.1";
 
 /*
  * Logically, this would go into a header, but there is no need for a seperate
@@ -84,6 +87,7 @@ struct argvgroup *userlibs;
 struct argvgroup *syslibs;
 struct argvgroup *gccargs;
 struct argvgroup *lsblibs;
+struct argvgroup *gccstartargs;
 
 /*
  * Find out if we are being used for C++. If so, we need to do a couple
@@ -129,6 +133,10 @@ int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
 int lsbcc_warn=0; 
 int lsbcc_buildingshared=0; 
 
+/*
+ * State variable to determine if we need to add -Wl,-Bdynamic before an LSB lib.
+ */
+int b_dynamic = 1;
 
 /* begin argv ADT */
 /*
@@ -166,7 +174,7 @@ ag->numargv=0;
  * an argvgroup. It will allocate more space if the argvgroup is nearly full.
  */
 void
-argvaddstring(struct argvgroup *ag, char *str)
+argvaddstring(struct argvgroup *ag,char *str)
 {
 if( ag->numargv+2 >= ag->maxargv ) {
 	/* This argvgroup is full, so get more space */
@@ -242,6 +250,9 @@ for(i=0;i<ag->numargv;i++)
  * a few routines here that are used to do the special processing.
  */
 
+/*
+ * FIXME - generate these from the DB at compile time for the toolchain
+ */
 char *lsb_corelibs[] = {
 	"c",		/* core module */
 	"crypt",
@@ -314,13 +325,11 @@ sprintf(buf,"-l%s",val);
 
 for(i=0;i<lsblibs->numargv;i++) {
 	if( strcmp(lsblibs->argv[i],val) == 0 ) {
-		argvaddstring(userlibs,strdup(buf));
-		/* with auto-add pthread, this isn't really needed */
-		if( strcmp(val,"pthread") == 0 ) {
-			if( lsbcc_debug&DEBUG_LIB_CHANGES )
-				fprintf(stderr,"Appending -lpthread_nonshared to the library list\n");
-			argvaddstring(userlibs,"-lpthread_nonshared");
+		if (!b_dynamic) {
+			argvaddstring(userlibs,"-Wl,-Bdynamic");
+			b_dynamic = 1;
 		}
+		argvaddstring(userlibs,strdup(buf));
 		return;
 	}
 }
@@ -333,9 +342,11 @@ if( lsbcc_debug&DEBUG_LIB_CHANGES )
 if( lsbcc_warn&WARN_LIB_CHANGES || lsbcc_buildingshared )
 	fprintf(stderr,"Warning: forcing %s to be linked statically\n",val);
 
-argvaddstring(userlibs,"-Wl,-Bstatic");
+if (b_dynamic) {
+	argvaddstring(userlibs,"-Wl,-Bstatic");
+	b_dynamic = 0;
+}
 argvaddstring(userlibs,strdup(buf));
-argvaddstring(userlibs,"-Wl,-Bdynamic");
 
 }
 
@@ -447,7 +458,7 @@ need_gcc34_compat()
 /* end utility functions */
 
 /*
- * lsbcc takes no command-line options of its own, but must recognize
+ * lsbcc takes some command-line options of its own, but must also recognize
  * some compiler options for appropriate handling. Since gcc has a lot
  * of options that are more than one character long, and these start
  * with only a single dash for historical reasons, we'll use the
@@ -461,16 +472,75 @@ need_gcc34_compat()
  * to list it for "special handling".  Only do this for long options
  * that are really used...
  */
-char *optstr="cL:l:o:ESI:W::su:v";
+char *optstr="cL:l:o:ESI:W::su:vV:";
 struct option long_options[] = {
 	{"include",required_argument,0,0},
 	{"pthread",no_argument,0,0},
 	{"rpath",required_argument,0,0},
 	{"rpath-link",required_argument,0,0},
 	{"shared",no_argument,0,0},
+	{"help",no_argument,NULL,1},
+	{"lsb-help",no_argument,NULL,2},
+	{"lsb-version",no_argument,NULL,3},
+	{"lsb-verbose",no_argument,NULL,4},
+	{"lsb-cc",required_argument,NULL,5},
+	{"lsb-cxx",required_argument,NULL,6},
+	{"lsb-libpath",required_argument,NULL,7},
+	{"lsb-includepath",required_argument,NULL,8},
+	{"lsb-cxx-includepath",required_argument,NULL,9},
+	{"lsb-shared-libs",required_argument,NULL,10},
+	{"lsb-forcefeatures",no_argument,NULL,11},
+	{"lsb-modules",required_argument,NULL,12},
+	{"verbose",required_argument,NULL,13},
+	{"version",required_argument,NULL,14},
 	{NULL,0,0,0}
 	};
 
+
+void
+usage(const char *progname) {
+	printf("Usage %s:\n"
+		"\t--lsb-help         Display this message\n"	
+		"\t--lsb-version      Display the version of LSB this tool can build for.\n"	
+		"\t--lsb-verbose      Print out full commands to system compiler.\n"	
+		"\t--lsb-cc=<path to c compiler>\n"
+		"\t                   Set the system c compiler (overrides LSBCC\n"
+		"\t                    envionment setting)\n"
+		"\t--lsb-cxx=<path to c++ compiler>\n"
+		"\t                   Set the system c++ compiler (overrides LSBCXX\n"
+		"\t                    envionment setting)\n"
+		"\t--lsb-forcefeatures\n"
+		"\t                   Force seting -D flags for full feature set LSB\n"
+		"\t                    supports\n"
+		"\t--lsb-libpath=<lsb_lib_path>\n"
+		"\t                   Set the path to the lsb libs directory\n"
+		"\t                    (overrides the LSBCC_LIBS envionment setting)\n"
+		"\t--lsb-includepath=<include_path>\n"
+		"\t                   Set the path to the lsb includes directory\n"
+		"\t                    (overrides the LSBCC_INCLUDES envionment setting)\n"
+		"\t--lsb-cxx-includepath=<include_path>\n"
+		"\t                   Set the path to the lsb c++ include directory\n"
+		"\t                    (overrides the LSBCXX_INCLUDES envionment\n "
+		"\t                    setting)\n"
+		"\t--lsb-shared-libs=<shared_lib:...>\n"
+		"\t                   Add libs to the list of non-lsb libs to link as\n"
+		"\t                    shared libs (product internal shared libs),\n"
+		"\t                    these libs will be in addition to any libs added\n"
+		"\t                    through the LSBCC_SHAREDLIBS environment setting.\n"
+		"\t                    shared libs must be added before any -l options\n"
+		"\t                    to have effect.\n"
+		"\t--lsb-modules=<module,..>\n"
+		"\t                   Enable support for the optional LSB modules listed.\n"
+		"\t                    See release documentation for list of supported\n"
+		"\t                    optional modules.  Modules will added in addition\n"
+		"\t                    to any added from the LSBCC_MODULES environment\n"
+		"\t                    setting.\n"
+	
+		"All other options are passed to the compiler more or\n"
+		"less unmodified, --lsb options should appear before system\n"
+		"compiler options.\n"
+		,progname);
+}
 
 /*
  * The program intepreter isn't the same everywhere, so set it here,
@@ -517,10 +587,32 @@ int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
-int 	auto_pthread, desktop_product, desktop_qt4_product;
+int 	auto_pthread = 1; 
+int	desktop_qt4_product = 0;
+int	feature_settings = 0;
+int	display_cmd = 0;
+int	found_gcc_arg = 0;
+int	found_gcc_standalone = 0;
+int	found_l_opt = 0;
+int	no_as_needed = 1;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
+
+/*
+ * Initialize various argv groups.
+ */
+gccstartargs=argvinit();
+lsblibs=argvinit();
+proginterp=argvinit();
+target=argvinit();
+options=argvinit();
+incpaths=argvinit();
+libpaths=argvinit();
+userlibs=argvinit();
+syslibs=argvinit();
+gccargs=argvinit();
+
 
 /*
  * Set up the paths we will need
@@ -571,19 +663,26 @@ if( (ptr=getenv("LSBCC_LIBS")) != NULL ) {
 	}
 
 if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
-	memset(incpath, 0, strlen(libpath));
+	memset(incpath, 0, strlen(incpath));
 	strcpy(incpath, ptr);
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"include prefix set to %s\n", incpath );
 	}
 
 if( (ptr=getenv("LSBCXX_INCLUDES")) != NULL ) {
-	memset(cxxincpath, 0, strlen(libpath));
+	memset(cxxincpath, 0, strlen(cxxincpath));
 	strcpy(cxxincpath, ptr);
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 		fprintf(stderr,"c++ include prefix set to %s\n", cxxincpath );
 	}
 
+if( (ptr=getenv("LSBCC_FORCEFEATURES")) != NULL ) {
+	feature_settings = 1;
+}
+
+if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
+	display_cmd = 1;
+}
 
 if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++)
@@ -604,7 +703,6 @@ if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
  */
-lsblibs=argvinit();
 for(i=0;lsb_corelibs[i]; i++)
 	argvaddstring(lsblibs, strdup(lsb_corelibs[i]));
 
@@ -613,36 +711,25 @@ if(LSBCPLUS == lsbccmode) {
 		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
 }
 
-desktop_product = 1;
-/* remove LSB_PRODUCT env var processing for LSB 3.1
-if((ptr = getenv("LSB_PRODUCT")) != NULL) {
-	if(strcasecmp(ptr, "desktop") == 0) {
-		desktop_product = 1;
-	}
-	else if (strcasecmp(ptr, "core") != 0) {
-		fprintf(stderr, "warning: LSB_PRODUCT target '%s' not valid, "
-		"must be [core|desktop], defaulting to core\n", ptr);
-		desktop_product = 0;
-	}
-} else
-	desktop_product = 0;
-*/
-desktop_qt4_product = 0;
+for(i=0;lsb_desktoplibs[i];i++) {
+	argvaddstring(lsblibs, strdup(lsb_desktoplibs[i]));
+}
+
+/*
+ * check if we should pull in optional LSB modules.
+ */
 if((ptr = getenv("LSB_MODULES")) != NULL) {
 	if(strcasecmp(ptr, "qt4") == 0) {
 		desktop_qt4_product = 1;
+        	for(i=0;lsb_desktoplibs_qt4[i];i++) {
+               		argvaddstring(lsblibs, strdup(lsb_desktoplibs_qt4[i]));
+		}
 	}
 }
 
-if(desktop_product) {
-	for(i=0;lsb_desktoplibs[i];i++)
-		argvaddstring(lsblibs, strdup(lsb_desktoplibs[i]));
-}
-if(desktop_qt4_product) {
-        for(i=0;lsb_desktoplibs_qt4[i];i++)
-                argvaddstring(lsblibs, strdup(lsb_desktoplibs_qt4[i]));
-}
-
+/*
+ * Add in user specified libs.
+ */
 if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 	char *libarg, *lib;
 	libarg = strdup(ptr);
@@ -661,28 +748,9 @@ if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 find_gcc_base_dir();
 
 /* Initialize the argv groups */
-proginterp=argvinit();
 sprintf(progintbuf,"-Wl,--dynamic-linker=%s",proginterpreter);
 argvaddstring(proginterp,progintbuf);
 
-target=argvinit();
-options=argvinit();
-
-for(i=0;i<numfeaturesettings;i++) {
-	argvaddstring(options,featuresettings[i]);
-	}
-
-incpaths=argvinit();
-libpaths=argvinit();
-userlibs=argvinit();
-syslibs=argvinit();
-
-if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Turning off default libraries with -nodefaultlibs\n");
-argvaddstring(libpaths,"-nodefaultlibs");
-if( lsbcc_debug&DEBUG_LIB_CHANGES )
-	fprintf(stderr,"Prepending %s to the linker path\n", libpath);
-argvadd(libpaths,"L",libpath);
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Prepending %s to the linker path\n",gccbasedir);
 argvadd(syslibs,"L",gccbasedir);
@@ -709,6 +777,7 @@ if( lsbccmode == LSBCPLUS ) {
 	argvaddstring(syslibs,"-lstdc++");
 	argvaddstring(syslibs,"-lgcc_s");
 }
+
 if( lsbcc_debug&DEBUG_LIB_CHANGES )
 	fprintf(stderr,"Appending -lgcc -lm -lc -lc_nonshared -lgcc to the library list\n");
 argvaddstring(syslibs,"-lgcc");
@@ -721,20 +790,13 @@ if( lsbccmode == LSBCPLUS ) {
 }
 argvaddstring(syslibs,"-lgcc");
 
-gccargs=argvinit();
-if( lsbccmode == LSBCPLUS ) {
-	argvaddstring(gccargs,cxxname);
-} else {
-	argvaddstring(gccargs,ccname);
-}
-
 /* Process the options passed in */
 opterr = 0;
-auto_pthread = 1;
 
 while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	switch(c) {
 	case 0:
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
 			fprintf(stderr,"option0: -%s",
 				long_options[option_index].name);
@@ -751,16 +813,84 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if(strcmp( long_options[option_index].name, "shared" ) == 0) {
 			argvreset(proginterp);
 			lsbcc_buildingshared=1;
+		}
+		break;
+	case 1: /* --help intended for gcc, we'll add our 2cents however */
+		found_gcc_standalone = 1;
+		argvaddstring(gccstartargs, strdup("--help"));
+	case 2: /* --lsb-help */
+		usage(argv[0]);
+		if (c == 2) {
+			exit(0);
+		}
+		break;
+	case 3: /* --lsb-version */
+		printf("%s\n", lsbcc_lsb_version);
+		exit(0);
+		break;
+	case 4: /* --lsb-verbose */
+		display_cmd = 1;
+		break;
+	case 5: /* --lsb-cc=<cc> */
+		ccname=strdup(optarg);
+		break;
+	case 6: /* --lsb-cxx=<cxx> */
+		cxxname=strdup(optarg);
+		break;
+	case 7: /* --lsb-libpath=<path> */
+		memset(libpath, 0, strlen(libpath));
+		strcpy(libpath, optarg);
+		break;
+	case 8: /* --lsb-includepath=<path> */
+		memset(incpath, 0, strlen(incpath));
+		strcpy(incpath, optarg);
+		break;
+	case 9: /* --lsb-cxx-includepath=<path> */
+		memset(cxxincpath, 0, strlen(cxxincpath));
+		strcpy(cxxincpath, optarg);
+		break;
+	case 10: /* --lsb-shared-libs=<lib:...> */
+		{ 
+		char *libarg, *lib;
+		libarg = strdup(optarg);
+		lib = strtok(libarg, ":");
+		while (lib) {
+			if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+				fprintf(stderr,"added %s to allowed dsos\n", lib);
+			argvaddstring(lsblibs,strdup(lib));
+			lib = strtok(NULL, ":");
+		}
+		}
+		break;	
+	case 11:/* --lsb-forcefeatures */
+		feature_settings = 1;
+		break;
+	case 12:/* --lsb-modules=<module,...> */
+		{
+		char *modulearg, *module;
+		modulearg = strdup(optarg);
+		module = strtok(modulearg, ",");
+		while (module) {
+			if(strcasecmp(module, "qt4") == 0) {
+				if (!desktop_qt4_product) {
+        				for(i=0;lsb_desktoplibs_qt4[i];i++) {
+               					 argvaddstring(lsblibs, strdup(lsb_desktoplibs_qt4[i]));
+					}
+				}
+			} else {
+				fprintf(stderr,"unknown module: %s\n", module);
+				usage(argv[0]);
+				exit(EXIT_FAILURE);
+			
 			}
-		/* need to special-case -pthread option too */
-		if(strcmp( long_options[option_index].name, "pthread" ) == 0) {
-			argvaddstring(syslibs,"-lpthread");
-			argvaddstring(syslibs,"-lpthread_nonshared");
-			}
+			module = strtok(NULL, ",");
+		}
+		}
 		break;
 	case 'E':
 	case 'S':
 	case 'c':
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -%c\n", c);
 		argvreset(proginterp);
@@ -769,63 +899,73 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		auto_pthread = 0;	/* too noisy if not linking */
 		break;
 	case 'o':
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -o %s\n", optarg );
 		argvadd(target,"o",optarg);
 		break;
 	case 'u':
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -u %s\n", optarg );
 		argvadd(target,"u",optarg);
 		break;
 	case 'I':
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -I %s\n", optarg );
 		argvadd(incpaths,"I",optarg);
 		break;
 	case 'l':
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: - %s\n", optarg );
+		found_l_opt = 1;
 		process_opt_l(optarg);
 		break;
 	case 'L':
+		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -L %s\n", optarg );
 		argvadd(libpaths,"L",optarg);
 		break;
 	case 'W':
+		found_gcc_arg = 1;
+
+		if (strstr(argv[optind-1], "Bdynamic") != NULL) {
+			b_dynamic = 1;
+		}
+		if (strstr(argv[optind-1], "Bstatic") != NULL) {
+			b_dynamic = 0;
+		}
+		
+		if ((strstr(argv[optind-1], "no-as-needed") != NULL) ||
+			(strstr(argv[optind-1], "as-needed") != NULL)) {
+			/*
+			 * If any of the as-needed flags is supplied, we won't
+			 * monkey with adding this flag on our own volition.
+			 */
+			no_as_needed = 1;
+		}
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -W %s\n", optarg );
 		argvaddstring(userlibs,argv[optind-1]);
 		break;
+	case 'V':
+	case 13:
+	case 14:
 	case 'v':
-		/* Handle the '-v' argument specially to make sure it only
-		 * calls the compiler with the '-v' option and doesn't
+		/* Handle a standalone --version, --verbose, '-v', and '-V' 
+		 * argument specially to make sure it only
+		 * calls the compiler with the standalone option and doesn't
 		 * try to send all the other arguments to avoid the need
-		 * of having the compiler call the linker.
+		 * of having the compiler call the linker.  Unless of course
+		 * we need to call the linker, which will happen whenever 
+		 * found_gcc_arg gets set.
 		 */
-		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
-			fprintf(stderr,"option: -%c\n", c);
-		options=argvinit();
-		gccargs=argvinit();
-		argvaddstring(options,"-v");
-		if( lsbccmode == LSBCPLUS ) {
-		        argvaddstring(gccargs,cxxname);
-		} else {
-		        argvaddstring(gccargs,ccname);
-		}
-		argvappend(gccargs,options);
-
-		/* ensure argument list is null terminated */
-		gccargs->argv[gccargs->numargv] = NULL;
-
-		if( lsbccmode == LSBCPLUS ) {
-		        execvp(cxxname,gccargs->argv);
-		} else {
-		        execvp(ccname,gccargs->argv);
-		}
-
-		exit (EXIT_FAILURE); /* exec must have failed! */
+		found_gcc_standalone = 1;
+		argvaddstring(gccstartargs,argv[optind-1]);
+		break;	
 	case 's':
 		/*
 		 * We must explicitly recognize '-s' to distinguish it
@@ -833,9 +973,20 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 * any other option.
 		 */
 	case '?':
+		if (strncmp(argv[optind-1], "--lsb-",6) == 0) {
+			/*
+			 * We simply refuse to pass --lsb- prefixed
+			 * options along to gcc, since they are likely
+			 * just typos of legit --lsb- options..
+			 */
+			usage(argv[0]);
+			exit(EXIT_FAILURE);
+			
+		}
+		found_gcc_arg = 1;
 		/*
 		 * This is an attempt to catch things that we don't
-		 * explicitely recognize, and just pass it through to gcc.
+		 * explicitly recognize, and just pass it through to gcc.
 		 */
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option?: %s optopt %x %c\n",
@@ -855,16 +1006,42 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	}
 }
 
-/* experipment: force pthread always */
+/*
+ * set the compiler
+ */
+if( lsbccmode == LSBCPLUS ) {
+	argvaddstring(gccargs,cxxname);
+} else {
+	argvaddstring(gccargs,ccname);
+}
+
+/*
+ * Only force feature settings if LSBCC_FORCEFEATURES is defined
+ * Otherwise assume the app developer knew what they where doing
+ * with feature define flags.
+ */
+if (feature_settings) {
+	for(i=0;i<numfeaturesettings;i++) {
+		argvaddstring(options,featuresettings[i]);
+	}
+}
+
+/* force pthread always */
 if (auto_pthread) {
-    if (lsbcc_debug&DEBUG_LIB_CHANGES)
-	fprintf(stderr,"Appending -lpthread -lpthread_nonshared to the library list\n");
-    argvaddstring(userlibs,"-lpthread");
-    argvaddstring(userlibs,"-lpthread_nonshared");
+	if (lsbcc_debug&DEBUG_LIB_CHANGES) {
+		fprintf(stderr,"Appending -lpthread -lpthread_nonshared to the library list\n");
+	}
+	if (!b_dynamic) {
+		argvaddstring(userlibs,"-Wl,-Bdynamic");
+		b_dynamic = 1;
+	}
+	argvaddstring(userlibs,"-lpthread");
+	argvaddstring(userlibs,"-lpthread_nonshared");
 }
 
 /* Gather together the non-options arguments */
 if (optind < argc) {
+	found_gcc_arg = 1;
 	if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS )
 		fprintf(stderr, "non-option ARGV-elements: ");
 	while (optind < argc) {
@@ -885,11 +1062,10 @@ if (optind < argc) {
  * If not print an error similar to running "gcc"
  * without any parameters/options
  */
-if(argc <= 1) {
+if(!found_gcc_arg && !found_gcc_standalone) {
     fprintf(stderr, "%s: no input files\n", basename(argv[0]));
     exit(EXIT_FAILURE);
 }
-
 
 #ifdef LSBCC_EXTRAFLAGS_HACK
 /* Gather options passed through environment variable */
@@ -906,51 +1082,75 @@ if(argc <= 1) {
     }
 #endif
 
+argvappend(gccargs,gccstartargs);
 
 /* Assemble all of the groups into one to pass to gcc */
+if (found_gcc_arg) {
+	argvappend(gccargs,target);
 
-argvappend(gccargs,target);
-
-/*
- * The lsb/include directory needs to come after application supplied paths,
- * but before the default /usr/include path.
- * This does make the assumption that application builds are well behaved
- * and don't pass in -I/usr/include themselves.
- */
-if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
-	fprintf(stderr,"Prepending %s to include path\n", incpath);
-sprintf(tmpbuf, "-I%s", incpath);
-argvaddstring(incpaths,strdup(tmpbuf));
-argvappend(gccargs,incpaths);
-if( lsbccmode == LSBCPLUS ) {
-	if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
-		fprintf(stderr,"Prepending %s to include path\n", cxxincpath);
-	sprintf(tmpbuf, "-I%s", cxxincpath);
-	argvaddstring(incpaths,strdup(tmpbuf));
-	/* this is grotty: looks like we also need -Icxxincpath/backward */
-	sprintf(tmpbuf, "-I%s/backward", cxxincpath);
-	argvaddstring(incpaths,strdup(tmpbuf));
+	/*
+ 	* The lsb/include directory needs to come after application supplied paths,
+ 	* but before the default /usr/include path.
+ 	* This does make the assumption that application builds are well behaved
+ 	* and don't pass in -I/usr/include themselves.
+ 	*/
 	argvappend(gccargs,incpaths);
-}
+	if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
+		fprintf(stderr,"Prepending %s to include path\n", incpath);
+	argvadd(gccargs,"I",incpath);
 
-argvappend(gccargs,options);
-argvappend(gccargs,libpaths);
-argvappend(gccargs,userlibs);
-argvappend(gccargs,proginterp);
-argvappend(gccargs,syslibs);
+	if( lsbccmode == LSBCPLUS ) {
+		if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
+			fprintf(stderr,"Prepending %s to include path\n", cxxincpath);
+		argvadd(gccargs,"I",cxxincpath);
+		/* this is grotty: looks like we also need -Icxxincpath/backward */
+		sprintf(tmpbuf, "-I%s/backward", cxxincpath);
+		argvaddstring(incpaths,strdup(tmpbuf));
+		argvappend(gccargs,incpaths);
+	}
+
+	argvappend(gccargs,options);
+
+	if( lsbcc_debug&DEBUG_LIB_CHANGES ) {
+		fprintf(stderr,"Turning off default libraries with -nodefaultlibs\n");
+	}
+	argvaddstring(gccargs,"-nodefaultlibs");
+	if( lsbcc_debug&DEBUG_LIB_CHANGES ) {
+		fprintf(stderr,"Prepending %s to the linker path\n", libpath);
+	}
+	argvadd(gccargs,"L",libpath);
+	argvappend(gccargs,libpaths);
+
+	if (found_l_opt && !no_as_needed) {
+		argvaddstring(gccargs,strdup("-Wl,--as-needed"));
+	}
+	argvappend(gccargs,userlibs);
+	argvappend(gccargs,proginterp);
+	argvappend(gccargs,syslibs);
+}
 
 /* ensure argument list is null terminated */
 gccargs->argv[gccargs->numargv] = NULL;
 
-if( lsbcc_debug&DEBUG_MODIFIED_ARGS )
+if( lsbcc_debug&DEBUG_MODIFIED_ARGS) {
 	argvdump(gccargs);
-
-/* exec to gcc */
-
-if( lsbccmode == LSBCPLUS ) {
-	execvp(cxxname,gccargs->argv);
-} else {
-	execvp(ccname,gccargs->argv);
 }
+
+/*
+ * pretty-print the pending command line
+ */
+if (display_cmd) {
+	int i;
+
+	for(i=0;i<gccargs->numargv;i++) {
+		fprintf(stderr, " %s",gccargs->argv[i]);
+	}
+	fprintf(stderr, "\n");
+}
+
+assert(gccargs->numargv > 0);
+/* exec to gcc */
+execvp(gccargs->argv[0], gccargs->argv);
+
 exit (EXIT_FAILURE); /* exec must have failed! */
 }
