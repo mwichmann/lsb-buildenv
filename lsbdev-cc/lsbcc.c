@@ -594,7 +594,7 @@ int	display_cmd = 0;
 int	found_gcc_arg = 0;
 int	found_gcc_standalone = 0;
 int	found_l_opt = 0;
-int	no_as_needed = 0;
+int	no_as_needed = 1;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
