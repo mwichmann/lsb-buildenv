@@ -1143,9 +1143,9 @@ if (display_cmd) {
 	int i;
 
 	for(i=0;i<gccargs->numargv;i++) {
-		printf(" %s",gccargs->argv[i]);
+		fprintf(stderr, " %s",gccargs->argv[i]);
 	}
-	printf("\n");
+	fprintf(stderr, "\n");
 }
 
 assert(gccargs->numargv > 0);
