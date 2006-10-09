@@ -817,7 +817,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		break;
 	case 1: /* --help intended for gcc, we'll add our 2cents however */
 		found_gcc_standalone = 1;
-		argvaddstring(options, strdup("--help"));
+		argvaddstring(gccstartargs, strdup("--help"));
 	case 2: /* --lsb-help */
 		usage(argv[0]);
 		if (c == 2) {
