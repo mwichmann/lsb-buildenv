@@ -269,18 +269,6 @@ and pkgconfig, may defeat the checks for non-LSB libraries
 by silently supplying full pathnames instead of the 
 .BI -l lib
 form.
-.P
-Long options which take an argument need special handling.
-lsbcc is not guaranteed to keep the option and argument
-together, which leads to incorrect results.
-Handling for a few key options of this form is built in to
-lsbcc 
-.RB ( -include ", " -rpath ", " -rpath-link );
-the remainder can be worked around by using the 
-.BI -Wx, option
-syntax (where x is l for linker or p for preprocessor)
-as this form combines the option and argument
-into a single word and avoids the issue.
 .SH FILES
 .TP
 /opt/lsb/include
