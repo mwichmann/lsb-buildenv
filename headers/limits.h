@@ -124,7 +124,6 @@ extern "C" {
 /* Minimum and maximum values a `int' can hold.*/
 #define INT_MIN	(-INT_MAX-1)
 #define INT_MAX	2147483647
-#define __INT_MAX__	2147483647
 #define UINT_MAX	4294967295U
 
 
