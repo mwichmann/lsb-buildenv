@@ -39,9 +39,6 @@ extern "C" {
 
 
 
-
-
-
     extern xmlSchematronValidCtxtPtr
 	xmlSchematronNewValidCtxt(xmlSchematronPtr, int);
     extern void xmlSchematronFreeValidCtxt(xmlSchematronValidCtxtPtr);

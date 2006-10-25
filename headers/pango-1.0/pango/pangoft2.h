@@ -34,7 +34,6 @@ extern "C" {
 
 
 
-
     extern void pango_ft2_font_map_set_default_substitute(PangoFT2FontMap
 							  *,
 							  PangoFT2SubstituteFunc,

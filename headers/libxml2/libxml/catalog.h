@@ -35,7 +35,6 @@ extern "C" {
 
 
 
-
     extern xmlChar *xmlCatalogLocalResolveURI(void *, const xmlChar *);
     extern void xmlCatalogSetDefaults(xmlCatalogAllow);
     extern void xmlInitializeCatalog(void);

@@ -600,7 +600,6 @@ extern "C" {
 
 
 
-
     struct _AtkObject {
 	GObject parent;
 	gchar *description;
@@ -627,14 +626,11 @@ extern "C" {
 
 
 
-
     struct _AtkRelation {
 	GObject parent;
 	GPtrArray *target;
 	AtkRelationType relationship;
     };
-
-
 
 
 
@@ -661,13 +657,6 @@ extern "C" {
 	GHashTable *factory_type_registry;
 	GHashTable *factory_singleton_cache;
     };
-
-
-
-
-
-
-
 
 
 
@@ -714,7 +703,6 @@ extern "C" {
 	gint end_offset;
 	gchar *content;
     };
-
 
 
 

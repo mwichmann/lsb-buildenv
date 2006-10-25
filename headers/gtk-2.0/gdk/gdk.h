@@ -1091,7 +1091,6 @@ extern "C" {
 
 
 
-
     struct _GdkEventExpose {
 	GdkEventType type;
 	GdkWindow *window;
@@ -1340,7 +1339,6 @@ extern "C" {
 
 
 
-
     struct _GdkImage {
 	GObject parent_instance;
 	GdkImageType type;
@@ -1356,7 +1354,6 @@ extern "C" {
 	GdkColormap *colormap;
 	gpointer windowing_data;
     };
-
 
 
 
@@ -1377,7 +1374,6 @@ extern "C" {
 	gint x;
 	gint y;
     };
-
 
 
 
@@ -1661,8 +1657,6 @@ extern "C" {
 	void (*_gdk_reserved3) (void);
 	void (*_gdk_reserved4) (void);
     };
-
-
 
 
 

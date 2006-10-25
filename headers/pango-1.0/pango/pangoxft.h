@@ -62,8 +62,6 @@ extern "C" {
 
 
 
-
-
     struct _PangoXftRendererClass {
 	PangoRendererClass parent_class;
 	void (*composite_trapezoids) (PangoXftRenderer *, PangoRenderPart,
@@ -71,10 +69,6 @@ extern "C" {
 	void (*composite_glyphs) (PangoXftRenderer *, XftFont *,
 				  XftGlyphSpec *, int);
     };
-
-
-
-
 
 
 

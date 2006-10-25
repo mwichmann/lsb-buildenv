@@ -78,7 +78,6 @@ extern "C" {
 
 
 
-
     struct _xmlAttribute {
 	void *_private;
 	xmlElementType type;

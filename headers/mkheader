@@ -32,12 +32,6 @@ local (*entry,*tentry,*tmentry);
 local($th);
 local($tmh);
 
-#print $$type{'Tname'};
-#print $$type{'Ttype'};
-#if( $$type{'Tname'} =~ "anon" ) { return; }
-
-#switch ($ttype{'Ttype'})
-
 if( $$type{'Ttype'} eq "Intrinsic" ) {
 	print $$type{'Tname'}."\t";
 	return;
@@ -92,53 +86,60 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		$typefuncptr=1;
 	}
 # Something about anon or not & wether to set nameonly
-	if ($typeflag){
+	if ($typeflag) {
 		if($entry{'Ttype'} eq 'Struct' || $entry{'Ttype'} eq 'Union'){
 			if( !($entry{'Tname'} =~ "anon" )) {
-				if(!($entry{'Theadergroup'} != $HGid )){
+				if(!($entry{'Theadergroup'} != $HGid )) {
 					displaytype(\%entry);
 				}
 			}
-		}else{return;}
-																								
-	}elsif (!$nameonly) {
+		} else{
+			return;
+		}
+
+	} elsif (!$nameonly) {
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
-		    $entry{'Ttype'} eq 'FuncPtr' ) ||
+		    $entry{'Ttype'} eq 'FuncPtr' ||
+		    $entry{'Ttype'} eq 'Function' ) ||
 		    $entry{'Theadergroup'} != $HGid ) {
-			if($entry{'Ttype'} eq 'FuncPtr'){
+			if($entry{'Ttype'} eq 'FuncPtr' ||
+				$entry{'Ttype'} eq 'Function'){
 				$funcPtrName = $$type{'Tname'};
 			}
 			$nameonly=1;
 			displaytype(\%entry);
 			$nameonly=0;
-		}elsif( ($entry{'Ttype'} eq 'Struct' || 
+		} elsif( ($entry{'Ttype'} eq 'Struct' || 
 			$entry{'Ttype'} eq 'Union')  
-			&& $entry{'Theadergroup'} == $HGid){
+			&& $entry{'Theadergroup'} == $HGid) {
 				if( !($entry{'Tname'} =~ "anon" )) {
 					$nameonly=1;
 					displaytype(\%entry);
-       				$nameonly=0;
-				}else {displaytype(\%entry);}
+       					$nameonly=0;
+				} else {
+					displaytype(\%entry);
+				}
 		} else {
 			displaytype(\%entry);
-			}
 		}
-	if( $entry{'Ttype'} ne 'FuncPtr' || $nameonly ) {
+	}
+	if( ($entry{'Ttype'} ne 'FuncPtr' && 
+		$entry{'Ttype'} ne 'Function') || $nameonly ) {
 		if(!$typeflag){
 			print $$type{'Tname'}."\t";
-			}
 		}
+	}
 	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
 		print "[".$entry{'ATsize'}."]";
-		}
-	if( !$nameonly && $$type{'Tattribute'} && !$typeflag ) {
-			print "__attribute__ (".$$type{'Tattribute'}.")";
-		}
-	if (!$nameonly) {
-		print $$type{'Tcomment'}."\n";
-		}
-	return;
 	}
+	if( !$nameonly && $$type{'Tattribute'} && !$typeflag ) {
+		print "__attribute__ (".$$type{'Tattribute'}.")";
+	}
+	if (!$nameonly) {
+		print $$type{'Tcomment'}; #."\n";
+	}
+	return;
+}
 
 if( $$type{'Ttype'} eq "Pointer" ) {
 	$basetype=$$type{'Tbasetype'};
@@ -373,7 +374,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	return;
 	}
 
-if( $$type{'Ttype'} eq "FuncPtr" ) {
+if( $$type{'Ttype'} eq "FuncPtr" || $$type{'Ttype'} eq "Function" ) {
 	$basetype=$$type{'Tbasetype'};
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
@@ -384,14 +385,11 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		$nameonly=0;
 	} else {
 		displaytype(\%entry);
-		}
-	print "(*"; 
+	}
+	print "(*" if ($$type{'Ttype'} eq "FuncPtr");
 	$Tid=$$type{'Tid'};
-#	if( $$type{'Tname'} =~ "fptr" ) {
-#		$$type{'Tname'} =~ s/fptr-//;
-#		}
-#	print $$type{'Tname'}.")";
-	print $funcPtrName.")";
+	print $funcPtrName;
+	print ")" if ($$type{'Ttype'} eq "FuncPtr");
 	print $$type{'Tcomment'}."(";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
@@ -399,7 +397,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if($tmh->numrows == 0) {
 		print "void";
-		}
+	}
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
 		$TMtypeid=$tmentry{'TMtypeid'};
@@ -430,9 +428,9 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 		}			
 		if( $_ != $tmh->numrows ) {
 			print ",";
-			}
-		$nameonly=0;
 		}
+		$nameonly=0;
+	}
 	print ")";
 	return;
 	}
@@ -458,7 +456,7 @@ if( $$type{'Ttype'} eq "Array" ) {
 	#print $$type{'Tname'};
 	#print "[".$$type{'Tsize'}."]";
 	return;
-	}
+}
 
 print "Unknown Type: \".$$type{'Ttype'}.\"\n";
 }

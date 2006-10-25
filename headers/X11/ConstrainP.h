@@ -23,8 +23,6 @@ extern "C" {
 
 
 
-
-
     struct _ConstraintClassRec {
 	CoreClassPart core_class;
 	CompositeClassPart composite_class;

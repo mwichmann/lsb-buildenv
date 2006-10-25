@@ -50,10 +50,6 @@ extern "C" {
 
 
 
-
-
-
-
     extern void xmlRegexpPrint(FILE *, xmlRegexpPtr);
     extern void xmlRegFreeExecCtxt(xmlRegExecCtxtPtr);
     extern xmlExpNodePtr forbiddenExp;

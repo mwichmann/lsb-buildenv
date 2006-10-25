@@ -87,9 +87,6 @@ extern "C" {
 
 
 
-
-
-
     extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewParserCtxt(const char *);
     extern void xmlRelaxNGSetValidStructuredErrors(xmlRelaxNGValidCtxtPtr,
 						   xmlStructuredErrorFunc,

@@ -23,8 +23,6 @@ extern "C" {
 
 
 
-
-
     extern int xmlGetThreadId(void);
     extern xmlRMutexPtr xmlNewRMutex(void);
     extern void xmlCleanupThreads(void);
