@@ -85,17 +85,25 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 # Something about anon or not & wether to set nameonly
 	if (!$nameonly) {
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
+		    $entry{'Ttype'} eq 'Function' ||
 		    $entry{'Ttype'} eq 'FuncPtr' ) ||
 		    $entry{'Theadergroup'} != $HGid ) {
-			$funcPtrName=$$type{'Tname'};
+			if($entry{'Ttype'} eq 'FuncPtr' ||
+                                $entry{'Ttype'} eq 'Function'){
+				$funcPtrName=$$type{'Tname'};
+			}
+			$nameonly = 1;
 			displaytype(\%entry,1);
+			$nameonly = 0;
 		} else {
 			displaytype(\%entry,$nameonly);
 			}
 		}
-	if( $entry{'Ttype'} ne 'FuncPtr' || $nameonly ) {
+	if( ($entry{'Ttype'} ne 'FuncPtr' &&
+		$entry{'Ttype'} ne 'Function')
+		|| $nameonly ) {
 		print $$type{'Tname'}."\t";
-		}
+	}
 	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
 		my $bound = $entry{'TMarray'};
 		$bound ||= $entry{'ATsize'};
@@ -294,19 +302,17 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	return;
 	}
 
-if( $$type{'Ttype'} eq "FuncPtr" ) {
+if( $$type{'Ttype'} eq "FuncPtr" || 
+	$$type{'Ttype'} eq "Function" ) {
 	$basetype=$$type{'Tbasetype'};
 	$tselect="SELECT * FROM Type WHERE Tid=$basetype";
 	$tth = $Dbh->query($tselect) || die $Dbh->errmsg();
 	%entry=$tth->fetchhash;
 	displaytype(\%entry,1);
-	print "(*"; 
+	print "(*" if ($$type{'Ttype'} eq "FuncPtr"); 
 	$Tid=$$type{'Tid'};
-#	if( $$type{'Tname'} =~ "fptr" ) {
-#		$$type{'Tname'} =~ s/fptr-//;
-#		}
-#	print $$type{'Tname'}.")";
-	print $funcPtrName.")";
+	print $funcPtrName;
+	print ") " if( $$type{'Ttype'} eq "FuncPtr" && $$type{'Itype'} ne "Function" );
 	print $$type{'Tcomment'}."(";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
@@ -348,6 +354,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ) {
 			print ",";
 			}
 		}
+	print ") " if( $$type{'Ttype'} eq "FuncPtr" && $$type{'Itype'} eq "Function" );
 	print ")\n";
 	return;
 	}
@@ -597,8 +604,15 @@ for (1..$eh->numrows) {
 	
 	if( $eentry{'Itype'} eq "Function" ) {
 		printf "extern ";
+		if ($eentry{'Ttype'} eq "FuncPtr") {
+			$funcPtrName = $eentry{'Iname'};
+		}
 		displaytype(\%eentry,1);
-		printf "%s(\n", $eentry{'Iname'};
+		if ($eentry{'Ttype'} eq "FuncPtr") {
+			printf "(\n"; 
+		} else {
+			printf "%s(\n", $eentry{'Iname'};
+		}
 		$select  = "SELECT * FROM Parameter ";
 		$select .= "LEFT JOIN Type on Ptype=Tid ";
 		$select .= "WHERE Pint=$eentry{'Iid'} ";
