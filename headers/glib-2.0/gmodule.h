@@ -27,7 +27,6 @@ extern "C" {
 
 
 
-
     extern void g_module_make_resident(GModule *);
     extern gchar *g_module_build_path(const gchar *, const gchar *);
     extern gboolean g_module_close(GModule *);

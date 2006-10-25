@@ -3645,7 +3645,6 @@ extern "C" {
 
 
 
-
     struct _GtkObject {
 	GObject parent_instance;
 	guint32 flags;
@@ -3781,8 +3780,6 @@ extern "C" {
 
 
 
-
-
     struct _GtkTextBuffer {
 	GObject parent_instance;
 	GtkTextTagTable *tag_table;
@@ -3828,7 +3825,6 @@ extern "C" {
 	GtkContainer container;
 	GtkWidget *child;
     };
-
 
 
 
@@ -3925,13 +3921,10 @@ extern "C" {
 
 
 
-
     struct _GtkWindowGroup {
 	GObject parent_instance;
 	GSList *grabs;
     };
-
-
 
 
 
@@ -3997,7 +3990,6 @@ extern "C" {
 
 
 
-
     struct _GtkComboBoxEntry {
 	GtkComboBox parent_instance;
 	GtkComboBoxEntryPrivate *priv;
@@ -4056,9 +4048,6 @@ extern "C" {
 	GtkDialog parent_instance;
 	gpointer private_data;
     };
-
-
-
 
 
 
@@ -4142,7 +4131,6 @@ extern "C" {
 
 
 
-
     struct _GtkTreeViewColumn {
 	GtkObject parent;
 	GtkWidget *tree_view;
@@ -4213,12 +4201,10 @@ extern "C" {
 
 
 
-
     struct _GtkAction {
 	GObject object;
 	GtkActionPrivate *private_data;
     };
-
 
 
 
@@ -4311,7 +4297,6 @@ extern "C" {
 
 
 
-
     struct _GtkFileFilterInfo {
 	GtkFileFilterFlags contains;
 	const gchar *filename;
@@ -4319,8 +4304,6 @@ extern "C" {
 	const gchar *display_name;
 	const gchar *mime_type;
     };
-
-
 
 
 
@@ -4335,7 +4318,6 @@ extern "C" {
 
 
 
-
     struct _GtkToolButton {
 	GtkToolItem parent;
 	GtkToolButtonPrivate *priv;
@@ -4344,12 +4326,10 @@ extern "C" {
 
 
 
-
     struct _GtkIconView {
 	GtkContainer parent;
 	GtkIconViewPrivate *priv;
     };
-
 
 
 
@@ -4377,8 +4357,6 @@ extern "C" {
 
 
 
-
-
     struct _GtkSettings {
 	GObject parent_instance;
 	GData *queued_settings;
@@ -4386,7 +4364,6 @@ extern "C" {
 	GtkRcContext *rc_context;
 	GdkScreen *screen;
     };
-
 
 
 
@@ -4435,7 +4412,6 @@ extern "C" {
 
 
 
-
     struct _GtkCellView {
 	GtkWidget parent_instance;
 	GtkCellViewPrivate *priv;
@@ -4451,7 +4427,6 @@ extern "C" {
 	gint length;
 	GdkDisplay *display;
     };
-
 
 
 
@@ -4479,7 +4454,6 @@ extern "C" {
 	gint num_ctlpoints;
 	gfloat *ctlpoint;
     };
-
 
 
 
@@ -4518,7 +4492,6 @@ extern "C" {
 	GObject parent_instance;
 	GHashTable *icons;
     };
-
 
 
 
@@ -4580,9 +4553,6 @@ extern "C" {
 
 
 
-
-
-
     struct _GtkTableRowCol {
 	guint16 requisition;
 	guint16 allocation;
@@ -4606,7 +4576,6 @@ extern "C" {
 	guint16 row_spacing;
 	guint homogeneous:1;
     };
-
 
 
 
@@ -4687,13 +4656,10 @@ extern "C" {
 
 
 
-
     struct _GtkIconTheme {
 	GObject parent_instance;
 	GtkIconThemePrivate *priv;
     };
-
-
 
 
 
@@ -4908,7 +4874,6 @@ extern "C" {
 
 
 
-
     struct _GtkTreeView {
 	GtkContainer parent;
 	GtkTreeViewPrivate *priv;
@@ -4933,7 +4898,6 @@ extern "C" {
 	guint wrap:1;
 	guint snap_to_ticks:1;
     };
-
 
 
 
@@ -4990,13 +4954,10 @@ extern "C" {
 
 
 
-
     struct _GtkEntryCompletion {
 	GObject parent_instance;
 	GtkEntryCompletionPrivate *priv;
     };
-
-
 
 
 
@@ -5032,7 +4993,6 @@ extern "C" {
 
 
 
-
     struct _GtkColorButton {
 	GtkButton button;
 	GtkColorButtonPrivate *priv;
@@ -5055,7 +5015,6 @@ extern "C" {
 	GtkAllocation attach_allocation;
 	GtkAllocation float_allocation;
     };
-
 
 
 
@@ -5140,7 +5099,6 @@ extern "C" {
 
 
 
-
     struct _GtkSeparatorToolItem {
 	GtkToolItem parent;
 	GtkSeparatorToolItemPrivate *priv;
@@ -5155,7 +5113,6 @@ extern "C" {
 	gpointer user_data;
 	GtkDestroyNotify destroy;
     };
-
 
 
 
@@ -5177,7 +5134,6 @@ extern "C" {
 	gint dialog_width;
 	gboolean auto_resize;
     };
-
 
 
 
@@ -5249,7 +5205,6 @@ extern "C" {
 
 
 
-
     struct _GtkRadioActionEntry {
 	const gchar *name;
 	const gchar *stock_id;
@@ -5263,7 +5218,6 @@ extern "C" {
     struct _GtkEventBox {
 	GtkBin bin;
     };
-
 
 
 
@@ -5305,7 +5259,6 @@ extern "C" {
 	GHashTable *grabbed_keys;
 	guint same_app:1;
     };
-
 
 
 
@@ -5402,7 +5355,6 @@ extern "C" {
 
 
 
-
     struct _GtkFontButton {
 	GtkButton button;
 	GtkFontButtonPrivate *priv;
@@ -5450,12 +5402,10 @@ extern "C" {
 
 
 
-
     struct _GtkMenuToolButton {
 	GtkToolButton parent;
 	GtkMenuToolButtonPrivate *priv;
     };
-
 
 
 
@@ -5522,7 +5472,6 @@ extern "C" {
 
 
 
-
     struct _GtkIMMulticontext {
 	GtkIMContext object;
 	GtkIMContext *slave;
@@ -5585,7 +5534,6 @@ extern "C" {
 	gchar *origin;
 	GValue value;
     };
-
 
 
 
@@ -5755,7 +5703,6 @@ extern "C" {
 
 
 
-
     struct _GtkInvisibleClass {
 	GtkWidgetClass parent_class;
 	void (*_gtk_reserved1) (void);
@@ -5858,7 +5805,6 @@ extern "C" {
 
 
 
-
     struct _GtkFileChooserDialog {
 	GtkDialog parent_instance;
 	GtkFileChooserDialogPrivate *priv;
@@ -5904,7 +5850,6 @@ extern "C" {
     struct _GtkHButtonBoxClass {
 	GtkButtonBoxClass parent_class;
     };
-
 
 
 
@@ -6163,7 +6108,6 @@ extern "C" {
 
 
 
-
     struct _GtkFixedClass {
 	GtkContainerClass parent_class;
     };
@@ -6282,7 +6226,6 @@ extern "C" {
     struct _GtkHScrollbar {
 	GtkScrollbar scrollbar;
     };
-
 
 
 
@@ -6602,7 +6545,6 @@ extern "C" {
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
     };
-
 
 
 
@@ -6950,7 +6892,6 @@ extern "C" {
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
     };
-
 
 
 

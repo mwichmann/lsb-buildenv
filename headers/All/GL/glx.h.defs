@@ -33,7 +33,8 @@ extern void glXSwapBuffers(Display *, GLXDrawable);
 extern void glXUseXFont(Font, int, int, int);
 extern void glXWaitGL(void);
 extern void glXWaitX(void);
-extern void (*GLXWindow) (GLubyte * procName) glXGetProcAddressARB(void);
+extern void (*glXGetProcAddressARB(GLubyte * procName))
+ (void);
 extern void glXGetSelectedEvent(Display *, GLXDrawable,
 				unsigned long int *);
 extern void glXSelectEvent(Display *, GLXDrawable, unsigned long int);

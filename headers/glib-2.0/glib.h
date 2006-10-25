@@ -1808,13 +1808,11 @@ extern "C" {
 
 
 
-
     struct _GList {
 	gpointer data;
 	GList *next;
 	GList *prev;
     };
-
 
 
 
@@ -1880,12 +1878,6 @@ extern "C" {
 
 
 
-
-
-
-
-
-
     struct _GCompletion {
 	GList *items;
 	GCompletionFunc func;
@@ -1893,8 +1885,6 @@ extern "C" {
 	GList *cache;
 	GCompletionStrncmpFunc strncmp_func;
     };
-
-
 
 
 
@@ -1924,8 +1914,6 @@ extern "C" {
 	guint depth;
 	GSystemThread owner;
     };
-
-
 
 
 
@@ -1992,7 +1980,6 @@ extern "C" {
 
 
 
-
     struct _GIOFuncs {
 	GIOStatus(*io_read) (GIOChannel *, gchar *, gsize, gsize *,
 			     GError * *);
@@ -2005,7 +1992,6 @@ extern "C" {
 	 GIOStatus(*io_set_flags) (GIOChannel *, GIOFlags, GError * *);
 	 GIOFlags(*io_get_flags) (GIOChannel *);
     };
-
 
 
 
@@ -2029,14 +2015,11 @@ extern "C" {
 
 
 
-
     struct _GPollFD {
 	gint fd;
 	gushort events;
 	gushort revents;
     };
-
-
 
 
 
@@ -2144,8 +2127,6 @@ extern "C" {
 
 
 
-
-
     struct _GStaticRWLock {
 	GStaticMutex mutex;
 	GCond *read_cond;
@@ -2179,7 +2160,6 @@ extern "C" {
 
 
 
-
     struct _GStaticPrivate {
 	guint index;
     };
@@ -2208,7 +2188,6 @@ extern "C" {
 
 
 
-
     struct _GTuples {
 	guint len;
     };
@@ -2224,7 +2203,6 @@ extern "C" {
 	gchar *key;
 	guint value;
     };
-
 
 
 

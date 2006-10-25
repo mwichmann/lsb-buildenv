@@ -785,8 +785,6 @@ extern "C" {
 
 
 
-
-
     struct _GFlagsValue {
 	guint value;
 	gchar *value_name;
@@ -807,7 +805,6 @@ extern "C" {
 	GQuark detail;
 	GSignalFlags run_type;
     };
-
 
 
 

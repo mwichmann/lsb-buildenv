@@ -75,8 +75,6 @@ extern "C" {
 
 
 
-
-
     extern int xmlSchemaValPredefTypeNode(xmlSchemaTypePtr,
 					  const xmlChar *,
 					  xmlSchemaValPtr *, xmlNodePtr);

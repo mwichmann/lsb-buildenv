@@ -32,8 +32,6 @@ extern "C" {
 
 
 
-
-
     extern void pango_fc_font_map_add_decoder_find_func(PangoFcFontMap *,
 							PangoFcDecoderFindFunc,
 							gpointer,

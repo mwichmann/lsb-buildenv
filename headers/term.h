@@ -19,7 +19,6 @@ extern "C" {
 
 
 
-
     extern int putp(const char *);
     extern int tigetflag(const char *);
     extern int tigetnum(const char *);

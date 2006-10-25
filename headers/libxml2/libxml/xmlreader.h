@@ -72,7 +72,6 @@ extern "C" {
 
 
 
-
     extern xmlChar *xmlTextReaderNamespaceUri(xmlTextReaderPtr);
     extern xmlChar *xmlTextReaderBaseUri(xmlTextReaderPtr);
     extern int xmlTextReaderMoveToFirstAttribute(xmlTextReaderPtr);
