@@ -124,18 +124,11 @@ of the library only, for example to add
 .I libfoo.so
 use the name
 .IR foo .
-.IP
-Normally, only LSB-defined libraries should be linked
-as shared libraries, all others must be linked statically.
-However, if an application provides its own shared libraries
-which have been carefully checked for LSB conformance, this
-method can be used to selectively overrride
-.IR lsbcc 's
-rule of forcing static linking. The application may not depend
-on such a library being present on a system, so it must either
-be shipped with the application, or with another LSB conforming
-application on which this application depends.  
-Libs added with this option will be in addition to any libs added through the LSBCC_SHAREDLIBS environment setting.  Shared libs added with this option must appear on the command line before any -l options to have effect.
+.TP
+--lsb-shared-libpath=<path:...>
+This option adds paths to be searched for shared libraries. Libraries found in
+the given set of paths will be added to the list of non-lsb libraries to link
+as shared libraries.
 .TP 
 --lsb-modules=<module,..>
 Enable support for the optional LSB modules listed.  
@@ -194,17 +187,11 @@ of the library only, for example to add
 .I libfoo.so
 use the name
 .IR foo .
-.IP
-Normally, only LSB-defined libraries should be linked
-as shared libraries, all others must be linked statically.
-However, if an application provides its own shared library
-which has been carefully checked for LSB conformance, this
-method can be used to selectively overrride
-.IR lsbcc 's
-rule of forcing static linking. The application may not depend
-on such a library being present on a system, so it must either
-be shipped with the application, or with another LSB conforming
-application on which this application depends.  
+.TP
+LSB_SHAREDLIBPATH
+This option adds paths to be searched for shared libraries. Libraries found in
+the given set of paths will be added to the list of non-lsb libraries to link
+as shared libraries.
 .TP
 LSB_MODULES
 Specify which optional LSB modules to include interfaces for.
@@ -247,6 +234,51 @@ The complete command line passed to either the C or C++ compiler
 will be printed to stderr just prior to execution.  This helps
 see the effects of lsbcc and options.
 .P
+.SH Non LSB Shared Libraries
+Normally, only LSB-defined libraries should be linked
+as shared libraries, all others must be linked statically.
+However, if an application provides its own shared libraries
+which have been carefully checked for LSB conformance, the following
+methods can be used to selectively overrride
+.IR lsbcc 's
+rule of forcing static linking. The application may not depend
+on such a library being present on a system, so it must either
+be shipped with the application, or with another LSB conforming
+application on which this application depends.  
+.P
+Libs added with any of these options will be cumlative. Shared 
+libs added with command line options must appear on the command 
+line before any -l options to have effect.
+.TP 
+--lsb-shared-libs=<shared_lib:...>
+This option adds libraries to the list of non-lsb libraries to link as
+shared libraries (such as product internal shared libraries). 
+A library name or colon-separated list of library names to
+add to the default list. The name should be the base part
+of the library only, for example to add
+.I libfoo.so
+use the name
+.IR foo .
+.TP
+--lsb-shared-libpath=<path:...>
+This option adds paths to be searched for shared libraries. Libraries found in
+the given set of paths will be added to the list of non-lsb libraries to link
+as shared libraries.
+.TP
+LSBCC_SHAREDLIBS
+A library name or colon-separated list of library names to
+add to the default list. The name should be the base part
+of the library only, for example to add
+.I libfoo.so
+use the name
+.IR foo .
+.IP
+.TP
+LSB_SHAREDLIBPATH
+This option adds paths to be searched for shared libraries. Libraries found in
+the given set of paths will be added to the list of non-lsb libraries to link
+as shared libraries.
+
 .SH EXAMPLES
 .B "lsbcc hello.c -o hello"
 .P

@@ -57,6 +57,8 @@
 #include <getopt.h>
 #include <limits.h>
 #include <assert.h>
+#include <dirent.h>
+#include <errno.h>
 
 /* begin lsbcc.h */
 
@@ -496,6 +498,7 @@ struct option long_options[] = {
 	{"lsb-modules",required_argument,NULL,13},
 	{"verbose",required_argument,NULL,14},
 	{"version",required_argument,NULL,15},
+	{"lsb-shared-libpath",required_argument,NULL,16},
 	{NULL,0,0,0}
 	};
 
@@ -531,6 +534,13 @@ usage(const char *progname) {
 		"\t                    these libs will be in addition to any libs added\n"
 		"\t                    through the LSBCC_SHAREDLIBS environment setting.\n"
 		"\t                    shared libs must be added before any -l options\n"
+		"\t                    to have effect.\n"
+		"\t--lsb-shared-libpath=<path:...>\n"
+		"\t                   Add lib path to the list of non-lsb lib paths to link as\n"
+		"\t                    shared libs (product internal shared libs),\n"
+		"\t                    these lib paths will be in addition to any lib paths added\n"
+		"\t                    through the LSB_SHAREDLIBPATH environment setting.\n"
+		"\t                    shared lib paths must be added before any -l options\n"
 		"\t                    to have effect.\n"
 		"\t--lsb-modules=<module,..>\n"
 		"\t                   Enable support for the optional LSB modules listed.\n"
@@ -586,6 +596,141 @@ char *featuresettings[] = {
 int numfeaturesettings=(sizeof(featuresettings)/sizeof(char *));
 
 
+/*
+ * scandir filter to determine if a file is at least
+ * superficially a .so, we'll leave the details to
+ * linker.
+ */
+int
+is_file_so(const struct dirent *ent)
+{
+	/*
+ 	 * ensure the filename is at least long enough to hold a
+	 * one-letter library name, like 'c'
+	 */
+	if (strlen(ent->d_name) < strlen("libc.so")) {
+		return 0;
+	} 
+	/*
+	 * ensure the filename starts with 'lib'
+	 */
+	if (0 != strncmp(ent->d_name, "lib", strlen("lib"))) {
+		return 0;
+	}
+	/*
+	 * ensure the filename has a '.so' in it someplace
+	 */
+	if (NULL == strstr(ent->d_name, ".so")) {
+		return 0;
+	}
+	/*
+	 * well guess its a .so
+	 */
+	return 1;
+}
+
+/*
+ * FIXME: If LSB ever gets around to including scandir get rid of 
+ * this code.
+ */
+int lsbcc_scandir(
+	char *libpath,
+	struct dirent ***dirents, 
+	int(*filter)(const struct dirent *))
+{
+	DIR 		*dir;
+	struct dirent	*tmpent;
+	int		num_ents = 0;
+	int		ents_available = 0;
+
+	*dirents = NULL;
+
+	dir = opendir(libpath);
+	if (!dir) {
+		return -1;
+	}
+	while((tmpent = readdir(dir)) != NULL) {
+		if (filter(tmpent)) {
+			/*
+			 * grow the return array buffer in 1k chunks
+			 */
+			if (num_ents == ents_available) {
+				if (*dirents != NULL) {	
+					struct dirent **tmpdirents = *dirents;
+					*dirents = malloc(ents_available + 1024);
+					memcpy(*dirents, tmpdirents, ents_available);
+					free(tmpdirents);
+				} else {
+					*dirents = malloc(1024);
+				}
+				ents_available+= 1024;
+			}
+			(*dirents)[num_ents] = malloc(sizeof(struct dirent));
+			if (!(*dirents)[num_ents]) {
+				while(num_ents-- > 0) {
+					free((*dirents)[num_ents]);
+				}
+				free(*dirents);
+				errno = ENOMEM;
+				return -1;
+			}
+			memcpy((*dirents)[num_ents], tmpent, sizeof(struct dirent));
+			num_ents++;
+		}
+	}
+	return num_ents;
+}
+
+/*
+ * Resolves bug #1477
+ * 
+ * This function parses a series of ':' separated paths
+ * and scans each path for shared libraries and adds them
+ * to the list of allowed shared libs and libpaths as 
+ * they are found.
+ */
+void
+process_shared_lib_path(char *libarg)
+{
+	char *libpath;
+	libpath = strtok(libarg, ":");
+	while (libpath) {
+		struct dirent	**dirents = NULL;
+		int		num_libs;
+
+		if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
+			fprintf(stderr,"adding shared libraries found in %s to allowed dsos\n", libpath);
+		}
+		num_libs = lsbcc_scandir(libpath, &dirents, is_file_so);
+		if (num_libs > 0) {
+			while(num_libs--) {
+				/*
+ 				 * NOTE: If the implementation of is_file_so changes, 
+				 * this code very likey will need to change as well
+				 * since the following is only safe because we know
+				 * that all dirents start with lib and have a .so in
+				 * them someplace!!!
+ 				 */
+				char *libstr = strdup((dirents[num_libs]->d_name) + strlen("lib"));
+				*(strstr(libstr,".so")) = '\0';
+				argvaddstring(lsblibs,libstr);
+				free(dirents[num_libs]);
+			}
+			free(dirents);
+		} else {
+			if (num_libs < 0) {
+				fprintf(stderr,"Could not open %s: %s\n", libpath, strerror(errno));
+				exit(-1);
+			} else {
+				if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
+					fprintf(stderr,"Did not find any shared libs in %s\n", libpath);
+				}
+			}
+		}
+		libpath = strtok(NULL, ":");
+	}
+}
+
 int main(int argc, char *argv[])
 {
 int	c,i;
@@ -626,6 +771,7 @@ if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
 	 * later on 
 	 */
 	lsbccmode=LSBCPLUS;
+	ccname=strdup("c++");
 }
 
 /*
@@ -739,6 +885,10 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 	}
 }
 
+if( (ptr=getenv("LSB_SHAREDLIBPATH")) != NULL ) {
+	process_shared_lib_path(strdup(ptr));
+}
+
 /*
  * Add in user specified libs.
  */
@@ -818,6 +968,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 10: /* --lsb-cxx-includepath=<path> */
 		memset(cxxincpath, 0, strlen(cxxincpath));
 		strcpy(cxxincpath, optarg);
+		break;
+	case 16: /* --lsb-shared-libpath=<path:...> */
+		process_shared_lib_path(strdup(optarg));
+
 		break;
 	case 11: /* --lsb-shared-libs=<lib:...> */
 		{ 
