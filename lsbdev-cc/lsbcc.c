@@ -496,8 +496,8 @@ struct option long_options[] = {
 	{"lsb-shared-libs",required_argument,NULL,11},
 	{"lsb-forcefeatures",no_argument,NULL,12},
 	{"lsb-modules",required_argument,NULL,13},
-	{"verbose",required_argument,NULL,14},
-	{"version",required_argument,NULL,15},
+	{"verbose",no_argument,NULL,14},
+	{"version",no_argument,NULL,15},
 	{"lsb-shared-libpath",required_argument,NULL,16},
 	{NULL,0,0,0}
 	};
