@@ -8,6 +8,8 @@ extern "C" {
 #endif
 
 
+
+/* Constants */
 #define Z_NULL	0
 #define ZLIB_VERSION	"1.2.2"
 #define MAX_WBITS	15
@@ -21,14 +23,20 @@ extern "C" {
 #define inflateInit(strm)	\
 	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 
-
+/* TypeDefs */
     typedef char charf;
 
     typedef int intf;
 
 
+/* Types */
+
+/* Structs & Unions */
 
 
+/* Constants */
+
+/* TypeDefs */
     typedef void *voidpf;
 
     typedef unsigned int uInt;
@@ -46,8 +54,14 @@ extern "C" {
     typedef void *const voidpc;
 
 
+/* Types */
+
+/* Structs & Unions */
 
 
+/* Constants */
+
+/* TypeDefs */
     typedef voidpf(*alloc_func) (voidpf opaque, uInt items, uInt size);
 
     typedef void (*free_func) (voidpf opaque, voidpf address);
@@ -56,15 +70,25 @@ extern "C" {
 
     typedef uInt uIntf;
 
+
+/* Types */
     struct internal_state {
 	int dummy;
     };
 
 
+/* Structs & Unions */
 
 
+/* Constants */
+
+/* TypeDefs */
     typedef struct z_stream_s z_stream;
 
+
+/* Types */
+
+/* Structs & Unions */
 
     struct z_stream_s {
 	Bytef *next_in;		/* next input byte */
@@ -85,21 +109,36 @@ extern "C" {
 
 
 
+/* Constants */
 
+/* TypeDefs */
     typedef z_stream *z_streamp;
 
     typedef voidp gzFile;
 
 
+/* Types */
+
+/* Structs & Unions */
+
+
+/* Constants */
 #define Z_NO_FLUSH	0
 #define Z_PARTIAL_FLUSH	1
 #define Z_SYNC_FLUSH	2
 #define Z_FULL_FLUSH	3
 #define Z_FINISH	4
+#define Z_BLOCK	5
 
+/* TypeDefs */
 
+/* Types */
+
+/* Structs & Unions */
 
 /* Return status of flush operations*/
+
+/* Constants */
 #define Z_ERRNO	(-1)
 #define Z_STREAM_ERROR	(-2)
 #define Z_DATA_ERROR	(-3)
@@ -110,35 +149,65 @@ extern "C" {
 #define Z_STREAM_END	1
 #define Z_NEED_DICT	2
 
+/* TypeDefs */
 
+/* Types */
+
+/* Structs & Unions */
 
 /* Return codes for the compression/decompression functions. Negative values are errors, positive values are used for special but normal events.*/
+
+/* Constants */
 #define Z_DEFAULT_COMPRESSION	(-1)
 #define Z_NO_COMPRESSION	0
 #define Z_BEST_SPEED	1
 #define Z_BEST_COMPRESSION	9
 
+/* TypeDefs */
 
+/* Types */
+
+/* Structs & Unions */
 
 /* compression levels*/
+
+/* Constants */
 #define Z_DEFAULT_STRATEGY	0
 #define Z_FILTERED	1
 #define Z_HUFFMAN_ONLY	2
 
+/* TypeDefs */
 
+/* Types */
+
+/* Structs & Unions */
 
 /* compression strategy*/
+
+/* Constants */
 #define Z_BINARY	0
 #define Z_ASCII	1
 #define Z_UNKNOWN	2
 
+/* TypeDefs */
 
+/* Types */
+
+/* Structs & Unions */
 
 /* Possible values of the data_type field*/
+
+/* Constants */
 #define Z_DEFLATED	8
 
+/* TypeDefs */
+
+/* Types */
+
+/* Structs & Unions */
 
 
+/* Function ProtoTypes */
     extern int gzread(gzFile, voidp, unsigned int);
     extern int gzclose(gzFile);
     extern gzFile gzopen(const char *, const char *);
