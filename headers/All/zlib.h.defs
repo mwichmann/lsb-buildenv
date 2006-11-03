@@ -56,6 +56,7 @@ typedef voidp gzFile;
 #define Z_SYNC_FLUSH	2
 #define Z_FULL_FLUSH	3
 #define Z_FINISH	4
+#define Z_BLOCK	5
 
 #define Z_ERRNO	(-1)
 #define Z_STREAM_ERROR	(-2)
