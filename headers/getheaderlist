@@ -18,7 +18,7 @@ $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::d
 #
 # Get the Header id
 #
-$select = "SELECT Hname FROM Header WHERE ( Hstd!='No' )";
+$select = "SELECT Hname FROM Header WHERE ( Hstdstatus!='Excluded' OR Hsrcerror='Yes')";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$sth->numrows) {

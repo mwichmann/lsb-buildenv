@@ -115,7 +115,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 				if( !($entry{'Tname'} =~ "anon" )) {
 					$nameonly=1;
 					displaytype(\%entry);
-       					$nameonly=0;
+					$nameonly=0;
 				} else {
 					displaytype(\%entry);
 				}
@@ -136,7 +136,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		print "__attribute__ (".$$type{'Tattribute'}.")";
 	}
 	if (!$nameonly) {
-		print $$type{'Tcomment'}; #."\n";
+		print $$type{'Tdescription'}."\n";
 	}
 	return;
 }
@@ -181,7 +181,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		}
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
-	#print $$type{'Tcomment'}."\n";
+	#print $$type{'Tdescription'}."\n";
 
 	$tmselect = "SELECT * FROM TypeMember ";
 	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
@@ -241,8 +241,8 @@ if( $$type{'Ttype'} eq "Struct" ) {
 			print ":".$tmentry{'TMbitfield'};
 			}
 		print ";\t";
-		if( $tmentry{'TMcomment'} ) {
-			print "/* ".$tmentry{'TMcomment'}." */";
+		if( $tmentry{'TMdescription'} ) {
+			print "/* ".$tmentry{'TMdescription'}." */";
 			}
 		print "\n";
 		#if( $tmentry{'Aid'} && $tmentry{'Aname'} ne "All" ) {
@@ -271,7 +271,7 @@ if( $$type{'Ttype'} eq "Union" ) {
 		print "union ".$$type{'Tname'}."\t";}
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
-	#print $$type{'Tcomment'}."\n";
+	#print $$type{'Tdescription'}."\n";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
@@ -319,8 +319,8 @@ if( $$type{'Ttype'} eq "Union" ) {
 			}
 		 }
 		print ";\t";
-		if( $tmentry{'TMcomment'} ) {
-			print "/* ".$tmentry{'TMcomment'}." */";
+		if( $tmentry{'TMdescription'} ) {
+			print "/* ".$tmentry{'TMdescription'}." */";
 			}
 		print "\n";
 		if($uflag){$typeflag=1;
@@ -340,7 +340,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		}
 	print $$type{'Tname'}."\t";
 	if( $nameonly ) { return; }
-	print $$type{'Tcomment'}."\n";
+	print $$type{'Tdescription'}."\n";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
@@ -364,8 +364,8 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		if( $_ != $tmh->numrows ) {
 			print ",\t";
 			}
-		if( $tmentry{'TMcomment'} ) {
-			print "/* ".$tmentry{'TMcomment'}."*/";
+		if( $tmentry{'TMdescription'} ) {
+			print "/* ".$tmentry{'TMdescription'}."*/";
 			}
 		print "\n";
 		$nameonly=0;
@@ -390,7 +390,7 @@ if( $$type{'Ttype'} eq "FuncPtr" || $$type{'Ttype'} eq "Function" ) {
 	$Tid=$$type{'Tid'};
 	print $funcPtrName;
 	print ")" if ($$type{'Ttype'} eq "FuncPtr");
-	print $$type{'Tcomment'}."(";
+	print $$type{'Tdescription'}."(";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
@@ -467,7 +467,7 @@ displaytyperef($)
 local ($param) = @_;
 local(%select,$sth,%type);
 
-if( $$param{'Pconst'} eq "Y" ) {
+if( $$param{'Pconst'} eq "Yes" ) {
 	print "const ";
 	}
 
@@ -623,8 +623,8 @@ if( $$const{'Ctype'} eq 'string' ) {
 	print $$const{'ACvalue'};
 }
 print "\t";
-if( $const{'Ccomment'} ) {
-	print "/* ".$const{'Ccomment'}." */\n";
+if( $const{'Cdescription'} ) {
+	print "/* ".$const{'Cdescription'}." */\n";
 	}
 print "\n";
 }
@@ -655,14 +655,15 @@ $Aid=$entry{'Aid'};
 #
 # Get the Header id
 #
-$select = "SELECT Hid,Hstd FROM Header WHERE Hname='$headname'";
+$select = "SELECT Hid,Hstdstatus,Hsrcerror FROM Header WHERE Hname='$headname'";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 
 if( !$sth->numrows ) { exit 0; }
 %entry=$sth->fetchhash;
 $Hid=$entry{'Hid'};
-$Hstd=$entry{'Hstd'};
+$Hstdstatus=$entry{'Hstdstatus'};
+$Hsrcerror=$entry{'Hsrcerror'};
 
 #
 # This next section, which tries to determine all of the types for which
@@ -675,7 +676,7 @@ $Hstd=$entry{'Hstd'};
 #
 $select = "SELECT DISTINCT Ireturn FROM Interface ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
+$select.= "AND ( Istdstatus='Included' ) ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -691,7 +692,7 @@ $select = "SELECT DISTINCT Ptype FROM Interface,Parameter ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND Pint=Iid ";
 #$select.= "WHERE Pint=Iid ";
-$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
+$select.= "AND ( Istdstatus='Included' ) ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -912,7 +913,7 @@ $typelist=join ',', keys(%type);
 #$select.= "LEFT JOIN HeaderGroup ON Cheadgroup=HGid ";
 #$select.= "WHERE HGheader=$Hid ";
 #$select.= "AND Ctype='macro' ";
-#$select.= "AND ( Cstd ='Yes' OR Cstd ='SrcOnly' ) ";
+#$select.= "AND ( Cstdstatus ='Included' OR Cstdstatus ='SrcOnly' ) ";
 #print $select,"\n" if $trace;
 #$sth = $Dbh->query($select) || die $Dbh->errmsg();
 #for(1..$sth->numrows) {
@@ -957,7 +958,7 @@ if( $typelist ne "" ) {
 #	$select.= "LEFT JOIN HeaderGroup ON HGid=Cheadgroup ";
 #	$select.= "LEFT JOIN Header ON Hid=HGheader ";
 #	$select.= "WHERE Cname IN (\'$constlist\') ";
-	#$select.= "AND Cstatus != 'Excluded' ";
+	#$select.= "AND Cstdstatus != 'Excluded' ";
 #	$select.= "AND Hid != $Hid ";
 #	print $select,"\n" if $trace;
 #	$sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -990,7 +991,7 @@ print "\n#ifdef __cplusplus\n";
 print "extern \"C\" {\n";
 print "#endif\n\n";
 
-if( $Hstd eq 'SrcError' ) {
+if( $Hsrcerror eq 'Yes' ) {
 	print "#error \"This header not permitted by the LSB\"\n\n";
 }
 
@@ -1023,7 +1024,7 @@ for(1..$hgh->numrows) {
 	$select.= "LEFT JOIN Architecture ON Aid=ACaid ";
 	$select.= "WHERE Cheadgroup=$HGid ";
 	#$select.= "AND ACaid=$Aid ";
-	$select.= "AND ( Cstd ='Yes' OR Cstd ='SrcOnly' )";
+	$select.= "AND ( Cstdstatus ='Included' OR Cstdstatus ='SrcOnly' )";
 	$select.=" ORDER BY ACvalue, Cname, Aid";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
@@ -1065,12 +1066,12 @@ for(1..$hgh->numrows) {
 			print "/* ".$tentry{'Aname'}." */\n";
 			displaytype(\%tentry);
 			print ";";
-			print $tentry{'Tcomment'}."\n\n";
+			print $tentry{'Tdescription'}."\n\n";
 			print "#endif\n";
 		} else {
 			displaytype(\%tentry);
 			print ";";
-			print $tentry{'Tcomment'}."\n\n";
+			print $tentry{'Tdescription'}."\n\n";
 			}
 		if( $tentry{'Tstatus'} eq "Conly" ) {
 			print "#endif\n";
@@ -1100,12 +1101,12 @@ for(1..$hgh->numrows) {
 			print "/* ".$tentry{'Aname'}." */\n";
 			displaytype(\%tentry);
 			print ";";
-			print $tentry{'Tcomment'}."\n\n";
+			print $tentry{'Tdescription'}."\n\n";
 			print "#endif\n";
 		} else {
 			displaytype(\%tentry);
 			print ";";
-			print $tentry{'Tcomment'}."\n\n";
+			print $tentry{'Tdescription'}."\n\n";
 			}
 		if( $tentry{'Tstatus'} eq "Conly" ) {
 			print "#endif\n";
@@ -1144,14 +1145,14 @@ for(1..$hgh->numrows) {
 	                    if ($semicolonNeeded) {
 	                        $semicolonNeeded = 0;
 	                        print ";";}
-																																						                      print $tentry{'Tcomment'}."\n\n";
+					    print $tentry{'Tdescription'}."\n\n";
 	                    print "#endif\n";
 			         } else {
 				        displaytype(\%tentry);
 				        if ($semicolonNeeded) {
 				            $semicolonNeeded = 0;
 				            print ";";}
-		                    print $tentry{'Tcomment'}."\n\n";
+		                    print $tentry{'Tdescription'}."\n\n";
 				            }
 				        if( $tentry{'Tstatus'} eq "Conly" ) {
 				             print "#endif\n";}
@@ -1171,7 +1172,7 @@ $select.= "LEFT JOIN Header ON Iheader=Hid ";
 $select.= "LEFT JOIN Type ON Ireturn=Tid ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=Iarch ";
 $select.= "LEFT JOIN Architecture ON Iarch=Aid ";
-$select.= "WHERE ( Istatus='Included' OR Istatus='SrcOnly' )";
+$select.= "WHERE ( Istdstatus='Included' OR Istdstatus='SrcOnly' )";
 #$select.= "AND Iarch=$Aid ";
 $select.= "AND Hname=".$Dbh->quote($headname)." ";
 print $select,"\n" if $trace;

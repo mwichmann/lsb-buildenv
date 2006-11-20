@@ -298,7 +298,7 @@ sub CheckSymbols($$$$$)
   $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM Interface,LibGroup, ".
                        "LGInt LEFT JOIN Version ON Vid=Iversion ".
                        "WHERE Itype='Function' AND ".
-                       "Interface.Iid=LGInt.LGIint AND Istatus='Included'".
+                       "Interface.Iid=LGInt.LGIint AND Istdstatus='Included'".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname")
       || die $dbh->errstr;  
@@ -405,7 +405,7 @@ sub CheckSymbols($$$$$)
                        "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) " .
                        "AND Interface.Iid=LGInt.LGIint ".
-                       "AND Istatus='Included' ".
+                       "AND Istdstatus='Included' ".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname")
       || die $dbh->errstr;  
@@ -570,7 +570,7 @@ else
 $sth = $dbh->prepare("SELECT Lid,Lname,ALrunname FROM Library "
                      . "LEFT JOIN ArchLib ON Lid=ALlid AND "
                      . "(ALAid=$TargetArchId OR ALAid=$AllArch) "
-                     . "where Library.Lstd='Yes' and ALrunname!=''")
+                     . "where Library.Lstdstatus='Included' and ALrunname!=''")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 

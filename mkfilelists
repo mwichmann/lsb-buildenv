@@ -37,7 +37,8 @@ lib_query = """SELECT Module.Mname, Library.Lname
                FROM Module, ModLib, Library 
                WHERE ( Module.Mid = ModLib.MLmid AND 
                        Library.Lid = ModLib.MLlid ) 
-               AND ( ( Library.Lstd = 'Yes' AND Library.Larch != 0 ) )"""
+		AND ( Library.Lstdstatus = 'Included' )"""	       
+#               AND ( ( Library.Lstdstatus = 'Included' AND Library.Larch != 0 ) )"""
 
 # For core, it appears that the database is not the final word,
 # so munge the core header list by adding and removing these
