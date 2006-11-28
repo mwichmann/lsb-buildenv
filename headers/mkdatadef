@@ -89,7 +89,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		    $entry{'Ttype'} eq 'FuncPtr' ) ||
 		    $entry{'Theadergroup'} != $HGid ) {
 			if($entry{'Ttype'} eq 'FuncPtr' ||
-                                $entry{'Ttype'} eq 'Function'){
+								$entry{'Ttype'} eq 'Function'){
 				$funcPtrName=$$type{'Tname'};
 			}
 			$nameonly = 1;
@@ -150,7 +150,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	print $$type{'Tname'}."\t";
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
-	#print $$type{'Tcomment'}."\n";
+	#print $$type{'Tdescription'}."\n";
 
 	$tmselect = "SELECT * FROM TypeMember ";
 	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
@@ -194,8 +194,8 @@ if( $$type{'Ttype'} eq "Struct" ) {
 			print ":".$tmentry{'TMbitfield'};
 			}
 		print ";\t";
-		#if( $tmentry{'TMcomment'} ) {
-		#	print "/* ".$tmentry{'TMcomment'}." */";
+		#if( $tmentry{'TMdescription'} ) {
+		#	print "/* ".$tmentry{'TMdescription'}." */";
 		#	}
 		print "\n";
 		# $nameonly=0;
@@ -218,7 +218,7 @@ if( $$type{'Ttype'} eq "Union" ) {
 	print $$type{'Tname'}."\t";
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
-	#print $$type{'Tcomment'}."\n";
+	#print $$type{'Tdescription'}."\n";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
@@ -255,8 +255,8 @@ if( $$type{'Ttype'} eq "Union" ) {
 			}
 		 }
 		print ";\t";
-		#if( $tmentry{'TMcomment'} ) {
-		#	print "/* ".$tmentry{'TMcomment'}." */";
+		#if( $tmentry{'TMdescription'} ) {
+		#	print "/* ".$tmentry{'TMdescription'}." */";
 		#	}
 		print "\n";
 		# $nameonly=0;
@@ -273,7 +273,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		}
 	print $$type{'Tname'}."\t";
 	if( $nameonly ) { return; }
-	#print $$type{'Tcomment'}."\n";
+	#print $$type{'Tdescription'}."\n";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
@@ -295,7 +295,7 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		if( $_ != $tmh->numrows ) {
 			print ",\n";
 			}
-		#print $tmentry{'TMcomment'}."\n";
+		#print $tmentry{'TMdescription'}."\n";
 		# $nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}\n"; }
@@ -313,7 +313,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ||
 	$Tid=$$type{'Tid'};
 	print $funcPtrName;
 	print ") " if( $$type{'Ttype'} eq "FuncPtr" && $$type{'Itype'} ne "Function" );
-	print $$type{'Tcomment'}."(";
+	print $$type{'Tdescription'}."(";
 
 	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
 	$tmselect.=" ORDER BY TMposition";
@@ -431,7 +431,7 @@ $Hid=$entry{'Hid'};
 #
 $select = "SELECT Ireturn FROM Interface ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
+$select.= "AND Istdstatus='Included' ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -447,7 +447,7 @@ $select = "SELECT Ptype FROM Interface,Parameter ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND Pint=Iid ";
 #$select.= "WHERE Pint=Iid ";
-$select.= "AND ( Istatus='Included' OR Istatus='Deprecated' ) ";
+$select.= "AND Istdstatus='Included' ";
 $select.= "AND Iarch=$Aid";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
@@ -554,7 +554,7 @@ for(1..$hgh->numrows) {
 	
 	$select.= "WHERE Cheadgroup=$HGid ";
 	$select.= "AND ACaid=$Aid ";
-	$select.= "AND Cstd ='Yes' ";
+	$select.= "AND Cstdstatus ='Included' ";
 	$select.=" ORDER BY ACvalue, Cname, ACaid";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
@@ -582,7 +582,7 @@ for(1..$hgh->numrows) {
 		displaytype(\%tentry,0);
 		print ";\n";
 		$totrows++;
-		#print $tentry{'Tcomment'}."\n\n";
+		#print $tentry{'Tdescription'}."\n\n";
 		}
 	}
 #
@@ -595,7 +595,7 @@ $select  = "SELECT * from Interface ";
 $select .= "LEFT JOIN Type on Ireturn = Tid ";
 $select .= "WHERE Iheader = $Hid AND ";
 $select .= "Iarch = $Aid AND ";
-$select .= "Istatus in ('Included','Deprecated')";
+$select .= "Istdstatus = 'Included'";
 print $select,"\n" if $trace;
 $eh = $Dbh->query($select) || die $Dbh->errmsg();
 for (1..$eh->numrows) {
@@ -707,7 +707,7 @@ if($totrows == 0) {
 	$select = "SELECT * FROM Constant ";
 	$select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
 	$select.= "WHERE Cheadgroup=$HGid ";
-	$select.= "AND Cstd ='Yes'";
+	$select.= "AND Cstdstatus ='Included'";
 	print STDERR $select,"\n" if $trace;
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	if ($ch->numrows == 0) {

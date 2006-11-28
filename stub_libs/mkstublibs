@@ -250,7 +250,7 @@ sub GenerateLibrary($$$)
                        "LEFT JOIN ArchInt ON AIint=Iid ".
                        "LEFT JOIN Version ON Vid=AIversion ".
                        "WHERE Itype='Function' ".
-		       "AND ( Istatus='Included' ) ".
+		       "AND ( Istdstatus='Included' ) ".
                        "AND LibGroup.LGlib=$libId ".
                        "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId ".
                        "OR ( AIarch!=$TargetArchId AND Iarch=1 ) ".
@@ -320,7 +320,7 @@ sub GenerateLibrary($$$)
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
                        "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) ".
-		       "AND ( Istatus='Included' OR Istatus='Deprecated' ) ".
+		       "AND Istdstatus='Included' ".
                        "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId OR IArch=1) ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname";
 # print "$select\n";
@@ -531,7 +531,7 @@ open(LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt")
 $sth = $dbh->prepare("SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
                      . "LEFT JOIN ArchLib ON Lid=ALlid "
                      . "LEFT JOIN Architecture ON Aid=ALaid "
-                     . "WHERE Library.Lstd='Yes' "
+                     . "WHERE Library.Lstdstatus='Included' "
                      . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' ) "
                      . "AND ALrunname!='' "
                      . "ORDER BY Lname")

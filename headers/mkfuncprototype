@@ -70,7 +70,7 @@ $headname =~ s/^\.\///;
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
 $select = "SELECT * FROM Interface,Header,Type ";
-$select.= "WHERE Istatus='Included' ";
+$select.= "WHERE Istdstatus='Included' ";
 $select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
 $select.= "AND Ireturn=Tid";
 print $select,"\n" if $trace;
