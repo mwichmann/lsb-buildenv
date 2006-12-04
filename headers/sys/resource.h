@@ -10,7 +10,6 @@ extern "C" {
 
 
 #define RUSAGE_CHILDREN	(-1)
-#define RUSAGE_BOTH	(-2)
 #define RLIM_INFINITY	(~0UL)
 #define RLIM_SAVED_CUR	-1
 #define RLIM_SAVED_MAX	-1
