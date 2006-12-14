@@ -98,6 +98,7 @@ struct msghdr {
 #define SIOCGIFDSTADDR	0x8917
 #define SIOCGIFBRDADDR	0x8919
 #define SIOCGIFNETMASK	0x891b
+#define SIOCGIFMTU	0x8921
 
 #define SHUT_RD	0
 #define SHUT_WR	1
