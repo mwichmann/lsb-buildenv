@@ -248,10 +248,14 @@ extern "C" {
 
 
 /* ioctl() commands which are permitted on sockets.*/
+#define SIOCGIFNAME	0x8910
 #define SIOCGIFCONF	0x8912
 #define SIOCGIFFLAGS	0x8913
 #define SIOCGIFADDR	0x8915
+#define SIOCGIFDSTADDR	0x8917
+#define SIOCGIFBRDADDR	0x8919
 #define SIOCGIFNETMASK	0x891b
+#define SIOCGIFMTU	0x8921
 
 
 
