@@ -256,6 +256,7 @@ extern "C" {
 #define SIOCGIFBRDADDR	0x8919
 #define SIOCGIFNETMASK	0x891b
 #define SIOCGIFMTU	0x8921
+#define SIOCGIFHWADDR	0x8927
 
 
 
