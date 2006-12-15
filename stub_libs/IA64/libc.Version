@@ -189,6 +189,8 @@ GLIBC_2.2 {
   fseeko64;
   fsetpos;
   fsetpos64;
+  fstatfs;
+  fstatfs64;
   fstatvfs;
   fstatvfs64;
   fsync;
@@ -542,6 +544,8 @@ GLIBC_2.2 {
   srand48;
   srandom;
   sscanf;
+  statfs;
+  statfs64;
   statvfs;
   statvfs64;
   stime;

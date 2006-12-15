@@ -153,6 +153,7 @@ GLIBC_2.0 {
   freopen;
   fscanf;
   fseek;
+  fstatfs;
   fsync;
   ftell;
   ftime;
@@ -436,6 +437,7 @@ GLIBC_2.0 {
   srand48;
   srandom;
   sscanf;
+  statfs;
   stime;
   stpcpy;
   stpncpy;
@@ -660,6 +662,7 @@ GLIBC_2.1 {
   freopen64;
   fseeko;
   fseeko64;
+  fstatfs64;
   fstatvfs;
   fstatvfs64;
   ftello;
@@ -698,6 +701,7 @@ GLIBC_2.1 {
   sigset;
   sigtimedwait;
   sigwaitinfo;
+  statfs64;
   statvfs;
   statvfs64;
   strcasestr;
