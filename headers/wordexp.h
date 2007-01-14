@@ -20,8 +20,7 @@ extern "C" {
 	WRDE_NOCMD = 4,
 	WRDE_REUSE = 8,
 	WRDE_SHOWERR = 16,
-	WRDE_UNDEF = 32,
-	__WRDE_FLAGS = 63
+	WRDE_UNDEF = 32
     };
 
 
