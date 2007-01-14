@@ -4,7 +4,7 @@
 #define optional_argument	2
 
 struct option {
-    char *name;
+    const char *name;
     int has_arg;
     int *flag;
     int val;
