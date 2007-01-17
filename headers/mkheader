@@ -1038,7 +1038,16 @@ for(1..$hgh->numrows) {
 			displayconstant(\%centry);
 			print "#endif\n";
 		} else {
-			displayconstant(\%centry);
+			if( $centry{'Cname'} !~ "assert" ) {
+				displayconstant(\%centry);
+				}
+			else {
+				print "#ifdef  NDEBUG\n";
+				print "#define assert(expr)    ((void)0)\n";
+				print "#else\n";
+				print "#define assert(expr)  ((void) ((expr) ? 0 : (__assert_fail (#expr, __FILE__, __LINE__, __PRETTY_FUNCTION__), 0)))\n";
+				print "#endif\n";
+				}
 			}
 		}
 	print "\n\n";

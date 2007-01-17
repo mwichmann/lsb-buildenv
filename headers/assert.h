@@ -7,7 +7,11 @@ extern "C" {
 #endif
 
 
-#define assert(expr)	((void)0)
+#ifdef  NDEBUG
+#define assert(expr)    ((void)0)
+#else
+#define assert(expr)  ((void) ((expr) ? 0 : (__assert_fail (#expr, __FILE__, __LINE__, __PRETTY_FUNCTION__), 0)))
+#endif
 
 
 
