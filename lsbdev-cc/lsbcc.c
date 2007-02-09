@@ -460,6 +460,39 @@ need_gcc34_compat()
   }
 }
 
+/*
+ * Recent binutils generates a new hash in the ELF object which speeds
+ * up dynamic library loading, but freaks out older dynamic linkers.
+ * Reports indicate that binutils does not always generate
+ * backward-compatible executables.  So, we check if ld recognizes the
+ * --hash-style argument, in which case we probably need to override
+ * the default hash.
+ */
+
+int
+need_sysv_hash()
+{
+  char buf[80];
+  FILE *ldhelp;
+  int result = 0;
+
+  ldhelp = popen("/usr/bin/ld --help", "r");
+  if (ldhelp == NULL) {
+    fprintf(stderr, "warning: could not find ld\n");
+    return 0;
+  }
+
+  while (fgets(buf, 80, ldhelp)) {
+    if (strstr(buf, "--hash-style") != NULL) {
+      result = 1;
+      break;
+    }
+  }
+
+  pclose(ldhelp);
+  return result;
+}
+
 /* end utility functions */
 
 /*
@@ -1214,6 +1247,13 @@ if (!no_link) {
 	argvaddstring(syslibs,"-L/lib");
 	argvaddstring(syslibs,"-L/usr/lib");
 #endif
+
+	if( !cc_is_icc && need_sysv_hash() ) {
+		if( lsbcc_debug&DEBUG_MODIFIED_ARGS ) {
+			fprintf(stderr, "Adding -Wl,--hash-style=sysv to args\n");
+		}
+		argvaddstring(syslibs, "-Wl,--hash-style=sysv");
+	}
 
 	if( lsbccmode == LSBCPLUS ) {
 		if ( need_gcc34_compat() ) {
