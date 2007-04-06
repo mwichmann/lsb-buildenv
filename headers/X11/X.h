@@ -74,6 +74,7 @@ extern "C" {
 #define FocusChangeMask	(1L<<21)
 #define PropertyChangeMask	(1L<<22)
 #define ColormapChangeMask	(1L<<23)
+#define OwnerGrabButtonMask	(1L<<24)
 #define ButtonReleaseMask	(1L<<3)
 #define EnterWindowMask	(1L<<4)
 #define LeaveWindowMask	(1L<<5)
@@ -366,6 +367,7 @@ extern "C" {
 #define Below	1
 #define TopIf	2
 #define BottomIf	3
+#define Opposite	4
 
 
 
