@@ -94,6 +94,7 @@ extern "C" {
 #define _SUBWIN	0x01
 #define _ENDLINE	0x02
 #define _FULLWIN	0x04
+#define _SCROLLWIN	0x08
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
 
@@ -131,6 +132,8 @@ extern "C" {
 	short _pad_bottom;
 	short _pad_right;
     };
+
+
 
 
 
