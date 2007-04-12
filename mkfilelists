@@ -5,9 +5,16 @@
 
 import os
 import MySQLdb
+import sys
 
 # Lists of names of the modules in core and desktop as they appear
 # in the database.
+
+length = len(sys.argv)
+if( length != 2 ) :
+	print "Usage: mkfilelists <LSB_VERSION>"; sys.exit (1)
+
+lsbversion = sys.argv[1]
 
 core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp"]
 desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt", 
@@ -35,11 +42,12 @@ header_query = """SELECT Mname, Hname
 
 lib_query = """SELECT Module.Mname, Library.Lname 
                FROM Module, ModLib, Library 
+			   LEFT JOIN ArchLib ON Lid=ALlid
                WHERE ( Module.Mid = ModLib.MLmid AND 
                        Library.Lid = ModLib.MLlid ) 
-		AND ( Library.Lstdstatus = 'Included' )"""	       
-#               AND ( ( Library.Lstdstatus = 'Included' AND Library.Larch != 0 ) )"""
-
+					AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
+					AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
+					   
 # For core, it appears that the database is not the final word,
 # so munge the core header list by adding and removing these
 # headers.

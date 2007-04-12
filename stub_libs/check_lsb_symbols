@@ -295,10 +295,13 @@ sub CheckSymbols($$$$$)
   my($iface);
   my($viface);
   # Do functions first
-  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM LGInt,LibGroup, ".
-                       "(Interface LEFT JOIN Version ON Vid=Iversion) ".
+  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname FROM LibGroup,LGInt, ".
+                       "Interface LEFT JOIN ArchInt ON AIint=Iid LEFT JOIN Version ON Vid=AIversion ".
                        "WHERE Itype='Function' AND ".
-                       "Interface.Iid=LGInt.LGIint AND Istdstatus='Included'".
+                       "Interface.Iid=LGInt.LGIint ".
+					   "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ".
+					   "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ".
+					   "AND AIarch=$TargetArchId ".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname")
       || die $dbh->errstr;  
@@ -399,13 +402,16 @@ sub CheckSymbols($$$$$)
 
   # Do variables next
   $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname,Ireturn,ATsize FROM ".
-                       "LibGroup,LGInt, (Interface ".
-                       "LEFT JOIN Version ON Vid=Iversion ".
+                       "LibGroup,LGInt,Interface ".
+		       "LEFT JOIN ArchInt ON AIint=Iid ".
+                       "LEFT JOIN Version ON Vid=AIversion ".
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
-                       "ATaid=$TargetArchId) WHERE ".
+                       "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) " .
                        "AND Interface.Iid=LGInt.LGIint ".
-                       "AND Istdstatus='Included' ".
+		       "AND AIarch=$TargetArchId ".
+				       "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ".
+					   "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ".
                        "AND LGInt.LGIlibg=LibGroup.LGid ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname")
       || die $dbh->errstr;  
@@ -487,13 +493,14 @@ sub CheckSymbols($$$$$)
 
 ######################################################################
 # Main bit
-getopts('d:u:p:o:ha:', \%Options);
+getopts('d:v:u:p:o:ha:', \%Options);
 
 if (exists($Options{'h'}))
 {
   print STDERR <<"EOM"
-Usage $0 -a arch [-d db_name] [-u username] [-p password] [-o hostname] [-h]
+Usage $0 -a arch -v lsbversion [-d db_name] [-u username] [-p password] [-o hostname] [-h]
     -h           Display this help
+    -v           Target LSB version
     -d db_name   Database name
     -u username  Name of user for db access
     -p password  Password for db access
@@ -518,6 +525,8 @@ else
 {
   die "Must define target architecture\n";
 }
+
+$lsbversion = $Options{'v'};
 
 $DBUser = $Options{'u'} if exists($Options{'u'});
 $DBPass = $Options{'p'} if exists($Options{'p'});
@@ -570,7 +579,9 @@ else
 $sth = $dbh->prepare("SELECT Lid,Lname,ALrunname FROM Library "
                      . "LEFT JOIN ArchLib ON Lid=ALlid AND "
                      . "(ALAid=$TargetArchId OR ALAid=$AllArch) "
-                     . "where Library.Lstdstatus='Included' and ALrunname!=''")
+					. "WHERE ( (ALappearedin <= '$lsbversion' and ALappearedin<>'') "
+					. "AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '$lsbversion') "
+                     . "and ALrunname!=''");
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
