@@ -33,6 +33,8 @@ extern "C" {
 
 
 
+
+
     extern int xmlStreamPush(xmlStreamCtxtPtr, const xmlChar *,
 			     const xmlChar *);
     extern int xmlStreamPushAttr(xmlStreamCtxtPtr, const xmlChar *,

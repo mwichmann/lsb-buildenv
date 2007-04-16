@@ -27,6 +27,7 @@ extern "C" {
 
 
 
+
     extern int xmlTextWriterStartCDATA(xmlTextWriterPtr);
     extern xmlTextWriterPtr xmlNewTextWriterFilename(const char *, int);
     extern int xmlTextWriterStartDTDEntity(xmlTextWriterPtr, int,

@@ -108,10 +108,14 @@ extern "C" {
 
 
 
+
     struct _GdkPixbufLoader {
 	GObject parent_instance;
 	gpointer priv;
     };
+
+
+
 
 
 

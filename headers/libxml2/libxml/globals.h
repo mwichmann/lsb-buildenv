@@ -105,6 +105,7 @@ extern "C" {
 
 
 
+
     extern int *__xmlParserDebugEntities(void);
     extern int xmlThrDefDoValidityCheckingDefaultValue(int);
     extern xmlOutputBufferCreateFilenameFunc

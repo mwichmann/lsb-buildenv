@@ -28,6 +28,7 @@ extern "C" {
 
 
 
+
     extern int xmlXIncludeProcess(xmlDocPtr);
     extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr);
     extern int xmlXIncludeProcessTree(xmlNodePtr);

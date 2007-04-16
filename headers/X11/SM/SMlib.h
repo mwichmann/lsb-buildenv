@@ -100,7 +100,7 @@ extern "C" {
     typedef void (*SmsErrorHandler) (void);
 
 
-/* Default HeaderGroup for X11/SM/SMlib.h*/
+/* Default Header Section for X11/SM/SMlib.h*/
 
 
 

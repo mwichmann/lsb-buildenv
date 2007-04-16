@@ -417,6 +417,12 @@ extern "C" {
 
 
 
+
+
+
+
+
+
     struct _PangoAttribute {
 	const PangoAttrClass *klass;
 	guint start_index;
@@ -430,6 +436,7 @@ extern "C" {
 	void (*destroy) (PangoAttribute *);
 	 gboolean(*equal) (const PangoAttribute *, const PangoAttribute *);
     };
+
 
 
 
@@ -464,6 +471,8 @@ extern "C" {
 	double x0;
 	double y0;
     };
+
+
 
 
 
@@ -525,6 +534,8 @@ extern "C" {
 
 
 
+
+
     struct _PangoRenderer {
 	GObject parent_instance;
 	PangoUnderline underline;
@@ -533,6 +544,7 @@ extern "C" {
 	PangoMatrix *matrix;
 	PangoRendererPrivate *priv;
     };
+
 
 
 
@@ -569,6 +581,13 @@ extern "C" {
 
 
 
+
+
+
+
+
+
+
     struct _PangoAttrShape {
 	PangoAttribute attr;
 	PangoRectangle ink_rect;
@@ -577,6 +596,7 @@ extern "C" {
 	PangoAttrDataCopyFunc copy_func;
 	GDestroyNotify destroy_func;
     };
+
 
 
 
@@ -645,6 +665,7 @@ extern "C" {
 	int size;
 	guint absolute:1;
     };
+
 
 
 

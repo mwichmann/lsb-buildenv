@@ -53,6 +53,7 @@ extern "C" {
 
 
 
+
     extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
     extern xmlChar *xmlEncodeSpecialChars(xmlDocPtr, const xmlChar *);
     extern xmlEntityPtr xmlAddDtdEntity(xmlDocPtr, const xmlChar *, int,

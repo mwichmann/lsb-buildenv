@@ -25,6 +25,7 @@ extern "C" {
 
 
 
+
     extern int xmlSaveSetAttrEscape(xmlSaveCtxtPtr,
 				    xmlCharEncodingOutputFunc);
     extern long int xmlSaveDoc(xmlSaveCtxtPtr, xmlDocPtr);

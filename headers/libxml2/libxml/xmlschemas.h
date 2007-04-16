@@ -52,6 +52,10 @@ extern "C" {
 
 
 
+
+
+
+
     extern int xmlSchemaValidateFile(xmlSchemaValidCtxtPtr, const char *,
 				     int);
     extern int xmlSchemaSAXUnplug(xmlSchemaSAXPlugPtr);

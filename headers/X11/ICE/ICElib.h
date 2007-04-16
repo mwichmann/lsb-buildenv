@@ -103,7 +103,7 @@ extern "C" {
     typedef void (*IceIOErrorHandler) (void);
 
 
-/* Default HeaderGroup for X11/ICE/ICElib.h*/
+/* Default Header Section for X11/ICE/ICElib.h*/
 
 
     typedef struct {
