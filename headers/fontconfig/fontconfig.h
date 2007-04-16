@@ -191,12 +191,15 @@ extern "C" {
 
 
 
+
     struct _FcMatrix {
 	double xx;
 	double xy;
 	double yx;
 	double yy;
     };
+
+
 
 
 
@@ -225,11 +228,15 @@ extern "C" {
 
 
 
+
+
+
     struct _FcObjectSet {
 	int nobject;
 	int sobject;
 	const char **objects;
     };
+
 
 
 
@@ -250,10 +257,12 @@ extern "C" {
 
 
 
+
     struct _FcObjectType {
 	const char *object;
 	FcType type;
     };
+
 
 
 

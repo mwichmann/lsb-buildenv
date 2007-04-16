@@ -24,6 +24,8 @@ extern "C" {
 
 
 
+
+
     extern xmlAutomataStatePtr xmlAutomataNewTransition2(xmlAutomataPtr,
 							 xmlAutomataStatePtr,
 							 xmlAutomataStatePtr,

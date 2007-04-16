@@ -1243,6 +1243,7 @@ void _ZNSt15basic_streambufIcSt11char_traitsIcEE6sbumpcEv() {} ;
 void _ZNSt15basic_streambufIcSt11char_traitsIcEE6setbufEPci() {} ;
 void _ZNSt15basic_streambufIcSt11char_traitsIcEE6snextcEv() {} ;
 void _ZNSt15basic_streambufIcSt11char_traitsIcEE6xsgetnEPci() {} ;
+void _ZNSt15basic_streambufIcSt11char_traitsIcEE6xsgetnEPcl() {} ;
 void _ZNSt15basic_streambufIcSt11char_traitsIcEE6xsputnEPKci() {} ;
 void _ZNSt15basic_streambufIcSt11char_traitsIcEE7pubsyncEv() {} ;
 void _ZNSt15basic_streambufIcSt11char_traitsIcEE7seekoffExSt12_Ios_SeekdirSt13_Ios_Openmode() {} ;

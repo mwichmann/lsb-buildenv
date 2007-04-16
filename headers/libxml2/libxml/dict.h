@@ -18,6 +18,7 @@ extern "C" {
 
 
 
+
     extern void xmlDictFree(xmlDictPtr);
     extern xmlDictPtr xmlDictCreate(void);
     extern const xmlChar *xmlDictExists(xmlDictPtr, const xmlChar *, int);

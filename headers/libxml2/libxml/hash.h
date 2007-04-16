@@ -30,6 +30,7 @@ extern "C" {
 
 
 
+
     extern xmlHashTablePtr xmlHashCreate(int);
     extern xmlHashTablePtr xmlHashCreateDict(int, xmlDictPtr);
     extern int xmlHashRemoveEntry(xmlHashTablePtr, const xmlChar *,

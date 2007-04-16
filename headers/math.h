@@ -207,6 +207,14 @@ extern "C" {
 /* IA32 */
     extern int __fpclassifyl(long double);
 #endif
+#if __ia64__
+/* IA64 */
+    extern int __fpclassifyl(long double);
+#endif
+#if __x86_64__
+/* x86-64 */
+    extern int __fpclassifyl(long double);
+#endif
     extern int signgam;
     extern double copysign(double, double);
     extern int finite(double);
@@ -301,6 +309,14 @@ extern "C" {
     extern long double erfl(long double);
     extern double exp2(double);
     extern float exp2f(float);
+#if __i386__
+/* IA32 */
+    extern long double exp2l(long double);
+#endif
+#if __ia64__
+/* IA64 */
+    extern long double exp2l(long double);
+#endif
 #if __x86_64__
 /* x86-64 */
     extern long double exp2l(long double);
@@ -424,14 +440,6 @@ extern "C" {
     extern long double y1l(long double);
     extern float ynf(int, float);
     extern long double ynl(int, long double);
-#if __x86_64__
-/* x86-64 */
-    extern int __fpclassifyl(long double);
-#endif
-#if __ia64__
-/* IA64 */
-    extern int __fpclassifyl(long double);
-#endif
 #if __i386__
 /* IA32 */
     extern int __signbitl(long double);
@@ -443,14 +451,6 @@ extern "C" {
 #if __x86_64__
 /* x86-64 */
     extern int __signbitl(long double);
-#endif
-#if __i386__
-/* IA32 */
-    extern long double exp2l(long double);
-#endif
-#if __ia64__
-/* IA64 */
-    extern long double exp2l(long double);
 #endif
 #ifdef __cplusplus
 }

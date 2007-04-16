@@ -95,6 +95,7 @@ extern "C" {
 
 
 
+
     struct _xmlValidCtxt {
 	void *userData;
 	xmlValidityErrorFunc error;

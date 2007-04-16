@@ -28,6 +28,8 @@ extern "C" {
 
 
 
+
+
     extern int xmlListRemoveFirst(xmlListPtr, void *);
     extern xmlLinkPtr xmlListFront(xmlListPtr);
     extern xmlListPtr xmlListDup(const xmlListPtr);

@@ -21,6 +21,7 @@ extern "C" {
 
 
 
+
     extern int xmlModuleClose(xmlModulePtr);
     extern int xmlModuleFree(xmlModulePtr);
     extern int xmlModuleSymbol(xmlModulePtr, const char *, void **);

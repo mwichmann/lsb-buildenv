@@ -121,6 +121,7 @@ extern "C" {
 
 
 
+
     struct _xmlNodeSet {
 	int nodeNr;
 	int nodeMax;

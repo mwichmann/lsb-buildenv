@@ -21,6 +21,7 @@ void pthread_attr_setinheritsched() {} ;
 void pthread_attr_setschedparam() {} ;
 void pthread_attr_setschedpolicy() {} ;
 void pthread_attr_setscope() {} ;
+void pthread_attr_setstack() {} ;
 void pthread_attr_setstackaddr() {} ;
 void pthread_attr_setstacksize() {} ;
 void pthread_cancel() {} ;
