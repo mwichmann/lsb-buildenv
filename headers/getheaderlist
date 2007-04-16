@@ -12,13 +12,26 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 # Uncomment to trace SQL statments
 #$trace=1;
 
+sub
+usage()
+{
+die "getheaderlist -v <lsbversion>";
+}
+
+GetOptions("v=s" => \$lsbversion);
+if( !$lsbversion ) { usage(); }
 
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
 #
 # Get the Header id
 #
-$select = "SELECT Hname FROM Header WHERE ( Hstdstatus!='Excluded' OR Hsrcerror='Yes')";
+$select = "SELECT Hname FROM Header ";
+$select.= "WHERE Hsrcerror='Yes' ";
+$select.= "OR Hsrconly='Yes' ";
+$select.= "OR ( (Happearedin is not NULL and Happearedin <= '$lsbversion' and Happearedin<>'') ";
+$select.= "AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '$lsbversion') )";
+# $select.= "WHERE ( Hstdstatus!='Excluded' OR Hsrcerror='Yes')";
 print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$sth->numrows) {

@@ -1,5 +1,5 @@
 ARCHS = All IA32 IA64 PPC32 S390 PPC64 S390X x86-64
-HEADERFILELIST := $(shell ./getheaderlist)
+HEADERFILELIST := $(shell ./getheaderlist -v `cat LSB_VERSION`)
 
 all: $(foreach arch,$(ARCHS),headers-$(arch))
 
@@ -7,15 +7,15 @@ headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 	@echo Made header files for $*
 
 core_filelist desktop_filelist:
-	cd .. && ./mkfilelists
+	cd .. && ./mkfilelists `cat LSB_VERSION`
 
 %.defs: 
 	mkdir -p $(dir $@)
-	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob > $@
+	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -v `cat LSB_VERSION` -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob > $@
 
 %.h:
 	mkdir -p $(dir $@)
-	./mkheader -a All -h $@ | indent -kr >$@
+	./mkheader -a All -v `cat LSB_VERSION` -h $@ | indent -kr >$@
 
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 

@@ -122,12 +122,15 @@ use strict;
 use DBI;
 use Getopt::Std;
 
+use Mysql;
+
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
 my($DBName) = $LSBDB;
 my($DBUser) = $LSBUSER;
 my($DBPass)  = $LSBDBPASSWD;
 my($DBHost) = $LSBDBHOST;
+my($lsbversion);
 my($TargetArch);
 my($TargetArchId);
 my(%Options);
@@ -232,6 +235,8 @@ sub GenerateLibrary($$$)
   my($libId) = shift;
   my($sth);
   my($select);
+  my($sthCheck);
+  my($selectCheck);
   my($row);
   my(%versionInfo);
   local(*STUBFILE);
@@ -241,42 +246,56 @@ sub GenerateLibrary($$$)
 
   open(STUBFILE, ">$DestinationDirectory/$libName.c")
       || die "Could not open $DestinationDirectory/$libName.c to write\n";
-  open(VERSIONFILE, ">$DestinationDirectory/$libName.Version") 
+  open(VERSIONFILE, ">$DestinationDirectory/$libName.Version")
       || die "Could not open $DestinationDirectory/$libName.Version to write\n";
   # Do functions first
-  $select = "SELECT DISTINCT Iname,Iarch,AIarch,Vname FROM Interface ".
+    $select = "SELECT DISTINCT Iname,AIarch,Vname FROM Interface ".
                        "LEFT JOIN LGInt ON LGIint=Iid ".
                        "LEFT JOIN LibGroup ON LGIlibg=LGid ".
                        "LEFT JOIN ArchInt ON AIint=Iid ".
                        "LEFT JOIN Version ON Vid=AIversion ".
                        "WHERE Itype='Function' ".
-		       "AND ( Istdstatus='Included' ) ".
+					   "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ".
+					   "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ".
                        "AND LibGroup.LGlib=$libId ".
-                       "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId ".
-                       "OR ( AIarch!=$TargetArchId AND Iarch=1 ) ".
-                       "OR ( AIarch IS NULL AND Iarch=1 ) ) ".
+                       "AND ( AIarch=$TargetArchId OR AIarch=1 )".
                        "ORDER BY Iname";
 #  print STDERR $select,"\n";
-  $sth = $dbh->prepare($select) || die $dbh->errstr;  
+  $sth = $dbh->prepare($select) || die $dbh->errstr;
   $sth->execute() || die $sth->errstr;
   $lastint="";
   while ($row = $sth->fetchrow_hashref())
   {
 #if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
-    if( $row->{AIarch} && $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
+#     if( $row->{AIarch} && $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
 
-    #if( !$row->{AIarch} ){print "$row->{Iname}\tNULL AIarch\n";}
-    if( !$row->{AIarch} && 
-	( $row->{Iarch}!=$TargetArchId && $row->{Iarch}!=1 ) )
-		{ print "Skipping bad AIarch for $row->{Iname}\n";next; }
     #if( !$row->{Vname} ){print "$row->{Iname}\tNULL Vname\n";}
-    if( !$row->{Vname} && $row->{AIarch}
-	&& $row->{AIarch}!=$TargetArchId && $row->{Iarch}!=1
-	&& $row->{Iarch} != $row->{AIarch} )
-		{ print "Skipping bad Vname for $row->{Iname}\n";next; }
+#     if( !$row->{Vname} && $row->{AIarch}
+# 	&& $row->{AIarch}!=$TargetArchId && $row->{AIarch}!=1 )
+# 		{ print "Skipping bad Vname for $row->{Iname}\n";next; }
 
     #if( $row->{Iname} eq $lastint ) { print "skipping dup $lastint\n"; }
     if( $row->{Iname} eq $lastint ) { next; }
+
+	if( ($TargetArchId != 1) && ($row->{AIarch} == 1) ) {
+	    $selectCheck = "SELECT DISTINCT Iid FROM Interface ".
+						"LEFT JOIN LGInt ON LGIint=Iid ".
+						"LEFT JOIN LibGroup ON LGIlibg=LGid ".
+						"LEFT JOIN ArchInt ON AIint=Iid ".
+						"WHERE Itype='Function' ".
+						"AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ".
+						"AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ".
+						"AND LibGroup.LGlib=$libId ".
+						"AND AIarch=$TargetArchId ".
+						"AND Iname='$row->{Iname}'";
+
+		$sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
+		$sthCheck->execute() || die $sthCheck->errstr;
+		if ($sthCheck->fetchrow_hashref()) {
+			next;
+		}
+	}
+
 #if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
     $lastint=$row->{Iname};
     print(STUBFILE "void $row->{Iname}() {} ;\n");
@@ -320,24 +339,47 @@ sub GenerateLibrary($$$)
                        "LEFT JOIN ArchType ON ATtid=Ireturn and ".
                        "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) ".
-		       "AND Istdstatus='Included' ".
-                       "AND ( AIarch=$TargetArchId OR Iarch=$TargetArchId OR IArch=1) ".
+						"AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ".
+						"AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ".
+                       "AND ( AIarch=$TargetArchId OR AIarch=1 ) ".
                        "AND LibGroup.LGlib=$libId ORDER BY Iname";
 # print "$select\n";
-  $sth = $dbh->prepare($select) || die $dbh->errstr;  
+  $sth = $dbh->prepare($select) || die $dbh->errstr;
   $sth->execute() || die $sth->errstr;
   my($size);
   $lastint="";
   while ($row = $sth->fetchrow_hashref())
   {
+	if( ($TargetArchId != 1) && ($row->{AIarch} == 1) ) {
+	    $selectCheck = "SELECT DISTINCT Iid FROM Interface ".
+						"LEFT JOIN LGInt ON LGIint=Iid ".
+						"LEFT JOIN LibGroup ON LGIlibg=LGid ".
+						"LEFT JOIN ArchInt ON AIint=Iid ".
+						"LEFT JOIN ArchType ON ATtid=Ireturn and ".
+						"ATaid=$TargetArchId WHERE ".
+						"( Itype='Data' OR Itype='Alias' OR Itype='Common' ) ".
+						"AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ".
+						"AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ".
+						"AND AIarch=$TargetArchId ".
+						"AND LibGroup.LGlib=$libId ".
+						"AND Iname='$row->{Iname}'";
+
+		$sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
+		$sthCheck->execute() || die $sthCheck->errstr;
+		if ($sthCheck->fetchrow_hashref()) {
+			next;
+		}
+	}
+
     if( $row->{AIarch} && $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
     if( $row->{Iname} eq $lastint ) { print "skipping dup $lastint\n";next; }
-    $lastint=$row->{Iname};
+
+	$lastint=$row->{Iname};
     # Work out size of data variable
     $size = 0;
     if (!defined($row->{"ATsize"}) || $row->{"ATsize"} == 0)
     {
-      if (defined($MissingData{$libName}) 
+      if (defined($MissingData{$libName})
           && defined($MissingData{$libName}{$row->{Iname}}))
       {
         print STDOUT "Size not available for symbol $row->{Iname}"
@@ -358,7 +400,7 @@ sub GenerateLibrary($$$)
     {
       $size = $row->{"ATsize"};
 
-      if (defined($MissingData{$libName}) 
+      if (defined($MissingData{$libName})
           && defined($MissingData{$libName}{$row->{Iname}})
           && $MissingData{$libName}{$row->{Iname}} != $size)
       {
@@ -403,7 +445,7 @@ sub GenerateLibrary($$$)
       }
       $version = $OverrideVersions{$libName}{$row->{Iname}};
     }
-    
+
     if (defined($version))
     {
       # Unversioned symbols will not have the Vname field defined
@@ -413,7 +455,7 @@ sub GenerateLibrary($$$)
       }
       push(@{$versionInfo{$version}}, $row->{Iname});
     }
-    
+
   }
 
   # Dump version information
@@ -453,13 +495,14 @@ EOF
 
 ######################################################################
 # Main bit
-getopts('d:u:p:o:ha:', \%Options);
+getopts('d:u:p:v:o:ha:', \%Options);
 
-if (exists($Options{'h'}))
+if( (exists($Options{'h'})) or (not exists($Options{'v'})) )
 {
   print STDERR <<"EOM"
-Usage $0 -a arch [-d db_name] [-u username] [-p password] [-o hostname] [-h]
+Usage $0 -a arch -v lsbversion [-d db_name] [-u username] [-p password] [-o hostname] [-h]
     -h           Display this help
+    -v           Target LSB version
     -d db_name   Database name
     -u username  Name of user for db access
     -p password  Password for db access
@@ -468,8 +511,7 @@ Usage $0 -a arch [-d db_name] [-u username] [-p password] [-o hostname] [-h]
                  (Note this is not magic - you have to compile it on
                   the correct platform still!)
 EOM
-    ;
-  exit(1);
+	;  exit(1);
 }
 
 if (defined($Options{'a'}))
@@ -480,6 +522,8 @@ else
 {
   die "Must define target architecture\n";
 }
+
+$lsbversion = $Options{'v'};
 
 $DBUser = $Options{'u'} if exists($Options{'u'});
 $DBPass = $Options{'p'} if exists($Options{'p'});
@@ -524,17 +568,20 @@ LoadOverrideSymbolData();
 
 # Map of name to run-time name of shared library
 local(*LIBMAPFILE);
-open(LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt") 
+open(LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt")
     || die "Could not open file LibNameMap.txt file for writing\n";
 
 # Get list of libraries we want to produce stub libraries for
-$sth = $dbh->prepare("SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
+my $select;
+$select="SELECT Lid,Lname,Aname,ALrunname,ALaid FROM Library "
                      . "LEFT JOIN ArchLib ON Lid=ALlid "
                      . "LEFT JOIN Architecture ON Aid=ALaid "
-                     . "WHERE Library.Lstdstatus='Included' "
-                     . "AND ( ALaid=\'$TargetArchId\' OR Aname='All' ) "
-                     . "AND ALrunname!='' "
-                     . "ORDER BY Lname")
+					. "WHERE (ALappearedin <= \'$lsbversion\' and ALappearedin<>\'\') "
+					. "AND (ALwithdrawnin IS NULL OR ALwithdrawnin > \'$lsbversion\') "
+					. "AND ( ALaid=\'$TargetArchId\' OR ALaid=1 ) "
+                     . "AND ALrunname<>\'\' "
+                     . "ORDER BY Lname";
+$sth = $dbh->prepare($select)
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
