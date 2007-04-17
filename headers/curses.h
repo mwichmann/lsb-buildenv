@@ -569,7 +569,7 @@ extern "C" {
     extern char *unctrl(chtype);
     extern int COLORS;
     extern int COLOR_PAIRS;
-    extern chtype acs_map[128];
+    extern chtype acs_map[];
     extern WINDOW *curscr;
     extern WINDOW *stdscr;
     extern int COLS;
