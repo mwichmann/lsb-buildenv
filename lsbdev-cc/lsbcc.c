@@ -60,22 +60,12 @@
 #include <dirent.h>
 #include <errno.h>
 
+#include "lsbcc_libs.h"
+#include "lsbcc_argv.h"
+
 /* begin lsbcc.h */
 
 static char lsbcc_lsb_version [] = "LSB version 3.1";
-
-/*
- * Logically, this would go into a header, but there is no need for a seperate
- * header, so it's just here, near the top of this file.
- */
-
-struct argvgroup {
-	int	numargv;
-	int	maxargv;
-	char	**argv;
-	};
-
-#define ARGVCHUNKSIZE	100
 
 /* end lsbcc.h */
 
@@ -143,181 +133,12 @@ int lsbcc_buildingshared=0;
  */
 int b_dynamic = 1;
 
-/* begin argv ADT */
-/*
- * Create an abstract data type to maintain the options that are collected
- * into groups, and then put together to pass to gcc.
- */
-struct argvgroup *
-argvinit(void)
-{
-struct argvgroup *ag;
-
-if( (ag=(struct argvgroup *)malloc(sizeof(struct argvgroup))) == NULL ) {
-	fprintf(stderr,"Unable to allocate memory for a new argvgroup\n");
-	exit(2);
-	}
-
-if( (ag->argv=(char **)malloc(sizeof(char *)*ARGVCHUNKSIZE)) == NULL ) {
-	fprintf(stderr,"Unable to allocate memory for a argv items\n");
-	exit(2);
-	}
-ag->numargv=0;
-ag->maxargv=ARGVCHUNKSIZE;
-
-return ag;
-}
-
-void
-argvreset(struct argvgroup *ag)
-{
-ag->numargv=0;
-}
-
-/*
- * argvaddstring is used to add a string that already begins with '-' to
- * an argvgroup. It will allocate more space if the argvgroup is nearly full.
- */
-void
-argvaddstring(struct argvgroup *ag,char *str)
-{
-if( ag->numargv+2 >= ag->maxargv ) {
-	/* This argvgroup is full, so get more space */
-	ag->maxargv+=ARGVCHUNKSIZE;
-	if( (ag->argv=
-	    (char **)realloc(ag->argv,sizeof(char *)*ag->maxargv)) == NULL ) {
-		fprintf(stderr,"Unable to allocate memory for argv items\n");
-		exit(3);
-		}
-	}
-
-ag->argv[ag->numargv++]=str;
-}
-
-/*
- * argvadd is used to rebuild the option string so that it starts with a '-',
- * and then add it and possibly an argument to the argvgroup.
- */
-void
-argvadd(struct argvgroup *ag, const char *opt, char *val)
-{
-char *dashopt;
-
-if( (dashopt=(char *)malloc(strlen(opt)+2)) == NULL ) {
-	fprintf(stderr,"Unable to allocate memory for an option string\n");
-	exit(4);
-	}
-
-strcpy(dashopt,"-");
-strcat(dashopt,opt);
-argvaddstring(ag, dashopt);
-
-if( val ) {
-	ag->argv[ag->numargv++]=val;
-	}
-}
-
-void
-argvappend(struct argvgroup *to, struct argvgroup *from)
-{
-int i;
-if( to->numargv+from->numargv >= to->maxargv ) {
-	/* This argvgroup is full, so get more space */
-	to->maxargv+=from->numargv;
-	if( (to->argv=
-	    (char **)realloc(to->argv,sizeof(char *)*to->maxargv)) == NULL ) {
-		fprintf(stderr,"Unable to allocate memory for argv items\n");
-		exit(3);
-		}
-	}
-for(i=0;i<from->numargv;i++) {
-	to->argv[to->numargv++]=from->argv[i];
-/*
-	printf("appending %s\n", from->argv[i]);
-*/
-	}
-}
-
-void
-argvdump(struct argvgroup *ag)
-{
-int i;
-
-for(i=0;i<ag->numargv;i++)
-	fprintf(stderr,"%3.3d: %s\n",i,ag->argv[i]);
-}
-/* end argv ADT */
-
 /* begin option processing routines */
 
 /*
  * Some options require a little bit of additional processing, so we have
  * a few routines here that are used to do the special processing.
  */
-
-/*
- * FIXME - generate these from the DB at compile time for the toolchain
- */
-char *lsb_corelibs[] = {
-	"c",		/* core module */
-	"crypt",
-	"dl",
-	"gcc_s",
-	"m",
-	"ncurses",
-	"pam",
-	"pthread",
-	"rt",
-	"util",
-	"z",
-	"GL",		/* graphics module */
-	"ICE",
-	"SM",
-	"X11",
-	"Xext",
-	"Xi",
-	"Xt",
-	NULL
-};
-
-char *lsb_cpluslibs[] = {
-	"stdc++",
-	NULL
-};
-
-char *lsb_desktoplibs[] = {
-	"glib-2.0",
-	"gthread-2.0",
-	"gobject-2.0",
-	"gmodule-2.0",
-	"atk-1.0",
-	"pango-1.0",
-	"pangoxft-1.0",
-	"pangoft2-1.0",
-	"gdk-x11-2.0",
-	"gdk_pixbuf_xlib-2.0",
-	"gdk_pixbuf-2.0",
-	"gtk-x11-2.0",
-	"xml2",
-	"jpeg",
-	"png12",
-	"png",
-	"fontconfig",
-        "qt-mt",
-	NULL
-};
-
-char *lsb_desktoplibs_qt4[] = {
-	"QtCore",
-	"QtGui",
-	"QtNetwork",
-	"QtXml",
-	"QtOpenGL",
-	"QtSql",
-	"QtSvg",
-	NULL
-};
-
 void
 process_opt_l(char *val)
 {
@@ -535,6 +356,28 @@ struct option long_options[] = {
 	{NULL,0,0,0}
 	};
 
+char *get_modules_strings(void)
+{
+	int	i = 0;
+	char	*modules = NULL;
+	char	*tmp = NULL;
+	for(;i < lsb_num_modules; i++) {
+		lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+
+		tmp = modules;
+		modules = malloc((tmp ? strlen(tmp) : 0) + strlen(lsb_module->module_name) + 2);
+		memset(modules, 0, (tmp ? strlen(tmp) : 0) + strlen(lsb_module->module_name) + 2);
+		if (tmp) {
+			strcpy(modules, tmp);
+			strcat(modules, ",");
+		}
+		strcat(modules, lsb_module->module_name);
+		if (tmp) {
+			free(tmp);
+		}
+	}
+	return modules;
+}
 
 void
 usage(const char *progname) {
@@ -577,15 +420,15 @@ usage(const char *progname) {
 		"\t                    to have effect.\n"
 		"\t--lsb-modules=<module,..>\n"
 		"\t                   Enable support for the optional LSB modules listed.\n"
-		"\t                    See release documentation for list of supported\n"
-		"\t                    optional modules.  Modules will added in addition\n"
-		"\t                    to any added from the LSBCC_MODULES environment\n"
-		"\t                    setting.\n"
+		"\t                    Modules will added in addition to any added from \n"
+		"\t                    the LSB_MODULES environment setting.\n"
+		"\t                    known modules: %s\n\n"
 	
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
-		,progname);
+		,progname,
+		(lsb_num_modules ? get_modules_strings() : "none"));
 }
 
 /*
@@ -769,7 +612,6 @@ int main(int argc, char *argv[])
 int	c,i;
 int	option_index;
 int 	auto_pthread = 1; 
-int	desktop_qt4_product = 0;
 int	feature_settings = 0;
 int	display_cmd = 0;
 int	found_gcc_arg = 0;
@@ -892,29 +734,42 @@ if( lsbcc_debug&DEBUG_ARGUMENTS ) {
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
  */
-for(i=0;lsb_corelibs[i]; i++) {
-	argvaddstring(lsblibs, strdup(lsb_corelibs[i]));
+for(i=0;lsb_libs[i]; i++) {
+	argvaddstring(lsblibs, strdup(lsb_libs[i]));
 }
 
 if(LSBCPLUS == lsbccmode) {
-	for(i=0;lsb_cpluslibs[i]; i++) {
-		argvaddstring(lsblibs, strdup(lsb_cpluslibs[i]));
+	for(i=0;lsb_cplus_libs[i]; i++) {
+		argvaddstring(lsblibs, strdup(lsb_cplus_libs[i]));
 	}
-}
-
-for(i=0;lsb_desktoplibs[i];i++) {
-	argvaddstring(lsblibs, strdup(lsb_desktoplibs[i]));
 }
 
 /*
  * check if we should pull in optional LSB modules.
  */
 if((ptr = getenv("LSB_MODULES")) != NULL) {
-	if(strcasecmp(ptr, "qt4") == 0) {
-		desktop_qt4_product = 1;
-        	for(i=0;lsb_desktoplibs_qt4[i];i++) {
-               		argvaddstring(lsblibs, strdup(lsb_desktoplibs_qt4[i]));
+	char *modulearg, *module;
+	modulearg = strdup(ptr);
+	module = strtok(modulearg, ",");
+	while (module) {
+		int	found = 0;
+		for (i = 0; i < lsb_num_modules; i++) {
+			int	j = 0;
+			lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+
+			if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
+        			for(;lsb_module->lib_names[j] != NULL;j++) {
+               				argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
+				}
+				found = 1;
+				break;
+			}
 		}
+		if (!found) {
+			fprintf(stderr,"unknown module in LSB_MODULES: %s\n", module);
+			exit(EXIT_FAILURE);
+		}
+		module = strtok(NULL, ",");
 	}
 }
 
@@ -1028,17 +883,23 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		modulearg = strdup(optarg);
 		module = strtok(modulearg, ",");
 		while (module) {
-			if(strcasecmp(module, "qt4") == 0) {
-				if (!desktop_qt4_product) {
-        				for(i=0;lsb_desktoplibs_qt4[i];i++) {
-               					 argvaddstring(lsblibs, strdup(lsb_desktoplibs_qt4[i]));
+			int	found = 0;
+			int	j = 0;
+			for (i = 0; i < lsb_num_modules; i++) {
+				lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+
+				if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
+        				for(j=0;lsb_module->lib_names[j] != NULL;j++) {
+               					argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
 					}
+					found = 1;
+					break;
 				}
-			} else {
+			}
+			if (!found) {
 				fprintf(stderr,"unknown module: %s\n", module);
 				usage(argv[0]);
 				exit(EXIT_FAILURE);
-			
 			}
 			module = strtok(NULL, ",");
 		}
@@ -1424,11 +1285,7 @@ if( lsbcc_debug&DEBUG_MODIFIED_ARGS) {
  * pretty-print the pending command line
  */
 if (display_cmd) {
-
-	for(i=0;i<gccargs->numargv;i++) {
-		fprintf(stderr, " %s",gccargs->argv[i]);
-	}
-	fprintf(stderr, "\n");
+	argvprint(gccargs);
 }
 
 assert(gccargs->numargv > 0);

@@ -1,10 +1,19 @@
 PROGRAMS = lsbcc lsbc++
+OBJS = lsbcc.o lsbcc_argv.o
 LIBS = libgcc34compat.a
 CFLAGS=-g -Wall
 CXXFLAGS=$(CFLAGS)
 GCC34_COMPAT_CFLAGS = -fPIC
+LSB_VERSION ?= "3.1"
 
 all: $(PROGRAMS) $(LIBS)
+
+lsbcc_libs.h:
+	./mk_lsbcc_libs.pl $(LSB_VERSION) > lsbcc_libs.h
+
+$(OBJS): lsbcc_libs.h
+
+lsbcc: $(OBJS)
 
 lsbc++: lsbcc
 	rm -f lsbc++
@@ -39,3 +48,4 @@ clean:
 	rm -f $(PROGRAMS) $(LIBS) *.o
 
 distclean:
+	rm lsbcc_libs.h
