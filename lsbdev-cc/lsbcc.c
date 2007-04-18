@@ -60,14 +60,9 @@
 #include <dirent.h>
 #include <errno.h>
 
+#include "lsbcc_version.h"
 #include "lsbcc_libs.h"
 #include "lsbcc_argv.h"
-
-/* begin lsbcc.h */
-
-static char lsbcc_lsb_version [] = "LSB version 3.1";
-
-/* end lsbcc.h */
 
 /*
  * These are the catagories of options that we are going to be grouping

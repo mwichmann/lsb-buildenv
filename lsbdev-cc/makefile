@@ -1,5 +1,7 @@
-PROGRAMS = lsbcc lsbc++
-OBJS = lsbcc.o lsbcc_argv.o
+PROGRAMS = lsbcc lsbc++ lsbcpp
+COMMON_OBJS = lsbcc_argv.o
+LSBCC_OBJS = lsbcc.o
+LSBCPP_OBJS = lsbcpp.o
 LIBS = libgcc34compat.a
 CFLAGS=-g -Wall
 CXXFLAGS=$(CFLAGS)
@@ -11,9 +13,18 @@ all: $(PROGRAMS) $(LIBS)
 lsbcc_libs.h:
 	./mk_lsbcc_libs.pl $(LSB_VERSION) > lsbcc_libs.h
 
-$(OBJS): lsbcc_libs.h
+lsbcc_version.h:
+	./mk_lsbcc_version.pl $(LSB_VERSION) > lsbcc_version.h
 
-lsbcc: $(OBJS)
+$(LSBCC_OBJS): lsbcc_libs.h lsbcc_version.h
+
+$(LSBCPP_OBJS): lsbcc_version.h
+
+$(COMMON_OBJS):
+
+lsbcc: $(LSBCC_OBJS) $(COMMON_OBJS)
+
+lsbcpp: $(LSBCPP_OBJS) $(COMMON_OBJS)
 
 lsbc++: lsbcc
 	rm -f lsbc++
@@ -29,6 +40,7 @@ install: $(PROGRAMS) $(LIBS)
 	install -d $(INSTALL_ROOT)/$(BINDIR)
 	install lsbcc $(INSTALL_ROOT)/$(BINDIR)/lsbcc
 	install lsbcc $(INSTALL_ROOT)/$(BINDIR)/lsbc++
+	install lsbcpp $(INSTALL_ROOT)/$(BINDIR)/lsbcpp
 	install -d $(INSTALL_ROOT)/$(MANDIR)/man1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
@@ -49,3 +61,4 @@ clean:
 
 distclean:
 	rm lsbcc_libs.h
+	rm lsbcc_version.h
