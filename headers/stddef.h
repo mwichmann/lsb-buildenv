@@ -12,8 +12,53 @@ extern "C" {
 
 
 #if !defined(__cplusplus)
+#if __i386__
+/* IA32 */
+    typedef long int wchar_t;
+
+#endif
+#endif
+#if !defined(__cplusplus)
+#if __ia64__
+/* IA64 */
     typedef int wchar_t;
 
+#endif
+#endif
+#if !defined(__cplusplus)
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef long int wchar_t;
+
+#endif
+#endif
+#if !defined(__cplusplus)
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef int wchar_t;
+
+#endif
+#endif
+#if !defined(__cplusplus)
+#if __powerpc64__
+/* PPC64 */
+    typedef int wchar_t;
+
+#endif
+#endif
+#if !defined(__cplusplus)
+#if __s390x__
+/* S390X */
+    typedef int wchar_t;
+
+#endif
+#endif
+#if !defined(__cplusplus)
+#if __x86_64__
+/* x86-64 */
+    typedef int wchar_t;
+
+#endif
 #endif
 #if __ia64__
 /* IA64 */
