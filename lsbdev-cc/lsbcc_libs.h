@@ -39,6 +39,7 @@ char *lsb_libs[] = {
 	"gtk-x11-2.0",
 	"fontconfig",
 	"png12",
+	"png",		/* XXX hand-edit */
 	"jpeg",
 	"xml2",
 	"qt-mt",
