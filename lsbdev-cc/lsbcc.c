@@ -1081,6 +1081,14 @@ if (optind < argc) {
 	}
 }
 
+/* fugly hack for issue with compiled apps on some plats not
+ * running on others (SLES10 compiled segfaults on Debian4 ppc)
+ * provide our own crti.o to work around the issue
+*/
+#if __powerpc__
+argvaddstring(gccargs, "-B/opt/lsb/lib");
+#endif
+
 /*
  * If we didn't find a file to work against, we don't need
  * to link either.
