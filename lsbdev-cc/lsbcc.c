@@ -1085,7 +1085,7 @@ if (optind < argc) {
  * running on others (SLES10 compiled segfaults on Debian4 ppc)
  * provide our own crti.o to work around the issue
 */
-#if __powerpc__
+#if __powerpc__ && !__powerpc64__
 argvaddstring(gccargs, "-B/opt/lsb/lib");
 #endif
 
