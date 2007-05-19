@@ -107,7 +107,8 @@ int main(int argc, char *argv[])
 
   /* First, let's figure out how we were started. */
 
-  if (strstr(argv[0], "lsbrun") != NULL) {
+  strcpy(buf, argv[0]);
+  if (strstr(basename(buf), "lsbrun") != NULL) {
     if ((argc < 2) || (strcmp(argv[1], "--help") == 0)) {
       help(stdout);
       exit(0);
