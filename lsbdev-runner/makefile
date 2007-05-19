@@ -1,3 +1,4 @@
+CFLAGS = -g -Wall
 LDFLAGS = -static
 
 lsbrun: lsbrun.o

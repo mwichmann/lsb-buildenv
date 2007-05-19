@@ -52,6 +52,39 @@ const char *lsb_linker_path = "/lib64/ld-lsb-x86-64.so.3";
 
 const char *find_binary_path(const char *binary)
 {
+  char buf[PATH_MAX];
+  char *path;
+  char *path_item;
+  char *result = NULL;
+
+  /* If this is a bare name, search the PATH first. */
+
+  if (strchr(binary, '/') == NULL) {
+    path = strdup(getenv("PATH"));
+    for (path_item = strtok(path, ":"); path_item != NULL;
+	 path_item = strtok(NULL, ":")) {
+      snprintf(buf, PATH_MAX, "%s/%s", path_item, binary);
+      if (access(buf, X_OK) == 0) {
+	result = strdup(buf);
+	break;
+      } else {
+	buf[0] = '\0';
+      }
+    }
+    free(path);
+  }
+
+  /* Not a bare name, or the name couldn't be found in the PATH?
+     Assume it's in the current directory. */
+
+  if (result == NULL) {
+    getcwd(buf, PATH_MAX);
+    strncat(buf, "/", PATH_MAX);
+    strncat(buf, binary, PATH_MAX);
+    result = strdup(buf);
+  }
+
+  return result;
 }
 
 void help(FILE *stream)
@@ -66,10 +99,8 @@ int main(int argc, char *argv[])
   int real_cmdline_len;
 
   const char *linker_path;
-  const char *fixed_exec;
   char *exec_fn;
   char *abs_exec_dir;
-  char current_dir[PATH_MAX];
 
   char buf[PATH_MAX];
   int index;
