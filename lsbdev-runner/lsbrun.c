@@ -67,6 +67,8 @@ int main(int argc, char *argv[])
 
   const char *linker_path;
   const char *fixed_exec;
+  char *exec_fn;
+  char *abs_exec_dir;
   char current_dir[PATH_MAX];
 
   char buf[PATH_MAX];
@@ -80,6 +82,7 @@ int main(int argc, char *argv[])
       exit(0);
     } else {
       real_cmdline = &(argv[1]);
+    }
   } else {
 
     /* Copy argv. */
@@ -93,17 +96,17 @@ int main(int argc, char *argv[])
        stored next to this program, but with a '.' prepended.  Look
        for that binary. */
 
-    strcpy(buf, argv[0], PATH_MAX);
+    strncpy(buf, argv[0], PATH_MAX);
     exec_fn = strdup(basename(buf));
 
     if (access(argv[0], X_OK) == 0) {
-      strcpy(buf, argv[0], PATH_MAX);
+      strncpy(buf, argv[0], PATH_MAX);
       abs_exec_dir = strdup(dirname(buf));
     } else {
       abs_exec_dir = find_binary_path(argv[0]);
     }
 
-    realloc(exec_fn, strlen(exec_fn) + 2);
+    exec_fn = realloc(exec_fn, strlen(exec_fn) + 2);
     memmove(exec_fn + 1, exec_fn, strlen(exec_fn) + 1);
     exec_fn[0] = '.';
 
@@ -152,15 +155,6 @@ int main(int argc, char *argv[])
   new_cmdline[0] = linker_path;
   for (index = 1; index < real_cmdline_len + 1; index++)
     new_cmdline[index] = real_cmdline[index - 1];
-
-  /* If real_cmdline[0] is not a fully-qualified path, make it so. */
-
-  if (new_cmdline[1][0] != '/') {
-    getcwd(current_dir, PATH_MAX);
-    named_exec = new_cmdline[1];
-    new_cmdline[1] = (char *)malloc(strlen(current_dir) + strlen(named_exec) + 2);
-    sprintf(new_cmdline[1], "%s/%s", current_dir, named_exec);
-  }
 
   /* Now run the program. */
 
