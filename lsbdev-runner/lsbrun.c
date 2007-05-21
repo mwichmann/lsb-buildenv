@@ -4,6 +4,8 @@
  * Originally written by Jeff Licquia <licquia@linux-foundation.org>.
  */
 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <limits.h>
 #include <errno.h>
 #include <stdio.h>
@@ -87,6 +89,51 @@ const char *find_binary_path(const char *binary)
   return result;
 }
 
+/* Check for a proper LSB environment, and modify the given binary to
+   use lsbrun if not found. */
+
+void check_binary(const char *binary_path, const char *lsbrun_path)
+{
+  char buf[PATH_MAX];
+  char *binary_basename;
+  char *new_binary_path;
+  char *binary_dir;
+  FILE *lsbrun_file;
+  FILE *new_binary_file;
+  struct stat binary_stat;
+  size_t read;
+
+  if (access(lsb_linker_path, X_OK) != 0) {
+
+    /* We need special intervention to run LSB binaries. */
+
+    strncpy(buf, binary_path, PATH_MAX);
+    binary_basename = strdup(basename(buf));
+
+    binary_basename = realloc(binary_basename, strlen(binary_basename) + 2);
+    memmove(binary_basename + 1, binary_basename, strlen(binary_basename) + 1);
+    binary_basename[0] = '.';
+
+    strncpy(buf, binary_path, PATH_MAX);
+    binary_dir = strdup(dirname(buf));
+
+    snprintf(buf, PATH_MAX, "%s/%s", binary_dir, binary_basename);
+    new_binary_path = strdup(buf);
+
+    rename(binary_path, new_binary_path);
+
+    lsbrun_file = fopen(lsbrun_path, "r");
+    new_binary_file = fopen(binary_path, "w");
+    while ((read = fread(buf, 1, PATH_MAX, lsbrun_file)) > 0)
+      fwrite(buf, 1, read, new_binary_file);
+    fclose(lsbrun_file);
+    fclose(new_binary_file);
+
+    stat(new_binary_path, &binary_stat);
+    chmod(binary_path, binary_stat.st_mode & 07777);
+  }
+}
+
 void help(FILE *stream)
 {
   fputs("help goes here\n", stream);
@@ -101,6 +148,7 @@ int main(int argc, char *argv[])
   const char *linker_path;
   char *exec_fn;
   char *abs_exec_dir;
+  char *lsbrun_path;
 
   char buf[PATH_MAX];
   int index;
@@ -110,9 +158,38 @@ int main(int argc, char *argv[])
   strcpy(buf, argv[0]);
   if (strstr(basename(buf), "lsbrun") != NULL) {
     if ((argc < 2) || (strcmp(argv[1], "--help") == 0)) {
+
+      /* Print help. */
+
       help(stdout);
       exit(0);
+
+    } else if (strcmp(argv[1], "--check") == 0) {
+
+      /* Check the binary only; don't run it. */
+
+      lsbrun_path = find_binary_path(argv[0]);
+      if (access(lsbrun_path, X_OK) != 0) {
+	fprintf(stderr, "lsbrun: could not find lsbrun binary: %s", 
+		strerror(errno));
+	exit(1);
+      }
+
+      exec_fn = find_binary_path(argv[2]);
+      if (access(exec_fn, X_OK) != 0) {
+	fprintf(stderr, "lsbrun: %s not executable: %s", 
+		argv[2], strerror(errno));
+	exit(1);
+      }
+
+      check_binary(exec_fn, lsbrun_path);
+      exit(0);
+
     } else {
+
+      /* All other situations involve running a LSB binary properly.
+	 Here, we've been run directly from the command line. */
+
       real_cmdline = &(argv[1]);
     }
   } else {
