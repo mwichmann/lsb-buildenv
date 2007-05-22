@@ -58,6 +58,7 @@ extern "C" {
     extern char *stpcpy(char *, const char *);
     extern char *stpncpy(char *, const char *, size_t);
     extern void *memrchr(const void *, int, size_t);
+    extern char *__xpg_strerror_r(int, char *, size_t);
 #ifdef __cplusplus
 }
 #endif

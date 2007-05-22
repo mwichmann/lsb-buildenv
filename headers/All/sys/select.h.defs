@@ -1,0 +1,3 @@
+
+extern int pselect(int, fd_set *, fd_set *, fd_set *,
+		   const struct timespec *, const sigset_t *);
