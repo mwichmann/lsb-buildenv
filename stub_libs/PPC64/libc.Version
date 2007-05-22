@@ -235,7 +235,9 @@ GLIBC_2.3 {
   getgrouplist;
   getgroups;
   gethostbyaddr;
+  gethostbyaddr_r;
   gethostbyname;
+  gethostbyname_r;
   gethostid;
   gethostname;
   getitimer;
