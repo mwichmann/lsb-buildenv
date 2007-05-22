@@ -119,12 +119,16 @@ if( $$type{'Ttype'} eq "Const" ) {
 	}
 
 if( $$type{'Ttype'} eq "Typedef" ) {
-	if (!$nameonly) { print "typedef "; }
+	if( $nameonly ) {
+		print $$type{'Tname'}."\t";
+		return
+	}
+	else {
+		print "typedef ";
 	$basetype = getBaseTypeID($type);
  	$tth = getBaseTypeRecord($basetype);
 	%entry=$tth->fetchhash;
-# Something about anon or not & wether to set nameonly
-	if (!$nameonly) {
+	# Something about anon or not & wether to set nameonly
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
 		    $entry{'Ttype'} eq 'Function' ||
 		    $entry{'Ttype'} eq 'FuncPtr' ) ||
@@ -139,13 +143,11 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		} else {
 			displaytype(\%entry,$nameonly);
 			}
-		}
 	if( ($entry{'Ttype'} ne 'FuncPtr' &&
-		$entry{'Ttype'} ne 'Function')
-		|| $nameonly ) {
+			$entry{'Ttype'} ne 'Function') ) {
 		print $$type{'Tname'}."\t";
 	}
-	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
+		if( $entry{'Ttype'} eq 'Array' ) {
 		my $bound = $entry{'TMarray'};
 		$bound ||= $entry{'ATsize'};
 		print "[".$bound."]";
@@ -155,6 +157,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		}
 	return;
 	}
+}
 
 if( $$type{'Ttype'} eq "Pointer" ) {
 	$basetype = getBaseTypeID($type);
