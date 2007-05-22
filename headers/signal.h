@@ -861,6 +861,7 @@ extern "C" {
     extern int sigtimedwait(const sigset_t *, siginfo_t *,
 			    const struct timespec *);
     extern sighandler_t bsd_signal(int, sighandler_t);
+    extern int __xpg_sigpause(int);
 #ifdef __cplusplus
 }
 #endif
