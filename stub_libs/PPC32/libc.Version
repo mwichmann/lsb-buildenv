@@ -37,6 +37,7 @@ GLIBC_2.0 {
   __wcstold_internal;
   __wcstoul_internal;
   __xmknod;
+  __xpg_basename;
   __xstat;
   _exit;
   _tolower;
@@ -330,6 +331,7 @@ GLIBC_2.0 {
   pmap_unset;
   poll;
   printf;
+  pselect;
   psignal;
   putc;
   putc_unlocked;
@@ -743,6 +745,7 @@ GLIBC_2.2 {
   __fxstat64;
   __lxstat64;
   __sysconf;
+  __xpg_sigpause;
   __xstat64;
   bind_textdomain_codeset;
   dcngettext;
@@ -821,6 +824,7 @@ GLIBC_2.3.3 {
 };
 GLIBC_2.3.4 {
   __sigsetjmp;
+  __xpg_strerror_r;
   _longjmp;
   _setjmp;
   getcontext;

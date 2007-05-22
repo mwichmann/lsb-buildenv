@@ -47,6 +47,8 @@ GLIBC_2.2.5 {
   __wcstold_internal;
   __wcstoul_internal;
   __xmknod;
+  __xpg_basename;
+  __xpg_sigpause;
   __xstat;
   __xstat64;
   _exit;
@@ -421,6 +423,7 @@ GLIBC_2.2.5 {
   posix_memalign;
   posix_openpt;
   printf;
+  pselect;
   psignal;
   ptsname;
   putc;
@@ -813,5 +816,6 @@ GLIBC_2.3.3 {
   _sys_siglist;
 };
 GLIBC_2.3.4 {
+  __xpg_strerror_r;
   regexec;
 };
