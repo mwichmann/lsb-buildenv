@@ -232,7 +232,9 @@ GLIBC_2.2 {
   getgrnam_r;
   getgroups;
   gethostbyaddr;
+  gethostbyaddr_r;
   gethostbyname;
+  gethostbyname_r;
   gethostid;
   gethostname;
   getitimer;

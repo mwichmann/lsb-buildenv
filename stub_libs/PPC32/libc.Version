@@ -734,6 +734,8 @@ GLIBC_2.1.1 {
 GLIBC_2.1.2 {
   getgrgid_r;
   getgrnam_r;
+  gethostbyaddr_r;
+  gethostbyname_r;
   getpwnam_r;
   getpwuid_r;
 };
