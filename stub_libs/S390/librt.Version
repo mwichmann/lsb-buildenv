@@ -13,3 +13,15 @@ GLIBC_2.2 {
   timer_gettime;
   timer_settime;
 };
+GLIBC_2.3.4 {
+  mq_close;
+  mq_getattr;
+  mq_notify;
+  mq_open;
+  mq_receive;
+  mq_send;
+  mq_setattr;
+  mq_timedreceive;
+  mq_timedsend;
+  mq_unlink;
+};
