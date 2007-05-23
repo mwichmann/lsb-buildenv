@@ -64,7 +64,7 @@ sub LoadMissingData() {
         close(DATAFILE);
     }
     else {
-        print "Could not open $missing_file\n";
+        print "Could not open $missing_file, skipping\n";
     }
 }
 
@@ -187,7 +187,7 @@ sub GenerateLibrary($$$) {
         }
 
         #if ( $row->{Vname} ) {
-        #    print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n"; 
+        #    print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";
         #}
         $lastint = $row->{Iname};
         print( STUBFILE "void $row->{Iname}() {} ;\n" );
@@ -278,6 +278,23 @@ sub GenerateLibrary($$$) {
 
         # Work out size of data variable
         $size = 0;
+
+        if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
+            my $selectGenericSize;
+            my $sthGenericSize;
+            my $rowGenericSize;
+
+            $selectGenericSize = "SELECT ATsize FROM ArchType ";
+            $selectGenericSize .=
+              "WHERE ATaid=1 AND ATtid=" . $row->{"Ireturn"};
+            $sthGenericSize = $dbh->prepare($selectGenericSize)
+              || die $dbh->errstr;
+            $sthGenericSize->execute() || die $sthGenericSize->errstr;
+            if ( $rowGenericSize = $sthGenericSize->fetchrow_hashref() ) {
+                $row->{"ATsize"} = $rowGenericSize->{"ATsize"};
+            }
+        }
+
         if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
             if (   defined( $MissingData{$libName} )
                 && defined( $MissingData{$libName}{ $row->{Iname} } ) )
