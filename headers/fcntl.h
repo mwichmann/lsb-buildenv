@@ -55,6 +55,8 @@ extern "C" {
 #define F_RDLCK	0
 #define F_GETFD	1
 #define F_WRLCK	1
+#define F_SETSIG	10
+#define F_GETSIG	11
 #if __i386__
 #define F_GETLK64	12
 #endif
