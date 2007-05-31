@@ -464,6 +464,7 @@ GLIBC_2.2 {
   read;
   readdir;
   readdir64;
+  readdir64_r;
   readdir_r;
   readlink;
   readv;

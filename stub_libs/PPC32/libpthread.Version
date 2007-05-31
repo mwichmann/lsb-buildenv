@@ -85,6 +85,7 @@ GLIBC_2.2 {
   pthread_attr_getstack;
   pthread_condattr_getpshared;
   pthread_condattr_setpshared;
+  pthread_mutex_timedlock;
   pthread_mutexattr_getpshared;
   pthread_mutexattr_setpshared;
   pthread_rwlock_timedrdlock;

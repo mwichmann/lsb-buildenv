@@ -475,6 +475,7 @@ void random() {} ;
 void read() {} ;
 void readdir() {} ;
 void readdir64() {} ;
+void readdir64_r() {} ;
 void readdir_r() {} ;
 void readlink() {} ;
 void readv() {} ;

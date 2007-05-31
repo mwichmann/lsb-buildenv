@@ -45,6 +45,7 @@ extern "C" {
     };
 
 
+    extern int readdir64_r(DIR *, struct dirent64 *, struct dirent64 **);
     extern void rewinddir(DIR *);
     extern void seekdir(DIR *, long int);
     extern long int telldir(DIR *);

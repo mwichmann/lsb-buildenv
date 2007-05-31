@@ -703,6 +703,7 @@ GLIBC_2.1 {
   popen;
   ptsname;
   pututxline;
+  readdir64_r;
   setrlimit64;
   setutxent;
   sighold;
