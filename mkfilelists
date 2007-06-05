@@ -34,19 +34,19 @@ desktop_fn = "desktop_filelist"
 # Queries to use to retrieve the header and library information
 # from the database.
 
-header_query = """SELECT Mname, Hname 
-                  FROM Module, Header, ModLib, Library 
-                  WHERE Module.Mid = ModLib.MLmid 
-                  AND Library.Lid = ModLib.MLlid 
-                  AND Library.Lid = Header.Hlib"""
+header_query = """
+SELECT Mname, Hname FROM Module,Header,ModLib,Library 
+WHERE Module.Mid = ModLib.MLmid 
+AND Library.Lid = ModLib.MLlid 
+AND Library.Lid = Header.Hlib"""
 
-lib_query = """SELECT Module.Mname, Library.Lname 
-               FROM Module, ModLib, Library 
-			   LEFT JOIN ArchLib ON Lid=ALlid
-               WHERE ( Module.Mid = ModLib.MLmid AND 
-                       Library.Lid = ModLib.MLlid ) 
-					AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
-					AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
+lib_query = """
+SELECT DISTINCT Mname,Lname FROM Module,ModLib,Library 
+LEFT JOIN ArchLib ON Lid=ALlid
+WHERE Lname LIKE 'lib%'
+AND (Module.Mid = ModLib.MLmid AND Library.Lid = ModLib.MLlid) 
+AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
+AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 					   
 # For core, it appears that the database is not the final word,
 # so munge the core header list by adding and removing these
