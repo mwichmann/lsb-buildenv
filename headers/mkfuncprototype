@@ -12,7 +12,7 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 sub
 usage()
 {
-die "mkfuncprototype -h <headername>";
+die "mkfuncprototype -h <headername> -v <lsbversion>";
 }
 
 # Uncomment to trace SQL statments
@@ -61,16 +61,19 @@ if( $$param{'Ttype'} eq "Enum" ) {
 print $$param{'Ttype'};
 }
 
-GetOptions("h=s" => \$headname);
+GetOptions("h=s" => \$headname,
+			"v=s" => \$lsbversion);
  
 if( !$headname ) { usage(); }  
+if( !$lsbversion ) { usage(); }  
 
 $headname =~ s/^\.\///;
 
 $Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
 
 $select = "SELECT * FROM Interface,Header,Type ";
-$select.= "WHERE Istdstatus='Included' ";
+$select.= "WHERE (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
 $select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
 $select.= "AND Ireturn=Tid";
 print $select,"\n" if $trace;
