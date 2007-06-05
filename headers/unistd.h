@@ -25,14 +25,14 @@ extern "C" {
     typedef int intptr_t;
 
 #endif
-#if __ia64__
-/* IA64 */
-    typedef long int intptr_t;
-
-#endif
 #if __powerpc64__
 /* PPC64 */
     typedef long int intptr_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef int intptr_t;
 
 #endif
 #if __powerpc__ && !__powerpc64__
@@ -40,9 +40,9 @@ extern "C" {
     typedef int intptr_t;
 
 #endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef int intptr_t;
+#if __ia64__
+/* IA64 */
+    typedef long int intptr_t;
 
 #endif
 #if __x86_64__

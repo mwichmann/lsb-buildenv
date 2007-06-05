@@ -17,28 +17,13 @@ extern "C" {
 /* Base types for messages*/
 
 
-#if __i386__
-/* IA32 */
+#if __s390__ && !__s390x__
+/* S390 */
     typedef unsigned long int msgqnum_t;
 
 #endif
 #if __i386__
 /* IA32 */
-    typedef unsigned long int msglen_t;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    typedef unsigned long int msglen_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef unsigned long int msglen_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
     typedef unsigned long int msgqnum_t;
 
 #endif
@@ -52,6 +37,31 @@ extern "C" {
     typedef unsigned long int msgqnum_t;
 
 #endif
+#if __x86_64__
+/* x86-64 */
+    typedef unsigned long int msgqnum_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef unsigned long int msgqnum_t;
+
+#endif
+#if __i386__
+/* IA32 */
+    typedef unsigned long int msglen_t;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef unsigned long int msglen_t;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef unsigned long int msglen_t;
+
+#endif
 #if __s390x__
 /* S390X */
     typedef unsigned long int msglen_t;
@@ -59,22 +69,12 @@ extern "C" {
 #endif
 #if __x86_64__
 /* x86-64 */
-    typedef unsigned long int msgqnum_t;
-
-#endif
-#if __x86_64__
-/* x86-64 */
     typedef unsigned long int msglen_t;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
     typedef unsigned long int msglen_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-    typedef unsigned long int msgqnum_t;
 
 #endif
 
@@ -83,6 +83,26 @@ extern "C" {
 
 #if __i386__
 /* IA32 */
+    struct msqid_ds {
+	struct ipc_perm msg_perm;	/* structure describing operation permission */
+	time_t msg_stime;	/* time of last msgsnd command */
+	unsigned long int __unused1;
+	time_t msg_rtime;	/* time of last msgrcv command */
+	unsigned long int __unused2;
+	time_t msg_ctime;	/* time of last change */
+	unsigned long int __unused3;
+	unsigned long int __msg_cbytes;	/* current number of bytes on queue */
+	msgqnum_t msg_qnum;	/* number of messages currently on queue */
+	msglen_t msg_qbytes;	/* max number of bytes allowed on queue */
+	pid_t msg_lspid;	/* pid of last msgsnd() */
+	pid_t msg_lrpid;	/* pid of last msgrcv() */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+    };
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */
 	time_t msg_stime;	/* time of last msgsnd command */
@@ -128,26 +148,6 @@ extern "C" {
 	time_t msg_rtime;	/* time of last msgrcv command */
 	unsigned int __unused3;
 	time_t msg_ctime;	/* time of last change */
-	unsigned long int __msg_cbytes;	/* current number of bytes on queue */
-	msgqnum_t msg_qnum;	/* number of messages currently on queue */
-	msglen_t msg_qbytes;	/* max number of bytes allowed on queue */
-	pid_t msg_lspid;	/* pid of last msgsnd() */
-	pid_t msg_lrpid;	/* pid of last msgrcv() */
-	unsigned long int __unused4;
-	unsigned long int __unused5;
-    };
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    struct msqid_ds {
-	struct ipc_perm msg_perm;	/* structure describing operation permission */
-	time_t msg_stime;	/* time of last msgsnd command */
-	unsigned long int __unused1;
-	time_t msg_rtime;	/* time of last msgrcv command */
-	unsigned long int __unused2;
-	time_t msg_ctime;	/* time of last change */
-	unsigned long int __unused3;
 	unsigned long int __msg_cbytes;	/* current number of bytes on queue */
 	msgqnum_t msg_qnum;	/* number of messages currently on queue */
 	msglen_t msg_qbytes;	/* max number of bytes allowed on queue */
