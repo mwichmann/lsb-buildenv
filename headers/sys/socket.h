@@ -2,6 +2,7 @@
 #define _SYS_SOCKET_H_
 
 #include <inttypes.h>
+#include <sys/types.h>
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -264,7 +265,6 @@ extern "C" {
 #define SHUT_RD	0
 #define SHUT_WR	1
 #define SHUT_RDWR	2
-#define MSG_DONTROUTE	4
 
 
 
@@ -274,6 +274,7 @@ extern "C" {
 #define MSG_EOR	0x80
 #define MSG_OOB	1
 #define MSG_PEEK	2
+#define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
 
 

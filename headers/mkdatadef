@@ -125,14 +125,14 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	}
 	else {
 		print "typedef ";
-	$basetype = getBaseTypeID($type);
- 	$tth = getBaseTypeRecord($basetype);
-	%entry=$tth->fetchhash;
+		$basetype = getBaseTypeID($type);
+		$tth = getBaseTypeRecord($basetype);
+		%entry=$tth->fetchhash;
 	# Something about anon or not & wether to set nameonly
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
-		    $entry{'Ttype'} eq 'Function' ||
-		    $entry{'Ttype'} eq 'FuncPtr' ) ||
-		    $entry{'Theadergroup'} != $HGid ) {
+			$entry{'Ttype'} eq 'Function' ||
+			$entry{'Ttype'} eq 'FuncPtr' ) ||
+			$entry{'Theadergroup'} != $HGid ) {
 			if($entry{'Ttype'} eq 'FuncPtr' ||
 				$entry{'Ttype'} eq 'Function'){
 				$funcPtrName=$$type{'Tname'};
@@ -142,20 +142,20 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 			$nameonly = 0;
 		} else {
 			displaytype(\%entry,$nameonly);
-			}
-	if( ($entry{'Ttype'} ne 'FuncPtr' &&
+		}
+		if( ($entry{'Ttype'} ne 'FuncPtr' &&
 			$entry{'Ttype'} ne 'Function') ) {
-		print $$type{'Tname'}."\t";
-	}
+			print $$type{'Tname'}."\t";
+		}
 		if( $entry{'Ttype'} eq 'Array' ) {
-		my $bound = $entry{'TMarray'};
-		$bound ||= $entry{'ATsize'};
-		print "[".$bound."]";
+			my $bound = $entry{'TMarray'};
+			$bound ||= $entry{'ATsize'};
+			print "[".$bound."]";
 		}
-	if( !$nameonly && $$type{'Tattribute'} ) {
-		print "__attribute__ (".$$type{'Tattribute'}.")";
+		if( !$nameonly && $$type{'ATattribute'} ) {
+			print "__attribute__ (".$$type{'ATattribute'}.")";
 		}
-	return;
+		return;
 	}
 }
 
@@ -196,9 +196,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	#print $$type{'Tdescription'}."\n";
 
 	$tmselect = "SELECT * FROM TypeMember ";
-	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
-	#$tmselect.= "LEFT JOIN Architecture ON ATMaid = Aid ";
-	$tmselect.= "WHERE TMmemberof=$Tid ";
+	$tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
 	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
@@ -246,8 +244,8 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		# $nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}"; }
-	if( $$type{'Tattribute'} ) {
-		print "__attribute__ (".$$type{'Tattribute'}.")";
+	if( $$type{'ATattribute'} ) {
+		print "__attribute__ (".$$type{'ATattribute'}.")";
 		}
 	print "\n";
 	return;
@@ -265,8 +263,8 @@ if( $$type{'Ttype'} eq "Union" ) {
 	if( $nameonly ) { return; }
 	#print $$type{'Tdescription'}."\n";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
@@ -318,8 +316,8 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	if( $nameonly ) { return; }
 	#print $$type{'Tdescription'}."\n";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
@@ -357,8 +355,8 @@ if( $$type{'Ttype'} eq "FuncPtr" ||
 	print ") " if( $$type{'Ttype'} eq "FuncPtr" && $$type{'Itype'} ne "Function" );
 	print $$type{'Tdescription'}."(";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if($tmh->numrows == 0) {
 		print "void";
@@ -369,7 +367,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ||
 		$tselect ="SELECT * FROM Type ";
 		$tselect.="LEFT JOIN ArchType ON ATtid=Tid ";
 		$tselect.= "LEFT JOIN TypeMember ON TMtypeid=Tid ";
-		$tselect.="WHERE Tid=$TMtypeid ";
+		$tselect.="WHERE Tid=$TMtypeid AND TMaid IN (1,$TMaid) ";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
 		displaytype(\%entry,1);
@@ -454,6 +452,7 @@ $sth = $Dbh->query($select) || die $Dbh->errmsg();
 if( !$sth->numrows ) { exit 0; }
 %entry=$sth->fetchhash;
 $Aid=$entry{'Aid'};
+$TMaid=$Aid;
 
 #
 # Get the Header id
@@ -643,7 +642,9 @@ for(1..$hgh->numrows) {
 	if( $Aid!=1 ) {
 		$select.= "AND Tid NOT IN ";
 		$select.= " (SELECT DISTINCT ATtid FROM ArchType ";
-		$select.= " WHERE ATaid=1) ";
+		$select.= " WHERE ATaid=1 ";
+		$select.= " AND ATappearedin <='$lsbversion' AND ATappearedin <> '' ";
+		$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion')) ";
 	}
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;

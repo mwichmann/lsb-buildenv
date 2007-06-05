@@ -24,32 +24,13 @@ extern "C" {
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef struct _libc_vscr vscr_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
     typedef struct _libc_vrstate vrregset_t
 	__attribute__ ((__aligned__(16)));
 
 #endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    struct pt_regs {
-	unsigned long int gpr[32];
-	unsigned long int nip;
-	unsigned long int msr;
-	unsigned long int orig_gpr3;	/* Used for restarting system calls */
-	unsigned long int ctr;
-	unsigned long int link;
-	unsigned long int xer;
-	unsigned long int ccr;
-	unsigned long int mq;	/* 601 only (not used at present). Used on APUS to hold IPL val */
-	unsigned long int trap;	/* Reason for being here */
-	unsigned long int dar;	/* Fault registers */
-	unsigned long int dsisr;
-	unsigned long int result;	/* Result of a system call */
-    };
+#if __powerpc64__
+/* PPC64 */
+    typedef struct _libc_vscr vscr_t;
 
 #endif
 #if __x86_64__
@@ -58,6 +39,13 @@ extern "C" {
 	unsigned short significand[4];
 	unsigned short exponent;
 	unsigned short padding[3];
+    };
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    struct _libc_xmmreg {
+	uint32_t element[4];
     };
 
 #endif
@@ -75,20 +63,20 @@ extern "C" {
 #if __powerpc64__
 /* PPC64 */
 
-    struct _libc_vscr {
-	int __pad[3];
-	int vscr_word;
+    struct _libc_vrstate {
+	unsigned int vrregs[128];
+	vscr_t vscr;
+	unsigned int vrsave;
+	unsigned int __pad[3];
     };
 
 #endif
 #if __powerpc64__
 /* PPC64 */
 
-    struct _libc_vrstate {
-	unsigned int vrregs[128];
-	vscr_t vscr;
-	unsigned int vrsave;
-	unsigned int __pad[3];
+    struct _libc_vscr {
+	int __pad[3];
+	int vscr_word;
     };
 
 #endif
@@ -244,13 +232,6 @@ extern "C" {
 #endif
 #if __x86_64__
 /* x86-64 */
-    struct _libc_xmmreg {
-	uint32_t element[4];
-    };
-
-#endif
-#if __x86_64__
-/* x86-64 */
     struct _libc_fpstate {
 	uint16_t cwd;
 	uint16_t swd;
@@ -298,22 +279,6 @@ extern "C" {
     typedef struct sigcontext mcontext_t;
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-    typedef struct {
-	unsigned long int __unused[4];
-	int signal;
-	int pad0;
-	unsigned long int handler;
-	unsigned long int oldmask;
-	struct pt_regs *regs;
-	gregset_t gp_regs;
-	fpregset_t fp_regs;
-	vrregset_t *v_regs;
-	long int vmx_reserve[69];
-    } mcontext_t;
-
-#endif
 #if __s390x__
 /* S390X */
     typedef struct {
@@ -349,6 +314,22 @@ extern "C" {
 	gregset_t gregs;
 	fpregset_t fpregs;
 	vrregset_t vrregs;
+    } mcontext_t;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef struct {
+	unsigned long int __unused[4];
+	int signal;
+	int pad0;
+	unsigned long int handler;
+	unsigned long int oldmask;
+	struct pt_regs *regs;
+	gregset_t gp_regs;
+	fpregset_t fp_regs;
+	vrregset_t *v_regs;
+	long int vmx_reserve[69];
     } mcontext_t;
 
 #endif

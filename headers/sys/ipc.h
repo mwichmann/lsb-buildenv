@@ -34,6 +34,23 @@ extern "C" {
     };
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
+    struct ipc_perm {
+	key_t __key;
+	uid_t uid;
+	gid_t gid;
+	uid_t cuid;
+	uid_t cgid;
+	unsigned short mode;
+	unsigned short __pad1;
+	unsigned short __seq;
+	unsigned short __pad2;
+	unsigned long int __unused1;
+	unsigned long int __unused2;
+    };
+
+#endif
 #if __ia64__
 /* IA64 */
     struct ipc_perm {
@@ -63,23 +80,6 @@ extern "C" {
 	int __pad1;
 	unsigned long long int __unused1;
 	unsigned long long int __unused2;
-    };
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    struct ipc_perm {
-	key_t __key;
-	uid_t uid;
-	gid_t gid;
-	uid_t cuid;
-	uid_t cgid;
-	unsigned short mode;
-	unsigned short __pad1;
-	unsigned short __seq;
-	unsigned short __pad2;
-	unsigned long int __unused1;
-	unsigned long int __unused2;
     };
 
 #endif

@@ -75,6 +75,25 @@ extern "C" {
     } _s390_regs_common;
 
 #endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    struct pt_regs {
+	unsigned long int gpr[32];
+	unsigned long int nip;
+	unsigned long int msr;
+	unsigned long int orig_gpr3;	/* Used for restarting system calls */
+	unsigned long int ctr;
+	unsigned long int link;
+	unsigned long int xer;
+	unsigned long int ccr;
+	unsigned long int mq;	/* 601 only (not used at present). Used on APUS to hold IPL val */
+	unsigned long int trap;	/* Reason for being here */
+	unsigned long int dar;	/* Fault registers */
+	unsigned long int dsisr;
+	unsigned long int result;	/* Result of a system call */
+    };
+
+#endif
 #if __powerpc64__
 /* PPC64 */
     struct pt_regs {
@@ -412,6 +431,19 @@ extern "C" {
     };
 
 #endif
+#if __s390__ && !__s390x__
+/* S390 */
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	unsigned long int sa_flags;
+	void (*sa_restorer) (void);
+    };
+
+#endif
 #if __ia64__
 /* IA64 */
     struct sigaction {
@@ -426,19 +458,6 @@ extern "C" {
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    struct sigaction {
-	union {
-	    sighandler_t _sa_handler;
-	    void (*_sa_sigaction) (int, siginfo_t *, void *);
-	} __sigaction_handler;
-	sigset_t sa_mask;
-	unsigned long int sa_flags;
-	void (*sa_restorer) (void);
-    };
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
     struct sigaction {
 	union {
 	    sighandler_t _sa_handler;
@@ -562,20 +581,20 @@ extern "C" {
     } _s390_fp_regs;
 
 #endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef struct {
-	_s390_regs_common regs;
-	_s390_fp_regs fpregs;
-    } _sigregs;
-
-#endif
 #if __s390x__
 /* S390X */
     typedef struct {
 	unsigned int fpc;
 	double fprs[__NUM_FPRS];
     } _s390_fp_regs;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef struct {
+	_s390_regs_common regs;
+	_s390_fp_regs fpregs;
+    } _sigregs;
 
 #endif
 #if __s390x__
@@ -603,10 +622,26 @@ extern "C" {
     };
 
 #endif
+#if __x86_64__
+/* x86-64 */
+    struct _fpxreg {
+	unsigned short significand[4];
+	unsigned short exponent;
+	unsigned short padding[3];
+    };
+
+#endif
 #if __i386__
 /* IA32 */
     struct _xmmreg {
 	unsigned long int element[4];
+    };
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    struct _xmmreg {
+	uint32_t element[4];
     };
 
 #endif
@@ -617,22 +652,6 @@ extern "C" {
 	    unsigned long int bits[2];
 	    long double __dummy;	/* force 16-byte alignment */
 	} u;
-    };
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    struct _fpxreg {
-	unsigned short significand[4];
-	unsigned short exponent;
-	unsigned short padding[3];
-    };
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    struct _xmmreg {
-	uint32_t element[4];
     };
 
 #endif
@@ -717,6 +736,17 @@ extern "C" {
     };
 
 #endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    struct sigcontext {
+	long int _unused[4];
+	int signal;
+	unsigned long int handler;
+	unsigned long int oldmask;
+	struct pt_regs *regs;
+    };
+
+#endif
 #if __ia64__
 /* IA64 */
     struct sigcontext {
@@ -744,17 +774,6 @@ extern "C" {
 	unsigned long int sc_ar26;	/*  rsvd for scratch use */
 	unsigned long int sc_rsvd[12];
 	unsigned long int sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
-    };
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    struct sigcontext {
-	long int _unused[4];
-	int signal;
-	unsigned long int handler;
-	unsigned long int oldmask;
-	struct pt_regs *regs;
     };
 
 #endif
@@ -792,19 +811,6 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-    struct sigcontext {
-	unsigned long int _unused[4];
-	int signal;
-	unsigned long int handler;
-	unsigned long int oldmask;
-	struct pt_regs *regs;
-	unsigned long int gp_regs[48];
-	double fp_regs[33];
-    };
-
-#endif
 #if __s390__ && !__s390x__
 /* S390 */
     struct sigcontext {
@@ -818,6 +824,19 @@ extern "C" {
     struct sigcontext {
 	unsigned long int oldmask;
 	_sigregs *sregs;
+    };
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    struct sigcontext {
+	unsigned long int _unused[4];
+	int signal;
+	unsigned long int handler;
+	unsigned long int oldmask;
+	struct pt_regs *regs;
+	unsigned long int gp_regs[48];
+	double fp_regs[33];
     };
 
 #endif

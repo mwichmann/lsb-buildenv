@@ -22,6 +22,15 @@ extern "C" {
 	short e_exit;		/* Process exit status. */
     };
 
+#if __s390x__
+/* S390X */
+    struct lastlog {
+	time_t ll_time;
+	char ll_line[UT_LINESIZE];
+	char ll_host[UT_HOSTSIZE];
+    };
+
+#endif
 #if __i386__
 /* IA32 */
     struct lastlog {
@@ -76,38 +85,12 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
-/* S390X */
-    struct lastlog {
-	time_t ll_time;
-	char ll_line[UT_LINESIZE];
-	char ll_host[UT_HOSTSIZE];
-    };
-
-#endif
 
 /* The structure describing an entry in the user accounting database.*/
 
 
 #if __i386__
 /* IA32 */
-    struct utmp {
-	short ut_type;		/* Type of login. */
-	pid_t ut_pid;		/* Process ID of login process. */
-	char ut_line[UT_LINESIZE];	/* Devicename. */
-	char ut_id[4];		/* Inittab ID. */
-	char ut_user[UT_NAMESIZE];	/* Username. */
-	char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
-	struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
-	long int ut_session;	/* Session ID, used for windowing. */
-	struct timeval ut_tv;	/* Time entry was made. */
-	int32_t ut_addr_v6[4];	/* Internet address of remote host. */
-	char __unused[20];	/* Reserved for future use. */
-    };
-
-#endif
-#if __ia64__
-/* IA64 */
     struct utmp {
 	short ut_type;		/* Type of login. */
 	pid_t ut_pid;		/* Process ID of login process. */
@@ -160,8 +143,42 @@ extern "C" {
     };
 
 #endif
+#if __ia64__
+/* IA64 */
+    struct utmp {
+	short ut_type;		/* Type of login. */
+	pid_t ut_pid;		/* Process ID of login process. */
+	char ut_line[UT_LINESIZE];	/* Devicename. */
+	char ut_id[4];		/* Inittab ID. */
+	char ut_user[UT_NAMESIZE];	/* Username. */
+	char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+	struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+	long int ut_session;	/* Session ID, used for windowing. */
+	struct timeval ut_tv;	/* Time entry was made. */
+	int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+	char __unused[20];	/* Reserved for future use. */
+    };
+
+#endif
 #if __s390__ && !__s390x__
 /* S390 */
+    struct utmp {
+	short ut_type;		/* Type of login. */
+	pid_t ut_pid;		/* Process ID of login process. */
+	char ut_line[UT_LINESIZE];	/* Devicename. */
+	char ut_id[4];		/* Inittab ID. */
+	char ut_user[UT_NAMESIZE];	/* Username. */
+	char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
+	struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
+	long int ut_session;	/* Session ID, used for windowing. */
+	struct timeval ut_tv;	/* Time entry was made. */
+	int32_t ut_addr_v6[4];	/* Internet address of remote host. */
+	char __unused[20];	/* Reserved for future use. */
+    };
+
+#endif
+#if __s390x__
+/* S390X */
     struct utmp {
 	short ut_type;		/* Type of login. */
 	pid_t ut_pid;		/* Process ID of login process. */
@@ -192,23 +209,6 @@ extern "C" {
 	    int32_t tv_sec;
 	    int32_t tv_usec;
 	} ut_tv;		/* Time entry was made. */
-	int32_t ut_addr_v6[4];	/* Internet address of remote host. */
-	char __unused[20];	/* Reserved for future use. */
-    };
-
-#endif
-#if __s390x__
-/* S390X */
-    struct utmp {
-	short ut_type;		/* Type of login. */
-	pid_t ut_pid;		/* Process ID of login process. */
-	char ut_line[UT_LINESIZE];	/* Devicename. */
-	char ut_id[4];		/* Inittab ID. */
-	char ut_user[UT_NAMESIZE];	/* Username. */
-	char ut_host[UT_HOSTSIZE];	/* Hostname for remote login. */
-	struct exit_status ut_exit;	/* Exit status of a process marked as DEAD_PROCESS. */
-	long int ut_session;	/* Session ID, used for windowing. */
-	struct timeval ut_tv;	/* Time entry was made. */
 	int32_t ut_addr_v6[4];	/* Internet address of remote host. */
 	char __unused[20];	/* Reserved for future use. */
     };

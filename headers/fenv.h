@@ -244,6 +244,11 @@ extern "C" {
 /* Type representing exception flags.*/
 
 
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef unsigned int fexcept_t;
+
+#endif
 #if __i386__
 /* IA32 */
     typedef unsigned short fexcept_t;
@@ -252,11 +257,6 @@ extern "C" {
 #if __ia64__
 /* IA64 */
     typedef unsigned long int fexcept_t;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    typedef unsigned int fexcept_t;
 
 #endif
 #if __powerpc64__

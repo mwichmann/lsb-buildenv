@@ -25,7 +25,8 @@
 #define G_GSIZE_FORMAT	"lu"
 #define G_GUINT64_FORMAT	"lu"
 
+typedef long int gssize;
 typedef long int gint64;
 typedef unsigned long int guint64;
-typedef long int gssize;
+
 typedef unsigned long int gsize;

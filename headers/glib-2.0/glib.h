@@ -993,78 +993,13 @@ extern "C" {
     typedef int gssize;
 
 #endif
-#if __i386__
-/* IA32 */
-    typedef long long int gint64;
-
-#endif
-#if __i386__
-/* IA32 */
-    typedef long long unsigned int guint64;
-
-#endif
 #if __ia64__
 /* IA64 */
-    typedef long int gint64;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    typedef long long int gint64;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-    typedef long int gint64;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef long long int gint64;
+    typedef long int gssize;
 
 #endif
 #if __x86_64__
 /* x86-64 */
-    typedef long int gint64;
-
-#endif
-#if __s390x__
-/* S390X */
-    typedef long int gint64;
-
-#endif
-#if __ia64__
-/* IA64 */
-    typedef unsigned long int guint64;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    typedef long long unsigned int guint64;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-    typedef unsigned long int guint64;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef long long unsigned int guint64;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    typedef unsigned long int guint64;
-
-#endif
-#if __s390x__
-/* S390X */
-    typedef unsigned long int guint64;
-
-#endif
-#if __ia64__
-/* IA64 */
     typedef long int gssize;
 
 #endif
@@ -1083,44 +1018,79 @@ extern "C" {
     typedef int gssize;
 
 #endif
-#if __x86_64__
-/* x86-64 */
-    typedef long int gssize;
-
-#endif
 #if __s390x__
 /* S390X */
     typedef long int gssize;
+
+#endif
+#if __i386__
+/* IA32 */
+    typedef long long int gint64;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef long int gint64;
 
 #endif
 #if __ia64__
 /* IA64 */
-    typedef unsigned long int gsize;
+    typedef long int gint64;
 
 #endif
 #if __powerpc__ && !__powerpc64__
 /* PPC32 */
-    typedef unsigned int gsize;
+    typedef long long int gint64;
 
 #endif
 #if __powerpc64__
 /* PPC64 */
-    typedef unsigned long int gsize;
+    typedef long int gint64;
 
 #endif
 #if __s390__ && !__s390x__
 /* S390 */
-    typedef unsigned int gsize;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    typedef unsigned long int gsize;
+    typedef long long int gint64;
 
 #endif
 #if __s390x__
 /* S390X */
-    typedef unsigned long int gsize;
+    typedef long int gint64;
+
+#endif
+#if __i386__
+/* IA32 */
+    typedef long long unsigned int guint64;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef unsigned long int guint64;
+
+#endif
+#if __ia64__
+/* IA64 */
+    typedef unsigned long int guint64;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef long long unsigned int guint64;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef unsigned long int guint64;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef long long unsigned int guint64;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef unsigned long int guint64;
 
 #endif
 
@@ -1181,6 +1151,36 @@ extern "C" {
 #if __i386__
 /* IA32 */
     typedef unsigned int gsize;
+
+#endif
+#if __ia64__
+/* IA64 */
+    typedef unsigned long int gsize;
+
+#endif
+#if __x86_64__
+/* x86-64 */
+    typedef unsigned long int gsize;
+
+#endif
+#if __powerpc__ && !__powerpc64__
+/* PPC32 */
+    typedef unsigned int gsize;
+
+#endif
+#if __powerpc64__
+/* PPC64 */
+    typedef unsigned long int gsize;
+
+#endif
+#if __s390__ && !__s390x__
+/* S390 */
+    typedef unsigned int gsize;
+
+#endif
+#if __s390x__
+/* S390X */
+    typedef unsigned long int gsize;
 
 #endif
     typedef struct _GString GString;
