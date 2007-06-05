@@ -31,7 +31,7 @@ extern "C" {
 	pid_t __pgrp;
 	sigset_t __sd;
 	sigset_t __ss;
-	struct struct sched_param __sp;
+	struct sched_param __sp;
 	int __policy;
 	int __pad[16];
     } posix_spawnattr_t;
