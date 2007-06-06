@@ -48,7 +48,7 @@ extern "C" {
     extern float cimagf(float complex);
     extern long double cimagl(long double complex);
     extern double complex clog(double complex);
-    extern double complex clog10(void);
+    extern double complex clog10(double complex);
     extern float complex clog10f(float complex);
     extern long double complex clog10l(long double complex);
     extern float complex clogf(float complex);
