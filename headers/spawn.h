@@ -3,7 +3,6 @@
 
 #include <sched.h>
 #include <signal.h>
-#include <stdlib.h>
 #include <sys/types.h>
 
 #ifdef __cplusplus
@@ -72,7 +71,7 @@ extern "C" {
     extern int posix_spawnattr_setsigdefault(posix_spawnattr_t *,
 					     sigset_t *);
     extern int posix_spawnattr_setsigmask(posix_spawnattr_t *,
-					  struct random_data);
+					  const sigset_t *);
     extern int posix_spawnp(pid_t, const char *,
 			    posix_spawn_file_actions_t * const,
 			    posix_spawnattr_t * const, char *const[],
