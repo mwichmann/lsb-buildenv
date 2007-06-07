@@ -157,7 +157,7 @@ extern "C" {
 
 
 
-    extern int pthread_mutex_timedlock(pthread_mutex_t,
+    extern int pthread_mutex_timedlock(pthread_mutex_t *,
 				       const struct timespec *);
     extern void _pthread_cleanup_pop(struct _pthread_cleanup_buffer *,
 				     int);
