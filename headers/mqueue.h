@@ -29,7 +29,7 @@ extern "C" {
     extern int mq_close(mqd_t);
     extern int mq_getattr(mqd_t, struct mq_attr *);
     extern int mq_notify(mqd_t, const struct sigevent *);
-    extern ssize_t mq_open(const char *, int, ...);
+    extern mqd_t mq_open(const char *, int, ...);
     extern ssize_t mq_receive(mqd_t, char *, size_t, unsigned int *);
     extern int mq_send(mqd_t, const char *, size_t, unsigned int);
     extern int mq_setattr(mqd_t, const struct mq_attr *, struct mq_attr *);
