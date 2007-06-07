@@ -134,6 +134,7 @@ extern "C" {
 
     extern int lockf64(int, int, off64_t);
     extern int fcntl(int, int, ...);
+    extern int open(const char *, int, ...);
 #ifdef __cplusplus
 }
 #endif
