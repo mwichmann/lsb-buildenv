@@ -817,6 +817,7 @@ void xdr_wrapstring() {} ;
 void xdrmem_create() {} ;
 void xdrrec_create() {} ;
 void xdrrec_eof() {} ;
+void xdrstdio_create() {} ;
 __asm__(".globl __daylight; .pushsection .data; .type __daylight,@object; .size __daylight, 4; __daylight: .long 0; .popsection");
 __asm__(".globl __environ; .pushsection .data; .type __environ,@object; .size __environ, 4; __environ: .long 0; .popsection");
 __asm__(".globl __timezone; .pushsection .data; .type __timezone,@object; .size __timezone, 4; __timezone: .long 0; .popsection");

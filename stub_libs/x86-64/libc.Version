@@ -806,6 +806,7 @@ GLIBC_2.2.5 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
+  xdrstdio_create;
   __daylight;
   __environ;
   __timezone;

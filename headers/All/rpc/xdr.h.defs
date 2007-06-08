@@ -32,6 +32,7 @@ struct xdr_discrim {
     int value;
     xdrproc_t proc;
 };
+extern void xdrstdio_create(XDR *, FILE *, enum xdr_op);
 extern bool_t xdr_array(XDR *, caddr_t *, u_int *, u_int, u_int,
 			xdrproc_t);
 extern bool_t xdr_bool(XDR *, bool_t *);
