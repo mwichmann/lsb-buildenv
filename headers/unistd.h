@@ -335,9 +335,9 @@ extern "C" {
     extern int mkdir(const char *, mode_t);
     extern long int pathconf(const char *, int);
     extern int pipe(int[2]);
-    extern int readlink(const char *, char *, size_t);
+    extern ssize_t readlink(const char *, char *, size_t);
     extern int rmdir(const char *);
-    extern void *sbrk(ptrdiff_t);
+    extern void *sbrk(intptr_t);
     extern int select(int, fd_set *, fd_set *, fd_set *, struct timeval *);
     extern int setgid(gid_t);
     extern int setpgid(pid_t, pid_t);
