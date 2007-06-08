@@ -784,6 +784,11 @@ GLIBC_2.2 {
   mkstemp64;
   msgctl;
   ngettext;
+  posix_fadvise;
+  posix_fadvise64;
+  posix_fallocate;
+  posix_fallocate64;
+  posix_madvise;
   posix_memalign;
   posix_spawn;
   posix_spawn_file_actions_addclose;

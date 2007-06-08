@@ -68,6 +68,7 @@ extern "C" {
 
 
 
+    extern int posix_madvise(void, size_t, int);
     extern int msync(void *, size_t, int);
     extern int mlock(const void *, size_t);
     extern int mlockall(int);

@@ -422,6 +422,11 @@ GLIBC_2.2.5 {
   pmap_unset;
   poll;
   popen;
+  posix_fadvise;
+  posix_fadvise64;
+  posix_fallocate;
+  posix_fallocate64;
+  posix_madvise;
   posix_memalign;
   posix_openpt;
   posix_spawn;
