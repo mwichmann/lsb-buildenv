@@ -1,6 +1,7 @@
 #ifndef _RPC_XDR_H_
 #define _RPC_XDR_H_
 
+#include <stdio.h>
 #include <sys/types.h>
 #include <rpc/types.h>
 
@@ -66,6 +67,7 @@ extern "C" {
     };
 
 
+    extern void xdrstdio_create(XDR *, FILE *, enum xdr_op);
     extern bool_t xdr_array(XDR *, caddr_t *, u_int *, u_int, u_int,
 			    xdrproc_t);
     extern bool_t xdr_bool(XDR *, bool_t *);
