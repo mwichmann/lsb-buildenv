@@ -132,6 +132,10 @@ extern "C" {
 
 
 
+    extern int posix_fadvise(int, off_t, off_t, int);
+    extern int posix_fallocate(int, off_t, off_t);
+    extern int posix_fadvise64(int, off64_t, off64_t, int);
+    extern int posix_fallocate64(int, off64_t, off64_t);
     extern int lockf64(int, int, off64_t);
     extern int fcntl(int, int, ...);
     extern int open(const char *, int, ...);
