@@ -212,7 +212,7 @@ extern "C" {
 
     extern int msgctl(int, int, struct msqid_ds *);
     extern int msgget(key_t, int);
-    extern int msgrcv(int, void *, size_t, long int, int);
+    extern ssize_t msgrcv(int, void *, size_t, long int, int);
     extern int msgsnd(int, const void *, size_t, int);
 #ifdef __cplusplus
 }
