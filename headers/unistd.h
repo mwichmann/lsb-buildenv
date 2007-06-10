@@ -50,6 +50,11 @@ extern "C" {
     typedef long int intptr_t;
 
 #endif
+#if __s390x__
+/* S390X */
+    typedef long int intptr_t;
+
+#endif
 
 /* Values for the second argument to access.*/
 #define F_OK	0
