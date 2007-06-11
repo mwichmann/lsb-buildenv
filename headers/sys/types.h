@@ -1,6 +1,7 @@
 #ifndef _SYS_TYPES_H_
 #define _SYS_TYPES_H_
 
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,47 +20,6 @@ extern "C" {
 	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
 
 
-    typedef signed char int8_t;
-
-    typedef short int16_t;
-
-    typedef int int32_t;
-
-#if __i386__
-/* IA32 */
-    typedef long long int int64_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-    typedef long int int64_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef long long int int64_t;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    typedef long int int64_t;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    typedef long long int int64_t;
-
-#endif
-#if __s390x__
-/* S390X */
-    typedef long int int64_t;
-
-#endif
-#if __ia64__
-/* IA64 */
-    typedef long int int64_t;
-
-#endif
     typedef unsigned char u_int8_t;
 
     typedef unsigned short u_int16_t;

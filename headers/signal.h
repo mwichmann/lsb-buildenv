@@ -1,11 +1,11 @@
 #ifndef _SIGNAL_H_
 #define _SIGNAL_H_
 
-#include <inttypes.h>
 #include <pthread.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

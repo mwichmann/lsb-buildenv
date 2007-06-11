@@ -1,11 +1,11 @@
 #ifndef _RPC_PMAP_CLNT_H_
 #define _RPC_PMAP_CLNT_H_
 
-#include <inttypes.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <rpc/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
