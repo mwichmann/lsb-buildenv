@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <utmp.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

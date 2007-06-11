@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -2,6 +2,7 @@
 #define _SYS_TIME_H_
 
 #include <sys/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

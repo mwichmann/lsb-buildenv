@@ -97,6 +97,7 @@ rpc/auth_des.h
 sys/sendfile.h
 netinet/ip.h
 spawn.h
+stdint.h
 pthread.h
 semaphore.h
 mqueue.h

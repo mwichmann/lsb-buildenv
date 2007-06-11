@@ -1,9 +1,9 @@
 #ifndef _UCONTEXT_H_
 #define _UCONTEXT_H_
 
-#include <inttypes.h>
 #include <signal.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

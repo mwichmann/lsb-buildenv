@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,41 +21,6 @@ extern "C" {
 
     typedef long long int off64_t;
 
-#if __i386__
-/* IA32 */
-    typedef int intptr_t;
-
-#endif
-#if __powerpc64__
-/* PPC64 */
-    typedef long int intptr_t;
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef int intptr_t;
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    typedef int intptr_t;
-
-#endif
-#if __ia64__
-/* IA64 */
-    typedef long int intptr_t;
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    typedef long int intptr_t;
-
-#endif
-#if __s390x__
-/* S390X */
-    typedef long int intptr_t;
-
-#endif
 
 /* Values for the second argument to access.*/
 #define F_OK	0
