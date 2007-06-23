@@ -393,17 +393,37 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
 	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+
+	# Is it enum with arch specific contents?
+	if (!$tmh->numrows ) {
+		$tmselect = "SELECT * FROM TypeMember ";
+		$tmselect.= "LEFT JOIN Architecture ON Aid=TMaid ";
+		$tmselect.= "WHERE TMmemberof=$Tid ";
+		$tmselect.= "ORDER BY TMaid,TMposition ";
+		$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	}
+
 	if ($tmh->numrows ) { print "{\n"; }
+
+	$prevArch=0;
+
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
+
+		if( ($TMaid == 1) and ($tmentry{'TMaid'} != 1) ) {
+			if( $prevArch != $tmentry{'TMaid'} ) {
+				if( $prevArch != 0 ) {
+					print "#endif\n";
+				}
+				print "#if ".$tmentry{'Asymbol'}."\n";
+				print "/* ".$tmentry{'Aname'}." */\n";
+				$prevArch = $tmentry{'TMaid'};
+			}
+		}
+
 		# It's an enum, don't print out the types, just the names
-		#$TMtypeid=$tmentry{'TMtypeid'};
-		#$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
-		#$th = $Dbh->query($tselect) || die $Dbh->errmsg();
-		#%entry=$th->fetchhash;
-		#$nameonly=1;
-		#displaytype(\%entry);
 		print $tmentry{'TMname'};
+
 		# An array doesn't make sense for an enum, so use this to
 		# specify a fixed value.
 		if( $tmentry{'TMarray'} ne '' ) {
@@ -417,6 +437,10 @@ if( $$type{'Ttype'} eq "Enum" ) {
 			}
 		print "\n";
 		$nameonly=0;
+
+	}
+	if( $prevArch != 0 ) {
+		print "#endif\n";
 		}
 	if ($tmh->numrows ) { print "}\n"; }
 	return;
