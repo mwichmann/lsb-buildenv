@@ -1016,7 +1016,7 @@ print $select,"\n" if $trace;
 $sth = $Dbh->query($select) || die $Dbh->errmsg();
 for(1..$sth->numrows) {
 	%entry=$sth->fetchhash;
-	$const{$entry{'ACvalue'}}=1;
+	$header{$entry{'ACvalue'}}=1;
 }
 $constlist=join '\',\'', keys(%const);
 
