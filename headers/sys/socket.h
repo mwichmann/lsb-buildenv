@@ -57,37 +57,37 @@ extern "C" {
 
     typedef unsigned int socklen_t;
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     typedef uint32_t __ss_aligntype;
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     typedef uint64_t __ss_aligntype;
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef uint32_t __ss_aligntype;
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     typedef uint64_t __ss_aligntype;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef uint32_t __ss_aligntype;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef uint64_t __ss_aligntype;
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     typedef uint64_t __ss_aligntype;
 
@@ -152,89 +152,89 @@ extern "C" {
 #define SO_PRIORITY	12
 #define SO_LINGER	13
 #define SO_BSDCOMPAT	14
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SO_RCVLOWAT	16
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SO_RCVLOWAT	16
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SO_SNDLOWAT	17
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SO_SNDLOWAT	17
 #endif
-#if __i386__
+#if defined ___i386__
 #define SO_RCVLOWAT	18
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SO_RCVLOWAT	18
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SO_RCVLOWAT	18
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SO_RCVLOWAT	18
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SO_RCVLOWAT	18
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SO_RCVTIMEO	18
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SO_RCVTIMEO	18
 #endif
-#if __i386__
+#if defined ___i386__
 #define SO_SNDLOWAT	19
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SO_SNDLOWAT	19
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SO_SNDLOWAT	19
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SO_SNDLOWAT	19
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SO_SNDLOWAT	19
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SO_SNDTIMEO	19
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SO_SNDTIMEO	19
 #endif
 #define SO_REUSEADDR	2
-#if __i386__
+#if defined ___i386__
 #define SO_RCVTIMEO	20
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SO_RCVTIMEO	20
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SO_RCVTIMEO	20
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SO_RCVTIMEO	20
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SO_RCVTIMEO	20
 #endif
-#if __i386__
+#if defined ___i386__
 #define SO_SNDTIMEO	21
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SO_SNDTIMEO	21
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SO_SNDTIMEO	21
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SO_SNDTIMEO	21
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SO_SNDTIMEO	21
 #endif
 #define SO_TYPE	3

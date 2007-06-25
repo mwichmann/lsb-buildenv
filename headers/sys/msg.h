@@ -18,62 +18,62 @@ extern "C" {
 /* Base types for messages*/
 
 
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     typedef unsigned long int msglen_t;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef unsigned long int msglen_t;
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef unsigned long int msglen_t;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef unsigned long int msglen_t;
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     typedef unsigned long int msglen_t;
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     typedef unsigned long int msglen_t;
 
@@ -82,7 +82,7 @@ extern "C" {
 /* Message Queue structure*/
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */
@@ -102,7 +102,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */
@@ -122,7 +122,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */
@@ -139,7 +139,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */
@@ -159,7 +159,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct msqid_ds {
 	struct ipc_perm msg_perm;
@@ -176,7 +176,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */
@@ -193,7 +193,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */

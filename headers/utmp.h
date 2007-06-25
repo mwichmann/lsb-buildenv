@@ -23,7 +23,7 @@ extern "C" {
 	short e_exit;		/* Process exit status. */
     };
 
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct lastlog {
 	time_t ll_time;
@@ -32,7 +32,7 @@ extern "C" {
     };
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct lastlog {
 	time_t ll_time;
@@ -41,7 +41,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct lastlog {
 	time_t ll_time;
@@ -50,7 +50,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct lastlog {
 	time_t ll_time;
@@ -59,7 +59,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct lastlog {
 	int32_t ll_time;
@@ -68,7 +68,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct lastlog {
 	time_t ll_time;
@@ -77,7 +77,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct lastlog {
 	int32_t ll_time;
@@ -90,7 +90,7 @@ extern "C" {
 /* The structure describing an entry in the user accounting database.*/
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct utmp {
 	short ut_type;		/* Type of login. */
@@ -107,7 +107,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct utmp {
 	short ut_type;		/* Type of login. */
@@ -124,7 +124,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct utmp {
 	short ut_type;		/* Type of login. */
@@ -144,7 +144,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct utmp {
 	short ut_type;		/* Type of login. */
@@ -161,7 +161,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct utmp {
 	short ut_type;		/* Type of login. */
@@ -178,7 +178,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct utmp {
 	short ut_type;		/* Type of login. */
@@ -195,7 +195,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct utmp {
 	short ut_type;		/* Type of login. */

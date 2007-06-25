@@ -19,7 +19,7 @@ extern "C" {
 
 
 
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct utmpx {
 	short ut_type;		/* Type of login. */
@@ -36,7 +36,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct utmpx {
 	short ut_type;		/* Type of login. */
@@ -53,7 +53,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct utmpx {
 	short ut_type;		/* Type of login. */
@@ -73,7 +73,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct utmpx {
 	short ut_type;		/* Type of login. */
@@ -90,7 +90,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct utmpx {
 	short ut_type;		/* Type of login. */
@@ -110,7 +110,7 @@ extern "C" {
     };
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct utmpx {
 	short ut_type;		/* Type of login. */
@@ -127,7 +127,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct utmpx {
 	short ut_type;		/* Type of login. */

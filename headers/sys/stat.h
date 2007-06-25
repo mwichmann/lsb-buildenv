@@ -43,25 +43,25 @@ extern "C" {
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
-#if __ia64__
+#if defined __ia64__
 #define _STAT_VER	1
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define _STAT_VER	1
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define _STAT_VER	1
 #endif
-#if __s390x__
+#if defined __s390x__
 #define _STAT_VER	1
 #endif
-#if __i386__
+#if defined ___i386__
 #define _STAT_VER	3
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define _STAT_VER	3
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define _STAT_VER	3
 #endif
 #define st_atime	st_atim.tv_sec
@@ -72,7 +72,7 @@ extern "C" {
 #define S_IEXEC	S_IXUSR
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct stat {
 	dev_t st_dev;
@@ -95,7 +95,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct stat {
 	dev_t st_dev;
@@ -116,7 +116,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct stat {
 	dev_t st_dev;		/* Device. */
@@ -139,7 +139,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct stat {
 	dev_t st_dev;
@@ -162,7 +162,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct stat {
 	dev_t st_dev;
@@ -183,7 +183,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct stat {
 	dev_t st_dev;
@@ -206,7 +206,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct stat {
 	dev_t st_dev;
@@ -227,7 +227,7 @@ extern "C" {
     };
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct stat64 {
 	dev_t st_dev;
@@ -249,7 +249,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct stat64 {
 	dev_t st_dev;		/* Device. */
@@ -271,7 +271,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct stat64 {
 	dev_t st_dev;
@@ -292,7 +292,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct stat64 {
 	dev_t st_dev;
@@ -315,7 +315,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct stat64 {
 	dev_t st_dev;
@@ -336,7 +336,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct stat64 {
 	dev_t st_dev;
@@ -357,7 +357,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct stat64 {
 	dev_t st_dev;
