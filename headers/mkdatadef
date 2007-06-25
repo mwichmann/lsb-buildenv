@@ -654,18 +654,23 @@ for(1..$hgh->numrows) {
 	# Display the Types
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+ 	$select.= "LEFT JOIN TypeMember ON TMmemberof=Tid ";
 	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
 	$select.= "WHERE Theadergroup=$HGid ";
 	$select.= "AND ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= "AND Aid=$Aid ";
+ 	$select.= "AND (TMaid IS NULL OR TMaid=$Aid) ";
 	if( $Aid!=1 ) {
 		$select.= "AND Tid NOT IN ";
 		$select.= " (SELECT DISTINCT ATtid FROM ArchType ";
+ 		$select.= " LEFT JOIN TypeMember ON TMmemberof=ATtid ";
 		$select.= " WHERE ATaid=1 ";
 		$select.= " AND ATappearedin <='$lsbversion' AND ATappearedin <> '' ";
-		$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion')) ";
+		$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ";
+ 		$select.= " AND (TMaid IS NULL OR TMaid=1) )";
 	}
+	$select.= "GROUP BY Tid,ATaid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();
