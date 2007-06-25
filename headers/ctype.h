@@ -16,7 +16,7 @@ extern "C" {
 
 
     enum {
-#if __i386__
+#if defined ___i386__
 /* IA32 */
 	_ISupper = 256,
 	_ISlower = 512,
@@ -31,7 +31,7 @@ extern "C" {
 	_ISpunct = 4,
 	_ISalnum = 8,
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
 	_ISupper = 256,
 	_ISlower = 512,
@@ -46,7 +46,7 @@ extern "C" {
 	_ISpunct = 4,
 	_ISalnum = 8,
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
 	_ISupper = 1,
 	_ISlower = 2,
@@ -61,7 +61,7 @@ extern "C" {
 	_ISpunct = 1024,
 	_ISalnum = 2048,
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
 	_ISupper = 1,
 	_ISlower = 2,
@@ -76,7 +76,7 @@ extern "C" {
 	_ISpunct = 1024,
 	_ISalnum = 2048,
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
 	_ISupper = 1,
 	_ISlower = 2,
@@ -91,7 +91,7 @@ extern "C" {
 	_ISpunct = 1024,
 	_ISalnum = 2048,
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
 	_ISupper = 256,
 	_ISlower = 512,
@@ -106,7 +106,7 @@ extern "C" {
 	_ISpunct = 4,
 	_ISalnum = 8,
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
 	_ISupper = 1,
 	_ISlower = 2,

@@ -33,31 +33,31 @@ extern "C" {
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)
 #define isfinite(x)	\
 	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
-#if __s390x__
+#if defined __s390x__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
-#if __i386__
+#if defined ___i386__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
-#if __ia64__
+#if defined __ia64__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
@@ -65,31 +65,31 @@ extern "C" {
 	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
 #define isnan(x)	\
 	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
-#if __i386__
+#if defined ___i386__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
-#if __ia64__
+#if defined __ia64__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
-#if __s390x__
+#if defined __s390x__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
 #endif
@@ -105,31 +105,31 @@ extern "C" {
 
 /* Some useful constants*/
 #define NAN	((float)0x7fc00000UL)
-#if __i386__
+#if defined ___i386__
 #define FP_ILOGB0	(-2147483647 - 1)
 #endif
-#if __i386__
+#if defined ___i386__
 #define FP_ILOGBNAN	(-2147483647 - 1)
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FP_ILOGB0	-2147483647
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FP_ILOGB0	-2147483647
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FP_ILOGB0	-2147483647
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FP_ILOGB0	-2147483647
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FP_ILOGB0	-2147483648
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FP_ILOGB0	-2147483648
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FP_ILOGBNAN	-2147483648
 #endif
 #define M_1_PI	0.31830988618379067154
@@ -144,19 +144,19 @@ extern "C" {
 #define M_PI_2	1.57079632679489661923
 #define M_LN10	2.30258509299404568402
 #define M_E	2.7182818284590452354
-#if __ia64__
+#if defined __ia64__
 #define FP_ILOGBNAN	2147483647
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FP_ILOGBNAN	2147483647
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FP_ILOGBNAN	2147483647
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FP_ILOGBNAN	2147483647
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FP_ILOGBNAN	2147483647
 #endif
 #define M_PI	3.14159265358979323846
@@ -203,15 +203,15 @@ extern "C" {
     extern int __signbitf(float);
     extern int __fpclassify(double);
     extern int __fpclassifyf(float);
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     extern int __fpclassifyl(long double);
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     extern int __fpclassifyl(long double);
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     extern int __fpclassifyl(long double);
 #endif
@@ -309,15 +309,15 @@ extern "C" {
     extern long double erfl(long double);
     extern double exp2(double);
     extern float exp2f(float);
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     extern long double exp2l(long double);
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     extern long double exp2l(long double);
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     extern long double exp2l(long double);
 #endif
@@ -440,15 +440,15 @@ extern "C" {
     extern long double y1l(long double);
     extern float ynf(int, float);
     extern long double ynl(int, long double);
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     extern int __signbitl(long double);
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     extern int __signbitl(long double);
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     extern int __signbitl(long double);
 #endif
