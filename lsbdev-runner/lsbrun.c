@@ -54,6 +54,14 @@ const char *native_linker_path = "/lib/ld-linux-x86-64.so.2";
 #error Current architecture not supported.
 #endif
 
+/* Handle memory errors. */
+
+void handle_mem_error()
+{
+  perror("lsbrun");
+  exit(1);
+}
+
 /* Take a non-absolute path and make it absolute.  If this is a bare
    filename, search the PATH. */
 
@@ -73,6 +81,7 @@ const char *find_binary_path(const char *binary)
       snprintf(buf, PATH_MAX, "%s/%s", path_item, binary);
       if (access(buf, X_OK) == 0) {
 	result = strdup(buf);
+	if (result == NULL) handle_mem_error();
 	break;
       } else {
 	buf[0] = '\0';
@@ -89,6 +98,7 @@ const char *find_binary_path(const char *binary)
     strncat(buf, "/", PATH_MAX);
     strncat(buf, binary, PATH_MAX);
     result = strdup(buf);
+    if (result == NULL) handle_mem_error();
   }
 
   return result;
@@ -116,14 +126,17 @@ void check_binary(const char *binary_path, const char *lsbrun_path)
     binary_basename = strdup(basename(buf));
 
     binary_basename = realloc(binary_basename, strlen(binary_basename) + 2);
+    if (binary_basename == NULL) handle_mem_error();
     memmove(binary_basename + 1, binary_basename, strlen(binary_basename) + 1);
     binary_basename[0] = '.';
 
     strncpy(buf, binary_path, PATH_MAX);
     binary_dir = strdup(dirname(buf));
+    if (binary_dir == NULL) handle_mem_error();
 
     snprintf(buf, PATH_MAX, "%s/%s", binary_dir, binary_basename);
     new_binary_path = strdup(buf);
+    if (new_binary_path == NULL) handle_mem_error();
 
     rename(binary_path, new_binary_path);
 
@@ -202,6 +215,8 @@ int main(int argc, char *argv[])
     /* Copy argv. */
 
     real_cmdline = (char **)malloc(sizeof(char *) * (argc + 2));
+    if (real_cmdline == NULL) handle_mem_error();
+
     for (index = 0; index < argc; index++)
       real_cmdline[index] = argv[index];
     real_cmdline[argc] = NULL;
@@ -212,15 +227,18 @@ int main(int argc, char *argv[])
 
     strncpy(buf, argv[0], PATH_MAX);
     exec_fn = strdup(basename(buf));
+    if (exec_fn == NULL) handle_mem_error();
 
     if (access(argv[0], X_OK) == 0) {
       strncpy(buf, argv[0], PATH_MAX);
       abs_exec_dir = strdup(dirname(buf));
+      if (abs_exec_dir == NULL) handle_mem_error();
     } else {
       abs_exec_dir = find_binary_path(argv[0]);
     }
 
     exec_fn = realloc(exec_fn, strlen(exec_fn) + 2);
+    if (exec_fn == NULL) handle_mem_error();
     memmove(exec_fn + 1, exec_fn, strlen(exec_fn) + 1);
     exec_fn[0] = '.';
 
@@ -266,6 +284,7 @@ int main(int argc, char *argv[])
     real_cmdline_len++;
 
   new_cmdline = (char **)malloc(sizeof(char *) * (real_cmdline_len + 1));
+  if (new_cmdline == NULL) handle_mem_error();
   new_cmdline[0] = linker_path;
   for (index = 1; index < real_cmdline_len + 1; index++)
     new_cmdline[index] = real_cmdline[index - 1];
