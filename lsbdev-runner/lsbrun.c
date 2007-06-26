@@ -154,7 +154,14 @@ void check_binary(const char *binary_path, const char *lsbrun_path)
 
 void help(FILE *stream)
 {
-  fputs("help goes here\n", stream);
+  fputs(
+"lsbrun - a helper for LSB applications on non-LSB systems\n"
+"Copyright 2007 The Linux Foundation\n"
+"Usage:\n"
+"  lsbrun <binary>            Run a LSB binary\n"
+"  lsbrun --check <binary>    Check that a LSB binary is runnable, and\n"
+"                             adjust it to run properly if needed\n", 
+	stream);
 }
 
 int main(int argc, char *argv[])
