@@ -58,7 +58,7 @@ extern "C" {
 /* These types are derived from the ones above*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int32_t ssize_t;
 
@@ -150,7 +150,7 @@ extern "C" {
 #if defined __s390x__
 #define __FDSET_LONGS	16
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define __FDSET_LONGS	32
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -193,7 +193,7 @@ extern "C" {
 #if defined __s390x__
 #define __BYTE_ORDER	__BIG_ENDIAN
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define __BYTE_ORDER	__LITTLE_ENDIAN
 #endif
 #if defined __ia64__

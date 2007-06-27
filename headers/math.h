@@ -49,7 +49,7 @@ extern "C" {
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
 #endif
@@ -65,7 +65,7 @@ extern "C" {
 	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
 #define isnan(x)	\
 	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
-#if defined ___i386__
+#if defined __i386__
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
 #endif
@@ -105,10 +105,10 @@ extern "C" {
 
 /* Some useful constants*/
 #define NAN	((float)0x7fc00000UL)
-#if defined ___i386__
+#if defined __i386__
 #define FP_ILOGB0	(-2147483647 - 1)
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FP_ILOGBNAN	(-2147483647 - 1)
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -203,7 +203,7 @@ extern "C" {
     extern int __signbitf(float);
     extern int __fpclassify(double);
     extern int __fpclassifyf(float);
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern int __fpclassifyl(long double);
 #endif
@@ -309,7 +309,7 @@ extern "C" {
     extern long double erfl(long double);
     extern double exp2(double);
     extern float exp2f(float);
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern long double exp2l(long double);
 #endif
@@ -440,7 +440,7 @@ extern "C" {
     extern long double y1l(long double);
     extern float ynf(int, float);
     extern long double ynl(int, long double);
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern int __signbitl(long double);
 #endif

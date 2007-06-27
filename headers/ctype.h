@@ -16,7 +16,7 @@ extern "C" {
 
 
     enum {
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
 	_ISupper = 256,
 	_ISlower = 512,

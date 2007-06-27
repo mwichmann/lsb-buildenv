@@ -196,7 +196,7 @@ extern "C" {
 
 
 /* POSIX 1003.1b sigevent*/
-#if defined ___i386__
+#if defined __i386__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -241,7 +241,7 @@ extern "C" {
 
 
 /* POSIX 1003.1b siginfo*/
-#if defined ___i386__
+#if defined __i386__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -418,7 +418,7 @@ extern "C" {
 #define sa_sigaction	__sigaction_handler._sa_sigaction
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct sigaction {
 	union {
@@ -513,7 +513,7 @@ extern "C" {
 #if defined __ia64__
 #define MINSIGSTKSZ	131027
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define MINSIGSTKSZ	2048
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -534,7 +534,7 @@ extern "C" {
 #if defined __ia64__
 #define SIGSTKSZ	262144
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define SIGSTKSZ	8192
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -605,7 +605,7 @@ extern "C" {
     } _sigregs;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct _fpreg {
 	unsigned short significand[4];
@@ -613,7 +613,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct _fpxreg {
 	unsigned short significand[4];
@@ -631,7 +631,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct _xmmreg {
 	unsigned long int element[4];
@@ -659,7 +659,7 @@ extern "C" {
 /* FPU state information*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct _fpstate {
 	unsigned long int cw;
@@ -702,7 +702,7 @@ extern "C" {
 /* Process context when signal delivered*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct sigcontext {
 	unsigned short gs;

@@ -56,13 +56,13 @@ extern "C" {
 #if defined __ia64__
 #define FE_INEXACT	(1UL << 5)
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_INVALID	0x01
 #endif
 #if defined __x86_64__
 #define FE_INVALID	0x01
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_DIVBYZERO	0x04
 #endif
 #if defined __x86_64__
@@ -74,13 +74,13 @@ extern "C" {
 #if defined __s390x__
 #define FE_INEXACT	0x08
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_OVERFLOW	0x08
 #endif
 #if defined __x86_64__
 #define FE_OVERFLOW	0x08
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_UNDERFLOW	0x10
 #endif
 #if defined __s390__ && !defined __s390x__
@@ -92,7 +92,7 @@ extern "C" {
 #if defined __s390x__
 #define FE_UNDERFLOW	0x10
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_INEXACT	0x20
 #endif
 #if defined __x86_64__
@@ -122,7 +122,7 @@ extern "C" {
 
 
 
-#if defined ___i386__
+#if defined __i386__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
@@ -154,7 +154,7 @@ extern "C" {
 
 
 /* Rounding modes*/
-#if defined ___i386__
+#if defined __i386__
 #define FE_TONEAREST	0
 #endif
 #if defined __ia64__
@@ -193,19 +193,19 @@ extern "C" {
 #if defined __s390x__
 #define FE_DOWNWARD	0x3
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_DOWNWARD	0x400
 #endif
 #if defined __x86_64__
 #define FE_DOWNWARD	0x400
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_UPWARD	0x800
 #endif
 #if defined __x86_64__
 #define FE_UPWARD	0x800
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_TOWARDZERO	0xc00
 #endif
 #if defined __x86_64__
@@ -249,7 +249,7 @@ extern "C" {
     typedef unsigned int fexcept_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned short fexcept_t;
 
@@ -314,7 +314,7 @@ extern "C" {
     } fenv_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef struct {
 	unsigned short __control_word;
@@ -361,7 +361,7 @@ extern "C" {
 #if defined __powerpc64__
 #define FE_DFL_ENV	(&__fe_dfl_env)
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FE_DFL_ENV	((__const fenv_t *) -1)
 #endif
 #if defined __s390__ && !defined __s390x__

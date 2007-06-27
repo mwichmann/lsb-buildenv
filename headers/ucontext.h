@@ -84,7 +84,7 @@ extern "C" {
 /* Type for general register.*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int greg_t;
 
@@ -96,7 +96,7 @@ extern "C" {
 #endif
 
 /* Number of general registers.*/
-#if defined ___i386__
+#if defined __i386__
 #define NGREG	19
 #endif
 #if defined __x86_64__
@@ -120,7 +120,7 @@ extern "C" {
 /* Container for all general registers.*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef greg_t gregset_t[19];
 
@@ -164,7 +164,7 @@ extern "C" {
     } fpreg_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct _libc_fpreg {
 	unsigned short significand[4];
@@ -179,7 +179,7 @@ extern "C" {
 /* Structure to describe FPU registers.*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef struct _libc_fpstate *fpregset_t;
 
@@ -215,7 +215,7 @@ extern "C" {
     typedef double fpregset_t[33];
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct _libc_fpstate {
 	unsigned long int cw;
@@ -264,7 +264,7 @@ extern "C" {
 /* Context to describe whole processor state.*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef struct {
 	gregset_t gregs;
@@ -354,7 +354,7 @@ extern "C" {
 /* Userlevel context.*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef struct ucontext ucontext_t;
 
@@ -389,7 +389,7 @@ extern "C" {
     typedef struct ucontext ucontext_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
 
     struct ucontext {

@@ -152,7 +152,7 @@ extern "C" {
 						   void *stop_parameter);
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef _Unwind_Reason_Code(*_Unwind_Stop_Fn) (int version,
 						   _Unwind_Action actions,
@@ -174,7 +174,7 @@ extern "C" {
 						    *, void *);
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
 						    *, void *);
@@ -235,11 +235,11 @@ extern "C" {
 /* S390X */
     extern void _Unwind_DeleteException(struct _Unwind_Exception *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern void _Unwind_DeleteException(struct _Unwind_Exception *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
 #endif
@@ -283,11 +283,11 @@ extern "C" {
 /* S390X */
     extern _Unwind_Ptr _Unwind_GetDataRelBase(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Ptr _Unwind_GetDataRelBase(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Word _Unwind_GetGR(struct _Unwind_Context *, int);
 #endif
@@ -315,7 +315,7 @@ extern "C" {
 /* S390X */
     extern _Unwind_Word _Unwind_GetGR(struct _Unwind_Context *, int);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Ptr _Unwind_GetIP(struct _Unwind_Context *);
 #endif
@@ -343,7 +343,7 @@ extern "C" {
 /* S390X */
     extern _Unwind_Ptr _Unwind_GetIP(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Ptr _Unwind_GetLanguageSpecificData(struct
 						       _Unwind_Context *,
@@ -385,7 +385,7 @@ extern "C" {
 						       _Unwind_Context *,
 						       unsigned int);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Ptr _Unwind_GetRegionStart(struct _Unwind_Context *);
 #endif
@@ -413,7 +413,7 @@ extern "C" {
 /* S390X */
     extern _Unwind_Ptr _Unwind_GetRegionStart(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Reason_Code _Unwind_RaiseException(struct
 						      _Unwind_Exception *);
@@ -448,7 +448,7 @@ extern "C" {
     extern _Unwind_Reason_Code _Unwind_RaiseException(struct
 						      _Unwind_Exception *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern void _Unwind_SetIP(struct _Unwind_Context *, unsigned int);
 #endif
@@ -476,7 +476,7 @@ extern "C" {
 /* S390X */
     extern void _Unwind_SetIP(struct _Unwind_Context *, unsigned int);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern void _Unwind_Resume(struct _Unwind_Exception *);
 #endif
@@ -528,7 +528,7 @@ extern "C" {
 /* S390X */
     extern void _Unwind_SetGR(struct _Unwind_Context *, int, u_int64_t);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern void _Unwind_SetGR(struct _Unwind_Context *, int, u_int64_t);
 #endif
@@ -552,11 +552,11 @@ extern "C" {
 /* S390X */
     extern _Unwind_Ptr _Unwind_GetTextRelBase(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Ptr _Unwind_GetTextRelBase(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Ptr _Unwind_ForcedUnwind(struct _Unwind_Exception *,
 					    _Unwind_Stop_Fn, void *);
@@ -591,7 +591,7 @@ extern "C" {
     extern _Unwind_Ptr _Unwind_ForcedUnwind(struct _Unwind_Exception *,
 					    _Unwind_Stop_Fn, void *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Reason_Code _Unwind_Backtrace(_Unwind_Trace_Fn, void *);
 #endif
@@ -623,7 +623,7 @@ extern "C" {
 /* S390 */
     extern _Unwind_Reason_Code _Unwind_GetCFA(struct _Unwind_Context *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Reason_Code _Unwind_GetCFA(struct _Unwind_Context *);
 #endif
@@ -653,7 +653,7 @@ extern "C" {
 							 _Unwind_Exception
 							 *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern _Unwind_Reason_Code _Unwind_Resume_or_Rethrow(struct
 							 _Unwind_Exception
@@ -693,7 +693,7 @@ extern "C" {
 /* S390 */
     extern void *_Unwind_FindEnclosingFunction(void *);
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     extern void *_Unwind_FindEnclosingFunction(void *);
 #endif

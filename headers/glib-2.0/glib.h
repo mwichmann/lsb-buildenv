@@ -15,7 +15,7 @@ extern "C" {
 #define G_GINT32_MODIFIER	""
 #define G_GNUC_FUNCTION	""
 #define G_GNUC_PRETTY_FUNCTION	""
-#if defined ___i386__
+#if defined __i386__
 #define G_GSIZE_MODIFIER	""
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -268,7 +268,7 @@ extern "C" {
 #define G_STATIC_MUTEX_INIT	 \
 	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define G_STATIC_MUTEX_INIT	 \
 	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
 #endif
@@ -294,7 +294,7 @@ extern "C" {
 #define G_STRFUNC	((const char*) (__PRETTY_FUNCTION__))
 #define G_LOG_DOMAIN	((gchar*) 0)
 #define G_HOOK(hook)	((GHook*) (hook))
-#if defined ___i386__
+#if defined __i386__
 #define GPOINTER_TO_INT(p)	((gint) (p))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -329,7 +329,7 @@ extern "C" {
 #if defined __s390x__
 #define GPOINTER_TO_INT(p)	((glong) (p))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GLONG_TO_BE(val)	((glong) GINT32_TO_BE (val))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -338,7 +338,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define GLONG_TO_BE(val)	((glong) GINT32_TO_BE (val))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GLONG_TO_LE(val)	((glong) GINT32_TO_LE (val))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -396,7 +396,7 @@ extern "C" {
 #if defined __s390x__
 #define GUINT_TO_POINTER(u)	((gpointer) (gulong) (u))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GINT_TO_POINTER(i)	((gpointer) (i))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -405,7 +405,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define GINT_TO_POINTER(i)	((gpointer) (i))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GUINT_TO_POINTER(u)	((gpointer) (u))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -415,7 +415,7 @@ extern "C" {
 #define GUINT_TO_POINTER(u)	((gpointer) (u))
 #endif
 #define GPOINTER_TO_SIZE(p)	((gsize) (p))
-#if defined ___i386__
+#if defined __i386__
 #define GPOINTER_TO_UINT(p)	((guint) (p))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -445,7 +445,7 @@ extern "C" {
 #if defined __s390x__
 #define GPOINTER_TO_UINT(p)	((gulong) (p))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GULONG_TO_BE(val)	((gulong) GUINT32_TO_BE (val))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -454,7 +454,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define GULONG_TO_BE(val)	((gulong) GUINT32_TO_BE (val))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GULONG_TO_LE(val)	((gulong) GUINT32_TO_LE (val))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -551,7 +551,7 @@ extern "C" {
 #if defined __s390x__
 #define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##L))
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##LL))
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -615,7 +615,7 @@ extern "C" {
 #define G_LN10	2.3025850929940456840179914546843642076011014886288
 #define G_E	2.7182818284590452353602874713526624977572470937000
 #define G_PRIORITY_DEFAULT_IDLE	200
-#if defined ___i386__
+#if defined __i386__
 #define GLIB_LSB_PADDING_SIZE	24
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -627,7 +627,7 @@ extern "C" {
 #define G_PI	3.1415926535897932384626433832795028841971693993751
 #define G_PRIORITY_LOW	300
 #define G_PDP_ENDIAN	3412
-#if defined ___i386__
+#if defined __i386__
 #define GLIB_LSB_DATA_SIZE	4
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -636,7 +636,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define GLIB_LSB_DATA_SIZE	4
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GLIB_SIZEOF_LONG	4
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -645,7 +645,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define GLIB_SIZEOF_LONG	4
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GLIB_SIZEOF_SIZE_T	4
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -654,7 +654,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define GLIB_SIZEOF_SIZE_T	4
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define GLIB_SIZEOF_VOID_P	4
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -780,7 +780,7 @@ extern "C" {
 #define G_MAXUINT64	G_GINT64_CONSTANT(0xffffffffffffffffU)
 #define G_IO_CHANNEL_ERROR	g_io_channel_error_quark()
 #define G_KEY_FILE_ERROR	g_key_file_error_quark()
-#if defined ___i386__
+#if defined __i386__
 #define G_BYTE_ORDER	G_LITTLE_ENDIAN
 #endif
 #if defined __ia64__
@@ -792,7 +792,7 @@ extern "C" {
 #define g_debug(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, __VA_ARGS__)
 #define g_error(...)	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, __VA_ARGS__)
 #define G_MARKUP_ERROR	g_markup_error_quark ()
-#if defined ___i386__
+#if defined __i386__
 #define G_MAXSIZE	G_MAXUINT
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -836,7 +836,7 @@ extern "C" {
 #define G_GINT16_FORMAT	"hi"
 #define G_GUINT16_FORMAT	"hu"
 #define G_GINT32_FORMAT	"i"
-#if defined ___i386__
+#if defined __i386__
 #define G_GSSIZE_FORMAT	"i"
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -895,7 +895,7 @@ extern "C" {
 #if defined __s390x__
 #define G_GSSIZE_FORMAT	"li"
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define G_GINT64_MODIFIER	"ll"
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -904,7 +904,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define G_GINT64_MODIFIER	"ll"
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define G_GINT64_FORMAT	"lli"
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -913,7 +913,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define G_GINT64_FORMAT	"lli"
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define G_GUINT64_FORMAT	"llu"
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -952,7 +952,7 @@ extern "C" {
 #define G_MINSHORT	SHRT_MIN
 #define G_MODULE_SUFFIX	"so"
 #define G_LOCK_DEFINE_STATIC(name)	static G_LOCK_DEFINE (name)
-#if defined ___i386__
+#if defined __i386__
 #define G_GSIZE_FORMAT	"u"
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -988,7 +988,7 @@ extern "C" {
 /* Arch Specific Header Section for glib-2.0/glib.h*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int gssize;
 
@@ -1023,7 +1023,7 @@ extern "C" {
     typedef long int gssize;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long long int gint64;
 
@@ -1058,7 +1058,7 @@ extern "C" {
     typedef long int gint64;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long long unsigned int guint64;
 
@@ -1148,7 +1148,7 @@ extern "C" {
 
     typedef struct _GSList GSList;
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned int gsize;
 

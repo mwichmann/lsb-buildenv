@@ -17,7 +17,7 @@ extern "C" {
 #define IPC_STAT	2
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct ipc_perm {
 	key_t __key;

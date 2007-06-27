@@ -140,7 +140,7 @@ extern "C" {
 #define EADDRINUSE	98
 #define EADDRNOTAVAIL	99
 #define EWOULDBLOCK	EAGAIN
-#if defined ___i386__
+#if defined __i386__
 #define EDEADLOCK	EDEADLK
 #endif
 #if defined __ia64__

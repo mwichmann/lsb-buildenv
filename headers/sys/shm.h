@@ -13,7 +13,7 @@ extern "C" {
 #if defined __ia64__
 #define SHMLBA	(1024*1024)
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define SHMLBA	(__getpagesize())
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -43,7 +43,7 @@ extern "C" {
 
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long int shmatt_t;
 
@@ -76,7 +76,7 @@ extern "C" {
 
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct shmid_ds {
 	struct ipc_perm shm_perm;

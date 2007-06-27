@@ -28,7 +28,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct statvfs {
 	unsigned long int f_bsize;
@@ -139,7 +139,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct statvfs64 {
 	unsigned long int f_bsize;
