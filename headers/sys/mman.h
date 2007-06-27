@@ -19,7 +19,7 @@ extern "C" {
 #define PROT_WRITE	0x2
 #define MAP_ANONYMOUS	0x20
 #define PROT_EXEC	0x4
-#if defined ___i386__
+#if defined __i386__
 #define MCL_CURRENT	1
 #endif
 #if defined __ia64__
@@ -41,7 +41,7 @@ extern "C" {
 #if defined __powerpc64__
 #define MCL_FUTURE	16384
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define MCL_FUTURE	2
 #endif
 #if defined __ia64__

@@ -57,7 +57,7 @@ extern "C" {
 #define F_WRLCK	1
 #define F_SETSIG	10
 #define F_GETSIG	11
-#if defined ___i386__
+#if defined __i386__
 #define F_GETLK64	12
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -69,7 +69,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define F_GETLK64	12
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define F_SETLK64	13
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -81,7 +81,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define F_SETLK64	13
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define F_SETLKW64	14
 #endif
 #if defined __powerpc__ && !defined __powerpc64__

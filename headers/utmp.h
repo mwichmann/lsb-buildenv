@@ -32,7 +32,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct lastlog {
 	time_t ll_time;
@@ -90,7 +90,7 @@ extern "C" {
 /* The structure describing an entry in the user accounting database.*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct utmp {
 	short ut_type;		/* Type of login. */

@@ -13,7 +13,7 @@ extern "C" {
 #if defined __powerpc64__
 #define TIOCGWINSZ	0x40087468
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define TIOCGWINSZ	0x5413
 #endif
 #if defined __ia64__
@@ -28,7 +28,7 @@ extern "C" {
 #if defined __s390x__
 #define TIOCGWINSZ	0x5413
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define FIONREAD	0x541B
 #endif
 #if defined __ia64__
@@ -40,7 +40,7 @@ extern "C" {
 #if defined __x86_64__
 #define FIONREAD	0x541B
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define TIOCNOTTY	0x5422
 #endif
 #if defined __ia64__

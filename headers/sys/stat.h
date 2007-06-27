@@ -55,7 +55,7 @@ extern "C" {
 #if defined __s390x__
 #define _STAT_VER	1
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define _STAT_VER	3
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -72,7 +72,7 @@ extern "C" {
 #define S_IEXEC	S_IXUSR
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct stat {
 	dev_t st_dev;
@@ -227,7 +227,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct stat64 {
 	dev_t st_dev;

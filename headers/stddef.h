@@ -12,7 +12,7 @@ extern "C" {
 
 
 #if !defined(__cplusplus)
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long int wchar_t;
 
@@ -80,7 +80,7 @@ extern "C" {
     typedef unsigned long int size_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned int size_t;
 
@@ -95,7 +95,7 @@ extern "C" {
     typedef unsigned long int size_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int ptrdiff_t;
 

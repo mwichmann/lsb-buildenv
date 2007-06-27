@@ -88,6 +88,7 @@ sys/statvfs.h
 pty.h
 sys/statfs.h
 libintl.h
+strings.h
 rpc/types.h
 rpc/rpc_msg.h
 netinet/udp.h

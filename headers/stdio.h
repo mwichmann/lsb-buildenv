@@ -14,7 +14,7 @@ extern "C" {
 
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
-#if defined ___i386__
+#if defined __i386__
 #define __IO_FILE_SIZE	148
 #endif
 #if defined __powerpc__ && !defined __powerpc64__

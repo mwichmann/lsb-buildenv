@@ -15,7 +15,7 @@ extern "C" {
 
     typedef int int32_t;
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long long int int64_t;
 
@@ -50,7 +50,7 @@ extern "C" {
     typedef long int int64_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long long int intmax_t;
 
@@ -95,7 +95,7 @@ extern "C" {
     typedef unsigned long int uintmax_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long long int uintmax_t;
 
@@ -120,7 +120,7 @@ extern "C" {
     typedef unsigned long int uintmax_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int intptr_t;
 
@@ -161,7 +161,7 @@ extern "C" {
 
     typedef unsigned int uint32_t;
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned int uintptr_t;
 
@@ -221,7 +221,7 @@ extern "C" {
     typedef unsigned long int uint64_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long long int uint64_t;
 
@@ -267,7 +267,7 @@ extern "C" {
     typedef long int int_least64_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long long int int_least64_t;
 
@@ -302,7 +302,7 @@ extern "C" {
     typedef unsigned long int uint_least64_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long long int uint_least64_t;
 
@@ -337,7 +337,7 @@ extern "C" {
     typedef long int int_fast16_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int int_fast16_t;
 
@@ -372,7 +372,7 @@ extern "C" {
     typedef long int int_fast32_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int int_fast32_t;
 
@@ -407,7 +407,7 @@ extern "C" {
     typedef long int int_fast64_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef long long int int_fast64_t;
 
@@ -442,7 +442,7 @@ extern "C" {
     typedef unsigned long int uint_fast16_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned int uint_fast16_t;
 
@@ -477,7 +477,7 @@ extern "C" {
     typedef unsigned long int uint_fast32_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned int uint_fast32_t;
 
@@ -512,7 +512,7 @@ extern "C" {
     typedef unsigned long int uint_fast64_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long long int uint_fast64_t;
 

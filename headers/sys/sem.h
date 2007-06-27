@@ -38,7 +38,7 @@ extern "C" {
     };
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct semid_ds {
 	struct ipc_perm sem_perm;	/* operation permission struct */

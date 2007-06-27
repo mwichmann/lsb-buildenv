@@ -14,7 +14,7 @@ extern "C" {
 #if defined __x86_64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define LONG_MAX	0x7FFFFFFFL
 #endif
 #if defined __ia64__
@@ -29,7 +29,7 @@ extern "C" {
 #if defined __s390x__
 #define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -96,13 +96,13 @@ extern "C" {
 #endif
 #define UCHAR_MAX	255
 #define CHAR_BIT	8
-#if defined ___i386__
+#if defined __i386__
 #define CHAR_MAX	SCHAR_MAX
 #endif
 #if defined __ia64__
 #define CHAR_MAX	SCHAR_MAX
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define CHAR_MIN	SCHAR_MIN
 #endif
 #if defined __ia64__
@@ -135,7 +135,7 @@ extern "C" {
 
 /* POSIX Threads values*/
 #define PTHREAD_KEYS_MAX	1024
-#if defined ___i386__
+#if defined __i386__
 #define PTHREAD_STACK_MIN	16384
 #endif
 #if defined __powerpc__ && !defined __powerpc64__

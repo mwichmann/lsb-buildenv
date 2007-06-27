@@ -57,7 +57,7 @@ extern "C" {
 
     typedef unsigned int socklen_t;
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef uint32_t __ss_aligntype;
 
@@ -164,7 +164,7 @@ extern "C" {
 #if defined __powerpc64__
 #define SO_SNDLOWAT	17
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define SO_RCVLOWAT	18
 #endif
 #if defined __ia64__
@@ -185,7 +185,7 @@ extern "C" {
 #if defined __powerpc64__
 #define SO_RCVTIMEO	18
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define SO_SNDLOWAT	19
 #endif
 #if defined __ia64__
@@ -207,7 +207,7 @@ extern "C" {
 #define SO_SNDTIMEO	19
 #endif
 #define SO_REUSEADDR	2
-#if defined ___i386__
+#if defined __i386__
 #define SO_RCVTIMEO	20
 #endif
 #if defined __ia64__
@@ -222,7 +222,7 @@ extern "C" {
 #if defined __s390x__
 #define SO_RCVTIMEO	20
 #endif
-#if defined ___i386__
+#if defined __i386__
 #define SO_SNDTIMEO	21
 #endif
 #if defined __ia64__

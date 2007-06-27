@@ -23,7 +23,7 @@ extern "C" {
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long int msgqnum_t;
 
@@ -48,7 +48,7 @@ extern "C" {
     typedef unsigned long int msgqnum_t;
 
 #endif
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef unsigned long int msglen_t;
 
@@ -82,7 +82,7 @@ extern "C" {
 /* Message Queue structure*/
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     struct msqid_ds {
 	struct ipc_perm msg_perm;	/* structure describing operation permission */

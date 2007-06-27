@@ -15,7 +15,7 @@ extern "C" {
 
 
 
-#if defined ___i386__
+#if defined __i386__
 /* IA32 */
     typedef int __jmp_buf[6];
 
