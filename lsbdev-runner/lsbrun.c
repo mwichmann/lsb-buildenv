@@ -125,10 +125,14 @@ void check_binary(const char *binary_path, const char *lsbrun_path)
     strncpy(buf, binary_path, PATH_MAX);
     binary_basename = strdup(basename(buf));
 
+    /* Add the leading '.' to the binary filename. */
+
     binary_basename = realloc(binary_basename, strlen(binary_basename) + 2);
     if (binary_basename == NULL) handle_mem_error();
     memmove(binary_basename + 1, binary_basename, strlen(binary_basename) + 1);
     binary_basename[0] = '.';
+
+    /* Figure out the new full path for the binary. */
 
     strncpy(buf, binary_path, PATH_MAX);
     binary_dir = strdup(dirname(buf));
@@ -138,17 +142,41 @@ void check_binary(const char *binary_path, const char *lsbrun_path)
     new_binary_path = strdup(buf);
     if (new_binary_path == NULL) handle_mem_error();
 
-    rename(binary_path, new_binary_path);
+    /* Move the binary to its new location. */
+
+    if (rename(binary_path, new_binary_path) != 0) {
+      perror("lsbrun");
+      exit(1);
+    }
+
+    /* Copy the lsbrun executable to the old binary path. */
 
     lsbrun_file = fopen(lsbrun_path, "r");
     new_binary_file = fopen(binary_path, "w");
+    if ((lsbrun_file == NULL) || (new_binary_file == NULL)) {
+      perror("lsbrun");
+      fprintf(stderr, 
+	      "warning: check the target binary, it may have been moved\n");
+      exit(1);
+    }
+
     while ((read = fread(buf, 1, PATH_MAX, lsbrun_file)) > 0)
       fwrite(buf, 1, read, new_binary_file);
+
     fclose(lsbrun_file);
     fclose(new_binary_file);
 
-    stat(new_binary_path, &binary_stat);
-    chmod(binary_path, binary_stat.st_mode & 07777);
+    /* Make sure the lsbrun copy has the same permissions as the old
+       binary. */
+
+    if (stat(new_binary_path, &binary_stat) == 0) {
+      chmod(binary_path, binary_stat.st_mode & 07777);
+    } else {
+      perror("lsbrun");
+      fprintf(stderr, 
+	      "warning: check the target binary, it may not be executable\n");
+      exit(1);
+    }
   }
 }
 
@@ -156,7 +184,7 @@ void help(FILE *stream)
 {
   fputs(
 "lsbrun - a helper for LSB applications on non-LSB systems\n"
-"Copyright 2007 The Linux Foundation\n"
+"Copyright 2007 The Linux Foundation.\n"
 "Usage:\n"
 "  lsbrun <binary>            Run a LSB binary\n"
 "  lsbrun --check <binary>    Check that a LSB binary is runnable, and\n"
