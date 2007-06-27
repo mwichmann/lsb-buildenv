@@ -817,6 +817,13 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if (0 == stat(optarg, &st_buf)) {
 			found_file = 1;
 		}
+		/* special case: file fed to stdin */
+		if(strcmp( optarg, "-" ) == 0) {
+			if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
+				fprintf(stderr,"option1: %s, process stdin\n", optarg); 
+			}
+			found_file = 1;
+		}
 		break;
 	case 2: /* --help intended for gcc, we'll add our 2cents however */
 		found_gcc_standalone = 1;

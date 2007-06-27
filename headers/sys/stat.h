@@ -43,25 +43,25 @@ extern "C" {
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
-#if __ia64__
+#if defined __ia64__
 #define _STAT_VER	1
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define _STAT_VER	1
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define _STAT_VER	1
 #endif
-#if __s390x__
+#if defined __s390x__
 #define _STAT_VER	1
 #endif
-#if __i386__
+#if defined ___i386__
 #define _STAT_VER	3
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define _STAT_VER	3
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define _STAT_VER	3
 #endif
 #define st_atime	st_atim.tv_sec
@@ -72,7 +72,7 @@ extern "C" {
 #define S_IEXEC	S_IXUSR
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct stat {
 	dev_t st_dev;
@@ -95,29 +95,7 @@ extern "C" {
     };
 
 #endif
-#if __i386__
-/* IA32 */
-    struct stat64 {
-	dev_t st_dev;
-	unsigned int __pad1;
-	ino_t __st_ino;
-	mode_t st_mode;
-	nlink_t st_nlink;
-	uid_t st_uid;
-	gid_t st_gid;
-	dev_t st_rdev;
-	unsigned int __pad2;
-	off64_t st_size;
-	blksize_t st_blksize;
-	blkcnt64_t st_blocks;
-	struct timespec st_atim;	/* Time of last access. */
-	struct timespec st_mtim;	/* Time of last modification. */
-	struct timespec st_ctim;	/* Time of last status change. */
-	ino64_t st_ino;
-    };
-
-#endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     struct stat {
 	dev_t st_dev;
@@ -138,29 +116,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    struct stat64 {
-	dev_t st_dev;		/* Device. */
-	ino64_t st_ino;		/* File serial number. */
-	mode_t st_mode;		/* File mode. */
-	nlink_t st_nlink;	/* Link count. */
-	uid_t st_uid;		/* User ID of the file's owner. */
-	gid_t st_gid;		/* Group ID of the file's group. */
-	dev_t st_rdev;		/* Device number, if device. */
-	unsigned short __pad2;
-	off64_t st_size;	/* Size of file, in bytes. */
-	blksize_t st_blksize;	/* Optimal block size for I/O. */
-	blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
-	struct timespec st_atim;	/* Time of last access. */
-	struct timespec st_mtim;	/* Time of last modification. */
-	struct timespec st_ctim;	/* Time of last status change. */
-	unsigned long int __unused4;
-	unsigned long int __unused5;
-    };
-
-#endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct stat {
 	dev_t st_dev;		/* Device. */
@@ -183,28 +139,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
-/* IA64 */
-    struct stat64 {
-	dev_t st_dev;
-	ino64_t st_ino;
-	nlink_t st_nlink;
-	mode_t st_mode;
-	uid_t st_uid;
-	gid_t st_gid;
-	unsigned int pad0;
-	dev_t st_rdev;
-	off_t st_size;
-	struct timespec st_atim;	/* Time of last access. */
-	struct timespec st_mtim;	/* Time of last modification. */
-	struct timespec st_ctim;	/* Time of last status change. */
-	blksize_t st_blksize;
-	blkcnt64_t st_blocks;
-	unsigned long int __unused[3];
-    };
-
-#endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct stat {
 	dev_t st_dev;
@@ -227,30 +162,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
-/* PPC64 */
-    struct stat64 {
-	dev_t st_dev;
-	ino64_t st_ino;
-	nlink_t st_nlink;
-	mode_t st_mode;
-	uid_t st_uid;
-	gid_t st_gid;
-	int __pad2;
-	dev_t st_rdev;
-	off64_t st_size;
-	blksize_t st_blksize;
-	blkcnt64_t st_blocks;
-	struct timespec st_atim;	/* Time of last access. */
-	struct timespec st_mtim;	/* Time of last modification. */
-	struct timespec st_ctim;	/* Time of last status change. */
-	unsigned long int __unused4;
-	unsigned long int __unused5;
-	unsigned long int __unused6;
-    };
-
-#endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct stat {
 	dev_t st_dev;
@@ -271,28 +183,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
-/* S390X */
-    struct stat64 {
-	dev_t st_dev;
-	ino64_t st_ino;
-	nlink_t st_nlink;
-	mode_t st_mode;
-	uid_t st_uid;
-	gid_t st_gid;
-	int pad0;
-	dev_t st_rdev;
-	off_t st_size;
-	struct timespec st_atim;	/* Time of last access. */
-	struct timespec st_mtim;	/* Time of last modification. */
-	struct timespec st_ctim;	/* Time of last status change. */
-	blksize_t st_blksize;
-	blkcnt64_t st_blocks;
-	long int __unused[3];
-    };
-
-#endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct stat {
 	dev_t st_dev;
@@ -315,7 +206,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct stat {
 	dev_t st_dev;
@@ -336,7 +227,116 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined ___i386__
+/* IA32 */
+    struct stat64 {
+	dev_t st_dev;
+	unsigned int __pad1;
+	ino_t __st_ino;
+	mode_t st_mode;
+	nlink_t st_nlink;
+	uid_t st_uid;
+	gid_t st_gid;
+	dev_t st_rdev;
+	unsigned int __pad2;
+	off64_t st_size;
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	ino64_t st_ino;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct stat64 {
+	dev_t st_dev;		/* Device. */
+	ino64_t st_ino;		/* File serial number. */
+	mode_t st_mode;		/* File mode. */
+	nlink_t st_nlink;	/* Link count. */
+	uid_t st_uid;		/* User ID of the file's owner. */
+	gid_t st_gid;		/* Group ID of the file's group. */
+	dev_t st_rdev;		/* Device number, if device. */
+	unsigned short __pad2;
+	off64_t st_size;	/* Size of file, in bytes. */
+	blksize_t st_blksize;	/* Optimal block size for I/O. */
+	blkcnt64_t st_blocks;	/* Number 512-byte blocks allocated. */
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+    };
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	unsigned int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	unsigned long int __unused[3];
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int __pad2;
+	dev_t st_rdev;
+	off64_t st_size;
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	unsigned long int __unused4;
+	unsigned long int __unused5;
+	unsigned long int __unused6;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    struct stat64 {
+	dev_t st_dev;
+	ino64_t st_ino;
+	nlink_t st_nlink;
+	mode_t st_mode;
+	uid_t st_uid;
+	gid_t st_gid;
+	int pad0;
+	dev_t st_rdev;
+	off_t st_size;
+	struct timespec st_atim;	/* Time of last access. */
+	struct timespec st_mtim;	/* Time of last modification. */
+	struct timespec st_ctim;	/* Time of last status change. */
+	blksize_t st_blksize;
+	blkcnt64_t st_blocks;
+	long int __unused[3];
+    };
+
+#endif
+#if defined __x86_64__
 /* x86-64 */
     struct stat64 {
 	dev_t st_dev;
@@ -357,7 +357,7 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct stat64 {
 	dev_t st_dev;

@@ -47,6 +47,8 @@ GLIBC_2.2 {
   __wcstold_internal;
   __wcstoul_internal;
   __xmknod;
+  __xpg_basename;
+  __xpg_sigpause;
   __xstat;
   __xstat64;
   _exit;
@@ -230,7 +232,9 @@ GLIBC_2.2 {
   getgrnam_r;
   getgroups;
   gethostbyaddr;
+  gethostbyaddr_r;
   gethostbyname;
+  gethostbyname_r;
   gethostid;
   gethostname;
   getitimer;
@@ -416,8 +420,35 @@ GLIBC_2.2 {
   pmap_unset;
   poll;
   popen;
+  posix_fadvise;
+  posix_fadvise64;
+  posix_fallocate;
+  posix_fallocate64;
+  posix_madvise;
   posix_memalign;
+  posix_spawn;
+  posix_spawn_file_actions_addclose;
+  posix_spawn_file_actions_adddup2;
+  posix_spawn_file_actions_addopen;
+  posix_spawn_file_actions_destroy;
+  posix_spawn_file_actions_init;
+  posix_spawnattr_destroy;
+  posix_spawnattr_getflags;
+  posix_spawnattr_getpgroup;
+  posix_spawnattr_getschedparam;
+  posix_spawnattr_getschedpolicy;
+  posix_spawnattr_getsigdefault;
+  posix_spawnattr_getsigmask;
+  posix_spawnattr_init;
+  posix_spawnattr_setflags;
+  posix_spawnattr_setpgroup;
+  posix_spawnattr_setschedparam;
+  posix_spawnattr_setschedpolicy;
+  posix_spawnattr_setsigdefault;
+  posix_spawnattr_setsigmask;
+  posix_spawnp;
   printf;
+  pselect;
   psignal;
   ptsname;
   putc;
@@ -438,6 +469,7 @@ GLIBC_2.2 {
   read;
   readdir;
   readdir64;
+  readdir64_r;
   readdir_r;
   readlink;
   readv;
@@ -769,6 +801,7 @@ GLIBC_2.2 {
   xdrmem_create;
   xdrrec_create;
   xdrrec_eof;
+  xdrstdio_create;
   __daylight;
   __environ;
   __timezone;
@@ -821,5 +854,6 @@ GLIBC_2.3.3 {
   _sys_siglist;
 };
 GLIBC_2.3.4 {
+  __xpg_strerror_r;
   regexec;
 };

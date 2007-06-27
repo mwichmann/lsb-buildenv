@@ -67,7 +67,7 @@ extern "C" {
 #define EDOM	33
 #define ERANGE	34
 #define EDEADLK	35
-#if __s390x__
+#if defined __s390x__
 #define EDEADLOCK	35
 #endif
 #define ENAMETOOLONG	36
@@ -88,10 +88,10 @@ extern "C" {
 #define ENOANO	55
 #define EBADRQC	56
 #define EBADSLT	57
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define EDEADLOCK	58
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define EDEADLOCK	58
 #endif
 #define EBFONT	59
@@ -140,16 +140,16 @@ extern "C" {
 #define EADDRINUSE	98
 #define EADDRNOTAVAIL	99
 #define EWOULDBLOCK	EAGAIN
-#if __i386__
+#if defined ___i386__
 #define EDEADLOCK	EDEADLK
 #endif
-#if __ia64__
+#if defined __ia64__
 #define EDEADLOCK	EDEADLK
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define EDEADLOCK	EDEADLK
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define EDEADLOCK	EDEADLK
 #endif
 #define ENOTSUP	EOPNOTSUPP

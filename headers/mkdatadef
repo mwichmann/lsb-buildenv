@@ -119,16 +119,20 @@ if( $$type{'Ttype'} eq "Const" ) {
 	}
 
 if( $$type{'Ttype'} eq "Typedef" ) {
-	if (!$nameonly) { print "typedef "; }
-	$basetype = getBaseTypeID($type);
- 	$tth = getBaseTypeRecord($basetype);
-	%entry=$tth->fetchhash;
-# Something about anon or not & wether to set nameonly
-	if (!$nameonly) {
+	if( $nameonly ) {
+		print $$type{'Tname'}."\t";
+		return
+	}
+	else {
+		print "typedef ";
+		$basetype = getBaseTypeID($type);
+		$tth = getBaseTypeRecord($basetype);
+		%entry=$tth->fetchhash;
+	# Something about anon or not & wether to set nameonly
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
-		    $entry{'Ttype'} eq 'Function' ||
-		    $entry{'Ttype'} eq 'FuncPtr' ) ||
-		    $entry{'Theadergroup'} != $HGid ) {
+			$entry{'Ttype'} eq 'Function' ||
+			$entry{'Ttype'} eq 'FuncPtr' ) ||
+			$entry{'Theadergroup'} != $HGid ) {
 			if($entry{'Ttype'} eq 'FuncPtr' ||
 				$entry{'Ttype'} eq 'Function'){
 				$funcPtrName=$$type{'Tname'};
@@ -138,23 +142,22 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 			$nameonly = 0;
 		} else {
 			displaytype(\%entry,$nameonly);
-			}
 		}
-	if( ($entry{'Ttype'} ne 'FuncPtr' &&
-		$entry{'Ttype'} ne 'Function')
-		|| $nameonly ) {
-		print $$type{'Tname'}."\t";
+		if( ($entry{'Ttype'} ne 'FuncPtr' &&
+			$entry{'Ttype'} ne 'Function') ) {
+			print $$type{'Tname'}."\t";
+		}
+		if( $entry{'Ttype'} eq 'Array' ) {
+			my $bound = $entry{'TMarray'};
+			$bound ||= $entry{'ATsize'};
+			print "[".$bound."]";
+		}
+		if( !$nameonly && $$type{'ATattribute'} ) {
+			print "__attribute__ (".$$type{'ATattribute'}.")";
+		}
+		return;
 	}
-	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
-		my $bound = $entry{'TMarray'};
-		$bound ||= $entry{'ATsize'};
-		print "[".$bound."]";
-		}
-	if( !$nameonly && $$type{'Tattribute'} ) {
-		print "__attribute__ (".$$type{'Tattribute'}.")";
-		}
-	return;
-	}
+}
 
 if( $$type{'Ttype'} eq "Pointer" ) {
 	$basetype = getBaseTypeID($type);
@@ -193,9 +196,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	#print $$type{'Tdescription'}."\n";
 
 	$tmselect = "SELECT * FROM TypeMember ";
-	#$tmselect.= "LEFT JOIN ArchTypeMem ON ATMtmid = TMid ";
-	#$tmselect.= "LEFT JOIN Architecture ON ATMaid = Aid ";
-	$tmselect.= "WHERE TMmemberof=$Tid ";
+	$tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
 	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
@@ -243,8 +244,8 @@ if( $$type{'Ttype'} eq "Struct" ) {
 		# $nameonly=0;
 		}
 	if ($tmh->numrows ) { print "}"; }
-	if( $$type{'Tattribute'} ) {
-		print "__attribute__ (".$$type{'Tattribute'}.")";
+	if( $$type{'ATattribute'} ) {
+		print "__attribute__ (".$$type{'ATattribute'}.")";
 		}
 	print "\n";
 	return;
@@ -262,8 +263,8 @@ if( $$type{'Ttype'} eq "Union" ) {
 	if( $nameonly ) { return; }
 	#print $$type{'Tdescription'}."\n";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
@@ -315,19 +316,35 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	if( $nameonly ) { return; }
 	#print $$type{'Tdescription'}."\n";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+
+	# Is it enum with arch specific contents?
+	if (!$tmh->numrows ) {
+		$tmselect = "SELECT * FROM TypeMember ";
+		$tmselect.= "LEFT JOIN Architecture ON Aid=TMaid ";
+		$tmselect.= "WHERE TMmemberof=$Tid ";
+		$tmselect.= "ORDER BY TMaid,TMposition ";
+		$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
+	}
+
 	if ($tmh->numrows ) { print "{\n"; }
 	for(1..$tmh->numrows) {
 		%tmentry=$tmh->fetchhash;
+
+		if( ($TMaid == 1) and ($tmentry{'TMaid'} != 1) ) {
+			if( $prevArch != $tmentry{'TMaid'} ) {
+				if( $prevArch != 0 ) {
+					print "#endif\n";
+				}
+				print "#if ".$tmentry{'Asymbol'}."\n";
+				print "/* ".$tmentry{'Aname'}." */\n";
+				$prevArch = $tmentry{'TMaid'};
+			}
+		}
+
 		# It's an enum, don't print out the types, just the names
-		#$TMtypeid=$tmentry{'TMtypeid'};
-		#$tselect="SELECT * FROM Type WHERE Tid=$TMtypeid";
-		#$th = $Dbh->query($tselect) || die $Dbh->errmsg();
-		#%entry=$th->fetchhash;
-		#$nameonly=1;
-		#displaytype(\%entry,1);
 		print $tmentry{'TMname'};
 		if( $tmentry{'TMarray'} ne '' ) {
 			print " = ".$tmentry{'TMarray'};
@@ -338,6 +355,9 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		#print $tmentry{'TMdescription'}."\n";
 		# $nameonly=0;
 		}
+	if( $prevArch != 0 ) {
+		print "#endif\n";
+	}
 	if ($tmh->numrows ) { print "}\n"; }
 	return;
 	}
@@ -354,8 +374,8 @@ if( $$type{'Ttype'} eq "FuncPtr" ||
 	print ") " if( $$type{'Ttype'} eq "FuncPtr" && $$type{'Itype'} ne "Function" );
 	print $$type{'Tdescription'}."(";
 
-	$tmselect="SELECT * FROM TypeMember WHERE TMmemberof=$Tid";
-	$tmselect.=" ORDER BY TMposition";
+	$tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+	$tmselect.= "ORDER BY TMposition";
 	$tmh = $Dbh->query($tmselect) || die $Dbh->errmsg();
 	if($tmh->numrows == 0) {
 		print "void";
@@ -366,7 +386,7 @@ if( $$type{'Ttype'} eq "FuncPtr" ||
 		$tselect ="SELECT * FROM Type ";
 		$tselect.="LEFT JOIN ArchType ON ATtid=Tid ";
 		$tselect.= "LEFT JOIN TypeMember ON TMtypeid=Tid ";
-		$tselect.="WHERE Tid=$TMtypeid ";
+		$tselect.="WHERE Tid=$TMtypeid AND TMaid IN (1,$TMaid) ";
 		$th = $Dbh->query($tselect) || die $Dbh->errmsg();
 		%entry=$th->fetchhash;
 		displaytype(\%entry,1);
@@ -451,6 +471,7 @@ $sth = $Dbh->query($select) || die $Dbh->errmsg();
 if( !$sth->numrows ) { exit 0; }
 %entry=$sth->fetchhash;
 $Aid=$entry{'Aid'};
+$TMaid=$Aid;
 
 #
 # Get the Header id
@@ -619,6 +640,7 @@ for(1..$hgh->numrows) {
 	$select.= "AND ACaid=$Aid ";
 	$select.= "AND (ACappearedin is not NULL and ACappearedin <= '$lsbversion' and ACappearedin<>'') ";
 	$select.= "AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '$lsbversion') ";
+ 	$select.= "AND Ctype<>'header_depend' ";
 	$select.=" ORDER BY ACvalue, Cname, ACaid";
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	print $ch->numrows," rows\n" if $trace;
@@ -632,16 +654,23 @@ for(1..$hgh->numrows) {
 	# Display the Types
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+ 	$select.= "LEFT JOIN TypeMember ON TMmemberof=Tid ";
 	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
 	$select.= "WHERE Theadergroup=$HGid ";
 	$select.= "AND ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= "AND Aid=$Aid ";
+ 	$select.= "AND (TMaid IS NULL OR TMaid=$Aid) ";
 	if( $Aid!=1 ) {
 		$select.= "AND Tid NOT IN ";
 		$select.= " (SELECT DISTINCT ATtid FROM ArchType ";
-		$select.= " WHERE ATaid=1) ";
+ 		$select.= " LEFT JOIN TypeMember ON TMmemberof=ATtid ";
+		$select.= " WHERE ATaid=1 ";
+		$select.= " AND ATappearedin <='$lsbversion' AND ATappearedin <> '' ";
+		$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ";
+ 		$select.= " AND (TMaid IS NULL OR TMaid=1) )";
 	}
+	$select.= "GROUP BY Tid,ATaid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
 	$th = $Dbh->query($select) || die $Dbh->errmsg();
@@ -806,6 +835,7 @@ if($totrows == 0) {
 	$select.= "WHERE Cheadgroup=$HGid ";
 	$select.= "AND (ACappearedin is not NULL and ACappearedin <= '$lsbversion' and ACappearedin<>'') ";
 	$select.= "AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '$lsbversion') ";
+	$select.= "AND Ctype<>'header_depend' ";
 	print STDERR $select,"\n" if $trace;
 	$ch = $Dbh->query($select) || die $Dbh->errmsg();
 	if ($ch->numrows == 0) {

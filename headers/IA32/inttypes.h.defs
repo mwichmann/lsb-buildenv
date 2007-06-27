@@ -1,5 +1,0 @@
-
-typedef long long int intmax_t;
-typedef unsigned int uintptr_t;
-typedef unsigned long long int uintmax_t;
-typedef unsigned long long int uint64_t;

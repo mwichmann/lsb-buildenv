@@ -19,55 +19,56 @@ extern "C" {
 #define PROT_WRITE	0x2
 #define MAP_ANONYMOUS	0x20
 #define PROT_EXEC	0x4
-#if __i386__
+#if defined ___i386__
 #define MCL_CURRENT	1
 #endif
-#if __ia64__
+#if defined __ia64__
 #define MCL_CURRENT	1
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define MCL_CURRENT	1
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define MCL_CURRENT	1
 #endif
-#if __s390x__
+#if defined __s390x__
 #define MCL_CURRENT	1
 #endif
 #define MS_ASYNC	1
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define MCL_FUTURE	16384
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define MCL_FUTURE	16384
 #endif
-#if __i386__
+#if defined ___i386__
 #define MCL_FUTURE	2
 #endif
-#if __ia64__
+#if defined __ia64__
 #define MCL_FUTURE	2
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define MCL_FUTURE	2
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define MCL_FUTURE	2
 #endif
-#if __s390x__
+#if defined __s390x__
 #define MCL_FUTURE	2
 #endif
 #define MS_INVALIDATE	2
 #define MS_SYNC	4
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define MCL_CURRENT	8192
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define MCL_CURRENT	8192
 #endif
 #define MAP_ANON	MAP_ANONYMOUS
 
 
 
+    extern int posix_madvise(void *, size_t, int);
     extern int msync(void *, size_t, int);
     extern int mlock(const void *, size_t);
     extern int mlockall(int);

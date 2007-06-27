@@ -2,6 +2,7 @@
 #define _CTYPE_H_
 
 #include <sys/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,6 +16,8 @@ extern "C" {
 
 
     enum {
+#if defined ___i386__
+/* IA32 */
 	_ISupper = 256,
 	_ISlower = 512,
 	_ISalpha = 1024,
@@ -26,7 +29,98 @@ extern "C" {
 	_ISblank = 1,
 	_IScntrl = 2,
 	_ISpunct = 4,
-	_ISalnum = 8
+	_ISalnum = 8,
+#endif
+#if defined __ia64__
+/* IA64 */
+	_ISupper = 256,
+	_ISlower = 512,
+	_ISalpha = 1024,
+	_ISdigit = 2048,
+	_ISxdigit = 4096,
+	_ISspace = 8192,
+	_ISprint = 16384,
+	_ISgraph = 32768,
+	_ISblank = 1,
+	_IScntrl = 2,
+	_ISpunct = 4,
+	_ISalnum = 8,
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+	_ISupper = 1,
+	_ISlower = 2,
+	_ISalpha = 4,
+	_ISdigit = 8,
+	_ISxdigit = 16,
+	_ISspace = 32,
+	_ISprint = 64,
+	_ISgraph = 128,
+	_ISblank = 256,
+	_IScntrl = 512,
+	_ISpunct = 1024,
+	_ISalnum = 2048,
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+	_ISupper = 1,
+	_ISlower = 2,
+	_ISalpha = 4,
+	_ISdigit = 8,
+	_ISxdigit = 16,
+	_ISspace = 32,
+	_ISprint = 64,
+	_ISgraph = 128,
+	_ISblank = 254,
+	_IScntrl = 512,
+	_ISpunct = 1024,
+	_ISalnum = 2048,
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+	_ISupper = 1,
+	_ISlower = 2,
+	_ISalpha = 4,
+	_ISdigit = 8,
+	_ISxdigit = 16,
+	_ISspace = 32,
+	_ISprint = 64,
+	_ISgraph = 128,
+	_ISblank = 256,
+	_IScntrl = 512,
+	_ISpunct = 1024,
+	_ISalnum = 2048,
+#endif
+#if defined __x86_64__
+/* x86-64 */
+	_ISupper = 256,
+	_ISlower = 512,
+	_ISalpha = 1024,
+	_ISdigit = 2048,
+	_ISxdigit = 4096,
+	_ISspace = 8192,
+	_ISprint = 16384,
+	_ISgraph = 32768,
+	_ISblank = 1,
+	_IScntrl = 2,
+	_ISpunct = 4,
+	_ISalnum = 8,
+#endif
+#if defined __s390x__
+/* S390X */
+	_ISupper = 1,
+	_ISlower = 2,
+	_ISalpha = 4,
+	_ISdigit = 8,
+	_ISxdigit = 16,
+	_ISspace = 32,
+	_ISprint = 64,
+	_ISgraph = 128,
+	_ISblank = 256,
+	_IScntrl = 512,
+	_ISpunct = 1024,
+	_ISalnum = 2048
+#endif
     };
 
 

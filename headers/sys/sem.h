@@ -26,7 +26,19 @@ extern "C" {
 	short sem_flg;
     };
 
-#if __i386__
+#if defined __ia64__
+/* IA64 */
+    struct semid_ds {
+	struct ipc_perm sem_perm;	/* operation permission struct */
+	time_t sem_otime;	/* last semop() time */
+	time_t sem_ctime;	/* last time changed by semctl() */
+	unsigned long int sem_nsems;	/* number of semaphores in set */
+	unsigned long int __unused1;
+	unsigned long int __unused2;
+    };
+
+#endif
+#if defined ___i386__
 /* IA32 */
     struct semid_ds {
 	struct ipc_perm sem_perm;	/* operation permission struct */
@@ -40,33 +52,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
-/* IA64 */
-    struct semid_ds {
-	struct ipc_perm sem_perm;	/* operation permission struct */
-	time_t sem_otime;	/* last semop() time */
-	time_t sem_ctime;	/* last time changed by semctl() */
-	unsigned long int sem_nsems;	/* number of semaphores in set */
-	unsigned long int __unused1;
-	unsigned long int __unused2;
-    };
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    struct semid_ds {
-	struct ipc_perm sem_perm;	/* operation permission struct */
-	unsigned int __unused1;
-	time_t sem_otime;	/* last semop() time */
-	unsigned int __unused2;
-	time_t sem_ctime;	/* last time changed by semctl() */
-	unsigned long int sem_nsems;	/* number of semaphores in set */
-	unsigned long int __unused3;
-	unsigned long int __unused4;
-    };
-
-#endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct semid_ds {
 	struct ipc_perm sem_perm;	/* operation permission struct */
@@ -80,7 +66,21 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct semid_ds {
+	struct ipc_perm sem_perm;	/* operation permission struct */
+	unsigned int __unused1;
+	time_t sem_otime;	/* last semop() time */
+	unsigned int __unused2;
+	time_t sem_ctime;	/* last time changed by semctl() */
+	unsigned long int sem_nsems;	/* number of semaphores in set */
+	unsigned long int __unused3;
+	unsigned long int __unused4;
+    };
+
+#endif
+#if defined __powerpc64__
 /* PPC64 */
     struct semid_ds {
 	struct ipc_perm sem_perm;
@@ -92,7 +92,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct semid_ds {
 	struct ipc_perm sem_perm;
@@ -104,7 +104,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct semid_ds {
 	struct ipc_perm sem_perm;

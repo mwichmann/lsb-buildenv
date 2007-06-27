@@ -1,19 +1,4 @@
 
-struct pt_regs {
-    unsigned long int gpr[32];
-    unsigned long int nip;
-    unsigned long int msr;
-    unsigned long int orig_gpr3;
-    unsigned long int ctr;
-    unsigned long int link;
-    unsigned long int xer;
-    unsigned long int ccr;
-    unsigned long int mq;
-    unsigned long int trap;
-    unsigned long int dar;
-    unsigned long int dsisr;
-    unsigned long int result;
-};
 typedef struct _libc_vrstate {
     unsigned int vrregs[128];
     unsigned int vrsave;

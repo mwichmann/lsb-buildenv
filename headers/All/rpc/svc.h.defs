@@ -1,4 +1,9 @@
 
+#define svc_getcaller(x)	(&(x)->xp_raddr)
+#define svc_destroy(xprt)	(*(xprt)->xp_ops->xp_destroy)(xprt)
+#define svc_recv(xprt,msg)	(*(xprt)->xp_ops->xp_recv)((xprt), (msg))
+#define svc_reply(xprt,msg)	(*(xprt)->xp_ops->xp_reply) ((xprt), (msg))
+#define svc_stat(xprt)	(*(xprt)->xp_ops->xp_stat)(xprt)
 #define RPC_ANYSOCK	-1
 #define svc_freeargs(xprt,xargs, argsp)	\
 	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))

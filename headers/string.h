@@ -15,7 +15,6 @@ extern "C" {
     extern char *__stpcpy(char *, const char *);
     extern char *__strdup(const char *);
     extern char *__strtok_r(char *, const char *, char **);
-    extern void bcopy(const void *, void *, size_t);
     extern void *memchr(const void *, int, size_t);
     extern int memcmp(const void *, const void *, size_t);
     extern void *memcpy(void *, const void *, size_t);
@@ -40,15 +39,8 @@ extern "C" {
     extern char *strstr(const char *, const char *);
     extern char *strtok(char *, const char *);
     extern size_t strxfrm(char *, const char *, size_t);
-    extern int bcmp(const void *, const void *, size_t);
-    extern void bzero(void *, size_t);
-    extern int ffs(int);
-    extern char *index(const char *, int);
     extern void *memccpy(void *, const void *, int, size_t);
-    extern char *rindex(const char *, int);
-    extern int strcasecmp(const char *, const char *);
     extern char *strdup(const char *);
-    extern int strncasecmp(const char *, const char *, size_t);
     extern char *strndup(const char *, size_t);
     extern size_t strnlen(const char *, size_t);
     extern char *strsep(char **, const char *);
@@ -58,6 +50,7 @@ extern "C" {
     extern char *stpcpy(char *, const char *);
     extern char *stpncpy(char *, const char *, size_t);
     extern void *memrchr(const void *, int, size_t);
+    extern char *__xpg_strerror_r(int, char *, size_t);
 #ifdef __cplusplus
 }
 #endif

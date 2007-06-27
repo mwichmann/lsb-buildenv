@@ -1,11 +1,11 @@
 #ifndef _SIGNAL_H_
 #define _SIGNAL_H_
 
-#include <inttypes.h>
 #include <pthread.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,22 +17,22 @@ extern "C" {
 #define SIGRTMIN	(__libc_current_sigrtmin ())
 #define SIG_BLOCK	0
 #define SIG_UNBLOCK	1
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define __NUM_ACRS	16
 #endif
-#if __s390x__
+#if defined __s390x__
 #define __NUM_ACRS	16
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define __NUM_FPRS	16
 #endif
-#if __s390x__
+#if defined __s390x__
 #define __NUM_FPRS	16
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define __NUM_GPRS	16
 #endif
-#if __s390x__
+#if defined __s390x__
 #define __NUM_GPRS	16
 #endif
 #define SIG_SETMASK	2
@@ -41,7 +41,7 @@ extern "C" {
 
     typedef int sig_atomic_t;
 
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef struct {
 	unsigned long int mask;
@@ -49,7 +49,7 @@ extern "C" {
     } __attribute__ ((aligned(8))) _psw_t;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
 	unsigned long int mask;
@@ -57,7 +57,7 @@ extern "C" {
     } __attribute__ ((aligned(8))) _psw_t;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
 	_psw_t psw;
@@ -66,7 +66,7 @@ extern "C" {
     } _s390_regs_common;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef struct {
 	_psw_t psw;
@@ -75,7 +75,26 @@ extern "C" {
     } _s390_regs_common;
 
 #endif
-#if __powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct pt_regs {
+	unsigned long int gpr[32];
+	unsigned long int nip;
+	unsigned long int msr;
+	unsigned long int orig_gpr3;	/* Used for restarting system calls */
+	unsigned long int ctr;
+	unsigned long int link;
+	unsigned long int xer;
+	unsigned long int ccr;
+	unsigned long int mq;	/* 601 only (not used at present). Used on APUS to hold IPL val */
+	unsigned long int trap;	/* Reason for being here */
+	unsigned long int dar;	/* Fault registers */
+	unsigned long int dsisr;
+	unsigned long int result;	/* Result of a system call */
+    };
+
+#endif
+#if defined __powerpc64__
 /* PPC64 */
     struct pt_regs {
 	unsigned long int gpr[32];
@@ -177,25 +196,25 @@ extern "C" {
 
 
 /* POSIX 1003.1b sigevent*/
-#if __i386__
+#if defined ___i386__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 #endif
 #define SIGEV_SIGNAL	0
@@ -222,25 +241,25 @@ extern "C" {
 
 
 /* POSIX 1003.1b siginfo*/
-#if __i386__
+#if defined ___i386__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 #endif
 #define SI_MAX_SIZE	128
@@ -399,7 +418,7 @@ extern "C" {
 #define sa_sigaction	__sigaction_handler._sa_sigaction
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct sigaction {
 	union {
@@ -412,32 +431,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
-/* IA64 */
-    struct sigaction {
-	union {
-	    sighandler_t _sa_handler;
-	    void (*_sa_sigaction) (int, siginfo_t *, void *);
-	} __sigaction_handler;
-	unsigned long int sa_flags;
-	sigset_t sa_mask;	/* mask last for extensibility */
-    };
-
-#endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    struct sigaction {
-	union {
-	    sighandler_t _sa_handler;
-	    void (*_sa_sigaction) (int, siginfo_t *, void *);
-	} __sigaction_handler;
-	sigset_t sa_mask;
-	unsigned long int sa_flags;
-	void (*sa_restorer) (void);
-    };
-
-#endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct sigaction {
 	union {
@@ -450,7 +444,32 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __ia64__
+/* IA64 */
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	unsigned long int sa_flags;
+	sigset_t sa_mask;	/* mask last for extensibility */
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct sigaction {
+	union {
+	    sighandler_t _sa_handler;
+	    void (*_sa_sigaction) (int, siginfo_t *, void *);
+	} __sigaction_handler;
+	sigset_t sa_mask;
+	unsigned long int sa_flags;
+	void (*sa_restorer) (void);
+    };
+
+#endif
+#if defined __powerpc64__
 /* PPC64 */
     struct sigaction {
 	union {
@@ -463,7 +482,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct sigaction {
 	union {
@@ -476,7 +495,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct sigaction {
 	union {
@@ -491,46 +510,46 @@ extern "C" {
 #endif
 
 /* Structure used in sigaltstack call.*/
-#if __ia64__
+#if defined __ia64__
 #define MINSIGSTKSZ	131027
 #endif
-#if __i386__
+#if defined ___i386__
 #define MINSIGSTKSZ	2048
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define MINSIGSTKSZ	2048
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define MINSIGSTKSZ	2048
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define MINSIGSTKSZ	2048
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define MINSIGSTKSZ	2048
 #endif
-#if __s390x__
+#if defined __s390x__
 #define MINSIGSTKSZ	2048
 #endif
-#if __ia64__
+#if defined __ia64__
 #define SIGSTKSZ	262144
 #endif
-#if __i386__
+#if defined ___i386__
 #define SIGSTKSZ	8192
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SIGSTKSZ	8192
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SIGSTKSZ	8192
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SIGSTKSZ	8192
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SIGSTKSZ	8192
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SIGSTKSZ	8192
 #endif
 
@@ -554,7 +573,7 @@ extern "C" {
 /* FP registers*/
 
 
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
 	unsigned int fpc;
@@ -562,15 +581,7 @@ extern "C" {
     } _s390_fp_regs;
 
 #endif
-#if __s390__ && !__s390x__
-/* S390 */
-    typedef struct {
-	_s390_regs_common regs;
-	_s390_fp_regs fpregs;
-    } _sigregs;
-
-#endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef struct {
 	unsigned int fpc;
@@ -578,7 +589,15 @@ extern "C" {
     } _s390_fp_regs;
 
 #endif
-#if __s390x__
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	_s390_regs_common regs;
+	_s390_fp_regs fpregs;
+    } _sigregs;
+
+#endif
+#if defined __s390x__
 /* S390X */
     typedef struct {
 	_s390_regs_common regs;
@@ -586,7 +605,7 @@ extern "C" {
     } _sigregs;
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct _fpreg {
 	unsigned short significand[4];
@@ -594,7 +613,7 @@ extern "C" {
     };
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct _fpxreg {
 	unsigned short significand[4];
@@ -603,14 +622,30 @@ extern "C" {
     };
 
 #endif
-#if __i386__
+#if defined __x86_64__
+/* x86-64 */
+    struct _fpxreg {
+	unsigned short significand[4];
+	unsigned short exponent;
+	unsigned short padding[3];
+    };
+
+#endif
+#if defined ___i386__
 /* IA32 */
     struct _xmmreg {
 	unsigned long int element[4];
     };
 
 #endif
-#if __ia64__
+#if defined __x86_64__
+/* x86-64 */
+    struct _xmmreg {
+	uint32_t element[4];
+    };
+
+#endif
+#if defined __ia64__
 /* IA64 */
     struct ia64_fpreg {
 	union {
@@ -620,27 +655,11 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
-/* x86-64 */
-    struct _fpxreg {
-	unsigned short significand[4];
-	unsigned short exponent;
-	unsigned short padding[3];
-    };
-
-#endif
-#if __x86_64__
-/* x86-64 */
-    struct _xmmreg {
-	uint32_t element[4];
-    };
-
-#endif
 
 /* FPU state information*/
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct _fpstate {
 	unsigned long int cw;
@@ -662,7 +681,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct _fpstate {
 	uint16_t cwd;
@@ -683,7 +702,7 @@ extern "C" {
 /* Process context when signal delivered*/
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct sigcontext {
 	unsigned short gs;
@@ -717,7 +736,18 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct sigcontext {
+	long int _unused[4];
+	int signal;
+	unsigned long int handler;
+	unsigned long int oldmask;
+	struct pt_regs *regs;
+    };
+
+#endif
+#if defined __ia64__
 /* IA64 */
     struct sigcontext {
 	unsigned long int sc_flags;
@@ -747,18 +777,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc__ && !__powerpc64__
-/* PPC32 */
-    struct sigcontext {
-	long int _unused[4];
-	int signal;
-	unsigned long int handler;
-	unsigned long int oldmask;
-	struct pt_regs *regs;
-    };
-
-#endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct sigcontext {
 	unsigned long int r8;
@@ -792,7 +811,23 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    struct sigcontext {
+	unsigned long int oldmask[2];
+	_sigregs *sregs;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    struct sigcontext {
+	unsigned long int oldmask;
+	_sigregs *sregs;
+    };
+
+#endif
+#if defined __powerpc64__
 /* PPC64 */
     struct sigcontext {
 	unsigned long int _unused[4];
@@ -802,22 +837,6 @@ extern "C" {
 	struct pt_regs *regs;
 	unsigned long int gp_regs[48];
 	double fp_regs[33];
-    };
-
-#endif
-#if __s390__ && !__s390x__
-/* S390 */
-    struct sigcontext {
-	unsigned long int oldmask[2];
-	_sigregs *sregs;
-    };
-
-#endif
-#if __s390x__
-/* S390X */
-    struct sigcontext {
-	unsigned long int oldmask;
-	_sigregs *sregs;
     };
 
 #endif
@@ -861,6 +880,7 @@ extern "C" {
     extern int sigtimedwait(const sigset_t *, siginfo_t *,
 			    const struct timespec *);
     extern sighandler_t bsd_signal(int, sighandler_t);
+    extern int __xpg_sigpause(int);
 #ifdef __cplusplus
 }
 #endif

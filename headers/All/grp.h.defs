@@ -9,7 +9,7 @@ struct group {
 extern void endgrent(void);
 extern struct group *getgrent(void);
 extern struct group *getgrgid(gid_t);
-extern struct group *getgrnam(char *);
+extern struct group *getgrnam(const char *);
 extern int initgroups(const char *, gid_t);
 extern void setgrent(void);
 extern int setgroups(size_t, const gid_t *);

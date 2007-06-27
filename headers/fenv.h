@@ -11,142 +11,142 @@ extern "C" {
 
 
 /* Define bits representing the exception.  We use the bit positions of the appropriate bits in the FPU control word.*/
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_INVALID	(1 << (31 - 2))
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_INVALID	(1 << (31 - 2))
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_OVERFLOW	(1 << (31 - 3))
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_OVERFLOW	(1 << (31 - 3))
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_UNDERFLOW	(1 << (31 - 4))
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_UNDERFLOW	(1 << (31 - 4))
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_DIVBYZERO	(1 << (31 - 5))
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_DIVBYZERO	(1 << (31 - 5))
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_INEXACT	(1 << (31 - 6))
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_INEXACT	(1 << (31 - 6))
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_INVALID	(1UL << 0)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_DIVBYZERO	(1UL << 2)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_OVERFLOW	(1UL << 3)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_UNDERFLOW	(1UL << 4)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_INEXACT	(1UL << 5)
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_INVALID	0x01
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_INVALID	0x01
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_DIVBYZERO	0x04
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_DIVBYZERO	0x04
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_INEXACT	0x08
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_INEXACT	0x08
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_OVERFLOW	0x08
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_OVERFLOW	0x08
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_UNDERFLOW	0x10
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_UNDERFLOW	0x10
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_UNDERFLOW	0x10
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_UNDERFLOW	0x10
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_INEXACT	0x20
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_INEXACT	0x20
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_OVERFLOW	0x20
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_OVERFLOW	0x20
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_DIVBYZERO	0x40
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_DIVBYZERO	0x40
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_INVALID	0x80
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_INVALID	0x80
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_UNNORMAL	1UL << 1
 #endif
 
 
 
-#if __i386__
+#if defined ___i386__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | FE_INVALID)
 #endif
@@ -154,88 +154,88 @@ extern "C" {
 
 
 /* Rounding modes*/
-#if __i386__
+#if defined ___i386__
 #define FE_TONEAREST	0
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_TONEAREST	0
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_TONEAREST	0
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_TONEAREST	0
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_TONEAREST	0
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_TONEAREST	0
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_TONEAREST	0
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_TOWARDZERO	0x1
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_TOWARDZERO	0x1
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_UPWARD	0x2
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_UPWARD	0x2
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_DOWNWARD	0x3
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_DOWNWARD	0x3
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_DOWNWARD	0x400
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_DOWNWARD	0x400
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_UPWARD	0x800
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_UPWARD	0x800
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_TOWARDZERO	0xc00
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_TOWARDZERO	0xc00
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_DOWNWARD	1
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_TOWARDZERO	1
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_TOWARDZERO	1
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_UPWARD	2
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_UPWARD	2
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_UPWARD	2
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_DOWNWARD	3
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_DOWNWARD	3
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_TOWARDZERO	3
 #endif
 
@@ -244,37 +244,37 @@ extern "C" {
 /* Type representing exception flags.*/
 
 
-#if __i386__
-/* IA32 */
-    typedef unsigned short fexcept_t;
-
-#endif
-#if __ia64__
-/* IA64 */
-    typedef unsigned long int fexcept_t;
-
-#endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef unsigned int fexcept_t;
 
 #endif
-#if __powerpc64__
+#if defined ___i386__
+/* IA32 */
+    typedef unsigned short fexcept_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef unsigned long int fexcept_t;
+
+#endif
+#if defined __powerpc64__
 /* PPC64 */
     typedef unsigned int fexcept_t;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef unsigned int fexcept_t;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef unsigned int fexcept_t;
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     typedef unsigned short fexcept_t;
 
@@ -283,22 +283,22 @@ extern "C" {
 /* Type representing floating-point environment.*/
 
 
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef double fenv_t;
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     typedef double fenv_t;
 
 #endif
-#if __ia64__
+#if defined __ia64__
 /* IA64 */
     typedef unsigned long int fenv_t;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
 	fexcept_t fpc;
@@ -306,7 +306,7 @@ extern "C" {
     } fenv_t;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef struct {
 	fexcept_t fpc;
@@ -314,7 +314,7 @@ extern "C" {
     } fenv_t;
 
 #endif
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     typedef struct {
 	unsigned short __control_word;
@@ -333,7 +333,7 @@ extern "C" {
     } fenv_t;
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     typedef struct {
 	unsigned short __control_word;
@@ -355,25 +355,25 @@ extern "C" {
 #endif
 
 /* If the default argument is used we use this value.*/
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define FE_DFL_ENV	(&__fe_dfl_env)
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define FE_DFL_ENV	(&__fe_dfl_env)
 #endif
-#if __i386__
+#if defined ___i386__
 #define FE_DFL_ENV	((__const fenv_t *) -1)
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define FE_DFL_ENV	((__const fenv_t *) -1)
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define FE_DFL_ENV	((__const fenv_t *) -1)
 #endif
-#if __s390x__
+#if defined __s390x__
 #define FE_DFL_ENV	((__const fenv_t *) -1)
 #endif
-#if __ia64__
+#if defined __ia64__
 #define FE_DFL_ENV	((__const fenv_t *) 0xc009804c0270033fUL)
 #endif
 

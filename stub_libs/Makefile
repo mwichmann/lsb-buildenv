@@ -33,7 +33,7 @@ LSB_COMPILE_FOR_ARCH:=`case \`uname -m\` in \
 all: libs
 
 core_filelist desktop_filelist:
-	cd .. && ./mkfilelists `cat LSB_VERSION`
+	cd .. && ./mkfilelists `cat stub_libs/LSB_VERSION`
 
 dbfiles: core_filelist desktop_filelist
 	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v `cat LSB_VERSION`; done;

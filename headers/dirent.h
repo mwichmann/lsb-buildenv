@@ -1,8 +1,8 @@
 #ifndef _DIRENT_H_
 #define _DIRENT_H_
 
-#include <inttypes.h>
 #include <sys/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,6 +45,7 @@ extern "C" {
     };
 
 
+    extern int readdir64_r(DIR *, struct dirent64 *, struct dirent64 **);
     extern void rewinddir(DIR *);
     extern void seekdir(DIR *, long int);
     extern long int telldir(DIR *);

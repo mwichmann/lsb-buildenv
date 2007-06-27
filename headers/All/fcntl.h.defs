@@ -33,6 +33,8 @@ struct flock64 {
 #define F_RDLCK	0
 #define F_GETFD	1
 #define F_WRLCK	1
+#define F_SETSIG	10
+#define F_GETSIG	11
 #define F_SETFD	2
 #define F_UNLCK	2
 #define F_GETFL	3
@@ -43,5 +45,10 @@ struct flock64 {
 #define F_SETOWN	8
 #define F_GETOWN	9
 
+extern int posix_fadvise(int, off_t, off_t, int);
+extern int posix_fallocate(int, off_t, off_t);
+extern int posix_fadvise64(int, off64_t, off64_t, int);
+extern int posix_fallocate64(int, off64_t, off64_t);
 extern int lockf64(int, int, off64_t);
 extern int fcntl(int, int, ...);
+extern int open(const char *, int, ...);

@@ -55,40 +55,42 @@ extern "C" {
 #define F_RDLCK	0
 #define F_GETFD	1
 #define F_WRLCK	1
-#if __i386__
+#define F_SETSIG	10
+#define F_GETSIG	11
+#if defined ___i386__
 #define F_GETLK64	12
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define F_GETLK64	12
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define F_GETLK64	12
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define F_GETLK64	12
 #endif
-#if __i386__
+#if defined ___i386__
 #define F_SETLK64	13
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define F_SETLK64	13
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define F_SETLK64	13
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define F_SETLK64	13
 #endif
-#if __i386__
+#if defined ___i386__
 #define F_SETLKW64	14
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define F_SETLKW64	14
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define F_SETLKW64	14
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define F_SETLKW64	14
 #endif
 #define F_SETFD	2
@@ -96,33 +98,33 @@ extern "C" {
 #define F_GETFL	3
 #define F_SETFL	4
 #define F_GETLK	5
-#if __ia64__
+#if defined __ia64__
 #define F_GETLK64	5
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define F_GETLK64	5
 #endif
-#if __s390x__
+#if defined __s390x__
 #define F_GETLK64	5
 #endif
 #define F_SETLK	6
-#if __ia64__
+#if defined __ia64__
 #define F_SETLK64	6
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define F_SETLK64	6
 #endif
-#if __s390x__
+#if defined __s390x__
 #define F_SETLK64	6
 #endif
 #define F_SETLKW	7
-#if __ia64__
+#if defined __ia64__
 #define F_SETLKW64	7
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define F_SETLKW64	7
 #endif
-#if __s390x__
+#if defined __s390x__
 #define F_SETLKW64	7
 #endif
 #define F_SETOWN	8
@@ -130,8 +132,13 @@ extern "C" {
 
 
 
+    extern int posix_fadvise(int, off_t, off_t, int);
+    extern int posix_fallocate(int, off_t, off_t);
+    extern int posix_fadvise64(int, off64_t, off64_t, int);
+    extern int posix_fallocate64(int, off64_t, off64_t);
     extern int lockf64(int, int, off64_t);
     extern int fcntl(int, int, ...);
+    extern int open(const char *, int, ...);
 #ifdef __cplusplus
 }
 #endif

@@ -10,25 +10,25 @@ extern "C" {
 #endif
 
 
-#if __ia64__
+#if defined __ia64__
 #define SHMLBA	(1024*1024)
 #endif
-#if __i386__
+#if defined ___i386__
 #define SHMLBA	(__getpagesize())
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 #define SHMLBA	(__getpagesize())
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 #define SHMLBA	(__getpagesize())
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 #define SHMLBA	(__getpagesize())
 #endif
-#if __x86_64__
+#if defined __x86_64__
 #define SHMLBA	(__getpagesize())
 #endif
-#if __s390x__
+#if defined __s390x__
 #define SHMLBA	(__getpagesize())
 #endif
 #define SHM_RDONLY	010000
@@ -43,32 +43,32 @@ extern "C" {
 
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     typedef unsigned long int shmatt_t;
 
 #endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef unsigned long int shmatt_t;
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef unsigned long int shmatt_t;
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     typedef unsigned long int shmatt_t;
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     typedef unsigned long int shmatt_t;
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     typedef unsigned long int shmatt_t;
 
@@ -76,7 +76,7 @@ extern "C" {
 
 
 
-#if __i386__
+#if defined ___i386__
 /* IA32 */
     struct shmid_ds {
 	struct ipc_perm shm_perm;
@@ -95,23 +95,7 @@ extern "C" {
     };
 
 #endif
-#if __ia64__
-/* IA64 */
-    struct shmid_ds {
-	struct ipc_perm shm_perm;	/* operation permission struct */
-	size_t shm_segsz;	/* size of segment in bytes */
-	time_t shm_atime;	/* time of last shmat() */
-	time_t shm_dtime;	/* time of last shmdt() */
-	time_t shm_ctime;	/* time of last change by shmctl() */
-	pid_t shm_cpid;		/* pid of creator */
-	pid_t shm_lpid;		/* pid of last shmop */
-	unsigned long int shm_nattch;	/* number of current attaches */
-	unsigned long int __unused1;
-	unsigned long int __unused2;
-    };
-
-#endif
-#if __powerpc__ && !__powerpc64__
+#if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct shmid_ds {
 	struct ipc_perm shm_perm;
@@ -131,7 +115,23 @@ extern "C" {
     };
 
 #endif
-#if __s390__ && !__s390x__
+#if defined __ia64__
+/* IA64 */
+    struct shmid_ds {
+	struct ipc_perm shm_perm;	/* operation permission struct */
+	size_t shm_segsz;	/* size of segment in bytes */
+	time_t shm_atime;	/* time of last shmat() */
+	time_t shm_dtime;	/* time of last shmdt() */
+	time_t shm_ctime;	/* time of last change by shmctl() */
+	pid_t shm_cpid;		/* pid of creator */
+	pid_t shm_lpid;		/* pid of last shmop */
+	unsigned long int shm_nattch;	/* number of current attaches */
+	unsigned long int __unused1;
+	unsigned long int __unused2;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
 /* S390 */
     struct shmid_ds {
 	struct ipc_perm shm_perm;
@@ -150,7 +150,7 @@ extern "C" {
     };
 
 #endif
-#if __powerpc64__
+#if defined __powerpc64__
 /* PPC64 */
     struct shmid_ds {
 	struct ipc_perm shm_perm;
@@ -166,7 +166,7 @@ extern "C" {
     };
 
 #endif
-#if __s390x__
+#if defined __s390x__
 /* S390X */
     struct shmid_ds {
 	struct ipc_perm shm_perm;
@@ -182,7 +182,7 @@ extern "C" {
     };
 
 #endif
-#if __x86_64__
+#if defined __x86_64__
 /* x86-64 */
     struct shmid_ds {
 	struct ipc_perm shm_perm;	/* operation permission struct */

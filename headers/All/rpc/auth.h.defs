@@ -1,4 +1,6 @@
 
+#define auth_destroy(auth)	((*((auth)->ah_ops->ah_destroy))(auth))
+
 enum auth_stat {
     AUTH_OK = 0,
     AUTH_BADCRED = 1,

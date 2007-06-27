@@ -1,4 +1,20 @@
 
+struct pt_regs {
+    unsigned long int gpr[32];
+    unsigned long int nip;
+    unsigned long int msr;
+    unsigned long int orig_gpr3;
+    unsigned long int ctr;
+    unsigned long int link;
+    unsigned long int xer;
+    unsigned long int ccr;
+    unsigned long int mq;
+    unsigned long int trap;
+    unsigned long int dar;
+    unsigned long int dsisr;
+    unsigned long int result;
+};
+
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
 
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)

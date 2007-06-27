@@ -99,6 +99,8 @@ typedef struct {
 #define PTHREAD_CANCEL_ASYNCHRONOUS	1
 #define PTHREAD_CANCEL_DISABLE	1
 
+extern int pthread_mutex_timedlock(pthread_mutex_t *,
+				   const struct timespec *);
 extern void _pthread_cleanup_pop(struct _pthread_cleanup_buffer *, int);
 extern void _pthread_cleanup_push(struct _pthread_cleanup_buffer *,
 				  void (*__pshared) (void *)
@@ -150,7 +152,8 @@ extern int pthread_mutexattr_init(pthread_mutexattr_t *);
 extern int pthread_once(pthread_once_t *, void (*__pshared) (void)
     );
 extern int pthread_rwlock_destroy(pthread_rwlock_t *);
-extern int pthread_rwlock_init(pthread_rwlock_t *, pthread_rwlockattr_t *);
+extern int pthread_rwlock_init(pthread_rwlock_t *,
+			       const pthread_rwlockattr_t *);
 extern int pthread_rwlock_rdlock(pthread_rwlock_t *);
 extern int pthread_rwlock_tryrdlock(pthread_rwlock_t *);
 extern int pthread_rwlock_trywrlock(pthread_rwlock_t *);
