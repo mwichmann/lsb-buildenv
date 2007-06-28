@@ -38,7 +38,10 @@ header_query = """
 SELECT Mname, Hname FROM Module,Header,ModLib,Library 
 WHERE Module.Mid = ModLib.MLmid 
 AND Library.Lid = ModLib.MLlid 
-AND Library.Lid = Header.Hlib"""
+AND Library.Lid = Header.Hlib
+AND ( ( (Happearedin <= '""" + lsbversion + """' AND Happearedin<>'')
+AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '""" + lsbversion + """') )
+OR Hsrconly='Yes' OR Hsrcerror='Yes' )"""
 
 lib_query = """
 SELECT DISTINCT Mname,Lname FROM Module,ModLib,Library 
