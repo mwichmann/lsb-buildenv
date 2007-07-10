@@ -50,7 +50,7 @@ extern "C" {
 
     typedef long int fd_mask;
 
-    typedef int timer_t;
+    typedef void *timer_t;
 
     typedef int clockid_t;
 
