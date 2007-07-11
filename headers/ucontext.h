@@ -30,6 +30,15 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 /* PPC64 */
+
+    struct _libc_vscr {
+	int __pad[3];
+	int vscr_word;
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct _libc_vscr vscr_t;
 
 #endif
@@ -68,15 +77,6 @@ extern "C" {
 	vscr_t vscr;
 	unsigned int vrsave;
 	unsigned int __pad[3];
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-
-    struct _libc_vscr {
-	int __pad[3];
-	int vscr_word;
     };
 
 #endif
