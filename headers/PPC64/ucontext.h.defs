@@ -1,14 +1,14 @@
 
+typedef struct _libc_vscr {
+    int __pad[3];
+    int vscr_word;
+} vscr_t;
 typedef struct _libc_vrstate {
     unsigned int vrregs[128];
     vscr_t vscr;
     unsigned int vrsave;
     unsigned int __pad[3];
 } vrregset_t __attribute__ ((__aligned__(16)));
-typedef struct _libc_vscr {
-    int __pad[3];
-    int vscr_word;
-} vscr_t;
 
 #define NGREG	48
 

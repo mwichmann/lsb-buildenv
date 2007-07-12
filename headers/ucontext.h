@@ -16,6 +16,11 @@ extern "C" {
 #endif
 
 
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct _libc_vscr vscr_t;
+
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef struct _libc_vrstate vrregset_t
@@ -26,20 +31,6 @@ extern "C" {
 /* PPC64 */
     typedef struct _libc_vrstate vrregset_t
 	__attribute__ ((__aligned__(16)));
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-
-    struct _libc_vscr {
-	int __pad[3];
-	int vscr_word;
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct _libc_vscr vscr_t;
 
 #endif
 #if defined __x86_64__
@@ -55,6 +46,15 @@ extern "C" {
 /* x86-64 */
     struct _libc_xmmreg {
 	uint32_t element[4];
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+
+    struct _libc_vscr {
+	int __pad[3];
+	int vscr_word;
     };
 
 #endif
