@@ -1,2 +1,56 @@
 
-Unknown Type:"Class"
+class QAbstractItemView;
+enum N17QAbstractItemView13SelectionModeE {
+    NoSelection,
+    SingleSelection,
+    MultiSelection,
+    ExtendedSelection,
+    ContiguousSelection
+};
+enum N17QAbstractItemView17SelectionBehaviorE {
+    SelectItems,
+    SelectRows,
+    SelectColumns
+};
+enum N17QAbstractItemView10ScrollHintE {
+    EnsureVisible,
+    PositionAtTop,
+    PositionAtBottom
+};
+enum N17QAbstractItemView11EditTriggerE {
+    NoEditTriggers,
+    CurrentChanged,
+    DoubleClicked,
+    SelectedClicked,
+    EditKeyPressed,
+    AnyKeyPressed,
+    AllEditTriggers
+};
+class QFlags < QAbstractItemView::EditTrigger >;
+typedef N17QAbstractItemView12EditTriggersE;
+enum N17QAbstractItemView12CursorActionE {
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    MoveHome,
+    MoveEnd,
+    MovePageUp,
+    MovePageDown,
+    MoveNext,
+    MovePrevious
+};
+enum N17QAbstractItemView5StateE {
+    NoState,
+    DraggingState,
+    DragSelectingState,
+    EditingState,
+    ExpandingState,
+    CollapsingState
+};
+enum N17QAbstractItemView21DropIndicatorPositionE {
+    OnItem,
+    AboveItem,
+    BelowItem,
+    OnViewport
+};

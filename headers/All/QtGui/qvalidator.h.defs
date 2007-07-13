@@ -1,2 +1,11 @@
 
-Unknown Type:"Class"
+class QValidator;
+enum N10QValidator5StateE {
+    Invalid,
+    Intermediate,
+    Valid,
+    Acceptable
+};
+class QIntValidator;
+class QDoubleValidator;
+class QRegExpValidator;

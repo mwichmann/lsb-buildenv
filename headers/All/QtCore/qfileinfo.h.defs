@@ -1,2 +1,19 @@
 
-Unknown Type:"Class"
+class QFileInfo;
+enum N9QFileInfo10PermissionE {
+    ExeOther,
+    WriteOther,
+    ReadOther,
+    ExeGroup,
+    WriteGroup,
+    ReadGroup,
+    ExeUser,
+    WriteUser,
+    ReadUser,
+    ExeOwner,
+    WriteOwner,
+    ReadOwner
+};
+class QFlags < QFileInfo::Permission >;
+typedef N9QFileInfo14PermissionSpecE;
+typedef class QList < QFileInfo > QFileInfoList;

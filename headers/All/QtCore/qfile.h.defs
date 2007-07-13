@@ -1,2 +1,52 @@
 
-Unknown Type:"Class"
+class QFile;
+enum N5QFile9FileErrorE {
+    NoError,
+    ReadError,
+    WriteError,
+    FatalError,
+    ResourceError,
+    OpenError,
+    AbortError,
+    TimeOutError,
+    UnspecifiedError,
+    RemoveError,
+    RenameError,
+    PositionError,
+    ResizeError,
+    PermissionsError,
+    CopyError,
+    ConnectError
+};
+enum N5QFile10PermissionE {
+    ExeOther,
+    WriteOther,
+    ReadOther,
+    ExeGroup,
+    WriteGroup,
+    ReadGroup,
+    ExeUser,
+    WriteUser,
+    ReadUser,
+    ExeOwner,
+    WriteOwner,
+    ReadOwner
+};
+class QFlags < QFile::Permission >;
+typedef N5QFile11PermissionsE;
+typedef class QByteArrayN5QFile9EncoderFnE;
+typedef class QStringN5QFile9DecoderFnE;
+typedef enum N5QFile10PermissionE {
+    ExeOther,
+    WriteOther,
+    ReadOther,
+    ExeGroup,
+    WriteGroup,
+    ReadGroup,
+    ExeUser,
+    WriteUser,
+    ReadUser,
+    ExeOwner,
+    WriteOwner,
+    ReadOwner
+} N5QFile14PermissionSpecE;

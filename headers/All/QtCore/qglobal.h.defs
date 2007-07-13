@@ -24,4 +24,49 @@ typedef qint64 Q_LLONG;
 typedef quint64 Q_ULLONG;
 typedef long int Q_LONG;
 typedef unsigned long int Q_ULONG;
-Unknown Type:"Class"
+class QSysInfo;
+enum N8QSysInfo6EndianE {
+    BigEndian,
+    LittleEndian,
+    ByteOrder
+};
+enum QtMsgType {
+    QtDebugMsg,
+    QtWarningMsg,
+    QtCriticalMsg,
+    QtSystemMsg,
+    QtFatalMsg
+};
+typedef void QtMsgHandler;
+class QBool;
+class QFlag;
+enum QtValidLicenseForCoreModule {
+    LicensedCore
+};
+enum QtValidLicenseForGuiModule {
+    LicensedGui
+};
+enum QtValidLicenseForNetworkModule {
+    LicensedNetwork
+};
+enum QtValidLicenseForOpenGLModule {
+    LicensedOpenGL
+};
+enum QtValidLicenseForSqlModule {
+    LicensedSql
+};
+enum QtValidLicenseForXmlModule {
+    LicensedXml
+};
+enum QtValidLicenseForQt3SupportLightModule {
+    LicensedQt3SupportLight
+};
+enum QtValidLicenseForQt3SupportModule {
+    LicensedQt3Support
+};
+enum QtValidLicenseForSvgModule {
+    LicensedSvg
+};
+enum QtValidLicenseForActiveQtModule {
+    LicensedActiveQt
+};

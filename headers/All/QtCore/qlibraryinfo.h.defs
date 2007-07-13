@@ -1,2 +1,15 @@
 
-Unknown Type:"Class"
+class QLibraryInfo;
+enum N12QLibraryInfo15LibraryLocationE {
+    PrefixPath,
+    DocumentationPath,
+    HeadersPath,
+    LibrariesPath,
+    BinariesPath,
+    PluginsPath,
+    DataPath,
+    TranslationsPath,
+    SettingsPath,
+    DemosPath,
+    ExamplesPath
+};

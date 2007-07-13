@@ -1,2 +1,70 @@
 
-Unknown Type:"Class"
+class QVariant;
+enum N8QVariant4TypeE {
+    LastType,
+    Invalid,
+    Bool,
+    Int,
+    UInt,
+    LongLong,
+    ULongLong,
+    Double,
+    Char,
+    Map,
+    List,
+    String,
+    StringList,
+    ByteArray,
+    CString,
+    BitArray,
+    Date,
+    Time,
+    DateTime,
+    Url,
+    Locale,
+    Rect,
+    RectF,
+    Size,
+    SizeF,
+    Line,
+    LineF,
+    Point,
+    PointF,
+    RegExp,
+    ColorGroup,
+    Font,
+    Pixmap,
+    Brush,
+    Color,
+    Palette,
+    Icon,
+    IconSet,
+    Image,
+    Polygon,
+    PointArray,
+    Region,
+    Bitmap,
+    Cursor,
+    SizePolicy,
+    KeySequence,
+    Pen,
+    TextLength,
+    TextFormat,
+    UserType
+};
+struct N8QVariant13PrivateSharedE;
+struct N8QVariant7PrivateE;
+union N8QVariant7Private4DataE;
+typedef void N8QVariant11f_constructE;
+typedef void N8QVariant7f_clearE;
+typedef bool N8QVariant6f_nullE;
+typedef void N8QVariant6f_loadE;
+typedef void N8QVariant6f_saveE;
+typedef bool N8QVariant9f_compareE;
+typedef bool N8QVariant9f_convertE;
+typedef bool N8QVariant12f_canConvertE;
+typedef void N8QVariant13f_debugStreamE;
+struct N8QVariant7HandlerE;
+typedef class QList < QVariant > QVariantList;
+typedef class QMap < QString, QVariant > QVariantMap;
+class QVariantComparisonHelper;

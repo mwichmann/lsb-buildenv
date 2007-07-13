@@ -1,2 +1,13 @@
 
-Unknown Type:"Class"
+class QList < QByteArray >;
+class QList < QFileInfo >;
+class QList < QVariant >;
+class QList < QUrl >;
+class QList < QModelIndex >;
+class QList < QHostAddress >;
+class QList < int >;
+class QList < QObject * >;
+class QList < QWidget * >;
+class QList < QPair < QString, QString > >;
+struct QListData;
+struct N9QListData4DataE;

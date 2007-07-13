@@ -1,2 +1,16 @@
 
-Unknown Type:"Class"
+class QSlider;
+enum N7QSlider12TickPositionE {
+    NoTicks,
+    NoMarks,
+    TicksAbove,
+    TicksLeft,
+    Above,
+    Left,
+    TicksBelow,
+    TicksRight,
+    Below,
+    Right,
+    TicksBothSides,
+    Both
+};

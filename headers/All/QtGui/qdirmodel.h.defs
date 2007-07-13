@@ -1,2 +1,17 @@
 
-Unknown Type:"Class"
+class QFileIconProvider;
+enum N17QFileIconProvider8IconTypeE {
+    Computer,
+    Desktop,
+    Trashcan,
+    Network,
+    Drive,
+    Folder,
+    File
+};
+class QDirModel;
+enum N9QDirModel5RolesE {
+    FileIconRole,
+    FilePathRole,
+    FileNameRole
+};

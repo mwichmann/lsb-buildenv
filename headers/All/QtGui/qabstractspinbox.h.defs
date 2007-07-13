@@ -1,2 +1,13 @@
 
-Unknown Type:"Class"
+class QAbstractSpinBox;
+enum N16QAbstractSpinBox15StepEnabledFlagE {
+    StepNone,
+    StepUpEnabled,
+    StepDownEnabled
+};
+class QFlags < QAbstractSpinBox::StepEnabledFlag >;
+typedef N16QAbstractSpinBox11StepEnabledE;
+enum N16QAbstractSpinBox13ButtonSymbolsE {
+    UpDownArrows,
+    PlusMinus
+};

@@ -1,2 +1,27 @@
 
-Unknown Type:"Class"
+class QMetaType;
+enum N9QMetaType4TypeE {
+    Void,
+    Bool,
+    Int,
+    UInt,
+    Double,
+    QChar,
+    QString,
+    QByteArray,
+    VoidStar,
+    Long,
+    Short,
+    Char,
+    ULong,
+    UShort,
+    UChar,
+    Float,
+    QObjectStar,
+    QWidgetStar,
+    User
+};
+typedef void N9QMetaType10DestructorE;
+typedef void N9QMetaType11ConstructorE;
+typedef void N9QMetaType12SaveOperatorE;
+typedef void N9QMetaType12LoadOperatorE;

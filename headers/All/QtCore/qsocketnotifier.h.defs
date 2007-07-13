@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QSocketNotifier;
+enum N15QSocketNotifier4TypeE {
+    Read,
+    Write,
+    Exception
+};

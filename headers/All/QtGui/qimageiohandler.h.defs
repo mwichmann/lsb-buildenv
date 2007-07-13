@@ -1,2 +1,27 @@
 
-Unknown Type:"Class"
+class QImageIOHandler;
+enum N15QImageIOHandler11ImageOptionE {
+    Size,
+    ClipRect,
+    Description,
+    ScaledClipRect,
+    ScaledSize,
+    CompressionRatio,
+    Gamma,
+    Quality,
+    Name,
+    SubType,
+    IncrementalReading,
+    Endianness,
+    Animation,
+    BackgroundColor
+};
+struct QImageIOHandlerFactoryInterface;
+class QImageIOPlugin;
+enum N14QImageIOPlugin10CapabilityE {
+    CanRead,
+    CanWrite,
+    CanReadIncremental
+};
+class QFlags < QImageIOPlugin::Capability >;
+typedef N14QImageIOPlugin12CapabilitiesE;

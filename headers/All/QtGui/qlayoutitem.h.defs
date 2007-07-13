@@ -1,2 +1,4 @@
 
-Unknown Type:"Class"
+class QLayoutItem;
+class QSpacerItem;
+class QWidgetItem;

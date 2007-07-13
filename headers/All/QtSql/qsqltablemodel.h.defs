@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QSqlTableModel;
+enum N14QSqlTableModel12EditStrategyE {
+    OnFieldChange,
+    OnRowChange,
+    OnManualSubmit
+};

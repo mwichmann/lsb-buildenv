@@ -1,2 +1,25 @@
 
-Unknown Type:"Class"
+class QMessageBox;
+enum N11QMessageBox4IconE {
+    NoIcon,
+    Information,
+    Warning,
+    Critical,
+    Question
+};
+enum N11QMessageBox6ButtonE {
+    NoButton,
+    Ok,
+    Cancel,
+    Yes,
+    No,
+    Abort,
+    Retry,
+    Ignore,
+    YesAll,
+    NoAll,
+    ButtonMask,
+    Default,
+    Escape,
+    FlagMask
+};

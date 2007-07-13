@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QInputContext;
+enum N13QInputContext14StandardFormatE {
+    PreeditFormat,
+    SelectionFormat
+};

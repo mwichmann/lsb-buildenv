@@ -1,2 +1,11 @@
 
-Unknown Type:"Class"
+class QPainterPath;
+enum N12QPainterPath11ElementTypeE {
+    MoveToElement,
+    LineToElement,
+    CurveToElement,
+    CurveToDataElement
+};
+class QPainterPath::Element;
+class QPainterPathPrivate;
+class QPainterPathStroker;

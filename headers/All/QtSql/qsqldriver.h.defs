@@ -1,2 +1,24 @@
 
-Unknown Type:"Class"
+class QSqlDriver;
+enum N10QSqlDriver13DriverFeatureE {
+    Transactions,
+    QuerySize,
+    BLOB,
+    Unicode,
+    PreparedQueries,
+    NamedPlaceholders,
+    PositionalPlaceholders,
+    LastInsertId,
+    BatchOperations
+};
+enum N10QSqlDriver13StatementTypeE {
+    WhereStatement,
+    SelectStatement,
+    UpdateStatement,
+    InsertStatement,
+    DeleteStatement
+};
+enum N10QSqlDriver14IdentifierTypeE {
+    FieldName,
+    TableName
+};

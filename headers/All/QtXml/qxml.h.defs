@@ -1,3 +1,17 @@
 
 typedef enum QtValidLicenseForXmlModule QtXmlModule;
-Unknown Type:"Class"
+class QXmlNamespaceSupport;
+class QXmlAttributes;
+struct N14QXmlAttributes9AttributeE;
+class QXmlInputSource;
+class QXmlParseException;
+class QXmlReader;
+class QXmlSimpleReader;
+class QXmlLocator;
+class QXmlContentHandler;
+class QXmlErrorHandler;
+class QXmlDTDHandler;
+class QXmlEntityResolver;
+class QXmlLexicalHandler;
+class QXmlDeclHandler;
+class QXmlDefaultHandler;

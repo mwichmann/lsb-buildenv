@@ -1,2 +1,3 @@
 
-Unknown Type:"Class"
+class QFontMetrics;
+class QFontMetricsF;

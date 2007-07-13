@@ -1,2 +1,4 @@
 
-Unknown Type:"Class"
+class QAbstractEventDispatcher;
+typedef struct N5QPairIiiEE N24QAbstractEventDispatcher9TimerInfoE;
+typedef bool N24QAbstractEventDispatcher11EventFilterE;

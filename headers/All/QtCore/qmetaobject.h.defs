@@ -1,2 +1,20 @@
 
-Unknown Type:"Class"
+class QMetaMethod;
+enum N11QMetaMethod6AccessE {
+    Private,
+    Protected,
+    Public
+};
+enum N11QMetaMethod10MethodTypeE {
+    Method,
+    Signal,
+    Slot
+};
+enum N11QMetaMethod10AttributesE {
+    Compatibility,
+    Cloned,
+    Scriptable
+};
+class QMetaEnum;
+class QMetaProperty;
+class QMetaClassInfo;

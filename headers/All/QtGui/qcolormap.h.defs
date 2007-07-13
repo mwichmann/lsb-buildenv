@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QColormap;
+enum N9QColormap4ModeE {
+    Direct,
+    Indexed,
+    Gray
+};

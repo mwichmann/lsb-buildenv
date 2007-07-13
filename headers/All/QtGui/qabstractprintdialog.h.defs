@@ -1,2 +1,16 @@
 
-Unknown Type:"Class"
+class QAbstractPrintDialog;
+enum N20QAbstractPrintDialog10PrintRangeE {
+    AllPages,
+    Selection,
+    PageRange
+};
+enum N20QAbstractPrintDialog17PrintDialogOptionE {
+    None,
+    PrintToFile,
+    PrintSelection,
+    PrintPageRange,
+    PrintCollateCopies
+};
+class QFlags < QAbstractPrintDialog::PrintDialogOption >;
+typedef N20QAbstractPrintDialog18PrintDialogOptionsE;

@@ -1,2 +1,9 @@
 
-Unknown Type:"Class"
+class QInputDialog;
+enum N12QInputDialog4TypeE {
+    LineEdit,
+    SpinBox,
+    DoubleSpinBox,
+    ComboBox,
+    EditableComboBox
+};

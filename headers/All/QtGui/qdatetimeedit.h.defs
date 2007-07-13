@@ -1,2 +1,19 @@
 
-Unknown Type:"Class"
+class QDateTimeEdit;
+enum N13QDateTimeEdit7SectionE {
+    NoSection,
+    AmPmSection,
+    MSecSection,
+    SecondSection,
+    MinuteSection,
+    HourSection,
+    TimeSections_Mask,
+    DaySection,
+    MonthSection,
+    YearSection,
+    DateSections_Mask
+};
+class QFlags < QDateTimeEdit::Section >;
+typedef N13QDateTimeEdit8SectionsE;
+class QTimeEdit;
+class QDateEdit;

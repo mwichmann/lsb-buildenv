@@ -1,2 +1,12 @@
 
-Unknown Type:"Class"
+class QKeySequence;
+enum N12QKeySequence13SequenceMatchE {
+    NoMatch,
+    PartialMatch,
+    ExactMatch,
+    Identical
+};
+enum N12QKeySequence14SequenceFormatE {
+    NativeText,
+    PortableText
+};

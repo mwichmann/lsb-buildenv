@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QRegion;
+enum N7QRegion10RegionTypeE {
+    Rectangle,
+    Ellipse
+};
+struct N7QRegion11QRegionDataE;

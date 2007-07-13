@@ -1,2 +1,16 @@
 
-Unknown Type:"Class"
+class QIODevice;
+enum N9QIODevice12OpenModeFlagE {
+    NotOpen,
+    ReadOnly,
+    WriteOnly,
+    ReadWrite,
+    Append,
+    Truncate,
+    Text,
+    Unbuffered
+};
+class QFlags < QIODevice::OpenModeFlag >;
+typedef N9QIODevice8OpenModeE;
+typedef qint64 N9QIODevice6OffsetE;
+typedef int N9QIODevice6StatusE;

@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QMutex;
+enum N6QMutex13RecursionModeE {
+    NonRecursive,
+    Recursive
+};
+class QMutexLocker;

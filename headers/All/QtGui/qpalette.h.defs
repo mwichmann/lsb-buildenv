@@ -1,2 +1,35 @@
 
-Unknown Type:"Class"
+class QPalette;
+enum N8QPalette10ColorGroupE {
+    Active,
+    Normal,
+    Disabled,
+    Inactive,
+    NColorGroups,
+    Current,
+    All
+};
+enum N8QPalette9ColorRoleE {
+    WindowText,
+    Foreground,
+    Button,
+    Light,
+    Midlight,
+    Dark,
+    Mid,
+    Text,
+    BrightText,
+    ButtonText,
+    Base,
+    Window,
+    Background,
+    Shadow,
+    Highlight,
+    HighlightedText,
+    Link,
+    LinkVisited,
+    AlternateBase,
+    NColorRoles,
+    NoRole
+};
+class QColorGroup;

@@ -1,2 +1,5 @@
 
-Unknown Type:"Class"
+class QMap < int, QVariant >;
+class QMap < QString, QVariant >;
+struct QMapData;
+struct N8QMapData4NodeE;

@@ -9,4 +9,20 @@ enum N2Qt14WhiteSpaceModeE {
     WhiteSpacePre,
     WhiteSpaceNoWrap
 };
-Unknown Type:"Class"
+class QAbstractUndoItem;
+class QTextDocument;
+enum N13QTextDocument15MetaInformationE {
+    DocumentTitle
+};
+enum N13QTextDocument8FindFlagE {
+    FindBackward,
+    FindCaseSensitively,
+    FindWholeWords
+};
+class QFlags < QTextDocument::FindFlag >;
+typedef N13QTextDocument9FindFlagsE;
+enum N13QTextDocument12ResourceTypeE {
+    HtmlResource,
+    ImageResource,
+    UserResource
+};

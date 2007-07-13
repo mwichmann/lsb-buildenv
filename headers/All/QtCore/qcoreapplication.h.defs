@@ -1,2 +1,8 @@
 
-Unknown Type:"Class"
+class QCoreApplication;
+enum N16QCoreApplication8EncodingE {
+    DefaultCodec,
+    UnicodeUTF8
+};
+typedef bool N16QCoreApplication11EventFilterE;
+typedef void QtCleanUpFunction;

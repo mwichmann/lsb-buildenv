@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QMenuBar;
+enum N8QMenuBar9SeparatorE {
+    Never,
+    InWindowsStyle
+};

@@ -1,2 +1,12 @@
 
-Unknown Type:"Class"
+class QRegExp;
+enum N7QRegExp13PatternSyntaxE {
+    RegExp,
+    Wildcard,
+    FixedString
+};
+enum N7QRegExp9CaretModeE {
+    CaretAtZero,
+    CaretAtOffset,
+    CaretWontMatch
+};

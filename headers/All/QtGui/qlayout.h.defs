@@ -1,2 +1,15 @@
 
-Unknown Type:"Class"
+class QLayoutIterator;
+class QLayout;
+enum N7QLayout14SizeConstraintE {
+    SetDefaultConstraint,
+    Auto,
+    SetNoConstraint,
+    FreeResize,
+    SetMinimumSize,
+    Minimum,
+    SetFixedSize,
+    Fixed,
+    SetMaximumSize,
+    SetMinAndMaxSize
+};

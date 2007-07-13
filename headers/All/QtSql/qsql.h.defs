@@ -11,4 +11,22 @@ enum N4QSql13ParamTypeFlagE {
     InOut,
     Binary
 };
-Unknown Type:"Class"
+class QFlags < QSql::ParamTypeFlag >;
+typedef N4QSql9ParamTypeE;
+enum N4QSql9TableTypeE {
+    Tables,
+    SystemTables,
+    Views,
+    AllTables
+};
+enum N4QSql2OpE {
+    None,
+    Insert,
+    Update,
+    Delete
+};
+enum N4QSql7ConfirmE {
+    Cancel,
+    No,
+    Yes
+};

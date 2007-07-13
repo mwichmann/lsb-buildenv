@@ -1,2 +1,4 @@
 
-Unknown Type:"Class"
+class QTableWidgetSelectionRange;
+class QTableWidgetItem;
+class QTableWidget;

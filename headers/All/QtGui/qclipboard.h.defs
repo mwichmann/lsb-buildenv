@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QClipboard;
+enum N10QClipboard4ModeE {
+    Clipboard,
+    Selection
+};

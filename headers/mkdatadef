@@ -428,7 +428,13 @@ if( $$type{'Ttype'} eq "Array" ) {
 	return;
 	}
 
-print "Unknown Type: \"$$type{'Ttype'}\"\n";
+if( $$type{'Ttype'} eq "Class" ) {
+	$name = $$type{'Tunmangled'} ? $$type{'Tunmangled'} : $$type{'Tname'};
+	print "class ".$$type{'Tunmangled'};
+	return;
+	}
+
+# print "Unknown Type: \"$$type{'Ttype'}\"\n";
 print STDERR "Unknown Type: \"$$type{'Ttype'}\" for Tid $$type{'Tid'}\n";
 exit 2;
 }

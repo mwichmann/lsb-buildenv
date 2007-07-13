@@ -1,2 +1,164 @@
 
-Unknown Type:"Class"
+class QStyleOption;
+enum N12QStyleOption10OptionTypeE {
+    SO_Default,
+    SO_FocusRect,
+    SO_Button,
+    SO_Tab,
+    SO_MenuItem,
+    SO_Frame,
+    SO_ProgressBar,
+    SO_ToolBox,
+    SO_Header,
+    SO_Q3DockWindow,
+    SO_DockWidget,
+    SO_Q3ListViewItem,
+    SO_ViewItem,
+    SO_TabWidgetFrame,
+    SO_TabBarBase,
+    SO_RubberBand,
+    SO_ToolBar,
+    SO_CustomBase,
+    SO_Complex,
+    SO_Slider,
+    SO_SpinBox,
+    SO_ToolButton,
+    SO_ComboBox,
+    SO_Q3ListView,
+    SO_TitleBar,
+    SO_GroupBox,
+    SO_ComplexCustomBase
+};
+class QStyleOptionFocusRect;
+class QStyleOptionFrame;
+class QStyleOptionFrameV2;
+enum N19QStyleOptionFrameV212FrameFeatureE {
+    None,
+    Flat
+};
+class QFlags < QStyleOptionFrameV2::FrameFeature >;
+typedef N19QStyleOptionFrameV213FrameFeaturesE;
+class QStyleOptionTabWidgetFrame;
+class QStyleOptionTabBarBase;
+class QStyleOptionHeader;
+enum N18QStyleOptionHeader15SectionPositionE {
+    Beginning,
+    Middle,
+    End,
+    OnlyOneSection
+};
+enum N18QStyleOptionHeader16SelectedPositionE {
+    NotAdjacent,
+    NextIsSelected,
+    PreviousIsSelected,
+    NextAndPreviousAreSelected
+};
+enum N18QStyleOptionHeader13SortIndicatorE {
+    None,
+    SortUp,
+    SortDown
+};
+class QStyleOptionButton;
+enum N18QStyleOptionButton13ButtonFeatureE {
+    None,
+    Flat,
+    HasMenu,
+    DefaultButton,
+    AutoDefaultButton
+};
+class QFlags < QStyleOptionButton::ButtonFeature >;
+typedef N18QStyleOptionButton14ButtonFeaturesE;
+class QStyleOptionTab;
+enum N15QStyleOptionTab11TabPositionE {
+    Beginning,
+    Middle,
+    End,
+    OnlyOneTab
+};
+enum N15QStyleOptionTab16SelectedPositionE {
+    NotAdjacent,
+    NextIsSelected,
+    PreviousIsSelected
+};
+enum N15QStyleOptionTab12CornerWidgetE {
+    NoCornerWidgets,
+    LeftCornerWidget,
+    RightCornerWidget
+};
+class QFlags < QStyleOptionTab::CornerWidget >;
+typedef N15QStyleOptionTab13CornerWidgetsE;
+class QStyleOptionTabV2;
+class QStyleOptionToolBar;
+enum N19QStyleOptionToolBar15ToolBarPositionE {
+    Beginning,
+    Middle,
+    End,
+    OnlyOne
+};
+enum N19QStyleOptionToolBar14ToolBarFeatureE {
+    None,
+    Movable
+};
+class QFlags < QStyleOptionToolBar::ToolBarFeature >;
+typedef N19QStyleOptionToolBar15ToolBarFeaturesE;
+class QStyleOptionProgressBar;
+class QStyleOptionProgressBarV2;
+class QStyleOptionMenuItem;
+enum N20QStyleOptionMenuItem12MenuItemTypeE {
+    Normal,
+    DefaultItem,
+    Separator,
+    SubMenu,
+    Scroller,
+    TearOff,
+    Margin,
+    EmptyArea
+};
+enum N20QStyleOptionMenuItem9CheckTypeE {
+    NotCheckable,
+    Exclusive,
+    NonExclusive
+};
+class QStyleOptionQ3ListViewItem;
+enum N26QStyleOptionQ3ListViewItem21Q3ListViewItemFeatureE {
+    None,
+    Expandable,
+    MultiLine,
+    Visible,
+    ParentControl
+};
+class QFlags < QStyleOptionQ3ListViewItem::Q3ListViewItemFeature >;
+typedef N26QStyleOptionQ3ListViewItem22Q3ListViewItemFeaturesE;
+class QStyleOptionQ3DockWindow;
+class QStyleOptionDockWidget;
+class QStyleOptionViewItem;
+enum N20QStyleOptionViewItem8PositionE {
+    Left,
+    Right,
+    Top,
+    Bottom
+};
+class QStyleOptionToolBox;
+class QStyleOptionRubberBand;
+class QStyleOptionComplex;
+class QStyleOptionSlider;
+class QStyleOptionSpinBox;
+class QStyleOptionQ3ListView;
+class QStyleOptionToolButton;
+enum N22QStyleOptionToolButton17ToolButtonFeatureE {
+    None,
+    Arrow,
+    Menu,
+    PopupDelay
+};
+class QFlags < QStyleOptionToolButton::ToolButtonFeature >;
+typedef N22QStyleOptionToolButton18ToolButtonFeaturesE;
+class QStyleOptionComboBox;
+class QStyleOptionTitleBar;
+class QStyleOptionGroupBox;
+class QStyleHintReturn;
+enum N16QStyleHintReturn14HintReturnTypeE {
+    SH_Default,
+    SH_Mask
+};
+class QStyleHintReturnMask;

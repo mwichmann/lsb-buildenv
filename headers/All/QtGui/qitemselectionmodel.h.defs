@@ -1,2 +1,19 @@
 
-Unknown Type:"Class"
+class QItemSelectionRange;
+class QItemSelectionModel;
+enum N19QItemSelectionModel13SelectionFlagE {
+    NoUpdate,
+    Clear,
+    Select,
+    ClearAndSelect,
+    Deselect,
+    Toggle,
+    Current,
+    SelectCurrent,
+    ToggleCurrent,
+    Rows,
+    Columns
+};
+class QFlags < QItemSelectionModel::SelectionFlag >;
+typedef N19QItemSelectionModel14SelectionFlagsE;
+class QItemSelection;

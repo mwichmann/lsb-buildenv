@@ -1,2 +1,39 @@
 
-Unknown Type:"Class"
+class QTextEdit;
+enum N9QTextEdit12LineWrapModeE {
+    NoWrap,
+    WidgetWidth,
+    FixedPixelWidth,
+    FixedColumnWidth
+};
+enum N9QTextEdit18AutoFormattingFlagE {
+    AutoAll,
+    AutoNone,
+    AutoBulletList
+};
+class QFlags < QTextEdit::AutoFormattingFlag >;
+typedef N9QTextEdit14AutoFormattingE;
+enum N9QTextEdit12CursorActionE {
+    MoveBackward,
+    MoveForward,
+    MoveWordBackward,
+    MoveWordForward,
+    MoveUp,
+    MoveDown,
+    MoveLineStart,
+    MoveLineEnd,
+    MoveHome,
+    MoveEnd,
+    MovePageUp,
+    MovePgUp,
+    MovePageDown,
+    MovePgDown
+};
+enum N9QTextEdit14KeyboardActionE {
+    ActionBackspace,
+    ActionDelete,
+    ActionReturn,
+    ActionKill,
+    ActionWordBackspace,
+    ActionWordDelete
+};
