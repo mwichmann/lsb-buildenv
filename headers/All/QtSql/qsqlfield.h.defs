@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QSqlField;
+enum N9QSqlField14RequiredStatusE {
+    Unknown,
+    Optional,
+    Required
+};

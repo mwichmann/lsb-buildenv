@@ -1,2 +1,16 @@
 
-Unknown Type:"Class"
+class QTabBar;
+enum N7QTabBar5ShapeE {
+    RoundedNorth,
+    RoundedAbove,
+    RoundedSouth,
+    RoundedBelow,
+    RoundedWest,
+    RoundedEast,
+    TriangularNorth,
+    TriangularAbove,
+    TriangularSouth,
+    TriangularBelow,
+    TriangularWest,
+    TriangularEast
+};

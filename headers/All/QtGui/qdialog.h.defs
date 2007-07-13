@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QDialog;
+enum N7QDialog10DialogCodeE {
+    Rejected,
+    Accepted
+};

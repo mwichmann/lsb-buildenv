@@ -1,2 +1,9 @@
 
-Unknown Type:"Class"
+class QImageReader;
+enum N12QImageReader16ImageReaderErrorE {
+    UnknownError,
+    FileNotFoundError,
+    DeviceError,
+    UnsupportedFormatError,
+    InvalidDataError
+};

@@ -1,2 +1,13 @@
 
-Unknown Type:"Class"
+class QToolButton;
+enum N11QToolButton19ToolButtonPopupModeE {
+    DelayedPopup,
+    MenuButtonPopup,
+    InstantPopup
+};
+enum N11QToolButton12TextPositionE {
+    BesideIcon,
+    Right,
+    BelowIcon,
+    Under
+};

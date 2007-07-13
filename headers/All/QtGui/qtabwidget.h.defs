@@ -1,2 +1,14 @@
 
-Unknown Type:"Class"
+class QTabWidget;
+enum N10QTabWidget11TabPositionE {
+    North,
+    Top,
+    South,
+    Bottom,
+    West,
+    East
+};
+enum N10QTabWidget8TabShapeE {
+    Rounded,
+    Triangular
+};

@@ -1,2 +1,4 @@
 
-Unknown Type:"Class"
+class QAccessibleBridge;
+struct QAccessibleBridgeFactoryInterface;
+class QAccessibleBridgePlugin;

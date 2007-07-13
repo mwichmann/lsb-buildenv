@@ -1,2 +1,3 @@
 
-Unknown Type:"Class"
+class QCursor;
+typedef enum N2Qt11CursorShapeE QCursorShape;

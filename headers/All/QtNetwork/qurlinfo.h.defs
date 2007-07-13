@@ -1,2 +1,13 @@
 
-Unknown Type:"Class"
+class QUrlInfo;
+enum N8QUrlInfo14PermissionSpecE {
+    ExeOther,
+    WriteOther,
+    ReadOther,
+    ExeGroup,
+    WriteGroup,
+    ReadGroup,
+    ExeOwner,
+    WriteOwner,
+    ReadOwner
+};

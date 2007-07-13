@@ -1,2 +1,12 @@
 
-Unknown Type:"Class"
+class QBoxLayout;
+enum N10QBoxLayout9DirectionE {
+    LeftToRight,
+    RightToLeft,
+    TopToBottom,
+    Down,
+    BottomToTop,
+    Up
+};
+class QHBoxLayout;
+class QVBoxLayout;

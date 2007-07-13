@@ -1,2 +1,14 @@
 
-Unknown Type:"Class"
+class QSqlError;
+enum N9QSqlError9ErrorTypeE {
+    NoError,
+    None,
+    ConnectionError,
+    Connection,
+    StatementError,
+    Statement,
+    TransactionError,
+    Transaction,
+    UnknownError,
+    Unknown
+};

@@ -1,2 +1,4 @@
 
-Unknown Type:"Class"
+class QDate;
+class QTime;
+class QDateTime;

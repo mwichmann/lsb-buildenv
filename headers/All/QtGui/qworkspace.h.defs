@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QWorkspace;
+enum N10QWorkspace11WindowOrderE {
+    CreationOrder,
+    StackingOrder
+};

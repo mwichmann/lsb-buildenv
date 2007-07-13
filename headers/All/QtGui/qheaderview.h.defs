@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QHeaderView;
+enum N11QHeaderView10ResizeModeE {
+    Interactive,
+    Stretch,
+    Custom
+};

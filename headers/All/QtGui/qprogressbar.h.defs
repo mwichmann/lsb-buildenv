@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QProgressBar;
+enum N12QProgressBar9DirectionE {
+    TopToBottom,
+    BottomToTop
+};

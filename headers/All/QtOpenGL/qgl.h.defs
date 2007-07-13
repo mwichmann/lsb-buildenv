@@ -21,4 +21,8 @@ enum N3QGL12FormatOptionE {
     NoOverlay,
     NoSampleBuffers
 };
-Unknown Type:"Class"
+class QFlags < QGL::FormatOption >;
+typedef N3QGL13FormatOptionsE;
+class QGLFormat;
+class QGLContext;
+class QGLWidget;

@@ -1,2 +1,100 @@
 
-Unknown Type:"Class"
+class QTextLength;
+enum N11QTextLength4TypeE {
+    VariableLength,
+    FixedLength,
+    PercentageLength
+};
+class QTextFormat;
+enum N11QTextFormat10FormatTypeE {
+    InvalidFormat,
+    BlockFormat,
+    CharFormat,
+    ListFormat,
+    TableFormat,
+    FrameFormat,
+    UserFormat
+};
+enum N11QTextFormat8PropertyE {
+    ObjectIndex,
+    CssFloat,
+    LayoutDirection,
+    OutlinePen,
+    BackgroundBrush,
+    ForegroundBrush,
+    BlockAlignment,
+    BlockTopMargin,
+    BlockBottomMargin,
+    BlockLeftMargin,
+    BlockRightMargin,
+    TextIndent,
+    BlockIndent,
+    BlockNonBreakableLines,
+    BlockTrailingHorizontalRulerWidth,
+    FontFamily,
+    FontPointSize,
+    FontSizeAdjustment,
+    FontSizeIncrement,
+    FontWeight,
+    FontItalic,
+    FontUnderline,
+    FontOverline,
+    FontStrikeOut,
+    FontFixedPitch,
+    FontPixelSize,
+    TextUnderlineColor,
+    TextVerticalAlignment,
+    TextOutline,
+    IsAnchor,
+    AnchorHref,
+    AnchorName,
+    ObjectType,
+    ListStyle,
+    ListIndent,
+    FrameBorder,
+    FrameMargin,
+    FramePadding,
+    FrameWidth,
+    FrameHeight,
+    TableColumns,
+    TableColumnWidthConstraints,
+    TableCellSpacing,
+    TableCellPadding,
+    TableCellRowSpan,
+    TableCellColumnSpan,
+    ImageName,
+    ImageWidth,
+    ImageHeight,
+    UserProperty
+};
+enum N11QTextFormat11ObjectTypesE {
+    NoObject,
+    ImageObject,
+    TableObject,
+    UserObject
+};
+class QTextCharFormat;
+enum N15QTextCharFormat17VerticalAlignmentE {
+    AlignNormal,
+    AlignSuperScript,
+    AlignSubScript
+};
+class QTextBlockFormat;
+class QTextListFormat;
+enum N15QTextListFormat5StyleE {
+    ListUpperAlpha,
+    ListLowerAlpha,
+    ListDecimal,
+    ListSquare,
+    ListCircle,
+    ListDisc,
+    ListStyleUndefined
+};
+class QTextImageFormat;
+class QTextFrameFormat;
+enum N16QTextFrameFormat8PositionE {
+    InFlow,
+    FloatLeft,
+    FloatRight
+};
+class QTextTableFormat;

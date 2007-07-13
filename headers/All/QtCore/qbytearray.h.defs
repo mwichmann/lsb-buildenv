@@ -1,2 +1,10 @@
 
-Unknown Type:"Class"
+class QByteArray;
+typedef char N10QByteArray8iteratorE;
+typedef char N10QByteArray14const_iteratorE;
+typedef N10QByteArray8iteratorE N10QByteArray8IteratorE;
+typedef N10QByteArray14const_iteratorE N10QByteArray13ConstIteratorE;
+typedef char N10QByteArray15const_referenceE;
+typedef char N10QByteArray9referenceE;
+struct N10QByteArray4DataE;
+class QByteRef;

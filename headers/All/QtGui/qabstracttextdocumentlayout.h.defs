@@ -1,2 +1,5 @@
 
-Unknown Type:"Class"
+class QAbstractTextDocumentLayout;
+struct N27QAbstractTextDocumentLayout9SelectionE;
+struct N27QAbstractTextDocumentLayout12PaintContextE;
+class QTextObjectInterface;

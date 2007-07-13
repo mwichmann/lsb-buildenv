@@ -1,2 +1,9 @@
 
-Unknown Type:"Class"
+class QWidgetData;
+class QWidget;
+enum N7QWidget16BackgroundOriginE {
+    WidgetOrigin,
+    ParentOrigin,
+    WindowOrigin,
+    AncestorOrigin
+};

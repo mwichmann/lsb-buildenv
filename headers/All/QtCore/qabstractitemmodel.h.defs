@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QModelIndex;
+class QPersistentModelIndex;
+typedef class QList < QModelIndex > QModelIndexList;
+class QAbstractItemModel;
+class QAbstractTableModel;
+class QAbstractListModel;

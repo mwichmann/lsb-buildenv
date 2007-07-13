@@ -1,2 +1,11 @@
 
-Unknown Type:"Class"
+class QMovie;
+enum N6QMovie10MovieStateE {
+    NotRunning,
+    Paused,
+    Running
+};
+enum N6QMovie9CacheModeE {
+    CacheNone,
+    CacheAll
+};

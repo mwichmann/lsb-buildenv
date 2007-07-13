@@ -1,2 +1,49 @@
 
-Unknown Type:"Class"
+class QFont;
+enum N5QFont9StyleHintE {
+    Helvetica,
+    SansSerif,
+    Times,
+    Serif,
+    Courier,
+    TypeWriter,
+    OldEnglish,
+    Decorative,
+    System,
+    AnyStyle
+};
+enum N5QFont13StyleStrategyE {
+    PreferDefault,
+    PreferBitmap,
+    PreferDevice,
+    PreferOutline,
+    ForceOutline,
+    PreferMatch,
+    PreferQuality,
+    PreferAntialias,
+    NoAntialias,
+    OpenGLCompatible
+};
+enum N5QFont6WeightE {
+    Light,
+    Normal,
+    DemiBold,
+    Bold,
+    Black
+};
+enum N5QFont5StyleE {
+    StyleNormal,
+    StyleItalic,
+    StyleOblique
+};
+enum N5QFont7StretchE {
+    UltraCondensed,
+    ExtraCondensed,
+    Condensed,
+    SemiCondensed,
+    Unstretched,
+    SemiExpanded,
+    Expanded,
+    ExtraExpanded,
+    UltraExpanded
+};

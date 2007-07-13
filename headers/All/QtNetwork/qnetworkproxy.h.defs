@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QNetworkProxy;
+enum N13QNetworkProxy9ProxyTypeE {
+    DefaultProxy,
+    Socks5Proxy,
+    NoProxy
+};

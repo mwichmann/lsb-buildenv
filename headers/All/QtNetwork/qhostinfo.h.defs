@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QHostInfo;
+enum N9QHostInfo13HostInfoErrorE {
+    NoError,
+    HostNotFound,
+    UnknownError
+};

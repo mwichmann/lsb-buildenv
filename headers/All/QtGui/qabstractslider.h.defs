@@ -1,2 +1,18 @@
 
-Unknown Type:"Class"
+class QAbstractSlider;
+enum N15QAbstractSlider12SliderActionE {
+    SliderNoAction,
+    SliderSingleStepAdd,
+    SliderSingleStepSub,
+    SliderPageStepAdd,
+    SliderPageStepSub,
+    SliderToMinimum,
+    SliderToMaximum,
+    SliderMove
+};
+enum N15QAbstractSlider12SliderChangeE {
+    SliderRangeChange,
+    SliderOrientationChange,
+    SliderStepsChange,
+    SliderValueChange
+};

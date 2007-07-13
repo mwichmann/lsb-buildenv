@@ -1,2 +1,17 @@
 
-Unknown Type:"Class"
+class QLCDNumber;
+enum N10QLCDNumber4ModeE {
+    Hex,
+    HEX,
+    Dec,
+    DEC,
+    Oct,
+    OCT,
+    Bin,
+    BIN
+};
+enum N10QLCDNumber12SegmentStyleE {
+    Outline,
+    Filled,
+    Flat
+};

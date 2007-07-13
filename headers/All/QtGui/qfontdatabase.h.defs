@@ -1,2 +1,36 @@
 
-Unknown Type:"Class"
+class QFontDatabase;
+enum N13QFontDatabase13WritingSystemE {
+    Any,
+    Latin,
+    Greek,
+    Cyrillic,
+    Armenian,
+    Hebrew,
+    Arabic,
+    Syriac,
+    Thaana,
+    Devanagari,
+    Bengali,
+    Gurmukhi,
+    Gujarati,
+    Oriya,
+    Tamil,
+    Telugu,
+    Kannada,
+    Malayalam,
+    Sinhala,
+    Thai,
+    Lao,
+    Tibetan,
+    Myanmar,
+    Georgian,
+    Khmer,
+    SimplifiedChinese,
+    TraditionalChinese,
+    Japanese,
+    Korean,
+    Vietnamese,
+    Other,
+    WritingSystemsCount
+};

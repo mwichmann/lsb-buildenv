@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QRubberBand;
+enum N11QRubberBand5ShapeE {
+    Line,
+    Rectangle
+};

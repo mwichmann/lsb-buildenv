@@ -1,2 +1,12 @@
 
-Unknown Type:"Class"
+class QIPv6Address;
+typedef class QIPv6AddressQ_IPV6ADDR;
+class QHostAddress;
+enum N12QHostAddress14SpecialAddressE {
+    Null,
+    Broadcast,
+    LocalHost,
+    LocalHostIPv6,
+    Any,
+    AnyIPv6
+};

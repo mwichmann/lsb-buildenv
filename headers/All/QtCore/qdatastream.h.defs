@@ -1,2 +1,21 @@
 
-Unknown Type:"Class"
+class QDataStream;
+enum N11QDataStream7VersionE {
+    Qt_1_0,
+    Qt_2_0,
+    Qt_2_1,
+    Qt_3_0,
+    Qt_3_1,
+    Qt_3_3,
+    Qt_4_0,
+    Qt_4_1
+};
+enum N11QDataStream9ByteOrderE {
+    BigEndian,
+    LittleEndian
+};
+enum N11QDataStream6StatusE {
+    Ok,
+    ReadPastEnd,
+    ReadCorruptData
+};

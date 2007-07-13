@@ -1,2 +1,9 @@
 
-Unknown Type:"Class"
+class QAbstractItemDelegate;
+enum N21QAbstractItemDelegate11EndEditHintE {
+    NoHint,
+    EditNextItem,
+    EditPreviousItem,
+    SubmitModelCache,
+    RevertModelCache
+};

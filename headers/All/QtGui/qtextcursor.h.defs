@@ -1,2 +1,34 @@
 
-Unknown Type:"Class"
+class QTextCursor;
+enum N11QTextCursor8MoveModeE {
+    MoveAnchor,
+    KeepAnchor
+};
+enum N11QTextCursor13MoveOperationE {
+    NoMove,
+    Start,
+    Up,
+    StartOfLine,
+    StartOfBlock,
+    StartOfWord,
+    PreviousBlock,
+    PreviousCharacter,
+    PreviousWord,
+    Left,
+    WordLeft,
+    End,
+    Down,
+    EndOfLine,
+    EndOfWord,
+    EndOfBlock,
+    NextBlock,
+    NextCharacter,
+    NextWord,
+    Right,
+    WordRight
+};
+enum N11QTextCursor13SelectionTypeE {
+    WordUnderCursor,
+    LineUnderCursor,
+    BlockUnderCursor
+};

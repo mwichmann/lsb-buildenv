@@ -1,2 +1,30 @@
 
-Unknown Type:"Class"
+class QString;
+enum N7QString11SectionFlagE {
+    SectionDefault,
+    SectionSkipEmpty,
+    SectionIncludeLeadingSep,
+    SectionIncludeTrailingSep,
+    SectionCaseInsensitiveSeps
+};
+class QFlags < QString::SectionFlag >;
+typedef N7QString12SectionFlagsE;
+enum N7QString13SplitBehaviorE {
+    KeepEmptyParts,
+    SkipEmptyParts
+};
+enum N7QString17NormalizationFormE {
+    NormalizationForm_D,
+    NormalizationForm_C,
+    NormalizationForm_KD,
+    NormalizationForm_KC
+};
+typedef class QCharN7QString8iteratorE;
+typedef class QCharN7QString14const_iteratorE;
+typedef N7QString8iteratorE N7QString8IteratorE;
+typedef N7QString14const_iteratorE N7QString13ConstIteratorE;
+struct N7QString4NullE;
+struct N7QString4DataE;
+class QLatin1String;
+class QCharRef;
+class QConstString;

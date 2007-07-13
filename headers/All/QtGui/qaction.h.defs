@@ -1,2 +1,6 @@
 
-Unknown Type:"Class"
+class QAction;
+enum N7QAction11ActionEventE {
+    Trigger,
+    Hover
+};

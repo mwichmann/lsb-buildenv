@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QImageWriter;
+enum N12QImageWriter16ImageWriterErrorE {
+    UnknownError,
+    DeviceError,
+    UnsupportedFormatError
+};

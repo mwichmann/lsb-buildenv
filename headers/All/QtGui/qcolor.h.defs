@@ -1,2 +1,8 @@
 
-Unknown Type:"Class"
+class QColor;
+enum N6QColor4SpecE {
+    Invalid,
+    Rgb,
+    Hsv,
+    Cmyk
+};

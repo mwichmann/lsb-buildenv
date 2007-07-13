@@ -1,2 +1,39 @@
 
-Unknown Type:"Class"
+class QDomImplementation;
+enum N18QDomImplementation17InvalidDataPolicyE {
+    AcceptInvalidChars,
+    DropInvalidChars,
+    ReturnNullNode
+};
+class QDomNode;
+enum N8QDomNode8NodeTypeE {
+    ElementNode,
+    AttributeNode,
+    TextNode,
+    CDATASectionNode,
+    EntityReferenceNode,
+    EntityNode,
+    ProcessingInstructionNode,
+    CommentNode,
+    DocumentNode,
+    DocumentTypeNode,
+    DocumentFragmentNode,
+    NotationNode,
+    BaseNode,
+    CharacterDataNode
+};
+class QDomNodeList;
+class QDomDocumentType;
+class QDomDocument;
+class QDomNamedNodeMap;
+class QDomDocumentFragment;
+class QDomCharacterData;
+class QDomAttr;
+class QDomElement;
+class QDomText;
+class QDomComment;
+class QDomCDATASection;
+class QDomNotation;
+class QDomEntity;
+class QDomEntityReference;
+class QDomProcessingInstruction;

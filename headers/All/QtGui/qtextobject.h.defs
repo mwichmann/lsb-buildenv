@@ -1,2 +1,12 @@
 
-Unknown Type:"Class"
+class QTextObject;
+class QTextBlockGroup;
+class QTextFrameLayoutData;
+class QTextFrame;
+class QTextFrame::iterator;
+typedef class QTextFrame::iteratorN10QTextFrame8IteratorE;
+class QTextBlockUserData;
+class QTextBlock;
+class QTextBlock::iterator;
+typedef class QTextBlock::iteratorN10QTextBlock8IteratorE;
+class QTextFragment;

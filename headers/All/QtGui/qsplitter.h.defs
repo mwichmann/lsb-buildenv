@@ -1,2 +1,9 @@
 
-Unknown Type:"Class"
+class QSplitter;
+enum N9QSplitter10ResizeModeE {
+    Stretch,
+    KeepSize,
+    FollowSizeHint,
+    Auto
+};
+class QSplitterHandle;

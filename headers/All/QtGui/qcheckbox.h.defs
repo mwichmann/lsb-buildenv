@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QCheckBox;
+enum N9QCheckBox11ToggleStateE {
+    Off,
+    NoChange,
+    On
+};

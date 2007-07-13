@@ -1,2 +1,22 @@
 
-Unknown Type:"Class"
+class QFrame;
+enum N6QFrame5ShapeE {
+    NoFrame,
+    Box,
+    Panel,
+    WinPanel,
+    HLine,
+    VLine,
+    StyledPanel,
+    PopupPanel,
+    MenuBarPanel,
+    ToolBarPanel,
+    LineEditPanel,
+    TabWidgetPanel,
+    GroupBoxPanel
+};
+enum N6QFrame6ShadowE {
+    Plain,
+    Raised,
+    Sunken
+};

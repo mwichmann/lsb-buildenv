@@ -1,2 +1,15 @@
 
-Unknown Type:"Class"
+class QGenericArgument;
+class QGenericReturnArgument;
+struct QMetaObject;
+enum N11QMetaObject4CallE {
+    InvokeMetaMethod,
+    ReadProperty,
+    WriteProperty,
+    ResetProperty,
+    QueryPropertyDesignable,
+    QueryPropertyScriptable,
+    QueryPropertyStored,
+    QueryPropertyEditable,
+    QueryPropertyUser
+};

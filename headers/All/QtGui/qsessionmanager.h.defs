@@ -1,2 +1,8 @@
 
-Unknown Type:"Class"
+class QSessionManager;
+enum N15QSessionManager11RestartHintE {
+    RestartIfRunning,
+    RestartAnyway,
+    RestartImmediately,
+    RestartNever
+};

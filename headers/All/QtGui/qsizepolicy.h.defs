@@ -1,2 +1,32 @@
 
-Unknown Type:"Class"
+class QSizePolicy;
+enum N11QSizePolicy15SizePolicyMasksE {
+    HSize,
+    HMask,
+    VMask
+};
+enum N11QSizePolicy10PolicyFlagE {
+    GrowFlag,
+    ExpandFlag,
+    ShrinkFlag,
+    IgnoreFlag
+};
+enum N11QSizePolicy6PolicyE {
+    Fixed,
+    Minimum,
+    MinimumExpanding,
+    Maximum,
+    Preferred,
+    Expanding,
+    Ignored
+};
+typedef enum N11QSizePolicy6PolicyE {
+    Fixed,
+    Minimum,
+    MinimumExpanding,
+    Maximum,
+    Preferred,
+    Expanding,
+    Ignored
+} N11QSizePolicy8SizeTypeE;
+typedef N2Qt12OrientationsE N11QSizePolicy10ExpandDataE;

@@ -1,2 +1,52 @@
 
-Unknown Type:"Class"
+class QAbstractFileEngine;
+enum N19QAbstractFileEngine8FileFlagE {
+    ExeOtherPerm,
+    WriteOtherPerm,
+    ReadOtherPerm,
+    ExeGroupPerm,
+    WriteGroupPerm,
+    ReadGroupPerm,
+    ExeUserPerm,
+    WriteUserPerm,
+    ReadUserPerm,
+    ExeOwnerPerm,
+    WriteOwnerPerm,
+    ReadOwnerPerm,
+    PermsMask,
+    LinkType,
+    FileType,
+    DirectoryType,
+    TypesMask,
+    HiddenFlag,
+    LocalDiskFlag,
+    ExistsFlag,
+    RootFlag,
+    FlagsMask,
+    FileInfoAll
+};
+class QFlags < QAbstractFileEngine::FileFlag >;
+typedef N19QAbstractFileEngine9FileFlagsE;
+enum N19QAbstractFileEngine8FileNameE {
+    DefaultName,
+    BaseName,
+    PathName,
+    AbsoluteName,
+    AbsolutePathName,
+    LinkName,
+    CanonicalName,
+    CanonicalPathName
+};
+enum N19QAbstractFileEngine9FileOwnerE {
+    OwnerUser,
+    OwnerGroup
+};
+enum N19QAbstractFileEngine8FileTimeE {
+    CreationTime,
+    ModificationTime,
+    AccessTime
+};
+enum N19QAbstractFileEngine9ExtensionE;
+class QAbstractFileEngine::ExtensionOption;
+class QAbstractFileEngine::ExtensionReturn;
+class QAbstractFileEngineHandler;

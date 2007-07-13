@@ -1,2 +1,13 @@
 
-Unknown Type:"Class"
+class QDockWidget;
+enum N11QDockWidget17DockWidgetFeatureE {
+    NoDockWidgetFeatures,
+    DockWidgetClosable,
+    DockWidgetMovable,
+    DockWidgetFloatable,
+    DockWidgetFeatureMask,
+    AllDockWidgetFeatures,
+    Reserved
+};
+class QFlags < QDockWidget::DockWidgetFeature >;
+typedef N11QDockWidget18DockWidgetFeaturesE;

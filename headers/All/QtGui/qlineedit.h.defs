@@ -1,2 +1,7 @@
 
-Unknown Type:"Class"
+class QLineEdit;
+enum N9QLineEdit8EchoModeE {
+    Normal,
+    NoEcho,
+    Password
+};

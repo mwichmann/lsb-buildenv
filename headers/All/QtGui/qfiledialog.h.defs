@@ -1,2 +1,40 @@
 
-Unknown Type:"Class"
+class QFileDialog;
+enum N11QFileDialog8ViewModeE {
+    Detail,
+    List
+};
+enum N11QFileDialog8FileModeE {
+    AnyFile,
+    ExistingFile,
+    Directory,
+    ExistingFiles,
+    DirectoryOnly
+};
+enum N11QFileDialog10AcceptModeE {
+    AcceptOpen,
+    AcceptSave
+};
+enum N11QFileDialog11DialogLabelE {
+    LookIn,
+    FileName,
+    FileType,
+    Accept,
+    Reject
+};
+enum N11QFileDialog6OptionE {
+    ShowDirsOnly,
+    DontResolveSymlinks,
+    DontConfirmOverwrite,
+    DontUseSheet,
+    DontUseNativeDialog
+};
+class QFlags < QFileDialog::Option >;
+typedef N11QFileDialog7OptionsE;
+typedef enum N11QFileDialog8FileModeE {
+    AnyFile,
+    ExistingFile,
+    Directory,
+    ExistingFiles,
+    DirectoryOnly
+} N11QFileDialog4ModeE;
