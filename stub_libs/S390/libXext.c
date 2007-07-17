@@ -77,3 +77,8 @@ void XdbeSwapBuffers() {} ;
 void XeviGetVisualInfo() {} ;
 void XeviQueryExtension() {} ;
 void XeviQueryVersion() {} ;
+void XextAddDisplay () {} ;
+void XextFindDisplay () {} ;
+void XextCreateExtension () {} ;
+void XextRemoveDisplay () {} ;
+void XextDestroyExtension () {} ;
