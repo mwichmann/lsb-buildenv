@@ -16,4 +16,5 @@ libXext
 libICE
 libSM
 libXi
+libXrender
 libstdcxx
