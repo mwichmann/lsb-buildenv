@@ -11,6 +11,7 @@ libSM libSM.so.6
 libX11 libX11.so.6
 libXext libXext.so.6
 libXi libXi.so.6
+libXrender libXrender.so.1
 libXt libXt.so.6
 libatk-1.0 libatk-1.0.so.0
 libc libc.so.6.1

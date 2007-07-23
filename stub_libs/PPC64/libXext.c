@@ -77,8 +77,11 @@ void XdbeSwapBuffers() {} ;
 void XeviGetVisualInfo() {} ;
 void XeviQueryExtension() {} ;
 void XeviQueryVersion() {} ;
-void XextAddDisplay () {} ;
-void XextFindDisplay () {} ;
-void XextCreateExtension () {} ;
-void XextRemoveDisplay () {} ;
-void XextDestroyExtension () {} ;
+/* XXX the following seven were added by hand and are not in the DB */
+void XSetExtensionErrorHandler () {};
+void XMissingExtension () {};
+void XextCreateExtension () {};
+void XextDestroyExtension () {};
+void XextAddDisplay () {};
+void XextRemoveDisplay () {};
+void XextFindDisplay () {};
