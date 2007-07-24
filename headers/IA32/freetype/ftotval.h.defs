@@ -1,0 +1,2 @@
+
+typedef const FT_Byte *FT_Bytes;

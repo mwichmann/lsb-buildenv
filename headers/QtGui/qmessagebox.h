@@ -1,0 +1,108 @@
+#ifndef _QTGUI_QMESSAGEBOX_H_
+#define _QTGUI_QMESSAGEBOX_H_
+
+#include <QtCore/qnamespace.h>
+#include <QtCore/qobjectdefs.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qobject.h>
+#include <QtCore/qsize.h>
+#include <QtGui/qwidget.h>
+#include <QtGui/qdialog.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+
+    Unknown Type:".Class.";
+
+    enum N11QMessageBox4IconE {
+	NoIcon,
+	Information,
+	Warning,
+	Critical,
+	Question
+    };
+
+    enum N11QMessageBox6ButtonE {
+	NoButton,
+	Ok,
+	Cancel,
+	Yes,
+	No,
+	Abort,
+	Retry,
+	Ignore,
+	YesAll,
+	NoAll,
+	ButtonMask,
+	Default,
+	Escape,
+	FlagMask
+    };
+
+
+    extern struct QMetaObject _ZN11QMessageBox16staticMetaObjectE;
+    extern struct QMetaObject _ZNK11QMessageBox10metaObjectEv(void);
+    extern void _ZN11QMessageBox11qt_metacastEPKc(void);
+    extern int
+	_ZN11QMessageBox11qt_metacallEN11QMetaObject4CallEiPPv(void);
+    extern Class _ZN11QMessageBoxC2EP7QWidget(void);
+    extern Class _ZN11QMessageBoxC1EP7QWidget(void);
+    extern Class
+	_ZN11QMessageBoxC2ERK7QStringS2_NS_4IconEiiiP7QWidget6QFlagsIN2Qt10WindowTypeEE
+	(void);
+    extern Class
+	_ZN11QMessageBoxC1ERK7QStringS2_NS_4IconEiiiP7QWidget6QFlagsIN2Qt10WindowTypeEE
+	(void);
+    extern Class _ZN11QMessageBoxD2Ev(void);
+    extern Class _ZN11QMessageBoxD1Ev(void);
+    extern Class _ZN11QMessageBoxD0Ev(void);
+    extern Class _ZNK11QMessageBox4textEv(void);
+    extern void _ZN11QMessageBox7setTextERK7QString(void);
+    extern enum N11QMessageBox4IconE _ZNK11QMessageBox4iconEv(void);
+    extern void _ZN11QMessageBox7setIconENS_4IconE(void);
+    extern _ZNK11QMessageBox10iconPixmapEv(void);
+    extern void _ZN11QMessageBox13setIconPixmapERK7QPixmap(void);
+    extern Class _ZNK11QMessageBox10buttonTextEi(void);
+    extern void _ZN11QMessageBox13setButtonTextEiRK7QString(void);
+    extern enum N2Qt10TextFormatE _ZNK11QMessageBox10textFormatEv(void);
+    extern void _ZN11QMessageBox13setTextFormatEN2Qt10TextFormatE(void);
+    extern int
+	_ZN11QMessageBox11informationEP7QWidgetRK7QStringS4_iii(void);
+    extern int
+	_ZN11QMessageBox11informationEP7QWidgetRK7QStringS4_S4_S4_S4_ii
+	(void);
+    extern int _ZN11QMessageBox8questionEP7QWidgetRK7QStringS4_iii(void);
+    extern int
+	_ZN11QMessageBox8questionEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
+    extern int _ZN11QMessageBox7warningEP7QWidgetRK7QStringS4_iii(void);
+    extern int
+	_ZN11QMessageBox7warningEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
+    extern int _ZN11QMessageBox8criticalEP7QWidgetRK7QStringS4_iii(void);
+    extern int
+	_ZN11QMessageBox8criticalEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
+    extern void _ZN11QMessageBox5aboutEP7QWidgetRK7QStringS4_(void);
+    extern void _ZN11QMessageBox7aboutQtEP7QWidgetRK7QString(void);
+    extern Class _ZNK11QMessageBox8sizeHintEv(void);
+    extern Class
+	_ZN11QMessageBoxC2ERK7QStringS2_NS_4IconEiiiP7QWidgetPKcb6QFlagsIN2Qt10WindowTypeEE
+	(void);
+    extern Class
+	_ZN11QMessageBoxC1ERK7QStringS2_NS_4IconEiiiP7QWidgetPKcb6QFlagsIN2Qt10WindowTypeEE
+	(void);
+    extern Class _ZN11QMessageBoxC2EP7QWidgetPKc(void);
+    extern Class _ZN11QMessageBoxC1EP7QWidgetPKc(void);
+    extern _ZN11QMessageBox12standardIconENS_4IconEN2Qt8GUIStyleE(void);
+    extern _ZN11QMessageBox12standardIconENS_4IconE(void);
+    extern void _ZN11QMessageBox11resizeEventEP12QResizeEvent(void);
+    extern void _ZN11QMessageBox9showEventEP10QShowEvent(void);
+    extern void _ZN11QMessageBox10closeEventEP11QCloseEvent(void);
+    extern void _ZN11QMessageBox13keyPressEventEP9QKeyEvent(void);
+    extern void _ZN11QMessageBox11changeEventEP6QEvent(void);
+#ifdef __cplusplus
+}
+#endif
+#endif

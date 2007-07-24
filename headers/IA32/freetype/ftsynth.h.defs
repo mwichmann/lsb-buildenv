@@ -1,0 +1,2 @@
+
+typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;

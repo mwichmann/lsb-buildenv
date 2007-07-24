@@ -17,4 +17,5 @@ libICE
 libSM
 libXi
 libXrender
+libfreetype
 libstdcxx

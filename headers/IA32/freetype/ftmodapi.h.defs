@@ -1,0 +1,5 @@
+
+typedef struct FT_ModuleRec_ *FT_Module;
+typedef struct FT_Module_Class_ FT_Module_Class;
+typedef struct FT_LibraryRec_ *FT_Library;
+typedef void (*FT_DebugHook_Func) (void *);
