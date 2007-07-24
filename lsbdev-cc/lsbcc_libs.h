@@ -25,6 +25,7 @@ char *lsb_libs[] = {
 	"ICE",
 	"SM",
 	"Xi",
+	"Xrender",
 	"glib-2.0",
 	"gobject-2.0",
 	"gmodule-2.0",
