@@ -1,0 +1,9 @@
+
+extern void FT_List_Finalize(FT_List, FT_List_Destructor, FT_Memory,
+			     void *);
+extern void FT_List_Insert(FT_List, FT_ListNode);
+extern FT_ListNode FT_List_Find(FT_List, void *);
+extern void FT_List_Remove(FT_List, FT_ListNode);
+extern void FT_List_Up(FT_List, FT_ListNode);
+extern void FT_List_Add(FT_List, FT_ListNode);
+extern FT_Error FT_List_Iterate(FT_List, FT_List_Iterator, void *);

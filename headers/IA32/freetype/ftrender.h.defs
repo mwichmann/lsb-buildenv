@@ -1,0 +1,4 @@
+
+typedef enum FT_Glyph_Format_ FT_Glyph_Format;
+typedef struct FT_RendererRec_ *FT_Renderer;
+typedef struct FT_Parameter_ FT_Parameter;

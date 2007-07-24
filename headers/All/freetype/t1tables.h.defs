@@ -1,0 +1,28 @@
+
+#define T1_MAX_MM_DESIGNS	16
+#define T1_MAX_MM_MAP_POINTS	20
+#define T1_MAX_MM_AXIS	4
+#define t1_blend_blue_scale	T1_BLEND_BLUE_SCALE
+#define t1_blend_blue_shift	T1_BLEND_BLUE_SHIFT
+#define t1_blend_blue_values	T1_BLEND_BLUE_VALUES
+#define t1_blend_family_blues	T1_BLEND_FAMILY_BLUES
+#define t1_blend_family_other_blues	T1_BLEND_FAMILY_OTHER_BLUES
+#define t1_blend_force_bold	T1_BLEND_FORCE_BOLD
+#define t1_blend_italic_angle	T1_BLEND_ITALIC_ANGLE
+#define t1_blend_max	T1_BLEND_MAX
+#define t1_blend_other_blues	T1_BLEND_OTHER_BLUES
+#define t1_blend_standard_height	T1_BLEND_STANDARD_HEIGHT
+#define t1_blend_standard_widths	T1_BLEND_STANDARD_WIDTH
+#define t1_blend_stem_snap_heights	T1_BLEND_STEM_SNAP_HEIGHTS
+#define t1_blend_stem_snap_widths	T1_BLEND_STEM_SNAP_WIDTHS
+#define t1_blend_underline_position	T1_BLEND_UNDERLINE_POSITION
+#define t1_blend_underline_thickness	T1_BLEND_UNDERLINE_THICKNESS
+
+FT_Short;
+FT_Short;
+FT_UShort;
+FT_Short;
+FT_Short;
+extern FT_Int FT_Has_PS_Glyph_Names(FT_Face);
+extern FT_Error FT_Get_PS_Font_Private(FT_Face, PS_PrivateRec *);
+extern FT_Error FT_Get_PS_Font_Info(FT_Face, PS_FontInfoRec *);
