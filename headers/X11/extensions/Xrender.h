@@ -4,6 +4,7 @@
 #include <GL/gl.h>
 #include <X11/Xlib.h>
 #include <X11/X.h>
+#include <X11/Xutil.h>
 #include <jpeglib.h>
 #include <X11/extensions/render.h>
 
@@ -33,6 +34,8 @@ extern "C" {
 #define PictStandardA1	4
 #define PictStandardNUM	5
 
+
+    typedef struct _XTrapezoid XTrapezoid;
 
     typedef long unsigned int GlyphSet;
 
@@ -74,11 +77,25 @@ extern "C" {
 
     typedef struct _XFilters XFilters;
 
+    typedef struct _XTransform XTransform;
+
     typedef struct _XAnimCursor XAnimCursor;
+
+    typedef struct _XCircle XCircle;
+
+    typedef struct _XRadialGradient XRadialGradient;
 
     typedef struct _XGlyphElt32 XGlyphElt32;
 
     typedef struct _XGlyphElt8 XGlyphElt8;
+
+    typedef struct _XConicalGradient XConicalGradient;
+
+    typedef struct _XLinearGradient XLinearGradient;
+
+    typedef double XDouble;
+
+    typedef struct _XPointDouble XPointDouble;
 
     typedef struct _XRenderPictureAttributes XRenderPictureAttributes;
 
@@ -86,9 +103,16 @@ extern "C" {
 
     typedef struct _XTrap XTrap;
 
+    typedef struct _XIndexValue XIndexValue;
+
     typedef struct _XGlyphElt16 XGlyphElt16;
 
     typedef struct _XTriangle XTriangle;
+
+     XFixed;
+
+
+
 
 
     struct _XPointFixed {
@@ -115,9 +139,27 @@ extern "C" {
     };
 
 
+    struct _XTransform {
+	XFixed matrix[3];
+    };
+
+
     struct _XAnimCursor {
 	Cursor cursor;
 	long unsigned int delay;
+    };
+
+
+    struct _XCircle {
+	XFixed x;
+	XFixed y;
+	XFixed radius;
+    };
+
+
+    struct _XRadialGradient {
+	XCircle inner;
+	XCircle outer;
     };
 
 
@@ -136,6 +178,24 @@ extern "C" {
 	int nchars;
 	int xOff;
 	int yOff;
+    };
+
+
+    struct _XConicalGradient {
+	XPointFixed center;
+	XFixed angle;
+    };
+
+
+    struct _XLinearGradient {
+	XPointFixed p1;
+	XPointFixed p2;
+    };
+
+
+    struct _XPointDouble {
+	XDouble x;
+	XDouble y;
     };
 
 
@@ -166,6 +226,15 @@ extern "C" {
     struct _XTrap {
 	XSpanFix top;
 	XSpanFix bottom;
+    };
+
+
+    struct _XIndexValue {
+	long unsigned int pixel;
+	short unsigned int red;
+	short unsigned int green;
+	short unsigned int blue;
+	short unsigned int alpha;
     };
 
 
@@ -201,8 +270,15 @@ extern "C" {
 				 const XGlyphInfo *, int, const char *,
 				 int);
     extern XFilters *XRenderQueryFilters(Display *, Drawable);
+    extern void XRenderSetPictureClipRegion(Display *, Picture, Region);
     extern XRenderPictFormat *XRenderFindStandardFormat(Display *, int);
+    extern void XRenderSetPictureTransform(Display *, Picture,
+					   XTransform *);
     extern Cursor XRenderCreateAnimCursor(Display *, int, XAnimCursor *);
+    extern Picture XRenderCreateRadialGradient(Display *,
+					       const XRadialGradient *,
+					       const XFixed *,
+					       const XRenderColor *, int);
     extern void XRenderCompositeText32(Display *, int, Picture, Picture,
 				       const XRenderPictFormat *, int, int,
 				       int, int, const XGlyphElt32 *, int);
@@ -212,12 +288,29 @@ extern "C" {
     extern void XRenderCompositeText8(Display *, int, Picture, Picture,
 				      const XRenderPictFormat *, int, int,
 				      int, int, const XGlyphElt8 *, int);
+    extern Picture XRenderCreateConicalGradient(Display *,
+						const XConicalGradient *,
+						const XFixed *,
+						const XRenderColor *, int);
     extern XRenderPictFormat *XRenderFindVisualFormat(Display *,
 						      const Visual *);
+    extern Picture XRenderCreateLinearGradient(Display *,
+					       const XLinearGradient *,
+					       const XFixed *,
+					       const XRenderColor *, int);
+    extern void XRenderCompositeDoublePoly(Display *, int, Picture,
+					   Picture,
+					   const XRenderPictFormat *, int,
+					   int, int, int,
+					   const XPointDouble *, int, int);
     extern Picture XRenderCreateSolidFill(Display *, const XRenderColor *);
+    extern int XRenderQueryExtension(Display *, int *, int *);
     extern void XRenderSetPictureFilter(Display *, Picture, const char *,
 					XFixed *, int);
-    extern int XRenderQueryExtension(Display *, int *, int *);
+    extern void XRenderCompositeTrapezoids(Display *, int, Picture,
+					   Picture,
+					   const XRenderPictFormat *, int,
+					   int, const XTrapezoid *, int);
     extern void XRenderChangePicture(Display *, Picture, long unsigned int,
 				     const XRenderPictureAttributes *);
     extern void XRenderCompositeString8(Display *, int, Picture, Picture,
@@ -233,11 +326,17 @@ extern "C" {
     extern void XRenderCompositeTriFan(Display *, int, Picture, Picture,
 				       const XRenderPictFormat *, int, int,
 				       const XPointFixed *, int);
+    extern XIndexValue *XRenderQueryPictIndexValues(Display *,
+						    const XRenderPictFormat
+						    *, int *);
+    extern int XRenderSetSubpixelOrder(Display *, int, int);
+    extern int XRenderQueryVersion(Display *, int *, int *);
     extern void XRenderCompositeText16(Display *, int, Picture, Picture,
 				       const XRenderPictFormat *, int, int,
 				       int, int, const XGlyphElt16 *, int);
-    extern int XRenderQueryVersion(Display *, int *, int *);
-    extern int XRenderSetSubpixelOrder(Display *, int, int);
+    extern void XRenderSetPictureClipRectangles(Display *, Picture, int,
+						int, const XRectangle *,
+						int);
     extern int XRenderQueryFormats(Display *);
     extern void XRenderFillRectangle(Display *, int, Picture,
 				     const XRenderColor *, int, int,
