@@ -27,6 +27,7 @@ char *lsb_libs[] = {
 	"Xi",
 	"Xrender",
 	"freetype",
+	"Xft",
 	"glib-2.0",
 	"gobject-2.0",
 	"gmodule-2.0",

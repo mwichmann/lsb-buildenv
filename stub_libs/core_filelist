@@ -18,4 +18,5 @@ libSM
 libXi
 libXrender
 libfreetype
+libXft
 libstdcxx
