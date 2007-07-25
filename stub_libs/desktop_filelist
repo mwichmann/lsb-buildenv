@@ -20,5 +20,8 @@ libQtSvg
 libfontconfig
 libpng12
 libjpeg
+libXrender
+libfreetype
+libXft
 libxml2
 libqt-mt
