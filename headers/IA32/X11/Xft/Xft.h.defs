@@ -1,0 +1,48 @@
+
+typedef int FT_Int;
+typedef struct FT_Matrix_ FT_Matrix;
+typedef long int FT_F26Dot6;
+typedef struct _XftCharSpec {
+    FcChar32 ucs4;
+    short int x;
+    short int y;
+} XftCharSpec;
+typedef struct _XftFtFile {
+    struct _XftFtFile *next;
+    int ref;
+    char *file;
+    int id;
+    FT_F26Dot6 xsize;
+    FT_F26Dot6 ysize;
+    FT_Matrix matrix;
+    int lock;
+    FT_Face face;
+} XftFtFile;
+typedef struct _XftFontInfo {
+    FcChar32 hash;
+    XftFtFile *file;
+    FT_F26Dot6 xsize;
+    FT_F26Dot6 ysize;
+    FcBool antialias;
+    FcBool embolden;
+    int rgba;
+    FT_Matrix matrix;
+    FcBool transform;
+    FT_Int load_flags;
+    FcBool render;
+    int spacing;
+    FcBool minspace;
+    int char_width;
+} XftFontInfo;
+typedef struct _XftCharFontSpec {
+    XftFont *font;
+    FcChar32 ucs4;
+    short int x;
+    short int y;
+} XftCharFontSpec;
+typedef struct _XftGlyphFontSpec {
+    XftFont *font;
+    FT_UInt glyph;
+    short int x;
+    short int y;
+} XftGlyphFontSpec;

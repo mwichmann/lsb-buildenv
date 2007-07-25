@@ -10,6 +10,7 @@ libQtXml libQtXml.so.4
 libSM libSM.so.6
 libX11 libX11.so.6
 libXext libXext.so.6
+libXft libXft.so.2
 libXi libXi.so.6
 libXrender libXrender.so.1
 libXt libXt.so.6
