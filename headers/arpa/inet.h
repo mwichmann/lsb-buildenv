@@ -16,6 +16,7 @@ extern "C" {
     extern uint32_t htonl(uint32_t);
     extern uint16_t htons(uint16_t);
     extern in_addr_t inet_addr(const char *);
+    extern int inet_aton(const char *, struct in_addr *);
     extern char *inet_ntoa(struct in_addr);
     extern const char *inet_ntop(int, const void *, char *, socklen_t);
     extern int inet_pton(int, const char *, void *);

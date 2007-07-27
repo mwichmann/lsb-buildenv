@@ -221,6 +221,7 @@ GLIBC_2.2 {
   getcontext;
   getcwd;
   getdate;
+  getdomainname;
   getegid;
   getenv;
   geteuid;
@@ -305,6 +306,7 @@ GLIBC_2.2 {
   imaxdiv;
   index;
   inet_addr;
+  inet_aton;
   inet_ntoa;
   inet_ntop;
   inet_pton;
@@ -711,6 +713,7 @@ GLIBC_2.2 {
   vwscanf;
   wait;
   wait4;
+  waitid;
   waitpid;
   warn;
   warnx;
