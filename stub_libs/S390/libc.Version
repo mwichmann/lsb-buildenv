@@ -174,6 +174,7 @@ GLIBC_2.0 {
   getchar;
   getchar_unlocked;
   getcwd;
+  getdomainname;
   getegid;
   getenv;
   geteuid;
@@ -231,6 +232,7 @@ GLIBC_2.0 {
   htons;
   index;
   inet_addr;
+  inet_aton;
   inet_ntoa;
   inet_ntop;
   inet_pton;
@@ -725,6 +727,7 @@ GLIBC_2.1 {
   tmpfile64;
   truncate64;
   unlockpt;
+  waitid;
   wcscasecmp;
   wcsncasecmp;
   wcsnlen;
@@ -786,9 +789,7 @@ GLIBC_2.2 {
   msgctl;
   ngettext;
   posix_fadvise;
-  posix_fadvise64;
   posix_fallocate;
-  posix_fallocate64;
   posix_madvise;
   posix_memalign;
   posix_spawn;
@@ -859,6 +860,8 @@ GLIBC_2.3.2 {
 GLIBC_2.3.3 {
   nftw;
   nftw64;
+  posix_fadvise64;
+  posix_fallocate64;
   _sys_siglist;
 };
 GLIBC_2.3.4 {

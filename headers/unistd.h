@@ -247,6 +247,7 @@ extern "C" {
     extern int execvp(const char *, char *const[]);
     extern int fdatasync(int);
     extern int ftruncate64(int, off64_t);
+    extern int getdomainname(char *, size_t);
     extern long int gethostid(void);
     extern char *getlogin(void);
     extern int getlogin_r(char *, size_t);

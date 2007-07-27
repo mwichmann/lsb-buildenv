@@ -1,6 +1,7 @@
 #ifndef _SYS_WAIT_H_
 #define _SYS_WAIT_H_
 
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/resource.h>
 #include <sys/time.h>
@@ -29,6 +30,7 @@ extern "C" {
     } idtype_t;
 
 
+    extern int waitid(idtype_t, id_t, siginfo_t *, int);
     extern pid_t wait(int *);
     extern pid_t waitpid(pid_t, int *, int);
     extern pid_t wait4(pid_t, int *, int, struct rusage *);
