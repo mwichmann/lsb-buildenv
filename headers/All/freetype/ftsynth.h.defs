@@ -1,3 +1,5 @@
 
-extern void FT_GlyphSlot_Oblique(FT_GlyphSlot);
-extern void FT_GlyphSlot_Embolden(FT_GlyphSlot);
+/*
+ * This header is architecture dependent
+ * Please refer to the specific architecture specification for details
+ */

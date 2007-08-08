@@ -2,6 +2,7 @@
 #define _FONTCONFIG_FCFREETYPE_H_
 
 #include <fontconfig/fontconfig.h>
+#include <freetype/ftoutln.h>
 
 #ifdef __cplusplus
 extern "C" {

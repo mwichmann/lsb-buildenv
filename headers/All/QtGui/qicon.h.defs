@@ -14,4 +14,4 @@ enum N5QIcon4SizeE {
     Automatic,
     Large
 };
-typedef class QIconQIconSet;
+typedef class QIcon_Z8QIconSet;

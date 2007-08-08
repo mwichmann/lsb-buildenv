@@ -1,5 +1,5 @@
 
-struct QLatin1Char;
+struct _Z11QLatin1Char;
 class QChar;
 enum N5QChar16SpecialCharacterE {
     Null,

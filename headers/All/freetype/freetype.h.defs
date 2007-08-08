@@ -15,7 +15,7 @@
 	value = ( ( (FT_UInt32)(a) << 24 ) | ( (FT_UInt32)(b) << 16 ) | ( \
 	(FT_UInt32)(c) << 8 ) | (FT_UInt32)(d) )
 #define FT_LOAD_TARGET_(x)	( (FT_Int32)( (x) & 15 ) << 16 )
-#define FT_LOAD_TARGET_MODE(x)	( (FT_Render_Mode)( ( (x) >> 16 ) & 15 ) )
+#define FT_LOAD_TARGET_MODE(x)	( (FT_Render_Mode)( ( (x) >16 ) & 15 ) )
 #define FT_STYLE_FLAG_ITALIC	( 1 << 0 )
 #define FT_STYLE_FLAG_BOLD	( 1 << 1 )
 #define FT_FACE_FLAG_SCALABLE	( 1L << 0 )

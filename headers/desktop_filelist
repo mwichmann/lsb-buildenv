@@ -59,6 +59,7 @@ freetype/config/ftheader.h
 freetype/config/ftmodule.h
 freetype/config/ftoption.h
 freetype/config/ftstdlib.h
+X11/Xft/Xft.h
 libxml2/libxml/xmlexports.h
 libxml2/libxml/xmlversion.h
 libxml2/libxml/xmlmodule.h

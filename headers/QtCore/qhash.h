@@ -11,7 +11,7 @@ extern "C" {
 
     struct QHashData;
 
-    struct N9QHashData4NodeE;
+    struct Node;
 
     struct QHashDummyValue;
 
@@ -24,10 +24,8 @@ extern "C" {
 	_ZN9QHashData13detach_helperEPFvPNS_4NodeEPvEi(void);
     extern void _ZN9QHashData6rehashEi(void);
     extern void _ZN9QHashData14destroyAndFreeEv(void);
-    extern struct N9QHashData4NodeE
-	_ZN9QHashData8nextNodeEPNS_4NodeE(void);
-    extern struct N9QHashData4NodeE
-	_ZN9QHashData12previousNodeEPNS_4NodeE(void);
+    extern struct Node _ZN9QHashData8nextNodeEPNS_4NodeE(void);
+    extern struct Node _ZN9QHashData12previousNodeEPNS_4NodeE(void);
     extern struct QHashData _ZN9QHashData11shared_nullE;
 #ifdef __cplusplus
 }

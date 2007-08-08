@@ -1,7 +1,4 @@
 
-typedef int FT_Int;
-typedef struct FT_Matrix_ FT_Matrix;
-typedef long int FT_F26Dot6;
 typedef struct _XftCharSpec {
     FcChar32 ucs4;
     short int x;

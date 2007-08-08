@@ -10,7 +10,7 @@ extern "C" {
 
 
 
-    typedef Unknown Type:".Class." QWMatrix;
+    typedef QMatrix QWMatrix;
 
 
 #ifdef __cplusplus

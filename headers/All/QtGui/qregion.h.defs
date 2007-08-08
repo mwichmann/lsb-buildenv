@@ -4,4 +4,4 @@ enum N7QRegion10RegionTypeE {
     Rectangle,
     Ellipse
 };
-struct N7QRegion11QRegionDataE;
+struct _ZN7QRegion11QRegionDataE;

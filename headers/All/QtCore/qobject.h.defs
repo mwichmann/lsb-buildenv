@@ -1,5 +1,5 @@
 
-typedef class QList < QObject * >QObjectList;
+typedef class QList < QObject * >_Z11QObjectList;
 class QObjectData;
 class QObject;
 class QObjectUserData;

@@ -29,7 +29,7 @@ extern "C" {
     extern void _Z14qDrawPlainRectP8QPainteriiiiRK6QColoriPK6QBrush(void);
     extern void
 	_Z14qDrawPlainRectP8QPainterRK5QRectRK6QColoriPK6QBrush(void);
-    extern Class
+    extern QRect
 	_Z9qItemRectP8QPainterN2Qt8GUIStyleEiiiiibPK7QPixmapRK7QStringi
 	(void);
     extern void

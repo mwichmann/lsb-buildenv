@@ -2,8 +2,6 @@
 #define _FREETYPE_FTBDF_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
-#include <freetype/t1tables.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,10 +49,6 @@ extern "C" {
 
 #endif
 
-    extern FT_Error FT_Get_BDF_Property(FT_Face, const char *,
-					BDF_PropertyRec *);
-    extern FT_Error FT_Get_BDF_Charset_ID(FT_Face, const char **,
-					  const char **);
 #ifdef __cplusplus
 }
 #endif

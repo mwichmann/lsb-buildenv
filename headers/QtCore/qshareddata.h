@@ -1,18 +1,17 @@
 #ifndef _QTCORE_QSHAREDDATA_H_
 #define _QTCORE_QSHAREDDATA_H_
 
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+class QSharedData;
+// *INDENT-OFF*
 
 
 
+class QSharedData
+{
+private:
+public:
+};
 
-    Unknown Type:".Class.";
 
-
-#ifdef __cplusplus
-}
-#endif
+// *INDENT-ON*
 #endif

@@ -16,7 +16,7 @@ enum N15QImageIOHandler11ImageOptionE {
     Animation,
     BackgroundColor
 };
-struct QImageIOHandlerFactoryInterface;
+struct _Z31QImageIOHandlerFactoryInterface;
 class QImageIOPlugin;
 enum N14QImageIOPlugin10CapabilityE {
     CanRead,

@@ -7,7 +7,3 @@
 #define FTRenderer_render	FT_Renderer_RenderFunc
 #define FTRenderer_setMode	FT_Renderer_SetModeFunc
 #define FTRenderer_transform	FT_Renderer_TransformFunc
-
-extern FT_Error FT_Set_Renderer(FT_Library, FT_Renderer, FT_UInt,
-				FT_Parameter *);
-extern FT_Renderer FT_Get_Renderer(FT_Library, FT_Glyph_Format);

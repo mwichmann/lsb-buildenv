@@ -2,9 +2,7 @@
 #define _FREETYPE_FTOUTLN_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftlist.h>
-#include <freetype/ftmm.h>
 #include <freetype/t1tables.h>
 
 #ifdef __cplusplus
@@ -13,6 +11,14 @@ extern "C" {
 
 
 
+
+    typedef struct FT_FaceRec_ *FT_Face;
+
+    typedef unsigned int FT_UInt;
+
+#include <freetype/ftmm.h>
+#include <fontconfig/fcfreetype.h>
+    typedef struct FT_Bitmap_ FT_Bitmap;
 
 #if defined __i386__
 /* IA32 */
@@ -355,6 +361,7 @@ extern "C" {
     struct FT_RasterRec_;
 
 #endif
+#include <freetype/ftrender.h>
 #if defined __i386__
 /* IA32 */
     struct FT_GlyphRec_ {
@@ -365,14 +372,16 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
      FT_DebugHook_Func;
 
 #include <freetype/ftmodapi.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftrender.h>
 #include <freetype/freetype.h>
 #include <freetype/ftsynth.h>
 #include <freetype/ftstroke.h>
+
+
+
 #if defined __i386__
 /* IA32 */
 

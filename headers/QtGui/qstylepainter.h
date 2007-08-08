@@ -1,19 +1,17 @@
 #ifndef _QTGUI_QSTYLEPAINTER_H_
 #define _QTGUI_QSTYLEPAINTER_H_
 
-#include <QtGui/qpainter.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+class QStylePainter;
+// *INDENT-OFF*
 
 
 
+class QStylePainter :  
+{
+private:
+public:
+};
 
-    Unknown Type:".Class.";
 
-
-#ifdef __cplusplus
-}
-#endif
+// *INDENT-ON*
 #endif

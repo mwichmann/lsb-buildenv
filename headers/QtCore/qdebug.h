@@ -1,20 +1,19 @@
 #ifndef _QTCORE_QDEBUG_H_
 #define _QTCORE_QDEBUG_H_
 
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+class QDebug;
+// *INDENT-OFF*
 
 
 
+class QDebug
+{
+private:
+public:
+};
 
-    Unknown Type:".Class.";
-
-    struct N6QDebug6StreamE;
+struct Stream	;
 
 
-#ifdef __cplusplus
-}
-#endif
+// *INDENT-ON*
 #endif

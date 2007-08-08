@@ -7,6 +7,7 @@
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
 #include <pango-1.0/pango/pangoxft.h>
+#include <freetype/ftoutln.h>
 
 #ifdef __cplusplus
 extern "C" {

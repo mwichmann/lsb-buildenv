@@ -13,6 +13,7 @@ $nameonly=0;
 # Variable to fix Function pointer hack.
 $typefuncptr=0;
 $funcPtrName="";
+$className="";
 
 # variable to resolve typedef stuct/union definition
 $typeflag=0;
@@ -78,6 +79,7 @@ local ($type) = @_;
 local (*entry,*tentry,*tmentry);
 local($th);
 local($tmh);
+
 if( $$type{'Ttype'} eq "Intrinsic" ) {
 	print $$type{'Tname'}."\t";
 	return;
@@ -173,7 +175,13 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	if( ($entry{'Ttype'} ne 'FuncPtr' &&
 		$entry{'Ttype'} ne 'Function') || $nameonly ) {
 		if(!$typeflag){
-			print $$type{'Tname'}."\t";
+			$typedef_name = $$type{'Tunmangled'} ? $$type{'Tunmangled'} : $$type{'Tname'};
+
+			if( $typedef_name =~ /$className\:\:(.+)/ ) {
+				$typedef_name = $1;
+			}
+
+			print $typedef_name."\t";
 		}
 	}
 	if( $entry{'Ttype'} eq 'Array' && $nameonly==0) {
@@ -188,7 +196,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	return;
 }
 
-if( $$type{'Ttype'} eq "Pointer" ) {
+if( $$type{'Ttype'} eq "Pointer" or $$type{'Ttype'} eq "Ref" ) {
 	$basetype = getBaseTypeID($type);
  	$sth = getBaseTypeRecord($basetype);
  	%entry=$sth->fetchhash;
@@ -207,25 +215,36 @@ if( $$type{'Ttype'} eq "Pointer" ) {
 			}else {
 				displaytype(\%entry);
 			}
-		 }
-		print "* ";
+		}
 	} else {
 		displaytype(\%entry);
+	}
+
+	if( $$type{'Ttype'} eq "Ref" ) {
+		print "& ";
+	}
+	else {
 		print "* ";
 	}
 	return;
 	}
 
-if( $$type{'Ttype'} eq "Struct" ) {
+if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled'} =~ "::") ) {
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
 		$nameonly = 0;
 		}
+	$struct_name = $$type{'Tunmangled'} ? $$type{'Tunmangled'} : $$type{'Tname'};
+
+	if( $struct_name =~ /$className\:\:(.+)/ ) {
+		$struct_name = $1;
+	}
+
 	if (!$typeflag){
-		print "struct ".$$type{'Tname'}."\t";
-		}
-	$Tid=$$type{'Tid'};
+		print "struct ".$struct_name."\t";
+	}
 	if( $nameonly ) { return; }
+	$Tid=$$type{'Tid'};
 	#print $$type{'Tdescription'}."\n";
 
 	$tmselect = "SELECT * FROM TypeMember ";
@@ -313,8 +332,17 @@ if( $$type{'Ttype'} eq "Union" ) {
 		$$type{'Tname'} ="";
 		$nameonly = 0;
 		}
-	if(!$typeflag){
-		print "union ".$$type{'Tname'}."\t";}
+
+	$union_name = $$type{'Tunmangled'} ? $$type{'Tunmangled'} : $$type{'Tname'};
+
+	if( $union_name =~ /$className\:\:(.+)/ ) {
+		$union_name = $1;
+	}
+
+	if(!$typeflag) {
+		print "union ".$union_name."\t";
+	}
+
 	$Tid=$$type{'Tid'};
 	if( $nameonly ) { return; }
 	#print $$type{'Tdescription'}."\n";
@@ -385,8 +413,15 @@ if( $$type{'Ttype'} eq "Enum" ) {
 	$Tid=$$type{'Tid'};
 	if( $$type{'Tname'} =~ "anon" ) {
 		$$type{'Tname'} ="";
-		}
-	print $$type{'Tname'}."\t";
+	}
+
+	$enum_name = $$type{'Tunmangled'} ? $$type{'Tunmangled'} : $$type{'Tname'};
+
+	if( $enum_name =~ /$className\:\:(.+)/ ) {
+		$enum_name = $1;
+	}
+
+	print $enum_name."\t";
 	if( $nameonly ) { return; }
 	print $$type{'Tdescription'}."\n";
 
@@ -428,20 +463,20 @@ if( $$type{'Ttype'} eq "Enum" ) {
 		# specify a fixed value.
 		if( $tmentry{'TMarray'} ne '' ) {
 			print " = ".$tmentry{'TMarray'};
-			}
+		}
 		if( $_ != $tmh->numrows ) {
 			print ",\t";
-			}
+		}
 		if( $tmentry{'TMdescription'} ) {
 			print "/* ".$tmentry{'TMdescription'}."*/";
-			}
+		}
 		print "\n";
 		$nameonly=0;
 
 	}
 	if( $prevArch != 0 ) {
 		print "#endif\n";
-		}
+	}
 	if ($tmh->numrows ) { print "}\n"; }
 	return;
 	}
@@ -518,7 +553,7 @@ if( $$type{'Ttype'} eq "Array" ) {
 		$nameonly=0;
 	} else {
 		displaytype(\%entry);
-		}
+	}
 # We don't have any Ttype=Array with Tname=~"fptr".
 # # Should we need below commented code #
 #
@@ -527,6 +562,291 @@ if( $$type{'Ttype'} eq "Array" ) {
 #		}
 	#print $$type{'Tname'};
 	#print "[".$$type{'Tsize'}."]";
+	return;
+}
+
+# structures in cpp can also have methods; such structures are stored as classes, not like usual classes
+if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangled'} !~ "::" ) or ( $$type{'Ttype'} eq "Class" ) ) {
+# if( $$type{'Ttype'} eq "Class" ) {
+	$cselect ="SELECT * FROM ClassInfo ";
+	$cselect.="WHERE CItid=".$$type{'Tid'};
+# 		$tselect.= "AND ATaid=$Aid";
+	$cth = $Dbh->query($cselect) || die $Dbh->errmsg();
+	%entry=$cth->fetchhash;
+	if( !$cth->numrows ) {
+		print STDERR "No ClassInfo record found for Type ".$$type{'Tid'}."\n";
+		return;
+	}
+	$CIid=$entry{'CIid'};
+
+	$name = $$type{'Tunmangled'} ? $$type{'Tunmangled'} : $$type{'Tname'};
+
+	if( $nameonly ) {
+		print "$name ";
+		return;
+	}
+
+	if( $$type{'Ttype'} eq 'Class' ) {
+		print "class $name";
+	}
+	else {
+		print "struct $name";
+	}
+# 	if( $nameonly ) {
+# 		return;
+# 	}
+
+	if( $entry{'CInumvmitypes'} ) {
+		$selectVMI = "SELECT Iunmangled,VBTaccess FROM VMIBaseTypes ";
+		$selectVMI.= "LEFT JOIN Interface ON Iid=VBTbasetype ";
+		$selectVMI.= "WHERE VBTcid=".$entry{'CIid'}." GROUP BY Iunmangled";
+		$vmi = $Dbh->query($selectVMI) || die $Dbh->errmsg();;
+
+		$printed=0;
+		for(1..$vmi->numrows) {
+			%rowVMI = $vmi->fetchhash;
+
+			$rowVMI{'Iunmangled'} =~ s/typeinfo for //;
+			$Name = $rowVMI{'Iunmangled'};
+			$access = $rowBase{'VBTaccess'};
+
+			if( $printed ) {
+				print(", ");
+			}
+			else {
+				print( " : " );
+				$printed = 1 ;
+			}
+
+			if( $Name ) {
+				print( $access." ".$Name );
+			}
+		}
+	}
+	elsif( $entry{'CInumbasetype'} == 1 ) {
+		$selectBase = "SELECT Iunmangled,BTaccess FROM BaseTypes ";
+		$selectBase.= "LEFT JOIN Interface ON Iid=BTrttiid ";
+		$selectBase.= "WHERE BTcid=".$entry{'CIid'};
+		$base = $Dbh->query($selectBase) || die $Dbh->errmsg();;
+		%rowBase = $base->fetchhash;
+		$rowBase{'Iunmangled'} =~ s/typeinfo for //;
+		$Name = $rowBase{'Iunmangled'};
+		$access = $rowBase{'BTaccess'};
+		print( " : $access ".$Name );
+	}
+
+	print "\n";
+	print "{\n";
+
+	$old_access="";
+
+	# declare members; there is no 'member access type' support in the db schema now, so all
+	# struct members will be public and class members will be private
+	if( $$type{'Ttype'} eq 'Class' ) {
+		$old_access="private";
+		print "private:\n";
+	}
+	else { # struct
+		$old_access="public";
+		print "public:\n";
+	}
+
+	$select = "SELECT * FROM TypeMember ";
+	$select.= "LEFT JOIN Type ON TMtypeid=Tid ";
+	$select.= "WHERE TMmemberof=".$$type{'Tid'};
+	print $select,"\n" if $trace;
+	$tmh = $Dbh->query($select) || die $Dbh->errmsg();
+	print $tmh->numrows," rows\n" if $trace;
+	for(1..$tmh->numrows) {
+		$typeflag=0;
+		%tmentry=$tmh->fetchhash;
+		$nameonly = 1;
+		print "    ";
+		$old_CIid = $CIid;
+		$old_name = $name;
+		displaytype(\%tmentry);
+		$name = $old_name;
+		$CIid = $old_CIid;
+		print " ".$tmentry{'TMname'}.";\n";
+		$nameonly = 0;
+	}
+
+	# all types declared here will be in public section
+	if( $$type{'Ttype'} eq 'Class' ) {
+		$old_access="public";
+		print "public:\n";
+	}
+
+	# Display class internal types
+	$select = "SELECT * FROM Type ";
+	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
+	$select.= "WHERE Tclass=$CIid ";
+	# skip classes themselves
+	if( $$type{'Ttype'} eq 'Class' ) {
+		$select.= "AND Ttype<>'Class' ";
+	}
+	else {
+		$select.= "AND Ttype<>'Struct' ";
+	}
+	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
+	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
+ 	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+#  	$select.= "AND Aid = $Aid ";
+	$select.= "ORDER BY Tid";
+	print $select,"\n" if $trace;
+
+	$th = $Dbh->query($select) || die $Dbh->errmsg();
+	print $th->numrows," rows\n" if $trace;
+	for(1..$th->numrows) {
+		$typeflag=0;
+		%tentry=$th->fetchhash;
+		if( $tentry{'Aname'} ne "All" ) {
+			$selectArchSpec = "SELECT * FROM ArchType ";
+			$selectArchSpec.= "LEFT JOIN Type ON Tid=ATtid ";
+			$selectArchSpec.= "WHERE ATtid = ".$tentry{'Tid'};
+			$selectArchSpec.= " AND ATaid = 1 ";
+			$selectArchSpec.= "AND ( (ATappearedin <= '$lsbversion' and ATappearedin<>'' ";
+			$selectArchSpec.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
+		 	$selectArchSpec.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+			print $selectArchSpec,"\n" if $trace;
+			$thArchSpec = $Dbh->query($selectArchSpec) || die $Dbh->errmsg();
+			if( $thArchSpec->numrows ) {
+				# Generic records present - skip arch specific
+				next;
+			}
+		}
+
+		if( $tentry{'Aid'} && $tentry{'Aname'} eq "None" ) { next; }
+
+		$old_CIid = $CIid;
+		$old_name = $name;
+		$className = $name;
+		$TMaid = $tentry{'Aid'} ? $tentry{'Aid'} : $Aid;
+		if( $tentry{'Aid'} && $tentry{'Aname'} ne "All" ) {
+			print "#if ".$tentry{'Asymbol'}."\n";
+			print "/* ".$tentry{'Aname'}." */\n";
+			displaytype(\%tentry);
+			print ";";
+			print $tentry{'Tdescription'}."\n\n";
+			print "#endif\n";
+		} else {
+			displaytype(\%tentry);
+			print ";";
+			print $tentry{'Tdescription'}."\n\n";
+		}
+		$name = $old_name;
+		$CIid = $old_CIid;
+	}
+
+	# Display class interfaces
+	$iselect = "SELECT * FROM Interface ";
+	$iselect.= "LEFT JOIN Type ON Ireturn=Tid ";
+	$iselect.= "LEFT JOIN ArchInt ON Iid=AIint ";
+	$iselect.= "LEFT JOIN Architecture ON AIarch=Aid ";
+	$iselect.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
+	$iselect.= "WHERE Iclass=".$$type{'Tid'}." ";
+	$iselect.= "AND Iunmangled not like '%thunk%' ";
+ 	$iselect.= "AND (Isrcbin='SrcOnly' OR (";
+ 	$iselect.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+ 	$iselect.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
+	$iselect.=" ORDER BY Iaccess";
+	print $iselect,"\n" if $trace;
+
+	%processed = ();
+	$ith = $Dbh->query($iselect) || die $Dbh->errmsg();
+	for(1..$ith->numrows) {
+		%int = $ith->fetchhash;
+
+		if( $int{'Aid'} != 1 ) {
+			$selectGeneric = "SELECT Iid FROM Interface ";
+			$selectGeneric.= "LEFT JOIN ArchInt ON Iid=AIint ";
+			$selectGeneric.= "WHERE AIarch=1 AND Iname='$int{'Iname'}'";
+			$selectGeneric.= "AND (Isrcbin='SrcOnly' OR (";
+			$selectGeneric.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+			$selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
+			$sthGeneric = $Dbh->query($selectGeneric) || die $Dbh->errmsg();
+			if( $sthGeneric->numrows ) {
+				next;
+			}
+		}
+
+		$Iid = $int{'Iid'};
+		$Itype = $int{'Itype'};
+		$Iaccess = $int{'Iaccess'};
+		$Istatic = $int{'Istatic'};
+		$Ivirtual = $int{'Ivirtual'};
+
+		if( $$type{'Ttype'} eq 'Class' and $Iaccess ne $old_access ) {
+			print $Iaccess.":\n";
+			$old_access = $Iaccess;
+		}
+
+		if( $Itype eq 'Data' ) {
+			$unmangled = $int{'Iunmangled'};
+ 			if( $unmangled =~ /$name\:\:(.+)/ ) {
+ 				$unmangled = $1;
+ 			}
+
+			$rselect = "SELECT * FROM Type LEFT JOIN ArchType ON ATtid=Tid WHERE Tid = ".$int{'Ireturn'};
+			$rth = $Dbh->query($rselect) || die $Dbh->errmsg();
+			if($rth->numrows) {
+				%ret = $rth->fetchhash;
+				$old_name = $name;
+				$nameonly = 1;
+				print "    ";
+				displaytyperef(\%ret);
+				$nameonly = 0;
+				$name = $old_name;
+			}
+
+			print " $unmangled;\n";
+			next;
+		}
+
+# 		$Iname = $int{'Ishortname'};
+# 		if( !$Iname ) {
+# 			print STDERR "Please set Ishortname for interface with Iid=".$int{'Iid'}."\n";
+# 			$Iname = $int{'Iunmangled'} ? $int{'Iunmangled'} : $int{'Iname'};
+# 		}
+
+		if( $int{'Iunmangled'} ) {
+			$unmangled = $int{'Iunmangled'};
+ 			if( $unmangled =~ /$name\:\:(.+)/ ) {
+ 				$unmangled = $1;
+ 			}
+
+			# On binary level, there can be several contructors and destructors, coming
+			# from the same source level interface
+			if( $processed{"$unmangled"} ) {
+				next;
+			}
+			$processed{"$unmangled"} = 1;
+
+ 			print "    ";
+ 			if( $Ivirtual eq 'Yes' ) {
+  				print "virtual ";
+ 			}
+ 			if( $Istatic eq 'Yes' ) {
+ 				print "static ";
+ 			}
+ 			$old_name = $name;
+ 			displaytyperef(\%int);
+ 			$name = $old_name;
+ 			print " ";
+			print $unmangled.";\n";
+		}
+		else {
+			print STDERR "Couldn't find unmangled name for Interface ".$int{'Iid'}."\n";
+		}
+	}
+
+	print "}";
+	return;
+}
+
+if( $$type{'Ttype'} eq "TemplateInstance" ) {
+	print $$type{'Tunmangled'};
 	return;
 }
 
@@ -587,7 +907,13 @@ if( $$param{'Ttype'} eq "Pointer" ) {
 	}
 
 if( $$param{'Ttype'} eq "Struct" ) {
-	print "struct ".$$param{'Tname'};
+	$struct_name = $$param{'Tunmangled'} ? $$param{'Tunmangled'} : $$param{'Tname'};
+
+	if( $struct_name =~ /$className\:\:(.+)/ ) {
+		$struct_name = $1;
+	}
+
+	print "struct ".$struct_name;
 	return;
 	}
 
@@ -674,6 +1000,22 @@ if( $$param{'Ttype'} eq "FuncPtr" ) {
 	return;
 	}
 
+if( $$param{'Ttype'} eq "Class" ) {
+	$name = $$param{'Tunmangled'} ? $$param{'Tunmangled'} : $$param{'Tname'};
+	print $name;
+	return;
+}
+
+if( $$param{'Ttype'} eq "Ref" ) {
+	$basetype = getBaseTypeID($param);
+ 	$sth = getBaseTypeRecord($basetype);
+ 	%type=$sth->fetchhash;
+	displaytyperef(\%type);
+	print " &";
+	return;
+	}
+
+
 print $$param{'Ttype'};
 }
 
@@ -741,292 +1083,327 @@ sub get_typelist {
 	undef %type;
 	my $Query_Hid = $_[0];
 
-#
-# This next section, which tries to determine all of the types for which
-# a dependency exists could probably be replaced by a loop that repeats until
-# no more new type s are added during a pass.
-#
+	#
+	# This next section, which tries to determine all of the types for which
+	# a dependency exists could probably be replaced by a loop that repeats until
+	# no more new type s are added during a pass.
+	#
 
-#
-# Get the return types
-#
-$select = "SELECT DISTINCT Ireturn FROM Interface ";
-$select.= "LEFT JOIN ArchInt ON Iid=AIint ";
+	#
+	# Get the return types
+	#
+	$select = "SELECT DISTINCT Ireturn FROM Interface ";
+	$select.= "LEFT JOIN ArchInt ON Iid=AIint ";
 	$select.= "WHERE Iheader=$Query_Hid ";
-$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
-$select.= "AND AIarch=$Aid ";
-if( $Aid!=1 ) {
-	$select.= "AND Iid NOT IN ";
-	$select.= "(SELECT Iid FROM Interface";
-	$select.= " LEFT JOIN ArchInt ON Iid=AIint";
-	$select.= " WHERE AIarch=1 ";
-	$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-	$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
-}
+	$select.= "AND AIappearedin <= '$lsbversion' and AIappearedin<>'' ";
+	$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion')  ";
+	$select.= "AND AIarch=$Aid ";
+	if( $Aid!=1 ) {
+		$select.= "AND Iid NOT IN ";
+		$select.= "(SELECT Iid FROM Interface";
+		$select.= " LEFT JOIN ArchInt ON Iid=AIint";
+		$select.= " WHERE AIarch=1 ";
+		$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+		$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
+	}
 
-print $select,"\n" if $trace;
-$sth = $Dbh->query($select) || die $Dbh->errmsg();
-for(1..$sth->numrows) {
-	%entry=$sth->fetchhash;
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
 		if ($entry{'Ireturn'}) {
-	$type{$entry{'Ireturn'}}=1;
-	}
-		}
-
-#
-# Get the parameter types
-#
-$select = "SELECT DISTINCT Ptype FROM Parameter, Interface ";
-$select.= "LEFT JOIN ArchInt ON Iid=AIint ";
-	$select.= "WHERE Iheader=$Query_Hid ";
-$select.= "AND Pint=Iid ";
-$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
-#$select.= "AND Iarch=$Aid";
-$select.= "AND AIarch=$Aid ";
-if( $Aid!=1 ) {
-	$select.= "AND Iid NOT IN ";
-	$select.= "(SELECT Iid FROM Interface";
-	$select.= " LEFT JOIN ArchInt ON Iid=AIint";
-	$select.= " WHERE AIarch=1 ";
-	$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-	$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
-}
-
-print $select,"\n" if $trace;
-$sth = $Dbh->query($select) || die $Dbh->errmsg();
-for(1..$sth->numrows) {
-	%entry=$sth->fetchhash;
-		if ($entry{'Ptype'}) {
-	$type{$entry{'Ptype'}}=1;
-	}
-		}
-
-#
-# Get any other type that is assigned to this header
-#
-$select = "SELECT Tid,Tname FROM Type ";
-$select.= "LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
-$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE HGheader=$Query_Hid ";
-$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
-$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
-$select.= "OR Tindirect='Yes' OR Tsrconly='Yes' OR Tconly='Yes' ) ";
-print $select,"\n" if $trace;
-$sth = $Dbh->query($select) || die $Dbh->errmsg();
-for(1..$sth->numrows) {
-	%entry=$sth->fetchhash;
-		if ($entry{'Tid'}) {
-	$type{$entry{'Tid'}}=1;
+			$type{$entry{'Ireturn'}}=1;
 			}
+		}
+
+	#
+	# Get the parameter types
+	#
+	$select = "SELECT DISTINCT Ptype FROM Parameter, Interface ";
+	$select.= "LEFT JOIN ArchInt ON Iid=AIint ";
+	$select.= "WHERE Iheader=$Query_Hid ";
+	$select.= "AND Pint=Iid ";
+	$select.= "AND AIappearedin <= '$lsbversion' and AIappearedin<>'' ";
+	$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
+	$select.= "AND AIarch=$Aid ";
+	if( $Aid!=1 ) {
+		$select.= "AND Iid NOT IN ";
+		$select.= "(SELECT Iid FROM Interface";
+		$select.= " LEFT JOIN ArchInt ON Iid=AIint";
+		$select.= " WHERE AIarch=1 ";
+		$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+		$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
 	}
 
-$typelist=join ',', keys(%type);
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		if ($entry{'Ptype'}) {
+			$type{$entry{'Ptype'}}=1;
+			}
+		}
 
-#
-# Get the base types of Typedefs
-#
-
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
+	#
+	# Get any other type that is assigned to this header
+	#
+	$select = "SELECT Tid,Tname FROM Type ";
+	$select.= "LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	$select.= "AND Ttype = 'Typedef' ";
+	$select.= "WHERE HGheader=$Query_Hid ";
+	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
+	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
+	$select.= "OR Tindirect='Yes' OR Tsrconly='Yes' OR Tconly='Yes' ) ";
 	print $select,"\n" if $trace;
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	for(1..$sth->numrows) {
 		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
+		if ($entry{'Tid'}) {
+			$type{$entry{'Tid'}}=1;
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
-#
-# Get the base types of Pointers
-#
+	#
+	# Get the base types of Typedefs
+	#
 
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	$select.= "AND Ttype = 'Pointer' ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print "Pointer ".$entry{'Tname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		$select.= "AND Ttype = 'Typedef' ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
-#
-# Get the base types of Struct/Union/Fptr members
-#
+	#
+	# Get the base types of Pointers
+	#
 
-if( $typelist ne "" ) {
-	$select = "SELECT TMtypeid,TMname FROM TypeMember ";
-	$select.= "WHERE TMmemberof IN ($typelist) "; # here we should process all type members on all archs
-	$select.= "AND TMtypeid NOT IN ($typelist) ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'TMtypeid'}}=1;
-		#print STDERR "TypeMember ".$entry{'TMname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		$select.= "AND Ttype = 'Pointer' ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print "Pointer ".$entry{'Tname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
-#
-# Get the base types of Pointers found in Struct/Union/Fptr members
-#
+	#
+	# Get the base types of Struct/Union/Fptr members
+	#
 
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	$select.= "AND Ttype = 'Pointer' ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print STDERR "Pointer ".$entry{'Tname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT TMtypeid,TMname FROM TypeMember ";
+		$select.= "WHERE TMmemberof IN ($typelist) "; # here we should process all type members on all archs
+		$select.= "AND TMtypeid NOT IN ($typelist) ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'TMtypeid'}}=1;
+			#print STDERR "TypeMember ".$entry{'TMname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
-#
-# Get the base types of Typedefs found in Struct/Union/Fptr members
-#
+	#
+	# Get the base types of Pointers found in Struct/Union/Fptr members
+	#
 
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	$select.= "AND Ttype = 'Typedef' ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print "Typedef ".$entry{'Tname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		$select.= "AND Ttype = 'Pointer' ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print STDERR "Pointer ".$entry{'Tname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
+	#
+	# Get the base types of Typedefs found in Struct/Union/Fptr members
+	#
 
-#
-# Get the base types of type we have picked up in the Struct/Union/Fptr members
-#
-
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print STDERR "Type ".$entry{'Tname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		$select.= "AND Ttype = 'Typedef' ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print "Typedef ".$entry{'Tname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
-#
-# Do this once more to get nested Struct/Unions/Fptr members
-#
+	$typelist=join ',', keys(%type);
 
-if( $typelist ne "" ) {
-	$select = "SELECT TMtypeid,TMname FROM TypeMember ";
-	$select.= "WHERE TMmemberof IN ($typelist)";
-	$select.= "AND TMtypeid NOT IN ($typelist) ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'TMtypeid'}}=1;
-		#print STDERR "TypeMember ".$entry{'TMname'}."\n";
+
+	#
+	# Get the base types of type we have picked up in the Struct/Union/Fptr members
+	#
+
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print STDERR "Type ".$entry{'Tname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
+	#
+	# Do this once more to get nested Struct/Unions/Fptr members
+	#
 
-#
-# Get the base types of type we have picked up in the Struct/Union/Fptr members
-#
-
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print STDERR "Type2 ".$entry{'Tname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT TMtypeid,TMname FROM TypeMember ";
+		$select.= "WHERE TMmemberof IN ($typelist)";
+		$select.= "AND TMtypeid NOT IN ($typelist) ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'TMtypeid'}}=1;
+			#print STDERR "TypeMember ".$entry{'TMname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print STDERR "Type3 ".$entry{'Tname'}."\n";
+	#
+	# Get the base types of type we have picked up in the Struct/Union/Fptr members
+	#
+
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print STDERR "Type2 ".$entry{'Tname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
 
-#
-# Get the base types of Const
-#
-
-if( $typelist ne "" ) {
-	$select = "SELECT ATbasetype,Tname FROM Type ";
-	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	$select.= "WHERE Tid IN ($typelist) ";
-	$select.= "AND Ttype = 'Const' ";
-	$select.= "AND ATbasetype NOT IN ($typelist) ";
-	print $select,"\n" if $trace;
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	for(1..$sth->numrows) {
-		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
-		#print "Pointer ".$entry{'Tname'}."\n";
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print STDERR "Type3 ".$entry{'Tname'}."\n";
+			}
 		}
-	}
 
-$typelist=join ',', keys(%type);
+	$typelist=join ',', keys(%type);
+
+	#
+	# Get the base types of Const
+	#
+
+	if( $typelist ne "" ) {
+		$select = "SELECT ATbasetype,Tname FROM Type ";
+		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+		$select.= "WHERE Tid IN ($typelist) ";
+		$select.= "AND Ttype = 'Const' ";
+		$select.= "AND ATbasetype NOT IN ($typelist) ";
+		print $select,"\n" if $trace;
+		$sth = $Dbh->query($select) || die $Dbh->errmsg();
+		for(1..$sth->numrows) {
+			%entry=$sth->fetchhash;
+			$type{$entry{'ATbasetype'}}=1;
+			#print "Pointer ".$entry{'Tname'}."\n";
+			}
+		}
+
+	$typelist=join ',', keys(%type);
 
 	return $typelist;
 }
 
 $typelist = get_typelist($Hid);
 
+# Get Class list
+
+$select = "SELECT * FROM Type ";
+$select.= "LEFT JOIN ArchType ON Tid=ATtid ";
+$select.= "LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
+$select.= "WHERE HGheader=$Hid ";
+$select.= "AND (Ttype='Class' ";
+$select.= "OR (Ttype='Struct' AND Tclass<>0 AND Tunmangled NOT LIKE '%::%') ) ";
+$select.= "AND ( ( ATappearedin <> '' AND ATappearedin <='$lsbversion' ";
+$select.= "  AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ";
+$select.= " ) OR Tsrconly='Yes' ) ";
+print $select,"\n" if $trace;
+$sth = $Dbh->query($select) || die $Dbh->errmsg();
+for(1..$sth->numrows) {
+	%entry=$sth->fetchhash;
+	if( $entry{'Tid'} ) {
+		$class{$entry{'Tid'}}=1;
+	}
+}
+$classlist=join '\',\'', keys(%class);
+
+if( $classlist ne "" ) {
+	$select = "SELECT TMtypeid FROM TypeMember ";
+	$select.= "WHERE TMmemberof in ($classlist)";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		if( $entry{'TMtypeid'} ) {
+			$class_member{$entry{'TMtypeid'}}=1;
+		}
+	}
+	$typelist=join ',', keys(%class_member);
+}
+
+# Get Constant list
 
 $select = "SELECT * FROM Constant ";
 $select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
@@ -1147,13 +1524,31 @@ if( $hdrlist ne "" ) {
 				print "#include <".$header_name.">\n";
 			}
 
-			}
 		}
 	}
+}
 
-print "\n#ifdef __cplusplus\n";
-print "extern \"C\" {\n";
-print "#endif\n\n";
+if( $classlist ne "" ) {
+	$select = "SELECT Tname,Tunmangled,Ttype FROM Type ";
+	$select.= "WHERE Tid IN (\'$classlist\') ";
+	print $select,"\n" if $trace;
+	$sth = $Dbh->query($select) || die $Dbh->errmsg();
+	for(1..$sth->numrows) {
+		%entry=$sth->fetchhash;
+		$name = $entry{'Tunmangled'} ? $entry{'Tunmangled'} : $entry{'Tname'};
+		$type = ( $entry{'Ttype'} eq 'Class' ) ? "class" : "struct";
+		print "$type $name;\n";
+	}
+}
+
+if( !$classlist ) {
+	print "\n#ifdef __cplusplus\n";
+	print "extern \"C\" {\n";
+	print "#endif\n\n";
+}
+else {
+	print "// *INDENT-OFF*\n";
+}
 
 if( $Hsrcerror eq 'Yes' ) {
 	print "#error \"This header not permitted by the LSB\"\n\n";
@@ -1213,6 +1608,8 @@ for(1..$hgh->numrows) {
 		}
 	print "\n\n";
 
+	%processedNames;
+
 	# Display the Type (Typedef)
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
@@ -1222,6 +1619,7 @@ for(1..$hgh->numrows) {
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
  	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
 	$select.= "AND Ttype = 'Typedef' ";
+	$select.= "AND Tclass = 0 ";
 #  	$select.= "AND Aid = $Aid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
@@ -1269,7 +1667,7 @@ for(1..$hgh->numrows) {
 		$TMaid = $tentry{'Aid'} ? $tentry{'Aid'} : $Aid;
 		if( $tentry{'Tconly'} eq "Yes" ) {
 			print "#if !defined(__cplusplus)\n";
-			}
+		}
 		if( $tentry{'Aid'} && $tentry{'Aname'} ne "All" ) {
 			print "#if ".$tentry{'Asymbol'}."\n";
 			print "/* ".$tentry{'Aname'}." */\n";
@@ -1281,10 +1679,10 @@ for(1..$hgh->numrows) {
 			displaytype(\%tentry);
 			print ";";
 			print $tentry{'Tdescription'}."\n\n";
-			}
+		}
 		if( $tentry{'Tconly'} eq "Yes" ) {
 			print "#endif\n";
-			}
+		}
 
 		# Display headers now that we've declared their
 		# dependant types.
@@ -1294,7 +1692,7 @@ for(1..$hgh->numrows) {
 			}
 			delete $$header_name{$tentry{'Tid'}};
 		}
-		}
+	}
 
 	# Display the Types (excluding Typedef)
 	$select = "SELECT * FROM Type ";
@@ -1305,6 +1703,7 @@ for(1..$hgh->numrows) {
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
  	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
 	$select.= "AND Ttype != 'Typedef' ";
+	$select.= "AND (Tclass=0 OR Ttype='Struct' OR Ttype='Class') ";
 #  	$select.= "AND Aid = $Aid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
@@ -1385,8 +1784,6 @@ for(1..$hgh->numrows) {
 		$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
 	    $select.= "ORDER BY Tid";
 	    print $select,"\n" if $trace;
-
-		%processedNames;
 
 		$th = $Dbh->query($select) || die $Dbh->errmsg();
 	    print $th->numrows," rows\n" if $trace;
@@ -1513,9 +1910,10 @@ $select.= "LEFT JOIN ArchInt ON Iid=AIint ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
 # $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 $select.= "LEFT JOIN Architecture ON AIarch=Aid ";
-$select.= "WHERE (Isrconly='Yes' OR (";
+$select.= "WHERE (Isrcbin='SrcOnly' OR (";
 $select.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
+$select.= "AND Iclass=0 ";
 #$select.= "AND Iarch=$Aid ";
 # $select.= "AND (ATaid=AIarch OR ATaid=1)";
 $select.= "AND Hname=".$Dbh->quote($headname)." ";
@@ -1529,7 +1927,7 @@ for(1..$sth->numrows) {
 		$selectGeneric = "SELECT Iid FROM Interface ";
 		$selectGeneric.= "LEFT JOIN ArchInt ON Iid=AIint ";
 		$selectGeneric.= "WHERE AIarch=1 AND Iname='$entry{'Iname'}'";
-		$selectGeneric.= "AND (Isrconly='Yes' OR (";
+		$selectGeneric.= "AND (Isrcbin='SrcOnly' OR (";
 		$selectGeneric.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 		$selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
 		$sthGeneric = $Dbh->query($selectGeneric) || die $Dbh->errmsg();
@@ -1663,7 +2061,13 @@ for(1..$sth->numrows) {
 		printf " ;\n";
 	}
 }
-print "#ifdef __cplusplus\n";
-print "}\n";
-print "#endif\n";
+
+if( !$classlist ) {
+	print "#ifdef __cplusplus\n";
+	print "}\n";
+	print "#endif\n";
+}
+else {
+	print "// *INDENT-ON*\n";
+}
 print "#endif\n";

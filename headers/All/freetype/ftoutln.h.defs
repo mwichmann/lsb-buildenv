@@ -1,4 +1,7 @@
 
+typedef struct FT_FaceRec_ *FT_Face;
+typedef unsigned int FT_UInt;
+typedef struct FT_Bitmap_ FT_Bitmap;
 FT_Module;
 FT_DebugHook_Func;
 extern void FT_Outline_Reverse(FT_Outline *);
