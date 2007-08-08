@@ -1,2 +1,2 @@
 
-struct QFactoryInterface;
+struct _Z17QFactoryInterface;

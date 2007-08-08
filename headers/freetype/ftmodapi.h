@@ -43,12 +43,12 @@ extern "C" {
     typedef struct FT_LibraryRec_ *FT_Library;
 
 #endif
+#include <freetype/ftrender.h>
 #if defined __i386__
 /* IA32 */
     typedef void (*FT_DebugHook_Func) (void *);
 
 #endif
-#include <freetype/ftrender.h>
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 #if defined __i386__
@@ -58,13 +58,6 @@ extern "C" {
 
 #endif
 
-    extern FT_Module FT_Get_Module(FT_Library, const char *);
-    extern FT_Error FT_Done_Library(FT_Library);
-    extern void FT_Set_Debug_Hook(FT_Library, FT_UInt, FT_DebugHook_Func);
-    extern void FT_Add_Default_Modules(FT_Library);
-    extern FT_Error FT_New_Library(FT_Memory, FT_Library *);
-    extern FT_Error FT_Remove_Module(FT_Library, FT_Module);
-    extern FT_Error FT_Add_Module(FT_Library, const FT_Module_Class *);
 #ifdef __cplusplus
 }
 #endif

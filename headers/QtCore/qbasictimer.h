@@ -1,20 +1,19 @@
 #ifndef _QTCORE_QBASICTIMER_H_
 #define _QTCORE_QBASICTIMER_H_
 
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+class QBasicTimer;
+// *INDENT-OFF*
 
 
 
+class QBasicTimer
+{
+private:
+public:
+};
 
-    Unknown Type:".Class.";
 
-
-    extern void _ZN11QBasicTimer5startEiP7QObject(void);
-    extern void _ZN11QBasicTimer4stopEv(void);
-#ifdef __cplusplus
-}
-#endif
+extern void _ZN11QBasicTimer5startEiP7QObject(void);
+extern void _ZN11QBasicTimer4stopEv(void);
+// *INDENT-ON*
 #endif

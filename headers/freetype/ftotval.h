@@ -2,7 +2,6 @@
 #define _FREETYPE_FTOTVAL_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/freetype.h>
 #include <freetype/t1tables.h>
 
@@ -27,9 +26,6 @@ extern "C" {
 
 #endif
 
-    extern FT_Error FT_OpenType_Validate(FT_Face, FT_UInt, FT_Bytes *,
-					 FT_Bytes *, FT_Bytes *,
-					 FT_Bytes *, FT_Bytes *);
 #ifdef __cplusplus
 }
 #endif

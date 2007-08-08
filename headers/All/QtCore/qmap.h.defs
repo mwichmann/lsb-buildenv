@@ -1,5 +1,5 @@
 
 class QMap < int, QVariant >;
 class QMap < QString, QVariant >;
-struct QMapData;
-struct N8QMapData4NodeE;
+struct _Z8QMapData;
+struct _ZN8QMapData4NodeE;

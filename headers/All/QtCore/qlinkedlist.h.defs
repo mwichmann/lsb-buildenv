@@ -1,2 +1,2 @@
 
-struct QLinkedListData;
+struct _Z15QLinkedListData;

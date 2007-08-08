@@ -1,21 +1,19 @@
 #ifndef _QTGUI_QTOOLTIP_H_
 #define _QTGUI_QTOOLTIP_H_
 
-#include <QtGui/qpalette.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+class QToolTip;
+// *INDENT-OFF*
 
 
 
+class QToolTip
+{
+private:
+public:
+};
 
-    Unknown Type:".Class.";
 
-
-    extern void _ZN8QToolTip8showTextERK6QPointRK7QStringP7QWidget(void);
-    extern Class _ZN8QToolTip7paletteEv(void);
-#ifdef __cplusplus
-}
-#endif
+extern void _ZN8QToolTip8showTextERK6QPointRK7QStringP7QWidget(void);
+extern QPalette _ZN8QToolTip7paletteEv(void);
+// *INDENT-ON*
 #endif

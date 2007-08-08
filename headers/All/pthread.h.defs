@@ -6,6 +6,7 @@
 #define PTHREAD_SCOPE_PROCESS	1
 #define PTHREAD_MUTEX_ERRORCHECK	2
 #define PTHREAD_RWLOCK_DEFAULT_NP	2
+#define __SIZEOF_PTHREAD_BARRIERATTR_T	4
 #define PTHREAD_MUTEX_INITIALIZER	\
 	{0,0,0,PTHREAD_MUTEX_NORMAL,__LOCK_INITIALIZER}
 #define PTHREAD_RWLOCK_INITIALIZER	\
@@ -27,6 +28,8 @@ struct _pthread_cleanup_buffer {
 typedef unsigned int pthread_key_t;
 typedef int pthread_once_t;
 typedef long long int __pthread_cond_align_t;
+typedef volatile int pthread_spinlock_t;
+union pthread_barrierattr_t;
 
 typedef unsigned long int pthread_t;
 struct _pthread_fastlock {

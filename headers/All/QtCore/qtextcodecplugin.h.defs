@@ -1,3 +1,3 @@
 
-struct QTextCodecFactoryInterface;
+struct _Z26QTextCodecFactoryInterface;
 class QTextCodecPlugin;

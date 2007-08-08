@@ -6,6 +6,9 @@
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
+#include <X11/extensions/render.h>
+#include <X11/extensions/Xrender.h>
+#include <X11/Xft/Xft.h>
 
 #ifdef __cplusplus
 extern "C" {

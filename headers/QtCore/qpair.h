@@ -9,7 +9,7 @@ extern "C" {
 
 
 
-    struct N5QPairIiiEE;
+    struct QPair <int, int >;
 
 
 #ifdef __cplusplus

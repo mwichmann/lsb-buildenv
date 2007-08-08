@@ -2,7 +2,6 @@
 #define _FREETYPE_FTMM_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftpfr.h>
 #include <freetype/t1tables.h>
 
@@ -19,6 +18,7 @@ extern "C" {
 
 #endif
 #include <freetype/freetype.h>
+#include <freetype/ftoutln.h>
 #if defined __i386__
 /* IA32 */
     typedef struct FT_MM_Axis_ FT_MM_Axis;
@@ -101,16 +101,6 @@ extern "C" {
 
 #endif
 
-    extern FT_Error FT_Get_Multi_Master(FT_Face, FT_Multi_Master *);
-    extern FT_Error FT_Set_MM_Design_Coordinates(FT_Face, FT_UInt,
-						 FT_Long *);
-    extern FT_Error FT_Get_MM_Var(FT_Face, FT_MM_Var * *);
-    extern FT_Error FT_Set_Var_Blend_Coordinates(FT_Face, FT_UInt,
-						 FT_Fixed *);
-    extern FT_Error FT_Set_MM_Blend_Coordinates(FT_Face, FT_UInt,
-						FT_Fixed *);
-    extern FT_Error FT_Set_Var_Design_Coordinates(FT_Face, FT_UInt,
-						  FT_Fixed *);
 #ifdef __cplusplus
 }
 #endif

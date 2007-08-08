@@ -18,6 +18,28 @@ extern "C" {
 #define PTHREAD_SCOPE_PROCESS	1
 #define PTHREAD_MUTEX_ERRORCHECK	2
 #define PTHREAD_RWLOCK_DEFAULT_NP	2
+#if defined __i386__
+#define __SIZEOF_PTHREAD_BARRIER_T	20
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __SIZEOF_PTHREAD_BARRIER_T	20
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __SIZEOF_PTHREAD_BARRIER_T	20
+#endif
+#if defined __ia64__
+#define __SIZEOF_PTHREAD_BARRIER_T	32
+#endif
+#if defined __powerpc64__
+#define __SIZEOF_PTHREAD_BARRIER_T	32
+#endif
+#if defined __x86_64__
+#define __SIZEOF_PTHREAD_BARRIER_T	32
+#endif
+#if defined __s390x__
+#define __SIZEOF_PTHREAD_BARRIER_T	32
+#endif
+#define __SIZEOF_PTHREAD_BARRIERATTR_T	4
 #define PTHREAD_MUTEX_INITIALIZER	\
 	{0,0,0,PTHREAD_MUTEX_NORMAL,__LOCK_INITIALIZER}
 #define PTHREAD_RWLOCK_INITIALIZER	\
@@ -37,12 +59,72 @@ extern "C" {
 
     typedef long long int __pthread_cond_align_t;
 
+    typedef volatile int pthread_spinlock_t;
+
     struct _pthread_cleanup_buffer {
 	void (*__routine) (void *);
 	void *__arg;
 	int __canceltype;
 	struct _pthread_cleanup_buffer *__prev;
     };
+
+#if defined __i386__
+/* IA32 */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    union pthread_barrier_t {
+	char __size[0];
+	long int __align;
+    };
+
+#endif
+    union pthread_barrierattr_t;
 
 
 /* Base Types*/

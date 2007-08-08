@@ -1,20 +1,19 @@
 #ifndef _QTCORE_QATOMIC_H_
 #define _QTCORE_QATOMIC_H_
 
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+class QAtomic;
+// *INDENT-OFF*
 
 
 
+struct QBasicAtomic	;
 
-    struct QBasicAtomic;
+class QAtomic :  
+{
+private:
+public:
+};
 
-    Unknown Type:".Class.";
 
-
-#ifdef __cplusplus
-}
-#endif
+// *INDENT-ON*
 #endif

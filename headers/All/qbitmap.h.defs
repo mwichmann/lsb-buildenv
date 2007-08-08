@@ -1,0 +1,5 @@
+
+extern FT_Error FT_Get_BDF_Property(FT_Face, const char *,
+				    BDF_PropertyRec *);
+extern FT_Error FT_Get_BDF_Charset_ID(FT_Face, const char **,
+				      const char **);

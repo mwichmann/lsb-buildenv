@@ -1,5 +1,5 @@
 
-struct QUuid;
+struct _Z5QUuid;
 enum N5QUuid7VariantE {
     VarUnknown,
     NCS,

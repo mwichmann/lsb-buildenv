@@ -2,7 +2,6 @@
 #define _FREETYPE_T1TABLES_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -144,9 +143,6 @@ extern "C" {
 
 #endif
 
-    extern FT_Int FT_Has_PS_Glyph_Names(FT_Face);
-    extern FT_Error FT_Get_PS_Font_Private(FT_Face, PS_PrivateRec *);
-    extern FT_Error FT_Get_PS_Font_Info(FT_Face, PS_FontInfoRec *);
 #ifdef __cplusplus
 }
 #endif

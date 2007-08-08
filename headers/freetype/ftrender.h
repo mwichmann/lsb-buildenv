@@ -49,9 +49,6 @@ extern "C" {
 
 #endif
 
-    extern FT_Error FT_Set_Renderer(FT_Library, FT_Renderer, FT_UInt,
-				    FT_Parameter *);
-    extern FT_Renderer FT_Get_Renderer(FT_Library, FT_Glyph_Format);
 #ifdef __cplusplus
 }
 #endif

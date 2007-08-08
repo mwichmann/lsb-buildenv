@@ -2,7 +2,7 @@
 typedef enum QtValidLicenseForXmlModule QtXmlModule;
 class QXmlNamespaceSupport;
 class QXmlAttributes;
-struct N14QXmlAttributes9AttributeE;
+struct _ZN14QXmlAttributes9AttributeE;
 class QXmlInputSource;
 class QXmlParseException;
 class QXmlReader;

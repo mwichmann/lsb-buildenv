@@ -1,3 +1,3 @@
 
-struct QBasicAtomic;
+struct _Z12QBasicAtomic;
 class QAtomic;

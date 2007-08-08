@@ -7,6 +7,6 @@ enum N10QTextCodec14ConversionFlagE {
 };
 class QFlags < QTextCodec::ConversionFlag >;
 typedef N10QTextCodec15ConversionFlagsE;
-struct N10QTextCodec14ConverterStateE;
+struct _ZN10QTextCodec14ConverterStateE;
 class QTextEncoder;
 class QTextDecoder;

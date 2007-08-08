@@ -10,7 +10,7 @@ extern "C" {
 
 
 
-    typedef Unknown Type:".Class." QtPluginInstanceFunction;
+    typedef QObject QtPluginInstanceFunction;
 
 
 #ifdef __cplusplus

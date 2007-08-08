@@ -10,7 +10,7 @@ extern "C" {
 
 
 
-    typedef Unknown Type:".Class." QWidgetList;
+    typedef QList < QWidget * >QWidgetList;
 
     typedef unsigned long int WId;
 
