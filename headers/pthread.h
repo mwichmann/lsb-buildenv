@@ -239,8 +239,26 @@ extern "C" {
 
 
 
+    extern int pthread_barrier_destroy(union pthread_barrier_t *);
+    extern int pthread_barrier_init(union pthread_barrier_t *,
+				    const union pthread_barrierattr_t *,
+				    unsigned int);
+    extern int pthread_barrier_wait(union pthread_barrier_t *);
+    extern int pthread_barrierattr_destroy(union pthread_barrierattr_t *);
+    extern int pthread_barrierattr_init(union pthread_barrierattr_t *);
+    extern int pthread_barrierattr_setpshared(union pthread_barrierattr_t
+					      *, int);
+    extern int pthread_getcpuclockid(pthread_t, clockid_t *);
+    extern int pthread_spin_destroy(pthread_spinlock_t *);
+    extern int pthread_spin_init(pthread_spinlock_t *, int);
+    extern int pthread_spin_lock(pthread_spinlock_t *);
+    extern int pthread_spin_trylock(pthread_spinlock_t *);
+    extern int pthread_spin_unlock(pthread_spinlock_t *);
     extern int pthread_mutex_timedlock(pthread_mutex_t *,
 				       const struct timespec *);
+    extern int pthread_barrierattr_getpshared(const union
+					      pthread_barrierattr_t *,
+					      int *);
     extern void _pthread_cleanup_pop(struct _pthread_cleanup_buffer *,
 				     int);
     extern void _pthread_cleanup_push(struct _pthread_cleanup_buffer *,
