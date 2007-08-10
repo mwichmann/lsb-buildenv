@@ -1,30 +1,6 @@
 
 #define NFS_SUPER_MAGIC	0x6969
 
-struct statfs {
-    int f_type;
-    int f_bsize;
-    fsblkcnt_t f_blocks;
-    fsblkcnt_t f_bfree;
-    fsblkcnt_t f_bavail;
-    fsblkcnt_t f_files;
-    fsblkcnt_t f_ffree;
-    fsid_t f_fsid;
-    int f_namelen;
-    int f_spare[6];
-};
-struct statfs64 {
-    int f_type;
-    int f_bsize;
-    fsblkcnt64_t f_blocks;
-    fsblkcnt64_t f_bfree;
-    fsblkcnt64_t f_bavail;
-    fsblkcnt64_t f_files;
-    fsblkcnt64_t f_ffree;
-    fsid_t f_fsid;
-    int f_namelen;
-    int f_spare[6];
-};
 extern int fstatfs64(int, struct statfs64 *);
 extern int statfs64(const char *, struct statfs64 *);
 extern int fstatfs(int, struct statfs *);
