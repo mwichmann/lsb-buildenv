@@ -71,7 +71,7 @@ extern "C" {
 #if defined __i386__
 /* IA32 */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
@@ -79,7 +79,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
@@ -87,7 +87,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
@@ -95,7 +95,7 @@ extern "C" {
 #if defined __ia64__
 /* IA64 */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
@@ -103,7 +103,7 @@ extern "C" {
 #if defined __powerpc64__
 /* PPC64 */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
@@ -111,7 +111,7 @@ extern "C" {
 #if defined __x86_64__
 /* x86-64 */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
@@ -119,12 +119,15 @@ extern "C" {
 #if defined __s390x__
 /* S390X */
     union pthread_barrier_t {
-	char __size[0];
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
 	long int __align;
     };
 
 #endif
-    union pthread_barrierattr_t;
+    union pthread_barrierattr_t {
+	char __size[__SIZEOF_PTHREAD_BARRIERATTR_T];
+	int __align;
+    };
 
 
 /* Base Types*/

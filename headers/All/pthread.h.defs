@@ -29,7 +29,10 @@ typedef unsigned int pthread_key_t;
 typedef int pthread_once_t;
 typedef long long int __pthread_cond_align_t;
 typedef volatile int pthread_spinlock_t;
-union pthread_barrierattr_t;
+union pthread_barrierattr_t {
+    char __size[__SIZEOF_PTHREAD_BARRIERATTR_T];
+    int __align;
+};
 
 typedef unsigned long int pthread_t;
 struct _pthread_fastlock {
