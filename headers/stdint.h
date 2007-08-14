@@ -7,6 +7,431 @@ extern "C" {
 #endif
 
 
+#define INT16_C(c)	c
+#define INT32_C(c)	c
+#define INT8_C(c)	c
+#define UINT16_C(c)	c
+#define UINT8_C(c)	c
+#if defined __ia64__
+#define INT64_C(c)	c ## L
+#endif
+#if defined __powerpc64__
+#define INT64_C(c)	c ## L
+#endif
+#if defined __x86_64__
+#define INT64_C(c)	c ## L
+#endif
+#if defined __s390x__
+#define INT64_C(c)	c ## L
+#endif
+#if defined __ia64__
+#define INTMAX_C(c)	c ## L
+#endif
+#if defined __powerpc64__
+#define INTMAX_C(c)	c ## L
+#endif
+#if defined __x86_64__
+#define INTMAX_C(c)	c ## L
+#endif
+#if defined __s390x__
+#define INTMAX_C(c)	c ## L
+#endif
+#if defined __ia64__
+#define __INT64_C(c)	c ## L
+#endif
+#if defined __powerpc64__
+#define __INT64_C(c)	c ## L
+#endif
+#if defined __x86_64__
+#define __INT64_C(c)	c ## L
+#endif
+#if defined __s390x__
+#define __INT64_C(c)	c ## L
+#endif
+#if defined __i386__
+#define INT64_C(c)	c ## LL
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INT64_C(c)	c ## LL
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INT64_C(c)	c ## LL
+#endif
+#if defined __i386__
+#define INTMAX_C(c)	c ## LL
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INTMAX_C(c)	c ## LL
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INTMAX_C(c)	c ## LL
+#endif
+#if defined __i386__
+#define __INT64_C(c)	c ## LL
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __INT64_C(c)	c ## LL
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __INT64_C(c)	c ## LL
+#endif
+#define UINT32_C(c)	c ## U
+#if defined __ia64__
+#define UINT64_C(c)	c ## UL
+#endif
+#if defined __powerpc64__
+#define UINT64_C(c)	c ## UL
+#endif
+#if defined __x86_64__
+#define UINT64_C(c)	c ## UL
+#endif
+#if defined __s390x__
+#define UINT64_C(c)	c ## UL
+#endif
+#if defined __ia64__
+#define UINTMAX_C(c)	c ## UL
+#endif
+#if defined __powerpc64__
+#define UINTMAX_C(c)	c ## UL
+#endif
+#if defined __x86_64__
+#define UINTMAX_C(c)	c ## UL
+#endif
+#if defined __s390x__
+#define UINTMAX_C(c)	c ## UL
+#endif
+#if defined __ia64__
+#define __UINT64_C(c)	c ## UL
+#endif
+#if defined __powerpc64__
+#define __UINT64_C(c)	c ## UL
+#endif
+#if defined __x86_64__
+#define __UINT64_C(c)	c ## UL
+#endif
+#if defined __s390x__
+#define __UINT64_C(c)	c ## UL
+#endif
+#if defined __i386__
+#define UINT64_C(c)	c ## ULL
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define UINT64_C(c)	c ## ULL
+#endif
+#if defined __s390__ && !defined __s390x__
+#define UINT64_C(c)	c ## ULL
+#endif
+#if defined __i386__
+#define UINTMAX_C(c)	c ## ULL
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define UINTMAX_C(c)	c ## ULL
+#endif
+#if defined __s390__ && !defined __s390x__
+#define UINTMAX_C(c)	c ## ULL
+#endif
+#if defined __i386__
+#define __UINT64_C(c)	c ## ULL
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __UINT64_C(c)	c ## ULL
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __UINT64_C(c)	c ## ULL
+#endif
+
+
+
+/* Default Header Section for stdint.h*/
+#define INT8_MIN	(-128)
+#define INT_FAST8_MIN	(-128)
+#define INT_LEAST8_MIN	(-128)
+#define INT32_MIN	(-2147483647-1)
+#if defined __i386__
+#define INTPTR_MIN	(-2147483647-1)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INTPTR_MIN	(-2147483647-1)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INTPTR_MIN	(-2147483647-1)
+#endif
+#if defined __i386__
+#define INT_FAST16_MIN	(-2147483647-1)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INT_FAST16_MIN	(-2147483647-1)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INT_FAST16_MIN	(-2147483647-1)
+#endif
+#if defined __i386__
+#define INT_FAST32_MIN	(-2147483647-1)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INT_FAST32_MIN	(-2147483647-1)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INT_FAST32_MIN	(-2147483647-1)
+#endif
+#define INT_LEAST32_MIN	(-2147483647-1)
+#if defined __i386__
+#define PTRDIFF_MIN	(-2147483647-1)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define PTRDIFF_MIN	(-2147483647-1)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define PTRDIFF_MIN	(-2147483647-1)
+#endif
+#define SIG_ATOMIC_MIN	(-2147483647-1)
+#define INT16_MIN	(-32767-1)
+#define INT_LEAST16_MIN	(-32767-1)
+#if defined __ia64__
+#define INTPTR_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __powerpc64__
+#define INTPTR_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __x86_64__
+#define INTPTR_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __s390x__
+#define INTPTR_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __ia64__
+#define INT_FAST16_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __powerpc64__
+#define INT_FAST16_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __x86_64__
+#define INT_FAST16_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __s390x__
+#define INT_FAST16_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __ia64__
+#define INT_FAST32_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __powerpc64__
+#define INT_FAST32_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __x86_64__
+#define INT_FAST32_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __s390x__
+#define INT_FAST32_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __ia64__
+#define PTRDIFF_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __powerpc64__
+#define PTRDIFF_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __x86_64__
+#define PTRDIFF_MIN	(-9223372036854775807L-1)
+#endif
+#if defined __s390x__
+#define PTRDIFF_MIN	(-9223372036854775807L-1)
+#endif
+#define INT64_MIN	(-__INT64_C(9223372036854775807)-1)
+#define INTMAX_MIN	(-__INT64_C(9223372036854775807)-1)
+#define INT_FAST64_MIN	(-__INT64_C(9223372036854775807)-1)
+#define INT_LEAST64_MIN	(-__INT64_C(9223372036854775807)-1)
+#define WINT_MIN	(0u)
+#define INT8_MAX	(127)
+#define INT_FAST8_MAX	(127)
+#define INT_LEAST8_MAX	(127)
+#if defined __ia64__
+#define SIZE_MAX	(18446744073709551615UL)
+#endif
+#if defined __powerpc64__
+#define SIZE_MAX	(18446744073709551615UL)
+#endif
+#if defined __x86_64__
+#define SIZE_MAX	(18446744073709551615UL)
+#endif
+#if defined __s390x__
+#define SIZE_MAX	(18446744073709551615UL)
+#endif
+#if defined __ia64__
+#define UINTPTR_MAX	(18446744073709551615UL)
+#endif
+#if defined __powerpc64__
+#define UINTPTR_MAX	(18446744073709551615UL)
+#endif
+#if defined __x86_64__
+#define UINTPTR_MAX	(18446744073709551615UL)
+#endif
+#if defined __s390x__
+#define UINTPTR_MAX	(18446744073709551615UL)
+#endif
+#if defined __ia64__
+#define UINT_FAST16_MAX	(18446744073709551615UL)
+#endif
+#if defined __powerpc64__
+#define UINT_FAST16_MAX	(18446744073709551615UL)
+#endif
+#if defined __x86_64__
+#define UINT_FAST16_MAX	(18446744073709551615UL)
+#endif
+#if defined __s390x__
+#define UINT_FAST16_MAX	(18446744073709551615UL)
+#endif
+#if defined __ia64__
+#define UINT_FAST32_MAX	(18446744073709551615UL)
+#endif
+#if defined __powerpc64__
+#define UINT_FAST32_MAX	(18446744073709551615UL)
+#endif
+#if defined __x86_64__
+#define UINT_FAST32_MAX	(18446744073709551615UL)
+#endif
+#if defined __s390x__
+#define UINT_FAST32_MAX	(18446744073709551615UL)
+#endif
+#define INT32_MAX	(2147483647)
+#if defined __i386__
+#define INTPTR_MAX	(2147483647)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INTPTR_MAX	(2147483647)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INTPTR_MAX	(2147483647)
+#endif
+#if defined __i386__
+#define INT_FAST16_MAX	(2147483647)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INT_FAST16_MAX	(2147483647)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INT_FAST16_MAX	(2147483647)
+#endif
+#if defined __i386__
+#define INT_FAST32_MAX	(2147483647)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define INT_FAST32_MAX	(2147483647)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define INT_FAST32_MAX	(2147483647)
+#endif
+#define INT_LEAST32_MAX	(2147483647)
+#if defined __i386__
+#define PTRDIFF_MAX	(2147483647)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define PTRDIFF_MAX	(2147483647)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define PTRDIFF_MAX	(2147483647)
+#endif
+#define SIG_ATOMIC_MAX	(2147483647)
+#define UINT8_MAX	(255)
+#define UINT_FAST64_MAX	(255)
+#define UINT_LEAST8_MAX	(255)
+#define INT16_MAX	(32767)
+#define INT_LEAST16_MAX	(32767)
+#if defined __i386__
+#define SIZE_MAX	(4294967295U)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define SIZE_MAX	(4294967295U)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define SIZE_MAX	(4294967295U)
+#endif
+#define UINT32_MAX	(4294967295U)
+#if defined __i386__
+#define UINTPTR_MAX	(4294967295U)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define UINTPTR_MAX	(4294967295U)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define UINTPTR_MAX	(4294967295U)
+#endif
+#if defined __i386__
+#define UINT_FAST16_MAX	(4294967295U)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define UINT_FAST16_MAX	(4294967295U)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define UINT_FAST16_MAX	(4294967295U)
+#endif
+#if defined __i386__
+#define UINT_FAST32_MAX	(4294967295U)
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define UINT_FAST32_MAX	(4294967295U)
+#endif
+#if defined __s390__ && !defined __s390x__
+#define UINT_FAST32_MAX	(4294967295U)
+#endif
+#define UINT_LEAST32_MAX	(4294967295U)
+#define WINT_MAX	(4294967295u)
+#define UINT16_MAX	(65535)
+#define UINT_LEAST16_MAX	(65535)
+#if defined __ia64__
+#define INTPTR_MAX	(9223372036854775807L)
+#endif
+#if defined __powerpc64__
+#define INTPTR_MAX	(9223372036854775807L)
+#endif
+#if defined __x86_64__
+#define INTPTR_MAX	(9223372036854775807L)
+#endif
+#if defined __s390x__
+#define INTPTR_MAX	(9223372036854775807L)
+#endif
+#if defined __ia64__
+#define INT_FAST16_MAX	(9223372036854775807L)
+#endif
+#if defined __powerpc64__
+#define INT_FAST16_MAX	(9223372036854775807L)
+#endif
+#if defined __x86_64__
+#define INT_FAST16_MAX	(9223372036854775807L)
+#endif
+#if defined __s390x__
+#define INT_FAST16_MAX	(9223372036854775807L)
+#endif
+#if defined __ia64__
+#define INT_FAST32_MAX	(9223372036854775807L)
+#endif
+#if defined __powerpc64__
+#define INT_FAST32_MAX	(9223372036854775807L)
+#endif
+#if defined __x86_64__
+#define INT_FAST32_MAX	(9223372036854775807L)
+#endif
+#if defined __s390x__
+#define INT_FAST32_MAX	(9223372036854775807L)
+#endif
+#if defined __ia64__
+#define PTRDIFF_MAX	(9223372036854775807L)
+#endif
+#if defined __powerpc64__
+#define PTRDIFF_MAX	(9223372036854775807L)
+#endif
+#if defined __x86_64__
+#define PTRDIFF_MAX	(9223372036854775807L)
+#endif
+#if defined __s390x__
+#define PTRDIFF_MAX	(9223372036854775807L)
+#endif
+#define INT64_MAX	(__INT64_C(9223372036854775807))
+#define INTMAX_MAX	(__INT64_C(9223372036854775807))
+#define INT_FAST64_MAX	(__INT64_C(9223372036854775807))
+#define INT_LEAST64_MAX	(__INT64_C(9223372036854775807))
+#define UINT64_MAX	(__UINT64_C(18446744073709551615))
+#define UINTMAX_MAX	(__UINT64_C(18446744073709551615))
+#define UINT_FAST8_MAX	(__UINT64_C(18446744073709551615))
+#define UINT_LEAST64_MAX	(__UINT64_C(18446744073709551615))
 
 
     typedef signed char int8_t;

@@ -1,4 +1,24 @@
 
+#define INT64_C(c)	c ## LL
+#define INTMAX_C(c)	c ## LL
+#define __INT64_C(c)	c ## LL
+#define UINT64_C(c)	c ## ULL
+#define UINTMAX_C(c)	c ## ULL
+#define __UINT64_C(c)	c ## ULL
+
+#define INTPTR_MIN	(-2147483647-1)
+#define INT_FAST16_MIN	(-2147483647-1)
+#define INT_FAST32_MIN	(-2147483647-1)
+#define PTRDIFF_MIN	(-2147483647-1)
+#define INTPTR_MAX	(2147483647)
+#define INT_FAST16_MAX	(2147483647)
+#define INT_FAST32_MAX	(2147483647)
+#define PTRDIFF_MAX	(2147483647)
+#define SIZE_MAX	(4294967295U)
+#define UINTPTR_MAX	(4294967295U)
+#define UINT_FAST16_MAX	(4294967295U)
+#define UINT_FAST32_MAX	(4294967295U)
+
 typedef long long int int64_t;
 typedef long long int intmax_t;
 typedef unsigned long long int uintmax_t;
