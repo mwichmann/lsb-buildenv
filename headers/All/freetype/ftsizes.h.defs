@@ -17,6 +17,5 @@ typedef struct FT_Size_Metrics_ {
     FT_Pos height;
     FT_Pos max_advance;
 } FT_Size_Metrics;
-struct FT_Size_InternalRec_;
 typedef struct FT_Size_InternalRec_ *FT_Size_Internal;
 typedef struct FT_SizeRec_ *FT_Size;

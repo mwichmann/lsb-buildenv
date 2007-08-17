@@ -39,7 +39,6 @@ typedef struct FT_StrokeBorderRec_ {
     FT_Memory memory;
     FT_Bool valid;
 } FT_StrokeBorderRec;
-FT_StrokeBorderRec;
 typedef struct FT_StrokerRec_ *FT_Stroker;
 typedef enum {
     FT_STROKER_BORDER_LEFT = 0,

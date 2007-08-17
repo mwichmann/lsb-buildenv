@@ -51,16 +51,6 @@ extern "C" {
 
     typedef struct PS_FontInfoRec PS_FontInfoRec;
 
-     FT_Short;
-
-     FT_Short;
-
-     FT_UShort;
-
-     FT_Short;
-
-     FT_Short;
-
 
     struct PS_PrivateRec_ {
 	FT_Int unique_id;

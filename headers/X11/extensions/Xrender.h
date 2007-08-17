@@ -111,8 +111,6 @@ extern "C" {
 
     typedef struct _XLineFixed XLineFixed;
 
-     XFixed;
-
 
     struct _XTrapezoid {
 	XFixed top;

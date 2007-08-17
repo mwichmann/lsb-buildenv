@@ -146,8 +146,6 @@ extern "C" {
 	FT_DebugHook_Func debug_hooks[4];
     };
 
-     FT_Module;
-
     struct FT_RendererRec_ {
 	FT_ModuleRec root;
 	FT_Renderer_Class *clazz;
@@ -158,6 +156,7 @@ extern "C" {
 	FT_Renderer_RenderFunc render;
     };
 
+#include <freetype/ftmodapi.h>
     struct FT_GlyphSlotRec_ {
 	FT_Library library;
 	FT_Face face;
@@ -183,6 +182,7 @@ extern "C" {
 	FT_Slot_Internal internal;
     };
 
+#include <freetype/ftrender.h>
     struct FT_SubGlyphRec_ {
 	FT_Int index;
 	FT_UShort flags;
@@ -211,9 +211,8 @@ extern "C" {
 	void *other;
     };
 
-    struct FT_RasterRec_;
-
-#include <freetype/ftrender.h>
+#include <freetype/freetype.h>
+#include <freetype/ftsynth.h>
     struct FT_GlyphRec_ {
 	FT_Library library;
 	const FT_Glyph_Class *clazz;
@@ -222,11 +221,6 @@ extern "C" {
     };
 
 #include <freetype/ftglyph.h>
-     FT_DebugHook_Func;
-
-#include <freetype/ftmodapi.h>
-#include <freetype/freetype.h>
-#include <freetype/ftsynth.h>
 #include <freetype/ftstroke.h>
 
 

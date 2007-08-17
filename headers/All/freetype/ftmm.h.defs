@@ -5,7 +5,6 @@ typedef struct FT_MM_Axis_ {
     FT_Long minimum;
     FT_Long maximum;
 } FT_MM_Axis;
-FT_MM_Axis;
 typedef struct FT_Multi_Master_ {
     FT_UInt num_axis;
     FT_UInt num_designs;
