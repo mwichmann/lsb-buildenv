@@ -24,8 +24,6 @@ extern "C" {
 	long int __pad[4];
     };
 
-    long int;
-
 
     extern int mq_close(mqd_t);
     extern int mq_getattr(mqd_t, struct mq_attr *);

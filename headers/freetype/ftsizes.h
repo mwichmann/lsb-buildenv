@@ -30,8 +30,6 @@ extern "C" {
 	FT_Size_Internal internal;
     };
 
-    struct FT_Size_InternalRec_;
-
 
 
 

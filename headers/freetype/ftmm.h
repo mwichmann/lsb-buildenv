@@ -26,8 +26,6 @@ extern "C" {
 
     typedef struct FT_MM_Var_ FT_MM_Var;
 
-     FT_MM_Axis;
-
 
     struct FT_MM_Axis_ {
 	FT_String *name;

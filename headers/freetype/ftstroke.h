@@ -63,8 +63,6 @@ extern "C" {
 	FT_Memory memory;
     };
 
-     FT_StrokeBorderRec;
-
 
 
 

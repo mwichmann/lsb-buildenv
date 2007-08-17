@@ -23,7 +23,6 @@ typedef void (*FT_Module_Destructor) (FT_Module);
 typedef FT_Pointer FT_Module_Interface;
 typedef FT_Module_Interface(*FT_Module_Requester) (FT_Module,
 						   const char *);
-FT_Module;
 typedef struct FT_ListRec_ FT_ListRec;
 struct FT_RendererRec_ {
     FT_ModuleRec root;
@@ -118,7 +117,6 @@ typedef void (*FT_Renderer_GetCBoxFunc) (FT_Renderer, FT_GlyphSlot,
 					 FT_BBox *);
 typedef FT_Error(*FT_Renderer_SetModeFunc) (FT_Renderer, FT_ULong,
 					    FT_Pointer);
-struct FT_RasterRec_;
 typedef struct FT_RasterRec_ *FT_Raster;
 typedef int (*FT_Raster_NewFunc) (void *, FT_Raster *);
 typedef void (*FT_Raster_ResetFunc) (FT_Raster, unsigned char *,
@@ -191,7 +189,6 @@ typedef void (*FT_Glyph_TransformFunc) (FT_Glyph, FT_Matrix *,
 typedef void (*FT_Glyph_GetBBoxFunc) (FT_Glyph, FT_BBox *);
 typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
 					 FT_GlyphSlot);
-FT_DebugHook_Func;
 typedef int (*FT_Outline_MoveToFunc) (FT_Vector *, FT_Vector *, void *,
 				      void *);
 typedef int (*FT_Outline_LineToFunc) (FT_Vector *, FT_Vector *, void *,

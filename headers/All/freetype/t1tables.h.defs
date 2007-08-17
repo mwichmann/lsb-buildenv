@@ -27,11 +27,6 @@ typedef short unsigned int FT_UShort;
 typedef unsigned char FT_Bool;
 typedef unsigned char FT_Byte;
 typedef short int FT_Short;
-FT_Short;
-FT_Short;
-FT_UShort;
-FT_Short;
-FT_Short;
 typedef struct PS_PrivateRec_ {
     FT_Int unique_id;
     FT_Int lenIV;
