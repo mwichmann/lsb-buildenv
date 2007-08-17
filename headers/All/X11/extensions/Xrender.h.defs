@@ -20,7 +20,12 @@
 #define PictStandardA1	4
 #define PictStandardNUM	5
 
-typedef struct _XTrapezoid XTrapezoid;
+typedef struct _XTrapezoid {
+    XFixed top;
+    XFixed bottom;
+    XLineFixed left;
+    XLineFixed right;
+} XTrapezoid;
 typedef long unsigned int GlyphSet;
 typedef struct {
     short unsigned int red;
@@ -153,6 +158,10 @@ typedef struct _XTriangle {
     XPointFixed p2;
     XPointFixed p3;
 } XTriangle;
+typedef struct _XLineFixed {
+    XPointFixed p1;
+    XPointFixed p2;
+} XLineFixed;
 extern int XRenderQuerySubpixelOrder(Display *, int);
 extern void XRenderFreeGlyphSet(Display *, GlyphSet);
 extern void XRenderFillRectangles(Display *, int, Picture,

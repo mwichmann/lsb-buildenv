@@ -1,2 +1,5 @@
 
-typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

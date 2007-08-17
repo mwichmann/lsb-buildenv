@@ -3,12 +3,8 @@
 
 #include <GL/gl.h>
 #include <fontconfig/fontconfig.h>
-#include <fontconfig/fcfreetype.h>
 #include <X11/extensions/Xrender.h>
 #include <freetype/ftoutln.h>
-#include <freetype/freetype.h>
-#include <freetype/ftglyph.h>
-#include <freetype/t1tables.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,46 +34,42 @@ extern "C" {
 
     typedef struct _XftGlyphSpec XftGlyphSpec;
 
-#include <pango-1.0/pango/pangoxft.h>
-#if defined __i386__
-/* IA32 */
     typedef struct _XftCharSpec XftCharSpec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct _XftFtFile XftFtFile;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct _XftFontInfo XftFontInfo;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct _XftCharFontSpec XftCharFontSpec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct _XftGlyphFontSpec XftGlyphFontSpec;
 
-#endif
 
 
 
 
+    struct _XftColor {
+	unsigned long int pixel;
+	XRenderColor color;
+    };
 
 
+    struct _XftFont {
+	int ascent;
+	int descent;
+	int height;
+	int max_advance_width;
+	FcCharSet *charset;
+	FcPattern **pattern;
+    };
 
 
+    struct _XftGlyphSpec {
+	FT_UInt glyph;
+	short x;
+	short y;
+    };
 
-
-
-
-#if defined __i386__
-/* IA32 */
 
     struct _XftCharSpec {
 	FcChar32 ucs4;
@@ -85,46 +77,12 @@ extern "C" {
 	short int y;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
-    struct _XftFtFile {
-	struct _XftFtFile *next;
-	int ref;
-	char *file;
-	int id;
-	FT_F26Dot6 xsize;
-	FT_F26Dot6 ysize;
-	FT_Matrix matrix;
-	int lock;
-	FT_Face face;
-    };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
-    struct _XftFontInfo {
-	FcChar32 hash;
-	XftFtFile *file;
-	FT_F26Dot6 xsize;
-	FT_F26Dot6 ysize;
-	FcBool antialias;
-	FcBool embolden;
-	int rgba;
-	FT_Matrix matrix;
-	FcBool transform;
-	FT_Int load_flags;
-	FcBool render;
-	int spacing;
-	FcBool minspace;
-	int char_width;
-    };
 
-#endif
-#if defined __i386__
-/* IA32 */
+
+
 
     struct _XftCharFontSpec {
 	XftFont *font;
@@ -133,9 +91,6 @@ extern "C" {
 	short int y;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct _XftGlyphFontSpec {
 	XftFont *font;
@@ -144,7 +99,6 @@ extern "C" {
 	short int y;
     };
 
-#endif
 
 #ifdef __cplusplus
 }

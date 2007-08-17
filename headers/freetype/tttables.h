@@ -2,7 +2,6 @@
 #define _FREETYPE_TTTABLES_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftmm.h>
 #include <freetype/t1tables.h>
@@ -14,14 +13,9 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_CharMapRec_ *FT_CharMap;
 
-#endif
 #include <freetype/freetype.h>
-#if defined __i386__
-/* IA32 */
     typedef enum {
 	ft_sfnt_head = 0,
 	ft_sfnt_maxp = 1,
@@ -33,7 +27,6 @@ extern "C" {
 	sfnt_max = 7
     } FT_Sfnt_Tag;
 
-#endif
 
 #ifdef __cplusplus
 }

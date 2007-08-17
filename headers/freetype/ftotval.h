@@ -20,11 +20,8 @@ extern "C" {
 #define FT_VALIDATE_JSTF	0x1000
 
 
-#if defined __i386__
-/* IA32 */
     typedef const FT_Byte *FT_Bytes;
 
-#endif
 
 #ifdef __cplusplus
 }

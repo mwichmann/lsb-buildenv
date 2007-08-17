@@ -2,8 +2,8 @@
 #define _QCANVAS_H_
 
 #include <X11/Xlib.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 
 #ifdef __cplusplus
 extern "C" {

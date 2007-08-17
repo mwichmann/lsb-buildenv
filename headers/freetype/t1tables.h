@@ -28,62 +28,29 @@ extern "C" {
 #define t1_blend_underline_thickness	T1_BLEND_UNDERLINE_THICKNESS
 
 
-#if defined __i386__
-/* IA32 */
     typedef int FT_Error;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int FT_Int;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef long int FT_Long;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef char FT_String;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef long int FT_Fixed;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef short unsigned int FT_UShort;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef unsigned char FT_Bool;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef unsigned char FT_Byte;
 
-#endif
 #include <freetype/freetype.h>
-#if defined __i386__
-/* IA32 */
     typedef short int FT_Short;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct PS_PrivateRec_ PS_PrivateRec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct PS_FontInfoRec PS_FontInfoRec;
 
-#endif
      FT_Short;
 
      FT_Short;
@@ -94,8 +61,6 @@ extern "C" {
 
      FT_Short;
 
-#if defined __i386__
-/* IA32 */
 
     struct PS_PrivateRec_ {
 	FT_Int unique_id;
@@ -125,9 +90,6 @@ extern "C" {
 	FT_Short min_feature[2];
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct PS_FontInfoRec {
 	FT_String *version;
@@ -141,7 +103,6 @@ extern "C" {
 	FT_UShort underline_thickness;
     };
 
-#endif
 
 #ifdef __cplusplus
 }

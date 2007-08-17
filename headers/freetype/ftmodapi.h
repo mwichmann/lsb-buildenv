@@ -28,35 +28,20 @@ extern "C" {
 #define ft_module_styler	FT_MODULE_STYLER
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_ModuleRec_ *FT_Module;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Module_Class_ FT_Module_Class;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_LibraryRec_ *FT_Library;
 
-#endif
 #include <freetype/ftrender.h>
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_DebugHook_Func) (void *);
 
-#endif
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
 
 #ifdef __cplusplus
 }

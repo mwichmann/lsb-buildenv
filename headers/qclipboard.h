@@ -1,9 +1,9 @@
 #ifndef _QCLIPBOARD_H_
 #define _QCLIPBOARD_H_
 
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/ftrender.h>
 #include <freetype/ftmm.h>

@@ -20,34 +20,19 @@ extern "C" {
 #define ft_glyph_bbox_unscaled	FT_GLYPH_BBOX_UNSCALED
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Matrix_ FT_Matrix;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_BBox_ FT_BBox;
 
-#endif
 #include <freetype/ftoutln.h>
-#if defined __i386__
-/* IA32 */
     typedef enum FT_Render_Mode_ FT_Render_Mode;
 
-#endif
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
 
 #ifdef __cplusplus
 }

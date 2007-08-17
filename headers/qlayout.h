@@ -1,8 +1,8 @@
 #ifndef _QLAYOUT_H_
 #define _QLAYOUT_H_
 
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftpfr.h>
 #include <freetype/ftmm.h>
 #include <freetype/t1tables.h>

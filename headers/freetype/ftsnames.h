@@ -12,13 +12,8 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_SfntName_ FT_SfntName;
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_SfntName_ {
 	FT_UShort platform_id;
@@ -29,7 +24,6 @@ extern "C" {
 	FT_UInt string_len;
     };
 
-#endif
 
 #ifdef __cplusplus
 }

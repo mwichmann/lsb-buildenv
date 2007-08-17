@@ -1,8 +1,8 @@
 #ifndef _QBITMAP_H_
 #define _QBITMAP_H_
 
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftbdf.h>
 #include <freetype/t1tables.h>
 

@@ -109,10 +109,17 @@ extern "C" {
 
     typedef struct _XTriangle XTriangle;
 
+    typedef struct _XLineFixed XLineFixed;
+
      XFixed;
 
 
-
+    struct _XTrapezoid {
+	XFixed top;
+	XFixed bottom;
+	XLineFixed left;
+	XLineFixed right;
+    };
 
 
     struct _XPointFixed {
@@ -251,6 +258,12 @@ extern "C" {
 	XPointFixed p1;
 	XPointFixed p2;
 	XPointFixed p3;
+    };
+
+
+    struct _XLineFixed {
+	XPointFixed p1;
+	XPointFixed p2;
     };
 
 

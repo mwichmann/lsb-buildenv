@@ -4,3 +4,7 @@
 #define ft_glyph_bbox_subpixels	FT_GLYPH_BBOX_SUBPIXELS
 #define ft_glyph_bbox_truncate	FT_GLYPH_BBOX_TRUNCATE
 #define ft_glyph_bbox_unscaled	FT_GLYPH_BBOX_UNSCALED
+
+typedef struct FT_Matrix_ FT_Matrix;
+typedef struct FT_BBox_ FT_BBox;
+typedef enum FT_Render_Mode_ FT_Render_Mode;

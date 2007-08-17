@@ -1,2 +1,5 @@
 
-typedef const FT_Byte *FT_Bytes;
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

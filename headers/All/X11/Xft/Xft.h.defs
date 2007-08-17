@@ -14,6 +14,41 @@
 #define XftVersion	XFT_VERSION
 
 typedef struct _XftDraw XftDraw;
-typedef struct _XftColor XftColor;
-typedef struct _XftFont XftFont;
-typedef struct _XftGlyphSpec XftGlyphSpec;
+typedef struct _XftColor {
+    unsigned long int pixel;
+    XRenderColor color;
+} XftColor;
+typedef struct _XftFont {
+    int ascent;
+    int descent;
+    int height;
+    int max_advance_width;
+    FcCharSet *charset;
+    FcPattern **pattern;
+} XftFont;
+typedef struct _XftGlyphSpec {
+    FT_UInt glyph;
+    short x;
+    short y;
+} XftGlyphSpec;
+typedef struct _XftCharSpec {
+    FcChar32 ucs4;
+    short int x;
+    short int y;
+} XftCharSpec;
+typedef struct _XftFtFile
+ XftFtFile;
+typedef struct _XftFontInfo
+ XftFontInfo;
+typedef struct _XftCharFontSpec {
+    XftFont *font;
+    FcChar32 ucs4;
+    short int x;
+    short int y;
+} XftCharFontSpec;
+typedef struct _XftGlyphFontSpec {
+    XftFont *font;
+    FT_UInt glyph;
+    short int x;
+    short int y;
+} XftGlyphFontSpec;

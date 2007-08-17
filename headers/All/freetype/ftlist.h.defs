@@ -1,4 +1,22 @@
 
+struct FT_ListNodeRec_ {
+    FT_ListNode prev;
+    FT_ListNode next;
+    void *data;
+};
+typedef struct FT_ListNodeRec_ *FT_ListNode;
+typedef struct FT_ListRec_ *FT_List;
+struct FT_MemoryRec_ {
+    void *user;
+    FT_Alloc_Func alloc;
+    FT_Free_Func free;
+    FT_Realloc_Func realloc;
+};
+typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
+typedef void (*FT_Free_Func) (FT_Memory, void *);
+typedef void *(*FT_Realloc_Func) (FT_Memory, long int, long int, void *);
+typedef void (*FT_List_Destructor) (FT_Memory, void *, void *);
+typedef FT_Error(*FT_List_Iterator) (FT_ListNode, void *);
 extern void FT_List_Finalize(FT_List, FT_List_Destructor, FT_Memory,
 			     void *);
 extern void FT_List_Insert(FT_List, FT_ListNode);

@@ -5,14 +5,11 @@
 #include <X11/X.h>
 #include <X11/Xutil.h>
 #include <fontconfig/fontconfig.h>
-#include <fontconfig/fcfreetype.h>
 #include <pango-1.0/pango/pangoxft.h>
 #include <X11/extensions/render.h>
 #include <X11/extensions/Xrender.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
-#include <freetype/ftglyph.h>
-#include <freetype/t1tables.h>
 #include <X11/Xft/Xft.h>
 
 #ifdef __cplusplus

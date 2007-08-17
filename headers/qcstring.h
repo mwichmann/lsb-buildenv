@@ -1,8 +1,8 @@
 #ifndef _QCSTRING_H_
 #define _QCSTRING_H_
 
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftsnames.h>
 #include <freetype/t1tables.h>
 

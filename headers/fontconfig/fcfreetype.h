@@ -3,6 +3,7 @@
 
 #include <fontconfig/fontconfig.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 
 #ifdef __cplusplus
 extern "C" {

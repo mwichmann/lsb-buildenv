@@ -11,53 +11,27 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_ListNodeRec_ *FT_ListNode;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_ListRec_ *FT_List;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Free_Func) (FT_Memory, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void *(*FT_Realloc_Func) (FT_Memory, long int, long int,
 				      void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_List_Destructor) (FT_Memory, void *, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_List_Iterator) (FT_ListNode, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_ListNodeRec_ {
 	FT_ListNode prev;
 	FT_ListNode next;
 	void *data;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_MemoryRec_ {
 	void *user;
 	FT_Alloc_Func alloc;
@@ -65,7 +39,6 @@ extern "C" {
 	FT_Realloc_Func realloc;
     };
 
-#endif
 
     extern void FT_List_Finalize(FT_List, FT_List_Destructor, FT_Memory,
 				 void *);

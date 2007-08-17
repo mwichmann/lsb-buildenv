@@ -17,238 +17,112 @@ extern "C" {
     typedef unsigned int FT_UInt;
 
 #include <freetype/ftmm.h>
-#include <fontconfig/fcfreetype.h>
     typedef struct FT_Bitmap_ FT_Bitmap;
 
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Generic_Finalizer) (void *);
 
-#endif
 #include <freetype/ftsizes.h>
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Module_Constructor) (FT_Module);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Module_Destructor) (FT_Module);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Pointer FT_Module_Interface;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Module_Interface(*FT_Module_Requester) (FT_Module,
 						       const char *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_ListRec_ FT_ListRec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_ModuleRec_ FT_ModuleRec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Glyph_Metrics_ FT_Glyph_Metrics;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_GlyphLoadRec_ FT_GlyphLoadRec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_GlyphLoaderRec_ *FT_GlyphLoader;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Renderer_RenderFunc) (FT_Renderer, FT_Renderer,
 					       FT_GlyphSlot, FT_GlyphSlot,
 					       FT_UInt, FT_UInt,
 					       FT_Vector *, FT_Vector *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Renderer_TransformFunc) (FT_Renderer,
 						  FT_GlyphSlot,
 						  FT_Matrix *,
 						  FT_Vector *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Renderer_GetCBoxFunc) (FT_Renderer, FT_GlyphSlot,
 					     FT_BBox *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Renderer_SetModeFunc) (FT_Renderer, FT_ULong,
 						FT_Pointer);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_RasterRec_ *FT_Raster;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Raster_NewFunc) (void *, FT_Raster *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Raster_ResetFunc) (FT_Raster, unsigned char *,
 					 long unsigned int);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Raster_SetModeFunc) (FT_Raster, long unsigned int,
 					  void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Span_ FT_Span;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_SpanFunc) (int, int, int, int, FT_Span *, FT_Span *,
 				 void *, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Raster_BitTest_Func) (int, int, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Raster_BitSet_Func) (int, int, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Raster_Params_ FT_Raster_Params;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Raster_RenderFunc) (FT_Raster, FT_Raster,
 					 FT_Raster_Params *,
 					 FT_Raster_Params *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Raster_DoneFunc) (FT_Raster);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Raster_Funcs_ FT_Raster_Funcs;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Renderer_Class_ FT_Renderer_Class;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Glyph_Class_ FT_Glyph_Class;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
 					  FT_GlyphSlot);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Glyph_DoneFunc) (FT_Glyph);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Glyph_CopyFunc) (FT_Glyph, FT_Glyph);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Glyph_TransformFunc) (FT_Glyph, FT_Matrix *,
 					    FT_Vector *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Glyph_GetBBoxFunc) (FT_Glyph, FT_BBox *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_Glyph,
 					     FT_GlyphSlot, FT_GlyphSlot);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Outline_MoveToFunc) (FT_Vector *, FT_Vector *, void *,
 					  void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Outline_LineToFunc) (FT_Vector *, FT_Vector *, void *,
 					  void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Outline_ConicToFunc) (FT_Vector *, FT_Vector *,
 					   void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef int (*FT_Outline_CubicToFunc) (FT_Vector *, FT_Vector *,
 					   FT_Vector *, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef enum {
 	FT_ORIENTATION_TRUETYPE = 0,
 	FT_ORIENTATION_POSTSCRIPT = 1,
@@ -256,9 +130,6 @@ extern "C" {
 	FT_ORIENTATION_FILL_LEFT = 1
     } FT_Orientation;
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_LibraryRec_ {
 	FT_Memory memory;
 	FT_Generic generic;
@@ -275,11 +146,8 @@ extern "C" {
 	FT_DebugHook_Func debug_hooks[4];
     };
 
-#endif
      FT_Module;
 
-#if defined __i386__
-/* IA32 */
     struct FT_RendererRec_ {
 	FT_ModuleRec root;
 	FT_Renderer_Class *clazz;
@@ -290,9 +158,6 @@ extern "C" {
 	FT_Renderer_RenderFunc render;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_GlyphSlotRec_ {
 	FT_Library library;
 	FT_Face face;
@@ -318,9 +183,6 @@ extern "C" {
 	FT_Slot_Internal internal;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_SubGlyphRec_ {
 	FT_Int index;
 	FT_UShort flags;
@@ -329,9 +191,6 @@ extern "C" {
 	FT_Matrix transform;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_Slot_InternalRec_ {
 	FT_GlyphLoader loader;
 	FT_UInt flags;
@@ -341,9 +200,6 @@ extern "C" {
 	void *glyph_hints;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_GlyphLoaderRec_ {
 	FT_Memory memory;
 	FT_UInt max_points;
@@ -355,15 +211,9 @@ extern "C" {
 	void *other;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_RasterRec_;
 
-#endif
 #include <freetype/ftrender.h>
-#if defined __i386__
-/* IA32 */
     struct FT_GlyphRec_ {
 	FT_Library library;
 	const FT_Glyph_Class *clazz;
@@ -371,7 +221,6 @@ extern "C" {
 	FT_Vector advance;
     };
 
-#endif
 #include <freetype/ftglyph.h>
      FT_DebugHook_Func;
 
@@ -382,14 +231,9 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_ModuleRec_ {
 	FT_Module_Class *clazz;
@@ -398,9 +242,6 @@ extern "C" {
 	FT_Generic generic;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Glyph_Metrics_ {
 	FT_Pos width;
@@ -413,9 +254,6 @@ extern "C" {
 	FT_Pos vertAdvance;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_GlyphLoadRec_ {
 	FT_Outline outline;
@@ -424,9 +262,6 @@ extern "C" {
 	FT_SubGlyph subglyphs;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Span_ {
 	short int x;
@@ -434,9 +269,6 @@ extern "C" {
 	unsigned char coverage;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Raster_Params_ {
 	const FT_Bitmap *target;
@@ -450,9 +282,6 @@ extern "C" {
 	FT_BBox clip_box;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Raster_Funcs_ {
 	FT_Glyph_Format glyph_format;
@@ -463,9 +292,6 @@ extern "C" {
 	FT_Raster_DoneFunc raster_done;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Renderer_Class_ {
 	FT_Module_Class root;
@@ -477,9 +303,6 @@ extern "C" {
 	FT_Raster_Funcs *raster_class;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Glyph_Class_ {
 	FT_Long glyph_size;
@@ -492,9 +315,6 @@ extern "C" {
 	FT_Glyph_PrepareFunc glyph_prepare;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Outline_Funcs_ {
 	FT_Outline_MoveToFunc move_to;
@@ -505,7 +325,6 @@ extern "C" {
 	FT_Pos delta;
     };
 
-#endif
 
     extern void FT_Outline_Reverse(FT_Outline *);
     extern FT_Error FT_Outline_New(FT_Library, FT_UInt, FT_Int,
