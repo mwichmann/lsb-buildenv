@@ -2,7 +2,6 @@
 #define _FREETYPE_FREETYPE_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftglyph.h>
 #include <freetype/ftbdf.h>
@@ -106,16 +105,11 @@ extern "C" {
 #define ft_render_mode_normal	FT_RENDER_MODE_NORMAL
 
 
-#if defined __i386__
-/* IA32 */
     typedef void *FT_Pointer;
 
-#endif
 #include <freetype/ftmodapi.h>
 #include <freetype/ftrender.h>
 #include <freetype/ftoutln.h>
-#if defined __i386__
-/* IA32 */
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
 	FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -138,38 +132,20 @@ extern "C" {
 	FT_ENCODING_APPLE_ROMAN = 1634889070
     } FT_Encoding;
 
-#endif
 #include <freetype/tttables.h>
-#if defined __i386__
-/* IA32 */
     typedef long int FT_F26Dot6;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef union FT_StreamDesc_ FT_StreamDesc;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
 						   long unsigned int,
 						   unsigned char *,
 						   long unsigned int);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef void (*FT_Stream_CloseFunc) (FT_Stream);
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Open_Args_ FT_Open_Args;
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_StreamRec_ {
 	unsigned char *base;
 	long unsigned int size;
@@ -183,17 +159,11 @@ extern "C" {
 	unsigned char *limit;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     union FT_StreamDesc_ {
 	long int value;
 	void *pointer;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Open_Args_ {
 	FT_UInt flags;
@@ -206,7 +176,6 @@ extern "C" {
 	FT_Parameter *params;
     };
 
-#endif
 
     extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
     extern FT_Fixed FT_RoundFix(FT_Fixed);

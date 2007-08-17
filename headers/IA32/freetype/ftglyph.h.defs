@@ -1,4 +1,5 @@
 
-typedef struct FT_Matrix_ FT_Matrix;
-typedef struct FT_BBox_ FT_BBox;
-typedef enum FT_Render_Mode_ FT_Render_Mode;
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

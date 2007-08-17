@@ -2,13 +2,13 @@
 #define _QBUTTON_H_
 
 #include <X11/Xlib.h>
-#include <pango-1.0/pango/pangoft2.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftrender.h>
 #include <freetype/ftmm.h>
 #include <freetype/ftsizes.h>
 #include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
 #include <freetype/t1tables.h>
 
 #ifdef __cplusplus

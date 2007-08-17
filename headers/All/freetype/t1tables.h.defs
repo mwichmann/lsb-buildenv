@@ -18,8 +18,55 @@
 #define t1_blend_underline_position	T1_BLEND_UNDERLINE_POSITION
 #define t1_blend_underline_thickness	T1_BLEND_UNDERLINE_THICKNESS
 
+typedef int FT_Error;
+typedef int FT_Int;
+typedef long int FT_Long;
+typedef char FT_String;
+typedef long int FT_Fixed;
+typedef short unsigned int FT_UShort;
+typedef unsigned char FT_Bool;
+typedef unsigned char FT_Byte;
+typedef short int FT_Short;
 FT_Short;
 FT_Short;
 FT_UShort;
 FT_Short;
 FT_Short;
+typedef struct PS_PrivateRec_ {
+    FT_Int unique_id;
+    FT_Int lenIV;
+    FT_Byte num_blue_values;
+    FT_Byte num_other_blues;
+    FT_Byte num_family_blues;
+    FT_Byte num_family_other_blues;
+    FT_Short blue_values[14];
+    FT_Short other_blues[10];
+    FT_Short family_blues[14];
+    FT_Short family_other_blues[10];
+    FT_Fixed blue_scale;
+    FT_Int blue_shift;
+    FT_Int blue_fuzz;
+    FT_UShort standard_width[1];
+    FT_UShort standard_height[1];
+    FT_Byte num_snap_widths;
+    FT_Byte num_snap_heights;
+    FT_Bool force_bold;
+    FT_Bool round_stem_up;
+    FT_Short snap_widths[13];
+    FT_Short snap_heights[13];
+    FT_Fixed expansion_factor;
+    FT_Long language_group;
+    FT_Long password;
+    FT_Short min_feature[2];
+} PS_PrivateRec;
+typedef struct PS_FontInfoRec {
+    FT_String *version;
+    FT_String *notice;
+    FT_String *full_name;
+    FT_String *family_name;
+    FT_String *weight;
+    FT_Long italic_angle;
+    FT_Bool is_fixed_pitch;
+    FT_Short underline_position;
+    FT_UShort underline_thickness;
+} PS_FontInfoRec;

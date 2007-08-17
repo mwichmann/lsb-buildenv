@@ -2,6 +2,7 @@
 #define _FREETYPE_FTIMAGE_H_
 
 #include <GL/gl.h>
+#include <freetype/ftoutln.h>
 
 #ifdef __cplusplus
 extern "C" {

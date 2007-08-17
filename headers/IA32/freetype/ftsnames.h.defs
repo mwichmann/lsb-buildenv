@@ -1,9 +1,5 @@
 
-typedef struct FT_SfntName_ {
-    FT_UShort platform_id;
-    FT_UShort encoding_id;
-    FT_UShort language_id;
-    FT_UShort name_id;
-    FT_Byte *string;
-    FT_UInt string_len;
-} FT_SfntName;
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

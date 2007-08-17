@@ -1,30 +1,5 @@
 
-typedef struct FT_Vector_ FT_Vector;
-typedef struct FT_Outline_ FT_Outline;
-typedef struct FT_GlyphRec_ *FT_Glyph;
-typedef FT_Fixed FT_Angle;
-typedef enum {
-    FT_STROKER_LINECAP_BUTT = 0,
-    FT_STROKER_LINECAP_ROUND = 1,
-    FT_STROKER_LINECAP_SQUARE = 2
-} FT_Stroker_LineCap;
-typedef enum {
-    FT_STROKER_LINEJOIN_ROUND = 0,
-    FT_STROKER_LINEJOIN_BEVEL = 1,
-    FT_STROKER_LINEJOIN_MITER = 2
-} FT_Stroker_LineJoin;
-typedef struct FT_StrokeBorderRec_ {
-    FT_UInt num_points;
-    FT_UInt max_points;
-    FT_Vector *points;
-    FT_Byte *tags;
-    FT_Bool movable;
-    FT_Int start;
-    FT_Memory memory;
-    FT_Bool valid;
-} FT_StrokeBorderRec;
-typedef struct FT_StrokerRec_ *FT_Stroker;
-typedef enum {
-    FT_STROKER_BORDER_LEFT = 0,
-    FT_STROKER_BORDER_RIGHT = 1
-} FT_StrokerBorder;
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

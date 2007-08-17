@@ -2,9 +2,9 @@
 #define _QAPPLICATION_H_
 
 #include <X11/Xlib.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/ftrender.h>
 #include <freetype/ftmm.h>

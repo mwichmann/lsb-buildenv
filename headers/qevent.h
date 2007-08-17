@@ -1,7 +1,6 @@
 #ifndef _QEVENT_H_
 #define _QEVENT_H_
 
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/ftotval.h>

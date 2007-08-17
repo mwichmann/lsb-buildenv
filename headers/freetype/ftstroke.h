@@ -15,66 +15,37 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Vector_ FT_Vector;
 
-#endif
 #include <freetype/ftrender.h>
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Outline_ FT_Outline;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_GlyphRec_ *FT_Glyph;
 
-#endif
 #include <freetype/ftoutln.h>
-#if defined __i386__
-/* IA32 */
     typedef FT_Fixed FT_Angle;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef enum {
 	FT_STROKER_LINECAP_BUTT = 0,
 	FT_STROKER_LINECAP_ROUND = 1,
 	FT_STROKER_LINECAP_SQUARE = 2
     } FT_Stroker_LineCap;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef enum {
 	FT_STROKER_LINEJOIN_ROUND = 0,
 	FT_STROKER_LINEJOIN_BEVEL = 1,
 	FT_STROKER_LINEJOIN_MITER = 2
     } FT_Stroker_LineJoin;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_StrokeBorderRec_ FT_StrokeBorderRec;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_StrokerRec_ *FT_Stroker;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef enum {
 	FT_STROKER_BORDER_LEFT = 0,
 	FT_STROKER_BORDER_RIGHT = 1
     } FT_StrokerBorder;
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_StrokerRec_ {
 	FT_Angle angle_in;
 	FT_Angle angle_out;
@@ -92,23 +63,14 @@ extern "C" {
 	FT_Memory memory;
     };
 
-#endif
      FT_StrokeBorderRec;
 
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_StrokeBorderRec_ {
 	FT_UInt num_points;
@@ -121,7 +83,6 @@ extern "C" {
 	FT_Bool valid;
     };
 
-#endif
 
 #ifdef __cplusplus
 }

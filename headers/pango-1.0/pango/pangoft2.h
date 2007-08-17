@@ -2,12 +2,13 @@
 #define _PANGO_1_0_PANGO_PANGOFT2_H_
 
 #include <fontconfig/fontconfig.h>
-#include <fontconfig/fcfreetype.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
 #include <pango-1.0/pango/pangoxft.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
+#include <freetype/ftimage.h>
 
 #ifdef __cplusplus
 extern "C" {

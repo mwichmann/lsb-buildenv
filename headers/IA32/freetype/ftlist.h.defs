@@ -1,8 +1,5 @@
 
-typedef struct FT_ListNodeRec_ *FT_ListNode;
-typedef struct FT_ListRec_ *FT_List;
-typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
-typedef void (*FT_Free_Func) (FT_Memory, void *);
-typedef void *(*FT_Realloc_Func) (FT_Memory, long int, long int, void *);
-typedef void (*FT_List_Destructor) (FT_Memory, void *, void *);
-typedef FT_Error(*FT_List_Iterator) (FT_ListNode, void *);
+/*
+ * This header is architecture neutral
+ * Please refer to the generic specification for details
+ */

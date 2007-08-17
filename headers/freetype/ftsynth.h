@@ -2,7 +2,6 @@
 #define _FREETYPE_FTSYNTH_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftglyph.h>
 #include <freetype/ftmm.h>
@@ -18,12 +17,10 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
     typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
 
-#endif
 #include <freetype/ftrender.h>
+#include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 
 #ifdef __cplusplus

@@ -1,7 +1,6 @@
 #ifndef _QACCEL_H_
 #define _QACCEL_H_
 
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/tttables.h>

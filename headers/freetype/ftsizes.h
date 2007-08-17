@@ -2,7 +2,6 @@
 #define _FREETYPE_FTSIZES_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/t1tables.h>
 
 #ifdef __cplusplus
@@ -12,34 +11,18 @@ extern "C" {
 
 
 
-#if defined __i386__
-/* IA32 */
     typedef long int FT_Pos;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Generic_ FT_Generic;
 
-#endif
+#include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Size_Metrics_ FT_Size_Metrics;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Size_InternalRec_ *FT_Size_Internal;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_SizeRec_ *FT_Size;
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_SizeRec_ {
 	FT_Face face;
 	FT_Generic generic;
@@ -47,20 +30,11 @@ extern "C" {
 	FT_Size_Internal internal;
     };
 
-#endif
-#if defined __i386__
-/* IA32 */
     struct FT_Size_InternalRec_;
 
-#endif
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
-#if defined __i386__
-/* IA32 */
 
     struct FT_Size_Metrics_ {
 	FT_UShort x_ppem;
@@ -73,7 +47,6 @@ extern "C" {
 	FT_Pos max_advance;
     };
 
-#endif
 
 #ifdef __cplusplus
 }

@@ -2,7 +2,6 @@
 #define _FREETYPE_FTPFR_H_
 
 #include <GL/gl.h>
-#include <fontconfig/fcfreetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/ftsizes.h>

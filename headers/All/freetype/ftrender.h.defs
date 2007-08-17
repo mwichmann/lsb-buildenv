@@ -7,3 +7,7 @@
 #define FTRenderer_render	FT_Renderer_RenderFunc
 #define FTRenderer_setMode	FT_Renderer_SetModeFunc
 #define FTRenderer_transform	FT_Renderer_TransformFunc
+
+typedef enum FT_Glyph_Format_ FT_Glyph_Format;
+typedef struct FT_RendererRec_ *FT_Renderer;
+typedef struct FT_Parameter_ FT_Parameter;

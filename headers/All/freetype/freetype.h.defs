@@ -87,6 +87,60 @@
 #define ft_render_mode_mono	FT_RENDER_MODE_MONO
 #define ft_render_mode_normal	FT_RENDER_MODE_NORMAL
 
+typedef void *FT_Pointer;
+typedef enum FT_Encoding_ {
+    FT_ENCODING_NONE = 0,
+    FT_ENCODING_MS_SYMBOL = 1937337698,
+    FT_ENCODING_UNICODE = 1970170211,
+    FT_ENCODING_SJIS = 1936353651,
+    FT_ENCODING_GB2312 = 1734484000,
+    FT_ENCODING_BIG5 = 1651074869,
+    FT_ENCODING_WANSUNG = 2002873971,
+    FT_ENCODING_JOHAB = 1785686113,
+    FT_ENCODING_MS_SJIS = 1936353651,
+    FT_ENCODING_MS_GB2312 = 1734484000,
+    FT_ENCODING_MS_BIG5 = 1651074869,
+    FT_ENCODING_MS_WANSUNG = 2002873971,
+    FT_ENCODING_MS_JOHAB = 1785686113,
+    FT_ENCODING_ADOBE_STANDARD = 1094995778,
+    FT_ENCODING_ADOBE_EXPERT = 1094992453,
+    FT_ENCODING_ADOBE_CUSTOM = 1094992451,
+    FT_ENCODING_ADOBE_LATIN_1 = 1818326065,
+    FT_ENCODING_OLD_LATIN_2 = 1818326066,
+    FT_ENCODING_APPLE_ROMAN = 1634889070
+} FT_Encoding;
+typedef long int FT_F26Dot6;
+struct FT_StreamRec_ {
+    unsigned char *base;
+    long unsigned int size;
+    long unsigned int pos;
+    FT_StreamDesc descriptor;
+    FT_StreamDesc pathname;
+    FT_Stream_IoFunc read;
+    FT_Stream_CloseFunc close;
+    FT_Memory memory;
+    unsigned char *cursor;
+    unsigned char *limit;
+};
+typedef union FT_StreamDesc_ {
+    long int value;
+    void *pointer;
+} FT_StreamDesc;
+typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
+					       long unsigned int,
+					       unsigned char *,
+					       long unsigned int);
+typedef void (*FT_Stream_CloseFunc) (FT_Stream);
+typedef struct FT_Open_Args_ {
+    FT_UInt flags;
+    const FT_Byte *memory_base;
+    FT_Long memory_size;
+    FT_String *pathname;
+    FT_Stream stream;
+    FT_Module driver;
+    FT_Int num_params;
+    FT_Parameter *params;
+} FT_Open_Args;
 extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
 extern FT_Fixed FT_RoundFix(FT_Fixed);
 extern FT_Fixed FT_CeilFix(FT_Fixed);

@@ -22,32 +22,20 @@ extern "C" {
 #define FTRenderer_transform	FT_Renderer_TransformFunc
 
 
-#if defined __i386__
-/* IA32 */
     typedef enum FT_Glyph_Format_ FT_Glyph_Format;
 
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct FT_RendererRec_ *FT_Renderer;
 
-#endif
 #include <freetype/ftmodapi.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftsynth.h>
 #include <freetype/ftstroke.h>
-#if defined __i386__
-/* IA32 */
     typedef struct FT_Parameter_ FT_Parameter;
 
-#endif
 #include <freetype/freetype.h>
-#if defined __i386__
-/* IA32 */
 
 
 
-#endif
 
 #ifdef __cplusplus
 }
