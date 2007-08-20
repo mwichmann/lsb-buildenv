@@ -35,15 +35,60 @@ extern "C" {
 #define PictStandardNUM	5
 
 
-    typedef struct _XTrapezoid XTrapezoid;
+
+
 
     typedef long unsigned int GlyphSet;
 
+    typedef int XFixed;
+
+    typedef struct _XPointFixed XPointFixed;
+
+    typedef struct _XCircle XCircle;
+
+    typedef double XDouble;
+
+    typedef struct _XSpanFix XSpanFix;
+
+    typedef struct _XLineFixed XLineFixed;
+
+
+    struct _XPointFixed {
+	XFixed x;
+	XFixed y;
+    };
+
+
+    struct _XCircle {
+	XFixed x;
+	XFixed y;
+	XFixed radius;
+    };
+
+
+    struct _XSpanFix {
+	XFixed left;
+	XFixed right;
+	XFixed y;
+    };
+
+
+    struct _XLineFixed {
+	XPointFixed p1;
+	XPointFixed p2;
+    };
+
+
+/* Default Header Section for X11/extensions/Xrender.h*/
+
+
+    typedef struct _XTrapezoid XTrapezoid;
+
     typedef struct {
-	short unsigned int red;
-	short unsigned int green;
-	short unsigned int blue;
-	short unsigned int alpha;
+	unsigned short red;
+	unsigned short green;
+	unsigned short blue;
+	unsigned short alpha;
     } XRenderColor;
 
     typedef long unsigned int Glyph;
@@ -51,14 +96,14 @@ extern "C" {
     typedef long unsigned int PictFormat;
 
     typedef struct {
-	short int red;
-	short int redMask;
-	short int green;
-	short int greenMask;
-	short int blue;
-	short int blueMask;
-	short int alpha;
-	short int alphaMask;
+	short red;
+	short redMask;
+	short green;
+	short greenMask;
+	short blue;
+	short blueMask;
+	short alpha;
+	short alphaMask;
     } XRenderDirectFormat;
 
     typedef struct {
@@ -69,10 +114,6 @@ extern "C" {
 	Colormap colormap;
     } XRenderPictFormat;
 
-    typedef int XFixed;
-
-    typedef struct _XPointFixed XPointFixed;
-
     typedef struct _XGlyphInfo XGlyphInfo;
 
     typedef struct _XFilters XFilters;
@@ -80,8 +121,6 @@ extern "C" {
     typedef struct _XTransform XTransform;
 
     typedef struct _XAnimCursor XAnimCursor;
-
-    typedef struct _XCircle XCircle;
 
     typedef struct _XRadialGradient XRadialGradient;
 
@@ -93,13 +132,9 @@ extern "C" {
 
     typedef struct _XLinearGradient XLinearGradient;
 
-    typedef double XDouble;
-
     typedef struct _XPointDouble XPointDouble;
 
     typedef struct _XRenderPictureAttributes XRenderPictureAttributes;
-
-    typedef struct _XSpanFix XSpanFix;
 
     typedef struct _XTrap XTrap;
 
@@ -108,8 +143,6 @@ extern "C" {
     typedef struct _XGlyphElt16 XGlyphElt16;
 
     typedef struct _XTriangle XTriangle;
-
-    typedef struct _XLineFixed XLineFixed;
 
 
     struct _XTrapezoid {
@@ -120,19 +153,13 @@ extern "C" {
     };
 
 
-    struct _XPointFixed {
-	XFixed x;
-	XFixed y;
-    };
-
-
     struct _XGlyphInfo {
-	short unsigned int width;
-	short unsigned int height;
-	short int x;
-	short int y;
-	short int xOff;
-	short int yOff;
+	unsigned short width;
+	unsigned short height;
+	short x;
+	short y;
+	short xOff;
+	short yOff;
     };
 
 
@@ -152,13 +179,6 @@ extern "C" {
     struct _XAnimCursor {
 	Cursor cursor;
 	long unsigned int delay;
-    };
-
-
-    struct _XCircle {
-	XFixed x;
-	XFixed y;
-	XFixed radius;
     };
 
 
@@ -221,13 +241,6 @@ extern "C" {
     };
 
 
-    struct _XSpanFix {
-	XFixed left;
-	XFixed right;
-	XFixed y;
-    };
-
-
     struct _XTrap {
 	XSpanFix top;
 	XSpanFix bottom;
@@ -236,10 +249,10 @@ extern "C" {
 
     struct _XIndexValue {
 	long unsigned int pixel;
-	short unsigned int red;
-	short unsigned int green;
-	short unsigned int blue;
-	short unsigned int alpha;
+	unsigned short red;
+	unsigned short green;
+	unsigned short blue;
+	unsigned short alpha;
     };
 
 
@@ -256,12 +269,6 @@ extern "C" {
 	XPointFixed p1;
 	XPointFixed p2;
 	XPointFixed p3;
-    };
-
-
-    struct _XLineFixed {
-	XPointFixed p1;
-	XPointFixed p2;
     };
 
 
