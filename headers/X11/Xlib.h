@@ -407,8 +407,8 @@ extern "C" {
     extern int XChangeWindowAttributes(Display *, Window,
 				       unsigned long int,
 				       XSetWindowAttributes *);
-    extern int XCheckIfEvent(Display *, XEvent *,
-			     struct anon -X11 / Xlib.h - 2379, XPointer);
+    extern int XCheckIfEvent(Display *, XEvent *, int (*)(void)
+			     , XPointer);
     extern int XCheckMaskEvent(Display *, long int, XEvent *);
     extern int XCheckTypedEvent(Display *, int, XEvent *);
     extern int XCheckTypedWindowEvent(Display *, Window, int, XEvent *);
@@ -640,7 +640,8 @@ extern "C" {
     extern int XHeightOfScreen(Screen *);
     extern XIM XIMOfIC(XIC);
     extern int XIconifyWindow(Display *, Window, int);
-    extern int XIfEvent(Display *, XEvent *, int, XPointer);
+    extern int XIfEvent(Display *, XEvent *, int (*)(void)
+			, XPointer);
     extern int XImageByteOrder(Display *);
     extern XExtCodes *XInitExtension(Display *, const char *);
     extern int XInitImage(XImage *);
@@ -699,7 +700,8 @@ extern "C" {
     extern int XParseGeometry(const char *, int *, int *, unsigned int *,
 			      unsigned int *);
     extern int XPeekEvent(Display *, XEvent *);
-    extern int XPeekIfEvent(Display *, XEvent *, int, XPointer);
+    extern int XPeekIfEvent(Display *, XEvent *, int (*)(void)
+			    , XPointer);
     extern int XPending(Display *);
     extern int XPlanesOfScreen(Screen *);
     extern void XProcessInternalConnection(Display *, int);
