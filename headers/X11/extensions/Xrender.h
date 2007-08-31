@@ -13,36 +13,6 @@ extern "C" {
 #endif
 
 
-
-
-    typedef long unsigned int GlyphSet;
-
-    typedef int XFixed;
-
-    typedef struct _XPointFixed XPointFixed;
-
-    typedef struct _XCircle XCircle;
-
-    typedef double XDouble;
-
-    typedef struct _XSpanFix XSpanFix;
-
-    typedef struct _XLineFixed XLineFixed;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Default Header Section for X11/extensions/Xrender.h*/
 #define XFixedToDouble(f)	(((XDouble) (f)) / 65536)
 #define XDoubleToFixed(f)	((XFixed) ((f) * 65536))
 #define PictFormatID	(1 << 0)
