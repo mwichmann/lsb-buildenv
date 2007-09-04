@@ -80,8 +80,8 @@ typedef struct _xmlNode {
     struct _xmlAttr *properties;
     xmlNs *nsDef;
     void *psvi;
-    short unsigned int line;
-    short unsigned int extra;
+    unsigned short line;
+    unsigned short extra;
 } xmlNode;
 typedef xmlNode *xmlNodePtr;
 typedef struct _xmlDoc {

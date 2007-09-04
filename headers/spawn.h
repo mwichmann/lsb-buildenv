@@ -26,7 +26,7 @@ extern "C" {
     } posix_spawn_file_actions_t;
 
     typedef struct {
-	short int __flags;
+	short __flags;
 	pid_t __pgrp;
 	sigset_t __sd;
 	sigset_t __ss;

@@ -61,72 +61,72 @@ extern "C" {
 
     typedef volatile int pthread_spinlock_t;
 
+#if defined __i386__
+/* IA32 */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIER_T];
+	long int __align;
+    } pthread_barrier_t;
+
+#endif
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_BARRIERATTR_T];
+	int __align;
+    } pthread_barrierattr_t;
+
     struct _pthread_cleanup_buffer {
 	void (*__routine) (void *);
 	void *__arg;
 	int __canceltype;
 	struct _pthread_cleanup_buffer *__prev;
-    };
-
-#if defined __i386__
-/* IA32 */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-#if defined __s390x__
-/* S390X */
-    union pthread_barrier_t {
-	char __size[__SIZEOF_PTHREAD_BARRIER_T];
-	long int __align;
-    };
-
-#endif
-    union pthread_barrierattr_t {
-	char __size[__SIZEOF_PTHREAD_BARRIERATTR_T];
-	int __align;
     };
 
 
@@ -242,15 +242,15 @@ extern "C" {
 
 
 
-    extern int pthread_barrier_destroy(union pthread_barrier_t *);
-    extern int pthread_barrier_init(union pthread_barrier_t *,
-				    const union pthread_barrierattr_t *,
+    extern int pthread_barrier_destroy(pthread_barrier_t *);
+    extern int pthread_barrier_init(pthread_barrier_t *,
+				    const pthread_barrierattr_t *,
 				    unsigned int);
-    extern int pthread_barrier_wait(union pthread_barrier_t *);
-    extern int pthread_barrierattr_destroy(union pthread_barrierattr_t *);
-    extern int pthread_barrierattr_init(union pthread_barrierattr_t *);
-    extern int pthread_barrierattr_setpshared(union pthread_barrierattr_t
-					      *, int);
+    extern int pthread_barrier_wait(pthread_barrier_t *);
+    extern int pthread_barrierattr_destroy(pthread_barrierattr_t *);
+    extern int pthread_barrierattr_init(pthread_barrierattr_t *);
+    extern int pthread_barrierattr_setpshared(pthread_barrierattr_t *,
+					      int);
     extern int pthread_getcpuclockid(pthread_t, clockid_t *);
     extern int pthread_spin_destroy(pthread_spinlock_t *);
     extern int pthread_spin_init(pthread_spinlock_t *, int);
@@ -259,9 +259,8 @@ extern "C" {
     extern int pthread_spin_unlock(pthread_spinlock_t *);
     extern int pthread_mutex_timedlock(pthread_mutex_t *,
 				       const struct timespec *);
-    extern int pthread_barrierattr_getpshared(const union
-					      pthread_barrierattr_t *,
-					      int *);
+    extern int pthread_barrierattr_getpshared(const pthread_barrierattr_t
+					      *, int *);
     extern void _pthread_cleanup_pop(struct _pthread_cleanup_buffer *,
 				     int);
     extern void _pthread_cleanup_push(struct _pthread_cleanup_buffer *,

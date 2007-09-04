@@ -148,8 +148,8 @@ extern "C" {
 	struct _xmlAttr *properties;
 	xmlNs *nsDef;
 	void *psvi;
-	short unsigned int line;
-	short unsigned int extra;
+	unsigned short line;
+	unsigned short extra;
     };
 
 
