@@ -124,8 +124,8 @@ typedef void (*FT_Raster_ResetFunc) (FT_Raster, unsigned char *,
 typedef int (*FT_Raster_SetModeFunc) (FT_Raster, long unsigned int,
 				      void *);
 typedef struct FT_Span_ {
-    short int x;
-    short unsigned int len;
+    short x;
+    unsigned short len;
     unsigned char coverage;
 } FT_Span;
 typedef void (*FT_SpanFunc) (int, int, int, int, FT_Span *, FT_Span *,

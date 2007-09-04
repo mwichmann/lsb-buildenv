@@ -73,8 +73,8 @@ extern "C" {
 
     struct _XftCharSpec {
 	FcChar32 ucs4;
-	short int x;
-	short int y;
+	short x;
+	short y;
     };
 
 
@@ -87,16 +87,16 @@ extern "C" {
     struct _XftCharFontSpec {
 	XftFont *font;
 	FcChar32 ucs4;
-	short int x;
-	short int y;
+	short x;
+	short y;
     };
 
 
     struct _XftGlyphFontSpec {
 	XftFont *font;
 	FT_UInt glyph;
-	short int x;
-	short int y;
+	short x;
+	short y;
     };
 
 

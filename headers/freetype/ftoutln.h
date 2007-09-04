@@ -258,8 +258,8 @@ extern "C" {
 
 
     struct FT_Span_ {
-	short int x;
-	short unsigned int len;
+	short x;
+	unsigned short len;
 	unsigned char coverage;
     };
 
