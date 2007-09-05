@@ -123,7 +123,11 @@ extern "C" {
     };
 
 
+    extern bool_t xdr_accepted_reply(XDR *, struct accepted_reply *);
     extern bool_t xdr_callhdr(XDR *, struct rpc_msg *);
+    extern bool_t xdr_callmsg(XDR *, struct rpc_msg *);
+    extern bool_t xdr_rejected_reply(XDR *, struct rejected_reply *);
+    extern bool_t xdr_replymsg(XDR *, struct rpc_msg *);
 #ifdef __cplusplus
 }
 #endif
