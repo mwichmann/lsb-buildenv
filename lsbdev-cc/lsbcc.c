@@ -348,6 +348,7 @@ struct option long_options[] = {
 	{"verbose",no_argument,NULL,14},
 	{"version",no_argument,NULL,15},
 	{"lsb-shared-libpath",required_argument,NULL,16},
+	{"static",no_argument,NULL,17},
 	{NULL,0,0,0}
 	};
 
@@ -607,6 +608,7 @@ int main(int argc, char *argv[])
 int	c,i;
 int	option_index;
 int 	auto_pthread = 1; 
+int	force_static = 0;
 int	feature_settings = 0;
 int	display_cmd = 0;
 int	found_gcc_arg = 0;
@@ -985,6 +987,18 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		found_gcc_standalone = 1;
 		argvaddstring(gccstartargs,argv[optind-1]);
 		break;	
+	case 17:
+		/* -static 
+		 * no -Wl,Bdynamic, add -Wl,--start-group, add -lgcc_eh */
+		found_gcc_arg = 1;
+		b_dynamic = 0;
+		force_static = 1;
+		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
+			fprintf(stderr,"option: -%s\n", long_options[option_index].name );
+		argvaddstring(gccstartargs,"-static");
+		argvaddstring(syslibs,"-Wl,--start-group");
+		argvaddstring(syslibs,"-lgcc_eh");
+		break;
 	case 's':
 		/*
 		 * We must explicitly recognize '-s' to distinguish it
@@ -1158,6 +1172,9 @@ if (!no_link) {
 		argvaddstring(syslibs,"-lgcc_s");
 	}
 	argvaddstring(syslibs,"-lgcc");
+	if (force_static) {
+		argvaddstring(syslibs, "-Wl,--end-group");
+	}
 
 	/* Initialize the argv groups */
 	
@@ -1270,7 +1287,7 @@ if (found_gcc_arg) {
 		if (lsbcc_debug&DEBUG_LIB_CHANGES) {
 			fprintf(stderr,"Appending -lpthread -lpthread_nonshared to the library list\n");
 		}
-		if (!b_dynamic) {
+		if (!b_dynamic && !force_static) {
 			argvaddstring(gccargs,"-Wl,-Bdynamic");
 			b_dynamic = 1;
 		}
