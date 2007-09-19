@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTRENDER_H_
 #define _FREETYPE_FTRENDER_H_
 
-#include <GL/gl.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftmm.h>
 #include <freetype/ftsizes.h>

@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTSIZES_H_
 #define _FREETYPE_FTSIZES_H_
 
-#include <GL/gl.h>
 #include <freetype/t1tables.h>
 
 #ifdef __cplusplus

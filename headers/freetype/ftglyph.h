@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTGLYPH_H_
 #define _FREETYPE_FTGLYPH_H_
 
-#include <GL/gl.h>
 #include <freetype/ftrender.h>
 #include <freetype/ftsizes.h>
 #include <freetype/ftmodapi.h>

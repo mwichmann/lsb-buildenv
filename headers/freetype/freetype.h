@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FREETYPE_H_
 #define _FREETYPE_FREETYPE_H_
 
-#include <GL/gl.h>
 #include <freetype/ftlist.h>
 #include <freetype/ftglyph.h>
 #include <freetype/ftbdf.h>

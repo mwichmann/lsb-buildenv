@@ -1,7 +1,6 @@
 #ifndef _X11_XFT_XFT_H_
 #define _X11_XFT_XFT_H_
 
-#include <GL/gl.h>
 #include <fontconfig/fontconfig.h>
 #include <X11/extensions/Xrender.h>
 #include <freetype/ftoutln.h>

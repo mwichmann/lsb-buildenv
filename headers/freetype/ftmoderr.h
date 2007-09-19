@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTMODERR_H_
 #define _FREETYPE_FTMODERR_H_
 
-#include <GL/gl.h>
 
 #ifdef __cplusplus
 extern "C" {
