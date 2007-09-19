@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_CONFIG_FTSTDLIB_H_
 #define _FREETYPE_CONFIG_FTSTDLIB_H_
 
-#include <GL/gl.h>
 
 #ifdef __cplusplus
 extern "C" {

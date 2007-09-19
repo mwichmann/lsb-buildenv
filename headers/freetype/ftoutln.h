@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTOUTLN_H_
 #define _FREETYPE_FTOUTLN_H_
 
-#include <GL/gl.h>
 #include <freetype/ftlist.h>
 #include <freetype/t1tables.h>
 

@@ -1,7 +1,6 @@
 #ifndef _X11_EXTENSIONS_RENDER_H_
 #define _X11_EXTENSIONS_RENDER_H_
 
-#include <GL/gl.h>
 
 #ifdef __cplusplus
 extern "C" {

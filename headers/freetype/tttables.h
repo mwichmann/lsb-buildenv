@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_TTTABLES_H_
 #define _FREETYPE_TTTABLES_H_
 
-#include <GL/gl.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftmm.h>
 #include <freetype/t1tables.h>

@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTSNAMES_H_
 #define _FREETYPE_FTSNAMES_H_
 
-#include <GL/gl.h>
 #include <freetype/ftoutln.h>
 #include <freetype/t1tables.h>
 

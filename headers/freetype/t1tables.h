@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_T1TABLES_H_
 #define _FREETYPE_T1TABLES_H_
 
-#include <GL/gl.h>
 
 #ifdef __cplusplus
 extern "C" {

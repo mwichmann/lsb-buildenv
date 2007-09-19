@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTOTVAL_H_
 #define _FREETYPE_FTOTVAL_H_
 
-#include <GL/gl.h>
 #include <freetype/freetype.h>
 #include <freetype/t1tables.h>
 
