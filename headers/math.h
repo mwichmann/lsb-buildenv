@@ -263,6 +263,7 @@ extern "C" {
     extern double y0(double);
     extern double y1(double);
     extern double yn(int, double);
+    extern double drem(double, double);
     extern float copysignf(float, float);
     extern long double copysignl(long double, long double);
     extern int finitef(float);
@@ -307,6 +308,9 @@ extern "C" {
     extern long double erfcl(long double);
     extern float erff(float);
     extern long double erfl(long double);
+    extern double exp10(double);
+    extern float exp10f(float);
+    extern long double exp10l(long double);
     extern double exp2(double);
     extern float exp2f(float);
 #if defined __i386__
