@@ -50,6 +50,6 @@ install-desktop:
 	install -d $(INSTALL_DIR)/pkgconfig
 	install -d $(INSTALL_DIR)/bin
 	install $(DESKTOP_SOFILES) $(INSTALL_DIR)
-	install ../pkgconfig$(LIB64)/*.pc $(INSTALL_ROOT)/pkgconfig
-	install ../bin$(LIB64)/freetype-config $(INSTALL_DIR)/bin
+	install ../pkgconfig$(LIB64)/*.pc $(INSTALL_DIR)/pkgconfig
+	install ../bin$(LIB64)/freetype-config $(INSTALL_ROOT)/bin
 
