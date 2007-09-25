@@ -76,13 +76,13 @@ while test $# -gt 0 ; do
     exit 0
     ;;
   --ftversion)
-    major=`grep define ${includerdir}/freetype/freetype.h \
+    major=`grep define ${includedir}/freetype/freetype.h \
            | grep FREETYPE_MAJOR \
            | sed 's/.*[ 	]\([0-9][0-9]*\).*/\1/'`
-    minor=`grep define ${includerdir}/freetype/freetype.h \
+    minor=`grep define ${includedir}/freetype/freetype.h \
            | grep FREETYPE_MINOR \
            | sed 's/.*[ 	]\([0-9][0-9]*\).*/\1/'`
-    patch=`grep define ${includerdir}/freetype/freetype.h \
+    patch=`grep define ${includedir}/freetype/freetype.h \
            | grep FREETYPE_PATCH \
            | sed 's/.*[ 	]\([0-9][0-9]*\).*/\1/'`
     echo $major.$minor.$patch
