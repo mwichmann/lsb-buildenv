@@ -6,25 +6,24 @@ class QFlags < QSql::ParamTypeFlag >;
 
 
 
-typedef Unknown Type: ".."
-ParamType	
+typedef ParamType	
 ;
 
 enum Location	
 {
-AfterLastRow,	
-AfterLast,	
-BeforeFirstRow,	
-BeforeFirst
+AfterLastRow = -2,	
+AfterLast = -2,	
+BeforeFirstRow = -1,	
+BeforeFirst = -1
 }
 ;
 
 enum ParamTypeFlag	
 {
-In,	
-Out,	
-InOut,	
-Binary
+In = 1,	
+Out = 2,	
+InOut = 3,	
+Binary = 4
 }
 ;
 
@@ -36,27 +35,27 @@ public:
 
 enum TableType	
 {
-Tables,	
-SystemTables,	
-Views,	
-AllTables
+Tables = 1,	
+SystemTables = 2,	
+Views = 4,	
+AllTables = 255
 }
 ;
 
 enum Op	
 {
-None,	
-Insert,	
-Update,	
-Delete
+None = -1,	
+Insert = 0,	
+Update = 1,	
+Delete = 2
 }
 ;
 
 enum Confirm	
 {
-Cancel,	
-No,	
-Yes
+Cancel = -1,	
+No = 0,	
+Yes = 1
 }
 ;
 

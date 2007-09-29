@@ -14,9 +14,9 @@ public:
 
 enum RequiredStatus	
 {
-Unknown,	
-Optional,	
-Required
+Unknown = -1,	
+Optional = 0,	
+Required = 1
 }
 ;
 

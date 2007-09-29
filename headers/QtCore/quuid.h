@@ -14,19 +14,19 @@ extern "C" {
     struct QUuid;
 
     enum Variant {
-	VarUnknown,
-	NCS,
-	DCE,
-	Microsoft,
-	Reserved
+	VarUnknown = -1,
+	NCS = 0,
+	DCE = 2,
+	Microsoft = 6,
+	Reserved = 7
     };
 
     enum Version {
-	VerUnknown,
-	Time,
-	EmbeddedPOSIX,
-	Name,
-	Random
+	VerUnknown = -1,
+	Time = 1,
+	EmbeddedPOSIX = 2,
+	Name = 3,
+	Random = 4
     };
 
 

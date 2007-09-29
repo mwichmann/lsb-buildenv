@@ -14,23 +14,23 @@ public:
 
 enum SliderAction	
 {
-SliderNoAction,	
-SliderSingleStepAdd,	
-SliderSingleStepSub,	
-SliderPageStepAdd,	
-SliderPageStepSub,	
-SliderToMinimum,	
-SliderToMaximum,	
-SliderMove
+SliderNoAction = 0,	
+SliderSingleStepAdd = 1,	
+SliderSingleStepSub = 2,	
+SliderPageStepAdd = 3,	
+SliderPageStepSub = 4,	
+SliderToMinimum = 5,	
+SliderToMaximum = 6,	
+SliderMove = 7
 }
 ;
 
 enum SliderChange	
 {
-SliderRangeChange,	
-SliderOrientationChange,	
-SliderStepsChange,	
-SliderValueChange
+SliderRangeChange = 0,	
+SliderOrientationChange = 1,	
+SliderStepsChange = 2,	
+SliderValueChange = 3
 }
 ;
 

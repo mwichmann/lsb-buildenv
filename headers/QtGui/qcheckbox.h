@@ -14,9 +14,9 @@ public:
 
 enum ToggleState	
 {
-Off,	
-NoChange,	
-On
+Off = 0,	
+NoChange = 1,	
+On = 2
 }
 ;
 

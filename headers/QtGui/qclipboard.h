@@ -14,8 +14,8 @@ public:
 
 enum Mode	
 {
-Clipboard,	
-Selection
+Clipboard = 0,	
+Selection = 1
 }
 ;
 

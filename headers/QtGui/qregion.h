@@ -14,8 +14,8 @@ public:
 
 enum RegionType	
 {
-Rectangle,	
-Ellipse
+Rectangle = 0,	
+Ellipse = 1
 }
 ;
 

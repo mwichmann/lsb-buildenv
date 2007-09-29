@@ -14,11 +14,11 @@ public:
 
 enum ImageReaderError	
 {
-UnknownError,	
-FileNotFoundError,	
-DeviceError,	
-UnsupportedFormatError,	
-InvalidDataError
+UnknownError = 0,	
+FileNotFoundError = 1,	
+DeviceError = 2,	
+UnsupportedFormatError = 3,	
+InvalidDataError = 4
 }
 ;
 

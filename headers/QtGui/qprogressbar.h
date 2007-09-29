@@ -14,8 +14,8 @@ public:
 
 enum Direction	
 {
-TopToBottom,	
-BottomToTop
+TopToBottom = 0,	
+BottomToTop = 1
 }
 ;
 

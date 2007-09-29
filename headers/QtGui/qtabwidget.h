@@ -14,19 +14,19 @@ public:
 
 enum TabPosition	
 {
-North,	
-Top,	
-South,	
-Bottom,	
-West,	
-East
+North = 0,	
+Top = 0,	
+South = 1,	
+Bottom = 1,	
+West = 2,	
+East = 3
 }
 ;
 
 enum TabShape	
 {
-Rounded,	
-Triangular
+Rounded = 0,	
+Triangular = 1
 }
 ;
 

@@ -14,8 +14,8 @@ public:
 
 enum DialogCode	
 {
-Rejected,	
-Accepted
+Rejected = 0,	
+Accepted = 1
 }
 ;
 

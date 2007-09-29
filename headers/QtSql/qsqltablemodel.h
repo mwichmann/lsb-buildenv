@@ -14,9 +14,9 @@ public:
 
 enum EditStrategy	
 {
-OnFieldChange,	
-OnRowChange,	
-OnManualSubmit
+OnFieldChange = 0,	
+OnRowChange = 1,	
+OnManualSubmit = 2
 }
 ;
 

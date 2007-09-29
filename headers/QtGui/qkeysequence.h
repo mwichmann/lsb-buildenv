@@ -14,17 +14,17 @@ public:
 
 enum SequenceMatch	
 {
-NoMatch,	
-PartialMatch,	
-ExactMatch,	
-Identical
+NoMatch = 0,	
+PartialMatch = 1,	
+ExactMatch = 2,	
+Identical = 2
 }
 ;
 
 enum SequenceFormat	
 {
-NativeText,	
-PortableText
+NativeText = 0,	
+PortableText = 1
 }
 ;
 

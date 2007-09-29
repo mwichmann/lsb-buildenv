@@ -14,14 +14,14 @@ public:
 
 enum Priority	
 {
-IdlePriority,	
-LowestPriority,	
-LowPriority,	
-NormalPriority,	
-HighPriority,	
-HighestPriority,	
-TimeCriticalPriority,	
-InheritPriority
+IdlePriority = 0,	
+LowestPriority = 1,	
+LowPriority = 2,	
+NormalPriority = 3,	
+HighPriority = 4,	
+HighestPriority = 5,	
+TimeCriticalPriority = 6,	
+InheritPriority = 7
 }
 ;
 

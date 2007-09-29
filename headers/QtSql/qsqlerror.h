@@ -14,16 +14,16 @@ public:
 
 enum ErrorType	
 {
-NoError,	
-None,	
-ConnectionError,	
-Connection,	
-StatementError,	
-Statement,	
-TransactionError,	
-Transaction,	
-UnknownError,	
-Unknown
+NoError = 0,	
+None = 0,	
+ConnectionError = 1,	
+Connection = 1,	
+StatementError = 2,	
+Statement = 2,	
+TransactionError = 3,	
+Transaction = 3,	
+UnknownError = 4,	
+Unknown = 4
 }
 ;
 

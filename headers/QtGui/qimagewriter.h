@@ -14,9 +14,9 @@ public:
 
 enum ImageWriterError	
 {
-UnknownError,	
-DeviceError,	
-UnsupportedFormatError
+UnknownError = 0,	
+DeviceError = 1,	
+UnsupportedFormatError = 2
 }
 ;
 

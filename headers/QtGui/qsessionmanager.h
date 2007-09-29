@@ -14,10 +14,10 @@ public:
 
 enum RestartHint	
 {
-RestartIfRunning,	
-RestartAnyway,	
-RestartImmediately,	
-RestartNever
+RestartIfRunning = 0,	
+RestartAnyway = 1,	
+RestartImmediately = 2,	
+RestartNever = 3
 }
 ;
 

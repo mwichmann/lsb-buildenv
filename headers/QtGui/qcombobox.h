@@ -8,18 +8,18 @@ class QComboBox;
 
 typedef enum InsertPolicy	
 {
-NoInsert,	
-NoInsertion,	
-InsertAtTop,	
-AtTop,	
-InsertAtCurrent,	
-AtCurrent,	
-InsertAtBottom,	
-AtBottom,	
-InsertAfterCurrent,	
-AfterCurrent,	
-InsertBeforeCurrent,	
-BeforeCurrent
+NoInsert = 0,	
+NoInsertion = 0,	
+InsertAtTop = 1,	
+AtTop = 1,	
+InsertAtCurrent = 2,	
+AtCurrent = 2,	
+InsertAtBottom = 3,	
+AtBottom = 3,	
+InsertAfterCurrent = 4,	
+AfterCurrent = 4,	
+InsertBeforeCurrent = 5,	
+BeforeCurrent = 5
 }
 Policy	
 ;
@@ -32,26 +32,26 @@ public:
 
 enum InsertPolicy	
 {
-NoInsert,	
-NoInsertion,	
-InsertAtTop,	
-AtTop,	
-InsertAtCurrent,	
-AtCurrent,	
-InsertAtBottom,	
-AtBottom,	
-InsertAfterCurrent,	
-AfterCurrent,	
-InsertBeforeCurrent,	
-BeforeCurrent
+NoInsert = 0,	
+NoInsertion = 0,	
+InsertAtTop = 1,	
+AtTop = 1,	
+InsertAtCurrent = 2,	
+AtCurrent = 2,	
+InsertAtBottom = 3,	
+AtBottom = 3,	
+InsertAfterCurrent = 4,	
+AfterCurrent = 4,	
+InsertBeforeCurrent = 5,	
+BeforeCurrent = 5
 }
 ;
 
 enum SizeAdjustPolicy	
 {
-AdjustToContents,	
-AdjustToContentsOnFirstShow,	
-AdjustToMinimumContentsLength
+AdjustToContents = 0,	
+AdjustToContentsOnFirstShow = 1,	
+AdjustToMinimumContentsLength = 2
 }
 ;
 

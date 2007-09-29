@@ -14,8 +14,8 @@ public:
 
 enum Shape	
 {
-Line,	
-Rectangle
+Line = 0,	
+Rectangle = 1
 }
 ;
 

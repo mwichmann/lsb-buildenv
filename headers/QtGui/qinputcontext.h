@@ -14,8 +14,8 @@ public:
 
 enum StandardFormat	
 {
-PreeditFormat,	
-SelectionFormat
+PreeditFormat = 0,	
+SelectionFormat = 1
 }
 ;
 

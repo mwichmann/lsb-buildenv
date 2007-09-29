@@ -14,56 +14,56 @@ public:
 
 enum State	
 {
-Unconnected,	
-HostLookup,	
-Connecting,	
-Connected,	
-LoggedIn,	
-Closing
+Unconnected = 0,	
+HostLookup = 1,	
+Connecting = 2,	
+Connected = 3,	
+LoggedIn = 4,	
+Closing = 5
 }
 ;
 
 enum Error	
 {
-NoError,	
-UnknownError,	
-HostNotFound,	
-ConnectionRefused,	
-NotConnected
+NoError = 0,	
+UnknownError = 1,	
+HostNotFound = 2,	
+ConnectionRefused = 3,	
+NotConnected = 4
 }
 ;
 
 enum Command	
 {
-None,	
-SetTransferMode,	
-SetProxy,	
-ConnectToHost,	
-Login,	
-Close,	
-List,	
-Cd,	
-Get,	
-Put,	
-Remove,	
-Mkdir,	
-Rmdir,	
-Rename,	
-RawCommand
+None = 0,	
+SetTransferMode = 1,	
+SetProxy = 2,	
+ConnectToHost = 3,	
+Login = 4,	
+Close = 5,	
+List = 6,	
+Cd = 7,	
+Get = 8,	
+Put = 9,	
+Remove = 10,	
+Mkdir = 11,	
+Rmdir = 12,	
+Rename = 13,	
+RawCommand = 14
 }
 ;
 
 enum TransferMode	
 {
-Active,	
-Passive
+Active = 0,	
+Passive = 1
 }
 ;
 
 enum TransferType	
 {
-Binary,	
-Ascii
+Binary = 0,	
+Ascii = 1
 }
 ;
 

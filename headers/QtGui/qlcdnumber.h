@@ -14,22 +14,22 @@ public:
 
 enum Mode	
 {
-Hex,	
-HEX,	
-Dec,	
-DEC,	
-Oct,	
-OCT,	
-Bin,	
-BIN
+Hex = 0,	
+HEX = 0,	
+Dec = 1,	
+DEC = 1,	
+Oct = 2,	
+OCT = 2,	
+Bin = 3,	
+BIN = 3
 }
 ;
 
 enum SegmentStyle	
 {
-Outline,	
-Filled,	
-Flat
+Outline = 0,	
+Filled = 1,	
+Flat = 2
 }
 ;
 

@@ -14,27 +14,27 @@ public:
 
 enum Shape	
 {
-NoFrame,	
-Box,	
-Panel,	
-WinPanel,	
-HLine,	
-VLine,	
-StyledPanel,	
-PopupPanel,	
-MenuBarPanel,	
-ToolBarPanel,	
-LineEditPanel,	
-TabWidgetPanel,	
-GroupBoxPanel
+NoFrame = 0,	
+Box = 1,	
+Panel = 2,	
+WinPanel = 3,	
+HLine = 4,	
+VLine = 5,	
+StyledPanel = 6,	
+PopupPanel = 6,	
+MenuBarPanel = 6,	
+ToolBarPanel = 6,	
+LineEditPanel = 6,	
+TabWidgetPanel = 6,	
+GroupBoxPanel = 6
 }
 ;
 
 enum Shadow	
 {
-Plain,	
-Raised,	
-Sunken
+Plain = 16,	
+Raised = 32,	
+Sunken = 48
 }
 ;
 

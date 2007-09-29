@@ -2,7 +2,6 @@
 #define _FREETYPE_FTOUTLN_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/t1tables.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,6 +12,7 @@ extern "C" {
 
     typedef struct FT_FaceRec_ *FT_Face;
 
+#include <freetype/t1tables.h>
     typedef unsigned int FT_UInt;
 
 #include <freetype/ftmm.h>

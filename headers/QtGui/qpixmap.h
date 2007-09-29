@@ -14,16 +14,16 @@ public:
 
 enum ColorMode	
 {
-Auto,	
-Color,	
-Mono
+Auto = 0,	
+Color = 1,	
+Mono = 2
 }
 ;
 
 enum Type	
 {
-PixmapType,	
-BitmapType
+PixmapType = 0,	
+BitmapType = 1
 }
 ;
 

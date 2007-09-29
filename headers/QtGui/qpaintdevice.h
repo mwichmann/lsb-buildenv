@@ -14,16 +14,16 @@ public:
 
 enum PaintDeviceMetric	
 {
-PdmWidth,	
-PdmHeight,	
-PdmWidthMM,	
-PdmHeightMM,	
-PdmNumColors,	
-PdmDepth,	
-PdmDpiX,	
-PdmDpiY,	
-PdmPhysicalDpiX,	
-PdmPhysicalDpiY
+PdmWidth = 1,	
+PdmHeight = 2,	
+PdmWidthMM = 3,	
+PdmHeightMM = 4,	
+PdmNumColors = 5,	
+PdmDepth = 6,	
+PdmDpiX = 7,	
+PdmDpiY = 8,	
+PdmPhysicalDpiX = 9,	
+PdmPhysicalDpiY = 10
 }
 ;
 

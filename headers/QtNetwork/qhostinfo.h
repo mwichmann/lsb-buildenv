@@ -14,9 +14,9 @@ public:
 
 enum HostInfoError	
 {
-NoError,	
-HostNotFound,	
-UnknownError
+NoError = 0,	
+HostNotFound = 1,	
+UnknownError = 2
 }
 ;
 

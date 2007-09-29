@@ -14,9 +14,9 @@ public:
 
 enum ResizeMode	
 {
-Interactive,	
-Stretch,	
-Custom
+Interactive = 0,	
+Stretch = 1,	
+Custom = 2
 }
 ;
 

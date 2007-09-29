@@ -21,24 +21,24 @@ public:
 
 enum Mode	
 {
-Normal,	
-Disabled,	
-Active
+Normal = 0,	
+Disabled = 1,	
+Active = 2
 }
 ;
 
 enum State	
 {
-On,	
-Off
+On = 0,	
+Off = 1
 }
 ;
 
 enum Size	
 {
-Small,	
-Automatic,	
-Large
+Small = 0,	
+Automatic = 0,	
+Large = 1
 }
 ;
 

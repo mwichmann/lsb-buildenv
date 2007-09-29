@@ -14,15 +14,15 @@ public:
 
 enum PermissionSpec	
 {
-ExeOther,	
-WriteOther,	
-ReadOther,	
-ExeGroup,	
-WriteGroup,	
-ReadGroup,	
-ExeOwner,	
-WriteOwner,	
-ReadOwner
+ExeOther = 1,	
+WriteOther = 2,	
+ReadOther = 4,	
+ExeGroup = 8,	
+WriteGroup = 16,	
+ReadGroup = 32,	
+ExeOwner = 64,	
+WriteOwner = 128,	
+ReadOwner = 256
 }
 ;
 

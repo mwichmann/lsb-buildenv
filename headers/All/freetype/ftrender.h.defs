@@ -11,3 +11,6 @@
 typedef enum FT_Glyph_Format_ FT_Glyph_Format;
 typedef struct FT_RendererRec_ *FT_Renderer;
 typedef struct FT_Parameter_ FT_Parameter;
+extern FT_Error FT_Set_Renderer(FT_Library, FT_Renderer, FT_UInt,
+				FT_Parameter *);
+extern FT_Renderer FT_Get_Renderer(FT_Library, FT_Glyph_Format);

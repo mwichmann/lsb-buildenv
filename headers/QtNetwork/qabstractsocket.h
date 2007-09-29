@@ -8,19 +8,19 @@ class QAbstractSocket;
 
 typedef enum SocketState	
 {
-UnconnectedState,	
-Idle,	
-HostLookupState,	
-HostLookup,	
-ConnectingState,	
-Connecting,	
-ConnectedState,	
-Connected,	
-Connection,	
-BoundState,	
-ListeningState,	
-ClosingState,	
-Closing
+UnconnectedState = 0,	
+Idle = 0,	
+HostLookupState = 1,	
+HostLookup = 1,	
+ConnectingState = 2,	
+Connecting = 2,	
+ConnectedState = 3,	
+Connected = 3,	
+Connection = 3,	
+BoundState = 4,	
+ListeningState = 5,	
+ClosingState = 6,	
+Closing = 6
 }
 State	
 ;
@@ -33,60 +33,60 @@ public:
 
 enum SocketType	
 {
-UnknownSocketType,	
-TcpSocket,	
-UdpSocket
+UnknownSocketType = -1,	
+TcpSocket = 0,	
+UdpSocket = 1
 }
 ;
 
 enum NetworkLayerProtocol	
 {
-UnknownNetworkLayerProtocol,	
-IPv4Protocol,	
-IPv6Protocol
+UnknownNetworkLayerProtocol = -1,	
+IPv4Protocol = 0,	
+IPv6Protocol = 1
 }
 ;
 
 enum SocketError	
 {
-UnknownSocketError,	
-ConnectionRefusedError,	
-RemoteHostClosedError,	
-HostNotFoundError,	
-SocketAccessError,	
-SocketResourceError,	
-SocketTimeoutError,	
-DatagramTooLargeError,	
-NetworkError,	
-AddressInUseError,	
-SocketAddressNotAvailableError,	
-UnsupportedSocketOperationError
+UnknownSocketError = -1,	
+ConnectionRefusedError = 0,	
+RemoteHostClosedError = 1,	
+HostNotFoundError = 2,	
+SocketAccessError = 3,	
+SocketResourceError = 4,	
+SocketTimeoutError = 5,	
+DatagramTooLargeError = 6,	
+NetworkError = 7,	
+AddressInUseError = 8,	
+SocketAddressNotAvailableError = 9,	
+UnsupportedSocketOperationError = 10
 }
 ;
 
 enum SocketState	
 {
-UnconnectedState,	
-Idle,	
-HostLookupState,	
-HostLookup,	
-ConnectingState,	
-Connecting,	
-ConnectedState,	
-Connected,	
-Connection,	
-BoundState,	
-ListeningState,	
-ClosingState,	
-Closing
+UnconnectedState = 0,	
+Idle = 0,	
+HostLookupState = 1,	
+HostLookup = 1,	
+ConnectingState = 2,	
+Connecting = 2,	
+ConnectedState = 3,	
+Connected = 3,	
+Connection = 3,	
+BoundState = 4,	
+ListeningState = 5,	
+ClosingState = 6,	
+Closing = 6
 }
 ;
 
 enum Error	
 {
-ErrSocketRead,	
-ErrConnectionRefused,	
-ErrHostNotFound
+ErrSocketRead = -1,	
+ErrConnectionRefused = 0,	
+ErrHostNotFound = 2
 }
 ;
 

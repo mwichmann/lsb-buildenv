@@ -14,18 +14,18 @@ public:
 
 enum ToolButtonPopupMode	
 {
-DelayedPopup,	
-MenuButtonPopup,	
-InstantPopup
+DelayedPopup = 0,	
+MenuButtonPopup = 1,	
+InstantPopup = 2
 }
 ;
 
 enum TextPosition	
 {
-BesideIcon,	
-Right,	
-BelowIcon,	
-Under
+BesideIcon = 0,	
+Right = 0,	
+BelowIcon = 1,	
+Under = 1
 }
 ;
 
