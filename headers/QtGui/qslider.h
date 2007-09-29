@@ -14,18 +14,18 @@ public:
 
 enum TickPosition	
 {
-NoTicks,	
-NoMarks,	
-TicksAbove,	
-TicksLeft,	
-Above,	
-Left,	
-TicksBelow,	
-TicksRight,	
-Below,	
-Right,	
-TicksBothSides,	
-Both
+NoTicks = 0,	
+NoMarks = 0,	
+TicksAbove = 1,	
+TicksLeft = 1,	
+Above = 1,	
+Left = 1,	
+TicksBelow = 2,	
+TicksRight = 2,	
+Below = 2,	
+Right = 2,	
+TicksBothSides = 3,	
+Both = 3
 }
 ;
 

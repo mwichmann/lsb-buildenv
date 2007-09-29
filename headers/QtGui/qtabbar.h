@@ -14,18 +14,18 @@ public:
 
 enum Shape	
 {
-RoundedNorth,	
-RoundedAbove,	
-RoundedSouth,	
-RoundedBelow,	
-RoundedWest,	
-RoundedEast,	
-TriangularNorth,	
-TriangularAbove,	
-TriangularSouth,	
-TriangularBelow,	
-TriangularWest,	
-TriangularEast
+RoundedNorth = 0,	
+RoundedAbove = 0,	
+RoundedSouth = 1,	
+RoundedBelow = 1,	
+RoundedWest = 2,	
+RoundedEast = 3,	
+TriangularNorth = 4,	
+TriangularAbove = 4,	
+TriangularSouth = 5,	
+TriangularBelow = 5,	
+TriangularWest = 6,	
+TriangularEast = 7
 }
 ;
 

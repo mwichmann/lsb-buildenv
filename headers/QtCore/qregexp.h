@@ -14,17 +14,17 @@ public:
 
 enum PatternSyntax	
 {
-RegExp,	
-Wildcard,	
-FixedString
+RegExp = 0,	
+Wildcard = 1,	
+FixedString = 2
 }
 ;
 
 enum CaretMode	
 {
-CaretAtZero,	
-CaretAtOffset,	
-CaretWontMatch
+CaretAtZero = 0,	
+CaretAtOffset = 1,	
+CaretWontMatch = 2
 }
 ;
 

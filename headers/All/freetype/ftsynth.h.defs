@@ -1,2 +1,4 @@
 
 typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
+extern void FT_GlyphSlot_Oblique(FT_GlyphSlot);
+extern void FT_GlyphSlot_Embolden(FT_GlyphSlot);

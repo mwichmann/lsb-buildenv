@@ -14,16 +14,16 @@ public:
 
 enum MovieState	
 {
-NotRunning,	
-Paused,	
-Running
+NotRunning = 0,	
+Paused = 1,	
+Running = 2
 }
 ;
 
 enum CacheMode	
 {
-CacheNone,	
-CacheAll
+CacheNone = 0,	
+CacheAll = 1
 }
 ;
 

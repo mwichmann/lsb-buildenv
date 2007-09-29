@@ -1,6 +1,8 @@
 #ifndef _FREETYPE_FTBDF_H_
 #define _FREETYPE_FTBDF_H_
 
+#include <freetype/ftoutln.h>
+#include <freetype/t1tables.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,6 +13,7 @@ extern "C" {
 
     typedef int FT_Int32;
 
+#include <freetype/freetype.h>
     typedef enum BDF_PropertyType_ {
 	BDF_PROPERTY_TYPE_NONE = 0,
 	BDF_PROPERTY_TYPE_ATOM = 1,
@@ -33,6 +36,10 @@ extern "C" {
     };
 
 
+    extern FT_Error FT_Get_BDF_Property(FT_Face, const char *,
+					BDF_PropertyRec *);
+    extern FT_Error FT_Get_BDF_Charset_ID(FT_Face, const char **,
+					  const char **);
 #ifdef __cplusplus
 }
 #endif

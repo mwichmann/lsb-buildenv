@@ -8,13 +8,13 @@ class QSizePolicy;
 
 typedef enum Policy	
 {
-Fixed,	
-Minimum,	
-MinimumExpanding,	
-Maximum,	
-Preferred,	
-Expanding,	
-Ignored
+Fixed = 0,	
+Minimum = 1,	
+MinimumExpanding = 3,	
+Maximum = 4,	
+Preferred = 5,	
+Expanding = 7,	
+Ignored = 13
 }
 SizeType	
 ;
@@ -30,30 +30,30 @@ public:
 
 enum SizePolicyMasks	
 {
-HSize,	
-HMask,	
-VMask
+HSize = 4,	
+HMask = 15,	
+VMask = 240
 }
 ;
 
 enum PolicyFlag	
 {
-GrowFlag,	
-ExpandFlag,	
-ShrinkFlag,	
-IgnoreFlag
+GrowFlag = 1,	
+ExpandFlag = 2,	
+ShrinkFlag = 4,	
+IgnoreFlag = 8
 }
 ;
 
 enum Policy	
 {
-Fixed,	
-Minimum,	
-MinimumExpanding,	
-Maximum,	
-Preferred,	
-Expanding,	
-Ignored
+Fixed = 0,	
+Minimum = 1,	
+MinimumExpanding = 3,	
+Maximum = 4,	
+Preferred = 5,	
+Expanding = 7,	
+Ignored = 13
 }
 ;
 

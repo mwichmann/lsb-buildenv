@@ -14,29 +14,29 @@ public:
 
 enum Version	
 {
-Qt_1_0,	
-Qt_2_0,	
-Qt_2_1,	
-Qt_3_0,	
-Qt_3_1,	
-Qt_3_3,	
-Qt_4_0,	
-Qt_4_1
+Qt_1_0 = 1,	
+Qt_2_0 = 2,	
+Qt_2_1 = 3,	
+Qt_3_0 = 4,	
+Qt_3_1 = 5,	
+Qt_3_3 = 6,	
+Qt_4_0 = 7,	
+Qt_4_1 = 7
 }
 ;
 
 enum ByteOrder	
 {
-BigEndian,	
-LittleEndian
+BigEndian = 0,	
+LittleEndian = 1
 }
 ;
 
 enum Status	
 {
-Ok,	
-ReadPastEnd,	
-ReadCorruptData
+Ok = 0,	
+ReadPastEnd = 1,	
+ReadCorruptData = 2
 }
 ;
 

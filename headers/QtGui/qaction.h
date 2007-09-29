@@ -14,8 +14,8 @@ public:
 
 enum ActionEvent	
 {
-Trigger,	
-Hover
+Trigger = 0,	
+Hover = 1
 }
 ;
 

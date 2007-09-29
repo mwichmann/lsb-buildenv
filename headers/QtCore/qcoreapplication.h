@@ -20,8 +20,8 @@ public:
 
 enum Encoding	
 {
-DefaultCodec,	
-UnicodeUTF8
+DefaultCodec = 0,	
+UnicodeUTF8 = 1
 }
 ;
 

@@ -14,9 +14,9 @@ public:
 
 enum EchoMode	
 {
-Normal,	
-NoEcho,	
-Password
+Normal = 0,	
+NoEcho = 1,	
+Password = 2
 }
 ;
 

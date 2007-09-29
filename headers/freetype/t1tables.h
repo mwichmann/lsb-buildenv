@@ -44,6 +44,7 @@ extern "C" {
     typedef unsigned char FT_Byte;
 
 #include <freetype/freetype.h>
+#include <freetype/ftoutln.h>
     typedef short int FT_Short;
 
     typedef struct PS_PrivateRec_ PS_PrivateRec;
@@ -93,6 +94,9 @@ extern "C" {
     };
 
 
+    extern FT_Int FT_Has_PS_Glyph_Names(FT_Face);
+    extern FT_Error FT_Get_PS_Font_Private(FT_Face, PS_PrivateRec *);
+    extern FT_Error FT_Get_PS_Font_Info(FT_Face, PS_FontInfoRec *);
 #ifdef __cplusplus
 }
 #endif

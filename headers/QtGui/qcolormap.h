@@ -14,9 +14,9 @@ public:
 
 enum Mode	
 {
-Direct,	
-Indexed,	
-Gray
+Direct = 0,	
+Indexed = 1,	
+Gray = 2
 }
 ;
 

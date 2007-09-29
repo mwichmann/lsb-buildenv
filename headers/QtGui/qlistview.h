@@ -14,37 +14,37 @@ public:
 
 enum Movement	
 {
-Static,	
-Free,	
-Snap
+Static = 0,	
+Free = 1,	
+Snap = 2
 }
 ;
 
 enum Flow	
 {
-LeftToRight,	
-TopToBottom
+LeftToRight = 0,	
+TopToBottom = 1
 }
 ;
 
 enum ResizeMode	
 {
-Fixed,	
-Adjust
+Fixed = 0,	
+Adjust = 1
 }
 ;
 
 enum LayoutMode	
 {
-SinglePass,	
-Batched
+SinglePass = 0,	
+Batched = 1
 }
 ;
 
 enum ViewMode	
 {
-ListMode,	
-IconMode
+ListMode = 0,	
+IconMode = 1
 }
 ;
 

@@ -14,16 +14,16 @@ public:
 
 enum BindingSyntax	
 {
-PositionalBinding,	
-BindByPosition,	
-NamedBinding,	
-BindByName
+PositionalBinding = 0,	
+BindByPosition = 0,	
+NamedBinding = 1,	
+BindByName = 1
 }
 ;
 
 enum VirtualHookOperation	
 {
-BatchOperation
+BatchOperation = 0
 }
 ;
 

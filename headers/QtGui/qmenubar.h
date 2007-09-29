@@ -14,8 +14,8 @@ public:
 
 enum Separator	
 {
-Never,	
-InWindowsStyle
+Never = 0,	
+InWindowsStyle = 1
 }
 ;
 

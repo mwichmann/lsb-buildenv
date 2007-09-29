@@ -14,32 +14,32 @@ public:
 
 enum DriverFeature	
 {
-Transactions,	
-QuerySize,	
-BLOB,	
-Unicode,	
-PreparedQueries,	
-NamedPlaceholders,	
-PositionalPlaceholders,	
-LastInsertId,	
-BatchOperations
+Transactions = 0,	
+QuerySize = 1,	
+BLOB = 2,	
+Unicode = 3,	
+PreparedQueries = 4,	
+NamedPlaceholders = 5,	
+PositionalPlaceholders = 6,	
+LastInsertId = 7,	
+BatchOperations = 8
 }
 ;
 
 enum StatementType	
 {
-WhereStatement,	
-SelectStatement,	
-UpdateStatement,	
-InsertStatement,	
-DeleteStatement
+WhereStatement = 0,	
+SelectStatement = 1,	
+UpdateStatement = 2,	
+InsertStatement = 3,	
+DeleteStatement = 4
 }
 ;
 
 enum IdentifierType	
 {
-FieldName,	
-TableName
+FieldName = 0,	
+TableName = 1
 }
 ;
 

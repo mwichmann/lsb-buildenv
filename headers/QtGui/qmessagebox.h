@@ -14,30 +14,30 @@ public:
 
 enum Icon	
 {
-NoIcon,	
-Information,	
-Warning,	
-Critical,	
-Question
+NoIcon = 0,	
+Information = 1,	
+Warning = 2,	
+Critical = 3,	
+Question = 4
 }
 ;
 
 enum Button	
 {
-NoButton,	
-Ok,	
-Cancel,	
-Yes,	
-No,	
-Abort,	
-Retry,	
-Ignore,	
-YesAll,	
-NoAll,	
-ButtonMask,	
-Default,	
-Escape,	
-FlagMask
+NoButton = 0,	
+Ok = 1,	
+Cancel = 2,	
+Yes = 3,	
+No = 4,	
+Abort = 5,	
+Retry = 6,	
+Ignore = 7,	
+YesAll = 8,	
+NoAll = 9,	
+ButtonMask = 255,	
+Default = 256,	
+Escape = 512,	
+FlagMask = 768
 }
 ;
 

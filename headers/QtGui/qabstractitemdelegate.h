@@ -14,11 +14,11 @@ public:
 
 enum EndEditHint	
 {
-NoHint,	
-EditNextItem,	
-EditPreviousItem,	
-SubmitModelCache,	
-RevertModelCache
+NoHint = 0,	
+EditNextItem = 1,	
+EditPreviousItem = 2,	
+SubmitModelCache = 3,	
+RevertModelCache = 4
 }
 ;
 

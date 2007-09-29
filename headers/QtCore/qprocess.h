@@ -17,42 +17,42 @@ public:
 
 enum ProcessError	
 {
-FailedToStart,	
-Crashed,	
-Timedout,	
-ReadError,	
-WriteError,	
-UnknownError
+FailedToStart = 0,	
+Crashed = 1,	
+Timedout = 2,	
+ReadError = 3,	
+WriteError = 4,	
+UnknownError = 5
 }
 ;
 
 enum ProcessState	
 {
-NotRunning,	
-Starting,	
-Running
+NotRunning = 0,	
+Starting = 1,	
+Running = 2
 }
 ;
 
 enum ProcessChannel	
 {
-StandardOutput,	
-StandardError
+StandardOutput = 0,	
+StandardError = 1
 }
 ;
 
 enum ProcessChannelMode	
 {
-SeparateChannels,	
-MergedChannels,	
-ForwardedChannels
+SeparateChannels = 0,	
+MergedChannels = 1,	
+ForwardedChannels = 2
 }
 ;
 
 enum ExitStatus	
 {
-NormalExit,	
-CrashExit
+NormalExit = 0,	
+CrashExit = 1
 }
 ;
 

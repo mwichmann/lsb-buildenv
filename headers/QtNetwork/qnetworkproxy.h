@@ -14,9 +14,9 @@ public:
 
 enum ProxyType	
 {
-DefaultProxy,	
-Socks5Proxy,	
-NoProxy
+DefaultProxy = 0,	
+Socks5Proxy = 1,	
+NoProxy = 2
 }
 ;
 

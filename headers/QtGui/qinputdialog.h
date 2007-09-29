@@ -14,11 +14,11 @@ public:
 
 enum Type	
 {
-LineEdit,	
-SpinBox,	
-DoubleSpinBox,	
-ComboBox,	
-EditableComboBox
+LineEdit = 0,	
+SpinBox = 1,	
+DoubleSpinBox = 2,	
+ComboBox = 3,	
+EditableComboBox = 4
 }
 ;
 

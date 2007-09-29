@@ -14,8 +14,8 @@ public:
 
 enum WindowOrder	
 {
-CreationOrder,	
-StackingOrder
+CreationOrder = 0,	
+StackingOrder = 1
 }
 ;
 

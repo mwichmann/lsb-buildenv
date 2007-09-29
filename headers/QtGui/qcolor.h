@@ -14,10 +14,10 @@ public:
 
 enum Spec	
 {
-Invalid,	
-Rgb,	
-Hsv,	
-Cmyk
+Invalid = 0,	
+Rgb = 1,	
+Hsv = 2,	
+Cmyk = 3
 }
 ;
 

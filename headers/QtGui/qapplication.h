@@ -17,17 +17,17 @@ public:
 
 enum Type	
 {
-Tty,	
-GuiClient,	
-GuiServer
+Tty = 0,	
+GuiClient = 1,	
+GuiServer = 2
 }
 ;
 
 enum ColorSpec	
 {
-NormalColor,	
-CustomColor,	
-ManyColor
+NormalColor = 0,	
+CustomColor = 1,	
+ManyColor = 2
 }
 ;
 

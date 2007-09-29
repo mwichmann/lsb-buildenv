@@ -2,6 +2,7 @@
 #define _FREETYPE_FTSNAMES_H_
 
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/t1tables.h>
 
 #ifdef __cplusplus
@@ -24,6 +25,8 @@ extern "C" {
     };
 
 
+    extern FT_Error FT_Get_Sfnt_Name(FT_Face, FT_UInt, FT_SfntName *);
+    extern FT_UInt FT_Get_Sfnt_Name_Count(FT_Face);
 #ifdef __cplusplus
 }
 #endif

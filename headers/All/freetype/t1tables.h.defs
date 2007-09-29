@@ -65,3 +65,6 @@ typedef struct PS_FontInfoRec {
     FT_Short underline_position;
     FT_UShort underline_thickness;
 } PS_FontInfoRec;
+extern FT_Int FT_Has_PS_Glyph_Names(FT_Face);
+extern FT_Error FT_Get_PS_Font_Private(FT_Face, PS_PrivateRec *);
+extern FT_Error FT_Get_PS_Font_Info(FT_Face, PS_FontInfoRec *);
