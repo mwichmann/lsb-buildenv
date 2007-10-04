@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTBDF_H_
 #define _FREETYPE_FTBDF_H_
 
-#include <freetype/ftoutln.h>
 #include <freetype/t1tables.h>
 
 #ifdef __cplusplus

@@ -6,6 +6,7 @@
 #include <freetype/ftsizes.h>
 #include <freetype/ftmodapi.h>
 #include <freetype/t1tables.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {

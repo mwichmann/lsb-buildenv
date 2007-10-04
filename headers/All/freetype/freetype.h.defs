@@ -87,6 +87,17 @@
 #define ft_render_mode_mono	FT_RENDER_MODE_MONO
 #define ft_render_mode_normal	FT_RENDER_MODE_NORMAL
 
+typedef struct FT_FaceRec_ *FT_Face;
+typedef struct FT_Bitmap_ {
+    int rows;
+    int width;
+    int pitch;
+    unsigned char buffer;
+    short num_grays;
+    char pixel_mode;
+    char palette_mode;
+    void *palette;
+} FT_Bitmap;
 typedef void *FT_Pointer;
 typedef enum FT_Encoding_ {
     FT_ENCODING_NONE = 0,
