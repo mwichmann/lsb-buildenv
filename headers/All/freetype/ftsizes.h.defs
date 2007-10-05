@@ -1,6 +1,5 @@
 
 typedef long int FT_Pos;
-typedef struct FT_Generic_ FT_Generic;
 struct FT_SizeRec_ {
     FT_Face face;
     FT_Generic generic;

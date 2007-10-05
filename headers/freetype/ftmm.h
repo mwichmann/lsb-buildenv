@@ -1,8 +1,19 @@
 #ifndef _FREETYPE_FTMM_H_
 #define _FREETYPE_FTMM_H_
 
+#include <freetype/ftlist.h>
+#include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftpfr.h>
-#include <freetype/t1tables.h>
+#include <freetype/tttables.h>
+#include <freetype/ftglyph.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,10 +22,6 @@ extern "C" {
 
 
 
-    typedef long unsigned int FT_ULong;
-
-#include <freetype/freetype.h>
-#include <freetype/ftoutln.h>
     typedef struct FT_MM_Axis_ FT_MM_Axis;
 
     typedef struct FT_Multi_Master_ FT_Multi_Master;

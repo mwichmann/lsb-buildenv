@@ -18,15 +18,6 @@
 #define t1_blend_underline_position	T1_BLEND_UNDERLINE_POSITION
 #define t1_blend_underline_thickness	T1_BLEND_UNDERLINE_THICKNESS
 
-typedef int FT_Error;
-typedef int FT_Int;
-typedef long int FT_Long;
-typedef char FT_String;
-typedef long int FT_Fixed;
-typedef short unsigned int FT_UShort;
-typedef unsigned char FT_Bool;
-typedef unsigned char FT_Byte;
-typedef short int FT_Short;
 typedef struct PS_PrivateRec_ {
     FT_Int unique_id;
     FT_Int lenIV;

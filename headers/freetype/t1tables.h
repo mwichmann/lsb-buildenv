@@ -1,6 +1,18 @@
 #ifndef _FREETYPE_T1TABLES_H_
 #define _FREETYPE_T1TABLES_H_
 
+#include <freetype/ftlist.h>
+#include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
+#include <freetype/tttables.h>
+#include <freetype/ftglyph.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,25 +38,6 @@ extern "C" {
 #define t1_blend_underline_position	T1_BLEND_UNDERLINE_POSITION
 #define t1_blend_underline_thickness	T1_BLEND_UNDERLINE_THICKNESS
 
-
-    typedef int FT_Error;
-
-    typedef int FT_Int;
-
-    typedef long int FT_Long;
-
-    typedef char FT_String;
-
-    typedef long int FT_Fixed;
-
-    typedef short unsigned int FT_UShort;
-
-    typedef unsigned char FT_Bool;
-
-    typedef unsigned char FT_Byte;
-
-#include <freetype/freetype.h>
-    typedef short int FT_Short;
 
     typedef struct PS_PrivateRec_ PS_PrivateRec;
 

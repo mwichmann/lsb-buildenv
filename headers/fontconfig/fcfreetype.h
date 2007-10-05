@@ -2,8 +2,18 @@
 #define _FONTCONFIG_FCFREETYPE_H_
 
 #include <fontconfig/fontconfig.h>
+#include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
+#include <freetype/tttables.h>
+#include <freetype/ftglyph.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {

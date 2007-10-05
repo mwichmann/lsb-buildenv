@@ -5,10 +5,9 @@
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/ftrender.h>
-#include <freetype/ftmm.h>
-#include <freetype/ftsizes.h>
+#include <freetype/fttypes.h>
 #include <freetype/ftmodapi.h>
-#include <freetype/t1tables.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus

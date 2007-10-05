@@ -2,7 +2,8 @@
 #define _FREETYPE_FTOUTLN_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/t1tables.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -12,12 +13,6 @@ extern "C" {
 
 
 
-    typedef unsigned int FT_UInt;
-
-#include <freetype/ftmm.h>
-    typedef void (*FT_Generic_Finalizer) (void *);
-
-#include <freetype/ftsizes.h>
     typedef FT_Error(*FT_Module_Constructor) (FT_Module);
 
     typedef void (*FT_Module_Destructor) (FT_Module);
@@ -196,6 +191,8 @@ extern "C" {
 	void *glyph_hints;
     };
 
+#include <freetype/tttables.h>
+#include <freetype/ftsizes.h>
     struct FT_GlyphLoaderRec_ {
 	FT_Memory memory;
 	FT_UInt max_points;

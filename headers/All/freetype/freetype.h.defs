@@ -98,7 +98,6 @@ typedef struct FT_Bitmap_ {
     char palette_mode;
     void *palette;
 } FT_Bitmap;
-typedef void *FT_Pointer;
 typedef enum FT_Encoding_ {
     FT_ENCODING_NONE = 0,
     FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -152,6 +151,16 @@ typedef struct FT_Open_Args_ {
     FT_Int num_params;
     FT_Parameter *params;
 } FT_Open_Args;
+struct FT_Bitmap_Size_ {
+    FT_Short height;
+    FT_Short width;
+    FT_Pos size;
+    FT_Pos x_ppem;
+    FT_Pos y_ppem;
+};
+FT_Bitmap_Size *;
+typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
+typedef struct FT_DriverRec_ *FT_Driver;
 extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
 extern FT_Fixed FT_RoundFix(FT_Fixed);
 extern FT_Fixed FT_CeilFix(FT_Fixed);

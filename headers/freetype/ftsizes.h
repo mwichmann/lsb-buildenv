@@ -1,7 +1,11 @@
 #ifndef _FREETYPE_FTSIZES_H_
 #define _FREETYPE_FTSIZES_H_
 
-#include <freetype/t1tables.h>
+#include <freetype/ftlist.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,10 +16,7 @@ extern "C" {
 
     typedef long int FT_Pos;
 
-    typedef struct FT_Generic_ FT_Generic;
-
-#include <freetype/freetype.h>
-#include <freetype/ftoutln.h>
+#include <freetype/ftstroke.h>
     typedef struct FT_Size_Metrics_ FT_Size_Metrics;
 
     typedef struct FT_Size_InternalRec_ *FT_Size_Internal;
@@ -29,9 +30,11 @@ extern "C" {
 	FT_Size_Internal internal;
     };
 
-
-
-
+#include <freetype/ftglyph.h>
+#include <freetype/freetype.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftsynth.h>
 
     struct FT_Size_Metrics_ {
 	FT_UShort x_ppem;

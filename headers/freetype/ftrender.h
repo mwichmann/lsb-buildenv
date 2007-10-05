@@ -2,9 +2,8 @@
 #define _FREETYPE_FTRENDER_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/ftmm.h>
-#include <freetype/ftsizes.h>
-#include <freetype/t1tables.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -21,8 +20,6 @@ extern "C" {
 #define FTRenderer_setMode	FT_Renderer_SetModeFunc
 #define FTRenderer_transform	FT_Renderer_TransformFunc
 
-
-    typedef enum FT_Glyph_Format_ FT_Glyph_Format;
 
     typedef struct FT_RendererRec_ *FT_Renderer;
 
