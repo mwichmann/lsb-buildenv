@@ -157,7 +157,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -173,13 +173,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -194,7 +194,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -210,13 +210,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -231,7 +231,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -247,13 +247,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -268,7 +268,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -284,13 +284,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -305,7 +305,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -321,13 +321,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -342,7 +342,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -358,13 +358,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -379,7 +379,7 @@ extern "C" {
 	const FT_String *family_name;
 	const FT_String *style_name;
 	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
+	 available_sizes;
 	FT_Int num_charmaps;
 	FT_CharMap *charmaps;
 	FT_Generic generic;
@@ -395,13 +395,13 @@ extern "C" {
 	FT_GlyphSlot glyph;
 	FT_Size size;
 	FT_CharMap charmap;
-	FT_Driver underline_thickness;
-	FT_Memory underline_thickness;
-	FT_Stream underline_thickness;
-	FT_ListRec underline_thickness;
-	FT_Generic underline_thickness;
-	void *underline_thickness;
-	FT_Face_Internal underline_thickness;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
     };
 
 #endif
@@ -433,6 +433,12 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct FT_Bitmap_ {
@@ -447,6 +453,12 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
 #if defined __powerpc64__
 /* PPC64 */
     struct FT_Bitmap_ {
@@ -461,6 +473,12 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     struct FT_Bitmap_ {
@@ -475,6 +493,12 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
 #if defined __x86_64__
 /* x86-64 */
     struct FT_Bitmap_ {
@@ -489,6 +513,12 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
 #if defined __s390x__
 /* S390X */
     struct FT_Bitmap_ {
@@ -503,6 +533,12 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
     struct FT_StreamRec_ {
 	unsigned char *base;
 	long unsigned int size;
@@ -515,16 +551,6 @@ extern "C" {
 	unsigned char *cursor;
 	unsigned char *limit;
     };
-
-    struct FT_Bitmap_Size_ {
-	FT_Short height;
-	FT_Short width;
-	FT_Pos size;
-	FT_Pos x_ppem;
-	FT_Pos y_ppem;
-    };
-
-    FT_Bitmap_Size *;
 
 #include <freetype/ftglyph.h>
 #include <freetype/ftoutln.h>
