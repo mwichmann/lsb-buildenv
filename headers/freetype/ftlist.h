@@ -21,6 +21,7 @@ extern "C" {
     typedef void *(*FT_Realloc_Func) (FT_Memory, long int, long int,
 				      void *);
 
+#include <freetype/ftsystem.h>
     typedef void (*FT_List_Destructor) (FT_Memory, void *, void *);
 
     typedef FT_Error(*FT_List_Iterator) (FT_ListNode, void *);
@@ -29,13 +30,6 @@ extern "C" {
 	FT_ListNode prev;
 	FT_ListNode next;
 	void *data;
-    };
-
-    struct FT_MemoryRec_ {
-	void *user;
-	FT_Alloc_Func alloc;
-	FT_Free_Func free;
-	FT_Realloc_Func realloc;
     };
 
 

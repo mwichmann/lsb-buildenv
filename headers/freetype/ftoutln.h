@@ -2,6 +2,8 @@
 #define _FREETYPE_FTOUTLN_H_
 
 #include <freetype/ftlist.h>
+#include <freetype/t1tables.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -10,14 +12,9 @@ extern "C" {
 
 
 
-    typedef struct FT_FaceRec_ *FT_Face;
-
-#include <freetype/t1tables.h>
     typedef unsigned int FT_UInt;
 
 #include <freetype/ftmm.h>
-    typedef struct FT_Bitmap_ FT_Bitmap;
-
     typedef void (*FT_Generic_Finalizer) (void *);
 
 #include <freetype/ftsizes.h>
@@ -221,9 +218,6 @@ extern "C" {
 
 #include <freetype/ftglyph.h>
 #include <freetype/ftstroke.h>
-
-
-
 
 
 

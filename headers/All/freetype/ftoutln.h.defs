@@ -1,7 +1,5 @@
 
-typedef struct FT_FaceRec_ *FT_Face;
 typedef unsigned int FT_UInt;
-typedef struct FT_Bitmap_ FT_Bitmap;
 struct FT_LibraryRec_ {
     FT_Memory memory;
     FT_Generic generic;

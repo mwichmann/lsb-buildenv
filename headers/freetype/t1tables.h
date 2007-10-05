@@ -44,7 +44,6 @@ extern "C" {
     typedef unsigned char FT_Byte;
 
 #include <freetype/freetype.h>
-#include <freetype/ftoutln.h>
     typedef short int FT_Short;
 
     typedef struct PS_PrivateRec_ PS_PrivateRec;

@@ -1,7 +1,6 @@
 #ifndef _FREETYPE_FTIMAGE_H_
 #define _FREETYPE_FTIMAGE_H_
 
-#include <freetype/ftoutln.h>
 
 #ifdef __cplusplus
 extern "C" {

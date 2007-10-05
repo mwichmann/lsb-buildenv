@@ -3,12 +3,13 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/ftrender.h>
 #include <freetype/ftmm.h>
 #include <freetype/ftsizes.h>
 #include <freetype/ftmodapi.h>
-#include <freetype/ftimage.h>
 #include <freetype/t1tables.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {

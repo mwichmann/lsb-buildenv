@@ -2,13 +2,8 @@
 #define _FREETYPE_FREETYPE_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftbdf.h>
-#include <freetype/ftmm.h>
-#include <freetype/ftsizes.h>
 #include <freetype/ftstroke.h>
-#include <freetype/ftsynth.h>
-#include <freetype/t1tables.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -104,11 +99,14 @@ extern "C" {
 #define ft_render_mode_normal	FT_RENDER_MODE_NORMAL
 
 
+    typedef struct FT_FaceRec_ *FT_Face;
+
+    typedef struct FT_Bitmap_ FT_Bitmap;
+
     typedef void *FT_Pointer;
 
 #include <freetype/ftmodapi.h>
 #include <freetype/ftrender.h>
-#include <freetype/ftoutln.h>
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
 	FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -131,7 +129,6 @@ extern "C" {
 	FT_ENCODING_APPLE_ROMAN = 1634889070
     } FT_Encoding;
 
-#include <freetype/tttables.h>
     typedef long int FT_F26Dot6;
 
     typedef union FT_StreamDesc_ FT_StreamDesc;
@@ -145,6 +142,165 @@ extern "C" {
 
     typedef struct FT_Open_Args_ FT_Open_Args;
 
+#if defined __i386__
+/* IA32 */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/t1tables.h>
+#include <freetype/tttables.h>
+#include <freetype/ftmm.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsizes.h>
+#if defined __ia64__
+/* IA64 */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/ftoutln.h>
+#include <freetype/ftglyph.h>
+#include <freetype/ftsynth.h>
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/ftoutln.h>
+#include <freetype/ftglyph.h>
+#include <freetype/ftsynth.h>
+#if defined __powerpc64__
+/* PPC64 */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/ftoutln.h>
+#include <freetype/ftglyph.h>
+#include <freetype/ftsynth.h>
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/ftoutln.h>
+#include <freetype/ftglyph.h>
+#include <freetype/ftsynth.h>
+#if defined __x86_64__
+/* x86-64 */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/ftoutln.h>
+#include <freetype/ftglyph.h>
+#include <freetype/ftsynth.h>
+#if defined __s390x__
+/* S390X */
+    struct FT_FaceRec_;
+
+#endif
+#include <freetype/ftoutln.h>
+#include <freetype/ftglyph.h>
+#include <freetype/ftsynth.h>
+#if defined __i386__
+/* IA32 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/ftsynth.h>
+#if defined __ia64__
+/* IA64 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
     struct FT_StreamRec_ {
 	unsigned char *base;
 	long unsigned int size;
@@ -156,6 +312,18 @@ extern "C" {
 	FT_Memory memory;
 	unsigned char *cursor;
 	unsigned char *limit;
+    };
+
+
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
     };
 
     union FT_StreamDesc_ {
