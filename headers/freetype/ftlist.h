@@ -1,7 +1,7 @@
 #ifndef _FREETYPE_FTLIST_H_
 #define _FREETYPE_FTLIST_H_
 
-#include <freetype/t1tables.h>
+#include <freetype/fttypes.h>
 
 #ifdef __cplusplus
 extern "C" {

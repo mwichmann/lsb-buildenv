@@ -1,9 +1,12 @@
 #ifndef _FREETYPE_TTTABLES_H_
 #define _FREETYPE_TTTABLES_H_
 
-#include <freetype/ftoutln.h>
-#include <freetype/ftmm.h>
-#include <freetype/t1tables.h>
+#include <freetype/ftlist.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +17,11 @@ extern "C" {
 
     typedef struct FT_CharMapRec_ *FT_CharMap;
 
+#include <freetype/ftglyph.h>
 #include <freetype/freetype.h>
+#include <freetype/ftoutln.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
     typedef enum {
 	ft_sfnt_head = 0,
 	ft_sfnt_maxp = 1,

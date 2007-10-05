@@ -2,11 +2,10 @@
 #define _FREETYPE_FTGLYPH_H_
 
 #include <freetype/ftrender.h>
-#include <freetype/ftmm.h>
-#include <freetype/ftsizes.h>
+#include <freetype/fttypes.h>
 #include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftstroke.h>
-#include <freetype/t1tables.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -23,10 +22,12 @@ extern "C" {
 
     typedef struct FT_Matrix_ FT_Matrix;
 
-#include <freetype/ftsynth.h>
     typedef struct FT_BBox_ FT_BBox;
 
 #include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
     typedef enum FT_Render_Mode_ FT_Render_Mode;
 
 #include <freetype/freetype.h>

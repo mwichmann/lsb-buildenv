@@ -1,5 +1,4 @@
 
-typedef unsigned int FT_UInt;
 struct FT_LibraryRec_ {
     FT_Memory memory;
     FT_Generic generic;
@@ -15,7 +14,6 @@ struct FT_LibraryRec_ {
     FT_ULong raster_pool_size;
     FT_DebugHook_Func debug_hooks[4];
 };
-typedef void (*FT_Generic_Finalizer) (void *);
 typedef FT_Error(*FT_Module_Constructor) (FT_Module);
 typedef void (*FT_Module_Destructor) (FT_Module);
 typedef FT_Pointer FT_Module_Interface;

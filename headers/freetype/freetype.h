@@ -2,6 +2,10 @@
 #define _FREETYPE_FREETYPE_H_
 
 #include <freetype/ftlist.h>
+#include <freetype/ftrender.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftstroke.h>
 #include <freetype/ftsystem.h>
 
@@ -103,10 +107,6 @@ extern "C" {
 
     typedef struct FT_Bitmap_ FT_Bitmap;
 
-    typedef void *FT_Pointer;
-
-#include <freetype/ftmodapi.h>
-#include <freetype/ftrender.h>
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
 	FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -142,64 +142,269 @@ extern "C" {
 
     typedef struct FT_Open_Args_ FT_Open_Args;
 
+    typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
+
+    typedef struct FT_DriverRec_ *FT_Driver;
+
 #if defined __i386__
 /* IA32 */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/t1tables.h>
-#include <freetype/tttables.h>
-#include <freetype/ftmm.h>
-#include <freetype/ftbdf.h>
-#include <freetype/ftsizes.h>
 #if defined __ia64__
 /* IA64 */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/ftoutln.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftsynth.h>
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/ftoutln.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftsynth.h>
 #if defined __powerpc64__
 /* PPC64 */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/ftoutln.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftsynth.h>
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/ftoutln.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftsynth.h>
 #if defined __x86_64__
 /* x86-64 */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/ftoutln.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftsynth.h>
 #if defined __s390x__
 /* S390X */
-    struct FT_FaceRec_;
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_weight;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver underline_thickness;
+	FT_Memory underline_thickness;
+	FT_Stream underline_thickness;
+	FT_ListRec underline_thickness;
+	FT_Generic underline_thickness;
+	void *underline_thickness;
+	FT_Face_Internal underline_thickness;
+    };
 
 #endif
-#include <freetype/ftoutln.h>
-#include <freetype/ftglyph.h>
-#include <freetype/ftsynth.h>
 #if defined __i386__
 /* IA32 */
     struct FT_Bitmap_ {
@@ -214,9 +419,6 @@ extern "C" {
     };
 
 #endif
-#include <freetype/ftglyph.h>
-#include <freetype/ftoutln.h>
-#include <freetype/ftsynth.h>
 #if defined __ia64__
 /* IA64 */
     struct FT_Bitmap_ {
@@ -314,6 +516,22 @@ extern "C" {
 	unsigned char *limit;
     };
 
+    struct FT_Bitmap_Size_ {
+	FT_Short height;
+	FT_Short width;
+	FT_Pos size;
+	FT_Pos x_ppem;
+	FT_Pos y_ppem;
+    };
+
+    FT_Bitmap_Size *;
+
+#include <freetype/ftglyph.h>
+#include <freetype/ftoutln.h>
+#include <freetype/tttables.h>
+#include <freetype/ftbdf.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsizes.h>
 
     struct FT_Bitmap_ {
 	int rows;

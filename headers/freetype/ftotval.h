@@ -1,9 +1,18 @@
 #ifndef _FREETYPE_FTOTVAL_H_
 #define _FREETYPE_FTOTVAL_H_
 
+#include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
-#include <freetype/t1tables.h>
+#include <freetype/tttables.h>
+#include <freetype/ftglyph.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
+#include <freetype/ftmodapi.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,8 +28,6 @@ extern "C" {
 #define FT_VALIDATE_GSUB	0x0800
 #define FT_VALIDATE_JSTF	0x1000
 
-
-    typedef const FT_Byte *FT_Bytes;
 
 
     extern FT_Error FT_OpenType_Validate(FT_Face, FT_UInt, FT_Bytes *,

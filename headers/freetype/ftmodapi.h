@@ -2,9 +2,8 @@
 #define _FREETYPE_FTMODAPI_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/ftmm.h>
-#include <freetype/ftsizes.h>
-#include <freetype/t1tables.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus

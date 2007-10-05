@@ -16,6 +16,40 @@ extern "C" {
 #define FT_ERROR_MODULE(x)	( (x) & 0xFF00U )
 
 
+    typedef unsigned int FT_UInt;
+
+    typedef int FT_Error;
+
+    typedef void (*FT_Generic_Finalizer) (void *);
+
+    typedef struct FT_Generic_ FT_Generic;
+
+    typedef int FT_Int;
+
+    typedef long unsigned int FT_ULong;
+
+    typedef long int FT_Long;
+
+    typedef char FT_String;
+
+    typedef long int FT_Fixed;
+
+    typedef void *FT_Pointer;
+
+    typedef short unsigned int FT_UShort;
+
+    typedef unsigned char FT_Bool;
+
+    typedef unsigned char FT_Byte;
+
+    typedef const FT_Byte *FT_Bytes;
+
+    typedef short int FT_Short;
+
+#include <freetype/freetype.h>
+
+
+
 
 #ifdef __cplusplus
 }

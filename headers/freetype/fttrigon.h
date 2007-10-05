@@ -3,9 +3,9 @@
 
 #include <freetype/ftoutln.h>
 #include <freetype/ftpfr.h>
+#include <freetype/fttypes.h>
 #include <freetype/ftsizes.h>
 #include <freetype/ftstroke.h>
-#include <freetype/t1tables.h>
 
 #ifdef __cplusplus
 extern "C" {

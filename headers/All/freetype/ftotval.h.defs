@@ -8,7 +8,6 @@
 #define FT_VALIDATE_GSUB	0x0800
 #define FT_VALIDATE_JSTF	0x1000
 
-typedef const FT_Byte *FT_Bytes;
 extern FT_Error FT_OpenType_Validate(FT_Face, FT_UInt, FT_Bytes *,
 				     FT_Bytes *, FT_Bytes *, FT_Bytes *,
 				     FT_Bytes *);

@@ -1,5 +1,4 @@
 
-typedef long unsigned int FT_ULong;
 typedef struct FT_MM_Axis_ {
     FT_String *name;
     FT_Long minimum;
