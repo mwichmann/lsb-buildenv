@@ -158,7 +158,6 @@ struct FT_Bitmap_Size_ {
     FT_Pos x_ppem;
     FT_Pos y_ppem;
 };
-FT_Bitmap_Size *;
 typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
 typedef struct FT_DriverRec_ *FT_Driver;
 extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
