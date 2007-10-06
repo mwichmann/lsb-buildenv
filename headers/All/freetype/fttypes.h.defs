@@ -9,8 +9,15 @@
 
 typedef unsigned int FT_UInt;
 typedef int FT_Error;
+struct FT_Generic_ {
+    void *data;
+    FT_Generic_Finalizer finalizer;
+};
 typedef void (*FT_Generic_Finalizer) (void *);
-typedef struct FT_Generic_ FT_Generic;
+typedef struct FT_Generic_ {
+    void *data;
+    FT_Generic_Finalizer finalizer;
+} FT_Generic;
 typedef int FT_Int;
 typedef long unsigned int FT_ULong;
 typedef long int FT_Long;

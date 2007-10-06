@@ -27,13 +27,10 @@ extern "C" {
 #define FT_CACHE_MANAGER_H	<freetype/ftcache.h>
 #define FT_ERROR_DEFINITIONS_H	<freetype/fterrdef.h>
 #define FT_ERRORS_H	<freetype/fterrors.h>
-#define FT_GASP_H	<freetype/ftgasp.h>
 #define FT_GLYPH_H	<freetype/ftglyph.h>
-#define FT_GX_VALIDATE_H	<freetype/ftgxval.h>
 #define FT_GZIP_H	<freetype/ftgzip.h>
 #define FT_IMAGE_H	<freetype/ftimage.h>
 #define FT_INCREMENTAL_H	<freetype/ftincrem.h>
-#define FT_LCD_FILTER_H	<freetype/ftlcdfil.h>
 #define FT_LIST_H	<freetype/ftlist.h>
 #define FT_LZW_H	<freetype/ftlzw.h>
 #define FT_MAC_H	<freetype/ftmac.h>
@@ -42,7 +39,6 @@ extern "C" {
 #define FT_MODULE_ERRORS_H	<freetype/ftmoderr.h>
 #define FT_OPENTYPE_VALIDATE_H	<freetype/ftotval.h>
 #define FT_OUTLINE_H	<freetype/ftoutln.h>
-#define FT_PFR_H	<freetype/ftpfr.h>
 #define FT_RENDER_H	<freetype/ftrender.h>
 #define FT_SIZES_H	<freetype/ftsizes.h>
 #define FT_SFNT_NAMES_H	<freetype/ftsnames.h>

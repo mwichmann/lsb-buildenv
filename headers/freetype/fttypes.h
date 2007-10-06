@@ -46,9 +46,17 @@ extern "C" {
 
     typedef short int FT_Short;
 
+    struct FT_Generic_ {
+	void *data;
+	FT_Generic_Finalizer finalizer;
+    };
+
 #include <freetype/freetype.h>
 
-
+    struct FT_Generic_ {
+	void *data;
+	FT_Generic_Finalizer finalizer;
+    };
 
 
 #ifdef __cplusplus
