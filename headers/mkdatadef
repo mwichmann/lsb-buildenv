@@ -115,7 +115,7 @@ if( $$type{'Ttype'} eq "Const" ) {
 if( $$type{'Ttype'} eq "Typedef" ) {
 	if( $nameonly ) {
 		print $$type{'Tname'}."\t";
-		return
+		return;
 	}
 	else {
 		print "typedef ";
@@ -245,7 +245,7 @@ if( $$type{'Ttype'} eq "Struct" ) {
 	if( $$type{'ATattribute'} ) {
 		print "__attribute__ (".$$type{'ATattribute'}.")";
 		}
-	print "\n";
+	if ($tmh->numrows ) { print "\n"; }
 	return;
 	}
 
@@ -674,6 +674,14 @@ for(1..$hgh->numrows) {
 		$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ";
  		$select.= " AND (TMaid IS NULL OR TMaid=1) )";
 	}
+	# Skip structs which are basetypes for included typedefs from this header group
+	$select.= "AND (Ttype <> 'Struct' OR Tid NOT IN ";
+	$select.= " (SELECT DISTINCT ATbasetype FROM ArchType ";
+	$select.= " LEFT JOIN Type ON Tid=ATtid ";
+	$select.= " LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
+	$select.= " WHERE ATaid=$Aid AND HGid=$HGid AND Ttype='typedef' ";
+	$select.= " AND ATappearedin <='$lsbversion' AND ATappearedin <> '' ";
+	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ) )";
 	$select.= "GROUP BY Tid,ATaid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
