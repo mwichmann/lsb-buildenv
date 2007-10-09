@@ -1770,6 +1770,8 @@ for(1..$hgh->numrows) {
 			print "#endif\n";
 			}
 
+ 		$processedNames{$tentry{'Tid'},$Aid} = 1;
+
 		# Display headers now that we've declared their
 		# dependant types.
 		foreach $header_name (keys %{$tentry{'Tid'}}) {

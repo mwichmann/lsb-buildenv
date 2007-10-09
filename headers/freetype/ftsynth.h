@@ -17,7 +17,6 @@ extern "C" {
     typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
 
 #include <freetype/ftglyph.h>
-#include <freetype/ftrender.h>
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/tttables.h>

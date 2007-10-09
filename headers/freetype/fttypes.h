@@ -53,12 +53,6 @@ extern "C" {
 
 #include <freetype/freetype.h>
 
-    struct FT_Generic_ {
-	void *data;
-	FT_Generic_Finalizer finalizer;
-    };
-
-
 #ifdef __cplusplus
 }
 #endif

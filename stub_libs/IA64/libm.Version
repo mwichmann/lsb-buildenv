@@ -114,6 +114,7 @@ GLIBC_2.2 {
   ctanhf;
   ctanhl;
   ctanl;
+  drem;
   dremf;
   dreml;
   erf;
@@ -123,6 +124,9 @@ GLIBC_2.2 {
   erff;
   erfl;
   exp;
+  exp10;
+  exp10f;
+  exp10l;
   exp2;
   exp2f;
   exp2l;

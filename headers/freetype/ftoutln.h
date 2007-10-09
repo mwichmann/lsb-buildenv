@@ -2,6 +2,7 @@
 #define _FREETYPE_FTOUTLN_H_
 
 #include <freetype/ftlist.h>
+#include <freetype/ftrender.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
@@ -22,6 +23,7 @@ extern "C" {
     typedef FT_Module_Interface(*FT_Module_Requester) (FT_Module,
 						       const char *);
 
+#include <freetype/ftmodapi.h>
     typedef struct FT_ListRec_ FT_ListRec;
 
     typedef struct FT_ModuleRec_ FT_ModuleRec;
@@ -121,33 +123,6 @@ extern "C" {
 	FT_ORIENTATION_FILL_LEFT = 1
     } FT_Orientation;
 
-    struct FT_LibraryRec_ {
-	FT_Memory memory;
-	FT_Generic generic;
-	FT_Int version_major;
-	FT_Int version_minor;
-	FT_Int version_patch;
-	FT_UInt num_modules;
-	FT_Module modules[32];
-	FT_ListRec renderers;
-	FT_Renderer cur_renderer;
-	FT_Module auto_hinter;
-	FT_Byte *raster_pool;
-	FT_ULong raster_pool_size;
-	FT_DebugHook_Func debug_hooks[4];
-    };
-
-    struct FT_RendererRec_ {
-	FT_ModuleRec root;
-	FT_Renderer_Class *clazz;
-	FT_Glyph_Format glyph_format;
-	FT_Glyph_Class glyph_class;
-	FT_Raster raster;
-	FT_Raster_RenderFunc raster_render;
-	FT_Renderer_RenderFunc render;
-    };
-
-#include <freetype/ftmodapi.h>
     struct FT_GlyphSlotRec_ {
 	FT_Library library;
 	FT_Face face;
@@ -173,25 +148,9 @@ extern "C" {
 	FT_Slot_Internal internal;
     };
 
-#include <freetype/ftrender.h>
-    struct FT_SubGlyphRec_ {
-	FT_Int index;
-	FT_UShort flags;
-	FT_Int arg1;
-	FT_Int arg2;
-	FT_Matrix transform;
-    };
-
-    struct FT_Slot_InternalRec_ {
-	FT_GlyphLoader loader;
-	FT_UInt flags;
-	FT_Bool glyph_transformed;
-	FT_Matrix glyph_matrix;
-	FT_Vector glyph_delta;
-	void *glyph_hints;
-    };
-
+#include <freetype/freetype.h>
 #include <freetype/tttables.h>
+#include <freetype/ftsynth.h>
 #include <freetype/ftsizes.h>
     struct FT_GlyphLoaderRec_ {
 	FT_Memory memory;
@@ -204,8 +163,6 @@ extern "C" {
 	void *other;
     };
 
-#include <freetype/freetype.h>
-#include <freetype/ftsynth.h>
     struct FT_GlyphRec_ {
 	FT_Library library;
 	const FT_Glyph_Class *clazz;
@@ -219,12 +176,7 @@ extern "C" {
 
 
 
-    struct FT_ModuleRec_ {
-	FT_Module_Class *clazz;
-	FT_Library library;
-	FT_Memory memory;
-	FT_Generic generic;
-    };
+
 
 
     struct FT_Glyph_Metrics_ {

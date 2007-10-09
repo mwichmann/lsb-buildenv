@@ -6,9 +6,18 @@
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
 #include <pango-1.0/pango/pangoxft.h>
+#include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
+#include <freetype/tttables.h>
+#include <freetype/ftglyph.h>
+#include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
+#include <freetype/ftmodapi.h>
 #include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
+#include <freetype/ftsynth.h>
+#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
