@@ -8,7 +8,7 @@
 #include <pango-1.0/pango/pango.h>
 #include <X11/extensions/render.h>
 #include <X11/extensions/Xrender.h>
-#include <freetype/ftoutln.h>
+#include <freetype/fttypes.h>
 #include <X11/Xft/Xft.h>
 
 #ifdef __cplusplus

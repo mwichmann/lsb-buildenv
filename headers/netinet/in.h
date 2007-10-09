@@ -43,6 +43,7 @@ extern "C" {
 	uint32_t s_addr;
     };
 
+#include <arpa/inet.h>
 
 /* Well Know IPv4 addresses*/
 #define INADDR_NONE	((in_addr_t) 0xffffffff)

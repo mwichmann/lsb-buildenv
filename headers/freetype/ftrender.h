@@ -1,10 +1,9 @@
 #ifndef _FREETYPE_FTRENDER_H_
 #define _FREETYPE_FTRENDER_H_
 
-#include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
+#include <freetype/ftmodapi.h>
 #include <freetype/ftimage.h>
-#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,10 +22,7 @@ extern "C" {
 
     typedef struct FT_RendererRec_ *FT_Renderer;
 
-#include <freetype/ftmodapi.h>
 #include <freetype/ftoutln.h>
-#include <freetype/ftsynth.h>
-#include <freetype/ftstroke.h>
     typedef struct FT_Parameter_ FT_Parameter;
 
 #include <freetype/freetype.h>

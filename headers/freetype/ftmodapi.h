@@ -3,7 +3,6 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -33,11 +32,10 @@ extern "C" {
 
     typedef struct FT_LibraryRec_ *FT_Library;
 
-    typedef void (*FT_DebugHook_Func) (void *);
-
-#include <freetype/ftrender.h>
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
+    typedef void (*FT_DebugHook_Func) (void *);
+
 
 
 

@@ -2,7 +2,6 @@
 #define _FREETYPE_FREETYPE_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/ftrender.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftmodapi.h>
 #include <freetype/ftimage.h>
@@ -72,35 +71,11 @@ extern "C" {
 #define FREETYPE_MINOR	1
 #define FREETYPE_PATCH	10
 #define FREETYPE_MAJOR	2
-#define ft_encoding_adobe_custom	FT_ENCODING_ADOBE_CUSTOM
-#define ft_encoding_adobe_expert	FT_ENCODING_ADOBE_EXPERT
-#define ft_encoding_latin_1	FT_ENCODING_ADOBE_LATIN_1
-#define ft_encoding_adobe_standard	FT_ENCODING_ADOBE_STANDARD
-#define ft_encoding_apple_roman	FT_ENCODING_APPLE_ROMAN
-#define ft_encoding_big5	FT_ENCODING_BIG5
-#define ft_encoding_gb2312	FT_ENCODING_GB2312
-#define ft_encoding_johab	FT_ENCODING_JOHAB
-#define ft_encoding_symbol	FT_ENCODING_MS_SYMBOL
-#define ft_encoding_none	FT_ENCODING_NONE
-#define ft_encoding_latin_2	FT_ENCODING_OLD_LATIN_2
-#define ft_encoding_sjis	FT_ENCODING_SJIS
-#define ft_encoding_unicode	FT_ENCODING_UNICODE
-#define ft_encoding_wansung	FT_ENCODING_WANSUNG
-#define ft_kerning_default	FT_KERNING_DEFAULT
-#define ft_kerning_unfitted	FT_KERNING_UNFITTED
-#define ft_kerning_unscaled	FT_KERNING_UNSCALED
 #define FT_LOAD_TARGET_LCD	FT_LOAD_TARGET_( FT_RENDER_MODE_LCD )
 #define FT_LOAD_TARGET_LCD_V	FT_LOAD_TARGET_( FT_RENDER_MODE_LCD_V )
 #define FT_LOAD_TARGET_LIGHT	FT_LOAD_TARGET_( FT_RENDER_MODE_LIGHT )
 #define FT_LOAD_TARGET_MONO	FT_LOAD_TARGET_( FT_RENDER_MODE_MONO )
 #define FT_LOAD_TARGET_NORMAL	FT_LOAD_TARGET_( FT_RENDER_MODE_NORMAL )
-#define ft_open_driver	FT_OPEN_DRIVER
-#define ft_open_memory	FT_OPEN_MEMORY
-#define ft_open_params	FT_OPEN_PARAMS
-#define ft_open_pathname	FT_OPEN_PATHNAME
-#define ft_open_stream	FT_OPEN_STREAM
-#define ft_render_mode_mono	FT_RENDER_MODE_MONO
-#define ft_render_mode_normal	FT_RENDER_MODE_NORMAL
 
 
     typedef struct FT_FaceRec_ *FT_Face;
@@ -503,6 +478,13 @@ extern "C" {
     };
 
 #endif
+    struct FT_CharMapRec_ {
+	FT_Face face;
+	FT_Encoding encoding;
+	FT_UShort platform_id;
+	FT_UShort encoding_id;
+    };
+
     struct FT_StreamRec_ {
 	unsigned char *base;
 	long unsigned int size;
@@ -516,6 +498,12 @@ extern "C" {
 	unsigned char *limit;
     };
 
+    struct FT_Parameter_ {
+	FT_ULong tag;
+	FT_Pointer data;
+    };
+
+#include <freetype/ftrender.h>
     struct FT_Bitmap_Size_ {
 	FT_Short height;
 	FT_Short width;
@@ -530,18 +518,6 @@ extern "C" {
 #include <freetype/ftbdf.h>
 #include <freetype/ftsynth.h>
 #include <freetype/ftsizes.h>
-
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
     union FT_StreamDesc_ {
 	long int value;
 	void *pointer;

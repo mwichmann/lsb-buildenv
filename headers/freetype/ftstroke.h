@@ -16,7 +16,6 @@ extern "C" {
 
     typedef struct FT_Vector_ FT_Vector;
 
-#include <freetype/ftrender.h>
     typedef struct FT_Outline_ FT_Outline;
 
 #include <freetype/freetype.h>

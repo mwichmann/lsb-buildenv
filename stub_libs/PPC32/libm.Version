@@ -36,6 +36,7 @@ GLIBC_2.0 {
   coshf;
   coshl;
   cosl;
+  drem;
   dremf;
   dreml;
   erf;
@@ -232,6 +233,9 @@ GLIBC_2.1 {
   ctanhf;
   ctanhl;
   ctanl;
+  exp10;
+  exp10f;
+  exp10l;
   exp2;
   exp2f;
   fdim;
