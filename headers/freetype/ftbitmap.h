@@ -4,7 +4,6 @@
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftmodapi.h>
 
 #ifdef __cplusplus
 extern "C" {

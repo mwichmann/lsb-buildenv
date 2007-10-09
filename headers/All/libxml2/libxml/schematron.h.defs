@@ -1,12 +1,9 @@
 
-typedef struct _xmlSchematronValidCtxt
- xmlSchematronValidCtxt;
+typedef struct _xmlSchematronValidCtxt xmlSchematronValidCtxt;
 typedef xmlSchematronValidCtxt *xmlSchematronValidCtxtPtr;
-typedef struct _xmlSchematron
- xmlSchematron;
+typedef struct _xmlSchematron xmlSchematron;
 typedef xmlSchematron *xmlSchematronPtr;
-typedef struct _xmlSchematronParserCtxt
- xmlSchematronParserCtxt;
+typedef struct _xmlSchematronParserCtxt xmlSchematronParserCtxt;
 typedef xmlSchematronParserCtxt *xmlSchematronParserCtxtPtr;
 typedef enum {
     XML_SCHEMATRON_OUT_QUIET = 1 << 0,

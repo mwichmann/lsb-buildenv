@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+#define RE_DUP_MAX	(0x7fff)
 
 
 

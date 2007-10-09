@@ -9,8 +9,7 @@ typedef enum {
     XML_CATA_ALLOW_DOCUMENT = 2,
     XML_CATA_ALLOW_ALL = 3
 } xmlCatalogAllow;
-typedef struct _xmlCatalog
- xmlCatalog;
+typedef struct _xmlCatalog xmlCatalog;
 typedef xmlCatalog *xmlCatalogPtr;
 typedef enum {
     XML_CATA_PREFER_NONE = 0,

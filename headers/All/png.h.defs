@@ -336,11 +336,9 @@
 #define png_strlen	strlen
 #define png_strncpy	strncpy
 
-typedef struct png_struct_def
- png_struct;
+typedef struct png_struct_def png_struct;
 typedef png_struct *png_structp;
-typedef struct png_info_struct
- png_info;
+typedef struct png_info_struct png_info;
 typedef png_info *png_infop;
 typedef void *png_voidp;
 typedef void (*png_progressive_info_ptr) (png_structp, png_infop);

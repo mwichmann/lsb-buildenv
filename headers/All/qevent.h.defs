@@ -1,4 +1,0 @@
-
-extern FT_Error FT_OpenType_Validate(FT_Face, FT_UInt, FT_Bytes *,
-				     FT_Bytes *, FT_Bytes *, FT_Bytes *,
-				     FT_Bytes *);

@@ -1,17 +1,13 @@
 
-typedef struct _xmlSchemaValidCtxt
- xmlSchemaValidCtxt;
+typedef struct _xmlSchemaValidCtxt xmlSchemaValidCtxt;
 typedef xmlSchemaValidCtxt *xmlSchemaValidCtxtPtr;
-typedef struct _xmlSchemaSAXPlug
- xmlSchemaSAXPlugStruct;
+typedef struct _xmlSchemaSAXPlug xmlSchemaSAXPlugStruct;
 typedef xmlSchemaSAXPlugStruct *xmlSchemaSAXPlugPtr;
-typedef struct _xmlSchemaParserCtxt
- xmlSchemaParserCtxt;
+typedef struct _xmlSchemaParserCtxt xmlSchemaParserCtxt;
 typedef xmlSchemaParserCtxt *xmlSchemaParserCtxtPtr;
 typedef void (*xmlSchemaValidityErrorFunc) (void *, const char *, ...);
 typedef void (*xmlSchemaValidityWarningFunc) (void *, const char *, ...);
-typedef struct _xmlSchema
- xmlSchema;
+typedef struct _xmlSchema xmlSchema;
 typedef xmlSchema *xmlSchemaPtr;
 typedef enum {
     XML_SCHEMA_VAL_VC_I_CREATE = 1 << 0

@@ -176,9 +176,6 @@ extern "C" {
     typedef struct _XDisplay Display;
 
 
-
-
-
 /* Definitions of specific events.*/
 
 

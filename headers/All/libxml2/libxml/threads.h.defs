@@ -1,9 +1,7 @@
 
-typedef struct _xmlRMutex
- xmlRMutex;
+typedef struct _xmlRMutex xmlRMutex;
 typedef xmlRMutex *xmlRMutexPtr;
-typedef struct _xmlMutex
- xmlMutex;
+typedef struct _xmlMutex xmlMutex;
 typedef xmlMutex *xmlMutexPtr;
 extern int xmlGetThreadId(void);
 extern xmlRMutexPtr xmlNewRMutex(void);

@@ -3,9 +3,6 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftmodapi.h>
-#include <freetype/ftimage.h>
-#include <freetype/ftstroke.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -82,6 +79,25 @@ extern "C" {
 
     typedef struct FT_Bitmap_ FT_Bitmap;
 
+    typedef struct FT_ModuleRec_ *FT_Module;
+
+    typedef struct FT_LibraryRec_ *FT_Library;
+
+    typedef struct FT_ModuleRec_ FT_ModuleRec;
+
+    typedef struct FT_RendererRec_ *FT_Renderer;
+
+    typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
+
+    typedef struct FT_Glyph_Metrics_ FT_Glyph_Metrics;
+
+    typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
+
+    typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
+
+    typedef struct FT_GlyphRec_ *FT_Glyph;
+
+#include <freetype/ftstroke.h>
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
 	FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -104,6 +120,8 @@ extern "C" {
 	FT_ENCODING_APPLE_ROMAN = 1634889070
     } FT_Encoding;
 
+    typedef struct FT_CharMapRec_ *FT_CharMap;
+
     typedef long int FT_F26Dot6;
 
     typedef union FT_StreamDesc_ FT_StreamDesc;
@@ -115,7 +133,11 @@ extern "C" {
 
     typedef void (*FT_Stream_CloseFunc) (FT_Stream);
 
+    typedef struct FT_Parameter_ FT_Parameter;
+
     typedef struct FT_Open_Args_ FT_Open_Args;
+
+    typedef struct FT_SizeRec_ *FT_Size;
 
     typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
 
@@ -394,6 +416,7 @@ extern "C" {
     };
 
 #endif
+#include <freetype/ftimage.h>
 #if defined __ia64__
 /* IA64 */
     struct FT_Bitmap_ {
@@ -478,6 +501,43 @@ extern "C" {
     };
 
 #endif
+    struct FT_GlyphSlotRec_ {
+	FT_Library library;
+	FT_Face face;
+	FT_GlyphSlot next;
+	FT_UInt reserved;
+	FT_Generic generic;
+	FT_Glyph_Metrics metrics;
+	FT_Fixed linearHoriAdvance;
+	FT_Fixed linearVertAdvance;
+	FT_Vector advance;
+	FT_Glyph_Format format;
+	FT_Bitmap bitmap;
+	FT_Int bitmap_left;
+	FT_Int bitmap_top;
+	FT_Outline outline;
+	FT_UInt num_subglyphs;
+	FT_SubGlyph subglyphs;
+	void *control_data;
+	long int control_len;
+	FT_Pos lsb_delta;
+	FT_Pos rsb_delta;
+	void *other;
+	FT_Slot_Internal internal;
+    };
+
+    struct FT_Glyph_Metrics_ {
+	FT_Pos width;
+	FT_Pos height;
+	FT_Pos horiBearingX;
+	FT_Pos horiBearingY;
+	FT_Pos horiAdvance;
+	FT_Pos vertBearingX;
+	FT_Pos vertBearingY;
+	FT_Pos vertAdvance;
+    };
+
+#include <freetype/ftoutln.h>
     struct FT_CharMapRec_ {
 	FT_Face face;
 	FT_Encoding encoding;
@@ -503,7 +563,13 @@ extern "C" {
 	FT_Pointer data;
     };
 
-#include <freetype/ftrender.h>
+    struct FT_SizeRec_ {
+	FT_Face face;
+	FT_Generic generic;
+	FT_Size_Metrics metrics;
+	FT_Size_Internal internal;
+    };
+
     struct FT_Bitmap_Size_ {
 	FT_Short height;
 	FT_Short width;
@@ -513,11 +579,11 @@ extern "C" {
     };
 
 #include <freetype/ftglyph.h>
-#include <freetype/ftoutln.h>
-#include <freetype/tttables.h>
 #include <freetype/ftbdf.h>
-#include <freetype/ftsynth.h>
 #include <freetype/ftsizes.h>
+
+
+
     union FT_StreamDesc_ {
 	long int value;
 	void *pointer;

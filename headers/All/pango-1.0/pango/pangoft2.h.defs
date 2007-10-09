@@ -12,8 +12,7 @@
 #define PANGO_TYPE_FC_FONT	(pango_fc_font_get_type ())
 #define PANGO_TYPE_FT2_FONT_MAP	(pango_ft2_font_map_get_type ())
 
-typedef struct _PangoFT2FontMap
- PangoFT2FontMap;
+typedef struct _PangoFT2FontMap PangoFT2FontMap;
 typedef void (*PangoFT2SubstituteFunc) (FcPattern *, gpointer);
 extern void pango_ft2_font_map_set_default_substitute(PangoFT2FontMap *,
 						      PangoFT2SubstituteFunc,

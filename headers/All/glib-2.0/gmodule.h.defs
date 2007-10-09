@@ -2,8 +2,7 @@
 #define G_MODULE_EXPORT
 #define G_MODULE_IMPORT	extern
 
-typedef struct _GModule
- GModule;
+typedef struct _GModule GModule;
 typedef enum {
     G_MODULE_BIND_LAZY = 1,
     G_MODULE_BIND_LOCAL = 2,

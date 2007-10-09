@@ -1,9 +1,7 @@
 
-typedef struct _xmlList
- xmlList;
+typedef struct _xmlList xmlList;
 typedef xmlList *xmlListPtr;
-typedef struct _xmlLink
- xmlLink;
+typedef struct _xmlLink xmlLink;
 typedef xmlLink *xmlLinkPtr;
 typedef int (*xmlListWalker) (const void *, const void *);
 typedef void (*xmlListDeallocator) (xmlLinkPtr);

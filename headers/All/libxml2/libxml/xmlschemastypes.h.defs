@@ -1,9 +1,7 @@
 
-typedef struct _xmlSchemaType
- xmlSchemaType;
+typedef struct _xmlSchemaType xmlSchemaType;
 typedef xmlSchemaType *xmlSchemaTypePtr;
-typedef struct _xmlSchemaVal
- xmlSchemaVal;
+typedef struct _xmlSchemaVal xmlSchemaVal;
 typedef xmlSchemaVal *xmlSchemaValPtr;
 typedef enum {
     XML_SCHEMAS_UNKNOWN = 0,

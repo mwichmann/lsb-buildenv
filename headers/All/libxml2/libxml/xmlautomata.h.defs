@@ -1,9 +1,7 @@
 
-typedef struct _xmlAutomataState
- xmlAutomataState;
+typedef struct _xmlAutomataState xmlAutomataState;
 typedef xmlAutomataState *xmlAutomataStatePtr;
-typedef struct _xmlAutomata
- xmlAutomata;
+typedef struct _xmlAutomata xmlAutomata;
 typedef xmlAutomata *xmlAutomataPtr;
 extern xmlAutomataStatePtr xmlAutomataNewTransition2(xmlAutomataPtr,
 						     xmlAutomataStatePtr,

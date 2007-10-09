@@ -15,8 +15,7 @@ typedef struct _xmlParserNodeInfoSeq {
 } xmlParserNodeInfoSeq;
 typedef void (*xmlValidityErrorFunc) (void *, const char *, ...);
 typedef void (*xmlValidityWarningFunc) (void *, const char *, ...);
-typedef struct _xmlValidState
- xmlValidState;
+typedef struct _xmlValidState xmlValidState;
 typedef struct _xmlValidCtxt {
     void *userData;
     xmlValidityErrorFunc error;

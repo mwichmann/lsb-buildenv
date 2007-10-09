@@ -3,8 +3,6 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftmodapi.h>
-#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -16,25 +14,15 @@ extern "C" {
 
     typedef long int FT_Pos;
 
+#include <freetype/ftglyph.h>
+#include <freetype/ftimage.h>
+#include <freetype/ftoutln.h>
 #include <freetype/ftstroke.h>
     typedef struct FT_Size_Metrics_ FT_Size_Metrics;
 
     typedef struct FT_Size_InternalRec_ *FT_Size_Internal;
 
-    typedef struct FT_SizeRec_ *FT_Size;
-
-    struct FT_SizeRec_ {
-	FT_Face face;
-	FT_Generic generic;
-	FT_Size_Metrics metrics;
-	FT_Size_Internal internal;
-    };
-
-#include <freetype/ftglyph.h>
 #include <freetype/freetype.h>
-#include <freetype/ftoutln.h>
-#include <freetype/tttables.h>
-#include <freetype/ftsynth.h>
 
     struct FT_Size_Metrics_ {
 	FT_UShort x_ppem;

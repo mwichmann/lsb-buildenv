@@ -44,8 +44,7 @@
 #define GDK_PIXBUF_VAR	extern
 #define GDK_PIXBUF_ERROR	gdk_pixbuf_error_quark ()
 
-typedef struct _GdkPixbuf
- GdkPixbuf;
+typedef struct _GdkPixbuf GdkPixbuf;
 typedef gboolean(*GdkPixbufSaveFunc) (const gchar *, gsize, GError * *,
 				      gpointer);
 typedef struct _GdkPixbufLoader {

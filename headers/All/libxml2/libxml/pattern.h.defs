@@ -1,9 +1,7 @@
 
-typedef struct _xmlStreamCtxt
- xmlStreamCtxt;
+typedef struct _xmlStreamCtxt xmlStreamCtxt;
 typedef xmlStreamCtxt *xmlStreamCtxtPtr;
-typedef struct _xmlPattern
- xmlPattern;
+typedef struct _xmlPattern xmlPattern;
 typedef xmlPattern *xmlPatternPtr;
 typedef enum {
     XML_PATTERN_DEFAULT = 0,

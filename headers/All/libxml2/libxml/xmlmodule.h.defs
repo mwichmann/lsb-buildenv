@@ -1,6 +1,5 @@
 
-typedef struct _xmlModule
- xmlModule;
+typedef struct _xmlModule xmlModule;
 typedef xmlModule *xmlModulePtr;
 typedef enum {
     XML_MODULE_LAZY = 1,

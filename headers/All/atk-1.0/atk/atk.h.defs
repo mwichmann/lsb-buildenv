@@ -255,8 +255,7 @@
 #define ATK_IS_TEXT(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_TEXT)
 #define ATK_IS_UTIL(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_UTIL)
 
-typedef struct _AtkText
- AtkText;
+typedef struct _AtkText AtkText;
 typedef struct _AtkObject {
     GObject parent;
     gchar *description;
@@ -367,8 +366,7 @@ typedef struct _AtkPropertyValues {
 } AtkPropertyValues;
 typedef void (*AtkPropertyChangeHandler) (AtkObject *,
 					  AtkPropertyValues *);
-typedef struct _AtkImage
- AtkImage;
+typedef struct _AtkImage AtkImage;
 typedef enum {
     ATK_XY_SCREEN = 0,
     ATK_XY_WINDOW = 1
@@ -395,10 +393,8 @@ typedef struct _AtkRelation {
     GPtrArray *target;
     AtkRelationType relationship;
 } AtkRelation;
-typedef struct _AtkDocument
- AtkDocument;
-typedef struct _AtkTable
- AtkTable;
+typedef struct _AtkDocument AtkDocument;
+typedef struct _AtkTable AtkTable;
 typedef struct _AtkHyperlink {
     GObject parent;
 } AtkHyperlink;
@@ -413,21 +409,14 @@ typedef struct _AtkRegistry {
     GHashTable *factory_type_registry;
     GHashTable *factory_singleton_cache;
 } AtkRegistry;
-typedef struct _AtkEditableText
- AtkEditableText;
+typedef struct _AtkEditableText AtkEditableText;
 typedef GSList AtkAttributeSet;
-typedef struct _AtkHypertext
- AtkHypertext;
-typedef struct _AtkSelection
- AtkSelection;
-typedef struct _AtkAction
- AtkAction;
-typedef struct _AtkComponent
- AtkComponent;
-typedef struct _AtkValue
- AtkValue;
-typedef struct _AtkStreamableContent
- AtkStreamableContent;
+typedef struct _AtkHypertext AtkHypertext;
+typedef struct _AtkSelection AtkSelection;
+typedef struct _AtkAction AtkAction;
+typedef struct _AtkComponent AtkComponent;
+typedef struct _AtkValue AtkValue;
+typedef struct _AtkStreamableContent AtkStreamableContent;
 typedef void (*AtkEventListenerInit) (void);
 typedef enum {
     ATK_TEXT_ATTR_INVALID = 0,
