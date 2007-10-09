@@ -9,10 +9,6 @@
 
 typedef unsigned int FT_UInt;
 typedef int FT_Error;
-struct FT_Generic_ {
-    void *data;
-    FT_Generic_Finalizer finalizer;
-};
 typedef void (*FT_Generic_Finalizer) (void *);
 typedef struct FT_Generic_ {
     void *data;
@@ -24,6 +20,10 @@ typedef long int FT_Long;
 typedef char FT_String;
 typedef long int FT_Fixed;
 typedef void *FT_Pointer;
+typedef struct FT_ListRec_ {
+    FT_ListNode head;
+    FT_ListNode tail;
+} FT_ListRec;
 typedef short unsigned int FT_UShort;
 typedef unsigned char FT_Bool;
 typedef unsigned char FT_Byte;

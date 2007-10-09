@@ -2,6 +2,7 @@
 #define _FREETYPE_FTMODAPI_H_
 
 #include <freetype/ftlist.h>
+#include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftsystem.h>
 
@@ -17,27 +18,33 @@ extern "C" {
 #define FT_MODULE_RENDERER	2
 #define FT_MODULE_HINTER	4
 #define FT_MODULE_STYLER	8
-#define ft_module_driver_has_hinter	FT_MODULE_DRIVER_HAS_HINTER
-#define ft_module_driver_no_outlines	FT_MODULE_DRIVER_NO_OUTLINES
-#define ft_module_driver_scalable	FT_MODULE_DRIVER_SCALABLE
-#define ft_module_font_driver	FT_MODULE_FONT_DRIVER
-#define ft_module_hinter	FT_MODULE_HINTER
-#define ft_module_renderer	FT_MODULE_RENDERER
-#define ft_module_styler	FT_MODULE_STYLER
 
 
-    typedef struct FT_ModuleRec_ *FT_Module;
+    typedef FT_Error(*FT_Module_Constructor) (FT_Module);
+
+    typedef void (*FT_Module_Destructor) (FT_Module);
+
+    typedef FT_Pointer FT_Module_Interface;
+
+#include <freetype/ftoutln.h>
+    typedef FT_Module_Interface(*FT_Module_Requester) (FT_Module,
+						       const char *);
 
     typedef struct FT_Module_Class_ FT_Module_Class;
 
-    typedef struct FT_LibraryRec_ *FT_Library;
-
-#include <freetype/freetype.h>
-#include <freetype/ftoutln.h>
     typedef void (*FT_DebugHook_Func) (void *);
 
-
-
+    struct FT_Module_Class_ {
+	FT_ULong module_flags;
+	FT_Long module_size;
+	const FT_String *module_name;
+	FT_Fixed module_version;
+	FT_Fixed module_requires;
+	const void *module_interface;
+	FT_Module_Constructor module_init;
+	FT_Module_Destructor module_done;
+	FT_Module_Requester get_interface;
+    };
 
 
     extern FT_Module FT_Get_Module(FT_Library, const char *);

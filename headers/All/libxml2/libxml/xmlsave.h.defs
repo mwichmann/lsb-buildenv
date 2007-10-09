@@ -1,6 +1,5 @@
 
-typedef struct _xmlSaveCtxt
- xmlSaveCtxt;
+typedef struct _xmlSaveCtxt xmlSaveCtxt;
 typedef xmlSaveCtxt *xmlSaveCtxtPtr;
 typedef enum {
     XML_SAVE_FORMAT = 1 << 0,

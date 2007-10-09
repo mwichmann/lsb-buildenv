@@ -6,11 +6,9 @@
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_FC_FONT_MAP))
 #define PANGO_TYPE_FC_FONT_MAP	(pango_fc_font_map_get_type ())
 
-typedef struct _PangoFcFontMap
- PangoFcFontMap;
+typedef struct _PangoFcFontMap PangoFcFontMap;
 typedef PangoFcDecoder *(*PangoFcDecoderFindFunc) (FcPattern *, gpointer);
-typedef struct _PangoFcFontMapClass
- PangoFcFontMapClass;
+typedef struct _PangoFcFontMapClass PangoFcFontMapClass;
 extern void pango_fc_font_map_add_decoder_find_func(PangoFcFontMap *,
 						    PangoFcDecoderFindFunc,
 						    gpointer,

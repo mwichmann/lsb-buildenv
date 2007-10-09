@@ -9,6 +9,13 @@ extern "C" {
 
 
 
+    typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
+
+    typedef void (*FT_Free_Func) (FT_Memory, void *);
+
+    typedef void *(*FT_Realloc_Func) (FT_Memory, long int, long int,
+				      void *);
+
     struct FT_MemoryRec_ {
 	void *user;
 	FT_Alloc_Func alloc;

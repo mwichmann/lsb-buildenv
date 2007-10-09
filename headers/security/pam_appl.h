@@ -29,9 +29,6 @@ extern "C" {
 
 
 
-
-
-
     struct pam_conv {
 	int (*conv) (int num_msg, const struct pam_message * *msg,
 		     struct pam_response * *resp, void *appdata_ptr);

@@ -64,9 +64,6 @@ extern "C" {
     typedef struct _IO_FILE FILE;
 
 
-
-
-
 /* The possibilities for the third argument to `setvbuf'.*/
 #define _IOFBF	0
 #define _IOLBF	1

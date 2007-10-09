@@ -577,8 +577,7 @@ typedef struct _GdkRectangle {
     gint width;
     gint height;
 } GdkRectangle;
-typedef struct _GdkRegion
- GdkRegion;
+typedef struct _GdkRegion GdkRegion;
 typedef struct _GdkEventExpose {
     GdkEventType type;
     GdkWindow *window;

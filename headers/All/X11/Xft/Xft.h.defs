@@ -36,10 +36,8 @@ typedef struct _XftCharSpec {
     short x;
     short y;
 } XftCharSpec;
-typedef struct _XftFtFile
- XftFtFile;
-typedef struct _XftFontInfo
- XftFontInfo;
+typedef struct _XftFtFile XftFtFile;
+typedef struct _XftFontInfo XftFontInfo;
 typedef struct _XftCharFontSpec {
     XftFont *font;
     FcChar32 ucs4;

@@ -36,6 +36,8 @@ extern "C" {
 
     typedef void *FT_Pointer;
 
+    typedef struct FT_ListRec_ FT_ListRec;
+
     typedef short unsigned int FT_UShort;
 
     typedef unsigned char FT_Bool;
@@ -46,6 +48,12 @@ extern "C" {
 
     typedef short int FT_Short;
 
+    struct FT_ListRec_ {
+	FT_ListNode head;
+	FT_ListNode tail;
+    };
+
+#include <freetype/ftlist.h>
     struct FT_Generic_ {
 	void *data;
 	FT_Generic_Finalizer finalizer;

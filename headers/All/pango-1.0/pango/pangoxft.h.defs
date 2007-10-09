@@ -27,11 +27,9 @@
 #define PANGO_TYPE_XFT_RENDERER	(pango_xft_renderer_get_type())
 #define PANGO_RENDER_TYPE_XFT	"PangoRenderXft"
 
-typedef struct _PangoXftRenderer
- PangoXftRenderer;
+typedef struct _PangoXftRenderer PangoXftRenderer;
 typedef void (*PangoXftSubstituteFunc) (FcPattern *, gpointer);
-typedef struct _PangoXftFontMap
- PangoXftFontMap;
+typedef struct _PangoXftFontMap PangoXftFontMap;
 typedef struct _PangoXftRendererClass {
     PangoRendererClass parent_class;
     void (*composite_trapezoids) (PangoXftRenderer *, PangoRenderPart,
@@ -39,14 +37,10 @@ typedef struct _PangoXftRendererClass {
     void (*composite_glyphs) (PangoXftRenderer *, XftFont *,
 			      XftGlyphSpec *, int);
 } PangoXftRendererClass;
-typedef struct _PangoFcFontClass
- PangoFcFontClass;
-typedef struct _PangoFcFont
- PangoFcFont;
-typedef struct _PangoXftFont
- PangoXftFont;
-typedef struct _PangoXftRendererPrivate
- PangoXftRendererPrivate;
+typedef struct _PangoFcFontClass PangoFcFontClass;
+typedef struct _PangoFcFont PangoFcFont;
+typedef struct _PangoXftFont PangoXftFont;
+typedef struct _PangoXftRendererPrivate PangoXftRendererPrivate;
 extern void pango_xft_substitute_changed(Display *, int);
 extern void pango_xft_render(XftDraw *, XftColor *, PangoFont *,
 			     PangoGlyphString *, gint, gint);

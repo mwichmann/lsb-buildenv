@@ -2134,8 +2134,7 @@
 #define GTK_CHECK_TYPE	G_TYPE_CHECK_INSTANCE_TYPE
 #define GTK_CHECK_GET_CLASS	G_TYPE_INSTANCE_GET_CLASS
 
-typedef struct _GtkIconSet
- GtkIconSet;
+typedef struct _GtkIconSet GtkIconSet;
 typedef struct _GtkObject {
     GObject parent_instance;
     guint32 flags;
@@ -2266,10 +2265,8 @@ typedef struct _GtkTextTagTable {
     gint anon_count;
     GSList *buffers;
 } GtkTextTagTable;
-typedef struct _GtkTextBTree
- GtkTextBTree;
-typedef struct _GtkTextLogAttrCache
- GtkTextLogAttrCache;
+typedef struct _GtkTextBTree GtkTextBTree;
+typedef struct _GtkTextLogAttrCache GtkTextLogAttrCache;
 typedef struct _GtkTextBuffer {
     GObject parent_instance;
     GtkTextTagTable *tag_table;
@@ -2310,8 +2307,7 @@ typedef struct _GtkBin {
     GtkContainer container;
     GtkWidget *child;
 } GtkBin;
-typedef struct _GtkComboBoxPrivate
- GtkComboBoxPrivate;
+typedef struct _GtkComboBoxPrivate GtkComboBoxPrivate;
 typedef struct _GtkComboBox {
     GtkBin parent_instance;
     GtkComboBoxPrivate *priv;
@@ -2388,8 +2384,7 @@ typedef struct _GtkWindow {
     GdkModifierType mnemonic_modifier;
     GdkScreen *screen;
 } GtkWindow;
-typedef struct _GtkWindowGeometryInfo
- GtkWindowGeometryInfo;
+typedef struct _GtkWindowGeometryInfo GtkWindowGeometryInfo;
 typedef struct _GtkWindowGroup {
     GObject parent_instance;
     GSList *grabs;
@@ -2401,14 +2396,12 @@ typedef enum {
     GTK_STATE_SELECTED = 3,
     GTK_STATE_INSENSITIVE = 4
 } GtkStateType;
-typedef struct _GtkTreeRowReference
- GtkTreeRowReference;
+typedef struct _GtkTreeRowReference GtkTreeRowReference;
 typedef enum {
     GTK_TREE_MODEL_ITERS_PERSIST = 1,
     GTK_TREE_MODEL_LIST_ONLY = 2
 } GtkTreeModelFlags;
-typedef struct _GtkTreeModel
- GtkTreeModel;
+typedef struct _GtkTreeModel GtkTreeModel;
 typedef struct _GtkTargetEntry {
     gchar *target;
     guint flags;
@@ -2460,8 +2453,7 @@ typedef struct _GtkEntry {
     gunichar invisible_char;
     gint width_chars;
 } GtkEntry;
-typedef struct _GtkComboBoxEntryPrivate
- GtkComboBoxEntryPrivate;
+typedef struct _GtkComboBoxEntryPrivate GtkComboBoxEntryPrivate;
 typedef struct _GtkComboBoxEntry {
     GtkComboBox parent_instance;
     GtkComboBoxEntryPrivate *priv;

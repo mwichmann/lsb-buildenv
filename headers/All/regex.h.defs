@@ -1,4 +1,6 @@
 
+#define RE_DUP_MAX	(0x7fff)
+
 typedef unsigned long int reg_syntax_t;
 
 typedef struct re_pattern_buffer {

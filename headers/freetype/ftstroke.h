@@ -3,8 +3,6 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftmodapi.h>
-#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -16,14 +14,13 @@ extern "C" {
 
     typedef struct FT_Vector_ FT_Vector;
 
+#include <freetype/ftimage.h>
     typedef struct FT_Outline_ FT_Outline;
 
-#include <freetype/freetype.h>
-#include <freetype/ftsizes.h>
-    typedef struct FT_GlyphRec_ *FT_Glyph;
-
 #include <freetype/ftglyph.h>
+#include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
+#include <freetype/ftsizes.h>
     typedef FT_Fixed FT_Angle;
 
     typedef enum {

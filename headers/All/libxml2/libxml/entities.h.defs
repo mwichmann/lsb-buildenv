@@ -28,8 +28,7 @@ typedef struct _xmlEntity {
     int owner;
 } xmlEntity;
 typedef xmlEntity *xmlEntityPtr;
-typedef struct _xmlHashTable
- xmlEntitiesTable;
+typedef struct _xmlHashTable xmlEntitiesTable;
 typedef xmlEntitiesTable *xmlEntitiesTablePtr;
 extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
 extern xmlChar *xmlEncodeSpecialChars(xmlDocPtr, const xmlChar *);

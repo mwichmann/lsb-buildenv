@@ -1,9 +1,14 @@
 #ifndef _FREETYPE_FTRENDER_H_
 #define _FREETYPE_FTRENDER_H_
 
+#include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
+#include <freetype/ftglyph.h>
 #include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
 #include <freetype/ftmodapi.h>
 #include <freetype/ftimage.h>
+#include <freetype/ftstroke.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,14 +25,34 @@ extern "C" {
 #define FTRenderer_transform	FT_Renderer_TransformFunc
 
 
-    typedef struct FT_RendererRec_ *FT_Renderer;
+    typedef FT_Error(*FT_Renderer_RenderFunc) (FT_Renderer, FT_Renderer,
+					       FT_GlyphSlot, FT_GlyphSlot,
+					       FT_UInt, FT_UInt,
+					       FT_Vector *, FT_Vector *);
 
-#include <freetype/ftoutln.h>
-    typedef struct FT_Parameter_ FT_Parameter;
+    typedef FT_Error(*FT_Renderer_TransformFunc) (FT_Renderer,
+						  FT_GlyphSlot,
+						  FT_Matrix *,
+						  FT_Vector *);
 
-#include <freetype/freetype.h>
+    typedef void (*FT_Renderer_GetCBoxFunc) (FT_Renderer, FT_GlyphSlot,
+					     FT_BBox *);
+
+    typedef FT_Error(*FT_Renderer_SetModeFunc) (FT_Renderer, FT_ULong,
+						FT_Pointer);
+
+    typedef struct FT_Renderer_Class_ FT_Renderer_Class;
 
 
+    struct FT_Renderer_Class_ {
+	FT_Module_Class root;
+	FT_Glyph_Format glyph_format;
+	FT_Renderer_RenderFunc render_glyph;
+	FT_Renderer_TransformFunc transform_glyph;
+	FT_Renderer_GetCBoxFunc get_glyph_cbox;
+	FT_Renderer_SetModeFunc set_mode;
+	FT_Raster_Funcs *raster_class;
+    };
 
 
     extern FT_Error FT_Set_Renderer(FT_Library, FT_Renderer, FT_UInt,

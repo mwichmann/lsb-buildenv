@@ -26,32 +26,11 @@
 #define FT_Curve_Tag_On	FT_CURVE_TAG_ON
 #define FT_Curve_Tag_Touch_X	FT_CURVE_TAG_TOUCH_X
 #define FT_Curve_Tag_Touch_Y	FT_CURVE_TAG_TOUCH_Y
-#define ft_glyph_format_bitmap	FT_GLYPH_FORMAT_BITMAP
-#define ft_glyph_format_composite	FT_GLYPH_FORMAT_COMPOSITE
-#define ft_glyph_format_none	FT_GLYPH_FORMAT_NONE
-#define ft_glyph_format_outline	FT_GLYPH_FORMAT_OUTLINE
-#define ft_glyph_format_plotter	FT_GLYPH_FORMAT_PLOTTER
 #define FT_Outline_ConicTo_Func	FT_Outline_ConicToFunc
 #define FT_Outline_CubicTo_Func	FT_Outline_CubicToFunc
-#define ft_outline_even_odd_fill	FT_OUTLINE_EVEN_ODD_FILL
-#define ft_outline_high_precision	FT_OUTLINE_HIGH_PRECISION
-#define ft_outline_ignore_dropouts	FT_OUTLINE_IGNORE_DROPOUTS
 #define FT_Outline_LineTo_Func	FT_Outline_LineToFunc
 #define FT_Outline_MoveTo_Func	FT_Outline_MoveToFunc
-#define ft_outline_none	FT_OUTLINE_NONE
-#define ft_outline_owner	FT_OUTLINE_OWNER
-#define ft_outline_reverse_fill	FT_OUTLINE_REVERSE_FILL
-#define ft_outline_single_pass	FT_OUTLINE_SINGLE_PASS
-#define ft_pixel_mode_grays	FT_PIXEL_MODE_GRAY
-#define ft_pixel_mode_pal2	FT_PIXEL_MODE_GRAY2
-#define ft_pixel_mode_pal4	FT_PIXEL_MODE_GRAY4
-#define ft_pixel_mode_mono	FT_PIXEL_MODE_MONO
-#define ft_pixel_mode_none	FT_PIXEL_MODE_NONE
 #define FT_Raster_Done_Func	FT_Raster_DoneFunc
-#define ft_raster_flag_aa	FT_RASTER_FLAG_AA
-#define ft_raster_flag_clip	FT_RASTER_FLAG_CLIP
-#define ft_raster_flag_default	FT_RASTER_FLAG_DEFAULT
-#define ft_raster_flag_direct	FT_RASTER_FLAG_DIRECT
 #define FT_Raster_New_Func	FT_Raster_NewFunc
 #define FT_Raster_Render_Func	FT_Raster_RenderFunc
 #define FT_Raster_Reset_Func	FT_Raster_ResetFunc
@@ -65,3 +44,48 @@ typedef enum FT_Glyph_Format_ {
     FT_GLYPH_FORMAT_OUTLINE = 1869968492,
     FT_GLYPH_FORMAT_PLOTTER = 1886154612
 } FT_Glyph_Format;
+typedef struct FT_RasterRec_ *FT_Raster;
+typedef int (*FT_Raster_NewFunc) (void *, FT_Raster *);
+typedef void (*FT_Raster_ResetFunc) (FT_Raster, unsigned char *,
+				     long unsigned int);
+typedef int (*FT_Raster_SetModeFunc) (FT_Raster, long unsigned int,
+				      void *);
+typedef struct FT_Span_ {
+    short x;
+    unsigned short len;
+    unsigned char coverage;
+} FT_Span;
+typedef void (*FT_SpanFunc) (int, int, int, int, FT_Span *, FT_Span *,
+			     void *, void *);
+typedef int (*FT_Raster_BitTest_Func) (int, int, void *);
+typedef void (*FT_Raster_BitSet_Func) (int, int, void *);
+typedef struct FT_Raster_Params_ {
+    const FT_Bitmap *target;
+    const void *source;
+    int flags;
+    FT_SpanFunc gray_spans;
+    FT_SpanFunc black_spans;
+    FT_Raster_BitTest_Func bit_test;
+    FT_Raster_BitSet_Func bit_set;
+    void *user;
+    FT_BBox clip_box;
+} FT_Raster_Params;
+typedef int (*FT_Raster_RenderFunc) (FT_Raster, FT_Raster,
+				     FT_Raster_Params *,
+				     FT_Raster_Params *);
+typedef void (*FT_Raster_DoneFunc) (FT_Raster);
+typedef struct FT_Raster_Funcs_ {
+    FT_Glyph_Format glyph_format;
+    FT_Raster_NewFunc raster_new;
+    FT_Raster_ResetFunc raster_reset;
+    FT_Raster_SetModeFunc raster_set_mode;
+    FT_Raster_RenderFunc raster_render;
+    FT_Raster_DoneFunc raster_done;
+} FT_Raster_Funcs;
+typedef int (*FT_Outline_MoveToFunc) (FT_Vector *, FT_Vector *, void *,
+				      void *);
+typedef int (*FT_Outline_LineToFunc) (FT_Vector *, FT_Vector *, void *,
+				      void *);
+typedef int (*FT_Outline_ConicToFunc) (FT_Vector *, FT_Vector *, void *);
+typedef int (*FT_Outline_CubicToFunc) (FT_Vector *, FT_Vector *,
+				       FT_Vector *, void *);

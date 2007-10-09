@@ -73,8 +73,7 @@ typedef struct _xmlSAXHandlerV1 {
     unsigned int initialized;
 } xmlSAXHandlerV1;
 typedef void (*xmlDeregisterNodeFunc) (xmlNodePtr);
-typedef struct _xmlGlobalState
- xmlGlobalState;
+typedef struct _xmlGlobalState xmlGlobalState;
 typedef xmlGlobalState *xmlGlobalStatePtr;
 extern int *__xmlParserDebugEntities(void);
 extern int xmlThrDefDoValidityCheckingDefaultValue(int);

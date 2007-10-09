@@ -1,6 +1,5 @@
 
-typedef struct _xmlTextReader
- xmlTextReader;
+typedef struct _xmlTextReader xmlTextReader;
 typedef xmlTextReader *xmlTextReaderPtr;
 typedef enum {
     XML_PARSER_SEVERITY_VALIDITY_WARNING = 1,

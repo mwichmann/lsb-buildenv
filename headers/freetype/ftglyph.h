@@ -2,9 +2,6 @@
 #define _FREETYPE_FTGLYPH_H_
 
 #include <freetype/fttypes.h>
-#include <freetype/ftmodapi.h>
-#include <freetype/ftimage.h>
-#include <freetype/ftstroke.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -12,24 +9,46 @@ extern "C" {
 #endif
 
 
-#define ft_glyph_bbox_gridfit	FT_GLYPH_BBOX_GRIDFIT
-#define ft_glyph_bbox_pixels	FT_GLYPH_BBOX_PIXELS
-#define ft_glyph_bbox_subpixels	FT_GLYPH_BBOX_SUBPIXELS
-#define ft_glyph_bbox_truncate	FT_GLYPH_BBOX_TRUNCATE
-#define ft_glyph_bbox_unscaled	FT_GLYPH_BBOX_UNSCALED
 
 
     typedef struct FT_Matrix_ FT_Matrix;
 
     typedef struct FT_BBox_ FT_BBox;
 
-#include <freetype/ftoutln.h>
-#include <freetype/tttables.h>
-#include <freetype/ftsynth.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsizes.h>
+    typedef struct FT_Glyph_Class_ FT_Glyph_Class;
+
+    typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
+					  FT_GlyphSlot);
+
+    typedef void (*FT_Glyph_DoneFunc) (FT_Glyph);
+
+    typedef FT_Error(*FT_Glyph_CopyFunc) (FT_Glyph, FT_Glyph);
+
+    typedef void (*FT_Glyph_TransformFunc) (FT_Glyph, FT_Matrix *,
+					    FT_Vector *);
+
+    typedef void (*FT_Glyph_GetBBoxFunc) (FT_Glyph, FT_BBox *);
+
+    typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_Glyph,
+					     FT_GlyphSlot, FT_GlyphSlot);
+
     typedef enum FT_Render_Mode_ FT_Render_Mode;
 
+    struct FT_GlyphRec_ {
+	FT_Library library;
+	const FT_Glyph_Class *clazz;
+	FT_Glyph_Format format;
+	FT_Vector advance;
+    };
+
 #include <freetype/freetype.h>
+#include <freetype/ftoutln.h>
+#include <freetype/ftstroke.h>
+
+
+
 
 
 

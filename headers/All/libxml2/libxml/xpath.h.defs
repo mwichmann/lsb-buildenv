@@ -8,8 +8,7 @@
 #define XML_XPATH_CHECKNS	(1<<0)
 #define XML_XPATH_NOVAR	(1<<1)
 
-typedef struct _xmlXPathCompExpr
- xmlXPathCompExpr;
+typedef struct _xmlXPathCompExpr xmlXPathCompExpr;
 typedef xmlXPathCompExpr *xmlXPathCompExprPtr;
 typedef enum {
     XPATH_UNDEFINED = 0,

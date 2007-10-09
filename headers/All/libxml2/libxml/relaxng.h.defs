@@ -1,12 +1,9 @@
 
-typedef struct _xmlRelaxNGParserCtxt
- xmlRelaxNGParserCtxt;
+typedef struct _xmlRelaxNGParserCtxt xmlRelaxNGParserCtxt;
 typedef xmlRelaxNGParserCtxt *xmlRelaxNGParserCtxtPtr;
-typedef struct _xmlRelaxNGValidCtxt
- xmlRelaxNGValidCtxt;
+typedef struct _xmlRelaxNGValidCtxt xmlRelaxNGValidCtxt;
 typedef xmlRelaxNGValidCtxt *xmlRelaxNGValidCtxtPtr;
-typedef struct _xmlRelaxNG
- xmlRelaxNG;
+typedef struct _xmlRelaxNG xmlRelaxNG;
 typedef xmlRelaxNG *xmlRelaxNGPtr;
 typedef void (*xmlRelaxNGValidityErrorFunc) (void *, const char *, ...);
 typedef void (*xmlRelaxNGValidityWarningFunc) (void *, const char *, ...);

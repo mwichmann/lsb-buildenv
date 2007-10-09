@@ -100,8 +100,7 @@
 #define FC_WIDTH	"width"
 
 typedef int FcBool;
-typedef struct _FcPattern
- FcPattern;
+typedef struct _FcPattern FcPattern;
 typedef enum _FcType {
     FcTypeVoid = 0,
     FcTypeInteger = 1,
@@ -120,10 +119,8 @@ typedef struct _FcMatrix {
     double yx;
     double yy;
 } FcMatrix;
-typedef struct _FcCharSet
- FcCharSet;
-typedef struct _FcLangSet
- FcLangSet;
+typedef struct _FcCharSet FcCharSet;
+typedef struct _FcLangSet FcLangSet;
 typedef struct _FcValue {
     FcType type;
     union {
@@ -138,12 +135,9 @@ typedef struct _FcValue {
 	const FcLangSet *l;
     } u;
 } FcValue;
-typedef struct _FcStrList
- FcStrList;
-typedef struct _FcConfig
- FcConfig;
-typedef struct _FcStrSet
- FcStrSet;
+typedef struct _FcStrList FcStrList;
+typedef struct _FcConfig FcConfig;
+typedef struct _FcStrSet FcStrSet;
 typedef unsigned int FcChar32;
 typedef enum _FcMatchKind {
     FcMatchPattern = 0,
@@ -158,8 +152,7 @@ typedef enum {
     FcEndianBig = 0,
     FcEndianLittle = 1
 } FcEndian;
-typedef struct _FcAtomic
- FcAtomic;
+typedef struct _FcAtomic FcAtomic;
 typedef struct _FcConstant {
     const FcChar8 *name;
     const char *object;
@@ -174,8 +167,7 @@ typedef enum _FcSetName {
     FcSetSystem = 0,
     FcSetApplication = 1
 } FcSetName;
-typedef struct _FcBlanks
- FcBlanks;
+typedef struct _FcBlanks FcBlanks;
 typedef enum _FcResult {
     FcResultMatch = 0,
     FcResultNoMatch = 1,
@@ -187,8 +179,7 @@ typedef struct _FcObjectType {
     const char *object;
     FcType type;
 } FcObjectType;
-typedef struct _FcGlobalCache
- FcGlobalCache;
+typedef struct _FcGlobalCache FcGlobalCache;
 typedef enum _FcLangResult {
     FcLangEqual = 0,
     FcLangDifferentCountry = 1,
