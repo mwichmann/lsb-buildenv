@@ -5,6 +5,7 @@
 #include <freetype/ftglyph.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftsizes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftstroke.h>
 
 #ifdef __cplusplus

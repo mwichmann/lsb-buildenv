@@ -46,6 +46,8 @@ extern "C" {
 #define FT_Raster_Span_Func	FT_SpanFunc
 
 
+    typedef struct FT_Outline_ FT_Outline;
+
     typedef enum FT_Glyph_Format_ {
 	FT_GLYPH_FORMAT_NONE = 0,
 	FT_GLYPH_FORMAT_COMPOSITE = 1668246896,
@@ -99,7 +101,19 @@ extern "C" {
     typedef int (*FT_Outline_CubicToFunc) (FT_Vector *, FT_Vector *,
 					   FT_Vector *, void *);
 
+    typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
+
 #include <freetype/ftoutln.h>
+
+    struct FT_Outline_ {
+	short n_contours;
+	short n_points;
+	FT_Vector *points;
+	char *tags;
+	short int *contours;
+	int flags;
+    };
+
 
     struct FT_Span_ {
 	short x;
@@ -128,6 +142,16 @@ extern "C" {
 	FT_Raster_SetModeFunc raster_set_mode;
 	FT_Raster_RenderFunc raster_render;
 	FT_Raster_DoneFunc raster_done;
+    };
+
+
+    struct FT_Outline_Funcs_ {
+	FT_Outline_MoveToFunc move_to;
+	FT_Outline_LineToFunc line_to;
+	FT_Outline_ConicToFunc conic_to;
+	FT_Outline_CubicToFunc cubic_to;
+	int shift;
+	FT_Pos delta;
     };
 
 

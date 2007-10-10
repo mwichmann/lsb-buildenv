@@ -145,27 +145,6 @@ typedef enum FT_Encoding_ {
 } FT_Encoding;
 typedef struct FT_CharMapRec_ *FT_CharMap;
 typedef long int FT_F26Dot6;
-struct FT_StreamRec_ {
-    unsigned char *base;
-    long unsigned int size;
-    long unsigned int pos;
-    FT_StreamDesc descriptor;
-    FT_StreamDesc pathname;
-    FT_Stream_IoFunc read;
-    FT_Stream_CloseFunc close;
-    FT_Memory memory;
-    unsigned char *cursor;
-    unsigned char *limit;
-};
-typedef union FT_StreamDesc_ {
-    long int value;
-    void *pointer;
-} FT_StreamDesc;
-typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
-					       long unsigned int,
-					       unsigned char *,
-					       long unsigned int);
-typedef void (*FT_Stream_CloseFunc) (FT_Stream);
 typedef struct FT_Parameter_ {
     FT_ULong tag;
     FT_Pointer data;
