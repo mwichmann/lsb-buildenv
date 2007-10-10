@@ -50,12 +50,12 @@ extern "C" {
 	unsigned char *limit;
     };
 
-#include <freetype/freetype.h>
     union FT_StreamDesc_ {
 	long int value;
 	void *pointer;
     };
 
+#include <freetype/freetype.h>
 
 #ifdef __cplusplus
 }

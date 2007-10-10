@@ -2,6 +2,8 @@
 #define _FREETYPE_FTGLYPH_H_
 
 #include <freetype/fttypes.h>
+#include <freetype/ftsizes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -13,10 +15,6 @@ extern "C" {
 
     typedef struct FT_Matrix_ FT_Matrix;
 
-    typedef struct FT_BBox_ FT_BBox;
-
-#include <freetype/ftimage.h>
-#include <freetype/ftsizes.h>
     typedef struct FT_Glyph_Class_ FT_Glyph_Class;
 
     typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
@@ -36,6 +34,14 @@ extern "C" {
 
     typedef enum FT_Render_Mode_ FT_Render_Mode;
 
+    typedef enum FT_Glyph_BBox_Mode_ {
+	FT_GLYPH_BBOX_UNSCALED = 0,
+	FT_GLYPH_BBOX_SUBPIXELS = 0,
+	FT_GLYPH_BBOX_GRIDFIT = 1,
+	FT_GLYPH_BBOX_TRUNCATE = 3,
+	FT_GLYPH_BBOX_PIXELS = 2
+    } FT_Glyph_BBox_Mode;
+
     struct FT_GlyphRec_ {
 	FT_Library library;
 	const FT_Glyph_Class *clazz;
@@ -46,9 +52,6 @@ extern "C" {
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftstroke.h>
-
-
-
 
 
 

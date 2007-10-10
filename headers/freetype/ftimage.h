@@ -56,10 +56,9 @@ extern "C" {
 	FT_GLYPH_FORMAT_PLOTTER = 1886154612
     } FT_Glyph_Format;
 
-#include <freetype/ftglyph.h>
-#include <freetype/freetype.h>
 #include <freetype/ftstroke.h>
-#include <freetype/ftsizes.h>
+    typedef struct FT_BBox_ FT_BBox;
+
     typedef struct FT_RasterRec_ *FT_Raster;
 
     typedef int (*FT_Raster_NewFunc) (void *, FT_Raster *);
@@ -103,7 +102,16 @@ extern "C" {
 
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
 
+    struct FT_BBox_ {
+	FT_Pos xMin;
+	FT_Pos yMin;
+	FT_Pos xMax;
+	FT_Pos yMax;
+    };
+
+#include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
+#include <freetype/ftsizes.h>
 
     struct FT_Outline_ {
 	short n_contours;

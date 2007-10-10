@@ -21,6 +21,10 @@ struct FT_StreamRec_ {
     unsigned char *cursor;
     unsigned char *limit;
 };
+union FT_StreamDesc_ {
+    long int value;
+    void *pointer;
+};
 typedef union FT_StreamDesc_ {
     long int value;
     void *pointer;

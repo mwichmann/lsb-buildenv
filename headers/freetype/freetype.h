@@ -134,6 +134,14 @@ extern "C" {
 
     typedef struct FT_DriverRec_ *FT_Driver;
 
+    typedef struct FT_FaceRec_ FT_FaceRec;
+
+    typedef enum FT_Kerning_Mode_ {
+	FT_KERNING_DEFAULT = 0,
+	FT_KERNING_UNFITTED = 1,
+	FT_KERNING_UNSCALED = 2
+    } FT_Kerning_Mode;
+
 #if defined __i386__
 /* IA32 */
     struct FT_FaceRec_ {
