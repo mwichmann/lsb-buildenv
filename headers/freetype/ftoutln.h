@@ -18,24 +18,12 @@ extern "C" {
 
 
 
-    typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
-
     typedef enum {
 	FT_ORIENTATION_TRUETYPE = 0,
 	FT_ORIENTATION_POSTSCRIPT = 1,
 	FT_ORIENTATION_FILL_RIGHT = 0,
 	FT_ORIENTATION_FILL_LEFT = 1
     } FT_Orientation;
-
-
-    struct FT_Outline_Funcs_ {
-	FT_Outline_MoveToFunc move_to;
-	FT_Outline_LineToFunc line_to;
-	FT_Outline_ConicToFunc conic_to;
-	FT_Outline_CubicToFunc cubic_to;
-	int shift;
-	FT_Pos delta;
-    };
 
 
     extern void FT_Outline_Reverse(FT_Outline *);

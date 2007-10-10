@@ -1,6 +1,5 @@
 
 typedef struct FT_Vector_ FT_Vector;
-typedef struct FT_Outline_ FT_Outline;
 typedef FT_Fixed FT_Angle;
 struct FT_StrokerRec_ {
     FT_Angle angle_in;

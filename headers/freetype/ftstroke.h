@@ -14,10 +14,8 @@ extern "C" {
 
     typedef struct FT_Vector_ FT_Vector;
 
-#include <freetype/ftimage.h>
-    typedef struct FT_Outline_ FT_Outline;
-
 #include <freetype/ftglyph.h>
+#include <freetype/ftimage.h>
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftsizes.h>
@@ -60,9 +58,6 @@ extern "C" {
 	FT_StrokeBorderRec borders[2];
 	FT_Memory memory;
     };
-
-
-
 
 
 

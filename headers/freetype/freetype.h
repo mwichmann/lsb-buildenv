@@ -124,15 +124,6 @@ extern "C" {
 
     typedef long int FT_F26Dot6;
 
-    typedef union FT_StreamDesc_ FT_StreamDesc;
-
-    typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
-						   long unsigned int,
-						   unsigned char *,
-						   long unsigned int);
-
-    typedef void (*FT_Stream_CloseFunc) (FT_Stream);
-
     typedef struct FT_Parameter_ FT_Parameter;
 
     typedef struct FT_Open_Args_ FT_Open_Args;
@@ -545,19 +536,6 @@ extern "C" {
 	FT_UShort encoding_id;
     };
 
-    struct FT_StreamRec_ {
-	unsigned char *base;
-	long unsigned int size;
-	long unsigned int pos;
-	FT_StreamDesc descriptor;
-	FT_StreamDesc pathname;
-	FT_Stream_IoFunc read;
-	FT_Stream_CloseFunc close;
-	FT_Memory memory;
-	unsigned char *cursor;
-	unsigned char *limit;
-    };
-
     struct FT_Parameter_ {
 	FT_ULong tag;
 	FT_Pointer data;
@@ -583,11 +561,6 @@ extern "C" {
 #include <freetype/ftsizes.h>
 
 
-
-    union FT_StreamDesc_ {
-	long int value;
-	void *pointer;
-    };
 
 
     struct FT_Open_Args_ {
