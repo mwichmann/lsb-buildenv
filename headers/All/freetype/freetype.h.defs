@@ -175,6 +175,44 @@ struct FT_Bitmap_Size_ {
 };
 typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
 typedef struct FT_DriverRec_ *FT_Driver;
+typedef struct FT_FaceRec_ {
+    FT_Long num_faces;
+    FT_Long face_index;
+    FT_Long face_flags;
+    FT_Long style_flags;
+    FT_Long num_glyphs;
+    const FT_String *family_name;
+    const FT_String *style_name;
+    FT_Int num_fixed_sizes;
+    FT_Bitmap_Size *available_sizes;
+    FT_Int num_charmaps;
+    FT_CharMap *charmaps;
+    FT_Generic generic;
+    FT_BBox bbox;
+    FT_UShort units_per_EM;
+    FT_Short ascender;
+    FT_Short descender;
+    FT_Short height;
+    FT_Short max_advance_width;
+    FT_Short max_advance_weight;
+    FT_Short underline_position;
+    FT_Short underline_thickness;
+    FT_GlyphSlot glyph;
+    FT_Size size;
+    FT_CharMap charmap;
+    FT_Driver driver;
+    FT_Memory memory;
+    FT_Stream stream;
+    FT_ListRec sizes_list;
+    FT_Generic autohint;
+    void *extensions;
+    FT_Face_Internal internal;
+} FT_FaceRec;
+typedef enum FT_Kerning_Mode_ {
+    FT_KERNING_DEFAULT = 0,
+    FT_KERNING_UNFITTED = 1,
+    FT_KERNING_UNSCALED = 2
+} FT_Kerning_Mode;
 extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
 extern FT_Fixed FT_RoundFix(FT_Fixed);
 extern FT_Fixed FT_CeilFix(FT_Fixed);

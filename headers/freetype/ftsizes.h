@@ -14,7 +14,6 @@ extern "C" {
 
     typedef long int FT_Pos;
 
-#include <freetype/ftglyph.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftoutln.h>
 #include <freetype/ftstroke.h>
