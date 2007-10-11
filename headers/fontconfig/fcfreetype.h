@@ -8,7 +8,6 @@
 #include <freetype/fttypes.h>
 #include <freetype/ftsizes.h>
 #include <freetype/ftimage.h>
-#include <freetype/ftstroke.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus

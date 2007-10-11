@@ -25,6 +25,12 @@ typedef struct FT_ListRec_ {
     FT_ListNode tail;
 } FT_ListRec;
 typedef short unsigned int FT_UShort;
+typedef struct FT_Matrix_ {
+    FT_Fixed xx;
+    FT_Fixed xy;
+    FT_Fixed yx;
+    FT_Fixed yy;
+} FT_Matrix;
 typedef unsigned char FT_Bool;
 typedef unsigned char FT_Byte;
 typedef const FT_Byte *FT_Bytes;

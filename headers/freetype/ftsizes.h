@@ -16,7 +16,6 @@ extern "C" {
 
 #include <freetype/ftimage.h>
 #include <freetype/ftoutln.h>
-#include <freetype/ftstroke.h>
     typedef struct FT_Size_Metrics_ FT_Size_Metrics;
 
     typedef struct FT_Size_InternalRec_ *FT_Size_Internal;

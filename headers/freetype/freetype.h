@@ -97,7 +97,6 @@ extern "C" {
 
     typedef struct FT_GlyphRec_ *FT_Glyph;
 
-#include <freetype/ftstroke.h>
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
 	FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -542,6 +541,15 @@ extern "C" {
 	FT_Encoding encoding;
 	FT_UShort platform_id;
 	FT_UShort encoding_id;
+    };
+
+    enum FT_Render_Mode_ {
+	FT_RENDER_MODE_NORMAL = 0,
+	FT_RENDER_MODE_LIGHT = 1,
+	FT_RENDER_MODE_MONO = 2,
+	FT_RENDER_MODE_LCD = 3,
+	FT_RENDER_MODE_LCD_V = 4,
+	FT_RENDER_MODE_MAX = 5
     };
 
     struct FT_Parameter_ {

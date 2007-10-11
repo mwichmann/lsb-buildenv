@@ -40,6 +40,8 @@ extern "C" {
 
     typedef short unsigned int FT_UShort;
 
+    typedef struct FT_Matrix_ FT_Matrix;
+
     typedef unsigned char FT_Bool;
 
     typedef unsigned char FT_Byte;
@@ -57,6 +59,13 @@ extern "C" {
     struct FT_Generic_ {
 	void *data;
 	FT_Generic_Finalizer finalizer;
+    };
+
+    struct FT_Matrix_ {
+	FT_Fixed xx;
+	FT_Fixed xy;
+	FT_Fixed yx;
+	FT_Fixed yy;
     };
 
 #include <freetype/freetype.h>
