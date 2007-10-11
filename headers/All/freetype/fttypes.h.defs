@@ -8,6 +8,13 @@
 #define FT_ERROR_MODULE(x)	( (x) & 0xFF00U )
 
 typedef unsigned int FT_UInt;
+struct FT_ListNodeRec_ {
+    FT_ListNode prev;
+    FT_ListNode next;
+    void *data;
+};
+typedef struct FT_ListNodeRec_ *FT_ListNode;
+typedef struct FT_ListRec_ *FT_List;
 typedef int FT_Error;
 typedef void (*FT_Generic_Finalizer) (void *);
 typedef struct FT_Generic_ {

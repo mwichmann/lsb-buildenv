@@ -37,6 +37,7 @@
 #define FT_Raster_Set_Mode_Func	FT_Raster_SetModeFunc
 #define FT_Raster_Span_Func	FT_SpanFunc
 
+typedef long int FT_Pos;
 typedef struct FT_Vector_ {
     FT_Pos x;
     FT_Pos y;

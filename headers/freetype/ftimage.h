@@ -46,6 +46,8 @@ extern "C" {
 #define FT_Raster_Span_Func	FT_SpanFunc
 
 
+    typedef long int FT_Pos;
+
     typedef struct FT_Vector_ FT_Vector;
 
     typedef struct FT_Outline_ FT_Outline;
@@ -117,7 +119,6 @@ extern "C" {
 
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
-#include <freetype/ftsizes.h>
 
     struct FT_Outline_ {
 	short n_contours;

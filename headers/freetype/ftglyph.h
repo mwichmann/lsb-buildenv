@@ -2,7 +2,6 @@
 #define _FREETYPE_FTGLYPH_H_
 
 #include <freetype/fttypes.h>
-#include <freetype/ftsizes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 

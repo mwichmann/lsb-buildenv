@@ -1,5 +1,4 @@
 
-typedef long int FT_Pos;
 typedef struct FT_Size_Metrics_ {
     FT_UShort x_ppem;
     FT_UShort y_ppem;
