@@ -1,6 +1,7 @@
 #ifndef _FREETYPE_FTLIST_H_
 #define _FREETYPE_FTLIST_H_
 
+#include <freetype/fttypes.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -10,21 +11,10 @@ extern "C" {
 
 
 
-    typedef struct FT_ListNodeRec_ *FT_ListNode;
-
-    typedef struct FT_ListRec_ *FT_List;
-
     typedef void (*FT_List_Destructor) (FT_Memory, void *, void *);
 
     typedef FT_Error(*FT_List_Iterator) (FT_ListNode, void *);
 
-    struct FT_ListNodeRec_ {
-	FT_ListNode prev;
-	FT_ListNode next;
-	void *data;
-    };
-
-#include <freetype/fttypes.h>
 
     extern void FT_List_Finalize(FT_List, FT_List_Destructor, FT_Memory,
 				 void *);

@@ -5,7 +5,6 @@
 #include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftsizes.h>
 #include <freetype/ftmodapi.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>

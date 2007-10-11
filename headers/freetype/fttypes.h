@@ -18,6 +18,10 @@ extern "C" {
 
     typedef unsigned int FT_UInt;
 
+    typedef struct FT_ListNodeRec_ *FT_ListNode;
+
+    typedef struct FT_ListRec_ *FT_List;
+
     typedef int FT_Error;
 
     typedef void (*FT_Generic_Finalizer) (void *);
@@ -55,7 +59,12 @@ extern "C" {
 	FT_ListNode tail;
     };
 
-#include <freetype/ftlist.h>
+    struct FT_ListNodeRec_ {
+	FT_ListNode prev;
+	FT_ListNode next;
+	void *data;
+    };
+
     struct FT_Generic_ {
 	void *data;
 	FT_Generic_Finalizer finalizer;
