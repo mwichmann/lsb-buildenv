@@ -46,6 +46,8 @@ extern "C" {
 #define FT_Raster_Span_Func	FT_SpanFunc
 
 
+    typedef struct FT_Vector_ FT_Vector;
+
     typedef struct FT_Outline_ FT_Outline;
 
     typedef enum FT_Glyph_Format_ {
@@ -56,7 +58,6 @@ extern "C" {
 	FT_GLYPH_FORMAT_PLOTTER = 1886154612
     } FT_Glyph_Format;
 
-#include <freetype/ftstroke.h>
     typedef struct FT_BBox_ FT_BBox;
 
     typedef struct FT_RasterRec_ *FT_Raster;
@@ -101,6 +102,11 @@ extern "C" {
 					   FT_Vector *, void *);
 
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
+
+    struct FT_Vector_ {
+	FT_Pos x;
+	FT_Pos y;
+    };
 
     struct FT_BBox_ {
 	FT_Pos xMin;

@@ -204,29 +204,5 @@ extern struct Data _ZN7QString17fromLatin1_helperEPKci(void);
 extern QString _ZNK7QString8multiArgEiPPKS_(void);
 extern struct Data _ZN7QString11shared_nullE ;
 extern QTextCodec * _ZN7QString16codecForCStringsE ;
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-extern QString _ZN7QString8vsprintfEPKcP13__va_list_tag(void);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-extern QString _ZN7QString8vsprintfEPKcP13__va_list_tag(void);
-#endif
-#if defined __s390x__
-/* S390X */
-extern QString _ZN7QString8vsprintfEPKcP13__va_list_tag(void);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-extern QString _ZN7QString8vsprintfEPKcP13__va_list_tag(void);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-extern QString _ZN7QString8vsprintfEPKcP13__va_list_tag(void);
-#endif
-#if defined __ia64__
-/* IA64 */
-extern QString _ZN7QString8vsprintfEPKcP13__va_list_tag(void);
-#endif
 // *INDENT-ON*
 #endif

@@ -13,8 +13,6 @@ extern "C" {
 
 
 
-    typedef struct FT_Matrix_ FT_Matrix;
-
     typedef struct FT_Glyph_Class_ FT_Glyph_Class;
 
     typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
@@ -51,10 +49,6 @@ extern "C" {
 
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
-#include <freetype/ftstroke.h>
-
-
-
 
 
 
