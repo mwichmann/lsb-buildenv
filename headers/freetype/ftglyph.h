@@ -14,6 +14,8 @@ extern "C" {
 
     typedef struct FT_Glyph_Class_ FT_Glyph_Class;
 
+    typedef struct FT_GlyphRec_ *FT_Glyph;
+
     typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
 					  FT_GlyphSlot);
 
@@ -31,6 +33,7 @@ extern "C" {
 
     typedef enum FT_Render_Mode_ FT_Render_Mode;
 
+#include <freetype/freetype.h>
     typedef enum FT_Glyph_BBox_Mode_ {
 	FT_GLYPH_BBOX_UNSCALED = 0,
 	FT_GLYPH_BBOX_SUBPIXELS = 0,
@@ -39,6 +42,17 @@ extern "C" {
 	FT_GLYPH_BBOX_PIXELS = 2
     } FT_Glyph_BBox_Mode;
 
+    struct FT_Glyph_Class_ {
+	FT_Long glyph_size;
+	FT_Glyph_Format glyph_format;
+	FT_Glyph_InitFunc glyph_init;
+	FT_Glyph_DoneFunc glyph_done;
+	FT_Glyph_CopyFunc glyph_copy;
+	FT_Glyph_TransformFunc glyph_transform;
+	FT_Glyph_GetBBoxFunc glyph_bbox;
+	FT_Glyph_PrepareFunc glyph_prepare;
+    };
+
     struct FT_GlyphRec_ {
 	FT_Library library;
 	const FT_Glyph_Class *clazz;
@@ -46,11 +60,7 @@ extern "C" {
 	FT_Vector advance;
     };
 
-#include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
-
-
-
 
     extern void FT_Done_Glyph(FT_Glyph);
     extern void FT_Matrix_Multiply(const FT_Matrix *, FT_Matrix *);

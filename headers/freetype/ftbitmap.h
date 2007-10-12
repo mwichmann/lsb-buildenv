@@ -1,9 +1,9 @@
 #ifndef _FREETYPE_FTBITMAP_H_
 #define _FREETYPE_FTBITMAP_H_
 
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 
 #ifdef __cplusplus
 extern "C" {

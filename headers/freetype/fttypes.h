@@ -54,6 +54,8 @@ extern "C" {
 
     typedef short int FT_Short;
 
+    typedef struct FT_ListNodeRec_ FT_ListNodeRec;
+
     struct FT_ListRec_ {
 	FT_ListNode head;
 	FT_ListNode tail;
