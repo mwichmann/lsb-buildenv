@@ -3,6 +3,7 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -77,8 +78,6 @@ extern "C" {
 
     typedef struct FT_FaceRec_ *FT_Face;
 
-    typedef struct FT_Bitmap_ FT_Bitmap;
-
     typedef struct FT_ModuleRec_ *FT_Module;
 
     typedef struct FT_LibraryRec_ *FT_Library;
@@ -94,8 +93,6 @@ extern "C" {
     typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
 
     typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
-
-    typedef struct FT_GlyphRec_ *FT_Glyph;
 
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
@@ -128,6 +125,8 @@ extern "C" {
     typedef struct FT_Open_Args_ FT_Open_Args;
 
     typedef struct FT_SizeRec_ *FT_Size;
+
+    typedef struct FT_Bitmap_Size_ FT_Bitmap_Size;
 
     typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
 
@@ -397,105 +396,6 @@ extern "C" {
 	FT_Generic autohint;
 	void *extensions;
 	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __i386__
-/* IA32 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#include <freetype/ftimage.h>
-#if defined __ia64__
-/* IA64 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __s390x__
-/* S390X */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
     };
 
 #endif

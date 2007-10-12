@@ -46,6 +46,8 @@ extern "C" {
 #define FT_Raster_Span_Func	FT_SpanFunc
 
 
+    typedef struct FT_Bitmap_ FT_Bitmap;
+
     typedef long int FT_Pos;
 
     typedef struct FT_Vector_ FT_Vector;
@@ -105,6 +107,104 @@ extern "C" {
 
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
 
+#if defined __i386__
+/* IA32 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+#endif
     struct FT_Vector_ {
 	FT_Pos x;
 	FT_Pos y;
@@ -117,7 +217,6 @@ extern "C" {
 	FT_Pos yMax;
     };
 
-#include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 
     struct FT_Outline_ {

@@ -64,16 +64,6 @@
 #define FT_LOAD_TARGET_NORMAL	FT_LOAD_TARGET_( FT_RENDER_MODE_NORMAL )
 
 typedef struct FT_FaceRec_ *FT_Face;
-typedef struct FT_Bitmap_ {
-    int rows;
-    int width;
-    int pitch;
-    unsigned char buffer;
-    short num_grays;
-    char pixel_mode;
-    char palette_mode;
-    void *palette;
-} FT_Bitmap;
 typedef struct FT_ModuleRec_ *FT_Module;
 typedef struct FT_LibraryRec_ *FT_Library;
 typedef struct FT_ModuleRec_ FT_ModuleRec;
@@ -115,7 +105,6 @@ typedef struct FT_Glyph_Metrics_ {
 } FT_Glyph_Metrics;
 typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
 typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
-typedef struct FT_GlyphRec_ *FT_Glyph;
 struct FT_CharMapRec_ {
     FT_Face face;
     FT_Encoding encoding;
@@ -174,13 +163,13 @@ struct FT_SizeRec_ {
     FT_Size_Internal internal;
 };
 typedef struct FT_SizeRec_ *FT_Size;
-struct FT_Bitmap_Size_ {
+typedef struct FT_Bitmap_Size_ {
     FT_Short height;
     FT_Short width;
     FT_Pos size;
     FT_Pos x_ppem;
     FT_Pos y_ppem;
-};
+} FT_Bitmap_Size;
 typedef struct FT_Face_InternalRec_ *FT_Face_Internal;
 typedef struct FT_DriverRec_ *FT_Driver;
 typedef struct FT_FaceRec_ {

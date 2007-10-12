@@ -37,6 +37,16 @@
 #define FT_Raster_Set_Mode_Func	FT_Raster_SetModeFunc
 #define FT_Raster_Span_Func	FT_SpanFunc
 
+typedef struct FT_Bitmap_ {
+    int rows;
+    int width;
+    int pitch;
+    unsigned char buffer;
+    short num_grays;
+    char pixel_mode;
+    char palette_mode;
+    void *palette;
+} FT_Bitmap;
 typedef long int FT_Pos;
 typedef struct FT_Vector_ {
     FT_Pos x;
