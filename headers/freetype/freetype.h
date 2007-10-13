@@ -3,7 +3,6 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -94,6 +93,8 @@ extern "C" {
 
     typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
 
+#include <freetype/ftimage.h>
+
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
 	FT_ENCODING_MS_SYMBOL = 1937337698,
@@ -139,6 +140,50 @@ extern "C" {
 	FT_KERNING_UNFITTED = 1,
 	FT_KERNING_UNSCALED = 2
     } FT_Kerning_Mode;
+
+    struct FT_Glyph_Metrics_ {
+	FT_Pos width;
+	FT_Pos height;
+	FT_Pos horiBearingX;
+	FT_Pos horiBearingY;
+	FT_Pos horiAdvance;
+	FT_Pos vertBearingX;
+	FT_Pos vertBearingY;
+	FT_Pos vertAdvance;
+    };
+
+    struct FT_GlyphSlotRec_ {
+	FT_Library library;
+	FT_Face face;
+	FT_GlyphSlot next;
+	FT_UInt reserved;
+	FT_Generic generic;
+	FT_Glyph_Metrics metrics;
+	FT_Fixed linearHoriAdvance;
+	FT_Fixed linearVertAdvance;
+	FT_Vector advance;
+	FT_Glyph_Format format;
+	FT_Bitmap bitmap;
+	FT_Int bitmap_left;
+	FT_Int bitmap_top;
+	FT_Outline outline;
+	FT_UInt num_subglyphs;
+	FT_SubGlyph subglyphs;
+	void *control_data;
+	long int control_len;
+	FT_Pos lsb_delta;
+	FT_Pos rsb_delta;
+	void *other;
+	FT_Slot_Internal internal;
+    };
+
+    struct FT_Bitmap_Size_ {
+	FT_Short height;
+	FT_Short width;
+	FT_Pos size;
+	FT_Pos x_ppem;
+	FT_Pos y_ppem;
+    };
 
 #if defined __i386__
 /* IA32 */
@@ -399,41 +444,6 @@ extern "C" {
     };
 
 #endif
-    struct FT_GlyphSlotRec_ {
-	FT_Library library;
-	FT_Face face;
-	FT_GlyphSlot next;
-	FT_UInt reserved;
-	FT_Generic generic;
-	FT_Glyph_Metrics metrics;
-	FT_Fixed linearHoriAdvance;
-	FT_Fixed linearVertAdvance;
-	FT_Vector advance;
-	FT_Glyph_Format format;
-	FT_Bitmap bitmap;
-	FT_Int bitmap_left;
-	FT_Int bitmap_top;
-	FT_Outline outline;
-	FT_UInt num_subglyphs;
-	FT_SubGlyph subglyphs;
-	void *control_data;
-	long int control_len;
-	FT_Pos lsb_delta;
-	FT_Pos rsb_delta;
-	void *other;
-	FT_Slot_Internal internal;
-    };
-
-    struct FT_Glyph_Metrics_ {
-	FT_Pos width;
-	FT_Pos height;
-	FT_Pos horiBearingX;
-	FT_Pos horiBearingY;
-	FT_Pos horiAdvance;
-	FT_Pos vertBearingX;
-	FT_Pos vertBearingY;
-	FT_Pos vertAdvance;
-    };
 
 #include <freetype/ftoutln.h>
     struct FT_CharMapRec_ {
@@ -457,6 +467,7 @@ extern "C" {
 	FT_Pointer data;
     };
 
+#include <freetype/ftsizes.h>
     struct FT_SizeRec_ {
 	FT_Face face;
 	FT_Generic generic;
@@ -464,17 +475,8 @@ extern "C" {
 	FT_Size_Internal internal;
     };
 
-    struct FT_Bitmap_Size_ {
-	FT_Short height;
-	FT_Short width;
-	FT_Pos size;
-	FT_Pos x_ppem;
-	FT_Pos y_ppem;
-    };
-
 #include <freetype/ftglyph.h>
 #include <freetype/ftbdf.h>
-#include <freetype/ftsizes.h>
 
 
 
