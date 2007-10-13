@@ -37,6 +37,11 @@ extern "C" {
     };
 
 #include <freetype/ftlist.h>
+    union FT_StreamDesc_ {
+	long int value;
+	void *pointer;
+    };
+
     struct FT_StreamRec_ {
 	unsigned char *base;
 	long unsigned int size;
@@ -48,11 +53,6 @@ extern "C" {
 	FT_Memory memory;
 	unsigned char *cursor;
 	unsigned char *limit;
-    };
-
-    union FT_StreamDesc_ {
-	long int value;
-	void *pointer;
     };
 
 #include <freetype/freetype.h>

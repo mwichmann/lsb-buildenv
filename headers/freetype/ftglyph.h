@@ -1,6 +1,7 @@
 #ifndef _FREETYPE_FTGLYPH_H_
 #define _FREETYPE_FTGLYPH_H_
 
+#include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
@@ -33,7 +34,6 @@ extern "C" {
 
     typedef enum FT_Render_Mode_ FT_Render_Mode;
 
-#include <freetype/freetype.h>
     typedef enum FT_Glyph_BBox_Mode_ {
 	FT_GLYPH_BBOX_UNSCALED = 0,
 	FT_GLYPH_BBOX_SUBPIXELS = 0,
