@@ -210,8 +210,6 @@ extern void XRenderCompositeDoublePoly(Display *, int, Picture, Picture,
 				       int);
 extern Picture XRenderCreateSolidFill(Display *, const XRenderColor *);
 extern int XRenderQueryExtension(Display *, int *, int *);
-extern void XRenderSetPictureFilter(Display *, Picture, const char *,
-				    XFixed *, int);
 extern void XRenderCompositeTrapezoids(Display *, int, Picture, Picture,
 				       const XRenderPictFormat *, int, int,
 				       const XTrapezoid *, int);
