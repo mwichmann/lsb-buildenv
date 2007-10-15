@@ -592,7 +592,12 @@ if( $typelist ne "" ) {
 	$sth = $Dbh->query($select) || die $Dbh->errmsg();
 	for(1..$sth->numrows) {
 		%entry=$sth->fetchhash;
-		$type{$entry{'ATbasetype'}}=1;
+		if( $entry{'ATbasetype'} ) {
+			$type{$entry{'ATbasetype'}}=1;
+		}
+		else {
+			print STDERR "Couldn't detect base type for '".$entry{'Tname'}."'\n";
+		}
 		#print "Pointer ".$entry{'Tname'}."\n";
 		}
 	}
