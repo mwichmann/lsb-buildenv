@@ -493,7 +493,7 @@ $Hid=$entry{'Hid'};
 #
 $select = "SELECT Ireturn FROM Interface ";
 $select.= "LEFT JOIN ArchInt ON Iid=AIint ";
-$select.= "WHERE Iheader=$Hid ";
+$select.= "WHERE Iheader=$Hid AND Isrcbin<>'BinOnly' ";
 $select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
 #$select.= "AND Iarch=$Aid";
@@ -518,7 +518,7 @@ for(1..$sth->numrows) {
 #
 $select = "SELECT Ptype FROM Parameter, Interface ";
 $select.= "LEFT JOIN ArchInt ON AIint=Iid ";
-$select.= "WHERE Iheader=$Hid ";
+$select.= "WHERE Iheader=$Hid AND Isrcbin<>'BinOnly' ";
 $select.= "AND Pint=Iid ";
 #$select.= "WHERE Pint=Iid ";
 $select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
@@ -705,8 +705,8 @@ for(1..$hgh->numrows) {
 $select  = "SELECT * FROM Interface ";
 $select .= "LEFT JOIN Type on Ireturn = Tid ";
 $select .= "LEFT JOIN ArchInt ON Iid=AIint ";
-$select .= "WHERE Iheader = $Hid AND ";
-$select .= "AIarch=$Aid ";
+$select .= "WHERE Iheader = $Hid AND Isrcbin<>'BinOnly' ";
+$select .= "AND AIarch=$Aid ";
 $select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
 if( $Aid!=1 ) {
