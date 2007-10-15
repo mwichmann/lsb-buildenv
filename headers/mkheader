@@ -1103,7 +1103,7 @@ sub get_typelist {
 	$select.= "WHERE Iheader=$Query_Hid ";
 	$select.= "AND AIappearedin <= '$lsbversion' and AIappearedin<>'' ";
 	$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion')  ";
-	$select.= "AND AIarch=$Aid ";
+	$select.= "AND AIarch=$Aid AND Isrcbin<>'BinOnly' ";
 	if( $Aid!=1 ) {
 		$select.= "AND Iid NOT IN ";
 		$select.= "(SELECT Iid FROM Interface";
@@ -1131,7 +1131,7 @@ sub get_typelist {
 	$select.= "AND Pint=Iid ";
 	$select.= "AND AIappearedin <= '$lsbversion' and AIappearedin<>'' ";
 	$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
-	$select.= "AND AIarch=$Aid ";
+	$select.= "AND AIarch=$Aid AND Isrcbin <>'BinOnly' ";
 	if( $Aid!=1 ) {
 		$select.= "AND Iid NOT IN ";
 		$select.= "(SELECT Iid FROM Interface";
@@ -1918,7 +1918,7 @@ $select.= "LEFT JOIN ArchInt ON Iid=AIint ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
 # $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 $select.= "LEFT JOIN Architecture ON AIarch=Aid ";
-$select.= "WHERE (Isrcbin='SrcOnly' OR (";
+$select.= "WHERE (Isrcbin='SrcOnly' OR ( Isrcbin='Both' AND ";
 $select.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
 $select.= "AND Iclass=0 ";
@@ -1935,7 +1935,7 @@ for(1..$sth->numrows) {
 		$selectGeneric = "SELECT Iid FROM Interface ";
 		$selectGeneric.= "LEFT JOIN ArchInt ON Iid=AIint ";
 		$selectGeneric.= "WHERE AIarch=1 AND Iname='$entry{'Iname'}'";
-		$selectGeneric.= "AND (Isrcbin='SrcOnly' OR (";
+		$selectGeneric.= "AND (Isrcbin='SrcOnly' OR (Isrcbin='Both' AND ";
 		$selectGeneric.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 		$selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
 		$sthGeneric = $Dbh->query($selectGeneric) || die $Dbh->errmsg();

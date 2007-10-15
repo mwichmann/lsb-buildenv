@@ -387,7 +387,6 @@ extern "C" {
     extern long int lround(double);
     extern long int lroundf(float);
     extern long int lroundl(long double);
-    extern int matherr(struct exception *);
     extern double nan(const char *);
     extern float nanf(const char *);
     extern long double nanl(const char *);
