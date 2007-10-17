@@ -93,6 +93,15 @@ extern "C" {
 
     typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
 
+    typedef enum FT_Render_Mode_ {
+	FT_RENDER_MODE_NORMAL = 0,
+	FT_RENDER_MODE_LIGHT = 1,
+	FT_RENDER_MODE_MONO = 2,
+	FT_RENDER_MODE_LCD = 3,
+	FT_RENDER_MODE_LCD_V = 4,
+	FT_RENDER_MODE_MAX = 5
+    } FT_Render_Mode;
+
 #include <freetype/ftimage.h>
 
     typedef enum FT_Encoding_ {
@@ -124,6 +133,10 @@ extern "C" {
     typedef struct FT_Parameter_ FT_Parameter;
 
     typedef struct FT_Open_Args_ FT_Open_Args;
+
+    typedef struct FT_Size_Metrics_ FT_Size_Metrics;
+
+    typedef struct FT_Size_InternalRec_ *FT_Size_Internal;
 
     typedef struct FT_SizeRec_ *FT_Size;
 
@@ -453,21 +466,22 @@ extern "C" {
 	FT_UShort encoding_id;
     };
 
-    enum FT_Render_Mode_ {
-	FT_RENDER_MODE_NORMAL = 0,
-	FT_RENDER_MODE_LIGHT = 1,
-	FT_RENDER_MODE_MONO = 2,
-	FT_RENDER_MODE_LCD = 3,
-	FT_RENDER_MODE_LCD_V = 4,
-	FT_RENDER_MODE_MAX = 5
-    };
-
     struct FT_Parameter_ {
 	FT_ULong tag;
 	FT_Pointer data;
     };
 
-#include <freetype/ftsizes.h>
+    struct FT_Size_Metrics_ {
+	FT_UShort x_ppem;
+	FT_UShort y_ppem;
+	FT_Fixed x_scale;
+	FT_Fixed y_scale;
+	FT_Pos ascender;
+	FT_Pos descender;
+	FT_Pos height;
+	FT_Pos max_advance;
+    };
+
     struct FT_SizeRec_ {
 	FT_Face face;
 	FT_Generic generic;
@@ -476,7 +490,6 @@ extern "C" {
     };
 
 #include <freetype/ftglyph.h>
-#include <freetype/ftbdf.h>
 
 
 

@@ -32,8 +32,6 @@ extern "C" {
     typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_Glyph,
 					     FT_GlyphSlot, FT_GlyphSlot);
 
-    typedef enum FT_Render_Mode_ FT_Render_Mode;
-
     typedef enum FT_Glyph_BBox_Mode_ {
 	FT_GLYPH_BBOX_UNSCALED = 0,
 	FT_GLYPH_BBOX_SUBPIXELS = 0,

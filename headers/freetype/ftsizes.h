@@ -3,6 +3,7 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
+#include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
@@ -13,23 +14,6 @@ extern "C" {
 
 
 
-
-    typedef struct FT_Size_Metrics_ FT_Size_Metrics;
-
-    typedef struct FT_Size_InternalRec_ *FT_Size_Internal;
-
-#include <freetype/freetype.h>
-
-    struct FT_Size_Metrics_ {
-	FT_UShort x_ppem;
-	FT_UShort y_ppem;
-	FT_Fixed x_scale;
-	FT_Fixed y_scale;
-	FT_Pos ascender;
-	FT_Pos descender;
-	FT_Pos height;
-	FT_Pos max_advance;
-    };
 
 
     extern FT_Error FT_New_Size(FT_Face, FT_Size *);

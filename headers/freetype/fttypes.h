@@ -50,6 +50,10 @@ extern "C" {
 
     typedef unsigned char FT_Byte;
 
+    typedef int FT_Int32;
+
+    typedef unsigned int FT_UInt32;
+
     typedef const FT_Byte *FT_Bytes;
 
     typedef short int FT_Short;
