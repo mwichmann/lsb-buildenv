@@ -40,6 +40,10 @@ extern "C" {
 	FT_GLYPH_BBOX_PIXELS = 2
     } FT_Glyph_BBox_Mode;
 
+    typedef struct FT_OutlineGlyphRec_ *FT_OutlineGlyph;
+
+    typedef struct FT_GlyphRec_ FT_GlyphRec;
+
     struct FT_Glyph_Class_ {
 	FT_Long glyph_size;
 	FT_Glyph_Format glyph_format;
@@ -59,6 +63,11 @@ extern "C" {
     };
 
 #include <freetype/ftoutln.h>
+    struct FT_OutlineGlyphRec_ {
+	FT_GlyphRec root;
+	FT_Outline outline;
+    };
+
 
     extern void FT_Done_Glyph(FT_Glyph);
     extern void FT_Matrix_Multiply(const FT_Matrix *, FT_Matrix *);

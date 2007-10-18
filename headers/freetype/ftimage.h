@@ -217,8 +217,6 @@ extern "C" {
 	FT_Pos yMax;
     };
 
-#include <freetype/ftoutln.h>
-
     struct FT_Outline_ {
 	short n_contours;
 	short n_points;
@@ -228,6 +226,7 @@ extern "C" {
 	int flags;
     };
 
+#include <freetype/ftoutln.h>
 
     struct FT_Span_ {
 	short x;
