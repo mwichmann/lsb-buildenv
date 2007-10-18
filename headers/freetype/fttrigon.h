@@ -4,7 +4,6 @@
 #include <freetype/ftpfr.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
-#include <freetype/ftstroke.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,6 +15,8 @@ extern "C" {
 #define FT_ANGLE_PI2	( FT_ANGLE_PI / 2 )
 #define FT_ANGLE_PI4	( FT_ANGLE_PI / 4 )
 
+
+    typedef FT_Fixed FT_Angle;
 
 
     extern FT_Angle FT_Angle_Diff(FT_Angle, FT_Angle);

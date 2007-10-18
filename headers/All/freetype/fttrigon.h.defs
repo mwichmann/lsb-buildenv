@@ -4,6 +4,7 @@
 #define FT_ANGLE_PI2	( FT_ANGLE_PI / 2 )
 #define FT_ANGLE_PI4	( FT_ANGLE_PI / 4 )
 
+typedef FT_Fixed FT_Angle;
 extern FT_Angle FT_Angle_Diff(FT_Angle, FT_Angle);
 extern FT_Fixed FT_Vector_Length(FT_Vector *);
 extern void FT_Vector_Rotate(FT_Vector *, FT_Angle);
