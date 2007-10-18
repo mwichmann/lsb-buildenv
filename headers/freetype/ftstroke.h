@@ -2,7 +2,6 @@
 #define _FREETYPE_FTSTROKE_H_
 
 #include <freetype/ftlist.h>
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/fttypes.h>
@@ -16,8 +15,6 @@ extern "C" {
 
 
 
-    typedef FT_Fixed FT_Angle;
-
     typedef enum {
 	FT_STROKER_LINECAP_BUTT = 0,
 	FT_STROKER_LINECAP_ROUND = 1,
@@ -30,26 +27,12 @@ extern "C" {
 	FT_STROKER_LINEJOIN_MITER = 2
     } FT_Stroker_LineJoin;
 
-    typedef struct FT_StrokeBorderRec_ FT_StrokeBorderRec;
-
     typedef struct FT_StrokerRec_ *FT_Stroker;
 
     typedef enum {
 	FT_STROKER_BORDER_LEFT = 0,
 	FT_STROKER_BORDER_RIGHT = 1
     } FT_StrokerBorder;
-
-
-    struct FT_StrokeBorderRec_ {
-	FT_UInt num_points;
-	FT_UInt max_points;
-	FT_Vector *points;
-	FT_Byte *tags;
-	FT_Bool movable;
-	FT_Int start;
-	FT_Memory memory;
-	FT_Bool valid;
-    };
 
 
     extern FT_Error FT_Glyph_Stroke(FT_Glyph *, FT_Stroker, FT_Bool);

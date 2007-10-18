@@ -3,6 +3,7 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -102,7 +103,6 @@ extern "C" {
 	FT_RENDER_MODE_MAX = 5
     } FT_Render_Mode;
 
-#include <freetype/ftimage.h>
 
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
@@ -219,7 +219,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;
@@ -256,7 +256,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;
@@ -293,7 +293,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;
@@ -330,7 +330,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;
@@ -367,7 +367,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;
@@ -404,7 +404,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;
@@ -441,7 +441,7 @@ extern "C" {
 	FT_Short descender;
 	FT_Short height;
 	FT_Short max_advance_width;
-	FT_Short max_advance_weight;
+	FT_Short max_advance_height;
 	FT_Short underline_position;
 	FT_Short underline_thickness;
 	FT_GlyphSlot glyph;

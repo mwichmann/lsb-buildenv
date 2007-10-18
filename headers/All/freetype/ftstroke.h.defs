@@ -1,5 +1,4 @@
 
-typedef FT_Fixed FT_Angle;
 typedef enum {
     FT_STROKER_LINECAP_BUTT = 0,
     FT_STROKER_LINECAP_ROUND = 1,
@@ -10,16 +9,6 @@ typedef enum {
     FT_STROKER_LINEJOIN_BEVEL = 1,
     FT_STROKER_LINEJOIN_MITER = 2
 } FT_Stroker_LineJoin;
-typedef struct FT_StrokeBorderRec_ {
-    FT_UInt num_points;
-    FT_UInt max_points;
-    FT_Vector *points;
-    FT_Byte *tags;
-    FT_Bool movable;
-    FT_Int start;
-    FT_Memory memory;
-    FT_Bool valid;
-} FT_StrokeBorderRec;
 typedef struct FT_StrokerRec_ *FT_Stroker;
 typedef enum {
     FT_STROKER_BORDER_LEFT = 0,
