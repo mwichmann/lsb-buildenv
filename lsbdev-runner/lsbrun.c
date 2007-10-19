@@ -44,6 +44,7 @@ const char *native_linker_path = "/lib/ld.so.1";
 #elif __s390x__
 
 const char *lsb_linker_path = "/lib64/ld-lsb-s390x.so.3";
+const char *native_linker_path = "/lib64/ld64.so.1";
 
 #elif __x86_64__
 
