@@ -210,7 +210,7 @@ typedef struct FT_FaceRec_ {
     FT_Short descender;
     FT_Short height;
     FT_Short max_advance_width;
-    FT_Short max_advance_width;
+    FT_Short max_advance_height;
     FT_Short underline_position;
     FT_Short underline_thickness;
     FT_GlyphSlot glyph;
