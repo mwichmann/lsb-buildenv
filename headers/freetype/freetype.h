@@ -3,7 +3,6 @@
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
-#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -103,6 +102,7 @@ extern "C" {
 	FT_RENDER_MODE_MAX = 5
     } FT_Render_Mode;
 
+#include <freetype/ftimage.h>
 
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
