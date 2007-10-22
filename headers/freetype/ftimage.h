@@ -93,11 +93,9 @@ extern "C" {
 
     typedef struct FT_Raster_Funcs_ FT_Raster_Funcs;
 
-    typedef int (*FT_Outline_MoveToFunc) (FT_Vector *, FT_Vector *, void *,
-					  void *);
+    typedef int (*FT_Outline_MoveToFunc) (FT_Vector *, void *);
 
-    typedef int (*FT_Outline_LineToFunc) (FT_Vector *, FT_Vector *, void *,
-					  void *);
+    typedef int (*FT_Outline_LineToFunc) (FT_Vector *, void *);
 
     typedef int (*FT_Outline_ConicToFunc) (FT_Vector *, FT_Vector *,
 					   void *);
