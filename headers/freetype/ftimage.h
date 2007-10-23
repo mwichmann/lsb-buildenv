@@ -111,7 +111,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
@@ -125,7 +125,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
@@ -139,7 +139,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
@@ -153,7 +153,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
@@ -167,7 +167,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
@@ -181,7 +181,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
@@ -195,7 +195,7 @@ extern "C" {
 	int rows;
 	int width;
 	int pitch;
-	unsigned char buffer;
+	unsigned char *buffer;
 	short num_grays;
 	char pixel_mode;
 	char palette_mode;
