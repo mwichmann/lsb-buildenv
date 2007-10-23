@@ -41,7 +41,7 @@ typedef struct FT_Bitmap_ {
     int rows;
     int width;
     int pitch;
-    unsigned char buffer;
+    unsigned char *buffer;
     short num_grays;
     char pixel_mode;
     char palette_mode;
