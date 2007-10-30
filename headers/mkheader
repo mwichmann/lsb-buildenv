@@ -139,7 +139,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 	if ($typeflag) {
 		if($entry{'Ttype'} eq 'Struct' || $entry{'Ttype'} eq 'Union'){
 			if( !($entry{'Tname'} =~ "anon" )) {
-				if(!($entry{'Theadergroup'} != $HGid )) {
+				if(!($entry{'Theadgroup'} != $HGid )) {
 # 					$old_sth = $sth;
 # 					for( $i=0; $i < $old_sth->numrows; $i++ ) {
 						displaytype(\%entry);
@@ -147,25 +147,22 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 # 					}
 				}
 			}
-		} else{
+		} else {
 			return;
 		}
 
 	} elsif (!$nameonly) {
-		if( ( $entry{'Ttype'} eq 'Typedef' ||
-		    $entry{'Ttype'} eq 'FuncPtr' ||
-		    $entry{'Ttype'} eq 'Function' ) ||
-		    $entry{'Theadergroup'} != $HGid ) {
-			if($entry{'Ttype'} eq 'FuncPtr' ||
-				$entry{'Ttype'} eq 'Function'){
+		if( ( $entry{'Ttype'} eq 'Typedef' || $entry{'Ttype'} eq 'FuncPtr' ||
+				$entry{'Ttype'} eq 'Function' ) || $entry{'Theadgroup'} != $HGid ) {
+			if($entry{'Ttype'} eq 'FuncPtr' || $entry{'Ttype'} eq 'Function') {
 				$funcPtrName = $$type{'Tname'};
 			}
 			$nameonly=1;
 			displaytype(\%entry);
 			$nameonly=0;
 		} elsif( ($entry{'Ttype'} eq 'Struct' ||
-			$entry{'Ttype'} eq 'Union')
-			&& $entry{'Theadergroup'} == $HGid) {
+			$entry{'Ttype'} eq 'Union' )
+			&& $entry{'Theadgroup'} == $HGid  ) {
 				if( !($entry{'Tname'} =~ "anon" )) {
 					$nameonly=1;
 					displaytype(\%entry);
@@ -1154,7 +1151,7 @@ sub get_typelist {
 	# Get any other type that is assigned to this header
 	#
 	$select = "SELECT Tid,Tname FROM Type ";
-	$select.= "LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
+	$select.= "LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 	$select.= "WHERE HGheader=$Query_Hid ";
 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
@@ -1378,7 +1375,7 @@ $typelist = get_typelist($Hid);
 
 $select = "SELECT * FROM Type ";
 $select.= "LEFT JOIN ArchType ON Tid=ATtid ";
-$select.= "LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
+$select.= "LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 $select.= "WHERE HGheader=$Hid ";
 $select.= "AND (Ttype='Class' ";
 $select.= "OR (Ttype='Struct' AND Tclass<>0 AND Tunmangled NOT LIKE '%::%') ) ";
@@ -1441,7 +1438,7 @@ print "\n";
 
 if( $typelist ne "" ) {
 	$select = "SELECT DISTINCT Hid FROM Type ";
-	$select.= "LEFT JOIN HeaderGroup ON HGid=Theadergroup ";
+	$select.= "LEFT JOIN HeaderGroup ON HGid=Theadgroup ";
 	$select.= "LEFT JOIN Header ON Hid=HGheader ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 	$select.= "WHERE Tid IN ($typelist) ";
@@ -1504,7 +1501,7 @@ if( $hdrlist ne "" ) {
 			$header_typelist = get_typelist($entry{'Hid'});
 			if ($header_typelist) {
 				$select = "SELECT DISTINCT Tid FROM Type ";
-				$select.= "LEFT JOIN HeaderGroup ON HGid=Theadergroup ";
+				$select.= "LEFT JOIN HeaderGroup ON HGid=Theadgroup ";
 				$select.= "LEFT JOIN Header ON Hid=HGheader ";
 				$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 				$select.= "WHERE Tid IN ($header_typelist) ";
@@ -1620,7 +1617,7 @@ for(1..$hgh->numrows) {
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
-	$select.= "WHERE Theadergroup=$HGid ";
+	$select.= "WHERE Theadgroup=$HGid ";
 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
  	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
@@ -1704,7 +1701,7 @@ for(1..$hgh->numrows) {
 	$select = "SELECT * FROM Type ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
-	$select.= "WHERE Theadergroup=$HGid ";
+	$select.= "WHERE Theadgroup=$HGid ";
 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
  	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
@@ -1786,7 +1783,7 @@ for(1..$hgh->numrows) {
 		$select = "SELECT * FROM Type ";
 	    $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 		$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
-	    $select.= "WHERE Theadergroup=$HGid ";
+	    $select.= "WHERE Theadgroup=$HGid ";
 		$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 		$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 		$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
@@ -1815,7 +1812,7 @@ for(1..$hgh->numrows) {
 				$selectArchSpec = "SELECT * FROM Type ";
 				$selectArchSpec.= "LEFT JOIN ArchType ON ATtid=Tid ";
 				$selectArchSpec.= "WHERE Tid = ".$tentry{'Tid'};
-# 		    	$selectArchSpec.= "AND Theadergroup=$HGid ";
+# 		    	$selectArchSpec.= "AND Theadgroup=$HGid ";
 				$selectArchSpec.= " AND ATaid = 1 ";
 				$selectArchSpec.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 				$selectArchSpec.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";

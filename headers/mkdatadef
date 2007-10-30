@@ -126,7 +126,7 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		if( ( $entry{'Ttype'} eq 'Typedef' ||
 			$entry{'Ttype'} eq 'Function' ||
 			$entry{'Ttype'} eq 'FuncPtr' ) ||
-			$entry{'Theadergroup'} != $HGid ) {
+ 			$entry{'Theadgroup'} != $HGid	) {
 			if($entry{'Ttype'} eq 'FuncPtr' ||
 				$entry{'Ttype'} eq 'Function'){
 				$funcPtrName=$$type{'Tname'};
@@ -544,7 +544,7 @@ for(1..$sth->numrows) {
 # Get any other type that is assigned to this header
 #
 $select = "SELECT Tid,Tname FROM Type ";
-$select.= "LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
+$select.= "LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 $select.= "WHERE HGheader=$Hid ";
 $select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
@@ -665,7 +665,7 @@ for(1..$hgh->numrows) {
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
  	$select.= "LEFT JOIN TypeMember ON TMmemberof=Tid ";
 	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
-	$select.= "WHERE Theadergroup=$HGid ";
+	$select.= "WHERE Theadgroup=$HGid ";
 	$select.= "AND ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= "AND Aid=$Aid ";
@@ -677,13 +677,13 @@ for(1..$hgh->numrows) {
 		$select.= " WHERE ATaid=1 ";
 		$select.= " AND ATappearedin <='$lsbversion' AND ATappearedin <> '' ";
 		$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ";
- 		$select.= " AND (TMaid IS NULL OR TMaid=1) )";
+  		$select.= " AND (TMaid IS NULL OR TMaid=1) )";
 	}
 	# Skip structs which are basetypes for included typedefs from this header group
 	$select.= "AND (Ttype <> 'Struct' OR Tid NOT IN ";
 	$select.= " (SELECT DISTINCT ATbasetype FROM ArchType ";
 	$select.= " LEFT JOIN Type ON Tid=ATtid ";
-	$select.= " LEFT JOIN HeaderGroup ON Theadergroup=HGid ";
+	$select.= " LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 	$select.= " WHERE ATaid=$Aid AND HGid=$HGid AND Ttype='typedef' ";
 	$select.= " AND ATappearedin <='$lsbversion' AND ATappearedin <> '' ";
 	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ) )";
@@ -859,7 +859,7 @@ if($totrows == 0) {
 		$select = "SELECT * FROM Type ";
 		$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 		$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
-		$select.= "WHERE Theadergroup=$HGid ";
+		$select.= "WHERE Theadgroup=$HGid ";
 		$select.= "AND ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 		$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 # 		$select.= "AND Aid = $Aid ";
