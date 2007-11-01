@@ -3,6 +3,12 @@
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
 
 #define FP_ILOGB0	-2147483647
 #define FP_ILOGBNAN	2147483647
