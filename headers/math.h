@@ -31,67 +31,145 @@ extern "C" {
 
 /* ISO C99 defines some generic macros which work on any data type.*/
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)
+#if defined __powerpc__ && !defined __powerpc64__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#endif
+#if defined __powerpc64__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#endif
+#if defined __s390__ && !defined __s390x__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#endif
+#if defined __s390x__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
+#endif
+#if defined __i386__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#endif
+#if defined __ia64__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#endif
+#if defined __x86_64__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#endif
+#if defined __i386__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+#endif
+#if defined __ia64__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+#endif
+#if defined __x86_64__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#endif
+#if defined __powerpc64__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#endif
+#if defined __s390__ && !defined __s390x__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#endif
+#if defined __s390x__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#endif
+#if defined __i386__
 #define isfinite(x)	\
-	(sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
-#if defined __powerpc__ && !defined __powerpc64__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
-#endif
-#if defined __powerpc64__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
-#endif
-#if defined __s390__ && !defined __s390x__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
-#endif
-#if defined __s390x__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )
-#endif
-#if defined __i386__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+     (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
 #endif
 #if defined __ia64__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
 #endif
 #if defined __x86_64__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))
 #endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))
+#endif
+#if defined __powerpc64__
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))
+#endif
+#if defined __s390__ && !defined __s390x__
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))
+#endif
+#if defined __s390x__
+#define isfinite(x)	\
+     (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
 #define isinf(x)	\
-	(sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
-#define isnan(x)	\
-	(sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
-#if defined __i386__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
-#endif
-#if defined __ia64__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
-#endif
-#if defined __x86_64__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
 #endif
 #if defined __powerpc64__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
 #endif
 #if defined __s390__ && !defined __s390x__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
 #endif
 #if defined __s390x__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+#endif
+#if defined __i386__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
+#endif
+#if defined __ia64__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
+#endif
+#if defined __x86_64__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
+#endif
+#if defined __i386__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __ia64__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __x86_64__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
+#endif
+#if defined __powerpc64__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
+#endif
+#if defined __s390__ && !defined __s390x__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
+#endif
+#if defined __s390x__
+#define isnan(x)	\
+     (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
 #endif
 
 

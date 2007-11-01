@@ -5,6 +5,8 @@ GLIBC_2.2 {
   __finitel;
   __fpclassify;
   __fpclassifyf;
+  __signbit;
+  __signbitf;
   acos;
   acosf;
   acosh;
