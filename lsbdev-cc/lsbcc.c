@@ -347,6 +347,37 @@ need_sysv_hash()
   return result;
 }
 
+/*
+ * Tools which force gcc to include system headers are some of the
+ * most troublesome causes of build issues with the LSB.  As part of
+ * the fix to this problem, we now check include paths against a list
+ * of "dangerous" paths.  The function's return value determines
+ * whether the include path is "bad" or not.
+ */
+
+char *bad_includes[] = {
+  "/usr/include",
+  NULL
+};
+
+int
+check_include_path(const char *include_path)
+{
+  int is_bad = 0;
+  int result, index;
+
+  for (index = 0; bad_includes[index] != NULL; index++) {
+    result = strncmp(bad_includes[index], include_path, 
+		     strlen(bad_includes[index]));
+    if (result == 0) {
+      is_bad = 1;
+      break;
+    }
+  }
+
+  return is_bad;
+}
+
 /* end utility functions */
 
 /*
@@ -973,6 +1004,14 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -I %s\n", optarg );
+
+		if (check_include_path(optarg)) {
+		  /* For now, just print warnings for bad include
+		     paths. */
+		  fprintf(stderr, "warning: dangerous include path %s\n", 
+			  optarg);
+		}
+
 		argvadd(incpaths,"I",optarg);
 		break;
 	case 'l':
