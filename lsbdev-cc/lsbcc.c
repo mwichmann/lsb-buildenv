@@ -348,6 +348,45 @@ need_sysv_hash()
 }
 
 /*
+ * Several architectures have changed the default length of a long
+ * double, necessitating us to override the default on LSB 3.x.  This
+ * function determines whether this is necessary.
+ */
+
+int
+need_long_double_64()
+{
+#if defined __powerpc__ || defined __s390__
+  /* If we need the gcc 3.4 workaround, we don't need this.  This also
+     conveniently loads the gcc version for us. */
+  if (need_gcc34_compat())
+    return 0;
+
+  /* This option became available on gcc 4.1. */
+  switch (gccversion[2]) {
+
+  case 0:
+    /* Don't need it for gcc 4.0. */
+    return 0;
+
+  case 1:
+  case 2:
+    /* We pretty much need it for newer versions of 4.x, though here
+       we hedge our bets and only test for known gcc versions. */
+    return 1;
+
+  default:
+    /* Some other value we don't recognize. */
+    fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
+    return 0;
+  }
+#else
+  /* Don't need this except on PPC and S390 systems (32- or 64-bit). */
+  return 0;
+#endif
+}
+
+/*
  * Tools which force gcc to include system headers are some of the
  * most troublesome causes of build issues with the LSB.  As part of
  * the fix to this problem, we now check include paths against a list
@@ -1186,6 +1225,14 @@ if (optind < argc) {
 #if __powerpc__ && !__powerpc64__
 argvaddstring(gccargs, "-B/opt/lsb/lib");
 #endif
+
+/* Check if we need to specify the length of long double. */
+ if (need_long_double_64()) {
+   if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
+     fprintf(stderr, "Adding -mlong-double-64 to args\n");
+   }
+   argvaddstring(gccargs, "-mlong-double-64");
+ }
 
 /*
  * If we didn't find a file to work against, we don't need
