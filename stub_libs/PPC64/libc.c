@@ -243,6 +243,8 @@ void getgroups() {} ;
 void gethostbyaddr() {} ;
 void gethostbyaddr_r() {} ;
 void gethostbyname() {} ;
+void gethostbyname2() {} ;
+void gethostbyname2_r() {} ;
 void gethostbyname_r() {} ;
 void gethostid() {} ;
 void gethostname() {} ;

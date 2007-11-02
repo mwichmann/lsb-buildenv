@@ -94,6 +94,8 @@ extern "C" {
 
 
 
+    extern int gethostbyname2_r(const char *, int, struct hostent *,
+				char *, size_t, struct hostent **, int *);
     extern void endprotoent(void);
     extern void endservent(void);
     extern void freeaddrinfo(struct addrinfo *);
@@ -102,6 +104,7 @@ extern "C" {
 			   const struct addrinfo *, struct addrinfo **);
     extern struct hostent *gethostbyaddr(const void *, socklen_t, int);
     extern struct hostent *gethostbyname(const char *);
+    extern struct hostent *gethostbyname2(const char *, int);
     extern struct protoent *getprotobyname(const char *);
     extern struct protoent *getprotobynumber(int);
     extern struct protoent *getprotoent(void);

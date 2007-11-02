@@ -69,6 +69,8 @@ struct addrinfo {
 #define EAI_SERVICE	-8
 #define EAI_ADDRFAMILY	-9
 
+extern int gethostbyname2_r(const char *, int, struct hostent *, char *,
+			    size_t, struct hostent **, int *);
 extern void endprotoent(void);
 extern void endservent(void);
 extern void freeaddrinfo(struct addrinfo *);
@@ -77,6 +79,7 @@ extern int getaddrinfo(const char *, const char *, const struct addrinfo *,
 		       struct addrinfo **);
 extern struct hostent *gethostbyaddr(const void *, socklen_t, int);
 extern struct hostent *gethostbyname(const char *);
+extern struct hostent *gethostbyname2(const char *, int);
 extern struct protoent *getprotobyname(const char *);
 extern struct protoent *getprotobynumber(int);
 extern struct protoent *getprotoent(void);
