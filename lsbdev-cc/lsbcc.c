@@ -1227,11 +1227,19 @@ argvaddstring(gccargs, "-B/opt/lsb/lib");
 #endif
 
 /* Check if we need to specify the length of long double. */
- if (need_long_double_64()) {
+ if (!cc_is_icc && need_long_double_64()) {
    if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
      fprintf(stderr, "Adding -mlong-double-64 to args\n");
    }
    argvaddstring(gccargs, "-mlong-double-64");
+ }
+
+ /* Check if we need to suppress stack protection. */
+ if (!cc_is_icc && need_stack_prot_suppression()) {
+   if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
+     fprintf(stderr, "Adding -fno-stack-protector to args\n");
+   }
+   argvaddstring(syslibs, "-fno-stack-protector");
  }
 
 /*
@@ -1262,13 +1270,6 @@ if (!no_link) {
 			fprintf(stderr, "Adding -Wl,--hash-style=sysv to args\n");
 		}
 		argvaddstring(syslibs, "-Wl,--hash-style=sysv");
-	}
-
-	if( !cc_is_icc && need_stack_prot_suppression() ) {
-		if( lsbcc_debug&DEBUG_MODIFIED_ARGS ) {
-			fprintf(stderr, "Adding -fno-stack-protector to args\n");
-		}
-		argvaddstring(syslibs, "-fno-stack-protector");
 	}
 
 	if( lsbccmode == LSBCPLUS ) {
