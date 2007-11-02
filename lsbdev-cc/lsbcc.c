@@ -277,6 +277,44 @@ need_gcc34_compat()
 }
 
 /*
+ * Starting with gcc 4.1, gcc will emit new symbols for stack
+ * protection.  This is a good thing, but for LSB 3.x, those new
+ * symbols need to be suppressed.  This function attempts to figure
+ * out whether this suppression is needed.  Later code will use this
+ * code to add -fno-stack-protector to the command line.  As with
+ * need_gcc34_compat, when in doubt, don't add the option.
+ */
+
+int
+need_stack_prot_suppression()
+{
+  /* If we need the gcc 3.4 workaround, we don't need this.  This also
+     conveniently loads the gcc version for us. */
+  if (need_gcc34_compat())
+    return 0;
+
+  /* If we're here, we know we're running a gcc 4.x version.  Check
+     the minor version number in this case. */
+  switch (gccversion[2]) {
+
+  case '0':
+    /* Don't need it for gcc 4.0. */
+    return 0;
+
+  case '1':
+  case '2':
+    /* We pretty much need it for newer versions of 4.x, though here
+       we hedge our bets and only test for known gcc versions. */
+    return 1;
+
+  default:
+    /* Some other value we don't recognize. */
+    fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
+    return 0;
+  }
+}
+
+/*
  * Recent binutils generates a new hash in the ELF object which speeds
  * up dynamic library loading, but freaks out older dynamic linkers.
  * Reports indicate that binutils does not always generate
@@ -1138,6 +1176,13 @@ if (!no_link) {
 			fprintf(stderr, "Adding -Wl,--hash-style=sysv to args\n");
 		}
 		argvaddstring(syslibs, "-Wl,--hash-style=sysv");
+	}
+
+	if( !cc_is_icc && need_stack_prot_suppression() ) {
+		if( lsbcc_debug&DEBUG_MODIFIED_ARGS ) {
+			fprintf(stderr, "Adding -fno-stack-protector to args\n");
+		}
+		argvaddstring(syslibs, "-fno-stack-protector");
 	}
 
 	if( lsbccmode == LSBCPLUS ) {
