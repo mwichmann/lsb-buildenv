@@ -277,6 +277,44 @@ need_gcc34_compat()
 }
 
 /*
+ * Starting with gcc 4.1, gcc will emit new symbols for stack
+ * protection.  This is a good thing, but for LSB 3.x, those new
+ * symbols need to be suppressed.  This function attempts to figure
+ * out whether this suppression is needed.  Later code will use this
+ * code to add -fno-stack-protector to the command line.  As with
+ * need_gcc34_compat, when in doubt, don't add the option.
+ */
+
+int
+need_stack_prot_suppression()
+{
+  /* If we need the gcc 3.4 workaround, we don't need this.  This also
+     conveniently loads the gcc version for us. */
+  if (need_gcc34_compat())
+    return 0;
+
+  /* If we're here, we know we're running a gcc 4.x version.  Check
+     the minor version number in this case. */
+  switch (gccversion[2]) {
+
+  case '0':
+    /* Don't need it for gcc 4.0. */
+    return 0;
+
+  case '1':
+  case '2':
+    /* We pretty much need it for newer versions of 4.x, though here
+       we hedge our bets and only test for known gcc versions. */
+    return 1;
+
+  default:
+    /* Some other value we don't recognize. */
+    fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
+    return 0;
+  }
+}
+
+/*
  * Recent binutils generates a new hash in the ELF object which speeds
  * up dynamic library loading, but freaks out older dynamic linkers.
  * Reports indicate that binutils does not always generate
@@ -307,6 +345,76 @@ need_sysv_hash()
 
   pclose(ldhelp);
   return result;
+}
+
+/*
+ * Several architectures have changed the default length of a long
+ * double, necessitating us to override the default on LSB 3.x.  This
+ * function determines whether this is necessary.
+ */
+
+int
+need_long_double_64()
+{
+#if defined __powerpc__ || defined __s390__
+  /* If we need the gcc 3.4 workaround, we don't need this.  This also
+     conveniently loads the gcc version for us. */
+  if (need_gcc34_compat())
+    return 0;
+
+  /* This option became available on gcc 4.1. */
+  switch (gccversion[2]) {
+
+  case 0:
+    /* Don't need it for gcc 4.0. */
+    return 0;
+
+  case 1:
+  case 2:
+    /* We pretty much need it for newer versions of 4.x, though here
+       we hedge our bets and only test for known gcc versions. */
+    return 1;
+
+  default:
+    /* Some other value we don't recognize. */
+    fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
+    return 0;
+  }
+#else
+  /* Don't need this except on PPC and S390 systems (32- or 64-bit). */
+  return 0;
+#endif
+}
+
+/*
+ * Tools which force gcc to include system headers are some of the
+ * most troublesome causes of build issues with the LSB.  As part of
+ * the fix to this problem, we now check include paths against a list
+ * of "dangerous" paths.  The function's return value determines
+ * whether the include path is "bad" or not.
+ */
+
+char *bad_includes[] = {
+  "/usr/include",
+  NULL
+};
+
+int
+check_include_path(const char *include_path)
+{
+  int is_bad = 0;
+  int result, index;
+
+  for (index = 0; bad_includes[index] != NULL; index++) {
+    result = strncmp(bad_includes[index], include_path, 
+		     strlen(bad_includes[index]));
+    if (result == 0) {
+      is_bad = 1;
+      break;
+    }
+  }
+
+  return is_bad;
 }
 
 /* end utility functions */
@@ -935,6 +1043,14 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -I %s\n", optarg );
+
+		if (check_include_path(optarg)) {
+		  /* For now, just print warnings for bad include
+		     paths. */
+		  fprintf(stderr, "warning: dangerous include path %s\n", 
+			  optarg);
+		}
+
 		argvadd(incpaths,"I",optarg);
 		break;
 	case 'l':
@@ -1109,6 +1225,22 @@ if (optind < argc) {
 #if __powerpc__ && !__powerpc64__
 argvaddstring(gccargs, "-B/opt/lsb/lib");
 #endif
+
+/* Check if we need to specify the length of long double. */
+ if (!cc_is_icc && need_long_double_64()) {
+   if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
+     fprintf(stderr, "Adding -mlong-double-64 to args\n");
+   }
+   argvaddstring(gccargs, "-mlong-double-64");
+ }
+
+ /* Check if we need to suppress stack protection. */
+ if (!cc_is_icc && need_stack_prot_suppression()) {
+   if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
+     fprintf(stderr, "Adding -fno-stack-protector to args\n");
+   }
+   argvaddstring(syslibs, "-fno-stack-protector");
+ }
 
 /*
  * If we didn't find a file to work against, we don't need
