@@ -44,6 +44,7 @@ install: $(PROGRAMS) $(LIBS)
 	install -d $(INSTALL_ROOT)/$(MANDIR)/man1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
+	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcpp.1
 	install -d $(INSTALL_ROOT)/$(LIBDIR)
 	install libgcc34compat.a $(INSTALL_ROOT)/$(LIBDIR)/libgcc34compat.a
 

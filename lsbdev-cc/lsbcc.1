@@ -1,6 +1,6 @@
 .TH lsbcc "1" "" "lsbcc (LSB)" LSB
 .SH NAME
-lsbcc, lsbc++ \- compiler driver for building LSB conforming applications
+lsbcc, lsbc++, lsbcpp \- compiler driver for building LSB conforming applications
 .SH SYNOPSIS
 .B lsbcc
 .RI [ lsbcc-options ]
@@ -9,12 +9,16 @@ lsbcc, lsbc++ \- compiler driver for building LSB conforming applications
 .B lsbc++
 .RI [ lsbcc-options ]
 .RI [ compiler-options ]
+.br
+.B lsbcpp
+.RI [ lsbcc-options ]
+.RI [ compiler-options ]
 .SH DESCRIPTION
 .P
 This tool should be used in place of the
-.I cc
-(or
-.IR c++ )
+.I cc, c++
+or
+.IR cpp 
 command when
 building an LSB-conforming program.
 .P
@@ -84,6 +88,12 @@ argument set. If this environment variable is not found,
 the default 
 .I c++
 will be used.  This setting overrides the LSBCXX environment setting.
+.TP
+--lsb-cpp=<path to c preprocessor>
+Specifies the name of the C preprocessor to invoke with the modified
+argument set.  If this setting is not found, the default
+.I cpp
+will be used.  This setting overrides the LSB_CPP environment setting.
 .TP 
 --lsb-forcefeatures
 This causes lsbcc to insert macro defines for all of the 
@@ -154,6 +164,12 @@ Specifies the name of the C++ compiler to invoke with the modifed
 argument set. If this environment variable is not found,
 the default 
 .I c++
+will be used.
+.TP
+LSB_CPP
+Specifies the name of the C preprocessor to invoke with the modified
+argument set.  If this environment variable is not found, the default
+.I cpp
 will be used.
 .P
 .TP
