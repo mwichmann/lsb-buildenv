@@ -8800,3 +8800,4 @@ extern void gtk_paint_focus(GtkStyle *, GdkWindow *, GtkStateType,
 			    GdkRectangle *, GtkWidget *, const gchar *,
 			    gint, gint, gint, gint);
 extern GtkUpdateType gtk_range_get_update_policy(GtkRange *);
+extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
