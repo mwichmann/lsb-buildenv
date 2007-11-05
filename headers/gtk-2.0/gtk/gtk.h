@@ -10786,6 +10786,7 @@ extern "C" {
 				GdkRectangle *, GtkWidget *, const gchar *,
 				gint, gint, gint, gint);
     extern GtkUpdateType gtk_range_get_update_policy(GtkRange *);
+    extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
 #ifdef __cplusplus
 }
 #endif

@@ -1704,6 +1704,7 @@ void gtk_toolbar_get_type() {} ;
 void gtk_toolbar_insert() {} ;
 void gtk_toolbar_new() {} ;
 void gtk_toolbar_set_drop_highlight_item() {} ;
+void gtk_toolbar_set_icon_size() {} ;
 void gtk_toolbar_set_orientation() {} ;
 void gtk_toolbar_set_show_arrow() {} ;
 void gtk_toolbar_set_style() {} ;
