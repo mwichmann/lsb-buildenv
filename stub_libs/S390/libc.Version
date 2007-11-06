@@ -185,6 +185,7 @@ GLIBC_2.0 {
   getgroups;
   gethostbyaddr;
   gethostbyname;
+  gethostbyname2;
   gethostid;
   gethostname;
   getitimer;
@@ -749,7 +750,6 @@ GLIBC_2.1.2 {
   getgrgid_r;
   getgrnam_r;
   gethostbyaddr_r;
-  gethostbyname2;
   gethostbyname2_r;
   gethostbyname_r;
   getpwnam_r;
