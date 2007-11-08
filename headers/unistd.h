@@ -315,6 +315,7 @@ extern "C" {
 
 
 
+    extern int getdtablesize(void);
     extern char **__environ;
     extern pid_t __getpgid(pid_t);
     extern void _exit(int);

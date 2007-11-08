@@ -229,6 +229,7 @@ void getcontext() {} ;
 void getcwd() {} ;
 void getdate() {} ;
 void getdomainname() {} ;
+void getdtablesize() {} ;
 void getegid() {} ;
 void getenv() {} ;
 void geteuid() {} ;

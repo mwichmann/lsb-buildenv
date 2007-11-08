@@ -279,6 +279,7 @@ typedef long long int off64_t;
 #define F_TLOCK	2
 #define F_TEST	3
 
+extern int getdtablesize(void);
 extern char **__environ;
 extern pid_t __getpgid(pid_t);
 extern void _exit(int);
