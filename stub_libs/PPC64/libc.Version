@@ -225,6 +225,7 @@ GLIBC_2.3 {
   getcwd;
   getdate;
   getdomainname;
+  getdtablesize;
   getegid;
   getenv;
   geteuid;

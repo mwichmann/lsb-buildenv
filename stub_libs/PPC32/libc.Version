@@ -172,6 +172,7 @@ GLIBC_2.0 {
   getchar_unlocked;
   getcwd;
   getdomainname;
+  getdtablesize;
   getegid;
   getenv;
   geteuid;
