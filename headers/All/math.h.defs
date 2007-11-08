@@ -20,7 +20,6 @@ struct exception {
 
 #define HUGE_VAL	0x1.0p2047
 #define HUGE_VALF	0x1.0p255f
-#define HUGE_VALL	0x1.0p32767L
 
 #define NAN	((float)0x7fc00000UL)
 #define M_1_PI	0.31830988618379067154
