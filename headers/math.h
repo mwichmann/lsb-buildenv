@@ -176,8 +176,28 @@ extern "C" {
 
 /* machine-dependent HUGE_VAL value*/
 #define HUGE_VAL	0x1.0p2047
+#if defined __powerpc__ && !defined __powerpc64__
+#define HUGE_VALL	0x1.0p2047L
+#endif
+#if defined __powerpc64__
+#define HUGE_VALL	0x1.0p2047L
+#endif
+#if defined __s390__ && !defined __s390x__
+#define HUGE_VALL	0x1.0p2047L
+#endif
+#if defined __s390x__
+#define HUGE_VALL	0x1.0p2047L
+#endif
 #define HUGE_VALF	0x1.0p255f
+#if defined __i386__
 #define HUGE_VALL	0x1.0p32767L
+#endif
+#if defined __ia64__
+#define HUGE_VALL	0x1.0p32767L
+#endif
+#if defined __x86_64__
+#define HUGE_VALL	0x1.0p32767L
+#endif
 
 
 

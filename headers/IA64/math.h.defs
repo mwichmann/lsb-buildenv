@@ -10,6 +10,8 @@
 #define isnan(x)	\
      (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
 
+#define HUGE_VALL	0x1.0p32767L
+
 #define FP_ILOGB0	-2147483648
 #define FP_ILOGBNAN	2147483647
 
