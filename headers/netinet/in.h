@@ -150,6 +150,8 @@ extern "C" {
 
 
     extern int bindresvport(int, struct sockaddr_in *);
+    extern const struct in6_addr in6addr_any;
+    extern const struct in6_addr in6addr_loopback;
 #ifdef __cplusplus
 }
 #endif

@@ -836,6 +836,8 @@ __asm__(".comm _sys_siglist,64");
 __asm__(".weak daylight; daylight = __daylight");
 __asm__(".weak environ; environ = __environ");
 __asm__(".comm getdate_err,4");
+__asm__(".globl in6addr_any; .pushsection .data; .type in6addr_any,@object; .size in6addr_any, 0; in6addr_any: .long 0; .popsection");
+__asm__(".globl in6addr_loopback; .pushsection .data; .type in6addr_loopback,@object; .size in6addr_loopback, 0; in6addr_loopback: .long 0; .popsection");
 __asm__(".comm optarg,4");
 __asm__(".comm opterr,4");
 __asm__(".comm optind,4");
