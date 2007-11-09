@@ -819,6 +819,8 @@ GLIBC_2.2 {
   daylight;
   environ;
   getdate_err;
+  in6addr_any;
+  in6addr_loopback;
   optarg;
   opterr;
   optind;

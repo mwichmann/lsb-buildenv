@@ -740,6 +740,8 @@ GLIBC_2.1 {
   wordexp;
   wordfree;
   getdate_err;
+  in6addr_any;
+  in6addr_loopback;
 };
 GLIBC_2.1.1 {
   _Exit;
