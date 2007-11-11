@@ -379,6 +379,9 @@ extern "C" {
 
 
 
+    extern int fedisableexcept(int);
+    extern int feenableexcept(int);
+    extern int fegetexcept(void);
     extern int feclearexcept(int);
     extern int fegetenv(fenv_t *);
     extern int fegetexceptflag(fexcept_t *, int);
