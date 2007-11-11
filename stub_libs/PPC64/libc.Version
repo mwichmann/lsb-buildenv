@@ -399,6 +399,7 @@ GLIBC_2.3 {
   mmap64;
   mprotect;
   mrand48;
+  mremap;
   msgctl;
   msgget;
   msgrcv;

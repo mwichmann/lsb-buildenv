@@ -398,6 +398,7 @@ GLIBC_2.2 {
   mmap64;
   mprotect;
   mrand48;
+  mremap;
   msgctl;
   msgget;
   msgrcv;

@@ -307,3 +307,8 @@ GLIBC_2.1 {
   truncf;
   truncl;
 };
+GLIBC_2.2 {
+  fedisableexcept;
+  feenableexcept;
+  fegetexcept;
+};

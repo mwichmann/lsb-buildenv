@@ -302,7 +302,10 @@ GLIBC_2.1 {
 };
 GLIBC_2.2 {
   feclearexcept;
+  fedisableexcept;
+  feenableexcept;
   fegetenv;
+  fegetexcept;
   fegetexceptflag;
   feraiseexcept;
   fesetenv;

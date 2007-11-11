@@ -400,6 +400,7 @@ GLIBC_2.2.5 {
   mmap64;
   mprotect;
   mrand48;
+  mremap;
   msgctl;
   msgget;
   msgrcv;

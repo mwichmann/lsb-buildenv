@@ -310,6 +310,7 @@ GLIBC_2.0 {
   mmap;
   mprotect;
   mrand48;
+  mremap;
   msgget;
   msgrcv;
   msgsnd;
