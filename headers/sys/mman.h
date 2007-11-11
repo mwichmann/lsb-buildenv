@@ -34,6 +34,7 @@ extern "C" {
 #if defined __s390x__
 #define MCL_CURRENT	1
 #endif
+#define MREMAP_MAYMOVE	1
 #define MS_ASYNC	1
 #if defined __powerpc__ && !defined __powerpc64__
 #define MCL_FUTURE	16384
@@ -56,6 +57,7 @@ extern "C" {
 #if defined __s390x__
 #define MCL_FUTURE	2
 #endif
+#define MREMAP_FIXED	2
 #define MS_INVALIDATE	2
 #define MS_SYNC	4
 #if defined __powerpc__ && !defined __powerpc64__
@@ -68,6 +70,7 @@ extern "C" {
 
 
 
+    extern void *mremap(void *, size_t, size_t, int);
     extern int posix_madvise(void *, size_t, int);
     extern int msync(void *, size_t, int);
     extern int mlock(const void *, size_t);

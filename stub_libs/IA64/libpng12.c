@@ -85,6 +85,7 @@ void png_set_swap() {} ;
 void png_set_swap_alpha() {} ;
 void png_set_tIME() {} ;
 void png_set_tRNS() {} ;
+void png_set_tRNS_to_alpha() {} ;
 void png_set_text() {} ;
 void png_set_write_fn() {} ;
 void png_sig_cmp() {} ;

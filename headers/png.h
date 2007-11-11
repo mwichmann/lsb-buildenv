@@ -669,6 +669,7 @@ extern "C" {
     extern void png_set_expand(png_structp);
     extern void png_set_oFFs(png_structp, png_infop, png_int_32,
 			     png_int_32, int);
+    extern void png_set_tRNS_to_alpha(png_structp);
 #ifdef __cplusplus
 }
 #endif

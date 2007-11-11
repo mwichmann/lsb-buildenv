@@ -139,7 +139,10 @@ GLIBC_2.2 {
   fdimf;
   fdiml;
   feclearexcept;
+  fedisableexcept;
+  feenableexcept;
   fegetenv;
+  fegetexcept;
   fegetexceptflag;
   fegetround;
   feholdexcept;
