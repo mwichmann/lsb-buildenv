@@ -1557,6 +1557,21 @@ if( $Hsrcerror eq 'Yes' ) {
 	print "#error \"This header not permitted by the LSB\"\n\n";
 }
 
+# dump AbiApi records
+$select = "SELECT AAvalue FROM AbiApi ";
+$select.= "LEFT JOIN Interface ON Iid=AAbinint ";
+$select.= "WHERE Iheader=$Hid";
+print $select,"\n" if $trace;
+my $sth = $Dbh->query($select) || die $Dbh->errmsg();
+print "\n";
+for( 1..$sth->numrows ) {
+    my %aavalue=$sth->fetchhash;
+    print $aavalue{'AAvalue'}."\n";
+}
+if( $sth->numrows ) {
+    print "\n";
+}
+
 #
 # Get the info from the types in the $type hash
 #
@@ -1915,9 +1930,13 @@ $select.= "LEFT JOIN ArchInt ON Iid=AIint ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
 # $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 $select.= "LEFT JOIN Architecture ON AIarch=Aid ";
-$select.= "WHERE (Isrcbin='SrcOnly' OR ( Isrcbin='Both' AND ";
-$select.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
+$select.= "WHERE ";
+$select.= "Iid NOT IN ( SELECT AAsrcint FROM AbiApi ) ";
+$select.= "AND (Isrcbin='SrcOnly' ";
+$select.= " OR ( (Isrcbin='Both' OR Iid IN (SELECT AAbinint FROM AbiApi)) AND ";
+$select.= " (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+$select.= " AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
+$select.= ") ";
 $select.= "AND Iclass=0 ";
 #$select.= "AND Iarch=$Aid ";
 # $select.= "AND (ATaid=AIarch OR ATaid=1)";
@@ -1932,7 +1951,8 @@ for(1..$sth->numrows) {
 		$selectGeneric = "SELECT Iid FROM Interface ";
 		$selectGeneric.= "LEFT JOIN ArchInt ON Iid=AIint ";
 		$selectGeneric.= "WHERE AIarch=1 AND Iname='$entry{'Iname'}'";
-		$selectGeneric.= "AND (Isrcbin='SrcOnly' OR (Isrcbin='Both' AND ";
+		$selectGeneric.= "AND Iid NOT IN (SELECT AAsrcint FROM AbiApi) AND (Isrcbin='SrcOnly' ";
+		$selectGeneric.= "OR ( (Isrcbin='Both' OR Iid IN (SELECT AAbinint FROM AbiApi)) AND ";
 		$selectGeneric.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 		$selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
 		$sthGeneric = $Dbh->query($selectGeneric) || die $Dbh->errmsg();

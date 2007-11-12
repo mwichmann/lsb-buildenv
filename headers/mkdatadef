@@ -622,6 +622,32 @@ if( $typelist ne "" ) {
 
 $typelist=join ',', keys(%type);
 
+# dump AbiApi records
+$select = "SELECT AAvalue FROM AbiApi ";
+$select.= "LEFT JOIN Interface ON Iid=AAbinint ";
+$select.= "LEFT JOIN ArchInt ON Iid=AIint ";
+$select.= "WHERE Iheader=$Hid ";
+$select.= "AND AIarch=$Aid ";
+$select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+$select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
+if( $Aid != 1 ) {
+    $select.= "AND Iid NOT IN ( ";
+    $select.= " SELECT AIint FROM ArchInt ";
+    $select.= " WHERE AIarch=1 AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+    $select.= " AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion')";
+    $select.= ")";
+}
+print $select,"\n" if $trace;
+my $sth = $Dbh->query($select) || die $Dbh->errmsg();
+print "\n";
+for( 1..$sth->numrows ) {
+    my %aavalue=$sth->fetchhash;
+    print $aavalue{'AAvalue'}."\n";
+}
+if( $sth->numrows ) {
+    print "\n";
+}
+
 #
 # Get the info from the types in the $type hash
 #
@@ -710,7 +736,8 @@ for(1..$hgh->numrows) {
 $select  = "SELECT * FROM Interface ";
 $select .= "LEFT JOIN Type on Ireturn = Tid ";
 $select .= "LEFT JOIN ArchInt ON Iid=AIint ";
-$select .= "WHERE Iheader = $Hid AND Isrcbin<>'BinOnly' ";
+$select .= "WHERE Iheader = $Hid AND (Isrcbin<>'BinOnly' OR Iid IN (SELECT AAbinint FROM AbiApi))";
+$select .= "AND Iid NOT IN (SELECT AAsrcint FROM AbiApi) ";
 $select .= "AND AIarch=$Aid ";
 $select.= "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
