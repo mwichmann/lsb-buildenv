@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define strerror_r __xpg_strerror_r
+
+
 
 
 
@@ -44,7 +47,6 @@ extern "C" {
     extern char *strndup(const char *, size_t);
     extern size_t strnlen(const char *, size_t);
     extern char *strsep(char **, const char *);
-    extern char *strerror_r(int, char *, size_t);
     extern char *strtok_r(char *, const char *, char **);
     extern char *strcasestr(const char *, const char *);
     extern char *stpcpy(char *, const char *);

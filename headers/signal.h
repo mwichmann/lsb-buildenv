@@ -12,6 +12,9 @@ extern "C" {
 #endif
 
 
+#define sigpause __xpg_sigpause
+
+
 #define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
@@ -871,7 +874,6 @@ extern "C" {
     extern int sigaltstack(const struct sigaltstack *,
 			   struct sigaltstack *);
     extern sighandler_t signal(int, sighandler_t);
-    extern int sigpause(int);
     extern int sigprocmask(int, const sigset_t *, sigset_t *);
     extern int sigreturn(struct sigcontext *);
     extern int sigsuspend(const sigset_t *);
