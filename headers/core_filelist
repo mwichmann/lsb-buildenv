@@ -104,6 +104,9 @@ semaphore.h
 mqueue.h
 security/pam_appl.h
 unwind.h
+cups/cups.h
+cups/ppd.h
+cups/raster.h
 cpio.h
 linux/netlink.h
 linux/rtnetlink.h
