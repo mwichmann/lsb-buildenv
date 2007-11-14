@@ -60,10 +60,26 @@ char *lsb_Toolkit_Qt_libs[] = {
 	NULL
 };
 
-int	lsb_num_modules = 1;
+char *lsb_Printing_libs[] = {
+	"cups",
+	"cupsimage",
+	"ijs",
+	NULL
+};
+
+char *lsb_TUM_libs[] = {
+	"cairo",
+	"pangocairo-1.0",
+	"dbus-1",
+	NULL
+};
+
+int	lsb_num_modules = 3;
 
 lsb_lib_modules_t lsb_modules[] = {
 	{"Toolkit_Qt", lsb_Toolkit_Qt_libs },
+	{"Printing", lsb_Printing_libs },
+	{"TUM", lsb_TUM_libs },
 };
 
 char *lsb_cplus_libs[] = {

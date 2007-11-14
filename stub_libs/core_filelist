@@ -17,3 +17,5 @@ libICE
 libSM
 libXi
 libstdcxx
+libcups
+libcupsimage
