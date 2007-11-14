@@ -60,6 +60,7 @@ for(1..$th->numrows) {
 	$select .="WHERE (Mmandatorysince > '$version' ";
 	$select .="OR Mmandatorysince = '') ";
 	$select .="AND MLappearedin <= '$version' ";
+	$select .="AND MLappearedin <> '' ";
 	$select .="AND Mid=$entry{'Mid'} ";
 	$th2 = $Dbh->query($select) || die $Dbh->errmsg();
 	if ($th2->numrows) {
