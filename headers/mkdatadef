@@ -442,6 +442,13 @@ displayconstant($)
 {
 local ($const) = @_;
 
+$selectConditions = "SELECT CAvalue FROM ConstantAttribute WHERE CAcid=".$$const{'Cid'}." AND CAtype='Condition'";
+$scth = $Dbh->query($selectConditions);
+for(1..$scth->numrows) {
+        %scentry=$scth->fetchhash;
+        print $scentry{'CAvalue'}."\n";
+}
+
 print "#define ";
 print $$const{'Cname'};
 print "\t";
@@ -451,6 +458,11 @@ if( $$const{'Ctype'} eq 'string' ) {
 	print $$const{'ACvalue'};
 }
 print "\n";
+
+for(1..$scth->numrows) {
+    print "#endif\n";
+}
+
 }
 
 GetOptions("h=s" => \$headname,
