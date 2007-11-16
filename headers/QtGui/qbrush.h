@@ -6,6 +6,7 @@ class QConicalGradient;
 
 
 
+
 class QBrush
 {
 private:

@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlAutomataState xmlAutomataState;
 
     typedef xmlAutomataState *xmlAutomataStatePtr;

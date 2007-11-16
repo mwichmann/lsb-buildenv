@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlURI xmlURI;
 
     typedef xmlURI *xmlURIPtr;

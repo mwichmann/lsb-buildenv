@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     extern int XShmAttach(Display *, XShmSegmentInfo *);
     extern XImage *XShmCreateImage(Display *, Visual *, unsigned int, int,
 				   char *, XShmSegmentInfo *, unsigned int,

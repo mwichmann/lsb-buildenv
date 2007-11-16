@@ -6,6 +6,7 @@ class QAbstractScrollArea;
 
 
 
+
 class QAbstractScrollArea : public QFrame
 {
 private:

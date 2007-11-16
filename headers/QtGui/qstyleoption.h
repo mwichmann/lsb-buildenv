@@ -6,6 +6,7 @@ class QStyleOptionButton;
 
 
 
+
 typedef FrameFeatures	
 ;
 

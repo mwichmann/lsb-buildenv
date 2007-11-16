@@ -6,6 +6,7 @@ class QItemSelectionRange;
 
 
 
+
 typedef SelectionFlags	
 ;
 

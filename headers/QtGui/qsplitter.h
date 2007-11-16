@@ -6,6 +6,7 @@ class QSplitter;
 
 
 
+
 class QSplitter : public QFrame
 {
 private:

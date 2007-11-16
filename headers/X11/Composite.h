@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
     typedef Cardinal(*XtOrderProc) (Widget child);
 
     typedef void (*XtDoChangeProc) (Widget composite_parent,

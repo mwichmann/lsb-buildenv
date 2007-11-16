@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 
+
 #define svc_getcaller(x)	(&(x)->xp_raddr)
 #define svc_destroy(xprt)	(*(xprt)->xp_ops->xp_destroy)(xprt)
 #define svc_recv(xprt,msg)	(*(xprt)->xp_ops->xp_recv)((xprt), (msg))

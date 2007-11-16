@@ -6,6 +6,7 @@ class QFontInfo;
 
 
 
+
 class QFontInfo
 {
 private:

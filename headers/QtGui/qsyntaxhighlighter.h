@@ -6,6 +6,7 @@ class QSyntaxHighlighter;
 
 
 
+
 class QSyntaxHighlighter : public QObject
 {
 private:

@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+
 #define G_CCLOSURE_SWAP_DATA(cclosure)	 \
 	(((GClosure*) (closure))->derivative_flag)
 #define G_CLOSURE_NEEDS_MARSHAL(closure)	 \

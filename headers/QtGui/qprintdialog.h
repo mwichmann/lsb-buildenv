@@ -6,6 +6,7 @@ class QPrintDialog;
 
 
 
+
 class QPrintDialog : public QAbstractPrintDialog
 {
 private:

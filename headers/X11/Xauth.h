@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
     typedef struct xauth Xauth;
 
 

@@ -6,6 +6,7 @@ class QSizePolicy;
 
 
 
+
 typedef enum Policy	
 {
 Fixed = 0,	

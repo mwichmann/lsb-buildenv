@@ -6,6 +6,7 @@ class QSqlQuery;
 
 
 
+
 class QSqlQuery
 {
 private:

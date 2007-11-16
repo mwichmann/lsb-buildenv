@@ -9,6 +9,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlList xmlList;
 
     typedef xmlList *xmlListPtr;

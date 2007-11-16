@@ -14,6 +14,7 @@ extern "C" {
 
 
 
+
     typedef enum {
 	XLIB_RGB_DITHER_NONE = 0,
 	XLIB_RGB_DITHER_NORMAL = 1,

@@ -6,6 +6,7 @@ class QAccessiblePlugin;
 
 
 
+
 struct QAccessibleFactoryInterface	;
 
 class QAccessiblePlugin :  QAccessibleFactoryInterface,  QObject

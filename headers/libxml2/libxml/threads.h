@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlRMutex xmlRMutex;
 
     typedef xmlRMutex *xmlRMutexPtr;

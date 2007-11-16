@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #define MAP_FAILED	((void*)-1)
 #define PROT_NONE	0x0
 #define MAP_SHARED	0x01

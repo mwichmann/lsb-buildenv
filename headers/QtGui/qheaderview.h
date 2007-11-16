@@ -6,6 +6,7 @@ class QHeaderView;
 
 
 
+
 class QHeaderView : public QAbstractItemView
 {
 private:

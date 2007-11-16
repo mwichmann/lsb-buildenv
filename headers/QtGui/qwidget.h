@@ -6,6 +6,7 @@ class QWidgetData;
 
 
 
+
 class QWidgetData
 {
 private:

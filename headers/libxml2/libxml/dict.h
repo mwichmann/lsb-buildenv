@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlDict xmlDict;
 
     typedef xmlDict *xmlDictPtr;

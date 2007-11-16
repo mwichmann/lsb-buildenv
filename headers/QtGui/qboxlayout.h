@@ -6,6 +6,7 @@ class QBoxLayout;
 
 
 
+
 class QBoxLayout : public QLayout
 {
 private:

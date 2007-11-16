@@ -6,6 +6,7 @@ class QReadLocker;
 
 
 
+
 typedef enum QtValidLicenseForCoreModule	QtCoreModule	
 ;
 

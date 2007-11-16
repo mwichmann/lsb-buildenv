@@ -6,6 +6,7 @@ class QNetworkProxy;
 
 
 
+
 class QNetworkProxy
 {
 private:

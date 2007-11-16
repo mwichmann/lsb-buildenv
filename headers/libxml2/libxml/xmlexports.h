@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define XMLCALL
 #define XMLCDECL
 #define XMLPUBFUN

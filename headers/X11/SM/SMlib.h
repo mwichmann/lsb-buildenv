@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
     typedef IcePointer SmPointer;
 
     typedef struct _SmcConn *SmcConn;

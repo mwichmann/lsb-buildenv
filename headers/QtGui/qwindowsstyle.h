@@ -6,6 +6,7 @@ class QWindowsStyle;
 
 
 
+
 class QWindowsStyle : public QCommonStyle
 {
 private:

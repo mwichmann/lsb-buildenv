@@ -14,6 +14,7 @@ extern "C" {
 
 
 
+
 /* Values for the FLAG argument to the user function passed to `ftw' and 'nftw'.*/
 #define FTW_D	FTW_D
 #define FTW_DNR	FTW_DNR

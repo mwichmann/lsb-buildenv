@@ -6,6 +6,7 @@ class QHostAddress;
 
 
 
+
 typedef class QIPv6Address
 {
 private:

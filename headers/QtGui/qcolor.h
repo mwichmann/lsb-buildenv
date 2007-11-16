@@ -6,6 +6,7 @@ class QColor;
 
 
 
+
 class QColor
 {
 private:

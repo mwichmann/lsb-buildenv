@@ -6,6 +6,7 @@ class QCDEStyle;
 
 
 
+
 class QCDEStyle : public QMotifStyle
 {
 private:

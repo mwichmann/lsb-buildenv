@@ -6,6 +6,7 @@ class QTextCodecPlugin;
 
 
 
+
 struct QTextCodecFactoryInterface	;
 
 class QTextCodecPlugin :  QObject,  QTextCodecFactoryInterface

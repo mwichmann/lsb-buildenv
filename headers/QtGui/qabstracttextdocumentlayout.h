@@ -6,6 +6,7 @@ class QTextObjectInterface;
 
 
 
+
 class QAbstractTextDocumentLayout : public QObject
 {
 private:

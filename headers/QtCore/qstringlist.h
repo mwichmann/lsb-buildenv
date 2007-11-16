@@ -6,6 +6,7 @@ class QStringList;
 
 
 
+
 class QStringList
 {
 private:

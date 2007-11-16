@@ -6,6 +6,7 @@ class QIcon;
 
 
 
+
 typedef class QIcon
 {
 private:

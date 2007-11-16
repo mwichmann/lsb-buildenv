@@ -13,6 +13,7 @@ extern "C" {
 
 
 
+
     typedef char *(*xmlShellReadlineFunc) (char *);
 
     typedef struct _xmlShellCtxt xmlShellCtxt;

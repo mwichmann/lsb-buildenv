@@ -6,6 +6,7 @@ class QSessionManager;
 
 
 
+
 class QSessionManager : public QObject
 {
 private:

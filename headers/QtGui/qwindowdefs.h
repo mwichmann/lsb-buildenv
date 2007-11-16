@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
     typedef QList < QWidget * >QWidgetList;
 
     typedef unsigned long int WId;

@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlSchematronValidCtxt xmlSchematronValidCtxt;
 
     typedef xmlSchematronValidCtxt *xmlSchematronValidCtxtPtr;

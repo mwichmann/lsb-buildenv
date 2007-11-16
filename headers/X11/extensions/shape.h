@@ -13,6 +13,7 @@ extern "C" {
 
 
 
+
     extern void XShapeCombineMask(Display *, Window, int, int, int, Pixmap,
 				  int);
     extern void XShapeCombineRectangles(Display *, Window, int, int, int,

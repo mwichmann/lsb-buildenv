@@ -6,6 +6,7 @@ class QUrlInfo;
 
 
 
+
 class QUrlInfo
 {
 private:

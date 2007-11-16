@@ -6,6 +6,7 @@ class QLCDNumber;
 
 
 
+
 class QLCDNumber : public QFrame
 {
 private:

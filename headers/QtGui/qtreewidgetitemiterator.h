@@ -6,6 +6,7 @@ class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
 
 
 
+
 typedef IteratorFlags	
 ;
 

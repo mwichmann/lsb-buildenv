@@ -6,6 +6,7 @@ class QColorDialog;
 
 
 
+
 class QColorDialog : public QDialog
 {
 private:

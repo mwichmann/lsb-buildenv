@@ -6,6 +6,7 @@ class QVector < QVariant >;
 
 
 
+
 class QVector<QVariant>
 {
 private:

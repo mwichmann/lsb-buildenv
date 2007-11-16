@@ -13,6 +13,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlStreamCtxt xmlStreamCtxt;
 
     typedef xmlStreamCtxt *xmlStreamCtxtPtr;

@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #define S_ISBLK(m)	(((m)&S_IFMT)==S_IFBLK)
 #define S_ISCHR(m)	(((m)&S_IFMT)==S_IFCHR)
 #define S_ISDIR(m)	(((m)&S_IFMT)==S_IFDIR)

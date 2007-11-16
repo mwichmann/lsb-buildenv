@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     typedef unsigned long int XSecurityAuthorization;
 
     typedef struct {

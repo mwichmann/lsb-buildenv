@@ -6,6 +6,7 @@ class QAbstractSpinBox;
 
 
 
+
 typedef StepEnabled	
 ;
 

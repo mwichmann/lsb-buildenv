@@ -6,6 +6,7 @@ class QComboBox;
 
 
 
+
 typedef enum InsertPolicy	
 {
 NoInsert = 0,	

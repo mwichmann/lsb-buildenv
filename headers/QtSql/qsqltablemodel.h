@@ -6,6 +6,7 @@ class QSqlTableModel;
 
 
 
+
 class QSqlTableModel : public QSqlQueryModel
 {
 private:

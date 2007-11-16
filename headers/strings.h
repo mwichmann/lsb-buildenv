@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     extern void bcopy(const void *, void *, size_t);
     extern int bcmp(const void *, const void *, size_t);
     extern void bzero(void *, size_t);

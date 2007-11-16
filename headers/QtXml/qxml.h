@@ -6,6 +6,7 @@ class QXmlInputSource;
 
 
 
+
 typedef enum QtValidLicenseForXmlModule	QtXmlModule	
 ;
 

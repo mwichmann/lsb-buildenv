@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     typedef struct _WidgetRec *Widget;
 
     typedef Widget *WidgetList;

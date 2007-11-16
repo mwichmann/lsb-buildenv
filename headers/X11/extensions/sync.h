@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct _XSyncSystemCounter XSyncSystemCounter;
 
     typedef struct {

@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
     extern WidgetClass coreWidgetClass;
 #ifdef __cplusplus
 }

@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     extern int XkbAllocGeomColors(, int);
     extern int XkbAllocGeomDoodads(, int);
     extern int XkbAllocGeomKeyAliases(, int);

@@ -6,6 +6,7 @@ class QSvgRenderer;
 
 
 
+
 class QSvgRenderer : public QObject
 {
 private:

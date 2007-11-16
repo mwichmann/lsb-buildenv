@@ -13,6 +13,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlRelaxNGParserCtxt xmlRelaxNGParserCtxt;
 
     typedef xmlRelaxNGParserCtxt *xmlRelaxNGParserCtxtPtr;

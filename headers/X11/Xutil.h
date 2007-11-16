@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     typedef struct XSizeHints;
 
     typedef struct XWMHints;

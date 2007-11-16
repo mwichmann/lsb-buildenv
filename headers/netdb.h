@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+
 #define h_errno	(*__h_errno_location ())
 #define NETDB_INTERNAL	-1
 #define NETDB_SUCCESS	0

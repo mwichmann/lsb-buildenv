@@ -6,6 +6,7 @@ class QTableWidgetItem;
 
 
 
+
 class QTableWidgetSelectionRange
 {
 private:

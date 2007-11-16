@@ -6,6 +6,7 @@ class QStylePlugin;
 
 
 
+
 struct QStyleFactoryInterface	;
 
 class QStylePlugin :  QObject,  QStyleFactoryInterface

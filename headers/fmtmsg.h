@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
 /* Values to control `fmtmsg' function.*/
 #define MM_HARD	1
 #define MM_NRECOV	128

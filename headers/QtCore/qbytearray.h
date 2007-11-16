@@ -6,6 +6,7 @@ class QByteRef;
 
 
 
+
 typedef char	iterator	
 ;
 

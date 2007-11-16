@@ -6,6 +6,7 @@ class QWorkspace;
 
 
 
+
 class QWorkspace : public QWidget
 {
 private:

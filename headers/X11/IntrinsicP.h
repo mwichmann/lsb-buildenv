@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     extern void XtConfigureWidget(Widget, int, int, unsigned int,
 				  unsigned int, unsigned int);
     extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,

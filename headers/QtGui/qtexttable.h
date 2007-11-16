@@ -6,6 +6,7 @@ class QTextTable;
 
 
 
+
 class QTextTableCell
 {
 private:

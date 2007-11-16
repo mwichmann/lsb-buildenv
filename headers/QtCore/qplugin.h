@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
     typedef QObject QtPluginInstanceFunction;
 
 

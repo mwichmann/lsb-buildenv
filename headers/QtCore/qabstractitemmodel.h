@@ -6,6 +6,7 @@ class QAbstractListModel;
 
 
 
+
 typedef QList<QModelIndex> QModelIndexList	
 ;
 

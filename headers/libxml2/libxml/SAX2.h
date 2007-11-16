@@ -15,6 +15,7 @@ extern "C" {
 
 
 
+
     typedef void (*internalSubsetSAXFunc) (void *, const xmlChar *,
 					   const xmlChar *,
 					   const xmlChar *);

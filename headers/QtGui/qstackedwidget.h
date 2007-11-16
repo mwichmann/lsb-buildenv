@@ -6,6 +6,7 @@ class QStackedWidget;
 
 
 
+
 class QStackedWidget : public QFrame
 {
 private:

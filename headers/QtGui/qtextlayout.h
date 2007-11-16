@@ -6,6 +6,7 @@ class QTextLine;
 
 
 
+
 class QTextInlineObject
 {
 private:

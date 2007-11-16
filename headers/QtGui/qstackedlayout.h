@@ -6,6 +6,7 @@ class QStackedLayout;
 
 
 
+
 class QStackedLayout : public QLayout
 {
 private:

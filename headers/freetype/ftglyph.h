@@ -13,6 +13,7 @@ extern "C" {
 
 
 
+
     typedef struct FT_Glyph_Class_ FT_Glyph_Class;
 
     typedef struct FT_GlyphRec_ *FT_Glyph;

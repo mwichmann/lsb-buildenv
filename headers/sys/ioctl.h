@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #if defined __powerpc__ && !defined __powerpc64__
 #define TIOCGWINSZ	0x40087468
 #endif

@@ -6,6 +6,7 @@ class QAbstractItemDelegate;
 
 
 
+
 class QAbstractItemDelegate : public QObject
 {
 private:

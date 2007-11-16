@@ -6,6 +6,7 @@ class QPageSetupDialog;
 
 
 
+
 class QPageSetupDialog : public QAbstractPageSetupDialog
 {
 private:

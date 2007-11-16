@@ -6,6 +6,7 @@ class QClipboard;
 
 
 
+
 class QClipboard : public QObject
 {
 private:

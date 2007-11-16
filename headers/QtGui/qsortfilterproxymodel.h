@@ -6,6 +6,7 @@ class QSortFilterProxyModel;
 
 
 
+
 class QSortFilterProxyModel : public QAbstractProxyModel
 {
 private:

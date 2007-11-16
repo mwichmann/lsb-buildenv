@@ -9,6 +9,7 @@ extern "C" {
 
 
 
+
     enum {
 	FT_Err_Ok = 0x00,
 	FT_Err_Cannot_Open_Resource = 0x01,
@@ -20,7 +21,6 @@ extern "C" {
 	FT_Err_Unimplemented_Feature = 0x07,
 	FT_Err_Invalid_Table = 0x08,
 	FT_Err_Invalid_Offset = 0x09,
-	FT_Err_Array_Too_Large = 0x0A,
 	FT_Err_Invalid_Glyph_Index = 0x10,
 	FT_Err_Invalid_Character_Code = 0x11,
 	FT_Err_Invalid_Glyph_Format = 0x12,

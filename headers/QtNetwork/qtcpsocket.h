@@ -6,6 +6,7 @@ class QTcpSocket;
 
 
 
+
 typedef enum QtValidLicenseForNetworkModule	QtNetworkModule	
 ;
 

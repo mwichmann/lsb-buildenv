@@ -6,6 +6,7 @@ class QInputContextPlugin;
 
 
 
+
 struct QInputContextFactoryInterface	;
 
 class QInputContextPlugin :  QInputContextFactoryInterface,  QObject

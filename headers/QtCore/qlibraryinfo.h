@@ -6,6 +6,7 @@ class QLibraryInfo;
 
 
 
+
 class QLibraryInfo
 {
 private:

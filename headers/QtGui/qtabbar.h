@@ -6,6 +6,7 @@ class QTabBar;
 
 
 
+
 class QTabBar : public QWidget
 {
 private:

@@ -6,6 +6,7 @@ class QCommonStyle;
 
 
 
+
 class QCommonStyle : public QStyle
 {
 private:

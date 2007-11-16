@@ -6,6 +6,7 @@ class QMap < QString, QVariant >;
 
 
 
+
 class QMap<int, QVariant>
 {
 private:

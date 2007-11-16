@@ -6,6 +6,7 @@ class QFlags < QUrl::FormattingOption >;
 
 
 
+
 typedef FormattingOptions	
 ;
 

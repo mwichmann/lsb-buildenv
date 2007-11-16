@@ -6,6 +6,7 @@ class QSqlError;
 
 
 
+
 class QSqlError
 {
 private:

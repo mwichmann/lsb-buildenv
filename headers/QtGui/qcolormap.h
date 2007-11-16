@@ -6,6 +6,7 @@ class QColormap;
 
 
 
+
 class QColormap
 {
 private:

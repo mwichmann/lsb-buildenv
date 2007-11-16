@@ -6,6 +6,7 @@ class QFtp;
 
 
 
+
 class QFtp : public QObject
 {
 private:

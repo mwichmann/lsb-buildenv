@@ -6,6 +6,7 @@ class QPrinter;
 
 
 
+
 class QPrinter : public QPaintDevice
 {
 private:

@@ -6,6 +6,7 @@ class QBuffer;
 
 
 
+
 class QBuffer : public QIODevice
 {
 private:

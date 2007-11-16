@@ -6,6 +6,7 @@ class QProcess;
 
 
 
+
 typedef qint64	Q_PID	
 ;
 

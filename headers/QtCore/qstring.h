@@ -6,6 +6,7 @@ class QConstString;
 
 
 
+
 typedef SectionFlags	
 ;
 

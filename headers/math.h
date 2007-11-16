@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define DOMAIN	1
 #define SING	2
 

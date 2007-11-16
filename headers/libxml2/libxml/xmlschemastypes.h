@@ -12,6 +12,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlSchemaType xmlSchemaType;
 
     typedef xmlSchemaType *xmlSchemaTypePtr;

@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
     extern void _Z14qDrawShadeLineP8QPainteriiiiRK8QPalettebii(void);
     extern void
 	_Z14qDrawShadeLineP8QPainterRK6QPointS3_RK8QPalettebii(void);

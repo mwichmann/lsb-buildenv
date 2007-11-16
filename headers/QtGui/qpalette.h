@@ -6,6 +6,7 @@ class QPalette;
 
 
 
+
 class QPalette
 {
 private:

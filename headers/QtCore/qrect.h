@@ -6,6 +6,7 @@ class QRectF;
 
 
 
+
 class QRect
 {
 private:

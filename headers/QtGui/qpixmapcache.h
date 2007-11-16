@@ -6,6 +6,7 @@ class QPixmapCache;
 
 
 
+
 class QPixmapCache
 {
 private:

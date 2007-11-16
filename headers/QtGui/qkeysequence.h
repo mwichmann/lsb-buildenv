@@ -6,6 +6,7 @@ class QKeySequence;
 
 
 
+
 class QKeySequence
 {
 private:

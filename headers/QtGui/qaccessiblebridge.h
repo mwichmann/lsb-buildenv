@@ -6,6 +6,7 @@ class QAccessibleBridgePlugin;
 
 
 
+
 class QAccessibleBridge
 {
 private:

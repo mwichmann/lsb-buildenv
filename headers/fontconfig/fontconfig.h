@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
 #define _FCFUNCPROTOBEGIN
 #define _FCFUNCPROTOEND
 #define FC_USER_CACHE_FILE	".fonts.cache-"FC_CACHE_VERSION

@@ -6,6 +6,7 @@ class QDialog;
 
 
 
+
 class QDialog : public QWidget
 {
 private:

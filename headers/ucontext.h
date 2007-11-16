@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #if defined __ia64__
 #define _SC_GR0_OFFSET	\
 	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)

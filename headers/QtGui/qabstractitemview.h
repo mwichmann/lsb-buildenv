@@ -6,6 +6,7 @@ class QFlags < QAbstractItemView::EditTrigger >;
 
 
 
+
 typedef EditTriggers	
 ;
 

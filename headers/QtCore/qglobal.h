@@ -6,6 +6,7 @@ class QBool;
 
 
 
+
 typedef signed char	qint8	
 ;
 

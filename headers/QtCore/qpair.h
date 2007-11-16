@@ -9,6 +9,7 @@ extern "C" {
 
 
 
+
     struct QPair <int, int >;
 
 

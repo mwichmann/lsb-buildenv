@@ -6,6 +6,7 @@ class QAbstractEventDispatcher;
 
 
 
+
 typedef struct QPair<int, int>	TimerInfo	
 ;
 

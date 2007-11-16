@@ -6,6 +6,7 @@ class QRubberBand;
 
 
 
+
 class QRubberBand : public QWidget
 {
 private:

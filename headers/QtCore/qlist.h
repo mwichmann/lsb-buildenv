@@ -6,6 +6,7 @@ class QList < QModelIndex >;
 
 
 
+
 class QList<QByteArray>
 {
 private:

@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     extern WidgetClass objectClass;
 #ifdef __cplusplus
 }

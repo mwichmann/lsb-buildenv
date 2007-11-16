@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #if defined __ia64__
 #define SHMLBA	(1024*1024)
 #endif

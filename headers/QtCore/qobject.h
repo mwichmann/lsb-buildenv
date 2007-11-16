@@ -6,6 +6,7 @@ class QObjectUserData;
 
 
 
+
 typedef QList<QObject*> QObjectList	
 ;
 

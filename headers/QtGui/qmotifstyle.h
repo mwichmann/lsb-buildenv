@@ -6,6 +6,7 @@ class QMotifStyle;
 
 
 
+
 class QMotifStyle : public QCommonStyle
 {
 private:

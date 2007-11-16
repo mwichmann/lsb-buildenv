@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
 /* priorities (these are ordered)*/
 #define LOG_MAKEPRI(fac, pri)	(((fac) << 3) | (pri))
 #define LOG_PRI(p)	((p) & LOG_PRIMASK)

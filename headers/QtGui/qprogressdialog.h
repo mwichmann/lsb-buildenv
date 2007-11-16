@@ -6,6 +6,7 @@ class QProgressDialog;
 
 
 
+
 class QProgressDialog : public QDialog
 {
 private:

@@ -6,6 +6,7 @@ class QSqlRecord;
 
 
 
+
 class QSqlRecord
 {
 private:

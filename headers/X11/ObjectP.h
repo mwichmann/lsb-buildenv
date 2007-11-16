@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
 #define XtInheritAllocate	((XtAllocateProc) _XtInherit)
 #define XtInheritDeallocate	((XtDeallocateProc) _XtInherit)
 #define XtObjectExtensionVersion	1L

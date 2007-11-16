@@ -6,6 +6,7 @@ class QSqlDriverPlugin;
 
 
 
+
 struct QSqlDriverFactoryInterface	;
 
 class QSqlDriverPlugin :  QObject,  QSqlDriverFactoryInterface

@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define FT_ERRORDEF_(e,v,s)	 \
 	FT_ERRORDEF( FT_ERR_CAT( FT_ERR_PREFIX, e ), v + FT_ERR_BASE, s )
 #define FT_NOERRORDEF_(e,v,s)	 \

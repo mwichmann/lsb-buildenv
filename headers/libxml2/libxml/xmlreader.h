@@ -15,6 +15,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlTextReader xmlTextReader;
 
     typedef xmlTextReader *xmlTextReaderPtr;

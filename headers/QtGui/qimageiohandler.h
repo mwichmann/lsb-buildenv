@@ -6,6 +6,7 @@ class QFlags < QImageIOPlugin::Capability >;
 
 
 
+
 typedef Capabilities	
 ;
 
