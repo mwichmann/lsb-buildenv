@@ -6,6 +6,7 @@ class QLabel;
 
 
 
+
 class QLabel : public QFrame
 {
 private:

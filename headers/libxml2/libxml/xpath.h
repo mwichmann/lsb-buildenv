@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 
+
 #define xmlXPathNodeSetItem(ns,index)	 \
 	((((ns) != NULL) && ((index) >= 0) && ((index) < (ns)->nodeNr)) ? \
 	(ns)->nodeTab[(index)] : NULL)

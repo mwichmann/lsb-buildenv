@@ -6,6 +6,7 @@ class QApplication;
 
 
 
+
 typedef int	ColorMode	
 ;
 

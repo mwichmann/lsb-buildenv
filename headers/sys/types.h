@@ -10,8 +10,13 @@ extern "C" {
 #endif
 
 
+
+#ifndef FALSE
 #define FALSE	0
+#endif
+#ifndef TRUE
 #define TRUE	1
+#endif
 #define FD_SETSIZE	1024
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 #define FD_ISSET(d,set)	\

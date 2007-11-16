@@ -6,6 +6,7 @@ class QTranslator;
 
 
 
+
 class QTranslator : public QObject
 {
 private:

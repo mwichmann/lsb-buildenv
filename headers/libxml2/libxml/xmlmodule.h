@@ -9,6 +9,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlModule xmlModule;
 
     typedef xmlModule *xmlModulePtr;

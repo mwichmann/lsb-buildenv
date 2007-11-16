@@ -6,6 +6,7 @@ class QPixmap;
 
 
 
+
 class QPixmap : public QPaintDevice
 {
 private:

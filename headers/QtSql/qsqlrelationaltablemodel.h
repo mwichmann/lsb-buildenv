@@ -6,6 +6,7 @@ class QSqlRelationalTableModel;
 
 
 
+
 typedef enum QtValidLicenseForSqlModule	QtSqlModule	
 ;
 

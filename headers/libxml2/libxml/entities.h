@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef enum {
 	XML_INTERNAL_GENERAL_ENTITY = 1,
 	XML_EXTERNAL_GENERAL_PARSED_ENTITY = 2,

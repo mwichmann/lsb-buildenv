@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #define FT_ANGLE_PI	( 180L << 16 )
 #define FT_ANGLE_2PI	( FT_ANGLE_PI * 2 )
 #define FT_ANGLE_PI2	( FT_ANGLE_PI / 2 )

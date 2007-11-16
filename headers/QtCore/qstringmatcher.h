@@ -6,6 +6,7 @@ class QStringMatcher;
 
 
 
+
 class QStringMatcher
 {
 private:

@@ -6,6 +6,7 @@ class QMimeData;
 
 
 
+
 class QMimeData : public QObject
 {
 private:

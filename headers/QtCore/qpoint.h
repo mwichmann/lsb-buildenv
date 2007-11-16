@@ -6,6 +6,7 @@ class QPoint;
 
 
 
+
 class QPoint
 {
 private:

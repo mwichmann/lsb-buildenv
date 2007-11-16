@@ -6,6 +6,7 @@ class QGLPixelBuffer;
 
 
 
+
 typedef enum QtValidLicenseForOpenGLModule	QtOpenGLModule	
 ;
 

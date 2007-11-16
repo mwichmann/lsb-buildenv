@@ -6,6 +6,7 @@ class QDrag;
 
 
 
+
 class QDrag : public QObject
 {
 private:

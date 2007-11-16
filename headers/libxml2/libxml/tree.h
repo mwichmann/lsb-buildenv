@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 
+
 #define XML_GET_CONTENT(n)	 \
 	((n)->type == XML_ELEMENT_NODE ? NULL : (n)->content)
 #define XML_XML_NAMESPACE	 \

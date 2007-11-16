@@ -18,6 +18,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlSchemaValidCtxt xmlSchemaValidCtxt;
 
     typedef xmlSchemaValidCtxt *xmlSchemaValidCtxtPtr;

@@ -6,6 +6,7 @@ class QPaintDevice;
 
 
 
+
 class QPaintDevice
 {
 private:

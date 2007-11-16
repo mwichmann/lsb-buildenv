@@ -14,6 +14,7 @@ extern "C" {
 
 
 
+
     typedef int mqd_t;
 
     struct mq_attr {

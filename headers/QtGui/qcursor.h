@@ -6,6 +6,7 @@ class QCursor;
 
 
 
+
 typedef enum CursorShape	QCursorShape	
 ;
 

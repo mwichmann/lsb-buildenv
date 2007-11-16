@@ -6,6 +6,7 @@ class QSignalMapper;
 
 
 
+
 class QSignalMapper : public QObject
 {
 private:

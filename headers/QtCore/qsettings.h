@@ -6,6 +6,7 @@ class QSettings;
 
 
 
+
 typedef QMap<QString, QVariant> SettingsMap	
 ;
 

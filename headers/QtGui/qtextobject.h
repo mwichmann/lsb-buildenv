@@ -6,6 +6,7 @@ class QTextFrame;
 
 
 
+
 typedef class QTextFrame::iterator
 {
 private:

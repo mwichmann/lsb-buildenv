@@ -6,6 +6,7 @@ class QCheckBox;
 
 
 
+
 class QCheckBox : public QAbstractButton
 {
 private:

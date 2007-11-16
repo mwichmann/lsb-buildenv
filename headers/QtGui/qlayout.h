@@ -6,6 +6,7 @@ class QLayout;
 
 
 
+
 class QLayoutIterator
 {
 private:

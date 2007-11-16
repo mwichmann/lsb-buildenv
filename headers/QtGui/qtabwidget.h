@@ -6,6 +6,7 @@ class QTabWidget;
 
 
 
+
 class QTabWidget : public QWidget
 {
 private:

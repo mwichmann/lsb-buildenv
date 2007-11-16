@@ -6,6 +6,7 @@ class QVariantComparisonHelper;
 
 
 
+
 typedef void	f_construct	
 ;
 

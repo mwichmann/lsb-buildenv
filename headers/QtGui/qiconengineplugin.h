@@ -6,6 +6,7 @@ class QIconEnginePlugin;
 
 
 
+
 struct QIconEngineFactoryInterface	;
 
 class QIconEnginePlugin :  QIconEngineFactoryInterface,  QObject

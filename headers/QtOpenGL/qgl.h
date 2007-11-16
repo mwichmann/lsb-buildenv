@@ -6,6 +6,7 @@ class QGLFormat;
 
 
 
+
 typedef FormatOptions	
 ;
 

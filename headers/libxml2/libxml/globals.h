@@ -16,6 +16,7 @@ extern "C" {
 #endif
 
 
+
 #define xmlDeregisterNodeDefaultValue	 \
 	(*(__xmlDeregisterNodeDefaultValue()))
 #define xmlDoValidityCheckingDefaultValue	 \

@@ -6,6 +6,7 @@ class QBitRef;
 
 
 
+
 class QBitArray
 {
 private:

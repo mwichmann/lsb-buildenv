@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 
+
 #define XFixedToDouble(f)	(((XDouble) (f)) / 65536)
 #define XDoubleToFixed(f)	((XFixed) ((f) * 65536))
 #define PictFormatID	(1 << 0)
@@ -322,8 +323,6 @@ extern "C" {
 					   const XPointDouble *, int, int);
     extern Picture XRenderCreateSolidFill(Display *, const XRenderColor *);
     extern int XRenderQueryExtension(Display *, int *, int *);
-    extern void XRenderSetPictureFilter(Display *, Picture, const char *,
-					XFixed *, int);
     extern void XRenderCompositeTrapezoids(Display *, int, Picture,
 					   Picture,
 					   const XRenderPictFormat *, int,

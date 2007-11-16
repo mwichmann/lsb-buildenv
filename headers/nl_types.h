@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define NL_CAT_LOCALE	1
 #define NL_SETD	1
 

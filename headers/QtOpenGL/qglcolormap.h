@@ -6,6 +6,7 @@ class QGLColormap;
 
 
 
+
 class QGLColormap
 {
 private:

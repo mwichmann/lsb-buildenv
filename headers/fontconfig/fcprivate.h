@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define FcObjectSetVapBuild(__ret__,__first__,__va__)	 \
 	{ FcObjectSet *__os__; const char *__ob__; __ret__ = 0; __os__ = \
 	FcObjectSetCreate (); if (!__os__) goto _FcObjectSetVapBuild_bail0; \

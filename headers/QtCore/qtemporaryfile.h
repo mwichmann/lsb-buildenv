@@ -6,6 +6,7 @@ class QTemporaryFile;
 
 
 
+
 class QTemporaryFile : public QFile
 {
 private:

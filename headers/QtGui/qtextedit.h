@@ -6,6 +6,7 @@ class QFlags < QTextEdit::AutoFormattingFlag >;
 
 
 
+
 typedef AutoFormatting	
 ;
 

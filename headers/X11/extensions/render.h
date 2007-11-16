@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define FilterBest	"best"
 #define FilterBilinear	"bilinear"
 #define FilterConvolution	"convolution"

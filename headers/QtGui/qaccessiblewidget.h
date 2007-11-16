@@ -6,6 +6,7 @@ class QAccessibleWidget;
 
 
 
+
 class QAccessibleWidget : public QAccessibleObject
 {
 private:

@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define FT_BEGIN_HEADER
 #define FT_END_HEADER
 #define FT_CONFIG_CONFIG_H	<freetype/config/ftconfig.h>

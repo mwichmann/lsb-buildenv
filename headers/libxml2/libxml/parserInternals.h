@@ -19,6 +19,7 @@ extern "C" {
 #endif
 
 
+
 #define IS_ASCII_LETTER(c)	 \
 	(((0x41 <= (c)) && ((c) <= 0x5a)) || ((0x61 <= (c)) && ((c) <= \
 	0x7a)))

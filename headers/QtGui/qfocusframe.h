@@ -6,6 +6,7 @@ class QFocusFrame;
 
 
 
+
 class QFocusFrame : public QWidget
 {
 private:

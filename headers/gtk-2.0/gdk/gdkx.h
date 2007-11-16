@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 
+
 #define GDK_WINDOW_DESTROYED(d)	 \
 	(((GdkWindowObject*)(GDK_WINDOW (d)))->destroyed)
 #define GDK_WINDOW_TYPE(d)	 \

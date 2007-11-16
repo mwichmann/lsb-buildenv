@@ -6,6 +6,7 @@ class QAccessibleApplication;
 
 
 
+
 class QAccessibleObject : public QAccessibleInterface
 {
 private:

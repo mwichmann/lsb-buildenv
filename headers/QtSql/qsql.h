@@ -6,6 +6,7 @@ class QFlags < QSql::ParamTypeFlag >;
 
 
 
+
 typedef ParamType	
 ;
 

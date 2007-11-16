@@ -6,6 +6,7 @@ class QChar;
 
 
 
+
 struct QLatin1Char	;
 
 class QChar

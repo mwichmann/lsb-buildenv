@@ -22,6 +22,7 @@ extern "C" {
 
 
 
+
     typedef int (*xmlOutputMatchCallback) (const char *);
 
     typedef void *(*xmlOutputOpenCallback) (const char *);

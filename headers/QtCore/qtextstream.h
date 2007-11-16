@@ -6,6 +6,7 @@ class QFlags < QTextStream::NumberFlag >;
 
 
 
+
 typedef NumberFlags	
 ;
 

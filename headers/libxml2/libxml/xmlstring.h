@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
 #define BAD_CAST	(xmlChar *)
 
 

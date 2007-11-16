@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 
+
 #define SEEK_SET	0
 #define STDIN_FILENO	0
 #define SEEK_CUR	1

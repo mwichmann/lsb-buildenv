@@ -6,6 +6,7 @@ class QItemEditorCreatorBase;
 
 
 
+
 class QItemEditorCreatorBase
 {
 private:

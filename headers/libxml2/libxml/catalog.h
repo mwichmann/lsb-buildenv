@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #define XML_CATALOGS_NAMESPACE	 \
 	(const xmlChar *) "urn:oasis:names:tc:entity:xmlns:xml:catalog"
 #define XML_CATALOG_PI	(const xmlChar *) "oasis-xml-catalog"

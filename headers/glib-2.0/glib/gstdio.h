@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define g_fopen	fopen
 #define g_freopen	freopen
 #define g_lstat	lstat

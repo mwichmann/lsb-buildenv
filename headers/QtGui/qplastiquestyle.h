@@ -6,6 +6,7 @@ class QPlastiqueStyle;
 
 
 
+
 class QPlastiqueStyle : public QWindowsStyle
 {
 private:

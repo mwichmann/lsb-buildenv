@@ -13,6 +13,7 @@ extern "C" {
 
 
 
+
 /* Bits set in the FLAGS argument to `glob'.*/
 #define GLOB_ERR	(1<<0)
 #define GLOB_MARK	(1<<1)

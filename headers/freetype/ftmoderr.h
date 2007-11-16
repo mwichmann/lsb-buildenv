@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define FT_MODERR_START_LIST	enum {
 #define FT_MODERRDEF(e,v,s)	FT_Mod_Err_ ## e = 0,
 #define FT_MODERR_END_LIST	FT_Mod_Err_Max };

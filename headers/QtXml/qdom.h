@@ -6,6 +6,7 @@ class QDomText;
 
 
 
+
 class QDomImplementation
 {
 private:

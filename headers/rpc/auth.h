@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+
 #define auth_destroy(auth)	((*((auth)->ah_ops->ah_destroy))(auth))
 
 

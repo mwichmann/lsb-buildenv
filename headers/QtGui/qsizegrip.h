@@ -6,6 +6,7 @@ class QSizeGrip;
 
 
 
+
 class QSizeGrip : public QWidget
 {
 private:

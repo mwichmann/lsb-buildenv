@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlSaveCtxt xmlSaveCtxt;
 
     typedef xmlSaveCtxt *xmlSaveCtxtPtr;

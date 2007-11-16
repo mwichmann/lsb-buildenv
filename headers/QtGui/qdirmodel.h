@@ -6,6 +6,7 @@ class QFileIconProvider;
 
 
 
+
 class QFileIconProvider
 {
 private:

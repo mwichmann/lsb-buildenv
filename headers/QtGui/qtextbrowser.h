@@ -6,6 +6,7 @@ class QTextBrowser;
 
 
 
+
 class QTextBrowser : public QTextEdit
 {
 private:

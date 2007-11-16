@@ -6,6 +6,7 @@ class QWhatsThis;
 
 
 
+
 class QWhatsThis
 {
 private:

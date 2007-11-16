@@ -6,6 +6,7 @@ class QPictureIO;
 
 
 
+
 typedef void	picture_io_handler	
 ;
 

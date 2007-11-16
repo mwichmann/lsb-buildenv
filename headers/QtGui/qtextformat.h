@@ -6,6 +6,7 @@ class QTextImageFormat;
 
 
 
+
 class QTextLength
 {
 private:

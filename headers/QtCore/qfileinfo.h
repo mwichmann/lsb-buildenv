@@ -6,6 +6,7 @@ class QFlags < QFileInfo::Permission >;
 
 
 
+
 typedef PermissionSpec	
 ;
 

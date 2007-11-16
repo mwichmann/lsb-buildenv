@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 
+
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
 #if defined __i386__

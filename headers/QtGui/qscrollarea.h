@@ -6,6 +6,7 @@ class QScrollArea;
 
 
 
+
 class QScrollArea : public QAbstractScrollArea
 {
 private:

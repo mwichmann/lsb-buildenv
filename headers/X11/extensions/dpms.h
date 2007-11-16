@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     extern int DPMSCapable(Display *);
     extern int DPMSDisable(Display *);
     extern int DPMSEnable(Display *);

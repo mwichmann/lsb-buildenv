@@ -13,6 +13,7 @@ extern "C" {
 #endif
 
 
+
 #define PANGO_FC_DECODER_CLASS(klass)	 \
 	(G_TYPE_CHECK_CLASS_CAST ((klass), PANGO_TYPE_FC_DECODER, \
 	PangoFcDecoderClass))

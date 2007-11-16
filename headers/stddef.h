@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
 #define NULL	(0L)
 

@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
 #define IPC_PRIVATE	((key_t)0)
 #define IPC_RMID	0
 #define IPC_CREAT	00001000

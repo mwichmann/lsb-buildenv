@@ -10,6 +10,7 @@ extern "C" {
 
 
 
+
 /* Define bits representing the exception.  We use the bit positions of the appropriate bits in the FPU control word.*/
 #if defined __powerpc__ && !defined __powerpc64__
 #define FE_INVALID	(1 << (31 - 2))

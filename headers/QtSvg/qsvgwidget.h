@@ -6,6 +6,7 @@ class QSvgWidget;
 
 
 
+
 typedef enum QtValidLicenseForSvgModule	QtSvgModule	
 ;
 

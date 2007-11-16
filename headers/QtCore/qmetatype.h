@@ -6,6 +6,7 @@ class QMetaType;
 
 
 
+
 typedef void	Destructor	
 ;
 

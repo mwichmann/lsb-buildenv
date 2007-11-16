@@ -9,6 +9,7 @@ extern "C" {
 
 
 
+
     typedef unsigned int QRgb;
 
 

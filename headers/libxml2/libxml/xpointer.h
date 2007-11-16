@@ -16,6 +16,7 @@ extern "C" {
 
 
 
+
     typedef struct _xmlLocationSet xmlLocationSet;
 
     typedef xmlLocationSet *xmlLocationSetPtr;

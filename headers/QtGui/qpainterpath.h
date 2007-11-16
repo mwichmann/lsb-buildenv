@@ -6,6 +6,7 @@ class QPainterPathStroker;
 
 
 
+
 class QPainterPath
 {
 private:

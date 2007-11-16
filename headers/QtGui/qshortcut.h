@@ -6,6 +6,7 @@ class QShortcut;
 
 
 
+
 class QShortcut : public QObject
 {
 private:

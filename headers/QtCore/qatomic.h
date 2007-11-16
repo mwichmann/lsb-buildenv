@@ -6,6 +6,7 @@ class QAtomic;
 
 
 
+
 struct QBasicAtomic	;
 
 class QAtomic :  

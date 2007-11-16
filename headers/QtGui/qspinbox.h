@@ -6,6 +6,7 @@ class QDoubleSpinBox;
 
 
 
+
 class QSpinBox : public QAbstractSpinBox
 {
 private:

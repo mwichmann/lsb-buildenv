@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 
+
 #define GTK_NOTE(type,action)
 #define GTK_OBJECT_FLOATING(obj)	 \
 	((GTK_OBJECT_FLAGS (obj) & GTK_FLOATING) != 0)

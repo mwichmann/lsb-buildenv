@@ -6,6 +6,7 @@ class QTextDocumentFragment;
 
 
 
+
 class QTextDocumentFragment
 {
 private:

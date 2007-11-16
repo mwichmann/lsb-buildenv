@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef int (*xmlInputReadCallback) (void *, char *, int);
 
     typedef int (*xmlInputCloseCallback) (void *);

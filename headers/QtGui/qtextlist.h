@@ -6,6 +6,7 @@ class QTextList;
 
 
 
+
 class QTextList : public QTextBlockGroup
 {
 private:

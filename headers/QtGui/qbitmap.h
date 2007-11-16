@@ -6,6 +6,7 @@ class QBitmap;
 
 
 
+
 class QBitmap : public QPixmap
 {
 private:

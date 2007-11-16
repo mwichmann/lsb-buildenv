@@ -6,6 +6,7 @@ class QScrollBar;
 
 
 
+
 class QScrollBar : public QAbstractSlider
 {
 private:

@@ -6,6 +6,7 @@ class QDial;
 
 
 
+
 typedef enum QtValidLicenseForGuiModule	QtGuiModule	
 ;
 

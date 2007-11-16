@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+
 #define ATK_TYPE_HYPERLINK_STATE_FLAGS	 \
 	(atk_hyperlink_state_flags_get_type())
 #define ATK_TYPE_COORD_TYPE	(atk_coord_type_get_type())

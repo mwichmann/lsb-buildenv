@@ -18,6 +18,7 @@ extern "C" {
 
 
 
+
     typedef xmlValidCtxt *xmlValidCtxtPtr;
 
     typedef struct _xmlHashTable xmlAttributeTable;

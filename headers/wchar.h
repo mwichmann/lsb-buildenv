@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 
+
 #define WEOF	(0xffffffffu)
 #define WCHAR_MAX	0x7FFFFFFF
 #define WCHAR_MIN	0x80000000

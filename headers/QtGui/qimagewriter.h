@@ -6,6 +6,7 @@ class QImageWriter;
 
 
 
+
 class QImageWriter
 {
 private:

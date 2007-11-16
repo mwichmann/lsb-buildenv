@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define ft_atol	atol
 #define ft_exit	exit
 #define FT_INT_MAX	INT_MAX

@@ -6,6 +6,7 @@ class QAbstractSocket;
 
 
 
+
 typedef enum SocketState	
 {
 UnconnectedState = 0,	

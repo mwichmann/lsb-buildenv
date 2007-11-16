@@ -6,6 +6,7 @@ class QSize;
 
 
 
+
 class QSize
 {
 private:

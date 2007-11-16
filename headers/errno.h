@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define errno	(*__errno_location())
 
 

@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define LLONG_MIN	(-LLONG_MAX-1LL)
 #if defined __ia64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL

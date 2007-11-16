@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 
+
 #define LIBXML_AUTOMATA_ENABLED
 #define LIBXML_C14N_ENABLED
 #define LIBXML_CATALOG_ENABLED

@@ -16,6 +16,7 @@ extern "C" {
 #endif
 
 
+
 #define PANGO_XFT_RENDERER_CLASS(klass)	 \
 	(G_TYPE_CHECK_CLASS_CAST ((klass), PANGO_TYPE_XFT_RENDERER, \
 	PangoXftRendererClass))

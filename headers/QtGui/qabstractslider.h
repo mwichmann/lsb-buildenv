@@ -6,6 +6,7 @@ class QAbstractSlider;
 
 
 
+
 class QAbstractSlider : public QWidget
 {
 private:

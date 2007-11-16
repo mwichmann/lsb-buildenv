@@ -6,6 +6,7 @@ class QProxyModel;
 
 
 
+
 class QProxyModel : public QAbstractItemModel
 {
 private:

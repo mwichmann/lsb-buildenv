@@ -6,6 +6,7 @@ class QTextCursor;
 
 
 
+
 class QTextCursor
 {
 private:

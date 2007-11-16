@@ -6,6 +6,7 @@ class QFlags < QPainter::RenderHint >;
 
 
 
+
 typedef RenderHints	
 ;
 

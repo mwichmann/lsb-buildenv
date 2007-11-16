@@ -6,6 +6,7 @@ class QSqlIndex;
 
 
 
+
 class QSqlIndex :  
 {
 private:

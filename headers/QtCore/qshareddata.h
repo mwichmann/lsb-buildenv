@@ -6,6 +6,7 @@ class QSharedData;
 
 
 
+
 class QSharedData
 {
 private:

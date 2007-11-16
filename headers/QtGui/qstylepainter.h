@@ -6,6 +6,7 @@ class QStylePainter;
 
 
 
+
 class QStylePainter :  
 {
 private:

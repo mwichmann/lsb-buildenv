@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef struct XColor;
 
     typedef void *XVaNestedList;

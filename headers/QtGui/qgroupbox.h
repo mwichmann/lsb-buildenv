@@ -6,6 +6,7 @@ class QGroupBox;
 
 
 
+
 class QGroupBox : public QWidget
 {
 private:

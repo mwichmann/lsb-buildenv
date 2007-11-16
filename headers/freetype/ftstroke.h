@@ -15,6 +15,7 @@ extern "C" {
 
 
 
+
     typedef enum {
 	FT_STROKER_LINECAP_BUTT = 0,
 	FT_STROKER_LINECAP_ROUND = 1,

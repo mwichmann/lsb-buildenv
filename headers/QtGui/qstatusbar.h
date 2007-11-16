@@ -6,6 +6,7 @@ class QStatusBar;
 
 
 
+
 class QStatusBar : public QWidget
 {
 private:

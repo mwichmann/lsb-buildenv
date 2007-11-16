@@ -6,6 +6,7 @@ class QPictureFormatPlugin;
 
 
 
+
 struct QPictureFormatInterface	;
 
 class QPictureFormatPlugin :  QObject,  QPictureFormatInterface

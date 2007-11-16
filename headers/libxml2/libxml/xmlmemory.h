@@ -11,6 +11,7 @@ extern "C" {
 
 
 
+
     typedef void (*xmlFreeFunc) (void *);
 
     typedef void *(*xmlMallocFunc) (size_t);
