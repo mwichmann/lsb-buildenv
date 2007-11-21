@@ -325,8 +325,6 @@ extern "C" {
     extern int chown(const char *, uid_t, gid_t);
     extern int chroot(const char *);
     extern size_t confstr(int, char *, size_t);
-    extern int creat(const char *, mode_t);
-    extern int creat64(const char *, mode_t);
     extern char *ctermid(char *);
     extern char *cuserid(char *);
     extern int daemon(int, int);
@@ -346,6 +344,7 @@ extern "C" {
     extern pid_t getsid(pid_t);
     extern char *getwd(char *);
     extern int lockf(int, int, off_t);
+    extern int lockf64(int, int, off64_t);
     extern int mkstemp(char *);
     extern int nice(int);
     extern char *optarg;
@@ -422,7 +421,6 @@ extern "C" {
     extern pid_t getppid(void);
     extern int isatty(int);
     extern loff_t lseek64(int, loff_t, int);
-    extern int open64(const char *, int, ...);
     extern ssize_t pread64(int, void *, size_t, off64_t);
     extern ssize_t pwrite64(int, const void *, size_t, off64_t);
     extern int ttyname_r(int, char *, size_t);
