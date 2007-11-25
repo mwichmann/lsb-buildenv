@@ -1,0 +1,29 @@
+
+#define SND_PCM_EXTPLUG_VERSION	((SND_PCM_EXTPLUG_VERSION_MAJOR<<16) | (SND_PCM_EXTPLUG_VERSION_MINOR<<8) | (SND_PCM_EXTPLUG_VERSION_TINY))
+#define SND_PCM_EXTPLUG_VERSION_MINOR	0
+#define SND_PCM_EXTPLUG_VERSION_MAJOR	1
+#define SND_PCM_EXTPLUG_VERSION_TINY	1
+
+typedef struct snd_pcm_extplug_callback {
+    snd_pcm_sframes_t(*transfer) (void);
+    int (*close) (void);
+    int (*hw_params) (void);
+    int (*hw_free) (void);
+    void (*dump) (void);
+    int (*init) (void);
+} snd_pcm_extplug_callback_t;
+typedef struct snd_pcm_extplug {
+    unsigned int version;
+    const char *name;
+    const snd_pcm_extplug_callback_t *callback;
+    void *private_data;
+    snd_pcm_t *pcm;
+    snd_pcm_stream_t stream;
+    snd_pcm_format_t format;
+    snd_pcm_subformat_t subformat;
+    unsigned int channels;
+    unsigned int rate;
+    snd_pcm_format_t slave_format;
+    snd_pcm_subformat_t slave_subformat;
+    unsigned int slave_channels;
+} snd_pcm_extplug_t;
