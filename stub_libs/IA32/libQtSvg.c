@@ -73,7 +73,6 @@ __asm__(".globl _ZTI12QSvgRenderer; .pushsection .data; .type _ZTI12QSvgRenderer
 __asm__(".globl _ZTI14QXmlAttributes; .pushsection .data; .type _ZTI14QXmlAttributes,@object; .size _ZTI14QXmlAttributes, 8; _ZTI14QXmlAttributes: .long 0; .popsection");
 __asm__(".globl _ZTI14QXmlDTDHandler; .pushsection .data; .type _ZTI14QXmlDTDHandler,@object; .size _ZTI14QXmlDTDHandler, 8; _ZTI14QXmlDTDHandler: .long 0; .popsection");
 __asm__(".globl _ZTI15QXmlDeclHandler; .pushsection .data; .type _ZTI15QXmlDeclHandler,@object; .size _ZTI15QXmlDeclHandler, 8; _ZTI15QXmlDeclHandler: .long 0; .popsection");
-__asm__(".globl _ZTI16QGraphicsSvgItem; .pushsection .data; .type _ZTI16QGraphicsSvgItem,@object; .size _ZTI16QGraphicsSvgItem, 0; _ZTI16QGraphicsSvgItem: .long 0; .popsection");
 __asm__(".globl _ZTI16QSvgTinyDocument; .pushsection .data; .type _ZTI16QSvgTinyDocument,@object; .size _ZTI16QSvgTinyDocument, 12; _ZTI16QSvgTinyDocument: .long 0; .popsection");
 __asm__(".globl _ZTI16QXmlErrorHandler; .pushsection .data; .type _ZTI16QXmlErrorHandler,@object; .size _ZTI16QXmlErrorHandler, 8; _ZTI16QXmlErrorHandler: .long 0; .popsection");
 __asm__(".globl _ZTI18QXmlContentHandler; .pushsection .data; .type _ZTI18QXmlContentHandler,@object; .size _ZTI18QXmlContentHandler, 8; _ZTI18QXmlContentHandler: .long 0; .popsection");
@@ -84,7 +83,6 @@ __asm__(".globl _ZTV12QSvgRenderer; .pushsection .data; .type _ZTV12QSvgRenderer
 __asm__(".globl _ZTV14QXmlAttributes; .pushsection .data; .type _ZTV14QXmlAttributes,@object; .size _ZTV14QXmlAttributes, 16; _ZTV14QXmlAttributes: .long 0; .popsection");
 __asm__(".globl _ZTV14QXmlDTDHandler; .pushsection .data; .type _ZTV14QXmlDTDHandler,@object; .size _ZTV14QXmlDTDHandler, 28; _ZTV14QXmlDTDHandler: .long 0; .popsection");
 __asm__(".globl _ZTV15QXmlDeclHandler; .pushsection .data; .type _ZTV15QXmlDeclHandler,@object; .size _ZTV15QXmlDeclHandler, 32; _ZTV15QXmlDeclHandler: .long 0; .popsection");
-__asm__(".globl _ZTV16QGraphicsSvgItem; .pushsection .data; .type _ZTV16QGraphicsSvgItem,@object; .size _ZTV16QGraphicsSvgItem, 0; _ZTV16QGraphicsSvgItem: .long 0; .popsection");
 __asm__(".globl _ZTV16QSvgTinyDocument; .pushsection .data; .type _ZTV16QSvgTinyDocument,@object; .size _ZTV16QSvgTinyDocument, 28; _ZTV16QSvgTinyDocument: .long 0; .popsection");
 __asm__(".globl _ZTV16QXmlErrorHandler; .pushsection .data; .type _ZTV16QXmlErrorHandler,@object; .size _ZTV16QXmlErrorHandler, 32; _ZTV16QXmlErrorHandler: .long 0; .popsection");
 __asm__(".globl _ZTV18QXmlContentHandler; .pushsection .data; .type _ZTV18QXmlContentHandler,@object; .size _ZTV18QXmlContentHandler, 64; _ZTV18QXmlContentHandler: .long 0; .popsection");
