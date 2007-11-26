@@ -66,11 +66,17 @@ char *lsb_Printing_libs[] = {
 	NULL
 };
 
-int	lsb_num_modules = 2;
+char *lsb_Multimedia_libs[] = {
+	"asound",
+	NULL
+};
+
+int	lsb_num_modules = 3;
 
 lsb_lib_modules_t lsb_modules[] = {
 	{"Toolkit_Qt", lsb_Toolkit_Qt_libs },
 	{"Printing", lsb_Printing_libs },
+	{"Multimedia", lsb_Multimedia_libs },
 };
 
 char *lsb_cplus_libs[] = {

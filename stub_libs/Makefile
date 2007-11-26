@@ -1,6 +1,6 @@
 # Makefile for creation of LSB stub libraries
 
-LSB_SUPPORTED_ARCHS=IA32 IA64 PPC32 S390 PPC64 S390X x86-64
+LSB_SUPPORTED_ARCHS=IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 
 # Determine arch to compile for from uname
 # Add extra architectures as needed
@@ -34,6 +34,8 @@ all: libs
 
 core_filelist desktop_filelist:
 	cd .. && ./mkfilelists `cat stub_libs/LSB_VERSION`
+
+gensrc: dbfiles
 
 dbfiles: core_filelist desktop_filelist
 	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v `cat LSB_VERSION`; done;

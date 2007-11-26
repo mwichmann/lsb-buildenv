@@ -408,5 +408,5 @@ void snd_timer_poll_descriptors_count() {} ;
 void snd_timer_read() {} ;
 void snd_timer_start() {} ;
 void snd_timer_stop() {} ;
-__asm__(".globl snd_config; .pushsection .data; .type snd_config,@object; .size snd_config, 0; snd_config: .long 0; .popsection");
-__asm__(".globl snd_seq_event_types; .pushsection .data; .type snd_seq_event_types,@object; .size snd_seq_event_types, 0; snd_seq_event_types: .long 0; .popsection");
+__asm__(".globl snd_config; .pushsection .data; .type snd_config,@object; .size snd_config, 4; snd_config: .long 0; .popsection");
+__asm__(".globl snd_seq_event_types; .pushsection .data; .type snd_seq_event_types,@object; .size snd_seq_event_types, 1024; snd_seq_event_types: .long 0; .popsection");
