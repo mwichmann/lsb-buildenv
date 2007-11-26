@@ -16,7 +16,8 @@ if( length != 2 ) :
 
 lsbversion = sys.argv[1]
 
-core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp", "LSB_Printing"]
+core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp", "LSB_Printing",
+                "LSB_Multimedia"]
 desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt", 
 		   "LSB_Graphics_Ext", "LSB_XML", "LSB_Toolkit_Qt3"]
 
