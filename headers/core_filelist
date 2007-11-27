@@ -122,7 +122,6 @@ alsa/error.h
 alsa/hwdep.h
 alsa/conf.h
 alsa/global.h
-alsa/pcm_rate.h
 alsa/rawmidi.h
 alsa/pcm_extplug.h
 alsa/seq.h
