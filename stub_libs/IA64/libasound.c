@@ -279,7 +279,6 @@ void snd_pcm_sw_params_set_start_threshold() {} ;
 void snd_pcm_sw_params_set_stop_threshold() {} ;
 void snd_pcm_sw_params_set_tstamp_mode() {} ;
 void snd_pcm_sw_params_set_xfer_align() {} ;
-void snd_pcm_sw_params_set_xrun_mode() {} ;
 void snd_pcm_sw_params_sizeof() {} ;
 void snd_pcm_type() {} ;
 void snd_pcm_wait() {} ;
