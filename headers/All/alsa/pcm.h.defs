@@ -388,9 +388,6 @@ extern int snd_pcm_sw_params_set_tstamp_mode(snd_pcm_t *,
 extern int snd_pcm_sw_params_set_xfer_align(snd_pcm_t *,
 					    snd_pcm_sw_params_t *,
 					    snd_pcm_uframes_t);
-extern int snd_pcm_sw_params_set_xrun_mode(snd_pcm_t *,
-					   snd_pcm_sw_params_t *,
-					   snd_pcm_xrun_t);
 extern size_t snd_pcm_sw_params_sizeof(void);
 extern snd_pcm_type_t snd_pcm_type(snd_pcm_t *);
 extern int snd_pcm_wait(snd_pcm_t *, int);

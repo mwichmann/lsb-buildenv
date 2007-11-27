@@ -246,7 +246,6 @@ ALSA_0.9 {
   snd_pcm_sw_params_set_stop_threshold;
   snd_pcm_sw_params_set_tstamp_mode;
   snd_pcm_sw_params_set_xfer_align;
-  snd_pcm_sw_params_set_xrun_mode;
   snd_pcm_sw_params_sizeof;
   snd_pcm_type;
   snd_pcm_wait;
