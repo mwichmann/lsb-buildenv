@@ -15,6 +15,8 @@ libXt XtCXtToolkitError 8
 libXt XtShellStrings 509
 libXt XtStrings a59
 # Generating c stubs for libstdcxx library
+libstdcxx _ZTSN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE 36
+libstdcxx _ZTSN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE 36
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE20_S_empty_rep_storageE 20
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_max_sizeE 8
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE4_Rep11_S_terminalE 4
