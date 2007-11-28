@@ -68,6 +68,7 @@ void _ZThn16_N10QSvgWidgetD0Ev() {} ;
 void _ZThn16_N10QSvgWidgetD1Ev() {} ;
 __asm__(".globl _ZN10QSvgWidget16staticMetaObjectE; .pushsection .data; .type _ZN10QSvgWidget16staticMetaObjectE,@object; .size _ZN10QSvgWidget16staticMetaObjectE, 32; _ZN10QSvgWidget16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN12QSvgRenderer16staticMetaObjectE; .pushsection .data; .type _ZN12QSvgRenderer16staticMetaObjectE,@object; .size _ZN12QSvgRenderer16staticMetaObjectE, 32; _ZN12QSvgRenderer16staticMetaObjectE: .long 0; .popsection");
+__asm__(".globl _ZN16QGraphicsSvgItem16staticMetaObjectE; .pushsection .data; .type _ZN16QGraphicsSvgItem16staticMetaObjectE,@object; .size _ZN16QGraphicsSvgItem16staticMetaObjectE, 32; _ZN16QGraphicsSvgItem16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZTI10QSvgWidget; .pushsection .data; .type _ZTI10QSvgWidget,@object; .size _ZTI10QSvgWidget, 24; _ZTI10QSvgWidget: .long 0; .popsection");
 __asm__(".globl _ZTI12QSvgRenderer; .pushsection .data; .type _ZTI12QSvgRenderer,@object; .size _ZTI12QSvgRenderer, 24; _ZTI12QSvgRenderer: .long 0; .popsection");
 __asm__(".globl _ZTI14QXmlAttributes; .pushsection .data; .type _ZTI14QXmlAttributes,@object; .size _ZTI14QXmlAttributes, 16; _ZTI14QXmlAttributes: .long 0; .popsection");
