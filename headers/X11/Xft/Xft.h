@@ -29,9 +29,9 @@ extern "C" {
 #define XFT_RENDER	"render"
 #define XFT_XLFD	"xlfd"
 #define XFT_MINOR	1
-#define XFT_REVISION	12
 #define XFT_MAJOR	2
 #define XFT_NMISSING	256
+#define XFT_REVISION	8
 #define XftVersion	XFT_VERSION
 
 

@@ -52,6 +52,8 @@ extern "C" {
 
 
     extern int snd_rawmidi_close(snd_rawmidi_t *);
+    extern int snd_rawmidi_drain(snd_rawmidi_t *);
+    extern int snd_rawmidi_drop(snd_rawmidi_t *);
     extern void snd_rawmidi_info_free(snd_rawmidi_info_t *);
     extern const char *snd_rawmidi_info_get_id(const snd_rawmidi_info_t *);
     extern const char *snd_rawmidi_info_get_name(const snd_rawmidi_info_t
