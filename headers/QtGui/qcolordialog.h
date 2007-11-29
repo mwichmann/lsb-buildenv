@@ -24,8 +24,8 @@ extern int _ZN12QColorDialog11customCountEv(void);
 extern QRgb _ZN12QColorDialog11customColorEi(void);
 extern void _ZN12QColorDialog14setCustomColorEij(void);
 extern void _ZN12QColorDialog16setStandardColorEij(void);
-extern QColorDialog _ZN12QColorDialogD2Ev(void);
-extern QColorDialog _ZN12QColorDialogD1Ev(void);
-extern QColorDialog _ZN12QColorDialogD0Ev(void);
+extern  _ZN12QColorDialogD2Ev(void);
+extern  _ZN12QColorDialogD1Ev(void);
+extern  _ZN12QColorDialogD0Ev(void);
 // *INDENT-ON*
 #endif

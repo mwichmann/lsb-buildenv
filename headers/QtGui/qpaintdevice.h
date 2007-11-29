@@ -29,9 +29,9 @@ PdmPhysicalDpiY = 10
 ;
 
 
-extern QPaintDevice _ZN12QPaintDeviceD2Ev(void);
-extern QPaintDevice _ZN12QPaintDeviceD1Ev(void);
-extern QPaintDevice _ZN12QPaintDeviceD0Ev(void);
+extern  _ZN12QPaintDeviceD2Ev(void);
+extern  _ZN12QPaintDeviceD1Ev(void);
+extern  _ZN12QPaintDeviceD0Ev(void);
 extern QPaintDevice _ZN12QPaintDeviceC2Ev(void);
 extern QPaintDevice _ZN12QPaintDeviceC1Ev(void);
 extern int _ZNK12QPaintDevice6metricENS_17PaintDeviceMetricE(void);

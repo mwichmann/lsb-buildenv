@@ -36,8 +36,8 @@ extern QRegExp _ZN7QRegExpC2ERK7QStringN2Qt15CaseSensitivityENS_13PatternSyntaxE
 extern QRegExp _ZN7QRegExpC1ERK7QStringN2Qt15CaseSensitivityENS_13PatternSyntaxE(void);
 extern QRegExp _ZN7QRegExpC2ERKS_(void);
 extern QRegExp _ZN7QRegExpC1ERKS_(void);
-extern QRegExp _ZN7QRegExpD2Ev(void);
-extern QRegExp _ZN7QRegExpD1Ev(void);
+extern  _ZN7QRegExpD2Ev(void);
+extern  _ZN7QRegExpD1Ev(void);
 extern QRegExp _ZN7QRegExpaSERKS_(void);
 extern bool _ZNK7QRegExpeqERKS_(void);
 extern bool _ZNK7QRegExp7isEmptyEv(void);

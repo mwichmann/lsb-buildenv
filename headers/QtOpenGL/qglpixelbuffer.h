@@ -19,9 +19,9 @@ public:
 
 extern QGLPixelBuffer _ZN14QGLPixelBufferC2ERK5QSizeRK9QGLFormatP9QGLWidget(void);
 extern QGLPixelBuffer _ZN14QGLPixelBufferC1ERK5QSizeRK9QGLFormatP9QGLWidget(void);
-extern QGLPixelBuffer _ZN14QGLPixelBufferD2Ev(void);
-extern QGLPixelBuffer _ZN14QGLPixelBufferD1Ev(void);
-extern QGLPixelBuffer _ZN14QGLPixelBufferD0Ev(void);
+extern  _ZN14QGLPixelBufferD2Ev(void);
+extern  _ZN14QGLPixelBufferD1Ev(void);
+extern  _ZN14QGLPixelBufferD0Ev(void);
 extern bool _ZNK14QGLPixelBuffer7isValidEv(void);
 extern bool _ZN14QGLPixelBuffer11makeCurrentEv(void);
 extern bool _ZN14QGLPixelBuffer11doneCurrentEv(void);

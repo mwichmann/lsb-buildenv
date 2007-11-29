@@ -26,9 +26,9 @@ public:
 };
 
 
-extern QLayoutItem _ZN11QLayoutItemD2Ev(void);
-extern QLayoutItem _ZN11QLayoutItemD1Ev(void);
-extern QLayoutItem _ZN11QLayoutItemD0Ev(void);
+extern  _ZN11QLayoutItemD2Ev(void);
+extern  _ZN11QLayoutItemD1Ev(void);
+extern  _ZN11QLayoutItemD0Ev(void);
 extern bool _ZNK11QLayoutItem17hasHeightForWidthEv(void);
 extern int _ZNK11QLayoutItem14heightForWidthEi(void);
 extern int _ZNK11QLayoutItem21minimumHeightForWidthEi(void);

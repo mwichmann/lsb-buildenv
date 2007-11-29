@@ -29,9 +29,9 @@ extern void _ZN17QAccessibleObject7setTextEN11QAccessible4TextEiRK7QString(void)
 extern int _ZNK17QAccessibleObject15userActionCountEi(void);
 extern bool _ZN17QAccessibleObject8doActionEiiRK5QListI8QVariantE(void);
 extern QString _ZNK17QAccessibleObject10actionTextEiN11QAccessible4TextEi(void);
-extern QAccessibleObject _ZN17QAccessibleObjectD2Ev(void);
-extern QAccessibleObject _ZN17QAccessibleObjectD1Ev(void);
-extern QAccessibleObject _ZN17QAccessibleObjectD0Ev(void);
+extern  _ZN17QAccessibleObjectD2Ev(void);
+extern  _ZN17QAccessibleObjectD1Ev(void);
+extern  _ZN17QAccessibleObjectD0Ev(void);
 extern  _ZN22QAccessibleApplicationD0Ev(void);
 extern  _ZN22QAccessibleApplicationD1Ev(void);
 extern QAccessibleApplication _ZN22QAccessibleApplicationC2Ev(void);

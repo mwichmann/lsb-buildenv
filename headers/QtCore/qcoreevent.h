@@ -156,23 +156,23 @@ public:
 
 extern QEvent _ZN6QEventC2ENS_4TypeE(void);
 extern QEvent _ZN6QEventC1ENS_4TypeE(void);
-extern QEvent _ZN6QEventD2Ev(void);
-extern QEvent _ZN6QEventD1Ev(void);
-extern QEvent _ZN6QEventD0Ev(void);
+extern  _ZN6QEventD2Ev(void);
+extern  _ZN6QEventD1Ev(void);
+extern  _ZN6QEventD0Ev(void);
 extern QTimerEvent _ZN11QTimerEventC2Ei(void);
 extern QTimerEvent _ZN11QTimerEventC1Ei(void);
-extern QTimerEvent _ZN11QTimerEventD2Ev(void);
-extern QTimerEvent _ZN11QTimerEventD1Ev(void);
-extern QTimerEvent _ZN11QTimerEventD0Ev(void);
+extern  _ZN11QTimerEventD2Ev(void);
+extern  _ZN11QTimerEventD1Ev(void);
+extern  _ZN11QTimerEventD0Ev(void);
 extern QChildEvent _ZN11QChildEventC2EN6QEvent4TypeEP7QObject(void);
 extern QChildEvent _ZN11QChildEventC1EN6QEvent4TypeEP7QObject(void);
-extern QChildEvent _ZN11QChildEventD2Ev(void);
-extern QChildEvent _ZN11QChildEventD1Ev(void);
-extern QChildEvent _ZN11QChildEventD0Ev(void);
+extern  _ZN11QChildEventD2Ev(void);
+extern  _ZN11QChildEventD1Ev(void);
+extern  _ZN11QChildEventD0Ev(void);
 extern QCustomEvent _ZN12QCustomEventC2EiPv(void);
 extern QCustomEvent _ZN12QCustomEventC1EiPv(void);
-extern QCustomEvent _ZN12QCustomEventD2Ev(void);
-extern QCustomEvent _ZN12QCustomEventD1Ev(void);
-extern QCustomEvent _ZN12QCustomEventD0Ev(void);
+extern  _ZN12QCustomEventD2Ev(void);
+extern  _ZN12QCustomEventD1Ev(void);
+extern  _ZN12QCustomEventD0Ev(void);
 // *INDENT-ON*
 #endif

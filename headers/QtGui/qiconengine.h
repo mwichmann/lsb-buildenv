@@ -14,9 +14,9 @@ public:
 };
 
 
-extern QIconEngine _ZN11QIconEngineD2Ev(void);
-extern QIconEngine _ZN11QIconEngineD1Ev(void);
-extern QIconEngine _ZN11QIconEngineD0Ev(void);
+extern  _ZN11QIconEngineD2Ev(void);
+extern  _ZN11QIconEngineD1Ev(void);
+extern  _ZN11QIconEngineD0Ev(void);
 extern QSize _ZN11QIconEngine10actualSizeERK5QSizeN5QIcon4ModeENS3_5StateE(void);
 extern QPixmap _ZN11QIconEngine6pixmapERK5QSizeN5QIcon4ModeENS3_5StateE(void);
 extern void _ZN11QIconEngine9addPixmapERK7QPixmapN5QIcon4ModeENS3_5StateE(void);

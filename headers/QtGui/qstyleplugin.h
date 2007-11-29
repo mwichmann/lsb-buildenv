@@ -24,8 +24,8 @@ extern void _ZN12QStylePlugin11qt_metacastEPKc(void);
 extern int _ZN12QStylePlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
 extern QStylePlugin _ZN12QStylePluginC2EP7QObject(void);
 extern QStylePlugin _ZN12QStylePluginC1EP7QObject(void);
-extern QStylePlugin _ZN12QStylePluginD2Ev(void);
-extern QStylePlugin _ZN12QStylePluginD1Ev(void);
-extern QStylePlugin _ZN12QStylePluginD0Ev(void);
+extern  _ZN12QStylePluginD2Ev(void);
+extern  _ZN12QStylePluginD1Ev(void);
+extern  _ZN12QStylePluginD0Ev(void);
 // *INDENT-ON*
 #endif

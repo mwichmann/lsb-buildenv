@@ -22,9 +22,9 @@ extern QSplashScreen _ZN13QSplashScreenC2ERK7QPixmap6QFlagsIN2Qt10WindowTypeEE(v
 extern QSplashScreen _ZN13QSplashScreenC1ERK7QPixmap6QFlagsIN2Qt10WindowTypeEE(void);
 extern QSplashScreen _ZN13QSplashScreenC2EP7QWidgetRK7QPixmap6QFlagsIN2Qt10WindowTypeEE(void);
 extern QSplashScreen _ZN13QSplashScreenC1EP7QWidgetRK7QPixmap6QFlagsIN2Qt10WindowTypeEE(void);
-extern QSplashScreen _ZN13QSplashScreenD2Ev(void);
-extern QSplashScreen _ZN13QSplashScreenD1Ev(void);
-extern QSplashScreen _ZN13QSplashScreenD0Ev(void);
+extern  _ZN13QSplashScreenD2Ev(void);
+extern  _ZN13QSplashScreenD1Ev(void);
+extern  _ZN13QSplashScreenD0Ev(void);
 extern void _ZN13QSplashScreen9setPixmapERK7QPixmap(void);
 extern QPixmap _ZNK13QSplashScreen6pixmapEv(void);
 extern void _ZN13QSplashScreen6finishEP7QWidget(void);

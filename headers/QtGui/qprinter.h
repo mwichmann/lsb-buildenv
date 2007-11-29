@@ -132,9 +132,9 @@ PrintPageRange = 2
 
 extern QPrinter _ZN8QPrinterC2ENS_11PrinterModeE(void);
 extern QPrinter _ZN8QPrinterC1ENS_11PrinterModeE(void);
-extern QPrinter _ZN8QPrinterD2Ev(void);
-extern QPrinter _ZN8QPrinterD1Ev(void);
-extern QPrinter _ZN8QPrinterD0Ev(void);
+extern  _ZN8QPrinterD2Ev(void);
+extern  _ZN8QPrinterD1Ev(void);
+extern  _ZN8QPrinterD0Ev(void);
 extern int _ZNK8QPrinter7devTypeEv(void);
 extern void _ZN8QPrinter15setOutputFormatENS_12OutputFormatE(void);
 extern enum N8QPrinter12OutputFormatE _ZNK8QPrinter12outputFormatEv(void);

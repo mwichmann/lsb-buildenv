@@ -60,9 +60,9 @@ public:
 
 extern QImageIOHandler _ZN15QImageIOHandlerC2Ev(void);
 extern QImageIOHandler _ZN15QImageIOHandlerC1Ev(void);
-extern QImageIOHandler _ZN15QImageIOHandlerD2Ev(void);
-extern QImageIOHandler _ZN15QImageIOHandlerD1Ev(void);
-extern QImageIOHandler _ZN15QImageIOHandlerD0Ev(void);
+extern  _ZN15QImageIOHandlerD2Ev(void);
+extern  _ZN15QImageIOHandlerD1Ev(void);
+extern  _ZN15QImageIOHandlerD0Ev(void);
 extern void _ZN15QImageIOHandler9setDeviceEP9QIODevice(void);
 extern QIODevice _ZNK15QImageIOHandler6deviceEv(void);
 extern void _ZN15QImageIOHandler9setFormatERK10QByteArray(void);
@@ -90,8 +90,8 @@ extern void _ZN14QImageIOPlugin11qt_metacastEPKc(void);
 extern int _ZN14QImageIOPlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
 extern QImageIOPlugin _ZN14QImageIOPluginC2EP7QObject(void);
 extern QImageIOPlugin _ZN14QImageIOPluginC1EP7QObject(void);
-extern QImageIOPlugin _ZN14QImageIOPluginD2Ev(void);
-extern QImageIOPlugin _ZN14QImageIOPluginD1Ev(void);
-extern QImageIOPlugin _ZN14QImageIOPluginD0Ev(void);
+extern  _ZN14QImageIOPluginD2Ev(void);
+extern  _ZN14QImageIOPluginD1Ev(void);
+extern  _ZN14QImageIOPluginD0Ev(void);
 // *INDENT-ON*
 #endif

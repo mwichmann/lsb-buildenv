@@ -29,9 +29,9 @@ BatchOperation = 0
 ;
 
 
-extern QSqlResult _ZN10QSqlResultD2Ev(void);
-extern QSqlResult _ZN10QSqlResultD1Ev(void);
-extern QSqlResult _ZN10QSqlResultD0Ev(void);
+extern  _ZN10QSqlResultD2Ev(void);
+extern  _ZN10QSqlResultD1Ev(void);
+extern  _ZN10QSqlResultD0Ev(void);
 extern QVariant _ZNK10QSqlResult6handleEv(void);
 extern QSqlResult _ZN10QSqlResultC2EPK10QSqlDriver(void);
 extern QSqlResult _ZN10QSqlResultC1EPK10QSqlDriver(void);

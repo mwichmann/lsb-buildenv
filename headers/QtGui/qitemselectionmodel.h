@@ -62,9 +62,9 @@ extern QItemSelectionModel _ZN19QItemSelectionModelC2EP18QAbstractItemModel(void
 extern QItemSelectionModel _ZN19QItemSelectionModelC1EP18QAbstractItemModel(void);
 extern QItemSelectionModel _ZN19QItemSelectionModelC2EP18QAbstractItemModelP7QObject(void);
 extern QItemSelectionModel _ZN19QItemSelectionModelC1EP18QAbstractItemModelP7QObject(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelD2Ev(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelD1Ev(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelD0Ev(void);
+extern  _ZN19QItemSelectionModelD2Ev(void);
+extern  _ZN19QItemSelectionModelD1Ev(void);
+extern  _ZN19QItemSelectionModelD0Ev(void);
 extern QModelIndex _ZNK19QItemSelectionModel12currentIndexEv(void);
 extern bool _ZNK19QItemSelectionModel10isSelectedERK11QModelIndex(void);
 extern bool _ZNK19QItemSelectionModel13isRowSelectedEiRK11QModelIndex(void);

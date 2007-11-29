@@ -100,9 +100,9 @@ public:
 };
 
 
-extern QAbstractFileEngine _ZN19QAbstractFileEngineD2Ev(void);
-extern QAbstractFileEngine _ZN19QAbstractFileEngineD1Ev(void);
-extern QAbstractFileEngine _ZN19QAbstractFileEngineD0Ev(void);
+extern  _ZN19QAbstractFileEngineD2Ev(void);
+extern  _ZN19QAbstractFileEngineD1Ev(void);
+extern  _ZN19QAbstractFileEngineD0Ev(void);
 extern bool _ZN19QAbstractFileEngine4openE6QFlagsIN9QIODevice12OpenModeFlagEE(void);
 extern bool _ZN19QAbstractFileEngine5closeEv(void);
 extern bool _ZN19QAbstractFileEngine5flushEv(void);
@@ -145,8 +145,8 @@ extern QAbstractFileEngine _ZN19QAbstractFileEngineC2ER26QAbstractFileEnginePriv
 extern QAbstractFileEngine _ZN19QAbstractFileEngineC1ER26QAbstractFileEnginePrivate(void);
 extern QAbstractFileEngineHandler _ZN26QAbstractFileEngineHandlerC2Ev(void);
 extern QAbstractFileEngineHandler _ZN26QAbstractFileEngineHandlerC1Ev(void);
-extern QAbstractFileEngineHandler _ZN26QAbstractFileEngineHandlerD2Ev(void);
-extern QAbstractFileEngineHandler _ZN26QAbstractFileEngineHandlerD1Ev(void);
-extern QAbstractFileEngineHandler _ZN26QAbstractFileEngineHandlerD0Ev(void);
+extern  _ZN26QAbstractFileEngineHandlerD2Ev(void);
+extern  _ZN26QAbstractFileEngineHandlerD1Ev(void);
+extern  _ZN26QAbstractFileEngineHandlerD0Ev(void);
 // *INDENT-ON*
 #endif
