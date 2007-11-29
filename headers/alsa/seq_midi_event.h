@@ -29,6 +29,7 @@ extern "C" {
     extern void snd_midi_event_free(snd_midi_event_t *);
     extern void snd_midi_event_init(snd_midi_event_t *);
     extern int snd_midi_event_new(size_t, snd_midi_event_t * *);
+    extern void snd_midi_event_reset_decode(snd_midi_event_t *);
     extern void snd_midi_event_reset_encode(snd_midi_event_t *);
 #ifdef __cplusplus
 }

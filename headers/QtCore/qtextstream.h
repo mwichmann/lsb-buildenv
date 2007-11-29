@@ -120,9 +120,9 @@ extern QTextStream _ZN11QTextStreamC2EP10QByteArray6QFlagsIN9QIODevice12OpenMode
 extern QTextStream _ZN11QTextStreamC1EP10QByteArray6QFlagsIN9QIODevice12OpenModeFlagEE(void);
 extern QTextStream _ZN11QTextStreamC2ERK10QByteArray6QFlagsIN9QIODevice12OpenModeFlagEE(void);
 extern QTextStream _ZN11QTextStreamC1ERK10QByteArray6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern QTextStream _ZN11QTextStreamD2Ev(void);
-extern QTextStream _ZN11QTextStreamD1Ev(void);
-extern QTextStream _ZN11QTextStreamD0Ev(void);
+extern  _ZN11QTextStreamD2Ev(void);
+extern  _ZN11QTextStreamD1Ev(void);
+extern  _ZN11QTextStreamD0Ev(void);
 extern void _ZN11QTextStream8setCodecEP10QTextCodec(void);
 extern void _ZN11QTextStream8setCodecEPKc(void);
 extern QTextCodec _ZNK11QTextStream5codecEv(void);

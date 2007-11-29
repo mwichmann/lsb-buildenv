@@ -44,8 +44,8 @@ extern void _ZN15QSessionManager18setManagerPropertyERK7QStringS2_(void);
 extern void _ZN15QSessionManager18setManagerPropertyERK7QStringRK11QStringList(void);
 extern bool _ZNK15QSessionManager8isPhase2Ev(void);
 extern void _ZN15QSessionManager13requestPhase2Ev(void);
-extern QSessionManager _ZN15QSessionManagerD2Ev(void);
-extern QSessionManager _ZN15QSessionManagerD1Ev(void);
-extern QSessionManager _ZN15QSessionManagerD0Ev(void);
+extern  _ZN15QSessionManagerD2Ev(void);
+extern  _ZN15QSessionManagerD1Ev(void);
+extern  _ZN15QSessionManagerD0Ev(void);
 // *INDENT-ON*
 #endif

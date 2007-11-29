@@ -22,9 +22,9 @@ extern QProgressDialog _ZN15QProgressDialogC2EP7QWidget6QFlagsIN2Qt10WindowTypeE
 extern QProgressDialog _ZN15QProgressDialogC1EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
 extern QProgressDialog _ZN15QProgressDialogC2ERK7QStringS2_iiP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
 extern QProgressDialog _ZN15QProgressDialogC1ERK7QStringS2_iiP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QProgressDialog _ZN15QProgressDialogD2Ev(void);
-extern QProgressDialog _ZN15QProgressDialogD1Ev(void);
-extern QProgressDialog _ZN15QProgressDialogD0Ev(void);
+extern  _ZN15QProgressDialogD2Ev(void);
+extern  _ZN15QProgressDialogD1Ev(void);
+extern  _ZN15QProgressDialogD0Ev(void);
 extern void _ZN15QProgressDialog8setLabelEP6QLabel(void);
 extern void _ZN15QProgressDialog15setCancelButtonEP11QPushButton(void);
 extern void _ZN15QProgressDialog6setBarEP12QProgressBar(void);

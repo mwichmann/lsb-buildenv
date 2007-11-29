@@ -43,9 +43,9 @@ extern QDockWidget _ZN11QDockWidgetC2ERK7QStringP7QWidget6QFlagsIN2Qt10WindowTyp
 extern QDockWidget _ZN11QDockWidgetC1ERK7QStringP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
 extern QDockWidget _ZN11QDockWidgetC2EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
 extern QDockWidget _ZN11QDockWidgetC1EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QDockWidget _ZN11QDockWidgetD2Ev(void);
-extern QDockWidget _ZN11QDockWidgetD1Ev(void);
-extern QDockWidget _ZN11QDockWidgetD0Ev(void);
+extern  _ZN11QDockWidgetD2Ev(void);
+extern  _ZN11QDockWidgetD1Ev(void);
+extern  _ZN11QDockWidgetD0Ev(void);
 extern QWidget _ZNK11QDockWidget6widgetEv(void);
 extern void _ZN11QDockWidget9setWidgetEP7QWidget(void);
 extern void _ZN11QDockWidget11setFeaturesE6QFlagsINS_17DockWidgetFeatureEE(void);

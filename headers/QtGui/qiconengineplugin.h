@@ -24,8 +24,8 @@ extern void _ZN17QIconEnginePlugin11qt_metacastEPKc(void);
 extern int _ZN17QIconEnginePlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
 extern QIconEnginePlugin _ZN17QIconEnginePluginC2EP7QObject(void);
 extern QIconEnginePlugin _ZN17QIconEnginePluginC1EP7QObject(void);
-extern QIconEnginePlugin _ZN17QIconEnginePluginD2Ev(void);
-extern QIconEnginePlugin _ZN17QIconEnginePluginD1Ev(void);
-extern QIconEnginePlugin _ZN17QIconEnginePluginD0Ev(void);
+extern  _ZN17QIconEnginePluginD2Ev(void);
+extern  _ZN17QIconEnginePluginD1Ev(void);
+extern  _ZN17QIconEnginePluginD0Ev(void);
 // *INDENT-ON*
 #endif

@@ -116,8 +116,8 @@ public:
 };
 
 
-extern QVariant _ZN8QVariantD2Ev(void);
-extern QVariant _ZN8QVariantD1Ev(void);
+extern  _ZN8QVariantD2Ev(void);
+extern  _ZN8QVariantD1Ev(void);
 extern QVariant _ZN8QVariantC2ENS_4TypeE(void);
 extern QVariant _ZN8QVariantC1ENS_4TypeE(void);
 extern QVariant _ZN8QVariantC2EiPKv(void);

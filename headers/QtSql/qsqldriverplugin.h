@@ -24,8 +24,8 @@ extern void _ZN16QSqlDriverPlugin11qt_metacastEPKc(void);
 extern int _ZN16QSqlDriverPlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
 extern QSqlDriverPlugin _ZN16QSqlDriverPluginC2EP7QObject(void);
 extern QSqlDriverPlugin _ZN16QSqlDriverPluginC1EP7QObject(void);
-extern QSqlDriverPlugin _ZN16QSqlDriverPluginD2Ev(void);
-extern QSqlDriverPlugin _ZN16QSqlDriverPluginD1Ev(void);
-extern QSqlDriverPlugin _ZN16QSqlDriverPluginD0Ev(void);
+extern  _ZN16QSqlDriverPluginD2Ev(void);
+extern  _ZN16QSqlDriverPluginD1Ev(void);
+extern  _ZN16QSqlDriverPluginD0Ev(void);
 // *INDENT-ON*
 #endif

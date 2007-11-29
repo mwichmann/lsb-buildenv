@@ -11,72 +11,107 @@ import sys
 # in the database.
 
 length = len(sys.argv)
-if( length != 2 ) :
-	print "Usage: mkfilelists <LSB_VERSION>"; sys.exit (1)
+if length != 2:
+    print 'Usage: mkfilelists <LSB_VERSION>'
+    sys.exit(1)
 
 lsbversion = sys.argv[1]
 
-core_modules = ["LSB_Core", "LSB_Graphics", "LSB_Cpp", "LSB_Printing",
-                "LSB_Multimedia"]
-desktop_modules = ["LSB_Toolkit_Gtk", "LSB_Toolkit_Qt", 
-		   "LSB_Graphics_Ext", "LSB_XML", "LSB_Toolkit_Qt3"]
+core_modules = ['LSB_Core', 'LSB_Graphics', 'LSB_Cpp', 'LSB_Printing',
+                'LSB_Multimedia']
+desktop_modules = ['LSB_Toolkit_Gtk', 'LSB_Toolkit_Qt',
+                   'LSB_Graphics_Ext', 'LSB_XML', 'LSB_Toolkit_Qt3']
 
 # For some modules, we should only include the stub libraries;
 # the headers are expected to come from some other source.
 
-lib_only_modules = ["LSB_Toolkit_Qt", "LSB_Cpp", "LSB_Toolkit_Qt3"]
+lib_only_modules = ['LSB_Toolkit_Qt', 'LSB_Cpp', 'LSB_Toolkit_Qt3']
 
 # List file names.  These are relative to the stub_libs and headers
 # directories, making for a total of four files.
 
-core_fn = "core_filelist"
-desktop_fn = "desktop_filelist"
+core_fn = 'core_filelist'
+desktop_fn = 'desktop_filelist'
 
 # Queries to use to retrieve the header and library information
 # from the database.
 
 header_query = """
-SELECT Mname, Hname FROM Module,Header,ModLib,Library 
-WHERE Module.Mid = ModLib.MLmid 
-AND Library.Lid = ModLib.MLlid 
+SELECT Mname, Hname FROM Module,Header,ModLib,Library
+WHERE Module.Mid = ModLib.MLmid
+AND Library.Lid = ModLib.MLlid
 AND Library.Lid = Header.Hlib
 AND ( ( (Happearedin <= '""" + lsbversion + """' AND Happearedin<>'')
 AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '""" + lsbversion + """') )
 OR Hsrconly='Yes' OR Hsrcerror='Yes' )"""
 
 lib_query = """
-SELECT DISTINCT Mname,Lname FROM Module,ModLib,Library 
+SELECT DISTINCT Mname,Lname FROM Module,ModLib,Library
 LEFT JOIN ArchLib ON Lid=ALlid
 WHERE Lname LIKE 'lib%'
-AND (Module.Mid = ModLib.MLmid AND Library.Lid = ModLib.MLlid) 
+AND (Module.Mid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
 AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
 AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
-					   
+
 # For core, it appears that the database is not the final word,
 # so munge the core header list by adding and removing these
 # headers.
 # XXX: Fix this!
 
-core_headers_add = ["cpio.h", "linux/netlink.h", "linux/rtnetlink.h", 
-		    "linux/socket.h", "strings.h", "stropts.h", "sys/vfs.h", 
-		    "tar.h", "netpacket/packet.h"]
+core_headers_add = [
+    'cpio.h',
+    'linux/netlink.h',
+    'linux/rtnetlink.h',
+    'linux/socket.h',
+    'strings.h',
+    'stropts.h',
+    'sys/vfs.h',
+    'tar.h',
+    'netpacket/packet.h',
+    ]
 
-core_headers_remove = ["err.h", "features.h", "float.h", "GL/gl.h", "GL/glx.h", 
-		       "rpc/pmap_clnt.h", "rpc/rpc.h", "X11/Composite.h", 
-		       "X11/CompositeP.h", "X11/ConstrainP.h", 
-		       "X11/Constraint.h", "X11/Core.h", 
-		       "X11/extensions/dpms.h", "X11/extensions/security.h", 
-		       "X11/extensions/shape.h", "X11/extensions/sync.h", 
-		       "X11/extensions/Xdbe.h", "X11/extensions/XEVI.h", 
-                       "X11/extensions/XKBgeom.h", "X11/extensions/XShm.h", 
-                       "X11/ICE/ICElib.h", "X11/ICE/ICEutil.h", 
-                       "X11/Intrinsic.h", "X11/IntrinsicP.h", "X11/Object.h", 
-                       "X11/ObjectP.h", "X11/Shell.h", "X11/SM/SMlib.h", 
-                       "X11/StringDefs.h", "X11/Xauth.h", "X11/Xcms.h", 
-                       "X11/X.h", "X11/XKBlib.h", "X11/Xlib.h", 
-                       "X11/Xresource.h", "X11/Xutil.h"]
+core_headers_remove = [
+    'err.h',
+    'features.h',
+    'float.h',
+    'GL/gl.h',
+    'GL/glx.h',
+    'rpc/pmap_clnt.h',
+    'rpc/rpc.h',
+    'X11/Composite.h',
+    'X11/CompositeP.h',
+    'X11/ConstrainP.h',
+    'X11/Constraint.h',
+    'X11/Core.h',
+    'X11/extensions/dpms.h',
+    'X11/extensions/security.h',
+    'X11/extensions/shape.h',
+    'X11/extensions/sync.h',
+    'X11/extensions/Xdbe.h',
+    'X11/extensions/XEVI.h',
+    'X11/extensions/XKBgeom.h',
+    'X11/extensions/XShm.h',
+    'X11/ICE/ICElib.h',
+    'X11/ICE/ICEutil.h',
+    'X11/Intrinsic.h',
+    'X11/IntrinsicP.h',
+    'X11/Object.h',
+    'X11/ObjectP.h',
+    'X11/Shell.h',
+    'X11/SM/SMlib.h',
+    'X11/StringDefs.h',
+    'X11/Xauth.h',
+    'X11/Xcms.h',
+    'X11/X.h',
+    'X11/XKBlib.h',
+    'X11/Xlib.h',
+    'X11/Xresource.h',
+    'X11/Xutil.h',
+    ]
+
 
 def main():
+
     # Create the lists.
 
     core_headers = []
@@ -87,32 +122,32 @@ def main():
     # Connect to the database, using the regular conventions for
     # setting the database connection settings.
 
-    if "LSBDBPASSWD" not in os.environ:
-	os.environ["LSBDBPASSWD"] = ""
+    if 'LSBDBPASSWD' not in os.environ:
+        os.environ['LSBDBPASSWD'] = ''
 
-    connection = MySQLdb.connect(host = os.environ["LSBDBHOST"],
-				 user = os.environ["LSBUSER"],
-				 passwd = os.environ["LSBDBPASSWD"],
-				 db = os.environ["LSBDB"])
+    connection = MySQLdb.connect(host=os.environ['LSBDBHOST'],
+                                 user=os.environ['LSBUSER'],
+                                 passwd=os.environ['LSBDBPASSWD'],
+                                 db=os.environ['LSBDB'])
 
     # Collate the data into four lists, corresponding to the four lists
     # created above.
 
-    for (query, core_list, desktop_list, ignore_list) \
-	in ((header_query, core_headers, desktop_headers, lib_only_modules),
-	    (lib_query, core_libs, desktop_libs, [])):
-	itemlist = connection.cursor()
-	itemlist.execute(query)
-	for (module, item) in itemlist.fetchall():
-	    if module in ignore_list:
-		continue
-	    elif module in core_modules:
-		core_list.append(item)
-	    elif module in desktop_modules:
-		desktop_list.append(item)
-	    else:
-		raise ValueError, "unknown module found: " + module
-	itemlist.close()
+    for (query, core_list, desktop_list, ignore_list) in \
+        ((header_query, core_headers, desktop_headers,
+         lib_only_modules), (lib_query, core_libs, desktop_libs, [])):
+        itemlist = connection.cursor()
+        itemlist.execute(query)
+        for (module, item) in itemlist.fetchall():
+            if module in ignore_list:
+                continue
+            elif module in core_modules:
+                core_list.append(item)
+            elif module in desktop_modules:
+                desktop_list.append(item)
+            else:
+                raise ValueError('unknown module found: ' + module)
+        itemlist.close()
 
     # For some reason, some of the header info returned will include
     # some Nones.  Filter those out.
@@ -122,26 +157,27 @@ def main():
 
     # Apply the core header munging mentioned above.
 
-    core_headers = [x for x in core_headers + core_headers_add
-		    if x not in core_headers_remove]
+    core_headers = [x for x in core_headers + core_headers_add if x
+                     not in core_headers_remove]
 
     # The database contains at least one entry with information
     # in the library name field that isn't a library name.  For
     # now, filter that out by removing all entries containing
     # spaces.
 
-    core_libs = [x for x in core_libs if " " not in x]
-    desktop_libs = [x for x in desktop_libs if " " not in x]
+    core_libs = [x for x in core_libs if ' ' not in x]
+    desktop_libs = [x for x in desktop_libs if ' ' not in x]
 
     # Write the lists.
 
-    for (fn, flist) in (("headers/" + core_fn, core_headers),
-			("stub_libs/" + core_fn, core_libs),
-			("headers/" + desktop_fn, desktop_headers),
-			("stub_libs/" + desktop_fn, desktop_libs)):
-	headerfile = open(fn, "w")
-	headerfile.write("\n".join(flist))
-	headerfile.close()
+    for (fn, flist) in (('headers/' + core_fn, core_headers),
+                        ('stub_libs/' + core_fn, core_libs), ('headers/'
+                         + desktop_fn, desktop_headers), ('stub_libs/'
+                         + desktop_fn, desktop_libs)):
+        headerfile = open(fn, 'w')
+        headerfile.write('\n'.join(flist))
+        headerfile.close()
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()

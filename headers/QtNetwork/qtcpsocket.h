@@ -23,8 +23,8 @@ extern void _ZN10QTcpSocket11qt_metacastEPKc(void);
 extern int _ZN10QTcpSocket11qt_metacallEN11QMetaObject4CallEiPPv(void);
 extern QTcpSocket _ZN10QTcpSocketC2EP7QObject(void);
 extern QTcpSocket _ZN10QTcpSocketC1EP7QObject(void);
-extern QTcpSocket _ZN10QTcpSocketD2Ev(void);
-extern QTcpSocket _ZN10QTcpSocketD1Ev(void);
-extern QTcpSocket _ZN10QTcpSocketD0Ev(void);
+extern  _ZN10QTcpSocketD2Ev(void);
+extern  _ZN10QTcpSocketD1Ev(void);
+extern  _ZN10QTcpSocketD0Ev(void);
 // *INDENT-ON*
 #endif

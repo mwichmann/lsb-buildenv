@@ -42,9 +42,9 @@ FileNameRole = 34
 
 extern QFileIconProvider _ZN17QFileIconProviderC2Ev(void);
 extern QFileIconProvider _ZN17QFileIconProviderC1Ev(void);
-extern QFileIconProvider _ZN17QFileIconProviderD2Ev(void);
-extern QFileIconProvider _ZN17QFileIconProviderD1Ev(void);
-extern QFileIconProvider _ZN17QFileIconProviderD0Ev(void);
+extern  _ZN17QFileIconProviderD2Ev(void);
+extern  _ZN17QFileIconProviderD1Ev(void);
+extern  _ZN17QFileIconProviderD0Ev(void);
 extern QIcon _ZNK17QFileIconProvider4iconENS_8IconTypeE(void);
 extern QIcon _ZNK17QFileIconProvider4iconERK9QFileInfo(void);
 extern QString _ZNK17QFileIconProvider4typeERK9QFileInfo(void);
@@ -56,9 +56,9 @@ extern QDirModel _ZN9QDirModelC2ERK11QStringList6QFlagsIN4QDir6FilterEES3_INS4_8
 extern QDirModel _ZN9QDirModelC1ERK11QStringList6QFlagsIN4QDir6FilterEES3_INS4_8SortFlagEEP7QObject(void);
 extern QDirModel _ZN9QDirModelC2EP7QObject(void);
 extern QDirModel _ZN9QDirModelC1EP7QObject(void);
-extern QDirModel _ZN9QDirModelD2Ev(void);
-extern QDirModel _ZN9QDirModelD1Ev(void);
-extern QDirModel _ZN9QDirModelD0Ev(void);
+extern  _ZN9QDirModelD2Ev(void);
+extern  _ZN9QDirModelD1Ev(void);
+extern  _ZN9QDirModelD0Ev(void);
 extern QModelIndex _ZNK9QDirModel5indexEiiRK11QModelIndex(void);
 extern QModelIndex _ZNK9QDirModel6parentERK11QModelIndex(void);
 extern int _ZNK9QDirModel8rowCountERK11QModelIndex(void);

@@ -26,8 +26,8 @@ extern QPen _ZN4QPenC2ERK6QBrushdN2Qt8PenStyleENS3_11PenCapStyleENS3_12PenJoinSt
 extern QPen _ZN4QPenC1ERK6QBrushdN2Qt8PenStyleENS3_11PenCapStyleENS3_12PenJoinStyleE(void);
 extern QPen _ZN4QPenC2ERKS_(void);
 extern QPen _ZN4QPenC1ERKS_(void);
-extern QPen _ZN4QPenD2Ev(void);
-extern QPen _ZN4QPenD1Ev(void);
+extern  _ZN4QPenD2Ev(void);
+extern  _ZN4QPenD1Ev(void);
 extern QPen _ZN4QPenaSERKS_(void);
 extern enum N2Qt8PenStyleE _ZNK4QPen5styleEv(void);
 extern void _ZN4QPen8setStyleEN2Qt8PenStyleE(void);

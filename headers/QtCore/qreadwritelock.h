@@ -31,8 +31,8 @@ public:
 
 extern QReadWriteLock _ZN14QReadWriteLockC2Ev(void);
 extern QReadWriteLock _ZN14QReadWriteLockC1Ev(void);
-extern QReadWriteLock _ZN14QReadWriteLockD2Ev(void);
-extern QReadWriteLock _ZN14QReadWriteLockD1Ev(void);
+extern  _ZN14QReadWriteLockD2Ev(void);
+extern  _ZN14QReadWriteLockD1Ev(void);
 extern void _ZN14QReadWriteLock11lockForReadEv(void);
 extern bool _ZN14QReadWriteLock14tryLockForReadEv(void);
 extern void _ZN14QReadWriteLock12lockForWriteEv(void);

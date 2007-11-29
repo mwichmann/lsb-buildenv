@@ -198,15 +198,22 @@ extern "C" {
 
 
 
+    extern int snd_seq_alloc_named_queue(snd_seq_t *, const char *);
     extern int snd_seq_alloc_queue(snd_seq_t *);
     extern int snd_seq_client_id(snd_seq_t *);
+    extern void snd_seq_client_info_copy(snd_seq_client_info_t *,
+					 const snd_seq_client_info_t *);
+    extern void snd_seq_client_info_free(snd_seq_client_info_t *);
     extern int snd_seq_client_info_get_client(const snd_seq_client_info_t
 					      *);
     extern const char *snd_seq_client_info_get_name(snd_seq_client_info_t
 						    *);
+    extern int snd_seq_client_info_get_num_ports(const
+						 snd_seq_client_info_t *);
     extern snd_seq_client_type_t snd_seq_client_info_get_type(const
 							      snd_seq_client_info_t
 							      *);
+    extern int snd_seq_client_info_malloc(snd_seq_client_info_t * *);
     extern void snd_seq_client_info_set_client(snd_seq_client_info_t *,
 					       int);
     extern void snd_seq_client_info_set_name(snd_seq_client_info_t *,
@@ -216,6 +223,8 @@ extern "C" {
     extern int snd_seq_create_port(snd_seq_t *, snd_seq_port_info_t *);
     extern int snd_seq_delete_port(snd_seq_t *, int);
     extern int snd_seq_drain_output(snd_seq_t *);
+    extern int snd_seq_drop_output(snd_seq_t *);
+    extern int snd_seq_drop_output_buffer(snd_seq_t *);
     extern int snd_seq_event_input(snd_seq_t *, snd_seq_event_t * *);
     extern int snd_seq_event_input_pending(snd_seq_t *, int);
     extern ssize_t snd_seq_event_length(snd_seq_event_t *);
@@ -229,8 +238,17 @@ extern "C" {
 					 snd_seq_port_info_t *);
     extern int snd_seq_get_client_info(snd_seq_t *,
 				       snd_seq_client_info_t *);
+    extern size_t snd_seq_get_input_buffer_size(snd_seq_t *);
+    extern size_t snd_seq_get_output_buffer_size(snd_seq_t *);
     extern int snd_seq_get_port_info(snd_seq_t *, int,
 				     snd_seq_port_info_t *);
+    extern int snd_seq_get_port_subscription(snd_seq_t *,
+					     snd_seq_port_subscribe_t *);
+    extern int snd_seq_get_queue_status(snd_seq_t *, int,
+					snd_seq_queue_status_t *);
+    extern int snd_seq_get_queue_tempo(snd_seq_t *, int,
+				       snd_seq_queue_tempo_t *);
+    extern int snd_seq_nonblock(snd_seq_t *, int);
     extern int snd_seq_open(snd_seq_t * *, const char *, int, int);
     extern int snd_seq_poll_descriptors(snd_seq_t *, struct pollfd *,
 					unsigned int, short int);
@@ -239,6 +257,8 @@ extern "C" {
 						struct pollfd *,
 						unsigned int,
 						short unsigned int *);
+    extern void snd_seq_port_info_copy(snd_seq_port_info_t *,
+				       const snd_seq_port_info_t *);
     extern void snd_seq_port_info_free(snd_seq_port_info_t *);
     extern const snd_seq_addr_t *snd_seq_port_info_get_addr(const
 							    snd_seq_port_info_t
@@ -263,6 +283,12 @@ extern "C" {
     extern void snd_seq_port_info_set_port(snd_seq_port_info_t *, int);
     extern void snd_seq_port_info_set_port_specified(snd_seq_port_info_t *,
 						     int);
+    extern void snd_seq_port_info_set_timestamp_queue(snd_seq_port_info_t
+						      *, int);
+    extern void snd_seq_port_info_set_timestamp_real(snd_seq_port_info_t *,
+						     int);
+    extern void snd_seq_port_info_set_timestamping(snd_seq_port_info_t *,
+						   int);
     extern void snd_seq_port_info_set_type(snd_seq_port_info_t *,
 					   unsigned int);
     extern size_t snd_seq_port_info_sizeof(void);
@@ -311,6 +337,10 @@ extern "C" {
     extern int snd_seq_query_next_port(snd_seq_t *, snd_seq_port_info_t *);
     extern int snd_seq_query_port_subscribers(snd_seq_t *,
 					      snd_seq_query_subscribe_t *);
+    extern void snd_seq_query_subscribe_copy(snd_seq_query_subscribe_t *,
+					     const
+					     snd_seq_query_subscribe_t *);
+    extern void snd_seq_query_subscribe_free(snd_seq_query_subscribe_t *);
     extern const snd_seq_addr_t *snd_seq_query_subscribe_get_addr(const
 								  snd_seq_query_subscribe_t
 								  *);
@@ -332,6 +362,8 @@ extern "C" {
     extern int snd_seq_query_subscribe_get_time_update(const
 						       snd_seq_query_subscribe_t
 						       *);
+    extern int snd_seq_query_subscribe_malloc(snd_seq_query_subscribe_t *
+					      *);
     extern void snd_seq_query_subscribe_set_index(snd_seq_query_subscribe_t
 						  *, int);
     extern void snd_seq_query_subscribe_set_root(snd_seq_query_subscribe_t
@@ -341,18 +373,51 @@ extern "C" {
 						 *,
 						 snd_seq_query_subs_type_t);
     extern size_t snd_seq_query_subscribe_sizeof(void);
+    extern void snd_seq_queue_status_copy(snd_seq_queue_status_t *,
+					  const snd_seq_queue_status_t *);
+    extern void snd_seq_queue_status_free(snd_seq_queue_status_t *);
+    extern const snd_seq_real_time_t
+	*snd_seq_queue_status_get_real_time(const snd_seq_queue_status_t
+					    *);
+    extern snd_seq_tick_time_t snd_seq_queue_status_get_tick_time(const
+								  snd_seq_queue_status_t
+								  *);
+    extern int snd_seq_queue_status_malloc(snd_seq_queue_status_t * *);
+    extern size_t snd_seq_queue_status_sizeof(void);
+    extern void snd_seq_queue_tempo_copy(snd_seq_queue_tempo_t *,
+					 const snd_seq_queue_tempo_t *);
+    extern void snd_seq_queue_tempo_free(snd_seq_queue_tempo_t *);
+    extern int snd_seq_queue_tempo_get_ppq(const snd_seq_queue_tempo_t *);
+    extern unsigned int snd_seq_queue_tempo_get_tempo(const
+						      snd_seq_queue_tempo_t
+						      *);
+    extern int snd_seq_queue_tempo_malloc(snd_seq_queue_tempo_t * *);
     extern void snd_seq_queue_tempo_set_ppq(snd_seq_queue_tempo_t *, int);
     extern void snd_seq_queue_tempo_set_tempo(snd_seq_queue_tempo_t *,
 					      unsigned int);
     extern size_t snd_seq_queue_tempo_sizeof(void);
     extern int snd_seq_set_client_info(snd_seq_t *,
 				       snd_seq_client_info_t *);
+    extern int snd_seq_set_input_buffer_size(snd_seq_t *, size_t);
+    extern int snd_seq_set_output_buffer_size(snd_seq_t *, size_t);
     extern int snd_seq_set_port_info(snd_seq_t *, int,
 				     snd_seq_port_info_t *);
     extern int snd_seq_set_queue_tempo(snd_seq_t *, int,
 				       snd_seq_queue_tempo_t *);
     extern int snd_seq_subscribe_port(snd_seq_t *,
 				      snd_seq_port_subscribe_t *);
+    extern int snd_seq_system_info(snd_seq_t *, snd_seq_system_info_t *);
+    extern void snd_seq_system_info_copy(snd_seq_system_info_t *,
+					 const snd_seq_system_info_t *);
+    extern void snd_seq_system_info_free(snd_seq_system_info_t *);
+    extern int snd_seq_system_info_get_clients(const snd_seq_system_info_t
+					       *);
+    extern int snd_seq_system_info_get_ports(const snd_seq_system_info_t
+					     *);
+    extern int snd_seq_system_info_get_queues(const snd_seq_system_info_t
+					      *);
+    extern int snd_seq_system_info_malloc(snd_seq_system_info_t * *);
+    extern size_t snd_seq_system_info_sizeof(void);
     extern int snd_seq_unsubscribe_port(snd_seq_t *,
 					snd_seq_port_subscribe_t *);
     extern const unsigned int snd_seq_event_types[];

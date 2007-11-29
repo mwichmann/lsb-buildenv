@@ -57,6 +57,7 @@ extern "C" {
     extern int snd_seq_parse_address(snd_seq_t *, snd_seq_addr_t *,
 				     const char *);
     extern int snd_seq_set_client_name(snd_seq_t *, const char *);
+    extern int snd_seq_sync_output_queue(snd_seq_t *);
 #ifdef __cplusplus
 }
 #endif

@@ -66,10 +66,65 @@ extern "C" {
 
 
     extern int snd_hwdep_close(snd_hwdep_t *);
+    extern void snd_hwdep_dsp_image_copy(snd_hwdep_dsp_image_t *,
+					 const snd_hwdep_dsp_image_t *);
+    extern void snd_hwdep_dsp_image_free(snd_hwdep_dsp_image_t *);
+    extern const void *snd_hwdep_dsp_image_get_image(const
+						     snd_hwdep_dsp_image_t
+						     *);
+    extern unsigned int snd_hwdep_dsp_image_get_index(const
+						      snd_hwdep_dsp_image_t
+						      *);
+    extern size_t snd_hwdep_dsp_image_get_length(const
+						 snd_hwdep_dsp_image_t *);
+    extern const char *snd_hwdep_dsp_image_get_name(const
+						    snd_hwdep_dsp_image_t
+						    *);
+    extern int snd_hwdep_dsp_image_malloc(snd_hwdep_dsp_image_t * *);
+    extern void snd_hwdep_dsp_image_set_image(snd_hwdep_dsp_image_t *,
+					      void *);
+    extern void snd_hwdep_dsp_image_set_index(snd_hwdep_dsp_image_t *,
+					      unsigned int);
+    extern void snd_hwdep_dsp_image_set_length(snd_hwdep_dsp_image_t *,
+					       size_t);
+    extern void snd_hwdep_dsp_image_set_name(snd_hwdep_dsp_image_t *,
+					     const char *);
+    extern size_t snd_hwdep_dsp_image_sizeof(void);
+    extern int snd_hwdep_dsp_load(snd_hwdep_t *, snd_hwdep_dsp_image_t *);
+    extern int snd_hwdep_dsp_status(snd_hwdep_t *,
+				    snd_hwdep_dsp_status_t *);
+    extern void snd_hwdep_dsp_status_copy(snd_hwdep_dsp_status_t *,
+					  const snd_hwdep_dsp_status_t *);
+    extern void snd_hwdep_dsp_status_free(snd_hwdep_dsp_status_t *);
+    extern unsigned int snd_hwdep_dsp_status_get_chip_ready(const
+							    snd_hwdep_dsp_status_t
+							    *);
+    extern unsigned int snd_hwdep_dsp_status_get_dsp_loaded(const
+							    snd_hwdep_dsp_status_t
+							    *);
+    extern const char *snd_hwdep_dsp_status_get_id(const
+						   snd_hwdep_dsp_status_t
+						   *);
+    extern unsigned int snd_hwdep_dsp_status_get_num_dsps(const
+							  snd_hwdep_dsp_status_t
+							  *);
+    extern unsigned int snd_hwdep_dsp_status_get_version(const
+							 snd_hwdep_dsp_status_t
+							 *);
+    extern int snd_hwdep_dsp_status_malloc(snd_hwdep_dsp_status_t * *);
+    extern size_t snd_hwdep_dsp_status_sizeof(void);
     extern int snd_hwdep_info(snd_hwdep_t *, snd_hwdep_info_t *);
+    extern void snd_hwdep_info_copy(snd_hwdep_info_t *,
+				    const snd_hwdep_info_t *);
+    extern void snd_hwdep_info_free(snd_hwdep_info_t *);
+    extern int snd_hwdep_info_get_card(const snd_hwdep_info_t *);
+    extern unsigned int snd_hwdep_info_get_device(const snd_hwdep_info_t
+						  *);
+    extern const char *snd_hwdep_info_get_id(const snd_hwdep_info_t *);
     extern snd_hwdep_iface_t snd_hwdep_info_get_iface(const
 						      snd_hwdep_info_t *);
     extern const char *snd_hwdep_info_get_name(const snd_hwdep_info_t *);
+    extern int snd_hwdep_info_malloc(snd_hwdep_info_t * *);
     extern void snd_hwdep_info_set_device(snd_hwdep_info_t *,
 					  unsigned int);
     extern size_t snd_hwdep_info_sizeof(void);
@@ -78,6 +133,7 @@ extern "C" {
     extern int snd_hwdep_poll_descriptors(snd_hwdep_t *, struct pollfd *,
 					  unsigned int);
     extern ssize_t snd_hwdep_read(snd_hwdep_t *, void *, size_t);
+    extern ssize_t snd_hwdep_write(snd_hwdep_t *, const void *, size_t);
 #ifdef __cplusplus
 }
 #endif

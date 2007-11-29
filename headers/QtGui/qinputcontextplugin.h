@@ -24,8 +24,8 @@ extern void _ZN19QInputContextPlugin11qt_metacastEPKc(void);
 extern int _ZN19QInputContextPlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
 extern QInputContextPlugin _ZN19QInputContextPluginC2EP7QObject(void);
 extern QInputContextPlugin _ZN19QInputContextPluginC1EP7QObject(void);
-extern QInputContextPlugin _ZN19QInputContextPluginD2Ev(void);
-extern QInputContextPlugin _ZN19QInputContextPluginD1Ev(void);
-extern QInputContextPlugin _ZN19QInputContextPluginD0Ev(void);
+extern  _ZN19QInputContextPluginD2Ev(void);
+extern  _ZN19QInputContextPluginD1Ev(void);
+extern  _ZN19QInputContextPluginD0Ev(void);
 // *INDENT-ON*
 #endif

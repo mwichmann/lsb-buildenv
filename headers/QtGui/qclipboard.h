@@ -44,8 +44,8 @@ extern void _ZN10QClipboard16selectionChangedEv(void);
 extern void _ZN10QClipboard11dataChangedEv(void);
 extern void _ZN10QClipboard13connectNotifyEPKc(void);
 extern bool _ZN10QClipboard5eventEP6QEvent(void);
-extern QClipboard _ZN10QClipboardD2Ev(void);
-extern QClipboard _ZN10QClipboardD1Ev(void);
-extern QClipboard _ZN10QClipboardD0Ev(void);
+extern  _ZN10QClipboardD2Ev(void);
+extern  _ZN10QClipboardD1Ev(void);
+extern  _ZN10QClipboardD0Ev(void);
 // *INDENT-ON*
 #endif

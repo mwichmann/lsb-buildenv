@@ -52,9 +52,9 @@ extern QDataStream _ZN11QDataStreamC2EP10QByteArray6QFlagsIN9QIODevice12OpenMode
 extern QDataStream _ZN11QDataStreamC1EP10QByteArray6QFlagsIN9QIODevice12OpenModeFlagEE(void);
 extern QDataStream _ZN11QDataStreamC2ERK10QByteArray(void);
 extern QDataStream _ZN11QDataStreamC1ERK10QByteArray(void);
-extern QDataStream _ZN11QDataStreamD2Ev(void);
-extern QDataStream _ZN11QDataStreamD1Ev(void);
-extern QDataStream _ZN11QDataStreamD0Ev(void);
+extern  _ZN11QDataStreamD2Ev(void);
+extern  _ZN11QDataStreamD1Ev(void);
+extern  _ZN11QDataStreamD0Ev(void);
 extern void _ZN11QDataStream9setDeviceEP9QIODevice(void);
 extern void _ZN11QDataStream11unsetDeviceEv(void);
 extern bool _ZNK11QDataStream5atEndEv(void);
