@@ -8285,7 +8285,6 @@ __asm__(".globl _ZTV10QTextTable; .pushsection .data; .type _ZTV10QTextTable,@ob
 __asm__(".globl _ZTV10QUndoStack; .pushsection .data; .type _ZTV10QUndoStack,@object; .size _ZTV10QUndoStack, 112; _ZTV10QUndoStack: .long 0; .popsection");
 __asm__(".globl _ZTV10QValidator; .pushsection .data; .type _ZTV10QValidator,@object; .size _ZTV10QValidator, 128; _ZTV10QValidator: .long 0; .popsection");
 __asm__(".globl _ZTV10QWorkspace; .pushsection .data; .type _ZTV10QWorkspace,@object; .size _ZTV10QWorkspace, 504; _ZTV10QWorkspace: .long 0; .popsection");
-__asm__(".globl _ZTV11QBmpHandler; .pushsection .data; .type _ZTV11QBmpHandler,@object; .size _ZTV11QBmpHandler, 144; _ZTV11QBmpHandler: .long 0; .popsection");
 __asm__(".globl _ZTV11QCloseEvent; .pushsection .data; .type _ZTV11QCloseEvent,@object; .size _ZTV11QCloseEvent, 32; _ZTV11QCloseEvent: .long 0; .popsection");
 __asm__(".globl _ZTV11QDockWidget; .pushsection .data; .type _ZTV11QDockWidget,@object; .size _ZTV11QDockWidget, 504; _ZTV11QDockWidget: .long 0; .popsection");
 __asm__(".globl _ZTV11QFileDialog; .pushsection .data; .type _ZTV11QFileDialog,@object; .size _ZTV11QFileDialog, 528; _ZTV11QFileDialog: .long 0; .popsection");
