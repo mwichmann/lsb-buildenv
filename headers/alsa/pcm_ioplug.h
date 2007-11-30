@@ -12,6 +12,27 @@ extern "C" {
 #define SND_PCM_IOPLUG_VERSION	((SND_PCM_IOPLUG_VERSION_MAJOR<<16) | (SND_PCM_IOPLUG_VERSION_MINOR<<8) | (SND_PCM_IOPLUG_VERSION_TINY))
 #define SND_PCM_IOPLUG_FLAG_LISTED	(1<<0)
 #define SND_PCM_IOPLUG_VERSION_MINOR	0
+#if defined __i386__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
+#if defined __ia64__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
+#if defined __powerpc64__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
+#if defined __s390__ && !defined __s390x__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
+#if defined __x86_64__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
+#if defined __s390x__
+#define SND_PCM_IOPLUG_VERSION_TINY	0
+#endif
 #define SND_PCM_IOPLUG_VERSION_MAJOR	1
 #define SND_PCM_IOPLUG_VERSION_TINY	1
 

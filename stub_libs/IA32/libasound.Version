@@ -710,12 +710,6 @@ ALSA_0.9.0rc4 {
   snd_pcm_hw_params_set_period_time_near;
   snd_pcm_hw_params_set_periods_near;
   snd_pcm_hw_params_set_rate_near;
-  snd_pcm_sw_params_get_avail_min;
-  snd_pcm_sw_params_get_silence_size;
-  snd_pcm_sw_params_get_silence_threshold;
-  snd_pcm_sw_params_get_start_threshold;
-  snd_pcm_sw_params_get_stop_threshold;
-  snd_pcm_sw_params_get_tstamp_mode;
 };
 ALSA_0.9.0rc8 {
   snd_pcm_forward;
