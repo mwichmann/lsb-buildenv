@@ -214,10 +214,10 @@ __asm__(".globl _ZN9QGLWidget16staticMetaObjectE; .pushsection .data; .type _ZN9
 __asm__(".globl _ZTI10QGLContext; .pushsection .data; .type _ZTI10QGLContext,@object; .size _ZTI10QGLContext, 16; _ZTI10QGLContext: .long 0; .popsection");
 __asm__(".globl _ZTI12QDashStroker; .pushsection .data; .type _ZTI12QDashStroker,@object; .size _ZTI12QDashStroker, 24; _ZTI12QDashStroker: .long 0; .popsection");
 __asm__(".globl _ZTI14QGLPixelBuffer; .pushsection .data; .type _ZTI14QGLPixelBuffer,@object; .size _ZTI14QGLPixelBuffer, 24; _ZTI14QGLPixelBuffer: .long 0; .popsection");
-__asm__(".globl _ZTI20QGLFramebufferObject; .pushsection .data; .type _ZTI20QGLFramebufferObject,@object; .size _ZTI20QGLFramebufferObject, 0; _ZTI20QGLFramebufferObject: .long 0; .popsection");
+__asm__(".globl _ZTI20QGLFramebufferObject; .pushsection .data; .type _ZTI20QGLFramebufferObject,@object; .size _ZTI20QGLFramebufferObject, 24; _ZTI20QGLFramebufferObject: .long 0; .popsection");
 __asm__(".globl _ZTI9QGLWidget; .pushsection .data; .type _ZTI9QGLWidget,@object; .size _ZTI9QGLWidget, 24; _ZTI9QGLWidget: .long 0; .popsection");
 __asm__(".globl _ZTV10QGLContext; .pushsection .data; .type _ZTV10QGLContext,@object; .size _ZTV10QGLContext, 88; _ZTV10QGLContext: .long 0; .popsection");
 __asm__(".globl _ZTV12QDashStroker; .pushsection .data; .type _ZTV12QDashStroker,@object; .size _ZTV12QDashStroker, 56; _ZTV12QDashStroker: .long 0; .popsection");
 __asm__(".globl _ZTV14QGLPixelBuffer; .pushsection .data; .type _ZTV14QGLPixelBuffer,@object; .size _ZTV14QGLPixelBuffer, 56; _ZTV14QGLPixelBuffer: .long 0; .popsection");
-__asm__(".globl _ZTV20QGLFramebufferObject; .pushsection .data; .type _ZTV20QGLFramebufferObject,@object; .size _ZTV20QGLFramebufferObject, 0; _ZTV20QGLFramebufferObject: .long 0; .popsection");
+__asm__(".globl _ZTV20QGLFramebufferObject; .pushsection .data; .type _ZTV20QGLFramebufferObject,@object; .size _ZTV20QGLFramebufferObject, 32; _ZTV20QGLFramebufferObject: .long 0; .popsection");
 __asm__(".globl _ZTV9QGLWidget; .pushsection .data; .type _ZTV9QGLWidget,@object; .size _ZTV9QGLWidget, 584; _ZTV9QGLWidget: .long 0; .popsection");
