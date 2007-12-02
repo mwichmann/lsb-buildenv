@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2002 The Free Standards Group Inc
+ * Copyright (C) 2002-2007 Linux Foundation
  *
  * 2002/05/09 Stuart Anderson, Free Standards Group
  *

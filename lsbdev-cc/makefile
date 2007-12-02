@@ -10,6 +10,8 @@ LSB_VERSION ?= "3.2"
 
 all: $(PROGRAMS) $(LIBS)
 
+gensrc: lsbcc_libs.h lsbcc_version.h
+
 lsbcc_libs.h:
 	./mk_lsbcc_libs.pl $(LSB_VERSION) > lsbcc_libs.h
 

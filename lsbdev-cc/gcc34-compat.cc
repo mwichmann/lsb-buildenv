@@ -1,5 +1,5 @@
 /*
- * Copyright 2006 The Free Standards Group Inc
+ * Copyright 2006, 2007 Linux Foundation
  *
  * Originally written by Jeff Licquia <licquia@freestandards.org>.
  */
