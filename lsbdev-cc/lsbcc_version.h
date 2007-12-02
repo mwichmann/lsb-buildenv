@@ -1,3 +1,5 @@
+/* Generated file */
+
 #ifndef LSBCC_VERSION_H
 #define LSBCC_VERSION_H
 
