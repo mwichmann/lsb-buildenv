@@ -1,6 +1,7 @@
 #ifndef _UNWIND_H_
 #define _UNWIND_H_
 
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {

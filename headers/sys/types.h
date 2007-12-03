@@ -33,6 +33,8 @@ extern "C" {
 
     typedef unsigned int u_int32_t;
 
+    typedef unsigned long long int u_int64_t;
+
     typedef unsigned int uid_t;
 
     typedef int pid_t;
