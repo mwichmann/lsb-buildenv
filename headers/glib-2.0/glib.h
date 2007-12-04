@@ -1,6 +1,7 @@
 #ifndef _GLIB_2_0_GLIB_H_
 #define _GLIB_2_0_GLIB_H_
 
+#include <limits.h>
 #include <time.h>
 #include <stddef.h>
 #include <stdarg.h>

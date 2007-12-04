@@ -39,6 +39,13 @@ char *lsb_libs[] = {
     "gdk_pixbuf_xlib-2.0",
     "gdk-x11-2.0",
     "gtk-x11-2.0",
+    "QtCore",
+    "QtGui",
+    "QtNetwork",
+    "QtXml",
+    "QtOpenGL",
+    "QtSql",
+    "QtSvg",
     "fontconfig",
     "png12",
     "png",
@@ -48,21 +55,6 @@ char *lsb_libs[] = {
     "Xft",
     "xml2",
     "qt-mt",
-    NULL
-};
-
-char *lsb_Toolkit_Qt_libs[] = {
-    "QtCore",
-    "QtGui",
-    "QtNetwork",
-    "QtXml",
-    "QtOpenGL",
-    "QtSql",
-    "QtSvg",
-    NULL
-};
-
-char *lsb_Printing_libs[] = {
     "cups",
     "cupsimage",
     NULL
@@ -73,11 +65,9 @@ char *lsb_Multimedia_libs[] = {
     NULL
 };
 
-int lsb_num_modules = 3;
+int lsb_num_modules = 1;
 
 lsb_lib_modules_t lsb_modules[] = {
-    {"Toolkit_Qt", lsb_Toolkit_Qt_libs},
-    {"Printing", lsb_Printing_libs},
     {"Multimedia", lsb_Multimedia_libs},
 };
 

@@ -3,7 +3,6 @@
 #define SND_PCM_IOPLUG_FLAG_LISTED	(1<<0)
 #define SND_PCM_IOPLUG_VERSION_MINOR	0
 #define SND_PCM_IOPLUG_VERSION_MAJOR	1
-#define SND_PCM_IOPLUG_VERSION_TINY	1
 
 typedef struct snd_pcm_ioplug_callback {
     int (*start) (void);

@@ -24,6 +24,7 @@ $select .= "LEFT JOIN Module ON Mid=MLmid ";
 $select .= "WHERE Mmandatorysince <= '$version' ";
 $select .= "AND Mmandatorysince <> '' ";
 $select .= "AND MLappearedin <= '$version' ";
+$select .= "AND MLappearedin <> '' ";
 
 print <<HEADER;
 /* Generated file */

@@ -34,7 +34,6 @@ extern "C" {
 #define SND_PCM_IOPLUG_VERSION_TINY	0
 #endif
 #define SND_PCM_IOPLUG_VERSION_MAJOR	1
-#define SND_PCM_IOPLUG_VERSION_TINY	1
 
 
     typedef struct snd_pcm_ioplug_callback snd_pcm_ioplug_callback_t;
