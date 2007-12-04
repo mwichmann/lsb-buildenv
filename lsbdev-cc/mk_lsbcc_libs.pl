@@ -44,6 +44,9 @@ $th = $Dbh->query($select) || die $Dbh->errmsg();
 for ( 1 .. $th->numrows ) {
     %entry    = $th->fetchhash;
     $libentry = $entry{'Lname'};
+    $module_name = $entry{'Mname'};
+    $module_name =~ s/^LSB_//;
+    push( @required_modules, $module_name ) if !grep $_ eq $module_name, @required_modules;
     if ( $libentry =~ m/^lib(.+)$/ ) {
         if ( $1 ne "stdcxx6" && $1 ne "stdcxx" ) {
             print "    \"$1\",\n";
@@ -76,7 +79,7 @@ for ( 1 .. $th->numrows ) {
     $th2 = $Dbh->query($select) || die $Dbh->errmsg();
 
     if ( $th2->numrows ) {
-        push( @modules, $module_name );
+        push( @optional_modules, $module_name );
         printf "char *lsb_" . $module_name . "_libs[] = {\n";
     }
     for ( 1 .. $th2->numrows ) {
@@ -97,11 +100,14 @@ for ( 1 .. $th->numrows ) {
     }
 }
 
-printf "int lsb_num_modules = " . ( $#modules + 1 ) . ";\n\n";
+printf "int lsb_num_modules = " . ( $#required_modules + $#optional_modules + 2 ) . ";\n\n";
 
 printf "lsb_lib_modules_t lsb_modules[] = {\n";
-foreach $module (@modules) {
+foreach $module (@optional_modules) {
     print "    {\"$module\", lsb_" . $module . "_libs},\n";
+}
+foreach $module (@required_modules) {
+    print "    {\"$module\", NULL},\n";
 }
 printf "};\n";
 
