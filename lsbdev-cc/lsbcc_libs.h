@@ -65,10 +65,19 @@ char *lsb_Multimedia_libs[] = {
     NULL
 };
 
-int lsb_num_modules = 1;
+int lsb_num_modules = 10;
 
 lsb_lib_modules_t lsb_modules[] = {
     {"Multimedia", lsb_Multimedia_libs},
+    {"Core", NULL},
+    {"Graphics", NULL},
+    {"Cpp", NULL},
+    {"Toolkit_Gtk", NULL},
+    {"Toolkit_Qt", NULL},
+    {"Graphics_Ext", NULL},
+    {"XML", NULL},
+    {"Toolkit_Qt3", NULL},
+    {"Printing", NULL},
 };
 
 char *lsb_cplus_libs[] = {

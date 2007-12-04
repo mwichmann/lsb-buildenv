@@ -863,8 +863,10 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 			lsb_lib_modules_t *lsb_module = &lsb_modules[i];
 
 			if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
-        			for(;lsb_module->lib_names[j] != NULL;j++) {
-               				argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
+				if (lsb_module->lib_names != NULL) {
+        				for(;lsb_module->lib_names[j] != NULL;j++) {
+               					argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
+					}
 				}
 				found = 1;
 				break;
