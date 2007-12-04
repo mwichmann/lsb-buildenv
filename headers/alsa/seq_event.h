@@ -80,19 +80,6 @@ extern "C" {
 
     typedef union snd_seq_timestamp snd_seq_timestamp_t;
 
-    struct snd_seq_ev_queue_control {
-	unsigned char queue;
-	unsigned char unused[3];
-	union {
-	    int value;		/* affected value (e.g. tempo) */
-	    snd_seq_timestamp_t time;	/* time */
-	    unsigned int position;	/* sync position */
-	    snd_seq_queue_skew_t skew;	/* queue skew */
-	    unsigned int d32[2];	/* any data */
-	    unsigned char d8[8];	/* any data */
-	} param;
-    };
-
     struct snd_seq_ev_sample {
 	unsigned int std;
 	short unsigned int bank;
@@ -109,6 +96,11 @@ extern "C" {
     struct snd_seq_real_time {
 	unsigned int tv_sec;
 	unsigned int tv_nsec;
+    };
+
+    struct snd_seq_queue_skew {
+	unsigned int value;
+	unsigned int base;
     };
 
     union snd_seq_timestamp {
@@ -173,6 +165,20 @@ extern "C" {
     };
 
 
+    struct snd_seq_ev_queue_control {
+	unsigned char queue;
+	unsigned char unused[3];
+	union {
+	    int value;		/* affected value (e.g. tempo) */
+	    snd_seq_timestamp_t time;	/* time */
+	    unsigned int position;	/* sync position */
+	    snd_seq_queue_skew_t skew;	/* queue skew */
+	    unsigned int d32[2];	/* any data */
+	    unsigned char d8[8];	/* any data */
+	} param;
+    };
+
+
     struct snd_seq_ev_raw32 {
 	unsigned int d[3];
     };
@@ -229,12 +235,6 @@ extern "C" {
 	unsigned int std;
 	short unsigned int bank;
 	short unsigned int prg;
-    };
-
-
-    struct snd_seq_queue_skew {
-	unsigned int value;
-	unsigned int base;
     };
 
 
