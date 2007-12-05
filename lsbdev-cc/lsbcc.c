@@ -1003,8 +1003,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 				lsb_lib_modules_t *lsb_module = &lsb_modules[i];
 
 				if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
-        				for(j=0;lsb_module->lib_names[j] != NULL;j++) {
-               					argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
+					if (lsb_module->lib_names != NULL) {
+        					for(j=0;lsb_module->lib_names[j] != NULL;j++) {
+               						argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
+						}
 					}
 					found = 1;
 					break;
