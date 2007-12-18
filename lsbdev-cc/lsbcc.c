@@ -468,6 +468,10 @@ char *get_modules_strings(void)
 	for(;i < lsb_num_modules; i++) {
 		lsb_lib_modules_t *lsb_module = &lsb_modules[i];
 
+		if (lsb_module->lib_names == NULL) {
+			continue;
+		}
+
 		tmp = modules;
 		modules = malloc((tmp ? strlen(tmp) : 0) + strlen(lsb_module->module_name) + 2);
 		memset(modules, 0, (tmp ? strlen(tmp) : 0) + strlen(lsb_module->module_name) + 2);
