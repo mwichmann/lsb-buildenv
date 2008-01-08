@@ -1,13 +1,11 @@
 #ifndef _FREETYPE_FTOUTLN_H_
 #define _FREETYPE_FTOUTLN_H_
 
-#include <freetype/ftlist.h>
 #include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftmodapi.h>
 #include <freetype/ftimage.h>
-#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,10 +39,7 @@ extern "C" {
 					 const FT_Outline_Funcs *, void *);
     extern FT_Error FT_Outline_Check(FT_Outline *);
     extern FT_Error FT_Outline_Copy(const FT_Outline *, FT_Outline *);
-    extern FT_Error FT_Outline_Done_Internal(FT_Memory, FT_Outline *);
     extern FT_Orientation FT_Outline_Get_Orientation(FT_Outline *);
-    extern FT_Error FT_Outline_New_Internal(FT_Memory, FT_UInt, FT_Int,
-					    FT_Outline *);
 #ifdef __cplusplus
 }
 #endif
