@@ -11,7 +11,7 @@ extern "C" {
 
 
 #define G_CCLOSURE_SWAP_DATA(cclosure)	 \
-	(((GClosure*) (closure))->derivative_flag)
+	(((GClosure*) (cclosure))->derivative_flag)
 #define G_CLOSURE_NEEDS_MARSHAL(closure)	 \
 	(((GClosure*) (closure))->marshal == NULL)
 #define G_TYPE_FROM_INTERFACE(g_iface)	 \

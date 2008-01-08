@@ -108,7 +108,6 @@ cups/cups.h
 cups/ppd.h
 cups/raster.h
 alsa/control.h
-alsa/pcm_ioplug.h
 alsa/control_external.h
 alsa/pcm.h
 alsa/mixer.h
