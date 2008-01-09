@@ -562,3 +562,5 @@ extern void png_set_expand(png_structp);
 extern void png_set_oFFs(png_structp, png_infop, png_int_32, png_int_32,
 			 int);
 extern void png_set_tRNS_to_alpha(png_structp);
+extern void png_set_palette_to_rgb(png_structp);
+extern void png_set_gray_1_2_4_to_8(png_structp);
