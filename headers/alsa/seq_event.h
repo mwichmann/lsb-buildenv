@@ -142,7 +142,7 @@ extern "C" {
     struct snd_seq_ev_ext {
 	unsigned int len;
 	void *ptr;
-    } __attribute__ (packed);
+    } __attribute__ ((packed));
 
 
     struct snd_seq_ev_instr_begin {

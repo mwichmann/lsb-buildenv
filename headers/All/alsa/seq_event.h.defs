@@ -33,7 +33,7 @@ typedef struct snd_seq_ev_ctrl {
 typedef struct snd_seq_ev_ext {
     unsigned int len;
     void *ptr;
-} __attribute__ (packed)
+} __attribute__ ((packed))
     snd_seq_ev_ext_t;
 typedef struct snd_seq_ev_instr_begin {
     int timeout;
