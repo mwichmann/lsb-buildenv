@@ -357,20 +357,20 @@ int
 need_long_double_64()
 {
 #if defined __powerpc__ || defined __s390__
-  /* If we need the gcc 3.4 workaround, we don't need this.  This also
+  /* If we don't need the gcc 3.4 workaround, we don't need this.  This also
      conveniently loads the gcc version for us. */
-  if (need_gcc34_compat())
+  if (!need_gcc34_compat())
     return 0;
 
   /* This option became available on gcc 4.1. */
   switch (gccversion[2]) {
 
-  case 0:
+  case '0':
     /* Don't need it for gcc 4.0. */
     return 0;
 
-  case 1:
-  case 2:
+  case '1':
+  case '2':
     /* We pretty much need it for newer versions of 4.x, though here
        we hedge our bets and only test for known gcc versions. */
     return 1;
