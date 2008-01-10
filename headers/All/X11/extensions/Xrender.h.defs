@@ -88,7 +88,7 @@ typedef struct _XFilters {
     short int *alias;
 } XFilters;
 typedef struct _XTransform {
-    XFixed matrix[3];
+    XFixed matrix[3][3];
 } XTransform;
 typedef struct _XAnimCursor {
     Cursor cursor;

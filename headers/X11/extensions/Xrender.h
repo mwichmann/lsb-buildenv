@@ -172,7 +172,7 @@ extern "C" {
 
 
     struct _XTransform {
-	XFixed matrix[3];
+	XFixed matrix[3][3];
     };
 
 
