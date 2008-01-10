@@ -255,7 +255,7 @@ extern "C" {
 	http_keepalive_t keep_alive;
 	struct sockaddr_in hostaddr;
 	char hostname[256];
-	char fields[27];
+	char fields[27][256];
 	char *data;
 	http_encoding_t data_encoding;
 	int data_remaining;

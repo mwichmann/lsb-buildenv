@@ -91,7 +91,7 @@ extern "C" {
 	char media_type[41];
 	float density;
 	float gamma;
-	float matrix[3];
+	float matrix[3][3];
     } ppd_profile_t;
 
     typedef struct {
