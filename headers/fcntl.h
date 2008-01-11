@@ -13,9 +13,6 @@ extern "C" {
 #if defined __ia64__
 #define O_LARGEFILE	0
 #endif
-#if defined __powerpc64__
-#define O_LARGEFILE	0
-#endif
 #if defined __x86_64__
 #define O_LARGEFILE	0
 #endif
@@ -31,9 +28,6 @@ extern "C" {
 #if defined __i386__
 #define O_LARGEFILE	0100000
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define O_LARGEFILE	0100000
-#endif
 #if defined __s390__ && !defined __s390x__
 #define O_LARGEFILE	0100000
 #endif
@@ -41,6 +35,12 @@ extern "C" {
 #define O_EXCL	0200
 #define O_APPEND	02000
 #define O_ASYNC	020000
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_LARGEFILE	0200000
+#endif
+#if defined __powerpc64__
+#define O_LARGEFILE	0200000
+#endif
 #define O_NOCTTY	0400
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000

@@ -1,5 +1,5 @@
 
-#define O_LARGEFILE	0
+#define O_LARGEFILE	0200000
 
 #define F_GETLK64	12
 #define F_SETLK64	13
