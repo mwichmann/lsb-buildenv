@@ -72,7 +72,7 @@ extern "C" {
 	_ISspace = 32,
 	_ISprint = 64,
 	_ISgraph = 128,
-	_ISblank = 254,
+	_ISblank = 256,
 	_IScntrl = 512,
 	_ISpunct = 1024,
 	_ISalnum = 2048,
