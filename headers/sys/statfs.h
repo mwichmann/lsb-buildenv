@@ -24,7 +24,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -40,7 +41,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	long int f_namelen;	/* maximum length of filenames */
-	long int f_spare[6];	/* spare for later */
+	long int f_frsize;	/* fragment size */
+	long int f_spare[5];	/* spare for later */
     };
 
 #endif
@@ -56,7 +58,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -72,7 +75,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -88,7 +92,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	long int f_namelen;	/* maximum length of filenames */
-	long int f_spare[6];	/* spare for later */
+	long int f_frsize;	/* fragment size */
+	long int f_spare[5];	/* spare for later */
     };
 
 #endif
@@ -104,7 +109,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	long int f_namelen;	/* maximum length of filenames */
-	long int f_spare[6];	/* spare for later */
+	long int f_frsize;	/* fragment size */
+	long int f_spare[5];	/* spare for later */
     };
 
 #endif
@@ -120,7 +126,8 @@ extern "C" {
 	fsfilcnt_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -136,7 +143,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -152,7 +160,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	long int f_namelen;	/* maximum length of filenames */
-	long int f_spare[6];	/* spare for later */
+	long int f_frsize;	/* fragment size */
+	long int f_spare[5];	/* spare for later */
     };
 
 #endif
@@ -168,7 +177,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -184,7 +194,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
@@ -200,7 +211,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	long int f_namelen;	/* maximum length of filenames */
-	long int f_spare[6];	/* spare for later */
+	long int f_frsize;	/* fragment size */
+	long int f_spare[5];	/* spare for later */
     };
 
 #endif
@@ -216,7 +228,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	long int f_namelen;	/* maximum length of filenames */
-	long int f_spare[6];	/* spare for later */
+	long int f_frsize;	/* fragment size */
+	long int f_spare[5];	/* spare for later */
     };
 
 #endif
@@ -232,7 +245,8 @@ extern "C" {
 	fsfilcnt64_t f_ffree;	/* free file nodes in file system */
 	fsid_t f_fsid;		/* file system id */
 	int f_namelen;		/* maximum length of filenames */
-	int f_spare[6];		/* spare for later */
+	int f_frsize;		/* fragment size */
+	int f_spare[5];		/* spare for later */
     };
 
 #endif
