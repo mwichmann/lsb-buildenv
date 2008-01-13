@@ -9,7 +9,8 @@ struct statfs {
     fsfilcnt_t f_ffree;
     fsid_t f_fsid;
     long int f_namelen;
-    long int f_spare[6];
+    long int f_frsize;
+    long int f_spare[5];
 };
 struct statfs64 {
     long int f_type;
@@ -21,5 +22,6 @@ struct statfs64 {
     fsfilcnt64_t f_ffree;
     fsid_t f_fsid;
     long int f_namelen;
-    long int f_spare[6];
+    long int f_frsize;
+    long int f_spare[5];
 };
