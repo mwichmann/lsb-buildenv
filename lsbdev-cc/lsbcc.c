@@ -288,9 +288,9 @@ need_gcc34_compat()
 int
 need_stack_prot_suppression()
 {
-  /* If we need the gcc 3.4 workaround, we don't need this.  This also
-     conveniently loads the gcc version for us. */
-  if (need_gcc34_compat())
+  /* If we don't need the gcc 3.4 workaround, we don't need this.  This
+     also conveniently loads the gcc version for us. */
+  if (!need_gcc34_compat())
     return 0;
 
   /* If we're here, we know we're running a gcc 4.x version.  Check
