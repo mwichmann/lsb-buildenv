@@ -11560,7 +11560,6 @@ __asm__(".globl _ZTI12QDataBrowser; .pushsection .data; .type _ZTI12QDataBrowser
 __asm__(".globl _ZTI12QDomDocument; .pushsection .data; .type _ZTI12QDomDocument,@object; .size _ZTI12QDomDocument, 12; _ZTI12QDomDocument: .long 0; .popsection");
 __asm__(".globl _ZTI12QDomNodeList; .pushsection .data; .type _ZTI12QDomNodeList,@object; .size _ZTI12QDomNodeList, 8; _ZTI12QDomNodeList: .long 0; .popsection");
 __asm__(".globl _ZTI12QDomNotation; .pushsection .data; .type _ZTI12QDomNotation,@object; .size _ZTI12QDomNotation, 12; _ZTI12QDomNotation: .long 0; .popsection");
-__asm__(".globl _ZTI12QDragManager; .pushsection .data; .type _ZTI12QDragManager,@object; .size _ZTI12QDragManager, 12; _ZTI12QDragManager: .long 0; .popsection");
 __asm__(".globl _ZTI12QFilePreview; .pushsection .data; .type _ZTI12QFilePreview,@object; .size _ZTI12QFilePreview, 8; _ZTI12QFilePreview: .long 0; .popsection");
 __asm__(".globl _ZTI12QGb2312Codec; .pushsection .data; .type _ZTI12QGb2312Codec,@object; .size _ZTI12QGb2312Codec, 12; _ZTI12QGb2312Codec: .long 0; .popsection");
 __asm__(".globl _ZTI12QHebrewCodec; .pushsection .data; .type _ZTI12QHebrewCodec,@object; .size _ZTI12QHebrewCodec, 12; _ZTI12QHebrewCodec: .long 0; .popsection");
@@ -11887,7 +11886,6 @@ __asm__(".globl _ZTV12QDataBrowser; .pushsection .data; .type _ZTV12QDataBrowser
 __asm__(".globl _ZTV12QDomDocument; .pushsection .data; .type _ZTV12QDomDocument,@object; .size _ZTV12QDomDocument, 172; _ZTV12QDomDocument: .long 0; .popsection");
 __asm__(".globl _ZTV12QDomNodeList; .pushsection .data; .type _ZTV12QDomNodeList,@object; .size _ZTV12QDomNodeList, 24; _ZTV12QDomNodeList: .long 0; .popsection");
 __asm__(".globl _ZTV12QDomNotation; .pushsection .data; .type _ZTV12QDomNotation,@object; .size _ZTV12QDomNotation, 172; _ZTV12QDomNotation: .long 0; .popsection");
-__asm__(".globl _ZTV12QDragManager; .pushsection .data; .type _ZTV12QDragManager,@object; .size _ZTV12QDragManager, 92; _ZTV12QDragManager: .long 0; .popsection");
 __asm__(".globl _ZTV12QFilePreview; .pushsection .data; .type _ZTV12QFilePreview,@object; .size _ZTV12QFilePreview, 12; _ZTV12QFilePreview: .long 0; .popsection");
 __asm__(".globl _ZTV12QGb2312Codec; .pushsection .data; .type _ZTV12QGb2312Codec,@object; .size _ZTV12QGb2312Codec, 68; _ZTV12QGb2312Codec: .long 0; .popsection");
 __asm__(".globl _ZTV12QHebrewCodec; .pushsection .data; .type _ZTV12QHebrewCodec,@object; .size _ZTV12QHebrewCodec, 68; _ZTV12QHebrewCodec: .long 0; .popsection");
