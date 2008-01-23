@@ -8099,7 +8099,6 @@ __asm__(".globl _ZTI12QButtonGroup; .pushsection .data; .type _ZTI12QButtonGroup
 __asm__(".globl _ZTI12QColorDialog; .pushsection .data; .type _ZTI12QColorDialog,@object; .size _ZTI12QColorDialog, 12; _ZTI12QColorDialog: .long 0; .popsection");
 __asm__(".globl _ZTI12QCommonStyle; .pushsection .data; .type _ZTI12QCommonStyle,@object; .size _ZTI12QCommonStyle, 12; _ZTI12QCommonStyle: .long 0; .popsection");
 __asm__(".globl _ZTI12QDashStroker; .pushsection .data; .type _ZTI12QDashStroker,@object; .size _ZTI12QDashStroker, 12; _ZTI12QDashStroker: .long 0; .popsection");
-__asm__(".globl _ZTI12QDragManager; .pushsection .data; .type _ZTI12QDragManager,@object; .size _ZTI12QDragManager, 12; _ZTI12QDragManager: .long 0; .popsection");
 __asm__(".globl _ZTI12QInputDialog; .pushsection .data; .type _ZTI12QInputDialog,@object; .size _ZTI12QInputDialog, 12; _ZTI12QInputDialog: .long 0; .popsection");
 __asm__(".globl _ZTI12QPaintDevice; .pushsection .data; .type _ZTI12QPaintDevice,@object; .size _ZTI12QPaintDevice, 8; _ZTI12QPaintDevice: .long 0; .popsection");
 __asm__(".globl _ZTI12QPaintEngine; .pushsection .data; .type _ZTI12QPaintEngine,@object; .size _ZTI12QPaintEngine, 8; _ZTI12QPaintEngine: .long 0; .popsection");
@@ -8324,7 +8323,6 @@ __asm__(".globl _ZTV12QButtonGroup; .pushsection .data; .type _ZTV12QButtonGroup
 __asm__(".globl _ZTV12QColorDialog; .pushsection .data; .type _ZTV12QColorDialog,@object; .size _ZTV12QColorDialog, 264; _ZTV12QColorDialog: .long 0; .popsection");
 __asm__(".globl _ZTV12QCommonStyle; .pushsection .data; .type _ZTV12QCommonStyle,@object; .size _ZTV12QCommonStyle, 140; _ZTV12QCommonStyle: .long 0; .popsection");
 __asm__(".globl _ZTV12QDashStroker; .pushsection .data; .type _ZTV12QDashStroker,@object; .size _ZTV12QDashStroker, 28; _ZTV12QDashStroker: .long 0; .popsection");
-__asm__(".globl _ZTV12QDragManager; .pushsection .data; .type _ZTV12QDragManager,@object; .size _ZTV12QDragManager, 56; _ZTV12QDragManager: .long 0; .popsection");
 __asm__(".globl _ZTV12QInputDialog; .pushsection .data; .type _ZTV12QInputDialog,@object; .size _ZTV12QInputDialog, 264; _ZTV12QInputDialog: .long 0; .popsection");
 __asm__(".globl _ZTV12QPaintDevice; .pushsection .data; .type _ZTV12QPaintDevice,@object; .size _ZTV12QPaintDevice, 28; _ZTV12QPaintDevice: .long 0; .popsection");
 __asm__(".globl _ZTV12QPaintEngine; .pushsection .data; .type _ZTV12QPaintEngine,@object; .size _ZTV12QPaintEngine, 96; _ZTV12QPaintEngine: .long 0; .popsection");
