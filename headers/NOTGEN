@@ -5,8 +5,6 @@ PPC32/rpc/rpc.h.defs
 PPC64/rpc/rpc.h.defs
 S390/rpc/rpc.h.defs
 S390X/rpc/rpc.h.defs
-core_filelist
-desktop_filelist
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
