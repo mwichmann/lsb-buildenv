@@ -53,6 +53,7 @@ while ($row=$sth->fetchrow_hashref)
 {
   $ArchHash{$row->{Aid}} = $row->{Aname};
 }
+$sth->finish;
 
 # Get Constants
 $sth = $dbh->prepare("SELECT * from Constant") || die $dbh->errstr;
@@ -62,6 +63,7 @@ while ($row=$sth->fetchrow_hashref)
 {
   $ConstHash{$row->{Cid}} = $row->{Cname};
 }
+$sth->finish;
 
 $sth = $dbh->prepare("SELECT * from ArchConst ORDER BY ACcid,ACaid") 
     || die $dbh->errstr;
@@ -112,6 +114,7 @@ while ($row=$sth->fetchrow_hashref)
   $lastCid = $row->{ACcid};
   $lastValue = $row->{ACvalue};
 }
+$sth->finish;
 
 if (defined($Options{'f'}))
 {
@@ -139,7 +142,8 @@ if (defined($Options{'f'}))
       {
         $existsForArch{$row->{ACaid}} = 1;
       }
-
+      $sth->finish;
+      
       foreach $arch (@SupportedArchs)
       {
         if (!exists($existsForArch{$arch}))
@@ -148,10 +152,12 @@ if (defined($Options{'f'}))
           $sth = $dbh->prepare("INSERT INTO ArchConst (ACaid, ACcid, ACvalue) VALUES ($arch, $cid, \'$cvalue\')");
 #        print "INSERT INTO ArchConst (ACaid, ACcid, ACvalue) VALUES ($arch, $cid, \'$cvalue\')";
           $sth->execute() || die $sth->errstr;
+          $sth->finish;
         }
       }
       $sth = $dbh->prepare("DELETE FROM ArchConst where ACcid=$cid and ACaid=1");
       $sth->execute() || die $sth->errstr;
+      $sth->finish;
       $dbh->commit();
     }
   }
@@ -169,13 +175,16 @@ if (defined($Options{'f'}))
       $sth = $dbh->prepare("SELECT * from ArchConst where ACcid=$cid");
       $sth->execute() || die $sth->errstr;
       $row = $sth->fetchrow_hashref;
+      $sth->finish;
       $cvalue = $row->{ACvalue};
 
       $sth = $dbh->prepare("DELETE from ArchConst where ACcid=$cid");
       $sth->execute() || die $sth->errstr;
+      $sth->finish;
       
       $sth = $dbh->prepare("INSERT INTO ArchConst (ACaid, ACcid, ACvalue) VALUES (1, $cid, \'$cvalue\')");
       $sth->execute() || die $sth->errstr;
+      $sth->finish;
       $dbh->commit();
     }
   }

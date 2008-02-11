@@ -11,8 +11,6 @@ use strict;
 use DBI;
 use Getopt::Std;
 
-use Mysql;
-
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
 my ($DBName) = $LSBDB;
@@ -169,8 +167,10 @@ sub GenerateLibrary($$$) {
             $sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
             $sthCheck->execute() || die $sthCheck->errstr;
             if ( $sthCheck->fetchrow_hashref() ) {
+                $sthCheck->finish;
                 next;
             }
+            $sthCheck->finish;
         }
 
      #if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
@@ -194,9 +194,9 @@ sub GenerateLibrary($$$) {
             }
             $version = $OverrideVersions{$libName}{ $row->{Iname} };
         }
-
+		
         if ( defined($version) ) {
-
+			
             # Unversioned symbols will not have the Vname field defined
             if ( !defined( $versionInfo{$version} ) ) {
                 $versionInfo{$version} = ();
@@ -204,7 +204,8 @@ sub GenerateLibrary($$$) {
             push( @{ $versionInfo{$version} }, $row->{Iname} );
         }
     }
-
+    $sth->finish;
+	
     # Do variables next
     $select =
       "SELECT DISTINCT Iname,AIarch,Itype,Vname,Ireturn,ATsize FROM Interface "
@@ -240,14 +241,16 @@ sub GenerateLibrary($$$) {
               . "AND AIarch=$TargetArchId "
               . "AND LibGroup.LGlib=$libId "
               . "AND Iname='$row->{Iname}'";
-
+			
             $sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
             $sthCheck->execute() || die $sthCheck->errstr;
             if ( $sthCheck->fetchrow_hashref() ) {
+            	$sthCheck->finish;
                 next;
             }
+            $sthCheck->finish;
         }
-
+		
         if (   $row->{AIarch}
             && $row->{AIarch} != 1
             && $row->{AIarch} != $TargetArchId )
@@ -258,17 +261,17 @@ sub GenerateLibrary($$$) {
             print "skipping dup $lastint\n";
             next;
         }
-
+		
         $lastint = $row->{Iname};
-
+		
         # Work out size of data variable
         $size = 0;
-
+		
         if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
             my $selectGenericSize;
             my $sthGenericSize;
             my $rowGenericSize;
-
+			
             $selectGenericSize = "SELECT ATsize FROM ArchType ";
             $selectGenericSize .=
               "WHERE ATaid=1 AND ATtid=" . $row->{"Ireturn"};
@@ -278,8 +281,9 @@ sub GenerateLibrary($$$) {
             if ( $rowGenericSize = $sthGenericSize->fetchrow_hashref() ) {
                 $row->{"ATsize"} = $rowGenericSize->{"ATsize"};
             }
+            $sthGenericSize->finish;
         }
-
+		
         if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
             if (   defined( $MissingData{$libName} )
                 && defined( $MissingData{$libName}{ $row->{Iname} } ) )
@@ -289,19 +293,19 @@ sub GenerateLibrary($$$) {
                 $size = $MissingData{$libName}{ $row->{Iname} };
             }
             else {
-
+				
                 # Size is not required for aliases
                 if ( $row->{Itype} ne "Alias" ) {
                     print
                       "No data for symbol $row->{Iname} ($row->{Ireturn})\n";
                 }
             }
-
+			
             # $size = 1000; # temporarily make it big to avoid problems
         }
         else {
             $size = $row->{"ATsize"};
-
+			
             if (   defined( $MissingData{$libName} )
                 && defined( $MissingData{$libName}{ $row->{Iname} } )
                 && $MissingData{$libName}{ $row->{Iname} } != $size )
@@ -311,7 +315,7 @@ sub GenerateLibrary($$$) {
                 $size = $MissingData{$libName}{ $row->{Iname} };
             }
         }
-
+		
         if ( $row->{Itype} eq "Common" ) {
             print( STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n" );
         }
@@ -329,7 +333,7 @@ sub GenerateLibrary($$$) {
         else {
             print "Skipping ", $row->{Iname}, "\n";
         }
-
+		
         undef($version);
         $version = $row->{Vname} unless !defined( $row->{Vname} );
         if (   defined( $OverrideVersions{$libName} )
@@ -346,18 +350,18 @@ sub GenerateLibrary($$$) {
             }
             $version = $OverrideVersions{$libName}{ $row->{Iname} };
         }
-
+		
         if ( defined($version) ) {
-
+			
             # Unversioned symbols will not have the Vname field defined
             if ( !defined( $versionInfo{$version} ) ) {
                 $versionInfo{$version} = ();
             }
             push( @{ $versionInfo{$version} }, $row->{Iname} );
         }
-
     }
-
+    $sth->finish;
+	
     # Dump version information
     my ($symbol);
     my ($symbols);
@@ -440,6 +444,7 @@ $sth = $dbh->prepare("SELECT Aid from Architecture where Aname='$TargetArch'")
   || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 $row = $sth->fetchrow_hashref;
+$sth->finish;
 if ( !defined($row) ) {
     die "Unknown Architecture $TargetArch\n";
 }
@@ -485,3 +490,5 @@ while ( $row = $sth->fetchrow_hashref ) {
     print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
     GenerateLibrary( $dbh, $row->{Lname}, $row->{Lid} );
 }
+$sth->finish;
+$dbh->disconnect;

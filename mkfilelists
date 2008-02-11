@@ -37,8 +37,8 @@ desktop_fn = 'desktop_filelist'
 # from the database.
 
 header_query = """
-SELECT Mname, Hname FROM Module,Header,ModLib,Library
-WHERE Module.Mid = ModLib.MLmid
+SELECT SMname, Hname FROM SubModule,Header,ModLib,Library
+WHERE SubModule.SMid = ModLib.MLmid
 AND Library.Lid = ModLib.MLlid
 AND Library.Lid = Header.Hlib
 AND ( ( (Happearedin <= '""" + lsbversion + """' AND Happearedin<>'')
@@ -46,10 +46,10 @@ AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '""" + lsbversion + """') )
 OR Hsrconly='Yes' OR Hsrcerror='Yes' )"""
 
 lib_query = """
-SELECT DISTINCT Mname,Lname FROM Module,ModLib,Library
+SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
 LEFT JOIN ArchLib ON Lid=ALlid
 WHERE Lname LIKE 'lib%'
-AND (Module.Mid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
+AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
 AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
 AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 
@@ -181,3 +181,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

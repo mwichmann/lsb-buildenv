@@ -5,7 +5,7 @@
 #
 
 use Getopt::Long;
-use Mysql;
+use DBI;
 
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
@@ -22,43 +22,45 @@ sub
 displaytype($)
 {
 local ($param) = @_;
-local(%select,$sth,%type);
+local(%select,$sth,$type);
 
-if( $$param{'Ttype'} eq "Intrinsic" ) {
-	print $$param{'Tname'};
+if( $param->{'Ttype'} eq "Intrinsic" ) {
+	print $param->{'Tname'};
 	return;
-	}
+}
 
-if( $$param{'Ttype'} eq "Pointer" ) {
-	$select = "SELECT * FROM Type WHERE Tid=".$$param{'Tbasetype'};
-	$sth = $Dbh->query($select) || die $Dbh->errmsg();
-	%type=$sth->fetchhash;
-	displaytype(\%type);
+if( $param->{'Ttype'} eq "Pointer" ) {
+	$select = "SELECT * FROM Type WHERE Tid=".$param->{'Tbasetype'};
+	$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+	$sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
+	$type = $sth->fetchrow_hashref;
+	$sth->finish;
+	displaytype($type);
 	print " *";
 	return;
-	}
+}
 
-if( $$param{'Ttype'} eq "Struct" ) {
-	print "struct ".$$param{'Tname'};
+if( $param->{'Ttype'} eq "Struct" ) {
+	print "struct ".$param->{'Tname'};
 	return;
-	}
+}
 
-if( $$param{'Ttype'} eq "Typedef" ) {
-	print $$param{'Tname'};
+if( $param->{'Ttype'} eq "Typedef" ) {
+	print $param->{'Tname'};
 	return;
-	}
+}
 
-if( $$param{'Ttype'} eq "Union" ) {
-	print "union ".$$param{'Tname'};
+if( $param->{'Ttype'} eq "Union" ) {
+	print "union ".$param->{'Tname'};
 	return;
-	}
+}
 
-if( $$param{'Ttype'} eq "Enum" ) {
-	print $$param{'Tname'};
+if( $param->{'Ttype'} eq "Enum" ) {
+	print $param->{'Tname'};
 	return;
-	}
+}
 
-print $$param{'Ttype'};
+print $param->{'Ttype'};
 }
 
 GetOptions("h=s" => \$headname,
@@ -69,50 +71,57 @@ if( !$lsbversion ) { usage(); }
 
 $headname =~ s/^\.\///;
 
-$Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
+$dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, $LSBDBPASSWD)
+    or die "Couldn't connect to database: ".DBI->errstr;
 
 $select = "SELECT * FROM Interface,Header,Type ";
 $select.= "WHERE (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
-$select.= "AND Iheader=Hid AND Hname=".$Dbh->quote($headname)." ";
+$select.= "AND Iheader=Hid AND Hname=".$dbh->quote($headname)." ";
 $select.= "AND Ireturn=Tid";
 print $select,"\n" if $trace;
-$sth = $Dbh->query($select) || die $Dbh->errmsg();
+$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+$sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
 
-for(1..$sth->numrows) {
-	%entry=$sth->fetchhash;
-	if( $entry{'Itype'} eq "Function" ) {
-		if( $entry{'Ttype'} eq 'FuncPtr' ) {
+for(1..$sth->rows) {
+	$entry = $sth->fetchrow_hashref;
+	if( entry->{'Itype'} eq "Function" ) {
+		if( entry->{'Ttype'} eq 'FuncPtr' ) {
 			next;
 			}
-		displaytype(\%entry);
-		printf " %s(",$entry{'Iname'};
+		displaytype($entry);
+		printf " %s(",entry->{'Iname'};
 		$select = "SELECT Tname,Ttype,Tbasetype FROM Type,Parameter ";
-		$select.= "WHERE Pint=".$entry{'Iid'}." AND Ptype=Tid ";
+		$select.= "WHERE Pint=".entry->{'Iid'}." AND Ptype=Tid ";
 		$select.= "ORDER BY  Ppos";
 		print $select,"\n" if $trace;
-		$sth2 = $Dbh->query($select) || die $Dbh->errmsg();
+		$sth2 = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+		$sth2->execute or die "Couldn't execute $select query: ".DBI->errstr;
 		if( $sth2->numrows != 0 ) {
-			%entry2=$sth2->fetchhash;
-			displaytype(\%entry2);
+			$entry2 = $sth2->fetchrow_hashref;
+			displaytype($entry2);
 			for(2..$sth2->numrows) {
-				%entry2=$sth2->fetchhash;
+				$entry2 = $sth2->fetchrow_hashref;
 				print ", ";
-				displaytype(\%entry2);
+				displaytype(entry2);
 			}
 		}
+		$sth2->finish;
 	printf ");\n";
 	}
-	if( $entry{'Itype'} eq "Data" ) {
-		displaytype(\%entry);
-		printf " %s;\n",$entry{'Iname'};
+	if( entry->{'Itype'} eq "Data" ) {
+		displaytype($entry);
+		printf " %s;\n",entry->{'Iname'};
 	}
-	if( $entry{'Itype'} eq "Alias" ) {
-		displaytype(\%entry);
-		printf " %s;\n",$entry{'Iname'};
+	if( entry->{'Itype'} eq "Alias" ) {
+		displaytype($entry);
+		printf " %s;\n",entry->{'Iname'};
 	}
-	if( $entry{'Itype'} eq "Common" ) {
-		displaytype(\%entry);
-		printf " %s;\n",$entry{'Iname'};
+	if( entry->{'Itype'} eq "Common" ) {
+		displaytype($entry);
+		printf " %s;\n",entry->{'Iname'};
 	}
 }
+$sth->finish;
+
+$dbh->disconnect;
