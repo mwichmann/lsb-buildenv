@@ -13,9 +13,15 @@
 #
 # Chris Yeoh (cyeoh@samba.org), IBM
 #
-# This is $Revision: 1.12 $
+# This is $Revision: 1.5 $
 # 
 # $Log: check_lsb_symbols,v $
+# Revision 1.5  2007/12/06 16:57:42  ches
+# Mysql->DBI
+#
+# Revision 1.4  2007/06/07 13:47:23  uragan
+# Release 0.7
+#
 # Revision 1.12  2002/04/11 08:19:23  cyeoh
 # Improves version checking to take into account aliases
 #
@@ -59,6 +65,8 @@ my($TargetArch);
 my($TargetArchId);
 my(%Options);
 my(%MissingData);
+
+my ($lsbversion);
 
 my(%ArchObjOffsets) = 
 (
@@ -399,6 +407,7 @@ sub CheckSymbols($$$$$)
       print "No info on symbol $iface\n";
     }
   }
+  $sth->finish;
 
   # Do variables next
   $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname,Ireturn,ATsize FROM ".
@@ -488,6 +497,7 @@ sub CheckSymbols($$$$$)
       print "No info on symbol $iface\n";
     }
   }
+  $sth->finish;
 }
 
 
@@ -551,6 +561,7 @@ $sth = $dbh->prepare("SELECT Aid from Architecture where Aname='$TargetArch'")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 $row = $sth->fetchrow_hashref;
+$sth->finish;
 if (!defined($row))
 {
   die "Unknown Architecture $TargetArch\n";
@@ -566,6 +577,7 @@ $sth = $dbh->prepare("SELECT Aid from Architecture where Aname='All'")
     || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 $row = $sth->fetchrow_hashref;
+$sth->finish;
 if (!defined($row))
 {
   die "Cannot find 'all' architecture\n";
@@ -581,8 +593,8 @@ $sth = $dbh->prepare("SELECT Lid,Lname,ALrunname FROM Library "
                      . "(ALAid=$TargetArchId OR ALAid=$AllArch) "
 					. "WHERE ( (ALappearedin <= '$lsbversion' and ALappearedin<>'') "
 					. "AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '$lsbversion') "
-                     . "and ALrunname!=''");
-    || die $dbh->errstr;
+                     . "and ALrunname!='')")
+	|| die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
 
 my($symInfo);
@@ -594,5 +606,5 @@ while ($row = $sth->fetchrow_hashref)
   $aliases = GenerateAliases($row->{ALrunname});
   CheckSymbols($dbh, $row->{Lname}, $row->{Lid}, $symInfo, $aliases);
 }
-
-
+$sth->finish;
+$dbh->disconnect;

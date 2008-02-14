@@ -17,6 +17,12 @@ core_filelist desktop_filelist:
 %.h:
 	mkdir -p $(dir $@)
 	./mkheader -a All -v $(LSBVERSION) -h $@ | indent -kr >$@
+	
+%:
+	@$(if $(filter-out all clean,$@),\
+	mkdir -p $(dir $@);\
+	./mkheader -a All -v `cat LSB_VERSION` -h $@ | indent -kr >$@\
+	)
 
 headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 

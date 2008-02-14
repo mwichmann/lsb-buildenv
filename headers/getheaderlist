@@ -5,7 +5,7 @@
 #
 
 use Getopt::Long;
-use Mysql;
+use DBI;
 
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
@@ -21,7 +21,8 @@ die "getheaderlist -v <lsbversion>";
 GetOptions("v=s" => \$lsbversion);
 if( !$lsbversion ) { usage(); }
 
-$Dbh = Mysql->connect($LSBDBHOST,$LSBDB,$LSBUSER, $LSBDBPASSWD) || die $Mysql::db_errstr;
+$dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, $LSBDBPASSWD)
+    or die "Couldn't connect to database: ".DBI->errstr;
 
 #
 # Get the Header id
@@ -33,10 +34,12 @@ $select.= "OR ( (Happearedin is not NULL and Happearedin <= '$lsbversion' and Ha
 $select.= "AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '$lsbversion') )";
 # $select.= "WHERE ( Hstdstatus!='Excluded' OR Hsrcerror='Yes')";
 print $select,"\n" if $trace;
-$sth = $Dbh->query($select) || die $Dbh->errmsg();
-for(1..$sth->numrows) {
-	%entry=$sth->fetchhash;
-	print "./$entry{'Hname'} ";
+$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+$sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
+for(1..$sth->rows) {
+	$entry = $sth->fetchrow_hashref;
+	print "./$entry->{'Hname'} ";
 	}
+$sth->finish;
 
-
+$dbh->disconnect;
