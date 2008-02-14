@@ -1,15 +1,15 @@
 
 class QPrinter;
-enum N8QPrinter11PrinterModeE {
+enum _ZN8QPrinter11PrinterModeE {
     ScreenResolution,
     PrinterResolution,
     HighResolution
 };
-enum N8QPrinter11OrientationE {
+enum _ZN8QPrinter11OrientationE {
     Portrait,
     Landscape
 };
-enum N8QPrinter8PageSizeE {
+enum _ZN8QPrinter8PageSizeE {
     A4,
     B5,
     Letter,
@@ -43,15 +43,15 @@ enum N8QPrinter8PageSizeE {
     Custom,
     NPageSize
 };
-enum N8QPrinter9PageOrderE {
+enum _ZN8QPrinter9PageOrderE {
     FirstPageFirst,
     LastPageFirst
 };
-enum N8QPrinter9ColorModeE {
+enum _ZN8QPrinter9ColorModeE {
     GrayScale,
     Color
 };
-enum N8QPrinter11PaperSourceE {
+enum _ZN8QPrinter11PaperSourceE {
     OnlyOne,
     Lower,
     Middle,
@@ -66,22 +66,22 @@ enum N8QPrinter11PaperSourceE {
     Cassette,
     FormSource
 };
-enum N8QPrinter12PrinterStateE {
+enum _ZN8QPrinter12PrinterStateE {
     Idle,
     Active,
     Aborted,
     Error
 };
-enum N8QPrinter12OutputFormatE {
+enum _ZN8QPrinter12OutputFormatE {
     NativeFormat,
     PdfFormat
 };
-enum N8QPrinter10PrintRangeE {
+enum _ZN8QPrinter10PrintRangeE {
     AllPages,
     Selection,
     PageRange
 };
-enum N8QPrinter13PrinterOptionE {
+enum _ZN8QPrinter13PrinterOptionE {
     PrintToFile,
     PrintSelection,
     PrintPageRange

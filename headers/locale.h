@@ -8,12 +8,7 @@ extern "C" {
 
 
 
-
-
-
 /* Structure giving information about numeric and monetary notation*/
-
-
     struct lconv {
 	char *decimal_point;
 	char *thousands_sep;
@@ -60,8 +55,6 @@ extern "C" {
 
 
 
-
-
     typedef struct __locale_struct *__locale_t;
 
     struct __locale_struct {
@@ -71,10 +64,6 @@ extern "C" {
 	const int *__ctype_toupper;
 	const char *__names[13];
     };
-
-
-
-
 
 
 

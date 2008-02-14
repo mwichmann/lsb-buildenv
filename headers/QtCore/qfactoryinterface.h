@@ -7,14 +7,8 @@ extern "C" {
 #endif
 
 
-
-
-
     struct QFactoryInterface;
 
-
-    extern _ZN17QFactoryInterfaceD0Ev(void);
-    extern _ZN17QFactoryInterfaceD1Ev(void);
 #ifdef __cplusplus
 }
 #endif

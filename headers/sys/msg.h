@@ -11,14 +11,11 @@ extern "C" {
 #endif
 
 
-
 #define MSG_NOERROR	010000
 
 
 
 /* Base types for messages*/
-
-
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef unsigned long int msgqnum_t;
@@ -81,8 +78,6 @@ extern "C" {
 #endif
 
 /* Message Queue structure*/
-
-
 #if defined __i386__
 /* IA32 */
     struct msqid_ds {

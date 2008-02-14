@@ -1,6 +1,6 @@
 
 class QFrame;
-enum N6QFrame5ShapeE {
+enum _ZN6QFrame5ShapeE {
     NoFrame,
     Box,
     Panel,
@@ -15,7 +15,7 @@ enum N6QFrame5ShapeE {
     TabWidgetPanel,
     GroupBoxPanel
 };
-enum N6QFrame6ShadowE {
+enum _ZN6QFrame6ShadowE {
     Plain,
     Raised,
     Sunken

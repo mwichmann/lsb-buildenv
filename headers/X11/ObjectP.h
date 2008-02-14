@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define XtInheritAllocate	((XtAllocateProc) _XtInherit)
 #define XtInheritDeallocate	((XtDeallocateProc) _XtInherit)
 #define XtObjectExtensionVersion	1L
@@ -16,8 +15,6 @@ extern "C" {
 
 
 /* Object Instance Data Structures*/
-
-
     typedef struct _ObjectPart ObjectPart;
 
 
@@ -32,8 +29,6 @@ extern "C" {
     };
 
 
-
-
     typedef struct _ObjectRec ObjectRec;
 
 
@@ -43,8 +38,6 @@ extern "C" {
 
 
 /* Object Class Data Structures*/
-
-
     typedef struct _ObjectClassPart ObjectClassPart;
 
 
@@ -84,8 +77,6 @@ extern "C" {
     };
 
 
-
-
     struct {
 	XtPointer next_extension;	/* 1st 4 required for all extension records */
 	XrmQuark record_type;	/* NULLQUARK; when on ObjectClassPart */
@@ -94,8 +85,6 @@ extern "C" {
 	XtAllocateProc allocate;
 	XtDeallocateProc deallocate;
     };
-
-
 
 
     typedef struct {
@@ -115,8 +104,6 @@ extern "C" {
 	XtAllocateProc allocate;
 	XtDeallocateProc deallocate;
     } *ObjectClassExtension;
-
-
 
 
     typedef struct _ObjectClassRec ObjectClassRec;

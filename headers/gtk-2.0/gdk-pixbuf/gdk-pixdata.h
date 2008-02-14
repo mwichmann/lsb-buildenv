@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #define GDK_PIXBUF_MAGIC_NUMBER	(0x47646b50)
 #define GDK_PIXDATA_HEADER_LENGTH	(4 + 4 + 4 + 4 + 4 + 4)
 

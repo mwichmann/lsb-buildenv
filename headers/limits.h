@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define LLONG_MIN	(-LLONG_MAX-1LL)
 #if defined __ia64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
@@ -100,7 +99,7 @@ extern "C" {
 #define LLONG_MAX	9223372036854775807LL
 #define _POSIX2_BC_BASE_MAX	99
 #define _POSIX2_BC_SCALE_MAX	99
-#define SSIZE_MAX	LONG_MAX
+#define SSIZE_MAX	LONG_MAX	/* Maximum value of an object of type ssize_t */
 #define BC_BASE_MAX	_POSIX2_BC_BASE_MAX
 #define BC_DIM_MAX	_POSIX2_BC_DIM_MAX
 #define BC_SCALE_MAX	_POSIX2_BC_SCALE_MAX
@@ -210,7 +209,6 @@ extern "C" {
 #define PTHREAD_STACK_MIN	196608
 #endif
 #define PTHREAD_DESTRUCTOR_ITERATIONS	4
-
 
 
 #ifdef __cplusplus

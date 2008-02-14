@@ -1,6 +1,6 @@
 
 class QSqlDriver;
-enum N10QSqlDriver13DriverFeatureE {
+enum _ZN10QSqlDriver13DriverFeatureE {
     Transactions,
     QuerySize,
     BLOB,
@@ -11,14 +11,14 @@ enum N10QSqlDriver13DriverFeatureE {
     LastInsertId,
     BatchOperations
 };
-enum N10QSqlDriver13StatementTypeE {
+enum _ZN10QSqlDriver13StatementTypeE {
     WhereStatement,
     SelectStatement,
     UpdateStatement,
     InsertStatement,
     DeleteStatement
 };
-enum N10QSqlDriver14IdentifierTypeE {
+enum _ZN10QSqlDriver14IdentifierTypeE {
     FieldName,
     TableName
 };

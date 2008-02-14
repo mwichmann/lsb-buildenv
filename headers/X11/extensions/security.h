@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef unsigned long int XSecurityAuthorization;
 
     typedef struct {

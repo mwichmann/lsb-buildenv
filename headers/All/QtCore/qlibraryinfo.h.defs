@@ -1,6 +1,6 @@
 
 class QLibraryInfo;
-enum N12QLibraryInfo15LibraryLocationE {
+enum _ZN12QLibraryInfo15LibraryLocationE {
     PrefixPath,
     DocumentationPath,
     HeadersPath,

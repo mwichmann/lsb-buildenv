@@ -1,12 +1,13 @@
 
 class QTextCodec;
-enum N10QTextCodec14ConversionFlagE {
+enum _ZN10QTextCodec14ConversionFlagE {
     ConvertInvalidToNull,
     DefaultConversion,
     IgnoreHeader
 };
 class QFlags < QTextCodec::ConversionFlag >;
-typedef N10QTextCodec15ConversionFlagsE;
+typedef class QFlags < QTextCodec::ConversionFlag >
+    _ZN10QTextCodec15ConversionFlagsE;
 struct _ZN10QTextCodec14ConverterStateE;
 class QTextEncoder;
 class QTextDecoder;

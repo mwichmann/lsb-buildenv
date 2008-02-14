@@ -1,31 +1,31 @@
 
-enum N4QSql8LocationE {
+enum _ZN4QSql8LocationE {
     AfterLastRow,
     AfterLast,
     BeforeFirstRow,
     BeforeFirst
 };
-enum N4QSql13ParamTypeFlagE {
+enum _ZN4QSql13ParamTypeFlagE {
     In,
     Out,
     InOut,
     Binary
 };
 class QFlags < QSql::ParamTypeFlag >;
-typedef N4QSql9ParamTypeE;
-enum N4QSql9TableTypeE {
+typedef class QFlags < QSql::ParamTypeFlag > _ZN4QSql9ParamTypeE;
+enum _ZN4QSql9TableTypeE {
     Tables,
     SystemTables,
     Views,
     AllTables
 };
-enum N4QSql2OpE {
+enum _ZN4QSql2OpE {
     None,
     Insert,
     Update,
     Delete
 };
-enum N4QSql7ConfirmE {
+enum _ZN4QSql7ConfirmE {
     Cancel,
     No,
     Yes

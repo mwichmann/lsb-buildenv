@@ -4,13 +4,11 @@
 class QTextImageFormat;
 // *INDENT-OFF*
 
-
-
-
 class QTextLength
 {
 private:
 public:
+    QVariant operator QVariant() const;
 };
 
 enum Type	
@@ -25,6 +23,38 @@ class QTextFormat
 {
 private:
 public:
+     QTextFormat();
+     QTextFormat(int);
+     QTextFormat(QTextFormat const&);
+    QTextFormat & operator=(QTextFormat const&);
+     ~QTextFormat();
+    void merge(QTextFormat const&);
+    int type() const;
+    int objectIndex() const;
+    void setObjectIndex(int);
+    QVariant property(int) const;
+    void setProperty(int, QVariant const&);
+    void clearProperty(int);
+    bool hasProperty(int) const;
+    bool boolProperty(int) const;
+    int intProperty(int) const;
+    qreal doubleProperty(int) const;
+    QString stringProperty(int) const;
+    QColor colorProperty(int) const;
+    QPen penProperty(int) const;
+    QBrush brushProperty(int) const;
+    QTextLength lengthProperty(int) const;
+    QVector<QTextLength> lengthVectorProperty(int) const;
+    void setProperty(int, QVector<QTextLength> const&);
+     properties() const;
+    QTextBlockFormat toBlockFormat() const;
+    QTextCharFormat toCharFormat() const;
+    QTextListFormat toListFormat() const;
+    QTextTableFormat toTableFormat() const;
+    QTextFrameFormat toFrameFormat() const;
+    QTextImageFormat toImageFormat() const;
+    bool operator==(QTextFormat const&) const;
+    QVariant operator QVariant() const;
 };
 
 enum FormatType	
@@ -107,6 +137,11 @@ class QTextCharFormat :
 {
 private:
 public:
+     QTextCharFormat();
+    void setFont(QFont const&);
+    QFont font() const;
+    void setUnderlineStyle(QTextCharFormat::UnderlineStyle);
+    bool fontUnderline() const;
 };
 
 enum VerticalAlignment	
@@ -121,12 +156,14 @@ class QTextBlockFormat :
 {
 private:
 public:
+     QTextBlockFormat();
 };
 
 class QTextListFormat :  
 {
 private:
 public:
+     QTextListFormat();
 };
 
 enum Style	
@@ -145,12 +182,14 @@ class QTextImageFormat :
 {
 private:
 public:
+     QTextImageFormat();
 };
 
 class QTextFrameFormat :  
 {
 private:
 public:
+     QTextFrameFormat();
 };
 
 enum Position	
@@ -165,64 +204,14 @@ class QTextTableFormat :
 {
 private:
 public:
+     QTextTableFormat();
 };
 
 
-extern QDataStream _ZlsR11QDataStreamRK11QTextLength(void);
-extern QDataStream _ZrsR11QDataStreamR11QTextLength(void);
-extern QTextLength _ZNK11QTextLengthcv8QVariantEv(void);
-extern QDataStream _ZlsR11QDataStreamRK11QTextFormat(void);
-extern QDataStream _ZrsR11QDataStreamR11QTextFormat(void);
+extern QDataStream _ZlsR11QDataStreamRK11QTextLength(QDataStream &, const QTextLength &);
+extern QDataStream _ZrsR11QDataStreamR11QTextLength(QDataStream &, QTextLength &);
+extern QDataStream _ZlsR11QDataStreamRK11QTextFormat(QDataStream &, const QTextFormat &);
+extern QDataStream _ZrsR11QDataStreamR11QTextFormat(QDataStream &, QTextFormat &);
 extern struct QMetaObject _ZN11QTextFormat16staticMetaObjectE ;
-extern QTextFormat _ZN11QTextFormatC2Ev(void);
-extern QTextFormat _ZN11QTextFormatC1Ev(void);
-extern QTextFormat _ZN11QTextFormatC2Ei(void);
-extern QTextFormat _ZN11QTextFormatC1Ei(void);
-extern QTextFormat _ZN11QTextFormatC2ERKS_(void);
-extern QTextFormat _ZN11QTextFormatC1ERKS_(void);
-extern QTextFormat _ZN11QTextFormataSERKS_(void);
-extern  _ZN11QTextFormatD2Ev(void);
-extern  _ZN11QTextFormatD1Ev(void);
-extern void _ZN11QTextFormat5mergeERKS_(void);
-extern int _ZNK11QTextFormat4typeEv(void);
-extern int _ZNK11QTextFormat11objectIndexEv(void);
-extern void _ZN11QTextFormat14setObjectIndexEi(void);
-extern QVariant _ZNK11QTextFormat8propertyEi(void);
-extern void _ZN11QTextFormat11setPropertyEiRK8QVariant(void);
-extern void _ZN11QTextFormat13clearPropertyEi(void);
-extern bool _ZNK11QTextFormat11hasPropertyEi(void);
-extern bool _ZNK11QTextFormat12boolPropertyEi(void);
-extern int _ZNK11QTextFormat11intPropertyEi(void);
-extern qreal _ZNK11QTextFormat14doublePropertyEi(void);
-extern QString _ZNK11QTextFormat14stringPropertyEi(void);
-extern QColor _ZNK11QTextFormat13colorPropertyEi(void);
-extern QPen _ZNK11QTextFormat11penPropertyEi(void);
-extern QBrush _ZNK11QTextFormat13brushPropertyEi(void);
-extern QTextLength _ZNK11QTextFormat14lengthPropertyEi(void);
-extern  _ZNK11QTextFormat20lengthVectorPropertyEi(void);
-extern void _ZN11QTextFormat11setPropertyEiRK7QVectorI11QTextLengthE(void);
-extern QMap<int, QVariant> _ZNK11QTextFormat10propertiesEv(void);
-extern  _ZNK11QTextFormat13toBlockFormatEv(void);
-extern  _ZNK11QTextFormat12toCharFormatEv(void);
-extern  _ZNK11QTextFormat12toListFormatEv(void);
-extern  _ZNK11QTextFormat13toTableFormatEv(void);
-extern  _ZNK11QTextFormat13toFrameFormatEv(void);
-extern  _ZNK11QTextFormat13toImageFormatEv(void);
-extern bool _ZNK11QTextFormateqERKS_(void);
-extern QTextFormat _ZNK11QTextFormatcv8QVariantEv(void);
-extern QTextCharFormat _ZN15QTextCharFormatC2Ev(void);
-extern QTextCharFormat _ZN15QTextCharFormatC1Ev(void);
-extern void _ZN15QTextCharFormat7setFontERK5QFont(void);
-extern QFont _ZNK15QTextCharFormat4fontEv(void);
-extern QTextBlockFormat _ZN16QTextBlockFormatC2Ev(void);
-extern QTextBlockFormat _ZN16QTextBlockFormatC1Ev(void);
-extern QTextListFormat _ZN15QTextListFormatC2Ev(void);
-extern QTextListFormat _ZN15QTextListFormatC1Ev(void);
-extern QTextImageFormat _ZN16QTextImageFormatC2Ev(void);
-extern QTextImageFormat _ZN16QTextImageFormatC1Ev(void);
-extern QTextFrameFormat _ZN16QTextFrameFormatC2Ev(void);
-extern QTextFrameFormat _ZN16QTextFrameFormatC1Ev(void);
-extern QTextTableFormat _ZN16QTextTableFormatC2Ev(void);
-extern QTextTableFormat _ZN16QTextTableFormatC1Ev(void);
 // *INDENT-ON*
 #endif

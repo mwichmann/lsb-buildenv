@@ -7,11 +7,7 @@ extern "C" {
 #endif
 
 
-
-
-
     struct QPair <int, int >;
-
 
 #ifdef __cplusplus
 }

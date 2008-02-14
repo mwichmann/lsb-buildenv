@@ -1,6 +1,6 @@
 
 class QMutex;
-enum N6QMutex13RecursionModeE {
+enum _ZN6QMutex13RecursionModeE {
     NonRecursive,
     Recursive
 };

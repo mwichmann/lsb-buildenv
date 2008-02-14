@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #define FARDATA
 #define PNGAPI
 #define PNG_1_2_X

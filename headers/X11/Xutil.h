@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct XSizeHints;
 
     typedef struct XWMHints;

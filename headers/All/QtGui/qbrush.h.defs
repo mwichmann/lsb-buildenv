@@ -2,13 +2,13 @@
 class QBrush;
 struct _Z10QBrushData;
 class QGradient;
-enum N9QGradient4TypeE {
+enum _ZN9QGradient4TypeE {
     LinearGradient,
     RadialGradient,
     ConicalGradient,
     NoGradient
 };
-enum N9QGradient6SpreadE {
+enum _ZN9QGradient6SpreadE {
     PadSpread,
     ReflectSpread,
     RepeatSpread

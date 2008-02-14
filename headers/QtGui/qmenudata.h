@@ -4,21 +4,18 @@
 class QMenuItem;
 // *INDENT-OFF*
 
-
-
-
 class QMenuItem : public QAction
 {
 private:
 public:
+     ~QMenuItem();
+     QMenuItem();
+    int id() const;
+    int signalValue() const;
+    int qt_metacall(QMetaObject::Call, int, void**);
+    void * qt_metacast(char const*);
+    struct QMetaObject * metaObject() const;
 };
 
-
-extern  _ZN9QMenuItemD0Ev(void);
-extern  _ZN9QMenuItemD1Ev(void);
-extern QMenuItem _ZN9QMenuItemC2Ev(void);
-extern QMenuItem _ZN9QMenuItemC1Ev(void);
-extern int _ZNK9QMenuItem2idEv(void);
-extern int _ZNK9QMenuItem11signalValueEv(void);
 // *INDENT-ON*
 #endif

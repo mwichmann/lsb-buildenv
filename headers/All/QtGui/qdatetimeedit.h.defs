@@ -1,6 +1,6 @@
 
 class QDateTimeEdit;
-enum N13QDateTimeEdit7SectionE {
+enum _ZN13QDateTimeEdit7SectionE {
     NoSection,
     AmPmSection,
     MSecSection,
@@ -14,6 +14,7 @@ enum N13QDateTimeEdit7SectionE {
     DateSections_Mask
 };
 class QFlags < QDateTimeEdit::Section >;
-typedef N13QDateTimeEdit8SectionsE;
+typedef class QFlags < QDateTimeEdit::Section >
+    _ZN13QDateTimeEdit8SectionsE;
 class QTimeEdit;
 class QDateEdit;

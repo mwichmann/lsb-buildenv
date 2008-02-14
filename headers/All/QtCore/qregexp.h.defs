@@ -1,11 +1,11 @@
 
 class QRegExp;
-enum N7QRegExp13PatternSyntaxE {
+enum _ZN7QRegExp13PatternSyntaxE {
     RegExp,
     Wildcard,
     FixedString
 };
-enum N7QRegExp9CaretModeE {
+enum _ZN7QRegExp9CaretModeE {
     CaretAtZero,
     CaretAtOffset,
     CaretWontMatch

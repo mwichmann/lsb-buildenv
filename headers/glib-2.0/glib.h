@@ -6,10 +6,15 @@
 #include <stddef.h>
 #include <stdarg.h>
 
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 
 #define GLIB_HAVE_ALLOCA_H
@@ -988,8 +993,6 @@ extern "C" {
 
 
 /* Arch Specific Header Section for glib-2.0/glib.h*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef int gssize;
@@ -1097,8 +1100,6 @@ extern "C" {
 #endif
 
 /* Default Header Section for glib-2.0/glib.h*/
-
-
     typedef short unsigned int guint16;
 
     typedef int gint;

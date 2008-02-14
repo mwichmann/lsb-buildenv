@@ -1,5 +1,5 @@
 
-enum N3QGL12FormatOptionE {
+enum _ZN3QGL12FormatOptionE {
     DoubleBuffer,
     DepthBuffer,
     Rgba,
@@ -22,7 +22,7 @@ enum N3QGL12FormatOptionE {
     NoSampleBuffers
 };
 class QFlags < QGL::FormatOption >;
-typedef N3QGL13FormatOptionsE;
+typedef class QFlags < QGL::FormatOption > _ZN3QGL13FormatOptionsE;
 class QGLFormat;
 class QGLContext;
 class QGLWidget;

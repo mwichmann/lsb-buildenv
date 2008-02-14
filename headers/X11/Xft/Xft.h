@@ -19,7 +19,6 @@ extern "C" {
 #endif
 
 
-
 #define _XFT_H_
 #define XFT_VERSION	 \
 	((XFT_MAJOR * 10000) + (XFT_MINOR * 100) + (XFT_REVISION))

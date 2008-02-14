@@ -8,9 +8,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct {
 	char *protocol_name;
 	unsigned short protocol_data_length;

@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #define SEM_UNDO	0x1000
 #define GETPID	11
 #define GETVAL	12

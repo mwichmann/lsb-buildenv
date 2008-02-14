@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-
 #define XINCLUDE_PARSE_ENCODING	(const xmlChar *) "encoding"
 #define XINCLUDE_FALLBACK	(const xmlChar *) "fallback"
 #define XINCLUDE_HREF	(const xmlChar *) "href"

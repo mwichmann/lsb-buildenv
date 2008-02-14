@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _XcmsFunctionSet XcmsFunctionSet;
 
 
@@ -20,8 +17,6 @@ extern "C" {
 	XcmsScreenInitProc screenInitProc;
 	XcmsScreenFreeProc screenFreeProc;
     };
-
-
 
 
     typedef unsigned long int XcmsColorFormat;
@@ -85,8 +80,6 @@ extern "C" {
 
 
 /* XCMS Color Structure*/
-
-
     typedef union {
 	XcmsRGB RGB;
 	XcmsRGBi RGBi;
@@ -101,8 +94,6 @@ extern "C" {
 
 
 /* XCMS Per Screen related data*/
-
-
     typedef struct _XcmsPerScrnInfo XcmsPerScrnInfo;
 
 
@@ -113,8 +104,6 @@ extern "C" {
 	unsigned char state;
 	char pad[1];
     };
-
-
 
 
     typedef int (*XcmsCompressionProc) (void);
@@ -131,19 +120,13 @@ extern "C" {
 
 
 /* XCMS Color Conversion Context*/
-
-
     typedef struct _XcmsCCC *XcmsCCC;
-
-
 
 
     typedef XcmsConversionProc *XcmsFuncListPtr;
 
 
 /* Color Space -- per Color Space related data (Device-Independent or Device-Dependent)*/
-
-
     typedef struct _XcmsColorSpace XcmsColorSpace;
 
 

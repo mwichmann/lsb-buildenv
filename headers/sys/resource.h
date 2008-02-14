@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-
 #define RUSAGE_CHILDREN	(-1)
 #define RLIM_INFINITY	(~0UL)
 #define RLIM_SAVED_CUR	-1
@@ -30,15 +29,11 @@ extern "C" {
 
 
 
-
-
     typedef unsigned long int rlim_t;
 
     typedef unsigned long long int rlim64_t;
 
     typedef int __rlimit_resource_t;
-
-
 
 
     struct rlimit {
@@ -50,8 +45,6 @@ extern "C" {
 	rlim64_t rlim_cur;	/* The current (soft) limit. */
 	rlim64_t rlim_max;	/* The hard limit. */
     };
-
-
 
 
     struct rusage {
@@ -76,12 +69,8 @@ extern "C" {
 
 /* Priority limits.*/
 
-
-
 /* The type of the WHICH argument to `getpriority' and `setpriority',
 indicating what flavor of entity the WHO argument specifies.*/
-
-
     enum __priority_which {
 	PRIO_PROCESS = 0,	/* WHO is a process ID. */
 	PRIO_PGRP = 1,		/* WHO is a process group ID. */

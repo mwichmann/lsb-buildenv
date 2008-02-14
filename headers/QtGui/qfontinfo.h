@@ -4,36 +4,29 @@
 class QFontInfo;
 // *INDENT-OFF*
 
-
-
-
 class QFontInfo
 {
 private:
 public:
+     QFontInfo(QFont const&);
+     QFontInfo(QFontInfo const&);
+     ~QFontInfo();
+    QFontInfo & operator=(QFontInfo const&);
+    QString family() const;
+    int pixelSize() const;
+    int pointSize() const;
+    qreal pointSizeF() const;
+    bool italic() const;
+    enum _ZN5QFont5StyleE style() const;
+    int weight() const;
+    bool underline() const;
+    bool overline() const;
+    bool strikeOut() const;
+    bool fixedPitch() const;
+    enum _ZN5QFont9StyleHintE styleHint() const;
+    bool rawMode() const;
+    bool exactMatch() const;
 };
 
-
-extern QFontInfo _ZN9QFontInfoC2ERK5QFont(void);
-extern QFontInfo _ZN9QFontInfoC1ERK5QFont(void);
-extern QFontInfo _ZN9QFontInfoC2ERKS_(void);
-extern QFontInfo _ZN9QFontInfoC1ERKS_(void);
-extern  _ZN9QFontInfoD2Ev(void);
-extern  _ZN9QFontInfoD1Ev(void);
-extern QFontInfo _ZN9QFontInfoaSERKS_(void);
-extern QString _ZNK9QFontInfo6familyEv(void);
-extern int _ZNK9QFontInfo9pixelSizeEv(void);
-extern int _ZNK9QFontInfo9pointSizeEv(void);
-extern qreal _ZNK9QFontInfo10pointSizeFEv(void);
-extern bool _ZNK9QFontInfo6italicEv(void);
-extern enum N5QFont5StyleE _ZNK9QFontInfo5styleEv(void);
-extern int _ZNK9QFontInfo6weightEv(void);
-extern bool _ZNK9QFontInfo9underlineEv(void);
-extern bool _ZNK9QFontInfo8overlineEv(void);
-extern bool _ZNK9QFontInfo9strikeOutEv(void);
-extern bool _ZNK9QFontInfo10fixedPitchEv(void);
-extern enum N5QFont9StyleHintE _ZNK9QFontInfo9styleHintEv(void);
-extern bool _ZNK9QFontInfo7rawModeEv(void);
-extern bool _ZNK9QFontInfo10exactMatchEv(void);
 // *INDENT-ON*
 #endif

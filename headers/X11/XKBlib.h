@@ -10,9 +10,6 @@ extern "C" {
 
 
 
-
-
-
     extern int XkbAllocClientMap(, unsigned int, unsigned int);
     extern int XkbAllocCompatMap(, unsigned int, unsigned int);
     extern int XkbAllocControls(, unsigned int);

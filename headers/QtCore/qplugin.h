@@ -8,11 +8,7 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef QObject QtPluginInstanceFunction;
-
 
 #ifdef __cplusplus
 }

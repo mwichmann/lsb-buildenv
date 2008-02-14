@@ -4,40 +4,34 @@
 class QBuffer;
 // *INDENT-OFF*
 
-
-
-
 class QBuffer : public QIODevice
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QBuffer(QObject*);
+     QBuffer(QByteArray*, QObject*);
+     ~QBuffer();
+    QByteArray & buffer();
+    QByteArray & & buffer() const;
+    void setBuffer(QByteArray*);
+    void setData(QByteArray const&);
+    QByteArray & & data() const;
+    bool open(QFlags<QIODevice::OpenModeFlag>);
+    void close();
+    qint64 size() const;
+    qint64 pos() const;
+    bool seek(long long);
+    bool atEnd() const;
+    bool canReadLine() const;
+protected:
+    qint64 readData(char*, long long);
+    qint64 writeData(char const*, long long);
 };
 
 
 extern struct QMetaObject _ZN7QBuffer16staticMetaObjectE ;
-extern struct QMetaObject _ZNK7QBuffer10metaObjectEv(void);
-extern void _ZN7QBuffer11qt_metacastEPKc(void);
-extern int _ZN7QBuffer11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QBuffer _ZN7QBufferC2EP7QObject(void);
-extern QBuffer _ZN7QBufferC1EP7QObject(void);
-extern QBuffer _ZN7QBufferC2EP10QByteArrayP7QObject(void);
-extern QBuffer _ZN7QBufferC1EP10QByteArrayP7QObject(void);
-extern  _ZN7QBufferD2Ev(void);
-extern  _ZN7QBufferD1Ev(void);
-extern  _ZN7QBufferD0Ev(void);
-extern QByteArray _ZN7QBuffer6bufferEv(void);
-extern QByteArray _ZNK7QBuffer6bufferEv(void);
-extern void _ZN7QBuffer9setBufferEP10QByteArray(void);
-extern void _ZN7QBuffer7setDataERK10QByteArray(void);
-extern QByteArray _ZNK7QBuffer4dataEv(void);
-extern bool _ZN7QBuffer4openE6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern void _ZN7QBuffer5closeEv(void);
-extern qint64 _ZNK7QBuffer4sizeEv(void);
-extern qint64 _ZNK7QBuffer3posEv(void);
-extern bool _ZN7QBuffer4seekEx(void);
-extern bool _ZNK7QBuffer5atEndEv(void);
-extern bool _ZNK7QBuffer11canReadLineEv(void);
-extern qint64 _ZN7QBuffer8readDataEPcx(void);
-extern qint64 _ZN7QBuffer9writeDataEPKcx(void);
 // *INDENT-ON*
 #endif

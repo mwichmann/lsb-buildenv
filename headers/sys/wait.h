@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-
 #define WIFSIGNALED(status)	(!WIFSTOPPED(status) && !WIFEXITED(status))
 #define WIFSTOPPED(status)	(((status) & 0xff) == 0x7f)
 #define WEXITSTATUS(status)	(((status) & 0xff00) >> 8)

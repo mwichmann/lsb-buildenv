@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define UNIX_PATH_MAX	108
 
 
@@ -16,7 +15,6 @@ extern "C" {
 	sa_family_t sun_family;	/* AF_UNIX */
 	char sun_path[UNIX_PATH_MAX];
     };
-
 
 #ifdef __cplusplus
 }

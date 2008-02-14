@@ -12,11 +12,6 @@ extern "C" {
 
 
 
-
-
-
-
-
     enum msg_type {
 	CALL = 0,
 	REPLY = 1
@@ -95,8 +90,6 @@ extern "C" {
 
 
 /* Body of an rpc request call.*/
-
-
     struct call_body {
 	unsigned long int cb_rpcvers;	/* must be equal to two */
 	unsigned long int cb_prog;

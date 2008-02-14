@@ -1,6 +1,6 @@
 
 class QSqlTableModel;
-enum N14QSqlTableModel12EditStrategyE {
+enum _ZN14QSqlTableModel12EditStrategyE {
     OnFieldChange,
     OnRowChange,
     OnManualSubmit

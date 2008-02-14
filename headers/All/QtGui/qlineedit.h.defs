@@ -1,6 +1,6 @@
 
 class QLineEdit;
-enum N9QLineEdit8EchoModeE {
+enum _ZN9QLineEdit8EchoModeE {
     Normal,
     NoEcho,
     Password

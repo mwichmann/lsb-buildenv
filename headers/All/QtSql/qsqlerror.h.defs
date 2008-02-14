@@ -1,6 +1,6 @@
 
 class QSqlError;
-enum N9QSqlError9ErrorTypeE {
+enum _ZN9QSqlError9ErrorTypeE {
     NoError,
     None,
     ConnectionError,

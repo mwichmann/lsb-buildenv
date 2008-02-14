@@ -9,12 +9,7 @@ extern "C" {
 
 
 
-
-
-
 /* Identifier for conversion method from one codeset to another*/
-
-
     typedef void *iconv_t;
 
 

@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define sm_selem(x)	((sm_selem_t *)((x)->private_data))
 #define sm_selem_ops(x)	((sm_selem_t *)((x)->private_data))->ops
 #define SM_CAP_GVOLUME	(1<<1)
@@ -40,7 +39,6 @@ extern "C" {
 	snd_hctl_t *hctl;
 	snd_ctl_card_info_t *info;
     };
-
 
 #ifdef __cplusplus
 }

@@ -4,31 +4,57 @@
 class QStyleOptionButton;
 // *INDENT-OFF*
 
-
-
-
-typedef FrameFeatures	
+typedef class QFlags<QStyleOptionFrameV2::FrameFeature>
+{
+private:
+public:
+}FrameFeatures	
 ;
 
-typedef ButtonFeatures	
+typedef class QFlags<QStyleOptionButton::ButtonFeature>
+{
+private:
+public:
+}ButtonFeatures	
 ;
 
-typedef CornerWidgets	
+typedef class QFlags<QStyleOptionTab::CornerWidget>
+{
+private:
+public:
+}CornerWidgets	
 ;
 
-typedef ToolBarFeatures	
+typedef class QFlags<QStyleOptionToolBar::ToolBarFeature>
+{
+private:
+public:
+}ToolBarFeatures	
 ;
 
-typedef Q3ListViewItemFeatures	
+typedef class QFlags<QStyleOptionQ3ListViewItem::Q3ListViewItemFeature>
+{
+private:
+public:
+}Q3ListViewItemFeatures	
 ;
 
-typedef ToolButtonFeatures	
+typedef class QFlags<QStyleOptionToolButton::ToolButtonFeature>
+{
+private:
+public:
+}ToolButtonFeatures	
 ;
 
 class QStyleOption
 {
 private:
 public:
+     QStyleOption(int, int);
+     QStyleOption(QStyleOption const&);
+     ~QStyleOption();
+    void init(QWidget const*);
+     operator=(QStyleOption const&);
 };
 
 enum OptionType	
@@ -67,18 +93,26 @@ class QStyleOptionFocusRect :
 {
 private:
 public:
+     QStyleOptionFocusRect();
+     QStyleOptionFocusRect(int);
 };
 
 class QStyleOptionFrame :  
 {
 private:
 public:
+     QStyleOptionFrame();
+     QStyleOptionFrame(int);
 };
 
 class QStyleOptionFrameV2 :  
 {
 private:
 public:
+     QStyleOptionFrameV2();
+     QStyleOptionFrameV2(QStyleOptionFrame const&);
+     operator=(QStyleOptionFrame const&);
+     QStyleOptionFrameV2(int);
 };
 
 enum FrameFeature	
@@ -98,18 +132,24 @@ class QStyleOptionTabWidgetFrame :
 {
 private:
 public:
+     QStyleOptionTabWidgetFrame();
+     QStyleOptionTabWidgetFrame(int);
 };
 
 class QStyleOptionTabBarBase :  
 {
 private:
 public:
+     QStyleOptionTabBarBase();
+     QStyleOptionTabBarBase(int);
 };
 
 class QStyleOptionHeader :  
 {
 private:
 public:
+     QStyleOptionHeader();
+     QStyleOptionHeader(int);
 };
 
 enum SectionPosition	
@@ -142,6 +182,8 @@ class QStyleOptionButton :
 {
 private:
 public:
+     QStyleOptionButton();
+     QStyleOptionButton(int);
 };
 
 enum ButtonFeature	
@@ -164,6 +206,8 @@ class QStyleOptionTab :
 {
 private:
 public:
+     QStyleOptionTab();
+     QStyleOptionTab(int);
 };
 
 enum TabPosition	
@@ -201,12 +245,18 @@ class QStyleOptionTabV2 :
 {
 private:
 public:
+     QStyleOptionTabV2();
+     QStyleOptionTabV2(QStyleOptionTab const&);
+     operator=(QStyleOptionTab const&);
+     QStyleOptionTabV2(int);
 };
 
 class QStyleOptionToolBar :  
 {
 private:
 public:
+     QStyleOptionToolBar();
+     QStyleOptionToolBar(int);
 };
 
 enum ToolBarPosition	
@@ -235,18 +285,27 @@ class QStyleOptionProgressBar :
 {
 private:
 public:
+     QStyleOptionProgressBar();
+     QStyleOptionProgressBar(int);
 };
 
 class QStyleOptionProgressBarV2 :  
 {
 private:
 public:
+     QStyleOptionProgressBarV2();
+     QStyleOptionProgressBarV2(QStyleOptionProgressBar const&);
+     QStyleOptionProgressBarV2(QStyleOptionProgressBarV2 const&);
+     operator=(QStyleOptionProgressBar const&);
+     QStyleOptionProgressBarV2(int);
 };
 
 class QStyleOptionMenuItem :  
 {
 private:
 public:
+     QStyleOptionMenuItem();
+     QStyleOptionMenuItem(int);
 };
 
 enum MenuItemType	
@@ -274,6 +333,8 @@ class QStyleOptionQ3ListViewItem :
 {
 private:
 public:
+     QStyleOptionQ3ListViewItem();
+     QStyleOptionQ3ListViewItem(int);
 };
 
 enum Q3ListViewItemFeature	
@@ -296,18 +357,24 @@ class QStyleOptionQ3DockWindow :
 {
 private:
 public:
+     QStyleOptionQ3DockWindow();
+     QStyleOptionQ3DockWindow(int);
 };
 
 class QStyleOptionDockWidget :  
 {
 private:
 public:
+     QStyleOptionDockWidget();
+     QStyleOptionDockWidget(int);
 };
 
 class QStyleOptionViewItem :  
 {
 private:
 public:
+     QStyleOptionViewItem();
+     QStyleOptionViewItem(int);
 };
 
 enum Position	
@@ -323,42 +390,55 @@ class QStyleOptionToolBox :
 {
 private:
 public:
+     QStyleOptionToolBox();
+     QStyleOptionToolBox(int);
 };
 
 class QStyleOptionRubberBand :  
 {
 private:
 public:
+     QStyleOptionRubberBand();
+     QStyleOptionRubberBand(int);
 };
 
 class QStyleOptionComplex :  
 {
 private:
 public:
+     QStyleOptionComplex(int, int);
 };
 
 class QStyleOptionSlider :  
 {
 private:
 public:
+     QStyleOptionSlider();
+     QStyleOptionSlider(int);
 };
 
 class QStyleOptionSpinBox :  
 {
 private:
 public:
+     QStyleOptionSpinBox();
+     QStyleOptionSpinBox(int);
 };
 
 class QStyleOptionQ3ListView :  
 {
 private:
 public:
+     QStyleOptionQ3ListView();
+     QStyleOptionQ3ListView(int);
 };
 
 class QStyleOptionToolButton :  
 {
 private:
 public:
+     QStyleOptionToolButton();
+     QStyleOptionToolButton(int);
 };
 
 enum ToolButtonFeature	
@@ -380,24 +460,32 @@ class QStyleOptionComboBox :
 {
 private:
 public:
+     QStyleOptionComboBox();
+     QStyleOptionComboBox(int);
 };
 
 class QStyleOptionTitleBar :  
 {
 private:
 public:
+     QStyleOptionTitleBar();
+     QStyleOptionTitleBar(int);
 };
 
 class QStyleOptionGroupBox :  
 {
 private:
 public:
+     QStyleOptionGroupBox();
+     QStyleOptionGroupBox(int);
 };
 
 class QStyleHintReturn
 {
 private:
 public:
+     QStyleHintReturn(int, int);
+     ~QStyleHintReturn();
 };
 
 enum HintReturnType	
@@ -411,139 +499,8 @@ class QStyleHintReturnMask :
 {
 private:
 public:
+     QStyleHintReturnMask();
 };
 
-
-extern QStyleOption _ZN12QStyleOptionC2Eii(void);
-extern QStyleOption _ZN12QStyleOptionC1Eii(void);
-extern QStyleOption _ZN12QStyleOptionC2ERKS_(void);
-extern QStyleOption _ZN12QStyleOptionC1ERKS_(void);
-extern  _ZN12QStyleOptionD2Ev(void);
-extern  _ZN12QStyleOptionD1Ev(void);
-extern void _ZN12QStyleOption4initEPK7QWidget(void);
-extern QStyleOption _ZN12QStyleOptionaSERKS_(void);
-extern QStyleOptionFocusRect _ZN21QStyleOptionFocusRectC2Ev(void);
-extern QStyleOptionFocusRect _ZN21QStyleOptionFocusRectC1Ev(void);
-extern QStyleOptionFocusRect _ZN21QStyleOptionFocusRectC2Ei(void);
-extern QStyleOptionFocusRect _ZN21QStyleOptionFocusRectC1Ei(void);
-extern QStyleOptionFrame _ZN17QStyleOptionFrameC2Ev(void);
-extern QStyleOptionFrame _ZN17QStyleOptionFrameC1Ev(void);
-extern QStyleOptionFrame _ZN17QStyleOptionFrameC2Ei(void);
-extern QStyleOptionFrame _ZN17QStyleOptionFrameC1Ei(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2C2Ev(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2C1Ev(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2C2ERK17QStyleOptionFrame(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2C1ERK17QStyleOptionFrame(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2aSERK17QStyleOptionFrame(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2C2Ei(void);
-extern QStyleOptionFrameV2 _ZN19QStyleOptionFrameV2C1Ei(void);
-extern QStyleOptionTabWidgetFrame _ZN26QStyleOptionTabWidgetFrameC2Ev(void);
-extern QStyleOptionTabWidgetFrame _ZN26QStyleOptionTabWidgetFrameC1Ev(void);
-extern QStyleOptionTabWidgetFrame _ZN26QStyleOptionTabWidgetFrameC2Ei(void);
-extern QStyleOptionTabWidgetFrame _ZN26QStyleOptionTabWidgetFrameC1Ei(void);
-extern QStyleOptionTabBarBase _ZN22QStyleOptionTabBarBaseC2Ev(void);
-extern QStyleOptionTabBarBase _ZN22QStyleOptionTabBarBaseC1Ev(void);
-extern QStyleOptionTabBarBase _ZN22QStyleOptionTabBarBaseC2Ei(void);
-extern QStyleOptionTabBarBase _ZN22QStyleOptionTabBarBaseC1Ei(void);
-extern QStyleOptionHeader _ZN18QStyleOptionHeaderC2Ev(void);
-extern QStyleOptionHeader _ZN18QStyleOptionHeaderC1Ev(void);
-extern QStyleOptionHeader _ZN18QStyleOptionHeaderC2Ei(void);
-extern QStyleOptionHeader _ZN18QStyleOptionHeaderC1Ei(void);
-extern QStyleOptionButton _ZN18QStyleOptionButtonC2Ev(void);
-extern QStyleOptionButton _ZN18QStyleOptionButtonC1Ev(void);
-extern QStyleOptionButton _ZN18QStyleOptionButtonC2Ei(void);
-extern QStyleOptionButton _ZN18QStyleOptionButtonC1Ei(void);
-extern QStyleOptionTab _ZN15QStyleOptionTabC2Ev(void);
-extern QStyleOptionTab _ZN15QStyleOptionTabC1Ev(void);
-extern QStyleOptionTab _ZN15QStyleOptionTabC2Ei(void);
-extern QStyleOptionTab _ZN15QStyleOptionTabC1Ei(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2C2Ev(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2C1Ev(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2C2ERK15QStyleOptionTab(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2C1ERK15QStyleOptionTab(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2aSERK15QStyleOptionTab(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2C2Ei(void);
-extern QStyleOptionTabV2 _ZN17QStyleOptionTabV2C1Ei(void);
-extern QStyleOptionToolBar _ZN19QStyleOptionToolBarC2Ev(void);
-extern QStyleOptionToolBar _ZN19QStyleOptionToolBarC1Ev(void);
-extern QStyleOptionToolBar _ZN19QStyleOptionToolBarC2Ei(void);
-extern QStyleOptionToolBar _ZN19QStyleOptionToolBarC1Ei(void);
-extern QStyleOptionProgressBar _ZN23QStyleOptionProgressBarC2Ev(void);
-extern QStyleOptionProgressBar _ZN23QStyleOptionProgressBarC1Ev(void);
-extern QStyleOptionProgressBar _ZN23QStyleOptionProgressBarC2Ei(void);
-extern QStyleOptionProgressBar _ZN23QStyleOptionProgressBarC1Ei(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C2Ev(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C1Ev(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C2ERK23QStyleOptionProgressBar(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C1ERK23QStyleOptionProgressBar(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C2ERKS_(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C1ERKS_(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2aSERK23QStyleOptionProgressBar(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C2Ei(void);
-extern QStyleOptionProgressBarV2 _ZN25QStyleOptionProgressBarV2C1Ei(void);
-extern QStyleOptionMenuItem _ZN20QStyleOptionMenuItemC2Ev(void);
-extern QStyleOptionMenuItem _ZN20QStyleOptionMenuItemC1Ev(void);
-extern QStyleOptionMenuItem _ZN20QStyleOptionMenuItemC2Ei(void);
-extern QStyleOptionMenuItem _ZN20QStyleOptionMenuItemC1Ei(void);
-extern QStyleOptionQ3ListViewItem _ZN26QStyleOptionQ3ListViewItemC2Ev(void);
-extern QStyleOptionQ3ListViewItem _ZN26QStyleOptionQ3ListViewItemC1Ev(void);
-extern QStyleOptionQ3ListViewItem _ZN26QStyleOptionQ3ListViewItemC2Ei(void);
-extern QStyleOptionQ3ListViewItem _ZN26QStyleOptionQ3ListViewItemC1Ei(void);
-extern QStyleOptionQ3DockWindow _ZN24QStyleOptionQ3DockWindowC2Ev(void);
-extern QStyleOptionQ3DockWindow _ZN24QStyleOptionQ3DockWindowC1Ev(void);
-extern QStyleOptionQ3DockWindow _ZN24QStyleOptionQ3DockWindowC2Ei(void);
-extern QStyleOptionQ3DockWindow _ZN24QStyleOptionQ3DockWindowC1Ei(void);
-extern QStyleOptionDockWidget _ZN22QStyleOptionDockWidgetC2Ev(void);
-extern QStyleOptionDockWidget _ZN22QStyleOptionDockWidgetC1Ev(void);
-extern QStyleOptionDockWidget _ZN22QStyleOptionDockWidgetC2Ei(void);
-extern QStyleOptionDockWidget _ZN22QStyleOptionDockWidgetC1Ei(void);
-extern QStyleOptionViewItem _ZN20QStyleOptionViewItemC2Ev(void);
-extern QStyleOptionViewItem _ZN20QStyleOptionViewItemC1Ev(void);
-extern QStyleOptionViewItem _ZN20QStyleOptionViewItemC2Ei(void);
-extern QStyleOptionViewItem _ZN20QStyleOptionViewItemC1Ei(void);
-extern QStyleOptionToolBox _ZN19QStyleOptionToolBoxC2Ev(void);
-extern QStyleOptionToolBox _ZN19QStyleOptionToolBoxC1Ev(void);
-extern QStyleOptionToolBox _ZN19QStyleOptionToolBoxC2Ei(void);
-extern QStyleOptionToolBox _ZN19QStyleOptionToolBoxC1Ei(void);
-extern QStyleOptionRubberBand _ZN22QStyleOptionRubberBandC2Ev(void);
-extern QStyleOptionRubberBand _ZN22QStyleOptionRubberBandC1Ev(void);
-extern QStyleOptionRubberBand _ZN22QStyleOptionRubberBandC2Ei(void);
-extern QStyleOptionRubberBand _ZN22QStyleOptionRubberBandC1Ei(void);
-extern QStyleOptionComplex _ZN19QStyleOptionComplexC2Eii(void);
-extern QStyleOptionComplex _ZN19QStyleOptionComplexC1Eii(void);
-extern QStyleOptionSlider _ZN18QStyleOptionSliderC2Ev(void);
-extern QStyleOptionSlider _ZN18QStyleOptionSliderC1Ev(void);
-extern QStyleOptionSlider _ZN18QStyleOptionSliderC2Ei(void);
-extern QStyleOptionSlider _ZN18QStyleOptionSliderC1Ei(void);
-extern QStyleOptionSpinBox _ZN19QStyleOptionSpinBoxC2Ev(void);
-extern QStyleOptionSpinBox _ZN19QStyleOptionSpinBoxC1Ev(void);
-extern QStyleOptionSpinBox _ZN19QStyleOptionSpinBoxC2Ei(void);
-extern QStyleOptionSpinBox _ZN19QStyleOptionSpinBoxC1Ei(void);
-extern QStyleOptionQ3ListView _ZN22QStyleOptionQ3ListViewC2Ev(void);
-extern QStyleOptionQ3ListView _ZN22QStyleOptionQ3ListViewC1Ev(void);
-extern QStyleOptionQ3ListView _ZN22QStyleOptionQ3ListViewC2Ei(void);
-extern QStyleOptionQ3ListView _ZN22QStyleOptionQ3ListViewC1Ei(void);
-extern QStyleOptionToolButton _ZN22QStyleOptionToolButtonC2Ev(void);
-extern QStyleOptionToolButton _ZN22QStyleOptionToolButtonC1Ev(void);
-extern QStyleOptionToolButton _ZN22QStyleOptionToolButtonC2Ei(void);
-extern QStyleOptionToolButton _ZN22QStyleOptionToolButtonC1Ei(void);
-extern QStyleOptionComboBox _ZN20QStyleOptionComboBoxC2Ev(void);
-extern QStyleOptionComboBox _ZN20QStyleOptionComboBoxC1Ev(void);
-extern QStyleOptionComboBox _ZN20QStyleOptionComboBoxC2Ei(void);
-extern QStyleOptionComboBox _ZN20QStyleOptionComboBoxC1Ei(void);
-extern QStyleOptionTitleBar _ZN20QStyleOptionTitleBarC2Ev(void);
-extern QStyleOptionTitleBar _ZN20QStyleOptionTitleBarC1Ev(void);
-extern QStyleOptionTitleBar _ZN20QStyleOptionTitleBarC2Ei(void);
-extern QStyleOptionTitleBar _ZN20QStyleOptionTitleBarC1Ei(void);
-extern QStyleOptionGroupBox _ZN20QStyleOptionGroupBoxC2Ev(void);
-extern QStyleOptionGroupBox _ZN20QStyleOptionGroupBoxC1Ev(void);
-extern QStyleOptionGroupBox _ZN20QStyleOptionGroupBoxC2Ei(void);
-extern QStyleOptionGroupBox _ZN20QStyleOptionGroupBoxC1Ei(void);
-extern QStyleHintReturn _ZN16QStyleHintReturnC2Eii(void);
-extern QStyleHintReturn _ZN16QStyleHintReturnC1Eii(void);
-extern  _ZN16QStyleHintReturnD2Ev(void);
-extern  _ZN16QStyleHintReturnD1Ev(void);
-extern QStyleHintReturnMask _ZN20QStyleHintReturnMaskC2Ev(void);
-extern QStyleHintReturnMask _ZN20QStyleHintReturnMaskC1Ev(void);
 // *INDENT-ON*
 #endif

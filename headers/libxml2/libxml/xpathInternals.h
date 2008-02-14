@@ -15,7 +15,6 @@ extern "C" {
 #endif
 
 
-
 #define xmlXPathStackIsNodeSet(ctxt)	 \
 	(((ctxt)->value != NULL) && (((ctxt)->value->type == XPATH_NODESET) \
 	|| ((ctxt)->value->type == XPATH_XSLT_TREE)))

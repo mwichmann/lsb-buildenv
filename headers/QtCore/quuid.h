@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     struct QUuid;
 
     enum Variant {
@@ -31,19 +28,10 @@ extern "C" {
     };
 
 
-    extern struct QUuid _ZN5QUuidC2ERK7QString(void);
-    extern struct QUuid _ZN5QUuidC1ERK7QString(void);
-    extern struct QUuid _ZN5QUuidC2EPKc(void);
-    extern struct QUuid _ZN5QUuidC1EPKc(void);
-    extern QString _ZNK5QUuid8toStringEv(void);
-    extern bool _ZNK5QUuid6isNullEv(void);
-    extern bool _ZNK5QUuidltERKS_(void);
-    extern bool _ZNK5QUuidgtERKS_(void);
-    extern struct QUuid _ZN5QUuid10createUuidEv(void);
-    extern enum N5QUuid7VariantE _ZNK5QUuid7variantEv(void);
-    extern enum N5QUuid7VersionE _ZNK5QUuid7versionEv(void);
-    extern QDataStream _ZlsR11QDataStreamRK5QUuid(void);
-    extern QDataStream _ZrsR11QDataStreamR5QUuid(void);
+    extern QDataStream _ZlsR11QDataStreamRK5QUuid(QDataStream &,
+						  const struct QUuid &);
+    extern QDataStream _ZrsR11QDataStreamR5QUuid(QDataStream &,
+						 struct QUuid &);
 #ifdef __cplusplus
 }
 #endif

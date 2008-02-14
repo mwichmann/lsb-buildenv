@@ -1,6 +1,6 @@
 
 class QInputContext;
-enum N13QInputContext14StandardFormatE {
+enum _ZN13QInputContext14StandardFormatE {
     PreeditFormat,
     SelectionFormat
 };

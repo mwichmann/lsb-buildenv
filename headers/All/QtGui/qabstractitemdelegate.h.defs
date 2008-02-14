@@ -1,6 +1,6 @@
 
 class QAbstractItemDelegate;
-enum N21QAbstractItemDelegate11EndEditHintE {
+enum _ZN21QAbstractItemDelegate11EndEditHintE {
     NoHint,
     EditNextItem,
     EditPreviousItem,

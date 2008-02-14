@@ -1,6 +1,6 @@
 
 class QThread;
-enum N7QThread8PriorityE {
+enum _ZN7QThread8PriorityE {
     IdlePriority,
     LowestPriority,
     LowPriority,

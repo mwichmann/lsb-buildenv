@@ -8,12 +8,7 @@ extern "C" {
 
 
 
-
-
-
 /* Datatypes*/
-
-
     typedef unsigned int GLenum;
 
     typedef unsigned char GLboolean;
@@ -46,8 +41,6 @@ extern "C" {
 
 
 /* Constants*/
-
-
 
 /* Data types*/
 #define GL_UNSIGNED_BYTE	0x1401
@@ -130,51 +123,27 @@ extern "C" {
 
 /* Points*/
 
-
-
 /* Lines*/
-
-
 
 /* Polygons*/
 
-
-
 /* Display Lists*/
-
-
 
 /* Depth buffer*/
 
-
-
 /* Lighting*/
-
-
 
 /* User clipping planes*/
 
-
-
 /* Accumulation buffer*/
-
-
 
 /* Alpha testing*/
 
-
-
 /* Blending*/
-
-
 
 /* Render Mode*/
 
-
-
 /* Feedback*/
-
-
 
     extern void glAccum(GLenum, GLfloat);
     extern void glAlphaFunc(GLenum, GLclampf);

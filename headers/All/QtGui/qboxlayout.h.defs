@@ -1,6 +1,6 @@
 
 class QBoxLayout;
-enum N10QBoxLayout9DirectionE {
+enum _ZN10QBoxLayout9DirectionE {
     LeftToRight,
     RightToLeft,
     TopToBottom,

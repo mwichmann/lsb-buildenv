@@ -9,10 +9,6 @@ extern "C" {
 #error "This header not permitted by the LSB"
 
 
-
-
-
-
 #ifdef __cplusplus
 }
 #endif

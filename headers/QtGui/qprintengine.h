@@ -4,13 +4,11 @@
 class QPrintEngine;
 // *INDENT-OFF*
 
-
-
-
 class QPrintEngine
 {
 private:
 public:
+     ~QPrintEngine();
 };
 
 enum PrintEnginePropertyKey	
@@ -40,8 +38,5 @@ PPK_CustomBase = 65280
 }
 ;
 
-
-extern  _ZN12QPrintEngineD0Ev(void);
-extern  _ZN12QPrintEngineD1Ev(void);
 // *INDENT-ON*
 #endif

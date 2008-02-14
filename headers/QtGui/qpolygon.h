@@ -4,45 +4,38 @@
 class QPolygonF;
 // *INDENT-OFF*
 
-
-
-
 class QPolygon
 {
 private:
 public:
+     QPolygon(QRect const&, bool);
+     QPolygon(int, int const*);
+    QVariant operator QVariant() const;
+    void translate(int, int);
+    QRect boundingRect() const;
+    void point(int, int*, int*) const;
+    void setPoints(int, int const*);
+    void setPoints(int, int, int, ...);
+    void putPoints(int, int, int const*);
+    void putPoints(int, int, int, int, ...);
+    void putPoints(int, int, QPolygon const&, int);
 };
 
 class QPolygonF
 {
 private:
 public:
+     QPolygonF(QRectF const&);
+     QPolygonF(QPolygon const&);
+    void translate(QPointF const&);
+    QPolygon toPolygon() const;
+    QRectF boundingRect() const;
 };
 
 
-extern QPolygon _ZN8QPolygonC2ERK5QRectb(void);
-extern QPolygon _ZN8QPolygonC1ERK5QRectb(void);
-extern QPolygon _ZN8QPolygonC2EiPKi(void);
-extern QPolygon _ZN8QPolygonC1EiPKi(void);
-extern QPolygon _ZNK8QPolygoncv8QVariantEv(void);
-extern void _ZN8QPolygon9translateEii(void);
-extern QRect _ZNK8QPolygon12boundingRectEv(void);
-extern void _ZNK8QPolygon5pointEiPiS0_(void);
-extern void _ZN8QPolygon9setPointsEiPKi(void);
-extern void _ZN8QPolygon9setPointsEiiiz(void);
-extern void _ZN8QPolygon9putPointsEiiPKi(void);
-extern void _ZN8QPolygon9putPointsEiiiiz(void);
-extern void _ZN8QPolygon9putPointsEiiRKS_i(void);
-extern QDebug _Zls6QDebugRK8QPolygon(void);
-extern QPolygonF _ZN9QPolygonFC2ERK6QRectF(void);
-extern QPolygonF _ZN9QPolygonFC1ERK6QRectF(void);
-extern QPolygonF _ZN9QPolygonFC2ERK8QPolygon(void);
-extern QPolygonF _ZN9QPolygonFC1ERK8QPolygon(void);
-extern void _ZN9QPolygonF9translateERK7QPointF(void);
-extern QPolygon _ZNK9QPolygonF9toPolygonEv(void);
-extern QRectF _ZNK9QPolygonF12boundingRectEv(void);
-extern QDebug _Zls6QDebugRK9QPolygonF(void);
-extern QDataStream _ZlsR11QDataStreamRK9QPolygonF(void);
-extern QDataStream _ZrsR11QDataStreamR9QPolygonF(void);
+extern QDebug _Zls6QDebugRK8QPolygon(_Z6QDebug, const QPolygon &);
+extern QDebug _Zls6QDebugRK9QPolygonF(_Z6QDebug, const QPolygonF &);
+extern QDataStream _ZlsR11QDataStreamRK9QPolygonF(QDataStream &, const QPolygonF &);
+extern QDataStream _ZrsR11QDataStreamR9QPolygonF(QDataStream &, QPolygonF &);
 // *INDENT-ON*
 #endif

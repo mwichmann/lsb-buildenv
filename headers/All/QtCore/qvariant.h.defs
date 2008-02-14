@@ -1,6 +1,6 @@
 
 class QVariant;
-enum N8QVariant4TypeE {
+enum _ZN8QVariant4TypeE {
     LastType,
     Invalid,
     Bool,
@@ -55,15 +55,15 @@ enum N8QVariant4TypeE {
 struct _ZN8QVariant13PrivateSharedE;
 struct _ZN8QVariant7PrivateE;
 union _ZN8QVariant7Private4DataE;
-typedef void N8QVariant11f_constructE;
-typedef void N8QVariant7f_clearE;
-typedef bool N8QVariant6f_nullE;
-typedef void N8QVariant6f_loadE;
-typedef void N8QVariant6f_saveE;
-typedef bool N8QVariant9f_compareE;
-typedef bool N8QVariant9f_convertE;
-typedef bool N8QVariant12f_canConvertE;
-typedef void N8QVariant13f_debugStreamE;
+typedef void _ZN8QVariant11f_constructE;
+typedef void _ZN8QVariant7f_clearE;
+typedef bool _ZN8QVariant6f_nullE;
+typedef void _ZN8QVariant6f_loadE;
+typedef void _ZN8QVariant6f_saveE;
+typedef bool _ZN8QVariant9f_compareE;
+typedef bool _ZN8QVariant9f_convertE;
+typedef bool _ZN8QVariant12f_canConvertE;
+typedef void _ZN8QVariant13f_debugStreamE;
 struct _ZN8QVariant7HandlerE;
 typedef class QList < QVariant > QVariantList;
 typedef class QMap < QString, QVariant > QVariantMap;

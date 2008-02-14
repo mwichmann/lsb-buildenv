@@ -8,9 +8,6 @@ extern "C" {
 
 
 
-
-
-
     extern void err(int, const char *, ...);
     extern void errx(int, const char *, ...);
     extern void warn(const char *, ...);

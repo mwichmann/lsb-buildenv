@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-
 #define FT_Glyph_Done_Func	FT_Glyph_DoneFunc
 #define FT_Glyph_BBox_Func	FT_Glyph_GetBBoxFunc
 #define FT_Glyph_Init_Func	FT_Glyph_InitFunc

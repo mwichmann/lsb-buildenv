@@ -4,13 +4,44 @@
 class QDataStream;
 // *INDENT-OFF*
 
-
-
-
 class QDataStream
 {
 private:
 public:
+     QDataStream();
+     QDataStream(QIODevice*);
+     QDataStream(QByteArray*, int);
+     QDataStream(QByteArray*, QFlags<QIODevice::OpenModeFlag>);
+     QDataStream(QByteArray const&);
+     ~QDataStream();
+    void setDevice(QIODevice*);
+    void unsetDevice();
+    bool atEnd() const;
+    enum _ZN11QDataStream6StatusE status() const;
+    void setStatus(QDataStream::Status);
+    void resetStatus();
+    void setByteOrder(QDataStream::ByteOrder);
+    QDataStream & operator>>(signed char&);
+    QDataStream & operator>>(short&);
+    QDataStream & operator>>(int&);
+    QDataStream & operator>>(long long&);
+    QDataStream & operator>>(bool&);
+    QDataStream & operator>>(float&);
+    QDataStream & operator>>(double&);
+    QDataStream & operator>>(char*&);
+    QDataStream & operator<<(signed char);
+    QDataStream & operator<<(short);
+    QDataStream & operator<<(int);
+    QDataStream & operator<<(long long);
+    QDataStream & operator<<(bool);
+    QDataStream & operator<<(float);
+    QDataStream & operator<<(double);
+    QDataStream & operator<<(char const*);
+    QDataStream & readBytes(char*&, unsigned int&);
+    int readRawData(char*, int);
+    QDataStream & writeBytes(char const*, unsigned int);
+    int writeRawData(char const*, int);
+    int skipRawData(int);
 };
 
 enum Version	
@@ -42,46 +73,11 @@ ReadCorruptData = 2
 ;
 
 
-extern QDataStream _ZN11QDataStreamC2Ev(void);
-extern QDataStream _ZN11QDataStreamC1Ev(void);
-extern QDataStream _ZN11QDataStreamC2EP9QIODevice(void);
-extern QDataStream _ZN11QDataStreamC1EP9QIODevice(void);
-extern QDataStream _ZN11QDataStreamC2EP10QByteArrayi(void);
-extern QDataStream _ZN11QDataStreamC1EP10QByteArrayi(void);
-extern QDataStream _ZN11QDataStreamC2EP10QByteArray6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern QDataStream _ZN11QDataStreamC1EP10QByteArray6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern QDataStream _ZN11QDataStreamC2ERK10QByteArray(void);
-extern QDataStream _ZN11QDataStreamC1ERK10QByteArray(void);
-extern  _ZN11QDataStreamD2Ev(void);
-extern  _ZN11QDataStreamD1Ev(void);
-extern  _ZN11QDataStreamD0Ev(void);
-extern void _ZN11QDataStream9setDeviceEP9QIODevice(void);
-extern void _ZN11QDataStream11unsetDeviceEv(void);
-extern bool _ZNK11QDataStream5atEndEv(void);
-extern enum N11QDataStream6StatusE _ZNK11QDataStream6statusEv(void);
-extern void _ZN11QDataStream9setStatusENS_6StatusE(void);
-extern void _ZN11QDataStream11resetStatusEv(void);
-extern void _ZN11QDataStream12setByteOrderENS_9ByteOrderE(void);
-extern QDataStream _ZN11QDataStreamrsERa(void);
-extern QDataStream _ZN11QDataStreamrsERs(void);
-extern QDataStream _ZN11QDataStreamrsERi(void);
-extern QDataStream _ZN11QDataStreamrsERx(void);
-extern QDataStream _ZN11QDataStreamrsERb(void);
-extern QDataStream _ZN11QDataStreamrsERf(void);
-extern QDataStream _ZN11QDataStreamrsERd(void);
-extern QDataStream _ZN11QDataStreamrsERPc(void);
-extern QDataStream _ZN11QDataStreamlsEa(void);
-extern QDataStream _ZN11QDataStreamlsEs(void);
-extern QDataStream _ZN11QDataStreamlsEi(void);
-extern QDataStream _ZN11QDataStreamlsEx(void);
-extern QDataStream _ZN11QDataStreamlsEb(void);
-extern QDataStream _ZN11QDataStreamlsEf(void);
-extern QDataStream _ZN11QDataStreamlsEd(void);
-extern QDataStream _ZN11QDataStreamlsEPKc(void);
-extern QDataStream _ZN11QDataStream9readBytesERPcRj(void);
-extern int _ZN11QDataStream11readRawDataEPci(void);
-extern QDataStream _ZN11QDataStream10writeBytesEPKcj(void);
-extern int _ZN11QDataStream12writeRawDataEPKci(void);
-extern int _ZN11QDataStream11skipRawDataEi(void);
+extern  _ZlsR11QDataStreamRK11QSizePolicy(QDataStream &, const QSizePolicy &);
+extern  _ZlsR11QDataStreamRK13QStandardItem(QDataStream &, QStandardItem * &);
+extern  _ZlsR11QDataStreamRK5QIcon(QDataStream &, const QIcon &);
+extern  _ZrsR11QDataStreamR11QSizePolicy(QDataStream &, QSizePolicy &);
+extern  _ZrsR11QDataStreamR13QStandardItem(QDataStream &, QStandardItem &);
+extern  _ZrsR11QDataStreamR5QIcon(QDataStream &, QIcon &);
 // *INDENT-ON*
 #endif

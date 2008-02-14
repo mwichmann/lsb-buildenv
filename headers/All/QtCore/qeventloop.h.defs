@@ -1,6 +1,6 @@
 
 class QEventLoop;
-enum N10QEventLoop17ProcessEventsFlagE {
+enum _ZN10QEventLoop17ProcessEventsFlagE {
     AllEvents,
     ExcludeUserInputEvents,
     ExcludeUserInput,
@@ -11,4 +11,5 @@ enum N10QEventLoop17ProcessEventsFlagE {
     DeferredDeletion
 };
 class QFlags < QEventLoop::ProcessEventsFlag >;
-typedef N10QEventLoop18ProcessEventsFlagsE;
+typedef class QFlags < QEventLoop::ProcessEventsFlag >
+    _ZN10QEventLoop18ProcessEventsFlagsE;

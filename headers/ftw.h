@@ -12,9 +12,6 @@ extern "C" {
 
 
 
-
-
-
 /* Values for the FLAG argument to the user function passed to `ftw' and 'nftw'.*/
 #define FTW_D	FTW_D
 #define FTW_DNR	FTW_DNR
@@ -37,8 +34,6 @@ extern "C" {
 
 
 /* Flags for fourth argument of `nftw'.*/
-
-
     enum {
 	FTW_PHYS = 1,
 	FTW_MOUNT = 2,
@@ -48,8 +43,6 @@ extern "C" {
 
 
 /* Structure used for fourth argument to callback function for `nftw'.*/
-
-
     struct FTW {
 	int base;
 	int level;
@@ -57,8 +50,6 @@ extern "C" {
 
 
 /* Convenient types for callback functions.*/
-
-
     typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,
 				 int __flag);
 

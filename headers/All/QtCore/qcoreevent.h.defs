@@ -1,6 +1,6 @@
 
 class QEvent;
-enum N6QEvent4TypeE {
+enum _ZN6QEvent4TypeE {
     None,
     Timer,
     MouseButtonPress,

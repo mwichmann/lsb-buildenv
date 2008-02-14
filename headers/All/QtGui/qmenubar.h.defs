@@ -1,6 +1,6 @@
 
 class QMenuBar;
-enum N8QMenuBar9SeparatorE {
+enum _ZN8QMenuBar9SeparatorE {
     Never,
     InWindowsStyle
 };

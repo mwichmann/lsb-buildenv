@@ -4,46 +4,41 @@
 class QMotifStyle;
 // *INDENT-OFF*
 
-
-
-
 class QMotifStyle : public QCommonStyle
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QMotifStyle(bool);
+     ~QMotifStyle();
+    void setUseHighlightColors(bool);
+    bool useHighlightColors() const;
+    void polish(QPalette&);
+    void polish(QWidget*);
+    void unpolish(QWidget*);
+    void polish(QApplication*);
+    void unpolish(QApplication*);
+    void drawPrimitive(QStyle::PrimitiveElement, QStyleOption const*, QPainter*, QWidget const*) const;
+    void drawControl(QStyle::ControlElement, QStyleOption const*, QPainter*, QWidget const*) const;
+    void drawComplexControl(QStyle::ComplexControl, QStyleOptionComplex const*, QPainter*, QWidget const*) const;
+    QRect subControlRect(QStyle::ComplexControl, QStyleOptionComplex const*, QStyle::SubControl, QWidget const*) const;
+    int pixelMetric(QStyle::PixelMetric, QStyleOption const*, QWidget const*) const;
+    QSize sizeFromContents(QStyle::ContentsType, QStyleOption const*, QSize const&, QWidget const*) const;
+    QRect subElementRect(QStyle::SubElement, QStyleOption const*, QWidget const*) const;
+    QPixmap standardPixmap(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
+    int styleHint(QStyle::StyleHint, QStyleOption const*, QWidget const*, QStyleHintReturn*) const;
+    bool event(QEvent*);
+    QPalette standardPalette() const;
+     QMotifStyle(QMotifStylePrivate&, bool);
+protected:
+    void timerEvent(QTimerEvent*);
+    bool eventFilter(QObject*, QEvent*);
+    QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
 };
 
 
 extern struct QMetaObject _ZN11QMotifStyle16staticMetaObjectE ;
-extern struct QMetaObject _ZNK11QMotifStyle10metaObjectEv(void);
-extern void _ZN11QMotifStyle11qt_metacastEPKc(void);
-extern int _ZN11QMotifStyle11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QMotifStyle _ZN11QMotifStyleC2Eb(void);
-extern QMotifStyle _ZN11QMotifStyleC1Eb(void);
-extern  _ZN11QMotifStyleD2Ev(void);
-extern  _ZN11QMotifStyleD1Ev(void);
-extern  _ZN11QMotifStyleD0Ev(void);
-extern void _ZN11QMotifStyle21setUseHighlightColorsEb(void);
-extern bool _ZNK11QMotifStyle18useHighlightColorsEv(void);
-extern void _ZN11QMotifStyle6polishER8QPalette(void);
-extern void _ZN11QMotifStyle6polishEP7QWidget(void);
-extern void _ZN11QMotifStyle8unpolishEP7QWidget(void);
-extern void _ZN11QMotifStyle6polishEP12QApplication(void);
-extern void _ZN11QMotifStyle8unpolishEP12QApplication(void);
-extern void _ZNK11QMotifStyle13drawPrimitiveEN6QStyle16PrimitiveElementEPK12QStyleOptionP8QPainterPK7QWidget(void);
-extern void _ZNK11QMotifStyle11drawControlEN6QStyle14ControlElementEPK12QStyleOptionP8QPainterPK7QWidget(void);
-extern void _ZNK11QMotifStyle18drawComplexControlEN6QStyle14ComplexControlEPK19QStyleOptionComplexP8QPainterPK7QWidget(void);
-extern QRect _ZNK11QMotifStyle14subControlRectEN6QStyle14ComplexControlEPK19QStyleOptionComplexNS0_10SubControlEPK7QWidget(void);
-extern int _ZNK11QMotifStyle11pixelMetricEN6QStyle11PixelMetricEPK12QStyleOptionPK7QWidget(void);
-extern QSize _ZNK11QMotifStyle16sizeFromContentsEN6QStyle12ContentsTypeEPK12QStyleOptionRK5QSizePK7QWidget(void);
-extern QRect _ZNK11QMotifStyle14subElementRectEN6QStyle10SubElementEPK12QStyleOptionPK7QWidget(void);
-extern QPixmap _ZNK11QMotifStyle14standardPixmapEN6QStyle14StandardPixmapEPK12QStyleOptionPK7QWidget(void);
-extern int _ZNK11QMotifStyle9styleHintEN6QStyle9StyleHintEPK12QStyleOptionPK7QWidgetP16QStyleHintReturn(void);
-extern bool _ZN11QMotifStyle5eventEP6QEvent(void);
-extern QPalette _ZNK11QMotifStyle15standardPaletteEv(void);
-extern QMotifStyle _ZN11QMotifStyleC2ER18QMotifStylePrivateb(void);
-extern QMotifStyle _ZN11QMotifStyleC1ER18QMotifStylePrivateb(void);
-extern void _ZN11QMotifStyle10timerEventEP11QTimerEvent(void);
-extern bool _ZN11QMotifStyle11eventFilterEP7QObjectP6QEvent(void);
 // *INDENT-ON*
 #endif

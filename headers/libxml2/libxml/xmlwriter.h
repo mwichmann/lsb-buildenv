@@ -16,7 +16,6 @@ extern "C" {
 #endif
 
 
-
 #define xmlTextWriterWriteDocType	xmlTextWriterWriteDTD
 #define xmlTextWriterWriteProcessingInstruction	xmlTextWriterWritePI
 

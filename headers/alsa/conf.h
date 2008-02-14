@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _snd_config_iterator *snd_config_iterator_t;
 
     typedef struct _snd_config snd_config_t;

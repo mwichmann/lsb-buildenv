@@ -8,9 +8,6 @@ extern "C" {
 
 
 
-
-
-
     extern _ZTVN10__cxxabiv120__si_class_type_infoE;
     extern _ZTVN10__cxxabiv121__vmi_class_type_infoE;
     extern _ZTVN10__cxxabiv119__pointer_type_infoE;

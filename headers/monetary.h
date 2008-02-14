@@ -11,9 +11,6 @@ extern "C" {
 
 
 
-
-
-
     extern ssize_t strfmon(char *, size_t, const char *, ...);
 #ifdef __cplusplus
 }

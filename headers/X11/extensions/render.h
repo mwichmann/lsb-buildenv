@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define FilterBest	"best"
 #define FilterBilinear	"bilinear"
 #define FilterConvolution	"convolution"
@@ -138,7 +137,6 @@ extern "C" {
 
 
     typedef long unsigned int Picture;
-
 
 #ifdef __cplusplus
 }

@@ -8,9 +8,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct xauth Xauth;
 
 

@@ -4,9 +4,6 @@
 class QSizePolicy;
 // *INDENT-OFF*
 
-
-
-
 typedef enum Policy	
 {
 Fixed = 0,	
@@ -27,6 +24,7 @@ class QSizePolicy
 {
 private:
 public:
+    QVariant operator QVariant() const;
 };
 
 enum SizePolicyMasks	
@@ -60,6 +58,5 @@ Ignored = 13
 
 
 extern struct QMetaObject _ZN11QSizePolicy16staticMetaObjectE ;
-extern QSizePolicy _ZNK11QSizePolicycv8QVariantEv(void);
 // *INDENT-ON*
 #endif

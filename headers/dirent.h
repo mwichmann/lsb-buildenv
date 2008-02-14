@@ -10,12 +10,7 @@ extern "C" {
 
 
 
-
-
-
 /* structure describing an open directory*/
-
-
     typedef struct __dirstream DIR;
 
 
@@ -24,11 +19,7 @@ extern "C" {
 
 /* File types for `d_type'*/
 
-
-
 /* structure describing a directory entry*/
-
-
     struct dirent {
 	long int d_ino;
 	off_t d_off;

@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct snd_midi_event snd_midi_event_t;
 
 

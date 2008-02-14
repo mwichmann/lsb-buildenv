@@ -4,48 +4,39 @@
 class QAccessibleApplication;
 // *INDENT-OFF*
 
-
-
-
 class QAccessibleObject : public QAccessibleInterface
 {
 private:
 public:
+     QAccessibleObject(QObject*);
+    bool isValid() const;
+    QObject * object() const;
+    QRect rect(int) const;
+    void setText(QAccessible::Text, int, QString const&);
+    int userActionCount(int) const;
+    bool doAction(int, int, QList<QVariant> const&);
+    QString actionText(int, QAccessible::Text, int) const;
+     ~QAccessibleObject();
 };
 
 class QAccessibleApplication : public QAccessibleObject
 {
 private:
 public:
+     ~QAccessibleApplication();
+     QAccessibleApplication();
+    int childCount() const;
+    int indexOfChild(QAccessibleInterface const*) const;
+    QFlags<QAccessible::RelationFlag> relationTo(int, QAccessibleInterface const*, int) const;
+    int childAt(int, int) const;
+    int navigate(QAccessible::RelationFlag, int, QAccessibleInterface**) const;
+    QString text(QAccessible::Text, int) const;
+    enum _ZN11QAccessible4RoleE role(int) const;
+    QFlags<QAccessible::StateFlag> state(int) const;
+    int userActionCount(int) const;
+    bool doAction(int, int, QList<QVariant> const&);
+    QString actionText(int, QAccessible::Text, int) const;
 };
 
-
-extern QAccessibleObject _ZN17QAccessibleObjectC2EP7QObject(void);
-extern QAccessibleObject _ZN17QAccessibleObjectC1EP7QObject(void);
-extern bool _ZNK17QAccessibleObject7isValidEv(void);
-extern QObject _ZNK17QAccessibleObject6objectEv(void);
-extern QRect _ZNK17QAccessibleObject4rectEi(void);
-extern void _ZN17QAccessibleObject7setTextEN11QAccessible4TextEiRK7QString(void);
-extern int _ZNK17QAccessibleObject15userActionCountEi(void);
-extern bool _ZN17QAccessibleObject8doActionEiiRK5QListI8QVariantE(void);
-extern QString _ZNK17QAccessibleObject10actionTextEiN11QAccessible4TextEi(void);
-extern  _ZN17QAccessibleObjectD2Ev(void);
-extern  _ZN17QAccessibleObjectD1Ev(void);
-extern  _ZN17QAccessibleObjectD0Ev(void);
-extern  _ZN22QAccessibleApplicationD0Ev(void);
-extern  _ZN22QAccessibleApplicationD1Ev(void);
-extern QAccessibleApplication _ZN22QAccessibleApplicationC2Ev(void);
-extern QAccessibleApplication _ZN22QAccessibleApplicationC1Ev(void);
-extern int _ZNK22QAccessibleApplication10childCountEv(void);
-extern int _ZNK22QAccessibleApplication12indexOfChildEPK20QAccessibleInterface(void);
-extern N11QAccessible8RelationE _ZNK22QAccessibleApplication10relationToEiPK20QAccessibleInterfacei(void);
-extern int _ZNK22QAccessibleApplication7childAtEii(void);
-extern int _ZNK22QAccessibleApplication8navigateEN11QAccessible12RelationFlagEiPP20QAccessibleInterface(void);
-extern QString _ZNK22QAccessibleApplication4textEN11QAccessible4TextEi(void);
-extern enum N11QAccessible4RoleE _ZNK22QAccessibleApplication4roleEi(void);
-extern N11QAccessible5StateE _ZNK22QAccessibleApplication5stateEi(void);
-extern int _ZNK22QAccessibleApplication15userActionCountEi(void);
-extern bool _ZN22QAccessibleApplication8doActionEiiRK5QListI8QVariantE(void);
-extern QString _ZNK22QAccessibleApplication10actionTextEiN11QAccessible4TextEi(void);
 // *INDENT-ON*
 #endif

@@ -11,9 +11,6 @@ extern "C" {
 
 
 
-
-
-
     extern gint g_sprintf(gchar *, const gchar *, ...);
     extern gint g_fprintf(FILE *, const gchar *, ...);
     extern gint g_vasprintf(gchar * *, const gchar *, va_list);

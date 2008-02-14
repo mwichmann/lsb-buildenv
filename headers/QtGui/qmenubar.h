@@ -4,13 +4,60 @@
 class QMenuBar;
 // *INDENT-OFF*
 
-
-
-
 class QMenuBar : public QWidget
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QMenuBar(QWidget*);
+     ~QMenuBar();
+    QAction * addAction(QString const&);
+    QAction * addAction(QString const&, QObject const*, char const*);
+    QAction * addMenu(QMenu*);
+    QMenu * addMenu(QString const&);
+    QMenu * addMenu(QIcon const&, QString const&);
+    QAction * addSeparator();
+    QAction * insertMenu(QAction*, QMenu*);
+    void clear();
+    QAction * activeAction() const;
+    void setActiveAction(QAction*);
+    void setDefaultUp(bool);
+    bool isDefaultUp() const;
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+    int heightForWidth(int) const;
+    QRect actionGeometry(QAction*) const;
+    QAction * actionAt(QPoint const&) const;
+    void setCornerWidget(QWidget*, Qt::Corner);
+    QWidget * cornerWidget(Qt::Corner) const;
+     QMenuBar(QWidget*, char const*);
+    int insertSeparator(int);
+    bool setItemParameter(int, int);
+    int itemParameter(int) const;
+    int frameWidth() const;
+    void setAutoGeometry(bool);
+    bool autoGeometry() const;
+    QAction * insertSeparator(QAction*);
+protected:
+    void triggered(QAction*);
+    void hovered(QAction*);
+    void changeEvent(QEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
+    void mousePressEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
+    void leaveEvent(QEvent*);
+    void paintEvent(QPaintEvent*);
+    void resizeEvent(QResizeEvent*);
+    void actionEvent(QActionEvent*);
+    void focusOutEvent(QFocusEvent*);
+    void focusInEvent(QFocusEvent*);
+    bool eventFilter(QObject*, QEvent*);
+    bool event(QEvent*);
+    void activated(int);
+    void highlighted(int);
 };
 
 enum Separator	
@@ -22,57 +69,5 @@ InWindowsStyle = 1
 
 
 extern struct QMetaObject _ZN8QMenuBar16staticMetaObjectE ;
-extern struct QMetaObject _ZNK8QMenuBar10metaObjectEv(void);
-extern void _ZN8QMenuBar11qt_metacastEPKc(void);
-extern int _ZN8QMenuBar11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QMenuBar _ZN8QMenuBarC2EP7QWidget(void);
-extern QMenuBar _ZN8QMenuBarC1EP7QWidget(void);
-extern  _ZN8QMenuBarD2Ev(void);
-extern  _ZN8QMenuBarD1Ev(void);
-extern  _ZN8QMenuBarD0Ev(void);
-extern QAction _ZN8QMenuBar9addActionERK7QString(void);
-extern QAction _ZN8QMenuBar9addActionERK7QStringPK7QObjectPKc(void);
-extern QAction _ZN8QMenuBar7addMenuEP5QMenu(void);
-extern QMenu _ZN8QMenuBar7addMenuERK7QString(void);
-extern QMenu _ZN8QMenuBar7addMenuERK5QIconRK7QString(void);
-extern QAction _ZN8QMenuBar12addSeparatorEv(void);
-extern QAction _ZN8QMenuBar10insertMenuEP7QActionP5QMenu(void);
-extern void _ZN8QMenuBar5clearEv(void);
-extern QAction _ZNK8QMenuBar12activeActionEv(void);
-extern void _ZN8QMenuBar15setActiveActionEP7QAction(void);
-extern void _ZN8QMenuBar12setDefaultUpEb(void);
-extern bool _ZNK8QMenuBar11isDefaultUpEv(void);
-extern QSize _ZNK8QMenuBar8sizeHintEv(void);
-extern QSize _ZNK8QMenuBar15minimumSizeHintEv(void);
-extern int _ZNK8QMenuBar14heightForWidthEi(void);
-extern QRect _ZNK8QMenuBar14actionGeometryEP7QAction(void);
-extern QAction _ZNK8QMenuBar8actionAtERK6QPoint(void);
-extern void _ZN8QMenuBar15setCornerWidgetEP7QWidgetN2Qt6CornerE(void);
-extern QWidget _ZNK8QMenuBar12cornerWidgetEN2Qt6CornerE(void);
-extern void _ZN8QMenuBar9triggeredEP7QAction(void);
-extern void _ZN8QMenuBar7hoveredEP7QAction(void);
-extern void _ZN8QMenuBar11changeEventEP6QEvent(void);
-extern void _ZN8QMenuBar13keyPressEventEP9QKeyEvent(void);
-extern void _ZN8QMenuBar17mouseReleaseEventEP11QMouseEvent(void);
-extern void _ZN8QMenuBar15mousePressEventEP11QMouseEvent(void);
-extern void _ZN8QMenuBar14mouseMoveEventEP11QMouseEvent(void);
-extern void _ZN8QMenuBar10leaveEventEP6QEvent(void);
-extern void _ZN8QMenuBar10paintEventEP11QPaintEvent(void);
-extern void _ZN8QMenuBar11resizeEventEP12QResizeEvent(void);
-extern void _ZN8QMenuBar11actionEventEP12QActionEvent(void);
-extern void _ZN8QMenuBar13focusOutEventEP11QFocusEvent(void);
-extern void _ZN8QMenuBar12focusInEventEP11QFocusEvent(void);
-extern bool _ZN8QMenuBar11eventFilterEP7QObjectP6QEvent(void);
-extern bool _ZN8QMenuBar5eventEP6QEvent(void);
-extern QMenuBar _ZN8QMenuBarC2EP7QWidgetPKc(void);
-extern QMenuBar _ZN8QMenuBarC1EP7QWidgetPKc(void);
-extern int _ZN8QMenuBar15insertSeparatorEi(void);
-extern bool _ZN8QMenuBar16setItemParameterEii(void);
-extern int _ZNK8QMenuBar13itemParameterEi(void);
-extern int _ZNK8QMenuBar10frameWidthEv(void);
-extern void _ZN8QMenuBar15setAutoGeometryEb(void);
-extern bool _ZNK8QMenuBar12autoGeometryEv(void);
-extern void _ZN8QMenuBar9activatedEi(void);
-extern void _ZN8QMenuBar11highlightedEi(void);
 // *INDENT-ON*
 #endif

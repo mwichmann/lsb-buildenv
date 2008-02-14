@@ -1,15 +1,15 @@
 
 class QIcon;
-enum N5QIcon4ModeE {
+enum _ZN5QIcon4ModeE {
     Normal,
     Disabled,
     Active
 };
-enum N5QIcon5StateE {
+enum _ZN5QIcon5StateE {
     On,
     Off
 };
-enum N5QIcon4SizeE {
+enum _ZN5QIcon4SizeE {
     Small,
     Automatic,
     Large

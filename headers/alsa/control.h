@@ -13,7 +13,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_CTL_EVENT_MASK_VALUE	(1<<0)
 #define SND_CTL_EVENT_MASK_INFO	(1<<1)
 #define SND_CTL_EVENT_MASK_ADD	(1<<2)

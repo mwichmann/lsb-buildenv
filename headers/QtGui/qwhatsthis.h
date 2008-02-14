@@ -4,24 +4,20 @@
 class QWhatsThis;
 // *INDENT-OFF*
 
-
-
-
 class QWhatsThis
 {
 private:
 public:
+    void enterWhatsThisMode();
+    bool inWhatsThisMode();
+    void leaveWhatsThisMode();
+    void showText(QPoint const&, QString const&, QWidget*);
+    void hideText();
+    QAction * createAction(QObject*);
+    void add(QWidget*, QString const&);
+    void remove(QWidget*);
+    QToolButton * whatsThisButton(QWidget*);
 };
 
-
-extern void _ZN10QWhatsThis18enterWhatsThisModeEv(void);
-extern bool _ZN10QWhatsThis15inWhatsThisModeEv(void);
-extern void _ZN10QWhatsThis18leaveWhatsThisModeEv(void);
-extern void _ZN10QWhatsThis8showTextERK6QPointRK7QStringP7QWidget(void);
-extern void _ZN10QWhatsThis8hideTextEv(void);
-extern  _ZN10QWhatsThis12createActionEP7QObject(void);
-extern void _ZN10QWhatsThis3addEP7QWidgetRK7QString(void);
-extern void _ZN10QWhatsThis6removeEP7QWidget(void);
-extern  _ZN10QWhatsThis15whatsThisButtonEP7QWidget(void);
 // *INDENT-ON*
 #endif

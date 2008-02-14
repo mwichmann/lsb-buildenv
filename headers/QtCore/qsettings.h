@@ -4,9 +4,6 @@
 class QSettings;
 // *INDENT-OFF*
 
-
-
-
 typedef QMap<QString, QVariant> SettingsMap	
 ;
 
@@ -20,6 +17,42 @@ class QSettings : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QSettings(QString const&, QString const&, QObject*);
+     QSettings(QSettings::Scope, QString const&, QString const&, QObject*);
+     QSettings(QSettings::Format, QSettings::Scope, QString const&, QString const&, QObject*);
+     QSettings(QString const&, QSettings::Format, QObject*);
+     QSettings(QObject*);
+     ~QSettings();
+    void clear();
+    void sync();
+    enum _ZN9QSettings6StatusE status() const;
+    void beginGroup(QString const&);
+    void endGroup();
+    QString group() const;
+    int beginReadArray(QString const&);
+    void beginWriteArray(QString const&, int);
+    void endArray();
+    void setArrayIndex(int);
+    QStringList allKeys() const;
+    QStringList childKeys() const;
+    QStringList childGroups() const;
+    bool isWritable() const;
+    void setValue(QString const&, QVariant const&);
+    QVariant value(QString const&, QVariant const&) const;
+    void remove(QString const&);
+    bool contains(QString const&) const;
+    void setFallbacksEnabled(bool);
+    bool fallbacksEnabled() const;
+    QString fileName() const;
+    static void setSystemIniPath(QString const&);
+    static void setUserIniPath(QString const&);
+    static void setPath(QSettings::Format, QSettings::Scope, QString const&);
+    static enum _ZN9QSettings6FormatE registerFormat(QString const&, bool (*)(QIODevice&, QMap<QString, QVariant>&), bool (*)(QIODevice&, QMap<QString, QVariant> const&), Qt::CaseSensitivity);
+protected:
+    bool event(QEvent*);
 };
 
 enum Status	
@@ -73,47 +106,5 @@ Mac = 2
 
 
 extern struct QMetaObject _ZN9QSettings16staticMetaObjectE ;
-extern struct QMetaObject _ZNK9QSettings10metaObjectEv(void);
-extern void _ZN9QSettings11qt_metacastEPKc(void);
-extern int _ZN9QSettings11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QSettings _ZN9QSettingsC2ERK7QStringS2_P7QObject(void);
-extern QSettings _ZN9QSettingsC1ERK7QStringS2_P7QObject(void);
-extern QSettings _ZN9QSettingsC2ENS_5ScopeERK7QStringS3_P7QObject(void);
-extern QSettings _ZN9QSettingsC1ENS_5ScopeERK7QStringS3_P7QObject(void);
-extern QSettings _ZN9QSettingsC2ENS_6FormatENS_5ScopeERK7QStringS4_P7QObject(void);
-extern QSettings _ZN9QSettingsC1ENS_6FormatENS_5ScopeERK7QStringS4_P7QObject(void);
-extern QSettings _ZN9QSettingsC2ERK7QStringNS_6FormatEP7QObject(void);
-extern QSettings _ZN9QSettingsC1ERK7QStringNS_6FormatEP7QObject(void);
-extern QSettings _ZN9QSettingsC2EP7QObject(void);
-extern QSettings _ZN9QSettingsC1EP7QObject(void);
-extern  _ZN9QSettingsD2Ev(void);
-extern  _ZN9QSettingsD1Ev(void);
-extern  _ZN9QSettingsD0Ev(void);
-extern void _ZN9QSettings5clearEv(void);
-extern void _ZN9QSettings4syncEv(void);
-extern enum N9QSettings6StatusE _ZNK9QSettings6statusEv(void);
-extern void _ZN9QSettings10beginGroupERK7QString(void);
-extern void _ZN9QSettings8endGroupEv(void);
-extern QString _ZNK9QSettings5groupEv(void);
-extern int _ZN9QSettings14beginReadArrayERK7QString(void);
-extern void _ZN9QSettings15beginWriteArrayERK7QStringi(void);
-extern void _ZN9QSettings8endArrayEv(void);
-extern void _ZN9QSettings13setArrayIndexEi(void);
-extern QStringList _ZNK9QSettings7allKeysEv(void);
-extern QStringList _ZNK9QSettings9childKeysEv(void);
-extern QStringList _ZNK9QSettings11childGroupsEv(void);
-extern bool _ZNK9QSettings10isWritableEv(void);
-extern void _ZN9QSettings8setValueERK7QStringRK8QVariant(void);
-extern QVariant _ZNK9QSettings5valueERK7QStringRK8QVariant(void);
-extern void _ZN9QSettings6removeERK7QString(void);
-extern bool _ZNK9QSettings8containsERK7QString(void);
-extern void _ZN9QSettings19setFallbacksEnabledEb(void);
-extern bool _ZNK9QSettings16fallbacksEnabledEv(void);
-extern QString _ZNK9QSettings8fileNameEv(void);
-extern void _ZN9QSettings16setSystemIniPathERK7QString(void);
-extern void _ZN9QSettings14setUserIniPathERK7QString(void);
-extern void _ZN9QSettings7setPathENS_6FormatENS_5ScopeERK7QString(void);
-extern enum N9QSettings6FormatE _ZN9QSettings14registerFormatERK7QStringPFbR9QIODeviceR4QMapIS0_8QVariantEEPFbS4_RKS7_EN2Qt15CaseSensitivityE(void);
-extern bool _ZN9QSettings5eventEP6QEvent(void);
 // *INDENT-ON*
 #endif

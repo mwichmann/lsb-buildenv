@@ -12,9 +12,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef int mqd_t;
 
     struct mq_attr {

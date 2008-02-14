@@ -11,12 +11,7 @@ extern "C" {
 
 
 
-
-
-
 /* System specific semaphore definition*/
-
-
     typedef struct {
 	struct _pthread_fastlock __sem_lock;
 	int __sem_value;

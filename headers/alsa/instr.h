@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_SEQ_INSTR_ID_DLS1	"DLS1"
 #define SND_SEQ_INSTR_ID_DLS2	"DLS2"
 #define SND_SEQ_INSTR_ID_GUS_PATCH	"GUS Patch"
@@ -49,7 +48,6 @@ extern "C" {
     typedef void snd_instr_simple_t;
 
     typedef struct _snd_iwffff_handle snd_iwffff_handle_t;
-
 
 
 

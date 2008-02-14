@@ -4,20 +4,16 @@
 class QInputContextFactory;
 // *INDENT-OFF*
 
-
-
-
 class QInputContextFactory
 {
 private:
 public:
+    QStringList keys();
+    QInputContext * create(QString const&, QObject*);
+    QStringList languages(QString const&);
+    QString displayName(QString const&);
+    QString description(QString const&);
 };
 
-
-extern QStringList _ZN20QInputContextFactory4keysEv(void);
-extern  _ZN20QInputContextFactory6createERK7QStringP7QObject(void);
-extern QStringList _ZN20QInputContextFactory9languagesERK7QString(void);
-extern QString _ZN20QInputContextFactory11displayNameERK7QString(void);
-extern QString _ZN20QInputContextFactory11descriptionERK7QString(void);
 // *INDENT-ON*
 #endif

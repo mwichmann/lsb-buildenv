@@ -7,9 +7,6 @@ extern "C" {
 #endif
 
 
-
-
-
     struct QLinkedListData;
 
 

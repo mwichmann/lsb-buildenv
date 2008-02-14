@@ -4,13 +4,14 @@
 class QLibraryInfo;
 // *INDENT-OFF*
 
-
-
-
 class QLibraryInfo
 {
 private:
 public:
+    static QString licensee();
+    static QString licensedProducts();
+    static QString buildKey();
+    static QString location(QLibraryInfo::LibraryLocation);
 };
 
 enum LibraryLocation	
@@ -29,10 +30,5 @@ ExamplesPath = 10
 }
 ;
 
-
-extern QString _ZN12QLibraryInfo8licenseeEv(void);
-extern QString _ZN12QLibraryInfo16licensedProductsEv(void);
-extern QString _ZN12QLibraryInfo8buildKeyEv(void);
-extern QString _ZN12QLibraryInfo8locationENS_15LibraryLocationE(void);
 // *INDENT-ON*
 #endif

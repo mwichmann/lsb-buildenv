@@ -7,9 +7,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlList xmlList;
 
     typedef xmlList *xmlListPtr;

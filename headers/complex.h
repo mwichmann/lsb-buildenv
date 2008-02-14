@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define complex	_Complex
 
 

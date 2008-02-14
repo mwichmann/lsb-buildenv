@@ -4,42 +4,42 @@
 class QSvgRenderer;
 // *INDENT-OFF*
 
-
-
-
 class QSvgRenderer : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+     qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QSvgRenderer(QObject*);
+     QSvgRenderer(QString const&, QObject*);
+     QSvgRenderer(QByteArray const&, QObject*);
+     ~QSvgRenderer();
+    bool isValid() const;
+    QSize defaultSize() const;
+    QRect viewBox() const;
+    void setViewBox(QRect const&);
+    bool animated() const;
+    int framesPerSecond() const;
+    void setFramesPerSecond(int);
+    int currentFrame() const;
+    void setCurrentFrame(int);
+    int animationDuration() const;
+    bool load(QString const&);
+    bool load(QByteArray const&);
+    void render(QPainter*);
+     setViewBox(QRectF const&);
+     render(QPainter*, QRectF const&);
+     render(QPainter*, QString const&, QRectF const&);
+     elementExists(QString const&) const;
+    QRectF boundsOnElement(QString const&) const;
+    QMatrix matrixForElement(QString const&) const;
+    QRectF viewBoxF() const;
+protected:
+    void repaintNeeded();
 };
 
 
 extern struct QMetaObject _ZN12QSvgRenderer16staticMetaObjectE ;
-extern struct QMetaObject _ZNK12QSvgRenderer10metaObjectEv(void);
-extern void _ZN12QSvgRenderer11qt_metacastEPKc(void);
-extern int _ZN12QSvgRenderer11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QSvgRenderer _ZN12QSvgRendererC2EP7QObject(void);
-extern QSvgRenderer _ZN12QSvgRendererC1EP7QObject(void);
-extern QSvgRenderer _ZN12QSvgRendererC2ERK7QStringP7QObject(void);
-extern QSvgRenderer _ZN12QSvgRendererC1ERK7QStringP7QObject(void);
-extern QSvgRenderer _ZN12QSvgRendererC2ERK10QByteArrayP7QObject(void);
-extern QSvgRenderer _ZN12QSvgRendererC1ERK10QByteArrayP7QObject(void);
-extern  _ZN12QSvgRendererD2Ev(void);
-extern  _ZN12QSvgRendererD1Ev(void);
-extern  _ZN12QSvgRendererD0Ev(void);
-extern bool _ZNK12QSvgRenderer7isValidEv(void);
-extern QSize _ZNK12QSvgRenderer11defaultSizeEv(void);
-extern QRect _ZNK12QSvgRenderer7viewBoxEv(void);
-extern void _ZN12QSvgRenderer10setViewBoxERK5QRect(void);
-extern bool _ZNK12QSvgRenderer8animatedEv(void);
-extern int _ZNK12QSvgRenderer15framesPerSecondEv(void);
-extern void _ZN12QSvgRenderer18setFramesPerSecondEi(void);
-extern int _ZNK12QSvgRenderer12currentFrameEv(void);
-extern void _ZN12QSvgRenderer15setCurrentFrameEi(void);
-extern int _ZNK12QSvgRenderer17animationDurationEv(void);
-extern bool _ZN12QSvgRenderer4loadERK7QString(void);
-extern bool _ZN12QSvgRenderer4loadERK10QByteArray(void);
-extern void _ZN12QSvgRenderer6renderEP8QPainter(void);
-extern void _ZN12QSvgRenderer13repaintNeededEv(void);
 // *INDENT-ON*
 #endif

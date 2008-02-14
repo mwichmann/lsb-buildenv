@@ -1,6 +1,6 @@
 
 class QProgressBar;
-enum N12QProgressBar9DirectionE {
+enum _ZN12QProgressBar9DirectionE {
     TopToBottom,
     BottomToTop
 };

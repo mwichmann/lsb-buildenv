@@ -1,6 +1,6 @@
 
 class QLCDNumber;
-enum N10QLCDNumber4ModeE {
+enum _ZN10QLCDNumber4ModeE {
     Hex,
     HEX,
     Dec,
@@ -10,7 +10,7 @@ enum N10QLCDNumber4ModeE {
     Bin,
     BIN
 };
-enum N10QLCDNumber12SegmentStyleE {
+enum _ZN10QLCDNumber12SegmentStyleE {
     Outline,
     Filled,
     Flat

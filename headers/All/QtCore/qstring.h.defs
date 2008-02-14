@@ -1,6 +1,6 @@
 
 class QString;
-enum N7QString11SectionFlagE {
+enum _ZN7QString11SectionFlagE {
     SectionDefault,
     SectionSkipEmpty,
     SectionIncludeLeadingSep,
@@ -8,21 +8,21 @@ enum N7QString11SectionFlagE {
     SectionCaseInsensitiveSeps
 };
 class QFlags < QString::SectionFlag >;
-typedef N7QString12SectionFlagsE;
-enum N7QString13SplitBehaviorE {
+typedef class QFlags < QString::SectionFlag > _ZN7QString12SectionFlagsE;
+enum _ZN7QString13SplitBehaviorE {
     KeepEmptyParts,
     SkipEmptyParts
 };
-enum N7QString17NormalizationFormE {
+enum _ZN7QString17NormalizationFormE {
     NormalizationForm_D,
     NormalizationForm_C,
     NormalizationForm_KD,
     NormalizationForm_KC
 };
-typedef class QCharN7QString8iteratorE;
-typedef class QCharN7QString14const_iteratorE;
-typedef N7QString8iteratorE N7QString8IteratorE;
-typedef N7QString14const_iteratorE N7QString13ConstIteratorE;
+typedef class QChar_ZN7QString8iteratorE;
+typedef class QChar_ZN7QString14const_iteratorE;
+typedef _ZN7QString8iteratorE _ZN7QString8IteratorE;
+typedef _ZN7QString14const_iteratorE _ZN7QString13ConstIteratorE;
 struct _ZN7QString4NullE;
 struct _ZN7QString4DataE;
 class QLatin1String;

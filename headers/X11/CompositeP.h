@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
@@ -19,18 +18,8 @@ extern "C" {
 /* Additional instance fields for widgets of (sub)class 'Composite'*/
 
 
-
-
-
-
 /* Additional class fields for widgets of (sub)class 'Composite'*/
-
-
     typedef struct _CompositeClassPart CompositeClassPart;
-
-
-
-
 
 
 

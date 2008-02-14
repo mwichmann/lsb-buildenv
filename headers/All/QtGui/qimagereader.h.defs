@@ -1,6 +1,6 @@
 
 class QImageReader;
-enum N12QImageReader16ImageReaderErrorE {
+enum _ZN12QImageReader16ImageReaderErrorE {
     UnknownError,
     FileNotFoundError,
     DeviceError,

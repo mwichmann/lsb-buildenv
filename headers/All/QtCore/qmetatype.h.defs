@@ -1,6 +1,6 @@
 
 class QMetaType;
-enum N9QMetaType4TypeE {
+enum _ZN9QMetaType4TypeE {
     Void,
     Bool,
     Int,
@@ -21,7 +21,7 @@ enum N9QMetaType4TypeE {
     QWidgetStar,
     User
 };
-typedef void N9QMetaType10DestructorE;
-typedef void N9QMetaType11ConstructorE;
-typedef void N9QMetaType12SaveOperatorE;
-typedef void N9QMetaType12LoadOperatorE;
+typedef void _ZN9QMetaType10DestructorE;
+typedef void _ZN9QMetaType11ConstructorE;
+typedef void _ZN9QMetaType12SaveOperatorE;
+typedef void _ZN9QMetaType12LoadOperatorE;

@@ -10,12 +10,7 @@ extern "C" {
 
 
 
-
-
-
 /* These are all the characteristics of characters*/
-
-
     enum {
 #if defined __i386__
 /* IA32 */

@@ -4,16 +4,73 @@
 class QAbstractSpinBox;
 // *INDENT-OFF*
 
-
-
-
-typedef StepEnabled	
+typedef class QFlags<QAbstractSpinBox::StepEnabledFlag>
+{
+private:
+public:
+}StepEnabled	
 ;
 
 class QAbstractSpinBox : public QWidget
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractSpinBox(QWidget*);
+     ~QAbstractSpinBox();
+    enum _ZN16QAbstractSpinBox13ButtonSymbolsE buttonSymbols() const;
+    void setButtonSymbols(QAbstractSpinBox::ButtonSymbols);
+    QString text() const;
+    QString specialValueText() const;
+    void setSpecialValueText(QString const&);
+    bool wrapping() const;
+    void setWrapping(bool);
+    void setReadOnly(bool);
+    bool isReadOnly() const;
+    void setAlignment(QFlags<Qt::AlignmentFlag>);
+     alignment() const;
+    void setFrame(bool);
+    bool hasFrame() const;
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+    void interpretText();
+    bool event(QEvent*);
+    enum _ZN10QValidator5StateE validate(QString&, int&) const;
+    void fixup(QString&) const;
+    void stepBy(int);
+    void stepUp();
+    void stepDown();
+    void selectAll();
+    void clear();
+     QAbstractSpinBox(QAbstractSpinBoxPrivate&, QWidget*);
+    void setAccelerated(bool);
+    void setCorrectionMode(QAbstractSpinBox::CorrectionMode);
+    bool isAccelerated() const;
+    enum _ZN16QAbstractSpinBox14CorrectionModeE correctionMode() const;
+    bool hasAcceptableInput() const;
+protected:
+    void resizeEvent(QResizeEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void keyReleaseEvent(QKeyEvent*);
+    void wheelEvent(QWheelEvent*);
+    void focusInEvent(QFocusEvent*);
+    void focusOutEvent(QFocusEvent*);
+    void contextMenuEvent(QContextMenuEvent*);
+    void changeEvent(QEvent*);
+    void closeEvent(QCloseEvent*);
+    void hideEvent(QHideEvent*);
+    void mousePressEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
+    void timerEvent(QTimerEvent*);
+    void paintEvent(QPaintEvent*);
+    void showEvent(QShowEvent*);
+    QLineEdit * lineEdit() const;
+    void setLineEdit(QLineEdit*);
+    QFlags<QAbstractSpinBox::StepEnabledFlag> stepEnabled() const;
+    void editingFinished();
 };
 
 enum StepEnabledFlag	
@@ -39,59 +96,5 @@ PlusMinus = 1
 
 
 extern struct QMetaObject _ZN16QAbstractSpinBox16staticMetaObjectE ;
-extern struct QMetaObject _ZNK16QAbstractSpinBox10metaObjectEv(void);
-extern void _ZN16QAbstractSpinBox11qt_metacastEPKc(void);
-extern int _ZN16QAbstractSpinBox11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractSpinBox _ZN16QAbstractSpinBoxC2EP7QWidget(void);
-extern QAbstractSpinBox _ZN16QAbstractSpinBoxC1EP7QWidget(void);
-extern  _ZN16QAbstractSpinBoxD2Ev(void);
-extern  _ZN16QAbstractSpinBoxD1Ev(void);
-extern  _ZN16QAbstractSpinBoxD0Ev(void);
-extern enum N16QAbstractSpinBox13ButtonSymbolsE _ZNK16QAbstractSpinBox13buttonSymbolsEv(void);
-extern void _ZN16QAbstractSpinBox16setButtonSymbolsENS_13ButtonSymbolsE(void);
-extern QString _ZNK16QAbstractSpinBox4textEv(void);
-extern QString _ZNK16QAbstractSpinBox16specialValueTextEv(void);
-extern void _ZN16QAbstractSpinBox19setSpecialValueTextERK7QString(void);
-extern bool _ZNK16QAbstractSpinBox8wrappingEv(void);
-extern void _ZN16QAbstractSpinBox11setWrappingEb(void);
-extern void _ZN16QAbstractSpinBox11setReadOnlyEb(void);
-extern bool _ZNK16QAbstractSpinBox10isReadOnlyEv(void);
-extern void _ZN16QAbstractSpinBox12setAlignmentE6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern N2Qt9AlignmentE _ZNK16QAbstractSpinBox9alignmentEv(void);
-extern void _ZN16QAbstractSpinBox8setFrameEb(void);
-extern bool _ZNK16QAbstractSpinBox8hasFrameEv(void);
-extern QSize _ZNK16QAbstractSpinBox8sizeHintEv(void);
-extern QSize _ZNK16QAbstractSpinBox15minimumSizeHintEv(void);
-extern void _ZN16QAbstractSpinBox13interpretTextEv(void);
-extern bool _ZN16QAbstractSpinBox5eventEP6QEvent(void);
-extern enum N10QValidator5StateE _ZNK16QAbstractSpinBox8validateER7QStringRi(void);
-extern void _ZNK16QAbstractSpinBox5fixupER7QString(void);
-extern void _ZN16QAbstractSpinBox6stepByEi(void);
-extern void _ZN16QAbstractSpinBox6stepUpEv(void);
-extern void _ZN16QAbstractSpinBox8stepDownEv(void);
-extern void _ZN16QAbstractSpinBox9selectAllEv(void);
-extern void _ZN16QAbstractSpinBox5clearEv(void);
-extern void _ZN16QAbstractSpinBox11resizeEventEP12QResizeEvent(void);
-extern void _ZN16QAbstractSpinBox13keyPressEventEP9QKeyEvent(void);
-extern void _ZN16QAbstractSpinBox15keyReleaseEventEP9QKeyEvent(void);
-extern void _ZN16QAbstractSpinBox10wheelEventEP11QWheelEvent(void);
-extern void _ZN16QAbstractSpinBox12focusInEventEP11QFocusEvent(void);
-extern void _ZN16QAbstractSpinBox13focusOutEventEP11QFocusEvent(void);
-extern void _ZN16QAbstractSpinBox16contextMenuEventEP17QContextMenuEvent(void);
-extern void _ZN16QAbstractSpinBox11changeEventEP6QEvent(void);
-extern void _ZN16QAbstractSpinBox10closeEventEP11QCloseEvent(void);
-extern void _ZN16QAbstractSpinBox9hideEventEP10QHideEvent(void);
-extern void _ZN16QAbstractSpinBox15mousePressEventEP11QMouseEvent(void);
-extern void _ZN16QAbstractSpinBox17mouseReleaseEventEP11QMouseEvent(void);
-extern void _ZN16QAbstractSpinBox14mouseMoveEventEP11QMouseEvent(void);
-extern void _ZN16QAbstractSpinBox10timerEventEP11QTimerEvent(void);
-extern void _ZN16QAbstractSpinBox10paintEventEP11QPaintEvent(void);
-extern void _ZN16QAbstractSpinBox9showEventEP10QShowEvent(void);
-extern QLineEdit _ZNK16QAbstractSpinBox8lineEditEv(void);
-extern void _ZN16QAbstractSpinBox11setLineEditEP9QLineEdit(void);
-extern N16QAbstractSpinBox11StepEnabledE _ZNK16QAbstractSpinBox11stepEnabledEv(void);
-extern void _ZN16QAbstractSpinBox15editingFinishedEv(void);
-extern QAbstractSpinBox _ZN16QAbstractSpinBoxC2ER23QAbstractSpinBoxPrivateP7QWidget(void);
-extern QAbstractSpinBox _ZN16QAbstractSpinBoxC1ER23QAbstractSpinBoxPrivateP7QWidget(void);
 // *INDENT-ON*
 #endif

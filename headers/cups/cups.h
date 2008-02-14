@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-
 #define _CUPS_CUPS_H_
 #define CUPS_VERSION_MAJOR	1
 #define CUPS_VERSION_MINOR	1
@@ -240,8 +239,6 @@ extern "C" {
 	md5_word_t abcd[4];
 	md5_byte_t buf[64];
     };
-
-
 
 
     typedef struct {

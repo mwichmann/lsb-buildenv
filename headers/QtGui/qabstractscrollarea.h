@@ -4,53 +4,55 @@
 class QAbstractScrollArea;
 // *INDENT-OFF*
 
-
-
-
 class QAbstractScrollArea : public QFrame
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractScrollArea(QWidget*);
+     ~QAbstractScrollArea();
+    enum _ZN2Qt15ScrollBarPolicyE verticalScrollBarPolicy() const;
+    void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy);
+    QScrollBar * verticalScrollBar() const;
+    enum _ZN2Qt15ScrollBarPolicyE horizontalScrollBarPolicy() const;
+    void setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy);
+    QScrollBar * horizontalScrollBar() const;
+    QWidget * viewport() const;
+    QSize maximumViewportSize() const;
+    QSize minimumSizeHint() const;
+    QSize sizeHint() const;
+     QAbstractScrollArea(QAbstractScrollAreaPrivate&, QWidget*);
+    void setViewport(QWidget*);
+    void setCornerWidget(QWidget*);
+    _Z11QWidgetList scrollBarWidgets(QFlags<Qt::AlignmentFlag>);
+    void addScrollBarWidget(QWidget*, QFlags<Qt::AlignmentFlag>);
+    void setVerticalScrollBar(QScrollBar*);
+    void setHorizontalScrollBar(QScrollBar*);
+    QWidget * cornerWidget() const;
+protected:
+    void setViewportMargins(int, int, int, int);
+    bool event(QEvent*);
+    bool viewportEvent(QEvent*);
+    void resizeEvent(QResizeEvent*);
+    void paintEvent(QPaintEvent*);
+    void mousePressEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
+    void mouseDoubleClickEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
+    void wheelEvent(QWheelEvent*);
+    void contextMenuEvent(QContextMenuEvent*);
+    void dragEnterEvent(QDragEnterEvent*);
+    void dragMoveEvent(QDragMoveEvent*);
+    void dragLeaveEvent(QDragLeaveEvent*);
+    void dropEvent(QDropEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void scrollContentsBy(int, int);
+    void setupViewport(QWidget*);
 };
 
 
 extern struct QMetaObject _ZN19QAbstractScrollArea16staticMetaObjectE ;
-extern struct QMetaObject _ZNK19QAbstractScrollArea10metaObjectEv(void);
-extern void _ZN19QAbstractScrollArea11qt_metacastEPKc(void);
-extern int _ZN19QAbstractScrollArea11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractScrollArea _ZN19QAbstractScrollAreaC2EP7QWidget(void);
-extern QAbstractScrollArea _ZN19QAbstractScrollAreaC1EP7QWidget(void);
-extern  _ZN19QAbstractScrollAreaD2Ev(void);
-extern  _ZN19QAbstractScrollAreaD1Ev(void);
-extern  _ZN19QAbstractScrollAreaD0Ev(void);
-extern enum N2Qt15ScrollBarPolicyE _ZNK19QAbstractScrollArea23verticalScrollBarPolicyEv(void);
-extern void _ZN19QAbstractScrollArea26setVerticalScrollBarPolicyEN2Qt15ScrollBarPolicyE(void);
-extern  _ZNK19QAbstractScrollArea17verticalScrollBarEv(void);
-extern enum N2Qt15ScrollBarPolicyE _ZNK19QAbstractScrollArea25horizontalScrollBarPolicyEv(void);
-extern void _ZN19QAbstractScrollArea28setHorizontalScrollBarPolicyEN2Qt15ScrollBarPolicyE(void);
-extern  _ZNK19QAbstractScrollArea19horizontalScrollBarEv(void);
-extern QWidget _ZNK19QAbstractScrollArea8viewportEv(void);
-extern QSize _ZNK19QAbstractScrollArea19maximumViewportSizeEv(void);
-extern QSize _ZNK19QAbstractScrollArea15minimumSizeHintEv(void);
-extern QSize _ZNK19QAbstractScrollArea8sizeHintEv(void);
-extern QAbstractScrollArea _ZN19QAbstractScrollAreaC2ER26QAbstractScrollAreaPrivateP7QWidget(void);
-extern QAbstractScrollArea _ZN19QAbstractScrollAreaC1ER26QAbstractScrollAreaPrivateP7QWidget(void);
-extern void _ZN19QAbstractScrollArea18setViewportMarginsEiiii(void);
-extern bool _ZN19QAbstractScrollArea5eventEP6QEvent(void);
-extern bool _ZN19QAbstractScrollArea13viewportEventEP6QEvent(void);
-extern void _ZN19QAbstractScrollArea11resizeEventEP12QResizeEvent(void);
-extern void _ZN19QAbstractScrollArea10paintEventEP11QPaintEvent(void);
-extern void _ZN19QAbstractScrollArea15mousePressEventEP11QMouseEvent(void);
-extern void _ZN19QAbstractScrollArea17mouseReleaseEventEP11QMouseEvent(void);
-extern void _ZN19QAbstractScrollArea21mouseDoubleClickEventEP11QMouseEvent(void);
-extern void _ZN19QAbstractScrollArea14mouseMoveEventEP11QMouseEvent(void);
-extern void _ZN19QAbstractScrollArea10wheelEventEP11QWheelEvent(void);
-extern void _ZN19QAbstractScrollArea16contextMenuEventEP17QContextMenuEvent(void);
-extern void _ZN19QAbstractScrollArea14dragEnterEventEP15QDragEnterEvent(void);
-extern void _ZN19QAbstractScrollArea13dragMoveEventEP14QDragMoveEvent(void);
-extern void _ZN19QAbstractScrollArea14dragLeaveEventEP15QDragLeaveEvent(void);
-extern void _ZN19QAbstractScrollArea9dropEventEP10QDropEvent(void);
-extern void _ZN19QAbstractScrollArea13keyPressEventEP9QKeyEvent(void);
-extern void _ZN19QAbstractScrollArea16scrollContentsByEii(void);
 // *INDENT-ON*
 #endif

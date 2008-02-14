@@ -4,37 +4,36 @@
 class QButtonGroup;
 // *INDENT-OFF*
 
-
-
-
 class QButtonGroup : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QButtonGroup(QObject*);
+     ~QButtonGroup();
+    void setExclusive(bool);
+    bool exclusive() const;
+    void addButton(QAbstractButton*);
+    void addButton(QAbstractButton*, int);
+    void removeButton(QAbstractButton*);
+     buttons() const;
+    QAbstractButton * checkedButton() const;
+    QAbstractButton * button(int) const;
+    void setId(QAbstractButton*, int);
+    int id(QAbstractButton*) const;
+    int checkedId() const;
+protected:
+    void buttonClicked(QAbstractButton*);
+    void buttonClicked(int);
+    void buttonPressed(int);
+    void buttonPressed(QAbstractButton*);
+    void buttonReleased(int);
+    void buttonReleased(QAbstractButton*);
 };
 
 
 extern struct QMetaObject _ZN12QButtonGroup16staticMetaObjectE ;
-extern struct QMetaObject _ZNK12QButtonGroup10metaObjectEv(void);
-extern void _ZN12QButtonGroup11qt_metacastEPKc(void);
-extern int _ZN12QButtonGroup11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QButtonGroup _ZN12QButtonGroupC2EP7QObject(void);
-extern QButtonGroup _ZN12QButtonGroupC1EP7QObject(void);
-extern  _ZN12QButtonGroupD2Ev(void);
-extern  _ZN12QButtonGroupD1Ev(void);
-extern  _ZN12QButtonGroupD0Ev(void);
-extern void _ZN12QButtonGroup12setExclusiveEb(void);
-extern bool _ZNK12QButtonGroup9exclusiveEv(void);
-extern void _ZN12QButtonGroup9addButtonEP15QAbstractButton(void);
-extern void _ZN12QButtonGroup9addButtonEP15QAbstractButtoni(void);
-extern void _ZN12QButtonGroup12removeButtonEP15QAbstractButton(void);
-extern  _ZNK12QButtonGroup7buttonsEv(void);
-extern QAbstractButton _ZNK12QButtonGroup13checkedButtonEv(void);
-extern QAbstractButton _ZNK12QButtonGroup6buttonEi(void);
-extern void _ZN12QButtonGroup5setIdEP15QAbstractButtoni(void);
-extern int _ZNK12QButtonGroup2idEP15QAbstractButton(void);
-extern int _ZNK12QButtonGroup9checkedIdEv(void);
-extern void _ZN12QButtonGroup13buttonClickedEP15QAbstractButton(void);
-extern void _ZN12QButtonGroup13buttonClickedEi(void);
 // *INDENT-ON*
 #endif

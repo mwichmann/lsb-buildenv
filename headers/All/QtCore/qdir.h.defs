@@ -1,6 +1,6 @@
 
 class QDir;
-enum N4QDir6FilterE {
+enum _ZN4QDir6FilterE {
     NoFilter,
     DefaultFilter,
     Dirs,
@@ -24,9 +24,9 @@ enum N4QDir6FilterE {
     NoDotAndDotDot
 };
 class QFlags < QDir::Filter >;
-typedef N4QDir7FiltersE;
-typedef N4QDir7FiltersE N4QDir10FilterSpecE;
-enum N4QDir8SortFlagE {
+typedef class QFlags < QDir::Filter > _ZN4QDir7FiltersE;
+typedef _ZN4QDir7FiltersE _ZN4QDir10FilterSpecE;
+enum _ZN4QDir8SortFlagE {
     NoSort,
     DefaultSort,
     Name,
@@ -42,5 +42,5 @@ enum N4QDir8SortFlagE {
     Type
 };
 class QFlags < QDir::SortFlag >;
-typedef N4QDir9SortFlagsE;
-typedef N4QDir9SortFlagsE N4QDir8SortSpecE;
+typedef class QFlags < QDir::SortFlag > _ZN4QDir9SortFlagsE;
+typedef _ZN4QDir9SortFlagsE _ZN4QDir8SortSpecE;

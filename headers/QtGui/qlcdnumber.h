@@ -4,13 +4,42 @@
 class QLCDNumber;
 // *INDENT-OFF*
 
-
-
-
 class QLCDNumber : public QFrame
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QLCDNumber(QWidget*);
+     QLCDNumber(unsigned int, QWidget*);
+     ~QLCDNumber();
+    bool smallDecimalPoint() const;
+    int numDigits() const;
+    void setNumDigits(int);
+    bool checkOverflow(double) const;
+    bool checkOverflow(int) const;
+    enum _ZN10QLCDNumber4ModeE mode() const;
+    void setMode(QLCDNumber::Mode);
+    enum _ZN10QLCDNumber12SegmentStyleE segmentStyle() const;
+    void setSegmentStyle(QLCDNumber::SegmentStyle);
+    double value() const;
+    int intValue() const;
+    QSize sizeHint() const;
+    void display(QString const&);
+    void display(int);
+    void display(double);
+    void setHexMode();
+    void setDecMode();
+    void setOctMode();
+    void setBinMode();
+    void setSmallDecimalPoint(bool);
+     QLCDNumber(QWidget*, char const*);
+     QLCDNumber(unsigned int, QWidget*, char const*);
+protected:
+    void overflow();
+    bool event(QEvent*);
+    void paintEvent(QPaintEvent*);
 };
 
 enum Mode	
@@ -36,42 +65,5 @@ Flat = 2
 
 
 extern struct QMetaObject _ZN10QLCDNumber16staticMetaObjectE ;
-extern struct QMetaObject _ZNK10QLCDNumber10metaObjectEv(void);
-extern void _ZN10QLCDNumber11qt_metacastEPKc(void);
-extern int _ZN10QLCDNumber11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QLCDNumber _ZN10QLCDNumberC2EP7QWidget(void);
-extern QLCDNumber _ZN10QLCDNumberC1EP7QWidget(void);
-extern QLCDNumber _ZN10QLCDNumberC2EjP7QWidget(void);
-extern QLCDNumber _ZN10QLCDNumberC1EjP7QWidget(void);
-extern  _ZN10QLCDNumberD2Ev(void);
-extern  _ZN10QLCDNumberD1Ev(void);
-extern  _ZN10QLCDNumberD0Ev(void);
-extern bool _ZNK10QLCDNumber17smallDecimalPointEv(void);
-extern int _ZNK10QLCDNumber9numDigitsEv(void);
-extern void _ZN10QLCDNumber12setNumDigitsEi(void);
-extern bool _ZNK10QLCDNumber13checkOverflowEd(void);
-extern bool _ZNK10QLCDNumber13checkOverflowEi(void);
-extern enum N10QLCDNumber4ModeE _ZNK10QLCDNumber4modeEv(void);
-extern void _ZN10QLCDNumber7setModeENS_4ModeE(void);
-extern enum N10QLCDNumber12SegmentStyleE _ZNK10QLCDNumber12segmentStyleEv(void);
-extern void _ZN10QLCDNumber15setSegmentStyleENS_12SegmentStyleE(void);
-extern double _ZNK10QLCDNumber5valueEv(void);
-extern int _ZNK10QLCDNumber8intValueEv(void);
-extern QSize _ZNK10QLCDNumber8sizeHintEv(void);
-extern void _ZN10QLCDNumber7displayERK7QString(void);
-extern void _ZN10QLCDNumber7displayEi(void);
-extern void _ZN10QLCDNumber7displayEd(void);
-extern void _ZN10QLCDNumber10setHexModeEv(void);
-extern void _ZN10QLCDNumber10setDecModeEv(void);
-extern void _ZN10QLCDNumber10setOctModeEv(void);
-extern void _ZN10QLCDNumber10setBinModeEv(void);
-extern void _ZN10QLCDNumber20setSmallDecimalPointEb(void);
-extern void _ZN10QLCDNumber8overflowEv(void);
-extern bool _ZN10QLCDNumber5eventEP6QEvent(void);
-extern void _ZN10QLCDNumber10paintEventEP11QPaintEvent(void);
-extern QLCDNumber _ZN10QLCDNumberC2EP7QWidgetPKc(void);
-extern QLCDNumber _ZN10QLCDNumberC1EP7QWidgetPKc(void);
-extern QLCDNumber _ZN10QLCDNumberC2EjP7QWidgetPKc(void);
-extern QLCDNumber _ZN10QLCDNumberC1EjP7QWidgetPKc(void);
 // *INDENT-ON*
 #endif

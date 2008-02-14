@@ -4,38 +4,33 @@
 class QLibrary;
 // *INDENT-OFF*
 
-
-
-
 class QLibrary : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QLibrary(QObject*);
+     QLibrary(QString const&, QObject*);
+     QLibrary(QString const&, int, QObject*);
+     ~QLibrary();
+    void * resolve(char const*);
+    static void * resolve(QString const&, char const*);
+    static void * resolve(QString const&, int, char const*);
+    bool load();
+    bool unload();
+    bool isLoaded() const;
+    static bool isLibrary(QString const&);
+    void setFileName(QString const&);
+    QString fileName() const;
+    void setFileNameAndVersion(QString const&, int);
+    void setLoadHints(QFlags<QLibrary::LoadHint>);
+    QString errorString() const;
+    QFlags<QLibrary::LoadHint> loadHints() const;
 };
 
 
 extern struct QMetaObject _ZN8QLibrary16staticMetaObjectE ;
-extern struct QMetaObject _ZNK8QLibrary10metaObjectEv(void);
-extern void _ZN8QLibrary11qt_metacastEPKc(void);
-extern int _ZN8QLibrary11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QLibrary _ZN8QLibraryC2EP7QObject(void);
-extern QLibrary _ZN8QLibraryC1EP7QObject(void);
-extern QLibrary _ZN8QLibraryC2ERK7QStringP7QObject(void);
-extern QLibrary _ZN8QLibraryC1ERK7QStringP7QObject(void);
-extern QLibrary _ZN8QLibraryC2ERK7QStringiP7QObject(void);
-extern QLibrary _ZN8QLibraryC1ERK7QStringiP7QObject(void);
-extern  _ZN8QLibraryD2Ev(void);
-extern  _ZN8QLibraryD1Ev(void);
-extern  _ZN8QLibraryD0Ev(void);
-extern void _ZN8QLibrary7resolveEPKc(void);
-extern void _ZN8QLibrary7resolveERK7QStringPKc(void);
-extern void _ZN8QLibrary7resolveERK7QStringiPKc(void);
-extern bool _ZN8QLibrary4loadEv(void);
-extern bool _ZN8QLibrary6unloadEv(void);
-extern bool _ZNK8QLibrary8isLoadedEv(void);
-extern bool _ZN8QLibrary9isLibraryERK7QString(void);
-extern void _ZN8QLibrary11setFileNameERK7QString(void);
-extern QString _ZNK8QLibrary8fileNameEv(void);
-extern void _ZN8QLibrary21setFileNameAndVersionERK7QStringi(void);
 // *INDENT-ON*
 #endif

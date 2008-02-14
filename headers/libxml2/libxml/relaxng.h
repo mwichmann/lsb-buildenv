@@ -11,9 +11,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlRelaxNGParserCtxt xmlRelaxNGParserCtxt;
 
     typedef xmlRelaxNGParserCtxt *xmlRelaxNGParserCtxtPtr;

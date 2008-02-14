@@ -4,9 +4,6 @@
 class QBool;
 // *INDENT-OFF*
 
-
-
-
 typedef signed char	qint8	
 ;
 
@@ -184,53 +181,54 @@ LicensedActiveQt = 1
 
 extern char _Z8qVersionv(void);
 extern bool _Z12qSharedBuildv(void);
-extern void _Z6qDebugPKcz(void);
-extern void _Z8qWarningPKcz(void);
-extern  _Z15qt_error_stringi(void);
-extern void _Z9qCriticalPKcz(void);
-extern void _Z6qFatalPKcz(void);
-extern void _Z14qSystemWarningPKci(void);
-extern void _Z13qErrnoWarningiPKcz(void);
-extern void _Z13qErrnoWarningPKcz(void);
-extern void _Z9qt_assertPKcS0_i(void);
-extern void _Z11qt_assert_xPKcS0_S0_i(void);
-extern void _Z16qt_check_pointerPKci(void);
-extern void _Z17qt_message_output9QtMsgTypePKc(void);
-extern QtMsgHandler _Z18qInstallMsgHandlerPFv9QtMsgTypePKcE(void);
+extern void _Z6qDebugPKcz(const char *, ...);
+extern void _Z8qWarningPKcz(const char *, ...);
+extern  _Z15qt_error_stringi(int);
+extern void _Z9qCriticalPKcz(const char *, ...);
+extern void _Z6qFatalPKcz(const char *, ...);
+extern void _Z14qSystemWarningPKci(const char *, int);
+extern void _Z13qErrnoWarningiPKcz(int, const char *, ...);
+extern void _Z13qErrnoWarningPKcz(const char *, ...);
+extern void _Z9qt_assertPKcS0_i(const char *, const char *, int);
+extern void _Z11qt_assert_xPKcS0_S0_i(const char *, const char *, const char *, int);
+extern void _Z16qt_check_pointerPKci(const char *, int);
+extern void _Z17qt_message_output9QtMsgTypePKc(enum QtMsgType, const char *);
+extern QtMsgHandler _Z18qInstallMsgHandlerPFv9QtMsgTypePKcE(void(*)(enum QtMsgType	,const char	* )
+);
 #if defined __i386__
 /* IA32 */
-extern void _Z7qMallocj(void);
+extern void _Z7qMallocj(unsigned int);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern void _Z7qMallocj(void);
+extern void _Z7qMallocj(unsigned int);
 #endif
-extern void _Z5qFreePv(void);
+extern void _Z5qFreePv(void *);
 #if defined __i386__
 /* IA32 */
-extern void _Z8qReallocPvj(void);
+extern void _Z8qReallocPvj(void *, unsigned int);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern void _Z8qReallocPvj(void);
+extern void _Z8qReallocPvj(void *, unsigned int);
 #endif
 #if defined __i386__
 /* IA32 */
-extern void _Z8qMemCopyPvPKvj(void);
+extern void _Z8qMemCopyPvPKvj(void *, const void *, unsigned int);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern void _Z8qMemCopyPvPKvj(void);
+extern void _Z8qMemCopyPvPKvj(void *, const void *, unsigned int);
 #endif
 #if defined __i386__
 /* IA32 */
-extern void _Z7qMemSetPvij(void);
+extern void _Z7qMemSetPvij(void *, int, unsigned int);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern void _Z7qMemSetPvij(void);
+extern void _Z7qMemSetPvij(void *, int, unsigned int);
 #endif
-extern  _Z7qgetenvPKc(void);
+extern  _Z7qgetenvPKc(const char *);
 extern char _Z12qInstallPathv(void);
 extern char _Z16qInstallPathDocsv(void);
 extern char _Z19qInstallPathHeadersv(void);
@@ -242,83 +240,85 @@ extern char _Z24qInstallPathTranslationsv(void);
 extern char _Z19qInstallPathSysconfv(void);
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern void _Z7qMallocm(void);
+extern void _Z7qMallocm(unsigned long int);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern void _Z7qMallocm(void);
+extern void _Z7qMallocm(unsigned long int);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern void _Z7qMallocm(void);
+extern void _Z7qMallocm(unsigned long int);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern void _Z7qMallocm(void);
+extern void _Z7qMallocm(unsigned long int);
 #endif
 #if defined __s390x__
 /* S390X */
-extern void _Z7qMallocm(void);
+extern void _Z7qMallocm(unsigned long int);
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern void _Z8qReallocPvm(void);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern void _Z8qReallocPvm(void);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern void _Z8qReallocPvm(void);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern void _Z8qReallocPvm(void);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __s390x__
 /* S390X */
-extern void _Z8qReallocPvm(void);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern void _Z8qMemCopyPvPKvm(void);
+extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern void _Z8qMemCopyPvPKvm(void);
+extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern void _Z8qMemCopyPvPKvm(void);
+extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern void _Z8qMemCopyPvPKvm(void);
+extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 #endif
 #if defined __s390x__
 /* S390X */
-extern void _Z8qMemCopyPvPKvm(void);
+extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern void _Z7qMemSetPvim(void);
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern void _Z7qMemSetPvim(void);
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern void _Z7qMemSetPvim(void);
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern void _Z7qMemSetPvim(void);
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
 #endif
 #if defined __s390x__
 /* S390X */
-extern void _Z7qMemSetPvim(void);
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
 #endif
+extern  _Z5qrandv(void);
+extern  _Z6qsrandj(unsigned int);
 // *INDENT-ON*
 #endif

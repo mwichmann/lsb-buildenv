@@ -4,13 +4,22 @@
 class QColormap;
 // *INDENT-OFF*
 
-
-
-
 class QColormap
 {
 private:
 public:
+    void initialize();
+    void cleanup();
+    QColormap instance(int);
+     QColormap(QColormap const&);
+     ~QColormap();
+    enum _ZN9QColormap4ModeE mode() const;
+    int depth() const;
+    int size() const;
+    uint pixel(QColor const&) const;
+    const QColor colorAt(unsigned int) const;
+     colormap() const;
+     operator=(QColormap const&);
 };
 
 enum Mode	
@@ -21,19 +30,5 @@ Gray = 2
 }
 ;
 
-
-extern void _ZN9QColormap10initializeEv(void);
-extern void _ZN9QColormap7cleanupEv(void);
-extern QColormap _ZN9QColormap8instanceEi(void);
-extern QColormap _ZN9QColormapC2ERKS_(void);
-extern QColormap _ZN9QColormapC1ERKS_(void);
-extern  _ZN9QColormapD2Ev(void);
-extern  _ZN9QColormapD1Ev(void);
-extern enum N9QColormap4ModeE _ZNK9QColormap4modeEv(void);
-extern int _ZNK9QColormap5depthEv(void);
-extern int _ZNK9QColormap4sizeEv(void);
-extern uint _ZNK9QColormap5pixelERK6QColor(void);
-extern QColor _ZNK9QColormap7colorAtEj(void);
-extern  _ZNK9QColormap8colormapEv(void);
 // *INDENT-ON*
 #endif

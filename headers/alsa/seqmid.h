@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-
 #define snd_seq_ev_set_dest(ev,c,p)	 \
 	((ev)->dest.client = (c), (ev)->dest.port = (p))
 #define snd_seq_ev_set_broadcast(ev)	 \

@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-#define G_CCLOSURE_SWAP_DATA(cclosure)	 \
-	(((GClosure*) (cclosure))->derivative_flag)
 #define G_CLOSURE_NEEDS_MARSHAL(closure)	 \
 	(((GClosure*) (closure))->marshal == NULL)
 #define G_TYPE_FROM_INTERFACE(g_iface)	 \
@@ -342,6 +339,8 @@ extern "C" {
 	{ static const GInterfaceInfo g_implement_interface_info = { \
 	(GInterfaceInitFunc) iface_init }; g_type_add_interface_static \
 	(g_define_type_id, TYPE_IFACE, &g_implement_interface_info); }
+#define G_CCLOSURE_SWAP_DATA(cclosure)	 \
+ (((GClosure*) (cclosure))->derivative_flag)
 #define G_TYPE_FROM_CLASS(g_class)	(((GTypeClass*) (g_class))->g_type)
 #define G_VALUE_TYPE(value)	(((GValue*) (value))->g_type)
 #define _G_TYPE_IGC(ip,gt,ct)	((ct*) (((GTypeInstance*) ip)->g_class))

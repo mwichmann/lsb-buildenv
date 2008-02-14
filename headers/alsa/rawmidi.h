@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_RAWMIDI_APPEND	0x0001
 #define SND_RAWMIDI_NONBLOCK	0x0002
 #define SND_RAWMIDI_SYNC	0x0004

@@ -4,20 +4,17 @@
 class QPageSetupDialog;
 // *INDENT-OFF*
 
-
-
-
 class QPageSetupDialog : public QAbstractPageSetupDialog
 {
 private:
 public:
+     ~QPageSetupDialog();
+     QPageSetupDialog(QPrinter*, QWidget*);
+    int exec();
+    int qt_metacall(QMetaObject::Call, int, void**);
+    void * qt_metacast(char const*);
+    struct QMetaObject * metaObject() const;
 };
 
-
-extern  _ZN16QPageSetupDialogD0Ev(void);
-extern  _ZN16QPageSetupDialogD1Ev(void);
-extern QPageSetupDialog _ZN16QPageSetupDialogC2EP8QPrinterP7QWidget(void);
-extern QPageSetupDialog _ZN16QPageSetupDialogC1EP8QPrinterP7QWidget(void);
-extern int _ZN16QPageSetupDialog4execEv(void);
 // *INDENT-ON*
 #endif

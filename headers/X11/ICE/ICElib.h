@@ -7,9 +7,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef void *IcePointer;
 
     typedef enum {
@@ -60,8 +57,6 @@ extern "C" {
     } IceProcessMessagesStatus;
 
 
-
-
     typedef struct {
 	unsigned long int sequence_of_request;
 	int major_opcode_of_request;
@@ -70,13 +65,9 @@ extern "C" {
     } IceReplyWaitInfo;
 
 
-
-
     typedef struct _IceConn *IceConn;
 
     typedef struct _IceListenObj *IceListenObj;
-
-
 
 
     typedef void (*IceWatchProc) (void);
@@ -105,8 +96,6 @@ extern "C" {
 
 
 /* Default Header Section for X11/ICE/ICElib.h*/
-
-
     typedef struct {
 	int major_version;
 	int minor_version;

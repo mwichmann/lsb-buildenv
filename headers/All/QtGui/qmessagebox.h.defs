@@ -1,13 +1,13 @@
 
 class QMessageBox;
-enum N11QMessageBox4IconE {
+enum _ZN11QMessageBox4IconE {
     NoIcon,
     Information,
     Warning,
     Critical,
     Question
 };
-enum N11QMessageBox6ButtonE {
+enum _ZN11QMessageBox6ButtonE {
     NoButton,
     Ok,
     Cancel,

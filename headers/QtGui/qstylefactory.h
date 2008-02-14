@@ -4,17 +4,13 @@
 class QStyleFactory;
 // *INDENT-OFF*
 
-
-
-
 class QStyleFactory
 {
 private:
 public:
+    QStringList keys();
+    QStyle * create(QString const&);
 };
 
-
-extern QStringList _ZN13QStyleFactory4keysEv(void);
-extern QStyle _ZN13QStyleFactory6createERK7QString(void);
 // *INDENT-ON*
 #endif

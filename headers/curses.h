@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #define ERR	(-1)
 #define OK	(0)
 #define ACS_RARROW	(acs_map['+'])
@@ -102,16 +101,12 @@ extern "C" {
 
 
 /* Boolean type*/
-
-
 #if !defined(__cplusplus)
     typedef unsigned char bool;
 
 #endif
 
 /* curses related structures*/
-
-
     typedef unsigned long int chtype;
 
     typedef struct screen SCREEN;
@@ -133,8 +128,6 @@ extern "C" {
 	short _pad_bottom;
 	short _pad_right;
     };
-
-
 
 
 
@@ -275,8 +268,6 @@ extern "C" {
 
 
 /* event masks*/
-
-
 
 /* attributes*/
 #define PAIR_NUMBER(a)	(((a)&A_COLOR)>>8)

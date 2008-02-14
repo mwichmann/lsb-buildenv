@@ -14,9 +14,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlLocationSet xmlLocationSet;
 
     typedef xmlLocationSet *xmlLocationSetPtr;

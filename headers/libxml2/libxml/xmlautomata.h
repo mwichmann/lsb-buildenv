@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlAutomataState xmlAutomataState;
 
     typedef xmlAutomataState *xmlAutomataStatePtr;

@@ -59,6 +59,6 @@ extern int getpriority(__priority_which_t, id_t);
 extern int getrlimit64(id_t, struct rlimit64 *);
 extern int setpriority(__priority_which_t, id_t, int);
 extern int setrlimit(__rlimit_resource_t, const struct rlimit *);
-extern int setrlimit64(__rlimit_resource_t, const struct rlimit64 *);
 extern int getrlimit(__rlimit_resource_t, struct rlimit *);
 extern int getrusage(int, struct rusage *);
+extern int setrlimit64(__rlimit_resource_t, const struct rlimit64 *);

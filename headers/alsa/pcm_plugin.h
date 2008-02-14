@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_PCM_PLUGIN_ROUTE_HALF	0.5
 #define SND_PCM_PLUGIN_ROUTE_FLOAT	1
 #define SND_PCM_PLUGIN_ROUTE_FULL	1.0
@@ -17,7 +16,6 @@ extern "C" {
 
 
     typedef float snd_pcm_route_ttable_entry_t;
-
 
 #ifdef __cplusplus
 }

@@ -7,10 +7,8 @@ extern "C" {
 #endif
 
 
-
 #define NOFILE	256
 #define MAXPATHLEN	4096
-
 
 
 #ifdef __cplusplus

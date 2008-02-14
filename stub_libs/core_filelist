@@ -16,6 +16,7 @@ libXext
 libICE
 libSM
 libXi
+libGLU
 libstdcxx
 libcups
 libcupsimage

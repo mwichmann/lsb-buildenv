@@ -1,6 +1,6 @@
 
 class QSessionManager;
-enum N15QSessionManager11RestartHintE {
+enum _ZN15QSessionManager11RestartHintE {
     RestartIfRunning,
     RestartAnyway,
     RestartImmediately,

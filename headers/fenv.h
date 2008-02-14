@@ -8,9 +8,6 @@ extern "C" {
 
 
 
-
-
-
 /* Define bits representing the exception.  We use the bit positions of the appropriate bits in the FPU control word.*/
 #if defined __powerpc__ && !defined __powerpc64__
 #define FE_INVALID	(1 << (31 - 2))
@@ -243,8 +240,6 @@ extern "C" {
 
 
 /* Type representing exception flags.*/
-
-
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef unsigned int fexcept_t;
@@ -282,8 +277,6 @@ extern "C" {
 #endif
 
 /* Type representing floating-point environment.*/
-
-
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef double fenv_t;

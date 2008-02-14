@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef enum {
 	XML_CHAR_ENCODING_ERROR = -1,
 	XML_CHAR_ENCODING_NONE = 0,

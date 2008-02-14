@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define assert(expr)	((void)0)
 
 

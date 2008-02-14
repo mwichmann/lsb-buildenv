@@ -9,14 +9,9 @@ extern "C" {
 #endif
 
 
-
 #define XEVI_TRANSPARENCY_NONE	0
 #define XEVI_TRANSPARENCY_PIXEL	1
 #define XEVI_TRANSPARENCY_MASK	2
-
-
-
-
 
 
 

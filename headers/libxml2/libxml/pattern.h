@@ -11,9 +11,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlStreamCtxt xmlStreamCtxt;
 
     typedef xmlStreamCtxt *xmlStreamCtxtPtr;

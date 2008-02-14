@@ -13,13 +13,6 @@ extern "C" {
 
 
 
-
-
-
-
-
-
-
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct utmpx {
@@ -145,8 +138,6 @@ extern "C" {
     };
 
 #endif
-
-
 
 
     extern void endutxent(void);

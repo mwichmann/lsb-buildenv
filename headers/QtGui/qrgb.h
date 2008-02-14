@@ -7,11 +7,7 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef unsigned int QRgb;
-
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,6 @@
 
 class QStyle;
-enum N6QStyle9StateFlagE {
+enum _ZN6QStyle9StateFlagE {
     State_None,
     State_Default,
     State_Enabled,
@@ -29,9 +29,9 @@ enum N6QStyle9StateFlagE {
     State_ReadOnly
 };
 class QFlags < QStyle::StateFlag >;
-typedef N6QStyle5StateE;
-typedef N6QStyle5StateE N6QStyle6SFlagsE;
-enum N6QStyle16PrimitiveElementE {
+typedef class QFlags < QStyle::StateFlag > _ZN6QStyle5StateE;
+typedef _ZN6QStyle5StateE _ZN6QStyle6SFlagsE;
+enum _ZN6QStyle16PrimitiveElementE {
     PE_Q3CheckListController,
     PE_Q3CheckListExclusiveIndicator,
     PE_Q3CheckListIndicator,
@@ -79,7 +79,7 @@ enum N6QStyle16PrimitiveElementE {
     PE_IndicatorTabTear,
     PE_CustomBase
 };
-enum N6QStyle14ControlElementE {
+enum _ZN6QStyle14ControlElementE {
     CE_CustomBase,
     CE_PushButton,
     CE_PushButtonBevel,
@@ -124,7 +124,7 @@ enum N6QStyle14ControlElementE {
     CE_ComboBoxLabel,
     CE_ToolBar
 };
-enum N6QStyle10SubElementE {
+enum _ZN6QStyle10SubElementE {
     SE_CustomBase,
     SE_PushButtonContents,
     SE_PushButtonFocusRect,
@@ -163,7 +163,7 @@ enum N6QStyle10SubElementE {
     SE_TabBarTearIndicator,
     SE_TreeViewDisclosureItem
 };
-enum N6QStyle14ComplexControlE {
+enum _ZN6QStyle14ComplexControlE {
     CC_CustomBase,
     CC_SpinBox,
     CC_ComboBox,
@@ -175,7 +175,7 @@ enum N6QStyle14ComplexControlE {
     CC_Dial,
     CC_GroupBox
 };
-enum N6QStyle10SubControlE {
+enum _ZN6QStyle10SubControlE {
     SC_All,
     SC_None,
     SC_ScrollBarAddLine,
@@ -220,9 +220,9 @@ enum N6QStyle10SubControlE {
     SC_TitleBarLabel
 };
 class QFlags < QStyle::SubControl >;
-typedef N6QStyle11SubControlsE;
-typedef N6QStyle11SubControlsE N6QStyle7SCFlagsE;
-enum N6QStyle11PixelMetricE {
+typedef class QFlags < QStyle::SubControl > _ZN6QStyle11SubControlsE;
+typedef _ZN6QStyle11SubControlsE _ZN6QStyle7SCFlagsE;
+enum _ZN6QStyle11PixelMetricE {
     PM_CustomBase,
     PM_ButtonMargin,
     PM_ButtonDefaultIndicator,
@@ -301,7 +301,7 @@ enum N6QStyle11PixelMetricE {
     PM_SizeGripSize,
     PM_DockWidgetTitleMargin
 };
-enum N6QStyle12ContentsTypeE {
+enum _ZN6QStyle12ContentsTypeE {
     CT_CustomBase,
     CT_PushButton,
     CT_CheckBox,
@@ -327,7 +327,7 @@ enum N6QStyle12ContentsTypeE {
     CT_HeaderSection,
     CT_GroupBox
 };
-enum N6QStyle9StyleHintE {
+enum _ZN6QStyle9StyleHintE {
     SH_CustomBase,
     SH_EtchDisabledText,
     SH_DitherDisabledText,
@@ -398,7 +398,7 @@ enum N6QStyle9StyleHintE {
     SH_GUIStyle,
     SH_ScrollBar_BackgroundMode
 };
-enum N6QStyle14StandardPixmapE {
+enum _ZN6QStyle14StandardPixmapE {
     SP_CustomBase,
     SP_TitleBarMenuButton,
     SP_TitleBarMinButton,

@@ -7,6 +7,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -18,8 +24,8 @@ extern "C" {
 #define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#define SIG_BLOCK	0
-#define SIG_UNBLOCK	1
+#define SIG_BLOCK	0	/* Block signals. */
+#define SIG_UNBLOCK	1	/* Unblock signals. */
 #if defined __s390__ && !defined __s390x__
 #define __NUM_ACRS	16
 #endif
@@ -38,7 +44,7 @@ extern "C" {
 #if defined __s390x__
 #define __NUM_GPRS	16
 #endif
-#define SIG_SETMASK	2
+#define SIG_SETMASK	2	/* Set the set of blocked signals. */
 #define NSIG	65
 
 
@@ -120,74 +126,64 @@ extern "C" {
 /* PPC64 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
 
 
-
-
-
-
 /* PPC32 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
 
 
-
-
-
-
 /* Type of a signal handling function.*/
-
-
     typedef void (*sighandler_t) (int);
 
 
 /* Special Signal values*/
-#define SIG_HOLD	((sighandler_t) 2)
-#define SIG_ERR	((sighandler_t)-1)
-#define SIG_DFL	((sighandler_t)0)
-#define SIG_IGN	((sighandler_t)1)
+#define SIG_HOLD	((sighandler_t) 2)	/* Request that signal be held. */
+#define SIG_ERR	((sighandler_t)-1)	/* Return value from signal() in case of error. */
+#define SIG_DFL	((sighandler_t)0)	/* Request for default signal handling. */
+#define SIG_IGN	((sighandler_t)1)	/* Request that signal be ignored. */
 
 
 
 /* System defined signals.*/
-#define SIGHUP	1
-#define SIGUSR1	10
-#define SIGSEGV	11
-#define SIGUSR2	12
-#define SIGPIPE	13
-#define SIGALRM	14
-#define SIGTERM	15
-#define SIGSTKFLT	16
-#define SIGCHLD	17
-#define SIGCONT	18
-#define SIGSTOP	19
-#define SIGINT	2
-#define SIGTSTP	20
-#define SIGTTIN	21
-#define SIGTTOU	22
-#define SIGURG	23
-#define SIGXCPU	24
-#define SIGXFSZ	25
-#define SIGVTALRM	26
-#define SIGPROF	27
-#define SIGWINCH	28
-#define SIGIO	29
-#define SIGQUIT	3
-#define SIGPWR	30
-#define SIGSYS	31
+#define SIGHUP	1		/* Hangup. */
+#define SIGUSR1	10		/* User-defined signal 1. */
+#define SIGSEGV	11		/* Invalid memory reference. */
+#define SIGUSR2	12		/* User-defined signal 2. */
+#define SIGPIPE	13		/* Write  on a pipe with no one to read it. */
+#define SIGALRM	14		/* Alarm clock. */
+#define SIGTERM	15		/* Termination signal. */
+#define SIGSTKFLT	16	/* Stack fault. */
+#define SIGCHLD	17		/* Child process terminated, stopped, or continued. */
+#define SIGCONT	18		/* Continue executing, if stopped. */
+#define SIGSTOP	19		/* Stop executing (cannot be caught or ignored). */
+#define SIGINT	2		/* Terminal interrupt signal. */
+#define SIGTSTP	20		/* Terminal stop signal. */
+#define SIGTTIN	21		/* Background process attempting read. */
+#define SIGTTOU	22		/* Background process attempting write. */
+#define SIGURG	23		/* High bandwidth data is available at a socket. */
+#define SIGXCPU	24		/* CPU time limit exceeded. */
+#define SIGXFSZ	25		/* File size limit exceeded. */
+#define SIGVTALRM	26	/* Virtual timer expired. */
+#define SIGPROF	27		/* Profiling timer expired. */
+#define SIGWINCH	28	/* Window size change. */
+#define SIGIO	29		/* I/O now possible. */
+#define SIGQUIT	3		/* Terminal quit signal. */
+#define SIGPWR	30		/* Power failure restart */
+#define SIGSYS	31		/* Bad system call. */
 #define SIGUNUSED	31
-#define SIGILL	4
-#define SIGTRAP	5
-#define SIGABRT	6
-#define SIGIOT	6
-#define SIGBUS	7
-#define SIGFPE	8
-#define SIGKILL	9
-#define SIGCLD	SIGCHLD
-#define SIGPOLL	SIGIO
+#define SIGILL	4		/* Illegal instruction. */
+#define SIGTRAP	5		/* Trace/breakpoint trap. */
+#define SIGABRT	6		/* Process abort signal. */
+#define SIGIOT	6		/* IOT trap */
+#define SIGBUS	7		/* Access to an undefined portion of a memory object. */
+#define SIGFPE	8		/* Erroneous arithmetic operation. */
+#define SIGKILL	9		/* Kill (cannot be caught or ignored). */
+#define SIGCLD	SIGCHLD		/* Same as SIGCHLD */
+#define SIGPOLL	SIGIO		/* Pollable event. */
 
 
 
 /* POSIX 1003.1b sigval*/
-#define SV_ONSTACK	(1<<0)
-#define SV_INTERRUPT	(1<<1)
-#define SV_RESETHAND	(1<<2)
+#define SV_ONSTACK	(1<<0)	/* Take the signal on the signal stack. */
+#define SV_INTERRUPT	(1<<1)	/* Do not restart system calls. */
+#define SV_RESETHAND	(1<<2)	/* Reset handler to SIG_DFL on receipt. */
 
 
     typedef union sigval sigval_t;
@@ -220,9 +216,9 @@ extern "C" {
 #if defined __s390x__
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 #endif
-#define SIGEV_SIGNAL	0
-#define SIGEV_NONE	1
-#define SIGEV_THREAD	2
+#define SIGEV_SIGNAL	0	/* Notify via signal. */
+#define SIGEV_NONE	1	/* Other notification: meaningless. */
+#define SIGEV_THREAD	2	/* Deliver via thread creation. */
 #define SIGEV_MAX_SIZE	64
 
 
@@ -323,98 +319,96 @@ extern "C" {
 
 /* Values for `si_code'.  Positive values are reserved for kernel-generated
    signals.*/
-#define SI_QUEUE	-1
-#define SI_TIMER	-2
-#define SI_MESGQ	-3
-#define SI_ASYNCIO	-4
-#define SI_SIGIO	-5
-#define SI_TKILL	-6
-#define SI_ASYNCNL	-60
-#define SI_USER	0
-#define SI_KERNEL	0x80
+#define SI_QUEUE	-1	/* Sent by sigqueue. */
+#define SI_TIMER	-2	/* Sent by timer expiration. */
+#define SI_MESGQ	-3	/* Sent by real time mesq state change. */
+#define SI_ASYNCIO	-4	/* Sent by AIO completion. */
+#define SI_SIGIO	-5	/* Sent by queued SIGIO. */
+#define SI_TKILL	-6	/* Sent by tkill. */
+#define SI_ASYNCNL	-60	/* Sent by asynch name lookup completion. */
+#define SI_USER	0		/* Sent by kill, sigsend, raise. */
+#define SI_KERNEL	0x80	/* Sent by kernel. */
 
 
 
 /* `si_code' values for SIGILL signal.*/
-#define ILL_ILLOPC	1
-#define ILL_ILLOPN	2
-#define ILL_ILLADR	3
-#define ILL_ILLTRP	4
-#define ILL_PRVOPC	5
-#define ILL_PRVREG	6
-#define ILL_COPROC	7
-#define ILL_BADSTK	8
+#define ILL_ILLOPC	1	/* Illegal opcode. */
+#define ILL_ILLOPN	2	/* Illegal operand. */
+#define ILL_ILLADR	3	/* Illegal addressing mode. */
+#define ILL_ILLTRP	4	/* Illegal trap. */
+#define ILL_PRVOPC	5	/* Privileged opcode. */
+#define ILL_PRVREG	6	/* Privileged register. */
+#define ILL_COPROC	7	/* Coprocessor error. */
+#define ILL_BADSTK	8	/* Internal stack error. */
 
 
 
 /* `si_code' values for SIGFPE signal.*/
-#define FPE_INTDIV	1
-#define FPE_INTOVF	2
-#define FPE_FLTDIV	3
-#define FPE_FLTOVF	4
-#define FPE_FLTUND	5
-#define FPE_FLTRES	6
-#define FPE_FLTINV	7
-#define FPE_FLTSUB	8
+#define FPE_INTDIV	1	/* Integer divide by zero. */
+#define FPE_INTOVF	2	/* Integer overflow. */
+#define FPE_FLTDIV	3	/*  Floating-point divide by zero. */
+#define FPE_FLTOVF	4	/* Floating-point overflow. */
+#define FPE_FLTUND	5	/*  Floating-point underflow. */
+#define FPE_FLTRES	6	/*  Floating-point inexact result. */
+#define FPE_FLTINV	7	/* Invalid floating-point operation. */
+#define FPE_FLTSUB	8	/* Subscript out of range. */
 
 
 
 /* `si_code' values for SIGSEGV signal.*/
-#define SEGV_MAPERR	1
-#define SEGV_ACCERR	2
+#define SEGV_MAPERR	1	/* Address not mapped to object. */
+#define SEGV_ACCERR	2	/*  Invalid permissions for mapped object. */
 
 
 
 /* `si_code' values for SIGBUS signal.*/
-#define BUS_ADRALN	1
-#define BUS_ADRERR	2
-#define BUS_OBJERR	3
+#define BUS_ADRALN	1	/*  Invalid address alignment. */
+#define BUS_ADRERR	2	/*  Nonexistent physical address. */
+#define BUS_OBJERR	3	/*  Object-specific hardware error. */
 
 
 
 /* `si_code' values for SIGTRAP signal.*/
-#define TRAP_BRKPT	1
-#define TRAP_TRACE	2
+#define TRAP_BRKPT	1	/*  Process breakpoint. */
+#define TRAP_TRACE	2	/*  Process trace trap. */
 
 
 
 /* `si_code' values for SIGCHLD signal.*/
-#define CLD_EXITED	1
-#define CLD_KILLED	2
-#define CLD_DUMPED	3
-#define CLD_TRAPPED	4
-#define CLD_STOPPED	5
-#define CLD_CONTINUED	6
+#define CLD_EXITED	1	/* Child has exited. */
+#define CLD_KILLED	2	/* Child has terminated abnormally and did not create a core fi */
+#define CLD_DUMPED	3	/* Child has terminated abnormally and created a core file. */
+#define CLD_TRAPPED	4	/*  Traced child has trapped. */
+#define CLD_STOPPED	5	/* Child has stopped. */
+#define CLD_CONTINUED	6	/* Stopped child has continued. */
 
 
 
 /* `si_code' values for SIGPOLL signal.*/
-#define POLL_IN	1
-#define POLL_OUT	2
-#define POLL_MSG	3
-#define POLL_ERR	4
-#define POLL_PRI	5
-#define POLL_HUP	6
+#define POLL_IN	1		/*  Data input available. */
+#define POLL_OUT	2	/*  Output buffers available. */
+#define POLL_MSG	3	/*  Input message available. */
+#define POLL_ERR	4	/*  I/O error. */
+#define POLL_PRI	5	/* High priority input available. */
+#define POLL_HUP	6	/*  Device disconnected. */
 
 
 
 /* sigset_t*/
-
-
     typedef struct {
 	unsigned long int sig[_SIGSET_NWORDS];
     } sigset_t;
 
 
 /* sigaction*/
-#define SA_NOCLDSTOP	0x00000001
-#define SA_NOCLDWAIT	0x00000002
-#define SA_SIGINFO	0x00000004
-#define SA_ONSTACK	0x08000000
-#define SA_RESTART	0x10000000
+#define SA_NOCLDSTOP	0x00000001	/* Don't send SIGCHLD when children stop. */
+#define SA_NOCLDWAIT	0x00000002	/* Don't create zombie on child death. */
+#define SA_SIGINFO	0x00000004	/* Invoke signal-catching function with three arguments instead of one. */
+#define SA_ONSTACK	0x08000000	/* Use signal stack by using `sa_restorer`. */
+#define SA_RESTART	0x10000000	/* Restart syscall on signal return. */
 #define SA_INTERRUPT	0x20000000
-#define SA_NODEFER	0x40000000
-#define SA_RESETHAND	0x80000000
+#define SA_NODEFER	0x40000000	/* Don't automatically block the signal when its handler is being executed. */
+#define SA_RESETHAND	0x80000000	/* Reset to SIG_DFL on entry to handler. */
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
 #define sa_handler	__sigaction_handler._sa_handler
@@ -514,46 +508,46 @@ extern "C" {
 
 /* Structure used in sigaltstack call.*/
 #if defined __ia64__
-#define MINSIGSTKSZ	131027
+#define MINSIGSTKSZ	131027	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __i386__
-#define MINSIGSTKSZ	2048
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
-#define MINSIGSTKSZ	2048
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __powerpc64__
-#define MINSIGSTKSZ	2048
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __s390__ && !defined __s390x__
-#define MINSIGSTKSZ	2048
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __x86_64__
-#define MINSIGSTKSZ	2048
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __s390x__
-#define MINSIGSTKSZ	2048
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
 #endif
 #if defined __ia64__
-#define SIGSTKSZ	262144
+#define SIGSTKSZ	262144	/* System default stack size. */
 #endif
 #if defined __i386__
-#define SIGSTKSZ	8192
+#define SIGSTKSZ	8192	/* System default stack size. */
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
-#define SIGSTKSZ	8192
+#define SIGSTKSZ	8192	/* System default stack size. */
 #endif
 #if defined __powerpc64__
-#define SIGSTKSZ	8192
+#define SIGSTKSZ	8192	/* System default stack size. */
 #endif
 #if defined __s390__ && !defined __s390x__
-#define SIGSTKSZ	8192
+#define SIGSTKSZ	8192	/* System default stack size. */
 #endif
 #if defined __x86_64__
-#define SIGSTKSZ	8192
+#define SIGSTKSZ	8192	/* System default stack size. */
 #endif
 #if defined __s390x__
-#define SIGSTKSZ	8192
+#define SIGSTKSZ	8192	/* System default stack size. */
 #endif
 
 
@@ -574,8 +568,6 @@ extern "C" {
 
 
 /* FP registers*/
-
-
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
@@ -660,8 +652,6 @@ extern "C" {
 #endif
 
 /* FPU state information*/
-
-
 #if defined __i386__
 /* IA32 */
     struct _fpstate {
@@ -703,8 +693,6 @@ extern "C" {
 #endif
 
 /* Process context when signal delivered*/
-
-
 #if defined __i386__
 /* IA32 */
     struct sigcontext {

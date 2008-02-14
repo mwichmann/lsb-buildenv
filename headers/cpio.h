@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define C_IXOTH	000001
 #define C_IWOTH	000002
 #define C_IROTH	000004
@@ -29,7 +28,6 @@ extern "C" {
 #define C_ISDIR	040000
 #define C_ISBLK	060000
 #define MAGIC	"070707"
-
 
 
 #ifdef __cplusplus

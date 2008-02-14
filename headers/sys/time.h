@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-
 #define ITIMER_REAL	0
 #define ITIMER_VIRTUAL	1
 #define ITIMER_PROF	2
@@ -22,24 +21,14 @@ extern "C" {
 
 
 
-
-
 /* Values for the first argument to `getitimer' and `setitimer'.*/
-
-
     typedef int __itimer_which_t;
-
-
 
 
     struct timespec {
 	time_t tv_sec;
 	long int tv_nsec;
     };
-
-
-
-
 
 
 
@@ -51,8 +40,6 @@ extern "C" {
 
 /* Type of the second argument to `getitimer' and
 the second and third arguments `setitimer'.*/
-
-
     struct itimerval {
 	struct timeval it_interval;
 	struct timeval it_value;

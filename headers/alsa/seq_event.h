@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_SEQ_TIME_STAMP_TICK	(0<<0)
 #define SND_SEQ_TIME_MODE_ABS	(0<<1)
 #define SND_SEQ_EVENT_LENGTH_FIXED	(0<<2)
@@ -236,7 +235,6 @@ extern "C" {
 	short unsigned int bank;
 	short unsigned int prg;
     };
-
 
 #ifdef __cplusplus
 }

@@ -4,31 +4,24 @@
 class QTextDocumentFragment;
 // *INDENT-OFF*
 
-
-
-
 class QTextDocumentFragment
 {
 private:
 public:
+     QTextDocumentFragment();
+     QTextDocumentFragment(QTextDocument const*);
+     QTextDocumentFragment(QTextCursor const&);
+     QTextDocumentFragment(QTextDocumentFragment const&);
+     operator=(QTextDocumentFragment const&);
+     ~QTextDocumentFragment();
+    bool isEmpty() const;
+    QString toPlainText() const;
+    QString toHtml() const;
+    QTextDocumentFragment fromPlainText(QString const&);
+    QTextDocumentFragment fromHtml(QString const&);
+    QTextDocumentFragment fromHtml(QString const&, QTextDocument const*);
+    QString toHtml(QByteArray const&) const;
 };
 
-
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC2Ev(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC1Ev(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC2EPK13QTextDocument(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC1EPK13QTextDocument(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC2ERK11QTextCursor(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC1ERK11QTextCursor(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC2ERKS_(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentC1ERKS_(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragmentaSERKS_(void);
-extern  _ZN21QTextDocumentFragmentD2Ev(void);
-extern  _ZN21QTextDocumentFragmentD1Ev(void);
-extern bool _ZNK21QTextDocumentFragment7isEmptyEv(void);
-extern QString _ZNK21QTextDocumentFragment11toPlainTextEv(void);
-extern QString _ZNK21QTextDocumentFragment6toHtmlEv(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragment13fromPlainTextERK7QString(void);
-extern QTextDocumentFragment _ZN21QTextDocumentFragment8fromHtmlERK7QString(void);
 // *INDENT-ON*
 #endif

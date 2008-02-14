@@ -1,11 +1,11 @@
 
 class QAbstractPrintDialog;
-enum N20QAbstractPrintDialog10PrintRangeE {
+enum _ZN20QAbstractPrintDialog10PrintRangeE {
     AllPages,
     Selection,
     PageRange
 };
-enum N20QAbstractPrintDialog17PrintDialogOptionE {
+enum _ZN20QAbstractPrintDialog17PrintDialogOptionE {
     None,
     PrintToFile,
     PrintSelection,
@@ -13,4 +13,5 @@ enum N20QAbstractPrintDialog17PrintDialogOptionE {
     PrintCollateCopies
 };
 class QFlags < QAbstractPrintDialog::PrintDialogOption >;
-typedef N20QAbstractPrintDialog18PrintDialogOptionsE;
+typedef class QFlags < QAbstractPrintDialog::PrintDialogOption >
+    _ZN20QAbstractPrintDialog18PrintDialogOptionsE;

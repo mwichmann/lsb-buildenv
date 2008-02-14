@@ -8,13 +8,9 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef QList < QWidget * >QWidgetList;
 
     typedef unsigned long int WId;
-
 
 #ifdef __cplusplus
 }

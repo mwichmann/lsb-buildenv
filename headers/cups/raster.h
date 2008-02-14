@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define _CUPS_RASTER_H_
 #define CUPS_RASTER_SYNC	0x52615374
 #define CUPS_RASTER_REVSYNC	0x74536152

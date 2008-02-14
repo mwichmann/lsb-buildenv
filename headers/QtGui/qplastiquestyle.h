@@ -4,41 +4,38 @@
 class QPlastiqueStyle;
 // *INDENT-OFF*
 
-
-
-
 class QPlastiqueStyle : public QWindowsStyle
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QPlastiqueStyle();
+     ~QPlastiqueStyle();
+    void drawPrimitive(QStyle::PrimitiveElement, QStyleOption const*, QPainter*, QWidget const*) const;
+    void drawControl(QStyle::ControlElement, QStyleOption const*, QPainter*, QWidget const*) const;
+    void drawComplexControl(QStyle::ComplexControl, QStyleOptionComplex const*, QPainter*, QWidget const*) const;
+    QSize sizeFromContents(QStyle::ContentsType, QStyleOption const*, QSize const&, QWidget const*) const;
+    QRect subElementRect(QStyle::SubElement, QStyleOption const*, QWidget const*) const;
+    QRect subControlRect(QStyle::ComplexControl, QStyleOptionComplex const*, QStyle::SubControl, QWidget const*) const;
+    int styleHint(QStyle::StyleHint, QStyleOption const*, QWidget const*, QStyleHintReturn*) const;
+    enum _ZN6QStyle10SubControlE hitTestComplexControl(QStyle::ComplexControl, QStyleOptionComplex const*, QPoint const&, QWidget const*) const;
+    int pixelMetric(QStyle::PixelMetric, QStyleOption const*, QWidget const*) const;
+    void polish(QWidget*);
+    void polish(QApplication*);
+    void polish(QPalette&);
+    void unpolish(QWidget*);
+    void unpolish(QApplication*);
+    QPalette standardPalette() const;
+    QPixmap standardPixmap(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
+protected:
+    bool eventFilter(QObject*, QEvent*);
+    void timerEvent(QTimerEvent*);
+    QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
 };
 
 
 extern struct QMetaObject _ZN15QPlastiqueStyle16staticMetaObjectE ;
-extern struct QMetaObject _ZNK15QPlastiqueStyle10metaObjectEv(void);
-extern void _ZN15QPlastiqueStyle11qt_metacastEPKc(void);
-extern int _ZN15QPlastiqueStyle11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QPlastiqueStyle _ZN15QPlastiqueStyleC2Ev(void);
-extern QPlastiqueStyle _ZN15QPlastiqueStyleC1Ev(void);
-extern  _ZN15QPlastiqueStyleD2Ev(void);
-extern  _ZN15QPlastiqueStyleD1Ev(void);
-extern  _ZN15QPlastiqueStyleD0Ev(void);
-extern void _ZNK15QPlastiqueStyle13drawPrimitiveEN6QStyle16PrimitiveElementEPK12QStyleOptionP8QPainterPK7QWidget(void);
-extern void _ZNK15QPlastiqueStyle11drawControlEN6QStyle14ControlElementEPK12QStyleOptionP8QPainterPK7QWidget(void);
-extern void _ZNK15QPlastiqueStyle18drawComplexControlEN6QStyle14ComplexControlEPK19QStyleOptionComplexP8QPainterPK7QWidget(void);
-extern QSize _ZNK15QPlastiqueStyle16sizeFromContentsEN6QStyle12ContentsTypeEPK12QStyleOptionRK5QSizePK7QWidget(void);
-extern QRect _ZNK15QPlastiqueStyle14subElementRectEN6QStyle10SubElementEPK12QStyleOptionPK7QWidget(void);
-extern QRect _ZNK15QPlastiqueStyle14subControlRectEN6QStyle14ComplexControlEPK19QStyleOptionComplexNS0_10SubControlEPK7QWidget(void);
-extern int _ZNK15QPlastiqueStyle9styleHintEN6QStyle9StyleHintEPK12QStyleOptionPK7QWidgetP16QStyleHintReturn(void);
-extern enum N6QStyle10SubControlE _ZNK15QPlastiqueStyle21hitTestComplexControlEN6QStyle14ComplexControlEPK19QStyleOptionComplexRK6QPointPK7QWidget(void);
-extern int _ZNK15QPlastiqueStyle11pixelMetricEN6QStyle11PixelMetricEPK12QStyleOptionPK7QWidget(void);
-extern void _ZN15QPlastiqueStyle6polishEP7QWidget(void);
-extern void _ZN15QPlastiqueStyle6polishEP12QApplication(void);
-extern void _ZN15QPlastiqueStyle6polishER8QPalette(void);
-extern void _ZN15QPlastiqueStyle8unpolishEP7QWidget(void);
-extern void _ZN15QPlastiqueStyle8unpolishEP12QApplication(void);
-extern QPalette _ZNK15QPlastiqueStyle15standardPaletteEv(void);
-extern bool _ZN15QPlastiqueStyle11eventFilterEP7QObjectP6QEvent(void);
-extern void _ZN15QPlastiqueStyle10timerEventEP11QTimerEvent(void);
 // *INDENT-ON*
 #endif

@@ -4,10 +4,11 @@
 class QAbstractUndoItem;
 // *INDENT-OFF*
 
-
-
-
-typedef FindFlags	
+typedef class QFlags<QTextDocument::FindFlag>
+{
+private:
+public:
+}FindFlags	
 ;
 
 enum HitTestAccuracy	
@@ -36,6 +37,79 @@ class QTextDocument : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QTextDocument(QObject*);
+     QTextDocument(QString const&, QObject*);
+     ~QTextDocument();
+    QTextDocument * clone(QObject*) const;
+    bool isEmpty() const;
+    void clear();
+    void setUndoRedoEnabled(bool);
+    bool isUndoRedoEnabled() const;
+    bool isUndoAvailable() const;
+    bool isRedoAvailable() const;
+    void setDocumentLayout(QAbstractTextDocumentLayout*);
+    QAbstractTextDocumentLayout * documentLayout() const;
+    void setMetaInformation(QTextDocument::MetaInformation, QString const&);
+    QString metaInformation(QTextDocument::MetaInformation) const;
+    QString toHtml(QByteArray const&) const;
+    void setHtml(QString const&);
+    QString toPlainText() const;
+    void setPlainText(QString const&);
+    QTextCursor find(QString const&, int, QFlags<QTextDocument::FindFlag>) const;
+    QTextCursor find(QString const&, QTextCursor const&, QFlags<QTextDocument::FindFlag>) const;
+     frameAt(int) const;
+     rootFrame() const;
+     object(int) const;
+     objectForFormat(QTextFormat const&) const;
+    QTextBlock findBlock(int) const;
+    QTextBlock begin() const;
+    QTextBlock end() const;
+    void setPageSize(QSizeF const&);
+    QSizeF pageSize() const;
+    void setDefaultFont(QFont const&);
+    QFont defaultFont() const;
+    int pageCount() const;
+    bool isModified() const;
+    void print(QPrinter*) const;
+    QVariant resource(int, QUrl const&) const;
+    void addResource(int, QUrl const&, QVariant const&);
+    QVector<QTextFormat> allFormats() const;
+    void markContentsDirty(int, int);
+    void setUseDesignMetrics(bool);
+    bool useDesignMetrics() const;
+    void undo();
+    void redo();
+    void appendUndoItem(QAbstractUndoItem*);
+    void setModified(bool);
+     docHandle() const;
+     QTextDocument(QTextDocumentPrivate&, QObject*);
+    void adjustSize();
+    void drawContents(QPainter*, QRectF const&);
+    void setTextWidth(double);
+    void setDefaultStyleSheet(QString const&);
+    void setMaximumBlockCount(int);
+    void redo(QTextCursor*);
+    void undo(QTextCursor*);
+    int blockCount() const;
+    qreal idealWidth() const;
+    QString defaultStyleSheet() const;
+    int maximumBlockCount() const;
+    QTextCursor find(QRegExp const&, int, QFlags<QTextDocument::FindFlag>) const;
+    QTextCursor find(QRegExp const&, QTextCursor const&, QFlags<QTextDocument::FindFlag>) const;
+    QSizeF size() const;
+    qreal textWidth() const;
+protected:
+    void contentsChange(int, int, int);
+    void contentsChanged();
+    void undoAvailable(bool);
+    void redoAvailable(bool);
+    void modificationChanged(bool);
+    void cursorPositionChanged(QTextCursor const&);
+     createObject(QTextFormat const&);
+    QVariant loadResource(int, QUrl const&);
 };
 
 enum MetaInformation	
@@ -67,70 +141,10 @@ UserResource = 100
 ;
 
 
-extern bool _ZN2Qt15mightBeRichTextERK7QString(void);
-extern QString _ZN2Qt6escapeERK7QString(void);
-extern QString _ZN2Qt20convertFromPlainTextERK7QStringNS_14WhiteSpaceModeE(void);
-extern QTextCodec _ZN2Qt12codecForHtmlERK10QByteArray(void);
+extern bool _ZN2Qt15mightBeRichTextERK7QString(const QString &);
+extern QString _ZN2Qt6escapeERK7QString(const QString &);
+extern QString _ZN2Qt20convertFromPlainTextERK7QStringNS_14WhiteSpaceModeE(const QString &, enum _ZN2Qt14WhiteSpaceModeE);
+extern QTextCodec * _ZN2Qt12codecForHtmlERK10QByteArray(const QByteArray &);
 extern struct QMetaObject _ZN13QTextDocument16staticMetaObjectE ;
-extern struct QMetaObject _ZNK13QTextDocument10metaObjectEv(void);
-extern void _ZN13QTextDocument11qt_metacastEPKc(void);
-extern int _ZN13QTextDocument11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QTextDocument _ZN13QTextDocumentC2EP7QObject(void);
-extern QTextDocument _ZN13QTextDocumentC1EP7QObject(void);
-extern QTextDocument _ZN13QTextDocumentC2ERK7QStringP7QObject(void);
-extern QTextDocument _ZN13QTextDocumentC1ERK7QStringP7QObject(void);
-extern  _ZN13QTextDocumentD2Ev(void);
-extern  _ZN13QTextDocumentD1Ev(void);
-extern  _ZN13QTextDocumentD0Ev(void);
-extern QTextDocument _ZNK13QTextDocument5cloneEP7QObject(void);
-extern bool _ZNK13QTextDocument7isEmptyEv(void);
-extern void _ZN13QTextDocument5clearEv(void);
-extern void _ZN13QTextDocument18setUndoRedoEnabledEb(void);
-extern bool _ZNK13QTextDocument17isUndoRedoEnabledEv(void);
-extern bool _ZNK13QTextDocument15isUndoAvailableEv(void);
-extern bool _ZNK13QTextDocument15isRedoAvailableEv(void);
-extern void _ZN13QTextDocument17setDocumentLayoutEP27QAbstractTextDocumentLayout(void);
-extern  _ZNK13QTextDocument14documentLayoutEv(void);
-extern void _ZN13QTextDocument18setMetaInformationENS_15MetaInformationERK7QString(void);
-extern QString _ZNK13QTextDocument15metaInformationENS_15MetaInformationE(void);
-extern QString _ZNK13QTextDocument6toHtmlERK10QByteArray(void);
-extern void _ZN13QTextDocument7setHtmlERK7QString(void);
-extern QString _ZNK13QTextDocument11toPlainTextEv(void);
-extern void _ZN13QTextDocument12setPlainTextERK7QString(void);
-extern  _ZNK13QTextDocument4findERK7QStringi6QFlagsINS_8FindFlagEE(void);
-extern  _ZNK13QTextDocument4findERK7QStringRK11QTextCursor6QFlagsINS_8FindFlagEE(void);
-extern QTextFrame _ZNK13QTextDocument7frameAtEi(void);
-extern QTextFrame _ZNK13QTextDocument9rootFrameEv(void);
-extern QTextObject _ZNK13QTextDocument6objectEi(void);
-extern QTextObject _ZNK13QTextDocument15objectForFormatERK11QTextFormat(void);
-extern QTextBlock _ZNK13QTextDocument9findBlockEi(void);
-extern QTextBlock _ZNK13QTextDocument5beginEv(void);
-extern QTextBlock _ZNK13QTextDocument3endEv(void);
-extern void _ZN13QTextDocument11setPageSizeERK6QSizeF(void);
-extern QSizeF _ZNK13QTextDocument8pageSizeEv(void);
-extern void _ZN13QTextDocument14setDefaultFontERK5QFont(void);
-extern QFont _ZNK13QTextDocument11defaultFontEv(void);
-extern int _ZNK13QTextDocument9pageCountEv(void);
-extern bool _ZNK13QTextDocument10isModifiedEv(void);
-extern void _ZNK13QTextDocument5printEP8QPrinter(void);
-extern QVariant _ZNK13QTextDocument8resourceEiRK4QUrl(void);
-extern void _ZN13QTextDocument11addResourceEiRK4QUrlRK8QVariant(void);
-extern  _ZNK13QTextDocument10allFormatsEv(void);
-extern void _ZN13QTextDocument17markContentsDirtyEii(void);
-extern void _ZN13QTextDocument19setUseDesignMetricsEb(void);
-extern bool _ZNK13QTextDocument16useDesignMetricsEv(void);
-extern void _ZN13QTextDocument14contentsChangeEiii(void);
-extern void _ZN13QTextDocument15contentsChangedEv(void);
-extern void _ZN13QTextDocument13undoAvailableEb(void);
-extern void _ZN13QTextDocument13redoAvailableEb(void);
-extern void _ZN13QTextDocument19modificationChangedEb(void);
-extern void _ZN13QTextDocument21cursorPositionChangedERK11QTextCursor(void);
-extern void _ZN13QTextDocument4undoEv(void);
-extern void _ZN13QTextDocument4redoEv(void);
-extern void _ZN13QTextDocument14appendUndoItemEP17QAbstractUndoItem(void);
-extern void _ZN13QTextDocument11setModifiedEb(void);
-extern QTextObject _ZN13QTextDocument12createObjectERK11QTextFormat(void);
-extern QVariant _ZN13QTextDocument12loadResourceEiRK4QUrl(void);
-extern  _ZNK13QTextDocument9docHandleEv(void);
 // *INDENT-ON*
 #endif

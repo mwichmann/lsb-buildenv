@@ -13,9 +13,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlTextReader xmlTextReader;
 
     typedef xmlTextReader *xmlTextReaderPtr;

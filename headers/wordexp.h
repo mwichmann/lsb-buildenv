@@ -9,12 +9,7 @@ extern "C" {
 
 
 
-
-
-
 /* Bits set in the FLAGS argument to `wordexp'.*/
-
-
     enum {
 	WRDE_DOOFFS = 1,
 	WRDE_APPEND = 2,
@@ -26,8 +21,6 @@ extern "C" {
 
 
 /* Structure describing a word-expansion run.*/
-
-
     typedef struct {
 	size_t we_wordc;
 	char **we_wordv;
@@ -36,8 +29,6 @@ extern "C" {
 
 
 /* Possible nonzero return values from `wordexp'.*/
-
-
     enum {
 	WRDE_NOSYS = -1,
 	WRDE_NOSPACE = 1,

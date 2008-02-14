@@ -4,10 +4,11 @@
 class QFile;
 // *INDENT-OFF*
 
-
-
-
-typedef Permissions	
+typedef class QFlags<QFile::Permission>
+{
+private:
+public:
+}Permissions	
 ;
 
 typedef QByteArray EncoderFn	
@@ -38,6 +39,57 @@ class QFile : public QIODevice
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QFile();
+     QFile(QString const&);
+     QFile(QObject*);
+     QFile(QString const&, QObject*);
+     ~QFile();
+    enum _ZN5QFile9FileErrorE error() const;
+    void unsetError();
+    QString fileName() const;
+    void setFileName(QString const&);
+    static QByteArray encodeName(QString const&);
+    static QString decodeName(QByteArray const&);
+    static void setEncodingFunction(QByteArray (*)(QString const&));
+    static void setDecodingFunction(QString (*)(QByteArray const&));
+    bool exists() const;
+    static bool exists(QString const&);
+    QString readLink() const;
+    static QString readLink(QString const&);
+    bool remove();
+    static bool remove(QString const&);
+    bool rename(QString const&);
+    static bool rename(QString const&, QString const&);
+    bool link(QString const&);
+    static bool link(QString const&, QString const&);
+    bool copy(QString const&);
+    static bool copy(QString const&, QString const&);
+    bool isSequential() const;
+    bool open(QFlags<QIODevice::OpenModeFlag>);
+    bool open(_IO_FILE*, QFlags<QIODevice::OpenModeFlag>);
+    bool open(int, QFlags<QIODevice::OpenModeFlag>);
+    void close();
+    qint64 size() const;
+    qint64 pos() const;
+    bool seek(long long);
+    bool atEnd() const;
+    bool flush();
+    bool resize(long long);
+    static bool resize(QString const&, long long);
+    QFlags<QFile::Permission> permissions() const;
+    static QFlags<QFile::Permission> permissions(QString const&);
+    bool setPermissions(QFlags<QFile::Permission>);
+    static bool setPermissions(QString const&, QFlags<QFile::Permission>);
+    int handle() const;
+     fileEngine() const;
+     QFile(QFilePrivate&, QObject*);
+protected:
+    qint64 readData(char*, long long);
+    qint64 writeData(char const*, long long);
+    qint64 readLineData(char*, long long);
 };
 
 enum FileError	
@@ -86,62 +138,5 @@ public:
 
 
 extern struct QMetaObject _ZN5QFile16staticMetaObjectE ;
-extern struct QMetaObject _ZNK5QFile10metaObjectEv(void);
-extern void _ZN5QFile11qt_metacastEPKc(void);
-extern int _ZN5QFile11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QFile _ZN5QFileC2Ev(void);
-extern QFile _ZN5QFileC1Ev(void);
-extern QFile _ZN5QFileC2ERK7QString(void);
-extern QFile _ZN5QFileC1ERK7QString(void);
-extern QFile _ZN5QFileC2EP7QObject(void);
-extern QFile _ZN5QFileC1EP7QObject(void);
-extern QFile _ZN5QFileC2ERK7QStringP7QObject(void);
-extern QFile _ZN5QFileC1ERK7QStringP7QObject(void);
-extern  _ZN5QFileD2Ev(void);
-extern  _ZN5QFileD1Ev(void);
-extern  _ZN5QFileD0Ev(void);
-extern enum N5QFile9FileErrorE _ZNK5QFile5errorEv(void);
-extern void _ZN5QFile10unsetErrorEv(void);
-extern QString _ZNK5QFile8fileNameEv(void);
-extern void _ZN5QFile11setFileNameERK7QString(void);
-extern QByteArray _ZN5QFile10encodeNameERK7QString(void);
-extern QString _ZN5QFile10decodeNameERK10QByteArray(void);
-extern void _ZN5QFile19setEncodingFunctionEPF10QByteArrayRK7QStringE(void);
-extern void _ZN5QFile19setDecodingFunctionEPF7QStringRK10QByteArrayE(void);
-extern bool _ZNK5QFile6existsEv(void);
-extern bool _ZN5QFile6existsERK7QString(void);
-extern QString _ZNK5QFile8readLinkEv(void);
-extern QString _ZN5QFile8readLinkERK7QString(void);
-extern bool _ZN5QFile6removeEv(void);
-extern bool _ZN5QFile6removeERK7QString(void);
-extern bool _ZN5QFile6renameERK7QString(void);
-extern bool _ZN5QFile6renameERK7QStringS2_(void);
-extern bool _ZN5QFile4linkERK7QString(void);
-extern bool _ZN5QFile4linkERK7QStringS2_(void);
-extern bool _ZN5QFile4copyERK7QString(void);
-extern bool _ZN5QFile4copyERK7QStringS2_(void);
-extern bool _ZNK5QFile12isSequentialEv(void);
-extern bool _ZN5QFile4openE6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern bool _ZN5QFile4openEP8_IO_FILE6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern bool _ZN5QFile4openEi6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern void _ZN5QFile5closeEv(void);
-extern qint64 _ZNK5QFile4sizeEv(void);
-extern qint64 _ZNK5QFile3posEv(void);
-extern bool _ZN5QFile4seekEx(void);
-extern bool _ZNK5QFile5atEndEv(void);
-extern bool _ZN5QFile5flushEv(void);
-extern bool _ZN5QFile6resizeEx(void);
-extern bool _ZN5QFile6resizeERK7QStringx(void);
-extern N5QFile11PermissionsE _ZNK5QFile11permissionsEv(void);
-extern N5QFile11PermissionsE _ZN5QFile11permissionsERK7QString(void);
-extern bool _ZN5QFile14setPermissionsE6QFlagsINS_10PermissionEE(void);
-extern bool _ZN5QFile14setPermissionsERK7QString6QFlagsINS_10PermissionEE(void);
-extern int _ZNK5QFile6handleEv(void);
-extern  _ZNK5QFile10fileEngineEv(void);
-extern QFile _ZN5QFileC2ER12QFilePrivateP7QObject(void);
-extern QFile _ZN5QFileC1ER12QFilePrivateP7QObject(void);
-extern qint64 _ZN5QFile8readDataEPcx(void);
-extern qint64 _ZN5QFile9writeDataEPKcx(void);
-extern qint64 _ZN5QFile12readLineDataEPcx(void);
 // *INDENT-ON*
 #endif

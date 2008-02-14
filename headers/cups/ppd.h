@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define _CUPS_PPD_H_
 #define PPD_MAX_LINE	256
 #define PPD_VERSION	4.3

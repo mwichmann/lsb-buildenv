@@ -9,15 +9,10 @@ extern "C" {
 
 
 
-
-
-
 /* LC_TIME category: date and time formatting.*/
 
-
-
 /* Abbreviated days of the week.*/
-#define ABDAY_1	0x20000
+#define ABDAY_1	0x20000		/* Sun. */
 #define ABDAY_2	0x20001
 #define ABDAY_3	0x20002
 #define ABDAY_4	0x20003
@@ -91,8 +86,6 @@ extern "C" {
 
 
 /*  LC_COLLATE category: text sorting. This information is accessed by the strcoll and strxfrm functions. These `nl_langinfo' names are used only internally.*/
-
-
 
 /* LC_CTYPE category: character classification. This information is accessed by the functions in <ctype.h>.These 'nl_langinfo' names are used only internally.*/
 #define CODESET	14

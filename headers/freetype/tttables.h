@@ -13,9 +13,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef enum {
 	ft_sfnt_head = 0,
 	ft_sfnt_maxp = 1,

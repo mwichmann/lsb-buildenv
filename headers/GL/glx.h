@@ -11,9 +11,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct __GLXcontextRec *GLXContext;
 
     typedef struct __GLXFBConfigRec *GLXFBConfig;

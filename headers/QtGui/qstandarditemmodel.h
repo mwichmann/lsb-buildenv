@@ -4,41 +4,68 @@
 class QStandardItemModel;
 // *INDENT-OFF*
 
-
-
-
 class QStandardItemModel : public QAbstractItemModel
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QStandardItemModel(QObject*);
+     QStandardItemModel(int, int, QObject*);
+     ~QStandardItemModel();
+    QModelIndex index(int, int, QModelIndex const&) const;
+    QModelIndex parent(QModelIndex const&) const;
+    int rowCount(QModelIndex const&) const;
+    int columnCount(QModelIndex const&) const;
+    bool hasChildren(QModelIndex const&) const;
+    QVariant data(QModelIndex const&, int) const;
+    bool setData(QModelIndex const&, QVariant const&, int);
+    QVariant headerData(int, Qt::Orientation, int) const;
+    bool setHeaderData(int, Qt::Orientation, QVariant const&, int);
+    bool insertRows(int, int, QModelIndex const&);
+    bool insertColumns(int, int, QModelIndex const&);
+    bool removeRows(int, int, QModelIndex const&);
+    bool removeColumns(int, int, QModelIndex const&);
+     flags(QModelIndex const&) const;
+    void clear();
+     QStandardItemModel(QStandardItemModelPrivate&, QObject*);
+     takeColumn(int);
+    bool setItemData(QModelIndex const&, QMap<int, QVariant> const&);
+    void setRowCount(int);
+    void setSortRole(int);
+    void appendColumn(QList<QStandardItem*> const&);
+    void insertColumn(int, QList<QStandardItem*> const&);
+    void setColumnCount(int);
+    void setItemPrototype(QStandardItem const*);
+    void setVerticalHeaderItem(int, QStandardItem*);
+    QStandardItem * takeVerticalHeaderItem(int);
+    void setHorizontalHeaderItem(int, QStandardItem*);
+    void setVerticalHeaderLabels(QStringList const&);
+    QStandardItem * takeHorizontalHeaderItem(int);
+    void setHorizontalHeaderLabels(QStringList const&);
+    void sort(int, Qt::SortOrder);
+    void setItem(int, int, QStandardItem*);
+     takeRow(int);
+    QStandardItem * takeItem(int, int);
+    void appendRow(QList<QStandardItem*> const&);
+    void insertRow(int, QList<QStandardItem*> const&);
+    QModelIndex indexFromItem(QStandardItem const*) const;
+    QStandardItem * itemFromIndex(QModelIndex const&) const;
+    QStandardItem * * itemPrototype() const;
+    QStandardItem * invisibleRootItem() const;
+    QStandardItem * verticalHeaderItem(int) const;
+    QStandardItem * horizontalHeaderItem(int) const;
+     supportedDropActions() const;
+    QStandardItem * item(int, int) const;
+     itemData(QModelIndex const&) const;
+    int sortRole() const;
+     findItems(QString const&, QFlags<Qt::MatchFlag>, int) const;
+protected:
+    void itemChanged(QStandardItem*);
 };
 
 
 extern struct QMetaObject _ZN18QStandardItemModel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK18QStandardItemModel10metaObjectEv(void);
-extern void _ZN18QStandardItemModel11qt_metacastEPKc(void);
-extern int _ZN18QStandardItemModel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QStandardItemModel _ZN18QStandardItemModelC2EP7QObject(void);
-extern QStandardItemModel _ZN18QStandardItemModelC1EP7QObject(void);
-extern QStandardItemModel _ZN18QStandardItemModelC2EiiP7QObject(void);
-extern QStandardItemModel _ZN18QStandardItemModelC1EiiP7QObject(void);
-extern  _ZN18QStandardItemModelD2Ev(void);
-extern  _ZN18QStandardItemModelD1Ev(void);
-extern  _ZN18QStandardItemModelD0Ev(void);
-extern QModelIndex _ZNK18QStandardItemModel5indexEiiRK11QModelIndex(void);
-extern QModelIndex _ZNK18QStandardItemModel6parentERK11QModelIndex(void);
-extern int _ZNK18QStandardItemModel8rowCountERK11QModelIndex(void);
-extern int _ZNK18QStandardItemModel11columnCountERK11QModelIndex(void);
-extern bool _ZNK18QStandardItemModel11hasChildrenERK11QModelIndex(void);
-extern QVariant _ZNK18QStandardItemModel4dataERK11QModelIndexi(void);
-extern bool _ZN18QStandardItemModel7setDataERK11QModelIndexRK8QVarianti(void);
-extern QVariant _ZNK18QStandardItemModel10headerDataEiN2Qt11OrientationEi(void);
-extern bool _ZN18QStandardItemModel13setHeaderDataEiN2Qt11OrientationERK8QVarianti(void);
-extern bool _ZN18QStandardItemModel10insertRowsEiiRK11QModelIndex(void);
-extern bool _ZN18QStandardItemModel13insertColumnsEiiRK11QModelIndex(void);
-extern bool _ZN18QStandardItemModel10removeRowsEiiRK11QModelIndex(void);
-extern bool _ZN18QStandardItemModel13removeColumnsEiiRK11QModelIndex(void);
-extern N2Qt9ItemFlagsE _ZNK18QStandardItemModel5flagsERK11QModelIndex(void);
-extern void _ZN18QStandardItemModel5clearEv(void);
 // *INDENT-ON*
 #endif

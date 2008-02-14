@@ -4,67 +4,58 @@
 class QGridLayout;
 // *INDENT-OFF*
 
-
-
-
 class QGridLayout : public QLayout
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QGridLayout(QWidget*);
+     QGridLayout();
+     QGridLayout(QWidget*, int, int, int, int, char const*);
+     QGridLayout(int, int, int, char const*);
+     QGridLayout(QLayout*, int, int, int, char const*);
+     ~QGridLayout();
+    QSize sizeHint() const;
+    QSize minimumSize() const;
+    QSize maximumSize() const;
+    void setRowStretch(int, int);
+    void setColumnStretch(int, int);
+    int rowStretch(int) const;
+    int columnStretch(int) const;
+    void setRowMinimumHeight(int, int);
+    void setColumnMinimumWidth(int, int);
+    int rowMinimumHeight(int) const;
+    int columnMinimumWidth(int) const;
+    int columnCount() const;
+    int rowCount() const;
+    QRect cellRect(int, int) const;
+    bool hasHeightForWidth() const;
+    int heightForWidth(int) const;
+    int minimumHeightForWidth(int) const;
+     expandingDirections() const;
+    void invalidate();
+    void addWidget(QWidget*, int, int, QFlags<Qt::AlignmentFlag>);
+    void addWidget(QWidget*, int, int, int, int, QFlags<Qt::AlignmentFlag>);
+    void addLayout(QLayout*, int, int, QFlags<Qt::AlignmentFlag>);
+    void addLayout(QLayout*, int, int, int, int, QFlags<Qt::AlignmentFlag>);
+    void setOriginCorner(Qt::Corner);
+    enum _ZN2Qt6CornerE originCorner() const;
+    QLayoutItem * itemAt(int) const;
+    QLayoutItem * takeAt(int);
+    int count() const;
+    void setGeometry(QRect const&);
+    void addItem(QLayoutItem*, int, int, int, int, QFlags<Qt::AlignmentFlag>);
+    void setDefaultPositioning(int, Qt::Orientation);
+    void getItemPosition(int, int*, int*, int*, int*);
+    void expand(int, int);
+protected:
+    bool findWidget(QWidget*, int*, int*);
+    void addItem(QLayoutItem*);
 };
 
 
 extern struct QMetaObject _ZN11QGridLayout16staticMetaObjectE ;
-extern struct QMetaObject _ZNK11QGridLayout10metaObjectEv(void);
-extern void _ZN11QGridLayout11qt_metacastEPKc(void);
-extern int _ZN11QGridLayout11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QGridLayout _ZN11QGridLayoutC2EP7QWidget(void);
-extern QGridLayout _ZN11QGridLayoutC1EP7QWidget(void);
-extern QGridLayout _ZN11QGridLayoutC2Ev(void);
-extern QGridLayout _ZN11QGridLayoutC1Ev(void);
-extern QGridLayout _ZN11QGridLayoutC2EP7QWidgetiiiiPKc(void);
-extern QGridLayout _ZN11QGridLayoutC1EP7QWidgetiiiiPKc(void);
-extern QGridLayout _ZN11QGridLayoutC2EiiiPKc(void);
-extern QGridLayout _ZN11QGridLayoutC1EiiiPKc(void);
-extern QGridLayout _ZN11QGridLayoutC2EP7QLayoutiiiPKc(void);
-extern QGridLayout _ZN11QGridLayoutC1EP7QLayoutiiiPKc(void);
-extern  _ZN11QGridLayoutD2Ev(void);
-extern  _ZN11QGridLayoutD1Ev(void);
-extern  _ZN11QGridLayoutD0Ev(void);
-extern QSize _ZNK11QGridLayout8sizeHintEv(void);
-extern QSize _ZNK11QGridLayout11minimumSizeEv(void);
-extern QSize _ZNK11QGridLayout11maximumSizeEv(void);
-extern void _ZN11QGridLayout13setRowStretchEii(void);
-extern void _ZN11QGridLayout16setColumnStretchEii(void);
-extern int _ZNK11QGridLayout10rowStretchEi(void);
-extern int _ZNK11QGridLayout13columnStretchEi(void);
-extern void _ZN11QGridLayout19setRowMinimumHeightEii(void);
-extern void _ZN11QGridLayout21setColumnMinimumWidthEii(void);
-extern int _ZNK11QGridLayout16rowMinimumHeightEi(void);
-extern int _ZNK11QGridLayout18columnMinimumWidthEi(void);
-extern int _ZNK11QGridLayout11columnCountEv(void);
-extern int _ZNK11QGridLayout8rowCountEv(void);
-extern QRect _ZNK11QGridLayout8cellRectEii(void);
-extern bool _ZNK11QGridLayout17hasHeightForWidthEv(void);
-extern int _ZNK11QGridLayout14heightForWidthEi(void);
-extern int _ZNK11QGridLayout21minimumHeightForWidthEi(void);
-extern N2Qt12OrientationsE _ZNK11QGridLayout19expandingDirectionsEv(void);
-extern void _ZN11QGridLayout10invalidateEv(void);
-extern void _ZN11QGridLayout9addWidgetEP7QWidgetii6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern void _ZN11QGridLayout9addWidgetEP7QWidgetiiii6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern void _ZN11QGridLayout9addLayoutEP7QLayoutii6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern void _ZN11QGridLayout9addLayoutEP7QLayoutiiii6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern void _ZN11QGridLayout15setOriginCornerEN2Qt6CornerE(void);
-extern enum N2Qt6CornerE _ZNK11QGridLayout12originCornerEv(void);
-extern QLayoutItem _ZNK11QGridLayout6itemAtEi(void);
-extern QLayoutItem _ZN11QGridLayout6takeAtEi(void);
-extern int _ZNK11QGridLayout5countEv(void);
-extern void _ZN11QGridLayout11setGeometryERK5QRect(void);
-extern void _ZN11QGridLayout7addItemEP11QLayoutItemiiii6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern void _ZN11QGridLayout21setDefaultPositioningEiN2Qt11OrientationE(void);
-extern void _ZN11QGridLayout15getItemPositionEiPiS0_S0_S0_(void);
-extern bool _ZN11QGridLayout10findWidgetEP7QWidgetPiS2_(void);
-extern void _ZN11QGridLayout7addItemEP11QLayoutItem(void);
-extern void _ZN11QGridLayout6expandEii(void);
 // *INDENT-ON*
 #endif

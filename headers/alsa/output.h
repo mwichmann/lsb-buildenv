@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _snd_output snd_output_t;
 
 

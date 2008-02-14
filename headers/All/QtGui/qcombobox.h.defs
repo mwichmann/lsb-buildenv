@@ -1,6 +1,6 @@
 
 class QComboBox;
-enum N9QComboBox12InsertPolicyE {
+enum _ZN9QComboBox12InsertPolicyE {
     NoInsert,
     NoInsertion,
     InsertAtTop,
@@ -14,7 +14,7 @@ enum N9QComboBox12InsertPolicyE {
     InsertBeforeCurrent,
     BeforeCurrent
 };
-typedef enum N9QComboBox12InsertPolicyE {
+typedef enum _ZN9QComboBox12InsertPolicyE {
     NoInsert,
     NoInsertion,
     InsertAtTop,
@@ -27,8 +27,8 @@ typedef enum N9QComboBox12InsertPolicyE {
     AfterCurrent,
     InsertBeforeCurrent,
     BeforeCurrent
-} N9QComboBox6PolicyE;
-enum N9QComboBox16SizeAdjustPolicyE {
+} _ZN9QComboBox6PolicyE;
+enum _ZN9QComboBox16SizeAdjustPolicyE {
     AdjustToContents,
     AdjustToContentsOnFirstShow,
     AdjustToMinimumContentsLength

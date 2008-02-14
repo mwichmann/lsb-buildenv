@@ -4,64 +4,70 @@
 class QSortFilterProxyModel;
 // *INDENT-OFF*
 
-
-
-
 class QSortFilterProxyModel : public QAbstractProxyModel
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QSortFilterProxyModel(QObject*);
+     ~QSortFilterProxyModel();
+    void setSourceModel(QAbstractItemModel*);
+    QModelIndex mapToSource(QModelIndex const&) const;
+    QModelIndex mapFromSource(QModelIndex const&) const;
+    QItemSelection mapSelectionToSource(QItemSelection const&) const;
+    QItemSelection mapSelectionFromSource(QItemSelection const&) const;
+    QRegExp filterRegExp() const;
+    void setFilterRegExp(QRegExp const&);
+    int filterKeyColumn() const;
+    void setFilterKeyColumn(int);
+    enum _ZN2Qt15CaseSensitivityE filterCaseSensitivity() const;
+    void setFilterCaseSensitivity(Qt::CaseSensitivity);
+    void setFilterRegExp(QString const&);
+    void setFilterWildcard(QString const&);
+    void setFilterFixedString(QString const&);
+    void clear();
+    QModelIndex index(int, int, QModelIndex const&) const;
+    QModelIndex parent(QModelIndex const&) const;
+    int rowCount(QModelIndex const&) const;
+    int columnCount(QModelIndex const&) const;
+    bool hasChildren(QModelIndex const&) const;
+    QVariant data(QModelIndex const&, int) const;
+    bool setData(QModelIndex const&, QVariant const&, int);
+    QVariant headerData(int, Qt::Orientation, int) const;
+    bool setHeaderData(int, Qt::Orientation, QVariant const&, int);
+    QMimeData * mimeData(QList<QModelIndex> const&) const;
+    bool dropMimeData(QMimeData const*, Qt::DropAction, int, int, QModelIndex const&);
+    bool insertRows(int, int, QModelIndex const&);
+    bool insertColumns(int, int, QModelIndex const&);
+    bool removeRows(int, int, QModelIndex const&);
+    bool removeColumns(int, int, QModelIndex const&);
+    void fetchMore(QModelIndex const&);
+    bool canFetchMore(QModelIndex const&) const;
+     flags(QModelIndex const&) const;
+    QModelIndex buddy(QModelIndex const&) const;
+    QModelIndexList match(QModelIndex const&, int, QVariant const&, int, QFlags<Qt::MatchFlag>) const;
+    QSize span(QModelIndex const&) const;
+    void sort(int, Qt::SortOrder);
+    void setSortRole(int);
+    void setFilterRole(int);
+    void setDynamicSortFilter(bool);
+    void setSortCaseSensitivity(Qt::CaseSensitivity);
+    int filterRole() const;
+    bool dynamicSortFilter() const;
+    enum _ZN2Qt15CaseSensitivityE sortCaseSensitivity() const;
+     supportedDropActions() const;
+    int sortRole() const;
+    QStringList mimeTypes() const;
+protected:
+    bool filterAcceptsRow(int, QModelIndex const&) const;
+    bool filterAcceptsColumn(int, QModelIndex const&) const;
+    bool lessThan(QModelIndex const&, QModelIndex const&) const;
+    void filterChanged();
 };
 
 
 extern struct QMetaObject _ZN21QSortFilterProxyModel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK21QSortFilterProxyModel10metaObjectEv(void);
-extern void _ZN21QSortFilterProxyModel11qt_metacastEPKc(void);
-extern int _ZN21QSortFilterProxyModel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QSortFilterProxyModel _ZN21QSortFilterProxyModelC2EP7QObject(void);
-extern QSortFilterProxyModel _ZN21QSortFilterProxyModelC1EP7QObject(void);
-extern  _ZN21QSortFilterProxyModelD2Ev(void);
-extern  _ZN21QSortFilterProxyModelD1Ev(void);
-extern  _ZN21QSortFilterProxyModelD0Ev(void);
-extern void _ZN21QSortFilterProxyModel14setSourceModelEP18QAbstractItemModel(void);
-extern QModelIndex _ZNK21QSortFilterProxyModel11mapToSourceERK11QModelIndex(void);
-extern QModelIndex _ZNK21QSortFilterProxyModel13mapFromSourceERK11QModelIndex(void);
-extern QItemSelection _ZNK21QSortFilterProxyModel20mapSelectionToSourceERK14QItemSelection(void);
-extern QItemSelection _ZNK21QSortFilterProxyModel22mapSelectionFromSourceERK14QItemSelection(void);
-extern QRegExp _ZNK21QSortFilterProxyModel12filterRegExpEv(void);
-extern void _ZN21QSortFilterProxyModel15setFilterRegExpERK7QRegExp(void);
-extern int _ZNK21QSortFilterProxyModel15filterKeyColumnEv(void);
-extern void _ZN21QSortFilterProxyModel18setFilterKeyColumnEi(void);
-extern enum N2Qt15CaseSensitivityE _ZNK21QSortFilterProxyModel21filterCaseSensitivityEv(void);
-extern void _ZN21QSortFilterProxyModel24setFilterCaseSensitivityEN2Qt15CaseSensitivityE(void);
-extern void _ZN21QSortFilterProxyModel15setFilterRegExpERK7QString(void);
-extern void _ZN21QSortFilterProxyModel17setFilterWildcardERK7QString(void);
-extern void _ZN21QSortFilterProxyModel20setFilterFixedStringERK7QString(void);
-extern void _ZN21QSortFilterProxyModel5clearEv(void);
-extern bool _ZNK21QSortFilterProxyModel16filterAcceptsRowEiRK11QModelIndex(void);
-extern bool _ZNK21QSortFilterProxyModel19filterAcceptsColumnEiRK11QModelIndex(void);
-extern bool _ZNK21QSortFilterProxyModel8lessThanERK11QModelIndexS2_(void);
-extern QModelIndex _ZNK21QSortFilterProxyModel5indexEiiRK11QModelIndex(void);
-extern QModelIndex _ZNK21QSortFilterProxyModel6parentERK11QModelIndex(void);
-extern int _ZNK21QSortFilterProxyModel8rowCountERK11QModelIndex(void);
-extern int _ZNK21QSortFilterProxyModel11columnCountERK11QModelIndex(void);
-extern bool _ZNK21QSortFilterProxyModel11hasChildrenERK11QModelIndex(void);
-extern QVariant _ZNK21QSortFilterProxyModel4dataERK11QModelIndexi(void);
-extern bool _ZN21QSortFilterProxyModel7setDataERK11QModelIndexRK8QVarianti(void);
-extern QVariant _ZNK21QSortFilterProxyModel10headerDataEiN2Qt11OrientationEi(void);
-extern bool _ZN21QSortFilterProxyModel13setHeaderDataEiN2Qt11OrientationERK8QVarianti(void);
-extern QMimeData _ZNK21QSortFilterProxyModel8mimeDataERK5QListI11QModelIndexE(void);
-extern bool _ZN21QSortFilterProxyModel12dropMimeDataEPK9QMimeDataN2Qt10DropActionEiiRK11QModelIndex(void);
-extern bool _ZN21QSortFilterProxyModel10insertRowsEiiRK11QModelIndex(void);
-extern bool _ZN21QSortFilterProxyModel13insertColumnsEiiRK11QModelIndex(void);
-extern bool _ZN21QSortFilterProxyModel10removeRowsEiiRK11QModelIndex(void);
-extern bool _ZN21QSortFilterProxyModel13removeColumnsEiiRK11QModelIndex(void);
-extern void _ZN21QSortFilterProxyModel9fetchMoreERK11QModelIndex(void);
-extern bool _ZNK21QSortFilterProxyModel12canFetchMoreERK11QModelIndex(void);
-extern N2Qt9ItemFlagsE _ZNK21QSortFilterProxyModel5flagsERK11QModelIndex(void);
-extern QModelIndex _ZNK21QSortFilterProxyModel5buddyERK11QModelIndex(void);
-extern QModelIndexList _ZNK21QSortFilterProxyModel5matchERK11QModelIndexiRK8QVarianti6QFlagsIN2Qt9MatchFlagEE(void);
-extern QSize _ZNK21QSortFilterProxyModel4spanERK11QModelIndex(void);
-extern void _ZN21QSortFilterProxyModel4sortEiN2Qt9SortOrderE(void);
 // *INDENT-ON*
 #endif

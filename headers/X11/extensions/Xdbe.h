@@ -10,9 +10,6 @@ extern "C" {
 
 
 
-
-
-
     extern XdbeBackBuffer XdbeAllocateBackBufferName(Display *, Window,
 						     XdbeSwapAction);
     extern int XdbeBeginIdiom(Display *);

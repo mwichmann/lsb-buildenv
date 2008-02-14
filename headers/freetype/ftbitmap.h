@@ -11,9 +11,6 @@ extern "C" {
 
 
 
-
-
-
     extern FT_Error FT_Bitmap_Done(FT_Library, FT_Bitmap *);
     extern FT_Error FT_Bitmap_Convert(FT_Library, const FT_Bitmap *,
 				      FT_Bitmap *, FT_Int);

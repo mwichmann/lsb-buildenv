@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define FT_CONFIG_OPTION_ADOBE_GLYPH_LIST
 #define FT_CONFIG_OPTION_GUESSING_EMBEDDED_RFORK
 #define FT_CONFIG_OPTION_MAC_FONTS
@@ -32,7 +31,6 @@ extern "C" {
 #define T1_MAX_CHARSTRINGS_OPERANDS	256
 #define FT_MAX_MODULES	32
 #define T1_MAX_DICT_DEPTH	5
-
 
 
 #ifdef __cplusplus

@@ -4,16 +4,21 @@
 class QFlags < QStyle::SubControl >;
 // *INDENT-OFF*
 
-
-
-
-typedef State	
+typedef class QFlags<QStyle::StateFlag>
+{
+private:
+public:
+}State	
 ;
 
 typedef State	SFlags	
 ;
 
-typedef SubControls	
+typedef class QFlags<QStyle::SubControl>
+{
+private:
+public:
+}SubControls	
 ;
 
 typedef SubControls	SCFlags	
@@ -23,6 +28,31 @@ class QStyle : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QStyle(QStylePrivate&);
+     QStyle();
+     ~QStyle();
+    void polish(QWidget*);
+    void unpolish(QWidget*);
+    void polish(QApplication*);
+    void unpolish(QApplication*);
+    void polish(QPalette&);
+    QRect itemTextRect(QFontMetrics const&, QRect const&, int, bool, QString const&) const;
+    QRect itemPixmapRect(QRect const&, int, QPixmap const&) const;
+    void drawItemText(QPainter*, QRect const&, int, QPalette const&, bool, QString const&, QPalette::ColorRole) const;
+    void drawItemPixmap(QPainter*, QRect const&, int, QPixmap const&) const;
+    QPalette standardPalette() const;
+    QIcon standardIcon(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
+    QRect visualRect(Qt::LayoutDirection, QRect const&, QRect const&);
+    QPoint visualPos(Qt::LayoutDirection, QRect const&, QPoint const&);
+    int sliderPositionFromValue(int, int, int, int, bool);
+    int sliderValueFromPosition(int, int, int, int, bool);
+     visualAlignment(Qt::LayoutDirection, QFlags<Qt::AlignmentFlag>);
+    QRect alignedRect(Qt::LayoutDirection, QFlags<Qt::AlignmentFlag>, QSize const&, QRect const&);
+protected:
+    QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
 };
 
 enum StateFlag	
@@ -501,33 +531,5 @@ SP_FileDialogBack = 36
 
 
 extern struct QMetaObject _ZN6QStyle16staticMetaObjectE ;
-extern struct QMetaObject _ZNK6QStyle10metaObjectEv(void);
-extern void _ZN6QStyle11qt_metacastEPKc(void);
-extern int _ZN6QStyle11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QStyle _ZN6QStyleC2ER13QStylePrivate(void);
-extern QStyle _ZN6QStyleC1ER13QStylePrivate(void);
-extern QStyle _ZN6QStyleC2Ev(void);
-extern QStyle _ZN6QStyleC1Ev(void);
-extern  _ZN6QStyleD2Ev(void);
-extern  _ZN6QStyleD1Ev(void);
-extern  _ZN6QStyleD0Ev(void);
-extern void _ZN6QStyle6polishEP7QWidget(void);
-extern void _ZN6QStyle8unpolishEP7QWidget(void);
-extern void _ZN6QStyle6polishEP12QApplication(void);
-extern void _ZN6QStyle8unpolishEP12QApplication(void);
-extern void _ZN6QStyle6polishER8QPalette(void);
-extern QRect _ZNK6QStyle12itemTextRectERK12QFontMetricsRK5QRectibRK7QString(void);
-extern QRect _ZNK6QStyle14itemPixmapRectERK5QRectiRK7QPixmap(void);
-extern void _ZNK6QStyle12drawItemTextEP8QPainterRK5QRectiRK8QPalettebRK7QStringNS5_9ColorRoleE(void);
-extern void _ZNK6QStyle14drawItemPixmapEP8QPainterRK5QRectiRK7QPixmap(void);
-extern QPalette _ZNK6QStyle15standardPaletteEv(void);
-extern QIcon _ZNK6QStyle12standardIconENS_14StandardPixmapEPK12QStyleOptionPK7QWidget(void);
-extern QRect _ZN6QStyle10visualRectEN2Qt15LayoutDirectionERK5QRectS4_(void);
-extern QPoint _ZN6QStyle9visualPosEN2Qt15LayoutDirectionERK5QRectRK6QPoint(void);
-extern int _ZN6QStyle23sliderPositionFromValueEiiiib(void);
-extern int _ZN6QStyle23sliderValueFromPositionEiiiib(void);
-extern N2Qt9AlignmentE _ZN6QStyle15visualAlignmentEN2Qt15LayoutDirectionE6QFlagsINS0_13AlignmentFlagEE(void);
-extern QRect _ZN6QStyle11alignedRectEN2Qt15LayoutDirectionE6QFlagsINS0_13AlignmentFlagEERK5QSizeRK5QRect(void);
-extern QIcon _ZNK6QStyle26standardIconImplementationENS_14StandardPixmapEPK12QStyleOptionPK7QWidget(void);
 // *INDENT-ON*
 #endif

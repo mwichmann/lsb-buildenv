@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define SYS_NMLN	65
 
 

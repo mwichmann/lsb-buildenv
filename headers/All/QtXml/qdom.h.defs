@@ -1,12 +1,12 @@
 
 class QDomImplementation;
-enum N18QDomImplementation17InvalidDataPolicyE {
+enum _ZN18QDomImplementation17InvalidDataPolicyE {
     AcceptInvalidChars,
     DropInvalidChars,
     ReturnNullNode
 };
 class QDomNode;
-enum N8QDomNode8NodeTypeE {
+enum _ZN8QDomNode8NodeTypeE {
     ElementNode,
     AttributeNode,
     TextNode,

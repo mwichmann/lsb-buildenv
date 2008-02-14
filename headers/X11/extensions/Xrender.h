@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-
 #define XFixedToDouble(f)	(((XDouble) (f)) / 65536)
 #define XDoubleToFixed(f)	((XFixed) ((f) * 65536))
 #define PictFormatID	(1 << 0)
@@ -33,8 +32,6 @@ extern "C" {
 #define PictStandardA4	3
 #define PictStandardA1	4
 #define PictStandardNUM	5
-
-
 
 
 
@@ -80,8 +77,6 @@ extern "C" {
 
 
 /* Default Header Section for X11/extensions/Xrender.h*/
-
-
     typedef struct _XTrapezoid XTrapezoid;
 
     typedef struct {

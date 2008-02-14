@@ -1,13 +1,13 @@
 
 class QPainter;
-enum N8QPainter10RenderHintE {
+enum _ZN8QPainter10RenderHintE {
     Antialiasing,
     TextAntialiasing,
     SmoothPixmapTransform
 };
 class QFlags < QPainter::RenderHint >;
-typedef N8QPainter11RenderHintsE;
-enum N8QPainter15CompositionModeE {
+typedef class QFlags < QPainter::RenderHint > _ZN8QPainter11RenderHintsE;
+enum _ZN8QPainter15CompositionModeE {
     CompositionMode_SourceOver,
     CompositionMode_DestinationOver,
     CompositionMode_Clear,

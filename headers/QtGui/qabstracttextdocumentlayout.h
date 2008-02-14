@@ -4,13 +4,31 @@
 class QTextObjectInterface;
 // *INDENT-OFF*
 
-
-
-
 class QAbstractTextDocumentLayout : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractTextDocumentLayout(QTextDocument*);
+     ~QAbstractTextDocumentLayout();
+    QString anchorAt(QPointF const&) const;
+    void setPaintDevice(QPaintDevice*);
+    QPaintDevice * paintDevice() const;
+    QTextDocument * document() const;
+    void registerHandler(int, QObject*);
+     handlerForObject(int) const;
+     QAbstractTextDocumentLayout(QAbstractTextDocumentLayoutPrivate&, QTextDocument*);
+protected:
+    void update(QRectF const&);
+    void documentSizeChanged(QSizeF const&);
+    void pageCountChanged(int);
+    void resizeInlineObject(QTextInlineObject, int, QTextFormat const&);
+    void positionInlineObject(QTextInlineObject, int, QTextFormat const&);
+    void drawInlineObject(QPainter*, QRectF const&, QTextInlineObject, int, QTextFormat const&);
+    int formatIndex(int);
+    QTextCharFormat format(int);
 };
 
 struct Selection	;
@@ -21,35 +39,10 @@ class QTextObjectInterface
 {
 private:
 public:
+     ~QTextObjectInterface();
 };
 
 
 extern struct QMetaObject _ZN27QAbstractTextDocumentLayout16staticMetaObjectE ;
-extern struct QMetaObject _ZNK27QAbstractTextDocumentLayout10metaObjectEv(void);
-extern void _ZN27QAbstractTextDocumentLayout11qt_metacastEPKc(void);
-extern int _ZN27QAbstractTextDocumentLayout11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractTextDocumentLayout _ZN27QAbstractTextDocumentLayoutC2EP13QTextDocument(void);
-extern QAbstractTextDocumentLayout _ZN27QAbstractTextDocumentLayoutC1EP13QTextDocument(void);
-extern  _ZN27QAbstractTextDocumentLayoutD2Ev(void);
-extern  _ZN27QAbstractTextDocumentLayoutD1Ev(void);
-extern  _ZN27QAbstractTextDocumentLayoutD0Ev(void);
-extern QString _ZNK27QAbstractTextDocumentLayout8anchorAtERK7QPointF(void);
-extern void _ZN27QAbstractTextDocumentLayout14setPaintDeviceEP12QPaintDevice(void);
-extern  _ZNK27QAbstractTextDocumentLayout11paintDeviceEv(void);
-extern QTextDocument _ZNK27QAbstractTextDocumentLayout8documentEv(void);
-extern void _ZN27QAbstractTextDocumentLayout15registerHandlerEiP7QObject(void);
-extern  _ZNK27QAbstractTextDocumentLayout16handlerForObjectEi(void);
-extern void _ZN27QAbstractTextDocumentLayout6updateERK6QRectF(void);
-extern void _ZN27QAbstractTextDocumentLayout19documentSizeChangedERK6QSizeF(void);
-extern void _ZN27QAbstractTextDocumentLayout16pageCountChangedEi(void);
-extern QAbstractTextDocumentLayout _ZN27QAbstractTextDocumentLayoutC2ER34QAbstractTextDocumentLayoutPrivateP13QTextDocument(void);
-extern QAbstractTextDocumentLayout _ZN27QAbstractTextDocumentLayoutC1ER34QAbstractTextDocumentLayoutPrivateP13QTextDocument(void);
-extern void _ZN27QAbstractTextDocumentLayout18resizeInlineObjectE17QTextInlineObjectiRK11QTextFormat(void);
-extern void _ZN27QAbstractTextDocumentLayout20positionInlineObjectE17QTextInlineObjectiRK11QTextFormat(void);
-extern void _ZN27QAbstractTextDocumentLayout16drawInlineObjectEP8QPainterRK6QRectF17QTextInlineObjectiRK11QTextFormat(void);
-extern int _ZN27QAbstractTextDocumentLayout11formatIndexEi(void);
-extern QTextCharFormat _ZN27QAbstractTextDocumentLayout6formatEi(void);
-extern  _ZN20QTextObjectInterfaceD0Ev(void);
-extern  _ZN20QTextObjectInterfaceD1Ev(void);
 // *INDENT-ON*
 #endif

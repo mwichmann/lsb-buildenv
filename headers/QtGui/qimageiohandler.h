@@ -4,16 +4,37 @@
 class QFlags < QImageIOPlugin::Capability >;
 // *INDENT-OFF*
 
-
-
-
-typedef Capabilities	
+typedef class QFlags<QImageIOPlugin::Capability>
+{
+private:
+public:
+}Capabilities	
 ;
 
 class QImageIOHandler
 {
 private:
 public:
+     QImageIOHandler();
+     ~QImageIOHandler();
+    void setDevice(QIODevice*);
+    QIODevice * device() const;
+    void setFormat(QByteArray const&);
+    void setFormat(QByteArray const&) const;
+    QByteArray format() const;
+    QByteArray name() const;
+    bool write(QImage const&);
+    QVariant option(QImageIOHandler::ImageOption) const;
+    void setOption(QImageIOHandler::ImageOption, QVariant const&);
+    bool supportsOption(QImageIOHandler::ImageOption) const;
+    bool jumpToNextImage();
+    bool jumpToImage(int);
+    int loopCount() const;
+    int imageCount() const;
+    int nextImageDelay() const;
+    int currentImageNumber() const;
+    QRect currentImageRect() const;
+     QImageIOHandler(QImageIOHandlerPrivate&);
 };
 
 enum ImageOption	
@@ -37,10 +58,15 @@ BackgroundColor = 13
 
 struct QImageIOHandlerFactoryInterface	;
 
-class QImageIOPlugin :  QImageIOHandlerFactoryInterface,  QObject
+class QImageIOPlugin : public QImageIOHandlerFactoryInterface, public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QImageIOPlugin(QObject*);
+     ~QImageIOPlugin();
 };
 
 enum Capability	
@@ -58,40 +84,6 @@ public:
 };
 
 
-extern QImageIOHandler _ZN15QImageIOHandlerC2Ev(void);
-extern QImageIOHandler _ZN15QImageIOHandlerC1Ev(void);
-extern  _ZN15QImageIOHandlerD2Ev(void);
-extern  _ZN15QImageIOHandlerD1Ev(void);
-extern  _ZN15QImageIOHandlerD0Ev(void);
-extern void _ZN15QImageIOHandler9setDeviceEP9QIODevice(void);
-extern QIODevice _ZNK15QImageIOHandler6deviceEv(void);
-extern void _ZN15QImageIOHandler9setFormatERK10QByteArray(void);
-extern void _ZNK15QImageIOHandler9setFormatERK10QByteArray(void);
-extern QByteArray _ZNK15QImageIOHandler6formatEv(void);
-extern QByteArray _ZNK15QImageIOHandler4nameEv(void);
-extern bool _ZN15QImageIOHandler5writeERK6QImage(void);
-extern QVariant _ZNK15QImageIOHandler6optionENS_11ImageOptionE(void);
-extern void _ZN15QImageIOHandler9setOptionENS_11ImageOptionERK8QVariant(void);
-extern bool _ZNK15QImageIOHandler14supportsOptionENS_11ImageOptionE(void);
-extern bool _ZN15QImageIOHandler15jumpToNextImageEv(void);
-extern bool _ZN15QImageIOHandler11jumpToImageEi(void);
-extern int _ZNK15QImageIOHandler9loopCountEv(void);
-extern int _ZNK15QImageIOHandler10imageCountEv(void);
-extern int _ZNK15QImageIOHandler14nextImageDelayEv(void);
-extern int _ZNK15QImageIOHandler18currentImageNumberEv(void);
-extern QRect _ZNK15QImageIOHandler16currentImageRectEv(void);
-extern QImageIOHandler _ZN15QImageIOHandlerC2ER22QImageIOHandlerPrivate(void);
-extern QImageIOHandler _ZN15QImageIOHandlerC1ER22QImageIOHandlerPrivate(void);
-extern  _ZN31QImageIOHandlerFactoryInterfaceD0Ev(void);
-extern  _ZN31QImageIOHandlerFactoryInterfaceD1Ev(void);
 extern struct QMetaObject _ZN14QImageIOPlugin16staticMetaObjectE ;
-extern struct QMetaObject _ZNK14QImageIOPlugin10metaObjectEv(void);
-extern void _ZN14QImageIOPlugin11qt_metacastEPKc(void);
-extern int _ZN14QImageIOPlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QImageIOPlugin _ZN14QImageIOPluginC2EP7QObject(void);
-extern QImageIOPlugin _ZN14QImageIOPluginC1EP7QObject(void);
-extern  _ZN14QImageIOPluginD2Ev(void);
-extern  _ZN14QImageIOPluginD1Ev(void);
-extern  _ZN14QImageIOPluginD0Ev(void);
 // *INDENT-ON*
 #endif

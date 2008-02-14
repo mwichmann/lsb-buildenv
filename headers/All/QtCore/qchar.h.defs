@@ -1,7 +1,7 @@
 
 struct _Z11QLatin1Char;
 class QChar;
-enum N5QChar16SpecialCharacterE {
+enum _ZN5QChar16SpecialCharacterE {
     Null,
     null,
     Nbsp,
@@ -16,7 +16,7 @@ enum N5QChar16SpecialCharacterE {
     ByteOrderSwapped,
     byteOrderSwapped
 };
-enum N5QChar8CategoryE {
+enum _ZN5QChar8CategoryE {
     NoCategory,
     Mark_NonSpacing,
     Mark_SpacingCombining,
@@ -50,7 +50,7 @@ enum N5QChar8CategoryE {
     Symbol_Modifier,
     Symbol_Other
 };
-enum N5QChar9DirectionE {
+enum _ZN5QChar9DirectionE {
     DirL,
     DirR,
     DirEN,
@@ -71,7 +71,7 @@ enum N5QChar9DirectionE {
     DirNSM,
     DirBN
 };
-enum N5QChar13DecompositionE {
+enum _ZN5QChar13DecompositionE {
     NoDecomposition,
     Single,
     Canonical,
@@ -92,13 +92,13 @@ enum N5QChar13DecompositionE {
     Compat,
     Fraction
 };
-enum N5QChar7JoiningE {
+enum _ZN5QChar7JoiningE {
     OtherJoining,
     Dual,
     Right,
     Center
 };
-enum N5QChar14CombiningClassE {
+enum _ZN5QChar14CombiningClassE {
     Combining_BelowLeftAttached,
     Combining_BelowAttached,
     Combining_BelowRightAttached,
@@ -119,7 +119,7 @@ enum N5QChar14CombiningClassE {
     Combining_DoubleAbove,
     Combining_IotaSubscript
 };
-enum N5QChar14UnicodeVersionE {
+enum _ZN5QChar14UnicodeVersionE {
     Unicode_Unassigned,
     Unicode_1_1,
     Unicode_2_0,

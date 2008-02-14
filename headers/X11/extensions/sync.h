@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _XSyncSystemCounter XSyncSystemCounter;
 
     typedef struct {
@@ -39,8 +36,6 @@ extern "C" {
 	XSyncCounter counter;
 	XSyncValue resolution;
     };
-
-
 
 
     typedef XID XSyncCounter;

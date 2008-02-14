@@ -8,11 +8,10 @@ extern "C" {
 #endif
 
 
-
 #define Z_NULL	0
 #define ZLIB_VERSION	"1.2.2"
-#define MAX_WBITS	15
-#define MAX_MEM_LEVEL	9
+#define MAX_WBITS	15	/* 32K LZ77 window */
+#define MAX_MEM_LEVEL	9	/* Maximum value for memLevel in deflateInit2 */
 #define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	\
 	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),ZLIB_VERSION,sizeof(z_stream))
 #define deflateInit(strm,level)	\
@@ -26,8 +25,6 @@ extern "C" {
     typedef char charf;
 
     typedef int intf;
-
-
 
 
     typedef void *voidpf;
@@ -47,8 +44,6 @@ extern "C" {
     typedef void *const voidpc;
 
 
-
-
     typedef voidpf(*alloc_func) (voidpf opaque, uInt items, uInt size);
 
     typedef void (*free_func) (voidpf opaque, voidpf address);
@@ -60,8 +55,6 @@ extern "C" {
     struct internal_state {
 	int dummy;
     };
-
-
 
 
     typedef struct z_stream_s z_stream;
@@ -83,8 +76,6 @@ extern "C" {
 	uLong adler;		/* adler32 value of the uncompressed data */
 	uLong reserved;		/* reserved for future use */
     };
-
-
 
 
     typedef z_stream *z_streamp;

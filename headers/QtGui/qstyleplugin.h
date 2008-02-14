@@ -4,28 +4,20 @@
 class QStylePlugin;
 // *INDENT-OFF*
 
-
-
-
 struct QStyleFactoryInterface	;
 
-class QStylePlugin :  QObject,  QStyleFactoryInterface
+class QStylePlugin : public QObject, public QStyleFactoryInterface
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QStylePlugin(QObject*);
+     ~QStylePlugin();
 };
 
 
-extern  _ZN22QStyleFactoryInterfaceD0Ev(void);
-extern  _ZN22QStyleFactoryInterfaceD1Ev(void);
 extern struct QMetaObject _ZN12QStylePlugin16staticMetaObjectE ;
-extern struct QMetaObject _ZNK12QStylePlugin10metaObjectEv(void);
-extern void _ZN12QStylePlugin11qt_metacastEPKc(void);
-extern int _ZN12QStylePlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QStylePlugin _ZN12QStylePluginC2EP7QObject(void);
-extern QStylePlugin _ZN12QStylePluginC1EP7QObject(void);
-extern  _ZN12QStylePluginD2Ev(void);
-extern  _ZN12QStylePluginD1Ev(void);
-extern  _ZN12QStylePluginD0Ev(void);
 // *INDENT-ON*
 #endif

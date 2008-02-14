@@ -4,13 +4,32 @@
 class QSqlDriver;
 // *INDENT-OFF*
 
-
-
-
 class QSqlDriver : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QSqlDriver(QObject*);
+     ~QSqlDriver();
+    bool isOpen() const;
+    bool isOpenError() const;
+    bool beginTransaction();
+    bool commitTransaction();
+    bool rollbackTransaction();
+    QStringList tables(QSql::TableType) const;
+    QSqlIndex primaryIndex(QString const&) const;
+    QSqlRecord record(QString const&) const;
+    QString formatValue(QSqlField const&, bool) const;
+    QString escapeIdentifier(QString const&, QSqlDriver::IdentifierType) const;
+    QString sqlStatement(QSqlDriver::StatementType, QString const&, QSqlRecord const&, bool) const;
+    QSqlError lastError() const;
+    QVariant handle() const;
+protected:
+    void setOpen(bool);
+    void setOpenError(bool);
+    void setLastError(QSqlError const&);
 };
 
 enum DriverFeature	
@@ -46,29 +65,5 @@ TableName = 1
 
 
 extern struct QMetaObject _ZN10QSqlDriver16staticMetaObjectE ;
-extern struct QMetaObject _ZNK10QSqlDriver10metaObjectEv(void);
-extern void _ZN10QSqlDriver11qt_metacastEPKc(void);
-extern int _ZN10QSqlDriver11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QSqlDriver _ZN10QSqlDriverC2EP7QObject(void);
-extern QSqlDriver _ZN10QSqlDriverC1EP7QObject(void);
-extern  _ZN10QSqlDriverD2Ev(void);
-extern  _ZN10QSqlDriverD1Ev(void);
-extern  _ZN10QSqlDriverD0Ev(void);
-extern bool _ZNK10QSqlDriver6isOpenEv(void);
-extern bool _ZNK10QSqlDriver11isOpenErrorEv(void);
-extern bool _ZN10QSqlDriver16beginTransactionEv(void);
-extern bool _ZN10QSqlDriver17commitTransactionEv(void);
-extern bool _ZN10QSqlDriver19rollbackTransactionEv(void);
-extern QStringList _ZNK10QSqlDriver6tablesEN4QSql9TableTypeE(void);
-extern QSqlIndex _ZNK10QSqlDriver12primaryIndexERK7QString(void);
-extern QSqlRecord _ZNK10QSqlDriver6recordERK7QString(void);
-extern QString _ZNK10QSqlDriver11formatValueERK9QSqlFieldb(void);
-extern QString _ZNK10QSqlDriver16escapeIdentifierERK7QStringNS_14IdentifierTypeE(void);
-extern QString _ZNK10QSqlDriver12sqlStatementENS_13StatementTypeERK7QStringRK10QSqlRecordb(void);
-extern  _ZNK10QSqlDriver9lastErrorEv(void);
-extern QVariant _ZNK10QSqlDriver6handleEv(void);
-extern void _ZN10QSqlDriver7setOpenEb(void);
-extern void _ZN10QSqlDriver12setOpenErrorEb(void);
-extern void _ZN10QSqlDriver12setLastErrorERK9QSqlError(void);
 // *INDENT-ON*
 #endif
