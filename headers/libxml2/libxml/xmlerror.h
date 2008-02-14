@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef int (*xmlInputReadCallback) (void *, char *, int);
 
     typedef int (*xmlInputCloseCallback) (void *);

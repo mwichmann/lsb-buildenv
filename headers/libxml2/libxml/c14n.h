@@ -11,9 +11,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef int (*xmlC14NIsVisibleCallback) (void *, xmlNodePtr,
 					     xmlNodePtr);
 

@@ -4,10 +4,11 @@
 class QFlags < QSql::ParamTypeFlag >;
 // *INDENT-OFF*
 
-
-
-
-typedef ParamType	
+typedef class QFlags<QSql::ParamTypeFlag>
+{
+private:
+public:
+}ParamType	
 ;
 
 enum Location	
@@ -59,7 +60,6 @@ No = 0,
 Yes = 1
 }
 ;
-
 
 // *INDENT-ON*
 #endif

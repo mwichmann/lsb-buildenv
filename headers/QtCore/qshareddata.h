@@ -4,15 +4,11 @@
 class QSharedData;
 // *INDENT-OFF*
 
-
-
-
 class QSharedData
 {
 private:
 public:
 };
-
 
 // *INDENT-ON*
 #endif

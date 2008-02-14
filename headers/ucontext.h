@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #if defined __ia64__
 #define _SC_GR0_OFFSET	\
 	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
@@ -83,8 +82,6 @@ extern "C" {
 #endif
 
 /* Type for general register.*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef int greg_t;
@@ -119,8 +116,6 @@ extern "C" {
 
 
 /* Container for all general registers.*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef greg_t gregset_t[19];
@@ -144,11 +139,7 @@ extern "C" {
 
 /* Number of each register is the `gregset_t' array.*/
 
-
-
 /* Definitions taken from the kernel headers.*/
-
-
 #if defined __s390x__
 /* S390X */
     typedef union {
@@ -175,11 +166,7 @@ extern "C" {
 #endif
 
 
-
-
 /* Structure to describe FPU registers.*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef struct _libc_fpstate *fpregset_t;
@@ -260,11 +247,7 @@ extern "C" {
 #endif
 
 
-
-
 /* Context to describe whole processor state.*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef struct {
@@ -341,8 +324,6 @@ extern "C" {
 
 #endif
 
-
-
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     union uc_regs_ptr {
@@ -353,8 +334,6 @@ extern "C" {
 #endif
 
 /* Userlevel context.*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef struct ucontext ucontext_t;

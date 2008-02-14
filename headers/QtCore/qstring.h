@@ -4,10 +4,11 @@
 class QConstString;
 // *INDENT-OFF*
 
-
-
-
-typedef SectionFlags	
+typedef class QFlags<QString::SectionFlag>
+{
+private:
+public:
+}SectionFlags	
 ;
 
 typedef QChar iterator	
@@ -26,6 +27,126 @@ class QString
 {
 private:
 public:
+     QString(QChar const*, int);
+     QString(QChar);
+     QString(int, QChar);
+    QString & operator=(QChar);
+    QString & operator=(QString const&);
+    void resize(int);
+    QString & fill(QChar, int);
+    void truncate(int);
+    void chop(int);
+    QString arg(long long, int, int, QChar const&) const;
+    QString arg(unsigned long long, int, int, QChar const&) const;
+    QString arg(double, int, char, int, QChar const&) const;
+    QString arg(char, int, QChar const&) const;
+    QString arg(QChar, int, QChar const&) const;
+    QString arg(QString const&, int, QChar const&) const;
+    QString & vsprintf(char const*, char*);
+    QString & sprintf(char const*, ...);
+    int indexOf(QChar, int, Qt::CaseSensitivity) const;
+    int indexOf(QString const&, int, Qt::CaseSensitivity) const;
+    int lastIndexOf(QChar, int, Qt::CaseSensitivity) const;
+    int lastIndexOf(QString const&, int, Qt::CaseSensitivity) const;
+    int count(QChar, Qt::CaseSensitivity) const;
+    int count(QString const&, Qt::CaseSensitivity) const;
+    int indexOf(QRegExp const&, int) const;
+    int lastIndexOf(QRegExp const&, int) const;
+    int count(QRegExp const&) const;
+    QString section(QString const&, int, int, QFlags<QString::SectionFlag>) const;
+    QString section(QRegExp const&, int, int, QFlags<QString::SectionFlag>) const;
+    QString left(int) const;
+    QString right(int) const;
+    QString mid(int, int) const;
+    bool startsWith(QString const&, Qt::CaseSensitivity) const;
+    bool startsWith(QLatin1String const&, Qt::CaseSensitivity) const;
+    bool startsWith(QChar const&, Qt::CaseSensitivity) const;
+    bool endsWith(QString const&, Qt::CaseSensitivity) const;
+    bool endsWith(QLatin1String const&, Qt::CaseSensitivity) const;
+    bool endsWith(QChar const&, Qt::CaseSensitivity) const;
+    QString leftJustified(int, QChar, bool) const;
+    QString rightJustified(int, QChar, bool) const;
+    QString toLower() const;
+    QString toUpper() const;
+    QString trimmed() const;
+    QString simplified() const;
+    QString & insert(int, QChar);
+    QString & insert(int, QChar const*, int);
+    QString & insert(int, QLatin1String const&);
+    QString & append(QChar);
+    QString & append(QString const&);
+    QString & append(QLatin1String const&);
+    QString & remove(int, int);
+    QString & remove(QChar, Qt::CaseSensitivity);
+    QString & remove(QString const&, Qt::CaseSensitivity);
+    QString & replace(int, int, QChar);
+    QString & replace(int, int, QChar const*, int);
+    QString & replace(int, int, QString const&);
+    QString & replace(QChar, QChar, Qt::CaseSensitivity);
+    QString & replace(QChar, QString const&, Qt::CaseSensitivity);
+    QString & replace(QString const&, QString const&, Qt::CaseSensitivity);
+    QString & replace(QRegExp const&, QString const&);
+    QStringList split(QString const&, QString::SplitBehavior, Qt::CaseSensitivity) const;
+    QStringList split(QChar const&, QString::SplitBehavior, Qt::CaseSensitivity) const;
+    QStringList split(QRegExp const&, QString::SplitBehavior) const;
+    QString normalized(QString::NormalizationForm) const;
+    QString normalized(QString::NormalizationForm, QChar::UnicodeVersion) const;
+    const ushort * utf16() const;
+    QByteArray toAscii() const;
+    QByteArray toLatin1() const;
+    QByteArray toUtf8() const;
+    QByteArray toLocal8Bit() const;
+    static QString fromAscii(char const*, int);
+    static QString fromLatin1(char const*, int);
+    static QString fromUtf8(char const*, int);
+    static QString fromLocal8Bit(char const*, int);
+    static QString fromUtf16(unsigned short const*, int);
+    static QString fromRawData(QChar const*, int);
+    QString & setUnicode(QChar const*, int);
+    int compare(QString const&) const;
+    int localeAwareCompare(QString const&) const;
+    short int toShort(bool*, int) const;
+    ushort toUShort(bool*, int) const;
+    int toInt(bool*, int) const;
+    uint toUInt(bool*, int) const;
+    long int toLong(bool*, int) const;
+    ulong toULong(bool*, int) const;
+    qlonglong toLongLong(bool*, int) const;
+    qulonglong toULongLong(bool*, int) const;
+    float toFloat(bool*) const;
+    double toDouble(bool*) const;
+    QString & setNum(long long, int);
+    QString & setNum(unsigned long long, int);
+    QString & setNum(double, char, int);
+    static QString number(int, int);
+    static QString number(unsigned int, int);
+    static QString number(long, int);
+    static QString number(unsigned long, int);
+    static QString number(long long, int);
+    static QString number(unsigned long long, int);
+    static QString number(double, char, int);
+    bool operator==(QString const&) const;
+    bool operator<(QString const&) const;
+    bool operator==(QLatin1String const&) const;
+    bool operator<(QLatin1String const&) const;
+    bool operator>(QLatin1String const&) const;
+    static QString fromWCharArray(wchar_t const*, int);
+    static QString fromUcs4(unsigned int const*, int);
+    int toWCharArray(wchar_t*) const;
+    QVector<unsigned int> toUcs4() const;
+    int compare(QLatin1String const&, Qt::CaseSensitivity) const;
+    int compare(QString const&, Qt::CaseSensitivity) const;
+protected:
+    const char * ascii_helper() const;
+    const char * latin1_helper() const;
+private:
+    static void free(QString::Data*);
+    void expand(int);
+    void realloc(int);
+    void realloc();
+    static struct Data * fromLatin1_helper(char const*, int);
+    QString multiArg(int, QString const**) const;
+    static struct Data * fromAscii_helper(char const*, int);
 };
 
 enum SectionFlag	
@@ -83,127 +204,7 @@ public:
 };
 
 
-extern QString _ZN7QStringC2EPK5QChari(void);
-extern QString _ZN7QStringC1EPK5QChari(void);
-extern QString _ZN7QStringC2E5QChar(void);
-extern QString _ZN7QStringC1E5QChar(void);
-extern QString _ZN7QStringC2Ei5QChar(void);
-extern QString _ZN7QStringC1Ei5QChar(void);
-extern QString _ZN7QStringaSE5QChar(void);
-extern QString _ZN7QStringaSERKS_(void);
-extern void _ZN7QString6resizeEi(void);
-extern QString _ZN7QString4fillE5QChari(void);
-extern void _ZN7QString8truncateEi(void);
-extern void _ZN7QString4chopEi(void);
-extern QString _ZNK7QString3argExiiRK5QChar(void);
-extern QString _ZNK7QString3argEyiiRK5QChar(void);
-extern QString _ZNK7QString3argEdiciRK5QChar(void);
-extern QString _ZNK7QString3argEciRK5QChar(void);
-extern QString _ZNK7QString3argE5QChariRKS0_(void);
-extern QString _ZNK7QString3argERKS_iRK5QChar(void);
-#if defined __i386__
-/* IA32 */
-extern QString _ZN7QString8vsprintfEPKcPc(void);
-#endif
-extern QString _ZN7QString7sprintfEPKcz(void);
-extern int _ZNK7QString7indexOfE5QChariN2Qt15CaseSensitivityE(void);
-extern int _ZNK7QString7indexOfERKS_iN2Qt15CaseSensitivityE(void);
-extern int _ZNK7QString11lastIndexOfE5QChariN2Qt15CaseSensitivityE(void);
-extern int _ZNK7QString11lastIndexOfERKS_iN2Qt15CaseSensitivityE(void);
-extern int _ZNK7QString5countE5QCharN2Qt15CaseSensitivityE(void);
-extern int _ZNK7QString5countERKS_N2Qt15CaseSensitivityE(void);
-extern int _ZNK7QString7indexOfERK7QRegExpi(void);
-extern int _ZNK7QString11lastIndexOfERK7QRegExpi(void);
-extern int _ZNK7QString5countERK7QRegExp(void);
-extern QString _ZNK7QString7sectionERKS_ii6QFlagsINS_11SectionFlagEE(void);
-extern QString _ZNK7QString7sectionERK7QRegExpii6QFlagsINS_11SectionFlagEE(void);
-extern QString _ZNK7QString4leftEi(void);
-extern QString _ZNK7QString5rightEi(void);
-extern QString _ZNK7QString3midEii(void);
-extern bool _ZNK7QString10startsWithERKS_N2Qt15CaseSensitivityE(void);
-extern bool _ZNK7QString10startsWithERK13QLatin1StringN2Qt15CaseSensitivityE(void);
-extern bool _ZNK7QString10startsWithERK5QCharN2Qt15CaseSensitivityE(void);
-extern bool _ZNK7QString8endsWithERKS_N2Qt15CaseSensitivityE(void);
-extern bool _ZNK7QString8endsWithERK13QLatin1StringN2Qt15CaseSensitivityE(void);
-extern bool _ZNK7QString8endsWithERK5QCharN2Qt15CaseSensitivityE(void);
-extern QString _ZNK7QString13leftJustifiedEi5QCharb(void);
-extern QString _ZNK7QString14rightJustifiedEi5QCharb(void);
-extern QString _ZNK7QString7toLowerEv(void);
-extern QString _ZNK7QString7toUpperEv(void);
-extern QString _ZNK7QString7trimmedEv(void);
-extern QString _ZNK7QString10simplifiedEv(void);
-extern QString _ZN7QString6insertEi5QChar(void);
-extern QString _ZN7QString6insertEiPK5QChari(void);
-extern QString _ZN7QString6insertEiRK13QLatin1String(void);
-extern QString _ZN7QString6appendE5QChar(void);
-extern QString _ZN7QString6appendERKS_(void);
-extern QString _ZN7QString6appendERK13QLatin1String(void);
-extern QString _ZN7QString6removeEii(void);
-extern QString _ZN7QString6removeE5QCharN2Qt15CaseSensitivityE(void);
-extern QString _ZN7QString6removeERKS_N2Qt15CaseSensitivityE(void);
-extern QString _ZN7QString7replaceEii5QChar(void);
-extern QString _ZN7QString7replaceEiiPK5QChari(void);
-extern QString _ZN7QString7replaceEiiRKS_(void);
-extern QString _ZN7QString7replaceE5QCharS0_N2Qt15CaseSensitivityE(void);
-extern QString _ZN7QString7replaceE5QCharRKS_N2Qt15CaseSensitivityE(void);
-extern QString _ZN7QString7replaceERKS_S1_N2Qt15CaseSensitivityE(void);
-extern QString _ZN7QString7replaceERK7QRegExpRKS_(void);
-extern  _ZNK7QString5splitERKS_NS_13SplitBehaviorEN2Qt15CaseSensitivityE(void);
-extern  _ZNK7QString5splitERK5QCharNS_13SplitBehaviorEN2Qt15CaseSensitivityE(void);
-extern  _ZNK7QString5splitERK7QRegExpNS_13SplitBehaviorE(void);
-extern QString _ZNK7QString10normalizedENS_17NormalizationFormE(void);
-extern QString _ZNK7QString10normalizedENS_17NormalizationFormEN5QChar14UnicodeVersionE(void);
-extern ushort _ZNK7QString5utf16Ev(void);
-extern QByteArray _ZNK7QString7toAsciiEv(void);
-extern QByteArray _ZNK7QString8toLatin1Ev(void);
-extern QByteArray _ZNK7QString6toUtf8Ev(void);
-extern QByteArray _ZNK7QString11toLocal8BitEv(void);
-extern QString _ZN7QString9fromAsciiEPKci(void);
-extern QString _ZN7QString10fromLatin1EPKci(void);
-extern QString _ZN7QString8fromUtf8EPKci(void);
-extern QString _ZN7QString13fromLocal8BitEPKci(void);
-extern QString _ZN7QString9fromUtf16EPKti(void);
-extern QString _ZN7QString11fromRawDataEPK5QChari(void);
-extern QString _ZN7QString10setUnicodeEPK5QChari(void);
-extern int _ZNK7QString7compareERKS_(void);
-extern int _ZNK7QString18localeAwareCompareERKS_(void);
-extern short _ZNK7QString7toShortEPbi(void);
-extern ushort _ZNK7QString8toUShortEPbi(void);
-extern int _ZNK7QString5toIntEPbi(void);
-extern uint _ZNK7QString6toUIntEPbi(void);
-extern long int _ZNK7QString6toLongEPbi(void);
-extern ulong _ZNK7QString7toULongEPbi(void);
-extern qlonglong _ZNK7QString10toLongLongEPbi(void);
-extern qulonglong _ZNK7QString11toULongLongEPbi(void);
-extern float _ZNK7QString7toFloatEPb(void);
-extern double _ZNK7QString8toDoubleEPb(void);
-extern QString _ZN7QString6setNumExi(void);
-extern QString _ZN7QString6setNumEyi(void);
-extern QString _ZN7QString6setNumEdci(void);
-extern QString _ZN7QString6numberEii(void);
-extern QString _ZN7QString6numberEji(void);
-extern QString _ZN7QString6numberEli(void);
-extern QString _ZN7QString6numberEmi(void);
-extern QString _ZN7QString6numberExi(void);
-extern QString _ZN7QString6numberEyi(void);
-extern QString _ZN7QString6numberEdci(void);
-extern bool _ZNK7QStringeqERKS_(void);
-extern bool _ZNK7QStringltERKS_(void);
-extern bool _ZNK7QStringeqERK13QLatin1String(void);
-extern bool _ZNK7QStringltERK13QLatin1String(void);
-extern bool _ZNK7QStringgtERK13QLatin1String(void);
-extern struct Null _ZN7QString4nullE ;
-extern char _ZNK7QString12ascii_helperEv(void);
-extern char _ZNK7QString13latin1_helperEv(void);
-extern  _ZlsR11QDataStreamRK7QString(void);
-extern  _ZrsR11QDataStreamR7QString(void);
-extern void _ZN7QString4freeEPNS_4DataE(void);
-extern void _ZN7QString6expandEi(void);
-extern void _ZN7QString7reallocEi(void);
-extern void _ZN7QString7reallocEv(void);
-extern struct Data _ZN7QString17fromLatin1_helperEPKci(void);
-extern QString _ZNK7QString8multiArgEiPPKS_(void);
-extern struct Data _ZN7QString11shared_nullE ;
-extern QTextCodec * _ZN7QString16codecForCStringsE ;
+extern  _ZlsR11QDataStreamRK7QString(QDataStream &, QString & &);
+extern  _ZrsR11QDataStreamR7QString(QDataStream &, QString &);
 // *INDENT-ON*
 #endif

@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define GDK_space	0x020
 #define GDK_exclam	0x021
 #define GDK_quotedbl	0x022
@@ -1348,7 +1347,6 @@ extern "C" {
 #define GDK_Delete	0xFFFF
 #define GDK_VoidSymbol	0xFFFFFF
 #define GDK_Greek_IOTAdiaeresis	GDK_Greek_IOTAdieresis
-
 
 
 #ifdef __cplusplus

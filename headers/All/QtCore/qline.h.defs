@@ -1,7 +1,7 @@
 
 class QLine;
 class QLineF;
-enum N6QLineF13IntersectTypeE {
+enum _ZN6QLineF13IntersectTypeE {
     NoIntersection,
     BoundedIntersection,
     UnboundedIntersection

@@ -4,9 +4,6 @@
 class QAbstractListModel;
 // *INDENT-OFF*
 
-
-
-
 typedef QList<QModelIndex> QModelIndexList	
 ;
 
@@ -20,135 +17,127 @@ class QPersistentModelIndex
 {
 private:
 public:
+     QPersistentModelIndex();
+     QPersistentModelIndex(QModelIndex const&);
+     QPersistentModelIndex(QPersistentModelIndex const&);
+     ~QPersistentModelIndex();
+    bool operator<(QPersistentModelIndex const&) const;
+    bool operator==(QPersistentModelIndex const&) const;
+    QPersistentModelIndex & operator=(QPersistentModelIndex const&);
+    bool operator==(QModelIndex const&) const;
+    bool operator!=(QModelIndex const&) const;
+    QPersistentModelIndex & operator=(QModelIndex const&);
+    QModelIndex & & operator QModelIndex const&() const;
+    int row() const;
+    int column() const;
+    void * internalPointer() const;
+    qint64 internalId() const;
+    QModelIndex parent() const;
+    QModelIndex sibling(int, int) const;
+    QModelIndex child(int, int) const;
+    QVariant data(int) const;
+    const QAbstractItemModel * model() const;
+    bool isValid() const;
+     flags() const;
 };
 
 class QAbstractItemModel : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractItemModel(QObject*);
+     ~QAbstractItemModel();
+    bool hasIndex(int, int, QModelIndex const&) const;
+    bool hasChildren(QModelIndex const&) const;
+    bool setData(QModelIndex const&, QVariant const&, int);
+    QVariant headerData(int, Qt::Orientation, int) const;
+    bool setHeaderData(int, Qt::Orientation, QVariant const&, int);
+     itemData(QModelIndex const&) const;
+    bool setItemData(QModelIndex const&, QMap<int, QVariant> const&);
+    QStringList mimeTypes() const;
+    QMimeData * mimeData(QList<QModelIndex> const&) const;
+    bool dropMimeData(QMimeData const*, Qt::DropAction, int, int, QModelIndex const&);
+     supportedDropActions() const;
+    bool insertRows(int, int, QModelIndex const&);
+    bool insertColumns(int, int, QModelIndex const&);
+    bool removeRows(int, int, QModelIndex const&);
+    bool removeColumns(int, int, QModelIndex const&);
+    void fetchMore(QModelIndex const&);
+    bool canFetchMore(QModelIndex const&) const;
+     flags(QModelIndex const&) const;
+    void sort(int, Qt::SortOrder);
+    QModelIndex buddy(QModelIndex const&) const;
+    QModelIndexList match(QModelIndex const&, int, QVariant const&, int, QFlags<Qt::MatchFlag>) const;
+    QSize span(QModelIndex const&) const;
+    bool submit();
+    void revert();
+     QAbstractItemModel(QAbstractItemModelPrivate&, QObject*);
+    void setSupportedDragActions(QFlags<Qt::DropAction>);
+     supportedDragActions() const;
+protected:
+    void dataChanged(QModelIndex const&, QModelIndex const&);
+    void headerDataChanged(Qt::Orientation, int, int);
+    void layoutChanged();
+    void encodeData(QList<QModelIndex> const&, QDataStream&) const;
+    bool decodeData(int, int, QModelIndex const&, QDataStream&);
+    void beginInsertRows(QModelIndex const&, int, int);
+    void endInsertRows();
+    void beginRemoveRows(QModelIndex const&, int, int);
+    void endRemoveRows();
+    void beginInsertColumns(QModelIndex const&, int, int);
+    void endInsertColumns();
+    void beginRemoveColumns(QModelIndex const&, int, int);
+    void endRemoveColumns();
+    void reset();
+    void changePersistentIndex(QModelIndex const&, QModelIndex const&);
+    void changePersistentIndexList(QList<QModelIndex> const&, QList<QModelIndex> const&);
+    void layoutAboutToBeChanged();
+    QModelIndexList persistentIndexList() const;
 };
 
 class QAbstractTableModel : public QAbstractItemModel
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractTableModel(QObject*);
+     ~QAbstractTableModel();
+    QModelIndex index(int, int, QModelIndex const&) const;
+    bool dropMimeData(QMimeData const*, Qt::DropAction, int, int, QModelIndex const&);
+     QAbstractTableModel(QAbstractItemModelPrivate&, QObject*);
+private:
+    QModelIndex parent(QModelIndex const&) const;
+    bool hasChildren(QModelIndex const&) const;
 };
 
 class QAbstractListModel : public QAbstractItemModel
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractListModel(QObject*);
+     ~QAbstractListModel();
+    QModelIndex index(int, int, QModelIndex const&) const;
+    bool dropMimeData(QMimeData const*, Qt::DropAction, int, int, QModelIndex const&);
+     QAbstractListModel(QAbstractItemModelPrivate&, QObject*);
+private:
+    QModelIndex parent(QModelIndex const&) const;
+    bool hasChildren(QModelIndex const&) const;
+    int columnCount(QModelIndex const&) const;
 };
 
 
-extern QDebug _Zls6QDebugRK11QModelIndex(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexC2Ev(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexC1Ev(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexC2ERK11QModelIndex(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexC1ERK11QModelIndex(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexC2ERKS_(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexC1ERKS_(void);
-extern  _ZN21QPersistentModelIndexD2Ev(void);
-extern  _ZN21QPersistentModelIndexD1Ev(void);
-extern bool _ZNK21QPersistentModelIndexltERKS_(void);
-extern bool _ZNK21QPersistentModelIndexeqERKS_(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexaSERKS_(void);
-extern bool _ZNK21QPersistentModelIndexeqERK11QModelIndex(void);
-extern bool _ZNK21QPersistentModelIndexneERK11QModelIndex(void);
-extern QPersistentModelIndex _ZN21QPersistentModelIndexaSERK11QModelIndex(void);
-extern QPersistentModelIndex _ZNK21QPersistentModelIndexcvRK11QModelIndexEv(void);
-extern int _ZNK21QPersistentModelIndex3rowEv(void);
-extern int _ZNK21QPersistentModelIndex6columnEv(void);
-extern void _ZNK21QPersistentModelIndex15internalPointerEv(void);
-extern qint64 _ZNK21QPersistentModelIndex10internalIdEv(void);
-extern QModelIndex _ZNK21QPersistentModelIndex6parentEv(void);
-extern QModelIndex _ZNK21QPersistentModelIndex7siblingEii(void);
-extern QModelIndex _ZNK21QPersistentModelIndex5childEii(void);
-extern QVariant _ZNK21QPersistentModelIndex4dataEi(void);
-extern  _ZNK21QPersistentModelIndex5modelEv(void);
-extern bool _ZNK21QPersistentModelIndex7isValidEv(void);
-extern QDebug _Zls6QDebugRK21QPersistentModelIndex(void);
+extern QDebug _Zls6QDebugRK11QModelIndex(_Z6QDebug, QModelIndex & &);
+extern QDebug _Zls6QDebugRK21QPersistentModelIndex(_Z6QDebug, QPersistentModelIndex & &);
 extern struct QMetaObject _ZN18QAbstractItemModel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK18QAbstractItemModel10metaObjectEv(void);
-extern void _ZN18QAbstractItemModel11qt_metacastEPKc(void);
-extern int _ZN18QAbstractItemModel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractItemModel _ZN18QAbstractItemModelC2EP7QObject(void);
-extern QAbstractItemModel _ZN18QAbstractItemModelC1EP7QObject(void);
-extern  _ZN18QAbstractItemModelD2Ev(void);
-extern  _ZN18QAbstractItemModelD1Ev(void);
-extern  _ZN18QAbstractItemModelD0Ev(void);
-extern bool _ZNK18QAbstractItemModel8hasIndexEiiRK11QModelIndex(void);
-extern bool _ZNK18QAbstractItemModel11hasChildrenERK11QModelIndex(void);
-extern bool _ZN18QAbstractItemModel7setDataERK11QModelIndexRK8QVarianti(void);
-extern QVariant _ZNK18QAbstractItemModel10headerDataEiN2Qt11OrientationEi(void);
-extern bool _ZN18QAbstractItemModel13setHeaderDataEiN2Qt11OrientationERK8QVarianti(void);
-extern QMap<int, QVariant> _ZNK18QAbstractItemModel8itemDataERK11QModelIndex(void);
-extern bool _ZN18QAbstractItemModel11setItemDataERK11QModelIndexRK4QMapIi8QVariantE(void);
-extern QStringList _ZNK18QAbstractItemModel9mimeTypesEv(void);
-extern QMimeData _ZNK18QAbstractItemModel8mimeDataERK5QListI11QModelIndexE(void);
-extern bool _ZN18QAbstractItemModel12dropMimeDataEPK9QMimeDataN2Qt10DropActionEiiRK11QModelIndex(void);
-extern N2Qt11DropActionsE _ZNK18QAbstractItemModel20supportedDropActionsEv(void);
-extern bool _ZN18QAbstractItemModel10insertRowsEiiRK11QModelIndex(void);
-extern bool _ZN18QAbstractItemModel13insertColumnsEiiRK11QModelIndex(void);
-extern bool _ZN18QAbstractItemModel10removeRowsEiiRK11QModelIndex(void);
-extern bool _ZN18QAbstractItemModel13removeColumnsEiiRK11QModelIndex(void);
-extern void _ZN18QAbstractItemModel9fetchMoreERK11QModelIndex(void);
-extern bool _ZNK18QAbstractItemModel12canFetchMoreERK11QModelIndex(void);
-extern N2Qt9ItemFlagsE _ZNK18QAbstractItemModel5flagsERK11QModelIndex(void);
-extern void _ZN18QAbstractItemModel4sortEiN2Qt9SortOrderE(void);
-extern QModelIndex _ZNK18QAbstractItemModel5buddyERK11QModelIndex(void);
-extern QModelIndexList _ZNK18QAbstractItemModel5matchERK11QModelIndexiRK8QVarianti6QFlagsIN2Qt9MatchFlagEE(void);
-extern QSize _ZNK18QAbstractItemModel4spanERK11QModelIndex(void);
-extern void _ZN18QAbstractItemModel11dataChangedERK11QModelIndexS2_(void);
-extern void _ZN18QAbstractItemModel17headerDataChangedEN2Qt11OrientationEii(void);
-extern void _ZN18QAbstractItemModel13layoutChangedEv(void);
-extern bool _ZN18QAbstractItemModel6submitEv(void);
-extern void _ZN18QAbstractItemModel6revertEv(void);
-extern QAbstractItemModel _ZN18QAbstractItemModelC2ER25QAbstractItemModelPrivateP7QObject(void);
-extern QAbstractItemModel _ZN18QAbstractItemModelC1ER25QAbstractItemModelPrivateP7QObject(void);
-extern void _ZNK18QAbstractItemModel10encodeDataERK5QListI11QModelIndexER11QDataStream(void);
-extern bool _ZN18QAbstractItemModel10decodeDataEiiRK11QModelIndexR11QDataStream(void);
-extern void _ZN18QAbstractItemModel15beginInsertRowsERK11QModelIndexii(void);
-extern void _ZN18QAbstractItemModel13endInsertRowsEv(void);
-extern void _ZN18QAbstractItemModel15beginRemoveRowsERK11QModelIndexii(void);
-extern void _ZN18QAbstractItemModel13endRemoveRowsEv(void);
-extern void _ZN18QAbstractItemModel18beginInsertColumnsERK11QModelIndexii(void);
-extern void _ZN18QAbstractItemModel16endInsertColumnsEv(void);
-extern void _ZN18QAbstractItemModel18beginRemoveColumnsERK11QModelIndexii(void);
-extern void _ZN18QAbstractItemModel16endRemoveColumnsEv(void);
-extern void _ZN18QAbstractItemModel5resetEv(void);
-extern void _ZN18QAbstractItemModel21changePersistentIndexERK11QModelIndexS2_(void);
-extern void _ZN18QAbstractItemModel25changePersistentIndexListERK5QListI11QModelIndexES4_(void);
 extern struct QMetaObject _ZN19QAbstractTableModel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK19QAbstractTableModel10metaObjectEv(void);
-extern void _ZN19QAbstractTableModel11qt_metacastEPKc(void);
-extern int _ZN19QAbstractTableModel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractTableModel _ZN19QAbstractTableModelC2EP7QObject(void);
-extern QAbstractTableModel _ZN19QAbstractTableModelC1EP7QObject(void);
-extern  _ZN19QAbstractTableModelD2Ev(void);
-extern  _ZN19QAbstractTableModelD1Ev(void);
-extern  _ZN19QAbstractTableModelD0Ev(void);
-extern QModelIndex _ZNK19QAbstractTableModel5indexEiiRK11QModelIndex(void);
-extern bool _ZN19QAbstractTableModel12dropMimeDataEPK9QMimeDataN2Qt10DropActionEiiRK11QModelIndex(void);
-extern QAbstractTableModel _ZN19QAbstractTableModelC2ER25QAbstractItemModelPrivateP7QObject(void);
-extern QAbstractTableModel _ZN19QAbstractTableModelC1ER25QAbstractItemModelPrivateP7QObject(void);
 extern struct QMetaObject _ZN18QAbstractListModel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK18QAbstractListModel10metaObjectEv(void);
-extern void _ZN18QAbstractListModel11qt_metacastEPKc(void);
-extern int _ZN18QAbstractListModel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractListModel _ZN18QAbstractListModelC2EP7QObject(void);
-extern QAbstractListModel _ZN18QAbstractListModelC1EP7QObject(void);
-extern  _ZN18QAbstractListModelD2Ev(void);
-extern  _ZN18QAbstractListModelD1Ev(void);
-extern  _ZN18QAbstractListModelD0Ev(void);
-extern QModelIndex _ZNK18QAbstractListModel5indexEiiRK11QModelIndex(void);
-extern bool _ZN18QAbstractListModel12dropMimeDataEPK9QMimeDataN2Qt10DropActionEiiRK11QModelIndex(void);
-extern QAbstractListModel _ZN18QAbstractListModelC2ER25QAbstractItemModelPrivateP7QObject(void);
-extern QAbstractListModel _ZN18QAbstractListModelC1ER25QAbstractItemModelPrivateP7QObject(void);
-extern QModelIndex _ZNK18QAbstractListModel6parentERK11QModelIndex(void);
-extern bool _ZNK18QAbstractListModel11hasChildrenERK11QModelIndex(void);
-extern int _ZNK18QAbstractListModel11columnCountERK11QModelIndex(void);
-extern QModelIndex _ZNK19QAbstractTableModel6parentERK11QModelIndex(void);
-extern bool _ZNK19QAbstractTableModel11hasChildrenERK11QModelIndex(void);
 // *INDENT-ON*
 #endif

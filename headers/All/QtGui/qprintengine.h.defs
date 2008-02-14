@@ -1,6 +1,6 @@
 
 class QPrintEngine;
-enum N12QPrintEngine22PrintEnginePropertyKeyE {
+enum _ZN12QPrintEngine22PrintEnginePropertyKeyE {
     PPK_CollateCopies,
     PPK_ColorMode,
     PPK_Creator,

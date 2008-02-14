@@ -69,7 +69,6 @@ extern int fwide(FILE *, int);
 extern int fwprintf(FILE *, const wchar_t *, ...);
 extern int fwscanf(FILE *, const wchar_t *, ...);
 extern wint_t getwc(FILE *);
-extern wint_t getwchar(void);
 extern wint_t putwc(wchar_t, FILE *);
 extern wint_t putwchar(wchar_t);
 extern int swprintf(wchar_t *, size_t, const wchar_t *, ...);
@@ -85,3 +84,4 @@ extern size_t wcsftime(wchar_t *, size_t, const wchar_t *,
 		       const struct tm *);
 extern int wprintf(const wchar_t *, ...);
 extern int wscanf(const wchar_t *, ...);
+extern wint_t getwchar(void);

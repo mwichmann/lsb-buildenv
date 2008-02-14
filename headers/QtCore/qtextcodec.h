@@ -4,16 +4,37 @@
 class QTextCodec;
 // *INDENT-OFF*
 
-
-
-
-typedef ConversionFlags	
+typedef class QFlags<QTextCodec::ConversionFlag>
+{
+private:
+public:
+}ConversionFlags	
 ;
 
 class QTextCodec
 {
 private:
 public:
+    static QTextCodec * codecForName(QByteArray const&);
+    static QTextCodec * codecForMib(int);
+    static QList<QByteArray> availableCodecs();
+    static QList<int> availableMibs();
+    static QTextCodec * codecForLocale();
+    static void setCodecForLocale(QTextCodec*);
+    static QTextCodec * codecForHtml(QByteArray const&);
+    QTextDecoder * makeDecoder() const;
+    QTextEncoder * makeEncoder() const;
+    bool canEncode(QChar) const;
+    bool canEncode(QString const&) const;
+    QString toUnicode(QByteArray const&) const;
+    QString toUnicode(char const*) const;
+    QByteArray fromUnicode(QString const&) const;
+    QList<QByteArray> aliases() const;
+     QTextCodec();
+     ~QTextCodec();
+    static const char * locale();
+    QByteArray fromUnicode(QString const&, int&) const;
+    QString toUnicode(QByteArray const&, int) const;
 };
 
 enum ConversionFlag	
@@ -36,46 +57,20 @@ class QTextEncoder
 {
 private:
 public:
+     ~QTextEncoder();
+    QByteArray fromUnicode(QString const&);
+    QByteArray fromUnicode(QChar const*, int);
+    QByteArray fromUnicode(QString const&, int&);
 };
 
 class QTextDecoder
 {
 private:
 public:
+     ~QTextDecoder();
+    QString toUnicode(char const*, int);
+    QString toUnicode(QByteArray const&);
 };
 
-
-extern QTextCodec _ZN10QTextCodec12codecForNameERK10QByteArray(void);
-extern QTextCodec _ZN10QTextCodec11codecForMibEi(void);
-extern QList<QByteArray> _ZN10QTextCodec15availableCodecsEv(void);
-extern QList<int> _ZN10QTextCodec13availableMibsEv(void);
-extern QTextCodec _ZN10QTextCodec14codecForLocaleEv(void);
-extern void _ZN10QTextCodec17setCodecForLocaleEPS_(void);
-extern QTextCodec _ZN10QTextCodec12codecForHtmlERK10QByteArray(void);
-extern  _ZNK10QTextCodec11makeDecoderEv(void);
-extern  _ZNK10QTextCodec11makeEncoderEv(void);
-extern bool _ZNK10QTextCodec9canEncodeE5QChar(void);
-extern bool _ZNK10QTextCodec9canEncodeERK7QString(void);
-extern QString _ZNK10QTextCodec9toUnicodeERK10QByteArray(void);
-extern QString _ZNK10QTextCodec9toUnicodeEPKc(void);
-extern QByteArray _ZNK10QTextCodec11fromUnicodeERK7QString(void);
-extern QList<QByteArray> _ZNK10QTextCodec7aliasesEv(void);
-extern QTextCodec _ZN10QTextCodecC2Ev(void);
-extern QTextCodec _ZN10QTextCodecC1Ev(void);
-extern  _ZN10QTextCodecD2Ev(void);
-extern  _ZN10QTextCodecD1Ev(void);
-extern  _ZN10QTextCodecD0Ev(void);
-extern char _ZN10QTextCodec6localeEv(void);
-extern QByteArray _ZNK10QTextCodec11fromUnicodeERK7QStringRi(void);
-extern QString _ZNK10QTextCodec9toUnicodeERK10QByteArrayi(void);
-extern  _ZN12QTextEncoderD2Ev(void);
-extern  _ZN12QTextEncoderD1Ev(void);
-extern QByteArray _ZN12QTextEncoder11fromUnicodeERK7QString(void);
-extern QByteArray _ZN12QTextEncoder11fromUnicodeEPK5QChari(void);
-extern QByteArray _ZN12QTextEncoder11fromUnicodeERK7QStringRi(void);
-extern  _ZN12QTextDecoderD2Ev(void);
-extern  _ZN12QTextDecoderD1Ev(void);
-extern QString _ZN12QTextDecoder9toUnicodeEPKci(void);
-extern QString _ZN12QTextDecoder9toUnicodeERK10QByteArray(void);
 // *INDENT-ON*
 #endif

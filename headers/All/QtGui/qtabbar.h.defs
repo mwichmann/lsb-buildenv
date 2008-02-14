@@ -1,6 +1,6 @@
 
 class QTabBar;
-enum N7QTabBar5ShapeE {
+enum _ZN7QTabBar5ShapeE {
     RoundedNorth,
     RoundedAbove,
     RoundedSouth,

@@ -1,13 +1,12 @@
 #ifndef _QTCORE_QHASH_H_
 #define _QTCORE_QHASH_H_
 
+#include <QtCore/qbytearray.h>
+#include <QtCore/qstring.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-
-
 
 
     struct QHashData;
@@ -17,16 +16,8 @@ extern "C" {
     struct QHashDummyValue;
 
 
-    extern uint _Z5qHashRK10QByteArray(void);
-    extern uint _Z5qHashRK7QString(void);
-    extern void _ZN9QHashData12allocateNodeEv(void);
-    extern void _ZN9QHashData8freeNodeEPv(void);
-    extern struct QHashData
-	_ZN9QHashData13detach_helperEPFvPNS_4NodeEPvEi(void);
-    extern void _ZN9QHashData6rehashEi(void);
-    extern void _ZN9QHashData14destroyAndFreeEv(void);
-    extern struct Node _ZN9QHashData8nextNodeEPNS_4NodeE(void);
-    extern struct Node _ZN9QHashData12previousNodeEPNS_4NodeE(void);
+    extern uint _Z5qHashRK10QByteArray(QByteArray & &);
+    extern uint _Z5qHashRK7QString(QString & &);
     extern struct QHashData _ZN9QHashData11shared_nullE;
 #ifdef __cplusplus
 }

@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-
 #if defined __ia64__
 #define O_LARGEFILE	0
 #endif
@@ -66,11 +65,7 @@ extern "C" {
 
 /* flags for open(2)*/
 
-
-
 /* flags for access(2)*/
-
-
 
 /* Constants used for fcntl(2)*/
 #define F_DUPFD	0

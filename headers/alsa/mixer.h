@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _snd_mixer snd_mixer_t;
 
     typedef struct _snd_mixer_elem snd_mixer_elem_t;

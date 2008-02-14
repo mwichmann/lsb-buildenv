@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define REGTYPE	'0'
 #define LNKTYPE	'1'
 #define SYMTYPE	'2'
@@ -33,7 +32,6 @@ extern "C" {
 #define TVERSLEN	2
 #define TMAGLEN	6
 #define TMAGIC	"ustar"
-
 
 
 #ifdef __cplusplus

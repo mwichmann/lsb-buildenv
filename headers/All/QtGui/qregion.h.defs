@@ -1,6 +1,6 @@
 
 class QRegion;
-enum N7QRegion10RegionTypeE {
+enum _ZN7QRegion10RegionTypeE {
     Rectangle,
     Ellipse
 };

@@ -4,42 +4,43 @@
 class QItemDelegate;
 // *INDENT-OFF*
 
-
-
-
 class QItemDelegate : public QAbstractItemDelegate
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QItemDelegate(QObject*);
+     ~QItemDelegate();
+    void paint(QPainter*, QStyleOptionViewItem const&, QModelIndex const&) const;
+    QSize sizeHint(QStyleOptionViewItem const&, QModelIndex const&) const;
+    QWidget * createEditor(QWidget*, QStyleOptionViewItem const&, QModelIndex const&) const;
+    void setEditorData(QWidget*, QModelIndex const&) const;
+    void setModelData(QWidget*, QAbstractItemModel*, QModelIndex const&) const;
+    void updateEditorGeometry(QWidget*, QStyleOptionViewItem const&, QModelIndex const&) const;
+    QItemEditorFactory * itemEditorFactory() const;
+    void setItemEditorFactory(QItemEditorFactory*);
+    void setClipping(bool);
+    bool hasClipping() const;
+protected:
+    void drawDisplay(QPainter*, QStyleOptionViewItem const&, QRect const&, QString const&) const;
+    void drawDecoration(QPainter*, QStyleOptionViewItem const&, QRect const&, QPixmap const&) const;
+    void drawFocus(QPainter*, QStyleOptionViewItem const&, QRect const&) const;
+    void drawCheck(QPainter*, QStyleOptionViewItem const&, QRect const&, Qt::CheckState) const;
+    void doLayout(QStyleOptionViewItem const&, QRect*, QRect*, QRect*, bool) const;
+    QPixmap decoration(QStyleOptionViewItem const&, QVariant const&) const;
+    QPixmap * selected(QPixmap const&, QPalette const&, bool) const;
+    QRect check(QStyleOptionViewItem const&, QRect const&, QVariant const&) const;
+    bool eventFilter(QObject*, QEvent*);
+    bool editorEvent(QEvent*, QAbstractItemModel*, QStyleOptionViewItem const&, QModelIndex const&);
+    QStyleOptionViewItem setOptions(QModelIndex const&, QStyleOptionViewItem const&) const;
+    QRect textRectangle(QPainter*, QRect const&, QFont const&, QString const&) const;
+    void drawBackground(QPainter*, QStyleOptionViewItem const&, QModelIndex const&) const;
+    QRect rect(QStyleOptionViewItem const&, QModelIndex const&, int) const;
 };
 
 
 extern struct QMetaObject _ZN13QItemDelegate16staticMetaObjectE ;
-extern struct QMetaObject _ZNK13QItemDelegate10metaObjectEv(void);
-extern void _ZN13QItemDelegate11qt_metacastEPKc(void);
-extern int _ZN13QItemDelegate11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QItemDelegate _ZN13QItemDelegateC2EP7QObject(void);
-extern QItemDelegate _ZN13QItemDelegateC1EP7QObject(void);
-extern  _ZN13QItemDelegateD2Ev(void);
-extern  _ZN13QItemDelegateD1Ev(void);
-extern  _ZN13QItemDelegateD0Ev(void);
-extern void _ZNK13QItemDelegate5paintEP8QPainterRK20QStyleOptionViewItemRK11QModelIndex(void);
-extern QSize _ZNK13QItemDelegate8sizeHintERK20QStyleOptionViewItemRK11QModelIndex(void);
-extern QWidget _ZNK13QItemDelegate12createEditorEP7QWidgetRK20QStyleOptionViewItemRK11QModelIndex(void);
-extern void _ZNK13QItemDelegate13setEditorDataEP7QWidgetRK11QModelIndex(void);
-extern void _ZNK13QItemDelegate12setModelDataEP7QWidgetP18QAbstractItemModelRK11QModelIndex(void);
-extern void _ZNK13QItemDelegate20updateEditorGeometryEP7QWidgetRK20QStyleOptionViewItemRK11QModelIndex(void);
-extern  _ZNK13QItemDelegate17itemEditorFactoryEv(void);
-extern void _ZN13QItemDelegate20setItemEditorFactoryEP18QItemEditorFactory(void);
-extern void _ZNK13QItemDelegate11drawDisplayEP8QPainterRK20QStyleOptionViewItemRK5QRectRK7QString(void);
-extern void _ZNK13QItemDelegate14drawDecorationEP8QPainterRK20QStyleOptionViewItemRK5QRectRK7QPixmap(void);
-extern void _ZNK13QItemDelegate9drawFocusEP8QPainterRK20QStyleOptionViewItemRK5QRect(void);
-extern void _ZNK13QItemDelegate9drawCheckEP8QPainterRK20QStyleOptionViewItemRK5QRectN2Qt10CheckStateE(void);
-extern void _ZNK13QItemDelegate8doLayoutERK20QStyleOptionViewItemP5QRectS4_S4_b(void);
-extern QPixmap _ZNK13QItemDelegate10decorationERK20QStyleOptionViewItemRK8QVariant(void);
-extern QPixmap _ZNK13QItemDelegate8selectedERK7QPixmapRK8QPaletteb(void);
-extern QRect _ZNK13QItemDelegate5checkERK20QStyleOptionViewItemRK5QRectRK8QVariant(void);
-extern bool _ZN13QItemDelegate11eventFilterEP7QObjectP6QEvent(void);
-extern bool _ZN13QItemDelegate11editorEventEP6QEventP18QAbstractItemModelRK20QStyleOptionViewItemRK11QModelIndex(void);
 // *INDENT-ON*
 #endif

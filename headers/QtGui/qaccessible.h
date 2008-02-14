@@ -4,13 +4,18 @@
 class QAccessibleEvent;
 // *INDENT-OFF*
 
-
-
-
-typedef State	
+typedef class QFlags<QAccessible::StateFlag>
+{
+private:
+public:
+}State	
 ;
 
-typedef Relation	
+typedef class QFlags<QAccessible::RelationFlag>
+{
+private:
+public:
+}Relation	
 ;
 
 typedef void	UpdateHandler	
@@ -23,6 +28,16 @@ class QAccessible
 {
 private:
 public:
+    void installFactory(QAccessibleInterface* (*)(QString const&, QObject*));
+    void removeFactory(QAccessibleInterface* (*)(QString const&, QObject*));
+     installUpdateHandler(void (*)(QObject*, int, QAccessible::Event));
+     installRootObjectHandler(void (*)(QObject*));
+    QAccessibleInterface * queryAccessibleInterface(QObject*);
+    void updateAccessibility(QObject*, int, QAccessible::Event);
+    bool isActive();
+    void setRootObject(QObject*);
+    void initialize();
+    void cleanup();
 };
 
 enum Event	
@@ -240,6 +255,8 @@ class QAccessibleInterface : public QAccessible
 {
 private:
 public:
+     ~QAccessibleInterface();
+    QVariant invokeMethod(QAccessible::Method, int, QList<QVariant> const&);
 };
 
 class QAccessibleEvent : public QEvent
@@ -248,18 +265,5 @@ private:
 public:
 };
 
-
-extern void _ZN11QAccessible14installFactoryEPFP20QAccessibleInterfaceRK7QStringP7QObjectE(void);
-extern void _ZN11QAccessible13removeFactoryEPFP20QAccessibleInterfaceRK7QStringP7QObjectE(void);
-extern N11QAccessible13UpdateHandlerE _ZN11QAccessible20installUpdateHandlerEPFvP7QObjectiNS_5EventEE(void);
-extern N11QAccessible17RootObjectHandlerE _ZN11QAccessible24installRootObjectHandlerEPFvP7QObjectE(void);
-extern  _ZN11QAccessible24queryAccessibleInterfaceEP7QObject(void);
-extern void _ZN11QAccessible19updateAccessibilityEP7QObjectiNS_5EventE(void);
-extern bool _ZN11QAccessible8isActiveEv(void);
-extern void _ZN11QAccessible13setRootObjectEP7QObject(void);
-extern void _ZN11QAccessible10initializeEv(void);
-extern void _ZN11QAccessible7cleanupEv(void);
-extern  _ZN20QAccessibleInterfaceD0Ev(void);
-extern  _ZN20QAccessibleInterfaceD1Ev(void);
 // *INDENT-ON*
 #endif

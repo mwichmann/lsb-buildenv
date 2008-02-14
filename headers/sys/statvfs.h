@@ -8,9 +8,6 @@ extern "C" {
 #endif
 
 
-
-
-
 #if defined __ia64__
 /* IA64 */
     struct statvfs {

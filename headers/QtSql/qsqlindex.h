@@ -4,30 +4,23 @@
 class QSqlIndex;
 // *INDENT-OFF*
 
-
-
-
 class QSqlIndex :  
 {
 private:
 public:
+     QSqlIndex(QString const&, QString const&);
+     QSqlIndex(QSqlIndex const&);
+     ~QSqlIndex();
+    QSqlIndex & operator=(QSqlIndex const&);
+    void setCursorName(QString const&);
+    void setName(QString const&);
+    void append(QSqlField const&);
+    void append(QSqlField const&, bool);
+    bool isDescending(int) const;
+    void setDescending(int, bool);
+    QString toString(QString const&, QString const&, bool) const;
+    QStringList toStringList(QString const&, bool) const;
 };
 
-
-extern QSqlIndex _ZN9QSqlIndexC2ERK7QStringS2_(void);
-extern QSqlIndex _ZN9QSqlIndexC1ERK7QStringS2_(void);
-extern QSqlIndex _ZN9QSqlIndexC2ERKS_(void);
-extern QSqlIndex _ZN9QSqlIndexC1ERKS_(void);
-extern  _ZN9QSqlIndexD2Ev(void);
-extern  _ZN9QSqlIndexD1Ev(void);
-extern QSqlIndex _ZN9QSqlIndexaSERKS_(void);
-extern void _ZN9QSqlIndex13setCursorNameERK7QString(void);
-extern void _ZN9QSqlIndex7setNameERK7QString(void);
-extern void _ZN9QSqlIndex6appendERK9QSqlField(void);
-extern void _ZN9QSqlIndex6appendERK9QSqlFieldb(void);
-extern bool _ZNK9QSqlIndex12isDescendingEi(void);
-extern void _ZN9QSqlIndex13setDescendingEib(void);
-extern QString _ZNK9QSqlIndex8toStringERK7QStringS2_b(void);
-extern QStringList _ZNK9QSqlIndex12toStringListERK7QStringb(void);
 // *INDENT-ON*
 #endif

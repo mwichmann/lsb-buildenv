@@ -4,88 +4,82 @@
 class QFontMetrics;
 // *INDENT-OFF*
 
-
-
-
 class QFontMetrics
 {
 private:
 public:
+     QFontMetrics(QFont const&);
+     QFontMetrics(QFont const&, QPaintDevice*);
+     QFontMetrics(QFontMetrics const&);
+     ~QFontMetrics();
+    QFontMetrics & operator=(QFontMetrics const&);
+    int ascent() const;
+    int descent() const;
+    int height() const;
+    int leading() const;
+    int lineSpacing() const;
+    int minLeftBearing() const;
+    int minRightBearing() const;
+    int maxWidth() const;
+    int xHeight() const;
+    bool inFont(QChar) const;
+    int leftBearing(QChar) const;
+    int rightBearing(QChar) const;
+    int width(QString const&, int) const;
+    int width(QChar) const;
+    int charWidth(QString const&, int) const;
+    QRect boundingRect(QChar) const;
+    QRect boundingRect(QString const&) const;
+    QRect boundingRect(QRect const&, int, QString const&, int, int*) const;
+    QSize size(int, QString const&, int, int*) const;
+    int underlinePos() const;
+    int overlinePos() const;
+    int strikeOutPos() const;
+    int lineWidth() const;
+    bool operator==(QFontMetrics const&);
+    bool operator==(QFontMetrics const&) const;
+    QString elidedText(QString const&, Qt::TextElideMode, int, int) const;
+    int averageCharWidth() const;
 };
 
 class QFontMetricsF
 {
 private:
 public:
+     QFontMetricsF(QFont const&);
+     QFontMetricsF(QFont const&, QPaintDevice*);
+     QFontMetricsF(QFontMetricsF const&);
+     ~QFontMetricsF();
+     operator=(QFontMetricsF const&);
+    qreal ascent() const;
+    qreal descent() const;
+    qreal height() const;
+    qreal leading() const;
+    qreal lineSpacing() const;
+    qreal minLeftBearing() const;
+    qreal minRightBearing() const;
+    qreal maxWidth() const;
+    qreal xHeight() const;
+    bool inFont(QChar) const;
+    qreal leftBearing(QChar) const;
+    qreal rightBearing(QChar) const;
+    qreal width(QString const&) const;
+    qreal width(QChar) const;
+    QRectF boundingRect(QString const&) const;
+    QRectF boundingRect(QChar) const;
+    QRectF boundingRect(QRectF const&, int, QString const&, int, int*) const;
+    QSizeF size(int, QString const&, int, int*) const;
+    qreal underlinePos() const;
+    qreal overlinePos() const;
+    qreal strikeOutPos() const;
+    qreal lineWidth() const;
+    bool operator==(QFontMetricsF const&);
+    bool operator==(QFontMetricsF const&) const;
+     QFontMetricsF(QFontMetrics const&);
+     operator=(QFontMetrics const&);
+    QString elidedText(QString const&, Qt::TextElideMode, double, int) const;
+    qreal averageCharWidth() const;
 };
 
-
-extern QFontMetrics _ZN12QFontMetricsC2ERK5QFont(void);
-extern QFontMetrics _ZN12QFontMetricsC1ERK5QFont(void);
-extern QFontMetrics _ZN12QFontMetricsC2ERK5QFontP12QPaintDevice(void);
-extern QFontMetrics _ZN12QFontMetricsC1ERK5QFontP12QPaintDevice(void);
-extern QFontMetrics _ZN12QFontMetricsC2ERKS_(void);
-extern QFontMetrics _ZN12QFontMetricsC1ERKS_(void);
-extern  _ZN12QFontMetricsD2Ev(void);
-extern  _ZN12QFontMetricsD1Ev(void);
-extern QFontMetrics _ZN12QFontMetricsaSERKS_(void);
-extern int _ZNK12QFontMetrics6ascentEv(void);
-extern int _ZNK12QFontMetrics7descentEv(void);
-extern int _ZNK12QFontMetrics6heightEv(void);
-extern int _ZNK12QFontMetrics7leadingEv(void);
-extern int _ZNK12QFontMetrics11lineSpacingEv(void);
-extern int _ZNK12QFontMetrics14minLeftBearingEv(void);
-extern int _ZNK12QFontMetrics15minRightBearingEv(void);
-extern int _ZNK12QFontMetrics8maxWidthEv(void);
-extern int _ZNK12QFontMetrics7xHeightEv(void);
-extern bool _ZNK12QFontMetrics6inFontE5QChar(void);
-extern int _ZNK12QFontMetrics11leftBearingE5QChar(void);
-extern int _ZNK12QFontMetrics12rightBearingE5QChar(void);
-extern int _ZNK12QFontMetrics5widthERK7QStringi(void);
-extern int _ZNK12QFontMetrics5widthE5QChar(void);
-extern int _ZNK12QFontMetrics9charWidthERK7QStringi(void);
-extern QRect _ZNK12QFontMetrics12boundingRectE5QChar(void);
-extern QRect _ZNK12QFontMetrics12boundingRectERK7QString(void);
-extern QRect _ZNK12QFontMetrics12boundingRectERK5QRectiRK7QStringiPi(void);
-extern QSize _ZNK12QFontMetrics4sizeEiRK7QStringiPi(void);
-extern int _ZNK12QFontMetrics12underlinePosEv(void);
-extern int _ZNK12QFontMetrics11overlinePosEv(void);
-extern int _ZNK12QFontMetrics12strikeOutPosEv(void);
-extern int _ZNK12QFontMetrics9lineWidthEv(void);
-extern bool _ZN12QFontMetricseqERKS_(void);
-extern bool _ZNK12QFontMetricseqERKS_(void);
-extern QFontMetricsF _ZN13QFontMetricsFC2ERK5QFont(void);
-extern QFontMetricsF _ZN13QFontMetricsFC1ERK5QFont(void);
-extern QFontMetricsF _ZN13QFontMetricsFC2ERK5QFontP12QPaintDevice(void);
-extern QFontMetricsF _ZN13QFontMetricsFC1ERK5QFontP12QPaintDevice(void);
-extern QFontMetricsF _ZN13QFontMetricsFC2ERKS_(void);
-extern QFontMetricsF _ZN13QFontMetricsFC1ERKS_(void);
-extern  _ZN13QFontMetricsFD2Ev(void);
-extern  _ZN13QFontMetricsFD1Ev(void);
-extern QFontMetricsF _ZN13QFontMetricsFaSERKS_(void);
-extern qreal _ZNK13QFontMetricsF6ascentEv(void);
-extern qreal _ZNK13QFontMetricsF7descentEv(void);
-extern qreal _ZNK13QFontMetricsF6heightEv(void);
-extern qreal _ZNK13QFontMetricsF7leadingEv(void);
-extern qreal _ZNK13QFontMetricsF11lineSpacingEv(void);
-extern qreal _ZNK13QFontMetricsF14minLeftBearingEv(void);
-extern qreal _ZNK13QFontMetricsF15minRightBearingEv(void);
-extern qreal _ZNK13QFontMetricsF8maxWidthEv(void);
-extern qreal _ZNK13QFontMetricsF7xHeightEv(void);
-extern bool _ZNK13QFontMetricsF6inFontE5QChar(void);
-extern qreal _ZNK13QFontMetricsF11leftBearingE5QChar(void);
-extern qreal _ZNK13QFontMetricsF12rightBearingE5QChar(void);
-extern qreal _ZNK13QFontMetricsF5widthERK7QString(void);
-extern qreal _ZNK13QFontMetricsF5widthE5QChar(void);
-extern QRectF _ZNK13QFontMetricsF12boundingRectERK7QString(void);
-extern QRectF _ZNK13QFontMetricsF12boundingRectE5QChar(void);
-extern QRectF _ZNK13QFontMetricsF12boundingRectERK6QRectFiRK7QStringiPi(void);
-extern QSizeF _ZNK13QFontMetricsF4sizeEiRK7QStringiPi(void);
-extern qreal _ZNK13QFontMetricsF12underlinePosEv(void);
-extern qreal _ZNK13QFontMetricsF11overlinePosEv(void);
-extern qreal _ZNK13QFontMetricsF12strikeOutPosEv(void);
-extern qreal _ZNK13QFontMetricsF9lineWidthEv(void);
-extern bool _ZN13QFontMetricsFeqERKS_(void);
-extern bool _ZNK13QFontMetricsFeqERKS_(void);
 // *INDENT-ON*
 #endif

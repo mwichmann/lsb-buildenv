@@ -1,6 +1,6 @@
 
 class QFileIconProvider;
-enum N17QFileIconProvider8IconTypeE {
+enum _ZN17QFileIconProvider8IconTypeE {
     Computer,
     Desktop,
     Trashcan,
@@ -10,7 +10,7 @@ enum N17QFileIconProvider8IconTypeE {
     File
 };
 class QDirModel;
-enum N9QDirModel5RolesE {
+enum _ZN9QDirModel5RolesE {
     FileIconRole,
     FilePathRole,
     FileNameRole

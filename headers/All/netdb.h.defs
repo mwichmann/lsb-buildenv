@@ -73,17 +73,10 @@ struct addrinfo {
 #define EAI_SERVICE	-8
 #define EAI_ADDRFAMILY	-9
 
-extern int gethostbyname2_r(const char *, int, struct hostent *, char *,
-			    size_t, struct hostent **, int *);
 extern void endprotoent(void);
 extern void endservent(void);
-extern void freeaddrinfo(struct addrinfo *);
-extern const char *gai_strerror(int);
-extern int getaddrinfo(const char *, const char *, const struct addrinfo *,
-		       struct addrinfo **);
 extern struct hostent *gethostbyaddr(const void *, socklen_t, int);
 extern struct hostent *gethostbyname(const char *);
-extern struct hostent *gethostbyname2(const char *, int);
 extern struct protoent *getprotobyname(const char *);
 extern struct protoent *getprotobynumber(int);
 extern struct protoent *getprotoent(void);
@@ -93,7 +86,14 @@ extern struct servent *getservent(void);
 extern void setprotoent(int);
 extern void setservent(int);
 extern int *__h_errno_location(void);
+extern void freeaddrinfo(struct addrinfo *);
+extern const char *gai_strerror(int);
+extern int getaddrinfo(const char *, const char *, const struct addrinfo *,
+		       struct addrinfo **);
+extern struct hostent *gethostbyname2(const char *, int);
 extern int gethostbyaddr_r(const void *, socklen_t, int, struct hostent *,
 			   char *, size_t, struct hostent **, int *);
+extern int gethostbyname2_r(const char *, int, struct hostent *, char *,
+			    size_t, struct hostent **, int *);
 extern int gethostbyname_r(const char *, struct hostent *, char *, size_t,
 			   struct hostent **, int *);

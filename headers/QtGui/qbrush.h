@@ -4,13 +4,34 @@
 class QConicalGradient;
 // *INDENT-OFF*
 
-
-
-
 class QBrush
 {
 private:
 public:
+     QBrush();
+     QBrush(Qt::BrushStyle);
+     QBrush(QColor const&, Qt::BrushStyle);
+     QBrush(Qt::GlobalColor, Qt::BrushStyle);
+     QBrush(QColor const&, QPixmap const&);
+     QBrush(Qt::GlobalColor, QPixmap const&);
+     QBrush(QPixmap const&);
+     QBrush(QBrush const&);
+     QBrush(QGradient const&);
+     ~QBrush();
+    QBrush & operator=(QBrush const&);
+    QVariant operator QVariant() const;
+    void setStyle(Qt::BrushStyle);
+    QPixmap texture() const;
+    void setTexture(QPixmap const&);
+    void setColor(QColor const&);
+     gradient() const;
+    bool isOpaque() const;
+    bool operator==(QBrush const&) const;
+    QPixmap * pixmap() const;
+     QBrush(QImage const&);
+    void setTextureImage(QImage const&);
+    void setMatrix(QMatrix const&);
+    QImage textureImage() const;
 };
 
 struct QBrushData	;
@@ -19,6 +40,14 @@ class QGradient
 {
 private:
 public:
+     QGradient();
+    void setColorAt(double, QColor const&);
+    void setStops(QVector<QPair<double, QColor> > const&);
+     stops() const;
+    bool operator==(QGradient const&);
+    bool operator==(QGradient const&) const;
+    void setCoordinateMode(QGradient::CoordinateMode);
+     coordinateMode() const;
 };
 
 enum Type	
@@ -42,79 +71,48 @@ class QLinearGradient :
 {
 private:
 public:
+     QLinearGradient(QPointF const&, QPointF const&);
+     QLinearGradient(double, double, double, double);
+    QPointF start() const;
+    QPointF finalStop() const;
+     QLinearGradient();
+    void setFinalStop(QPointF const&);
+    void setStart(QPointF const&);
 };
 
 class QRadialGradient :  
 {
 private:
 public:
+     QRadialGradient(QPointF const&, double, QPointF const&);
+     QRadialGradient(double, double, double, double, double);
+    QPointF center() const;
+    QPointF focalPoint() const;
+    qreal radius() const;
+     QRadialGradient(double, double, double);
+     QRadialGradient(QPointF const&, double);
+     QRadialGradient();
+    void setFocalPoint(QPointF const&);
+    void setCenter(QPointF const&);
+    void setRadius(double);
 };
 
 class QConicalGradient :  
 {
 private:
 public:
+     QConicalGradient(QPointF const&, double);
+     QConicalGradient(double, double, double);
+    QPointF center() const;
+    qreal angle() const;
+     QConicalGradient();
+    void setAngle(double);
+    void setCenter(QPointF const&);
 };
 
 
-extern QBrush _ZN6QBrushC2Ev(void);
-extern QBrush _ZN6QBrushC1Ev(void);
-extern QBrush _ZN6QBrushC2EN2Qt10BrushStyleE(void);
-extern QBrush _ZN6QBrushC1EN2Qt10BrushStyleE(void);
-extern QBrush _ZN6QBrushC2ERK6QColorN2Qt10BrushStyleE(void);
-extern QBrush _ZN6QBrushC1ERK6QColorN2Qt10BrushStyleE(void);
-extern QBrush _ZN6QBrushC2EN2Qt11GlobalColorENS0_10BrushStyleE(void);
-extern QBrush _ZN6QBrushC1EN2Qt11GlobalColorENS0_10BrushStyleE(void);
-extern QBrush _ZN6QBrushC2ERK6QColorRK7QPixmap(void);
-extern QBrush _ZN6QBrushC1ERK6QColorRK7QPixmap(void);
-extern QBrush _ZN6QBrushC2EN2Qt11GlobalColorERK7QPixmap(void);
-extern QBrush _ZN6QBrushC1EN2Qt11GlobalColorERK7QPixmap(void);
-extern QBrush _ZN6QBrushC2ERK7QPixmap(void);
-extern QBrush _ZN6QBrushC1ERK7QPixmap(void);
-extern QBrush _ZN6QBrushC2ERKS_(void);
-extern QBrush _ZN6QBrushC1ERKS_(void);
-extern QBrush _ZN6QBrushC2ERK9QGradient(void);
-extern QBrush _ZN6QBrushC1ERK9QGradient(void);
-extern  _ZN6QBrushD2Ev(void);
-extern  _ZN6QBrushD1Ev(void);
-extern QBrush _ZN6QBrushaSERKS_(void);
-extern QBrush _ZNK6QBrushcv8QVariantEv(void);
-extern void _ZN6QBrush8setStyleEN2Qt10BrushStyleE(void);
-extern  _ZNK6QBrush7textureEv(void);
-extern void _ZN6QBrush10setTextureERK7QPixmap(void);
-extern void _ZN6QBrush8setColorERK6QColor(void);
-extern  _ZNK6QBrush8gradientEv(void);
-extern bool _ZNK6QBrush8isOpaqueEv(void);
-extern bool _ZNK6QBrusheqERKS_(void);
-extern  _ZNK6QBrush6pixmapEv(void);
-extern QDataStream _ZlsR11QDataStreamRK6QBrush(void);
-extern QDataStream _ZrsR11QDataStreamR6QBrush(void);
-extern QDebug _Zls6QDebugRK6QBrush(void);
-extern QGradient _ZN9QGradientC2Ev(void);
-extern QGradient _ZN9QGradientC1Ev(void);
-extern void _ZN9QGradient10setColorAtEdRK6QColor(void);
-extern void _ZN9QGradient8setStopsERK7QVectorI5QPairId6QColorEE(void);
-extern  _ZNK9QGradient5stopsEv(void);
-extern bool _ZN9QGradienteqERKS_(void);
-extern bool _ZNK9QGradienteqERKS_(void);
-extern QLinearGradient _ZN15QLinearGradientC2ERK7QPointFS2_(void);
-extern QLinearGradient _ZN15QLinearGradientC1ERK7QPointFS2_(void);
-extern QLinearGradient _ZN15QLinearGradientC2Edddd(void);
-extern QLinearGradient _ZN15QLinearGradientC1Edddd(void);
-extern QPointF _ZNK15QLinearGradient5startEv(void);
-extern QPointF _ZNK15QLinearGradient9finalStopEv(void);
-extern QRadialGradient _ZN15QRadialGradientC2ERK7QPointFdS2_(void);
-extern QRadialGradient _ZN15QRadialGradientC1ERK7QPointFdS2_(void);
-extern QRadialGradient _ZN15QRadialGradientC2Eddddd(void);
-extern QRadialGradient _ZN15QRadialGradientC1Eddddd(void);
-extern QPointF _ZNK15QRadialGradient6centerEv(void);
-extern QPointF _ZNK15QRadialGradient10focalPointEv(void);
-extern qreal _ZNK15QRadialGradient6radiusEv(void);
-extern QConicalGradient _ZN16QConicalGradientC2ERK7QPointFd(void);
-extern QConicalGradient _ZN16QConicalGradientC1ERK7QPointFd(void);
-extern QConicalGradient _ZN16QConicalGradientC2Eddd(void);
-extern QConicalGradient _ZN16QConicalGradientC1Eddd(void);
-extern QPointF _ZNK16QConicalGradient6centerEv(void);
-extern qreal _ZNK16QConicalGradient5angleEv(void);
+extern QDataStream _ZlsR11QDataStreamRK6QBrush(QDataStream &, const QBrush &);
+extern QDataStream _ZrsR11QDataStreamR6QBrush(QDataStream &, QBrush &);
+extern QDebug _Zls6QDebugRK6QBrush(_Z6QDebug, const QBrush &);
 // *INDENT-ON*
 #endif

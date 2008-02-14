@@ -8,9 +8,6 @@ extern "C" {
 
 
 
-
-
-
     extern char XtStrings[];
 #ifdef __cplusplus
 }

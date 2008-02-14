@@ -9,9 +9,6 @@ extern "C" {
 
 
 
-
-
-
     extern int poll(struct pollfd *, nfds_t, int);
 #ifdef __cplusplus
 }

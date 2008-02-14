@@ -4,16 +4,24 @@
 class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
 // *INDENT-OFF*
 
-
-
-
-typedef IteratorFlags	
+typedef class QFlags<QTreeWidgetItemIterator::IteratorFlag>
+{
+private:
+public:
+}IteratorFlags	
 ;
 
 class QTreeWidgetItemIterator
 {
 private:
 public:
+     QTreeWidgetItemIterator(QTreeWidgetItemIterator const&);
+     QTreeWidgetItemIterator(QTreeWidget*, QFlags<QTreeWidgetItemIterator::IteratorFlag>);
+     QTreeWidgetItemIterator(QTreeWidgetItem*, QFlags<QTreeWidgetItemIterator::IteratorFlag>);
+     ~QTreeWidgetItemIterator();
+     operator=(QTreeWidgetItemIterator const&);
+     operator++();
+     operator--();
 };
 
 enum IteratorFlag	
@@ -47,17 +55,5 @@ private:
 public:
 };
 
-
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorC2ERKS_(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorC1ERKS_(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorC2EP11QTreeWidget6QFlagsINS_12IteratorFlagEE(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorC1EP11QTreeWidget6QFlagsINS_12IteratorFlagEE(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorC2EP15QTreeWidgetItem6QFlagsINS_12IteratorFlagEE(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorC1EP15QTreeWidgetItem6QFlagsINS_12IteratorFlagEE(void);
-extern  _ZN23QTreeWidgetItemIteratorD2Ev(void);
-extern  _ZN23QTreeWidgetItemIteratorD1Ev(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratoraSERKS_(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratorppEv(void);
-extern QTreeWidgetItemIterator _ZN23QTreeWidgetItemIteratormmEv(void);
 // *INDENT-ON*
 #endif

@@ -4,16 +4,21 @@
 class QFlags < QDir::Filter >;
 // *INDENT-OFF*
 
-
-
-
-typedef Filters	
+typedef class QFlags<QDir::Filter>
+{
+private:
+public:
+}Filters	
 ;
 
 typedef Filters	FilterSpec	
 ;
 
-typedef SortFlags	
+typedef class QFlags<QDir::SortFlag>
+{
+private:
+public:
+}SortFlags	
 ;
 
 typedef SortFlags	SortSpec	
@@ -23,6 +28,68 @@ class QDir
 {
 private:
 public:
+     QDir(QDir const&);
+     QDir(QString const&);
+     QDir(QString const&, QString const&, QFlags<QDir::SortFlag>, QFlags<QDir::Filter>);
+     ~QDir();
+    QDir & operator=(QDir const&);
+    QDir & operator=(QString const&);
+    void setPath(QString const&);
+    QString path() const;
+    QString absolutePath() const;
+    QString canonicalPath() const;
+    static void addResourceSearchPath(QString const&);
+    QString dirName() const;
+    QString filePath(QString const&) const;
+    QString absoluteFilePath(QString const&) const;
+    QString relativeFilePath(QString const&) const;
+    static QString convertSeparators(QString const&);
+    bool cd(QString const&);
+    bool cdUp();
+    QStringList nameFilters() const;
+    void setNameFilters(QStringList const&);
+    QFlags<QDir::Filter> filter() const;
+    void setFilter(QFlags<QDir::Filter>);
+    QFlags<QDir::SortFlag> sorting() const;
+    void setSorting(QFlags<QDir::SortFlag>);
+    uint count() const;
+    QString operator[](int) const;
+    static QStringList nameFiltersFromString(QString const&);
+    QStringList entryList(QFlags<QDir::Filter>, QFlags<QDir::SortFlag>) const;
+    QStringList entryList(QStringList const&, QFlags<QDir::Filter>, QFlags<QDir::SortFlag>) const;
+    QFileInfoList entryInfoList(QFlags<QDir::Filter>, QFlags<QDir::SortFlag>) const;
+    QFileInfoList entryInfoList(QStringList const&, QFlags<QDir::Filter>, QFlags<QDir::SortFlag>) const;
+    bool mkdir(QString const&) const;
+    bool rmdir(QString const&) const;
+    bool mkpath(QString const&) const;
+    bool rmpath(QString const&) const;
+    bool isReadable() const;
+    bool exists() const;
+    bool isRoot() const;
+    static bool isRelativePath(QString const&);
+    bool isRelative() const;
+    bool makeAbsolute();
+    bool operator==(QDir const&) const;
+    bool remove(QString const&);
+    bool rename(QString const&, QString const&);
+    bool exists(QString const&) const;
+    static QFileInfoList drives();
+    static QChar separator();
+    static bool setCurrent(QString const&);
+    static QString currentPath();
+    static QString homePath();
+    static QString rootPath();
+    static QString tempPath();
+    static bool match(QStringList const&, QString const&);
+    static bool match(QString const&, QString const&);
+    static QString cleanPath(QString const&);
+    void refresh() const;
+    bool matchAllDirs() const;
+    void setMatchAllDirs(bool);
+    QString nameFilter() const;
+    void setNameFilter(QString const&);
+    static QString toNativeSeparators(QString const&);
+    static QString fromNativeSeparators(QString const&);
 };
 
 enum Filter	
@@ -81,70 +148,5 @@ private:
 public:
 };
 
-
-extern QDir _ZN4QDirC2ERKS_(void);
-extern QDir _ZN4QDirC1ERKS_(void);
-extern QDir _ZN4QDirC2ERK7QString(void);
-extern QDir _ZN4QDirC1ERK7QString(void);
-extern QDir _ZN4QDirC2ERK7QStringS2_6QFlagsINS_8SortFlagEES3_INS_6FilterEE(void);
-extern QDir _ZN4QDirC1ERK7QStringS2_6QFlagsINS_8SortFlagEES3_INS_6FilterEE(void);
-extern  _ZN4QDirD2Ev(void);
-extern  _ZN4QDirD1Ev(void);
-extern QDir _ZN4QDiraSERKS_(void);
-extern QDir _ZN4QDiraSERK7QString(void);
-extern void _ZN4QDir7setPathERK7QString(void);
-extern QString _ZNK4QDir4pathEv(void);
-extern QString _ZNK4QDir12absolutePathEv(void);
-extern QString _ZNK4QDir13canonicalPathEv(void);
-extern void _ZN4QDir21addResourceSearchPathERK7QString(void);
-extern QString _ZNK4QDir7dirNameEv(void);
-extern QString _ZNK4QDir8filePathERK7QString(void);
-extern QString _ZNK4QDir16absoluteFilePathERK7QString(void);
-extern QString _ZNK4QDir16relativeFilePathERK7QString(void);
-extern QString _ZN4QDir17convertSeparatorsERK7QString(void);
-extern bool _ZN4QDir2cdERK7QString(void);
-extern bool _ZN4QDir4cdUpEv(void);
-extern QStringList _ZNK4QDir11nameFiltersEv(void);
-extern void _ZN4QDir14setNameFiltersERK11QStringList(void);
-extern N4QDir7FiltersE _ZNK4QDir6filterEv(void);
-extern void _ZN4QDir9setFilterE6QFlagsINS_6FilterEE(void);
-extern N4QDir9SortFlagsE _ZNK4QDir7sortingEv(void);
-extern void _ZN4QDir10setSortingE6QFlagsINS_8SortFlagEE(void);
-extern uint _ZNK4QDir5countEv(void);
-extern QString _ZNK4QDirixEi(void);
-extern QStringList _ZN4QDir21nameFiltersFromStringERK7QString(void);
-extern QStringList _ZNK4QDir9entryListE6QFlagsINS_6FilterEES0_INS_8SortFlagEE(void);
-extern QStringList _ZNK4QDir9entryListERK11QStringList6QFlagsINS_6FilterEES3_INS_8SortFlagEE(void);
-extern QFileInfoList _ZNK4QDir13entryInfoListE6QFlagsINS_6FilterEES0_INS_8SortFlagEE(void);
-extern QFileInfoList _ZNK4QDir13entryInfoListERK11QStringList6QFlagsINS_6FilterEES3_INS_8SortFlagEE(void);
-extern bool _ZNK4QDir5mkdirERK7QString(void);
-extern bool _ZNK4QDir5rmdirERK7QString(void);
-extern bool _ZNK4QDir6mkpathERK7QString(void);
-extern bool _ZNK4QDir6rmpathERK7QString(void);
-extern bool _ZNK4QDir10isReadableEv(void);
-extern bool _ZNK4QDir6existsEv(void);
-extern bool _ZNK4QDir6isRootEv(void);
-extern bool _ZN4QDir14isRelativePathERK7QString(void);
-extern bool _ZNK4QDir10isRelativeEv(void);
-extern bool _ZN4QDir12makeAbsoluteEv(void);
-extern bool _ZNK4QDireqERKS_(void);
-extern bool _ZN4QDir6removeERK7QString(void);
-extern bool _ZN4QDir6renameERK7QStringS2_(void);
-extern bool _ZNK4QDir6existsERK7QString(void);
-extern QFileInfoList _ZN4QDir6drivesEv(void);
-extern QChar _ZN4QDir9separatorEv(void);
-extern bool _ZN4QDir10setCurrentERK7QString(void);
-extern QString _ZN4QDir11currentPathEv(void);
-extern QString _ZN4QDir8homePathEv(void);
-extern QString _ZN4QDir8rootPathEv(void);
-extern QString _ZN4QDir8tempPathEv(void);
-extern bool _ZN4QDir5matchERK11QStringListRK7QString(void);
-extern bool _ZN4QDir5matchERK7QStringS2_(void);
-extern QString _ZN4QDir9cleanPathERK7QString(void);
-extern void _ZNK4QDir7refreshEv(void);
-extern bool _ZNK4QDir12matchAllDirsEv(void);
-extern void _ZN4QDir15setMatchAllDirsEb(void);
-extern QString _ZNK4QDir10nameFilterEv(void);
-extern void _ZN4QDir13setNameFilterERK7QString(void);
 // *INDENT-ON*
 #endif

@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define ft_atol	atol
 #define ft_exit	exit
 #define FT_INT_MAX	INT_MAX
@@ -35,7 +34,6 @@ extern "C" {
 #define ft_strrchr	strrchr
 #define FT_UINT_MAX	UINT_MAX
 #define FT_ULONG_MAX	ULONG_MAX
-
 
 
 #ifdef __cplusplus

@@ -11,9 +11,6 @@ extern "C" {
 
 
 
-
-
-
 /* Bits set in the FLAGS argument to `glob'.*/
 #define GLOB_ERR	(1<<0)
 #define GLOB_MARK	(1<<1)
@@ -41,8 +38,6 @@ extern "C" {
 
 
 
-
-
     typedef struct {
 	size_t gl_pathc;
 	char **gl_pathv;
@@ -54,8 +49,6 @@ extern "C" {
 	int (*gl_lstat) (const char *, struct stat *);
 	int (*gl_stat) (const char *, struct stat *);
     } glob_t;
-
-
 
 
     typedef struct {

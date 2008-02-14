@@ -18,7 +18,6 @@ extern "C" {
 #endif
 
 
-
 #define XML_DEFAULT_VERSION	"1.0"
 #define XML_SAX2_MAGIC	0xDEEDBEAF
 #define XML_DETECT_IDS	2

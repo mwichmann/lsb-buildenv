@@ -2159,7 +2159,7 @@ __asm__(".globl _ZN7QBuffer16staticMetaObjectE; .pushsection .data; .type _ZN7QB
 __asm__(".globl _ZN7QObject16staticMetaObjectE; .pushsection .data; .type _ZN7QObject16staticMetaObjectE,@object; .size _ZN7QObject16staticMetaObjectE, 16; _ZN7QObject16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN7QObject18staticQtMetaObjectE; .pushsection .data; .type _ZN7QObject18staticQtMetaObjectE,@object; .size _ZN7QObject18staticQtMetaObjectE, 16; _ZN7QObject18staticQtMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN7QString11shared_nullE; .pushsection .data; .type _ZN7QString11shared_nullE,@object; .size _ZN7QString11shared_nullE, 20; _ZN7QString11shared_nullE: .long 0; .popsection");
-__asm__(".globl _ZN7QString16codecForCStringsE; .pushsection .data; .type _ZN7QString16codecForCStringsE,@object; .size _ZN7QString16codecForCStringsE, 4; _ZN7QString16codecForCStringsE: .long 0; .popsection");
+__asm__(".globl _ZN7QString16codecForCStringsE; .pushsection .data; .type _ZN7QString16codecForCStringsE,@object; .size _ZN7QString16codecForCStringsE, 0; _ZN7QString16codecForCStringsE: .long 0; .popsection");
 __asm__(".globl _ZN7QString4nullE; .pushsection .data; .type _ZN7QString4nullE,@object; .size _ZN7QString4nullE, 1; _ZN7QString4nullE: .long 0; .popsection");
 __asm__(".globl _ZN7QThread16staticMetaObjectE; .pushsection .data; .type _ZN7QThread16staticMetaObjectE,@object; .size _ZN7QThread16staticMetaObjectE, 16; _ZN7QThread16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN8QLibrary16staticMetaObjectE; .pushsection .data; .type _ZN8QLibrary16staticMetaObjectE,@object; .size _ZN8QLibrary16staticMetaObjectE, 16; _ZN8QLibrary16staticMetaObjectE: .long 0; .popsection");

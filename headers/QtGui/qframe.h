@@ -4,13 +4,36 @@
 class QFrame;
 // *INDENT-OFF*
 
-
-
-
 class QFrame : public QWidget
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QFrame(QWidget*, QFlags<Qt::WindowType>);
+     ~QFrame();
+    int frameStyle() const;
+    void setFrameStyle(int);
+    int frameWidth() const;
+    QSize sizeHint() const;
+    enum _ZN6QFrame5ShapeE frameShape() const;
+    void setFrameShape(QFrame::Shape);
+    enum _ZN6QFrame6ShadowE frameShadow() const;
+    void setFrameShadow(QFrame::Shadow);
+    int lineWidth() const;
+    void setLineWidth(int);
+    int midLineWidth() const;
+    void setMidLineWidth(int);
+    QRect frameRect() const;
+    void setFrameRect(QRect const&);
+     QFrame(QWidget*, char const*, QFlags<Qt::WindowType>);
+     QFrame(QFramePrivate&, QWidget*, QFlags<Qt::WindowType>);
+protected:
+    bool event(QEvent*);
+    void paintEvent(QPaintEvent*);
+    void changeEvent(QEvent*);
+    void drawFrame(QPainter*);
 };
 
 enum Shape	
@@ -41,35 +64,5 @@ Sunken = 48
 
 
 extern struct QMetaObject _ZN6QFrame16staticMetaObjectE ;
-extern struct QMetaObject _ZNK6QFrame10metaObjectEv(void);
-extern void _ZN6QFrame11qt_metacastEPKc(void);
-extern int _ZN6QFrame11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QFrame _ZN6QFrameC2EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QFrame _ZN6QFrameC1EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern  _ZN6QFrameD2Ev(void);
-extern  _ZN6QFrameD1Ev(void);
-extern  _ZN6QFrameD0Ev(void);
-extern int _ZNK6QFrame10frameStyleEv(void);
-extern void _ZN6QFrame13setFrameStyleEi(void);
-extern int _ZNK6QFrame10frameWidthEv(void);
-extern QSize _ZNK6QFrame8sizeHintEv(void);
-extern enum N6QFrame5ShapeE _ZNK6QFrame10frameShapeEv(void);
-extern void _ZN6QFrame13setFrameShapeENS_5ShapeE(void);
-extern enum N6QFrame6ShadowE _ZNK6QFrame11frameShadowEv(void);
-extern void _ZN6QFrame14setFrameShadowENS_6ShadowE(void);
-extern int _ZNK6QFrame9lineWidthEv(void);
-extern void _ZN6QFrame12setLineWidthEi(void);
-extern int _ZNK6QFrame12midLineWidthEv(void);
-extern void _ZN6QFrame15setMidLineWidthEi(void);
-extern QRect _ZNK6QFrame9frameRectEv(void);
-extern void _ZN6QFrame12setFrameRectERK5QRect(void);
-extern bool _ZN6QFrame5eventEP6QEvent(void);
-extern void _ZN6QFrame10paintEventEP11QPaintEvent(void);
-extern void _ZN6QFrame11changeEventEP6QEvent(void);
-extern void _ZN6QFrame9drawFrameEP8QPainter(void);
-extern QFrame _ZN6QFrameC2EP7QWidgetPKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QFrame _ZN6QFrameC1EP7QWidgetPKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QFrame _ZN6QFrameC2ER13QFramePrivateP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QFrame _ZN6QFrameC1ER13QFramePrivateP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
 // *INDENT-ON*
 #endif

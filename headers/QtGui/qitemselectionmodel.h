@@ -4,22 +4,57 @@
 class QItemSelectionRange;
 // *INDENT-OFF*
 
-
-
-
-typedef SelectionFlags	
+typedef class QFlags<QItemSelectionModel::SelectionFlag>
+{
+private:
+public:
+}SelectionFlags	
 ;
 
 class QItemSelectionRange
 {
 private:
 public:
+    bool intersects(QItemSelectionRange const&) const;
+    QItemSelectionRange intersect(QItemSelectionRange const&) const;
+    QModelIndexList indexes() const;
 };
 
 class QItemSelectionModel : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QItemSelectionModel(QAbstractItemModel*);
+     QItemSelectionModel(QAbstractItemModel*, QObject*);
+     ~QItemSelectionModel();
+    QModelIndex currentIndex() const;
+    bool isSelected(QModelIndex const&) const;
+    bool isRowSelected(int, QModelIndex const&) const;
+    bool isColumnSelected(int, QModelIndex const&) const;
+    bool rowIntersectsSelection(int, QModelIndex const&) const;
+    bool columnIntersectsSelection(int, QModelIndex const&) const;
+    QModelIndexList selectedIndexes() const;
+    const QItemSelection selection() const;
+    const QAbstractItemModel * model() const;
+    void setCurrentIndex(QModelIndex const&, QFlags<QItemSelectionModel::SelectionFlag>);
+    void select(QModelIndex const&, QFlags<QItemSelectionModel::SelectionFlag>);
+    void select(QItemSelection const&, QFlags<QItemSelectionModel::SelectionFlag>);
+    void clear();
+    void reset();
+     QItemSelectionModel(QItemSelectionModelPrivate&, QAbstractItemModel*);
+    void clearSelection();
+    bool hasSelection() const;
+    QModelIndexList selectedRows(int) const;
+    QModelIndexList selectedColumns(int) const;
+protected:
+    void selectionChanged(QItemSelection const&, QItemSelection const&);
+    void currentChanged(QModelIndex const&, QModelIndex const&);
+    void currentRowChanged(QModelIndex const&, QModelIndex const&);
+    void currentColumnChanged(QModelIndex const&, QModelIndex const&);
+    void emitSelectionChanged(QItemSelection const&, QItemSelection const&);
 };
 
 enum SelectionFlag	
@@ -48,51 +83,16 @@ class QItemSelection
 {
 private:
 public:
+     QItemSelection(QModelIndex const&, QModelIndex const&);
+    void select(QModelIndex const&, QModelIndex const&);
+    bool contains(QModelIndex const&) const;
+    QModelIndexList indexes() const;
+    void merge(QItemSelection const&, QFlags<QItemSelectionModel::SelectionFlag>);
+    void split(QItemSelectionRange const&, QItemSelectionRange const&, QItemSelection*);
 };
 
 
-extern bool _ZNK19QItemSelectionRange10intersectsERKS_(void);
-extern QItemSelectionRange _ZNK19QItemSelectionRange9intersectERKS_(void);
-extern QModelIndexList _ZNK19QItemSelectionRange7indexesEv(void);
 extern struct QMetaObject _ZN19QItemSelectionModel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK19QItemSelectionModel10metaObjectEv(void);
-extern void _ZN19QItemSelectionModel11qt_metacastEPKc(void);
-extern int _ZN19QItemSelectionModel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelC2EP18QAbstractItemModel(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelC1EP18QAbstractItemModel(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelC2EP18QAbstractItemModelP7QObject(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelC1EP18QAbstractItemModelP7QObject(void);
-extern  _ZN19QItemSelectionModelD2Ev(void);
-extern  _ZN19QItemSelectionModelD1Ev(void);
-extern  _ZN19QItemSelectionModelD0Ev(void);
-extern QModelIndex _ZNK19QItemSelectionModel12currentIndexEv(void);
-extern bool _ZNK19QItemSelectionModel10isSelectedERK11QModelIndex(void);
-extern bool _ZNK19QItemSelectionModel13isRowSelectedEiRK11QModelIndex(void);
-extern bool _ZNK19QItemSelectionModel16isColumnSelectedEiRK11QModelIndex(void);
-extern bool _ZNK19QItemSelectionModel22rowIntersectsSelectionEiRK11QModelIndex(void);
-extern bool _ZNK19QItemSelectionModel25columnIntersectsSelectionEiRK11QModelIndex(void);
-extern QModelIndexList _ZNK19QItemSelectionModel15selectedIndexesEv(void);
-extern  _ZNK19QItemSelectionModel9selectionEv(void);
-extern QAbstractItemModel _ZNK19QItemSelectionModel5modelEv(void);
-extern void _ZN19QItemSelectionModel15setCurrentIndexERK11QModelIndex6QFlagsINS_13SelectionFlagEE(void);
-extern void _ZN19QItemSelectionModel6selectERK11QModelIndex6QFlagsINS_13SelectionFlagEE(void);
-extern void _ZN19QItemSelectionModel6selectERK14QItemSelection6QFlagsINS_13SelectionFlagEE(void);
-extern void _ZN19QItemSelectionModel5clearEv(void);
-extern void _ZN19QItemSelectionModel5resetEv(void);
-extern void _ZN19QItemSelectionModel16selectionChangedERK14QItemSelectionS2_(void);
-extern void _ZN19QItemSelectionModel14currentChangedERK11QModelIndexS2_(void);
-extern void _ZN19QItemSelectionModel17currentRowChangedERK11QModelIndexS2_(void);
-extern void _ZN19QItemSelectionModel20currentColumnChangedERK11QModelIndexS2_(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelC2ER26QItemSelectionModelPrivateP18QAbstractItemModel(void);
-extern QItemSelectionModel _ZN19QItemSelectionModelC1ER26QItemSelectionModelPrivateP18QAbstractItemModel(void);
-extern void _ZN19QItemSelectionModel20emitSelectionChangedERK14QItemSelectionS2_(void);
-extern QItemSelection _ZN14QItemSelectionC2ERK11QModelIndexS2_(void);
-extern QItemSelection _ZN14QItemSelectionC1ERK11QModelIndexS2_(void);
-extern void _ZN14QItemSelection6selectERK11QModelIndexS2_(void);
-extern bool _ZNK14QItemSelection8containsERK11QModelIndex(void);
-extern QModelIndexList _ZNK14QItemSelection7indexesEv(void);
-extern void _ZN14QItemSelection5mergeERKS_6QFlagsIN19QItemSelectionModel13SelectionFlagEE(void);
-extern void _ZN14QItemSelection5splitERK19QItemSelectionRangeS2_PS_(void);
-extern QDebug _Zls6QDebugRK19QItemSelectionRange(void);
+extern QDebug _Zls6QDebugRK19QItemSelectionRange(_Z6QDebug, const QItemSelectionRange &);
 // *INDENT-ON*
 #endif

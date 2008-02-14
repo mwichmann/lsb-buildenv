@@ -10,13 +10,12 @@ extern "C" {
 #endif
 
 
-
 #define UT_HOSTSIZE	256
 #define UT_LINESIZE	32
 #define UT_NAMESIZE	32
 #define ut_addr	ut_addr_v6[0]
 #define ut_time	ut_tv.tv_sec
-#define ut_name	ut_user
+#define ut_name	ut_user		/* Backwards compatability */
 
 
     struct exit_status {
@@ -89,8 +88,6 @@ extern "C" {
 #endif
 
 /* The structure describing an entry in the user accounting database.*/
-
-
 #if defined __i386__
 /* IA32 */
     struct utmp {
@@ -218,15 +215,15 @@ extern "C" {
 #endif
 
 /* Values for the `ut_type' field of a `struct utmp'.*/
-#define EMPTY	0
-#define RUN_LVL	1
-#define BOOT_TIME	2
-#define NEW_TIME	3
-#define OLD_TIME	4
-#define INIT_PROCESS	5
-#define LOGIN_PROCESS	6
-#define USER_PROCESS	7
-#define DEAD_PROCESS	8
+#define EMPTY	0		/* No valid user accounting information. */
+#define RUN_LVL	1		/* The system's runlevel. */
+#define BOOT_TIME	2	/* Time of system boot. */
+#define NEW_TIME	3	/* Time after system clock changed. */
+#define OLD_TIME	4	/* Time when system clock changed. */
+#define INIT_PROCESS	5	/* Process spawned by the init process. */
+#define LOGIN_PROCESS	6	/* Session leader of a logged in user. */
+#define USER_PROCESS	7	/* Normal process. */
+#define DEAD_PROCESS	8	/* Terminated process. */
 #define ACCOUNTING	9
 
 

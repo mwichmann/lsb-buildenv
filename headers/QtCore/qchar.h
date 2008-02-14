@@ -4,15 +4,37 @@
 class QChar;
 // *INDENT-OFF*
 
-
-
-
 struct QLatin1Char	;
 
 class QChar
 {
 private:
 public:
+     QChar(char);
+     QChar(unsigned char);
+    int digitValue() const;
+    QChar toLower() const;
+    QChar toUpper() const;
+    enum _ZN5QChar8CategoryE category() const;
+    enum _ZN5QChar9DirectionE direction() const;
+    enum _ZN5QChar7JoiningE joining() const;
+    bool hasMirrored() const;
+    QChar mirroredChar() const;
+    QString decomposition() const;
+    enum _ZN5QChar13DecompositionE decompositionTag() const;
+    unsigned char combiningClass() const;
+    enum _ZN5QChar14UnicodeVersionE unicodeVersion() const;
+    const char toAscii() const;
+    static QChar fromAscii(char);
+    bool isPrint() const;
+    bool isPunct() const;
+    bool isSpace() const;
+    bool isMark() const;
+    bool isLetter() const;
+    bool isNumber() const;
+    bool isLetterOrNumber() const;
+    bool isDigit() const;
+    bool isSymbol() const;
 };
 
 enum SpecialCharacter	
@@ -165,34 +187,7 @@ Unicode_4_0 = 7
 ;
 
 
-extern QChar _ZN5QCharC2Ec(void);
-extern QChar _ZN5QCharC1Ec(void);
-extern QChar _ZN5QCharC2Eh(void);
-extern QChar _ZN5QCharC1Eh(void);
-extern int _ZNK5QChar10digitValueEv(void);
-extern QChar _ZNK5QChar7toLowerEv(void);
-extern QChar _ZNK5QChar7toUpperEv(void);
-extern enum N5QChar8CategoryE _ZNK5QChar8categoryEv(void);
-extern enum N5QChar9DirectionE _ZNK5QChar9directionEv(void);
-extern enum N5QChar7JoiningE _ZNK5QChar7joiningEv(void);
-extern bool _ZNK5QChar11hasMirroredEv(void);
-extern QChar _ZNK5QChar12mirroredCharEv(void);
-extern  _ZNK5QChar13decompositionEv(void);
-extern enum N5QChar13DecompositionE _ZNK5QChar16decompositionTagEv(void);
-extern unsigned char _ZNK5QChar14combiningClassEv(void);
-extern enum N5QChar14UnicodeVersionE _ZNK5QChar14unicodeVersionEv(void);
-extern char _ZNK5QChar7toAsciiEv(void);
-extern QChar _ZN5QChar9fromAsciiEc(void);
-extern bool _ZNK5QChar7isPrintEv(void);
-extern bool _ZNK5QChar7isPunctEv(void);
-extern bool _ZNK5QChar7isSpaceEv(void);
-extern bool _ZNK5QChar6isMarkEv(void);
-extern bool _ZNK5QChar8isLetterEv(void);
-extern bool _ZNK5QChar8isNumberEv(void);
-extern bool _ZNK5QChar16isLetterOrNumberEv(void);
-extern bool _ZNK5QChar7isDigitEv(void);
-extern bool _ZNK5QChar8isSymbolEv(void);
-extern  _ZlsR11QDataStreamRK5QChar(void);
-extern  _ZrsR11QDataStreamR5QChar(void);
+extern  _ZlsR11QDataStreamRK5QChar(QDataStream &, const QChar &);
+extern  _ZrsR11QDataStreamR5QChar(QDataStream &, QChar &);
 // *INDENT-ON*
 #endif

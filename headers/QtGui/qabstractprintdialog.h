@@ -4,16 +4,36 @@
 class QFlags < QAbstractPrintDialog::PrintDialogOption >;
 // *INDENT-OFF*
 
-
-
-
-typedef PrintDialogOptions	
+typedef class QFlags<QAbstractPrintDialog::PrintDialogOption>
+{
+private:
+public:
+}PrintDialogOptions	
 ;
 
 class QAbstractPrintDialog : public QDialog
 {
 private:
 public:
+     ~QAbstractPrintDialog();
+     QAbstractPrintDialog(QPrinter*, QWidget*);
+    void addEnabledOption(QAbstractPrintDialog::PrintDialogOption);
+    void setEnabledOptions(QFlags<QAbstractPrintDialog::PrintDialogOption>);
+    QFlags<QAbstractPrintDialog::PrintDialogOption> enabledOptions() const;
+    bool isOptionEnabled(QAbstractPrintDialog::PrintDialogOption) const;
+    void setPrintRange(QAbstractPrintDialog::PrintRange);
+    enum _ZN20QAbstractPrintDialog10PrintRangeE printRange() const;
+    void setMinMax(int, int);
+    int minPage() const;
+    int maxPage() const;
+    void setFromTo(int, int);
+    int fromPage() const;
+    int toPage() const;
+    QPrinter * printer() const;
+     QAbstractPrintDialog(QAbstractPrintDialogPrivate&, QPrinter*, QWidget*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+    void * qt_metacast(char const*);
+    struct QMetaObject * metaObject() const;
 };
 
 enum PrintRange	
@@ -40,25 +60,5 @@ private:
 public:
 };
 
-
-extern  _ZN20QAbstractPrintDialogD0Ev(void);
-extern  _ZN20QAbstractPrintDialogD1Ev(void);
-extern QAbstractPrintDialog _ZN20QAbstractPrintDialogC2EP8QPrinterP7QWidget(void);
-extern QAbstractPrintDialog _ZN20QAbstractPrintDialogC1EP8QPrinterP7QWidget(void);
-extern void _ZN20QAbstractPrintDialog16addEnabledOptionENS_17PrintDialogOptionE(void);
-extern void _ZN20QAbstractPrintDialog17setEnabledOptionsE6QFlagsINS_17PrintDialogOptionEE(void);
-extern N20QAbstractPrintDialog18PrintDialogOptionsE _ZNK20QAbstractPrintDialog14enabledOptionsEv(void);
-extern bool _ZNK20QAbstractPrintDialog15isOptionEnabledENS_17PrintDialogOptionE(void);
-extern void _ZN20QAbstractPrintDialog13setPrintRangeENS_10PrintRangeE(void);
-extern enum N20QAbstractPrintDialog10PrintRangeE _ZNK20QAbstractPrintDialog10printRangeEv(void);
-extern void _ZN20QAbstractPrintDialog9setMinMaxEii(void);
-extern int _ZNK20QAbstractPrintDialog7minPageEv(void);
-extern int _ZNK20QAbstractPrintDialog7maxPageEv(void);
-extern void _ZN20QAbstractPrintDialog9setFromToEii(void);
-extern int _ZNK20QAbstractPrintDialog8fromPageEv(void);
-extern int _ZNK20QAbstractPrintDialog6toPageEv(void);
-extern  _ZNK20QAbstractPrintDialog7printerEv(void);
-extern QAbstractPrintDialog _ZN20QAbstractPrintDialogC2ER27QAbstractPrintDialogPrivateP8QPrinterP7QWidget(void);
-extern QAbstractPrintDialog _ZN20QAbstractPrintDialogC1ER27QAbstractPrintDialogPrivateP8QPrinterP7QWidget(void);
 // *INDENT-ON*
 #endif

@@ -4,122 +4,114 @@
 class QDateTime;
 // *INDENT-OFF*
 
-
-
-
 class QDate
 {
 private:
 public:
+     QDate(int, int, int);
+    bool isValid() const;
+    int year() const;
+    int month() const;
+    int day() const;
+    int dayOfWeek() const;
+    int dayOfYear() const;
+    int daysInMonth() const;
+    int daysInYear() const;
+    int weekNumber(int*) const;
+    static QString shortMonthName(int);
+    static QString shortDayName(int);
+    static QString longMonthName(int);
+    static QString longDayName(int);
+    QString toString(Qt::DateFormat) const;
+    QString toString(QString const&) const;
+    bool setYMD(int, int, int);
+    QDate addDays(int) const;
+    QDate addMonths(int) const;
+    QDate addYears(int) const;
+    int daysTo(QDate const&) const;
+    static QDate currentDate();
+    static QDate fromString(QString const&, Qt::DateFormat);
+    static QDate fromString(QString const&, QString const&);
+    static bool isValid(int, int, int);
+    static bool isLeapYear(int);
+    static uint gregorianToJulian(int, int, int);
+    static void julianToGregorian(unsigned int, int&, int&, int&);
+    bool setDate(int, int, int);
 };
 
 class QTime
 {
 private:
 public:
+     QTime(int, int, int, int);
+    bool isValid() const;
+    int hour() const;
+    int minute() const;
+    int second() const;
+    int msec() const;
+    QString toString(Qt::DateFormat) const;
+    QString toString(QString const&) const;
+    bool setHMS(int, int, int, int);
+    QTime addSecs(int) const;
+    int secsTo(QTime const&) const;
+    QTime addMSecs(int) const;
+    int msecsTo(QTime const&) const;
+    static QTime currentTime();
+    static QTime fromString(QString const&, Qt::DateFormat);
+    static QTime fromString(QString const&, QString const&);
+    static bool isValid(int, int, int, int);
+    void start();
+    int restart();
+    int elapsed() const;
 };
 
 class QDateTime
 {
 private:
 public:
+     QDateTime();
+     QDateTime(QDate const&);
+     QDateTime(QDate const&, QTime const&, Qt::TimeSpec);
+     QDateTime(QDateTime const&);
+     ~QDateTime();
+    QDateTime & operator=(QDateTime const&);
+    bool isNull() const;
+    bool isValid() const;
+    QDate date() const;
+    QTime time() const;
+    enum _ZN2Qt8TimeSpecE timeSpec() const;
+    uint toTime_t() const;
+    void setDate(QDate const&);
+    void setTime(QTime const&);
+    void setTimeSpec(Qt::TimeSpec);
+    void setTime_t(unsigned int);
+    QString toString(Qt::DateFormat) const;
+    QString toString(QString const&) const;
+    QDateTime addDays(int) const;
+    QDateTime addMonths(int) const;
+    QDateTime addYears(int) const;
+    QDateTime addSecs(int) const;
+    QDateTime addMSecs(long long) const;
+    QDateTime toTimeSpec(Qt::TimeSpec) const;
+    int daysTo(QDateTime const&) const;
+    int secsTo(QDateTime const&) const;
+    bool operator==(QDateTime const&) const;
+    bool operator<(QDateTime const&) const;
+    static QDateTime currentDateTime();
+    static QDateTime fromString(QString const&, Qt::DateFormat);
+    static QDateTime fromString(QString const&, QString const&);
+    static QDateTime fromTime_t(unsigned int);
 };
 
 
-extern QDate _ZN5QDateC2Eiii(void);
-extern QDate _ZN5QDateC1Eiii(void);
-extern bool _ZNK5QDate7isValidEv(void);
-extern int _ZNK5QDate4yearEv(void);
-extern int _ZNK5QDate5monthEv(void);
-extern int _ZNK5QDate3dayEv(void);
-extern int _ZNK5QDate9dayOfWeekEv(void);
-extern int _ZNK5QDate9dayOfYearEv(void);
-extern int _ZNK5QDate11daysInMonthEv(void);
-extern int _ZNK5QDate10daysInYearEv(void);
-extern int _ZNK5QDate10weekNumberEPi(void);
-extern QString _ZN5QDate14shortMonthNameEi(void);
-extern QString _ZN5QDate12shortDayNameEi(void);
-extern QString _ZN5QDate13longMonthNameEi(void);
-extern QString _ZN5QDate11longDayNameEi(void);
-extern QString _ZNK5QDate8toStringEN2Qt10DateFormatE(void);
-extern QString _ZNK5QDate8toStringERK7QString(void);
-extern bool _ZN5QDate6setYMDEiii(void);
-extern QDate _ZNK5QDate7addDaysEi(void);
-extern QDate _ZNK5QDate9addMonthsEi(void);
-extern QDate _ZNK5QDate8addYearsEi(void);
-extern int _ZNK5QDate6daysToERKS_(void);
-extern QDate _ZN5QDate11currentDateEv(void);
-extern QDate _ZN5QDate10fromStringERK7QStringN2Qt10DateFormatE(void);
-extern QDate _ZN5QDate10fromStringERK7QStringS2_(void);
-extern bool _ZN5QDate7isValidEiii(void);
-extern bool _ZN5QDate10isLeapYearEi(void);
-extern uint _ZN5QDate17gregorianToJulianEiii(void);
-extern void _ZN5QDate17julianToGregorianEjRiS0_S0_(void);
-extern QTime _ZN5QTimeC2Eiiii(void);
-extern QTime _ZN5QTimeC1Eiiii(void);
-extern bool _ZNK5QTime7isValidEv(void);
-extern int _ZNK5QTime4hourEv(void);
-extern int _ZNK5QTime6minuteEv(void);
-extern int _ZNK5QTime6secondEv(void);
-extern int _ZNK5QTime4msecEv(void);
-extern QString _ZNK5QTime8toStringEN2Qt10DateFormatE(void);
-extern QString _ZNK5QTime8toStringERK7QString(void);
-extern bool _ZN5QTime6setHMSEiiii(void);
-extern QTime _ZNK5QTime7addSecsEi(void);
-extern int _ZNK5QTime6secsToERKS_(void);
-extern QTime _ZNK5QTime8addMSecsEi(void);
-extern int _ZNK5QTime7msecsToERKS_(void);
-extern QTime _ZN5QTime11currentTimeEv(void);
-extern QTime _ZN5QTime10fromStringERK7QStringN2Qt10DateFormatE(void);
-extern QTime _ZN5QTime10fromStringERK7QStringS2_(void);
-extern bool _ZN5QTime7isValidEiiii(void);
-extern void _ZN5QTime5startEv(void);
-extern int _ZN5QTime7restartEv(void);
-extern int _ZNK5QTime7elapsedEv(void);
-extern QDateTime _ZN9QDateTimeC2Ev(void);
-extern QDateTime _ZN9QDateTimeC1Ev(void);
-extern QDateTime _ZN9QDateTimeC2ERK5QDate(void);
-extern QDateTime _ZN9QDateTimeC1ERK5QDate(void);
-extern QDateTime _ZN9QDateTimeC2ERK5QDateRK5QTimeN2Qt8TimeSpecE(void);
-extern QDateTime _ZN9QDateTimeC1ERK5QDateRK5QTimeN2Qt8TimeSpecE(void);
-extern QDateTime _ZN9QDateTimeC2ERKS_(void);
-extern QDateTime _ZN9QDateTimeC1ERKS_(void);
-extern  _ZN9QDateTimeD2Ev(void);
-extern  _ZN9QDateTimeD1Ev(void);
-extern QDateTime _ZN9QDateTimeaSERKS_(void);
-extern bool _ZNK9QDateTime6isNullEv(void);
-extern bool _ZNK9QDateTime7isValidEv(void);
-extern QDate _ZNK9QDateTime4dateEv(void);
-extern QTime _ZNK9QDateTime4timeEv(void);
-extern enum N2Qt8TimeSpecE _ZNK9QDateTime8timeSpecEv(void);
-extern uint _ZNK9QDateTime8toTime_tEv(void);
-extern void _ZN9QDateTime7setDateERK5QDate(void);
-extern void _ZN9QDateTime7setTimeERK5QTime(void);
-extern void _ZN9QDateTime11setTimeSpecEN2Qt8TimeSpecE(void);
-extern void _ZN9QDateTime9setTime_tEj(void);
-extern QString _ZNK9QDateTime8toStringEN2Qt10DateFormatE(void);
-extern QString _ZNK9QDateTime8toStringERK7QString(void);
-extern QDateTime _ZNK9QDateTime7addDaysEi(void);
-extern QDateTime _ZNK9QDateTime9addMonthsEi(void);
-extern QDateTime _ZNK9QDateTime8addYearsEi(void);
-extern QDateTime _ZNK9QDateTime7addSecsEi(void);
-extern QDateTime _ZNK9QDateTime8addMSecsEx(void);
-extern QDateTime _ZNK9QDateTime10toTimeSpecEN2Qt8TimeSpecE(void);
-extern int _ZNK9QDateTime6daysToERKS_(void);
-extern int _ZNK9QDateTime6secsToERKS_(void);
-extern bool _ZNK9QDateTimeeqERKS_(void);
-extern bool _ZNK9QDateTimeltERKS_(void);
-extern QDateTime _ZN9QDateTime15currentDateTimeEv(void);
-extern QDateTime _ZN9QDateTime10fromStringERK7QStringN2Qt10DateFormatE(void);
-extern QDateTime _ZN9QDateTime10fromStringERK7QStringS2_(void);
-extern QDataStream _ZlsR11QDataStreamRK5QDate(void);
-extern QDataStream _ZrsR11QDataStreamR5QDate(void);
-extern QDataStream _ZlsR11QDataStreamRK5QTime(void);
-extern QDataStream _ZrsR11QDataStreamR5QTime(void);
-extern QDataStream _ZlsR11QDataStreamRK9QDateTime(void);
-extern QDataStream _ZrsR11QDataStreamR9QDateTime(void);
-extern QDebug _Zls6QDebugRK5QDate(void);
-extern QDebug _Zls6QDebugRK5QTime(void);
-extern QDebug _Zls6QDebugRK9QDateTime(void);
+extern QDataStream _ZlsR11QDataStreamRK5QDate(QDataStream &, const QDate &);
+extern QDataStream _ZrsR11QDataStreamR5QDate(QDataStream &, QDate &);
+extern QDataStream _ZlsR11QDataStreamRK5QTime(QDataStream &, const QTime &);
+extern QDataStream _ZrsR11QDataStreamR5QTime(QDataStream &, QTime &);
+extern QDataStream _ZlsR11QDataStreamRK9QDateTime(QDataStream &, const QDateTime &);
+extern QDataStream _ZrsR11QDataStreamR9QDateTime(QDataStream &, QDateTime &);
+extern QDebug _Zls6QDebugRK5QDate(_Z6QDebug, const QDate &);
+extern QDebug _Zls6QDebugRK5QTime(_Z6QDebug, const QTime &);
+extern QDebug _Zls6QDebugRK9QDateTime(_Z6QDebug, const QDateTime &);
 // *INDENT-ON*
 #endif

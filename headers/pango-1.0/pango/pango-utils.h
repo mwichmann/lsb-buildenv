@@ -11,9 +11,6 @@ extern "C" {
 
 
 
-
-
-
     extern char *pango_trim_string(const char *);
     extern gboolean pango_scan_word(const char **, GString *);
     extern gboolean pango_skip_space(const char **);

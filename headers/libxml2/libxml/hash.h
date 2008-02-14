@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-
 #define XML_CAST_FPTR(fptr)	fptr
 
 

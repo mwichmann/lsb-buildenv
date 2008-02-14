@@ -4,9 +4,6 @@
 class QAbstractSocket;
 // *INDENT-OFF*
 
-
-
-
 typedef enum SocketState	
 {
 UnconnectedState = 0,	
@@ -30,6 +27,62 @@ class QAbstractSocket : public QIODevice
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QAbstractSocket(QAbstractSocket::SocketType, QObject*);
+     ~QAbstractSocket();
+    void connectToHost(QString const&, unsigned short, QFlags<QIODevice::OpenModeFlag>);
+    void connectToHost(QHostAddress const&, unsigned short, QFlags<QIODevice::OpenModeFlag>);
+    void disconnectFromHost();
+    bool isValid() const;
+    qint64 bytesAvailable() const;
+    qint64 bytesToWrite() const;
+    bool canReadLine() const;
+    quint16 localPort() const;
+    QHostAddress localAddress() const;
+    quint16 peerPort() const;
+    QHostAddress peerAddress() const;
+    QString peerName() const;
+    qint64 readBufferSize() const;
+    void setReadBufferSize(long long);
+    void abort();
+    int socketDescriptor() const;
+    bool setSocketDescriptor(int, QAbstractSocket::SocketState, QFlags<QIODevice::OpenModeFlag>);
+    enum _ZN15QAbstractSocket10SocketTypeE socketType() const;
+    enum _ZN15QAbstractSocket11SocketStateE state() const;
+    enum _ZN15QAbstractSocket11SocketErrorE error() const;
+    void close();
+    bool isSequential() const;
+    bool atEnd() const;
+    bool flush();
+    bool waitForConnected(int);
+    bool waitForReadyRead(int);
+    bool waitForBytesWritten(int);
+    bool waitForDisconnected(int);
+    void setProxy(QNetworkProxy const&);
+    QNetworkProxy proxy() const;
+     QAbstractSocket(QAbstractSocket::SocketType, QAbstractSocketPrivate&, QObject*);
+protected:
+    void hostFound();
+    void connected();
+    void disconnected();
+    void stateChanged(QAbstractSocket::SocketState);
+    void error(QAbstractSocket::SocketError);
+    void connectToHostImplementation(QString const&, unsigned short, QFlags<QIODevice::OpenModeFlag>);
+    void disconnectFromHostImplementation();
+    qint64 readData(char*, long long);
+    qint64 readLineData(char*, long long);
+    qint64 writeData(char const*, long long);
+    void setSocketState(QAbstractSocket::SocketState);
+    void setSocketError(QAbstractSocket::SocketError);
+    void setLocalPort(unsigned short);
+    void setLocalAddress(QHostAddress const&);
+    void setPeerPort(unsigned short);
+    void setPeerAddress(QHostAddress const&);
+    void setPeerName(QString const&);
+    void connectionClosed();
+    void delayedCloseFinished();
 };
 
 enum SocketType	
@@ -93,64 +146,5 @@ ErrHostNotFound = 2
 
 
 extern struct QMetaObject _ZN15QAbstractSocket16staticMetaObjectE ;
-extern struct QMetaObject _ZNK15QAbstractSocket10metaObjectEv(void);
-extern void _ZN15QAbstractSocket11qt_metacastEPKc(void);
-extern int _ZN15QAbstractSocket11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QAbstractSocket _ZN15QAbstractSocketC2ENS_10SocketTypeEP7QObject(void);
-extern QAbstractSocket _ZN15QAbstractSocketC1ENS_10SocketTypeEP7QObject(void);
-extern  _ZN15QAbstractSocketD2Ev(void);
-extern  _ZN15QAbstractSocketD1Ev(void);
-extern  _ZN15QAbstractSocketD0Ev(void);
-extern void _ZN15QAbstractSocket13connectToHostERK7QStringt6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern void _ZN15QAbstractSocket13connectToHostERK12QHostAddresst6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern void _ZN15QAbstractSocket18disconnectFromHostEv(void);
-extern bool _ZNK15QAbstractSocket7isValidEv(void);
-extern qint64 _ZNK15QAbstractSocket14bytesAvailableEv(void);
-extern qint64 _ZNK15QAbstractSocket12bytesToWriteEv(void);
-extern bool _ZNK15QAbstractSocket11canReadLineEv(void);
-extern quint16 _ZNK15QAbstractSocket9localPortEv(void);
-extern  _ZNK15QAbstractSocket12localAddressEv(void);
-extern quint16 _ZNK15QAbstractSocket8peerPortEv(void);
-extern  _ZNK15QAbstractSocket11peerAddressEv(void);
-extern QString _ZNK15QAbstractSocket8peerNameEv(void);
-extern qint64 _ZNK15QAbstractSocket14readBufferSizeEv(void);
-extern void _ZN15QAbstractSocket17setReadBufferSizeEx(void);
-extern void _ZN15QAbstractSocket5abortEv(void);
-extern int _ZNK15QAbstractSocket16socketDescriptorEv(void);
-extern bool _ZN15QAbstractSocket19setSocketDescriptorEiNS_11SocketStateE6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern enum N15QAbstractSocket10SocketTypeE _ZNK15QAbstractSocket10socketTypeEv(void);
-extern enum N15QAbstractSocket11SocketStateE _ZNK15QAbstractSocket5stateEv(void);
-extern enum N15QAbstractSocket11SocketErrorE _ZNK15QAbstractSocket5errorEv(void);
-extern void _ZN15QAbstractSocket5closeEv(void);
-extern bool _ZNK15QAbstractSocket12isSequentialEv(void);
-extern bool _ZNK15QAbstractSocket5atEndEv(void);
-extern bool _ZN15QAbstractSocket5flushEv(void);
-extern bool _ZN15QAbstractSocket16waitForConnectedEi(void);
-extern bool _ZN15QAbstractSocket16waitForReadyReadEi(void);
-extern bool _ZN15QAbstractSocket19waitForBytesWrittenEi(void);
-extern bool _ZN15QAbstractSocket19waitForDisconnectedEi(void);
-extern void _ZN15QAbstractSocket8setProxyERK13QNetworkProxy(void);
-extern  _ZNK15QAbstractSocket5proxyEv(void);
-extern void _ZN15QAbstractSocket9hostFoundEv(void);
-extern void _ZN15QAbstractSocket9connectedEv(void);
-extern void _ZN15QAbstractSocket12disconnectedEv(void);
-extern void _ZN15QAbstractSocket12stateChangedENS_11SocketStateE(void);
-extern void _ZN15QAbstractSocket5errorENS_11SocketErrorE(void);
-extern void _ZN15QAbstractSocket27connectToHostImplementationERK7QStringt6QFlagsIN9QIODevice12OpenModeFlagEE(void);
-extern void _ZN15QAbstractSocket32disconnectFromHostImplementationEv(void);
-extern qint64 _ZN15QAbstractSocket8readDataEPcx(void);
-extern qint64 _ZN15QAbstractSocket12readLineDataEPcx(void);
-extern qint64 _ZN15QAbstractSocket9writeDataEPKcx(void);
-extern void _ZN15QAbstractSocket14setSocketStateENS_11SocketStateE(void);
-extern void _ZN15QAbstractSocket14setSocketErrorENS_11SocketErrorE(void);
-extern void _ZN15QAbstractSocket12setLocalPortEt(void);
-extern void _ZN15QAbstractSocket15setLocalAddressERK12QHostAddress(void);
-extern void _ZN15QAbstractSocket11setPeerPortEt(void);
-extern void _ZN15QAbstractSocket14setPeerAddressERK12QHostAddress(void);
-extern void _ZN15QAbstractSocket11setPeerNameERK7QString(void);
-extern QAbstractSocket _ZN15QAbstractSocketC2ENS_10SocketTypeER22QAbstractSocketPrivateP7QObject(void);
-extern QAbstractSocket _ZN15QAbstractSocketC1ENS_10SocketTypeER22QAbstractSocketPrivateP7QObject(void);
-extern void _ZN15QAbstractSocket16connectionClosedEv(void);
-extern void _ZN15QAbstractSocket20delayedCloseFinishedEv(void);
 // *INDENT-ON*
 #endif

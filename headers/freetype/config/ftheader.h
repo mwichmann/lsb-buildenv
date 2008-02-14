@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define FT_BEGIN_HEADER
 #define FT_END_HEADER
 #define FT_CONFIG_CONFIG_H	<freetype/config/ftconfig.h>
@@ -58,7 +57,6 @@ extern "C" {
 #define FT_CACHE_CHARMAP_H	FT_CACHE_H
 #define FT_CACHE_IMAGE_H	FT_CACHE_H
 #define FT_CACHE_SMALL_BITMAPS_H	FT_CACHE_H
-
 
 
 #ifdef __cplusplus

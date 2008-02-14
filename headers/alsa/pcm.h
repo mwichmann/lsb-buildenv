@@ -15,7 +15,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_PCM_NONBLOCK	0x0001
 #define SND_PCM_ASYNC	0x0002
 

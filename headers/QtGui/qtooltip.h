@@ -4,17 +4,17 @@
 class QToolTip;
 // *INDENT-OFF*
 
-
-
-
 class QToolTip
 {
 private:
 public:
+    void showText(QPoint const&, QString const&, QWidget*);
+    QPalette palette();
+    void setPalette(QPalette const&);
+    QFont font();
+    void setFont(QFont const&);
+    void showText(QPoint const&, QString const&, QWidget*, QRect const&);
 };
 
-
-extern void _ZN8QToolTip8showTextERK6QPointRK7QStringP7QWidget(void);
-extern QPalette _ZN8QToolTip7paletteEv(void);
 // *INDENT-ON*
 #endif

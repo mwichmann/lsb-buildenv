@@ -4,13 +4,24 @@
 class QSqlError;
 // *INDENT-OFF*
 
-
-
-
 class QSqlError
 {
 private:
 public:
+     QSqlError(QString const&, QString const&, QSqlError::ErrorType, int);
+     QSqlError(QSqlError const&);
+    QSqlError & operator=(QSqlError const&);
+     ~QSqlError();
+    QString driverText() const;
+    void setDriverText(QString const&);
+    QString databaseText() const;
+    void setDatabaseText(QString const&);
+    enum _ZN9QSqlError9ErrorTypeE type() const;
+    void setType(QSqlError::ErrorType);
+    int number() const;
+    void setNumber(int);
+    QString text() const;
+    bool isValid() const;
 };
 
 enum ErrorType	
@@ -29,23 +40,6 @@ Unknown = 4
 ;
 
 
-extern QSqlError _ZN9QSqlErrorC2ERK7QStringS2_NS_9ErrorTypeEi(void);
-extern QSqlError _ZN9QSqlErrorC1ERK7QStringS2_NS_9ErrorTypeEi(void);
-extern QSqlError _ZN9QSqlErrorC2ERKS_(void);
-extern QSqlError _ZN9QSqlErrorC1ERKS_(void);
-extern QSqlError _ZN9QSqlErroraSERKS_(void);
-extern  _ZN9QSqlErrorD2Ev(void);
-extern  _ZN9QSqlErrorD1Ev(void);
-extern QString _ZNK9QSqlError10driverTextEv(void);
-extern void _ZN9QSqlError13setDriverTextERK7QString(void);
-extern QString _ZNK9QSqlError12databaseTextEv(void);
-extern void _ZN9QSqlError15setDatabaseTextERK7QString(void);
-extern enum N9QSqlError9ErrorTypeE _ZNK9QSqlError4typeEv(void);
-extern void _ZN9QSqlError7setTypeENS_9ErrorTypeE(void);
-extern int _ZNK9QSqlError6numberEv(void);
-extern void _ZN9QSqlError9setNumberEi(void);
-extern QString _ZNK9QSqlError4textEv(void);
-extern bool _ZNK9QSqlError7isValidEv(void);
-extern QDebug _Zls6QDebugRK9QSqlError(void);
+extern QDebug _Zls6QDebugRK9QSqlError(_Z6QDebug, const QSqlError &);
 // *INDENT-ON*
 #endif

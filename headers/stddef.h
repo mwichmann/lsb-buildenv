@@ -7,9 +7,8 @@ extern "C" {
 #endif
 
 
-
 #define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
-#define NULL	(0L)
+#define NULL	(0L)		/* (void *) would be better, but causes problems with C++. This */
 
 
 #if !defined(__cplusplus)
@@ -131,7 +130,6 @@ extern "C" {
     typedef long int ptrdiff_t;
 
 #endif
-
 #ifdef __cplusplus
 }
 #endif

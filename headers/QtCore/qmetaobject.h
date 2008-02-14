@@ -4,13 +4,18 @@
 class QMetaProperty;
 // *INDENT-OFF*
 
-
-
-
 class QMetaMethod
 {
 private:
 public:
+    const char * signature() const;
+    const char * typeName() const;
+    QList<QByteArray> parameterTypes() const;
+    QList<QByteArray> parameterNames() const;
+    const char * tag() const;
+    enum _ZN11QMetaMethod6AccessE access() const;
+    enum _ZN11QMetaMethod10MethodTypeE methodType() const;
+    int attributes() const;
 };
 
 enum Access	
@@ -41,60 +46,51 @@ class QMetaEnum
 {
 private:
 public:
+    const char * name() const;
+    bool isFlag() const;
+    int keyCount() const;
+    const char * key(int) const;
+    int value(int) const;
+    const char * scope() const;
+    int keyToValue(char const*) const;
+    const char * valueToKey(int) const;
+    int keysToValue(char const*) const;
+    QByteArray valueToKeys(int) const;
 };
 
 class QMetaProperty
 {
 private:
 public:
+     QMetaProperty();
+    const char * name() const;
+    const char * typeName() const;
+    enum _ZN8QVariant4TypeE type() const;
+    bool isReadable() const;
+    bool isWritable() const;
+    bool isResettable() const;
+    bool isDesignable(QObject const*) const;
+    bool isScriptable(QObject const*) const;
+    bool isStored(QObject const*) const;
+    bool isEditable(QObject const*) const;
+    bool isUser(QObject const*) const;
+    bool isFlagType() const;
+    bool isEnumType() const;
+    QMetaEnum enumerator() const;
+    QVariant read(QObject const*) const;
+    bool write(QObject*, QVariant const&) const;
+    bool reset(QObject*) const;
+    bool hasStdCppSet() const;
+    int userType() const;
 };
 
 class QMetaClassInfo
 {
 private:
 public:
+    const char * name() const;
+    const char * value() const;
 };
 
-
-extern char _ZNK11QMetaMethod9signatureEv(void);
-extern char _ZNK11QMetaMethod8typeNameEv(void);
-extern QList<QByteArray> _ZNK11QMetaMethod14parameterTypesEv(void);
-extern QList<QByteArray> _ZNK11QMetaMethod14parameterNamesEv(void);
-extern char _ZNK11QMetaMethod3tagEv(void);
-extern enum N11QMetaMethod6AccessE _ZNK11QMetaMethod6accessEv(void);
-extern enum N11QMetaMethod10MethodTypeE _ZNK11QMetaMethod10methodTypeEv(void);
-extern int _ZNK11QMetaMethod10attributesEv(void);
-extern char _ZNK9QMetaEnum4nameEv(void);
-extern bool _ZNK9QMetaEnum6isFlagEv(void);
-extern int _ZNK9QMetaEnum8keyCountEv(void);
-extern char _ZNK9QMetaEnum3keyEi(void);
-extern int _ZNK9QMetaEnum5valueEi(void);
-extern char _ZNK9QMetaEnum5scopeEv(void);
-extern int _ZNK9QMetaEnum10keyToValueEPKc(void);
-extern char _ZNK9QMetaEnum10valueToKeyEi(void);
-extern int _ZNK9QMetaEnum11keysToValueEPKc(void);
-extern QByteArray _ZNK9QMetaEnum11valueToKeysEi(void);
-extern QMetaProperty _ZN13QMetaPropertyC2Ev(void);
-extern QMetaProperty _ZN13QMetaPropertyC1Ev(void);
-extern char _ZNK13QMetaProperty4nameEv(void);
-extern char _ZNK13QMetaProperty8typeNameEv(void);
-extern enum N8QVariant4TypeE _ZNK13QMetaProperty4typeEv(void);
-extern bool _ZNK13QMetaProperty10isReadableEv(void);
-extern bool _ZNK13QMetaProperty10isWritableEv(void);
-extern bool _ZNK13QMetaProperty12isResettableEv(void);
-extern bool _ZNK13QMetaProperty12isDesignableEPK7QObject(void);
-extern bool _ZNK13QMetaProperty12isScriptableEPK7QObject(void);
-extern bool _ZNK13QMetaProperty8isStoredEPK7QObject(void);
-extern bool _ZNK13QMetaProperty10isEditableEPK7QObject(void);
-extern bool _ZNK13QMetaProperty6isUserEPK7QObject(void);
-extern bool _ZNK13QMetaProperty10isFlagTypeEv(void);
-extern bool _ZNK13QMetaProperty10isEnumTypeEv(void);
-extern QMetaEnum _ZNK13QMetaProperty10enumeratorEv(void);
-extern QVariant _ZNK13QMetaProperty4readEPK7QObject(void);
-extern bool _ZNK13QMetaProperty5writeEP7QObjectRK8QVariant(void);
-extern bool _ZNK13QMetaProperty5resetEP7QObject(void);
-extern bool _ZNK13QMetaProperty12hasStdCppSetEv(void);
-extern char _ZNK14QMetaClassInfo4nameEv(void);
-extern char _ZNK14QMetaClassInfo5valueEv(void);
 // *INDENT-ON*
 #endif

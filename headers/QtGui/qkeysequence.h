@@ -4,13 +4,31 @@
 class QKeySequence;
 // *INDENT-OFF*
 
-
-
-
 class QKeySequence
 {
 private:
 public:
+     QKeySequence();
+     QKeySequence(QString const&);
+     QKeySequence(int, int, int, int);
+     QKeySequence(QKeySequence const&);
+     ~QKeySequence();
+    uint count() const;
+    bool isEmpty() const;
+    QString toString(QKeySequence::SequenceFormat) const;
+    QKeySequence fromString(QString const&, QKeySequence::SequenceFormat);
+    enum _ZN12QKeySequence13SequenceMatchE matches(QKeySequence const&) const;
+    QKeySequence mnemonic(QString const&);
+    QString operator QString() const;
+    QVariant operator QVariant() const;
+    int operator int() const;
+    int operator[](unsigned int) const;
+    QKeySequence & operator=(QKeySequence const&);
+    bool operator==(QKeySequence const&) const;
+    bool operator<(QKeySequence const&) const;
+    bool isDetached() const;
+     QKeySequence(QKeySequence::StandardKey);
+    QList<QKeySequence> keyBindings(QKeySequence::StandardKey);
 };
 
 enum SequenceMatch	
@@ -30,32 +48,8 @@ PortableText = 1
 ;
 
 
-extern QDataStream _ZlsR11QDataStreamRK12QKeySequence(void);
-extern QDataStream _ZrsR11QDataStreamR12QKeySequence(void);
-extern QKeySequence _ZN12QKeySequenceC2Ev(void);
-extern QKeySequence _ZN12QKeySequenceC1Ev(void);
-extern QKeySequence _ZN12QKeySequenceC2ERK7QString(void);
-extern QKeySequence _ZN12QKeySequenceC1ERK7QString(void);
-extern QKeySequence _ZN12QKeySequenceC2Eiiii(void);
-extern QKeySequence _ZN12QKeySequenceC1Eiiii(void);
-extern QKeySequence _ZN12QKeySequenceC2ERKS_(void);
-extern QKeySequence _ZN12QKeySequenceC1ERKS_(void);
-extern  _ZN12QKeySequenceD2Ev(void);
-extern  _ZN12QKeySequenceD1Ev(void);
-extern uint _ZNK12QKeySequence5countEv(void);
-extern bool _ZNK12QKeySequence7isEmptyEv(void);
-extern QString _ZNK12QKeySequence8toStringENS_14SequenceFormatE(void);
-extern QKeySequence _ZN12QKeySequence10fromStringERK7QStringNS_14SequenceFormatE(void);
-extern enum N12QKeySequence13SequenceMatchE _ZNK12QKeySequence7matchesERKS_(void);
-extern QKeySequence _ZN12QKeySequence8mnemonicERK7QString(void);
-extern QKeySequence _ZNK12QKeySequencecv7QStringEv(void);
-extern QKeySequence _ZNK12QKeySequencecv8QVariantEv(void);
-extern QKeySequence _ZNK12QKeySequencecviEv(void);
-extern int _ZNK12QKeySequenceixEj(void);
-extern QKeySequence _ZN12QKeySequenceaSERKS_(void);
-extern bool _ZNK12QKeySequenceeqERKS_(void);
-extern bool _ZNK12QKeySequenceltERKS_(void);
-extern bool _ZNK12QKeySequence10isDetachedEv(void);
-extern QDebug _Zls6QDebugRK12QKeySequence(void);
+extern QDataStream _ZlsR11QDataStreamRK12QKeySequence(QDataStream &, const QKeySequence &);
+extern QDataStream _ZrsR11QDataStreamR12QKeySequence(QDataStream &, QKeySequence &);
+extern QDebug _Zls6QDebugRK12QKeySequence(_Z6QDebug, const QKeySequence &);
 // *INDENT-ON*
 #endif

@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define INT16_C(c)	c
 #define INT32_C(c)	c
 #define INT8_C(c)	c
@@ -953,7 +952,6 @@ extern "C" {
     typedef unsigned long long int uint_fast64_t;
 
 #endif
-
 #ifdef __cplusplus
 }
 #endif

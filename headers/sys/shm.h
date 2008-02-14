@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #if defined __ia64__
 #define SHMLBA	(1024*1024)
 #endif
@@ -39,8 +38,6 @@ extern "C" {
 #define SHM_REMAP	040000
 #define SHM_LOCK	11
 #define SHM_UNLOCK	12
-
-
 
 
 
@@ -74,8 +71,6 @@ extern "C" {
     typedef unsigned long int shmatt_t;
 
 #endif
-
-
 
 #if defined __i386__
 /* IA32 */

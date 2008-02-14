@@ -1,6 +1,6 @@
 
 class QFtp;
-enum N4QFtp5StateE {
+enum _ZN4QFtp5StateE {
     Unconnected,
     HostLookup,
     Connecting,
@@ -8,14 +8,14 @@ enum N4QFtp5StateE {
     LoggedIn,
     Closing
 };
-enum N4QFtp5ErrorE {
+enum _ZN4QFtp5ErrorE {
     NoError,
     UnknownError,
     HostNotFound,
     ConnectionRefused,
     NotConnected
 };
-enum N4QFtp7CommandE {
+enum _ZN4QFtp7CommandE {
     None,
     SetTransferMode,
     SetProxy,
@@ -32,11 +32,11 @@ enum N4QFtp7CommandE {
     Rename,
     RawCommand
 };
-enum N4QFtp12TransferModeE {
+enum _ZN4QFtp12TransferModeE {
     Active,
     Passive
 };
-enum N4QFtp12TransferTypeE {
+enum _ZN4QFtp12TransferTypeE {
     Binary,
     Ascii
 };

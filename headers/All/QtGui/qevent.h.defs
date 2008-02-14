@@ -4,7 +4,7 @@ class QMouseEvent;
 class QHoverEvent;
 class QWheelEvent;
 class QTabletEvent;
-enum N12QTabletEvent12TabletDeviceE {
+enum _ZN12QTabletEvent12TabletDeviceE {
     NoDevice,
     Puck,
     Stylus,
@@ -13,7 +13,7 @@ enum N12QTabletEvent12TabletDeviceE {
     XFreeEraser,
     RotationStylus
 };
-enum N12QTabletEvent11PointerTypeE {
+enum _ZN12QTabletEvent11PointerTypeE {
     UnknownPointer,
     Pen,
     Cursor,
@@ -21,7 +21,7 @@ enum N12QTabletEvent11PointerTypeE {
 };
 class QKeyEvent;
 class QFocusEvent;
-enum N11QFocusEvent6ReasonE {
+enum _ZN11QFocusEvent6ReasonE {
     Mouse,
     Tab,
     Backtab,
@@ -39,13 +39,13 @@ class QIconDragEvent;
 class QShowEvent;
 class QHideEvent;
 class QContextMenuEvent;
-enum N17QContextMenuEvent6ReasonE {
+enum _ZN17QContextMenuEvent6ReasonE {
     Mouse,
     Keyboard,
     Other
 };
 class QInputMethodEvent;
-enum N17QInputMethodEvent13AttributeTypeE {
+enum _ZN17QInputMethodEvent13AttributeTypeE {
     TextFormat,
     Cursor,
     Language,
@@ -53,7 +53,7 @@ enum N17QInputMethodEvent13AttributeTypeE {
 };
 class QInputMethodEvent::Attribute;
 class QDropEvent;
-enum N10QDropEvent6ActionE {
+enum _ZN10QDropEvent6ActionE {
     Copy,
     Link,
     Move,

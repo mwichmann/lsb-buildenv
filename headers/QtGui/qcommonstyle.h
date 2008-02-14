@@ -4,37 +4,32 @@
 class QCommonStyle;
 // *INDENT-OFF*
 
-
-
-
 class QCommonStyle : public QStyle
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QCommonStyle();
+     ~QCommonStyle();
+    void drawPrimitive(QStyle::PrimitiveElement, QStyleOption const*, QPainter*, QWidget const*) const;
+    void drawControl(QStyle::ControlElement, QStyleOption const*, QPainter*, QWidget const*) const;
+    QRect subElementRect(QStyle::SubElement, QStyleOption const*, QWidget const*) const;
+    void drawComplexControl(QStyle::ComplexControl, QStyleOptionComplex const*, QPainter*, QWidget const*) const;
+    enum _ZN6QStyle10SubControlE hitTestComplexControl(QStyle::ComplexControl, QStyleOptionComplex const*, QPoint const&, QWidget const*) const;
+    QRect subControlRect(QStyle::ComplexControl, QStyleOptionComplex const*, QStyle::SubControl, QWidget const*) const;
+    QSize sizeFromContents(QStyle::ContentsType, QStyleOption const*, QSize const&, QWidget const*) const;
+    int pixelMetric(QStyle::PixelMetric, QStyleOption const*, QWidget const*) const;
+    int styleHint(QStyle::StyleHint, QStyleOption const*, QWidget const*, QStyleHintReturn*) const;
+    QPixmap standardPixmap(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
+    QPixmap generatedIconPixmap(QIcon::Mode, QPixmap const&, QStyleOption const*) const;
+     QCommonStyle(QCommonStylePrivate&);
+protected:
+    QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
 };
 
 
 extern struct QMetaObject _ZN12QCommonStyle16staticMetaObjectE ;
-extern struct QMetaObject _ZNK12QCommonStyle10metaObjectEv(void);
-extern void _ZN12QCommonStyle11qt_metacastEPKc(void);
-extern int _ZN12QCommonStyle11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QCommonStyle _ZN12QCommonStyleC2Ev(void);
-extern QCommonStyle _ZN12QCommonStyleC1Ev(void);
-extern  _ZN12QCommonStyleD2Ev(void);
-extern  _ZN12QCommonStyleD1Ev(void);
-extern  _ZN12QCommonStyleD0Ev(void);
-extern void _ZNK12QCommonStyle13drawPrimitiveEN6QStyle16PrimitiveElementEPK12QStyleOptionP8QPainterPK7QWidget(void);
-extern void _ZNK12QCommonStyle11drawControlEN6QStyle14ControlElementEPK12QStyleOptionP8QPainterPK7QWidget(void);
-extern QRect _ZNK12QCommonStyle14subElementRectEN6QStyle10SubElementEPK12QStyleOptionPK7QWidget(void);
-extern void _ZNK12QCommonStyle18drawComplexControlEN6QStyle14ComplexControlEPK19QStyleOptionComplexP8QPainterPK7QWidget(void);
-extern enum N6QStyle10SubControlE _ZNK12QCommonStyle21hitTestComplexControlEN6QStyle14ComplexControlEPK19QStyleOptionComplexRK6QPointPK7QWidget(void);
-extern QRect _ZNK12QCommonStyle14subControlRectEN6QStyle14ComplexControlEPK19QStyleOptionComplexNS0_10SubControlEPK7QWidget(void);
-extern QSize _ZNK12QCommonStyle16sizeFromContentsEN6QStyle12ContentsTypeEPK12QStyleOptionRK5QSizePK7QWidget(void);
-extern int _ZNK12QCommonStyle11pixelMetricEN6QStyle11PixelMetricEPK12QStyleOptionPK7QWidget(void);
-extern int _ZNK12QCommonStyle9styleHintEN6QStyle9StyleHintEPK12QStyleOptionPK7QWidgetP16QStyleHintReturn(void);
-extern QPixmap _ZNK12QCommonStyle14standardPixmapEN6QStyle14StandardPixmapEPK12QStyleOptionPK7QWidget(void);
-extern QPixmap _ZNK12QCommonStyle19generatedIconPixmapEN5QIcon4ModeERK7QPixmapPK12QStyleOption(void);
-extern QCommonStyle _ZN12QCommonStyleC2ER19QCommonStylePrivate(void);
-extern QCommonStyle _ZN12QCommonStyleC1ER19QCommonStylePrivate(void);
 // *INDENT-ON*
 #endif

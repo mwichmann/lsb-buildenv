@@ -2,16 +2,16 @@
 class QTextInlineObject;
 class QTextLayout;
 struct _ZN11QTextLayout11FormatRangeE;
-enum N11QTextLayout10CursorModeE {
+enum _ZN11QTextLayout10CursorModeE {
     SkipCharacters,
     SkipWords
 };
 class QTextLine;
-enum N9QTextLine4EdgeE {
+enum _ZN9QTextLine4EdgeE {
     Leading,
     Trailing
 };
-enum N9QTextLine14CursorPositionE {
+enum _ZN9QTextLine14CursorPositionE {
     CursorBetweenCharacters,
     CursorOnCharacter
 };

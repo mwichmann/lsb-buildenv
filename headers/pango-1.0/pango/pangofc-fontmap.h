@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-
 #define PANGO_FC_FONT_MAP(object)	 \
 	(G_TYPE_CHECK_INSTANCE_CAST ((object), PANGO_TYPE_FC_FONT_MAP, \
 	PangoFcFontMap))

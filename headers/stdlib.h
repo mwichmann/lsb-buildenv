@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-
 #define MB_CUR_MAX	(__ctype_get_mb_cur_max())
 #define EXIT_SUCCESS	0
 #define EXIT_FAILURE	1
@@ -30,8 +29,6 @@ extern "C" {
 
 
 /* Returned by `div'.*/
-
-
     typedef struct {
 	int quot;
 	int rem;
@@ -39,8 +36,6 @@ extern "C" {
 
 
 /* Returned by `ldiv'.*/
-
-
     typedef struct {
 	long int quot;
 	long int rem;
@@ -48,8 +43,6 @@ extern "C" {
 
 
 /* Returned by `lldiv'.*/
-
-
     typedef struct {
 	long long int quot;
 	long long int rem;

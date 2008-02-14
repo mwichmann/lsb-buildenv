@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 
-
 #define svc_getcaller(x)	(&(x)->xp_raddr)
 #define svc_destroy(xprt)	(*(xprt)->xp_ops->xp_destroy)(xprt)
 #define svc_recv(xprt,msg)	(*(xprt)->xp_ops->xp_recv)((xprt), (msg))
@@ -35,8 +34,6 @@ extern "C" {
 
 
 /* Server side transport handle*/
-
-
     typedef struct SVCXPRT SVCXPRT;
 
 
@@ -53,8 +50,6 @@ extern "C" {
     };
 
 
-
-
     struct svc_req {
 	rpcprog_t rq_prog;
 	rpcvers_t rq_vers;
@@ -65,11 +60,7 @@ extern "C" {
     };
 
 
-
-
     typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
-
-
 
 
     struct xp_ops {

@@ -1,19 +1,20 @@
 
 class QTextEdit;
-enum N9QTextEdit12LineWrapModeE {
+enum _ZN9QTextEdit12LineWrapModeE {
     NoWrap,
     WidgetWidth,
     FixedPixelWidth,
     FixedColumnWidth
 };
-enum N9QTextEdit18AutoFormattingFlagE {
+enum _ZN9QTextEdit18AutoFormattingFlagE {
     AutoAll,
     AutoNone,
     AutoBulletList
 };
 class QFlags < QTextEdit::AutoFormattingFlag >;
-typedef N9QTextEdit14AutoFormattingE;
-enum N9QTextEdit12CursorActionE {
+typedef class QFlags < QTextEdit::AutoFormattingFlag >
+    _ZN9QTextEdit14AutoFormattingE;
+enum _ZN9QTextEdit12CursorActionE {
     MoveBackward,
     MoveForward,
     MoveWordBackward,
@@ -29,7 +30,7 @@ enum N9QTextEdit12CursorActionE {
     MovePageDown,
     MovePgDown
 };
-enum N9QTextEdit14KeyboardActionE {
+enum _ZN9QTextEdit14KeyboardActionE {
     ActionBackspace,
     ActionDelete,
     ActionReturn,

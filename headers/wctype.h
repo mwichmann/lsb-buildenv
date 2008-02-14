@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef unsigned long int wctype_t;
 
     typedef unsigned int wint_t;
@@ -25,8 +22,6 @@ extern "C" {
 
 
 /* This really belongs in wchar.h, but it's presense creates a circular dependency with stdio.h, so put it here to break the circle.*/
-
-
     typedef __mbstate_t mbstate_t;
 
 

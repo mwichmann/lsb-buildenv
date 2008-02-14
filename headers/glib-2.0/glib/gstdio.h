@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define g_fopen	fopen
 #define g_freopen	freopen
 #define g_lstat	lstat
@@ -18,7 +17,6 @@ extern "C" {
 #define g_rmdir	rmdir
 #define g_stat	stat
 #define g_unlink	unlink
-
 
 
 #ifdef __cplusplus

@@ -4,13 +4,38 @@
 class QClipboard;
 // *INDENT-OFF*
 
-
-
-
 class QClipboard : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+    void clear(QClipboard::Mode);
+    bool supportsSelection() const;
+    bool ownsSelection() const;
+    bool ownsClipboard() const;
+    QString text(QClipboard::Mode) const;
+    QString text(QString&, QClipboard::Mode) const;
+    void setText(QString const&, QClipboard::Mode);
+    QMimeSource * data(QClipboard::Mode) const;
+    void setData(QMimeSource*, QClipboard::Mode);
+    QMimeData * * mimeData(QClipboard::Mode) const;
+    void setMimeData(QMimeData*, QClipboard::Mode);
+    QImage image(QClipboard::Mode) const;
+    QPixmap pixmap(QClipboard::Mode) const;
+    void setImage(QImage const&, QClipboard::Mode);
+    void setPixmap(QPixmap const&, QClipboard::Mode);
+     ~QClipboard();
+    bool ownsFindBuffer() const;
+    bool supportsFindBuffer() const;
+protected:
+    void selectionChanged();
+    void dataChanged();
+    void connectNotify(char const*);
+    bool event(QEvent*);
+    void findBufferChanged();
+    void changed(QClipboard::Mode);
 };
 
 enum Mode	
@@ -22,30 +47,5 @@ Selection = 1
 
 
 extern struct QMetaObject _ZN10QClipboard16staticMetaObjectE ;
-extern struct QMetaObject _ZNK10QClipboard10metaObjectEv(void);
-extern void _ZN10QClipboard11qt_metacastEPKc(void);
-extern int _ZN10QClipboard11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern void _ZN10QClipboard5clearENS_4ModeE(void);
-extern bool _ZNK10QClipboard17supportsSelectionEv(void);
-extern bool _ZNK10QClipboard13ownsSelectionEv(void);
-extern bool _ZNK10QClipboard13ownsClipboardEv(void);
-extern QString _ZNK10QClipboard4textENS_4ModeE(void);
-extern QString _ZNK10QClipboard4textER7QStringNS_4ModeE(void);
-extern void _ZN10QClipboard7setTextERK7QStringNS_4ModeE(void);
-extern QMimeSource _ZNK10QClipboard4dataENS_4ModeE(void);
-extern void _ZN10QClipboard7setDataEP11QMimeSourceNS_4ModeE(void);
-extern QMimeData _ZNK10QClipboard8mimeDataENS_4ModeE(void);
-extern void _ZN10QClipboard11setMimeDataEP9QMimeDataNS_4ModeE(void);
-extern QImage _ZNK10QClipboard5imageENS_4ModeE(void);
-extern QPixmap _ZNK10QClipboard6pixmapENS_4ModeE(void);
-extern void _ZN10QClipboard8setImageERK6QImageNS_4ModeE(void);
-extern void _ZN10QClipboard9setPixmapERK7QPixmapNS_4ModeE(void);
-extern void _ZN10QClipboard16selectionChangedEv(void);
-extern void _ZN10QClipboard11dataChangedEv(void);
-extern void _ZN10QClipboard13connectNotifyEPKc(void);
-extern bool _ZN10QClipboard5eventEP6QEvent(void);
-extern  _ZN10QClipboardD2Ev(void);
-extern  _ZN10QClipboardD1Ev(void);
-extern  _ZN10QClipboardD0Ev(void);
 // *INDENT-ON*
 #endif

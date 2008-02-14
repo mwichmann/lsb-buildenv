@@ -16,9 +16,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlSchemaValidCtxt xmlSchemaValidCtxt;
 
     typedef xmlSchemaValidCtxt *xmlSchemaValidCtxtPtr;

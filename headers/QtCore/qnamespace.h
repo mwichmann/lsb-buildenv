@@ -1,25 +1,34 @@
 #ifndef _QTCORE_QNAMESPACE_H_
 #define _QTCORE_QNAMESPACE_H_
 
-class QFlags < Qt::AlignmentFlag >;
+class QFlags < Qt::MouseButton >;
 // *INDENT-OFF*
-
-
-
 
 typedef KeyboardModifiers	
 ;
 
-typedef MouseButtons	
+typedef class QFlags<Qt::MouseButton>
+{
+private:
+public:
+}MouseButtons	
 ;
 
 typedef int	ButtonState	
 ;
 
-typedef Orientations	
+typedef class QFlags<Qt::Orientation>
+{
+private:
+public:
+}Orientations	
 ;
 
-typedef Alignment	
+typedef class QFlags<Qt::AlignmentFlag>
+{
+private:
+public:
+}Alignment	
 ;
 
 typedef enum TextFlag	
@@ -46,10 +55,18 @@ IncludeTrailingSpaces = 134217728
 TextFlags	
 ;
 
-typedef WindowFlags	
+typedef class QFlags<Qt::WindowType>
+{
+private:
+public:
+}WindowFlags	
 ;
 
-typedef WindowStates	
+typedef class QFlags<Qt::WindowState>
+{
+private:
+public:
+}WindowStates	
 ;
 
 typedef ImageConversionFlags	
@@ -96,7 +113,11 @@ ToolBarDock
 typedef DropActions	
 ;
 
-typedef ItemFlags	
+typedef class QFlags<Qt::ItemFlag>
+{
+private:
+public:
+}ItemFlags	
 ;
 
 typedef MatchFlags	
@@ -147,12 +168,6 @@ MetaModifier = 268435456,
 KeypadModifier = 536870912
 }
 ;
-
-class QFlags<Qt::KeyboardModifier>
-{
-private:
-public:
-};
 
 enum Modifier	
 {
@@ -465,12 +480,6 @@ AvoidDither = 128,
 DitherMode_Mask = 192
 }
 ;
-
-class QFlags<Qt::ImageConversionFlag>
-{
-private:
-public:
-};
 
 enum BGMode	
 {
@@ -1007,12 +1016,6 @@ AllDockWidgetAreas = 15
 }
 ;
 
-class QFlags<Qt::DockWidgetArea>
-{
-private:
-public:
-};
-
 enum ToolBarArea	
 {
 LeftToolBarArea = 1,	
@@ -1023,12 +1026,6 @@ ToolBarArea_Mask = 15,
 AllToolBarAreas = 15
 }
 ;
-
-class QFlags<Qt::ToolBarArea>
-{
-private:
-public:
-};
 
 enum Dock	
 {
@@ -1229,12 +1226,6 @@ TargetMoveAction = 32770
 }
 ;
 
-class QFlags<Qt::DropAction>
-{
-private:
-public:
-};
-
 enum CheckState	
 {
 Unchecked = 0,	
@@ -1295,12 +1286,6 @@ MatchRecursive = 64
 }
 ;
 
-class QFlags<Qt::MatchFlag>
-{
-private:
-public:
-};
-
 enum WindowModality	
 {
 NonModal = 0,	
@@ -1313,6 +1298,10 @@ class QInternal
 {
 private:
 public:
+    static bool callFunction(QInternal::InternalFunction, void**);
+    static bool registerCallback(QInternal::Callback, bool (*)(void**));
+    static bool activateCallbacks(QInternal::Callback, void**);
+    static bool unregisterCallback(QInternal::Callback, bool (*)(void**));
 };
 
 enum PaintDeviceFlags	
@@ -1334,7 +1323,6 @@ RelayoutDragging = 1,
 RelayoutDropped = 2
 }
 ;
-
 
 // *INDENT-ON*
 #endif

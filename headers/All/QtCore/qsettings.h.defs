@@ -1,11 +1,11 @@
 
 class QSettings;
-enum N9QSettings6StatusE {
+enum _ZN9QSettings6StatusE {
     NoError,
     AccessError,
     FormatError
 };
-enum N9QSettings6FormatE {
+enum _ZN9QSettings6FormatE {
     NativeFormat,
     IniFormat,
     InvalidFormat,
@@ -26,16 +26,16 @@ enum N9QSettings6FormatE {
     CustomFormat15,
     CustomFormat16
 };
-enum N9QSettings5ScopeE {
+enum _ZN9QSettings5ScopeE {
     UserScope,
     User,
     SystemScope,
     Global
 };
-typedef class QMap < QString, QVariant > N9QSettings11SettingsMapE;
-typedef bool N9QSettings8ReadFuncE;
-typedef bool N9QSettings9WriteFuncE;
-enum N9QSettings6SystemE {
+typedef class QMap < QString, QVariant > _ZN9QSettings11SettingsMapE;
+typedef bool _ZN9QSettings8ReadFuncE;
+typedef bool _ZN9QSettings9WriteFuncE;
+enum _ZN9QSettings6SystemE {
     Unix,
     Windows,
     Mac

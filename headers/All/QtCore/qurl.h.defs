@@ -1,10 +1,10 @@
 
 class QUrl;
-enum N4QUrl11ParsingModeE {
+enum _ZN4QUrl11ParsingModeE {
     TolerantMode,
     StrictMode
 };
-enum N4QUrl16FormattingOptionE {
+enum _ZN4QUrl16FormattingOptionE {
     None,
     RemoveScheme,
     RemovePassword,
@@ -17,4 +17,5 @@ enum N4QUrl16FormattingOptionE {
     StripTrailingSlash
 };
 class QFlags < QUrl::FormattingOption >;
-typedef N4QUrl17FormattingOptionsE;
+typedef class QFlags < QUrl::FormattingOption >
+    _ZN4QUrl17FormattingOptionsE;

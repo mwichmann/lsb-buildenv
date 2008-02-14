@@ -4,16 +4,29 @@
 class QFlags < QEventLoop::ProcessEventsFlag >;
 // *INDENT-OFF*
 
-
-
-
-typedef ProcessEventsFlags	
+typedef class QFlags<QEventLoop::ProcessEventsFlag>
+{
+private:
+public:
+}ProcessEventsFlags	
 ;
 
 class QEventLoop : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QEventLoop(QObject*);
+     ~QEventLoop();
+    bool processEvents(QFlags<QEventLoop::ProcessEventsFlag>);
+    void processEvents(QFlags<QEventLoop::ProcessEventsFlag>, int);
+    int exec(QFlags<QEventLoop::ProcessEventsFlag>);
+    void exit(int);
+    bool isRunning() const;
+    void wakeUp();
+    void quit();
 };
 
 enum ProcessEventsFlag	
@@ -37,20 +50,5 @@ public:
 
 
 extern struct QMetaObject _ZN10QEventLoop16staticMetaObjectE ;
-extern struct QMetaObject _ZNK10QEventLoop10metaObjectEv(void);
-extern void _ZN10QEventLoop11qt_metacastEPKc(void);
-extern int _ZN10QEventLoop11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QEventLoop _ZN10QEventLoopC2EP7QObject(void);
-extern QEventLoop _ZN10QEventLoopC1EP7QObject(void);
-extern  _ZN10QEventLoopD2Ev(void);
-extern  _ZN10QEventLoopD1Ev(void);
-extern  _ZN10QEventLoopD0Ev(void);
-extern bool _ZN10QEventLoop13processEventsE6QFlagsINS_17ProcessEventsFlagEE(void);
-extern void _ZN10QEventLoop13processEventsE6QFlagsINS_17ProcessEventsFlagEEi(void);
-extern int _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE(void);
-extern void _ZN10QEventLoop4exitEi(void);
-extern bool _ZNK10QEventLoop9isRunningEv(void);
-extern void _ZN10QEventLoop6wakeUpEv(void);
-extern void _ZN10QEventLoop4quitEv(void);
 // *INDENT-ON*
 #endif

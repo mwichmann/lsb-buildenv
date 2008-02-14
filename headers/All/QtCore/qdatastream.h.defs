@@ -1,6 +1,6 @@
 
 class QDataStream;
-enum N11QDataStream7VersionE {
+enum _ZN11QDataStream7VersionE {
     Qt_1_0,
     Qt_2_0,
     Qt_2_1,
@@ -10,11 +10,11 @@ enum N11QDataStream7VersionE {
     Qt_4_0,
     Qt_4_1
 };
-enum N11QDataStream9ByteOrderE {
+enum _ZN11QDataStream9ByteOrderE {
     BigEndian,
     LittleEndian
 };
-enum N11QDataStream6StatusE {
+enum _ZN11QDataStream6StatusE {
     Ok,
     ReadPastEnd,
     ReadCorruptData

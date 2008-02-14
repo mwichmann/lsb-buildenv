@@ -15,9 +15,6 @@ extern "C" {
 
 
 
-
-
-
     extern FcResult FcPatternGetFTFace(const FcPattern *, const char *,
 				       int, FT_Face *);
     extern FcBool FcPatternAddFTFace(FcPattern *, const char *,

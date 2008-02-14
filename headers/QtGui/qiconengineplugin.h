@@ -4,28 +4,20 @@
 class QIconEnginePlugin;
 // *INDENT-OFF*
 
-
-
-
 struct QIconEngineFactoryInterface	;
 
-class QIconEnginePlugin :  QIconEngineFactoryInterface,  QObject
+class QIconEnginePlugin : public QIconEngineFactoryInterface, public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QIconEnginePlugin(QObject*);
+     ~QIconEnginePlugin();
 };
 
 
-extern  _ZN27QIconEngineFactoryInterfaceD0Ev(void);
-extern  _ZN27QIconEngineFactoryInterfaceD1Ev(void);
 extern struct QMetaObject _ZN17QIconEnginePlugin16staticMetaObjectE ;
-extern struct QMetaObject _ZNK17QIconEnginePlugin10metaObjectEv(void);
-extern void _ZN17QIconEnginePlugin11qt_metacastEPKc(void);
-extern int _ZN17QIconEnginePlugin11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QIconEnginePlugin _ZN17QIconEnginePluginC2EP7QObject(void);
-extern QIconEnginePlugin _ZN17QIconEnginePluginC1EP7QObject(void);
-extern  _ZN17QIconEnginePluginD2Ev(void);
-extern  _ZN17QIconEnginePluginD1Ev(void);
-extern  _ZN17QIconEnginePluginD0Ev(void);
 // *INDENT-ON*
 #endif

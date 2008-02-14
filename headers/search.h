@@ -10,11 +10,6 @@ extern "C" {
 
 
 
-
-
-
-
-
     typedef struct entry ENTRY;
 
     typedef enum {
@@ -34,8 +29,6 @@ extern "C" {
 	char *key;
 	void *data;
     };
-
-
 
 
     typedef void (*__action_fn_t) (void *__nodep, VISIT __value,

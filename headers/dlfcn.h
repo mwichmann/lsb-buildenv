@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define RTLD_NEXT	((void *) -1l)
 #define RTLD_DEFAULT	((void *) 0)
 #define RTLD_LOCAL	0

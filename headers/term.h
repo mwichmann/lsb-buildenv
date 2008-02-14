@@ -7,12 +7,7 @@ extern "C" {
 #endif
 
 
-
-
-
     struct term;
-
-
 
 
     typedef struct term TERMINAL;

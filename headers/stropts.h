@@ -10,14 +10,8 @@ extern "C" {
 
 
 
-
-
-
 /* The streams interfaces are excluded from the LSB.
 This empty file is needed to make the compilation environment happy.*/
-
-
-
 #ifdef __cplusplus
 }
 #endif

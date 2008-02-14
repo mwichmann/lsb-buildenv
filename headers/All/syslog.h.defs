@@ -44,6 +44,6 @@
 
 extern void closelog(void);
 extern void openlog(const char *, int, int);
-extern int setlogmask(int);
 extern void syslog(int, const char *, ...);
+extern int setlogmask(int);
 extern void vsyslog(int, const char *, va_list);

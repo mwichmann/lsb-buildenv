@@ -14,9 +14,6 @@ extern "C" {
 
 
 
-
-
-
     extern FT_Error FT_Get_PFR_Advance(FT_Face, FT_UInt, FT_Pos *);
     extern FT_Error FT_Get_PFR_Metrics(FT_Face, FT_UInt *, FT_UInt *,
 				       FT_Fixed *, FT_Fixed *);

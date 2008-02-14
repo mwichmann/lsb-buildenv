@@ -8,10 +8,7 @@ extern "C" {
 #endif
 
 
-
 /* Default head group*/
-
-
     struct timeb {
 	time_t time;		/* Seconds since epoch, as from `time'. */
 	unsigned short millitm;	/* Additional milliseconds. */

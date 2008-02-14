@@ -4,13 +4,26 @@
 class QInputContext;
 // *INDENT-OFF*
 
-
-
-
 class QInputContext : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QInputContext(QObject*);
+     ~QInputContext();
+    void update();
+    void mouseHandler(int, QMouseEvent*);
+    QFont font() const;
+    QWidget * focusWidget() const;
+    void setFocusWidget(QWidget*);
+    void widgetDestroyed(QWidget*);
+     actions();
+    bool x11FilterEvent(QWidget*, _XEvent*);
+    bool filterEvent(QEvent const*);
+    void sendEvent(QInputMethodEvent const&);
+    QTextFormat standardFormat(QInputContext::StandardFormat) const;
 };
 
 enum StandardFormat	
@@ -22,24 +35,5 @@ SelectionFormat = 1
 
 
 extern struct QMetaObject _ZN13QInputContext16staticMetaObjectE ;
-extern struct QMetaObject _ZNK13QInputContext10metaObjectEv(void);
-extern void _ZN13QInputContext11qt_metacastEPKc(void);
-extern int _ZN13QInputContext11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QInputContext _ZN13QInputContextC2EP7QObject(void);
-extern QInputContext _ZN13QInputContextC1EP7QObject(void);
-extern  _ZN13QInputContextD2Ev(void);
-extern  _ZN13QInputContextD1Ev(void);
-extern  _ZN13QInputContextD0Ev(void);
-extern void _ZN13QInputContext6updateEv(void);
-extern void _ZN13QInputContext12mouseHandlerEiP11QMouseEvent(void);
-extern QFont _ZNK13QInputContext4fontEv(void);
-extern QWidget _ZNK13QInputContext11focusWidgetEv(void);
-extern void _ZN13QInputContext14setFocusWidgetEP7QWidget(void);
-extern void _ZN13QInputContext15widgetDestroyedEP7QWidget(void);
-extern  _ZN13QInputContext7actionsEv(void);
-extern bool _ZN13QInputContext14x11FilterEventEP7QWidgetP7_XEvent(void);
-extern bool _ZN13QInputContext11filterEventEPK6QEvent(void);
-extern void _ZN13QInputContext9sendEventERK17QInputMethodEvent(void);
-extern QTextFormat _ZNK13QInputContext14standardFormatENS_14StandardFormatE(void);
 // *INDENT-ON*
 #endif

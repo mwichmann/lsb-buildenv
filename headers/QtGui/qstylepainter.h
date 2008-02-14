@@ -4,15 +4,11 @@
 class QStylePainter;
 // *INDENT-OFF*
 
-
-
-
 class QStylePainter :  
 {
 private:
 public:
 };
-
 
 // *INDENT-ON*
 #endif

@@ -1,6 +1,6 @@
 
 class QColormap;
-enum N9QColormap4ModeE {
+enum _ZN9QColormap4ModeE {
     Direct,
     Indexed,
     Gray

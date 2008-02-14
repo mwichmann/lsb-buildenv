@@ -4,13 +4,68 @@
 class QPixmap;
 // *INDENT-OFF*
 
-
-
-
 class QPixmap : public QPaintDevice
 {
 private:
 public:
+     QPixmap();
+     QPixmap(int, int);
+     QPixmap(QSize const&);
+     QPixmap(QString const&, char const*, QFlags<Qt::ImageConversionFlag>);
+     QPixmap(char const* const*);
+     QPixmap(QPixmap const&);
+     ~QPixmap();
+    QPixmap & operator=(QPixmap const&);
+    QVariant operator QVariant() const;
+    bool isNull() const;
+    int devType() const;
+    int width() const;
+    int height() const;
+    QSize size() const;
+    QRect rect() const;
+    int depth() const;
+    int defaultDepth();
+    void fill(QColor const&);
+    void fill(QWidget const*, QPoint const&);
+    QBitmap mask() const;
+    void setMask(QBitmap const&);
+    QPixmap alphaChannel() const;
+    void setAlphaChannel(QPixmap const&);
+    bool hasAlpha() const;
+    bool hasAlphaChannel() const;
+    QBitmap createHeuristicMask(bool) const;
+    QBitmap createMaskFromColor(QColor const&) const;
+    QPixmap grabWindow(unsigned long, int, int, int, int);
+    QPixmap grabWidget(QWidget*, QRect const&);
+    QPixmap scaled(QSize const&, Qt::AspectRatioMode, Qt::TransformationMode) const;
+    QPixmap scaledToWidth(int, Qt::TransformationMode) const;
+    QPixmap scaledToHeight(int, Qt::TransformationMode) const;
+    QPixmap transformed(QMatrix const&, Qt::TransformationMode) const;
+    QMatrix trueMatrix(QMatrix const&, int, int);
+    QImage toImage() const;
+    QPixmap fromImage(QImage const&, QFlags<Qt::ImageConversionFlag>);
+    bool load(QString const&, char const*, QFlags<Qt::ImageConversionFlag>);
+    bool loadFromData(unsigned char const*, unsigned int, char const*, QFlags<Qt::ImageConversionFlag>);
+    bool save(QString const&, char const*, int) const;
+    bool save(QIODevice*, char const*, int) const;
+    QPixmap copy(QRect const&) const;
+    int serialNumber() const;
+    bool isDetached() const;
+    void detach();
+    int x11SetDefaultScreen(int);
+    void x11SetScreen(int);
+     x11Info() const;
+     x11PictureHandle() const;
+     handle() const;
+    QPaintEngine * paintEngine() const;
+     QPixmap(QString const&, char const*, QPixmap::ColorMode);
+    bool load(QString const&, char const*, QPixmap::ColorMode);
+    bool loadFromData(unsigned char const*, unsigned int, char const*, QPixmap::ColorMode);
+     QPixmap(QImage const&);
+    QPixmap & operator=(QImage const&);
+    bool convertFromImage(QImage const&, QPixmap::ColorMode);
+protected:
+    int metric(QPaintDevice::PaintDeviceMetric) const;
 };
 
 enum ColorMode	
@@ -29,75 +84,8 @@ BitmapType = 1
 ;
 
 
-extern QPixmap _ZN7QPixmapC2Ev(void);
-extern QPixmap _ZN7QPixmapC1Ev(void);
-extern QPixmap _ZN7QPixmapC2Eii(void);
-extern QPixmap _ZN7QPixmapC1Eii(void);
-extern QPixmap _ZN7QPixmapC2ERK5QSize(void);
-extern QPixmap _ZN7QPixmapC1ERK5QSize(void);
-extern QPixmap _ZN7QPixmapC2ERK7QStringPKc6QFlagsIN2Qt19ImageConversionFlagEE(void);
-extern QPixmap _ZN7QPixmapC1ERK7QStringPKc6QFlagsIN2Qt19ImageConversionFlagEE(void);
-extern QPixmap _ZN7QPixmapC2EPKPKc(void);
-extern QPixmap _ZN7QPixmapC1EPKPKc(void);
-extern QPixmap _ZN7QPixmapC2ERKS_(void);
-extern QPixmap _ZN7QPixmapC1ERKS_(void);
-extern  _ZN7QPixmapD2Ev(void);
-extern  _ZN7QPixmapD1Ev(void);
-extern  _ZN7QPixmapD0Ev(void);
-extern QPixmap _ZN7QPixmapaSERKS_(void);
-extern QPixmap _ZNK7QPixmapcv8QVariantEv(void);
-extern bool _ZNK7QPixmap6isNullEv(void);
-extern int _ZNK7QPixmap7devTypeEv(void);
-extern int _ZNK7QPixmap5widthEv(void);
-extern int _ZNK7QPixmap6heightEv(void);
-extern QSize _ZNK7QPixmap4sizeEv(void);
-extern QRect _ZNK7QPixmap4rectEv(void);
-extern int _ZNK7QPixmap5depthEv(void);
-extern int _ZN7QPixmap12defaultDepthEv(void);
-extern void _ZN7QPixmap4fillERK6QColor(void);
-extern void _ZN7QPixmap4fillEPK7QWidgetRK6QPoint(void);
-extern  _ZNK7QPixmap4maskEv(void);
-extern void _ZN7QPixmap7setMaskERK7QBitmap(void);
-extern QPixmap _ZNK7QPixmap12alphaChannelEv(void);
-extern void _ZN7QPixmap15setAlphaChannelERKS_(void);
-extern bool _ZNK7QPixmap8hasAlphaEv(void);
-extern bool _ZNK7QPixmap15hasAlphaChannelEv(void);
-extern  _ZNK7QPixmap19createHeuristicMaskEb(void);
-extern  _ZNK7QPixmap19createMaskFromColorERK6QColor(void);
-extern QPixmap _ZN7QPixmap10grabWindowEmiiii(void);
-extern QPixmap _ZN7QPixmap10grabWidgetEP7QWidgetRK5QRect(void);
-extern QPixmap _ZNK7QPixmap6scaledERK5QSizeN2Qt15AspectRatioModeENS3_18TransformationModeE(void);
-extern QPixmap _ZNK7QPixmap13scaledToWidthEiN2Qt18TransformationModeE(void);
-extern QPixmap _ZNK7QPixmap14scaledToHeightEiN2Qt18TransformationModeE(void);
-extern QPixmap _ZNK7QPixmap11transformedERK7QMatrixN2Qt18TransformationModeE(void);
-extern  _ZN7QPixmap10trueMatrixERK7QMatrixii(void);
-extern QImage _ZNK7QPixmap7toImageEv(void);
-extern QPixmap _ZN7QPixmap9fromImageERK6QImage6QFlagsIN2Qt19ImageConversionFlagEE(void);
-extern bool _ZN7QPixmap4loadERK7QStringPKc6QFlagsIN2Qt19ImageConversionFlagEE(void);
-extern bool _ZN7QPixmap12loadFromDataEPKhjPKc6QFlagsIN2Qt19ImageConversionFlagEE(void);
-extern bool _ZNK7QPixmap4saveERK7QStringPKci(void);
-extern bool _ZNK7QPixmap4saveEP9QIODevicePKci(void);
-extern QPixmap _ZNK7QPixmap4copyERK5QRect(void);
-extern int _ZNK7QPixmap12serialNumberEv(void);
-extern bool _ZNK7QPixmap10isDetachedEv(void);
-extern void _ZN7QPixmap6detachEv(void);
-extern int _ZN7QPixmap19x11SetDefaultScreenEi(void);
-extern void _ZN7QPixmap12x11SetScreenEi(void);
-extern  _ZNK7QPixmap7x11InfoEv(void);
-extern N2Qt6HANDLEE _ZNK7QPixmap16x11PictureHandleEv(void);
-extern N2Qt6HANDLEE _ZNK7QPixmap6handleEv(void);
-extern  _ZNK7QPixmap11paintEngineEv(void);
-extern int _ZNK7QPixmap6metricEN12QPaintDevice17PaintDeviceMetricE(void);
-extern QPixmap _ZN7QPixmapC2ERK7QStringPKcNS_9ColorModeE(void);
-extern QPixmap _ZN7QPixmapC1ERK7QStringPKcNS_9ColorModeE(void);
-extern bool _ZN7QPixmap4loadERK7QStringPKcNS_9ColorModeE(void);
-extern bool _ZN7QPixmap12loadFromDataEPKhjPKcNS_9ColorModeE(void);
-extern QPixmap _ZN7QPixmapC2ERK6QImage(void);
-extern QPixmap _ZN7QPixmapC1ERK6QImage(void);
-extern QPixmap _ZN7QPixmapaSERK6QImage(void);
-extern bool _ZN7QPixmap16convertFromImageERK6QImageNS_9ColorModeE(void);
-extern QDataStream _ZlsR11QDataStreamRK7QPixmap(void);
-extern QDataStream _ZrsR11QDataStreamR7QPixmap(void);
-extern void _Z7copyBltP7QPixmapiiPKS_iiii(void);
+extern QDataStream _ZlsR11QDataStreamRK7QPixmap(QDataStream &, const QPixmap &);
+extern QDataStream _ZrsR11QDataStreamR7QPixmap(QDataStream &, QPixmap &);
+extern void _Z7copyBltP7QPixmapiiPKS_iiii(QPixmap *, int, int, const QPixmap *, int, int, int, int);
 // *INDENT-ON*
 #endif

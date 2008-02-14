@@ -50,10 +50,6 @@ struct xp_ops {
     void (*xp_destroy) (SVCXPRT * __xprt);
 };
 extern void svc_getreqset(fd_set *);
-extern bool_t svc_register(SVCXPRT *, rpcprog_t, rpcvers_t,
-			   __dispatch_fn_t, rpcprot_t);
-extern void svc_run(void);
-extern bool_t svc_sendreply(SVCXPRT *, xdrproc_t, caddr_t);
 extern void svcerr_auth(SVCXPRT *, enum auth_stat);
 extern void svcerr_decode(SVCXPRT *);
 extern void svcerr_noproc(SVCXPRT *);
@@ -61,5 +57,9 @@ extern void svcerr_noprog(SVCXPRT *);
 extern void svcerr_progvers(SVCXPRT *, rpcvers_t, rpcvers_t);
 extern void svcerr_systemerr(SVCXPRT *);
 extern void svcerr_weakauth(SVCXPRT *);
+extern bool_t svc_register(SVCXPRT *, rpcprog_t, rpcvers_t,
+			   __dispatch_fn_t, rpcprot_t);
+extern void svc_run(void);
+extern bool_t svc_sendreply(SVCXPRT *, xdrproc_t, caddr_t);
 extern SVCXPRT *svctcp_create(int, u_int, u_int);
 extern SVCXPRT *svcudp_create(int);

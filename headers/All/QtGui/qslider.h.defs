@@ -1,6 +1,6 @@
 
 class QSlider;
-enum N7QSlider12TickPositionE {
+enum _ZN7QSlider12TickPositionE {
     NoTicks,
     NoMarks,
     TicksAbove,

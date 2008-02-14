@@ -4,9 +4,6 @@
 class QAtomic;
 // *INDENT-OFF*
 
-
-
-
 struct QBasicAtomic	;
 
 class QAtomic :  
@@ -14,7 +11,6 @@ class QAtomic :
 private:
 public:
 };
-
 
 // *INDENT-ON*
 #endif

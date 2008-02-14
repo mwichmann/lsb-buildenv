@@ -4,13 +4,35 @@
 class QFontDatabase;
 // *INDENT-OFF*
 
-
-
-
 class QFontDatabase
 {
 private:
 public:
+    QList<int> standardSizes();
+     QFontDatabase();
+    QList<QFontDatabase::WritingSystem> writingSystems() const;
+    QStringList families(QFontDatabase::WritingSystem) const;
+    QStringList styles(QString const&) const;
+    QList<int> pointSizes(QString const&, QString const&);
+    QList<int> smoothSizes(QString const&, QString const&);
+    QString styleString(QFont const&);
+    QString styleString(QFontInfo const&);
+    QFont font(QString const&, QString const&, int) const;
+    bool isBitmapScalable(QString const&, QString const&) const;
+    bool isSmoothlyScalable(QString const&, QString const&) const;
+    bool isScalable(QString const&, QString const&) const;
+    bool isFixedPitch(QString const&, QString const&) const;
+    bool italic(QString const&, QString const&) const;
+    bool bold(QString const&, QString const&) const;
+    int weight(QString const&, QString const&) const;
+    QString writingSystemName(QFontDatabase::WritingSystem);
+    QString writingSystemSample(QFontDatabase::WritingSystem);
+    int addApplicationFont(QString const&);
+    bool removeApplicationFont(int);
+    QStringList applicationFontFamilies(int);
+    bool removeAllApplicationFonts();
+    int addApplicationFontFromData(QByteArray const&);
+    QList<QFontDatabase::WritingSystem> writingSystems(QString const&) const;
 };
 
 enum WritingSystem	
@@ -50,26 +72,5 @@ WritingSystemsCount = 31
 }
 ;
 
-
-extern QList<int> _ZN13QFontDatabase13standardSizesEv(void);
-extern QFontDatabase _ZN13QFontDatabaseC2Ev(void);
-extern QFontDatabase _ZN13QFontDatabaseC1Ev(void);
-extern  _ZNK13QFontDatabase14writingSystemsEv(void);
-extern QStringList _ZNK13QFontDatabase8familiesENS_13WritingSystemE(void);
-extern QStringList _ZNK13QFontDatabase6stylesERK7QString(void);
-extern QList<int> _ZN13QFontDatabase10pointSizesERK7QStringS2_(void);
-extern QList<int> _ZN13QFontDatabase11smoothSizesERK7QStringS2_(void);
-extern QString _ZN13QFontDatabase11styleStringERK5QFont(void);
-extern QString _ZN13QFontDatabase11styleStringERK9QFontInfo(void);
-extern QFont _ZNK13QFontDatabase4fontERK7QStringS2_i(void);
-extern bool _ZNK13QFontDatabase16isBitmapScalableERK7QStringS2_(void);
-extern bool _ZNK13QFontDatabase18isSmoothlyScalableERK7QStringS2_(void);
-extern bool _ZNK13QFontDatabase10isScalableERK7QStringS2_(void);
-extern bool _ZNK13QFontDatabase12isFixedPitchERK7QStringS2_(void);
-extern bool _ZNK13QFontDatabase6italicERK7QStringS2_(void);
-extern bool _ZNK13QFontDatabase4boldERK7QStringS2_(void);
-extern int _ZNK13QFontDatabase6weightERK7QStringS2_(void);
-extern QString _ZN13QFontDatabase17writingSystemNameENS_13WritingSystemE(void);
-extern QString _ZN13QFontDatabase19writingSystemSampleENS_13WritingSystemE(void);
 // *INDENT-ON*
 #endif

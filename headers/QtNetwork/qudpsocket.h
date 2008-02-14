@@ -4,16 +4,30 @@
 class QUdpSocket;
 // *INDENT-OFF*
 
-
-
-
-typedef BindMode	
+typedef class QFlags<QUdpSocket::BindFlag>
+{
+private:
+public:
+}BindMode	
 ;
 
 class QUdpSocket : public QAbstractSocket
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QUdpSocket(QObject*);
+     ~QUdpSocket();
+    bool bind(QHostAddress const&, unsigned short);
+    bool bind(unsigned short);
+    bool bind(QHostAddress const&, unsigned short, QFlags<QUdpSocket::BindFlag>);
+    bool bind(unsigned short, QFlags<QUdpSocket::BindFlag>);
+    bool hasPendingDatagrams() const;
+    qint64 pendingDatagramSize() const;
+    qint64 readDatagram(char*, long long, QHostAddress*, unsigned short*);
+    qint64 writeDatagram(char const*, long long, QHostAddress const&, unsigned short);
 };
 
 enum BindFlag	
@@ -33,21 +47,5 @@ public:
 
 
 extern struct QMetaObject _ZN10QUdpSocket16staticMetaObjectE ;
-extern struct QMetaObject _ZNK10QUdpSocket10metaObjectEv(void);
-extern void _ZN10QUdpSocket11qt_metacastEPKc(void);
-extern int _ZN10QUdpSocket11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QUdpSocket _ZN10QUdpSocketC2EP7QObject(void);
-extern QUdpSocket _ZN10QUdpSocketC1EP7QObject(void);
-extern  _ZN10QUdpSocketD2Ev(void);
-extern  _ZN10QUdpSocketD1Ev(void);
-extern  _ZN10QUdpSocketD0Ev(void);
-extern bool _ZN10QUdpSocket4bindERK12QHostAddresst(void);
-extern bool _ZN10QUdpSocket4bindEt(void);
-extern bool _ZN10QUdpSocket4bindERK12QHostAddresst6QFlagsINS_8BindFlagEE(void);
-extern bool _ZN10QUdpSocket4bindEt6QFlagsINS_8BindFlagEE(void);
-extern bool _ZNK10QUdpSocket19hasPendingDatagramsEv(void);
-extern qint64 _ZNK10QUdpSocket19pendingDatagramSizeEv(void);
-extern qint64 _ZN10QUdpSocket12readDatagramEPcxP12QHostAddressPt(void);
-extern qint64 _ZN10QUdpSocket13writeDatagramEPKcxRK12QHostAddresst(void);
 // *INDENT-ON*
 #endif

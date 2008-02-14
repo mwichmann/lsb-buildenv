@@ -1,6 +1,6 @@
 
 class QAbstractSlider;
-enum N15QAbstractSlider12SliderActionE {
+enum _ZN15QAbstractSlider12SliderActionE {
     SliderNoAction,
     SliderSingleStepAdd,
     SliderSingleStepSub,
@@ -10,7 +10,7 @@ enum N15QAbstractSlider12SliderActionE {
     SliderToMaximum,
     SliderMove
 };
-enum N15QAbstractSlider12SliderChangeE {
+enum _ZN15QAbstractSlider12SliderChangeE {
     SliderRangeChange,
     SliderOrientationChange,
     SliderStepsChange,

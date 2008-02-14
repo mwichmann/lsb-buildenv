@@ -8,9 +8,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef IcePointer SmPointer;
 
     typedef struct _SmcConn *SmcConn;
@@ -19,8 +16,6 @@ extern "C" {
 
 
 /* Session Management property*/
-
-
     typedef struct {
 	int length;
 	SmPointer value;
@@ -35,8 +30,6 @@ extern "C" {
 
 
 /* SmcCloseConnection status return*/
-
-
     typedef enum {
 	SmcClosedNow,
 	SmcClosedASAP,
@@ -45,8 +38,6 @@ extern "C" {
 
 
 /* Client callbacks*/
-
-
     typedef void (*SmcSaveYourselfPhase2Proc) (void);
 
     typedef void (*SmcInteractProc) (void);
@@ -61,8 +52,6 @@ extern "C" {
 
 
 /* Callbacks set up at SmcOpenConnection time*/
-
-
     typedef struct {
 	SmcShutdownCancelledProc callback;
 	SmPointer client_data;
@@ -70,8 +59,6 @@ extern "C" {
 
 
 /* Session manager callbacks*/
-
-
     typedef void (*SmsSetPropertiesProc) (void);
 
     typedef void (*SmsDeletePropertiesProc) (void);
@@ -80,30 +67,22 @@ extern "C" {
 
 
 /* Callbacks set up by a session manager when a new client connects.*/
-
-
     typedef struct {
 	SmsGetPropertiesProc callback;
 	SmPointer manager_data;
     } SmsCallbacks;
 
 
-
-
     typedef int (*SmsNewClientProc) (void);
 
 
 /* Error handlers*/
-
-
     typedef void (*SmcErrorHandler) (void);
 
     typedef void (*SmsErrorHandler) (void);
 
 
 /* Default Header Section for X11/SM/SMlib.h*/
-
-
 
     extern void SmFreeProperty(SmProp *);
     extern void SmFreeReasons(int, char **);

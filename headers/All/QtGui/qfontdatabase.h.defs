@@ -1,6 +1,6 @@
 
 class QFontDatabase;
-enum N13QFontDatabase13WritingSystemE {
+enum _ZN13QFontDatabase13WritingSystemE {
     Any,
     Latin,
     Greek,

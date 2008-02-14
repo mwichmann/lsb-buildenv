@@ -444,6 +444,6 @@ extern XtAppContext XtWidgetToApplicationContext(Widget);
 extern Window XtWindow(Widget);
 extern Window XtWindowOfObject(Widget);
 extern Widget XtWindowToWidget(Display *, Window);
-extern Boolean _XtCheckSubclassFlag(Widget, unsigned int);
 extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass,
 			       unsigned int);
+extern Boolean _XtCheckSubclassFlag(Widget, unsigned int);

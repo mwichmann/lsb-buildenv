@@ -1,5 +1,5 @@
 
-enum N2Qt11GlobalColorE {
+enum _ZN2Qt11GlobalColorE {
     color0,
     color1,
     black,
@@ -21,7 +21,7 @@ enum N2Qt11GlobalColorE {
     darkYellow,
     transparent
 };
-enum N2Qt16KeyboardModifierE {
+enum _ZN2Qt16KeyboardModifierE {
     KeyboardModifierMask,
     NoModifier,
     ShiftModifier,
@@ -30,9 +30,8 @@ enum N2Qt16KeyboardModifierE {
     MetaModifier,
     KeypadModifier
 };
-class QFlags < Qt::KeyboardModifier >;
-typedef N2Qt17KeyboardModifiersE;
-enum N2Qt8ModifierE {
+typedef class QFlags < Qt::KeyboardModifier > _ZN2Qt17KeyboardModifiersE;
+enum _ZN2Qt8ModifierE {
     MODIFIER_MASK,
     UNICODE_ACCEL,
     SHIFT,
@@ -40,7 +39,7 @@ enum N2Qt8ModifierE {
     ALT,
     META
 };
-enum N2Qt11MouseButtonE {
+enum _ZN2Qt11MouseButtonE {
     NoButton,
     LeftButton,
     RightButton,
@@ -50,8 +49,8 @@ enum N2Qt11MouseButtonE {
     MouseButtonMask
 };
 class QFlags < Qt::MouseButton >;
-typedef N2Qt12MouseButtonsE;
-enum N2Qt16ButtonState_enumE {
+typedef class QFlags < Qt::MouseButton > _ZN2Qt12MouseButtonsE;
+enum _ZN2Qt16ButtonState_enumE {
     KeyButtonMask,
     ShiftButton,
     ControlButton,
@@ -59,27 +58,27 @@ enum N2Qt16ButtonState_enumE {
     MetaButton,
     Keypad
 };
-typedef int N2Qt11ButtonStateE;
-enum N2Qt11OrientationE {
+typedef int _ZN2Qt11ButtonStateE;
+enum _ZN2Qt11OrientationE {
     Horizontal,
     Vertical
 };
 class QFlags < Qt::Orientation >;
-typedef N2Qt12OrientationsE;
-enum N2Qt11FocusPolicyE {
+typedef class QFlags < Qt::Orientation > _ZN2Qt12OrientationsE;
+enum _ZN2Qt11FocusPolicyE {
     NoFocus,
     TabFocus,
     ClickFocus,
     StrongFocus,
     WheelFocus
 };
-enum N2Qt9SortOrderE {
+enum _ZN2Qt9SortOrderE {
     AscendingOrder,
     Ascending,
     DescendingOrder,
     Descending
 };
-enum N2Qt13AlignmentFlagE {
+enum _ZN2Qt13AlignmentFlagE {
     AlignLeft,
     AlignLeading,
     AlignAuto,
@@ -96,8 +95,8 @@ enum N2Qt13AlignmentFlagE {
     AlignVertical_Mask
 };
 class QFlags < Qt::AlignmentFlag >;
-typedef N2Qt9AlignmentE;
-enum N2Qt8TextFlagE {
+typedef class QFlags < Qt::AlignmentFlag > _ZN2Qt9AlignmentE;
+enum _ZN2Qt8TextFlagE {
     TextSingleLine,
     SingleLine,
     TextDontClip,
@@ -117,7 +116,7 @@ enum N2Qt8TextFlagE {
     TextIncludeTrailingSpaces,
     IncludeTrailingSpaces
 };
-typedef enum N2Qt8TextFlagE {
+typedef enum _ZN2Qt8TextFlagE {
     TextSingleLine,
     SingleLine,
     TextDontClip,
@@ -136,13 +135,13 @@ typedef enum N2Qt8TextFlagE {
     NoAccel,
     TextIncludeTrailingSpaces,
     IncludeTrailingSpaces
-} N2Qt9TextFlagsE;
-enum N2Qt13TextElideModeE {
+} _ZN2Qt9TextFlagsE;
+enum _ZN2Qt13TextElideModeE {
     ElideLeft,
     ElideRight,
     ElideMiddle
 };
-enum N2Qt10WindowTypeE {
+enum _ZN2Qt10WindowTypeE {
     Widget,
     WStyle_Customize,
     WStyle_NormalBorder,
@@ -207,8 +206,8 @@ enum N2Qt10WindowTypeE {
     WNoMousePropagation
 };
 class QFlags < Qt::WindowType >;
-typedef N2Qt11WindowFlagsE;
-enum N2Qt11WindowStateE {
+typedef class QFlags < Qt::WindowType > _ZN2Qt11WindowFlagsE;
+enum _ZN2Qt11WindowStateE {
     WindowNoState,
     WindowMinimized,
     WindowMaximized,
@@ -216,8 +215,8 @@ enum N2Qt11WindowStateE {
     WindowActive
 };
 class QFlags < Qt::WindowState >;
-typedef N2Qt12WindowStatesE;
-enum N2Qt15WidgetAttributeE {
+typedef class QFlags < Qt::WindowState > _ZN2Qt12WindowStatesE;
+enum _ZN2Qt15WidgetAttributeE {
     WA_Disabled,
     WA_UnderMouse,
     WA_MouseTracking,
@@ -287,7 +286,7 @@ enum N2Qt15WidgetAttributeE {
     WA_TintedBackground,
     WA_AttributeCount
 };
-enum N2Qt19ImageConversionFlagE {
+enum _ZN2Qt19ImageConversionFlagE {
     AutoColor,
     ThresholdAlphaDither,
     DiffuseDither,
@@ -306,13 +305,13 @@ enum N2Qt19ImageConversionFlagE {
     AvoidDither,
     DitherMode_Mask
 };
-class QFlags < Qt::ImageConversionFlag >;
-typedef N2Qt20ImageConversionFlagsE;
-enum N2Qt6BGModeE {
+typedef class QFlags < Qt::ImageConversionFlag >
+    _ZN2Qt20ImageConversionFlagsE;
+enum _ZN2Qt6BGModeE {
     TransparentMode,
     OpaqueMode
 };
-enum N2Qt9PaintUnitE {
+enum _ZN2Qt9PaintUnitE {
     PixelUnit,
     LoMetricUnit,
     HiMetricUnit,
@@ -320,14 +319,14 @@ enum N2Qt9PaintUnitE {
     HiEnglishUnit,
     TwipsUnit
 };
-enum N2Qt8GUIStyleE {
+enum _ZN2Qt8GUIStyleE {
     MacStyle,
     WindowsStyle,
     Win3Style,
     PMStyle,
     MotifStyle
 };
-enum N2Qt3KeyE {
+enum _ZN2Qt3KeyE {
     Key_Space,
     Key_Any,
     Key_Exclam,
@@ -675,14 +674,14 @@ enum N2Qt3KeyE {
     Key_Flip,
     Key_unknown
 };
-enum N2Qt9ArrowTypeE {
+enum _ZN2Qt9ArrowTypeE {
     NoArrow,
     UpArrow,
     DownArrow,
     LeftArrow,
     RightArrow
 };
-enum N2Qt8PenStyleE {
+enum _ZN2Qt8PenStyleE {
     NoPen,
     SolidLine,
     DashLine,
@@ -692,19 +691,19 @@ enum N2Qt8PenStyleE {
     CustomDashLine,
     MPenStyle
 };
-enum N2Qt11PenCapStyleE {
+enum _ZN2Qt11PenCapStyleE {
     FlatCap,
     SquareCap,
     RoundCap,
     MPenCapStyle
 };
-enum N2Qt12PenJoinStyleE {
+enum _ZN2Qt12PenJoinStyleE {
     MiterJoin,
     BevelJoin,
     RoundJoin,
     MPenJoinStyle
 };
-enum N2Qt10BrushStyleE {
+enum _ZN2Qt10BrushStyleE {
     NoBrush,
     SolidPattern,
     Dense1Pattern,
@@ -726,7 +725,7 @@ enum N2Qt10BrushStyleE {
     TexturePattern,
     CustomPattern
 };
-enum N2Qt8UIEffectE {
+enum _ZN2Qt8UIEffectE {
     UI_General,
     UI_AnimateMenu,
     UI_FadeMenu,
@@ -735,7 +734,7 @@ enum N2Qt8UIEffectE {
     UI_FadeTooltip,
     UI_AnimateToolBox
 };
-enum N2Qt11CursorShapeE {
+enum _ZN2Qt11CursorShapeE {
     ArrowCursor,
     arrowCursor,
     UpArrowCursor,
@@ -772,13 +771,13 @@ enum N2Qt11CursorShapeE {
     LastCursor,
     BitmapCursor
 };
-enum N2Qt10TextFormatE {
+enum _ZN2Qt10TextFormatE {
     PlainText,
     RichText,
     AutoText,
     LogText
 };
-enum N2Qt15AspectRatioModeE {
+enum _ZN2Qt15AspectRatioModeE {
     IgnoreAspectRatio,
     ScaleFree,
     KeepAspectRatio,
@@ -786,19 +785,19 @@ enum N2Qt15AspectRatioModeE {
     KeepAspectRatioByExpanding,
     ScaleMax
 };
-typedef enum N2Qt15AspectRatioModeE {
+typedef enum _ZN2Qt15AspectRatioModeE {
     IgnoreAspectRatio,
     ScaleFree,
     KeepAspectRatio,
     ScaleMin,
     KeepAspectRatioByExpanding,
     ScaleMax
-} N2Qt9ScaleModeE;
-enum N2Qt15AnchorAttributeE {
+} _ZN2Qt9ScaleModeE;
+enum _ZN2Qt15AnchorAttributeE {
     AnchorName,
     AnchorHref
 };
-enum N2Qt14DockWidgetAreaE {
+enum _ZN2Qt14DockWidgetAreaE {
     LeftDockWidgetArea,
     RightDockWidgetArea,
     TopDockWidgetArea,
@@ -806,9 +805,8 @@ enum N2Qt14DockWidgetAreaE {
     DockWidgetArea_Mask,
     AllDockWidgetAreas
 };
-class QFlags < Qt::DockWidgetArea >;
-typedef N2Qt15DockWidgetAreasE;
-enum N2Qt11ToolBarAreaE {
+typedef class QFlags < Qt::DockWidgetArea > _ZN2Qt15DockWidgetAreasE;
+enum _ZN2Qt11ToolBarAreaE {
     LeftToolBarArea,
     RightToolBarArea,
     TopToolBarArea,
@@ -816,9 +814,8 @@ enum N2Qt11ToolBarAreaE {
     ToolBarArea_Mask,
     AllToolBarAreas
 };
-class QFlags < Qt::ToolBarArea >;
-typedef N2Qt12ToolBarAreasE;
-enum N2Qt4DockE {
+typedef class QFlags < Qt::ToolBarArea > _ZN2Qt12ToolBarAreasE;
+enum _ZN2Qt4DockE {
     DockUnmanaged,
     Unmanaged,
     DockTornOff,
@@ -834,7 +831,7 @@ enum N2Qt4DockE {
     DockMinimized,
     Minimized
 };
-typedef enum N2Qt4DockE {
+typedef enum _ZN2Qt4DockE {
     DockUnmanaged,
     Unmanaged,
     DockTornOff,
@@ -849,17 +846,17 @@ typedef enum N2Qt4DockE {
     Left,
     DockMinimized,
     Minimized
-} N2Qt11ToolBarDockE;
-enum N2Qt10DateFormatE {
+} _ZN2Qt11ToolBarDockE;
+enum _ZN2Qt10DateFormatE {
     TextDate,
     ISODate,
     LocalDate
 };
-enum N2Qt8TimeSpecE {
+enum _ZN2Qt8TimeSpecE {
     LocalTime,
     UTC
 };
-enum N2Qt9DayOfWeekE {
+enum _ZN2Qt9DayOfWeekE {
     Monday,
     Tuesday,
     Wednesday,
@@ -868,12 +865,12 @@ enum N2Qt9DayOfWeekE {
     Saturday,
     Sunday
 };
-enum N2Qt15ScrollBarPolicyE {
+enum _ZN2Qt15ScrollBarPolicyE {
     ScrollBarAsNeeded,
     ScrollBarAlwaysOff,
     ScrollBarAlwaysOn
 };
-enum N2Qt14BackgroundModeE {
+enum _ZN2Qt14BackgroundModeE {
     FixedColor,
     FixedPixmap,
     NoBackground,
@@ -895,11 +892,11 @@ enum N2Qt14BackgroundModeE {
     PaletteLinkVisited,
     X11ParentRelative
 };
-enum N2Qt15CaseSensitivityE {
+enum _ZN2Qt15CaseSensitivityE {
     CaseInsensitive,
     CaseSensitive
 };
-enum N2Qt6CornerE {
+enum _ZN2Qt6CornerE {
     TopLeftCorner,
     TopLeft,
     TopRightCorner,
@@ -909,32 +906,32 @@ enum N2Qt6CornerE {
     BottomRightCorner,
     BottomRight
 };
-enum N2Qt14ConnectionTypeE {
+enum _ZN2Qt14ConnectionTypeE {
     AutoConnection,
     DirectConnection,
     QueuedConnection,
     AutoCompatConnection
 };
-enum N2Qt15ShortcutContextE {
+enum _ZN2Qt15ShortcutContextE {
     WidgetShortcut,
     WindowShortcut,
     ApplicationShortcut
 };
-enum N2Qt8FillRuleE {
+enum _ZN2Qt8FillRuleE {
     OddEvenFill,
     WindingFill
 };
-enum N2Qt13ClipOperationE {
+enum _ZN2Qt13ClipOperationE {
     NoClip,
     ReplaceClip,
     IntersectClip,
     UniteClip
 };
-enum N2Qt18TransformationModeE {
+enum _ZN2Qt18TransformationModeE {
     FastTransformation,
     SmoothTransformation
 };
-enum N2Qt11FocusReasonE {
+enum _ZN2Qt11FocusReasonE {
     MouseFocusReason,
     TabFocusReason,
     BacktabFocusReason,
@@ -945,30 +942,30 @@ enum N2Qt11FocusReasonE {
     OtherFocusReason,
     NoFocusReason
 };
-enum N2Qt17ContextMenuPolicyE {
+enum _ZN2Qt17ContextMenuPolicyE {
     NoContextMenu,
     DefaultContextMenu,
     ActionsContextMenu,
     CustomContextMenu
 };
-enum N2Qt16InputMethodQueryE {
+enum _ZN2Qt16InputMethodQueryE {
     ImMicroFocus,
     ImFont,
     ImCursorPosition,
     ImSurroundingText,
     ImCurrentSelection
 };
-enum N2Qt15ToolButtonStyleE {
+enum _ZN2Qt15ToolButtonStyleE {
     ToolButtonIconOnly,
     ToolButtonTextOnly,
     ToolButtonTextBesideIcon,
     ToolButtonTextUnderIcon
 };
-enum N2Qt15LayoutDirectionE {
+enum _ZN2Qt15LayoutDirectionE {
     LeftToRight,
     RightToLeft
 };
-enum N2Qt10DropActionE {
+enum _ZN2Qt10DropActionE {
     IgnoreAction,
     CopyAction,
     MoveAction,
@@ -976,14 +973,13 @@ enum N2Qt10DropActionE {
     ActionMask,
     TargetMoveAction
 };
-class QFlags < Qt::DropAction >;
-typedef N2Qt11DropActionsE;
-enum N2Qt10CheckStateE {
+typedef class QFlags < Qt::DropAction > _ZN2Qt11DropActionsE;
+enum _ZN2Qt10CheckStateE {
     Unchecked,
     PartiallyChecked,
     Checked
 };
-enum N2Qt12ItemDataRoleE {
+enum _ZN2Qt12ItemDataRoleE {
     DisplayRole,
     DecorationRole,
     EditRole,
@@ -1000,7 +996,7 @@ enum N2Qt12ItemDataRoleE {
     SizeHintRole,
     UserRole
 };
-enum N2Qt8ItemFlagE {
+enum _ZN2Qt8ItemFlagE {
     ItemIsSelectable,
     ItemIsEditable,
     ItemIsDragEnabled,
@@ -1010,8 +1006,8 @@ enum N2Qt8ItemFlagE {
     ItemIsTristate
 };
 class QFlags < Qt::ItemFlag >;
-typedef N2Qt9ItemFlagsE;
-enum N2Qt9MatchFlagE {
+typedef class QFlags < Qt::ItemFlag > _ZN2Qt9ItemFlagsE;
+enum _ZN2Qt9MatchFlagE {
     MatchExactly,
     MatchContains,
     MatchStartsWith,
@@ -1022,17 +1018,16 @@ enum N2Qt9MatchFlagE {
     MatchWrap,
     MatchRecursive
 };
-class QFlags < Qt::MatchFlag >;
-typedef N2Qt10MatchFlagsE;
-typedef unsigned long int N2Qt6HANDLEE;
-typedef N2Qt11WindowFlagsE N2Qt6WFlagsE;
-enum N2Qt14WindowModalityE {
+typedef class QFlags < Qt::MatchFlag > _ZN2Qt10MatchFlagsE;
+typedef unsigned long int _ZN2Qt6HANDLEE;
+typedef _ZN2Qt11WindowFlagsE _ZN2Qt6WFlagsE;
+enum _ZN2Qt14WindowModalityE {
     NonModal,
     WindowModal,
     ApplicationModal
 };
 class QInternal;
-enum N9QInternal16PaintDeviceFlagsE {
+enum _ZN9QInternal16PaintDeviceFlagsE {
     UnknownDevice,
     Widget,
     Pixmap,
@@ -1041,7 +1036,7 @@ enum N9QInternal16PaintDeviceFlagsE {
     Picture,
     Pbuffer
 };
-enum N9QInternal12RelayoutTypeE {
+enum _ZN9QInternal12RelayoutTypeE {
     RelayoutNormal,
     RelayoutDragging,
     RelayoutDropped

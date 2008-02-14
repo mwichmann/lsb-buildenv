@@ -1,6 +1,6 @@
 
 class QHostInfo;
-enum N9QHostInfo13HostInfoErrorE {
+enum _ZN9QHostInfo13HostInfoErrorE {
     NoError,
     HostNotFound,
     UnknownError

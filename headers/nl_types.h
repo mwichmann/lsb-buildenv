@@ -7,21 +7,16 @@ extern "C" {
 #endif
 
 
-
 #define NL_CAT_LOCALE	1
 #define NL_SETD	1
 
 
 
 /* Message catalog descriptor type*/
-
-
     typedef void *nl_catd;
 
 
 /* Type used by `nl_langinfo'*/
-
-
     typedef int nl_item;
 
 

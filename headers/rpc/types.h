@@ -7,9 +7,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef int bool_t;
 
     typedef int enum_t;
@@ -21,7 +18,6 @@ extern "C" {
     typedef unsigned long int rpcproc_t;
 
     typedef unsigned long int rpcprot_t;
-
 
 #ifdef __cplusplus
 }

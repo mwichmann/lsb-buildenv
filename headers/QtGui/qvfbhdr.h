@@ -7,13 +7,9 @@ extern "C" {
 #endif
 
 
-
-
-
     struct QVFbHeader;
 
     struct QVFbKeyData;
-
 
 #ifdef __cplusplus
 }

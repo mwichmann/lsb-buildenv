@@ -1,6 +1,6 @@
 
 class QDockWidget;
-enum N11QDockWidget17DockWidgetFeatureE {
+enum _ZN11QDockWidget17DockWidgetFeatureE {
     NoDockWidgetFeatures,
     DockWidgetClosable,
     DockWidgetMovable,
@@ -10,4 +10,5 @@ enum N11QDockWidget17DockWidgetFeatureE {
     Reserved
 };
 class QFlags < QDockWidget::DockWidgetFeature >;
-typedef N11QDockWidget18DockWidgetFeaturesE;
+typedef class QFlags < QDockWidget::DockWidgetFeature >
+    _ZN11QDockWidget18DockWidgetFeaturesE;

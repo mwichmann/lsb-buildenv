@@ -8,12 +8,7 @@ extern "C" {
 
 
 
-
-
-
 /* Resources*/
-
-
     typedef unsigned long int XID;
 
     typedef unsigned long int Atom;
@@ -334,8 +329,6 @@ extern "C" {
 
 /* Window gravity + bit gravity above*/
 
-
-
 /* Used in CreateWindow for backing-store hint*/
 #define NotUseful	0
 #define WhenMapped	1
@@ -385,8 +378,6 @@ extern "C" {
 
 
 /* GRAPHICS DEFINITIONS*/
-
-
 
 /* graphics functions, as in GC.alu*/
 #define GXclear	0x0
@@ -509,8 +500,6 @@ extern "C" {
 
 /* FONTS*/
 
-
-
 /* used in QueryFont -- draw direction*/
 #define FontLeftToRight	0
 #define FontRightToLeft	1
@@ -519,8 +508,6 @@ extern "C" {
 
 /* IMAGING*/
 
-
-
 /* ImageFormat -- PutImage, GetImage*/
 #define XYPixmap	1
 #define ZPixmap	2
@@ -528,8 +515,6 @@ extern "C" {
 
 
 /* COLOR MAP STUFF*/
-
-
 
 /* For CreateColormap*/
 #define AllocNone	0
@@ -545,8 +530,6 @@ extern "C" {
 
 
 /* CURSOR STUFF*/
-
-
 
 /* QueryBestSize Class*/
 #define CursorShape	0
@@ -602,8 +585,6 @@ extern "C" {
 
 /* HOSTS AND CONNECTIONS*/
 
-
-
 /* for ChangeHosts*/
 #define HostInsert	0
 #define HostDelete	1
@@ -629,7 +610,6 @@ extern "C" {
 /* Byte order  used in imageByteOrder and bitmapBitOrder*/
 #define LSBFirst	0
 #define MSBFirst	1
-
 
 
 #ifdef __cplusplus

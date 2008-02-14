@@ -1,6 +1,6 @@
 
 class QCheckBox;
-enum N9QCheckBox11ToggleStateE {
+enum _ZN9QCheckBox11ToggleStateE {
     Off,
     NoChange,
     On

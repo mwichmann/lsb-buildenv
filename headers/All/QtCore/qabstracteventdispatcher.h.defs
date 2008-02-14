@@ -1,4 +1,4 @@
 
 class QAbstractEventDispatcher;
-typedef struct _ZN5QPairIiiEE N24QAbstractEventDispatcher9TimerInfoE;
-typedef bool N24QAbstractEventDispatcher11EventFilterE;
+typedef struct _ZN5QPairIiiEE _ZN24QAbstractEventDispatcher9TimerInfoE;
+typedef bool _ZN24QAbstractEventDispatcher11EventFilterE;

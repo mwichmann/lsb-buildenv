@@ -1,7 +1,7 @@
 
 class QLayoutIterator;
 class QLayout;
-enum N7QLayout14SizeConstraintE {
+enum _ZN7QLayout14SizeConstraintE {
     SetDefaultConstraint,
     Auto,
     SetNoConstraint,

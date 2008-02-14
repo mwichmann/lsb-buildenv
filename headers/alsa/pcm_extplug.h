@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_PCM_EXTPLUG_VERSION	((SND_PCM_EXTPLUG_VERSION_MAJOR<<16) | (SND_PCM_EXTPLUG_VERSION_MINOR<<8) | (SND_PCM_EXTPLUG_VERSION_TINY))
 #define SND_PCM_EXTPLUG_VERSION_MINOR	0
 #define SND_PCM_EXTPLUG_VERSION_MAJOR	1
@@ -45,7 +44,6 @@ extern "C" {
 	snd_pcm_subformat_t slave_subformat;
 	unsigned int slave_channels;
     };
-
 
 #ifdef __cplusplus
 }

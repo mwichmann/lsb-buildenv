@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _snd_async_handler snd_async_handler_t;
 
     typedef void (*snd_async_callback_t) (void);

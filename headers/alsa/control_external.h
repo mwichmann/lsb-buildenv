@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_CTL_EXT_VERSION	((SND_CTL_EXT_VERSION_MAJOR<<16) | (SND_CTL_EXT_VERSION_MINOR<<8) | (SND_CTL_EXT_VERSION_TINY))
 #define SND_CTL_EXT_KEY_NOT_FOUND	(snd_ctl_ext_key_t)(-1)
 #define SND_CTL_EXT_VERSION_MINOR	0
@@ -67,7 +66,6 @@ extern "C" {
 	int nonblock;
 	int subscribed;
     };
-
 
 #ifdef __cplusplus
 }

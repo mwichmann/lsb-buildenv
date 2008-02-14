@@ -10,12 +10,7 @@ extern "C" {
 
 
 
-
-
-
 /* The passwd structure.*/
-
-
     struct passwd {
 	char *pw_name;
 	char *pw_passwd;

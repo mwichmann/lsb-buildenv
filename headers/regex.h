@@ -8,16 +8,11 @@ extern "C" {
 #endif
 
 
-
 #define RE_DUP_MAX	(0x7fff)
 
 
 
-
-
     typedef unsigned long int reg_syntax_t;
-
-
 
 
     typedef struct re_pattern_buffer regex_t;
@@ -63,8 +58,6 @@ extern "C" {
 
 
 /* regex error codes*/
-
-
     typedef enum {
 	REG_ENOSYS = -1,
 	REG_NOERROR = 0,

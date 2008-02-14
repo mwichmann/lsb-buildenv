@@ -9,9 +9,6 @@ extern "C" {
 
 
 
-
-
-
     extern void XrmCombineDatabase(XrmDatabase, XrmDatabase *, int);
     extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
     extern void XrmDestroyDatabase(XrmDatabase);

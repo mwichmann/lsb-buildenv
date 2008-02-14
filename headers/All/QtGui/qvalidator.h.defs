@@ -1,6 +1,6 @@
 
 class QValidator;
-enum N10QValidator5StateE {
+enum _ZN10QValidator5StateE {
     Invalid,
     Intermediate,
     Valid,

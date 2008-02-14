@@ -4,64 +4,69 @@
 class QLabel;
 // *INDENT-OFF*
 
-
-
-
 class QLabel : public QFrame
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QLabel(QWidget*, QFlags<Qt::WindowType>);
+     QLabel(QString const&, QWidget*, QFlags<Qt::WindowType>);
+     ~QLabel();
+    QString text() const;
+    const QPixmap * pixmap() const;
+     picture() const;
+    QMovie * movie() const;
+    enum _ZN2Qt10TextFormatE textFormat() const;
+    void setTextFormat(Qt::TextFormat);
+     alignment() const;
+    void setAlignment(QFlags<Qt::AlignmentFlag>);
+    void setWordWrap(bool);
+    bool wordWrap() const;
+    int indent() const;
+    void setIndent(int);
+    int margin() const;
+    void setMargin(int);
+    bool hasScaledContents() const;
+    void setScaledContents(bool);
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+    void setBuddy(QWidget*);
+    QWidget * buddy() const;
+    int heightForWidth(int) const;
+    void setText(QString const&);
+    void setPixmap(QPixmap const&);
+    void setPicture(QPicture const&);
+    void setMovie(QMovie*);
+    void setNum(int);
+    void setNum(double);
+    void clear();
+     QLabel(QWidget*, char const*, QFlags<Qt::WindowType>);
+     QLabel(QString const&, QWidget*, char const*, QFlags<Qt::WindowType>);
+     QLabel(QWidget*, QString const&, QWidget*, char const*, QFlags<Qt::WindowType>);
+    void setAlignment(int);
+    void setOpenExternalLinks(bool);
+    void setTextInteractionFlags(QFlags<Qt::TextInteractionFlag>);
+    bool openExternalLinks() const;
+     textInteractionFlags() const;
+protected:
+    bool event(QEvent*);
+    void paintEvent(QPaintEvent*);
+    void changeEvent(QEvent*);
+    void linkHovered(QString const&);
+    void focusInEvent(QFocusEvent*);
+    void focusOutEvent(QFocusEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void linkActivated(QString const&);
+    void mouseMoveEvent(QMouseEvent*);
+    void mousePressEvent(QMouseEvent*);
+    void contextMenuEvent(QContextMenuEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
+    bool focusNextPrevChild(bool);
 };
 
 
 extern struct QMetaObject _ZN6QLabel16staticMetaObjectE ;
-extern struct QMetaObject _ZNK6QLabel10metaObjectEv(void);
-extern void _ZN6QLabel11qt_metacastEPKc(void);
-extern int _ZN6QLabel11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QLabel _ZN6QLabelC2EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC1EP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC2ERK7QStringP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC1ERK7QStringP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern  _ZN6QLabelD2Ev(void);
-extern  _ZN6QLabelD1Ev(void);
-extern  _ZN6QLabelD0Ev(void);
-extern QString _ZNK6QLabel4textEv(void);
-extern QPixmap _ZNK6QLabel6pixmapEv(void);
-extern QPicture _ZNK6QLabel7pictureEv(void);
-extern QMovie _ZNK6QLabel5movieEv(void);
-extern enum N2Qt10TextFormatE _ZNK6QLabel10textFormatEv(void);
-extern void _ZN6QLabel13setTextFormatEN2Qt10TextFormatE(void);
-extern N2Qt9AlignmentE _ZNK6QLabel9alignmentEv(void);
-extern void _ZN6QLabel12setAlignmentE6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern void _ZN6QLabel11setWordWrapEb(void);
-extern bool _ZNK6QLabel8wordWrapEv(void);
-extern int _ZNK6QLabel6indentEv(void);
-extern void _ZN6QLabel9setIndentEi(void);
-extern int _ZNK6QLabel6marginEv(void);
-extern void _ZN6QLabel9setMarginEi(void);
-extern bool _ZNK6QLabel17hasScaledContentsEv(void);
-extern void _ZN6QLabel17setScaledContentsEb(void);
-extern QSize _ZNK6QLabel8sizeHintEv(void);
-extern QSize _ZNK6QLabel15minimumSizeHintEv(void);
-extern void _ZN6QLabel8setBuddyEP7QWidget(void);
-extern QWidget _ZNK6QLabel5buddyEv(void);
-extern int _ZNK6QLabel14heightForWidthEi(void);
-extern void _ZN6QLabel7setTextERK7QString(void);
-extern void _ZN6QLabel9setPixmapERK7QPixmap(void);
-extern void _ZN6QLabel10setPictureERK8QPicture(void);
-extern void _ZN6QLabel8setMovieEP6QMovie(void);
-extern void _ZN6QLabel6setNumEi(void);
-extern void _ZN6QLabel6setNumEd(void);
-extern void _ZN6QLabel5clearEv(void);
-extern bool _ZN6QLabel5eventEP6QEvent(void);
-extern void _ZN6QLabel10paintEventEP11QPaintEvent(void);
-extern void _ZN6QLabel11changeEventEP6QEvent(void);
-extern QLabel _ZN6QLabelC2EP7QWidgetPKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC1EP7QWidgetPKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC2ERK7QStringP7QWidgetPKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC1ERK7QStringP7QWidgetPKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC2EP7QWidgetRK7QStringS1_PKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern QLabel _ZN6QLabelC1EP7QWidgetRK7QStringS1_PKc6QFlagsIN2Qt10WindowTypeEE(void);
-extern void _ZN6QLabel12setAlignmentEi(void);
 // *INDENT-ON*
 #endif

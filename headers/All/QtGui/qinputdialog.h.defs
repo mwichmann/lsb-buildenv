@@ -1,6 +1,6 @@
 
 class QInputDialog;
-enum N12QInputDialog4TypeE {
+enum _ZN12QInputDialog4TypeE {
     LineEdit,
     SpinBox,
     DoubleSpinBox,

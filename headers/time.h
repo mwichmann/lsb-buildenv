@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-
 #define CLK_TCK	((clock_t)__sysconf(2))
 #define CLOCK_REALTIME	0
 #define TIMER_ABSTIME	1
@@ -39,23 +38,13 @@ extern "C" {
 
 
 
-
-
 /* Returned by clock()*/
-
-
 
 /* Returned by `time'*/
 
-
-
 /* POSIX.1b structure for a time value.*/
 
-
-
 /* Used by other time functions.*/
-
-
 
     extern int __daylight;
     extern long int __timezone;

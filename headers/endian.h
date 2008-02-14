@@ -8,14 +8,10 @@ extern "C" {
 
 
 
-
-
-
 /* The visible Symbols*/
 #define BIG_ENDIAN	__BIG_ENDIAN
 #define BYTE_ORDER	__BYTE_ORDER
 #define LITTLE_ENDIAN	__LITTLE_ENDIAN
-
 
 
 #ifdef __cplusplus

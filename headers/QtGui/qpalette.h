@@ -4,13 +4,30 @@
 class QPalette;
 // *INDENT-OFF*
 
-
-
-
 class QPalette
 {
 private:
 public:
+     QPalette();
+     QPalette(QColor const&);
+     QPalette(Qt::GlobalColor);
+     QPalette(QColor const&, QColor const&);
+     QPalette(QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&);
+     QPalette(QColor const&, QColor const&, QColor const&, QColor const&, QColor const&, QColor const&, QColor const&);
+     QPalette(QColorGroup const&, QColorGroup const&, QColorGroup const&);
+     QPalette(QPalette const&);
+     ~QPalette();
+    QPalette & operator=(QPalette const&);
+    QVariant operator QVariant() const;
+    const QBrush & brush(QPalette::ColorGroup, QPalette::ColorRole) const;
+    void setBrush(QPalette::ColorGroup, QPalette::ColorRole, QBrush const&);
+    void setColorGroup(QPalette::ColorGroup, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&);
+    bool isEqual(QPalette::ColorGroup, QPalette::ColorGroup) const;
+    bool operator==(QPalette const&) const;
+    bool isCopyOf(QPalette const&) const;
+    int serialNumber() const;
+    QPalette resolve(QPalette const&) const;
+    bool isBrushSet(QPalette::ColorGroup, QPalette::ColorRole) const;
 };
 
 enum ColorGroup	
@@ -55,43 +72,15 @@ class QColorGroup :
 {
 private:
 public:
+    bool operator==(QColorGroup const&) const;
+    QVariant operator QVariant() const;
 };
 
 
 extern struct QMetaObject _ZN8QPalette16staticMetaObjectE ;
-extern QPalette _ZN8QPaletteC2Ev(void);
-extern QPalette _ZN8QPaletteC1Ev(void);
-extern QPalette _ZN8QPaletteC2ERK6QColor(void);
-extern QPalette _ZN8QPaletteC1ERK6QColor(void);
-extern QPalette _ZN8QPaletteC2EN2Qt11GlobalColorE(void);
-extern QPalette _ZN8QPaletteC1EN2Qt11GlobalColorE(void);
-extern QPalette _ZN8QPaletteC2ERK6QColorS2_(void);
-extern QPalette _ZN8QPaletteC1ERK6QColorS2_(void);
-extern QPalette _ZN8QPaletteC2ERK6QBrushS2_S2_S2_S2_S2_S2_S2_S2_(void);
-extern QPalette _ZN8QPaletteC1ERK6QBrushS2_S2_S2_S2_S2_S2_S2_S2_(void);
-extern QPalette _ZN8QPaletteC2ERK6QColorS2_S2_S2_S2_S2_S2_(void);
-extern QPalette _ZN8QPaletteC1ERK6QColorS2_S2_S2_S2_S2_S2_(void);
-extern QPalette _ZN8QPaletteC2ERK11QColorGroupS2_S2_(void);
-extern QPalette _ZN8QPaletteC1ERK11QColorGroupS2_S2_(void);
-extern QPalette _ZN8QPaletteC2ERKS_(void);
-extern QPalette _ZN8QPaletteC1ERKS_(void);
-extern  _ZN8QPaletteD2Ev(void);
-extern  _ZN8QPaletteD1Ev(void);
-extern QPalette _ZN8QPaletteaSERKS_(void);
-extern QPalette _ZNK8QPalettecv8QVariantEv(void);
-extern QBrush _ZNK8QPalette5brushENS_10ColorGroupENS_9ColorRoleE(void);
-extern void _ZN8QPalette8setBrushENS_10ColorGroupENS_9ColorRoleERK6QBrush(void);
-extern void _ZN8QPalette13setColorGroupENS_10ColorGroupERK6QBrushS3_S3_S3_S3_S3_S3_S3_S3_(void);
-extern bool _ZNK8QPalette7isEqualENS_10ColorGroupES0_(void);
-extern bool _ZNK8QPaletteeqERKS_(void);
-extern bool _ZNK8QPalette8isCopyOfERKS_(void);
-extern int _ZNK8QPalette12serialNumberEv(void);
-extern QPalette _ZNK8QPalette7resolveERKS_(void);
-extern bool _ZNK11QColorGroupeqERKS_(void);
-extern QColorGroup _ZNK11QColorGroupcv8QVariantEv(void);
-extern QDataStream _ZlsR11QDataStreamRK11QColorGroup(void);
-extern QDataStream _ZrsR11QDataStreamR11QColorGroup(void);
-extern QDataStream _ZlsR11QDataStreamRK8QPalette(void);
-extern QDataStream _ZrsR11QDataStreamR8QPalette(void);
+extern QDataStream _ZlsR11QDataStreamRK11QColorGroup(QDataStream &, const QColorGroup &);
+extern QDataStream _ZrsR11QDataStreamR11QColorGroup(QDataStream &, QColorGroup &);
+extern QDataStream _ZlsR11QDataStreamRK8QPalette(QDataStream &, const QPalette &);
+extern QDataStream _ZrsR11QDataStreamR8QPalette(QDataStream &, QPalette &);
 // *INDENT-ON*
 #endif

@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define IPC_PRIVATE	((key_t)0)
 #define IPC_RMID	0
 #define IPC_CREAT	00001000
@@ -136,11 +135,7 @@ extern "C" {
 
 /* common mode bits*/
 
-
-
 /* SVID required constants (same values as system 5)*/
-
-
 
     extern key_t ftok(const char *, int);
 #ifdef __cplusplus

@@ -4,33 +4,26 @@
 class QGLColormap;
 // *INDENT-OFF*
 
-
-
-
 class QGLColormap
 {
 private:
 public:
+     QGLColormap();
+     QGLColormap(QGLColormap const&);
+     ~QGLColormap();
+    QGLColormap & operator=(QGLColormap const&);
+    bool isEmpty() const;
+    int size() const;
+    void setEntries(int, unsigned int const*, int);
+    void setEntry(int, unsigned int);
+    void setEntry(int, QColor const&);
+    QRgb entryRgb(int) const;
+    QColor entryColor(int) const;
+    int find(unsigned int) const;
+    int findNearest(unsigned int) const;
 };
 
 struct QGLColormapData	;
 
-
-extern QGLColormap _ZN11QGLColormapC2Ev(void);
-extern QGLColormap _ZN11QGLColormapC1Ev(void);
-extern QGLColormap _ZN11QGLColormapC2ERKS_(void);
-extern QGLColormap _ZN11QGLColormapC1ERKS_(void);
-extern  _ZN11QGLColormapD2Ev(void);
-extern  _ZN11QGLColormapD1Ev(void);
-extern QGLColormap _ZN11QGLColormapaSERKS_(void);
-extern bool _ZNK11QGLColormap7isEmptyEv(void);
-extern int _ZNK11QGLColormap4sizeEv(void);
-extern void _ZN11QGLColormap10setEntriesEiPKji(void);
-extern void _ZN11QGLColormap8setEntryEij(void);
-extern void _ZN11QGLColormap8setEntryEiRK6QColor(void);
-extern QRgb _ZNK11QGLColormap8entryRgbEi(void);
-extern QColor _ZNK11QGLColormap10entryColorEi(void);
-extern int _ZNK11QGLColormap4findEj(void);
-extern int _ZNK11QGLColormap11findNearestEj(void);
 // *INDENT-ON*
 #endif

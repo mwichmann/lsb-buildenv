@@ -8,11 +8,8 @@ extern "C" {
 #endif
 
 
-
 #define setjmp(env)	_setjmp(env)
 #define sigsetjmp(a,b)	__sigsetjmp(a,b)
-
-
 
 
 
@@ -52,15 +49,11 @@ extern "C" {
 
 #endif
 
-
-
     struct __jmp_buf_tag {
 	__jmp_buf __jmpbuf;
 	int __mask_was_saved;
 	sigset_t __saved_mask;
     };
-
-
 
 
     typedef struct __jmp_buf_tag jmp_buf[1];

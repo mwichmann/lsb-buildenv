@@ -10,9 +10,6 @@ extern "C" {
 
 
 
-
-
-
 /* Standard well-defined IP protocols.*/
 #define IPPROTO_IP	0
 #define IPPROTO_ICMP	1
@@ -26,18 +23,12 @@ extern "C" {
 
 
 /* Type to represent a port.*/
-
-
     typedef uint16_t in_port_t;
 
 
 /* Standard well-known ports.*/
 
-
-
 /* Address structures for IPv4*/
-
-
     typedef uint32_t in_addr_t;
 
     struct in_addr {
@@ -50,7 +41,7 @@ extern "C" {
 #define INADDR_NONE	((in_addr_t) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
-#define INADDR_LOOPBACK	0x7f000001
+#define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
 
 
 
@@ -116,29 +107,27 @@ extern "C" {
 
 /* IP Socket options*/
 #define SOL_IP	0
-#define IP_TOS	1
+#define IP_TOS	1		/* IP type of service and precedence */
 #define IPV6_UNICAST_HOPS	16
 #define IPV6_MULTICAST_IF	17
 #define IPV6_MULTICAST_HOPS	18
 #define IPV6_MULTICAST_LOOP	19
-#define IP_TTL	2
+#define IP_TTL	2		/* IP time to live */
 #define IPV6_JOIN_GROUP	20
 #define IPV6_LEAVE_GROUP	21
 #define IPV6_V6ONLY	26
-#define IP_MULTICAST_IF	32
-#define IP_MULTICAST_TTL	33
-#define IP_MULTICAST_LOOP	34
-#define IP_ADD_MEMBERSHIP	35
-#define IP_DROP_MEMBERSHIP	36
-#define IP_OPTIONS	4
+#define IP_MULTICAST_IF	32	/* set/get IP multicast i/f */
+#define IP_MULTICAST_TTL	33	/* set/get IP multicast ttl */
+#define IP_MULTICAST_LOOP	34	/* set/get IP multicast loopback */
+#define IP_ADD_MEMBERSHIP	35	/* add an IP group membership */
+#define IP_DROP_MEMBERSHIP	36	/* drop an IP group membership */
+#define IP_OPTIONS	4	/* IP per-packet options */
 #define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
 
 
 
 /* Multicast interfaces to setsockopt()*/
-
-
     struct ipv6_mreq {
 	struct in6_addr ipv6mr_multiaddr;	/* IPv6 multicast address of group */
 	int ipv6mr_interface;	/* local IPv6 address of interface */

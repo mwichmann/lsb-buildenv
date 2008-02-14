@@ -4,13 +4,80 @@
 class QListView;
 // *INDENT-OFF*
 
-
-
-
 class QListView : public QAbstractItemView
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QListView(QWidget*);
+     ~QListView();
+    void setMovement(QListView::Movement);
+    enum _ZN9QListView8MovementE movement() const;
+    void setFlow(QListView::Flow);
+    enum _ZN9QListView4FlowE flow() const;
+    void setWrapping(bool);
+    bool isWrapping() const;
+    void setResizeMode(QListView::ResizeMode);
+    enum _ZN9QListView10ResizeModeE resizeMode() const;
+    void setLayoutMode(QListView::LayoutMode);
+    enum _ZN9QListView10LayoutModeE layoutMode() const;
+    void setSpacing(int);
+    int spacing() const;
+    void setGridSize(QSize const&);
+    QSize gridSize() const;
+    void setViewMode(QListView::ViewMode);
+    enum _ZN9QListView8ViewModeE viewMode() const;
+    void clearPropertyFlags();
+    bool isRowHidden(int) const;
+    void setRowHidden(int, bool);
+    void setModelColumn(int);
+    int modelColumn() const;
+    void setUniformItemSizes(bool);
+    bool uniformItemSizes() const;
+    QRect visualRect(QModelIndex const&) const;
+    void scrollTo(QModelIndex const&, QAbstractItemView::ScrollHint);
+    QModelIndex indexAt(QPoint const&) const;
+    void doItemsLayout();
+    void reset();
+    void setRootIndex(QModelIndex const&);
+     QListView(QListViewPrivate&, QWidget*);
+    void setWordWrap(bool);
+    void setBatchSize(int);
+    bool wordWrap() const;
+    int batchSize() const;
+protected:
+    bool event(QEvent*);
+    void scrollContentsBy(int, int);
+    void resizeContents(int, int);
+    QSize contentsSize() const;
+    void dataChanged(QModelIndex const&, QModelIndex const&);
+    void rowsInserted(QModelIndex const&, int, int);
+    void rowsAboutToBeRemoved(QModelIndex const&, int, int);
+    void mouseMoveEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
+    void timerEvent(QTimerEvent*);
+    void resizeEvent(QResizeEvent*);
+    void dragMoveEvent(QDragMoveEvent*);
+    void dragLeaveEvent(QDragLeaveEvent*);
+    void dropEvent(QDropEvent*);
+    void startDrag(QFlags<Qt::DropAction>);
+    void internalDrop(QDropEvent*);
+    void internalDrag(QFlags<Qt::DropAction>);
+    QStyleOptionViewItem viewOptions() const;
+    void paintEvent(QPaintEvent*);
+    int horizontalOffset() const;
+    int verticalOffset() const;
+    QModelIndex moveCursor(QAbstractItemView::CursorAction, QFlags<Qt::KeyboardModifier>);
+    QRect rectForIndex(QModelIndex const&) const;
+    void setPositionForIndex(QPoint const&, QModelIndex const&);
+    void setSelection(QRect const&, QFlags<QItemSelectionModel::SelectionFlag>);
+    QRegion visualRegionForSelection(QItemSelection const&) const;
+    QModelIndexList selectedIndexes() const;
+    void updateGeometries();
+    bool isIndexHidden(QModelIndex const&) const;
+    void indexesMoved(QList<QModelIndex> const&);
 };
 
 enum Movement	
@@ -51,73 +118,5 @@ IconMode = 1
 
 
 extern struct QMetaObject _ZN9QListView16staticMetaObjectE ;
-extern struct QMetaObject _ZNK9QListView10metaObjectEv(void);
-extern void _ZN9QListView11qt_metacastEPKc(void);
-extern int _ZN9QListView11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QListView _ZN9QListViewC2EP7QWidget(void);
-extern QListView _ZN9QListViewC1EP7QWidget(void);
-extern  _ZN9QListViewD2Ev(void);
-extern  _ZN9QListViewD1Ev(void);
-extern  _ZN9QListViewD0Ev(void);
-extern void _ZN9QListView11setMovementENS_8MovementE(void);
-extern enum N9QListView8MovementE _ZNK9QListView8movementEv(void);
-extern void _ZN9QListView7setFlowENS_4FlowE(void);
-extern enum N9QListView4FlowE _ZNK9QListView4flowEv(void);
-extern void _ZN9QListView11setWrappingEb(void);
-extern bool _ZNK9QListView10isWrappingEv(void);
-extern void _ZN9QListView13setResizeModeENS_10ResizeModeE(void);
-extern enum N9QListView10ResizeModeE _ZNK9QListView10resizeModeEv(void);
-extern void _ZN9QListView13setLayoutModeENS_10LayoutModeE(void);
-extern enum N9QListView10LayoutModeE _ZNK9QListView10layoutModeEv(void);
-extern void _ZN9QListView10setSpacingEi(void);
-extern int _ZNK9QListView7spacingEv(void);
-extern void _ZN9QListView11setGridSizeERK5QSize(void);
-extern QSize _ZNK9QListView8gridSizeEv(void);
-extern void _ZN9QListView11setViewModeENS_8ViewModeE(void);
-extern enum N9QListView8ViewModeE _ZNK9QListView8viewModeEv(void);
-extern void _ZN9QListView18clearPropertyFlagsEv(void);
-extern bool _ZNK9QListView11isRowHiddenEi(void);
-extern void _ZN9QListView12setRowHiddenEib(void);
-extern void _ZN9QListView14setModelColumnEi(void);
-extern int _ZNK9QListView11modelColumnEv(void);
-extern void _ZN9QListView19setUniformItemSizesEb(void);
-extern bool _ZNK9QListView16uniformItemSizesEv(void);
-extern QRect _ZNK9QListView10visualRectERK11QModelIndex(void);
-extern void _ZN9QListView8scrollToERK11QModelIndexN17QAbstractItemView10ScrollHintE(void);
-extern QModelIndex _ZNK9QListView7indexAtERK6QPoint(void);
-extern void _ZN9QListView13doItemsLayoutEv(void);
-extern void _ZN9QListView5resetEv(void);
-extern void _ZN9QListView12setRootIndexERK11QModelIndex(void);
-extern QListView _ZN9QListViewC2ER16QListViewPrivateP7QWidget(void);
-extern QListView _ZN9QListViewC1ER16QListViewPrivateP7QWidget(void);
-extern bool _ZN9QListView5eventEP6QEvent(void);
-extern void _ZN9QListView16scrollContentsByEii(void);
-extern void _ZN9QListView14resizeContentsEii(void);
-extern QSize _ZNK9QListView12contentsSizeEv(void);
-extern void _ZN9QListView11dataChangedERK11QModelIndexS2_(void);
-extern void _ZN9QListView12rowsInsertedERK11QModelIndexii(void);
-extern void _ZN9QListView20rowsAboutToBeRemovedERK11QModelIndexii(void);
-extern void _ZN9QListView14mouseMoveEventEP11QMouseEvent(void);
-extern void _ZN9QListView17mouseReleaseEventEP11QMouseEvent(void);
-extern void _ZN9QListView10timerEventEP11QTimerEvent(void);
-extern void _ZN9QListView11resizeEventEP12QResizeEvent(void);
-extern void _ZN9QListView13dragMoveEventEP14QDragMoveEvent(void);
-extern void _ZN9QListView14dragLeaveEventEP15QDragLeaveEvent(void);
-extern void _ZN9QListView9dropEventEP10QDropEvent(void);
-extern void _ZN9QListView9startDragE6QFlagsIN2Qt10DropActionEE(void);
-extern void _ZN9QListView12internalDropEP10QDropEvent(void);
-extern void _ZN9QListView12internalDragE6QFlagsIN2Qt10DropActionEE(void);
-extern QStyleOptionViewItem _ZNK9QListView11viewOptionsEv(void);
-extern void _ZN9QListView10paintEventEP11QPaintEvent(void);
-extern int _ZNK9QListView16horizontalOffsetEv(void);
-extern int _ZNK9QListView14verticalOffsetEv(void);
-extern QModelIndex _ZN9QListView10moveCursorEN17QAbstractItemView12CursorActionE6QFlagsIN2Qt16KeyboardModifierEE(void);
-extern QRect _ZNK9QListView12rectForIndexERK11QModelIndex(void);
-extern void _ZN9QListView19setPositionForIndexERK6QPointRK11QModelIndex(void);
-extern void _ZN9QListView12setSelectionERK5QRect6QFlagsIN19QItemSelectionModel13SelectionFlagEE(void);
-extern QRegion _ZNK9QListView24visualRegionForSelectionERK14QItemSelection(void);
-extern QModelIndexList _ZNK9QListView15selectedIndexesEv(void);
-extern void _ZN9QListView16updateGeometriesEv(void);
-extern bool _ZNK9QListView13isIndexHiddenERK11QModelIndex(void);
 // *INDENT-ON*
 #endif

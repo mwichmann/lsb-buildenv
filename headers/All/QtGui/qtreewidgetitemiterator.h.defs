@@ -1,6 +1,6 @@
 
 class QTreeWidgetItemIterator;
-enum N23QTreeWidgetItemIterator12IteratorFlagE {
+enum _ZN23QTreeWidgetItemIterator12IteratorFlagE {
     All,
     Hidden,
     NotHidden,
@@ -23,4 +23,5 @@ enum N23QTreeWidgetItemIterator12IteratorFlagE {
     UserFlag
 };
 class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
-typedef N23QTreeWidgetItemIterator13IteratorFlagsE;
+typedef class QFlags < QTreeWidgetItemIterator::IteratorFlag >
+    _ZN23QTreeWidgetItemIterator13IteratorFlagsE;

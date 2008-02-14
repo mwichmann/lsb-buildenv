@@ -6,10 +6,15 @@
 #include <sys/time.h>
 #include <stddef.h>
 
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 
 #define PTHREAD_MUTEX_DEFAULT	0
@@ -132,8 +137,6 @@ extern "C" {
 
 
 /* Base Types*/
-
-
     typedef unsigned long int pthread_t;
 
     struct _pthread_fastlock {
@@ -143,14 +146,10 @@ extern "C" {
 
 
 /* Description structure*/
-
-
     typedef struct _pthread_descr_struct *_pthread_descr;
 
 
 /* Mutex Structures*/
-
-
     typedef struct {
 	int __m_reserved;	/* Reserved for future use */
 	int __m_count;		/* Depth of recursive locking */
@@ -165,8 +164,6 @@ extern "C" {
 
 
 /* Attribute Structures*/
-
-
     typedef struct {
 	int __detachstate;
 	int __schedpolicy;
@@ -181,8 +178,6 @@ extern "C" {
 
 
 /* Conition Variables*/
-
-
     typedef struct {
 	struct _pthread_fastlock __c_lock;
 	_pthread_descr __c_waiting;
@@ -198,8 +193,6 @@ extern "C" {
 
 
 /* Lock structures*/
-
-
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
     typedef struct {
@@ -220,8 +213,6 @@ extern "C" {
 
 
 /* Initializers*/
-
-
 
 /* Values for attributes.*/
 #define PTHREAD_CREATE_JOINABLE	0

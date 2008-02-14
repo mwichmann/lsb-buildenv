@@ -7,9 +7,6 @@ extern "C" {
 #endif
 
 
-
-
-
     enum {
 	FT_Err_Ok = 0x00,
 	FT_Err_Cannot_Open_Resource = 0x01,
@@ -96,7 +93,6 @@ extern "C" {
 	FT_Err_Bbx_Too_Big = 0xB7,
 	FT_Err_Max = 0xB8
     };
-
 
 #ifdef __cplusplus
 }

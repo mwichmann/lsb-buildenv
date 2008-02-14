@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlSaveCtxt xmlSaveCtxt;
 
     typedef xmlSaveCtxt *xmlSaveCtxtPtr;

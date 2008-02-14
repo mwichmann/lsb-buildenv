@@ -4,13 +4,71 @@
 class QMessageBox;
 // *INDENT-OFF*
 
-
-
-
 class QMessageBox : public QDialog
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QMessageBox(QWidget*);
+     QMessageBox(QString const&, QString const&, QMessageBox::Icon, int, int, int, QWidget*, QFlags<Qt::WindowType>);
+     ~QMessageBox();
+    QString text() const;
+    void setText(QString const&);
+    enum _ZN11QMessageBox4IconE icon() const;
+    void setIcon(QMessageBox::Icon);
+    QPixmap iconPixmap() const;
+    void setIconPixmap(QPixmap const&);
+    QString buttonText(int) const;
+    void setButtonText(int, QString const&);
+    enum _ZN2Qt10TextFormatE textFormat() const;
+    void setTextFormat(Qt::TextFormat);
+    int information(QWidget*, QString const&, QString const&, int, int, int);
+    int information(QWidget*, QString const&, QString const&, QString const&, QString const&, QString const&, int, int);
+    int question(QWidget*, QString const&, QString const&, int, int, int);
+    int question(QWidget*, QString const&, QString const&, QString const&, QString const&, QString const&, int, int);
+    int warning(QWidget*, QString const&, QString const&, int, int, int);
+    int warning(QWidget*, QString const&, QString const&, QString const&, QString const&, QString const&, int, int);
+    int critical(QWidget*, QString const&, QString const&, int, int, int);
+    int critical(QWidget*, QString const&, QString const&, QString const&, QString const&, QString const&, int, int);
+    void about(QWidget*, QString const&, QString const&);
+    void aboutQt(QWidget*, QString const&);
+    QSize sizeHint() const;
+     QMessageBox(QString const&, QString const&, QMessageBox::Icon, int, int, int, QWidget*, char const*, bool, QFlags<Qt::WindowType>);
+     QMessageBox(QWidget*, char const*);
+    QPixmap standardIcon(QMessageBox::Icon, Qt::GUIStyle);
+    QPixmap standardIcon(QMessageBox::Icon);
+     QMessageBox(QMessageBox::Icon, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QWidget*, QFlags<Qt::WindowType>);
+     information(QWidget*, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QMessageBox::StandardButton);
+    void removeButton(QAbstractButton*);
+    void setWindowTitle(QString const&);
+    void setDetailedText(QString const&);
+    void setEscapeButton(QAbstractButton*);
+    void setDefaultButton(QPushButton*);
+    void setWindowModality(Qt::WindowModality);
+    void setInformativeText(QString const&);
+    void setStandardButtons(QFlags<QMessageBox::StandardButton>);
+     warning(QWidget*, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QMessageBox::StandardButton);
+     critical(QWidget*, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QMessageBox::StandardButton);
+     question(QWidget*, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QMessageBox::StandardButton);
+    QPushButton * addButton(QMessageBox::StandardButton);
+    void addButton(QAbstractButton*, QMessageBox::ButtonRole);
+    QPushButton * addButton(QString const&, QMessageBox::ButtonRole);
+    QString detailedText() const;
+    QAbstractButton * escapeButton() const;
+    QAbstractButton * clickedButton() const;
+    QPushButton * defaultButton() const;
+     standardButton(QAbstractButton*) const;
+    QString informativeText() const;
+    QFlags<QMessageBox::StandardButton> standardButtons() const;
+    QAbstractButton * button(QMessageBox::StandardButton) const;
+protected:
+    void resizeEvent(QResizeEvent*);
+    void showEvent(QShowEvent*);
+    void closeEvent(QCloseEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void changeEvent(QEvent*);
 };
 
 enum Icon	
@@ -44,47 +102,5 @@ FlagMask = 768
 
 
 extern struct QMetaObject _ZN11QMessageBox16staticMetaObjectE ;
-extern struct QMetaObject _ZNK11QMessageBox10metaObjectEv(void);
-extern void _ZN11QMessageBox11qt_metacastEPKc(void);
-extern int _ZN11QMessageBox11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QMessageBox _ZN11QMessageBoxC2EP7QWidget(void);
-extern QMessageBox _ZN11QMessageBoxC1EP7QWidget(void);
-extern QMessageBox _ZN11QMessageBoxC2ERK7QStringS2_NS_4IconEiiiP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern QMessageBox _ZN11QMessageBoxC1ERK7QStringS2_NS_4IconEiiiP7QWidget6QFlagsIN2Qt10WindowTypeEE(void);
-extern  _ZN11QMessageBoxD2Ev(void);
-extern  _ZN11QMessageBoxD1Ev(void);
-extern  _ZN11QMessageBoxD0Ev(void);
-extern QString _ZNK11QMessageBox4textEv(void);
-extern void _ZN11QMessageBox7setTextERK7QString(void);
-extern enum N11QMessageBox4IconE _ZNK11QMessageBox4iconEv(void);
-extern void _ZN11QMessageBox7setIconENS_4IconE(void);
-extern  _ZNK11QMessageBox10iconPixmapEv(void);
-extern void _ZN11QMessageBox13setIconPixmapERK7QPixmap(void);
-extern QString _ZNK11QMessageBox10buttonTextEi(void);
-extern void _ZN11QMessageBox13setButtonTextEiRK7QString(void);
-extern enum N2Qt10TextFormatE _ZNK11QMessageBox10textFormatEv(void);
-extern void _ZN11QMessageBox13setTextFormatEN2Qt10TextFormatE(void);
-extern int _ZN11QMessageBox11informationEP7QWidgetRK7QStringS4_iii(void);
-extern int _ZN11QMessageBox11informationEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
-extern int _ZN11QMessageBox8questionEP7QWidgetRK7QStringS4_iii(void);
-extern int _ZN11QMessageBox8questionEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
-extern int _ZN11QMessageBox7warningEP7QWidgetRK7QStringS4_iii(void);
-extern int _ZN11QMessageBox7warningEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
-extern int _ZN11QMessageBox8criticalEP7QWidgetRK7QStringS4_iii(void);
-extern int _ZN11QMessageBox8criticalEP7QWidgetRK7QStringS4_S4_S4_S4_ii(void);
-extern void _ZN11QMessageBox5aboutEP7QWidgetRK7QStringS4_(void);
-extern void _ZN11QMessageBox7aboutQtEP7QWidgetRK7QString(void);
-extern QSize _ZNK11QMessageBox8sizeHintEv(void);
-extern QMessageBox _ZN11QMessageBoxC2ERK7QStringS2_NS_4IconEiiiP7QWidgetPKcb6QFlagsIN2Qt10WindowTypeEE(void);
-extern QMessageBox _ZN11QMessageBoxC1ERK7QStringS2_NS_4IconEiiiP7QWidgetPKcb6QFlagsIN2Qt10WindowTypeEE(void);
-extern QMessageBox _ZN11QMessageBoxC2EP7QWidgetPKc(void);
-extern QMessageBox _ZN11QMessageBoxC1EP7QWidgetPKc(void);
-extern  _ZN11QMessageBox12standardIconENS_4IconEN2Qt8GUIStyleE(void);
-extern  _ZN11QMessageBox12standardIconENS_4IconE(void);
-extern void _ZN11QMessageBox11resizeEventEP12QResizeEvent(void);
-extern void _ZN11QMessageBox9showEventEP10QShowEvent(void);
-extern void _ZN11QMessageBox10closeEventEP11QCloseEvent(void);
-extern void _ZN11QMessageBox13keyPressEventEP9QKeyEvent(void);
-extern void _ZN11QMessageBox11changeEventEP6QEvent(void);
 // *INDENT-ON*
 #endif

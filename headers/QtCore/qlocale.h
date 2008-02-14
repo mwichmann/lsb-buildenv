@@ -4,13 +4,49 @@
 class QLocale;
 // *INDENT-OFF*
 
-
-
-
 class QLocale
 {
 private:
 public:
+     QLocale();
+     QLocale(QString const&);
+     QLocale(QLocale::Language, QLocale::Country);
+     QLocale(QLocale const&);
+    QLocale & operator=(QLocale const&);
+    enum _ZN7QLocale8LanguageE language() const;
+    enum _ZN7QLocale7CountryE country() const;
+    QString name() const;
+    short int toShort(QString const&, bool*, int) const;
+    ushort toUShort(QString const&, bool*, int) const;
+    int toInt(QString const&, bool*, int) const;
+    uint toUInt(QString const&, bool*, int) const;
+    qlonglong toLongLong(QString const&, bool*, int) const;
+    qlonglong toULongLong(QString const&, bool*, int) const;
+    float toFloat(QString const&, bool*) const;
+    double toDouble(QString const&, bool*) const;
+    QString toString(long long) const;
+    QString toString(unsigned long long) const;
+    QString toString(double, char, int) const;
+    QString toString(QDate const&, QString const&) const;
+    QString toString(QDate const&, QLocale::FormatType) const;
+    QString toString(QTime const&, QString const&) const;
+    QString toString(QTime const&, QLocale::FormatType) const;
+    QString dateFormat(QLocale::FormatType) const;
+    QString timeFormat(QLocale::FormatType) const;
+    QChar decimalPoint() const;
+    QChar groupSeparator() const;
+    QChar percent() const;
+    QChar zeroDigit() const;
+    QChar negativeSign() const;
+    QChar exponential() const;
+    static QString languageToString(QLocale::Language);
+    static QString countryToString(QLocale::Country);
+    static void setDefault(QLocale const&);
+    static QLocale system();
+    void setNumberOptions(QFlags<QLocale::NumberOption>);
+    QFlags<QLocale::NumberOption> numberOptions() const;
+    QString dayName(int, QLocale::FormatType) const;
+    QString monthName(int, QLocale::FormatType) const;
 };
 
 enum Language	
@@ -420,46 +456,7 @@ ShortFormat = 1
 ;
 
 
-extern QLocale _ZN7QLocaleC2Ev(void);
-extern QLocale _ZN7QLocaleC1Ev(void);
-extern QLocale _ZN7QLocaleC2ERK7QString(void);
-extern QLocale _ZN7QLocaleC1ERK7QString(void);
-extern QLocale _ZN7QLocaleC2ENS_8LanguageENS_7CountryE(void);
-extern QLocale _ZN7QLocaleC1ENS_8LanguageENS_7CountryE(void);
-extern QLocale _ZN7QLocaleC2ERKS_(void);
-extern QLocale _ZN7QLocaleC1ERKS_(void);
-extern QLocale _ZN7QLocaleaSERKS_(void);
-extern enum N7QLocale8LanguageE _ZNK7QLocale8languageEv(void);
-extern enum N7QLocale7CountryE _ZNK7QLocale7countryEv(void);
-extern QString _ZNK7QLocale4nameEv(void);
-extern short _ZNK7QLocale7toShortERK7QStringPbi(void);
-extern ushort _ZNK7QLocale8toUShortERK7QStringPbi(void);
-extern int _ZNK7QLocale5toIntERK7QStringPbi(void);
-extern uint _ZNK7QLocale6toUIntERK7QStringPbi(void);
-extern qlonglong _ZNK7QLocale10toLongLongERK7QStringPbi(void);
-extern qlonglong _ZNK7QLocale11toULongLongERK7QStringPbi(void);
-extern float _ZNK7QLocale7toFloatERK7QStringPb(void);
-extern double _ZNK7QLocale8toDoubleERK7QStringPb(void);
-extern QString _ZNK7QLocale8toStringEx(void);
-extern QString _ZNK7QLocale8toStringEy(void);
-extern QString _ZNK7QLocale8toStringEdci(void);
-extern QString _ZNK7QLocale8toStringERK5QDateRK7QString(void);
-extern QString _ZNK7QLocale8toStringERK5QDateNS_10FormatTypeE(void);
-extern QString _ZNK7QLocale8toStringERK5QTimeRK7QString(void);
-extern QString _ZNK7QLocale8toStringERK5QTimeNS_10FormatTypeE(void);
-extern QString _ZNK7QLocale10dateFormatENS_10FormatTypeE(void);
-extern QString _ZNK7QLocale10timeFormatENS_10FormatTypeE(void);
-extern QChar _ZNK7QLocale12decimalPointEv(void);
-extern QChar _ZNK7QLocale14groupSeparatorEv(void);
-extern QChar _ZNK7QLocale7percentEv(void);
-extern QChar _ZNK7QLocale9zeroDigitEv(void);
-extern QChar _ZNK7QLocale12negativeSignEv(void);
-extern QChar _ZNK7QLocale11exponentialEv(void);
-extern QString _ZN7QLocale16languageToStringENS_8LanguageE(void);
-extern QString _ZN7QLocale15countryToStringENS_7CountryE(void);
-extern void _ZN7QLocale10setDefaultERKS_(void);
-extern QLocale _ZN7QLocale6systemEv(void);
-extern QDataStream _ZlsR11QDataStreamRK7QLocale(void);
-extern QDataStream _ZrsR11QDataStreamR7QLocale(void);
+extern QDataStream _ZlsR11QDataStreamRK7QLocale(QDataStream &, const QLocale &);
+extern QDataStream _ZrsR11QDataStreamR7QLocale(QDataStream &, QLocale &);
 // *INDENT-ON*
 #endif

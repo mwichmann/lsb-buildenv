@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #define TCIFLUSH	0
 #define TCOOFF	0
 #define TCSANOW	0
@@ -434,8 +433,6 @@ extern "C" {
 
 
 
-
-
     typedef unsigned int speed_t;
 
     typedef unsigned char cc_t;
@@ -736,8 +733,6 @@ extern "C" {
 
 
 /* Output flags - software output processing*/
-
-
 
 /* Control flags - hardware control of terminal*/
 #define CS5	0000000

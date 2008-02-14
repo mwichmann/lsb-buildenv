@@ -13,7 +13,6 @@ extern "C" {
 #endif
 
 
-
 #define snd_seq_ev_is_prior(ev)	 \
 	(((ev)->flags & SND_SEQ_PRIORITY_MASK) == SND_SEQ_PRIORITY_HIGH)
 #define snd_seq_ev_length_type(ev)	 \

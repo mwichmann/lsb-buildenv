@@ -7,13 +7,11 @@ extern "C" {
 #endif
 
 
-
 #define XMLCALL
 #define XMLCDECL
 #define XMLPUBFUN
 #define XMLPUBVAR	extern
 #define LIBXML_DLL_IMPORT	XMLPUBVAR
-
 
 
 #ifdef __cplusplus

@@ -1,10 +1,10 @@
 
 class QUdpSocket;
-enum N10QUdpSocket8BindFlagE {
+enum _ZN10QUdpSocket8BindFlagE {
     DefaultForPlatform,
     ShareAddress,
     DontShareAddress,
     ReuseAddressHint
 };
 class QFlags < QUdpSocket::BindFlag >;
-typedef N10QUdpSocket8BindModeE;
+typedef class QFlags < QUdpSocket::BindFlag > _ZN10QUdpSocket8BindModeE;

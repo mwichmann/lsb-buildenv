@@ -10,14 +10,11 @@ extern "C" {
 #endif
 
 
-
 #define auth_destroy(auth)	((*((auth)->ah_ops->ah_destroy))(auth))
 
 
 
 /* Status returned from authentication check*/
-
-
     enum auth_stat {
 	AUTH_OK = 0,
 	AUTH_BADCRED = 1,	/* bogus credentials (seal broken) */
@@ -30,8 +27,6 @@ extern "C" {
     };
 
 
-
-
     union des_block {
 	struct {
 	    u_int32_t high;
@@ -42,8 +37,6 @@ extern "C" {
 
 
 /* Authentication info.  Opaque to client.opaque_auth*/
-
-
     struct opaque_auth {
 	enum_t oa_flavor;	/* flavor of auth */
 	caddr_t oa_base;	/* address of more auth stuff */
@@ -52,8 +45,6 @@ extern "C" {
 
 
 /* Auth handle, interface to client side authenticators.*/
-
-
     typedef struct AUTH AUTH;
 
 
@@ -64,8 +55,6 @@ extern "C" {
 	struct auth_ops *ah_ops;
 	caddr_t ah_private;
     };
-
-
 
 
     struct auth_ops {

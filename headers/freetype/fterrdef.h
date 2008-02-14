@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define FT_ERRORDEF_(e,v,s)	 \
 	FT_ERRORDEF( FT_ERR_CAT( FT_ERR_PREFIX, e ), v + FT_ERR_BASE, s )
 #define FT_NOERRORDEF_(e,v,s)	 \
@@ -19,7 +18,6 @@ extern "C" {
 #define FT_ERROR_END_LIST	FT_ERR_CAT( FT_ERR_PREFIX, Max ) };
 #define FT_ERR_CAT(x,y)	FT_ERR_XCAT( x, y )
 #define FT_ERR_XCAT(x,y)	x ## y
-
 
 
 #ifdef __cplusplus

@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-
 #define EOF	(-1)
 #define P_tmpdir	"/tmp"
 #if defined __i386__
@@ -60,8 +59,6 @@ extern "C" {
 
 
 /* The opaque type of streams.*/
-
-
     typedef struct _IO_FILE FILE;
 
 
@@ -74,11 +71,7 @@ extern "C" {
 
 /* The possibilities for the third argument to `fseek'.*/
 
-
-
 /* End of file character.*/
-
-
 
     extern char *const _sys_errlist[128];
     extern void clearerr(FILE *);

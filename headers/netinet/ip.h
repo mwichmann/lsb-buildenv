@@ -8,9 +8,6 @@ extern "C" {
 
 
 
-
-
-
 /* Definitions for IP type of service*/
 #define IPTOS_TOS(tos)	((tos) & IPTOS_TOS_MASK)
 #define IPTOS_LOWCOST	0x02
@@ -25,7 +22,6 @@ extern "C" {
 /* Definitions for IP precedence*/
 #define IPTOS_PREC(tos)	((tos) & IPTOS_PREC_MASK)
 #define IPTOS_PREC_MASK	0xe0
-
 
 
 #ifdef __cplusplus

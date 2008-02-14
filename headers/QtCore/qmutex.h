@@ -4,13 +4,15 @@
 class QMutexLocker;
 // *INDENT-OFF*
 
-
-
-
 class QMutex
 {
 private:
 public:
+     QMutex(QMutex::RecursionMode);
+     ~QMutex();
+    void lock();
+    bool tryLock();
+    void unlock();
 };
 
 enum RecursionMode	
@@ -26,13 +28,5 @@ private:
 public:
 };
 
-
-extern QMutex _ZN6QMutexC2ENS_13RecursionModeE(void);
-extern QMutex _ZN6QMutexC1ENS_13RecursionModeE(void);
-extern  _ZN6QMutexD2Ev(void);
-extern  _ZN6QMutexD1Ev(void);
-extern void _ZN6QMutex4lockEv(void);
-extern bool _ZN6QMutex7tryLockEv(void);
-extern void _ZN6QMutex6unlockEv(void);
 // *INDENT-ON*
 #endif

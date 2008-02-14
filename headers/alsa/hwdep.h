@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_HWDEP_OPEN_NONBLOCK	(O_NONBLOCK)
 #define SND_HWDEP_OPEN_READ	(O_RDONLY)
 #define SND_HWDEP_OPEN_DUPLEX	(O_RDWR)

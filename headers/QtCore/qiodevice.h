@@ -4,10 +4,11 @@
 class QIODevice;
 // *INDENT-OFF*
 
-
-
-
-typedef OpenMode	
+typedef class QFlags<QIODevice::OpenModeFlag>
+{
+private:
+public:
+}OpenMode	
 ;
 
 typedef qint64	Offset	
@@ -20,6 +21,51 @@ class QIODevice : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QIODevice();
+     QIODevice(QObject*);
+     ~QIODevice();
+    QFlags<QIODevice::OpenModeFlag> openMode() const;
+    void setTextModeEnabled(bool);
+    bool isTextModeEnabled() const;
+    bool isOpen() const;
+    bool isReadable() const;
+    bool isWritable() const;
+    bool isSequential() const;
+    bool open(QFlags<QIODevice::OpenModeFlag>);
+    void close();
+    qint64 pos() const;
+    qint64 size() const;
+    bool seek(long long);
+    bool atEnd() const;
+    bool reset();
+    qint64 bytesAvailable() const;
+    qint64 bytesToWrite() const;
+    qint64 read(char*, long long);
+    QByteArray read(long long);
+    QByteArray readAll();
+    qint64 readLine(char*, long long);
+    QByteArray readLine(long long);
+    bool canReadLine() const;
+    qint64 write(char const*, long long);
+    qint64 peek(char*, long long);
+    QByteArray peek(long long);
+    bool waitForReadyRead(int);
+    bool waitForBytesWritten(int);
+    void ungetChar(char);
+    QString errorString() const;
+     QIODevice(QIODevicePrivate&, QObject*);
+    int status() const;
+    void resetStatus();
+protected:
+    void readyRead();
+    void bytesWritten(long long);
+    void aboutToClose();
+    qint64 readLineData(char*, long long);
+    void setOpenMode(QFlags<QIODevice::OpenModeFlag>);
+    void setErrorString(QString const&);
 };
 
 enum OpenModeFlag	
@@ -43,55 +89,6 @@ public:
 
 
 extern struct QMetaObject _ZN9QIODevice16staticMetaObjectE ;
-extern struct QMetaObject _ZNK9QIODevice10metaObjectEv(void);
-extern void _ZN9QIODevice11qt_metacastEPKc(void);
-extern int _ZN9QIODevice11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QIODevice _ZN9QIODeviceC2Ev(void);
-extern QIODevice _ZN9QIODeviceC1Ev(void);
-extern QIODevice _ZN9QIODeviceC2EP7QObject(void);
-extern QIODevice _ZN9QIODeviceC1EP7QObject(void);
-extern  _ZN9QIODeviceD2Ev(void);
-extern  _ZN9QIODeviceD1Ev(void);
-extern  _ZN9QIODeviceD0Ev(void);
-extern N9QIODevice8OpenModeE _ZNK9QIODevice8openModeEv(void);
-extern void _ZN9QIODevice18setTextModeEnabledEb(void);
-extern bool _ZNK9QIODevice17isTextModeEnabledEv(void);
-extern bool _ZNK9QIODevice6isOpenEv(void);
-extern bool _ZNK9QIODevice10isReadableEv(void);
-extern bool _ZNK9QIODevice10isWritableEv(void);
-extern bool _ZNK9QIODevice12isSequentialEv(void);
-extern bool _ZN9QIODevice4openE6QFlagsINS_12OpenModeFlagEE(void);
-extern void _ZN9QIODevice5closeEv(void);
-extern qint64 _ZNK9QIODevice3posEv(void);
-extern qint64 _ZNK9QIODevice4sizeEv(void);
-extern bool _ZN9QIODevice4seekEx(void);
-extern bool _ZNK9QIODevice5atEndEv(void);
-extern bool _ZN9QIODevice5resetEv(void);
-extern qint64 _ZNK9QIODevice14bytesAvailableEv(void);
-extern qint64 _ZNK9QIODevice12bytesToWriteEv(void);
-extern qint64 _ZN9QIODevice4readEPcx(void);
-extern QByteArray _ZN9QIODevice4readEx(void);
-extern QByteArray _ZN9QIODevice7readAllEv(void);
-extern qint64 _ZN9QIODevice8readLineEPcx(void);
-extern QByteArray _ZN9QIODevice8readLineEx(void);
-extern bool _ZNK9QIODevice11canReadLineEv(void);
-extern qint64 _ZN9QIODevice5writeEPKcx(void);
-extern qint64 _ZN9QIODevice4peekEPcx(void);
-extern QByteArray _ZN9QIODevice4peekEx(void);
-extern bool _ZN9QIODevice16waitForReadyReadEi(void);
-extern bool _ZN9QIODevice19waitForBytesWrittenEi(void);
-extern void _ZN9QIODevice9ungetCharEc(void);
-extern QString _ZNK9QIODevice11errorStringEv(void);
-extern void _ZN9QIODevice9readyReadEv(void);
-extern void _ZN9QIODevice12bytesWrittenEx(void);
-extern void _ZN9QIODevice12aboutToCloseEv(void);
-extern QIODevice _ZN9QIODeviceC2ER16QIODevicePrivateP7QObject(void);
-extern QIODevice _ZN9QIODeviceC1ER16QIODevicePrivateP7QObject(void);
-extern qint64 _ZN9QIODevice12readLineDataEPcx(void);
-extern void _ZN9QIODevice11setOpenModeE6QFlagsINS_12OpenModeFlagEE(void);
-extern void _ZN9QIODevice14setErrorStringERK7QString(void);
-extern N9QIODevice6StatusE _ZNK9QIODevice6statusEv(void);
-extern void _ZN9QIODevice11resetStatusEv(void);
-extern  _Zls6QDebug6QFlagsIN9QIODevice12OpenModeFlagEE(void);
+extern  _Zls6QDebug6QFlagsIN9QIODevice12OpenModeFlagEE(_Z6QDebug, _Z356QFlagsIN9QIODevice12OpenModeFlagEE);
 // *INDENT-ON*
 #endif

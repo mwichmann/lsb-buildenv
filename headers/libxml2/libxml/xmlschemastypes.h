@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlSchemaType xmlSchemaType;
 
     typedef xmlSchemaType *xmlSchemaTypePtr;

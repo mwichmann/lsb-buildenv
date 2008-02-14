@@ -11,9 +11,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlRegexp xmlRegexp;
 
     typedef xmlRegexp *xmlRegexpPtr;

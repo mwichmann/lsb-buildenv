@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #ifndef FALSE
 #define FALSE	0
 #endif
@@ -63,8 +62,6 @@ extern "C" {
 
 
 /* These types are derived from the ones above*/
-
-
 #if defined __i386__
 /* IA32 */
     typedef int32_t ssize_t;
@@ -104,8 +101,6 @@ extern "C" {
 
 
 /* Stuff that really in bits/types.h*/
-
-
     typedef unsigned long long int ino64_t;
 
     typedef long long int loff_t;
@@ -130,8 +125,6 @@ extern "C" {
 
 
 /* Stuff really in linux/types.h*/
-
-
     typedef unsigned long int ino_t;
 
     typedef unsigned int gid_t;
@@ -174,8 +167,6 @@ extern "C" {
 
 
 /* Time related types*/
-
-
     typedef long int clock_t;
 
     typedef long int time_t;
@@ -209,7 +200,6 @@ extern "C" {
 #if defined __x86_64__
 #define __BYTE_ORDER	__LITTLE_ENDIAN
 #endif
-
 
 
 #ifdef __cplusplus

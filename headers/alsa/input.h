@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _snd_input snd_input_t;
 
 

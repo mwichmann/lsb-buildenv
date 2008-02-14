@@ -7,9 +7,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlModule xmlModule;
 
     typedef xmlModule *xmlModulePtr;

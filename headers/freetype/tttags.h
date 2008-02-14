@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define TTAG_avar	FT_MAKE_TAG( 'a', 'v', 'a', 'r' )
 #define TTAG_BASE	FT_MAKE_TAG( 'B', 'A', 'S', 'E' )
 #define TTAG_bdat	FT_MAKE_TAG( 'b', 'd', 'a', 't' )
@@ -52,7 +51,6 @@ extern "C" {
 #define TTAG_VDMX	FT_MAKE_TAG( 'V', 'D', 'M', 'X' )
 #define TTAG_vhea	FT_MAKE_TAG( 'v', 'h', 'e', 'a' )
 #define TTAG_vmtx	FT_MAKE_TAG( 'v', 'm', 't', 'x' )
-
 
 
 #ifdef __cplusplus

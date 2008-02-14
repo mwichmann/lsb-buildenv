@@ -11,19 +11,12 @@ extern "C" {
 
 
 
-
-
-
 /* Basic Integral Types*/
-
-
     typedef lldiv_t imaxdiv_t;
 
 
 #define __PDP_ENDIAN	3412
 #define PDP_ENDIAN	__PDP_ENDIAN
-
-
 
 
 

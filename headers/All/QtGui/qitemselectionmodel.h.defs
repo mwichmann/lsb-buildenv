@@ -1,7 +1,7 @@
 
 class QItemSelectionRange;
 class QItemSelectionModel;
-enum N19QItemSelectionModel13SelectionFlagE {
+enum _ZN19QItemSelectionModel13SelectionFlagE {
     NoUpdate,
     Clear,
     Select,
@@ -15,5 +15,6 @@ enum N19QItemSelectionModel13SelectionFlagE {
     Columns
 };
 class QFlags < QItemSelectionModel::SelectionFlag >;
-typedef N19QItemSelectionModel14SelectionFlagsE;
+typedef class QFlags < QItemSelectionModel::SelectionFlag >
+    _ZN19QItemSelectionModel14SelectionFlagsE;
 class QItemSelection;

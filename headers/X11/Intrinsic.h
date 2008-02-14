@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _WidgetRec *Widget;
 
     typedef Widget *WidgetList;

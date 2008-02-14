@@ -4,9 +4,6 @@
 class QItemEditorCreatorBase;
 // *INDENT-OFF*
 
-
-
-
 class QItemEditorCreatorBase
 {
 private:
@@ -17,16 +14,13 @@ class QItemEditorFactory
 {
 private:
 public:
+     ~QItemEditorFactory();
+    QWidget * createEditor(QVariant::Type, QWidget*) const;
+    QByteArray valuePropertyName(QVariant::Type) const;
+    void registerEditor(QVariant::Type, QItemEditorCreatorBase*);
+     defaultFactory();
+    void setDefaultFactory(QItemEditorFactory*);
 };
 
-
-extern  _ZN18QItemEditorFactoryD2Ev(void);
-extern  _ZN18QItemEditorFactoryD1Ev(void);
-extern  _ZN18QItemEditorFactoryD0Ev(void);
-extern QWidget _ZNK18QItemEditorFactory12createEditorEN8QVariant4TypeEP7QWidget(void);
-extern QByteArray _ZNK18QItemEditorFactory17valuePropertyNameEN8QVariant4TypeE(void);
-extern void _ZN18QItemEditorFactory14registerEditorEN8QVariant4TypeEP22QItemEditorCreatorBase(void);
-extern QItemEditorFactory _ZN18QItemEditorFactory14defaultFactoryEv(void);
-extern void _ZN18QItemEditorFactory17setDefaultFactoryEPS_(void);
 // *INDENT-ON*
 #endif

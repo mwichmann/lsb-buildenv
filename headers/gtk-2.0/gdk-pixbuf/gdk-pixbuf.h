@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #define GDK_TYPE_PIXBUF_ANIMATION_ITER	 \
 	(gdk_pixbuf_animation_iter_get_type ())
 #define GDK_PIXBUF_LOADER_CLASS(klass)	 \

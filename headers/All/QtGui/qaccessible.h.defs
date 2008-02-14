@@ -1,6 +1,6 @@
 
 class QAccessible;
-enum N11QAccessible5EventE {
+enum _ZN11QAccessible5EventE {
     SoundPlayed,
     Alert,
     ForegroundChanged,
@@ -37,7 +37,7 @@ enum N11QAccessible5EventE {
     DefaultActionChanged,
     AcceleratorChanged
 };
-enum N11QAccessible9StateFlagE {
+enum _ZN11QAccessible9StateFlagE {
     Modal,
     Normal,
     Unavailable,
@@ -70,8 +70,8 @@ enum N11QAccessible9StateFlagE {
     HasPopup
 };
 class QFlags < QAccessible::StateFlag >;
-typedef N11QAccessible5StateE;
-enum N11QAccessible4RoleE {
+typedef class QFlags < QAccessible::StateFlag > _ZN11QAccessible5StateE;
+enum _ZN11QAccessible4RoleE {
     NoRole,
     TitleBar,
     MenuBar,
@@ -137,7 +137,7 @@ enum N11QAccessible4RoleE {
     LayeredPane,
     UserRole
 };
-enum N11QAccessible4TextE {
+enum _ZN11QAccessible4TextE {
     Name,
     Description,
     Value,
@@ -145,7 +145,7 @@ enum N11QAccessible4TextE {
     Accelerator,
     UserText
 };
-enum N11QAccessible12RelationFlagE {
+enum _ZN11QAccessible12RelationFlagE {
     Unrelated,
     Self,
     Ancestor,
@@ -168,8 +168,9 @@ enum N11QAccessible12RelationFlagE {
     LogicalMask
 };
 class QFlags < QAccessible::RelationFlag >;
-typedef N11QAccessible8RelationE;
-enum N11QAccessible6ActionE {
+typedef class QFlags < QAccessible::RelationFlag >
+    _ZN11QAccessible8RelationE;
+enum _ZN11QAccessible6ActionE {
     AddToSelection,
     LastStandardAction,
     ExtendSelection,
@@ -185,7 +186,7 @@ enum N11QAccessible6ActionE {
     FirstStandardAction,
     DefaultAction
 };
-typedef void N11QAccessible13UpdateHandlerE;
-typedef void N11QAccessible17RootObjectHandlerE;
+typedef void _ZN11QAccessible13UpdateHandlerE;
+typedef void _ZN11QAccessible17RootObjectHandlerE;
 class QAccessibleInterface;
 class QAccessibleEvent;

@@ -1,6 +1,6 @@
 
 class QImageIOHandler;
-enum N15QImageIOHandler11ImageOptionE {
+enum _ZN15QImageIOHandler11ImageOptionE {
     Size,
     ClipRect,
     Description,
@@ -18,10 +18,11 @@ enum N15QImageIOHandler11ImageOptionE {
 };
 struct _Z31QImageIOHandlerFactoryInterface;
 class QImageIOPlugin;
-enum N14QImageIOPlugin10CapabilityE {
+enum _ZN14QImageIOPlugin10CapabilityE {
     CanRead,
     CanWrite,
     CanReadIncremental
 };
 class QFlags < QImageIOPlugin::Capability >;
-typedef N14QImageIOPlugin12CapabilitiesE;
+typedef class QFlags < QImageIOPlugin::Capability >
+    _ZN14QImageIOPlugin12CapabilitiesE;

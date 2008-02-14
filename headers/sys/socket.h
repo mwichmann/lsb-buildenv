@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-
 #define CMSG_LEN(len)	(CMSG_ALIGN(sizeof(struct cmsghdr))+(len))
 #define SCM_RIGHTS	0x01
 #define SOL_SOCKET	1
@@ -50,8 +49,6 @@ extern "C" {
 	void *iov_base;
 	size_t iov_len;
     };
-
-
 
 
     typedef unsigned short sa_family_t;
@@ -94,8 +91,6 @@ extern "C" {
 
 #endif
 
-
-
     struct sockaddr {
 	sa_family_t sa_family;
 	char sa_data[14];
@@ -106,8 +101,6 @@ extern "C" {
 	__ss_aligntype __ss_align;
 	char __ss_padding[(128 - (2 * sizeof(__ss_aligntype)))];
     };
-
-
 
 
     struct msghdr {

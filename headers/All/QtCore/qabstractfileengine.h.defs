@@ -1,6 +1,6 @@
 
 class QAbstractFileEngine;
-enum N19QAbstractFileEngine8FileFlagE {
+enum _ZN19QAbstractFileEngine8FileFlagE {
     ExeOtherPerm,
     WriteOtherPerm,
     ReadOtherPerm,
@@ -26,8 +26,9 @@ enum N19QAbstractFileEngine8FileFlagE {
     FileInfoAll
 };
 class QFlags < QAbstractFileEngine::FileFlag >;
-typedef N19QAbstractFileEngine9FileFlagsE;
-enum N19QAbstractFileEngine8FileNameE {
+typedef class QFlags < QAbstractFileEngine::FileFlag >
+    _ZN19QAbstractFileEngine9FileFlagsE;
+enum _ZN19QAbstractFileEngine8FileNameE {
     DefaultName,
     BaseName,
     PathName,
@@ -37,16 +38,16 @@ enum N19QAbstractFileEngine8FileNameE {
     CanonicalName,
     CanonicalPathName
 };
-enum N19QAbstractFileEngine9FileOwnerE {
+enum _ZN19QAbstractFileEngine9FileOwnerE {
     OwnerUser,
     OwnerGroup
 };
-enum N19QAbstractFileEngine8FileTimeE {
+enum _ZN19QAbstractFileEngine8FileTimeE {
     CreationTime,
     ModificationTime,
     AccessTime
 };
-enum N19QAbstractFileEngine9ExtensionE;
+enum _ZN19QAbstractFileEngine9ExtensionE;
 class QAbstractFileEngine::ExtensionOption;
 class QAbstractFileEngine::ExtensionReturn;
 class QAbstractFileEngineHandler;

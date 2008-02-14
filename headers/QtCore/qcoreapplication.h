@@ -4,9 +4,6 @@
 class QCoreApplication;
 // *INDENT-OFF*
 
-
-
-
 typedef bool	EventFilter	
 ;
 
@@ -17,6 +14,58 @@ class QCoreApplication : public QObject
 {
 private:
 public:
+    struct QMetaObject * metaObject() const;
+    void * qt_metacast(char const*);
+    int qt_metacall(QMetaObject::Call, int, void**);
+     QCoreApplication(int&, char**);
+     ~QCoreApplication();
+    static int argc();
+    static char * * argv();
+    static QStringList arguments();
+    static void setOrganizationDomain(QString const&);
+    static QString organizationDomain();
+    static void setOrganizationName(QString const&);
+    static QString organizationName();
+    static void setApplicationName(QString const&);
+    static QString applicationName();
+    static int exec();
+    static void processEvents(QFlags<QEventLoop::ProcessEventsFlag>);
+    static void processEvents(QFlags<QEventLoop::ProcessEventsFlag>, int);
+    static void exit(int);
+    static void postEvent(QObject*, QEvent*);
+    static void sendPostedEvents(QObject*, int);
+    static void removePostedEvents(QObject*);
+    static bool hasPendingEvents();
+    bool notify(QObject*, QEvent*);
+    static bool startingUp();
+    static bool closingDown();
+    static QString applicationDirPath();
+    static QString applicationFilePath();
+    static void setLibraryPaths(QStringList const&);
+    static QStringList libraryPaths();
+    static void addLibraryPath(QString const&);
+    static void removeLibraryPath(QString const&);
+    static void installTranslator(QTranslator*);
+    static void removeTranslator(QTranslator*);
+    static QString translate(char const*, char const*, char const*, QCoreApplication::Encoding);
+    static void flush();
+    static int enter_loop();
+    static void exit_loop();
+    static int loopLevel();
+    static void watchUnixSignal(int, bool);
+    bool(*)(void	* ,long int	* )
+ setEventFilter(bool (*)(void*, long*));
+    bool filterEvent(void*, long*);
+    static void quit();
+     QCoreApplication(QCoreApplicationPrivate&);
+    static void setAttribute(Qt::ApplicationAttribute, bool);
+    static bool testAttribute(Qt::ApplicationAttribute);
+    static QString translate(char const*, char const*, char const*, QCoreApplication::Encoding, int);
+protected:
+    void aboutToQuit();
+    void unixSignal(int);
+    bool event(QEvent*);
+    bool compressEvent(QEvent*, QObject*, QPostEventList*);
 };
 
 enum Encoding	
@@ -28,59 +77,10 @@ UnicodeUTF8 = 1
 
 
 extern struct QMetaObject _ZN16QCoreApplication16staticMetaObjectE ;
-extern struct QMetaObject _ZNK16QCoreApplication10metaObjectEv(void);
-extern void _ZN16QCoreApplication11qt_metacastEPKc(void);
-extern int _ZN16QCoreApplication11qt_metacallEN11QMetaObject4CallEiPPv(void);
-extern QCoreApplication _ZN16QCoreApplicationC2ERiPPc(void);
-extern QCoreApplication _ZN16QCoreApplicationC1ERiPPc(void);
-extern  _ZN16QCoreApplicationD2Ev(void);
-extern  _ZN16QCoreApplicationD1Ev(void);
-extern  _ZN16QCoreApplicationD0Ev(void);
-extern int _ZN16QCoreApplication4argcEv(void);
-extern char _ZN16QCoreApplication4argvEv(void);
-extern QStringList _ZN16QCoreApplication9argumentsEv(void);
-extern void _ZN16QCoreApplication21setOrganizationDomainERK7QString(void);
-extern QString _ZN16QCoreApplication18organizationDomainEv(void);
-extern void _ZN16QCoreApplication19setOrganizationNameERK7QString(void);
-extern QString _ZN16QCoreApplication16organizationNameEv(void);
-extern void _ZN16QCoreApplication18setApplicationNameERK7QString(void);
-extern QString _ZN16QCoreApplication15applicationNameEv(void);
-extern int _ZN16QCoreApplication4execEv(void);
-extern void _ZN16QCoreApplication13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE(void);
-extern void _ZN16QCoreApplication13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEEi(void);
-extern void _ZN16QCoreApplication4exitEi(void);
-extern void _ZN16QCoreApplication9postEventEP7QObjectP6QEvent(void);
-extern void _ZN16QCoreApplication16sendPostedEventsEP7QObjecti(void);
-extern void _ZN16QCoreApplication18removePostedEventsEP7QObject(void);
-extern bool _ZN16QCoreApplication16hasPendingEventsEv(void);
-extern bool _ZN16QCoreApplication6notifyEP7QObjectP6QEvent(void);
-extern bool _ZN16QCoreApplication10startingUpEv(void);
-extern bool _ZN16QCoreApplication11closingDownEv(void);
-extern QString _ZN16QCoreApplication18applicationDirPathEv(void);
-extern QString _ZN16QCoreApplication19applicationFilePathEv(void);
-extern void _ZN16QCoreApplication15setLibraryPathsERK11QStringList(void);
-extern QStringList _ZN16QCoreApplication12libraryPathsEv(void);
-extern void _ZN16QCoreApplication14addLibraryPathERK7QString(void);
-extern void _ZN16QCoreApplication17removeLibraryPathERK7QString(void);
-extern void _ZN16QCoreApplication17installTranslatorEP11QTranslator(void);
-extern void _ZN16QCoreApplication16removeTranslatorEP11QTranslator(void);
-extern QString _ZN16QCoreApplication9translateEPKcS1_S1_NS_8EncodingE(void);
-extern void _ZN16QCoreApplication5flushEv(void);
-extern int _ZN16QCoreApplication10enter_loopEv(void);
-extern void _ZN16QCoreApplication9exit_loopEv(void);
-extern int _ZN16QCoreApplication9loopLevelEv(void);
-extern void _ZN16QCoreApplication15watchUnixSignalEib(void);
-extern N16QCoreApplication11EventFilterE _ZN16QCoreApplication14setEventFilterEPFbPvPlE(void);
-extern bool _ZN16QCoreApplication11filterEventEPvPl(void);
-extern void _ZN16QCoreApplication4quitEv(void);
-extern void _ZN16QCoreApplication11aboutToQuitEv(void);
-extern void _ZN16QCoreApplication10unixSignalEi(void);
-extern bool _ZN16QCoreApplication5eventEP6QEvent(void);
-extern bool _ZN16QCoreApplication13compressEventEP6QEventP7QObjectP14QPostEventList(void);
-extern QCoreApplication _ZN16QCoreApplicationC2ER23QCoreApplicationPrivate(void);
-extern QCoreApplication _ZN16QCoreApplicationC1ER23QCoreApplicationPrivate(void);
-extern void _Z15qAddPostRoutinePFvvE(void);
-extern void _Z18qRemovePostRoutinePFvvE(void);
+extern void _Z15qAddPostRoutinePFvvE(void(*)(void)
+);
+extern void _Z18qRemovePostRoutinePFvvE(void(*)(void)
+);
 extern QString _Z8qAppNamev(void);
 extern QCoreApplication * _ZN16QCoreApplication4selfE ;
 // *INDENT-ON*

@@ -4,16 +4,24 @@
 class QTextOption;
 // *INDENT-OFF*
 
-
-
-
-typedef Flags	
+typedef class QFlags<QTextOption::Flag>
+{
+private:
+public:
+}Flags	
 ;
 
 class QTextOption
 {
 private:
 public:
+     QTextOption();
+     QTextOption(QFlags<Qt::AlignmentFlag>);
+     ~QTextOption();
+     QTextOption(QTextOption const&);
+     operator=(QTextOption const&);
+    void setTabArray(QList<double>);
+    QList<double> tabArray() const;
 };
 
 enum WrapMode	
@@ -38,17 +46,5 @@ private:
 public:
 };
 
-
-extern QTextOption _ZN11QTextOptionC2Ev(void);
-extern QTextOption _ZN11QTextOptionC1Ev(void);
-extern QTextOption _ZN11QTextOptionC2E6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern QTextOption _ZN11QTextOptionC1E6QFlagsIN2Qt13AlignmentFlagEE(void);
-extern  _ZN11QTextOptionD2Ev(void);
-extern  _ZN11QTextOptionD1Ev(void);
-extern QTextOption _ZN11QTextOptionC2ERKS_(void);
-extern QTextOption _ZN11QTextOptionC1ERKS_(void);
-extern QTextOption _ZN11QTextOptionaSERKS_(void);
-extern void _ZN11QTextOption11setTabArrayE5QListIdE(void);
-extern  _ZNK11QTextOption8tabArrayEv(void);
 // *INDENT-ON*
 #endif

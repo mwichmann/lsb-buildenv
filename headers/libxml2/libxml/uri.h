@@ -9,9 +9,6 @@ extern "C" {
 #endif
 
 
-
-
-
     typedef struct _xmlURI xmlURI;
 
     typedef xmlURI *xmlURIPtr;

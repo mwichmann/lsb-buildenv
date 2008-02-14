@@ -13,7 +13,6 @@ extern "C" {
 #endif
 
 
-
 #define GDK_WINDOWING_X11
 #define GDK_PIXMAP_OBJECT(object)	 \
 	((GdkPixmapObject *) GDK_PIXMAP (object))

@@ -7,7 +7,6 @@ extern "C" {
 #endif
 
 
-
 #define G_VALUE_LCOPY(value,var_args,flags,__error)	 \
 	G_STMT_START { const GValue *_value = (value); guint _flags = \
 	(flags); GType _value_type = G_VALUE_TYPE (_value); GTypeValueTable \
@@ -54,7 +53,6 @@ extern "C" {
 	G_VALUE_COLLECT_DOUBLE = 'd',
 	G_VALUE_COLLECT_POINTER = 'p'
     };
-
 
 #ifdef __cplusplus
 }

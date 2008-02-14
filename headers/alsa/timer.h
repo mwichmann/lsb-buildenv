@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-
 #define SND_TIMER_OPEN_NONBLOCK	(1<<0)
 #define SND_TIMER_OPEN_TREAD	(1<<1)
 #define SND_TIMER_GLOBAL_SYSTEM	0

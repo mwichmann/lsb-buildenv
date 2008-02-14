@@ -4,9 +4,6 @@
 class QByteRef;
 // *INDENT-OFF*
 
-
-
-
 typedef char	iterator	
 ;
 
@@ -29,6 +26,78 @@ class QByteArray
 {
 private:
 public:
+     QByteArray(char const*);
+     QByteArray(char const*, int);
+     QByteArray(int, char);
+    QByteArray & operator=(QByteArray const&);
+    QByteArray & operator=(char const*);
+    void resize(int);
+    QByteArray & fill(char, int);
+    void clear();
+    int indexOf(char, int) const;
+    int indexOf(QByteArray const&, int) const;
+    int lastIndexOf(char, int) const;
+    int lastIndexOf(QByteArray const&, int) const;
+    int count(char) const;
+    int count(char const*) const;
+    int count(QByteArray const&) const;
+    QByteArray left(int) const;
+    QByteArray right(int) const;
+    QByteArray mid(int, int) const;
+    bool startsWith(QByteArray const&) const;
+    bool startsWith(char) const;
+    bool startsWith(char const*) const;
+    bool endsWith(QByteArray const&) const;
+    bool endsWith(char) const;
+    bool endsWith(char const*) const;
+    void truncate(int);
+    void chop(int);
+    QByteArray toLower() const;
+    QByteArray toUpper() const;
+    QByteArray trimmed() const;
+    QByteArray simplified() const;
+    QByteArray leftJustified(int, char, bool) const;
+    QByteArray rightJustified(int, char, bool) const;
+    QByteArray & prepend(char);
+    QByteArray & prepend(char const*);
+    QByteArray & prepend(QByteArray const&);
+    QByteArray & append(char);
+    QByteArray & append(char const*);
+    QByteArray & append(QByteArray const&);
+    QByteArray & insert(int, char);
+    QByteArray & insert(int, char const*);
+    QByteArray & insert(int, QByteArray const&);
+    QByteArray & remove(int, int);
+    QByteArray & replace(int, int, QByteArray const&);
+    QByteArray & replace(char, QByteArray const&);
+    QByteArray & replace(QByteArray const&, QByteArray const&);
+    QByteArray & replace(char, char);
+    QList<QByteArray> split(char) const;
+    short int toShort(bool*, int) const;
+    ushort toUShort(bool*, int) const;
+    int toInt(bool*, int) const;
+    uint toUInt(bool*, int) const;
+    long int toLong(bool*, int) const;
+    ulong toULong(bool*, int) const;
+    qlonglong toLongLong(bool*, int) const;
+    qulonglong toULongLong(bool*, int) const;
+    float toFloat(bool*) const;
+    double toDouble(bool*) const;
+    QByteArray toBase64() const;
+    QByteArray & setNum(long long, int);
+    QByteArray & setNum(unsigned long long, int);
+    QByteArray & setNum(double, char, int);
+    static QByteArray number(int, int);
+    static QByteArray number(unsigned int, int);
+    static QByteArray number(long long, int);
+    static QByteArray number(unsigned long long, int);
+    static QByteArray number(double, char, int);
+    static QByteArray fromRawData(char const*, int);
+    static QByteArray fromBase64(QByteArray const&);
+    bool isNull() const;
+private:
+    void realloc(int);
+    void expand(int);
 };
 
 struct Data	;
@@ -40,147 +109,73 @@ public:
 };
 
 
-extern char _Z7qstrdupPKc(void);
-extern char _Z7qstrcpyPcPKc(void);
-extern char _Z8qstrncpyPcPKcj(void);
-extern int _Z7qstrcmpPKcS0_(void);
-extern int _Z8qstricmpPKcS0_(void);
-extern int _Z9qstrnicmpPKcS0_j(void);
+extern char _Z7qstrdupPKc(const char *);
+extern char _Z7qstrcpyPcPKc(char *, const char *);
+extern char _Z8qstrncpyPcPKcj(char *, const char *, unsigned int);
+extern int _Z7qstrcmpPKcS0_(const char *, const char *);
+extern int _Z8qstricmpPKcS0_(const char *, const char *);
+extern int _Z9qstrnicmpPKcS0_j(const char *, const char *, unsigned int);
 #if defined __i386__
 /* IA32 */
-extern int _Z10qvsnprintfPcjPKcS_(void);
+extern int _Z10qvsnprintfPcjPKcS_(char *, unsigned int, const char *, char *);
 #endif
 #if defined __i386__
 /* IA32 */
-extern int _Z9qsnprintfPcjPKcz(void);
+extern int _Z9qsnprintfPcjPKcz(char *, unsigned int, const char *, ...);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern int _Z9qsnprintfPcjPKcz(void);
+extern int _Z9qsnprintfPcjPKcz(char *, unsigned int, const char *, ...);
 #endif
-extern quint16 _Z9qChecksumPKcj(void);
-extern QByteArray _ZN10QByteArrayC2EPKc(void);
-extern QByteArray _ZN10QByteArrayC1EPKc(void);
-extern QByteArray _ZN10QByteArrayC2EPKci(void);
-extern QByteArray _ZN10QByteArrayC1EPKci(void);
-extern QByteArray _ZN10QByteArrayC2Eic(void);
-extern QByteArray _ZN10QByteArrayC1Eic(void);
-extern QByteArray _ZN10QByteArrayaSERKS_(void);
-extern QByteArray _ZN10QByteArrayaSEPKc(void);
-extern void _ZN10QByteArray6resizeEi(void);
-extern QByteArray _ZN10QByteArray4fillEci(void);
-extern void _ZN10QByteArray5clearEv(void);
-extern int _ZNK10QByteArray7indexOfEci(void);
-extern int _ZNK10QByteArray7indexOfERKS_i(void);
-extern int _ZNK10QByteArray11lastIndexOfEci(void);
-extern int _ZNK10QByteArray11lastIndexOfERKS_i(void);
-extern int _ZNK10QByteArray5countEc(void);
-extern int _ZNK10QByteArray5countEPKc(void);
-extern int _ZNK10QByteArray5countERKS_(void);
-extern QByteArray _ZNK10QByteArray4leftEi(void);
-extern QByteArray _ZNK10QByteArray5rightEi(void);
-extern QByteArray _ZNK10QByteArray3midEii(void);
-extern bool _ZNK10QByteArray10startsWithERKS_(void);
-extern bool _ZNK10QByteArray10startsWithEc(void);
-extern bool _ZNK10QByteArray10startsWithEPKc(void);
-extern bool _ZNK10QByteArray8endsWithERKS_(void);
-extern bool _ZNK10QByteArray8endsWithEc(void);
-extern bool _ZNK10QByteArray8endsWithEPKc(void);
-extern void _ZN10QByteArray8truncateEi(void);
-extern void _ZN10QByteArray4chopEi(void);
-extern QByteArray _ZNK10QByteArray7toLowerEv(void);
-extern QByteArray _ZNK10QByteArray7toUpperEv(void);
-extern QByteArray _ZNK10QByteArray7trimmedEv(void);
-extern QByteArray _ZNK10QByteArray10simplifiedEv(void);
-extern QByteArray _ZNK10QByteArray13leftJustifiedEicb(void);
-extern QByteArray _ZNK10QByteArray14rightJustifiedEicb(void);
-extern QByteArray _ZN10QByteArray7prependEc(void);
-extern QByteArray _ZN10QByteArray7prependEPKc(void);
-extern QByteArray _ZN10QByteArray7prependERKS_(void);
-extern QByteArray _ZN10QByteArray6appendEc(void);
-extern QByteArray _ZN10QByteArray6appendEPKc(void);
-extern QByteArray _ZN10QByteArray6appendERKS_(void);
-extern QByteArray _ZN10QByteArray6insertEic(void);
-extern QByteArray _ZN10QByteArray6insertEiPKc(void);
-extern QByteArray _ZN10QByteArray6insertEiRKS_(void);
-extern QByteArray _ZN10QByteArray6removeEii(void);
-extern QByteArray _ZN10QByteArray7replaceEiiRKS_(void);
-extern QByteArray _ZN10QByteArray7replaceEcRKS_(void);
-extern QByteArray _ZN10QByteArray7replaceERKS_S1_(void);
-extern QByteArray _ZN10QByteArray7replaceEcc(void);
-extern QList<QByteArray> _ZNK10QByteArray5splitEc(void);
-extern short _ZNK10QByteArray7toShortEPbi(void);
-extern ushort _ZNK10QByteArray8toUShortEPbi(void);
-extern int _ZNK10QByteArray5toIntEPbi(void);
-extern uint _ZNK10QByteArray6toUIntEPbi(void);
-extern long int _ZNK10QByteArray6toLongEPbi(void);
-extern ulong _ZNK10QByteArray7toULongEPbi(void);
-extern qlonglong _ZNK10QByteArray10toLongLongEPbi(void);
-extern qulonglong _ZNK10QByteArray11toULongLongEPbi(void);
-extern float _ZNK10QByteArray7toFloatEPb(void);
-extern double _ZNK10QByteArray8toDoubleEPb(void);
-extern QByteArray _ZNK10QByteArray8toBase64Ev(void);
-extern QByteArray _ZN10QByteArray6setNumExi(void);
-extern QByteArray _ZN10QByteArray6setNumEyi(void);
-extern QByteArray _ZN10QByteArray6setNumEdci(void);
-extern QByteArray _ZN10QByteArray6numberEii(void);
-extern QByteArray _ZN10QByteArray6numberEji(void);
-extern QByteArray _ZN10QByteArray6numberExi(void);
-extern QByteArray _ZN10QByteArray6numberEyi(void);
-extern QByteArray _ZN10QByteArray6numberEdci(void);
-extern QByteArray _ZN10QByteArray11fromRawDataEPKci(void);
-extern QByteArray _ZN10QByteArray10fromBase64ERKS_(void);
-extern bool _ZNK10QByteArray6isNullEv(void);
-extern  _ZlsR11QDataStreamRK10QByteArray(void);
-extern  _ZrsR11QDataStreamR10QByteArray(void);
-extern QByteArray _Z9qCompressPKhii(void);
-extern QByteArray _Z11qUncompressPKhi(void);
-extern void _ZN10QByteArray7reallocEi(void);
-extern void _ZN10QByteArray6expandEi(void);
+extern quint16 _Z9qChecksumPKcj(const char *, unsigned int);
+extern  _ZlsR11QDataStreamRK10QByteArray(QDataStream &, QByteArray & &);
+extern  _ZrsR11QDataStreamR10QByteArray(QDataStream &, QByteArray &);
+extern QByteArray _Z9qCompressPKhii(const unsigned char *, int, int);
+extern QByteArray _Z11qUncompressPKhi(const unsigned char *, int);
 extern struct Data _ZN10QByteArray11shared_nullE ;
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern void _Z10qvsnprintfPcjPKcP13__va_list_tag(void);
+extern void _Z10qvsnprintfPcjPKcP13__va_list_tag(char *, unsigned int, const char *, struct __va_list_tag *);
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern void _Z10qvsnprintfPcmPKcP13__va_list_tag(void);
+extern void _Z10qvsnprintfPcmPKcP13__va_list_tag(char *, unsigned long int, const char *, struct __va_list_tag *);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern void _Z10qvsnprintfPcmPKcP13__va_list_tag(void);
+extern void _Z10qvsnprintfPcmPKcP13__va_list_tag(char *, unsigned long int, const char *, struct __va_list_tag *);
 #endif
 #if defined __s390x__
 /* S390X */
-extern void _Z10qvsnprintfPcmPKcP13__va_list_tag(void);
+extern void _Z10qvsnprintfPcmPKcP13__va_list_tag(char *, unsigned long int, const char *, struct __va_list_tag *);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern void _Z10qvsnprintfPcmPKcPv(void);
+extern void _Z10qvsnprintfPcmPKcPv(char *, unsigned long int, const char *, void *);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern void _Z10qvsnprintfPcmPKcS_(void);
+extern void _Z10qvsnprintfPcmPKcS_(char *, unsigned long int, const char *, char *);
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern int _Z9qsnprintfPcmPKcz(void);
+extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern int _Z9qsnprintfPcmPKcz(void);
+extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern int _Z9qsnprintfPcmPKcz(void);
+extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern int _Z9qsnprintfPcmPKcz(void);
+extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 #if defined __s390x__
 /* S390X */
-extern int _Z9qsnprintfPcmPKcz(void);
+extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 // *INDENT-ON*
 #endif

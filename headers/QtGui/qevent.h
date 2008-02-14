@@ -4,37 +4,50 @@
 class QShowEvent;
 // *INDENT-OFF*
 
-
-
-
 class QInputEvent : public QEvent
 {
 private:
 public:
+     QInputEvent(QEvent::Type, QFlags<Qt::KeyboardModifier>);
+     ~QInputEvent();
 };
 
 class QMouseEvent : public QInputEvent
 {
 private:
 public:
+     QMouseEvent(QEvent::Type, QPoint const&, Qt::MouseButton, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>);
+     QMouseEvent(QEvent::Type, QPoint const&, QPoint const&, Qt::MouseButton, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>);
+     ~QMouseEvent();
+     QMouseEvent(QEvent::Type, QPoint const&, int, int);
+     QMouseEvent(QEvent::Type, QPoint const&, QPoint const&, int, int);
 };
 
 class QHoverEvent : public QEvent
 {
 private:
 public:
+     QHoverEvent(QEvent::Type, QPoint const&, QPoint const&);
+     ~QHoverEvent();
 };
 
 class QWheelEvent : public QInputEvent
 {
 private:
 public:
+     QWheelEvent(QPoint const&, int, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>, Qt::Orientation);
+     QWheelEvent(QPoint const&, QPoint const&, int, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>, Qt::Orientation);
+     ~QWheelEvent();
+     QWheelEvent(QPoint const&, int, int, Qt::Orientation);
+     QWheelEvent(QPoint const&, QPoint const&, int, int, Qt::Orientation);
 };
 
 class QTabletEvent : public QInputEvent
 {
 private:
 public:
+     QTabletEvent(QEvent::Type, QPoint const&, QPoint const&, QPointF const&, int, int, double, int, int, double, double, int, QFlags<Qt::KeyboardModifier>, long long);
+     ~QTabletEvent();
 };
 
 enum TabletDevice	
@@ -62,12 +75,24 @@ class QKeyEvent : public QInputEvent
 {
 private:
 public:
+     QKeyEvent(QEvent::Type, int, QFlags<Qt::KeyboardModifier>, QString const&, bool, unsigned short);
+     ~QKeyEvent();
+     modifiers() const;
+    QKeyEvent * createExtendedKeyEvent(QEvent::Type, int, QFlags<Qt::KeyboardModifier>, unsigned int, unsigned int, unsigned int, QString const&, bool, unsigned short);
+    quint32 nativeScanCode() const;
+    quint32 nativeModifiers() const;
+    quint32 nativeVirtualKey() const;
+    bool matches(QKeySequence::StandardKey) const;
 };
 
 class QFocusEvent : public QEvent
 {
 private:
 public:
+     QFocusEvent(QEvent::Type, Qt::FocusReason);
+     ~QFocusEvent();
+    enum _ZN2Qt11FocusReasonE reason();
+    enum _ZN2Qt11FocusReasonE reason() const;
 };
 
 enum Reason	
@@ -87,48 +112,70 @@ class QPaintEvent : public QEvent
 {
 private:
 public:
+     QPaintEvent(QRegion const&);
+     QPaintEvent(QRect const&);
+     ~QPaintEvent();
+     QPaintEvent(QRegion const&, QRect const&);
 };
 
 class QMoveEvent : public QEvent
 {
 private:
 public:
+     QMoveEvent(QPoint const&, QPoint const&);
+     ~QMoveEvent();
 };
 
 class QResizeEvent : public QEvent
 {
 private:
 public:
+     QResizeEvent(QSize const&, QSize const&);
+     ~QResizeEvent();
 };
 
 class QCloseEvent : public QEvent
 {
 private:
 public:
+     QCloseEvent();
+     ~QCloseEvent();
 };
 
 class QIconDragEvent : public QEvent
 {
 private:
 public:
+     QIconDragEvent();
+     ~QIconDragEvent();
 };
 
 class QShowEvent : public QEvent
 {
 private:
 public:
+     QShowEvent();
+     ~QShowEvent();
 };
 
 class QHideEvent : public QEvent
 {
 private:
 public:
+     QHideEvent();
+     ~QHideEvent();
 };
 
 class QContextMenuEvent : public QInputEvent
 {
 private:
 public:
+     QContextMenuEvent(QContextMenuEvent::Reason, QPoint const&, QPoint const&);
+     QContextMenuEvent(QContextMenuEvent::Reason, QPoint const&);
+     ~QContextMenuEvent();
+     QContextMenuEvent(QContextMenuEvent::Reason, QPoint const&, QPoint const&, int);
+     QContextMenuEvent(QContextMenuEvent::Reason, QPoint const&, int);
+     state() const;
 };
 
 enum Reason	
@@ -143,6 +190,11 @@ class QInputMethodEvent : public QEvent
 {
 private:
 public:
+     ~QInputMethodEvent();
+     QInputMethodEvent();
+     QInputMethodEvent(QString const&, QList<QInputMethodEvent::Attribute> const&);
+    void setCommitString(QString const&, int, int);
+     QInputMethodEvent(QInputMethodEvent const&);
 };
 
 enum AttributeType	
@@ -160,10 +212,18 @@ private:
 public:
 };
 
-class QDropEvent :  QEvent,  QMimeSource
+class QDropEvent : public QEvent, public QMimeSource
 {
 private:
 public:
+     QDropEvent(QPoint const&, QFlags<Qt::DropAction>, QMimeData const*, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>, QEvent::Type);
+     ~QDropEvent();
+    void setDropAction(Qt::DropAction);
+    QWidget * source() const;
+    const char * format(int) const;
+    QByteArray encodedData(char const*) const;
+    bool provides(char const*) const;
+    enum _ZN10QDropEvent6ActionE action() const;
 };
 
 enum Action	
@@ -180,279 +240,117 @@ class QDragMoveEvent : public QDropEvent
 {
 private:
 public:
+     QDragMoveEvent(QPoint const&, QFlags<Qt::DropAction>, QMimeData const*, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>, QEvent::Type);
+     ~QDragMoveEvent();
 };
 
 class QDragEnterEvent : public QDragMoveEvent
 {
 private:
 public:
+     QDragEnterEvent(QPoint const&, QFlags<Qt::DropAction>, QMimeData const*, QFlags<Qt::MouseButton>, QFlags<Qt::KeyboardModifier>);
+     ~QDragEnterEvent();
 };
 
 class QDragResponseEvent : public QEvent
 {
 private:
 public:
+     QDragResponseEvent(bool);
+     ~QDragResponseEvent();
 };
 
 class QDragLeaveEvent : public QEvent
 {
 private:
 public:
+     QDragLeaveEvent();
+     ~QDragLeaveEvent();
 };
 
 class QHelpEvent : public QEvent
 {
 private:
 public:
+     QHelpEvent(QEvent::Type, QPoint const&, QPoint const&);
+     ~QHelpEvent();
 };
 
 class QStatusTipEvent : public QEvent
 {
 private:
 public:
+     QStatusTipEvent(QString const&);
+     ~QStatusTipEvent();
 };
 
 class QWhatsThisClickedEvent : public QEvent
 {
 private:
 public:
+     QWhatsThisClickedEvent(QString const&);
+     ~QWhatsThisClickedEvent();
 };
 
 class QActionEvent : public QEvent
 {
 private:
 public:
+     QActionEvent(int, QAction*, QAction*);
+     ~QActionEvent();
 };
 
 class QFileOpenEvent : public QEvent
 {
 private:
 public:
+     QFileOpenEvent(QString const&);
+     ~QFileOpenEvent();
 };
 
 class QToolBarChangeEvent : public QEvent
 {
 private:
 public:
+     QToolBarChangeEvent(bool);
+     ~QToolBarChangeEvent();
 };
 
 class QShortcutEvent : public QEvent
 {
 private:
 public:
+     QShortcutEvent(QKeySequence const&, int, bool);
+     ~QShortcutEvent();
 };
 
 class QClipboardEvent : public QEvent
 {
 private:
 public:
+     QClipboardEvent(QEventPrivate*);
+     ~QClipboardEvent();
 };
 
 class QWindowStateChangeEvent : public QEvent
 {
 private:
 public:
+     QWindowStateChangeEvent(QFlags<Qt::WindowState>);
+     QWindowStateChangeEvent(QFlags<Qt::WindowState>, bool);
+     ~QWindowStateChangeEvent();
+    bool isOverride() const;
 };
 
 class QMenubarUpdatedEvent : public QEvent
 {
 private:
 public:
+     ~QMenubarUpdatedEvent();
+     QMenubarUpdatedEvent(QMenuBar*);
 };
 
 
-extern QInputEvent _ZN11QInputEventC2EN6QEvent4TypeE6QFlagsIN2Qt16KeyboardModifierEE(void);
-extern QInputEvent _ZN11QInputEventC1EN6QEvent4TypeE6QFlagsIN2Qt16KeyboardModifierEE(void);
-extern  _ZN11QInputEventD2Ev(void);
-extern  _ZN11QInputEventD1Ev(void);
-extern  _ZN11QInputEventD0Ev(void);
-extern QMouseEvent _ZN11QMouseEventC2EN6QEvent4TypeERK6QPointN2Qt11MouseButtonE6QFlagsIS6_ES7_INS5_16KeyboardModifierEE(void);
-extern QMouseEvent _ZN11QMouseEventC1EN6QEvent4TypeERK6QPointN2Qt11MouseButtonE6QFlagsIS6_ES7_INS5_16KeyboardModifierEE(void);
-extern QMouseEvent _ZN11QMouseEventC2EN6QEvent4TypeERK6QPointS4_N2Qt11MouseButtonE6QFlagsIS6_ES7_INS5_16KeyboardModifierEE(void);
-extern QMouseEvent _ZN11QMouseEventC1EN6QEvent4TypeERK6QPointS4_N2Qt11MouseButtonE6QFlagsIS6_ES7_INS5_16KeyboardModifierEE(void);
-extern  _ZN11QMouseEventD2Ev(void);
-extern  _ZN11QMouseEventD1Ev(void);
-extern  _ZN11QMouseEventD0Ev(void);
-extern QMouseEvent _ZN11QMouseEventC2EN6QEvent4TypeERK6QPointii(void);
-extern QMouseEvent _ZN11QMouseEventC1EN6QEvent4TypeERK6QPointii(void);
-extern QMouseEvent _ZN11QMouseEventC2EN6QEvent4TypeERK6QPointS4_ii(void);
-extern QMouseEvent _ZN11QMouseEventC1EN6QEvent4TypeERK6QPointS4_ii(void);
-extern QHoverEvent _ZN11QHoverEventC2EN6QEvent4TypeERK6QPointS4_(void);
-extern QHoverEvent _ZN11QHoverEventC1EN6QEvent4TypeERK6QPointS4_(void);
-extern  _ZN11QHoverEventD2Ev(void);
-extern  _ZN11QHoverEventD1Ev(void);
-extern  _ZN11QHoverEventD0Ev(void);
-extern QWheelEvent _ZN11QWheelEventC2ERK6QPointi6QFlagsIN2Qt11MouseButtonEES3_INS4_16KeyboardModifierEENS4_11OrientationE(void);
-extern QWheelEvent _ZN11QWheelEventC1ERK6QPointi6QFlagsIN2Qt11MouseButtonEES3_INS4_16KeyboardModifierEENS4_11OrientationE(void);
-extern QWheelEvent _ZN11QWheelEventC2ERK6QPointS2_i6QFlagsIN2Qt11MouseButtonEES3_INS4_16KeyboardModifierEENS4_11OrientationE(void);
-extern QWheelEvent _ZN11QWheelEventC1ERK6QPointS2_i6QFlagsIN2Qt11MouseButtonEES3_INS4_16KeyboardModifierEENS4_11OrientationE(void);
-extern  _ZN11QWheelEventD2Ev(void);
-extern  _ZN11QWheelEventD1Ev(void);
-extern  _ZN11QWheelEventD0Ev(void);
-extern QWheelEvent _ZN11QWheelEventC2ERK6QPointiiN2Qt11OrientationE(void);
-extern QWheelEvent _ZN11QWheelEventC1ERK6QPointiiN2Qt11OrientationE(void);
-extern QWheelEvent _ZN11QWheelEventC2ERK6QPointS2_iiN2Qt11OrientationE(void);
-extern QWheelEvent _ZN11QWheelEventC1ERK6QPointS2_iiN2Qt11OrientationE(void);
-extern QTabletEvent _ZN12QTabletEventC2EN6QEvent4TypeERK6QPointS4_RK7QPointFiidiiddi6QFlagsIN2Qt16KeyboardModifierEEx(void);
-extern QTabletEvent _ZN12QTabletEventC1EN6QEvent4TypeERK6QPointS4_RK7QPointFiidiiddi6QFlagsIN2Qt16KeyboardModifierEEx(void);
-extern  _ZN12QTabletEventD2Ev(void);
-extern  _ZN12QTabletEventD1Ev(void);
-extern  _ZN12QTabletEventD0Ev(void);
-extern QKeyEvent _ZN9QKeyEventC2EN6QEvent4TypeEi6QFlagsIN2Qt16KeyboardModifierEERK7QStringbt(void);
-extern QKeyEvent _ZN9QKeyEventC1EN6QEvent4TypeEi6QFlagsIN2Qt16KeyboardModifierEERK7QStringbt(void);
-extern  _ZN9QKeyEventD2Ev(void);
-extern  _ZN9QKeyEventD1Ev(void);
-extern  _ZN9QKeyEventD0Ev(void);
-extern N2Qt17KeyboardModifiersE _ZNK9QKeyEvent9modifiersEv(void);
-extern QFocusEvent _ZN11QFocusEventC2EN6QEvent4TypeEN2Qt11FocusReasonE(void);
-extern QFocusEvent _ZN11QFocusEventC1EN6QEvent4TypeEN2Qt11FocusReasonE(void);
-extern  _ZN11QFocusEventD2Ev(void);
-extern  _ZN11QFocusEventD1Ev(void);
-extern  _ZN11QFocusEventD0Ev(void);
-extern enum N2Qt11FocusReasonE _ZN11QFocusEvent6reasonEv(void);
-extern QPaintEvent _ZN11QPaintEventC2ERK7QRegion(void);
-extern QPaintEvent _ZN11QPaintEventC1ERK7QRegion(void);
-extern QPaintEvent _ZN11QPaintEventC2ERK5QRect(void);
-extern QPaintEvent _ZN11QPaintEventC1ERK5QRect(void);
-extern  _ZN11QPaintEventD2Ev(void);
-extern  _ZN11QPaintEventD1Ev(void);
-extern  _ZN11QPaintEventD0Ev(void);
-extern QPaintEvent _ZN11QPaintEventC2ERK7QRegionRK5QRect(void);
-extern QPaintEvent _ZN11QPaintEventC1ERK7QRegionRK5QRect(void);
-extern QMoveEvent _ZN10QMoveEventC2ERK6QPointS2_(void);
-extern QMoveEvent _ZN10QMoveEventC1ERK6QPointS2_(void);
-extern  _ZN10QMoveEventD2Ev(void);
-extern  _ZN10QMoveEventD1Ev(void);
-extern  _ZN10QMoveEventD0Ev(void);
-extern QResizeEvent _ZN12QResizeEventC2ERK5QSizeS2_(void);
-extern QResizeEvent _ZN12QResizeEventC1ERK5QSizeS2_(void);
-extern  _ZN12QResizeEventD2Ev(void);
-extern  _ZN12QResizeEventD1Ev(void);
-extern  _ZN12QResizeEventD0Ev(void);
-extern QCloseEvent _ZN11QCloseEventC2Ev(void);
-extern QCloseEvent _ZN11QCloseEventC1Ev(void);
-extern  _ZN11QCloseEventD2Ev(void);
-extern  _ZN11QCloseEventD1Ev(void);
-extern  _ZN11QCloseEventD0Ev(void);
-extern QIconDragEvent _ZN14QIconDragEventC2Ev(void);
-extern QIconDragEvent _ZN14QIconDragEventC1Ev(void);
-extern  _ZN14QIconDragEventD2Ev(void);
-extern  _ZN14QIconDragEventD1Ev(void);
-extern  _ZN14QIconDragEventD0Ev(void);
-extern QShowEvent _ZN10QShowEventC2Ev(void);
-extern QShowEvent _ZN10QShowEventC1Ev(void);
-extern  _ZN10QShowEventD2Ev(void);
-extern  _ZN10QShowEventD1Ev(void);
-extern  _ZN10QShowEventD0Ev(void);
-extern QHideEvent _ZN10QHideEventC2Ev(void);
-extern QHideEvent _ZN10QHideEventC1Ev(void);
-extern  _ZN10QHideEventD2Ev(void);
-extern  _ZN10QHideEventD1Ev(void);
-extern  _ZN10QHideEventD0Ev(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC2ENS_6ReasonERK6QPointS3_(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC1ENS_6ReasonERK6QPointS3_(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC2ENS_6ReasonERK6QPoint(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC1ENS_6ReasonERK6QPoint(void);
-extern  _ZN17QContextMenuEventD2Ev(void);
-extern  _ZN17QContextMenuEventD1Ev(void);
-extern  _ZN17QContextMenuEventD0Ev(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC2ENS_6ReasonERK6QPointS3_i(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC1ENS_6ReasonERK6QPointS3_i(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC2ENS_6ReasonERK6QPointi(void);
-extern QContextMenuEvent _ZN17QContextMenuEventC1ENS_6ReasonERK6QPointi(void);
-extern N2Qt11ButtonStateE _ZNK17QContextMenuEvent5stateEv(void);
-extern  _ZN17QInputMethodEventD0Ev(void);
-extern  _ZN17QInputMethodEventD1Ev(void);
-extern QInputMethodEvent _ZN17QInputMethodEventC2Ev(void);
-extern QInputMethodEvent _ZN17QInputMethodEventC1Ev(void);
-extern QInputMethodEvent _ZN17QInputMethodEventC2ERK7QStringRK5QListINS_9AttributeEE(void);
-extern QInputMethodEvent _ZN17QInputMethodEventC1ERK7QStringRK5QListINS_9AttributeEE(void);
-extern void _ZN17QInputMethodEvent15setCommitStringERK7QStringii(void);
-extern QInputMethodEvent _ZN17QInputMethodEventC2ERKS_(void);
-extern QInputMethodEvent _ZN17QInputMethodEventC1ERKS_(void);
-extern QDropEvent _ZN10QDropEventC2ERK6QPoint6QFlagsIN2Qt10DropActionEEPK9QMimeDataS3_INS4_11MouseButtonEES3_INS4_16KeyboardModifierEEN6QEvent4TypeE(void);
-extern QDropEvent _ZN10QDropEventC1ERK6QPoint6QFlagsIN2Qt10DropActionEEPK9QMimeDataS3_INS4_11MouseButtonEES3_INS4_16KeyboardModifierEEN6QEvent4TypeE(void);
-extern  _ZN10QDropEventD2Ev(void);
-extern  _ZN10QDropEventD1Ev(void);
-extern  _ZN10QDropEventD0Ev(void);
-extern void _ZN10QDropEvent13setDropActionEN2Qt10DropActionE(void);
-extern  _ZNK10QDropEvent6sourceEv(void);
-extern char _ZNK10QDropEvent6formatEi(void);
-extern QByteArray _ZNK10QDropEvent11encodedDataEPKc(void);
-extern bool _ZNK10QDropEvent8providesEPKc(void);
-extern enum N10QDropEvent6ActionE _ZNK10QDropEvent6actionEv(void);
-extern QDragMoveEvent _ZN14QDragMoveEventC2ERK6QPoint6QFlagsIN2Qt10DropActionEEPK9QMimeDataS3_INS4_11MouseButtonEES3_INS4_16KeyboardModifierEEN6QEvent4TypeE(void);
-extern QDragMoveEvent _ZN14QDragMoveEventC1ERK6QPoint6QFlagsIN2Qt10DropActionEEPK9QMimeDataS3_INS4_11MouseButtonEES3_INS4_16KeyboardModifierEEN6QEvent4TypeE(void);
-extern  _ZN14QDragMoveEventD2Ev(void);
-extern  _ZN14QDragMoveEventD1Ev(void);
-extern  _ZN14QDragMoveEventD0Ev(void);
-extern QDragEnterEvent _ZN15QDragEnterEventC2ERK6QPoint6QFlagsIN2Qt10DropActionEEPK9QMimeDataS3_INS4_11MouseButtonEES3_INS4_16KeyboardModifierEE(void);
-extern QDragEnterEvent _ZN15QDragEnterEventC1ERK6QPoint6QFlagsIN2Qt10DropActionEEPK9QMimeDataS3_INS4_11MouseButtonEES3_INS4_16KeyboardModifierEE(void);
-extern  _ZN15QDragEnterEventD2Ev(void);
-extern  _ZN15QDragEnterEventD1Ev(void);
-extern  _ZN15QDragEnterEventD0Ev(void);
-extern QDragResponseEvent _ZN18QDragResponseEventC2Eb(void);
-extern QDragResponseEvent _ZN18QDragResponseEventC1Eb(void);
-extern  _ZN18QDragResponseEventD2Ev(void);
-extern  _ZN18QDragResponseEventD1Ev(void);
-extern  _ZN18QDragResponseEventD0Ev(void);
-extern QDragLeaveEvent _ZN15QDragLeaveEventC2Ev(void);
-extern QDragLeaveEvent _ZN15QDragLeaveEventC1Ev(void);
-extern  _ZN15QDragLeaveEventD2Ev(void);
-extern  _ZN15QDragLeaveEventD1Ev(void);
-extern  _ZN15QDragLeaveEventD0Ev(void);
-extern QHelpEvent _ZN10QHelpEventC2EN6QEvent4TypeERK6QPointS4_(void);
-extern QHelpEvent _ZN10QHelpEventC1EN6QEvent4TypeERK6QPointS4_(void);
-extern  _ZN10QHelpEventD2Ev(void);
-extern  _ZN10QHelpEventD1Ev(void);
-extern  _ZN10QHelpEventD0Ev(void);
-extern QStatusTipEvent _ZN15QStatusTipEventC2ERK7QString(void);
-extern QStatusTipEvent _ZN15QStatusTipEventC1ERK7QString(void);
-extern  _ZN15QStatusTipEventD2Ev(void);
-extern  _ZN15QStatusTipEventD1Ev(void);
-extern  _ZN15QStatusTipEventD0Ev(void);
-extern QWhatsThisClickedEvent _ZN22QWhatsThisClickedEventC2ERK7QString(void);
-extern QWhatsThisClickedEvent _ZN22QWhatsThisClickedEventC1ERK7QString(void);
-extern  _ZN22QWhatsThisClickedEventD2Ev(void);
-extern  _ZN22QWhatsThisClickedEventD1Ev(void);
-extern  _ZN22QWhatsThisClickedEventD0Ev(void);
-extern QActionEvent _ZN12QActionEventC2EiP7QActionS1_(void);
-extern QActionEvent _ZN12QActionEventC1EiP7QActionS1_(void);
-extern  _ZN12QActionEventD2Ev(void);
-extern  _ZN12QActionEventD1Ev(void);
-extern  _ZN12QActionEventD0Ev(void);
-extern QFileOpenEvent _ZN14QFileOpenEventC2ERK7QString(void);
-extern QFileOpenEvent _ZN14QFileOpenEventC1ERK7QString(void);
-extern  _ZN14QFileOpenEventD2Ev(void);
-extern  _ZN14QFileOpenEventD1Ev(void);
-extern  _ZN14QFileOpenEventD0Ev(void);
-extern QToolBarChangeEvent _ZN19QToolBarChangeEventC2Eb(void);
-extern QToolBarChangeEvent _ZN19QToolBarChangeEventC1Eb(void);
-extern  _ZN19QToolBarChangeEventD2Ev(void);
-extern  _ZN19QToolBarChangeEventD1Ev(void);
-extern  _ZN19QToolBarChangeEventD0Ev(void);
-extern QShortcutEvent _ZN14QShortcutEventC2ERK12QKeySequenceib(void);
-extern QShortcutEvent _ZN14QShortcutEventC1ERK12QKeySequenceib(void);
-extern  _ZN14QShortcutEventD2Ev(void);
-extern  _ZN14QShortcutEventD1Ev(void);
-extern  _ZN14QShortcutEventD0Ev(void);
-extern QClipboardEvent _ZN15QClipboardEventC2EP13QEventPrivate(void);
-extern QClipboardEvent _ZN15QClipboardEventC1EP13QEventPrivate(void);
-extern  _ZN15QClipboardEventD2Ev(void);
-extern  _ZN15QClipboardEventD1Ev(void);
-extern  _ZN15QClipboardEventD0Ev(void);
-extern QWindowStateChangeEvent _ZN23QWindowStateChangeEventC2E6QFlagsIN2Qt11WindowStateEE(void);
-extern QWindowStateChangeEvent _ZN23QWindowStateChangeEventC1E6QFlagsIN2Qt11WindowStateEE(void);
-extern QWindowStateChangeEvent _ZN23QWindowStateChangeEventC2E6QFlagsIN2Qt11WindowStateEEb(void);
-extern QWindowStateChangeEvent _ZN23QWindowStateChangeEventC1E6QFlagsIN2Qt11WindowStateEEb(void);
-extern  _ZN23QWindowStateChangeEventD2Ev(void);
-extern  _ZN23QWindowStateChangeEventD1Ev(void);
-extern  _ZN23QWindowStateChangeEventD0Ev(void);
-extern bool _ZNK23QWindowStateChangeEvent10isOverrideEv(void);
-extern  _ZN20QMenubarUpdatedEventD0Ev(void);
-extern  _ZN20QMenubarUpdatedEventD1Ev(void);
-extern QMenubarUpdatedEvent _ZN20QMenubarUpdatedEventC2EP8QMenuBar(void);
-extern QMenubarUpdatedEvent _ZN20QMenubarUpdatedEventC1EP8QMenuBar(void);
-extern QDebug _Zls6QDebugPK6QEvent(void);
+extern QDebug _Zls6QDebugPK6QEvent(_Z6QDebug, const QEvent *);
 // *INDENT-ON*
 #endif
