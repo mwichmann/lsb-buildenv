@@ -321,7 +321,7 @@ extern "C" {
 #endif
     extern int signgam;
     extern double copysign(double, double);
-    extern int finite(double);
+    extern int finite(double) LSB_DECL_DEPRECATED;
     extern double frexp(double, int *);
     extern double ldexp(double, int);
     extern double modf(double, double *);
@@ -343,7 +343,7 @@ extern "C" {
     extern double fabs(double);
     extern double floor(double);
     extern double fmod(double, double);
-    extern double gamma(double);
+    extern double gamma(double) LSB_DECL_DEPRECATED;
     extern double hypot(double, double);
     extern int ilogb(double);
     extern double j0(double);
@@ -367,11 +367,11 @@ extern "C" {
     extern double y0(double);
     extern double y1(double);
     extern double yn(int, double);
-    extern double drem(double, double);
+    extern double drem(double, double) LSB_DECL_DEPRECATED;
     extern float copysignf(float, float);
     extern long double copysignl(long double, long double);
-    extern int finitef(float);
-    extern int finitel(long double);
+    extern int finitef(float) LSB_DECL_DEPRECATED;
+    extern int finitel(long double) LSB_DECL_DEPRECATED;
     extern float frexpf(float, int *);
     extern long double frexpl(long double, int *);
     extern float ldexpf(float, int);
@@ -406,8 +406,8 @@ extern "C" {
     extern float coshf(float);
     extern long double coshl(long double);
     extern long double cosl(long double);
-    extern float dremf(float, float);
-    extern long double dreml(long double, long double);
+    extern float dremf(float, float) LSB_DECL_DEPRECATED;
+    extern long double dreml(long double, long double) LSB_DECL_DEPRECATED;
     extern float erfcf(float);
     extern long double erfcl(long double);
     extern float erff(float);
@@ -451,8 +451,8 @@ extern "C" {
     extern long double fminl(long double, long double);
     extern float fmodf(float, float);
     extern long double fmodl(long double, long double);
-    extern float gammaf(float);
-    extern long double gammal(long double);
+    extern float gammaf(float) LSB_DECL_DEPRECATED;
+    extern long double gammal(long double) LSB_DECL_DEPRECATED;
     extern float hypotf(float, float);
     extern long double hypotl(long double, long double);
     extern int ilogbf(float);

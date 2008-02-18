@@ -321,7 +321,7 @@ extern "C" {
 
 
 
-    extern int getdtablesize(void);
+    extern int getdtablesize(void) LSB_DECL_DEPRECATED;
     extern char **__environ;
     extern pid_t __getpgid(pid_t);
     extern void _exit(int);
@@ -340,14 +340,14 @@ extern "C" {
     extern int execvp(const char *, char *const[]);
     extern int fdatasync(int);
     extern int ftruncate64(int, off64_t);
-    extern int getdomainname(char *, size_t);
+    extern int getdomainname(char *, size_t) LSB_DECL_DEPRECATED;
     extern long int gethostid(void);
     extern char *getlogin(void);
     extern int getlogin_r(char *, size_t);
     extern int getopt(int, char *const[], const char *);
     extern pid_t getpgrp(void);
     extern pid_t getsid(pid_t);
-    extern char *getwd(char *);
+    extern char *getwd(char *) LSB_DECL_DEPRECATED;
     extern int lockf(int, int, off_t);
     extern int lockf64(int, int, off64_t);
     extern int mkstemp(char *);
@@ -422,7 +422,7 @@ extern "C" {
     extern long int fpathconf(int, int);
     extern int ftruncate(int, off_t);
     extern char *getcwd(char *, size_t);
-    extern int getpagesize(void);
+    extern int getpagesize(void) LSB_DECL_DEPRECATED;
     extern pid_t getppid(void);
     extern int isatty(int);
     extern loff_t lseek64(int, loff_t, int);
