@@ -8177,7 +8177,7 @@ __asm__(".globl _ZTI17QInputMethodEvent; .pushsection .data; .type _ZTI17QInputM
 __asm__(".globl _ZTI17QTextImageHandler; .pushsection .data; .type _ZTI17QTextImageHandler,@object; .size _ZTI17QTextImageHandler, 32; _ZTI17QTextImageHandler: .long 0; .popsection");
 __asm__(".globl _ZTI18QDragResponseEvent; .pushsection .data; .type _ZTI18QDragResponseEvent,@object; .size _ZTI18QDragResponseEvent, 12; _ZTI18QDragResponseEvent: .long 0; .popsection");
 __asm__(".globl _ZTI18QFontEngineMultiFT; .pushsection .data; .type _ZTI18QFontEngineMultiFT,@object; .size _ZTI18QFontEngineMultiFT, 12; _ZTI18QFontEngineMultiFT: .long 0; .popsection");
-__asm__(".globl _ZTI18QGraphicsItemGroup; .pushsection .data; .type _ZTI18QGraphicsItemGroup,@object; .size _ZTI18QGraphicsItemGroup, 0; _ZTI18QGraphicsItemGroup: .long 0; .popsection");
+__asm__(".globl _ZTI18QGraphicsItemGroup; .pushsection .data; .type _ZTI18QGraphicsItemGroup,@object; .size _ZTI18QGraphicsItemGroup, 12; _ZTI18QGraphicsItemGroup: .long 0; .popsection");
 __asm__(".globl _ZTI18QItemEditorFactory; .pushsection .data; .type _ZTI18QItemEditorFactory,@object; .size _ZTI18QItemEditorFactory, 8; _ZTI18QItemEditorFactory: .long 0; .popsection");
 __asm__(".globl _ZTI18QStandardItemModel; .pushsection .data; .type _ZTI18QStandardItemModel,@object; .size _ZTI18QStandardItemModel, 12; _ZTI18QStandardItemModel: .long 0; .popsection");
 __asm__(".globl _ZTI18QSyntaxHighlighter; .pushsection .data; .type _ZTI18QSyntaxHighlighter,@object; .size _ZTI18QSyntaxHighlighter, 12; _ZTI18QSyntaxHighlighter: .long 0; .popsection");
