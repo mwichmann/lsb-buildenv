@@ -209,7 +209,7 @@ void _ZThn8_N9QGLWidgetD1Ev() {} ;
 void _ZThn8_NK9QGLWidget11paintEngineEv() {} ;
 void _ZeqRK9QGLFormatS1_() {} ;
 void _ZneRK9QGLFormatS1_() {} ;
-__asm__(".globl _ZN10QGLContext10currentCtxE; .pushsection .data; .type _ZN10QGLContext10currentCtxE,@object; .size _ZN10QGLContext10currentCtxE, 0; _ZN10QGLContext10currentCtxE: .long 0; .popsection");
+__asm__(".globl _ZN10QGLContext10currentCtxE; .pushsection .data; .type _ZN10QGLContext10currentCtxE,@object; .size _ZN10QGLContext10currentCtxE, 4; _ZN10QGLContext10currentCtxE: .long 0; .popsection");
 __asm__(".globl _ZN9QGLWidget16staticMetaObjectE; .pushsection .data; .type _ZN9QGLWidget16staticMetaObjectE,@object; .size _ZN9QGLWidget16staticMetaObjectE, 16; _ZN9QGLWidget16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZTI10QGLContext; .pushsection .data; .type _ZTI10QGLContext,@object; .size _ZTI10QGLContext, 8; _ZTI10QGLContext: .long 0; .popsection");
 __asm__(".globl _ZTI12QDashStroker; .pushsection .data; .type _ZTI12QDashStroker,@object; .size _ZTI12QDashStroker, 12; _ZTI12QDashStroker: .long 0; .popsection");

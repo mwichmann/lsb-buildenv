@@ -21,6 +21,9 @@ libXt wmShellClassRec  90
 libXt XtShellStrings 509
 libXt XtStrings a59
 # Generating c stubs for libstdcxx library
+libstdcxx _ZTVSt8ios_base 10
+libstdcxx _ZTIN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE c
+libstdcxx _ZTIN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE c
 libstdcxx _ZTSN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE 36
 libstdcxx _ZTSN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE 36
 libstdcxx _ZNSbIwSt11char_traitsIwESaIwEE20_S_empty_rep_storageE 10
@@ -1030,6 +1033,7 @@ libstdcxx _ZTVSt9type_info 20
 libstdcxx _ZTVN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE 40
 libstdcxx _ZTVN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEEE 40
 # Generating c stubs for Qt libraries
+libQtCore _ZTI18QFileSystemWatcher c
 libQtCore _ZTI13QSystemLocale c
 libQtCore _ZTIcQFileSystemWatcher c
 libQtCore _ZTI27QDynamicPropertyChangeEvent c
@@ -1134,6 +1138,7 @@ libQtCore _ZTV13QSystemLocale 18
 libQtCore _ZTV18QFileSystemWatcher 38
 libQtCore _ZTV27QDynamicPropertyChangeEvent 10
 libQtCore _ZTV9QTimeLine 3c
+libQtGui _ZTI18QGraphicsItemGroup c
 libQtGui _ZTI10QCompleter c
 libQtGui _ZTI10QUndoStack c
 libQtGui _ZTI12QUndoCommand c
