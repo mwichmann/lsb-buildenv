@@ -105,16 +105,19 @@ extern "C" {
 
 
     extern int gethostbyname2_r(const char *, int, struct hostent *,
-				char *, size_t, struct hostent **, int *);
+				char *, size_t, struct hostent **,
+				int *) LSB_DECL_DEPRECATED;
     extern void endprotoent(void);
     extern void endservent(void);
     extern void freeaddrinfo(struct addrinfo *);
     extern const char *gai_strerror(int);
     extern int getaddrinfo(const char *, const char *,
 			   const struct addrinfo *, struct addrinfo **);
-    extern struct hostent *gethostbyaddr(const void *, socklen_t, int);
-    extern struct hostent *gethostbyname(const char *);
-    extern struct hostent *gethostbyname2(const char *, int);
+    extern struct hostent *gethostbyaddr(const void *, socklen_t,
+					 int) LSB_DECL_DEPRECATED;
+    extern struct hostent *gethostbyname(const char *) LSB_DECL_DEPRECATED;
+    extern struct hostent *gethostbyname2(const char *,
+					  int) LSB_DECL_DEPRECATED;
     extern struct protoent *getprotobyname(const char *);
     extern struct protoent *getprotobynumber(int);
     extern struct protoent *getprotoent(void);
@@ -126,9 +129,11 @@ extern "C" {
     extern int *__h_errno_location(void);
     extern int gethostbyaddr_r(const void *, socklen_t, int,
 			       struct hostent *, char *, size_t,
-			       struct hostent **, int *);
+			       struct hostent **,
+			       int *) LSB_DECL_DEPRECATED;
     extern int gethostbyname_r(const char *, struct hostent *, char *,
-			       size_t, struct hostent **, int *);
+			       size_t, struct hostent **,
+			       int *) LSB_DECL_DEPRECATED;
 #ifdef __cplusplus
 }
 #endif

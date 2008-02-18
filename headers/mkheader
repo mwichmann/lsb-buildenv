@@ -2209,7 +2209,7 @@ for(1..$sth->rows) {
 			print "void";
 		}
 		printf ")";
-		if( $entry->{'Ideprecatedsince'} and $entry->{'Ideprecatedsince'} ne 'Unknown' and $entry->{'Ideprecatedsince'} ge $lsbversion ) {
+		if( $entry->{'Ideprecatedsince'} and $entry->{'Ideprecatedsince'} ne 'Unknown' and $entry->{'Ideprecatedsince'} le $lsbversion ) {
 			print " LSB_DECL_DEPRECATED";
 		}
 		print ";\n";

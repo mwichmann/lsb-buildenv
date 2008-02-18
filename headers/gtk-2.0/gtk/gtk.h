@@ -7374,7 +7374,7 @@ extern "C" {
     extern const gchar *gtk_window_get_role(GtkWindow *);
     extern void gtk_tree_view_column_clear_attributes(GtkTreeViewColumn *,
 						      GtkCellRenderer *);
-    extern guint gtk_binding_parse_binding(GScanner *);
+    extern guint gtk_binding_parse_binding(GScanner *) LSB_DECL_DEPRECATED;
     extern GtkWidget *gtk_input_dialog_new(void);
     extern gint gtk_text_buffer_get_char_count(GtkTextBuffer *);
     extern GtkButtonBoxStyle gtk_button_box_get_layout(GtkButtonBox *);
@@ -7551,7 +7551,8 @@ extern "C" {
 						 GtkTextTag *, ...);
     extern void gtk_tree_path_down(GtkTreePath *);
     extern void gtk_file_selection_complete(GtkFileSelection *,
-					    const gchar *);
+					    const gchar *)
+	LSB_DECL_DEPRECATED;
     extern void gtk_tool_item_set_tooltip(GtkToolItem *, GtkTooltips *,
 					  const gchar *, const gchar *);
     extern void gtk_text_buffer_insert_range(GtkTextBuffer *,
@@ -7571,7 +7572,7 @@ extern "C" {
     extern gboolean gtk_tree_view_get_headers_visible(GtkTreeView *);
     extern gboolean gtk_window_set_default_icon_from_file(const gchar *,
 							  GError * *);
-    extern GtkWidget *gtk_widget_ref(GtkWidget *);
+    extern GtkWidget *gtk_widget_ref(GtkWidget *) LSB_DECL_DEPRECATED;
     extern void gtk_text_buffer_delete(GtkTextBuffer *, GtkTextIter *,
 				       GtkTextIter *);
     extern void gtk_tree_view_set_rules_hint(GtkTreeView *, gboolean);
@@ -7672,7 +7673,8 @@ extern "C" {
     extern GtkStyle *gtk_style_attach(GtkStyle *, GdkWindow *);
     extern void gtk_item_select(GtkItem *);
     extern void gtk_combo_box_set_column_span_column(GtkComboBox *, gint);
-    extern GtkWidget *gtk_file_selection_new(const gchar *);
+    extern GtkWidget *gtk_file_selection_new(const gchar *)
+	LSB_DECL_DEPRECATED;
     extern GtkWidget *gtk_plug_new_for_display(GdkDisplay *,
 					       GdkNativeWindow);
     extern GtkAccelGroup *gtk_accel_group_new(void);
@@ -7985,8 +7987,8 @@ extern "C" {
 						     gboolean, gboolean);
     extern void gtk_spin_button_set_wrap(GtkSpinButton *, gboolean);
     extern GType gtk_input_dialog_get_type(void);
-    extern const gchar *gtk_file_selection_get_filename(GtkFileSelection
-							*);
+    extern const gchar *gtk_file_selection_get_filename(GtkFileSelection *)
+	LSB_DECL_DEPRECATED;
     extern gboolean gtk_tree_set_row_drag_data(GtkSelectionData *,
 					       GtkTreeModel *,
 					       GtkTreePath *);
@@ -8125,7 +8127,9 @@ extern "C" {
     extern void gtk_clipboard_set_can_store(GtkClipboard *,
 					    const GtkTargetEntry *, gint);
     extern void gtk_tree_view_tree_to_widget_coords(GtkTreeView *, gint,
-						    gint, gint *, gint *);
+						    gint, gint *,
+						    gint *)
+	LSB_DECL_DEPRECATED;
     extern void gtk_tree_view_enable_model_drag_dest(GtkTreeView *,
 						     const GtkTargetEntry
 						     *, gint,
@@ -8343,7 +8347,7 @@ extern "C" {
 							 *, const gchar *,
 							 ...);
     extern GtkListStore *gtk_list_store_new(gint, ...);
-    extern void gtk_rc_style_ref(GtkRcStyle *);
+    extern void gtk_rc_style_ref(GtkRcStyle *) LSB_DECL_DEPRECATED;
     extern guint32 gtk_get_current_event_time(void);
     extern void gtk_container_unset_focus_chain(GtkContainer *);
     extern void gtk_text_iter_set_offset(GtkTextIter *, gint);
@@ -8536,7 +8540,8 @@ extern "C" {
 						GtkTreePath *);
     extern void gtk_drag_highlight(GtkWidget *);
     extern gboolean gtk_file_selection_get_select_multiple(GtkFileSelection
-							   *);
+							   *)
+	LSB_DECL_DEPRECATED;
     extern gboolean gtk_toggle_action_get_draw_as_radio(GtkToggleAction *);
     extern void gtk_icon_view_select_all(GtkIconView *);
     extern void gtk_button_get_alignment(GtkButton *, gfloat *, gfloat *);
@@ -8729,7 +8734,9 @@ extern "C" {
     extern void gtk_text_buffer_cut_clipboard(GtkTextBuffer *,
 					      GtkClipboard *, gboolean);
     extern void gtk_tree_view_widget_to_tree_coords(GtkTreeView *, gint,
-						    gint, gint *, gint *);
+						    gint, gint *,
+						    gint *)
+	LSB_DECL_DEPRECATED;
     extern gboolean gtk_list_store_remove(GtkListStore *, GtkTreeIter *);
     extern void gtk_drag_dest_unset(GtkWidget *);
     extern GType gtk_accel_label_get_type(void);
@@ -8926,7 +8933,7 @@ extern "C" {
     extern void gtk_aspect_frame_set(GtkAspectFrame *, gfloat, gfloat,
 				     gfloat, gboolean);
     extern void gtk_propagate_event(GtkWidget *, GdkEvent *);
-    extern void gtk_rc_style_unref(GtkRcStyle *);
+    extern void gtk_rc_style_unref(GtkRcStyle *) LSB_DECL_DEPRECATED;
     extern void gtk_tree_path_prepend_index(GtkTreePath *, gint);
     extern void gtk_text_buffer_delete_mark_by_name(GtkTextBuffer *,
 						    const gchar *);
@@ -9024,7 +9031,8 @@ extern "C" {
     extern void gtk_scrolled_window_add_with_viewport(GtkScrolledWindow *,
 						      GtkWidget *);
     extern GType gtk_justification_get_type(void);
-    extern void gtk_file_selection_show_fileop_buttons(GtkFileSelection *);
+    extern void gtk_file_selection_show_fileop_buttons(GtkFileSelection *)
+	LSB_DECL_DEPRECATED;
     extern void gtk_widget_set_size_request(GtkWidget *, gint, gint);
     extern const gchar *gtk_about_dialog_get_copyright(GtkAboutDialog *);
     extern void gtk_window_begin_move_drag(GtkWindow *, gint, gint, gint,
@@ -9148,7 +9156,8 @@ extern "C" {
     extern void gtk_container_set_focus_hadjustment(GtkContainer *,
 						    GtkAdjustment *);
     extern void gtk_accel_map_foreach(gpointer, GtkAccelMapForeach);
-    extern gchar **gtk_file_selection_get_selections(GtkFileSelection *);
+    extern gchar **gtk_file_selection_get_selections(GtkFileSelection *)
+	LSB_DECL_DEPRECATED;
     extern gboolean gtk_spin_button_get_wrap(GtkSpinButton *);
     extern GType gtk_dialog_get_type(void);
     extern GType gtk_misc_get_type(void);
@@ -9214,7 +9223,8 @@ extern "C" {
 					  gdouble);
     extern void gtk_about_dialog_set_translator_credits(GtkAboutDialog *,
 							const gchar *);
-    extern void gtk_menu_item_remove_submenu(GtkMenuItem *);
+    extern void gtk_menu_item_remove_submenu(GtkMenuItem *)
+	LSB_DECL_DEPRECATED;
     extern GtkResizeMode gtk_container_get_resize_mode(GtkContainer *);
     extern GtkWidget *gtk_menu_item_new_with_label(const gchar *);
     extern gboolean gtk_tree_sortable_has_default_sort_func(GtkTreeSortable
@@ -9759,7 +9769,8 @@ extern "C" {
 						   const gchar *);
     extern gint gtk_radio_action_get_current_value(GtkRadioAction *);
     extern void gtk_file_selection_set_filename(GtkFileSelection *,
-						const gchar *);
+						const gchar *)
+	LSB_DECL_DEPRECATED;
     extern void gtk_im_context_set_surrounding(GtkIMContext *,
 					       const gchar *, gint, gint);
     extern void gtk_drag_dest_add_text_targets(GtkWidget *);
@@ -9774,7 +9785,8 @@ extern "C" {
 						 const gchar *);
     extern void gtk_window_set_skip_pager_hint(GtkWindow *, gboolean);
     extern gboolean gtk_button_get_focus_on_click(GtkButton *);
-    extern void gtk_file_selection_hide_fileop_buttons(GtkFileSelection *);
+    extern void gtk_file_selection_hide_fileop_buttons(GtkFileSelection *)
+	LSB_DECL_DEPRECATED;
     extern void gtk_radio_menu_item_set_group(GtkRadioMenuItem *,
 					      GSList *);
     extern void gtk_color_button_set_use_alpha(GtkColorButton *, gboolean);
@@ -10145,7 +10157,8 @@ extern "C" {
     extern gboolean gtk_text_iter_has_tag(const GtkTextIter *,
 					  GtkTextTag *);
     extern void gtk_file_selection_set_select_multiple(GtkFileSelection *,
-						       gboolean);
+						       gboolean)
+	LSB_DECL_DEPRECATED;
     extern GtkTreePath
 	*gtk_tree_model_filter_convert_child_path_to_path
 	(GtkTreeModelFilter *, GtkTreePath *);
@@ -10223,7 +10236,7 @@ extern "C" {
 					      const gchar *);
     extern gchar *gtk_file_chooser_get_uri(GtkFileChooser *);
     extern GtkWidget *gtk_action_create_tool_item(GtkAction *);
-    extern void gtk_widget_unref(GtkWidget *);
+    extern void gtk_widget_unref(GtkWidget *) LSB_DECL_DEPRECATED;
     extern gint gtk_widget_send_expose(GtkWidget *, GdkEvent *);
     extern gchar *gtk_text_iter_get_text(const GtkTextIter *,
 					 const GtkTextIter *);

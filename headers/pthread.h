@@ -332,8 +332,10 @@ extern "C" {
     extern void pthread_testcancel(void);
     extern int pthread_attr_getguardsize(const pthread_attr_t *, size_t *);
     extern int pthread_attr_setguardsize(pthread_attr_t *, size_t);
-    extern int pthread_attr_setstackaddr(pthread_attr_t *, void *);
-    extern int pthread_attr_getstackaddr(const pthread_attr_t *, void **);
+    extern int pthread_attr_setstackaddr(pthread_attr_t *,
+					 void *) LSB_DECL_DEPRECATED;
+    extern int pthread_attr_getstackaddr(const pthread_attr_t *,
+					 void **) LSB_DECL_DEPRECATED;
     extern int pthread_attr_setstacksize(pthread_attr_t *, size_t);
     extern int pthread_attr_getstacksize(const pthread_attr_t *, size_t *);
     extern int pthread_mutexattr_gettype(const pthread_mutexattr_t *,

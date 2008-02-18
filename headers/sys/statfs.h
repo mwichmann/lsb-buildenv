@@ -256,10 +256,11 @@ extern "C" {
 
 #endif
 
-    extern int fstatfs64(int, struct statfs64 *);
-    extern int statfs64(const char *, struct statfs64 *);
-    extern int fstatfs(int, struct statfs *);
-    extern int statfs(const char *, struct statfs *);
+    extern int fstatfs64(int, struct statfs64 *) LSB_DECL_DEPRECATED;
+    extern int statfs64(const char *,
+			struct statfs64 *) LSB_DECL_DEPRECATED;
+    extern int fstatfs(int, struct statfs *) LSB_DECL_DEPRECATED;
+    extern int statfs(const char *, struct statfs *) LSB_DECL_DEPRECATED;
 #ifdef __cplusplus
 }
 #endif

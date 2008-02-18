@@ -2512,7 +2512,8 @@ extern "C" {
 					   GOptionGroup *);
     extern gboolean g_unichar_isprint(gunichar);
     extern GList *g_list_copy(GList *);
-    extern void g_cache_value_foreach(GCache *, GHFunc, gpointer);
+    extern void g_cache_value_foreach(GCache *, GHFunc,
+				      gpointer) LSB_DECL_DEPRECATED;
     extern void g_key_file_set_comment(GKeyFile *, const gchar *,
 				       const gchar *, const gchar *,
 				       GError * *);
