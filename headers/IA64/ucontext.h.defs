@@ -4,6 +4,11 @@
 
 typedef struct sigcontext mcontext_t;
 
+#define uc_mcontext	_u._mc
+#define uc_sigmask	_u._mc.sc_mask
+#define uc_stack	_u._mc.sc_stack
+#define uc_link	_u._uc._link
+
 typedef struct ucontext {
     union {
 	mcontext_t _mc;

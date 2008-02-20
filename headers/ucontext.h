@@ -334,6 +334,20 @@ extern "C" {
 #endif
 
 /* Userlevel context.*/
+#if defined __ia64__
+#define uc_mcontext	_u._mc
+#endif
+#if defined __ia64__
+#define uc_sigmask	_u._mc.sc_mask
+#endif
+#if defined __ia64__
+#define uc_stack	_u._mc.sc_stack
+#endif
+#if defined __ia64__
+#define uc_link	_u._uc._link
+#endif
+
+
 #if defined __i386__
 /* IA32 */
     typedef struct ucontext ucontext_t;
