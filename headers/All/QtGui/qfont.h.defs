@@ -1,49 +1,49 @@
 
 class QFont;
 enum _ZN5QFont9StyleHintE {
-    Helvetica,
-    SansSerif,
-    Times,
-    Serif,
-    Courier,
-    TypeWriter,
-    OldEnglish,
-    Decorative,
-    System,
-    AnyStyle
+    Helvetica = 0,
+    SansSerif = 0,
+    Times = 1,
+    Serif = 1,
+    Courier = 2,
+    TypeWriter = 2,
+    OldEnglish = 3,
+    Decorative = 3,
+    System = 4,
+    AnyStyle = 5
 };
 enum _ZN5QFont13StyleStrategyE {
-    PreferDefault,
-    PreferBitmap,
-    PreferDevice,
-    PreferOutline,
-    ForceOutline,
-    PreferMatch,
-    PreferQuality,
-    PreferAntialias,
-    NoAntialias,
-    OpenGLCompatible
+    PreferDefault = 1,
+    PreferBitmap = 2,
+    PreferDevice = 4,
+    PreferOutline = 8,
+    ForceOutline = 16,
+    PreferMatch = 32,
+    PreferQuality = 64,
+    PreferAntialias = 128,
+    NoAntialias = 256,
+    OpenGLCompatible = 512
 };
 enum _ZN5QFont6WeightE {
-    Light,
-    Normal,
-    DemiBold,
-    Bold,
-    Black
+    Light = 25,
+    Normal = 50,
+    DemiBold = 63,
+    Bold = 75,
+    Black = 87
 };
 enum _ZN5QFont5StyleE {
-    StyleNormal,
-    StyleItalic,
-    StyleOblique
+    StyleNormal = 0,
+    StyleItalic = 1,
+    StyleOblique = 2
 };
 enum _ZN5QFont7StretchE {
-    UltraCondensed,
-    ExtraCondensed,
-    Condensed,
-    SemiCondensed,
-    Unstretched,
-    SemiExpanded,
-    Expanded,
-    ExtraExpanded,
-    UltraExpanded
+    UltraCondensed = 50,
+    ExtraCondensed = 62,
+    Condensed = 75,
+    SemiCondensed = 87,
+    Unstretched = 100,
+    SemiExpanded = 112,
+    Expanded = 125,
+    ExtraExpanded = 150,
+    UltraExpanded = 200
 };

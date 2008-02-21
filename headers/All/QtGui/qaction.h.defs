@@ -1,6 +1,6 @@
 
 class QAction;
 enum _ZN7QAction11ActionEventE {
-    Trigger,
-    Hover
+    Trigger = 0,
+    Hover = 1
 };

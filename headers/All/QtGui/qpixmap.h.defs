@@ -1,11 +1,11 @@
 
 class QPixmap;
 enum _ZN7QPixmap9ColorModeE {
-    Auto,
-    Color,
-    Mono
+    Auto = 0,
+    Color = 1,
+    Mono = 2
 };
 enum _ZN7QPixmap4TypeE {
-    PixmapType,
-    BitmapType
+    PixmapType = 0,
+    BitmapType = 1
 };

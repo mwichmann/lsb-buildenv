@@ -1,18 +1,18 @@
 
 class QFileInfo;
 enum _ZN9QFileInfo10PermissionE {
-    ExeOther,
-    WriteOther,
-    ReadOther,
-    ExeGroup,
-    WriteGroup,
-    ReadGroup,
-    ExeUser,
-    WriteUser,
-    ReadUser,
-    ExeOwner,
-    WriteOwner,
-    ReadOwner
+    ExeOther = 1,
+    WriteOther = 2,
+    ReadOther = 4,
+    ExeGroup = 16,
+    WriteGroup = 32,
+    ReadGroup = 64,
+    ExeUser = 256,
+    WriteUser = 512,
+    ReadUser = 1024,
+    ExeOwner = 4096,
+    WriteOwner = 8192,
+    ReadOwner = 16384
 };
 class QFlags < QFileInfo::Permission >;
 typedef class QFlags < QFileInfo::Permission >

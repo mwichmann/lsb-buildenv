@@ -8,15 +8,15 @@ typedef struct sndrv_rawmidi_params snd_rawmidi_params_t;
 typedef struct sndrv_rawmidi_status snd_rawmidi_status_t;
 typedef enum _snd_rawmidi_stream {
     SND_RAWMIDI_STREAM_OUTPUT,
-    SND_RAWMIDI_STREAM_INPUT,
-    SND_RAWMIDI_STREAM_LAST
+    SND_RAWMIDI_STREAM_INPUT = 1,
+    SND_RAWMIDI_STREAM_LAST = 1
 } snd_rawmidi_stream_t;
 typedef struct _snd_rawmidi snd_rawmidi_t;
 typedef enum _snd_rawmidi_type {
     SND_RAWMIDI_TYPE_HW,
-    SND_RAWMIDI_TYPE_SHM,
-    SND_RAWMIDI_TYPE_INET,
-    SND_RAWMIDI_TYPE_VIRTUAL
+    SND_RAWMIDI_TYPE_SHM = 1,
+    SND_RAWMIDI_TYPE_INET = 2,
+    SND_RAWMIDI_TYPE_VIRTUAL = 3
 } snd_rawmidi_type_t;
 extern int snd_rawmidi_close(snd_rawmidi_t *);
 extern int snd_rawmidi_drain(snd_rawmidi_t *);

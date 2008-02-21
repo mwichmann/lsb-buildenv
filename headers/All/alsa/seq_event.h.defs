@@ -143,8 +143,8 @@ typedef struct snd_seq_result {
 } snd_seq_result_t;
 typedef enum snd_seq_stop_mode {
     SND_SEQ_SAMPLE_STOP_IMMEDIATELY,
-    SND_SEQ_SAMPLE_STOP_VENVELOPE,
-    SND_SEQ_SAMPLE_STOP_LOOP
+    SND_SEQ_SAMPLE_STOP_VENVELOPE = 1,
+    SND_SEQ_SAMPLE_STOP_LOOP = 2
 } snd_seq_stop_mode_t;
 typedef unsigned int snd_seq_tick_time_t;
 typedef union snd_seq_timestamp {

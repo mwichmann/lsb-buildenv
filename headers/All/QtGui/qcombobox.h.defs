@@ -1,35 +1,35 @@
 
 class QComboBox;
 enum _ZN9QComboBox12InsertPolicyE {
-    NoInsert,
-    NoInsertion,
-    InsertAtTop,
-    AtTop,
-    InsertAtCurrent,
-    AtCurrent,
-    InsertAtBottom,
-    AtBottom,
-    InsertAfterCurrent,
-    AfterCurrent,
-    InsertBeforeCurrent,
-    BeforeCurrent
+    NoInsert = 0,
+    NoInsertion = 0,
+    InsertAtTop = 1,
+    AtTop = 1,
+    InsertAtCurrent = 2,
+    AtCurrent = 2,
+    InsertAtBottom = 3,
+    AtBottom = 3,
+    InsertAfterCurrent = 4,
+    AfterCurrent = 4,
+    InsertBeforeCurrent = 5,
+    BeforeCurrent = 5
 };
 typedef enum _ZN9QComboBox12InsertPolicyE {
-    NoInsert,
-    NoInsertion,
-    InsertAtTop,
-    AtTop,
-    InsertAtCurrent,
-    AtCurrent,
-    InsertAtBottom,
-    AtBottom,
-    InsertAfterCurrent,
-    AfterCurrent,
-    InsertBeforeCurrent,
-    BeforeCurrent
+    NoInsert = 0,
+    NoInsertion = 0,
+    InsertAtTop = 1,
+    AtTop = 1,
+    InsertAtCurrent = 2,
+    AtCurrent = 2,
+    InsertAtBottom = 3,
+    AtBottom = 3,
+    InsertAfterCurrent = 4,
+    AfterCurrent = 4,
+    InsertBeforeCurrent = 5,
+    BeforeCurrent = 5
 } _ZN9QComboBox6PolicyE;
 enum _ZN9QComboBox16SizeAdjustPolicyE {
-    AdjustToContents,
-    AdjustToContentsOnFirstShow,
-    AdjustToMinimumContentsLength
+    AdjustToContents = 0,
+    AdjustToContentsOnFirstShow = 1,
+    AdjustToMinimumContentsLength = 2
 };
