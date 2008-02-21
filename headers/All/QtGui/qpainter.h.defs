@@ -1,23 +1,23 @@
 
 class QPainter;
 enum _ZN8QPainter10RenderHintE {
-    Antialiasing,
-    TextAntialiasing,
-    SmoothPixmapTransform
+    Antialiasing = 1,
+    TextAntialiasing = 2,
+    SmoothPixmapTransform = 4
 };
 class QFlags < QPainter::RenderHint >;
 typedef class QFlags < QPainter::RenderHint > _ZN8QPainter11RenderHintsE;
 enum _ZN8QPainter15CompositionModeE {
-    CompositionMode_SourceOver,
-    CompositionMode_DestinationOver,
-    CompositionMode_Clear,
-    CompositionMode_Source,
-    CompositionMode_Destination,
-    CompositionMode_SourceIn,
-    CompositionMode_DestinationIn,
-    CompositionMode_SourceOut,
-    CompositionMode_DestinationOut,
-    CompositionMode_SourceAtop,
-    CompositionMode_DestinationAtop,
-    CompositionMode_Xor
+    CompositionMode_SourceOver = 0,
+    CompositionMode_DestinationOver = 1,
+    CompositionMode_Clear = 2,
+    CompositionMode_Source = 3,
+    CompositionMode_Destination = 4,
+    CompositionMode_SourceIn = 5,
+    CompositionMode_DestinationIn = 6,
+    CompositionMode_SourceOut = 7,
+    CompositionMode_DestinationOut = 8,
+    CompositionMode_SourceAtop = 9,
+    CompositionMode_DestinationAtop = 10,
+    CompositionMode_Xor = 11
 };

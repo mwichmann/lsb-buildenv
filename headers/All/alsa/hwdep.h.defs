@@ -8,29 +8,29 @@ typedef struct sndrv_hwdep_dsp_image snd_hwdep_dsp_image_t;
 typedef struct sndrv_hwdep_dsp_status snd_hwdep_dsp_status_t;
 typedef enum _snd_hwdep_iface {
     SND_HWDEP_IFACE_OPL2,
-    SND_HWDEP_IFACE_OPL3,
-    SND_HWDEP_IFACE_OPL4,
-    SND_HWDEP_IFACE_SB16CSP,
-    SND_HWDEP_IFACE_EMU10K1,
-    SND_HWDEP_IFACE_YSS225,
-    SND_HWDEP_IFACE_ICS2115,
-    SND_HWDEP_IFACE_SSCAPE,
-    SND_HWDEP_IFACE_VX,
-    SND_HWDEP_IFACE_MIXART,
-    SND_HWDEP_IFACE_USX2Y,
-    SND_HWDEP_IFACE_EMUX_WAVETABLE,
-    SND_HWDEP_IFACE_BLUETOOTH,
-    SND_HWDEP_IFACE_USX2Y_PCM,
-    SND_HWDEP_IFACE_PCXHR,
-    SND_HWDEP_IFACE_SB_RC,
-    SND_HWDEP_IFACE_LAST
+    SND_HWDEP_IFACE_OPL3 = 1,
+    SND_HWDEP_IFACE_OPL4 = 2,
+    SND_HWDEP_IFACE_SB16CSP = 3,
+    SND_HWDEP_IFACE_EMU10K1 = 4,
+    SND_HWDEP_IFACE_YSS225 = 5,
+    SND_HWDEP_IFACE_ICS2115 = 6,
+    SND_HWDEP_IFACE_SSCAPE = 7,
+    SND_HWDEP_IFACE_VX = 8,
+    SND_HWDEP_IFACE_MIXART = 9,
+    SND_HWDEP_IFACE_USX2Y = 10,
+    SND_HWDEP_IFACE_EMUX_WAVETABLE = 11,
+    SND_HWDEP_IFACE_BLUETOOTH = 12,
+    SND_HWDEP_IFACE_USX2Y_PCM = 13,
+    SND_HWDEP_IFACE_PCXHR = 14,
+    SND_HWDEP_IFACE_SB_RC = 15,
+    SND_HWDEP_IFACE_LAST = 15
 } snd_hwdep_iface_t;
 typedef struct sndrv_hwdep_info snd_hwdep_info_t;
 typedef struct _snd_hwdep snd_hwdep_t;
 typedef enum _snd_hwdep_type {
     SND_HWDEP_TYPE_HW,
-    SND_HWDEP_TYPE_SHM,
-    SND_HWDEP_TYPE_INET
+    SND_HWDEP_TYPE_SHM = 1,
+    SND_HWDEP_TYPE_INET = 2
 } snd_hwdep_type_t;
 extern int snd_hwdep_close(snd_hwdep_t *);
 extern void snd_hwdep_dsp_image_copy(snd_hwdep_dsp_image_t *,

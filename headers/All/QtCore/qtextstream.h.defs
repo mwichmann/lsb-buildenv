@@ -1,39 +1,39 @@
 
 class QTextStream;
 enum _ZN11QTextStream18RealNumberNotationE {
-    SmartNotation,
-    FixedNotation,
-    ScientificNotation
+    SmartNotation = 0,
+    FixedNotation = 1,
+    ScientificNotation = 2
 };
 enum _ZN11QTextStream14FieldAlignmentE {
-    AlignLeft,
-    AlignRight,
-    AlignCenter,
-    AlignAccountingStyle
+    AlignLeft = 0,
+    AlignRight = 1,
+    AlignCenter = 2,
+    AlignAccountingStyle = 3
 };
 enum _ZN11QTextStream6StatusE {
-    Ok,
-    ReadPastEnd,
-    ReadCorruptData
+    Ok = 0,
+    ReadPastEnd = 1,
+    ReadCorruptData = 2
 };
 enum _ZN11QTextStream10NumberFlagE {
-    ShowBase,
-    ForcePoint,
-    ForceSign,
-    UppercaseBase,
-    UppercaseDigits
+    ShowBase = 1,
+    ForcePoint = 2,
+    ForceSign = 4,
+    UppercaseBase = 8,
+    UppercaseDigits = 16
 };
 class QFlags < QTextStream::NumberFlag >;
 typedef class QFlags < QTextStream::NumberFlag >
     _ZN11QTextStream11NumberFlagsE;
 enum _ZN11QTextStream8EncodingE {
-    Locale,
-    Latin1,
-    Unicode,
-    UnicodeNetworkOrder,
-    UnicodeReverse,
-    RawUnicode,
-    UnicodeUTF8
+    Locale = 0,
+    Latin1 = 1,
+    Unicode = 2,
+    UnicodeNetworkOrder = 3,
+    UnicodeReverse = 4,
+    RawUnicode = 5,
+    UnicodeUTF8 = 6
 };
 typedef class QTextStreamQTextStreamFunction;
 typedef void QTSMFI;

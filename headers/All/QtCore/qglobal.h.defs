@@ -26,47 +26,47 @@ typedef long int Q_LONG;
 typedef unsigned long int Q_ULONG;
 class QSysInfo;
 enum _ZN8QSysInfo6EndianE {
-    BigEndian,
-    LittleEndian,
-    ByteOrder
+    BigEndian = 0,
+    LittleEndian = 1,
+    ByteOrder = 1
 };
 enum QtMsgType {
-    QtDebugMsg,
-    QtWarningMsg,
-    QtCriticalMsg,
-    QtSystemMsg,
-    QtFatalMsg
+    QtDebugMsg = 0,
+    QtWarningMsg = 1,
+    QtCriticalMsg = 2,
+    QtSystemMsg = 2,
+    QtFatalMsg = 3
 };
 typedef void QtMsgHandler;
 class QBool;
 class QFlag;
 enum QtValidLicenseForCoreModule {
-    LicensedCore
+    LicensedCore = 1
 };
 enum QtValidLicenseForGuiModule {
-    LicensedGui
+    LicensedGui = 1
 };
 enum QtValidLicenseForNetworkModule {
-    LicensedNetwork
+    LicensedNetwork = 1
 };
 enum QtValidLicenseForOpenGLModule {
-    LicensedOpenGL
+    LicensedOpenGL = 1
 };
 enum QtValidLicenseForSqlModule {
-    LicensedSql
+    LicensedSql = 1
 };
 enum QtValidLicenseForXmlModule {
-    LicensedXml
+    LicensedXml = 1
 };
 enum QtValidLicenseForQt3SupportLightModule {
-    LicensedQt3SupportLight
+    LicensedQt3SupportLight = 1
 };
 enum QtValidLicenseForQt3SupportModule {
-    LicensedQt3Support
+    LicensedQt3Support = 1
 };
 enum QtValidLicenseForSvgModule {
-    LicensedSvg
+    LicensedSvg = 1
 };
 enum QtValidLicenseForActiveQtModule {
-    LicensedActiveQt
+    LicensedActiveQt = 1
 };

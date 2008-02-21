@@ -3,11 +3,11 @@ typedef struct _snd_config_iterator *snd_config_iterator_t;
 typedef struct _snd_config snd_config_t;
 typedef enum _snd_config_type {
     SND_CONFIG_TYPE_INTEGER,
-    SND_CONFIG_TYPE_INTEGER64,
-    SND_CONFIG_TYPE_REAL,
-    SND_CONFIG_TYPE_STRING,
-    SND_CONFIG_TYPE_POINTER,
-    SND_CONFIG_TYPE_COMPOUND
+    SND_CONFIG_TYPE_INTEGER64 = 1,
+    SND_CONFIG_TYPE_REAL = 2,
+    SND_CONFIG_TYPE_STRING = 3,
+    SND_CONFIG_TYPE_POINTER = 4,
+    SND_CONFIG_TYPE_COMPOUND = 1024
 } snd_config_type_t;
 typedef struct _snd_config_update snd_config_update_t;
 typedef struct snd_devname {

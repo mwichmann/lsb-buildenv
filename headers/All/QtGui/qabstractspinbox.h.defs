@@ -1,14 +1,14 @@
 
 class QAbstractSpinBox;
 enum _ZN16QAbstractSpinBox15StepEnabledFlagE {
-    StepNone,
-    StepUpEnabled,
-    StepDownEnabled
+    StepNone = 0,
+    StepUpEnabled = 1,
+    StepDownEnabled = 2
 };
 class QFlags < QAbstractSpinBox::StepEnabledFlag >;
 typedef class QFlags < QAbstractSpinBox::StepEnabledFlag >
     _ZN16QAbstractSpinBox11StepEnabledE;
 enum _ZN16QAbstractSpinBox13ButtonSymbolsE {
-    UpDownArrows,
-    PlusMinus
+    UpDownArrows = 0,
+    PlusMinus = 1
 };
