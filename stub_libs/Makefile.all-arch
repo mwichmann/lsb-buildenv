@@ -11,7 +11,7 @@ DESKTOP_OFILES = $(addsuffix .o,$(DESKTOP_STUBLIBS))
 DESKTOP_SOFILES = $(addsuffix .so,$(DESKTOP_STUBLIBS))
 
 CFLAGS=-g -Wall  -fno-builtin -fPIC
-INSTALL_DIR=$(INSTALL_ROOT)/$(LIBDIR)
+INSTALL_DIR=$(INSTALL_ROOT)$(LIBDIR)/$(SUBDIR)
 
 # For ppc64 platform add flag to generate 64-bit shared libs
 ifeq ($(shell arch),ppc64)
@@ -41,15 +41,21 @@ clean:
 install: install-core
 
 install-core:
-	install -d $(INSTALL_DIR)
-	install $(CORE_SOFILES) $(INSTALL_DIR)
-	mv $(INSTALL_DIR)/libstdcxx.so $(INSTALL_DIR)/libstdc++.so
+	install -d $(DESTDIR)/$(INSTALL_DIR)
+	install $(CORE_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
+	mv $(DESTDIR)/$(INSTALL_DIR)/libstdcxx.so $(DESTDIR)/$(INSTALL_DIR)/libstdc++.so
 
 install-desktop:
-	install -d $(INSTALL_DIR)
-	install -d $(INSTALL_DIR)/pkgconfig
-	install -d $(INSTALL_ROOT)/bin
-	install $(DESKTOP_SOFILES) $(INSTALL_DIR)
-	install ../pkgconfig$(LIB64)/*.pc $(INSTALL_DIR)/pkgconfig
-	install ../bin$(LIB64)/freetype-config $(INSTALL_ROOT)/bin
+	install -d $(DESTDIR)/$(INSTALL_DIR)
+	install -d $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin
+	install $(DESKTOP_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
+	# need to handle relocations of the pkgconfig and freetype-config files
+	sed -i 's|/opt/lsb/include|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' ../pkgconfig$(LIB64)/*.pc
+	sed -i 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' ../pkgconfig$(LIB64)/*.pc
+	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../pkgconfig$(LIB64)/*.pc
+	sed -i 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' ../bin$(LIB64)/*
+	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../bin$(LIB64)/*
+	install ../pkgconfig$(LIB64)/*.pc $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
+	install ../bin$(LIB64)/freetype-config $(DESTDIR)/$(INSTALL_ROOT)/bin
 

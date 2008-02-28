@@ -31,18 +31,18 @@ headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(hea
 install: install-core
 
 install-core: core_filelist
-	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
-	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < core_filelist
-	find $(INSTALL_ROOT)/$(INCLUDEDIR) -type d -exec chmod 755 {} \;
-	xargs md5sum < core_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS.core || true
-	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/X11
-	rm -rf $(INSTALL_ROOT)/$(INCLUDEDIR)/GL
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)
+	cpio -pdu $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR) < core_filelist
+	find $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR) -type d -exec chmod 755 {} \;
+	xargs md5sum < core_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)/MD5SUMS.core || true
+	rm -rf $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)/X11
+	rm -rf $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)/GL
 
 install-desktop: desktop_filelist
-	install -d $(INSTALL_ROOT)/$(INCLUDEDIR)
-	cpio -pdu $(INSTALL_ROOT)/$(INCLUDEDIR) < desktop_filelist
-	find $(INSTALL_ROOT)/$(INCLUDEDIR) -type d -exec chmod 755 {} \;
-	xargs md5sum < desktop_filelist > $(INSTALL_ROOT)/$(INCLUDEDIR)/MD5SUMS.desktop
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)
+	cpio -pdu $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR) < desktop_filelist
+	find $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR) -type d -exec chmod 755 {} \;
+	xargs md5sum < desktop_filelist > $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)/MD5SUMS.desktop
 
 clean:
 
