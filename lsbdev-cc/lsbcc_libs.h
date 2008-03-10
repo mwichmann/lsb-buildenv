@@ -23,6 +23,7 @@ char *lsb_libs[] = {
     "X11",
     "Xt",
     "GL",
+    "GLU",
     "Xext",
     "ICE",
     "SM",
