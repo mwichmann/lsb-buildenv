@@ -1610,6 +1610,8 @@ $hdrlist=join ',', keys(%header);
 if( $hdrlist ne "" ) {
 	$select = "SELECT DISTINCT Hname, Hid FROM Header ";
 	$select.= "WHERE Hid IN ($hdrlist) ";
+	$select.= "AND Happearedin <> '' AND Happearedin <= '$lsbversion' ";
+	$select.= "AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '$lsbversion') ";
 	$select.= "AND Hid != $Hid ";
 	print $select,"\n" if $trace;
 	$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;

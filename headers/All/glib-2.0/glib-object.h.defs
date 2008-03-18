@@ -489,16 +489,16 @@ typedef struct _GObjectClass {
     gpointer pdummy[8];
 } GObjectClass;
 typedef struct _GClosure {
-    guint ref_count:15;
-    guint meta_marshal:1;
-    guint n_guards:1;
-    guint n_fnotifiers:2;
-    guint n_inotifiers:8;
-    guint in_inotify:1;
-    guint floating:1;
-    guint derivative_flag:1;
-    guint in_marshal:1;
-    guint is_invalid:1;
+    volatile guint ref_count:15;
+    volatile guint meta_marshal:1;
+    volatile guint n_guards:1;
+    volatile guint n_fnotifiers:2;
+    volatile guint n_inotifiers:8;
+    volatile guint in_inotify:1;
+    volatile guint floating:1;
+    volatile guint derivative_flag:1;
+    volatile guint in_marshal:1;
+    volatile guint is_invalid:1;
     void (*marshal) (GClosure *, GValue *, guint, const GValue *, gpointer,
 		     gpointer);
     gpointer data;

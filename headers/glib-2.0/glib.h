@@ -2422,7 +2422,8 @@ extern "C" {
     extern GArray *g_array_remove_index_fast(GArray *, guint);
     extern GAsyncQueue *g_async_queue_ref(GAsyncQueue *);
     extern GQuark g_key_file_error_quark(void);
-    extern gboolean g_atomic_pointer_compare_and_exchange(gpointer *,
+    extern gboolean g_atomic_pointer_compare_and_exchange(gpointer *
+							  volatile,
 							  gpointer,
 							  gpointer);
     extern gboolean g_date_valid_dmy(GDateDay, GDateMonth, GDateYear);
@@ -2686,7 +2687,8 @@ extern "C" {
     extern GArray *g_array_prepend_vals(GArray *, gconstpointer, guint);
     extern gdouble g_rand_double_range(GRand *, gdouble, gdouble);
     extern void g_key_file_set_list_separator(GKeyFile *, gchar);
-    extern gboolean g_atomic_int_compare_and_exchange(gint *, gint, gint);
+    extern gboolean g_atomic_int_compare_and_exchange(gint * volatile,
+						      gint, gint);
     extern void g_mem_profile(void);
     extern void g_io_channel_set_buffered(GIOChannel *, gboolean);
     extern GMutex *g_static_mutex_get_mutex_impl(GMutex * *);
@@ -3056,7 +3058,7 @@ extern "C" {
 				 GError * *);
     extern gboolean g_static_rw_lock_reader_trylock(GStaticRWLock *);
     extern void g_byte_array_sort(GByteArray *, GCompareFunc);
-    extern void g_atomic_int_add(gint *, gint);
+    extern void g_atomic_int_add(gint * volatile, gint);
     extern gpointer g_async_queue_timed_pop(GAsyncQueue *, GTimeVal *);
     extern GHook *g_hook_get(GHookList *, gulong);
     extern void g_option_context_set_help_enabled(GOptionContext *,

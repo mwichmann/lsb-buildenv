@@ -24,6 +24,8 @@ print <<HEADER;
 #ifndef LSBCC_LIBS_H
 #define LSBCC_LIBS_H
 
+/* This is a generated file, do not edit */
+
 typedef struct {
 	char	module_name[64];
 	char	**lib_names;
@@ -38,9 +40,12 @@ for(1..$th->rows) {
 	$entry = $th->fetchrow_hashref;
 	$libentry = $entry->{'Lname'};
 	if ($libentry =~ m/^lib(.+)$/) {
-		if ($1 ne "stdcxx6"
-			&& $1 ne "stdcxx") {
+		if ($1 ne "stdcxx6" && $1 ne "stdcxx") {
 			print "\t\"$1\",\n";
+			# special-case png12: add png as recognized
+			if ($1 eq "png12") {
+				print "\t\"png\",\n";
+			}
 		}
 	}
 }
@@ -75,9 +80,12 @@ for(1..$th->rows) {
 		$entry2 = $th2->fetchrow_hashref;
 		$libentry = $entry2->{'Lname'};
 		if ($libentry =~ m/^lib(.+)$/) {
-			if ($1 ne "stdcxx6"
-				&& $1 ne "stdcxx") {
+			if ($1 ne "stdcxx6" && $1 ne "stdcxx") {
 				print "\t\"$1\",\n";
+				# special-case png12: add png as recognized
+				if ($1 eq "png12") {
+					print "\t\"png\",\n";
+				}
 			}
 		}
 	}

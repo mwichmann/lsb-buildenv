@@ -175,11 +175,14 @@ extern "C" {
 
     typedef struct GLUnurbs GLUnurbsObj;
 
-    struct GLUtesselator;
 
-    struct GLUquadric;
 
-    struct GLUnurbs;
+
+
+
+
+
+
 
 
     extern gluPwlCurve(struct GLUnurbs *, GLint, GLfloat *, GLint, GLenum);
