@@ -369,11 +369,15 @@ extern "C" {
     extern snd_hctl_elem_t *snd_hctl_first_elem(snd_hctl_t *);
     extern int snd_hctl_free(snd_hctl_t *);
     extern void *snd_hctl_get_callback_private(snd_hctl_t *);
+    extern unsigned int snd_hctl_get_count(snd_hctl_t *);
+    extern int snd_hctl_handle_events(snd_hctl_t *);
     extern snd_hctl_elem_t *snd_hctl_last_elem(snd_hctl_t *);
     extern int snd_hctl_load(snd_hctl_t *);
+    extern int snd_hctl_nonblock(snd_hctl_t *, int);
     extern int snd_hctl_open(snd_hctl_t * *, const char *, int);
     extern void snd_hctl_set_callback(snd_hctl_t *, snd_hctl_callback_t);
     extern void snd_hctl_set_callback_private(snd_hctl_t *, void *);
+    extern int snd_hctl_wait(snd_hctl_t *, int);
 #ifdef __cplusplus
 }
 #endif
