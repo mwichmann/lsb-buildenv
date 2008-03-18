@@ -46,3 +46,7 @@ extern int snd_rawmidi_poll_descriptors_revents(snd_rawmidi_t *,
 						short unsigned int *);
 extern ssize_t snd_rawmidi_read(snd_rawmidi_t *, void *, size_t);
 extern ssize_t snd_rawmidi_write(snd_rawmidi_t *, const void *, size_t);
+extern const char *snd_rawmidi_info_get_subdevice_name(const
+						       snd_rawmidi_info_t
+						       *);
+extern size_t snd_rawmidi_info_sizeof(void);

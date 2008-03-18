@@ -57,6 +57,9 @@ extern "C" {
     extern const char *snd_rawmidi_info_get_id(const snd_rawmidi_info_t *);
     extern const char *snd_rawmidi_info_get_name(const snd_rawmidi_info_t
 						 *);
+    extern const char *snd_rawmidi_info_get_subdevice_name(const
+							   snd_rawmidi_info_t
+							   *);
     extern unsigned int snd_rawmidi_info_get_subdevices_count(const
 							      snd_rawmidi_info_t
 							      *);
@@ -67,6 +70,7 @@ extern "C" {
 					    snd_rawmidi_stream_t);
     extern void snd_rawmidi_info_set_subdevice(snd_rawmidi_info_t *,
 					       unsigned int);
+    extern size_t snd_rawmidi_info_sizeof(void);
     extern int snd_rawmidi_nonblock(snd_rawmidi_t *, int);
     extern int snd_rawmidi_open(snd_rawmidi_t * *, snd_rawmidi_t * *,
 				const char *, int);
