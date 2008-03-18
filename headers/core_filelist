@@ -104,6 +104,7 @@ semaphore.h
 mqueue.h
 security/pam_appl.h
 unwind.h
+GL/glu.h
 cups/cups.h
 cups/ppd.h
 cups/raster.h
