@@ -53,20 +53,16 @@ AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
 AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
 AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 
-# For core, it appears that the database is not the final word,
-# so munge the core header list by adding and removing these
-# headers.
-# XXX: Fix this!
+# There are some things we can't derive from the database 
+# 1. some "dummy" headers that are in vcs but not in the database
+# 2. the fact that some headers are generated but not shipped
+# add and subtract these from the generated lists
 
 core_headers_add = [
-    'cpio.h',
     'linux/netlink.h',
     'linux/rtnetlink.h',
     'linux/socket.h',
-    'strings.h',
     'stropts.h',
-    'sys/vfs.h',
-    'tar.h',
     'netpacket/packet.h',
     ]
 
