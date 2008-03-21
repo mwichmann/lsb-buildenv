@@ -10,6 +10,7 @@ unctrl.h
 glob.h
 grp.h
 assert.h
+cpio.h
 ctype.h
 dirent.h
 errno.h
@@ -47,6 +48,7 @@ sys/utsname.h
 sys/wait.h
 sys/mman.h
 sys/resource.h
+tar.h
 termios.h
 time.h
 ulimit.h
@@ -85,6 +87,7 @@ utmpx.h
 net/if.h
 sys/un.h
 sys/statvfs.h
+sys/vfs.h
 pty.h
 sys/statfs.h
 libintl.h
@@ -129,12 +132,8 @@ alsa/iatomic.h
 alsa/seq_midi_event.h
 alsa/instr.h
 alsa/seqmid.h
-cpio.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
-strings.h
 stropts.h
-sys/vfs.h
-tar.h
 netpacket/packet.h
