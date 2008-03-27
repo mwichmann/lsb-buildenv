@@ -97,10 +97,10 @@ usage(const char *progname) {
 		"\t--lsb-cpp=<cpp>    Set an alternate cpp to use\n" 
 		"\t--lsb-includepath=<include_path>\n"
 		"\t                   Set the path to the lsb includes directory\n"
-		"\t                    (overrides the LSBCC_INCLUDES envionment setting)\n"
+		"\t                    (overrides the LSBCC_INCLUDES environment setting)\n"
 		"\t--lsb-cxx-includepath=<include_path>\n"
 		"\t                   Set the path to the lsb c++ include directory\n"
-		"\t                    (overrides the LSBCXX_INCLUDES envionment\n "
+		"\t                    (overrides the LSBCXX_INCLUDES environment\n "
 		"\t                    setting)\n"
 	
 		"All other options are passed to the cpp more or\n"

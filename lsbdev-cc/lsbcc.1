@@ -56,8 +56,8 @@ takes a number of options prefixed with --lsb-, or
 alternatively; 
 behavior other than the default can be controlled
 by a set of environment variables.  Typically command
-line options will override options set through envionment
-varibles.
+line options will override options set through environment
+variables.
 
 .P
 .SH LSBCC OPTIONS
@@ -76,14 +76,14 @@ will be printed to stderr just prior to execution.  This helps
 see the effects of lsbcc and options.
 .TP 
 --lsb-cc=<path to c compiler>
-Specifies the name of the C compiler to invoke with the modifed
+Specifies the name of the C compiler to invoke with the modified
 argument set. If this environment variable is not found,
 the default 
 .I cc
 will be used.  This setting overrides the LSBCC environment setting.
 .TP 
 --lsb-cxx=<path to c++ compiler>
-Specifies the name of the C++ compiler to invoke with the modifed
+Specifies the name of the C++ compiler to invoke with the modified
 argument set. If this environment variable is not found,
 the default 
 .I c++
@@ -101,7 +101,7 @@ interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
 These macros are not needed for the LSB headers but may
 select necessary behavior in non-LSB headers that have
 conditionals. However, predefining the macros may collide with
-application defintions of the macros, so this is no longer
+application definitions of the macros, so this is no longer
 the default behavior for lsbcc.
 .TP 
 --lsb-libpath=<lsb_lib_path>
@@ -109,21 +109,21 @@ Specifies the location of the LSB stub libraries that will
 be linked against.  If this option or the LSBCC_LIBS environment
 variable is not set, the default 
 .I /opt/lsb/lib
-will be used.  This option overrides the LSBCC_LIBS envionment setting.
+will be used.  This option overrides the LSBCC_LIBS environment setting.
 .TP 
 --lsb-includepath=<include_path>
 Specifies the location of the LSB header files that will
 be linked against.  If this option or the LSBCC_INCLUDES environment
 variable is not set, the default 
 .I /opt/lsb/include
-will be used.  This option overrides the LSBCC_INCLUDES envionment setting.
+will be used.  This option overrides the LSBCC_INCLUDES environment setting.
 .TP 
 --lsb-cxx-includepath=<include_path>
 Specifies the location of the LSB header files that will
 be linked against.  If this option or the LSBCXX_INCLUDES environment
 variable is not set, the default 
 .I /opt/lsb/include
-will be used.  This option overrides the LSBCXX_INCLUDES envionment setting.
+will be used.  This option overrides the LSBCXX_INCLUDES environment setting.
 .TP 
 --lsb-shared-libs=<shared_lib:...>
 This option adds libraries to the list of non-lsb libraries to link as
@@ -141,7 +141,7 @@ the given set of paths will be added to the list of non-lsb libraries to link
 as shared libraries.
 .TP 
 --lsb-modules=<module,..>
-Enable support for the optional LSB modules listed.  
+Enable support for the optional/trial-use LSB modules listed.  
 Currently the only supported optional module is 'Multimedia' which
 provides the ALSA libraries.
 Modules will added in addition to any added from the
@@ -153,14 +153,14 @@ The following environment variables affect the behavior of
 .I lsbcc
 .TP
 LSBCC
-Specifies the name of the C compiler to invoke with the modifed
+Specifies the name of the C compiler to invoke with the modified
 argument set. If this environment variable is not found,
 the default 
 .I cc
 will be used.
 .TP
 LSBCXX
-Specifies the name of the C++ compiler to invoke with the modifed
+Specifies the name of the C++ compiler to invoke with the modified
 argument set. If this environment variable is not found,
 the default 
 .I c++
@@ -211,8 +211,9 @@ the given set of paths will be added to the list of non-lsb libraries to link
 as shared libraries.
 .TP
 LSB_MODULES
-Specify which optional LSB modules to include interfaces for.
-Currently 'Toolkit_Qt' is the only supported optional module.
+Specify which optional/trial-use LSB modules to include interfaces for.
+Currently the only supported optional module is 'Multimedia' which
+provides the ALSA libraries.
 .TP
 LSBCC_FORCEFEATURES
 This causes lsbcc to insert macro defines for all of the 
@@ -227,7 +228,7 @@ A numeric value which represents a bit pattern specifying what
 kinds of debugging output to produce. The bits in this pattern are
 .nf
 
-0x0001   Display enviromental overrides
+0x0001   Display environmental overrides
 0x0002   Display the arguments passed in
 0x0004   Display the arguments that are specifically recognized
 0x0008   Display the arguments that are not recognized
@@ -256,14 +257,14 @@ Normally, only LSB-defined libraries should be linked
 as shared libraries, all others must be linked statically.
 However, if an application provides its own shared libraries
 which have been carefully checked for LSB conformance, the following
-methods can be used to selectively overrride
+methods can be used to selectively override
 .IR lsbcc 's
 rule of forcing static linking. The application may not depend
 on such a library being present on a system, so it must either
 be shipped with the application, or with another LSB conforming
 application on which this application depends.  
 .P
-Libs added with any of these options will be cumlative. Shared 
+Libs added with any of these options will be cumulative. Shared 
 libs added with command line options must appear on the command 
 line before any -l options to have effect.
 .TP 
@@ -368,11 +369,11 @@ from a different source than the base headers.
 '\" to all compiler commands that will invoke the linker.  This option causes
 '\" the linker to only include explicit dependencies on shared libraries
 '\" that are mentioned on the command line if they contain symbols needed
-'\" by the objects being linked together.  Traditionaly on some systems
-'\" it was necissary to also link in shared libraries that where needed
+'\" by the objects being linked together.  Traditionally on some systems
+'\" it was necessary to also link in shared libraries that where needed
 '\" by shared libraries that the objects being linked required but where
 '\" not also referenced by the objects being linked.  This is no longer
-'\" necissary and this option reduces the number of direct run-time shared
+'\" necessary and this option reduces the number of direct run-time shared
 '\" library dependencies.  If either
 .\" .I -Wl,--as-needed 
 .\" or 
@@ -389,7 +390,7 @@ allow dynamic but not static linking to the library, and
 .I lsbcc
 may silently change (apparent) dynamic links to static, the
 .B LSBCC_WARN
-envirnonment variable should be used to notify of such changes.
+environment variable should be used to notify of such changes.
 .SH COPYRIGHT
 Copyright \(co 2002-2007 Linux Foundation
 .SH "SEE ALSO"
