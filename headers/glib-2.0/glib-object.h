@@ -677,7 +677,7 @@ extern "C" {
 
     struct _GObject {
 	GTypeInstance g_type_instance;
-	guint ref_count;
+	volatile guint ref_count;
 	GData *qdata;
     };
 
