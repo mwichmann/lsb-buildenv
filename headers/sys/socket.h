@@ -265,6 +265,7 @@ extern "C" {
 /* flags used in recvmsg()*/
 #define MSG_WAITALL	0x100
 #define MSG_TRUNC	0x20
+#define MSG_NOSIGNAL	0x4000
 #define MSG_EOR	0x80
 #define MSG_OOB	1
 #define MSG_PEEK	2
