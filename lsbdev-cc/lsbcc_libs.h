@@ -72,6 +72,18 @@ lsb_lib_modules_t lsb_modules[] = {
 	{"Multimedia", lsb_Multimedia_libs },
 };
 
+char *lsb_Toolkit_Qt3_libs[] = {
+	"qt-mt",
+	NULL
+};
+
+int	lsb_num_deprecated_modules = 1;
+
+lsb_lib_modules_t lsb_deprecated_modules[] = {
+	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs },
+};
+
+
 char *lsb_cplus_libs[] = {
 	"stdc++",
 	NULL
