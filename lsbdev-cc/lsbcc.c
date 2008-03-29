@@ -876,6 +876,20 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 				break;
 			}
 		}
+
+		/*
+		 * XXX temporary hack: accept names of deprecated
+		 * modules - no need to do anything with them
+		 * this is just for the Qt3 scripts, really;
+		 * until a better answer is developed
+		 */
+		for (i = 0; i < lsb_num_deprecated_modules; i++) {
+			if(strcasecmp(module, lsb_deprecated_modules[i].module_name) == 0) {
+				found = 1;
+				break;
+			}
+		}
+
 		if (!found) {
 			fprintf(stderr,"unknown module in LSB_MODULES: %s\n", module);
 			exit(EXIT_FAILURE);
