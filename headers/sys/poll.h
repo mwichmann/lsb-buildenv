@@ -13,6 +13,10 @@ extern "C" {
 #define POLLERR	0x0008		/* Error condition */
 #define POLLHUP	0x0010		/* Hung up */
 #define POLLNVAL	0x0020	/* Invalid request: fd not open */
+#define POLLRDNORM	0x0040	/* Normal data may be read */
+#define POLLRDBAND	0x0080	/* Priority data may be read */
+#define POLLWRNORM	0x0100	/* Writing now will not block */
+#define POLLWRBAND	0x0200	/* Priority data may be written */
 
 
     typedef unsigned long int nfds_t;
