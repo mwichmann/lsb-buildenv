@@ -845,8 +845,8 @@ if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++)
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 }
-+
-+if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
+
+if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
     lsbcc_lsbversion=ptr;
 
     if( (lsbversion_option=
