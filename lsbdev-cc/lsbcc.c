@@ -9,7 +9,7 @@
  * LSB conforming applications can be built without this tool, but using
  * lsbcc make it easier to get everything right. This is a re-implementation
  * of the original shell script.
- * 
+ *
  * The basic premise is this: The LSB development environment provides
  * a set of headers and libraries nominally found in /opt/lsb/include
  * and /opt/lsb/lib respectively. These headers and libraries have
@@ -17,24 +17,24 @@
  * the LSB. And LSB conforming application must also use be linked with
  * a special program intepreter (usually ld-lsb.so.3 but this is described
  * in each archLSB)
- * 
+ *
  * The purpose of the lsbcc tool is to cause programs to be built against
- * these headers and libraries and with the correct program interpreter. 
+ * these headers and libraries and with the correct program interpreter.
  * There are still some parts of a development system (gcc headers, crt0.o,
  * etc) that must be used but are not provided by the LSB, so the normal
  * version of these gets used. The trick is to ensure that the LSB provided
  * parts take precedence over the regular versions. This is accomplished by
  * inserting a couple of extra options in the right place before actually
  * calling gcc.
- *  
+ *
  * The approach taken here is to recognize enough of the regular options to
  * allow the extra options to be inserted into the right place. Fortunately,
  * the options can be grouped into a few catagories, and the order in which
  * the catagories are passed to gcc is not important, as long as the order of
  * items within each catagory is preserved.
- * 
+ *
  * The extra options are easily inserted in between the catagories.
- * 
+ *
  * A couple of things that complicate this process (and this is what ended the
  * life of the shell script based lsbcc) is that some of the options have
  * optional parameters (ie -W and -O) and the getopt command wasn't able to
@@ -42,7 +42,7 @@
  * strings are passed in as a define (ie -DFOO="A String Here"). The quotes
  * were getting stripped off, so what got passed to gcc was a buch of invalid
  * options.
- * 
+ *
  */
 
 #include <sys/types.h>
@@ -90,6 +90,8 @@ struct argvgroup *gccstartargs;
 
 int lsbccmode=LSBCC;
 
+#define DEFAULT_LSB_VERSION "40"
+
 /*
  * Set the default names of the compiler to call and the paths
  * to LSB headers and libraries.  These can be changed through
@@ -100,6 +102,8 @@ int lsbccmode=LSBCC;
 #endif
 
 char *ccname="cc";
+char *lsbcc_lsbversion=DEFAULT_LSB_VERSION;
+char *lsbversion_option;
 char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
 char libpath[PATH_MAX];
@@ -120,8 +124,8 @@ char libpath[PATH_MAX];
 #define WARN_LIB_CHANGES	0x0001
 
 int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
-int lsbcc_warn=0; 
-int lsbcc_buildingshared=0; 
+int lsbcc_warn=0;
+int lsbcc_buildingshared=0;
 
 /*
  * State variable to determine if we need to add -Wl,-Bdynamic before an LSB lib.
@@ -406,7 +410,7 @@ check_include_path(const char *include_path)
   int result, index;
 
   for (index = 0; bad_includes[index] != NULL; index++) {
-    result = strncmp(bad_includes[index], include_path, 
+    result = strncmp(bad_includes[index], include_path,
 		     strlen(bad_includes[index]));
     if (result == 0) {
       is_bad = 1;
@@ -490,9 +494,9 @@ char *get_modules_strings(void)
 void
 usage(const char *progname) {
 	printf("Usage %s:\n"
-		"\t--lsb-help         Display this message\n"	
-		"\t--lsb-version      Display the version of LSB this tool can build for.\n"	
-		"\t--lsb-verbose      Print out full commands to system compiler.\n"	
+		"\t--lsb-help         Display this message\n"
+		"\t--lsb-version      Display the version of LSB this tool can build for.\n"
+		"\t--lsb-verbose      Print out full commands to system compiler.\n"
 		"\t--lsb-cc=<path to c compiler>\n"
 		"\t                   Set the system c compiler (overrides LSBCC\n"
 		"\t                    environment setting)\n"
@@ -531,7 +535,7 @@ usage(const char *progname) {
 		"\t                    Modules will added in addition to any added from \n"
 		"\t                    the LSB_MODULES environment setting.\n"
 		"\t                    known modules: %s\n\n"
-	
+
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
@@ -594,7 +598,7 @@ is_file_so(const struct dirent *ent)
 	 */
 	if (strlen(ent->d_name) < strlen("libc.so")) {
 		return 0;
-	} 
+	}
 	/*
 	 * ensure the filename starts with 'lib'
 	 */
@@ -614,12 +618,12 @@ is_file_so(const struct dirent *ent)
 }
 
 /*
- * FIXME: If LSB ever gets around to including scandir get rid of 
+ * FIXME: If LSB ever gets around to including scandir get rid of
  * this code.
  */
 int lsbcc_scandir(
 	char *libpath,
-	struct dirent ***dirents, 
+	struct dirent ***dirents,
 	int(*filter)(const struct dirent *))
 {
 	DIR 		*dir;
@@ -639,7 +643,7 @@ int lsbcc_scandir(
 			 * grow the return array buffer in 1k chunks
 			 */
 			if (num_ents == ents_available) {
-				if (*dirents != NULL) {	
+				if (*dirents != NULL) {
 					struct dirent **tmpdirents = *dirents;
 					*dirents = malloc(ents_available + 1024);
 					memcpy(*dirents, tmpdirents, ents_available);
@@ -667,10 +671,10 @@ int lsbcc_scandir(
 
 /*
  * Resolves bug #1477
- * 
+ *
  * This function parses a series of ':' separated paths
  * and scans each path for shared libraries and adds them
- * to the list of allowed shared libs and libpaths as 
+ * to the list of allowed shared libs and libpaths as
  * they are found.
  */
 void
@@ -689,7 +693,7 @@ process_shared_lib_path(char *libarg)
 		if (num_libs > 0) {
 			while(num_libs--) {
 				/*
- 				 * NOTE: If the implementation of is_file_so changes, 
+ 				 * NOTE: If the implementation of is_file_so changes,
 				 * this code very likey will need to change as well
 				 * since the following is only safe because we know
 				 * that all dirents start with lib and have a .so in
@@ -719,7 +723,7 @@ int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
-int 	auto_pthread = 1; 
+int 	auto_pthread = 1;
 int	force_static = 0;
 int	feature_settings = 0;
 int	display_cmd = 0;
@@ -751,8 +755,8 @@ gccargs=argvinit();
 
 /* Determine if we are being called for C or C++ */
 if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
-	/* We are compiling C++ - set a flag to affect some things 
-	 * later on 
+	/* We are compiling C++ - set a flag to affect some things
+	 * later on
 	 */
 	lsbccmode=LSBCPLUS;
 	ccname=strdup("c++");
@@ -763,6 +767,10 @@ if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
  */
 snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
 snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
+
+/* Initialize default version value */
+lsbversion_option=(char*)malloc(sizeof(char)*strlen(DEFAULT_LSB_VERSION));
+sprintf(lsbversion_option, "-D__LSB_VERSION__=%s", DEFAULT_LSB_VERSION);
 
 /*
  * Set up the library path according to arch using lib64 where necessary
@@ -795,7 +803,7 @@ if(LSBCPLUS != lsbccmode) {
 		}
 	}
 } else {
-	
+
 	if( (ptr=getenv("LSBCXX")) != NULL ) {
 		ccname=ptr;
 		if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
@@ -837,7 +845,25 @@ if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++)
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 }
-	
++
++if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
+    lsbcc_lsbversion=ptr;
+
+    if( (lsbversion_option=
+        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion-1))) ) == NULL ) {
+			exit(3);
+	}
+
+	strcpy(lsbversion_option, "-D__LSB_VERSION__=");
+	// Normally, LSB_VERSION values should contain dot - remove it
+	strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
+	if( lsbcc_lsbversion )
+	    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
+
+    if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+        fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
+}
+
 
 /*
  * Build the argvgroup for the "known" library names here
@@ -925,7 +951,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 0:
 		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
-			fprintf(stderr,"option0: -%s", 
+			fprintf(stderr,"option0: -%s",
 				long_options[option_index].name);
 			if( optarg ) {
 				fprintf(stderr, " with arg %s", optarg);
@@ -950,7 +976,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		/* special case: file fed to stdin */
 		if(strcmp( optarg, "-" ) == 0) {
 			if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
-				fprintf(stderr,"option1: %s, process stdin\n", optarg); 
+				fprintf(stderr,"option1: %s, process stdin\n", optarg);
 			}
 			found_file = 1;
 		}
@@ -994,7 +1020,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 
 		break;
 	case 11: /* --lsb-shared-libs=<lib:...> */
-		{ 
+		{
 		char *libarg, *lib;
 		libarg = strdup(optarg);
 		lib = strtok(libarg, ":");
@@ -1005,7 +1031,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			lib = strtok(NULL, ":");
 		}
 		}
-		break;	
+		break;
 	case 12:/* --lsb-forcefeatures */
 		feature_settings = 1;
 		break;
@@ -1069,7 +1095,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if (check_include_path(optarg)) {
 		  /* For now, just print warnings for bad include
 		     paths. */
-		  fprintf(stderr, "warning: dangerous include path %s\n", 
+		  fprintf(stderr, "warning: dangerous include path %s\n",
 			  optarg);
 		}
 
@@ -1097,7 +1123,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if (strstr(argv[optind-1], "Bstatic") != NULL) {
 			b_dynamic = 0;
 		}
-		
+
 		if ((strstr(argv[optind-1], "no-as-needed") != NULL) ||
 			(strstr(argv[optind-1], "as-needed") != NULL)) {
 			/*
@@ -1114,19 +1140,19 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 14:
 	case 15:
 	case 'v':
-		/* Handle a standalone --version, --verbose, '-v', and '-V' 
+		/* Handle a standalone --version, --verbose, '-v', and '-V'
 		 * argument specially to make sure it only
 		 * calls the compiler with the standalone option and doesn't
 		 * try to send all the other arguments to avoid the need
 		 * of having the compiler call the linker.  Unless of course
-		 * we need to call the linker, which will happen whenever 
+		 * we need to call the linker, which will happen whenever
 		 * found_gcc_arg gets set.
 		 */
 		found_gcc_standalone = 1;
 		argvaddstring(gccstartargs,argv[optind-1]);
-		break;	
+		break;
 	case 17:
-		/* -static 
+		/* -static
 		 * no -Wl,Bdynamic, add -Wl,--start-group, add -lgcc_eh */
 		found_gcc_arg = 1;
 		b_dynamic = 0;
@@ -1152,7 +1178,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			 */
 			usage(argv[0]);
 			exit(EXIT_FAILURE);
-			
+
 		}
 		found_gcc_arg = 1;
 		/*
@@ -1222,6 +1248,7 @@ if (feature_settings) {
 	}
 }
 
+argvaddstring(options,lsbversion_option);
 
 /* Gather together the non-options arguments */
 if (optind < argc) {
@@ -1302,7 +1329,7 @@ if (!no_link) {
 			argvaddstring(syslibs, "-lgcc34compat");
 			argvaddstring(syslibs, "-ldl");
 		}
-		
+
 		if( lsbcc_debug&DEBUG_LIB_CHANGES ) {
 			fprintf(stderr,"Appending -lstdc++ -lgcc_s to the library list\n");
 		}
@@ -1331,7 +1358,7 @@ if (!no_link) {
 	}
 
 	/* Initialize the argv groups */
-	
+
 	if (!lsbcc_buildingshared) {
 		if (cc_is_icc) {
 			sprintf(progintbuf,"-dynamic-linker=%s",proginterpreter);
@@ -1340,10 +1367,10 @@ if (!no_link) {
 		}
 		argvaddstring(proginterp,progintbuf);
 	}
-} 
+}
 
 /*
- * Check if any parameters/options are passed. 
+ * Check if any parameters/options are passed.
  * If not print an error similar to running "gcc"
  * without any parameters/options
  */
@@ -1415,7 +1442,7 @@ if (found_gcc_arg) {
 		}
 		argvadd(gccargs,"L",libpath);
 		argvappend(gccargs,libpaths);
-	
+
 		if (found_l_opt && !no_as_needed) {
 			argvaddstring(gccargs,strdup("-Wl,--as-needed"));
 		}
@@ -1423,7 +1450,7 @@ if (found_gcc_arg) {
 
 	argvappend(gccargs,userlibs);
 
-	/* 
+	/*
 	 * force libirc for icc here, icc does a bunch of ld fixups
 	 * like lsbcc does, but they don't always get along without
 	 * this.
@@ -1475,3 +1502,4 @@ execvp(gccargs->argv[0], gccargs->argv);
 
 exit (EXIT_FAILURE); /* exec must have failed! */
 }
+

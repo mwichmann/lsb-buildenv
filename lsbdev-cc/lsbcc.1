@@ -252,6 +252,13 @@ The complete command line passed to either the C or C++ compiler
 will be printed to stderr just prior to execution.  This helps
 see the effects of lsbcc and options.
 .P
+.TP
+LSBCC_LSBVERSION
+Target LSB version. If this environment variable
+is not found, the default
+.I '4.0'
+value (i.e. compile against LSB 4.0) will be used.
+.P
 .SH Non LSB Shared Libraries
 Normally, only LSB-defined libraries should be linked
 as shared libraries, all others must be linked statically.
@@ -396,3 +403,4 @@ Copyright \(co 2002-2007 Linux Foundation
 .SH "SEE ALSO"
 Linux Standard Base specification and other documents at
 http://www.linuxbase.org/
+
