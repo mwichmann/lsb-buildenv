@@ -769,7 +769,8 @@ snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
 snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
 
 /* Initialize default version value */
-lsbversion_option=(char*)malloc(sizeof(char)*strlen(DEFAULT_LSB_VERSION));
+lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
+		                               strlen(DEFAULT_LSB_VERSION)));
 sprintf(lsbversion_option, "-D__LSB_VERSION__=%s", DEFAULT_LSB_VERSION);
 
 /*
@@ -841,11 +842,6 @@ if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
 	display_cmd = 1;
 }
 
-if( lsbcc_debug&DEBUG_ARGUMENTS ) {
-	for(i=0;i<argc;i++)
-		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
-}
-
 if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
     lsbcc_lsbversion=ptr;
 
@@ -862,6 +858,11 @@ if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
 
     if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
         fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
+}
+
+if( lsbcc_debug&DEBUG_ARGUMENTS ) {
+	for(i=0;i<argc;i++)
+		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 }
 
 
