@@ -1,25 +1,34 @@
 #ifndef _UNWIND_H_
 #define _UNWIND_H_
 
-#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
+
+
+
     struct _Unwind_Context;
 
 
-    typedef void *_Unwind_Ptr;
 
-    typedef unsigned int _Unwind_Word;
 
-    typedef u_int64_t _Unwind_Exception_Class;
+    typedef unsigned int _Unwind_Ptr
+	__attribute__ (((__mode__(__pointer__))));
+
+    typedef unsigned int _Unwind_Word
+	__attribute__ (((__mode__(__word__))));
+
+    typedef unsigned int _Unwind_Exception_Class
+	__attribute__ (((__mode__(__DI__))));
 
 
 /* The unwind interface uses reason codes in several contexts to
    identify the reasons for failures or other actions.*/
+
+
     typedef enum {
 	_URC_NO_REASON = 0,
 	_URC_FOREIGN_EXCEPTION_CAUGHT = 1,
@@ -33,7 +42,9 @@ extern "C" {
     } _Unwind_Reason_Code;
 
 
-    typedef void (*_Unwind_Exception_Cleanup_Fn) (enum,
+
+
+    typedef void (*_Unwind_Exception_Cleanup_Fn) (_Unwind_Reason_Code,
 						  struct _Unwind_Exception
 						  *);
 
@@ -43,12 +54,14 @@ extern "C" {
    full representation of an exception object is language- and
    implementation-specific, but it will be prefixed by a header
    understood by the unwind interface.*/
+
+
     struct _Unwind_Exception {
-	u_int64_t exception_class;
+	_Unwind_Exception_Class exception_class;
 	_Unwind_Exception_Cleanup_Fn exception_cleanup;
-	u_int64_t private_1;
-	u_int64_t private_2;
-    };
+	_Unwind_Word private_1;
+	_Unwind_Word private_2;
+    } __attribute__ ((__aligned__(16)));
 
 
 /* The ACTIONS argument to the personality routine is a bitwise OR of one
@@ -63,6 +76,8 @@ extern "C" {
     typedef int _Unwind_Action;
 
 
+
+
 #if defined __s390x__
 /* S390X */
     typedef _Unwind_Reason_Code(*_Unwind_Stop_Fn) (int version,
@@ -155,51 +170,53 @@ extern "C" {
 
 #endif
 
-#if defined __ia64__
-/* IA64 */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
 
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
-						    *, void *);
-
-#endif
 
 #if defined __ia64__
 /* IA64 */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context
+						    *, void *);
+
+#endif
+
+#if defined __ia64__
+/* IA64 */
     extern void _Unwind_DeleteException(struct _Unwind_Exception *);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -225,30 +242,6 @@ extern "C" {
 #if defined __i386__
 /* IA32 */
     extern void _Unwind_DeleteException(struct _Unwind_Exception *);
-#endif
-#if defined __i386__
-/* IA32 */
-    extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
