@@ -43,7 +43,7 @@ AND Library.Lid = ModLib.MLlid
 AND Library.Lid = Header.Hlib
 AND ( ( (Happearedin <= '""" + lsbversion + """' AND Happearedin<>'')
 AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '""" + lsbversion + """') )
-OR Hsrconly='Yes' OR Hsrcerror='Yes' )"""
+OR Hsrcerror='Yes' )"""
 
 lib_query = """
 SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
