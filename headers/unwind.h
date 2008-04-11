@@ -16,13 +16,12 @@ extern "C" {
 
 
     typedef unsigned int _Unwind_Ptr
-	__attribute__ (((__mode__(__pointer__))));
+	__attribute__ ((__mode__(__pointer__)));
 
-    typedef unsigned int _Unwind_Word
-	__attribute__ (((__mode__(__word__))));
+    typedef unsigned int _Unwind_Word __attribute__ ((__mode__(__word__)));
 
     typedef unsigned int _Unwind_Exception_Class
-	__attribute__ (((__mode__(__DI__))));
+	__attribute__ ((__mode__(__DI__)));
 
 
 /* The unwind interface uses reason codes in several contexts to
@@ -61,7 +60,7 @@ extern "C" {
 	_Unwind_Exception_Cleanup_Fn exception_cleanup;
 	_Unwind_Word private_1;
 	_Unwind_Word private_2;
-    } __attribute__ ((__aligned__(16)));
+    } __attribute__ (__aligned__(16));
 
 
 /* The ACTIONS argument to the personality routine is a bitwise OR of one
