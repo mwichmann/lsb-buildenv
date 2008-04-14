@@ -312,7 +312,7 @@ __asm__(".globl constraintClassRec; .pushsection .data; .type constraintClassRec
 __asm__(".globl constraintWidgetClass; .pushsection .data; .type constraintWidgetClass,@object; .size constraintWidgetClass, 8; constraintWidgetClass: .long 0; .popsection");
 __asm__(".globl coreWidgetClass; .pushsection .data; .type coreWidgetClass,@object; .size coreWidgetClass, 8; coreWidgetClass: .long 0; .popsection");
 __asm__(".globl objectClass; .pushsection .data; .type objectClass,@object; .size objectClass, 8; objectClass: .long 0; .popsection");
-__asm__(".globl objectClassRec; .pushsection .data; .type objectClassRec,@object; .size objectClassRec, 224; objectClassRec: .long 0; .popsection");
+__asm__(".globl objectClassRec; .pushsection .data; .type objectClassRec,@object; .size objectClassRec, 0; objectClassRec: .long 0; .popsection");
 __asm__(".globl overrideShellClassRec; .pushsection .data; .type overrideShellClassRec,@object; .size overrideShellClassRec, 280; overrideShellClassRec: .long 0; .popsection");
 __asm__(".globl overrideShellWidgetClass; .pushsection .data; .type overrideShellWidgetClass,@object; .size overrideShellWidgetClass, 8; overrideShellWidgetClass: .long 0; .popsection");
 __asm__(".globl rectObjClass; .pushsection .data; .type rectObjClass,@object; .size rectObjClass, 8; rectObjClass: .long 0; .popsection");
