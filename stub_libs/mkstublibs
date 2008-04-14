@@ -99,6 +99,33 @@ sub LoadOverrideSymbolData() {
 }
 
 ######################################################################
+# Create temporary table containing all symbols assigned to library
+sub CreateTmpLibTable($$) {
+    my ($dbh)     = shift;
+    my ($libId)   = shift;
+    my ($sth);
+    my ($create);
+
+    $create = "CREATE TEMPORARY TABLE tmp_LibInts_$libId "
+        . "(KEY `Iid`(`Iid`)) "
+        . "SELECT Iid, Iname, Ireturn, Itype FROM Interface "
+        . "LEFT JOIN LGInt ON LGIint=Iid "
+        . "LEFT JOIN LibGroup ON LGid=LGIlibg "
+        . "WHERE LGlib=$libId";
+    $sth = $dbh->prepare($create) || die $dbh->errstr;
+    $sth->execute() || die $sth->errstr;
+
+    $create = "CREATE TEMPORARY TABLE tmp_LibIncludedInts_$libId "
+        . "(KEY `Iid`(`Iid`), KEY `AIarch`(`AIarch`), KEY `Iname`(`Iname`,`AIarch`), KEY `Itype`(`Itype`,`AIarch`)) "
+        . "SELECT Iid, Iname, Ireturn, Itype, AIarch, AIversion FROM tmp_LibInts_$libId "
+        . "LEFT JOIN ArchInt ON AIint=Iid "
+        . "WHERE (AIappearedin <= '$lsbversion' and AIappearedin<>'') "
+        . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
+    $sth = $dbh->prepare($create) || die $dbh->errstr;
+    $sth->execute() || die $sth->errstr;
+}
+
+######################################################################
 # Generate C stub code for a library
 sub GenerateLibrary($$$) {
     my ($dbh)     = shift;
@@ -122,15 +149,9 @@ sub GenerateLibrary($$$) {
 
     # Do functions first
     $select =
-        "SELECT DISTINCT Iname,AIarch,Vname FROM Interface "
-      . "LEFT JOIN LGInt ON LGIint=Iid "
-      . "LEFT JOIN LibGroup ON LGIlibg=LGid "
-      . "LEFT JOIN ArchInt ON AIint=Iid "
+        "SELECT DISTINCT Iname,AIarch,Vname FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
       . "WHERE Itype='Function' "
-      . "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') "
-      . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') "
-      . "AND LibGroup.LGlib=$libId "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 )"
       . "ORDER BY Iname";
 
@@ -153,16 +174,10 @@ sub GenerateLibrary($$$) {
 
         if ( ( $TargetArchId != 1 ) && ( $row->{AIarch} == 1 ) ) {
             $selectCheck =
-                "SELECT DISTINCT Iid FROM Interface "
-              . "LEFT JOIN LGInt ON LGIint=Iid "
-              . "LEFT JOIN LibGroup ON LGIlibg=LGid "
-              . "LEFT JOIN ArchInt ON AIint=Iid "
-              . "WHERE Itype='Function' "
-              . "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') "
-              . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') "
-              . "AND LibGroup.LGlib=$libId "
+                "SELECT Iid FROM tmp_LibIncludedInts_$libId "
+              . "WHERE Iname='$row->{Iname}' "
               . "AND AIarch=$TargetArchId "
-              . "AND Iname='$row->{Iname}'";
+              . "LIMIT 1";
 
             $sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
             $sthCheck->execute() || die $sthCheck->errstr;
@@ -208,18 +223,13 @@ sub GenerateLibrary($$$) {
 	
     # Do variables next
     $select =
-      "SELECT DISTINCT Iname,AIarch,Itype,Vname,Ireturn,ATsize FROM Interface "
-      . "LEFT JOIN LGInt ON LGIint=Iid "
-      . "LEFT JOIN LibGroup ON LGIlibg=LGid "
-      . "LEFT JOIN ArchInt ON AIint=Iid "
+      "SELECT DISTINCT Iname,AIarch,Itype,Vname,Ireturn,ATsize FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
-      . "LEFT JOIN ArchType ON ATtid=Ireturn and "
-      . "ATaid=$TargetArchId WHERE "
+      . "LEFT JOIN ArchType ON ATaid=$TargetArchId AND ATtid=Ireturn "
+      . "WHERE "
       . "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) "
-      . "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') "
-      . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 ) "
-      . "AND LibGroup.LGlib=$libId ORDER BY Iname";
+      . "ORDER BY Iname";
 
     #print "$select\n";
     $sth = $dbh->prepare($select) || die $dbh->errstr;
@@ -229,18 +239,12 @@ sub GenerateLibrary($$$) {
     while ( $row = $sth->fetchrow_hashref() ) {
         if ( ( $TargetArchId != 1 ) && ( $row->{AIarch} == 1 ) ) {
             $selectCheck =
-                "SELECT DISTINCT Iid FROM Interface "
-              . "LEFT JOIN LGInt ON LGIint=Iid "
-              . "LEFT JOIN LibGroup ON LGIlibg=LGid "
-              . "LEFT JOIN ArchInt ON AIint=Iid "
+                "SELECT DISTINCT Iid FROM tmp_LibIncludedInts_$libId "
               . "LEFT JOIN ArchType ON ATtid=Ireturn and "
               . "ATaid=$TargetArchId WHERE "
-              . "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) "
-              . "AND (AIappearedin <= '$lsbversion' and AIappearedin<>'') "
-              . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') "
+              . "tmp_LibIncludedInts_$libId.Iname='$row->{Iname}' "
               . "AND AIarch=$TargetArchId "
-              . "AND LibGroup.LGlib=$libId "
-              . "AND Iname='$row->{Iname}'";
+              . "LIMIT 1";
 			
             $sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
             $sthCheck->execute() || die $sthCheck->errstr;
@@ -488,6 +492,7 @@ while ( $row = $sth->fetchrow_hashref ) {
     $lastlib = $row->{Lname};
     print "Generating c stubs for $row->{Lname} library ($row->{ALrunname})\n";
     print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
+    CreateTmpLibTable( $dbh, $row->{Lid} );
     GenerateLibrary( $dbh, $row->{Lname}, $row->{Lid} );
 }
 $sth->finish;
