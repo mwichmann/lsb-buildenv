@@ -11571,6 +11571,7 @@ __asm__(".globl _ZTI11QSpacerItem; .pushsection .data; .type _ZTI11QSpacerItem,@
 __asm__(".globl _ZTI11QSpinWidget; .pushsection .data; .type _ZTI11QSpinWidget,@object; .size _ZTI11QSpinWidget, 12; _ZTI11QSpinWidget: .long 0; .popsection");
 __asm__(".globl _ZTI11QStoredDrag; .pushsection .data; .type _ZTI11QStoredDrag,@object; .size _ZTI11QStoredDrag, 12; _ZTI11QStoredDrag: .long 0; .popsection");
 __asm__(".globl _ZTI11QStyleSheet; .pushsection .data; .type _ZTI11QStyleSheet,@object; .size _ZTI11QStyleSheet, 12; _ZTI11QStyleSheet: .long 0; .popsection");
+__asm__(".globl _ZTI11QTextFormat; .pushsection .data; .type _ZTI11QTextFormat,@object; .size _ZTI11QTextFormat, 8; _ZTI11QTextFormat: .long 0; .popsection");
 __asm__(".globl _ZTI11QTextStream; .pushsection .data; .type _ZTI11QTextStream,@object; .size _ZTI11QTextStream, 8; _ZTI11QTextStream: .long 0; .popsection");
 __asm__(".globl _ZTI11QTimerEvent; .pushsection .data; .type _ZTI11QTimerEvent,@object; .size _ZTI11QTimerEvent, 12; _ZTI11QTimerEvent: .long 0; .popsection");
 __asm__(".globl _ZTI11QToolButton; .pushsection .data; .type _ZTI11QToolButton,@object; .size _ZTI11QToolButton, 12; _ZTI11QToolButton: .long 0; .popsection");
