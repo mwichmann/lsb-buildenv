@@ -55,23 +55,23 @@ if( $$type{'Ttype'} eq "Literal" ) {
 
 if( $$type{'Ttype'} eq "Volatile" ) {
 	$basetype = specdb::getBaseTypeID($type);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$entry = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$entry = $sth->fetchrow_hashref;
 	$sth->finish;
-    if( $entry->{'Ttype'} eq "Pointer" ) {
-	    displaytype($entry);
-        print "volatile ";
+	if( $entry->{'Ttype'} eq "Pointer" ) {
+		displaytype($entry);
+		print "volatile ";
 	} else {
-       	print "volatile ";
-	    displaytype($entry);
+		print "volatile ";
+		displaytype($entry);
 	}
     return;
 }
 
 if( $$type{'Ttype'} eq "Const" ) {
 	$basetype = specdb::getBaseTypeID($type);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$entry = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$entry = $sth->fetchrow_hashref;
 	$sth->finish;
 	if( $entry->{'Ttype'} eq "Pointer" ) {
 		displaytype($entry);
@@ -89,8 +89,8 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 		$typefuncptr=0;
 	}
 	$basetype = specdb::getBaseTypeID($type);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$entry = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$entry = $sth->fetchrow_hashref;
 	$sth->finish;
 
 	if($entry->{'Ttype'} eq "FuncPtr" && !$nameonly){
@@ -101,11 +101,11 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 			if($entry->{'Ttype'} eq 'Struct' || $entry->{'Ttype'} eq 'Union') {
 			if( !($entry->{'Tname'} =~ "anon" )) {
 				if( $entry->{'Theadgroup'} == $HGid ) {
-# 					$old_sth = $sth;
-# 					for( $i=0; $i < $old_sth->rows; $i++ ) {
+#					$old_sth = $sth;
+#					for( $i=0; $i < $old_sth->rows; $i++ ) {
 						displaytype($entry);
-# 						$entry = $old_sth->fetchrow_hashref;
-# 					}
+#						$entry = $old_sth->fetchrow_hashref;
+#					}
 				}
 			}
 		} else {
@@ -172,11 +172,12 @@ if( $$type{'Ttype'} eq "Pointer" or $$type{'Ttype'} eq "Ref" ) {
 			$nameonly=1;
 			displaytype($entry);
 			$nameonly=0;
-		}else {
-            if (($entry->{'Ttype'} eq 'Struct' || $entry->{'Ttype'} eq 'Union') && !$typeflag ) {
-               $nameonly=1;
-               displaytype($entry);
-               $nameonly=0;
+		} else {
+			if (($entry->{'Ttype'} eq 'Struct' || 
+                             $entry->{'Ttype'} eq 'Union') && !$typeflag ) {
+				$nameonly=1;
+				displaytype($entry);
+				$nameonly=0;
 			} else {
 				displaytype($entry);
 			}
@@ -231,8 +232,8 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
 		$tselect = "SELECT * FROM Type ";
 		$tselect.= "LEFT JOIN ArchType ON ATtid=Tid ";
 		$tselect.= "WHERE Tid=$TMtypeid ";
-# 		$tselect.= "AND ATaid=$Aid";
-# 		print $tselect."\n";
+#		$tselect.= "AND ATaid=$Aid";
+#		print $tselect."\n";
 		$th = $dbh->prepare($tselect) or die "Couldn't prepare $tselect query: ".DBI->errstr;
 		$th->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
 		$entry = $th->fetchrow_hashref;
@@ -285,7 +286,7 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
 #		}
 		$nameonly=0;
 		if( $sflag ) {
-            $typeflag=1;
+			$typeflag=1;
 			$sflag=0;
 	 	}
 	}
@@ -474,8 +475,8 @@ if( $$type{'Ttype'} eq "Enum" ) {
 
 if( $$type{'Ttype'} eq "FuncPtr" || $$type{'Ttype'} eq "Function" ) {
 	$basetype = specdb::getBaseTypeID($type);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$entry = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$entry = $sth->fetchrow_hashref;
 	$sth->finish;
 	if( !$nameonly ) {
 		$nameonly=1;
@@ -546,12 +547,12 @@ if( $$type{'Ttype'} eq "FuncPtr" || $$type{'Ttype'} eq "Function" ) {
 
 if( $$type{'Ttype'} eq "Array" ) {
 	$basetype = specdb::getBaseTypeID($type);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$entry = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$entry = $sth->fetchrow_hashref;
 	$sth->finish;
 	if( !$nameonly ) {
 		$nameonly=1;
- 		displaytype($entry);
+		displaytype($entry);
 		$nameonly=0;
 	} else {
 		displaytype($entry);
@@ -696,7 +697,7 @@ if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangl
 	}
 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
- 	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
 #  	$select.= "AND Aid = $Aid ";
 	$select.= "ORDER BY Tid";
 	print $select,"\n" if $trace;
@@ -749,9 +750,9 @@ if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangl
 	$iselect.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
 	$iselect.= "WHERE Iclass=".$$type{'Tid'}." ";
 	$iselect.= "AND Iunmangled not like '%thunk%' ";
- 	$iselect.= "AND (Isrcbin='SrcOnly' OR (";
- 	$iselect.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
- 	$iselect.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
+	$iselect.= "AND (Isrcbin='SrcOnly' OR (";
+	$iselect.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
+	$iselect.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
 	$iselect.=" ORDER BY Iaccess";
 	print $iselect,"\n" if $trace;
 
@@ -790,9 +791,9 @@ if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangl
 
 		if( $Itype eq 'Data' ) {
 			$unmangled = $int->{'Iunmangled'};
- 			if( $unmangled =~ /$name\:\:(.+)/ ) {
- 				$unmangled = $1;
- 			}
+			if( $unmangled =~ /$name\:\:(.+)/ ) {
+				$unmangled = $1;
+			}
 
 			$rselect = "SELECT * FROM Type LEFT JOIN ArchType ON ATtid=Tid WHERE Tid = ".$int->{'Ireturn'};
 			$rth = $dbh->prepare($rselect) or die "Couldn't prepare $rselect query: ".DBI->errstr;
@@ -820,9 +821,9 @@ if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangl
 
 		if( $int->{'Iunmangled'} ) {
 			$unmangled = $int->{'Iunmangled'};
- 			if( $unmangled =~ /$name\:\:(.+)/ ) {
- 				$unmangled = $1;
- 			}
+			if( $unmangled =~ /$name\:\:(.+)/ ) {
+				$unmangled = $1;
+			}
 
 			# On binary level, there can be several contructors and destructors, coming
 			# from the same source level interface
@@ -831,17 +832,17 @@ if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangl
 			}
 			$processed{"$unmangled"} = 1;
 
- 			print "    ";
- 			if( $Ivirtual eq 'Yes' ) {
-  				print "virtual ";
- 			}
- 			if( $Istatic eq 'Yes' ) {
- 				print "static ";
- 			}
- 			$old_name = $name;
- 			displaytyperef($int);
- 			$name = $old_name;
- 			print " ";
+			print "    ";
+			if( $Ivirtual eq 'Yes' ) {
+				print "virtual ";
+			}
+			if( $Istatic eq 'Yes' ) {
+				print "static ";
+			}
+			$old_name = $name;
+			displaytyperef($int);
+			$name = $old_name;
+			print " ";
 			print $unmangled.";\n";
 		}
 		else {
@@ -880,23 +881,23 @@ if( $$param{'Ttype'} eq "Literal" ) {
 
 if( $$param{'Ttype'} eq "Volatile" ) {
 	$basetype = specdb::getBaseTypeID($param);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$type = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$type = $sth->fetchrow_hashref;
 	$sth->finish;
-    if( $type->{'Ttype'} eq "Pointer" || $type->{'Ttype'} eq "Array") {
-	    displaytyperef($type);
-        print " volatile ";
+	if( $type->{'Ttype'} eq "Pointer" || $type->{'Ttype'} eq "Array") {
+		displaytyperef($type);
+		print " volatile ";
 	} else {
-       	print "volatile ";
-	    displaytyperef($type);
+		print "volatile ";
+		displaytyperef($type);
 	}
-    return;
+	return;
 }
 
 if( $$param{'Ttype'} eq "Const" ) {
 	$basetype = specdb::getBaseTypeID($param);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$type = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$type = $sth->fetchrow_hashref;
 	$sth->finish;
 	if( $type->{'Ttype'} eq "Pointer" || $type->{'Ttype'} eq "Array") {
 		displaytyperef($type);
@@ -910,8 +911,8 @@ if( $$param{'Ttype'} eq "Const" ) {
 
 if( $$param{'Ttype'} eq "Pointer" ) {
 	$basetype = specdb::getBaseTypeID($param);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$type = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$type = $sth->fetchrow_hashref;
 	$sth->finish;
 	displaytyperef($type);
 	print " *";
@@ -946,8 +947,8 @@ if( $$param{'Ttype'} eq "Enum" ) {
 
 if( $$param{'Ttype'} eq "Array" ) {
 	$basetype = specdb::getBaseTypeID($param);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$type = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$type = $sth->fetchrow_hashref;
 	$sth->finish;
 	if( !$nameonly ) {
 		$nameonly=1;
@@ -964,8 +965,8 @@ if( $$param{'Ttype'} eq "Array" ) {
 
 if( $$param{'Ttype'} eq "FuncPtr" ) {
 	$basetype = specdb::getBaseTypeID($param);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$type = $sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$type = $sth->fetchrow_hashref;
 	$sth->finish;
 	$Tid=$$param{'Tid'};
 	displaytyperef($type);
@@ -1026,8 +1027,8 @@ if( $$param{'Ttype'} eq "Class" ) {
 
 if( $$param{'Ttype'} eq "Ref" ) {
 	$basetype = specdb::getBaseTypeID($param);
- 	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
- 	$type=$sth->fetchrow_hashref;
+	$sth = specdb::getBaseTypeRecord($Aid,$basetype);
+	$type=$sth->fetchrow_hashref;
 	$sth->finish;
 	displaytyperef($type);
 	print " &";
@@ -1107,7 +1108,7 @@ sub get_typelist {
 	$select.= "LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 	$select.= "WHERE HGheader=$Query_Hid ";
- 	$select.= "AND ( (ATappearedin <>'' ";
+	$select.= "AND ( (ATappearedin <>'' ";
 # 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 # 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
@@ -1262,7 +1263,7 @@ sub get_typelist {
 	# Do this once more to get nested Struct/Unions/Fptr members
 	#
 
- 	if( !$ignore_typedefed ) {
+	if( !$ignore_typedefed ) {
 		if( $typelist ne "" ) {
 			$select = "SELECT TMtypeid,TMname FROM TypeMember ";
 			$select.= "WHERE TMmemberof IN ($typelist)";
@@ -1297,7 +1298,7 @@ sub get_typelist {
 			}
 			$sth->finish;
 		}
- 	}
+	}
 
 	$typelist=join ',', keys(%type);
 
@@ -1463,7 +1464,7 @@ if( $typelist ne "" ) {
 # 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 # 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
- 	$select.= "OR Tindirect='Yes' OR Tsrconly='Yes' OR Tconly='Yes' )";
+	$select.= "OR Tindirect='Yes' OR Tsrconly='Yes' OR Tconly='Yes' )";
 	$select.= "AND Hid != $Hid ";
 	print $select,"\n" if $trace;
 	$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
@@ -1485,7 +1486,7 @@ if( $constlist ne "" ) {
 	$select.= "LEFT JOIN Header ON Hid=HGheader ";
 	$select.= "LEFT JOIN ArchConst ON ACcid=Cid ";
 	$select.= "WHERE Hid IN (\'$constlist\') ";
- 	$select.= "AND ACappearedin <> ''";
+	$select.= "AND ACappearedin <> ''";
 # 	$select.= "AND ( ( ACappearedin <> '' AND ACappearedin <='$lsbversion' ";
 # 	$select.= "  AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '$lsbversion') ";
 # 	$select.= " ) OR Csrconly='Yes' ) ";
@@ -1534,7 +1535,7 @@ if( $hdrlist ne "" ) {
 				$select.= "AND ( (ATappearedin <> '' ";
 # 				$select.= "AND ( (ATappearedin <> '' AND ATappearedin <= '$lsbversion' ";
 #  				$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion' ) )";
- 				$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
+				$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
 				$select.= "OR Tsrconly='Yes' ) ";
 				$select.= "AND Hid = $Hid ";
 				print $select,"\n" if $trace;
@@ -1687,8 +1688,8 @@ for(1..$hgh->rows) {
 	$select.= "AND ( ACappearedin<>'' ";
 # 	$select.= "AND ( (ACappearedin is not NULL and ACappearedin <= '$lsbversion' and ACappearedin<>'') ";
 # 	$select.= "AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '$lsbversion') ";
- 	$select.= "OR Csrconly ='Yes' )";
- 	$select.= "AND Ctype != 'header_depend'";
+	$select.= "OR Csrconly ='Yes' )";
+	$select.= "AND Ctype != 'header_depend'";
 	$select.=" ORDER BY ACappearedin, ACwithdrawnin, ACorder, ACvalue, Cname, Aid";
 	$ch = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 	$ch->execute or die "Couldn't execute $select query: ".DBI->errstr;
@@ -1739,7 +1740,7 @@ for(1..$hgh->rows) {
 # 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 # 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
- 	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
 	$select.= "AND Ttype = 'Typedef' ";
 	$select.= "AND Tclass = 0 ";
 #  	$select.= "AND Aid = $Aid ";
@@ -1829,12 +1830,12 @@ for(1..$hgh->rows) {
 # 	$select.= "LEFT JOIN Parameter ON Ptype=Tid ";
 # 	$select.= "LEFT JOIN Interface ON Iid=Pint ";
 	$select.= "WHERE Theadgroup=$HGid ";
- 	$select.= "AND ( (ATappearedin<>'' ";
+	$select.= "AND ( (ATappearedin<>'' ";
 # 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 # 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
 # 	$select.= "OR ( Tid IN ($param_typelist) AND Ttype IN ('Struct','Union','Enum') AND Tname NOT LIKE 'anon%' )";
- 	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+	$select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
 	$select.= "AND Ttype != 'Typedef' ";
 	$select.= "AND (Tclass=0 OR Ttype='Struct' OR Ttype='Class') ";
 #  	$select.= "AND Aid = $Aid ";
@@ -1904,8 +1905,8 @@ for(1..$hgh->rows) {
 		}
 
 #  		$processedNames{($tentry->{'Tid'},$Aid)} = 1;
- 		$processedNames{($tentry->{'Tid'},$tentry->{'Aid'})} = 1;
- 		$processedNamesOnly{$tentry->{'Tid'}} = 1;
+		$processedNames{($tentry->{'Tid'},$tentry->{'Aid'})} = 1;
+		$processedNamesOnly{$tentry->{'Tid'}} = 1;
 
 		# Display headers now that we've declared their
 		# dependant types.
@@ -1933,7 +1934,7 @@ for(1..$hgh->rows) {
     $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
 	$select.= "LEFT JOIN Architecture ON ATaid=Aid ";
     $select.= "WHERE Theadgroup=$HGid ";
- 	$select.= "AND ( (ATappearedin<>'' ";
+	$select.= "AND ( (ATappearedin<>'' ";
 # 	$select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
 # 	$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
 	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
@@ -1966,26 +1967,26 @@ for(1..$hgh->rows) {
 
 			# Maybe the necessary basetype has already been processed?
 			if( $processedNamesOnly{$tentry->{'ATbasetype'}} ) {
-# 			if( $processedNames{($tentry->{'ATbasetype'},$Aid)} ) {
+# 			if( $processedNames{($tentry->{'ATbasetype'},$Aid)} ) 
 				next;
 			}
 
 # 			$processedNames{($tentry->{'ATbasetype'},$Aid)} = 1;
 			$processedNamesOnly{$tentry->{'ATbasetype'}} = 1;
- 			$processedNames{$tentry->{'ATbasetype'},1} = 1;
+			$processedNames{$tentry->{'ATbasetype'},1} = 1;
 
 			$tselect = "SELECT * FROM Type LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 			$tselect.= "WHERE Tid=".$tentry->{'ATbasetype'};
-            $tselect.= " AND ( Ttype='Struct' OR Ttype='Union' ) AND HGheader=$Hid AND Tname NOT LIKE 'anon%' ";
+			$tselect.= " AND ( Ttype='Struct' OR Ttype='Union' )";
+			$tselect.= " AND HGheader=$Hid AND Tname NOT LIKE 'anon%' ";
 
 			$tth = $dbh->prepare($tselect) or die "Couldn't prepare $tselect query: ".DBI->errstr;
 			$tth->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
 			if($tth->rows) {
-                specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $tentry->{'ATappearedin'}, $tentry->{'ATwithdrawnin'});
-                $oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
-                $oldVersionAppeared = $tentry->{'ATappearedin'};
-
-                $ttentry = $tth->fetchrow_hashref;
+				specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $tentry->{'ATappearedin'}, $tentry->{'ATwithdrawnin'});
+				$oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
+				$oldVersionAppeared = $tentry->{'ATappearedin'};
+				$ttentry = $tth->fetchrow_hashref;
 
 				if( $ttentry->{'Tconly'} eq "Yes" ) {
 					print "#if !defined(__cplusplus)\n";
@@ -2019,7 +2020,7 @@ for(1..$hgh->rows) {
 			}
 			$tth->finish;
 			$Aid = $OldAid;
-        }
+		}
 
 		# Display headers now that we've declared their
 		# dependant types.
@@ -2029,7 +2030,7 @@ for(1..$hgh->rows) {
 			}
 			delete $$header_name{$tentry->{'Tid'}};
 		}
-        $typeflag=0;
+	$typeflag=0;
 	}
 	$th->finish;
 
@@ -2201,17 +2202,17 @@ for(1..$sth->rows) {
 				$basetype = $base->{'ATbasetype'};
 			}
 
-            $select = "SELECT * FROM Type ";
-            $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-	        $select.= "LEFT JOIN Architecture ON Aid=ATaid ";
- 	        $select.= "WHERE Tid=".$basetype." ";
+			$select = "SELECT * FROM Type ";
+			$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+			$select.= "LEFT JOIN Architecture ON Aid=ATaid ";
+			$select.= "WHERE Tid=".$basetype." ";
 			$select.= "AND ATaid=$Aid";
-	        print $select,"\n" if $trace;
-	        my $stm = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+			print $select,"\n" if $trace;
+			my $stm = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 			$stm->execute or die "Couldn't execute $select query: ".DBI->errstr;
-            my $btype = $stm->fetchrow_hashref;
-            $stm->finish;
-            if( $btype->{'Ttype'} eq "Array" ) {
+			my $btype = $stm->fetchrow_hashref;
+			$stm->finish;
+			if( $btype->{'Ttype'} eq "Array" ) {
 				print "[";
 				if( $btype->{'ATsize'} != 0 ) {
 					print $btype->{'ATsize'};

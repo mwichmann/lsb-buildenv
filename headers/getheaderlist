@@ -15,7 +15,7 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 sub
 usage()
 {
-die "getheaderlist -v <lsbversion>";
+	die "getheaderlist -v <lsbversion>";
 }
 
 GetOptions("v=s" => \$lsbversion);
@@ -38,7 +38,7 @@ $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
 for(1..$sth->rows) {
 	$entry = $sth->fetchrow_hashref;
 	print "./$entry->{'Hname'} ";
-	}
+}
 $sth->finish;
 
 $dbh->disconnect;
