@@ -1,0 +1,4 @@
+
+extern void glXFreeContextEXT(Display *, int);
+extern int glXQueryContextInfoEXT(Display *, int, int, int *);
+extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte *);
