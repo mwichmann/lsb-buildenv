@@ -12,15 +12,6 @@ use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 # Uncomment to trace SQL statments
 #$trace=1;
 
-sub
-usage()
-{
-	die "getheaderlist -v <lsbversion>";
-}
-
-GetOptions("v=s" => \$lsbversion);
-if( !$lsbversion ) { usage(); }
-
 $dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, $LSBDBPASSWD)
     or die "Couldn't connect to database: ".DBI->errstr;
 
@@ -29,8 +20,8 @@ $dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, 
 #
 $select = "SELECT Hname FROM Header ";
 $select.= "WHERE Hsrcerror='Yes' ";
-$select.= "OR ( (Happearedin is not NULL and Happearedin <= '$lsbversion' and Happearedin<>'') ";
-$select.= "AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '$lsbversion') )";
+$select.= "OR ( Happearedin > '' ";
+$select.= "AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '3.0') )";
 # $select.= "WHERE ( Hstdstatus!='Excluded' OR Hsrcerror='Yes')";
 print $select,"\n" if $trace;
 $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
