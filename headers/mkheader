@@ -1970,26 +1970,22 @@ for(1..$hgh->rows) {
 				next;
 			}
 
-			specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $tentry->{'ATappearedin'}, $tentry->{'ATwithdrawnin'});
-			$oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
-			$oldVersionAppeared = $tentry->{'ATappearedin'};
-
 # 			$processedNames{($tentry->{'ATbasetype'},$Aid)} = 1;
 			$processedNamesOnly{$tentry->{'ATbasetype'}} = 1;
  			$processedNames{$tentry->{'ATbasetype'},1} = 1;
 
 			$tselect = "SELECT * FROM Type LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 			$tselect.= "WHERE Tid=".$tentry->{'ATbasetype'};
-			$tselect.= " AND ( Ttype='Struct' OR Ttype='Union' ) AND HGheader=$Hid ";
+            $tselect.= " AND ( Ttype='Struct' OR Ttype='Union' ) AND HGheader=$Hid AND Tname NOT LIKE 'anon%' ";
 
 			$tth = $dbh->prepare($tselect) or die "Couldn't prepare $tselect query: ".DBI->errstr;
 			$tth->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
 			if($tth->rows) {
-				$ttentry = $tth->fetchrow_hashref;
-				if($ttentry->{Tname} =~ "anon"){ $tth->finish; next;}
-# 				if( $tentry->{'Aid'} ) { $tth->finish; next; }
+                specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $tentry->{'ATappearedin'}, $tentry->{'ATwithdrawnin'});
+                $oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
+                $oldVersionAppeared = $tentry->{'ATappearedin'};
 
-# 				$TMaid = $tentry->{'Aid'} ? $tentry->{'Aid'} : $Aid;
+                $ttentry = $tth->fetchrow_hashref;
 
 				if( $ttentry->{'Tconly'} eq "Yes" ) {
 					print "#if !defined(__cplusplus)\n";

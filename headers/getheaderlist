@@ -29,7 +29,6 @@ $dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, 
 #
 $select = "SELECT Hname FROM Header ";
 $select.= "WHERE Hsrcerror='Yes' ";
-$select.= "OR Hsrconly='Yes' ";
 $select.= "OR ( (Happearedin is not NULL and Happearedin <= '$lsbversion' and Happearedin<>'') ";
 $select.= "AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '$lsbversion') )";
 # $select.= "WHERE ( Hstdstatus!='Excluded' OR Hsrcerror='Yes')";
