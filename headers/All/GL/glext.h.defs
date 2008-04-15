@@ -1,0 +1,8 @@
+
+typedef unsigned int GLhandleARB;
+typedef long int GLintptr;
+typedef char GLchar;
+typedef char GLcharARB;
+typedef ptrdiff_t GLsizeiptr;
+typedef ptrdiff_t GLsizeiptrARB;
+typedef long int GLintptrARB;
