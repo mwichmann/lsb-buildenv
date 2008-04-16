@@ -52,6 +52,7 @@ void FcDirCacheValid() {} ;
 void FcDirSave() {} ;
 void FcDirScan() {} ;
 void FcFileScan() {} ;
+void FcFini() {} ;
 void FcFontList() {} ;
 void FcFontMatch() {} ;
 void FcFontRenderPrepare() {} ;
