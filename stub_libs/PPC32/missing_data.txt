@@ -1,7 +1,6 @@
 # Numbers are in hex
 # Generating c stubs for libXt library
 libXt _XtInheritTranslations 4
-libXt objectClassRec 74  
 libXt overrideShellClassRec 90 
 libXt rectObjClass 4
 libXt rectObjClassRec 74

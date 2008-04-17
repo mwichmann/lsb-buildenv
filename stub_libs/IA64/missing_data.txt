@@ -1,33 +1,17 @@
 # Numbers are in hex
 # libXt
-libXt XtCXtToolkitError 8
-libXt XtShellStrings 509
 libXt XtStrings a59
 libXt _XtInheritTranslations 4
-libXt applicationShellWidgetClass 8
-libXt compositeClassRec 108
-libXt compositeWidgetClass 8
-libXt constraintClassRec 138
-libXt constraintWidgetClass 8
-libXt coreWidgetClass 8
-libXt objectClass 8
-libXt objectClassRec e0
 libXt overrideShellClassRec 118
-libXt overrideShellWidgetClass 8
 libXt rectObjClass 8
 libXt rectObjClassRec e0
 libXt sessionShellClassRec 138
-libXt sessionShellWidgetClass 8
 libXt shellClassRec 110
-libXt shellWidgetClass 8
 libXt topLevelShellClassRec 128
-libXt topLevelShellWidgetClass 8
 libXt transientShellClassRec 128
-libXt transientShellWidgetClass 8
 libXt widgetClass 8
 libXt widgetClassRec e0
 libXt wmShellClassRec 118
-libXt wmShellWidgetClass 8
 # libstdcxx
 libstdcxx _ZTVSt8ios_base 20
 libstdcxx _ZTIN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE 18

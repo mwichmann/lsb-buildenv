@@ -1,13 +1,11 @@
 # Numbers are in hex
 # Generating c stubs for libXt library
+libXt XtStrings a59
 libXt _XtInheritTranslations  4
-libXt compositeClassRec  88
 libXt compositeWidgetClass 4 
-libXt constraintClassRec  a4
 libXt constraintWidgetClass 4 
 libXt coreWidgetClass  4
 libXt objectClass  4
-libXt objectClassRec 74  
 libXt overrideShellClassRec  90
 libXt rectObjClass  4
 libXt rectObjClassRec 74  
@@ -18,8 +16,6 @@ libXt transientShellClassRec  98
 libXt widgetClass  4
 libXt widgetClassRec 74  
 libXt wmShellClassRec  90
-libXt XtShellStrings 509
-libXt XtStrings a59
 # Generating c stubs for libstdcxx library
 libstdcxx _ZTVSt8ios_base 10
 libstdcxx _ZTIN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEEE c
