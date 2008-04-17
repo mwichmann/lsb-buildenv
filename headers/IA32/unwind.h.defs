@@ -13,7 +13,6 @@ typedef _Unwind_Reason_Code(*_Unwind_Trace_Fn) (struct _Unwind_Context *,
 						void *);
 extern void _Unwind_DeleteException(struct _Unwind_Exception *);
 extern _Unwind_Word _Unwind_GetGR(struct _Unwind_Context *, int);
-extern fde *_Unwind_Find_FDE(void *, struct dwarf_eh_base *);
 extern _Unwind_Ptr _Unwind_GetIP(struct _Unwind_Context *);
 extern _Unwind_Ptr _Unwind_GetLanguageSpecificData(struct _Unwind_Context
 						   *, unsigned int);
