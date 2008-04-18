@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QABSTRACTSOCKET_H_
 #define _QTNETWORK_QABSTRACTSOCKET_H_
 
 class QAbstractSocket;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef enum SocketState	
 {
 UnconnectedState = 0,	
@@ -23,6 +25,9 @@ Closing = 6
 State	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QAbstractSocket : public QIODevice
 {
 private:
@@ -144,7 +149,15 @@ ErrHostNotFound = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN15QAbstractSocket16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

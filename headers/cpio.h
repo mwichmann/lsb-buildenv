@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _CPIO_H_
 #define _CPIO_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
 #define C_IXOTH	000001
 #define C_IWOTH	000002
 #define C_IROTH	000004
@@ -28,9 +30,12 @@ extern "C" {
 #define C_ISDIR	040000
 #define C_ISBLK	060000
 #define MAGIC	"070707"
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

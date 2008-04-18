@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_PATTERN_H_
 #define _LIBXML2_LIBXML_PATTERN_H_
 
@@ -11,6 +12,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef struct _xmlStreamCtxt xmlStreamCtxt;
 
     typedef xmlStreamCtxt *xmlStreamCtxtPtr;
@@ -26,30 +28,39 @@ extern "C" {
 	XML_PATTERN_XSFIELD = 1 << 2
     } xmlPatternFlags;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+// Function prototypes
 
+#if __LSB_VERSION__ >= 31
+    extern void xmlFreePattern(xmlPatternPtr);
+    extern void xmlFreePatternList(xmlPatternPtr);
+    extern void xmlFreeStreamCtxt(xmlStreamCtxtPtr);
+    extern int xmlPatternFromRoot(xmlPatternPtr);
+    extern xmlStreamCtxtPtr xmlPatternGetStreamCtxt(xmlPatternPtr);
+    extern int xmlPatternMatch(xmlPatternPtr, xmlNodePtr);
+    extern int xmlPatternMaxDepth(xmlPatternPtr);
+    extern int xmlPatternMinDepth(xmlPatternPtr);
+    extern int xmlPatternStreamable(xmlPatternPtr);
+    extern xmlPatternPtr xmlPatterncompile(const xmlChar *, xmlDict *, int,
+					   const xmlChar * *);
+    extern int xmlStreamPop(xmlStreamCtxtPtr);
     extern int xmlStreamPush(xmlStreamCtxtPtr, const xmlChar *,
 			     const xmlChar *);
     extern int xmlStreamPushAttr(xmlStreamCtxtPtr, const xmlChar *,
 				 const xmlChar *);
-    extern void xmlFreePattern(xmlPatternPtr);
-    extern int xmlPatternFromRoot(xmlPatternPtr);
-    extern xmlPatternPtr xmlPatterncompile(const xmlChar *, xmlDict *, int,
-					   const xmlChar * *);
-    extern int xmlPatternMatch(xmlPatternPtr, xmlNodePtr);
-    extern void xmlFreePatternList(xmlPatternPtr);
-    extern int xmlPatternMaxDepth(xmlPatternPtr);
-    extern int xmlPatternStreamable(xmlPatternPtr);
-    extern int xmlPatternMinDepth(xmlPatternPtr);
-    extern int xmlStreamPop(xmlStreamCtxtPtr);
-    extern void xmlFreeStreamCtxt(xmlStreamCtxtPtr);
-    extern xmlStreamCtxtPtr xmlPatternGetStreamCtxt(xmlPatternPtr);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

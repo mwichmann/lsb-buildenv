@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _INTTYPES_H_
 #define _INTTYPES_H_
 
@@ -12,7 +13,10 @@ extern "C" {
 
 
 /* Basic Integral Types*/
+#if __LSB_VERSION__ >= 10
     typedef lldiv_t imaxdiv_t;
+
+#endif				// __LSB_VERSION__ >= 1.0
 
 
 #define __PDP_ENDIAN	3412
@@ -21,13 +25,19 @@ extern "C" {
 
 
 
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
+    extern intmax_t imaxabs(intmax_t);
+    extern imaxdiv_t imaxdiv(intmax_t, intmax_t);
     extern intmax_t strtoimax(const char *, char **, int);
     extern uintmax_t strtoumax(const char *, char **, int);
     extern intmax_t wcstoimax(const wchar_t *, wchar_t * *, int);
     extern uintmax_t wcstoumax(const wchar_t *, wchar_t * *, int);
-    extern intmax_t imaxabs(intmax_t);
-    extern imaxdiv_t imaxdiv(intmax_t, intmax_t);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

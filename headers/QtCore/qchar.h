@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QCHAR_H_
 #define _QTCORE_QCHAR_H_
 
 class QChar;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 struct QLatin1Char	;
 
 class QChar
@@ -186,8 +188,16 @@ Unicode_4_0 = 7
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern  _ZlsR11QDataStreamRK5QChar(QDataStream &, const QChar &);
-extern  _ZrsR11QDataStreamR5QChar(QDataStream &, QChar &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern  _ZlsR11QDataStreamRK5QChar(const QChar &);
+extern  _ZrsR11QDataStreamR5QChar(QChar &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_ENTITIES_H_
 #define _LIBXML2_LIBXML_ENTITIES_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef enum {
 	XML_INTERNAL_GENERAL_ENTITY = 1,
 	XML_EXTERNAL_GENERAL_PARSED_ENTITY = 2,
@@ -26,6 +28,9 @@ extern "C" {
 
     typedef xmlEntitiesTable *xmlEntitiesTablePtr;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _xmlEntity {
 	void *_private;
@@ -50,25 +55,32 @@ extern "C" {
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
-    extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
-    extern xmlChar *xmlEncodeSpecialChars(xmlDocPtr, const xmlChar *);
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern xmlEntityPtr xmlAddDocEntity(xmlDocPtr, const xmlChar *, int,
+					const xmlChar *, const xmlChar *,
+					const xmlChar *);
     extern xmlEntityPtr xmlAddDtdEntity(xmlDocPtr, const xmlChar *, int,
 					const xmlChar *, const xmlChar *,
 					const xmlChar *);
     extern xmlEntitiesTablePtr xmlCopyEntitiesTable(xmlEntitiesTablePtr);
-    extern xmlEntityPtr xmlGetDtdEntity(xmlDocPtr, const xmlChar *);
-    extern xmlEntityPtr xmlAddDocEntity(xmlDocPtr, const xmlChar *, int,
-					const xmlChar *, const xmlChar *,
-					const xmlChar *);
-    extern xmlEntityPtr xmlGetPredefinedEntity(const xmlChar *);
     extern void xmlDumpEntitiesTable(xmlBufferPtr, xmlEntitiesTablePtr);
-    extern xmlChar *xmlEncodeEntitiesReentrant(xmlDocPtr, const xmlChar *);
-    extern void xmlFreeEntitiesTable(xmlEntitiesTablePtr);
     extern void xmlDumpEntityDecl(xmlBufferPtr, xmlEntityPtr);
+    extern xmlChar *xmlEncodeEntitiesReentrant(xmlDocPtr, const xmlChar *);
+    extern xmlChar *xmlEncodeSpecialChars(xmlDocPtr, const xmlChar *);
+    extern void xmlFreeEntitiesTable(xmlEntitiesTablePtr);
     extern xmlEntityPtr xmlGetDocEntity(xmlDocPtr, const xmlChar *);
+    extern xmlEntityPtr xmlGetDtdEntity(xmlDocPtr, const xmlChar *);
+    extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
+    extern xmlEntityPtr xmlGetPredefinedEntity(const xmlChar *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

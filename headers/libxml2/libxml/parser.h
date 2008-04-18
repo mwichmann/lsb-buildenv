@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_PARSER_H_
 #define _LIBXML2_LIBXML_PARSER_H_
 
@@ -18,13 +19,17 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define XML_DEFAULT_VERSION	"1.0"
 #define XML_SAX2_MAGIC	0xDEEDBEAF
 #define XML_DETECT_IDS	2
 #define XML_COMPLETE_ATTRS	4
 #define XML_SKIP_IDS	8
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef xmlSAXHandler *xmlSAXHandlerPtr;
 
     typedef xmlParserNodeInfoSeq *xmlParserNodeInfoSeqPtr;
@@ -89,120 +94,128 @@ extern "C" {
 	XML_PARSE_COMPACT = 1 << 16
     } xmlParserOption;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern xmlDocPtr xmlSAXParseMemory(xmlSAXHandlerPtr, const char *, int,
-				       int);
-    extern void xmlStopParser(xmlParserCtxtPtr);
-    extern int xmlInitParserCtxt(xmlParserCtxtPtr);
-    extern void xmlFreeParserCtxt(xmlParserCtxtPtr);
-    extern void xmlInitNodeInfoSeq(xmlParserNodeInfoSeqPtr);
-    extern const xmlParserNodeInfo *xmlParserFindNodeInfo(const
-							  xmlParserCtxtPtr,
-							  const
-							  xmlNodePtr);
-    extern xmlDocPtr xmlRecoverFile(const char *);
-    extern xmlDocPtr xmlParseDoc(const xmlChar *);
-    extern int xmlParseCtxtExternalEntity(xmlParserCtxtPtr,
-					  const xmlChar *, const xmlChar *,
-					  xmlNodePtr *);
-    extern xmlParserCtxtPtr xmlCreatePushParserCtxt(xmlSAXHandlerPtr,
-						    void *, const char *,
-						    int, const char *);
-    extern int xmlSubstituteEntitiesDefault(int);
-    extern int xmlLineNumbersDefault(int);
-    extern xmlParserErrors xmlParseInNodeContext(xmlNodePtr, const char *,
-						 int, int, xmlNodePtr *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern long int xmlByteConsumed(xmlParserCtxtPtr);
     extern void xmlCleanupParser(void);
-    extern long unsigned int xmlParserFindNodeInfoIndex(const
-							xmlParserNodeInfoSeqPtr,
-							const xmlNodePtr);
-    extern xmlDocPtr xmlReadFd(int, const char *, const char *, int);
-    extern xmlDocPtr xmlCtxtReadFile(xmlParserCtxtPtr, const char *,
-				     const char *, int);
-    extern int xmlCtxtResetPush(xmlParserCtxtPtr, const char *, int,
-				const char *, const char *);
     extern void xmlClearNodeInfoSeq(xmlParserNodeInfoSeqPtr);
-    extern int xmlParserInputRead(xmlParserInputPtr, int);
-    extern xmlExternalEntityLoader xmlGetExternalEntityLoader(void);
-    extern void xmlCtxtReset(xmlParserCtxtPtr);
-    extern int xmlSAXUserParseMemory(xmlSAXHandlerPtr, void *,
-				     const char *, int);
-    extern xmlDocPtr xmlReadIO(xmlInputReadCallback, xmlInputCloseCallback,
-			       void *, const char *, const char *, int);
-    extern int xmlParserInputGrow(xmlParserInputPtr, int);
-    extern xmlDtdPtr xmlSAXParseDTD(xmlSAXHandlerPtr, const xmlChar *,
-				    const xmlChar *);
-    extern int xmlParseChunk(xmlParserCtxtPtr, const char *, int, int);
-    extern int xmlParseExternalEntity(xmlDocPtr, xmlSAXHandlerPtr, void *,
-				      int, const xmlChar *,
-				      const xmlChar *, xmlNodePtr *);
-    extern xmlParserCtxtPtr xmlCreateDocParserCtxt(const xmlChar *);
-    extern xmlDocPtr xmlRecoverDoc(xmlChar *);
-    extern xmlDocPtr xmlRecoverMemory(const char *, int);
-    extern int xmlParseBalancedChunkMemory(xmlDocPtr, xmlSAXHandlerPtr,
-					   void *, int, const xmlChar *,
-					   xmlNodePtr *);
-    extern xmlDocPtr xmlSAXParseMemoryWithData(xmlSAXHandlerPtr,
-					       const char *, int, int,
-					       void *);
-    extern xmlDocPtr xmlCtxtReadDoc(xmlParserCtxtPtr, const xmlChar *,
-				    const char *, const char *, int);
-    extern int xmlParseDocument(xmlParserCtxtPtr);
-    extern xmlDocPtr xmlReadMemory(const char *, int, const char *,
-				   const char *, int);
-    extern xmlDocPtr xmlReadDoc(const xmlChar *, const char *,
-				const char *, int);
-    extern xmlParserInputPtr xmlNewIOInputStream(xmlParserCtxtPtr,
-						 xmlParserInputBufferPtr,
-						 xmlCharEncoding);
-    extern xmlDocPtr xmlSAXParseFile(xmlSAXHandlerPtr, const char *, int);
-    extern xmlDocPtr xmlParseFile(const char *);
-    extern int xmlParseExtParsedEnt(xmlParserCtxtPtr);
-    extern xmlDtdPtr xmlIOParseDTD(xmlSAXHandlerPtr,
-				   xmlParserInputBufferPtr,
-				   xmlCharEncoding);
-    extern int xmlPedanticParserDefault(int);
     extern void xmlClearParserCtxt(xmlParserCtxtPtr);
-    extern xmlDocPtr xmlSAXParseEntity(xmlSAXHandlerPtr, const char *);
-    extern xmlDocPtr xmlSAXParseDoc(xmlSAXHandlerPtr, const xmlChar *,
-				    int);
-    extern xmlDocPtr xmlSAXParseFileWithData(xmlSAXHandlerPtr,
-					     const char *, int, void *);
+    extern xmlParserCtxtPtr xmlCreateDocParserCtxt(const xmlChar *);
     extern xmlParserCtxtPtr xmlCreateIOParserCtxt(xmlSAXHandlerPtr, void *,
 						  xmlInputReadCallback,
 						  xmlInputCloseCallback,
 						  void *, xmlCharEncoding);
+    extern xmlParserCtxtPtr xmlCreatePushParserCtxt(xmlSAXHandlerPtr,
+						    void *, const char *,
+						    int, const char *);
+    extern xmlDocPtr xmlCtxtReadDoc(xmlParserCtxtPtr, const xmlChar *,
+				    const char *, const char *, int);
+    extern xmlDocPtr xmlCtxtReadFd(xmlParserCtxtPtr, int, const char *,
+				   const char *, int);
+    extern xmlDocPtr xmlCtxtReadFile(xmlParserCtxtPtr, const char *,
+				     const char *, int);
+    extern xmlDocPtr xmlCtxtReadIO(xmlParserCtxtPtr, xmlInputReadCallback,
+				   xmlInputCloseCallback, void *,
+				   const char *, const char *, int);
+    extern xmlDocPtr xmlCtxtReadMemory(xmlParserCtxtPtr, const char *, int,
+				       const char *, const char *, int);
+    extern void xmlCtxtReset(xmlParserCtxtPtr);
+    extern int xmlCtxtResetPush(xmlParserCtxtPtr, const char *, int,
+				const char *, const char *);
+    extern int xmlCtxtUseOptions(xmlParserCtxtPtr, int);
+    extern void xmlFreeParserCtxt(xmlParserCtxtPtr);
+    extern xmlExternalEntityLoader xmlGetExternalEntityLoader(void);
+    extern int xmlHasFeature(xmlFeature);
+    extern xmlDtdPtr xmlIOParseDTD(xmlSAXHandlerPtr,
+				   xmlParserInputBufferPtr,
+				   xmlCharEncoding);
+    extern void xmlInitNodeInfoSeq(xmlParserNodeInfoSeqPtr);
+    extern void xmlInitParser(void);
+    extern int xmlInitParserCtxt(xmlParserCtxtPtr);
+    extern int xmlKeepBlanksDefault(int);
+    extern int xmlLineNumbersDefault(int);
     extern xmlParserInputPtr xmlLoadExternalEntity(const char *,
 						   const char *,
 						   xmlParserCtxtPtr);
-    extern int xmlSAXUserParseFile(xmlSAXHandlerPtr, void *, const char *);
-    extern xmlDocPtr xmlParseMemory(const char *, int);
-    extern xmlDocPtr xmlReadFile(const char *, const char *, int);
-    extern xmlDocPtr xmlCtxtReadFd(xmlParserCtxtPtr, int, const char *,
-				   const char *, int);
-    extern void xmlInitParser(void);
-    extern int xmlCtxtUseOptions(xmlParserCtxtPtr, int);
-    extern xmlDocPtr xmlParseEntity(const char *);
-    extern xmlDocPtr xmlCtxtReadMemory(xmlParserCtxtPtr, const char *, int,
-				       const char *, const char *, int);
-    extern long int xmlByteConsumed(xmlParserCtxtPtr);
-    extern void xmlParserAddNodeInfo(xmlParserCtxtPtr,
-				     const xmlParserNodeInfoPtr);
+    extern xmlParserInputPtr xmlNewIOInputStream(xmlParserCtxtPtr,
+						 xmlParserInputBufferPtr,
+						 xmlCharEncoding);
+    extern xmlParserCtxtPtr xmlNewParserCtxt(void);
+    extern int xmlParseBalancedChunkMemory(xmlDocPtr, xmlSAXHandlerPtr,
+					   void *, int, const xmlChar *,
+					   xmlNodePtr *);
     extern int xmlParseBalancedChunkMemoryRecover(xmlDocPtr,
 						  xmlSAXHandlerPtr, void *,
 						  int, const xmlChar *,
 						  xmlNodePtr *, int);
+    extern int xmlParseChunk(xmlParserCtxtPtr, const char *, int, int);
+    extern int xmlParseCtxtExternalEntity(xmlParserCtxtPtr,
+					  const xmlChar *, const xmlChar *,
+					  xmlNodePtr *);
+    extern xmlDtdPtr xmlParseDTD(const xmlChar *, const xmlChar *);
+    extern xmlDocPtr xmlParseDoc(const xmlChar *);
+    extern int xmlParseDocument(xmlParserCtxtPtr);
+    extern xmlDocPtr xmlParseEntity(const char *);
+    extern int xmlParseExtParsedEnt(xmlParserCtxtPtr);
+    extern int xmlParseExternalEntity(xmlDocPtr, xmlSAXHandlerPtr, void *,
+				      int, const xmlChar *,
+				      const xmlChar *, xmlNodePtr *);
+    extern xmlDocPtr xmlParseFile(const char *);
+    extern xmlParserErrors xmlParseInNodeContext(xmlNodePtr, const char *,
+						 int, int, xmlNodePtr *);
+    extern xmlDocPtr xmlParseMemory(const char *, int);
+    extern void xmlParserAddNodeInfo(xmlParserCtxtPtr,
+				     const xmlParserNodeInfoPtr);
+    extern const xmlParserNodeInfo *xmlParserFindNodeInfo(const
+							  xmlParserCtxtPtr,
+							  const
+							  xmlNodePtr);
+    extern long unsigned int xmlParserFindNodeInfoIndex(const
+							xmlParserNodeInfoSeqPtr,
+							const xmlNodePtr);
+    extern int xmlParserInputGrow(xmlParserInputPtr, int);
+    extern int xmlParserInputRead(xmlParserInputPtr, int);
+    extern int xmlPedanticParserDefault(int);
+    extern xmlDocPtr xmlReadDoc(const xmlChar *, const char *,
+				const char *, int);
+    extern xmlDocPtr xmlReadFd(int, const char *, const char *, int);
+    extern xmlDocPtr xmlReadFile(const char *, const char *, int);
+    extern xmlDocPtr xmlReadIO(xmlInputReadCallback, xmlInputCloseCallback,
+			       void *, const char *, const char *, int);
+    extern xmlDocPtr xmlReadMemory(const char *, int, const char *,
+				   const char *, int);
+    extern xmlDocPtr xmlRecoverDoc(xmlChar *);
+    extern xmlDocPtr xmlRecoverFile(const char *);
+    extern xmlDocPtr xmlRecoverMemory(const char *, int);
+    extern xmlDtdPtr xmlSAXParseDTD(xmlSAXHandlerPtr, const xmlChar *,
+				    const xmlChar *);
+    extern xmlDocPtr xmlSAXParseDoc(xmlSAXHandlerPtr, const xmlChar *,
+				    int);
+    extern xmlDocPtr xmlSAXParseEntity(xmlSAXHandlerPtr, const char *);
+    extern xmlDocPtr xmlSAXParseFile(xmlSAXHandlerPtr, const char *, int);
+    extern xmlDocPtr xmlSAXParseFileWithData(xmlSAXHandlerPtr,
+					     const char *, int, void *);
+    extern xmlDocPtr xmlSAXParseMemory(xmlSAXHandlerPtr, const char *, int,
+				       int);
+    extern xmlDocPtr xmlSAXParseMemoryWithData(xmlSAXHandlerPtr,
+					       const char *, int, int,
+					       void *);
+    extern int xmlSAXUserParseFile(xmlSAXHandlerPtr, void *, const char *);
+    extern int xmlSAXUserParseMemory(xmlSAXHandlerPtr, void *,
+				     const char *, int);
+    extern void xmlSetExternalEntityLoader(xmlExternalEntityLoader);
     extern void xmlSetupParserForBuffer(xmlParserCtxtPtr, const xmlChar *,
 					const char *);
-    extern xmlParserCtxtPtr xmlNewParserCtxt(void);
-    extern xmlDtdPtr xmlParseDTD(const xmlChar *, const xmlChar *);
-    extern int xmlHasFeature(xmlFeature);
-    extern xmlDocPtr xmlCtxtReadIO(xmlParserCtxtPtr, xmlInputReadCallback,
-				   xmlInputCloseCallback, void *,
-				   const char *, const char *, int);
-    extern void xmlSetExternalEntityLoader(xmlExternalEntityLoader);
-    extern int xmlKeepBlanksDefault(int);
+    extern void xmlStopParser(xmlParserCtxtPtr);
+    extern int xmlSubstituteEntitiesDefault(int);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

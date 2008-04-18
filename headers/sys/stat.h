@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _SYS_STAT_H_
 #define _SYS_STAT_H_
 
@@ -10,6 +11,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
 #define S_ISBLK(m)	(((m)&S_IFMT)==S_IFBLK)
 #define S_ISCHR(m)	(((m)&S_IFMT)==S_IFCHR)
 #define S_ISDIR(m)	(((m)&S_IFMT)==S_IFDIR)
@@ -17,9 +19,6 @@ extern "C" {
 #define S_ISLNK(m)	(((m)&S_IFMT)==S_IFLNK)
 #define S_ISREG(m)	(((m)&S_IFMT)==S_IFREG)
 #define S_ISSOCK(m)	(((m)&S_IFMT)==S_IFSOCK)
-#define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
-#define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
-#define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
 #define S_IRWXU	(S_IREAD|S_IWRITE|S_IEXEC)
 #define S_IROTH	(S_IRGRP>>3)
 #define S_IRGRP	(S_IRUSR>>3)
@@ -29,7 +28,6 @@ extern "C" {
 #define S_IWGRP	(S_IWUSR>>3)
 #define S_IXOTH	(S_IXGRP>>3)
 #define S_IXGRP	(S_IXUSR>>3)
-#define S_ISVTX	01000
 #define S_IXUSR	0x0040
 #define S_IWUSR	0x0080
 #define S_IRUSR	0x0100
@@ -43,35 +41,51 @@ extern "C" {
 #define S_IFLNK	0xa000
 #define S_IFSOCK	0xc000
 #define S_IFMT	0xf000
-#if defined __ia64__
-#define _STAT_VER	1
-#endif
-#if defined __powerpc64__
-#define _STAT_VER	1
-#endif
-#if defined __x86_64__
-#define _STAT_VER	1
-#endif
-#if defined __s390x__
-#define _STAT_VER	1
-#endif
+#define S_IREAD	S_IRUSR
+#define S_IWRITE	S_IWUSR
+#define S_IEXEC	S_IXUSR
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
+#define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_ISVTX	01000
 #if defined __i386__
 #define _STAT_VER	3
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 #define _STAT_VER	3
 #endif
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
+#if defined __ia64__
+#define _STAT_VER	1
+#endif
+#if defined __s390x__
+#define _STAT_VER	1
+#endif
 #if defined __s390__ && !defined __s390x__
 #define _STAT_VER	3
+#endif
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
+#if defined __powerpc64__
+#define _STAT_VER	1
+#endif
+#if defined __x86_64__
+#define _STAT_VER	1
 #endif
 #define st_atime	st_atim.tv_sec
 #define st_ctime	st_ctim.tv_sec
 #define st_mtime	st_mtim.tv_sec
-#define S_IREAD	S_IRUSR
-#define S_IWRITE	S_IWUSR
-#define S_IEXEC	S_IXUSR
+#endif				// __LSB_VERSION__ >= 2.0
 
 
+
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     struct stat {
@@ -379,8 +393,19 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
 
+
+// Function prototypes
+
+    extern int fstat(int, struct stat *);
+    extern int fstat64(int, struct stat64 *);
+    extern int lstat(const char *, struct stat *);
+    extern int lstat64(const char *, struct stat64 *);
+    extern int stat(const char *, struct stat *);
+    extern int stat64(const char *, struct stat64 *);
+#if __LSB_VERSION__ >= 10
     extern int __fxstat(int, int, struct stat *);
     extern int __fxstat64(int, int, struct stat64 *);
     extern int __lxstat(int, const char *, struct stat *);
@@ -388,17 +413,14 @@ extern "C" {
     extern int __xmknod(int, const char *, mode_t, dev_t *);
     extern int __xstat(int, const char *, struct stat *);
     extern int __xstat64(int, const char *, struct stat64 *);
-    extern int mkfifo(const char *, mode_t);
     extern int chmod(const char *, mode_t);
     extern int fchmod(int, mode_t);
+    extern int mkfifo(const char *, mode_t);
     extern mode_t umask(mode_t);
-    extern int stat(const char *, struct stat *);
-    extern int fstat(int, struct stat *);
-    extern int lstat(const char *, struct stat *);
-    extern int stat64(const char *, struct stat64 *);
-    extern int fstat64(int, struct stat64 *);
-    extern int lstat64(const char *, struct stat64 *);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

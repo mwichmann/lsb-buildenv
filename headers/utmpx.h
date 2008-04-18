@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 12 )
 #ifndef _UTMPX_H_
 #define _UTMPX_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 
 
 
+#if __LSB_VERSION__ >= 20
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     struct utmpx {
@@ -138,15 +140,23 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void endutxent(void);
     extern struct utmpx *getutxent(void);
     extern struct utmpx *getutxid(const struct utmpx *);
     extern struct utmpx *getutxline(const struct utmpx *);
     extern struct utmpx *pututxline(const struct utmpx *);
     extern void setutxent(void);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

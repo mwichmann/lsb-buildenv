@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QABSTRACTITEMDELEGATE_H_
 #define _QTGUI_QABSTRACTITEMDELEGATE_H_
 
 class QAbstractItemDelegate;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QAbstractItemDelegate : public QObject
 {
 private:
@@ -35,7 +37,15 @@ RevertModelCache = 4
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN21QAbstractItemDelegate16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

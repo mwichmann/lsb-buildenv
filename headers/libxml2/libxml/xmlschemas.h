@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_XMLSCHEMAS_H_
 #define _LIBXML2_LIBXML_XMLSCHEMAS_H_
 
@@ -16,6 +17,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef struct _xmlSchemaValidCtxt xmlSchemaValidCtxt;
 
     typedef xmlSchemaValidCtxt *xmlSchemaValidCtxtPtr;
@@ -41,6 +43,9 @@ extern "C" {
 	XML_SCHEMA_VAL_VC_I_CREATE = 1 << 0
     } xmlSchemaValidOption;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
 
 
@@ -49,57 +54,61 @@ extern "C" {
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+// Function prototypes
 
-
-
-    extern int xmlSchemaValidateFile(xmlSchemaValidCtxtPtr, const char *,
-				     int);
-    extern int xmlSchemaSAXUnplug(xmlSchemaSAXPlugPtr);
-    extern xmlSchemaParserCtxtPtr xmlSchemaNewMemParserCtxt(const char *,
-							    int);
-    extern int xmlSchemaValidateOneElement(xmlSchemaValidCtxtPtr,
-					   xmlNodePtr);
-    extern int xmlSchemaIsValid(xmlSchemaValidCtxtPtr);
-    extern xmlSchemaSAXPlugPtr xmlSchemaSAXPlug(xmlSchemaValidCtxtPtr,
-						xmlSAXHandlerPtr *,
-						void **);
-    extern void xmlSchemaFreeParserCtxt(xmlSchemaParserCtxtPtr);
-    extern int xmlSchemaValidateDoc(xmlSchemaValidCtxtPtr, xmlDocPtr);
-    extern int xmlSchemaGetValidErrors(xmlSchemaValidCtxtPtr,
-				       xmlSchemaValidityErrorFunc *,
-				       xmlSchemaValidityWarningFunc *,
-				       void **);
+#if __LSB_VERSION__ >= 31
     extern void xmlSchemaDump(FILE *, xmlSchemaPtr);
-    extern void xmlSchemaSetValidStructuredErrors(xmlSchemaValidCtxtPtr,
-						  xmlStructuredErrorFunc,
-						  void *);
-    extern int xmlSchemaValidateStream(xmlSchemaValidCtxtPtr,
-				       xmlParserInputBufferPtr,
-				       xmlCharEncoding, xmlSAXHandlerPtr,
-				       void *);
-    extern xmlSchemaPtr xmlSchemaParse(xmlSchemaParserCtxtPtr);
-    extern xmlSchemaValidCtxtPtr xmlSchemaNewValidCtxt(xmlSchemaPtr);
+    extern void xmlSchemaFree(xmlSchemaPtr);
+    extern void xmlSchemaFreeParserCtxt(xmlSchemaParserCtxtPtr);
+    extern void xmlSchemaFreeValidCtxt(xmlSchemaValidCtxtPtr);
     extern int xmlSchemaGetParserErrors(xmlSchemaParserCtxtPtr,
 					xmlSchemaValidityErrorFunc *,
 					xmlSchemaValidityWarningFunc *,
 					void **);
-    extern void xmlSchemaFreeValidCtxt(xmlSchemaValidCtxtPtr);
-    extern int xmlSchemaSetValidOptions(xmlSchemaValidCtxtPtr, int);
-    extern int xmlSchemaValidCtxtGetOptions(xmlSchemaValidCtxtPtr);
-    extern xmlSchemaParserCtxtPtr xmlSchemaNewParserCtxt(const char *);
-    extern void xmlSchemaSetValidErrors(xmlSchemaValidCtxtPtr,
-					xmlSchemaValidityErrorFunc,
-					xmlSchemaValidityWarningFunc,
-					void *);
+    extern int xmlSchemaGetValidErrors(xmlSchemaValidCtxtPtr,
+				       xmlSchemaValidityErrorFunc *,
+				       xmlSchemaValidityWarningFunc *,
+				       void **);
+    extern int xmlSchemaIsValid(xmlSchemaValidCtxtPtr);
     extern xmlSchemaParserCtxtPtr xmlSchemaNewDocParserCtxt(xmlDocPtr);
+    extern xmlSchemaParserCtxtPtr xmlSchemaNewMemParserCtxt(const char *,
+							    int);
+    extern xmlSchemaParserCtxtPtr xmlSchemaNewParserCtxt(const char *);
+    extern xmlSchemaValidCtxtPtr xmlSchemaNewValidCtxt(xmlSchemaPtr);
+    extern xmlSchemaPtr xmlSchemaParse(xmlSchemaParserCtxtPtr);
+    extern xmlSchemaSAXPlugPtr xmlSchemaSAXPlug(xmlSchemaValidCtxtPtr,
+						xmlSAXHandlerPtr *,
+						void **);
+    extern int xmlSchemaSAXUnplug(xmlSchemaSAXPlugPtr);
     extern void xmlSchemaSetParserErrors(xmlSchemaParserCtxtPtr,
 					 xmlSchemaValidityErrorFunc,
 					 xmlSchemaValidityWarningFunc,
 					 void *);
-    extern void xmlSchemaFree(xmlSchemaPtr);
+    extern void xmlSchemaSetValidErrors(xmlSchemaValidCtxtPtr,
+					xmlSchemaValidityErrorFunc,
+					xmlSchemaValidityWarningFunc,
+					void *);
+    extern int xmlSchemaSetValidOptions(xmlSchemaValidCtxtPtr, int);
+    extern void xmlSchemaSetValidStructuredErrors(xmlSchemaValidCtxtPtr,
+						  xmlStructuredErrorFunc,
+						  void *);
+    extern int xmlSchemaValidCtxtGetOptions(xmlSchemaValidCtxtPtr);
+    extern int xmlSchemaValidateDoc(xmlSchemaValidCtxtPtr, xmlDocPtr);
+    extern int xmlSchemaValidateFile(xmlSchemaValidCtxtPtr, const char *,
+				     int);
+    extern int xmlSchemaValidateOneElement(xmlSchemaValidCtxtPtr,
+					   xmlNodePtr);
+    extern int xmlSchemaValidateStream(xmlSchemaValidCtxtPtr,
+				       xmlParserInputBufferPtr,
+				       xmlCharEncoding, xmlSAXHandlerPtr,
+				       void *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

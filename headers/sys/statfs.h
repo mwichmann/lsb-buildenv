@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 13 )
 #ifndef _SYS_STATFS_H_
 #define _SYS_STATFS_H_
 
@@ -14,9 +15,13 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define NFS_SUPER_MAGIC	0x6969
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
 #if defined __i386__
 /* IA32 */
     struct statfs {
@@ -255,13 +260,38 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
+#if __LSB_VERSION__ < 20
+    extern int fstatfs(int, struct statfs *) LSB_DECL_DEPRECATED;
     extern int fstatfs64(int, struct statfs64 *) LSB_DECL_DEPRECATED;
+    extern int statfs(const char *, struct statfs *) LSB_DECL_DEPRECATED;
+#endif				// __LSB_VERSION__ < 2.0
+
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 13
+#if __LSB_VERSION__ < 20
     extern int statfs64(const char *,
 			struct statfs64 *) LSB_DECL_DEPRECATED;
+#endif				// __LSB_VERSION__ < 2.0
+
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 31
     extern int fstatfs(int, struct statfs *) LSB_DECL_DEPRECATED;
+    extern int fstatfs64(int, struct statfs64 *) LSB_DECL_DEPRECATED;
     extern int statfs(const char *, struct statfs *) LSB_DECL_DEPRECATED;
+    extern int statfs64(const char *,
+			struct statfs64 *) LSB_DECL_DEPRECATED;
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

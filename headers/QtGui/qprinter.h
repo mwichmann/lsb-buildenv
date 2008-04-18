@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPRINTER_H_
 #define _QTGUI_QPRINTER_H_
 
 class QPrinter;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPrinter : public QPaintDevice
 {
 private:
@@ -190,5 +192,8 @@ PrintPageRange = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

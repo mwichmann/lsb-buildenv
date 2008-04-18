@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GTK_2_0_GDK_GDKX_H_
 #define _GTK_2_0_GDK_GDKX_H_
 
@@ -12,6 +13,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define GDK_WINDOW_DESTROYED(d)	 \
 	(((GdkWindowObject*)(GDK_WINDOW (d)))->destroyed)
 #define GDK_WINDOW_TYPE(d)	 \
@@ -46,60 +48,68 @@ extern "C" {
 #define GDK_SCREEN_XSCREEN(screen)	(gdk_x11_screen_get_xscreen (screen))
 #define GDK_VISUAL_XVISUAL(visual)	(gdk_x11_visual_get_xvisual (visual))
 #define GDK_DISPLAY()	gdk_display
+#endif				// __LSB_VERSION__ >= 3.1
 
 
 
-    extern guint32 gdk_x11_get_server_time(GdkWindow *);
-    extern gpointer gdk_xid_table_lookup_for_display(GdkDisplay *, XID);
-    extern GdkVisual *gdk_x11_screen_lookup_visual(GdkScreen *, VisualID);
-    extern Window gdk_x11_get_default_root_xwindow(void);
-    extern Visual *gdk_x11_visual_get_xvisual(GdkVisual *);
-    extern void gdk_x11_display_ungrab(GdkDisplay *);
-    extern void gdk_x11_register_standard_event_type(GdkDisplay *, gint,
-						     gint);
-    extern void gdk_window_destroy_notify(GdkWindow *);
-    extern const gchar *gdk_x11_get_xatom_name(Atom);
-    extern Atom gdk_x11_get_xatom_by_name_for_display(GdkDisplay *,
-						      const gchar *);
-    extern GdkColormap *gdk_x11_colormap_foreign_new(GdkVisual *,
-						     Colormap);
-    extern gboolean gdk_net_wm_supports(GdkAtom);
-    extern const gchar *gdk_x11_get_xatom_name_for_display(GdkDisplay *,
-							   Atom);
-    extern GdkVisual *gdkx_visual_get(VisualID);
-    extern Atom gdk_x11_get_xatom_by_name(const gchar *);
-    extern gpointer gdk_xid_table_lookup(XID);
-    extern XID gdk_x11_drawable_get_xid(GdkDrawable *);
-    extern Display *gdk_x11_gc_get_xdisplay(GdkGC *);
-    extern Colormap gdk_x11_colormap_get_xcolormap(GdkColormap *);
-    extern GdkDisplay *gdk_x11_lookup_xdisplay(Display *);
-    extern GC gdk_x11_gc_get_xgc(GdkGC *);
-    extern void gdk_x11_grab_server(void);
-    extern int gdk_x11_screen_get_screen_number(GdkScreen *);
-    extern const char *gdk_x11_screen_get_window_manager_name(GdkScreen *);
-    extern GdkAtom gdk_x11_xatom_to_atom_for_display(GdkDisplay *, Atom);
-    extern Screen *gdk_x11_screen_get_xscreen(GdkScreen *);
-    extern void gdk_x11_ungrab_server(void);
-    extern gint gdk_x11_get_default_screen(void);
-    extern Display *gdk_x11_drawable_get_xdisplay(GdkDrawable *);
-    extern GdkAtom gdk_x11_xatom_to_atom(Atom);
-    extern Display *gdk_x11_colormap_get_xdisplay(GdkColormap *);
-    extern void gdk_x11_window_set_user_time(GdkWindow *, guint32);
-    extern Atom gdk_x11_atom_to_xatom(GdkAtom);
-    extern XImage *gdk_x11_image_get_ximage(GdkImage *);
-    extern Display *gdk_x11_cursor_get_xdisplay(GdkCursor *);
-    extern void gdk_x11_display_grab(GdkDisplay *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern Display *gdk_display;
-    extern Display *gdk_x11_image_get_xdisplay(GdkImage *);
-    extern Display *gdk_x11_get_default_xdisplay(void);
-    extern gboolean gdk_x11_screen_supports_net_wm_hint(GdkScreen *,
-							GdkAtom);
+    extern gboolean gdk_net_wm_supports(GdkAtom);
     extern void gdk_synthesize_window_state(GdkWindow *, GdkWindowState,
 					    GdkWindowState);
-    extern Display *gdk_x11_display_get_xdisplay(GdkDisplay *);
+    extern void gdk_window_destroy_notify(GdkWindow *);
+    extern Atom gdk_x11_atom_to_xatom(GdkAtom);
     extern Atom gdk_x11_atom_to_xatom_for_display(GdkDisplay *, GdkAtom);
+    extern GdkColormap *gdk_x11_colormap_foreign_new(GdkVisual *,
+						     Colormap);
+    extern Colormap gdk_x11_colormap_get_xcolormap(GdkColormap *);
+    extern Display *gdk_x11_colormap_get_xdisplay(GdkColormap *);
     extern Cursor gdk_x11_cursor_get_xcursor(GdkCursor *);
+    extern Display *gdk_x11_cursor_get_xdisplay(GdkCursor *);
+    extern Display *gdk_x11_display_get_xdisplay(GdkDisplay *);
+    extern void gdk_x11_display_grab(GdkDisplay *);
+    extern void gdk_x11_display_ungrab(GdkDisplay *);
+    extern Display *gdk_x11_drawable_get_xdisplay(GdkDrawable *);
+    extern XID gdk_x11_drawable_get_xid(GdkDrawable *);
+    extern Display *gdk_x11_gc_get_xdisplay(GdkGC *);
+    extern GC gdk_x11_gc_get_xgc(GdkGC *);
+    extern Window gdk_x11_get_default_root_xwindow(void);
+    extern gint gdk_x11_get_default_screen(void);
+    extern Display *gdk_x11_get_default_xdisplay(void);
+    extern guint32 gdk_x11_get_server_time(GdkWindow *);
+    extern Atom gdk_x11_get_xatom_by_name(const gchar *);
+    extern Atom gdk_x11_get_xatom_by_name_for_display(GdkDisplay *,
+						      const gchar *);
+    extern const gchar *gdk_x11_get_xatom_name(Atom);
+    extern const gchar *gdk_x11_get_xatom_name_for_display(GdkDisplay *,
+							   Atom);
+    extern void gdk_x11_grab_server(void);
+    extern Display *gdk_x11_image_get_xdisplay(GdkImage *);
+    extern XImage *gdk_x11_image_get_ximage(GdkImage *);
+    extern GdkDisplay *gdk_x11_lookup_xdisplay(Display *);
+    extern void gdk_x11_register_standard_event_type(GdkDisplay *, gint,
+						     gint);
+    extern int gdk_x11_screen_get_screen_number(GdkScreen *);
+    extern const char *gdk_x11_screen_get_window_manager_name(GdkScreen *);
+    extern Screen *gdk_x11_screen_get_xscreen(GdkScreen *);
+    extern GdkVisual *gdk_x11_screen_lookup_visual(GdkScreen *, VisualID);
+    extern gboolean gdk_x11_screen_supports_net_wm_hint(GdkScreen *,
+							GdkAtom);
+    extern void gdk_x11_ungrab_server(void);
+    extern Visual *gdk_x11_visual_get_xvisual(GdkVisual *);
+    extern void gdk_x11_window_set_user_time(GdkWindow *, guint32);
+    extern GdkAtom gdk_x11_xatom_to_atom(Atom);
+    extern GdkAtom gdk_x11_xatom_to_atom_for_display(GdkDisplay *, Atom);
+    extern gpointer gdk_xid_table_lookup(XID);
+    extern gpointer gdk_xid_table_lookup_for_display(GdkDisplay *, XID);
+    extern GdkVisual *gdkx_visual_get(VisualID);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

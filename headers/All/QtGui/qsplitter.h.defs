@@ -1,9 +1,9 @@
 
 class QSplitter;
 enum _ZN9QSplitter10ResizeModeE {
-    Stretch = 0,
-    KeepSize = 1,
-    FollowSizeHint = 2,
-    Auto = 3
+    Stretch,
+    KeepSize,
+    FollowSizeHint,
+    Auto
 };
 class QSplitterHandle;

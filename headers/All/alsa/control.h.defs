@@ -31,25 +31,25 @@ typedef struct _snd_ctl_card_info snd_ctl_card_info_t;
 typedef struct sndrv_ctl_elem_id snd_ctl_elem_id_t;
 typedef enum _snd_ctl_elem_iface {
     SND_CTL_ELEM_IFACE_CARD,
-    SND_CTL_ELEM_IFACE_HWDEP = 1,
-    SND_CTL_ELEM_IFACE_MIXER = 2,
-    SND_CTL_ELEM_IFACE_PCM = 3,
-    SND_CTL_ELEM_IFACE_RAWMIDI = 4,
-    SND_CTL_ELEM_IFACE_TIMER = 5,
-    SND_CTL_ELEM_IFACE_SEQUENCER = 6,
-    SND_CTL_ELEM_IFACE_LAST = 6
+    SND_CTL_ELEM_IFACE_HWDEP,
+    SND_CTL_ELEM_IFACE_MIXER,
+    SND_CTL_ELEM_IFACE_PCM,
+    SND_CTL_ELEM_IFACE_RAWMIDI,
+    SND_CTL_ELEM_IFACE_TIMER,
+    SND_CTL_ELEM_IFACE_SEQUENCER,
+    SND_CTL_ELEM_IFACE_LAST
 } snd_ctl_elem_iface_t;
 typedef struct _snd_ctl_elem_info snd_ctl_elem_info_t;
 typedef struct sndrv_ctl_elem_list snd_ctl_elem_list_t;
 typedef enum _snd_ctl_elem_type {
     SND_CTL_ELEM_TYPE_NONE,
-    SND_CTL_ELEM_TYPE_BOOLEAN = 1,
-    SND_CTL_ELEM_TYPE_INTEGER = 2,
-    SND_CTL_ELEM_TYPE_ENUMERATED = 3,
-    SND_CTL_ELEM_TYPE_BYTES = 4,
-    SND_CTL_ELEM_TYPE_IEC958 = 5,
-    SND_CTL_ELEM_TYPE_INTEGER64 = 6,
-    SND_CTL_ELEM_TYPE_LAST = 6
+    SND_CTL_ELEM_TYPE_BOOLEAN,
+    SND_CTL_ELEM_TYPE_INTEGER,
+    SND_CTL_ELEM_TYPE_ENUMERATED,
+    SND_CTL_ELEM_TYPE_BYTES,
+    SND_CTL_ELEM_TYPE_IEC958,
+    SND_CTL_ELEM_TYPE_INTEGER64,
+    SND_CTL_ELEM_TYPE_LAST
 } snd_ctl_elem_type_t;
 typedef struct _snd_ctl_elem_value snd_ctl_elem_value_t;
 typedef struct sndrv_ctl_event snd_ctl_event_t;
@@ -60,9 +60,9 @@ typedef enum _snd_ctl_event_type {
 typedef struct _snd_ctl snd_ctl_t;
 typedef enum _snd_ctl_type {
     SND_CTL_TYPE_HW,
-    SND_CTL_TYPE_SHM = 1,
-    SND_CTL_TYPE_INET = 2,
-    SND_CTL_TYPE_EXT = 3
+    SND_CTL_TYPE_SHM,
+    SND_CTL_TYPE_INET,
+    SND_CTL_TYPE_EXT
 } snd_ctl_type_t;
 typedef struct _snd_hctl snd_hctl_t;
 typedef struct _snd_sctl snd_sctl_t;

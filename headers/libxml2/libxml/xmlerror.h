@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_XMLERROR_H_
 #define _LIBXML2_LIBXML_XMLERROR_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef int (*xmlInputReadCallback) (void *, char *, int);
 
     typedef int (*xmlInputCloseCallback) (void *);
@@ -790,6 +792,9 @@ extern "C" {
 	XML_I18N_NO_OUTPUT
     } xmlParserErrors;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _xmlParserInputBuffer {
 	void *context;
@@ -839,23 +844,31 @@ extern "C" {
 	void *node;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern void xmlParserPrintFileInfo(xmlParserInputPtr);
-    extern void xmlSetGenericErrorFunc(void *, xmlGenericErrorFunc);
-    extern void xmlCtxtResetLastError(void *);
-    extern void xmlParserValidityWarning(void *, const char *, ...);
-    extern int xmlCopyError(xmlErrorPtr, xmlErrorPtr);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern void initGenericErrorDefaultFunc(xmlGenericErrorFunc *);
+    extern int xmlCopyError(xmlErrorPtr, xmlErrorPtr);
     extern xmlErrorPtr xmlCtxtGetLastError(void *);
+    extern void xmlCtxtResetLastError(void *);
+    extern xmlErrorPtr xmlGetLastError(void);
+    extern void xmlParserError(void *, const char *, ...);
     extern void xmlParserPrintFileContext(xmlParserInputPtr);
-    extern void xmlResetLastError(void);
-    extern void xmlSetStructuredErrorFunc(void *, xmlStructuredErrorFunc);
+    extern void xmlParserPrintFileInfo(xmlParserInputPtr);
+    extern void xmlParserValidityError(void *, const char *, ...);
+    extern void xmlParserValidityWarning(void *, const char *, ...);
     extern void xmlParserWarning(void *, const char *, ...);
     extern void xmlResetError(xmlErrorPtr);
-    extern xmlErrorPtr xmlGetLastError(void);
-    extern void xmlParserValidityError(void *, const char *, ...);
-    extern void xmlParserError(void *, const char *, ...);
+    extern void xmlResetLastError(void);
+    extern void xmlSetGenericErrorFunc(void *, xmlGenericErrorFunc);
+    extern void xmlSetStructuredErrorFunc(void *, xmlStructuredErrorFunc);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

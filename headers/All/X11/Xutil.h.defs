@@ -1,4 +1,80 @@
 
+#define IsModifierKey(keysym)	((((KeySym)(keysym)>=XK_Shift_L)&&((KeySym)(keysym)<=XK_Hype
+#define IsPrivateKeypadKey(keysym)	(((KeySym)(keysym)>=0x11000000)&&((KeySym)(keysym)<=0x1100FF
+#define IsFunctionKey(keysym)	(((KeySym)(keysym)>=XK_F1)&&((KeySym)(keysym)<=XK_F35))
+#define IsCursorKey(keysym)	(((KeySym)(keysym)>=XK_Home)&&((KeySym)(keysym)<XK_Select))
+#define IsPFKey(keysym)	(((KeySym)(keysym)>=XK_KP_F1)&&((KeySym)(keysym)<=XK_KP_F4))
+#define IsKeypadKey(keysym)	(((KeySym)(keysym)>=XK_KP_Space)&&((KeySym)(keysym)<=XK_KP_E
+#define IsMiscFunctionKey(keysym)	(((KeySym)(keysym)>=XK_Select)&&((KeySym)(keysym)<=XK_Break)
+#define XAddPixel(ximage,value)	((*((ximage)->f.add_pixel))((ximage),(value))))
+#define XDestroyImage(ximage)	((*((ximage)->f.destroy_image))((ximage)))
+#define XGetPixel(ximage,x,y)	((*((ximage)->f.get_pixel))((ximage),(x),(y))))
+#define XPutPixel(ximage,x,y,pixel)	((*((ximage)->f.put_pixel))((ximage),(x),(y),(pixe)
+#define XSubImage(ximage,x,y,width,height)	((*((ximage)->f.sub_image))((ximage),(x),(y)
+#define XStringToContext(string)	((XContext)XrmStringToQuark(string))
+#define XUniqueContext()	((XContext)XrmUniqueQuark())
+#define ReleaseByFreeingColormap	((XID)1L)
+#define InputHint	(1L<<0)
+#define USPosition	(1L<<0)
+#define StateHint	(1L<<1)
+#define USSize	(1L<<1)
+#define IconPixmapHint	(1L<<2)
+#define PPosition	(1L<<2)
+#define IconWindowHint	(1L<<3)
+#define PSize	(1L<<3)
+#define IconPositionHint	(1L<<4)
+#define PMinSize	(1L<<4)
+#define IconMaskHint	(1L<<5)
+#define PMaxSize	(1L<<5)
+#define PResizeInc	(1L<<6)
+#define WindowGroupHint	(1L<<6)
+#define PAspect	(1L<<7)
+#define PBaseSize	(1L<<8)
+#define XUrgencyHint	(1L<<8)
+#define PWinGravity	(1L<<9)
+#define AllHints	(InputHint|StateHint|IconPixmapHint|IconWindowHint|IconPositionHint|IconMaskHint|WindowGroupHint)
+#define PAllHints	(PPosition|PSize|PMinSize|PMaxSize|PResizeInc|PAspect)
+#define XNoMemory	-1
+#define XLocaleNotSupported	-2
+#define XConverterNotFound	-3
+#define BitmapSuccess	0
+#define DontCareState	0
+#define RectangleOut	0
+#define WithdrawnState	0
+#define XCSUCCESS	0
+#define VisualNoMask	0x0
+#define NoValue	0x0000
+#define XValue	0x0001
+#define YValue	0x0002
+#define WidthValue	0x0004
+#define HeightValue	0x0008
+#define AllValues	0x000F
+#define XNegative	0x0010
+#define YNegative	0x0020
+#define VisualIDMask	0x1
+#define VisualRedMaskMask	0x10
+#define VisualBitsPerRGBMask	0x100
+#define VisualAllMask	0x1FF
+#define VisualScreenMask	0x2
+#define VisualGreenMaskMask	0x20
+#define VisualDepthMask	0x4
+#define VisualBlueMaskMask	0x40
+#define VisualClassMask	0x8
+#define VisualColormapSizeMask	0x80
+#define BitmapOpenFailed	1
+#define NormalState	1
+#define RectangleIn	1
+#define XCNOMEM	1
+#define BitmapFileInvalid	2
+#define RectanglePart	2
+#define XCNOENT	2
+#define ZoomState	2
+#define BitmapNoMemory	3
+#define IconicState	3
+#define InactiveState	4
+
+struct;
+struct;
 typedef struct XSizeHints;
 typedef struct XWMHints;
 typedef struct XTextProperty;
@@ -12,7 +88,100 @@ typedef struct _XRegion *Region;
 typedef struct XVisualInfo;
 typedef struct XStandardColormap;
 typedef int XContext;
+enum;
 typedef enum XICCEncodingStyle;
+struct {
+    long int flags;
+    int x;
+    int y;
+    int width;
+    int height;
+    int min_width;
+    int min_height;
+    int max_width;
+    int max_height;
+    int width_inc;
+    int height_inc;
+    struct {
+	int x;
+	int y;
+    } min_aspect;
+    struct {
+	int x;
+	int y;
+    } max_aspect;
+    int base_width;
+    int base_height;
+    int win_gravity;
+};
+struct {
+    int x;
+    int y;
+};
+struct {
+    int x;
+    int y;
+};
+struct {
+    long int flags;
+    int input;
+    int initial_state;
+    Pixmap icon_pixmap;
+    Window icon_window;
+    int icon_x;
+    int icon_y;
+    Pixmap icon_mask;
+    XID window_group;
+};
+struct {
+    unsigned char *value;
+    Atom encoding;
+    int format;
+    unsigned long int nitems;
+};
+enum {
+    XStringStyle,
+    XCompoundTextStyle,
+    XTextStyle,
+    XStdICCTextStyle,
+    XUTF8StringStyle
+};
+struct {
+    int min_width;
+    int min_height;
+    int max_width;
+    int max_height;
+    int width_inc;
+    int height_inc;
+};
+struct {
+    char *res_name;
+    char *res_class;
+};
+struct {
+    Visual *visual;
+    VisualID visualid;
+    int screen;
+    int depth;
+    int class;
+    unsigned long int red_mask;
+    unsigned long int green_mask;
+    unsigned long int blue_mask;
+    int colormap_size;
+    int bits_per_rgb;
+};
+struct {
+    Colormap colormap;
+    unsigned long int red_max;
+    unsigned long int red_mult;
+    unsigned long int green_max;
+    unsigned long int green_mult;
+    unsigned long int blue_max;
+    unsigned long int blue_mult;
+    unsigned long int base_pixel;
+    VisualID visualid;
+    XID killid;
+};
 extern int XAddPixel(void);
 extern XClassHint *XAllocClassHint(void);
 extern XIconSize *XAllocIconSize(void);

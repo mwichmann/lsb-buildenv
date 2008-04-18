@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _SYS_MSG_H_
 #define _SYS_MSG_H_
 
@@ -11,11 +12,15 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
 #define MSG_NOERROR	010000
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Base types for messages*/
+#if __LSB_VERSION__ >= 20
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef unsigned long int msgqnum_t;
@@ -76,8 +81,11 @@ extern "C" {
     typedef unsigned long int msglen_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* Message Queue structure*/
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     struct msqid_ds {
@@ -206,12 +214,20 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int msgctl(int, int, struct msqid_ds *);
     extern int msgget(key_t, int);
     extern ssize_t msgrcv(int, void *, size_t, long int, int);
     extern int msgsnd(int, const void *, size_t, int);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

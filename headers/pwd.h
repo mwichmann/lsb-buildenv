@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _PWD_H_
 #define _PWD_H_
 
@@ -11,6 +12,7 @@ extern "C" {
 
 
 /* The passwd structure.*/
+#if __LSB_VERSION__ >= 12
     struct passwd {
 	char *pw_name;
 	char *pw_passwd;
@@ -21,17 +23,31 @@ extern "C" {
 	char *pw_shell;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void endpwent(void);
     extern struct passwd *getpwent(void);
     extern struct passwd *getpwnam(const char *);
     extern struct passwd *getpwuid(uid_t);
     extern void setpwent(void);
-    extern int getpwnam_r(const char *, struct passwd *, char *, size_t,
-			  struct passwd **);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 11
     extern int getpwuid_r(uid_t, struct passwd *, char *, size_t,
 			  struct passwd **);
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
+    extern int getpwnam_r(const char *, struct passwd *, char *, size_t,
+			  struct passwd **);
+#endif				// __LSB_VERSION__ >= 1.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

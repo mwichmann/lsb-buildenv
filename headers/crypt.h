@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _CRYPT_H_
 #define _CRYPT_H_
 
@@ -10,4 +11,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

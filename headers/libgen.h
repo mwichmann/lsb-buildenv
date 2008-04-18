@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 20 )
 #ifndef _LIBGEN_H_
 #define _LIBGEN_H_
 
@@ -13,13 +14,25 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define basename __xpg_basename
 
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern char *dirname(char *);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 32
     extern char *__xpg_basename(char *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

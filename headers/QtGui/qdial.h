@@ -1,12 +1,17 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QDIAL_H_
 #define _QTGUI_QDIAL_H_
 
 class QDial;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef enum QtValidLicenseForGuiModule	QtGuiModule	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QDial : public QAbstractSlider
 {
 private:
@@ -40,7 +45,15 @@ protected:
     void dialReleased();
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN5QDial16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

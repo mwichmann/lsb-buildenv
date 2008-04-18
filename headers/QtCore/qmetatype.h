@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QMETATYPE_H_
 #define _QTCORE_QMETATYPE_H_
 
 class QMetaType;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef void	Destructor	
 ;
 
@@ -16,6 +18,9 @@ typedef void	SaveOperator
 typedef void	LoadOperator	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QMetaType
 {
 private:
@@ -55,5 +60,8 @@ User = 256
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

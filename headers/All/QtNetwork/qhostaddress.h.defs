@@ -3,10 +3,10 @@ class QIPv6Address;
 typedef class QIPv6AddressQ_IPV6ADDR;
 class QHostAddress;
 enum _ZN12QHostAddress14SpecialAddressE {
-    Null = 0,
-    Broadcast = 1,
-    LocalHost = 2,
-    LocalHostIPv6 = 3,
-    Any = 4,
-    AnyIPv6 = 5
+    Null,
+    Broadcast,
+    LocalHost,
+    LocalHostIPv6,
+    Any,
+    AnyIPv6
 };

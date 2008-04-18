@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GLIB_2_0_GLIB_GSTDIO_H_
 #define _GLIB_2_0_GLIB_GSTDIO_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define g_fopen	fopen
 #define g_freopen	freopen
 #define g_lstat	lstat
@@ -17,9 +19,12 @@ extern "C" {
 #define g_rmdir	rmdir
 #define g_stat	stat
 #define g_unlink	unlink
+#endif				// __LSB_VERSION__ >= 3.1
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

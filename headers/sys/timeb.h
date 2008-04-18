@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 12 )
 #ifndef _SYS_TIMEB_H_
 #define _SYS_TIMEB_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 
 
 /* Default head group*/
+#if __LSB_VERSION__ >= 12
     struct timeb {
 	time_t time;		/* Seconds since epoch, as from `time'. */
 	unsigned short millitm;	/* Additional milliseconds. */
@@ -16,9 +18,17 @@ extern "C" {
 	short dstflag;		/* Nonzero if Daylight Savings Time used. */
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int ftime(struct timeb *);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

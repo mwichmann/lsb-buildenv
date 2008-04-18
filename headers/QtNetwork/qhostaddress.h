@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QHOSTADDRESS_H_
 #define _QTNETWORK_QHOSTADDRESS_H_
 
 class QHostAddress;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QIPv6Address
 {
 private:
@@ -11,6 +13,9 @@ public:
 }Q_IPV6ADDR	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QIPv6Address
 {
 private:
@@ -60,10 +65,21 @@ AnyIPv6 = 5
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDebug _Zls6QDebugRK12QHostAddress(_Z6QDebug, const QHostAddress &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDebug _Zls6QDebugRK12QHostAddress(const QHostAddress &);
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 32
 extern  _Z5qHashRK12QHostAddress(const QHostAddress &);
 extern  _ZlsR11QDataStreamRK12QHostAddress(QDataStream &, const QHostAddress &);
 extern  _ZrsR11QDataStreamR12QHostAddress(QDataStream &, QHostAddress &);
+#endif // __LSB_VERSION__ >= 3.2
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _FTW_H_
 #define _FTW_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 
 
 /* Values for the FLAG argument to the user function passed to `ftw' and 'nftw'.*/
+#if __LSB_VERSION__ >= 11
 #define FTW_D	FTW_D
 #define FTW_DNR	FTW_DNR
 #define FTW_DP	FTW_DP
@@ -20,8 +22,11 @@ extern "C" {
 #define FTW_NS	FTW_NS
 #define FTW_SL	FTW_SL
 #define FTW_SLN	FTW_SLN
+#endif				// __LSB_VERSION__ >= 1.1
 
 
+
+#if __LSB_VERSION__ >= 12
     enum {
 	FTW_F,
 	FTW_D,
@@ -32,8 +37,11 @@ extern "C" {
 	FTW_SLN
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* Flags for fourth argument of `nftw'.*/
+#if __LSB_VERSION__ >= 12
     enum {
 	FTW_PHYS = 1,
 	FTW_MOUNT = 2,
@@ -41,15 +49,21 @@ extern "C" {
 	FTW_DEPTH = 8
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* Structure used for fourth argument to callback function for `nftw'.*/
+#if __LSB_VERSION__ >= 12
     struct FTW {
 	int base;
 	int level;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* Convenient types for callback functions.*/
+#if __LSB_VERSION__ >= 10
     typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,
 				 int __flag);
 
@@ -63,12 +77,20 @@ extern "C" {
 				    struct stat64 * __status, int __flag,
 				    struct FTW * __info);
 
+#endif				// __LSB_VERSION__ >= 1.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int ftw(const char *, __ftw_func_t, int);
     extern int ftw64(const char *, __ftw64_func_t, int);
     extern int nftw(const char *, __nftw_func_t, int, int);
     extern int nftw64(const char *, __nftw64_func_t, int, int);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

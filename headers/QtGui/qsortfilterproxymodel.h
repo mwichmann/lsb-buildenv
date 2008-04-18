@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QSORTFILTERPROXYMODEL_H_
 #define _QTGUI_QSORTFILTERPROXYMODEL_H_
 
 class QSortFilterProxyModel;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSortFilterProxyModel : public QAbstractProxyModel
 {
 private:
@@ -67,7 +69,15 @@ protected:
     void filterChanged();
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN21QSortFilterProxyModel16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

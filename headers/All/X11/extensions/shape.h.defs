@@ -1,4 +1,18 @@
 
+typedef struct {
+    int type;
+    unsigned long int serial;
+    int send_event;
+    Display *display;
+    Window window;
+    int kind;
+    int x;
+    int y;
+    unsigned int width;
+    unsigned int height;
+    Time time;
+    int shaped;
+} XShapeEvent;
 extern void XShapeCombineMask(Display *, Window, int, int, int, Pixmap,
 			      int);
 extern void XShapeCombineRectangles(Display *, Window, int, int, int,

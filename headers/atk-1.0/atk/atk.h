@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _ATK_1_0_ATK_ATK_H_
 #define _ATK_1_0_ATK_ATK_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define _TYPEDEF_ATK_ACTION_
 #define _TYPEDEF_ATK_COMPONENT_
 #define _TYPEDEF_ATK_DOCUMENT_
@@ -264,8 +266,11 @@ extern "C" {
 #define ATK_TYPE_VALUE	(atk_value_get_type ())
 #define ATK_IS_TEXT(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_TEXT)
 #define ATK_IS_UTIL(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_UTIL)
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef struct _AtkText AtkText;
 
     typedef struct _AtkObject AtkObject;
@@ -597,7 +602,9 @@ extern "C" {
 
     typedef struct _AtkNoOpObject AtkNoOpObject;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
+#if __LSB_VERSION__ >= 31
 
 
 
@@ -627,14 +634,11 @@ extern "C" {
 
 
 
-
     struct _AtkRelation {
 	GObject parent;
 	GPtrArray *target;
 	AtkRelationType relationship;
     };
-
-
 
 
 
@@ -661,13 +665,6 @@ extern "C" {
 	GHashTable *factory_type_registry;
 	GHashTable *factory_singleton_cache;
     };
-
-
-
-
-
-
-
 
 
 
@@ -714,7 +711,6 @@ extern "C" {
 	gint end_offset;
 	gchar *content;
     };
-
 
 
 
@@ -1079,288 +1075,296 @@ extern "C" {
 	AtkObject parent;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern gchar *atk_text_get_selection(AtkText *, gint, gint *, gint *);
-    extern guint atk_object_connect_property_change_handler(AtkObject *,
-							    AtkPropertyChangeHandler
-							    *);
-    extern void atk_image_get_image_position(AtkImage *, gint *, gint *,
-					     AtkCoordType);
-    extern AtkRelationType atk_relation_get_relation_type(AtkRelation *);
-    extern const gchar *atk_role_get_localized_name(AtkRole);
-    extern GType atk_hyperlink_get_type(void);
-    extern const gchar *atk_document_get_document_type(AtkDocument *);
-    extern AtkObject *atk_table_get_caption(AtkTable *);
-    extern gint atk_hyperlink_get_start_index(AtkHyperlink *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern gboolean atk_action_do_action(AtkAction *, gint);
+    extern const gchar *atk_action_get_description(AtkAction *, gint);
+    extern const gchar *atk_action_get_keybinding(AtkAction *, gint);
+    extern const gchar *atk_action_get_localized_name(AtkAction *, gint);
+    extern gint atk_action_get_n_actions(AtkAction *);
+    extern const gchar *atk_action_get_name(AtkAction *, gint);
+    extern GType atk_action_get_type(void);
+    extern gboolean atk_action_set_description(AtkAction *, gint,
+					       const gchar *);
+    extern guint atk_add_focus_tracker(AtkEventListener);
+    extern guint atk_add_global_event_listener(GSignalEmissionHook,
+					       const gchar *);
+    extern guint atk_add_key_event_listener(AtkKeySnoopFunc, gpointer);
+    extern void atk_attribute_set_free(AtkAttributeSet *);
+    extern guint atk_component_add_focus_handler(AtkComponent *,
+						 AtkFocusHandler);
+    extern gboolean atk_component_contains(AtkComponent *, gint, gint,
+					   AtkCoordType);
+    extern void atk_component_get_extents(AtkComponent *, gint *, gint *,
+					  gint *, gint *, AtkCoordType);
+    extern AtkLayer atk_component_get_layer(AtkComponent *);
+    extern gint atk_component_get_mdi_zorder(AtkComponent *);
+    extern void atk_component_get_position(AtkComponent *, gint *, gint *,
+					   AtkCoordType);
+    extern void atk_component_get_size(AtkComponent *, gint *, gint *);
+    extern GType atk_component_get_type(void);
+    extern gboolean atk_component_grab_focus(AtkComponent *);
+    extern AtkObject *atk_component_ref_accessible_at_point(AtkComponent *,
+							    gint, gint,
+							    AtkCoordType);
+    extern void atk_component_remove_focus_handler(AtkComponent *, guint);
+    extern gboolean atk_component_set_extents(AtkComponent *, gint, gint,
+					      gint, gint, AtkCoordType);
+    extern gboolean atk_component_set_position(AtkComponent *, gint, gint,
+					       AtkCoordType);
+    extern gboolean atk_component_set_size(AtkComponent *, gint, gint);
     extern gpointer atk_document_get_document(AtkDocument *);
-    extern AtkStateSet *atk_state_set_or_sets(AtkStateSet *,
-					      AtkStateSet *);
-    extern AtkObjectFactory *atk_no_op_object_factory_new(void);
-    extern AtkObject *atk_table_get_column_header(AtkTable *, gint);
-    extern const gchar *atk_object_get_name(AtkObject *);
-    extern void atk_registry_set_factory_type(AtkRegistry *, GType, GType);
+    extern const gchar *atk_document_get_document_type(AtkDocument *);
+    extern GType atk_document_get_type(void);
+    extern void atk_editable_text_copy_text(AtkEditableText *, gint, gint);
+    extern void atk_editable_text_cut_text(AtkEditableText *, gint, gint);
+    extern void atk_editable_text_delete_text(AtkEditableText *, gint,
+					      gint);
+    extern GType atk_editable_text_get_type(void);
+    extern void atk_editable_text_insert_text(AtkEditableText *,
+					      const gchar *, gint, gint *);
+    extern void atk_editable_text_paste_text(AtkEditableText *, gint);
     extern gboolean atk_editable_text_set_run_attributes(AtkEditableText *,
 							 AtkAttributeSet *,
 							 gint, gint);
-    extern GType atk_object_factory_get_type(void);
-    extern void atk_object_remove_property_change_handler(AtkObject *,
-							  guint);
-    extern gboolean atk_image_set_image_description(AtkImage *,
-						    const gchar *);
-    extern GType atk_gobject_accessible_get_type(void);
-    extern AtkHyperlink *atk_hypertext_get_link(AtkHypertext *, gint);
-    extern void atk_attribute_set_free(AtkAttributeSet *);
-    extern void atk_focus_tracker_notify(AtkObject *);
-    extern void atk_relation_set_remove(AtkRelationSet *, AtkRelation *);
-    extern void atk_editable_text_cut_text(AtkEditableText *, gint, gint);
-    extern void atk_remove_key_event_listener(guint);
-    extern gboolean atk_selection_add_selection(AtkSelection *, gint);
-    extern gint atk_action_get_n_actions(AtkAction *);
-    extern gboolean atk_component_set_extents(AtkComponent *, gint, gint,
-					      gint, gint, AtkCoordType);
     extern void atk_editable_text_set_text_contents(AtkEditableText *,
 						    const gchar *);
-    extern AtkObject *atk_table_get_summary(AtkTable *);
-    extern AtkRole atk_role_register(const gchar *);
-    extern void atk_component_remove_focus_handler(AtkComponent *, guint);
-    extern gint atk_hyperlink_get_n_anchors(AtkHyperlink *);
-    extern gboolean atk_value_set_current_value(AtkValue *,
-						const GValue *);
-    extern gint
-	atk_streamable_content_get_n_mime_types(AtkStreamableContent *);
-    extern void atk_table_set_caption(AtkTable *, AtkObject *);
     extern void atk_focus_tracker_init(AtkEventListenerInit);
-    extern void atk_relation_set_add(AtkRelationSet *, AtkRelation *);
-    extern GType atk_text_get_type(void);
-    extern void atk_object_initialize(AtkObject *, gpointer);
-    extern void atk_object_set_role(AtkObject *, AtkRole);
-    extern void atk_table_set_row_header(AtkTable *, gint, AtkObject *);
-    extern const gchar
-	*atk_streamable_content_get_mime_type(AtkStreamableContent *,
-					      gint);
-    extern const gchar *atk_text_attribute_get_value(AtkTextAttribute,
-						     gint);
-    extern gboolean atk_table_add_column_selection(AtkTable *, gint);
-    extern AtkLayer atk_component_get_layer(AtkComponent *);
-    extern AtkObject *atk_selection_ref_selection(AtkSelection *, gint);
-    extern gboolean atk_hyperlink_is_selected_link(AtkHyperlink *);
-    extern gboolean atk_relation_set_contains(AtkRelationSet *,
-					      AtkRelationType);
-    extern void atk_image_get_image_size(AtkImage *, int *, int *);
-    extern gchar *atk_text_get_text_before_offset(AtkText *, gint,
-						  AtkTextBoundary, gint *,
-						  gint *);
-    extern GType atk_action_get_type(void);
-    extern void atk_text_get_character_extents(AtkText *, gint, gint *,
-					       gint *, gint *, gint *,
-					       AtkCoordType);
-    extern const gchar *atk_action_get_localized_name(AtkAction *, gint);
-    extern void atk_state_set_clear_states(AtkStateSet *);
-    extern GType atk_relation_set_get_type(void);
-    extern gboolean atk_state_set_contains_state(AtkStateSet *,
-						 AtkStateType);
-    extern GIOChannel
-	*atk_streamable_content_get_stream(AtkStreamableContent *,
-					   const gchar *);
-    extern AtkStateSet *atk_state_set_and_sets(AtkStateSet *,
-					       AtkStateSet *);
-    extern gboolean atk_table_remove_column_selection(AtkTable *, gint);
-    extern GType atk_streamable_content_get_type(void);
-    extern void atk_object_set_name(AtkObject *, const gchar *);
-    extern void atk_relation_set_add_relation_by_type(AtkRelationSet *,
-						      AtkRelationType,
-						      AtkObject *);
-    extern void atk_remove_global_event_listener(guint);
-    extern gchar *atk_text_get_text(AtkText *, gint, gint);
-    extern void atk_editable_text_copy_text(AtkEditableText *, gint, gint);
+    extern void atk_focus_tracker_notify(AtkObject *);
+    extern AtkRegistry *atk_get_default_registry(void);
+    extern AtkObject *atk_get_focus_object(void);
+    extern AtkObject *atk_get_root(void);
+    extern const gchar *atk_get_toolkit_name(void);
+    extern const gchar *atk_get_toolkit_version(void);
+    extern AtkObject *atk_gobject_accessible_for_object(GObject *);
     extern GObject *atk_gobject_accessible_get_object(AtkGObjectAccessible
 						      *);
-    extern AtkRole atk_role_for_name(const gchar *);
-    extern const gchar *atk_table_get_column_description(AtkTable *, gint);
-    extern const gchar *atk_role_get_name(AtkRole);
-    extern gint atk_table_get_n_rows(AtkTable *);
-    extern void atk_object_factory_invalidate(AtkObjectFactory *);
-    extern void atk_object_notify_state_change(AtkObject *, AtkState,
-					       gboolean);
-    extern AtkRelation
-	*atk_relation_set_get_relation_by_type(AtkRelationSet *,
-					       AtkRelationType);
-    extern gint atk_relation_set_get_n_relations(AtkRelationSet *);
-    extern gint atk_object_get_n_accessible_children(AtkObject *);
-    extern void atk_table_set_row_description(AtkTable *, gint,
-					      const gchar *);
-    extern GType atk_state_set_get_type(void);
-    extern AtkRelation *atk_relation_set_get_relation(AtkRelationSet *,
-						      gint);
-    extern AtkObject *atk_get_focus_object(void);
-    extern gunichar atk_text_get_character_at_offset(AtkText *, gint);
-    extern AtkRelation *atk_relation_new(AtkObject * *, gint,
-					 AtkRelationType);
-    extern void atk_object_set_parent(AtkObject *, AtkObject *);
-    extern AtkAttributeSet *atk_text_get_run_attributes(AtkText *, gint,
-							gint *, gint *);
-    extern gboolean atk_object_remove_relationship(AtkObject *,
-						   AtkRelationType,
-						   AtkObject *);
-    extern gboolean atk_selection_remove_selection(AtkSelection *, gint);
-    extern guint atk_component_add_focus_handler(AtkComponent *,
-						 AtkFocusHandler);
-    extern gint atk_table_get_index_at(AtkTable *, gint, gint);
-    extern AtkRelationSet *atk_relation_set_new(void);
-    extern AtkObjectFactory *atk_registry_get_factory(AtkRegistry *,
-						      GType);
-    extern const gchar *atk_get_toolkit_version(void);
-    extern const gchar *atk_text_attribute_get_name(AtkTextAttribute);
-    extern GType atk_image_get_type(void);
-    extern AtkRelationSet *atk_object_ref_relation_set(AtkObject *);
-    extern AtkStateSet *atk_state_set_new(void);
-    extern AtkStateSet *atk_state_set_xor_sets(AtkStateSet *,
-					       AtkStateSet *);
+    extern GType atk_gobject_accessible_get_type(void);
+    extern gint atk_hyperlink_get_end_index(AtkHyperlink *);
+    extern gint atk_hyperlink_get_n_anchors(AtkHyperlink *);
     extern AtkObject *atk_hyperlink_get_object(AtkHyperlink *, gint);
-    extern gint atk_object_get_index_in_parent(AtkObject *);
-    extern gboolean atk_text_set_caret_offset(AtkText *, gint);
-    extern GType atk_registry_get_type(void);
-    extern AtkRelationType atk_relation_type_for_name(const gchar *);
-    extern const gchar *atk_get_toolkit_name(void);
-    extern gboolean atk_state_set_add_state(AtkStateSet *, AtkStateType);
-    extern AtkStateSet *atk_object_ref_state_set(AtkObject *);
-    extern const gchar *atk_image_get_image_description(AtkImage *);
-    extern gboolean atk_text_add_selection(AtkText *, gint, gint);
-    extern GType atk_registry_get_factory_type(AtkRegistry *, GType);
-    extern gboolean atk_selection_clear_selection(AtkSelection *);
-    extern const gchar *atk_action_get_name(AtkAction *, gint);
-    extern void atk_relation_add_target(AtkRelation *, AtkObject *);
-    extern AtkTextAttribute atk_text_attribute_register(const gchar *);
+    extern gint atk_hyperlink_get_start_index(AtkHyperlink *);
+    extern GType atk_hyperlink_get_type(void);
+    extern gchar *atk_hyperlink_get_uri(AtkHyperlink *, gint);
+    extern gboolean atk_hyperlink_is_inline(AtkHyperlink *);
+    extern gboolean atk_hyperlink_is_selected_link(AtkHyperlink *);
     extern gboolean atk_hyperlink_is_valid(AtkHyperlink *);
+    extern AtkHyperlink *atk_hypertext_get_link(AtkHypertext *, gint);
+    extern gint atk_hypertext_get_link_index(AtkHypertext *, gint);
+    extern gint atk_hypertext_get_n_links(AtkHypertext *);
+    extern GType atk_hypertext_get_type(void);
+    extern const gchar *atk_image_get_image_description(AtkImage *);
+    extern void atk_image_get_image_position(AtkImage *, gint *, gint *,
+					     AtkCoordType);
+    extern void atk_image_get_image_size(AtkImage *, int *, int *);
+    extern GType atk_image_get_type(void);
+    extern gboolean atk_image_set_image_description(AtkImage *,
+						    const gchar *);
     extern GType atk_implementor_get_type(void);
+    extern AtkObject *atk_implementor_ref_accessible(AtkImplementor *);
+    extern GType atk_no_op_object_factory_get_type(void);
+    extern AtkObjectFactory *atk_no_op_object_factory_new(void);
+    extern GType atk_no_op_object_get_type(void);
+    extern AtkObject *atk_no_op_object_new(GObject *);
     extern gboolean atk_object_add_relationship(AtkObject *,
 						AtkRelationType,
 						AtkObject *);
-    extern GType atk_hypertext_get_type(void);
-    extern void atk_table_set_column_header(AtkTable *, gint, AtkObject *);
-    extern gboolean atk_table_add_row_selection(AtkTable *, gint);
-    extern gint atk_selection_get_selection_count(AtkSelection *);
-    extern guint atk_add_key_event_listener(AtkKeySnoopFunc, gpointer);
-    extern gboolean atk_table_is_row_selected(AtkTable *, gint);
+    extern guint atk_object_connect_property_change_handler(AtkObject *,
+							    AtkPropertyChangeHandler
+							    *);
+    extern AtkObject *atk_object_factory_create_accessible(AtkObjectFactory
+							   *, GObject *);
+    extern GType atk_object_factory_get_accessible_type(AtkObjectFactory
+							*);
+    extern GType atk_object_factory_get_type(void);
+    extern void atk_object_factory_invalidate(AtkObjectFactory *);
+    extern const gchar *atk_object_get_description(AtkObject *);
+    extern gint atk_object_get_index_in_parent(AtkObject *);
+    extern gint atk_object_get_n_accessible_children(AtkObject *);
+    extern const gchar *atk_object_get_name(AtkObject *);
+    extern AtkObject *atk_object_get_parent(AtkObject *);
+    extern AtkRole atk_object_get_role(AtkObject *);
+    extern GType atk_object_get_type(void);
+    extern void atk_object_initialize(AtkObject *, gpointer);
+    extern void atk_object_notify_state_change(AtkObject *, AtkState,
+					       gboolean);
+    extern AtkObject *atk_object_ref_accessible_child(AtkObject *, gint);
+    extern AtkRelationSet *atk_object_ref_relation_set(AtkObject *);
+    extern AtkStateSet *atk_object_ref_state_set(AtkObject *);
+    extern void atk_object_remove_property_change_handler(AtkObject *,
+							  guint);
+    extern gboolean atk_object_remove_relationship(AtkObject *,
+						   AtkRelationType,
+						   AtkObject *);
+    extern void atk_object_set_description(AtkObject *, const gchar *);
+    extern void atk_object_set_name(AtkObject *, const gchar *);
+    extern void atk_object_set_parent(AtkObject *, AtkObject *);
+    extern void atk_object_set_role(AtkObject *, AtkRole);
+    extern GType atk_rectangle_get_type(void);
+    extern AtkObjectFactory *atk_registry_get_factory(AtkRegistry *,
+						      GType);
+    extern GType atk_registry_get_factory_type(AtkRegistry *, GType);
+    extern GType atk_registry_get_type(void);
+    extern void atk_registry_set_factory_type(AtkRegistry *, GType, GType);
+    extern void atk_relation_add_target(AtkRelation *, AtkObject *);
+    extern AtkRelationType atk_relation_get_relation_type(AtkRelation *);
     extern GPtrArray *atk_relation_get_target(AtkRelation *);
-    extern AtkAttributeSet *atk_text_get_default_attributes(AtkText *);
-    extern void atk_editable_text_insert_text(AtkEditableText *,
-					      const gchar *, gint, gint *);
-    extern gint atk_hypertext_get_link_index(AtkHypertext *, gint);
-    extern const gchar *atk_table_get_row_description(AtkTable *, gint);
-    extern GType atk_table_get_type(void);
+    extern GType atk_relation_get_type(void);
+    extern AtkRelation *atk_relation_new(AtkObject * *, gint,
+					 AtkRelationType);
+    extern void atk_relation_set_add(AtkRelationSet *, AtkRelation *);
+    extern void atk_relation_set_add_relation_by_type(AtkRelationSet *,
+						      AtkRelationType,
+						      AtkObject *);
+    extern gboolean atk_relation_set_contains(AtkRelationSet *,
+					      AtkRelationType);
+    extern gint atk_relation_set_get_n_relations(AtkRelationSet *);
+    extern AtkRelation *atk_relation_set_get_relation(AtkRelationSet *,
+						      gint);
+    extern AtkRelation
+	*atk_relation_set_get_relation_by_type(AtkRelationSet *,
+					       AtkRelationType);
+    extern GType atk_relation_set_get_type(void);
+    extern AtkRelationSet *atk_relation_set_new(void);
+    extern void atk_relation_set_remove(AtkRelationSet *, AtkRelation *);
+    extern AtkRelationType atk_relation_type_for_name(const gchar *);
+    extern const gchar *atk_relation_type_get_name(AtkRelationType);
+    extern AtkRelationType atk_relation_type_register(const gchar *);
+    extern void atk_remove_focus_tracker(guint);
+    extern void atk_remove_global_event_listener(guint);
+    extern void atk_remove_key_event_listener(guint);
+    extern AtkRole atk_role_for_name(const gchar *);
+    extern const gchar *atk_role_get_localized_name(AtkRole);
+    extern const gchar *atk_role_get_name(AtkRole);
+    extern AtkRole atk_role_register(const gchar *);
+    extern gboolean atk_selection_add_selection(AtkSelection *, gint);
+    extern gboolean atk_selection_clear_selection(AtkSelection *);
+    extern gint atk_selection_get_selection_count(AtkSelection *);
+    extern GType atk_selection_get_type(void);
+    extern gboolean atk_selection_is_child_selected(AtkSelection *, gint);
+    extern AtkObject *atk_selection_ref_selection(AtkSelection *, gint);
+    extern gboolean atk_selection_remove_selection(AtkSelection *, gint);
+    extern gboolean atk_selection_select_all_selection(AtkSelection *);
+    extern gboolean atk_state_set_add_state(AtkStateSet *, AtkStateType);
+    extern void atk_state_set_add_states(AtkStateSet *, AtkStateType *,
+					 gint);
+    extern AtkStateSet *atk_state_set_and_sets(AtkStateSet *,
+					       AtkStateSet *);
+    extern void atk_state_set_clear_states(AtkStateSet *);
+    extern gboolean atk_state_set_contains_state(AtkStateSet *,
+						 AtkStateType);
+    extern gboolean atk_state_set_contains_states(AtkStateSet *,
+						  AtkStateType *, gint);
+    extern GType atk_state_set_get_type(void);
+    extern gboolean atk_state_set_is_empty(AtkStateSet *);
+    extern AtkStateSet *atk_state_set_new(void);
+    extern AtkStateSet *atk_state_set_or_sets(AtkStateSet *,
+					      AtkStateSet *);
+    extern gboolean atk_state_set_remove_state(AtkStateSet *,
+					       AtkStateType);
+    extern AtkStateSet *atk_state_set_xor_sets(AtkStateSet *,
+					       AtkStateSet *);
+    extern AtkStateType atk_state_type_for_name(const gchar *);
     extern const gchar *atk_state_type_get_name(AtkStateType);
-    extern AtkObject *atk_no_op_object_new(GObject *);
-    extern gint atk_table_get_column_extent_at(AtkTable *, gint, gint);
-    extern gint atk_hyperlink_get_end_index(AtkHyperlink *);
-    extern void atk_editable_text_delete_text(AtkEditableText *, gint,
+    extern AtkStateType atk_state_type_register(const gchar *);
+    extern const gchar
+	*atk_streamable_content_get_mime_type(AtkStreamableContent *,
 					      gint);
-    extern void atk_editable_text_paste_text(AtkEditableText *, gint);
+    extern gint
+	atk_streamable_content_get_n_mime_types(AtkStreamableContent *);
+    extern GIOChannel
+	*atk_streamable_content_get_stream(AtkStreamableContent *,
+					   const gchar *);
+    extern GType atk_streamable_content_get_type(void);
+    extern gboolean atk_table_add_column_selection(AtkTable *, gint);
+    extern gboolean atk_table_add_row_selection(AtkTable *, gint);
+    extern AtkObject *atk_table_get_caption(AtkTable *);
+    extern gint atk_table_get_column_at_index(AtkTable *, gint);
+    extern const gchar *atk_table_get_column_description(AtkTable *, gint);
+    extern gint atk_table_get_column_extent_at(AtkTable *, gint, gint);
+    extern AtkObject *atk_table_get_column_header(AtkTable *, gint);
+    extern gint atk_table_get_index_at(AtkTable *, gint, gint);
+    extern gint atk_table_get_n_columns(AtkTable *);
+    extern gint atk_table_get_n_rows(AtkTable *);
+    extern gint atk_table_get_row_at_index(AtkTable *, gint);
+    extern const gchar *atk_table_get_row_description(AtkTable *, gint);
+    extern gint atk_table_get_row_extent_at(AtkTable *, gint, gint);
+    extern AtkObject *atk_table_get_row_header(AtkTable *, gint);
+    extern gint atk_table_get_selected_columns(AtkTable *, gint * *);
+    extern gint atk_table_get_selected_rows(AtkTable *, gint * *);
+    extern AtkObject *atk_table_get_summary(AtkTable *);
+    extern GType atk_table_get_type(void);
+    extern gboolean atk_table_is_column_selected(AtkTable *, gint);
+    extern gboolean atk_table_is_row_selected(AtkTable *, gint);
+    extern gboolean atk_table_is_selected(AtkTable *, gint, gint);
+    extern AtkObject *atk_table_ref_at(AtkTable *, gint, gint);
+    extern gboolean atk_table_remove_column_selection(AtkTable *, gint);
+    extern gboolean atk_table_remove_row_selection(AtkTable *, gint);
+    extern void atk_table_set_caption(AtkTable *, AtkObject *);
+    extern void atk_table_set_column_description(AtkTable *, gint,
+						 const gchar *);
+    extern void atk_table_set_column_header(AtkTable *, gint, AtkObject *);
+    extern void atk_table_set_row_description(AtkTable *, gint,
+					      const gchar *);
+    extern void atk_table_set_row_header(AtkTable *, gint, AtkObject *);
+    extern void atk_table_set_summary(AtkTable *, AtkObject *);
+    extern gboolean atk_text_add_selection(AtkText *, gint, gint);
+    extern AtkTextAttribute atk_text_attribute_for_name(const gchar *);
+    extern const gchar *atk_text_attribute_get_name(AtkTextAttribute);
+    extern const gchar *atk_text_attribute_get_value(AtkTextAttribute,
+						     gint);
+    extern AtkTextAttribute atk_text_attribute_register(const gchar *);
+    extern void atk_text_free_ranges(AtkTextRange * *);
     extern AtkTextRange **atk_text_get_bounded_ranges(AtkText *,
 						      AtkTextRectangle *,
 						      AtkCoordType,
 						      AtkTextClipType,
 						      AtkTextClipType);
-    extern void atk_component_get_position(AtkComponent *, gint *, gint *,
-					   AtkCoordType);
-    extern GType atk_value_get_type(void);
-    extern const gchar *atk_object_get_description(AtkObject *);
-    extern gint atk_table_get_selected_columns(AtkTable *, gint * *);
-    extern gint atk_table_get_column_at_index(AtkTable *, gint);
-    extern void atk_value_get_maximum_value(AtkValue *, GValue *);
-    extern GType atk_selection_get_type(void);
-    extern GType atk_rectangle_get_type(void);
-    extern GType atk_object_factory_get_accessible_type(AtkObjectFactory
-							*);
-    extern GType atk_relation_get_type(void);
-    extern gboolean atk_action_do_action(AtkAction *, gint);
-    extern void atk_state_set_add_states(AtkStateSet *, AtkStateType *,
-					 gint);
-    extern GType atk_util_get_type(void);
-    extern AtkObject *atk_component_ref_accessible_at_point(AtkComponent *,
-							    gint, gint,
-							    AtkCoordType);
-    extern gchar *atk_text_get_text_after_offset(AtkText *, gint,
-						 AtkTextBoundary, gint *,
-						 gint *);
-    extern gint atk_table_get_row_extent_at(AtkTable *, gint, gint);
-    extern guint atk_add_global_event_listener(GSignalEmissionHook,
-					       const gchar *);
-    extern gboolean atk_state_set_remove_state(AtkStateSet *,
-					       AtkStateType);
-    extern gboolean atk_table_remove_row_selection(AtkTable *, gint);
-    extern AtkObject *atk_table_ref_at(AtkTable *, gint, gint);
-    extern void atk_object_set_description(AtkObject *, const gchar *);
-    extern GType atk_no_op_object_factory_get_type(void);
-    extern AtkRole atk_object_get_role(AtkObject *);
-    extern void atk_table_set_column_description(AtkTable *, gint,
-						 const gchar *);
-    extern gchar *atk_text_get_text_at_offset(AtkText *, gint,
-					      AtkTextBoundary, gint *,
-					      gint *);
-    extern AtkRelationType atk_relation_type_register(const gchar *);
-    extern void atk_component_get_extents(AtkComponent *, gint *, gint *,
-					  gint *, gint *, AtkCoordType);
+    extern gint atk_text_get_caret_offset(AtkText *);
+    extern gunichar atk_text_get_character_at_offset(AtkText *, gint);
+    extern gint atk_text_get_character_count(AtkText *);
+    extern void atk_text_get_character_extents(AtkText *, gint, gint *,
+					       gint *, gint *, gint *,
+					       AtkCoordType);
+    extern AtkAttributeSet *atk_text_get_default_attributes(AtkText *);
+    extern gint atk_text_get_n_selections(AtkText *);
+    extern gint atk_text_get_offset_at_point(AtkText *, gint, gint,
+					     AtkCoordType);
     extern void atk_text_get_range_extents(AtkText *, gint, gint,
 					   AtkCoordType,
 					   AtkTextRectangle *);
-    extern const gchar *atk_relation_type_get_name(AtkRelationType);
-    extern void atk_component_get_size(AtkComponent *, gint *, gint *);
-    extern AtkObject *atk_object_factory_create_accessible(AtkObjectFactory
-							   *, GObject *);
-    extern void atk_value_get_minimum_value(AtkValue *, GValue *);
-    extern GType atk_document_get_type(void);
-    extern AtkStateType atk_state_type_for_name(const gchar *);
-    extern gboolean atk_state_set_contains_states(AtkStateSet *,
-						  AtkStateType *, gint);
-    extern gint atk_text_get_caret_offset(AtkText *);
-    extern const gchar *atk_action_get_description(AtkAction *, gint);
-    extern gint atk_text_get_offset_at_point(AtkText *, gint, gint,
-					     AtkCoordType);
-    extern AtkObject *atk_gobject_accessible_for_object(GObject *);
-    extern gboolean atk_action_set_description(AtkAction *, gint,
-					       const gchar *);
-    extern gboolean atk_text_set_selection(AtkText *, gint, gint, gint);
-    extern gint atk_table_get_selected_rows(AtkTable *, gint * *);
-    extern AtkObject *atk_implementor_ref_accessible(AtkImplementor *);
-    extern gint atk_text_get_n_selections(AtkText *);
-    extern gint atk_component_get_mdi_zorder(AtkComponent *);
-    extern gchar *atk_hyperlink_get_uri(AtkHyperlink *, gint);
-    extern void atk_value_get_current_value(AtkValue *, GValue *);
-    extern AtkRegistry *atk_get_default_registry(void);
-    extern gboolean atk_component_set_position(AtkComponent *, gint, gint,
-					       AtkCoordType);
-    extern void atk_remove_focus_tracker(guint);
-    extern GType atk_no_op_object_get_type(void);
-    extern gboolean atk_component_grab_focus(AtkComponent *);
-    extern gint atk_table_get_n_columns(AtkTable *);
-    extern gboolean atk_hyperlink_is_inline(AtkHyperlink *);
-    extern gboolean atk_table_is_column_selected(AtkTable *, gint);
-    extern AtkObject *atk_table_get_row_header(AtkTable *, gint);
+    extern AtkAttributeSet *atk_text_get_run_attributes(AtkText *, gint,
+							gint *, gint *);
+    extern gchar *atk_text_get_selection(AtkText *, gint, gint *, gint *);
+    extern gchar *atk_text_get_text(AtkText *, gint, gint);
+    extern gchar *atk_text_get_text_after_offset(AtkText *, gint,
+						 AtkTextBoundary, gint *,
+						 gint *);
+    extern gchar *atk_text_get_text_at_offset(AtkText *, gint,
+					      AtkTextBoundary, gint *,
+					      gint *);
+    extern gchar *atk_text_get_text_before_offset(AtkText *, gint,
+						  AtkTextBoundary, gint *,
+						  gint *);
+    extern GType atk_text_get_type(void);
     extern gboolean atk_text_remove_selection(AtkText *, gint);
-    extern AtkTextAttribute atk_text_attribute_for_name(const gchar *);
-    extern void atk_table_set_summary(AtkTable *, AtkObject *);
-    extern gboolean atk_selection_is_child_selected(AtkSelection *, gint);
-    extern gboolean atk_table_is_selected(AtkTable *, gint, gint);
-    extern guint atk_add_focus_tracker(AtkEventListener);
-    extern GType atk_component_get_type(void);
-    extern gboolean atk_component_contains(AtkComponent *, gint, gint,
-					   AtkCoordType);
-    extern gint atk_text_get_character_count(AtkText *);
-    extern gint atk_table_get_row_at_index(AtkTable *, gint);
-    extern gboolean atk_selection_select_all_selection(AtkSelection *);
-    extern gint atk_hypertext_get_n_links(AtkHypertext *);
-    extern const gchar *atk_action_get_keybinding(AtkAction *, gint);
-    extern void atk_text_free_ranges(AtkTextRange * *);
-    extern gboolean atk_component_set_size(AtkComponent *, gint, gint);
-    extern AtkStateType atk_state_type_register(const gchar *);
-    extern AtkObject *atk_get_root(void);
-    extern AtkObject *atk_object_get_parent(AtkObject *);
-    extern GType atk_editable_text_get_type(void);
-    extern gboolean atk_state_set_is_empty(AtkStateSet *);
-    extern GType atk_object_get_type(void);
-    extern AtkObject *atk_object_ref_accessible_child(AtkObject *, gint);
+    extern gboolean atk_text_set_caret_offset(AtkText *, gint);
+    extern gboolean atk_text_set_selection(AtkText *, gint, gint, gint);
+    extern GType atk_util_get_type(void);
+    extern void atk_value_get_current_value(AtkValue *, GValue *);
+    extern void atk_value_get_maximum_value(AtkValue *, GValue *);
+    extern void atk_value_get_minimum_value(AtkValue *, GValue *);
+    extern GType atk_value_get_type(void);
+    extern gboolean atk_value_set_current_value(AtkValue *,
+						const GValue *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

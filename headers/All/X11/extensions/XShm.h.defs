@@ -1,4 +1,22 @@
 
+typedef unsigned long int ShmSeg;
+typedef struct {
+    int type;
+    unsigned long int serial;
+    int send_event;
+    Display *display;
+    Drawable drawable;
+    int major_code;
+    int minor_code;
+    ShmSeg shmseg;
+    unsigned long int offset;
+} XShmCompletionEvent;
+typedef struct {
+    ShmSeg shmseg;
+    int shmid;
+    char *shmaddr;
+    int readOnly;
+} XShmSegmentInfo;
 extern int XShmAttach(Display *, XShmSegmentInfo *);
 extern XImage *XShmCreateImage(Display *, Visual *, unsigned int, int,
 			       char *, XShmSegmentInfo *, unsigned int,

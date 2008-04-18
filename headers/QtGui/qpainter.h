@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPAINTER_H_
 #define _QTGUI_QPAINTER_H_
 
 class QFlags < QPainter::RenderHint >;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QPainter::RenderHint>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }RenderHints	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QPainter
 {
 private:
@@ -167,7 +172,15 @@ CompositionMode_Xor = 11
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
 extern struct QMetaObject _ZN8QPainter16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.2
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

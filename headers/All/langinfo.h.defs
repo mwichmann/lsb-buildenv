@@ -1,5 +1,5 @@
 
-#define ABDAY_1	0x20000
+#define ABDAY_1	0x20000		/* Sun. */
 #define ABDAY_2	0x20001
 #define ABDAY_3	0x20002
 #define ABDAY_4	0x20003

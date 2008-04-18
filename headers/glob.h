@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _GLOB_H_
 #define _GLOB_H_
 
@@ -12,6 +13,7 @@ extern "C" {
 
 
 /* Bits set in the FLAGS argument to `glob'.*/
+#if __LSB_VERSION__ >= 11
 #define GLOB_ERR	(1<<0)
 #define GLOB_MARK	(1<<1)
 #define GLOB_BRACE	(1<<10)
@@ -27,17 +29,23 @@ extern "C" {
 #define GLOB_PERIOD	(1<<7)
 #define GLOB_MAGCHAR	(1<<8)
 #define GLOB_ALTDIRFUNC	(1<<9)
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 
 
 /* Error returns from `glob'.*/
+#if __LSB_VERSION__ >= 11
 #define GLOB_NOSPACE	1
 #define GLOB_ABORTED	2
 #define GLOB_NOMATCH	3
 #define GLOB_NOSYS	4
+#endif				// __LSB_VERSION__ >= 1.1
 
 
 
+
+#if __LSB_VERSION__ >= 12
     typedef struct {
 	size_t gl_pathc;
 	char **gl_pathv;
@@ -50,7 +58,10 @@ extern "C" {
 	int (*gl_stat) (const char *, struct stat *);
     } glob_t;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+#if __LSB_VERSION__ >= 12
     typedef struct {
 	size_t gl_pathc;
 	char **gl_pathv;
@@ -63,14 +74,22 @@ extern "C" {
 	int (*gl_stat) (const char *, struct stat *);
     } glob64_t;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int glob(const char *, int, int (*)(const char *, int)
 		    , glob_t *);
     extern int glob64(const char *, int, int (*)(const char *, int)
 		      , glob64_t *);
     extern void globfree(glob_t *);
     extern void globfree64(glob64_t *);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

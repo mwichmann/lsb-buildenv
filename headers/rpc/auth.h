@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _RPC_AUTH_H_
 #define _RPC_AUTH_H_
 
@@ -10,11 +11,15 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define auth_destroy(auth)	((*((auth)->ah_ops->ah_destroy))(auth))
+#endif				// __LSB_VERSION__ >= 3.2
+
 
 
 
 /* Status returned from authentication check*/
+#if __LSB_VERSION__ >= 13
     enum auth_stat {
 	AUTH_OK = 0,
 	AUTH_BADCRED = 1,	/* bogus credentials (seal broken) */
@@ -26,7 +31,10 @@ extern "C" {
 	AUTH_FAILED = 7		/* some unknown reason */
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
+
+#if __LSB_VERSION__ >= 13
     union des_block {
 	struct {
 	    u_int32_t high;
@@ -35,18 +43,27 @@ extern "C" {
 	char c[8];
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
+
 
 /* Authentication info.  Opaque to client.opaque_auth*/
+#if __LSB_VERSION__ >= 13
     struct opaque_auth {
 	enum_t oa_flavor;	/* flavor of auth */
 	caddr_t oa_base;	/* address of more auth stuff */
 	u_int oa_length;	/* not to exceed MAX_AUTH_BYTES */
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
+
 
 /* Auth handle, interface to client side authenticators.*/
+#if __LSB_VERSION__ >= 13
     typedef struct AUTH AUTH;
 
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 13
 
     struct AUTH {
 	struct opaque_auth ah_cred;
@@ -56,7 +73,10 @@ extern "C" {
 	caddr_t ah_private;
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
+
+#if __LSB_VERSION__ >= 13
     struct auth_ops {
 	void (*ah_nextverf) (struct AUTH *);
 	int (*ah_marshal) (struct AUTH *, XDR *);	/* nextverf & serialize */
@@ -65,11 +85,19 @@ extern "C" {
 	void (*ah_destroy) (struct AUTH *);	/* Rpc calls return an enum clnt_stat. */
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 11
     extern struct AUTH *authnone_create(void);
     extern int key_decryptsession(char *, union des_block *);
     extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);
+#endif				// __LSB_VERSION__ >= 1.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -102,14 +102,14 @@
 typedef struct sndrv_seq_client_info snd_seq_client_info_t;
 typedef struct sndrv_seq_client_pool snd_seq_client_pool_t;
 typedef enum snd_seq_client_type {
-    SND_SEQ_USER_CLIENT = 1,
-    SND_SEQ_KERNEL_CLIENT = 2
+    SND_SEQ_USER_CLIENT,
+    SND_SEQ_KERNEL_CLIENT
 } snd_seq_client_type_t;
 typedef struct sndrv_seq_port_info snd_seq_port_info_t;
 typedef struct sndrv_seq_port_subscribe snd_seq_port_subscribe_t;
 typedef enum {
     SND_SEQ_QUERY_SUBS_READ,
-    SND_SEQ_QUERY_SUBS_WRITE = 1
+    SND_SEQ_QUERY_SUBS_WRITE
 } snd_seq_query_subs_type_t;
 typedef struct sndrv_seq_query_subs snd_seq_query_subscribe_t;
 typedef struct sndrv_seq_queue_info snd_seq_queue_info_t;
@@ -118,16 +118,16 @@ typedef struct sndrv_seq_queue_tempo snd_seq_queue_tempo_t;
 typedef struct sndrv_seq_queue_timer snd_seq_queue_timer_t;
 typedef enum {
     SND_SEQ_TIMER_ALSA,
-    SND_SEQ_TIMER_MIDI_CLOCK = 1,
-    SND_SEQ_TIMER_MIDI_TICK = 2
+    SND_SEQ_TIMER_MIDI_CLOCK,
+    SND_SEQ_TIMER_MIDI_TICK
 } snd_seq_queue_timer_type_t;
 typedef struct sndrv_seq_remove_events snd_seq_remove_events_t;
 typedef struct sndrv_seq_system_info snd_seq_system_info_t;
 typedef struct _snd_seq snd_seq_t;
 typedef enum _snd_seq_type {
     SND_SEQ_TYPE_HW,
-    SND_SEQ_TYPE_SHM = 1,
-    SND_SEQ_TYPE_INET = 2
+    SND_SEQ_TYPE_SHM,
+    SND_SEQ_TYPE_INET
 } snd_seq_type_t;
 extern int snd_seq_alloc_named_queue(snd_seq_t *, const char *);
 extern int snd_seq_alloc_queue(snd_seq_t *);

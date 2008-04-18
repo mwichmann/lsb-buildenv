@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_URI_H_
 #define _LIBXML2_LIBXML_URI_H_
 
@@ -9,10 +10,14 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef struct _xmlURI xmlURI;
 
     typedef xmlURI *xmlURIPtr;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _xmlURI {
 	char *scheme;
@@ -27,22 +32,30 @@ extern "C" {
 	int cleanup;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern void xmlFreeURI(xmlURIPtr);
-    extern xmlChar *xmlCanonicPath(const xmlChar *);
-    extern xmlURIPtr xmlParseURI(const char *);
-    extern int xmlParseURIReference(xmlURIPtr, const char *);
-    extern int xmlNormalizeURIPath(char *);
-    extern void xmlPrintURI(FILE *, xmlURIPtr);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern xmlChar *xmlBuildRelativeURI(const xmlChar *, const xmlChar *);
-    extern xmlChar *xmlSaveUri(xmlURIPtr);
-    extern char *xmlURIUnescapeString(const char *, int, char *);
     extern xmlChar *xmlBuildURI(const xmlChar *, const xmlChar *);
-    extern xmlURIPtr xmlParseURIRaw(const char *, int);
+    extern xmlChar *xmlCanonicPath(const xmlChar *);
     extern xmlURIPtr xmlCreateURI(void);
+    extern void xmlFreeURI(xmlURIPtr);
+    extern int xmlNormalizeURIPath(char *);
+    extern xmlURIPtr xmlParseURI(const char *);
+    extern xmlURIPtr xmlParseURIRaw(const char *, int);
+    extern int xmlParseURIReference(xmlURIPtr, const char *);
+    extern void xmlPrintURI(FILE *, xmlURIPtr);
+    extern xmlChar *xmlSaveUri(xmlURIPtr);
     extern xmlChar *xmlURIEscape(const xmlChar *);
     extern xmlChar *xmlURIEscapeStr(const xmlChar *, const xmlChar *);
+    extern char *xmlURIUnescapeString(const char *, int, char *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

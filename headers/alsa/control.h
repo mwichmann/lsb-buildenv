@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _ALSA_CONTROL_H_
 #define _ALSA_CONTROL_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define SND_CTL_EVENT_MASK_VALUE	(1<<0)
 #define SND_CTL_EVENT_MASK_INFO	(1<<1)
 #define SND_CTL_EVENT_MASK_ADD	(1<<2)
@@ -34,8 +36,11 @@ extern "C" {
 #define SND_CTL_POWER_D2	0x0200
 #define SND_CTL_POWER_D3	0x0300
 #define SND_CTL_POWER_MASK	0xff00
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct snd_aes_iec958 snd_aes_iec958_t;
 
     typedef struct _snd_ctl_card_info snd_ctl_card_info_t;
@@ -98,6 +103,9 @@ extern "C" {
 
     typedef int (*snd_hctl_elem_callback_t) (void);
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
 
     struct snd_aes_iec958 {
 	unsigned char status[24];
@@ -106,37 +114,12 @@ extern "C" {
 	unsigned char dig_subframe[4];
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+// Function prototypes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#if __LSB_VERSION__ >= 32
     extern int snd_async_add_ctl_handler(snd_async_handler_t * *,
 					 snd_ctl_t *, snd_async_callback_t,
 					 void *);
@@ -223,23 +206,23 @@ extern "C" {
 						       *);
     extern unsigned int snd_ctl_elem_info_get_items(const
 						    snd_ctl_elem_info_t *);
+    extern long int snd_ctl_elem_info_get_max(const snd_ctl_elem_info_t *);
     extern long long int snd_ctl_elem_info_get_max64(const
 						     snd_ctl_elem_info_t
 						     *);
-    extern long int snd_ctl_elem_info_get_max(const snd_ctl_elem_info_t *);
+    extern long int snd_ctl_elem_info_get_min(const snd_ctl_elem_info_t *);
     extern long long int snd_ctl_elem_info_get_min64(const
 						     snd_ctl_elem_info_t
 						     *);
-    extern long int snd_ctl_elem_info_get_min(const snd_ctl_elem_info_t *);
     extern const char *snd_ctl_elem_info_get_name(const snd_ctl_elem_info_t
 						  *);
     extern unsigned int snd_ctl_elem_info_get_numid(const
 						    snd_ctl_elem_info_t *);
+    extern long int snd_ctl_elem_info_get_step(const snd_ctl_elem_info_t
+					       *);
     extern long long int snd_ctl_elem_info_get_step64(const
 						      snd_ctl_elem_info_t
 						      *);
-    extern long int snd_ctl_elem_info_get_step(const snd_ctl_elem_info_t
-					       *);
     extern snd_ctl_elem_type_t snd_ctl_elem_info_get_type(const
 							  snd_ctl_elem_info_t
 							  *);
@@ -298,12 +281,12 @@ extern "C" {
 					  snd_ctl_elem_id_t *);
     extern void snd_ctl_elem_value_get_iec958(const snd_ctl_elem_value_t *,
 					      snd_aes_iec958_t *);
-    extern long long int snd_ctl_elem_value_get_integer64(const
-							  snd_ctl_elem_value_t
-							  *, unsigned int);
     extern long int snd_ctl_elem_value_get_integer(const
 						   snd_ctl_elem_value_t *,
 						   unsigned int);
+    extern long long int snd_ctl_elem_value_get_integer64(const
+							  snd_ctl_elem_value_t
+							  *, unsigned int);
     extern int snd_ctl_elem_value_malloc(snd_ctl_elem_value_t * *);
     extern void snd_ctl_elem_value_set_boolean(snd_ctl_elem_value_t *,
 					       unsigned int, long int);
@@ -316,11 +299,11 @@ extern "C" {
 					  const snd_ctl_elem_id_t *);
     extern void snd_ctl_elem_value_set_iec958(snd_ctl_elem_value_t *,
 					      const snd_aes_iec958_t *);
+    extern void snd_ctl_elem_value_set_integer(snd_ctl_elem_value_t *,
+					       unsigned int, long int);
     extern void snd_ctl_elem_value_set_integer64(snd_ctl_elem_value_t *,
 						 unsigned int,
 						 long long int);
-    extern void snd_ctl_elem_value_set_integer(snd_ctl_elem_value_t *,
-					       unsigned int, long int);
     extern size_t snd_ctl_elem_value_sizeof(void);
     extern int snd_ctl_elem_write(snd_ctl_t *, snd_ctl_elem_value_t *);
     extern void snd_ctl_event_clear(snd_ctl_event_t *);
@@ -369,16 +352,22 @@ extern "C" {
     extern snd_hctl_elem_t *snd_hctl_first_elem(snd_hctl_t *);
     extern int snd_hctl_free(snd_hctl_t *);
     extern void *snd_hctl_get_callback_private(snd_hctl_t *);
-    extern unsigned int snd_hctl_get_count(snd_hctl_t *);
-    extern int snd_hctl_handle_events(snd_hctl_t *);
     extern snd_hctl_elem_t *snd_hctl_last_elem(snd_hctl_t *);
     extern int snd_hctl_load(snd_hctl_t *);
-    extern int snd_hctl_nonblock(snd_hctl_t *, int);
     extern int snd_hctl_open(snd_hctl_t * *, const char *, int);
     extern void snd_hctl_set_callback(snd_hctl_t *, snd_hctl_callback_t);
     extern void snd_hctl_set_callback_private(snd_hctl_t *, void *);
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 40
+    extern unsigned int snd_hctl_get_count(snd_hctl_t *);
+    extern int snd_hctl_handle_events(snd_hctl_t *);
+    extern int snd_hctl_nonblock(snd_hctl_t *, int);
     extern int snd_hctl_wait(snd_hctl_t *, int);
+#endif				// __LSB_VERSION__ >= 4.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,7 +1,7 @@
 
 #define Z_NULL	0
-#define MAX_WBITS	15
-#define MAX_MEM_LEVEL	9
+#define MAX_WBITS	15	/* 32K LZ77 window */
+#define MAX_MEM_LEVEL	9	/* Maximum value for memLevel in deflateInit2 */
 #define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	\
 	deflateInit2_((strm),(level),(method),(windowBits),(memLevel),(strategy),ZLIB_VERSION,sizeof(z_stream))
 #define deflateInit(strm,level)	\

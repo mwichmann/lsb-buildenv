@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QUUID_H_
 #define _QTCORE_QUUID_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     struct QUuid;
 
     enum Variant {
@@ -27,12 +29,18 @@ extern "C" {
 	Random = 4
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern QDataStream _ZlsR11QDataStreamRK5QUuid(QDataStream &,
-						  const struct QUuid &);
-    extern QDataStream _ZrsR11QDataStreamR5QUuid(QDataStream &,
-						 struct QUuid &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern QDataStream _ZlsR11QDataStreamRK5QUuid(const struct QUuid &);
+    extern QDataStream _ZrsR11QDataStreamR5QUuid(struct QUuid &);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QMETAOBJECT_H_
 #define _QTCORE_QMETAOBJECT_H_
 
 class QMetaProperty;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QMetaMethod
 {
 private:
@@ -92,5 +94,8 @@ public:
     const char * value() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

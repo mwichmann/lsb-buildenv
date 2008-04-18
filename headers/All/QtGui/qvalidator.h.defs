@@ -1,10 +1,10 @@
 
 class QValidator;
 enum _ZN10QValidator5StateE {
-    Invalid = 0,
-    Intermediate = 1,
-    Valid = 1,
-    Acceptable = 2
+    Invalid,
+    Intermediate,
+    Valid,
+    Acceptable
 };
 class QIntValidator;
 class QDoubleValidator;

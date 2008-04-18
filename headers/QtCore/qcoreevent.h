@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QCOREEVENT_H_
 #define _QTCORE_QCOREEVENT_H_
 
 class QCustomEvent;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QEvent
 {
 private:
@@ -158,5 +160,8 @@ public:
      ~QCustomEvent();
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

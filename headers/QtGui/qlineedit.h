@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QLINEEDIT_H_
 #define _QTGUI_QLINEEDIT_H_
 
 class QLineEdit;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QLineEdit : public QWidget
 {
 private:
@@ -110,7 +112,15 @@ Password = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QLineEdit16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,6 +1,6 @@
 
 class QMenuBar;
 enum _ZN8QMenuBar9SeparatorE {
-    Never = 0,
-    InWindowsStyle = 1
+    Never,
+    InWindowsStyle
 };

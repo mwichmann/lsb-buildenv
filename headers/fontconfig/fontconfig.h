@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _FONTCONFIG_FONTCONFIG_H_
 #define _FONTCONFIG_FONTCONFIG_H_
 
@@ -8,6 +9,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define _FCFUNCPROTOBEGIN
 #define _FCFUNCPROTOEND
 #define FC_USER_CACHE_FILE	".fonts.cache-"FC_CACHE_VERSION
@@ -107,8 +109,11 @@ extern "C" {
 #define FC_VERTICAL_LAYOUT	"verticallayout"
 #define FC_WEIGHT	"weight"
 #define FC_WIDTH	"width"
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef int FcBool;
 
     typedef struct _FcPattern FcPattern;
@@ -188,7 +193,9 @@ extern "C" {
 
     typedef short unsigned int FcChar16;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
+#if __LSB_VERSION__ >= 31
 
 
 
@@ -198,8 +205,6 @@ extern "C" {
 	double yx;
 	double yy;
     };
-
-
 
 
 
@@ -228,15 +233,11 @@ extern "C" {
 
 
 
-
-
-
     struct _FcObjectSet {
 	int nobject;
 	int sobject;
 	const char **objects;
     };
-
 
 
 
@@ -257,7 +258,6 @@ extern "C" {
 
 
 
-
     struct _FcObjectType {
 	const char *object;
 	FcType type;
@@ -265,199 +265,210 @@ extern "C" {
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
-    extern FcBool FcPatternAdd(FcPattern *, const char *, FcValue, FcBool);
-    extern FcStrList *FcConfigGetConfigFiles(FcConfig *);
-    extern FcBool FcStrSetAdd(FcStrSet *, const FcChar8 *);
-    extern FcBool FcCharSetIsSubset(const FcCharSet *, const FcCharSet *);
-    extern void FcDefaultSubstitute(FcPattern *);
-    extern FcChar32 FcCharSetIntersectCount(const FcCharSet *,
-					    const FcCharSet *);
-    extern FcBool FcConfigUptoDate(FcConfig *);
-    extern void FcPatternDestroy(FcPattern *);
-    extern FcLangSet *FcLangSetCopy(const FcLangSet *);
-    extern FcBool FcPatternAddCharSet(FcPattern *, const char *,
-				      const FcCharSet *);
-    extern FcBool FcPatternAddLangSet(FcPattern *, const char *,
-				      const FcLangSet *);
-    extern void FcConfigAppFontClear(FcConfig *);
-    extern int FcConfigGetRescanInverval(FcConfig *);
-    extern FcBool FcConfigSubstitute(FcConfig *, FcPattern *, FcMatchKind);
-    extern FcObjectSet *FcObjectSetBuild(const char *, ...);
-    extern FcBool FcObjectSetAdd(FcObjectSet *, const char *);
-    extern FcChar32 FcCharSetSubtractCount(const FcCharSet *,
-					   const FcCharSet *);
-    extern FcBool FcUtf16Len(const FcChar8 *, FcEndian, int, int *, int *);
-    extern FcBool FcConfigBuildFonts(FcConfig *);
-    extern FcChar8 *FcAtomicOrigFile(FcAtomic *);
-    extern FcBool FcNameUnregisterConstants(const FcConstant *, int);
-    extern FcBool FcConfigSetRescanInverval(FcConfig *, int);
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern FcAtomic *FcAtomicCreate(const FcChar8 *);
+    extern void FcAtomicDeleteNew(FcAtomic *);
+    extern void FcAtomicDestroy(FcAtomic *);
     extern FcBool FcAtomicLock(FcAtomic *);
-    extern FcPattern *FcPatternBuild(FcPattern *, ...);
-    extern FcFontSet *FcConfigGetFonts(FcConfig *, FcSetName);
-    extern void FcStrListDone(FcStrList *);
-    extern FcBool FcLangSetEqual(const FcLangSet *, const FcLangSet *);
-    extern const FcConstant *FcNameGetConstant(FcChar8 *);
-    extern void FcMatrixShear(FcMatrix *, double, double);
-    extern FcMatrix *FcMatrixCopy(const FcMatrix *);
-    extern FcStrList *FcConfigGetConfigDirs(FcConfig *);
-    extern FcBool FcStrSetDel(FcStrSet *, const FcChar8 *);
-    extern FcBool FcConfigEnableHome(FcBool);
-    extern FcStrSet *FcStrSetCreate(void);
-    extern int FcStrCmpIgnoreCase(const FcChar8 *, const FcChar8 *);
-    extern FcCharSet *FcCharSetUnion(const FcCharSet *, const FcCharSet *);
-    extern FcObjectSet *FcObjectSetCreate(void);
+    extern FcChar8 *FcAtomicNewFile(FcAtomic *);
+    extern FcChar8 *FcAtomicOrigFile(FcAtomic *);
+    extern FcBool FcAtomicReplaceOrig(FcAtomic *);
+    extern void FcAtomicUnlock(FcAtomic *);
+    extern FcBool FcBlanksAdd(FcBlanks *, FcChar32);
     extern FcBlanks *FcBlanksCreate(void);
     extern void FcBlanksDestroy(FcBlanks *);
-    extern FcBool FcNameConstant(FcChar8 *, int *);
-    extern void FcMatrixRotate(FcMatrix *, double, double);
-    extern FcPattern *FcNameParse(const FcChar8 *);
-    extern void FcMatrixMultiply(FcMatrix *, const FcMatrix *,
-				 const FcMatrix *);
-    extern FcResult FcPatternGetLangSet(const FcPattern *, const char *,
-					int, FcLangSet * *);
-    extern FcValue FcValueSave(FcValue);
-    extern void FcAtomicDestroy(FcAtomic *);
-    extern FcBool FcPatternEqual(const FcPattern *, const FcPattern *);
-    extern FcBool FcNameRegisterObjectTypes(const FcObjectType *, int);
+    extern FcBool FcBlanksIsMember(FcBlanks *, FcChar32);
+    extern FcBool FcCharSetAddChar(FcCharSet *, FcChar32);
+    extern FcCharSet *FcCharSetCopy(FcCharSet *);
+    extern FcChar32 FcCharSetCount(const FcCharSet *);
+    extern FcCharSet *FcCharSetCreate(void);
+    extern void FcCharSetDestroy(FcCharSet *);
+    extern FcBool FcCharSetEqual(const FcCharSet *, const FcCharSet *);
+    extern FcChar32 FcCharSetFirstPage(const FcCharSet *, FcChar32 *,
+				       FcChar32 *);
+    extern FcBool FcCharSetHasChar(const FcCharSet *, FcChar32);
+    extern FcCharSet *FcCharSetIntersect(const FcCharSet *,
+					 const FcCharSet *);
+    extern FcChar32 FcCharSetIntersectCount(const FcCharSet *,
+					    const FcCharSet *);
+    extern FcBool FcCharSetIsSubset(const FcCharSet *, const FcCharSet *);
     extern FcChar32 FcCharSetNextPage(const FcCharSet *, FcChar32 *,
 				      FcChar32 *);
+    extern FcCharSet *FcCharSetSubtract(const FcCharSet *,
+					const FcCharSet *);
+    extern FcChar32 FcCharSetSubtractCount(const FcCharSet *,
+					   const FcCharSet *);
+    extern FcCharSet *FcCharSetUnion(const FcCharSet *, const FcCharSet *);
+    extern FcBool FcConfigAppFontAddDir(FcConfig *, const FcChar8 *);
+    extern FcBool FcConfigAppFontAddFile(FcConfig *, const FcChar8 *);
+    extern void FcConfigAppFontClear(FcConfig *);
+    extern FcBool FcConfigBuildFonts(FcConfig *);
+    extern void FcConfigDestroy(FcConfig *);
+    extern FcBool FcConfigEnableHome(FcBool);
+    extern FcChar8 *FcConfigFilename(const FcChar8 *);
+    extern FcBlanks *FcConfigGetBlanks(FcConfig *);
+    extern FcChar8 *FcConfigGetCache(FcConfig *);
+    extern FcStrList *FcConfigGetConfigDirs(FcConfig *);
+    extern FcStrList *FcConfigGetConfigFiles(FcConfig *);
+    extern FcConfig *FcConfigGetCurrent(void);
+    extern FcStrList *FcConfigGetFontDirs(FcConfig *);
+    extern FcFontSet *FcConfigGetFonts(FcConfig *, FcSetName);
+    extern int FcConfigGetRescanInverval(FcConfig *);
+    extern FcChar8 *FcConfigHome(void);
+    extern FcBool FcConfigParseAndLoad(FcConfig *, const FcChar8 *,
+				       FcBool);
     extern FcBool FcConfigSetCurrent(FcConfig *);
-    extern FcPattern *FcFreeTypeQuery(const FcChar8 *, int, FcBlanks *,
-				      int *);
-    extern FcChar8 *FcStrListNext(FcStrList *);
-    extern FcBool FcNameRegisterConstants(const FcConstant *, int);
-    extern void FcValueDestroy(FcValue);
+    extern FcBool FcConfigSetRescanInverval(FcConfig *, int);
+    extern FcBool FcConfigSubstitute(FcConfig *, FcPattern *, FcMatchKind);
+    extern FcBool FcConfigSubstituteWithPat(FcConfig *, FcPattern *,
+					    FcPattern *, FcMatchKind);
+    extern FcBool FcConfigUptoDate(FcConfig *);
+    extern void FcDefaultSubstitute(FcPattern *);
+    extern FcBool FcDirCacheValid(const FcChar8 *);
+    extern FcBool FcDirSave(FcFontSet *, FcStrSet *, const FcChar8 *);
+    extern FcBool FcDirScan(FcFontSet *, FcStrSet *, FcGlobalCache *,
+			    FcBlanks *, const FcChar8 *, FcBool);
     extern FcBool FcFileScan(FcFontSet *, FcStrSet *, FcGlobalCache *,
 			     FcBlanks *, const FcChar8 *, FcBool);
+    extern FcFontSet *FcFontList(FcConfig *, FcPattern *, FcObjectSet *);
+    extern FcPattern *FcFontMatch(FcConfig *, FcPattern *, FcResult *);
+    extern FcPattern *FcFontRenderPrepare(FcConfig *, FcPattern *,
+					  FcPattern *);
+    extern FcBool FcFontSetAdd(FcFontSet *, FcPattern *);
+    extern FcFontSet *FcFontSetCreate(void);
+    extern void FcFontSetDestroy(FcFontSet *);
+    extern FcFontSet *FcFontSetList(FcConfig *, FcFontSet * *, int,
+				    FcPattern *, FcObjectSet *);
+    extern FcPattern *FcFontSetMatch(FcConfig *, FcFontSet * *, int,
+				     FcPattern *, FcResult *);
+    extern void FcFontSetPrint(const FcFontSet *);
     extern FcFontSet *FcFontSetSort(FcConfig *, FcFontSet * *, int,
 				    FcPattern *, FcBool, FcCharSet * *,
 				    FcResult *);
-    extern FcResult FcPatternGetString(const FcPattern *, const char *,
-				       int, FcChar8 * *);
-    extern FcChar8 *FcStrCopy(const FcChar8 *);
+    extern void FcFontSetSortDestroy(FcFontSet *);
+    extern FcFontSet *FcFontSort(FcConfig *, FcPattern *, FcBool,
+				 FcCharSet * *, FcResult *);
+    extern FcPattern *FcFreeTypeQuery(const FcChar8 *, int, FcBlanks *,
+				      int *);
+    extern int FcGetVersion(void);
+    extern FcBool FcInit(void);
+    extern FcBool FcInitBringUptoDate(void);
+    extern FcConfig *FcInitLoadConfig(void);
+    extern FcConfig *FcInitLoadConfigAndFonts(void);
+    extern FcBool FcInitReinitialize(void);
+    extern FcBool FcLangSetAdd(FcLangSet *, const FcChar8 *);
+    extern FcLangResult FcLangSetCompare(const FcLangSet *,
+					 const FcLangSet *);
+    extern FcBool FcLangSetContains(const FcLangSet *, const FcLangSet *);
+    extern FcLangSet *FcLangSetCopy(const FcLangSet *);
+    extern FcLangSet *FcLangSetCreate(void);
+    extern void FcLangSetDestroy(FcLangSet *);
+    extern FcBool FcLangSetEqual(const FcLangSet *, const FcLangSet *);
+    extern FcLangResult FcLangSetHasLang(const FcLangSet *,
+					 const FcChar8 *);
+    extern FcChar32 FcLangSetHash(const FcLangSet *);
+    extern FcMatrix *FcMatrixCopy(const FcMatrix *);
+    extern FcBool FcMatrixEqual(const FcMatrix *, const FcMatrix *);
+    extern void FcMatrixMultiply(FcMatrix *, const FcMatrix *,
+				 const FcMatrix *);
+    extern void FcMatrixRotate(FcMatrix *, double, double);
+    extern void FcMatrixScale(FcMatrix *, double, double);
+    extern void FcMatrixShear(FcMatrix *, double, double);
+    extern FcBool FcNameConstant(FcChar8 *, int *);
+    extern const FcConstant *FcNameGetConstant(FcChar8 *);
+    extern const FcObjectType *FcNameGetObjectType(const char *);
+    extern FcPattern *FcNameParse(const FcChar8 *);
+    extern FcBool FcNameRegisterConstants(const FcConstant *, int);
+    extern FcBool FcNameRegisterObjectTypes(const FcObjectType *, int);
+    extern FcChar8 *FcNameUnparse(FcPattern *);
+    extern FcBool FcNameUnregisterConstants(const FcConstant *, int);
+    extern FcBool FcNameUnregisterObjectTypes(const FcObjectType *, int);
+    extern FcBool FcObjectSetAdd(FcObjectSet *, const char *);
+    extern FcObjectSet *FcObjectSetBuild(const char *, ...);
+    extern FcObjectSet *FcObjectSetCreate(void);
+    extern void FcObjectSetDestroy(FcObjectSet *);
+    extern FcObjectSet *FcObjectSetVaBuild(const char *, va_list);
+    extern FcBool FcPatternAdd(FcPattern *, const char *, FcValue, FcBool);
+    extern FcBool FcPatternAddBool(FcPattern *, const char *, FcBool);
+    extern FcBool FcPatternAddCharSet(FcPattern *, const char *,
+				      const FcCharSet *);
+    extern FcBool FcPatternAddDouble(FcPattern *, const char *, double);
+    extern FcBool FcPatternAddInteger(FcPattern *, const char *, int);
+    extern FcBool FcPatternAddLangSet(FcPattern *, const char *,
+				      const FcLangSet *);
+    extern FcBool FcPatternAddMatrix(FcPattern *, const char *,
+				     const FcMatrix *);
+    extern FcBool FcPatternAddString(FcPattern *, const char *,
+				     const FcChar8 *);
+    extern FcBool FcPatternAddWeak(FcPattern *, const char *, FcValue,
+				   FcBool);
+    extern FcPattern *FcPatternBuild(FcPattern *, ...);
+    extern FcPattern *FcPatternCreate(void);
+    extern FcBool FcPatternDel(FcPattern *, const char *);
+    extern void FcPatternDestroy(FcPattern *);
+    extern FcPattern *FcPatternDuplicate(const FcPattern *);
+    extern FcBool FcPatternEqual(const FcPattern *, const FcPattern *);
     extern FcBool FcPatternEqualSubset(const FcPattern *,
 				       const FcPattern *,
 				       const FcObjectSet *);
-    extern FcConfig *FcInitLoadConfig(void);
-    extern FcStrList *FcStrListCreate(FcStrSet *);
-    extern FcResult FcPatternGetCharSet(const FcPattern *, const char *,
-					int, FcCharSet * *);
-    extern FcPattern *FcPatternCreate(void);
-    extern FcChar32 FcPatternHash(const FcPattern *);
-    extern FcChar8 *FcConfigFilename(const FcChar8 *);
-    extern FcBool FcPatternDel(FcPattern *, const char *);
-    extern FcCharSet *FcCharSetCopy(FcCharSet *);
-    extern FcBool FcInitReinitialize(void);
-    extern FcFontSet *FcFontList(FcConfig *, FcPattern *, FcObjectSet *);
-    extern int FcUcs4ToUtf8(FcChar32, FcChar8 *);
-    extern FcBool FcAtomicReplaceOrig(FcAtomic *);
-    extern FcObjectSet *FcObjectSetVaBuild(const char *, va_list);
-    extern FcBool FcInitBringUptoDate(void);
-    extern FcResult FcPatternGetDouble(const FcPattern *, const char *,
-				       int, double *);
-    extern int FcStrCmp(const FcChar8 *, const FcChar8 *);
-    extern FcChar8 *FcConfigGetCache(FcConfig *);
-    extern FcAtomic *FcAtomicCreate(const FcChar8 *);
-    extern FcPattern *FcPatternDuplicate(const FcPattern *);
-    extern FcChar8 *FcStrDirname(const FcChar8 *);
-    extern FcBool FcConfigSubstituteWithPat(FcConfig *, FcPattern *,
-					    FcPattern *, FcMatchKind);
-    extern FcBool FcDirScan(FcFontSet *, FcStrSet *, FcGlobalCache *,
-			    FcBlanks *, const FcChar8 *, FcBool);
-    extern FcChar8 *FcStrCopyFilename(const FcChar8 *);
-    extern FcBool FcLangSetAdd(FcLangSet *, const FcChar8 *);
-    extern FcResult FcPatternGetInteger(const FcPattern *, const char *,
-					int, int *);
-    extern FcBool FcConfigParseAndLoad(FcConfig *, const FcChar8 *,
-				       FcBool);
-    extern FcBool FcStrSetEqual(FcStrSet *, FcStrSet *);
-    extern FcBool FcConfigAppFontAddFile(FcConfig *, const FcChar8 *);
-    extern FcPattern *FcFontSetMatch(FcConfig *, FcFontSet * *, int,
-				     FcPattern *, FcResult *);
-    extern FcBool FcStrSetAddFilename(FcStrSet *, const FcChar8 *);
-    extern FcChar8 *FcNameUnparse(FcPattern *);
-    extern FcChar32 FcCharSetFirstPage(const FcCharSet *, FcChar32 *,
-				       FcChar32 *);
-    extern void FcFontSetPrint(const FcFontSet *);
-    extern FcPattern *FcPatternVaBuild(FcPattern *, va_list);
-    extern FcChar8 *FcConfigHome(void);
-    extern FcBool FcBlanksAdd(FcBlanks *, FcChar32);
-    extern FcBool FcBlanksIsMember(FcBlanks *, FcChar32);
-    extern FcBool FcNameUnregisterObjectTypes(const FcObjectType *, int);
-    extern FcLangResult FcLangSetHasLang(const FcLangSet *,
-					 const FcChar8 *);
-    extern FcChar8 *FcStrBasename(const FcChar8 *);
-    extern FcPattern *FcFontMatch(FcConfig *, FcPattern *, FcResult *);
-    extern void FcValuePrint(const FcValue);
-    extern FcLangSet *FcLangSetCreate(void);
-    extern FcStrList *FcConfigGetFontDirs(FcConfig *);
-    extern FcBool FcCharSetAddChar(FcCharSet *, FcChar32);
-    extern FcCharSet *FcCharSetIntersect(const FcCharSet *,
-					 const FcCharSet *);
-    extern void FcMatrixScale(FcMatrix *, double, double);
-    extern void FcPatternReference(FcPattern *);
-    extern FcBool FcCharSetEqual(const FcCharSet *, const FcCharSet *);
-    extern FcBool FcFontSetAdd(FcFontSet *, FcPattern *);
-    extern FcChar8 *FcAtomicNewFile(FcAtomic *);
-    extern FcFontSet *FcFontSetList(FcConfig *, FcFontSet * *, int,
-				    FcPattern *, FcObjectSet *);
-    extern void FcFontSetSortDestroy(FcFontSet *);
-    extern FcBool FcPatternAddMatrix(FcPattern *, const char *,
-				     const FcMatrix *);
-    extern FcChar32 FcCharSetCount(const FcCharSet *);
-    extern FcBool FcPatternAddString(FcPattern *, const char *,
-				     const FcChar8 *);
-    extern void FcStrSetDestroy(FcStrSet *);
-    extern FcConfig *FcConfigGetCurrent(void);
-    extern FcBool FcPatternAddInteger(FcPattern *, const char *, int);
-    extern FcResult FcPatternGetMatrix(const FcPattern *, const char *,
-				       int, FcMatrix * *);
-    extern int FcGetVersion(void);
-    extern FcBool FcCharSetHasChar(const FcCharSet *, FcChar32);
-    extern FcBool FcPatternAddBool(FcPattern *, const char *, FcBool);
-    extern const FcObjectType *FcNameGetObjectType(const char *);
-    extern FcBool FcDirCacheValid(const FcChar8 *);
-    extern FcBool FcUtf8Len(const FcChar8 *, int, int *, int *);
-    extern FcConfig *FcInitLoadConfigAndFonts(void);
-    extern FcResult FcPatternGetBool(const FcPattern *, const char *, int,
-				     FcBool *);
-    extern void FcFontSetDestroy(FcFontSet *);
-    extern FcBool FcConfigAppFontAddDir(FcConfig *, const FcChar8 *);
-    extern int FcUtf16ToUcs4(const FcChar8 *, FcEndian, FcChar32 *, int);
-    extern int FcUtf8ToUcs4(const FcChar8 *, FcChar32 *, int);
-    extern FcFontSet *FcFontSetCreate(void);
-    extern FcBool FcDirSave(FcFontSet *, FcStrSet *, const FcChar8 *);
-    extern void FcConfigDestroy(FcConfig *);
-    extern FcBool FcPatternAddDouble(FcPattern *, const char *, double);
-    extern FcFontSet *FcFontSort(FcConfig *, FcPattern *, FcBool,
-				 FcCharSet * *, FcResult *);
-    extern FcPattern *FcFontRenderPrepare(FcConfig *, FcPattern *,
-					  FcPattern *);
-    extern void FcLangSetDestroy(FcLangSet *);
-    extern void FcCharSetDestroy(FcCharSet *);
-    extern FcBool FcValueEqual(FcValue, FcValue);
-    extern FcBool FcPatternAddWeak(FcPattern *, const char *, FcValue,
-				   FcBool);
-    extern FcBool FcLangSetContains(const FcLangSet *, const FcLangSet *);
-    extern void FcObjectSetDestroy(FcObjectSet *);
-    extern FcCharSet *FcCharSetCreate(void);
-    extern FcLangResult FcLangSetCompare(const FcLangSet *,
-					 const FcLangSet *);
-    extern FcBool FcMatrixEqual(const FcMatrix *, const FcMatrix *);
-    extern void FcAtomicUnlock(FcAtomic *);
-    extern FcBool FcStrSetMember(FcStrSet *, const FcChar8 *);
-    extern FcChar32 FcLangSetHash(const FcLangSet *);
-    extern void FcAtomicDeleteNew(FcAtomic *);
-    extern FcCharSet *FcCharSetSubtract(const FcCharSet *,
-					const FcCharSet *);
-    extern FcBool FcInit(void);
     extern FcResult FcPatternGet(const FcPattern *, const char *, int,
 				 FcValue *);
+    extern FcResult FcPatternGetBool(const FcPattern *, const char *, int,
+				     FcBool *);
+    extern FcResult FcPatternGetCharSet(const FcPattern *, const char *,
+					int, FcCharSet * *);
+    extern FcResult FcPatternGetDouble(const FcPattern *, const char *,
+				       int, double *);
+    extern FcResult FcPatternGetInteger(const FcPattern *, const char *,
+					int, int *);
+    extern FcResult FcPatternGetLangSet(const FcPattern *, const char *,
+					int, FcLangSet * *);
+    extern FcResult FcPatternGetMatrix(const FcPattern *, const char *,
+				       int, FcMatrix * *);
+    extern FcResult FcPatternGetString(const FcPattern *, const char *,
+				       int, FcChar8 * *);
+    extern FcChar32 FcPatternHash(const FcPattern *);
     extern void FcPatternPrint(const FcPattern *);
-    extern FcBlanks *FcConfigGetBlanks(FcConfig *);
+    extern void FcPatternReference(FcPattern *);
+    extern FcPattern *FcPatternVaBuild(FcPattern *, va_list);
+    extern FcChar8 *FcStrBasename(const FcChar8 *);
+    extern int FcStrCmp(const FcChar8 *, const FcChar8 *);
+    extern int FcStrCmpIgnoreCase(const FcChar8 *, const FcChar8 *);
+    extern FcChar8 *FcStrCopy(const FcChar8 *);
+    extern FcChar8 *FcStrCopyFilename(const FcChar8 *);
+    extern FcChar8 *FcStrDirname(const FcChar8 *);
+    extern FcStrList *FcStrListCreate(FcStrSet *);
+    extern void FcStrListDone(FcStrList *);
+    extern FcChar8 *FcStrListNext(FcStrList *);
+    extern FcBool FcStrSetAdd(FcStrSet *, const FcChar8 *);
+    extern FcBool FcStrSetAddFilename(FcStrSet *, const FcChar8 *);
+    extern FcStrSet *FcStrSetCreate(void);
+    extern FcBool FcStrSetDel(FcStrSet *, const FcChar8 *);
+    extern void FcStrSetDestroy(FcStrSet *);
+    extern FcBool FcStrSetEqual(FcStrSet *, FcStrSet *);
+    extern FcBool FcStrSetMember(FcStrSet *, const FcChar8 *);
+    extern int FcUcs4ToUtf8(FcChar32, FcChar8 *);
+    extern FcBool FcUtf16Len(const FcChar8 *, FcEndian, int, int *, int *);
+    extern int FcUtf16ToUcs4(const FcChar8 *, FcEndian, FcChar32 *, int);
+    extern FcBool FcUtf8Len(const FcChar8 *, int, int *, int *);
+    extern int FcUtf8ToUcs4(const FcChar8 *, FcChar32 *, int);
+    extern void FcValueDestroy(FcValue);
+    extern FcBool FcValueEqual(FcValue, FcValue);
+    extern void FcValuePrint(const FcValue);
+    extern FcValue FcValueSave(FcValue);
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 40
+    extern void FcFini(void);
+#endif				// __LSB_VERSION__ >= 4.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

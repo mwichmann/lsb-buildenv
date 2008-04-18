@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _SYS_SELECT_H_
 #define _SYS_SELECT_H_
 
@@ -14,9 +15,15 @@ extern "C" {
 
 
 
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern int pselect(int, fd_set *, fd_set *, fd_set *,
 		       const struct timespec *, const sigset_t *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

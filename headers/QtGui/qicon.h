@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QICON_H_
 #define _QTGUI_QICON_H_
 
 class QIcon;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QIcon
 {
 private:
@@ -32,6 +34,9 @@ public:
 }QIconSet	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QIcon
 {
 private:
@@ -82,5 +87,8 @@ Large = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

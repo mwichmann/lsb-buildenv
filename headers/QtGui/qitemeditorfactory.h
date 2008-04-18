@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QITEMEDITORFACTORY_H_
 #define _QTGUI_QITEMEDITORFACTORY_H_
 
 class QItemEditorCreatorBase;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QItemEditorCreatorBase
 {
 private:
@@ -22,5 +24,8 @@ public:
     void setDefaultFactory(QItemEditorFactory*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

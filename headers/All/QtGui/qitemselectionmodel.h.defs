@@ -2,17 +2,17 @@
 class QItemSelectionRange;
 class QItemSelectionModel;
 enum _ZN19QItemSelectionModel13SelectionFlagE {
-    NoUpdate = 0,
-    Clear = 1,
-    Select = 2,
-    ClearAndSelect = 3,
-    Deselect = 4,
-    Toggle = 8,
-    Current = 16,
-    SelectCurrent = 18,
-    ToggleCurrent = 24,
-    Rows = 32,
-    Columns = 64
+    NoUpdate,
+    Clear,
+    Select,
+    ClearAndSelect,
+    Deselect,
+    Toggle,
+    Current,
+    SelectCurrent,
+    ToggleCurrent,
+    Rows,
+    Columns
 };
 class QFlags < QItemSelectionModel::SelectionFlag >;
 typedef class QFlags < QItemSelectionModel::SelectionFlag >

@@ -1,27 +1,27 @@
 
 class QImageIOHandler;
 enum _ZN15QImageIOHandler11ImageOptionE {
-    Size = 0,
-    ClipRect = 1,
-    Description = 2,
-    ScaledClipRect = 3,
-    ScaledSize = 4,
-    CompressionRatio = 5,
-    Gamma = 6,
-    Quality = 7,
-    Name = 8,
-    SubType = 9,
-    IncrementalReading = 10,
-    Endianness = 11,
-    Animation = 12,
-    BackgroundColor = 13
+    Size,
+    ClipRect,
+    Description,
+    ScaledClipRect,
+    ScaledSize,
+    CompressionRatio,
+    Gamma,
+    Quality,
+    Name,
+    SubType,
+    IncrementalReading,
+    Endianness,
+    Animation,
+    BackgroundColor
 };
 struct _Z31QImageIOHandlerFactoryInterface;
 class QImageIOPlugin;
 enum _ZN14QImageIOPlugin10CapabilityE {
-    CanRead = 1,
-    CanWrite = 2,
-    CanReadIncremental = 4
+    CanRead,
+    CanWrite,
+    CanReadIncremental
 };
 class QFlags < QImageIOPlugin::Capability >;
 typedef class QFlags < QImageIOPlugin::Capability >

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_HTMLTREE_H_
 #define _LIBXML2_LIBXML_HTMLTREE_H_
 
@@ -11,39 +12,48 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define HTML_PRESERVE_NODE	XML_CDATA_SECTION_NODE
 #define HTML_COMMENT_NODE	XML_COMMENT_NODE
 #define HTML_ENTITY_REF_NODE	XML_ENTITY_REF_NODE
 #define HTML_PI_NODE	XML_PI_NODE
 #define HTML_TEXT_NODE	XML_TEXT_NODE
+#endif				// __LSB_VERSION__ >= 3.1
 
 
 
-    extern void htmlNodeDumpOutput(xmlOutputBufferPtr, xmlDocPtr,
-				   xmlNodePtr, const char *);
-    extern int htmlSaveFileFormat(const char *, xmlDocPtr, const char *,
-				  int);
-    extern int htmlSaveFile(const char *, xmlDocPtr);
-    extern htmlDocPtr htmlNewDoc(const xmlChar *, const xmlChar *);
-    extern const xmlChar *htmlGetMetaEncoding(htmlDocPtr);
-    extern void htmlNodeDumpFile(FILE *, xmlDocPtr, xmlNodePtr);
-    extern int htmlNodeDump(xmlBufferPtr, xmlDocPtr, xmlNodePtr);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern void htmlDocContentDumpFormatOutput(xmlOutputBufferPtr,
 					       xmlDocPtr, const char *,
 					       int);
-    extern int htmlIsBooleanAttr(const xmlChar *);
-    extern int htmlSaveFileEnc(const char *, xmlDocPtr, const char *);
-    extern htmlDocPtr htmlNewDocNoDtD(const xmlChar *, const xmlChar *);
-    extern int htmlSetMetaEncoding(htmlDocPtr, const xmlChar *);
     extern void htmlDocContentDumpOutput(xmlOutputBufferPtr, xmlDocPtr,
 					 const char *);
+    extern int htmlDocDump(FILE *, xmlDocPtr);
+    extern void htmlDocDumpMemory(xmlDocPtr, xmlChar * *, int *);
+    extern const xmlChar *htmlGetMetaEncoding(htmlDocPtr);
+    extern int htmlIsBooleanAttr(const xmlChar *);
+    extern htmlDocPtr htmlNewDoc(const xmlChar *, const xmlChar *);
+    extern htmlDocPtr htmlNewDocNoDtD(const xmlChar *, const xmlChar *);
+    extern int htmlNodeDump(xmlBufferPtr, xmlDocPtr, xmlNodePtr);
+    extern void htmlNodeDumpFile(FILE *, xmlDocPtr, xmlNodePtr);
     extern int htmlNodeDumpFileFormat(FILE *, xmlDocPtr, xmlNodePtr,
 				      const char *, int);
-    extern int htmlDocDump(FILE *, xmlDocPtr);
     extern void htmlNodeDumpFormatOutput(xmlOutputBufferPtr, xmlDocPtr,
 					 xmlNodePtr, const char *, int);
-    extern void htmlDocDumpMemory(xmlDocPtr, xmlChar * *, int *);
+    extern void htmlNodeDumpOutput(xmlOutputBufferPtr, xmlDocPtr,
+				   xmlNodePtr, const char *);
+    extern int htmlSaveFile(const char *, xmlDocPtr);
+    extern int htmlSaveFileEnc(const char *, xmlDocPtr, const char *);
+    extern int htmlSaveFileFormat(const char *, xmlDocPtr, const char *,
+				  int);
+    extern int htmlSetMetaEncoding(htmlDocPtr, const xmlChar *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

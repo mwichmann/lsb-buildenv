@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTXF86_H_
 #define _FREETYPE_FTXF86_H_
 
@@ -14,8 +15,14 @@ extern "C" {
 
 
 
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern const char *FT_Get_X11_Font_Format(FT_Face);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

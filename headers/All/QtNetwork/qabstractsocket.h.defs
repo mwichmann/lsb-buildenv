@@ -1,61 +1,61 @@
 
 class QAbstractSocket;
 enum _ZN15QAbstractSocket10SocketTypeE {
-    UnknownSocketType = -1,
-    TcpSocket = 0,
-    UdpSocket = 1
+    UnknownSocketType,
+    TcpSocket,
+    UdpSocket
 };
 enum _ZN15QAbstractSocket20NetworkLayerProtocolE {
-    UnknownNetworkLayerProtocol = -1,
-    IPv4Protocol = 0,
-    IPv6Protocol = 1
+    UnknownNetworkLayerProtocol,
+    IPv4Protocol,
+    IPv6Protocol
 };
 enum _ZN15QAbstractSocket11SocketErrorE {
-    UnknownSocketError = -1,
-    ConnectionRefusedError = 0,
-    RemoteHostClosedError = 1,
-    HostNotFoundError = 2,
-    SocketAccessError = 3,
-    SocketResourceError = 4,
-    SocketTimeoutError = 5,
-    DatagramTooLargeError = 6,
-    NetworkError = 7,
-    AddressInUseError = 8,
-    SocketAddressNotAvailableError = 9,
-    UnsupportedSocketOperationError = 10
+    UnknownSocketError,
+    ConnectionRefusedError,
+    RemoteHostClosedError,
+    HostNotFoundError,
+    SocketAccessError,
+    SocketResourceError,
+    SocketTimeoutError,
+    DatagramTooLargeError,
+    NetworkError,
+    AddressInUseError,
+    SocketAddressNotAvailableError,
+    UnsupportedSocketOperationError
 };
 enum _ZN15QAbstractSocket11SocketStateE {
-    UnconnectedState = 0,
-    Idle = 0,
-    HostLookupState = 1,
-    HostLookup = 1,
-    ConnectingState = 2,
-    Connecting = 2,
-    ConnectedState = 3,
-    Connected = 3,
-    Connection = 3,
-    BoundState = 4,
-    ListeningState = 5,
-    ClosingState = 6,
-    Closing = 6
+    UnconnectedState,
+    Idle,
+    HostLookupState,
+    HostLookup,
+    ConnectingState,
+    Connecting,
+    ConnectedState,
+    Connected,
+    Connection,
+    BoundState,
+    ListeningState,
+    ClosingState,
+    Closing
 };
 enum _ZN15QAbstractSocket5ErrorE {
-    ErrSocketRead = -1,
-    ErrConnectionRefused = 0,
-    ErrHostNotFound = 2
+    ErrSocketRead,
+    ErrConnectionRefused,
+    ErrHostNotFound
 };
 typedef enum _ZN15QAbstractSocket11SocketStateE {
-    UnconnectedState = 0,
-    Idle = 0,
-    HostLookupState = 1,
-    HostLookup = 1,
-    ConnectingState = 2,
-    Connecting = 2,
-    ConnectedState = 3,
-    Connected = 3,
-    Connection = 3,
-    BoundState = 4,
-    ListeningState = 5,
-    ClosingState = 6,
-    Closing = 6
+    UnconnectedState,
+    Idle,
+    HostLookupState,
+    HostLookup,
+    ConnectingState,
+    Connecting,
+    ConnectedState,
+    Connected,
+    Connection,
+    BoundState,
+    ListeningState,
+    ClosingState,
+    Closing
 } _ZN15QAbstractSocket5StateE;

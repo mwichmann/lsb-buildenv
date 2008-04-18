@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _RPC_XDR_H_
 #define _RPC_XDR_H_
 
@@ -11,14 +12,21 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 13
     typedef struct XDR XDR;
 
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 13
     enum xdr_op {
 	XDR_ENCODE,
 	XDR_DECODE,
 	XDR_FREE
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 13
 
     struct XDR {
 	enum xdr_op x_op;
@@ -29,10 +37,13 @@ extern "C" {
 	int x_handy;
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
+
 
 /* Contains operation which is being applied to the stream, an operations vector for the particular implementation and two private fields for the use of the particular implementation.*/
 
 /*  XDR_ENCODE causes the type to be encoded into the stream.  XDR_DECODE causes the type to be extracted from the stream. XDR_FREE can be used to release the space allocated by an XDR_DECODE request.*/
+#if __LSB_VERSION__ >= 13
     struct xdr_ops {
 	bool_t(*x_getlong) (XDR * __xdrs, long int *__lp);
 	bool_t(*x_putlong) (XDR * __xdrs, long int *__lp);
@@ -46,19 +57,29 @@ extern "C" {
 	 bool_t(*x_putint32) (XDR * __xdrs, int32_t * __ip);
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
+
 
 /* A xdrproc_t exists for each data type which is to be encoded or decoded.*/
+#if __LSB_VERSION__ >= 13
     typedef bool_t(*xdrproc_t) (XDR *, void *, ...);
+
+#endif				// __LSB_VERSION__ >= 1.3
 
 
 /* Support struct for discriminated unions.*/
+#if __LSB_VERSION__ >= 13
     struct xdr_discrim {
 	int value;
 	xdrproc_t proc;
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
-    extern void xdrstdio_create(XDR *, FILE *, enum xdr_op);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 11
     extern bool_t xdr_array(XDR *, caddr_t *, u_int *, u_int, u_int,
 			    xdrproc_t);
     extern bool_t xdr_bool(XDR *, bool_t *);
@@ -76,7 +97,6 @@ extern "C" {
     extern bool_t xdr_short(XDR *, short *);
     extern bool_t xdr_string(XDR *, char **, u_int);
     extern bool_t xdr_u_char(XDR *, u_char *);
-    extern bool_t xdr_u_int(XDR *, u_int *);
     extern bool_t xdr_u_long(XDR *, u_long *);
     extern bool_t xdr_u_short(XDR *, u_short *);
     extern bool_t xdr_union(XDR *, enum_t *, char *,
@@ -90,7 +110,18 @@ extern "C" {
 			      , int (*)(char *, char *, int)
 	);
     extern bool_t xdrrec_eof(XDR *);
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 13
+    extern bool_t xdr_u_int(XDR *, u_int *);
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 32
+    extern void xdrstdio_create(XDR *, FILE *, enum xdr_op);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QFONTDATABASE_H_
 #define _QTGUI_QFONTDATABASE_H_
 
 class QFontDatabase;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QFontDatabase
 {
 private:
@@ -72,5 +74,8 @@ WritingSystemsCount = 31
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

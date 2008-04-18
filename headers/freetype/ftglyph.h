@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTGLYPH_H_
 #define _FREETYPE_FTGLYPH_H_
 
@@ -11,10 +12,12 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
     typedef struct FT_Glyph_Class_ FT_Glyph_Class;
 
     typedef struct FT_GlyphRec_ *FT_Glyph;
 
+#include <freetype/ftoutln.h>
     typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
 					  FT_GlyphSlot);
 
@@ -42,6 +45,9 @@ extern "C" {
 
     typedef struct FT_GlyphRec_ FT_GlyphRec;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
     struct FT_Glyph_Class_ {
 	FT_Long glyph_size;
 	FT_Glyph_Format glyph_format;
@@ -60,23 +66,30 @@ extern "C" {
 	FT_Vector advance;
     };
 
-#include <freetype/ftoutln.h>
     struct FT_OutlineGlyphRec_ {
 	FT_GlyphRec root;
 	FT_Outline outline;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern void FT_Done_Glyph(FT_Glyph);
-    extern void FT_Matrix_Multiply(const FT_Matrix *, FT_Matrix *);
-    extern FT_Error FT_Glyph_Transform(FT_Glyph, FT_Matrix *, FT_Vector *);
-    extern FT_Error FT_Matrix_Invert(FT_Matrix *);
+    extern FT_Error FT_Get_Glyph(FT_GlyphSlot, FT_Glyph *);
+    extern FT_Error FT_Glyph_Copy(FT_Glyph, FT_Glyph *);
+    extern void FT_Glyph_Get_CBox(FT_Glyph, FT_UInt, FT_BBox *);
     extern FT_Error FT_Glyph_To_Bitmap(FT_Glyph *, FT_Render_Mode,
 				       FT_Vector *, FT_Bool);
-    extern void FT_Glyph_Get_CBox(FT_Glyph, FT_UInt, FT_BBox *);
-    extern FT_Error FT_Glyph_Copy(FT_Glyph, FT_Glyph *);
-    extern FT_Error FT_Get_Glyph(FT_GlyphSlot, FT_Glyph *);
+    extern FT_Error FT_Glyph_Transform(FT_Glyph, FT_Matrix *, FT_Vector *);
+    extern FT_Error FT_Matrix_Invert(FT_Matrix *);
+    extern void FT_Matrix_Multiply(const FT_Matrix *, FT_Matrix *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

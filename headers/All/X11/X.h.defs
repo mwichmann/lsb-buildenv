@@ -1,5 +1,15 @@
 
+KeyCode *;
+KeySym *;
+Atom *;
+KeyCode **;
+Time *;
+
+#define X_PROTOCOL_REVISION	0
+#define X_PROTOCOL	11
+
 typedef unsigned long int XID;
+typedef unsigned long int Mask;
 typedef unsigned long int Atom;
 typedef unsigned long int VisualID;
 typedef unsigned long int Time;

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QSIGNALMAPPER_H_
 #define _QTCORE_QSIGNALMAPPER_H_
 
 class QSignalMapper;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSignalMapper : public QObject
 {
 private:
@@ -32,7 +34,15 @@ protected:
     void mapped(QObject*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN13QSignalMapper16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

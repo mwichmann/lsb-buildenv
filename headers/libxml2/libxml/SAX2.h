@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_SAX2_H_
 #define _LIBXML2_LIBXML_SAX2_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef void (*internalSubsetSAXFunc) (void *, const xmlChar *,
 					   const xmlChar *,
 					   const xmlChar *);
@@ -125,6 +127,9 @@ extern "C" {
 
     typedef struct _xmlSAXHandler xmlSAXHandler;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _xmlEnumeration {
 	struct _xmlEnumeration *next;
@@ -186,63 +191,71 @@ extern "C" {
 	xmlStructuredErrorFunc serror;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern void xmlSAX2EndElement(void *, const xmlChar *);
-    extern void xmlSAX2Characters(void *, const xmlChar *, int);
-    extern int xmlSAX2HasInternalSubset(void *);
-    extern void xmlSAX2Comment(void *, const xmlChar *);
-    extern void xmlSAX2ExternalSubset(void *, const xmlChar *,
-				      const xmlChar *, const xmlChar *);
-    extern void xmlSAX2StartElementNs(void *, const xmlChar *,
-				      const xmlChar *, const xmlChar *,
-				      int, const xmlChar * *, int, int,
-				      const xmlChar * *);
-    extern void xmlSAX2Reference(void *, const xmlChar *);
-    extern void xmlSAX2EndElementNs(void *, const xmlChar *,
-				    const xmlChar *, const xmlChar *);
-    extern int xmlSAXDefaultVersion(int);
-    extern const xmlChar *xmlSAX2GetSystemId(void *);
-    extern void xmlSAX2InitDefaultSAXHandler(xmlSAXHandler *, int);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern void docbDefaultSAXHandlerInit(void);
+    extern void htmlDefaultSAXHandlerInit(void);
     extern void xmlDefaultSAXHandlerInit(void);
-    extern void xmlSAX2CDataBlock(void *, const xmlChar *, int);
-    extern void xmlSAX2IgnorableWhitespace(void *, const xmlChar *, int);
-    extern void xmlSAX2ElementDecl(void *, const xmlChar *, int,
-				   xmlElementContentPtr);
-    extern int xmlSAX2IsStandalone(void *);
-    extern const xmlChar *xmlSAX2GetPublicId(void *);
-    extern int xmlSAX2GetLineNumber(void *);
-    extern xmlEntityPtr xmlSAX2GetEntity(void *, const xmlChar *);
-    extern void xmlSAX2EndDocument(void *);
     extern void xmlSAX2AttributeDecl(void *, const xmlChar *,
 				     const xmlChar *, int, int,
 				     const xmlChar *, xmlEnumerationPtr);
-    extern void xmlSAX2ProcessingInstruction(void *, const xmlChar *,
-					     const xmlChar *);
-    extern void xmlSAX2NotationDecl(void *, const xmlChar *,
+    extern void xmlSAX2CDataBlock(void *, const xmlChar *, int);
+    extern void xmlSAX2Characters(void *, const xmlChar *, int);
+    extern void xmlSAX2Comment(void *, const xmlChar *);
+    extern void xmlSAX2ElementDecl(void *, const xmlChar *, int,
+				   xmlElementContentPtr);
+    extern void xmlSAX2EndDocument(void *);
+    extern void xmlSAX2EndElement(void *, const xmlChar *);
+    extern void xmlSAX2EndElementNs(void *, const xmlChar *,
 				    const xmlChar *, const xmlChar *);
     extern void xmlSAX2EntityDecl(void *, const xmlChar *, int,
 				  const xmlChar *, const xmlChar *,
 				  xmlChar *);
-    extern void xmlSAX2StartDocument(void *);
+    extern void xmlSAX2ExternalSubset(void *, const xmlChar *,
+				      const xmlChar *, const xmlChar *);
+    extern int xmlSAX2GetColumnNumber(void *);
+    extern xmlEntityPtr xmlSAX2GetEntity(void *, const xmlChar *);
+    extern int xmlSAX2GetLineNumber(void *);
+    extern xmlEntityPtr xmlSAX2GetParameterEntity(void *, const xmlChar *);
+    extern const xmlChar *xmlSAX2GetPublicId(void *);
+    extern const xmlChar *xmlSAX2GetSystemId(void *);
+    extern int xmlSAX2HasExternalSubset(void *);
+    extern int xmlSAX2HasInternalSubset(void *);
+    extern void xmlSAX2IgnorableWhitespace(void *, const xmlChar *, int);
+    extern void xmlSAX2InitDefaultSAXHandler(xmlSAXHandler *, int);
+    extern void xmlSAX2InitDocbDefaultSAXHandler(xmlSAXHandler *);
+    extern void xmlSAX2InitHtmlDefaultSAXHandler(xmlSAXHandler *);
+    extern void xmlSAX2InternalSubset(void *, const xmlChar *,
+				      const xmlChar *, const xmlChar *);
+    extern int xmlSAX2IsStandalone(void *);
+    extern void xmlSAX2NotationDecl(void *, const xmlChar *,
+				    const xmlChar *, const xmlChar *);
+    extern void xmlSAX2ProcessingInstruction(void *, const xmlChar *,
+					     const xmlChar *);
+    extern void xmlSAX2Reference(void *, const xmlChar *);
     extern xmlParserInputPtr xmlSAX2ResolveEntity(void *, const xmlChar *,
 						  const xmlChar *);
-    extern xmlEntityPtr xmlSAX2GetParameterEntity(void *, const xmlChar *);
-    extern int xmlSAX2GetColumnNumber(void *);
-    extern void htmlDefaultSAXHandlerInit(void);
-    extern int xmlSAX2HasExternalSubset(void *);
+    extern void xmlSAX2SetDocumentLocator(void *, xmlSAXLocatorPtr);
+    extern void xmlSAX2StartDocument(void *);
     extern void xmlSAX2StartElement(void *, const xmlChar *,
 				    const xmlChar * *);
-    extern void xmlSAX2InitDocbDefaultSAXHandler(xmlSAXHandler *);
-    extern void xmlSAX2SetDocumentLocator(void *, xmlSAXLocatorPtr);
-    extern void xmlSAX2InitHtmlDefaultSAXHandler(xmlSAXHandler *);
-    extern void docbDefaultSAXHandlerInit(void);
+    extern void xmlSAX2StartElementNs(void *, const xmlChar *,
+				      const xmlChar *, const xmlChar *,
+				      int, const xmlChar * *, int, int,
+				      const xmlChar * *);
     extern void xmlSAX2UnparsedEntityDecl(void *, const xmlChar *,
 					  const xmlChar *, const xmlChar *,
 					  const xmlChar *);
-    extern void xmlSAX2InternalSubset(void *, const xmlChar *,
-				      const xmlChar *, const xmlChar *);
+    extern int xmlSAXDefaultVersion(int);
     extern int xmlSAXVersion(xmlSAXHandler *, int);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

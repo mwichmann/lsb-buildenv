@@ -1,9 +1,62 @@
 
+#define ClientWhitePointOfCCC(ccc)	(&(ccc)->clientWhitePt)
+#define ScreenWhitePointOfCCC(ccc)	(&(ccc)->pPerScrnInfo->screenWhitePt)
+#define DisplayOfCCC(ccc)	((ccc)->dpy)
+#define FunctionSetOfCCC(ccc)	((ccc)->pPerScrnInfo->functionSet)
+#define ScreenNumberOfCCC(ccc)	((ccc)->screenNumber)
+#define VisualOfCCC(ccc)	((ccc)->visual)
+#define XcmsUndefinedFormat	(XcmsColorFormat)0x00000000
+#define XcmsCIEXYZFormat	(XcmsColorFormat)0x00000001
+#define XcmsCIEuvYFormat	(XcmsColorFormat)0x00000002
+#define XcmsCIExyYFormat	(XcmsColorFormat)0x00000003
+#define XcmsCIELabFormat	(XcmsColorFormat)0x00000004
+#define XcmsCIELuvFormat	(XcmsColorFormat)0x00000005
+#define XcmsTekHVCFormat	(XcmsColorFormat)0x00000006
+#define XcmsRGBFormat	(XcmsColorFormat)0x80000000
+#define XcmsRGBiFormat	(XcmsColorFormat)0x80000001
+#define XcmsFailure	0
+#define XcmsInitNone	0x00
+#define XcmsInitSuccess	0x01
+#define XcmsInitFailure	0xff
+#define XcmsSuccess	1
+#define XcmsSuccessWithCompression	2
+
+struct {
+    unsigned short red;
+    unsigned short green;
+    unsigned short blue;
+};
+struct {
+    XcmsFloat red;
+    XcmsFloat green;
+    XcmsFloat blue;
+};
+struct {
+    union {
+	XcmsRGB RGB;
+	XcmsRGBi RGBi;
+	XcmsCIEXYZ CIEXYZ;
+	XcmsCIEuvY CIEuvY;
+	XcmsCIExyY CIExyY;
+	XcmsCIELab CIELab;
+	XcmsCIELuv CIELuv;
+	XcmsTekHVC TekHVC;
+	XcmsPad Pad;
+    } spec;
+    unsigned long int pixel;
+    XcmsColorFormat format;
+};
 typedef struct _XcmsFunctionSet {
     XcmsColorSpace **DDColorSpaces;
     XcmsScreenInitProc screenInitProc;
     XcmsScreenFreeProc screenFreeProc;
 } XcmsFunctionSet;
+int (*screenFreeProc) (void);
+int (*screenFreeProc) (void);
+int (*screenFreeProc) (void);
+void (*screenFreeProc) (void);
+int (*screenFreeProc) (void);
+int (*screenFreeProc) (void);
 
 typedef unsigned long int XcmsColorFormat;
 typedef double XcmsFloat;
@@ -81,10 +134,33 @@ typedef void (*XcmsScreenFreeProc) (void);
 typedef int (*XcmsConversionProc) (void);
 typedef int (*XcmsParseStringProc) (void);
 
+typedef struct _XcmsCCC {
+    Display *dpy;
+    int screenNumber;
+    Visual *visual;
+    XcmsColor clientWhitePt;
+    XcmsCompressionProc gamutCompProc;
+    XPointer gamutCompClientData;
+    XcmsWhiteAdjustProc whitePtAdjProc;
+    XPointer whitePtAdjClientData;
+    XcmsPerScrnInfo *pPerScrnInfo;
+} XcmsCCCRec;
+struct _XcmsCCC *;
 typedef struct _XcmsCCC *XcmsCCC;
 
 typedef XcmsConversionProc *XcmsFuncListPtr;
 
+union {
+    XcmsRGB RGB;
+    XcmsRGBi RGBi;
+    XcmsCIEXYZ CIEXYZ;
+    XcmsCIEuvY CIEuvY;
+    XcmsCIExyY CIExyY;
+    XcmsCIELab CIELab;
+    XcmsCIELuv CIELuv;
+    XcmsTekHVC TekHVC;
+    XcmsPad Pad;
+};
 typedef struct _XcmsColorSpace {
     char *prefix;
     XcmsColorFormat id;

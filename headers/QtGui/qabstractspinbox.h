@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QABSTRACTSPINBOX_H_
 #define _QTGUI_QABSTRACTSPINBOX_H_
 
 class QAbstractSpinBox;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QAbstractSpinBox::StepEnabledFlag>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }StepEnabled	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QAbstractSpinBox : public QWidget
 {
 private:
@@ -94,7 +99,15 @@ PlusMinus = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN16QAbstractSpinBox16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

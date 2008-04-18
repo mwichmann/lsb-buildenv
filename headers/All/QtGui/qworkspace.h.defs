@@ -1,6 +1,6 @@
 
 class QWorkspace;
 enum _ZN10QWorkspace11WindowOrderE {
-    CreationOrder = 0,
-    StackingOrder = 1
+    CreationOrder,
+    StackingOrder
 };

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _X11_ICE_ICELIB_H_
 #define _X11_ICE_ICELIB_H_
 
@@ -7,100 +8,18 @@ extern "C" {
 #endif
 
 
-    typedef void *IcePointer;
-
-    typedef enum {
-	IcePoAuthHaveReply,
-	IcePoAuthRejected,
-	IcePoAuthFailed,
-	IcePoAuthDoneCleanup
-    } IcePoAuthStatus;
-
-    typedef enum {
-	IcePaAuthContinue,
-	IcePaAuthAccepted,
-	IcePaAuthRejected,
-	IcePaAuthFailed
-    } IcePaAuthStatus;
-
-    typedef enum {
-	IceConnectPending,
-	IceConnectAccepted,
-	IceConnectRejected,
-	IceConnectIOError
-    } IceConnectStatus;
-
-    typedef enum {
-	IceProtocolSetupSuccess,
-	IceProtocolSetupFailure,
-	IceProtocolSetupIOError,
-	IceProtocolAlreadyActive
-    } IceProtocolSetupStatus;
-
-    typedef enum {
-	IceAcceptSuccess,
-	IceAcceptFailure,
-	IceAcceptBadMalloc
-    } IceAcceptStatus;
-
-    typedef enum {
-	IceClosedNow,
-	IceClosedASAP,
-	IceConnectionInUse,
-	IceStartedShutdownNegotiation
-    } IceCloseStatus;
-
-    typedef enum {
-	IceProcessMessagesSuccess,
-	IceProcessMessagesIOError,
-	IceProcessMessagesConnectionClosed
-    } IceProcessMessagesStatus;
 
 
-    typedef struct {
-	unsigned long int sequence_of_request;
-	int major_opcode_of_request;
-	int minor_opcode_of_request;
-	IcePointer reply;
-    } IceReplyWaitInfo;
-
-
-    typedef struct _IceConn *IceConn;
-
-    typedef struct _IceListenObj *IceListenObj;
-
-
-    typedef void (*IceWatchProc) (void);
-
-    typedef void (*IcePoProcessMsgProc) (void);
-
-    typedef void (*IcePaProcessMsgProc) (void);
-
-    typedef IcePoAuthStatus(*IcePoAuthProc) (void);
-
-    typedef IcePaAuthStatus(*IcePaAuthProc) (void);
-
-    typedef int (*IceHostBasedAuthProc) (void);
-
-    typedef int (*IceProtocolSetupProc) (void);
-
-    typedef void (*IceProtocolActivateProc) (void);
-
-    typedef void (*IceIOErrorProc) (void);
-
-    typedef void (*IcePingReplyProc) (void);
-
-    typedef void (*IceErrorHandler) (void);
-
-    typedef void (*IceIOErrorHandler) (void);
 
 
 /* Default Header Section for X11/ICE/ICElib.h*/
-    typedef struct {
-	int major_version;
-	int minor_version;
-	IcePoProcessMsgProc process_msg_proc;
-    } IcePoVersionRec;
+#if __LSB_VERSION__ >= 12
+    typedef void *IcePointer;
+
+    typedef struct _IceConn *IceConn;
+
+    typedef void (*IcePaProcessMsgProc) (IceConn, IcePointer, int,
+					 long unsigned int, int);
 
     typedef struct {
 	int major_version;
@@ -108,17 +27,146 @@ extern "C" {
 	IcePaProcessMsgProc process_msg_proc;
     } IcePaVersionRec;
 
+    typedef struct {
+	long unsigned int sequence_of_request;
+	int major_opcode_of_request;
+	int minor_opcode_of_request;
+	IcePointer reply;
+    } IceReplyWaitInfo;
 
-    extern IceConn IceAcceptConnection(IceListenObj, IceAcceptStatus *);
+    typedef void (*IcePoProcessMsgProc) (IceConn, IcePointer, int,
+					 long unsigned int, int,
+					 IceReplyWaitInfo *, int *);
+
+    typedef struct {
+	int major_version;
+	int minor_version;
+	IcePoProcessMsgProc process_msg_proc;
+    } IcePoVersionRec;
+
+    typedef (*IcePoAuthProc) (IceConn, IcePointer *, int, int, int,
+			      IcePointer, int *, IcePointer *, char **);
+
+    typedef (*IcePaAuthProc) (IceConn, IcePointer *, int, int, IcePointer,
+			      int *, IcePointer *, char **);
+
+    typedef struct _IceListenObj *IceListenObj;
+
+    typedef void (*IceIOErrorProc) (IceConn);
+
+    typedef int (*IceProtocolSetupProc) (IceConn, int, int, char *, char *,
+					 IcePointer *, char **);
+
+    typedef void (*IceProtocolActivateProc) (IceConn, IcePointer);
+
+    typedef int (*IceHostBasedAuthProc) (char *);
+
+    typedef void (*IcePingReplyProc) (IceConn, IcePointer);
+
+    typedef void (*IceWatchProc) (IceConn, IcePointer, int, IcePointer *);
+
+    typedef void (*IceIOErrorHandler) (IceConn);
+
+    typedef void (*IceErrorHandler) (IceConn, int, int, long unsigned int,
+				     int, int, IcePointer);
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
+    struct {
+	int major_version;
+	int minor_version;
+	IcePaProcessMsgProc process_msg_proc;
+    };
+
+    IcePaVersionRec *;
+
+    struct {
+	long unsigned int sequence_of_request;
+	int major_opcode_of_request;
+	int minor_opcode_of_request;
+	IcePointer reply;
+    };
+
+    IceReplyWaitInfo *;
+
+    struct {
+	int major_version;
+	int minor_version;
+	IcePoProcessMsgProc process_msg_proc;
+    };
+
+    IcePoVersionRec *;
+
+    IcePoAuthProc *;
+
+    IcePaAuthProc *;
+
+    enum IceAcceptStatus {
+	IceAcceptSuccess = 0,
+	IceAcceptFailure = 1,
+	IceAcceptBadMalloc = 2
+    };
+
+    enum IceAcceptStatus {
+	IceAcceptSuccess = 0,
+	IceAcceptFailure = 1,
+	IceAcceptBadMalloc = 2
+    } *;
+
+    struct _IceListenObj;
+
+    struct _IceListenObj *;
+
+    IceListenObj *;
+
+    IceListenObj **;
+
+    enum IceConnectStatus {
+	IceConnectPending = 0,
+	IceConnectAccepted = 1,
+	IceConnectRejected = 2,
+	IceConnectIOError = 3
+    };
+
+#include <X11/ICE/ICEconn.h>
+    enum IceProcessMessagesStatus {
+	IceProcessMessagesSuccess = 0,
+	IceProcessMessagesIOError = 1,
+	IceProcessMessagesConnectionClosed = 2
+    };
+
+    enum IceCloseStatus {
+	IceClosedNow = 0,
+	IceClosedASAP = 1,
+	IceConnectionInUse = 2,
+	IceStartedShutdownNegotiation = 3
+    };
+
+    enum IceProtocolSetupStatus {
+	IceProtocolSetupSuccess = 0,
+	IceProtocolSetupFailure = 1,
+	IceProtocolSetupIOError = 2,
+	IceProtocolAlreadyActive = 3
+    };
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
+    extern IceConn IceAcceptConnection(IceListenObj,
+				       enum IceAcceptStatus *);
     extern int IceAddConnectionWatch(IceWatchProc, IcePointer);
-    extern char *IceAllocScratch(IceConn, unsigned long int);
+    extern char *IceAllocScratch(IceConn, long unsigned int);
     extern void IceAppLockConn(IceConn);
     extern void IceAppUnlockConn(IceConn);
     extern int IceCheckShutdownNegotiation(IceConn);
-    extern IceCloseStatus IceCloseConnection(IceConn);
+    extern enum IceCloseStatus IceCloseConnection(IceConn);
     extern char *IceComposeNetworkIdList(int, IceListenObj *);
     extern int IceConnectionNumber(IceConn);
-    extern IceConnectStatus IceConnectionStatus(IceConn);
+    extern enum IceConnectStatus IceConnectionStatus(IceConn);
     extern char *IceConnectionString(IceConn);
     extern int IceFlush(IceConn);
     extern void IceFreeListenObjs(int, IceListenObj *);
@@ -128,8 +176,8 @@ extern "C" {
     extern char *IceGetListenConnectionString(IceListenObj);
     extern int IceGetOutBufSize(IceConn);
     extern int IceInitThreads(void);
-    extern unsigned long int IceLastReceivedSequenceNumber(IceConn);
-    extern unsigned long int IceLastSentSequenceNumber(IceConn);
+    extern long unsigned int IceLastReceivedSequenceNumber(IceConn);
+    extern long unsigned int IceLastSentSequenceNumber(IceConn);
     extern int IceListenForConnections(int *, IceListenObj * *, int,
 				       char *);
     extern int IceListenForWellKnownConnections(char *, int *,
@@ -138,14 +186,15 @@ extern "C" {
     extern IceConn IceOpenConnection(char *, IcePointer, int, int, int,
 				     char *);
     extern int IcePing(IceConn, IcePingReplyProc, IcePointer);
-    extern IceProcessMessagesStatus IceProcessMessages(IceConn,
-						       IceReplyWaitInfo *,
-						       int *);
+    extern enum IceProcessMessagesStatus IceProcessMessages(IceConn,
+							    IceReplyWaitInfo
+							    *, int *);
     extern int IceProtocolRevision(IceConn);
-    extern IceProtocolSetupStatus IceProtocolSetup(IceConn, int,
-						   IcePointer, int, int *,
-						   int *, char **, char **,
-						   int, char *);
+    extern enum IceProtocolSetupStatus IceProtocolSetup(IceConn, int,
+							IcePointer, int,
+							int *, int *,
+							char **, char **,
+							int, char *);
     extern int IceProtocolShutdown(IceConn, int);
     extern int IceProtocolVersion(IceConn);
     extern int IceRegisterForProtocolReply(char *, char *, char *, int,
@@ -168,7 +217,10 @@ extern "C" {
     extern void IceSetShutdownNegotiation(IceConn, int);
     extern int IceSwapping(IceConn);
     extern char *IceVendor(IceConn);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

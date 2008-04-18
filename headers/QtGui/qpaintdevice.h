@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPAINTDEVICE_H_
 #define _QTGUI_QPAINTDEVICE_H_
 
 class QPaintDevice;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPaintDevice
 {
 private:
@@ -51,9 +53,17 @@ PdmPhysicalDpiY = 10
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern void _Z6bitBltP12QPaintDeviceiiPKS_iiiib(QPaintDevice *, int, int, const QPaintDevice *, int, int, int, int, bool);
-extern void _Z6bitBltP12QPaintDeviceiiPK6QImageiiiii(QPaintDevice *, int, int, const QImage *, int, int, int, int, int);
-extern void _Z6bitBltP12QPaintDeviceRK6QPointPKS_RK5QRectb(QPaintDevice *, const QPoint &, const QPaintDevice *, const QRect &, bool);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern void _Z6bitBltP12QPaintDeviceRK6QPointPKS_RK5QRectb(QPaintDevice *, const QPoint &, const QPaintDevice *, const QRect &);
+extern void _Z6bitBltP12QPaintDeviceiiPK6QImageiiiii(QPaintDevice *, const QImage *);
+extern void _Z6bitBltP12QPaintDeviceiiPKS_iiiib(QPaintDevice *, const QPaintDevice *);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

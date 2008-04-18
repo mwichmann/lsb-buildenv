@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _ALSA_PCM_H_
 #define _ALSA_PCM_H_
 
@@ -15,10 +16,14 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define SND_PCM_NONBLOCK	0x0001
 #define SND_PCM_ASYNC	0x0002
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct sndrv_mask snd_pcm_access_mask_t;
 
     typedef enum _snd_pcm_access {
@@ -225,24 +230,15 @@ extern "C" {
 	SND_SPCM_XRUN_STOP = 1
     } snd_spcm_xrun_type_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
 
-
-
+#if __LSB_VERSION__ >= 32
 
     struct _snd_pcm_channel_area {
 	void *addr;
 	unsigned int first;
 	unsigned int step;
     };
-
-
-
-
-
-
-
-
-
 
 
     struct _snd_pcm_scope_ops {
@@ -255,25 +251,18 @@ extern "C" {
 	void (*close) (void);
     };
 
-
-
-
-
-
-
-
-
-
     union _snd_pcm_sync_id {
 	unsigned char id[16];
 	short unsigned int id16[8];
 	unsigned int id32[4];
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+// Function prototypes
 
-
+#if __LSB_VERSION__ >= 32
     extern int snd_async_add_pcm_handler(snd_async_handler_t * *,
 					 snd_pcm_t *, snd_async_callback_t,
 					 void *);
@@ -342,6 +331,8 @@ extern "C" {
     extern int snd_pcm_format_unsigned(snd_pcm_format_t);
     extern snd_pcm_format_t snd_pcm_format_value(const char *);
     extern int snd_pcm_format_width(snd_pcm_format_t);
+    extern snd_pcm_sframes_t snd_pcm_forward(snd_pcm_t *,
+					     snd_pcm_uframes_t);
     extern ssize_t snd_pcm_frames_to_bytes(snd_pcm_t *, snd_pcm_sframes_t);
     extern int snd_pcm_hw_free(snd_pcm_t *);
     extern int snd_pcm_hw_params(snd_pcm_t *, snd_pcm_hw_params_t *);
@@ -360,10 +351,71 @@ extern "C" {
     extern int snd_pcm_hw_params_dump(snd_pcm_hw_params_t *,
 				      snd_output_t *);
     extern void snd_pcm_hw_params_free(snd_pcm_hw_params_t *);
+    extern int snd_pcm_hw_params_get_access(const snd_pcm_hw_params_t *,
+					    snd_pcm_access_t *);
     extern int snd_pcm_hw_params_get_access_mask(snd_pcm_hw_params_t *,
 						 snd_pcm_access_mask_t *);
+    extern int snd_pcm_hw_params_get_buffer_size(const snd_pcm_hw_params_t
+						 *, snd_pcm_uframes_t *);
+    extern int snd_pcm_hw_params_get_buffer_size_max(const
+						     snd_pcm_hw_params_t *,
+						     snd_pcm_uframes_t *);
+    extern int snd_pcm_hw_params_get_buffer_size_min(const
+						     snd_pcm_hw_params_t *,
+						     snd_pcm_uframes_t *);
+    extern int snd_pcm_hw_params_get_buffer_time(const snd_pcm_hw_params_t
+						 *, unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_buffer_time_max(const
+						     snd_pcm_hw_params_t *,
+						     unsigned int *,
+						     int *);
+    extern int snd_pcm_hw_params_get_buffer_time_min(const
+						     snd_pcm_hw_params_t *,
+						     unsigned int *,
+						     int *);
+    extern int snd_pcm_hw_params_get_channels(const snd_pcm_hw_params_t *,
+					      unsigned int *);
+    extern int snd_pcm_hw_params_get_channels_max(const snd_pcm_hw_params_t
+						  *, unsigned int *);
+    extern int snd_pcm_hw_params_get_channels_min(const snd_pcm_hw_params_t
+						  *, unsigned int *);
+    extern int snd_pcm_hw_params_get_format(const snd_pcm_hw_params_t *,
+					    snd_pcm_format_t *);
     extern void snd_pcm_hw_params_get_format_mask(snd_pcm_hw_params_t *,
 						  snd_pcm_format_mask_t *);
+    extern int snd_pcm_hw_params_get_period_size(const snd_pcm_hw_params_t
+						 *, snd_pcm_uframes_t *,
+						 int *);
+    extern int snd_pcm_hw_params_get_period_size_max(const
+						     snd_pcm_hw_params_t *,
+						     snd_pcm_uframes_t *,
+						     int *);
+    extern int snd_pcm_hw_params_get_period_size_min(const
+						     snd_pcm_hw_params_t *,
+						     snd_pcm_uframes_t *,
+						     int *);
+    extern int snd_pcm_hw_params_get_period_time(const snd_pcm_hw_params_t
+						 *, unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_period_time_max(const
+						     snd_pcm_hw_params_t *,
+						     unsigned int *,
+						     int *);
+    extern int snd_pcm_hw_params_get_period_time_min(const
+						     snd_pcm_hw_params_t *,
+						     unsigned int *,
+						     int *);
+    extern int snd_pcm_hw_params_get_periods(const snd_pcm_hw_params_t *,
+					     unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_periods_max(const snd_pcm_hw_params_t
+						 *, unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_periods_min(const snd_pcm_hw_params_t
+						 *, unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_rate(const snd_pcm_hw_params_t *,
+					  unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_rate_max(const snd_pcm_hw_params_t *,
+					      unsigned int *, int *);
+    extern int snd_pcm_hw_params_get_rate_min(const snd_pcm_hw_params_t *,
+					      unsigned int *, int *);
     extern int snd_pcm_hw_params_get_rate_numden(const snd_pcm_hw_params_t
 						 *, unsigned int *,
 						 unsigned int *);
@@ -386,12 +438,23 @@ extern "C" {
     extern int snd_pcm_hw_params_set_buffer_size(snd_pcm_t *,
 						 snd_pcm_hw_params_t *,
 						 snd_pcm_uframes_t);
+    extern int snd_pcm_hw_params_set_buffer_size_near(snd_pcm_t *,
+						      snd_pcm_hw_params_t
+						      *,
+						      snd_pcm_uframes_t *);
     extern int snd_pcm_hw_params_set_buffer_time(snd_pcm_t *,
 						 snd_pcm_hw_params_t *,
 						 unsigned int, int);
+    extern int snd_pcm_hw_params_set_buffer_time_near(snd_pcm_t *,
+						      snd_pcm_hw_params_t
+						      *, unsigned int *,
+						      int *);
     extern int snd_pcm_hw_params_set_channels(snd_pcm_t *,
 					      snd_pcm_hw_params_t *,
 					      unsigned int);
+    extern int snd_pcm_hw_params_set_channels_near(snd_pcm_t *,
+						   snd_pcm_hw_params_t *,
+						   unsigned int *);
     extern int snd_pcm_hw_params_set_format(snd_pcm_t *,
 					    snd_pcm_hw_params_t *,
 					    snd_pcm_format_t);
@@ -401,18 +464,33 @@ extern "C" {
     extern int snd_pcm_hw_params_set_period_size(snd_pcm_t *,
 						 snd_pcm_hw_params_t *,
 						 snd_pcm_uframes_t, int);
+    extern int snd_pcm_hw_params_set_period_size_near(snd_pcm_t *,
+						      snd_pcm_hw_params_t
+						      *,
+						      snd_pcm_uframes_t *,
+						      int *);
     extern int snd_pcm_hw_params_set_period_time(snd_pcm_t *,
 						 snd_pcm_hw_params_t *,
 						 unsigned int, int);
+    extern int snd_pcm_hw_params_set_period_time_near(snd_pcm_t *,
+						      snd_pcm_hw_params_t
+						      *, unsigned int *,
+						      int *);
     extern int snd_pcm_hw_params_set_periods(snd_pcm_t *,
 					     snd_pcm_hw_params_t *,
 					     unsigned int, int);
     extern int snd_pcm_hw_params_set_periods_integer(snd_pcm_t *,
 						     snd_pcm_hw_params_t
 						     *);
+    extern int snd_pcm_hw_params_set_periods_near(snd_pcm_t *,
+						  snd_pcm_hw_params_t *,
+						  unsigned int *, int *);
     extern int snd_pcm_hw_params_set_rate(snd_pcm_t *,
 					  snd_pcm_hw_params_t *,
 					  unsigned int, int);
+    extern int snd_pcm_hw_params_set_rate_near(snd_pcm_t *,
+					       snd_pcm_hw_params_t *,
+					       unsigned int *, int *);
     extern int snd_pcm_hw_params_set_rate_resample(snd_pcm_t *,
 						   snd_pcm_hw_params_t *,
 						   unsigned int);
@@ -545,8 +623,25 @@ extern "C" {
     extern int snd_pcm_sw_params_dump(snd_pcm_sw_params_t *,
 				      snd_output_t *);
     extern void snd_pcm_sw_params_free(snd_pcm_sw_params_t *);
+    extern int snd_pcm_sw_params_get_avail_min(const snd_pcm_sw_params_t *,
+					       snd_pcm_uframes_t *);
     extern int snd_pcm_sw_params_get_boundary(const snd_pcm_sw_params_t *,
 					      snd_pcm_uframes_t *);
+    extern int snd_pcm_sw_params_get_silence_size(const snd_pcm_sw_params_t
+						  *, snd_pcm_uframes_t *);
+    extern int snd_pcm_sw_params_get_silence_threshold(const
+						       snd_pcm_sw_params_t
+						       *,
+						       snd_pcm_uframes_t
+						       *);
+    extern int snd_pcm_sw_params_get_start_threshold(const
+						     snd_pcm_sw_params_t *,
+						     snd_pcm_uframes_t *);
+    extern int snd_pcm_sw_params_get_stop_threshold(const
+						    snd_pcm_sw_params_t *,
+						    snd_pcm_uframes_t *);
+    extern int snd_pcm_sw_params_get_tstamp_mode(const snd_pcm_sw_params_t
+						 *, snd_pcm_tstamp_t *);
     extern int snd_pcm_sw_params_malloc(snd_pcm_sw_params_t * *);
     extern int snd_pcm_sw_params_set_avail_min(snd_pcm_t *,
 					       snd_pcm_sw_params_t *,
@@ -572,120 +667,17 @@ extern "C" {
 						snd_pcm_uframes_t);
     extern size_t snd_pcm_sw_params_sizeof(void);
     extern snd_pcm_type_t snd_pcm_type(snd_pcm_t *);
+    extern const char *snd_pcm_type_name(snd_pcm_type_t);
     extern int snd_pcm_unlink(snd_pcm_t *);
     extern int snd_pcm_wait(snd_pcm_t *, int);
     extern snd_pcm_sframes_t snd_pcm_writei(snd_pcm_t *, const void *,
 					    snd_pcm_uframes_t);
     extern snd_pcm_sframes_t snd_pcm_writen(snd_pcm_t *, void **,
 					    snd_pcm_uframes_t);
-    extern int snd_pcm_hw_params_get_rate_min(const snd_pcm_hw_params_t *,
-					      unsigned int *, int *);
-    extern int snd_pcm_sw_params_get_avail_min(const snd_pcm_sw_params_t *,
-					       snd_pcm_uframes_t *);
-    extern int snd_pcm_hw_params_get_period_time(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-    extern int snd_pcm_hw_params_set_buffer_time_near(snd_pcm_t *,
-						      snd_pcm_hw_params_t
-						      *, unsigned int *,
-						      int *);
-    extern int snd_pcm_hw_params_get_format(const snd_pcm_hw_params_t *,
-					    snd_pcm_format_t *);
-    extern int snd_pcm_hw_params_get_channels_min(const snd_pcm_hw_params_t
-						  *, unsigned int *);
-    extern int snd_pcm_sw_params_get_start_threshold(const
-						     snd_pcm_sw_params_t *,
-						     snd_pcm_uframes_t *);
-    extern int snd_pcm_hw_params_set_period_time_near(snd_pcm_t *,
-						      snd_pcm_hw_params_t
-						      *, unsigned int *,
-						      int *);
-    extern int snd_pcm_hw_params_set_channels_near(snd_pcm_t *,
-						   snd_pcm_hw_params_t *,
-						   unsigned int *);
-    extern int snd_pcm_hw_params_get_rate_max(const snd_pcm_hw_params_t *,
-					      unsigned int *, int *);
-    extern int snd_pcm_hw_params_get_period_size(const snd_pcm_hw_params_t
-						 *, snd_pcm_uframes_t *,
-						 int *);
-    extern int snd_pcm_hw_params_get_period_time_max(const
-						     snd_pcm_hw_params_t *,
-						     unsigned int *,
-						     int *);
-    extern int snd_pcm_hw_params_get_buffer_size(const snd_pcm_hw_params_t
-						 *, snd_pcm_uframes_t *);
-    extern int snd_pcm_sw_params_get_silence_threshold(const
-						       snd_pcm_sw_params_t
-						       *,
-						       snd_pcm_uframes_t
-						       *);
-    extern int snd_pcm_hw_params_get_access(const snd_pcm_hw_params_t *,
-					    snd_pcm_access_t *);
-    extern int snd_pcm_hw_params_get_buffer_time_min(const
-						     snd_pcm_hw_params_t *,
-						     unsigned int *,
-						     int *);
-    extern int snd_pcm_hw_params_get_buffer_time(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-    extern int snd_pcm_hw_params_get_rate(const snd_pcm_hw_params_t *,
-					  unsigned int *, int *);
-    extern int snd_pcm_sw_params_get_stop_threshold(const
-						    snd_pcm_sw_params_t *,
-						    snd_pcm_uframes_t *);
-    extern int snd_pcm_hw_params_get_period_size_max(const
-						     snd_pcm_hw_params_t *,
-						     snd_pcm_uframes_t *,
-						     int *);
-    extern int snd_pcm_hw_params_get_buffer_size_min(const
-						     snd_pcm_hw_params_t *,
-						     snd_pcm_uframes_t *);
-    extern const char *snd_pcm_type_name(snd_pcm_type_t);
-    extern int snd_pcm_sw_params_get_silence_size(const snd_pcm_sw_params_t
-						  *, snd_pcm_uframes_t *);
-    extern int snd_pcm_hw_params_get_periods(const snd_pcm_hw_params_t *,
-					     unsigned int *, int *);
-    extern int snd_pcm_hw_params_get_buffer_size_max(const
-						     snd_pcm_hw_params_t *,
-						     snd_pcm_uframes_t *);
-    extern int snd_pcm_sw_params_get_tstamp_mode(const snd_pcm_sw_params_t
-						 *, snd_pcm_tstamp_t *);
-    extern int snd_pcm_hw_params_set_period_size_near(snd_pcm_t *,
-						      snd_pcm_hw_params_t
-						      *,
-						      snd_pcm_uframes_t *,
-						      int *);
-    extern int snd_pcm_hw_params_get_buffer_time_max(const
-						     snd_pcm_hw_params_t *,
-						     unsigned int *,
-						     int *);
-    extern int snd_pcm_hw_params_get_period_time_min(const
-						     snd_pcm_hw_params_t *,
-						     unsigned int *,
-						     int *);
-    extern int snd_pcm_hw_params_set_periods_near(snd_pcm_t *,
-						  snd_pcm_hw_params_t *,
-						  unsigned int *, int *);
-    extern snd_pcm_sframes_t snd_pcm_forward(snd_pcm_t *,
-					     snd_pcm_uframes_t);
-    extern int snd_pcm_hw_params_set_rate_near(snd_pcm_t *,
-					       snd_pcm_hw_params_t *,
-					       unsigned int *, int *);
-    extern int snd_pcm_hw_params_get_period_size_min(const
-						     snd_pcm_hw_params_t *,
-						     snd_pcm_uframes_t *,
-						     int *);
-    extern int snd_pcm_hw_params_get_periods_min(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-    extern int snd_pcm_hw_params_get_channels(const snd_pcm_hw_params_t *,
-					      unsigned int *);
-    extern int snd_pcm_hw_params_get_channels_max(const snd_pcm_hw_params_t
-						  *, unsigned int *);
-    extern int snd_pcm_hw_params_get_periods_max(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-    extern int snd_pcm_hw_params_set_buffer_size_near(snd_pcm_t *,
-						      snd_pcm_hw_params_t
-						      *,
-						      snd_pcm_uframes_t *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

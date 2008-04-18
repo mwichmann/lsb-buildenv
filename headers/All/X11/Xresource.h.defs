@@ -1,4 +1,80 @@
 
+typedef int XrmQuark;
+typedef int *XrmQuarkList;
+typedef char *XrmString;
+enum {
+    XrmBindTightly,
+    XrmBindLoosely
+};
+typedef enum {
+    XrmBindTightly,
+    XrmBindLoosely
+} XrmBinding;
+enum {
+    XrmBindTightly,
+    XrmBindLoosely
+};
+typedef enum *XrmBindingList;
+typedef XrmQuark XrmName;
+typedef XrmQuarkList XrmNameList;
+typedef XrmQuark XrmClass;
+typedef XrmQuarkList XrmClassList;
+typedef XrmQuark XrmRepresentation;
+typedef struct {
+    unsigned int size;
+    XPointer addr;
+} XrmValue;
+struct {
+    unsigned int size;
+    XPointer addr;
+};
+typedef struct {
+    unsigned int size;
+    XPointer addr;
+} *XrmValuePtr;
+typedef struct _XrmHashBucketRec *XrmHashBucket;
+typedef XrmHashBucket *XrmHashTable;
+typedef XrmHashTable XrmSearchList;
+typedef struct _XrmHashBucketRec *XrmDatabase;
+enum {
+    XrmoptionNoArg,
+    XrmoptionIsArg,
+    XrmoptionStickyArg,
+    XrmoptionSepArg,
+    XrmoptionResArg,
+    XrmoptionSkipArg,
+    XrmoptionSkipLine,
+    XrmoptionSkipNArgs
+};
+typedef enum {
+    XrmoptionNoArg,
+    XrmoptionIsArg,
+    XrmoptionStickyArg,
+    XrmoptionSepArg,
+    XrmoptionResArg,
+    XrmoptionSkipArg,
+    XrmoptionSkipLine,
+    XrmoptionSkipNArgs
+} XrmOptionKind;
+typedef struct {
+    char *option;
+    char *specifier;
+    XrmOptionKind argKind;
+    XPointer value;
+} XrmOptionDescRec;
+struct {
+    char *option;
+    char *specifier;
+    XrmOptionKind argKind;
+    XPointer value;
+};
+typedef struct {
+    char *option;
+    char *specifier;
+    XrmOptionKind argKind;
+    XPointer value;
+} *XrmOptionDescList;
+XrmQuark *;
 extern void XrmCombineDatabase(XrmDatabase, XrmDatabase *, int);
 extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
 extern void XrmDestroyDatabase(XrmDatabase);

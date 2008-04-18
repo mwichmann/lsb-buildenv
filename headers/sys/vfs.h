@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 13 )
 #ifndef _SYS_VFS_H_
 #define _SYS_VFS_H_
 
@@ -12,4 +13,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

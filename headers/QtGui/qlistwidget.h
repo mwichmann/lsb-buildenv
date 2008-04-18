@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QLISTWIDGET_H_
 #define _QTGUI_QLISTWIDGET_H_
 
 class QListWidgetItem;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QListWidgetItem
 {
 private:
@@ -86,9 +88,17 @@ private:
     void setModel(QAbstractItemModel*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDataStream _ZlsR11QDataStreamRK15QListWidgetItem(QDataStream &, const QListWidgetItem &);
-extern QDataStream _ZrsR11QDataStreamR15QListWidgetItem(QDataStream &, QListWidgetItem &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QListWidget16staticMetaObjectE ;
+extern QDataStream _ZlsR11QDataStreamRK15QListWidgetItem(QDataStream &);
+extern QDataStream _ZrsR11QDataStreamR15QListWidgetItem(QDataStream &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

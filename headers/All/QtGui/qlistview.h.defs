@@ -1,23 +1,23 @@
 
 class QListView;
 enum _ZN9QListView8MovementE {
-    Static = 0,
-    Free = 1,
-    Snap = 2
+    Static,
+    Free,
+    Snap
 };
 enum _ZN9QListView4FlowE {
-    LeftToRight = 0,
-    TopToBottom = 1
+    LeftToRight,
+    TopToBottom
 };
 enum _ZN9QListView10ResizeModeE {
-    Fixed = 0,
-    Adjust = 1
+    Fixed,
+    Adjust
 };
 enum _ZN9QListView10LayoutModeE {
-    SinglePass = 0,
-    Batched = 1
+    SinglePass,
+    Batched
 };
 enum _ZN9QListView8ViewModeE {
-    ListMode = 0,
-    IconMode = 1
+    ListMode,
+    IconMode
 };

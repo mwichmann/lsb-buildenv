@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTSQL_QSQLINDEX_H_
 #define _QTSQL_QSQLINDEX_H_
 
 class QSqlIndex;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSqlIndex :  
 {
 private:
@@ -22,5 +24,8 @@ public:
     QStringList toStringList(QString const&, bool) const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QTEXTOBJECT_H_
 #define _QTGUI_QTEXTOBJECT_H_
 
 class QTextFrame;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QTextFrame::iterator
 {
 private:
@@ -20,6 +22,9 @@ public:
 }Iterator	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QTextObject : public QObject
 {
 private:
@@ -143,17 +148,25 @@ public:
     QString text() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern struct QMetaObject _ZN11QTextObject16staticMetaObjectE ;
-extern struct QMetaObject _ZN15QTextBlockGroup16staticMetaObjectE ;
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QTextBlock::iterator _ZN10QTextBlock8iteratormmEv(void);
+extern QTextBlock::iterator _ZN10QTextBlock8iteratorppEv(void);
 extern struct QMetaObject _ZN10QTextFrame16staticMetaObjectE ;
 extern QTextFrame::iterator _ZN10QTextFrame8iteratoraSERKS0_(const QTextFrame::iterator &);
-extern QTextFrame _ZNK10QTextFrame8iterator12currentFrameEv(void);
-extern  _ZNK10QTextFrame8iterator12currentBlockEv(void);
-extern QTextFrame::iterator _ZN10QTextFrame8iteratorppEv(void);
 extern QTextFrame::iterator _ZN10QTextFrame8iteratormmEv(void);
+extern QTextFrame::iterator _ZN10QTextFrame8iteratorppEv(void);
+extern struct QMetaObject _ZN11QTextObject16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QTextBlockGroup16staticMetaObjectE ;
 extern  _ZNK10QTextBlock8iterator8fragmentEv(void);
-extern QTextBlock::iterator _ZN10QTextBlock8iteratorppEv(void);
-extern QTextBlock::iterator _ZN10QTextBlock8iteratormmEv(void);
+extern  _ZNK10QTextFrame8iterator12currentBlockEv(void);
+extern QTextFrame _ZNK10QTextFrame8iterator12currentFrameEv(void);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

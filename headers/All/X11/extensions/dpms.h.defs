@@ -1,4 +1,9 @@
 
+#define DPMSModeOn	0
+#define DPMSModeStandby	1
+#define DPMSModeSuspend	2
+#define DPMSModeOff	3
+
 extern int DPMSCapable(Display *);
 extern int DPMSDisable(Display *);
 extern int DPMSEnable(Display *);

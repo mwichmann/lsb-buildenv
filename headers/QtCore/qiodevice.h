@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QIODEVICE_H_
 #define _QTCORE_QIODEVICE_H_
 
 class QIODevice;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QIODevice::OpenModeFlag>
 {
 private:
@@ -17,6 +19,9 @@ typedef qint64	Offset
 typedef int	Status	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QIODevice : public QObject
 {
 private:
@@ -87,8 +92,16 @@ private:
 public:
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QIODevice16staticMetaObjectE ;
 extern  _Zls6QDebug6QFlagsIN9QIODevice12OpenModeFlagEE(_Z6QDebug, _Z356QFlagsIN9QIODevice12OpenModeFlagEE);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

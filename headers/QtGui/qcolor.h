@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QCOLOR_H_
 #define _QTGUI_QCOLOR_H_
 
 class QColor;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QColor
 {
 private:
@@ -93,9 +95,17 @@ Cmyk = 3
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDebug _Zls6QDebugRK6QColor(_Z6QDebug, const QColor &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDebug _Zls6QDebugRK6QColor(const QColor &);
 extern QDataStream _ZlsR11QDataStreamRK6QColor(QDataStream &, const QColor &);
 extern QDataStream _ZrsR11QDataStreamR6QColor(QDataStream &, QColor &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

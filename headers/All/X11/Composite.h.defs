@@ -1,11 +1,6 @@
 
-typedef Cardinal(*XtOrderProc) (Widget child);
-typedef void (*XtDoChangeProc) (Widget composite_parent,
-				WidgetList unmanage_children,
-				Cardinal * num_unmanage_children,
-				WidgetList manage_children,
-				Cardinal * num_manage_children,
-				XtPointer client_data);
+typedef void (*XtDoChangeProc) (Widget, WidgetList, Cardinal *, WidgetList,
+				Cardinal *, XtPointer);
 extern void XtChangeManagedSet(WidgetList, Cardinal, XtDoChangeProc,
 			       XtPointer, WidgetList, Cardinal);
 extern void XtManageChild(Widget);

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_T1TABLES_H_
 #define _FREETYPE_T1TABLES_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define T1_MAX_MM_DESIGNS	16
 #define T1_MAX_MM_MAP_POINTS	20
 #define T1_MAX_MM_AXIS	4
@@ -31,12 +33,18 @@ extern "C" {
 #define t1_blend_stem_snap_widths	T1_BLEND_STEM_SNAP_WIDTHS
 #define t1_blend_underline_position	T1_BLEND_UNDERLINE_POSITION
 #define t1_blend_underline_thickness	T1_BLEND_UNDERLINE_THICKNESS
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct PS_PrivateRec_ PS_PrivateRec;
 
     typedef struct PS_FontInfoRec PS_FontInfoRec;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
 
     struct PS_PrivateRec_ {
 	FT_Int unique_id;
@@ -79,11 +87,19 @@ extern "C" {
 	FT_UShort underline_thickness;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
-    extern FT_Int FT_Has_PS_Glyph_Names(FT_Face);
-    extern FT_Error FT_Get_PS_Font_Private(FT_Face, PS_PrivateRec *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern FT_Error FT_Get_PS_Font_Info(FT_Face, PS_FontInfoRec *);
+    extern FT_Error FT_Get_PS_Font_Private(FT_Face, PS_PrivateRec *);
+    extern FT_Int FT_Has_PS_Glyph_Names(FT_Face);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

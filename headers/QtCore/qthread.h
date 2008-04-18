@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QTHREAD_H_
 #define _QTCORE_QTHREAD_H_
 
 class QThread;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QThread : public QObject
 {
 private:
@@ -51,7 +53,15 @@ InheritPriority = 7
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN7QThread16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

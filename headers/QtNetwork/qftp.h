@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QFTP_H_
 #define _QTNETWORK_QFTP_H_
 
 class QFtp;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QFtp : public QObject
 {
 private:
@@ -107,7 +109,15 @@ Ascii = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN4QFtp16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

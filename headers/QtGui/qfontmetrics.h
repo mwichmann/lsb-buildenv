@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QFONTMETRICS_H_
 #define _QTGUI_QFONTMETRICS_H_
 
 class QFontMetrics;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QFontMetrics
 {
 private:
@@ -81,5 +83,8 @@ public:
     qreal averageCharWidth() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

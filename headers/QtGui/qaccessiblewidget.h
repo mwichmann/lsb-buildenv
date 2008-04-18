@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QACCESSIBLEWIDGET_H_
 #define _QTGUI_QACCESSIBLEWIDGET_H_
 
 class QAccessibleWidget;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QAccessibleWidget : public QAccessibleObject
 {
 private:
@@ -31,5 +33,8 @@ protected:
     void setAccelerator(QString const&);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

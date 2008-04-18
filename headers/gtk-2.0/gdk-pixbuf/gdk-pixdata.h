@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GTK_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
 #define _GTK_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
 
@@ -10,10 +11,14 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define GDK_PIXBUF_MAGIC_NUMBER	(0x47646b50)
 #define GDK_PIXDATA_HEADER_LENGTH	(4 + 4 + 4 + 4 + 4 + 4)
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef struct _GdkPixdata GdkPixdata;
 
     typedef enum {
@@ -38,6 +43,9 @@ extern "C" {
 	GDK_PIXDATA_ENCODING_MASK = 0x0f << 24
     } GdkPixdataType;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _GdkPixdata {
 	guint32 magic;
@@ -49,7 +57,14 @@ extern "C" {
 	guint8 *pixel_data;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern GdkPixbuf *gdk_pixbuf_from_pixdata(const GdkPixdata *, gboolean,
+					      GError * *);
     extern gboolean gdk_pixdata_deserialize(GdkPixdata *, guint,
 					    const guint8 *, GError * *);
     extern gpointer gdk_pixdata_from_pixbuf(GdkPixdata *,
@@ -57,9 +72,10 @@ extern "C" {
     extern guint8 *gdk_pixdata_serialize(const GdkPixdata *, guint *);
     extern GString *gdk_pixdata_to_csource(GdkPixdata *, const gchar *,
 					   GdkPixdataDumpType);
-    extern GdkPixbuf *gdk_pixbuf_from_pixdata(const GdkPixdata *, gboolean,
-					      GError * *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

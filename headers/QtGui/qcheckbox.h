@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QCHECKBOX_H_
 #define _QTGUI_QCHECKBOX_H_
 
 class QCheckBox;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QCheckBox : public QAbstractButton
 {
 private:
@@ -39,7 +41,15 @@ On = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QCheckBox16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

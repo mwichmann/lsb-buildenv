@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QTEXTLAYOUT_H_
 #define _QTGUI_QTEXTLAYOUT_H_
 
 class QTextLine;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QTextInlineObject
 {
 private:
@@ -111,5 +113,8 @@ CursorOnCharacter = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

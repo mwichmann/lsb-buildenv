@@ -1,7 +1,7 @@
 
 class QHeaderView;
 enum _ZN11QHeaderView10ResizeModeE {
-    Interactive = 0,
-    Stretch = 1,
-    Custom = 2
+    Interactive,
+    Stretch,
+    Custom
 };

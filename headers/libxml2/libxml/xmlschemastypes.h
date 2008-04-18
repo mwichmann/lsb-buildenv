@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_XMLSCHEMASTYPES_H_
 #define _LIBXML2_LIBXML_XMLSCHEMASTYPES_H_
 
@@ -10,6 +11,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef struct _xmlSchemaType xmlSchemaType;
 
     typedef xmlSchemaType *xmlSchemaTypePtr;
@@ -68,25 +70,34 @@ extern "C" {
 	XML_SCHEMAS_ANYSIMPLETYPE = 46
     } xmlSchemaValType;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+// Function prototypes
 
+#if __LSB_VERSION__ >= 31
+    extern void xmlSchemaCleanupTypes(void);
+    extern xmlChar *xmlSchemaCollapseString(const xmlChar *);
+    extern int xmlSchemaCompareValues(xmlSchemaValPtr, xmlSchemaValPtr);
+    extern void xmlSchemaFreeValue(xmlSchemaValPtr);
+    extern xmlSchemaTypePtr xmlSchemaGetBuiltInType(xmlSchemaValType);
+    extern int xmlSchemaGetCanonValue(xmlSchemaValPtr, const xmlChar * *);
+    extern xmlSchemaValType xmlSchemaGetValType(xmlSchemaValPtr);
+    extern void xmlSchemaInitTypes(void);
     extern int xmlSchemaValPredefTypeNode(xmlSchemaTypePtr,
 					  const xmlChar *,
 					  xmlSchemaValPtr *, xmlNodePtr);
-    extern xmlChar *xmlSchemaCollapseString(const xmlChar *);
-    extern void xmlSchemaCleanupTypes(void);
-    extern xmlSchemaValType xmlSchemaGetValType(xmlSchemaValPtr);
-    extern void xmlSchemaFreeValue(xmlSchemaValPtr);
-    extern void xmlSchemaInitTypes(void);
-    extern int xmlSchemaGetCanonValue(xmlSchemaValPtr, const xmlChar * *);
-    extern int xmlSchemaCompareValues(xmlSchemaValPtr, xmlSchemaValPtr);
-    extern xmlSchemaTypePtr xmlSchemaGetBuiltInType(xmlSchemaValType);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _CUPS_PPD_H_
 #define _CUPS_PPD_H_
 
@@ -8,13 +9,17 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define _CUPS_PPD_H_
 #define PPD_MAX_LINE	256
 #define PPD_VERSION	4.3
 #define PPD_MAX_NAME	41
 #define PPD_MAX_TEXT	81
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef enum {
 	PPD_CS_CMYK = -4,
 	PPD_CS_CMY = -3,
@@ -177,6 +182,9 @@ extern "C" {
 	PPD_CONFORM_STRICT = 1
     } ppd_conform_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
 
     struct ppd_group_str {
 	char text[40];
@@ -187,34 +195,42 @@ extern "C" {
 	struct ppd_group_str *subgroups;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
-    extern float ppdPageLength(ppd_file_t *, const char *);
-    extern ppd_status_t ppdLastError(int *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
+    extern void ppdClose(ppd_file_t *);
+    extern int ppdCollect(ppd_file_t *, ppd_section_t, ppd_choice_t * **);
+    extern int ppdConflicts(ppd_file_t *);
+    extern int ppdEmit(ppd_file_t *, FILE *, ppd_section_t);
     extern int ppdEmitFd(ppd_file_t *, int, ppd_section_t);
-    extern int ppdMarkOption(ppd_file_t *, const char *, const char *);
     extern int ppdEmitJCL(ppd_file_t *, FILE *, int, const char *,
 			  const char *);
-    extern ppd_choice_t *ppdFindChoice(ppd_option_t *, const char *);
-    extern ppd_file_t *ppdOpenFile(const char *);
-    extern int ppdEmit(ppd_file_t *, FILE *, ppd_section_t);
-    extern int ppdCollect(ppd_file_t *, ppd_section_t, ppd_choice_t * **);
-    extern ppd_option_t *ppdFindOption(ppd_file_t *, const char *);
-    extern void ppdMarkDefaults(ppd_file_t *);
-    extern ppd_file_t *ppdOpenFd(int);
-    extern ppd_attr_t *ppdFindNextAttr(ppd_file_t *, const char *,
-				       const char *);
     extern const char *ppdErrorString(ppd_status_t);
     extern ppd_attr_t *ppdFindAttr(ppd_file_t *, const char *,
 				   const char *);
-    extern ppd_size_t *ppdPageSize(ppd_file_t *, const char *);
-    extern ppd_file_t *ppdOpen(FILE *);
-    extern int ppdIsMarked(ppd_file_t *, const char *, const char *);
-    extern float ppdPageWidth(ppd_file_t *, const char *);
-    extern int ppdConflicts(ppd_file_t *);
+    extern ppd_choice_t *ppdFindChoice(ppd_option_t *, const char *);
     extern ppd_choice_t *ppdFindMarkedChoice(ppd_file_t *, const char *);
-    extern void ppdClose(ppd_file_t *);
+    extern ppd_attr_t *ppdFindNextAttr(ppd_file_t *, const char *,
+				       const char *);
+    extern ppd_option_t *ppdFindOption(ppd_file_t *, const char *);
+    extern int ppdIsMarked(ppd_file_t *, const char *, const char *);
+    extern ppd_status_t ppdLastError(int *);
+    extern void ppdMarkDefaults(ppd_file_t *);
+    extern int ppdMarkOption(ppd_file_t *, const char *, const char *);
+    extern ppd_file_t *ppdOpen(FILE *);
+    extern ppd_file_t *ppdOpenFd(int);
+    extern ppd_file_t *ppdOpenFile(const char *);
+    extern float ppdPageLength(ppd_file_t *, const char *);
+    extern ppd_size_t *ppdPageSize(ppd_file_t *, const char *);
+    extern float ppdPageWidth(ppd_file_t *, const char *);
     extern void ppdSetConformance(ppd_conform_t);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPRINTENGINE_H_
 #define _QTGUI_QPRINTENGINE_H_
 
 class QPrintEngine;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPrintEngine
 {
 private:
@@ -38,5 +40,8 @@ PPK_CustomBase = 65280
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

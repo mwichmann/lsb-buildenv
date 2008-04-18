@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _X11_XRESOURCE_H_
 #define _X11_XRESOURCE_H_
 
@@ -8,7 +9,129 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
+    typedef int XrmQuark;
 
+    typedef int *XrmQuarkList;
+
+    typedef char *XrmString;
+
+    typedef enum {
+	XrmBindTightly,
+	XrmBindLoosely
+    } XrmBinding;
+
+    typedef enum *XrmBindingList;
+
+    typedef XrmQuark XrmName;
+
+    typedef XrmQuarkList XrmNameList;
+
+    typedef XrmQuark XrmClass;
+
+    typedef XrmQuarkList XrmClassList;
+
+    typedef XrmQuark XrmRepresentation;
+
+    typedef struct {
+	unsigned int size;
+	XPointer addr;
+    } XrmValue;
+
+    typedef struct {
+	unsigned int size;
+	XPointer addr;
+    } *XrmValuePtr;
+
+    typedef struct _XrmHashBucketRec *XrmHashBucket;
+
+    typedef XrmHashBucket *XrmHashTable;
+
+    typedef XrmHashTable XrmSearchList;
+
+    typedef struct _XrmHashBucketRec *XrmDatabase;
+
+    typedef enum {
+	XrmoptionNoArg,
+	XrmoptionIsArg,
+	XrmoptionStickyArg,
+	XrmoptionSepArg,
+	XrmoptionResArg,
+	XrmoptionSkipArg,
+	XrmoptionSkipLine,
+	XrmoptionSkipNArgs
+    } XrmOptionKind;
+
+    typedef struct {
+	char *option;
+	char *specifier;
+	XrmOptionKind argKind;
+	XPointer value;
+    } XrmOptionDescRec;
+
+    typedef struct {
+	char *option;
+	char *specifier;
+	XrmOptionKind argKind;
+	XPointer value;
+    } *XrmOptionDescList;
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
+    enum {
+	XrmBindTightly,
+	XrmBindLoosely
+    };
+
+    enum {
+	XrmBindTightly,
+	XrmBindLoosely
+    };
+
+    struct {
+	unsigned int size;
+	XPointer addr;
+    };
+
+    struct {
+	unsigned int size;
+	XPointer addr;
+    };
+
+    enum {
+	XrmoptionNoArg,
+	XrmoptionIsArg,
+	XrmoptionStickyArg,
+	XrmoptionSepArg,
+	XrmoptionResArg,
+	XrmoptionSkipArg,
+	XrmoptionSkipLine,
+	XrmoptionSkipNArgs
+    };
+
+    struct {
+	char *option;
+	char *specifier;
+	XrmOptionKind argKind;
+	XPointer value;
+    };
+
+    struct {
+	char *option;
+	char *specifier;
+	XrmOptionKind argKind;
+	XPointer value;
+    };
+
+    XrmQuark *;
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void XrmCombineDatabase(XrmDatabase, XrmDatabase *, int);
     extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
     extern void XrmDestroyDatabase(XrmDatabase);
@@ -48,7 +171,10 @@ extern "C" {
     extern XrmQuark XrmStringToQuark(const char *);
     extern void XrmStringToQuarkList(const char *, XrmQuarkList);
     extern XrmQuark XrmUniqueQuark(void);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

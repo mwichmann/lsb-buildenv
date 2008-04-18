@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _ALSA_CONF_H_
 #define _ALSA_CONF_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
     typedef struct _snd_config_iterator *snd_config_iterator_t;
 
     typedef struct _snd_config snd_config_t;
@@ -26,12 +28,9 @@ extern "C" {
 
     typedef struct snd_devname snd_devname_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
 
-
-
-
-
-
+#if __LSB_VERSION__ >= 32
 
     struct snd_devname {
 	char *name;
@@ -39,21 +38,27 @@ extern "C" {
 	snd_devname_t *next;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
+    extern snd_config_t *snd_config;
     extern int snd_config_add(snd_config_t *, snd_config_t *);
     extern int snd_config_copy(snd_config_t * *, snd_config_t *);
     extern int snd_config_delete(snd_config_t *);
     extern int snd_config_get_ascii(const snd_config_t *, char **);
     extern int snd_config_get_id(const snd_config_t *, const char **);
+    extern int snd_config_get_integer(const snd_config_t *, long int *);
     extern int snd_config_get_integer64(const snd_config_t *,
 					long long int *);
-    extern int snd_config_get_integer(const snd_config_t *, long int *);
     extern int snd_config_get_string(const snd_config_t *, const char **);
     extern snd_config_type_t snd_config_get_type(const snd_config_t *);
-    extern int snd_config_imake_integer64(snd_config_t * *, const char *,
-					  const long long int);
     extern int snd_config_imake_integer(snd_config_t * *, const char *,
 					const long int);
+    extern int snd_config_imake_integer64(snd_config_t * *, const char *,
+					  const long long int);
     extern int snd_config_imake_string(snd_config_t * *, const char *,
 				       const char *);
     extern snd_config_iterator_t snd_config_iterator_end(const snd_config_t
@@ -67,22 +72,24 @@ extern "C" {
     extern int snd_config_load(snd_config_t *, snd_input_t *);
     extern int snd_config_make_compound(snd_config_t * *, const char *,
 					int);
-    extern int snd_config_make_integer64(snd_config_t * *, const char *);
     extern int snd_config_make_integer(snd_config_t * *, const char *);
+    extern int snd_config_make_integer64(snd_config_t * *, const char *);
     extern int snd_config_make_string(snd_config_t * *, const char *);
     extern int snd_config_save(snd_config_t *, snd_output_t *);
     extern int snd_config_search(snd_config_t *, const char *,
 				 snd_config_t * *);
     extern int snd_config_searchv(snd_config_t *, snd_config_t * *, ...);
     extern int snd_config_set_ascii(snd_config_t *, const char *);
-    extern int snd_config_set_integer64(snd_config_t *, long long int);
     extern int snd_config_set_integer(snd_config_t *, long int);
+    extern int snd_config_set_integer64(snd_config_t *, long long int);
     extern int snd_config_set_string(snd_config_t *, const char *);
     extern int snd_config_top(snd_config_t * *);
     extern int snd_config_update(void);
     extern int snd_config_update_free_global(void);
-    extern snd_config_t *snd_config;
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

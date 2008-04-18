@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _ALSA_MIXER_ABST_H_
 #define _ALSA_MIXER_ABST_H_
 
@@ -8,6 +9,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define sm_selem(x)	((sm_selem_t *)((x)->private_data))
 #define sm_selem_ops(x)	((sm_selem_t *)((x)->private_data))->ops
 #define SM_CAP_GVOLUME	(1<<1)
@@ -28,10 +30,16 @@ extern "C" {
 #define SM_OPS_IS_CHANNEL	2
 #define SM_OPS_IS_ENUMERATED	3
 #define SM_OPS_IS_ENUMCNT	4
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct _sm_class_basic sm_class_basic_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
 
     struct _sm_class_basic {
 	char *device;
@@ -40,7 +48,10 @@ extern "C" {
 	snd_ctl_card_info_t *info;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

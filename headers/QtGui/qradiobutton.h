@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QRADIOBUTTON_H_
 #define _QTGUI_QRADIOBUTTON_H_
 
 class QRadioButton;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QRadioButton : public QAbstractButton
 {
 private:
@@ -24,7 +26,15 @@ protected:
     void mouseMoveEvent(QMouseEvent*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN12QRadioButton16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

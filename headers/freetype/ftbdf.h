@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTBDF_H_
 #define _FREETYPE_FTBDF_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
     typedef enum BDF_PropertyType_ {
 	BDF_PROPERTY_TYPE_NONE = 0,
 	BDF_PROPERTY_TYPE_ATOM = 1,
@@ -22,6 +24,9 @@ extern "C" {
 
     typedef struct BDF_PropertyRec_ BDF_PropertyRec;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
 
     struct BDF_PropertyRec_ {
 	BDF_PropertyType type;
@@ -32,12 +37,20 @@ extern "C" {
 	} u;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
-    extern FT_Error FT_Get_BDF_Property(FT_Face, const char *,
-					BDF_PropertyRec *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern FT_Error FT_Get_BDF_Charset_ID(FT_Face, const char **,
 					  const char **);
+    extern FT_Error FT_Get_BDF_Property(FT_Face, const char *,
+					BDF_PropertyRec *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

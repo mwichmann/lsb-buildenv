@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _STDDEF_H_
 #define _STDDEF_H_
 
@@ -7,10 +8,17 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
+#define NULL	(0L)		/* (void *) would be better, but causes problems with C++. */
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
 #define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
-#define NULL	(0L)		/* (void *) would be better, but causes problems with C++. This */
+#endif				// __LSB_VERSION__ >= 1.2
 
 
+
+#if __LSB_VERSION__ >= 12
 #if !defined(__cplusplus)
 #if defined __i386__
 /* IA32 */
@@ -19,16 +27,19 @@ extern "C" {
 #endif
 #endif
 #if !defined(__cplusplus)
-#if defined __ia64__
-/* IA64 */
-    typedef int wchar_t;
-
-#endif
-#endif
-#if !defined(__cplusplus)
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef long int wchar_t;
+
+#endif
+#endif
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
+#if !defined(__cplusplus)
+#if defined __ia64__
+/* IA64 */
+    typedef int wchar_t;
 
 #endif
 #endif
@@ -40,15 +51,18 @@ extern "C" {
 #endif
 #endif
 #if !defined(__cplusplus)
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __s390x__
+/* S390X */
     typedef int wchar_t;
 
 #endif
 #endif
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
 #if !defined(__cplusplus)
-#if defined __s390x__
-/* S390X */
+#if defined __powerpc64__
+/* PPC64 */
     typedef int wchar_t;
 
 #endif
@@ -130,7 +144,10 @@ extern "C" {
     typedef long int ptrdiff_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

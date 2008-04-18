@@ -9,6 +9,10 @@ typedef struct FT_MemoryRec_ *FT_Memory;
 typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
 typedef void (*FT_Free_Func) (FT_Memory, void *);
 typedef void *(*FT_Realloc_Func) (FT_Memory, long int, long int, void *);
+union FT_StreamDesc_ {
+    long int value;
+    void *pointer;
+};
 struct FT_StreamRec_ {
     unsigned char *base;
     long unsigned int size;
@@ -20,10 +24,6 @@ struct FT_StreamRec_ {
     FT_Memory memory;
     unsigned char *cursor;
     unsigned char *limit;
-};
-union FT_StreamDesc_ {
-    long int value;
-    void *pointer;
 };
 typedef union FT_StreamDesc_ {
     long int value;

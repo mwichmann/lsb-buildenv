@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QINPUTCONTEXTFACTORY_H_
 #define _QTGUI_QINPUTCONTEXTFACTORY_H_
 
 class QInputContextFactory;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QInputContextFactory
 {
 private:
@@ -15,5 +17,8 @@ public:
     QString description(QString const&);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FT2BUILD_H_
 #define _FT2BUILD_H_
 
@@ -11,4 +12,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

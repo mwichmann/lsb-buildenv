@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTOPENGL_QGL_H_
 #define _QTOPENGL_QGL_H_
 
 class QGLFormat;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 12
 typedef class QFlags<QGL::FormatOption>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }FormatOptions	
 ;
 
+#endif // __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
 enum FormatOption	
 {
 DoubleBuffer = 1,	
@@ -194,10 +199,18 @@ protected:
     int fontDisplayListBase(QFont const&, int);
 };
 
+#endif // __LSB_VERSION__ >= 1.2
 
-extern bool _ZeqRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
-extern bool _ZneRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern QGLContext * _ZN10QGLContext10currentCtxE ;
 extern struct QMetaObject _ZN9QGLWidget16staticMetaObjectE ;
+extern bool _ZeqRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
+extern bool _ZneRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

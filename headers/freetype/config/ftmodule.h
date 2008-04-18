@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_CONFIG_FTMODULE_H_
 #define _FREETYPE_CONFIG_FTMODULE_H_
 
@@ -10,4 +11,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

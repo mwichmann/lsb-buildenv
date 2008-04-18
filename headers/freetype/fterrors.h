@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTERRORS_H_
 #define _FREETYPE_FTERRORS_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
     enum {
 	FT_Err_Ok = 0x00,
 	FT_Err_Cannot_Open_Resource = 0x01,
@@ -94,7 +96,10 @@ extern "C" {
 	FT_Err_Max = 0xB8
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QFONTINFO_H_
 #define _QTGUI_QFONTINFO_H_
 
 class QFontInfo;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QFontInfo
 {
 private:
@@ -28,5 +30,8 @@ public:
     bool exactMatch() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

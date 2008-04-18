@@ -1,45 +1,45 @@
 
 class QDir;
 enum _ZN4QDir6FilterE {
-    NoFilter = -1,
-    DefaultFilter = -1,
-    Dirs = 1,
-    Files = 2,
-    Drives = 4,
-    AllEntries = 7,
-    All = 7,
-    NoSymLinks = 8,
-    TypeMask = 15,
-    Readable = 16,
-    Writable = 32,
-    Executable = 64,
-    PermissionMask = 112,
-    RWEMask = 112,
-    Modified = 128,
-    Hidden = 256,
-    System = 512,
-    AccessMask = 1008,
-    AllDirs = 1024,
-    CaseSensitive = 2048,
-    NoDotAndDotDot = 4096
+    NoFilter,
+    DefaultFilter,
+    Dirs,
+    Files,
+    Drives,
+    AllEntries,
+    All,
+    NoSymLinks,
+    TypeMask,
+    Readable,
+    Writable,
+    Executable,
+    PermissionMask,
+    RWEMask,
+    Modified,
+    Hidden,
+    System,
+    AccessMask,
+    AllDirs,
+    CaseSensitive,
+    NoDotAndDotDot
 };
 class QFlags < QDir::Filter >;
 typedef class QFlags < QDir::Filter > _ZN4QDir7FiltersE;
 typedef _ZN4QDir7FiltersE _ZN4QDir10FilterSpecE;
 enum _ZN4QDir8SortFlagE {
-    NoSort = -1,
-    DefaultSort = -1,
-    Name = 0,
-    Time = 1,
-    Size = 2,
-    Unsorted = 3,
-    SortByMask = 3,
-    DirsFirst = 4,
-    Reversed = 8,
-    IgnoreCase = 16,
-    DirsLast = 32,
-    LocaleAware = 64,
-    Type = 128
+    NoSort,
+    DefaultSort,
+    Name,
+    Time,
+    Size,
+    Unsorted,
+    SortByMask,
+    DirsFirst,
+    Reversed,
+    IgnoreCase,
+    DirsLast,
+    LocaleAware,
+    Type
 };
 class QFlags < QDir::SortFlag >;
 typedef class QFlags < QDir::SortFlag > _ZN4QDir9SortFlagsE;

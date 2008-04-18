@@ -1,16 +1,16 @@
 
 class QAbstractPrintDialog;
 enum _ZN20QAbstractPrintDialog10PrintRangeE {
-    AllPages = 0,
-    Selection = 1,
-    PageRange = 2
+    AllPages,
+    Selection,
+    PageRange
 };
 enum _ZN20QAbstractPrintDialog17PrintDialogOptionE {
-    None = 0,
-    PrintToFile = 1,
-    PrintSelection = 2,
-    PrintPageRange = 4,
-    PrintCollateCopies = 16
+    None,
+    PrintToFile,
+    PrintSelection,
+    PrintPageRange,
+    PrintCollateCopies
 };
 class QFlags < QAbstractPrintDialog::PrintDialogOption >;
 typedef class QFlags < QAbstractPrintDialog::PrintDialogOption >

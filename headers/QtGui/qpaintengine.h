@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPAINTENGINE_H_
 #define _QTGUI_QPAINTENGINE_H_
 
 class QPaintEngine;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QTextItem::RenderFlag>
 {
 private:
@@ -25,6 +27,9 @@ public:
 }DirtyFlags	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QTextItem
 {
 private:
@@ -181,5 +186,8 @@ public:
     qreal opacity() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

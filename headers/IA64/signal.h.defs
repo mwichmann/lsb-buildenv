@@ -12,8 +12,8 @@ struct sigaction {
     sigset_t sa_mask;
 };
 
-#define MINSIGSTKSZ	131027
-#define SIGSTKSZ	262144
+#define MINSIGSTKSZ	131027	/* Minimum stack size for a signal handler. */
+#define SIGSTKSZ	262144	/* System default stack size. */
 
 struct ia64_fpreg {
     union {

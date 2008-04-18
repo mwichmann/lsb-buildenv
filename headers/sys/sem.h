@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _SYS_SEM_H_
 #define _SYS_SEM_H_
 
@@ -10,6 +11,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
 #define SEM_UNDO	0x1000
 #define GETPID	11
 #define GETVAL	12
@@ -18,14 +20,20 @@ extern "C" {
 #define GETZCNT	15
 #define SETVAL	16
 #define SETALL	17
+#endif				// __LSB_VERSION__ >= 1.1
 
 
+
+#if __LSB_VERSION__ >= 12
     struct sembuf {
 	short sem_num;
 	short sem_op;
 	short sem_flg;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
 #if defined __ia64__
 /* IA64 */
     struct semid_ds {
@@ -118,11 +126,19 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int semctl(int, int, int, ...);
     extern int semget(key_t, int, int);
     extern int semop(int, struct sembuf *, size_t);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

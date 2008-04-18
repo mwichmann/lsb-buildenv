@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_HTMLPARSER_H_
 #define _LIBXML2_LIBXML_HTMLPARSER_H_
 
@@ -15,12 +16,16 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define htmlElementAllowedHereDesc(parent,elt)	 \
 	htmlElementAllowedHere((parent), (elt)->name)
 #define htmlRequiredAttrs(elt)	(elt)->attrs_req
 #define htmlDefaultSubelement(elt)	elt->defaultsubelt
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef enum {
 	HTML_NA = 0,
 	HTML_INVALID = 1,
@@ -59,6 +64,9 @@ extern "C" {
 
     typedef xmlParserInput htmlParserInput;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _htmlElemDesc {
 	const char *name;
@@ -84,67 +92,75 @@ extern "C" {
 	const char *desc;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern htmlStatus htmlElementStatusHere(const htmlElemDesc *,
-					    const htmlElemDesc *);
-    extern htmlDocPtr htmlParseDoc(xmlChar *, const char *);
-    extern htmlDocPtr htmlSAXParseDoc(xmlChar *, const char *,
-				      htmlSAXHandlerPtr, void *);
-    extern htmlDocPtr htmlCtxtReadDoc(htmlParserCtxtPtr, const xmlChar *,
-				      const char *, const char *, int);
-    extern htmlDocPtr htmlReadIO(xmlInputReadCallback,
-				 xmlInputCloseCallback, void *,
-				 const char *, const char *, int);
-    extern htmlDocPtr htmlCtxtReadIO(htmlParserCtxtPtr,
-				     xmlInputReadCallback,
-				     xmlInputCloseCallback, void *,
-				     const char *, const char *, int);
-    extern int htmlHandleOmittedElem(int);
-    extern htmlDocPtr htmlReadMemory(const char *, int, const char *,
-				     const char *, int);
-    extern htmlDocPtr htmlCtxtReadMemory(htmlParserCtxtPtr, const char *,
-					 int, const char *, const char *,
-					 int);
-    extern void htmlParseElement(htmlParserCtxtPtr);
-    extern const htmlEntityDesc *htmlEntityValueLookup(unsigned int);
-    extern int htmlEncodeEntities(unsigned char *, int *,
-				  const unsigned char *, int *, int);
-    extern htmlDocPtr htmlParseFile(const char *, const char *);
-    extern htmlDocPtr htmlSAXParseFile(const char *, const char *,
-				       htmlSAXHandlerPtr, void *);
-    extern int htmlIsAutoClosed(htmlDocPtr, htmlNodePtr);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern int UTF8ToHtml(unsigned char *, int *, const unsigned char *,
+			  int *);
+    extern htmlStatus htmlAttrAllowed(const htmlElemDesc *,
+				      const xmlChar *, int);
+    extern int htmlAutoCloseTag(htmlDocPtr, const xmlChar *, htmlNodePtr);
+    extern htmlParserCtxtPtr htmlCreateMemoryParserCtxt(const char *, int);
     extern htmlParserCtxtPtr htmlCreatePushParserCtxt(htmlSAXHandlerPtr,
 						      void *, const char *,
 						      int, const char *,
 						      xmlCharEncoding);
-    extern int htmlIsScriptAttribute(const xmlChar *);
-    extern int UTF8ToHtml(unsigned char *, int *, const unsigned char *,
-			  int *);
-    extern int htmlElementAllowedHere(const htmlElemDesc *,
-				      const xmlChar *);
-    extern int htmlParseCharRef(htmlParserCtxtPtr);
-    extern int htmlCtxtUseOptions(htmlParserCtxtPtr, int);
-    extern int htmlParseChunk(htmlParserCtxtPtr, const char *, int, int);
-    extern htmlDocPtr htmlReadFd(int, const char *, const char *, int);
-    extern void htmlCtxtReset(htmlParserCtxtPtr);
-    extern htmlDocPtr htmlCtxtReadFile(htmlParserCtxtPtr, const char *,
-				       const char *, int);
-    extern const htmlEntityDesc *htmlEntityLookup(const xmlChar *);
+    extern htmlDocPtr htmlCtxtReadDoc(htmlParserCtxtPtr, const xmlChar *,
+				      const char *, const char *, int);
     extern htmlDocPtr htmlCtxtReadFd(htmlParserCtxtPtr, int, const char *,
 				     const char *, int);
-    extern const htmlElemDesc *htmlTagLookup(const xmlChar *);
+    extern htmlDocPtr htmlCtxtReadFile(htmlParserCtxtPtr, const char *,
+				       const char *, int);
+    extern htmlDocPtr htmlCtxtReadIO(htmlParserCtxtPtr,
+				     xmlInputReadCallback,
+				     xmlInputCloseCallback, void *,
+				     const char *, const char *, int);
+    extern htmlDocPtr htmlCtxtReadMemory(htmlParserCtxtPtr, const char *,
+					 int, const char *, const char *,
+					 int);
+    extern void htmlCtxtReset(htmlParserCtxtPtr);
+    extern int htmlCtxtUseOptions(htmlParserCtxtPtr, int);
+    extern int htmlElementAllowedHere(const htmlElemDesc *,
+				      const xmlChar *);
+    extern htmlStatus htmlElementStatusHere(const htmlElemDesc *,
+					    const htmlElemDesc *);
+    extern int htmlEncodeEntities(unsigned char *, int *,
+				  const unsigned char *, int *, int);
+    extern const htmlEntityDesc *htmlEntityLookup(const xmlChar *);
+    extern const htmlEntityDesc *htmlEntityValueLookup(unsigned int);
     extern void htmlFreeParserCtxt(htmlParserCtxtPtr);
-    extern int htmlAutoCloseTag(htmlDocPtr, const xmlChar *, htmlNodePtr);
-    extern htmlParserCtxtPtr htmlCreateMemoryParserCtxt(const char *, int);
-    extern htmlDocPtr htmlReadFile(const char *, const char *, int);
-    extern htmlDocPtr htmlReadDoc(const xmlChar *, const char *,
-				  const char *, int);
+    extern int htmlHandleOmittedElem(int);
+    extern int htmlIsAutoClosed(htmlDocPtr, htmlNodePtr);
+    extern int htmlIsScriptAttribute(const xmlChar *);
+    extern int htmlParseCharRef(htmlParserCtxtPtr);
+    extern int htmlParseChunk(htmlParserCtxtPtr, const char *, int, int);
+    extern htmlDocPtr htmlParseDoc(xmlChar *, const char *);
+    extern int htmlParseDocument(htmlParserCtxtPtr);
+    extern void htmlParseElement(htmlParserCtxtPtr);
     extern const htmlEntityDesc *htmlParseEntityRef(htmlParserCtxtPtr,
 						    const xmlChar * *);
-    extern int htmlParseDocument(htmlParserCtxtPtr);
-    extern htmlStatus htmlAttrAllowed(const htmlElemDesc *,
-				      const xmlChar *, int);
+    extern htmlDocPtr htmlParseFile(const char *, const char *);
+    extern htmlDocPtr htmlReadDoc(const xmlChar *, const char *,
+				  const char *, int);
+    extern htmlDocPtr htmlReadFd(int, const char *, const char *, int);
+    extern htmlDocPtr htmlReadFile(const char *, const char *, int);
+    extern htmlDocPtr htmlReadIO(xmlInputReadCallback,
+				 xmlInputCloseCallback, void *,
+				 const char *, const char *, int);
+    extern htmlDocPtr htmlReadMemory(const char *, int, const char *,
+				     const char *, int);
+    extern htmlDocPtr htmlSAXParseDoc(xmlChar *, const char *,
+				      htmlSAXHandlerPtr, void *);
+    extern htmlDocPtr htmlSAXParseFile(const char *, const char *,
+				       htmlSAXHandlerPtr, void *);
+    extern const htmlElemDesc *htmlTagLookup(const xmlChar *);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

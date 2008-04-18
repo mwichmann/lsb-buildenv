@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_TTTABLES_H_
 #define _FREETYPE_TTTABLES_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
     typedef enum {
 	ft_sfnt_head = 0,
 	ft_sfnt_maxp = 1,
@@ -24,14 +26,22 @@ extern "C" {
 	sfnt_max = 7
     } FT_Sfnt_Tag;
 
+#endif				// __LSB_VERSION__ >= 3.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern FT_ULong FT_Get_CMap_Language_ID(FT_CharMap);
+    extern void *FT_Get_Sfnt_Table(FT_Face, FT_Sfnt_Tag);
     extern FT_Error FT_Load_Sfnt_Table(FT_Face, FT_ULong, FT_Long,
 				       FT_Byte *, FT_ULong *);
-    extern void *FT_Get_Sfnt_Table(FT_Face, FT_Sfnt_Tag);
     extern FT_Error FT_Sfnt_Table_Info(FT_Face, FT_UInt, FT_ULong *,
 				       FT_ULong *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version
