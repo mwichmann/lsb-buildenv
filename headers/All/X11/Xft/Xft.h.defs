@@ -18,6 +18,7 @@ typedef struct _XftColor {
     unsigned long int pixel;
     XRenderColor color;
 } XftColor;
+XftColor *;
 typedef struct _XftFont {
     int ascent;
     int descent;
@@ -26,16 +27,48 @@ typedef struct _XftFont {
     FcCharSet *charset;
     FcPattern **pattern;
 } XftFont;
+XftFont *;
 typedef struct _XftGlyphSpec {
     FT_UInt glyph;
     short x;
     short y;
 } XftGlyphSpec;
+XftGlyphSpec *;
+const typedef struct _XftColor {
+    unsigned long int pixel;
+    XRenderColor color;
+} XftColor;
+const typedef struct _XftColor {
+    unsigned long int pixel;
+    XRenderColor color;
+} XftColor *;
 typedef struct _XftCharSpec {
     FcChar32 ucs4;
     short x;
     short y;
 } XftCharSpec;
+const typedef struct _XftCharSpec {
+    FcChar32 ucs4;
+    short x;
+    short y;
+} XftCharSpec;
+const typedef struct _XftCharSpec {
+    FcChar32 ucs4;
+    short x;
+    short y;
+} XftCharSpec *;
+XGlyphInfo *;
+const typedef struct _XftGlyphSpec {
+    FT_UInt glyph;
+    short x;
+    short y;
+} XftGlyphSpec;
+const typedef struct _XftGlyphSpec {
+    FT_UInt glyph;
+    short x;
+    short y;
+} XftGlyphSpec *;
+struct _XftFtFile *;
 typedef struct _XftFtFile XftFtFile;
 typedef struct _XftFontInfo XftFontInfo;
 typedef struct _XftCharFontSpec {
@@ -44,12 +77,44 @@ typedef struct _XftCharFontSpec {
     short x;
     short y;
 } XftCharFontSpec;
+const typedef struct _XftCharFontSpec {
+    XftFont *font;
+    FcChar32 ucs4;
+    short x;
+    short y;
+} XftCharFontSpec;
+const typedef struct _XftCharFontSpec {
+    XftFont *font;
+    FcChar32 ucs4;
+    short x;
+    short y;
+} XftCharFontSpec *;
+const typedef unsigned int FT_UInt;
+const typedef unsigned int FT_UInt *;
+const typedef short unsigned int FcChar16;
+const typedef short unsigned int FcChar16 *;
 typedef struct _XftGlyphFontSpec {
     XftFont *font;
     FT_UInt glyph;
     short x;
     short y;
 } XftGlyphFontSpec;
+const typedef struct _XftGlyphFontSpec {
+    XftFont *font;
+    FT_UInt glyph;
+    short x;
+    short y;
+} XftGlyphFontSpec;
+const typedef struct _XftGlyphFontSpec {
+    XftFont *font;
+    FT_UInt glyph;
+    short x;
+    short y;
+} XftGlyphFontSpec *;
+const typedef struct _XftFontInfo XftFontInfo;
+const typedef struct _XftFontInfo XftFontInfo *;
+const typedef unsigned int FcChar32;
+const typedef unsigned int FcChar32 *;
 extern void XftTextRender32BE(Display *, int, Picture, XftFont *, Picture,
 			      int, int, int, int, const FcChar8 *, int);
 extern int XftInit(const char *);

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _SYS_IPC_H_
 #define _SYS_IPC_H_
 
@@ -8,6 +9,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
 #define IPC_PRIVATE	((key_t)0)
 #define IPC_RMID	0
 #define IPC_CREAT	00001000
@@ -15,8 +17,11 @@ extern "C" {
 #define IPC_NOWAIT	00004000
 #define IPC_SET	1
 #define IPC_STAT	2
+#endif				// __LSB_VERSION__ >= 1.1
 
 
+
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     struct ipc_perm {
@@ -132,13 +137,21 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* common mode bits*/
 
 /* SVID required constants (same values as system 5)*/
 
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern key_t ftok(const char *, int);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

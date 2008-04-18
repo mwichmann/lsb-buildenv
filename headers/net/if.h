@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 12 )
 #ifndef _NET_IF_H_
 #define _NET_IF_H_
 
@@ -9,7 +10,10 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
 #define IF_NAMESIZE	16
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
     struct ifmap {
@@ -23,6 +27,7 @@ extern "C" {
 
 
 /* Standard interface flags.*/
+#if __LSB_VERSION__ >= 12
 #define IFF_UP	0x01		/* Interface is up. */
 #define IFF_BROADCAST	0x02	/* Broadcast address valid. */
 #define IFF_DEBUG	0x04	/* Turn on debugging. */
@@ -33,20 +38,26 @@ extern "C" {
 #define IFF_NOTRAILERS	0x20	/* Avoid use of trailers. */
 #define IFF_RUNNING	0x40	/* Resources allocated. */
 #define IFF_NOARP	0x80	/* No address resolution protocol. */
+#endif				// __LSB_VERSION__ >= 1.2
 
 
 
 
+
+#if __LSB_VERSION__ >= 21
     struct if_nameindex {
 	unsigned int if_index;	/* 1, 2, ... */
 	char *if_name;		/* null terminated name: */
     };
+
+#endif				// __LSB_VERSION__ >= 2.1
 
 
 /* The ifaddr structure contains information about one address of an
    interface.  They are maintained by the different address families,
    are allocated and attached when an address is set, and are linked
    together so all addresses for an interface can be located.*/
+#if __LSB_VERSION__ >= 12
     struct ifaddr {
 	struct sockaddr ifa_addr;	/* Address of interface. */
 	union {
@@ -56,6 +67,8 @@ extern "C" {
 	void *ifa_ifp;
 	void *ifa_next;
     };
+
+#endif				// __LSB_VERSION__ >= 1.2
 
 
 /* Interface request structure used for socket ioctl's.  All interface
@@ -75,9 +88,13 @@ extern "C" {
 #define ifr_mtu	ifr_ifru.ifru_mtu	/* mtu */
 #define ifr_netmask	ifr_ifru.ifru_netmask	/* interface net mask */
 #define ifr_slave	ifr_ifru.ifru_slave	/* slave device */
+#if __LSB_VERSION__ >= 12
 #define IFNAMSIZ	IF_NAMESIZE
+#endif				// __LSB_VERSION__ >= 1.2
 
 
+
+#if __LSB_VERSION__ >= 12
     struct ifreq {
 	union {
 	    char ifrn_name[IFNAMSIZ];
@@ -98,6 +115,8 @@ extern "C" {
 	} ifr_ifru;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* Structure used in SIOCGIFCONF request.  Used to retrieve interface
    configuration for machine (useful for programs which must know all
@@ -106,6 +125,7 @@ extern "C" {
 #define ifc_req	ifc_ifcu.ifcu_req	/* Array of structures. */
 
 
+#if __LSB_VERSION__ >= 12
     struct ifconf {
 	int ifc_len;
 	union {
@@ -114,12 +134,20 @@ extern "C" {
 	} ifc_ifcu;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 30
     extern void if_freenameindex(struct if_nameindex *);
     extern char *if_indextoname(unsigned int, char *);
     extern struct if_nameindex *if_nameindex(void);
     extern unsigned int if_nametoindex(const char *);
+#endif				// __LSB_VERSION__ >= 3.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

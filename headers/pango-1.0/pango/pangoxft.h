@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _PANGO_1_0_PANGO_PANGOXFT_H_
 #define _PANGO_1_0_PANGO_PANGOXFT_H_
 
@@ -16,6 +17,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define PANGO_XFT_RENDERER_CLASS(klass)	 \
 	(G_TYPE_CHECK_CLASS_CAST ((klass), PANGO_TYPE_XFT_RENDERER, \
 	PangoXftRendererClass))
@@ -43,8 +45,11 @@ extern "C" {
 #define PANGO_TYPE_XFT_FONT_MAP	(pango_xft_font_map_get_type ())
 #define PANGO_TYPE_XFT_RENDERER	(pango_xft_renderer_get_type())
 #define PANGO_RENDER_TYPE_XFT	"PangoRenderXft"
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef struct _PangoXftRenderer PangoXftRenderer;
 
     typedef void (*PangoXftSubstituteFunc) (FcPattern *, gpointer);
@@ -61,8 +66,9 @@ extern "C" {
 
     typedef struct _PangoXftRendererPrivate PangoXftRendererPrivate;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-
+#if __LSB_VERSION__ >= 31
 
 
 
@@ -84,38 +90,42 @@ extern "C" {
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+// Function prototypes
 
-
-
-    extern void pango_xft_substitute_changed(Display *, int);
-    extern void pango_xft_render(XftDraw *, XftColor *, PangoFont *,
-				 PangoGlyphString *, gint, gint);
-    extern PangoRenderer *pango_xft_renderer_new(Display *, int);
-    extern GType pango_xft_renderer_get_type(void);
-    extern void pango_xft_renderer_set_default_color(PangoXftRenderer *,
-						     PangoColor *);
+#if __LSB_VERSION__ >= 31
     extern GType pango_xft_font_get_type(void);
+    extern GType pango_xft_font_map_get_type(void);
+    extern PangoContext *pango_xft_get_context(Display *, int);
+    extern PangoFontMap *pango_xft_get_font_map(Display *, int);
     extern void pango_xft_picture_render(Display *, Picture, Picture,
 					 PangoFont *, PangoGlyphString *,
 					 gint, gint);
+    extern void pango_xft_render(XftDraw *, XftColor *, PangoFont *,
+				 PangoGlyphString *, gint, gint);
     extern void pango_xft_render_layout(XftDraw *, XftColor *,
 					PangoLayout *, int, int);
+    extern void pango_xft_render_layout_line(XftDraw *, XftColor *,
+					     PangoLayoutLine *, int, int);
     extern void pango_xft_render_transformed(XftDraw *, XftColor *,
 					     PangoMatrix *, PangoFont *,
 					     PangoGlyphString *, int, int);
+    extern GType pango_xft_renderer_get_type(void);
+    extern PangoRenderer *pango_xft_renderer_new(Display *, int);
+    extern void pango_xft_renderer_set_default_color(PangoXftRenderer *,
+						     PangoColor *);
     extern void pango_xft_renderer_set_draw(PangoXftRenderer *, XftDraw *);
-    extern void pango_xft_render_layout_line(XftDraw *, XftColor *,
-					     PangoLayoutLine *, int, int);
-    extern void pango_xft_shutdown_display(Display *, int);
-    extern PangoFontMap *pango_xft_get_font_map(Display *, int);
-    extern PangoContext *pango_xft_get_context(Display *, int);
-    extern GType pango_xft_font_map_get_type(void);
     extern void pango_xft_set_default_substitute(Display *, int,
 						 PangoXftSubstituteFunc,
 						 gpointer, GDestroyNotify);
+    extern void pango_xft_shutdown_display(Display *, int);
+    extern void pango_xft_substitute_changed(Display *, int);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

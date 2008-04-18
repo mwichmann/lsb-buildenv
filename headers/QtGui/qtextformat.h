@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QTEXTFORMAT_H_
 #define _QTGUI_QTEXTFORMAT_H_
 
 class QTextImageFormat;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QTextLength
 {
 private:
@@ -207,11 +209,19 @@ public:
      QTextTableFormat();
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDataStream _ZlsR11QDataStreamRK11QTextLength(QDataStream &, const QTextLength &);
-extern QDataStream _ZrsR11QDataStreamR11QTextLength(QDataStream &, QTextLength &);
-extern QDataStream _ZlsR11QDataStreamRK11QTextFormat(QDataStream &, const QTextFormat &);
-extern QDataStream _ZrsR11QDataStreamR11QTextFormat(QDataStream &, QTextFormat &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QTextFormat16staticMetaObjectE ;
+extern QDataStream _ZlsR11QDataStreamRK11QTextFormat(QDataStream &, const QTextFormat &);
+extern QDataStream _ZlsR11QDataStreamRK11QTextLength(QDataStream &);
+extern QDataStream _ZrsR11QDataStreamR11QTextFormat(QDataStream &, QTextFormat &);
+extern QDataStream _ZrsR11QDataStreamR11QTextLength(QDataStream &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

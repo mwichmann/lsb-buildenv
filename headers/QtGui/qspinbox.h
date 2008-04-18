@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QSPINBOX_H_
 #define _QTGUI_QSPINBOX_H_
 
 class QDoubleSpinBox;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSpinBox : public QAbstractSpinBox
 {
 private:
@@ -73,8 +75,16 @@ protected:
     void valueChanged(QString const&);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern struct QMetaObject _ZN8QSpinBox16staticMetaObjectE ;
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN14QDoubleSpinBox16staticMetaObjectE ;
+extern struct QMetaObject _ZN8QSpinBox16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _WCTYPE_H_
 #define _WCTYPE_H_
 
@@ -9,28 +10,37 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 10
     typedef unsigned long int wctype_t;
 
     typedef unsigned int wint_t;
 
     typedef const int32_t *wctrans_t;
 
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 13
     typedef struct {
 	int count;
 	wint_t value;
     } __mbstate_t;
 
+#endif				// __LSB_VERSION__ >= 1.3
+
 
 /* This really belongs in wchar.h, but it's presense creates a circular dependency with stdio.h, so put it here to break the circle.*/
+#if __LSB_VERSION__ >= 12
     typedef __mbstate_t mbstate_t;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
-    extern int iswblank(wint_t);
-    extern wint_t towlower(wint_t);
-    extern wint_t towupper(wint_t);
-    extern wctrans_t wctrans(const char *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int iswalnum(wint_t);
     extern int iswalpha(wint_t);
+    extern int iswblank(wint_t);
     extern int iswcntrl(wint_t);
     extern int iswctype(wint_t, wctype_t);
     extern int iswdigit(wint_t);
@@ -41,9 +51,15 @@ extern "C" {
     extern int iswspace(wint_t);
     extern int iswupper(wint_t);
     extern int iswxdigit(wint_t);
-    extern wctype_t wctype(const char *);
     extern wint_t towctrans(wint_t, wctrans_t);
+    extern wint_t towlower(wint_t);
+    extern wint_t towupper(wint_t);
+    extern wctrans_t wctrans(const char *);
+    extern wctype_t wctype(const char *);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

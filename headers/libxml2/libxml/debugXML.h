@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_DEBUGXML_H_
 #define _LIBXML2_LIBXML_DEBUGXML_H_
 
@@ -11,6 +12,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef char *(*xmlShellReadlineFunc) (char *);
 
     typedef struct _xmlShellCtxt xmlShellCtxt;
@@ -20,6 +22,9 @@ extern "C" {
     typedef int (*xmlShellCmd) (xmlShellCtxtPtr, char *, xmlNodePtr,
 				xmlNodePtr);
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _xmlShellCtxt {
 	char *filename;
@@ -31,45 +36,53 @@ extern "C" {
 	xmlShellReadlineFunc input;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern const char *xmlBoolToText(int);
+    extern int xmlDebugCheckDocument(FILE *, xmlDocPtr);
     extern void xmlDebugDumpAttr(FILE *, xmlAttrPtr, int);
     extern void xmlDebugDumpAttrList(FILE *, xmlAttrPtr, int);
+    extern void xmlDebugDumpDTD(FILE *, xmlDtdPtr);
     extern void xmlDebugDumpDocument(FILE *, xmlDocPtr);
+    extern void xmlDebugDumpDocumentHead(FILE *, xmlDocPtr);
+    extern void xmlDebugDumpEntities(FILE *, xmlDocPtr);
+    extern void xmlDebugDumpNode(FILE *, xmlNodePtr, int);
+    extern void xmlDebugDumpNodeList(FILE *, xmlNodePtr, int);
     extern void xmlDebugDumpOneNode(FILE *, xmlNodePtr, int);
-    extern int xmlShellCat(xmlShellCtxtPtr, char *, xmlNodePtr,
-			   xmlNodePtr);
+    extern void xmlDebugDumpString(FILE *, const xmlChar *);
+    extern int xmlLsCountNode(xmlNodePtr);
+    extern void xmlLsOneNode(FILE *, xmlNodePtr);
+    extern void xmlShell(xmlDocPtr, char *, xmlShellReadlineFunc, FILE *);
     extern int xmlShellBase(xmlShellCtxtPtr, char *, xmlNodePtr,
 			    xmlNodePtr);
-    extern int xmlShellWrite(xmlShellCtxtPtr, char *, xmlNodePtr,
-			     xmlNodePtr);
-    extern int xmlShellLoad(xmlShellCtxtPtr, char *, xmlNodePtr,
-			    xmlNodePtr);
-    extern int xmlDebugCheckDocument(FILE *, xmlDocPtr);
-    extern int xmlShellPwd(xmlShellCtxtPtr, char *, xmlNodePtr,
+    extern int xmlShellCat(xmlShellCtxtPtr, char *, xmlNodePtr,
 			   xmlNodePtr);
-    extern void xmlDebugDumpEntities(FILE *, xmlDocPtr);
-    extern void xmlDebugDumpNodeList(FILE *, xmlNodePtr, int);
-    extern void xmlDebugDumpDocumentHead(FILE *, xmlDocPtr);
-    extern void xmlDebugDumpDTD(FILE *, xmlDtdPtr);
-    extern void xmlDebugDumpString(FILE *, const xmlChar *);
-    extern int xmlShellValidate(xmlShellCtxtPtr, char *, xmlNodePtr,
-				xmlNodePtr);
-    extern int xmlShellSave(xmlShellCtxtPtr, char *, xmlNodePtr,
-			    xmlNodePtr);
-    extern void xmlShell(xmlDocPtr, char *, xmlShellReadlineFunc, FILE *);
-    extern void xmlDebugDumpNode(FILE *, xmlNodePtr, int);
-    extern int xmlShellDu(xmlShellCtxtPtr, char *, xmlNodePtr, xmlNodePtr);
-    extern void xmlShellPrintXPathResult(xmlXPathObjectPtr);
     extern int xmlShellDir(xmlShellCtxtPtr, char *, xmlNodePtr,
 			   xmlNodePtr);
-    extern int xmlLsCountNode(xmlNodePtr);
-    extern void xmlShellPrintNode(xmlNodePtr);
-    extern void xmlLsOneNode(FILE *, xmlNodePtr);
+    extern int xmlShellDu(xmlShellCtxtPtr, char *, xmlNodePtr, xmlNodePtr);
     extern int xmlShellList(xmlShellCtxtPtr, char *, xmlNodePtr,
 			    xmlNodePtr);
+    extern int xmlShellLoad(xmlShellCtxtPtr, char *, xmlNodePtr,
+			    xmlNodePtr);
+    extern void xmlShellPrintNode(xmlNodePtr);
     extern void xmlShellPrintXPathError(int, const char *);
+    extern void xmlShellPrintXPathResult(xmlXPathObjectPtr);
+    extern int xmlShellPwd(xmlShellCtxtPtr, char *, xmlNodePtr,
+			   xmlNodePtr);
+    extern int xmlShellSave(xmlShellCtxtPtr, char *, xmlNodePtr,
+			    xmlNodePtr);
+    extern int xmlShellValidate(xmlShellCtxtPtr, char *, xmlNodePtr,
+				xmlNodePtr);
+    extern int xmlShellWrite(xmlShellCtxtPtr, char *, xmlNodePtr,
+			     xmlNodePtr);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

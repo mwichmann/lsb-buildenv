@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_SCHEMATRON_H_
 #define _LIBXML2_LIBXML_SCHEMATRON_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef struct _xmlSchematronValidCtxt xmlSchematronValidCtxt;
 
     typedef xmlSchematronValidCtxt *xmlSchematronValidCtxtPtr;
@@ -30,32 +32,40 @@ extern "C" {
 	XML_SCHEMATRON_OUT_IO = 1 << 10
     } xmlSchematronValidOptions;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
 
 
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+// Function prototypes
 
-
-    extern xmlSchematronValidCtxtPtr
-	xmlSchematronNewValidCtxt(xmlSchematronPtr, int);
+#if __LSB_VERSION__ >= 31
+    extern void xmlSchematronFree(xmlSchematronPtr);
+    extern void xmlSchematronFreeParserCtxt(xmlSchematronParserCtxtPtr);
     extern void xmlSchematronFreeValidCtxt(xmlSchematronValidCtxtPtr);
-    extern int xmlSchematronValidateDoc(xmlSchematronValidCtxtPtr,
-					xmlDocPtr);
+    extern xmlSchematronParserCtxtPtr
+	xmlSchematronNewDocParserCtxt(xmlDocPtr);
     extern xmlSchematronParserCtxtPtr xmlSchematronNewMemParserCtxt(const
 								    char *,
 								    int);
     extern xmlSchematronParserCtxtPtr xmlSchematronNewParserCtxt(const char
 								 *);
+    extern xmlSchematronValidCtxtPtr
+	xmlSchematronNewValidCtxt(xmlSchematronPtr, int);
     extern xmlSchematronPtr xmlSchematronParse(xmlSchematronParserCtxtPtr);
-    extern void xmlSchematronFree(xmlSchematronPtr);
-    extern void xmlSchematronFreeParserCtxt(xmlSchematronParserCtxtPtr);
-    extern xmlSchematronParserCtxtPtr
-	xmlSchematronNewDocParserCtxt(xmlDocPtr);
+    extern int xmlSchematronValidateDoc(xmlSchematronValidCtxtPtr,
+					xmlDocPtr);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

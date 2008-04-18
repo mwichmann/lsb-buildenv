@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPAINTERPATH_H_
 #define _QTGUI_QPAINTERPATH_H_
 
 class QPainterPathStroker;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPainterPath
 {
 private:
@@ -86,8 +88,16 @@ public:
     QPainterPath createStroke(QPainterPath const&) const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDataStream _ZlsR11QDataStreamRK12QPainterPath(QDataStream &, const QPainterPath &);
-extern QDataStream _ZrsR11QDataStreamR12QPainterPath(QDataStream &, QPainterPath &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDataStream _ZlsR11QDataStreamRK12QPainterPath(QDataStream &);
+extern QDataStream _ZrsR11QDataStreamR12QPainterPath(QDataStream &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

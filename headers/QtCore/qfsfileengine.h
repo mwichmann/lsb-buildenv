@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QFSFILEENGINE_H_
 #define _QTCORE_QFSFILEENGINE_H_
 
 class QFSFileEngine;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QFSFileEngine : public QAbstractFileEngine
 {
 private:
@@ -54,5 +56,8 @@ public:
      QFSFileEngine(QFSFileEnginePrivate&);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

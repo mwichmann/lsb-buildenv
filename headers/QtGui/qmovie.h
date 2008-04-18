@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QMOVIE_H_
 #define _QTGUI_QMOVIE_H_
 
 class QMovie;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QMovie : public QObject
 {
 private:
@@ -70,7 +72,15 @@ CacheAll = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN6QMovie16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

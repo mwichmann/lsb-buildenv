@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QTABLEWIDGET_H_
 #define _QTGUI_QTABLEWIDGET_H_
 
 class QTableWidgetItem;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QTableWidgetSelectionRange
 {
 private:
@@ -121,9 +123,17 @@ private:
     void setModel(QAbstractItemModel*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDataStream _ZrsR11QDataStreamR16QTableWidgetItem(QDataStream &, QTableWidgetItem &);
-extern QDataStream _ZlsR11QDataStreamRK16QTableWidgetItem(QDataStream &, const QTableWidgetItem &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN12QTableWidget16staticMetaObjectE ;
+extern QDataStream _ZlsR11QDataStreamRK16QTableWidgetItem(QDataStream &);
+extern QDataStream _ZrsR11QDataStreamR16QTableWidgetItem(QDataStream &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

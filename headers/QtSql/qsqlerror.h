@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTSQL_QSQLERROR_H_
 #define _QTSQL_QSQLERROR_H_
 
 class QSqlError;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSqlError
 {
 private:
@@ -39,7 +41,15 @@ Unknown = 4
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDebug _Zls6QDebugRK9QSqlError(_Z6QDebug, const QSqlError &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDebug _Zls6QDebugRK9QSqlError(const QSqlError &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

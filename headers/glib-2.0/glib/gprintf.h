@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GLIB_2_0_GLIB_GPRINTF_H_
 #define _GLIB_2_0_GLIB_GPRINTF_H_
 
@@ -11,16 +12,22 @@ extern "C" {
 
 
 
-    extern gint g_sprintf(gchar *, const gchar *, ...);
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern gint g_fprintf(FILE *, const gchar *, ...);
-    extern gint g_vasprintf(gchar * *, const gchar *, va_list);
-    extern gint g_vprintf(const gchar *, va_list);
     extern gint g_printf(const gchar *, ...);
+    extern gint g_snprintf(gchar *, gulong, const gchar *, ...);
+    extern gint g_sprintf(gchar *, const gchar *, ...);
+    extern gint g_vasprintf(gchar * *, const gchar *, va_list);
     extern gint g_vfprintf(FILE *, const gchar *, va_list);
+    extern gint g_vprintf(const gchar *, va_list);
     extern gint g_vsnprintf(gchar *, gulong, const gchar *, va_list);
     extern gint g_vsprintf(gchar *, const gchar *, va_list);
-    extern gint g_snprintf(gchar *, gulong, const gchar *, ...);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

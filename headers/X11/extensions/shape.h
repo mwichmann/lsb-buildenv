@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _X11_EXTENSIONS_SHAPE_H_
 #define _X11_EXTENSIONS_SHAPE_H_
 
@@ -10,7 +11,46 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int kind;
+	int x;
+	int y;
+	unsigned int width;
+	unsigned int height;
+	Time time;
+	int shaped;
+    } XShapeEvent;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
+    struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int kind;
+	int x;
+	int y;
+	unsigned int width;
+	unsigned int height;
+	Time time;
+	int shaped;
+    };
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void XShapeCombineMask(Display *, Window, int, int, int, Pixmap,
 				  int);
     extern void XShapeCombineRectangles(Display *, Window, int, int, int,
@@ -30,7 +70,10 @@ extern "C" {
 				  unsigned int *);
     extern int XShapeQueryVersion(Display *, int *, int *);
     extern void XShapeSelectInput(Display *, Window, unsigned long int);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

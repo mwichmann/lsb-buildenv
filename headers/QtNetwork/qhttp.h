@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QHTTP_H_
 #define _QTNETWORK_QHTTP_H_
 
 class QHttpResponseHeader;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QHttpHeader
 {
 private:
@@ -151,7 +153,15 @@ Aborted = 7
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN5QHttp16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

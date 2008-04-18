@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GTK_2_0_GDK_GDKKEYSYMS_H_
 #define _GTK_2_0_GDK_GDKKEYSYMS_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define GDK_space	0x020
 #define GDK_exclam	0x021
 #define GDK_quotedbl	0x022
@@ -1347,9 +1349,12 @@ extern "C" {
 #define GDK_Delete	0xFFFF
 #define GDK_VoidSymbol	0xFFFFFF
 #define GDK_Greek_IOTAdiaeresis	GDK_Greek_IOTAdieresis
+#endif				// __LSB_VERSION__ >= 3.1
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

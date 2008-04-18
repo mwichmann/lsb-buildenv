@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QOBJECTDEFS_H_
 #define _QTCORE_QOBJECTDEFS_H_
 
 class QGenericReturnArgument;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QGenericArgument
 {
 private:
@@ -32,5 +34,8 @@ QueryPropertyUser = 8
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

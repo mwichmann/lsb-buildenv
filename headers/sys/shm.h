@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _SYS_SHM_H_
 #define _SYS_SHM_H_
 
@@ -10,37 +11,50 @@ extern "C" {
 #endif
 
 
-#if defined __ia64__
-#define SHMLBA	(1024*1024)
-#endif
+#if __LSB_VERSION__ >= 11
 #if defined __i386__
 #define SHMLBA	(__getpagesize())
 #endif
+#define SHM_RDONLY	010000
+#define SHM_RND	020000
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define SHMLBA	(__getpagesize())
 #endif
-#if defined __powerpc64__
-#define SHMLBA	(__getpagesize())
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
+#if defined __ia64__
+#define SHMLBA	(1024*1024)
 #endif
 #if defined __s390__ && !defined __s390x__
-#define SHMLBA	(__getpagesize())
-#endif
-#if defined __x86_64__
 #define SHMLBA	(__getpagesize())
 #endif
 #if defined __s390x__
 #define SHMLBA	(__getpagesize())
 #endif
-#define SHM_RDONLY	010000
 #define SHM_W	0200
-#define SHM_RND	020000
 #define SHM_R	0400
 #define SHM_REMAP	040000
 #define SHM_LOCK	11
 #define SHM_UNLOCK	12
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
+#if defined __powerpc64__
+#define SHMLBA	(__getpagesize())
+#endif
+#if defined __x86_64__
+#define SHMLBA	(__getpagesize())
+#endif
+#endif				// __LSB_VERSION__ >= 2.0
 
 
 
+
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef unsigned long int shmatt_t;
@@ -71,7 +85,10 @@ extern "C" {
     typedef unsigned long int shmatt_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     struct shmid_ds {
@@ -194,13 +211,24 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
-    extern int __getpagesize(void);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void *shmat(int, const void *, int);
     extern int shmctl(int, int, struct shmid_ds *);
     extern int shmdt(const void *);
     extern int shmget(key_t, size_t, int);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 11
+    extern int __getpagesize(void);
+#endif				// __LSB_VERSION__ >= 1.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

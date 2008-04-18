@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QPLUGINLOADER_H_
 #define _QTCORE_QPLUGINLOADER_H_
 
 class QPluginLoader;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPluginLoader : public QObject
 {
 private:
@@ -24,7 +26,15 @@ public:
     QString errorString() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN13QPluginLoader16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

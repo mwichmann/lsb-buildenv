@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 12 )
 #ifndef _SYS_STATVFS_H_
 #define _SYS_STATVFS_H_
 
@@ -8,6 +9,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 20
 #if defined __ia64__
 /* IA64 */
     struct statvfs {
@@ -266,12 +268,23 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int fstatvfs(int, struct statvfs *);
     extern int fstatvfs64(int, struct statvfs64 *);
     extern int statvfs(const char *, struct statvfs *);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 13
     extern int statvfs64(const char *, struct statvfs64 *);
+#endif				// __LSB_VERSION__ >= 1.3
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

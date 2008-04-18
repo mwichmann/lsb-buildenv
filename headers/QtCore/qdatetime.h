@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QDATETIME_H_
 #define _QTCORE_QDATETIME_H_
 
 class QDateTime;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QDate
 {
 private:
@@ -103,15 +105,23 @@ public:
     static QDateTime fromTime_t(unsigned int);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDataStream _ZlsR11QDataStreamRK5QDate(QDataStream &, const QDate &);
-extern QDataStream _ZrsR11QDataStreamR5QDate(QDataStream &, QDate &);
-extern QDataStream _ZlsR11QDataStreamRK5QTime(QDataStream &, const QTime &);
-extern QDataStream _ZrsR11QDataStreamR5QTime(QDataStream &, QTime &);
-extern QDataStream _ZlsR11QDataStreamRK9QDateTime(QDataStream &, const QDateTime &);
-extern QDataStream _ZrsR11QDataStreamR9QDateTime(QDataStream &, QDateTime &);
-extern QDebug _Zls6QDebugRK5QDate(_Z6QDebug, const QDate &);
-extern QDebug _Zls6QDebugRK5QTime(_Z6QDebug, const QTime &);
-extern QDebug _Zls6QDebugRK9QDateTime(_Z6QDebug, const QDateTime &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDebug _Zls6QDebugRK5QDate(const QDate &);
+extern QDebug _Zls6QDebugRK5QTime(const QTime &);
+extern QDebug _Zls6QDebugRK9QDateTime(const QDateTime &);
+extern QDataStream _ZlsR11QDataStreamRK5QDate(const QDate &);
+extern QDataStream _ZlsR11QDataStreamRK5QTime(const QTime &);
+extern QDataStream _ZlsR11QDataStreamRK9QDateTime(const QDateTime &);
+extern QDataStream _ZrsR11QDataStreamR5QDate(QDate &);
+extern QDataStream _ZrsR11QDataStreamR5QTime(QTime &);
+extern QDataStream _ZrsR11QDataStreamR9QDateTime(QDateTime &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

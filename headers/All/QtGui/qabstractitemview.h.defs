@@ -1,57 +1,57 @@
 
 class QAbstractItemView;
 enum _ZN17QAbstractItemView13SelectionModeE {
-    NoSelection = 0,
-    SingleSelection = 1,
-    MultiSelection = 2,
-    ExtendedSelection = 3,
-    ContiguousSelection = 4
+    NoSelection,
+    SingleSelection,
+    MultiSelection,
+    ExtendedSelection,
+    ContiguousSelection
 };
 enum _ZN17QAbstractItemView17SelectionBehaviorE {
-    SelectItems = 0,
-    SelectRows = 1,
-    SelectColumns = 2
+    SelectItems,
+    SelectRows,
+    SelectColumns
 };
 enum _ZN17QAbstractItemView10ScrollHintE {
-    EnsureVisible = 0,
-    PositionAtTop = 1,
-    PositionAtBottom = 2
+    EnsureVisible,
+    PositionAtTop,
+    PositionAtBottom
 };
 enum _ZN17QAbstractItemView11EditTriggerE {
-    NoEditTriggers = 0,
-    CurrentChanged = 1,
-    DoubleClicked = 2,
-    SelectedClicked = 4,
-    EditKeyPressed = 8,
-    AnyKeyPressed = 16,
-    AllEditTriggers = 31
+    NoEditTriggers,
+    CurrentChanged,
+    DoubleClicked,
+    SelectedClicked,
+    EditKeyPressed,
+    AnyKeyPressed,
+    AllEditTriggers
 };
 class QFlags < QAbstractItemView::EditTrigger >;
 typedef class QFlags < QAbstractItemView::EditTrigger >
     _ZN17QAbstractItemView12EditTriggersE;
 enum _ZN17QAbstractItemView12CursorActionE {
-    MoveUp = 0,
-    MoveDown = 1,
-    MoveLeft = 2,
-    MoveRight = 3,
-    MoveHome = 4,
-    MoveEnd = 5,
-    MovePageUp = 6,
-    MovePageDown = 7,
-    MoveNext = 8,
-    MovePrevious = 9
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    MoveHome,
+    MoveEnd,
+    MovePageUp,
+    MovePageDown,
+    MoveNext,
+    MovePrevious
 };
 enum _ZN17QAbstractItemView5StateE {
-    NoState = 0,
-    DraggingState = 1,
-    DragSelectingState = 2,
-    EditingState = 3,
-    ExpandingState = 4,
-    CollapsingState = 5
+    NoState,
+    DraggingState,
+    DragSelectingState,
+    EditingState,
+    ExpandingState,
+    CollapsingState
 };
 enum _ZN17QAbstractItemView21DropIndicatorPositionE {
-    OnItem = 0,
-    AboveItem = 1,
-    BelowItem = 2,
-    OnViewport = 3
+    OnItem,
+    AboveItem,
+    BelowItem,
+    OnViewport
 };

@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTSQL_QSQL_H_
 #define _QTSQL_QSQL_H_
 
 class QFlags < QSql::ParamTypeFlag >;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QSql::ParamTypeFlag>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }ParamType	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 enum Location	
 {
 AfterLastRow = -2,	
@@ -61,5 +66,8 @@ Yes = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

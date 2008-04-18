@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _UTIME_H_
 #define _UTIME_H_
 
@@ -8,14 +9,23 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
     struct utimbuf {
 	time_t actime;
 	time_t modtime;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int utime(const char *, const struct utimbuf *);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

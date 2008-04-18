@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QNAMESPACE_H_
 #define _QTCORE_QNAMESPACE_H_
 
 class QFlags < Qt::MouseButton >;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef KeyboardModifiers	
 ;
 
@@ -132,6 +134,9 @@ typedef WindowFlags	WFlags
 typedef qint32	QCOORD	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 enum GlobalColor	
 {
 color0 = 0,	
@@ -1324,5 +1329,8 @@ RelayoutDropped = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

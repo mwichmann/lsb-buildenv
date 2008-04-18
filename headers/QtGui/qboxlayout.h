@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QBOXLAYOUT_H_
 #define _QTGUI_QBOXLAYOUT_H_
 
 class QBoxLayout;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QBoxLayout : public QLayout
 {
 private:
@@ -87,9 +89,17 @@ public:
      QVBoxLayout(int, char const*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QBoxLayout16staticMetaObjectE ;
 extern struct QMetaObject _ZN11QHBoxLayout16staticMetaObjectE ;
 extern struct QMetaObject _ZN11QVBoxLayout16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

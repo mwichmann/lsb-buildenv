@@ -368,3 +368,4 @@ extern FcResult FcPatternGet(const FcPattern *, const char *, int,
 			     FcValue *);
 extern void FcPatternPrint(const FcPattern *);
 extern FcBlanks *FcConfigGetBlanks(FcConfig *);
+extern void FcFini(void);

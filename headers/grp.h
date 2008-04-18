@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _GRP_H_
 #define _GRP_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
     struct group {
 	char *gr_name;
 	char *gr_passwd;
@@ -16,8 +18,13 @@ extern "C" {
 	char **gr_mem;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void endgrent(void);
     extern struct group *getgrent(void);
     extern struct group *getgrgid(gid_t);
@@ -25,12 +32,21 @@ extern "C" {
     extern int initgroups(const char *, gid_t);
     extern void setgrent(void);
     extern int setgroups(size_t, const gid_t *);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 13
     extern int getgrgid_r(gid_t, struct group *, char *, size_t,
 			  struct group **);
     extern int getgrnam_r(const char *, struct group *, char *, size_t,
 			  struct group **);
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 30
     extern int getgrouplist(const char *, gid_t, gid_t *, int *);
+#endif				// __LSB_VERSION__ >= 3.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

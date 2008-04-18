@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_TTNAMEID_H_
 #define _FREETYPE_TTNAMEID_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define TT_MS_LANGID_KIRGHIZ_KIRGHIZ_REPUBLIC	 \
 	TT_MS_LANGID_KIRGHIZ_KIRGHIZSTAN
 #define TT_MS_LANGID_SOTHO_SOUTHERN_SOUTH_AFRICA	 \
@@ -549,9 +551,12 @@ extern "C" {
 #define TT_UCR_ARABIC_PRESENTATION_FORMS_B	TT_UCR_ARABIC_PRESENTATIONS_B
 #define TT_UCR_KANBUN	TT_UCR_CJK_MISC
 #define TT_UCR_COMBINING_DIACRITICAL_MARKS	TT_UCR_COMBINING_DIACRITICS
+#endif				// __LSB_VERSION__ >= 3.2
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

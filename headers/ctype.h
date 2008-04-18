@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _CTYPE_H_
 #define _CTYPE_H_
 
@@ -11,6 +12,7 @@ extern "C" {
 
 
 /* These are all the characteristics of characters*/
+#if __LSB_VERSION__ >= 12
     enum {
 #if defined __i386__
 /* IA32 */
@@ -119,12 +121,18 @@ extern "C" {
 #endif
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int _tolower(int);
     extern int _toupper(int);
     extern int isalnum(int);
     extern int isalpha(int);
     extern int isascii(int);
+    extern int isblank(int);
     extern int iscntrl(int);
     extern int isdigit(int);
     extern int isgraph(int);
@@ -137,11 +145,39 @@ extern "C" {
     extern int toascii(int);
     extern int tolower(int);
     extern int toupper(int);
-    extern int isblank(int);
+#if __LSB_VERSION__ < 20
+    extern unsigned short *__ctype_b;
+    extern unsigned short *__ctype_b;
+    extern int32_t *__ctype_tolower;
+    extern int32_t *__ctype_toupper;
+#endif				// __LSB_VERSION__ < 2.0
+
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 20
+    extern unsigned short *__ctype_b;
+#endif				// __LSB_VERSION__ < 2.0
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
+#if __LSB_VERSION__ < 20
+    extern unsigned short *__ctype_b;
+    extern unsigned short *__ctype_b;
+    extern unsigned short *__ctype_b;
+#endif				// __LSB_VERSION__ < 2.0
+
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
     extern const unsigned short **__ctype_b_loc(void);
-    extern const int32_t **__ctype_toupper_loc(void);
     extern const int32_t **__ctype_tolower_loc(void);
+    extern const int32_t **__ctype_toupper_loc(void);
+#endif				// __LSB_VERSION__ >= 2.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _X11_XCMS_H_
 #define _X11_XCMS_H_
 
@@ -9,8 +10,65 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
+#define ClientWhitePointOfCCC(ccc)	(&(ccc)->clientWhitePt)
+#define ScreenWhitePointOfCCC(ccc)	(&(ccc)->pPerScrnInfo->screenWhitePt)
+#define DisplayOfCCC(ccc)	((ccc)->dpy)
+#define FunctionSetOfCCC(ccc)	((ccc)->pPerScrnInfo->functionSet)
+#define ScreenNumberOfCCC(ccc)	((ccc)->screenNumber)
+#define VisualOfCCC(ccc)	((ccc)->visual)
+#define XcmsUndefinedFormat	(XcmsColorFormat)0x00000000
+#define XcmsCIEXYZFormat	(XcmsColorFormat)0x00000001
+#define XcmsCIEuvYFormat	(XcmsColorFormat)0x00000002
+#define XcmsCIExyYFormat	(XcmsColorFormat)0x00000003
+#define XcmsCIELabFormat	(XcmsColorFormat)0x00000004
+#define XcmsCIELuvFormat	(XcmsColorFormat)0x00000005
+#define XcmsTekHVCFormat	(XcmsColorFormat)0x00000006
+#define XcmsRGBFormat	(XcmsColorFormat)0x80000000
+#define XcmsRGBiFormat	(XcmsColorFormat)0x80000001
+#define XcmsFailure	0
+#define XcmsInitNone	0x00
+#define XcmsInitSuccess	0x01
+#define XcmsInitFailure	0xff
+#define XcmsSuccess	1
+#define XcmsSuccessWithCompression	2
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+
+#if __LSB_VERSION__ >= 12
     typedef struct _XcmsFunctionSet XcmsFunctionSet;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
+    struct {
+	unsigned short red;
+	unsigned short green;
+	unsigned short blue;
+    };
+
+    struct {
+	XcmsFloat red;
+	XcmsFloat green;
+	XcmsFloat blue;
+    };
+
+    struct {
+	union {
+	    XcmsRGB RGB;
+	    XcmsRGBi RGBi;
+	    XcmsCIEXYZ CIEXYZ;
+	    XcmsCIEuvY CIEuvY;
+	    XcmsCIExyY CIExyY;
+	    XcmsCIELab CIELab;
+	    XcmsCIELuv CIELuv;
+	    XcmsTekHVC TekHVC;
+	    XcmsPad Pad;
+	} spec;
+	unsigned long int pixel;
+	XcmsColorFormat format;
+    };
 
     struct _XcmsFunctionSet {
 	XcmsColorSpace **DDColorSpaces;
@@ -18,7 +76,22 @@ extern "C" {
 	XcmsScreenFreeProc screenFreeProc;
     };
 
+    int (*screenFreeProc) (void);
 
+    int (*screenFreeProc) (void);
+
+    int (*screenFreeProc) (void);
+
+    void (*screenFreeProc) (void);
+
+    int (*screenFreeProc) (void);
+
+    int (*screenFreeProc) (void);
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+#if __LSB_VERSION__ >= 12
     typedef unsigned long int XcmsColorFormat;
 
     typedef double XcmsFloat;
@@ -78,8 +151,57 @@ extern "C" {
 	XcmsFloat pad3;
     } XcmsPad;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
+    struct {
+	XcmsFloat X;
+	XcmsFloat Y;
+	XcmsFloat Z;
+    };
+
+    struct {
+	XcmsFloat u_prime;
+	XcmsFloat v_prime;
+	XcmsFloat Y;
+    };
+
+    struct {
+	XcmsFloat x;
+	XcmsFloat y;
+	XcmsFloat Y;
+    };
+
+    struct {
+	XcmsFloat L_star;
+	XcmsFloat a_star;
+	XcmsFloat b_star;
+    };
+
+    struct {
+	XcmsFloat L_star;
+	XcmsFloat u_star;
+	XcmsFloat v_star;
+    };
+
+    struct {
+	XcmsFloat H;
+	XcmsFloat V;
+	XcmsFloat C;
+    };
+
+    struct {
+	XcmsFloat pad0;
+	XcmsFloat pad1;
+	XcmsFloat pad2;
+	XcmsFloat pad3;
+    };
+
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* XCMS Color Structure*/
+#if __LSB_VERSION__ >= 12
     typedef union {
 	XcmsRGB RGB;
 	XcmsRGBi RGBi;
@@ -92,11 +214,16 @@ extern "C" {
 	XcmsPad Pad;
     } XcmsColor;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* XCMS Per Screen related data*/
+#if __LSB_VERSION__ >= 12
     typedef struct _XcmsPerScrnInfo XcmsPerScrnInfo;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+#if __LSB_VERSION__ >= 12
     struct _XcmsPerScrnInfo {
 	XcmsColor screenWhitePt;
 	XPointer functionSet;
@@ -105,7 +232,10 @@ extern "C" {
 	char pad[1];
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+#if __LSB_VERSION__ >= 12
     typedef int (*XcmsCompressionProc) (void);
 
     typedef int (*XcmsWhiteAdjustProc) (void);
@@ -118,18 +248,48 @@ extern "C" {
 
     typedef int (*XcmsParseStringProc) (void);
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* XCMS Color Conversion Context*/
+#if __LSB_VERSION__ >= 12
+    typedef struct _XcmsCCC XcmsCCCRec;
+
     typedef struct _XcmsCCC *XcmsCCC;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+#if __LSB_VERSION__ >= 12
+    struct _XcmsCCC {
+	Display *dpy;
+	int screenNumber;
+	Visual *visual;
+	XcmsColor clientWhitePt;
+	XcmsCompressionProc gamutCompProc;
+	XPointer gamutCompClientData;
+	XcmsWhiteAdjustProc whitePtAdjProc;
+	XPointer whitePtAdjClientData;
+	XcmsPerScrnInfo *pPerScrnInfo;
+    };
+
+    struct _XcmsCCC *;
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+#if __LSB_VERSION__ >= 12
     typedef XcmsConversionProc *XcmsFuncListPtr;
+
+#endif				// __LSB_VERSION__ >= 1.2
 
 
 /* Color Space -- per Color Space related data (Device-Independent or Device-Dependent)*/
+#if __LSB_VERSION__ >= 12
     typedef struct _XcmsColorSpace XcmsColorSpace;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+#if __LSB_VERSION__ >= 12
     struct _XcmsColorSpace {
 	char *prefix;
 	XcmsColorFormat id;
@@ -139,7 +299,12 @@ extern "C" {
 	int inverse_flag;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int XcmsAddColorSpace(XcmsColorSpace *);
     extern int XcmsAddFunctionSet(XcmsFunctionSet *);
     extern int XcmsAllocColor(Display *, Colormap, XcmsColor *,
@@ -261,7 +426,10 @@ extern "C" {
 					  XcmsColor *, unsigned int,
 					  int *);
     extern Visual *XcmsVisualOfCCC(XcmsCCC);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

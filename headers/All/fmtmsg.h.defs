@@ -1,16 +1,16 @@
 
-#define MM_HARD	1
-#define MM_NRECOV	128
-#define MM_UTIL	16
-#define MM_SOFT	2
-#define MM_OPSYS	32
-#define MM_FIRM	4
-#define MM_RECOVER	64
-#define MM_APPL	8
+#define MM_HARD	1		/* Source of the condition is hardware. */
+#define MM_NRECOV	128	/* Non-recoverable error. */
+#define MM_UTIL	16		/* Condition detected by utility. */
+#define MM_SOFT	2		/* Source of the condition is software. */
+#define MM_OPSYS	32	/* Condition detected by operating system. */
+#define MM_FIRM	4		/* Source of the condition is firmware. */
+#define MM_RECOVER	64	/* Recoverable error. */
+#define MM_APPL	8		/* Condition detected by application. */
 
-#define MM_NOSEV	0
-#define MM_HALT	1
-#define MM_ERROR	2
+#define MM_NOSEV	0	/* No severity level provided for the message. */
+#define MM_HALT	1		/* Error causing application to halt. */
+#define MM_ERROR	2	/* Application has encountered a non-fatal fault. */
 
 #define MM_NULLLBL	((char *) 0)
 

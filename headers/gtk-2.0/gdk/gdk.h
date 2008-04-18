@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GTK_2_0_GDK_GDK_H_
 #define _GTK_2_0_GDK_GDK_H_
 
@@ -13,6 +14,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define GDK_WINDOWING_X11
 #define GDK_PIXMAP_OBJECT(object)	 \
 	((GdkPixmapObject *) GDK_PIXMAP (object))
@@ -279,8 +281,11 @@ extern "C" {
 #define GDK_SELECTION_CLIPBOARD	_GDK_MAKE_ATOM (69)
 #define GDK_SELECTION_TYPE_COLORMAP	_GDK_MAKE_ATOM (7)
 #define GDK_TARGET_COLORMAP	_GDK_MAKE_ATOM (7)
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef struct _GdkDrawable GdkWindow;
 
     typedef struct _GdkColor GdkColor;
@@ -949,6 +954,9 @@ extern "C" {
 	GDK_WA_NOREDIR = 1 << 8
     } GdkWindowAttributesType;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 
     struct _GdkDrawable {
 	GObject parent_instance;
@@ -1087,7 +1095,6 @@ extern "C" {
 	gint width;
 	gint height;
     };
-
 
 
 
@@ -1340,7 +1347,6 @@ extern "C" {
 
 
 
-
     struct _GdkImage {
 	GObject parent_instance;
 	GdkImageType type;
@@ -1356,7 +1362,6 @@ extern "C" {
 	GdkColormap *colormap;
 	gpointer windowing_data;
     };
-
 
 
 
@@ -1377,7 +1382,6 @@ extern "C" {
 	gint x;
 	gint y;
     };
-
 
 
 
@@ -1666,231 +1670,383 @@ extern "C" {
 
 
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+// Function prototypes
 
-    extern void gdk_window_deiconify(GdkWindow *);
-    extern GType gdk_device_get_type(void);
-    extern void gdk_gc_set_clip_origin(GdkGC *, gint, gint);
-    extern GdkColormap *gdk_drawable_get_colormap(GdkDrawable *);
-    extern void gdk_flush(void);
-    extern gint gdk_screen_height_mm(void);
-    extern void gdk_display_get_pointer(GdkDisplay *, GdkScreen * *,
-					gint *, gint *, GdkModifierType *);
-    extern GdkEventMask gdk_window_get_events(GdkWindow *);
-    extern void gdk_window_scroll(GdkWindow *, gint, gint);
-    extern GType gdk_window_object_get_type(void);
+#if __LSB_VERSION__ >= 31
+    extern void gdk_add_client_message_filter(GdkAtom, GdkFilterFunc,
+					      gpointer);
+    extern GdkAtom gdk_atom_intern(const gchar *, gboolean);
+    extern gchar *gdk_atom_name(GdkAtom);
+    extern GType gdk_axis_use_get_type(void);
+    extern void gdk_beep(void);
+    extern struct _GdkDrawable *gdk_bitmap_create_from_data(GdkDrawable *,
+							    const gchar *,
+							    gint, gint);
+    extern GType gdk_byte_order_get_type(void);
+    extern GType gdk_cap_style_get_type(void);
+    extern GdkColor *gdk_color_copy(const GdkColor *);
+    extern gboolean gdk_color_equal(const GdkColor *, const GdkColor *);
+    extern void gdk_color_free(GdkColor *);
+    extern GType gdk_color_get_type(void);
+    extern guint gdk_color_hash(const GdkColor *);
+    extern gint gdk_color_parse(const gchar *, GdkColor *);
+    extern gboolean gdk_colormap_alloc_color(GdkColormap *, GdkColor *,
+					     gboolean, gboolean);
+    extern gint gdk_colormap_alloc_colors(GdkColormap *, GdkColor *, gint,
+					  gboolean, gboolean, gboolean *);
+    extern void gdk_colormap_free_colors(GdkColormap *, GdkColor *, gint);
+    extern GdkScreen *gdk_colormap_get_screen(GdkColormap *);
+    extern GdkColormap *gdk_colormap_get_system(void);
+    extern GType gdk_colormap_get_type(void);
+    extern GdkVisual *gdk_colormap_get_visual(GdkColormap *);
+    extern GdkColormap *gdk_colormap_new(GdkVisual *, gboolean);
+    extern void gdk_colormap_query_color(GdkColormap *, gulong,
+					 GdkColor *);
+    extern GType gdk_crossing_mode_get_type(void);
+    extern GdkDisplay *gdk_cursor_get_display(GdkCursor *);
+    extern GType gdk_cursor_get_type(void);
+    extern GdkCursor *gdk_cursor_new(GdkCursorType);
+    extern GdkCursor *gdk_cursor_new_for_display(GdkDisplay *,
+						 GdkCursorType);
     extern GdkCursor *gdk_cursor_new_from_pixbuf(GdkDisplay *, GdkPixbuf *,
 						 gint, gint);
-    extern GType gdk_axis_use_get_type(void);
-    extern GType gdk_fill_get_type(void);
-    extern void gdk_window_resize(GdkWindow *, gint, gint);
-    extern GdkKeymap *gdk_keymap_get_for_display(GdkDisplay *);
+    extern GdkCursor *gdk_cursor_new_from_pixmap(GdkPixmap *, GdkPixmap *,
+						 const GdkColor *,
+						 const GdkColor *, gint,
+						 gint);
+    extern GdkCursor *gdk_cursor_ref(GdkCursor *);
+    extern GType gdk_cursor_type_get_type(void);
+    extern void gdk_cursor_unref(GdkCursor *);
+    extern void gdk_device_free_history(GdkTimeCoord * *, gint);
+    extern gboolean gdk_device_get_axis(GdkDevice *, gdouble *, GdkAxisUse,
+					gdouble *);
+    extern GdkDevice *gdk_device_get_core_pointer(void);
+    extern gboolean gdk_device_get_history(GdkDevice *, GdkWindow *,
+					   guint32, guint32,
+					   GdkTimeCoord * **, gint *);
+    extern void gdk_device_get_state(GdkDevice *, GdkWindow *, gdouble *,
+				     GdkModifierType *);
+    extern GType gdk_device_get_type(void);
+    extern void gdk_device_set_axis_use(GdkDevice *, guint, GdkAxisUse);
+    extern void gdk_device_set_key(GdkDevice *, guint, guint,
+				   GdkModifierType);
+    extern gboolean gdk_device_set_mode(GdkDevice *, GdkInputMode);
+    extern void gdk_device_set_source(GdkDevice *, GdkInputSource);
+    extern GList *gdk_devices_list(void);
     extern void gdk_display_add_client_message_filter(GdkDisplay *,
 						      GdkAtom,
 						      GdkFilterFunc,
 						      gpointer);
-    extern GdkPixmap *gdk_pixmap_create_from_xpm_d(GdkDrawable *,
-						   GdkBitmap * *,
-						   const GdkColor *,
-						   gchar * *);
-    extern gboolean gdk_display_supports_selection_notification(GdkDisplay
-								*);
-    extern GSList *gdk_display_manager_list_displays(GdkDisplayManager *);
-    extern void gdk_gc_set_subwindow(GdkGC *, GdkSubwindowMode);
-    extern void gdk_gc_set_colormap(GdkGC *, GdkColormap *);
-    extern GType gdk_grab_status_get_type(void);
-    extern GType gdk_visual_get_type(void);
-    extern GdkVisual *gdk_rgb_get_visual(void);
-    extern GType gdk_event_get_type(void);
-    extern void gdk_display_set_double_click_time(GdkDisplay *, guint);
-    extern GList *gdk_devices_list(void);
-    extern void gdk_draw_layout_line(GdkDrawable *, GdkGC *, gint, gint,
-				     PangoLayoutLine *);
-    extern gboolean gdk_init_check(int *, char ***);
-    extern gboolean gdk_event_get_root_coords(GdkEvent *, gdouble *,
-					      gdouble *);
-    extern void gdk_window_begin_resize_drag(GdkWindow *, GdkWindowEdge,
-					     gint, gint, gint, guint32);
-    extern guint gdk_keyval_from_name(const gchar *);
-    extern gboolean gdk_display_request_selection_notification(GdkDisplay
-							       *, GdkAtom);
-    extern void gdk_window_raise(GdkWindow *);
-    extern GdkImage *gdk_image_new(GdkImageType, GdkVisual *, gint, gint);
-    extern GdkAtom gdk_atom_intern(const gchar *, gboolean);
-    extern void gdk_window_get_frame_extents(GdkWindow *, GdkRectangle *);
-    extern gboolean gdk_rectangle_intersect(GdkRectangle *, GdkRectangle *,
-					    GdkRectangle *);
-    extern GdkWindow *gdk_selection_owner_get_for_display(GdkDisplay *,
-							  GdkAtom);
-    extern PangoRenderer *gdk_pango_renderer_get_default(GdkScreen *);
-    extern gchar *gdk_get_display(void);
-    extern void gdk_gc_set_dashes(GdkGC *, gint, gint8 *, gint);
-    extern void gdk_device_set_key(GdkDevice *, guint, guint,
-				   GdkModifierType);
-    extern void gdk_pango_renderer_set_override_color(GdkPangoRenderer *,
-						      PangoRenderPart,
-						      const GdkColor *);
-    extern void gdk_window_iconify(GdkWindow *);
-    extern void gdk_display_set_double_click_distance(GdkDisplay *, guint);
-    extern GdkWindow *gdk_window_get_group(GdkWindow *);
-    extern GdkDevice *gdk_device_get_core_pointer(void);
-    extern guint gdk_color_hash(const GdkColor *);
-    extern void gdk_screen_get_monitor_geometry(GdkScreen *, gint,
-						GdkRectangle *);
-    extern void gdk_device_set_source(GdkDevice *, GdkInputSource);
-    extern GType gdk_input_mode_get_type(void);
-    extern GdkWindow *gdk_get_default_root_window(void);
-    extern gchar *gdk_screen_make_display_name(GdkScreen *);
-    extern GdkGrabStatus gdk_pointer_grab(GdkWindow *, gboolean,
-					  GdkEventMask, GdkWindow *,
-					  GdkCursor *, guint32);
-    extern void gdk_window_set_title(GdkWindow *, const gchar *);
-    extern void gdk_property_delete(GdkWindow *, GdkAtom);
-    extern GdkColormap *gdk_rgb_get_colormap(void);
-    extern void gdk_free_text_list(gchar * *);
-    extern gint gdk_colormap_alloc_colors(GdkColormap *, GdkColor *, gint,
-					  gboolean, gboolean, gboolean *);
-    extern void gdk_window_process_all_updates(void);
-    extern guint32 gdk_event_get_time(GdkEvent *);
-    extern gint gdk_text_property_to_text_list_for_display(GdkDisplay *,
-							   GdkAtom, gint,
-							   const guchar *,
-							   gint,
-							   gchar * **);
-    extern GdkAtom gdk_drag_get_selection(GdkDragContext *);
-    extern GdkScreen *gdk_screen_get_default(void);
-    extern void gdk_window_set_skip_pager_hint(GdkWindow *, gboolean);
-    extern GdkPixmap *gdk_pixmap_foreign_new(GdkNativeWindow);
-    extern GType gdk_window_hints_get_type(void);
-    extern void gdk_drag_drop(GdkDragContext *, guint32);
-    extern void gdk_gc_set_fill(GdkGC *, GdkFill);
-    extern void gdk_init(int *, char ***);
-    extern gboolean gdk_property_get(GdkWindow *, GdkAtom, GdkAtom, gulong,
-				     gulong, gint, GdkAtom *, gint *,
-				     gint *, guchar * *);
-    extern void gdk_gc_set_rgb_fg_color(GdkGC *, const GdkColor *);
-    extern void gdk_window_set_transient_for(GdkWindow *, GdkWindow *);
-    extern GdkRegion *gdk_pango_layout_line_get_clip_region(PangoLayoutLine
-							    *, gint, gint,
-							    gint *, gint);
-    extern GdkVisual *gdk_screen_get_system_visual(GdkScreen *);
-    extern GdkDisplay
-	*gdk_display_manager_get_default_display(GdkDisplayManager *);
-    extern gint gdk_text_property_to_utf8_list(GdkAtom, gint,
-					       const guchar *, gint,
-					       gchar * **);
-    extern void gdk_window_set_type_hint(GdkWindow *, GdkWindowTypeHint);
-    extern void gdk_parse_args(int *, char ***);
-    extern GdkPixmap *gdk_pixmap_create_from_xpm(GdkDrawable *,
-						 GdkBitmap * *,
-						 const GdkColor *,
-						 const gchar *);
-    extern void gdk_window_set_group(GdkWindow *, GdkWindow *);
-    extern void gdk_window_focus(GdkWindow *, guint32);
-    extern void gdk_event_set_screen(GdkEvent *, GdkScreen *);
+    extern void gdk_display_beep(GdkDisplay *);
+    extern void gdk_display_close(GdkDisplay *);
     extern void gdk_display_flush(GdkDisplay *);
-    extern GType gdk_owner_change_get_type(void);
-    extern void gdk_region_subtract(GdkRegion *, GdkRegion *);
-    extern GType gdk_cap_style_get_type(void);
-    extern void gdk_window_unstick(GdkWindow *);
-    extern void gdk_draw_glyphs(GdkDrawable *, GdkGC *, PangoFont *, gint,
-				gint, PangoGlyphString *);
-    extern gint gdk_text_property_to_utf8_list_for_display(GdkDisplay *,
-							   GdkAtom, gint,
-							   const guchar *,
-							   gint,
-							   gchar * **);
-    extern void gdk_drag_abort(GdkDragContext *, guint32);
+    extern GdkDevice *gdk_display_get_core_pointer(GdkDisplay *);
+    extern GdkDisplay *gdk_display_get_default(void);
+    extern guint gdk_display_get_default_cursor_size(GdkDisplay *);
+    extern GdkWindow *gdk_display_get_default_group(GdkDisplay *);
+    extern GdkScreen *gdk_display_get_default_screen(GdkDisplay *);
+    extern GdkEvent *gdk_display_get_event(GdkDisplay *);
+    extern void gdk_display_get_maximal_cursor_size(GdkDisplay *, guint *,
+						    guint *);
+    extern gint gdk_display_get_n_screens(GdkDisplay *);
+    extern const gchar *gdk_display_get_name(GdkDisplay *);
+    extern void gdk_display_get_pointer(GdkDisplay *, GdkScreen * *,
+					gint *, gint *, GdkModifierType *);
+    extern GdkScreen *gdk_display_get_screen(GdkDisplay *, gint);
+    extern GType gdk_display_get_type(void);
     extern GdkWindow *gdk_display_get_window_at_pointer(GdkDisplay *,
 							gint *, gint *);
+    extern void gdk_display_keyboard_ungrab(GdkDisplay *, guint32);
+    extern GList *gdk_display_list_devices(GdkDisplay *);
+    extern GdkDisplayManager *gdk_display_manager_get(void);
+    extern GdkDisplay
+	*gdk_display_manager_get_default_display(GdkDisplayManager *);
+    extern GType gdk_display_manager_get_type(void);
+    extern GSList *gdk_display_manager_list_displays(GdkDisplayManager *);
+    extern void gdk_display_manager_set_default_display(GdkDisplayManager
+							*, GdkDisplay *);
+    extern GdkDisplay *gdk_display_open(const gchar *);
+    extern GdkEvent *gdk_display_peek_event(GdkDisplay *);
+    extern gboolean gdk_display_pointer_is_grabbed(GdkDisplay *);
+    extern void gdk_display_pointer_ungrab(GdkDisplay *, guint32);
+    extern void gdk_display_put_event(GdkDisplay *, GdkEvent *);
+    extern gboolean gdk_display_request_selection_notification(GdkDisplay
+							       *, GdkAtom);
+    extern void gdk_display_set_double_click_distance(GdkDisplay *, guint);
+    extern void gdk_display_set_double_click_time(GdkDisplay *, guint);
     extern GdkDisplayPointerHooks *gdk_display_set_pointer_hooks(GdkDisplay
 								 *,
 								 const
 								 GdkDisplayPointerHooks
 								 *);
-    extern void gdk_window_set_debug_updates(gboolean);
-    extern gboolean gdk_spawn_command_line_on_screen(GdkScreen *,
-						     const gchar *,
-						     GError * *);
-    extern GdkRegion *gdk_region_copy(GdkRegion *);
-    extern GdkEvent *gdk_display_peek_event(GdkDisplay *);
-    extern GdkColormap *gdk_gc_get_colormap(GdkGC *);
-    extern void gdk_selection_send_notify(guint32, GdkAtom, GdkAtom,
-					  GdkAtom, guint32);
-    extern const char *gdk_get_program_class(void);
-    extern GType gdk_filter_return_get_type(void);
-    extern void gdk_drop_reply(GdkDragContext *, gboolean, guint32);
-    extern void gdk_threads_enter(void);
-    extern void gdk_device_free_history(GdkTimeCoord * *, gint);
-    extern GdkImage *gdk_drawable_get_image(GdkDrawable *, gint, gint,
-					    gint, gint);
-    extern GType gdk_event_mask_get_type(void);
-    extern void gdk_set_program_class(const char *);
+    extern void gdk_display_store_clipboard(GdkDisplay *, GdkWindow *,
+					    guint32, GdkAtom *, gint);
+    extern gboolean gdk_display_supports_clipboard_persistence(GdkDisplay
+							       *);
+    extern gboolean gdk_display_supports_cursor_alpha(GdkDisplay *);
+    extern gboolean gdk_display_supports_cursor_color(GdkDisplay *);
+    extern gboolean gdk_display_supports_selection_notification(GdkDisplay
+								*);
+    extern void gdk_display_sync(GdkDisplay *);
+    extern void gdk_drag_abort(GdkDragContext *, guint32);
+    extern GType gdk_drag_action_get_type(void);
+    extern GdkDragContext *gdk_drag_begin(GdkWindow *, GList *);
+    extern GType gdk_drag_context_get_type(void);
+    extern GdkDragContext *gdk_drag_context_new(void);
+    extern void gdk_drag_drop(GdkDragContext *, guint32);
+    extern gboolean gdk_drag_drop_succeeded(GdkDragContext *);
+    extern void gdk_drag_find_window(GdkDragContext *, GdkWindow *, gint,
+				     gint, GdkWindow * *,
+				     GdkDragProtocol *);
+    extern void gdk_drag_find_window_for_screen(GdkDragContext *,
+						GdkWindow *, GdkScreen *,
+						gint, gint, GdkWindow * *,
+						GdkDragProtocol *);
+    extern guint32 gdk_drag_get_protocol(guint32, GdkDragProtocol *);
+    extern guint32 gdk_drag_get_protocol_for_display(GdkDisplay *, guint32,
+						     GdkDragProtocol *);
+    extern GdkAtom gdk_drag_get_selection(GdkDragContext *);
+    extern gboolean gdk_drag_motion(GdkDragContext *, GdkWindow *,
+				    GdkDragProtocol, gint, gint,
+				    GdkDragAction, GdkDragAction, guint32);
+    extern GType gdk_drag_protocol_get_type(void);
+    extern void gdk_drag_status(GdkDragContext *, GdkDragAction, guint32);
+    extern void gdk_draw_arc(GdkDrawable *, GdkGC *, gboolean, gint, gint,
+			     gint, gint, gint, gint);
+    extern void gdk_draw_drawable(GdkDrawable *, GdkGC *, GdkDrawable *,
+				  gint, gint, gint, gint, gint, gint);
+    extern void gdk_draw_glyphs(GdkDrawable *, GdkGC *, PangoFont *, gint,
+				gint, PangoGlyphString *);
+    extern void gdk_draw_glyphs_transformed(GdkDrawable *, GdkGC *,
+					    PangoMatrix *, PangoFont *,
+					    gint, gint,
+					    PangoGlyphString *);
+    extern void gdk_draw_gray_image(GdkDrawable *, GdkGC *, gint, gint,
+				    gint, gint, GdkRgbDither, guchar *,
+				    gint);
+    extern void gdk_draw_image(GdkDrawable *, GdkGC *, GdkImage *, gint,
+			       gint, gint, gint, gint, gint);
+    extern void gdk_draw_indexed_image(GdkDrawable *, GdkGC *, gint, gint,
+				       gint, gint, GdkRgbDither, guchar *,
+				       gint, GdkRgbCmap *);
+    extern void gdk_draw_layout(GdkDrawable *, GdkGC *, int, int,
+				PangoLayout *);
+    extern void gdk_draw_layout_line(GdkDrawable *, GdkGC *, gint, gint,
+				     PangoLayoutLine *);
+    extern void gdk_draw_layout_line_with_colors(GdkDrawable *, GdkGC *,
+						 gint, gint,
+						 PangoLayoutLine *,
+						 const GdkColor *,
+						 const GdkColor *);
+    extern void gdk_draw_layout_with_colors(GdkDrawable *, GdkGC *, int,
+					    int, PangoLayout *,
+					    const GdkColor *,
+					    const GdkColor *);
+    extern void gdk_draw_line(GdkDrawable *, GdkGC *, gint, gint, gint,
+			      gint);
+    extern void gdk_draw_lines(GdkDrawable *, GdkGC *, GdkPoint *, gint);
+    extern void gdk_draw_pixbuf(GdkDrawable *, GdkGC *, GdkPixbuf *, gint,
+				gint, gint, gint, gint, gint, GdkRgbDither,
+				gint, gint);
+    extern void gdk_draw_point(GdkDrawable *, GdkGC *, gint, gint);
+    extern void gdk_draw_points(GdkDrawable *, GdkGC *, GdkPoint *, gint);
     extern void gdk_draw_polygon(GdkDrawable *, GdkGC *, gboolean,
 				 GdkPoint *, gint);
+    extern void gdk_draw_rectangle(GdkDrawable *, GdkGC *, gboolean, gint,
+				   gint, gint, gint);
+    extern void gdk_draw_rgb_32_image(GdkDrawable *, GdkGC *, gint, gint,
+				      gint, gint, GdkRgbDither, guchar *,
+				      gint);
+    extern void gdk_draw_rgb_32_image_dithalign(GdkDrawable *, GdkGC *,
+						gint, gint, gint, gint,
+						GdkRgbDither, guchar *,
+						gint, gint, gint);
+    extern void gdk_draw_rgb_image(GdkDrawable *, GdkGC *, gint, gint,
+				   gint, gint, GdkRgbDither, guchar *,
+				   gint);
+    extern void gdk_draw_rgb_image_dithalign(GdkDrawable *, GdkGC *, gint,
+					     gint, gint, gint,
+					     GdkRgbDither, guchar *, gint,
+					     gint, gint);
+    extern void gdk_draw_segments(GdkDrawable *, GdkGC *, GdkSegment *,
+				  gint);
+    extern void gdk_draw_trapezoids(GdkDrawable *, GdkGC *, GdkTrapezoid *,
+				    gint);
+    extern GdkImage *gdk_drawable_copy_to_image(GdkDrawable *, GdkImage *,
+						gint, gint, gint, gint,
+						gint, gint);
+    extern GdkRegion *gdk_drawable_get_clip_region(GdkDrawable *);
+    extern GdkColormap *gdk_drawable_get_colormap(GdkDrawable *);
+    extern gint gdk_drawable_get_depth(GdkDrawable *);
+    extern GdkDisplay *gdk_drawable_get_display(GdkDrawable *);
+    extern GdkImage *gdk_drawable_get_image(GdkDrawable *, gint, gint,
+					    gint, gint);
+    extern GdkScreen *gdk_drawable_get_screen(GdkDrawable *);
+    extern void gdk_drawable_get_size(GdkDrawable *, gint *, gint *);
+    extern GType gdk_drawable_get_type(void);
+    extern GdkRegion *gdk_drawable_get_visible_region(GdkDrawable *);
+    extern GdkVisual *gdk_drawable_get_visual(GdkDrawable *);
+    extern void gdk_drawable_set_colormap(GdkDrawable *, GdkColormap *);
+    extern void gdk_drop_finish(GdkDragContext *, gboolean, guint32);
+    extern void gdk_drop_reply(GdkDragContext *, gboolean, guint32);
+    extern gint gdk_error_trap_pop(void);
+    extern void gdk_error_trap_push(void);
+    extern GdkEvent *gdk_event_copy(GdkEvent *);
+    extern void gdk_event_free(GdkEvent *);
+    extern GdkEvent *gdk_event_get(void);
+    extern gboolean gdk_event_get_axis(GdkEvent *, GdkAxisUse, gdouble *);
+    extern gboolean gdk_event_get_coords(GdkEvent *, gdouble *, gdouble *);
+    extern GdkEvent *gdk_event_get_graphics_expose(GdkWindow *);
+    extern gboolean gdk_event_get_root_coords(GdkEvent *, gdouble *,
+					      gdouble *);
+    extern GdkScreen *gdk_event_get_screen(GdkEvent *);
+    extern gboolean gdk_event_get_state(GdkEvent *, GdkModifierType *);
+    extern guint32 gdk_event_get_time(GdkEvent *);
+    extern GType gdk_event_get_type(void);
+    extern void gdk_event_handler_set(GdkEventFunc, gpointer,
+				      GDestroyNotify);
+    extern GType gdk_event_mask_get_type(void);
+    extern GdkEvent *gdk_event_new(GdkEventType);
+    extern GdkEvent *gdk_event_peek(void);
+    extern void gdk_event_put(GdkEvent *);
+    extern gboolean gdk_event_send_client_message(GdkEvent *,
+						  GdkNativeWindow);
+    extern gboolean gdk_event_send_client_message_for_display(GdkDisplay *,
+							      GdkEvent *,
+							      GdkNativeWindow);
+    extern void gdk_event_send_clientmessage_toall(GdkEvent *);
+    extern void gdk_event_set_screen(GdkEvent *, GdkScreen *);
+    extern GType gdk_event_type_get_type(void);
+    extern gboolean gdk_events_pending(void);
+    extern GType gdk_extension_mode_get_type(void);
+    extern GType gdk_fill_get_type(void);
+    extern GType gdk_fill_rule_get_type(void);
+    extern GType gdk_filter_return_get_type(void);
+    extern void gdk_flush(void);
+    extern GType gdk_font_type_get_type(void);
+    extern void gdk_free_compound_text(guchar *);
+    extern void gdk_free_text_list(gchar * *);
     extern GType gdk_function_get_type(void);
-    extern void gdk_display_close(GdkDisplay *);
-    extern gint gdk_screen_get_n_monitors(GdkScreen *);
+    extern void gdk_gc_copy(GdkGC *, GdkGC *);
+    extern GdkColormap *gdk_gc_get_colormap(GdkGC *);
+    extern GdkScreen *gdk_gc_get_screen(GdkGC *);
+    extern GType gdk_gc_get_type(void);
+    extern void gdk_gc_get_values(GdkGC *, GdkGCValues *);
+    extern GdkGC *gdk_gc_new(GdkDrawable *);
+    extern GdkGC *gdk_gc_new_with_values(GdkDrawable *, GdkGCValues *,
+					 GdkGCValuesMask);
+    extern void gdk_gc_offset(GdkGC *, gint, gint);
+    extern void gdk_gc_set_background(GdkGC *, const GdkColor *);
+    extern void gdk_gc_set_clip_mask(GdkGC *, GdkBitmap *);
+    extern void gdk_gc_set_clip_origin(GdkGC *, gint, gint);
+    extern void gdk_gc_set_clip_rectangle(GdkGC *, GdkRectangle *);
+    extern void gdk_gc_set_clip_region(GdkGC *, GdkRegion *);
+    extern void gdk_gc_set_colormap(GdkGC *, GdkColormap *);
+    extern void gdk_gc_set_dashes(GdkGC *, gint, gint8 *, gint);
+    extern void gdk_gc_set_exposures(GdkGC *, gboolean);
+    extern void gdk_gc_set_fill(GdkGC *, GdkFill);
+    extern void gdk_gc_set_foreground(GdkGC *, const GdkColor *);
+    extern void gdk_gc_set_function(GdkGC *, GdkFunction);
+    extern void gdk_gc_set_line_attributes(GdkGC *, gint, GdkLineStyle,
+					   GdkCapStyle, GdkJoinStyle);
+    extern void gdk_gc_set_rgb_bg_color(GdkGC *, const GdkColor *);
+    extern void gdk_gc_set_rgb_fg_color(GdkGC *, const GdkColor *);
+    extern void gdk_gc_set_stipple(GdkGC *, GdkPixmap *);
+    extern void gdk_gc_set_subwindow(GdkGC *, GdkSubwindowMode);
+    extern void gdk_gc_set_tile(GdkGC *, GdkPixmap *);
+    extern void gdk_gc_set_ts_origin(GdkGC *, gint, gint);
+    extern void gdk_gc_set_values(GdkGC *, GdkGCValues *, GdkGCValuesMask);
+    extern GType gdk_gc_values_mask_get_type(void);
+    extern GdkWindow *gdk_get_default_root_window(void);
+    extern gchar *gdk_get_display(void);
+    extern const gchar *gdk_get_display_arg_name(void);
+    extern const char *gdk_get_program_class(void);
+    extern gboolean gdk_get_show_events(void);
+    extern GType gdk_grab_status_get_type(void);
+    extern GType gdk_gravity_get_type(void);
+    extern GdkColormap *gdk_image_get_colormap(GdkImage *);
+    extern guint32 gdk_image_get_pixel(GdkImage *, gint, gint);
+    extern GType gdk_image_get_type(void);
+    extern GdkImage *gdk_image_new(GdkImageType, GdkVisual *, gint, gint);
+    extern void gdk_image_put_pixel(GdkImage *, gint, gint, guint32);
+    extern void gdk_image_set_colormap(GdkImage *, GdkColormap *);
+    extern GType gdk_image_type_get_type(void);
+    extern void gdk_init(int *, char ***);
+    extern gboolean gdk_init_check(int *, char ***);
+    extern GType gdk_input_condition_get_type(void);
+    extern GType gdk_input_mode_get_type(void);
+    extern void gdk_input_set_extension_events(GdkWindow *, gint,
+					       GdkExtensionMode);
+    extern GType gdk_input_source_get_type(void);
+    extern GType gdk_join_style_get_type(void);
+    extern GdkGrabStatus gdk_keyboard_grab(GdkWindow *, gboolean, guint32);
+    extern void gdk_keyboard_ungrab(guint32);
+    extern GdkKeymap *gdk_keymap_get_default(void);
+    extern PangoDirection gdk_keymap_get_direction(GdkKeymap *);
+    extern gboolean gdk_keymap_get_entries_for_keycode(GdkKeymap *, guint,
+						       GdkKeymapKey * *,
+						       guint * *, gint *);
+    extern gboolean gdk_keymap_get_entries_for_keyval(GdkKeymap *, guint,
+						      GdkKeymapKey * *,
+						      gint *);
+    extern GdkKeymap *gdk_keymap_get_for_display(GdkDisplay *);
+    extern GType gdk_keymap_get_type(void);
+    extern guint gdk_keymap_lookup_key(GdkKeymap *, const GdkKeymapKey *);
     extern gboolean gdk_keymap_translate_keyboard_state(GdkKeymap *, guint,
 							GdkModifierType,
 							gint, guint *,
 							gint *, gint *,
 							GdkModifierType *);
-    extern GType gdk_rectangle_get_type(void);
-    extern GdkDisplay *gdk_screen_get_display(GdkScreen *);
-    extern GList *gdk_window_get_toplevels(void);
-    extern GdkVisual *gdk_visual_get_best_with_depth(gint);
-    extern gboolean gdk_display_supports_cursor_alpha(GdkDisplay *);
-    extern void gdk_window_set_decorations(GdkWindow *, GdkWMDecoration);
-    extern PangoContext *gdk_pango_context_get_for_screen(GdkScreen *);
-    extern GdkVisual *gdk_colormap_get_visual(GdkColormap *);
-    extern void gdk_error_trap_push(void);
-    extern void gdk_display_beep(GdkDisplay *);
-    extern gboolean gdk_spawn_on_screen(GdkScreen *, const gchar *,
-					gchar * *, gchar * *, GSpawnFlags,
-					GSpawnChildSetupFunc, gpointer,
-					gint *, GError * *);
-    extern void gdk_add_client_message_filter(GdkAtom, GdkFilterFunc,
-					      gpointer);
-    extern PangoDirection gdk_keymap_get_direction(GdkKeymap *);
+    extern void gdk_keyval_convert_case(guint, guint *, guint *);
+    extern guint gdk_keyval_from_name(const gchar *);
+    extern gboolean gdk_keyval_is_lower(guint);
+    extern gboolean gdk_keyval_is_upper(guint);
+    extern gchar *gdk_keyval_name(guint);
+    extern guint gdk_keyval_to_lower(guint);
+    extern guint32 gdk_keyval_to_unicode(guint);
+    extern guint gdk_keyval_to_upper(guint);
+    extern GType gdk_line_style_get_type(void);
+    extern GList *gdk_list_visuals(void);
+    extern GType gdk_modifier_type_get_type(void);
+    extern void gdk_notify_startup_complete(void);
+    extern GType gdk_notify_type_get_type(void);
+    extern GType gdk_overlap_type_get_type(void);
+    extern GType gdk_owner_change_get_type(void);
+    extern PangoAttribute *gdk_pango_attr_embossed_new(gboolean);
     extern PangoAttribute *gdk_pango_attr_stipple_new(GdkBitmap *);
-    extern void gdk_window_lower(GdkWindow *);
-    extern gboolean gdk_rgb_ditherable(void);
-    extern gboolean gdk_colormap_alloc_color(GdkColormap *, GdkColor *,
-					     gboolean, gboolean);
-    extern GdkWindow *gdk_display_get_default_group(GdkDisplay *);
-    extern GType gdk_event_type_get_type(void);
-    extern GType gdk_color_get_type(void);
-    extern GType gdk_drag_protocol_get_type(void);
-    extern GType gdk_gravity_get_type(void);
-    extern gboolean gdk_events_pending(void);
-    extern GType gdk_input_condition_get_type(void);
-    extern GType gdk_input_source_get_type(void);
-    extern gchar *gdk_utf8_to_string_target(const gchar *);
-    extern void gdk_threads_init(void);
-    extern void gdk_gc_set_foreground(GdkGC *, const GdkColor *);
-    extern gint gdk_string_to_compound_text_for_display(GdkDisplay *,
-							const gchar *,
-							GdkAtom *, gint *,
-							guchar * *,
-							gint *);
-    extern GdkWindow *gdk_window_get_toplevel(GdkWindow *);
-    extern void gdk_drop_finish(GdkDragContext *, gboolean, guint32);
-    extern void gdk_window_set_functions(GdkWindow *, GdkWMFunction);
-    extern void gdk_window_invalidate_maybe_recurse(GdkWindow *,
-						    GdkRegion *,
-						    gboolean(*)(GdkWindow
-								*,
-								gpointer)
-						    , gpointer);
-    extern gint gdk_screen_get_height(GdkScreen *);
-    extern gboolean gdk_keymap_get_entries_for_keyval(GdkKeymap *, guint,
-						      GdkKeymapKey * *,
-						      gint *);
-    extern GdkDragContext *gdk_drag_context_new(void);
-    extern void gdk_colormap_query_color(GdkColormap *, gulong,
-					 GdkColor *);
+    extern PangoContext *gdk_pango_context_get(void);
+    extern PangoContext *gdk_pango_context_get_for_screen(GdkScreen *);
+    extern GdkRegion *gdk_pango_layout_get_clip_region(PangoLayout *, gint,
+						       gint, gint *, gint);
+    extern GdkRegion *gdk_pango_layout_line_get_clip_region(PangoLayoutLine
+							    *, gint, gint,
+							    gint *, gint);
+    extern PangoRenderer *gdk_pango_renderer_get_default(GdkScreen *);
+    extern GType gdk_pango_renderer_get_type(void);
+    extern PangoRenderer *gdk_pango_renderer_new(GdkScreen *);
+    extern void gdk_pango_renderer_set_drawable(GdkPangoRenderer *,
+						GdkDrawable *);
+    extern void gdk_pango_renderer_set_gc(GdkPangoRenderer *, GdkGC *);
+    extern void gdk_pango_renderer_set_override_color(GdkPangoRenderer *,
+						      PangoRenderPart,
+						      const GdkColor *);
+    extern void gdk_pango_renderer_set_stipple(GdkPangoRenderer *,
+					       PangoRenderPart,
+					       GdkBitmap *);
+    extern void gdk_parse_args(int *, char ***);
+    extern GdkPixbuf *gdk_pixbuf_get_from_drawable(GdkPixbuf *,
+						   GdkDrawable *,
+						   GdkColormap *, int, int,
+						   int, int, int, int);
+    extern GdkPixbuf *gdk_pixbuf_get_from_image(GdkPixbuf *, GdkImage *,
+						GdkColormap *, int, int,
+						int, int, int, int);
+    extern void gdk_pixbuf_render_pixmap_and_mask(GdkPixbuf *,
+						  GdkPixmap * *,
+						  GdkBitmap * *, int);
     extern void gdk_pixbuf_render_pixmap_and_mask_for_colormap(GdkPixbuf *,
 							       GdkColormap
 							       *,
@@ -1898,383 +2054,160 @@ extern "C" {
 							       *,
 							       GdkBitmap *
 							       *, int);
-    extern void gdk_region_intersect(GdkRegion *, GdkRegion *);
-    extern GdkWindow *gdk_selection_owner_get(GdkAtom);
-    extern void gdk_draw_pixbuf(GdkDrawable *, GdkGC *, GdkPixbuf *, gint,
-				gint, gint, gint, gint, gint, GdkRgbDither,
-				gint, gint);
-    extern void gdk_rgb_cmap_free(GdkRgbCmap *);
-    extern GdkDisplay *gdk_display_open(const gchar *);
+    extern void gdk_pixbuf_render_threshold_alpha(GdkPixbuf *, GdkBitmap *,
+						  int, int, int, int, int,
+						  int, int);
+    extern GdkPixmap *gdk_pixmap_colormap_create_from_xpm(GdkDrawable *,
+							  GdkColormap *,
+							  GdkBitmap * *,
+							  const GdkColor *,
+							  const gchar *);
     extern GdkPixmap *gdk_pixmap_colormap_create_from_xpm_d(GdkDrawable *,
 							    GdkColormap *,
 							    GdkBitmap * *,
 							    const GdkColor
 							    *, gchar * *);
-    extern gboolean gdk_keyval_is_lower(guint);
-    extern GCallback gdk_threads_unlock;
-    extern GType gdk_modifier_type_get_type(void);
-    extern gint gdk_visual_get_best_depth(void);
-    extern gboolean gdk_setting_get(const gchar *, GValue *);
-    extern GType gdk_screen_get_type(void);
-    extern guint32 gdk_drag_get_protocol_for_display(GdkDisplay *, guint32,
-						     GdkDragProtocol *);
-    extern GList *gdk_screen_get_toplevel_windows(GdkScreen *);
-    extern GdkGC *gdk_gc_new_with_values(GdkDrawable *, GdkGCValues *,
-					 GdkGCValuesMask);
-    extern GdkScreen *gdk_display_get_default_screen(GdkDisplay *);
-    extern gboolean gdk_drag_motion(GdkDragContext *, GdkWindow *,
-				    GdkDragProtocol, gint, gint,
-				    GdkDragAction, GdkDragAction, guint32);
-    extern GdkRegion *gdk_drawable_get_visible_region(GdkDrawable *);
-    extern void gdk_pango_renderer_set_stipple(GdkPangoRenderer *,
-					       PangoRenderPart,
-					       GdkBitmap *);
-    extern void gdk_display_get_maximal_cursor_size(GdkDisplay *, guint *,
-						    guint *);
-    extern GdkRegion *gdk_window_get_update_area(GdkWindow *);
-    extern void gdk_drag_status(GdkDragContext *, GdkDragAction, guint32);
-    extern gboolean gdk_keyval_is_upper(guint);
-    extern void gdk_window_begin_paint_region(GdkWindow *, GdkRegion *);
-    extern void gdk_pango_renderer_set_drawable(GdkPangoRenderer *,
-						GdkDrawable *);
-    extern gint gdk_screen_get_monitor_at_point(GdkScreen *, gint, gint);
-    extern gboolean gdk_utf8_to_compound_text_for_display(GdkDisplay *,
-							  const gchar *,
-							  GdkAtom *,
-							  gint *,
-							  guchar * *,
-							  gint *);
-    extern GdkColormap *gdk_image_get_colormap(GdkImage *);
-    extern gint gdk_window_get_origin(GdkWindow *, gint *, gint *);
-    extern void gdk_set_double_click_time(guint);
-    extern void gdk_gc_get_values(GdkGC *, GdkGCValues *);
-    extern GdkColor *gdk_color_copy(const GdkColor *);
-    extern void gdk_gc_set_tile(GdkGC *, GdkPixmap *);
-    extern gboolean gdk_event_get_coords(GdkEvent *, gdouble *, gdouble *);
-    extern void gdk_gc_set_ts_origin(GdkGC *, gint, gint);
-    extern GdkWindowType gdk_window_get_window_type(GdkWindow *);
-    extern void gdk_window_set_focus_on_map(GdkWindow *, gboolean);
-    extern void gdk_region_union_with_rect(GdkRegion *, GdkRectangle *);
-    extern gboolean gdk_keymap_get_entries_for_keycode(GdkKeymap *, guint,
-						       GdkKeymapKey * *,
-						       guint * *, gint *);
-    extern gboolean gdk_selection_property_get(GdkWindow *, guchar * *,
-					       GdkAtom *, gint *);
-    extern void gdk_display_keyboard_ungrab(GdkDisplay *, guint32);
-    extern GdkDisplay *gdk_drawable_get_display(GdkDrawable *);
-    extern void gdk_gc_set_stipple(GdkGC *, GdkPixmap *);
-    extern void gdk_window_clear_area_e(GdkWindow *, gint, gint, gint,
-					gint);
-    extern void gdk_window_set_keep_below(GdkWindow *, gboolean);
-    extern GType gdk_font_type_get_type(void);
-    extern GType gdk_visual_type_get_type(void);
-    extern GdkEvent *gdk_display_get_event(GdkDisplay *);
-    extern void gdk_pixbuf_render_pixmap_and_mask(GdkPixbuf *,
-						  GdkPixmap * *,
-						  GdkBitmap * *, int);
-    extern GdkVisual *gdk_drawable_get_visual(GdkDrawable *);
-    extern void gdk_image_set_colormap(GdkImage *, GdkColormap *);
-    extern guint gdk_keyval_to_upper(guint);
-    extern void gdk_set_show_events(gboolean);
-    extern GdkWindow *gdk_window_lookup_for_display(GdkDisplay *,
-						    GdkNativeWindow);
-    extern GdkPixmap *gdk_pixmap_new(GdkDrawable *, gint, gint, gint);
-    extern GdkColormap *gdk_screen_get_rgb_colormap(GdkScreen *);
-    extern void gdk_rgb_find_color(GdkColormap *, GdkColor *);
-    extern void gdk_window_set_override_redirect(GdkWindow *, gboolean);
-    extern void gdk_window_set_accept_focus(GdkWindow *, gboolean);
-    extern GdkEvent *gdk_event_peek(void);
-    extern void gdk_window_show(GdkWindow *);
-    extern GType gdk_overlap_type_get_type(void);
-    extern void gdk_window_show_unraised(GdkWindow *);
-    extern GType gdk_gc_values_mask_get_type(void);
-    extern void gdk_screen_broadcast_client_message(GdkScreen *,
-						    GdkEvent *);
-    extern void gdk_window_set_events(GdkWindow *, GdkEventMask);
-    extern void gdk_window_set_icon(GdkWindow *, GdkWindow *, GdkPixmap *,
-				    GdkBitmap *);
-    extern GType gdk_join_style_get_type(void);
-    extern gboolean gdk_utf8_to_compound_text(const gchar *, GdkAtom *,
-					      gint *, guchar * *, gint *);
-    extern void gdk_display_put_event(GdkDisplay *, GdkEvent *);
-    extern GList *gdk_window_peek_children(GdkWindow *);
-    extern void gdk_window_enable_synchronized_configure(GdkWindow *);
-    extern void gdk_window_set_role(GdkWindow *, const gchar *);
-    extern GdkDisplay *gdk_display_get_default(void);
-    extern void gdk_window_remove_filter(GdkWindow *, GdkFilterFunc,
-					 gpointer);
-    extern void gdk_gc_set_function(GdkGC *, GdkFunction);
-    extern GList *gdk_list_visuals(void);
-    extern void gdk_pixbuf_render_threshold_alpha(GdkPixbuf *, GdkBitmap *,
-						  int, int, int, int, int,
-						  int, int);
-    extern void gdk_region_spans_intersect_foreach(GdkRegion *, GdkSpan *,
-						   int, gboolean,
-						   GdkSpanFunc, gpointer);
-    extern void gdk_display_pointer_ungrab(GdkDisplay *, guint32);
-    extern GdkColormap *gdk_screen_get_default_colormap(GdkScreen *);
-    extern gboolean gdk_rgb_colormap_ditherable(GdkColormap *);
-    extern void gdk_window_move(GdkWindow *, gint, gint);
-    extern GdkImage *gdk_drawable_copy_to_image(GdkDrawable *, GdkImage *,
-						gint, gint, gint, gint,
-						gint, gint);
-    extern void gdk_window_reparent(GdkWindow *, GdkWindow *, gint, gint);
-    extern GList *gdk_display_list_devices(GdkDisplay *);
-    extern GdkVisual *gdk_screen_get_rgb_visual(GdkScreen *);
-    extern void gdk_set_sm_client_id(const gchar *);
-    extern void gdk_region_destroy(GdkRegion *);
-    extern void gdk_display_manager_set_default_display(GdkDisplayManager
-							*, GdkDisplay *);
-    extern void gdk_beep(void);
-    extern GdkColormap *gdk_colormap_get_system(void);
-    extern void gdk_display_store_clipboard(GdkDisplay *, GdkWindow *,
-					    guint32, GdkAtom *, gint);
-    extern gint gdk_error_trap_pop(void);
-    extern PangoAttribute *gdk_pango_attr_embossed_new(gboolean);
-    extern void gdk_drawable_set_colormap(GdkDrawable *, GdkColormap *);
-    extern GdkDisplay *gdk_cursor_get_display(GdkCursor *);
-    extern void gdk_window_add_filter(GdkWindow *, GdkFilterFunc,
-				      gpointer);
-    extern void gdk_draw_line(GdkDrawable *, GdkGC *, gint, gint, gint,
-			      gint);
-    extern gboolean gdk_event_send_client_message(GdkEvent *,
-						  GdkNativeWindow);
-    extern void gdk_window_set_geometry_hints(GdkWindow *, GdkGeometry *,
-					      GdkWindowHints);
-    extern GType gdk_window_class_get_type(void);
-    extern guint gdk_unicode_to_keyval(guint32);
-    extern void gdk_draw_arc(GdkDrawable *, GdkGC *, gboolean, gint, gint,
-			     gint, gint, gint, gint);
-    extern void gdk_event_handler_set(GdkEventFunc, gpointer,
-				      GDestroyNotify);
-    extern void gdk_region_get_clipbox(GdkRegion *, GdkRectangle *);
-    extern GType gdk_drawable_get_type(void);
-    extern void gdk_window_clear_area(GdkWindow *, gint, gint, gint, gint);
-    extern void gdk_draw_layout(GdkDrawable *, GdkGC *, int, int,
-				PangoLayout *);
-    extern void gdk_window_get_root_origin(GdkWindow *, gint *, gint *);
-    extern gint gdk_color_parse(const gchar *, GdkColor *);
-    extern void gdk_window_set_skip_taskbar_hint(GdkWindow *, gboolean);
-    extern GType gdk_gc_get_type(void);
-    extern GdkRegion *gdk_pango_layout_get_clip_region(PangoLayout *, gint,
-						       gint, gint *, gint);
-    extern void gdk_window_fullscreen(GdkWindow *);
-    extern gchar *gdk_keyval_name(guint);
-    extern GdkCursor *gdk_cursor_new(GdkCursorType);
-    extern PangoContext *gdk_pango_context_get(void);
-    extern GType gdk_rgb_dither_get_type(void);
-    extern void gdk_window_hide(GdkWindow *);
-    extern void gdk_window_register_dnd(GdkWindow *);
-    extern GType gdk_notify_type_get_type(void);
-    extern void gdk_window_invalidate_rect(GdkWindow *, GdkRectangle *,
-					   gboolean);
-    extern void gdk_window_unmaximize(GdkWindow *);
-    extern void gdk_gc_copy(GdkGC *, GdkGC *);
-    extern guint gdk_display_get_default_cursor_size(GdkDisplay *);
-    extern void gdk_window_set_cursor(GdkWindow *, GdkCursor *);
-    extern void gdk_keyval_convert_case(guint, guint *, guint *);
-    extern GdkVisual *gdk_visual_get_best_with_type(GdkVisualType);
-    extern void gdk_gc_set_exposures(GdkGC *, gboolean);
-    extern GdkDisplayManager *gdk_display_manager_get(void);
-    extern void gdk_gc_set_background(GdkGC *, const GdkColor *);
-    extern void gdk_draw_point(GdkDrawable *, GdkGC *, gint, gint);
-    extern GdkVisual *gdk_visual_get_best(void);
-    extern GList *gdk_window_get_children(GdkWindow *);
-    extern gint gdk_screen_height(void);
-    extern void gdk_selection_convert(GdkWindow *, GdkAtom, GdkAtom,
-				      guint32);
-    extern GdkWindow *gdk_window_get_pointer(GdkWindow *, gint *, gint *,
-					     GdkModifierType *);
-    extern void gdk_window_end_paint(GdkWindow *);
-    extern GType gdk_pixmap_get_type(void);
-    extern GType gdk_property_state_get_type(void);
-    extern void gdk_window_maximize(GdkWindow *);
-    extern void gdk_window_get_user_data(GdkWindow *, gpointer *);
-    extern GdkGrabStatus gdk_keyboard_grab(GdkWindow *, gboolean, guint32);
-    extern GType gdk_visibility_state_get_type(void);
-    extern void gdk_draw_indexed_image(GdkDrawable *, GdkGC *, gint, gint,
-				       gint, gint, GdkRgbDither, guchar *,
-				       gint, GdkRgbCmap *);
-    extern gboolean gdk_color_equal(const GdkColor *, const GdkColor *);
-    extern gboolean gdk_region_empty(GdkRegion *);
-    extern void gdk_region_offset(GdkRegion *, gint, gint);
-    extern gint gdk_string_to_compound_text(const gchar *, GdkAtom *,
-					    gint *, guchar * *, gint *);
-    extern GdkScreen *gdk_gc_get_screen(GdkGC *);
-    extern GdkOverlapType gdk_region_rect_in(GdkRegion *, GdkRectangle *);
-    extern GType gdk_cursor_type_get_type(void);
-    extern gboolean gdk_window_set_static_gravities(GdkWindow *, gboolean);
-    extern gint gdk_screen_get_number(GdkScreen *);
-    extern void gdk_draw_segments(GdkDrawable *, GdkGC *, GdkSegment *,
-				  gint);
-    extern guint32 gdk_keyval_to_unicode(guint);
-    extern void gdk_draw_layout_line_with_colors(GdkDrawable *, GdkGC *,
-						 gint, gint,
-						 PangoLayoutLine *,
-						 const GdkColor *,
-						 const GdkColor *);
-    extern void gdk_property_change(GdkWindow *, GdkAtom, GdkAtom, gint,
-				    GdkPropMode, const guchar *, gint);
-    extern gboolean gdk_event_send_client_message_for_display(GdkDisplay *,
-							      GdkEvent *,
-							      GdkNativeWindow);
-    extern gboolean gdk_screen_get_setting(GdkScreen *, const gchar *,
-					   GValue *);
-    extern GList *gdk_screen_list_visuals(GdkScreen *);
-    extern GType gdk_window_attributes_type_get_type(void);
-    extern GdkWindow *gdk_window_new(GdkWindow *, GdkWindowAttr *, gint);
-    extern void gdk_window_begin_move_drag(GdkWindow *, gint, gint, gint,
-					   guint32);
-    extern void gdk_device_get_state(GdkDevice *, GdkWindow *, gdouble *,
-				     GdkModifierType *);
-    extern void gdk_window_set_modal_hint(GdkWindow *, gboolean);
-    extern GdkEvent *gdk_event_new(GdkEventType);
-    extern void gdk_window_destroy(GdkWindow *);
-    extern GType gdk_wm_function_get_type(void);
-    extern GdkColormap *gdk_colormap_new(GdkVisual *, gboolean);
-    extern void gdk_draw_rgb_32_image(GdkDrawable *, GdkGC *, gint, gint,
-				      gint, gint, GdkRgbDither, guchar *,
-				      gint);
-    extern void gdk_window_set_background(GdkWindow *, const GdkColor *);
-    extern void gdk_window_stick(GdkWindow *);
-    extern GType gdk_pango_renderer_get_type(void);
-    extern void gdk_window_set_back_pixmap(GdkWindow *, GdkPixmap *,
-					   gboolean);
-    extern gboolean gdk_display_supports_cursor_color(GdkDisplay *);
-    extern GdkDragContext *gdk_drag_begin(GdkWindow *, GList *);
-    extern void gdk_notify_startup_complete(void);
-    extern void gdk_display_sync(GdkDisplay *);
-    extern gboolean gdk_event_get_state(GdkEvent *, GdkModifierType *);
-    extern void gdk_gc_set_values(GdkGC *, GdkGCValues *, GdkGCValuesMask);
-    extern GdkEvent *gdk_event_get_graphics_expose(GdkWindow *);
-    extern void gdk_color_free(GdkColor *);
-    extern void gdk_rectangle_union(GdkRectangle *, GdkRectangle *,
-				    GdkRectangle *);
-    extern void gdk_window_configure_finished(GdkWindow *);
-    extern gboolean gdk_drag_drop_succeeded(GdkDragContext *);
-    extern gint gdk_display_get_n_screens(GdkDisplay *);
-    extern void gdk_draw_layout_with_colors(GdkDrawable *, GdkGC *, int,
-					    int, PangoLayout *,
-					    const GdkColor *,
-					    const GdkColor *);
-    extern gint gdk_drawable_get_depth(GdkDrawable *);
-    extern GdkPixmap *gdk_pixmap_foreign_new_for_display(GdkDisplay *,
-							 GdkNativeWindow);
-    extern void gdk_event_send_clientmessage_toall(GdkEvent *);
-    extern GdkPixbuf *gdk_pixbuf_get_from_drawable(GdkPixbuf *,
-						   GdkDrawable *,
-						   GdkColormap *, int, int,
-						   int, int, int, int);
-    extern void gdk_draw_gray_image(GdkDrawable *, GdkGC *, gint, gint,
-				    gint, gint, GdkRgbDither, guchar *,
-				    gint);
-    extern gint gdk_text_property_to_text_list(GdkAtom, gint,
-					       const guchar *, gint,
-					       gchar * **);
-    extern GCallback gdk_threads_lock;
-    extern gboolean gdk_region_equal(GdkRegion *, GdkRegion *);
-    extern GdkEvent *gdk_event_get(void);
-    extern void gdk_window_freeze_updates(GdkWindow *);
-    extern GdkScreen *gdk_visual_get_screen(GdkVisual *);
-    extern gboolean gdk_device_get_history(GdkDevice *, GdkWindow *,
-					   guint32, guint32,
-					   GdkTimeCoord * **, gint *);
-    extern void gdk_image_put_pixel(GdkImage *, gint, gint, guint32);
-    extern void gdk_screen_set_default_colormap(GdkScreen *,
-						GdkColormap *);
-    extern GType gdk_wm_decoration_get_type(void);
-    extern void gdk_draw_image(GdkDrawable *, GdkGC *, GdkImage *, gint,
-			       gint, gint, gint, gint, gint);
-    extern void gdk_window_shape_combine_region(GdkWindow *, GdkRegion *,
-						gint, gint);
-    extern GdkGC *gdk_gc_new(GdkDrawable *);
-    extern GType gdk_status_get_type(void);
-    extern void gdk_window_set_keep_above(GdkWindow *, gboolean);
-    extern gboolean gdk_selection_owner_set_for_display(GdkDisplay *,
-							GdkWindow *,
-							GdkAtom, guint32,
-							gboolean);
-    extern GdkDevice *gdk_display_get_core_pointer(GdkDisplay *);
-    extern void gdk_cursor_unref(GdkCursor *);
-    extern GType gdk_display_manager_get_type(void);
-    extern const gchar *gdk_get_display_arg_name(void);
-    extern gboolean gdk_window_is_visible(GdkWindow *);
-    extern void gdk_region_union(GdkRegion *, GdkRegion *);
-    extern gint gdk_screen_get_width_mm(GdkScreen *);
-    extern void gdk_draw_lines(GdkDrawable *, GdkGC *, GdkPoint *, gint);
-    extern GType gdk_colormap_get_type(void);
-    extern guint32 gdk_drag_get_protocol(guint32, GdkDragProtocol *);
-    extern gint gdk_screen_get_width(GdkScreen *);
-    extern void gdk_selection_send_notify_for_display(GdkDisplay *,
-						      guint32, GdkAtom,
-						      GdkAtom, GdkAtom,
-						      guint32);
-    extern gchar *gdk_set_locale(void);
-    extern GdkKeymap *gdk_keymap_get_default(void);
-    extern GdkScreen *gdk_colormap_get_screen(GdkColormap *);
-    extern GType gdk_byte_order_get_type(void);
-    extern void gdk_window_constrain_size(GdkGeometry *, guint, gint, gint,
-					  gint *, gint *);
-    extern GdkWindow *gdk_screen_get_root_window(GdkScreen *);
-    extern void gdk_window_set_user_data(GdkWindow *, gpointer);
-    extern void gdk_colormap_free_colors(GdkColormap *, GdkColor *, gint);
-    extern void gdk_window_get_internal_paint_info(GdkWindow *,
-						   GdkDrawable * *, gint *,
-						   gint *);
-    extern gboolean gdk_window_is_viewable(GdkWindow *);
-    extern struct _GdkDrawable *gdk_bitmap_create_from_data(GdkDrawable *,
-							    const gchar *,
-							    gint, gint);
-    extern void gdk_window_unfullscreen(GdkWindow *);
-    extern void gdk_drag_find_window(GdkDragContext *, GdkWindow *, gint,
-				     gint, GdkWindow * *,
-				     GdkDragProtocol *);
-    extern GType gdk_keymap_get_type(void);
-    extern GType gdk_window_type_hint_get_type(void);
-    extern void gdk_gc_set_clip_mask(GdkGC *, GdkBitmap *);
-    extern gchar *gdk_atom_name(GdkAtom);
-    extern void gdk_rgb_set_verbose(gboolean);
-    extern void gdk_draw_rgb_image(GdkDrawable *, GdkGC *, gint, gint,
-				   gint, gint, GdkRgbDither, guchar *,
-				   gint);
-    extern void gdk_query_visual_types(GdkVisualType * *, gint *);
-    extern GType gdk_crossing_mode_get_type(void);
-    extern void gdk_draw_trapezoids(GdkDrawable *, GdkGC *, GdkTrapezoid *,
-				    gint);
     extern GdkPixmap *gdk_pixmap_create_from_data(GdkDrawable *,
 						  const gchar *, gint,
 						  gint, gint,
 						  const GdkColor *,
 						  const GdkColor *);
-    extern GType gdk_line_style_get_type(void);
-    extern gboolean gdk_window_get_decorations(GdkWindow *,
-					       GdkWMDecoration *);
-    extern GType gdk_window_state_get_type(void);
-    extern void gdk_gc_offset(GdkGC *, gint, gint);
-    extern void gdk_event_free(GdkEvent *);
-    extern void gdk_gc_set_clip_region(GdkGC *, GdkRegion *);
-    extern gboolean gdk_device_set_mode(GdkDevice *, GdkInputMode);
-    extern void gdk_query_depths(gint * *, gint *);
-    extern void gdk_draw_rgb_32_image_dithalign(GdkDrawable *, GdkGC *,
-						gint, gint, gint, gint,
-						GdkRgbDither, guchar *,
-						gint, gint, gint);
-    extern GType gdk_subwindow_mode_get_type(void);
-    extern void gdk_rgb_set_install(gboolean);
-    extern guint gdk_keyval_to_lower(guint);
-    extern GType gdk_window_edge_get_type(void);
+    extern GdkPixmap *gdk_pixmap_create_from_xpm(GdkDrawable *,
+						 GdkBitmap * *,
+						 const GdkColor *,
+						 const gchar *);
+    extern GdkPixmap *gdk_pixmap_create_from_xpm_d(GdkDrawable *,
+						   GdkBitmap * *,
+						   const GdkColor *,
+						   gchar * *);
+    extern GdkPixmap *gdk_pixmap_foreign_new(GdkNativeWindow);
+    extern GdkPixmap *gdk_pixmap_foreign_new_for_display(GdkDisplay *,
+							 GdkNativeWindow);
+    extern GType gdk_pixmap_get_type(void);
+    extern GdkPixmap *gdk_pixmap_lookup(GdkNativeWindow);
     extern GdkPixmap *gdk_pixmap_lookup_for_display(GdkDisplay *,
 						    GdkNativeWindow);
-    extern gboolean gdk_display_pointer_is_grabbed(GdkDisplay *);
+    extern GdkPixmap *gdk_pixmap_new(GdkDrawable *, gint, gint, gint);
+    extern GdkGrabStatus gdk_pointer_grab(GdkWindow *, gboolean,
+					  GdkEventMask, GdkWindow *,
+					  GdkCursor *, guint32);
+    extern gboolean gdk_pointer_is_grabbed(void);
+    extern void gdk_pointer_ungrab(guint32);
     extern GType gdk_prop_mode_get_type(void);
-    extern void gdk_window_withdraw(GdkWindow *);
-    extern void gdk_drawable_get_size(GdkDrawable *, gint *, gint *);
-    extern void gdk_window_merge_child_shapes(GdkWindow *);
-    extern guint gdk_keymap_lookup_key(GdkKeymap *, const GdkKeymapKey *);
+    extern void gdk_property_change(GdkWindow *, GdkAtom, GdkAtom, gint,
+				    GdkPropMode, const guchar *, gint);
+    extern void gdk_property_delete(GdkWindow *, GdkAtom);
+    extern gboolean gdk_property_get(GdkWindow *, GdkAtom, GdkAtom, gulong,
+				     gulong, gint, GdkAtom *, gint *,
+				     gint *, guchar * *);
+    extern GType gdk_property_state_get_type(void);
+    extern void gdk_query_depths(gint * *, gint *);
+    extern void gdk_query_visual_types(GdkVisualType * *, gint *);
+    extern GType gdk_rectangle_get_type(void);
+    extern gboolean gdk_rectangle_intersect(GdkRectangle *, GdkRectangle *,
+					    GdkRectangle *);
+    extern void gdk_rectangle_union(GdkRectangle *, GdkRectangle *,
+				    GdkRectangle *);
+    extern GdkRegion *gdk_region_copy(GdkRegion *);
+    extern void gdk_region_destroy(GdkRegion *);
+    extern gboolean gdk_region_empty(GdkRegion *);
+    extern gboolean gdk_region_equal(GdkRegion *, GdkRegion *);
+    extern void gdk_region_get_clipbox(GdkRegion *, GdkRectangle *);
+    extern void gdk_region_get_rectangles(GdkRegion *, GdkRectangle * *,
+					  gint *);
+    extern void gdk_region_intersect(GdkRegion *, GdkRegion *);
+    extern GdkRegion *gdk_region_new(void);
+    extern void gdk_region_offset(GdkRegion *, gint, gint);
+    extern gboolean gdk_region_point_in(GdkRegion *, int, int);
     extern GdkRegion *gdk_region_polygon(GdkPoint *, gint, GdkFillRule);
-    extern void gdk_window_clear(GdkWindow *);
-    extern const gchar *gdk_display_get_name(GdkDisplay *);
-    extern void gdk_pango_renderer_set_gc(GdkPangoRenderer *, GdkGC *);
+    extern GdkOverlapType gdk_region_rect_in(GdkRegion *, GdkRectangle *);
+    extern GdkRegion *gdk_region_rectangle(GdkRectangle *);
+    extern void gdk_region_shrink(GdkRegion *, int, int);
+    extern void gdk_region_spans_intersect_foreach(GdkRegion *, GdkSpan *,
+						   int, gboolean,
+						   GdkSpanFunc, gpointer);
+    extern void gdk_region_subtract(GdkRegion *, GdkRegion *);
+    extern void gdk_region_union(GdkRegion *, GdkRegion *);
+    extern void gdk_region_union_with_rect(GdkRegion *, GdkRectangle *);
+    extern void gdk_region_xor(GdkRegion *, GdkRegion *);
+    extern void gdk_rgb_cmap_free(GdkRgbCmap *);
+    extern GdkRgbCmap *gdk_rgb_cmap_new(guint32 *, gint);
+    extern gboolean gdk_rgb_colormap_ditherable(GdkColormap *);
+    extern GType gdk_rgb_dither_get_type(void);
+    extern gboolean gdk_rgb_ditherable(void);
+    extern void gdk_rgb_find_color(GdkColormap *, GdkColor *);
+    extern GdkColormap *gdk_rgb_get_colormap(void);
+    extern GdkVisual *gdk_rgb_get_visual(void);
+    extern void gdk_rgb_set_install(gboolean);
+    extern void gdk_rgb_set_min_colors(gint);
+    extern void gdk_rgb_set_verbose(gboolean);
+    extern void gdk_screen_broadcast_client_message(GdkScreen *,
+						    GdkEvent *);
+    extern GdkScreen *gdk_screen_get_default(void);
+    extern GdkColormap *gdk_screen_get_default_colormap(GdkScreen *);
+    extern GdkDisplay *gdk_screen_get_display(GdkScreen *);
+    extern gint gdk_screen_get_height(GdkScreen *);
+    extern gint gdk_screen_get_height_mm(GdkScreen *);
+    extern gint gdk_screen_get_monitor_at_point(GdkScreen *, gint, gint);
+    extern gint gdk_screen_get_monitor_at_window(GdkScreen *, GdkWindow *);
+    extern void gdk_screen_get_monitor_geometry(GdkScreen *, gint,
+						GdkRectangle *);
+    extern gint gdk_screen_get_n_monitors(GdkScreen *);
+    extern gint gdk_screen_get_number(GdkScreen *);
+    extern GdkColormap *gdk_screen_get_rgb_colormap(GdkScreen *);
+    extern GdkVisual *gdk_screen_get_rgb_visual(GdkScreen *);
+    extern GdkWindow *gdk_screen_get_root_window(GdkScreen *);
+    extern gboolean gdk_screen_get_setting(GdkScreen *, const gchar *,
+					   GValue *);
+    extern GdkColormap *gdk_screen_get_system_colormap(GdkScreen *);
+    extern GdkVisual *gdk_screen_get_system_visual(GdkScreen *);
+    extern GList *gdk_screen_get_toplevel_windows(GdkScreen *);
+    extern GType gdk_screen_get_type(void);
+    extern gint gdk_screen_get_width(GdkScreen *);
+    extern gint gdk_screen_get_width_mm(GdkScreen *);
+    extern gint gdk_screen_height(void);
+    extern gint gdk_screen_height_mm(void);
+    extern GList *gdk_screen_list_visuals(GdkScreen *);
+    extern gchar *gdk_screen_make_display_name(GdkScreen *);
+    extern void gdk_screen_set_default_colormap(GdkScreen *,
+						GdkColormap *);
+    extern gint gdk_screen_width(void);
+    extern gint gdk_screen_width_mm(void);
+    extern GType gdk_scroll_direction_get_type(void);
+    extern void gdk_selection_convert(GdkWindow *, GdkAtom, GdkAtom,
+				      guint32);
+    extern GdkWindow *gdk_selection_owner_get(GdkAtom);
+    extern GdkWindow *gdk_selection_owner_get_for_display(GdkDisplay *,
+							  GdkAtom);
+    extern gboolean gdk_selection_owner_set(GdkWindow *, GdkAtom, guint32,
+					    gboolean);
+    extern gboolean gdk_selection_owner_set_for_display(GdkDisplay *,
+							GdkWindow *,
+							GdkAtom, guint32,
+							gboolean);
+    extern gboolean gdk_selection_property_get(GdkWindow *, guchar * *,
+					       GdkAtom *, gint *);
+    extern void gdk_selection_send_notify(guint32, GdkAtom, GdkAtom,
+					  GdkAtom, guint32);
+    extern void gdk_selection_send_notify_for_display(GdkDisplay *,
+						      guint32, GdkAtom,
+						      GdkAtom, GdkAtom,
+						      guint32);
+    extern void gdk_set_double_click_time(guint);
+    extern gchar *gdk_set_locale(void);
+    extern GdkPointerHooks *gdk_set_pointer_hooks(const GdkPointerHooks *);
+    extern void gdk_set_program_class(const char *);
+    extern void gdk_set_show_events(gboolean);
+    extern void gdk_set_sm_client_id(const gchar *);
+    extern GType gdk_setting_action_get_type(void);
+    extern gboolean gdk_setting_get(const gchar *, GValue *);
+    extern gboolean gdk_spawn_command_line_on_screen(GdkScreen *,
+						     const gchar *,
+						     GError * *);
+    extern gboolean gdk_spawn_on_screen(GdkScreen *, const gchar *,
+					gchar * *, gchar * *, GSpawnFlags,
+					GSpawnChildSetupFunc, gpointer,
+					gint *, GError * *);
     extern gboolean gdk_spawn_on_screen_with_pipes(GdkScreen *,
 						   const gchar *,
 						   gchar * *, gchar * *,
@@ -2283,120 +2216,197 @@ extern "C" {
 						   gpointer, gint *,
 						   gint *, gint *, gint *,
 						   GError * *);
-    extern void gdk_event_put(GdkEvent *);
-    extern GType gdk_window_type_get_type(void);
-    extern GdkScreen *gdk_event_get_screen(GdkEvent *);
-    extern GdkPointerHooks *gdk_set_pointer_hooks(const GdkPointerHooks *);
-    extern void gdk_draw_glyphs_transformed(GdkDrawable *, GdkGC *,
-					    PangoMatrix *, PangoFont *,
-					    gint, gint,
-					    PangoGlyphString *);
-    extern void gdk_draw_rgb_image_dithalign(GdkDrawable *, GdkGC *, gint,
-					     gint, gint, gint,
-					     GdkRgbDither, guchar *, gint,
-					     gint, gint);
-    extern void gdk_window_process_updates(GdkWindow *, gboolean);
-    extern GType gdk_extension_mode_get_type(void);
-    extern gboolean gdk_event_get_axis(GdkEvent *, GdkAxisUse, gdouble *);
-    extern void gdk_gc_set_clip_rectangle(GdkGC *, GdkRectangle *);
-    extern void gdk_gc_set_rgb_bg_color(GdkGC *, const GdkColor *);
-    extern void gdk_region_xor(GdkRegion *, GdkRegion *);
-    extern GdkCursor *gdk_cursor_ref(GdkCursor *);
-    extern GdkVisual *gdk_visual_get_best_with_both(gint, GdkVisualType);
-    extern GType gdk_scroll_direction_get_type(void);
-    extern void gdk_draw_points(GdkDrawable *, GdkGC *, GdkPoint *, gint);
-    extern GdkRgbCmap *gdk_rgb_cmap_new(guint32 *, gint);
-    extern GdkWindow *gdk_window_foreign_new(GdkNativeWindow);
-    extern GdkWindow *gdk_window_get_parent(GdkWindow *);
-    extern void gdk_draw_drawable(GdkDrawable *, GdkGC *, GdkDrawable *,
-				  gint, gint, gint, gint, gint, gint);
-    extern void gdk_threads_set_lock_functions(GCallback, GCallback);
-    extern gint gdk_screen_get_height_mm(GdkScreen *);
-    extern gboolean gdk_device_get_axis(GdkDevice *, gdouble *, GdkAxisUse,
-					gdouble *);
-    extern gboolean gdk_get_show_events(void);
-    extern void gdk_window_begin_paint_rect(GdkWindow *, GdkRectangle *);
-    extern void gdk_pointer_ungrab(guint32);
-    extern GdkPixmap *gdk_pixmap_lookup(GdkNativeWindow);
+    extern GType gdk_status_get_type(void);
+    extern gint gdk_string_to_compound_text(const gchar *, GdkAtom *,
+					    gint *, guchar * *, gint *);
+    extern gint gdk_string_to_compound_text_for_display(GdkDisplay *,
+							const gchar *,
+							GdkAtom *, gint *,
+							guchar * *,
+							gint *);
+    extern GType gdk_subwindow_mode_get_type(void);
+    extern gint gdk_text_property_to_text_list(GdkAtom, gint,
+					       const guchar *, gint,
+					       gchar * **);
+    extern gint gdk_text_property_to_text_list_for_display(GdkDisplay *,
+							   GdkAtom, gint,
+							   const guchar *,
+							   gint,
+							   gchar * **);
+    extern gint gdk_text_property_to_utf8_list(GdkAtom, gint,
+					       const guchar *, gint,
+					       gchar * **);
+    extern gint gdk_text_property_to_utf8_list_for_display(GdkDisplay *,
+							   GdkAtom, gint,
+							   const guchar *,
+							   gint,
+							   gchar * **);
+    extern void gdk_threads_enter(void);
+    extern void gdk_threads_init(void);
     extern void gdk_threads_leave(void);
-    extern gboolean gdk_pointer_is_grabbed(void);
-    extern gboolean gdk_region_point_in(GdkRegion *, int, int);
-    extern GdkWindowState gdk_window_get_state(GdkWindow *);
-    extern void gdk_region_get_rectangles(GdkRegion *, GdkRectangle * *,
-					  gint *);
-    extern void gdk_draw_rectangle(GdkDrawable *, GdkGC *, gboolean, gint,
-				   gint, gint, gint);
-    extern void gdk_gc_set_line_attributes(GdkGC *, gint, GdkLineStyle,
-					   GdkCapStyle, GdkJoinStyle);
-    extern void gdk_window_get_geometry(GdkWindow *, gint *, gint *,
-					gint *, gint *, gint *);
-    extern void gdk_rgb_set_min_colors(gint);
-    extern gint gdk_screen_get_monitor_at_window(GdkScreen *, GdkWindow *);
+    extern GCallback gdk_threads_lock;
+    extern void gdk_threads_set_lock_functions(GCallback, GCallback);
+    extern GCallback gdk_threads_unlock;
+    extern guint gdk_unicode_to_keyval(guint32);
+    extern gboolean gdk_utf8_to_compound_text(const gchar *, GdkAtom *,
+					      gint *, guchar * *, gint *);
+    extern gboolean gdk_utf8_to_compound_text_for_display(GdkDisplay *,
+							  const gchar *,
+							  GdkAtom *,
+							  gint *,
+							  guchar * *,
+							  gint *);
+    extern gchar *gdk_utf8_to_string_target(const gchar *);
+    extern GType gdk_visibility_state_get_type(void);
+    extern GdkVisual *gdk_visual_get_best(void);
+    extern gint gdk_visual_get_best_depth(void);
+    extern GdkVisualType gdk_visual_get_best_type(void);
+    extern GdkVisual *gdk_visual_get_best_with_both(gint, GdkVisualType);
+    extern GdkVisual *gdk_visual_get_best_with_depth(gint);
+    extern GdkVisual *gdk_visual_get_best_with_type(GdkVisualType);
+    extern GdkScreen *gdk_visual_get_screen(GdkVisual *);
+    extern GdkVisual *gdk_visual_get_system(void);
+    extern GType gdk_visual_get_type(void);
+    extern GType gdk_visual_type_get_type(void);
+    extern void gdk_window_add_filter(GdkWindow *, GdkFilterFunc,
+				      gpointer);
+    extern GdkWindow *gdk_window_at_pointer(gint *, gint *);
+    extern GType gdk_window_attributes_type_get_type(void);
+    extern void gdk_window_begin_move_drag(GdkWindow *, gint, gint, gint,
+					   guint32);
+    extern void gdk_window_begin_paint_rect(GdkWindow *, GdkRectangle *);
+    extern void gdk_window_begin_paint_region(GdkWindow *, GdkRegion *);
+    extern void gdk_window_begin_resize_drag(GdkWindow *, GdkWindowEdge,
+					     gint, gint, gint, guint32);
+    extern GType gdk_window_class_get_type(void);
+    extern void gdk_window_clear(GdkWindow *);
+    extern void gdk_window_clear_area(GdkWindow *, gint, gint, gint, gint);
+    extern void gdk_window_clear_area_e(GdkWindow *, gint, gint, gint,
+					gint);
+    extern void gdk_window_configure_finished(GdkWindow *);
+    extern void gdk_window_constrain_size(GdkGeometry *, guint, gint, gint,
+					  gint *, gint *);
+    extern void gdk_window_deiconify(GdkWindow *);
+    extern void gdk_window_destroy(GdkWindow *);
+    extern GType gdk_window_edge_get_type(void);
+    extern void gdk_window_enable_synchronized_configure(GdkWindow *);
+    extern void gdk_window_end_paint(GdkWindow *);
+    extern void gdk_window_focus(GdkWindow *, guint32);
+    extern GdkWindow *gdk_window_foreign_new(GdkNativeWindow);
     extern GdkWindow *gdk_window_foreign_new_for_display(GdkDisplay *,
 							 GdkNativeWindow);
-    extern GdkRegion *gdk_region_rectangle(GdkRectangle *);
-    extern void gdk_window_set_icon_list(GdkWindow *, GList *);
-    extern GdkPixbuf *gdk_pixbuf_get_from_image(GdkPixbuf *, GdkImage *,
-						GdkColormap *, int, int,
-						int, int, int, int);
-    extern void gdk_device_set_axis_use(GdkDevice *, guint, GdkAxisUse);
-    extern void gdk_keyboard_ungrab(guint32);
-    extern GdkWindow *gdk_window_at_pointer(gint *, gint *);
-    extern GdkVisual *gdk_visual_get_system(void);
-    extern void gdk_drag_find_window_for_screen(GdkDragContext *,
-						GdkWindow *, GdkScreen *,
-						gint, gint, GdkWindow * *,
-						GdkDragProtocol *);
-    extern GdkRegion *gdk_region_new(void);
-    extern GType gdk_image_type_get_type(void);
-    extern GType gdk_image_get_type(void);
-    extern gboolean gdk_display_supports_clipboard_persistence(GdkDisplay
-							       *);
-    extern gint gdk_screen_width(void);
-    extern void gdk_input_set_extension_events(GdkWindow *, gint,
-					       GdkExtensionMode);
-    extern GType gdk_display_get_type(void);
-    extern GdkCursor *gdk_cursor_new_for_display(GdkDisplay *,
-						 GdkCursorType);
-    extern GdkRegion *gdk_drawable_get_clip_region(GdkDrawable *);
-    extern GdkScreen *gdk_display_get_screen(GdkDisplay *, gint);
-    extern GdkColormap *gdk_screen_get_system_colormap(GdkScreen *);
-    extern GdkVisualType gdk_visual_get_best_type(void);
-    extern GType gdk_setting_action_get_type(void);
-    extern GdkCursor *gdk_cursor_new_from_pixmap(GdkPixmap *, GdkPixmap *,
-						 const GdkColor *,
-						 const GdkColor *, gint,
-						 gint);
-    extern GType gdk_fill_rule_get_type(void);
+    extern void gdk_window_freeze_updates(GdkWindow *);
+    extern void gdk_window_fullscreen(GdkWindow *);
+    extern GList *gdk_window_get_children(GdkWindow *);
+    extern gboolean gdk_window_get_decorations(GdkWindow *,
+					       GdkWMDecoration *);
+    extern GdkEventMask gdk_window_get_events(GdkWindow *);
+    extern void gdk_window_get_frame_extents(GdkWindow *, GdkRectangle *);
+    extern void gdk_window_get_geometry(GdkWindow *, gint *, gint *,
+					gint *, gint *, gint *);
+    extern GdkWindow *gdk_window_get_group(GdkWindow *);
+    extern void gdk_window_get_internal_paint_info(GdkWindow *,
+						   GdkDrawable * *, gint *,
+						   gint *);
+    extern gint gdk_window_get_origin(GdkWindow *, gint *, gint *);
+    extern GdkWindow *gdk_window_get_parent(GdkWindow *);
+    extern GdkWindow *gdk_window_get_pointer(GdkWindow *, gint *, gint *,
+					     GdkModifierType *);
+    extern void gdk_window_get_position(GdkWindow *, gint *, gint *);
+    extern void gdk_window_get_root_origin(GdkWindow *, gint *, gint *);
+    extern GdkWindowState gdk_window_get_state(GdkWindow *);
+    extern GdkWindow *gdk_window_get_toplevel(GdkWindow *);
+    extern GList *gdk_window_get_toplevels(void);
+    extern GdkRegion *gdk_window_get_update_area(GdkWindow *);
+    extern void gdk_window_get_user_data(GdkWindow *, gpointer *);
+    extern GdkWindowType gdk_window_get_window_type(GdkWindow *);
+    extern void gdk_window_hide(GdkWindow *);
+    extern GType gdk_window_hints_get_type(void);
+    extern void gdk_window_iconify(GdkWindow *);
+    extern void gdk_window_invalidate_maybe_recurse(GdkWindow *,
+						    GdkRegion *,
+						    gboolean(*)(GdkWindow
+								*,
+								gpointer)
+						    , gpointer);
+    extern void gdk_window_invalidate_rect(GdkWindow *, GdkRectangle *,
+					   gboolean);
     extern void gdk_window_invalidate_region(GdkWindow *, GdkRegion *,
 					     gboolean);
-    extern gint gdk_screen_width_mm(void);
-    extern void gdk_window_set_child_shapes(GdkWindow *);
+    extern gboolean gdk_window_is_viewable(GdkWindow *);
+    extern gboolean gdk_window_is_visible(GdkWindow *);
+    extern GdkWindow *gdk_window_lookup(GdkNativeWindow);
+    extern GdkWindow *gdk_window_lookup_for_display(GdkDisplay *,
+						    GdkNativeWindow);
+    extern void gdk_window_lower(GdkWindow *);
+    extern void gdk_window_maximize(GdkWindow *);
+    extern void gdk_window_merge_child_shapes(GdkWindow *);
+    extern void gdk_window_move(GdkWindow *, gint, gint);
     extern void gdk_window_move_resize(GdkWindow *, gint, gint, gint,
 				       gint);
-    extern GType gdk_cursor_get_type(void);
-    extern void gdk_free_compound_text(guchar *);
-    extern PangoRenderer *gdk_pango_renderer_new(GdkScreen *);
-    extern GdkScreen *gdk_drawable_get_screen(GdkDrawable *);
-    extern GdkWindow *gdk_window_lookup(GdkNativeWindow);
+    extern GdkWindow *gdk_window_new(GdkWindow *, GdkWindowAttr *, gint);
+    extern GType gdk_window_object_get_type(void);
+    extern GList *gdk_window_peek_children(GdkWindow *);
+    extern void gdk_window_process_all_updates(void);
+    extern void gdk_window_process_updates(GdkWindow *, gboolean);
+    extern void gdk_window_raise(GdkWindow *);
+    extern void gdk_window_register_dnd(GdkWindow *);
+    extern void gdk_window_remove_filter(GdkWindow *, GdkFilterFunc,
+					 gpointer);
+    extern void gdk_window_reparent(GdkWindow *, GdkWindow *, gint, gint);
+    extern void gdk_window_resize(GdkWindow *, gint, gint);
+    extern void gdk_window_scroll(GdkWindow *, gint, gint);
+    extern void gdk_window_set_accept_focus(GdkWindow *, gboolean);
+    extern void gdk_window_set_back_pixmap(GdkWindow *, GdkPixmap *,
+					   gboolean);
+    extern void gdk_window_set_background(GdkWindow *, const GdkColor *);
+    extern void gdk_window_set_child_shapes(GdkWindow *);
+    extern void gdk_window_set_cursor(GdkWindow *, GdkCursor *);
+    extern void gdk_window_set_debug_updates(gboolean);
+    extern void gdk_window_set_decorations(GdkWindow *, GdkWMDecoration);
+    extern void gdk_window_set_events(GdkWindow *, GdkEventMask);
+    extern void gdk_window_set_focus_on_map(GdkWindow *, gboolean);
+    extern void gdk_window_set_functions(GdkWindow *, GdkWMFunction);
+    extern void gdk_window_set_geometry_hints(GdkWindow *, GdkGeometry *,
+					      GdkWindowHints);
+    extern void gdk_window_set_group(GdkWindow *, GdkWindow *);
+    extern void gdk_window_set_icon(GdkWindow *, GdkWindow *, GdkPixmap *,
+				    GdkBitmap *);
+    extern void gdk_window_set_icon_list(GdkWindow *, GList *);
     extern void gdk_window_set_icon_name(GdkWindow *, const gchar *);
-    extern GType gdk_drag_context_get_type(void);
-    extern void gdk_window_thaw_updates(GdkWindow *);
-    extern GdkPixmap *gdk_pixmap_colormap_create_from_xpm(GdkDrawable *,
-							  GdkColormap *,
-							  GdkBitmap * *,
-							  const GdkColor *,
-							  const gchar *);
-    extern GdkEvent *gdk_event_copy(GdkEvent *);
-    extern gboolean gdk_selection_owner_set(GdkWindow *, GdkAtom, guint32,
-					    gboolean);
-    extern void gdk_window_get_position(GdkWindow *, gint *, gint *);
-    extern GType gdk_drag_action_get_type(void);
-    extern guint32 gdk_image_get_pixel(GdkImage *, gint, gint);
+    extern void gdk_window_set_keep_above(GdkWindow *, gboolean);
+    extern void gdk_window_set_keep_below(GdkWindow *, gboolean);
+    extern void gdk_window_set_modal_hint(GdkWindow *, gboolean);
+    extern void gdk_window_set_override_redirect(GdkWindow *, gboolean);
+    extern void gdk_window_set_role(GdkWindow *, const gchar *);
+    extern void gdk_window_set_skip_pager_hint(GdkWindow *, gboolean);
+    extern void gdk_window_set_skip_taskbar_hint(GdkWindow *, gboolean);
+    extern gboolean gdk_window_set_static_gravities(GdkWindow *, gboolean);
+    extern void gdk_window_set_title(GdkWindow *, const gchar *);
+    extern void gdk_window_set_transient_for(GdkWindow *, GdkWindow *);
+    extern void gdk_window_set_type_hint(GdkWindow *, GdkWindowTypeHint);
+    extern void gdk_window_set_user_data(GdkWindow *, gpointer);
     extern void gdk_window_shape_combine_mask(GdkWindow *, GdkBitmap *,
 					      gint, gint);
-    extern void gdk_region_shrink(GdkRegion *, int, int);
+    extern void gdk_window_shape_combine_region(GdkWindow *, GdkRegion *,
+						gint, gint);
+    extern void gdk_window_show(GdkWindow *);
+    extern void gdk_window_show_unraised(GdkWindow *);
+    extern GType gdk_window_state_get_type(void);
+    extern void gdk_window_stick(GdkWindow *);
+    extern void gdk_window_thaw_updates(GdkWindow *);
+    extern GType gdk_window_type_get_type(void);
+    extern GType gdk_window_type_hint_get_type(void);
+    extern void gdk_window_unfullscreen(GdkWindow *);
+    extern void gdk_window_unmaximize(GdkWindow *);
+    extern void gdk_window_unstick(GdkWindow *);
+    extern void gdk_window_withdraw(GdkWindow *);
+    extern GType gdk_wm_decoration_get_type(void);
+    extern GType gdk_wm_function_get_type(void);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

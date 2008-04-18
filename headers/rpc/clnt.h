@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _RPC_CLNT_H_
 #define _RPC_CLNT_H_
 
@@ -12,11 +13,7 @@ extern "C" {
 #endif
 
 
-#define clnt_control(cl,rq,in)	((*(cl)->cl_ops->cl_control)(cl,rq,in))
-#define clnt_abort(rh)	((*(rh)->cl_ops->cl_abort)(rh))
-#define clnt_destroy(rh)	((*(rh)->cl_ops->cl_destroy)(rh))
-#define clnt_freeres(rh,xres,resp)	((*(rh)->cl_ops->cl_freeres)(rh,xres,resp))
-#define clnt_geterr(rh,errp)	((*(rh)->cl_ops->cl_geterr)(rh, errp))
+#if __LSB_VERSION__ >= 13
 #define NULLPROC	((u_long)0)	/* By convention, procedure 0 takes null arguments and returns */
 #define CLSET_TIMEOUT	1	/* set timeout (timeval) */
 #define CLGET_XID	10	/* Get xid */
@@ -33,10 +30,21 @@ extern "C" {
 #define CLGET_SVC_ADDR	7	/* get server's address (netbuf) */
 #define CLSET_FD_CLOSE	8	/* close fd while clnt_destroy */
 #define CLSET_FD_NCLOSE	9	/* Do not close fd while clnt_destroy */
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
+#define clnt_control(cl,rq,in)	((*(cl)->cl_ops->cl_control)(cl,rq,in))
+#define clnt_abort(rh)	((*(rh)->cl_ops->cl_abort)(rh))
+#define clnt_destroy(rh)	((*(rh)->cl_ops->cl_destroy)(rh))
+#define clnt_freeres(rh,xres,resp)	((*(rh)->cl_ops->cl_freeres)(rh,xres,resp))
+#define clnt_geterr(rh,errp)	((*(rh)->cl_ops->cl_geterr)(rh, errp))
 #define clnt_call(rh, proc, xargs, argsp, xres, resp, secs)	\
 	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
+#endif				// __LSB_VERSION__ >= 2.0
 
 
+
+#if __LSB_VERSION__ >= 13
     enum clnt_stat {
 	RPC_SUCCESS = 0,	/* call succeeded */
 	RPC_CANTENCODEARGS = 1,	/* can't encode arguments */
@@ -82,10 +90,16 @@ extern "C" {
 	} ru;
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
 
+
+#if __LSB_VERSION__ >= 13
     typedef struct CLIENT CLIENT;
 
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 13
 
     struct CLIENT {
 	struct AUTH *cl_auth;
@@ -93,7 +107,10 @@ extern "C" {
 	caddr_t cl_private;
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
+
+#if __LSB_VERSION__ >= 13
     struct clnt_ops {
 	enum clnt_stat (*cl_call) (struct CLIENT *, u_long, xdrproc_t,
 				   caddr_t, xdrproc_t, caddr_t,
@@ -105,7 +122,12 @@ extern "C" {
 	 bool_t(*cl_control) (struct CLIENT *, int, char *);
     };
 
+#endif				// __LSB_VERSION__ >= 1.3
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 11
     extern struct CLIENT *clnt_create(const char *, const u_long,
 				      const u_long, const char *);
     extern void clnt_pcreateerror(const char *);
@@ -114,7 +136,10 @@ extern "C" {
     extern char *clnt_spcreateerror(const char *);
     extern char *clnt_sperrno(enum clnt_stat);
     extern char *clnt_sperror(struct CLIENT *, const char *);
+#endif				// __LSB_VERSION__ >= 1.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

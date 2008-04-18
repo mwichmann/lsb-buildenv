@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 12 )
 #ifndef _UCONTEXT_H_
 #define _UCONTEXT_H_
 
@@ -10,17 +11,22 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
+#if defined __powerpc__ && !defined __powerpc64__
+#define ELF_NGREG	48
+#endif
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
 #if defined __ia64__
 #define _SC_GR0_OFFSET	\
 	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 #endif
+#endif				// __LSB_VERSION__ >= 1.3
 
 
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct _libc_vscr vscr_t;
 
-#endif
+#if __LSB_VERSION__ >= 20
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef struct _libc_vrstate vrregset_t
@@ -33,6 +39,17 @@ extern "C" {
 	__attribute__ ((__aligned__(16)));
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
+#if __LSB_VERSION__ >= 30
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct _libc_vscr vscr_t;
+
+#endif
+#endif				// __LSB_VERSION__ >= 3.0
+
+#if __LSB_VERSION__ >= 20
 #if defined __x86_64__
 /* x86-64 */
     struct _libc_fpxreg {
@@ -49,39 +66,21 @@ extern "C" {
     };
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#endif				// __LSB_VERSION__ >= 2.0
 
-    struct _libc_vscr {
-	int __pad[3];
-	int vscr_word;
-    };
+#if __LSB_VERSION__ >= 20
 
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
 
-    struct _libc_vrstate {
-	unsigned int vrregs[128];
-	unsigned int vrsave;
-	unsigned int _pad[2];
-	unsigned int vscr;
-    };
+#endif				// __LSB_VERSION__ >= 2.0
 
-#endif
-#if defined __powerpc64__
-/* PPC64 */
+#if __LSB_VERSION__ >= 30
 
-    struct _libc_vrstate {
-	unsigned int vrregs[128];
-	vscr_t vscr;
-	unsigned int vrsave;
-	unsigned int __pad[3];
-    };
 
-#endif
+#endif				// __LSB_VERSION__ >= 3.0
+
 
 /* Type for general register.*/
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef int greg_t;
@@ -92,30 +91,42 @@ extern "C" {
     typedef long int greg_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* Number of general registers.*/
+#if __LSB_VERSION__ >= 12
 #if defined __i386__
 #define NGREG	19
 #endif
-#if defined __x86_64__
-#define NGREG	23
+#if defined __powerpc__ && !defined __powerpc64__
+#define NGREG	48
 #endif
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
 #if defined __s390x__
 #define NGREG	27
 #endif
 #if defined __s390__ && !defined __s390x__
 #define NGREG	36
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define NGREG	48
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
+#if defined __x86_64__
+#define NGREG	23
 #endif
 #if defined __powerpc64__
 #define NGREG	48
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 
 
 /* Container for all general registers.*/
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef greg_t gregset_t[19];
@@ -136,10 +147,13 @@ extern "C" {
     typedef unsigned long int gregset_t[48];
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* Number of each register is the `gregset_t' array.*/
 
 /* Definitions taken from the kernel headers.*/
+#if __LSB_VERSION__ >= 20
 #if defined __s390x__
 /* S390X */
     typedef union {
@@ -156,6 +170,9 @@ extern "C" {
     } fpreg_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
+#if __LSB_VERSION__ >= 12
 #if defined __i386__
 /* IA32 */
     struct _libc_fpreg {
@@ -164,9 +181,12 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 /* Structure to describe FPU registers.*/
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef struct _libc_fpstate *fpregset_t;
@@ -203,6 +223,9 @@ extern "C" {
     typedef double fpregset_t[33];
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     struct _libc_fpstate {
@@ -235,19 +258,12 @@ extern "C" {
     };
 
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
+#endif				// __LSB_VERSION__ >= 2.0
 
-    struct _libc_fpstate {
-	double fpregs[32];
-	double fpscr;
-	int _pad[2];
-    };
-
-#endif
 
 
 /* Context to describe whole processor state.*/
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef struct {
@@ -317,13 +333,10 @@ extern "C" {
     } mcontext_t;
 
 #endif
-#if defined __ia64__
-/* IA64 */
+#endif				// __LSB_VERSION__ >= 2.0
 
 
-
-#endif
-
+#if __LSB_VERSION__ >= 20
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     union uc_regs_ptr {
@@ -332,8 +345,11 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* Userlevel context.*/
+#if __LSB_VERSION__ >= 32
 #if defined __ia64__
 #define uc_mcontext	_u._mc
 #endif
@@ -346,8 +362,11 @@ extern "C" {
 #if defined __ia64__
 #define uc_link	_u._uc._link
 #endif
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef struct ucontext ucontext_t;
@@ -383,86 +402,9 @@ extern "C" {
     typedef struct ucontext ucontext_t;
 
 #endif
-#if defined __i386__
-/* IA32 */
+#endif				// __LSB_VERSION__ >= 2.0
 
-    struct ucontext {
-	unsigned long int uc_flags;
-	struct ucontext *uc_link;
-	stack_t uc_stack;
-	mcontext_t uc_mcontext;
-	sigset_t uc_sigmask;
-	struct _libc_fpstate __fpregs_mem;
-    };
-
-#endif
-#if defined __ia64__
-/* IA64 */
-
-    struct ucontext {
-	union {
-	    mcontext_t _mc;
-	    struct {
-		unsigned long int _pad[_SC_GR0_OFFSET / 8];
-		struct ucontext *_link;
-	    } _uc;
-	} _u;
-    };
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-
-    struct ucontext {
-	unsigned long int uc_flags;
-	struct ucontext *uc_link;
-	stack_t uc_stack;
-	int uc_pad[7];
-	union uc_regs_ptr uc_mcontext;
-	sigset_t uc_sigmask;
-	char uc_reg_space[sizeof(mcontext_t) + 12];
-    };
-
-#endif
-#if defined __s390x__
-/* S390X */
-
-    struct ucontext {
-	unsigned long int uc_flags;
-	struct ucontext *uc_link;
-	stack_t uc_stack;
-	mcontext_t uc_mcontext;
-	sigset_t uc_sigmask;
-    };
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-
-    struct ucontext {
-	unsigned long int uc_flags;
-	struct ucontext *uc_link;
-	stack_t uc_stack;
-	mcontext_t uc_mcontext;
-	sigset_t uc_sigmask;
-    };
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-
-    struct ucontext {
-	unsigned long int uc_flags;
-	struct ucontext *uc_link;
-	stack_t uc_stack;
-	mcontext_t uc_mcontext;
-	sigset_t uc_sigmask;
-	struct _libc_fpstate __fpregs_mem;
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
+#if __LSB_VERSION__ >= 20
 
     struct ucontext {
 	unsigned long int uc_flags;
@@ -472,14 +414,21 @@ extern "C" {
 	mcontext_t uc_mcontext;
     };
 
-#endif
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int getcontext(ucontext_t *);
     extern void makecontext(ucontext_t *, void (*)(void)
 			    , int, ...);
     extern int setcontext(const struct ucontext *);
     extern int swapcontext(ucontext_t *, const struct ucontext *);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

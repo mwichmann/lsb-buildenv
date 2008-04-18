@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _CURSES_H_
 #define _CURSES_H_
 
@@ -10,8 +11,20 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 13
 #define ERR	(-1)
 #define OK	(0)
+#define getmaxyx(win,y,x)	\
+	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
+#define getbegyx(win,y,x)	\
+	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
+#define getyx(win,y,x)	\
+	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
+#define getparyx(win,y,x)	\
+	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
 #define ACS_RARROW	(acs_map['+'])
 #define ACS_LARROW	(acs_map[','])
 #define ACS_UARROW	(acs_map['-'])
@@ -37,14 +50,8 @@ extern "C" {
 #define ACS_VLINE	(acs_map['x'])
 #define ACS_DIAMOND	(acs_map['`'])
 #define ACS_BULLET	(acs_map['~'])
-#define getmaxyx(win,y,x)	\
-	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
-#define getbegyx(win,y,x)	\
-	(y=(win)?(win)->_begy:ERR,x=(win)?(win)->_begx:ERR)
-#define getyx(win,y,x)	\
-	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
-#define getparyx(win,y,x)	\
-	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 
     struct ldat;
@@ -57,6 +64,7 @@ extern "C" {
 
 
 
+#if __LSB_VERSION__ >= 11
 #define WA_ALTCHARSET	A_ALTCHARSET
 #define WA_ATTRIBUTES	A_ATTRIBUTES
 #define WA_BLINK	A_BLINK
@@ -74,11 +82,17 @@ extern "C" {
 #define WA_TOP	A_TOP
 #define WA_UNDERLINE	A_UNDERLINE
 #define WA_VERTICAL	A_VERTICAL
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
 #define A_REVERSE	NCURSES_BITS(1UL,10)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* colors*/
+#if __LSB_VERSION__ >= 11
 #define COLOR_BLACK	0
 #define COLOR_RED	1
 #define COLOR_GREEN	2
@@ -87,26 +101,39 @@ extern "C" {
 #define COLOR_MAGENTA	5
 #define COLOR_CYAN	6
 #define COLOR_WHITE	7
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 
 
 /* values for the _flags member*/
+#if __LSB_VERSION__ >= 11
 #define _SUBWIN	0x01
 #define _ENDLINE	0x02
 #define _FULLWIN	0x04
 #define _SCROLLWIN	0x08
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
+#if __LSB_VERSION__ < 13
+#define TRACE_MAXIMUM	0xffff
+#endif				// __LSB_VERSION__ < 1.3
+
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 
 
 /* Boolean type*/
+#if __LSB_VERSION__ >= 13
 #if !defined(__cplusplus)
     typedef unsigned char bool;
 
 #endif
+#endif				// __LSB_VERSION__ >= 1.3
+
 
 /* curses related structures*/
+#if __LSB_VERSION__ >= 12
     typedef unsigned long int chtype;
 
     typedef struct screen SCREEN;
@@ -120,6 +147,9 @@ extern "C" {
 	wchar_t chars[5];
     } cchar_t;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
     struct pdat {
 	short _pad_y;
 	short _pad_x;
@@ -129,12 +159,9 @@ extern "C" {
 	short _pad_right;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
-
-
-
-
-
+#if __LSB_VERSION__ >= 12
 
     struct _win_st {
 	short _cury;		/* current cursor position */
@@ -167,9 +194,13 @@ extern "C" {
 	cchar_t _bkgrnd;	/* current background char/attribute pair */
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+
 
 /* Pseudo-character tokens outside ASCII range.*/
 #define KEY_F(n)	(KEY_F0+(n))
+#if __LSB_VERSION__ >= 11
 #define KEY_CODE_YES	0400
 #define KEY_BREAK	0401
 #define KEY_MIN	0401
@@ -264,17 +295,18 @@ extern "C" {
 #define KEY_MOUSE	0631
 #define KEY_RESIZE	0632
 #define KEY_MAX	0777
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 
 
 /* event masks*/
 
 /* attributes*/
-#define PAIR_NUMBER(a)	(((a)&A_COLOR)>>8)
+#if __LSB_VERSION__ >= 12
 #define NCURSES_BITS(mask,shift)	((mask)<<((shift)+8))
 #define A_CHARTEXT	(NCURSES_BITS(1UL,0)-1UL)
 #define A_NORMAL	0L
-#define NCURSES_ATTR_SHIFT	8
 #define A_COLOR	NCURSES_BITS(((1UL)<<8)-1UL,0)
 #define A_BLINK	NCURSES_BITS(1UL,11)
 #define A_DIM	NCURSES_BITS(1UL,12)
@@ -290,23 +322,33 @@ extern "C" {
 #define A_VERTICAL	NCURSES_BITS(1UL,22)
 #define A_STANDOUT	NCURSES_BITS(1UL,8)
 #define A_UNDERLINE	NCURSES_BITS(1UL,9)
-#define COLOR_PAIR(n)	NCURSES_BITS(n,0)
 #define A_ATTRIBUTES	NCURSES_BITS(~(1UL-1UL),0)
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
+#define PAIR_NUMBER(a)	(((a)&A_COLOR)>>8)
+#define NCURSES_ATTR_SHIFT	8
+#define COLOR_PAIR(n)	NCURSES_BITS(n,0)
+#endif				// __LSB_VERSION__ >= 2.0
 
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int addch(const chtype);
     extern int addchnstr(const chtype *, int);
     extern int addchstr(const chtype *);
     extern int addnstr(const char *, int);
     extern int addstr(const char *);
-    extern int attroff(int);
-    extern int attron(int);
-    extern int attrset(int);
     extern int attr_get(attr_t *, short *, void *);
     extern int attr_off(attr_t, void *);
     extern int attr_on(attr_t, void *);
     extern int attr_set(attr_t, short, void *);
+    extern int attroff(int);
+    extern int attron(int);
+    extern int attrset(int);
     extern int baudrate(void);
     extern int beep(void);
     extern int bkgd(chtype);
@@ -326,20 +368,21 @@ extern "C" {
     extern int copywin(const WINDOW *, WINDOW *, int, int, int, int, int,
 		       int, int);
     extern int curs_set(int);
+    extern WINDOW *curscr;
     extern int def_prog_mode(void);
     extern int def_shell_mode(void);
     extern int delay_output(int);
     extern int delch(void);
+    extern int deleteln(void);
     extern void delscreen(SCREEN *);
     extern int delwin(WINDOW *);
-    extern int deleteln(void);
     extern WINDOW *derwin(WINDOW *, int, int, int, int);
     extern int doupdate(void);
     extern WINDOW *dupwin(WINDOW *);
     extern int echo(void);
     extern int echochar(const chtype);
-    extern int erase(void);
     extern int endwin(void);
+    extern int erase(void);
     extern char erasechar(void);
     extern void filter(void);
     extern int flash(void);
@@ -360,9 +403,9 @@ extern "C" {
     extern chtype inch(void);
     extern int inchnstr(chtype *, int);
     extern int inchstr(chtype *);
-    extern WINDOW *initscr(void);
     extern int init_color(short, short, short, short);
     extern int init_pair(short, short, short);
+    extern WINDOW *initscr(void);
     extern int innstr(char *, int);
     extern int insch(chtype);
     extern int insdelln(int);
@@ -371,9 +414,9 @@ extern "C" {
     extern int insstr(const char *);
     extern int instr(char *);
     extern int intrflush(WINDOW *, bool);
-    extern bool isendwin(void);
     extern bool is_linetouched(WINDOW *, int);
     extern bool is_wintouched(WINDOW *);
+    extern bool isendwin(void);
     extern const char *keyname(int);
     extern int keypad(WINDOW *, bool);
     extern char killchar(void);
@@ -453,26 +496,26 @@ extern "C" {
     extern int raw(void);
     extern int redrawwin(WINDOW *);
     extern int refresh(void);
-    extern int resetty(void);
     extern int reset_prog_mode(void);
     extern int reset_shell_mode(void);
+    extern int resetty(void);
     extern int ripoffline(int, int (*)(WINDOW *, int)
 	);
     extern int savetty(void);
     extern int scanw(const char *, ...);
     extern int scr_dump(const char *);
     extern int scr_init(const char *);
+    extern int scr_restore(const char *);
+    extern int scr_set(const char *);
     extern int scrl(int);
     extern int scroll(WINDOW *);
     extern int scrollok(WINDOW *, bool);
-    extern int scr_restore(const char *);
-    extern int scr_set(const char *);
-    extern int setscrreg(int, int);
     extern SCREEN *set_term(SCREEN *);
+    extern int setscrreg(int, int);
+    extern int slk_attr_set(const attr_t, short, void *);
     extern int slk_attroff(const chtype);
     extern int slk_attron(const chtype);
     extern int slk_attrset(const chtype);
-    extern int slk_attr_set(const attr_t, short, void *);
     extern int slk_clear(void);
     extern int slk_color(short);
     extern int slk_init(int);
@@ -482,9 +525,10 @@ extern "C" {
     extern int slk_restore(void);
     extern int slk_set(int, const char *, int);
     extern int slk_touch(void);
-    extern int standout(void);
     extern int standend(void);
+    extern int standout(void);
     extern int start_color(void);
+    extern WINDOW *stdscr;
     extern WINDOW *subpad(WINDOW *, int, int, int, int);
     extern WINDOW *subwin(WINDOW *, int, int, int, int);
     extern int syncok(WINDOW *, bool);
@@ -499,22 +543,22 @@ extern "C" {
     extern int vidputs(chtype, int (*)(int)
 	);
     extern int vline(chtype, int);
-    extern int vwprintw(WINDOW *, char *, va_list);
     extern int vw_printw(WINDOW *, const char *, va_list);
-    extern int vwscanw(WINDOW *, const char *, va_list);
     extern int vw_scanw(WINDOW *, const char *, va_list);
+    extern int vwprintw(WINDOW *, char *, va_list);
+    extern int vwscanw(WINDOW *, const char *, va_list);
     extern int waddch(WINDOW *, const chtype);
     extern int waddchnstr(WINDOW *, const chtype *, int);
     extern int waddchstr(WINDOW *, const chtype *);
     extern int waddnstr(WINDOW *, const char *, int);
     extern int waddstr(WINDOW *, const char *);
-    extern int wattron(WINDOW *, int);
-    extern int wattroff(WINDOW *, int);
-    extern int wattrset(WINDOW *, int);
     extern int wattr_get(WINDOW *, attr_t *, short *, void *);
-    extern int wattr_on(WINDOW *, attr_t, void *);
     extern int wattr_off(WINDOW *, attr_t, void *);
+    extern int wattr_on(WINDOW *, attr_t, void *);
     extern int wattr_set(WINDOW *, attr_t, short, void *);
+    extern int wattroff(WINDOW *, int);
+    extern int wattron(WINDOW *, int);
+    extern int wattrset(WINDOW *, int);
     extern int wbkgd(WINDOW *, chtype);
     extern void wbkgdset(WINDOW *, chtype);
     extern int wborder(WINDOW *, chtype, chtype, chtype, chtype, chtype,
@@ -551,24 +595,34 @@ extern "C" {
     extern int wscanw(WINDOW *, const char *, ...);
     extern int wscrl(WINDOW *, int);
     extern int wsetscrreg(WINDOW *, int, int);
-    extern int wstandout(WINDOW *);
     extern int wstandend(WINDOW *);
+    extern int wstandout(WINDOW *);
     extern void wsyncdown(WINDOW *);
     extern void wsyncup(WINDOW *);
     extern void wtimeout(WINDOW *, int);
     extern int wtouchln(WINDOW *, int, int, int);
     extern int wvline(WINDOW *, chtype, int);
-    extern char *unctrl(chtype);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 11
+    extern int COLS;
+    extern int LINES;
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 13
+    extern int touchline(WINDOW *, int, int);
+    extern int touchwin(WINDOW *);
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
     extern int COLORS;
     extern int COLOR_PAIRS;
     extern chtype acs_map[];
-    extern WINDOW *curscr;
-    extern WINDOW *stdscr;
-    extern int COLS;
-    extern int LINES;
-    extern int touchline(WINDOW *, int, int);
-    extern int touchwin(WINDOW *);
+    extern char *unctrl(chtype);
+#endif				// __LSB_VERSION__ >= 2.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

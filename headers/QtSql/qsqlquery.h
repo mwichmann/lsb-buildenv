@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTSQL_QSQLQUERY_H_
 #define _QTSQL_QSQLQUERY_H_
 
 class QSqlQuery;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSqlQuery
 {
 private:
@@ -49,5 +51,8 @@ public:
     bool execBatch(QSqlQuery::BatchExecutionMode);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

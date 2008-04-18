@@ -1,88 +1,88 @@
 
 class QPrinter;
 enum _ZN8QPrinter11PrinterModeE {
-    ScreenResolution = 0,
-    PrinterResolution = 1,
-    HighResolution = 2
+    ScreenResolution,
+    PrinterResolution,
+    HighResolution
 };
 enum _ZN8QPrinter11OrientationE {
-    Portrait = 0,
-    Landscape = 1
+    Portrait,
+    Landscape
 };
 enum _ZN8QPrinter8PageSizeE {
-    A4 = 0,
-    B5 = 1,
-    Letter = 2,
-    Legal = 3,
-    Executive = 4,
-    A0 = 5,
-    A1 = 6,
-    A2 = 7,
-    A3 = 8,
-    A5 = 9,
-    A6 = 10,
-    A7 = 11,
-    A8 = 12,
-    A9 = 13,
-    B0 = 14,
-    B1 = 15,
-    B10 = 16,
-    B2 = 17,
-    B3 = 18,
-    B4 = 19,
-    B6 = 20,
-    B7 = 21,
-    B8 = 22,
-    B9 = 23,
-    C5E = 24,
-    Comm10E = 25,
-    DLE = 26,
-    Folio = 27,
-    Ledger = 28,
-    Tabloid = 29,
-    Custom = 30,
-    NPageSize = 30
+    A4,
+    B5,
+    Letter,
+    Legal,
+    Executive,
+    A0,
+    A1,
+    A2,
+    A3,
+    A5,
+    A6,
+    A7,
+    A8,
+    A9,
+    B0,
+    B1,
+    B10,
+    B2,
+    B3,
+    B4,
+    B6,
+    B7,
+    B8,
+    B9,
+    C5E,
+    Comm10E,
+    DLE,
+    Folio,
+    Ledger,
+    Tabloid,
+    Custom,
+    NPageSize
 };
 enum _ZN8QPrinter9PageOrderE {
-    FirstPageFirst = 0,
-    LastPageFirst = 1
+    FirstPageFirst,
+    LastPageFirst
 };
 enum _ZN8QPrinter9ColorModeE {
-    GrayScale = 0,
-    Color = 1
+    GrayScale,
+    Color
 };
 enum _ZN8QPrinter11PaperSourceE {
-    OnlyOne = 0,
-    Lower = 1,
-    Middle = 2,
-    Manual = 3,
-    Envelope = 4,
-    EnvelopeManual = 5,
-    Auto = 6,
-    Tractor = 7,
-    SmallFormat = 8,
-    LargeFormat = 9,
-    LargeCapacity = 10,
-    Cassette = 11,
-    FormSource = 12
+    OnlyOne,
+    Lower,
+    Middle,
+    Manual,
+    Envelope,
+    EnvelopeManual,
+    Auto,
+    Tractor,
+    SmallFormat,
+    LargeFormat,
+    LargeCapacity,
+    Cassette,
+    FormSource
 };
 enum _ZN8QPrinter12PrinterStateE {
-    Idle = 0,
-    Active = 1,
-    Aborted = 2,
-    Error = 3
+    Idle,
+    Active,
+    Aborted,
+    Error
 };
 enum _ZN8QPrinter12OutputFormatE {
-    NativeFormat = 0,
-    PdfFormat = 1
+    NativeFormat,
+    PdfFormat
 };
 enum _ZN8QPrinter10PrintRangeE {
-    AllPages = 0,
-    Selection = 1,
-    PageRange = 2
+    AllPages,
+    Selection,
+    PageRange
 };
 enum _ZN8QPrinter13PrinterOptionE {
-    PrintToFile = 0,
-    PrintSelection = 1,
-    PrintPageRange = 2
+    PrintToFile,
+    PrintSelection,
+    PrintPageRange
 };

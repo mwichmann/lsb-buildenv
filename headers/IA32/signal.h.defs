@@ -13,8 +13,8 @@ struct sigaction {
     void (*sa_restorer) (void);
 };
 
-#define MINSIGSTKSZ	2048
-#define SIGSTKSZ	8192
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
+#define SIGSTKSZ	8192	/* System default stack size. */
 
 struct _fpreg {
     unsigned short significand[4];

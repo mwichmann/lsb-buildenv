@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _NETINET_IN_H_
 #define _NETINET_IN_H_
 
@@ -11,37 +12,58 @@ extern "C" {
 
 
 /* Standard well-defined IP protocols.*/
+#if __LSB_VERSION__ >= 12
 #define IPPROTO_IP	0
 #define IPPROTO_ICMP	1
 #define IPPROTO_UDP	17
 #define IPPROTO_IGMP	2
 #define IPPROTO_RAW	255
+#define IPPROTO_TCP	6
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
 #define IPPROTO_IPV6	41
 #define IPPROTO_ICMPV6	58
-#define IPPROTO_TCP	6
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 
 
 /* Type to represent a port.*/
+#if __LSB_VERSION__ >= 20
     typedef uint16_t in_port_t;
+
+#endif				// __LSB_VERSION__ >= 2.0
 
 
 /* Standard well-known ports.*/
 
 /* Address structures for IPv4*/
+#if __LSB_VERSION__ >= 13
     typedef uint32_t in_addr_t;
 
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 11
     struct in_addr {
 	uint32_t s_addr;
     };
 
 #include <arpa/inet.h>
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 /* Well Know IPv4 addresses*/
+#define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
+#if __LSB_VERSION__ >= 11
+#define INADDR_ANY	0
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
 #define INADDR_NONE	((in_addr_t) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
-#define INADDR_ANY	0
-#define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
@@ -51,6 +73,7 @@ extern "C" {
 #define s6_addr	in6_u.u6_addr8
 
 
+#if __LSB_VERSION__ >= 20
     struct in6_addr {
 	union {
 	    uint8_t u6_addr8[16];
@@ -59,18 +82,27 @@ extern "C" {
 	} in6_u;
     };
 
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* Well known IPV6 addresses*/
+#if __LSB_VERSION__ >= 20
 #define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
 #define IN6ADDR_LOOPBACK_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 
 
 /* Structure describing an Internet socket V4 address.*/
 #define IN_MULTICAST(a)	((((in_addr_t)(a))&0xf0000000)==0xe0000000)
+#if __LSB_VERSION__ >= 20
 #define INET_ADDRSTRLEN	16
+#endif				// __LSB_VERSION__ >= 2.0
 
 
+
+#if __LSB_VERSION__ >= 11
     struct sockaddr_in {
 	sa_family_t sin_family;
 	unsigned short sin_port;
@@ -78,11 +110,12 @@ extern "C" {
 	unsigned char sin_zero[8];
     };
 
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 /* Structure describing an Internet socket V6 address.*/
 #define IN6_IS_ADDR_LINKLOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfe800000))
 #define IN6_IS_ADDR_SITELOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfec00000))
-#define IN6_ARE_ADDR_EQUAL(a,b)	((((const uint32_t *) (a))[0] == ((const uint32_t *) (b))[0]) && (((const uint32_t *) (a))[1] == ((const uint32_t *) (b))[1]) && (((const uint32_t *) (a))[2] == ((const uint32_t *) (b))[2]) && (((const uint32_t *) (a))[3] == ((const uint32_t *) (b))[3]))
 #define IN6_IS_ADDR_V4COMPAT(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == 0) && (ntohl (((const uint32_t *) (a))[3]) > 1))
 #define IN6_IS_ADDR_V4MAPPED(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == htonl (0xffff)))
 #define IN6_IS_ADDR_UNSPECIFIED(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == 0)
@@ -93,9 +126,17 @@ extern "C" {
 #define IN6_IS_ADDR_MC_SITELOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x5))
 #define IN6_IS_ADDR_MC_ORGLOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x8))
 #define IN6_IS_ADDR_MC_GLOBAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0xe))
+#if __LSB_VERSION__ >= 20
 #define INET6_ADDRSTRLEN	46
+#endif				// __LSB_VERSION__ >= 2.0
+
+#if __LSB_VERSION__ >= 31
+#define IN6_ARE_ADDR_EQUAL(a,b)	((((const uint32_t *) (a))[0] == ((const uint32_t *) (b))[0]) && (((const uint32_t *) (a))[1] == ((const uint32_t *) (b))[1]) && (((const uint32_t *) (a))[2] == ((const uint32_t *) (b))[2]) && (((const uint32_t *) (a))[3] == ((const uint32_t *) (b))[3]))
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 20
     struct sockaddr_in6 {
 	unsigned short sin6_family;	/* AF_INET6 */
 	uint16_t sin6_port;	/* Transport layer port # */
@@ -104,15 +145,25 @@ extern "C" {
 	uint32_t sin6_scope_id;	/* scope id (new in RFC2553) */
     };
 
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* IP Socket options*/
+#define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
+#define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
+#if __LSB_VERSION__ >= 11
 #define SOL_IP	0
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
 #define IP_TOS	1		/* IP type of service and precedence */
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
 #define IPV6_UNICAST_HOPS	16
 #define IPV6_MULTICAST_IF	17
 #define IPV6_MULTICAST_HOPS	18
 #define IPV6_MULTICAST_LOOP	19
-#define IP_TTL	2		/* IP time to live */
 #define IPV6_JOIN_GROUP	20
 #define IPV6_LEAVE_GROUP	21
 #define IPV6_V6ONLY	26
@@ -121,13 +172,18 @@ extern "C" {
 #define IP_MULTICAST_LOOP	34	/* set/get IP multicast loopback */
 #define IP_ADD_MEMBERSHIP	35	/* add an IP group membership */
 #define IP_DROP_MEMBERSHIP	36	/* drop an IP group membership */
+#endif				// __LSB_VERSION__ >= 2.0
+
+#if __LSB_VERSION__ >= 30
+#define IP_TTL	2		/* IP time to live */
 #define IP_OPTIONS	4	/* IP per-packet options */
-#define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
-#define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
+#endif				// __LSB_VERSION__ >= 3.0
+
 
 
 
 /* Multicast interfaces to setsockopt()*/
+#if __LSB_VERSION__ >= 20
     struct ipv6_mreq {
 	struct in6_addr ipv6mr_multiaddr;	/* IPv6 multicast address of group */
 	int ipv6mr_interface;	/* local IPv6 address of interface */
@@ -138,11 +194,22 @@ extern "C" {
 	struct in_addr imr_interface;	/* local IP address of interface */
     };
 
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int bindresvport(int, struct sockaddr_in *);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 32
     extern const struct in6_addr in6addr_any;
     extern const struct in6_addr in6addr_loopback;
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

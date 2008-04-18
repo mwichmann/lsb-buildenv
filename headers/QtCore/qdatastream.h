@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QDATASTREAM_H_
 #define _QTCORE_QDATASTREAM_H_
 
 class QDataStream;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QDataStream
 {
 private:
@@ -72,12 +74,20 @@ ReadCorruptData = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
 extern  _ZlsR11QDataStreamRK11QSizePolicy(QDataStream &, const QSizePolicy &);
-extern  _ZlsR11QDataStreamRK13QStandardItem(QDataStream &, QStandardItem * &);
-extern  _ZlsR11QDataStreamRK5QIcon(QDataStream &, const QIcon &);
+extern  _ZlsR11QDataStreamRK13QStandardItem(QDataStream &);
+extern  _ZlsR11QDataStreamRK5QIcon(QDataStream &);
 extern  _ZrsR11QDataStreamR11QSizePolicy(QDataStream &, QSizePolicy &);
-extern  _ZrsR11QDataStreamR13QStandardItem(QDataStream &, QStandardItem &);
-extern  _ZrsR11QDataStreamR5QIcon(QDataStream &, QIcon &);
+extern  _ZrsR11QDataStreamR13QStandardItem(QDataStream &);
+extern  _ZrsR11QDataStreamR5QIcon(QDataStream &);
+#endif // __LSB_VERSION__ >= 3.2
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

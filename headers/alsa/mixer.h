@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _ALSA_MIXER_H_
 #define _ALSA_MIXER_H_
 
@@ -10,6 +11,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
     typedef struct _snd_mixer snd_mixer_t;
 
     typedef struct _snd_mixer_elem snd_mixer_elem_t;
@@ -46,6 +48,9 @@ extern "C" {
 
     typedef struct _snd_mixer_selem_id snd_mixer_selem_id_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
     enum snd_mixer_selem_regopt_abstract {
 	SND_MIXER_SABSTRACT_NONE,
 	SND_MIXER_SABSTRACT_BASIC = 1
@@ -59,19 +64,12 @@ extern "C" {
 	snd_pcm_t *capture_pcm;
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+// Function prototypes
 
-
-
-
-
-
-
-
-
-
-
+#if __LSB_VERSION__ >= 32
     extern int snd_mixer_attach(snd_mixer_t *, const char *);
     extern int snd_mixer_close(snd_mixer_t *);
     extern int snd_mixer_detach(snd_mixer_t *, const char *);
@@ -212,7 +210,10 @@ extern "C" {
 				       snd_mixer_callback_t);
     extern void snd_mixer_set_callback_private(snd_mixer_t *, void *);
     extern int snd_mixer_wait(snd_mixer_t *, int);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

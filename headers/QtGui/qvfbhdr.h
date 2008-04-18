@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QVFBHDR_H_
 #define _QTGUI_QVFBHDR_H_
 
@@ -7,11 +8,15 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     struct QVFbHeader;
 
     struct QVFbKeyData;
 
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

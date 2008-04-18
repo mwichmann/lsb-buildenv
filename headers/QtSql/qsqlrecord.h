@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTSQL_QSQLRECORD_H_
 #define _QTSQL_QSQLRECORD_H_
 
 class QSqlRecord;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QSqlRecord
 {
 private:
@@ -44,7 +46,15 @@ public:
     int count() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDebug _Zls6QDebugRK10QSqlRecord(_Z6QDebug, const QSqlRecord &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDebug _Zls6QDebugRK10QSqlRecord(const QSqlRecord &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

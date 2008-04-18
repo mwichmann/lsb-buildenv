@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _X11_X_H_
 #define _X11_X_H_
 
@@ -7,9 +8,32 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
+    KeyCode *;
+
+    KeySym *;
+
+    Atom *;
+
+    KeyCode **;
+
+    Time *;
+
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* Resources*/
+#if __LSB_VERSION__ >= 12
+#define X_PROTOCOL_REVISION	0
+#define X_PROTOCOL	11
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+
+#if __LSB_VERSION__ >= 12
     typedef unsigned long int XID;
+
+    typedef unsigned long int Mask;
 
     typedef unsigned long int Atom;
 
@@ -35,8 +59,11 @@ extern "C" {
 
     typedef XID KeySym;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/
+#if __LSB_VERSION__ >= 12
 #define AllTemporary	0L
 #define AnyButton	0L
 #define AnyKey	0L
@@ -49,10 +76,13 @@ extern "C" {
 #define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* EVENT DEFINITIONS*/
+#if __LSB_VERSION__ >= 12
 #define KeyPressMask	(1L<<0)
 #define KeyReleaseMask	(1L<<1)
 #define Button3MotionMask	(1L<<10)
@@ -78,10 +108,13 @@ extern "C" {
 #define PointerMotionHintMask	(1L<<7)
 #define Button1MotionMask	(1L<<8)
 #define Button2MotionMask	(1L<<9)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Event names*/
+#if __LSB_VERSION__ >= 12
 #define NoEventMask	0L
 #define FocusOut	10
 #define KeymapNotify	11
@@ -117,10 +150,13 @@ extern "C" {
 #define EnterNotify	7
 #define LeaveNotify	8
 #define FocusIn	9
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Key masks*/
+#if __LSB_VERSION__ >= 12
 #define ShiftMask	(1<<0)
 #define LockMask	(1<<1)
 #define ControlMask	(1<<2)
@@ -129,10 +165,13 @@ extern "C" {
 #define Mod3Mask	(1<<5)
 #define Mod4Mask	(1<<6)
 #define Mod5Mask	(1<<7)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* modifier names*/
+#if __LSB_VERSION__ >= 12
 #define ShiftMapIndex	0
 #define LockMapIndex	1
 #define ControlMapIndex	2
@@ -141,38 +180,50 @@ extern "C" {
 #define Mod3MapIndex	5
 #define Mod4MapIndex	6
 #define Mod5MapIndex	7
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* button masks*/
+#if __LSB_VERSION__ >= 12
 #define Button3Mask	(1<<10)
 #define Button4Mask	(1<<11)
 #define Button5Mask	(1<<12)
 #define AnyModifier	(1<<15)
 #define Button1Mask	(1<<8)
 #define Button2Mask	(1<<9)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* button names*/
+#if __LSB_VERSION__ >= 12
 #define Button1	1
 #define Button2	2
 #define Button3	3
 #define Button4	4
 #define Button5	5
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Notify modes*/
+#if __LSB_VERSION__ >= 12
 #define NotifyNormal	0
 #define NotifyGrab	1
 #define NotifyHint	1
 #define NotifyUngrab	2
 #define NotifyWhileGrabbed	3
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Notify detail*/
+#if __LSB_VERSION__ >= 12
 #define NotifyAncestor	0
 #define NotifyVirtual	1
 #define NotifyInferior	2
@@ -181,58 +232,82 @@ extern "C" {
 #define NotifyPointer	5
 #define NotifyPointerRoot	6
 #define NotifyDetailNone	7
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Visibility notify*/
+#if __LSB_VERSION__ >= 12
 #define VisibilityUnobscured	0
 #define VisibilityPartiallyObscured	1
 #define VisibilityFullyObscured	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Circulation request*/
+#if __LSB_VERSION__ >= 12
 #define PlaceOnTop	0
 #define PlaceOnBottom	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* protocol families*/
+#if __LSB_VERSION__ >= 12
 #define FamilyInternet	0
 #define FamilyDECnet	1
 #define FamilyChaos	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Property notification*/
+#if __LSB_VERSION__ >= 12
 #define PropModeReplace	0
 #define PropertyNewValue	0
 #define PropertyDelete	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Color Map notification*/
+#if __LSB_VERSION__ >= 12
 #define ColormapUninstalled	0
 #define ColormapInstalled	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* GrabPointer, GrabButton, GrabKeyboard, GrabKey Modes*/
+#if __LSB_VERSION__ >= 12
 #define GrabModeSync	0
 #define GrabModeAsync	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* GrabPointer, GrabKeyboard reply status*/
+#if __LSB_VERSION__ >= 12
 #define GrabSuccess	0
 #define AlreadyGrabbed	1
 #define GrabInvalidTime	2
 #define GrabNotViewable	3
 #define GrabFrozen	4
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* AllowEvents modes*/
+#if __LSB_VERSION__ >= 12
 #define AsyncPointer	0
 #define SyncPointer	1
 #define ReplayPointer	2
@@ -241,17 +316,23 @@ extern "C" {
 #define ReplayKeyboard	5
 #define AsyncBoth	6
 #define SyncBoth	7
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Used in SetInputFocus, GetInputFocus*/
+#if __LSB_VERSION__ >= 12
 #define RevertToNone	(int)None
 #define RevertToPointerRoot	(int)PointerRoot
 #define RevertToParent	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* ERROR CODES*/
+#if __LSB_VERSION__ >= 12
 #define Success	0
 #define BadRequest	1
 #define BadAccess	10
@@ -272,17 +353,23 @@ extern "C" {
 #define BadFont	7
 #define BadMatch	8
 #define BadDrawable	9
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Window classes used by CreateWindow*/
+#if __LSB_VERSION__ >= 12
 #define CWX	(1<<0)
 #define InputOutput	1
 #define InputOnly	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Window attributes for CreateWindow and ChangeWindowAttributes*/
+#if __LSB_VERSION__ >= 12
 #define CWBackPixmap	(1L<<0)
 #define CWBackPixel	(1L<<1)
 #define CWSaveUnder	(1L<<10)
@@ -298,20 +385,26 @@ extern "C" {
 #define CWBackingPlanes	(1L<<7)
 #define CWBackingPixel	(1L<<8)
 #define CWOverrideRedirect	(1L<<9)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* ConfigureWindow structure*/
+#if __LSB_VERSION__ >= 12
 #define CWY	(1<<1)
 #define CWWidth	(1<<2)
 #define CWHeight	(1<<3)
 #define CWBorderWidth	(1<<4)
 #define CWSibling	(1<<5)
 #define CWStackMode	(1<<6)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Bit Gravity*/
+#if __LSB_VERSION__ >= 12
 #define ForgetGravity	0
 #define UnmapGravity	0
 #define NorthWestGravity	1
@@ -324,62 +417,86 @@ extern "C" {
 #define SouthWestGravity	7
 #define SouthGravity	8
 #define SouthEastGravity	9
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Window gravity + bit gravity above*/
 
 /* Used in CreateWindow for backing-store hint*/
+#if __LSB_VERSION__ >= 12
 #define NotUseful	0
 #define WhenMapped	1
 #define Always	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Used in GetWindowAttributes reply*/
+#if __LSB_VERSION__ >= 12
 #define IsUnmapped	0
 #define IsUnviewable	1
 #define IsViewable	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Used in ChangeSaveSet*/
+#if __LSB_VERSION__ >= 12
 #define SetModeInsert	0
 #define SetModeDelete	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Used in ChangeCloseDownMode*/
+#if __LSB_VERSION__ >= 12
 #define DestroyAll	0
 #define RetainPermanent	1
 #define RetainTemporary	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Window stacking method (in configureWindow)*/
+#if __LSB_VERSION__ >= 12
 #define Above	0
 #define Below	1
 #define TopIf	2
 #define BottomIf	3
 #define Opposite	4
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Circulation direction*/
+#if __LSB_VERSION__ >= 12
 #define RaiseLowest	0
 #define LowerHighest	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Property modes*/
+#if __LSB_VERSION__ >= 12
 #define PropModePrepend	1
 #define PropModeAppend	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* GRAPHICS DEFINITIONS*/
 
 /* graphics functions, as in GC.alu*/
+#if __LSB_VERSION__ >= 12
 #define GXclear	0x0
 #define GXand	0x1
 #define GXandReverse	0x2
@@ -396,80 +513,113 @@ extern "C" {
 #define GXorInverted	0xd
 #define GXnand	0xe
 #define GXset	0xf
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* LineStyle*/
+#if __LSB_VERSION__ >= 12
 #define LineSolid	0
 #define LineOnOffDash	1
 #define LineDoubleDash	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* capStyle*/
+#if __LSB_VERSION__ >= 12
 #define CapNotLast	0
 #define CapButt	1
 #define CapRound	2
 #define CapProjecting	3
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* joinStyle*/
+#if __LSB_VERSION__ >= 12
 #define JoinMiter	0
 #define JoinRound	1
 #define JoinBevel	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* fillStyle*/
+#if __LSB_VERSION__ >= 12
 #define FillSolid	0
 #define FillTiled	1
 #define FillStippled	2
 #define FillOpaqueStippled	3
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* fillRule*/
+#if __LSB_VERSION__ >= 12
 #define EvenOddRule	0
 #define WindingRule	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* subwindow mode*/
+#if __LSB_VERSION__ >= 12
 #define ClipByChildren	0
 #define IncludeInferiors	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* SetClipRectangles ordering*/
+#if __LSB_VERSION__ >= 12
 #define Unsorted	0
 #define XYBitmap	0
 #define YSorted	1
 #define YXSorted	2
 #define YXBanded	3
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* CoordinateMode for drawing routines*/
+#if __LSB_VERSION__ >= 12
 #define CoordModeOrigin	0
 #define CoordModePrevious	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Polygon shapes*/
+#if __LSB_VERSION__ >= 12
 #define Complex	0
 #define Nonconvex	1
 #define Convex	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Arc modes for PolyFillArc*/
+#if __LSB_VERSION__ >= 12
 #define ArcChord	0
 #define ArcPieSlice	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* GC components: masks used in CreateGC, CopyGC, ChangeGC, OR'ed into    GC.stateChanges*/
+#if __LSB_VERSION__ >= 12
 #define GCFunction	(1L<<0)
 #define GCPlaneMask	(1L<<1)
 #define GCTile	(1L<<10)
@@ -495,59 +645,80 @@ extern "C" {
 #define GCFillRule	(1L<<9)
 #define GCLastBit	22
 #define FontChange	255
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* FONTS*/
 
 /* used in QueryFont -- draw direction*/
+#if __LSB_VERSION__ >= 12
 #define FontLeftToRight	0
 #define FontRightToLeft	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* IMAGING*/
 
 /* ImageFormat -- PutImage, GetImage*/
+#if __LSB_VERSION__ >= 12
 #define XYPixmap	1
 #define ZPixmap	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* COLOR MAP STUFF*/
 
 /* For CreateColormap*/
+#if __LSB_VERSION__ >= 12
 #define AllocNone	0
 #define AllocAll	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Flags used in StoreNamedColor, StoreColors*/
+#if __LSB_VERSION__ >= 12
 #define DoRed	(1<<0)
 #define DoGreen	(1<<1)
 #define DoBlue	(1<<2)
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* CURSOR STUFF*/
 
 /* QueryBestSize Class*/
+#if __LSB_VERSION__ >= 12
 #define CursorShape	0
 #define TileShape	1
 #define StippleShape	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* KEYBOARD/POINTER STUFF*/
+#if __LSB_VERSION__ >= 12
 #define AutoRepeatModeOff	0
 #define LedModeOff	0
 #define AutoRepeatModeOn	1
 #define LedModeOn	1
 #define AutoRepeatModeDefault	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* masks for ChangeKeyboardControl*/
+#if __LSB_VERSION__ >= 12
 #define KBKeyClickPercent	(1L<<0)
 #define KBBellPercent	(1L<<1)
 #define KBBellPitch	(1L<<2)
@@ -562,10 +733,13 @@ extern "C" {
 #define MappingKeyboard	1
 #define MappingFailed	2
 #define MappingPointer	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* SCREEN SAVER STUFF*/
+#if __LSB_VERSION__ >= 12
 #define DisableScreenInterval	0
 #define DisableScreenSaver	0
 #define DontAllowExposures	0
@@ -574,45 +748,63 @@ extern "C" {
 #define PreferBlanking	1
 #define DefaultBlanking	2
 #define DefaultExposures	2
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* for ForceScreenSaver*/
+#if __LSB_VERSION__ >= 12
 #define ScreenSaverReset	0
 #define ScreenSaverActive	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* HOSTS AND CONNECTIONS*/
 
 /* for ChangeHosts*/
+#if __LSB_VERSION__ >= 12
 #define HostInsert	0
 #define HostDelete	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* for ChangeAccessControl*/
+#if __LSB_VERSION__ >= 12
 #define DisableAccess	0
 #define EnableAccess	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Display classes  used in opening the connection Note that the statically allocated ones are even numbered and the dynamically changeable ones are odd numbered*/
+#if __LSB_VERSION__ >= 12
 #define StaticGray	0
 #define GrayScale	1
 #define StaticColor	2
 #define PseudoColor	3
 #define TrueColor	4
 #define DirectColor	5
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 
 /* Byte order  used in imageByteOrder and bitmapBitOrder*/
+#if __LSB_VERSION__ >= 12
 #define LSBFirst	0
 #define MSBFirst	1
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

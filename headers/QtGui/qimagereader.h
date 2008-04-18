@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QIMAGEREADER_H_
 #define _QTGUI_QIMAGEREADER_H_
 
 class QImageReader;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QImageReader
 {
 private:
@@ -60,5 +62,8 @@ InvalidDataError = 4
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

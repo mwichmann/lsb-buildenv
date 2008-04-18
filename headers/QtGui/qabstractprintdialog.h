@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QABSTRACTPRINTDIALOG_H_
 #define _QTGUI_QABSTRACTPRINTDIALOG_H_
 
 class QFlags < QAbstractPrintDialog::PrintDialogOption >;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QAbstractPrintDialog::PrintDialogOption>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }PrintDialogOptions	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QAbstractPrintDialog : public QDialog
 {
 private:
@@ -60,5 +65,8 @@ private:
 public:
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

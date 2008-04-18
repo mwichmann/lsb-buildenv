@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_ENCODING_H_
 #define _LIBXML2_LIBXML_ENCODING_H_
 
@@ -10,6 +11,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
     typedef enum {
 	XML_CHAR_ENCODING_ERROR = -1,
 	XML_CHAR_ENCODING_NONE = 0,
@@ -37,38 +39,46 @@ extern "C" {
 	XML_CHAR_ENCODING_ASCII = 22
     } xmlCharEncoding;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern const char *xmlGetCharEncodingName(xmlCharEncoding);
-    extern int xmlCharEncInFunc(xmlCharEncodingHandler *, xmlBufferPtr,
-				xmlBufferPtr);
-    extern xmlCharEncodingHandlerPtr xmlFindCharEncodingHandler(const char
-								*);
-    extern int xmlCharEncOutFunc(xmlCharEncodingHandler *, xmlBufferPtr,
-				 xmlBufferPtr);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern int UTF8Toisolat1(unsigned char *, int *, const unsigned char *,
 			     int *);
     extern int isolat1ToUTF8(unsigned char *, int *, const unsigned char *,
 			     int *);
+    extern int xmlAddEncodingAlias(const char *, const char *);
     extern int xmlCharEncCloseFunc(xmlCharEncodingHandler *);
-    extern xmlCharEncodingHandlerPtr
-	xmlGetCharEncodingHandler(xmlCharEncoding);
-    extern void xmlCleanupEncodingAliases(void);
+    extern int xmlCharEncFirstLine(xmlCharEncodingHandler *, xmlBufferPtr,
+				   xmlBufferPtr);
+    extern int xmlCharEncInFunc(xmlCharEncodingHandler *, xmlBufferPtr,
+				xmlBufferPtr);
+    extern int xmlCharEncOutFunc(xmlCharEncodingHandler *, xmlBufferPtr,
+				 xmlBufferPtr);
     extern void xmlCleanupCharEncodingHandlers(void);
+    extern void xmlCleanupEncodingAliases(void);
+    extern int xmlDelEncodingAlias(const char *);
     extern xmlCharEncoding xmlDetectCharEncoding(const unsigned char *,
 						 int);
-    extern int xmlAddEncodingAlias(const char *, const char *);
-    extern void xmlRegisterCharEncodingHandler(xmlCharEncodingHandlerPtr);
+    extern xmlCharEncodingHandlerPtr xmlFindCharEncodingHandler(const char
+								*);
+    extern xmlCharEncodingHandlerPtr
+	xmlGetCharEncodingHandler(xmlCharEncoding);
+    extern const char *xmlGetCharEncodingName(xmlCharEncoding);
     extern const char *xmlGetEncodingAlias(const char *);
     extern void xmlInitCharEncodingHandlers(void);
     extern xmlCharEncodingHandlerPtr xmlNewCharEncodingHandler(const char
 							       *,
 							       xmlCharEncodingInputFunc,
 							       xmlCharEncodingOutputFunc);
-    extern int xmlDelEncodingAlias(const char *);
-    extern int xmlCharEncFirstLine(xmlCharEncodingHandler *, xmlBufferPtr,
-				   xmlBufferPtr);
     extern xmlCharEncoding xmlParseCharEncoding(const char *);
+    extern void xmlRegisterCharEncodingHandler(xmlCharEncodingHandlerPtr);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

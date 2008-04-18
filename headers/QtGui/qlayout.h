@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QLAYOUT_H_
 #define _QTGUI_QLAYOUT_H_
 
 class QLayout;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QLayoutIterator
 {
 private:
@@ -84,7 +86,15 @@ SetMinAndMaxSize = 5
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN7QLayout16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

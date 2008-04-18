@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _X11_EXTENSIONS_XDBE_H_
 #define _X11_EXTENSIONS_XDBE_H_
 
@@ -9,7 +10,58 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
+    typedef Drawable XdbeBackBuffer;
 
+    typedef unsigned char XdbeSwapAction;
+
+    typedef struct {
+	Window swap_window;
+	XdbeSwapAction swap_action;
+    } XdbeSwapInfo;
+
+    typedef struct {
+	Window window;
+    } XdbeBackBufferAttributes;
+
+    typedef struct {
+	int type;
+	Display *display;
+	XdbeBackBuffer buffer;
+	unsigned long int serial;
+	unsigned char error_code;
+	unsigned char request_code;
+	unsigned char minor_code;
+    } XdbeBufferError;
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 12
+    struct {
+	Window swap_window;
+	XdbeSwapAction swap_action;
+    };
+
+    struct {
+	Window window;
+    };
+
+    struct {
+	int type;
+	Display *display;
+	XdbeBackBuffer buffer;
+	unsigned long int serial;
+	unsigned char error_code;
+	unsigned char request_code;
+	unsigned char minor_code;
+    };
+
+#endif				// __LSB_VERSION__ >= 1.2
+
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern XdbeBackBuffer XdbeAllocateBackBufferName(Display *, Window,
 						     XdbeSwapAction);
     extern int XdbeBeginIdiom(Display *);
@@ -21,7 +73,10 @@ extern "C" {
     extern *XdbeGetVisualInfo(Display *, Drawable *, int *);
     extern int XdbeQueryExtension(Display *, int *, int *);
     extern int XdbeSwapBuffers(Display *, XdbeSwapInfo *, int);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

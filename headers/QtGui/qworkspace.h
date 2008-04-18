@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QWORKSPACE_H_
 #define _QTGUI_QWORKSPACE_H_
 
 class QWorkspace;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QWorkspace : public QWidget
 {
 private:
@@ -52,7 +54,15 @@ StackingOrder = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QWorkspace16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

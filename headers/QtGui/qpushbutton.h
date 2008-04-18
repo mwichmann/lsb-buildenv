@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPUSHBUTTON_H_
 #define _QTGUI_QPUSHBUTTON_H_
 
 class QPushButton;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPushButton : public QAbstractButton
 {
 private:
@@ -36,7 +38,15 @@ protected:
     void focusOutEvent(QFocusEvent*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QPushButton16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

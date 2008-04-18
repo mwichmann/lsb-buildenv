@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 11 )
 #ifndef _COMPLEX_H_
 #define _COMPLEX_H_
 
@@ -7,10 +8,16 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 20
 #define complex	_Complex
+#endif				// __LSB_VERSION__ >= 2.0
 
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern double cabs(double complex);
     extern float cabsf(float complex);
     extern long double cabsl(long double complex);
@@ -81,7 +88,10 @@ extern "C" {
     extern float complex ctanhf(float complex);
     extern long double complex ctanhl(long double complex);
     extern long double complex ctanl(long double complex);
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

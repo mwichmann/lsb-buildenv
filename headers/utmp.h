@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 12 )
 #ifndef _UTMP_H_
 #define _UTMP_H_
 
@@ -10,19 +11,26 @@ extern "C" {
 #endif
 
 
-#define UT_HOSTSIZE	256
-#define UT_LINESIZE	32
-#define UT_NAMESIZE	32
 #define ut_addr	ut_addr_v6[0]
 #define ut_time	ut_tv.tv_sec
 #define ut_name	ut_user		/* Backwards compatability */
+#if __LSB_VERSION__ >= 12
+#define UT_HOSTSIZE	256
+#define UT_LINESIZE	32
+#define UT_NAMESIZE	32
+#endif				// __LSB_VERSION__ >= 1.2
 
 
+
+#if __LSB_VERSION__ >= 12
     struct exit_status {
 	short e_termination;	/* Process termination status. */
 	short e_exit;		/* Process exit status. */
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
 #if defined __s390x__
 /* S390X */
     struct lastlog {
@@ -86,8 +94,11 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* The structure describing an entry in the user accounting database.*/
+#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     struct utmp {
@@ -213,8 +224,11 @@ extern "C" {
     };
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 /* Values for the `ut_type' field of a `struct utmp'.*/
+#if __LSB_VERSION__ >= 12
 #define EMPTY	0		/* No valid user accounting information. */
 #define RUN_LVL	1		/* The system's runlevel. */
 #define BOOT_TIME	2	/* Time of system boot. */
@@ -225,19 +239,33 @@ extern "C" {
 #define USER_PROCESS	7	/* Normal process. */
 #define DEAD_PROCESS	8	/* Terminated process. */
 #define ACCOUNTING	9
+#endif				// __LSB_VERSION__ >= 1.2
 
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern void endutent(void);
     extern struct utmp *getutent(void);
-    extern void setutent(void);
-    extern int getutent_r(struct utmp *, struct utmp **);
-    extern int utmpname(const char *);
-    extern int login_tty(int);
     extern void login(const struct utmp *);
+    extern int login_tty(int);
     extern int logout(const char *);
     extern void logwtmp(const char *, const char *, const char *);
+    extern void setutent(void);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 11
+    extern int getutent_r(struct utmp *, struct utmp **);
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 30
+    extern int utmpname(const char *);
+#endif				// __LSB_VERSION__ >= 3.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTPFR_H_
 #define _FREETYPE_FTPFR_H_
 
@@ -14,12 +15,18 @@ extern "C" {
 
 
 
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern FT_Error FT_Get_PFR_Advance(FT_Face, FT_UInt, FT_Pos *);
-    extern FT_Error FT_Get_PFR_Metrics(FT_Face, FT_UInt *, FT_UInt *,
-				       FT_Fixed *, FT_Fixed *);
     extern FT_Error FT_Get_PFR_Kerning(FT_Face, FT_UInt, FT_UInt,
 				       FT_Vector *);
+    extern FT_Error FT_Get_PFR_Metrics(FT_Face, FT_UInt *, FT_UInt *,
+				       FT_Fixed *, FT_Fixed *);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

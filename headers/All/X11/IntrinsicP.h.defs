@@ -1,12 +1,58 @@
 
-extern void XtConfigureWidget(Widget, int, int, unsigned int, unsigned int,
-			      unsigned int);
+typedef struct {
+    long int xrm_name;
+    long int xrm_class;
+    long int xrm_type;
+    Cardinal xrm_size;
+    int xrm_offset;
+    long int xrm_default_type;
+    XtPointer xrm_default_addr;
+} XrmResource;
+XrmResource *;
+typedef XrmResource *XrmResourceList;
+XrmResourceList *;
+struct _XtTMRec {
+    XtTranslations translations;
+    XtBoundActions proc_table;
+    struct _XtStateRec *current_state;
+    long unsigned int lastEventTime;
+};
+struct _XtTMRec *;
+typedef struct _XtTMRec *XtTM;
+typedef struct {
+    String name;
+    String type;
+    XtArgVal value;
+    int size;
+} XtTypedArg;
+XtTypedArg *;
+typedef XtTypedArg *XtTypedArgList;
+typedef void (*XtProc) (void);
+typedef void (*XtWidgetClassProc) (WidgetClass);
+typedef void (*XtInitProc) (Widget, Widget, ArgList, Cardinal *);
+typedef void (*XtArgsProc) (Widget, ArgList, Cardinal *);
+typedef void (*XtRealizeProc) (Widget, XtValueMask *,
+			       XSetWindowAttributes *);
+typedef void (*XtWidgetProc) (Widget);
+typedef void (*XtExposeProc) (Widget, XEvent *, Region);
+typedef Boolean(*XtSetValuesFunc) (Widget, Widget, Widget, ArgList,
+				   Cardinal *);
+typedef Boolean(*XtArgsFunc) (Widget, ArgList, Cardinal *);
+typedef void (*XtAlmostProc) (Widget, Widget, XtWidgetGeometry *,
+			      XtWidgetGeometry *);
+typedef Boolean(*XtAcceptFocusProc) (Widget, Time *);
+typedef long unsigned int XtVersionType;
+typedef enum XtGeometryResult (*XtGeometryHandler) (Widget,
+						    XtWidgetGeometry *,
+						    XtWidgetGeometry *);
+typedef void (*XtStringProc) (Widget, String);
+extern void XtConfigureWidget(Widget, Position, Position, Dimension,
+			      Dimension, Dimension);
 extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
 			   XSetWindowAttributes *);
-extern void XtMoveWidget(Widget, int, int);
+extern void XtMoveWidget(Widget, Position, Position);
 extern void XtProcessLock(void);
 extern void XtProcessUnlock(void);
-extern void XtResizeWidget(Widget, unsigned int, unsigned int,
-			   unsigned int);
+extern void XtResizeWidget(Widget, Dimension, Dimension, Dimension);
 extern void XtResizeWindow(Widget);
 extern void _XtInherit(void);

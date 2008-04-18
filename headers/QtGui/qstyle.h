@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QSTYLE_H_
 #define _QTGUI_QSTYLE_H_
 
 class QFlags < QStyle::SubControl >;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QStyle::StateFlag>
 {
 private:
@@ -24,6 +26,9 @@ public:
 typedef SubControls	SCFlags	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QStyle : public QObject
 {
 private:
@@ -529,7 +534,15 @@ SP_FileDialogBack = 36
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN6QStyle16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

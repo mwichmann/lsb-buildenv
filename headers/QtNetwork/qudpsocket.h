@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QUDPSOCKET_H_
 #define _QTNETWORK_QUDPSOCKET_H_
 
 class QUdpSocket;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QUdpSocket::BindFlag>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }BindMode	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QUdpSocket : public QAbstractSocket
 {
 private:
@@ -45,7 +50,15 @@ private:
 public:
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QUdpSocket16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 30 )
 #ifndef _STDINT_H_
 #define _STDINT_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define INT16_C(c)	c
 #define INT32_C(c)	c
 #define INT8_C(c)	c
@@ -139,10 +141,13 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define __UINT64_C(c)	c ## ULL
 #endif
+#endif				// __LSB_VERSION__ >= 3.2
+
 
 
 
 /* Default Header Section for stdint.h*/
+#if __LSB_VERSION__ >= 32
 #define INT8_MIN	(-128)
 #define INT_FAST8_MIN	(-128)
 #define INT_LEAST8_MIN	(-128)
@@ -432,160 +437,169 @@ extern "C" {
 #define UINTMAX_MAX	(__UINT64_C(18446744073709551615))
 #define UINT_FAST64_MAX	(__UINT64_C(18446744073709551615))
 #define UINT_LEAST64_MAX	(__UINT64_C(18446744073709551615))
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 10
+    typedef int int32_t;
+
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 12
     typedef signed char int8_t;
 
     typedef short int16_t;
 
-    typedef int int32_t;
-
-#if defined __i386__
-/* IA32 */
-    typedef long long int int64_t;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef long int int64_t;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef long long int int64_t;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef long int int64_t;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef long long int int64_t;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef long int int64_t;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef long int int64_t;
-
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef long long int intmax_t;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef long long int intmax_t;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef long long int intmax_t;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef long int intmax_t;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef long int intmax_t;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef long int intmax_t;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef long int intmax_t;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef unsigned long long int uintmax_t;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef unsigned long int uintmax_t;
-
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef unsigned long long int uintmax_t;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef unsigned long long int uintmax_t;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef unsigned long int uintmax_t;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef unsigned long int uintmax_t;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef unsigned long int uintmax_t;
-
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef int intptr_t;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef long int intptr_t;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef int intptr_t;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef int intptr_t;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef long int intptr_t;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef long int intptr_t;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef long int intptr_t;
-
-#endif
     typedef unsigned char uint8_t;
 
     typedef unsigned short uint16_t;
 
     typedef unsigned int uint32_t;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
+#if defined __i386__
+/* IA32 */
+    typedef long long int int64_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef long int int64_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef long long int int64_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef long int int64_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef long long int int64_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef long int int64_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef long int int64_t;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef long long int intmax_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef long long int intmax_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef long long int intmax_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef long int intmax_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef long int intmax_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef long int intmax_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef long int intmax_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef unsigned long long int uintmax_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef unsigned long int uintmax_t;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef unsigned long long int uintmax_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef unsigned long long int uintmax_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef unsigned long int uintmax_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef unsigned long int uintmax_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef unsigned long int uintmax_t;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef int intptr_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef long int intptr_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef int intptr_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef int intptr_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef long int intptr_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef long int intptr_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef long int intptr_t;
+
+#endif
 #if defined __i386__
 /* IA32 */
     typedef unsigned int uintptr_t;
@@ -656,6 +670,9 @@ extern "C" {
     typedef unsigned long int uint64_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 2.0
+
+#if __LSB_VERSION__ >= 32
     typedef signed char int_least8_t;
 
     typedef short int int_least16_t;
@@ -952,7 +969,10 @@ extern "C" {
     typedef unsigned long long int uint_fast64_t;
 
 #endif
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

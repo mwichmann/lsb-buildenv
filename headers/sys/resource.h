@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _SYS_RESOURCE_H_
 #define _SYS_RESOURCE_H_
 
@@ -9,33 +10,53 @@ extern "C" {
 #endif
 
 
-#define RUSAGE_CHILDREN	(-1)
-#define RLIM_INFINITY	(~0UL)
-#define RLIM_SAVED_CUR	-1
-#define RLIM_SAVED_MAX	-1
-#define RLIMIT_CPU	0
-#define RUSAGE_SELF	0
-#define RLIMIT_FSIZE	1
 #define RLIMIT_LOCKS	10
 #define RLIM_NLIMITS	11
+#define RLIMIT_RSS	5
+#define RLIMIT_NPROC	6
+#define RLIMIT_MEMLOCK	8
+#if __LSB_VERSION__ >= 11
+#define RLIM_INFINITY	(~0UL)
+#define RLIMIT_CPU	0
+#define RLIMIT_FSIZE	1
 #define RLIMIT_DATA	2
 #define RLIMIT_STACK	3
 #define RLIMIT_CORE	4
-#define RLIMIT_RSS	5
-#define RLIMIT_NPROC	6
 #define RLIMIT_NOFILE	7
-#define RLIMIT_MEMLOCK	8
 #define RLIMIT_AS	9
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
+#define RLIM_SAVED_CUR	-1
+#define RLIM_SAVED_MAX	-1
+#define RUSAGE_SELF	0
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
+#define RUSAGE_CHILDREN	(-1)
+#if __LSB_VERSION__ < 31
+#define RUSAGE_BOTH	(-2)
+#endif				// __LSB_VERSION__ < 3.1
+
+#endif				// __LSB_VERSION__ >= 2.0
 
 
 
+
+#if __LSB_VERSION__ >= 12
     typedef unsigned long int rlim_t;
 
     typedef unsigned long long int rlim64_t;
 
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 20
     typedef int __rlimit_resource_t;
 
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+#if __LSB_VERSION__ >= 12
     struct rlimit {
 	rlim_t rlim_cur;	/* The current (soft) limit. */
 	rlim_t rlim_max;	/* The hard limit. */
@@ -46,7 +67,10 @@ extern "C" {
 	rlim64_t rlim_max;	/* The hard limit. */
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+#if __LSB_VERSION__ >= 12
     struct rusage {
 	struct timeval ru_utime;	/* Total amount of user time used. */
 	struct timeval ru_stime;	/* Total amount of system time used. */
@@ -66,34 +90,54 @@ extern "C" {
 	long int ru_nivcsw;	/* Number of involuntary context switches, i.e. a higher priori */
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* Priority limits.*/
 
 /* The type of the WHICH argument to `getpriority' and `setpriority',
 indicating what flavor of entity the WHO argument specifies.*/
+#if __LSB_VERSION__ >= 20
     enum __priority_which {
 	PRIO_PROCESS = 0,	/* WHO is a process ID. */
 	PRIO_PGRP = 1,		/* WHO is a process group ID. */
 	PRIO_USER = 2		/* WHO is a user ID. */
     };
 
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+#if __LSB_VERSION__ >= 13
 #define PRIO_PGRP	PRIO_PGRP
 #define PRIO_PROCESS	PRIO_PROCESS
 #define PRIO_USER	PRIO_USER
+#endif				// __LSB_VERSION__ >= 1.3
 
 
+
+#if __LSB_VERSION__ >= 20
     typedef enum __priority_which __priority_which_t;
 
+#endif				// __LSB_VERSION__ >= 2.0
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int getpriority(__priority_which_t, id_t);
+    extern int getrlimit(__rlimit_resource_t, struct rlimit *);
     extern int getrlimit64(id_t, struct rlimit64 *);
+    extern int getrusage(int, struct rusage *);
     extern int setpriority(__priority_which_t, id_t, int);
     extern int setrlimit(__rlimit_resource_t, const struct rlimit *);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 12
     extern int setrlimit64(__rlimit_resource_t, const struct rlimit64 *);
-    extern int getrlimit(__rlimit_resource_t, struct rlimit *);
-    extern int getrusage(int, struct rusage *);
+#endif				// __LSB_VERSION__ >= 1.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

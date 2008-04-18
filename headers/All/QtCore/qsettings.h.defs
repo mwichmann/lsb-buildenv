@@ -1,42 +1,42 @@
 
 class QSettings;
 enum _ZN9QSettings6StatusE {
-    NoError = 0,
-    AccessError = 1,
-    FormatError = 2
+    NoError,
+    AccessError,
+    FormatError
 };
 enum _ZN9QSettings6FormatE {
-    NativeFormat = 0,
-    IniFormat = 1,
-    InvalidFormat = 16,
-    CustomFormat1 = 17,
-    CustomFormat2 = 18,
-    CustomFormat3 = 19,
-    CustomFormat4 = 20,
-    CustomFormat5 = 21,
-    CustomFormat6 = 22,
-    CustomFormat7 = 23,
-    CustomFormat8 = 24,
-    CustomFormat9 = 25,
-    CustomFormat10 = 26,
-    CustomFormat11 = 27,
-    CustomFormat12 = 28,
-    CustomFormat13 = 29,
-    CustomFormat14 = 30,
-    CustomFormat15 = 31,
-    CustomFormat16 = 32
+    NativeFormat,
+    IniFormat,
+    InvalidFormat,
+    CustomFormat1,
+    CustomFormat2,
+    CustomFormat3,
+    CustomFormat4,
+    CustomFormat5,
+    CustomFormat6,
+    CustomFormat7,
+    CustomFormat8,
+    CustomFormat9,
+    CustomFormat10,
+    CustomFormat11,
+    CustomFormat12,
+    CustomFormat13,
+    CustomFormat14,
+    CustomFormat15,
+    CustomFormat16
 };
 enum _ZN9QSettings5ScopeE {
-    UserScope = 0,
-    User = 0,
-    SystemScope = 1,
-    Global = 1
+    UserScope,
+    User,
+    SystemScope,
+    Global
 };
 typedef class QMap < QString, QVariant > _ZN9QSettings11SettingsMapE;
 typedef bool _ZN9QSettings8ReadFuncE;
 typedef bool _ZN9QSettings9WriteFuncE;
 enum _ZN9QSettings6SystemE {
-    Unix = 0,
-    Windows = 1,
-    Mac = 2
+    Unix,
+    Windows,
+    Mac
 };

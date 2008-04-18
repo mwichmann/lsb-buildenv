@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _CUPS_CUPS_H_
 #define _CUPS_CUPS_H_
 
@@ -12,14 +13,18 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define _CUPS_CUPS_H_
 #define CUPS_VERSION_MAJOR	1
 #define CUPS_VERSION_MINOR	1
 #define CUPS_VERSION	1.0123
 #define CUPS_VERSION_PATCH	23
 #define cupsLangDefault()	cupsLangGet(NULL)
+#endif				// __LSB_VERSION__ >= 3.2
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef enum {
 	CUPS_AUTO_ENCODING = -1,
 	CUPS_US_ASCII = 0,
@@ -224,6 +229,9 @@ extern "C" {
 	IPP_PRINTER_IS_DEACTIVATED = 1290
     } ipp_status_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
+
+#if __LSB_VERSION__ >= 32
 
     struct cups_lang_str {
 	struct cups_lang_str *next;
@@ -240,7 +248,10 @@ extern "C" {
 	md5_byte_t buf[64];
     };
 
+#endif				// __LSB_VERSION__ >= 3.2
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct {
 	int fd;
 	int blocking;
@@ -272,45 +283,53 @@ extern "C" {
 	int digest_tries;
     } http_t;
 
+#endif				// __LSB_VERSION__ >= 3.2
 
-    extern void cupsLangFree(cups_lang_t *);
-    extern void cupsSetEncryption(http_encryption_t);
-    extern cups_dest_t *cupsGetDest(const char *, const char *, int,
-				    cups_dest_t *);
-    extern int cupsGetJobs(cups_job_t * *, const char *, int, int);
-    extern http_encryption_t cupsEncryption(void);
-    extern void cupsFreeJobs(int, cups_job_t *);
-    extern void cupsFreeOptions(int, cups_option_t *);
-    extern const char *cupsGetOption(const char *, int, cups_option_t *);
-    extern int cupsMarkOptions(ppd_file_t *, int, cups_option_t *);
-    extern int cupsAddOption(const char *, const char *, int,
-			     cups_option_t * *);
-    extern int cupsGetDests(cups_dest_t * *);
-    extern void cupsSetServer(const char *);
-    extern const char *cupsGetPassword(const char *);
-    extern void cupsSetDests(int, cups_dest_t *);
-    extern int cupsParseOptions(const char *, int, cups_option_t * *);
-    extern void cupsSetPasswordCB(const char *(*)(const char *)
-	);
-    extern void cupsSetUser(const char *);
-    extern cups_lang_t *cupsLangGet(const char *);
-    extern void cupsLangFlush(void);
-    extern int cupsPrintFiles(const char *, int, const char **,
-			      const char *, int, cups_option_t *);
-    extern int cupsCancelJob(const char *, int);
-    extern char *cupsLangEncoding(cups_lang_t *);
-    extern void cupsFreeDests(int, cups_dest_t *);
-    extern ipp_status_t cupsLastError(void);
-    extern const char *cupsGetDefault(void);
-    extern const char *cupsGetPPD(const char *);
-    extern const char *cupsServer(void);
-    extern const char *cupsUser(void);
-    extern int cupsTempFd(char *, int);
-    extern int cupsPrintFile(const char *, const char *, const char *, int,
-			     cups_option_t *);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 32
     extern int cupsAddDest(const char *, const char *, int,
 			   cups_dest_t * *);
+    extern int cupsAddOption(const char *, const char *, int,
+			     cups_option_t * *);
+    extern int cupsCancelJob(const char *, int);
+    extern http_encryption_t cupsEncryption(void);
+    extern void cupsFreeDests(int, cups_dest_t *);
+    extern void cupsFreeJobs(int, cups_job_t *);
+    extern void cupsFreeOptions(int, cups_option_t *);
+    extern const char *cupsGetDefault(void);
+    extern cups_dest_t *cupsGetDest(const char *, const char *, int,
+				    cups_dest_t *);
+    extern int cupsGetDests(cups_dest_t * *);
+    extern int cupsGetJobs(cups_job_t * *, const char *, int, int);
+    extern const char *cupsGetOption(const char *, int, cups_option_t *);
+    extern const char *cupsGetPPD(const char *);
+    extern const char *cupsGetPassword(const char *);
+    extern char *cupsLangEncoding(cups_lang_t *);
+    extern void cupsLangFlush(void);
+    extern void cupsLangFree(cups_lang_t *);
+    extern cups_lang_t *cupsLangGet(const char *);
+    extern ipp_status_t cupsLastError(void);
+    extern int cupsMarkOptions(ppd_file_t *, int, cups_option_t *);
+    extern int cupsParseOptions(const char *, int, cups_option_t * *);
+    extern int cupsPrintFile(const char *, const char *, const char *, int,
+			     cups_option_t *);
+    extern int cupsPrintFiles(const char *, int, const char **,
+			      const char *, int, cups_option_t *);
+    extern const char *cupsServer(void);
+    extern void cupsSetDests(int, cups_dest_t *);
+    extern void cupsSetEncryption(http_encryption_t);
+    extern void cupsSetPasswordCB(const char *(*)(const char *)
+	);
+    extern void cupsSetServer(const char *);
+    extern void cupsSetUser(const char *);
+    extern int cupsTempFd(char *, int);
+    extern const char *cupsUser(void);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

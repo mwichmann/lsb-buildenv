@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_CONFIG_FTSTDLIB_H_
 #define _FREETYPE_CONFIG_FTSTDLIB_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define ft_atol	atol
 #define ft_exit	exit
 #define FT_INT_MAX	INT_MAX
@@ -34,9 +36,12 @@ extern "C" {
 #define ft_strrchr	strrchr
 #define FT_UINT_MAX	UINT_MAX
 #define FT_ULONG_MAX	ULONG_MAX
+#endif				// __LSB_VERSION__ >= 3.2
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

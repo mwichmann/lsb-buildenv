@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 20 )
 #ifndef _RPC_AUTH_DES_H_
 #define _RPC_AUTH_DES_H_
 
@@ -10,4 +11,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

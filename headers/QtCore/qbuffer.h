@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QBUFFER_H_
 #define _QTCORE_QBUFFER_H_
 
 class QBuffer;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QBuffer : public QIODevice
 {
 private:
@@ -31,7 +33,15 @@ protected:
     qint64 writeData(char const*, long long);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN7QBuffer16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

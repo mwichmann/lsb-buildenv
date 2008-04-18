@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QLOCALE_H_
 #define _QTCORE_QLOCALE_H_
 
 class QLocale;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QLocale
 {
 private:
@@ -455,8 +457,16 @@ ShortFormat = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QDataStream _ZlsR11QDataStreamRK7QLocale(QDataStream &, const QLocale &);
-extern QDataStream _ZrsR11QDataStreamR7QLocale(QDataStream &, QLocale &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+extern QDataStream _ZlsR11QDataStreamRK7QLocale(const QLocale &);
+extern QDataStream _ZrsR11QDataStreamR7QLocale(QLocale &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

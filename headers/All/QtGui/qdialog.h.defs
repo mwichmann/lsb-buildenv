@@ -1,6 +1,6 @@
 
 class QDialog;
 enum _ZN7QDialog10DialogCodeE {
-    Rejected = 0,
-    Accepted = 1
+    Rejected,
+    Accepted
 };

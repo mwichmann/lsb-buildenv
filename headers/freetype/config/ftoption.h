@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_CONFIG_FTOPTION_H_
 #define _FREETYPE_CONFIG_FTOPTION_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define FT_CONFIG_OPTION_ADOBE_GLYPH_LIST
 #define FT_CONFIG_OPTION_GUESSING_EMBEDDED_RFORK
 #define FT_CONFIG_OPTION_MAC_FONTS
@@ -31,9 +33,12 @@ extern "C" {
 #define T1_MAX_CHARSTRINGS_OPERANDS	256
 #define FT_MAX_MODULES	32
 #define T1_MAX_DICT_DEPTH	5
+#endif				// __LSB_VERSION__ >= 3.2
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

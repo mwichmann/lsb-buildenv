@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _ERRNO_H_
 #define _ERRNO_H_
 
@@ -7,11 +8,15 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
 #define errno	(*__errno_location())
+#endif				// __LSB_VERSION__ >= 1.1
+
 
 
 
 /* errno values*/
+#if __LSB_VERSION__ >= 11
 #define EPERM	1		/* Operation not permitted */
 #define ECHILD	10		/* No child processes */
 #define ENETDOWN	100	/* Network is down */
@@ -67,9 +72,6 @@ extern "C" {
 #define EDOM	33		/* Math argument out of domain of func */
 #define ERANGE	34		/* Math result not representable */
 #define EDEADLK	35		/* Resource deadlock would occur */
-#if defined __s390x__
-#define EDEADLOCK	35
-#endif
 #define ENAMETOOLONG	36	/* File name too long */
 #define ENOLCK	37		/* No record locks available */
 #define ENOSYS	38		/* Function not implemented */
@@ -84,16 +86,9 @@ extern "C" {
 #define EL3RST	47		/* Level 3 reset */
 #define ELNRNG	48		/* Link number out of range */
 #define EUNATCH	49		/* Protocol driver not attached */
-#define EIO	5		/* I/O error */
 #define ENOANO	55		/* No anode */
 #define EBADRQC	56		/* Invalid request code */
 #define EBADSLT	57		/* Invalid slot */
-#if defined __powerpc__ && !defined __powerpc64__
-#define EDEADLOCK	58
-#endif
-#if defined __powerpc64__
-#define EDEADLOCK	58
-#endif
 #define EBFONT	59		/* Bad font file format */
 #define ENXIO	6		/* No such device or address */
 #define ENOSTR	60		/* Device not a stream */
@@ -143,21 +138,52 @@ extern "C" {
 #if defined __i386__
 #define EDEADLOCK	EDEADLK
 #endif
+#define ENOTSUP	EOPNOTSUPP
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
+#define EIO	5		/* I/O error */
+#if defined __powerpc__ && !defined __powerpc64__
+#define EDEADLOCK	58
+#endif
+#endif				// __LSB_VERSION__ >= 1.2
+
+#if __LSB_VERSION__ >= 13
+#if defined __s390x__
+#define EDEADLOCK	35
+#endif
 #if defined __ia64__
 #define EDEADLOCK	EDEADLK
 #endif
 #if defined __s390__ && !defined __s390x__
 #define EDEADLOCK	EDEADLK
 #endif
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 20
+#if defined __powerpc64__
+#define EDEADLOCK	58
+#endif
 #if defined __x86_64__
 #define EDEADLOCK	EDEADLK
 #endif
-#define ENOTSUP	EOPNOTSUPP
+#endif				// __LSB_VERSION__ >= 2.0
 
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern int *__errno_location(void);
+#if __LSB_VERSION__ < 11
+    extern int errno;
+#endif				// __LSB_VERSION__ < 1.1
+
+#endif				// __LSB_VERSION__ >= 1.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

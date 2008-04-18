@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 30 )
 #ifndef _X11_EXTENSIONS_XEVI_H_
 #define _X11_EXTENSIONS_XEVI_H_
 
@@ -9,13 +10,17 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 12
 #define XEVI_TRANSPARENCY_NONE	0
 #define XEVI_TRANSPARENCY_PIXEL	1
 #define XEVI_TRANSPARENCY_MASK	2
+#endif				// __LSB_VERSION__ >= 1.2
 
 
 
 
+
+#if __LSB_VERSION__ >= 12
     typedef struct {
 	VisualID core_visual_id;
 	int screen;
@@ -28,12 +33,20 @@ extern "C" {
 	VisualID *colormap_conflicts;
     } ExtendedVisualInfo;
 
+#endif				// __LSB_VERSION__ >= 1.2
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 30
     extern int XeviGetVisualInfo(Display *, Visual *, int,
 				 ExtendedVisualInfo * *, int *);
     extern int XeviQueryExtension(Display *);
     extern int XeviQueryVersion(Display *, int *, int *);
+#endif				// __LSB_VERSION__ >= 3.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

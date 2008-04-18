@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_XMLVERSION_H_
 #define _LIBXML2_LIBXML_XMLVERSION_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define LIBXML_AUTOMATA_ENABLED
 #define LIBXML_C14N_ENABLED
 #define LIBXML_CATALOG_ENABLED
@@ -44,11 +46,19 @@ extern "C" {
 #define LIBXML_VERSION_STRING	"20622"
 #define LIBXML_TEST_VERSION	xmlCheckVersion(20622);
 #define ATTRIBUTE_UNUSED	__attribute__((unused))
+#endif				// __LSB_VERSION__ >= 3.1
 
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern void xmlCheckVersion(int);
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

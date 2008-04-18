@@ -1,9 +1,9 @@
 
 class QInputDialog;
 enum _ZN12QInputDialog4TypeE {
-    LineEdit = 0,
-    SpinBox = 1,
-    DoubleSpinBox = 2,
-    ComboBox = 3,
-    EditableComboBox = 4
+    LineEdit,
+    SpinBox,
+    DoubleSpinBox,
+    ComboBox,
+    EditableComboBox
 };

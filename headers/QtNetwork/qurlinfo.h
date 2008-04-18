@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QURLINFO_H_
 #define _QTNETWORK_QURLINFO_H_
 
 class QUrlInfo;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QUrlInfo
 {
 private:
@@ -59,5 +61,8 @@ ReadOwner = 256
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,7 +1,7 @@
 
 class QImageWriter;
 enum _ZN12QImageWriter16ImageWriterErrorE {
-    UnknownError = 0,
-    DeviceError = 1,
-    UnsupportedFormatError = 2
+    UnknownError,
+    DeviceError,
+    UnsupportedFormatError
 };

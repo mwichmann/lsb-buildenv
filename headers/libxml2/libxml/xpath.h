@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _LIBXML2_LIBXML_XPATH_H_
 #define _LIBXML2_LIBXML_XPATH_H_
 
@@ -14,6 +15,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define xmlXPathNodeSetItem(ns,index)	 \
 	((((ns) != NULL) && ((index) >= 0) && ((index) < (ns)->nodeNr)) ? \
 	(ns)->nodeTab[(index)] : NULL)
@@ -22,8 +24,11 @@ extern "C" {
 #define xmlXPathNodeSetGetLength(ns)	((ns) ? (ns)->nodeNr : 0)
 #define XML_XPATH_CHECKNS	(1<<0)
 #define XML_XPATH_NOVAR	(1<<1)
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef struct _xmlXPathCompExpr xmlXPathCompExpr;
 
     typedef xmlXPathCompExpr *xmlXPathCompExprPtr;
@@ -118,7 +123,9 @@ extern "C" {
 
     typedef xmlXPathFunct *xmlXPathFuncPtr;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
+#if __LSB_VERSION__ >= 31
 
 
 
@@ -222,52 +229,60 @@ extern "C" {
 	xmlXPathObjectPtr value;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern double xmlXPathCastNodeToNumber(xmlNodePtr);
-    extern long int xmlXPathOrderDocElems(xmlDocPtr);
-    extern void xmlXPathFreeCompExpr(xmlXPathCompExprPtr);
-    extern int xmlXPathIsInf(double);
-    extern xmlXPathContextPtr xmlXPathNewContext(xmlDocPtr);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
+    extern double xmlXPathCastBooleanToNumber(int);
+    extern xmlChar *xmlXPathCastBooleanToString(int);
+    extern int xmlXPathCastNodeSetToBoolean(xmlNodeSetPtr);
     extern double xmlXPathCastNodeSetToNumber(xmlNodeSetPtr);
-    extern int xmlXPathCastNumberToBoolean(double);
-    extern int xmlXPathCmpNodes(xmlNodePtr, xmlNodePtr);
     extern xmlChar *xmlXPathCastNodeSetToString(xmlNodeSetPtr);
-    extern xmlXPathCompExprPtr xmlXPathCtxtCompile(xmlXPathContextPtr,
-						   const xmlChar *);
-    extern xmlXPathCompExprPtr xmlXPathCompile(const xmlChar *);
-    extern xmlXPathObjectPtr xmlXPathConvertNumber(xmlXPathObjectPtr);
-    extern int xmlXPathIsNaN(double);
+    extern double xmlXPathCastNodeToNumber(xmlNodePtr);
     extern xmlChar *xmlXPathCastNodeToString(xmlNodePtr);
-    extern int xmlXPathCastToBoolean(xmlXPathObjectPtr);
+    extern int xmlXPathCastNumberToBoolean(double);
+    extern xmlChar *xmlXPathCastNumberToString(double);
+    extern int xmlXPathCastStringToBoolean(const xmlChar *);
     extern double xmlXPathCastStringToNumber(const xmlChar *);
+    extern int xmlXPathCastToBoolean(xmlXPathObjectPtr);
+    extern double xmlXPathCastToNumber(xmlXPathObjectPtr);
+    extern xmlChar *xmlXPathCastToString(xmlXPathObjectPtr);
+    extern int xmlXPathCmpNodes(xmlNodePtr, xmlNodePtr);
+    extern xmlXPathCompExprPtr xmlXPathCompile(const xmlChar *);
     extern xmlXPathObjectPtr xmlXPathCompiledEval(xmlXPathCompExprPtr,
 						  xmlXPathContextPtr);
-    extern void xmlXPathFreeNodeSet(xmlNodeSetPtr);
-    extern int xmlXPathCastNodeSetToBoolean(xmlNodeSetPtr);
-    extern xmlChar *xmlXPathCastToString(xmlXPathObjectPtr);
-    extern xmlChar *xmlXPathCastNumberToString(double);
-    extern void xmlXPathFreeObject(xmlXPathObjectPtr);
-    extern double xmlXPathCastToNumber(xmlXPathObjectPtr);
     extern xmlXPathObjectPtr xmlXPathConvertBoolean(xmlXPathObjectPtr);
+    extern xmlXPathObjectPtr xmlXPathConvertNumber(xmlXPathObjectPtr);
+    extern xmlXPathObjectPtr xmlXPathConvertString(xmlXPathObjectPtr);
+    extern xmlXPathCompExprPtr xmlXPathCtxtCompile(xmlXPathContextPtr,
+						   const xmlChar *);
+    extern xmlXPathObjectPtr xmlXPathEval(const xmlChar *,
+					  xmlXPathContextPtr);
     extern xmlXPathObjectPtr xmlXPathEvalExpression(const xmlChar *,
 						    xmlXPathContextPtr);
     extern int xmlXPathEvalPredicate(xmlXPathContextPtr,
 				     xmlXPathObjectPtr);
-    extern int xmlXPathCastStringToBoolean(const xmlChar *);
-    extern xmlXPathObjectPtr xmlXPathObjectCopy(xmlXPathObjectPtr);
-    extern xmlNodeSetPtr xmlXPathNodeSetCreate(xmlNodePtr);
+    extern void xmlXPathFreeCompExpr(xmlXPathCompExprPtr);
     extern void xmlXPathFreeContext(xmlXPathContextPtr);
-    extern void xmlXPathInit(void);
-    extern xmlXPathObjectPtr xmlXPathConvertString(xmlXPathObjectPtr);
-    extern xmlChar *xmlXPathCastBooleanToString(int);
-    extern xmlXPathObjectPtr xmlXPathEval(const xmlChar *,
-					  xmlXPathContextPtr);
-    extern double xmlXPathCastBooleanToNumber(int);
+    extern void xmlXPathFreeNodeSet(xmlNodeSetPtr);
     extern void xmlXPathFreeNodeSetList(xmlXPathObjectPtr);
+    extern void xmlXPathFreeObject(xmlXPathObjectPtr);
+    extern void xmlXPathInit(void);
+    extern int xmlXPathIsInf(double);
+    extern int xmlXPathIsNaN(double);
     extern double xmlXPathNAN;
     extern double xmlXPathNINF;
+    extern xmlXPathContextPtr xmlXPathNewContext(xmlDocPtr);
+    extern xmlNodeSetPtr xmlXPathNodeSetCreate(xmlNodePtr);
+    extern xmlXPathObjectPtr xmlXPathObjectCopy(xmlXPathObjectPtr);
+    extern long int xmlXPathOrderDocElems(xmlDocPtr);
     extern double xmlXPathPINF;
+#endif				// __LSB_VERSION__ >= 3.1
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

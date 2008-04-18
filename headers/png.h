@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _PNG_H_
 #define _PNG_H_
 
@@ -10,6 +11,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 31
 #define FARDATA
 #define PNGAPI
 #define PNG_1_2_X
@@ -346,8 +348,11 @@ extern "C" {
 #define png_strcpy	strcpy
 #define png_strlen	strlen
 #define png_strncpy	strncpy
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 31
     typedef struct png_struct_def png_struct;
 
     typedef png_struct *png_structp;
@@ -473,8 +478,9 @@ extern "C" {
 
     typedef png_timep *png_timepp;
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-
+#if __LSB_VERSION__ >= 31
 
 
 
@@ -532,147 +538,158 @@ extern "C" {
 	png_byte pixel_depth;
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
-    extern void png_set_gAMA(png_structp, png_infop, double);
-    extern void png_set_progressive_read_fn(png_structp, png_voidp,
-					    png_progressive_info_ptr,
-					    png_progressive_row_ptr,
-					    png_progressive_end_ptr);
-    extern void png_set_shift(png_structp, png_color_8p);
-    extern png_byte png_get_interlace_type(png_structp, png_infop);
-    extern void png_read_info(png_structp, png_infop);
-    extern png_uint_32 png_get_image_height(png_structp, png_infop);
-    extern png_int_32 png_get_y_offset_pixels(png_structp, png_infop);
-    extern png_charp png_get_libpng_ver(png_structp);
-    extern void png_set_packswap(png_structp);
-    extern png_uint_32 png_get_sBIT(png_structp, png_infop,
-				    png_color_8p *);
-    extern void png_process_data(png_structp, png_infop, png_bytep,
-				 png_size_t);
-    extern png_uint_32 png_get_text(png_structp, png_infop, png_textp *,
-				    int *);
-    extern void png_write_rows(png_structp, png_bytepp, png_uint_32);
-    extern const char png_libpng_ver[];
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
     extern png_uint_32 png_access_version_number(void);
-    extern png_voidp png_get_progressive_ptr(png_structp);
-    extern png_uint_32 png_get_rowbytes(png_structp, png_infop);
-    extern void png_write_flush(png_structp);
-    extern void png_set_tRNS(png_structp, png_infop, png_bytep, int,
-			     png_color_16p);
-    extern png_uint_32 png_get_x_pixels_per_meter(png_structp, png_infop);
-    extern png_int_32 png_get_x_offset_pixels(png_structp, png_infop);
-    extern png_uint_32 png_get_sRGB(png_structp, png_infop, int *);
-    extern png_byte png_get_color_type(png_structp, png_infop);
+    extern png_infop png_create_info_struct(png_structp);
+    extern png_structp png_create_read_struct(png_const_charp, png_voidp,
+					      png_error_ptr,
+					      png_error_ptr);
+    extern png_structp png_create_write_struct(png_const_charp, png_voidp,
+					       png_error_ptr,
+					       png_error_ptr);
+    extern void png_destroy_read_struct(png_structpp, png_infopp,
+					png_infopp);
+    extern void png_destroy_write_struct(png_structpp, png_infopp);
+    extern void png_error(png_structp, png_const_charp);
+    extern void png_free(png_structp, png_voidp);
     extern png_uint_32 png_get_IHDR(png_structp, png_infop, png_uint_32 *,
 				    png_uint_32 *, int *, int *, int *,
 				    int *, int *);
     extern png_uint_32 png_get_PLTE(png_structp, png_infop, png_colorp *,
 				    int *);
-    extern void png_set_filter(png_structp, int, int);
-    extern png_uint_32 png_get_pHYs(png_structp, png_infop, png_uint_32 *,
-				    png_uint_32 *, int *);
-    extern png_uint_32 png_get_image_width(png_structp, png_infop);
-    extern void png_set_strip_16(png_structp);
-    extern void png_set_bKGD(png_structp, png_infop, png_color_16p);
-    extern png_uint_32 png_get_y_pixels_per_meter(png_structp, png_infop);
-    extern void png_write_png(png_structp, png_infop, int, voidp);
-    extern void png_set_error_fn(png_structp, png_voidp, png_error_ptr,
-				 png_error_ptr);
-    extern void png_set_sBIT(png_structp, png_infop, png_color_8p);
-    extern void png_error(png_structp, png_const_charp);
-    extern void png_set_read_fn(png_structp, png_voidp, png_rw_ptr);
-    extern int png_sig_cmp(png_bytep, png_size_t, png_size_t);
-    extern png_uint_32 png_get_tIME(png_structp, png_infop, png_timep *);
-    extern void png_set_pHYs(png_structp, png_infop, png_uint_32,
-			     png_uint_32, int);
+    extern png_uint_32 png_get_bKGD(png_structp, png_infop,
+				    png_color_16p *);
     extern png_byte png_get_bit_depth(png_structp, png_infop);
-    extern void png_free(png_structp, png_voidp);
-    extern void png_set_rgb_to_gray(png_structp, int, double, double);
-    extern void png_set_hIST(png_structp, png_infop, png_uint_16p);
     extern png_uint_32 png_get_cHRM(png_structp, png_infop, double *,
 				    double *, double *, double *, double *,
 				    double *, double *, double *);
-    extern void png_set_filler(png_structp, png_uint_32, int);
-    extern void png_set_text(png_structp, png_infop, png_textp, int);
+    extern png_byte png_get_channels(png_structp, png_infop);
+    extern png_byte png_get_color_type(png_structp, png_infop);
+    extern png_voidp png_get_error_ptr(png_structp);
+    extern png_uint_32 png_get_gAMA(png_structp, png_infop, double *);
+    extern png_uint_32 png_get_hIST(png_structp, png_infop,
+				    png_uint_16p *);
+    extern png_uint_32 png_get_iCCP(png_structp, png_infop, png_charpp,
+				    int *, png_charpp, png_uint_32 *);
+    extern png_uint_32 png_get_image_height(png_structp, png_infop);
+    extern png_uint_32 png_get_image_width(png_structp, png_infop);
+    extern png_byte png_get_interlace_type(png_structp, png_infop);
+    extern png_voidp png_get_io_ptr(png_structp);
+    extern png_charp png_get_libpng_ver(png_structp);
+    extern png_uint_32 png_get_oFFs(png_structp, png_infop, png_int_32 *,
+				    png_int_32 *, int *);
+    extern png_uint_32 png_get_pHYs(png_structp, png_infop, png_uint_32 *,
+				    png_uint_32 *, int *);
+    extern png_voidp png_get_progressive_ptr(png_structp);
+    extern png_uint_32 png_get_rowbytes(png_structp, png_infop);
+    extern png_bytepp png_get_rows(png_structp, png_infop);
+    extern png_uint_32 png_get_sBIT(png_structp, png_infop,
+				    png_color_8p *);
+    extern png_uint_32 png_get_sRGB(png_structp, png_infop, int *);
+    extern png_uint_32 png_get_tIME(png_structp, png_infop, png_timep *);
+    extern png_uint_32 png_get_tRNS(png_structp, png_infop, png_bytep *,
+				    int *, png_color_16p *);
+    extern png_uint_32 png_get_text(png_structp, png_infop, png_textp *,
+				    int *);
+    extern png_uint_32 png_get_valid(png_structp, png_infop, png_uint_32);
+    extern png_int_32 png_get_x_offset_pixels(png_structp, png_infop);
+    extern png_uint_32 png_get_x_pixels_per_meter(png_structp, png_infop);
+    extern png_int_32 png_get_y_offset_pixels(png_structp, png_infop);
+    extern png_uint_32 png_get_y_pixels_per_meter(png_structp, png_infop);
+    extern void png_init_io(png_structp, png_FILE_p);
+    extern const char png_libpng_ver[];
+    extern png_voidp png_malloc(png_structp, png_uint_32);
+    extern void png_process_data(png_structp, png_infop, png_bytep,
+				 png_size_t);
+    extern void png_progressive_combine_row(png_structp, png_bytep,
+					    png_bytep);
+    extern void png_read_end(png_structp, png_infop);
+    extern void png_read_image(png_structp, png_bytepp);
+    extern void png_read_info(png_structp, png_infop);
+    extern void png_read_png(png_structp, png_infop, int, voidp);
+    extern void png_read_row(png_structp, png_bytep, png_bytep);
+    extern void png_read_rows(png_structp, png_bytepp, png_bytepp,
+			      png_uint_32);
+    extern void png_read_update_info(png_structp, png_infop);
+    extern void png_set_IHDR(png_structp, png_infop, png_uint_32,
+			     png_uint_32, int, int, int, int, int);
+    extern void png_set_PLTE(png_structp, png_infop, png_colorp, int);
+    extern void png_set_bKGD(png_structp, png_infop, png_color_16p);
+    extern void png_set_background(png_structp, png_color_16p, int, int,
+				   double);
+    extern void png_set_bgr(png_structp);
     extern void png_set_cHRM(png_structp, png_infop, double, double,
 			     double, double, double, double, double,
 			     double);
-    extern void png_set_gray_to_rgb(png_structp);
-    extern png_uint_32 png_get_bKGD(png_structp, png_infop,
-				    png_color_16p *);
-    extern void png_read_end(png_structp, png_infop);
-    extern png_byte png_get_channels(png_structp, png_infop);
-    extern void png_warning(png_structp, png_const_charp);
-    extern void png_set_write_fn(png_structp, png_voidp, png_rw_ptr,
-				 png_flush_ptr);
-    extern void png_set_tIME(png_structp, png_infop, png_timep);
-    extern png_structp png_create_read_struct(png_const_charp, png_voidp,
-					      png_error_ptr,
-					      png_error_ptr);
-    extern void png_read_update_info(png_structp, png_infop);
-    extern png_infop png_create_info_struct(png_structp);
-    extern png_uint_32 png_get_hIST(png_structp, png_infop,
-				    png_uint_16p *);
-    extern void png_set_sRGB(png_structp, png_infop, int);
-    extern png_uint_32 png_get_iCCP(png_structp, png_infop, png_charpp,
-				    int *, png_charpp, png_uint_32 *);
-    extern png_uint_32 png_get_gAMA(png_structp, png_infop, double *);
-    extern png_uint_32 png_get_valid(png_structp, png_infop, png_uint_32);
     extern void png_set_compression_level(png_structp, int);
-    extern void png_set_packing(png_structp);
-    extern void png_write_image(png_structp, png_bytepp);
-    extern void png_write_end(png_structp, png_infop);
-    extern int png_set_interlace_handling(png_structp);
-    extern png_bytepp png_get_rows(png_structp, png_infop);
-    extern void png_progressive_combine_row(png_structp, png_bytep,
-					    png_bytep);
-    extern void png_set_bgr(png_structp);
     extern void png_set_dither(png_structp, png_colorp, int, int,
 			       png_uint_16p, int);
-    extern void png_set_rows(png_structp, png_infop, png_bytepp);
-    extern png_voidp png_malloc(png_structp, png_uint_32);
-    extern void png_write_row(png_structp, png_bytep);
-    extern void png_set_sig_bytes(png_structp, int);
-    extern png_uint_32 png_get_tRNS(png_structp, png_infop, png_bytep *,
-				    int *, png_color_16p *);
-    extern void png_write_chunk(png_structp, png_bytep, png_bytep,
-				png_size_t);
-    extern void png_write_info(png_structp, png_infop);
-    extern void png_set_IHDR(png_structp, png_infop, png_uint_32,
-			     png_uint_32, int, int, int, int, int);
-    extern void png_set_invert_mono(png_structp);
-    extern png_structp png_create_write_struct(png_const_charp, png_voidp,
-					       png_error_ptr,
-					       png_error_ptr);
-    extern void png_read_png(png_structp, png_infop, int, voidp);
-    extern void png_read_rows(png_structp, png_bytepp, png_bytepp,
-			      png_uint_32);
-    extern void png_read_row(png_structp, png_bytep, png_bytep);
-    extern void png_destroy_write_struct(png_structpp, png_infopp);
-    extern void png_set_swap_alpha(png_structp);
-    extern void png_destroy_read_struct(png_structpp, png_infopp,
-					png_infopp);
-    extern png_voidp png_get_io_ptr(png_structp);
-    extern png_uint_32 png_get_oFFs(png_structp, png_infop, png_int_32 *,
-				    png_int_32 *, int *);
-    extern void png_set_strip_alpha(png_structp);
-    extern void png_set_background(png_structp, png_color_16p, int, int,
-				   double);
+    extern void png_set_error_fn(png_structp, png_voidp, png_error_ptr,
+				 png_error_ptr);
+    extern void png_set_expand(png_structp);
+    extern void png_set_filler(png_structp, png_uint_32, int);
+    extern void png_set_filter(png_structp, int, int);
+    extern void png_set_gAMA(png_structp, png_infop, double);
+    extern void png_set_gamma(png_structp, double, double);
+    extern void png_set_gray_to_rgb(png_structp);
+    extern void png_set_hIST(png_structp, png_infop, png_uint_16p);
     extern void png_set_iCCP(png_structp, png_infop, png_charp, int,
 			     png_charp, png_uint_32);
-    extern void png_init_io(png_structp, png_FILE_p);
-    extern void png_set_PLTE(png_structp, png_infop, png_colorp, int);
-    extern png_voidp png_get_error_ptr(png_structp);
-    extern void png_set_gamma(png_structp, double, double);
-    extern void png_set_swap(png_structp);
-    extern void png_read_image(png_structp, png_bytepp);
-    extern void png_set_expand(png_structp);
+    extern int png_set_interlace_handling(png_structp);
+    extern void png_set_invert_mono(png_structp);
     extern void png_set_oFFs(png_structp, png_infop, png_int_32,
 			     png_int_32, int);
-    extern void png_set_tRNS_to_alpha(png_structp);
-    extern void png_set_palette_to_rgb(png_structp);
+    extern void png_set_pHYs(png_structp, png_infop, png_uint_32,
+			     png_uint_32, int);
+    extern void png_set_packing(png_structp);
+    extern void png_set_packswap(png_structp);
+    extern void png_set_progressive_read_fn(png_structp, png_voidp,
+					    png_progressive_info_ptr,
+					    png_progressive_row_ptr,
+					    png_progressive_end_ptr);
+    extern void png_set_read_fn(png_structp, png_voidp, png_rw_ptr);
+    extern void png_set_rgb_to_gray(png_structp, int, double, double);
+    extern void png_set_rows(png_structp, png_infop, png_bytepp);
+    extern void png_set_sBIT(png_structp, png_infop, png_color_8p);
+    extern void png_set_sRGB(png_structp, png_infop, int);
+    extern void png_set_shift(png_structp, png_color_8p);
+    extern void png_set_sig_bytes(png_structp, int);
+    extern void png_set_strip_16(png_structp);
+    extern void png_set_strip_alpha(png_structp);
+    extern void png_set_swap(png_structp);
+    extern void png_set_swap_alpha(png_structp);
+    extern void png_set_tIME(png_structp, png_infop, png_timep);
+    extern void png_set_tRNS(png_structp, png_infop, png_bytep, int,
+			     png_color_16p);
+    extern void png_set_text(png_structp, png_infop, png_textp, int);
+    extern void png_set_write_fn(png_structp, png_voidp, png_rw_ptr,
+				 png_flush_ptr);
+    extern int png_sig_cmp(png_bytep, png_size_t, png_size_t);
+    extern void png_warning(png_structp, png_const_charp);
+    extern void png_write_chunk(png_structp, png_bytep, png_bytep,
+				png_size_t);
+    extern void png_write_end(png_structp, png_infop);
+    extern void png_write_flush(png_structp);
+    extern void png_write_image(png_structp, png_bytepp);
+    extern void png_write_info(png_structp, png_infop);
+    extern void png_write_png(png_structp, png_infop, int, voidp);
+    extern void png_write_row(png_structp, png_bytep);
+    extern void png_write_rows(png_structp, png_bytepp, png_uint_32);
+#endif				// __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 32
     extern void png_set_gray_1_2_4_to_8(png_structp);
+    extern void png_set_palette_to_rgb(png_structp);
+    extern void png_set_tRNS_to_alpha(png_structp);
+#endif				// __LSB_VERSION__ >= 3.2
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

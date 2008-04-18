@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QPALETTE_H_
 #define _QTGUI_QPALETTE_H_
 
 class QPalette;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QPalette
 {
 private:
@@ -76,11 +78,19 @@ public:
     QVariant operator QVariant() const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN8QPalette16staticMetaObjectE ;
 extern QDataStream _ZlsR11QDataStreamRK11QColorGroup(QDataStream &, const QColorGroup &);
-extern QDataStream _ZrsR11QDataStreamR11QColorGroup(QDataStream &, QColorGroup &);
 extern QDataStream _ZlsR11QDataStreamRK8QPalette(QDataStream &, const QPalette &);
+extern QDataStream _ZrsR11QDataStreamR11QColorGroup(QDataStream &, QColorGroup &);
 extern QDataStream _ZrsR11QDataStreamR8QPalette(QDataStream &, QPalette &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

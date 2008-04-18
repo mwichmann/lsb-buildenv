@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _LOCALE_H_
 #define _LOCALE_H_
 
@@ -9,6 +10,7 @@ extern "C" {
 
 
 /* Structure giving information about numeric and monetary notation*/
+#if __LSB_VERSION__ >= 12
     struct lconv {
 	char *decimal_point;
 	char *thousands_sep;
@@ -36,9 +38,11 @@ extern "C" {
 	char int_n_sign_posn;
     };
 
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 /* These are the possibilities for the first argument to setlocale.*/
-#define LC_GLOBAL_LOCALE	((locale_t) -1L)
+#if __LSB_VERSION__ >= 11
 #define LC_CTYPE	0
 #define LC_NUMERIC	1
 #define LC_TELEPHONE	10
@@ -52,11 +56,21 @@ extern "C" {
 #define LC_PAPER	7
 #define LC_NAME	8
 #define LC_ADDRESS	9
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 30
+#define LC_GLOBAL_LOCALE	((locale_t) -1L)
+#endif				// __LSB_VERSION__ >= 3.0
 
 
 
+
+#if __LSB_VERSION__ >= 13
     typedef struct __locale_struct *__locale_t;
 
+#endif				// __LSB_VERSION__ >= 1.3
+
+#if __LSB_VERSION__ >= 31
     struct __locale_struct {
 	struct locale_data *__locales[13];
 	const unsigned short *__ctype_b;
@@ -65,12 +79,18 @@ extern "C" {
 	const char *__names[13];
     };
 
+#endif				// __LSB_VERSION__ >= 3.1
 
 
+
+#if __LSB_VERSION__ >= 30
     typedef struct __locale_struct *locale_t;
+
+#endif				// __LSB_VERSION__ >= 3.0
 
 
 /* These are the bits that can be set in the CATEGORY_MASK argument to newlocale().*/
+#if __LSB_VERSION__ >= 30
 #define LC_ADDRESS_MASK	(1 << LC_ADDRESS)
 #define LC_COLLATE_MASK	(1 << LC_COLLATE)
 #define LC_IDENTIFICATION_MASK	(1 << LC_IDENTIFICATION)
@@ -87,16 +107,27 @@ extern "C" {
         (LC_CTYPE_MASK| LC_NUMERIC_MASK| LC_TIME_MASK| LC_COLLATE_MASK| LC_MONETARY_MASK|\
          LC_MESSAGES_MASK| LC_PAPER_MASK| LC_NAME_MASK| LC_ADDRESS_MASK| LC_TELEPHONE_MASK|\
          LC_MEASUREMENT_MASK| LC_IDENTIFICATION_MASK)
+#endif				// __LSB_VERSION__ >= 3.0
 
 
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 10
     extern struct lconv *localeconv(void);
     extern char *setlocale(int, const char *);
-    extern locale_t uselocale(locale_t);
-    extern void freelocale(locale_t);
+#endif				// __LSB_VERSION__ >= 1.0
+
+#if __LSB_VERSION__ >= 30
     extern locale_t duplocale(locale_t);
+    extern void freelocale(locale_t);
     extern locale_t newlocale(int, const char *, locale_t);
+    extern locale_t uselocale(locale_t);
+#endif				// __LSB_VERSION__ >= 3.0
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

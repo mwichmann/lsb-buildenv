@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QGLOBAL_H_
 #define _QTCORE_QGLOBAL_H_
 
 class QBool;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef signed char	qint8	
 ;
 
@@ -82,6 +84,9 @@ typedef unsigned long int	Q_ULONG
 typedef void	QtMsgHandler	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QSysInfo
 {
 private:
@@ -178,47 +183,61 @@ LicensedActiveQt = 1
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern char _Z8qVersionv(void);
-extern bool _Z12qSharedBuildv(void);
-extern void _Z6qDebugPKcz(const char *, ...);
-extern void _Z8qWarningPKcz(const char *, ...);
-extern  _Z15qt_error_stringi(int);
-extern void _Z9qCriticalPKcz(const char *, ...);
-extern void _Z6qFatalPKcz(const char *, ...);
-extern void _Z14qSystemWarningPKci(const char *, int);
-extern void _Z13qErrnoWarningiPKcz(int, const char *, ...);
-extern void _Z13qErrnoWarningPKcz(const char *, ...);
-extern void _Z9qt_assertPKcS0_i(const char *, const char *, int);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern void _Z11qt_assert_xPKcS0_S0_i(const char *, const char *, const char *, int);
+extern char _Z12qInstallPathv(void);
+extern bool _Z12qSharedBuildv(void);
+extern void _Z13qErrnoWarningPKcz(const char *, ...);
+extern void _Z13qErrnoWarningiPKcz(int, const char *, ...);
+extern void _Z14qSystemWarningPKci(const char *, int);
+extern  _Z15qt_error_stringi(int);
+extern char _Z16qInstallPathBinsv(void);
+extern char _Z16qInstallPathDatav(void);
+extern char _Z16qInstallPathDocsv(void);
+extern char _Z16qInstallPathLibsv(void);
 extern void _Z16qt_check_pointerPKci(const char *, int);
 extern void _Z17qt_message_output9QtMsgTypePKc(enum QtMsgType, const char *);
 extern QtMsgHandler _Z18qInstallMsgHandlerPFv9QtMsgTypePKcE(void(*)(enum QtMsgType	,const char	* )
 );
-#if defined __i386__
-/* IA32 */
-extern void _Z7qMallocj(unsigned int);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-extern void _Z7qMallocj(unsigned int);
-#endif
+extern char _Z19qInstallPathHeadersv(void);
+extern char _Z19qInstallPathPluginsv(void);
+extern char _Z19qInstallPathSysconfv(void);
+extern char _Z24qInstallPathTranslationsv(void);
 extern void _Z5qFreePv(void *);
+extern void _Z6qDebugPKcz(const char *, ...);
+extern void _Z6qFatalPKcz(const char *, ...);
 #if defined __i386__
 /* IA32 */
-extern void _Z8qReallocPvj(void *, unsigned int);
+extern void _Z7qMallocj(unsigned int);
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-extern void _Z8qReallocPvj(void *, unsigned int);
+extern void _Z7qMallocj(unsigned int);
 #endif
-#if defined __i386__
-/* IA32 */
-extern void _Z8qMemCopyPvPKvj(void *, const void *, unsigned int);
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+extern void _Z7qMallocm(unsigned long int);
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-extern void _Z8qMemCopyPvPKvj(void *, const void *, unsigned int);
+#if defined __ia64__
+/* IA64 */
+extern void _Z7qMallocm(unsigned long int);
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+extern void _Z7qMallocm(unsigned long int);
+#endif
+#if defined __x86_64__
+/* x86-64 */
+extern void _Z7qMallocm(unsigned long int);
+#endif
+#if defined __s390x__
+/* S390X */
+extern void _Z7qMallocm(unsigned long int);
 #endif
 #if defined __i386__
 /* IA32 */
@@ -227,56 +246,35 @@ extern void _Z7qMemSetPvij(void *, int, unsigned int);
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
 extern void _Z7qMemSetPvij(void *, int, unsigned int);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+#endif
+#if defined __ia64__
+/* IA64 */
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+#endif
+#if defined __x86_64__
+/* x86-64 */
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+#endif
+#if defined __s390x__
+/* S390X */
+extern void _Z7qMemSetPvim(void *, int, unsigned long int);
 #endif
 extern  _Z7qgetenvPKc(const char *);
-extern char _Z12qInstallPathv(void);
-extern char _Z16qInstallPathDocsv(void);
-extern char _Z19qInstallPathHeadersv(void);
-extern char _Z16qInstallPathLibsv(void);
-extern char _Z16qInstallPathBinsv(void);
-extern char _Z19qInstallPathPluginsv(void);
-extern char _Z16qInstallPathDatav(void);
-extern char _Z24qInstallPathTranslationsv(void);
-extern char _Z19qInstallPathSysconfv(void);
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-extern void _Z7qMallocm(unsigned long int);
+#if defined __i386__
+/* IA32 */
+extern void _Z8qMemCopyPvPKvj(void *, const void *, unsigned int);
 #endif
-#if defined __ia64__
-/* IA64 */
-extern void _Z7qMallocm(unsigned long int);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-extern void _Z7qMallocm(unsigned long int);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-extern void _Z7qMallocm(unsigned long int);
-#endif
-#if defined __s390x__
-/* S390X */
-extern void _Z7qMallocm(unsigned long int);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-extern void _Z8qReallocPvm(void *, unsigned long int);
-#endif
-#if defined __ia64__
-/* IA64 */
-extern void _Z8qReallocPvm(void *, unsigned long int);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-extern void _Z8qReallocPvm(void *, unsigned long int);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-extern void _Z8qReallocPvm(void *, unsigned long int);
-#endif
-#if defined __s390x__
-/* S390X */
-extern void _Z8qReallocPvm(void *, unsigned long int);
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+extern void _Z8qMemCopyPvPKvj(void *, const void *, unsigned int);
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
@@ -298,27 +296,45 @@ extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 /* S390X */
 extern void _Z8qMemCopyPvPKvm(void *, const void *, unsigned long int);
 #endif
+#if defined __i386__
+/* IA32 */
+extern void _Z8qReallocPvj(void *, unsigned int);
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+extern void _Z8qReallocPvj(void *, unsigned int);
+#endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __ia64__
 /* IA64 */
-extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __x86_64__
 /* x86-64 */
-extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
 #if defined __s390x__
 /* S390X */
-extern void _Z7qMemSetPvim(void *, int, unsigned long int);
+extern void _Z8qReallocPvm(void *, unsigned long int);
 #endif
+extern char _Z8qVersionv(void);
+extern void _Z8qWarningPKcz(const char *, ...);
+extern void _Z9qCriticalPKcz(const char *, ...);
+extern void _Z9qt_assertPKcS0_i(const char *, const char *, int);
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 32
 extern  _Z5qrandv(void);
 extern  _Z6qsrandj(unsigned int);
+#endif // __LSB_VERSION__ >= 3.2
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

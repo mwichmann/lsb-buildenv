@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QTEXTSTREAM_H_
 #define _QTCORE_QTEXTSTREAM_H_
 
 class QFlags < QTextStream::NumberFlag >;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QTextStream::NumberFlag>
 {
 private:
@@ -185,6 +187,9 @@ public:
 }QTS	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QTextStream
 {
 private:
@@ -339,30 +344,38 @@ private:
 public:
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
-extern QTextStream _Z3binR11QTextStream(QTextStream &);
-extern QTextStream _Z3octR11QTextStream(QTextStream &);
-extern QTextStream _Z3decR11QTextStream(QTextStream &);
-extern QTextStream _Z3hexR11QTextStream(QTextStream &);
-extern QTextStream _Z8showbaseR11QTextStream(QTextStream &);
-extern QTextStream _Z9forcesignR11QTextStream(QTextStream &);
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern QTextStream _Z10forcepointR11QTextStream(QTextStream &);
 extern QTextStream _Z10noshowbaseR11QTextStream(QTextStream &);
+extern QTextStream _Z10scientificR11QTextStream(QTextStream &);
 extern QTextStream _Z11noforcesignR11QTextStream(QTextStream &);
 extern QTextStream _Z12noforcepointR11QTextStream(QTextStream &);
-extern QTextStream _Z13uppercasebaseR11QTextStream(QTextStream &);
-extern QTextStream _Z15uppercasedigitsR11QTextStream(QTextStream &);
 extern QTextStream _Z13lowercasebaseR11QTextStream(QTextStream &);
+extern QTextStream _Z13uppercasebaseR11QTextStream(QTextStream &);
 extern QTextStream _Z15lowercasedigitsR11QTextStream(QTextStream &);
-extern QTextStream _Z5fixedR11QTextStream(QTextStream &);
-extern QTextStream _Z10scientificR11QTextStream(QTextStream &);
-extern QTextStream _Z4leftR11QTextStream(QTextStream &);
-extern QTextStream _Z5rightR11QTextStream(QTextStream &);
-extern QTextStream _Z6centerR11QTextStream(QTextStream &);
+extern QTextStream _Z15uppercasedigitsR11QTextStream(QTextStream &);
+extern QTextStream _Z2wsR11QTextStream(QTextStream &);
+extern QTextStream _Z3binR11QTextStream(QTextStream &);
+extern QTextStream _Z3bomR11QTextStream(QTextStream &);
+extern QTextStream _Z3decR11QTextStream(QTextStream &);
+extern QTextStream _Z3hexR11QTextStream(QTextStream &);
+extern QTextStream _Z3octR11QTextStream(QTextStream &);
 extern QTextStream _Z4endlR11QTextStream(QTextStream &);
+extern QTextStream _Z4leftR11QTextStream(QTextStream &);
+extern QTextStream _Z5fixedR11QTextStream(QTextStream &);
 extern QTextStream _Z5flushR11QTextStream(QTextStream &);
 extern QTextStream _Z5resetR11QTextStream(QTextStream &);
-extern QTextStream _Z3bomR11QTextStream(QTextStream &);
-extern QTextStream _Z2wsR11QTextStream(QTextStream &);
+extern QTextStream _Z5rightR11QTextStream(QTextStream &);
+extern QTextStream _Z6centerR11QTextStream(QTextStream &);
+extern QTextStream _Z8showbaseR11QTextStream(QTextStream &);
+extern QTextStream _Z9forcesignR11QTextStream(QTextStream &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

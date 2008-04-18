@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_TTTAGS_H_
 #define _FREETYPE_TTTAGS_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define TTAG_avar	FT_MAKE_TAG( 'a', 'v', 'a', 'r' )
 #define TTAG_BASE	FT_MAKE_TAG( 'B', 'A', 'S', 'E' )
 #define TTAG_bdat	FT_MAKE_TAG( 'b', 'd', 'a', 't' )
@@ -51,9 +53,12 @@ extern "C" {
 #define TTAG_VDMX	FT_MAKE_TAG( 'V', 'D', 'M', 'X' )
 #define TTAG_vhea	FT_MAKE_TAG( 'v', 'h', 'e', 'a' )
 #define TTAG_vmtx	FT_MAKE_TAG( 'v', 'm', 't', 'x' )
+#endif				// __LSB_VERSION__ >= 3.2
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

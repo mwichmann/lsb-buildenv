@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTNETWORK_QNETWORKPROXY_H_
 #define _QTNETWORK_QNETWORKPROXY_H_
 
 class QNetworkProxy;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QNetworkProxy
 {
 private:
@@ -35,5 +37,8 @@ NoProxy = 2
 }
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 10 )
 #ifndef _TAR_H_
 #define _TAR_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
 #define REGTYPE	'0'
 #define LNKTYPE	'1'
 #define SYMTYPE	'2'
@@ -16,7 +18,6 @@ extern "C" {
 #define FIFOTYPE	'6'
 #define CONTTYPE	'7'
 #define AREGTYPE	'\0'
-#define TVERSION	"00"
 #define TOEXEC	00001
 #define TOWRITE	00002
 #define TOREAD	00004
@@ -31,10 +32,17 @@ extern "C" {
 #define TSUID	04000
 #define TVERSLEN	2
 #define TMAGLEN	6
+#endif				// __LSB_VERSION__ >= 1.1
+
+#if __LSB_VERSION__ >= 12
+#define TVERSION	"00"
 #define TMAGIC	"ustar"
+#endif				// __LSB_VERSION__ >= 1.2
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				// protection
+#endif				// LSB version

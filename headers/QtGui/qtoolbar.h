@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QTOOLBAR_H_
 #define _QTGUI_QTOOLBAR_H_
 
 class QToolBar;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QToolBar : public QWidget
 {
 private:
@@ -53,7 +55,15 @@ protected:
     bool event(QEvent*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN8QToolBar16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

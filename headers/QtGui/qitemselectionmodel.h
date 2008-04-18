@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QITEMSELECTIONMODEL_H_
 #define _QTGUI_QITEMSELECTIONMODEL_H_
 
 class QItemSelectionRange;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 typedef class QFlags<QItemSelectionModel::SelectionFlag>
 {
 private:
@@ -11,6 +13,9 @@ public:
 }SelectionFlags	
 ;
 
+#endif // __LSB_VERSION__ >= 3.1
+
+#if __LSB_VERSION__ >= 31
 class QItemSelectionRange
 {
 private:
@@ -91,8 +96,16 @@ public:
     void split(QItemSelectionRange const&, QItemSelectionRange const&, QItemSelection*);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN19QItemSelectionModel16staticMetaObjectE ;
 extern QDebug _Zls6QDebugRK19QItemSelectionRange(_Z6QDebug, const QItemSelectionRange &);
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

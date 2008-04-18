@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTCORE_QBYTEARRAYMATCHER_H_
 #define _QTCORE_QBYTEARRAYMATCHER_H_
 
 class QByteArrayMatcher;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QByteArrayMatcher
 {
 private:
@@ -17,5 +19,8 @@ public:
     int indexIn(QByteArray const&, int) const;
 };
 
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version

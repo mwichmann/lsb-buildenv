@@ -1,9 +1,11 @@
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _QTGUI_QMENU_H_
 #define _QTGUI_QMENU_H_
 
 class QMenu;
 // *INDENT-OFF*
 
+#if __LSB_VERSION__ >= 31
 class QMenu : public QWidget
 {
 private:
@@ -82,7 +84,15 @@ private:
     int insertAny(QIcon const*, QString const*, QObject const*, char const*, QKeySequence const*, QMenu const*, int, int);
 };
 
+#endif // __LSB_VERSION__ >= 3.1
 
+
+// Function prototypes
+
+#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN5QMenu16staticMetaObjectE ;
+#endif // __LSB_VERSION__ >= 3.1
+
 // *INDENT-ON*
-#endif
+#endif				// protection
+#endif				// LSB version
