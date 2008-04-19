@@ -83,6 +83,7 @@ GLIBC_2.2 {
   pread;
   pread64;
   pthread_attr_getstack;
+  pthread_attr_setstack;
   pthread_barrier_destroy;
   pthread_barrier_init;
   pthread_barrier_wait;

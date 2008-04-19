@@ -72,6 +72,8 @@ core_headers_remove = [
     'float.h',
     'GL/gl.h',
     'GL/glx.h',
+    'GL/glext.h',
+    'GL/glxext.h',
     'rpc/pmap_clnt.h',
     'rpc/rpc.h',
     'X11/Composite.h',
