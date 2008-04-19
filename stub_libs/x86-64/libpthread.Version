@@ -23,6 +23,7 @@ GLIBC_2.2.5 {
   pthread_attr_setschedparam;
   pthread_attr_setschedpolicy;
   pthread_attr_setscope;
+  pthread_attr_setstack;
   pthread_attr_setstackaddr;
   pthread_attr_setstacksize;
   pthread_barrier_destroy;

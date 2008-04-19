@@ -108,6 +108,7 @@ GLIBC_2.3.2 {
   pthread_cond_wait;
 };
 GLIBC_2.3.3 {
+  pthread_attr_setstack;
   pthread_attr_setstacksize;
   pthread_barrierattr_getpshared;
 };
