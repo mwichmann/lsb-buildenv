@@ -770,7 +770,7 @@ snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
 
 /* Initialize default version value */
 lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
-		                               strlen(DEFAULT_LSB_VERSION)));
+		                               strlen(DEFAULT_LSB_VERSION) +1));
 sprintf(lsbversion_option, "-D__LSB_VERSION__=%s", DEFAULT_LSB_VERSION);
 
 /*
