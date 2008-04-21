@@ -67,10 +67,9 @@ extern "C" {
 #define _POSIX_SYNCHRONIZED_IO	200112
 #endif				// __LSB_VERSION__ < 2.0
 
-#if __LSB_VERSION__ < 21
+/* XXX hand-edit: remove version wrapping here */
 #define _POSIX2_VERSION	200112L
 #define _POSIX_VERSION	200112L
-#endif				// __LSB_VERSION__ < 2.1
 
 #endif				// __LSB_VERSION__ >= 1.2
 
