@@ -845,7 +845,7 @@ extern void glArrayElement(GLint);
 extern void glBegin(GLenum);
 extern void glBindTexture(GLenum, GLuint);
 extern void glBitmap(GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat,
-		     GLubyte *);
+		     const GLubyte *);
 extern void glBlendFunc(GLenum, GLenum);
 extern void glCallList(GLuint);
 extern void glCallLists(GLsizei, GLenum, GLvoid *);
