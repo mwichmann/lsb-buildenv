@@ -1145,7 +1145,7 @@ extern "C" {
     extern void glBegin(GLenum);
     extern void glBindTexture(GLenum, GLuint);
     extern void glBitmap(GLsizei, GLsizei, GLfloat, GLfloat, GLfloat,
-			 GLfloat, GLubyte *);
+			 GLfloat, const GLubyte *);
     extern void glBlendColor(GLclampf, GLclampf, GLclampf, GLclampf);
     extern void glBlendEquation(GLenum);
     extern void glBlendFunc(GLenum, GLenum);
