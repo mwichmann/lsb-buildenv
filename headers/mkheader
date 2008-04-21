@@ -1616,7 +1616,7 @@ if( $Hsrcerror eq 'Yes' ) {
 
 # dump AbiApi records
 $select = "SELECT AAvalue, AAappearedin, AAwithdrawnin FROM AbiApi ";
-$select.= "LEFT JOIN Interface ON Iid=AAbinint ";
+$select.= "LEFT JOIN Interface ON (Iid=AAbinint OR Iid=AAsrcint) ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND AAappearedin <> '' ";
 $select.= "ORDER BY AAappearedin, AAwithdrawnin ";
@@ -1966,14 +1966,14 @@ for(1..$hgh->rows) {
 			}
 
 			# Maybe the necessary basetype has already been processed?
-			if( $processedNamesOnly{$tentry->{'ATbasetype'}} ) {
-# 			if( $processedNames{($tentry->{'ATbasetype'},$Aid)} ) 
+#			if( $processedNamesOnly{$tentry->{'ATbasetype'}} ) {
+ 			if( $processedNames{($tentry->{'ATbasetype'},$Aid)} ) {
 				next;
 			}
 
-# 			$processedNames{($tentry->{'ATbasetype'},$Aid)} = 1;
+ 			$processedNames{($tentry->{'ATbasetype'},$Aid)} = 1;
 			$processedNamesOnly{$tentry->{'ATbasetype'}} = 1;
-			$processedNames{$tentry->{'ATbasetype'},1} = 1;
+#			$processedNames{$tentry->{'ATbasetype'},1} = 1;
 
 			$tselect = "SELECT * FROM Type LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 			$tselect.= "WHERE Tid=".$tentry->{'ATbasetype'};
@@ -1991,9 +1991,9 @@ for(1..$hgh->rows) {
 				if( $ttentry->{'Tconly'} eq "Yes" ) {
 					print "#if !defined(__cplusplus)\n";
 				}
-				if( $ttentry->{'Aid'} && $ttentry->{'Aname'} ne "All" ) {
-					print "#if ".$ttentry->{'Asymbol'}."\n";
-					print "/* ".$ttentry->{'Aname'}." */\n";
+				if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
+					print "#if ".$tentry->{'Asymbol'}."\n";
+					print "/* ".$tentry->{'Aname'}." */\n";
 					displaytype($ttentry);
 					if ($semicolonNeeded) {
 						$semicolonNeeded = 0;
@@ -2110,9 +2110,22 @@ for(1..$sth->rows) {
 		$sthGeneric->finish;
 	}
 
-	specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $entry->{'AIappearedin'}, $entry->{'AIwithdrawnin'});
-	$oldVersionAppeared = $entry->{'AIappearedin'};
-	$oldVersionWithdrawn = $entry->{'AIwithdrawnin'};
+	if( $entry->{'Isrcbin'} ne 'SrcOnly' ) {
+		specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $entry->{'AIappearedin'}, $entry->{'AIwithdrawnin'});
+		$oldVersionAppeared = $entry->{'AIappearedin'};
+		$oldVersionWithdrawn = $entry->{'AIwithdrawnin'};
+	}
+	else {
+    		if( $oldVersionWithdrawn ) {
+        	    print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+        	    $oldVersionWithdrawn = '';
+    		}
+
+    		if( $oldVersionAppeared ) {
+        	    print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+        	    $oldVersionAppeared = '';
+    		}		
+	}
 
 	if( $entry->{'Itype'} eq "Function" ) {
 		if( $entry->{'Ttype'} eq 'FuncPtr' ) {

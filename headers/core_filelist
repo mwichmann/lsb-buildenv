@@ -107,6 +107,10 @@ semaphore.h
 mqueue.h
 security/pam_appl.h
 unwind.h
+GL/gl.h
+GL/glx.h
+GL/glext.h
+GL/glxext.h
 X11/ICE/ICEconn.h
 X11/ICE/ICEmsg.h
 X11/ICE/ICE.h

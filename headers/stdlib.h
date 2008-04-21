@@ -10,6 +10,12 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 30
+#define atexit(func) __cxa_atexit(func,NULL, NULL)
+
+#endif				// __LSB_VERSION__ >= 3.0
+
+
 #if __LSB_VERSION__ >= 11
 #define MB_CUR_MAX	(__ctype_get_mb_cur_max())
 #endif				// __LSB_VERSION__ >= 1.1
@@ -157,11 +163,6 @@ extern "C" {
 #endif
     extern char *__secure_getenv(char *);
 #endif				// __LSB_VERSION__ < 1.2
-
-#if __LSB_VERSION__ < 20
-    extern int atexit(void (*)(void)
-	);
-#endif				// __LSB_VERSION__ < 2.0
 
 #endif				// __LSB_VERSION__ >= 1.0
 

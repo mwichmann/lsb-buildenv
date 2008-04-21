@@ -79,8 +79,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     struct _XDisplay;
 
-    struct _XrmHashBucketRec;
-
     struct;
 
     struct;
@@ -1381,8 +1379,6 @@ extern "C" {
 	XPointer obdata;
 	struct funcs f;
     };
-
-    struct XImagefuncs;
 
     struct funcs {
 	struct _XImage *(*create_image) (void);

@@ -17,9 +17,11 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 30
 #define __strdup strdup
+#define __strdup strdup
 #endif				// __LSB_VERSION__ >= 3.0
 
 #if __LSB_VERSION__ >= 32
+#define strerror_r __xpg_strerror_r
 #define strerror_r __xpg_strerror_r
 
 #endif				// __LSB_VERSION__ >= 3.2

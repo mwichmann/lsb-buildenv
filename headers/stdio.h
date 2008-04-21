@@ -168,12 +168,9 @@ extern "C" {
     extern int vprintf(const char *, va_list);
     extern int vsnprintf(char *, size_t, const char *, va_list);
     extern int vsprintf(char *, const char *, va_list);
-#if __LSB_VERSION__ < 20
-    extern char *gets(char *);
-#endif				// __LSB_VERSION__ < 2.0
-
 #endif				// __LSB_VERSION__ >= 1.0
 
+    extern char *gets(char *);
 #if __LSB_VERSION__ >= 13
     extern int asprintf(char **, const char *, ...);
     extern int vfscanf(FILE *, const char *, va_list);

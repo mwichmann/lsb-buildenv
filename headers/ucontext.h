@@ -69,13 +69,24 @@ extern "C" {
 #endif				// __LSB_VERSION__ >= 2.0
 
 #if __LSB_VERSION__ >= 20
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
 
 
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+
+
+#endif
 #endif				// __LSB_VERSION__ >= 2.0
 
 #if __LSB_VERSION__ >= 30
+#if defined __powerpc64__
+/* PPC64 */
 
 
+#endif
 #endif				// __LSB_VERSION__ >= 3.0
 
 
@@ -260,6 +271,27 @@ extern "C" {
 #endif
 #endif				// __LSB_VERSION__ >= 2.0
 
+#if __LSB_VERSION__ >= 20
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+
+    struct _libc_fpstate {
+	uint16_t cwd;
+	uint16_t swd;
+	uint16_t ftw;
+	uint16_t fop;
+	uint64_t rip;
+	uint64_t rdp;
+	uint32_t mxcsr;
+	uint32_t mxcr_mask;
+	struct _libc_fpxreg _st[8];
+	struct _libc_xmmreg _xmm[16];
+	uint32_t padding[24];
+    };
+
+#endif
+#endif				// __LSB_VERSION__ >= 2.0
+
 
 
 /* Context to describe whole processor state.*/
@@ -405,6 +437,8 @@ extern "C" {
 #endif				// __LSB_VERSION__ >= 2.0
 
 #if __LSB_VERSION__ >= 20
+#if defined __i386__
+/* IA32 */
 
     struct ucontext {
 	unsigned long int uc_flags;
@@ -414,6 +448,79 @@ extern "C" {
 	mcontext_t uc_mcontext;
     };
 
+#endif
+#if defined __ia64__
+/* IA64 */
+
+    struct ucontext {
+	unsigned long int uc_flags;
+	struct ucontext *uc_link;
+	stack_t uc_stack;
+	sigset_t uc_sigmask;
+	mcontext_t uc_mcontext;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+
+    struct ucontext {
+	unsigned long int uc_flags;
+	struct ucontext *uc_link;
+	stack_t uc_stack;
+	sigset_t uc_sigmask;
+	mcontext_t uc_mcontext;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+
+    struct ucontext {
+	unsigned long int uc_flags;
+	struct ucontext *uc_link;
+	stack_t uc_stack;
+	sigset_t uc_sigmask;
+	mcontext_t uc_mcontext;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+
+    struct ucontext {
+	unsigned long int uc_flags;
+	struct ucontext *uc_link;
+	stack_t uc_stack;
+	sigset_t uc_sigmask;
+	mcontext_t uc_mcontext;
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+
+    struct ucontext {
+	unsigned long int uc_flags;
+	struct ucontext *uc_link;
+	stack_t uc_stack;
+	sigset_t uc_sigmask;
+	mcontext_t uc_mcontext;
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+
+    struct ucontext {
+	unsigned long int uc_flags;
+	struct ucontext *uc_link;
+	stack_t uc_stack;
+	sigset_t uc_sigmask;
+	mcontext_t uc_mcontext;
+    };
+
+#endif
 #endif				// __LSB_VERSION__ >= 2.0
 
 

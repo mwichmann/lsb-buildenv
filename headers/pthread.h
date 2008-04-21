@@ -331,14 +331,14 @@ extern "C" {
     extern int pthread_condattr_destroy(pthread_condattr_t *);
     extern int pthread_condattr_init(pthread_condattr_t *);
     extern int pthread_create(pthread_t *, const pthread_attr_t *,
-			      void *(*)()
+			      void *(*)(void *)
 			      , void *);
     extern int pthread_detach(pthread_t);
     extern int pthread_equal(pthread_t, pthread_t);
     extern void pthread_exit(void *);
     extern void *pthread_getspecific(pthread_key_t);
     extern int pthread_join(pthread_t, void **);
-    extern int pthread_key_create(pthread_key_t *, void (*)()
+    extern int pthread_key_create(pthread_key_t *, void (*)(void *)
 	);
     extern int pthread_key_delete(pthread_key_t);
     extern int pthread_mutex_destroy(pthread_mutex_t *);
@@ -417,7 +417,7 @@ extern "C" {
     extern void _pthread_cleanup_pop(struct _pthread_cleanup_buffer *,
 				     int);
     extern void _pthread_cleanup_push(struct _pthread_cleanup_buffer *,
-				      void (*)()
+				      void (*)(void *)
 				      , void *);
     extern int pthread_condattr_getpshared(const pthread_condattr_t *,
 					   int *);
