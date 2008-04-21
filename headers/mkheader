@@ -1966,14 +1966,14 @@ for(1..$hgh->rows) {
 			}
 
 			# Maybe the necessary basetype has already been processed?
-			if( $processedNamesOnly{$tentry->{'ATbasetype'}} ) {
-# 			if( $processedNames{($tentry->{'ATbasetype'},$Aid)} ) 
+#			if( $processedNamesOnly{$tentry->{'ATbasetype'}} ) {
+ 			if( $processedNames{($tentry->{'ATbasetype'},$Aid)} ) {
 				next;
 			}
 
-# 			$processedNames{($tentry->{'ATbasetype'},$Aid)} = 1;
+ 			$processedNames{($tentry->{'ATbasetype'},$Aid)} = 1;
 			$processedNamesOnly{$tentry->{'ATbasetype'}} = 1;
-			$processedNames{$tentry->{'ATbasetype'},1} = 1;
+#			$processedNames{$tentry->{'ATbasetype'},1} = 1;
 
 			$tselect = "SELECT * FROM Type LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
 			$tselect.= "WHERE Tid=".$tentry->{'ATbasetype'};
@@ -1991,9 +1991,9 @@ for(1..$hgh->rows) {
 				if( $ttentry->{'Tconly'} eq "Yes" ) {
 					print "#if !defined(__cplusplus)\n";
 				}
-				if( $ttentry->{'Aid'} && $ttentry->{'Aname'} ne "All" ) {
-					print "#if ".$ttentry->{'Asymbol'}."\n";
-					print "/* ".$ttentry->{'Aname'}." */\n";
+				if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
+					print "#if ".$tentry->{'Asymbol'}."\n";
+					print "/* ".$tentry->{'Aname'}." */\n";
 					displaytype($ttentry);
 					if ($semicolonNeeded) {
 						$semicolonNeeded = 0;
