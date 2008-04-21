@@ -34,7 +34,6 @@ typedef struct {
 } *XrmValuePtr;
 typedef struct _XrmHashBucketRec *XrmHashBucket;
 typedef XrmHashBucket *XrmHashTable;
-typedef XrmHashTable XrmSearchList;
 typedef struct _XrmHashBucketRec *XrmDatabase;
 enum {
     XrmoptionNoArg,

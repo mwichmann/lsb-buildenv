@@ -356,7 +356,7 @@ extern "C" {
 #define GL_FEEDBACK_BUFFER_SIZE	0x0DF1
 #define GL_FEEDBACK_BUFFER_TYPE	0x0DF2
 #define GL_ALPHA_BLEND_EQUATION_ATI	0x883D
-#define GL_ATI_blend_equation_separate	"1"
+#define GL_ATI_blend_equation_separate	1
 #endif				// __LSB_VERSION__ >= 1.0
 
 
@@ -1128,7 +1128,7 @@ extern "C" {
 #define GL_ACTIVE_TEXTURE_ARB	0x84E0
 #define GL_CLIENT_ACTIVE_TEXTURE_ARB	0x84E1
 #define GL_MAX_TEXTURE_UNITS_ARB	0x84E2
-#define GL_ARB_multitexture	"1"
+#define GL_ARB_multitexture	1
 #endif				// __LSB_VERSION__ >= 1.0
 
 

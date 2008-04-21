@@ -1,6 +1,5 @@
 
 struct _XDisplay;
-struct _XrmHashBucketRec;
 typedef struct XColor;
 struct;
 struct;
@@ -1044,7 +1043,6 @@ typedef struct XWindowAttributes;
 
 typedef struct XHostAddress;
 
-struct XImagefuncs;
 typedef struct _XImage {
     int width;
     int height;

@@ -1616,7 +1616,7 @@ if( $Hsrcerror eq 'Yes' ) {
 
 # dump AbiApi records
 $select = "SELECT AAvalue, AAappearedin, AAwithdrawnin FROM AbiApi ";
-$select.= "LEFT JOIN Interface ON Iid=AAbinint ";
+$select.= "LEFT JOIN Interface ON (Iid=AAbinint OR Iid=AAsrcint) ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND AAappearedin <> '' ";
 $select.= "ORDER BY AAappearedin, AAwithdrawnin ";
@@ -2110,9 +2110,22 @@ for(1..$sth->rows) {
 		$sthGeneric->finish;
 	}
 
-	specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $entry->{'AIappearedin'}, $entry->{'AIwithdrawnin'});
-	$oldVersionAppeared = $entry->{'AIappearedin'};
-	$oldVersionWithdrawn = $entry->{'AIwithdrawnin'};
+	if( $entry->{'Isrcbin'} ne 'SrcOnly' ) {
+		specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $entry->{'AIappearedin'}, $entry->{'AIwithdrawnin'});
+		$oldVersionAppeared = $entry->{'AIappearedin'};
+		$oldVersionWithdrawn = $entry->{'AIwithdrawnin'};
+	}
+	else {
+    		if( $oldVersionWithdrawn ) {
+        	    print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+        	    $oldVersionWithdrawn = '';
+    		}
+
+    		if( $oldVersionAppeared ) {
+        	    print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+        	    $oldVersionAppeared = '';
+    		}		
+	}
 
 	if( $entry->{'Itype'} eq "Function" ) {
 		if( $entry->{'Ttype'} eq 'FuncPtr' ) {

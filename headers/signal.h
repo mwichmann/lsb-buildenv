@@ -21,6 +21,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 32
 #define sigpause __xpg_sigpause
+#define sigpause __xpg_sigpause
 
 #endif				// __LSB_VERSION__ >= 3.2
 

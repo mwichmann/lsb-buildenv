@@ -16,6 +16,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 32
 #define basename __xpg_basename
+#define basename __xpg_basename
 
 #endif				// __LSB_VERSION__ >= 3.2
 
