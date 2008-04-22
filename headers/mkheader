@@ -1615,7 +1615,7 @@ if( $Hsrcerror eq 'Yes' ) {
 }
 
 # dump AbiApi records
-$select = "SELECT AAvalue, AAappearedin, AAwithdrawnin FROM AbiApi ";
+$select = "SELECT DISTINCT AAvalue, AAappearedin, AAwithdrawnin FROM AbiApi ";
 $select.= "LEFT JOIN Interface ON (Iid=AAbinint OR Iid=AAsrcint) ";
 $select.= "WHERE Iheader=$Hid ";
 $select.= "AND AAappearedin <> '' ";
@@ -1641,11 +1641,11 @@ for( 1..$sth->rows ) {
 if( $sth->rows ) {
     print "\n";
 	if( $oldVersionWithdrawn ) {
-		print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+		print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 	}
 
 	if( $oldVersionAppeared ) {
-		print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+		print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 	}
 
 }
@@ -1719,10 +1719,10 @@ for(1..$hgh->rows) {
 	$ch->finish;
 
 	if( $oldVersionWithdrawn ) {
-		print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+		print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 	}
 	if( $oldVersionAppeared ) {
-		print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+		print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 	}
 
 	if( $ch->rows ) {
@@ -1811,10 +1811,10 @@ for(1..$hgh->rows) {
 	$th->finish;
 
 	if( $oldVersionWithdrawn ) {
-		print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+		print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 	}
 	if( $oldVersionAppeared ) {
-		print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+		print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 	}
 
 	$oldVersionWithdrawn = "";
@@ -1920,10 +1920,10 @@ for(1..$hgh->rows) {
 	$th->finish;
 
 	if( $oldVersionWithdrawn ) {
-		print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+		print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 	}
 	if( $oldVersionAppeared ) {
-		print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+		print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 	}
 
 	$oldVersionWithdrawn = "";
@@ -1987,6 +1987,7 @@ for(1..$hgh->rows) {
 				$oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
 				$oldVersionAppeared = $tentry->{'ATappearedin'};
 				$ttentry = $tth->fetchrow_hashref;
+				$TMaid = $tentry->{'Aid'} ? $tentry->{'Aid'} : $Aid;
 
 				if( $ttentry->{'Tconly'} eq "Yes" ) {
 					print "#if !defined(__cplusplus)\n";
@@ -2035,10 +2036,10 @@ for(1..$hgh->rows) {
 	$th->finish;
 
 	if( $oldVersionWithdrawn ) {
-		print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+		print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 	}
 	if( $oldVersionAppeared ) {
-		print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+		print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 	}
 
 }
@@ -2076,7 +2077,7 @@ $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->err
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
 
 if( $sth->rows ) {
-    print "\n// Function prototypes\n\n";
+    print "\n/* Function prototypes */\n\n";
 }
 
 $oldVersionAppeared = '';
@@ -2117,12 +2118,12 @@ for(1..$sth->rows) {
 	}
 	else {
     		if( $oldVersionWithdrawn ) {
-        	    print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+        	    print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
         	    $oldVersionWithdrawn = '';
     		}
 
     		if( $oldVersionAppeared ) {
-        	    print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+        	    print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
         	    $oldVersionAppeared = '';
     		}		
 	}
@@ -2266,11 +2267,11 @@ for(1..$sth->rows) {
 $sth->finish;
 
 if( $oldVersionWithdrawn ) {
-	print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+	print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 }
 
 if( $oldVersionAppeared ) {
-	print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+	print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 }
 
 if( !$classlist ) {
@@ -2281,9 +2282,9 @@ if( !$classlist ) {
 else {
 	print "// *INDENT-ON*\n";
 }
-print "#endif // protection\n";
+print "#endif /* protection */\n";
 
-print "#endif // LSB version\n";
+print "#endif /* LSB version */\n";
 
 $dbh->disconnect;
 

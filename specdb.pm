@@ -276,11 +276,11 @@ sub printLsbVersionBounds($$$$)
 
 	if( $appearedin ne $oldVersionAppeared ) {
 		if( $oldVersionWithdrawn ) {
-			print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+			print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 		}
 
 		if( $oldVersionAppeared ) {
-			print "#endif // __LSB_VERSION__ >= $oldVersionAppeared\n\n";
+			print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 		}
 
 		$appearedin =~ s/\.//g;
@@ -291,7 +291,7 @@ sub printLsbVersionBounds($$$$)
 
 	if( $withdrawnin and ( $withdrawnin ne $oldVersionWithdrawn ) ) {
 		if( $oldVersionWithdrawn ) {
-			print "#endif // __LSB_VERSION__ < $oldVersionWithdrawn\n\n";
+			print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 		}
 
 		$withdrawnin =~ s/\.//g;
