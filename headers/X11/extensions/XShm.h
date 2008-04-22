@@ -32,7 +32,7 @@ extern "C" {
 	int readOnly;
     } XShmSegmentInfo;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -54,10 +54,10 @@ extern "C" {
 	int readOnly;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int XShmAttach(Display *, XShmSegmentInfo *);
@@ -76,10 +76,10 @@ extern "C" {
 			    int, int, unsigned int, unsigned int, int);
     extern int XShmQueryExtension(Display *);
     extern int XShmQueryVersion(Display *, int *, int *, int *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

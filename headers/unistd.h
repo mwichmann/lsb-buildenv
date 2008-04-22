@@ -25,14 +25,14 @@ extern "C" {
 #define STDOUT_FILENO	1
 #define SEEK_END	2
 #define STDERR_FILENO	2
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef long long int off64_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Values for the second argument to access.*/
@@ -41,7 +41,7 @@ extern "C" {
 #define X_OK	1
 #define W_OK	2
 #define R_OK	4
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -55,9 +55,11 @@ extern "C" {
 #define _POSIX_SEMAPHORES	200112
 #define _POSIX_SHARED_MEMORY_OBJECTS	200112
 #define _POSIX_TIMERS	200112
+#define _POSIX2_VERSION	200112L
+#define _POSIX_VERSION	200112L
 #if __LSB_VERSION__ < 13
 #define _POSIX_MESSAGE_PASSING	1
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
 #if __LSB_VERSION__ < 20
 #define _POSIX2_C_VERSION	199209L
@@ -65,26 +67,22 @@ extern "C" {
 #define _POSIX_PRIORITY_SCHEDULING	200112
 #define _POSIX_REALTIME_SIGNALS	200112
 #define _POSIX_SYNCHRONIZED_IO	200112
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-/* XXX hand-edit: remove version wrapping here */
-#define _POSIX2_VERSION	200112L
-#define _POSIX_VERSION	200112L
-
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #define _POSIX_VDISABLE	'\0'
 #define _POSIX_CHOWN_RESTRICTED	1
 #define _POSIX_NO_TRUNC	1
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #define _POSIX_JOB_CONTROL	1
 #define _POSIX_SHELL	1
 #define _POSIX2_C_BIND	200112L
 #define _POSIX_THREADS	200112L
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -104,7 +102,7 @@ extern "C" {
 #define _PC_NO_TRUNC	7
 #define _PC_VDISABLE	8
 #define _PC_SYNC_IO	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define _PC_REC_INCR_XFER_SIZE	14
@@ -112,7 +110,7 @@ extern "C" {
 #define _PC_REC_XFER_ALIGN	17
 #define _PC_ALLOC_SIZE_MIN	18
 #define _PC_2_SYMLINKS	20
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -121,7 +119,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #define _SC_CLK_TCK	2
 #define _SC_OPEN_MAX	4
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define _SC_ARG_MAX	0
@@ -197,7 +195,7 @@ extern "C" {
 #define _SC_XOPEN_SHM	94
 #define _SC_2_C_VERSION	96
 #define _SC_2_UPE	97
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define _SC_XOPEN_REALTIME_THREADS	131
@@ -241,7 +239,7 @@ extern "C" {
 #define _SC_ATEXIT_MAX	87
 #define _SC_XOPEN_UNIX	91
 #define _SC_2_CHAR_TERM	95
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
 #define _SC_XOPEN_XPG4	100
@@ -332,7 +330,7 @@ extern "C" {
 #define _SC_XOPEN_XCU_VERSION	90
 #define _SC_XOPEN_XPG2	98
 #define _SC_XOPEN_XPG3	99
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -356,30 +354,27 @@ extern "C" {
 #define _CS_XBS5_LPBIG_OFFBIG_LDFLAGS	1113
 #define _CS_XBS5_LPBIG_OFFBIG_LIBS	1114
 #define _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS	1115
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define _POSIX_REGEXP	1
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 
 #if __LSB_VERSION__ >= 12
 #define _XOPEN_XPG4	1
+#define _XOPEN_VERSION	500
 #if __LSB_VERSION__ < 201
 #define _XOPEN_XCU_VERSION	4
-#endif				// __LSB_VERSION__ < 2.0.1
-
-#if __LSB_VERSION__ < 21
-#define _XOPEN_VERSION	500
-#endif				// __LSB_VERSION__ < 2.1
+#endif				/* __LSB_VERSION__ < 2.0.1 */
 
 #if __LSB_VERSION__ < 30
 #define _XOPEN_REALTIME	1
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -390,12 +385,12 @@ extern "C" {
 #define F_LOCK	1
 #define F_TLOCK	2
 #define F_TEST	3
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
     extern int mknod(const char *, mode_t, dev_t);
 #if __LSB_VERSION__ >= 10
@@ -509,13 +504,13 @@ extern "C" {
     extern int sethostid(long int);
 #endif
     extern int sethostid(long int);
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern ssize_t pread64(int, void *, size_t, off64_t);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 30
@@ -533,9 +528,9 @@ extern "C" {
 /* PPC32 */
     extern int sethostid(long int);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if __LSB_VERSION__ < 30
@@ -563,9 +558,9 @@ extern "C" {
 /* S390X */
     extern int sethostid(long int);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if __LSB_VERSION__ < 30
@@ -585,21 +580,21 @@ extern "C" {
 /* PPC64 */
     extern int sethostid(long int);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
     extern int getlogin_r(char *, size_t);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 32
     extern int getdomainname(char *, size_t) LSB_DECL_DEPRECATED;
     extern int getdtablesize(void) LSB_DECL_DEPRECATED;
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -93,7 +93,7 @@ extern "C" {
 	int must_authenticate;
     } _IceProtoSetupToMeInfo;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XtransConnInfo;
@@ -261,10 +261,10 @@ extern "C" {
     struct _IceConn *;
 
 #include <X11/ICE/ICElib.h>
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

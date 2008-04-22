@@ -21,10 +21,10 @@ extern "C" {
 	FT_ORIENTATION_FILL_LEFT = 1
     } FT_Orientation;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Error FT_Outline_Check(FT_Outline *);
@@ -44,10 +44,10 @@ extern "C" {
     extern void FT_Outline_Transform(const FT_Outline *,
 				     const FT_Matrix *);
     extern void FT_Outline_Translate(const FT_Outline *, FT_Pos, FT_Pos);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

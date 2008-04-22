@@ -127,7 +127,7 @@ extern "C" {
 
     typedef struct _xmlSAXHandler xmlSAXHandler;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -191,10 +191,10 @@ extern "C" {
 	xmlStructuredErrorFunc serror;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void docbDefaultSAXHandlerInit(void);
@@ -252,10 +252,10 @@ extern "C" {
 					  const xmlChar *);
     extern int xmlSAXDefaultVersion(int);
     extern int xmlSAXVersion(xmlSAXHandler *, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -11,10 +11,10 @@ extern "C" {
 #if __LSB_VERSION__ >= 31
     typedef unsigned int QRgb;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -19,10 +19,10 @@ extern "C" {
 
     typedef char *(*xmlStrdupFunc) (const char *);
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlCleanupMemory(void);
@@ -48,10 +48,10 @@ extern "C" {
     extern void xmlMemoryDump(void);
     extern char *xmlMemoryStrdup(const char *);
     extern void *xmlReallocLoc(void *, size_t, const char *, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

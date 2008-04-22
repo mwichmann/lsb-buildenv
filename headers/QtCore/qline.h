@@ -31,10 +31,10 @@ UnboundedIntersection = 2
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK5QLine(_Z6QDebug, const QLine &);
@@ -43,8 +43,8 @@ extern QDataStream _ZlsR11QDataStreamRK5QLine(QDataStream &, const QLine &);
 extern QDataStream _ZlsR11QDataStreamRK6QLineF(QDataStream &, QLineF & &);
 extern QDataStream _ZrsR11QDataStreamR5QLine(QDataStream &, QLine &);
 extern QDataStream _ZrsR11QDataStreamR6QLineF(QDataStream &, QLineF &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

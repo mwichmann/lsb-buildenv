@@ -12,7 +12,7 @@ extern "C" {
 #define atomic_set(v,i)	(((v)->counter) = (i))
 #define atomic_read(v)	((v)->counter)
 #define ATOMIC_INIT(i)	{ (i) }
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -27,10 +27,10 @@ extern "C" {
 	unsigned int end;
     } snd_atomic_read_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

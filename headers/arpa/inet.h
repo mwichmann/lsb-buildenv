@@ -18,7 +18,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern uint32_t htonl(uint32_t);
@@ -30,22 +30,22 @@ extern "C" {
 #if __LSB_VERSION__ < 20
     extern int inet_aton(const char *,
 			 struct in_addr *) LSB_DECL_DEPRECATED;
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
     extern const char *inet_ntop(int, const void *, char *, socklen_t);
     extern int inet_pton(int, const char *, void *);
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 32
     extern int inet_aton(const char *,
 			 struct in_addr *) LSB_DECL_DEPRECATED;
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

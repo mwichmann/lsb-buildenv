@@ -18,17 +18,17 @@ extern "C" {
 
     typedef xmlMutex *xmlMutexPtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlCleanupThreads(void);
@@ -46,10 +46,10 @@ extern "C" {
     extern void xmlRMutexLock(xmlRMutexPtr);
     extern void xmlRMutexUnlock(xmlRMutexPtr);
     extern void xmlUnlockLibrary(void);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

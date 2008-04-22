@@ -45,7 +45,7 @@ extern "C" {
 
     typedef struct FT_GlyphRec_ FT_GlyphRec;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
     struct FT_Glyph_Class_ {
@@ -71,10 +71,10 @@ extern "C" {
 	FT_Outline outline;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern void FT_Done_Glyph(FT_Glyph);
@@ -86,10 +86,10 @@ extern "C" {
     extern FT_Error FT_Glyph_Transform(FT_Glyph, FT_Matrix *, FT_Vector *);
     extern FT_Error FT_Matrix_Invert(FT_Matrix *);
     extern void FT_Matrix_Multiply(const FT_Matrix *, FT_Matrix *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

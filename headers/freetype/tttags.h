@@ -53,12 +53,12 @@ extern "C" {
 #define TTAG_VDMX	FT_MAKE_TAG( 'V', 'D', 'M', 'X' )
 #define TTAG_vhea	FT_MAKE_TAG( 'v', 'h', 'e', 'a' )
 #define TTAG_vmtx	FT_MAKE_TAG( 'v', 'm', 't', 'x' )
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

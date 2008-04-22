@@ -9,7 +9,7 @@ class QGLPixelBuffer;
 typedef enum QtValidLicenseForOpenGLModule	QtOpenGLModule	
 ;
 
-#endif // __LSB_VERSION__ >= 1.2
+#endif /* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 class QGLPixelBuffer : public QPaintDevice
@@ -41,8 +41,8 @@ protected:
     int devType() const;
 };
 
-#endif // __LSB_VERSION__ >= 1.2
+#endif /* __LSB_VERSION__ >= 1.2 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

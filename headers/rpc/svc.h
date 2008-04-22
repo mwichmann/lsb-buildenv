@@ -21,7 +21,7 @@ extern "C" {
 	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))
 #define svc_getargs(xprt,xargs, argsp)	\
 	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
 #define svc_getcaller(x)	(&(x)->xp_raddr)
@@ -29,7 +29,7 @@ extern "C" {
 #define svc_recv(xprt,msg)	(*(xprt)->xp_ops->xp_recv)((xprt), (msg))
 #define svc_reply(xprt,msg)	(*(xprt)->xp_ops->xp_reply) ((xprt), (msg))
 #define svc_stat(xprt)	(*(xprt)->xp_ops->xp_stat)(xprt)
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -40,14 +40,14 @@ extern "C" {
 	XPRT_IDLE
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Server side transport handle*/
 #if __LSB_VERSION__ >= 13
     typedef struct SVCXPRT SVCXPRT;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
 
@@ -63,7 +63,7 @@ extern "C" {
 	char xp_pad[256];
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 20
@@ -76,13 +76,13 @@ extern "C" {
 	SVCXPRT *rq_xprt;
     };
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 20
     typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -97,10 +97,10 @@ extern "C" {
 	void (*xp_destroy) (SVCXPRT * __xprt);
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 11
     extern void svc_getreqset(fd_set *);
@@ -111,7 +111,7 @@ extern "C" {
     extern void svcerr_progvers(SVCXPRT *, rpcvers_t, rpcvers_t);
     extern void svcerr_systemerr(SVCXPRT *);
     extern void svcerr_weakauth(SVCXPRT *);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
     extern bool_t svc_register(SVCXPRT *, rpcprog_t, rpcvers_t,
@@ -120,10 +120,10 @@ extern "C" {
     extern bool_t svc_sendreply(SVCXPRT *, xdrproc_t, caddr_t);
     extern SVCXPRT *svctcp_create(int, u_int, u_int);
     extern SVCXPRT *svcudp_create(int);
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

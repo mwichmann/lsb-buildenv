@@ -122,7 +122,7 @@ extern "C" {
 #define PANGO_TYPE_ATTR_LIST	pango_attr_list_get_type ()
 #define PANGO_TYPE_COLOR	pango_color_get_type ()
 #define PANGO_MATRIX_INIT	{ 1., 0., 0., 1., 0., 0. }
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -409,7 +409,7 @@ extern "C" {
 
     typedef struct _PangoLayoutClass PangoLayoutClass;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -656,10 +656,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern GType pango_alignment_get_type(void);
@@ -1153,10 +1153,10 @@ extern "C" {
     extern GType pango_variant_get_type(void);
     extern GType pango_weight_get_type(void);
     extern GType pango_wrap_mode_get_type(void);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

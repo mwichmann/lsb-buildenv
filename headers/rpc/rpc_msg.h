@@ -38,7 +38,7 @@ extern "C" {
 	AUTH_ERROR = 1
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Reply to an rpc request that was accepted by the server.*/
@@ -62,7 +62,7 @@ extern "C" {
 	} ru;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Reply to an rpc request that was rejected by the server.*/
@@ -82,7 +82,7 @@ extern "C" {
 	} ru;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Body of a reply to an rpc request.*/
@@ -99,7 +99,7 @@ extern "C" {
 	} ru;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Body of an rpc request call.*/
@@ -113,7 +113,7 @@ extern "C" {
 	struct opaque_auth cb_verf;	/* protocol specific - provided by client */
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* The rpc message*/
@@ -133,10 +133,10 @@ extern "C" {
 	} ru;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 11
     extern bool_t xdr_accepted_reply(XDR *, struct accepted_reply *);
@@ -144,10 +144,10 @@ extern "C" {
     extern bool_t xdr_callmsg(XDR *, struct rpc_msg *);
     extern bool_t xdr_rejected_reply(XDR *, struct rejected_reply *);
     extern bool_t xdr_replymsg(XDR *, struct rpc_msg *);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

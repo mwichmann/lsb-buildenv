@@ -16,7 +16,7 @@ extern "C" {
 #define FT_IS_EMPTY(list)	( (list).head == 0 )
 #define FT_ERROR_BASE(x)	( (x) & 0xFF )
 #define FT_ERROR_MODULE(x)	( (x) & 0xFF00U )
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -65,7 +65,7 @@ extern "C" {
 
     typedef struct FT_ListNodeRec_ FT_ListNodeRec;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
     struct FT_ListRec_ {
@@ -92,10 +92,10 @@ extern "C" {
     };
 
 #include <freetype/freetype.h>
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

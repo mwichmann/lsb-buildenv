@@ -20,7 +20,7 @@ extern "C" {
 #define GETZCNT	15
 #define SETVAL	16
 #define SETALL	17
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -31,7 +31,7 @@ extern "C" {
 	short sem_flg;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __ia64__
@@ -126,19 +126,19 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int semctl(int, int, int, ...);
     extern int semget(key_t, int, int);
     extern int semop(int, struct sembuf *, size_t);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

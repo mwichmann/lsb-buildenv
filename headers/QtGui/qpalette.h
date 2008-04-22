@@ -78,10 +78,10 @@ public:
     QVariant operator QVariant() const;
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN8QPalette16staticMetaObjectE ;
@@ -89,8 +89,8 @@ extern QDataStream _ZlsR11QDataStreamRK11QColorGroup(QDataStream &, const QColor
 extern QDataStream _ZlsR11QDataStreamRK8QPalette(QDataStream &, const QPalette &);
 extern QDataStream _ZrsR11QDataStreamR11QColorGroup(QDataStream &, QColorGroup &);
 extern QDataStream _ZrsR11QDataStreamR8QPalette(QDataStream &, QPalette &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

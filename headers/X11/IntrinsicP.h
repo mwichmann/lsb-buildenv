@@ -71,7 +71,7 @@ extern "C" {
 
     typedef void (*XtStringProc) (Widget, String);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -106,10 +106,10 @@ extern "C" {
 
     XtTypedArg *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void XtConfigureWidget(Widget, Position, Position, Dimension,
@@ -122,10 +122,10 @@ extern "C" {
     extern void XtResizeWidget(Widget, Dimension, Dimension, Dimension);
     extern void XtResizeWindow(Widget);
     extern void _XtInherit(void);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

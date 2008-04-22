@@ -85,7 +85,7 @@ extern "C" {
 #define BitmapNoMemory	3
 #define IconicState	3
 #define InactiveState	4
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -113,7 +113,7 @@ extern "C" {
     typedef enum
 	XICCEncodingStyle;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
@@ -243,10 +243,10 @@ extern "C" {
 	XID killid;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int XAddPixel(void);
@@ -344,7 +344,7 @@ extern "C" {
 					 XTextProperty *);
     extern int XwcTextPropertyToTextList(Display *, XTextProperty *,
 					 wchar_t * **, int *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     extern int Xutf8TextListToTextProperty(Display *, char **, int,
@@ -352,10 +352,10 @@ extern "C" {
 					   XTextProperty *);
     extern int Xutf8TextPropertyToTextList(Display *, XTextProperty *,
 					   char ***, int *);
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

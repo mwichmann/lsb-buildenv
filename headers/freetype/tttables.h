@@ -26,10 +26,10 @@ extern "C" {
 	sfnt_max = 7
     } FT_Sfnt_Tag;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_ULong FT_Get_CMap_Language_ID(FT_CharMap);
@@ -38,10 +38,10 @@ extern "C" {
 				       FT_Byte *, FT_ULong *);
     extern FT_Error FT_Sfnt_Table_Info(FT_Face, FT_UInt, FT_ULong *,
 				       FT_ULong *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

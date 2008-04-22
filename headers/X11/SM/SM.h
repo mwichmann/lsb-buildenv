@@ -56,12 +56,12 @@ extern "C" {
 #define SmRestartStyleHint	"RestartStyleHint"
 #define SmShutdownCommand	"ShutdownCommand"
 #define SmUserID	"UserID"
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

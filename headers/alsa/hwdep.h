@@ -17,7 +17,7 @@ extern "C" {
 #define SND_HWDEP_OPEN_READ	(O_RDONLY)
 #define SND_HWDEP_OPEN_DUPLEX	(O_RDWR)
 #define SND_HWDEP_OPEN_WRITE	(O_WRONLY)
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -56,10 +56,10 @@ extern "C" {
 	SND_HWDEP_TYPE_INET = 2
     } snd_hwdep_type_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern int snd_hwdep_close(snd_hwdep_t *);
@@ -131,10 +131,10 @@ extern "C" {
 					  unsigned int);
     extern ssize_t snd_hwdep_read(snd_hwdep_t *, void *, size_t);
     extern ssize_t snd_hwdep_write(snd_hwdep_t *, const void *, size_t);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -16,17 +16,17 @@ extern "C" {
 #define FT_ANGLE_2PI	( FT_ANGLE_PI * 2 )
 #define FT_ANGLE_PI2	( FT_ANGLE_PI / 2 )
 #define FT_ANGLE_PI4	( FT_ANGLE_PI / 4 )
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #if __LSB_VERSION__ >= 32
     typedef FT_Fixed FT_Angle;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Angle FT_Angle_Diff(FT_Angle, FT_Angle);
@@ -39,10 +39,10 @@ extern "C" {
     extern void FT_Vector_Polarize(FT_Vector *, FT_Fixed *, FT_Angle *);
     extern void FT_Vector_Rotate(FT_Vector *, FT_Angle);
     extern void FT_Vector_Unit(FT_Vector *, FT_Angle);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

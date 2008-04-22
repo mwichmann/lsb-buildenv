@@ -74,7 +74,7 @@ extern "C" {
 
     typedef void (*XConnectionWatchProc) (void);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XDisplay;
@@ -1051,7 +1051,7 @@ extern "C" {
 
     XButtonEvent *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -1208,14 +1208,14 @@ extern "C" {
 #define XLookupBoth	4
 #define XlibSpecificationRelease	6
 #define DefaultScreenOfDisplay(dpy)	ScreenOfDisplay(dpy,DefaultScreen(dpy))
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef char *XPointer;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Extensions need a way to hang private data on some structures.*/
@@ -1224,7 +1224,7 @@ extern "C" {
 
     typedef struct XExtCodes;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XExtData {
@@ -1236,93 +1236,93 @@ extern "C" {
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for retrieving info about pixmap formats.*/
 #if __LSB_VERSION__ >= 12
     typedef struct XPixmapFormatValues;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for setting graphics context*/
 #if __LSB_VERSION__ >= 12
     typedef struct XGCValues;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /*  Graphics context.  The contents of this structure are implementation dependent.  A GC should be treated as opaque by application code.*/
 #if __LSB_VERSION__ >= 12
     typedef struct _XGC *GC;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XGC;
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Visual structure; contains information about colormapping possible.*/
 #if __LSB_VERSION__ >= 12
     typedef struct Visual;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Depth structure; contains information for each possible depth.*/
 #if __LSB_VERSION__ >= 12
     typedef struct Depth;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Information about the screen.  The contents of this structure are implementation dependent.  A Screen should be treated as opaque by application code.*/
 #if __LSB_VERSION__ >= 12
     typedef struct Screen;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /*  Format structure; describes ZFormat data the screen will understand.*/
 #if __LSB_VERSION__ >= 12
     typedef struct ScreenFormat;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for setting window attributes.*/
@@ -1331,33 +1331,33 @@ extern "C" {
 
     typedef struct XWindowAttributes;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for host setting; getting routines.*/
 #if __LSB_VERSION__ >= 12
     typedef struct XHostAddress;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for */
 #if __LSB_VERSION__ >= 12
     typedef struct _XImage XImage;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XImage {
@@ -1389,19 +1389,19 @@ extern "C" {
 	int (*add_pixel) (void);
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XReconfigureWindow*/
 #if __LSB_VERSION__ >= 12
     typedef struct XWindowChanges;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structures for graphics operations.  On most machines, these are congruent with the wire protocol structures, so reformatting the datacan be avoided on these architectures. */
@@ -1414,7 +1414,7 @@ extern "C" {
 
     typedef struct XArc;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
@@ -1423,50 +1423,50 @@ extern "C" {
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XChangeKeyboardControl*/
 #if __LSB_VERSION__ >= 12
     typedef struct XKeyboardControl;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XGetKeyboardControl*/
 #if __LSB_VERSION__ >= 12
     typedef struct XKeyboardState;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XGetMotionEvents.*/
 #if __LSB_VERSION__ >= 12
     typedef struct XTimeCoord;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for X{Set,Get}ModifierMapping*/
 #if __LSB_VERSION__ >= 12
     typedef struct XModifierKeymap;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Display datatype maintaining display specific data. The contents of this structure are implementation dependent.A Display should be treated as opaque by application code. */
@@ -1475,7 +1475,7 @@ extern "C" {
 
     typedef struct _XrmHashBucketRec **_XPrivDisplay;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Definitions of specific events.*/
@@ -1560,7 +1560,7 @@ extern "C" {
 
     typedef struct XAnyEvent;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
@@ -1625,14 +1625,14 @@ extern "C" {
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* this union is defined so Xlib can always use the same sized event structure internally, to avoid memory fragmentation.*/
 #if __LSB_VERSION__ >= 12
     typedef union _XEvent XEvent;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     union _XEvent {
@@ -1671,19 +1671,19 @@ extern "C" {
 	long int pad[1];
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* per character font metric information.*/
 #if __LSB_VERSION__ >= 12
     typedef struct XCharStruct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* To allow arbitrary information with fonts, there are additional properties returned.*/
@@ -1694,7 +1694,7 @@ extern "C" {
 
     typedef struct XFontSetExtents;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
@@ -1703,7 +1703,7 @@ extern "C" {
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* PolyText routines take these as arguments.*/
@@ -1714,7 +1714,7 @@ extern "C" {
 
     typedef struct XTextItem16;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
@@ -1723,13 +1723,13 @@ extern "C" {
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
     typedef union XEDataObject;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -1739,7 +1739,7 @@ extern "C" {
 
     typedef struct _XOC *XFontSet;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -1747,14 +1747,14 @@ extern "C" {
 
     typedef struct XwcTextItem;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct;
 
     struct;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -1766,7 +1766,7 @@ extern "C" {
 
     typedef enum XOrientation;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -1784,10 +1784,10 @@ extern "C" {
 
     typedef void (*XIDProc) (void);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int XActivateScreenSaver(Display *);
@@ -2331,9 +2331,9 @@ extern "C" {
     extern int XESetPrintErrorValues(void);
     extern int XESetWireToError(void);
     extern int XESetWireToEvent(void);
-#endif				// __LSB_VERSION__ < 1.1
+#endif				/* __LSB_VERSION__ < 1.1 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     extern int XESetBeforeFlush(void);
@@ -2350,10 +2350,10 @@ extern "C" {
     extern int XESetPrintErrorValues(void);
     extern int XESetWireToError(void);
     extern int XESetWireToEvent(void);
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

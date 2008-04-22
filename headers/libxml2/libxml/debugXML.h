@@ -22,7 +22,7 @@ extern "C" {
     typedef int (*xmlShellCmd) (xmlShellCtxtPtr, char *, xmlNodePtr,
 				xmlNodePtr);
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -36,10 +36,10 @@ extern "C" {
 	xmlShellReadlineFunc input;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern const char *xmlBoolToText(int);
@@ -79,10 +79,10 @@ extern "C" {
 				xmlNodePtr);
     extern int xmlShellWrite(xmlShellCtxtPtr, char *, xmlNodePtr,
 			     xmlNodePtr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

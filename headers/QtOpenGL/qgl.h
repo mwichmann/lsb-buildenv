@@ -13,7 +13,7 @@ public:
 }FormatOptions	
 ;
 
-#endif // __LSB_VERSION__ >= 1.2
+#endif /* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 enum FormatOption	
@@ -199,18 +199,18 @@ protected:
     int fontDisplayListBase(QFont const&, int);
 };
 
-#endif // __LSB_VERSION__ >= 1.2
+#endif /* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QGLContext * _ZN10QGLContext10currentCtxE ;
 extern struct QMetaObject _ZN9QGLWidget16staticMetaObjectE ;
 extern bool _ZeqRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
 extern bool _ZneRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

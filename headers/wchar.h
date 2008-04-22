@@ -17,13 +17,13 @@ extern "C" {
 #define WEOF	(0xffffffffu)
 #define WCHAR_MAX	0x7FFFFFFF
 #define WCHAR_MIN	0x80000000
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern double __wcstod_internal(const wchar_t *, wchar_t * *, int);
@@ -134,16 +134,16 @@ extern "C" {
     extern unsigned long long int __wcstoull_internal(wchar_t *,
 						      wchar_t * *, int,
 						      int);
-#endif				// __LSB_VERSION__ < 1.2
+#endif				/* __LSB_VERSION__ < 1.2 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern wint_t getwchar(void);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

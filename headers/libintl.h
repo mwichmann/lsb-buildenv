@@ -9,7 +9,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern char *bindtextdomain(const char *, const char *);
@@ -22,9 +22,9 @@ extern "C" {
     extern char *__dcgettext(void);
 #endif
     extern char *__dcgettext(void);
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     extern char *bind_textdomain_codeset(const char *, const char *);
@@ -38,9 +38,9 @@ extern "C" {
 /* PPC32 */
     extern char *__dcgettext(void);
 #endif
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     extern char *ngettext(const char *, const char *, unsigned long int);
@@ -49,12 +49,12 @@ extern "C" {
 /* IA64 */
     extern char *__dcgettext(void);
 #endif
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

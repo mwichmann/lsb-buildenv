@@ -14,7 +14,7 @@ extern "C" {
 #define ITIMER_REAL	0
 #define ITIMER_VIRTUAL	1
 #define ITIMER_PROF	2
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -24,7 +24,7 @@ extern "C" {
 	int tz_dsttime;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -32,7 +32,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
     typedef int __itimer_which_t;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -41,7 +41,7 @@ extern "C" {
 	long int tv_nsec;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -51,7 +51,7 @@ extern "C" {
 	suseconds_t tv_usec;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Type of the second argument to `getitimer' and
@@ -62,10 +62,10 @@ the second and third arguments `setitimer'.*/
 	struct timeval it_value;
     };
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int adjtime(const struct timeval *, struct timeval *);
@@ -74,10 +74,10 @@ the second and third arguments `setitimer'.*/
     extern int setitimer(__itimer_which_t, const struct itimerval *,
 			 struct itimerval *);
     extern int utimes(const char *, const struct timeval *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

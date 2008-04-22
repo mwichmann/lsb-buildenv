@@ -16,7 +16,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #define EOF	(-1)
 #define BUFSIZ	8192
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define P_tmpdir	"/tmp"
@@ -25,7 +25,7 @@ extern "C" {
 #define FILENAME_MAX	4096
 #define L_ctermid	9
 #define L_cuserid	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 21
 #if defined __i386__
@@ -49,7 +49,7 @@ extern "C" {
 #if defined __s390x__
 #define __IO_FILE_SIZE	216
 #endif
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -64,7 +64,7 @@ extern "C" {
 	mbstate_t __state;
     } fpos64_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
     struct _IO_FILE {
 	char dummy[__IO_FILE_SIZE];
@@ -75,7 +75,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
     typedef struct _IO_FILE FILE;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 /* The possibilities for the third argument to `setvbuf'.*/
@@ -83,7 +83,7 @@ extern "C" {
 #define _IOFBF	0
 #define _IOLBF	1
 #define _IONBF	2
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -92,7 +92,7 @@ extern "C" {
 
 /* End of file character.*/
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern size_t __fpending(FILE *);
@@ -168,7 +168,7 @@ extern "C" {
     extern int vprintf(const char *, va_list);
     extern int vsnprintf(char *, size_t, const char *, va_list);
     extern int vsprintf(char *, const char *, va_list);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
     extern char *gets(char *);
 #if __LSB_VERSION__ >= 13
@@ -176,10 +176,10 @@ extern "C" {
     extern int vfscanf(FILE *, const char *, va_list);
     extern int vscanf(const char *, va_list);
     extern int vsscanf(const char *, const char *, va_list);
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

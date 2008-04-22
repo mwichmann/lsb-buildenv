@@ -16,7 +16,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
     typedef lldiv_t imaxdiv_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 #define __PDP_ENDIAN	3412
@@ -25,7 +25,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern intmax_t imaxabs(intmax_t);
@@ -34,10 +34,10 @@ extern "C" {
     extern uintmax_t strtoumax(const char *, char **, int);
     extern intmax_t wcstoimax(const wchar_t *, wchar_t * *, int);
     extern uintmax_t wcstoumax(const wchar_t *, wchar_t * *, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

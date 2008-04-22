@@ -28,7 +28,7 @@ extern "C" {
 #define XSecurityAuthorizationNameLen	19
 #define XSecurityNumberErrors	2
 #define XSecurityAllEventMasks	XSecurityAuthorizationRevokedMask
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -50,7 +50,7 @@ extern "C" {
 	XSecurityAuthorization auth_id;
     } XSecurityAuthorizationRevokedEvent;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -68,10 +68,10 @@ extern "C" {
 	XSecurityAuthorization auth_id;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern Xauth *XSecurityAllocXauth(void);
@@ -84,10 +84,10 @@ extern "C" {
     extern int XSecurityQueryExtension(Display *, int *, int *);
     extern int XSecurityRevokeAuthorization(Display *,
 					    XSecurityAuthorization);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

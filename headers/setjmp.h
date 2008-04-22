@@ -12,7 +12,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #define setjmp(env)	_setjmp(env)
 #define sigsetjmp(a,b)	__sigsetjmp(a,b)
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -53,7 +53,7 @@ extern "C" {
     typedef long int __jmp_buf[18];
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -63,7 +63,7 @@ extern "C" {
 	sigset_t __saved_mask;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 10
@@ -71,10 +71,10 @@ extern "C" {
 
     typedef jmp_buf sigjmp_buf;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int __sigsetjmp(jmp_buf, int);
@@ -82,10 +82,10 @@ extern "C" {
     extern int _setjmp(jmp_buf);
     extern void longjmp(jmp_buf, int);
     extern void siglongjmp(sigjmp_buf, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

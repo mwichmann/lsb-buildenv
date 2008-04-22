@@ -28,7 +28,7 @@ extern "C" {
 
     typedef struct snd_devname snd_devname_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -38,10 +38,10 @@ extern "C" {
 	snd_devname_t *next;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern snd_config_t *snd_config;
@@ -86,10 +86,10 @@ extern "C" {
     extern int snd_config_top(snd_config_t * *);
     extern int snd_config_update(void);
     extern int snd_config_update_free_global(void);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -11,22 +11,22 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #if __LSB_VERSION__ < 201
 #define assert(expr)	((void)0)
-#endif				// __LSB_VERSION__ < 2.0.1
+#endif				/* __LSB_VERSION__ < 2.0.1 */
 
-#endif				// __LSB_VERSION__ >= 1.1
-
-
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
-// Function prototypes
+
+
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void __assert_fail(const char *, const char *, unsigned int,
 			      const char *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -266,7 +266,7 @@ extern "C" {
 #define ATK_TYPE_VALUE	(atk_value_get_type ())
 #define ATK_IS_TEXT(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_TEXT)
 #define ATK_IS_UTIL(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_UTIL)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -602,7 +602,7 @@ extern "C" {
 
     typedef struct _AtkNoOpObject AtkNoOpObject;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -1075,10 +1075,10 @@ extern "C" {
 	AtkObject parent;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern gboolean atk_action_do_action(AtkAction *, gint);
@@ -1361,10 +1361,10 @@ extern "C" {
     extern GType atk_value_get_type(void);
     extern gboolean atk_value_set_current_value(AtkValue *,
 						const GValue *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

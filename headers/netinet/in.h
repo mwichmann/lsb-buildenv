@@ -19,12 +19,12 @@ extern "C" {
 #define IPPROTO_IGMP	2
 #define IPPROTO_RAW	255
 #define IPPROTO_TCP	6
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define IPPROTO_IPV6	41
 #define IPPROTO_ICMPV6	58
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -33,7 +33,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
     typedef uint16_t in_port_t;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Standard well-known ports.*/
@@ -42,7 +42,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 13
     typedef uint32_t in_addr_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 11
     struct in_addr {
@@ -50,27 +50,30 @@ extern "C" {
     };
 
 #include <arpa/inet.h>
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 /* Well Know IPv4 addresses*/
 #define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
 #if __LSB_VERSION__ >= 11
 #define INADDR_ANY	0
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define INADDR_NONE	((in_addr_t) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 
 /* Address structures for IPv6*/
+#if __LSB_VERSION__ >= 20
 #define s6_addr16	in6_u.u6_addr16
 #define s6_addr32	in6_u.u6_addr32
 #define s6_addr	in6_u.u6_addr8
+#endif				/* __LSB_VERSION__ >= 2.0 */
+
 
 
 #if __LSB_VERSION__ >= 20
@@ -82,14 +85,14 @@ extern "C" {
 	} in6_u;
     };
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Well known IPV6 addresses*/
 #if __LSB_VERSION__ >= 20
 #define IN6ADDR_ANY_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
 #define IN6ADDR_LOOPBACK_INIT	{ { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -98,7 +101,7 @@ extern "C" {
 #define IN_MULTICAST(a)	((((in_addr_t)(a))&0xf0000000)==0xe0000000)
 #if __LSB_VERSION__ >= 20
 #define INET_ADDRSTRLEN	16
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -110,7 +113,7 @@ extern "C" {
 	unsigned char sin_zero[8];
     };
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 /* Structure describing an Internet socket V6 address.*/
@@ -128,11 +131,11 @@ extern "C" {
 #define IN6_IS_ADDR_MC_GLOBAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0xe))
 #if __LSB_VERSION__ >= 20
 #define INET6_ADDRSTRLEN	46
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 31
 #define IN6_ARE_ADDR_EQUAL(a,b)	((((const uint32_t *) (a))[0] == ((const uint32_t *) (b))[0]) && (((const uint32_t *) (a))[1] == ((const uint32_t *) (b))[1]) && (((const uint32_t *) (a))[2] == ((const uint32_t *) (b))[2]) && (((const uint32_t *) (a))[3] == ((const uint32_t *) (b))[3]))
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -145,7 +148,7 @@ extern "C" {
 	uint32_t sin6_scope_id;	/* scope id (new in RFC2553) */
     };
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* IP Socket options*/
@@ -153,11 +156,11 @@ extern "C" {
 #define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
 #if __LSB_VERSION__ >= 11
 #define SOL_IP	0
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define IP_TOS	1		/* IP type of service and precedence */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define IPV6_UNICAST_HOPS	16
@@ -172,12 +175,12 @@ extern "C" {
 #define IP_MULTICAST_LOOP	34	/* set/get IP multicast loopback */
 #define IP_ADD_MEMBERSHIP	35	/* add an IP group membership */
 #define IP_DROP_MEMBERSHIP	36	/* drop an IP group membership */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
 #define IP_TTL	2		/* IP time to live */
 #define IP_OPTIONS	4	/* IP per-packet options */
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
@@ -194,22 +197,22 @@ extern "C" {
 	struct in_addr imr_interface;	/* local IP address of interface */
     };
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int bindresvport(int, struct sockaddr_in *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 32
     extern const struct in6_addr in6addr_any;
     extern const struct in6_addr in6addr_loopback;
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

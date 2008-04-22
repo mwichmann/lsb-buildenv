@@ -29,7 +29,7 @@ extern "C" {
 #define GLOB_PERIOD	(1<<7)
 #define GLOB_MAGCHAR	(1<<8)
 #define GLOB_ALTDIRFUNC	(1<<9)
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -40,7 +40,7 @@ extern "C" {
 #define GLOB_ABORTED	2
 #define GLOB_NOMATCH	3
 #define GLOB_NOSYS	4
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -58,7 +58,7 @@ extern "C" {
 	int (*gl_stat) (const char *, struct stat *);
     } glob_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -74,10 +74,10 @@ extern "C" {
 	int (*gl_stat) (const char *, struct stat *);
     } glob64_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int glob(const char *, int, int (*)(const char *, int)
@@ -86,10 +86,10 @@ extern "C" {
 		      , glob64_t *);
     extern void globfree(glob_t *);
     extern void globfree64(glob64_t *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

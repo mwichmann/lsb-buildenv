@@ -23,7 +23,7 @@ extern "C" {
 #define xmlChildrenNode	children
 #define xmlRootNode	children
 #define XML_LOCAL_NAMESPACE	XML_NAMESPACE_DECL
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -120,7 +120,7 @@ extern "C" {
 
     typedef xmlOutputBuffer *xmlOutputBufferPtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -248,10 +248,10 @@ extern "C" {
 	int error;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern xmlNodePtr xmlAddChild(xmlNodePtr, xmlNodePtr);
@@ -427,10 +427,10 @@ extern "C" {
     extern int xmlValidateNMToken(const xmlChar *, int);
     extern int xmlValidateName(const xmlChar *, int);
     extern int xmlValidateQName(const xmlChar *, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

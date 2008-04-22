@@ -15,7 +15,7 @@ extern "C" {
 #define XML_CATALOGS_NAMESPACE	 \
 	(const xmlChar *) "urn:oasis:names:tc:entity:xmlns:xml:catalog"
 #define XML_CATALOG_PI	(const xmlChar *) "oasis-xml-catalog"
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -37,15 +37,15 @@ extern "C" {
 	XML_CATA_PREFER_SYSTEM = 2
     } xmlCatalogPrefer;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern int xmlACatalogAdd(xmlCatalogPtr, const xmlChar *,
@@ -88,10 +88,10 @@ extern "C" {
     extern xmlCatalogPtr xmlLoadSGMLSuperCatalog(const char *);
     extern xmlCatalogPtr xmlNewCatalog(int);
     extern xmlDocPtr xmlParseCatalogFile(const char *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

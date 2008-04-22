@@ -59,12 +59,12 @@ extern "C" {
 #define FT_CACHE_CHARMAP_H	FT_CACHE_H
 #define FT_CACHE_IMAGE_H	FT_CACHE_H
 #define FT_CACHE_SMALL_BITMAPS_H	FT_CACHE_H
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

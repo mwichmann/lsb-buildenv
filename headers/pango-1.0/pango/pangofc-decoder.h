@@ -29,7 +29,7 @@ extern "C" {
 	(G_TYPE_INSTANCE_GET_CLASS ((obj), PANGO_TYPE_FC_DECODER, \
 	PangoFcDecoderClass))
 #define PANGO_TYPE_FC_DECODER	(pango_fc_decoder_get_type())
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -38,7 +38,7 @@ extern "C" {
 
     typedef struct _PangoFcDecoderClass PangoFcDecoderClass;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -57,10 +57,10 @@ extern "C" {
 	void (*_pango_reserved4) (void);
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern FcCharSet *pango_fc_decoder_get_charset(PangoFcDecoder *,
@@ -68,10 +68,10 @@ extern "C" {
     extern PangoGlyph pango_fc_decoder_get_glyph(PangoFcDecoder *,
 						 PangoFcFont *, guint32);
     extern GType pango_fc_decoder_get_type(void);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

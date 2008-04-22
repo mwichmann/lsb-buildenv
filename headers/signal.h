@@ -21,22 +21,21 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 32
 #define sigpause __xpg_sigpause
-#define sigpause __xpg_sigpause
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 #if __LSB_VERSION__ >= 11
 #define SIGRTMAX	(__libc_current_sigrtmax ())
 #define SIGRTMIN	(__libc_current_sigrtmin ())
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define SIG_BLOCK	0	/* Block signals. */
 #define SIG_UNBLOCK	1	/* Unblock signals. */
 #define SIG_SETMASK	2	/* Set the set of blocked signals. */
 #define NSIG	65
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __s390__ && !defined __s390x__
@@ -57,18 +56,18 @@ extern "C" {
 #if defined __s390x__
 #define __NUM_GPRS	16
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 21
 #define _SIGSET_NWORDS	(1024/(8*sizeof(unsigned long)))
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef int sig_atomic_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __s390x__
@@ -105,7 +104,7 @@ extern "C" {
     } _s390_regs_common;
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc__ && !defined __powerpc64__
@@ -146,7 +145,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* PPC64 stuff that doesn't belong here, but it has to be here to avoid nasty cyclic dependencies*/
@@ -159,7 +158,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
     typedef void (*sighandler_t) (int);
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Special Signal values*/
@@ -167,11 +166,11 @@ extern "C" {
 #define SIG_ERR	((sighandler_t)-1)	/* Return value from signal() in case of error. */
 #define SIG_DFL	((sighandler_t)0)	/* Request for default signal handling. */
 #define SIG_IGN	((sighandler_t)1)	/* Request that signal be ignored. */
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
 #define SIG_HOLD	((sighandler_t) 2)	/* Request that signal be held. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -212,11 +211,11 @@ extern "C" {
 #define SIGKILL	9		/* Kill (cannot be caught or ignored). */
 #define SIGCLD	SIGCHLD		/* Same as SIGCHLD */
 #define SIGPOLL	SIGIO		/* Pollable event. */
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define SIGURG	23		/* High bandwidth data is available at a socket. */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -226,14 +225,14 @@ extern "C" {
 #define SV_ONSTACK	(1<<0)	/* Take the signal on the signal stack. */
 #define SV_INTERRUPT	(1<<1)	/* Do not restart system calls. */
 #define SV_RESETHAND	(1<<2)	/* Reset handler to SIG_DFL on receipt. */
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef union sigval sigval_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     union sigval {
@@ -241,7 +240,7 @@ extern "C" {
 	void *sival_ptr;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* POSIX 1003.1b sigevent*/
@@ -249,7 +248,7 @@ extern "C" {
 #define SIGEV_SIGNAL	0	/* Notify via signal. */
 #define SIGEV_NONE	1	/* Other notification: meaningless. */
 #define SIGEV_THREAD	2	/* Deliver via thread creation. */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 21
 #if defined __i386__
@@ -274,14 +273,14 @@ extern "C" {
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
 #endif
 #define SIGEV_MAX_SIZE	64
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef struct sigevent sigevent_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -298,7 +297,7 @@ extern "C" {
 	} _sigev_un;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* POSIX 1003.1b siginfo*/
@@ -315,11 +314,11 @@ extern "C" {
 #define si_band	_sifields._sigpoll._band
 #define si_fd	_sifields._sigpoll._fd
 #define si_timer1	_sifields._timer._timer1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #define si_timer2	_sifields._timer._timer2
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 21
 #if defined __i386__
@@ -344,14 +343,14 @@ extern "C" {
 #define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
 #endif
 #define SI_MAX_SIZE	128
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef struct siginfo siginfo_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -391,7 +390,7 @@ extern "C" {
 	} _sifields;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Values for `si_code'.  Positive values are reserved for kernel-generated
@@ -402,14 +401,14 @@ extern "C" {
 #define SI_MESGQ	-3	/* Sent by real time mesq state change. */
 #define SI_ASYNCIO	-4	/* Sent by AIO completion. */
 #define SI_USER	0		/* Sent by kill, sigsend, raise. */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define SI_SIGIO	-5	/* Sent by queued SIGIO. */
 #define SI_TKILL	-6	/* Sent by tkill. */
 #define SI_ASYNCNL	-60	/* Sent by asynch name lookup completion. */
 #define SI_KERNEL	0x80	/* Sent by kernel. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -424,7 +423,7 @@ extern "C" {
 #define ILL_PRVREG	6	/* Privileged register. */
 #define ILL_COPROC	7	/* Coprocessor error. */
 #define ILL_BADSTK	8	/* Internal stack error. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -439,7 +438,7 @@ extern "C" {
 #define FPE_FLTRES	6	/*  Floating-point inexact result. */
 #define FPE_FLTINV	7	/* Invalid floating-point operation. */
 #define FPE_FLTSUB	8	/* Subscript out of range. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -448,7 +447,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #define SEGV_MAPERR	1	/* Address not mapped to object. */
 #define SEGV_ACCERR	2	/*  Invalid permissions for mapped object. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -458,7 +457,7 @@ extern "C" {
 #define BUS_ADRALN	1	/*  Invalid address alignment. */
 #define BUS_ADRERR	2	/*  Nonexistent physical address. */
 #define BUS_OBJERR	3	/*  Object-specific hardware error. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -467,7 +466,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #define TRAP_BRKPT	1	/*  Process breakpoint. */
 #define TRAP_TRACE	2	/*  Process trace trap. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -480,7 +479,7 @@ extern "C" {
 #define CLD_TRAPPED	4	/*  Traced child has trapped. */
 #define CLD_STOPPED	5	/* Child has stopped. */
 #define CLD_CONTINUED	6	/* Stopped child has continued. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -493,7 +492,7 @@ extern "C" {
 #define POLL_ERR	4	/*  I/O error. */
 #define POLL_PRI	5	/* High priority input available. */
 #define POLL_HUP	6	/*  Device disconnected. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -504,7 +503,7 @@ extern "C" {
 	unsigned long int sig[_SIGSET_NWORDS];
     } sigset_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* sigaction*/
@@ -521,7 +520,7 @@ extern "C" {
 #define SA_RESETHAND	0x80000000	/* Reset to SIG_DFL on entry to handler. */
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -616,7 +615,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Structure used in sigaltstack call.*/
@@ -663,14 +662,14 @@ extern "C" {
 #if defined __s390x__
 #define SIGSTKSZ	8192	/* System default stack size. */
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef struct sigaltstack stack_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -680,14 +679,14 @@ extern "C" {
 	size_t ss_size;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Possible values for `ss_flags.'.*/
 #if __LSB_VERSION__ >= 20
 #define SS_ONSTACK	1
 #define SS_DISABLE	2
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -726,7 +725,7 @@ extern "C" {
     } _sigregs;
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __i386__
@@ -737,7 +736,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -750,7 +749,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __i386__
@@ -785,7 +784,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* FPU state information*/
@@ -829,7 +828,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Process context when signal delivered*/
@@ -972,10 +971,10 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int __libc_current_sigrtmax(void);
@@ -1022,7 +1021,7 @@ extern "C" {
     extern int __sigpause(void);
 #endif
     extern int __sigpause(void);
-#endif				// __LSB_VERSION__ < 1.2
+#endif				/* __LSB_VERSION__ < 1.2 */
 
 #if __LSB_VERSION__ < 30
 #if defined __i386__
@@ -1040,9 +1039,9 @@ extern "C" {
     extern int sigstack(struct sigstack *, struct sigstack *);
 #endif
     extern int sigstack(struct sigstack *, struct sigstack *);
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 30
@@ -1058,9 +1057,9 @@ extern "C" {
 /* PPC32 */
     extern int sigstack(struct sigstack *, struct sigstack *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if __LSB_VERSION__ < 30
@@ -1100,9 +1099,9 @@ extern "C" {
 /* S390X */
     extern int sigstack(struct sigstack *, struct sigstack *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if __LSB_VERSION__ < 30
@@ -1130,16 +1129,16 @@ extern "C" {
 /* PPC64 */
     extern int sigstack(struct sigstack *, struct sigstack *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
     extern int __xpg_sigpause(int);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

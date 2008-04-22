@@ -43,12 +43,12 @@ extern "C" {
 #define snd_seq_ev_set_source(ev,p)	((ev)->source.port = (p))
 #define snd_seq_ev_set_tag(ev,t)	((ev)->tag = (t))
 #define snd_seq_ev_clear(ev)	memset(ev, 0, sizeof(snd_seq_event_t))
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern int snd_seq_connect_from(snd_seq_t *, int, int, int);
@@ -64,10 +64,10 @@ extern "C" {
 				     const char *);
     extern int snd_seq_set_client_name(snd_seq_t *, const char *);
     extern int snd_seq_sync_output_queue(snd_seq_t *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -1010,7 +1010,7 @@ extern "C" {
 #define G_STATIC_PRIVATE_INIT	{ 0 }
 #define G_ONCE_INIT	{ G_ONCE_STATUS_NOTCALLED, NULL }
 #define G_STATIC_REC_MUTEX_INIT	{ G_STATIC_MUTEX_INIT }
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -1122,7 +1122,7 @@ extern "C" {
     typedef unsigned long int guint64;
 
 #endif
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Default Header Section for glib-2.0/glib.h*/
@@ -1820,7 +1820,7 @@ extern "C" {
 	G_SHELL_ERROR_FAILED
     } GShellError;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -2266,10 +2266,10 @@ extern "C" {
 	 gboolean(*thread_equal) (gpointer, gpointer);
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void g_allocator_free(GAllocator *);
@@ -3309,10 +3309,10 @@ extern "C" {
     extern GMemVTable *glib_mem_profiler_table;
     extern const guint glib_micro_version;
     extern const guint glib_minor_version;
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

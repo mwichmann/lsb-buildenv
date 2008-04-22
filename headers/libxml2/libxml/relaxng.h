@@ -80,7 +80,7 @@ extern "C" {
 	XML_RELAXNGP_CRNG = 2
     } xmlRelaxNGParserFlag;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -89,10 +89,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlRelaxNGCleanupTypes(void);
@@ -137,10 +137,10 @@ extern "C" {
     extern int xmlRelaxNGValidatePushElement(xmlRelaxNGValidCtxtPtr,
 					     xmlDocPtr, xmlNodePtr);
     extern int xmlRelaxParserSetFlag(xmlRelaxNGParserCtxtPtr, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

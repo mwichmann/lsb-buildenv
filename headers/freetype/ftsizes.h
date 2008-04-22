@@ -15,16 +15,16 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Error FT_Activate_Size(FT_Size);
     extern FT_Error FT_Done_Size(FT_Size);
     extern FT_Error FT_New_Size(FT_Face, FT_Size *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

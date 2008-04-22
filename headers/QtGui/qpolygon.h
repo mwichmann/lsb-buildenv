@@ -34,18 +34,18 @@ public:
     QRectF boundingRect() const;
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK8QPolygon(_Z6QDebug, const QPolygon &);
 extern QDebug _Zls6QDebugRK9QPolygonF(_Z6QDebug, const QPolygonF &);
 extern QDataStream _ZlsR11QDataStreamRK9QPolygonF(QDataStream &);
 extern QDataStream _ZrsR11QDataStreamR9QPolygonF(QDataStream &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

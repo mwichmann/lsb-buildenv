@@ -11,8 +11,6 @@ extern "C" {
 
 
 /* priorities (these are ordered)*/
-#define LOG_MAKEPRI(fac, pri)	(((fac) << 3) | (pri))
-#define LOG_PRI(p)	((p) & LOG_PRIMASK)	/* extract priority */
 #if __LSB_VERSION__ >= 12
 #define LOG_EMERG	0	/* system is unusable */
 #define LOG_ALERT	1	/* action must be taken immediately */
@@ -22,17 +20,18 @@ extern "C" {
 #define LOG_NOTICE	5	/* normal but significant condition */
 #define LOG_INFO	6	/* informational */
 #define LOG_DEBUG	7	/* debug-level messages */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
+#define LOG_MAKEPRI(fac, pri)	(((fac) << 3) | (pri))
+#define LOG_PRI(p)	((p) & LOG_PRIMASK)	/* extract priority */
 #define LOG_PRIMASK	0x07	/* mask to extract priority part */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 
 /* facility codes*/
-#define LOG_FAC(p)	(((p) & LOG_FACMASK) >> 3)	/* facility of pri */
 #if __LSB_VERSION__ >= 12
 #define LOG_KERN	(0<<3)	/* kernel messages */
 #define LOG_AUTHPRIV	(10<<3)	/* security/authorization messages (private) */
@@ -46,11 +45,12 @@ extern "C" {
 #define LOG_NEWS	(7<<3)	/* network news subsystem */
 #define LOG_UUCP	(8<<3)	/* UUCP subsystem */
 #define LOG_CRON	(9<<3)	/* clock daemon */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
+#define LOG_FAC(p)	(((p) & LOG_FACMASK) >> 3)	/* facility of pri */
 #define LOG_FACMASK	0x03f8	/* mask to extract facility part */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -65,7 +65,7 @@ extern "C" {
 #define LOG_LOCAL5	(21<<3)	/* reserved for local use */
 #define LOG_LOCAL6	(22<<3)	/* reserved for local use */
 #define LOG_LOCAL7	(23<<3)	/* reserved for local use */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -74,7 +74,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define LOG_UPTO(pri)	((1 << ((pri)+1)) - 1)	/* all priorities through pri */
 #define LOG_MASK(pri)	(1 << (pri))	/* mask for one priority */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -87,29 +87,29 @@ extern "C" {
 #define LOG_NDELAY	0x08	/* don't delay open */
 #define LOG_NOWAIT	0x10	/* don't wait for console forks: DEPRECATED */
 #define LOG_PERROR	0x20	/* log to stderr as well */
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void closelog(void);
     extern void openlog(const char *, int, int);
     extern void syslog(int, const char *, ...);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern int setlogmask(int);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
     extern void vsyslog(int, const char *, va_list);
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

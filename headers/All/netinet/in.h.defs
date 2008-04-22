@@ -19,6 +19,10 @@ typedef uint32_t in_addr_t;
 #define INADDR_BROADCAST	(0xffffffff)
 #define INADDR_ANY	0
 
+#define s6_addr16	in6_u.u6_addr16
+#define s6_addr32	in6_u.u6_addr32
+#define s6_addr	in6_u.u6_addr8
+
 struct in6_addr {
     union {
 	uint8_t u6_addr8[16];

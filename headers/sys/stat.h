@@ -44,7 +44,7 @@ extern "C" {
 #define S_IREAD	S_IRUSR
 #define S_IWRITE	S_IWUSR
 #define S_IEXEC	S_IXUSR
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
@@ -57,7 +57,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define _STAT_VER	3
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -69,7 +69,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define _STAT_VER	3
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
@@ -81,7 +81,7 @@ extern "C" {
 #define st_atime	st_atim.tv_sec
 #define st_ctime	st_ctim.tv_sec
 #define st_mtime	st_mtim.tv_sec
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -393,11 +393,11 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
-// Function prototypes
+/* Function prototypes */
 
     extern int fstat(int, struct stat *);
     extern int fstat64(int, struct stat64 *);
@@ -417,10 +417,10 @@ extern "C" {
     extern int fchmod(int, mode_t);
     extern int mkfifo(const char *, mode_t);
     extern mode_t umask(mode_t);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

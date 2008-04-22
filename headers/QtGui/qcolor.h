@@ -95,17 +95,17 @@ Cmyk = 3
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK6QColor(const QColor &);
 extern QDataStream _ZlsR11QDataStreamRK6QColor(QDataStream &, const QColor &);
 extern QDataStream _ZrsR11QDataStreamR6QColor(QDataStream &, QColor &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

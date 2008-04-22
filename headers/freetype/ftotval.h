@@ -23,21 +23,21 @@ extern "C" {
 #define FT_VALIDATE_GPOS	0x0400
 #define FT_VALIDATE_GSUB	0x0800
 #define FT_VALIDATE_JSTF	0x1000
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Error FT_OpenType_Validate(FT_Face, FT_UInt, FT_Bytes *,
 					 FT_Bytes *, FT_Bytes *,
 					 FT_Bytes *, FT_Bytes *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

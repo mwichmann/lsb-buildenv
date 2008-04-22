@@ -30,7 +30,7 @@ extern "C" {
 #define CLGET_SVC_ADDR	7	/* get server's address (netbuf) */
 #define CLSET_FD_CLOSE	8	/* close fd while clnt_destroy */
 #define CLSET_FD_NCLOSE	9	/* Do not close fd while clnt_destroy */
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #define clnt_control(cl,rq,in)	((*(cl)->cl_ops->cl_control)(cl,rq,in))
@@ -40,7 +40,7 @@ extern "C" {
 #define clnt_geterr(rh,errp)	((*(rh)->cl_ops->cl_geterr)(rh, errp))
 #define clnt_call(rh, proc, xargs, argsp, xres, resp, secs)	\
 	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -90,14 +90,14 @@ extern "C" {
 	} ru;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
 #if __LSB_VERSION__ >= 13
     typedef struct CLIENT CLIENT;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
 
@@ -107,7 +107,7 @@ extern "C" {
 	caddr_t cl_private;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -122,10 +122,10 @@ extern "C" {
 	 bool_t(*cl_control) (struct CLIENT *, int, char *);
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 11
     extern struct CLIENT *clnt_create(const char *, const u_long,
@@ -136,10 +136,10 @@ extern "C" {
     extern char *clnt_spcreateerror(const char *);
     extern char *clnt_sperrno(enum clnt_stat);
     extern char *clnt_sperror(struct CLIENT *, const char *);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

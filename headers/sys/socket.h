@@ -14,12 +14,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #define SOL_SOCKET	1
 #define SOL_RAW	255
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 21
 #define SCM_RIGHTS	0x01
 #define SOMAXCONN	128
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 #if __LSB_VERSION__ >= 30
 #define CMSG_LEN(len)	(CMSG_ALIGN(sizeof(struct cmsghdr))+(len))
@@ -40,7 +40,7 @@ extern "C" {
            (u_char *)((mhdr)->msg_control) + (mhdr)->msg_controllen) ? \
           (struct cmsghdr *)NULL : \
           (struct cmsghdr *)((u_char *)(cmsg) + CMSG_ALIGN((cmsg)->cmsg_len))))
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
@@ -61,7 +61,7 @@ extern "C" {
 	size_t iov_len;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -69,7 +69,7 @@ extern "C" {
 
     typedef unsigned int socklen_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __i386__
@@ -107,7 +107,7 @@ extern "C" {
     typedef uint64_t __ss_aligntype;
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -116,7 +116,7 @@ extern "C" {
 	char sa_data[14];
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
     struct sockaddr_storage {
@@ -125,7 +125,7 @@ extern "C" {
 	char __ss_padding[(128 - (2 * sizeof(__ss_aligntype)))];
     };
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -139,7 +139,7 @@ extern "C" {
 	unsigned int msg_flags;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Address Families*/
@@ -157,9 +157,9 @@ extern "C" {
 #define AF_BRIDGE	7
 #define AF_ATMPVC	8
 #define AF_X25	9
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -168,16 +168,16 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define PF_INET	AF_INET
 #define PF_INET6	AF_INET6
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #define PF_UNIX	AF_UNIX
 #define PF_UNSPEC	AF_UNSPEC
 #if __LSB_VERSION__ < 20
 #define PF_LOCAL	AF_LOCAL
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -189,7 +189,7 @@ extern "C" {
 #define SOCK_RAW	3
 #define SOCK_RDM	4
 #define SOCK_SEQPACKET	5
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -210,7 +210,7 @@ extern "C" {
 #define SO_SNDBUF	7
 #define SO_RCVBUF	8
 #define SO_KEEPALIVE	9
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 21
 #if defined __powerpc__ && !defined __powerpc64__
@@ -298,7 +298,7 @@ extern "C" {
 #define SO_SNDTIMEO	21
 #endif
 #define SO_ACCEPTCONN	30
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -307,15 +307,15 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 30
 #define SIOCGIFCONF	0x8912
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #define SIOCGIFFLAGS	0x8913
 #define SIOCGIFADDR	0x8915
 #define SIOCGIFNETMASK	0x891b
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 31
 #define SIOCGIFNAME	0x8910
@@ -324,7 +324,7 @@ extern "C" {
 #define SIOCGIFBRDADDR	0x8919
 #define SIOCGIFMTU	0x8921
 #define SIOCGIFHWADDR	0x8927
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -334,7 +334,7 @@ extern "C" {
 #define SHUT_RD	0
 #define SHUT_WR	1
 #define SHUT_RDWR	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -348,16 +348,16 @@ extern "C" {
 #define MSG_PEEK	2
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 40
 #define MSG_NOSIGNAL	0x4000
-#endif				// __LSB_VERSION__ >= 4.0
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int accept(int, struct sockaddr *, socklen_t *);
@@ -379,19 +379,19 @@ extern "C" {
     extern int shutdown(int, int);
     extern int socket(int, int, int);
     extern int socketpair(int, int, int, int[2]);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
     extern int getnameinfo(const struct sockaddr *, socklen_t, char *,
 			   socklen_t, char *, socklen_t, unsigned int);
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 30
     extern int sockatmark(int);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

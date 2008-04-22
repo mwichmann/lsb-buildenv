@@ -25,7 +25,7 @@ extern "C" {
 #define XML_DETECT_IDS	2
 #define XML_COMPLETE_ATTRS	4
 #define XML_SKIP_IDS	8
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -94,10 +94,10 @@ extern "C" {
 	XML_PARSE_COMPACT = 1 << 16
     } xmlParserOption;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern long int xmlByteConsumed(xmlParserCtxtPtr);
@@ -212,10 +212,10 @@ extern "C" {
 					const char *);
     extern void xmlStopParser(xmlParserCtxtPtr);
     extern int xmlSubstituteEntitiesDefault(int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

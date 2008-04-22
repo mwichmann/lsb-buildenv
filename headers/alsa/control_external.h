@@ -15,7 +15,7 @@ extern "C" {
 #define SND_CTL_EXT_VERSION_MINOR	0
 #define SND_CTL_EXT_VERSION_TINY	0
 #define SND_CTL_EXT_VERSION_MAJOR	1
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -26,7 +26,7 @@ extern "C" {
 
     typedef struct snd_ctl_ext snd_ctl_ext_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -75,10 +75,10 @@ extern "C" {
 	int subscribed;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

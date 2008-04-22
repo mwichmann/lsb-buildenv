@@ -14,17 +14,17 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 20
     extern u_short pmap_getport(struct sockaddr_in *, const u_long,
 				const u_long, u_int);
     extern bool_t pmap_set(const u_long, const u_long, int, u_short);
     extern bool_t pmap_unset(u_long, u_long);
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

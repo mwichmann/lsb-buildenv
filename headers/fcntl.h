@@ -25,7 +25,7 @@ extern "C" {
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000
 #define FD_CLOEXEC	1
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 32
 #if defined __ia64__
@@ -49,7 +49,7 @@ extern "C" {
 #if defined __powerpc64__
 #define O_LARGEFILE	0200000
 #endif
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -70,7 +70,7 @@ extern "C" {
 	pid_t l_pid;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* flags for open(2)*/
@@ -92,7 +92,7 @@ extern "C" {
 #define F_SETLKW	7
 #define F_SETOWN	8
 #define F_GETOWN	9
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 21
 #if defined __i386__
@@ -158,17 +158,17 @@ extern "C" {
 #if defined __s390x__
 #define F_SETLKW64	7
 #endif
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 #if __LSB_VERSION__ >= 32
 #define F_SETSIG	10
 #define F_GETSIG	11
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int creat(const char *, mode_t);
@@ -176,17 +176,17 @@ extern "C" {
     extern int fcntl(int, int, ...);
     extern int open(const char *, int, ...);
     extern int open64(const char *, int, ...);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 32
     extern int posix_fadvise(int, off_t, off_t, int);
     extern int posix_fadvise64(int, off64_t, off64_t, int);
     extern int posix_fallocate(int, off_t, off_t);
     extern int posix_fallocate64(int, off64_t, off64_t);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

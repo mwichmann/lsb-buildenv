@@ -13,7 +13,7 @@ public:
 }Sections	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QDateTimeEdit : public QAbstractSpinBox
@@ -124,17 +124,17 @@ public:
      QDateEdit(QDate const&, QWidget*);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN13QDateTimeEdit16staticMetaObjectE ;
 extern struct QMetaObject _ZN9QDateEdit16staticMetaObjectE ;
 extern struct QMetaObject _ZN9QTimeEdit16staticMetaObjectE ;
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

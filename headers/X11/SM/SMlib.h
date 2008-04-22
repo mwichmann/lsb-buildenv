@@ -42,7 +42,7 @@ extern "C" {
 #define SmsSetPropertiesProcMask	(1L << 7)
 #define SmsDeletePropertiesProcMask	(1L << 8)
 #define SmsGetPropertiesProcMask	(1L << 9)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -176,7 +176,7 @@ extern "C" {
 
     typedef void (*SmcSaveYourselfPhase2Proc) (SmcConn, SmPointer);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -347,10 +347,10 @@ extern "C" {
 	SmcConnectionInUse = 2
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void SmFreeProperty(SmProp *);
@@ -397,10 +397,10 @@ extern "C" {
     extern void SmsSaveYourselfPhase2(SmsConn);
     extern SmsSetErrorHandler(SmsErrorHandler);
     extern void SmsShutdownCancelled(SmsConn);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -22,7 +22,7 @@ public:
 }Iterator	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QTextObject : public QObject
@@ -148,10 +148,10 @@ public:
     QString text() const;
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QTextBlock::iterator _ZN10QTextBlock8iteratormmEv(void);
@@ -165,8 +165,8 @@ extern struct QMetaObject _ZN15QTextBlockGroup16staticMetaObjectE ;
 extern  _ZNK10QTextBlock8iterator8fragmentEv(void);
 extern  _ZNK10QTextFrame8iterator12currentBlockEv(void);
 extern QTextFrame _ZNK10QTextFrame8iterator12currentFrameEv(void);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

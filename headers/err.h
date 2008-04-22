@@ -9,7 +9,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void err(int, const char *, ...);
@@ -17,10 +17,10 @@ extern "C" {
     extern void errx(int, const char *, ...);
     extern void warn(const char *, ...);
     extern void warnx(const char *, ...);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

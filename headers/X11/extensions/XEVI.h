@@ -14,7 +14,7 @@ extern "C" {
 #define XEVI_TRANSPARENCY_NONE	0
 #define XEVI_TRANSPARENCY_PIXEL	1
 #define XEVI_TRANSPARENCY_MASK	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -33,20 +33,20 @@ extern "C" {
 	VisualID *colormap_conflicts;
     } ExtendedVisualInfo;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 30
     extern int XeviGetVisualInfo(Display *, Visual *, int,
 				 ExtendedVisualInfo * *, int *);
     extern int XeviQueryExtension(Display *);
     extern int XeviQueryVersion(Display *, int *, int *);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

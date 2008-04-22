@@ -11,7 +11,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 32
 #define RE_DUP_MAX	(0x7fff)
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -19,7 +19,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #if __LSB_VERSION__ < 13
 #define RE_SYNTAX_GNU_AWK	((RE_SYNTAX_POSIX_EXTENDED|RE_BACKSLASH_ESCAPE_IN_LISTS|RE_DEBUG)& ~(RE_DOT_NOT_NULL | RE_INTERVALS | RE_CONTEXT_INDEP_OPS))
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
 #if __LSB_VERSION__ < 21
 #define RE_BACKSLASH_ESCAPE_IN_LISTS	((unsigned long int)1)
@@ -49,9 +49,9 @@ extern "C" {
 #define RE_SYNTAX_POSIX_MINIMAL_BASIC	(_RE_SYNTAX_POSIX_COMMON|RE_LIMITED_OPS)
 #define RE_SYNTAX_ED	RE_SYNTAX_POSIX_BASIC
 #define RE_SYNTAX_SED	RE_SYNTAX_POSIX_BASIC
-#endif				// __LSB_VERSION__ < 2.1
+#endif				/* __LSB_VERSION__ < 2.1 */
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 21
@@ -62,16 +62,16 @@ extern "C" {
 #define RE_DEBUG	(RE_NO_GNU_OPS<<1)
 #define RE_NO_GNU_OPS	(RE_NO_POSIX_BACKTRACKING<<1)
 #define RE_NO_POSIX_BACKTRACKING	(RE_UNMATCHED_RIGHT_PAREN_ORD<<1)
-#endif				// __LSB_VERSION__ < 2.1
+#endif				/* __LSB_VERSION__ < 2.1 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned long int reg_syntax_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 10
@@ -82,12 +82,12 @@ extern "C" {
 	regoff_t rm_eo;
     } regmatch_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef struct re_pattern_buffer regex_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -108,7 +108,7 @@ extern "C" {
 	unsigned int newline_anchor:1;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Values for the cflags parameter to the regcomp() function*/
@@ -119,9 +119,9 @@ extern "C" {
 #define REG_EXTENDED	1
 #if __LSB_VERSION__ < 21
 #define REG_NOMATCH	-1
-#endif				// __LSB_VERSION__ < 2.1
+#endif				/* __LSB_VERSION__ < 2.1 */
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -130,7 +130,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #define REG_NOTEOL	(1<<1)
 #define REG_NOTBOL	1
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -158,10 +158,10 @@ extern "C" {
 	REG_ERPAREN = 16
     } reg_errcode_t;
 
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int regcomp(regex_t *, const char *, int);
@@ -169,10 +169,10 @@ extern "C" {
     extern int regexec(const regex_t *, const char *, size_t, regmatch_t[],
 		       int);
     extern void regfree(regex_t *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

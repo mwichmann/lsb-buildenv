@@ -25,28 +25,28 @@ extern "C" {
 
     typedef long int GLintptrARB;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
 #if __LSB_VERSION__ < 13
     extern void glBlendColorEXT(GLclampf, GLclampf, GLclampf, GLclampf);
     extern void glBlendEquationEXT(GLenum);
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 13
     extern void glPointParameterfvEXT(GLenum, const GLfloat *);
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

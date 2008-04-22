@@ -53,7 +53,7 @@ extern "C" {
 #define IS_IDEOGRAPHIC(c)	xmlIsIdeographicQ(c)
 #define IS_PUBIDCHAR(c)	xmlIsPubidCharQ(c)
 #define IS_PUBIDCHAR_CH(c)	xmlIsPubidChar_ch(c)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -61,10 +61,10 @@ extern "C" {
     typedef void (*xmlEntityReferenceFunc) (xmlEntityPtr, xmlNodePtr,
 					    xmlNodePtr);
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern htmlParserCtxtPtr htmlCreateFileParserCtxt(const char *,
@@ -171,10 +171,10 @@ extern "C" {
 				      xmlCharEncodingHandlerPtr);
     extern int xmlSwitchToEncoding(xmlParserCtxtPtr,
 				   xmlCharEncodingHandlerPtr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

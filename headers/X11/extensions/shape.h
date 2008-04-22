@@ -27,7 +27,7 @@ extern "C" {
 	int shaped;
     } XShapeEvent;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -45,10 +45,10 @@ extern "C" {
 	int shaped;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void XShapeCombineMask(Display *, Window, int, int, int, Pixmap,
@@ -70,10 +70,10 @@ extern "C" {
 				  unsigned int *);
     extern int XShapeQueryVersion(Display *, int *, int *);
     extern void XShapeSelectInput(Display *, Window, unsigned long int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

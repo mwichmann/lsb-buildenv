@@ -15,7 +15,7 @@ extern "C" {
 #define PPD_VERSION	4.3
 #define PPD_MAX_NAME	41
 #define PPD_MAX_TEXT	81
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -182,7 +182,7 @@ extern "C" {
 	PPD_CONFORM_STRICT = 1
     } ppd_conform_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -195,10 +195,10 @@ extern "C" {
 	struct ppd_group_str *subgroups;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern void ppdClose(ppd_file_t *);
@@ -227,10 +227,10 @@ extern "C" {
     extern ppd_size_t *ppdPageSize(ppd_file_t *, const char *);
     extern float ppdPageWidth(ppd_file_t *, const char *);
     extern void ppdSetConformance(ppd_conform_t);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

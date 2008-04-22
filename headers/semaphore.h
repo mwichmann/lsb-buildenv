@@ -20,13 +20,13 @@ extern "C" {
 	_pthread_descr __sem_waiting;
     } sem_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Value returned if `sem_open' failed*/
 #if __LSB_VERSION__ >= 11
 #define SEM_FAILED	((sem_t*)0)
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -34,12 +34,12 @@ extern "C" {
 /* Maximum value the semaphore can have*/
 #if __LSB_VERSION__ >= 11
 #define SEM_VALUE_MAX	((int)((~0u)>>1))
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int sem_close(sem_t *);
@@ -52,10 +52,10 @@ extern "C" {
     extern int sem_trywait(sem_t *);
     extern int sem_unlink(const char *);
     extern int sem_wait(sem_t *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

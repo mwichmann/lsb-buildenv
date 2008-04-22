@@ -11,7 +11,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
 #if __LSB_VERSION__ < 30
@@ -20,9 +20,9 @@ extern "C" {
     extern int adjtimex(struct timex *);
 #endif
     extern int adjtimex(struct timex *);
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 30
@@ -30,9 +30,9 @@ extern "C" {
 /* PPC32 */
     extern int adjtimex(struct timex *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if __LSB_VERSION__ < 30
@@ -48,9 +48,9 @@ extern "C" {
 /* S390X */
     extern int adjtimex(struct timex *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if __LSB_VERSION__ < 30
@@ -62,12 +62,12 @@ extern "C" {
 /* PPC64 */
     extern int adjtimex(struct timex *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

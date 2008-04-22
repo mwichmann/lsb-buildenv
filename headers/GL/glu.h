@@ -165,7 +165,7 @@ extern "C" {
 #define GLU_OUT_OF_MEMORY	100902
 #define GLU_INCOMPATIBLE_GL_VERSION	100903
 #define GLU_INVALID_OPERATION	100904
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -180,7 +180,7 @@ extern "C" {
 
     typedef struct GLUnurbs GLUnurbsObj;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -189,10 +189,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 40
     extern void gluBeginCurve(void);
@@ -280,10 +280,10 @@ extern "C" {
 			       const GLint *, GLdouble, GLdouble,
 			       GLdouble *, GLdouble *, GLdouble *,
 			       GLdouble *);
-#endif				// __LSB_VERSION__ >= 4.0
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

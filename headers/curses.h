@@ -22,7 +22,7 @@ extern "C" {
 	(y=(win)?(win)->_cury:ERR,x=(win)?(win)->_curx:ERR)
 #define getparyx(win,y,x)	\
 	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #define ACS_RARROW	(acs_map['+'])
@@ -50,7 +50,7 @@ extern "C" {
 #define ACS_VLINE	(acs_map['x'])
 #define ACS_DIAMOND	(acs_map['`'])
 #define ACS_BULLET	(acs_map['~'])
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -82,11 +82,11 @@ extern "C" {
 #define WA_TOP	A_TOP
 #define WA_UNDERLINE	A_UNDERLINE
 #define WA_VERTICAL	A_VERTICAL
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define A_REVERSE	NCURSES_BITS(1UL,10)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -101,7 +101,7 @@ extern "C" {
 #define COLOR_MAGENTA	5
 #define COLOR_CYAN	6
 #define COLOR_WHITE	7
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -116,9 +116,9 @@ extern "C" {
 #define _HASMOVED	0x20
 #if __LSB_VERSION__ < 13
 #define TRACE_MAXIMUM	0xffff
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -129,7 +129,7 @@ extern "C" {
     typedef unsigned char bool;
 
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* curses related structures*/
@@ -147,7 +147,7 @@ extern "C" {
 	wchar_t chars[5];
     } cchar_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct pdat {
@@ -159,7 +159,7 @@ extern "C" {
 	short _pad_right;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -194,7 +194,7 @@ extern "C" {
 	cchar_t _bkgrnd;	/* current background char/attribute pair */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -295,7 +295,7 @@ extern "C" {
 #define KEY_MOUSE	0631
 #define KEY_RESIZE	0632
 #define KEY_MAX	0777
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -323,18 +323,18 @@ extern "C" {
 #define A_STANDOUT	NCURSES_BITS(1UL,8)
 #define A_UNDERLINE	NCURSES_BITS(1UL,9)
 #define A_ATTRIBUTES	NCURSES_BITS(~(1UL-1UL),0)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define PAIR_NUMBER(a)	(((a)&A_COLOR)>>8)
 #define NCURSES_ATTR_SHIFT	8
 #define COLOR_PAIR(n)	NCURSES_BITS(n,0)
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int addch(const chtype);
@@ -602,27 +602,27 @@ extern "C" {
     extern void wtimeout(WINDOW *, int);
     extern int wtouchln(WINDOW *, int, int, int);
     extern int wvline(WINDOW *, chtype, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern int COLS;
     extern int LINES;
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 13
     extern int touchline(WINDOW *, int, int);
     extern int touchwin(WINDOW *);
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
     extern int COLORS;
     extern int COLOR_PAIRS;
     extern chtype acs_map[];
     extern char *unctrl(chtype);
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

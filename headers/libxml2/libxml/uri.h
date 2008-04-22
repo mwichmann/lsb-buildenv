@@ -15,7 +15,7 @@ extern "C" {
 
     typedef xmlURI *xmlURIPtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -32,10 +32,10 @@ extern "C" {
 	int cleanup;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern xmlChar *xmlBuildRelativeURI(const xmlChar *, const xmlChar *);
@@ -52,10 +52,10 @@ extern "C" {
     extern xmlChar *xmlURIEscape(const xmlChar *);
     extern xmlChar *xmlURIEscapeStr(const xmlChar *, const xmlChar *);
     extern char *xmlURIUnescapeString(const char *, int, char *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

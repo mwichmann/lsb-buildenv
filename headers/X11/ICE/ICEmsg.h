@@ -27,12 +27,12 @@ extern "C" {
 #define IceReadData16(_iceConn,_swap,_bytes,_pData)	{ _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData) }
 #define IceReadData32(_iceConn,_swap,_bytes,_pData)	{ _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData) }
 #define IceReadMessageHeader(_iceConn,_headerSize,_msgType,_pMsg)	{ _IceRead (_iceConn, (unsigned long) (_headerSize - SIZEOF (iceMsg)), _iceConn->inbufptr) _pMsg = (_msgType *) (_iceConn->inbuf) _iceConn->inbufptr += (_headerSize - SIZEOF (iceMsg)) }
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

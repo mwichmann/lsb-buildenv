@@ -74,7 +74,7 @@ extern "C" {
 	XPointer value;
     } *XrmOptionDescList;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     enum {
@@ -124,10 +124,10 @@ extern "C" {
 
     XrmQuark *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void XrmCombineDatabase(XrmDatabase, XrmDatabase *, int);
@@ -169,10 +169,10 @@ extern "C" {
     extern XrmQuark XrmStringToQuark(const char *);
     extern void XrmStringToQuarkList(const char *, XrmQuarkList);
     extern XrmQuark XrmUniqueQuark(void);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

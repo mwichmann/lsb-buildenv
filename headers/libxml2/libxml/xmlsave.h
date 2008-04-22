@@ -22,15 +22,15 @@ extern "C" {
 	XML_SAVE_NO_XHTML = 1 << 3
     } xmlSaveOption;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern int xmlSaveClose(xmlSaveCtxtPtr);
@@ -46,10 +46,10 @@ extern "C" {
 				      xmlOutputCloseCallback, void *,
 				      const char *, int);
     extern long int xmlSaveTree(xmlSaveCtxtPtr, xmlNodePtr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

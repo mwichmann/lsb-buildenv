@@ -36,12 +36,12 @@ extern "C" {
 #define ft_strrchr	strrchr
 #define FT_UINT_MAX	UINT_MAX
 #define FT_ULONG_MAX	ULONG_MAX
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

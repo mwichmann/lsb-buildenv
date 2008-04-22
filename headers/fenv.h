@@ -119,7 +119,7 @@ extern "C" {
 #if defined __ia64__
 #define FE_UNNORMAL	1UL << 1
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
@@ -153,7 +153,7 @@ extern "C" {
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | FE_INVALID)
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
@@ -244,7 +244,7 @@ extern "C" {
 #if defined __ia64__
 #define FE_TOWARDZERO	3
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
@@ -286,7 +286,7 @@ extern "C" {
     typedef unsigned short fexcept_t;
 
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 /* Type representing floating-point environment.*/
@@ -361,7 +361,7 @@ extern "C" {
     } fenv_t;
 
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 /* If the default argument is used we use this value.*/
@@ -387,12 +387,12 @@ extern "C" {
 #if defined __ia64__
 #define FE_DFL_ENV	((__const fenv_t *) 0xc009804c0270033fUL)
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int feclearexcept(int);
@@ -406,16 +406,16 @@ extern "C" {
     extern int fesetround(int);
     extern int fetestexcept(int);
     extern int feupdateenv(const fenv_t *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 32
     extern int fedisableexcept(int);
     extern int feenableexcept(int);
     extern int fegetexcept(void);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

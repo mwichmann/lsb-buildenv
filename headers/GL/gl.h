@@ -19,7 +19,7 @@ extern "C" {
 
     typedef double GLclampd;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned char GLboolean;
@@ -44,7 +44,7 @@ extern "C" {
 
     typedef double GLdouble;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data types*/
@@ -60,7 +60,7 @@ extern "C" {
 #define GL_3_BYTES	0x1408
 #define GL_4_BYTES	0x1409
 #define GL_DOUBLE	0x140A
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -77,7 +77,7 @@ extern "C" {
 #define GL_QUADS	0x0007
 #define GL_QUAD_STRIP	0x0008
 #define GL_POLYGON	0x0009
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -124,7 +124,7 @@ extern "C" {
 #define GL_INDEX_ARRAY_POINTER	0x8091
 #define GL_TEXTURE_COORD_ARRAY_POINTER	0x8092
 #define GL_EDGE_FLAG_ARRAY_POINTER	0x8093
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -135,7 +135,7 @@ extern "C" {
 #define GL_MODELVIEW	0x1700
 #define GL_PROJECTION	0x1701
 #define GL_TEXTURE	0x1702
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -146,7 +146,7 @@ extern "C" {
 #define GL_POINT_SIZE	0x0B11
 #define GL_POINT_SIZE_RANGE	0x0B12
 #define GL_POINT_SIZE_GRANULARITY	0x0B13
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -160,7 +160,7 @@ extern "C" {
 #define GL_LINE_STIPPLE	0x0B24
 #define GL_LINE_STIPPLE_PATTERN	0x0B25
 #define GL_LINE_STIPPLE_REPEAT	0x0B26
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -186,7 +186,7 @@ extern "C" {
 #define GL_POLYGON_OFFSET_LINE	0x2A02
 #define GL_POLYGON_OFFSET_FILL	0x8037
 #define GL_POLYGON_OFFSET_FACTOR	0x8038
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -198,7 +198,7 @@ extern "C" {
 #define GL_LIST_INDEX	0x0B33
 #define GL_COMPILE	0x1300
 #define GL_COMPILE_AND_EXECUTE	0x1301
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -220,7 +220,7 @@ extern "C" {
 #define GL_DEPTH_FUNC	0x0B74
 #define GL_DEPTH_BITS	0x0D56
 #define GL_DEPTH_COMPONENT	0x1902
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -261,7 +261,7 @@ extern "C" {
 #define GL_LIGHT5	0x4005
 #define GL_LIGHT6	0x4006
 #define GL_LIGHT7	0x4007
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -274,7 +274,7 @@ extern "C" {
 #define GL_CLIP_PLANE3	0x3003
 #define GL_CLIP_PLANE4	0x3004
 #define GL_CLIP_PLANE5	0x3005
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -291,7 +291,7 @@ extern "C" {
 #define GL_ACCUM_GREEN_BITS	0x0D59
 #define GL_ACCUM_BLUE_BITS	0x0D5A
 #define GL_ACCUM_ALPHA_BITS	0x0D5B
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -301,7 +301,7 @@ extern "C" {
 #define GL_ALPHA_TEST	0x0BC0
 #define GL_ALPHA_TEST_FUNC	0x0BC1
 #define GL_ALPHA_TEST_REF	0x0BC2
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -322,7 +322,7 @@ extern "C" {
 #define GL_BLEND_SRC	0x0BE1
 #define GL_BLEND	0x0BE2
 #define GL_ONE	0x1
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -332,7 +332,7 @@ extern "C" {
 #define GL_RENDER	0x1C00
 #define GL_FEEDBACK	0x1C01
 #define GL_SELECT	0x1C02
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -357,7 +357,7 @@ extern "C" {
 #define GL_FEEDBACK_BUFFER_TYPE	0x0DF2
 #define GL_ALPHA_BLEND_EQUATION_ATI	0x883D
 #define GL_ATI_blend_equation_separate	1
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -366,7 +366,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
 #define GL_FALSE	0x0
 #define GL_TRUE	0x1
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -375,7 +375,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
 #define GL_SELECTION_BUFFER_POINTER	0x0DF3
 #define GL_SELECTION_BUFFER_SIZE	0x0DF4
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -392,7 +392,7 @@ extern "C" {
 #define GL_FOG_MODE	0x0B65
 #define GL_FOG_COLOR	0x0B66
 #define GL_LINEAR	0x2601
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -419,7 +419,7 @@ extern "C" {
 #define GL_OR_INVERTED	0x150D
 #define GL_NAND	0x150E
 #define GL_SET	0x150F
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -441,7 +441,7 @@ extern "C" {
 #define GL_REPLACE	0x1E01
 #define GL_INCR	0x1E02
 #define GL_DECR	0x1E03
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -484,7 +484,7 @@ extern "C" {
 #define GL_LUMINANCE	0x1909
 #define GL_LUMINANCE_ALPHA	0x190A
 #define GL_BITMAP	0x1A00
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -504,7 +504,7 @@ extern "C" {
 #define GL_MAX_TEXTURE_STACK_DEPTH	0x0D39
 #define GL_MAX_VIEWPORT_DIMS	0x0D3A
 #define GL_MAX_CLIENT_ATTRIB_STACK_DEPTH	0x0D3B
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -538,7 +538,7 @@ extern "C" {
 #define GL_RGBA_MODE	0x0C31
 #define GL_RENDER_MODE	0x0C40
 #define GL_NAME_STACK_DEPTH	0x0D70
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -571,7 +571,7 @@ extern "C" {
 #define GL_MAP1_GRID_SEGMENTS	0x0DD1
 #define GL_MAP2_GRID_DOMAIN	0x0DD2
 #define GL_MAP2_GRID_SEGMENTS	0x0DD3
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -586,7 +586,7 @@ extern "C" {
 #define GL_DONT_CARE	0x1100
 #define GL_FASTEST	0x1101
 #define GL_NICEST	0x1102
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -595,7 +595,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
 #define GL_SCISSOR_BOX	0x0C10
 #define GL_SCISSOR_TEST	0x0C11
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -650,7 +650,7 @@ extern "C" {
 #define GL_ALPHA_BIAS	0x0D1D
 #define GL_DEPTH_SCALE	0x0D1E
 #define GL_DEPTH_BIAS	0x0D1F
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -700,7 +700,7 @@ extern "C" {
 #define GL_TEXTURE_ALPHA_SIZE	0x805F
 #define GL_TEXTURE_LUMINANCE_SIZE	0x8060
 #define GL_TEXTURE_INTENSITY_SIZE	0x8061
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -711,7 +711,7 @@ extern "C" {
 #define GL_RENDERER	0x1F01
 #define GL_VERSION	0x1F02
 #define GL_EXTENSIONS	0x1F03
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -725,7 +725,7 @@ extern "C" {
 #define GL_STACK_OVERFLOW	0x0503
 #define GL_STACK_UNDERFLOW	0x0504
 #define GL_OUT_OF_MEMORY	0x0505
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -753,7 +753,7 @@ extern "C" {
 #define GL_TEXTURE_BIT	0x00040000
 #define GL_SCISSOR_BIT	0x00080000
 #define GL_ALL_ATTRIB_BITS	0x000FFFFF
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -804,7 +804,7 @@ extern "C" {
 #define GL_TEXTURE_BINDING_2D	0x8069
 #define GL_ALL_CLIENT_ATTRIB_BITS	0xFFFFFFFF
 #define GL_CLIENT_ALL_ATTRIB_BITS	0xFFFFFFFF
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -852,7 +852,7 @@ extern "C" {
 #define GL_UNSIGNED_INT_2_10_10_10_REV	0x8368
 #define GL_ALIASED_POINT_SIZE_RANGE	0x846D
 #define GL_ALIASED_LINE_WIDTH_RANGE	0x846E
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -934,7 +934,7 @@ extern "C" {
 #define GL_CONSTANT_BORDER	0x8151
 #define GL_REPLICATE_BORDER	0x8153
 #define GL_CONVOLUTION_BORDER_COLOR	0x8154
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -976,7 +976,7 @@ extern "C" {
 #define GL_ACTIVE_TEXTURE	0x84E0
 #define GL_CLIENT_ACTIVE_TEXTURE	0x84E1
 #define GL_MAX_TEXTURE_UNITS	0x84E2
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -995,7 +995,7 @@ extern "C" {
 #define GL_TEXTURE_CUBE_MAP_NEGATIVE_Z	0x851A
 #define GL_PROXY_TEXTURE_CUBE_MAP	0x851B
 #define GL_MAX_CUBE_MAP_TEXTURE_SIZE	0x851C
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1013,7 +1013,7 @@ extern "C" {
 #define GL_TEXTURE_COMPRESSED	0x86A1
 #define GL_NUM_COMPRESSED_TEXTURE_FORMATS	0x86A2
 #define GL_COMPRESSED_TEXTURE_FORMATS	0x86A3
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1029,7 +1029,7 @@ extern "C" {
 #define GL_SAMPLES	0x80A9
 #define GL_SAMPLE_COVERAGE_VALUE	0x80AA
 #define GL_SAMPLE_COVERAGE_INVERT	0x80AB
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1040,7 +1040,7 @@ extern "C" {
 #define GL_TRANSPOSE_PROJECTION_MATRIX	0x84E4
 #define GL_TRANSPOSE_TEXTURE_MATRIX	0x84E5
 #define GL_TRANSPOSE_COLOR_MATRIX	0x84E6
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1069,7 +1069,7 @@ extern "C" {
 #define GL_OPERAND0_ALPHA	0x8598
 #define GL_OPERAND1_ALPHA	0x8599
 #define GL_OPERAND2_ALPHA	0x859A
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1078,7 +1078,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
 #define GL_DOT3_RGB	0x86AE
 #define GL_DOT3_RGBA	0x86AF
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1086,7 +1086,7 @@ extern "C" {
 /* texture_border_clamp*/
 #if __LSB_VERSION__ >= 10
 #define GL_CLAMP_TO_BORDER	0x812D
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -1129,12 +1129,12 @@ extern "C" {
 #define GL_CLIENT_ACTIVE_TEXTURE_ARB	0x84E1
 #define GL_MAX_TEXTURE_UNITS_ARB	0x84E2
 #define GL_ARB_multitexture	1
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void glAccum(GLenum, GLfloat);
@@ -1580,10 +1580,10 @@ extern "C" {
     extern void glVertex4sv(GLshort *);
     extern void glVertexPointer(GLint, GLenum, GLsizei, GLvoid *);
     extern void glViewport(GLint, GLint, GLsizei, GLsizei);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -13,25 +13,25 @@ extern "C" {
 #if __LSB_VERSION__ >= 30
 #define atexit(func) __cxa_atexit(func,NULL, NULL)
 
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 #if __LSB_VERSION__ >= 11
 #define MB_CUR_MAX	(__ctype_get_mb_cur_max())
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define EXIT_SUCCESS	0
 #define EXIT_FAILURE	1
 #define RAND_MAX	2147483647
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #if __LSB_VERSION__ >= 10
     typedef int (*__compar_fn_t) (const void *, const void *);
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
     struct random_data {
@@ -44,7 +44,7 @@ extern "C" {
 	int32_t *end_ptr;	/* Pointer behind state table. */
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Returned by `div'.*/
@@ -54,7 +54,7 @@ extern "C" {
 	int rem;
     } div_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 /* Returned by `ldiv'.*/
@@ -64,7 +64,7 @@ extern "C" {
 	long int rem;
     } ldiv_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 /* Returned by `lldiv'.*/
@@ -74,10 +74,10 @@ extern "C" {
 	long long int rem;
     } lldiv_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void _Exit(int);
@@ -162,13 +162,13 @@ extern "C" {
     extern char *__secure_getenv(char *);
 #endif
     extern char *__secure_getenv(char *);
-#endif				// __LSB_VERSION__ < 1.2
+#endif				/* __LSB_VERSION__ < 1.2 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern int rand_r(unsigned int *);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
     extern void lcong48(unsigned short[7]);
@@ -179,9 +179,9 @@ extern "C" {
 /* PPC32 */
     extern int random_r(struct random_data *, int32_t *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     extern long long int atoll(const char *);
@@ -198,9 +198,9 @@ extern "C" {
 /* S390X */
     extern int random_r(struct random_data *, int32_t *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if __LSB_VERSION__ < 30
@@ -212,16 +212,16 @@ extern "C" {
 /* PPC64 */
     extern int random_r(struct random_data *, int32_t *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
     extern int posix_openpt(int);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

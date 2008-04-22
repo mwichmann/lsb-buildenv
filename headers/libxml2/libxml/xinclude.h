@@ -21,7 +21,7 @@ extern "C" {
 #define XINCLUDE_PARSE_TEXT	(const xmlChar *) "text"
 #define XINCLUDE_PARSE_XML	(const xmlChar *) "xml"
 #define XINCLUDE_PARSE_XPOINTER	(const xmlChar *) "xpointer"
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -30,15 +30,15 @@ extern "C" {
 
     typedef xmlXIncludeCtxt *xmlXIncludeCtxtPtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr);
@@ -49,10 +49,10 @@ extern "C" {
     extern int xmlXIncludeProcessTree(xmlNodePtr);
     extern int xmlXIncludeProcessTreeFlags(xmlNodePtr, int);
     extern int xmlXIncludeSetFlags(xmlXIncludeCtxtPtr, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -48,12 +48,12 @@ extern "C" {
 #define GDK_SCREEN_XSCREEN(screen)	(gdk_x11_screen_get_xscreen (screen))
 #define GDK_VISUAL_XVISUAL(visual)	(gdk_x11_visual_get_xvisual (visual))
 #define GDK_DISPLAY()	gdk_display
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern Display *gdk_display;
@@ -106,10 +106,10 @@ extern "C" {
     extern gpointer gdk_xid_table_lookup(XID);
     extern gpointer gdk_xid_table_lookup_for_display(GdkDisplay *, XID);
     extern GdkVisual *gdkx_visual_get(VisualID);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

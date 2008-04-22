@@ -45,7 +45,7 @@ extern "C" {
 
     typedef char *(*XkbGetAtomNameFunc) (void);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XkbAnyEvent {
@@ -288,10 +288,10 @@ extern "C" {
 
     char *(*core) (void);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int XkbAllocClientMap(, unsigned int, unsigned int);
@@ -413,10 +413,10 @@ extern "C" {
     extern int XkbUpdateMapFromCore(, KeyCode, int, int, KeySym *,);
     extern int XkbUseExtension(Display *, int *, int *);
     extern int XkbVirtualModsToReal(, unsigned int, unsigned int *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -70,7 +70,7 @@ extern "C" {
     typedef void (*IceErrorHandler) (IceConn, int, int, long unsigned int,
 				     int, int, IcePointer);
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -150,10 +150,10 @@ extern "C" {
 	IceProtocolAlreadyActive = 3
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern IceConn IceAcceptConnection(IceListenObj,
@@ -217,10 +217,10 @@ extern "C" {
     extern void IceSetShutdownNegotiation(IceConn, int);
     extern int IceSwapping(IceConn);
     extern char *IceVendor(IceConn);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

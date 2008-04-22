@@ -42,12 +42,12 @@ extern "C" {
 #define ICE_ProtocolReply	8
 #define IceUnknownProtocol	8
 #define ICE_Ping	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

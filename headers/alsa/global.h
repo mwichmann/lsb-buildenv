@@ -19,10 +19,10 @@ extern "C" {
 
     typedef struct timeval snd_timestamp_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern const char *snd_asoundlib_version(void);
@@ -31,10 +31,10 @@ extern "C" {
     extern int snd_async_del_handler(snd_async_handler_t *);
     extern void *snd_async_handler_get_callback_private(snd_async_handler_t
 							*);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -84,7 +84,7 @@ typedef unsigned long int	Q_ULONG
 typedef void	QtMsgHandler	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QSysInfo
@@ -183,10 +183,10 @@ LicensedActiveQt = 1
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern void _Z11qt_assert_xPKcS0_S0_i(const char *, const char *, const char *, int);
@@ -328,13 +328,13 @@ extern char _Z8qVersionv(void);
 extern void _Z8qWarningPKcz(const char *, ...);
 extern void _Z9qCriticalPKcz(const char *, ...);
 extern void _Z9qt_assertPKcS0_i(const char *, const char *, int);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 32
 extern  _Z5qrandv(void);
 extern  _Z6qsrandj(unsigned int);
-#endif // __LSB_VERSION__ >= 3.2
+#endif /* __LSB_VERSION__ >= 3.2 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -28,7 +28,7 @@ extern "C" {
 
     typedef xmlEntitiesTable *xmlEntitiesTablePtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -55,10 +55,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern xmlEntityPtr xmlAddDocEntity(xmlDocPtr, const xmlChar *, int,
@@ -77,10 +77,10 @@ extern "C" {
     extern xmlEntityPtr xmlGetDtdEntity(xmlDocPtr, const xmlChar *);
     extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
     extern xmlEntityPtr xmlGetPredefinedEntity(const xmlChar *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -32,7 +32,7 @@ extern "C" {
 	XML_SCHEMATRON_OUT_IO = 1 << 10
     } xmlSchematronValidOptions;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -41,10 +41,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlSchematronFree(xmlSchematronPtr);
@@ -62,10 +62,10 @@ extern "C" {
     extern xmlSchematronPtr xmlSchematronParse(xmlSchematronParserCtxtPtr);
     extern int xmlSchematronValidateDoc(xmlSchematronValidCtxtPtr,
 					xmlDocPtr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

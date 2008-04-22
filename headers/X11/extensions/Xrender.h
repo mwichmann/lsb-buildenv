@@ -34,7 +34,7 @@ extern "C" {
 #define PictStandardA4	3
 #define PictStandardA1	4
 #define PictStandardNUM	5
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -54,7 +54,7 @@ extern "C" {
 
     typedef struct _XLineFixed XLineFixed;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XPointFixed {
@@ -79,7 +79,7 @@ extern "C" {
 	XPointFixed p2;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Default Header Section for X11/extensions/Xrender.h*/
@@ -146,7 +146,7 @@ extern "C" {
 
     typedef struct _XTriangle XTriangle;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XTrapezoid {
@@ -415,10 +415,10 @@ extern "C" {
 
     const typedef struct _XTriangle XTriangle *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern void XRenderAddGlyphs(Display *, GlyphSet, const Glyph *,
@@ -525,10 +525,10 @@ extern "C" {
     extern void XRenderSetPictureTransform(Display *, Picture,
 					   XTransform *);
     extern int XRenderSetSubpixelOrder(Display *, int, int);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

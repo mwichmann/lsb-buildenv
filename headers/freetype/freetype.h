@@ -1,8 +1,10 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FREETYPE_H_
 #define _FREETYPE_FREETYPE_H_
 
 #include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
+#include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
@@ -10,6 +12,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define FT_HAS_FAST_GLYPHS(face)	 \
 	( face->face_flags & FT_FACE_FLAG_FAST_GLYPHS )
 #define FT_HAS_FIXED_SIZES(face)	 \
@@ -73,8 +76,11 @@ extern "C" {
 #define FT_LOAD_TARGET_LIGHT	FT_LOAD_TARGET_( FT_RENDER_MODE_LIGHT )
 #define FT_LOAD_TARGET_MONO	FT_LOAD_TARGET_( FT_RENDER_MODE_MONO )
 #define FT_LOAD_TARGET_NORMAL	FT_LOAD_TARGET_( FT_RENDER_MODE_NORMAL )
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct FT_FaceRec_ *FT_Face;
 
     typedef struct FT_ModuleRec_ *FT_Module;
@@ -87,22 +93,12 @@ extern "C" {
 
     typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
 
+#include <freetype/ftoutln.h>
     typedef struct FT_Glyph_Metrics_ FT_Glyph_Metrics;
 
     typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
 
     typedef struct FT_Slot_InternalRec_ *FT_Slot_Internal;
-
-    typedef enum FT_Render_Mode_ {
-	FT_RENDER_MODE_NORMAL = 0,
-	FT_RENDER_MODE_LIGHT = 1,
-	FT_RENDER_MODE_MONO = 2,
-	FT_RENDER_MODE_LCD = 3,
-	FT_RENDER_MODE_LCD_V = 4,
-	FT_RENDER_MODE_MAX = 5
-    } FT_Render_Mode;
-
-#include <freetype/ftimage.h>
 
     typedef enum FT_Encoding_ {
 	FT_ENCODING_NONE = 0,
@@ -130,6 +126,15 @@ extern "C" {
 
     typedef long int FT_F26Dot6;
 
+    typedef enum FT_Render_Mode_ {
+	FT_RENDER_MODE_NORMAL = 0,
+	FT_RENDER_MODE_LIGHT = 1,
+	FT_RENDER_MODE_MONO = 2,
+	FT_RENDER_MODE_LCD = 3,
+	FT_RENDER_MODE_LCD_V = 4,
+	FT_RENDER_MODE_MAX = 5
+    } FT_Render_Mode;
+
     typedef struct FT_Parameter_ FT_Parameter;
 
     typedef struct FT_Open_Args_ FT_Open_Args;
@@ -154,17 +159,9 @@ extern "C" {
 	FT_KERNING_UNSCALED = 2
     } FT_Kerning_Mode;
 
-    struct FT_Glyph_Metrics_ {
-	FT_Pos width;
-	FT_Pos height;
-	FT_Pos horiBearingX;
-	FT_Pos horiBearingY;
-	FT_Pos horiAdvance;
-	FT_Pos vertBearingX;
-	FT_Pos vertBearingY;
-	FT_Pos vertAdvance;
-    };
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 32
     struct FT_GlyphSlotRec_ {
 	FT_Library library;
 	FT_Face face;
@@ -190,275 +187,17 @@ extern "C" {
 	FT_Slot_Internal internal;
     };
 
-    struct FT_Bitmap_Size_ {
-	FT_Short height;
-	FT_Short width;
-	FT_Pos size;
-	FT_Pos x_ppem;
-	FT_Pos y_ppem;
+    struct FT_Glyph_Metrics_ {
+	FT_Pos width;
+	FT_Pos height;
+	FT_Pos horiBearingX;
+	FT_Pos horiBearingY;
+	FT_Pos horiAdvance;
+	FT_Pos vertBearingX;
+	FT_Pos vertBearingY;
+	FT_Pos vertAdvance;
     };
 
-#if defined __i386__
-/* IA32 */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-#if defined __s390x__
-/* S390X */
-    struct FT_FaceRec_ {
-	FT_Long num_faces;
-	FT_Long face_index;
-	FT_Long face_flags;
-	FT_Long style_flags;
-	FT_Long num_glyphs;
-	const FT_String *family_name;
-	const FT_String *style_name;
-	FT_Int num_fixed_sizes;
-	FT_Bitmap_Size *available_sizes;
-	FT_Int num_charmaps;
-	FT_CharMap *charmaps;
-	FT_Generic generic;
-	FT_BBox bbox;
-	FT_UShort units_per_EM;
-	FT_Short ascender;
-	FT_Short descender;
-	FT_Short height;
-	FT_Short max_advance_width;
-	FT_Short max_advance_height;
-	FT_Short underline_position;
-	FT_Short underline_thickness;
-	FT_GlyphSlot glyph;
-	FT_Size size;
-	FT_CharMap charmap;
-	FT_Driver driver;
-	FT_Memory memory;
-	FT_Stream stream;
-	FT_ListRec sizes_list;
-	FT_Generic autohint;
-	void *extensions;
-	FT_Face_Internal internal;
-    };
-
-#endif
-
-#include <freetype/ftoutln.h>
     struct FT_CharMapRec_ {
 	FT_Face face;
 	FT_Encoding encoding;
@@ -471,17 +210,6 @@ extern "C" {
 	FT_Pointer data;
     };
 
-    struct FT_Size_Metrics_ {
-	FT_UShort x_ppem;
-	FT_UShort y_ppem;
-	FT_Fixed x_scale;
-	FT_Fixed y_scale;
-	FT_Pos ascender;
-	FT_Pos descender;
-	FT_Pos height;
-	FT_Pos max_advance;
-    };
-
     struct FT_SizeRec_ {
 	FT_Face face;
 	FT_Generic generic;
@@ -489,8 +217,17 @@ extern "C" {
 	FT_Size_Internal internal;
     };
 
-#include <freetype/ftglyph.h>
+    struct FT_Bitmap_Size_ {
+	FT_Short height;
+	FT_Short width;
+	FT_Pos size;
+	FT_Pos x_ppem;
+	FT_Pos y_ppem;
+    };
 
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 32
 
 
 
@@ -506,46 +243,101 @@ extern "C" {
     };
 
 
-    extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
-    extern FT_Fixed FT_RoundFix(FT_Fixed);
+    struct FT_Size_Metrics_ {
+	FT_UShort x_ppem;
+	FT_UShort y_ppem;
+	FT_Fixed x_scale;
+	FT_Fixed y_scale;
+	FT_Pos ascender;
+	FT_Pos descender;
+	FT_Pos height;
+	FT_Pos max_advance;
+    };
+
+
+    struct FT_FaceRec_ {
+	FT_Long num_faces;
+	FT_Long face_index;
+	FT_Long face_flags;
+	FT_Long style_flags;
+	FT_Long num_glyphs;
+	const FT_String *family_name;
+	const FT_String *style_name;
+	FT_Int num_fixed_sizes;
+	FT_Bitmap_Size *available_sizes;
+	FT_Int num_charmaps;
+	FT_CharMap *charmaps;
+	FT_Generic generic;
+	FT_BBox bbox;
+	FT_UShort units_per_EM;
+	FT_Short ascender;
+	FT_Short descender;
+	FT_Short height;
+	FT_Short max_advance_width;
+	FT_Short max_advance_height;
+	FT_Short underline_position;
+	FT_Short underline_thickness;
+	FT_GlyphSlot glyph;
+	FT_Size size;
+	FT_CharMap charmap;
+	FT_Driver driver;
+	FT_Memory memory;
+	FT_Stream stream;
+	FT_ListRec sizes_list;
+	FT_Generic autohint;
+	void *extensions;
+	FT_Face_Internal internal;
+    };
+
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
+
+/* Function prototypes */
+
+#if __LSB_VERSION__ >= 32
+    extern FT_Error FT_Attach_File(FT_Face, const char *);
+    extern FT_Error FT_Attach_Stream(FT_Face, FT_Open_Args *);
     extern FT_Fixed FT_CeilFix(FT_Fixed);
+    extern FT_Long FT_DivFix(FT_Long, FT_Long);
+    extern FT_Error FT_Done_Face(FT_Face);
     extern FT_Error FT_Done_FreeType(FT_Library);
-    extern FT_Error FT_Init_FreeType(FT_Library *);
-    extern FT_ULong FT_Get_First_Char(FT_Face, FT_UInt *);
-    extern FT_Error FT_Load_Char(FT_Face, FT_ULong, FT_Int32);
-    extern void FT_Set_Transform(FT_Face, FT_Matrix *, FT_Vector *);
-    extern void FT_Vector_Transform(FT_Vector *, const FT_Matrix *);
-    extern FT_Error FT_Set_Charmap(FT_Face, FT_CharMap);
-    extern FT_Error FT_Load_Glyph(FT_Face, FT_UInt, FT_Int32);
-    extern FT_Error FT_New_Face(FT_Library, const char *, FT_Long,
-				FT_Face *);
-    extern FT_Error FT_Set_Pixel_Sizes(FT_Face, FT_UInt, FT_UInt);
-    extern FT_ULong FT_Get_Next_Char(FT_Face, FT_ULong, FT_UInt *);
     extern FT_Fixed FT_FloorFix(FT_Fixed);
-    extern const char *FT_Get_Postscript_Name(FT_Face);
-    extern FT_Error FT_New_Memory_Face(FT_Library, const FT_Byte *,
-				       FT_Long, FT_Long, FT_Face *);
-    extern FT_Error FT_Set_Char_Size(FT_Face, FT_F26Dot6, FT_F26Dot6,
-				     FT_UInt, FT_UInt);
+    extern FT_UInt FT_Get_Char_Index(FT_Face, FT_ULong);
+    extern FT_Int FT_Get_Charmap_Index(FT_CharMap);
+    extern FT_ULong FT_Get_First_Char(FT_Face, FT_UInt *);
     extern FT_Error FT_Get_Glyph_Name(FT_Face, FT_UInt, FT_Pointer,
 				      FT_UInt);
-    extern FT_Long FT_MulDiv(FT_Long, FT_Long, FT_Long);
-    extern FT_Long FT_DivFix(FT_Long, FT_Long);
-    extern void FT_Library_Version(FT_Library, FT_Int *, FT_Int *,
-				   FT_Int *);
-    extern FT_Error FT_Attach_File(FT_Face, const char *);
-    extern FT_Error FT_Done_Face(FT_Face);
-    extern FT_Long FT_MulFix(FT_Long, FT_Long);
-    extern FT_Error FT_Select_Charmap(FT_Face, FT_Encoding);
-    extern FT_Error FT_Render_Glyph(FT_GlyphSlot, FT_Render_Mode);
-    extern FT_Error FT_Attach_Stream(FT_Face, FT_Open_Args *);
-    extern FT_UInt FT_Get_Name_Index(FT_Face, FT_String *);
-    extern FT_Error FT_Open_Face(FT_Library, const FT_Open_Args *, FT_Long,
-				 FT_Face *);
-    extern FT_UInt FT_Get_Char_Index(FT_Face, FT_ULong);
     extern FT_Error FT_Get_Kerning(FT_Face, FT_UInt, FT_UInt, FT_UInt,
 				   FT_Vector *);
+    extern FT_UInt FT_Get_Name_Index(FT_Face, FT_String *);
+    extern FT_ULong FT_Get_Next_Char(FT_Face, FT_ULong, FT_UInt *);
+    extern const char *FT_Get_Postscript_Name(FT_Face);
+    extern FT_Error FT_Init_FreeType(FT_Library *);
+    extern void FT_Library_Version(FT_Library, FT_Int *, FT_Int *,
+				   FT_Int *);
+    extern FT_Error FT_Load_Char(FT_Face, FT_ULong, FT_Int32);
+    extern FT_Error FT_Load_Glyph(FT_Face, FT_UInt, FT_Int32);
+    extern FT_Long FT_MulDiv(FT_Long, FT_Long, FT_Long);
+    extern FT_Long FT_MulFix(FT_Long, FT_Long);
+    extern FT_Error FT_New_Face(FT_Library, const char *, FT_Long,
+				FT_Face *);
+    extern FT_Error FT_New_Memory_Face(FT_Library, const FT_Byte *,
+				       FT_Long, FT_Long, FT_Face *);
+    extern FT_Error FT_Open_Face(FT_Library, const FT_Open_Args *, FT_Long,
+				 FT_Face *);
+    extern FT_Error FT_Render_Glyph(FT_GlyphSlot, FT_Render_Mode);
+    extern FT_Fixed FT_RoundFix(FT_Fixed);
+    extern FT_Error FT_Select_Charmap(FT_Face, FT_Encoding);
+    extern FT_Error FT_Set_Char_Size(FT_Face, FT_F26Dot6, FT_F26Dot6,
+				     FT_UInt, FT_UInt);
+    extern FT_Error FT_Set_Charmap(FT_Face, FT_CharMap);
+    extern FT_Error FT_Set_Pixel_Sizes(FT_Face, FT_UInt, FT_UInt);
+    extern void FT_Set_Transform(FT_Face, FT_Matrix *, FT_Vector *);
+    extern void FT_Vector_Transform(FT_Vector *, const FT_Matrix *);
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				/* protection */
+#endif				/* LSB version */
