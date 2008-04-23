@@ -27,8 +27,8 @@ public:
 
 struct QGLColormapData	;
 
-#endif // __LSB_VERSION__ >= 1.2
+#endif /* __LSB_VERSION__ >= 1.2 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

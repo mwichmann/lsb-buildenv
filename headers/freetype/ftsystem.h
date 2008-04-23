@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTSYSTEM_H_
 #define _FREETYPE_FTSYSTEM_H_
 
@@ -7,10 +8,10 @@ extern "C" {
 #endif
 
 
-
-
+#if __LSB_VERSION__ >= 32
     typedef struct FT_MemoryRec_ *FT_Memory;
 
+#include <freetype/ftlist.h>
     typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
 
     typedef void (*FT_Free_Func) (FT_Memory, void *);
@@ -22,6 +23,7 @@ extern "C" {
 
     typedef struct FT_StreamRec_ *FT_Stream;
 
+#include <freetype/freetype.h>
     typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
 						   long unsigned int,
 						   unsigned char *,
@@ -29,6 +31,9 @@ extern "C" {
 
     typedef void (*FT_Stream_CloseFunc) (FT_Stream);
 
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 32
     struct FT_MemoryRec_ {
 	void *user;
 	FT_Alloc_Func alloc;
@@ -36,7 +41,6 @@ extern "C" {
 	FT_Realloc_Func realloc;
     };
 
-#include <freetype/ftlist.h>
     union FT_StreamDesc_ {
 	long int value;
 	void *pointer;
@@ -55,9 +59,10 @@ extern "C" {
 	unsigned char *limit;
     };
 
-#include <freetype/freetype.h>
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				/* protection */
+#endif				/* LSB version */

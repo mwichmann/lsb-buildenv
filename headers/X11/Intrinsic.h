@@ -196,7 +196,7 @@ extern "C" {
 
     typedef XtActionProc *XtBoundActions;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     Cardinal *;
@@ -376,10 +376,10 @@ extern "C" {
 
     XtValueMask *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void XtAddActions(XtActionList, Cardinal);
@@ -859,14 +859,14 @@ extern "C" {
     extern Widget XtWindowToWidget(Display *, Window);
     extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass,
 				   XtEnum);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     extern Boolean _XtCheckSubclassFlag(Widget, XtEnum);
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

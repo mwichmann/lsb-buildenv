@@ -46,7 +46,7 @@ extern "C" {
 	(); } } *(__error) = _vtable->collect_value (_value, _n_values, \
 	_cvalues, _flags); } G_STMT_END
 #define G_VALUE_COLLECT_FORMAT_MAX_LENGTH	(8)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -59,10 +59,10 @@ extern "C" {
 	G_VALUE_COLLECT_POINTER = 'p'
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

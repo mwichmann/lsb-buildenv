@@ -14,7 +14,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 31
 #define GDK_PIXBUF_MAGIC_NUMBER	(0x47646b50)
 #define GDK_PIXDATA_HEADER_LENGTH	(4 + 4 + 4 + 4 + 4 + 4)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -43,7 +43,7 @@ extern "C" {
 	GDK_PIXDATA_ENCODING_MASK = 0x0f << 24
     } GdkPixdataType;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -57,10 +57,10 @@ extern "C" {
 	guint8 *pixel_data;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern GdkPixbuf *gdk_pixbuf_from_pixdata(const GdkPixdata *, gboolean,
@@ -72,10 +72,10 @@ extern "C" {
     extern guint8 *gdk_pixdata_serialize(const GdkPixdata *, guint *);
     extern GString *gdk_pixdata_to_csource(GdkPixdata *, const gchar *,
 					   GdkPixdataDumpType);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

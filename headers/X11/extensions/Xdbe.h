@@ -34,7 +34,7 @@ extern "C" {
 	unsigned char minor_code;
     } XdbeBufferError;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -56,10 +56,10 @@ extern "C" {
 	unsigned char minor_code;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern XdbeBackBuffer XdbeAllocateBackBufferName(Display *, Window,
@@ -73,10 +73,10 @@ extern "C" {
     extern *XdbeGetVisualInfo(Display *, Drawable *, int *);
     extern int XdbeQueryExtension(Display *, int *, int *);
     extern int XdbeSwapBuffers(Display *, XdbeSwapInfo *, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

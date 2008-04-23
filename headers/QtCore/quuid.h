@@ -29,18 +29,18 @@ extern "C" {
 	Random = 4
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern QDataStream _ZlsR11QDataStreamRK5QUuid(const struct QUuid &);
     extern QDataStream _ZrsR11QDataStreamR5QUuid(struct QUuid &);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

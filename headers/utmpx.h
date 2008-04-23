@@ -140,11 +140,11 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void endutxent(void);
@@ -153,10 +153,10 @@ extern "C" {
     extern struct utmpx *getutxline(const struct utmpx *);
     extern struct utmpx *pututxline(const struct utmpx *);
     extern void setutxent(void);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

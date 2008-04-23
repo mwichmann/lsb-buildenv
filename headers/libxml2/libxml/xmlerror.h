@@ -792,7 +792,7 @@ extern "C" {
 	XML_I18N_NO_OUTPUT
     } xmlParserErrors;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -844,10 +844,10 @@ extern "C" {
 	void *node;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void initGenericErrorDefaultFunc(xmlGenericErrorFunc *);
@@ -865,10 +865,10 @@ extern "C" {
     extern void xmlResetLastError(void);
     extern void xmlSetGenericErrorFunc(void *, xmlGenericErrorFunc);
     extern void xmlSetStructuredErrorFunc(void *, xmlStructuredErrorFunc);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

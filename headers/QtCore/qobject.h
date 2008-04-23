@@ -9,7 +9,7 @@ class QObjectUserData;
 typedef QList<QObject*> QObjectList	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QObjectData
@@ -72,10 +72,10 @@ public:
      ~QObjectUserData();
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QObject _Z20qt_qFindChild_helperPK7QObjectRK7QStringRK11QMetaObject(const QObject *);
@@ -83,8 +83,8 @@ extern void _Z23qt_qFindChildren_helperPK7QObjectRK7QStringPK7QRegExpRK11QMetaOb
 extern struct QMetaObject _ZN7QObject16staticMetaObjectE ;
 extern struct QMetaObject _ZN7QObject18staticQtMetaObjectE ;
 extern  _Zls6QDebugPK7QObject(const QObject *);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

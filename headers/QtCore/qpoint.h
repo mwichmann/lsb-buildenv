@@ -19,10 +19,10 @@ private:
 public:
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK6QPoint(const QPoint &);
@@ -31,8 +31,8 @@ extern QDataStream _ZlsR11QDataStreamRK6QPoint(const QPoint &);
 extern QDataStream _ZlsR11QDataStreamRK7QPointF(QDataStream &, QPointF & &);
 extern QDataStream _ZrsR11QDataStreamR6QPoint(QPoint &);
 extern QDataStream _ZrsR11QDataStreamR7QPointF(QDataStream &, QPointF &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

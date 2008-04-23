@@ -138,7 +138,7 @@ extern "C" {
 #define GLX_GREEN_SIZE	9
 #define GLX_BACK_EXT	GLX_BACK_LEFT_EXT
 #define GLX_FRONT_EXT	GLX_FRONT_LEFT_EXT
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 
@@ -177,12 +177,12 @@ extern "C" {
 
     typedef void (*__GLXextFuncPtr) (const GLubyte * procName);
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef struct __GLXFBConfigRec *GLXFBConfig;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 10
     union __GLXEvent {
@@ -190,10 +190,10 @@ extern "C" {
 	long int pad;
     };
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern GLXFBConfig *glXChooseFBConfig(Display *, int, const int *,
@@ -246,10 +246,10 @@ extern "C" {
     extern void glXUseXFont(Font, int, int, int);
     extern void glXWaitGL(void);
     extern void glXWaitX(void);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -53,17 +53,17 @@ PdmPhysicalDpiY = 10
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern void _Z6bitBltP12QPaintDeviceRK6QPointPKS_RK5QRectb(QPaintDevice *, const QPoint &, const QPaintDevice *, const QRect &);
 extern void _Z6bitBltP12QPaintDeviceiiPK6QImageiiiii(QPaintDevice *, const QImage *);
 extern void _Z6bitBltP12QPaintDeviceiiPKS_iiiib(QPaintDevice *, const QPaintDevice *);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -1,13 +1,9 @@
 # Numbers are in hex
 # Generating c stubs for libXt library
 libXt applicationShellWidgetClass 4
-libXt compositeWidgetClass 4
 libXt compositeWidgetClass 4 
-libXt constraintWidgetClass 4
 libXt constraintWidgetClass 4 
-libXt coreWidgetClass 4
 libXt coreWidgetClass  4
-libXt objectClass 4
 libXt objectClass  4
 libXt overrideShellClassRec  90
 libXt overrideShellWidgetClass 4

@@ -43,7 +43,7 @@ extern "C" {
 	XML_SCHEMA_VAL_VC_I_CREATE = 1 << 0
     } xmlSchemaValidOption;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -54,10 +54,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlSchemaDump(FILE *, xmlSchemaPtr);
@@ -105,10 +105,10 @@ extern "C" {
 				       xmlParserInputBufferPtr,
 				       xmlCharEncoding, xmlSAXHandlerPtr,
 				       void *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

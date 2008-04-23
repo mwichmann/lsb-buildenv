@@ -22,7 +22,7 @@ extern "C" {
 #define FTW_NS	FTW_NS
 #define FTW_SL	FTW_SL
 #define FTW_SLN	FTW_SLN
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -37,7 +37,7 @@ extern "C" {
 	FTW_SLN
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Flags for fourth argument of `nftw'.*/
@@ -49,7 +49,7 @@ extern "C" {
 	FTW_DEPTH = 8
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Structure used for fourth argument to callback function for `nftw'.*/
@@ -59,7 +59,7 @@ extern "C" {
 	int level;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Convenient types for callback functions.*/
@@ -77,20 +77,20 @@ extern "C" {
 				    struct stat64 * __status, int __flag,
 				    struct FTW * __info);
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int ftw(const char *, __ftw_func_t, int);
     extern int ftw64(const char *, __ftw64_func_t, int);
     extern int nftw(const char *, __nftw_func_t, int, int);
     extern int nftw64(const char *, __nftw64_func_t, int, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

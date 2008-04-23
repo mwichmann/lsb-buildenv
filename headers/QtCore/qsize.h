@@ -22,10 +22,10 @@ public:
     void scale(QSizeF const&, Qt::AspectRatioMode);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK5QSize(const QSize &);
@@ -34,8 +34,8 @@ extern QDataStream _ZlsR11QDataStreamRK5QSize(const QSize &);
 extern QDataStream _ZlsR11QDataStreamRK6QSizeF(QDataStream &, QSizeF & &);
 extern QDataStream _ZrsR11QDataStreamR5QSize(QSize &);
 extern QDataStream _ZrsR11QDataStreamR6QSizeF(QDataStream &, QSizeF &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

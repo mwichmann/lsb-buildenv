@@ -25,7 +25,7 @@ Closing = 6
 State	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QAbstractSocket : public QIODevice
@@ -149,15 +149,15 @@ ErrHostNotFound = 2
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN15QAbstractSocket16staticMetaObjectE ;
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

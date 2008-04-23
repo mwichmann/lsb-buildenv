@@ -20,12 +20,12 @@ extern "C" {
 #define FT_ERROR_END_LIST	FT_ERR_CAT( FT_ERR_PREFIX, Max ) };
 #define FT_ERR_CAT(x,y)	FT_ERR_XCAT( x, y )
 #define FT_ERR_XCAT(x,y)	x ## y
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -25,7 +25,7 @@ typedef iterator	Iterator
 typedef const_iterator	ConstIterator	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QString
@@ -208,16 +208,16 @@ private:
 public:
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern  _ZlsR11QDataStreamRK7QString(QDataStream &, QString & &);
 extern  _ZrsR11QDataStreamR7QString(QDataStream &, QString &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -73,12 +73,12 @@ extern "C" {
 #define xmlXPathReturnTrue(ctxt)	xmlXPathReturnBoolean((ctxt), 1)
 #define XP_ERROR0(X)	{ xmlXPathErr(ctxt, X); return(0); }
 #define XP_ERROR(X)	{ xmlXPathErr(ctxt, X); return; }
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern xmlXPathObjectPtr valuePop(xmlXPathParserContextPtr);
@@ -243,10 +243,10 @@ extern "C" {
     extern xmlXPathObjectPtr xmlXPathWrapString(xmlChar *);
     extern void xmlXPatherror(xmlXPathParserContextPtr, const char *, int,
 			      int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

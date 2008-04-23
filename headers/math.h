@@ -17,7 +17,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define DOMAIN	1
 #define SING	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -30,7 +30,7 @@ extern "C" {
 	double retval;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* All floating-point numbers can be put in one of these categories.*/
@@ -40,7 +40,7 @@ extern "C" {
 #define FP_ZERO	2
 #define FP_SUBNORMAL	3
 #define FP_NORMAL	4
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -103,7 +103,7 @@ extern "C" {
 #define isnan(x)	\
      (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 21
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)	/* Return nonzero value if X is neither zero, subnormal, Inf, n */
@@ -191,7 +191,7 @@ extern "C" {
 #define isfinite(x)	\
      (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))	/* Return nonzero value if X is not +-Inf or NaN. */
 #endif
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -199,7 +199,7 @@ extern "C" {
 /* machine-dependent HUGE_VAL value*/
 #if __LSB_VERSION__ >= 11
 #define HUGE_VAL	0x1.0p2047
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc__ && !defined __powerpc64__
@@ -224,7 +224,7 @@ extern "C" {
 #if defined __x86_64__
 #define HUGE_VALL	0x1.0p32767L
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -244,12 +244,12 @@ extern "C" {
 #define M_LN10	2.30258509299404568402
 #define M_E	2.7182818284590452354
 #define M_PI	3.14159265358979323846
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
 #define NAN	((float)0x7fc00000UL)
 #define INFINITY	HUGE_VALF
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 21
 #if defined __i386__
@@ -294,7 +294,7 @@ extern "C" {
 #if defined __s390x__
 #define FP_ILOGBNAN	2147483647
 #endif
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -303,7 +303,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #define MATH_ERRNO	1	/* errno set by math functions. */
 #define MATH_ERREXCEPT	2	/* Exceptions raised by math functions. */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -326,12 +326,12 @@ extern "C" {
 	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x > __y; }))	/* Return nonzero value if X is greater than Y. */
 #define isgreaterequal(x,y)	\
 	(__extension__({ __typeof__(x) __x = (x); __typeof__(y) __y = (y);!isunordered (__x, __y) && __x >= __y; }))	/* Return nonzero value if X is greater than or equal to Y. */
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern double acos(double);
@@ -555,9 +555,9 @@ extern "C" {
     extern int isnanl(long double);
 #endif
     extern int isnanl(long double);
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 20
@@ -581,9 +581,9 @@ extern "C" {
 /* PPC32 */
     extern int isnanl(long double);
 #endif
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     extern int __isinf(double);
@@ -680,9 +680,9 @@ extern "C" {
 /* S390X */
     extern int isnanl(long double);
 #endif
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 30
     extern int __finite(double);
@@ -739,17 +739,17 @@ extern "C" {
     extern long double log2l(long double);
     extern float logbf(float);
     extern long double logbl(long double);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 32
     extern double drem(double, double) LSB_DECL_DEPRECATED;
     extern double exp10(double);
     extern float exp10f(float);
     extern long double exp10l(long double);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

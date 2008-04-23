@@ -17,7 +17,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern _ZN16QGraphicsSvgItem11qt_metacallEN11QMetaObject4CallEiPPv(enum
@@ -44,10 +44,10 @@ extern "C" {
     extern _ZNK16QGraphicsSvgItem4typeEv(void);
     extern QSvgRenderer *_ZNK16QGraphicsSvgItem8rendererEv(void);
     extern QString _ZNK16QGraphicsSvgItem9elementIdEv(void);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

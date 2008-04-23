@@ -2156,7 +2156,7 @@ extern "C" {
 #define GTK_CHECK_CAST	G_TYPE_CHECK_INSTANCE_CAST
 #define GTK_CHECK_TYPE	G_TYPE_CHECK_INSTANCE_TYPE
 #define GTK_CHECK_GET_CLASS	G_TYPE_INSTANCE_GET_CLASS
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -3648,7 +3648,7 @@ extern "C" {
 	GTK_NO_SHOW_ALL = 1 << 22
     } GtkWidgetFlags;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
     enum {
@@ -3656,7 +3656,7 @@ extern "C" {
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -7277,10 +7277,10 @@ extern "C" {
 	GtkWidget *gamma_text;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern const gchar *const *gtk_about_dialog_get_artists(GtkAboutDialog
@@ -10762,14 +10762,14 @@ extern "C" {
     extern void gtk_window_unmaximize(GtkWindow *);
     extern void gtk_window_unstick(GtkWindow *);
     extern GType gtk_wrap_mode_get_type(void);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 32
     extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

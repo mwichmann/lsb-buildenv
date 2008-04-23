@@ -436,7 +436,7 @@ extern "C" {
 #define G_TYPE_UINT	G_TYPE_MAKE_FUNDAMENTAL (7)
 #define G_TYPE_LONG	G_TYPE_MAKE_FUNDAMENTAL (8)
 #define G_TYPE_ULONG	G_TYPE_MAKE_FUNDAMENTAL (9)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -669,7 +669,7 @@ extern "C" {
 
     typedef gchar **GStrv;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -1096,10 +1096,10 @@ extern "C" {
 	gboolean default_value;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern gpointer g_boxed_copy(GType, gconstpointer);
@@ -1596,10 +1596,10 @@ extern "C" {
     extern gboolean g_value_type_compatible(GType, GType);
     extern gboolean g_value_type_transformable(GType, GType);
     extern void g_value_unset(GValue *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

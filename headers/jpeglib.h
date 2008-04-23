@@ -66,7 +66,7 @@ extern "C" {
 #define METHODDEF(type)	static type
 #define GLOBAL(type)	type
 #define JMETHOD(type,methodname,arglist)	type (*methodname) arglist
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -176,7 +176,7 @@ extern "C" {
 
     typedef boolean(*jpeg_marker_parser_method) (j_decompress_ptr);
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
     struct jpeg_decompress_struct {
@@ -426,10 +426,10 @@ extern "C" {
 	void (*term_destination) (j_compress_ptr);
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void jpeg_CreateCompress(j_compress_ptr, int, size_t);
@@ -489,10 +489,10 @@ extern "C" {
     extern JDIMENSION jpeg_write_scanlines(j_compress_ptr, JSAMPARRAY,
 					   JDIMENSION);
     extern void jpeg_write_tables(j_compress_ptr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

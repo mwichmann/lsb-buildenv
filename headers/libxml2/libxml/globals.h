@@ -51,7 +51,7 @@ extern "C" {
 #define xmlSaveNoEmptyTags	(*(__xmlSaveNoEmptyTags()))
 #define xmlStructuredError	(*(__xmlStructuredError()))
 #define xmlTreeIndentString	(*(__xmlTreeIndentString()))
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -75,7 +75,7 @@ extern "C" {
 
     typedef xmlGlobalState *xmlGlobalStatePtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -112,10 +112,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern xmlSAXHandlerV1 *__docbDefaultSAXHandler(void);
@@ -195,10 +195,10 @@ extern "C" {
 						xmlStructuredErrorFunc);
     extern int xmlThrDefSubstituteEntitiesDefaultValue(int);
     extern const char *xmlThrDefTreeIndentString(const char *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

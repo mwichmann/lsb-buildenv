@@ -457,16 +457,16 @@ ShortFormat = 1
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDataStream _ZlsR11QDataStreamRK7QLocale(const QLocale &);
 extern QDataStream _ZrsR11QDataStreamR7QLocale(QLocale &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

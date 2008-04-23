@@ -114,7 +114,7 @@ extern "C" {
 #define SND_SEQ_QUEUE_DIRECT	253
 #define SND_SEQ_ADDRESS_SUBSCRIBERS	254
 #define SND_SEQ_ADDRESS_BROADCAST	255
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -165,10 +165,10 @@ extern "C" {
 	SND_SEQ_TYPE_INET = 2
     } snd_seq_type_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern int snd_seq_alloc_named_queue(snd_seq_t *, const char *);
@@ -394,10 +394,10 @@ extern "C" {
     extern size_t snd_seq_system_info_sizeof(void);
     extern int snd_seq_unsubscribe_port(snd_seq_t *,
 					snd_seq_port_subscribe_t *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

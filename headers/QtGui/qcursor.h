@@ -9,7 +9,7 @@ class QCursor;
 typedef enum CursorShape	QCursorShape	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QCursor
@@ -37,16 +37,16 @@ public:
     int x11Screen();
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDataStream _ZlsR11QDataStreamRK7QCursor(QDataStream &, const QCursor &);
 extern QDataStream _ZrsR11QDataStreamR7QCursor(QDataStream &, QCursor &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

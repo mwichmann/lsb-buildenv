@@ -17,7 +17,7 @@ extern "C" {
 
     typedef const int32_t *wctrans_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
     typedef struct {
@@ -25,17 +25,17 @@ extern "C" {
 	wint_t value;
     } __mbstate_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* This really belongs in wchar.h, but it's presense creates a circular dependency with stdio.h, so put it here to break the circle.*/
 #if __LSB_VERSION__ >= 12
     typedef __mbstate_t mbstate_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int iswalnum(wint_t);
@@ -56,10 +56,10 @@ extern "C" {
     extern wint_t towupper(wint_t);
     extern wctrans_t wctrans(const char *);
     extern wctype_t wctype(const char *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

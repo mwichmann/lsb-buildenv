@@ -35,12 +35,12 @@ extern "C" {
 	_FcPatternVapBuild_return; _FcPatternVapBuild_bail1: if (!orig) \
 	FcPatternDestroy (__p__); _FcPatternVapBuild_bail0: result = (void*)0; \
 	_FcPatternVapBuild_return: ; }
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

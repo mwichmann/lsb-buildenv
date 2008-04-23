@@ -11,17 +11,17 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 31
 #define BAD_CAST	(xmlChar *)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
 #if __LSB_VERSION__ >= 31
     typedef unsigned char xmlChar;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern xmlChar *xmlCharStrdup(const char *);
@@ -55,10 +55,10 @@ extern "C" {
     extern const xmlChar *xmlUTF8Strpos(const xmlChar *, int);
     extern int xmlUTF8Strsize(const xmlChar *, int);
     extern xmlChar *xmlUTF8Strsub(const xmlChar *, int, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -49,17 +49,17 @@ PortableText = 1
 }
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK12QKeySequence(const QKeySequence &);
 extern QDataStream _ZlsR11QDataStreamRK12QKeySequence(QDataStream &, const QKeySequence &);
 extern QDataStream _ZrsR11QDataStreamR12QKeySequence(QDataStream &, QKeySequence &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

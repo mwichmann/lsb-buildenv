@@ -33,12 +33,12 @@ extern "C" {
 #define T1_MAX_CHARSTRINGS_OPERANDS	256
 #define FT_MAX_MODULES	32
 #define T1_MAX_DICT_DEPTH	5
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

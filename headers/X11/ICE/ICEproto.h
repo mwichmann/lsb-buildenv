@@ -23,12 +23,12 @@ extern "C" {
 #define sz_icePingReplyMsg	8
 #define sz_iceProtocolReplyMsg	8
 #define sz_iceWantToCloseMsg	8
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

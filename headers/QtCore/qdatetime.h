@@ -105,10 +105,10 @@ public:
     static QDateTime fromTime_t(unsigned int);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK5QDate(const QDate &);
@@ -120,8 +120,8 @@ extern QDataStream _ZlsR11QDataStreamRK9QDateTime(const QDateTime &);
 extern QDataStream _ZrsR11QDataStreamR5QDate(QDate &);
 extern QDataStream _ZrsR11QDataStreamR5QTime(QTime &);
 extern QDataStream _ZrsR11QDataStreamR9QDateTime(QDateTime &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -1349,12 +1349,12 @@ extern "C" {
 #define GDK_Delete	0xFFFF
 #define GDK_VoidSymbol	0xFFFFFF
 #define GDK_Greek_IOTAdiaeresis	GDK_Greek_IOTAdieresis
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

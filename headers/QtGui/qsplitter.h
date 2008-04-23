@@ -89,18 +89,18 @@ protected:
     int closestLegalPosition(int);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN15QSplitterHandle16staticMetaObjectE ;
 extern struct QMetaObject _ZN9QSplitter16staticMetaObjectE ;
 extern QTextStream _ZlsR11QTextStreamRK9QSplitter(QTextStream &, const QSplitter &);
 extern QTextStream _ZrsR11QTextStreamR9QSplitter(QTextStream &, QSplitter &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

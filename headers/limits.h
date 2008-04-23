@@ -18,7 +18,7 @@ extern "C" {
 #endif
 #define OPEN_MAX	256
 #define PATH_MAX	4096
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -27,7 +27,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define LONG_MAX	2147483647L
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -48,7 +48,7 @@ extern "C" {
 #if defined __s390x__
 #define LONG_MAX	9223372036854775807L
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #define LLONG_MIN	(-LLONG_MAX-1LL)
@@ -67,7 +67,7 @@ extern "C" {
 #endif
 #define LLONG_MAX	9223372036854775807LL
 #define SSIZE_MAX	LONG_MAX	/* Maximum value of an object of type ssize_t */
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
 #define _POSIX_AIO_MAX	1
@@ -121,7 +121,7 @@ extern "C" {
 #define EXPR_NEST_MAX	_POSIX2_EXPR_NEST_MAX
 #define _POSIX_FD_SETSIZE	_POSIX_OPEN_MAX
 #define _POSIX_HIWAT	_POSIX_PIPE_BUF
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -129,7 +129,7 @@ extern "C" {
 /* Maximum length of any multibyte character in any locale.*/
 #if __LSB_VERSION__ >= 11
 #define MB_LEN_MAX	16
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -146,7 +146,7 @@ extern "C" {
 #if defined __i386__
 #define CHAR_MIN	SCHAR_MIN
 #endif
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -155,7 +155,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define CHAR_MAX	255
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __s390__ && !defined __s390x__
@@ -176,7 +176,7 @@ extern "C" {
 #if defined __ia64__
 #define CHAR_MIN	SCHAR_MIN
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
@@ -191,7 +191,7 @@ extern "C" {
 #if defined __x86_64__
 #define CHAR_MIN	SCHAR_MIN
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -201,7 +201,7 @@ extern "C" {
 #define SHRT_MIN	(-32768)
 #define SHRT_MAX	32767
 #define USHRT_MAX	65535
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -213,9 +213,9 @@ extern "C" {
 #define UINT_MAX	4294967295U
 #if __LSB_VERSION__ < 31
 #define __INT_MAX__	2147483647	/* Exclude, compiler-internal */
-#endif				// __LSB_VERSION__ < 3.1
+#endif				/* __LSB_VERSION__ < 3.1 */
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -223,7 +223,7 @@ extern "C" {
 /* Minimum and maximum values a `long int' can hold.*/
 #if __LSB_VERSION__ >= 11
 #define LONG_MIN	(-LONG_MAX-1L)
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -254,12 +254,12 @@ extern "C" {
 #define PTHREAD_STACK_MIN	196608
 #endif
 #define PTHREAD_DESTRUCTOR_ITERATIONS	4
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

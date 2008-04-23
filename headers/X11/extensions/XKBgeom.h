@@ -89,7 +89,7 @@ extern "C" {
 
     typedef struct _XkbGeometrySizes *XkbGeometrySizesPtr;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XkbProperty {
@@ -292,10 +292,10 @@ extern "C" {
 	unsigned short num_key_aliases;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int XkbAllocGeomColors(, int);
@@ -335,10 +335,10 @@ extern "C" {
     extern int XkbGetGeometry(Display *,);
     extern int XkbGetNamedGeometry(Display *,, Atom);
     extern int XkbSetGeometry(Display *, unsigned int,);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

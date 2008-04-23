@@ -1,3 +1,4 @@
+#if (__LSB_VERSION__ >= 32 )
 #ifndef _FREETYPE_FTIMAGE_H_
 #define _FREETYPE_FTIMAGE_H_
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 32
 #define FT_CURVE_TAG_TOUCH_BOTH	 \
 	( FT_CURVE_TAG_TOUCH_X | FT_CURVE_TAG_TOUCH_Y )
 #define FT_IMAGE_TAG(value,_x1,_x2,_x3,_x4)	 \
@@ -44,8 +46,11 @@ extern "C" {
 #define FT_Raster_Reset_Func	FT_Raster_ResetFunc
 #define FT_Raster_Set_Mode_Func	FT_Raster_SetModeFunc
 #define FT_Raster_Span_Func	FT_SpanFunc
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
+
+#if __LSB_VERSION__ >= 32
     typedef struct FT_Bitmap_ FT_Bitmap;
 
     typedef long int FT_Pos;
@@ -105,104 +110,9 @@ extern "C" {
 
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
 
-#if defined __i386__
-/* IA32 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
-#endif
-#if defined __ia64__
-/* IA64 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
-#if defined __s390x__
-/* S390X */
-    struct FT_Bitmap_ {
-	int rows;
-	int width;
-	int pitch;
-	unsigned char *buffer;
-	short num_grays;
-	char pixel_mode;
-	char palette_mode;
-	void *palette;
-    };
-
-#endif
+#if __LSB_VERSION__ >= 32
     struct FT_Vector_ {
 	FT_Pos x;
 	FT_Pos y;
@@ -215,6 +125,23 @@ extern "C" {
 	FT_Pos yMax;
     };
 
+#include <freetype/ftoutln.h>
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 32
+
+    struct FT_Bitmap_ {
+	int rows;
+	int width;
+	int pitch;
+	unsigned char *buffer;
+	short num_grays;
+	char pixel_mode;
+	char palette_mode;
+	void *palette;
+    };
+
+
     struct FT_Outline_ {
 	short n_contours;
 	short n_points;
@@ -224,7 +151,6 @@ extern "C" {
 	int flags;
     };
 
-#include <freetype/ftoutln.h>
 
     struct FT_Span_ {
 	short x;
@@ -265,8 +191,10 @@ extern "C" {
 	FT_Pos delta;
     };
 
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				/* protection */
+#endif				/* LSB version */

@@ -73,7 +73,7 @@ extern "C" {
 #define XSyncValueSubtract(presult,a,b,poverflow)	_XSyncValueSubtract(presult,a,b,poverflow)
 #define _XSyncValueAdd(presult,a,b,poverflow)	{intt=(a).lo;Boolsigna=XSyncValueIsNegative(a);Boolsignb=XSyncValueIsNegative(b);((presult)->lo=(a).lo+(b).lo);((presult)->hi=(a
 #define _XSyncValueSubtract(presult,a,b,poverflow)	{intt=(a).lo;Boolsigna=XSyncValueIsNegative(a);Boolsignb=XSyncValueIsNegative(b);((presult)->lo=(a).lo-(b).lo);((presult)->hi=(a
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -144,7 +144,7 @@ extern "C" {
 	unsigned char minor_code;
     } XSyncCounterError;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XSyncSystemCounter {
@@ -217,7 +217,7 @@ extern "C" {
 	unsigned char minor_code;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -245,7 +245,7 @@ extern "C" {
 	XSyncAlarmDestroyed
     } XSyncAlarmState;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XSyncValue {
@@ -271,10 +271,10 @@ extern "C" {
 	XSyncAlarmDestroyed
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int XSyncAwait(Display *, XSyncWaitCondition *, int);
@@ -313,10 +313,10 @@ extern "C" {
     extern unsigned int XSyncValueLow32(XSyncValue);
     extern void XSyncValueSubtract(XSyncValue *, XSyncValue, XSyncValue,
 				   int *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

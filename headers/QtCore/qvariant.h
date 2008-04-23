@@ -39,7 +39,7 @@ typedef QList<QVariant> QVariantList
 typedef QMap<QString, QVariant> QVariantMap	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QVariant
@@ -198,10 +198,10 @@ private:
 public:
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct Handler * _ZN8QVariant7handlerE ;
@@ -211,8 +211,8 @@ extern QDataStream _ZlsR11QDataStreamN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
 extern QDataStream _ZlsR11QDataStreamRK8QVariant(const QVariant &);
 extern QDataStream _ZrsR11QDataStreamR8QVariant(QVariant &);
 extern QDataStream _ZrsR11QDataStreamRN8QVariant4TypeE(enum _ZN8QVariant4TypeE &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

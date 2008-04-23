@@ -39,7 +39,7 @@ extern "C" {
 #define SND_SEQ_INSTR_FREE_CMD_SINGLE	3
 #define SND_SEQ_INSTR_PUT_CMD_ADD	3
 #define SND_SEQ_INSTR_PUT_CMD_REMOVE	4
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -54,10 +54,10 @@ extern "C" {
 
     typedef struct _snd_iwffff_handle snd_iwffff_handle_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

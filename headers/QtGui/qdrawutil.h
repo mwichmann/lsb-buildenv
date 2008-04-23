@@ -18,7 +18,7 @@ extern "C" {
 #endif
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void
@@ -107,10 +107,10 @@ extern "C" {
     extern QRect
 	_Z9qItemRectP8QPainterN2Qt8GUIStyleEiiiiibPK7QPixmapRK7QStringi
 	(QPainter *, enum _ZN2Qt8GUIStyleE, const QPixmap *, QString & &);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

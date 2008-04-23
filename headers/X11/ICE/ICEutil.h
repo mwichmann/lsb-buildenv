@@ -13,7 +13,7 @@ extern "C" {
 #define IceAuthLockSuccess	0
 #define IceAuthLockError	1
 #define IceAuthLockTimeout	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -36,7 +36,7 @@ extern "C" {
 	char *auth_data;
     } IceAuthFileEntry;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct {
@@ -61,10 +61,10 @@ extern "C" {
 
     IceAuthFileEntry *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern char *IceAuthFileName(void);
@@ -76,10 +76,10 @@ extern "C" {
     extern void IceSetPaAuthData(int, IceAuthDataEntry *);
     extern void IceUnlockAuthFile(char *);
     extern int IceWriteAuthFileEntry(FILE *, IceAuthFileEntry *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

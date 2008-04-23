@@ -34,10 +34,10 @@ extern "C" {
 	FT_STROKER_BORDER_RIGHT = 1
     } FT_StrokerBorder;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Error FT_Glyph_Stroke(FT_Glyph *, FT_Stroker, FT_Bool);
@@ -67,10 +67,10 @@ extern "C" {
     extern void FT_Stroker_Rewind(FT_Stroker);
     extern void FT_Stroker_Set(FT_Stroker, FT_Fixed, FT_Stroker_LineCap,
 			       FT_Stroker_LineJoin, FT_Fixed);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

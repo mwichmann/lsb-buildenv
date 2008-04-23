@@ -81,18 +81,18 @@ public:
      QRegExpValidator(QRegExp const&, QObject*, char const*);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QValidator16staticMetaObjectE ;
 extern struct QMetaObject _ZN13QIntValidator16staticMetaObjectE ;
 extern struct QMetaObject _ZN16QDoubleValidator16staticMetaObjectE ;
 extern struct QMetaObject _ZN16QRegExpValidator16staticMetaObjectE ;
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

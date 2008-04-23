@@ -12,7 +12,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern const char *pango_language_get_sample_string(PangoLanguage *);
@@ -34,10 +34,10 @@ extern "C" {
     extern gboolean pango_skip_space(const char **);
     extern char **pango_split_file_list(const char *);
     extern char *pango_trim_string(const char *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

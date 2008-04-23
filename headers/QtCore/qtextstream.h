@@ -187,7 +187,7 @@ public:
 }QTS	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QTextStream
@@ -344,10 +344,10 @@ private:
 public:
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern QTextStream _Z10forcepointR11QTextStream(QTextStream &);
@@ -374,8 +374,8 @@ extern QTextStream _Z5rightR11QTextStream(QTextStream &);
 extern QTextStream _Z6centerR11QTextStream(QTextStream &);
 extern QTextStream _Z8showbaseR11QTextStream(QTextStream &);
 extern QTextStream _Z9forcesignR11QTextStream(QTextStream &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

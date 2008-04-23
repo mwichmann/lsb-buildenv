@@ -22,7 +22,7 @@ extern "C" {
 #define FTRenderer_render	FT_Renderer_RenderFunc
 #define FTRenderer_setMode	FT_Renderer_SetModeFunc
 #define FTRenderer_transform	FT_Renderer_TransformFunc
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -45,7 +45,7 @@ extern "C" {
 
     typedef struct FT_Renderer_Class_ FT_Renderer_Class;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -59,19 +59,19 @@ extern "C" {
 	FT_Raster_Funcs *raster_class;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Renderer FT_Get_Renderer(FT_Library, FT_Glyph_Format);
     extern FT_Error FT_Set_Renderer(FT_Library, FT_Renderer, FT_UInt,
 				    FT_Parameter *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

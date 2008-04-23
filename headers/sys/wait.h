@@ -23,7 +23,7 @@ extern "C" {
 #define WUNTRACED	0x00000002
 #define WCOREFLAG	0x80
 #define WSTOPSIG(status)	WEXITSTATUS(status)
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -34,10 +34,10 @@ extern "C" {
 	P_PGID
     } idtype_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern pid_t wait(int *);
@@ -45,7 +45,7 @@ extern "C" {
     extern pid_t waitpid(pid_t, int *, int);
 #if __LSB_VERSION__ < 20
     extern int waitid(idtype_t, id_t, siginfo_t *, int);
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
 #if __LSB_VERSION__ < 30
 #if defined __i386__
@@ -53,9 +53,9 @@ extern "C" {
     extern pid_t wait3(int *, int, struct rusage *);
 #endif
     extern pid_t wait3(int *, int, struct rusage *);
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 30
@@ -63,9 +63,9 @@ extern "C" {
 /* PPC32 */
     extern pid_t wait3(int *, int, struct rusage *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if __LSB_VERSION__ < 30
@@ -81,9 +81,9 @@ extern "C" {
 /* S390X */
     extern pid_t wait3(int *, int, struct rusage *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if __LSB_VERSION__ < 30
@@ -95,16 +95,16 @@ extern "C" {
 /* PPC64 */
     extern pid_t wait3(int *, int, struct rusage *);
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
     extern int waitid(idtype_t, id_t, siginfo_t *, int);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -15,7 +15,7 @@ extern "C" {
 
     typedef unsigned long int rpcvers_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
     typedef unsigned long int rpcprog_t;
@@ -24,10 +24,10 @@ extern "C" {
 
     typedef unsigned long int rpcprot_t;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

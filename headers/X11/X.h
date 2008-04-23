@@ -19,14 +19,14 @@ extern "C" {
 
     Time *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Resources*/
 #if __LSB_VERSION__ >= 12
 #define X_PROTOCOL_REVISION	0
 #define X_PROTOCOL	11
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -59,7 +59,7 @@ extern "C" {
 
     typedef XID KeySym;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* RESERVED RESOURCE AND CONSTANT DEFINITIONS*/
@@ -76,7 +76,7 @@ extern "C" {
 #define InputFocus	1L
 #define ParentRelative	1L
 #define PointerRoot	1L
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -108,7 +108,7 @@ extern "C" {
 #define PointerMotionHintMask	(1L<<7)
 #define Button1MotionMask	(1L<<8)
 #define Button2MotionMask	(1L<<9)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -150,7 +150,7 @@ extern "C" {
 #define EnterNotify	7
 #define LeaveNotify	8
 #define FocusIn	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -165,7 +165,7 @@ extern "C" {
 #define Mod3Mask	(1<<5)
 #define Mod4Mask	(1<<6)
 #define Mod5Mask	(1<<7)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -180,7 +180,7 @@ extern "C" {
 #define Mod3MapIndex	5
 #define Mod4MapIndex	6
 #define Mod5MapIndex	7
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -193,7 +193,7 @@ extern "C" {
 #define AnyModifier	(1<<15)
 #define Button1Mask	(1<<8)
 #define Button2Mask	(1<<9)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -205,7 +205,7 @@ extern "C" {
 #define Button3	3
 #define Button4	4
 #define Button5	5
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -217,7 +217,7 @@ extern "C" {
 #define NotifyHint	1
 #define NotifyUngrab	2
 #define NotifyWhileGrabbed	3
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -232,7 +232,7 @@ extern "C" {
 #define NotifyPointer	5
 #define NotifyPointerRoot	6
 #define NotifyDetailNone	7
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -242,7 +242,7 @@ extern "C" {
 #define VisibilityUnobscured	0
 #define VisibilityPartiallyObscured	1
 #define VisibilityFullyObscured	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -251,7 +251,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define PlaceOnTop	0
 #define PlaceOnBottom	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -261,7 +261,7 @@ extern "C" {
 #define FamilyInternet	0
 #define FamilyDECnet	1
 #define FamilyChaos	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -271,7 +271,7 @@ extern "C" {
 #define PropModeReplace	0
 #define PropertyNewValue	0
 #define PropertyDelete	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -280,7 +280,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define ColormapUninstalled	0
 #define ColormapInstalled	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -289,7 +289,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define GrabModeSync	0
 #define GrabModeAsync	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -301,7 +301,7 @@ extern "C" {
 #define GrabInvalidTime	2
 #define GrabNotViewable	3
 #define GrabFrozen	4
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -316,7 +316,7 @@ extern "C" {
 #define ReplayKeyboard	5
 #define AsyncBoth	6
 #define SyncBoth	7
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -326,7 +326,7 @@ extern "C" {
 #define RevertToNone	(int)None
 #define RevertToPointerRoot	(int)PointerRoot
 #define RevertToParent	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -353,7 +353,7 @@ extern "C" {
 #define BadFont	7
 #define BadMatch	8
 #define BadDrawable	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -363,7 +363,7 @@ extern "C" {
 #define CWX	(1<<0)
 #define InputOutput	1
 #define InputOnly	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -385,7 +385,7 @@ extern "C" {
 #define CWBackingPlanes	(1L<<7)
 #define CWBackingPixel	(1L<<8)
 #define CWOverrideRedirect	(1L<<9)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -398,7 +398,7 @@ extern "C" {
 #define CWBorderWidth	(1<<4)
 #define CWSibling	(1<<5)
 #define CWStackMode	(1<<6)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -417,7 +417,7 @@ extern "C" {
 #define SouthWestGravity	7
 #define SouthGravity	8
 #define SouthEastGravity	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -429,7 +429,7 @@ extern "C" {
 #define NotUseful	0
 #define WhenMapped	1
 #define Always	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -439,7 +439,7 @@ extern "C" {
 #define IsUnmapped	0
 #define IsUnviewable	1
 #define IsViewable	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -448,7 +448,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define SetModeInsert	0
 #define SetModeDelete	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -458,7 +458,7 @@ extern "C" {
 #define DestroyAll	0
 #define RetainPermanent	1
 #define RetainTemporary	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -470,7 +470,7 @@ extern "C" {
 #define TopIf	2
 #define BottomIf	3
 #define Opposite	4
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -479,7 +479,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define RaiseLowest	0
 #define LowerHighest	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -488,7 +488,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define PropModePrepend	1
 #define PropModeAppend	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -513,7 +513,7 @@ extern "C" {
 #define GXorInverted	0xd
 #define GXnand	0xe
 #define GXset	0xf
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -523,7 +523,7 @@ extern "C" {
 #define LineSolid	0
 #define LineOnOffDash	1
 #define LineDoubleDash	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -534,7 +534,7 @@ extern "C" {
 #define CapButt	1
 #define CapRound	2
 #define CapProjecting	3
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -544,7 +544,7 @@ extern "C" {
 #define JoinMiter	0
 #define JoinRound	1
 #define JoinBevel	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -555,7 +555,7 @@ extern "C" {
 #define FillTiled	1
 #define FillStippled	2
 #define FillOpaqueStippled	3
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -564,7 +564,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define EvenOddRule	0
 #define WindingRule	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -573,7 +573,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define ClipByChildren	0
 #define IncludeInferiors	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -585,7 +585,7 @@ extern "C" {
 #define YSorted	1
 #define YXSorted	2
 #define YXBanded	3
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -594,7 +594,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define CoordModeOrigin	0
 #define CoordModePrevious	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -604,7 +604,7 @@ extern "C" {
 #define Complex	0
 #define Nonconvex	1
 #define Convex	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -613,7 +613,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define ArcChord	0
 #define ArcPieSlice	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -645,7 +645,7 @@ extern "C" {
 #define GCFillRule	(1L<<9)
 #define GCLastBit	22
 #define FontChange	255
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -656,7 +656,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define FontLeftToRight	0
 #define FontRightToLeft	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -667,7 +667,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define XYPixmap	1
 #define ZPixmap	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -678,7 +678,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define AllocNone	0
 #define AllocAll	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -688,7 +688,7 @@ extern "C" {
 #define DoRed	(1<<0)
 #define DoGreen	(1<<1)
 #define DoBlue	(1<<2)
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -700,7 +700,7 @@ extern "C" {
 #define CursorShape	0
 #define TileShape	1
 #define StippleShape	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -712,7 +712,7 @@ extern "C" {
 #define AutoRepeatModeOn	1
 #define LedModeOn	1
 #define AutoRepeatModeDefault	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -733,7 +733,7 @@ extern "C" {
 #define MappingKeyboard	1
 #define MappingFailed	2
 #define MappingPointer	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -748,7 +748,7 @@ extern "C" {
 #define PreferBlanking	1
 #define DefaultBlanking	2
 #define DefaultExposures	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -757,7 +757,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define ScreenSaverReset	0
 #define ScreenSaverActive	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -768,7 +768,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define HostInsert	0
 #define HostDelete	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -777,7 +777,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define DisableAccess	0
 #define EnableAccess	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -790,7 +790,7 @@ extern "C" {
 #define PseudoColor	3
 #define TrueColor	4
 #define DirectColor	5
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -799,12 +799,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define LSBFirst	0
 #define MSBFirst	1
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -90,7 +90,7 @@ extern "C" {
 #define TCIOFLUSH	2
 #define TCSAFLUSH	2
 #define TCION	3
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -150,7 +150,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define CR2	8192
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -324,7 +324,7 @@ extern "C" {
 #if defined __s390x__
 #define BSDLY	8192
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -441,7 +441,7 @@ extern "C" {
 #if defined __powerpc64__
 #define CR2	8192
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -449,19 +449,19 @@ extern "C" {
 #if __LSB_VERSION__ >= 10
     typedef unsigned int speed_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned char cc_t;
 
     typedef unsigned int tcflag_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 11
 #define NCCS	32
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -477,7 +477,7 @@ extern "C" {
 	speed_t c_ospeed;	/* output speed */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Special Control Characters*/
@@ -518,7 +518,7 @@ extern "C" {
 #if defined __i386__
 #define VSTOP	9
 #endif
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -551,7 +551,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define VSWTC	9
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -644,7 +644,7 @@ extern "C" {
 #if defined __s390x__
 #define VSTOP	9
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -707,7 +707,7 @@ extern "C" {
 #if defined __powerpc64__
 #define VSWTC	9
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -731,7 +731,7 @@ extern "C" {
 #define IXOFF	0010000
 #endif
 #define IMAXBEL	0020000
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -740,7 +740,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define IXON	512
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -761,7 +761,7 @@ extern "C" {
 #if defined __s390x__
 #define IXOFF	4096
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -776,7 +776,7 @@ extern "C" {
 #if defined __powerpc64__
 #define IXON	512
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -819,7 +819,7 @@ extern "C" {
 #if defined __i386__
 #define VTIME	5
 #endif
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -855,7 +855,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define PARODD	8192
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -957,7 +957,7 @@ extern "C" {
 #if defined __s390x__
 #define CSTOPB	64
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -1026,7 +1026,7 @@ extern "C" {
 #if defined __powerpc64__
 #define PARODD	8192
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -1073,7 +1073,7 @@ extern "C" {
 #if defined __i386__
 #define IEXTEN	0100000
 #endif
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
@@ -1115,7 +1115,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define FLUSHO	8388608
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -1235,7 +1235,7 @@ extern "C" {
 #if defined __s390x__
 #define ECHONL	64
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -1316,7 +1316,7 @@ extern "C" {
 #if defined __powerpc64__
 #define FLUSHO	8388608
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -1339,12 +1339,12 @@ extern "C" {
 #define B9600	0000015
 #define B19200	0000016
 #define B38400	0000017
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern speed_t cfgetispeed(const struct termios *);
@@ -1360,10 +1360,10 @@ extern "C" {
     extern pid_t tcgetsid(int);
     extern int tcsendbreak(int, int);
     extern int tcsetattr(int, int, const struct termios *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

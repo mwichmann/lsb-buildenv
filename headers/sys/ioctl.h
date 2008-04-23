@@ -12,7 +12,7 @@ extern "C" {
 #if defined __i386__
 #define FIONREAD	0x541B
 #endif
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #if defined __i386__
@@ -24,7 +24,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define FIONREAD	1074030207
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -45,7 +45,7 @@ extern "C" {
 #if defined __s390x__
 #define TIOCNOTTY	21538
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -60,7 +60,7 @@ extern "C" {
 #if defined __x86_64__
 #define TIOCNOTTY	21538
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
 #if defined __powerpc__ && !defined __powerpc64__
@@ -84,7 +84,7 @@ extern "C" {
 #if defined __s390x__
 #define TIOCGWINSZ	0x5413
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
@@ -96,17 +96,17 @@ extern "C" {
 	unsigned short ws_ypixel;	/* Vertical pixels. */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int ioctl(int, unsigned long int, ...);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

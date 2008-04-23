@@ -13,7 +13,7 @@ extern "C" {
 #define CUPS_RASTER_SYNC	0x52615374
 #define CUPS_RASTER_REVSYNC	0x74536152
 #define CUPS_RASTER_HAVE_COLORIMETRIC	1
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -154,10 +154,10 @@ extern "C" {
 	unsigned int cupsRowStep;
     } cups_page_header_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern void cupsRasterClose(cups_raster_t *);
@@ -172,10 +172,10 @@ extern "C" {
     extern unsigned int cupsRasterWritePixels(cups_raster_t *,
 					      unsigned char *,
 					      unsigned int);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

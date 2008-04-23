@@ -20,7 +20,7 @@ extern "C" {
 	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1<<((d)%(8*sizeof(long)))))
 #define FD_SET(d,set)	\
 	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
 #ifndef FALSE
@@ -29,7 +29,7 @@ extern "C" {
 #ifndef TRUE
 #define TRUE	1
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -40,7 +40,7 @@ extern "C" {
 
     typedef int key_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned char u_int8_t;
@@ -63,7 +63,7 @@ extern "C" {
 
     typedef int clockid_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     typedef unsigned long long int u_int64_t;
@@ -72,19 +72,19 @@ extern "C" {
 	int __val[2];
     } fsid_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
     typedef unsigned int useconds_t;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* These types are derived from the ones above*/
 #if __LSB_VERSION__ >= 12
     typedef unsigned int id_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __i386__
@@ -122,7 +122,7 @@ extern "C" {
     typedef int64_t ssize_t;
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Stuff that really in bits/types.h*/
@@ -141,7 +141,7 @@ extern "C" {
 
     typedef unsigned long int u_long;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     typedef unsigned long int fsblkcnt_t;
@@ -152,14 +152,14 @@ extern "C" {
 
     typedef unsigned long long int fsfilcnt64_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Stuff really in linux/types.h*/
 #if __LSB_VERSION__ >= 11
     typedef unsigned long int ino_t;
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned int gid_t;
@@ -172,7 +172,7 @@ extern "C" {
 
     typedef char *caddr_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 21
@@ -197,7 +197,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define __FDSET_LONGS	32
 #endif
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -206,19 +206,19 @@ extern "C" {
 	unsigned long int fds_bits[__FDSET_LONGS];
     } fd_set;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Time related types*/
 #if __LSB_VERSION__ >= 10
     typedef long int clock_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef long int time_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Setup some values*/
@@ -235,7 +235,7 @@ extern "C" {
 #if defined __powerpc__ && !defined __powerpc64__
 #define __BYTE_ORDER	__BIG_ENDIAN
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __s390__ && !defined __s390x__
@@ -247,7 +247,7 @@ extern "C" {
 #if defined __ia64__
 #define __BYTE_ORDER	__LITTLE_ENDIAN
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
@@ -256,12 +256,12 @@ extern "C" {
 #if defined __x86_64__
 #define __BYTE_ORDER	__LITTLE_ENDIAN
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

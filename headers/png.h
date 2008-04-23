@@ -350,7 +350,7 @@ extern "C" {
 #define png_strcpy	strcpy
 #define png_strlen	strlen
 #define png_strncpy	strncpy
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -509,7 +509,7 @@ extern "C" {
 
     typedef void (*png_free_ptr) (png_structp, png_voidp);
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
     struct png_sPLT_struct {
@@ -568,7 +568,7 @@ extern "C" {
 	png_byte pixel_depth;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -801,10 +801,10 @@ extern "C" {
 	png_byte blue;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern png_uint_32 png_access_version_number(void);
@@ -943,16 +943,16 @@ extern "C" {
     extern void png_write_png(png_structp, png_infop, int, voidp);
     extern void png_write_row(png_structp, png_bytep);
     extern void png_write_rows(png_structp, png_bytepp, png_uint_32);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 32
     extern void png_set_gray_1_2_4_to_8(png_structp);
     extern void png_set_palette_to_rgb(png_structp);
     extern void png_set_tRNS_to_alpha(png_structp);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -18,7 +18,7 @@ extern "C" {
 #define SND_TIMER_GLOBAL_SYSTEM	0
 #define SND_TIMER_GLOBAL_RTC	1
 #define SND_TIMER_GLOBAL_HPET	2
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -47,10 +47,10 @@ extern "C" {
 	SND_TIMER_TYPE_INET = 2
     } snd_timer_type_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern int snd_timer_close(snd_timer_t *);
@@ -93,10 +93,10 @@ extern "C" {
     extern int snd_timer_start(snd_timer_t *);
     extern int snd_timer_status(snd_timer_t *, snd_timer_status_t *);
     extern int snd_timer_stop(snd_timer_t *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -15,7 +15,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 13
     typedef struct XDR XDR;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
     enum xdr_op {
@@ -24,7 +24,7 @@ extern "C" {
 	XDR_FREE
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
 
@@ -37,7 +37,7 @@ extern "C" {
 	int x_handy;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Contains operation which is being applied to the stream, an operations vector for the particular implementation and two private fields for the use of the particular implementation.*/
@@ -57,14 +57,14 @@ extern "C" {
 	 bool_t(*x_putint32) (XDR * __xdrs, int32_t * __ip);
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* A xdrproc_t exists for each data type which is to be encoded or decoded.*/
 #if __LSB_VERSION__ >= 13
     typedef bool_t(*xdrproc_t) (XDR *, void *, ...);
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Support struct for discriminated unions.*/
@@ -74,10 +74,10 @@ extern "C" {
 	xdrproc_t proc;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 11
     extern bool_t xdr_array(XDR *, caddr_t *, u_int *, u_int, u_int,
@@ -110,18 +110,18 @@ extern "C" {
 			      , int (*)(char *, char *, int)
 	);
     extern bool_t xdrrec_eof(XDR *);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 13
     extern bool_t xdr_u_int(XDR *, u_int *);
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 32
     extern void xdrstdio_create(XDR *, FILE *, enum xdr_op);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

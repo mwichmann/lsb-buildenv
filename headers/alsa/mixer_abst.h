@@ -30,14 +30,14 @@ extern "C" {
 #define SM_OPS_IS_CHANNEL	2
 #define SM_OPS_IS_ENUMERATED	3
 #define SM_OPS_IS_ENUMCNT	4
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #if __LSB_VERSION__ >= 32
     typedef struct _sm_class_basic sm_class_basic_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -48,10 +48,10 @@ extern "C" {
 	snd_ctl_card_info_t *info;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

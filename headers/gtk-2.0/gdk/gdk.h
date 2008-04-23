@@ -281,7 +281,7 @@ extern "C" {
 #define GDK_SELECTION_CLIPBOARD	_GDK_MAKE_ATOM (69)
 #define GDK_SELECTION_TYPE_COLORMAP	_GDK_MAKE_ATOM (7)
 #define GDK_TARGET_COLORMAP	_GDK_MAKE_ATOM (7)
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -954,7 +954,7 @@ extern "C" {
 	GDK_WA_NOREDIR = 1 << 8
     } GdkWindowAttributesType;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -1670,10 +1670,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void gdk_add_client_message_filter(GdkAtom, GdkFilterFunc,
@@ -2403,10 +2403,10 @@ extern "C" {
     extern void gdk_window_withdraw(GdkWindow *);
     extern GType gdk_wm_decoration_get_type(void);
     extern GType gdk_wm_function_get_type(void);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -69,15 +69,15 @@ extern "C" {
 	XML_TEXTREADER_MODE_READING = 5
     } xmlTextReaderMode;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlFreeTextReader(xmlTextReaderPtr);
@@ -197,10 +197,10 @@ extern "C" {
     extern int xmlTextReaderStandalone(xmlTextReaderPtr);
     extern xmlChar *xmlTextReaderValue(xmlTextReaderPtr);
     extern xmlChar *xmlTextReaderXmlLang(xmlTextReaderPtr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

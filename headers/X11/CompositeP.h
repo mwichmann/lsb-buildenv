@@ -15,14 +15,14 @@ extern "C" {
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
 #define XtCompositeExtensionVersion	2L
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef struct _CompositeClassPart CompositeClassPart;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _CompositeClassPart {
@@ -33,7 +33,7 @@ extern "C" {
 	XtPointer extension;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Additional instance fields for widgets of (sub)class 'Composite'*/
@@ -45,17 +45,17 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     typedef struct _CompositeClassRec CompositeClassRec;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern CompositeClassRec compositeClassRec;
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -121,10 +121,10 @@ extern "C" {
 #endif
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int _tolower(int);
@@ -150,34 +150,34 @@ extern "C" {
     extern unsigned short *__ctype_b;
     extern int32_t *__ctype_tolower;
     extern int32_t *__ctype_toupper;
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 20
     extern unsigned short *__ctype_b;
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if __LSB_VERSION__ < 20
     extern unsigned short *__ctype_b;
     extern unsigned short *__ctype_b;
     extern unsigned short *__ctype_b;
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
     extern const unsigned short **__ctype_b_loc(void);
     extern const int32_t **__ctype_tolower_loc(void);
     extern const int32_t **__ctype_toupper_loc(void);
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -24,7 +24,7 @@ extern "C" {
 
     typedef struct BDF_PropertyRec_ BDF_PropertyRec;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -37,20 +37,20 @@ extern "C" {
 	} u;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FT_Error FT_Get_BDF_Charset_ID(FT_Face, const char **,
 					  const char **);
     extern FT_Error FT_Get_BDF_Property(FT_Face, const char *,
 					BDF_PropertyRec *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -22,19 +22,19 @@ extern "C" {
 	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
 #define inflateInit(strm)	\
 	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
 #if __LSB_VERSION__ >= 13
     typedef int intf;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 21
     typedef char charf;
 
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -50,17 +50,17 @@ extern "C" {
 
     typedef unsigned char Byte;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     typedef off_t z_off_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
     typedef void *const voidpc;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -70,25 +70,25 @@ extern "C" {
 
     typedef Byte Bytef;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     typedef uInt uIntf;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 12
     struct internal_state {
 	int dummy;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
     typedef struct z_stream_s z_stream;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
 
@@ -109,7 +109,7 @@ extern "C" {
 	uLong reserved;		/* reserved for future use */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -117,7 +117,7 @@ extern "C" {
 
     typedef voidp gzFile;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -126,11 +126,11 @@ extern "C" {
 #define Z_SYNC_FLUSH	2
 #define Z_FULL_FLUSH	3
 #define Z_FINISH	4
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 31
 #define Z_BLOCK	5
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -145,11 +145,11 @@ extern "C" {
 #define Z_OK	0
 #define Z_STREAM_END	1
 #define Z_NEED_DICT	2
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 21
 #define Z_VERSION_ERROR	(-6)
-#endif				// __LSB_VERSION__ >= 2.1
+#endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
@@ -160,7 +160,7 @@ extern "C" {
 #define Z_NO_COMPRESSION	0
 #define Z_BEST_SPEED	1
 #define Z_BEST_COMPRESSION	9
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -170,7 +170,7 @@ extern "C" {
 #define Z_DEFAULT_STRATEGY	0
 #define Z_FILTERED	1
 #define Z_HUFFMAN_ONLY	2
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -180,7 +180,7 @@ extern "C" {
 #define Z_BINARY	0
 #define Z_ASCII	1
 #define Z_UNKNOWN	2
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -188,12 +188,12 @@ extern "C" {
 /* Possible values of the data_type field*/
 #if __LSB_VERSION__ >= 13
 #define Z_DEFLATED	8
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern uLong adler32(uLong, const Bytef *, uInt);
@@ -237,16 +237,16 @@ extern "C" {
     extern int inflateSyncPoint(z_streamp);
     extern int uncompress(Bytef *, uLongf *, const Bytef *, uLong);
     extern const char *zError(int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 30
     extern uLong compressBound(uLong);
     extern uLong deflateBound(z_streamp, uLong);
     extern const char *zlibVersion(void);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

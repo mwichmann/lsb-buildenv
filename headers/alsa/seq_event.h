@@ -23,7 +23,7 @@ extern "C" {
 #define SND_SEQ_PRIORITY_MASK	(1<<4)
 #define SND_SEQ_EVENT_LENGTH_VARUSR	(2<<2)
 #define SND_SEQ_EVENT_LENGTH_MASK	(3<<2)
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -84,7 +84,7 @@ extern "C" {
 
     typedef union snd_seq_timestamp snd_seq_timestamp_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
     struct snd_seq_ev_sample {
@@ -120,7 +120,7 @@ extern "C" {
 	int result;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -247,10 +247,10 @@ extern "C" {
 	short unsigned int prg;
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

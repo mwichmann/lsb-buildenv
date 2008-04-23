@@ -18,14 +18,14 @@ extern "C" {
 #define LOCK_SUCCESS	0
 #define LOCK_ERROR	1
 #define LOCK_TIMEOUT	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #if __LSB_VERSION__ >= 12
     typedef struct xauth Xauth;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct xauth {
@@ -40,10 +40,10 @@ extern "C" {
 	char *data;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void XauDisposeAuth(Xauth *);
@@ -52,10 +52,10 @@ extern "C" {
 				       const char *, unsigned int, char *,
 				       int, char **, int *);
     extern Xauth *XauReadAuth(FILE *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

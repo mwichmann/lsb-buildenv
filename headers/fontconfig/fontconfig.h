@@ -109,7 +109,7 @@ extern "C" {
 #define FC_VERTICAL_LAYOUT	"verticallayout"
 #define FC_WEIGHT	"weight"
 #define FC_WIDTH	"width"
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -193,7 +193,7 @@ extern "C" {
 
     typedef short unsigned int FcChar16;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -265,10 +265,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern FcAtomic *FcAtomicCreate(const FcChar8 *);
@@ -461,14 +461,14 @@ extern "C" {
     extern FcBool FcValueEqual(FcValue, FcValue);
     extern void FcValuePrint(const FcValue);
     extern FcValue FcValueSave(FcValue);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 40
     extern void FcFini(void);
-#endif				// __LSB_VERSION__ >= 4.0
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

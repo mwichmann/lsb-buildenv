@@ -27,12 +27,12 @@ extern "C" {
 #define sz_smSaveYourselfPhase2RequestMsg	8
 #define sz_smSetPropertiesMsg	8
 #define sz_smShutdownCancelledMsg	8
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -16,7 +16,7 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern FT_UInt FcFreeTypeCharIndex(FT_Face, FcChar32);
@@ -27,10 +27,10 @@ extern "C" {
 				     const FT_Face);
     extern FcResult FcPatternGetFTFace(const FcPattern *, const char *,
 				       int, FT_Face *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

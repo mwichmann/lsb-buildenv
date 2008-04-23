@@ -18,7 +18,7 @@ extern "C" {
 #define UT_HOSTSIZE	256
 #define UT_LINESIZE	32
 #define UT_NAMESIZE	32
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -28,7 +28,7 @@ extern "C" {
 	short e_exit;		/* Process exit status. */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __s390x__
@@ -94,7 +94,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* The structure describing an entry in the user accounting database.*/
@@ -224,7 +224,7 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Values for the `ut_type' field of a `struct utmp'.*/
@@ -239,12 +239,12 @@ extern "C" {
 #define USER_PROCESS	7	/* Normal process. */
 #define DEAD_PROCESS	8	/* Terminated process. */
 #define ACCOUNTING	9
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern void endutent(void);
@@ -254,18 +254,18 @@ extern "C" {
     extern int logout(const char *);
     extern void logwtmp(const char *, const char *, const char *);
     extern void setutent(void);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern int getutent_r(struct utmp *, struct utmp **);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 30
     extern int utmpname(const char *);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

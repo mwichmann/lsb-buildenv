@@ -24,7 +24,7 @@ typedef char	const_reference
 typedef char	reference	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QByteArray
@@ -113,10 +113,10 @@ private:
 public:
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 #if defined __powerpc__ && !defined __powerpc64__
@@ -187,8 +187,8 @@ extern int _Z9qstrnicmpPKcS0_j(const char *, const char *, unsigned int);
 extern struct Data _ZN10QByteArray11shared_nullE ;
 extern  _ZlsR11QDataStreamRK10QByteArray(QDataStream &, QByteArray & &);
 extern  _ZrsR11QDataStreamR10QByteArray(QDataStream &, QByteArray &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

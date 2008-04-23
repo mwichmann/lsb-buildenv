@@ -551,12 +551,12 @@ extern "C" {
 #define TT_UCR_ARABIC_PRESENTATION_FORMS_B	TT_UCR_ARABIC_PRESENTATIONS_B
 #define TT_UCR_KANBUN	TT_UCR_CJK_MISC
 #define TT_UCR_COMBINING_DIACRITICAL_MARKS	TT_UCR_COMBINING_DIACRITICS
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

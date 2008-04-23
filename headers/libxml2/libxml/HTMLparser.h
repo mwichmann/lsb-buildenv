@@ -21,7 +21,7 @@ extern "C" {
 	htmlElementAllowedHere((parent), (elt)->name)
 #define htmlRequiredAttrs(elt)	(elt)->attrs_req
 #define htmlDefaultSubelement(elt)	elt->defaultsubelt
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -64,7 +64,7 @@ extern "C" {
 
     typedef xmlParserInput htmlParserInput;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -92,10 +92,10 @@ extern "C" {
 	const char *desc;
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern int UTF8ToHtml(unsigned char *, int *, const unsigned char *,
@@ -157,10 +157,10 @@ extern "C" {
     extern htmlDocPtr htmlSAXParseFile(const char *, const char *,
 				       htmlSAXHandlerPtr, void *);
     extern const htmlElemDesc *htmlTagLookup(const xmlChar *);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

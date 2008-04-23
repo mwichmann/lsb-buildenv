@@ -89,17 +89,17 @@ public:
      QVBoxLayout(int, char const*);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QBoxLayout16staticMetaObjectE ;
 extern struct QMetaObject _ZN11QHBoxLayout16staticMetaObjectE ;
 extern struct QMetaObject _ZN11QVBoxLayout16staticMetaObjectE ;
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

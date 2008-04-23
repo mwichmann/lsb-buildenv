@@ -88,17 +88,17 @@ private:
     void setModel(QAbstractItemModel*);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QListWidget16staticMetaObjectE ;
 extern QDataStream _ZlsR11QDataStreamRK15QListWidgetItem(QDataStream &);
 extern QDataStream _ZrsR11QDataStreamR15QListWidgetItem(QDataStream &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -45,7 +45,7 @@ extern "C" {
 #define PANGO_TYPE_XFT_FONT_MAP	(pango_xft_font_map_get_type ())
 #define PANGO_TYPE_XFT_RENDERER	(pango_xft_renderer_get_type())
 #define PANGO_RENDER_TYPE_XFT	"PangoRenderXft"
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -66,7 +66,7 @@ extern "C" {
 
     typedef struct _PangoXftRendererPrivate PangoXftRendererPrivate;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -90,10 +90,10 @@ extern "C" {
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern GType pango_xft_font_get_type(void);
@@ -122,10 +122,10 @@ extern "C" {
 						 gpointer, GDestroyNotify);
     extern void pango_xft_shutdown_display(Display *, int);
     extern void pango_xft_substitute_changed(Display *, int);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

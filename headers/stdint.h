@@ -141,7 +141,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define __UINT64_C(c)	c ## ULL
 #endif
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -437,14 +437,14 @@ extern "C" {
 #define UINTMAX_MAX	(__UINT64_C(18446744073709551615))
 #define UINT_FAST64_MAX	(__UINT64_C(18446744073709551615))
 #define UINT_LEAST64_MAX	(__UINT64_C(18446744073709551615))
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #if __LSB_VERSION__ >= 10
     typedef int int32_t;
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef signed char int8_t;
@@ -457,7 +457,7 @@ extern "C" {
 
     typedef unsigned int uint32_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __i386__
@@ -670,7 +670,7 @@ extern "C" {
     typedef unsigned long int uint64_t;
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
     typedef signed char int_least8_t;
@@ -969,10 +969,10 @@ extern "C" {
     typedef unsigned long long int uint_fast64_t;
 
 #endif
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

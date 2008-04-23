@@ -56,7 +56,7 @@ extern "C" {
 #define GDK_PIXBUF_VERSION	"2.6.10"
 #define GDK_PIXBUF_VAR	extern
 #define GDK_PIXBUF_ERROR	gdk_pixbuf_error_quark ()
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -110,7 +110,7 @@ extern "C" {
 	GDK_PIXBUF_ALPHA_FULL
     } GdkPixbufAlphaMode;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
@@ -136,10 +136,10 @@ extern "C" {
 	void (*closed) (GdkPixbufLoader *);
     };
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern GType gdk_colorspace_get_type(void);
@@ -287,10 +287,10 @@ extern "C" {
     extern GdkPixbuf *gdk_pixbuf_scale_simple(const GdkPixbuf *, int, int,
 					      GdkInterpType);
     extern const char *gdk_pixbuf_version;
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

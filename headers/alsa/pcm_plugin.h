@@ -15,17 +15,17 @@ extern "C" {
 #define SND_PCM_PLUGIN_ROUTE_RESOLUTION	16
 #define SND_PCM_PLUGIN_RATE_MAX	192000
 #define SND_PCM_PLUGIN_RATE_MIN	4000
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
 #if __LSB_VERSION__ >= 32
     typedef float snd_pcm_route_ttable_entry_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

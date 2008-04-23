@@ -13,7 +13,7 @@ public:
 }SelectionFlags	
 ;
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 class QItemSelectionRange
@@ -96,16 +96,16 @@ public:
     void split(QItemSelectionRange const&, QItemSelectionRange const&, QItemSelection*);
 };
 
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN19QItemSelectionModel16staticMetaObjectE ;
 extern QDebug _Zls6QDebugRK19QItemSelectionRange(_Z6QDebug, const QItemSelectionRange &);
-#endif // __LSB_VERSION__ >= 3.1
+#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

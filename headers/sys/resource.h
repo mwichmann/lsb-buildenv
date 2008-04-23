@@ -24,21 +24,21 @@ extern "C" {
 #define RLIMIT_CORE	4
 #define RLIMIT_NOFILE	7
 #define RLIMIT_AS	9
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define RLIM_SAVED_CUR	-1
 #define RLIM_SAVED_MAX	-1
 #define RUSAGE_SELF	0
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
 #define RUSAGE_CHILDREN	(-1)
 #if __LSB_VERSION__ < 31
 #define RUSAGE_BOTH	(-2)
-#endif				// __LSB_VERSION__ < 3.1
+#endif				/* __LSB_VERSION__ < 3.1 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -48,12 +48,12 @@ extern "C" {
 
     typedef unsigned long long int rlim64_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
     typedef int __rlimit_resource_t;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -67,7 +67,7 @@ extern "C" {
 	rlim64_t rlim_max;	/* The hard limit. */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -90,7 +90,7 @@ extern "C" {
 	long int ru_nivcsw;	/* Number of involuntary context switches, i.e. a higher priori */
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Priority limits.*/
@@ -104,24 +104,24 @@ indicating what flavor of entity the WHO argument specifies.*/
 	PRIO_USER = 2		/* WHO is a user ID. */
     };
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 #if __LSB_VERSION__ >= 13
 #define PRIO_PGRP	PRIO_PGRP
 #define PRIO_PROCESS	PRIO_PROCESS
 #define PRIO_USER	PRIO_USER
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
 #if __LSB_VERSION__ >= 20
     typedef enum __priority_which __priority_which_t;
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int getpriority(__priority_which_t, id_t);
@@ -130,14 +130,14 @@ indicating what flavor of entity the WHO argument specifies.*/
     extern int getrusage(int, struct rusage *);
     extern int setpriority(__priority_which_t, id_t, int);
     extern int setrlimit(__rlimit_resource_t, const struct rlimit *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     extern int setrlimit64(__rlimit_resource_t, const struct rlimit64 *);
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

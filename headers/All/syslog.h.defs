@@ -1,4 +1,6 @@
 
+#define LOG_MAKEPRI(fac, pri)	(((fac) << 3) | (pri))
+#define LOG_PRI(p)	((p) & LOG_PRIMASK)	/* extract priority */
 #define LOG_EMERG	0	/* system is unusable */
 #define LOG_PRIMASK	0x07	/* mask to extract priority part */
 #define LOG_ALERT	1	/* action must be taken immediately */
@@ -9,6 +11,7 @@
 #define LOG_INFO	6	/* informational */
 #define LOG_DEBUG	7	/* debug-level messages */
 
+#define LOG_FAC(p)	(((p) & LOG_FACMASK) >> 3)	/* facility of pri */
 #define LOG_KERN	(0<<3)	/* kernel messages */
 #define LOG_AUTHPRIV	(10<<3)	/* security/authorization messages (private) */
 #define LOG_FTP	(11<<3)		/* ftp daemon */

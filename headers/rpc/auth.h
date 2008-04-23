@@ -13,7 +13,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 32
 #define auth_destroy(auth)	((*((auth)->ah_ops->ah_destroy))(auth))
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -31,7 +31,7 @@ extern "C" {
 	AUTH_FAILED = 7		/* some unknown reason */
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -43,7 +43,7 @@ extern "C" {
 	char c[8];
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Authentication info.  Opaque to client.opaque_auth*/
@@ -54,14 +54,14 @@ extern "C" {
 	u_int oa_length;	/* not to exceed MAX_AUTH_BYTES */
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Auth handle, interface to client side authenticators.*/
 #if __LSB_VERSION__ >= 13
     typedef struct AUTH AUTH;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
 
@@ -73,7 +73,7 @@ extern "C" {
 	caddr_t ah_private;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -85,19 +85,19 @@ extern "C" {
 	void (*ah_destroy) (struct AUTH *);	/* Rpc calls return an enum clnt_stat. */
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 11
     extern struct AUTH *authnone_create(void);
     extern int key_decryptsession(char *, union des_block *);
     extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

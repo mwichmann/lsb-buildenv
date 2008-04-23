@@ -34,7 +34,7 @@ extern "C" {
 #define XFT_NMISSING	256
 #define XFT_REVISION	8
 #define XftVersion	XFT_VERSION
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -57,7 +57,7 @@ extern "C" {
 
     typedef struct _XftGlyphFontSpec XftGlyphFontSpec;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _XftColor {
@@ -151,10 +151,10 @@ extern "C" {
 
     const typedef unsigned int FcChar32 *;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern FcBool XftCharExists(Display *, XftFont *, FcChar32);
@@ -285,10 +285,10 @@ extern "C" {
 				  const FcChar8 *, int);
     extern void XftUnlockFace(XftFont *);
     extern FcPattern *XftXlfdParse(const char *, FcBool, FcBool);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

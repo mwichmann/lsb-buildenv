@@ -11,16 +11,16 @@ extern "C" {
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int forkpty(int *, char *, struct termios *, struct winsize *);
     extern int openpty(int *, int *, char *, struct termios *,
 		       struct winsize *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

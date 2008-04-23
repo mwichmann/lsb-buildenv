@@ -38,14 +38,13 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
     struct _Unwind_Context;	// XXX hand-edit
 #endif				// __LSB_VERSION__ >= 1.3
-
 
 #if __LSB_VERSION__ >= 13
     typedef unsigned int _Unwind_Ptr
@@ -56,7 +55,7 @@ extern "C" {
     typedef unsigned int _Unwind_Exception_Class
 	__attribute__ ((__mode__(__DI__)));
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* The unwind interface uses reason codes in several contexts to
@@ -74,7 +73,7 @@ extern "C" {
 	_URC_CONTINUE_UNWIND = 8
     } _Unwind_Reason_Code;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -86,7 +85,7 @@ extern "C" {
 						  struct _Unwind_Exception
 						  *);
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* The unwind interface uses a pointer to an exception header object
@@ -102,7 +101,7 @@ extern "C" {
 	_Unwind_Word private_2;
     } __attribute__ ((__aligned__));
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* The ACTIONS argument to the personality routine is a bitwise OR of one
@@ -113,14 +112,14 @@ extern "C" {
 #define _UA_CLEANUP_PHASE	2
 #define _UA_HANDLER_FRAME	4
 #define _UA_FORCE_UNWIND	8
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
 #if __LSB_VERSION__ >= 13
     typedef int _Unwind_Action;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 30
@@ -215,7 +214,7 @@ extern "C" {
 						   void *stop_parameter);
 
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 #if __LSB_VERSION__ >= 30
@@ -261,10 +260,10 @@ extern "C" {
 						    *, void *);
 
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
@@ -522,7 +521,7 @@ extern "C" {
 #if __LSB_VERSION__ < 20
     extern _Unwind_Ptr _Unwind_ForcedUnwind(struct _Unwind_Exception *,
 					    _Unwind_Stop_Fn, void *);
-#endif				// __LSB_VERSION__ < 2.0
+#endif				/* __LSB_VERSION__ < 2.0 */
 
 #if __LSB_VERSION__ < 30
     extern _Unwind_Ptr _Unwind_GetDataRelBase(struct _Unwind_Context *);
@@ -535,9 +534,9 @@ extern "C" {
     extern _Unwind_Reason_Code _Unwind_RaiseException(struct
 						      _Unwind_Exception *);
     extern void _Unwind_SetIP(struct _Unwind_Context *, unsigned int);
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
@@ -649,9 +648,9 @@ extern "C" {
     extern _Unwind_Ptr _Unwind_GetTextRelBase(struct _Unwind_Context *);
     extern void _Unwind_Resume(struct _Unwind_Exception *);
     extern void _Unwind_SetGR(struct _Unwind_Context *, int, u_int64_t);
-#endif				// __LSB_VERSION__ < 3.0
+#endif				/* __LSB_VERSION__ < 3.0 */
 
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
 #if defined __i386__
@@ -784,10 +783,10 @@ extern "C" {
 							 _Unwind_Exception
 							 *);
 #endif
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

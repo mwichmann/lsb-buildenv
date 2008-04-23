@@ -20,7 +20,7 @@ extern "C" {
 #define PANGO_IS_FC_FONT_MAP(object)	 \
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_FC_FONT_MAP))
 #define PANGO_TYPE_FC_FONT_MAP	(pango_fc_font_map_get_type ())
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -32,17 +32,17 @@ extern "C" {
 
     typedef struct _PangoFcFontMapClass PangoFcFontMapClass;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 31
 
 
 
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern PangoFontDescription
@@ -52,10 +52,10 @@ extern "C" {
 							gpointer,
 							GDestroyNotify);
     extern GType pango_fc_font_map_get_type(void);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

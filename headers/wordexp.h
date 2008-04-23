@@ -21,7 +21,7 @@ extern "C" {
 	WRDE_UNDEF = 32
     };
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 /* Structure describing a word-expansion run.*/
@@ -32,7 +32,7 @@ extern "C" {
 	size_t we_offs;
     } wordexp_t;
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Possible nonzero return values from `wordexp'.*/
@@ -46,18 +46,18 @@ extern "C" {
 	WRDE_SYNTAX = 5
     };
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int wordexp(const char *, wordexp_t *, int);
     extern void wordfree(wordexp_t *);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

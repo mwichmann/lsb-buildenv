@@ -15,10 +15,10 @@ extern "C" {
 
     typedef xmlDict *xmlDictPtr;
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern void xmlDictCleanup(void);
@@ -32,10 +32,10 @@ extern "C" {
 					 const xmlChar *);
     extern int xmlDictReference(xmlDictPtr);
     extern int xmlDictSize(xmlDictPtr);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

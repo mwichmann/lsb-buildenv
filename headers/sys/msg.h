@@ -14,7 +14,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 12
 #define MSG_NOERROR	010000
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -81,7 +81,7 @@ extern "C" {
     typedef unsigned long int msglen_t;
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Message Queue structure*/
@@ -214,20 +214,20 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int msgctl(int, int, struct msqid_ds *);
     extern int msgget(key_t, int);
     extern ssize_t msgrcv(int, void *, size_t, long int, int);
     extern int msgsnd(int, const void *, size_t, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

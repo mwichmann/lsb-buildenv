@@ -30,12 +30,12 @@ extern "C" {
 #define C_ISDIR	040000
 #define C_ISBLK	060000
 #define MAGIC	"070707"
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

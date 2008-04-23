@@ -14,7 +14,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 13
     typedef struct pam_handle pam_handle_t;
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
     struct pam_message {
@@ -27,7 +27,7 @@ extern "C" {
 	int resp_retcode;	/* currently un-used, zero expected */
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -37,7 +37,7 @@ extern "C" {
 	void *appdata_ptr;
     };
 
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 /* Valid choices for msg_style*/
@@ -46,7 +46,7 @@ extern "C" {
 #define PAM_PROMPT_ECHO_ON	2
 #define PAM_ERROR_MSG	3
 #define PAM_TEXT_INFO	4
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -60,7 +60,7 @@ extern "C" {
 #define PAM_CONV	5	/* The pam_conv structure */
 #define PAM_RUSER	8	/* The remote user name */
 #define PAM_USER_PROMPT	9	/* the prompt for getting a username */
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -94,7 +94,7 @@ extern "C" {
 #define PAM_AUTH_ERR	7	/* Authentication failure */
 #define PAM_CRED_INSUFFICIENT	8	/* Can not access authentication data due to insufficient crede */
 #define PAM_AUTHINFO_UNAVAIL	9	/* Underlying authentication service can not retrieve authentic */
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
@@ -108,12 +108,12 @@ extern "C" {
 #define PAM_REFRESH_CRED	0x0010U	/* Extend lifetime of user credentials */
 #define PAM_CHANGE_EXPIRED_AUTHTOK	0x0020U	/* Extend lifetime of user credentials */
 #define PAM_SILENT	0x8000U	/* Authentication service should not generate any messages */
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 13
     extern int pam_acct_mgmt(pam_handle_t *, int);
@@ -130,15 +130,15 @@ extern "C" {
     extern int pam_start(const char *, const char *,
 			 const struct pam_conv *, pam_handle_t * *);
     extern const char *pam_strerror(pam_handle_t *, int);
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 32
     extern const char *pam_getenv(const pam_handle_t *, const char *);
     extern int pam_putenv(const pam_handle_t *, const char *);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

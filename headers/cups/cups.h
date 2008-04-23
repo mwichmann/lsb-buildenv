@@ -20,7 +20,7 @@ extern "C" {
 #define CUPS_VERSION	1.0123
 #define CUPS_VERSION_PATCH	23
 #define cupsLangDefault()	cupsLangGet(NULL)
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 
@@ -229,7 +229,7 @@ extern "C" {
 	IPP_PRINTER_IS_DEACTIVATED = 1290
     } ipp_status_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
 
@@ -248,7 +248,7 @@ extern "C" {
 	md5_byte_t buf[64];
     };
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 #if __LSB_VERSION__ >= 32
@@ -283,10 +283,10 @@ extern "C" {
 	int digest_tries;
     } http_t;
 
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
     extern int cupsAddDest(const char *, const char *, int,
@@ -326,10 +326,10 @@ extern "C" {
     extern void cupsSetUser(const char *);
     extern int cupsTempFd(char *, int);
     extern const char *cupsUser(void);
-#endif				// __LSB_VERSION__ >= 3.2
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

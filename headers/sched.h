@@ -14,7 +14,7 @@ extern "C" {
 #define SCHED_OTHER	0
 #define SCHED_FIFO	1
 #define SCHED_RR	2
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -23,10 +23,10 @@ extern "C" {
 	int sched_priority;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int sched_get_priority_max(int);
@@ -37,10 +37,10 @@ extern "C" {
     extern int sched_setparam(pid_t, const struct sched_param *);
     extern int sched_setscheduler(pid_t, int, const struct sched_param *);
     extern int sched_yield(void);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

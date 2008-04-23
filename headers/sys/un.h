@@ -11,7 +11,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 12
 #define UNIX_PATH_MAX	108
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -21,10 +21,10 @@ extern "C" {
 	char sun_path[UNIX_PATH_MAX];
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

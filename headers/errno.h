@@ -10,7 +10,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 11
 #define errno	(*__errno_location())
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -139,14 +139,14 @@ extern "C" {
 #define EDEADLOCK	EDEADLK
 #endif
 #define ENOTSUP	EOPNOTSUPP
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
 #define EIO	5		/* I/O error */
 #if defined __powerpc__ && !defined __powerpc64__
 #define EDEADLOCK	58
 #endif
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
 #if defined __s390x__
@@ -158,7 +158,7 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define EDEADLOCK	EDEADLK
 #endif
-#endif				// __LSB_VERSION__ >= 1.3
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
@@ -167,23 +167,23 @@ extern "C" {
 #if defined __x86_64__
 #define EDEADLOCK	EDEADLK
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern int *__errno_location(void);
 #if __LSB_VERSION__ < 11
     extern int errno;
-#endif				// __LSB_VERSION__ < 1.1
+#endif				/* __LSB_VERSION__ < 1.1 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -16,11 +16,11 @@ extern "C" {
 #define CLOCK_REALTIME	0
 #define TIMER_ABSTIME	1
 #define CLOCKS_PER_SEC	1000000l
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
 #define CLK_TCK	((clock_t)__sysconf(2))
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 
@@ -44,7 +44,7 @@ extern "C" {
 	struct timespec it_value;
     };
 
-#endif				// __LSB_VERSION__ >= 1.2
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 
@@ -56,7 +56,7 @@ extern "C" {
 
 /* Used by other time functions.*/
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern char *asctime(const struct tm *);
@@ -84,9 +84,9 @@ extern "C" {
     extern int clock_gettime(clockid_t, struct timespec *);
     extern int clock_nanosleep(clockid_t, int, const struct timespec *,
 			       struct timespec *);
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern int __daylight;
@@ -103,9 +103,9 @@ extern "C" {
     extern int timer_gettime(timer_t, struct itimerspec *);
     extern int timer_settime(timer_t, int, const struct itimerspec *,
 			     struct itimerspec *);
-#endif				// __LSB_VERSION__ < 1.3
+#endif				/* __LSB_VERSION__ < 1.3 */
 
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 30
     extern int clock_getcpuclockid(pid_t, clockid_t *);
@@ -120,10 +120,10 @@ extern "C" {
     extern int timer_gettime(timer_t, struct itimerspec *);
     extern int timer_settime(timer_t, int, const struct itimerspec *,
 			     struct itimerspec *);
-#endif				// __LSB_VERSION__ >= 3.0
+#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -17,7 +17,7 @@ extern "C" {
 #define IPC_NOWAIT	00004000
 #define IPC_SET	1
 #define IPC_STAT	2
-#endif				// __LSB_VERSION__ >= 1.1
+#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 
@@ -137,21 +137,21 @@ extern "C" {
     };
 
 #endif
-#endif				// __LSB_VERSION__ >= 2.0
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* common mode bits*/
 
 /* SVID required constants (same values as system 5)*/
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
     extern key_t ftok(const char *, int);
-#endif				// __LSB_VERSION__ >= 1.0
+#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */

@@ -14,7 +14,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 31
 #define XML_CAST_FPTR(fptr)	fptr
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 
@@ -32,10 +32,10 @@ extern "C" {
 
     typedef void (*xmlHashScanner) (void *, void *, xmlChar *);
 
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-// Function prototypes
+/* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
     extern int xmlHashAddEntry(xmlHashTablePtr, const xmlChar *, void *);
@@ -86,10 +86,10 @@ extern "C" {
     extern int xmlHashUpdateEntry3(xmlHashTablePtr, const xmlChar *,
 				   const xmlChar *, const xmlChar *,
 				   void *, xmlHashDeallocator);
-#endif				// __LSB_VERSION__ >= 3.1
+#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }
 #endif
-#endif				// protection
-#endif				// LSB version
+#endif				/* protection */
+#endif				/* LSB version */
