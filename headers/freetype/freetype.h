@@ -93,7 +93,6 @@ extern "C" {
 
     typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
 
-#include <freetype/ftoutln.h>
     typedef struct FT_Glyph_Metrics_ FT_Glyph_Metrics;
 
     typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
@@ -162,6 +161,17 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
+    struct FT_Glyph_Metrics_ {
+	FT_Pos width;
+	FT_Pos height;
+	FT_Pos horiBearingX;
+	FT_Pos horiBearingY;
+	FT_Pos horiAdvance;
+	FT_Pos vertBearingX;
+	FT_Pos vertBearingY;
+	FT_Pos vertAdvance;
+    };
+
     struct FT_GlyphSlotRec_ {
 	FT_Library library;
 	FT_Face face;
@@ -185,17 +195,6 @@ extern "C" {
 	FT_Pos rsb_delta;
 	void *other;
 	FT_Slot_Internal internal;
-    };
-
-    struct FT_Glyph_Metrics_ {
-	FT_Pos width;
-	FT_Pos height;
-	FT_Pos horiBearingX;
-	FT_Pos horiBearingY;
-	FT_Pos horiAdvance;
-	FT_Pos vertBearingX;
-	FT_Pos vertBearingY;
-	FT_Pos vertAdvance;
     };
 
     struct FT_CharMapRec_ {
