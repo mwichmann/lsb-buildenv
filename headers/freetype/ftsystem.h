@@ -11,7 +11,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 32
     typedef struct FT_MemoryRec_ *FT_Memory;
 
-#include <freetype/ftlist.h>
+/* #include <freetype/ftlist.h>			XXX hand-edit */
     typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
 
     typedef void (*FT_Free_Func) (FT_Memory, void *);
@@ -23,7 +23,7 @@ extern "C" {
 
     typedef struct FT_StreamRec_ *FT_Stream;
 
-#include <freetype/freetype.h>
+/* #include <freetype/freetype.h>		XXX hand-edit */
     typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
 						   long unsigned int,
 						   unsigned char *,

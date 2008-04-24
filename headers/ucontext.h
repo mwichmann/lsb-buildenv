@@ -27,6 +27,11 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 20
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct _libc_vscr vscr_t;
+
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef struct _libc_vrstate vrregset_t
@@ -40,14 +45,6 @@ extern "C" {
 
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
-
-#if __LSB_VERSION__ >= 30
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct _libc_vscr vscr_t;
-
-#endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
@@ -69,6 +66,15 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 20
+#if defined __powerpc64__
+/* PPC64 */
+
+    struct _libc_vscr {
+	int __pad[3];
+	int vscr_word;
+    };
+
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
 
@@ -92,18 +98,6 @@ extern "C" {
 
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
-
-#if __LSB_VERSION__ >= 30
-#if defined __powerpc64__
-/* PPC64 */
-
-    struct _libc_vscr {
-	int __pad[3];
-	int vscr_word;
-    };
-
-#endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 /* Type for general register.*/
