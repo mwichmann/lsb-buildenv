@@ -209,6 +209,17 @@ extern "C" {
 	FT_Pointer data;
     };
 
+    struct FT_Size_Metrics_ {		/* XXX hand-edit */
+	FT_UShort x_ppem;
+	FT_UShort y_ppem;
+	FT_Fixed x_scale;
+	FT_Fixed y_scale;
+	FT_Pos ascender;
+	FT_Pos descender;
+	FT_Pos height;
+	FT_Pos max_advance;
+    };
+
     struct FT_SizeRec_ {
 	FT_Face face;
 	FT_Generic generic;
@@ -242,7 +253,7 @@ extern "C" {
     };
 
 
-    struct FT_Size_Metrics_ {
+    /* struct FT_Size_Metrics_ {	XXX hand-edit
 	FT_UShort x_ppem;
 	FT_UShort y_ppem;
 	FT_Fixed x_scale;
@@ -251,7 +262,7 @@ extern "C" {
 	FT_Pos descender;
 	FT_Pos height;
 	FT_Pos max_advance;
-    };
+    }; */
 
 
     struct FT_FaceRec_ {
