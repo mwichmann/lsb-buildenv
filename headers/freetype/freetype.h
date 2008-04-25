@@ -93,6 +93,7 @@ extern "C" {
 
     typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
 
+/* #include <freetype/ftoutln.h>	XXX hand-edit */
     typedef struct FT_Glyph_Metrics_ FT_Glyph_Metrics;
 
     typedef struct FT_SubGlyphRec_ *FT_SubGlyph;
@@ -209,7 +210,7 @@ extern "C" {
 	FT_Pointer data;
     };
 
-    struct FT_Size_Metrics_ {		/* XXX hand-edit */
+    struct FT_Size_Metrics_ {
 	FT_UShort x_ppem;
 	FT_UShort y_ppem;
 	FT_Fixed x_scale;
@@ -251,18 +252,6 @@ extern "C" {
 	FT_Int num_params;
 	FT_Parameter *params;
     };
-
-
-    /* struct FT_Size_Metrics_ {	XXX hand-edit
-	FT_UShort x_ppem;
-	FT_UShort y_ppem;
-	FT_Fixed x_scale;
-	FT_Fixed y_scale;
-	FT_Pos ascender;
-	FT_Pos descender;
-	FT_Pos height;
-	FT_Pos max_advance;
-    }; */
 
 
     struct FT_FaceRec_ {
