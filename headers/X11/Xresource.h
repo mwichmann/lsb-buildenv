@@ -122,8 +122,6 @@ extern "C" {
 	XPointer value;
     };
 
-    XrmQuark *;
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

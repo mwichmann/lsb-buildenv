@@ -8,14 +8,12 @@ typedef struct {
     int minor_version;
     IcePaProcessMsgProc process_msg_proc;
 } IcePaVersionRec;
-IcePaVersionRec *;
 typedef struct {
     long unsigned int sequence_of_request;
     int major_opcode_of_request;
     int minor_opcode_of_request;
     IcePointer reply;
 } IceReplyWaitInfo;
-IceReplyWaitInfo *;
 typedef void (*IcePoProcessMsgProc) (IceConn, IcePointer, int,
 				     long unsigned int, int,
 				     IceReplyWaitInfo *, int *);
@@ -24,28 +22,17 @@ typedef struct {
     int minor_version;
     IcePoProcessMsgProc process_msg_proc;
 } IcePoVersionRec;
-IcePoVersionRec *;
 typedef (*IcePoAuthProc) (IceConn, IcePointer *, int, int, int, IcePointer,
 			  int *, IcePointer *, char **);
-IcePoAuthProc *;
 typedef (*IcePaAuthProc) (IceConn, IcePointer *, int, int, IcePointer,
 			  int *, IcePointer *, char **);
-IcePaAuthProc *;
 enum IceAcceptStatus {
     IceAcceptSuccess,
     IceAcceptFailure,
     IceAcceptBadMalloc
 };
-enum IceAcceptStatus {
-    IceAcceptSuccess,
-    IceAcceptFailure,
-    IceAcceptBadMalloc
-} *;
 struct _IceListenObj;
-struct _IceListenObj *;
 typedef struct _IceListenObj *IceListenObj;
-IceListenObj *;
-IceListenObj **;
 enum IceConnectStatus {
     IceConnectPending,
     IceConnectAccepted,

@@ -8,16 +8,13 @@ typedef struct {
     long int xrm_default_type;
     XtPointer xrm_default_addr;
 } XrmResource;
-XrmResource *;
 typedef XrmResource *XrmResourceList;
-XrmResourceList *;
 struct _XtTMRec {
     XtTranslations translations;
     XtBoundActions proc_table;
     struct _XtStateRec *current_state;
     long unsigned int lastEventTime;
 };
-struct _XtTMRec *;
 typedef struct _XtTMRec *XtTM;
 typedef struct {
     String name;
@@ -25,7 +22,6 @@ typedef struct {
     XtArgVal value;
     int size;
 } XtTypedArg;
-XtTypedArg *;
 typedef XtTypedArg *XtTypedArgList;
 typedef void (*XtProc) (void);
 typedef void (*XtWidgetClassProc) (WidgetClass);

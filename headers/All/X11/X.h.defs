@@ -1,10 +1,4 @@
 
-KeyCode *;
-KeySym *;
-Atom *;
-KeyCode **;
-Time *;
-
 #define X_PROTOCOL_REVISION	0
 #define X_PROTOCOL	11
 

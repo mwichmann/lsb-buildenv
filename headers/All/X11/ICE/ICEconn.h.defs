@@ -1,6 +1,5 @@
 
 struct _XtransConnInfo;
-struct _XtransConnInfo *;
 typedef struct {
     char *vendor;
     char *release;
@@ -11,7 +10,6 @@ typedef struct {
     IcePoAuthProc *auth_procs;
     IceIOErrorProc io_error_proc;
 } _IcePoProtocol;
-_IcePoProtocol *;
 typedef struct {
     char *vendor;
     char *release;
@@ -25,13 +23,11 @@ typedef struct {
     IceHostBasedAuthProc host_based_auth_proc;
     IceIOErrorProc io_error_proc;
 } _IcePaProtocol;
-_IcePaProtocol *;
 typedef struct {
     char *protocol_name;
     _IcePoProtocol *orig_client;
     _IcePaProtocol *accept_client;
 } _IceProtocol;
-_IceProtocol *;
 union {
     IcePaProcessMsgProc accept_client;
     IcePoProcessMsgProc orig_client;
@@ -47,25 +43,21 @@ typedef struct {
 	IcePoProcessMsgProc orig_client;
     } process_msg_proc;
 } _IceProcessMsgInfo;
-_IceProcessMsgInfo *;
 typedef struct _IceSavedReplyWait {
     IceReplyWaitInfo *reply_wait;
     int reply_ready;
     _IceSavedReplyWait *next;
 } _IceSavedReplyWait;
-_IceSavedReplyWait *;
 typedef struct _IcePingWait {
     IcePingReplyProc ping_reply_proc;
     IcePointer client_data;
     _IcePingWait *next;
 } _IcePingWait;
-_IcePingWait *;
 typedef struct {
     int auth_active;
     char my_auth_index;
     IcePointer my_auth_state;
 } _IceConnectToYouInfo;
-_IceConnectToYouInfo *;
 typedef struct {
     int my_opcode;
     int my_auth_count;
@@ -74,7 +66,6 @@ typedef struct {
     char my_auth_index;
     IcePointer my_auth_state;
 } _IceProtoSetupToYouInfo;
-_IceProtoSetupToYouInfo *;
 typedef struct {
     int his_version_index;
     int my_version_index;
@@ -84,7 +75,6 @@ typedef struct {
     IcePointer my_auth_state;
     int must_authenticate;
 } _IceConnectToMeInfo;
-_IceConnectToMeInfo *;
 typedef struct {
     int his_opcode;
     int my_opcode;
@@ -96,7 +86,6 @@ typedef struct {
     IcePointer my_auth_state;
     int must_authenticate;
 } _IceProtoSetupToMeInfo;
-_IceProtoSetupToMeInfo *;
 struct _IceConn {
     unsigned int io_ok:1;
     unsigned int swap:1;
@@ -137,4 +126,3 @@ struct _IceConn {
     _IceConnectToMeInfo *connect_to_me;
     _IceProtoSetupToMeInfo *protosetup_to_me;
 };
-struct _IceConn *;

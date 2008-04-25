@@ -18,5 +18,5 @@ extern int tolower(int);
 extern int toupper(int);
 extern int isblank(int);
 extern const unsigned short **__ctype_b_loc(void);
-extern const int32_t **__ctype_tolower_loc(void);
 extern const int32_t **__ctype_toupper_loc(void);
+extern const int32_t **__ctype_tolower_loc(void);

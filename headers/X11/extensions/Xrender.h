@@ -156,28 +156,12 @@ extern "C" {
 	XLineFixed right;
     };
 
-    XTrapezoid *;
-
     struct {
 	unsigned short red;
 	unsigned short green;
 	unsigned short blue;
 	unsigned short alpha;
     };
-
-    const typedef struct {
-	unsigned short red;
-	unsigned short green;
-	unsigned short blue;
-	unsigned short alpha;
-    } XRenderColor;
-
-    const typedef struct {
-	unsigned short red;
-	unsigned short green;
-	unsigned short blue;
-	unsigned short alpha;
-    } XRenderColor *;
 
     struct {
 	short x;
@@ -185,17 +169,6 @@ extern "C" {
 	unsigned short width;
 	unsigned short height;
     };
-
-    const typedef struct XRectangle;
-
-    const typedef struct XRectangle
-    *;
-
-    XRenderColor *;
-
-    const typedef long unsigned int Glyph;
-
-    const typedef long unsigned int Glyph *;
 
     struct {
 	short red;
@@ -216,26 +189,6 @@ extern "C" {
 	Colormap colormap;
     };
 
-    const typedef struct {
-	PictFormat id;
-	int type;
-	int depth;
-	XRenderDirectFormat direct;
-	Colormap colormap;
-    } XRenderPictFormat;
-
-    const typedef struct {
-	PictFormat id;
-	int type;
-	int depth;
-	XRenderDirectFormat direct;
-	Colormap colormap;
-    } XRenderPictFormat *;
-
-    const typedef struct _XPointFixed XPointFixed;
-
-    const typedef struct _XPointFixed XPointFixed *;
-
     struct _XGlyphInfo {
 	unsigned short width;
 	unsigned short height;
@@ -245,10 +198,6 @@ extern "C" {
 	short yOff;
     };
 
-    const typedef struct _XGlyphInfo XGlyphInfo;
-
-    const typedef struct _XGlyphInfo XGlyphInfo *;
-
     struct _XFilters {
 	int nfilter;
 	char **filter;
@@ -256,35 +205,19 @@ extern "C" {
 	short int *alias;
     };
 
-    XFilters *;
-
-    XRenderPictFormat *;
-
     struct _XTransform {
 	XFixed matrix[3][3];
     };
-
-    XTransform *;
 
     struct _XAnimCursor {
 	Cursor cursor;
 	long unsigned int delay;
     };
 
-    XAnimCursor *;
-
     struct _XRadialGradient {
 	XCircle inner;
 	XCircle outer;
     };
-
-    const typedef struct _XRadialGradient XRadialGradient;
-
-    const typedef struct _XRadialGradient XRadialGradient *;
-
-    const typedef int XFixed;
-
-    const typedef int XFixed *;
 
     struct _XGlyphElt32 {
 	GlyphSet glyphset;
@@ -294,10 +227,6 @@ extern "C" {
 	int yOff;
     };
 
-    const typedef struct _XGlyphElt32 XGlyphElt32;
-
-    const typedef struct _XGlyphElt32 XGlyphElt32 *;
-
     struct _XGlyphElt8 {
 	GlyphSet glyphset;
 	const char *chars;
@@ -306,47 +235,20 @@ extern "C" {
 	int yOff;
     };
 
-    const typedef struct _XGlyphElt8 XGlyphElt8;
-
-    const typedef struct _XGlyphElt8 XGlyphElt8 *;
-
     struct _XConicalGradient {
 	XPointFixed center;
 	XFixed angle;
     };
-
-    const typedef struct _XConicalGradient XConicalGradient;
-
-    const typedef struct _XConicalGradient XConicalGradient *;
-
-    const typedef struct Visual;
-
-    const typedef struct Visual
-    *;
 
     struct _XLinearGradient {
 	XPointFixed p1;
 	XPointFixed p2;
     };
 
-    const typedef struct _XLinearGradient XLinearGradient;
-
-    const typedef struct _XLinearGradient XLinearGradient *;
-
     struct _XPointDouble {
 	XDouble x;
 	XDouble y;
     };
-
-    const typedef struct _XPointDouble XPointDouble;
-
-    const typedef struct _XPointDouble XPointDouble *;
-
-    XFixed *;
-
-    const typedef struct _XTrapezoid XTrapezoid;
-
-    const typedef struct _XTrapezoid XTrapezoid *;
 
     struct _XRenderPictureAttributes {
 	int repeat;
@@ -364,20 +266,10 @@ extern "C" {
 	int component_alpha;
     };
 
-    const typedef struct _XRenderPictureAttributes
-	XRenderPictureAttributes;
-
-    const typedef struct _XRenderPictureAttributes XRenderPictureAttributes
-	*;
-
     struct _XTrap {
 	XSpanFix top;
 	XSpanFix bottom;
     };
-
-    const typedef struct _XTrap XTrap;
-
-    const typedef struct _XTrap XTrap *;
 
     struct _XIndexValue {
 	long unsigned int pixel;
@@ -387,8 +279,6 @@ extern "C" {
 	unsigned short alpha;
     };
 
-    XIndexValue *;
-
     struct _XGlyphElt16 {
 	GlyphSet glyphset;
 	const short unsigned int *chars;
@@ -397,23 +287,11 @@ extern "C" {
 	int yOff;
     };
 
-    const short unsigned int;
-
-    const short unsigned int *;
-
-    const typedef struct _XGlyphElt16 XGlyphElt16;
-
-    const typedef struct _XGlyphElt16 XGlyphElt16 *;
-
     struct _XTriangle {
 	XPointFixed p1;
 	XPointFixed p2;
 	XPointFixed p3;
     };
-
-    const typedef struct _XTriangle XTriangle;
-
-    const typedef struct _XTriangle XTriangle *;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

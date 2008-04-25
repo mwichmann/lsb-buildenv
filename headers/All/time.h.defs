@@ -22,9 +22,13 @@ struct itimerspec {
     struct timespec it_value;
 };
 
+extern int __daylight;
+extern long int __timezone;
+extern char *__tzname[];
 extern char *asctime(const struct tm *);
 extern clock_t clock(void);
 extern char *ctime(const time_t *);
+extern char *ctime_r(const time_t *, char *);
 extern double difftime(time_t, time_t);
 extern struct tm *getdate(const char *);
 extern int getdate_err;
@@ -40,10 +44,6 @@ extern int daylight;
 extern long int timezone;
 extern char *tzname[];
 extern void tzset(void);
-extern int __daylight;
-extern long int __timezone;
-extern char *__tzname[];
-extern char *ctime_r(const time_t *, char *);
 extern char *asctime_r(const struct tm *, char *);
 extern struct tm *gmtime_r(const time_t *, struct tm *);
 extern struct tm *localtime_r(const time_t *, struct tm *);
