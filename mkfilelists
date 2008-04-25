@@ -87,12 +87,18 @@ core_headers_remove = [
     'X11/extensions/XShm.h',
     'X11/ICE/ICElib.h',
     'X11/ICE/ICEutil.h',
+    'X11/ICE/ICEconn.h',
+    'X11/ICE/ICE.h',
+    'X11/ICE/ICEmsg.h',
+    'X11/ICE/ICEproto.h',
     'X11/Intrinsic.h',
     'X11/IntrinsicP.h',
     'X11/Object.h',
     'X11/ObjectP.h',
     'X11/Shell.h',
     'X11/SM/SMlib.h',
+    'X11/SM/SM.h',
+    'X11/SM/SMproto.h',
     'X11/StringDefs.h',
     'X11/Xauth.h',
     'X11/Xcms.h',
@@ -151,8 +157,8 @@ def main():
 
     # Apply the core header munging mentioned above.
 
-    core_headers = [x for x in core_headers + core_headers_add if x
-                     not in core_headers_remove]
+    core_headers = [x for x in core_headers + core_headers_add if 
+                    x not in core_headers_remove]
 
     # The database contains at least one entry with information
     # in the library name field that isn't a library name.  For
@@ -165,11 +171,12 @@ def main():
     # Write the lists.
 
     for (fn, flist) in (('headers/' + core_fn, core_headers),
-                        ('stub_libs/' + core_fn, core_libs), ('headers/'
-                         + desktop_fn, desktop_headers), ('stub_libs/'
-                         + desktop_fn, desktop_libs)):
+                        ('stub_libs/' + core_fn, core_libs),
+                        ('headers/' + desktop_fn, desktop_headers),
+                        ('stub_libs/' + desktop_fn, desktop_libs)):
         headerfile = open(fn, 'w')
         headerfile.write('\n'.join(flist))
+        headerfile.write('\n')
         headerfile.close()
 
 
