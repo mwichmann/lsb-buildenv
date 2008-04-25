@@ -125,7 +125,7 @@ extern "C" {
 	FT_Pos yMax;
     };
 
-/* #include <freetype/ftoutln.h>		XXX hand-edit */
+#include <freetype/ftoutln.h>
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32

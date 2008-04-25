@@ -43,8 +43,6 @@ extern "C" {
 	ConstraintClassPart constraint_class;
     };
 
-    struct _ConstraintClassRec *;
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

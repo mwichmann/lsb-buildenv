@@ -1029,28 +1029,6 @@ extern "C" {
 	char **supported_values;
     };
 
-    Display *;
-
-    XEvent *;
-
-    Display **;
-
-    Display ***;
-
-    Screen *;
-
-    XSelectionRequestEvent *;
-
-    XGCValues *;
-
-    Visual *;
-
-    XSetWindowAttributes *;
-
-    XKeyEvent *;
-
-    XButtonEvent *;
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

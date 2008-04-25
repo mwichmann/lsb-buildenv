@@ -79,8 +79,6 @@ extern "C" {
 	IcePaProcessMsgProc process_msg_proc;
     };
 
-    IcePaVersionRec *;
-
     struct {
 	long unsigned int sequence_of_request;
 	int major_opcode_of_request;
@@ -88,39 +86,19 @@ extern "C" {
 	IcePointer reply;
     };
 
-    IceReplyWaitInfo *;
-
     struct {
 	int major_version;
 	int minor_version;
 	IcePoProcessMsgProc process_msg_proc;
     };
 
-    IcePoVersionRec *;
-
-    IcePoAuthProc *;
-
-    IcePaAuthProc *;
-
     enum IceAcceptStatus {
 	IceAcceptSuccess = 0,
 	IceAcceptFailure = 1,
 	IceAcceptBadMalloc = 2
     };
 
-    enum IceAcceptStatus {
-	IceAcceptSuccess = 0,
-	IceAcceptFailure = 1,
-	IceAcceptBadMalloc = 2
-    } *;
-
     struct _IceListenObj;
-
-    struct _IceListenObj *;
-
-    IceListenObj *;
-
-    IceListenObj **;
 
     enum IceConnectStatus {
 	IceConnectPending = 0,

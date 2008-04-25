@@ -47,8 +47,6 @@ extern "C" {
 	char *auth_data;
     };
 
-    IceAuthDataEntry *;
-
     struct {
 	char *protocol_name;
 	short unsigned int protocol_data_length;
@@ -58,8 +56,6 @@ extern "C" {
 	short unsigned int auth_data_length;
 	char *auth_data;
     };
-
-    IceAuthFileEntry *;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

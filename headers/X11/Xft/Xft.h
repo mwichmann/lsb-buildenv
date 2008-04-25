@@ -65,8 +65,6 @@ extern "C" {
 	XRenderColor color;
     };
 
-    XftColor *;
-
     struct _XftFont {
 	int ascent;
 	int descent;
@@ -76,42 +74,22 @@ extern "C" {
 	FcPattern **pattern;
     };
 
-    XftFont *;
-
     struct _XftGlyphSpec {
 	FT_UInt glyph;
 	short x;
 	short y;
     };
 
-    XftGlyphSpec *;
-
 #include <pango-1.0/pango/pangoxft.h>
-    const typedef struct _XftColor XftColor;
-
-    const typedef struct _XftColor XftColor *;
-
     struct _XftCharSpec {
 	FcChar32 ucs4;
 	short x;
 	short y;
     };
 
-    const typedef struct _XftCharSpec XftCharSpec;
-
-    const typedef struct _XftCharSpec XftCharSpec *;
-
-    XGlyphInfo *;
-
-    const typedef struct _XftGlyphSpec XftGlyphSpec;
-
-    const typedef struct _XftGlyphSpec XftGlyphSpec *;
-
     struct _XftFontInfo;
 
     struct _XftFtFile;
-
-    struct _XftFtFile *;
 
     struct _XftCharFontSpec {
 	XftFont *font;
@@ -120,36 +98,12 @@ extern "C" {
 	short y;
     };
 
-    const typedef struct _XftCharFontSpec XftCharFontSpec;
-
-    const typedef struct _XftCharFontSpec XftCharFontSpec *;
-
-    const typedef unsigned int FT_UInt;
-
-    const typedef unsigned int FT_UInt *;
-
-    const typedef short unsigned int FcChar16;
-
-    const typedef short unsigned int FcChar16 *;
-
     struct _XftGlyphFontSpec {
 	XftFont *font;
 	FT_UInt glyph;
 	short x;
 	short y;
     };
-
-    const typedef struct _XftGlyphFontSpec XftGlyphFontSpec;
-
-    const typedef struct _XftGlyphFontSpec XftGlyphFontSpec *;
-
-    const typedef struct _XftFontInfo XftFontInfo;
-
-    const typedef struct _XftFontInfo XftFontInfo *;
-
-    const typedef unsigned int FcChar32;
-
-    const typedef unsigned int FcChar32 *;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

@@ -2,6 +2,7 @@
 #ifndef _X11_ICE_ICECONN_H_
 #define _X11_ICE_ICECONN_H_
 
+#include <X11/ICE/ICElib.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -98,8 +99,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     struct _XtransConnInfo;
 
-    struct _XtransConnInfo *;
-
     struct {
 	char *vendor;
 	char *release;
@@ -110,8 +109,6 @@ extern "C" {
 	IcePoAuthProc *auth_procs;
 	IceIOErrorProc io_error_proc;
     };
-
-    _IcePoProtocol *;
 
     struct {
 	char *vendor;
@@ -127,15 +124,11 @@ extern "C" {
 	IceIOErrorProc io_error_proc;
     };
 
-    _IcePaProtocol *;
-
     struct {
 	char *protocol_name;
 	_IcePoProtocol *orig_client;
 	_IcePaProtocol *accept_client;
     };
-
-    _IceProtocol *;
 
     union {
 	IcePaProcessMsgProc accept_client;
@@ -154,15 +147,11 @@ extern "C" {
 	} process_msg_proc;
     };
 
-    _IceProcessMsgInfo *;
-
     struct _IceSavedReplyWait {
 	IceReplyWaitInfo *reply_wait;
 	int reply_ready;
 	_IceSavedReplyWait *next;
     };
-
-    _IceSavedReplyWait *;
 
     struct _IcePingWait {
 	IcePingReplyProc ping_reply_proc;
@@ -170,15 +159,11 @@ extern "C" {
 	_IcePingWait *next;
     };
 
-    _IcePingWait *;
-
     struct {
 	int auth_active;
 	char my_auth_index;
 	IcePointer my_auth_state;
     };
-
-    _IceConnectToYouInfo *;
 
     struct {
 	int my_opcode;
@@ -189,8 +174,6 @@ extern "C" {
 	IcePointer my_auth_state;
     };
 
-    _IceProtoSetupToYouInfo *;
-
     struct {
 	int his_version_index;
 	int my_version_index;
@@ -200,8 +183,6 @@ extern "C" {
 	IcePointer my_auth_state;
 	int must_authenticate;
     };
-
-    _IceConnectToMeInfo *;
 
     struct {
 	int his_opcode;
@@ -214,8 +195,6 @@ extern "C" {
 	IcePointer my_auth_state;
 	int must_authenticate;
     };
-
-    _IceProtoSetupToMeInfo *;
 
     struct _IceConn {
 	unsigned int io_ok:1;
@@ -258,9 +237,6 @@ extern "C" {
 	_IceProtoSetupToMeInfo *protosetup_to_me;
     };
 
-    struct _IceConn *;
-
-#include <X11/ICE/ICElib.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

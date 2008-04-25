@@ -184,8 +184,6 @@ extern "C" {
 	SmPointer value;
     };
 
-    SmPropValue *;
-
     struct {
 	char *name;
 	char *type;
@@ -193,13 +191,7 @@ extern "C" {
 	SmPropValue *vals;
     };
 
-    SmProp *;
-
-    SmProp **;
-
     struct _SmcConn;
-
-    struct _SmcConn *;
 
     struct {
 	SmcSaveYourselfProc callback;
@@ -240,11 +232,7 @@ extern "C" {
 	} shutdown_cancelled;
     };
 
-    SmcCallbacks *;
-
     struct _SmsConn;
-
-    struct _SmsConn *;
 
     struct {
 	SmsRegisterClientProc callback;
@@ -338,8 +326,6 @@ extern "C" {
 	    SmPointer manager_data;
 	} get_properties;
     };
-
-    SmsCallbacks *;
 
     enum SmcCloseStatus {
 	SmcClosedNow = 0,

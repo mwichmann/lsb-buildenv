@@ -84,10 +84,6 @@ extern "C" {
 	XtPointer xrm_default_addr;
     };
 
-    XrmResource *;
-
-    XrmResourceList *;
-
     struct _XtTMRec {
 	XtTranslations translations;
 	XtBoundActions proc_table;
@@ -95,16 +91,12 @@ extern "C" {
 	long unsigned int lastEventTime;
     };
 
-    struct _XtTMRec *;
-
     struct {
 	String name;
 	String type;
 	XtArgVal value;
 	int size;
     };
-
-    XtTypedArg *;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

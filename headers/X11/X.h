@@ -8,19 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
-    KeyCode *;
-
-    KeySym *;
-
-    Atom *;
-
-    KeyCode **;
-
-    Time *;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Resources*/
 #if __LSB_VERSION__ >= 12

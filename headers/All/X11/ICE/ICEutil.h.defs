@@ -10,7 +10,6 @@ typedef struct {
     short unsigned int auth_data_length;
     char *auth_data;
 } IceAuthDataEntry;
-IceAuthDataEntry *;
 typedef struct {
     char *protocol_name;
     short unsigned int protocol_data_length;
@@ -20,7 +19,6 @@ typedef struct {
     short unsigned int auth_data_length;
     char *auth_data;
 } IceAuthFileEntry;
-IceAuthFileEntry *;
 extern char *IceAuthFileName(void);
 extern void IceFreeAuthFileEntry(IceAuthFileEntry *);
 extern char *IceGenerateMagicCookie(int);

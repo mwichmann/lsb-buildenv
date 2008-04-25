@@ -19,17 +19,13 @@ typedef struct {
     int length;
     SmPointer value;
 } SmPropValue;
-SmPropValue *;
 typedef struct {
     char *name;
     char *type;
     int num_vals;
     SmPropValue *vals;
 } SmProp;
-SmProp *;
-SmProp **;
 struct _SmcConn;
-struct _SmcConn *;
 typedef struct _SmcConn *SmcConn;
 typedef void (*SmcSaveYourselfProc) (SmcConn, SmPointer, int, int, int,
 				     int);
@@ -70,9 +66,7 @@ typedef struct {
 	SmPointer client_data;
     } shutdown_cancelled;
 } SmcCallbacks;
-SmcCallbacks *;
 struct _SmsConn;
-struct _SmsConn *;
 typedef struct _SmsConn *SmsConn;
 typedef void (*SmsErrorHandler) (SmsConn, int, int, long unsigned int, int,
 				 int, SmPointer);
@@ -171,7 +165,6 @@ typedef struct {
 	SmPointer manager_data;
     } get_properties;
 } SmsCallbacks;
-SmsCallbacks *;
 typedef int (*SmsNewClientProc) (SmsConn, SmPointer, long unsigned int *,
 				 SmsCallbacks *, char **);
 typedef void (*SmcPropReplyProc) (SmcConn, SmPointer, int, SmProp * *);

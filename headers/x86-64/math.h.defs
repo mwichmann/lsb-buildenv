@@ -15,6 +15,6 @@
 #define FP_ILOGB0	-2147483648
 #define FP_ILOGBNAN	-2147483648
 
-extern int __signbitl(long double);
-extern long double exp2l(long double);
 extern int __fpclassifyl(long double);
+extern long double exp2l(long double);
+extern int __signbitl(long double);

@@ -145,7 +145,6 @@ typedef struct _XcmsCCC {
     XPointer whitePtAdjClientData;
     XcmsPerScrnInfo *pPerScrnInfo;
 } XcmsCCCRec;
-struct _XcmsCCC *;
 typedef struct _XcmsCCC *XcmsCCC;
 
 typedef XcmsConversionProc *XcmsFuncListPtr;

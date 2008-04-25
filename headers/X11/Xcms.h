@@ -272,8 +272,6 @@ extern "C" {
 	XcmsPerScrnInfo *pPerScrnInfo;
     };
 
-    struct _XcmsCCC *;
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

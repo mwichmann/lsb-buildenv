@@ -16,5 +16,4 @@ struct _ConstraintClassRec {
     CompositeClassPart composite_class;
     ConstraintClassPart constraint_class;
 };
-struct _ConstraintClassRec *;
 extern ConstraintClassRec constraintClassRec;

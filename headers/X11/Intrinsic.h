@@ -194,23 +194,13 @@ extern "C" {
 
     typedef struct _XtEventRec *XtEventTable;
 
+#include <X11/EventI.h>
     typedef XtActionProc *XtBoundActions;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    Cardinal *;
-
-    XtPointer *;
-
     struct _WidgetRec;
-
-    struct _WidgetRec *;
-
-#include <X11/EventI.h>
-    Widget *;
-
-    String *;
 
     struct {
 	XtGeometryMask request_mode;
@@ -223,12 +213,6 @@ extern "C" {
 	int stack_mode;
     };
 
-    XtWidgetGeometry *;
-
-    Modifiers *;
-
-    XtCacheRef *;
-
     struct _XtResource {
 	String resource_name;
 	String resource_class;
@@ -239,36 +223,16 @@ extern "C" {
 	XtPointer default_addr;
     };
 
-    struct _XtResource *;
-
-    XtResourceList *;
-
     struct _XtAppStruct;
-
-    struct _XtAppStruct *;
-
-    XtAppContext *;
 
     struct _XtActionsRec {
 	String string;
 	XtActionProc proc;
     };
 
-    struct _XtActionsRec *;
-
-    XtActionList *;
-
-    Position *;
-
-    Dimension *;
-
     struct _WidgetClassRec;
 
-    struct _WidgetClassRec *;
-
     struct _TranslationData;
-
-    struct _TranslationData *;
 
     enum XtGeometryResult {
 	XtGeometryYes = 0,
@@ -293,26 +257,16 @@ extern "C" {
 	Cardinal size;
     };
 
-    XtConvertArgRec *;
-
     struct {
 	String name;
 	XtArgVal value;
     };
-
-    Arg *;
-
-    XtSignalId *;
 
     enum XtCallbackStatus {
 	XtCallbackNoList = 0,
 	XtCallbackHasNone = 1,
 	XtCallbackHasSome = 2
     };
-
-    XtInputId *;
-
-    XtIntervalId *;
 
     enum XtListPosition {
 	XtListHead = 0,
@@ -324,16 +278,10 @@ extern "C" {
 	XtPointer closure;
     };
 
-    struct _XtCallbackRec *;
-
-    Boolean *;
-
     struct {
 	char match;
 	String substitution;
     };
-
-    SubstitutionRec *;
 
     enum XtGrabKind {
 	XtGrabNone = 0,
@@ -355,26 +303,6 @@ extern "C" {
 	int type;
 	Widget widget;
     };
-
-    struct _XtCheckpointTokenRec *;
-
-    XtRequestId *;
-
-    XtErrorMsgHandler *;
-
-    String **;
-
-    XtErrorHandler *;
-
-    XtCallbackProc *;
-
-    Widget **;
-
-    XtEventTable *;
-
-    XtActionProc *;
-
-    XtValueMask *;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

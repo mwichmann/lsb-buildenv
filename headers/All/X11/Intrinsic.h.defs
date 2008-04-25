@@ -1,14 +1,9 @@
 
 typedef unsigned int Cardinal;
-Cardinal *;
 typedef void *XtPointer;
-XtPointer *;
 struct _WidgetRec;
-struct _WidgetRec *;
 typedef struct _WidgetRec *Widget;
-Widget *;
 typedef char *String;
-String *;
 typedef unsigned int XtGeometryMask;
 typedef short int Position;
 typedef short unsigned int Dimension;
@@ -22,11 +17,8 @@ typedef struct {
     Widget sibling;
     int stack_mode;
 } XtWidgetGeometry;
-XtWidgetGeometry *;
 typedef unsigned int Modifiers;
-Modifiers *;
 typedef void *XtCacheRef;
-XtCacheRef *;
 struct _XtResource {
     String resource_name;
     String resource_class;
@@ -36,23 +28,15 @@ struct _XtResource {
     String default_type;
     XtPointer default_addr;
 };
-struct _XtResource *;
 typedef struct _XtResource *XtResourceList;
-XtResourceList *;
 struct _XtAppStruct;
-struct _XtAppStruct *;
 typedef struct _XtAppStruct *XtAppContext;
-XtAppContext *;
 typedef void (*XtActionProc) (Widget, XEvent *, String *, Cardinal *);
 struct _XtActionsRec {
     String string;
     XtActionProc proc;
 };
-struct _XtActionsRec *;
 typedef struct _XtActionsRec *XtActionList;
-XtActionList *;
-Position *;
-Dimension *;
 typedef char Boolean;
 typedef int XtCacheType;
 typedef long unsigned int XtGCMask;
@@ -62,11 +46,9 @@ typedef long unsigned int XtWorkProcId;
 typedef long unsigned int XtInputId;
 typedef long unsigned int XtIntervalId;
 struct _WidgetClassRec;
-struct _WidgetClassRec *;
 typedef struct _WidgetClassRec *WidgetClass;
 typedef Widget *WidgetList;
 struct _TranslationData;
-struct _TranslationData *;
 typedef struct _TranslationData *XtAccelerators;
 typedef struct _TranslationData *XtTranslations;
 enum XtGeometryResult {
@@ -89,25 +71,20 @@ typedef struct {
     XtPointer address_id;
     Cardinal size;
 } XtConvertArgRec;
-XtConvertArgRec *;
 typedef XtConvertArgRec *XtConvertArgList;
 typedef long int XtArgVal;
 typedef struct {
     String name;
     XtArgVal value;
 } Arg;
-Arg *;
 typedef Arg *ArgList;
-XtSignalId *;
 typedef void (*XtSignalCallbackProc) (XtPointer, XtSignalId *);
 enum XtCallbackStatus {
     XtCallbackNoList,
     XtCallbackHasNone,
     XtCallbackHasSome
 };
-XtInputId *;
 typedef void (*XtInputCallbackProc) (XtPointer, int *, XtInputId *);
-XtIntervalId *;
 typedef void (*XtTimerCallbackProc) (XtPointer, XtIntervalId *);
 typedef long unsigned int XtInputMask;
 enum XtListPosition {
@@ -119,11 +96,9 @@ struct _XtCallbackRec {
     XtCallbackProc callback;
     XtPointer closure;
 };
-struct _XtCallbackRec *;
 typedef struct _XtCallbackRec *XtCallbackList;
 typedef long unsigned int EventMask;
 typedef void *XtVarArgsList;
-Boolean *;
 typedef void (*XtEventHandler) (Widget, XtPointer, XEvent *, Boolean *);
 typedef void (*XtCaseProc) (Display *, KeySym, KeySym *, KeySym *);
 typedef void (*XtKeyProc) (Display *, KeyCode, Modifiers, Modifiers *,
@@ -145,7 +120,6 @@ typedef struct {
     char match;
     String substitution;
 } SubstitutionRec;
-SubstitutionRec *;
 typedef SubstitutionRec *Substitution;
 typedef void (*XtSelectionCallbackProc) (Widget, XtPointer, Atom *, Atom *,
 					 XtPointer, long unsigned int *,
@@ -179,12 +153,10 @@ struct _XtCheckpointTokenRec {
     int type;
     Widget widget;
 };
-struct _XtCheckpointTokenRec *;
 typedef struct _XtCheckpointTokenRec *XtCheckpointToken;
 typedef void (*XtExtensionSelectProc) (Widget, int *, XtPointer *, int,
 				       XtPointer);
 typedef Boolean(*XtEventDispatchProc) (XEvent *);
-XtRequestId *;
 typedef void (*XtCancelConvertSelectionProc) (Widget, Atom *, Atom *,
 					      XtRequestId *, XtPointer);
 typedef Boolean(*XtConvertSelectionIncrProc) (Widget, Atom *, Atom *,
@@ -196,16 +168,8 @@ typedef void (*XtSelectionDoneIncrProc) (Widget, Atom *, Atom *,
 					 XtRequestId *, XtPointer);
 typedef void (*XtLoseSelectionIncrProc) (Widget, Atom *, XtPointer);
 typedef long unsigned int XtValueMask;
-XtErrorMsgHandler *;
-String **;
-XtErrorHandler *;
-XtCallbackProc *;
-Widget **;
 typedef struct _XtEventRec *XtEventTable;
-XtEventTable *;
-XtActionProc *;
 typedef XtActionProc *XtBoundActions;
-XtValueMask *;
 extern void XtAddActions(XtActionList, Cardinal);
 extern void XtAddCallback(Widget, const char *, XtCallbackProc, XtPointer);
 extern void XtAddCallbacks(Widget, const char *, XtCallbackList);
@@ -646,5 +610,5 @@ extern XtAppContext XtWidgetToApplicationContext(Widget);
 extern Window XtWindow(Widget);
 extern Window XtWindowOfObject(Widget);
 extern Widget XtWindowToWidget(Display *, Window);
-extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass, XtEnum);
 extern Boolean _XtCheckSubclassFlag(Widget, XtEnum);
+extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass, XtEnum);
