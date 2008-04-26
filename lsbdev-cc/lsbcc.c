@@ -1117,11 +1117,24 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		argvadd(libpaths,"L",optarg);
 		break;
 	case 'W':
+		if ((strstr(argv[optind-1], "no-whole-archive") != NULL) ||
+			(strstr(argv[optind-1], "whole-archive") != NULL)) {
+			/*
+			 * .a files affected will look like unrecognized
+			 * options, and have to stay with these flags.
+			 * stuff it onto the unrecognized list, although
+			 * of course we did recognize this
+			 */
+			argvaddstring(options,argv[optind-1]);
+			break;
+		}
+
 		found_gcc_arg = 1;
 
 		if (strstr(argv[optind-1], "Bdynamic") != NULL) {
 			b_dynamic = 1;
 		}
+
 		if (strstr(argv[optind-1], "Bstatic") != NULL) {
 			b_dynamic = 0;
 		}
