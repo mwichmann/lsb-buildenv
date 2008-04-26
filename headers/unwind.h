@@ -43,8 +43,8 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
-    struct _Unwind_Context;	// XXX hand-edit
-#endif				// __LSB_VERSION__ >= 1.3
+    struct _Unwind_Context;	/* XXX hand-edit */
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
     typedef unsigned int _Unwind_Ptr
@@ -77,8 +77,8 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 13
-    struct _Unwind_Exception;	// XXX hand-edit
-#endif				// __LSB_VERSION__ >= 1.3
+    struct _Unwind_Exception;	/* XXX hand-edit */
+#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
     typedef void (*_Unwind_Exception_Cleanup_Fn) (_Unwind_Reason_Code,
