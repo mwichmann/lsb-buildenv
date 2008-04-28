@@ -182,6 +182,7 @@ extern "C" {
 
     typedef void (*__GLXextFuncPtr) (const GLubyte * procName);
 
+#include <GL/glxext.h>
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
