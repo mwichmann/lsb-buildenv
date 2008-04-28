@@ -42,6 +42,7 @@ extern "C" {
 
     typedef float GLclampf;
 
+#include <GL/glext.h>
     typedef double GLdouble;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -1228,7 +1229,7 @@ extern "C" {
 				    GLint, GLint, GLsizei, GLsizei);
     extern void glCullFace(GLenum);
     extern void glDeleteLists(GLuint, GLsizei);
-    extern void glDeleteTextures(GLsizei, GLuint *);
+    extern void glDeleteTextures(GLsizei, const GLuint *);
     extern void glDepthFunc(GLenum);
     extern void glDepthMask(GLboolean);
     extern void glDepthRange(GLclampd, GLclampd);
