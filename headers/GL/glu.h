@@ -215,11 +215,13 @@ extern "C" {
     extern GLint gluBuild3DMipmaps(GLenum, GLint, GLsizei, GLsizei,
 				   GLsizei, GLenum, GLenum, const void *);
     extern GLboolean gluCheckExtension(const GLubyte *, const GLubyte *);
-    extern void gluCylinder(GLdouble, GLdouble, GLdouble, GLint, GLint);
+    extern void gluCylinder(struct GLUquadric *, GLdouble, GLdouble,
+			    GLdouble, GLint, GLint);
     extern void gluDeleteNurbsRenderer(void);
-    extern void gluDeleteQuadric(void);
+    extern void gluDeleteQuadric(struct GLUquadric *);
     extern void gluDeleteTess(void);
-    extern void gluDisk(GLdouble, GLdouble, GLint, GLint);
+    extern void gluDisk(struct GLUquadric *, GLdouble, GLdouble, GLint,
+			GLint);
     extern void gluEndCurve(void);
     extern void gluEndPolygon(void);
     extern void gluEndSurface(void);
@@ -245,8 +247,8 @@ extern "C" {
     extern void gluNurbsSurface(GLint, GLfloat *, GLint, GLfloat *, GLint,
 				GLint, GLfloat *, GLint, GLint, GLenum);
     extern void gluOrtho2D(GLdouble, GLdouble, GLdouble, GLdouble);
-    extern void gluPartialDisk(GLdouble, GLdouble, GLint, GLint, GLdouble,
-			       GLdouble);
+    extern void gluPartialDisk(struct GLUquadric *, GLdouble, GLdouble,
+			       GLint, GLint, GLdouble, GLdouble);
     extern void gluPerspective(GLdouble, GLdouble, GLdouble, GLdouble);
     extern void gluPickMatrix(GLdouble, GLdouble, GLdouble, GLdouble,
 			      GLint *);
@@ -254,15 +256,15 @@ extern "C" {
 			    const GLdouble *, const GLint *, GLdouble *,
 			    GLdouble *, GLdouble *);
     extern void gluPwlCurve(GLint, GLfloat *, GLint, GLenum);
-    extern void gluQuadricCallback(GLenum);
-    extern void gluQuadricDrawStyle(GLenum);
-    extern void gluQuadricNormals(GLenum);
-    extern void gluQuadricOrientation(GLenum);
-    extern void gluQuadricTexture(GLboolean);
+    extern void gluQuadricCallback(struct GLUquadric *, GLenum);
+    extern void gluQuadricDrawStyle(struct GLUquadric *, GLenum);
+    extern void gluQuadricNormals(struct GLUquadric *, GLenum);
+    extern void gluQuadricOrientation(struct GLUquadric *, GLenum);
+    extern void gluQuadricTexture(struct GLUquadric *, GLboolean);
     extern GLint gluScaleImage(GLenum, GLsizei, GLsizei, GLenum,
 			       const void *, GLsizei, GLsizei, GLenum,
 			       GLvoid *);
-    extern void gluSphere(GLdouble, GLint, GLint);
+    extern void gluSphere(struct GLUquadric *, GLdouble, GLint, GLint);
     extern void gluTessBeginContour(void);
     extern void gluTessBeginPolygon(GLvoid *);
     extern void gluTessCallback(GLenum);
