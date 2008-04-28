@@ -8,6 +8,14 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 10
+#define GL_VERSION_1_1	1
+#define GL_VERSION_1_2	1
+#define GL_VERSION_1_3	1
+#endif				/* __LSB_VERSION__ >= 1.0 */
+
+
+
 
 /* Datatypes*/
 #if __LSB_VERSION__ >= 10
@@ -42,7 +50,6 @@ extern "C" {
 
     typedef float GLclampf;
 
-#include <GL/glext.h>
     typedef double GLdouble;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -1129,6 +1136,7 @@ extern "C" {
 #define GL_ACTIVE_TEXTURE_ARB	0x84E0
 #define GL_CLIENT_ACTIVE_TEXTURE_ARB	0x84E1
 #define GL_MAX_TEXTURE_UNITS_ARB	0x84E2
+#define GL_ARB_imaging	1
 #define GL_ARB_multitexture	1
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
