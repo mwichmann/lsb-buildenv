@@ -182,6 +182,15 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    typedef struct GLUnurbs GLUnurbs;
+
+    typedef struct GLUquadric GLUquadric;
+
+    typedef struct GLUtesselator GLUtesselator;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #if __LSB_VERSION__ >= 12
 
 

@@ -160,6 +160,9 @@ typedef struct GLUtesselator GLUtesselatorObj;
 typedef struct GLUtesselator GLUtriangulatorObj;
 typedef struct GLUquadric GLUquadricObj;
 typedef struct GLUnurbs GLUnurbsObj;
+typedef struct GLUnurbs GLUnurbs;
+typedef struct GLUquadric GLUquadric;
+typedef struct GLUtesselator GLUtesselator;
 extern void gluPwlCurve(, GLint, GLfloat *, GLint, GLenum);
 extern void gluPartialDisk(struct GLUquadric *, GLdouble, GLdouble, GLint,
 			   GLint, GLdouble, GLdouble);

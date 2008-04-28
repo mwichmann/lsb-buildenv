@@ -140,6 +140,11 @@ extern "C" {
 #define GLX_FRONT_EXT	GLX_FRONT_LEFT_EXT
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
+#if __LSB_VERSION__ >= 13
+#define GLX_ARB_get_proc_address	1
+#define GLX_GLXEXT_VERSION	19
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
 
 
 #if __LSB_VERSION__ >= 10
