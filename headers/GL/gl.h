@@ -50,6 +50,7 @@ extern "C" {
 
     typedef float GLclampf;
 
+#include <GL/glext.h>
     typedef double GLdouble;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
