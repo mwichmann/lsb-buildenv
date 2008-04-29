@@ -21,31 +21,6 @@
 #define XcmsSuccess	1
 #define XcmsSuccessWithCompression	2
 
-struct {
-    unsigned short red;
-    unsigned short green;
-    unsigned short blue;
-};
-struct {
-    XcmsFloat red;
-    XcmsFloat green;
-    XcmsFloat blue;
-};
-struct {
-    union {
-	XcmsRGB RGB;
-	XcmsRGBi RGBi;
-	XcmsCIEXYZ CIEXYZ;
-	XcmsCIEuvY CIEuvY;
-	XcmsCIExyY CIExyY;
-	XcmsCIELab CIELab;
-	XcmsCIELuv CIELuv;
-	XcmsTekHVC TekHVC;
-	XcmsPad Pad;
-    } spec;
-    unsigned long int pixel;
-    XcmsColorFormat format;
-};
 typedef struct _XcmsFunctionSet {
     XcmsColorSpace **DDColorSpaces;
     XcmsScreenInitProc screenInitProc;
@@ -149,17 +124,6 @@ typedef struct _XcmsCCC *XcmsCCC;
 
 typedef XcmsConversionProc *XcmsFuncListPtr;
 
-union {
-    XcmsRGB RGB;
-    XcmsRGBi RGBi;
-    XcmsCIEXYZ CIEXYZ;
-    XcmsCIEuvY CIEuvY;
-    XcmsCIExyY CIExyY;
-    XcmsCIELab CIELab;
-    XcmsCIELuv CIELuv;
-    XcmsTekHVC TekHVC;
-    XcmsPad Pad;
-};
 typedef struct _XcmsColorSpace {
     char *prefix;
     XcmsColorFormat id;

@@ -29,25 +29,9 @@ struct _SmcConn;
 typedef struct _SmcConn *SmcConn;
 typedef void (*SmcSaveYourselfProc) (SmcConn, SmPointer, int, int, int,
 				     int);
-struct {
-    SmcSaveYourselfProc callback;
-    SmPointer client_data;
-};
 typedef void (*SmcDieProc) (SmcConn, SmPointer);
-struct {
-    SmcDieProc callback;
-    SmPointer client_data;
-};
 typedef void (*SmcSaveCompleteProc) (SmcConn, SmPointer);
-struct {
-    SmcSaveCompleteProc callback;
-    SmPointer client_data;
-};
 typedef void (*SmcShutdownCancelledProc) (SmcConn, SmPointer);
-struct {
-    SmcShutdownCancelledProc callback;
-    SmPointer client_data;
-};
 typedef struct {
     struct {
 	SmcSaveYourselfProc callback;
@@ -73,56 +57,16 @@ typedef void (*SmsErrorHandler) (SmsConn, int, int, long unsigned int, int,
 typedef void (*SmcErrorHandler) (SmcConn, int, int, long unsigned int, int,
 				 int, SmPointer);
 typedef int (*SmsRegisterClientProc) (SmsConn, SmPointer, char *);
-struct {
-    SmsRegisterClientProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsInteractRequestProc) (SmsConn, SmPointer, int);
-struct {
-    SmsInteractRequestProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsInteractDoneProc) (SmsConn, SmPointer, int);
-struct {
-    SmsInteractDoneProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsSaveYourselfRequestProc) (SmsConn, SmPointer, int, int,
 					    int, int, int);
-struct {
-    SmsSaveYourselfRequestProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsSaveYourselfPhase2RequestProc) (SmsConn, SmPointer);
-struct {
-    SmsSaveYourselfPhase2RequestProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsSaveYourselfDoneProc) (SmsConn, SmPointer, int);
-struct {
-    SmsSaveYourselfDoneProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsCloseConnectionProc) (SmsConn, SmPointer, int, char **);
-struct {
-    SmsCloseConnectionProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsSetPropertiesProc) (SmsConn, SmPointer, int, SmProp * *);
-struct {
-    SmsSetPropertiesProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsDeletePropertiesProc) (SmsConn, SmPointer, int, char **);
-struct {
-    SmsDeletePropertiesProc callback;
-    SmPointer manager_data;
-};
 typedef void (*SmsGetPropertiesProc) (SmsConn, SmPointer);
-struct {
-    SmsGetPropertiesProc callback;
-    SmPointer manager_data;
-};
 typedef struct {
     struct {
 	SmsRegisterClientProc callback;

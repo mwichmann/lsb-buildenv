@@ -99,54 +99,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     struct _XtransConnInfo;
 
-    struct {
-	char *vendor;
-	char *release;
-	int version_count;
-	IcePoVersionRec *version_recs;
-	int auth_count;
-	char **auth_names;
-	IcePoAuthProc *auth_procs;
-	IceIOErrorProc io_error_proc;
-    };
-
-    struct {
-	char *vendor;
-	char *release;
-	int version_count;
-	IcePaVersionRec *version_recs;
-	IceProtocolSetupProc protocol_setup_proc;
-	IceProtocolActivateProc protocol_activate_proc;
-	int auth_count;
-	char **auth_names;
-	IcePaAuthProc *auth_procs;
-	IceHostBasedAuthProc host_based_auth_proc;
-	IceIOErrorProc io_error_proc;
-    };
-
-    struct {
-	char *protocol_name;
-	_IcePoProtocol *orig_client;
-	_IcePaProtocol *accept_client;
-    };
-
-    union {
-	IcePaProcessMsgProc accept_client;
-	IcePoProcessMsgProc orig_client;
-    };
-
-    struct {
-	int in_use;
-	int my_opcode;
-	_IceProtocol *protocol;
-	IcePointer client_data;
-	int accept_flag;
-	union {
-	    IcePaProcessMsgProc accept_client;
-	    IcePoProcessMsgProc orig_client;
-	} process_msg_proc;
-    };
-
     struct _IceSavedReplyWait {
 	IceReplyWaitInfo *reply_wait;
 	int reply_ready;
@@ -157,43 +109,6 @@ extern "C" {
 	IcePingReplyProc ping_reply_proc;
 	IcePointer client_data;
 	_IcePingWait *next;
-    };
-
-    struct {
-	int auth_active;
-	char my_auth_index;
-	IcePointer my_auth_state;
-    };
-
-    struct {
-	int my_opcode;
-	int my_auth_count;
-	int *my_auth_indices;
-	int auth_active;
-	char my_auth_index;
-	IcePointer my_auth_state;
-    };
-
-    struct {
-	int his_version_index;
-	int my_version_index;
-	char *his_vendor;
-	char *his_release;
-	char my_auth_index;
-	IcePointer my_auth_state;
-	int must_authenticate;
-    };
-
-    struct {
-	int his_opcode;
-	int my_opcode;
-	int his_version_index;
-	int my_version_index;
-	char *his_vendor;
-	char *his_release;
-	char my_auth_index;
-	IcePointer my_auth_state;
-	int must_authenticate;
     };
 
     struct _IceConn {

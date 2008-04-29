@@ -74,6 +74,7 @@ extern "C" {
 /* Interface request structure used for socket ioctl's.  All interface
    ioctl's must have parameter definitions which begin with ifr_name.
    The remainder may be interface specific.*/
+#if __LSB_VERSION__ >= 12
 #define ifr_name	ifr_ifrn.ifrn_name	/* interface name */
 #define ifr_addr	ifr_ifru.ifru_addr	/* address */
 #define ifr_broadaddr	ifr_ifru.ifru_broadaddr	/* broadcast address */
@@ -88,7 +89,6 @@ extern "C" {
 #define ifr_mtu	ifr_ifru.ifru_mtu	/* mtu */
 #define ifr_netmask	ifr_ifru.ifru_netmask	/* interface net mask */
 #define ifr_slave	ifr_ifru.ifru_slave	/* slave device */
-#if __LSB_VERSION__ >= 12
 #define IFNAMSIZ	IF_NAMESIZE
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -121,8 +121,11 @@ extern "C" {
 /* Structure used in SIOCGIFCONF request.  Used to retrieve interface
    configuration for machine (useful for programs which must know all
    networks accessible).*/
+#if __LSB_VERSION__ >= 12
 #define ifc_buf	ifc_ifcu.ifcu_buf	/* Buffer address. */
 #define ifc_req	ifc_ifcu.ifcu_req	/* Array of structures. */
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
 
 
 #if __LSB_VERSION__ >= 12

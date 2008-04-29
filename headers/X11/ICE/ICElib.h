@@ -73,25 +73,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    struct {
-	int major_version;
-	int minor_version;
-	IcePaProcessMsgProc process_msg_proc;
-    };
-
-    struct {
-	long unsigned int sequence_of_request;
-	int major_opcode_of_request;
-	int minor_opcode_of_request;
-	IcePointer reply;
-    };
-
-    struct {
-	int major_version;
-	int minor_version;
-	IcePoProcessMsgProc process_msg_proc;
-    };
-
     enum IceAcceptStatus {
 	IceAcceptSuccess = 0,
 	IceAcceptFailure = 1,

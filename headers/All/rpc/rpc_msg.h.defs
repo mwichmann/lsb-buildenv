@@ -20,6 +20,9 @@ enum reject_stat {
     AUTH_ERROR = 1
 };
 
+#define ar_results	ru.AR_results
+#define ar_vers	ru.AR_versions
+
 struct accepted_reply {
     struct opaque_auth ar_verf;
     enum accept_stat ar_stat;
@@ -35,6 +38,9 @@ struct accepted_reply {
     } ru;
 };
 
+#define rj_vers	ru.RJ_versions
+#define rj_why	ru.RJ_why
+
 struct rejected_reply {
     enum reject_stat rj_stat;
     union {
@@ -45,6 +51,9 @@ struct rejected_reply {
 	enum auth_stat RJ_why;
     } ru;
 };
+
+#define rp_acpt	ru.RP_ar
+#define rp_rjct	ru.RP_dr
 
 struct reply_body {
     enum reply_stat rp_stat;
@@ -62,6 +71,11 @@ struct call_body {
     struct opaque_auth cb_cred;
     struct opaque_auth cb_verf;
 };
+
+#define rm_call	ru.RM_cmb
+#define rm_reply	ru.RM_rmb
+#define acpted_rply	ru.RM_rmb.ru.RP_ar
+#define rjcted_rply	ru.RM_rmb.ru.RP_dr
 
 struct rpc_msg {
     unsigned long int rm_xid;

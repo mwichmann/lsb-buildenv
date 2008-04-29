@@ -2,6 +2,7 @@
 #ifndef _SYS_TYPES_H_
 #define _SYS_TYPES_H_
 
+#include <endian.h>
 #include <stddef.h>
 #include <strings.h>
 #include <stdint.h>
@@ -222,44 +223,8 @@ extern "C" {
 
 
 /* Setup some values*/
-#define __LITTLE_ENDIAN	1234
-#define __BIG_ENDIAN	4321
-
-
 
 /* Per Architecture settings*/
-#if defined __i386__
-#define __BYTE_ORDER	__LITTLE_ENDIAN
-#endif
-#if __LSB_VERSION__ >= 12
-#if defined __powerpc__ && !defined __powerpc64__
-#define __BYTE_ORDER	__BIG_ENDIAN
-#endif
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 13
-#if defined __s390__ && !defined __s390x__
-#define __BYTE_ORDER	__BIG_ENDIAN
-#endif
-#if defined __s390x__
-#define __BYTE_ORDER	__BIG_ENDIAN
-#endif
-#if defined __ia64__
-#define __BYTE_ORDER	__LITTLE_ENDIAN
-#endif
-#endif				/* __LSB_VERSION__ >= 1.3 */
-
-#if __LSB_VERSION__ >= 20
-#if defined __powerpc64__
-#define __BYTE_ORDER	__BIG_ENDIAN
-#endif
-#if defined __x86_64__
-#define __BYTE_ORDER	__LITTLE_ENDIAN
-#endif
-#endif				/* __LSB_VERSION__ >= 2.0 */
-
-
-
 #ifdef __cplusplus
 }
 #endif

@@ -34,28 +34,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    struct {
-	int type;
-	unsigned long int serial;
-	int send_event;
-	Display *display;
-	Drawable drawable;
-	int major_code;
-	int minor_code;
-	ShmSeg shmseg;
-	unsigned long int offset;
-    };
-
-    struct {
-	ShmSeg shmseg;
-	int shmid;
-	char *shmaddr;
-	int readOnly;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 

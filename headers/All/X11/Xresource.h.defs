@@ -24,10 +24,6 @@ typedef struct {
     unsigned int size;
     XPointer addr;
 } XrmValue;
-struct {
-    unsigned int size;
-    XPointer addr;
-};
 typedef struct {
     unsigned int size;
     XPointer addr;
@@ -61,12 +57,6 @@ typedef struct {
     XrmOptionKind argKind;
     XPointer value;
 } XrmOptionDescRec;
-struct {
-    char *option;
-    char *specifier;
-    XrmOptionKind argKind;
-    XPointer value;
-};
 typedef struct {
     char *option;
     char *specifier;

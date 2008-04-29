@@ -156,39 +156,6 @@ extern "C" {
 	XLineFixed right;
     };
 
-    struct {
-	unsigned short red;
-	unsigned short green;
-	unsigned short blue;
-	unsigned short alpha;
-    };
-
-    struct {
-	short x;
-	short y;
-	unsigned short width;
-	unsigned short height;
-    };
-
-    struct {
-	short red;
-	short redMask;
-	short green;
-	short greenMask;
-	short blue;
-	short blueMask;
-	short alpha;
-	short alphaMask;
-    };
-
-    struct {
-	PictFormat id;
-	int type;
-	int depth;
-	XRenderDirectFormat direct;
-	Colormap colormap;
-    };
-
     struct _XGlyphInfo {
 	unsigned short width;
 	unsigned short height;

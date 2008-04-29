@@ -74,28 +74,11 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    struct {
-	long int xrm_name;
-	long int xrm_class;
-	long int xrm_type;
-	Cardinal xrm_size;
-	int xrm_offset;
-	long int xrm_default_type;
-	XtPointer xrm_default_addr;
-    };
-
     struct _XtTMRec {
 	XtTranslations translations;
 	XtBoundActions proc_table;
 	struct _XtStateRec *current_state;
 	long unsigned int lastEventTime;
-    };
-
-    struct {
-	String name;
-	String type;
-	XtArgVal value;
-	int size;
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */

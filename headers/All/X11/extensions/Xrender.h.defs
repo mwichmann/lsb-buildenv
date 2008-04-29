@@ -54,12 +54,6 @@ typedef struct {
     unsigned short blue;
     unsigned short alpha;
 } XRenderColor;
-struct {
-    short x;
-    short y;
-    unsigned short width;
-    unsigned short height;
-};
 typedef long unsigned int Glyph;
 typedef long unsigned int PictFormat;
 typedef struct {

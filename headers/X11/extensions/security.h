@@ -52,24 +52,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    struct {
-	unsigned int timeout;
-	unsigned int trust_level;
-	XID group;
-	long int event_mask;
-    };
-
-    struct {
-	int type;
-	unsigned long int serial;
-	int send_event;
-	Display *display;
-	XSecurityAuthorization auth_id;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 

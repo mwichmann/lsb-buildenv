@@ -1,4 +1,6 @@
 
+#define ELF_NGREG	48
+
 typedef struct _libc_vrstate {
     unsigned int vrregs[128];
     unsigned int vrsave;

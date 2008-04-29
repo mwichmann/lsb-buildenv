@@ -87,16 +87,6 @@ extern "C" {
 	XrmBindLoosely
     };
 
-    struct {
-	unsigned int size;
-	XPointer addr;
-    };
-
-    struct {
-	unsigned int size;
-	XPointer addr;
-    };
-
     enum {
 	XrmoptionNoArg,
 	XrmoptionIsArg,
@@ -106,20 +96,6 @@ extern "C" {
 	XrmoptionSkipArg,
 	XrmoptionSkipLine,
 	XrmoptionSkipNArgs
-    };
-
-    struct {
-	char *option;
-	char *specifier;
-	XrmOptionKind argKind;
-	XPointer value;
-    };
-
-    struct {
-	char *option;
-	char *specifier;
-	XrmOptionKind argKind;
-	XPointer value;
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */

@@ -42,8 +42,11 @@ extern "C" {
 
 
 /* Reply to an rpc request that was accepted by the server.*/
+#if __LSB_VERSION__ >= 13
 #define ar_results	ru.AR_results
 #define ar_vers	ru.AR_versions
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
 
 
 #if __LSB_VERSION__ >= 13
@@ -66,8 +69,11 @@ extern "C" {
 
 
 /* Reply to an rpc request that was rejected by the server.*/
+#if __LSB_VERSION__ >= 13
 #define rj_vers	ru.RJ_versions
 #define rj_why	ru.RJ_why
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
 
 
 #if __LSB_VERSION__ >= 13
@@ -86,8 +92,11 @@ extern "C" {
 
 
 /* Body of a reply to an rpc request.*/
+#if __LSB_VERSION__ >= 13
 #define rp_acpt	ru.RP_ar
 #define rp_rjct	ru.RP_dr
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
 
 
 #if __LSB_VERSION__ >= 13
@@ -117,10 +126,13 @@ extern "C" {
 
 
 /* The rpc message*/
+#if __LSB_VERSION__ >= 13
 #define rm_call	ru.RM_cmb
 #define rm_reply	ru.RM_rmb
 #define acpted_rply	ru.RM_rmb.ru.RP_ar
 #define rjcted_rply	ru.RM_rmb.ru.RP_dr
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
 
 
 #if __LSB_VERSION__ >= 13
