@@ -202,17 +202,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     struct _WidgetRec;
 
-    struct {
-	XtGeometryMask request_mode;
-	Position x;
-	Position y;
-	Dimension width;
-	Dimension height;
-	Dimension border_width;
-	Widget sibling;
-	int stack_mode;
-    };
-
     struct _XtResource {
 	String resource_name;
 	String resource_class;
@@ -251,17 +240,6 @@ extern "C" {
 	XtProcedureArg = 6
     };
 
-    struct {
-	enum XtAddressMode address_mode;
-	XtPointer address_id;
-	Cardinal size;
-    };
-
-    struct {
-	String name;
-	XtArgVal value;
-    };
-
     enum XtCallbackStatus {
 	XtCallbackNoList = 0,
 	XtCallbackHasNone = 1,
@@ -276,11 +254,6 @@ extern "C" {
     struct _XtCallbackRec {
 	XtCallbackProc callback;
 	XtPointer closure;
-    };
-
-    struct {
-	char match;
-	String substitution;
     };
 
     enum XtGrabKind {

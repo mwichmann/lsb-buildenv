@@ -38,27 +38,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    struct {
-	char *protocol_name;
-	char *network_id;
-	char *auth_name;
-	short unsigned int auth_data_length;
-	char *auth_data;
-    };
-
-    struct {
-	char *protocol_name;
-	short unsigned int protocol_data_length;
-	char *protocol_data;
-	char *network_id;
-	char *auth_name;
-	short unsigned int auth_data_length;
-	char *auth_data;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 

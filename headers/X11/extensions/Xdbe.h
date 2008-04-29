@@ -36,28 +36,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    struct {
-	Window swap_window;
-	XdbeSwapAction swap_action;
-    };
-
-    struct {
-	Window window;
-    };
-
-    struct {
-	int type;
-	Display *display;
-	XdbeBackBuffer buffer;
-	unsigned long int serial;
-	unsigned char error_code;
-	unsigned char request_code;
-	unsigned char minor_code;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 

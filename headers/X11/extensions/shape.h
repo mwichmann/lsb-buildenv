@@ -29,24 +29,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    struct {
-	int type;
-	unsigned long int serial;
-	int send_event;
-	Display *display;
-	Window window;
-	int kind;
-	int x;
-	int y;
-	unsigned int width;
-	unsigned int height;
-	Time time;
-	int shaped;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 

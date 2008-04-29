@@ -116,84 +116,12 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    struct;
-
-    struct;
-
-    struct;
-
-    struct;
-
-    struct;
-
-    struct;
-
-    struct;
-
     struct _XComposeStatus {
 	XPointer compose_ptr;
 	int chars_matched;
     };
 
-    struct;
-
-    struct;
-
     enum;
-
-    struct {
-	long int flags;
-	int x;
-	int y;
-	int width;
-	int height;
-	int min_width;
-	int min_height;
-	int max_width;
-	int max_height;
-	int width_inc;
-	int height_inc;
-	struct {
-	    int x;
-	    int y;
-	} min_aspect;
-	struct {
-	    int x;
-	    int y;
-	} max_aspect;
-	int base_width;
-	int base_height;
-	int win_gravity;
-    };
-
-    struct {
-	int x;
-	int y;
-    };
-
-    struct {
-	int x;
-	int y;
-    };
-
-    struct {
-	long int flags;
-	int input;
-	int initial_state;
-	Pixmap icon_pixmap;
-	Window icon_window;
-	int icon_x;
-	int icon_y;
-	Pixmap icon_mask;
-	XID window_group;
-    };
-
-    struct {
-	unsigned char *value;
-	Atom encoding;
-	int format;
-	unsigned long int nitems;
-    };
 
     enum {
 	XStringStyle,
@@ -201,46 +129,6 @@ extern "C" {
 	XTextStyle,
 	XStdICCTextStyle,
 	XUTF8StringStyle
-    };
-
-    struct {
-	int min_width;
-	int min_height;
-	int max_width;
-	int max_height;
-	int width_inc;
-	int height_inc;
-    };
-
-    struct {
-	char *res_name;
-	char *res_class;
-    };
-
-    struct {
-	Visual *visual;
-	VisualID visualid;
-	int screen;
-	int depth;
-	int class;
-	unsigned long int red_mask;
-	unsigned long int green_mask;
-	unsigned long int blue_mask;
-	int colormap_size;
-	int bits_per_rgb;
-    };
-
-    struct {
-	Colormap colormap;
-	unsigned long int red_max;
-	unsigned long int red_mult;
-	unsigned long int green_max;
-	unsigned long int green_mult;
-	unsigned long int blue_max;
-	unsigned long int blue_mult;
-	unsigned long int base_pixel;
-	VisualID visualid;
-	XID killid;
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */

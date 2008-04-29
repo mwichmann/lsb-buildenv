@@ -42,34 +42,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    struct {
-	unsigned short red;
-	unsigned short green;
-	unsigned short blue;
-    };
-
-    struct {
-	XcmsFloat red;
-	XcmsFloat green;
-	XcmsFloat blue;
-    };
-
-    struct {
-	union {
-	    XcmsRGB RGB;
-	    XcmsRGBi RGBi;
-	    XcmsCIEXYZ CIEXYZ;
-	    XcmsCIEuvY CIEuvY;
-	    XcmsCIExyY CIExyY;
-	    XcmsCIELab CIELab;
-	    XcmsCIELuv CIELuv;
-	    XcmsTekHVC TekHVC;
-	    XcmsPad Pad;
-	} spec;
-	unsigned long int pixel;
-	XcmsColorFormat format;
-    };
-
     struct _XcmsFunctionSet {
 	XcmsColorSpace **DDColorSpaces;
 	XcmsScreenInitProc screenInitProc;
@@ -150,52 +122,6 @@ extern "C" {
 	XcmsFloat pad2;
 	XcmsFloat pad3;
     } XcmsPad;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
-    struct {
-	XcmsFloat X;
-	XcmsFloat Y;
-	XcmsFloat Z;
-    };
-
-    struct {
-	XcmsFloat u_prime;
-	XcmsFloat v_prime;
-	XcmsFloat Y;
-    };
-
-    struct {
-	XcmsFloat x;
-	XcmsFloat y;
-	XcmsFloat Y;
-    };
-
-    struct {
-	XcmsFloat L_star;
-	XcmsFloat a_star;
-	XcmsFloat b_star;
-    };
-
-    struct {
-	XcmsFloat L_star;
-	XcmsFloat u_star;
-	XcmsFloat v_star;
-    };
-
-    struct {
-	XcmsFloat H;
-	XcmsFloat V;
-	XcmsFloat C;
-    };
-
-    struct {
-	XcmsFloat pad0;
-	XcmsFloat pad1;
-	XcmsFloat pad2;
-	XcmsFloat pad3;
-    };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
