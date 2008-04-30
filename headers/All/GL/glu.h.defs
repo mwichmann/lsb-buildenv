@@ -176,7 +176,7 @@ extern GLint gluBuild2DMipmaps(GLenum, GLint, GLsizei, GLsizei, GLenum,
 			       GLenum, const void *);
 extern void gluQuadricOrientation(GLUquadric *, GLenum);
 extern void gluBeginCurve(GLUnurbs *);
-extern void gluQuadricCallback(GLUquadric *, GLenum,);
+extern void gluQuadricCallback(GLUquadric *, GLenum, _GLUfuncptr);
 extern void gluBeginPolygon(GLUtesselator *);
 extern void gluPickMatrix(GLdouble, GLdouble, GLdouble, GLdouble, GLint *);
 extern GLint gluBuild1DMipmapLevels(GLenum, GLint, GLsizei, GLenum, GLenum,
@@ -203,7 +203,7 @@ extern GLint gluBuild1DMipmaps(GLenum, GLint, GLsizei, GLenum, GLenum,
 			       const void *);
 extern void gluPerspective(GLdouble, GLdouble, GLdouble, GLdouble);
 extern void gluTessEndContour(GLUtesselator *);
-extern void gluTessCallback(GLUtesselator *, GLenum,);
+extern void gluTessCallback(GLUtesselator *, GLenum, _GLUfuncptr);
 extern void gluGetTessProperty(GLUtesselator *, GLenum, GLdouble *);
 extern GLUquadric *gluNewQuadric(void);
 extern void gluQuadricTexture(GLUquadric *, GLboolean);
@@ -238,7 +238,7 @@ extern GLint gluProject(GLdouble, GLdouble, GLdouble, const GLdouble *,
 extern void gluTessNormal(GLUtesselator *, GLdouble, GLdouble, GLdouble);
 extern void gluDeleteNurbsRenderer(GLUnurbs *);
 extern void gluBeginSurface(GLUnurbs *);
-extern void gluNurbsCallback(GLUnurbs *, GLenum,);
+extern void gluNurbsCallback(GLUnurbs *, GLenum, _GLUfuncptr);
 extern void gluNurbsCurve(GLUnurbs *, GLint, GLfloat *, GLint, GLfloat *,
 			  GLint, GLenum);
 extern const GLubyte *gluGetString(GLenum);

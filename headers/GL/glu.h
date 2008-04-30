@@ -246,7 +246,7 @@ extern "C" {
     extern GLUquadric *gluNewQuadric(void);
     extern GLUtesselator *gluNewTess(void);
     extern void gluNextContour(GLUtesselator *, GLenum);
-    extern void gluNurbsCallback(GLUnurbs *, GLenum);
+    extern void gluNurbsCallback(GLUnurbs *, GLenum, _GLUfuncptr);
     extern void gluNurbsCallbackData(GLUnurbs *, GLvoid *);
     extern void gluNurbsCallbackDataEXT(GLUnurbs *, GLvoid *);
     extern void gluNurbsCurve(GLUnurbs *, GLint, GLfloat *, GLint,
@@ -265,7 +265,7 @@ extern "C" {
 			    const GLdouble *, const GLint *, GLdouble *,
 			    GLdouble *, GLdouble *);
     extern void gluPwlCurve(GLUnurbs *, GLint, GLfloat *, GLint, GLenum);
-    extern void gluQuadricCallback(GLUquadric *, GLenum);
+    extern void gluQuadricCallback(GLUquadric *, GLenum, _GLUfuncptr);
     extern void gluQuadricDrawStyle(GLUquadric *, GLenum);
     extern void gluQuadricNormals(GLUquadric *, GLenum);
     extern void gluQuadricOrientation(GLUquadric *, GLenum);
@@ -276,7 +276,7 @@ extern "C" {
     extern void gluSphere(GLUquadric *, GLdouble, GLint, GLint);
     extern void gluTessBeginContour(GLUtesselator *);
     extern void gluTessBeginPolygon(GLUtesselator *, GLvoid *);
-    extern void gluTessCallback(GLUtesselator *, GLenum);
+    extern void gluTessCallback(GLUtesselator *, GLenum, _GLUfuncptr);
     extern void gluTessEndContour(GLUtesselator *);
     extern void gluTessEndPolygon(GLUtesselator *);
     extern void gluTessNormal(GLUtesselator *, GLdouble, GLdouble,
