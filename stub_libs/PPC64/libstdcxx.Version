@@ -2921,3 +2921,32 @@ GLIBCXX_3.4.2 {
   _ZN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEE4fileEv;
   _ZN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEE4fileEv;
 };
+GLIBCXX_3.4.4 {
+  _ZN9__gnu_cxx6__poolILb0EE10_M_destroyEv;
+  _ZN9__gnu_cxx6__poolILb0EE13_M_initializeEv;
+  _ZN9__gnu_cxx6__poolILb0EE16_M_reclaim_blockEPcm;
+  _ZN9__gnu_cxx6__poolILb0EE16_M_reserve_blockEmm;
+  _ZN9__gnu_cxx6__poolILb1EE10_M_destroyEv;
+  _ZN9__gnu_cxx6__poolILb1EE13_M_initializeEPFvPvE;
+  _ZN9__gnu_cxx6__poolILb1EE16_M_get_thread_idEv;
+  _ZN9__gnu_cxx6__poolILb1EE16_M_reclaim_blockEPcm;
+  _ZN9__gnu_cxx6__poolILb1EE16_M_reserve_blockEmm;
+  _ZN9__gnu_cxx6__poolILb1EE21_M_destroy_thread_keyEPv;
+  _ZN9__gnu_cxx9free_list6_M_getEm;
+  _ZN9__gnu_cxx9free_list8_M_clearEv;
+};
+GLIBCXX_3.4.5 {
+  _ZNKSt13basic_fstreamIcSt11char_traitsIcEE7is_openEv;
+  _ZNKSt13basic_fstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNKSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv;
+  _ZNKSt14basic_ifstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNKSt14basic_ofstreamIcSt11char_traitsIcEE7is_openEv;
+  _ZNKSt14basic_ofstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEppEv;
+  _ZNSt19istreambuf_iteratorIwSt11char_traitsIwEEppEv;
+};
+GLIBCXX_3.4.6 {
+  _ZN9__gnu_cxx6__poolILb1EE13_M_initializeEv;
+  _ZSt17__copy_streambufsIcSt11char_traitsIcEElPSt15basic_streambufIT_T0_ES6_;
+  _ZSt17__copy_streambufsIwSt11char_traitsIwEElPSt15basic_streambufIT_T0_ES6_;
+};
