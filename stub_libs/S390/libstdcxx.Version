@@ -2921,3 +2921,47 @@ GLIBCXX_3.4.2 {
   _ZN9__gnu_cxx18stdio_sync_filebufIcSt11char_traitsIcEE4fileEv;
   _ZN9__gnu_cxx18stdio_sync_filebufIwSt11char_traitsIwEE4fileEv;
 };
+GLIBCXX_3.4.4 {
+  _ZN9__gnu_cxx6__poolILb0EE10_M_destroyEv;
+  _ZN9__gnu_cxx6__poolILb0EE13_M_initializeEv;
+  _ZN9__gnu_cxx6__poolILb0EE16_M_reclaim_blockEPcj;
+  _ZN9__gnu_cxx6__poolILb0EE16_M_reserve_blockEjj;
+  _ZN9__gnu_cxx6__poolILb1EE10_M_destroyEv;
+  _ZN9__gnu_cxx6__poolILb1EE13_M_initializeEPFvPvE;
+  _ZN9__gnu_cxx6__poolILb1EE16_M_get_thread_idEv;
+  _ZN9__gnu_cxx6__poolILb1EE16_M_reclaim_blockEPcj;
+  _ZN9__gnu_cxx6__poolILb1EE16_M_reserve_blockEjj;
+  _ZN9__gnu_cxx6__poolILb1EE21_M_destroy_thread_keyEPv;
+  _ZN9__gnu_cxx9free_list6_M_getEj;
+  _ZN9__gnu_cxx9free_list8_M_clearEv;
+};
+GLIBCXX_3.4.5 {
+  _ZNKSbIwSt11char_traitsIwESaIwEE15_M_check_lengthEjjPKc;
+  _ZNKSs15_M_check_lengthEjjPKc;
+  _ZNKSt13basic_fstreamIcSt11char_traitsIcEE7is_openEv;
+  _ZNKSt13basic_fstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNKSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv;
+  _ZNKSt14basic_ifstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNKSt14basic_ofstreamIcSt11char_traitsIcEE7is_openEv;
+  _ZNKSt14basic_ofstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNSbIwSt11char_traitsIwESaIwEE4_Rep26_M_set_length_and_sharableEj;
+  _ZNSbIwSt11char_traitsIwESaIwEE7_M_copyEPwPKwj;
+  _ZNSbIwSt11char_traitsIwESaIwEE7_M_moveEPwPKwj;
+  _ZNSbIwSt11char_traitsIwESaIwEE9_M_assignEPwjw;
+  _ZNSi6ignoreEi;
+  _ZNSs4_Rep26_M_set_length_and_sharableEj;
+  _ZNSs7_M_copyEPcPKcj;
+  _ZNSs7_M_moveEPcPKcj;
+  _ZNSs9_M_assignEPcjc;
+  _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEi;
+  _ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEppEv;
+  _ZNSt19istreambuf_iteratorIwSt11char_traitsIwEEppEv;
+};
+GLIBCXX_3.4.6 {
+  _ZN9__gnu_cxx6__poolILb1EE13_M_initializeEv;
+  _ZSt17__copy_streambufsIcSt11char_traitsIcEEiPSt15basic_streambufIT_T0_ES6_;
+  _ZSt17__copy_streambufsIwSt11char_traitsIwEEiPSt15basic_streambufIT_T0_ES6_;
+};
+GLIBCXX_3.4.7 {
+  _ZNSt6locale5_Impl16_M_install_cacheEPKNS_5facetEj;
+};
