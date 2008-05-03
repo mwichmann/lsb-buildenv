@@ -142,7 +142,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 13
 #define GLX_ARB_get_proc_address	1
-#define GLX_GLXEXT_VERSION	19
+#define GLX_GLXEXT_VERSION	6
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 
