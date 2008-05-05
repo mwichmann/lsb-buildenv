@@ -42,11 +42,10 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
-#if __LSB_VERSION__ >= 13
-    struct _Unwind_Context;	/* XXX hand-edit */
-#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
+    struct _Unwind_Context;     /* XXX hand-edit */
+
     typedef unsigned int _Unwind_Ptr
 	__attribute__ ((__mode__(__pointer__)));
 
@@ -77,13 +76,10 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 13
-    struct _Unwind_Exception;	/* XXX hand-edit */
-#endif				/* __LSB_VERSION__ >= 1.3 */
+    struct _Unwind_Exception;   /* XXX hand-edit */
 
-#if __LSB_VERSION__ >= 13
     typedef void (*_Unwind_Exception_Cleanup_Fn) (_Unwind_Reason_Code,
-						  struct _Unwind_Exception
-						  *);
+						  struct _Unwind_Exception *);
 
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
@@ -518,24 +514,6 @@ extern "C" {
 /* S390X */
     extern void _Unwind_SetIP(struct _Unwind_Context *, unsigned int);
 #endif
-#if __LSB_VERSION__ < 20
-    extern _Unwind_Ptr _Unwind_ForcedUnwind(struct _Unwind_Exception *,
-					    _Unwind_Stop_Fn, void *);
-#endif				/* __LSB_VERSION__ < 2.0 */
-
-#if __LSB_VERSION__ < 30
-    extern _Unwind_Ptr _Unwind_GetDataRelBase(struct _Unwind_Context *);
-    extern _Unwind_Word _Unwind_GetGR(struct _Unwind_Context *, int);
-    extern _Unwind_Ptr _Unwind_GetIP(struct _Unwind_Context *);
-    extern _Unwind_Ptr _Unwind_GetLanguageSpecificData(struct
-						       _Unwind_Context *,
-						       unsigned int);
-    extern _Unwind_Ptr _Unwind_GetRegionStart(struct _Unwind_Context *);
-    extern _Unwind_Reason_Code _Unwind_RaiseException(struct
-						      _Unwind_Exception *);
-    extern void _Unwind_SetIP(struct _Unwind_Context *, unsigned int);
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
@@ -643,13 +621,6 @@ extern "C" {
 /* x86-64 */
     extern void _Unwind_SetIP(struct _Unwind_Context *, unsigned int);
 #endif
-#if __LSB_VERSION__ < 30
-    extern void _Unwind_DeleteException(struct _Unwind_Exception *);
-    extern _Unwind_Ptr _Unwind_GetTextRelBase(struct _Unwind_Context *);
-    extern void _Unwind_Resume(struct _Unwind_Exception *);
-    extern void _Unwind_SetGR(struct _Unwind_Context *, int, u_int64_t);
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30

@@ -1415,12 +1415,13 @@ $constlist=join '\',\'', keys(%const);
 #
 # Get LSB versions where this header is allowed in
 #
-$select = "SELECT Happearedin, Hwithdrawnin FROM Header WHERE Hid=$Hid ORDER BY Happearedin";
-print $select,"\n" if $trace;
-$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
-$sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
-$index=0;
-for(1..$sth->rows) {
+if( $Hsrcerror ne "Yes" ) {
+    $select = "SELECT Happearedin, Hwithdrawnin FROM Header WHERE Hid=$Hid ORDER BY Happearedin";
+    print $select,"\n" if $trace;
+    $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+    $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
+    $index=0;
+    for(1..$sth->rows) {
 	$entry = $sth->fetchrow_hashref;
 	$appearedin = $entry->{'Happearedin'};
 	$appearedin =~ s/\.//;
@@ -1439,9 +1440,10 @@ for(1..$sth->rows) {
 	}
 	print ")";
 	$index++;
+    }
+    $sth->finish;
+    print "\n";
 }
-$sth->finish;
-print "\n";
 
 #
 # Set up multiple inclusion protection
@@ -2064,9 +2066,7 @@ $select.= "  SELECT AAbinint FROM AbiApi ";
 $select.= "  WHERE AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
 $select.= "  AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
 $select.= ")) AND ";
-$select.= "AIappearedin<>'' ) ";
-# $select.= " (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-# $select.= " AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
+$select.= "AIappearedin > '' AND (AIwithdrawnin IS NULL OR AIwithdrawnin > '3.0') ) ";
 $select.= ") ";
 # Hope check for libstdcxx is temporary and will be eliminated when we get more
 # graceful c++ headers generators
@@ -2284,7 +2284,9 @@ else {
 }
 print "#endif /* protection */\n";
 
-print "#endif /* LSB version */\n";
+if( $Hsrcerror ne "Yes" ) {
+    print "#endif /* LSB version */\n";
+}
 
 $dbh->disconnect;
 

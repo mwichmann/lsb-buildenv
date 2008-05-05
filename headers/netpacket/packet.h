@@ -1,14 +1,14 @@
 #ifndef _NETPACKET_PACKET_H_
 #define _NETPACKET_PACKET_H_
 
+
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#error Not Available in LSB
+#error "This header not permitted by the LSB"
 
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif				/* protection */

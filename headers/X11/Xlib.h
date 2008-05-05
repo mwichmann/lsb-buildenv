@@ -1315,22 +1315,6 @@ extern "C" {
     extern int XwcTextPerCharExtents(XFontSet, wchar_t *, int,
 				     XRectangle *, XRectangle *, int,
 				     int *, XRectangle *, XRectangle *);
-#if __LSB_VERSION__ < 11
-    extern int XESetBeforeFlush(void);
-    extern int *XESetCloseDisplay(void);
-    extern int XESetCopyGC(void);
-    extern int XESetCreateFont(void);
-    extern int XESetCreateGC(void);
-    extern int XESetError(void);
-    extern int XESetErrorString(void);
-    extern int XESetEventToWire(void);
-    extern int XESetFreeFont(void);
-    extern int XESetFreeGC(void);
-    extern int XESetPrintErrorValues(void);
-    extern int XESetWireToError(void);
-    extern int XESetWireToEvent(void);
-#endif				/* __LSB_VERSION__ < 1.1 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12

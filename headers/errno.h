@@ -176,10 +176,6 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 10
     extern int *__errno_location(void);
-#if __LSB_VERSION__ < 11
-    extern int errno;
-#endif				/* __LSB_VERSION__ < 1.1 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus

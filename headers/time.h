@@ -78,14 +78,6 @@ extern "C" {
     extern long int timezone;
     extern char *tzname[2];
     extern void tzset(void);
-#if __LSB_VERSION__ < 13
-    extern int clock_getcpuclockid(pid_t, clockid_t *);
-    extern int clock_getres(clockid_t, struct timespec *);
-    extern int clock_gettime(clockid_t, struct timespec *);
-    extern int clock_nanosleep(clockid_t, int, const struct timespec *,
-			       struct timespec *);
-#endif				/* __LSB_VERSION__ < 1.3 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
@@ -96,15 +88,6 @@ extern "C" {
     extern char *ctime_r(const time_t *, char *);
     extern struct tm *gmtime_r(const time_t *, struct tm *);
     extern struct tm *localtime_r(const time_t *, struct tm *);
-#if __LSB_VERSION__ < 13
-    extern int timer_create(clockid_t, struct sigevent *, timer_t *);
-    extern int timer_delete(timer_t);
-    extern int timer_getoverrun(timer_t);
-    extern int timer_gettime(timer_t, struct itimerspec *);
-    extern int timer_settime(timer_t, int, const struct itimerspec *,
-			     struct itimerspec *);
-#endif				/* __LSB_VERSION__ < 1.3 */
-
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 30

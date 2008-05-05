@@ -27,11 +27,6 @@ extern "C" {
     extern char *inet_ntoa(struct in_addr);
     extern uint32_t ntohl(uint32_t);
     extern uint16_t ntohs(uint16_t);
-#if __LSB_VERSION__ < 20
-    extern int inet_aton(const char *,
-			 struct in_addr *) LSB_DECL_DEPRECATED;
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
