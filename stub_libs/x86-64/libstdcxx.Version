@@ -2936,15 +2936,41 @@ GLIBCXX_3.4.4 {
   _ZN9__gnu_cxx9free_list8_M_clearEv;
 };
 GLIBCXX_3.4.5 {
+  _ZNKSbIwSt11char_traitsIwESaIwEE11_M_disjunctEPKw;
+  _ZNKSbIwSt11char_traitsIwESaIwEE15_M_check_lengthEmmPKc;
+  _ZNKSs11_M_disjunctEPKc;
+  _ZNKSs15_M_check_lengthEmmPKc;
   _ZNKSt13basic_fstreamIcSt11char_traitsIcEE7is_openEv;
   _ZNKSt13basic_fstreamIwSt11char_traitsIwEE7is_openEv;
   _ZNKSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv;
   _ZNKSt14basic_ifstreamIwSt11char_traitsIwEE7is_openEv;
   _ZNKSt14basic_ofstreamIcSt11char_traitsIcEE7is_openEv;
   _ZNKSt14basic_ofstreamIwSt11char_traitsIwEE7is_openEv;
+  _ZNSbIwSt11char_traitsIwESaIwEE4_Rep26_M_set_length_and_sharableEm;
+  _ZNSbIwSt11char_traitsIwESaIwEE7_M_copyEPwPKwm;
+  _ZNSbIwSt11char_traitsIwESaIwEE7_M_moveEPwPKwm;
+  _ZNSbIwSt11char_traitsIwESaIwEE9_M_assignEPwmw;
+  _ZNSi6ignoreEl;
+  _ZNSi6ignoreEv;
+  _ZNSs4_Rep26_M_set_length_and_sharableEm;
+  _ZNSs7_M_copyEPcPKcm;
+  _ZNSs7_M_moveEPcPKcm;
+  _ZNSs9_M_assignEPcmc;
+  _ZNSt11char_traitsIcE2eqERKcS2_;
+  _ZNSt11char_traitsIwE2eqERKwS2_;
+  _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEl;
+  _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEv;
   _ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEppEv;
   _ZNSt19istreambuf_iteratorIwSt11char_traitsIwEEppEv;
 };
 GLIBCXX_3.4.6 {
   _ZN9__gnu_cxx6__poolILb1EE13_M_initializeEv;
+  _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE9showmanycEv;
+  _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE9showmanycEv;
+  _ZNSt6locale5facet13_S_get_c_nameEv;
+  _ZNSt8ios_base17_M_call_callbacksENS_5eventE;
+  _ZNSt8ios_base20_M_dispose_callbacksEv;
+};
+GLIBCXX_3.4.7 {
+  _ZNSt6locale5_Impl16_M_install_cacheEPKNS_5facetEm;
 };

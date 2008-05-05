@@ -2936,7 +2936,9 @@ GLIBCXX_3.4.4 {
   _ZN9__gnu_cxx9free_list8_M_clearEv;
 };
 GLIBCXX_3.4.5 {
+  _ZNKSbIwSt11char_traitsIwESaIwEE11_M_disjunctEPKw;
   _ZNKSbIwSt11char_traitsIwESaIwEE15_M_check_lengthEjjPKc;
+  _ZNKSs11_M_disjunctEPKc;
   _ZNKSs15_M_check_lengthEjjPKc;
   _ZNKSt13basic_fstreamIcSt11char_traitsIcEE7is_openEv;
   _ZNKSt13basic_fstreamIwSt11char_traitsIwEE7is_openEv;
@@ -2949,16 +2951,25 @@ GLIBCXX_3.4.5 {
   _ZNSbIwSt11char_traitsIwESaIwEE7_M_moveEPwPKwj;
   _ZNSbIwSt11char_traitsIwESaIwEE9_M_assignEPwjw;
   _ZNSi6ignoreEi;
+  _ZNSi6ignoreEv;
   _ZNSs4_Rep26_M_set_length_and_sharableEj;
   _ZNSs7_M_copyEPcPKcj;
   _ZNSs7_M_moveEPcPKcj;
   _ZNSs9_M_assignEPcjc;
+  _ZNSt11char_traitsIcE2eqERKcS2_;
+  _ZNSt11char_traitsIwE2eqERKwS2_;
   _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEi;
+  _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEv;
   _ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEppEv;
   _ZNSt19istreambuf_iteratorIwSt11char_traitsIwEEppEv;
 };
 GLIBCXX_3.4.6 {
   _ZN9__gnu_cxx6__poolILb1EE13_M_initializeEv;
+  _ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE9showmanycEv;
+  _ZNSt15basic_stringbufIwSt11char_traitsIwESaIwEE9showmanycEv;
+  _ZNSt6locale5facet13_S_get_c_nameEv;
+  _ZNSt8ios_base17_M_call_callbacksENS_5eventE;
+  _ZNSt8ios_base20_M_dispose_callbacksEv;
   _ZSt17__copy_streambufsIcSt11char_traitsIcEEiPSt15basic_streambufIT_T0_ES6_;
   _ZSt17__copy_streambufsIwSt11char_traitsIwEEiPSt15basic_streambufIT_T0_ES6_;
 };
