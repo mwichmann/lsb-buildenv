@@ -51,52 +51,11 @@ extern "C" {
     extern void rewinddir(DIR *);
     extern void seekdir(DIR *, long int);
     extern long int telldir(DIR *);
-#if __LSB_VERSION__ < 20
-#if defined __i386__
-/* IA32 */
-    extern int alphasort(struct dirent **, struct dirent **);
-#endif
-    extern int alphasort(struct dirent **, struct dirent **);
-#if defined __i386__
-/* IA32 */
-    extern int alphasort64(void);
-#endif
-    extern int alphasort64(void);
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern int readdir_r(DIR *, struct dirent *, struct dirent **);
 #endif				/* __LSB_VERSION__ >= 1.1 */
-
-#if __LSB_VERSION__ >= 12
-#if __LSB_VERSION__ < 20
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern int alphasort(struct dirent **, struct dirent **);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern int alphasort64(void);
-#endif
-#endif				/* __LSB_VERSION__ < 2.0 */
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 13
-#if __LSB_VERSION__ < 20
-#if defined __ia64__
-/* IA64 */
-    extern int alphasort(struct dirent **, struct dirent **);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern int alphasort64(void);
-#endif
-#endif				/* __LSB_VERSION__ < 2.0 */
-
-#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 32
     extern int readdir64_r(DIR *, struct dirent64 *, struct dirent64 **);

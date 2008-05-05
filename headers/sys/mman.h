@@ -98,11 +98,6 @@ extern "C" {
     extern int munlock(const void *, size_t);
     extern int munlockall(void);
     extern int munmap(void *, size_t);
-#if __LSB_VERSION__ < 13
-    extern int shm_open(const char *, int, mode_t);
-    extern int shm_unlink(const char *);
-#endif				/* __LSB_VERSION__ < 1.3 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 30

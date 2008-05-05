@@ -155,75 +155,10 @@ extern "C" {
     extern struct servent *getservent(void);
     extern void setprotoent(int);
     extern void setservent(int);
-#if __LSB_VERSION__ < 12
-    extern int h_errno;
-    extern int h_errno;
-#endif				/* __LSB_VERSION__ < 1.2 */
-
-#if __LSB_VERSION__ < 20
-#if defined __i386__
-/* IA32 */
-    extern void endhostent(void);
-#endif
-    extern void endhostent(void);
-#if defined __i386__
-/* IA32 */
-    extern void sethostent(int);
-#endif
-    extern void sethostent(int);
-#endif				/* __LSB_VERSION__ < 2.0 */
-
-#if __LSB_VERSION__ < 30
-#if defined __i386__
-/* IA32 */
-    extern void endnetent(void);
-#endif
-    extern void endnetent(void);
-#if defined __i386__
-/* IA32 */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#if defined __i386__
-/* IA32 */
-    extern void setnetent(int);
-#endif
-    extern void setnetent(int);
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     extern int *__h_errno_location(void);
-#if __LSB_VERSION__ < 20
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern void endhostent(void);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern void sethostent(int);
-#endif
-#endif				/* __LSB_VERSION__ < 2.0 */
-
-#if __LSB_VERSION__ < 30
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern void endnetent(void);
-#endif
-    extern int gethostbyname_r(const char *, struct hostent *, char *,
-			       size_t, struct hostent **,
-			       int *) LSB_DECL_DEPRECATED;
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern void setnetent(int);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
@@ -231,87 +166,7 @@ extern "C" {
     extern const char *gai_strerror(int);
     extern int getaddrinfo(const char *, const char *,
 			   const struct addrinfo *, struct addrinfo **);
-#if __LSB_VERSION__ < 20
-#if defined __ia64__
-/* IA64 */
-    extern void endhostent(void);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern void sethostent(int);
-#endif
-#endif				/* __LSB_VERSION__ < 2.0 */
-
-#if __LSB_VERSION__ < 30
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern void endnetent(void);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern void endnetent(void);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern void endnetent(void);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern void setnetent(int);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern void setnetent(int);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern void setnetent(int);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.3 */
-
-#if __LSB_VERSION__ >= 20
-#if __LSB_VERSION__ < 30
-#if defined __x86_64__
-/* x86-64 */
-    extern void endnetent(void);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern void endnetent(void);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern struct netent *getnetbyaddr(uint32_t, int);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    extern void setnetent(int);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern void setnetent(int);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
-#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
     extern int gethostbyaddr_r(const void *, socklen_t, int,

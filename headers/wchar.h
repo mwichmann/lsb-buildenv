@@ -112,30 +112,6 @@ extern "C" {
     extern wchar_t *wmemset(wchar_t *, wchar_t, size_t);
     extern int wprintf(const wchar_t *, ...);
     extern int wscanf(const wchar_t *, ...);
-#if __LSB_VERSION__ < 12
-#if defined __i386__
-/* IA32 */
-    extern size_t __mbrlen(char *, size_t, mbstate_t *);
-#endif
-    extern size_t __mbrlen(char *, size_t, mbstate_t *);
-#if defined __i386__
-/* IA32 */
-    extern long long int __wcstoll_internal(wchar_t *, wchar_t * *, int,
-					    int);
-#endif
-    extern long long int __wcstoll_internal(wchar_t *, wchar_t * *, int,
-					    int);
-#if defined __i386__
-/* IA32 */
-    extern unsigned long long int __wcstoull_internal(wchar_t *,
-						      wchar_t * *, int,
-						      int);
-#endif
-    extern unsigned long long int __wcstoull_internal(wchar_t *,
-						      wchar_t * *, int,
-						      int);
-#endif				/* __LSB_VERSION__ < 1.2 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11

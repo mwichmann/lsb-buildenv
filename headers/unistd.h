@@ -498,91 +498,11 @@ extern "C" {
     extern int usleep(useconds_t);
     extern pid_t vfork(void);
     extern ssize_t write(int, const void *, size_t);
-#if __LSB_VERSION__ < 30
-#if defined __i386__
-/* IA32 */
-    extern int sethostid(long int);
-#endif
-    extern int sethostid(long int);
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
     extern ssize_t pread64(int, void *, size_t, off64_t);
 #endif				/* __LSB_VERSION__ >= 1.1 */
-
-#if __LSB_VERSION__ >= 12
-#if __LSB_VERSION__ < 30
-    extern int getdomainname(char *, size_t) LSB_DECL_DEPRECATED;
-    extern int setdomainname(const char *, size_t);
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __i386__
-/* IA32 */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern int sethostid(long int);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 13
-#if __LSB_VERSION__ < 30
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern int sethostid(long int);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern int sethostid(long int);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern int sethostid(long int);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
-#endif				/* __LSB_VERSION__ >= 1.3 */
-
-#if __LSB_VERSION__ >= 20
-#if __LSB_VERSION__ < 30
-#if defined __x86_64__
-/* x86-64 */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern int setdomainname(const char *, size_t);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    extern int sethostid(long int);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern int sethostid(long int);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
-#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
     extern int getlogin_r(char *, size_t);

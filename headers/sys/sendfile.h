@@ -1,4 +1,3 @@
-#if (__LSB_VERSION__ >=  )
 #ifndef _SYS_SENDFILE_H_
 #define _SYS_SENDFILE_H_
 
@@ -14,4 +13,3 @@ extern "C" {
 }
 #endif
 #endif				/* protection */
-#endif				/* LSB version */

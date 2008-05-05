@@ -375,24 +375,6 @@ extern "C" {
     extern int pthread_setcanceltype(int, int *);
     extern int pthread_setspecific(pthread_key_t, const void *);
     extern void pthread_testcancel(void);
-#if __LSB_VERSION__ < 11
-    extern int pthread_mutex_timedlock(pthread_mutex_t *,
-				       const struct timespec *);
-#endif				/* __LSB_VERSION__ < 1.1 */
-
-#if __LSB_VERSION__ < 20
-    extern int pthread_attr_getinheritsched(const pthread_attr_t *, int *);
-    extern int pthread_attr_getschedpolicy(const pthread_attr_t *, int *);
-    extern int pthread_attr_getscope(const pthread_attr_t *, int *);
-    extern int pthread_attr_setinheritsched(pthread_attr_t *, int);
-    extern int pthread_attr_setschedpolicy(pthread_attr_t *, int);
-    extern int pthread_attr_setscope(pthread_attr_t *, int);
-    extern int pthread_getschedparam(pthread_t, int *,
-				     struct sched_param *);
-    extern int pthread_setschedparam(pthread_t, int,
-				     const struct sched_param *);
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
@@ -401,12 +383,6 @@ extern "C" {
     extern int pthread_rwlock_timedwrlock(pthread_rwlock_t *,
 					  const struct timespec *);
     extern int pthread_setconcurrency(int);
-#if __LSB_VERSION__ < 20
-    extern int pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t *,
-					     int *);
-    extern int pthread_rwlockattr_setkind_np(pthread_rwlockattr_t *, int);
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20

@@ -150,14 +150,6 @@ extern "C" {
     extern int unlockpt(int);
     extern size_t wcstombs(char *, const wchar_t *, size_t);
     extern int wctomb(char *, wchar_t);
-#if __LSB_VERSION__ < 12
-#if defined __i386__
-/* IA32 */
-    extern char *__secure_getenv(char *);
-#endif
-    extern char *__secure_getenv(char *);
-#endif				/* __LSB_VERSION__ < 1.2 */
-
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
     extern int atexit(void (*)(void)
@@ -170,47 +162,11 @@ extern "C" {
     extern void lcong48(unsigned short[7]);
     extern int setenv(const char *, const char *, int);
     extern int unsetenv(const char *);
-#if __LSB_VERSION__ < 30
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern int random_r(struct random_data *, int32_t *);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
     extern long long int atoll(const char *);
-#if __LSB_VERSION__ < 30
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern int random_r(struct random_data *, int32_t *);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern int random_r(struct random_data *, int32_t *);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern int random_r(struct random_data *, int32_t *);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.3 */
-
-#if __LSB_VERSION__ >= 20
-#if __LSB_VERSION__ < 30
-#if defined __x86_64__
-/* x86-64 */
-    extern int random_r(struct random_data *, int32_t *);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern int random_r(struct random_data *, int32_t *);
-#endif
-#endif				/* __LSB_VERSION__ < 3.0 */
-
-#endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 30
     extern int posix_openpt(int);
