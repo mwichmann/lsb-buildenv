@@ -1,0 +1,11 @@
+
+class QMovie;
+enum _ZN6QMovie10MovieStateE {
+    NotRunning,
+    Paused,
+    Running
+};
+enum _ZN6QMovie9CacheModeE {
+    CacheNone,
+    CacheAll
+};

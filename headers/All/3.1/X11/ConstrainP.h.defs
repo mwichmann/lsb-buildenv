@@ -1,0 +1,19 @@
+
+#define XtConstraintExtensionVersion	1L
+
+typedef ConstraintClassRec;
+typedef struct _ConstraintClassPart {
+    XtResourceList resources;
+    Cardinal num_resources;
+    Cardinal constraint_size;
+    XtInitProc initialize;
+    XtWidgetProc destroy;
+    XtSetValuesFunc set_values;
+    XtPointer extension;
+} ConstraintClassPart;
+struct _ConstraintClassRec {
+    CoreClassPart core_class;
+    CompositeClassPart composite_class;
+    ConstraintClassPart constraint_class;
+};
+extern ConstraintClassRec constraintClassRec;

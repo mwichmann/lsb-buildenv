@@ -1,0 +1,7 @@
+
+class QRegion;
+enum _ZN7QRegion10RegionTypeE {
+    Rectangle,
+    Ellipse
+};
+struct _ZN7QRegion11QRegionDataE;

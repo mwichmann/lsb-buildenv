@@ -1,0 +1,7 @@
+
+#define __SIZEOF_PTHREAD_BARRIER_T	20
+
+typedef union {
+    char __size[__SIZEOF_PTHREAD_BARRIER_T];
+    long int __align;
+} pthread_barrier_t;

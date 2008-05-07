@@ -1,0 +1,4 @@
+
+class QTableWidgetSelectionRange;
+class QTableWidgetItem;
+class QTableWidget;

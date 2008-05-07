@@ -1,8 +1,10 @@
-ARCHS = All IA32 IA64 PPC32 S390 PPC64 S390X x86-64
-LSBVERSION=$(shell cat LSB_VERSION)
-HEADERFILELIST := $(shell ./getheaderlist -v `cat LSB_VERSION`)
+DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 
-all: $(foreach arch,$(ARCHS),headers-$(arch))
+LSBVERSION=$(shell cat LSB_VERSION)
+VERSIONS=$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVvalue>='3.0'" | grep -v Aname | sed s/\\t/_/g)
+HEADERFILELIST := $(shell ./getheaderlist)
+
+all: $(foreach archver,$(VERSIONS),headers-$(archver))
 
 headers-%: $(foreach headerfile,$(HEADERFILELIST),%/$(headerfile).defs)
 	@echo Made header files for $*
@@ -11,8 +13,8 @@ core_filelist desktop_filelist:
 	cd .. && ./mkfilelists $(LSBVERSION)
 
 %.defs: 
-	mkdir -p $(dir $@)
-	./mkdatadef -a $(shell expr $* : '\([^/]*\)') -v $(LSBVERSION) -h $(shell expr $* : '[^/]*/\(.*\)') | indent -kr -sob > $@
+	mkdir -p $(dir $(shell echo "$@" | sed s/_/\\//))
+	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | indent -kr -sob > $(shell echo "$@" | sed s/_/\\//)
 
 %.h:
 	mkdir -p $(dir $@)

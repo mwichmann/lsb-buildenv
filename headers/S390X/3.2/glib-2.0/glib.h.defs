@@ -1,0 +1,33 @@
+
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#define GPOINTER_TO_INT(p)	((glong) (p))
+#define GLONG_TO_BE(val)	((glong) GINT64_TO_BE (val))
+#define GLONG_TO_LE(val)	((glong) GINT64_TO_LE (val))
+#define GINT_TO_POINTER(i)	((gpointer) (glong) (i))
+#define GUINT_TO_POINTER(u)	((gpointer) (gulong) (u))
+#define GPOINTER_TO_UINT(p)	((gulong) (p))
+#define GULONG_TO_BE(val)	((gulong) GUINT64_TO_BE (val))
+#define GULONG_TO_LE(val)	((gulong) GUINT64_TO_LE (val))
+#define G_GINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val ##L))
+#define G_VA_COPY_AS_ARRAY	1
+#define GLIB_LSB_PADDING_SIZE	40
+#define GLIB_LSB_DATA_SIZE	8
+#define GLIB_SIZEOF_LONG	8
+#define GLIB_SIZEOF_SIZE_T	8
+#define GLIB_SIZEOF_VOID_P	8
+#define G_BYTE_ORDER	G_BIG_ENDIAN
+#define G_MAXSIZE	G_MAXULONG
+#define G_BREAKPOINT()	G_STMT_START{ raise (SIGTRAP); }G_STMT_END
+#define G_GINT64_MODIFIER	"l"
+#define G_GSIZE_MODIFIER	"l"
+#define G_GINT64_FORMAT	"li"
+#define G_GSSIZE_FORMAT	"li"
+#define G_GSIZE_FORMAT	"lu"
+#define G_GUINT64_FORMAT	"lu"
+
+typedef long int gssize;
+typedef long int gint64;
+typedef unsigned long int guint64;
+
+typedef unsigned long int gsize;

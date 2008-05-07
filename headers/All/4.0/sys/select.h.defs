@@ -1,0 +1,5 @@
+
+#define NFDBITS	(8 * sizeof (long))
+
+extern int pselect(int, fd_set *, fd_set *, fd_set *,
+		   const struct timespec *, const sigset_t *);

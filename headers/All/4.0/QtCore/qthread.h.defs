@@ -1,0 +1,12 @@
+
+class QThread;
+enum _ZN7QThread8PriorityE {
+    IdlePriority,
+    LowestPriority,
+    LowPriority,
+    NormalPriority,
+    HighPriority,
+    HighestPriority,
+    TimeCriticalPriority,
+    InheritPriority
+};

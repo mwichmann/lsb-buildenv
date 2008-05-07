@@ -1,0 +1,18 @@
+
+class QAbstractSlider;
+enum _ZN15QAbstractSlider12SliderActionE {
+    SliderNoAction,
+    SliderSingleStepAdd,
+    SliderSingleStepSub,
+    SliderPageStepAdd,
+    SliderPageStepSub,
+    SliderToMinimum,
+    SliderToMaximum,
+    SliderMove
+};
+enum _ZN15QAbstractSlider12SliderChangeE {
+    SliderRangeChange,
+    SliderOrientationChange,
+    SliderStepsChange,
+    SliderValueChange
+};

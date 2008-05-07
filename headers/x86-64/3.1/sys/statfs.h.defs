@@ -1,0 +1,27 @@
+
+struct statfs {
+    long int f_type;
+    long int f_bsize;
+    fsblkcnt_t f_blocks;
+    fsblkcnt_t f_bfree;
+    fsblkcnt_t f_bavail;
+    fsfilcnt_t f_files;
+    fsfilcnt_t f_ffree;
+    fsid_t f_fsid;
+    long int f_namelen;
+    long int f_frsize;
+    long int f_spare[5];
+};
+struct statfs64 {
+    long int f_type;
+    long int f_bsize;
+    fsblkcnt64_t f_blocks;
+    fsblkcnt64_t f_bfree;
+    fsblkcnt64_t f_bavail;
+    fsfilcnt64_t f_files;
+    fsfilcnt64_t f_ffree;
+    fsid_t f_fsid;
+    long int f_namelen;
+    long int f_frsize;
+    long int f_spare[5];
+};

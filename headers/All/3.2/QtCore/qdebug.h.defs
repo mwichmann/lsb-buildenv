@@ -1,0 +1,3 @@
+
+class QDebug;
+struct _ZN6QDebug6StreamE;

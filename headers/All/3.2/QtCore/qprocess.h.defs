@@ -1,0 +1,29 @@
+
+typedef qint64 Q_PID;
+class QProcess;
+enum _ZN8QProcess12ProcessErrorE {
+    FailedToStart,
+    Crashed,
+    Timedout,
+    ReadError,
+    WriteError,
+    UnknownError
+};
+enum _ZN8QProcess12ProcessStateE {
+    NotRunning,
+    Starting,
+    Running
+};
+enum _ZN8QProcess14ProcessChannelE {
+    StandardOutput,
+    StandardError
+};
+enum _ZN8QProcess18ProcessChannelModeE {
+    SeparateChannels,
+    MergedChannels,
+    ForwardedChannels
+};
+enum _ZN8QProcess10ExitStatusE {
+    NormalExit,
+    CrashExit
+};

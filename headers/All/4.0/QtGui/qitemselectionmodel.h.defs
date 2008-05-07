@@ -1,0 +1,20 @@
+
+class QItemSelectionRange;
+class QItemSelectionModel;
+enum _ZN19QItemSelectionModel13SelectionFlagE {
+    NoUpdate,
+    Clear,
+    Select,
+    ClearAndSelect,
+    Deselect,
+    Toggle,
+    Current,
+    SelectCurrent,
+    ToggleCurrent,
+    Rows,
+    Columns
+};
+class QFlags < QItemSelectionModel::SelectionFlag >;
+typedef class QFlags < QItemSelectionModel::SelectionFlag >
+    _ZN19QItemSelectionModel14SelectionFlagsE;
+class QItemSelection;

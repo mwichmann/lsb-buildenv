@@ -1,0 +1,3 @@
+
+struct _Z26QSqlDriverFactoryInterface;
+class QSqlDriverPlugin;

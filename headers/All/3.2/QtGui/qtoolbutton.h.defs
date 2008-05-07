@@ -1,0 +1,13 @@
+
+class QToolButton;
+enum _ZN11QToolButton19ToolButtonPopupModeE {
+    DelayedPopup,
+    MenuButtonPopup,
+    InstantPopup
+};
+enum _ZN11QToolButton12TextPositionE {
+    BesideIcon,
+    Right,
+    BelowIcon,
+    Under
+};

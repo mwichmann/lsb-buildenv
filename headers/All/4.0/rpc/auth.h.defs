@@ -1,0 +1,46 @@
+
+#define auth_destroy(auth)	((*((auth)->ah_ops->ah_destroy))(auth))
+
+enum auth_stat {
+    AUTH_OK = 0,
+    AUTH_BADCRED = 1,
+    AUTH_REJECTEDCRED = 2,
+    AUTH_BADVERF = 3,
+    AUTH_REJECTEDVERF = 4,
+    AUTH_TOOWEAK = 5,
+    AUTH_INVALIDRESP = 6,
+    AUTH_FAILED = 7
+};
+
+union des_block {
+    struct {
+	u_int32_t high;
+	u_int32_t low;
+    } key;
+    char c[8];
+};
+
+struct opaque_auth {
+    enum_t oa_flavor;
+    caddr_t oa_base;
+    u_int oa_length;
+};
+
+typedef struct AUTH {
+    struct opaque_auth ah_cred;
+    struct opaque_auth ah_verf;
+    union des_block ah_key;
+    struct auth_ops *ah_ops;
+    caddr_t ah_private;
+} AUTH;
+
+struct auth_ops {
+    void (*ah_nextverf) (struct AUTH *);
+    int (*ah_marshal) (struct AUTH *, XDR *);
+    int (*ah_validate) (struct AUTH *, struct opaque_auth *);
+    int (*ah_refresh) (struct AUTH *);
+    void (*ah_destroy) (struct AUTH *);
+};
+extern struct AUTH *authnone_create(void);
+extern int key_decryptsession(char *, union des_block *);
+extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);

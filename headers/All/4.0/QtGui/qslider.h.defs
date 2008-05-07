@@ -1,0 +1,16 @@
+
+class QSlider;
+enum _ZN7QSlider12TickPositionE {
+    NoTicks,
+    NoMarks,
+    TicksAbove,
+    TicksLeft,
+    Above,
+    Left,
+    TicksBelow,
+    TicksRight,
+    Below,
+    Right,
+    TicksBothSides,
+    Both
+};

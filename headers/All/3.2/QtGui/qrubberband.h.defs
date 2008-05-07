@@ -1,0 +1,6 @@
+
+class QRubberBand;
+enum _ZN11QRubberBand5ShapeE {
+    Line,
+    Rectangle
+};

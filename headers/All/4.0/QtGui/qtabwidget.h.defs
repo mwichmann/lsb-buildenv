@@ -1,0 +1,14 @@
+
+class QTabWidget;
+enum _ZN10QTabWidget11TabPositionE {
+    North,
+    Top,
+    South,
+    Bottom,
+    West,
+    East
+};
+enum _ZN10QTabWidget8TabShapeE {
+    Rounded,
+    Triangular
+};

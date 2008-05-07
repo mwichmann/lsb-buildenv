@@ -1,0 +1,11 @@
+
+class QPixmap;
+enum _ZN7QPixmap9ColorModeE {
+    Auto,
+    Color,
+    Mono
+};
+enum _ZN7QPixmap4TypeE {
+    PixmapType,
+    BitmapType
+};

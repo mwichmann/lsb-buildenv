@@ -1,0 +1,3 @@
+
+class QRect;
+class QRectF;

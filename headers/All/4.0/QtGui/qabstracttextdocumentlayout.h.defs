@@ -1,0 +1,5 @@
+
+class QAbstractTextDocumentLayout;
+struct _ZN27QAbstractTextDocumentLayout9SelectionE;
+struct _ZN27QAbstractTextDocumentLayout12PaintContextE;
+class QTextObjectInterface;

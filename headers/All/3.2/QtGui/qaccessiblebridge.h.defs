@@ -1,0 +1,4 @@
+
+class QAccessibleBridge;
+struct _Z33QAccessibleBridgeFactoryInterface;
+class QAccessibleBridgePlugin;

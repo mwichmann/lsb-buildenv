@@ -1,0 +1,8 @@
+
+struct timeb {
+    time_t time;
+    unsigned short millitm;
+    short timezone;
+    short dstflag;
+};
+extern int ftime(struct timeb *);

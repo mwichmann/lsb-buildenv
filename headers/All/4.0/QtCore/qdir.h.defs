@@ -1,0 +1,46 @@
+
+class QDir;
+enum _ZN4QDir6FilterE {
+    NoFilter,
+    DefaultFilter,
+    Dirs,
+    Files,
+    Drives,
+    AllEntries,
+    All,
+    NoSymLinks,
+    TypeMask,
+    Readable,
+    Writable,
+    Executable,
+    PermissionMask,
+    RWEMask,
+    Modified,
+    Hidden,
+    System,
+    AccessMask,
+    AllDirs,
+    CaseSensitive,
+    NoDotAndDotDot
+};
+class QFlags < QDir::Filter >;
+typedef class QFlags < QDir::Filter > _ZN4QDir7FiltersE;
+typedef _ZN4QDir7FiltersE _ZN4QDir10FilterSpecE;
+enum _ZN4QDir8SortFlagE {
+    NoSort,
+    DefaultSort,
+    Name,
+    Time,
+    Size,
+    Unsorted,
+    SortByMask,
+    DirsFirst,
+    Reversed,
+    IgnoreCase,
+    DirsLast,
+    LocaleAware,
+    Type
+};
+class QFlags < QDir::SortFlag >;
+typedef class QFlags < QDir::SortFlag > _ZN4QDir9SortFlagsE;
+typedef _ZN4QDir9SortFlagsE _ZN4QDir8SortSpecE;

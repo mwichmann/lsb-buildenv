@@ -1,0 +1,7 @@
+
+class QCheckBox;
+enum _ZN9QCheckBox11ToggleStateE {
+    Off,
+    NoChange,
+    On
+};

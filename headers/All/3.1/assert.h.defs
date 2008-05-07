@@ -1,0 +1,3 @@
+
+extern void __assert_fail(const char *, const char *, unsigned int,
+			  const char *);

@@ -1,0 +1,21 @@
+
+class QUrl;
+enum _ZN4QUrl11ParsingModeE {
+    TolerantMode,
+    StrictMode
+};
+enum _ZN4QUrl16FormattingOptionE {
+    None,
+    RemoveScheme,
+    RemovePassword,
+    RemoveUserInfo,
+    RemovePort,
+    RemoveAuthority,
+    RemovePath,
+    RemoveQuery,
+    RemoveFragment,
+    StripTrailingSlash
+};
+class QFlags < QUrl::FormattingOption >;
+typedef class QFlags < QUrl::FormattingOption >
+    _ZN4QUrl17FormattingOptionsE;

@@ -1,0 +1,4 @@
+
+#define TIOCGWINSZ	0x5413
+#define FIONREAD	0x541B
+#define TIOCNOTTY	0x5422

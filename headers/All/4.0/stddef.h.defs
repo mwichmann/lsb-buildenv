@@ -1,0 +1,3 @@
+
+#define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
+#define NULL	(0L)		/* (void *) would be better, but causes problems with C++. */

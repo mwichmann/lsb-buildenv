@@ -1,0 +1,7 @@
+
+class QMutex;
+enum _ZN6QMutex13RecursionModeE {
+    NonRecursive,
+    Recursive
+};
+class QMutexLocker;

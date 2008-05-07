@@ -1,0 +1,21 @@
+
+class QImageTextKeyLang;
+class QImage;
+enum _ZN6QImage10InvertModeE {
+    InvertRgb,
+    InvertRgba
+};
+enum _ZN6QImage6FormatE {
+    Format_Invalid,
+    Format_Mono,
+    Format_MonoLSB,
+    Format_Indexed8,
+    Format_RGB32,
+    Format_ARGB32,
+    Format_ARGB32_Premultiplied
+};
+enum _ZN6QImage6EndianE {
+    BigEndian,
+    LittleEndian,
+    IgnoreEndian
+};

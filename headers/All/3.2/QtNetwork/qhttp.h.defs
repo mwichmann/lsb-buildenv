@@ -1,0 +1,24 @@
+
+class QHttpHeader;
+class QHttpResponseHeader;
+class QHttpRequestHeader;
+class QHttp;
+enum _ZN5QHttp5StateE {
+    Unconnected,
+    HostLookup,
+    Connecting,
+    Sending,
+    Reading,
+    Connected,
+    Closing
+};
+enum _ZN5QHttp5ErrorE {
+    NoError,
+    UnknownError,
+    HostNotFound,
+    ConnectionRefused,
+    UnexpectedClose,
+    InvalidResponseHeader,
+    WrongContentLength,
+    Aborted
+};

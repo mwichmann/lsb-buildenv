@@ -1,0 +1,8 @@
+
+class QSessionManager;
+enum _ZN15QSessionManager11RestartHintE {
+    RestartIfRunning,
+    RestartAnyway,
+    RestartImmediately,
+    RestartNever
+};

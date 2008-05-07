@@ -1,0 +1,27 @@
+
+class QTreeWidgetItemIterator;
+enum _ZN23QTreeWidgetItemIterator12IteratorFlagE {
+    All,
+    Hidden,
+    NotHidden,
+    Selected,
+    Unselected,
+    Selectable,
+    NotSelectable,
+    DragEnabled,
+    DragDisabled,
+    DropEnabled,
+    DropDisabled,
+    HasChildren,
+    NoChildren,
+    Checked,
+    NotChecked,
+    Enabled,
+    Disabled,
+    Editable,
+    NotEditable,
+    UserFlag
+};
+class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
+typedef class QFlags < QTreeWidgetItemIterator::IteratorFlag >
+    _ZN23QTreeWidgetItemIterator13IteratorFlagsE;

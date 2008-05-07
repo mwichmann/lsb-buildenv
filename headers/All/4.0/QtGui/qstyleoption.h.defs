@@ -1,0 +1,170 @@
+
+class QStyleOption;
+enum _ZN12QStyleOption10OptionTypeE {
+    SO_Default,
+    SO_FocusRect,
+    SO_Button,
+    SO_Tab,
+    SO_MenuItem,
+    SO_Frame,
+    SO_ProgressBar,
+    SO_ToolBox,
+    SO_Header,
+    SO_Q3DockWindow,
+    SO_DockWidget,
+    SO_Q3ListViewItem,
+    SO_ViewItem,
+    SO_TabWidgetFrame,
+    SO_TabBarBase,
+    SO_RubberBand,
+    SO_ToolBar,
+    SO_CustomBase,
+    SO_Complex,
+    SO_Slider,
+    SO_SpinBox,
+    SO_ToolButton,
+    SO_ComboBox,
+    SO_Q3ListView,
+    SO_TitleBar,
+    SO_GroupBox,
+    SO_ComplexCustomBase
+};
+class QStyleOptionFocusRect;
+class QStyleOptionFrame;
+class QStyleOptionFrameV2;
+enum _ZN19QStyleOptionFrameV212FrameFeatureE {
+    None,
+    Flat
+};
+class QFlags < QStyleOptionFrameV2::FrameFeature >;
+typedef class QFlags < QStyleOptionFrameV2::FrameFeature >
+    _ZN19QStyleOptionFrameV213FrameFeaturesE;
+class QStyleOptionTabWidgetFrame;
+class QStyleOptionTabBarBase;
+class QStyleOptionHeader;
+enum _ZN18QStyleOptionHeader15SectionPositionE {
+    Beginning,
+    Middle,
+    End,
+    OnlyOneSection
+};
+enum _ZN18QStyleOptionHeader16SelectedPositionE {
+    NotAdjacent,
+    NextIsSelected,
+    PreviousIsSelected,
+    NextAndPreviousAreSelected
+};
+enum _ZN18QStyleOptionHeader13SortIndicatorE {
+    None,
+    SortUp,
+    SortDown
+};
+class QStyleOptionButton;
+enum _ZN18QStyleOptionButton13ButtonFeatureE {
+    None,
+    Flat,
+    HasMenu,
+    DefaultButton,
+    AutoDefaultButton
+};
+class QFlags < QStyleOptionButton::ButtonFeature >;
+typedef class QFlags < QStyleOptionButton::ButtonFeature >
+    _ZN18QStyleOptionButton14ButtonFeaturesE;
+class QStyleOptionTab;
+enum _ZN15QStyleOptionTab11TabPositionE {
+    Beginning,
+    Middle,
+    End,
+    OnlyOneTab
+};
+enum _ZN15QStyleOptionTab16SelectedPositionE {
+    NotAdjacent,
+    NextIsSelected,
+    PreviousIsSelected
+};
+enum _ZN15QStyleOptionTab12CornerWidgetE {
+    NoCornerWidgets,
+    LeftCornerWidget,
+    RightCornerWidget
+};
+class QFlags < QStyleOptionTab::CornerWidget >;
+typedef class QFlags < QStyleOptionTab::CornerWidget >
+    _ZN15QStyleOptionTab13CornerWidgetsE;
+class QStyleOptionTabV2;
+class QStyleOptionToolBar;
+enum _ZN19QStyleOptionToolBar15ToolBarPositionE {
+    Beginning,
+    Middle,
+    End,
+    OnlyOne
+};
+enum _ZN19QStyleOptionToolBar14ToolBarFeatureE {
+    None,
+    Movable
+};
+class QFlags < QStyleOptionToolBar::ToolBarFeature >;
+typedef class QFlags < QStyleOptionToolBar::ToolBarFeature >
+    _ZN19QStyleOptionToolBar15ToolBarFeaturesE;
+class QStyleOptionProgressBar;
+class QStyleOptionProgressBarV2;
+class QStyleOptionMenuItem;
+enum _ZN20QStyleOptionMenuItem12MenuItemTypeE {
+    Normal,
+    DefaultItem,
+    Separator,
+    SubMenu,
+    Scroller,
+    TearOff,
+    Margin,
+    EmptyArea
+};
+enum _ZN20QStyleOptionMenuItem9CheckTypeE {
+    NotCheckable,
+    Exclusive,
+    NonExclusive
+};
+class QStyleOptionQ3ListViewItem;
+enum _ZN26QStyleOptionQ3ListViewItem21Q3ListViewItemFeatureE {
+    None,
+    Expandable,
+    MultiLine,
+    Visible,
+    ParentControl
+};
+class QFlags < QStyleOptionQ3ListViewItem::Q3ListViewItemFeature >;
+typedef class QFlags < QStyleOptionQ3ListViewItem::Q3ListViewItemFeature >
+    _ZN26QStyleOptionQ3ListViewItem22Q3ListViewItemFeaturesE;
+class QStyleOptionQ3DockWindow;
+class QStyleOptionDockWidget;
+class QStyleOptionViewItem;
+enum _ZN20QStyleOptionViewItem8PositionE {
+    Left,
+    Right,
+    Top,
+    Bottom
+};
+class QStyleOptionToolBox;
+class QStyleOptionRubberBand;
+class QStyleOptionComplex;
+class QStyleOptionSlider;
+class QStyleOptionSpinBox;
+class QStyleOptionQ3ListView;
+class QStyleOptionToolButton;
+enum _ZN22QStyleOptionToolButton17ToolButtonFeatureE {
+    None,
+    Arrow,
+    Menu,
+    PopupDelay
+};
+class QFlags < QStyleOptionToolButton::ToolButtonFeature >;
+typedef class QFlags < QStyleOptionToolButton::ToolButtonFeature >
+    _ZN22QStyleOptionToolButton18ToolButtonFeaturesE;
+class QStyleOptionComboBox;
+class QStyleOptionTitleBar;
+class QStyleOptionGroupBox;
+class QStyleHintReturn;
+enum _ZN16QStyleHintReturn14HintReturnTypeE {
+    SH_Default,
+    SH_Mask
+};
+class QStyleHintReturnMask;

@@ -1,0 +1,28 @@
+
+enum _ZN3QGL12FormatOptionE {
+    DoubleBuffer,
+    DepthBuffer,
+    Rgba,
+    AlphaChannel,
+    AccumBuffer,
+    StencilBuffer,
+    StereoBuffers,
+    DirectRendering,
+    HasOverlay,
+    SampleBuffers,
+    SingleBuffer,
+    NoDepthBuffer,
+    ColorIndex,
+    NoAlphaChannel,
+    NoAccumBuffer,
+    NoStencilBuffer,
+    NoStereoBuffers,
+    IndirectRendering,
+    NoOverlay,
+    NoSampleBuffers
+};
+class QFlags < QGL::FormatOption >;
+typedef class QFlags < QGL::FormatOption > _ZN3QGL13FormatOptionsE;
+class QGLFormat;
+class QGLContext;
+class QGLWidget;
