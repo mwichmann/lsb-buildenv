@@ -1,0 +1,16 @@
+
+#define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
+#define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
+#define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
+#define XtCompositeExtensionVersion	2L
+
+typedef struct _CompositeClassPart {
+    XtGeometryHandler geometry_manager;
+    XtWidgetProc change_managed;
+    XtWidgetProc insert_child;
+    XtWidgetProc delete_child;
+    XtPointer extension;
+} CompositeClassPart;
+
+typedef struct _CompositeClassRec CompositeClassRec;
+extern CompositeClassRec compositeClassRec;

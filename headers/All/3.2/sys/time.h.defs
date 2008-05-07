@@ -1,0 +1,32 @@
+
+#define ITIMER_REAL	0
+#define ITIMER_VIRTUAL	1
+#define ITIMER_PROF	2
+
+struct timezone {
+    int tz_minuteswest;
+    int tz_dsttime;
+};
+
+typedef int __itimer_which_t;
+
+struct timespec {
+    time_t tv_sec;
+    long int tv_nsec;
+};
+
+struct timeval {
+    time_t tv_sec;
+    suseconds_t tv_usec;
+};
+
+struct itimerval {
+    struct timeval it_interval;
+    struct timeval it_value;
+};
+extern int getitimer(__itimer_which_t, struct itimerval *);
+extern int setitimer(__itimer_which_t, const struct itimerval *,
+		     struct itimerval *);
+extern int adjtime(const struct timeval *, struct timeval *);
+extern int gettimeofday(struct timeval *, struct timezone *);
+extern int utimes(const char *, const struct timeval *);

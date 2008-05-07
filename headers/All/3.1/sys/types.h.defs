@@ -1,0 +1,62 @@
+
+#ifndef FALSE
+#define FALSE	0
+#endif
+#ifndef TRUE
+#define TRUE	1
+#endif
+#define FD_SETSIZE	1024
+#define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
+#define FD_ISSET(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]&(1<<((d)%(8*sizeof(long)))))
+#define FD_CLR(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1<<((d)%(8*sizeof(long)))))
+#define FD_SET(d,set)	\
+	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1<<((d)%(8*sizeof(long)))))
+
+typedef unsigned char u_int8_t;
+typedef unsigned short u_int16_t;
+typedef unsigned int u_int32_t;
+typedef unsigned long long int u_int64_t;
+typedef unsigned int uid_t;
+typedef int pid_t;
+typedef long int off_t;
+typedef int key_t;
+typedef long int suseconds_t;
+typedef unsigned int u_int;
+typedef struct {
+    int __val[2];
+} fsid_t;
+typedef unsigned int useconds_t;
+typedef long int blksize_t;
+typedef long int fd_mask;
+typedef void *timer_t;
+typedef int clockid_t;
+
+typedef unsigned int id_t;
+
+typedef unsigned long long int ino64_t;
+typedef long long int loff_t;
+typedef long int blkcnt_t;
+typedef unsigned long int fsblkcnt_t;
+typedef unsigned long int fsfilcnt_t;
+typedef long long int blkcnt64_t;
+typedef unsigned long long int fsblkcnt64_t;
+typedef unsigned long long int fsfilcnt64_t;
+typedef unsigned char u_char;
+typedef unsigned short u_short;
+typedef unsigned long int u_long;
+
+typedef unsigned long int ino_t;
+typedef unsigned int gid_t;
+typedef unsigned long long int dev_t;
+typedef unsigned int mode_t;
+typedef unsigned long int nlink_t;
+typedef char *caddr_t;
+
+typedef struct {
+    unsigned long int fds_bits[__FDSET_LONGS];
+} fd_set;
+
+typedef long int clock_t;
+typedef long int time_t;

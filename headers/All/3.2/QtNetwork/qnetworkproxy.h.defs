@@ -1,0 +1,7 @@
+
+class QNetworkProxy;
+enum _ZN13QNetworkProxy9ProxyTypeE {
+    DefaultProxy,
+    Socks5Proxy,
+    NoProxy
+};

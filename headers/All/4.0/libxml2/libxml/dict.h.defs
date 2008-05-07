@@ -1,0 +1,14 @@
+
+typedef struct _xmlDict xmlDict;
+typedef xmlDict *xmlDictPtr;
+extern void xmlDictFree(xmlDictPtr);
+extern xmlDictPtr xmlDictCreate(void);
+extern const xmlChar *xmlDictExists(xmlDictPtr, const xmlChar *, int);
+extern xmlDictPtr xmlDictCreateSub(xmlDictPtr);
+extern int xmlDictReference(xmlDictPtr);
+extern int xmlDictSize(xmlDictPtr);
+extern void xmlDictCleanup(void);
+extern const xmlChar *xmlDictQLookup(xmlDictPtr, const xmlChar *,
+				     const xmlChar *);
+extern int xmlDictOwns(xmlDictPtr, const xmlChar *);
+extern const xmlChar *xmlDictLookup(xmlDictPtr, const xmlChar *, int);

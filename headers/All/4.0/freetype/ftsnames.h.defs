@@ -1,0 +1,11 @@
+
+typedef struct FT_SfntName_ {
+    FT_UShort platform_id;
+    FT_UShort encoding_id;
+    FT_UShort language_id;
+    FT_UShort name_id;
+    FT_Byte *string;
+    FT_UInt string_len;
+} FT_SfntName;
+extern FT_Error FT_Get_Sfnt_Name(FT_Face, FT_UInt, FT_SfntName *);
+extern FT_UInt FT_Get_Sfnt_Name_Count(FT_Face);

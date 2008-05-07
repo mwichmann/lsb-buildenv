@@ -1,0 +1,14 @@
+
+class QSqlError;
+enum _ZN9QSqlError9ErrorTypeE {
+    NoError,
+    None,
+    ConnectionError,
+    Connection,
+    StatementError,
+    Statement,
+    TransactionError,
+    Transaction,
+    UnknownError,
+    Unknown
+};

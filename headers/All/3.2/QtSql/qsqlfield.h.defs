@@ -1,0 +1,7 @@
+
+class QSqlField;
+enum _ZN9QSqlField14RequiredStatusE {
+    Unknown,
+    Optional,
+    Required
+};

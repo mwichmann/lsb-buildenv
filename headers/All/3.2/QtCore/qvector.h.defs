@@ -1,0 +1,3 @@
+
+class QVector < QVariant >;
+struct _Z11QVectorData;

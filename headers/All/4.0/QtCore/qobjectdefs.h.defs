@@ -1,0 +1,15 @@
+
+class QGenericArgument;
+class QGenericReturnArgument;
+struct _Z11QMetaObject;
+enum _ZN11QMetaObject4CallE {
+    InvokeMetaMethod,
+    ReadProperty,
+    WriteProperty,
+    ResetProperty,
+    QueryPropertyDesignable,
+    QueryPropertyScriptable,
+    QueryPropertyStored,
+    QueryPropertyEditable,
+    QueryPropertyUser
+};

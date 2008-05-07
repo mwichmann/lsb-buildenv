@@ -1,0 +1,20 @@
+
+class QMetaMethod;
+enum _ZN11QMetaMethod6AccessE {
+    Private,
+    Protected,
+    Public
+};
+enum _ZN11QMetaMethod10MethodTypeE {
+    Method,
+    Signal,
+    Slot
+};
+enum _ZN11QMetaMethod10AttributesE {
+    Compatibility,
+    Cloned,
+    Scriptable
+};
+class QMetaEnum;
+class QMetaProperty;
+class QMetaClassInfo;

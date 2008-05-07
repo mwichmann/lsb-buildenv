@@ -1,0 +1,49 @@
+
+class QFont;
+enum _ZN5QFont9StyleHintE {
+    Helvetica,
+    SansSerif,
+    Times,
+    Serif,
+    Courier,
+    TypeWriter,
+    OldEnglish,
+    Decorative,
+    System,
+    AnyStyle
+};
+enum _ZN5QFont13StyleStrategyE {
+    PreferDefault,
+    PreferBitmap,
+    PreferDevice,
+    PreferOutline,
+    ForceOutline,
+    PreferMatch,
+    PreferQuality,
+    PreferAntialias,
+    NoAntialias,
+    OpenGLCompatible
+};
+enum _ZN5QFont6WeightE {
+    Light,
+    Normal,
+    DemiBold,
+    Bold,
+    Black
+};
+enum _ZN5QFont5StyleE {
+    StyleNormal,
+    StyleItalic,
+    StyleOblique
+};
+enum _ZN5QFont7StretchE {
+    UltraCondensed,
+    ExtraCondensed,
+    Condensed,
+    SemiCondensed,
+    Unstretched,
+    SemiExpanded,
+    Expanded,
+    ExtraExpanded,
+    UltraExpanded
+};

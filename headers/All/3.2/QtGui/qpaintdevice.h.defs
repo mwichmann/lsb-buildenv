@@ -1,0 +1,14 @@
+
+class QPaintDevice;
+enum _ZN12QPaintDevice17PaintDeviceMetricE {
+    PdmWidth,
+    PdmHeight,
+    PdmWidthMM,
+    PdmHeightMM,
+    PdmNumColors,
+    PdmDepth,
+    PdmDpiX,
+    PdmDpiY,
+    PdmPhysicalDpiX,
+    PdmPhysicalDpiY
+};

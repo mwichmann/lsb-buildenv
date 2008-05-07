@@ -1,0 +1,13 @@
+
+class QApplication;
+enum _ZN12QApplication4TypeE {
+    Tty,
+    GuiClient,
+    GuiServer
+};
+enum _ZN12QApplication9ColorSpecE {
+    NormalColor,
+    CustomColor,
+    ManyColor
+};
+typedef int _ZN12QApplication9ColorModeE;

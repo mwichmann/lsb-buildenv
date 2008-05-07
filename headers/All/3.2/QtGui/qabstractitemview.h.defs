@@ -1,0 +1,57 @@
+
+class QAbstractItemView;
+enum _ZN17QAbstractItemView13SelectionModeE {
+    NoSelection,
+    SingleSelection,
+    MultiSelection,
+    ExtendedSelection,
+    ContiguousSelection
+};
+enum _ZN17QAbstractItemView17SelectionBehaviorE {
+    SelectItems,
+    SelectRows,
+    SelectColumns
+};
+enum _ZN17QAbstractItemView10ScrollHintE {
+    EnsureVisible,
+    PositionAtTop,
+    PositionAtBottom
+};
+enum _ZN17QAbstractItemView11EditTriggerE {
+    NoEditTriggers,
+    CurrentChanged,
+    DoubleClicked,
+    SelectedClicked,
+    EditKeyPressed,
+    AnyKeyPressed,
+    AllEditTriggers
+};
+class QFlags < QAbstractItemView::EditTrigger >;
+typedef class QFlags < QAbstractItemView::EditTrigger >
+    _ZN17QAbstractItemView12EditTriggersE;
+enum _ZN17QAbstractItemView12CursorActionE {
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    MoveHome,
+    MoveEnd,
+    MovePageUp,
+    MovePageDown,
+    MoveNext,
+    MovePrevious
+};
+enum _ZN17QAbstractItemView5StateE {
+    NoState,
+    DraggingState,
+    DragSelectingState,
+    EditingState,
+    ExpandingState,
+    CollapsingState
+};
+enum _ZN17QAbstractItemView21DropIndicatorPositionE {
+    OnItem,
+    AboveItem,
+    BelowItem,
+    OnViewport
+};

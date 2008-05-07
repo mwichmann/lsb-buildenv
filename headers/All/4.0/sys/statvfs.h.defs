@@ -1,0 +1,5 @@
+
+extern int fstatvfs(int, struct statvfs *);
+extern int fstatvfs64(int, struct statvfs64 *);
+extern int statvfs(const char *, struct statvfs *);
+extern int statvfs64(const char *, struct statvfs64 *);

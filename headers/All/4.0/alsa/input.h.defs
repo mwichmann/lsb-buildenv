@@ -1,0 +1,7 @@
+
+typedef struct _snd_input snd_input_t;
+extern int snd_input_buffer_open(snd_input_t * *, const char *, ssize_t);
+extern int snd_input_close(snd_input_t *);
+extern int snd_input_stdio_attach(snd_input_t * *, FILE *, int);
+extern int snd_input_stdio_open(snd_input_t * *, const char *,
+				const char *);

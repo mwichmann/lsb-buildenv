@@ -1,0 +1,15 @@
+
+class QEventLoop;
+enum _ZN10QEventLoop17ProcessEventsFlagE {
+    AllEvents,
+    ExcludeUserInputEvents,
+    ExcludeUserInput,
+    ExcludeSocketNotifiers,
+    WaitForMoreEvents,
+    WaitForMore,
+    X11ExcludeTimers,
+    DeferredDeletion
+};
+class QFlags < QEventLoop::ProcessEventsFlag >;
+typedef class QFlags < QEventLoop::ProcessEventsFlag >
+    _ZN10QEventLoop18ProcessEventsFlagsE;

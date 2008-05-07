@@ -1,0 +1,11 @@
+
+class QValidator;
+enum _ZN10QValidator5StateE {
+    Invalid,
+    Intermediate,
+    Valid,
+    Acceptable
+};
+class QIntValidator;
+class QDoubleValidator;
+class QRegExpValidator;

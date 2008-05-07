@@ -1,0 +1,14 @@
+
+class QTextOption;
+enum _ZN11QTextOption8WrapModeE {
+    NoWrap,
+    WordWrap,
+    ManualWrap,
+    WrapAnywhere,
+    WrapAtWordBoundaryOrAnywhere
+};
+enum _ZN11QTextOption4FlagE {
+    IncludeTrailingSpaces
+};
+class QFlags < QTextOption::Flag >;
+typedef class QFlags < QTextOption::Flag > _ZN11QTextOption5FlagsE;

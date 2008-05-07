@@ -1,0 +1,29 @@
+
+enum _ZN2Qt15HitTestAccuracyE {
+    ExactHit,
+    FuzzyHit
+};
+enum _ZN2Qt14WhiteSpaceModeE {
+    WhiteSpaceModeUndefined,
+    WhiteSpaceNormal,
+    WhiteSpacePre,
+    WhiteSpaceNoWrap
+};
+class QAbstractUndoItem;
+class QTextDocument;
+enum _ZN13QTextDocument15MetaInformationE {
+    DocumentTitle
+};
+enum _ZN13QTextDocument8FindFlagE {
+    FindBackward,
+    FindCaseSensitively,
+    FindWholeWords
+};
+class QFlags < QTextDocument::FindFlag >;
+typedef class QFlags < QTextDocument::FindFlag >
+    _ZN13QTextDocument9FindFlagsE;
+enum _ZN13QTextDocument12ResourceTypeE {
+    HtmlResource,
+    ImageResource,
+    UserResource
+};

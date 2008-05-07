@@ -1,0 +1,70 @@
+
+class QVariant;
+enum _ZN8QVariant4TypeE {
+    LastType,
+    Invalid,
+    Bool,
+    Int,
+    UInt,
+    LongLong,
+    ULongLong,
+    Double,
+    Char,
+    Map,
+    List,
+    String,
+    StringList,
+    ByteArray,
+    CString,
+    BitArray,
+    Date,
+    Time,
+    DateTime,
+    Url,
+    Locale,
+    Rect,
+    RectF,
+    Size,
+    SizeF,
+    Line,
+    LineF,
+    Point,
+    PointF,
+    RegExp,
+    ColorGroup,
+    Font,
+    Pixmap,
+    Brush,
+    Color,
+    Palette,
+    Icon,
+    IconSet,
+    Image,
+    Polygon,
+    PointArray,
+    Region,
+    Bitmap,
+    Cursor,
+    SizePolicy,
+    KeySequence,
+    Pen,
+    TextLength,
+    TextFormat,
+    UserType
+};
+struct _ZN8QVariant13PrivateSharedE;
+struct _ZN8QVariant7PrivateE;
+union _ZN8QVariant7Private4DataE;
+typedef void _ZN8QVariant11f_constructE;
+typedef void _ZN8QVariant7f_clearE;
+typedef bool _ZN8QVariant6f_nullE;
+typedef void _ZN8QVariant6f_loadE;
+typedef void _ZN8QVariant6f_saveE;
+typedef bool _ZN8QVariant9f_compareE;
+typedef bool _ZN8QVariant9f_convertE;
+typedef bool _ZN8QVariant12f_canConvertE;
+typedef void _ZN8QVariant13f_debugStreamE;
+struct _ZN8QVariant7HandlerE;
+typedef class QList < QVariant > QVariantList;
+typedef class QMap < QString, QVariant > QVariantMap;
+class QVariantComparisonHelper;

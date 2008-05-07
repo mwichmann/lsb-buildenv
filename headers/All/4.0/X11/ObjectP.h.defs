@@ -1,0 +1,7 @@
+
+#define XtInheritAllocate	((XtAllocateProc) _XtInherit)
+#define XtInheritDeallocate	((XtDeallocateProc) _XtInherit)
+#define XtObjectExtensionVersion	1L
+
+typedef struct _ObjectClassRec ObjectClassRec;
+extern ObjectClassRec objectClassRec;

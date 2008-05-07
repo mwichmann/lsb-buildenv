@@ -1,0 +1,25 @@
+
+class QMessageBox;
+enum _ZN11QMessageBox4IconE {
+    NoIcon,
+    Information,
+    Warning,
+    Critical,
+    Question
+};
+enum _ZN11QMessageBox6ButtonE {
+    NoButton,
+    Ok,
+    Cancel,
+    Yes,
+    No,
+    Abort,
+    Retry,
+    Ignore,
+    YesAll,
+    NoAll,
+    ButtonMask,
+    Default,
+    Escape,
+    FlagMask
+};

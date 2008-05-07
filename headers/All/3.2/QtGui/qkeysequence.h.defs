@@ -1,0 +1,12 @@
+
+class QKeySequence;
+enum _ZN12QKeySequence13SequenceMatchE {
+    NoMatch,
+    PartialMatch,
+    ExactMatch,
+    Identical
+};
+enum _ZN12QKeySequence14SequenceFormatE {
+    NativeText,
+    PortableText
+};

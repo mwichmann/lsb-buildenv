@@ -1,0 +1,42 @@
+
+class QFtp;
+enum _ZN4QFtp5StateE {
+    Unconnected,
+    HostLookup,
+    Connecting,
+    Connected,
+    LoggedIn,
+    Closing
+};
+enum _ZN4QFtp5ErrorE {
+    NoError,
+    UnknownError,
+    HostNotFound,
+    ConnectionRefused,
+    NotConnected
+};
+enum _ZN4QFtp7CommandE {
+    None,
+    SetTransferMode,
+    SetProxy,
+    ConnectToHost,
+    Login,
+    Close,
+    List,
+    Cd,
+    Get,
+    Put,
+    Remove,
+    Mkdir,
+    Rmdir,
+    Rename,
+    RawCommand
+};
+enum _ZN4QFtp12TransferModeE {
+    Active,
+    Passive
+};
+enum _ZN4QFtp12TransferTypeE {
+    Binary,
+    Ascii
+};

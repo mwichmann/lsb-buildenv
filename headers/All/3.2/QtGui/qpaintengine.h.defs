@@ -1,0 +1,71 @@
+
+class QTextItem;
+enum _ZN9QTextItem10RenderFlagE {
+    Dummy,
+    RightToLeft,
+    Overline,
+    Underline,
+    StrikeOut
+};
+class QFlags < QTextItem::RenderFlag >;
+typedef class QFlags < QTextItem::RenderFlag > _ZN9QTextItem11RenderFlagsE;
+class QPaintEngine;
+enum _ZN12QPaintEngine18PaintEngineFeatureE {
+    AllFeatures,
+    PrimitiveTransform,
+    PatternTransform,
+    PixmapTransform,
+    PatternBrush,
+    LinearGradientFill,
+    RadialGradientFill,
+    ConicalGradientFill,
+    AlphaBlend,
+    PorterDuff,
+    PainterPaths,
+    Antialiasing,
+    BrushStroke,
+    PaintOutsidePaintEvent
+};
+class QFlags < QPaintEngine::PaintEngineFeature >;
+typedef class QFlags < QPaintEngine::PaintEngineFeature >
+    _ZN12QPaintEngine19PaintEngineFeaturesE;
+enum _ZN12QPaintEngine9DirtyFlagE {
+    DirtyPen,
+    DirtyBrush,
+    DirtyBrushOrigin,
+    DirtyFont,
+    DirtyBackground,
+    DirtyBackgroundMode,
+    DirtyTransform,
+    DirtyClipRegion,
+    DirtyClipPath,
+    DirtyHints,
+    DirtyCompositionMode,
+    DirtyClipEnabled,
+    AllDirty
+};
+class QFlags < QPaintEngine::DirtyFlag >;
+typedef class QFlags < QPaintEngine::DirtyFlag >
+    _ZN12QPaintEngine10DirtyFlagsE;
+enum _ZN12QPaintEngine15PolygonDrawModeE {
+    OddEvenMode,
+    WindingMode,
+    ConvexMode,
+    PolylineMode
+};
+enum _ZN12QPaintEngine4TypeE {
+    X11,
+    Windows,
+    QuickDraw,
+    CoreGraphics,
+    MacPrinter,
+    QWindowSystem,
+    PostScript,
+    OpenGL,
+    Picture,
+    SVG,
+    Raster,
+    User,
+    MaxUser
+};
+class QPaintEngineState;

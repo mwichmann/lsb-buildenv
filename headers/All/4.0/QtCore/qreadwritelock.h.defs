@@ -1,0 +1,5 @@
+
+typedef enum QtValidLicenseForCoreModule QtCoreModule;
+class QReadWriteLock;
+class QReadLocker;
+class QWriteLocker;

@@ -1,0 +1,28 @@
+
+typedef struct _xmlURI {
+    char *scheme;
+    char *opaque;
+    char *authority;
+    char *server;
+    char *user;
+    int port;
+    char *path;
+    char *query;
+    char *fragment;
+    int cleanup;
+} xmlURI;
+typedef xmlURI *xmlURIPtr;
+extern void xmlFreeURI(xmlURIPtr);
+extern xmlChar *xmlCanonicPath(const xmlChar *);
+extern xmlURIPtr xmlParseURI(const char *);
+extern int xmlParseURIReference(xmlURIPtr, const char *);
+extern int xmlNormalizeURIPath(char *);
+extern void xmlPrintURI(FILE *, xmlURIPtr);
+extern xmlChar *xmlBuildRelativeURI(const xmlChar *, const xmlChar *);
+extern xmlChar *xmlSaveUri(xmlURIPtr);
+extern char *xmlURIUnescapeString(const char *, int, char *);
+extern xmlChar *xmlBuildURI(const xmlChar *, const xmlChar *);
+extern xmlURIPtr xmlParseURIRaw(const char *, int);
+extern xmlURIPtr xmlCreateURI(void);
+extern xmlChar *xmlURIEscape(const xmlChar *);
+extern xmlChar *xmlURIEscapeStr(const xmlChar *, const xmlChar *);

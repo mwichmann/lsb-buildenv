@@ -1,0 +1,7 @@
+
+class QSocketNotifier;
+enum _ZN15QSocketNotifier4TypeE {
+    Read,
+    Write,
+    Exception
+};

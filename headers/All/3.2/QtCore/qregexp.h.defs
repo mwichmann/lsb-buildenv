@@ -1,0 +1,12 @@
+
+class QRegExp;
+enum _ZN7QRegExp13PatternSyntaxE {
+    RegExp,
+    Wildcard,
+    FixedString
+};
+enum _ZN7QRegExp9CaretModeE {
+    CaretAtZero,
+    CaretAtOffset,
+    CaretWontMatch
+};

@@ -1,0 +1,20 @@
+
+typedef struct _xmlRMutex xmlRMutex;
+typedef xmlRMutex *xmlRMutexPtr;
+typedef struct _xmlMutex xmlMutex;
+typedef xmlMutex *xmlMutexPtr;
+extern int xmlGetThreadId(void);
+extern xmlRMutexPtr xmlNewRMutex(void);
+extern void xmlCleanupThreads(void);
+extern void xmlFreeRMutex(xmlRMutexPtr);
+extern xmlMutexPtr xmlNewMutex(void);
+extern int xmlIsMainThread(void);
+extern void xmlUnlockLibrary(void);
+extern void xmlRMutexLock(xmlRMutexPtr);
+extern void xmlRMutexUnlock(xmlRMutexPtr);
+extern void xmlMutexUnlock(xmlMutexPtr);
+extern void xmlMutexLock(xmlMutexPtr);
+extern xmlGlobalStatePtr xmlGetGlobalState(void);
+extern void xmlInitThreads(void);
+extern void xmlLockLibrary(void);
+extern void xmlFreeMutex(xmlMutexPtr);

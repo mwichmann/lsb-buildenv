@@ -1,0 +1,3 @@
+
+typedef class QList < QWidget * >_Z11QWidgetList;
+typedef unsigned long int WId;

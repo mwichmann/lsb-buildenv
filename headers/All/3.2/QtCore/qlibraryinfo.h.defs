@@ -1,0 +1,15 @@
+
+class QLibraryInfo;
+enum _ZN12QLibraryInfo15LibraryLocationE {
+    PrefixPath,
+    DocumentationPath,
+    HeadersPath,
+    LibrariesPath,
+    BinariesPath,
+    PluginsPath,
+    DataPath,
+    TranslationsPath,
+    SettingsPath,
+    DemosPath,
+    ExamplesPath
+};

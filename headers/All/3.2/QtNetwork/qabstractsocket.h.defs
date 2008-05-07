@@ -1,0 +1,61 @@
+
+class QAbstractSocket;
+enum _ZN15QAbstractSocket10SocketTypeE {
+    UnknownSocketType,
+    TcpSocket,
+    UdpSocket
+};
+enum _ZN15QAbstractSocket20NetworkLayerProtocolE {
+    UnknownNetworkLayerProtocol,
+    IPv4Protocol,
+    IPv6Protocol
+};
+enum _ZN15QAbstractSocket11SocketErrorE {
+    UnknownSocketError,
+    ConnectionRefusedError,
+    RemoteHostClosedError,
+    HostNotFoundError,
+    SocketAccessError,
+    SocketResourceError,
+    SocketTimeoutError,
+    DatagramTooLargeError,
+    NetworkError,
+    AddressInUseError,
+    SocketAddressNotAvailableError,
+    UnsupportedSocketOperationError
+};
+enum _ZN15QAbstractSocket11SocketStateE {
+    UnconnectedState,
+    Idle,
+    HostLookupState,
+    HostLookup,
+    ConnectingState,
+    Connecting,
+    ConnectedState,
+    Connected,
+    Connection,
+    BoundState,
+    ListeningState,
+    ClosingState,
+    Closing
+};
+enum _ZN15QAbstractSocket5ErrorE {
+    ErrSocketRead,
+    ErrConnectionRefused,
+    ErrHostNotFound
+};
+typedef enum _ZN15QAbstractSocket11SocketStateE {
+    UnconnectedState,
+    Idle,
+    HostLookupState,
+    HostLookup,
+    ConnectingState,
+    Connecting,
+    ConnectedState,
+    Connected,
+    Connection,
+    BoundState,
+    ListeningState,
+    ClosingState,
+    Closing
+} _ZN15QAbstractSocket5StateE;

@@ -1,0 +1,9 @@
+
+class QAbstractItemDelegate;
+enum _ZN21QAbstractItemDelegate11EndEditHintE {
+    NoHint,
+    EditNextItem,
+    EditPreviousItem,
+    SubmitModelCache,
+    RevertModelCache
+};

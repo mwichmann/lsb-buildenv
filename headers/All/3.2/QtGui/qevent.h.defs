@@ -1,0 +1,76 @@
+
+class QInputEvent;
+class QMouseEvent;
+class QHoverEvent;
+class QWheelEvent;
+class QTabletEvent;
+enum _ZN12QTabletEvent12TabletDeviceE {
+    NoDevice,
+    Puck,
+    Stylus,
+    Airbrush,
+    FourDMouse,
+    XFreeEraser,
+    RotationStylus
+};
+enum _ZN12QTabletEvent11PointerTypeE {
+    UnknownPointer,
+    Pen,
+    Cursor,
+    Eraser
+};
+class QKeyEvent;
+class QFocusEvent;
+enum _ZN11QFocusEvent6ReasonE {
+    Mouse,
+    Tab,
+    Backtab,
+    ActiveWindow,
+    Popup,
+    Shortcut,
+    MenuBar,
+    Other
+};
+class QPaintEvent;
+class QMoveEvent;
+class QResizeEvent;
+class QCloseEvent;
+class QIconDragEvent;
+class QShowEvent;
+class QHideEvent;
+class QContextMenuEvent;
+enum _ZN17QContextMenuEvent6ReasonE {
+    Mouse,
+    Keyboard,
+    Other
+};
+class QInputMethodEvent;
+enum _ZN17QInputMethodEvent13AttributeTypeE {
+    TextFormat,
+    Cursor,
+    Language,
+    Ruby
+};
+class QInputMethodEvent::Attribute;
+class QDropEvent;
+enum _ZN10QDropEvent6ActionE {
+    Copy,
+    Link,
+    Move,
+    Private,
+    UserAction
+};
+class QDragMoveEvent;
+class QDragEnterEvent;
+class QDragResponseEvent;
+class QDragLeaveEvent;
+class QHelpEvent;
+class QStatusTipEvent;
+class QWhatsThisClickedEvent;
+class QActionEvent;
+class QFileOpenEvent;
+class QToolBarChangeEvent;
+class QShortcutEvent;
+class QClipboardEvent;
+class QWindowStateChangeEvent;
+class QMenubarUpdatedEvent;
