@@ -110,6 +110,17 @@ extern "C" {
 
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
 
+    typedef enum FT_Pixel_Mode_ {
+	FT_PIXEL_MODE_NONE = 0,
+	FT_PIXEL_MODE_MONO,
+	FT_PIXEL_MODE_GRAY,
+	FT_PIXEL_MODE_GRAY2,
+	FT_PIXEL_MODE_GRAY4,
+	FT_PIXEL_MODE_LCD,
+	FT_PIXEL_MODE_LCD_V,
+	FT_PIXEL_MODE_MAX
+    } FT_Pixel_Mode;
+
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
