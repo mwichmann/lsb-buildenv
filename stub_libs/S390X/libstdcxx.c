@@ -1758,6 +1758,8 @@ void _ZSt14__convert_to_vIfEvPKcRT_RSt12_Ios_IostateRKP15__locale_struct() {} ;
 void _ZSt14set_unexpectedPFvvE() {} ;
 void _ZSt15set_new_handlerPFvvE() {} ;
 void _ZSt16__throw_bad_castv() {} ;
+void _ZSt17__copy_streambufsIcSt11char_traitsIcEElPSt15basic_streambufIT_T0_ES6_() {} ;
+void _ZSt17__copy_streambufsIwSt11char_traitsIwEElPSt15basic_streambufIT_T0_ES6_() {} ;
 void _ZSt17__throw_bad_allocv() {} ;
 void _ZSt18_Rb_tree_decrementPKSt18_Rb_tree_node_base() {} ;
 void _ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base() {} ;

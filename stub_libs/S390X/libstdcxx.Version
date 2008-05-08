@@ -2974,3 +2974,7 @@ GLIBCXX_3.4.6 {
 GLIBCXX_3.4.7 {
   _ZNSt6locale5_Impl16_M_install_cacheEPKNS_5facetEm;
 };
+GLIBCXX_3.4.8 {
+  _ZSt17__copy_streambufsIcSt11char_traitsIcEElPSt15basic_streambufIT_T0_ES6_;
+  _ZSt17__copy_streambufsIwSt11char_traitsIwEElPSt15basic_streambufIT_T0_ES6_;
+};
