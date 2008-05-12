@@ -462,6 +462,7 @@ struct option long_options[] = {
 	{"version",no_argument,NULL,15},
 	{"lsb-shared-libpath",required_argument,NULL,16},
 	{"static",no_argument,NULL,17},
+	{"lsb-use-default-linker",no_argument,NULL,18},
 	{NULL,0,0,0}
 	};
 
@@ -535,7 +536,9 @@ usage(const char *progname) {
 		"\t                   Enable support for the optional LSB modules listed.\n"
 		"\t                    Modules will added in addition to any added from \n"
 		"\t                    the LSB_MODULES environment setting.\n"
-		"\t                    known modules: %s\n\n"
+		"\t                    known modules: %s\n"
+                "\t--lsb-use-default-linker\n"
+                "\t                   Do not set dynamic linker to the LSB one.\n\n"
 
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
@@ -735,6 +738,7 @@ int	found_file = 0;
 int	no_link = 0;
 int	no_as_needed = 1;
 int	cc_is_icc = 0;
+int	default_linker = 0;
 char	progintbuf[256];
 char	tmpbuf[256];
 char	*ptr;
@@ -1211,6 +1215,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 							argv[optind-1] );
 		}
 		break;
+	case 18:/* --lsb-use-default-linker */
+		default_linker=1;
+		break;
 	default:
 		/* We shouldn't get here */
 		printf("unhandled option %c", c );
@@ -1374,7 +1381,7 @@ if (!no_link) {
 
 	/* Initialize the argv groups */
 
-	if (!lsbcc_buildingshared) {
+	if (!lsbcc_buildingshared && !default_linker) {
 		if (cc_is_icc) {
 			sprintf(progintbuf,"-dynamic-linker=%s",proginterpreter);
 		} else {
