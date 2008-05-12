@@ -27,7 +27,7 @@ core_filelist desktop_filelist:
 #	./mkheader -a All -v `cat LSB_VERSION` -h $@ | indent -kr >$@\
 #	)
 
-headers-All: $(foreach headerfile,$(HEADERFILELIST),All/$(headerfile).defs $(headerfile)) 
+headers-All_3.0: $(foreach headerfile,$(HEADERFILELIST),All_3.0/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
 install: install-core
