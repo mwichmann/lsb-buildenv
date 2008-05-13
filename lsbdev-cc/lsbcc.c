@@ -843,6 +843,10 @@ if( (ptr=getenv("LSBCC_FORCEFEATURES")) != NULL ) {
 	feature_settings = 1;
 }
 
+if( (ptr=getenv("LSBCC_USE_DEFAULT_LINKER")) != NULL ) {
+	default_linker = 1;
+}
+
 if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
 	display_cmd = 1;
 }
@@ -851,15 +855,15 @@ if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
     lsbcc_lsbversion=ptr;
 
     if( (lsbversion_option=
-        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion-1))) ) == NULL ) {
-			exit(3);
-	}
+        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion))) ) == NULL ) {
+	    exit(3);
+    }
 
-	strcpy(lsbversion_option, "-D__LSB_VERSION__=");
-	// Normally, LSB_VERSION values should contain dot - remove it
+    strcpy(lsbversion_option, "-D__LSB_VERSION__=");
+    /* Normally, LSB_VERSION values should contain dot - remove it */
+    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
+    if( lsbcc_lsbversion )
 	strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-	if( lsbcc_lsbversion )
-	    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
 
     if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
         fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
