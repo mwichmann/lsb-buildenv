@@ -671,6 +671,11 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
+#if __LSB_VERSION__ >= 40
+    typedef void (*GToggleNotify) (gpointer, GObject, gboolean);
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #if __LSB_VERSION__ >= 31
 
     struct _GTypeClass {
@@ -1597,6 +1602,13 @@ extern "C" {
     extern gboolean g_value_type_transformable(GType, GType);
     extern void g_value_unset(GValue *);
 #endif				/* __LSB_VERSION__ >= 3.1 */
+
+#if __LSB_VERSION__ >= 40
+    extern void g_object_add_toggle_ref(GObject *, GToggleNotify,
+					gpointer);
+    extern void g_object_remove_toggle_ref(GObject *, GToggleNotify,
+					   gpointer);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

@@ -1822,6 +1822,11 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
+#if __LSB_VERSION__ >= 40
+    typedef struct _GMappedFile GMappedFile;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #if __LSB_VERSION__ >= 31
 
     struct _GThread {
@@ -2267,6 +2272,11 @@ extern "C" {
     };
 
 #endif				/* __LSB_VERSION__ >= 3.1 */
+
+#if __LSB_VERSION__ >= 40
+
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Function prototypes */
@@ -3310,6 +3320,29 @@ extern "C" {
     extern const guint glib_micro_version;
     extern const guint glib_minor_version;
 #endif				/* __LSB_VERSION__ >= 3.1 */
+
+#if __LSB_VERSION__ >= 40
+    extern int g_access(const gchar *, int);
+    extern gchar *g_build_filenamev(gchar * *);
+    extern gchar *g_build_pathv(const gchar *, gchar * *);
+    extern int g_chdir(const gchar *);
+    extern guint g_datalist_get_flags(GData * *);
+    extern void g_datalist_set_flags(GData * *, guint);
+    extern void g_datalist_unset_flags(GData * *, guint);
+    extern gboolean g_file_set_contents(const gchar *, const gchar *,
+					gssize, GError * *);
+    extern const gchar *g_get_host_name(void);
+    extern gchar **g_listenv(void);
+    extern void g_mapped_file_free(GMappedFile *);
+    extern gchar *g_mapped_file_get_contents(GMappedFile *);
+    extern gsize g_mapped_file_get_length(GMappedFile *);
+    extern GMappedFile *g_mapped_file_new(const gchar *, gboolean,
+					  GError * *);
+    extern int g_mkdir_with_parents(const gchar *, int);
+    extern int g_rmdir(const gchar *);
+    extern int g_unlink(const gchar *);
+    extern gchar *g_utf8_collate_key_for_filename(const gchar *, gssize);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }
