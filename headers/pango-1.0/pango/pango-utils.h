@@ -36,6 +36,10 @@ extern "C" {
     extern char *pango_trim_string(const char *);
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
+#if __LSB_VERSION__ >= 40
+    extern gboolean pango_is_zero_width(gunichar);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

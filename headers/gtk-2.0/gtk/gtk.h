@@ -3650,6 +3650,25 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
+#if __LSB_VERSION__ >= 40
+    typedef enum {
+	GTK_ICON_VIEW_NO_DROP,
+	GTK_ICON_VIEW_DROP_INTO,
+	GTK_ICON_VIEW_DROP_LEFT,
+	GTK_ICON_VIEW_DROP_RIGHT,
+	GTK_ICON_VIEW_DROP_ABOVE,
+	GTK_ICON_VIEW_DROP_BELOW
+    } GtkIconViewDropPosition;
+
+    typedef enum {
+	GTK_PACK_DIRECTION_LTR,
+	GTK_PACK_DIRECTION_RTL,
+	GTK_PACK_DIRECTION_TTB,
+	GTK_PACK_DIRECTION_BTT
+    } GtkPackDirection;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #if __LSB_VERSION__ >= 31
     enum {
 	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID = -1,
@@ -10767,6 +10786,112 @@ extern "C" {
 #if __LSB_VERSION__ >= 32
     extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+    extern gboolean gtk_about_dialog_get_wrap_license(GtkAboutDialog *);
+    extern void gtk_about_dialog_set_wrap_license(GtkAboutDialog *,
+						  gboolean);
+    extern GClosure *gtk_action_get_accel_closure(GtkAction *);
+    extern GType gtk_combo_get_type(void);
+    extern gint gtk_dialog_get_response_for_widget(GtkDialog *,
+						   GtkWidget *);
+    extern void gtk_drag_set_icon_name(GdkDragContext *, const gchar *,
+				       gint, gint);
+    extern void gtk_drag_source_set_icon_name(GtkWidget *, const gchar *);
+    extern gboolean
+	gtk_entry_completion_get_popup_set_width(GtkEntryCompletion *);
+    extern gboolean
+	gtk_entry_completion_get_popup_single_match(GtkEntryCompletion *);
+    extern void gtk_entry_completion_set_popup_set_width(GtkEntryCompletion
+							 *, gboolean);
+    extern void
+	gtk_entry_completion_set_popup_single_match(GtkEntryCompletion *,
+						    gboolean);
+    extern gboolean
+	gtk_file_chooser_get_do_overwrite_confirmation(GtkFileChooser *);
+    extern void
+	gtk_file_chooser_set_do_overwrite_confirmation(GtkFileChooser *,
+						       gboolean);
+    extern GdkPixmap *gtk_icon_view_create_drag_icon(GtkIconView *,
+						     GtkTreePath *);
+    extern void gtk_icon_view_enable_model_drag_dest(GtkIconView *,
+						     const GtkTargetEntry
+						     *, gint,
+						     GdkDragAction *);
+    extern void gtk_icon_view_enable_model_drag_source(GtkIconView *,
+						       GdkModifierType,
+						       const GtkTargetEntry
+						       *, gint,
+						       GdkDragAction);
+    extern gboolean gtk_icon_view_get_cursor(GtkTreeIter *,
+					     GtkTreePath * *,
+					     GtkCellRenderer * *);
+    extern gboolean gtk_icon_view_get_dest_item_at_pos(GtkIconView *, gint,
+						       gint,
+						       GtkTreePath * *,
+						       GtkIconViewDropPosition
+						       *);
+    extern void gtk_icon_view_get_drag_dest_item(GtkIconView *,
+						 GtkTreePath * *,
+						 GtkIconViewDropPosition
+						 *);
+    extern gboolean gtk_icon_view_get_item_at_pos(GtkIconView *, gint,
+						  gint, GtkTreePath * *,
+						  GtkCellRenderer * *);
+    extern gboolean gtk_icon_view_get_reorderable(GtkIconView *);
+    extern gboolean gtk_icon_view_get_visible_range(GtkIconView *,
+						    GtkTreePath * *,
+						    GtkTreePath * *);
+    extern void gtk_icon_view_scroll_to_path(GtkIconView *, GtkTreePath *,
+					     gboolean, gfloat, gfloat);
+    extern void gtk_icon_view_set_cursor(GtkIconView *, GtkTreePath *,
+					 GtkCellRenderer *, gboolean);
+    extern void gtk_icon_view_set_drag_dest_item(GtkIconView *,
+						 GtkTreePath *,
+						 GtkIconViewDropPosition);
+    extern void gtk_icon_view_set_reorderable(GtkIconView *, gboolean);
+    extern void gtk_icon_view_unset_model_drag_dest(GtkIconView *);
+    extern void gtk_icon_view_unset_model_drag_source(GtkIconView *);
+    extern void gtk_image_clear(GtkImage *);
+    extern GtkPackDirection
+	gtk_menu_bar_get_child_pack_direction(GtkMenuBar *);
+    extern GtkPackDirection gtk_menu_bar_get_pack_direction(GtkMenuBar *);
+    extern void gtk_menu_bar_set_child_pack_direction(GtkMenuBar *,
+						      GtkPackDirection);
+    extern void gtk_menu_bar_set_pack_direction(GtkMenuBar *,
+						GtkPackDirection);
+    extern gboolean gtk_menu_shell_get_take_focus(GtkMenuShell *);
+    extern void gtk_menu_shell_set_take_focus(GtkMenuShell *, gboolean);
+    extern GType gtk_pack_direction_get_type(void);
+    extern GtkWidget *gtk_scrolled_window_get_hscrollbar(GtkScrolledWindow
+							 *);
+    extern GtkWidget *gtk_scrolled_window_get_vscrollbar(GtkScrolledWindow
+							 *);
+    extern gboolean gtk_size_group_get_ignore_hidden(GtkSizeGroup *);
+    extern void gtk_size_group_set_ignore_hidden(GtkSizeGroup *, gboolean);
+    extern void gtk_stock_set_translate_func(const gchar *,
+					     GtkTranslateFunc, gpointer,
+					     GtkDestroyNotify);
+    extern GtkType gtk_text_get_type(void);
+    extern gboolean gtk_text_iter_backward_visible_line(GtkTextIter *);
+    extern gboolean gtk_text_iter_backward_visible_lines(GtkTextIter *,
+							 gint);
+    extern gboolean gtk_text_iter_forward_visible_line(GtkTextIter *);
+    extern gboolean gtk_text_iter_forward_visible_lines(GtkTextIter *,
+							gint);
+    extern const gchar *gtk_tool_button_get_icon_name(GtkWidget *);
+    extern void gtk_tool_button_set_icon_name(GtkToolButton *,
+					      const gchar *);
+    extern GtkTreeModel
+	*gtk_tree_row_reference_get_model(GtkTreeRowReference *);
+    extern void gtk_tree_view_column_queue_resize(GtkTreeViewColumn *);
+    extern gboolean gtk_tree_view_get_visible_range(GtkTreeView *,
+						    GtkTreePath * *,
+						    GtkTreePath * *);
+    extern gboolean gtk_window_get_urgency_hint(GtkWindow *);
+    extern void gtk_window_present_with_time(GtkWindow *, guint32);
+    extern void gtk_window_set_urgency_hint(GtkWindow *, gboolean);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

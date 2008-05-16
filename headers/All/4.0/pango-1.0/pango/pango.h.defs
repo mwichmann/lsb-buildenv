@@ -71,6 +71,12 @@
 #define PANGO_SCALE_LARGE	((double)1.2)
 #define PANGO_SCALE_X_LARGE	((double)1.4399999999999)
 #define PANGO_SCALE_XX_LARGE	((double)1.728)
+#if defined(PANGO_ENABLE_ENGINE) || defined(PANGO_ENABLE_BACKEND)
+#define PANGO_GET_UNKNOWN_GLYPH(wc)	((PangoGlyph)(wc)|PANGO_GLYPH_UNKNOWN_FLAG)
+#endif
+#if defined(PANGO_ENABLE_ENGINE) || defined(PANGO_ENABLE_BACKEND)
+#define PANGO_GLYPH_UNKNOWN_FLAG	((PangoGlyph)0x10000000)
+#endif
 #define PANGO_RBEARING(rect)	((rect).x + (rect).width)
 #define PANGO_LBEARING(rect)	((rect).x)
 #define PANGO_DESCENT(rect)	((rect).y + (rect).height)
@@ -899,3 +905,4 @@ extern void pango_layout_set_font_description(PangoLayout *,
 extern PangoFontMetrics *pango_font_get_metrics(PangoFont *,
 						PangoLanguage *);
 extern PangoScriptIter *pango_script_iter_new(const char *, int);
+extern PangoFontMap *pango_font_get_font_map(PangoFont *);

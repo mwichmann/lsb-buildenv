@@ -40,6 +40,13 @@
 #define GDK_TYPE_PIXBUF	(gdk_pixbuf_get_type ())
 #define GDK_TYPE_PIXBUF_LOADER	(gdk_pixbuf_loader_get_type ())
 #define GDK_TYPE_PIXBUF_ROTATION	(gdk_pixbuf_rotation_get_type())
+#define GDK_TYPE_PIXBUF_SIMPLE_ANIM	(gdk_pixbuf_simple_anim_get_type ())
+#define GDK_PIXBUF_SIMPLE_ANIM_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
+
+#define GDK_IS_PIXBUF_SIMPLE_ANIM_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_PIXBUF_SIMPLE_ANIM))
+#define GDK_PIXBUF_SIMPLE_ANIM(object)	(G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnim))
+#define GDK_IS_PIXBUF_SIMPLE_ANIM(object)	(G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_PIXBUF_SIMPLE_ANIM))
+#define GDK_PIXBUF_SIMPLE_ANIM_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
 #define GDK_PIXBUF_VERSION	"2.6.10"
 #define GDK_PIXBUF_VAR	extern
 #define GDK_PIXBUF_ERROR	gdk_pixbuf_error_quark ()
@@ -89,6 +96,8 @@ typedef enum {
     GDK_PIXBUF_ALPHA_BILEVEL,
     GDK_PIXBUF_ALPHA_FULL
 } GdkPixbufAlphaMode;
+typedef struct _GdkPixbufSimpleAnim GdkPixbufSimpleAnim;
+typedef struct _GdkPixbufSimpleAnimClass GdkPixbufSimpleAnimClass;
 extern gboolean gdk_pixbuf_save_to_callbackv(GdkPixbuf *,
 					     GdkPixbufSaveFunc, gpointer,
 					     const char *, char **,
@@ -214,3 +223,8 @@ extern gboolean gdk_pixbuf_get_has_alpha(const GdkPixbuf *);
 extern const gchar *gdk_pixbuf_get_option(GdkPixbuf *, const gchar *);
 extern int gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter
 						    *);
+extern GType gdk_pixbuf_simple_anim_get_type(void);
+extern GType gdk_pixbuf_simple_anim_iter_get_type(void);
+extern GdkPixbufSimpleAnim *gdk_pixbuf_simple_anim_new(gint, gint, gfloat);
+extern void gdk_pixbuf_simple_anim_add_frame(GdkPixbufSimpleAnim *,
+					     GdkPixbuf *);

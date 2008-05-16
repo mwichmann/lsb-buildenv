@@ -16,3 +16,4 @@ extern gboolean pango_scan_string(const char **, GString *);
 extern gboolean pango_parse_variant(const char *, PangoVariant *,
 				    gboolean);
 extern char **pango_split_file_list(const char *);
+extern gboolean pango_is_zero_width(gunichar);
