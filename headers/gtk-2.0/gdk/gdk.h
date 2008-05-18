@@ -2405,6 +2405,24 @@ extern "C" {
     extern GType gdk_wm_function_get_type(void);
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
+#if __LSB_VERSION__ >= 40
+    extern GdkPixbuf *gdk_cursor_get_image(GdkCursor *);
+    extern GdkCursor *gdk_cursor_new_from_name(GdkDisplay *,
+					       const gchar *);
+    extern void gdk_display_warp_pointer(GdkDisplay *, GdkScreen *, gint,
+					 gint);
+    extern GdkColormap *gdk_screen_get_rgba_colormap(GdkScreen *);
+    extern GdkVisual *gdk_screen_get_rgba_visual(GdkScreen *);
+    extern void gdk_window_move_region(GdkWindow *, GdkRegion *, gint,
+				       gint);
+    extern void gdk_window_set_urgency_hint(GdkWindow *, gboolean);
+    extern guint32 gdk_x11_display_get_user_time(GdkDisplay *);
+    extern void gdk_x11_display_set_cursor_theme(GdkDisplay *,
+						 const gchar *,
+						 const gint);
+    extern void gdk_x11_window_move_to_current_desktop(GdkWindow *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif
