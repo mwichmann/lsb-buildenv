@@ -33,6 +33,7 @@ $select .= "LEFT JOIN SubModule ON SMid=MLmid ";
 $select .= "WHERE SMmandatorysince <= '$version' ";
 $select .= "AND SMmandatorysince <> '' ";
 $select .= "AND MLappearedin <= '$version' ";
+$select .= "ORDER BY Lname";
 
 $th = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $th->execute or die "Couldn't execute $select query: ".DBI->errstr;
@@ -73,6 +74,7 @@ for(1..$th->rows) {
 	$select .= "AND (MLwithdrawnin IS NULL ";
 	$select .= "OR MLwithdrawnin > '$version') ";
 	$select .= "AND SMid = $entry->{'SMid'} ";
+	$select .= "ORDER BY Lname";
 	$th2 = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 	$th2->execute or die "Couldn't execute $select query: ".DBI->errstr;
 	if ($th2->rows) {
@@ -129,6 +131,7 @@ for(1..$xh->rows) {
 	$select .= "AND MLappearedin <= '$version' ";
 	$select .= "AND (MLwithdrawnin IS NULL ";
 	$select .= "OR MLwithdrawnin > '$version') ";
+	$select .= "ORDER BY Lname";
 
 	$xh2 = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 	$xh2->execute or die "Couldn't execute $select query: ".DBI->errstr;
