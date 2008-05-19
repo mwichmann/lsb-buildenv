@@ -21,3 +21,4 @@ libcups
 libcupsimage
 libasound
 libGLU
+libXtst

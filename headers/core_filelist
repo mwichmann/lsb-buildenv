@@ -136,6 +136,7 @@ cups/raster.h
 GL/glu.h
 GL/glext.h
 GL/glxext.h
+X11/extensions/XTest.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
