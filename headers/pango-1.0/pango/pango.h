@@ -708,7 +708,7 @@ extern "C" {
     extern void pango_attr_list_insert_before(PangoAttrList *,
 					      PangoAttribute *);
     extern PangoAttrList *pango_attr_list_new(void);
-    extern void pango_attr_list_ref(PangoAttrList *);
+    extern PangoAttrList *pango_attr_list_ref(PangoAttrList *);
     extern void pango_attr_list_splice(PangoAttrList *, PangoAttrList *,
 				       gint, gint);
     extern void pango_attr_list_unref(PangoAttrList *);
@@ -1051,7 +1051,7 @@ extern "C" {
 					       int **, int *);
     extern void pango_layout_line_index_to_x(PangoLayoutLine *, int, int,
 					     int *);
-    extern void pango_layout_line_ref(PangoLayoutLine *);
+    extern PangoLayoutLine *pango_layout_line_ref(PangoLayoutLine *);
     extern void pango_layout_line_unref(PangoLayoutLine *);
     extern gboolean pango_layout_line_x_to_index(PangoLayoutLine *, int,
 						 int *, int *);

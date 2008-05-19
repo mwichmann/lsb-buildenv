@@ -3242,10 +3242,10 @@ extern "C" {
 				  GDestroyNotify, GDestroyNotify);
     extern GTree *g_tree_new_with_data(GCompareDataFunc, gpointer);
     extern gint g_tree_nnodes(GTree *);
-    extern void g_tree_remove(GTree *, gconstpointer);
+    extern gboolean g_tree_remove(GTree *, gconstpointer);
     extern void g_tree_replace(GTree *, gpointer, gpointer);
     extern gpointer g_tree_search(GTree *, GCompareFunc, gconstpointer);
-    extern void g_tree_steal(GTree *, gconstpointer);
+    extern gboolean g_tree_steal(GTree *, gconstpointer);
     extern gpointer g_try_malloc(gulong);
     extern gpointer g_try_realloc(gpointer, gulong);
     extern void g_tuples_destroy(GTuples *);
