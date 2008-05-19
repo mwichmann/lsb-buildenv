@@ -1505,7 +1505,6 @@ void gtk_text_child_anchor_get_type() {} ;
 void gtk_text_child_anchor_get_widgets() {} ;
 void gtk_text_child_anchor_new() {} ;
 void gtk_text_direction_get_type() {} ;
-void gtk_text_get_type() {} ;
 void gtk_text_iter_backward_char() {} ;
 void gtk_text_iter_backward_chars() {} ;
 void gtk_text_iter_backward_cursor_position() {} ;

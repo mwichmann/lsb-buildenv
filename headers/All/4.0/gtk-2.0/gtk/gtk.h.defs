@@ -7275,7 +7275,7 @@ extern void gtk_list_store_move_after(GtkListStore *, GtkTreeIter *,
 				      GtkTreeIter *);
 extern GtkWidget *gtk_color_selection_new(void);
 extern GtkOrientation gtk_tool_item_get_orientation(GtkToolItem *);
-extern void gtk_text_attributes_ref(GtkTextAttributes *);
+extern GtkTextAttributes *gtk_text_attributes_ref(GtkTextAttributes *);
 extern void gtk_label_set_use_markup(GtkLabel *, gboolean);
 extern GtkWidget *gtk_message_dialog_new(GtkWindow *, GtkDialogFlags,
 					 GtkMessageType, GtkButtonsType,
@@ -8816,7 +8816,6 @@ extern void gtk_paint_focus(GtkStyle *, GdkWindow *, GtkStateType,
 extern GtkUpdateType gtk_range_get_update_policy(GtkRange *);
 extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
 extern GType gtk_combo_get_type(void);
-extern GtkType gtk_text_get_type(void);
 extern GType gtk_pack_direction_get_type(void);
 extern GdkPixmap *gtk_icon_view_create_drag_icon(GtkIconView *,
 						 GtkTreePath *);

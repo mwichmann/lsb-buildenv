@@ -9390,7 +9390,7 @@ extern "C" {
 						GtkTextAttributes *);
     extern GType gtk_text_attributes_get_type(void);
     extern GtkTextAttributes *gtk_text_attributes_new(void);
-    extern void gtk_text_attributes_ref(GtkTextAttributes *);
+    extern GtkTextAttributes *gtk_text_attributes_ref(GtkTextAttributes *);
     extern void gtk_text_attributes_unref(GtkTextAttributes *);
     extern void gtk_text_buffer_add_selection_clipboard(GtkTextBuffer *,
 							GtkClipboard *);
@@ -10872,7 +10872,6 @@ extern "C" {
     extern void gtk_stock_set_translate_func(const gchar *,
 					     GtkTranslateFunc, gpointer,
 					     GtkDestroyNotify);
-    extern GtkType gtk_text_get_type(void);
     extern gboolean gtk_text_iter_backward_visible_line(GtkTextIter *);
     extern gboolean gtk_text_iter_backward_visible_lines(GtkTextIter *,
 							 gint);

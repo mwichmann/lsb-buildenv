@@ -650,7 +650,7 @@ extern PangoAttribute *pango_attr_shape_new(const PangoRectangle *,
 					    const PangoRectangle *);
 extern GType pango_variant_get_type(void);
 extern void pango_layout_set_spacing(PangoLayout *, int);
-extern void pango_attr_list_ref(PangoAttrList *);
+extern PangoAttrList *pango_attr_list_ref(PangoAttrList *);
 extern void pango_font_description_set_family_static(PangoFontDescription
 						     *, const char *);
 extern gboolean pango_layout_iter_next_char(PangoLayoutIter *);
@@ -822,7 +822,7 @@ extern void pango_renderer_draw_error_underline(PangoRenderer *, int, int,
 extern PangoFontset *pango_context_load_fontset(PangoContext *,
 						const PangoFontDescription
 						*, PangoLanguage *);
-extern void pango_layout_line_ref(PangoLayoutLine *);
+extern PangoLayoutLine *pango_layout_line_ref(PangoLayoutLine *);
 extern void pango_font_description_set_family(PangoFontDescription *,
 					      const char *);
 extern gboolean pango_layout_iter_at_last_line(PangoLayoutIter *);
