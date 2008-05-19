@@ -210,6 +210,9 @@ CXXABI_1.3 {
   _ZTVN10__cxxabiv123__fundamental_type_infoE;
   _ZTVN10__cxxabiv129__pointer_to_member_type_infoE;
 };
+CXXABI_1.3.1 {
+  __cxa_get_exception_ptr;
+};
 GLIBCXX_3.4 {
   _ZN9__gnu_cxx12__atomic_addEPVii;
   _ZN9__gnu_cxx18__exchange_and_addEPVii;
