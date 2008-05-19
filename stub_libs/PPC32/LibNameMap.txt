@@ -15,6 +15,7 @@ libXft libXft.so.2
 libXi libXi.so.6
 libXrender libXrender.so.1
 libXt libXt.so.6
+libXtst libXtst.so.6
 libasound libasound.so.2
 libatk-1.0 libatk-1.0.so.0
 libc libc.so.6
