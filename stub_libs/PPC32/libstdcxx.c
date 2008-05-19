@@ -1979,6 +1979,7 @@ void __cxa_current_exception_type() {} ;
 void __cxa_demangle() {} ;
 void __cxa_end_catch() {} ;
 void __cxa_free_exception() {} ;
+void __cxa_get_exception_ptr() {} ;
 void __cxa_get_globals() {} ;
 void __cxa_get_globals_fast() {} ;
 void __cxa_guard_abort() {} ;

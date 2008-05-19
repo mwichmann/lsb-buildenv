@@ -9,3 +9,8 @@
 #define g_remove	remove
 #define g_rename	rename
 #define g_stat	stat
+
+extern int g_access(const gchar *, int);
+extern int g_chdir(const gchar *);
+extern int g_unlink(const gchar *);
+extern int g_rmdir(const gchar *);
