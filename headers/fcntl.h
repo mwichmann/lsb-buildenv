@@ -185,6 +185,10 @@ extern "C" {
     extern int posix_fallocate64(int, off64_t, off64_t);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern int openat(int, const char *, int, ...);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

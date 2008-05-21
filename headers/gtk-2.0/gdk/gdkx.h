@@ -108,6 +108,14 @@ extern "C" {
     extern GdkVisual *gdkx_visual_get(VisualID);
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
+#if __LSB_VERSION__ >= 40
+    extern guint32 gdk_x11_display_get_user_time(GdkDisplay *);
+    extern void gdk_x11_display_set_cursor_theme(GdkDisplay *,
+						 const gchar *,
+						 const gint);
+    extern void gdk_x11_window_move_to_current_desktop(GdkWindow *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

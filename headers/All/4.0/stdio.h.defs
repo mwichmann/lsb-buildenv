@@ -23,6 +23,10 @@ typedef struct _IO_FILE FILE;
 #define _IOLBF	1
 #define _IONBF	2
 
+extern FILE *open_memstream(char **, size_t *);
+extern ssize_t getdelim(char **, size_t *, FILE *);
+extern ssize_t getline(char **, size_t *, int, FILE *);
+extern FILE *fmemopen(void *, size_t, const char *);
 extern char *const _sys_errlist[];
 extern void clearerr(FILE *);
 extern int fclose(FILE *);
@@ -100,3 +104,14 @@ extern int vfscanf(FILE *, const char *, va_list);
 extern int vscanf(const char *, va_list);
 extern int vsscanf(const char *, const char *, va_list);
 extern size_t __fpending(FILE *);
+extern char *__fgets_chk(char *, size_t, int, struct _IO_FILE *);
+extern int __vsprintf_chk(char *, int, size_t, const char *, va_list);
+extern int __vfprintf_chk(FILE *, int, const char *, va_list);
+extern int __vprintf_chk(int, const char *, va_list);
+extern int __printf_chk(int, const char *, ...);
+extern int __vsnprintf_chk(char *, size_t, int, size_t, const char *,
+			   va_list);
+extern int __snprintf_chk(char *, size_t, int, size_t, const char *, ...);
+extern int __sprintf_chk(char *, int, size_t, const char *, ...);
+extern int __fprintf_chk(FILE *, int, const char *, ...);
+extern int dprintf(int, const char *, ...);

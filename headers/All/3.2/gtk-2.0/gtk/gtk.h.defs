@@ -7261,7 +7261,7 @@ extern void gtk_list_store_move_after(GtkListStore *, GtkTreeIter *,
 				      GtkTreeIter *);
 extern GtkWidget *gtk_color_selection_new(void);
 extern GtkOrientation gtk_tool_item_get_orientation(GtkToolItem *);
-extern void gtk_text_attributes_ref(GtkTextAttributes *);
+extern GtkTextAttributes *gtk_text_attributes_ref(GtkTextAttributes *);
 extern void gtk_label_set_use_markup(GtkLabel *, gboolean);
 extern GtkWidget *gtk_message_dialog_new(GtkWindow *, GtkDialogFlags,
 					 GtkMessageType, GtkButtonsType,

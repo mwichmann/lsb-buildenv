@@ -68,6 +68,18 @@ extern "C" {
     extern char *__xpg_strerror_r(int, char *, size_t);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern void *__memcpy_chk(void *, const void *, size_t, size_t);
+    extern void *__memmove_chk(void *, const void *, size_t, size_t);
+    extern void *__mempcpy_chk(void *, const void *, size_t, size_t);
+    extern void *__memset_chk(void *, int, size_t, size_t);
+    extern char *__stpcpy_chk(char *, const char *, size_t);
+    extern char *__strcat_chk(char *, const char *, size_t);
+    extern char *__strcpy_chk(char *, const char *, size_t);
+    extern char *__strncat_chk(char *, const char *, size_t, size_t);
+    extern char *__strncpy_chk(char *, const char *, size_t, size_t);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

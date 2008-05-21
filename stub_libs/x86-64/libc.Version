@@ -124,9 +124,11 @@ GLIBC_2.2.5 {
   dcngettext;
   dgettext;
   difftime;
+  dirfd;
   dirname;
   div;
   dngettext;
+  dprintf;
   drand48;
   dup;
   dup2;
@@ -171,6 +173,7 @@ GLIBC_2.2.5 {
   fileno;
   flock;
   flockfile;
+  fmemopen;
   fmtmsg;
   fnmatch;
   fopen;
@@ -223,6 +226,7 @@ GLIBC_2.2.5 {
   getcontext;
   getcwd;
   getdate;
+  getdelim;
   getdomainname;
   getdtablesize;
   getegid;
@@ -245,6 +249,7 @@ GLIBC_2.2.5 {
   gethostid;
   gethostname;
   getitimer;
+  getline;
   getloadavg;
   getlogin;
   getlogin_r;
@@ -389,6 +394,7 @@ GLIBC_2.2.5 {
   memrchr;
   memset;
   mkdir;
+  mkdtemp;
   mkfifo;
   mkstemp;
   mkstemp64;
@@ -417,6 +423,7 @@ GLIBC_2.2.5 {
   ntohl;
   ntohs;
   open;
+  open_memstream;
   opendir;
   openlog;
   pathconf;
@@ -856,6 +863,45 @@ GLIBC_2.3.3 {
   _sys_siglist;
 };
 GLIBC_2.3.4 {
+  __chk_fail;
+  __fprintf_chk;
+  __memcpy_chk;
+  __memmove_chk;
+  __mempcpy_chk;
+  __memset_chk;
+  __printf_chk;
+  __snprintf_chk;
+  __sprintf_chk;
+  __stpcpy_chk;
+  __strcat_chk;
+  __strcpy_chk;
+  __strncat_chk;
+  __strncpy_chk;
+  __vfprintf_chk;
+  __vprintf_chk;
+  __vsnprintf_chk;
+  __vsprintf_chk;
   __xpg_strerror_r;
   regexec;
+};
+GLIBC_2.4 {
+  __fgets_chk;
+  __fwprintf_chk;
+  __getcwd_chk;
+  __read_chk;
+  __readlink_chk;
+  __realpath_chk;
+  __recv_chk;
+  __recvfrom_chk;
+  __stack_chk_fail;
+  __swprintf_chk;
+  __syslog_chk;
+  __vsyslog_chk;
+  __wcscat_chk;
+  __wcscpy_chk;
+  __wcsncpy_chk;
+  __wctomb_chk;
+  __wmemmove_chk;
+  fdopendir;
+  openat;
 };
