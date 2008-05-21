@@ -1290,7 +1290,7 @@ __asm__(".globl xmlMallocAtomic; .pushsection .data; .type xmlMallocAtomic,@obje
 __asm__(".globl xmlMemStrdup; .pushsection .data; .type xmlMemStrdup,@object; .size xmlMemStrdup, 4; xmlMemStrdup: .long 0; .popsection");
 __asm__(".globl xmlParserMaxDepth; .pushsection .data; .type xmlParserMaxDepth,@object; .size xmlParserMaxDepth, 4; xmlParserMaxDepth: .long 0; .popsection");
 __asm__(".globl xmlRealloc; .pushsection .data; .type xmlRealloc,@object; .size xmlRealloc, 4; xmlRealloc: .long 0; .popsection");
-__asm__(".globl xmlStringComment; .pushsection .data; .type xmlStringComment,@object; .size xmlStringComment, 4; xmlStringComment: .long 0; .popsection");
+__asm__(".globl xmlStringComment; .pushsection .data; .type xmlStringComment,@object; .size xmlStringComment, 8; xmlStringComment: .long 0; .popsection");
 __asm__(".globl xmlStringText; .pushsection .data; .type xmlStringText,@object; .size xmlStringText, 5; xmlStringText: .long 0; .popsection");
 __asm__(".globl xmlStringTextNoenc; .pushsection .data; .type xmlStringTextNoenc,@object; .size xmlStringTextNoenc, 10; xmlStringTextNoenc: .long 0; .popsection");
 __asm__(".globl xmlXPathNAN; .pushsection .data; .type xmlXPathNAN,@object; .size xmlXPathNAN, 8; xmlXPathNAN: .long 0; .popsection");
