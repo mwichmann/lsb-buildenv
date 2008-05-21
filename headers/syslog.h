@@ -108,6 +108,11 @@ extern "C" {
     extern void vsyslog(int, const char *, va_list);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern void __syslog_chk(int, int, const char *, ...);
+    extern void __vsyslog_chk(int, int, const char *, va_list);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

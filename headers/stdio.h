@@ -5,8 +5,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <wctype.h>
-#include <stddef.h>
 #include <stdarg.h>
+#include <stdint.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -177,6 +178,25 @@ extern "C" {
     extern int vscanf(const char *, va_list);
     extern int vsscanf(const char *, const char *, va_list);
 #endif				/* __LSB_VERSION__ >= 1.3 */
+
+#if __LSB_VERSION__ >= 40
+    extern char *__fgets_chk(char *, size_t, int, struct _IO_FILE *);
+    extern int __fprintf_chk(FILE *, int, const char *, ...);
+    extern int __printf_chk(int, const char *, ...);
+    extern int __snprintf_chk(char *, size_t, int, size_t, const char *,
+			      ...);
+    extern int __sprintf_chk(char *, int, size_t, const char *, ...);
+    extern int __vfprintf_chk(FILE *, int, const char *, va_list);
+    extern int __vprintf_chk(int, const char *, va_list);
+    extern int __vsnprintf_chk(char *, size_t, int, size_t, const char *,
+			       va_list);
+    extern int __vsprintf_chk(char *, int, size_t, const char *, va_list);
+    extern int dprintf(int, const char *, ...);
+    extern FILE *fmemopen(void *, size_t, const char *);
+    extern ssize_t getdelim(char **, size_t *, FILE *);
+    extern ssize_t getline(char **, size_t *, int, FILE *);
+    extern FILE *open_memstream(char **, size_t *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

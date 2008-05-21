@@ -254,6 +254,10 @@ extern "C" {
     extern void glXWaitX(void);
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
+#if __LSB_VERSION__ >= 40
+    extern GLXFBConfig *glXGetFBConfigs(Display *, int, int *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

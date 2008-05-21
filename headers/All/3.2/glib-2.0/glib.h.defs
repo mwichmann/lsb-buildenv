@@ -1673,7 +1673,7 @@ extern void g_return_if_fail_warning(const char *, const char *,
 extern GAsyncQueue *g_async_queue_new(void);
 extern GTokenType g_scanner_get_next_token(GScanner *);
 extern gchar *g_strescape(const gchar *, const gchar *);
-extern void g_tree_remove(GTree *, gconstpointer);
+extern gboolean g_tree_remove(GTree *, gconstpointer);
 extern GFileError g_file_error_from_errno(gint);
 extern GByteArray *g_byte_array_set_size(GByteArray *, guint);
 extern GSList *g_slist_insert_before(GSList *, GSList *, gpointer);
@@ -1694,7 +1694,7 @@ extern guint g_timeout_add_full(gint, guint, GSourceFunc, gpointer,
 extern GIOStatus g_io_channel_read_chars(GIOChannel *, gchar *, gsize,
 					 gsize *, GError * *);
 extern gint g_bit_nth_msf(gulong, gint);
-extern void g_tree_steal(GTree *, gconstpointer);
+extern gboolean g_tree_steal(GTree *, gconstpointer);
 extern gboolean g_date_valid(const GDate *);
 extern void g_io_channel_set_close_on_unref(GIOChannel *, gboolean);
 extern void g_tree_replace(GTree *, gpointer, gpointer);

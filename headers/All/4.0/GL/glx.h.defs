@@ -201,3 +201,4 @@ extern GLXWindow glXCreateWindow(Display *, struct __GLXFBConfigRec *,
 extern XVisualInfo *glXGetVisualFromFBConfig(Display *, int);
 extern int glXGetFBConfigAttrib(Display *, int, int, int *);
 extern GLXFBConfig *glXChooseFBConfig(Display *, int, const int *, int *);
+extern GLXFBConfig *glXGetFBConfigs(Display *, int, int *);

@@ -2,8 +2,8 @@
 #ifndef _STDLIB_H_
 #define _STDLIB_H_
 
-#include <stddef.h>
 #include <stdint.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -171,6 +171,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 30
     extern int posix_openpt(int);
 #endif				/* __LSB_VERSION__ >= 3.0 */
+
+#if __LSB_VERSION__ >= 40
+    extern char *__realpath_chk(const char *, char *, size_t);
+    extern int __wctomb_chk(char *, wchar_t, size_t);
+    extern char *mkdtemp(char *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

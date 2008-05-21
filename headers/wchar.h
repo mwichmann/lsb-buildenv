@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <wctype.h>
-#include <stddef.h>
 #include <stdarg.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -117,6 +117,18 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
     extern wint_t getwchar(void);
 #endif				/* __LSB_VERSION__ >= 1.1 */
+
+#if __LSB_VERSION__ >= 40
+    extern int __fwprintf_chk(FILE *, int, const wchar_t *, ...);
+    extern int __swprintf_chk(wchar_t *, size_t, int, size_t,
+			      const wchar_t *, ...);
+    extern wchar_t *__wcscat_chk(wchar_t *, const wchar_t *, size_t);
+    extern wchar_t *__wcscpy_chk(wchar_t *, const wchar_t *, size_t);
+    extern wchar_t *__wcsncpy_chk(wchar_t *, const wchar_t *, size_t,
+				  size_t);
+    extern wchar_t *__wmemmove_chk(wchar_t *, const wchar_t *, size_t,
+				   size_t);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

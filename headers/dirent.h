@@ -61,6 +61,11 @@ extern "C" {
     extern int readdir64_r(DIR *, struct dirent64 *, struct dirent64 **);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern int dirfd(DIR *);
+    extern DIR *fdopendir(int);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

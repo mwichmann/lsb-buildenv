@@ -2,10 +2,10 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
+#include <stdint.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
-#include <stdint.h>
 
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
@@ -512,6 +512,12 @@ extern "C" {
     extern int getdomainname(char *, size_t) LSB_DECL_DEPRECATED;
     extern int getdtablesize(void) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+    extern char *__getcwd_chk(char *, size_t, size_t);
+    extern ssize_t __read_chk(int, void *, size_t, size_t);
+    extern ssize_t __readlink_chk(const char *, void *, size_t, size_t);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }
