@@ -1,4 +1,6 @@
 
+#define g_access	access
+#define g_chdir	chdir
 #define g_chmod	chmod
 #define g_creat	creat
 #define g_fopen	fopen
@@ -8,9 +10,6 @@
 #define g_open	open
 #define g_remove	remove
 #define g_rename	rename
+#define g_rmdir	rmdir
 #define g_stat	stat
-
-extern int g_access(const gchar *, int);
-extern int g_chdir(const gchar *);
-extern int g_unlink(const gchar *);
-extern int g_rmdir(const gchar *);
+#define g_unlink	unlink
