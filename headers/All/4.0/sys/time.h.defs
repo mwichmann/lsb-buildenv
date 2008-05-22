@@ -30,3 +30,4 @@ extern int setitimer(__itimer_which_t, const struct itimerval *,
 extern int adjtime(const struct timeval *, struct timeval *);
 extern int gettimeofday(struct timeval *, struct timezone *);
 extern int utimes(const char *, const struct timeval *);
+extern int futimesat(int, const char *, const struct timeval);

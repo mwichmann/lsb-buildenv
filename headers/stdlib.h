@@ -2,8 +2,8 @@
 #ifndef _STDLIB_H_
 #define _STDLIB_H_
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

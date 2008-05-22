@@ -3,8 +3,8 @@
 #define _SYS_SOCKET_H_
 
 #include <sys/types.h>
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -393,7 +393,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern ssize_t __recv_chk(int, void *, size_t, size_t, int);
     extern ssize_t __recvfrom_chk(int, void *, size_t, size_t, int,
-				  __SOCKADDR_ARG, socklen_t *);
+				  struct sockaddr *, socklen_t *);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

@@ -2,10 +2,10 @@
 #ifndef _UNISTD_H_
 #define _UNISTD_H_
 
-#include <stdint.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
@@ -517,6 +517,12 @@ extern "C" {
     extern char *__getcwd_chk(char *, size_t, size_t);
     extern ssize_t __read_chk(int, void *, size_t, size_t);
     extern ssize_t __readlink_chk(const char *, void *, size_t, size_t);
+    extern int faccessat(int, const char *, int, int);
+    extern int fchownat(int, const char *, uid_t, gid_t, int);
+    extern int linkat(int, const char *, int, const char *, int);
+    extern int readlinkat(int, const char *, char *, size_t);
+    extern int symlinkat(const char *, int, const char *);
+    extern int unlinkat(int, const char *, int);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

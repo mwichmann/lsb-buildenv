@@ -5,9 +5,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <wctype.h>
+#include <stddef.h>
 #include <stdarg.h>
 #include <stdint.h>
-#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -193,9 +193,10 @@ extern "C" {
     extern int __vsprintf_chk(char *, int, size_t, const char *, va_list);
     extern int dprintf(int, const char *, ...);
     extern FILE *fmemopen(void *, size_t, const char *);
-    extern ssize_t getdelim(char **, size_t *, FILE *);
-    extern ssize_t getline(char **, size_t *, int, FILE *);
+    extern ssize_t getdelim(char **, size_t *, int, FILE *);
+    extern ssize_t getline(char **, size_t *, FILE *);
     extern FILE *open_memstream(char **, size_t *);
+    extern int renameat(int, const char *, int, const char *);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

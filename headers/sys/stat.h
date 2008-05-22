@@ -419,6 +419,15 @@ extern "C" {
     extern mode_t umask(mode_t);
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
+#if __LSB_VERSION__ >= 40
+    extern int __fxstatat(int, int, const char *, struct stat *, int);
+    extern int __fxstatat64(int, int, const char *, struct stat64 *, int);
+    extern int __xmknodat(int, int, const char *, mode_t, dev_t *);
+    extern int fchmodat(int, const char *, mode_t, int);
+    extern int mkdirat(int, const char *, mode_t);
+    extern int mkfifoat(int, const char *, mode_t);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

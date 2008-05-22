@@ -138,4 +138,4 @@ extern int socketpair(int, int, int, int);
 extern int sockatmark(int);
 extern ssize_t __recv_chk(int, void *, size_t, size_t, int);
 extern ssize_t __recvfrom_chk(int, void *, size_t, size_t, int,
-			      __SOCKADDR_ARG, socklen_t *);
+			      struct sockaddr *, socklen_t *);

@@ -187,6 +187,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
     extern int openat(int, const char *, int, ...);
+    extern int openat64(int, const char *, int, ...);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

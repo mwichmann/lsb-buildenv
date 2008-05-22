@@ -1509,19 +1509,9 @@ $hdrlist=join ',', keys(%header);
 # Output the headers this header needs to include
 #
 if( $hdrlist ne "" ) {
-	# We'll need these to properly sort inclusions that came from 'header_depend'
-	$createTmp = "CREATE TEMPORARY TABLE tmp_HeaderDeps (key `ACvalue`(`ACvalue`(5))) ";
-	$createTmp.= "SELECT ACcid, ACvalue FROM Constant ";
-	$createTmp.= "LEFT JOIN ArchConst ON ACcid=Cid ";
-	$createTmp.= "WHERE Ctype='header_depend'";
-	$dbh->do($createTmp);
-
 	$select = "SELECT DISTINCT Hname, Hid FROM Header ";
-	$select.= "LEFT JOIN tmp_HeaderDeps ON ACvalue=Hid ";
 	$select.= "WHERE Hid IN ($hdrlist) ";
 	$select.= "AND Hid != $Hid ";
-	$select.= "ORDER BY ACcid ";
-    
 	print $select,"\n" if $trace;
 	$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 	$sth->execute or die "Couldn't execute $select query: ".DBI->errstr;

@@ -903,6 +903,8 @@ GLIBC_2.3.4 {
 GLIBC_2.4 {
   __fgets_chk;
   __fwprintf_chk;
+  __fxstatat;
+  __fxstatat64;
   __getcwd_chk;
   __read_chk;
   __readlink_chk;
@@ -918,6 +920,19 @@ GLIBC_2.4 {
   __wcsncpy_chk;
   __wctomb_chk;
   __wmemmove_chk;
+  __xmknodat;
+  faccessat;
+  fchmodat;
+  fchownat;
   fdopendir;
+  futimesat;
+  linkat;
+  mkdirat;
+  mkfifoat;
   openat;
+  openat64;
+  readlinkat;
+  renameat;
+  symlinkat;
+  unlinkat;
 };
