@@ -888,6 +888,8 @@ GLIBC_2.3.4 {
   __vsprintf_chk;
   __xpg_strerror_r;
   regexec;
+  sched_getaffinity;
+  sched_setaffinity;
 };
 GLIBC_2.4 {
   __fgets_chk;
@@ -916,6 +918,9 @@ GLIBC_2.4 {
   fchownat;
   fdopendir;
   futimesat;
+  inotify_add_watch;
+  inotify_init;
+  inotify_rm_watch;
   linkat;
   mkdirat;
   mkfifoat;

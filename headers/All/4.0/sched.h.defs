@@ -1,11 +1,25 @@
 
+#define __CPUELT(cpu)	((cpu) / __NCPUBITS)
+#define __CPUMASK(cpu)	((__cpu_mask) 1 << ((cpu) % __NCPUBITS))
+#define __NCPUBITS	(8 * sizeof (__cpu_mask))
 #define SCHED_OTHER	0
 #define SCHED_FIFO	1
+#define __CPU_SETSIZE	1024
 #define SCHED_RR	2
+#define CPU_ALLOC(count)	__CPU_ALLOC (count)
+#define CPU_ALLOC_SIZE(count)	__CPU_ALLOC_SIZE (count)
+#define CPU_COUNT(cpusetp)	__CPU_COUNT_S (sizeof (cpu_set_t), cpusetp)
+#define CPU_FREE(cpuset)	__CPU_FREE (cpuset)
+#define CPU_SETSIZE	__CPU_SETSIZE
+#define CPU_ZERO(cpusetp)	__CPU_ZERO_S (sizeof (cpu_set_t), cpusetp)
 
 struct sched_param {
     int sched_priority;
 };
+typedef unsigned long int __cpu_mask;
+typedef struct {
+    __cpu_mask __bits[__CPU_SETSIZE / __NCPUBITS];
+} cpu_set_t;
 extern int sched_get_priority_max(int);
 extern int sched_get_priority_min(int);
 extern int sched_getparam(pid_t, struct sched_param *);
@@ -14,3 +28,5 @@ extern int sched_rr_get_interval(pid_t, struct timespec *);
 extern int sched_setparam(pid_t, const struct sched_param *);
 extern int sched_setscheduler(pid_t, int, const struct sched_param *);
 extern int sched_yield(void);
+extern int sched_getaffinity(pid_t, size_t, cpu_set_t *);
+extern int sched_setaffinity(pid_t, size_t, cpu_set_t * const);

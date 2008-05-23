@@ -878,6 +878,8 @@ GLIBC_2.3.4 {
   getcontext;
   longjmp;
   regexec;
+  sched_getaffinity;
+  sched_setaffinity;
   setcontext;
   siglongjmp;
   swapcontext;
@@ -908,6 +910,9 @@ GLIBC_2.4 {
   fchownat;
   fdopendir;
   futimesat;
+  inotify_add_watch;
+  inotify_init;
+  inotify_rm_watch;
   linkat;
   mkdirat;
   mkfifoat;

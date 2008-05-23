@@ -268,8 +268,10 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
 				$tth->finish;
 				if ($bentry->{'Ttype'} eq 'Array') {
 					print "[".$bentry->{'ATsize'}."]"."[".$entry->{'ATsize'}."]";
-				} else {
+				} elsif( $entry->{'ATsize'} > 0 ) {
 					print "[".$entry->{'ATsize'}."]";
+				} else {
+					print "[]";
 				}
 			}
 		}
