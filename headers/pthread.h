@@ -440,6 +440,19 @@ extern "C" {
     extern int pthread_spin_unlock(pthread_spinlock_t *);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern int pthread_mutex_getprioceiling(pthread_mutex_t * const,
+					    int *);
+    extern int pthread_mutex_setprioceiling(pthread_mutex_t *, int, int *);
+    extern int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t
+						*, int *);
+    extern int pthread_mutexattr_getprotocol(const pthread_mutexattr_t *,
+					     int *);
+    extern int pthread_mutexattr_setprioceiling(pthread_mutexattr_t *,
+						int);
+    extern int pthread_mutexattr_setprotocol(pthread_mutexattr_t *, int);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

@@ -113,6 +113,7 @@ GLIBC_2.0 {
   div;
   dprintf;
   drand48;
+  drand48_r;
   dup;
   dup2;
   ecvt;
@@ -122,6 +123,7 @@ GLIBC_2.0 {
   endservent;
   endutent;
   erand48;
+  erand48_r;
   err;
   error;
   errx;
@@ -244,6 +246,7 @@ GLIBC_2.0 {
   inet_pton;
   initgroups;
   initstate;
+  initstate_r;
   insque;
   ioctl;
   isalnum;
@@ -273,12 +276,14 @@ GLIBC_2.0 {
   iswxdigit;
   isxdigit;
   jrand48;
+  jrand48_r;
   kill;
   killpg;
   l64a;
   labs;
   lchown;
   lcong48;
+  lcong48_r;
   ldiv;
   lfind;
   link;
@@ -290,6 +295,7 @@ GLIBC_2.0 {
   lockf;
   longjmp;
   lrand48;
+  lrand48_r;
   lsearch;
   lseek;
   malloc;
@@ -318,6 +324,7 @@ GLIBC_2.0 {
   mmap;
   mprotect;
   mrand48;
+  mrand48_r;
   mremap;
   msgget;
   msgrcv;
@@ -330,6 +337,7 @@ GLIBC_2.0 {
   nice;
   nl_langinfo;
   nrand48;
+  nrand48_r;
   ntohl;
   ntohs;
   open;
@@ -359,6 +367,7 @@ GLIBC_2.0 {
   rand;
   rand_r;
   random;
+  random_r;
   read;
   readdir;
   readdir_r;
@@ -389,6 +398,7 @@ GLIBC_2.0 {
   sched_setscheduler;
   sched_yield;
   seed48;
+  seed48_r;
   seekdir;
   select;
   semget;
@@ -420,6 +430,7 @@ GLIBC_2.0 {
   setsid;
   setsockopt;
   setstate;
+  setstate_r;
   setuid;
   setutent;
   setvbuf;
@@ -453,7 +464,9 @@ GLIBC_2.0 {
   sprintf;
   srand;
   srand48;
+  srand48_r;
   srandom;
+  srandom_r;
   sscanf;
   statfs;
   stime;

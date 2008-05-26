@@ -4,6 +4,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/X.h>
+#include <X11/extensions/XInput.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,7 +32,7 @@ extern "C" {
     extern int XTestCompareCurrentCursorWithWindow(Display *, Window);
     extern int XTestCompareCursorWithWindow(Display *, Window, Cursor);
     extern int XTestDiscard(Display *);
-    extern int XTestFakeButtonEvent(Display *, XDevice *, int,
+    extern int XTestFakeButtonEvent(Display *, unsigned int, int,
 				    unsigned long int);
     extern int XTestFakeDeviceButtonEvent(Display *, XDevice *,
 					  unsigned int, int, int *, int,

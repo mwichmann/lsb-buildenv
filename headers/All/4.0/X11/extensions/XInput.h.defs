@@ -1,0 +1,10 @@
+
+typedef struct {
+    unsigned char input_class;
+    unsigned char event_type_base;
+} XInputClassInfo;
+typedef struct {
+    XID device_id;
+    int num_classes;
+    XInputClassInfo *classes;
+} XDevice;

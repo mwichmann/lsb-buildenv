@@ -40,6 +40,17 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
+#if __LSB_VERSION__ >= 40
+    struct drand48_data {
+	unsigned short x;
+	unsigned short a;
+	unsigned short c;
+	unsigned short old_x;
+	int init;
+    };
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 /* Returned by `div'.*/
 #if __LSB_VERSION__ >= 10
@@ -175,7 +186,50 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern char *__realpath_chk(const char *, char *, size_t);
     extern int __wctomb_chk(char *, wchar_t, size_t);
+#if defined __i386__
+/* IA32 */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+#if defined __ia64__
+/* IA64 */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+#if defined __s390x__
+/* S390X */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    extern int drand48_r(struct drand48_data *, double *);
+#endif
+    extern int erand48_r(unsigned short[], struct drand48_data *,
+			 double *);
+    extern int initstate_r(unsigned int, char *, size_t,
+			   struct random_data *);
+    extern int jrand48_r(unsigned short[], struct drand48_data *,
+			 long int *);
+    extern int lrand48_r(struct drand48_data *, long int *);
     extern char *mkdtemp(char *);
+    extern int mrand48_r(struct drand48_data *, long int *);
+    extern int nrand48_r(unsigned short[], struct drand48_data *,
+			 long int *);
+    extern int random_r(struct random_data *, int32_t *);
+    extern int seed48_r(unsigned short[], struct drand48_data *);
+    extern int setstate_r(char *, struct random_data *);
+    extern int srand48_r(long int, struct drand48_data *);
+    extern int srandom_r(unsigned int, struct random_data *);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

@@ -138,6 +138,7 @@ GL/glext.h
 GL/glxext.h
 X11/extensions/XTest.h
 sys/inotify.h
+X11/extensions/XInput.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
