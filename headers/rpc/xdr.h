@@ -12,6 +12,35 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 40
+#define XDR_DESTROY(xdrs)	 \
+   do { if ((xdrs)->x_ops->x_destroy) (*(xdrs)->x_ops->x_destroy)(xdrs); \
+      } while (0)
+#define xdr_destroy(xdrs)	 \
+   do { if ((xdrs)->x_ops->x_destroy) (*(xdrs)->x_ops->x_destroy)(xdrs); \
+      } while (0)
+#define XDR_GETBYTES(xdrs,addr,len)	(*(xdrs)->x_ops->x_getbytes)(xdrs, addr, len)
+#define xdr_getbytes(xdrs,addr,len)	(*(xdrs)->x_ops->x_getbytes)(xdrs, addr, len)
+#define XDR_GETINT32(xdrs,int32p)	(*(xdrs)->x_ops->x_getint32)(xdrs, int32p)
+#define xdr_getint32(xdrs,int32p)	(*(xdrs)->x_ops->x_getint32)(xdrs, int32p)
+#define XDR_GETLONG(xdrs,longp)	(*(xdrs)->x_ops->x_getlong)(xdrs, longp)
+#define xdr_getlong(xdrs,longp)	(*(xdrs)->x_ops->x_getlong)(xdrs, longp)
+#define XDR_GETPOS(xdrs)	(*(xdrs)->x_ops->x_getpostn)(xdrs)
+#define xdr_getpos(xdrs)	(*(xdrs)->x_ops->x_getpostn)(xdrs)
+#define XDR_INLINE(xdrs,len)	(*(xdrs)->x_ops->x_inline)(xdrs, len)
+#define xdr_inline(xdrs,len)	(*(xdrs)->x_ops->x_inline)(xdrs, len)
+#define XDR_PUTBYTES(xdrs,addr,len)	(*(xdrs)->x_ops->x_putbytes)(xdrs, addr, len)
+#define xdr_putbytes(xdrs,addr,len)	(*(xdrs)->x_ops->x_putbytes)(xdrs, addr, len)
+#define XDR_PUTINT32(xdrs,int32p)	(*(xdrs)->x_ops->x_putint32)(xdrs, int32p)
+#define xdr_putint32(xdrs,int32p)	(*(xdrs)->x_ops->x_putint32)(xdrs, int32p)
+#define XDR_PUTLONG(xdrs,longp)	(*(xdrs)->x_ops->x_putlong)(xdrs, longp)
+#define xdr_putlong(xdrs,longp)	(*(xdrs)->x_ops->x_putlong)(xdrs, longp)
+#define XDR_SETPOS(xdrs,pos)	(*(xdrs)->x_ops->x_setpostn)(xdrs, pos)
+#define xdr_setpos(xdrs,pos)	(*(xdrs)->x_ops->x_setpostn)(xdrs, pos)
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
+
+
 #if __LSB_VERSION__ >= 13
     typedef struct XDR XDR;
 
@@ -119,6 +148,11 @@ extern "C" {
 #if __LSB_VERSION__ >= 32
     extern void xdrstdio_create(XDR *, FILE *, enum xdr_op);
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+    extern bool_t xdrrec_endofrecord(XDR *, bool_t);
+    extern bool_t xdrrec_skiprecord(XDR *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

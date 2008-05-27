@@ -86,6 +86,7 @@ GLIBC_2.2 {
   btowc;
   bzero;
   calloc;
+  callrpc;
   catclose;
   catgets;
   catopen;
@@ -107,6 +108,10 @@ GLIBC_2.2 {
   clnt_spcreateerror;
   clnt_sperrno;
   clnt_sperror;
+  clntraw_create;
+  clnttcp_create;
+  clntudp_bufcreate;
+  clntudp_create;
   clock;
   close;
   closedir;
@@ -162,6 +167,7 @@ GLIBC_2.2 {
   fdopen;
   feof;
   ferror;
+  fexecve;
   fflush;
   fflush_unlocked;
   ffs;
@@ -662,6 +668,8 @@ GLIBC_2.2 {
   svcerr_progvers;
   svcerr_systemerr;
   svcerr_weakauth;
+  svcfd_create;
+  svcraw_create;
   svctcp_create;
   svcudp_create;
   swab;
@@ -828,7 +836,9 @@ GLIBC_2.2 {
   xdr_wrapstring;
   xdrmem_create;
   xdrrec_create;
+  xdrrec_endofrecord;
   xdrrec_eof;
+  xdrrec_skiprecord;
   xdrstdio_create;
   __daylight;
   __environ;
@@ -939,6 +949,7 @@ GLIBC_2.4 {
   linkat;
   mkdirat;
   mkfifoat;
+  open_wmemstream;
   openat;
   openat64;
   readlinkat;

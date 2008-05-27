@@ -1805,9 +1805,7 @@ extern "C" {
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) |= (flag)); }G_STMT_END
 #define GTK_SIGNAL_FUNC(f)	((GtkSignalFunc) (f))
 #define GTK_INTERFACE_AGE	(10)
-#define GTK_MICRO_VERSION	(10)
 #define GTK_MAJOR_VERSION	(2)
-#define GTK_MINOR_VERSION	(6)
 #define GTK_BINARY_AGE	(610)
 #define GTK_TEXT_VIEW_PRIORITY_VALIDATE	(GDK_PRIORITY_REDRAW + 5)
 #define GTK_TYPE_ABOUT_DIALOG	(gtk_about_dialog_get_type ())
@@ -2156,7 +2154,17 @@ extern "C" {
 #define GTK_CHECK_CAST	G_TYPE_CHECK_INSTANCE_CAST
 #define GTK_CHECK_TYPE	G_TYPE_CHECK_INSTANCE_TYPE
 #define GTK_CHECK_GET_CLASS	G_TYPE_INSTANCE_GET_CLASS
+#if __LSB_VERSION__ < 40
+#define GTK_MICRO_VERSION	(10)
+#define GTK_MINOR_VERSION	(6)
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.1 */
+
+#if __LSB_VERSION__ >= 40
+#define GTK_MICRO_VERSION	(11)
+#define GTK_MINOR_VERSION	(8)
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 

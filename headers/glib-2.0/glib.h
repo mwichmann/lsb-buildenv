@@ -684,7 +684,6 @@ extern "C" {
 #endif
 #define G_BIG_ENDIAN	4321
 #define GLIB_MICRO_VERSION	6
-#define GLIB_MINOR_VERSION	6
 #if defined __ia64__
 #define GLIB_LSB_DATA_SIZE	8
 #endif
@@ -1010,7 +1009,15 @@ extern "C" {
 #define G_STATIC_PRIVATE_INIT	{ 0 }
 #define G_ONCE_INIT	{ G_ONCE_STATUS_NOTCALLED, NULL }
 #define G_STATIC_REC_MUTEX_INIT	{ G_STATIC_MUTEX_INIT }
+#if __LSB_VERSION__ < 40
+#define GLIB_MINOR_VERSION	6
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.1 */
+
+#if __LSB_VERSION__ >= 40
+#define GLIB_MINOR_VERSION	8
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 

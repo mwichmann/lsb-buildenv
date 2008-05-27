@@ -1782,10 +1782,10 @@
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) |= (flag)); }G_STMT_END
 #define GTK_SIGNAL_FUNC(f)	((GtkSignalFunc) (f))
 #define GTK_INTERFACE_AGE	(10)
-#define GTK_MICRO_VERSION	(10)
+#define GTK_MICRO_VERSION	(11)
 #define GTK_MAJOR_VERSION	(2)
-#define GTK_MINOR_VERSION	(6)
 #define GTK_BINARY_AGE	(610)
+#define GTK_MINOR_VERSION	(8)
 #define GTK_TEXT_VIEW_PRIORITY_VALIDATE	(GDK_PRIORITY_REDRAW + 5)
 #define GTK_TYPE_ABOUT_DIALOG	(gtk_about_dialog_get_type ())
 #define GTK_TYPE_ACCEL_FLAGS	(gtk_accel_flags_get_type())

@@ -5,11 +5,11 @@
 #define RAND_MAX	2147483647
 
 struct drand48_data {
-    unsigned short x;
-    unsigned short a;
-    unsigned short c;
-    unsigned short old_x;
-    int init;
+    unsigned short __x[3];
+    unsigned short __old_x[3];
+    unsigned short __c;
+    unsigned short __init;
+    unsigned long long int __a;
 };
 typedef int (*__compar_fn_t) (const void *, const void *);
 struct random_data {
@@ -58,6 +58,7 @@ extern void *bsearch(const void *, const void *, size_t, size_t,
 		     __compar_fn_t);
 extern div_t div(int, int);
 extern double drand48(void);
+extern int drand48_r(struct drand48_data *, double *);
 extern char *ecvt(double, int, int *, int *);
 extern double erand48(unsigned short);
 extern void exit(int);

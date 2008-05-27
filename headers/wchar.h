@@ -128,6 +128,7 @@ extern "C" {
 				  size_t);
     extern wchar_t *__wmemmove_chk(wchar_t *, const wchar_t *, size_t,
 				   size_t);
+    extern FILE *open_wmemstream(wchar_t * *, size_t *);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

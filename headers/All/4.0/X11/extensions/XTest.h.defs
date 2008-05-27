@@ -13,7 +13,7 @@ extern int XTestCompareCurrentCursorWithWindow(Display *, Window);
 extern int XTestCompareCursorWithWindow(Display *, Window, Cursor);
 extern int XTestDiscard(Display *);
 extern int XTestFakeButtonEvent(Display *, unsigned int, int,
-			        unsigned long int);
+				unsigned long int);
 extern int XTestFakeDeviceButtonEvent(Display *, XDevice *, unsigned int,
 				      int, int *, int, unsigned long int);
 extern int XTestFakeDeviceKeyEvent(Display *, XDevice *, unsigned int, int,

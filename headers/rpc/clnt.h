@@ -3,10 +3,13 @@
 #define _RPC_CLNT_H_
 
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <sys/time.h>
 #include <rpc/auth.h>
 #include <rpc/xdr.h>
+#include <netinet/in.h>
 #include <rpc/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -99,15 +102,14 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
-#if __LSB_VERSION__ >= 13
-
+#if __LSB_VERSION__ >= 40
     struct CLIENT {
 	struct AUTH *cl_auth;
 	struct clnt_ops *cl_ops;
 	caddr_t cl_private;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.3 */
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 #if __LSB_VERSION__ >= 13
@@ -137,6 +139,19 @@ extern "C" {
     extern char *clnt_sperrno(enum clnt_stat);
     extern char *clnt_sperror(struct CLIENT *, const char *);
 #endif				/* __LSB_VERSION__ >= 1.1 */
+
+#if __LSB_VERSION__ >= 40
+    extern int callrpc(char *, u_long, u_long, u_long, xdrproc_t, char *,
+		       xdrproc_t, char *);
+    extern struct CLIENT *clntraw_create(u_long, u_long);
+    extern struct CLIENT *clnttcp_create(struct sockaddr_in *, u_long,
+					 u_long, int *, u_int, u_int);
+    extern struct CLIENT *clntudp_bufcreate(struct sockaddr_in *, u_long,
+					    u_long, struct timeval, int *,
+					    u_int, u_int);
+    extern struct CLIENT *clntudp_create(struct sockaddr_in *, u_long,
+					 u_long, struct timeval, int *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

@@ -26,6 +26,13 @@
   IN_CLOSE_NOWRITE | IN_OPEN | IN_MOVED_FROM | IN_MOVED_TO | IN_CREATE | \
  IN_DELETE | IN_DELETE_SELF | IN_MOVE_SELF)
 
+struct inotify_event {
+    int wd;
+    uint32_t mask;
+    uint32_t cookie;
+    uint32_t len;
+    char name[0];
+};
 extern int inotify_add_watch(int, const char *, uint32_t);
 extern int inotify_init(void);
 extern int inotify_rm_watch(int, uint32_t);

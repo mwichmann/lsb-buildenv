@@ -53,9 +53,12 @@ extern "C" {
 #define GDK_TYPE_PIXBUF	(gdk_pixbuf_get_type ())
 #define GDK_TYPE_PIXBUF_LOADER	(gdk_pixbuf_loader_get_type ())
 #define GDK_TYPE_PIXBUF_ROTATION	(gdk_pixbuf_rotation_get_type())
-#define GDK_PIXBUF_VERSION	"2.6.10"
 #define GDK_PIXBUF_VAR	extern
 #define GDK_PIXBUF_ERROR	gdk_pixbuf_error_quark ()
+#if __LSB_VERSION__ < 40
+#define GDK_PIXBUF_VERSION	"2.6.10"
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
 #if __LSB_VERSION__ >= 40
@@ -66,6 +69,7 @@ extern "C" {
 #define GDK_PIXBUF_SIMPLE_ANIM(object)	(G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnim))
 #define GDK_IS_PIXBUF_SIMPLE_ANIM(object)	(G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_PIXBUF_SIMPLE_ANIM))
 #define GDK_PIXBUF_SIMPLE_ANIM_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
+#define GDK_PIXBUF_VERSION	"2.8.11"
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 

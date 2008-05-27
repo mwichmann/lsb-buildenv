@@ -42,11 +42,11 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
     struct drand48_data {
-	unsigned short x;
-	unsigned short a;
-	unsigned short c;
-	unsigned short old_x;
-	int init;
+	unsigned short __x[3];
+	unsigned short __old_x[3];
+	unsigned short __c;
+	unsigned short __init;
+	unsigned long long int __a;
     };
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
@@ -186,34 +186,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern char *__realpath_chk(const char *, char *, size_t);
     extern int __wctomb_chk(char *, wchar_t, size_t);
-#if defined __i386__
-/* IA32 */
     extern int drand48_r(struct drand48_data *, double *);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern int drand48_r(struct drand48_data *, double *);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern int drand48_r(struct drand48_data *, double *);
-#endif
-#if defined __ia64__
-/* IA64 */
-    extern int drand48_r(struct drand48_data *, double *);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern int drand48_r(struct drand48_data *, double *);
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    extern int drand48_r(struct drand48_data *, double *);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern int drand48_r(struct drand48_data *, double *);
-#endif
     extern int erand48_r(unsigned short[], struct drand48_data *,
 			 double *);
     extern int initstate_r(unsigned int, char *, size_t,

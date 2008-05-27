@@ -4,12 +4,12 @@ libdir=/opt/lsb/lib
 includedir=/opt/lsb/include
 target=x11
 
-gtk_binary_version=2.6.0
+gtk_binary_version=2.8.0
 gtk_host=i386-redhat-linux-gnu
 
 Name: GTK+
 Description: GIMP Tool Kit (${target} target)
-Version: 2.6.10
+Version: 2.8.11
 Requires: gdk-${target}-2.0 atk
 Libs: -L${libdir} -lgtk-${target}-2.0 
 Cflags: -I${includedir}/gtk-2.0 

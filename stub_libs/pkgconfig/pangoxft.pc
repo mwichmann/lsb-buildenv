@@ -5,7 +5,7 @@ includedir=/opt/lsb/include
 
 Name: Pango Xft
 Description: Xft font support for Pango
-Version: 1.8.0
+Version: 1.10.2
 Requires: pango
 Libs: -L${libdir} -lpangoxft-1.0 
 Cflags: -I${includedir}/pango-1.0 -I/usr/X11R6/include -I${includedir}/freetype -I${includedir}/freetype/config  

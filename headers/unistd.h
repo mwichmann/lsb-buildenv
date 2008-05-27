@@ -519,6 +519,7 @@ extern "C" {
     extern ssize_t __readlink_chk(const char *, void *, size_t, size_t);
     extern int faccessat(int, const char *, int, int);
     extern int fchownat(int, const char *, uid_t, gid_t, int);
+    extern int fexecve(int, char *const[], char *const[]);
     extern int linkat(int, const char *, int, const char *, int);
     extern int readlinkat(int, const char *, char *, size_t);
     extern int symlinkat(const char *, int, const char *);

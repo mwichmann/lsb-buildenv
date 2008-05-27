@@ -6,6 +6,6 @@ includedir=/opt/lsb/include
 Name: GThread
 Description: Thread support for GLib
 Requires: glib-2.0
-Version: 2.6.6
+Version: 2.8.6
 Libs: -L${libdir} -lgthread-2.0 -pthread 
 Cflags: -pthread

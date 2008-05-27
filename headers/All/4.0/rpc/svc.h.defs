@@ -49,6 +49,7 @@ struct xp_ops {
 			   caddr_t args_ptr);
     void (*xp_destroy) (SVCXPRT * __xprt);
 };
+extern SVCXPRT *svcraw_create(void);
 extern void svc_getreqset(fd_set *);
 extern bool_t svc_register(SVCXPRT *, rpcprog_t, rpcvers_t,
 			   __dispatch_fn_t, rpcprot_t);

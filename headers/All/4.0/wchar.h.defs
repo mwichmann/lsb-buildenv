@@ -92,3 +92,4 @@ extern wchar_t *__wcscat_chk(wchar_t *, const wchar_t *, size_t);
 extern wchar_t *__wcscpy_chk(wchar_t *, const wchar_t *, size_t);
 extern wchar_t *__wcsncpy_chk(wchar_t *, const wchar_t *, size_t, size_t);
 extern wchar_t *__wmemmove_chk(wchar_t *, const wchar_t *, size_t, size_t);
+extern FILE *open_wmemstream(wchar_t * *, size_t *);

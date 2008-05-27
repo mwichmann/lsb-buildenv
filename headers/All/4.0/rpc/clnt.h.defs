@@ -82,6 +82,16 @@ struct clnt_ops {
     void (*cl_destroy) (struct CLIENT *);
      bool_t(*cl_control) (struct CLIENT *, int, char *);
 };
+extern struct CLIENT *clntraw_create(u_long, u_long);
+extern struct CLIENT *clnttcp_create(struct sockaddr_in *, u_long, u_long,
+				     int *, u_int, u_int);
+extern struct CLIENT *clntudp_bufcreate(struct sockaddr_in *, u_long,
+					u_long, struct timeval, int *,
+					u_int, u_int);
+extern struct CLIENT *clntudp_create(struct sockaddr_in *, u_long, u_long,
+				     struct timeval, int *);
+extern int callrpc(char *, u_long, u_long, u_long, xdrproc_t, char *,
+		   xdrproc_t, char *);
 extern struct CLIENT *clnt_create(const char *, const u_long, const u_long,
 				  const char *);
 extern void clnt_pcreateerror(const char *);
