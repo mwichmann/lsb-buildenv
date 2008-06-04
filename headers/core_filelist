@@ -2,6 +2,9 @@ GL/gl.h
 GL/glx.h
 glob.h
 grp.h
+X11/ICE/ICElib.h
+X11/ICE/ICEutil.h
+X11/SM/SMlib.h
 assert.h
 cpio.h
 crypt.h
@@ -136,9 +139,12 @@ cups/raster.h
 GL/glu.h
 GL/glext.h
 GL/glxext.h
+X11/ICE/ICEconn.h
+X11/ICE/ICEmsg.h
+X11/ICE/ICE.h
+X11/SM/SM.h
 X11/extensions/XTest.h
 sys/inotify.h
-X11/extensions/XInput.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
