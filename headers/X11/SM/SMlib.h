@@ -4,6 +4,7 @@
 
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEconn.h>
+#include <X11/SM/SM.h>
 
 #ifdef __cplusplus
 extern "C" {
