@@ -9,6 +9,12 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -158,10 +164,10 @@ extern "C" {
     extern FILE *stderr;
     extern FILE *stdin;
     extern FILE *stdout;
-    extern char *tempnam(const char *, const char *);
+    extern char *tempnam(const char *, const char *) LSB_DECL_DEPRECATED;
     extern FILE *tmpfile(void);
     extern FILE *tmpfile64(void);
-    extern char *tmpnam(char *);
+    extern char *tmpnam(char *) LSB_DECL_DEPRECATED;
     extern int ungetc(int, FILE *);
     extern int vasprintf(char **, const char *, va_list);
     extern int vdprintf(int, const char *, va_list);
@@ -191,8 +197,18 @@ extern "C" {
     extern int __vsnprintf_chk(char *, size_t, int, size_t, const char *,
 			       va_list);
     extern int __vsprintf_chk(char *, int, size_t, const char *, va_list);
+    extern void clearerr_unlocked(FILE *);
     extern int dprintf(int, const char *, ...);
+    extern int feof_unlocked(FILE *);
+    extern int ferror_unlocked(FILE *);
+    extern int fgetc_unlocked(FILE *);
+    extern char *fgets_unlocked(char *, int, FILE *);
+    extern int fileno_unlocked(FILE *);
     extern FILE *fmemopen(void *, size_t, const char *);
+    extern int fputc_unlocked(int, FILE *);
+    extern int fputs_unlocked(const char *, FILE *);
+    extern size_t fread_unlocked(void *, size_t, size_t, FILE *);
+    extern size_t fwrite_unlocked(const void *, size_t, size_t, FILE *);
     extern ssize_t getdelim(char **, size_t *, int, FILE *);
     extern ssize_t getline(char **, size_t *, FILE *);
     extern FILE *open_memstream(char **, size_t *);

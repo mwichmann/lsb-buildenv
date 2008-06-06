@@ -3,6 +3,12 @@
 #define WCHAR_MAX	0x7FFFFFFF
 #define WCHAR_MIN	0x80000000
 
+extern wchar_t *fgetws_unlocked(wchar_t *, int, FILE *);
+extern wint_t fputwc_unlocked(wchar_t, FILE *);
+extern int fputws_unlocked(const wchar_t *, FILE *);
+extern wint_t getwchar_unlocked(void);
+extern wint_t putwc_unlocked(wchar_t, FILE *);
+extern wint_t putwchar_unlocked(wchar_t);
 extern double __wcstod_internal(const wchar_t *, wchar_t * *, int);
 extern float __wcstof_internal(const wchar_t *, wchar_t * *, int);
 extern long int __wcstol_internal(const wchar_t *, wchar_t * *, int, int);

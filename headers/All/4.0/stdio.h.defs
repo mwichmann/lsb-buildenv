@@ -23,7 +23,17 @@ typedef struct _IO_FILE FILE;
 #define _IOLBF	1
 #define _IONBF	2
 
+extern void clearerr_unlocked(FILE *);
+extern int feof_unlocked(FILE *);
+extern int ferror_unlocked(FILE *);
+extern char *fgets_unlocked(char *, int, FILE *);
+extern int fputc_unlocked(int, FILE *);
+extern int fputs_unlocked(const char *, FILE *);
+extern size_t fread_unlocked(void *, size_t, size_t, FILE *);
+extern size_t fwrite_unlocked(const void *, size_t, size_t, FILE *);
 extern FILE *open_memstream(char **, size_t *);
+extern int fgetc_unlocked(FILE *);
+extern int fileno_unlocked(FILE *);
 extern ssize_t getdelim(char **, size_t *, int, FILE *);
 extern ssize_t getline(char **, size_t *, FILE *);
 extern FILE *fmemopen(void *, size_t, const char *);
