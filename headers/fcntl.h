@@ -37,6 +37,7 @@ extern "C" {
 #if defined __s390x__
 #define O_LARGEFILE	0
 #endif
+#define POSIX_FADV_NORMAL	0
 #if defined __i386__
 #define O_LARGEFILE	0100000
 #endif
@@ -49,7 +50,19 @@ extern "C" {
 #if defined __powerpc64__
 #define O_LARGEFILE	0200000
 #endif
+#define POSIX_FADV_RANDOM	1
+#define POSIX_FADV_SEQUENTIAL	2
+#define POSIX_FADV_WILLNEED	3
+#define POSIX_FADV_DONTNEED	4
+#define POSIX_FADV_NOREUSE	5
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+#define O_DSYNC	010000
+#define O_RSYNC	010000
+#define O_DIRECTORY	0200000
+#define O_NOFOLLOW	0400000
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 
@@ -76,6 +89,16 @@ extern "C" {
 /* flags for open(2)*/
 
 /* flags for access(2)*/
+#if __LSB_VERSION__ >= 40
+#define AT_FDCWD	-100
+#define AT_SYMLINK_NOFOLLOW	0x100
+#define AT_EACCESS	0x200
+#define AT_REMOVEDIR	0x200
+#define AT_SYMLINK_FOLLOW	0x400
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
+
+
 
 /* Constants used for fcntl(2)*/
 #if __LSB_VERSION__ >= 11

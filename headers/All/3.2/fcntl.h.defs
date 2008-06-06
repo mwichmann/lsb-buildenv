@@ -1,4 +1,5 @@
 
+#define POSIX_FADV_NORMAL	0
 #define O_RDONLY	00
 #define O_ACCMODE	0003
 #define O_WRONLY	01
@@ -13,6 +14,11 @@
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000
 #define FD_CLOEXEC	1
+#define POSIX_FADV_RANDOM	1
+#define POSIX_FADV_SEQUENTIAL	2
+#define POSIX_FADV_WILLNEED	3
+#define POSIX_FADV_DONTNEED	4
+#define POSIX_FADV_NOREUSE	5
 
 struct flock {
     short l_type;

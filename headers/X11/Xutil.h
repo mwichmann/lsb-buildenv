@@ -19,11 +19,11 @@ extern "C" {
 #define IsPFKey(keysym)	(((KeySym)(keysym)>=XK_KP_F1)&&((KeySym)(keysym)<=XK_KP_F4))
 #define IsKeypadKey(keysym)	(((KeySym)(keysym)>=XK_KP_Space)&&((KeySym)(keysym)<=XK_KP_E
 #define IsMiscFunctionKey(keysym)	(((KeySym)(keysym)>=XK_Select)&&((KeySym)(keysym)<=XK_Break)
-#define XAddPixel(ximage,value)	((*((ximage)->f.add_pixel))((ximage), (value)))
+#define XAddPixel(ximage,value)	((*((ximage)->f.add_pixel))((ximage),(value))))
 #define XDestroyImage(ximage)	((*((ximage)->f.destroy_image))((ximage)))
-#define XGetPixel(ximage,x,y)	((*((ximage)->f.get_pixel))((ximage), (x), (y)))
-#define XPutPixel(ximage,x,y,pixel)	((*((ximage)->f.put_pixel))((ximage), (x), (y), (pixel)))
-#define XSubImage(ximage,x,y,width,height)	((*((ximage)->f.sub_image))((ximage), (x), (y), (width), (height)))
+#define XGetPixel(ximage,x,y)	((*((ximage)->f.get_pixel))((ximage),(x),(y))))
+#define XPutPixel(ximage,x,y,pixel)	((*((ximage)->f.put_pixel))((ximage),(x),(y),(pixe)
+#define XSubImage(ximage,x,y,width,height)	((*((ximage)->f.sub_image))((ximage),(x),(y)
 #define XStringToContext(string)	((XContext)XrmStringToQuark(string))
 #define XUniqueContext()	((XContext)XrmUniqueQuark())
 #define ReleaseByFreeingColormap	((XID)1L)
@@ -137,7 +137,7 @@ extern "C" {
 /* Function prototypes */
 
 #if __LSB_VERSION__ >= 10
-    extern int XAddPixel(XImage *, long int);
+    extern int XAddPixel(void);
     extern XClassHint *XAllocClassHint(void);
     extern XIconSize *XAllocIconSize(void);
     extern XSizeHints *XAllocSizeHints(void);
@@ -156,7 +156,7 @@ extern "C" {
     extern int XGetClassHint(Display *, Window, XClassHint *);
     extern int XGetIconSizes(Display *, Window, XIconSize * *, int *);
     extern int XGetNormalHints(Display *, Window, XSizeHints *);
-    extern unsigned long int XGetPixel(XImage *, int, int);
+    extern unsigned long int XGetPixel(void);
     extern int XGetRGBColormaps(Display *, Window, XStandardColormap * *,
 				int *, Atom);
     extern int XGetSizeHints(Display *, Window, XSizeHints *, Atom);
@@ -181,7 +181,7 @@ extern "C" {
     extern int XOffsetRegion(Region, int, int);
     extern int XPointInRegion(Region, int, int);
     extern Region XPolygonRegion(XPoint *, int, int);
-    extern int XPutPixel(XImage *, int, int, unsigned long int);
+    extern int XPutPixel(void);
     extern int XRectInRegion(Region, int, int, unsigned int, unsigned int);
     extern int XSaveContext(Display *, XID, XContext, const char *);
     extern int XSetClassHint(Display *, Window, XClassHint *);
@@ -209,8 +209,7 @@ extern "C" {
     extern int XSetZoomHints(Display *, Window, XSizeHints *);
     extern int XShrinkRegion(Region, int, int);
     extern int XStringListToTextProperty(char **, int, XTextProperty *);
-    extern XImage *XSubImage(XImage *, int, int, unsigned int,
-			     unsigned int);
+    extern XImage *XSubImage(void);
     extern int XSubtractRegion(Region, Region, Region);
     extern int XTextPropertyToStringList(XTextProperty *, char ***, int *);
     extern int XUnionRectWithRegion(XRectangle *, Region, Region);

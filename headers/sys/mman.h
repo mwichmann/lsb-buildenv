@@ -79,8 +79,13 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
+#define POSIX_MADV_NORMAL	0
 #define MREMAP_MAYMOVE	1
+#define POSIX_MADV_RANDOM	1
 #define MREMAP_FIXED	2
+#define POSIX_MADV_SEQUENTIAL	2
+#define POSIX_MADV_WILLNEED	3
+#define POSIX_MADV_DONTNEED	4
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 
