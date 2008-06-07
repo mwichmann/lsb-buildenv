@@ -95,7 +95,6 @@ GLIBC_2.0 {
   clnt_spcreateerror;
   clnt_sperrno;
   clnt_sperror;
-  clntraw_create;
   clnttcp_create;
   clntudp_bufcreate;
   clntudp_create;
@@ -155,10 +154,7 @@ GLIBC_2.0 {
   fflush_unlocked;
   ffs;
   fgetc;
-  fgetc_unlocked;
   fgets;
-  fgets_unlocked;
-  fgetws_unlocked;
   fileno;
   fileno_unlocked;
   flock;
@@ -169,11 +165,7 @@ GLIBC_2.0 {
   fputc;
   fputc_unlocked;
   fputs;
-  fputs_unlocked;
-  fputwc_unlocked;
-  fputws_unlocked;
   fread;
-  fread_unlocked;
   free;
   freeaddrinfo;
   freopen;
@@ -189,7 +181,6 @@ GLIBC_2.0 {
   ftw;
   funlockfile;
   fwrite;
-  fwrite_unlocked;
   gcvt;
   getaddrinfo;
   getc;
@@ -247,7 +238,6 @@ GLIBC_2.0 {
   getutent;
   getutent_r;
   getw;
-  getwchar_unlocked;
   getwd;
   glob;
   globfree;
@@ -382,8 +372,6 @@ GLIBC_2.0 {
   putenv;
   puts;
   putw;
-  putwc_unlocked;
-  putwchar_unlocked;
   qsort;
   raise;
   rand;
@@ -714,9 +702,13 @@ GLIBC_2.1 {
   endutxent;
   fclose;
   fdopen;
+  fgetc_unlocked;
+  fgets_unlocked;
   fmtmsg;
   fopen;
   fopen64;
+  fputs_unlocked;
+  fread_unlocked;
   freopen64;
   fseeko;
   fseeko64;
@@ -727,6 +719,7 @@ GLIBC_2.1 {
   ftello64;
   ftruncate64;
   ftw64;
+  fwrite_unlocked;
   gai_strerror;
   getcontext;
   getdate;
@@ -821,9 +814,12 @@ GLIBC_2.2 {
   fgetwc;
   fgetwc_unlocked;
   fgetws;
+  fgetws_unlocked;
   fmemopen;
   fputwc;
+  fputwc_unlocked;
   fputws;
+  fputws_unlocked;
   fsetpos;
   fsetpos64;
   fwide;
@@ -834,6 +830,7 @@ GLIBC_2.2 {
   getrlimit64;
   getwc;
   getwchar;
+  getwchar_unlocked;
   glob64;
   localeconv;
   memrchr;
@@ -867,7 +864,9 @@ GLIBC_2.2 {
   posix_spawnattr_setsigmask;
   posix_spawnp;
   putwc;
+  putwc_unlocked;
   putwchar;
+  putwchar_unlocked;
   readdir64;
   readdir64_r;
   semctl;

@@ -65,7 +65,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 32
-    extern char *__xpg_strerror_r(int, char *, size_t);
+    extern int __xpg_strerror_r(int, char *, size_t);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
