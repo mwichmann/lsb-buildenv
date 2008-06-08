@@ -2164,6 +2164,9 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
 #define GTK_MICRO_VERSION	(11)
 #define GTK_MINOR_VERSION	(8)
+#define GTK_STOCK_FULLSCREEN	"gtk-fullscreen"
+#define GTK_STOCK_INFO	"gtk-info"
+#define GTK_STOCK_LEAVE_FULLSCREEN	"gtk-leave-fullscreen"
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 

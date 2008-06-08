@@ -92,6 +92,7 @@ GLIBC_2.0 {
   clnt_spcreateerror;
   clnt_sperrno;
   clnt_sperror;
+  clntraw_create;
   clnttcp_create;
   clntudp_bufcreate;
   clntudp_create;
