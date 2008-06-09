@@ -3,6 +3,7 @@ void __finitef() {} ;
 void __finitel() {} ;
 void __fpclassify() {} ;
 void __fpclassifyf() {} ;
+void __nldbl_nexttowardf() {} ;
 void __signbit() {} ;
 void __signbitf() {} ;
 void acos() {} ;

@@ -610,6 +610,25 @@ extern "C" {
     extern long double exp10l(long double);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    extern float __nldbl_nexttowardf(float, long double);
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    extern float __nldbl_nexttowardf(float, long double);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    extern float __nldbl_nexttowardf(float, long double);
+#endif
+#if defined __s390x__
+/* S390X */
+    extern float __nldbl_nexttowardf(float, long double);
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

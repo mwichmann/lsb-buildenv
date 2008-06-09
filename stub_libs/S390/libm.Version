@@ -312,3 +312,6 @@ GLIBC_2.2 {
   feenableexcept;
   fegetexcept;
 };
+GLIBC_2.4 {
+  __nldbl_nexttowardf;
+};

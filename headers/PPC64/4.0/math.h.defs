@@ -14,3 +14,5 @@
 
 #define FP_ILOGB0	-2147483647
 #define FP_ILOGBNAN	2147483647
+
+extern float __nldbl_nexttowardf(float, long double);

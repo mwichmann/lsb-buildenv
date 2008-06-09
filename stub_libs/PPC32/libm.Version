@@ -312,3 +312,6 @@ GLIBC_2.2 {
   fesetexceptflag;
   feupdateenv;
 };
+GLIBC_2.4 {
+  __nldbl_nexttowardf;
+};
