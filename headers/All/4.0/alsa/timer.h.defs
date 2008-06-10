@@ -16,8 +16,8 @@ typedef struct sndrv_timer_status snd_timer_status_t;
 typedef struct _snd_timer snd_timer_t;
 typedef enum _snd_timer_type {
     SND_TIMER_TYPE_HW,
-    SND_TIMER_TYPE_SHM,
-    SND_TIMER_TYPE_INET
+    SND_TIMER_TYPE_SHM = 1,
+    SND_TIMER_TYPE_INET = 2
 } snd_timer_type_t;
 extern int snd_timer_close(snd_timer_t *);
 extern int snd_timer_continue(snd_timer_t *);

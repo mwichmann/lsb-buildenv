@@ -3,15 +3,15 @@ class QTextInlineObject;
 class QTextLayout;
 struct _ZN11QTextLayout11FormatRangeE;
 enum _ZN11QTextLayout10CursorModeE {
-    SkipCharacters,
-    SkipWords
+    SkipCharacters = 0,
+    SkipWords = 1
 };
 class QTextLine;
 enum _ZN9QTextLine4EdgeE {
-    Leading,
-    Trailing
+    Leading = 0,
+    Trailing = 1
 };
 enum _ZN9QTextLine14CursorPositionE {
-    CursorBetweenCharacters,
-    CursorOnCharacter
+    CursorBetweenCharacters = 0,
+    CursorOnCharacter = 1
 };

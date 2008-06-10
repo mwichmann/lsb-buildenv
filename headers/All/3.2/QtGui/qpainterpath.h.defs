@@ -1,10 +1,10 @@
 
 class QPainterPath;
 enum _ZN12QPainterPath11ElementTypeE {
-    MoveToElement,
-    LineToElement,
-    CurveToElement,
-    CurveToDataElement
+    MoveToElement = 0,
+    LineToElement = 1,
+    CurveToElement = 2,
+    CurveToDataElement = 3
 };
 class QPainterPath::Element;
 class QPainterPathPrivate;

@@ -1,6 +1,6 @@
 
 class QClipboard;
 enum _ZN10QClipboard4ModeE {
-    Clipboard,
-    Selection
+    Clipboard = 0,
+    Selection = 1
 };

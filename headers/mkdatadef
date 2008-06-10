@@ -319,8 +319,8 @@ if( $$type{'Ttype'} eq "Enum" ) {
 
 		# It's an enum, don't print out the types, just the names
 		print $tmentry->{'TMname'};
-		if( $tmentry->{'TMarray'} ne '' ) {
-			print " = ".$tmentry->{'TMarray'};
+		if( $tmentry->{'TMvalue'} ne '' ) {
+			print " = ".$tmentry->{'TMvalue'};
 		}
 		if( $_ != $tmh->rows ) {
 			print ",\n";

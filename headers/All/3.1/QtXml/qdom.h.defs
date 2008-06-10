@@ -1,26 +1,26 @@
 
 class QDomImplementation;
 enum _ZN18QDomImplementation17InvalidDataPolicyE {
-    AcceptInvalidChars,
-    DropInvalidChars,
-    ReturnNullNode
+    AcceptInvalidChars = 0,
+    DropInvalidChars = 1,
+    ReturnNullNode = 2
 };
 class QDomNode;
 enum _ZN8QDomNode8NodeTypeE {
-    ElementNode,
-    AttributeNode,
-    TextNode,
-    CDATASectionNode,
-    EntityReferenceNode,
-    EntityNode,
-    ProcessingInstructionNode,
-    CommentNode,
-    DocumentNode,
-    DocumentTypeNode,
-    DocumentFragmentNode,
-    NotationNode,
-    BaseNode,
-    CharacterDataNode
+    ElementNode = 1,
+    AttributeNode = 2,
+    TextNode = 3,
+    CDATASectionNode = 4,
+    EntityReferenceNode = 5,
+    EntityNode = 6,
+    ProcessingInstructionNode = 7,
+    CommentNode = 8,
+    DocumentNode = 9,
+    DocumentTypeNode = 10,
+    DocumentFragmentNode = 11,
+    NotationNode = 12,
+    BaseNode = 21,
+    CharacterDataNode = 22
 };
 class QDomNodeList;
 class QDomDocumentType;

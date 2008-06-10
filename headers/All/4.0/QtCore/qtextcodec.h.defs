@@ -1,9 +1,9 @@
 
 class QTextCodec;
 enum _ZN10QTextCodec14ConversionFlagE {
-    ConvertInvalidToNull,
-    DefaultConversion,
-    IgnoreHeader
+    ConvertInvalidToNull = -2147483648,
+    DefaultConversion = 0,
+    IgnoreHeader = 1
 };
 class QFlags < QTextCodec::ConversionFlag >;
 typedef class QFlags < QTextCodec::ConversionFlag >

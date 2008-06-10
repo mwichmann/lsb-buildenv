@@ -1,12 +1,12 @@
 
 class QBoxLayout;
 enum _ZN10QBoxLayout9DirectionE {
-    LeftToRight,
-    RightToLeft,
-    TopToBottom,
-    Down,
-    BottomToTop,
-    Up
+    LeftToRight = 0,
+    RightToLeft = 1,
+    TopToBottom = 2,
+    Down = 2,
+    BottomToTop = 3,
+    Up = 3
 };
 class QHBoxLayout;
 class QVBoxLayout;

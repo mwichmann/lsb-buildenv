@@ -2,7 +2,7 @@
 class QLine;
 class QLineF;
 enum _ZN6QLineF13IntersectTypeE {
-    NoIntersection,
-    BoundedIntersection,
-    UnboundedIntersection
+    NoIntersection = 0,
+    BoundedIntersection = 1,
+    UnboundedIntersection = 2
 };

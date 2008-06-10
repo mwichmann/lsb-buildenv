@@ -1,35 +1,35 @@
 
 class QPalette;
 enum _ZN8QPalette10ColorGroupE {
-    Active,
-    Normal,
-    Disabled,
-    Inactive,
-    NColorGroups,
-    Current,
-    All
+    Active = 0,
+    Normal = 0,
+    Disabled = 1,
+    Inactive = 2,
+    NColorGroups = 3,
+    Current = 4,
+    All = 5
 };
 enum _ZN8QPalette9ColorRoleE {
-    WindowText,
-    Foreground,
-    Button,
-    Light,
-    Midlight,
-    Dark,
-    Mid,
-    Text,
-    BrightText,
-    ButtonText,
-    Base,
-    Window,
-    Background,
-    Shadow,
-    Highlight,
-    HighlightedText,
-    Link,
-    LinkVisited,
-    AlternateBase,
-    NColorRoles,
-    NoRole
+    WindowText = 0,
+    Foreground = 0,
+    Button = 1,
+    Light = 2,
+    Midlight = 3,
+    Dark = 4,
+    Mid = 5,
+    Text = 6,
+    BrightText = 7,
+    ButtonText = 8,
+    Base = 9,
+    Window = 10,
+    Background = 10,
+    Shadow = 11,
+    Highlight = 12,
+    HighlightedText = 13,
+    Link = 14,
+    LinkVisited = 15,
+    AlternateBase = 16,
+    NColorRoles = 17,
+    NoRole = 17
 };
 class QColorGroup;

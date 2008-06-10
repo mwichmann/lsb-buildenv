@@ -1,32 +1,32 @@
 
 class QSizePolicy;
 enum _ZN11QSizePolicy15SizePolicyMasksE {
-    HSize,
-    HMask,
-    VMask
+    HSize = 4,
+    HMask = 15,
+    VMask = 240
 };
 enum _ZN11QSizePolicy10PolicyFlagE {
-    GrowFlag,
-    ExpandFlag,
-    ShrinkFlag,
-    IgnoreFlag
+    GrowFlag = 1,
+    ExpandFlag = 2,
+    ShrinkFlag = 4,
+    IgnoreFlag = 8
 };
 enum _ZN11QSizePolicy6PolicyE {
-    Fixed,
-    Minimum,
-    MinimumExpanding,
-    Maximum,
-    Preferred,
-    Expanding,
-    Ignored
+    Fixed = 0,
+    Minimum = 1,
+    MinimumExpanding = 3,
+    Maximum = 4,
+    Preferred = 5,
+    Expanding = 7,
+    Ignored = 13
 };
 typedef enum _ZN11QSizePolicy6PolicyE {
-    Fixed,
-    Minimum,
-    MinimumExpanding,
-    Maximum,
-    Preferred,
-    Expanding,
-    Ignored
+    Fixed = 0,
+    Minimum = 1,
+    MinimumExpanding = 3,
+    Maximum = 4,
+    Preferred = 5,
+    Expanding = 7,
+    Ignored = 13
 } _ZN11QSizePolicy8SizeTypeE;
 typedef _ZN2Qt12OrientationsE _ZN11QSizePolicy10ExpandDataE;

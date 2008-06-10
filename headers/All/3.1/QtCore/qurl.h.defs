@@ -1,20 +1,20 @@
 
 class QUrl;
 enum _ZN4QUrl11ParsingModeE {
-    TolerantMode,
-    StrictMode
+    TolerantMode = 0,
+    StrictMode = 1
 };
 enum _ZN4QUrl16FormattingOptionE {
-    None,
-    RemoveScheme,
-    RemovePassword,
-    RemoveUserInfo,
-    RemovePort,
-    RemoveAuthority,
-    RemovePath,
-    RemoveQuery,
-    RemoveFragment,
-    StripTrailingSlash
+    None = 0,
+    RemoveScheme = 1,
+    RemovePassword = 2,
+    RemoveUserInfo = 6,
+    RemovePort = 8,
+    RemoveAuthority = 30,
+    RemovePath = 32,
+    RemoveQuery = 64,
+    RemoveFragment = 128,
+    StripTrailingSlash = 65536
 };
 class QFlags < QUrl::FormattingOption >;
 typedef class QFlags < QUrl::FormattingOption >

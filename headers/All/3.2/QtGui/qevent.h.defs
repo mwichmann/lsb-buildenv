@@ -5,31 +5,31 @@ class QHoverEvent;
 class QWheelEvent;
 class QTabletEvent;
 enum _ZN12QTabletEvent12TabletDeviceE {
-    NoDevice,
-    Puck,
-    Stylus,
-    Airbrush,
-    FourDMouse,
-    XFreeEraser,
-    RotationStylus
+    NoDevice = 0,
+    Puck = 1,
+    Stylus = 2,
+    Airbrush = 3,
+    FourDMouse = 4,
+    XFreeEraser = 5,
+    RotationStylus = 6
 };
 enum _ZN12QTabletEvent11PointerTypeE {
-    UnknownPointer,
-    Pen,
-    Cursor,
-    Eraser
+    UnknownPointer = 0,
+    Pen = 1,
+    Cursor = 2,
+    Eraser = 3
 };
 class QKeyEvent;
 class QFocusEvent;
 enum _ZN11QFocusEvent6ReasonE {
-    Mouse,
-    Tab,
-    Backtab,
-    ActiveWindow,
-    Popup,
-    Shortcut,
-    MenuBar,
-    Other
+    Mouse = 0,
+    Tab = 1,
+    Backtab = 2,
+    ActiveWindow = 3,
+    Popup = 4,
+    Shortcut = 5,
+    MenuBar = 6,
+    Other = 7
 };
 class QPaintEvent;
 class QMoveEvent;
@@ -40,25 +40,25 @@ class QShowEvent;
 class QHideEvent;
 class QContextMenuEvent;
 enum _ZN17QContextMenuEvent6ReasonE {
-    Mouse,
-    Keyboard,
-    Other
+    Mouse = 0,
+    Keyboard = 1,
+    Other = 2
 };
 class QInputMethodEvent;
 enum _ZN17QInputMethodEvent13AttributeTypeE {
-    TextFormat,
-    Cursor,
-    Language,
-    Ruby
+    TextFormat = 0,
+    Cursor = 1,
+    Language = 2,
+    Ruby = 3
 };
 class QInputMethodEvent::Attribute;
 class QDropEvent;
 enum _ZN10QDropEvent6ActionE {
-    Copy,
-    Link,
-    Move,
-    Private,
-    UserAction
+    Copy = 0,
+    Link = 1,
+    Move = 2,
+    Private = 3,
+    UserAction = 3
 };
 class QDragMoveEvent;
 class QDragEnterEvent;

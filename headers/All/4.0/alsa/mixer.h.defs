@@ -11,23 +11,23 @@ typedef int (*snd_mixer_elem_callback_t) (void);
 typedef int (*snd_mixer_callback_t) (void);
 typedef int (*snd_mixer_event_t) (void);
 typedef enum _snd_mixer_selem_channel_id {
-    SND_MIXER_SCHN_UNKNOWN,
+    SND_MIXER_SCHN_UNKNOWN = -1,
     SND_MIXER_SCHN_FRONT_LEFT,
-    SND_MIXER_SCHN_FRONT_RIGHT,
-    SND_MIXER_SCHN_REAR_LEFT,
-    SND_MIXER_SCHN_REAR_RIGHT,
-    SND_MIXER_SCHN_FRONT_CENTER,
-    SND_MIXER_SCHN_WOOFER,
-    SND_MIXER_SCHN_SIDE_LEFT,
-    SND_MIXER_SCHN_SIDE_RIGHT,
-    SND_MIXER_SCHN_REAR_CENTER,
-    SND_MIXER_SCHN_LAST,
+    SND_MIXER_SCHN_FRONT_RIGHT = 1,
+    SND_MIXER_SCHN_REAR_LEFT = 2,
+    SND_MIXER_SCHN_REAR_RIGHT = 3,
+    SND_MIXER_SCHN_FRONT_CENTER = 4,
+    SND_MIXER_SCHN_WOOFER = 5,
+    SND_MIXER_SCHN_SIDE_LEFT = 6,
+    SND_MIXER_SCHN_SIDE_RIGHT = 7,
+    SND_MIXER_SCHN_REAR_CENTER = 8,
+    SND_MIXER_SCHN_LAST = 31,
     SND_MIXER_SCHN_MONO
 } snd_mixer_selem_channel_id_t;
 typedef struct _snd_mixer_selem_id snd_mixer_selem_id_t;
 enum snd_mixer_selem_regopt_abstract {
     SND_MIXER_SABSTRACT_NONE,
-    SND_MIXER_SABSTRACT_BASIC
+    SND_MIXER_SABSTRACT_BASIC = 1
 };
 struct snd_mixer_selem_regopt {
     int ver;
