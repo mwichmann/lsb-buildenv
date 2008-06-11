@@ -1,5 +1,10 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+typedef struct _pthread_rwlock_t {
+    struct _pthread_fastlock __rw_lock;
+    int __rw_readers;
+    _pthread_descr __rw_writer;
+    _pthread_descr __rw_read_waiting;
+    _pthread_descr __rw_write_waiting;
+    int __rw_kind;
+    int __rw_pshared;
+} pthread_rwlock_t;

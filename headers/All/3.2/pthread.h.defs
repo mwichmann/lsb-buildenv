@@ -7,6 +7,9 @@
 #define PTHREAD_MUTEX_ERRORCHECK	2
 #define PTHREAD_RWLOCK_DEFAULT_NP	2
 #define __SIZEOF_PTHREAD_BARRIERATTR_T	4
+#define __SIZEOF_PTHREAD_CONDATTR_T	4
+#define __SIZEOF_PTHREAD_MUTEXATTR_T	4
+#define __SIZEOF_PTHREAD_RWLOCKATTR_T	8
 #define PTHREAD_MUTEX_INITIALIZER	\
 	{0,0,0,PTHREAD_MUTEX_NORMAL,__LOCK_INITIALIZER}
 #define PTHREAD_RWLOCK_INITIALIZER	\
@@ -77,15 +80,6 @@ typedef struct {
     int __dummy;
 } pthread_condattr_t;
 
-typedef struct _pthread_rwlock_t {
-    struct _pthread_fastlock __rw_lock;
-    int __rw_readers;
-    _pthread_descr __rw_writer;
-    _pthread_descr __rw_read_waiting;
-    _pthread_descr __rw_write_waiting;
-    int __rw_kind;
-    int __rw_pshared;
-} pthread_rwlock_t;
 typedef struct {
     int __lockkind;
     int __pshared;

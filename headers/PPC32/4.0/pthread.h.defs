@@ -1,7 +1,38 @@
 
 #define __SIZEOF_PTHREAD_BARRIER_T	20
+#define __SIZEOF_PTHREAD_MUTEX_T	24
+#define __SIZEOF_PTHREAD_RWLOCK_T	32
+#define __SIZEOF_PTHREAD_ATTR_T	36
 
 typedef union {
     char __size[__SIZEOF_PTHREAD_BARRIER_T];
     long int __align;
 } pthread_barrier_t;
+
+struct __pthread_mutex_s {
+    int __lock;
+    unsigned int __count;
+    int __owner;
+    int __kind;
+    unsigned int __nusers;
+    struct {
+	int __spins;
+	__pthread_slist_t __list;
+    };
+};
+typedef struct __pthread_internal_slist __pthread_slist_t;
+
+typedef union {
+    struct {
+	int __lock;
+	unsigned int __nr_readers;
+	unsigned int __readers_wakeup;
+	unsigned int __writer_wakeup;
+	unsigned int __nr_readers_queued;
+	unsigned int __nr_writers_queued;
+	unsigned int __flags;
+	int __writer;
+    } __data;
+    char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+    long int __align;
+} pthread_rwlock_t;

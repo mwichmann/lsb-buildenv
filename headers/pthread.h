@@ -75,7 +75,77 @@ extern "C" {
 #define __SIZEOF_PTHREAD_BARRIER_T	32
 #endif
 #define __SIZEOF_PTHREAD_BARRIERATTR_T	4
+#define __SIZEOF_PTHREAD_CONDATTR_T	4
+#define __SIZEOF_PTHREAD_MUTEXATTR_T	4
+#define __SIZEOF_PTHREAD_RWLOCKATTR_T	8
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+#if defined __i386__
+#define __SIZEOF_PTHREAD_MUTEX_T	24
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __SIZEOF_PTHREAD_MUTEX_T	24
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __SIZEOF_PTHREAD_MUTEX_T	24
+#endif
+#if defined __i386__
+#define __SIZEOF_PTHREAD_RWLOCK_T	32
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __SIZEOF_PTHREAD_RWLOCK_T	32
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __SIZEOF_PTHREAD_RWLOCK_T	32
+#endif
+#if defined __i386__
+#define __SIZEOF_PTHREAD_ATTR_T	36
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __SIZEOF_PTHREAD_ATTR_T	36
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __SIZEOF_PTHREAD_ATTR_T	36
+#endif
+#if defined __ia64__
+#define __SIZEOF_PTHREAD_MUTEX_T	40
+#endif
+#if defined __powerpc64__
+#define __SIZEOF_PTHREAD_MUTEX_T	40
+#endif
+#if defined __x86_64__
+#define __SIZEOF_PTHREAD_MUTEX_T	40
+#endif
+#if defined __s390x__
+#define __SIZEOF_PTHREAD_MUTEX_T	40
+#endif
+#define __SIZEOF_PTHREAD_COND_T	48
+#if defined __ia64__
+#define __SIZEOF_PTHREAD_ATTR_T	56
+#endif
+#if defined __powerpc64__
+#define __SIZEOF_PTHREAD_ATTR_T	56
+#endif
+#if defined __x86_64__
+#define __SIZEOF_PTHREAD_ATTR_T	56
+#endif
+#if defined __s390x__
+#define __SIZEOF_PTHREAD_ATTR_T	56
+#endif
+#if defined __ia64__
+#define __SIZEOF_PTHREAD_RWLOCK_T	56
+#endif
+#if defined __powerpc64__
+#define __SIZEOF_PTHREAD_RWLOCK_T	56
+#endif
+#if defined __x86_64__
+#define __SIZEOF_PTHREAD_RWLOCK_T	56
+#endif
+#if defined __s390x__
+#define __SIZEOF_PTHREAD_RWLOCK_T	56
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 
@@ -87,6 +157,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
+#if __LSB_VERSION__ < 40
     typedef long long int __pthread_cond_align_t;
 
 #endif				/* __LSB_VERSION__ >= 2.0 */
@@ -167,6 +238,62 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+#if __LSB_VERSION__ >= 40
+#if defined __ia64__
+/* IA64 */
+    struct __pthread_internal_list {
+	struct __pthread_internal_list *__prev;
+	struct __pthread_internal_list *__next;
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    struct __pthread_internal_list {
+	struct __pthread_internal_list *__prev;
+	struct __pthread_internal_list *__next;
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    struct __pthread_internal_list {
+	struct __pthread_internal_list *__prev;
+	struct __pthread_internal_list *__next;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    struct __pthread_internal_list {
+	struct __pthread_internal_list *__prev;
+	struct __pthread_internal_list *__next;
+    };
+
+#endif
+#if defined __i386__
+/* IA32 */
+    struct __pthread_internal_slist {
+	struct __pthread_internal_slist *__next;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct __pthread_internal_slist {
+	struct __pthread_internal_slist *__next;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    struct __pthread_internal_slist {
+	struct __pthread_internal_slist *__next;
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 /* Base Types*/
 #if __LSB_VERSION__ >= 12
@@ -175,23 +302,166 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
     struct _pthread_fastlock {
 	long int __status;
 	int __spinlock;
     };
+
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Description structure*/
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
     typedef struct _pthread_descr_struct *_pthread_descr;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+#if defined __ia64__
+/* IA64 */
+    typedef struct __pthread_internal_list __pthread_list_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct __pthread_internal_list __pthread_list_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct __pthread_internal_list __pthread_list_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef struct __pthread_internal_list __pthread_list_t;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct __pthread_internal_slist __pthread_slist_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct __pthread_internal_slist __pthread_slist_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct __pthread_internal_slist __pthread_slist_t;
+
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 40
+#if defined __i386__
+/* IA32 */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	int __kind;
+	unsigned int __nusers;
+	struct {
+	    int __spins;
+	    __pthread_slist_t __list;
+	};
+    };
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	unsigned int __nusers;
+	int __kind;
+	int __spins;
+	__pthread_list_t __list;
+    };
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	int __kind;
+	unsigned int __nusers;
+	struct {
+	    int __spins;
+	    __pthread_slist_t __list;
+	};
+    };
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	unsigned int __nusers;
+	int __kind;
+	int __spins;
+	__pthread_list_t __list;
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	int __kind;
+	unsigned int __nusers;
+	struct {
+	    int __spins;
+	    __pthread_slist_t __list;
+	};
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	unsigned int __nusers;
+	int __kind;
+	int __spins;
+	__pthread_list_t __list;
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+    struct __pthread_mutex_s {
+	int __lock;
+	unsigned int __count;
+	int __owner;
+	unsigned int __nusers;
+	int __kind;
+	int __spins;
+	__pthread_list_t __list;
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 /* Mutex Structures*/
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int __m_reserved;	/* Reserved for future use */
 	int __m_count;		/* Depth of recursive locking */
@@ -200,15 +470,31 @@ extern "C" {
 	struct _pthread_fastlock __m_lock;	/* Underlying fast lock */
     } pthread_mutex_t;
 
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int __mutexkind;
     } pthread_mutexattr_t;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    typedef union {
+	struct __pthread_mutex_s __data;
+	char __size[__SIZEOF_PTHREAD_MUTEX_T];
+	long int __align;
+    } pthread_mutex_t;
+
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_MUTEXATTR_T];
+	int __align;
+    } pthread_mutexattr_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 /* Attribute Structures*/
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int __detachstate;
 	int __schedpolicy;
@@ -223,9 +509,18 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_ATTR_T];
+	long int __align;
+    } pthread_attr_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 /* Conition Variables*/
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
     typedef struct {
 	struct _pthread_fastlock __c_lock;
 	_pthread_descr __c_waiting;
@@ -235,17 +530,52 @@ extern "C" {
 	__pthread_cond_align_t __align;
     } pthread_cond_t;
 
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int __dummy;
     } pthread_condattr_t;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __futex;
+	    unsigned long long int __total_seq;
+	    unsigned long long int __wakeup_seq;
+	    unsigned long long int __woken_seq;
+	    void *__mutex;
+	    unsigned int __nwaiters;
+	    unsigned int __broadcast_seq;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_COND_T];
+	long long int __align;
+    } pthread_cond_t;
+
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_CONDATTR_T];
+	int __align;
+    } pthread_condattr_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 /* Lock structures*/
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
+#if defined __i386__
+/* IA32 */
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
+#endif
+#if __LSB_VERSION__ < 40
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+#endif
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int __lockkind;
 	int __pshared;
@@ -253,7 +583,192 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 13
+#if __LSB_VERSION__ < 40
+#if defined __ia64__
+/* IA64 */
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+#endif
+#if __LSB_VERSION__ < 40
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+#endif
+#if __LSB_VERSION__ < 40
+#if defined __s390x__
+/* S390X */
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+#endif
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
+#if __LSB_VERSION__ >= 20
+#if __LSB_VERSION__ < 40
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+#endif
+#if __LSB_VERSION__ < 40
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct _pthread_rwlock_t pthread_rwlock_t;
+
+#endif
+#endif				/* __LSB_VERSION__ >= 2.0 */
+
+#if __LSB_VERSION__ >= 40
+#if defined __i386__
+/* IA32 */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    unsigned int __flags;
+	    int __writer;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    int __writer;
+	    int __pad1;
+	    unsigned long int __pad2;
+	    unsigned long int __pad3;
+	    unsigned int __flags;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    unsigned int __flags;
+	    int __writer;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    int __writer;
+	    int __pad1;
+	    unsigned long int __pad2;
+	    unsigned long int __pad3;
+	    unsigned int __flags;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    unsigned int __flags;
+	    int __writer;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    int __writer;
+	    int __pad1;
+	    unsigned long int __pad2;
+	    unsigned long int __pad3;
+	    unsigned int __flags;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef union {
+	struct {
+	    int __lock;
+	    unsigned int __nr_readers;
+	    unsigned int __readers_wakeup;
+	    unsigned int __writer_wakeup;
+	    unsigned int __nr_readers_queued;
+	    unsigned int __nr_writers_queued;
+	    int __writer;
+	    int __pad1;
+	    unsigned long int __pad2;
+	    unsigned long int __pad3;
+	    unsigned int __flags;
+	} __data;
+	char __size[__SIZEOF_PTHREAD_RWLOCK_T];
+	long int __align;
+    } pthread_rwlock_t;
+
+#endif
+    typedef union {
+	char __size[__SIZEOF_PTHREAD_RWLOCKATTR_T];
+	long int __align;
+    } pthread_rwlockattr_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
+#if defined __i386__
+/* IA32 */
 
     struct _pthread_rwlock_t {
 	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
@@ -265,7 +780,106 @@ extern "C" {
 	int __rw_pshared;	/* Shared between processes or not */
     };
 
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+
+    struct _pthread_rwlock_t {
+	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+	int __rw_readers;	/* Number of readers */
+	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+	_pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+	int __rw_kind;		/* Reader/Writer preference selection */
+	int __rw_pshared;	/* Shared between processes or not */
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
+
+#if __LSB_VERSION__ >= 13
+#if __LSB_VERSION__ < 40
+#if defined __ia64__
+/* IA64 */
+
+    struct _pthread_rwlock_t {
+	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+	int __rw_readers;	/* Number of readers */
+	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+	_pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+	int __rw_kind;		/* Reader/Writer preference selection */
+	int __rw_pshared;	/* Shared between processes or not */
+    };
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+
+    struct _pthread_rwlock_t {
+	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+	int __rw_readers;	/* Number of readers */
+	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+	_pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+	int __rw_kind;		/* Reader/Writer preference selection */
+	int __rw_pshared;	/* Shared between processes or not */
+    };
+
+#endif
+#if defined __s390x__
+/* S390X */
+
+    struct _pthread_rwlock_t {
+	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+	int __rw_readers;	/* Number of readers */
+	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+	_pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+	int __rw_kind;		/* Reader/Writer preference selection */
+	int __rw_pshared;	/* Shared between processes or not */
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
+#endif				/* __LSB_VERSION__ >= 1.3 */
+
+#if __LSB_VERSION__ >= 20
+#if __LSB_VERSION__ < 40
+#if defined __powerpc64__
+/* PPC64 */
+
+    struct _pthread_rwlock_t {
+	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+	int __rw_readers;	/* Number of readers */
+	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+	_pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+	int __rw_kind;		/* Reader/Writer preference selection */
+	int __rw_pshared;	/* Shared between processes or not */
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+
+    struct _pthread_rwlock_t {
+	struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+	int __rw_readers;	/* Number of readers */
+	_pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+	_pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+	_pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+	int __rw_kind;		/* Reader/Writer preference selection */
+	int __rw_pshared;	/* Shared between processes or not */
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
+#endif				/* __LSB_VERSION__ >= 2.0 */
 
 
 /* Initializers*/
