@@ -1775,7 +1775,7 @@ for(1..$hgh->rows) {
 		if( $tentry->{'Aid'} && $tentry->{'Aname'} eq "None" ) { next; }
 
 		specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $tentry->{'ATappearedin'}, $tentry->{'ATwithdrawnin'});
-		$oldVersionWithdrawn = $entry->{'ATwithdrawnin'};
+		$oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
 		$oldVersionAppeared = $tentry->{'ATappearedin'};
 
 		$TMaid = $tentry->{'Aid'} ? $tentry->{'Aid'} : $Aid;

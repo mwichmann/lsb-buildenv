@@ -76,6 +76,18 @@ struct addrinfo {
 
 extern int gethostbyname2_r(const char *, int, struct hostent *, char *,
 			    size_t, struct hostent **, int *);
+extern int getprotobyname_r(const char *, struct protoent *, char *,
+			    size_t, struct protoent **);
+extern int getprotobynumber_r(int, struct protoent *, char *, size_t,
+			      struct protoent **);
+extern int getprotoent_r(struct protoent *, char *, size_t,
+			 struct protoent **);
+extern int getservbyname_r(const char *, const char *, struct servent *,
+			   char *, size_t, struct servent **);
+extern int getservbyport_r(int, const char *, struct servent *, char *,
+			   size_t, struct servent **);
+extern int getservent_r(struct servent *, char *, size_t,
+			struct servent **);
 extern void endprotoent(void);
 extern void endservent(void);
 extern void freeaddrinfo(struct addrinfo *);

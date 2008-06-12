@@ -287,8 +287,11 @@ GLIBC_2.3 {
   getppid;
   getpriority;
   getprotobyname;
+  getprotobyname_r;
   getprotobynumber;
+  getprotobynumber_r;
   getprotoent;
+  getprotoent_r;
   getpwent;
   getpwnam;
   getpwnam_r;
@@ -298,8 +301,11 @@ GLIBC_2.3 {
   getrlimit64;
   getrusage;
   getservbyname;
+  getservbyname_r;
   getservbyport;
+  getservbyport_r;
   getservent;
+  getservent_r;
   getsid;
   getsockname;
   getsockopt;
@@ -325,8 +331,11 @@ GLIBC_2.3 {
   gmtime_r;
   grantpt;
   hcreate;
+  hcreate_r;
   hdestroy;
+  hdestroy_r;
   hsearch;
+  hsearch_r;
   htonl;
   htons;
   iconv;

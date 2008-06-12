@@ -160,6 +160,8 @@ extern "C" {
 #if __LSB_VERSION__ < 40
     typedef long long int __pthread_cond_align_t;
 
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 32
@@ -318,6 +320,8 @@ extern "C" {
 #if __LSB_VERSION__ < 40
     typedef struct _pthread_descr_struct *_pthread_descr;
 
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 40
@@ -470,10 +474,11 @@ extern "C" {
 	struct _pthread_fastlock __m_lock;	/* Underlying fast lock */
     } pthread_mutex_t;
 
-#if __LSB_VERSION__ < 40
     typedef struct {
 	int __mutexkind;
     } pthread_mutexattr_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -507,6 +512,8 @@ extern "C" {
 	unsigned long int __stacksize;
     } pthread_attr_t;
 
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 40
@@ -530,10 +537,11 @@ extern "C" {
 	__pthread_cond_align_t __align;
     } pthread_cond_t;
 
-#if __LSB_VERSION__ < 40
     typedef struct {
 	int __dummy;
     } pthread_condattr_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -569,17 +577,17 @@ extern "C" {
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
-#if __LSB_VERSION__ < 40
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
-#if __LSB_VERSION__ < 40
     typedef struct {
 	int __lockkind;
 	int __pshared;
     } pthread_rwlockattr_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -590,18 +598,18 @@ extern "C" {
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
-#if __LSB_VERSION__ < 40
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
-#if __LSB_VERSION__ < 40
 #if defined __s390x__
 /* S390X */
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
@@ -611,12 +619,13 @@ extern "C" {
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
-#if __LSB_VERSION__ < 40
 #if defined __x86_64__
 /* x86-64 */
     typedef struct _pthread_rwlock_t pthread_rwlock_t;
 
 #endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 40

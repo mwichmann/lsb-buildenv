@@ -7,14 +7,23 @@ typedef enum {
     FIND,
     ENTER
 } ACTION;
+struct _ENTRY;
 typedef enum {
     preorder,
     postorder,
     endorder,
     leaf
 } VISIT;
+struct hsearch_data {
+    struct _ENTRY *table;
+    unsigned int size;
+    unsigned int filled;
+};
 
 typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);
+extern int hcreate_r(size_t, struct hsearch_data *);
+extern void hdestroy_r(struct hsearch_data *);
+extern int hsearch_r(ENTRY, ACTION, ENTRY * *, struct hsearch_data *);
 extern int hcreate(size_t);
 extern ENTRY *hsearch(ENTRY, ACTION);
 extern void insque(void *, void *);

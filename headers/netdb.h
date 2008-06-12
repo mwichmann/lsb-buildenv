@@ -183,6 +183,22 @@ extern "C" {
 			       int *) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern int getprotobyname_r(const char *, struct protoent *, char *,
+				size_t, struct protoent **);
+    extern int getprotobynumber_r(int, struct protoent *, char *, size_t,
+				  struct protoent **);
+    extern int getprotoent_r(struct protoent *, char *, size_t,
+			     struct protoent **);
+    extern int getservbyname_r(const char *, const char *,
+			       struct servent *, char *, size_t,
+			       struct servent **);
+    extern int getservbyport_r(int, const char *, struct servent *, char *,
+			       size_t, struct servent **);
+    extern int getservent_r(struct servent *, char *, size_t,
+			    struct servent **);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

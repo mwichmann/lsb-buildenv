@@ -242,8 +242,11 @@ GLIBC_2.0 {
   gmtime;
   gmtime_r;
   hcreate;
+  hcreate_r;
   hdestroy;
+  hdestroy_r;
   hsearch;
+  hsearch_r;
   htonl;
   htons;
   index;
@@ -784,8 +787,14 @@ GLIBC_2.1.2 {
   gethostbyaddr_r;
   gethostbyname2_r;
   gethostbyname_r;
+  getprotobyname_r;
+  getprotobynumber_r;
+  getprotoent_r;
   getpwnam_r;
   getpwuid_r;
+  getservbyname_r;
+  getservbyport_r;
+  getservent_r;
 };
 GLIBC_2.1.3 {
   __cxa_atexit;

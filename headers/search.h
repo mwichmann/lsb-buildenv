@@ -31,6 +31,17 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    struct _ENTRY;
+
+    struct hsearch_data {
+	struct _ENTRY *table;
+	unsigned int size;
+	unsigned int filled;
+    };
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #if __LSB_VERSION__ >= 12
 
     struct entry {
@@ -68,6 +79,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 13
     extern void *tdelete(const void *, void **, __compar_fn_t);
 #endif				/* __LSB_VERSION__ >= 1.3 */
+
+#if __LSB_VERSION__ >= 40
+    extern int hcreate_r(size_t, struct hsearch_data *);
+    extern void hdestroy_r(struct hsearch_data *);
+    extern int hsearch_r(ENTRY, ACTION, ENTRY * *, struct hsearch_data *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }
