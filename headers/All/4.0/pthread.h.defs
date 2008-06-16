@@ -116,7 +116,8 @@ extern int pthread_mutexattr_getprotocol(const pthread_mutexattr_t *,
 					 int *);
 extern int pthread_mutexattr_setprioceiling(pthread_mutexattr_t *, int);
 extern int pthread_mutexattr_setprotocol(pthread_mutexattr_t *, int);
-extern int pthread_mutex_getprioceiling(pthread_mutex_t * const, int *);
+extern int pthread_mutex_getprioceiling(const pthread_mutexattr_t *,
+					int *);
 extern int pthread_mutex_setprioceiling(pthread_mutex_t *, int, int *);
 extern void _pthread_cleanup_pop(struct _pthread_cleanup_buffer *, int);
 extern void _pthread_cleanup_push(struct _pthread_cleanup_buffer *,

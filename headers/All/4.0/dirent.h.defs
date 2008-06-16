@@ -16,8 +16,15 @@ struct dirent64 {
     char d_name[256];
 };
 extern int readdir64_r(DIR *, struct dirent64 *, struct dirent64 **);
+extern int alphasort(const struct dirent **, const struct dirent **);
+extern int alphasort64(const struct dirent64 **, const struct dirent64 **);
 extern int dirfd(DIR *);
 extern void rewinddir(DIR *);
+extern int scandir(const char *, struct dirent ***,
+		   int (*d_name) (const struct dirent *)
+		   , int (*d_name) (const struct dirent *,
+				    const struct dirent *)
+    );
 extern void seekdir(DIR *, long int);
 extern long int telldir(DIR *);
 extern int closedir(DIR *);
@@ -25,4 +32,9 @@ extern DIR *opendir(const char *);
 extern struct dirent *readdir(DIR *);
 extern struct dirent64 *readdir64(DIR *);
 extern int readdir_r(DIR *, struct dirent *, struct dirent **);
+extern int scandir64(const char *, struct dirent64 ***,
+		     int (*d_name) (const struct dirent64 *)
+		     , int (*d_name) (const struct dirent64 *,
+				      const struct dirent64 *)
+    );
 extern DIR *fdopendir(int);

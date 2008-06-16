@@ -8,6 +8,7 @@ struct passwd {
     char *pw_dir;
     char *pw_shell;
 };
+extern int getpwent_r(struct passwd *, char *, size_t, struct passwd **);
 extern void endpwent(void);
 extern struct passwd *getpwent(void);
 extern struct passwd *getpwnam(const char *);

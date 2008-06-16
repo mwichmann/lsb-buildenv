@@ -17,4 +17,5 @@ extern int getgrgid_r(gid_t, struct group *, char *, size_t,
 		      struct group **);
 extern int getgrnam_r(const char *, struct group *, char *, size_t,
 		      struct group **);
+extern int getgrent_r(struct group *, char *, size_t, struct group **);
 extern int getgrouplist(const char *, gid_t, gid_t *, int *);

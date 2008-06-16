@@ -5,22 +5,60 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <sys/time.h>
+#include <netdb.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 40
+#if defined __i386__
+#define __SIZEOF_SEM_T	16
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define __SIZEOF_SEM_T	16
+#endif
+#if defined __s390__ && !defined __s390x__
+#define __SIZEOF_SEM_T	16
+#endif
+#if defined __ia64__
+#define __SIZEOF_SEM_T	32
+#endif
+#if defined __powerpc64__
+#define __SIZEOF_SEM_T	32
+#endif
+#if defined __x86_64__
+#define __SIZEOF_SEM_T	32
+#endif
+#if defined __s390x__
+#define __SIZEOF_SEM_T	32
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
+
+
 
 /* System specific semaphore definition*/
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 40
     typedef struct {
 	struct _pthread_fastlock __sem_lock;
 	int __sem_value;
 	_pthread_descr __sem_waiting;
     } sem_t;
 
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
+
+#if __LSB_VERSION__ >= 40
+    typedef union {
+	char __size[__SIZEOF_SEM_T];
+	long int __align;
+    } sem_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Value returned if `sem_open' failed*/

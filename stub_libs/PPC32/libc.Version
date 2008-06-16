@@ -50,6 +50,7 @@ GLIBC_2.0 {
   acct;
   adjtime;
   alarm;
+  alphasort;
   asctime;
   asctime_r;
   asprintf;
@@ -398,6 +399,7 @@ GLIBC_2.0 {
   rindex;
   rmdir;
   sbrk;
+  scandir;
   scanf;
   sched_get_priority_max;
   sched_get_priority_min;
@@ -782,6 +784,7 @@ GLIBC_2.1.1 {
   imaxdiv;
 };
 GLIBC_2.1.2 {
+  getgrent_r;
   getgrgid_r;
   getgrnam_r;
   gethostbyaddr_r;
@@ -790,6 +793,7 @@ GLIBC_2.1.2 {
   getprotobyname_r;
   getprotobynumber_r;
   getprotoent_r;
+  getpwent_r;
   getpwnam_r;
   getpwuid_r;
   getservbyname_r;
@@ -807,6 +811,7 @@ GLIBC_2.2 {
   __sysconf;
   __xpg_sigpause;
   __xstat64;
+  alphasort64;
   bind_textdomain_codeset;
   dcngettext;
   dngettext;
@@ -870,6 +875,7 @@ GLIBC_2.2 {
   putwchar_unlocked;
   readdir64;
   readdir64_r;
+  scandir64;
   semctl;
   setrlimit;
   shmctl;

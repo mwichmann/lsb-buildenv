@@ -46,6 +46,11 @@ extern "C" {
 			  struct passwd **);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern int getpwent_r(struct passwd *, char *, size_t,
+			  struct passwd **);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif

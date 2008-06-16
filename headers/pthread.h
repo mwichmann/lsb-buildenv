@@ -371,7 +371,7 @@ extern "C" {
 	int __owner;
 	int __kind;
 	unsigned int __nusers;
-	struct {
+	union {
 	    int __spins;
 	    __pthread_slist_t __list;
 	};
@@ -399,7 +399,7 @@ extern "C" {
 	int __owner;
 	int __kind;
 	unsigned int __nusers;
-	struct {
+	union {
 	    int __spins;
 	    __pthread_slist_t __list;
 	};
@@ -427,7 +427,7 @@ extern "C" {
 	int __owner;
 	int __kind;
 	unsigned int __nusers;
-	struct {
+	union {
 	    int __spins;
 	    __pthread_slist_t __list;
 	};
@@ -1064,7 +1064,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int pthread_mutex_getprioceiling(pthread_mutex_t * const,
+    extern int pthread_mutex_getprioceiling(const pthread_mutexattr_t *,
 					    int *);
     extern int pthread_mutex_setprioceiling(pthread_mutex_t *, int, int *);
     extern int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t

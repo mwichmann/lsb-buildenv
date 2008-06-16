@@ -1,8 +1,7 @@
 
-typedef struct {
-    struct _pthread_fastlock __sem_lock;
-    int __sem_value;
-    _pthread_descr __sem_waiting;
+typedef union {
+    char __size[__SIZEOF_SEM_T];
+    long int __align;
 } sem_t;
 
 #define SEM_FAILED	((sem_t*)0)

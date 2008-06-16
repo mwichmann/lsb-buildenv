@@ -62,8 +62,21 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
+    extern int alphasort(const struct dirent **, const struct dirent **);
+    extern int alphasort64(const struct dirent64 **,
+			   const struct dirent64 **);
     extern int dirfd(DIR *);
     extern DIR *fdopendir(int);
+    extern int scandir(const char *, struct dirent ***,
+		       int (*)(const struct dirent *)
+		       , int (*)(const struct dirent *,
+				 const struct dirent *)
+	);
+    extern int scandir64(const char *, struct dirent64 ***,
+			 int (*)(const struct dirent64 *)
+			 , int (*)(const struct dirent64 *,
+				   const struct dirent64 *)
+	);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

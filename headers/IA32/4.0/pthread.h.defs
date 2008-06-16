@@ -15,7 +15,7 @@ struct __pthread_mutex_s {
     int __owner;
     int __kind;
     unsigned int __nusers;
-    struct {
+    union {
 	int __spins;
 	__pthread_slist_t __list;
     };

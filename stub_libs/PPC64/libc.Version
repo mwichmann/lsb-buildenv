@@ -65,6 +65,8 @@ GLIBC_2.3 {
   acct;
   adjtime;
   alarm;
+  alphasort;
+  alphasort64;
   asctime;
   asctime_r;
   asprintf;
@@ -256,6 +258,7 @@ GLIBC_2.3 {
   geteuid;
   getgid;
   getgrent;
+  getgrent_r;
   getgrgid;
   getgrgid_r;
   getgrnam;
@@ -293,6 +296,7 @@ GLIBC_2.3 {
   getprotoent;
   getprotoent_r;
   getpwent;
+  getpwent_r;
   getpwnam;
   getpwnam_r;
   getpwuid;
@@ -547,6 +551,8 @@ GLIBC_2.3 {
   rindex;
   rmdir;
   sbrk;
+  scandir;
+  scandir64;
   scanf;
   sched_get_priority_max;
   sched_get_priority_min;

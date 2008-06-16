@@ -45,6 +45,10 @@ extern "C" {
     extern int getgrouplist(const char *, gid_t, gid_t *, int *);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
+#if __LSB_VERSION__ >= 40
+    extern int getgrent_r(struct group *, char *, size_t, struct group **);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif
