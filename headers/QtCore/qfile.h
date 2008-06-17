@@ -90,7 +90,6 @@ public:
     static bool setPermissions(QString const&, QFlags<QFile::Permission>);
     int handle() const;
      fileEngine() const;
-     QFile(QFilePrivate&, QObject*);
 protected:
     qint64 readData(char*, long long);
     qint64 writeData(char const*, long long);

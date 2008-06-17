@@ -21,7 +21,6 @@ public:
     void updateEditorGeometry(QWidget*, QStyleOptionViewItem const&, QModelIndex const&) const;
     bool editorEvent(QEvent*, QAbstractItemModel*, QStyleOptionViewItem const&, QModelIndex const&);
     QString elidedText(QFontMetrics const&, int, Qt::TextElideMode, QString const&);
-     QAbstractItemDelegate(QObjectPrivate&, QObject*);
 protected:
     void commitData(QWidget*);
     void closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint);

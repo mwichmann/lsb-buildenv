@@ -67,7 +67,6 @@ public:
     bool waitForDisconnected(int);
     void setProxy(QNetworkProxy const&);
     QNetworkProxy proxy() const;
-     QAbstractSocket(QAbstractSocket::SocketType, QAbstractSocketPrivate&, QObject*);
 protected:
     void hostFound();
     void connected();

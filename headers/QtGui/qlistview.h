@@ -44,7 +44,6 @@ public:
     void doItemsLayout();
     void reset();
     void setRootIndex(QModelIndex const&);
-     QListView(QListViewPrivate&, QWidget*);
     void setWordWrap(bool);
     void setBatchSize(int);
     bool wordWrap() const;

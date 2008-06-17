@@ -20,6 +20,7 @@ $className="";
 # variable to resolve typedef stuct/union definition
 $typeflag=0;
 $semicolonNeeded=0;
+$struct_anon_member=0;
 
 %prototyped = {};
 
@@ -248,7 +249,11 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
 #		if( $tmentry->{'Aid'} && $tmentry->{'Aname'} ne "All" ) {
 #			print "#if defined(".$tmentry->{'Asymbol'}.")\n";
 #		}
+		if( !$tmentry->{'TMname'} ) {
+		    $struct_anon_member=1;
+		}
 		displaytype($entry);
+		$struct_anon_member=0;
 		if( $entry->{'Ttype'} ne 'FuncPtr' ) {
 			print $tmentry->{'TMname'};
 			}
@@ -315,6 +320,9 @@ if( $$type{'Ttype'} eq "Union" ) {
 	}
 
 	if(!$typeflag) {
+		if( $struct_anon_member and !$union_name ) {
+		    print "__extension__ ";
+		}
 		print "union ".$union_name."\t";
 	}
 

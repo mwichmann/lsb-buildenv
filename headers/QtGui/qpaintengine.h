@@ -86,7 +86,6 @@ public:
     QRect systemRect() const;
     QPoint coordinateOffset() const;
     QPainter * painter() const;
-     QPaintEngine(QPaintEnginePrivate&, QFlags<QPaintEngine::PaintEngineFeature>);
 };
 
 enum PaintEngineFeature	

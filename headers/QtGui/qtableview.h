@@ -52,7 +52,6 @@ public:
     void resizeColumnsToContents();
     void sortByColumn(int);
     void setShowGrid(bool);
-     QTableView(QTableViewPrivate&, QWidget*);
     void sortByColumn(int, Qt::SortOrder);
     void setSortingEnabled(bool);
     void setSpan(int, int, int, int);

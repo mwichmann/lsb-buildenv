@@ -33,8 +33,6 @@ public:
     void setContentType(QString const&);
     QString toString() const;
     bool isValid() const;
-     QHttpHeader(QHttpHeaderPrivate&, QString const&);
-     QHttpHeader(QHttpHeaderPrivate&, QHttpHeader const&);
 protected:
     bool parseLine(QString const&, int);
     bool parse(QString const&);

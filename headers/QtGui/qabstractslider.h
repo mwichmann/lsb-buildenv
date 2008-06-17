@@ -39,7 +39,6 @@ public:
     void triggerAction(QAbstractSlider::SliderAction);
     void setValue(int);
     void setOrientation(Qt::Orientation);
-     QAbstractSlider(QAbstractSliderPrivate&, QWidget*);
 protected:
     void valueChanged(int);
     void sliderPressed();

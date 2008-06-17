@@ -39,7 +39,6 @@ public:
     int nextImageDelay() const;
     int currentImageNumber() const;
     QRect currentImageRect() const;
-     QImageIOHandler(QImageIOHandlerPrivate&);
 };
 
 enum ImageOption	

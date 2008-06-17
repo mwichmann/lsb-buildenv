@@ -39,7 +39,6 @@ public:
     QSize span(QModelIndex const&) const;
     bool submit();
     void revert();
-     QProxyModel(QProxyModelPrivate&, QObject*);
 protected:
     QModelIndex setProxyModel(QModelIndex const&) const;
     QModelIndex setSourceModel(QModelIndex const&) const;

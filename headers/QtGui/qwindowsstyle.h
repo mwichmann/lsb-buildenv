@@ -28,7 +28,6 @@ public:
     int pixelMetric(QStyle::PixelMetric, QStyleOption const*, QWidget const*) const;
     int styleHint(QStyle::StyleHint, QStyleOption const*, QWidget const*, QStyleHintReturn*) const;
     QPixmap standardPixmap(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
-     QWindowsStyle(QWindowsStylePrivate&);
 protected:
     bool eventFilter(QObject*, QEvent*);
     void timerEvent(QTimerEvent*);

@@ -40,7 +40,6 @@ public:
     QStringList inputFormatList();
     QStringList outputFormatList();
     QPaintEngine * paintEngine() const;
-     QPicture(QPicturePrivate&);
 protected:
     int metric(QPaintDevice::PaintDeviceMetric) const;
 };

@@ -90,7 +90,6 @@ public:
     void appendUndoItem(QAbstractUndoItem*);
     void setModified(bool);
      docHandle() const;
-     QTextDocument(QTextDocumentPrivate&, QObject*);
     void adjustSize();
     void drawContents(QPainter*, QRectF const&);
     void setTextWidth(double);

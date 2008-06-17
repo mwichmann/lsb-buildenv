@@ -53,7 +53,6 @@ public:
     void resizeColumnToContents(int);
     void sortByColumn(int);
     void selectAll();
-     QTreeView(QTreeViewPrivate&, QWidget*);
     void collapseAll();
     void setAnimated(bool);
     void sortByColumn(int, Qt::SortOrder);

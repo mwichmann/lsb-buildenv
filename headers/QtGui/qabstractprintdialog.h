@@ -35,7 +35,6 @@ public:
     int fromPage() const;
     int toPage() const;
     QPrinter * printer() const;
-     QAbstractPrintDialog(QAbstractPrintDialogPrivate&, QPrinter*, QWidget*);
     int qt_metacall(QMetaObject::Call, int, void**);
     void * qt_metacast(char const*);
     struct QMetaObject * metaObject() const;

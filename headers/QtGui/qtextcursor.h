@@ -12,10 +12,8 @@ private:
 public:
      QTextCursor();
      QTextCursor(QTextDocument*);
-     QTextCursor(QTextDocumentPrivate*, int);
      QTextCursor(QTextFrame*);
      QTextCursor(QTextBlock const&);
-     QTextCursor(QTextCursorPrivate*);
      QTextCursor(QTextCursor const&);
     QTextCursor & operator=(QTextCursor const&);
      ~QTextCursor();

@@ -392,7 +392,6 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int mknod(const char *, mode_t, dev_t);
 #if __LSB_VERSION__ >= 10
     extern char **__environ;
     extern pid_t __getpgid(pid_t);

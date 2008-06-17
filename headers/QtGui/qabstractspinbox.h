@@ -49,7 +49,6 @@ public:
     void stepDown();
     void selectAll();
     void clear();
-     QAbstractSpinBox(QAbstractSpinBoxPrivate&, QWidget*);
     void setAccelerated(bool);
     void setCorrectionMode(QAbstractSpinBox::CorrectionMode);
     bool isAccelerated() const;

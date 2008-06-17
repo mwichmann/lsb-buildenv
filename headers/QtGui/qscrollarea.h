@@ -23,7 +23,6 @@ public:
     QSize sizeHint() const;
     bool focusNextPrevChild(bool);
     void ensureVisible(int, int, int, int);
-     QScrollArea(QScrollAreaPrivate&, QWidget*);
     void setAlignment(QFlags<Qt::AlignmentFlag>);
     void ensureWidgetVisible(QWidget*, int, int);
      alignment() const;

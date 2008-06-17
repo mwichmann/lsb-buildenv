@@ -70,7 +70,6 @@ public:
     void setCurrentIndex(QModelIndex const&);
     void scrollToTop();
     void scrollToBottom();
-     QAbstractItemView(QAbstractItemViewPrivate&, QWidget*);
     void setDragDropMode(QAbstractItemView::DragDropMode);
     void setItemDelegateForRow(int, QAbstractItemDelegate*);
     void setVerticalScrollMode(QAbstractItemView::ScrollMode);

@@ -26,7 +26,6 @@ public:
     int styleHint(QStyle::StyleHint, QStyleOption const*, QWidget const*, QStyleHintReturn*) const;
     QPixmap standardPixmap(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
     QPixmap generatedIconPixmap(QIcon::Mode, QPixmap const&, QStyleOption const*) const;
-     QCommonStyle(QCommonStylePrivate&);
 protected:
     QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
 };

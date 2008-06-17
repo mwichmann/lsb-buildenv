@@ -77,7 +77,6 @@ public:
     QString fileName(QModelIndex const&) const;
     QIcon fileIcon(QModelIndex const&) const;
     QFileInfo fileInfo(QModelIndex const&) const;
-     QDirModel(QDirModelPrivate&, QObject*);
 };
 
 enum Roles	

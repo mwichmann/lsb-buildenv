@@ -79,7 +79,6 @@ public:
     QSize span(QModelIndex const&) const;
     bool submit();
     void revert();
-     QAbstractItemModel(QAbstractItemModelPrivate&, QObject*);
     void setSupportedDragActions(QFlags<Qt::DropAction>);
      supportedDragActions() const;
 protected:
@@ -114,7 +113,6 @@ public:
      ~QAbstractTableModel();
     QModelIndex index(int, int, QModelIndex const&) const;
     bool dropMimeData(QMimeData const*, Qt::DropAction, int, int, QModelIndex const&);
-     QAbstractTableModel(QAbstractItemModelPrivate&, QObject*);
 private:
     QModelIndex parent(QModelIndex const&) const;
     bool hasChildren(QModelIndex const&) const;
@@ -131,7 +129,6 @@ public:
      ~QAbstractListModel();
     QModelIndex index(int, int, QModelIndex const&) const;
     bool dropMimeData(QMimeData const*, Qt::DropAction, int, int, QModelIndex const&);
-     QAbstractListModel(QAbstractItemModelPrivate&, QObject*);
 private:
     QModelIndex parent(QModelIndex const&) const;
     bool hasChildren(QModelIndex const&) const;

@@ -31,7 +31,6 @@ public:
     bool removeColumns(int, int, QModelIndex const&);
      flags(QModelIndex const&) const;
     void clear();
-     QStandardItemModel(QStandardItemModelPrivate&, QObject*);
      takeColumn(int);
     bool setItemData(QModelIndex const&, QMap<int, QVariant> const&);
     void setRowCount(int);

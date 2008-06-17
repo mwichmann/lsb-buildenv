@@ -104,7 +104,6 @@ public:
     QDomElement nextSiblingElement(QString const&) const;
     int lineNumber() const;
     int columnNumber() const;
-     QDomNode(QDomNodePrivate*);
 };
 
 enum NodeType	

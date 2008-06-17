@@ -39,7 +39,6 @@ public:
     void setChecked(bool);
      QAbstractButton(QWidget*, char const*, QFlags<Qt::WindowType>);
      iconSet() const;
-     QAbstractButton(QAbstractButtonPrivate&, QWidget*);
     void setAutoRepeatDelay(int);
     void setAutoRepeatInterval(int);
     int autoRepeatDelay() const;

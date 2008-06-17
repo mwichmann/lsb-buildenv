@@ -31,7 +31,6 @@ public:
     bool(*)(void	* )
  setEventFilter(bool (*)(void*));
     bool filterEvent(void*);
-     QAbstractEventDispatcher(QAbstractEventDispatcherPrivate&, QObject*);
 protected:
     void aboutToBlock();
     void awake();

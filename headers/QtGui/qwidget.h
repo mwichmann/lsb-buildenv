@@ -193,7 +193,6 @@ public:
     bool autoFillBackground() const;
     void setAutoFillBackground(bool);
     QVariant inputMethodQuery(Qt::InputMethodQuery) const;
-     QWidget(QWidgetPrivate&, QWidget*, QFlags<Qt::WindowType>);
     QStyle * setStyle(QString const&);
     QRect visibleRect() const;
     enum _ZN2Qt14BackgroundModeE backgroundMode() const;

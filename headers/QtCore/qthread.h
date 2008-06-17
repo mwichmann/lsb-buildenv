@@ -28,7 +28,6 @@ public:
     struct QMetaObject * metaObject() const;
     void * qt_metacast(char const*);
     int qt_metacall(QMetaObject::Call, int, void**);
-     QThread(QThreadPrivate&, QObject*);
 protected:
     void started();
     void finished();

@@ -52,7 +52,6 @@ public:
     QObjectUserData * userData(unsigned int) const;
     void deleteLater();
      QObject(QObject*, char const*);
-     QObject(QObjectPrivate&, QObject*);
     QList<QByteArray> dynamicPropertyNames() const;
 protected:
     void destroyed(QObject*);

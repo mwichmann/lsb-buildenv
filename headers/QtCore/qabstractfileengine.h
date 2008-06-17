@@ -57,7 +57,6 @@ public:
     bool supportsExtension(QAbstractFileEngine::Extension) const;
     static  create(QString const&);
      QAbstractFileEngine();
-     QAbstractFileEngine(QAbstractFileEnginePrivate&);
 protected:
     void setError(QFile::FileError, QString const&);
 };

@@ -36,7 +36,6 @@ public:
     struct QMetaObject * metaObject() const;
     void * qt_metacast(char const*);
     int qt_metacall(QMetaObject::Call, int, void**);
-     QStyle(QStylePrivate&);
      QStyle();
      ~QStyle();
     void polish(QWidget*);

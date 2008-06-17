@@ -49,7 +49,6 @@ public:
     void select(QItemSelection const&, QFlags<QItemSelectionModel::SelectionFlag>);
     void clear();
     void reset();
-     QItemSelectionModel(QItemSelectionModelPrivate&, QAbstractItemModel*);
     void clearSelection();
     bool hasSelection() const;
     QModelIndexList selectedRows(int) const;

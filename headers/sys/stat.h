@@ -399,10 +399,12 @@ extern "C" {
 
 /* Function prototypes */
 
+    extern int mknodat(int, const char *, mode_t, dev_t);
     extern int fstat(int, struct stat *);
     extern int fstat64(int, struct stat64 *);
     extern int lstat(const char *, struct stat *);
     extern int lstat64(const char *, struct stat64 *);
+    extern int mknod(const char *, mode_t, dev_t);
     extern int stat(const char *, struct stat *);
     extern int stat64(const char *, struct stat64 *);
 #if __LSB_VERSION__ >= 10

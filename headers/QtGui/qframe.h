@@ -30,7 +30,6 @@ public:
     QRect frameRect() const;
     void setFrameRect(QRect const&);
      QFrame(QWidget*, char const*, QFlags<Qt::WindowType>);
-     QFrame(QFramePrivate&, QWidget*, QFlags<Qt::WindowType>);
 protected:
     bool event(QEvent*);
     void paintEvent(QPaintEvent*);

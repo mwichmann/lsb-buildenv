@@ -30,7 +30,6 @@ public:
     void showMenu();
     void setToolButtonStyle(Qt::ToolButtonStyle);
     void setDefaultAction(QAction*);
-     QToolButton(QToolButtonPrivate&, QWidget*);
      QToolButton(QWidget*, char const*);
      QToolButton(Qt::ArrowType, QWidget*, char const*);
      QToolButton(QIcon const&, QString const&, QString const&, QObject*, char const*, QWidget*, char const*);

@@ -55,7 +55,6 @@ public:
     void freeze(int, int);
     bool isTopLevel() const;
     QSize closestAcceptableSize(QWidget const*, QSize const&);
-     QLayout(QLayoutPrivate&, QLayout*, QWidget*);
      QLayout(QWidget*, int, int, char const*);
      QLayout(QLayout*, int, char const*);
      QLayout(int, char const*);

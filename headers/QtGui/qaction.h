@@ -58,7 +58,6 @@ public:
     void toggle();
     void setEnabled(bool);
     void setVisible(bool);
-     QAction(QActionPrivate&, QObject*);
     void setMenuRole(QAction::MenuRole);
     void setShortcuts(QKeySequence::StandardKey);
     void setShortcuts(QList<QKeySequence> const&);

@@ -88,7 +88,6 @@ public:
     void scrollToAnchor(QString const&);
     void zoomIn(int);
     void zoomOut(int);
-     QTextEdit(QTextEditPrivate&, QWidget*);
      QTextEdit(QWidget*, char const*);
     void moveCursor(QTextEdit::CursorAction, QTextCursor::MoveMode);
     void doKeyboardAction(QTextEdit::KeyboardAction);

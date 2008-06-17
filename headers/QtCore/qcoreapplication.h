@@ -62,7 +62,6 @@ public:
  setEventFilter(bool (*)(void*, long*));
     bool filterEvent(void*, long*);
     static void quit();
-     QCoreApplication(QCoreApplicationPrivate&);
     static void setAttribute(Qt::ApplicationAttribute, bool);
     static bool testAttribute(Qt::ApplicationAttribute);
     static QString translate(char const*, char const*, char const*, QCoreApplication::Encoding, int);

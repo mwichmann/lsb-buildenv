@@ -61,7 +61,6 @@ public:
     bool waitForBytesWritten(int);
     void ungetChar(char);
     QString errorString() const;
-     QIODevice(QIODevicePrivate&, QObject*);
     int status() const;
     void resetStatus();
 protected:

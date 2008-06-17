@@ -53,7 +53,6 @@ public:
     static QString rootPath();
     static QString tempPath();
     static QFileInfoList drives();
-     QFSFileEngine(QFSFileEnginePrivate&);
 };
 
 #endif /* __LSB_VERSION__ >= 3.1 */

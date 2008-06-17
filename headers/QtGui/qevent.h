@@ -330,7 +330,6 @@ class QClipboardEvent : public QEvent
 {
 private:
 public:
-     QClipboardEvent(QEventPrivate*);
      ~QClipboardEvent();
 };
 

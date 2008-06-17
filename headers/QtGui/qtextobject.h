@@ -39,7 +39,6 @@ public:
     QTextDocument * document() const;
     int objectIndex() const;
      docHandle() const;
-     QTextObject(QTextObjectPrivate&, QTextDocument*);
 protected:
     void setFormat(QTextFormat const&);
 };
@@ -53,7 +52,6 @@ public:
     int qt_metacall(QMetaObject::Call, int, void**);
      QTextBlockGroup(QTextDocument*);
      ~QTextBlockGroup();
-     QTextBlockGroup(QTextBlockGroupPrivate&, QTextDocument*);
 protected:
     void blockInserted(QTextBlock const&);
     void blockRemoved(QTextBlock const&);
@@ -87,7 +85,6 @@ public:
      parentFrame() const;
     QTextFrame::iterator begin() const;
     QTextFrame::iterator end() const;
-     QTextFrame(QTextFramePrivate&, QTextDocument*);
 };
 
 class QTextFrame::iterator

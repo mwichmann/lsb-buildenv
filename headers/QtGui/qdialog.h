@@ -33,7 +33,6 @@ public:
     void accept();
     void reject();
     void showExtension(bool);
-     QDialog(QDialogPrivate&, QWidget*, QFlags<Qt::WindowType>);
 protected:
     void finished(int);
     void accepted();

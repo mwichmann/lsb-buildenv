@@ -12,7 +12,6 @@ private:
 public:
      ~QAbstractPageSetupDialog();
      QAbstractPageSetupDialog(QPrinter*, QWidget*);
-     QAbstractPageSetupDialog(QAbstractPageSetupDialogPrivate&, QPrinter*, QWidget*);
     QPrinter * printer();
     int qt_metacall(QMetaObject::Call, int, void**);
     void * qt_metacast(char const*);

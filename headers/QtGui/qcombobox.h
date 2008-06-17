@@ -96,7 +96,6 @@ public:
     void setCurrentIndex(int);
      QComboBox(QWidget*, char const*);
      QComboBox(bool, QWidget*, char const*);
-     QComboBox(QComboBoxPrivate&, QWidget*);
     void setCompleter(QCompleter*);
     QCompleter * completer() const;
 protected:

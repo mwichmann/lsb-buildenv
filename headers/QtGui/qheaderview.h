@@ -61,7 +61,6 @@ public:
     bool sectionsHidden() const;
     void setOffset(int);
     void headerDataChanged(Qt::Orientation, int, int);
-     QHeaderView(QHeaderViewPrivate&, Qt::Orientation, QWidget*);
     void swapSections(int, int);
     void setMinimumSectionSize(int);
     void setCascadingSectionResizes(bool);

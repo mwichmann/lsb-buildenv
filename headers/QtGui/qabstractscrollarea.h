@@ -25,7 +25,6 @@ public:
     QSize maximumViewportSize() const;
     QSize minimumSizeHint() const;
     QSize sizeHint() const;
-     QAbstractScrollArea(QAbstractScrollAreaPrivate&, QWidget*);
     void setViewport(QWidget*);
     void setCornerWidget(QWidget*);
     _Z11QWidgetList scrollBarWidgets(QFlags<Qt::AlignmentFlag>);

@@ -33,7 +33,6 @@ public:
     int styleHint(QStyle::StyleHint, QStyleOption const*, QWidget const*, QStyleHintReturn*) const;
     bool event(QEvent*);
     QPalette standardPalette() const;
-     QMotifStyle(QMotifStylePrivate&, bool);
 protected:
     void timerEvent(QTimerEvent*);
     bool eventFilter(QObject*, QEvent*);

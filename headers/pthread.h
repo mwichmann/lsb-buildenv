@@ -28,6 +28,11 @@ extern "C" {
 #define PTHREAD_MUTEX_NORMAL	0
 #define PTHREAD_MUTEX_RECURSIVE	1
 #define PTHREAD_MUTEX_ERRORCHECK	2
+#if __LSB_VERSION__ < 21
+#define PTHREAD_MUTEX_TIMED_NP	1
+#endif				/* __LSB_VERSION__ < 2.1 */
+
+#if __LSB_VERSION__ < 40
 #define PTHREAD_MUTEX_INITIALIZER	\
 	{0,0,0,PTHREAD_MUTEX_NORMAL,__LOCK_INITIALIZER}
 #define PTHREAD_RWLOCK_INITIALIZER	\
@@ -35,9 +40,7 @@ extern "C" {
         PTHREAD_PROCESS_PRIVATE }
 #define __LOCK_INITIALIZER	{ 0, 0 }
 #define PTHREAD_COND_INITIALIZER	{__LOCK_INITIALIZER,0}
-#if __LSB_VERSION__ < 21
-#define PTHREAD_MUTEX_TIMED_NP	1
-#endif				/* __LSB_VERSION__ < 2.1 */
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -144,6 +147,49 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define __SIZEOF_PTHREAD_RWLOCK_T	56
+#endif
+#define PTHREAD_COND_INITIALIZER	{ { 0, 0, 0, 0, 0, (void *) 0, 0, 0 } }
+#if defined __i386__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __s390__ && !defined __s390x__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __ia64__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __powerpc64__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __x86_64__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __s390x__
+#define PTHREAD_RWLOCK_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }
+#endif
+#if defined __ia64__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, { 0, 0 } } }
+#endif
+#if defined __powerpc64__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, { 0, 0 } } }
+#endif
+#if defined __x86_64__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, { 0, 0 } } }
+#endif
+#if defined __s390x__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, 0, { 0, 0 } } }
+#endif
+#if defined __i386__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, { 0 } } }
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, { 0 } } }
+#endif
+#if defined __s390__ && !defined __s390x__
+#define PTHREAD_MUTEX_INITIALIZER	{ { 0, 0, 0, 0, 0, { 0 } } }
 #endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
@@ -371,7 +417,7 @@ extern "C" {
 	int __owner;
 	int __kind;
 	unsigned int __nusers;
-	union {
+	__extension__ union {
 	    int __spins;
 	    __pthread_slist_t __list;
 	};
@@ -399,7 +445,7 @@ extern "C" {
 	int __owner;
 	int __kind;
 	unsigned int __nusers;
-	union {
+	__extension__ union {
 	    int __spins;
 	    __pthread_slist_t __list;
 	};
@@ -427,7 +473,7 @@ extern "C" {
 	int __owner;
 	int __kind;
 	unsigned int __nusers;
-	union {
+	__extension__ union {
 	    int __spins;
 	    __pthread_slist_t __list;
 	};

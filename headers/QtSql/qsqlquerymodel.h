@@ -31,7 +31,6 @@ public:
     QSqlError lastError() const;
     void fetchMore(QModelIndex const&);
     bool canFetchMore(QModelIndex const&) const;
-     QSqlQueryModel(QSqlQueryModelPrivate&, QObject*);
 protected:
     void queryChange();
     QModelIndex indexInQuery(QModelIndex const&) const;

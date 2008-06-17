@@ -21,7 +21,6 @@ public:
     QItemSelection mapSelectionFromSource(QItemSelection const&) const;
     bool submit();
     void revert();
-     QAbstractProxyModel(QAbstractProxyModelPrivate&, QObject*);
     QVariant headerData(int, Qt::Orientation, int) const;
     QVariant data(QModelIndex const&, int) const;
      flags(QModelIndex const&) const;

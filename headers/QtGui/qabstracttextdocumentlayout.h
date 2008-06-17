@@ -21,7 +21,6 @@ public:
     QTextDocument * document() const;
     void registerHandler(int, QObject*);
      handlerForObject(int) const;
-     QAbstractTextDocumentLayout(QAbstractTextDocumentLayoutPrivate&, QTextDocument*);
 protected:
     void update(QRectF const&);
     void documentSizeChanged(QSizeF const&);

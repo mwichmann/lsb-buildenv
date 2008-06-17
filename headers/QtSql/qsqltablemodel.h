@@ -44,7 +44,6 @@ public:
     void revert();
     bool submitAll();
     void revertAll();
-     QSqlTableModel(QSqlTableModelPrivate&, QObject*, QSqlDatabase);
 protected:
     void primeInsert(int, QSqlRecord&);
     void beforeInsert(QSqlRecord&);
