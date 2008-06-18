@@ -3,12 +3,13 @@ COMMON_OBJS = lsbcc_argv.o
 LSBCC_OBJS = lsbcc.o
 LSBCPP_OBJS = lsbcpp.o
 LIBS = libgcc34compat.a
+EXTRA_OBJS = besteffort.o
 CFLAGS=-g -Wall
 CXXFLAGS=$(CFLAGS)
 GCC34_COMPAT_CFLAGS = -fPIC
 LSB_VERSION ?= "4.0"
 
-all: $(PROGRAMS) $(LIBS)
+all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 
 gensrc: lsbcc_libs.h lsbcc_version.h
 
@@ -38,7 +39,7 @@ libgcc34compat.a: gcc34-compat.o
 gcc34-compat.o: gcc34-compat.cc
 	g++ $(CXXFLAGS) $(GCC34_COMPAT_CFLAGS) -c $<
 
-install: $(PROGRAMS) $(LIBS)
+install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 	install -d $(INSTALL_ROOT)/$(BINDIR)
 	install lsbcc $(INSTALL_ROOT)/$(BINDIR)/lsbcc
 	install lsbcc $(INSTALL_ROOT)/$(BINDIR)/lsbc++
@@ -49,6 +50,7 @@ install: $(PROGRAMS) $(LIBS)
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcpp.1
 	install -d $(INSTALL_ROOT)/$(LIBDIR)
 	install libgcc34compat.a $(INSTALL_ROOT)/$(LIBDIR)/libgcc34compat.a
+	install besteffort.o $(INSTALL_ROOT)/$(LIBDIR)/besteffort.o
 
 scripts:
 	cd scripts;make

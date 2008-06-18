@@ -1347,6 +1347,10 @@ if (!no_link) {
 		argvaddstring(syslibs,"-lgcc_s");
 	}
 
+	/* Best-effort dynamic linking. */
+	argvaddstring(syslibs, "/opt/lsb/lib/besteffort.o");
+	default_linker = 1;
+
 	if( lsbcc_debug&DEBUG_LIB_CHANGES ) {
 		fprintf(stderr,"Appending -lgcc\n");
 	}
