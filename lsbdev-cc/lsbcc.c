@@ -63,6 +63,7 @@
 #include "lsbcc_version.h"
 #include "lsbcc_libs.h"
 #include "lsbcc_argv.h"
+#include "linkers.h"
 
 /*
  * These are the catagories of options that we are going to be grouping
@@ -551,24 +552,7 @@ usage(const char *progname) {
  * The program intepreter isn't the same everywhere, so set it here,
  * and just use it below.
  */
-char *proginterpreter =
-#if   __i386__
-	"/lib/ld-lsb.so.3";
-#elif __powerpc__ && !__powerpc64__
-	"/lib/ld-lsb-ppc32.so.3";
-#elif __powerpc64__
-	"/lib64/ld-lsb-ppc64.so.3";
-#elif __ia64__
-	"/lib/ld-lsb-ia64.so.3";
-#elif __s390__ && !__s390x__
-	"/lib/ld-lsb-s390.so.3";
-#elif __s390x__
-	"/lib64/ld-lsb-s390x.so.3";
-#elif __x86_64__
-	"/lib64/ld-lsb-x86-64.so.3";
-#else
-	"Unknown_program_interpreter";
-#endif
+char *proginterpreter = LSB_LINKER;
 
 /*
  * We need to set some defines to correctly describe the assumed environment.
