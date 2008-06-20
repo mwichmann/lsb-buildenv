@@ -751,6 +751,7 @@ GLIBC_2.1 {
   popen;
   ptsname;
   pututxline;
+  sendfile;
   setrlimit64;
   setutxent;
   sighold;
@@ -919,6 +920,7 @@ GLIBC_2.3 {
   freelocale;
   newlocale;
   realpath;
+  sendfile64;
   uselocale;
   _sys_errlist;
 };

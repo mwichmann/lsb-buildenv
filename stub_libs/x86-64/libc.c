@@ -637,6 +637,8 @@ void semctl() {} ;
 void semget() {} ;
 void semop() {} ;
 void send() {} ;
+void sendfile() {} ;
+void sendfile64() {} ;
 void sendmsg() {} ;
 void sendto() {} ;
 void setbuf() {} ;

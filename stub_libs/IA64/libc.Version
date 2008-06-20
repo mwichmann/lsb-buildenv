@@ -565,6 +565,7 @@ GLIBC_2.2 {
   semget;
   semop;
   send;
+  sendfile;
   sendmsg;
   sendto;
   setbuf;
@@ -913,6 +914,7 @@ GLIBC_2.3 {
   freelocale;
   newlocale;
   realpath;
+  sendfile64;
   uselocale;
   _sys_errlist;
 };
