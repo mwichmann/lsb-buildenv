@@ -900,6 +900,9 @@ GLIBC_2.3 {
 };
 GLIBC_2.3.2 {
   __register_atfork;
+  epoll_create;
+  epoll_ctl;
+  epoll_wait;
 };
 GLIBC_2.3.3 {
   nftw;

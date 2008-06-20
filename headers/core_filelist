@@ -145,6 +145,7 @@ X11/ICE/ICE.h
 X11/SM/SM.h
 X11/extensions/XTest.h
 sys/inotify.h
+sys/epoll.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
