@@ -11,11 +11,8 @@ import sys
 # in the database.
 
 length = len(sys.argv)
-if length != 2:
-    print 'Usage: mkfilelists <LSB_VERSION>'
-    sys.exit(1)
-
-lsbversion = sys.argv[1]
+if length == 2:
+    lsbversion = sys.argv[1]
 
 core_modules = ['LSB_Core', 'LSB_Graphics', 'LSB_Cpp', 'LSB_Printing',
                 'LSB_Multimedia']
@@ -30,8 +27,12 @@ lib_only_modules = ['LSB_Toolkit_Qt', 'LSB_Cpp', 'LSB_Toolkit_Qt3']
 # List file names.  These are relative to the stub_libs and headers
 # directories, making for a total of four files.
 
-core_fn = 'core_filelist'
-desktop_fn = 'desktop_filelist'
+if length == 2:
+    core_fn = 'core_filelist_' + lsbversion
+    desktop_fn = 'desktop_filelist_' + lsbversion
+else :
+    core_fn = 'core_filelist'
+    desktop_fn = 'desktop_filelist'
 
 # Queries to use to retrieve the header and library information
 # from the database.
@@ -41,19 +42,28 @@ SELECT SMname, Hname FROM SubModule,Header,ModLib,Library
 WHERE SubModule.SMid = ModLib.MLmid
 AND Library.Lid = ModLib.MLlid
 AND Library.Lid = Header.Hlib
-AND ( ( (Happearedin <= '""" + lsbversion + """' AND Happearedin<>'')
-AND (Hwithdrawnin IS NULL OR Hwithdrawnin > '""" + lsbversion + """') )
+AND ( ( Happearedin > ''
+AND ( Hwithdrawnin IS NULL OR Hwithdrawnin > '3.0') )
 OR Hsrcerror='Yes' )"""
 
-lib_query = """
-SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
-LEFT JOIN ArchLib ON Lid=ALlid
-WHERE Lname LIKE 'lib%'
-AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
-AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
-AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
+if length == 2:
+    lib_query = """
+    SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
+    LEFT JOIN ArchLib ON Lid=ALlid
+    WHERE Lname LIKE 'lib%'
+    AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
+    AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
+    AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
+else:
+    lib_query = """
+    SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
+    LEFT JOIN ArchLib ON Lid=ALlid
+    WHERE Lname LIKE 'lib%'
+    AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
+    AND ALappearedin > ''
+    AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '3.0')"""
 
-# There are some things we can't derive from the database 
+# There are some things we can't derive from the database
 # 1. some "dummy" headers that are in vcs but not in the database
 # 2. the fact that some headers are generated but not shipped
 # add and subtract these from the generated lists
@@ -151,7 +161,7 @@ def main():
 
     # Apply the core header munging mentioned above.
 
-    core_headers = [x for x in core_headers + core_headers_add if 
+    core_headers = [x for x in core_headers + core_headers_add if
                     x not in core_headers_remove]
 
     # The database contains at least one entry with information
@@ -176,4 +186,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

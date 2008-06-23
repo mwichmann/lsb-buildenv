@@ -102,11 +102,15 @@ int lsbccmode=LSBCC;
 #endif
 
 char *ccname="cc";
-char *lsbcc_lsbversion=DEFAULT_LSB_VERSION;
-char *lsbversion_option;
 char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
 char libpath[PATH_MAX];
+/* 'Normal' version name */
+char *lsbcc_lsbversion="4.0";
+/* Version name with dot removed */
+char *lsbversion_option;
+/* Index in the lsb_libs array corresponding to the target LSB version */
+int lsbversion_index = 0;
 
 /*
  * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
@@ -539,7 +543,6 @@ usage(const char *progname) {
 		"\t                    known modules: %s\n"
                 "\t--lsb-use-default-linker\n"
                 "\t                   Do not set dynamic linker to the LSB one.\n\n"
-
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
@@ -777,18 +780,43 @@ snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
 lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
 		                               strlen(DEFAULT_LSB_VERSION) +1));
 sprintf(lsbversion_option, "-D__LSB_VERSION__=%s", DEFAULT_LSB_VERSION);
+lsbversion_index=get_version_index(lsbcc_lsbversion);
+
+/*
+ * Check for LSBCC_LSBVERSION environment variable - we need to know it (if any) before setting libpath.
+ */
+
+if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
+    lsbcc_lsbversion=ptr;
+    strncpy(tmpbuf, ptr, 3);
+    lsbversion_index = get_version_index(lsbcc_lsbversion);
+
+    if( (lsbversion_option=
+        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion))) ) == NULL ) {
+            exit(3);
+    }
+
+    strcpy(lsbversion_option, "-D__LSB_VERSION__=");
+    /* Normally, LSB_VERSION values should contain dot - remove it */
+    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
+    if( lsbcc_lsbversion )
+        strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
+
+    if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+        fprintf(stderr,"lsb version value set to %s\n", tmpbuf );
+}
 
 /*
  * Set up the library path according to arch using lib64 where necessary
  */
 #if __powerpc64__ || __s390x__ || __x86_64__
-	snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib64");
+        snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib64-", tmpbuf);
 #else
-	snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib");
+        snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib-", tmpbuf);
 #endif
 
 /*
- * Check for some environment variable, and adjust things if they are found.
+ * Check for some others environment variables, and adjust things if they are found.
  */
 
 if( (ptr=getenv("LSBCC_WARN")) != NULL ) {
@@ -851,36 +879,21 @@ if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
 	display_cmd = 1;
 }
 
-if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
-    lsbcc_lsbversion=ptr;
-
-    if( (lsbversion_option=
-        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion))) ) == NULL ) {
-	    exit(3);
-    }
-
-    strcpy(lsbversion_option, "-D__LSB_VERSION__=");
-    /* Normally, LSB_VERSION values should contain dot - remove it */
-    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-    if( lsbcc_lsbversion )
-	strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-
-    if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
-        fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
-}
-
 if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++)
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 }
 
-
 /*
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
  */
-for(i=0;lsb_libs[i]; i++) {
-	argvaddstring(lsblibs, strdup(lsb_libs[i]));
+if( lsbversion_index == -1 ) {
+    fprintf(stderr,"Incorrect LSB version: %s\n", lsbcc_lsbversion);
+    exit(-1);
+}
+for(i=0;lsb_libs[lsbversion_index][i]; i++) {
+	argvaddstring(lsblibs, strdup(lsb_libs[lsbversion_index][i]));
 }
 
 if(LSBCPLUS == lsbccmode) {

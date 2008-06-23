@@ -10,6 +10,7 @@
 use strict;
 use DBI;
 use Getopt::Std;
+use File::Path;
 
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
@@ -117,12 +118,15 @@ sub CreateTmpLibTable($$) {
 
     $create = "CREATE TEMPORARY TABLE tmp_LibIncludedInts_$libId "
         . "(KEY `Iid`(`Iid`), KEY `AIarch`(`AIarch`), KEY `Iname`(`Iname`,`AIarch`), KEY `Itype`(`Itype`,`AIarch`)) "
-        . "SELECT Iid, Iname, Ireturn, Itype, AIarch, AIversion FROM tmp_LibInts_$libId "
+        . "SELECT Iid, Iname, Ireturn, Itype, AIarch, AIversion, AIdeprecatedsince FROM tmp_LibInts_$libId "
         . "LEFT JOIN ArchInt ON AIint=Iid "
-        . "WHERE (AIappearedin <= '$lsbversion' and AIappearedin<>'') "
+        . "WHERE (AIappearedin <= '$lsbversion' and AIappearedin > '') "
         . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
     $sth = $dbh->prepare($create) || die $dbh->errstr;
     $sth->execute() || die $sth->errstr;
+
+    # Necessary update - to make 'select' statements in the GenerateLibrary function work correctly
+    $dbh->do("UPDATE tmp_LibIncludedInts_$libId SET AIdeprecatedsince=NULL WHERE AIdeprecatedsince > '$lsbversion'") || die $sth->errstr;
 }
 
 ######################################################################
@@ -140,7 +144,7 @@ sub GenerateLibrary($$$) {
     local (*STUBFILE);
     local (*VERSIONFILE);
     my ($version);
-    my ($lastint);
+    my ($lastint,$lastver,$depr_cnt);
 
     open( STUBFILE, ">$DestinationDirectory/$libName.c" )
       || die "Could not open $DestinationDirectory/$libName.c to write\n";
@@ -148,49 +152,32 @@ sub GenerateLibrary($$$) {
       || die "Could not open $DestinationDirectory/$libName.Version to write\n";
 
     # Do functions first
+    # Handle generic functions with arch-specific versions directly in SQL - let's group them by (Iid,AIdeprecatedsince)
+    # and select max(Vname) as version - there should be no situation when generic record is versioned and the arch-specific one
+    # is not. AIdeprecatedsince is added to GROUP list in order to handle situations when we have multiple versions of one symbol
+    # on the same arch; in this case not more that one version should be not-deprecated.
     $select =
-        "SELECT DISTINCT Iname,AIarch,Vname FROM tmp_LibIncludedInts_$libId "
+        "SELECT DISTINCT Iname,max(Vname) AS Vname,AIdeprecatedsince FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
       . "WHERE Itype='Function' "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 )"
-      . "ORDER BY Iname";
+      . "GROUP BY Iid,AIdeprecatedsince "
+      . "ORDER BY Iname,AIdeprecatedsince,Vname";
 
     #print STDERR $select,"\n";
     $sth = $dbh->prepare($select) || die $dbh->errstr;
     $sth->execute() || die $sth->errstr;
     $lastint = "";
+    $lastver = "";
+    $depr_cnt = 0;
     while ( $row = $sth->fetchrow_hashref() ) {
-
-#if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
-#     if( $row->{AIarch} && $row->{AIarch}!=1 && $row->{AIarch}!=$TargetArchId  ) { next; }
-
-        #if( !$row->{Vname} ){print "$row->{Iname}\tNULL Vname\n";}
-        #     if( !$row->{Vname} && $row->{AIarch}
-        # 	&& $row->{AIarch}!=$TargetArchId && $row->{AIarch}!=1 )
-        # 		{ print "Skipping bad Vname for $row->{Iname}\n";next; }
-
-        #if( $row->{Iname} eq $lastint ) { print "skipping dup $lastint\n"; }
-        if ( $row->{Iname} eq $lastint ) { next; }
-
-        if ( ( $TargetArchId != 1 ) && ( $row->{AIarch} == 1 ) ) {
-            $selectCheck =
-                "SELECT Iid FROM tmp_LibIncludedInts_$libId "
-              . "WHERE Iname='$row->{Iname}' "
-              . "AND AIarch=$TargetArchId "
-              . "LIMIT 1";
-
-            $sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
-            $sthCheck->execute() || die $sthCheck->errstr;
-            if ( $sthCheck->fetchrow_hashref() ) {
-                $sthCheck->finish;
-                next;
-            }
-            $sthCheck->finish;
+        if( $lastint eq $row->{Iname} ) {
+            print( STUBFILE "void $row->{Iname}_depr_".$depr_cnt."() {} ;\n" );
         }
-
-     #if($row->{Vname}){print "$row->{Iname}\t$row->{AIarch}\t$row->{Vname}\n";}
-        $lastint = $row->{Iname};
-        print( STUBFILE "void $row->{Iname}() {} ;\n" );
+        else {
+            print( STUBFILE "void $row->{Iname}() {} ;\n" );
+            $depr_cnt=0;
+        }
 
         # Add ability to override versions of functions
         undef($version);
@@ -209,27 +196,38 @@ sub GenerateLibrary($$$) {
             }
             $version = $OverrideVersions{$libName}{ $row->{Iname} };
         }
-		
+
         if ( defined($version) ) {
-			
-            # Unversioned symbols will not have the Vname field defined
-            if ( !defined( $versionInfo{$version} ) ) {
-                $versionInfo{$version} = ();
+            if( $row->{AIdeprecatedsince} and $lastint eq $row->{Iname} ) {
+                print( STUBFILE "__asm__(\".symver $row->{Iname}_depr_".$depr_cnt.",$row->{Iname}\@$row->{Vname}\");\n" );
+                $depr_cnt++;
             }
-            push( @{ $versionInfo{$version} }, $row->{Iname} );
+            else {
+                # Unversioned symbols will not have the Vname field defined
+                if ( !defined( $versionInfo{$version} ) ) {
+                        $versionInfo{$version} = ();
+                }
+                push( @{ $versionInfo{$version} }, $row->{Iname} );
+            }
         }
+        $lastint = $row->{Iname};
+        $lastver = $row->{Vname};
     }
     $sth->finish;
-	
+
     # Do variables next
+    # The reasons to GROUP and to select MAX values is the same as for functions above
+    # NOTE: AIdeprecatedsince is present here for completeness. We don't have data symbols with several versions on the same archs.
+    #       In case they appear, the code below should be improved to handle this.
     $select =
-      "SELECT DISTINCT Iname,AIarch,Itype,Vname,Ireturn,ATsize FROM tmp_LibIncludedInts_$libId "
+      "SELECT DISTINCT Iname, Itype,max(Vname) AS Vname,Ireturn,max(ATsize) AS ATsize,AIdeprecatedsince FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
       . "LEFT JOIN ArchType ON ATaid=$TargetArchId AND ATtid=Ireturn "
       . "WHERE "
       . "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 ) "
-      . "ORDER BY Iname";
+      . "GROUP BY Iid,AIdeprecatedsince "
+      . "ORDER BY Iname,AIdeprecatedsince,Vname";
 
     #print "$select\n";
     $sth = $dbh->prepare($select) || die $dbh->errstr;
@@ -237,45 +235,14 @@ sub GenerateLibrary($$$) {
     my ($size);
     $lastint = "";
     while ( $row = $sth->fetchrow_hashref() ) {
-        if ( ( $TargetArchId != 1 ) && ( $row->{AIarch} == 1 ) ) {
-            $selectCheck =
-                "SELECT DISTINCT Iid FROM tmp_LibIncludedInts_$libId "
-              . "LEFT JOIN ArchType ON ATtid=Ireturn and "
-              . "ATaid=$TargetArchId WHERE "
-              . "tmp_LibIncludedInts_$libId.Iname='$row->{Iname}' "
-              . "AND AIarch=$TargetArchId "
-              . "LIMIT 1";
-			
-            $sthCheck = $dbh->prepare($selectCheck) || die $dbh->errstr;
-            $sthCheck->execute() || die $sthCheck->errstr;
-            if ( $sthCheck->fetchrow_hashref() ) {
-            	$sthCheck->finish;
-                next;
-            }
-            $sthCheck->finish;
-        }
-		
-        if (   $row->{AIarch}
-            && $row->{AIarch} != 1
-            && $row->{AIarch} != $TargetArchId )
-        {
-            next;
-        }
-        if ( $row->{Iname} eq $lastint ) {
-            print "skipping dup $lastint\n";
-            next;
-        }
-		
-        $lastint = $row->{Iname};
-		
         # Work out size of data variable
         $size = 0;
-		
+
         if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
             my $selectGenericSize;
             my $sthGenericSize;
             my $rowGenericSize;
-			
+
             $selectGenericSize = "SELECT ATsize FROM ArchType ";
             $selectGenericSize .=
               "WHERE ATaid=1 AND ATtid=" . $row->{"Ireturn"};
@@ -287,29 +254,30 @@ sub GenerateLibrary($$$) {
             }
             $sthGenericSize->finish;
         }
-		
+
         if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
-            if (   defined( $MissingData{$libName} )
-                && defined( $MissingData{$libName}{ $row->{Iname} } ) )
+            if( $row->{Iname} =~ /^_ZTSN/ ) { # "typeinfo name" size is always equal to `strlen(Iname)-3`
+                $size = sprintf("%X", length($row->{Iname}) - 3);
+            }
+            elsif( defined( $MissingData{$libName} ) && defined( $MissingData{$libName}{ $row->{Iname} } ) )
             {
                 print STDOUT "Size not available for symbol $row->{Iname}"
                   . "  but overriding with $MissingData{$libName}{$row->{Iname}}\n";
                 $size = $MissingData{$libName}{ $row->{Iname} };
             }
             else {
-				
                 # Size is not required for aliases
                 if ( $row->{Itype} ne "Alias" ) {
                     print
                       "No data for symbol $row->{Iname} ($row->{Ireturn})\n";
                 }
             }
-			
+
             # $size = 1000; # temporarily make it big to avoid problems
         }
         else {
             $size = $row->{"ATsize"};
-			
+
             if (   defined( $MissingData{$libName} )
                 && defined( $MissingData{$libName}{ $row->{Iname} } )
                 && $MissingData{$libName}{ $row->{Iname} } != $size )
@@ -319,7 +287,7 @@ sub GenerateLibrary($$$) {
                 $size = $MissingData{$libName}{ $row->{Iname} };
             }
         }
-		
+
         if ( $row->{Itype} eq "Common" ) {
             print( STUBFILE "__asm__(\".comm $row->{Iname},$size\");\n" );
         }
@@ -329,7 +297,14 @@ sub GenerateLibrary($$$) {
             );
         }
         elsif ( $row->{Itype} eq "Data" ) {
-            my ($varname) = $row->{Iname};
+            my ($varname) = "";
+            if( $lastint eq $row->{Iname} ) {
+                $varname = $row->{Iname}."_depr_".$depr_cnt;
+            }
+            else {
+                $varname = $row->{Iname};
+                $depr_cnt = 0;
+            }
             print( STUBFILE
 "__asm__(\".globl $varname; .pushsection .data; .type $varname,\@object; .size $varname, $size; $varname: .long 0; .popsection\");\n"
             );
@@ -337,7 +312,7 @@ sub GenerateLibrary($$$) {
         else {
             print "Skipping ", $row->{Iname}, "\n";
         }
-		
+
         undef($version);
         $version = $row->{Vname} unless !defined( $row->{Vname} );
         if (   defined( $OverrideVersions{$libName} )
@@ -354,18 +329,26 @@ sub GenerateLibrary($$$) {
             }
             $version = $OverrideVersions{$libName}{ $row->{Iname} };
         }
-		
+
         if ( defined($version) ) {
-			
             # Unversioned symbols will not have the Vname field defined
-            if ( !defined( $versionInfo{$version} ) ) {
-                $versionInfo{$version} = ();
+            if( $row->{AIdeprecatedsince} and $lastint eq $row->{Iname} ) {
+                print( STUBFILE "__asm__(\".symver $row->{Iname}_depr_".$depr_cnt.",$row->{Iname}\@$row->{Vname}\");\n" );
+                $depr_cnt++;
             }
-            push( @{ $versionInfo{$version} }, $row->{Iname} );
+            else {
+                if ( !defined( $versionInfo{$version} ) ) {
+                        $versionInfo{$version} = ();
+                }
+                push( @{ $versionInfo{$version} }, $row->{Iname} );
+            }
         }
+
+        $lastint = $row->{Iname};
+        $lastver = $row->{Vname};
     }
     $sth->finish;
-	
+
     # Dump version information
     my ($symbol);
     my ($symbols);
@@ -454,11 +437,11 @@ if ( !defined($row) ) {
 }
 else {
     $TargetArchId         = $row->{Aid};
-    $DestinationDirectory = $TargetArch;
+    $DestinationDirectory = $lsbversion."/".$TargetArch;
 }
 
 if ( !-d $DestinationDirectory ) {
-    mkdir($DestinationDirectory);
+    mkpath($DestinationDirectory);
 }
 
 LoadMissingData();

@@ -2,6 +2,13 @@
 
 LSB_SUPPORTED_ARCHS=IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 
+DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
+LSB_VERSIONS=$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.0'" | grep -v LVvalue)
+
+# Desktop libs appeared in 3.1
+LSB_DESKTOP_VERSIONS=$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.1'" | grep -v LVvalue)
+
+
 # Determine arch to compile for from uname
 # Add extra architectures as needed
 LSB_COMPILE_FOR_ARCH:=`case \`uname -m\` in \
@@ -32,38 +39,38 @@ LSB_COMPILE_FOR_ARCH:=`case \`uname -m\` in \
 
 all: libs
 
-core_filelist desktop_filelist:
-	cd .. && ./mkfilelists `cat stub_libs/LSB_VERSION`
+core_filelist_% desktop_filelist_%:
+	cd .. && for version in $(LSB_VERSIONS); do ./mkfilelists $$version; done
 
 gensrc: dbfiles
 
-dbfiles: core_filelist desktop_filelist
-	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v `cat LSB_VERSION`; done;
+dbfiles: $(foreach version,$(LSB_VERSIONS),core_filelist_$(version) desktop_filelist_$(version))
+	for version in $(LSB_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
 
 install: install-core
 
 install-core:
-	cd $(LSB_COMPILE_FOR_ARCH) && make install-core
+	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make install-core && cd ../..; done
 
 install-desktop:
-	cd $(LSB_COMPILE_FOR_ARCH) && make install-desktop
+	for version in $(LSB_DESKTOP_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make install-desktop && cd ../..; done
 
 libs: core-libs
 
 core-libs:
-	cd $(LSB_COMPILE_FOR_ARCH) && make core-libs
+	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make core-libs && cd ../..; done
 
 desktop-libs:
-	cd $(LSB_COMPILE_FOR_ARCH) && make desktop-libs
+	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make desktop-libs && cd ../..; done
 
 # Distclean means will need database to rebuild
 distclean: 
-	for arch in $(LSB_SUPPORTED_ARCHS); do cd $$arch && make distclean && cd ..; done;
+	for version in $(LSB_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do cd $$version/$$arch && make distclean && cd ../..; done; done;
 	rm -f core_filelist desktop_filelist
 
 # Only remove compiler generated files
 clean:
-	cd $(LSB_COMPILE_FOR_ARCH) && make clean
+	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make clean && cd ../..; done
 
 .PHONY: dbfiles
 
