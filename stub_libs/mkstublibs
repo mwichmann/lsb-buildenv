@@ -257,7 +257,7 @@ sub GenerateLibrary($$$) {
 
         if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
             if( $row->{Iname} =~ /^_ZTSN/ ) { # "typeinfo name" size is always equal to `strlen(Iname)-3`
-                $size = sprintf("%X", length($row->{Iname}) - 3);
+                $size = length($row->{Iname}) - 3;
             }
             elsif( defined( $MissingData{$libName} ) && defined( $MissingData{$libName}{ $row->{Iname} } ) )
             {
