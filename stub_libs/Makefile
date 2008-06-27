@@ -2,11 +2,10 @@
 
 LSB_SUPPORTED_ARCHS=IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 
-DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
-LSB_VERSIONS=$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.0'" | grep -v LVvalue)
+LSB_VERSIONS=3.0 3.1 3.2 4.0
 
 # Desktop libs appeared in 3.1
-LSB_DESKTOP_VERSIONS=$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.1'" | grep -v LVvalue)
+LSB_DESKTOP_VERSIONS=3.1 3.2 4.0 
 
 
 # Determine arch to compile for from uname
@@ -50,27 +49,27 @@ dbfiles: $(foreach version,$(LSB_VERSIONS),core_filelist_$(version) desktop_file
 install: install-core
 
 install-core:
-	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make install-core && cd ../..; done
+	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-core ); done
 
 install-desktop:
-	for version in $(LSB_DESKTOP_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make install-desktop && cd ../..; done
+	for version in $(LSB_DESKTOP_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
 
 libs: core-libs
 
 core-libs:
-	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make core-libs && cd ../..; done
+	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) core-libs ); done
 
 desktop-libs:
-	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make desktop-libs && cd ../..; done
+	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) desktop-libs ); done
 
 # Distclean means will need database to rebuild
 distclean: 
-	for version in $(LSB_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do cd $$version/$$arch && make distclean && cd ../..; done; done;
+	for version in $(LSB_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ( cd $$version/$$arch && $(MAKE) distclean ); done; done;
 	rm -f core_filelist desktop_filelist
 
 # Only remove compiler generated files
 clean:
-	for version in $(LSB_VERSIONS); do cd $$version/$(LSB_COMPILE_FOR_ARCH) && make clean && cd ../..; done
+	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) clean ); done
 
 .PHONY: dbfiles
 
