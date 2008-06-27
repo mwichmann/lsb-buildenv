@@ -57,8 +57,8 @@ enum _ZN11QAccessible9StateFlagE {
     Invisible = 32768,
     Offscreen = 65536,
     Sizeable = 131072,
-    Movable = 262144,
     Moveable = 262144,
+    Movable = 262144,
     SelfVoicing = 524288,
     Focusable = 1048576,
     Selectable = 2097152,
@@ -171,8 +171,8 @@ class QFlags < QAccessible::RelationFlag >;
 typedef class QFlags < QAccessible::RelationFlag >
     _ZN11QAccessible8RelationE;
 enum _ZN11QAccessible6ActionE {
-    AddToSelection = -11,
     LastStandardAction = -11,
+    AddToSelection = -11,
     ExtendSelection = -10,
     RemoveSelection = -9,
     ClearSelection = -8,
@@ -182,8 +182,8 @@ enum _ZN11QAccessible6ActionE {
     Decrease = -4,
     Increase = -3,
     SetFocus = -2,
-    Press = -1,
     FirstStandardAction = -1,
+    Press = -1,
     DefaultAction = 0
 };
 typedef void _ZN11QAccessible13UpdateHandlerE;

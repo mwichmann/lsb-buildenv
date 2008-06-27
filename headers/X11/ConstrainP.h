@@ -20,7 +20,7 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-    typedef ConstraintClassRec;
+    typedef struct _ConstraintClassRec *ConstraintClassRec;
 
     typedef struct _ConstraintClassPart ConstraintClassPart;
 

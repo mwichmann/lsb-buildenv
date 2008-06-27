@@ -54,7 +54,6 @@ extern "C" {
 
 
 /* Well Know IPv4 addresses*/
-#define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
 #if __LSB_VERSION__ >= 11
 #define INADDR_ANY	0
 #endif				/* __LSB_VERSION__ >= 1.1 */
@@ -98,7 +97,6 @@ extern "C" {
 
 
 /* Structure describing an Internet socket V4 address.*/
-#define IN_MULTICAST(a)	((((in_addr_t)(a))&0xf0000000)==0xe0000000)
 #if __LSB_VERSION__ >= 20
 #define INET_ADDRSTRLEN	16
 #endif				/* __LSB_VERSION__ >= 2.0 */
@@ -117,18 +115,6 @@ extern "C" {
 
 
 /* Structure describing an Internet socket V6 address.*/
-#define IN6_IS_ADDR_LINKLOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfe800000))
-#define IN6_IS_ADDR_SITELOCAL(a)	((((const uint32_t *) (a))[0] & htonl (0xffc00000)) == htonl (0xfec00000))
-#define IN6_IS_ADDR_V4COMPAT(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == 0) && (ntohl (((const uint32_t *) (a))[3]) > 1))
-#define IN6_IS_ADDR_V4MAPPED(a)	((((const uint32_t *) (a))[0] == 0) && (((const uint32_t *) (a))[1] == 0) && (((const uint32_t *) (a))[2] == htonl (0xffff)))
-#define IN6_IS_ADDR_UNSPECIFIED(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == 0)
-#define IN6_IS_ADDR_LOOPBACK(a)	(((const uint32_t *) (a))[0] == 0 && ((const uint32_t *) (a))[1] == 0 && ((const uint32_t *) (a))[2] == 0 && ((const uint32_t *) (a))[3] == htonl (1))
-#define IN6_IS_ADDR_MULTICAST(a)	(((const uint8_t *) (a))[0] == 0xff)
-#define IN6_IS_ADDR_MC_NODELOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x1))
-#define IN6_IS_ADDR_MC_LINKLOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x2))
-#define IN6_IS_ADDR_MC_SITELOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x5))
-#define IN6_IS_ADDR_MC_ORGLOCAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0x8))
-#define IN6_IS_ADDR_MC_GLOBAL(a)	(IN6_IS_ADDR_MULTICAST(a) && ((((const uint8_t *) (a))[1] & 0xf) == 0xe))
 #if __LSB_VERSION__ >= 20
 #define INET6_ADDRSTRLEN	46
 #endif				/* __LSB_VERSION__ >= 2.0 */
@@ -152,8 +138,6 @@ extern "C" {
 
 
 /* IP Socket options*/
-#define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
-#define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
 #if __LSB_VERSION__ >= 11
 #define SOL_IP	0
 #endif				/* __LSB_VERSION__ >= 1.1 */

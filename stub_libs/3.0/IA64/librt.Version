@@ -1,0 +1,17 @@
+LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.2 {
+  clock_getcpuclockid;
+  clock_getres;
+  clock_gettime;
+  clock_nanosleep;
+  clock_settime;
+  shm_open;
+  shm_unlink;
+};
+GLIBC_2.3.3 {
+  timer_create;
+  timer_delete;
+  timer_getoverrun;
+  timer_gettime;
+  timer_settime;
+};

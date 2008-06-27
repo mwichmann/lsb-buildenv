@@ -58,11 +58,6 @@ extern "C" {
 
 
 /* Stuff needed to make other curses related headers happy*/
-#define __NCURSES_H	1
-#define NCURSES_EXPORT(type)	type
-#define NCURSES_EXPORT_VAR(type)	type
-
-
 
 #if __LSB_VERSION__ >= 11
 #define WA_ALTCHARSET	A_ALTCHARSET
@@ -114,10 +109,6 @@ extern "C" {
 #define _SCROLLWIN	0x08
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
-#if __LSB_VERSION__ < 13
-#define TRACE_MAXIMUM	0xffff
-#endif				/* __LSB_VERSION__ < 1.3 */
-
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 
@@ -199,7 +190,6 @@ extern "C" {
 
 
 /* Pseudo-character tokens outside ASCII range.*/
-#define KEY_F(n)	(KEY_F0+(n))
 #if __LSB_VERSION__ >= 11
 #define KEY_CODE_YES	0400
 #define KEY_BREAK	0401

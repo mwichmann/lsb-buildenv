@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#define NGROUPS_MAX	32
 #if __LSB_VERSION__ >= 11
 #if defined __i386__
 #define LONG_MAX	0x7FFFFFFFL

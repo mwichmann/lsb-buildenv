@@ -87,7 +87,7 @@ extern bool_t xdr_void(void);
 extern bool_t xdr_wrapstring(XDR *, char **);
 extern void xdrmem_create(XDR *, caddr_t, u_int, enum xdr_op);
 extern void xdrrec_create(XDR *, u_int, u_int, caddr_t,
-			  int (*proc) (char *p1, char *p2, int p3)
-			  , int (*proc) (char *p1, char *p2, int p3)
+			  int (*)(char *p1, char *p2, int p3)
+			  , int (*)(char *p1, char *p2, int p3)
     );
 extern bool_t xdrrec_eof(XDR *);

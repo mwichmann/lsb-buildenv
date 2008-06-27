@@ -1188,6 +1188,7 @@ extern "C" {
     extern int XSendEvent(Display *, Window, int, long int, XEvent *);
     extern char *XServerVendor(Display *);
     extern int XSetAccessControl(Display *, int);
+    extern int (*XSetAfterFunction(Display *)) (void);
     extern int XSetArcMode(Display *, GC, int);
     extern void XSetAuthorization(char *, int, char *, int);
     extern int XSetBackground(Display *, GC, unsigned long int);
@@ -1246,6 +1247,7 @@ extern "C" {
     extern KeySym XStringToKeysym(const char *);
     extern int XSupportsLocale(void);
     extern int XSync(Display *, int);
+    extern int (*XSynchronize(Display *)) (void);
     extern int XTextExtents(XFontStruct *, const char *, int, int *, int *,
 			    int *, XCharStruct *);
     extern int XTextExtents16(XFontStruct *, XChar2b *, int, int *, int *,

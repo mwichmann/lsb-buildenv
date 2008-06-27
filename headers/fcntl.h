@@ -55,6 +55,12 @@ extern "C" {
 #define POSIX_FADV_WILLNEED	3
 #define POSIX_FADV_DONTNEED	4
 #define POSIX_FADV_NOREUSE	5
+#if defined __s390x__
+#define POSIX_FADV_DONTNEED	6
+#endif
+#if defined __s390x__
+#define POSIX_FADV_NOREUSE	7
+#endif
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
@@ -62,6 +68,18 @@ extern "C" {
 #define O_RSYNC	010000
 #define O_DIRECTORY	0200000
 #define O_NOFOLLOW	0400000
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_DIRECTORY	16384
+#endif
+#if defined __powerpc64__
+#define O_DIRECTORY	16384
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_NOFOLLOW	32768
+#endif
+#if defined __powerpc64__
+#define O_NOFOLLOW	32768
+#endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 

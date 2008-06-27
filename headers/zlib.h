@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-#define ZLIB_VERSION	"1.2.2"
 #if __LSB_VERSION__ >= 13
 #define Z_NULL	0
 #define MAX_WBITS	15	/* 32K LZ77 window */

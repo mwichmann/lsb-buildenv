@@ -99,8 +99,8 @@ public:
 
 enum Filter	
 {
-NoFilter = -1,	
 DefaultFilter = -1,	
+NoFilter = -1,	
 Dirs = 1,	
 Files = 2,	
 Drives = 4,	
@@ -131,8 +131,8 @@ public:
 
 enum SortFlag	
 {
-NoSort = -1,	
 DefaultSort = -1,	
+NoSort = -1,	
 Name = 0,	
 Time = 1,	
 Size = 2,	

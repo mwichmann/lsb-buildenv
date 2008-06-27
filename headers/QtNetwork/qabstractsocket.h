@@ -14,13 +14,13 @@ HostLookupState = 1,
 HostLookup = 1,	
 ConnectingState = 2,	
 Connecting = 2,	
-ConnectedState = 3,	
 Connected = 3,	
 Connection = 3,	
+ConnectedState = 3,	
 BoundState = 4,	
 ListeningState = 5,	
-ClosingState = 6,	
-Closing = 6
+Closing = 6,	
+ClosingState = 6
 }
 State	
 ;
@@ -130,13 +130,13 @@ HostLookupState = 1,
 HostLookup = 1,	
 ConnectingState = 2,	
 Connecting = 2,	
-ConnectedState = 3,	
 Connected = 3,	
 Connection = 3,	
+ConnectedState = 3,	
 BoundState = 4,	
 ListeningState = 5,	
-ClosingState = 6,	
-Closing = 6
+Closing = 6,	
+ClosingState = 6
 }
 ;
 

@@ -57,18 +57,6 @@ extern "C" {
 #define _POSIX_TIMERS	200112
 #define _POSIX2_VERSION	200112L
 #define _POSIX_VERSION	200112L
-#if __LSB_VERSION__ < 13
-#define _POSIX_MESSAGE_PASSING	1
-#endif				/* __LSB_VERSION__ < 1.3 */
-
-#if __LSB_VERSION__ < 20
-#define _POSIX2_C_VERSION	199209L
-#define _POSIX_ASYNCHRONOUS_IO	200112
-#define _POSIX_PRIORITY_SCHEDULING	200112
-#define _POSIX_REALTIME_SIGNALS	200112
-#define _POSIX_SYNCHRONIZED_IO	200112
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
@@ -366,14 +354,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define _XOPEN_XPG4	1
 #define _XOPEN_VERSION	500
-#if __LSB_VERSION__ < 201
-#define _XOPEN_XCU_VERSION	4
-#endif				/* __LSB_VERSION__ < 2.0.1 */
-
-#if __LSB_VERSION__ < 30
-#define _XOPEN_REALTIME	1
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

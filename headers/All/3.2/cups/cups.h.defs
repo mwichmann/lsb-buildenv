@@ -252,7 +252,7 @@ extern void cupsSetServer(const char *);
 extern const char *cupsGetPassword(const char *);
 extern void cupsSetDests(int, cups_dest_t *);
 extern int cupsParseOptions(const char *, int, cups_option_t * *);
-extern void cupsSetPasswordCB(const char *(*digest_tries) (const char *)
+extern void cupsSetPasswordCB(const char *(*)(const char *)
     );
 extern void cupsSetUser(const char *);
 extern cups_lang_t *cupsLangGet(const char *);

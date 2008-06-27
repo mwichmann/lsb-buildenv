@@ -106,8 +106,8 @@ Animated = 16384,
 Invisible = 32768,	
 Offscreen = 65536,	
 Sizeable = 131072,	
-Movable = 262144,	
 Moveable = 262144,	
+Movable = 262144,	
 SelfVoicing = 524288,	
 Focusable = 1048576,	
 Selectable = 2097152,	
@@ -239,8 +239,8 @@ public:
 
 enum Action	
 {
-AddToSelection = -11,	
 LastStandardAction = -11,	
+AddToSelection = -11,	
 ExtendSelection = -10,	
 RemoveSelection = -9,	
 ClearSelection = -8,	
@@ -250,8 +250,8 @@ Accept = -5,
 Decrease = -4,	
 Increase = -3,	
 SetFocus = -2,	
-Press = -1,	
 FirstStandardAction = -1,	
+Press = -1,	
 DefaultAction = 0
 }
 ;

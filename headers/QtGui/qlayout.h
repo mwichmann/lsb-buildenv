@@ -78,8 +78,8 @@ SetNoConstraint = 1,
 FreeResize = 1,	
 SetMinimumSize = 2,	
 Minimum = 2,	
-SetFixedSize = 3,	
 Fixed = 3,	
+SetFixedSize = 3,	
 SetMaximumSize = 4,	
 SetMinAndMaxSize = 5
 }

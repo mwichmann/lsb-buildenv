@@ -45,12 +45,12 @@ Panel = 2,
 WinPanel = 3,	
 HLine = 4,	
 VLine = 5,	
-StyledPanel = 6,	
-PopupPanel = 6,	
-MenuBarPanel = 6,	
-ToolBarPanel = 6,	
-LineEditPanel = 6,	
 TabWidgetPanel = 6,	
+LineEditPanel = 6,	
+ToolBarPanel = 6,	
+MenuBarPanel = 6,	
+PopupPanel = 6,	
+StyledPanel = 6,	
 GroupBoxPanel = 6
 }
 ;

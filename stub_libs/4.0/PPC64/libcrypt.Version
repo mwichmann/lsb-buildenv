@@ -1,0 +1,6 @@
+LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.3 {
+  crypt;
+  encrypt;
+  setkey;
+};

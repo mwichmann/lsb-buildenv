@@ -507,8 +507,6 @@ extern "C" {
 
 
 /* sigaction*/
-#define sa_handler	__sigaction_handler._sa_handler
-#define sa_sigaction	__sigaction_handler._sa_sigaction
 #if __LSB_VERSION__ >= 11
 #define SA_NOCLDSTOP	0x00000001	/* Don't send SIGCHLD when children stop. */
 #define SA_NOCLDWAIT	0x00000002	/* Don't create zombie on child death. */

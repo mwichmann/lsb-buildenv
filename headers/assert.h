@@ -8,15 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
-#if __LSB_VERSION__ < 201
-#define assert(expr)	((void)0)
-#endif				/* __LSB_VERSION__ < 2.0.1 */
-
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
-
-
 
 /* Function prototypes */
 

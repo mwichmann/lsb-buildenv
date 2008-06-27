@@ -398,7 +398,7 @@ extern int refresh(void);
 extern int resetty(void);
 extern int reset_prog_mode(void);
 extern int reset_shell_mode(void);
-extern int ripoffline(int, int (*_bkgrnd) (WINDOW *, int)
+extern int ripoffline(int, int (*)(WINDOW *, int)
     );
 extern int savetty(void);
 extern int scanw(const char *, ...);
@@ -438,7 +438,7 @@ extern int ungetch(int);
 extern int untouchwin(WINDOW *);
 extern void use_env(bool);
 extern int vidattr(chtype);
-extern int vidputs(chtype, int (*_bkgrnd) (int)
+extern int vidputs(chtype, int (*)(int)
     );
 extern int vline(chtype, int);
 extern int vwprintw(WINDOW *, char *, va_list);

@@ -1,5 +1,7 @@
 
 #define O_LARGEFILE	0200000
+#define O_DIRECTORY	16384
+#define O_NOFOLLOW	32768
 
 #define F_GETLK64	12
 #define F_SETLK64	13
