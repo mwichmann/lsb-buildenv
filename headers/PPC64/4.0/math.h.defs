@@ -1,14 +1,14 @@
 
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
 #define isfinite(x)	\
-     (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+  (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+#define fpclassify(x)	\
+  (sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
 #define isinf(x)	\
-     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
 #define isnan(x)	\
-     (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#define signbit(x)	\
+  (sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x)	/* Return nonzero value if sign of X is negative. */
 
 #define HUGE_VALL	0x1.0p2047L
 
