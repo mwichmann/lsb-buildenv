@@ -7,6 +7,7 @@ CFLAGS=-g -Wall
 CXXFLAGS=$(CFLAGS)
 GCC34_COMPAT_CFLAGS = -fPIC
 LSB_VERSION ?= "4.0"
+LSB_VERSIONS=3.0 3.1 3.2 4.0
 
 all: $(PROGRAMS) $(LIBS)
 
@@ -47,8 +48,9 @@ install: $(PROGRAMS) $(LIBS)
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
 	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcpp.1
-	install -d $(INSTALL_ROOT)/$(LIBDIR)
-	install libgcc34compat.a $(INSTALL_ROOT)/$(LIBDIR)/libgcc34compat.a
+	for version in $(LSB_VERSIONS); do  \
+	  install -D libgcc34compat.a \
+	  $(INSTALL_ROOT)/$(LIBDIR)-$$version/libgcc34compat.a; done
 
 scripts:
 	cd scripts;make
@@ -57,7 +59,6 @@ scripts:
 install_scripts:
 	cd scripts;make install
 	#cd lsb_release-1.0;make install
-
 
 clean:
 	rm -f $(PROGRAMS) $(LIBS) *.o
