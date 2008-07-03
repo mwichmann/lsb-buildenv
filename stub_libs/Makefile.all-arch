@@ -47,7 +47,7 @@ install-core:
 	install $(CORE_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	mv $(DESTDIR)/$(INSTALL_DIR)/libstdcxx.so $(DESTDIR)/$(INSTALL_DIR)/libstdc++.so
 	# Create symlink to libs in the most recent LSB version.
-	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -f $(LIBDIR) && ln -s $(LIBDIR)-$(LSB_VERSION) $(LIBDIR)
+	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -f ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
 
 install-desktop:
 	install -d $(DESTDIR)/$(INSTALL_DIR)
