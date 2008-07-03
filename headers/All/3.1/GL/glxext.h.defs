@@ -1,10 +1,5 @@
 
-#define GLX_RGBA_FLOAT_BIT_ARB	0x00000004
-#define GLX_RGBA_UNSIGNED_FLOAT_BIT_EXT	0x00000008
 #define GLX_VISUAL_CAVEAT_EXT	0x20
-#define GLX_RGBA_UNSIGNED_FLOAT_TYPE_EXT	0x20B1
-#define GLX_FRAMEBUFFER_SRGB_CAPABLE_EXT	0x20B2
-#define GLX_RGBA_FLOAT_TYPE_ARB	0x20B9
 #define GLX_X_VISUAL_TYPE_EXT	0x22
 #define GLX_TRANSPARENT_TYPE_EXT	0x23
 #define GLX_TRANSPARENT_INDEX_VALUE_EXT	0x24
@@ -28,10 +23,7 @@
 #define GLX_NON_CONFORMANT_VISUAL_EXT	0x800D
 #define GLX_SAMPLE_BUFFERS_3DFX	0x8050
 #define GLX_SAMPLES_3DFX	0x8051
-#define GLX_ARB_fbconfig_float	1
 #define GLX_ARB_multisample	1
-#define GLX_EXT_fbconfig_packed_float	1
-#define GLX_EXT_framebuffer_sRGB	1
 #define GLX_EXT_import_context	1
 #define GLX_EXT_visual_info	1
 #define GLX_EXT_visual_rating	1
