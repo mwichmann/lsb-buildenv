@@ -1,5 +1,7 @@
 
 #define O_LARGEFILE	0200000
+#define POSIX_FADV_DONTNEED	4
+#define POSIX_FADV_NOREUSE	5
 
 #define F_GETLK64	12
 #define F_SETLK64	13
