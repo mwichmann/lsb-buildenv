@@ -53,8 +53,42 @@ extern "C" {
 #define POSIX_FADV_RANDOM	1
 #define POSIX_FADV_SEQUENTIAL	2
 #define POSIX_FADV_WILLNEED	3
+#if defined __i386__
 #define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __ia64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __powerpc64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __s390__ && !defined __s390x__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __x86_64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __i386__
 #define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __ia64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __powerpc64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __s390__ && !defined __s390x__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __x86_64__
+#define POSIX_FADV_NOREUSE	5
+#endif
 #if defined __s390x__
 #define POSIX_FADV_DONTNEED	6
 #endif
@@ -66,19 +100,47 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
 #define O_DSYNC	010000
 #define O_RSYNC	010000
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_NOFOLLOW	0100000
+#endif
+#if defined __powerpc64__
+#define O_NOFOLLOW	0100000
+#endif
+#if defined __i386__
 #define O_DIRECTORY	0200000
+#endif
+#if defined __ia64__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __s390__ && !defined __s390x__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __x86_64__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __s390x__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_DIRECTORY	040000
+#endif
+#if defined __powerpc64__
+#define O_DIRECTORY	040000
+#endif
+#if defined __i386__
 #define O_NOFOLLOW	0400000
-#if defined __powerpc__ && !defined __powerpc64__
-#define O_DIRECTORY	16384
 #endif
-#if defined __powerpc64__
-#define O_DIRECTORY	16384
+#if defined __ia64__
+#define O_NOFOLLOW	0400000
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define O_NOFOLLOW	32768
+#if defined __s390__ && !defined __s390x__
+#define O_NOFOLLOW	0400000
 #endif
-#if defined __powerpc64__
-#define O_NOFOLLOW	32768
+#if defined __x86_64__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __s390x__
+#define O_NOFOLLOW	0400000
 #endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
