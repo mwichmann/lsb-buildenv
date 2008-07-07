@@ -31,10 +31,10 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
+#define NSIG	65
 #define SIG_BLOCK	0	/* Block signals. */
 #define SIG_UNBLOCK	1	/* Unblock signals. */
 #define SIG_SETMASK	2	/* Set the set of blocked signals. */
-#define NSIG	65
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 20
@@ -163,9 +163,9 @@ extern "C" {
 
 /* Special Signal values*/
 #if __LSB_VERSION__ >= 11
-#define SIG_ERR	((sighandler_t)-1)	/* Return value from signal() in case of error. */
 #define SIG_DFL	((sighandler_t)0)	/* Request for default signal handling. */
 #define SIG_IGN	((sighandler_t)1)	/* Request that signal be ignored. */
+#define SIG_ERR	((sighandler_t)-1)	/* Return value from signal() in case of error. */
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
@@ -178,6 +178,15 @@ extern "C" {
 /* System defined signals.*/
 #if __LSB_VERSION__ >= 11
 #define SIGHUP	1		/* Hangup. */
+#define SIGINT	2		/* Terminal interrupt signal. */
+#define SIGQUIT	3		/* Terminal quit signal. */
+#define SIGILL	4		/* Illegal instruction. */
+#define SIGTRAP	5		/* Trace/breakpoint trap. */
+#define SIGABRT	6		/* Process abort signal. */
+#define SIGIOT	6		/* IOT trap */
+#define SIGBUS	7		/* Access to an undefined portion of a memory object. */
+#define SIGFPE	8		/* Erroneous arithmetic operation. */
+#define SIGKILL	9		/* Kill (cannot be caught or ignored). */
 #define SIGUSR1	10		/* User-defined signal 1. */
 #define SIGSEGV	11		/* Invalid memory reference. */
 #define SIGUSR2	12		/* User-defined signal 2. */
@@ -186,9 +195,9 @@ extern "C" {
 #define SIGTERM	15		/* Termination signal. */
 #define SIGSTKFLT	16	/* Stack fault. */
 #define SIGCHLD	17		/* Child process terminated, stopped, or continued. */
+#define SIGCLD	SIGCHLD		/* Same as SIGCHLD */
 #define SIGCONT	18		/* Continue executing, if stopped. */
 #define SIGSTOP	19		/* Stop executing (cannot be caught or ignored). */
-#define SIGINT	2		/* Terminal interrupt signal. */
 #define SIGTSTP	20		/* Terminal stop signal. */
 #define SIGTTIN	21		/* Background process attempting read. */
 #define SIGTTOU	22		/* Background process attempting write. */
@@ -198,19 +207,10 @@ extern "C" {
 #define SIGPROF	27		/* Profiling timer expired. */
 #define SIGWINCH	28	/* Window size change. */
 #define SIGIO	29		/* I/O now possible. */
-#define SIGQUIT	3		/* Terminal quit signal. */
+#define SIGPOLL	SIGIO		/* Pollable event. */
 #define SIGPWR	30		/* Power failure restart */
 #define SIGSYS	31		/* Bad system call. */
 #define SIGUNUSED	31
-#define SIGILL	4		/* Illegal instruction. */
-#define SIGTRAP	5		/* Trace/breakpoint trap. */
-#define SIGABRT	6		/* Process abort signal. */
-#define SIGIOT	6		/* IOT trap */
-#define SIGBUS	7		/* Access to an undefined portion of a memory object. */
-#define SIGFPE	8		/* Erroneous arithmetic operation. */
-#define SIGKILL	9		/* Kill (cannot be caught or ignored). */
-#define SIGCLD	SIGCHLD		/* Same as SIGCHLD */
-#define SIGPOLL	SIGIO		/* Pollable event. */
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
@@ -513,14 +513,14 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 11
-#define SA_NOCLDSTOP	0x00000001	/* Don't send SIGCHLD when children stop. */
-#define SA_NOCLDWAIT	0x00000002	/* Don't create zombie on child death. */
-#define SA_SIGINFO	0x00000004	/* Invoke signal-catching function with three arguments instead of one. */
-#define SA_ONSTACK	0x08000000	/* Use signal stack by using `sa_restorer`. */
-#define SA_RESTART	0x10000000	/* Restart syscall on signal return. */
 #define SA_INTERRUPT	0x20000000
-#define SA_NODEFER	0x40000000	/* Don't automatically block the signal when its handler is being executed. */
+#define SA_ONSTACK	0x08000000	/* Use signal stack by using `sa_restorer`. */
 #define SA_RESETHAND	0x80000000	/* Reset to SIG_DFL on entry to handler. */
+#define SA_NOCLDSTOP	0x00000001	/* Don't send SIGCHLD when children stop. */
+#define SA_SIGINFO	0x00000004	/* Invoke signal-catching function with three arguments instead of one. */
+#define SA_NODEFER	0x40000000	/* Don't automatically block the signal when its handler is being executed. */
+#define SA_RESTART	0x10000000	/* Restart syscall on signal return. */
+#define SA_NOCLDWAIT	0x00000002	/* Don't create zombie on child death. */
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
 #endif				/* __LSB_VERSION__ >= 1.1 */
