@@ -743,7 +743,7 @@ int	no_as_needed = 1;
 int	cc_is_icc = 0;
 int	default_linker = 0;
 char	progintbuf[256];
-char	tmpbuf[256];
+char	*tmpbuf;
 char	*ptr;
 struct stat st_buf;
 
@@ -775,48 +775,47 @@ if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
  */
 snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
 snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
-
-/* Initialize default version value */
-lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
-		                               strlen(DEFAULT_LSB_VERSION) +1));
-sprintf(lsbversion_option, "-D__LSB_VERSION__=%s", DEFAULT_LSB_VERSION);
 lsbversion_index=get_version_index(lsbcc_lsbversion);
 
 /*
- * Check for LSBCC_LSBVERSION environment variable - we need to know it (if any) before setting libpath.
+ * Check for LSBCC_LSBVERSION environment variable -
+ * we need to know it (if any) before setting libpath.
  */
-
 if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
-    lsbcc_lsbversion=ptr;
-    strncpy(tmpbuf, ptr, 3);
-    lsbversion_index = get_version_index(lsbcc_lsbversion);
-
-    if( (lsbversion_option=
-        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion))) ) == NULL ) {
-            exit(3);
+    lsbcc_lsbversion = strdup(ptr);
+    if ((lsbversion_index = get_version_index(lsbcc_lsbversion)) < 0) {
+        fprintf(stderr,"unrecognized lsb version value %s\n", lsbcc_lsbversion);
+        exit(3);
     }
 
-    strcpy(lsbversion_option, "-D__LSB_VERSION__=");
-    /* Normally, LSB_VERSION values should contain dot - remove it */
-    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-    if( lsbcc_lsbversion )
-        strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-
     if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
-        fprintf(stderr,"lsb version value set to %s\n", tmpbuf );
+        fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
 }
-
+/* set up __LSB_VERSION__ define */
+lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
+		                               strlen(lsbcc_lsbversion) + 1));
+if(lsbversion_option == NULL) {
+    exit(3);
+}
+strcpy(lsbversion_option, "-D__LSB_VERSION__=");
 /*
- * Set up the library path according to arch using lib64 where necessary
+ * Normally, LSB_VERSION values contain dot - copy without the dot
+ * this method would destroy lsbcc_lsbversion, so make a dup first
  */
+tmpbuf = strdup(lsbcc_lsbversion);
+strcat(lsbversion_option, strsep(&tmpbuf,"."));
+if(&tmpbuf)
+    strcat(lsbversion_option, strsep(&tmpbuf,"."));
+
 #if __powerpc64__ || __s390x__ || __x86_64__
-        snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib64-", tmpbuf);
+snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib64-", lsbcc_lsbversion);
 #else
-        snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib-", tmpbuf);
+snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib-", lsbcc_lsbversion);
 #endif
 
 /*
- * Check for some others environment variables, and adjust things if they are found.
+ * Check for some other environment variables,
+ * and adjust things if they are found.
  */
 
 if( (ptr=getenv("LSBCC_WARN")) != NULL ) {
