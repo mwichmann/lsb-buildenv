@@ -743,7 +743,7 @@ int	no_as_needed = 1;
 int	cc_is_icc = 0;
 int	default_linker = 0;
 char	progintbuf[256];
-char	*tmpbuf;
+char	tmpbuf[256];
 char	*ptr;
 struct stat st_buf;
 
@@ -802,10 +802,10 @@ strcpy(lsbversion_option, "-D__LSB_VERSION__=");
  * Normally, LSB_VERSION values contain dot - copy without the dot
  * this method would destroy lsbcc_lsbversion, so make a dup first
  */
-tmpbuf = strdup(lsbcc_lsbversion);
-strcat(lsbversion_option, strsep(&tmpbuf,"."));
-if(&tmpbuf)
-    strcat(lsbversion_option, strsep(&tmpbuf,"."));
+ptr = strdup(lsbcc_lsbversion);
+strcat(lsbversion_option, strsep(&ptr,"."));
+if(&ptr)
+    strcat(lsbversion_option, strsep(&ptr,"."));
 
 #if __powerpc64__ || __s390x__ || __x86_64__
 snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib64-", lsbcc_lsbversion);
