@@ -69,11 +69,14 @@ foreach $version (@lsbversions) {
 print "\tNULL\n};\n\n";
 
 # optional/trial-use modules
-@modules = ();
-$select  = "SELECT SMid, SMname FROM SubModule";
-$th = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
-$th->execute or die "Couldn't execute $select query: ".DBI->errstr;
-for(1..$th->rows) {
+foreach $version (@lsbversions) {
+    $vername = $version;
+    $vername =~ s/\.//;
+    @modules = ();
+    $select  = "SELECT SMid, SMname FROM SubModule";
+    $th = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+    $th->execute or die "Couldn't execute $select query: ".DBI->errstr;
+    for(1..$th->rows) {
     $entry = $th->fetchrow_hashref;
 
     $module_name = $entry->{'SMname'};
@@ -93,7 +96,7 @@ for(1..$th->rows) {
     $th2->execute or die "Couldn't execute $select query: ".DBI->errstr;
     if ($th2->rows) {
         push(@modules, $module_name);
-        printf "char *lsb_" . $module_name . "_libs[] = {\n";
+            printf "char *lsb_" . $module_name . "_libs_".$vername."[] = {\n";
     }
     for(1..$th2->rows) {
         $entry2 = $th2->fetchrow_hashref;
@@ -112,23 +115,43 @@ for(1..$th->rows) {
         printf "\tNULL\n};\n\n";
     }
     $th2->finish;
-}
-$th->finish;
+    }
+    $th->finish;
 
-printf "int lsb_num_modules = " . ($#modules + 1) . ";\n\n";
+    printf "#define lsb_num_modules_$vername " . ($#modules + 1) . "\n\n";
 
-printf "lsb_lib_modules_t lsb_modules[] = {\n";
-foreach $module (@modules) {
-    print "\t{\"$module\", lsb_" . $module . "_libs },\n";
+    printf "lsb_lib_modules_t lsb_modules_".$vername."[] = {\n";
+    foreach $module (@modules) {
+        print "\t{\"$module\", lsb_" . $module . "_libs_".$vername." },\n";
+    }
+    printf "};\n\n";
 }
-printf "};\n\n";
+
+print "lsb_lib_modules_t *lsb_modules[] = {\n";
+foreach $version (@lsbversions) {
+    $vername = $version;
+    $vername =~ s/\.//;
+    print "\tlsb_modules_$vername,\n";
+}
+print "\tNULL\n};\n\n";
+
+print "int lsb_num_modules[] = {\n";
+foreach $version (@lsbversions) {
+    $vername = $version;
+    $vername =~ s/\.//;
+    print "\tlsb_num_modules_$vername,\n";
+}
+print "\t0\n};\n\n";
 
 # deprecated modules
-@modules = ();
-$select  = "SELECT SMid, SMname FROM SubModule";
-$xh = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
-$xh->execute or die "Couldn't execute $select query: ".DBI->errstr;
-for(1..$xh->rows) {
+foreach $version (@lsbversions) {
+    $vername = $version;
+    $vername =~ s/\.//;
+    @modules = ();
+    $select  = "SELECT SMid, SMname FROM SubModule";
+    $xh = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+    $xh->execute or die "Couldn't execute $select query: ".DBI->errstr;
+    for(1..$xh->rows) {
     $entry = $xh->fetchrow_hashref;
 
     $module_name = $entry->{'SMname'};
@@ -151,7 +174,7 @@ for(1..$xh->rows) {
     $xh2->execute or die "Couldn't execute $select query: ".DBI->errstr;
     if ($xh2->rows) {
         push(@modules, $module_name);
-        printf "char *lsb_" . $module_name . "_libs[] = {\n";
+            printf "char *lsb_" . $module_name . "_libs_".$vername."[] = {\n";
     }
     for(1..$xh2->rows) {
         $entry2 = $xh2->fetchrow_hashref;
@@ -170,16 +193,33 @@ for(1..$xh->rows) {
         printf "\tNULL\n};\n\n";
     }
     $xh2->finish;
-}
-$xh->finish;
+    }
+    $xh->finish;
 
-printf "int lsb_num_deprecated_modules = " . ($#modules + 1) . ";\n\n";
+    printf "#define lsb_num_deprecated_modules_".$vername." " . ($#modules + 1) . "\n\n";
 
-printf "lsb_lib_modules_t lsb_deprecated_modules[] = {\n";
-foreach $module (@modules) {
-    print "\t{\"$module\", lsb_" . $module . "_libs },\n";
+    printf "lsb_lib_modules_t lsb_deprecated_modules_".$vername."[] = {\n";
+    foreach $module (@modules) {
+        print "\t{\"$module\", lsb_" . $module . "_libs_".$vername." },\n";
+    }
+    printf "};\n\n";
 }
-printf "};\n\n";
+
+print "lsb_lib_modules_t *lsb_deprecated_modules[] = {\n";
+foreach $version (@lsbversions) {
+    $vername = $version;
+    $vername =~ s/\.//;
+    print "\tlsb_deprecated_modules_$vername,\n";
+}
+print "\tNULL\n};\n\n";
+
+print "int lsb_num_deprecated_modules[] = {\n";
+foreach $version (@lsbversions) {
+    $vername = $version;
+    $vername =~ s/\.//;
+    print "\tlsb_num_deprecated_modules_$vername,\n";
+}
+print "\t0\n};\n\n";
 
 print "inline int get_version_index( char* vername ) {\n";
 $index = 0;

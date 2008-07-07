@@ -1,6 +1,9 @@
 
 typedef lldiv_t imaxdiv_t;
 
+#define __PDP_ENDIAN	3412
+#define PDP_ENDIAN	__PDP_ENDIAN
+
 extern intmax_t strtoimax(const char *, char **, int);
 extern uintmax_t strtoumax(const char *, char **, int);
 extern intmax_t wcstoimax(const wchar_t *, wchar_t * *, int);

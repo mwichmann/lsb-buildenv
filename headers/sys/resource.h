@@ -10,6 +10,10 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 10
+#define RLIM_NLIMITS	11
+#endif				/* __LSB_VERSION__ >= 1.0 */
+
 #if __LSB_VERSION__ >= 11
 #define RLIM_INFINITY	(~0UL)
 #define RLIMIT_CPU	0

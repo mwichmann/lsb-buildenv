@@ -475,8 +475,8 @@ char *get_modules_strings(void)
 	int	i = 0;
 	char	*modules = NULL;
 	char	*tmp = NULL;
-	for(;i < lsb_num_modules; i++) {
-		lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+    for(;i < lsb_num_modules[lsbversion_index]; i++) {
+        lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
 		if (lsb_module->lib_names == NULL) {
 			continue;
@@ -547,7 +547,7 @@ usage(const char *progname) {
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
 		,progname,
-		(lsb_num_modules ? get_modules_strings() : "none"));
+        (lsb_num_modules[lsbversion_index] ? get_modules_strings() : "none"));
 }
 
 /*
@@ -911,11 +911,11 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 	module = strtok(modulearg, ",");
 	while (module) {
 		int	found = 0;
-		for (i = 0; i < lsb_num_modules; i++) {
+        for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
 			int	j = 0;
-			lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+            lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-			if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
+            if(strcasecmp(module, lsb_modules[lsbversion_index][i].module_name) == 0) {
 				if (lsb_module->lib_names != NULL) {
         				for(;lsb_module->lib_names[j] != NULL;j++) {
                					argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
@@ -932,8 +932,8 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 		 * this is just for the Qt3 scripts, really;
 		 * until a better answer is developed
 		 */
-		for (i = 0; i < lsb_num_deprecated_modules; i++) {
-			if(strcasecmp(module, lsb_deprecated_modules[i].module_name) == 0) {
+        for (i = 0; i < lsb_num_deprecated_modules[lsbversion_index]; i++) {
+            if(strcasecmp(module, lsb_deprecated_modules[lsbversion_index][i].module_name) == 0) {
 				found = 1;
 				break;
 			}
@@ -1066,10 +1066,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		while (module) {
 			int	found = 0;
 			int	j = 0;
-			for (i = 0; i < lsb_num_modules; i++) {
-				lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+            for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
+                lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-				if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
+                if(strcasecmp(module, lsb_modules[lsbversion_index][i].module_name) == 0) {
 					if (lsb_module->lib_names != NULL) {
         					for(j=0;lsb_module->lib_names[j] != NULL;j++) {
                						argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));

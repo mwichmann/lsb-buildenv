@@ -1,4 +1,0 @@
-
-typedef int wchar_t;
-typedef unsigned long int size_t;
-typedef long int ptrdiff_t;

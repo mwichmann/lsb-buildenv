@@ -9,7 +9,11 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 11
-#define assert(expr)	((void)0)
+#ifdef NDEBUG
+#define assert(expr) ((void)0)
+#else
+#define assert(expr)	((void) ((expr) ? 0 : (__assert_fail (#expr, __FILE__, __LINE__, __PRETTY_FUNCTION__), 0)))
+#endif
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 

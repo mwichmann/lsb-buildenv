@@ -7,6 +7,7 @@
 #define RLIMIT_CPU	0
 #define RUSAGE_SELF	0
 #define RLIMIT_FSIZE	1
+#define RLIM_NLIMITS	11
 #define RLIMIT_DATA	2
 #define RLIMIT_STACK	3
 #define RLIMIT_CORE	4

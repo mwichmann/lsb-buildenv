@@ -196,6 +196,8 @@ typedef struct {
 #define SA_RESETHAND	0x80000000	/* Reset to SIG_DFL on entry to handler. */
 #define SA_NOMASK	SA_NODEFER
 #define SA_ONESHOT	SA_RESETHAND
+#define sa_handler	__sigaction_handler._sa_handler
+#define sa_sigaction	__sigaction_handler._sa_sigaction
 
 typedef struct sigaltstack {
     void *ss_sp;

@@ -1,2 +1,0 @@
-
-typedef long int __jmp_buf[8];

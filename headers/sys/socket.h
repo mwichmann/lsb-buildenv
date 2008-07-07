@@ -180,6 +180,10 @@ extern "C" {
 
 
 /* Socket Options*/
+#if __LSB_VERSION__ >= 10
+#define SO_BSDCOMPAT	14
+#endif				/* __LSB_VERSION__ >= 1.0 */
+
 #if __LSB_VERSION__ >= 11
 #define SO_DEBUG	1
 #define SO_OOBINLINE	10

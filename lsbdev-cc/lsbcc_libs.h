@@ -180,14 +180,112 @@ char **lsb_libs[] = {
 	NULL
 };
 
-int lsb_num_modules = 0;
+#define lsb_num_modules_30 0
 
-lsb_lib_modules_t lsb_modules[] = {
+lsb_lib_modules_t lsb_modules_30[] = {
 };
 
-int lsb_num_deprecated_modules = 0;
+char *lsb_Toolkit_Qt_libs_31[] = {
+	"QtCore",
+	"QtGui",
+	"QtNetwork",
+	"QtOpenGL",
+	"QtSql",
+	"QtSvg",
+	"QtXml",
+	NULL
+};
 
-lsb_lib_modules_t lsb_deprecated_modules[] = {
+#define lsb_num_modules_31 1
+
+lsb_lib_modules_t lsb_modules_31[] = {
+	{"Toolkit_Qt", lsb_Toolkit_Qt_libs_31 },
+};
+
+char *lsb_Multimedia_libs_32[] = {
+	"asound",
+	NULL
+};
+
+#define lsb_num_modules_32 1
+
+lsb_lib_modules_t lsb_modules_32[] = {
+	{"Multimedia", lsb_Multimedia_libs_32 },
+};
+
+char *lsb_Multimedia_libs_40[] = {
+	"asound",
+	NULL
+};
+
+#define lsb_num_modules_40 1
+
+lsb_lib_modules_t lsb_modules_40[] = {
+	{"Multimedia", lsb_Multimedia_libs_40 },
+};
+
+lsb_lib_modules_t *lsb_modules[] = {
+	lsb_modules_30,
+	lsb_modules_31,
+	lsb_modules_32,
+	lsb_modules_40,
+	NULL
+};
+
+int lsb_num_modules[] = {
+	lsb_num_modules_30,
+	lsb_num_modules_31,
+	lsb_num_modules_32,
+	lsb_num_modules_40,
+	0
+};
+
+#define lsb_num_deprecated_modules_30 0
+
+lsb_lib_modules_t lsb_deprecated_modules_30[] = {
+};
+
+#define lsb_num_deprecated_modules_31 0
+
+lsb_lib_modules_t lsb_deprecated_modules_31[] = {
+};
+
+char *lsb_Toolkit_Qt3_libs_32[] = {
+	"qt-mt",
+	NULL
+};
+
+#define lsb_num_deprecated_modules_32 1
+
+lsb_lib_modules_t lsb_deprecated_modules_32[] = {
+	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_32 },
+};
+
+char *lsb_Toolkit_Qt3_libs_40[] = {
+	"qt-mt",
+	NULL
+};
+
+#define lsb_num_deprecated_modules_40 1
+
+lsb_lib_modules_t lsb_deprecated_modules_40[] = {
+	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_40 },
+};
+
+lsb_lib_modules_t *lsb_deprecated_modules[] = {
+	lsb_deprecated_modules_30,
+	lsb_deprecated_modules_31,
+	lsb_deprecated_modules_32,
+	lsb_deprecated_modules_40,
+	NULL
+};
+
+int lsb_num_deprecated_modules[] = {
+	lsb_num_deprecated_modules_30,
+	lsb_num_deprecated_modules_31,
+	lsb_num_deprecated_modules_32,
+	lsb_num_deprecated_modules_40,
+	0
 };
 
 inline int get_version_index( char* vername ) {

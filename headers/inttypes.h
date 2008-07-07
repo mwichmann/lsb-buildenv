@@ -19,6 +19,13 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 
+#if __LSB_VERSION__ >= 10
+#define __PDP_ENDIAN	3412
+#define PDP_ENDIAN	__PDP_ENDIAN
+#endif				/* __LSB_VERSION__ >= 1.0 */
+
+
+
 
 
 /* Function prototypes */
