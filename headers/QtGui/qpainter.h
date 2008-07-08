@@ -5,7 +5,6 @@
 class QFlags < QPainter::RenderHint >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QPainter::RenderHint>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }RenderHints	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QPainter
 {
 private:
@@ -171,8 +167,6 @@ CompositionMode_DestinationAtop = 10,
 CompositionMode_Xor = 11
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */

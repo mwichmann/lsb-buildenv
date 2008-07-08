@@ -5,7 +5,6 @@
 class QShowEvent;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QInputEvent : public QEvent
 {
 private:
@@ -351,15 +350,10 @@ public:
      QMenubarUpdatedEvent(QMenuBar*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugPK6QEvent(_Z6QDebug, const QEvent *);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

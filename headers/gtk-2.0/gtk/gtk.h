@@ -10,18 +10,19 @@
 #include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk-2.0/gdk/gdk.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define GTK_NOTE(type,action)
 #define GTK_OBJECT_FLOATING(obj)	 \
 	((GTK_OBJECT_FLAGS (obj) & GTK_FLOATING) != 0)
@@ -2159,8 +2160,6 @@ extern "C" {
 #define GTK_MINOR_VERSION	(6)
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 #define GTK_MICRO_VERSION	(11)
 #define GTK_MINOR_VERSION	(8)
@@ -2171,7 +2170,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _GtkIconSet GtkIconSet;
 
     typedef struct _GtkObject GtkObject;
@@ -3659,8 +3657,6 @@ extern "C" {
 	GTK_NO_SHOW_ALL = 1 << 22
     } GtkWidgetFlags;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     typedef enum {
 	GTK_ICON_VIEW_NO_DROP,
@@ -3680,15 +3676,11 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-#if __LSB_VERSION__ >= 31
     enum {
 	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID = -1,
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
@@ -7307,12 +7299,9 @@ extern "C" {
 	GtkWidget *gamma_text;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern const gchar *const *gtk_about_dialog_get_artists(GtkAboutDialog
 							    *);
     extern const gchar *const *gtk_about_dialog_get_authors(GtkAboutDialog
@@ -10792,8 +10781,6 @@ extern "C" {
     extern void gtk_window_unmaximize(GtkWindow *);
     extern void gtk_window_unstick(GtkWindow *);
     extern GType gtk_wrap_mode_get_type(void);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 32
     extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
 #endif				/* __LSB_VERSION__ >= 3.2 */

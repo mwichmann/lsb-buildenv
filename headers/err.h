@@ -11,14 +11,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void err(int, const char *, ...);
     extern void error(int, int, const char *, ...);
     extern void errx(int, const char *, ...);
     extern void warn(const char *, ...);
     extern void warnx(const char *, ...);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

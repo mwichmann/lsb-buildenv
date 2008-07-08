@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define GDK_TYPE_PIXBUF_ANIMATION_ITER	 \
 	(gdk_pixbuf_animation_iter_get_type ())
 #define GDK_PIXBUF_LOADER_CLASS(klass)	 \
@@ -59,8 +58,6 @@ extern "C" {
 #define GDK_PIXBUF_VERSION	"2.6.10"
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 #define GDK_TYPE_PIXBUF_SIMPLE_ANIM	(gdk_pixbuf_simple_anim_get_type ())
 #define GDK_PIXBUF_SIMPLE_ANIM_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
@@ -74,7 +71,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _GdkPixbuf GdkPixbuf;
 
     typedef gboolean(*GdkPixbufSaveFunc) (const gchar *, gsize, GError * *,
@@ -124,8 +120,6 @@ extern "C" {
 	GDK_PIXBUF_ALPHA_FULL
     } GdkPixbufAlphaMode;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     typedef struct _GdkPixbufSimpleAnim GdkPixbufSimpleAnim;
 
@@ -133,7 +127,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-#if __LSB_VERSION__ >= 31
 
 
 
@@ -157,8 +150,6 @@ extern "C" {
 	void (*closed) (GdkPixbufLoader *);
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 
 
@@ -169,7 +160,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern GType gdk_colorspace_get_type(void);
     extern GType gdk_interp_type_get_type(void);
     extern GdkPixbuf *gdk_pixbuf_add_alpha(const GdkPixbuf *, gboolean,
@@ -315,8 +305,6 @@ extern "C" {
     extern GdkPixbuf *gdk_pixbuf_scale_simple(const GdkPixbuf *, int, int,
 					      GdkInterpType);
     extern const char *gdk_pixbuf_version;
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern void gdk_pixbuf_simple_anim_add_frame(GdkPixbufSimpleAnim *,
 						 GdkPixbuf *);

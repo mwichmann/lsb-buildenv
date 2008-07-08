@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
     typedef struct FT_MemoryRec_ *FT_Memory;
 
 /* #include <freetype/ftlist.h>			XXX hand-edit */
@@ -31,9 +30,6 @@ extern "C" {
 
     typedef void (*FT_Stream_CloseFunc) (FT_Stream);
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
     struct FT_MemoryRec_ {
 	void *user;
 	FT_Alloc_Func alloc;
@@ -58,8 +54,6 @@ extern "C" {
 	unsigned char *cursor;
 	unsigned char *limit;
     };
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }

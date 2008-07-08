@@ -5,7 +5,6 @@
 class QTemporaryFile;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTemporaryFile : public QFile
 {
 private:
@@ -29,15 +28,10 @@ protected:
     bool open(QFlags<QIODevice::OpenModeFlag>);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN14QTemporaryFile16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

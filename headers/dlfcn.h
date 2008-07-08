@@ -38,14 +38,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int dladdr(const void *, Dl_info *);
     extern int dlclose(void *);
     extern char *dlerror(void);
     extern void *dlopen(const char *, int);
     extern void *dlsym(void *, const char *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

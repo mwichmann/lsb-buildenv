@@ -5,7 +5,6 @@
 class QTextDocumentFragment;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTextDocumentFragment
 {
 private:
@@ -24,8 +23,6 @@ public:
     QTextDocumentFragment fromHtml(QString const&, QTextDocument const*);
     QString toHtml(QByteArray const&) const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

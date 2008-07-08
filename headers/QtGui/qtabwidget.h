@@ -5,7 +5,6 @@
 class QTabWidget;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTabWidget : public QWidget
 {
 private:
@@ -86,15 +85,10 @@ Triangular = 1
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QTabWidget16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

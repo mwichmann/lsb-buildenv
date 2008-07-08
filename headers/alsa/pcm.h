@@ -16,14 +16,10 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_PCM_NONBLOCK	0x0001
 #define SND_PCM_ASYNC	0x0002
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct sndrv_mask snd_pcm_access_mask_t;
 
     typedef enum _snd_pcm_access {
@@ -230,9 +226,6 @@ extern "C" {
 	SND_SPCM_XRUN_STOP = 1
     } snd_spcm_xrun_type_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct _snd_pcm_channel_area {
 	void *addr;
@@ -257,12 +250,9 @@ extern "C" {
 	unsigned int id32[4];
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int snd_async_add_pcm_handler(snd_async_handler_t * *,
 					 snd_pcm_t *, snd_async_callback_t,
 					 void *);
@@ -674,8 +664,6 @@ extern "C" {
 					    snd_pcm_uframes_t);
     extern snd_pcm_sframes_t snd_pcm_writen(snd_pcm_t *, void **,
 					    snd_pcm_uframes_t);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

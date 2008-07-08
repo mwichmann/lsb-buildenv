@@ -753,7 +753,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XActivateScreenSaver(Display *);
     extern int XAddConnectionWatch(Display *, XConnectionWatchProc,
 				   XPointer);
@@ -1283,8 +1282,6 @@ extern "C" {
     extern int XwcTextPerCharExtents(XFontSet, wchar_t *, int,
 				     XRectangle *, XRectangle *, int,
 				     int *, XRectangle *, XRectangle *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     extern
 	void (*XESetBeforeFlush

@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
     enum {
 	FT_Err_Ok = 0x00,
 	FT_Err_Cannot_Open_Resource = 0x01,
@@ -95,8 +94,6 @@ extern "C" {
 	FT_Err_Bbx_Too_Big = 0xB7,
 	FT_Err_Max = 0xB8
     };
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }

@@ -219,13 +219,10 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int msgctl(int, int, struct msqid_ds *);
     extern int msgget(key_t, int);
     extern ssize_t msgrcv(int, void *, size_t, long int, int);
     extern int msgsnd(int, const void *, size_t, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

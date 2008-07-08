@@ -5,11 +5,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,10 +30,7 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef int (*__compar_fn_t) (const void *, const void *);
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
     struct random_data {
@@ -59,23 +58,17 @@ extern "C" {
 
 
 /* Returned by `div'.*/
-#if __LSB_VERSION__ >= 10
     typedef struct {
 	int quot;
 	int rem;
     } div_t;
 
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 
 /* Returned by `ldiv'.*/
-#if __LSB_VERSION__ >= 10
     typedef struct {
 	long int quot;
 	long int rem;
     } ldiv_t;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 /* Returned by `lldiv'.*/
@@ -90,7 +83,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void _Exit(int);
     extern size_t __ctype_get_mb_cur_max(void);
     extern double __strtod_internal(const char *, char **, int);
@@ -167,8 +159,6 @@ extern "C" {
     extern int unlockpt(int);
     extern size_t wcstombs(char *, const wchar_t *, size_t);
     extern int wctomb(char *, wchar_t);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
     extern int atexit(void (*)(void)
 	);
 #if __LSB_VERSION__ >= 11

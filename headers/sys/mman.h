@@ -93,7 +93,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int mlock(const void *, size_t);
     extern int mlockall(int);
     extern void *mmap(void *, size_t, int, int, int, off_t);
@@ -103,8 +102,6 @@ extern "C" {
     extern int munlock(const void *, size_t);
     extern int munlockall(void);
     extern int munmap(void *, size_t);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 30
     extern int shm_open(const char *, int, mode_t);
     extern int shm_unlink(const char *);

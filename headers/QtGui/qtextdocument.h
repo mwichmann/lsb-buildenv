@@ -5,7 +5,6 @@
 class QAbstractUndoItem;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QTextDocument::FindFlag>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }FindFlags	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 enum HitTestAccuracy	
 {
 ExactHit = 0,	
@@ -144,19 +140,14 @@ UserResource = 100
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN13QTextDocument16staticMetaObjectE ;
 extern QTextCodec * _ZN2Qt12codecForHtmlERK10QByteArray(QByteArray & &);
 extern bool _ZN2Qt15mightBeRichTextERK7QString(QString & &);
 extern QString _ZN2Qt20convertFromPlainTextERK7QStringNS_14WhiteSpaceModeE(QString & &);
 extern QString _ZN2Qt6escapeERK7QString(QString & &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

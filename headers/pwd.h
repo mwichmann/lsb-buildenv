@@ -28,14 +28,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void endpwent(void);
     extern struct passwd *getpwent(void);
     extern struct passwd *getpwnam(const char *);
     extern struct passwd *getpwuid(uid_t);
     extern void setpwent(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern int getpwuid_r(uid_t, struct passwd *, char *, size_t,
 			  struct passwd **);

@@ -8,11 +8,13 @@
 #include <stddef.h>
 #include <stdarg.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,7 +33,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern double __wcstod_internal(const wchar_t *, wchar_t * *, int);
     extern float __wcstof_internal(const wchar_t *, wchar_t * *, int);
     extern long int __wcstol_internal(const wchar_t *, wchar_t * *, int,
@@ -118,8 +119,6 @@ extern "C" {
     extern wchar_t *wmemset(wchar_t *, wchar_t, size_t);
     extern int wprintf(const wchar_t *, ...);
     extern int wscanf(const wchar_t *, ...);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern wint_t getwchar(void);
 #endif				/* __LSB_VERSION__ >= 1.1 */

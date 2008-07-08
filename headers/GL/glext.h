@@ -1504,7 +1504,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef unsigned int GLhandleARB;
 
     typedef long int GLintptr;
@@ -1518,8 +1517,6 @@ extern "C" {
     typedef ptrdiff_t GLsizeiptrARB;
 
     typedef long int GLintptrARB;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #ifdef __cplusplus
 }

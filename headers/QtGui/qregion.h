@@ -5,7 +5,6 @@
 class QRegion;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QRegion
 {
 private:
@@ -56,17 +55,12 @@ Ellipse = 1
 
 struct QRegionData	;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK7QRegion(const QRegion &);
 extern QDataStream _ZlsR11QDataStreamRK7QRegion(QDataStream &, const QRegion &);
 extern QDataStream _ZrsR11QDataStreamR7QRegion(QDataStream &, QRegion &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define FT_HAS_FAST_GLYPHS(face)	 \
 	( face->face_flags & FT_FACE_FLAG_FAST_GLYPHS )
 #define FT_HAS_FIXED_SIZES(face)	 \
@@ -76,11 +75,8 @@ extern "C" {
 #define FT_LOAD_TARGET_LIGHT	FT_LOAD_TARGET_( FT_RENDER_MODE_LIGHT )
 #define FT_LOAD_TARGET_MONO	FT_LOAD_TARGET_( FT_RENDER_MODE_MONO )
 #define FT_LOAD_TARGET_NORMAL	FT_LOAD_TARGET_( FT_RENDER_MODE_NORMAL )
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct FT_FaceRec_ *FT_Face;
 
     typedef struct FT_ModuleRec_ *FT_Module;
@@ -159,9 +155,6 @@ extern "C" {
 	FT_KERNING_UNSCALED = 2
     } FT_Kerning_Mode;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
     struct FT_Glyph_Metrics_ {
 	FT_Pos width;
 	FT_Pos height;
@@ -236,9 +229,6 @@ extern "C" {
 	FT_Pos y_ppem;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
 
 
@@ -288,12 +278,9 @@ extern "C" {
 	FT_Face_Internal internal;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern FT_Error FT_Attach_File(FT_Face, const char *);
     extern FT_Error FT_Attach_Stream(FT_Face, FT_Open_Args *);
     extern FT_Fixed FT_CeilFix(FT_Fixed);
@@ -333,8 +320,6 @@ extern "C" {
     extern FT_Error FT_Set_Pixel_Sizes(FT_Face, FT_UInt, FT_UInt);
     extern void FT_Set_Transform(FT_Face, FT_Matrix *, FT_Vector *);
     extern void FT_Vector_Transform(FT_Vector *, const FT_Matrix *);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

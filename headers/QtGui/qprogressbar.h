@@ -5,7 +5,6 @@
 class QProgressBar;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QProgressBar : public QWidget
 {
 private:
@@ -51,15 +50,10 @@ BottomToTop = 1
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN12QProgressBar16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

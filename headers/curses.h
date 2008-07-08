@@ -335,7 +335,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int addch(const chtype);
     extern int addchnstr(const chtype *, int);
     extern int addchstr(const chtype *);
@@ -601,8 +600,6 @@ extern "C" {
     extern void wtimeout(WINDOW *, int);
     extern int wtouchln(WINDOW *, int, int, int);
     extern int wvline(WINDOW *, chtype, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern int COLS;
     extern int LINES;

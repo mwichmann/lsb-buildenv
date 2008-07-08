@@ -66,24 +66,18 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-#if __LSB_VERSION__ >= 10
     typedef struct __jmp_buf_tag jmp_buf[1];
 
     typedef jmp_buf sigjmp_buf;
 
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int __sigsetjmp(jmp_buf, int);
     extern void _longjmp(jmp_buf, int);
     extern int _setjmp(jmp_buf);
     extern void longjmp(jmp_buf, int);
     extern void siglongjmp(sigjmp_buf, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

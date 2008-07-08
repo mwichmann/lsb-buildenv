@@ -8,10 +8,7 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
 #define SOL_UDP	17
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 
 
 #ifdef __cplusplus

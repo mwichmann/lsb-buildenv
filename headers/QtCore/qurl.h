@@ -5,7 +5,6 @@
 class QFlags < QUrl::FormattingOption >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QUrl::FormattingOption>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }FormattingOptions	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QUrl
 {
 private:
@@ -124,17 +120,12 @@ private:
 public:
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK4QUrl(const QUrl &);
 extern QDataStream _ZlsR11QDataStreamRK4QUrl(const QUrl &);
 extern QDataStream _ZrsR11QDataStreamR4QUrl(QUrl &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

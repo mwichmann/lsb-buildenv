@@ -12,17 +12,13 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_TIMER_OPEN_NONBLOCK	(1<<0)
 #define SND_TIMER_OPEN_TREAD	(1<<1)
 #define SND_TIMER_GLOBAL_SYSTEM	0
 #define SND_TIMER_GLOBAL_RTC	1
 #define SND_TIMER_GLOBAL_HPET	2
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct sndrv_timer_ginfo snd_timer_ginfo_t;
 
     typedef struct sndrv_timer_gparams snd_timer_gparams_t;
@@ -47,12 +43,9 @@ extern "C" {
 	SND_TIMER_TYPE_INET = 2
     } snd_timer_type_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int snd_timer_close(snd_timer_t *);
     extern int snd_timer_continue(snd_timer_t *);
     extern void snd_timer_id_copy(snd_timer_id_t *,
@@ -93,8 +86,6 @@ extern "C" {
     extern int snd_timer_start(snd_timer_t *);
     extern int snd_timer_status(snd_timer_t *, snd_timer_status_t *);
     extern int snd_timer_stop(snd_timer_t *);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

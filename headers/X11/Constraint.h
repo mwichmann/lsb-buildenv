@@ -14,18 +14,12 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
     typedef struct _ConstraintClassRec *ConstraintWidgetClass;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern WidgetClass constraintWidgetClass;
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

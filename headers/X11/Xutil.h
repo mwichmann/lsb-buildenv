@@ -136,7 +136,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XAddPixel(XImage *, long int);
     extern XClassHint *XAllocClassHint(void);
     extern XIconSize *XAllocIconSize(void);
@@ -233,8 +232,6 @@ extern "C" {
 					 XTextProperty *);
     extern int XwcTextPropertyToTextList(Display *, XTextProperty *,
 					 wchar_t * **, int *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     extern int Xutf8TextListToTextProperty(Display *, char **, int,
 					   XICCEncodingStyle,

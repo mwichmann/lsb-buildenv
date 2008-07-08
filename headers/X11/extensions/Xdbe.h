@@ -39,7 +39,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern XdbeBackBuffer XdbeAllocateBackBufferName(Display *, Window,
 						     XdbeSwapAction);
     extern int XdbeBeginIdiom(Display *);
@@ -51,8 +50,6 @@ extern "C" {
     extern *XdbeGetVisualInfo(Display *, Drawable *, int *);
     extern int XdbeQueryExtension(Display *, int *, int *);
     extern int XdbeSwapBuffers(Display *, XdbeSwapInfo *, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

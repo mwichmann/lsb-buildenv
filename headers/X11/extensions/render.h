@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
 #define FilterBest	"best"
 #define FilterBilinear	"bilinear"
 #define FilterConvolution	"convolution"
@@ -136,14 +135,9 @@ extern "C" {
 #define X_RenderComposite	8
 #define PictOpAtop	9
 #define X_RenderScale	9
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
     typedef long unsigned int Picture;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define G_VALUE_LCOPY(value,var_args,flags,__error)	 \
 	G_STMT_START { const GValue *_value = (value); guint _flags = \
 	(flags); GType _value_type = G_VALUE_TYPE (_value); GTypeValueTable \
@@ -46,11 +45,8 @@ extern "C" {
 	(); } } *(__error) = _vtable->collect_value (_value, _n_values, \
 	_cvalues, _flags); } G_STMT_END
 #define G_VALUE_COLLECT_FORMAT_MAX_LENGTH	(8)
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     enum {
 	G_VALUE_COLLECT_INT = 'i',
 	G_VALUE_COLLECT_LONG = 'l',
@@ -58,8 +54,6 @@ extern "C" {
 	G_VALUE_COLLECT_DOUBLE = 'd',
 	G_VALUE_COLLECT_POINTER = 'p'
     };
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }

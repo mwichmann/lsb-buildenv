@@ -41,7 +41,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern char *IceAuthFileName(void);
     extern void IceFreeAuthFileEntry(IceAuthFileEntry *);
     extern char *IceGenerateMagicCookie(int);
@@ -51,8 +50,6 @@ extern "C" {
     extern void IceSetPaAuthData(int, IceAuthDataEntry *);
     extern void IceUnlockAuthFile(char *);
     extern int IceWriteAuthFileEntry(FILE *, IceAuthFileEntry *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

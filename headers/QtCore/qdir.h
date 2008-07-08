@@ -5,7 +5,6 @@
 class QFlags < QDir::Filter >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QDir::Filter>
 {
 private:
@@ -26,9 +25,6 @@ public:
 typedef SortFlags	SortSpec	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QDir
 {
 private:
@@ -152,8 +148,6 @@ class QFlags<QDir::SortFlag>
 private:
 public:
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

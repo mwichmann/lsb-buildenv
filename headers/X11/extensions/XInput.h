@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 40
     typedef struct {
 	unsigned char input_class;
 	unsigned char event_type_base;
@@ -20,8 +19,6 @@ extern "C" {
 	int num_classes;
 	XInputClassInfo *classes;
     } XDevice;
-
-#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

@@ -5,7 +5,6 @@
 class QSqlIndex;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QSqlIndex :  
 {
 private:
@@ -23,8 +22,6 @@ public:
     QString toString(QString const&, QString const&, bool) const;
     QStringList toStringList(QString const&, bool) const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

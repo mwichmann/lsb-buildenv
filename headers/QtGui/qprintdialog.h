@@ -5,7 +5,6 @@
 class QPrintDialog;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QPrintDialog : public QAbstractPrintDialog
 {
 private:
@@ -21,15 +20,10 @@ public:
     int exec();
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN12QPrintDialog16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

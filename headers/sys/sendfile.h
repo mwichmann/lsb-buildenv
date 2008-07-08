@@ -15,11 +15,8 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 40
     extern ssize_t sendfile(int, int, off_t *, size_t);
     extern ssize_t sendfile64(int, int, off64_t *, size_t);
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 #ifdef __cplusplus
 }
 #endif

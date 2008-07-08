@@ -17,7 +17,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef xmlValidCtxt *xmlValidCtxtPtr;
 
     typedef struct _xmlHashTable xmlAttributeTable;
@@ -75,9 +74,6 @@ extern "C" {
 
     typedef xmlRefTable *xmlRefTablePtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlAttribute {
 	void *_private;
@@ -142,12 +138,9 @@ extern "C" {
 	int lineno;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlAttributePtr xmlAddAttributeDecl(xmlValidCtxtPtr, xmlDtdPtr,
 					       const xmlChar *,
 					       const xmlChar *,
@@ -259,8 +252,6 @@ extern "C" {
     extern int xmlValidatePushElement(xmlValidCtxtPtr, xmlDocPtr,
 				      xmlNodePtr, const xmlChar *);
     extern int xmlValidateRoot(xmlValidCtxtPtr, xmlDocPtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

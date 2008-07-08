@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define FT_CURVE_TAG_TOUCH_BOTH	 \
 	( FT_CURVE_TAG_TOUCH_X | FT_CURVE_TAG_TOUCH_Y )
 #define FT_IMAGE_TAG(value,_x1,_x2,_x3,_x4)	 \
@@ -46,11 +45,8 @@ extern "C" {
 #define FT_Raster_Reset_Func	FT_Raster_ResetFunc
 #define FT_Raster_Set_Mode_Func	FT_Raster_SetModeFunc
 #define FT_Raster_Span_Func	FT_SpanFunc
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct FT_Bitmap_ FT_Bitmap;
 
     typedef long int FT_Pos;
@@ -121,9 +117,6 @@ extern "C" {
 	FT_PIXEL_MODE_MAX
     } FT_Pixel_Mode;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
     struct FT_Vector_ {
 	FT_Pos x;
 	FT_Pos y;
@@ -137,9 +130,6 @@ extern "C" {
     };
 
 /* #include <freetype/ftoutln.h>		XXX hand-edit */
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct FT_Bitmap_ {
 	int rows;
@@ -201,8 +191,6 @@ extern "C" {
 	int shift;
 	FT_Pos delta;
     };
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }

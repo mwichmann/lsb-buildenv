@@ -5,7 +5,6 @@
 class QMessageBox;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QMessageBox : public QDialog
 {
 private:
@@ -102,15 +101,10 @@ FlagMask = 768
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QMessageBox16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

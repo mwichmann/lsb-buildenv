@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_SEQ_INSTR_ID_DLS1	"DLS1"
 #define SND_SEQ_INSTR_ID_DLS2	"DLS2"
 #define SND_SEQ_INSTR_ID_GUS_PATCH	"GUS Patch"
@@ -39,11 +38,8 @@ extern "C" {
 #define SND_SEQ_INSTR_FREE_CMD_SINGLE	3
 #define SND_SEQ_INSTR_PUT_CMD_ADD	3
 #define SND_SEQ_INSTR_PUT_CMD_REMOVE	4
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef void snd_instr_fm_t;
 
     typedef struct sndrv_seq_instr_header snd_instr_header_t;
@@ -53,8 +49,6 @@ extern "C" {
     typedef void snd_instr_simple_t;
 
     typedef struct _snd_iwffff_handle snd_iwffff_handle_t;
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }

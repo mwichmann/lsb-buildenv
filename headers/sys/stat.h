@@ -407,7 +407,6 @@ extern "C" {
     extern int mknod(const char *, mode_t, dev_t);
     extern int stat(const char *, struct stat *);
     extern int stat64(const char *, struct stat64 *);
-#if __LSB_VERSION__ >= 10
     extern int __fxstat(int, int, struct stat *);
     extern int __fxstat64(int, int, struct stat64 *);
     extern int __lxstat(int, const char *, struct stat *);
@@ -419,8 +418,6 @@ extern "C" {
     extern int fchmod(int, mode_t);
     extern int mkfifo(const char *, mode_t);
     extern mode_t umask(mode_t);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 40
     extern int __fxstatat(int, int, const char *, struct stat *, int);
     extern int __fxstatat64(int, int, const char *, struct stat64 *, int);

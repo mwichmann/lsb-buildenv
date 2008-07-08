@@ -22,6 +22,9 @@ $typeflag=0;
 $semicolonNeeded=0;
 $struct_anon_member=0;
 
+# Let's remember LSB version where the header appeared to omit extra checks for LSB version
+$header_appin='';
+
 # We can have long chains of inheritance with FuncPtr base (e.g. typedef to pointer to FuncPtr)
 # such types cannot be processed in a usual way (i.e. we can't print '*' after FuncPtr declaration.
 #  we should place it in brackets inside that declaration)
@@ -1456,8 +1459,14 @@ if( $Hsrcerror ne "Yes" ) {
     $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
     $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
     $index=0;
+    $appearedin='';
     for(1..$sth->rows) {
         $entry = $sth->fetchrow_hashref;
+        if( $sth->rows == 1 ) {
+            # At the moment we don't have headers which appeared twice, but let's prevent possible collisions
+            $header_appin = $entry->{'Happearedin'};
+            $specdb::header_appin = $entry->{'Happearedin'};
+        }
         $appearedin = $entry->{'Happearedin'};
         $appearedin =~ s/\.//;
         $withdrawnin = $entry->{'Hwithdrawnin'};
@@ -1476,6 +1485,7 @@ if( $Hsrcerror ne "Yes" ) {
         print ")";
         $index++;
     }
+
     $sth->finish;
     print "\n";
 }
@@ -1623,11 +1633,13 @@ $sthDepr->execute or die "Couldn't execute $selectDepr query: ".DBI->errstr;
 
 if( $sthDepr->rows ) {
     print "\n";
+    print "#if !defined(LSB_DECL_DEPRECATED)\n";
     print "#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))\n";
     print "#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))\n";
     print "#else\n";
     print "#define LSB_DECL_DEPRECATED\n";
     print "#endif\n";
+    print "#endif    /* LSB_DECL_DEPRECATED */\n";
 }
 
 $sthDepr->finish;
@@ -1657,7 +1669,7 @@ print $select,"\n" if $trace;
 my $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
 
-my ($oldVersionAppeared, $oldVersionWithdrawn) = ("","");
+my ($oldVersionAppeared, $oldVersionWithdrawn) = ($header_appin,"");
 
 if( $sth->rows ) {
     print "\n";
@@ -1675,7 +1687,7 @@ if( $sth->rows ) {
         print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
     }
 
-    if( $oldVersionAppeared ) {
+    if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
         print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
     }
 
@@ -1724,7 +1736,7 @@ for(1..$hgh->rows) {
     $ch->execute or die "Couldn't execute $select query: ".DBI->errstr;
     print $ch->rows," rows\n" if $trace;
 
-    $oldVersionAppeared = '';
+    $oldVersionAppeared = $header_appin;
     $oldVersionWithdrawn = '';
 
     for(1..$ch->rows) {
@@ -1750,7 +1762,7 @@ for(1..$hgh->rows) {
     if( $oldVersionWithdrawn ) {
         print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
     }
-    if( $oldVersionAppeared ) {
+    if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
         print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
     }
 
@@ -1781,7 +1793,7 @@ for(1..$hgh->rows) {
     print $th->rows," rows\n" if $trace;
 
     $oldVersionWithdrawn = "";
-    $oldVersionAppeared = "";
+    $oldVersionAppeared = $header_appin;
 
     for(1..$th->rows) {
         $typeflag=0;
@@ -1842,12 +1854,12 @@ for(1..$hgh->rows) {
     if( $oldVersionWithdrawn ) {
         print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
     }
-    if( $oldVersionAppeared ) {
+    if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
         print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
     }
 
     $oldVersionWithdrawn = "";
-    $oldVersionAppeared = "";
+    $oldVersionAppeared = $header_appin;
 
     # Display the Types (excluding Typedef)
 #   if( !$param_typelist ) {
@@ -1951,12 +1963,12 @@ for(1..$hgh->rows) {
     if( $oldVersionWithdrawn ) {
         print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
     }
-    if( $oldVersionAppeared ) {
+    if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
         print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
     }
 
     $oldVersionWithdrawn = "";
-    $oldVersionAppeared = "";
+    $oldVersionAppeared = $header_appin;
 
     # Display the Types (Struct/Union)
     $select = "SELECT * FROM Type ";
@@ -2066,7 +2078,7 @@ for(1..$hgh->rows) {
     if( $oldVersionWithdrawn ) {
         print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
     }
-    if( $oldVersionAppeared ) {
+    if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
         print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
     }
 
@@ -2108,7 +2120,7 @@ if( $sth->rows ) {
     print "\n/* Function prototypes */\n\n";
 }
 
-$oldVersionAppeared = '';
+$oldVersionAppeared = $header_appin;
 $oldVersionWithdrawn = '';
 
 for(1..$sth->rows) {
@@ -2150,7 +2162,7 @@ for(1..$sth->rows) {
             $oldVersionWithdrawn = '';
         }
 
-        if( $oldVersionAppeared ) {
+        if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
             print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
             $oldVersionAppeared = '';
         }
@@ -2353,7 +2365,7 @@ if( $oldVersionWithdrawn ) {
     print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
 }
 
-if( $oldVersionAppeared ) {
+if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
     print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
 }
 

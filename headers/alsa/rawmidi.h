@@ -12,15 +12,11 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_RAWMIDI_APPEND	0x0001
 #define SND_RAWMIDI_NONBLOCK	0x0002
 #define SND_RAWMIDI_SYNC	0x0004
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct sndrv_rawmidi_info snd_rawmidi_info_t;
 
     typedef struct sndrv_rawmidi_params snd_rawmidi_params_t;
@@ -42,12 +38,9 @@ extern "C" {
 	SND_RAWMIDI_TYPE_VIRTUAL = 3
     } snd_rawmidi_type_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int snd_rawmidi_close(snd_rawmidi_t *);
     extern int snd_rawmidi_drain(snd_rawmidi_t *);
     extern int snd_rawmidi_drop(snd_rawmidi_t *);
@@ -78,8 +71,6 @@ extern "C" {
     extern ssize_t snd_rawmidi_read(snd_rawmidi_t *, void *, size_t);
     extern ssize_t snd_rawmidi_write(snd_rawmidi_t *, const void *,
 				     size_t);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #if __LSB_VERSION__ >= 40
     extern const char *snd_rawmidi_info_get_subdevice_name(const
 							   snd_rawmidi_info_t

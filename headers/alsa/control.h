@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_CTL_EVENT_MASK_VALUE	(1<<0)
 #define SND_CTL_EVENT_MASK_INFO	(1<<1)
 #define SND_CTL_EVENT_MASK_ADD	(1<<2)
@@ -36,11 +35,8 @@ extern "C" {
 #define SND_CTL_POWER_D2	0x0200
 #define SND_CTL_POWER_D3	0x0300
 #define SND_CTL_POWER_MASK	0xff00
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct snd_aes_iec958 snd_aes_iec958_t;
 
     typedef struct _snd_ctl_card_info snd_ctl_card_info_t;
@@ -103,9 +99,6 @@ extern "C" {
 
     typedef int (*snd_hctl_elem_callback_t) (void);
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct snd_aes_iec958 {
 	unsigned char status[24];
@@ -114,12 +107,9 @@ extern "C" {
 	unsigned char dig_subframe[4];
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int snd_async_add_ctl_handler(snd_async_handler_t * *,
 					 snd_ctl_t *, snd_async_callback_t,
 					 void *);
@@ -357,8 +347,6 @@ extern "C" {
     extern int snd_hctl_open(snd_hctl_t * *, const char *, int);
     extern void snd_hctl_set_callback(snd_hctl_t *, snd_hctl_callback_t);
     extern void snd_hctl_set_callback_private(snd_hctl_t *, void *);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #if __LSB_VERSION__ >= 40
     extern unsigned int snd_hctl_get_count(snd_hctl_t *);
     extern int snd_hctl_handle_events(snd_hctl_t *);

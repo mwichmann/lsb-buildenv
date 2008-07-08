@@ -79,15 +79,12 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int glob(const char *, int, int (*)(const char *, int)
 		    , glob_t *);
     extern int glob64(const char *, int, int (*)(const char *, int)
 		      , glob64_t *);
     extern void globfree(glob_t *);
     extern void globfree64(glob64_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

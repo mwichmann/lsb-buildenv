@@ -4,7 +4,7 @@ require Exporter;
 @specdb::ISA = qw(Exporter);
 
 push @libtodb::EXPORT, qw(
-    $dbh $trace
+    $dbh $trace $header_appin
 );
 
 push @libtodb::EXPORT, qw(
@@ -19,6 +19,7 @@ push @libtodb::EXPORT, qw(
 
 our $dbh;
 our $trace;
+our $header_appin;
 
 #==== Common functions ==================================================
 
@@ -312,12 +313,12 @@ sub printLsbVersionBounds($$$$)
 {
     ($oldVersionAppeared, $oldVersionWithdrawn, $appearedin, $withdrawnin) = ($_[0],$_[1],$_[2],$_[3]);
 
-    if( $appearedin ne $oldVersionAppeared ) {
+    if( $appearedin gt $oldVersionAppeared and $appearedin gt $header_appin ) {
         if( $oldVersionWithdrawn ) {
             print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
         }
 
-        if( $oldVersionAppeared ) {
+        if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
             print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
         }
 

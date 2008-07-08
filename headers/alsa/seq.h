@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define snd_seq_ev_is_prior(ev)	 \
 	(((ev)->flags & SND_SEQ_PRIORITY_MASK) == SND_SEQ_PRIORITY_HIGH)
 #define snd_seq_ev_length_type(ev)	 \
@@ -114,11 +113,8 @@ extern "C" {
 #define SND_SEQ_QUEUE_DIRECT	253
 #define SND_SEQ_ADDRESS_SUBSCRIBERS	254
 #define SND_SEQ_ADDRESS_BROADCAST	255
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct sndrv_seq_client_info snd_seq_client_info_t;
 
     typedef struct sndrv_seq_client_pool snd_seq_client_pool_t;
@@ -165,12 +161,9 @@ extern "C" {
 	SND_SEQ_TYPE_INET = 2
     } snd_seq_type_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int snd_seq_alloc_named_queue(snd_seq_t *, const char *);
     extern int snd_seq_alloc_queue(snd_seq_t *);
     extern int snd_seq_client_id(snd_seq_t *);
@@ -394,8 +387,6 @@ extern "C" {
     extern size_t snd_seq_system_info_sizeof(void);
     extern int snd_seq_unsubscribe_port(snd_seq_t *,
 					snd_seq_port_subscribe_t *);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

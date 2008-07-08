@@ -20,7 +20,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define IS_ASCII_LETTER(c)	 \
 	(((0x41 <= (c)) && ((c) <= 0x5a)) || ((0x61 <= (c)) && ((c) <= \
 	0x7a)))
@@ -53,20 +52,14 @@ extern "C" {
 #define IS_IDEOGRAPHIC(c)	xmlIsIdeographicQ(c)
 #define IS_PUBIDCHAR(c)	xmlIsPubidCharQ(c)
 #define IS_PUBIDCHAR_CH(c)	xmlIsPubidChar_ch(c)
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef void (*xmlEntityReferenceFunc) (xmlEntityPtr, xmlNodePtr,
 					    xmlNodePtr);
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern htmlParserCtxtPtr htmlCreateFileParserCtxt(const char *,
 						      const char *);
     extern void htmlInitAutoClose(void);
@@ -171,8 +164,6 @@ extern "C" {
 				      xmlCharEncodingHandlerPtr);
     extern int xmlSwitchToEncoding(xmlParserCtxtPtr,
 				   xmlCharEncodingHandlerPtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

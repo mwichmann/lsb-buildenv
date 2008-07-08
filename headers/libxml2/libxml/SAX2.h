@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef void (*internalSubsetSAXFunc) (void *, const xmlChar *,
 					   const xmlChar *,
 					   const xmlChar *);
@@ -127,9 +126,6 @@ extern "C" {
 
     typedef struct _xmlSAXHandler xmlSAXHandler;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlEnumeration {
 	struct _xmlEnumeration *next;
@@ -191,12 +187,9 @@ extern "C" {
 	xmlStructuredErrorFunc serror;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void docbDefaultSAXHandlerInit(void);
     extern void htmlDefaultSAXHandlerInit(void);
     extern void xmlDefaultSAXHandlerInit(void);
@@ -252,8 +245,6 @@ extern "C" {
 					  const xmlChar *);
     extern int xmlSAXDefaultVersion(int);
     extern int xmlSAXVersion(xmlSAXHandler *, int);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

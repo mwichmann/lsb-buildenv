@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define GDK_WINDOWING_X11
 #define GDK_PIXMAP_OBJECT(object)	 \
 	((GdkPixmapObject *) GDK_PIXMAP (object))
@@ -281,11 +280,8 @@ extern "C" {
 #define GDK_SELECTION_CLIPBOARD	_GDK_MAKE_ATOM (69)
 #define GDK_SELECTION_TYPE_COLORMAP	_GDK_MAKE_ATOM (7)
 #define GDK_TARGET_COLORMAP	_GDK_MAKE_ATOM (7)
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _GdkDrawable GdkWindow;
 
     typedef struct _GdkColor GdkColor;
@@ -954,9 +950,6 @@ extern "C" {
 	GDK_WA_NOREDIR = 1 << 8
     } GdkWindowAttributesType;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _GdkDrawable {
 	GObject parent_instance;
@@ -1670,12 +1663,9 @@ extern "C" {
 
 
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void gdk_add_client_message_filter(GdkAtom, GdkFilterFunc,
 					      gpointer);
     extern GdkAtom gdk_atom_intern(const gchar *, gboolean);
@@ -2403,8 +2393,6 @@ extern "C" {
     extern void gdk_window_withdraw(GdkWindow *);
     extern GType gdk_wm_decoration_get_type(void);
     extern GType gdk_wm_function_get_type(void);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern GdkPixbuf *gdk_cursor_get_image(GdkCursor *);
     extern GdkCursor *gdk_cursor_new_from_name(GdkDisplay *,

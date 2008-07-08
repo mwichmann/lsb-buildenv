@@ -5,7 +5,6 @@
 class QSqlQuery;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QSqlQuery
 {
 private:
@@ -50,8 +49,6 @@ public:
     QVariant lastInsertId() const;
     bool execBatch(QSqlQuery::BatchExecutionMode);
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

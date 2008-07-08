@@ -13,7 +13,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef enum {
 	XLIB_RGB_DITHER_NONE = 0,
 	XLIB_RGB_DITHER_NORMAL = 1,
@@ -22,21 +21,15 @@ extern "C" {
 
     typedef struct _XlibRgbCmap XlibRgbCmap;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _XlibRgbCmap {
 	unsigned int colors[256];
 	unsigned char lut[256];
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern GdkPixbuf *gdk_pixbuf_xlib_get_from_drawable(GdkPixbuf *,
 							Drawable, Colormap,
 							Visual *, int, int,
@@ -93,8 +86,6 @@ extern "C" {
     extern void xlib_rgb_set_min_colors(int);
     extern void xlib_rgb_set_verbose(int);
     extern long unsigned int xlib_rgb_xpixel_from_rgb(guint32);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

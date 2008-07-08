@@ -6,11 +6,13 @@
 #include <rpc/xdr.h>
 #include <rpc/types.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -96,13 +98,10 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 11
     extern struct AUTH *authnone_create(void);
     extern int key_decryptsession(char *,
 				  union des_block *) LSB_DECL_DEPRECATED;
     extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -15,7 +15,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
     typedef struct FT_MM_Axis_ FT_MM_Axis;
 
     typedef struct FT_Multi_Master_ FT_Multi_Master;
@@ -26,9 +25,6 @@ extern "C" {
 
     typedef struct FT_MM_Var_ FT_MM_Var;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct FT_MM_Axis_ {
 	FT_String *name;
@@ -68,12 +64,9 @@ extern "C" {
 	FT_Var_Named_Style *namedstyle;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern FT_Error FT_Get_MM_Var(FT_Face, FT_MM_Var * *);
     extern FT_Error FT_Get_Multi_Master(FT_Face, FT_Multi_Master *);
     extern FT_Error FT_Set_MM_Blend_Coordinates(FT_Face, FT_UInt,
@@ -84,8 +77,6 @@ extern "C" {
 						 FT_Fixed *);
     extern FT_Error FT_Set_Var_Design_Coordinates(FT_Face, FT_UInt,
 						  FT_Fixed *);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

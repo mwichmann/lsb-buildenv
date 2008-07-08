@@ -5,7 +5,6 @@
 class QBitmap;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QBitmap : public QPixmap
 {
 private:
@@ -24,8 +23,6 @@ public:
      QBitmap(int, int, unsigned char const*, bool);
      QBitmap(QSize const&, unsigned char const*, bool);
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

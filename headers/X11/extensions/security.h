@@ -55,7 +55,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern Xauth *XSecurityAllocXauth(void);
     extern void XSecurityFreeXauth(Xauth *);
     extern Xauth *XSecurityGenerateAuthorization(Display *, Xauth *,
@@ -66,8 +65,6 @@ extern "C" {
     extern int XSecurityQueryExtension(Display *, int *, int *);
     extern int XSecurityRevokeAuthorization(Display *,
 					    XSecurityAuthorization);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

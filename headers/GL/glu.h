@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
 #define GLU_FALSE	0
 #define GLU_EXT_nurbs_tessellator	1
 #define GLU_EXT_object_space_tess	1
@@ -165,11 +164,8 @@ extern "C" {
 #define GLU_OUT_OF_MEMORY	100902
 #define GLU_INCOMPATIBLE_GL_VERSION	100903
 #define GLU_INVALID_OPERATION	100904
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
     typedef void *_GLUfuncptr;
 
     typedef struct GLUtesselator GLUtesselatorObj;
@@ -180,30 +176,21 @@ extern "C" {
 
     typedef struct GLUnurbs GLUnurbsObj;
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 40
     typedef struct GLUnurbs GLUnurbs;
 
     typedef struct GLUquadric GLUquadric;
 
     typedef struct GLUtesselator GLUtesselator;
 
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
-#if __LSB_VERSION__ >= 12
 
 
 
 
 
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 40
     extern void gluBeginCurve(GLUnurbs *);
     extern void gluBeginPolygon(GLUtesselator *);
     extern void gluBeginSurface(GLUnurbs *);
@@ -292,8 +279,6 @@ extern "C" {
 			       const GLint *, GLdouble, GLdouble,
 			       GLdouble *, GLdouble *, GLdouble *,
 			       GLdouble *);
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -441,12 +441,8 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef int int32_t;
 
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
-#if __LSB_VERSION__ >= 12
     typedef signed char int8_t;
 
     typedef short int16_t;
@@ -457,9 +453,6 @@ extern "C" {
 
     typedef unsigned int uint32_t;
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
     typedef long long int int64_t;
@@ -670,8 +663,6 @@ extern "C" {
     typedef unsigned long int uint64_t;
 
 #endif
-#endif				/* __LSB_VERSION__ >= 2.0 */
-
 #if __LSB_VERSION__ >= 32
     typedef signed char int_least8_t;
 

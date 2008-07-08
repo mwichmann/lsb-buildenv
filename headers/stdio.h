@@ -9,11 +9,13 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -79,10 +81,7 @@ extern "C" {
 
 
 /* The opaque type of streams.*/
-#if __LSB_VERSION__ >= 10
     typedef struct _IO_FILE FILE;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 
 /* The possibilities for the third argument to `setvbuf'.*/
@@ -101,7 +100,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern size_t __fpending(FILE *);
     extern char *const _sys_errlist[128];
     extern void clearerr(FILE *);
@@ -175,8 +173,6 @@ extern "C" {
     extern int vprintf(const char *, va_list);
     extern int vsnprintf(char *, size_t, const char *, va_list);
     extern int vsprintf(char *, const char *, va_list);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
     extern char *gets(char *);
 #if __LSB_VERSION__ >= 13
     extern int asprintf(char **, const char *, ...);

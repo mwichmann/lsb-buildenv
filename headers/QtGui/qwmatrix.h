@@ -9,10 +9,7 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef QMatrix QWMatrix;
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }

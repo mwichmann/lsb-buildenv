@@ -8,14 +8,11 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define XMLCALL
 #define XMLCDECL
 #define XMLPUBFUN
 #define XMLPUBVAR	extern
 #define LIBXML_DLL_IMPORT	XMLPUBVAR
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 
 #ifdef __cplusplus

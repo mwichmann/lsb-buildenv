@@ -5,7 +5,6 @@
 class QStackedWidget;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QStackedWidget : public QFrame
 {
 private:
@@ -31,15 +30,10 @@ protected:
     bool event(QEvent*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN14QStackedWidget16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

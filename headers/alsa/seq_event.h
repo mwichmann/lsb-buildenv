@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_SEQ_TIME_STAMP_TICK	(0<<0)
 #define SND_SEQ_TIME_MODE_ABS	(0<<1)
 #define SND_SEQ_EVENT_LENGTH_FIXED	(0<<2)
@@ -23,11 +22,8 @@ extern "C" {
 #define SND_SEQ_PRIORITY_MASK	(1<<4)
 #define SND_SEQ_EVENT_LENGTH_VARUSR	(2<<2)
 #define SND_SEQ_EVENT_LENGTH_MASK	(3<<2)
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct snd_seq_addr snd_seq_addr_t;
 
     typedef struct snd_seq_connect snd_seq_connect_t;
@@ -84,9 +80,6 @@ extern "C" {
 
     typedef union snd_seq_timestamp snd_seq_timestamp_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
     struct snd_seq_ev_sample {
 	unsigned int std;
 	short unsigned int bank;
@@ -120,9 +113,6 @@ extern "C" {
 	int result;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct snd_seq_addr {
 	unsigned char client;
@@ -246,8 +236,6 @@ extern "C" {
 	short unsigned int bank;
 	short unsigned int prg;
     };
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }

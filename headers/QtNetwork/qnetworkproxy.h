@@ -5,7 +5,6 @@
 class QNetworkProxy;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QNetworkProxy
 {
 private:
@@ -36,8 +35,6 @@ Socks5Proxy = 1,
 NoProxy = 2
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

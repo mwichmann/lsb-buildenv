@@ -5,7 +5,6 @@
 class QIconEngine;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QIconEngine
 {
 private:
@@ -16,8 +15,6 @@ public:
     void addPixmap(QPixmap const&, QIcon::Mode, QIcon::State);
     void addFile(QString const&, QSize const&, QIcon::Mode, QIcon::State);
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

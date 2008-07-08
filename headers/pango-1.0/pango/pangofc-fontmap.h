@@ -13,18 +13,14 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define PANGO_FC_FONT_MAP(object)	 \
 	(G_TYPE_CHECK_INSTANCE_CAST ((object), PANGO_TYPE_FC_FONT_MAP, \
 	PangoFcFontMap))
 #define PANGO_IS_FC_FONT_MAP(object)	 \
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_FC_FONT_MAP))
 #define PANGO_TYPE_FC_FONT_MAP	(pango_fc_font_map_get_type ())
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _PangoFcFontMap PangoFcFontMap;
 
     typedef PangoFcDecoder *(*PangoFcDecoderFindFunc) (FcPattern *,
@@ -32,19 +28,13 @@ extern "C" {
 
     typedef struct _PangoFcFontMapClass PangoFcFontMapClass;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern PangoFontDescription
 	*pango_fc_font_description_from_pattern(FcPattern *, gboolean);
     extern void pango_fc_font_map_add_decoder_find_func(PangoFcFontMap *,
@@ -52,8 +42,6 @@ extern "C" {
 							gpointer,
 							GDestroyNotify);
     extern GType pango_fc_font_map_get_type(void);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

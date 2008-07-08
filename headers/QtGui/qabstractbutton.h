@@ -5,7 +5,6 @@
 class QAbstractButton;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QAbstractButton : public QWidget
 {
 private:
@@ -63,15 +62,10 @@ protected:
     void timerEvent(QTimerEvent*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN15QAbstractButton16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

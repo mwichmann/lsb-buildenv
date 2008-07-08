@@ -3,11 +3,13 @@
 #define _MATH_H_
 
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -422,7 +424,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern double acos(double);
     extern float acosf(float);
     extern double acosh(double);
@@ -618,8 +619,6 @@ extern "C" {
     extern double yn(int, double);
     extern float ynf(int, float);
     extern long double ynl(int, long double);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int __isinf(double);
     extern int __isinff(float);

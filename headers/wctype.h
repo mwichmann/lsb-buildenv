@@ -10,14 +10,11 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 10
     typedef unsigned long int wctype_t;
 
     typedef unsigned int wint_t;
 
     typedef const int32_t *wctrans_t;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 13
     typedef struct {
@@ -37,7 +34,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int iswalnum(wint_t);
     extern int iswalpha(wint_t);
     extern int iswblank(wint_t);
@@ -56,8 +52,6 @@ extern "C" {
     extern wint_t towupper(wint_t);
     extern wctrans_t wctrans(const char *);
     extern wctype_t wctype(const char *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -5,7 +5,6 @@
 class QInputDialog;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QInputDialog : public QDialog
 {
 private:
@@ -30,15 +29,10 @@ EditableComboBox = 4
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN12QInputDialog16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

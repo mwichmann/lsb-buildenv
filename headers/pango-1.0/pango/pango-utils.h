@@ -14,7 +14,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern const char *pango_language_get_sample_string(PangoLanguage *);
     extern gboolean pango_log2vis_get_embedding_levels(gunichar *, gint,
 						       PangoDirection *,
@@ -34,8 +33,6 @@ extern "C" {
     extern gboolean pango_skip_space(const char **);
     extern char **pango_split_file_list(const char *);
     extern char *pango_trim_string(const char *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern gboolean pango_is_zero_width(gunichar);
 #endif				/* __LSB_VERSION__ >= 4.0 */

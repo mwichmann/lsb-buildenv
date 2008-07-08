@@ -5,7 +5,6 @@
 class QSqlDriverCreatorBase;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QSqlDriverCreatorBase
 {
 private:
@@ -64,16 +63,11 @@ public:
      QSqlDatabase(QSqlDriver*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern char * _ZN12QSqlDatabase17defaultConnectionE ;
 extern QDebug _Zls6QDebugRK12QSqlDatabase(_Z6QDebug, QSqlDatabase & &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

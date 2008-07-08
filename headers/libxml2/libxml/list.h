@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlList xmlList;
 
     typedef xmlList *xmlListPtr;
@@ -23,19 +22,13 @@ extern "C" {
 
     typedef int (*xmlListDataCompare) (const void *, const void *);
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void *xmlLinkGetData(xmlLinkPtr);
     extern int xmlListAppend(xmlListPtr, void *);
     extern void xmlListClear(xmlListPtr);
@@ -64,8 +57,6 @@ extern "C" {
     extern int xmlListSize(xmlListPtr);
     extern void xmlListSort(xmlListPtr);
     extern void xmlListWalk(xmlListPtr, xmlListWalker, const void *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

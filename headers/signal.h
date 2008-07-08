@@ -8,11 +8,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -507,11 +509,8 @@ extern "C" {
 
 
 /* sigaction*/
-#if __LSB_VERSION__ >= 10
 #define sa_handler	__sigaction_handler._sa_handler
 #define sa_sigaction	__sigaction_handler._sa_sigaction
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
 #define SA_INTERRUPT	0x20000000
 #define SA_ONSTACK	0x08000000	/* Use signal stack by using `sa_restorer`. */
@@ -979,7 +978,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int __libc_current_sigrtmax(void);
     extern int __libc_current_sigrtmin(void);
     extern sighandler_t __sysv_signal(int, sighandler_t);
@@ -1018,8 +1016,6 @@ extern "C" {
 			    const struct timespec *);
     extern int sigwait(const sigset_t *, int *);
     extern int sigwaitinfo(const sigset_t *, siginfo_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern int __xpg_sigpause(int);
 #endif				/* __LSB_VERSION__ >= 3.2 */

@@ -446,10 +446,7 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef unsigned int speed_t;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned char cc_t;
@@ -1346,7 +1343,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern speed_t cfgetispeed(const struct termios *);
     extern speed_t cfgetospeed(const struct termios *);
     extern void cfmakeraw(struct termios *);
@@ -1360,8 +1356,6 @@ extern "C" {
     extern pid_t tcgetsid(int);
     extern int tcsendbreak(int, int);
     extern int tcsetattr(int, int, const struct termios *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

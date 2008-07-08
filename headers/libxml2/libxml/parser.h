@@ -19,17 +19,13 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define XML_DEFAULT_VERSION	"1.0"
 #define XML_SAX2_MAGIC	0xDEEDBEAF
 #define XML_DETECT_IDS	2
 #define XML_COMPLETE_ATTRS	4
 #define XML_SKIP_IDS	8
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef xmlSAXHandler *xmlSAXHandlerPtr;
 
     typedef xmlParserNodeInfoSeq *xmlParserNodeInfoSeqPtr;
@@ -94,12 +90,9 @@ extern "C" {
 	XML_PARSE_COMPACT = 1 << 16
     } xmlParserOption;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern long int xmlByteConsumed(xmlParserCtxtPtr);
     extern void xmlCleanupParser(void);
     extern void xmlClearNodeInfoSeq(xmlParserNodeInfoSeqPtr);
@@ -212,8 +205,6 @@ extern "C" {
 					const char *);
     extern void xmlStopParser(xmlParserCtxtPtr);
     extern int xmlSubstituteEntitiesDefault(int);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

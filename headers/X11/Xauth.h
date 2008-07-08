@@ -45,15 +45,12 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void XauDisposeAuth(Xauth *);
     extern char *XauFileName(void);
     extern Xauth *XauGetBestAuthByAddr(unsigned int, unsigned int,
 				       const char *, unsigned int, char *,
 				       int, char **, int *);
     extern Xauth *XauReadAuth(FILE *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

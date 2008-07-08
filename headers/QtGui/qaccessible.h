@@ -5,7 +5,6 @@
 class QAccessibleEvent;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QAccessible::StateFlag>
 {
 private:
@@ -26,9 +25,6 @@ typedef void	UpdateHandler
 typedef void	RootObjectHandler	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QAccessible
 {
 private:
@@ -269,8 +265,6 @@ class QAccessibleEvent : public QEvent
 private:
 public:
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

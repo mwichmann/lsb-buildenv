@@ -5,7 +5,6 @@
 class QCDEStyle;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QCDEStyle : public QMotifStyle
 {
 private:
@@ -23,15 +22,10 @@ protected:
     QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QCDEStyle16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -5,7 +5,6 @@
 class QGLColormap;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 12
 class QGLColormap
 {
 private:
@@ -26,8 +25,6 @@ public:
 };
 
 struct QGLColormapData	;
-
-#endif /* __LSB_VERSION__ >= 1.2 */
 
 // *INDENT-ON*
 #endif				/* protection */

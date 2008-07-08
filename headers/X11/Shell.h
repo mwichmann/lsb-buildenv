@@ -12,7 +12,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern char XtShellStrings[];
     extern WidgetClass applicationShellWidgetClass;
     extern WidgetClass overrideShellWidgetClass;
@@ -21,8 +20,6 @@ extern "C" {
     extern WidgetClass topLevelShellWidgetClass;
     extern WidgetClass transientShellWidgetClass;
     extern WidgetClass wmShellWidgetClass;
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

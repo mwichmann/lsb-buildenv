@@ -16,7 +16,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define xmlXPathStackIsNodeSet(ctxt)	 \
 	(((ctxt)->value != NULL) && (((ctxt)->value->type == XPATH_NODESET) \
 	|| ((ctxt)->value->type == XPATH_XSLT_TREE)))
@@ -73,14 +72,11 @@ extern "C" {
 #define xmlXPathReturnTrue(ctxt)	xmlXPathReturnBoolean((ctxt), 1)
 #define XP_ERROR0(X)	{ xmlXPathErr(ctxt, X); return(0); }
 #define XP_ERROR(X)	{ xmlXPathErr(ctxt, X); return; }
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlXPathObjectPtr valuePop(xmlXPathParserContextPtr);
     extern int valuePush(xmlXPathParserContextPtr, xmlXPathObjectPtr);
     extern void xmlXPathAddValues(xmlXPathParserContextPtr);
@@ -243,8 +239,6 @@ extern "C" {
     extern xmlXPathObjectPtr xmlXPathWrapString(xmlChar *);
     extern void xmlXPatherror(xmlXPathParserContextPtr, const char *, int,
 			      int);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

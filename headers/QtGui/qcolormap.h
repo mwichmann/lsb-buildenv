@@ -5,7 +5,6 @@
 class QColormap;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QColormap
 {
 private:
@@ -31,8 +30,6 @@ Indexed = 1,
 Gray = 2
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

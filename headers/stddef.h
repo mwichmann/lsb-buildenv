@@ -8,10 +8,7 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
 #define NULL	(0L)		/* (void *) would be better, but causes problems with C++. */
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 12
 #define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
 #endif				/* __LSB_VERSION__ >= 1.2 */

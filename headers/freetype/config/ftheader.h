@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define FT_BEGIN_HEADER
 #define FT_END_HEADER
 #define FT_ERRORDEF_(e,v,s)	 \
@@ -70,8 +69,6 @@ extern "C" {
 #define FT_ERROR_END_LIST	FT_ERR_CAT( FT_ERR_PREFIX, Max ) };
 #define FT_ERR_CAT(x,y)	FT_ERR_XCAT( x, y )
 #define FT_ERR_XCAT(x,y)	x ## y
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 
 #ifdef __cplusplus

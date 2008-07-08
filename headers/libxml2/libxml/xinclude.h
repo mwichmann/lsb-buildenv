@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define XINCLUDE_PARSE_ENCODING	(const xmlChar *) "encoding"
 #define XINCLUDE_FALLBACK	(const xmlChar *) "fallback"
 #define XINCLUDE_HREF	(const xmlChar *) "href"
@@ -21,26 +20,17 @@ extern "C" {
 #define XINCLUDE_PARSE_TEXT	(const xmlChar *) "text"
 #define XINCLUDE_PARSE_XML	(const xmlChar *) "xml"
 #define XINCLUDE_PARSE_XPOINTER	(const xmlChar *) "xpointer"
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlXIncludeCtxt xmlXIncludeCtxt;
 
     typedef xmlXIncludeCtxt *xmlXIncludeCtxtPtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
-#if __LSB_VERSION__ >= 31
-
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr);
     extern xmlXIncludeCtxtPtr xmlXIncludeNewContext(xmlDocPtr);
     extern int xmlXIncludeProcess(xmlDocPtr);
@@ -49,8 +39,6 @@ extern "C" {
     extern int xmlXIncludeProcessTree(xmlNodePtr);
     extern int xmlXIncludeProcessTreeFlags(xmlNodePtr, int);
     extern int xmlXIncludeSetFlags(xmlXIncludeCtxtPtr, int);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

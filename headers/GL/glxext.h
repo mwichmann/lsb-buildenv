@@ -50,11 +50,8 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void glXFreeContextEXT(Display *, int);
     extern int glXQueryContextInfoEXT(Display *, int, int, int *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte *);
 #endif				/* __LSB_VERSION__ >= 1.3 */

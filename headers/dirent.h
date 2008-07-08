@@ -43,7 +43,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int closedir(DIR *);
     extern DIR *opendir(const char *);
     extern struct dirent *readdir(DIR *);
@@ -51,8 +50,6 @@ extern "C" {
     extern void rewinddir(DIR *);
     extern void seekdir(DIR *, long int);
     extern long int telldir(DIR *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern int readdir_r(DIR *, struct dirent *, struct dirent **);
 #endif				/* __LSB_VERSION__ >= 1.1 */

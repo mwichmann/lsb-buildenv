@@ -22,15 +22,12 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-#if __LSB_VERSION__ >= 10
     typedef int regoff_t;
 
     typedef struct {
 	regoff_t rm_so;
 	regoff_t rm_eo;
     } regmatch_t;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef struct re_pattern_buffer regex_t;
@@ -107,14 +104,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int regcomp(regex_t *, const char *, int);
     extern size_t regerror(int, const regex_t *, char *, size_t);
     extern int regexec(const regex_t *, const char *, size_t, regmatch_t[],
 		       int);
     extern void regfree(regex_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

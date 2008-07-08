@@ -5,7 +5,6 @@
 class QSqlField;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QSqlField
 {
 private:
@@ -49,15 +48,10 @@ Required = 1
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK9QSqlField(const QSqlField &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

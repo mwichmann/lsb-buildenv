@@ -5,7 +5,6 @@
 class QGroupBox;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QGroupBox : public QWidget
 {
 private:
@@ -43,15 +42,10 @@ protected:
     void clicked(bool);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QGroupBox16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

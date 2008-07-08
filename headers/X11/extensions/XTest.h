@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 40
 #define XTestExtensionName	"XTEST"
 #define XTestNumberErrors	0
 #define XTestNumberEvents	0
@@ -21,14 +20,11 @@ extern "C" {
 #define XTestMinorVersion	2
 #define X_XTestFakeInput	2
 #define X_XTestGrabControl	3
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 40
     extern int XTestCompareCurrentCursorWithWindow(Display *, Window);
     extern int XTestCompareCursorWithWindow(Display *, Window, Cursor);
     extern int XTestDiscard(Display *);
@@ -53,8 +49,6 @@ extern "C" {
     extern int XTestQueryExtension(Display *, int *, int *, int *, int *);
     extern void XTestSetGContextOfGC(GC, GContext);
     extern void XTestSetVisualIDOfVisual(Visual *, VisualID);
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 #ifdef __cplusplus
 }
 #endif

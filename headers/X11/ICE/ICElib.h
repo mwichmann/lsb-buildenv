@@ -114,7 +114,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern IceConn IceAcceptConnection(IceListenObj,
 				       enum IceAcceptStatus *);
     extern int IceAddConnectionWatch(IceWatchProc, IcePointer);
@@ -176,8 +175,6 @@ extern "C" {
     extern void IceSetShutdownNegotiation(IceConn, int);
     extern int IceSwapping(IceConn);
     extern char *IceVendor(IceConn);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

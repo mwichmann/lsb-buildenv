@@ -37,7 +37,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XShmAttach(Display *, XShmSegmentInfo *);
     extern XImage *XShmCreateImage(Display *, Visual *, unsigned int, int,
 				   char *, XShmSegmentInfo *, unsigned int,
@@ -54,8 +53,6 @@ extern "C" {
 			    int, int, unsigned int, unsigned int, int);
     extern int XShmQueryExtension(Display *);
     extern int XShmQueryVersion(Display *, int *, int *, int *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

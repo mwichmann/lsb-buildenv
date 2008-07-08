@@ -5,7 +5,6 @@
 class QObjectCleanupHandler;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QObjectCleanupHandler : public QObject
 {
 private:
@@ -21,15 +20,10 @@ public:
     void clear();
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN21QObjectCleanupHandler16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

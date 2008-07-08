@@ -5,7 +5,6 @@
 class QAccessibleApplication;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QAccessibleObject : public QAccessibleInterface
 {
 private:
@@ -39,8 +38,6 @@ public:
     bool doAction(int, int, QList<QVariant> const&);
     QString actionText(int, QAccessible::Text, int) const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

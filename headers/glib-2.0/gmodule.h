@@ -9,14 +9,10 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define G_MODULE_EXPORT
 #define G_MODULE_IMPORT	extern
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _GModule GModule;
 
     typedef enum {
@@ -29,17 +25,11 @@ extern "C" {
 
     typedef const gchar *(*GModuleCheckInit) (GModule *);
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
-#if __LSB_VERSION__ >= 31
-
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern gchar *g_module_build_path(const gchar *, const gchar *);
     extern gboolean g_module_close(GModule *);
     extern const gchar *g_module_error(void);
@@ -48,8 +38,6 @@ extern "C" {
     extern GModule *g_module_open(const gchar *, GModuleFlags);
     extern gboolean g_module_supported(void);
     extern gboolean g_module_symbol(GModule *, const gchar *, gpointer *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

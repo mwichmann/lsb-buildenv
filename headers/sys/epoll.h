@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 40
 #define EPOLLONESHOT	(1 << 30)
 #define EPOLLET	(1 << 31)
 #define EPOLLIN	1
@@ -25,16 +24,10 @@ extern "C" {
 #define EPOLLWRBAND	512
 #define EPOLLRDNORM	64
 #define EPOLLERR	8
-#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
-
-#if __LSB_VERSION__ >= 40
     typedef union epoll_data epoll_data_t;
 
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
-#if __LSB_VERSION__ >= 40
     union epoll_data {
 	void *ptr;
 	int fd;
@@ -47,17 +40,12 @@ extern "C" {
 	epoll_data_t data;
     };
 
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 40
     extern int epoll_create(int);
     extern int epoll_ctl(int, int, int, struct epoll_event *);
     extern int epoll_wait(int, struct epoll_event *, int, int);
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 #ifdef __cplusplus
 }
 #endif

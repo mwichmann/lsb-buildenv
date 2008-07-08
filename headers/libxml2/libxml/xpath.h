@@ -15,7 +15,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define xmlXPathNodeSetItem(ns,index)	 \
 	((((ns) != NULL) && ((index) >= 0) && ((index) < (ns)->nodeNr)) ? \
 	(ns)->nodeTab[(index)] : NULL)
@@ -24,11 +23,8 @@ extern "C" {
 #define xmlXPathNodeSetGetLength(ns)	((ns) ? (ns)->nodeNr : 0)
 #define XML_XPATH_CHECKNS	(1<<0)
 #define XML_XPATH_NOVAR	(1<<1)
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlXPathCompExpr xmlXPathCompExpr;
 
     typedef xmlXPathCompExpr *xmlXPathCompExprPtr;
@@ -123,9 +119,6 @@ extern "C" {
 
     typedef xmlXPathFunct *xmlXPathFuncPtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
@@ -229,12 +222,9 @@ extern "C" {
 	xmlXPathObjectPtr value;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern double xmlXPathCastBooleanToNumber(int);
     extern xmlChar *xmlXPathCastBooleanToString(int);
     extern int xmlXPathCastNodeSetToBoolean(xmlNodeSetPtr);
@@ -279,8 +269,6 @@ extern "C" {
     extern xmlXPathObjectPtr xmlXPathObjectCopy(xmlXPathObjectPtr);
     extern long int xmlXPathOrderDocElems(xmlDocPtr);
     extern double xmlXPathPINF;
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

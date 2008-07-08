@@ -5,13 +5,9 @@
 class QXmlInputSource;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef enum QtValidLicenseForXmlModule	QtXmlModule	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QXmlNamespaceSupport
 {
 private:
@@ -207,16 +203,11 @@ public:
     QString errorString() const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern unsigned short _ZN15QXmlInputSource13EndOfDocumentE ;
 extern unsigned short _ZN15QXmlInputSource9EndOfDataE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

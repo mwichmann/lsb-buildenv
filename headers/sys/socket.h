@@ -180,10 +180,7 @@ extern "C" {
 
 
 /* Socket Options*/
-#if __LSB_VERSION__ >= 10
 #define SO_BSDCOMPAT	14
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
 #define SO_DEBUG	1
 #define SO_OOBINLINE	10
@@ -340,7 +337,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int accept(int, struct sockaddr *, socklen_t *);
     extern int bind(int, const struct sockaddr *, socklen_t);
     extern int connect(int, const struct sockaddr *, socklen_t);
@@ -360,8 +356,6 @@ extern "C" {
     extern int shutdown(int, int);
     extern int socket(int, int, int);
     extern int socketpair(int, int, int, int[2]);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int getnameinfo(const struct sockaddr *, socklen_t, char *,
 			   socklen_t, char *, socklen_t, unsigned int);

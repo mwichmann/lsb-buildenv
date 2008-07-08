@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 10
 #define GLX_EXTENSION_NAME	"GLX"
 #define GLX_FRONT_LEFT_BUFFER_BIT	0x00000001
 #define GLX_RGBA_BIT	0x00000001
@@ -105,8 +104,6 @@ extern "C" {
 #define GLX_BAD_ENUM	7
 #define GLX_RED_SIZE	8
 #define GLX_GREEN_SIZE	9
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
 #define GLX_ARB_get_proc_address	1
 #define GLX_GLXEXT_VERSION	6
@@ -114,7 +111,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef struct __GLXcontextRec *GLXContext;
 
     typedef XID GLXDrawable;
@@ -150,25 +146,19 @@ extern "C" {
     typedef void (*__GLXextFuncPtr) (const GLubyte * procName);
 
 #include <GL/glxext.h>
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     typedef struct __GLXFBConfigRec *GLXFBConfig;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 10
     union __GLXEvent {
 	GLXPbufferClobberEvent glxpbufferclobber;
 	long int pad;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern GLXFBConfig *glXChooseFBConfig(Display *, int, const int *,
 					  int *);
     extern XVisualInfo *glXChooseVisual(Display *, int, int *);
@@ -219,8 +209,6 @@ extern "C" {
     extern void glXUseXFont(Font, int, int, int);
     extern void glXWaitGL(void);
     extern void glXWaitX(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 40
     extern GLXFBConfig *glXGetFBConfigs(Display *, int, int *);
 #endif				/* __LSB_VERSION__ >= 4.0 */

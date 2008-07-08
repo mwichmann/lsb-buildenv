@@ -5,7 +5,6 @@
 class QMenuItem;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QMenuItem : public QAction
 {
 private:
@@ -18,8 +17,6 @@ public:
     void * qt_metacast(char const*);
     struct QMetaObject * metaObject() const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

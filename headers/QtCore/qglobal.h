@@ -5,7 +5,6 @@
 class QBool;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef signed char	qint8	
 ;
 
@@ -84,9 +83,6 @@ typedef unsigned long int	Q_ULONG
 typedef void	QtMsgHandler	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QSysInfo
 {
 private:
@@ -183,12 +179,9 @@ LicensedActiveQt = 1
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern void _Z11qt_assert_xPKcS0_S0_i(const char *, const char *, const char *, int);
 extern char _Z12qInstallPathv(void);
 extern bool _Z12qSharedBuildv(void);
@@ -328,8 +321,6 @@ extern char _Z8qVersionv(void);
 extern void _Z8qWarningPKcz(const char *, ...);
 extern void _Z9qCriticalPKcz(const char *, ...);
 extern void _Z9qt_assertPKcS0_i(const char *, const char *, int);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 32
 extern  _Z5qrandv(void);
 extern  _Z6qsrandj(unsigned int);

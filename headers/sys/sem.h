@@ -131,12 +131,9 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int semctl(int, int, int, ...);
     extern int semget(key_t, int, int);
     extern int semop(int, struct sembuf *, size_t);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

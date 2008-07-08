@@ -11,18 +11,14 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define POSIX_SPAWN_RESETIDS	0x01
 #define POSIX_SPAWN_SETPGROUP	0x02
 #define POSIX_SPAWN_SETSIGDEF	0x04
 #define POSIX_SPAWN_SETSIGMASK	0x08
 #define POSIX_SPAWN_SETSCHEDPARAM	0x10
 #define POSIX_SPAWN_SETSCHEDULER	0x20
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct {
 	int __allocated;
 	int __used;
@@ -40,12 +36,9 @@ extern "C" {
 	int __pad[16];
     } posix_spawnattr_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int posix_spawn(pid_t *, const char *,
 			   const posix_spawn_file_actions_t *,
 			   const posix_spawnattr_t *, char *const[],
@@ -87,8 +80,6 @@ extern "C" {
 			    const posix_spawn_file_actions_t *,
 			    const posix_spawnattr_t *, char *const[],
 			    char *const[]);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

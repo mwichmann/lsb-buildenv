@@ -6,21 +6,20 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
 #define h_addr	h_addr_list[0]
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 12
 #define h_errno	(*__h_errno_location ())
 #define NETDB_INTERNAL	-1	/* See errno. */
@@ -43,7 +42,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 11
     struct servent {
 	char *s_name;
 	char **s_aliases;
@@ -58,8 +56,6 @@ extern "C" {
 	int h_length;
 	char **h_addr_list;
     };
-
-#endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 13
     struct protoent {
@@ -141,7 +137,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void endprotoent(void);
     extern void endservent(void);
     extern struct hostent *gethostbyaddr(const void *, socklen_t,
@@ -155,8 +150,6 @@ extern "C" {
     extern struct servent *getservent(void);
     extern void setprotoent(int);
     extern void setservent(int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     extern int *__h_errno_location(void);
 #endif				/* __LSB_VERSION__ >= 1.2 */

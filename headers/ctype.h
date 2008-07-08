@@ -126,7 +126,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int _tolower(int);
     extern int _toupper(int);
     extern int isalnum(int);
@@ -145,8 +144,6 @@ extern "C" {
     extern int toascii(int);
     extern int tolower(int);
     extern int toupper(int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 20
     extern const unsigned short **__ctype_b_loc(void);
     extern const int32_t **__ctype_tolower_loc(void);

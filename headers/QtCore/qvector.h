@@ -5,7 +5,6 @@
 class QVector < QVariant >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QVector<QVariant>
 {
 private:
@@ -14,15 +13,10 @@ public:
 
 struct QVectorData	;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QVectorData _ZN11QVectorData11shared_nullE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

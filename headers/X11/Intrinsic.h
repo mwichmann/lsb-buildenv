@@ -282,7 +282,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void XtAddActions(XtActionList, Cardinal);
     extern void XtAddCallback(Widget, const char *, XtCallbackProc,
 			      XtPointer);
@@ -760,8 +759,6 @@ extern "C" {
     extern Widget XtWindowToWidget(Display *, Window);
     extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass,
 				   XtEnum);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     extern Boolean _XtCheckSubclassFlag(Widget, XtEnum);
 #endif				/* __LSB_VERSION__ >= 1.2 */

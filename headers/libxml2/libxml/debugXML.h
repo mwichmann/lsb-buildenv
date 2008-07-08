@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef char *(*xmlShellReadlineFunc) (char *);
 
     typedef struct _xmlShellCtxt xmlShellCtxt;
@@ -22,9 +21,6 @@ extern "C" {
     typedef int (*xmlShellCmd) (xmlShellCtxtPtr, char *, xmlNodePtr,
 				xmlNodePtr);
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlShellCtxt {
 	char *filename;
@@ -36,12 +32,9 @@ extern "C" {
 	xmlShellReadlineFunc input;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern const char *xmlBoolToText(int);
     extern int xmlDebugCheckDocument(FILE *, xmlDocPtr);
     extern void xmlDebugDumpAttr(FILE *, xmlAttrPtr, int);
@@ -79,8 +72,6 @@ extern "C" {
 				xmlNodePtr);
     extern int xmlShellWrite(xmlShellCtxtPtr, char *, xmlNodePtr,
 			     xmlNodePtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

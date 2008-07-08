@@ -273,14 +273,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int creat(const char *, mode_t);
     extern int creat64(const char *, mode_t);
     extern int fcntl(int, int, ...);
     extern int open(const char *, int, ...);
     extern int open64(const char *, int, ...);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern int posix_fadvise(int, off_t, off_t, int);
     extern int posix_fadvise64(int, off64_t, off64_t, int);

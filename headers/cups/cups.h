@@ -13,18 +13,14 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define _CUPS_CUPS_H_
 #define CUPS_VERSION_MAJOR	1
 #define CUPS_VERSION_MINOR	1
 #define CUPS_VERSION	1.0123
 #define CUPS_VERSION_PATCH	23
 #define cupsLangDefault()	cupsLangGet(NULL)
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef enum {
 	CUPS_AUTO_ENCODING = -1,
 	CUPS_US_ASCII = 0,
@@ -232,9 +228,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct cups_lang_str {
 	struct cups_lang_str *next;
@@ -254,10 +247,7 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
-
-#if __LSB_VERSION__ >= 32
 #if __LSB_VERSION__ < 40
     typedef struct {
 	int fd;
@@ -292,8 +282,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #if __LSB_VERSION__ >= 40
     typedef struct _http_s http_t;
 
@@ -307,7 +295,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int cupsAddDest(const char *, const char *, int,
 			   cups_dest_t * *);
     extern int cupsAddOption(const char *, const char *, int,
@@ -345,8 +332,6 @@ extern "C" {
     extern void cupsSetUser(const char *);
     extern int cupsTempFd(char *, int);
     extern const char *cupsUser(void);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

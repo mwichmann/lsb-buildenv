@@ -12,16 +12,12 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_HWDEP_OPEN_NONBLOCK	(O_NONBLOCK)
 #define SND_HWDEP_OPEN_READ	(O_RDONLY)
 #define SND_HWDEP_OPEN_DUPLEX	(O_RDWR)
 #define SND_HWDEP_OPEN_WRITE	(O_WRONLY)
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct sndrv_hwdep_dsp_image snd_hwdep_dsp_image_t;
 
     typedef struct sndrv_hwdep_dsp_status snd_hwdep_dsp_status_t;
@@ -56,12 +52,9 @@ extern "C" {
 	SND_HWDEP_TYPE_INET = 2
     } snd_hwdep_type_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int snd_hwdep_close(snd_hwdep_t *);
     extern void snd_hwdep_dsp_image_copy(snd_hwdep_dsp_image_t *,
 					 const snd_hwdep_dsp_image_t *);
@@ -131,8 +124,6 @@ extern "C" {
 					  unsigned int);
     extern ssize_t snd_hwdep_read(snd_hwdep_t *, void *, size_t);
     extern ssize_t snd_hwdep_write(snd_hwdep_t *, const void *, size_t);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif
