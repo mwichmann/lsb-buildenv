@@ -35,6 +35,10 @@
 #define getparyx(win,y,x)	\
 	(y=(win)?(win)->_pary:ERR,x=(win)?(win)->_parx:ERR)
 
+#define __NCURSES_H	1
+#define NCURSES_EXPORT(type)	type
+#define NCURSES_EXPORT_VAR(type)	type
+
 #define WA_ALTCHARSET	A_ALTCHARSET
 #define WA_ATTRIBUTES	A_ATTRIBUTES
 #define WA_BLINK	A_BLINK
@@ -120,6 +124,7 @@ struct _win_st {
     cchar_t _bkgrnd;
 };
 
+#define KEY_F(n)	(KEY_F0+(n))
 #define KEY_CODE_YES	0400
 #define KEY_BREAK	0401
 #define KEY_MIN	0401

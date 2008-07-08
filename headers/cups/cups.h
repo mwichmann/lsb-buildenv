@@ -153,12 +153,6 @@ extern "C" {
 	HTTP_ENCODE_CHUNKED = 1
     } http_encoding_t;
 
-    typedef unsigned int md5_word_t;
-
-    typedef unsigned char md5_byte_t;
-
-    typedef struct md5_state_s md5_state_t;
-
     typedef enum {
 	IPP_JOB_PENDING = 3,
 	IPP_JOB_HELD = 4,
@@ -229,6 +223,15 @@ extern "C" {
 	IPP_PRINTER_IS_DEACTIVATED = 1290
     } ipp_status_t;
 
+#if __LSB_VERSION__ < 40
+    typedef unsigned int md5_word_t;
+
+    typedef unsigned char md5_byte_t;
+
+    typedef struct md5_state_s md5_state_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 32
@@ -241,6 +244,7 @@ extern "C" {
 	char *messages[506];
     };
 
+#if __LSB_VERSION__ < 40
 
     struct md5_state_s {
 	md5_word_t count[2];
@@ -248,10 +252,13 @@ extern "C" {
 	md5_byte_t buf[64];
     };
 
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 #if __LSB_VERSION__ >= 32
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int fd;
 	int blocking;
@@ -283,7 +290,19 @@ extern "C" {
 	int digest_tries;
     } http_t;
 
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+    typedef struct _http_s http_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 40
+
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Function prototypes */

@@ -9,9 +9,12 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
+#define ZLIB_VERSION	"1.2.2"
+#endif				/* __LSB_VERSION__ >= 1.1 */
+
 #if __LSB_VERSION__ >= 13
 #define Z_NULL	0
-#define ZLIB_VERSION	"1.2.2"
 #define MAX_WBITS	15	/* 32K LZ77 window */
 #define MAX_MEM_LEVEL	9	/* Maximum value for memLevel in deflateInit2 */
 #define deflateInit2(strm,level,method,windowBits,memLevel,strategy)	\

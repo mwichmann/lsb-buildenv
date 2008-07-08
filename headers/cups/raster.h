@@ -23,12 +23,6 @@ extern "C" {
 	CUPS_RASTER_WRITE = 1
     } cups_mode_t;
 
-    typedef struct {
-	unsigned int sync;
-	int fd;
-	cups_mode_t mode;
-    } cups_raster_t;
-
     typedef enum {
 	CUPS_ADVANCE_NONE = 0,
 	CUPS_ADVANCE_FILE = 1,
@@ -154,7 +148,21 @@ extern "C" {
 	unsigned int cupsRowStep;
     } cups_page_header_t;
 
+#if __LSB_VERSION__ < 40
+    typedef struct {
+	unsigned int sync;
+	int fd;
+	cups_mode_t mode;
+    } cups_raster_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 40
+    typedef struct _cups_raster_s cups_raster_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Function prototypes */

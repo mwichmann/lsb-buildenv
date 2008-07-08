@@ -58,6 +58,14 @@ extern "C" {
 
 
 /* Stuff needed to make other curses related headers happy*/
+#if __LSB_VERSION__ >= 11
+#define __NCURSES_H	1
+#define NCURSES_EXPORT(type)	type
+#define NCURSES_EXPORT_VAR(type)	type
+#endif				/* __LSB_VERSION__ >= 1.1 */
+
+
+
 
 #if __LSB_VERSION__ >= 11
 #define WA_ALTCHARSET	A_ALTCHARSET
@@ -191,6 +199,7 @@ extern "C" {
 
 /* Pseudo-character tokens outside ASCII range.*/
 #if __LSB_VERSION__ >= 11
+#define KEY_F(n)	(KEY_F0+(n))
 #define KEY_CODE_YES	0400
 #define KEY_BREAK	0401
 #define KEY_MIN	0401

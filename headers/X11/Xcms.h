@@ -48,18 +48,6 @@ extern "C" {
 	XcmsScreenFreeProc screenFreeProc;
     };
 
-    int (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
-    void (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

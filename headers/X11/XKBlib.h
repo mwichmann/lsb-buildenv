@@ -284,10 +284,6 @@ extern "C" {
 	XEvent core;
     };
 
-     Atom(*core) (void);
-
-    char *(*core) (void);
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

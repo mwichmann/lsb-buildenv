@@ -143,47 +143,13 @@ extern "C" {
 	XIMHotKeyTrigger *key;
     };
 
-    int (*key) (struct _XExtData * extension);
-
-    struct _XImage *(*key) (void);
-
-    int (*key) (void);
-
-    unsigned long int (*key) (void);
-
-    int (*key) (void);
-
-    struct _XImage *(*key) (void);
-
-    int (*key) (void);
-
-     XID(*key) (void);
-
-    int (*key) (void);
-
-    enum;
-
-    void (*key) (void);
-
-    int (*key) (void);
-
-    void (*key) (void);
-
     enum;
 
     enum;
 
     enum;
 
-    int (*key) (void);
-
-    int (*key) (void);
-
-    int (*key) (void);
-
-    int (*key) (void);
-
-    void (*key) (void);
+    enum;
 
     enum {
 	XOMOrientation_LTR_TTB,
@@ -1320,20 +1286,67 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
-    extern int XESetBeforeFlush(void);
-    extern int *XESetCloseDisplay(void);
-    extern int XESetCopyGC(void);
-    extern int XESetCreateFont(void);
-    extern int XESetCreateGC(void);
-    extern int XESetError(void);
-    extern int XESetErrorString(void);
-    extern int XESetEventToWire(void);
-    extern int XESetFlushGC(void);
-    extern int XESetFreeFont(void);
-    extern int XESetFreeGC(void);
-    extern int XESetPrintErrorValues(void);
-    extern int XESetWireToError(void);
-    extern int XESetWireToEvent(void);
+    extern
+	void (*XESetBeforeFlush
+	      (Display *, int,
+	       void (*)(Display *, XExtCodes *, const char *, long int)
+	      )) (Display *, XExtCodes *, const char *, long int);
+    extern
+	int (*XESetCloseDisplay
+	     (Display *, int, int (*)(Display *, XExtCodes *)
+	     )) (Display *, XExtCodes *);
+    extern
+	int (*XESetCopyGC
+	     (Display *, int, int (*)(Display *, GC, XExtCodes *)
+	     )) (Display *, GC, XExtCodes *);
+    extern
+	int (*XESetCreateFont
+	     (Display *, int,
+	      int (*)(Display *, XFontStruct *, XExtCodes *)
+	     )) (Display *, XFontStruct *, XExtCodes *);
+    extern
+	int (*XESetCreateGC
+	     (Display *, int, int (*)(Display *, GC, XExtCodes *)
+	     )) (Display *, GC, XExtCodes *);
+    extern
+	int (*XESetError
+	     (Display *, int,
+	      int (*)(Display *, xError *, XExtCodes *, int *)
+	     )) (Display *, xError *, XExtCodes *, int *);
+    extern char
+	*(*XESetErrorString
+	  (Display *, int,
+	   char *(*)(Display *, int, XExtCodes *, char *, int)
+	  )) (Display *, int, XExtCodes *, char *, int);
+    extern
+	int (*XESetEventToWire
+	     (Display *, int, int (*)(Display *, XEvent *, xEvent *)
+	     )) (Display *, XEvent *, xEvent *);
+    extern
+	int (*XESetFlushGC
+	     (Display *, int, int (*)(Display *, GC, XExtCodes *)
+	     )) (Display *, GC, XExtCodes *);
+    extern
+	int (*XESetFreeFont
+	     (Display *, int,
+	      int (*)(Display *, XFontStruct *, XExtCodes *)
+	     )) (Display *, XFontStruct *, XExtCodes *);
+    extern
+	int (*XESetFreeGC
+	     (Display *, int, int (*)(Display *, GC, XExtCodes *)
+	     )) (Display *, GC, XExtCodes *);
+    extern
+	void (*XESetPrintErrorValues
+	      (Display *, int, void (*)(Display *, XErrorEvent *, void *)
+	      )) (Display *, XErrorEvent *, void *);
+    extern
+	int (*XESetWireToError
+	     (Display *, int, int (*)(Display *, XErrorEvent *, xError *)
+	     )) (Display *, XErrorEvent *, xError *);
+    extern
+	int (*XESetWireToEvent
+	     (Display *, int, int (*)(Display *, XEvent *, xEvent *)
+	     )) (Display *, XEvent *, xEvent *);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

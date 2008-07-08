@@ -26,12 +26,6 @@ typedef struct _XcmsFunctionSet {
     XcmsScreenInitProc screenInitProc;
     XcmsScreenFreeProc screenFreeProc;
 } XcmsFunctionSet;
-int (*screenFreeProc) (void);
-int (*screenFreeProc) (void);
-int (*screenFreeProc) (void);
-void (*screenFreeProc) (void);
-int (*screenFreeProc) (void);
-int (*screenFreeProc) (void);
 
 typedef unsigned long int XcmsColorFormat;
 typedef double XcmsFloat;
