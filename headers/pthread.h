@@ -1105,7 +1105,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int pthread_mutex_getprioceiling(const pthread_mutexattr_t *,
+    extern int pthread_mutex_getprioceiling(const pthread_mutex_t *,
 					    int *);
     extern int pthread_mutex_setprioceiling(pthread_mutex_t *, int, int *);
     extern int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t
