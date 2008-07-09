@@ -29,4 +29,4 @@ extern int sched_setparam(pid_t, const struct sched_param *);
 extern int sched_setscheduler(pid_t, int, const struct sched_param *);
 extern int sched_yield(void);
 extern int sched_getaffinity(pid_t, size_t, cpu_set_t *);
-extern int sched_setaffinity(pid_t, size_t, cpu_set_t * const);
+extern int sched_setaffinity(pid_t, size_t, const cpu_set_t *);

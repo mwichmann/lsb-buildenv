@@ -109,8 +109,8 @@ extern "C" {
 			 const struct pam_conv *, pam_handle_t * *);
     extern const char *pam_strerror(pam_handle_t *, int);
 #if __LSB_VERSION__ >= 32
-    extern const char *pam_getenv(const pam_handle_t *, const char *);
-    extern int pam_putenv(const pam_handle_t *, const char *);
+    extern const char *pam_getenv(pam_handle_t *, const char *);
+    extern int pam_putenv(pam_handle_t *, const char *);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

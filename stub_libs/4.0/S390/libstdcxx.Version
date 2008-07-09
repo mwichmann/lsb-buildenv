@@ -2958,6 +2958,7 @@ GLIBCXX_3.4.5 {
   _ZNSs4_Rep26_M_set_length_and_sharableEm;
   _ZNSs7_M_copyEPcPKcm;
   _ZNSs7_M_moveEPcPKcm;
+  _ZNSs9_M_assignEPcmc;
   _ZNSt11char_traitsIcE2eqERKcS2_;
   _ZNSt11char_traitsIwE2eqERKwS2_;
   _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEi;
