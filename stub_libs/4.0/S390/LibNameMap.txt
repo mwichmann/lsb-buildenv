@@ -19,6 +19,7 @@ libXtst libXtst.so.6
 libasound libasound.so.2
 libatk-1.0 libatk-1.0.so.0
 libc libc.so.6
+libcairo libcairo.so.2
 libcrypt libcrypt.so.1
 libcups libcups.so.2
 libcupsimage libcupsimage.so.2

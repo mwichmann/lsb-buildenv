@@ -140,6 +140,7 @@ char *lsb_libs_40[] = {
 	"Xtst",
 	"atk-1.0",
 	"c",
+	"cairo",
 	"crypt",
 	"cups",
 	"cupsimage",

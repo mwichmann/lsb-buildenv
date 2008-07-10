@@ -100,3 +100,11 @@ freetype/config/ftstdlib.h
 X11/Xft/Xft.h
 freetype/ftsystem.h
 ft2build.h
+cairo/cairo-ft.h
+cairo/cairo-pdf.h
+cairo/cairo.h
+cairo/cairo-features.h
+cairo/cairo-xlib-xrender.h
+cairo/cairo-xlib.h
+cairo/cairo-ps.h
+cairo/cairo-svg.h
