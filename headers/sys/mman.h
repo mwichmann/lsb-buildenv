@@ -108,7 +108,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 32
-    extern void *mremap(void *, size_t, size_t, int);
+    extern void *mremap(void *, size_t, size_t, int, ...);
     extern int posix_madvise(void *, size_t, int);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 

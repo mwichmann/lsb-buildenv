@@ -8822,7 +8822,7 @@ extern GType gtk_combo_get_type(void);
 extern GType gtk_pack_direction_get_type(void);
 extern GdkPixmap *gtk_icon_view_create_drag_icon(GtkIconView *,
 						 GtkTreePath *);
-extern gboolean gtk_icon_view_get_cursor(GtkTreeIter *, GtkTreePath * *,
+extern gboolean gtk_icon_view_get_cursor(GtkIconView *, GtkTreePath * *,
 					 GtkCellRenderer * *);
 extern void gtk_icon_view_scroll_to_path(GtkIconView *, GtkTreePath *,
 					 gboolean, gfloat, gfloat);
@@ -8838,7 +8838,7 @@ extern gboolean gtk_icon_view_get_visible_range(GtkIconView *,
 						GtkTreePath * *);
 extern void gtk_icon_view_enable_model_drag_dest(GtkIconView *,
 						 const GtkTargetEntry *,
-						 gint, GdkDragAction *);
+						 gint, GdkDragAction);
 extern void gtk_icon_view_enable_model_drag_source(GtkIconView *,
 						   GdkModifierType,
 						   const GtkTargetEntry *,
@@ -8860,7 +8860,7 @@ extern void gtk_drag_source_set_icon_name(GtkWidget *, const gchar *);
 extern void gtk_image_clear(GtkImage *);
 extern gint gtk_dialog_get_response_for_widget(GtkDialog *, GtkWidget *);
 extern void gtk_tool_button_set_icon_name(GtkToolButton *, const gchar *);
-extern const gchar *gtk_tool_button_get_icon_name(GtkWidget *);
+extern const gchar *gtk_tool_button_get_icon_name(GtkToolButton *);
 extern GtkTreeModel *gtk_tree_row_reference_get_model(GtkTreeRowReference
 						      *);
 extern void gtk_tree_view_column_queue_resize(GtkTreeViewColumn *);

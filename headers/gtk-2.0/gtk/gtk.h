@@ -10815,13 +10815,13 @@ extern "C" {
     extern void gtk_icon_view_enable_model_drag_dest(GtkIconView *,
 						     const GtkTargetEntry
 						     *, gint,
-						     GdkDragAction *);
+						     GdkDragAction);
     extern void gtk_icon_view_enable_model_drag_source(GtkIconView *,
 						       GdkModifierType,
 						       const GtkTargetEntry
 						       *, gint,
 						       GdkDragAction);
-    extern gboolean gtk_icon_view_get_cursor(GtkTreeIter *,
+    extern gboolean gtk_icon_view_get_cursor(GtkIconView *,
 					     GtkTreePath * *,
 					     GtkCellRenderer * *);
     extern gboolean gtk_icon_view_get_dest_item_at_pos(GtkIconView *, gint,
@@ -10876,7 +10876,7 @@ extern "C" {
     extern gboolean gtk_text_iter_forward_visible_line(GtkTextIter *);
     extern gboolean gtk_text_iter_forward_visible_lines(GtkTextIter *,
 							gint);
-    extern const gchar *gtk_tool_button_get_icon_name(GtkWidget *);
+    extern const gchar *gtk_tool_button_get_icon_name(GtkToolButton *);
     extern void gtk_tool_button_set_icon_name(GtkToolButton *,
 					      const gchar *);
     extern GtkTreeModel

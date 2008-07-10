@@ -443,7 +443,7 @@ extern "C" {
     extern int mvinsnstr(int, int, const char *, int);
     extern int mvinsstr(int, int, const char *);
     extern int mvinstr(int, int, char *);
-    extern int mvprintw(int, int, char *, ...);
+    extern int mvprintw(int, int, const char *, ...);
     extern int mvscanw(int, int, const char *, ...);
     extern int mvvline(int, int, chtype, int);
     extern int mvwaddch(WINDOW *, int, int, const chtype);
@@ -467,7 +467,7 @@ extern "C" {
     extern int mvwinsnstr(WINDOW *, int, int, const char *, int);
     extern int mvwinsstr(WINDOW *, int, int, const char *);
     extern int mvwinstr(WINDOW *, int, int, char *);
-    extern int mvwprintw(WINDOW *, int, int, char *, ...);
+    extern int mvwprintw(WINDOW *, int, int, const char *, ...);
     extern int mvwscanw(WINDOW *, int, int, const char *, ...);
     extern int mvwvline(WINDOW *, int, int, chtype, int);
     extern int napms(int);
@@ -488,7 +488,7 @@ extern "C" {
     extern int pechochar(WINDOW *, chtype);
     extern int pnoutrefresh(WINDOW *, int, int, int, int, int, int);
     extern int prefresh(WINDOW *, int, int, int, int, int, int);
-    extern int printw(char *, ...);
+    extern int printw(const char *, ...);
     extern int putwin(WINDOW *, FILE *);
     extern void qiflush(void);
     extern int raw(void);
@@ -543,7 +543,7 @@ extern "C" {
     extern int vline(chtype, int);
     extern int vw_printw(WINDOW *, const char *, va_list);
     extern int vw_scanw(WINDOW *, const char *, va_list);
-    extern int vwprintw(WINDOW *, char *, va_list);
+    extern int vwprintw(WINDOW *, const char *, va_list);
     extern int vwscanw(WINDOW *, const char *, va_list);
     extern int waddch(WINDOW *, const chtype);
     extern int waddchnstr(WINDOW *, const chtype *, int);
@@ -587,7 +587,7 @@ extern "C" {
     extern int winstr(WINDOW *, char *);
     extern int wmove(WINDOW *, int, int);
     extern int wnoutrefresh(WINDOW *);
-    extern int wprintw(WINDOW *, char *, ...);
+    extern int wprintw(WINDOW *, const char *, ...);
     extern int wredrawln(WINDOW *, int, int);
     extern int wrefresh(WINDOW *);
     extern int wscanw(WINDOW *, const char *, ...);
@@ -614,7 +614,7 @@ extern "C" {
     extern int COLORS;
     extern int COLOR_PAIRS;
     extern chtype acs_map[];
-    extern char *unctrl(chtype);
+    extern const char *unctrl(chtype);
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus
