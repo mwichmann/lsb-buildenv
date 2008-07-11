@@ -366,6 +366,10 @@ int
 need_long_double_64()
 {
 #if defined __powerpc__ || defined __s390__
+  /* Since LSB 4.0, we don't need this. */
+  if (strcmp(lsbcc_lsbversion, "4.0") >= 0)
+    return 0;
+
   /* If we don't need the gcc 3.4 workaround, we don't need this.  This also
      conveniently loads the gcc version for us. */
   if (!need_gcc34_compat())
