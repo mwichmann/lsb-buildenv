@@ -936,6 +936,11 @@ extern "C" {
     extern void png_set_tRNS_to_alpha(png_structp);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 40
+    extern int png_check_sig(png_bytep, int);
+    extern void png_destroy_info_struct(png_structp);
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 #ifdef __cplusplus
 }
 #endif
