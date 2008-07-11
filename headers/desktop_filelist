@@ -107,4 +107,3 @@ cairo/cairo-features.h
 cairo/cairo-xlib-xrender.h
 cairo/cairo-xlib.h
 cairo/cairo-ps.h
-cairo/cairo-svg.h

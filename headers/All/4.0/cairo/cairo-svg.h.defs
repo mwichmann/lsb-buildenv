@@ -1,6 +1,0 @@
-
-typedef enum _cairo_svg_version {
-    CAIRO_SVG_VERSION_1_1,
-    CAIRO_SVG_VERSION_1_2 = 1
-} cairo_svg_version_t;
-extern cairo_font_face_t *cairo_ft_font_face_create_for_ft_face;

@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+
+Name: cairo-png
+Description: PNG backend for cairo graphics library
+Version: 1.0.2
+Requires: cairo libpng12 
+Libs: 
+Cflags: -I${includedir}/cairo 
