@@ -111,10 +111,6 @@ extern "C" {
 	CAIRO_LINE_JOIN_BEVEL = 2
     } cairo_line_join_t;
 
-    typedef struct _cairo_rectangle cairo_rectangle_t;
-
-    typedef struct _cairo_rectangle_list cairo_rectangle_list_t;
-
     typedef struct _cairo_scaled_font cairo_scaled_font_t;
 
     typedef struct _cairo_font_face cairo_font_face_t;
@@ -177,13 +173,6 @@ extern "C" {
 
     typedef struct _cairo_font_options cairo_font_options_t;
 
-    typedef enum _cairo_font_type {
-	CAIRO_FONT_TYPE_TOY,
-	CAIRO_FONT_TYPE_FT = 1,
-	CAIRO_FONT_TYPE_WIN32 = 2,
-	CAIRO_FONT_TYPE_ATSUI = 3
-    } cairo_font_type_t;
-
     typedef enum _cairo_path_data_type {
 	CAIRO_PATH_MOVE_TO,
 	CAIRO_PATH_LINE_TO = 1,
@@ -195,34 +184,12 @@ extern "C" {
 
     typedef struct cairo_path cairo_path_t;
 
-    typedef enum _cairo_surface_type {
-	CAIRO_SURFACE_TYPE_IMAGE,
-	CAIRO_SURFACE_TYPE_PDF = 1,
-	CAIRO_SURFACE_TYPE_PS = 2,
-	CAIRO_SURFACE_TYPE_XLIB = 3,
-	CAIRO_SURFACE_TYPE_XCB = 4,
-	CAIRO_SURFACE_TYPE_GLITZ = 5,
-	CAIRO_SURFACE_TYPE_QUARTZ = 6,
-	CAIRO_SURFACE_TYPE_WIN32 = 7,
-	CAIRO_SURFACE_TYPE_BEOS = 8,
-	CAIRO_SURFACE_TYPE_DIRECTFB = 9,
-	CAIRO_SURFACE_TYPE_SVG = 10,
-	CAIRO_SURFACE_TYPE_OS2 = 11
-    } cairo_surface_type_t;
-
     typedef enum _cairo_format {
 	CAIRO_FORMAT_ARGB32,
 	CAIRO_FORMAT_RGB24 = 1,
 	CAIRO_FORMAT_A8 = 2,
 	CAIRO_FORMAT_A1 = 3
     } cairo_format_t;
-
-    typedef enum _cairo_pattern_type {
-	CAIRO_PATTERN_TYPE_SOLID,
-	CAIRO_PATTERN_TYPE_SURFACE = 1,
-	CAIRO_PATTERN_TYPE_LINEAR = 2,
-	CAIRO_PATTERN_TYPE_RADIAL = 3
-    } cairo_pattern_type_t;
 
     typedef enum _cairo_extend {
 	CAIRO_EXTEND_NONE,
@@ -259,21 +226,6 @@ extern "C" {
 
     struct _cairo_user_data_key {
 	int unused;
-    };
-
-
-    struct _cairo_rectangle {
-	double x;
-	double y;
-	double width;
-	double height;
-    };
-
-
-    struct _cairo_rectangle_list {
-	cairo_status_t status;
-	cairo_rectangle_t *rectangles;
-	int num_rectangles;
     };
 
 
@@ -317,7 +269,6 @@ extern "C" {
     extern cairo_t *cairo_create(cairo_surface_t *);
     extern void cairo_curve_to(cairo_t *, double, double, double, double,
 			       double, double);
-    extern void cairo_debug_reset_static_data(void);
     extern void cairo_destroy(cairo_t *);
     extern void cairo_device_to_user(cairo_t *, double *, double *);
     extern void cairo_device_to_user_distance(cairo_t *, double *,

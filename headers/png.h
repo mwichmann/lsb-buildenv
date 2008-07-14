@@ -938,7 +938,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
     extern int png_check_sig(png_bytep, int);
-    extern void png_destroy_info_struct(png_structp);
+    extern void png_destroy_info_struct(png_structp, png_infopp);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

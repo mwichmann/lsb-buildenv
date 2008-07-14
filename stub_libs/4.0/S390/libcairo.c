@@ -9,7 +9,6 @@ void cairo_copy_path() {} ;
 void cairo_copy_path_flat() {} ;
 void cairo_create() {} ;
 void cairo_curve_to() {} ;
-void cairo_debug_reset_static_data() {} ;
 void cairo_destroy() {} ;
 void cairo_device_to_user() {} ;
 void cairo_device_to_user_distance() {} ;
