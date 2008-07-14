@@ -161,6 +161,7 @@ char *lsb_libs_40[] = {
 	"ncurses",
 	"pam",
 	"pango-1.0",
+	"pangocairo-1.0",
 	"pangoft2-1.0",
 	"pangoxft-1.0",
 	"png12",

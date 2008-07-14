@@ -10,7 +10,7 @@ extern "C" {
 
     typedef struct FT_MemoryRec_ *FT_Memory;
 
-/* #include <freetype/ftlist.h>			XXX hand-edit */
+#include <freetype/ftlist.h>
     typedef void *(*FT_Alloc_Func) (FT_Memory, long int);
 
     typedef void (*FT_Free_Func) (FT_Memory, void *);
@@ -22,7 +22,7 @@ extern "C" {
 
     typedef struct FT_StreamRec_ *FT_Stream;
 
-/* #include <freetype/freetype.h>		XXX hand-edit */
+#include <freetype/freetype.h>
     typedef long unsigned int (*FT_Stream_IoFunc) (FT_Stream,
 						   long unsigned int,
 						   unsigned char *,

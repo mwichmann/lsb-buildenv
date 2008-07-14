@@ -40,6 +40,7 @@ libm libm.so.6.1
 libncurses libncurses.so.5
 libpam libpam.so.0
 libpango-1.0 libpango-1.0.so.0
+libpangocairo-1.0 libpangocairo-1.0.so.0
 libpangoft2-1.0 libpangoft2-1.0.so.0
 libpangoxft-1.0 libpangoxft-1.0.so.0
 libpng12 libpng12.so.0

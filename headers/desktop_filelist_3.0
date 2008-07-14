@@ -108,3 +108,4 @@ cairo/cairo-xlib-xrender.h
 cairo/cairo-xlib.h
 cairo/cairo-ps.h
 gtk-2.0/gdk/gdkcairo.h
+pango-1.0/pango/pangocairo.h
