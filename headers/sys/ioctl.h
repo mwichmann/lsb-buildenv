@@ -8,12 +8,9 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
 #if defined __i386__
 #define FIONREAD	0x541B
 #endif
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 12
 #if defined __i386__
 #define TIOCNOTTY	0x5422
@@ -101,10 +98,7 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int ioctl(int, unsigned long int, ...);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

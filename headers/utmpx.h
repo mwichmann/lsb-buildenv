@@ -146,15 +146,12 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void endutxent(void);
     extern struct utmpx *getutxent(void);
     extern struct utmpx *getutxid(const struct utmpx *);
     extern struct utmpx *getutxline(const struct utmpx *);
     extern struct utmpx *pututxline(const struct utmpx *);
     extern void setutxent(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

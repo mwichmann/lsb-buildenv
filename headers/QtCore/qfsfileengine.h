@@ -5,7 +5,6 @@
 class QFSFileEngine;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QFSFileEngine : public QAbstractFileEngine
 {
 private:
@@ -54,8 +53,6 @@ public:
     static QString tempPath();
     static QFileInfoList drives();
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

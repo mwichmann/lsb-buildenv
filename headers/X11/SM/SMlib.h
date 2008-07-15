@@ -195,7 +195,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void SmFreeProperty(SmProp *);
     extern void SmFreeReasons(int, char **);
     extern char *SmcClientID(SmcConn);
@@ -240,8 +239,6 @@ extern "C" {
     extern void SmsSaveYourselfPhase2(SmsConn);
     extern SmsSetErrorHandler(SmsErrorHandler);
     extern void SmsShutdownCancelled(SmsConn);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

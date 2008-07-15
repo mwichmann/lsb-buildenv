@@ -5,7 +5,6 @@
 class QLCDNumber;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QLCDNumber : public QFrame
 {
 private:
@@ -65,15 +64,10 @@ Flat = 2
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QLCDNumber16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

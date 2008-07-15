@@ -5,13 +5,9 @@
 class QPictureIO;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef void	picture_io_handler	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QPicture : public QPaintDevice
 {
 private:
@@ -79,16 +75,11 @@ public:
     void defineIOHandler(char const*, char const*, char const*, void (*)(QPictureIO*), void (*)(QPictureIO*));
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDataStream _ZlsR11QDataStreamRK8QPicture(QDataStream &, const QPicture &);
 extern QDataStream _ZrsR11QDataStreamR8QPicture(QDataStream &, QPicture &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

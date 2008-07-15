@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define XML_GET_CONTENT(n)	 \
 	((n)->type == XML_ELEMENT_NODE ? NULL : (n)->content)
 #define XML_XML_NAMESPACE	 \
@@ -23,11 +22,8 @@ extern "C" {
 #define xmlChildrenNode	children
 #define xmlRootNode	children
 #define XML_LOCAL_NAMESPACE	XML_NAMESPACE_DECL
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef enum {
 	XML_BUFFER_ALLOC_DOUBLEIT = 0,
 	XML_BUFFER_ALLOC_EXACT = 1,
@@ -120,9 +116,6 @@ extern "C" {
 
     typedef xmlOutputBuffer *xmlOutputBufferPtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlBuffer {
 	xmlChar *content;
@@ -248,12 +241,9 @@ extern "C" {
 	int error;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlNodePtr xmlAddChild(xmlNodePtr, xmlNodePtr);
     extern xmlNodePtr xmlAddChildList(xmlNodePtr, xmlNodePtr);
     extern xmlNodePtr xmlAddNextSibling(xmlNodePtr, xmlNodePtr);
@@ -427,8 +417,6 @@ extern "C" {
     extern int xmlValidateNMToken(const xmlChar *, int);
     extern int xmlValidateName(const xmlChar *, int);
     extern int xmlValidateQName(const xmlChar *, int);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

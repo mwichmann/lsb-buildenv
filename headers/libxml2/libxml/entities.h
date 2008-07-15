@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef enum {
 	XML_INTERNAL_GENERAL_ENTITY = 1,
 	XML_EXTERNAL_GENERAL_PARSED_ENTITY = 2,
@@ -28,9 +27,6 @@ extern "C" {
 
     typedef xmlEntitiesTable *xmlEntitiesTablePtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlEntity {
 	void *_private;
@@ -55,12 +51,9 @@ extern "C" {
 
 
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlEntityPtr xmlAddDocEntity(xmlDocPtr, const xmlChar *, int,
 					const xmlChar *, const xmlChar *,
 					const xmlChar *);
@@ -77,8 +70,6 @@ extern "C" {
     extern xmlEntityPtr xmlGetDtdEntity(xmlDocPtr, const xmlChar *);
     extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
     extern xmlEntityPtr xmlGetPredefinedEntity(const xmlChar *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

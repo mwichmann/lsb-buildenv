@@ -7,18 +7,19 @@
 #include <stddef.h>
 #include <stdarg.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define GLIB_HAVE_ALLOCA_H
 #define GLIB_HAVE_SYS_POLL_H
 #define G_GINT32_MODIFIER	""
@@ -1013,8 +1014,6 @@ extern "C" {
 #define GLIB_MINOR_VERSION	6
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 #define GLIB_MINOR_VERSION	8
 #endif				/* __LSB_VERSION__ >= 4.0 */
@@ -1023,7 +1022,6 @@ extern "C" {
 
 
 /* Arch Specific Header Section for glib-2.0/glib.h*/
-#if __LSB_VERSION__ >= 31
 #if defined __i386__
 /* IA32 */
     typedef int gssize;
@@ -1129,11 +1127,8 @@ extern "C" {
     typedef unsigned long int guint64;
 
 #endif
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Default Header Section for glib-2.0/glib.h*/
-#if __LSB_VERSION__ >= 31
     typedef short unsigned int guint16;
 
     typedef int gint;
@@ -1827,14 +1822,11 @@ extern "C" {
 	G_SHELL_ERROR_FAILED
     } GShellError;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     typedef struct _GMappedFile GMappedFile;
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-#if __LSB_VERSION__ >= 31
 
     struct _GThread {
 	GThreadFunc func;
@@ -2278,8 +2270,6 @@ extern "C" {
 	 gboolean(*thread_equal) (gpointer, gpointer);
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 
 
@@ -2288,7 +2278,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void g_allocator_free(GAllocator *);
     extern GAllocator *g_allocator_new(const gchar *, guint);
     extern GArray *g_array_append_vals(GArray *, gconstpointer, guint);
@@ -3326,8 +3315,6 @@ extern "C" {
     extern GMemVTable *glib_mem_profiler_table;
     extern const guint glib_micro_version;
     extern const guint glib_minor_version;
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern gchar *g_build_filenamev(gchar * *);
     extern gchar *g_build_pathv(const gchar *, gchar * *);

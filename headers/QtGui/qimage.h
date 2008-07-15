@@ -5,7 +5,6 @@
 class QImageTextKeyLang;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QImageTextKeyLang
 {
 private:
@@ -140,17 +139,12 @@ IgnoreEndian = 2
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern void _Z6bitBltP6QImageiiPKS_iiii6QFlagsIN2Qt19ImageConversionFlagEE(QImage *, const QImage *);
 extern QDataStream _ZlsR11QDataStreamRK6QImage(QDataStream &, const QImage &);
 extern QDataStream _ZrsR11QDataStreamR6QImage(QDataStream &, QImage &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

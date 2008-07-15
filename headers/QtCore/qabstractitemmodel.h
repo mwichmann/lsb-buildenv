@@ -5,13 +5,9 @@
 class QAbstractListModel;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef QList<QModelIndex> QModelIndexList	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QModelIndex
 {
 private:
@@ -135,19 +131,14 @@ private:
     int columnCount(QModelIndex const&) const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN18QAbstractItemModel16staticMetaObjectE ;
 extern struct QMetaObject _ZN18QAbstractListModel16staticMetaObjectE ;
 extern struct QMetaObject _ZN19QAbstractTableModel16staticMetaObjectE ;
 extern QDebug _Zls6QDebugRK11QModelIndex(_Z6QDebug, QModelIndex & &);
 extern QDebug _Zls6QDebugRK21QPersistentModelIndex(_Z6QDebug, QPersistentModelIndex & &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

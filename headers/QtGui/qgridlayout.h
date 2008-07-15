@@ -5,7 +5,6 @@
 class QGridLayout;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QGridLayout : public QLayout
 {
 private:
@@ -57,15 +56,10 @@ protected:
     void addItem(QLayoutItem*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QGridLayout16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

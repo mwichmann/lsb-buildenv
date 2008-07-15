@@ -3,11 +3,13 @@
 #define _MATH_H_
 
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,22 +49,6 @@ extern "C" {
 
 /* ISO C99 defines some generic macros which work on any data type.*/
 #if __LSB_VERSION__ >= 20
-#if defined __powerpc__ && !defined __powerpc64__
-#define isinf(x)	\
-     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
-#endif
-#if defined __powerpc64__
-#define isinf(x)	\
-     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
-#endif
-#if defined __s390__ && !defined __s390x__
-#define isinf(x)	\
-     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
-#endif
-#if defined __s390x__
-#define isinf(x)	\
-     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
-#endif
 #if defined __i386__
 #define isinf(x)	\
      (sizeof (x) == sizeof (float) ? __isinff (x): sizeof (x) == sizeof (double) ? __isinf (x) : __isinfl (x))
@@ -87,6 +73,23 @@ extern "C" {
 #define isnan(x)	\
      (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
 #endif
+#if __LSB_VERSION__ < 40
+#if defined __powerpc__ && !defined __powerpc64__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+#endif
+#if defined __powerpc64__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+#endif
+#if defined __s390__ && !defined __s390x__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+#endif
+#if defined __s390x__
+#define isinf(x)	\
+     (sizeof (x) == sizeof (float) ? __isinff (x) : __isinf (x))
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 #define isnan(x)	\
      (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
@@ -103,26 +106,12 @@ extern "C" {
 #define isnan(x)	\
      (sizeof (x) == sizeof (float) ? __isnanf (x) : __isnan (x))
 #endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 21
 #define isnormal(x)	(fpclassify (x) == FP_NORMAL)	/* Return nonzero value if X is neither zero, subnormal, Inf, n */
-#if defined __powerpc__ && !defined __powerpc64__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
-#endif
-#if defined __powerpc64__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
-#endif
-#if defined __s390__ && !defined __s390x__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
-#endif
-#if defined __s390x__
-#define fpclassify(x)	\
-	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
-#endif
 #if defined __i386__
 #define fpclassify(x)	\
 	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
@@ -147,22 +136,6 @@ extern "C" {
 #define signbit(x)	\
 	(sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x))	/* Return nonzero value if sign of X is negative. */
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
-#endif
-#if defined __powerpc64__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
-#endif
-#if defined __s390__ && !defined __s390x__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
-#endif
-#if defined __s390x__
-#define signbit(x)	\
-	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
-#endif
 #if defined __i386__
 #define isfinite(x)	\
      (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
@@ -175,6 +148,39 @@ extern "C" {
 #define isfinite(x)	\
      (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
 #endif
+#if __LSB_VERSION__ < 40
+#if defined __powerpc__ && !defined __powerpc64__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
+#endif
+#if defined __powerpc64__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
+#endif
+#if defined __s390__ && !defined __s390x__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
+#endif
+#if defined __s390x__
+#define fpclassify(x)	\
+	(sizeof (x) == sizeof (float) ? __fpclassifyf (x) : __fpclassify (x) )	/* Return number of classification appropriate for X. */
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
+#endif
+#if defined __powerpc64__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
+#endif
+#if defined __s390__ && !defined __s390x__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
+#endif
+#if defined __s390x__
+#define signbit(x)	\
+	(sizeof (x) == sizeof (float)? __signbitf (x): __signbit (x))	/* Return nonzero value if sign of X is negative. */
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 #define isfinite(x)	\
      (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))	/* Return nonzero value if X is not +-Inf or NaN. */
@@ -191,7 +197,92 @@ extern "C" {
 #define isfinite(x)	\
      (sizeof (x) == sizeof (float) ? __finitef (x) : __finite (x))	/* Return nonzero value if X is not +-Inf or NaN. */
 #endif
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 2.1 */
+
+#if __LSB_VERSION__ >= 40
+#if defined __powerpc__ && !defined __powerpc64__
+#define isfinite(x)	\
+  (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+#endif
+#if defined __powerpc64__
+#define isfinite(x)	\
+  (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+#endif
+#if defined __s390__ && !defined __s390x__
+#define isfinite(x)	\
+  (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+#endif
+#if defined __s390x__
+#define isfinite(x)	\
+  (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define fpclassify(x)	\
+  (sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
+#endif
+#if defined __powerpc64__
+#define fpclassify(x)	\
+  (sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
+#endif
+#if defined __s390__ && !defined __s390x__
+#define fpclassify(x)	\
+  (sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
+#endif
+#if defined __s390x__
+#define fpclassify(x)	\
+  (sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define isinf(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __powerpc64__
+#define isinf(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __s390__ && !defined __s390x__
+#define isinf(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __s390x__
+#define isinf(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define isnan(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __powerpc64__
+#define isnan(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __s390__ && !defined __s390x__
+#define isnan(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __s390x__
+#define isnan(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define signbit(x)	\
+  (sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x)	/* Return nonzero value if sign of X is negative. */
+#endif
+#if defined __powerpc64__
+#define signbit(x)	\
+  (sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x)	/* Return nonzero value if sign of X is negative. */
+#endif
+#if defined __s390__ && !defined __s390x__
+#define signbit(x)	\
+  (sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x)	/* Return nonzero value if sign of X is negative. */
+#endif
+#if defined __s390x__
+#define signbit(x)	\
+  (sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x)	/* Return nonzero value if sign of X is negative. */
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 
@@ -333,7 +424,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern double acos(double);
     extern float acosf(float);
     extern double acosh(double);
@@ -529,8 +619,6 @@ extern "C" {
     extern double yn(int, double);
     extern float ynf(int, float);
     extern long double ynl(int, long double);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int __isinf(double);
     extern int __isinff(float);
@@ -611,6 +699,22 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
+#if defined __powerpc64__
+/* PPC64 */
+    extern int __fpclassifyl(long double);
+#endif
+#if defined __s390x__
+/* S390X */
+    extern int __fpclassifyl(long double);
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    extern int __fpclassifyl(long double);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    extern int __fpclassifyl(long double);
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     extern float __nldbl_nexttowardf(float, long double);
@@ -626,6 +730,38 @@ extern "C" {
 #if defined __s390x__
 /* S390X */
     extern float __nldbl_nexttowardf(float, long double);
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    extern int __signbitl(long double);
+#endif
+#if defined __s390x__
+/* S390X */
+    extern int __signbitl(long double);
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    extern int __signbitl(long double);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    extern int __signbitl(long double);
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    extern long double exp2l(long double);
+#endif
+#if defined __s390x__
+/* S390X */
+    extern long double exp2l(long double);
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    extern long double exp2l(long double);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    extern long double exp2l(long double);
 #endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
 

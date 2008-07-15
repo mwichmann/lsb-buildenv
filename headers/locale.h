@@ -114,11 +114,8 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern struct lconv *localeconv(void);
     extern char *setlocale(int, const char *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 30
     extern locale_t duplocale(locale_t);
     extern void freelocale(locale_t);

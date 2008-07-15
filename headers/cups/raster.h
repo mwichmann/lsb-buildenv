@@ -8,26 +8,16 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define _CUPS_RASTER_H_
 #define CUPS_RASTER_SYNC	0x52615374
 #define CUPS_RASTER_REVSYNC	0x74536152
 #define CUPS_RASTER_HAVE_COLORIMETRIC	1
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef enum {
 	CUPS_RASTER_READ = 0,
 	CUPS_RASTER_WRITE = 1
     } cups_mode_t;
-
-    typedef struct {
-	unsigned int sync;
-	int fd;
-	cups_mode_t mode;
-    } cups_raster_t;
 
     typedef enum {
 	CUPS_ADVANCE_NONE = 0,
@@ -154,12 +144,23 @@ extern "C" {
 	unsigned int cupsRowStep;
     } cups_page_header_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
+#if __LSB_VERSION__ < 40
+    typedef struct {
+	unsigned int sync;
+	int fd;
+	cups_mode_t mode;
+    } cups_raster_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
+
+#if __LSB_VERSION__ >= 40
+    typedef struct _cups_raster_s cups_raster_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern void cupsRasterClose(cups_raster_t *);
     extern cups_raster_t *cupsRasterOpen(int, cups_mode_t);
     extern unsigned int cupsRasterReadHeader(cups_raster_t *,
@@ -172,8 +173,6 @@ extern "C" {
     extern unsigned int cupsRasterWritePixels(cups_raster_t *,
 					      unsigned char *,
 					      unsigned int);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

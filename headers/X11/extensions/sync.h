@@ -212,7 +212,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XSyncAwait(Display *, XSyncWaitCondition *, int);
     extern int XSyncChangeAlarm(Display *, XSyncAlarm, unsigned long int,
 				XSyncAlarmAttributes *);
@@ -249,8 +248,6 @@ extern "C" {
     extern unsigned int XSyncValueLow32(XSyncValue);
     extern void XSyncValueSubtract(XSyncValue *, XSyncValue, XSyncValue,
 				   int *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -5,7 +5,6 @@
 class QTimeEdit;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QDateTimeEdit::Section>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }Sections	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QDateTimeEdit : public QAbstractSpinBox
 {
 private:
@@ -124,17 +120,12 @@ public:
      QDateEdit(QDate const&, QWidget*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN13QDateTimeEdit16staticMetaObjectE ;
 extern struct QMetaObject _ZN9QDateEdit16staticMetaObjectE ;
 extern struct QMetaObject _ZN9QTimeEdit16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

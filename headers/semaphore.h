@@ -79,7 +79,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int sem_close(sem_t *);
     extern int sem_destroy(sem_t *);
     extern int sem_getvalue(sem_t *, int *);
@@ -90,8 +89,6 @@ extern "C" {
     extern int sem_trywait(sem_t *);
     extern int sem_unlink(const char *);
     extern int sem_wait(sem_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

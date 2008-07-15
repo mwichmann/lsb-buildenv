@@ -5,7 +5,6 @@
 class QFrame;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QFrame : public QWidget
 {
 private:
@@ -45,12 +44,12 @@ Panel = 2,
 WinPanel = 3,	
 HLine = 4,	
 VLine = 5,	
-StyledPanel = 6,	
-PopupPanel = 6,	
-MenuBarPanel = 6,	
-ToolBarPanel = 6,	
-LineEditPanel = 6,	
 TabWidgetPanel = 6,	
+LineEditPanel = 6,	
+ToolBarPanel = 6,	
+MenuBarPanel = 6,	
+PopupPanel = 6,	
+StyledPanel = 6,	
 GroupBoxPanel = 6
 }
 ;
@@ -63,15 +62,10 @@ Sunken = 48
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN6QFrame16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

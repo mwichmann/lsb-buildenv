@@ -5,7 +5,6 @@
 class QLibrary;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QLibrary : public QObject
 {
 private:
@@ -32,15 +31,10 @@ public:
     QFlags<QLibrary::LoadHint> loadHints() const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN8QLibrary16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlSaveCtxt xmlSaveCtxt;
 
     typedef xmlSaveCtxt *xmlSaveCtxtPtr;
@@ -22,17 +21,11 @@ extern "C" {
 	XML_SAVE_NO_XHTML = 1 << 3
     } xmlSaveOption;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
-#if __LSB_VERSION__ >= 31
-
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern int xmlSaveClose(xmlSaveCtxtPtr);
     extern long int xmlSaveDoc(xmlSaveCtxtPtr, xmlDocPtr);
     extern int xmlSaveFlush(xmlSaveCtxtPtr);
@@ -46,8 +39,6 @@ extern "C" {
 				      xmlOutputCloseCallback, void *,
 				      const char *, int);
     extern long int xmlSaveTree(xmlSaveCtxtPtr, xmlNodePtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

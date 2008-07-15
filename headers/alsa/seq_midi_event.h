@@ -10,15 +10,11 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
     typedef struct snd_midi_event snd_midi_event_t;
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern long int snd_midi_event_decode(snd_midi_event_t *,
 					  unsigned char *, long int,
 					  const snd_seq_event_t *);
@@ -32,8 +28,6 @@ extern "C" {
     extern int snd_midi_event_new(size_t, snd_midi_event_t * *);
     extern void snd_midi_event_reset_decode(snd_midi_event_t *);
     extern void snd_midi_event_reset_encode(snd_midi_event_t *);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

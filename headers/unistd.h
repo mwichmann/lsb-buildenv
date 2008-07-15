@@ -7,11 +7,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,18 +59,6 @@ extern "C" {
 #define _POSIX_TIMERS	200112
 #define _POSIX2_VERSION	200112L
 #define _POSIX_VERSION	200112L
-#if __LSB_VERSION__ < 13
-#define _POSIX_MESSAGE_PASSING	1
-#endif				/* __LSB_VERSION__ < 1.3 */
-
-#if __LSB_VERSION__ < 20
-#define _POSIX2_C_VERSION	199209L
-#define _POSIX_ASYNCHRONOUS_IO	200112
-#define _POSIX_PRIORITY_SCHEDULING	200112
-#define _POSIX_REALTIME_SIGNALS	200112
-#define _POSIX_SYNCHRONIZED_IO	200112
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
@@ -366,14 +356,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #define _XOPEN_XPG4	1
 #define _XOPEN_VERSION	500
-#if __LSB_VERSION__ < 201
-#define _XOPEN_XCU_VERSION	4
-#endif				/* __LSB_VERSION__ < 2.0.1 */
-
-#if __LSB_VERSION__ < 30
-#define _XOPEN_REALTIME	1
-#endif				/* __LSB_VERSION__ < 3.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
@@ -392,7 +374,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern char **__environ;
     extern pid_t __getpgid(pid_t);
     extern char **_environ;
@@ -497,8 +478,6 @@ extern "C" {
     extern int usleep(useconds_t);
     extern pid_t vfork(void);
     extern ssize_t write(int, const void *, size_t);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern ssize_t pread64(int, void *, size_t, off64_t);
 #endif				/* __LSB_VERSION__ >= 1.1 */
@@ -515,12 +494,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern char *__getcwd_chk(char *, size_t, size_t);
     extern ssize_t __read_chk(int, void *, size_t, size_t);
-    extern ssize_t __readlink_chk(const char *, void *, size_t, size_t);
+    extern ssize_t __readlink_chk(const char *, char *, size_t, size_t);
     extern int faccessat(int, const char *, int, int);
     extern int fchownat(int, const char *, uid_t, gid_t, int);
     extern int fexecve(int, char *const[], char *const[]);
     extern int linkat(int, const char *, int, const char *, int);
-    extern int readlinkat(int, const char *, char *, size_t);
+    extern ssize_t readlinkat(int, const char *, char *, size_t);
     extern int symlinkat(const char *, int, const char *);
     extern int unlinkat(int, const char *, int);
 #endif				/* __LSB_VERSION__ >= 4.0 */

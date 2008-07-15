@@ -5,7 +5,6 @@
 class QStringListModel;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QStringListModel : public QAbstractListModel
 {
 private:
@@ -27,15 +26,10 @@ public:
     void setStringList(QStringList const&);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN16QStringListModel16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

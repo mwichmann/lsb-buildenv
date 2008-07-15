@@ -13,18 +13,14 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define _CUPS_CUPS_H_
 #define CUPS_VERSION_MAJOR	1
 #define CUPS_VERSION_MINOR	1
 #define CUPS_VERSION	1.0123
 #define CUPS_VERSION_PATCH	23
 #define cupsLangDefault()	cupsLangGet(NULL)
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef enum {
 	CUPS_AUTO_ENCODING = -1,
 	CUPS_US_ASCII = 0,
@@ -153,12 +149,6 @@ extern "C" {
 	HTTP_ENCODE_CHUNKED = 1
     } http_encoding_t;
 
-    typedef unsigned int md5_word_t;
-
-    typedef unsigned char md5_byte_t;
-
-    typedef struct md5_state_s md5_state_t;
-
     typedef enum {
 	IPP_JOB_PENDING = 3,
 	IPP_JOB_HELD = 4,
@@ -229,9 +219,15 @@ extern "C" {
 	IPP_PRINTER_IS_DEACTIVATED = 1290
     } ipp_status_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
+#if __LSB_VERSION__ < 40
+    typedef unsigned int md5_word_t;
 
-#if __LSB_VERSION__ >= 32
+    typedef unsigned char md5_byte_t;
+
+    typedef struct md5_state_s md5_state_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 
     struct cups_lang_str {
 	struct cups_lang_str *next;
@@ -241,6 +237,7 @@ extern "C" {
 	char *messages[506];
     };
 
+#if __LSB_VERSION__ < 40
 
     struct md5_state_s {
 	md5_word_t count[2];
@@ -248,10 +245,10 @@ extern "C" {
 	md5_byte_t buf[64];
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 
-#if __LSB_VERSION__ >= 32
+#if __LSB_VERSION__ < 40
     typedef struct {
 	int fd;
 	int blocking;
@@ -283,12 +280,21 @@ extern "C" {
 	int digest_tries;
     } http_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
+#endif				/* __LSB_VERSION__ < 4.0 */
+
+#if __LSB_VERSION__ >= 40
+    typedef struct _http_s http_t;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 40
+
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern int cupsAddDest(const char *, const char *, int,
 			   cups_dest_t * *);
     extern int cupsAddOption(const char *, const char *, int,
@@ -326,8 +332,6 @@ extern "C" {
     extern void cupsSetUser(const char *);
     extern int cupsTempFd(char *, int);
     extern const char *cupsUser(void);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

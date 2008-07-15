@@ -58,9 +58,12 @@ extern "C" {
 
 
 /* Stuff needed to make other curses related headers happy*/
+#if __LSB_VERSION__ >= 11
 #define __NCURSES_H	1
 #define NCURSES_EXPORT(type)	type
 #define NCURSES_EXPORT_VAR(type)	type
+#endif				/* __LSB_VERSION__ >= 1.1 */
+
 
 
 
@@ -114,10 +117,6 @@ extern "C" {
 #define _SCROLLWIN	0x08
 #define _ISPAD	0x10
 #define _HASMOVED	0x20
-#if __LSB_VERSION__ < 13
-#define TRACE_MAXIMUM	0xffff
-#endif				/* __LSB_VERSION__ < 1.3 */
-
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 
@@ -199,8 +198,8 @@ extern "C" {
 
 
 /* Pseudo-character tokens outside ASCII range.*/
-#define KEY_F(n)	(KEY_F0+(n))
 #if __LSB_VERSION__ >= 11
+#define KEY_F(n)	(KEY_F0+(n))
 #define KEY_CODE_YES	0400
 #define KEY_BREAK	0401
 #define KEY_MIN	0401
@@ -336,7 +335,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int addch(const chtype);
     extern int addchnstr(const chtype *, int);
     extern int addchstr(const chtype *);
@@ -445,7 +443,7 @@ extern "C" {
     extern int mvinsnstr(int, int, const char *, int);
     extern int mvinsstr(int, int, const char *);
     extern int mvinstr(int, int, char *);
-    extern int mvprintw(int, int, char *, ...);
+    extern int mvprintw(int, int, const char *, ...);
     extern int mvscanw(int, int, const char *, ...);
     extern int mvvline(int, int, chtype, int);
     extern int mvwaddch(WINDOW *, int, int, const chtype);
@@ -469,7 +467,7 @@ extern "C" {
     extern int mvwinsnstr(WINDOW *, int, int, const char *, int);
     extern int mvwinsstr(WINDOW *, int, int, const char *);
     extern int mvwinstr(WINDOW *, int, int, char *);
-    extern int mvwprintw(WINDOW *, int, int, char *, ...);
+    extern int mvwprintw(WINDOW *, int, int, const char *, ...);
     extern int mvwscanw(WINDOW *, int, int, const char *, ...);
     extern int mvwvline(WINDOW *, int, int, chtype, int);
     extern int napms(int);
@@ -490,7 +488,7 @@ extern "C" {
     extern int pechochar(WINDOW *, chtype);
     extern int pnoutrefresh(WINDOW *, int, int, int, int, int, int);
     extern int prefresh(WINDOW *, int, int, int, int, int, int);
-    extern int printw(char *, ...);
+    extern int printw(const char *, ...);
     extern int putwin(WINDOW *, FILE *);
     extern void qiflush(void);
     extern int raw(void);
@@ -545,7 +543,7 @@ extern "C" {
     extern int vline(chtype, int);
     extern int vw_printw(WINDOW *, const char *, va_list);
     extern int vw_scanw(WINDOW *, const char *, va_list);
-    extern int vwprintw(WINDOW *, char *, va_list);
+    extern int vwprintw(WINDOW *, const char *, va_list);
     extern int vwscanw(WINDOW *, const char *, va_list);
     extern int waddch(WINDOW *, const chtype);
     extern int waddchnstr(WINDOW *, const chtype *, int);
@@ -589,7 +587,7 @@ extern "C" {
     extern int winstr(WINDOW *, char *);
     extern int wmove(WINDOW *, int, int);
     extern int wnoutrefresh(WINDOW *);
-    extern int wprintw(WINDOW *, char *, ...);
+    extern int wprintw(WINDOW *, const char *, ...);
     extern int wredrawln(WINDOW *, int, int);
     extern int wrefresh(WINDOW *);
     extern int wscanw(WINDOW *, const char *, ...);
@@ -602,8 +600,6 @@ extern "C" {
     extern void wtimeout(WINDOW *, int);
     extern int wtouchln(WINDOW *, int, int, int);
     extern int wvline(WINDOW *, chtype, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern int COLS;
     extern int LINES;
@@ -618,7 +614,7 @@ extern "C" {
     extern int COLORS;
     extern int COLOR_PAIRS;
     extern chtype acs_map[];
-    extern char *unctrl(chtype);
+    extern const char *unctrl(chtype);
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #ifdef __cplusplus

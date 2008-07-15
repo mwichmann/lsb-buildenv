@@ -11,10 +11,7 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
 #define NFDBITS	(8 * sizeof (long))
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 
 
 

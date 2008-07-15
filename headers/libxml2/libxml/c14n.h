@@ -12,16 +12,12 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef int (*xmlC14NIsVisibleCallback) (void *, xmlNodePtr,
 					     xmlNodePtr);
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern int xmlC14NDocDumpMemory(xmlDocPtr, xmlNodeSetPtr, int,
 				    xmlChar * *, int, xmlChar * *);
     extern int xmlC14NDocSave(xmlDocPtr, xmlNodeSetPtr, int, xmlChar * *,
@@ -30,8 +26,6 @@ extern "C" {
 				int, xmlOutputBufferPtr);
     extern int xmlC14NExecute(xmlDocPtr, xmlC14NIsVisibleCallback, void *,
 			      int, xmlChar * *, int, xmlOutputBufferPtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

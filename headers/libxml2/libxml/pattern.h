@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlStreamCtxt xmlStreamCtxt;
 
     typedef xmlStreamCtxt *xmlStreamCtxtPtr;
@@ -28,19 +27,13 @@ extern "C" {
 	XML_PATTERN_XSFIELD = 1 << 2
     } xmlPatternFlags;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void xmlFreePattern(xmlPatternPtr);
     extern void xmlFreePatternList(xmlPatternPtr);
     extern void xmlFreeStreamCtxt(xmlStreamCtxtPtr);
@@ -57,8 +50,6 @@ extern "C" {
 			     const xmlChar *);
     extern int xmlStreamPushAttr(xmlStreamCtxtPtr, const xmlChar *,
 				 const xmlChar *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

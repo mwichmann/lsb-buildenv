@@ -5,7 +5,6 @@
 class QVariantComparisonHelper;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef void	f_construct	
 ;
 
@@ -39,9 +38,6 @@ typedef QList<QVariant> QVariantList
 typedef QMap<QString, QVariant> QVariantMap	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QVariant
 {
 private:
@@ -167,8 +163,8 @@ Pixmap = 65,
 Brush = 66,	
 Color = 67,	
 Palette = 68,	
-Icon = 69,	
 IconSet = 69,	
+Icon = 69,	
 Image = 70,	
 Polygon = 71,	
 PointArray = 71,	
@@ -198,12 +194,9 @@ private:
 public:
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct Handler * _ZN8QVariant7handlerE ;
 extern QDebug _Zls6QDebugN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
 extern QDebug _Zls6QDebugRK8QVariant(const QVariant &);
@@ -211,8 +204,6 @@ extern QDataStream _ZlsR11QDataStreamN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
 extern QDataStream _ZlsR11QDataStreamRK8QVariant(const QVariant &);
 extern QDataStream _ZrsR11QDataStreamR8QVariant(QVariant &);
 extern QDataStream _ZrsR11QDataStreamRN8QVariant4TypeE(enum _ZN8QVariant4TypeE &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

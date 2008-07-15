@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
     typedef struct _snd_config_iterator *snd_config_iterator_t;
 
     typedef struct _snd_config snd_config_t;
@@ -28,9 +27,6 @@ extern "C" {
 
     typedef struct snd_devname snd_devname_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct snd_devname {
 	char *name;
@@ -38,12 +34,9 @@ extern "C" {
 	snd_devname_t *next;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern snd_config_t *snd_config;
     extern int snd_config_add(snd_config_t *, snd_config_t *);
     extern int snd_config_copy(snd_config_t * *, snd_config_t *);
@@ -86,8 +79,6 @@ extern "C" {
     extern int snd_config_top(snd_config_t * *);
     extern int snd_config_update(void);
     extern int snd_config_update_free_global(void);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

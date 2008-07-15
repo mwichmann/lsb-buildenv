@@ -20,7 +20,7 @@
 #define POSIX_MADV_DONTNEED	4
 #define MAP_ANON	MAP_ANONYMOUS
 
-extern void *mremap(void *, size_t, size_t, int);
+extern void *mremap(void *, size_t, size_t, int, ...);
 extern int posix_madvise(void *, size_t, int);
 extern int msync(void *, size_t, int);
 extern int mlock(const void *, size_t);

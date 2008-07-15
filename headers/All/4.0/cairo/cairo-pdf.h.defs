@@ -1,0 +1,6 @@
+
+extern cairo_surface_t *cairo_pdf_surface_create(const char *, double,
+						 double);
+extern cairo_surface_t
+    *cairo_pdf_surface_create_for_stream(cairo_write_func_t, void *,
+					 double, double);

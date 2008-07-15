@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef int (*xmlInputReadCallback) (void *, char *, int);
 
     typedef int (*xmlInputCloseCallback) (void *);
@@ -792,9 +791,6 @@ extern "C" {
 	XML_I18N_NO_OUTPUT
     } xmlParserErrors;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlParserInputBuffer {
 	void *context;
@@ -844,12 +840,9 @@ extern "C" {
 	void *node;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void initGenericErrorDefaultFunc(xmlGenericErrorFunc *);
     extern int xmlCopyError(xmlErrorPtr, xmlErrorPtr);
     extern xmlErrorPtr xmlCtxtGetLastError(void *);
@@ -865,8 +858,6 @@ extern "C" {
     extern void xmlResetLastError(void);
     extern void xmlSetGenericErrorFunc(void *, xmlGenericErrorFunc);
     extern void xmlSetStructuredErrorFunc(void *, xmlStructuredErrorFunc);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

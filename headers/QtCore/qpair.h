@@ -8,10 +8,7 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     struct QPair <int, int >;
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus
 }

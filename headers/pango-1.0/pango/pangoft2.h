@@ -19,7 +19,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define PANGO_FC_FONT(object)	 \
 	(G_TYPE_CHECK_INSTANCE_CAST ((object), PANGO_TYPE_FC_FONT, \
 	PangoFcFont))
@@ -32,26 +31,17 @@ extern "C" {
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_FT2_FONT_MAP))
 #define PANGO_TYPE_FC_FONT	(pango_fc_font_get_type ())
 #define PANGO_TYPE_FT2_FONT_MAP	(pango_ft2_font_map_get_type ())
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _PangoFT2FontMap PangoFT2FontMap;
 
     typedef void (*PangoFT2SubstituteFunc) (FcPattern *, gpointer);
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
-#if __LSB_VERSION__ >= 31
-
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern GType pango_fc_font_get_type(void);
     extern FT_Face pango_fc_font_lock_face(PangoFcFont *);
     extern void pango_fc_font_unlock_face(PangoFcFont *);
@@ -82,8 +72,6 @@ extern "C" {
 					     const PangoMatrix *,
 					     PangoFont *,
 					     PangoGlyphString *, int, int);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -51,7 +51,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int sched_get_priority_max(int);
     extern int sched_get_priority_min(int);
     extern int sched_getparam(pid_t, struct sched_param *);
@@ -60,11 +59,9 @@ extern "C" {
     extern int sched_setparam(pid_t, const struct sched_param *);
     extern int sched_setscheduler(pid_t, int, const struct sched_param *);
     extern int sched_yield(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 40
     extern int sched_getaffinity(pid_t, size_t, cpu_set_t *);
-    extern int sched_setaffinity(pid_t, size_t, cpu_set_t * const);
+    extern int sched_setaffinity(pid_t, size_t, const cpu_set_t *);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

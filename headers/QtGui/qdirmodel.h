@@ -5,7 +5,6 @@
 class QFileIconProvider;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QFileIconProvider
 {
 private:
@@ -87,15 +86,10 @@ FileNameRole = 34
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QDirModel16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

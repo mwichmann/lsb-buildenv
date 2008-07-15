@@ -5,7 +5,6 @@
 class QImageWriter;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QImageWriter
 {
 private:
@@ -42,8 +41,6 @@ DeviceError = 1,
 UnsupportedFormatError = 2
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define g_fopen	fopen
 #define g_freopen	freopen
 #define g_lstat	lstat
@@ -19,8 +18,6 @@ extern "C" {
 #define g_rmdir	rmdir
 #define g_stat	stat
 #define g_unlink	unlink
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 #define g_access	access
 #define g_chdir	chdir

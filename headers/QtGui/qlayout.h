@@ -5,7 +5,6 @@
 class QLayout;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QLayoutIterator
 {
 private:
@@ -78,22 +77,17 @@ SetNoConstraint = 1,
 FreeResize = 1,	
 SetMinimumSize = 2,	
 Minimum = 2,	
-SetFixedSize = 3,	
 Fixed = 3,	
+SetFixedSize = 3,	
 SetMaximumSize = 4,	
 SetMinAndMaxSize = 5
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN7QLayout16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

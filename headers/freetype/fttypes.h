@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define FT_MAKE_TAG(_x1,_x2,_x3,_x4)	 \
 	( ( (FT_ULong)_x1 << 24 ) | ( (FT_ULong)_x2 << 16 ) | ( (FT_ULong)_x3 \
 	<< 8 ) | (FT_ULong)_x4 )
@@ -16,11 +15,8 @@ extern "C" {
 #define FT_IS_EMPTY(list)	( (list).head == 0 )
 #define FT_ERROR_BASE(x)	( (x) & 0xFF )
 #define FT_ERROR_MODULE(x)	( (x) & 0xFF00U )
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef unsigned int FT_UInt;
 
     typedef struct FT_ListNodeRec_ *FT_ListNode;
@@ -65,9 +61,6 @@ extern "C" {
 
     typedef struct FT_ListNodeRec_ FT_ListNodeRec;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
     struct FT_ListRec_ {
 	FT_ListNode head;
 	FT_ListNode tail;
@@ -92,8 +85,6 @@ extern "C" {
     };
 
 #include <freetype/freetype.h>
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

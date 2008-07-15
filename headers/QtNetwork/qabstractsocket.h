@@ -5,7 +5,6 @@
 class QAbstractSocket;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef enum SocketState	
 {
 UnconnectedState = 0,	
@@ -14,20 +13,17 @@ HostLookupState = 1,
 HostLookup = 1,	
 ConnectingState = 2,	
 Connecting = 2,	
-ConnectedState = 3,	
 Connected = 3,	
 Connection = 3,	
+ConnectedState = 3,	
 BoundState = 4,	
 ListeningState = 5,	
-ClosingState = 6,	
-Closing = 6
+Closing = 6,	
+ClosingState = 6
 }
 State	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QAbstractSocket : public QIODevice
 {
 private:
@@ -130,13 +126,13 @@ HostLookupState = 1,
 HostLookup = 1,	
 ConnectingState = 2,	
 Connecting = 2,	
-ConnectedState = 3,	
 Connected = 3,	
 Connection = 3,	
+ConnectedState = 3,	
 BoundState = 4,	
 ListeningState = 5,	
-ClosingState = 6,	
-Closing = 6
+Closing = 6,	
+ClosingState = 6
 }
 ;
 
@@ -148,15 +144,10 @@ ErrHostNotFound = 2
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN15QAbstractSocket16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

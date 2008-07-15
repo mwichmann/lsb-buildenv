@@ -5,7 +5,6 @@
 class QTextOption;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QTextOption::Flag>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }Flags	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QTextOption
 {
 private:
@@ -50,8 +46,6 @@ class QFlags<QTextOption::Flag>
 private:
 public:
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

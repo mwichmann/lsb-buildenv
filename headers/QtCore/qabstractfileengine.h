@@ -5,7 +5,6 @@
 class QFlags < QAbstractFileEngine::FileFlag >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QAbstractFileEngine::FileFlag>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }FileFlags	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QAbstractFileEngine
 {
 private:
@@ -145,8 +141,6 @@ public:
      QAbstractFileEngineHandler();
      ~QAbstractFileEngineHandler();
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

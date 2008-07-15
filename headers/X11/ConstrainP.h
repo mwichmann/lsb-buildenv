@@ -13,20 +13,13 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
 #define XtConstraintExtensionVersion	1L
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
-    typedef ConstraintClassRec;
+    typedef struct _ConstraintClassRec *ConstraintClassRec;
 
     typedef struct _ConstraintClassPart ConstraintClassPart;
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
     struct _ConstraintClassPart {
 	XtResourceList resources;
 	Cardinal num_resources;
@@ -43,15 +36,10 @@ extern "C" {
 	ConstraintClassPart constraint_class;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern ConstraintClassRec constraintClassRec;
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

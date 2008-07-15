@@ -15,14 +15,10 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlLocationSet xmlLocationSet;
 
     typedef xmlLocationSet *xmlLocationSetPtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlLocationSet {
 	int locNr;
@@ -30,12 +26,9 @@ extern "C" {
 	xmlXPathObjectPtr *locTab;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlNodePtr xmlXPtrBuildNodeList(xmlXPathObjectPtr);
     extern xmlXPathObjectPtr xmlXPtrEval(const xmlChar *,
 					 xmlXPathContextPtr);
@@ -68,8 +61,6 @@ extern "C" {
 						   xmlXPathObjectPtr);
     extern void xmlXPtrRangeToFunction(xmlXPathParserContextPtr, int);
     extern xmlXPathObjectPtr xmlXPtrWrapLocationSet(xmlLocationSetPtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

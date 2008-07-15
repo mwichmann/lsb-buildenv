@@ -1,1 +1,0 @@
-include ../Makefile.all-arch

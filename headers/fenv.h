@@ -10,7 +10,6 @@ extern "C" {
 
 
 /* Define bits representing the exception.  We use the bit positions of the appropriate bits in the FPU control word.*/
-#if __LSB_VERSION__ >= 30
 #if defined __powerpc__ && !defined __powerpc64__
 #define FE_INVALID	(1 << (31 - 2))
 #endif
@@ -119,12 +118,9 @@ extern "C" {
 #if defined __ia64__
 #define FE_UNNORMAL	1UL << 1
 #endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
 
 
 
-
-#if __LSB_VERSION__ >= 30
 #if defined __i386__
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
@@ -153,13 +149,10 @@ extern "C" {
 #define FE_ALL_EXCEPT	\
 	(FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW | FE_DIVBYZERO | FE_UNNORMAL | FE_INVALID)
 #endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
-
 
 
 
 /* Rounding modes*/
-#if __LSB_VERSION__ >= 30
 #if defined __i386__
 #define FE_TONEAREST	0
 #endif
@@ -244,13 +237,10 @@ extern "C" {
 #if defined __ia64__
 #define FE_TOWARDZERO	3
 #endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
-
 
 
 
 /* Type representing exception flags.*/
-#if __LSB_VERSION__ >= 30
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef unsigned int fexcept_t;
@@ -286,11 +276,8 @@ extern "C" {
     typedef unsigned short fexcept_t;
 
 #endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
-
 
 /* Type representing floating-point environment.*/
-#if __LSB_VERSION__ >= 30
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef double fenv_t;
@@ -361,11 +348,8 @@ extern "C" {
     } fenv_t;
 
 #endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
-
 
 /* If the default argument is used we use this value.*/
-#if __LSB_VERSION__ >= 30
 #if defined __powerpc__ && !defined __powerpc64__
 #define FE_DFL_ENV	(&__fe_dfl_env)
 #endif
@@ -387,14 +371,11 @@ extern "C" {
 #if defined __ia64__
 #define FE_DFL_ENV	((__const fenv_t *) 0xc009804c0270033fUL)
 #endif
-#endif				/* __LSB_VERSION__ >= 3.0 */
-
 
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int feclearexcept(int);
     extern int fegetenv(fenv_t *);
     extern int fegetexceptflag(fexcept_t *, int);
@@ -406,8 +387,6 @@ extern "C" {
     extern int fesetround(int);
     extern int fetestexcept(int);
     extern int feupdateenv(const fenv_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern int fedisableexcept(int);
     extern int feenableexcept(int);

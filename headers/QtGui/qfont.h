@@ -5,7 +5,6 @@
 class QFont;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QFont
 {
 private:
@@ -82,8 +81,8 @@ Helvetica = 0,
 SansSerif = 0,	
 Times = 1,	
 Serif = 1,	
-Courier = 2,	
 TypeWriter = 2,	
+Courier = 2,	
 OldEnglish = 3,	
 Decorative = 3,	
 System = 4,	
@@ -138,16 +137,11 @@ UltraExpanded = 200
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDataStream _ZlsR11QDataStreamRK5QFont(QDataStream &, const QFont &);
 extern QDataStream _ZrsR11QDataStreamR5QFont(QDataStream &, QFont &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

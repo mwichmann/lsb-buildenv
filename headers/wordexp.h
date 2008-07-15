@@ -51,11 +51,8 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int wordexp(const char *, wordexp_t *, int);
     extern void wordfree(wordexp_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

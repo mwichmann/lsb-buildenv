@@ -16,16 +16,12 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define htmlElementAllowedHereDesc(parent,elt)	 \
 	htmlElementAllowedHere((parent), (elt)->name)
 #define htmlRequiredAttrs(elt)	(elt)->attrs_req
 #define htmlDefaultSubelement(elt)	elt->defaultsubelt
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef enum {
 	HTML_NA = 0,
 	HTML_INVALID = 1,
@@ -64,9 +60,6 @@ extern "C" {
 
     typedef xmlParserInput htmlParserInput;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _htmlElemDesc {
 	const char *name;
@@ -92,12 +85,9 @@ extern "C" {
 	const char *desc;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern int UTF8ToHtml(unsigned char *, int *, const unsigned char *,
 			  int *);
     extern htmlStatus htmlAttrAllowed(const htmlElemDesc *,
@@ -157,8 +147,6 @@ extern "C" {
     extern htmlDocPtr htmlSAXParseFile(const char *, const char *,
 				       htmlSAXHandlerPtr, void *);
     extern const htmlElemDesc *htmlTagLookup(const xmlChar *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

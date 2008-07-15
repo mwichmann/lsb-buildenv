@@ -5,7 +5,6 @@
 class QStringMatcher;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QStringMatcher
 {
 private:
@@ -19,8 +18,6 @@ public:
     void setCaseSensitivity(Qt::CaseSensitivity);
     int indexIn(QString const&, int) const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

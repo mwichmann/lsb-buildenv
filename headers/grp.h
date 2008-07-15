@@ -24,7 +24,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void endgrent(void);
     extern struct group *getgrent(void);
     extern struct group *getgrgid(gid_t);
@@ -32,8 +31,6 @@ extern "C" {
     extern int initgroups(const char *, gid_t);
     extern void setgrent(void);
     extern int setgroups(size_t, const gid_t *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int getgrgid_r(gid_t, struct group *, char *, size_t,
 			  struct group **);

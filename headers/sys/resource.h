@@ -10,19 +10,19 @@ extern "C" {
 #endif
 
 
-#define RLIMIT_LOCKS	10
 #define RLIM_NLIMITS	11
-#define RLIMIT_RSS	5
-#define RLIMIT_NPROC	6
-#define RLIMIT_MEMLOCK	8
 #if __LSB_VERSION__ >= 11
 #define RLIM_INFINITY	(~0UL)
 #define RLIMIT_CPU	0
 #define RLIMIT_FSIZE	1
+#define RLIMIT_LOCKS	10
 #define RLIMIT_DATA	2
 #define RLIMIT_STACK	3
 #define RLIMIT_CORE	4
+#define RLIMIT_RSS	5
+#define RLIMIT_NPROC	6
 #define RLIMIT_NOFILE	7
+#define RLIMIT_MEMLOCK	8
 #define RLIMIT_AS	9
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
@@ -123,15 +123,12 @@ indicating what flavor of entity the WHO argument specifies.*/
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int getpriority(__priority_which_t, id_t);
     extern int getrlimit(__rlimit_resource_t, struct rlimit *);
     extern int getrlimit64(id_t, struct rlimit64 *);
     extern int getrusage(int, struct rusage *);
     extern int setpriority(__priority_which_t, id_t, int);
     extern int setrlimit(__rlimit_resource_t, const struct rlimit *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     extern int setrlimit64(__rlimit_resource_t, const struct rlimit64 *);
 #endif				/* __LSB_VERSION__ >= 1.2 */

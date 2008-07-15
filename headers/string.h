@@ -4,11 +4,13 @@
 
 #include <stddef.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,7 +26,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void *__mempcpy(void *, const void *, size_t);
     extern char *__stpcpy(char *, const char *);
     extern char *__strtok_r(char *, const char *, char **);
@@ -62,8 +63,6 @@ extern "C" {
     extern char *strtok(char *, const char *);
     extern char *strtok_r(char *, const char *, char **);
     extern size_t strxfrm(char *, const char *, size_t);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern int __xpg_strerror_r(int, char *, size_t);
 #endif				/* __LSB_VERSION__ >= 3.2 */

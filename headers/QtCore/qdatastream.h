@@ -5,7 +5,6 @@
 class QDataStream;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QDataStream
 {
 private:
@@ -73,8 +72,6 @@ ReadPastEnd = 1,
 ReadCorruptData = 2
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */

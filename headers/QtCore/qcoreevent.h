@@ -5,7 +5,6 @@
 class QCustomEvent;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QEvent
 {
 private:
@@ -60,8 +59,8 @@ Clipboard = 40,
 Speech = 42,	
 MetaCall = 43,	
 SockAct = 50,	
-ShortcutOverride = 51,	
 AccelOverride = 51,	
+ShortcutOverride = 51,	
 DeferredDelete = 52,	
 DragEnter = 60,	
 DragMove = 61,	
@@ -159,8 +158,6 @@ public:
      QCustomEvent(int, void*);
      ~QCustomEvent();
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

@@ -86,7 +86,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void XtConfigureWidget(Widget, Position, Position, Dimension,
 				  Dimension, Dimension);
     extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
@@ -97,8 +96,6 @@ extern "C" {
     extern void XtResizeWidget(Widget, Dimension, Dimension, Dimension);
     extern void XtResizeWindow(Widget);
     extern void _XtInherit(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -5,15 +5,14 @@
 class QComboBox;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef enum InsertPolicy	
 {
 NoInsert = 0,	
 NoInsertion = 0,	
-InsertAtTop = 1,	
 AtTop = 1,	
-InsertAtCurrent = 2,	
+InsertAtTop = 1,	
 AtCurrent = 2,	
+InsertAtCurrent = 2,	
 InsertAtBottom = 3,	
 AtBottom = 3,	
 InsertAfterCurrent = 4,	
@@ -24,9 +23,6 @@ BeforeCurrent = 5
 Policy	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QComboBox : public QWidget
 {
 private:
@@ -128,10 +124,10 @@ enum InsertPolicy
 {
 NoInsert = 0,	
 NoInsertion = 0,	
-InsertAtTop = 1,	
 AtTop = 1,	
-InsertAtCurrent = 2,	
+InsertAtTop = 1,	
 AtCurrent = 2,	
+InsertAtCurrent = 2,	
 InsertAtBottom = 3,	
 AtBottom = 3,	
 InsertAfterCurrent = 4,	
@@ -149,15 +145,10 @@ AdjustToMinimumContentsLength = 2
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QComboBox16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

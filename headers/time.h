@@ -58,7 +58,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern char *asctime(const struct tm *);
     extern clock_t clock(void);
     extern char *ctime(const time_t *);
@@ -78,8 +77,6 @@ extern "C" {
     extern long int timezone;
     extern char *tzname[2];
     extern void tzset(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 11
     extern int __daylight;
     extern long int __timezone;

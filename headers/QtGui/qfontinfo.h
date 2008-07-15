@@ -5,7 +5,6 @@
 class QFontInfo;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QFontInfo
 {
 private:
@@ -29,8 +28,6 @@ public:
     bool rawMode() const;
     bool exactMatch() const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

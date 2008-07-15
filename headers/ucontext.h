@@ -11,12 +11,9 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define ELF_NGREG	48
 #endif
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
 #define _SC_GR0_OFFSET	\
@@ -116,15 +113,12 @@ extern "C" {
 
 
 /* Number of general registers.*/
-#if __LSB_VERSION__ >= 12
 #if defined __i386__
 #define NGREG	19
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 #define NGREG	48
 #endif
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 #if __LSB_VERSION__ >= 13
 #if defined __s390x__
 #define NGREG	27
@@ -193,7 +187,6 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
-#if __LSB_VERSION__ >= 12
 #if defined __i386__
 /* IA32 */
     struct _libc_fpreg {
@@ -202,8 +195,6 @@ extern "C" {
     };
 
 #endif
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 
 /* Structure to describe FPU registers.*/
@@ -534,14 +525,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int getcontext(ucontext_t *);
     extern void makecontext(ucontext_t *, void (*)(void)
 			    , int, ...);
     extern int setcontext(const struct ucontext *);
     extern int swapcontext(ucontext_t *, const struct ucontext *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

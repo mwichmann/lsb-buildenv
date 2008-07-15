@@ -102,7 +102,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 11
     extern void svc_getreqset(fd_set *);
     extern void svcerr_auth(SVCXPRT *, enum auth_stat);
     extern void svcerr_decode(SVCXPRT *);
@@ -111,8 +110,6 @@ extern "C" {
     extern void svcerr_progvers(SVCXPRT *, rpcvers_t, rpcvers_t);
     extern void svcerr_systemerr(SVCXPRT *);
     extern void svcerr_weakauth(SVCXPRT *);
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 20
     extern bool_t svc_register(SVCXPRT *, rpcprog_t, rpcvers_t,
 			       __dispatch_fn_t, rpcprot_t);

@@ -103,11 +103,15 @@ int lsbccmode=LSBCC;
 #endif
 
 char *ccname="cc";
-char *lsbcc_lsbversion=DEFAULT_LSB_VERSION;
-char *lsbversion_option;
 char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
 char libpath[PATH_MAX];
+/* 'Normal' version name */
+char *lsbcc_lsbversion="4.0";
+/* Version name with dot removed */
+char *lsbversion_option;
+/* Index in the lsb_libs array corresponding to the target LSB version */
+int lsbversion_index = 0;
 
 /*
  * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
@@ -363,6 +367,10 @@ int
 need_long_double_64()
 {
 #if defined __powerpc__ || defined __s390__
+  /* Since LSB 4.0, we don't need this. */
+  if (strcmp(lsbcc_lsbversion, "4.0") >= 0)
+    return 0;
+
   /* If we don't need the gcc 3.4 workaround, we don't need this.  This also
      conveniently loads the gcc version for us. */
   if (!need_gcc34_compat())
@@ -472,8 +480,8 @@ char *get_modules_strings(void)
 	int	i = 0;
 	char	*modules = NULL;
 	char	*tmp = NULL;
-	for(;i < lsb_num_modules; i++) {
-		lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+    for(;i < lsb_num_modules[lsbversion_index]; i++) {
+        lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
 		if (lsb_module->lib_names == NULL) {
 			continue;
@@ -540,12 +548,11 @@ usage(const char *progname) {
 		"\t                    known modules: %s\n"
                 "\t--lsb-use-default-linker\n"
                 "\t                   Do not set dynamic linker to the LSB one.\n\n"
-
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
 		,progname,
-		(lsb_num_modules ? get_modules_strings() : "none"));
+        (lsb_num_modules[lsbversion_index] ? get_modules_strings() : "none"));
 }
 
 /*
@@ -756,23 +763,47 @@ if( strcmp(basename(argv[0]), "lsbc++") == 0 ) {
  */
 snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
 snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
-
-/* Initialize default version value */
-lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
-		                               strlen(DEFAULT_LSB_VERSION) +1));
-sprintf(lsbversion_option, "-D__LSB_VERSION__=%s", DEFAULT_LSB_VERSION);
+lsbversion_index=get_version_index(lsbcc_lsbversion);
 
 /*
- * Set up the library path according to arch using lib64 where necessary
+ * Check for LSBCC_LSBVERSION environment variable -
+ * we need to know it (if any) before setting libpath.
  */
+if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
+    lsbcc_lsbversion = strdup(ptr);
+    if ((lsbversion_index = get_version_index(lsbcc_lsbversion)) < 0) {
+        fprintf(stderr,"unrecognized lsb version value %s\n", lsbcc_lsbversion);
+        exit(3);
+    }
+
+    if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+        fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
+}
+/* set up __LSB_VERSION__ define */
+lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
+		                               strlen(lsbcc_lsbversion) + 1));
+if(lsbversion_option == NULL) {
+    exit(3);
+}
+strcpy(lsbversion_option, "-D__LSB_VERSION__=");
+/*
+ * Normally, LSB_VERSION values contain dot - copy without the dot
+ * this method would destroy lsbcc_lsbversion, so make a dup first
+ */
+ptr = strdup(lsbcc_lsbversion);
+strcat(lsbversion_option, strsep(&ptr,"."));
+if(&ptr)
+    strcat(lsbversion_option, strsep(&ptr,"."));
+
 #if __powerpc64__ || __s390x__ || __x86_64__
-	snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib64");
+snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib64-", lsbcc_lsbversion);
 #else
-	snprintf(libpath, PATH_MAX-1, "%s/%s", BASE_PATH, "lib");
+snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib-", lsbcc_lsbversion);
 #endif
 
 /*
- * Check for some environment variable, and adjust things if they are found.
+ * Check for some other environment variables,
+ * and adjust things if they are found.
  */
 
 if( (ptr=getenv("LSBCC_WARN")) != NULL ) {
@@ -835,36 +866,21 @@ if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
 	display_cmd = 1;
 }
 
-if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
-    lsbcc_lsbversion=ptr;
-
-    if( (lsbversion_option=
-        (char *)realloc(lsbversion_option,sizeof(char)*(strlen("-D__LSB_VERSION__=") + strlen(lsbcc_lsbversion))) ) == NULL ) {
-	    exit(3);
-    }
-
-    strcpy(lsbversion_option, "-D__LSB_VERSION__=");
-    /* Normally, LSB_VERSION values should contain dot - remove it */
-    strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-    if( lsbcc_lsbversion )
-	strcat(lsbversion_option, strsep(&lsbcc_lsbversion,".") );
-
-    if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
-        fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
-}
-
 if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++)
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 }
 
-
 /*
  * Build the argvgroup for the "known" library names here
  * Then add to it if the environment variable is set
  */
-for(i=0;lsb_libs[i]; i++) {
-	argvaddstring(lsblibs, strdup(lsb_libs[i]));
+if( lsbversion_index == -1 ) {
+    fprintf(stderr,"Incorrect LSB version: %s\n", lsbcc_lsbversion);
+    exit(-1);
+}
+for(i=0;lsb_libs[lsbversion_index][i]; i++) {
+	argvaddstring(lsblibs, strdup(lsb_libs[lsbversion_index][i]));
 }
 
 if(LSBCPLUS == lsbccmode) {
@@ -882,11 +898,11 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 	module = strtok(modulearg, ",");
 	while (module) {
 		int	found = 0;
-		for (i = 0; i < lsb_num_modules; i++) {
+        for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
 			int	j = 0;
-			lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+            lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-			if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
+            if(strcasecmp(module, lsb_modules[lsbversion_index][i].module_name) == 0) {
 				if (lsb_module->lib_names != NULL) {
         				for(;lsb_module->lib_names[j] != NULL;j++) {
                					argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
@@ -903,8 +919,8 @@ if((ptr = getenv("LSB_MODULES")) != NULL) {
 		 * this is just for the Qt3 scripts, really;
 		 * until a better answer is developed
 		 */
-		for (i = 0; i < lsb_num_deprecated_modules; i++) {
-			if(strcasecmp(module, lsb_deprecated_modules[i].module_name) == 0) {
+        for (i = 0; i < lsb_num_deprecated_modules[lsbversion_index]; i++) {
+            if(strcasecmp(module, lsb_deprecated_modules[lsbversion_index][i].module_name) == 0) {
 				found = 1;
 				break;
 			}
@@ -1037,10 +1053,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		while (module) {
 			int	found = 0;
 			int	j = 0;
-			for (i = 0; i < lsb_num_modules; i++) {
-				lsb_lib_modules_t *lsb_module = &lsb_modules[i];
+            for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
+                lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-				if(strcasecmp(module, lsb_modules[i].module_name) == 0) {
+                if(strcasecmp(module, lsb_modules[lsbversion_index][i].module_name) == 0) {
 					if (lsb_module->lib_names != NULL) {
         					for(j=0;lsb_module->lib_names[j] != NULL;j++) {
                						argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));

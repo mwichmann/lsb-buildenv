@@ -1,6 +1,11 @@
 
 #define FT_BEGIN_HEADER
 #define FT_END_HEADER
+#define FT_ERRORDEF_(e,v,s)	 \
+	FT_ERRORDEF( FT_ERR_CAT( FT_ERR_PREFIX, e ), v + FT_ERR_BASE, s )
+#define FT_NOERRORDEF_(e,v,s)	 \
+	FT_ERRORDEF( FT_ERR_CAT( FT_ERR_PREFIX, e ), v, s )
+#define FT_ERR_BASE	0
 #define FT_CONFIG_CONFIG_H	<freetype/config/ftconfig.h>
 #define FT_CONFIG_MODULES_H	<freetype/config/ftmodule.h>
 #define FT_CONFIG_OPTIONS_H	<freetype/config/ftoption.h>
@@ -46,6 +51,12 @@
 #define FT_TRUETYPE_TABLES_H	<freetype/tttables.h>
 #define FT_TRUETYPE_TAGS_H	<freetype/tttags.h>
 #define FT_TRUETYPE_UNPATENTED_H	<freetype/ttunpat.h>
+#define FT_ERRORDEF(e,v,s)	e = v,
+#define FT_ERROR_START_LIST	enum {
 #define FT_CACHE_CHARMAP_H	FT_CACHE_H
 #define FT_CACHE_IMAGE_H	FT_CACHE_H
 #define FT_CACHE_SMALL_BITMAPS_H	FT_CACHE_H
+#define FT_ERR_PREFIX	FT_Err_
+#define FT_ERROR_END_LIST	FT_ERR_CAT( FT_ERR_PREFIX, Max ) };
+#define FT_ERR_CAT(x,y)	FT_ERR_XCAT( x, y )
+#define FT_ERR_XCAT(x,y)	x ## y

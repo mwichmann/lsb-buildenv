@@ -34,14 +34,11 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef int pid_t;
 
     typedef long int off_t;
 
     typedef int key_t;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned char u_int8_t;
@@ -211,10 +208,7 @@ extern "C" {
 
 
 /* Time related types*/
-#if __LSB_VERSION__ >= 10
     typedef long int clock_t;
-
-#endif				/* __LSB_VERSION__ >= 1.0 */
 
 #if __LSB_VERSION__ >= 12
     typedef long int time_t;

@@ -5,7 +5,6 @@
 class QMetaProperty;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QMetaMethod
 {
 private:
@@ -93,8 +92,6 @@ public:
     const char * name() const;
     const char * value() const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

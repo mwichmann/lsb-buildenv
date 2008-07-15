@@ -63,7 +63,6 @@ extern "C" {
 
 
 /* Convenient types for callback functions.*/
-#if __LSB_VERSION__ >= 10
     typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,
 				 int __flag);
 
@@ -77,18 +76,13 @@ extern "C" {
 				    struct stat64 * __status, int __flag,
 				    struct FTW * __info);
 
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int ftw(const char *, __ftw_func_t, int);
     extern int ftw64(const char *, __ftw64_func_t, int);
     extern int nftw(const char *, __nftw_func_t, int, int);
     extern int nftw64(const char *, __nftw64_func_t, int, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

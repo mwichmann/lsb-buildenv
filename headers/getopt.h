@@ -29,13 +29,10 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int getopt_long(int, char *const[], const char *,
 			   const struct option *, int *);
     extern int getopt_long_only(int, char *const[], const char *,
 				const struct option *, int *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

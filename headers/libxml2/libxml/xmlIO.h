@@ -21,7 +21,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef int (*xmlOutputMatchCallback) (const char *);
 
     typedef void *(*xmlOutputOpenCallback) (const char *);
@@ -76,9 +75,6 @@ extern "C" {
 
     typedef void *(*xmlInputOpenCallback) (const char *);
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlParserNodeInfo {
 	const struct _xmlNode *node;
@@ -202,12 +198,9 @@ extern "C" {
 	xmlParserMode parseMode;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlOutputBufferPtr
 	xmlAllocOutputBuffer(xmlCharEncodingHandlerPtr);
     extern xmlParserInputBufferPtr
@@ -286,8 +279,6 @@ extern "C" {
 					  xmlOutputOpenCallback,
 					  xmlOutputWriteCallback,
 					  xmlOutputCloseCallback);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

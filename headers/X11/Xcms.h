@@ -48,18 +48,6 @@ extern "C" {
 	XcmsScreenFreeProc screenFreeProc;
     };
 
-    int (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
-    void (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
-    int (*screenFreeProc) (void);
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
@@ -228,7 +216,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XcmsAddColorSpace(XcmsColorSpace *);
     extern int XcmsAddFunctionSet(XcmsFunctionSet *);
     extern int XcmsAllocColor(Display *, Colormap, XcmsColor *,
@@ -350,8 +337,6 @@ extern "C" {
 					  XcmsColor *, unsigned int,
 					  int *);
     extern Visual *XcmsVisualOfCCC(XcmsCCC);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -5,7 +5,6 @@
 class QFlags < QDir::Filter >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QDir::Filter>
 {
 private:
@@ -26,9 +25,6 @@ public:
 typedef SortFlags	SortSpec	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QDir
 {
 private:
@@ -99,8 +95,8 @@ public:
 
 enum Filter	
 {
-NoFilter = -1,	
 DefaultFilter = -1,	
+NoFilter = -1,	
 Dirs = 1,	
 Files = 2,	
 Drives = 4,	
@@ -131,8 +127,8 @@ public:
 
 enum SortFlag	
 {
-NoSort = -1,	
 DefaultSort = -1,	
+NoSort = -1,	
 Name = 0,	
 Time = 1,	
 Size = 2,	
@@ -152,8 +148,6 @@ class QFlags<QDir::SortFlag>
 private:
 public:
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

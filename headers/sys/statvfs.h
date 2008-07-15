@@ -273,12 +273,9 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int fstatvfs(int, struct statvfs *);
     extern int fstatvfs64(int, struct statvfs64 *);
     extern int statvfs(const char *, struct statvfs *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int statvfs64(const char *, struct statvfs64 *);
 #endif				/* __LSB_VERSION__ >= 1.3 */

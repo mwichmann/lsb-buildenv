@@ -5,7 +5,6 @@
 class QShortcut;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QShortcut : public QObject
 {
 private:
@@ -33,15 +32,10 @@ protected:
     bool event(QEvent*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QShortcut16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

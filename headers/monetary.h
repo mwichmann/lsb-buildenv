@@ -6,6 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -14,10 +22,7 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern ssize_t strfmon(char *, size_t, const char *, ...);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

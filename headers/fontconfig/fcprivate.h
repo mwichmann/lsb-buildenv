@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define FcObjectSetVapBuild(__ret__,__first__,__va__)	 \
 	{ FcObjectSet *__os__; const char *__ob__; __ret__ = 0; __os__ = \
 	FcObjectSetCreate (); if (!__os__) goto _FcObjectSetVapBuild_bail0; \
@@ -35,8 +34,6 @@ extern "C" {
 	_FcPatternVapBuild_return; _FcPatternVapBuild_bail1: if (!orig) \
 	FcPatternDestroy (__p__); _FcPatternVapBuild_bail0: result = (void*)0; \
 	_FcPatternVapBuild_return: ; }
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 
 #ifdef __cplusplus

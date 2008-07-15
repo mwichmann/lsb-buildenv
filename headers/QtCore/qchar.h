@@ -5,7 +5,6 @@
 class QChar;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 struct QLatin1Char	;
 
 class QChar
@@ -50,10 +49,10 @@ ParagraphSeparator = 8233,
 ByteOrderMark = 65279,	
 byteOrderMark = 65279,	
 ObjectReplacementCharacter = 65532,	
-ReplacementCharacter = 65533,	
 replacement = 65533,	
-ByteOrderSwapped = 65534,	
-byteOrderSwapped = 65534
+ReplacementCharacter = 65533,	
+byteOrderSwapped = 65534,	
+ByteOrderSwapped = 65534
 }
 ;
 
@@ -80,8 +79,8 @@ Letter_Titlecase = 17,
 Letter_Modifier = 18,	
 Letter_Other = 19,	
 Punctuation_Connector = 20,	
-Punctuation_Dash = 21,	
 Punctuation_Dask = 21,	
+Punctuation_Dash = 21,	
 Punctuation_Open = 22,	
 Punctuation_Close = 23,	
 Punctuation_InitialQuote = 24,	
@@ -188,16 +187,11 @@ Unicode_4_0 = 7
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern  _ZlsR11QDataStreamRK5QChar(const QChar &);
 extern  _ZrsR11QDataStreamR5QChar(QChar &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

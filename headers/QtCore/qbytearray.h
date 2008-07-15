@@ -5,7 +5,6 @@
 class QByteRef;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef char	iterator	
 ;
 
@@ -24,9 +23,6 @@ typedef char	const_reference
 typedef char	reference	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QByteArray
 {
 private:
@@ -113,12 +109,9 @@ private:
 public:
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
 extern void _Z10qvsnprintfPcjPKcP13__va_list_tag(char *, unsigned int, const char *, struct __va_list_tag *);
@@ -187,8 +180,6 @@ extern int _Z9qstrnicmpPKcS0_j(const char *, const char *, unsigned int);
 extern struct Data _ZN10QByteArray11shared_nullE ;
 extern  _ZlsR11QDataStreamRK10QByteArray(QDataStream &, QByteArray & &);
 extern  _ZrsR11QDataStreamR10QByteArray(QDataStream &, QByteArray &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

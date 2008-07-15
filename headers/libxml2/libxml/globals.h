@@ -17,7 +17,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define xmlDeregisterNodeDefaultValue	 \
 	(*(__xmlDeregisterNodeDefaultValue()))
 #define xmlDoValidityCheckingDefaultValue	 \
@@ -51,11 +50,8 @@ extern "C" {
 #define xmlSaveNoEmptyTags	(*(__xmlSaveNoEmptyTags()))
 #define xmlStructuredError	(*(__xmlStructuredError()))
 #define xmlTreeIndentString	(*(__xmlTreeIndentString()))
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef xmlOutputBufferPtr(*xmlOutputBufferCreateFilenameFunc) (const
 								    char *,
 								    xmlCharEncodingHandlerPtr,
@@ -75,9 +71,6 @@ extern "C" {
 
     typedef xmlGlobalState *xmlGlobalStatePtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
     struct _xmlSAXHandlerV1 {
 	internalSubsetSAXFunc internalSubset;
@@ -112,12 +105,9 @@ extern "C" {
 
 
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlSAXHandlerV1 *__docbDefaultSAXHandler(void);
     extern xmlSAXHandlerV1 *__htmlDefaultSAXHandler(void);
     extern int *__oldXMLWDcompatibility(void);
@@ -195,8 +185,6 @@ extern "C" {
 						xmlStructuredErrorFunc);
     extern int xmlThrDefSubstituteEntitiesDefaultValue(int);
     extern const char *xmlThrDefTreeIndentString(const char *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

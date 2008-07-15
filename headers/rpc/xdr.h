@@ -108,7 +108,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 11
     extern bool_t xdr_array(XDR *, caddr_t *, u_int *, u_int, u_int,
 			    xdrproc_t);
     extern bool_t xdr_bool(XDR *, bool_t *);
@@ -139,8 +138,6 @@ extern "C" {
 			      , int (*)(char *, char *, int)
 	);
     extern bool_t xdrrec_eof(XDR *);
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 13
     extern bool_t xdr_u_int(XDR *, u_int *);
 #endif				/* __LSB_VERSION__ >= 1.3 */

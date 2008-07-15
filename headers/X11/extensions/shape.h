@@ -32,7 +32,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void XShapeCombineMask(Display *, Window, int, int, int, Pixmap,
 				  int);
     extern void XShapeCombineRectangles(Display *, Window, int, int, int,
@@ -52,8 +51,6 @@ extern "C" {
 				  unsigned int *);
     extern int XShapeQueryVersion(Display *, int *, int *);
     extern void XShapeSelectInput(Display *, Window, unsigned long int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

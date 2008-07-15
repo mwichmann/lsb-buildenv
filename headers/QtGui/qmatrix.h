@@ -5,7 +5,6 @@
 class QMatrix;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QMatrix
 {
 private:
@@ -42,18 +41,13 @@ public:
     QVariant operator QVariant() const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern QDebug _Zls6QDebugRK7QMatrix(_Z6QDebug, const QMatrix &);
 extern QDataStream _ZlsR11QDataStreamRK7QMatrix(QDataStream &);
 extern  _ZmlRK12QPainterPathRK7QMatrix(const QPainterPath &, const QMatrix &);
 extern QDataStream _ZrsR11QDataStreamR7QMatrix(QDataStream &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

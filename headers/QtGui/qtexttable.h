@@ -5,7 +5,6 @@
 class QTextTable;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTextTableCell
 {
 private:
@@ -50,15 +49,10 @@ public:
     QTextCursor rowEnd(QTextCursor const&) const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN10QTextTable16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -16,7 +16,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int putp(const char *);
     extern int tgetent(char *, const char *);
     extern int tgetflag(char *);
@@ -29,12 +28,7 @@ extern "C" {
     extern char *tparm(const char *, ...);
     extern int tputs(const char *, int, int (*)(int)
 	);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
-#if __LSB_VERSION__ >= 12
     extern int setupterm(char *, int, int *);
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 #if __LSB_VERSION__ >= 20
     extern TERMINAL *cur_term;
     extern int del_curterm(TERMINAL *);

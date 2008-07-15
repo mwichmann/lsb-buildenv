@@ -5,7 +5,6 @@
 class QStyleOptionButton;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QStyleOptionFrameV2::FrameFeature>
 {
 private:
@@ -48,9 +47,6 @@ public:
 }ToolButtonFeatures	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QStyleOption
 {
 private:
@@ -506,8 +502,6 @@ private:
 public:
      QStyleHintReturnMask();
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

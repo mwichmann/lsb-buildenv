@@ -5,7 +5,6 @@
 class QTreeWidget;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTreeWidgetItem
 {
 private:
@@ -112,17 +111,12 @@ private:
     void setModel(QAbstractItemModel*);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN11QTreeWidget16staticMetaObjectE ;
 extern QDataStream _ZlsR11QDataStreamRK15QTreeWidgetItem(QDataStream &);
 extern QDataStream _ZrsR11QDataStreamR15QTreeWidgetItem(QDataStream &);
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

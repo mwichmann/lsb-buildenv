@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 40
 #define IN_ACCESS	0x00000001
 #define IN_MODIFY	0x00000002
 #define IN_ATTRIB	0x00000004
@@ -33,11 +32,8 @@ extern "C" {
    (IN_ACCESS | IN_MODIFY | IN_ATTRIB | IN_CLOSE_WRITE | \
   IN_CLOSE_NOWRITE | IN_OPEN | IN_MOVED_FROM | IN_MOVED_TO | IN_CREATE | \
  IN_DELETE | IN_DELETE_SELF | IN_MOVE_SELF)
-#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
-
-#if __LSB_VERSION__ >= 40
     struct inotify_event {
 	int wd;
 	uint32_t mask;
@@ -46,17 +42,12 @@ extern "C" {
 	char name[];
     };
 
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 40
     extern int inotify_add_watch(int, const char *, uint32_t);
     extern int inotify_init(void);
     extern int inotify_rm_watch(int, uint32_t);
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 #ifdef __cplusplus
 }
 #endif

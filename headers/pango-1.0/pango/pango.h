@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define PANGO_CONTEXT_CLASS(klass)	 \
 	(G_TYPE_CHECK_CLASS_CAST ((klass), PANGO_TYPE_CONTEXT, \
 	PangoContextClass))
@@ -122,8 +121,6 @@ extern "C" {
 #define PANGO_TYPE_ATTR_LIST	pango_attr_list_get_type ()
 #define PANGO_TYPE_COLOR	pango_color_get_type ()
 #define PANGO_MATRIX_INIT	{ 1., 0., 0., 1., 0., 0. }
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
 #if defined(PANGO_ENABLE_ENGINE) || defined(PANGO_ENABLE_BACKEND)
 #define PANGO_GET_UNKNOWN_GLYPH(wc)	((PangoGlyph)(wc)|PANGO_GLYPH_UNKNOWN_FLAG)
@@ -135,7 +132,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _PangoFontFace PangoFontFace;
 
     typedef enum {
@@ -418,9 +414,6 @@ extern "C" {
 
     typedef struct _PangoLayoutClass PangoLayoutClass;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
@@ -665,12 +658,9 @@ extern "C" {
 
 
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern GType pango_alignment_get_type(void);
     extern PangoAttribute *pango_attr_background_new(guint16, guint16,
 						     guint16);
@@ -1162,8 +1152,6 @@ extern "C" {
     extern GType pango_variant_get_type(void);
     extern GType pango_weight_get_type(void);
     extern GType pango_wrap_mode_get_type(void);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern PangoFontMap *pango_font_get_font_map(PangoFont *);
 #endif				/* __LSB_VERSION__ >= 4.0 */

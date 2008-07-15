@@ -1,8 +1,8 @@
 
 class QDir;
 enum _ZN4QDir6FilterE {
-    NoFilter = -1,
     DefaultFilter = -1,
+    NoFilter = -1,
     Dirs = 1,
     Files = 2,
     Drives = 4,
@@ -27,8 +27,8 @@ class QFlags < QDir::Filter >;
 typedef class QFlags < QDir::Filter > _ZN4QDir7FiltersE;
 typedef _ZN4QDir7FiltersE _ZN4QDir10FilterSpecE;
 enum _ZN4QDir8SortFlagE {
-    NoSort = -1,
     DefaultSort = -1,
+    NoSort = -1,
     Name = 0,
     Time = 1,
     Size = 2,

@@ -5,7 +5,6 @@
 class QStackedLayout;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QStackedLayout : public QLayout
 {
 private:
@@ -36,15 +35,10 @@ protected:
     void currentChanged(int);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN14QStackedLayout16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

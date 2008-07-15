@@ -148,17 +148,6 @@ extern "C" {
 #define AF_UNIX	1
 #define AF_INET6	10
 #define AF_INET	2
-#if __LSB_VERSION__ < 20
-#define AF_LOCAL	1
-#define AF_AX25	3
-#define AF_IPX	4
-#define AF_APPLETALK	5
-#define AF_NETROM	6
-#define AF_BRIDGE	7
-#define AF_ATMPVC	8
-#define AF_X25	9
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 
@@ -173,10 +162,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 13
 #define PF_UNIX	AF_UNIX
 #define PF_UNSPEC	AF_UNSPEC
-#if __LSB_VERSION__ < 20
-#define PF_LOCAL	AF_LOCAL
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 
@@ -304,13 +289,6 @@ extern "C" {
 
 
 /* ioctl() commands which are permitted on sockets.*/
-#if __LSB_VERSION__ >= 12
-#if __LSB_VERSION__ < 30
-#define SIOCGIFCONF	0x8912
-#endif				/* __LSB_VERSION__ < 3.0 */
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 #if __LSB_VERSION__ >= 13
 #define SIOCGIFFLAGS	0x8913
 #define SIOCGIFADDR	0x8915
@@ -359,7 +337,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int accept(int, struct sockaddr *, socklen_t *);
     extern int bind(int, const struct sockaddr *, socklen_t);
     extern int connect(int, const struct sockaddr *, socklen_t);
@@ -379,8 +356,6 @@ extern "C" {
     extern int shutdown(int, int);
     extern int socket(int, int, int);
     extern int socketpair(int, int, int, int[2]);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int getnameinfo(const struct sockaddr *, socklen_t, char *,
 			   socklen_t, char *, socklen_t, unsigned int);

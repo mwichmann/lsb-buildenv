@@ -7,11 +7,13 @@
 #include <sys/time.h>
 #include <stddef.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
 #define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
 #else
 #define LSB_DECL_DEPRECATED
 #endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,10 +30,6 @@ extern "C" {
 #define PTHREAD_MUTEX_NORMAL	0
 #define PTHREAD_MUTEX_RECURSIVE	1
 #define PTHREAD_MUTEX_ERRORCHECK	2
-#if __LSB_VERSION__ < 21
-#define PTHREAD_MUTEX_TIMED_NP	1
-#endif				/* __LSB_VERSION__ < 2.1 */
-
 #if __LSB_VERSION__ < 40
 #define PTHREAD_MUTEX_INITIALIZER	\
 	{0,0,0,PTHREAD_MUTEX_NORMAL,__LOCK_INITIALIZER}
@@ -971,7 +969,6 @@ extern "C" {
 			      , void (*)(void)
 			      , void (*)(void)
 	);
-#if __LSB_VERSION__ >= 10
     extern int pthread_attr_destroy(pthread_attr_t *);
     extern int pthread_attr_getdetachstate(const pthread_attr_t *, int *);
     extern int pthread_attr_getguardsize(const pthread_attr_t *, size_t *);
@@ -1044,8 +1041,6 @@ extern "C" {
     extern int pthread_setcanceltype(int, int *);
     extern int pthread_setspecific(pthread_key_t, const void *);
     extern void pthread_testcancel(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 12
     extern int pthread_rwlock_timedrdlock(pthread_rwlock_t *,
 					  const struct timespec *);
@@ -1110,7 +1105,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int pthread_mutex_getprioceiling(const pthread_mutexattr_t *,
+    extern int pthread_mutex_getprioceiling(const pthread_mutex_t *,
 					    int *);
     extern int pthread_mutex_setprioceiling(pthread_mutex_t *, int, int *);
     extern int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t

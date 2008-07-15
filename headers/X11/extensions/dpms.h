@@ -21,7 +21,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int DPMSCapable(Display *);
     extern int DPMSDisable(Display *);
     extern int DPMSEnable(Display *);
@@ -31,8 +30,6 @@ extern "C" {
     extern int DPMSInfo(Display *, *, *);
     extern int DPMSQueryExtension(Display *, int *, int *);
     extern int DPMSSetTimeouts(Display *,,,);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

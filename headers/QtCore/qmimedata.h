@@ -5,7 +5,6 @@
 class QMimeData;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QMimeData : public QObject
 {
 private:
@@ -39,15 +38,10 @@ protected:
     QVariant retrieveData(QString const&, QVariant::Type) const;
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QMimeData16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

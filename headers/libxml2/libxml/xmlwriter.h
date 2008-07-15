@@ -17,29 +17,19 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define xmlTextWriterWriteDocType	xmlTextWriterWriteDTD
 #define xmlTextWriterWriteProcessingInstruction	xmlTextWriterWritePI
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlTextWriter xmlTextWriter;
 
     typedef xmlTextWriter *xmlTextWriterPtr;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
-#if __LSB_VERSION__ >= 31
-
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void xmlFreeTextWriter(xmlTextWriterPtr);
     extern xmlTextWriterPtr xmlNewTextWriter(xmlOutputBufferPtr);
     extern xmlTextWriterPtr xmlNewTextWriterDoc(xmlDocPtr *, int);
@@ -235,8 +225,6 @@ extern "C" {
 					    va_list);
     extern int xmlTextWriterWriteVFormatString(xmlTextWriterPtr,
 					       const char *, va_list);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

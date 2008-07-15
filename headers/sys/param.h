@@ -8,11 +8,8 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 11
 #define NOFILE	256
 #define MAXPATHLEN	4096
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 
 
 #ifdef __cplusplus

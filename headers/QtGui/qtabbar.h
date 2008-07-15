@@ -5,7 +5,6 @@
 class QTabBar;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTabBar : public QWidget
 {
 private:
@@ -78,22 +77,17 @@ RoundedWest = 2,
 RoundedEast = 3,	
 TriangularNorth = 4,	
 TriangularAbove = 4,	
-TriangularSouth = 5,	
 TriangularBelow = 5,	
+TriangularSouth = 5,	
 TriangularWest = 6,	
 TriangularEast = 7
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN7QTabBar16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

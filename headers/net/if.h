@@ -10,10 +10,7 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
 #define IF_NAMESIZE	16
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 
     struct ifmap {
@@ -27,7 +24,6 @@ extern "C" {
 
 
 /* Standard interface flags.*/
-#if __LSB_VERSION__ >= 12
 #define IFF_UP	0x01		/* Interface is up. */
 #define IFF_BROADCAST	0x02	/* Broadcast address valid. */
 #define IFF_DEBUG	0x04	/* Turn on debugging. */
@@ -38,8 +34,6 @@ extern "C" {
 #define IFF_NOTRAILERS	0x20	/* Avoid use of trailers. */
 #define IFF_RUNNING	0x40	/* Resources allocated. */
 #define IFF_NOARP	0x80	/* No address resolution protocol. */
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 
 
@@ -57,7 +51,6 @@ extern "C" {
    interface.  They are maintained by the different address families,
    are allocated and attached when an address is set, and are linked
    together so all addresses for an interface can be located.*/
-#if __LSB_VERSION__ >= 12
     struct ifaddr {
 	struct sockaddr ifa_addr;	/* Address of interface. */
 	union {
@@ -68,13 +61,10 @@ extern "C" {
 	void *ifa_next;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Interface request structure used for socket ioctl's.  All interface
    ioctl's must have parameter definitions which begin with ifr_name.
    The remainder may be interface specific.*/
-#if __LSB_VERSION__ >= 12
 #define ifr_name	ifr_ifrn.ifrn_name	/* interface name */
 #define ifr_addr	ifr_ifru.ifru_addr	/* address */
 #define ifr_broadaddr	ifr_ifru.ifru_broadaddr	/* broadcast address */
@@ -90,11 +80,8 @@ extern "C" {
 #define ifr_netmask	ifr_ifru.ifru_netmask	/* interface net mask */
 #define ifr_slave	ifr_ifru.ifru_slave	/* slave device */
 #define IFNAMSIZ	IF_NAMESIZE
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
     struct ifreq {
 	union {
 	    char ifrn_name[IFNAMSIZ];
@@ -115,20 +102,14 @@ extern "C" {
 	} ifr_ifru;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Structure used in SIOCGIFCONF request.  Used to retrieve interface
    configuration for machine (useful for programs which must know all
    networks accessible).*/
-#if __LSB_VERSION__ >= 12
 #define ifc_buf	ifc_ifcu.ifcu_buf	/* Buffer address. */
 #define ifc_req	ifc_ifcu.ifcu_req	/* Array of structures. */
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
     struct ifconf {
 	int ifc_len;
 	union {
@@ -136,8 +117,6 @@ extern "C" {
 	    struct ifreq *ifcu_req;
 	} ifc_ifcu;
     };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Function prototypes */

@@ -129,7 +129,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 11
     extern struct CLIENT *clnt_create(const char *, const u_long,
 				      const u_long, const char *);
     extern void clnt_pcreateerror(const char *);
@@ -138,11 +137,10 @@ extern "C" {
     extern char *clnt_spcreateerror(const char *);
     extern char *clnt_sperrno(enum clnt_stat);
     extern char *clnt_sperror(struct CLIENT *, const char *);
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 40
-    extern int callrpc(char *, u_long, u_long, u_long, xdrproc_t, char *,
-		       xdrproc_t, char *);
+    extern int callrpc(const char *, const u_long, const u_long,
+		       const u_long, const xdrproc_t, const char *,
+		       const xdrproc_t, char *);
     extern struct CLIENT *clntraw_create(u_long, u_long);
     extern struct CLIENT *clnttcp_create(struct sockaddr_in *, u_long,
 					 u_long, int *, u_int, u_int);

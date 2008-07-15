@@ -12,7 +12,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlRegexp xmlRegexp;
 
     typedef xmlRegexp *xmlRegexpPtr;
@@ -41,9 +40,6 @@ extern "C" {
 	XML_EXP_COUNT = 5
     } xmlExpNodeType;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 
 
 
@@ -51,13 +47,10 @@ extern "C" {
 
 
 
-
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern xmlExpNodePtr emptyExp;
     extern xmlExpNodePtr forbiddenExp;
     extern int xmlExpCtxtNbCons(xmlExpCtxtPtr);
@@ -104,8 +97,6 @@ extern "C" {
     extern int xmlRegexpExec(xmlRegexpPtr, const xmlChar *);
     extern int xmlRegexpIsDeterminist(xmlRegexpPtr);
     extern void xmlRegexpPrint(FILE *, xmlRegexpPtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

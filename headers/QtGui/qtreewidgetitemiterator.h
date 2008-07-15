@@ -5,7 +5,6 @@
 class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QTreeWidgetItemIterator::IteratorFlag>
 {
 private:
@@ -13,9 +12,6 @@ public:
 }IteratorFlags	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QTreeWidgetItemIterator
 {
 private:
@@ -59,8 +55,6 @@ class QFlags<QTreeWidgetItemIterator::IteratorFlag>
 private:
 public:
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

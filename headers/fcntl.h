@@ -53,15 +53,95 @@ extern "C" {
 #define POSIX_FADV_RANDOM	1
 #define POSIX_FADV_SEQUENTIAL	2
 #define POSIX_FADV_WILLNEED	3
+#if defined __i386__
 #define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __ia64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __powerpc64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __s390__ && !defined __s390x__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __x86_64__
+#define POSIX_FADV_DONTNEED	4
+#endif
+#if defined __i386__
 #define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __ia64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __powerpc64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __s390__ && !defined __s390x__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __x86_64__
+#define POSIX_FADV_NOREUSE	5
+#endif
+#if defined __s390x__
+#define POSIX_FADV_DONTNEED	6
+#endif
+#if defined __s390x__
+#define POSIX_FADV_NOREUSE	7
+#endif
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
 #define O_DSYNC	010000
 #define O_RSYNC	010000
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_NOFOLLOW	0100000
+#endif
+#if defined __powerpc64__
+#define O_NOFOLLOW	0100000
+#endif
+#if defined __i386__
 #define O_DIRECTORY	0200000
+#endif
+#if defined __ia64__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __s390__ && !defined __s390x__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __x86_64__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __s390x__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_DIRECTORY	040000
+#endif
+#if defined __powerpc64__
+#define O_DIRECTORY	040000
+#endif
+#if defined __i386__
 #define O_NOFOLLOW	0400000
+#endif
+#if defined __ia64__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __s390__ && !defined __s390x__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __x86_64__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __s390x__
+#define O_NOFOLLOW	0400000
+#endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 
@@ -193,14 +273,11 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int creat(const char *, mode_t);
     extern int creat64(const char *, mode_t);
     extern int fcntl(int, int, ...);
     extern int open(const char *, int, ...);
     extern int open64(const char *, int, ...);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern int posix_fadvise(int, off_t, off_t, int);
     extern int posix_fadvise64(int, off64_t, off64_t, int);

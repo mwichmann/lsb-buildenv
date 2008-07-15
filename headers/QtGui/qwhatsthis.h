@@ -5,7 +5,6 @@
 class QWhatsThis;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QWhatsThis
 {
 private:
@@ -20,8 +19,6 @@ public:
     void remove(QWidget*);
     QToolButton * whatsThisButton(QWidget*);
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

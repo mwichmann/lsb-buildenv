@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
     typedef enum {
 	XML_CHAR_ENCODING_ERROR = -1,
 	XML_CHAR_ENCODING_NONE = 0,
@@ -39,12 +38,9 @@ extern "C" {
 	XML_CHAR_ENCODING_ASCII = 22
     } xmlCharEncoding;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern int UTF8Toisolat1(unsigned char *, int *, const unsigned char *,
 			     int *);
     extern int isolat1ToUTF8(unsigned char *, int *, const unsigned char *,
@@ -75,8 +71,6 @@ extern "C" {
 							       xmlCharEncodingOutputFunc);
     extern xmlCharEncoding xmlParseCharEncoding(const char *);
     extern void xmlRegisterCharEncodingHandler(xmlCharEncodingHandlerPtr);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -240,9 +240,7 @@ typedef union _XkbEvent {
 } XkbEvent;
 typedef struct _XkbKbdDpyState XkbKbdDpyStateRec;
 typedef struct _XkbKbdDpyState *XkbKbdDpyStatePtr;
-Atom(*core) (void);
 typedef Atom(*XkbInternAtomFunc) (void);
-char *(*XkbInternAtomFunc) (void);
 typedef char *(*XkbGetAtomNameFunc) (void);
 extern int XkbAllocClientMap(XkbDescPtr, unsigned int, unsigned int);
 extern int XkbAllocCompatMap(XkbDescPtr, unsigned int, unsigned int);

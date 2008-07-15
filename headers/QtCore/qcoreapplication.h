@@ -5,16 +5,12 @@
 class QCoreApplication;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef bool	EventFilter	
 ;
 
 typedef void	QtCleanUpFunction	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QCoreApplication : public QObject
 {
 private:
@@ -79,12 +75,9 @@ UnicodeUTF8 = 1
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern void _Z15qAddPostRoutinePFvvE(void(*)(void)
 );
 extern void _Z18qRemovePostRoutinePFvvE(void(*)(void)
@@ -92,8 +85,6 @@ extern void _Z18qRemovePostRoutinePFvvE(void(*)(void)
 extern QString _Z8qAppNamev(void);
 extern struct QMetaObject _ZN16QCoreApplication16staticMetaObjectE ;
 extern QCoreApplication * _ZN16QCoreApplication4selfE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

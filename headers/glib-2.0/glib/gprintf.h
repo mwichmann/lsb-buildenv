@@ -14,7 +14,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern gint g_fprintf(FILE *, const gchar *, ...);
     extern gint g_printf(const gchar *, ...);
     extern gint g_snprintf(gchar *, gulong, const gchar *, ...);
@@ -24,8 +23,6 @@ extern "C" {
     extern gint g_vprintf(const gchar *, va_list);
     extern gint g_vsnprintf(gchar *, gulong, const gchar *, va_list);
     extern gint g_vsprintf(gchar *, const gchar *, va_list);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

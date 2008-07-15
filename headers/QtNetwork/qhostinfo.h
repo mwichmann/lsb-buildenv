@@ -5,7 +5,6 @@
 class QHostInfo;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QHostInfo
 {
 private:
@@ -37,8 +36,6 @@ HostNotFound = 1,
 UnknownError = 2
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

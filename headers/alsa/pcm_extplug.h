@@ -9,23 +9,16 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
 #define SND_PCM_EXTPLUG_VERSION	((SND_PCM_EXTPLUG_VERSION_MAJOR<<16) | (SND_PCM_EXTPLUG_VERSION_MINOR<<8) | (SND_PCM_EXTPLUG_VERSION_TINY))
 #define SND_PCM_EXTPLUG_VERSION_MINOR	0
 #define SND_PCM_EXTPLUG_VERSION_MAJOR	1
 #define SND_PCM_EXTPLUG_VERSION_TINY	1
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 
-
-#if __LSB_VERSION__ >= 32
     typedef struct snd_pcm_extplug_callback snd_pcm_extplug_callback_t;
 
     typedef struct snd_pcm_extplug snd_pcm_extplug_t;
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 32
 
     struct snd_pcm_extplug_callback {
 	snd_pcm_sframes_t(*transfer) (void);
@@ -52,8 +45,6 @@ extern "C" {
 	snd_pcm_subformat_t slave_subformat;
 	unsigned int slave_channels;
     };
-
-#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }

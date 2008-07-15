@@ -103,7 +103,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void XrmCombineDatabase(XrmDatabase, XrmDatabase *, int);
     extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
     extern void XrmDestroyDatabase(XrmDatabase);
@@ -143,8 +142,6 @@ extern "C" {
     extern XrmQuark XrmStringToQuark(const char *);
     extern void XrmStringToQuarkList(const char *, XrmQuarkList);
     extern XrmQuark XrmUniqueQuark(void);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

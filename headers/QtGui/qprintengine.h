@@ -5,7 +5,6 @@
 class QPrintEngine;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QPrintEngine
 {
 private:
@@ -39,8 +38,6 @@ PPK_SuppressSystemPrintStatus = 20,
 PPK_CustomBase = 65280
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

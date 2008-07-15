@@ -284,16 +284,11 @@ extern "C" {
 	XEvent core;
     };
 
-     Atom(*core) (void);
-
-    char *(*core) (void);
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XkbAllocClientMap(, unsigned int, unsigned int);
     extern int XkbAllocCompatMap(, unsigned int, unsigned int);
     extern int XkbAllocControls(, unsigned int);
@@ -413,8 +408,6 @@ extern "C" {
     extern int XkbUpdateMapFromCore(, KeyCode, int, int, KeySym *,);
     extern int XkbUseExtension(Display *, int *, int *);
     extern int XkbVirtualModsToReal(, unsigned int, unsigned int *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -9,16 +9,12 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
     typedef void (*XtDoChangeProc) (Widget, WidgetList, Cardinal *,
 				    WidgetList, Cardinal *, XtPointer);
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void XtChangeManagedSet(WidgetList, Cardinal, XtDoChangeProc,
 				   XtPointer, WidgetList, Cardinal);
     extern void XtManageChild(Widget);
@@ -26,8 +22,6 @@ extern "C" {
     extern void XtUnmanageChild(Widget);
     extern void XtUnmanageChildren(WidgetList, Cardinal);
     extern WidgetClass compositeWidgetClass;
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

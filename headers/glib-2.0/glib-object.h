@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define G_CLOSURE_NEEDS_MARSHAL(closure)	 \
 	(((GClosure*) (closure))->marshal == NULL)
 #define G_TYPE_FROM_INTERFACE(g_iface)	 \
@@ -436,11 +435,8 @@ extern "C" {
 #define G_TYPE_UINT	G_TYPE_MAKE_FUNDAMENTAL (7)
 #define G_TYPE_LONG	G_TYPE_MAKE_FUNDAMENTAL (8)
 #define G_TYPE_ULONG	G_TYPE_MAKE_FUNDAMENTAL (9)
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef gulong GType;
 
     typedef struct _GTypeClass GTypeClass;
@@ -672,14 +668,11 @@ extern "C" {
 
     typedef gchar **GStrv;
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     typedef void (*GToggleNotify) (gpointer, GObject, gboolean);
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-#if __LSB_VERSION__ >= 31
 
     struct _GTypeClass {
 	GType g_type;
@@ -1104,12 +1097,9 @@ extern "C" {
 	gboolean default_value;
     };
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern gpointer g_boxed_copy(GType, gconstpointer);
     extern void g_boxed_free(GType, gpointer);
     extern GType g_boxed_type_register_static(const gchar *,
@@ -1604,8 +1594,6 @@ extern "C" {
     extern gboolean g_value_type_compatible(GType, GType);
     extern gboolean g_value_type_transformable(GType, GType);
     extern void g_value_unset(GValue *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern void g_object_add_toggle_ref(GObject *, GToggleNotify,
 					gpointer);

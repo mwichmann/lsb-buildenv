@@ -12,20 +12,16 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define HTML_PRESERVE_NODE	XML_CDATA_SECTION_NODE
 #define HTML_COMMENT_NODE	XML_COMMENT_NODE
 #define HTML_ENTITY_REF_NODE	XML_ENTITY_REF_NODE
 #define HTML_PI_NODE	XML_PI_NODE
 #define HTML_TEXT_NODE	XML_TEXT_NODE
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern void htmlDocContentDumpFormatOutput(xmlOutputBufferPtr,
 					       xmlDocPtr, const char *,
 					       int);
@@ -50,8 +46,6 @@ extern "C" {
     extern int htmlSaveFileFormat(const char *, xmlDocPtr, const char *,
 				  int);
     extern int htmlSetMetaEncoding(htmlDocPtr, const xmlChar *);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

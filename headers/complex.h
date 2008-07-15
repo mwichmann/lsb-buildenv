@@ -3,6 +3,14 @@
 #define _COMPLEX_H_
 
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -17,7 +25,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern double cabs(double complex);
     extern float cabsf(float complex);
     extern long double cabsl(long double complex);
@@ -88,8 +95,6 @@ extern "C" {
     extern float complex ctanhf(float complex);
     extern long double complex ctanhl(long double complex);
     extern long double complex ctanl(long double complex);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

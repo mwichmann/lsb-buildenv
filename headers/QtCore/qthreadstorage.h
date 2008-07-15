@@ -5,7 +5,6 @@
 class QThreadStorageData;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QThreadStorageData
 {
 private:
@@ -16,8 +15,6 @@ public:
     void * * set(void*);
     static void finish(void**);
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

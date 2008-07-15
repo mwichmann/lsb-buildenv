@@ -297,7 +297,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int XkbAllocGeomColors(, int);
     extern int XkbAllocGeomDoodads(, int);
     extern int XkbAllocGeomKeyAliases(, int);
@@ -335,8 +334,6 @@ extern "C" {
     extern int XkbGetGeometry(Display *,);
     extern int XkbGetNamedGeometry(Display *,, Atom);
     extern int XkbSetGeometry(Display *, unsigned int,);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

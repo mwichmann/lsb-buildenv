@@ -5,7 +5,6 @@
 class QPaintEngine;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QTextItem::RenderFlag>
 {
 private:
@@ -27,9 +26,6 @@ public:
 }DirtyFlags	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QTextItem
 {
 private:
@@ -184,8 +180,6 @@ public:
     QPainter * painter() const;
     qreal opacity() const;
 };
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

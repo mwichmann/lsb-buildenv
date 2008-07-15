@@ -5,7 +5,6 @@
 class QSlider;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QSlider : public QAbstractSlider
 {
 private:
@@ -37,12 +36,12 @@ enum TickPosition
 {
 NoTicks = 0,	
 NoMarks = 0,	
-TicksAbove = 1,	
 TicksLeft = 1,	
-Above = 1,	
 Left = 1,	
-TicksBelow = 2,	
+Above = 1,	
+TicksAbove = 1,	
 TicksRight = 2,	
+TicksBelow = 2,	
 Below = 2,	
 Right = 2,	
 TicksBothSides = 3,	
@@ -50,15 +49,10 @@ Both = 3
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN7QSlider16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

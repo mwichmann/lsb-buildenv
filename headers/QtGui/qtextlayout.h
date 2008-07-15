@@ -5,7 +5,6 @@
 class QTextLine;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTextInlineObject
 {
 private:
@@ -112,8 +111,6 @@ CursorBetweenCharacters = 0,
 CursorOnCharacter = 1
 }
 ;
-
-#endif /* __LSB_VERSION__ >= 3.1 */
 
 // *INDENT-ON*
 #endif				/* protection */

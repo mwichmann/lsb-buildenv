@@ -10,7 +10,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define ATK_TYPE_HYPERLINK_STATE_FLAGS	 \
 	(atk_hyperlink_state_flags_get_type())
 #define ATK_TYPE_COORD_TYPE	(atk_coord_type_get_type())
@@ -22,14 +21,11 @@ extern "C" {
 #define ATK_TYPE_TEXT_ATTRIBUTE	(atk_text_attribute_get_type())
 #define ATK_TYPE_TEXT_BOUNDARY	(atk_text_boundary_get_type())
 #define ATK_TYPE_TEXT_CLIP_TYPE	(atk_text_clip_type_get_type())
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern GType atk_coord_type_get_type(void);
     extern GType atk_hyperlink_state_flags_get_type(void);
     extern GType atk_key_event_type_get_type(void);
@@ -40,8 +36,6 @@ extern "C" {
     extern GType atk_text_attribute_get_type(void);
     extern GType atk_text_boundary_get_type(void);
     extern GType atk_text_clip_type_get_type(void);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

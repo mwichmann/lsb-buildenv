@@ -9,10 +9,11 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 11
-#if __LSB_VERSION__ < 201
-#define assert(expr)	((void)0)
-#endif				/* __LSB_VERSION__ < 2.0.1 */
-
+#ifdef NDEBUG
+#define assert(expr) ((void)0)
+#else
+#define assert(expr)	((void) ((expr) ? 0 : (__assert_fail (#expr, __FILE__, __LINE__, __PRETTY_FUNCTION__), 0)))
+#endif
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 
@@ -20,11 +21,8 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern void __assert_fail(const char *, const char *, unsigned int,
 			      const char *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #ifdef __cplusplus
 }
 #endif

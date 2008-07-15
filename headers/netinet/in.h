@@ -44,21 +44,15 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
-#if __LSB_VERSION__ >= 11
     struct in_addr {
 	uint32_t s_addr;
     };
 
 #include <arpa/inet.h>
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 
 /* Well Know IPv4 addresses*/
-#define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
-#if __LSB_VERSION__ >= 11
 #define INADDR_ANY	0
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
+#define INADDR_LOOPBACK	0x7f000001	/* 127.0.0.1 */
 #if __LSB_VERSION__ >= 12
 #define INADDR_NONE	((in_addr_t) 0xffffffff)
 #define INADDR_BROADCAST	(0xffffffff)
@@ -105,15 +99,12 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 11
     struct sockaddr_in {
 	sa_family_t sin_family;
 	unsigned short sin_port;
 	struct in_addr sin_addr;
 	unsigned char sin_zero[8];
     };
-
-#endif				/* __LSB_VERSION__ >= 1.1 */
 
 
 /* Structure describing an Internet socket V6 address.*/
@@ -152,12 +143,9 @@ extern "C" {
 
 
 /* IP Socket options*/
+#define SOL_IP	0
 #define IPV6_ADD_MEMBERSHIP	IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP	IPV6_LEAVE_GROUP
-#if __LSB_VERSION__ >= 11
-#define SOL_IP	0
-#endif				/* __LSB_VERSION__ >= 1.1 */
-
 #if __LSB_VERSION__ >= 12
 #define IP_TOS	1		/* IP type of service and precedence */
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -202,10 +190,7 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern int bindresvport(int, struct sockaddr_in *);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern const struct in6_addr in6addr_any;
     extern const struct in6_addr in6addr_loopback;

@@ -27,24 +27,18 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 10
     typedef enum {
 	P_ALL,
 	P_PID,
 	P_PGID
     } idtype_t;
 
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern pid_t wait(int *);
     extern pid_t wait4(pid_t, int *, int, struct rusage *);
     extern pid_t waitpid(pid_t, int *, int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 32
     extern int waitid(idtype_t, id_t, siginfo_t *, int);
 #endif				/* __LSB_VERSION__ >= 3.2 */

@@ -5,7 +5,6 @@
 class QFlags < QStyle::SubControl >;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 typedef class QFlags<QStyle::StateFlag>
 {
 private:
@@ -26,9 +25,6 @@ public:
 typedef SubControls	SCFlags	
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
-#if __LSB_VERSION__ >= 31
 class QStyle : public QObject
 {
 private:
@@ -256,37 +252,37 @@ enum SubControl
 {
 SC_All = -1,	
 SC_None = 0,	
-SC_ScrollBarAddLine = 1,	
-SC_SpinBoxUp = 1,	
-SC_ComboBoxFrame = 1,	
 SC_SliderGroove = 1,	
 SC_ToolButton = 1,	
+SC_ComboBoxFrame = 1,	
 SC_TitleBarSysMenu = 1,	
-SC_Q3ListView = 1,	
+SC_SpinBoxUp = 1,	
+SC_ScrollBarAddLine = 1,	
 SC_DialGroove = 1,	
+SC_Q3ListView = 1,	
 SC_GroupBoxCheckBox = 1,	
-SC_ScrollBarSubLine = 2,	
-SC_SpinBoxDown = 2,	
-SC_ComboBoxEditField = 2,	
-SC_SliderHandle = 2,	
-SC_ToolButtonMenu = 2,	
-SC_TitleBarMinButton = 2,	
 SC_Q3ListViewBranch = 2,	
+SC_TitleBarMinButton = 2,	
+SC_SpinBoxDown = 2,	
 SC_DialHandle = 2,	
+SC_SliderHandle = 2,	
 SC_GroupBoxLabel = 2,	
+SC_ToolButtonMenu = 2,	
+SC_ScrollBarSubLine = 2,	
+SC_ComboBoxEditField = 2,	
+SC_GroupBoxContents = 4,	
 SC_ScrollBarAddPage = 4,	
+SC_Q3ListViewExpand = 4,	
+SC_DialTickmarks = 4,	
+SC_TitleBarMaxButton = 4,	
 SC_SpinBoxFrame = 4,	
 SC_ComboBoxArrow = 4,	
 SC_SliderTickmarks = 4,	
-SC_TitleBarMaxButton = 4,	
-SC_Q3ListViewExpand = 4,	
-SC_DialTickmarks = 4,	
-SC_GroupBoxContents = 4,	
-SC_ScrollBarSubPage = 8,	
+SC_GroupBoxFrame = 8,	
 SC_SpinBoxEditField = 8,	
 SC_ComboBoxListBoxPopup = 8,	
+SC_ScrollBarSubPage = 8,	
 SC_TitleBarCloseButton = 8,	
-SC_GroupBoxFrame = 8,	
 SC_ScrollBarFirst = 16,	
 SC_TitleBarNormalButton = 16,	
 SC_ScrollBarLast = 32,	
@@ -533,15 +529,10 @@ SP_FileDialogBack = 36
 }
 ;
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN6QStyle16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

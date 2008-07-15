@@ -8,14 +8,11 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 13
     typedef int bool_t;
 
     typedef int enum_t;
 
     typedef unsigned long int rpcvers_t;
-
-#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
     typedef unsigned long int rpcprog_t;

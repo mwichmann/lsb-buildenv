@@ -12,13 +12,9 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define XML_CAST_FPTR(fptr)	fptr
-#endif				/* __LSB_VERSION__ >= 3.1 */
 
 
-
-#if __LSB_VERSION__ >= 31
     typedef struct _xmlHashTable xmlHashTable;
 
     typedef xmlHashTable *xmlHashTablePtr;
@@ -32,12 +28,9 @@ extern "C" {
 
     typedef void (*xmlHashScanner) (void *, void *, xmlChar *);
 
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern int xmlHashAddEntry(xmlHashTablePtr, const xmlChar *, void *);
     extern int xmlHashAddEntry2(xmlHashTablePtr, const xmlChar *,
 				const xmlChar *, void *);
@@ -86,8 +79,6 @@ extern "C" {
     extern int xmlHashUpdateEntry3(xmlHashTablePtr, const xmlChar *,
 				   const xmlChar *, const xmlChar *,
 				   void *, xmlHashDeallocator);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #ifdef __cplusplus
 }
 #endif

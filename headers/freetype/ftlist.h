@@ -10,17 +10,13 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 32
     typedef void (*FT_List_Destructor) (FT_Memory, void *, void *);
 
     typedef FT_Error(*FT_List_Iterator) (FT_ListNode, void *);
 
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern void FT_List_Add(FT_List, FT_ListNode);
     extern void FT_List_Finalize(FT_List, FT_List_Destructor, FT_Memory,
 				 void *);
@@ -29,8 +25,6 @@ extern "C" {
     extern FT_Error FT_List_Iterate(FT_List, FT_List_Iterator, void *);
     extern void FT_List_Remove(FT_List, FT_ListNode);
     extern void FT_List_Up(FT_List, FT_ListNode);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

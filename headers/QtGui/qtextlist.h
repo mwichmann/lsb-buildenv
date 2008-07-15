@@ -5,7 +5,6 @@
 class QTextList;
 // *INDENT-OFF*
 
-#if __LSB_VERSION__ >= 31
 class QTextList : public QTextBlockGroup
 {
 private:
@@ -24,15 +23,10 @@ public:
     void add(QTextBlock const&);
 };
 
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
 extern struct QMetaObject _ZN9QTextList16staticMetaObjectE ;
-#endif /* __LSB_VERSION__ >= 3.1 */
-
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

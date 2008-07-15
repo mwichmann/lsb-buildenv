@@ -20,7 +20,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 12
 #define _XFT_H_
 #define XFT_VERSION	 \
 	((XFT_MAJOR * 10000) + (XFT_MINOR * 100) + (XFT_REVISION))
@@ -34,11 +33,8 @@ extern "C" {
 #define XFT_NMISSING	256
 #define XFT_REVISION	8
 #define XftVersion	XFT_VERSION
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
     typedef struct _XftDraw XftDraw;
 
     typedef struct _XftColor XftColor;
@@ -57,9 +53,6 @@ extern "C" {
 
     typedef struct _XftGlyphFontSpec XftGlyphFontSpec;
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
     struct _XftColor {
 	unsigned long int pixel;
 	XRenderColor color;
@@ -105,12 +98,9 @@ extern "C" {
 	short y;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 32
     extern FcBool XftCharExists(Display *, XftFont *, FcChar32);
     extern void XftCharFontSpecRender(Display *, int, Picture, Picture,
 				      int, int, const XftCharFontSpec *,
@@ -239,8 +229,6 @@ extern "C" {
 				  const FcChar8 *, int);
     extern void XftUnlockFace(XftFont *);
     extern FcPattern *XftXlfdParse(const char *, FcBool, FcBool);
-#endif				/* __LSB_VERSION__ >= 3.2 */
-
 #ifdef __cplusplus
 }
 #endif

@@ -195,7 +195,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 10
     extern uLong adler32(uLong, const Bytef *, uInt);
     extern int compress(Bytef *, uLongf *, const Bytef *, uLong);
     extern int compress2(Bytef *, uLongf *, const Bytef *, uLong, int);
@@ -237,8 +236,6 @@ extern "C" {
     extern int inflateSyncPoint(z_streamp);
     extern int uncompress(Bytef *, uLongf *, const Bytef *, uLong);
     extern const char *zError(int);
-#endif				/* __LSB_VERSION__ >= 1.0 */
-
 #if __LSB_VERSION__ >= 30
     extern uLong compressBound(uLong);
     extern uLong deflateBound(z_streamp, uLong);

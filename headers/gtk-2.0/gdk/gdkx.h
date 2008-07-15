@@ -13,7 +13,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 31
 #define GDK_WINDOW_DESTROYED(d)	 \
 	(((GdkWindowObject*)(GDK_WINDOW (d)))->destroyed)
 #define GDK_WINDOW_TYPE(d)	 \
@@ -48,14 +47,11 @@ extern "C" {
 #define GDK_SCREEN_XSCREEN(screen)	(gdk_x11_screen_get_xscreen (screen))
 #define GDK_VISUAL_XVISUAL(visual)	(gdk_x11_visual_get_xvisual (visual))
 #define GDK_DISPLAY()	gdk_display
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 
 
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ >= 31
     extern Display *gdk_display;
     extern gboolean gdk_net_wm_supports(GdkAtom);
     extern void gdk_synthesize_window_state(GdkWindow *, GdkWindowState,
@@ -106,8 +102,6 @@ extern "C" {
     extern gpointer gdk_xid_table_lookup(XID);
     extern gpointer gdk_xid_table_lookup_for_display(GdkDisplay *, XID);
     extern GdkVisual *gdkx_visual_get(VisualID);
-#endif				/* __LSB_VERSION__ >= 3.1 */
-
 #if __LSB_VERSION__ >= 40
     extern guint32 gdk_x11_display_get_user_time(GdkDisplay *);
     extern void gdk_x11_display_set_cursor_theme(GdkDisplay *,
