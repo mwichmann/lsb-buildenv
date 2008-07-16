@@ -1,0 +1,2 @@
+
+extern void SECKEY_DestroyPrivateKey(SECKEYPrivateKey *);

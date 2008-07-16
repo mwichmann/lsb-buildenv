@@ -21,7 +21,10 @@ extern "C" {
 	XrmBindLoosely
     } XrmBinding;
 
-    typedef enum *XrmBindingList;
+    typedef enum {
+	XrmBindTightly,
+	XrmBindLoosely
+    } *XrmBindingList;
 
     typedef XrmQuark XrmName;
 

@@ -1,0 +1,13 @@
+
+typedef struct PQGParamsStr {
+    PLArenaPool *arena;
+    SECItem prime;
+    SECItem subPrime;
+    SECItem base;
+} PQGParams;
+typedef struct PQGVerifyStr {
+    PLArenaPool *arena;
+    unsigned int counter;
+    SECItem seed;
+    SECItem h;
+} PQGVerify;

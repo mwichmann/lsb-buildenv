@@ -1,0 +1,2 @@
+
+typedef PRUint32 PRIntervalTime;

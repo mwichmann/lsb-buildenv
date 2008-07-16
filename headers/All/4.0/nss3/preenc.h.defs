@@ -1,0 +1,42 @@
+
+typedef struct PERSAKeyHeaderStr {
+    unsigned char pkcs11Mech[3];
+    unsigned char issuerLen[2];
+    unsigned char serialLen[2];
+    unsigned char ivLen[2];
+    unsigned char keyLen[2];
+    unsigned char data[1];
+} PERSAKeyHeader;
+typedef struct PEFortezzaHeaderStr {
+    unsigned char key[12];
+    unsigned char iv[23];
+    unsigned char hash[19];
+    unsigned char serial[8];
+} PEFortezzaHeader;
+typedef struct PEFortezzaGeneratedHeaderStr {
+    unsigned char key[12];
+    unsigned char iv[23];
+    unsigned char hash[19];
+    unsigned char Ra[2];
+    unsigned char Y[2];
+} PEFortezzaGeneratedHeader;
+typedef struct PEFixedKeyHeaderStr {
+    unsigned char pkcs11Mech[3];
+    unsigned char labelLen[2];
+    unsigned char keyIDLen[2];
+    unsigned char ivLen[2];
+    unsigned char keyLen[2];
+    unsigned char data[1];
+} PEFixedKeyHeader;
+typedef struct PEHeaderStr {
+    unsigned char magic[2];
+    unsigned char len[2];
+    unsigned char type[2];
+    unsigned char version[2];
+    union {
+	PEFortezzaHeader fortezza;
+	PEFortezzaGeneratedHeader g_fortezza;
+	PEFixedKeyHeader fixed;
+	PERSAKeyHeader rsa;
+    } u;
+} PEHeader;

@@ -1,0 +1,6 @@
+
+typedef SECStatus(*NSS_ShutdownFunc) (void *, void *);
+extern SECStatus NSS_Init(const char *);
+extern SECStatus NSS_InitReadWrite(const char *);
+extern SECStatus NSS_NoDB_Init(const char *);
+extern SECStatus NSS_Shutdown(void);

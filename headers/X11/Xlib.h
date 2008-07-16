@@ -728,7 +728,8 @@ extern "C" {
 
     typedef struct XOMFontInfo;
 
-    typedef enum XOrientation;
+    typedef enum
+	XOrientation;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

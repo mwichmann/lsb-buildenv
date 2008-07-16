@@ -1,0 +1,2 @@
+
+typedef PRInt64 PRTime;

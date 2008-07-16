@@ -38,6 +38,7 @@ libgtk-x11-2.0 libgtk-x11-2.0.so.0
 libjpeg libjpeg.so.62
 libm libm.so.6.1
 libncurses libncurses.so.5
+libnss3 libnss3.so
 libpam libpam.so.0
 libpango-1.0 libpango-1.0.so.0
 libpangocairo-1.0 libpangocairo-1.0.so.0
@@ -47,6 +48,7 @@ libpng12 libpng12.so.0
 libpthread libpthread.so.0
 libqt-mt libqt-mt.so.3
 librt librt.so.1
+libssl3 libssl.so
 libstdcxx libstdc++.so.6
 libutil libutil.so.1
 libxml2 libxml2.so.2

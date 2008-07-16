@@ -1,0 +1,7 @@
+
+typedef struct DERTemplateStr {
+    unsigned long int kind;
+    unsigned int offset;
+    DERTemplate *sub;
+    unsigned long int arg;
+} DERTemplate;

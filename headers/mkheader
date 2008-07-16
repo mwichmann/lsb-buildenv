@@ -445,8 +445,8 @@ if( $$type{'Ttype'} eq "Enum" ) {
     }
 
     print $enum_name."\t";
-    if( $nameonly ) { return; }
-    if( $$type{'Tdescription'} ) {
+    if( $nameonly and $enum_name ) { return; }
+    if( $$type{'Tdescription'} and !$nameonly ) {
         print "/* ".$$type{'Tdescription'}." */";
     }
     print "\n";

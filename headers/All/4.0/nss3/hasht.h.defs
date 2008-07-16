@@ -1,0 +1,26 @@
+
+typedef struct SECHashObjectStr {
+    unsigned int length;
+    void *(*create) (void);
+    void *(*clone) (void *);
+    void (*destroy) (void *, PRBool);
+    void (*begin) (void *);
+    void (*update) (void *, const unsigned char *, unsigned int);
+    void (*end) (void *, unsigned char *, unsigned int *, unsigned int);
+    unsigned int blocklength;
+    HASH_HashType type;
+} SECHashObject;
+typedef struct HASHContextStr {
+    const struct SECHashObjectStr *hashobj;
+    void *hash_context;
+} HASHContext;
+typedef enum {
+    HASH_AlgNULL,
+    HASH_AlgMD2 = 1,
+    HASH_AlgMD5 = 2,
+    HASH_AlgSHA1 = 3,
+    HASH_AlgSHA256 = 4,
+    HASH_AlgSHA384 = 5,
+    HASH_AlgSHA512 = 6,
+    HASH_AlgTOTAL = 7
+} HASH_HashType;
