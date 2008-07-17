@@ -27,6 +27,17 @@ sub displayconstant($)
 {
     local ($const) = @_;
 
+    # If we have 'Declaration' attribute, then the value of this attribute should be printed instead
+    # of 'normal' constant declaration using '#define <ACvalue>'
+    $selectDeclarations = "SELECT CAvalue FROM ConstantAttribute WHERE CAcid=".$const->{'Cid'}." AND CAtype='Declaration'";
+    $scth = $dbh->prepare($selectDeclarations) or die "Couldn't prepare $selectDeclarations query: ".DBI->errstr;
+    $scth->execute or die "Couldn't execute $selectDeclarations query: ".DBI->errstr;
+    if($scth->rows) {
+        $scentry = $scth->fetchrow_hashref;
+        print $scentry->{'CAvalue'}."\n";
+        return;
+    }
+
     $selectConditions = "SELECT CAvalue FROM ConstantAttribute WHERE CAcid=".$const->{'Cid'}." AND CAtype='Condition'";
     $scth = $dbh->prepare($selectConditions) or die "Couldn't prepare $selectConditions query: ".DBI->errstr;
     $scth->execute or die "Couldn't execute $selectConditions query: ".DBI->errstr;

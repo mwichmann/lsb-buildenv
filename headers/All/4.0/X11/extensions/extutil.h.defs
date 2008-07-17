@@ -31,7 +31,7 @@ int proc (Display *dpy, XExtCodes *codes) \
 XExtDisplayInfo *proc (Display *dpy) \
 { \
 XExtDisplayInfo *dpyinfo; \
-        if (!extinfo) { if (!(extinfo = XextCreateExtension())) return NULL; } \
+    if (!extinfo) { if (!(extinfo = XextCreateExtension())) return NULL; } \
     if (!(dpyinfo = XextFindDisplay (extinfo, dpy))) \
       dpyinfo = XextAddDisplay (extinfo,dpy,extname,hooks,nev,data); \
     return dpyinfo; \

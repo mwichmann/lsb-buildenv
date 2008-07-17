@@ -22,3 +22,5 @@ libcupsimage
 libasound
 libGLU
 libXtst
+libnss3
+libssl3
