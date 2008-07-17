@@ -146,6 +146,8 @@ X11/SM/SM.h
 X11/extensions/XTest.h
 sys/inotify.h
 sys/epoll.h
+X11/extensions/extutil.h
+X11/extensions/Xext.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
