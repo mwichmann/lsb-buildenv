@@ -7966,6 +7966,7 @@ __asm__(".globl _ZTI10QTabWidget; .pushsection .data; .type _ZTI10QTabWidget,@ob
 __asm__(".globl _ZTI10QTableView; .pushsection .data; .type _ZTI10QTableView,@object; .size _ZTI10QTableView, 24; _ZTI10QTableView: .long 0; .popsection");
 __asm__(".globl _ZTI10QTextFrame; .pushsection .data; .type _ZTI10QTextFrame,@object; .size _ZTI10QTextFrame, 24; _ZTI10QTextFrame: .long 0; .popsection");
 __asm__(".globl _ZTI10QTextTable; .pushsection .data; .type _ZTI10QTextTable,@object; .size _ZTI10QTextTable, 24; _ZTI10QTextTable: .long 0; .popsection");
+__asm__(".globl _ZTI10QUndoGroup; .pushsection .data; .type _ZTI10QUndoGroup,@object; .size _ZTI10QUndoGroup, 0; _ZTI10QUndoGroup: .long 0; .popsection");
 __asm__(".globl _ZTI10QUndoStack; .pushsection .data; .type _ZTI10QUndoStack,@object; .size _ZTI10QUndoStack, 24; _ZTI10QUndoStack: .long 0; .popsection");
 __asm__(".globl _ZTI10QValidator; .pushsection .data; .type _ZTI10QValidator,@object; .size _ZTI10QValidator, 24; _ZTI10QValidator: .long 0; .popsection");
 __asm__(".globl _ZTI10QWorkspace; .pushsection .data; .type _ZTI10QWorkspace,@object; .size _ZTI10QWorkspace, 24; _ZTI10QWorkspace: .long 0; .popsection");
@@ -8024,9 +8025,11 @@ __asm__(".globl _ZTI12QTextBrowser; .pushsection .data; .type _ZTI12QTextBrowser
 __asm__(".globl _ZTI12QUndoCommand; .pushsection .data; .type _ZTI12QUndoCommand,@object; .size _ZTI12QUndoCommand, 24; _ZTI12QUndoCommand: .long 0; .popsection");
 __asm__(".globl _ZTI13QDateTimeEdit; .pushsection .data; .type _ZTI13QDateTimeEdit,@object; .size _ZTI13QDateTimeEdit, 24; _ZTI13QDateTimeEdit: .long 0; .popsection");
 __asm__(".globl _ZTI13QErrorMessage; .pushsection .data; .type _ZTI13QErrorMessage,@object; .size _ZTI13QErrorMessage, 24; _ZTI13QErrorMessage: .long 0; .popsection");
+__asm__(".globl _ZTI13QFontComboBox; .pushsection .data; .type _ZTI13QFontComboBox,@object; .size _ZTI13QFontComboBox, 0; _ZTI13QFontComboBox: .long 0; .popsection");
 __asm__(".globl _ZTI13QFontEngineFT; .pushsection .data; .type _ZTI13QFontEngineFT,@object; .size _ZTI13QFontEngineFT, 24; _ZTI13QFontEngineFT: .long 0; .popsection");
 __asm__(".globl _ZTI13QFramePrivate; .pushsection .data; .type _ZTI13QFramePrivate,@object; .size _ZTI13QFramePrivate, 24; _ZTI13QFramePrivate: .long 0; .popsection");
 __asm__(".globl _ZTI13QGraphicsItem; .pushsection .data; .type _ZTI13QGraphicsItem,@object; .size _ZTI13QGraphicsItem, 24; _ZTI13QGraphicsItem: .long 0; .popsection");
+__asm__(".globl _ZTI13QGraphicsView; .pushsection .data; .type _ZTI13QGraphicsView,@object; .size _ZTI13QGraphicsView, 0; _ZTI13QGraphicsView: .long 0; .popsection");
 __asm__(".globl _ZTI13QInputContext; .pushsection .data; .type _ZTI13QInputContext,@object; .size _ZTI13QInputContext, 24; _ZTI13QInputContext: .long 0; .popsection");
 __asm__(".globl _ZTI13QIntValidator; .pushsection .data; .type _ZTI13QIntValidator,@object; .size _ZTI13QIntValidator, 24; _ZTI13QIntValidator: .long 0; .popsection");
 __asm__(".globl _ZTI13QItemDelegate; .pushsection .data; .type _ZTI13QItemDelegate,@object; .size _ZTI13QItemDelegate, 24; _ZTI13QItemDelegate: .long 0; .popsection");
@@ -8049,6 +8052,7 @@ __asm__(".globl _ZTI14QStackedWidget; .pushsection .data; .type _ZTI14QStackedWi
 __asm__(".globl _ZTI14QWidgetPrivate; .pushsection .data; .type _ZTI14QWidgetPrivate,@object; .size _ZTI14QWidgetPrivate, 24; _ZTI14QWidgetPrivate: .long 0; .popsection");
 __asm__(".globl _ZTI15QAbstractButton; .pushsection .data; .type _ZTI15QAbstractButton,@object; .size _ZTI15QAbstractButton, 24; _ZTI15QAbstractButton: .long 0; .popsection");
 __asm__(".globl _ZTI15QAbstractSlider; .pushsection .data; .type _ZTI15QAbstractSlider,@object; .size _ZTI15QAbstractSlider, 24; _ZTI15QAbstractSlider: .long 0; .popsection");
+__asm__(".globl _ZTI15QCalendarWidget; .pushsection .data; .type _ZTI15QCalendarWidget,@object; .size _ZTI15QCalendarWidget, 0; _ZTI15QCalendarWidget: .long 0; .popsection");
 __asm__(".globl _ZTI15QClipboardEvent; .pushsection .data; .type _ZTI15QClipboardEvent,@object; .size _ZTI15QClipboardEvent, 24; _ZTI15QClipboardEvent: .long 0; .popsection");
 __asm__(".globl _ZTI15QDragEnterEvent; .pushsection .data; .type _ZTI15QDragEnterEvent,@object; .size _ZTI15QDragEnterEvent, 24; _ZTI15QDragEnterEvent: .long 0; .popsection");
 __asm__(".globl _ZTI15QDragLeaveEvent; .pushsection .data; .type _ZTI15QDragLeaveEvent,@object; .size _ZTI15QDragLeaveEvent, 24; _ZTI15QDragLeaveEvent: .long 0; .popsection");
@@ -8065,6 +8069,7 @@ __asm__(".globl _ZTI15QTreeWidgetItem; .pushsection .data; .type _ZTI15QTreeWidg
 __asm__(".globl _ZTI15QX11EmbedWidget; .pushsection .data; .type _ZTI15QX11EmbedWidget,@object; .size _ZTI15QX11EmbedWidget, 24; _ZTI15QX11EmbedWidget: .long 0; .popsection");
 __asm__(".globl _ZTI16QAbstractSpinBox; .pushsection .data; .type _ZTI16QAbstractSpinBox,@object; .size _ZTI16QAbstractSpinBox, 24; _ZTI16QAbstractSpinBox: .long 0; .popsection");
 __asm__(".globl _ZTI16QCleanlooksStyle; .pushsection .data; .type _ZTI16QCleanlooksStyle,@object; .size _ZTI16QCleanlooksStyle, 24; _ZTI16QCleanlooksStyle: .long 0; .popsection");
+__asm__(".globl _ZTI16QDialogButtonBox; .pushsection .data; .type _ZTI16QDialogButtonBox,@object; .size _ZTI16QDialogButtonBox, 0; _ZTI16QDialogButtonBox: .long 0; .popsection");
 __asm__(".globl _ZTI16QDoubleValidator; .pushsection .data; .type _ZTI16QDoubleValidator,@object; .size _ZTI16QDoubleValidator, 24; _ZTI16QDoubleValidator: .long 0; .popsection");
 __asm__(".globl _ZTI16QFontEngineMulti; .pushsection .data; .type _ZTI16QFontEngineMulti,@object; .size _ZTI16QFontEngineMulti, 24; _ZTI16QFontEngineMulti: .long 0; .popsection");
 __asm__(".globl _ZTI16QPageSetupDialog; .pushsection .data; .type _ZTI16QPageSetupDialog,@object; .size _ZTI16QPageSetupDialog, 24; _ZTI16QPageSetupDialog: .long 0; .popsection");
@@ -8176,6 +8181,7 @@ __asm__(".globl _ZTI9QTextEdit; .pushsection .data; .type _ZTI9QTextEdit,@object
 __asm__(".globl _ZTI9QTextList; .pushsection .data; .type _ZTI9QTextList,@object; .size _ZTI9QTextList, 24; _ZTI9QTextList: .long 0; .popsection");
 __asm__(".globl _ZTI9QTimeEdit; .pushsection .data; .type _ZTI9QTimeEdit,@object; .size _ZTI9QTimeEdit, 24; _ZTI9QTimeEdit: .long 0; .popsection");
 __asm__(".globl _ZTI9QTreeView; .pushsection .data; .type _ZTI9QTreeView,@object; .size _ZTI9QTreeView, 24; _ZTI9QTreeView: .long 0; .popsection");
+__asm__(".globl _ZTI9QUndoView; .pushsection .data; .type _ZTI9QUndoView,@object; .size _ZTI9QUndoView, 0; _ZTI9QUndoView: .long 0; .popsection");
 __asm__(".globl _ZTV10QBoxLayout; .pushsection .data; .type _ZTV10QBoxLayout,@object; .size _ZTV10QBoxLayout, 392; _ZTV10QBoxLayout: .long 0; .popsection");
 __asm__(".globl _ZTV10QClipboard; .pushsection .data; .type _ZTV10QClipboard,@object; .size _ZTV10QClipboard, 112; _ZTV10QClipboard: .long 0; .popsection");
 __asm__(".globl _ZTV10QCompleter; .pushsection .data; .type _ZTV10QCompleter,@object; .size _ZTV10QCompleter, 128; _ZTV10QCompleter: .long 0; .popsection");
