@@ -4,6 +4,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/X.h>
+#include <X11/extensions/Xdbeproto.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,10 +45,11 @@ extern "C" {
     extern int XdbeBeginIdiom(Display *);
     extern int XdbeDeallocateBackBufferName(Display *, XdbeBackBuffer);
     extern int XdbeEndIdiom(Display *);
-    extern void XdbeFreeVisualInfo(*);
+    extern void XdbeFreeVisualInfo(XdbeScreenVisualInfo *);
     extern XdbeBackBufferAttributes *XdbeGetBackBufferAttributes(Display *,
 								 XdbeBackBuffer);
-    extern *XdbeGetVisualInfo(Display *, Drawable *, int *);
+    extern XdbeScreenVisualInfo *XdbeGetVisualInfo(Display *, Drawable *,
+						   int *);
     extern int XdbeQueryExtension(Display *, int *, int *);
     extern int XdbeSwapBuffers(Display *, XdbeSwapInfo *, int);
 #ifdef __cplusplus

@@ -9,6 +9,10 @@ extern "C" {
 #endif
 
 
+    typedef struct _ObjectClassRec *ObjectClass;
+
+    typedef struct _ObjectClassRec *Object;
+
 
 /* Function prototypes */
 

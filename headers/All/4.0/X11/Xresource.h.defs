@@ -2,18 +2,10 @@
 typedef int XrmQuark;
 typedef int *XrmQuarkList;
 typedef char *XrmString;
-enum {
-    XrmBindTightly,
-    XrmBindLoosely
-};
 typedef enum {
     XrmBindTightly,
     XrmBindLoosely
 } XrmBinding;
-enum {
-    XrmBindTightly,
-    XrmBindLoosely
-};
 typedef enum *XrmBindingList;
 typedef XrmQuark XrmName;
 typedef XrmQuarkList XrmNameList;
@@ -31,16 +23,6 @@ typedef struct {
 typedef struct _XrmHashBucketRec *XrmHashBucket;
 typedef XrmHashBucket *XrmHashTable;
 typedef struct _XrmHashBucketRec *XrmDatabase;
-enum {
-    XrmoptionNoArg,
-    XrmoptionIsArg,
-    XrmoptionStickyArg,
-    XrmoptionSepArg,
-    XrmoptionResArg,
-    XrmoptionSkipArg,
-    XrmoptionSkipLine,
-    XrmoptionSkipNArgs
-};
 typedef enum {
     XrmoptionNoArg,
     XrmoptionIsArg,

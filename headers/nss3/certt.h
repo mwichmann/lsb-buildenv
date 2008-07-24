@@ -9,7 +9,6 @@
 #include <nspr4/plarena.h>
 #include <nspr4/prclist.h>
 #include <nspr4/prlock.h>
-#include <nspr4/prtime.h>
 #include <nspr4/prtypes.h>
 
 #ifdef __cplusplus
@@ -124,19 +123,6 @@ extern "C" {
 	certValidityChooseA = 3
     } CERTCompareValidityStatus;
 
-    typedef enum CERTCRLEntryReasonCodeEnum {
-	crlEntryReasonUnspecified,
-	crlEntryReasonKeyCompromise = 1,
-	crlEntryReasonCaCompromise = 2,
-	crlEntryReasonAffiliationChanged = 3,
-	crlEntryReasonSuperseded = 4,
-	crlEntryReasonCessationOfOperation = 5,
-	crlEntryReasoncertificatedHold = 6,
-	crlEntryReasonRemoveFromCRL = 8,
-	crlEntryReasonPrivilegeWithdrawn = 9,
-	crlEntryReasonAaCompromise = 10
-    } CERTCRLEntryReasonCode;
-
     typedef enum CERTGeneralNameTypeEnum {
 	certOtherName = 1,
 	certRFC822Name = 2,
@@ -195,81 +181,6 @@ extern "C" {
 	PLArenaPool *arena;
 	SECItem **oids;
     } CERTOidSequence;
-
-    typedef struct {
-	SECItem issuerDomainPolicy;
-	SECItem subjectDomainPolicy;
-    } CERTPolicyMap;
-
-    typedef struct {
-	PLArenaPool *arena;
-	CERTPolicyMap **policyMaps;
-    } CERTCertificatePolicyMappings;
-
-    typedef struct {
-	SECItem inhibitAnySkipCerts;
-    } CERTCertificateInhibitAny;
-
-    typedef struct {
-	SECItem explicitPolicySkipCerts;
-	SECItem inhibitMappingSkipCerts;
-    } CERTCertificatePolicyConstraints;
-
-    typedef enum {
-	cert_pi_end,
-	cert_pi_nbioContext = 1,
-	cert_pi_nbioAbort = 2,
-	cert_pi_certList = 3,
-	cert_pi_policyOID = 4,
-	cert_pi_policyFlags = 5,
-	cert_pi_keyusage = 6,
-	cert_pi_extendedKeyusage = 7,
-	cert_pi_date = 8,
-	cert_pi_revocationFlags = 9,
-	cert_pi_certStores = 10,
-	cert_pi_trustAnchors = 11,
-	cert_pi_max = 12
-    } CERTValParamInType;
-
-    typedef enum {
-	cert_po_end,
-	cert_po_nbioContext = 1,
-	cert_po_trustAnchor = 2,
-	cert_po_certList = 3,
-	cert_po_policyOID = 4,
-	cert_po_errorLog = 5,
-	cert_po_usages = 6,
-	cert_po_keyUsage = 7,
-	cert_po_extendedKeyusage = 8,
-	cert_po_max = 9
-    } CERTValParamOutType;
-
-    typedef enum {
-	cert_revocation_method_crl,
-	cert_revocation_method_ocsp = 1,
-	cert_revocation_method_count = 2
-    } CERTRevocationMethodIndex;
-
-    typedef struct {
-	PRUint32 number_of_defined_methods;
-	PRUint64 *cert_rev_flags_per_method;
-	PRUint32 number_of_preferred_methods;
-	CERTRevocationMethodIndex *preferred_methods;
-	PRUint64 cert_rev_method_independent_flags;
-    } CERTRevocationTests;
-
-    typedef struct {
-	CERTRevocationTests leafTests;
-	CERTRevocationTests chainTests;
-    } CERTRevocationFlags;
-
-    typedef struct CERTValParamInValueStr CERTValParamInValue;
-
-    typedef struct CERTValParamOutValueStr CERTValParamOutValue;
-
-    typedef struct CERTValInParam_struct CERTValInParam;
-
-    typedef struct CERTValOutParam_struct CERTValOutParam;
 
     struct CERTDistNamesStr {
 	PLArenaPool *arena;
@@ -630,69 +541,6 @@ extern "C" {
 	SECItem min;
 	SECItem max;
 	PRCList l;
-    };
-
-
-    struct CERTValParamInValueStr {
-	union {
-	    PRBool b;
-	    PRInt32 i;
-	    PRUint32 ui;
-	    PRInt64 l;
-	    PRUint64 ul;
-	    PRTime time;
-	} scalar;
-	union {
-	    const void *p;
-	    const char *s;
-	    const CERTCertificate *cert;
-	    const CERTCertList *chain;
-	    const CERTRevocationFlags *revocation;
-	} pointer;
-	union {
-	    const PRInt32 *pi;
-	    const PRUint32 *pui;
-	    const PRInt64 *pl;
-	    const PRUint64 *pul;
-	    const SECOidTag *oids;
-	} array;
-	int arraySize;
-    };
-
-
-    struct CERTValParamOutValueStr {
-	union {
-	    PRBool b;
-	    PRInt32 i;
-	    PRUint32 ui;
-	    PRInt64 l;
-	    PRUint64 ul;
-	    SECCertificateUsage usages;
-	} scalar;
-	union {
-	    void *p;
-	    char *s;
-	    CERTVerifyLog *log;
-	    CERTCertificate *cert;
-	    CERTCertList *chain;
-	} pointer;
-	union {
-	    void *p;
-	    SECOidTag *oids;
-	} array;
-	int arraySize;
-    };
-
-
-    struct CERTValInParam_struct {
-	CERTValParamInType type;
-	CERTValParamInValue value;
-    };
-
-
-    struct CERTValOutParam_struct {
-	CERTValParamOutType type;
-	CERTValParamOutValue value;
     };
 
 #ifdef __cplusplus

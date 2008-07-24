@@ -9,6 +9,11 @@ extern "C" {
 #endif
 
 
+    typedef struct _WidgetClassRec *CoreWidgetClass;
+
+    typedef struct _WidgetClassRec *CoreWidget;
+
+
 /* Function prototypes */
 
     extern WidgetClass coreWidgetClass;

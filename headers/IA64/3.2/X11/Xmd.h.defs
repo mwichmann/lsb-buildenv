@@ -1,0 +1,3 @@
+
+typedef unsigned int CARD32;
+typedef unsigned long int CARD64;

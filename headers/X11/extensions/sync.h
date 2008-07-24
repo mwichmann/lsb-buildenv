@@ -11,6 +11,43 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
+    typedef XID XSyncCounter;
+
+    typedef XID XSyncAlarm;
+
+    typedef struct _XSyncValue XSyncValue;
+
+    typedef enum {
+	XSyncAbsolute,
+	XSyncRelative
+    } XSyncValueType;
+
+    typedef enum {
+	XSyncPositiveTransition,
+	XSyncNegativeTransition,
+	XSyncPositiveComparison,
+	XSyncNegativeComparison
+    } XSyncTestType;
+
+    typedef enum {
+	XSyncAlarmActive,
+	XSyncAlarmInactive,
+	XSyncAlarmDestroyed
+    } XSyncAlarmState;
+
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+#if __LSB_VERSION__ >= 12
+    struct _XSyncValue {
+	int hi;
+	unsigned int lo;
+    };
+
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+
+/* Default Header Section for X11/extensions/sync.h*/
+#if __LSB_VERSION__ >= 12
 #define SYNC_NAME	"SYNC"
 #define _XSyncValueIsPositive(v)	(((v).hi&0x80000000)?0:1)
 #define _XSyncValueIsNegative(v)	(((v).hi&0x80000000)?1:0)
@@ -55,22 +92,6 @@ extern "C" {
 #define X_SyncAwait	7
 #define X_SyncCreateAlarm	8
 #define X_SyncChangeAlarm	9
-#define XSyncIntsToValue(pv,l,h)	_XSyncIntsToValue(pv,l,h))
-#define XSyncIntToValue(pv,i)	_XSyncIntToValue(pv,i))
-#define XSyncMaxValue(pv)	_XSyncMaxValue(pv)
-#define XSyncMinValue(pv)	_XSyncMinValue(pv)
-#define XSyncValueAdd(presult,a,b,poverflow)	_XSyncValueAdd(presult,a,b,poverflow)
-#define XSyncValueEqual(a,b)	_XSyncValueEqual(a,b))
-#define XSyncValueGreaterOrEqual(a,b)	_XSyncValueGreaterOrEqual(a,b))
-#define XSyncValueGreaterThan(a,b)	_XSyncValueGreaterThan(a,b))
-#define XSyncValueHigh32(v)	_XSyncValueHigh32(v)
-#define XSyncValueIsNegative(v)	_XSyncValueIsNegative(v)
-#define XSyncValueIsPositive(v)	_XSyncValueIsPositive(v)
-#define XSyncValueIsZero(a)	_XSyncValueIsZero(a)
-#define XSyncValueLessOrEqual(a,b)	_XSyncValueLessOrEqual(a,b))
-#define XSyncValueLessThan(a,b)	_XSyncValueLessThan(a,b))
-#define XSyncValueLow32(v)	_XSyncValueLow32(v)
-#define XSyncValueSubtract(presult,a,b,poverflow)	_XSyncValueSubtract(presult,a,b,poverflow)
 #define _XSyncValueAdd(presult,a,b,poverflow)	{intt=(a).lo;Boolsigna=XSyncValueIsNegative(a);Boolsignb=XSyncValueIsNegative(b);((presult)->lo=(a).lo+(b).lo);((presult)->hi=(a
 #define _XSyncValueSubtract(presult,a,b,poverflow)	{intt=(a).lo;Boolsigna=XSyncValueIsNegative(a);Boolsignb=XSyncValueIsNegative(b);((presult)->lo=(a).lo-(b).lo);((presult)->hi=(a
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -151,60 +172,6 @@ extern "C" {
 	char *name;
 	XSyncCounter counter;
 	XSyncValue resolution;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-#if __LSB_VERSION__ >= 12
-    typedef XID XSyncCounter;
-
-    typedef XID XSyncAlarm;
-
-    typedef struct _XSyncValue XSyncValue;
-
-    typedef enum {
-	XSyncAbsolute,
-	XSyncRelative
-    } XSyncValueType;
-
-    typedef enum {
-	XSyncPositiveTransition,
-	XSyncNegativeTransition,
-	XSyncPositiveComparison,
-	XSyncNegativeComparison
-    } XSyncTestType;
-
-    typedef enum {
-	XSyncAlarmActive,
-	XSyncAlarmInactive,
-	XSyncAlarmDestroyed
-    } XSyncAlarmState;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
-    struct _XSyncValue {
-	int hi;
-	unsigned int lo;
-    };
-
-    enum {
-	XSyncAbsolute,
-	XSyncRelative
-    };
-
-    enum {
-	XSyncPositiveTransition,
-	XSyncNegativeTransition,
-	XSyncPositiveComparison,
-	XSyncNegativeComparison
-    };
-
-    enum {
-	XSyncAlarmActive,
-	XSyncAlarmInactive,
-	XSyncAlarmDestroyed
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */

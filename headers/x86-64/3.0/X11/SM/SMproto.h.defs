@@ -1,5 +1,122 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smRegisterClientMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smRegisterClientReplyMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused1[2];
+    CARD32 length:32;
+    CARD8 saveType;
+    CARD8 shutdown;
+    CARD8 interactStyle;
+    CARD8 fast;
+    CARD8 unused2[4];
+} smSaveYourselfMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused1;
+    CARD8 saveType;
+    CARD8 shutdown;
+    CARD8 interactStyle;
+    CARD8 fast;
+    CARD8 global;
+    CARD8 unused2[3];
+} smSaveYourselfRequestMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 dialogType;
+    CARD8 unused;
+    CARD32 length:32;
+} smInteractRequestMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smInteractMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 cancelShutdown;
+    CARD8 unused;
+    CARD32 length:32;
+} smInteractDoneMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 success;
+    CARD8 unused;
+    CARD32 length:32;
+} smSaveYourselfDoneMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smDieMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smShutdownCancelledMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smCloseConnectionMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smSetPropertiesMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smDeletePropertiesMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smGetPropertiesMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smPropertiesReplyMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smSaveYourselfPhase2RequestMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smSaveYourselfPhase2Msg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused[2];
+    CARD32 length:32;
+} smSaveCompleteMsg;

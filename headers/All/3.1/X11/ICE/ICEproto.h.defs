@@ -13,3 +13,8 @@
 #define sz_icePingReplyMsg	8
 #define sz_iceProtocolReplyMsg	8
 #define sz_iceWantToCloseMsg	8
+
+typedef iceErrorMsg icePingMsg;
+typedef iceErrorMsg icePingReplyMsg;
+typedef iceErrorMsg iceWantToCloseMsg;
+typedef iceErrorMsg iceNoCloseMsg;

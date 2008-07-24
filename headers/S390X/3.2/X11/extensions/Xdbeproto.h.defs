@@ -1,0 +1,120 @@
+
+typedef unsigned char xDbeSwapAction;
+typedef unsigned int xDbeBackBuffer;
+typedef struct {
+    VisualID visual;
+    int depth;
+    int perflevel;
+} XdbeVisualInfo;
+typedef struct {
+    int count;
+    XdbeVisualInfo *visinfo;
+} XdbeScreenVisualInfo;
+typedef struct {
+    unsigned int window:32;
+    xDbeSwapAction swapAction;
+    CARD8 pad1;
+    unsigned int pad2:16;
+} xDbeSwapInfo;
+typedef struct {
+    unsigned int visualID:32;
+    CARD8 depth;
+    CARD8 perfLevel;
+    unsigned int pad1:16;
+} xDbeVisInfo;
+typedef struct {
+    unsigned int n:32;
+} xDbeScreenVisInfo;
+typedef struct {
+    unsigned int window:32;
+} xDbeBufferAttributes;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+    CARD8 majorVersion;
+    CARD8 minorVersion;
+    unsigned int unused:16;
+} xDbeGetVersionReq;
+typedef struct {
+    BYTE type;
+    CARD8 unused;
+    unsigned int sequenceNumber:16;
+    unsigned int length:32;
+    CARD8 majorVersion;
+    CARD8 minorVersion;
+    unsigned int pad1:16;
+    unsigned int pad2:32;
+    unsigned int pad3:32;
+    unsigned int pad4:32;
+    unsigned int pad5:32;
+    unsigned int pad6:32;
+} xDbeGetVersionReply;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+    unsigned int window:32;
+    unsigned int buffer:32;
+    xDbeSwapAction swapAction;
+    CARD8 pad1;
+    unsigned int pad2:16;
+} xDbeAllocateBackBufferNameReq;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+    unsigned int buffer:32;
+} xDbeDeallocateBackBufferNameReq;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+    unsigned int n:32;
+} xDbeSwapBuffersReq;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+} xDbeBeginIdiomReq;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+} xDbeEndIdiomReq;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+    unsigned int n:32;
+} xDbeGetVisualInfoReq;
+typedef struct {
+    BYTE type;
+    CARD8 unused;
+    unsigned int sequenceNumber:16;
+    unsigned int length:32;
+    CARD32 m;
+    unsigned int pad1:32;
+    unsigned int pad2:32;
+    unsigned int pad3:32;
+    unsigned int pad4:32;
+    unsigned int pad5:32;
+} xDbeGetVisualInfoReply;
+typedef struct {
+    CARD8 reqType;
+    CARD8 dbeReqType;
+    unsigned int length:16;
+    unsigned int buffer:32;
+} xDbeGetBackBufferAttributesReq;
+typedef struct {
+    BYTE type;
+    CARD8 unused;
+    unsigned int sequenceNumber:16;
+    unsigned int length:32;
+    CARD32 attributes;
+    unsigned int pad1:32;
+    unsigned int pad2:32;
+    unsigned int pad3:32;
+    unsigned int pad4:32;
+    unsigned int pad5:32;
+} xDbeGetBackBufferAttributesReply;

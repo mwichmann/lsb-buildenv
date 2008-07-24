@@ -98,10 +98,6 @@ extern "C" {
 	PK11TokenPresentEvent = 1
     } PK11TokenEvent;
 
-    typedef struct PK11MergeLogStr PK11MergeLog;
-
-    typedef struct PK11MergeLogNodeStr PK11MergeLogNode;
-
 
     struct SECMODModuleStr {
 	PLArenaPool *arena;
@@ -175,32 +171,6 @@ extern "C" {
 	PLArenaPool *arena;
 	SECAlgorithmID algorithm;
 	SECItem encryptedData;
-    };
-
-
-    struct PK11MergeLogStr {
-	PK11MergeLogNode *head;
-	PK11MergeLogNode *tail;
-	PLArenaPool *arena;
-	int version;
-	unsigned long int reserved1;
-	unsigned long int reserved2;
-	unsigned long int reserved3;
-	void *reserverd4;
-	void *reserverd5;
-    };
-
-
-    struct PK11MergeLogNodeStr {
-	PK11MergeLogNode *next;
-	PK11MergeLogNode *prev;
-	PK11GenericObject *object;
-	int error;
-	CK_RV reserved1;
-	unsigned long int reserved2;
-	unsigned long int reserved3;
-	void *reserved4;
-	void *reserved5;
     };
 
 #ifdef __cplusplus

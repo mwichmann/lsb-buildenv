@@ -79,30 +79,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    enum {
-	XrmBindTightly,
-	XrmBindLoosely
-    };
-
-    enum {
-	XrmBindTightly,
-	XrmBindLoosely
-    };
-
-    enum {
-	XrmoptionNoArg,
-	XrmoptionIsArg,
-	XrmoptionStickyArg,
-	XrmoptionSepArg,
-	XrmoptionResArg,
-	XrmoptionSkipArg,
-	XrmoptionSkipLine,
-	XrmoptionSkipNArgs
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 

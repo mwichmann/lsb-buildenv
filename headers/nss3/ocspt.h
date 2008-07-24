@@ -69,11 +69,6 @@ extern "C" {
 
     typedef struct SEC_HttpClientFcnStruct SEC_HttpClientFcn;
 
-    typedef enum {
-	ocspMode_FailureIsVerificationFailure,
-	ocspMode_FailureIsNotAVerificationFailure = 1
-    } SEC_OcspFailureMode;
-
 
 
 

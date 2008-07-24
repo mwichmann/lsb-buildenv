@@ -1,5 +1,82 @@
 
-/*
- * This header is architecture neutral
- * Please refer to the generic specification for details
- */
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 data[2];
+    CARD32 length:32;
+} iceMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 byteOrder;
+    CARD8 unused;
+    CARD32 length:32;
+} iceByteOrderMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 versionIndex;
+    CARD8 protocolOpcode;
+    CARD32 length:32;
+} iceProtocolReplyMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 versionIndex;
+    CARD8 unused;
+    CARD32 length:32;
+} iceConnectionReplyMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 protocolOpcode;
+    CARD8 mustAuthenticate;
+    CARD32 length:32;
+    CARD8 versionCount;
+    CARD8 authCount;
+    CARD8 unused[6];
+} iceProtocolSetupMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 versionCount;
+    CARD8 authCount;
+    CARD32 length:32;
+    CARD8 mustAuthenticate;
+    CARD8 unused[7];
+} iceConnectionSetupMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 authIndex;
+    CARD8 unused1;
+    CARD32 length:32;
+    CARD16 authDataLength:16;
+    CARD8 unused2[6];
+} iceAuthRequiredMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused1[2];
+    CARD32 length:32;
+    CARD16 authDataLength:16;
+    CARD8 unused2[6];
+} iceAuthReplyMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD8 unused1[2];
+    CARD32 length:32;
+    CARD16 authDataLength:16;
+    CARD8 unused2[6];
+} iceAuthNextPhaseMsg;
+typedef struct {
+    CARD8 majorOpcode;
+    CARD8 minorOpcode;
+    CARD16 errorClass:16;
+    CARD32 length:32;
+    CARD8 offendingMinorOpcode;
+    CARD8 severity;
+    CARD16 unused:16;
+    CARD32 offendingSequenceNum:32;
+} iceErrorMsg;

@@ -1,2 +1,4 @@
 
+typedef struct _ObjectClassRec *ObjectClass;
+typedef struct _ObjectClassRec *Object;
 extern WidgetClass objectClass;
