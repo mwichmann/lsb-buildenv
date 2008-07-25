@@ -185,7 +185,6 @@ extern "C" {
     extern void glXDestroyWindow(Display *, int);
     extern const char *glXGetClientString(Display *, int);
     extern int glXGetConfig(Display *, XVisualInfo *, int, int *);
-    extern GLXContextID glXGetContextIDEXT(GLXContext);
     extern GLXContext glXGetCurrentContext(void);
     extern Display *glXGetCurrentDisplay(void);
     extern GLXDrawable glXGetCurrentDrawable(void);
@@ -193,7 +192,6 @@ extern "C" {
     extern int glXGetFBConfigAttrib(Display *, int, int, int *);
     extern void glXGetSelectedEvent(Display *, int, unsigned long int *);
     extern XVisualInfo *glXGetVisualFromFBConfig(Display *, int);
-    extern GLXContext glXImportContextEXT(Display *, GLXContextID);
     extern int glXIsDirect(Display *, struct __GLXcontextRec *);
     extern int glXMakeContextCurrent(Display *, int, int, int);
     extern int glXMakeCurrent(Display *, GLXDrawable,

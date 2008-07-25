@@ -18,6 +18,37 @@ extern "C" {
 #endif
 
 
+#define SSL_ENV_VAR_NAME	"SSL_INHERITANCE"
+#define SSL_IS_SSL2_CIPHER(which)	(((which) & 0xfff0) == 0xff00)
+#define SSL_REQUIRE_NEVER	((PRBool)0)
+#define SSL_REQUIRE_ALWAYS	((PRBool)1)
+#define SSL_REQUIRE_FIRST_HANDSHAKE	((PRBool)2)
+#define SSL_REQUIRE_NO_ERROR	((PRBool)3)
+#define SSL_SECURITY_STATUS_NOOPT	-1
+#define SSL_NOT_ALLOWED	0
+#define SSL_SECURITY_STATUS_OFF	0
+#define SSL_ALLOWED	1
+#define SSL_SECURITY	1
+#define SSL_SECURITY_STATUS_ON_HIGH	1
+#define SSL_REQUIRE_CERTIFICATE	10
+#define SSL_ENABLE_FDX	11
+#define SSL_V2_COMPATIBLE_HELLO	12
+#define SSL_ENABLE_TLS	13
+#define SSL_ROLLBACK_DETECTION	14
+#define SSL_NO_STEP_DOWN	15
+#define SSL_BYPASS_PKCS11	16
+#define SSL_NO_LOCKS	17
+#define SSL_RESTRICTED	2
+#define SSL_SECURITY_STATUS_ON_LOW	2
+#define SSL_SOCKS	2
+#define SSL_REQUEST_CERTIFICATE	3
+#define SSL_HANDSHAKE_AS_CLIENT	5
+#define SSL_HANDSHAKE_AS_SERVER	6
+#define SSL_ENABLE_SSL2	7
+#define SSL_ENABLE_SSL3	8
+#define SSL_NO_CACHE	9
+
+
     typedef SECStatus(*SSLAuthCertificate) (void *, PRFileDesc *, PRBool,
 					    PRBool);
 

@@ -1,4 +1,12 @@
 
+#define MD2_LENGTH	16
+#define MD5_LENGTH	16
+#define SHA1_LENGTH	20
+#define SHA256_LENGTH	32
+#define SHA384_LENGTH	48
+#define SHA512_LENGTH	64
+#define HASH_LENGTH_MAX	SHA512_LENGTH
+
 typedef struct SECHashObjectStr {
     unsigned int length;
     void *(*create) (void);

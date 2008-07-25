@@ -1,4 +1,78 @@
 
+#define NS_CERT_TYPE_CA	 \
+	( NS_CERT_TYPE_SSL_CA | NS_CERT_TYPE_EMAIL_CA | \
+	NS_CERT_TYPE_OBJECT_SIGNING_CA | EXT_KEY_USAGE_STATUS_RESPONDER )
+#define NS_CERT_TYPE_APP	 \
+	( NS_CERT_TYPE_SSL_CLIENT | NS_CERT_TYPE_SSL_SERVER | \
+	NS_CERT_TYPE_EMAIL | NS_CERT_TYPE_OBJECT_SIGNING )
+#define SEC_GET_TRUST_FLAGS(trust,type)	 \
+	(((type)==trustSSL)?((trust)->sslFlags): \
+	(((type)==trustEmail)?((trust)->emailFlags): \
+	(((type)==trustObjectSigning)?((trust)->objectSigningFlags):0)))
+#define KU_ALL	 \
+	(KU_DIGITAL_SIGNATURE | KU_NON_REPUDIATION | KU_KEY_ENCIPHERMENT | \
+	KU_DATA_ENCIPHERMENT | KU_KEY_AGREEMENT | KU_KEY_CERT_SIGN | \
+	KU_CRL_SIGN)
+#define CERT_LIST_END(n,l)	(((void *)n) == ((void *)&l->list))
+#define CERT_LIST_NEXT(n)	((CERTCertListNode *)n->links.next)
+#define CERT_LIST_HEAD(l)	((CERTCertListNode *)PR_LIST_HEAD(&l->list))
+#define certificateUsageSSLClient	(0x0001)
+#define certificateUsageSSLServer	(0x0002)
+#define certificateUsageSSLServerWithStepUp	(0x0004)
+#define certificateUsageSSLCA	(0x0008)
+#define certificateUsageEmailSigner	(0x0010)
+#define certificateUsageEmailRecipient	(0x0020)
+#define certificateUsageObjectSigner	(0x0040)
+#define certificateUsageUserCertImport	(0x0080)
+#define NS_CERT_TYPE_OBJECT_SIGNING_CA	(0x01)
+#define certificateUsageVerifyCA	(0x0100)
+#define KU_CRL_SIGN	(0x02)
+#define NS_CERT_TYPE_EMAIL_CA	(0x02)
+#define RF_CERTIFICATE_HOLD	(0x02)
+#define certificateUsageProtectedObjectSigner	(0x0200)
+#define KU_KEY_CERT_SIGN	(0x04)
+#define NS_CERT_TYPE_SSL_CA	(0x04)
+#define RF_CESSATION_OF_OPERATION	(0x04)
+#define certificateUsageStatusResponder	(0x0400)
+#define KU_KEY_AGREEMENT	(0x08)
+#define NS_CERT_TYPE_RESERVED	(0x08)
+#define RF_SUPERSEDED	(0x08)
+#define certificateUsageAnyCA	(0x0800)
+#define KU_DATA_ENCIPHERMENT	(0x10)
+#define NS_CERT_TYPE_OBJECT_SIGNING	(0x10)
+#define RF_AFFILIATION_CHANGED	(0x10)
+#define KU_KEY_ENCIPHERMENT	(0x20)
+#define NS_CERT_TYPE_EMAIL	(0x20)
+#define RF_CA_COMPROMISE	(0x20)
+#define KU_NON_REPUDIATION	(0x40)
+#define NS_CERT_TYPE_SSL_SERVER	(0x40)
+#define RF_KEY_COMPROMISE	(0x40)
+#define EXT_KEY_USAGE_STATUS_RESPONDER	(0x4000)
+#define KU_KEY_AGREEMENT_OR_ENCIPHERMENT	(0x4000)
+#define KU_DIGITAL_SIGNATURE	(0x80)
+#define NS_CERT_TYPE_SSL_CLIENT	(0x80)
+#define RF_UNUSED	(0x80)
+#define EXT_KEY_USAGE_TIME_STAMP	(0x8000)
+#define KU_NS_GOVT_APPROVED	(0x8000)
+#define CERT_UNLIMITED_PATH_CONSTRAINT	-2
+#define SEC_CERTIFICATE_REQUEST_VERSION	0
+#define SEC_CERTIFICATE_VERSION_1	0
+#define SEC_CRL_VERSION_1	0
+#define SEC_CERTIFICATE_VERSION_2	1
+#define SEC_CERT_CLASS_CA	1
+#define SEC_CERT_NICKNAMES_ALL	1
+#define SEC_CRL_VERSION_2	1
+#define SEC_CERTIFICATE_VERSION_3	2
+#define SEC_CERT_CLASS_SERVER	2
+#define SEC_CERT_NICKNAMES_USER	2
+#define CERT_MAX_CERT_CHAIN	20
+#define SEC_CERT_CLASS_USER	3
+#define SEC_CERT_NICKNAMES_SERVER	3
+#define SEC_CERT_CLASS_EMAIL	4
+#define SEC_CERT_NICKNAMES_CA	4
+#define certificateUsageHighest	certificateUsageAnyCA
+#define CERT_LIST_EMPTY(l)	CERT_LIST_END(CERT_LIST_HEAD(l), l)
+
 typedef struct CERTAVAStr {
     SECItem type;
     SECItem value;

@@ -1431,21 +1431,23 @@ if( $classlist ne "" ) {
     $typelist=join ',', keys(%class_member);
 }
 
-# Get Constant list
+#
+# Get the headers referenced by 'header_depend' constants values
+#
 
-$select = "SELECT * FROM Constant ";
+$select = "SELECT ACvalue, ACorder FROM Constant ";
 $select.= "LEFT JOIN ArchConst ON Cid=ACcid ";
 $select.= "LEFT JOIN HeaderGroup ON Cheadgroup=HGid ";
 $select.= "WHERE HGheader=$Hid ";
 $select.= "AND Ctype='header_depend' ";
+# No check for withdrawn - we don't have any 'header_depend' constants withdrawn before 3.1
 $select.= "AND ACappearedin > ''";
-$select.= "AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '3.0') ";
 print $select,"\n" if $trace;
 $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
 for(1..$sth->rows) {
     $entry = $sth->fetchrow_hashref;
-    $header{$entry->{'ACvalue'}}=1;
+    $header{$entry->{'ACvalue'}}=$entry->{'ACorder'};
 }
 $sth->finish;
 $constlist=join '\',\'', keys(%const);
@@ -1520,46 +1522,34 @@ if( $typelist ne "" ) {
         }
     }
     $sth->finish;
-#
-# Get the headers referenced by 'header_depend' constants values
-#
-
-if( $constlist ne "" ) {
-    $select = "SELECT DISTINCT Hid FROM Constant ";
-    $select.= "LEFT JOIN HeaderGroup ON HGid=Cheadgroup ";
-    $select.= "LEFT JOIN Header ON Hid=HGheader ";
-    $select.= "LEFT JOIN ArchConst ON ACcid=Cid ";
-    $select.= "WHERE Hid IN (\'$constlist\') ";
-    $select.= "AND ACappearedin > '' ";
-    $select.= "AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '3.0') ";
-    $select.= "AND Hid != $Hid ";
-    $select.= "ORDER BY Cid";
-    print $select,"\n" if $trace;
-    $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
-    $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
-    for(1..$sth->rows) {
-        $entry = $sth->fetchrow_hashref;
-        $header{$entry->{'Hid'}}=1;
-    }
-    $sth->finish;
-}
-
-$hdrlist=join ',', keys(%header);
 
 #
 # Output the headers this header needs to include
 #
+$hdrlist=join ',', keys(%header);
 if( $hdrlist ne "" ) {
-    $select = "SELECT DISTINCT Hname, Hid FROM Header ";
-    $select.= "WHERE Hid IN ($hdrlist) ";
-    $select.= "AND Hid != $Hid ";
+    $createTmp = "CREATE TEMPORARY TABLE tmp_HeadersDeps ";
+    $createTmp.= "(KEY `Hid`(`Hid`,`ACorder`)) ";
+    $createTmp.= "SELECT DISTINCT Hid, -1 AS ACorder FROM Header ";
+    $createTmp.= "WHERE Hid IN ($hdrlist) ";
+    $createTmp.= "AND Hid != $Hid ";
+    $dbh->do($createTmp);
+
+    foreach $dep_hid (keys %header) {
+        if( $header{$dep_hid} > 1 ) {
+            $dbh->do("UPDATE tmp_HeadersDeps SET ACorder=".$header{$dep_hid}." WHERE Hid=$dep_hid");
+        }
+    }
+
+    $select = "SELECT Hname, Hid FROM tmp_HeadersDeps ";
+    $select.= "JOIN Header USING(Hid) ";
+    $select.= "ORDER BY ACorder, Hid ";
     print $select,"\n" if $trace;
     $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
     $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
     for(1..$sth->rows) {
         $entry = $sth->fetchrow_hashref;
         if( $entry->{'Hname'} ) {
-#           print "#include <".$entry->{'Hname'}.">\n";
             my $header_name = $entry->{'Hname'};
             my $header_id = $entry->{'Hid'};
 
