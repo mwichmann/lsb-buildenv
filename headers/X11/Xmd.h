@@ -8,12 +8,66 @@ extern "C" {
 #endif
 
 
+#if defined __i386__
+#define B16
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define B16
+#endif
+#if defined __s390__ && !defined __s390x__
+#define B16
+#endif
+#if defined __i386__
+#define B32
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define B32
+#endif
+#if defined __s390__ && !defined __s390x__
+#define B32
+#endif
+#if defined __ia64__
+#define B16	:16
+#endif
+#if defined __powerpc64__
+#define B16	:16
+#endif
+#if defined __x86_64__
+#define B16	:16
+#endif
+#if defined __s390x__
+#define B16	:16
+#endif
+#if defined __ia64__
+#define B32	:32
+#endif
+#if defined __powerpc64__
+#define B32	:32
+#endif
+#if defined __x86_64__
+#define B32	:32
+#endif
+#if defined __s390x__
+#define B32	:32
+#endif
+
+
     typedef unsigned short CARD16;
 
     typedef CARD8 BOOL;
 
-#if defined __i386__
-/* IA32 */
+#if defined __s390x__
+/* S390X */
+    typedef unsigned int CARD32;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef unsigned int CARD32;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
     typedef unsigned long int CARD32;
 
 #endif
@@ -27,13 +81,8 @@ extern "C" {
     typedef unsigned long int CARD32;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef unsigned int CARD32;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
+#if defined __i386__
+/* IA32 */
     typedef unsigned long int CARD32;
 
 #endif
@@ -42,9 +91,9 @@ extern "C" {
     typedef unsigned int CARD32;
 
 #endif
-#if defined __s390x__
-/* S390X */
-    typedef unsigned int CARD32;
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef unsigned long long int CARD64;
 
 #endif
 #if defined __i386__
@@ -57,13 +106,8 @@ extern "C" {
     typedef unsigned long int CARD64;
 
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef unsigned long long int CARD64;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __s390x__
+/* S390X */
     typedef unsigned long int CARD64;
 
 #endif
@@ -77,8 +121,8 @@ extern "C" {
     typedef unsigned long int CARD64;
 
 #endif
-#if defined __s390x__
-/* S390X */
+#if defined __powerpc64__
+/* PPC64 */
     typedef unsigned long int CARD64;
 
 #endif

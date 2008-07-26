@@ -33,13 +33,13 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-#if defined __i386__
-/* IA32 */
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length;
+	CARD32 length:32;
     } smRegisterClientMsg;
 
 #endif
@@ -63,13 +63,13 @@ extern "C" {
     } smRegisterClientMsg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __i386__
+/* IA32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientMsg;
 
 #endif
@@ -80,16 +80,6 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smRegisterClientMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
     } smRegisterClientMsg;
 
 #endif
@@ -103,34 +93,14 @@ extern "C" {
     } smRegisterClientMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smRegisterClientReplyMsg;
-
-#endif
-#if defined __ia64__
-/* IA64 */
+#if defined __x86_64__
+/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smRegisterClientReplyMsg;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smRegisterClientReplyMsg;
+    } smRegisterClientMsg;
 
 #endif
 #if defined __powerpc64__
@@ -143,23 +113,13 @@ extern "C" {
     } smRegisterClientReplyMsg;
 
 #endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
+#if defined __i386__
+/* IA32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smRegisterClientReplyMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
     } smRegisterClientReplyMsg;
 
 #endif
@@ -173,19 +133,24 @@ extern "C" {
     } smRegisterClientReplyMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
+#if defined __s390__ && !defined __s390x__
+/* S390 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 unused1[2];
+	CARD8 unused[2];
 	CARD32 length;
-	CARD8 saveType;
-	CARD8 shutdown;
-	CARD8 interactStyle;
-	CARD8 fast;
-	CARD8 unused2[4];
-    } smSaveYourselfMsg;
+    } smRegisterClientReplyMsg;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smRegisterClientReplyMsg;
 
 #endif
 #if defined __ia64__
@@ -193,8 +158,28 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 unused1[2];
+	CARD8 unused[2];
 	CARD32 length:32;
+    } smRegisterClientReplyMsg;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smRegisterClientReplyMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused1[2];
+	CARD32 length;
 	CARD8 saveType;
 	CARD8 shutdown;
 	CARD8 interactStyle;
@@ -220,36 +205,6 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD8 saveType;
-	CARD8 shutdown;
-	CARD8 interactStyle;
-	CARD8 fast;
-	CARD8 unused2[4];
-    } smSaveYourselfMsg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused1[2];
-	CARD32 length;
-	CARD8 saveType;
-	CARD8 shutdown;
-	CARD8 interactStyle;
-	CARD8 fast;
-	CARD8 unused2[4];
-    } smSaveYourselfMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -278,6 +233,51 @@ extern "C" {
     } smSaveYourselfMsg;
 
 #endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused1[2];
+	CARD32 length:32;
+	CARD8 saveType;
+	CARD8 shutdown;
+	CARD8 interactStyle;
+	CARD8 fast;
+	CARD8 unused2[4];
+    } smSaveYourselfMsg;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused1[2];
+	CARD32 length:32;
+	CARD8 saveType;
+	CARD8 shutdown;
+	CARD8 interactStyle;
+	CARD8 fast;
+	CARD8 unused2[4];
+    } smSaveYourselfMsg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused1[2];
+	CARD32 length;
+	CARD8 saveType;
+	CARD8 shutdown;
+	CARD8 interactStyle;
+	CARD8 fast;
+	CARD8 unused2[4];
+    } smSaveYourselfMsg;
+
+#endif
 #if defined __i386__
 /* IA32 */
     typedef struct {
@@ -308,6 +308,21 @@ extern "C" {
     } smSaveYourselfRequestMsg;
 
 #endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused1;
+	CARD8 saveType;
+	CARD8 shutdown;
+	CARD8 interactStyle;
+	CARD8 fast;
+	CARD8 global;
+	CARD8 unused2[3];
+    } smSaveYourselfRequestMsg;
+
+#endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef struct {
@@ -323,38 +338,8 @@ extern "C" {
     } smSaveYourselfRequestMsg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused1;
-	CARD8 saveType;
-	CARD8 shutdown;
-	CARD8 interactStyle;
-	CARD8 fast;
-	CARD8 global;
-	CARD8 unused2[3];
-    } smSaveYourselfRequestMsg;
-
-#endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused1;
-	CARD8 saveType;
-	CARD8 shutdown;
-	CARD8 interactStyle;
-	CARD8 fast;
-	CARD8 global;
-	CARD8 unused2[3];
-    } smSaveYourselfRequestMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -383,19 +368,23 @@ extern "C" {
     } smSaveYourselfRequestMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 dialogType;
-	CARD8 unused;
-	CARD32 length;
-    } smInteractRequestMsg;
+	CARD8 unused1;
+	CARD8 saveType;
+	CARD8 shutdown;
+	CARD8 interactStyle;
+	CARD8 fast;
+	CARD8 global;
+	CARD8 unused2[3];
+    } smSaveYourselfRequestMsg;
 
 #endif
-#if defined __ia64__
-/* IA64 */
+#if defined __s390x__
+/* S390X */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -416,25 +405,14 @@ extern "C" {
     } smInteractRequestMsg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __ia64__
+/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 dialogType;
 	CARD8 unused;
 	CARD32 length:32;
-    } smInteractRequestMsg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 dialogType;
-	CARD8 unused;
-	CARD32 length;
     } smInteractRequestMsg;
 
 #endif
@@ -449,8 +427,8 @@ extern "C" {
     } smInteractRequestMsg;
 
 #endif
-#if defined __s390x__
-/* S390X */
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -465,33 +443,25 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 unused[2];
+	CARD8 dialogType;
+	CARD8 unused;
 	CARD32 length;
-    } smInteractMsg;
+    } smInteractRequestMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 dialogType;
+	CARD8 unused;
+	CARD32 length;
+    } smInteractRequestMsg;
 
 #endif
 #if defined __ia64__
 /* IA64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smInteractMsg;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smInteractMsg;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -510,8 +480,28 @@ extern "C" {
     } smInteractMsg;
 
 #endif
-#if defined __x86_64__
-/* x86-64 */
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smInteractMsg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smInteractMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -530,37 +520,14 @@ extern "C" {
     } smInteractMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
+#if defined __x86_64__
+/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 cancelShutdown;
-	CARD8 unused;
-	CARD32 length;
-    } smInteractDoneMsg;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 cancelShutdown;
-	CARD8 unused;
+	CARD8 unused[2];
 	CARD32 length:32;
-    } smInteractDoneMsg;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 cancelShutdown;
-	CARD8 unused;
-	CARD32 length;
-    } smInteractDoneMsg;
+    } smInteractMsg;
 
 #endif
 #if defined __powerpc64__
@@ -574,8 +541,8 @@ extern "C" {
     } smInteractDoneMsg;
 
 #endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -596,8 +563,19 @@ extern "C" {
     } smInteractDoneMsg;
 
 #endif
-#if defined __s390x__
-/* S390X */
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 cancelShutdown;
+	CARD8 unused;
+	CARD32 length;
+    } smInteractDoneMsg;
+
+#endif
+#if defined __ia64__
+/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -612,58 +590,25 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 success;
+	CARD8 cancelShutdown;
 	CARD8 unused;
 	CARD32 length;
-    } smSaveYourselfDoneMsg;
+    } smInteractDoneMsg;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 cancelShutdown;
+	CARD8 unused;
+	CARD32 length:32;
+    } smInteractDoneMsg;
 
 #endif
 #if defined __ia64__
 /* IA64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 success;
-	CARD8 unused;
-	CARD32 length:32;
-    } smSaveYourselfDoneMsg;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 success;
-	CARD8 unused;
-	CARD32 length;
-    } smSaveYourselfDoneMsg;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 success;
-	CARD8 unused;
-	CARD32 length:32;
-    } smSaveYourselfDoneMsg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 success;
-	CARD8 unused;
-	CARD32 length;
-    } smSaveYourselfDoneMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -684,13 +629,68 @@ extern "C" {
     } smSaveYourselfDoneMsg;
 
 #endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 success;
+	CARD8 unused;
+	CARD32 length;
+    } smSaveYourselfDoneMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 success;
+	CARD8 unused;
+	CARD32 length;
+    } smSaveYourselfDoneMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 success;
+	CARD8 unused;
+	CARD32 length:32;
+    } smSaveYourselfDoneMsg;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 success;
+	CARD8 unused;
+	CARD32 length:32;
+    } smSaveYourselfDoneMsg;
+
+#endif
 #if defined __i386__
 /* IA32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD8 unused[2];
+	CARD8 success;
+	CARD8 unused;
 	CARD32 length;
+    } smSaveYourselfDoneMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
     } smDieMsg;
 
 #endif
@@ -704,18 +704,8 @@ extern "C" {
     } smDieMsg;
 
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smDieMsg;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __x86_64__
+/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -734,13 +724,23 @@ extern "C" {
     } smDieMsg;
 
 #endif
-#if defined __x86_64__
-/* x86-64 */
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
+    } smDieMsg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
     } smDieMsg;
 
 #endif
@@ -761,6 +761,26 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
+    } smShutdownCancelledMsg;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smShutdownCancelledMsg;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
     } smShutdownCancelledMsg;
 
 #endif
@@ -804,38 +824,8 @@ extern "C" {
     } smShutdownCancelledMsg;
 
 #endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smShutdownCancelledMsg;
-
-#endif
 #if defined __s390x__
 /* S390X */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smShutdownCancelledMsg;
-
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smCloseConnectionMsg;
-
-#endif
-#if defined __ia64__
-/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -854,8 +844,8 @@ extern "C" {
     } smCloseConnectionMsg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __ia64__
+/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -884,8 +874,18 @@ extern "C" {
     } smCloseConnectionMsg;
 
 #endif
-#if defined __s390x__
-/* S390X */
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smCloseConnectionMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -894,66 +894,6 @@ extern "C" {
     } smCloseConnectionMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSetPropertiesMsg;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smSetPropertiesMsg;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSetPropertiesMsg;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smSetPropertiesMsg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSetPropertiesMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smSetPropertiesMsg;
-
-#endif
 #if defined __s390x__
 /* S390X */
     typedef struct {
@@ -971,7 +911,47 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smDeletePropertiesMsg;
+    } smSetPropertiesMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smSetPropertiesMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smSetPropertiesMsg;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smSetPropertiesMsg;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smSetPropertiesMsg;
 
 #endif
 #if defined __ia64__
@@ -981,6 +961,16 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
+    } smSetPropertiesMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
     } smDeletePropertiesMsg;
 
 #endif
@@ -994,38 +984,18 @@ extern "C" {
     } smDeletePropertiesMsg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __s390x__
+/* S390X */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smDeletePropertiesMsg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
     } smDeletePropertiesMsg;
 
 #endif
 #if defined __x86_64__
 /* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smDeletePropertiesMsg;
-
-#endif
-#if defined __s390x__
-/* S390X */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -1041,7 +1011,17 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smGetPropertiesMsg;
+    } smDeletePropertiesMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smDeletePropertiesMsg;
 
 #endif
 #if defined __ia64__
@@ -1051,21 +1031,21 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smGetPropertiesMsg;
+    } smDeletePropertiesMsg;
 
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
+#if defined __s390x__
+/* S390X */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length;
+	CARD32 length:32;
     } smGetPropertiesMsg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __ia64__
+/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -1084,18 +1064,8 @@ extern "C" {
     } smGetPropertiesMsg;
 
 #endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smGetPropertiesMsg;
-
-#endif
-#if defined __s390x__
-/* S390X */
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -1111,16 +1081,46 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smPropertiesReplyMsg;
+    } smGetPropertiesMsg;
 
 #endif
-#if defined __ia64__
-/* IA64 */
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smGetPropertiesMsg;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
+    } smGetPropertiesMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smPropertiesReplyMsg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
     } smPropertiesReplyMsg;
 
 #endif
@@ -1144,18 +1144,8 @@ extern "C" {
     } smPropertiesReplyMsg;
 
 #endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smPropertiesReplyMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
+#if defined __ia64__
+/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -1174,28 +1164,18 @@ extern "C" {
     } smPropertiesReplyMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSaveYourselfPhase2RequestMsg;
-
-#endif
-#if defined __ia64__
-/* IA64 */
+#if defined __x86_64__
+/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smSaveYourselfPhase2RequestMsg;
+    } smPropertiesReplyMsg;
 
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
+#if defined __i386__
+/* IA32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -1221,16 +1201,6 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smSaveYourselfPhase2RequestMsg;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
     } smSaveYourselfPhase2RequestMsg;
 
 #endif
@@ -1244,16 +1214,6 @@ extern "C" {
     } smSaveYourselfPhase2RequestMsg;
 
 #endif
-#if defined __i386__
-/* IA32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSaveYourselfPhase2Msg;
-
-#endif
 #if defined __ia64__
 /* IA64 */
     typedef struct {
@@ -1261,37 +1221,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smSaveYourselfPhase2Msg;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSaveYourselfPhase2Msg;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length:32;
-    } smSaveYourselfPhase2Msg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSaveYourselfPhase2Msg;
+    } smSaveYourselfPhase2RequestMsg;
 
 #endif
 #if defined __x86_64__
@@ -1301,7 +1231,17 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smSaveYourselfPhase2Msg;
+    } smSaveYourselfPhase2RequestMsg;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smSaveYourselfPhase2RequestMsg;
 
 #endif
 #if defined __s390x__
@@ -1314,24 +1254,14 @@ extern "C" {
     } smSaveYourselfPhase2Msg;
 
 #endif
-#if defined __i386__
-/* IA32 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused[2];
-	CARD32 length;
-    } smSaveCompleteMsg;
-
-#endif
-#if defined __ia64__
-/* IA64 */
+#if defined __powerpc64__
+/* PPC64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smSaveCompleteMsg;
+    } smSaveYourselfPhase2Msg;
 
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -1341,17 +1271,37 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smSaveCompleteMsg;
+    } smSaveYourselfPhase2Msg;
 
 #endif
-#if defined __powerpc64__
-/* PPC64 */
+#if defined __x86_64__
+/* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
-    } smSaveCompleteMsg;
+    } smSaveYourselfPhase2Msg;
+
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smSaveYourselfPhase2Msg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smSaveYourselfPhase2Msg;
 
 #endif
 #if defined __s390__ && !defined __s390x__
@@ -1361,11 +1311,11 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length;
-    } smSaveCompleteMsg;
+    } smSaveYourselfPhase2Msg;
 
 #endif
-#if defined __x86_64__
-/* x86-64 */
+#if defined __ia64__
+/* IA64 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -1374,6 +1324,46 @@ extern "C" {
     } smSaveCompleteMsg;
 
 #endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smSaveCompleteMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smSaveCompleteMsg;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
+    } smSaveCompleteMsg;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length:32;
+    } smSaveCompleteMsg;
+
+#endif
 #if defined __s390x__
 /* S390X */
     typedef struct {
@@ -1381,6 +1371,16 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 unused[2];
 	CARD32 length:32;
+    } smSaveCompleteMsg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
+	CARD8 unused[2];
+	CARD32 length;
     } smSaveCompleteMsg;
 
 #endif

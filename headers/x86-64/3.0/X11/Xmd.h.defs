@@ -1,3 +1,6 @@
 
+#define B16	:16
+#define B32	:32
+
 typedef unsigned int CARD32;
 typedef unsigned long int CARD64;
