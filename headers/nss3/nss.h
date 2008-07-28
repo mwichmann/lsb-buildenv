@@ -27,8 +27,6 @@ extern "C" {
 #define NSS_INIT_COOPERATE	NSS_INIT_PK11THREADSAFE | NSS_INIT_PK11RELOAD | NSS_INIT_NOPK11FINALIZE | NSS_INIT_RESERVED
 
 
-    typedef SECStatus(*NSS_ShutdownFunc) (void *, void *);
-
 
 /* Function prototypes */
 

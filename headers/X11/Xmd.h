@@ -54,6 +54,8 @@ extern "C" {
 
     typedef unsigned short CARD16;
 
+    typedef unsigned char CARD8;
+
     typedef CARD8 BOOL;
 
 #if defined __s390x__
@@ -127,8 +129,6 @@ extern "C" {
 
 #endif
     typedef unsigned char BYTE;
-
-    typedef unsigned char CARD8;
 
     typedef CARD32 BITS32;
 

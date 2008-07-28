@@ -270,18 +270,6 @@ extern "C" {
     } XChangeDeviceNotifyEvent;
 
     typedef struct {
-	int type;
-	long unsigned int serial;
-	int send_event;
-	Display *display;
-	Window window;
-	Time time;
-	int devchange;
-	XID deviceid;
-	XID control;
-    } XDevicePresenceNotifyEvent;
-
-    typedef struct {
 	XID c_class;
 	int length;
 	XID id;
@@ -426,55 +414,6 @@ extern "C" {
 	int *min_resolutions;
 	int *max_resolutions;
     } XDeviceResolutionState;
-
-    typedef struct {
-	XID control;
-	int length;
-	int min_x;
-	int max_x;
-	int min_y;
-	int max_y;
-	int flip_x;
-	int flip_y;
-	int rotation;
-	int button_threshold;
-    } XDeviceAbsCalibControl;
-
-    typedef XDeviceAbsCalibControl XDeviceAbsCalibState;
-
-    typedef struct {
-	XID control;
-	int length;
-	int offset_x;
-	int offset_y;
-	int width;
-	int height;
-	int screen;
-	XID following;
-    } XDeviceAbsAreaControl;
-
-    typedef XDeviceAbsAreaControl XDeviceAbsAreaState;
-
-    typedef struct {
-	XID control;
-	int length;
-	int status;
-    } XDeviceCoreControl;
-
-    typedef struct {
-	XID control;
-	int length;
-	int status;
-	int iscore;
-    } XDeviceCoreState;
-
-    typedef struct {
-	XID control;
-	int length;
-	int enable;
-    } XDeviceEnableControl;
-
-    typedef XDeviceEnableControl XDeviceEnableState;
 
     typedef struct _XAnyClassinfo *XAnyClassPtr;
 
