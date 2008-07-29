@@ -704,22 +704,6 @@ extern "C" {
 /* S390 */
     extern int __fpclassifyl(long double);
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
 #if defined __powerpc64__
 /* PPC64 */
     extern int __signbitl(long double);

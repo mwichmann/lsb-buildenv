@@ -5,7 +5,6 @@ typedef CARD8 BOOL;
 typedef unsigned char BYTE;
 typedef CARD32 BITS32;
 typedef CARD16 BITS16;
-typedef long int INT64;
 typedef int INT32;
 typedef short int INT16;
 typedef signed char INT8;
