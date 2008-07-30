@@ -580,22 +580,15 @@ extern "C" {
     extern void XtInstallAccelerators(Widget, Widget);
     extern void XtInstallAllAccelerators(Widget, Widget);
     extern Boolean XtIsApplicationShell(Widget);
-    extern Boolean XtIsComposite(Widget);
-    extern Boolean XtIsConstraint(Widget);
     extern Boolean XtIsManaged(Widget);
     extern Boolean XtIsObject(Widget);
     extern Boolean XtIsOverrideShell(Widget);
     extern Boolean XtIsRealized(Widget);
-    extern Boolean XtIsRectObj(Widget);
     extern Boolean XtIsSensitive(Widget);
     extern Boolean XtIsSessionShell(Widget);
-    extern Boolean XtIsShell(Widget);
     extern Boolean XtIsSubclass(Widget, WidgetClass);
-    extern Boolean XtIsTopLevelShell(Widget);
     extern Boolean XtIsTransientShell(Widget);
     extern Boolean XtIsVendorShell(Widget);
-    extern Boolean XtIsWMShell(Widget);
-    extern Boolean XtIsWidget(Widget);
     extern void XtKeysymToKeycodeList(Display *, KeySym, KeyCode * *,
 				      Cardinal *);
     extern XEvent *XtLastEventProcessed(Display *);

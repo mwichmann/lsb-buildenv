@@ -133,6 +133,7 @@ alsa/iatomic.h
 alsa/seq_midi_event.h
 alsa/instr.h
 alsa/seqmid.h
+alsa/asoundlib.h
 cups/cups.h
 cups/ppd.h
 cups/raster.h
@@ -157,7 +158,6 @@ nss3/keythi.h
 nss3/nss.h
 nss3/nssb64.h
 nss3/nssb64t.h
-nss3/nssbaset.h
 nss3/nssilckt.h
 nss3/nssrwlkt.h
 nss3/ocspt.h

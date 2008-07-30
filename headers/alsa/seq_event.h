@@ -28,15 +28,9 @@ extern "C" {
 
     typedef struct snd_seq_connect snd_seq_connect_t;
 
-    typedef struct snd_seq_ev_cluster snd_seq_ev_cluster_t;
-
     typedef struct snd_seq_ev_ctrl snd_seq_ev_ctrl_t;
 
     typedef struct snd_seq_ev_ext snd_seq_ev_ext_t;
-
-    typedef struct snd_seq_ev_instr_begin snd_seq_ev_instr_begin_t;
-
-    typedef struct snd_seq_ev_loop snd_seq_ev_loop_t;
 
     typedef struct snd_seq_ev_note snd_seq_ev_note_t;
 
@@ -46,15 +40,32 @@ extern "C" {
 
     typedef struct snd_seq_ev_raw8 snd_seq_ev_raw8_t;
 
+    typedef struct snd_seq_event snd_seq_event_t;
+
+    typedef unsigned char snd_seq_event_type_t;
+
+    typedef struct snd_seq_queue_skew snd_seq_queue_skew_t;
+
+    typedef struct snd_seq_real_time snd_seq_real_time_t;
+
+    typedef struct snd_seq_result snd_seq_result_t;
+
+    typedef unsigned int snd_seq_tick_time_t;
+
+    typedef union snd_seq_timestamp snd_seq_timestamp_t;
+
+#if __LSB_VERSION__ < 40
+    typedef struct snd_seq_ev_cluster snd_seq_ev_cluster_t;
+
+    typedef struct snd_seq_ev_instr_begin snd_seq_ev_instr_begin_t;
+
+    typedef struct snd_seq_ev_loop snd_seq_ev_loop_t;
+
     typedef struct snd_seq_ev_sample_control snd_seq_ev_sample_control_t;
 
     typedef struct snd_seq_ev_sample snd_seq_ev_sample_t;
 
     typedef struct snd_seq_ev_volume snd_seq_ev_volume_t;
-
-    typedef struct snd_seq_event snd_seq_event_t;
-
-    typedef unsigned char snd_seq_event_type_t;
 
     typedef int snd_seq_frequency_t;
 
@@ -64,34 +75,13 @@ extern "C" {
 
     typedef unsigned int snd_seq_position_t;
 
-    typedef struct snd_seq_queue_skew snd_seq_queue_skew_t;
-
-    typedef struct snd_seq_real_time snd_seq_real_time_t;
-
-    typedef struct snd_seq_result snd_seq_result_t;
-
     typedef enum snd_seq_stop_mode {
 	SND_SEQ_SAMPLE_STOP_IMMEDIATELY,
 	SND_SEQ_SAMPLE_STOP_VENVELOPE = 1,
 	SND_SEQ_SAMPLE_STOP_LOOP = 2
     } snd_seq_stop_mode_t;
 
-    typedef unsigned int snd_seq_tick_time_t;
-
-    typedef union snd_seq_timestamp snd_seq_timestamp_t;
-
-    struct snd_seq_ev_sample {
-	unsigned int std;
-	short unsigned int bank;
-	short unsigned int prg;
-    };
-
-    struct snd_seq_ev_volume {
-	short int volume;
-	short int lr;
-	short int fr;
-	short int du;
-    };
+#endif				/* __LSB_VERSION__ < 4.0 */
 
     struct snd_seq_real_time {
 	unsigned int tv_sec;
@@ -113,6 +103,22 @@ extern "C" {
 	int result;
     };
 
+#if __LSB_VERSION__ < 40
+    struct snd_seq_ev_sample {
+	unsigned int std;
+	short unsigned int bank;
+	short unsigned int prg;
+    };
+
+    struct snd_seq_ev_volume {
+	short int volume;
+	short int lr;
+	short int fr;
+	short int du;
+    };
+
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 
     struct snd_seq_addr {
 	unsigned char client;
@@ -123,11 +129,6 @@ extern "C" {
     struct snd_seq_connect {
 	snd_seq_addr_t sender;
 	snd_seq_addr_t dest;
-    };
-
-
-    struct snd_seq_ev_cluster {
-	snd_seq_instr_cluster_t cluster;
     };
 
 
@@ -142,17 +143,6 @@ extern "C" {
     struct snd_seq_ev_ext {
 	unsigned int len;
 	void *ptr;
-    };
-
-
-    struct snd_seq_ev_instr_begin {
-	int timeout;
-    };
-
-
-    struct snd_seq_ev_loop {
-	unsigned int start;
-	unsigned int end;
     };
 
 
@@ -189,22 +179,6 @@ extern "C" {
     };
 
 
-    struct snd_seq_ev_sample_control {
-	unsigned char channel;
-	unsigned char unused[3];
-	union {
-	    snd_seq_ev_sample_t sample;	/* sample number */
-	    snd_seq_ev_cluster_t cluster;	/* cluster number */
-	    snd_seq_position_t position;	/* position */
-	    snd_seq_stop_mode_t stop_mode;	/* stop mode */
-	    snd_seq_frequency_t frequency;	/* frequency */
-	    snd_seq_ev_volume_t volume;	/* volume */
-	    snd_seq_ev_loop_t loop;	/* loop control */
-	    unsigned char raw8[8];	/* raw 8-bit */
-	} param;
-    };
-
-
     struct snd_seq_event {
 	snd_seq_event_type_t type;
 	unsigned char flags;
@@ -224,9 +198,40 @@ extern "C" {
 	    snd_seq_addr_t addr;	/* address */
 	    snd_seq_connect_t connect;	/* connect information */
 	    snd_seq_result_t result;	/* operation result code */
-	    snd_seq_ev_instr_begin_t instr_begin;	/* instrument */
-	    snd_seq_ev_sample_control_t sample;
 	} data;
+    };
+
+#if __LSB_VERSION__ < 40
+
+    struct snd_seq_ev_cluster {
+	snd_seq_instr_cluster_t cluster;
+    };
+
+
+    struct snd_seq_ev_instr_begin {
+	int timeout;
+    };
+
+
+    struct snd_seq_ev_loop {
+	unsigned int start;
+	unsigned int end;
+    };
+
+
+    struct snd_seq_ev_sample_control {
+	unsigned char channel;
+	unsigned char unused[3];
+	union {
+	    snd_seq_ev_sample_t sample;	/* sample number */
+	    snd_seq_ev_cluster_t cluster;	/* cluster number */
+	    snd_seq_position_t position;	/* position */
+	    snd_seq_stop_mode_t stop_mode;	/* stop mode */
+	    snd_seq_frequency_t frequency;	/* frequency */
+	    snd_seq_ev_volume_t volume;	/* volume */
+	    snd_seq_ev_loop_t loop;	/* loop control */
+	    unsigned char raw8[8];	/* raw 8-bit */
+	} param;
     };
 
 
@@ -236,6 +241,8 @@ extern "C" {
 	short unsigned int bank;
 	short unsigned int prg;
     };
+
+#endif				/* __LSB_VERSION__ < 4.0 */
 
 #ifdef __cplusplus
 }

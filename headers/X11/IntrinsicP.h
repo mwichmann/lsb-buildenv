@@ -90,6 +90,13 @@ extern "C" {
 				  Dimension, Dimension);
     extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
 			       XSetWindowAttributes *);
+    extern Boolean XtIsComposite(Widget);
+    extern Boolean XtIsConstraint(Widget);
+    extern Boolean XtIsRectObj(Widget);
+    extern Boolean XtIsShell(Widget);
+    extern Boolean XtIsTopLevelShell(Widget);
+    extern Boolean XtIsWMShell(Widget);
+    extern Boolean XtIsWidget(Widget);
     extern void XtMoveWidget(Widget, Position, Position);
     extern void XtProcessLock(void);
     extern void XtProcessUnlock(void);

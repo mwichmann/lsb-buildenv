@@ -124,6 +124,11 @@ extern "C" {
     typedef unsigned long int INT64;
 
 #endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef unsigned long int INT64;
+
+#endif
 #if defined __s390x__
 /* S390X */
     typedef unsigned long int INT64;
@@ -131,11 +136,6 @@ extern "C" {
 #endif
 #if defined __x86_64__
 /* x86-64 */
-    typedef unsigned long int INT64;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
     typedef unsigned long int INT64;
 
 #endif

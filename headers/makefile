@@ -1,6 +1,7 @@
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 
 LSBVERSION=$(shell cat LSB_VERSION)
+DEVEL_VERSIONS=All_4.0 IA32_4.0 IA64_4.0 x86-64_4.0 PPC32_4.0 PPC64_4.0 S390_4.0 S390X_4.0
 VERSIONS=All_3.0 All_3.1 All_3.2 All_4.0 \
 	IA32_3.0 IA32_3.1 IA32_3.2 IA32_4.0 \
 	IA64_3.0 IA64_3.1 IA64_3.2 IA64_4.0 \
@@ -11,6 +12,8 @@ VERSIONS=All_3.0 All_3.1 All_3.2 All_4.0 \
 	S390X_3.0 S390X_3.1 S390X_3.2 S390X_4.0
 
 all: $(foreach archver,$(VERSIONS),headers-$(archver))
+
+devel: $(foreach archver,$(DEVEL_VERSIONS),headers-$(archver))
 
 headers-%: $(foreach headerfile,$(shell ./getheaderlist),%/$(headerfile).defs)
 	@echo Made header files for $*
@@ -33,7 +36,7 @@ core_filelist desktop_filelist:
 #	./mkheader -a All -v `cat LSB_VERSION` -h $@ | indent -kr >$@\
 #	)
 
-headers-All_3.0: $(foreach headerfile,$(shell ./getheaderlist),All_3.0/$(headerfile).defs $(headerfile)) 
+headers-All_4.0: $(foreach headerfile,$(shell ./getheaderlist),All_4.0/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
 install: install-core

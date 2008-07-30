@@ -111,8 +111,6 @@ typedef struct snd_seq_event {
 	snd_seq_addr_t addr;
 	snd_seq_connect_t connect;
 	snd_seq_result_t result;
-	snd_seq_ev_instr_begin_t instr_begin;
-	snd_seq_ev_sample_control_t sample;
     } data;
 } snd_seq_event_t;
 typedef unsigned char snd_seq_event_type_t;
