@@ -78,9 +78,10 @@ enum;
 typedef enum XIMCaretStyle;
 enum;
 typedef enum XIMStatusDataType;
-typedef int (*XErrorHandler) (void);
-typedef int (*XIOErrorHandler) (void);
-typedef void (*XConnectionWatchProc) (void);
+typedef int (*XErrorHandler) (Display *, XErrorEvent *);
+typedef int (*XIOErrorHandler) (Display *, Display *);
+typedef void (*XConnectionWatchProc) (Display *, XPointer, int, int,
+				      XPointer *);
 enum {
     XOMOrientation_LTR_TTB,
     XOMOrientation_RTL_TTB,
@@ -482,9 +483,9 @@ typedef struct _XIM *XIM;
 typedef struct _XIC *XIC;
 typedef unsigned long int XIMStyle;
 typedef struct XIMStyles;
-typedef void (*XIMProc) (void);
-typedef int (*XICProc) (void);
-typedef void (*XIDProc) (void);
+typedef void (*XIMProc) (XIM, XPointer, XPointer);
+typedef int (*XICProc) (XIC, XPointer, XPointer);
+typedef void (*XIDProc) (Display *, XPointer, XPointer);
 extern int XActivateScreenSaver(Display *);
 extern int XAddConnectionWatch(Display *, XConnectionWatchProc, XPointer);
 extern XExtCodes *XAddExtension(Display *);

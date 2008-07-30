@@ -150,17 +150,26 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-    typedef int (*XcmsCompressionProc) (void);
+    typedef int (*XcmsCompressionProc) (XcmsCCC, XcmsColor *, unsigned int,
+					unsigned int, int *);
 
-    typedef int (*XcmsWhiteAdjustProc) (void);
+    typedef int (*XcmsWhiteAdjustProc) (XcmsCCC, XcmsColor *, XcmsColor *,
+					XcmsColorFormat, XcmsColor *,
+					unsigned int, int *);
 
-    typedef int (*XcmsScreenInitProc) (void);
+    typedef int (*XcmsScreenInitProc) (Display *, int, XcmsPerScrnInfo *);
 
-    typedef void (*XcmsScreenFreeProc) (void);
+    typedef void (*XcmsScreenFreeProc) (XPointer);
 
-    typedef int (*XcmsConversionProc) (void);
+    typedef XcmsDIConversionProc XcmsConversionProc;
 
-    typedef int (*XcmsParseStringProc) (void);
+    typedef int (*XcmsParseStringProc) (char *, XcmsColor *);
+
+    typedef int (*XcmsDIConversionProc) (XcmsCCC, XcmsColor *, XcmsColor *,
+					 unsigned int);
+
+    typedef int (*XcmsDDConversionProc) (XcmsCCC, XcmsColor *,
+					 unsigned int, int *);
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

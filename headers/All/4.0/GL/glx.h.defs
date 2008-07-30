@@ -121,7 +121,7 @@ typedef struct {
 typedef XID GLXPbuffer;
 typedef XID GLXWindow;
 typedef XID GLXFBConfigID;
-typedef void (*__GLXextFuncPtr) (const GLubyte * procName);
+typedef void (*__GLXextFuncPtr) (void);
 extern XVisualInfo *glXChooseVisual(Display *, int, int *);
 extern void glXCopyContext(Display *, struct __GLXcontextRec *,
 			   struct __GLXcontextRec *, long unsigned int);
@@ -146,24 +146,26 @@ extern void glXSwapBuffers(Display *, GLXDrawable);
 extern void glXUseXFont(Font, int, int, int);
 extern void glXWaitGL(void);
 extern void glXWaitX(void);
-extern void glXGetSelectedEvent(Display *, int, unsigned long int *);
-extern void glXSelectEvent(Display *, int, long unsigned int);
-extern int glXQueryContext(Display *, int, int, int *);
+extern void glXGetSelectedEvent(Display *, GLXDrawable,
+				unsigned long int *);
+extern void glXSelectEvent(Display *, GLXDrawable, long unsigned int);
+extern int glXQueryContext(Display *, GLXContext, int, int *);
 extern GLXDrawable glXGetCurrentReadDrawable(void);
-extern int glXMakeContextCurrent(Display *, int, int, int);
+extern int glXMakeContextCurrent(Display *, GLXDrawable, GLXDrawable,
+				 GLXContext);
 extern GLXContext glXCreateNewContext(Display *, struct __GLXFBConfigRec *,
 				      int, struct __GLXcontextRec *, int);
-extern void glXQueryDrawable(Display *, int, int, unsigned int *);
-extern void glXDestroyPbuffer(Display *, int);
+extern void glXQueryDrawable(Display *, GLXDrawable, int, unsigned int *);
+extern void glXDestroyPbuffer(Display *, GLXPbuffer);
 extern GLXPbuffer glXCreatePbuffer(Display *, struct __GLXFBConfigRec *,
 				   const int *);
-extern void glXDestroyPixmap(Display *, int);
+extern void glXDestroyPixmap(Display *, GLXPixmap);
 extern GLXPixmap glXCreatePixmap(Display *, struct __GLXFBConfigRec *,
 				 Pixmap, const int *);
-extern void glXDestroyWindow(Display *, int);
+extern void glXDestroyWindow(Display *, GLXWindow);
 extern GLXWindow glXCreateWindow(Display *, struct __GLXFBConfigRec *,
 				 Window, const int *);
-extern XVisualInfo *glXGetVisualFromFBConfig(Display *, int);
-extern int glXGetFBConfigAttrib(Display *, int, int, int *);
+extern XVisualInfo *glXGetVisualFromFBConfig(Display *, GLXFBConfig);
+extern int glXGetFBConfigAttrib(Display *, GLXFBConfig, int, int *);
 extern GLXFBConfig *glXChooseFBConfig(Display *, int, const int *, int *);
 extern GLXFBConfig *glXGetFBConfigs(Display *, int, int *);

@@ -68,11 +68,12 @@ extern "C" {
     typedef enum
 	XIMStatusDataType;
 
-    typedef int (*XErrorHandler) (void);
+    typedef int (*XErrorHandler) (Display *, XErrorEvent *);
 
-    typedef int (*XIOErrorHandler) (void);
+    typedef int (*XIOErrorHandler) (Display *, Display *);
 
-    typedef void (*XConnectionWatchProc) (void);
+    typedef void (*XConnectionWatchProc) (Display *, XPointer, int, int,
+					  XPointer *);
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -743,11 +744,11 @@ extern "C" {
 
     typedef struct XIMStyles;
 
-    typedef void (*XIMProc) (void);
+    typedef void (*XIMProc) (XIM, XPointer, XPointer);
 
-    typedef int (*XICProc) (void);
+    typedef int (*XICProc) (XIC, XPointer, XPointer);
 
-    typedef void (*XIDProc) (void);
+    typedef void (*XIDProc) (Display *, XPointer, XPointer);
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
