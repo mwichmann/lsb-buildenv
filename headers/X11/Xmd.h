@@ -50,6 +50,11 @@ extern "C" {
 #if defined __s390x__
 #define B32	:32
 #endif
+#if __LSB_VERSION__ >= 40
+#define _SIZEOF(x)	sz_ ##x
+#define SIZEOF(x)	_SIZEOF(x)
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
     typedef unsigned short CARD16;

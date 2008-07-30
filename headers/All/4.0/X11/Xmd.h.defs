@@ -1,4 +1,7 @@
 
+#define _SIZEOF(x)	sz_ ##x
+#define SIZEOF(x)	_SIZEOF(x)
+
 typedef unsigned short CARD16;
 typedef unsigned char CARD8;
 typedef CARD8 BOOL;
