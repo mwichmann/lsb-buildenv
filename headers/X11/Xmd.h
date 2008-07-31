@@ -8,48 +8,9 @@ extern "C" {
 #endif
 
 
-#if defined __i386__
 #define B16
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define B16
-#endif
-#if defined __s390__ && !defined __s390x__
-#define B16
-#endif
-#if defined __i386__
 #define B32
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define B32
-#endif
-#if defined __s390__ && !defined __s390x__
-#define B32
-#endif
-#if defined __ia64__
-#define B16	:16
-#endif
-#if defined __powerpc64__
-#define B16	:16
-#endif
-#if defined __x86_64__
-#define B16	:16
-#endif
-#if defined __s390x__
-#define B16	:16
-#endif
-#if defined __ia64__
-#define B32	:32
-#endif
-#if defined __powerpc64__
-#define B32	:32
-#endif
-#if defined __x86_64__
-#define B32	:32
-#endif
-#if defined __s390x__
-#define B32	:32
-#endif
+#define NEXTPTR(p,t)	(((t *)(p)) + 1)
 #if __LSB_VERSION__ >= 40
 #define _SIZEOF(x)	sz_ ##x
 #define SIZEOF(x)	_SIZEOF(x)

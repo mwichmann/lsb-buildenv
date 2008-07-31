@@ -499,7 +499,7 @@ extern "C" {
 
     typedef void (*png_write_status_ptr) (png_structp, png_uint_32, int);
 
-    typedef void (*png_user_chunk_ptr) (png_structp, png_unknown_chunkp);
+    typedef int (*png_user_chunk_ptr) (png_structp, png_unknown_chunkp);
 
     typedef png_voidp(*png_malloc_ptr) (png_structp, png_size_t);
 

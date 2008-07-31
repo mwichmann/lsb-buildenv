@@ -39,7 +39,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientMsg;
 
 #endif
@@ -49,7 +49,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientMsg;
 
 #endif
@@ -89,7 +89,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientMsg;
 
 #endif
@@ -99,7 +99,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientMsg;
 
 #endif
@@ -109,7 +109,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientReplyMsg;
 
 #endif
@@ -129,7 +129,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientReplyMsg;
 
 #endif
@@ -149,7 +149,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientReplyMsg;
 
 #endif
@@ -159,7 +159,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smRegisterClientReplyMsg;
 
 #endif
@@ -209,7 +209,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 saveType;
 	CARD8 shutdown;
 	CARD8 interactStyle;
@@ -224,7 +224,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 saveType;
 	CARD8 shutdown;
 	CARD8 interactStyle;
@@ -239,7 +239,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 saveType;
 	CARD8 shutdown;
 	CARD8 interactStyle;
@@ -250,21 +250,6 @@ extern "C" {
 #endif
 #if defined __ia64__
 /* IA64 */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD8 saveType;
-	CARD8 shutdown;
-	CARD8 interactStyle;
-	CARD8 fast;
-	CARD8 unused2[4];
-    } smSaveYourselfMsg;
-
-#endif
-#if defined __i386__
-/* IA32 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -283,6 +268,21 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
+	CARD8 unused1[2];
+	CARD32 length;
+	CARD8 saveType;
+	CARD8 shutdown;
+	CARD8 interactStyle;
+	CARD8 fast;
+	CARD8 unused2[4];
+    } smSaveYourselfMsg;
+
+#endif
+#if defined __i386__
+/* IA32 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
 	CARD8 unused1;
 	CARD8 saveType;
 	CARD8 shutdown;
@@ -390,7 +390,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 dialogType;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractRequestMsg;
 
 #endif
@@ -412,7 +412,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 dialogType;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractRequestMsg;
 
 #endif
@@ -423,7 +423,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 dialogType;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractRequestMsg;
 
 #endif
@@ -434,7 +434,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 dialogType;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractRequestMsg;
 
 #endif
@@ -466,7 +466,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smInteractMsg;
 
 #endif
@@ -506,7 +506,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smInteractMsg;
 
 #endif
@@ -516,7 +516,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smInteractMsg;
 
 #endif
@@ -526,7 +526,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smInteractMsg;
 
 #endif
@@ -537,7 +537,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 cancelShutdown;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractDoneMsg;
 
 #endif
@@ -559,7 +559,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 cancelShutdown;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractDoneMsg;
 
 #endif
@@ -581,7 +581,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 cancelShutdown;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractDoneMsg;
 
 #endif
@@ -603,7 +603,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 cancelShutdown;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smInteractDoneMsg;
 
 #endif
@@ -614,7 +614,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 success;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfDoneMsg;
 
 #endif
@@ -625,7 +625,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 success;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfDoneMsg;
 
 #endif
@@ -658,7 +658,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 success;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfDoneMsg;
 
 #endif
@@ -669,7 +669,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 success;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfDoneMsg;
 
 #endif
@@ -690,7 +690,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDieMsg;
 
 #endif
@@ -700,7 +700,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDieMsg;
 
 #endif
@@ -710,7 +710,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDieMsg;
 
 #endif
@@ -750,7 +750,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDieMsg;
 
 #endif
@@ -770,7 +770,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smShutdownCancelledMsg;
 
 #endif
@@ -780,7 +780,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smShutdownCancelledMsg;
 
 #endif
@@ -790,7 +790,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smShutdownCancelledMsg;
 
 #endif
@@ -810,7 +810,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smShutdownCancelledMsg;
 
 #endif
@@ -830,7 +830,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smCloseConnectionMsg;
 
 #endif
@@ -850,7 +850,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smCloseConnectionMsg;
 
 #endif
@@ -870,7 +870,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smCloseConnectionMsg;
 
 #endif
@@ -890,7 +890,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smCloseConnectionMsg;
 
 #endif
@@ -900,7 +900,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSetPropertiesMsg;
 
 #endif
@@ -930,7 +930,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSetPropertiesMsg;
 
 #endif
@@ -950,7 +950,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSetPropertiesMsg;
 
 #endif
@@ -960,7 +960,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSetPropertiesMsg;
 
 #endif
@@ -990,7 +990,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDeletePropertiesMsg;
 
 #endif
@@ -1000,7 +1000,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDeletePropertiesMsg;
 
 #endif
@@ -1020,7 +1020,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDeletePropertiesMsg;
 
 #endif
@@ -1030,7 +1030,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smDeletePropertiesMsg;
 
 #endif
@@ -1040,7 +1040,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smGetPropertiesMsg;
 
 #endif
@@ -1050,7 +1050,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smGetPropertiesMsg;
 
 #endif
@@ -1070,7 +1070,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smGetPropertiesMsg;
 
 #endif
@@ -1100,7 +1100,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smGetPropertiesMsg;
 
 #endif
@@ -1140,7 +1140,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smPropertiesReplyMsg;
 
 #endif
@@ -1150,7 +1150,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smPropertiesReplyMsg;
 
 #endif
@@ -1160,7 +1160,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smPropertiesReplyMsg;
 
 #endif
@@ -1170,7 +1170,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smPropertiesReplyMsg;
 
 #endif
@@ -1190,7 +1190,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2RequestMsg;
 
 #endif
@@ -1210,7 +1210,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2RequestMsg;
 
 #endif
@@ -1220,7 +1220,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2RequestMsg;
 
 #endif
@@ -1230,7 +1230,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2RequestMsg;
 
 #endif
@@ -1250,7 +1250,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2Msg;
 
 #endif
@@ -1260,7 +1260,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2Msg;
 
 #endif
@@ -1280,7 +1280,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2Msg;
 
 #endif
@@ -1290,7 +1290,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveYourselfPhase2Msg;
 
 #endif
@@ -1320,7 +1320,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveCompleteMsg;
 
 #endif
@@ -1330,7 +1330,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveCompleteMsg;
 
 #endif
@@ -1360,7 +1360,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveCompleteMsg;
 
 #endif
@@ -1370,7 +1370,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused[2];
-	CARD32 length:32;
+	CARD32 length;
     } smSaveCompleteMsg;
 
 #endif

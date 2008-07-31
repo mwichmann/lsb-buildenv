@@ -722,27 +722,29 @@ extern "C" {
     extern void XtUnrealizeWidget(Widget);
     extern void XtUnregisterDrawable(Display *, Drawable);
     extern Widget XtVaAppCreateShell(const char *, const char *,
-				     WidgetClass, Display *);
+				     WidgetClass, Display *, ...);
     extern Widget XtVaAppInitialize(XtAppContext *, const char *,
 				    XrmOptionDescList, Cardinal, int *,
-				    String *, String *);
-    extern XtVarArgsList XtVaCreateArgsList(XtPointer);
+				    String *, String *, ...);
+    extern XtVarArgsList XtVaCreateArgsList(XtPointer, ...);
     extern Widget XtVaCreateManagedWidget(const char *, WidgetClass,
-					  Widget);
-    extern Widget XtVaCreatePopupShell(const char *, WidgetClass, Widget);
-    extern Widget XtVaCreateWidget(const char *, WidgetClass, Widget);
+					  Widget, ...);
+    extern Widget XtVaCreatePopupShell(const char *, WidgetClass, Widget,
+				       ...);
+    extern Widget XtVaCreateWidget(const char *, WidgetClass, Widget, ...);
     extern void XtVaGetApplicationResources(Widget, XtPointer,
-					    XtResourceList, Cardinal);
+					    XtResourceList, Cardinal, ...);
     extern void XtVaGetSubresources(Widget, XtPointer, const char *,
-				    const char *, XtResourceList,
-				    Cardinal);
-    extern void XtVaGetSubvalues(XtPointer, XtResourceList, Cardinal);
-    extern void XtVaGetValues(Widget);
+				    const char *, XtResourceList, Cardinal,
+				    ...);
+    extern void XtVaGetSubvalues(XtPointer, XtResourceList, Cardinal, ...);
+    extern void XtVaGetValues(Widget, ...);
     extern Widget XtVaOpenApplication(XtAppContext *, const char *,
 				      XrmOptionDescList, Cardinal, int *,
-				      String *, String *, WidgetClass);
-    extern void XtVaSetSubvalues(XtPointer, XtResourceList, Cardinal);
-    extern void XtVaSetValues(Widget);
+				      String *, String *, WidgetClass,
+				      ...);
+    extern void XtVaSetSubvalues(XtPointer, XtResourceList, Cardinal, ...);
+    extern void XtVaSetValues(Widget, ...);
     extern void XtWarning(const char *);
     extern void XtWarningMsg(const char *, const char *, const char *,
 			     const char *, String *, Cardinal *);

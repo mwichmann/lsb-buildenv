@@ -49,7 +49,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-    typedef void (*__action_fn_t) (void *__nodep, VISIT __value,
+    typedef void (*__action_fn_t) (const void *__nodep, VISIT __value,
 				   int __level);
 
 

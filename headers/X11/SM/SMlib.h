@@ -198,7 +198,7 @@ extern "C" {
     extern void SmFreeProperty(SmProp *);
     extern void SmFreeReasons(int, char **);
     extern char *SmcClientID(SmcConn);
-    extern SmcCloseConnection(SmcConn, int, char **);
+    extern enum SmcCloseStatus SmcCloseConnection(SmcConn, int, char **);
     extern void SmcDeleteProperties(SmcConn, int, char **);
     extern IceConn SmcGetIceConnection(SmcConn);
     extern int SmcGetProperties(SmcConn, SmcPropReplyProc, SmPointer);
@@ -207,9 +207,9 @@ extern "C" {
 				  SmPointer);
     extern void SmcModifyCallbacks(SmcConn, long unsigned int,
 				   SmcCallbacks *);
-    extern SmcOpenConnection(char *, SmPointer, int, int,
-			     long unsigned int, SmcCallbacks *, char *,
-			     char **, int, char *);
+    extern SmcConn SmcOpenConnection(char *, SmPointer, int, int,
+				     long unsigned int, SmcCallbacks *,
+				     char *, char **, int, char *);
     extern int SmcProtocolRevision(SmcConn);
     extern int SmcProtocolVersion(SmcConn);
     extern char *SmcRelease(SmcConn);
@@ -218,7 +218,7 @@ extern "C" {
 					    SmcSaveYourselfPhase2Proc,
 					    SmPointer);
     extern void SmcSaveYourselfDone(SmcConn, int);
-    extern SmcSetErrorHandler(SmcErrorHandler);
+    extern SmcErrorHandler SmcSetErrorHandler(SmcErrorHandler);
     extern void SmcSetProperties(SmcConn, int, SmProp * *);
     extern char *SmcVendor(SmcConn);
     extern void SmsCleanUp(SmsConn);
@@ -237,7 +237,7 @@ extern "C" {
     extern void SmsSaveComplete(SmsConn);
     extern void SmsSaveYourself(SmsConn, int, int, int, int);
     extern void SmsSaveYourselfPhase2(SmsConn);
-    extern SmsSetErrorHandler(SmsErrorHandler);
+    extern SmsErrorHandler SmsSetErrorHandler(SmsErrorHandler);
     extern void SmsShutdownCancelled(SmsConn);
 #ifdef __cplusplus
 }

@@ -1,4 +1,7 @@
 
+#define B16
+#define B32
+#define NEXTPTR(p,t)	(((t *)(p)) + 1)
 #define _SIZEOF(x)	sz_ ##x
 #define SIZEOF(x)	_SIZEOF(x)
 

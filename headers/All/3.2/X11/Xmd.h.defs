@@ -1,4 +1,8 @@
 
+#define B16
+#define B32
+#define NEXTPTR(p,t)	(((t *)(p)) + 1)
+
 typedef unsigned short CARD16;
 typedef unsigned char CARD8;
 typedef CARD8 BOOL;

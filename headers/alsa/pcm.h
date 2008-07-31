@@ -97,7 +97,7 @@ extern "C" {
 
     typedef struct _snd_pcm_hook snd_pcm_hook_t;
 
-    typedef int (*snd_pcm_hook_func_t) (void);
+    typedef int (*snd_pcm_hook_func_t) (snd_pcm_hook_t *);
 
     typedef enum _snd_pcm_hook_type {
 	SND_PCM_HOOK_TYPE_HW_PARAMS,

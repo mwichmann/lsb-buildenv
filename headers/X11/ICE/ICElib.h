@@ -44,11 +44,15 @@ extern "C" {
 	IcePoProcessMsgProc process_msg_proc;
     } IcePoVersionRec;
 
-    typedef (*IcePoAuthProc) (IceConn, IcePointer *, int, int, int,
-			      IcePointer, int *, IcePointer *, char **);
+    typedef enum IcePoAuthStatus (*IcePoAuthProc) (IceConn, IcePointer *,
+						   int, int, int,
+						   IcePointer, int *,
+						   IcePointer *, char **);
 
-    typedef (*IcePaAuthProc) (IceConn, IcePointer *, int, int, IcePointer,
-			      int *, IcePointer *, char **);
+    typedef enum IcePaAuthStatus (*IcePaAuthProc) (IceConn, IcePointer *,
+						   int, int, IcePointer,
+						   int *, IcePointer *,
+						   char **);
 
     typedef struct _IceListenObj *IceListenObj;
 
@@ -71,6 +75,20 @@ extern "C" {
 				     int, int, IcePointer);
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
+
+    enum IcePoAuthStatus {
+	IcePoAuthHaveReply,
+	IcePoAuthRejected,
+	IcePoAuthFailed,
+	IcePoAuthDoneCleanup
+    };
+
+    enum IcePaAuthStatus {
+	IcePaAuthContinue,
+	IcePaAuthAccepted,
+	IcePaAuthRejected,
+	IcePaAuthFailed
+    };
 
 #if __LSB_VERSION__ >= 12
     enum IceAcceptStatus {

@@ -671,7 +671,7 @@ typedef void (*png_user_transform_ptr) (png_structp, png_row_infop,
 					png_bytep);
 typedef void (*png_read_status_ptr) (png_structp, png_uint_32, int);
 typedef void (*png_write_status_ptr) (png_structp, png_uint_32, int);
-typedef void (*png_user_chunk_ptr) (png_structp, png_unknown_chunkp);
+typedef int (*png_user_chunk_ptr) (png_structp, png_unknown_chunkp);
 typedef png_voidp(*png_malloc_ptr) (png_structp, png_size_t);
 typedef void (*png_free_ptr) (png_structp, png_voidp);
 extern void png_set_gAMA(png_structp, png_infop, double);

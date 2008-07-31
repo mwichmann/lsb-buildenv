@@ -93,11 +93,14 @@ extern "C" {
 
     typedef struct _snd_hctl_elem snd_hctl_elem_t;
 
-    typedef int (*snd_hctl_compare_t) (void);
+    typedef int (*snd_hctl_compare_t) (const snd_hctl_elem_t *,
+				       const snd_hctl_elem_t *);
 
-    typedef int (*snd_hctl_callback_t) (void);
+    typedef int (*snd_hctl_callback_t) (snd_hctl_t *, unsigned int,
+					snd_hctl_elem_t *);
 
-    typedef int (*snd_hctl_elem_callback_t) (void);
+    typedef int (*snd_hctl_elem_callback_t) (snd_hctl_elem_t *,
+					     unsigned int);
 
 
     struct snd_aes_iec958 {

@@ -63,18 +63,20 @@ extern "C" {
 
 
 /* Convenient types for callback functions.*/
-    typedef int (*__ftw_func_t) (char *__filename, struct stat * __status,
-				 int __flag);
+    typedef int (*__ftw_func_t) (const char *__filename,
+				 const struct stat * __status, int __flag);
 
-    typedef int (*__ftw64_func_t) (char *__filename,
-				   struct stat64 * __status, int __flag);
+    typedef int (*__ftw64_func_t) (const char *__filename,
+				   const struct stat64 * __status,
+				   int __flag);
 
-    typedef int (*__nftw_func_t) (char *__filename, struct stat * __status,
-				  int __flag, struct FTW * __info);
+    typedef int (*__nftw_func_t) (const char *__filename,
+				  const struct stat * __status, int __flag,
+				  struct FTW * __info);
 
-    typedef int (*__nftw64_func_t) (char *__filename,
-				    struct stat64 * __status, int __flag,
-				    struct FTW * __info);
+    typedef int (*__nftw64_func_t) (const char *__filename,
+				    const struct stat64 * __status,
+				    int __flag, struct FTW * __info);
 
 
 /* Function prototypes */

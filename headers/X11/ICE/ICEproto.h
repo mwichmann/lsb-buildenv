@@ -55,7 +55,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 data[2];
-	CARD32 length:32;
+	CARD32 length;
     } iceMsg;
 
 #endif
@@ -65,7 +65,7 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 data[2];
-	CARD32 length:32;
+	CARD32 length;
     } iceMsg;
 
 #endif
@@ -75,22 +75,12 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 data[2];
-	CARD32 length:32;
+	CARD32 length;
     } iceMsg;
 
 #endif
 #if defined __s390x__
 /* S390X */
-    typedef struct {
-	CARD8 majorOpcode;
-	CARD8 minorOpcode;
-	CARD8 data[2];
-	CARD32 length:32;
-    } iceMsg;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
@@ -104,6 +94,16 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
+	CARD8 data[2];
+	CARD32 length;
+    } iceMsg;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef struct {
+	CARD8 majorOpcode;
+	CARD8 minorOpcode;
 	CARD8 byteOrder;
 	CARD8 unused;
 	CARD32 length;
@@ -117,7 +117,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 byteOrder;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceByteOrderMsg;
 
 #endif
@@ -128,7 +128,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 byteOrder;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceByteOrderMsg;
 
 #endif
@@ -161,7 +161,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 byteOrder;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceByteOrderMsg;
 
 #endif
@@ -172,7 +172,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 byteOrder;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceByteOrderMsg;
 
 #endif
@@ -205,7 +205,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 protocolOpcode;
-	CARD32 length:32;
+	CARD32 length;
     } iceProtocolReplyMsg;
 
 #endif
@@ -216,7 +216,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 protocolOpcode;
-	CARD32 length:32;
+	CARD32 length;
     } iceProtocolReplyMsg;
 
 #endif
@@ -227,7 +227,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 protocolOpcode;
-	CARD32 length:32;
+	CARD32 length;
     } iceProtocolReplyMsg;
 
 #endif
@@ -238,7 +238,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 protocolOpcode;
-	CARD32 length:32;
+	CARD32 length;
     } iceProtocolReplyMsg;
 
 #endif
@@ -260,7 +260,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceConnectionReplyMsg;
 
 #endif
@@ -282,7 +282,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceConnectionReplyMsg;
 
 #endif
@@ -304,7 +304,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceConnectionReplyMsg;
 
 #endif
@@ -315,7 +315,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionIndex;
 	CARD8 unused;
-	CARD32 length:32;
+	CARD32 length;
     } iceConnectionReplyMsg;
 
 #endif
@@ -365,7 +365,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 protocolOpcode;
 	CARD8 mustAuthenticate;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 versionCount;
 	CARD8 authCount;
 	CARD8 unused[6];
@@ -379,7 +379,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 protocolOpcode;
 	CARD8 mustAuthenticate;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 versionCount;
 	CARD8 authCount;
 	CARD8 unused[6];
@@ -393,7 +393,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 protocolOpcode;
 	CARD8 mustAuthenticate;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 versionCount;
 	CARD8 authCount;
 	CARD8 unused[6];
@@ -407,7 +407,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 protocolOpcode;
 	CARD8 mustAuthenticate;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 versionCount;
 	CARD8 authCount;
 	CARD8 unused[6];
@@ -435,7 +435,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionCount;
 	CARD8 authCount;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 mustAuthenticate;
 	CARD8 unused[7];
     } iceConnectionSetupMsg;
@@ -461,7 +461,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionCount;
 	CARD8 authCount;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 mustAuthenticate;
 	CARD8 unused[7];
     } iceConnectionSetupMsg;
@@ -474,7 +474,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionCount;
 	CARD8 authCount;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 mustAuthenticate;
 	CARD8 unused[7];
     } iceConnectionSetupMsg;
@@ -513,7 +513,7 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 versionCount;
 	CARD8 authCount;
-	CARD32 length:32;
+	CARD32 length;
 	CARD8 mustAuthenticate;
 	CARD8 unused[7];
     } iceConnectionSetupMsg;
@@ -539,8 +539,8 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 authIndex;
 	CARD8 unused1;
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthRequiredMsg;
 
@@ -565,8 +565,8 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 authIndex;
 	CARD8 unused1;
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthRequiredMsg;
 
@@ -578,8 +578,8 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 authIndex;
 	CARD8 unused1;
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthRequiredMsg;
 
@@ -604,8 +604,8 @@ extern "C" {
 	CARD8 minorOpcode;
 	CARD8 authIndex;
 	CARD8 unused1;
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthRequiredMsg;
 
@@ -652,8 +652,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthReplyMsg;
 
@@ -664,8 +664,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthReplyMsg;
 
@@ -676,8 +676,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthReplyMsg;
 
@@ -688,8 +688,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthReplyMsg;
 
@@ -700,8 +700,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthNextPhaseMsg;
 
@@ -712,8 +712,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthNextPhaseMsg;
 
@@ -748,8 +748,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthNextPhaseMsg;
 
@@ -760,8 +760,8 @@ extern "C" {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
 	CARD8 unused1[2];
-	CARD32 length:32;
-	CARD16 authDataLength:16;
+	CARD32 length;
+	CARD16 authDataLength;
 	CARD8 unused2[6];
     } iceAuthNextPhaseMsg;
 
@@ -783,12 +783,12 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD16 errorClass:16;
-	CARD32 length:32;
+	CARD16 errorClass;
+	CARD32 length;
 	CARD8 offendingMinorOpcode;
 	CARD8 severity;
-	CARD16 unused:16;
-	CARD32 offendingSequenceNum:32;
+	CARD16 unused;
+	CARD32 offendingSequenceNum;
     } iceErrorMsg;
 
 #endif
@@ -797,12 +797,12 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD16 errorClass:16;
-	CARD32 length:32;
+	CARD16 errorClass;
+	CARD32 length;
 	CARD8 offendingMinorOpcode;
 	CARD8 severity;
-	CARD16 unused:16;
-	CARD32 offendingSequenceNum:32;
+	CARD16 unused;
+	CARD32 offendingSequenceNum;
     } iceErrorMsg;
 
 #endif
@@ -839,12 +839,12 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD16 errorClass:16;
-	CARD32 length:32;
+	CARD16 errorClass;
+	CARD32 length;
 	CARD8 offendingMinorOpcode;
 	CARD8 severity;
-	CARD16 unused:16;
-	CARD32 offendingSequenceNum:32;
+	CARD16 unused;
+	CARD32 offendingSequenceNum;
     } iceErrorMsg;
 
 #endif
@@ -853,12 +853,12 @@ extern "C" {
     typedef struct {
 	CARD8 majorOpcode;
 	CARD8 minorOpcode;
-	CARD16 errorClass:16;
-	CARD32 length:32;
+	CARD16 errorClass;
+	CARD32 length;
 	CARD8 offendingMinorOpcode;
 	CARD8 severity;
-	CARD16 unused:16;
-	CARD32 offendingSequenceNum:32;
+	CARD16 unused;
+	CARD32 offendingSequenceNum;
     } iceErrorMsg;
 
 #endif

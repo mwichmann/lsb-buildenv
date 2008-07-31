@@ -22,10 +22,12 @@ typedef struct {
     int minor_version;
     IcePoProcessMsgProc process_msg_proc;
 } IcePoVersionRec;
-typedef (*IcePoAuthProc) (IceConn, IcePointer *, int, int, int, IcePointer,
-			  int *, IcePointer *, char **);
-typedef (*IcePaAuthProc) (IceConn, IcePointer *, int, int, IcePointer,
-			  int *, IcePointer *, char **);
+typedef enum IcePoAuthStatus (*IcePoAuthProc) (IceConn, IcePointer *, int,
+					       int, int, IcePointer, int *,
+					       IcePointer *, char **);
+typedef enum IcePaAuthStatus (*IcePaAuthProc) (IceConn, IcePointer *, int,
+					       int, IcePointer, int *,
+					       IcePointer *, char **);
 enum IceAcceptStatus {
     IceAcceptSuccess = 0,
     IceAcceptFailure = 1,
@@ -66,6 +68,18 @@ typedef void (*IceWatchProc) (IceConn, IcePointer, int, IcePointer *);
 typedef void (*IceIOErrorHandler) (IceConn);
 typedef void (*IceErrorHandler) (IceConn, int, int, long unsigned int, int,
 				 int, IcePointer);
+enum IcePoAuthStatus {
+    IcePoAuthHaveReply,
+    IcePoAuthRejected,
+    IcePoAuthFailed,
+    IcePoAuthDoneCleanup
+};
+enum IcePaAuthStatus {
+    IcePaAuthContinue,
+    IcePaAuthAccepted,
+    IcePaAuthRejected,
+    IcePaAuthFailed
+};
 extern IceConn IceAcceptConnection(IceListenObj, enum IceAcceptStatus *);
 extern int IceAddConnectionWatch(IceWatchProc, IcePointer);
 extern char *IceAllocScratch(IceConn, long unsigned int);

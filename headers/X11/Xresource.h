@@ -86,7 +86,12 @@ extern "C" {
     extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
     extern void XrmDestroyDatabase(XrmDatabase);
     extern int XrmEnumerateDatabase(XrmDatabase, XrmNameList, XrmClassList,
-				    int, int, XPointer);
+				    int, int (*)(XrmDatabase *,
+						 XrmBindingList,
+						 XrmQuarkList,
+						 XrmRepresentation *,
+						 XrmValue *, XPointer)
+				    , XPointer);
     extern XrmDatabase XrmGetDatabase(Display *);
     extern XrmDatabase XrmGetFileDatabase(const char *);
     extern int XrmGetResource(XrmDatabase, const char *, const char *,
