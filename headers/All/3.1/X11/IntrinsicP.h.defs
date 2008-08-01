@@ -38,9 +38,8 @@ typedef void (*XtAlmostProc) (Widget, Widget, XtWidgetGeometry *,
 			      XtWidgetGeometry *);
 typedef Boolean(*XtAcceptFocusProc) (Widget, Time *);
 typedef long unsigned int XtVersionType;
-typedef enum XtGeometryResult (*XtGeometryHandler) (Widget,
-						    XtWidgetGeometry *,
-						    XtWidgetGeometry *);
+typedef XtGeometryResult(*XtGeometryHandler) (Widget, XtWidgetGeometry *,
+					      XtWidgetGeometry *);
 typedef void (*XtStringProc) (Widget, String);
 extern void XtConfigureWidget(Widget, Position, Position, Dimension,
 			      Dimension, Dimension);

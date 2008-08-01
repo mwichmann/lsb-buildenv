@@ -74,8 +74,25 @@ extern "C" {
 
     typedef struct _TranslationData *XtTranslations;
 
+    typedef enum {
+	XtGeometryYes = 0,
+	XtGeometryNo = 1,
+	XtGeometryAlmost = 2,
+	XtGeometryDone = 3
+    } XtGeometryResult;
+
+    typedef enum {
+	XtAddress = 0,
+	XtBaseOffset = 1,
+	XtImmediate = 2,
+	XtResourceString = 3,
+	XtResourceQuark = 4,
+	XtWidgetBaseOffset = 5,
+	XtProcedureArg = 6
+    } XtAddressMode;
+
     typedef struct {
-	enum XtAddressMode address_mode;
+	XtAddressMode address_mode;
 	XtPointer address_id;
 	Cardinal size;
     } XtConvertArgRec;
@@ -93,11 +110,22 @@ extern "C" {
 
     typedef void (*XtSignalCallbackProc) (XtPointer, XtSignalId *);
 
+    typedef enum {
+	XtCallbackNoList = 0,
+	XtCallbackHasNone = 1,
+	XtCallbackHasSome = 2
+    } XtCallbackStatus;
+
     typedef void (*XtInputCallbackProc) (XtPointer, int *, XtInputId *);
 
     typedef void (*XtTimerCallbackProc) (XtPointer, XtIntervalId *);
 
     typedef long unsigned int XtInputMask;
+
+    typedef enum {
+	XtListHead = 0,
+	XtListTail = 1
+    } XtListPosition;
 
     typedef void (*XtCallbackProc) (Widget, XtPointer, XtPointer);
 
@@ -166,6 +194,12 @@ extern "C" {
 
     typedef String(*XtLanguageProc) (Display *, String, XtPointer);
 
+    typedef enum {
+	XtGrabNone = 0,
+	XtGrabNonexclusive = 1,
+	XtGrabExclusive = 2
+    } XtGrabKind;
+
     typedef struct _XtCheckpointTokenRec *XtCheckpointToken;
 
     typedef void (*XtExtensionSelectProc) (Widget, int *, XtPointer *, int,
@@ -223,43 +257,9 @@ extern "C" {
 
     struct _TranslationData;
 
-    enum XtGeometryResult {
-	XtGeometryYes = 0,
-	XtGeometryNo = 1,
-	XtGeometryAlmost = 2,
-	XtGeometryDone = 3
-    };
-
-    enum XtAddressMode {
-	XtAddress = 0,
-	XtBaseOffset = 1,
-	XtImmediate = 2,
-	XtResourceString = 3,
-	XtResourceQuark = 4,
-	XtWidgetBaseOffset = 5,
-	XtProcedureArg = 6
-    };
-
-    enum XtCallbackStatus {
-	XtCallbackNoList = 0,
-	XtCallbackHasNone = 1,
-	XtCallbackHasSome = 2
-    };
-
-    enum XtListPosition {
-	XtListHead = 0,
-	XtListTail = 1
-    };
-
     struct _XtCallbackRec {
 	XtCallbackProc callback;
 	XtPointer closure;
-    };
-
-    enum XtGrabKind {
-	XtGrabNone = 0,
-	XtGrabNonexclusive = 1,
-	XtGrabExclusive = 2
     };
 
     struct _XtCheckpointTokenRec {
@@ -562,7 +562,7 @@ extern "C" {
     extern int XtGrabKeyboard(Widget, Boolean, int, int, Time);
     extern int XtGrabPointer(Widget, Boolean, unsigned int, int, int,
 			     Window, Cursor, Time);
-    extern enum XtCallbackStatus XtHasCallbacks(Widget, const char *);
+    extern XtCallbackStatus XtHasCallbacks(Widget, const char *);
     extern Widget XtHooksOfDisplay(Display *);
     extern Widget XtInitialize(const char *, const char *,
 			       XrmOptionDescRec *, Cardinal, int *,
@@ -570,13 +570,13 @@ extern "C" {
     extern void XtInitializeWidgetClass(WidgetClass);
     extern void XtInsertEventHandler(Widget, EventMask, Boolean,
 				     XtEventHandler, XtPointer,
-				     enum XtListPosition);
+				     XtListPosition);
     extern void XtInsertEventTypeHandler(Widget, int, XtPointer,
 					 XtEventHandler, XtPointer,
-					 enum XtListPosition);
+					 XtListPosition);
     extern void XtInsertRawEventHandler(Widget, EventMask, Boolean,
 					XtEventHandler, XtPointer,
-					enum XtListPosition);
+					XtListPosition);
     extern void XtInstallAccelerators(Widget, Widget);
     extern void XtInstallAllAccelerators(Widget, Widget);
     extern Boolean XtIsApplicationShell(Widget);
@@ -594,13 +594,12 @@ extern "C" {
     extern XEvent *XtLastEventProcessed(Display *);
     extern Time XtLastTimestampProcessed(Display *);
     extern void XtMainLoop(void);
-    extern enum XtGeometryResult XtMakeGeometryRequest(Widget,
-						       XtWidgetGeometry *,
-						       XtWidgetGeometry *);
-    extern enum XtGeometryResult XtMakeResizeRequest(Widget, Dimension,
-						     Dimension,
-						     Dimension *,
-						     Dimension *);
+    extern XtGeometryResult XtMakeGeometryRequest(Widget,
+						  XtWidgetGeometry *,
+						  XtWidgetGeometry *);
+    extern XtGeometryResult XtMakeResizeRequest(Widget, Dimension,
+						Dimension, Dimension *,
+						Dimension *);
     extern char *XtMalloc(Cardinal);
     extern void XtMapWidget(Widget);
     extern void XtMenuPopupAction(Widget, XEvent *, String *, Cardinal *);
@@ -634,12 +633,11 @@ extern "C" {
     extern Boolean XtPeekEvent(XEvent *);
     extern Boolean XtPending(void);
     extern void XtPopdown(Widget);
-    extern void XtPopup(Widget, enum XtGrabKind);
+    extern void XtPopup(Widget, XtGrabKind);
     extern void XtPopupSpringLoaded(Widget);
     extern void XtProcessEvent(XtInputMask);
-    extern enum XtGeometryResult XtQueryGeometry(Widget,
-						 XtWidgetGeometry *,
-						 XtWidgetGeometry *);
+    extern XtGeometryResult XtQueryGeometry(Widget, XtWidgetGeometry *,
+					    XtWidgetGeometry *);
     extern void XtRealizeWidget(Widget);
     extern char *XtRealloc(char *, Cardinal);
     extern void XtRegisterCaseConverter(Display *, XtCaseProc, KeySym,

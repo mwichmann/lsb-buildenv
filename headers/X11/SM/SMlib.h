@@ -177,18 +177,18 @@ extern "C" {
 
     typedef void (*SmcSaveYourselfPhase2Proc) (SmcConn, SmPointer);
 
+    typedef enum {
+	SmcClosedNow = 0,
+	SmcClosedASAP = 1,
+	SmcConnectionInUse = 2
+    } SmcCloseStatus;
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
     struct _SmcConn;
 
     struct _SmsConn;
-
-    enum SmcCloseStatus {
-	SmcClosedNow = 0,
-	SmcClosedASAP = 1,
-	SmcConnectionInUse = 2
-    };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -198,7 +198,7 @@ extern "C" {
     extern void SmFreeProperty(SmProp *);
     extern void SmFreeReasons(int, char **);
     extern char *SmcClientID(SmcConn);
-    extern enum SmcCloseStatus SmcCloseConnection(SmcConn, int, char **);
+    extern SmcCloseStatus SmcCloseConnection(SmcConn, int, char **);
     extern void SmcDeleteProperties(SmcConn, int, char **);
     extern IceConn SmcGetIceConnection(SmcConn);
     extern int SmcGetProperties(SmcConn, SmcPropReplyProc, SmPointer);

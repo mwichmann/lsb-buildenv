@@ -64,10 +64,9 @@ extern "C" {
 
     typedef long unsigned int XtVersionType;
 
-    typedef enum XtGeometryResult (*XtGeometryHandler) (Widget,
-							XtWidgetGeometry *,
-							XtWidgetGeometry
-							*);
+    typedef XtGeometryResult(*XtGeometryHandler) (Widget,
+						  XtWidgetGeometry *,
+						  XtWidgetGeometry *);
 
     typedef void (*XtStringProc) (Widget, String);
 

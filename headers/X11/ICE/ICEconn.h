@@ -120,7 +120,7 @@ extern "C" {
 	unsigned int free_asap:1;
 	unsigned int unused1:2;
 	unsigned char unused2:8;
-	enum IceConnectStatus connection_status;
+	IceConnectStatus connection_status;
 	unsigned char my_ice_version_index;
 	struct _XtransConnInfo *trans_conn;
 	long unsigned int send_sequence;

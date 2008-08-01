@@ -3,6 +3,7 @@
 #define SND_ERROR_ALISP_NIL	(SND_ERROR_BEGIN+1)
 #define SND_ERROR_BEGIN	500000
 
-typedef void (*snd_lib_error_handler_t) (void);
+typedef void (*snd_lib_error_handler_t) (const char *, int, const char *,
+					 int, const char *, ...);
 extern int snd_lib_error_set_handler(snd_lib_error_handler_t);
 extern const char *snd_strerror(int);

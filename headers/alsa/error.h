@@ -13,7 +13,9 @@ extern "C" {
 #define SND_ERROR_BEGIN	500000
 
 
-    typedef void (*snd_lib_error_handler_t) (void);
+    typedef void (*snd_lib_error_handler_t) (const char *, int,
+					     const char *, int,
+					     const char *, ...);
 
 
 /* Function prototypes */
