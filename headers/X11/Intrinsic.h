@@ -296,6 +296,7 @@ extern "C" {
 				XtPointer);
     extern void XtAddRawEventHandler(Widget, EventMask, Boolean,
 				     XtEventHandler, XtPointer);
+    extern XtSignalId XtAddSignal(XtSignalCallbackProc, XtPointer);
     extern XtIntervalId XtAddTimeOut(long unsigned int,
 				     XtTimerCallbackProc, XtPointer);
     extern XtWorkProcId XtAddWorkProc(XtWorkProc, XtPointer);

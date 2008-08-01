@@ -1179,6 +1179,7 @@ extern "C" {
     extern int XSetGraphicsExposures(Display *, GC, int);
     extern void XSetICFocus(XIC);
     extern char *XSetICValues(XIC, ...);
+    extern XSetIMValues(void);
     extern XIOErrorHandler XSetIOErrorHandler(XIOErrorHandler);
     extern int XSetIconName(Display *, Window, const char *);
     extern int XSetInputFocus(Display *, Window, int, Time);

@@ -17,6 +17,7 @@ extern "C" {
 /* Function prototypes */
 
     extern WidgetClass coreWidgetClass;
+    extern widgetClass;
 #ifdef __cplusplus
 }
 #endif

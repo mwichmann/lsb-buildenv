@@ -526,6 +526,76 @@ extern "C" {
 	XAxisInfoPtr axes;
     };
 
+
+/* Function prototypes */
+
+    extern int XAllowDeviceEvents(Display *, XDevice *, int, Time);
+    extern int XChangeDeviceControl(Display *, XDevice *, int,
+				    XDeviceControl *);
+    extern int XChangeDeviceDontPropagateList(Display *, Window, int,
+					      XEventClass *, int);
+    extern int XChangeDeviceKeyMapping(Display *, XDevice *, int, int,
+				       KeySym *, int);
+    extern int XChangeFeedbackControl(Display *, XDevice *,
+				      unsigned long int,
+				      XFeedbackControl *);
+    extern int XChangeKeyboardDevice(Display *, XDevice *);
+    extern int XChangePointerDevice(Display *, XDevice *, int, int);
+    extern int XCloseDevice(Display *, XDevice *);
+    extern int XDeviceBell(Display *, XDevice *, XID, XID, int);
+    extern void XFreeDeviceControl(XDeviceControl *);
+    extern void XFreeDeviceList(XDeviceInfo *);
+    extern void XFreeDeviceMotionEvents(XDeviceTimeCoord *);
+    extern void XFreeDeviceState(XDeviceState *);
+    extern void XFreeFeedbackList(XFeedbackState *);
+    extern int XGetDeviceButtonMapping(Display *, XDevice *,
+				       unsigned char *, unsigned int);
+    extern XDeviceControl *XGetDeviceControl(Display *, XDevice *, int);
+    extern XEventClass *XGetDeviceDontPropagateList(Display *, Window,
+						    int *);
+    extern int XGetDeviceFocus(Display *, XDevice *, Window *, int *,
+			       Time *);
+    extern KeySym *XGetDeviceKeyMapping(Display *, XDevice *, KeyCode, int,
+					int *);
+    extern XModifierKeymap *XGetDeviceModifierMapping(Display *,
+						      XDevice *);
+    extern XDeviceTimeCoord *XGetDeviceMotionEvents(Display *, XDevice *,
+						    Time, Time, int *,
+						    int *, int *);
+    extern XExtensionVersion *XGetExtensionVersion(Display *,
+						   const char *);
+    extern XFeedbackState *XGetFeedbackControl(Display *, XDevice *,
+					       int *);
+    extern int XGetSelectedExtensionEvents(Display *, Window, int *,
+					   XEventClass * *, int *,
+					   XEventClass * *);
+    extern int XGrabDevice(Display *, XDevice *, Window, int, int,
+			   XEventClass *, int, int, Time);
+    extern int XGrabDeviceButton(Display *, XDevice *, unsigned int,
+				 unsigned int, XDevice *, Window, int,
+				 unsigned int, XEventClass *, int, int);
+    extern int XGrabDeviceKey(Display *, XDevice *, unsigned int,
+			      unsigned int, XDevice *, Window, int,
+			      unsigned int, XEventClass *, int, int);
+    extern XDeviceInfo *XListInputDevices(Display *, int *);
+    extern XDevice *XOpenDevice(Display *, XID);
+    extern XDeviceState *XQueryDeviceState(Display *, XDevice *);
+    extern int XSelectExtensionEvent(Display *, Window, XEventClass *,
+				     int);
+    extern int XSendExtensionEvent(Display *, XDevice *, Window, int, int,
+				   XEventClass *, XEvent *);
+    extern int XSetDeviceButtonMapping(Display *, XDevice *,
+				       unsigned char *, int);
+    extern int XSetDeviceFocus(Display *, XDevice *, Window, int, Time);
+    extern int XSetDeviceMode(Display *, XDevice *, int);
+    extern int XSetDeviceModifierMapping(Display *, XDevice *,
+					 XModifierKeymap *);
+    extern int XSetDeviceValuators(Display *, XDevice *, int *, int, int);
+    extern int XUngrabDevice(Display *, XDevice *, Time);
+    extern int XUngrabDeviceButton(Display *, XDevice *, unsigned int,
+				   unsigned int, XDevice *, Window);
+    extern int XUngrabDeviceKey(Display *, XDevice *, unsigned int,
+				unsigned int, XDevice *, Window);
 #ifdef __cplusplus
 }
 #endif
