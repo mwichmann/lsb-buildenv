@@ -10,15 +10,13 @@ typedef struct FT_Glyph_Class_ {
     FT_Glyph_PrepareFunc glyph_prepare;
 } FT_Glyph_Class;
 typedef struct FT_GlyphRec_ *FT_Glyph;
-typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
-				      FT_GlyphSlot);
+typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_GlyphSlot);
 typedef void (*FT_Glyph_DoneFunc) (FT_Glyph);
 typedef FT_Error(*FT_Glyph_CopyFunc) (FT_Glyph, FT_Glyph);
 typedef void (*FT_Glyph_TransformFunc) (FT_Glyph, FT_Matrix *,
 					FT_Vector *);
 typedef void (*FT_Glyph_GetBBoxFunc) (FT_Glyph, FT_BBox *);
-typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
-					 FT_GlyphSlot);
+typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_GlyphSlot);
 typedef enum FT_Glyph_BBox_Mode_ {
     FT_GLYPH_BBOX_UNSCALED = 0,
     FT_GLYPH_BBOX_SUBPIXELS = 0,
