@@ -1,5 +1,5 @@
 PROGRAMS = lsbcc lsbc++ lsbcpp
-COMMON_OBJS = lsbcc_argv.o
+COMMON_OBJS = lsbcc_argv.o elf_utils.o
 LSBCC_OBJS = lsbcc.o
 LSBCPP_OBJS = lsbcpp.o
 LIBS = libgcc34compat.a

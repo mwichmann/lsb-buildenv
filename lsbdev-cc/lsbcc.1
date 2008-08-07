@@ -149,6 +149,24 @@ LSB_MODULES environment setting.
 .TP
 --lsb-use-default-linker
 Do not set dynamic linker to the LSB one.
+.TP 
+--lsb-libtool_fixups
+Enable semantics that assist in compiling applications with
+.I lsbcc
+in conjunction with
+.IR libtool .
+Libtool in some situations will pass filesystem paths to shared libraries
+to the compiler rather than as -l arguments.
+.I lsbcc
+needs to evaluate all shared libraries to determine if they should be linked
+shared or statically, lsbcc does this by analyzing -l arguments.  This option 
+causes lsbcc to evaluate all files on the command line to determine if they are
+shared libraries and to re-write shared libraries found in terms of -L and -l
+either as shared or static depending upon if the library is in the list of
+LSB allowed shared libraries.
+.I lsbcc
+will also attempt to include dependant libraries from DT_NEEDED tags if the
+library must be linked statically.
 
 .P
 .SH ENVIRONMENT
@@ -225,6 +243,24 @@ This can be helpful in some situations and was formerly
 the default behavior for lsbcc, but also can collide with
 feature macro definitions from other sources, so is no longer
 the default behavior for lsbcc.
+.TP 
+LSBCC_LIBTOOLFIXUPS
+Enable semantics that assist in compiling applications with
+.I lsbcc
+in conjunction with
+.IR libtool .
+Libtool in some situations will pass filesystem paths to shared libraries
+to the compiler rather than as -l arguments.
+.I lsbcc
+needs to evaluate all shared libraries to determine if they should be linked
+shared or statically, lsbcc does this by analyzing -l arguments.  This option 
+causes lsbcc to evaluate all files on the command line to determine if they are
+shared libraries and to re-write shared libraries found in terms of -L and -l
+either as shared or static depending upon if the library is in the list of
+LSB allowed shared libraries.
+.I lsbcc
+will also attempt to include dependant libraries from DT_NEEDED tags if the
+library must be linked statically.
 .TP
 LSBCC_USE_DEFAULT_LINKER
 Do not set dynamic linker to the LSB one.
