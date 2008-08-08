@@ -336,7 +336,7 @@
 #define png_strlen	strlen
 #define png_strncpy	strncpy
 
-typedef struct __jmp_buf_tag *png_unknown_chunkp;
+typedef png_unknown_chunk *png_unknown_chunkp;
 typedef struct png_sPLT_entry_struct {
     png_uint_16 red;
     png_uint_16 green;
