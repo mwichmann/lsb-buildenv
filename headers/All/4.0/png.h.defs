@@ -808,11 +808,11 @@ extern void png_set_gray_1_2_4_to_8(png_structp);
 extern int png_check_sig(png_bytep, int);
 extern void png_destroy_info_struct(png_structp, png_infopp);
 extern png_charp png_get_header_ver(png_structp);
-extern png_structp png_create_read_struct_2(png_const_charpp, png_voidp,
+extern png_structp png_create_read_struct_2(png_const_charp, png_voidp,
 					    png_error_ptr, png_error_ptr,
 					    png_voidp, png_malloc_ptr,
 					    png_free_ptr);
-extern png_structp png_create_write_struct_2(png_const_charpp, png_voidp,
+extern png_structp png_create_write_struct_2(png_const_charp, png_voidp,
 					     png_error_ptr, png_error_ptr,
 					     png_voidp, png_malloc_ptr,
 					     png_free_ptr);
@@ -834,7 +834,7 @@ extern void png_set_invert_alpha(png_structp);
 extern void png_set_keep_unknown_chunks(png_structp, int, png_bytep, int);
 extern void png_set_mem_fn(png_structp, png_voidp, png_malloc_ptr,
 			   png_free_ptr);
-extern void png_set_read_user_chunk_fn(png_structp, png_user_chunk_ptr,
+extern void png_set_read_user_chunk_fn(png_structp, png_voidp,
 				       png_user_chunk_ptr);
 extern void png_set_read_user_transform_fn(png_structp,
 					   png_user_transform_ptr);

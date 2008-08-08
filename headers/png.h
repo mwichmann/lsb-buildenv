@@ -947,12 +947,12 @@ extern "C" {
     extern int png_check_sig(png_bytep, int);
     extern void png_convert_from_struct_tm(png_timep, struct tm *);
     extern void png_convert_from_time_t(png_timep, time_t);
-    extern png_structp png_create_read_struct_2(png_const_charpp,
-						png_voidp, png_error_ptr,
+    extern png_structp png_create_read_struct_2(png_const_charp, png_voidp,
+						png_error_ptr,
 						png_error_ptr, png_voidp,
 						png_malloc_ptr,
 						png_free_ptr);
-    extern png_structp png_create_write_struct_2(png_const_charpp,
+    extern png_structp png_create_write_struct_2(png_const_charp,
 						 png_voidp, png_error_ptr,
 						 png_error_ptr, png_voidp,
 						 png_malloc_ptr,
@@ -976,7 +976,7 @@ extern "C" {
 					    int);
     extern void png_set_mem_fn(png_structp, png_voidp, png_malloc_ptr,
 			       png_free_ptr);
-    extern void png_set_read_user_chunk_fn(png_structp, png_user_chunk_ptr,
+    extern void png_set_read_user_chunk_fn(png_structp, png_voidp,
 					   png_user_chunk_ptr);
     extern void png_set_read_user_transform_fn(png_structp,
 					       png_user_transform_ptr);
