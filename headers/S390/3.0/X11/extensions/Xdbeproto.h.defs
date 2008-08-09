@@ -1,6 +1,4 @@
 
-typedef unsigned char xDbeSwapAction;
-typedef unsigned int xDbeBackBuffer;
 typedef struct {
     VisualID visual;
     int depth;

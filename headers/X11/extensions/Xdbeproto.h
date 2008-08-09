@@ -10,76 +10,30 @@ extern "C" {
 #endif
 
 
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef unsigned char xDbeSwapAction;
+#define DbeNumberErrors	"(DbeBadBuffer + 1)"
+#define DBE_MINOR_VERSION	0
+#define DbeBadBuffer	0
+#define DbeNumberEvents	0
+#define X_DbeGetVersion	0
+#define XdbeUndefined	0
+#define DBE_MAJOR_VERSION	1
+#define X_DbeAllocateBackBufferName	1
+#define XdbeBackground	1
+#define X_DbeDeallocateBackBufferName	2
+#define XdbeUntouched	2
+#define X_DbeSwapBuffers	3
+#define XdbeCopied	3
+#define X_DbeBeginIdiom	4
+#define X_DbeEndIdiom	5
+#define X_DbeGetVisualInfo	6
+#define X_DbeGetBackBufferAttributes	7
+#define DBE_PROTOCOL_NAME	"DOUBLE-BUFFER"
 
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef unsigned char xDbeSwapAction;
 
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef unsigned char xDbeSwapAction;
+    typedef CARD8 xDbeSwapAction;
 
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef unsigned char xDbeSwapAction;
+    typedef CARD32 xDbeBackBuffer;
 
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef unsigned char xDbeSwapAction;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef unsigned char xDbeSwapAction;
-
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef unsigned char xDbeSwapAction;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
-#if defined __i386__
-/* IA32 */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef unsigned int xDbeBackBuffer;
-
-#endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
     typedef struct {

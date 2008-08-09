@@ -1002,7 +1002,9 @@ extern "C" {
 #define GL_CLIENT_ACTIVE_TEXTURE_ARB	0x84E1
 #define GL_MAX_TEXTURE_UNITS_ARB	0x84E2
 #define GL_ARB_imaging	1
+#ifndef GL_ARB_multitexture
 #define GL_ARB_multitexture	1
+#endif
 
 
 
