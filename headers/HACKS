@@ -2,3 +2,4 @@ freetype/freetype.h
 freetype/ftimage.h
 freetype/ftsystem.h
 unwind.h
+png.h
