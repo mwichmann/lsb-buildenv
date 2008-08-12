@@ -149,6 +149,7 @@
 	(png_uint_32)(alpha)) + (png_uint_32)32768L); (composite) = \
 	(png_uint_16)((temp + (temp >> 16)) >> 16); }
 #define PNG_MMX_WRITE_FLAGS	( 0 )
+#define png_jmpbuf(png_ptr)	((png_ptr)->jmpbuf)
 #define PNG_SIZE_MAX	((png_size_t)(-1))
 #define PNG_UINT_32_MAX	((png_uint_32)(-1))
 #define PNG_UINT_31_MAX	((png_uint_32)0x7fffffffL)
