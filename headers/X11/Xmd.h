@@ -11,11 +11,8 @@ extern "C" {
 #define B16
 #define B32
 #define NEXTPTR(p,t)	(((t *)(p)) + 1)
-#if __LSB_VERSION__ >= 40
 #define _SIZEOF(x)	sz_ ##x
 #define SIZEOF(x)	_SIZEOF(x)
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 
 
     typedef unsigned short CARD16;
