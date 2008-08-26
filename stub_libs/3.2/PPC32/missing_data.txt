@@ -1438,6 +1438,12 @@ libQtGui _ZTV16QCleanlooksStyle 8c
 libQtGui _ZTV17QDataWidgetMapper 3c
 libQtGui _ZTV27QGraphicsSceneDragDropEvent 10
 libQtGui _ZTV30QGraphicsSceneContextMenuEvent 10
+libQtGui _ZTI13QGraphicsView c
+libQtGui _ZTI13QFontComboBox c
+libQtGui _ZTI10QUndoGroup c
+libQtGui _ZTI9QUndoView c
+libQtGui _ZTI15QCalendarWidget c
+libQtGui _ZTI16QDialogButtonBox c
 libQtNetwork _ZTI10QTcpServer c
 libQtNetwork _ZTI10QTcpSocket c
 libQtNetwork _ZTI10QUdpSocket c

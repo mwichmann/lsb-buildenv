@@ -1425,6 +1425,12 @@ libQtGui _ZTV24QGraphicsSceneWheelEvent 20
 libQtGui _ZTV26QAbstractGraphicsShapeItem 138
 libQtGui _ZTV27QGraphicsSceneDragDropEvent 18
 libQtGui _ZTV30QGraphicsSceneContextMenuEvent 18
+libQtGui _ZTI13QGraphicsView 18
+libQtGui _ZTI13QFontComboBox 18
+libQtGui _ZTI10QUndoGroup 18
+libQtGui _ZTI9QUndoView 18
+libQtGui _ZTI15QCalendarWidget 18
+libQtGui _ZTI16QDialogButtonBox 18
 libQtNetwork _ZTI10QTcpServer 18
 libQtNetwork _ZTI10QTcpSocket 18
 libQtNetwork _ZTI10QUdpSocket 18

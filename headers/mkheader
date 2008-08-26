@@ -31,6 +31,7 @@ $header_appin='';
 $deriviation="";
 
 %prototyped = {};
+%processed_typedefs = {};
 
 sub
 usage()
@@ -42,9 +43,9 @@ sub
 displaytype($)
 {
 local ($type) = @_;
-local (*entry,*tentry,*tmentry);
+local (*entry,*tentry,*tmentry,*dtentry);
 local($th);
-local($tmh);
+local($tmh, $dth, $dsth);
 
 # handle opaque types better ...
 if ($nameonly && $$type{'Ttype'} eq "") {
@@ -118,14 +119,8 @@ if( $$type{'Ttype'} eq "Typedef" ) {
 # Something about anon or not & wether to set nameonly
     if ($typeflag) {
             if($entry->{'Ttype'} eq 'Struct' || $entry->{'Ttype'} eq 'Union') {
-            if( !($entry->{'Tname'} =~ "anon" )) {
-                if( $entry->{'Theadgroup'} == $HGid ) {
-#                   $old_sth = $sth;
-#                   for( $i=0; $i < $old_sth->rows; $i++ ) {
+            if( $entry->{'Tname'} !~ "anon" and $entry->{'Theadgroup'} == $HGid ) {
                         displaytype($entry);
-#                       $entry = $old_sth->fetchrow_hashref;
-#                   }
-                }
             }
         } else {
             return;
@@ -149,7 +144,6 @@ if( $$type{'Ttype'} eq "Typedef" ) {
                     $nameonly=0;
                 } else {
                     displaytype($entry);
-
                 }
         } else {
             displaytype($entry);
@@ -178,6 +172,59 @@ if( $$type{'Ttype'} eq "Typedef" ) {
         }
         print "\n";
     }
+
+    # We can have different typedefs on the same anonymous enum;
+    # let's print declarations of all such enums in one place,
+    # without redeclaring enum members
+    if( $entry->{'Ttype'} eq 'Enum' and !$entry->{'Tname'} ) {
+        $DervidedTypes = $entry->{'Tid'};
+        #~ local (*deriviations);
+        $deriviations{$entry->{'Tid'}} = "";
+        $cur_deriviation = "";
+
+        $lastType = $entry->{'Tid'};
+        while( $lastType ) {
+            $calcDerivedTypes = "SELECT Tid FROM Type ";
+            $calcDerivedTypes.= "LEFT JOIN ArchType ON ATtid=Tid ";
+            $calcDerivedTypes.= "WHERE Ttype = 'Pointer' AND ATbasetype = $lastType ";
+            print $calcDerivedTypes."\n" if($trace);
+            $dth = $dbh->prepare($calcDerivedTypes) or die "Couldn't prepare $calcDerivedTypes query: ".DBI->errstr;
+            $dth->execute or die "Couldn't execute $calcDerivedTypes query: ".DBI->errstr;
+            if( $dth->rows ) {
+                $dtentry = $dth->fetchrow_hashref;
+                $DervidedTypes.= ", ".$dtentry->{'Tid'};
+                $lastType = $dtentry->{'Tid'};
+                $cur_deriviation.= '*';
+                $deriviations{$lastType} = $cur_deriviation;
+            }
+            else {
+                $lastType = 0;
+            }
+            $dth->finish;
+        }
+
+        $select = "SELECT * FROM Type ";
+        $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+        $select.= "WHERE Theadgroup = $HGid ";
+        $select.= "AND Tid != ".$$type{'Tid'}." ";
+        $select.= "AND Ttype = 'Typedef' ";
+        $select.= "AND ATappearedin > '' ";
+        $select.= "AND ATbasetype IN ($DervidedTypes) ";
+        $select.= "GROUP BY Tid ";
+        print $select."\n" if ($trace);
+        $dsth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+        $dsth->execute or die "Couldn't execute $select query: ".DBI->errstr;
+
+        for( 1..$dsth->rows ) {
+            $dtentry = $dsth->fetchrow_hashref;
+            print ", ";
+            print $deriviations{$dtentry->{'ATbasetype'}};
+            print $dtentry->{'Tname'};
+            $processed_typedefs{$dtentry->{'Tid'}} = 1;
+        }
+        $dsth->finish;
+    }
+
     return;
 }
 
@@ -755,8 +802,6 @@ if( ( $$type{'Ttype'} eq "Struct" and $$type{'Tclass'} != 0 and $$type{'Tunmangl
                 next;
             }
         }
-
-        if( $tentry->{'Aid'} && $tentry->{'Aname'} eq "None" ) { next; }
 
         $old_CIid = $CIid;
         $old_name = $name;
@@ -1768,8 +1813,6 @@ for(1..$hgh->rows) {
     $select.= "LEFT JOIN Architecture ON ATaid=Aid ";
     $select.= "WHERE Theadgroup=$HGid ";
     $select.= "AND ( (ATappearedin<>'' ";
-#   $select.= "AND ( ( (ATappearedin <= '$lsbversion' and ATappearedin<>'') ";
-#   $select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ) ";
     $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
     $select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
     $select.= "AND Ttype = 'Typedef' ";
@@ -1789,8 +1832,8 @@ for(1..$hgh->rows) {
         $typeflag=0;
         $tentry = $th->fetchrow_hashref;
 
-        if( not $tentry->{'Aname'} ) {
-            next; # Found unsupported architecture
+        if( $processed_typedefs{$tentry->{'Tid'}} ) {
+            next;
         }
 
         if( $tentry->{'Aname'} ne "All" ) {
@@ -1798,8 +1841,6 @@ for(1..$hgh->rows) {
                 next;
             }
         }
-
-        if( $tentry->{'Aid'} && $tentry->{'Aname'} eq "None" ) { next; }
 
         specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $tentry->{'ATappearedin'}, $tentry->{'ATwithdrawnin'});
         $oldVersionWithdrawn = $tentry->{'ATwithdrawnin'};
