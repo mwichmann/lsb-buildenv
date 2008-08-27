@@ -293,20 +293,6 @@
 #define Window	CARD32
 #define KeyCode	CARD8
 
-typedef struct {
-    BYTE type;
-    BYTE errorCode;
-    CARD16 sequenceNumber;
-    CARD32 resourceID;
-    CARD16 minorCode;
-    CARD8 majorCode;
-    BYTE pad1;
-    CARD32 pad3;
-    CARD32 pad4;
-    CARD32 pad5;
-    CARD32 pad6;
-    CARD32 pad7;
-} xError;
 typedef struct _xEvent {
     union {
 	struct {
@@ -575,6 +561,20 @@ typedef struct _xEvent {
 	} clientMessage;
     } u;
 } xEvent;
+typedef struct {
+    BYTE type;
+    BYTE errorCode;
+    CARD16 sequenceNumber;
+    CARD32 resourceID;
+    CARD16 minorCode;
+    CARD8 majorCode;
+    BYTE pad1;
+    CARD32 pad3;
+    CARD32 pad4;
+    CARD32 pad5;
+    CARD32 pad6;
+    CARD32 pad7;
+} xError;
 typedef CARD16 KeyButMask;
 typedef struct {
     CARD8 byteOrder;

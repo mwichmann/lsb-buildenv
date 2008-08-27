@@ -1916,8 +1916,8 @@ extern "C" {
     extern
 	int (*XESetError
 	     (Display *, int,
-	      int (*)(Display *, xEvent *, XExtCodes *, int *)
-	     )) (Display *, xEvent *, XExtCodes *, int *);
+	      int (*)(Display *, xError *, XExtCodes *, int *)
+	     )) (Display *, xError *, XExtCodes *, int *);
     extern char
 	*(*XESetErrorString
 	  (Display *, int,
@@ -1925,8 +1925,8 @@ extern "C" {
 	  )) (Display *, int, XExtCodes *, char *, int);
     extern
 	int (*XESetEventToWire
-	     (Display *, int, int (*)(Display *, XEvent *, xError *)
-	     )) (Display *, XEvent *, xError *);
+	     (Display *, int, int (*)(Display *, XEvent *, xEvent *)
+	     )) (Display *, XEvent *, xEvent *);
     extern
 	int (*XESetFlushGC
 	     (Display *, int, int (*)(Display *, GC, XExtCodes *)
@@ -1946,12 +1946,12 @@ extern "C" {
 	      )) (Display *, XErrorEvent *, void *);
     extern
 	int (*XESetWireToError
-	     (Display *, int, int (*)(Display *, XErrorEvent *, xEvent *)
-	     )) (Display *, XErrorEvent *, xEvent *);
+	     (Display *, int, int (*)(Display *, XErrorEvent *, xError *)
+	     )) (Display *, XErrorEvent *, xError *);
     extern
 	int (*XESetWireToEvent
-	     (Display *, int, int (*)(Display *, XEvent *, xError *)
-	     )) (Display *, XEvent *, xError *);
+	     (Display *, int, int (*)(Display *, XEvent *, xEvent *)
+	     )) (Display *, XEvent *, xEvent *);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

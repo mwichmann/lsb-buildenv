@@ -1269,8 +1269,8 @@ extern
 extern
     int (*XESetError
 	 (Display *, int,
-	  int (*XESetError) (Display *, xEvent *, XExtCodes *, int *)
-	 )) (Display *, xEvent *, XExtCodes *, int *);
+	  int (*XESetError) (Display *, xError *, XExtCodes *, int *)
+	 )) (Display *, xError *, XExtCodes *, int *);
 extern char
     *(*XESetErrorString
       (Display *, int,
@@ -1279,8 +1279,8 @@ extern char
 extern
     int (*XESetEventToWire
 	 (Display *, int,
-	  int (*XESetEventToWire) (Display *, XEvent *, xError *)
-	 )) (Display *, XEvent *, xError *);
+	  int (*XESetEventToWire) (Display *, XEvent *, xEvent *)
+	 )) (Display *, XEvent *, xEvent *);
 extern
     int (*XESetFlushGC
 	 (Display *, int, int (*XESetFlushGC) (Display *, GC, XExtCodes *)
@@ -1302,13 +1302,13 @@ extern
 extern
     int (*XESetWireToError
 	 (Display *, int,
-	  int (*XESetWireToError) (Display *, XErrorEvent *, xEvent *)
-	 )) (Display *, XErrorEvent *, xEvent *);
+	  int (*XESetWireToError) (Display *, XErrorEvent *, xError *)
+	 )) (Display *, XErrorEvent *, xError *);
 extern
     int (*XESetWireToEvent
 	 (Display *, int,
-	  int (*XESetWireToEvent) (Display *, XEvent *, xError *)
-	 )) (Display *, XEvent *, xError *);
+	  int (*XESetWireToEvent) (Display *, XEvent *, xEvent *)
+	 )) (Display *, XEvent *, xEvent *);
 extern int XEnableAccessControl(Display *);
 extern long int XEventMaskOfScreen(Screen *);
 extern int XEventsQueued(Display *, int);

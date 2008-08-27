@@ -94,8 +94,6 @@ core_headers_remove = [
     'X11/Xauth.h',
     'X11/Xcms.h',
     'X11/XKBlib.h',
-    'X11/Xlib.h',
-    'X11/Xproto.h',
     'X11/Xutil.h',
     ]
 

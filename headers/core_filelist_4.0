@@ -2,6 +2,7 @@ GL/gl.h
 GL/glx.h
 glob.h
 grp.h
+X11/Xlib.h
 X11/ICE/ICElib.h
 X11/ICE/ICEutil.h
 X11/SM/SMlib.h
@@ -208,6 +209,7 @@ X11/extensions/Xdbeproto.h
 X11/extensions/XI.h
 nss3/sslproto.h
 nss3/sslerr.h
+X11/Xproto.h
 X11/extensions/XIproto.h
 linux/netlink.h
 linux/rtnetlink.h

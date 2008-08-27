@@ -304,6 +304,8 @@ extern "C" {
 #define KeyCode	CARD8
 
 
+    typedef struct _xEvent xEvent;
+
     typedef struct {
 	BYTE type;
 	BYTE errorCode;
@@ -318,8 +320,6 @@ extern "C" {
 	CARD32 pad6;
 	CARD32 pad7;
     } xError;
-
-    typedef struct _xEvent xEvent;
 
     typedef CARD16 KeyButMask;
 
