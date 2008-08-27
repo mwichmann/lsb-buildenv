@@ -10,7 +10,7 @@ extern "C" {
 #endif
 
 
-#define DbeNumberErrors	"(DbeBadBuffer + 1)"
+#define DbeNumberErrors	(DbeBadBuffer + 1)
 #define DBE_MINOR_VERSION	0
 #define DbeBadBuffer	0
 #define DbeNumberEvents	0

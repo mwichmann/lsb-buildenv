@@ -550,7 +550,7 @@ extern "C" {
 	CARD8 click;
 	CARD8 percent;
 	BYTE pad;
-	BYTE auto_repeats[];
+	BYTE auto_repeats[32];
     } xKbdFeedbackState;
 
     typedef struct {
@@ -844,7 +844,7 @@ extern "C" {
 	CARD8 length;
 	CARD8 num_keys;
 	BYTE pad1;
-	CARD8 keys[];
+	CARD8 keys[32];
     } xKeyState;
 
     typedef struct {
@@ -852,7 +852,7 @@ extern "C" {
 	CARD8 length;
 	CARD8 num_buttons;
 	BYTE pad1;
-	CARD8 buttons[];
+	CARD8 buttons[32];
     } xButtonState;
 
     typedef struct {
@@ -949,46 +949,6 @@ extern "C" {
     } xDeviceResolutionState;
 
     typedef struct {
-	CARD16 control;
-	CARD16 length;
-	INT32 min_x;
-	INT32 max_x;
-	INT32 min_y;
-	INT32 max_y;
-	CARD32 flip_x;
-	CARD32 flip_y;
-	CARD32 rotation;
-	CARD32 button_threshold;
-    } xDeviceAbsCalibState;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	CARD32 offset_x;
-	CARD32 offset_y;
-	CARD32 width;
-	CARD32 height;
-	CARD32 screen;
-	CARD32 following;
-    } xDeviceAbsAreaState;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	CARD8 status;
-	CARD8 iscore;
-	CARD16 pad1;
-    } xDeviceCoreState;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	CARD8 enable;
-	CARD8 pad0;
-	CARD16 pad1;
-    } xDeviceEnableState;
-
-    typedef struct {
 	CARD8 reqType;
 	CARD8 ReqType;
 	CARD16 length;
@@ -1026,46 +986,6 @@ extern "C" {
 	CARD8 pad1;
 	CARD8 pad2;
     } xDeviceResolutionCtl;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	INT32 min_x;
-	INT32 max_x;
-	INT32 min_y;
-	INT32 max_y;
-	CARD32 flip_x;
-	CARD32 flip_y;
-	CARD32 rotation;
-	CARD32 button_threshold;
-    } xDeviceAbsCalibCtl;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	CARD32 offset_x;
-	CARD32 offset_y;
-	INT32 width;
-	INT32 height;
-	INT32 screen;
-	CARD32 following;
-    } xDeviceAbsAreaCtl;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	CARD8 status;
-	CARD8 pad0;
-	CARD16 pad1;
-    } xDeviceCoreCtl;
-
-    typedef struct {
-	CARD16 control;
-	CARD16 length;
-	CARD8 enable;
-	CARD8 pad0;
-	CARD16 pad1;
-    } xDeviceEnableCtl;
 
     typedef struct {
 	BYTE type;
@@ -1124,8 +1044,8 @@ extern "C" {
 	CARD8 num_buttons;
 	CARD8 num_valuators;
 	CARD8 classes_reported;
-	CARD8 buttons[];
-	CARD8 keys[];
+	CARD8 buttons[4];
+	CARD8 keys[4];
 	INT32 valuator0;
 	INT32 valuator1;
 	INT32 valuator2;
@@ -1135,14 +1055,14 @@ extern "C" {
 	BYTE type;
 	BYTE deviceid;
 	CARD16 sequenceNumber;
-	CARD8 keys[];
+	CARD8 keys[28];
     } deviceKeyStateNotify;
 
     typedef struct {
 	BYTE type;
 	BYTE deviceid;
 	CARD16 sequenceNumber;
-	CARD8 buttons[];
+	CARD8 buttons[28];
     } deviceButtonStateNotify;
 
     typedef struct {
@@ -1176,21 +1096,6 @@ extern "C" {
 	CARD32 pad03;
 	CARD32 pad04;
     } changeDeviceNotify;
-
-    typedef struct {
-	BYTE type;
-	BYTE pad00;
-	CARD16 sequenceNumber;
-	CARD32 time;
-	BYTE devchange;
-	BYTE deviceid;
-	CARD16 control;
-	CARD32 pad02;
-	CARD32 pad03;
-	CARD32 pad04;
-	CARD32 pad05;
-	CARD32 pad06;
-    } devicePresenceNotify;
 
 #endif				/* __LSB_VERSION__ >= 3.0 */
 

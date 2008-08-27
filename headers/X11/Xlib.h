@@ -4,6 +4,8 @@
 
 #include <X11/X.h>
 #include <stddef.h>
+#include <X11/Xmd.h>
+#include <X11/Xproto.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,17 +13,38 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-    typedef struct XColor;
+    typedef char *XPointer;
+
+    typedef struct {
+	unsigned long int pixel;
+	unsigned short red;
+	unsigned short green;
+	unsigned short blue;
+	char flags;
+	char pad;
+    } XColor;
+
+    typedef struct _XDisplay Display;
+
+    typedef struct {
+	int type;
+	Display *display;
+	XID resourceid;
+	unsigned long int serial;
+	unsigned char error_code;
+	unsigned char request_code;
+	unsigned char minor_code;
+    } XErrorEvent;
+
+    typedef struct _XIM *XIM;
+
+    typedef struct _XIC *XIC;
 
     typedef void *XVaNestedList;
 
-    typedef struct XIMCallback;
-
-    typedef struct XICCallback;
-
     typedef unsigned long int XIMFeedback;
 
-    typedef union XIMText;
+    typedef struct _XIMText XIMText;
 
     typedef unsigned long int XIMPreeditState;
 
@@ -32,7 +55,7 @@ extern "C" {
 
     typedef unsigned long int XIMStringConversionFeedback;
 
-    typedef union XIMStringConversionText;
+    typedef struct _XIMStringConversionText XIMStringConversionText;
 
     typedef unsigned short XIMStringConversionPosition;
 
@@ -49,7 +72,8 @@ extern "C" {
     typedef struct _XIMPreeditCaretCallbackStruct
 	XIMPreeditCaretCallbackStruct;
 
-    typedef union XIMStatusDrawCallbackStruct;
+    typedef struct _XIMStatusDrawCallbackStruct
+	XIMStatusDrawCallbackStruct;
 
     typedef struct _XIMHotKeyTrigger XIMHotKeyTrigger;
 
@@ -57,20 +81,44 @@ extern "C" {
 
     typedef unsigned long int XIMHotKeyState;
 
-    typedef struct XIMValuesList;
+    typedef struct {
+	unsigned short count_values;
+	char **supported_values;
+    } XIMValuesList;
 
-    typedef enum
-	XIMCaretDirection;
+    typedef void (*XIMProc) (XIM, XPointer, XPointer);
 
-    typedef enum
-	XIMCaretStyle;
+    typedef int (*XICProc) (XIC, XPointer, XPointer);
 
-    typedef enum
-	XIMStatusDataType;
+    typedef enum {
+	XIMForwardChar = 0,
+	XIMBackwardChar = 1,
+	XIMForwardWord = 2,
+	XIMBackwardWord = 3,
+	XIMCaretUp = 4,
+	XIMCaretDown = 5,
+	XIMNextLine = 6,
+	XIMPreviousLine = 7,
+	XIMLineStart = 8,
+	XIMLineEnd = 9,
+	XIMAbsolutePosition = 10,
+	XIMDontChange = 11
+    } XIMCaretDirection;
+
+    typedef enum {
+	XIMIsInvisible = 0,
+	XIMIsPrimary = 1,
+	XIMIsSecondary = 2
+    } XIMCaretStyle;
+
+    typedef enum {
+	XIMTextType = 0,
+	XIMBitmapType = 1
+    } XIMStatusDataType;
 
     typedef int (*XErrorHandler) (Display *, XErrorEvent *);
 
-    typedef int (*XIOErrorHandler) (Display *, Display *);
+    typedef int (*XIOErrorHandler) (Display *);
 
     typedef void (*XConnectionWatchProc) (Display *, XPointer, int, int,
 					  XPointer *);
@@ -142,48 +190,6 @@ extern "C" {
     struct _XIMHotKeyTriggers {
 	int num_hot_key;
 	XIMHotKeyTrigger *key;
-    };
-
-    enum;
-
-    enum;
-
-    enum;
-
-    enum;
-
-    enum {
-	XOMOrientation_LTR_TTB,
-	XOMOrientation_RTL_TTB,
-	XOMOrientation_TTB_LTR,
-	XOMOrientation_TTB_RTL,
-	XOMOrientation_Context
-    };
-
-    enum {
-	XIMForwardChar,
-	XIMBackwardChar,
-	XIMForwardWord,
-	XIMBackwardWord,
-	XIMCaretUp,
-	XIMCaretDown,
-	XIMNextLine,
-	XIMPreviousLine,
-	XIMLineStart,
-	XIMLineEnd,
-	XIMAbsolutePosition,
-	XIMDontChange
-    };
-
-    enum {
-	XIMIsInvisible,
-	XIMIsPrimary,
-	XIMIsSecondary
-    };
-
-    enum {
-	XIMTextType,
-	XIMBitmapType
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -347,17 +353,17 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 12
-    typedef char *XPointer;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Extensions need a way to hang private data on some structures.*/
 #if __LSB_VERSION__ >= 12
     typedef struct _XExtData XExtData;
 
-    typedef struct XExtCodes;
+    typedef struct {
+	int extension;
+	int major_opcode;
+	int first_event;
+	int first_error;
+    } XExtCodes;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -374,14 +380,42 @@ extern "C" {
 
 /* Data structure for retrieving info about pixmap formats.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XPixmapFormatValues;
+    typedef struct {
+	int depth;
+	int bits_per_pixel;
+	int scanline_pad;
+    } XPixmapFormatValues;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for setting graphics context*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XGCValues;
+    typedef struct {
+	int function;
+	unsigned long int plane_mask;
+	unsigned long int foreground;
+	unsigned long int background;
+	int line_width;
+	int line_style;
+	int cap_style;
+	int join_style;
+	int fill_style;
+	int fill_rule;
+	int arc_mode;
+	Pixmap tile;
+	Pixmap stipple;
+	int ts_x_origin;
+	int ts_y_origin;
+	Font font;
+	int subwindow_mode;
+	int graphics_exposures;
+	int clip_x_origin;
+	int clip_y_origin;
+	Pixmap clip_mask;
+	int dash_offset;
+	char dashes;
+    } XGCValues;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -400,44 +434,127 @@ extern "C" {
 
 /* Visual structure; contains information about colormapping possible.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct Visual;
+    typedef struct {
+	XExtData *ext_data;
+	VisualID visualid;
+	int c_class;
+	unsigned long int red_mask;
+	unsigned long int green_mask;
+	unsigned long int blue_mask;
+	int bits_per_rgb;
+	int map_entries;
+    } Visual;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Depth structure; contains information for each possible depth.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct Depth;
+    typedef struct {
+	int depth;
+	int nvisuals;
+	Visual *visuals;
+    } Depth;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Information about the screen.  The contents of this structure are implementation dependent.  A Screen should be treated as opaque by application code.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct Screen;
+    typedef struct {
+	XExtData *ext_data;
+	struct _XDisplay *display;
+	Window root;
+	int width;
+	int height;
+	int mwidth;
+	int mheight;
+	int ndepths;
+	Depth *depths;
+	int root_depth;
+	Visual *root_visual;
+	GC default_gc;
+	Colormap cmap;
+	unsigned long int white_pixel;
+	unsigned long int black_pixel;
+	int max_maps;
+	int min_maps;
+	int backing_store;
+	int save_unders;
+	long int root_input_mask;
+    } Screen;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /*  Format structure; describes ZFormat data the screen will understand.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct ScreenFormat;
+    typedef struct {
+	XExtData *ext_data;
+	int depth;
+	int bits_per_pixel;
+	int scanline_pad;
+    } ScreenFormat;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for setting window attributes.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XSetWindowAttributes;
+    typedef struct {
+	Pixmap background_pixmap;
+	unsigned long int background_pixel;
+	Pixmap border_pixmap;
+	unsigned long int border_pixel;
+	int bit_gravity;
+	int win_gravity;
+	int backing_store;
+	unsigned long int backing_planes;
+	unsigned long int backing_pixel;
+	int save_under;
+	long int event_mask;
+	long int do_not_propagate_mask;
+	int override_redirect;
+	Colormap colormap;
+	Cursor cursor;
+    } XSetWindowAttributes;
 
-    typedef struct XWindowAttributes;
+    typedef struct {
+	int x;
+	int y;
+	int width;
+	int height;
+	int border_width;
+	int depth;
+	Visual *visual;
+	Window root;
+	int c_class;
+	int bit_gravity;
+	int win_gravity;
+	int backing_store;
+	unsigned long int backing_planes;
+	unsigned long int backing_pixel;
+	int save_under;
+	Colormap colormap;
+	int map_installed;
+	int map_state;
+	long int all_event_masks;
+	long int your_event_mask;
+	long int do_not_propagate_mask;
+	int override_redirect;
+	Screen *screen;
+    } XWindowAttributes;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for host setting; getting routines.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XHostAddress;
+    typedef struct {
+	int family;
+	int length;
+	char *address;
+    } XHostAddress;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -449,6 +566,15 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
+    struct funcs {
+	struct _XImage *(*create_image) (void);
+	int (*destroy_image) (void);
+	unsigned long int (*get_pixel) (void);
+	int (*put_pixel) (void);
+	struct _XImage *(*sub_image) (void);
+	int (*add_pixel) (void);
+    };
+
     struct _XImage {
 	int width;
 	int height;
@@ -469,156 +595,551 @@ extern "C" {
 	struct funcs f;
     };
 
-    struct funcs {
-	struct _XImage *(*create_image) (void);
-	int (*destroy_image) (void);
-	unsigned long int (*get_pixel) (void);
-	int (*put_pixel) (void);
-	struct _XImage *(*sub_image) (void);
-	int (*add_pixel) (void);
-    };
-
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XReconfigureWindow*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XWindowChanges;
+    typedef struct {
+	int x;
+	int y;
+	int width;
+	int height;
+	int border_width;
+	Window sibling;
+	int stack_mode;
+    } XWindowChanges;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structures for graphics operations.  On most machines, these are congruent with the wire protocol structures, so reformatting the datacan be avoided on these architectures. */
 #if __LSB_VERSION__ >= 12
-    typedef struct XSegment;
+    typedef struct {
+	short x1;
+	short y1;
+	short x2;
+	short y2;
+    } XSegment;
 
-    typedef struct XPoint;
+    typedef struct {
+	short x;
+	short y;
+    } XPoint;
 
-    typedef struct XRectangle;
+    typedef struct {
+	short x;
+	short y;
+	unsigned short width;
+	unsigned short height;
+    } XRectangle;
 
-    typedef struct XArc;
+    typedef struct {
+	short x;
+	short y;
+	unsigned short width;
+	unsigned short height;
+	short angle1;
+	short angle2;
+    } XArc;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XChangeKeyboardControl*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XKeyboardControl;
+    typedef struct {
+	int key_click_percent;
+	int bell_percent;
+	int bell_pitch;
+	int bell_duration;
+	int led;
+	int led_mode;
+	int key;
+	int auto_repeat_mode;
+    } XKeyboardControl;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XGetKeyboardControl*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XKeyboardState;
+    typedef struct {
+	int key_click_percent;
+	int bell_percent;
+	unsigned int bell_pitch;
+	unsigned int bell_duration;
+	unsigned long int led_mask;
+	int global_auto_repeat;
+	char auto_repeats[32];
+    } XKeyboardState;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for XGetMotionEvents.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XTimeCoord;
+    typedef struct {
+	Time time;
+	short x;
+	short y;
+    } XTimeCoord;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Data structure for X{Set,Get}ModifierMapping*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XModifierKeymap;
+    typedef struct {
+	int max_keypermod;
+	KeyCode *modifiermap;
+    } XModifierKeymap;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Display datatype maintaining display specific data. The contents of this structure are implementation dependent.A Display should be treated as opaque by application code. */
 #if __LSB_VERSION__ >= 12
-    typedef struct _XDisplay Display;
-
-    typedef struct _XrmHashBucketRec **_XPrivDisplay;
+    typedef struct {
+	XExtData *ext_data;
+	struct _XPrivate *private1;
+	int fd;
+	int private2;
+	int proto_major_version;
+	int proto_minor_version;
+	char *vendor;
+	XID private3;
+	XID private4;
+	XID private5;
+	int private6;
+	 XID(*resource_alloc) (struct _XDisplay *);
+	int byte_order;
+	int bitmap_unit;
+	int bitmap_pad;
+	int bitmap_bit_order;
+	int nformats;
+	ScreenFormat *pixmap_format;
+	int private8;
+	int release;
+	struct _XPrivate *private9;
+	struct _XPrivate *private10;
+	int qlen;
+	unsigned long int last_request_read;
+	unsigned long int request;
+	XPointer private11;
+	XPointer private12;
+	XPointer private13;
+	XPointer private14;
+	unsigned int max_request_size;
+	struct _XrmHashBucketRec *db;
+	int (*private15) (struct _XDisplay *);
+	char *display_name;
+	int default_screen;
+	int nscreens;
+	Screen *screens;
+	unsigned long int motion_buffer;
+	unsigned long int private16;
+	int min_keycode;
+	int max_keycode;
+	XPointer private17;
+	XPointer private18;
+	int private19;
+	char *xdefaults;
+    } *_XPrivDisplay;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Definitions of specific events.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XKeyEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Window root;
+	Window subwindow;
+	Time time;
+	int x;
+	int y;
+	int x_root;
+	int y_root;
+	unsigned int state;
+	unsigned int keycode;
+	int same_screen;
+    } XKeyEvent;
 
     typedef XKeyEvent XKeyPressedEvent;
 
     typedef XKeyEvent XKeyReleasedEvent;
 
-    typedef struct XButtonEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Window root;
+	Window subwindow;
+	Time time;
+	int x;
+	int y;
+	int x_root;
+	int y_root;
+	unsigned int state;
+	unsigned int button;
+	int same_screen;
+    } XButtonEvent;
 
     typedef XButtonEvent XButtonPressedEvent;
 
     typedef XButtonEvent XButtonReleasedEvent;
 
-    typedef struct XMotionEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Window root;
+	Window subwindow;
+	Time time;
+	int x;
+	int y;
+	int x_root;
+	int y_root;
+	unsigned int state;
+	char is_hint;
+	int same_screen;
+    } XMotionEvent;
 
     typedef XMotionEvent XPointerMovedEvent;
 
-    typedef struct XCrossingEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Window root;
+	Window subwindow;
+	Time time;
+	int x;
+	int y;
+	int x_root;
+	int y_root;
+	int mode;
+	int detail;
+	int same_screen;
+	int focus;
+	unsigned int state;
+    } XCrossingEvent;
 
     typedef XCrossingEvent XEnterWindowEvent;
 
     typedef XCrossingEvent XLeaveWindowEvent;
 
-    typedef struct XFocusChangeEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int mode;
+	int detail;
+    } XFocusChangeEvent;
 
     typedef XFocusChangeEvent XFocusInEvent;
 
     typedef XFocusChangeEvent XFocusOutEvent;
 
-    typedef struct XKeymapEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	char key_vector[32];
+    } XKeymapEvent;
 
-    typedef struct XExposeEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int x;
+	int y;
+	int width;
+	int height;
+	int count;
+    } XExposeEvent;
 
-    typedef struct XGraphicsExposeEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Drawable drawable;
+	int x;
+	int y;
+	int width;
+	int height;
+	int count;
+	int major_code;
+	int minor_code;
+    } XGraphicsExposeEvent;
 
-    typedef struct XNoExposeEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Drawable drawable;
+	int major_code;
+	int minor_code;
+    } XNoExposeEvent;
 
-    typedef struct XVisibilityEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int state;
+    } XVisibilityEvent;
 
-    typedef struct XCreateWindowEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window parent;
+	Window window;
+	int x;
+	int y;
+	int width;
+	int height;
+	int border_width;
+	int override_redirect;
+    } XCreateWindowEvent;
 
-    typedef struct XDestroyWindowEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+    } XDestroyWindowEvent;
 
-    typedef struct XUnmapEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+	int from_configure;
+    } XUnmapEvent;
 
-    typedef struct XMapEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+	int override_redirect;
+    } XMapEvent;
 
-    typedef struct XMapRequestEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window parent;
+	Window window;
+    } XMapRequestEvent;
 
-    typedef struct XReparentEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+	Window parent;
+	int x;
+	int y;
+	int override_redirect;
+    } XReparentEvent;
 
-    typedef struct XConfigureEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+	int x;
+	int y;
+	int width;
+	int height;
+	int border_width;
+	Window above;
+	int override_redirect;
+    } XConfigureEvent;
 
-    typedef struct XGravityEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+	int x;
+	int y;
+    } XGravityEvent;
 
-    typedef struct XResizeRequestEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int width;
+	int height;
+    } XResizeRequestEvent;
 
-    typedef struct XConfigureRequestEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window parent;
+	Window window;
+	int x;
+	int y;
+	int width;
+	int height;
+	int border_width;
+	Window above;
+	int detail;
+	unsigned long int value_mask;
+    } XConfigureRequestEvent;
 
-    typedef struct XCirculateEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window event;
+	Window window;
+	int place;
+    } XCirculateEvent;
 
-    typedef struct XCirculateRequestEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window parent;
+	Window window;
+	int place;
+    } XCirculateRequestEvent;
 
-    typedef struct XPropertyEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Atom atom;
+	Time time;
+	int state;
+    } XPropertyEvent;
 
-    typedef struct XSelectionClearEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Atom selection;
+	Time time;
+    } XSelectionClearEvent;
 
-    typedef struct XSelectionRequestEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window owner;
+	Window requestor;
+	Atom selection;
+	Atom target;
+	Atom property;
+	Time time;
+    } XSelectionRequestEvent;
 
-    typedef struct XSelectionEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window requestor;
+	Atom selection;
+	Atom target;
+	Atom property;
+	Time time;
+    } XSelectionEvent;
 
-    typedef struct XColormapEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Colormap colormap;
+	int c_new;
+	int state;
+    } XColormapEvent;
 
-    typedef union XClientMessageEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Atom message_type;
+	int format;
+	union {
+	    char b[20];
+	    short s[10];
+	    long int l[5];
+	} data;
+    } XClientMessageEvent;
 
-    typedef struct XMappingEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	int request;
+	int first_keycode;
+	int count;
+    } XMappingEvent;
 
-    typedef struct XErrorEvent;
-
-    typedef struct XAnyEvent;
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	Window window;
+    } XAnyEvent;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -671,35 +1192,85 @@ extern "C" {
 
 /* per character font metric information.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XCharStruct;
+    typedef struct {
+	short lbearing;
+	short rbearing;
+	short width;
+	short ascent;
+	short descent;
+	unsigned short attributes;
+    } XCharStruct;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* To allow arbitrary information with fonts, there are additional properties returned.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XFontProp;
+    typedef struct {
+	Atom name;
+	unsigned long int card32;
+    } XFontProp;
 
-    typedef struct XFontStruct;
+    typedef struct {
+	XExtData *ext_data;
+	Font fid;
+	unsigned int direction;
+	unsigned int min_char_or_byte2;
+	unsigned int max_char_or_byte2;
+	unsigned int min_byte1;
+	unsigned int max_byte1;
+	int all_chars_exist;
+	unsigned int default_char;
+	int n_properties;
+	XFontProp *properties;
+	XCharStruct min_bounds;
+	XCharStruct max_bounds;
+	XCharStruct *per_char;
+	int ascent;
+	int descent;
+    } XFontStruct;
 
-    typedef struct XFontSetExtents;
+    typedef struct {
+	XRectangle max_ink_extent;
+	XRectangle max_logical_extent;
+    } XFontSetExtents;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* PolyText routines take these as arguments.*/
 #if __LSB_VERSION__ >= 12
-    typedef struct XTextItem;
+    typedef struct {
+	char *chars;
+	int nchars;
+	int delta;
+	Font font;
+    } XTextItem;
 
-    typedef struct XChar2b;
+    typedef struct {
+	unsigned char byte1;
+	unsigned char byte2;
+    } XChar2b;
 
-    typedef struct XTextItem16;
+    typedef struct {
+	XChar2b *chars;
+	int nchars;
+	int delta;
+	Font font;
+    } XTextItem16;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
-    typedef union XEDataObject;
+    typedef union {
+	Display *display;
+	GC gc;
+	Visual *visual;
+	Screen *screen;
+	ScreenFormat *pixmap_format;
+	XFontStruct *font;
+    } XEDataObject;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -715,38 +1286,68 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-    typedef struct XmbTextItem;
+    typedef struct {
+	char *chars;
+	int nchars;
+	int delta;
+	XFontSet font_set;
+    } XmbTextItem;
 
-    typedef struct XwcTextItem;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-#if __LSB_VERSION__ >= 12
-    typedef struct XOMCharSetList;
-
-    typedef struct XOMOrientation;
-
-    typedef struct XOMFontInfo;
-
-    typedef enum
-	XOrientation;
+    typedef struct {
+	wchar_t *chars;
+	int nchars;
+	int delta;
+	XFontSet font_set;
+    } XwcTextItem;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
-    typedef struct _XIM *XIM;
+    typedef struct {
+	int charset_count;
+	char **charset_list;
+    } XOMCharSetList;
 
-    typedef struct _XIC *XIC;
+    typedef enum {
+	XOMOrientation_LTR_TTB = 0,
+	XOMOrientation_RTL_TTB = 1,
+	XOMOrientation_TTB_LTR = 2,
+	XOMOrientation_TTB_RTL = 3,
+	XOMOrientation_Context = 4
+    } XOrientation;
 
+    typedef struct {
+	int num_font;
+	XFontStruct **font_struct_list;
+	char **font_name_list;
+    } XOMFontInfo;
+
+    typedef struct {
+	int num_orientation;
+	XOrientation *orientation;
+    } XOMOrientation;
+
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+
+#if __LSB_VERSION__ >= 12
     typedef unsigned long int XIMStyle;
 
-    typedef struct XIMStyles;
+    typedef struct {
+	unsigned short count_styles;
+	XIMStyle *supported_styles;
+    } XIMStyles;
 
-    typedef void (*XIMProc) (XIM, XPointer, XPointer);
+    typedef struct {
+	XPointer client_data;
+	XIMProc callback;
+    } XIMCallback;
 
-    typedef int (*XICProc) (XIC, XPointer, XPointer);
+    typedef struct {
+	XPointer client_data;
+	XICProc callback;
+    } XICCallback;
 
     typedef void (*XIDProc) (Display *, XPointer, XPointer);
 
@@ -969,7 +1570,7 @@ extern "C" {
     extern int XGetErrorDatabaseText(Display *, const char *, const char *,
 				     const char *, char *, int);
     extern int XGetErrorText(Display *, int, char *, int);
-    extern char **XGetFontPath(Display *, int *);
+    extern XGetFontPath(Display *, int *);
     extern int XGetFontProperty(XFontStruct *, Atom, unsigned long int *);
     extern int XGetGCValues(Display *, GC, unsigned long int, XGCValues *);
     extern int XGetGeometry(Display *, Drawable, Window *, int *, int *,
@@ -1037,10 +1638,10 @@ extern "C" {
     extern int XKillClient(Display *, XID);
     extern unsigned long int XLastKnownRequestProcessed(Display *);
     extern int *XListDepths(Display *, int, int *);
-    extern char **XListExtensions(Display *, int *);
-    extern char **XListFonts(Display *, const char *, int, int *);
-    extern char **XListFontsWithInfo(Display *, const char *, int, int *,
-				     XFontStruct * *);
+    extern XListExtensions(Display *, int *);
+    extern XListFonts(Display *, const char *, int, int *);
+    extern XListFontsWithInfo(Display *, const char *, int, int *,
+			      XFontStruct * *);
     extern XHostAddress *XListHosts(Display *, int *, int *);
     extern Colormap *XListInstalledColormaps(Display *, Window, int *);
     extern XPixmapFormatValues *XListPixmapFormats(Display *, int *);
@@ -1158,7 +1759,8 @@ extern "C" {
     extern int XSendEvent(Display *, Window, int, long int, XEvent *);
     extern char *XServerVendor(Display *);
     extern int XSetAccessControl(Display *, int);
-    extern int (*XSetAfterFunction(Display *)) (void);
+    extern int (*XSetAfterFunction(Display *, int (*)(Display *)
+		)) (Display *);
     extern int XSetArcMode(Display *, GC, int);
     extern void XSetAuthorization(char *, int, char *, int);
     extern int XSetBackground(Display *, GC, unsigned long int);
@@ -1179,7 +1781,7 @@ extern "C" {
     extern int XSetGraphicsExposures(Display *, GC, int);
     extern void XSetICFocus(XIC);
     extern char *XSetICValues(XIC, ...);
-    extern XSetIMValues(void);
+    extern char *XSetIMValues(XIM, ...);
     extern XIOErrorHandler XSetIOErrorHandler(XIOErrorHandler);
     extern int XSetIconName(Display *, Window, const char *);
     extern int XSetInputFocus(Display *, Window, int, Time);
@@ -1218,7 +1820,7 @@ extern "C" {
     extern KeySym XStringToKeysym(const char *);
     extern int XSupportsLocale(void);
     extern int XSync(Display *, int);
-    extern int (*XSynchronize(Display *)) (void);
+    extern int (*XSynchronize(Display *, int)) (Display *);
     extern int XTextExtents(XFontStruct *, const char *, int, int *, int *,
 			    int *, XCharStruct *);
     extern int XTextExtents16(XFontStruct *, XChar2b *, int, int *, int *,
@@ -1314,8 +1916,8 @@ extern "C" {
     extern
 	int (*XESetError
 	     (Display *, int,
-	      int (*)(Display *, xError *, XExtCodes *, int *)
-	     )) (Display *, xError *, XExtCodes *, int *);
+	      int (*)(Display *, xEvent *, XExtCodes *, int *)
+	     )) (Display *, xEvent *, XExtCodes *, int *);
     extern char
 	*(*XESetErrorString
 	  (Display *, int,
@@ -1323,8 +1925,8 @@ extern "C" {
 	  )) (Display *, int, XExtCodes *, char *, int);
     extern
 	int (*XESetEventToWire
-	     (Display *, int, int (*)(Display *, XEvent *, xEvent *)
-	     )) (Display *, XEvent *, xEvent *);
+	     (Display *, int, int (*)(Display *, XEvent *, xError *)
+	     )) (Display *, XEvent *, xError *);
     extern
 	int (*XESetFlushGC
 	     (Display *, int, int (*)(Display *, GC, XExtCodes *)
@@ -1344,12 +1946,12 @@ extern "C" {
 	      )) (Display *, XErrorEvent *, void *);
     extern
 	int (*XESetWireToError
-	     (Display *, int, int (*)(Display *, XErrorEvent *, xError *)
-	     )) (Display *, XErrorEvent *, xError *);
+	     (Display *, int, int (*)(Display *, XErrorEvent *, xEvent *)
+	     )) (Display *, XErrorEvent *, xEvent *);
     extern
 	int (*XESetWireToEvent
-	     (Display *, int, int (*)(Display *, XEvent *, xEvent *)
-	     )) (Display *, XEvent *, xEvent *);
+	     (Display *, int, int (*)(Display *, XEvent *, xError *)
+	     )) (Display *, XEvent *, xError *);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

@@ -3,6 +3,7 @@
 #define _X11_EXTENSIONS_EXTUTIL_H_
 
 #include <X11/Xlib.h>
+#include <X11/Xproto.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -75,9 +76,9 @@ XExtDisplayInfo *dpyinfo; \
 	int (*create_font) (Display *, XFontStruct *, XExtCodes *);
 	int (*free_font) (Display *, XFontStruct *, XExtCodes *);
 	int (*close_display) (Display *, XExtCodes *);
-	int (*wire_to_event) (Display *, XEvent *, xEvent *);
-	int (*event_to_wire) (Display *, XEvent *, xEvent *);
-	int (*error) (Display *, xError *, XExtCodes *, int *);
+	int (*wire_to_event) (Display *, XEvent *, xError *);
+	int (*event_to_wire) (Display *, XEvent *, xError *);
+	int (*error) (Display *, xEvent *, XExtCodes *, int *);
 	char *(*error_string) (Display *, int, XExtCodes *, char *, int);
     };
 

@@ -56,9 +56,9 @@ typedef struct _XExtensionHooks {
     int (*create_font) (Display *, XFontStruct *, XExtCodes *);
     int (*free_font) (Display *, XFontStruct *, XExtCodes *);
     int (*close_display) (Display *, XExtCodes *);
-    int (*wire_to_event) (Display *, XEvent *, xEvent *);
-    int (*event_to_wire) (Display *, XEvent *, xEvent *);
-    int (*error) (Display *, xError *, XExtCodes *, int *);
+    int (*wire_to_event) (Display *, XEvent *, xError *);
+    int (*event_to_wire) (Display *, XEvent *, xError *);
+    int (*error) (Display *, xEvent *, XExtCodes *, int *);
     char *(*error_string) (Display *, int, XExtCodes *, char *, int);
 } XExtensionHooks;
 extern XExtDisplayInfo *XextAddDisplay(XExtensionInfo *, Display *, char *,
