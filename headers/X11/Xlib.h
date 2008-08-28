@@ -196,6 +196,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
+#define Bool	int
 #if __LSB_VERSION__ >= 12
 #define XNArea	"area"
 #define XNAreaNeeded	"areaNeeded"
