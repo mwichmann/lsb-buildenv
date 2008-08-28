@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <X11/Xmd.h>
 #include <X11/Xproto.h>
+#include <X11/Xfuncproto.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -1570,7 +1571,7 @@ extern "C" {
     extern int XGetErrorDatabaseText(Display *, const char *, const char *,
 				     const char *, char *, int);
     extern int XGetErrorText(Display *, int, char *, int);
-    extern XGetFontPath(Display *, int *);
+    extern char **XGetFontPath(Display *, int *);
     extern int XGetFontProperty(XFontStruct *, Atom, unsigned long int *);
     extern int XGetGCValues(Display *, GC, unsigned long int, XGCValues *);
     extern int XGetGeometry(Display *, Drawable, Window *, int *, int *,
@@ -1638,10 +1639,10 @@ extern "C" {
     extern int XKillClient(Display *, XID);
     extern unsigned long int XLastKnownRequestProcessed(Display *);
     extern int *XListDepths(Display *, int, int *);
-    extern XListExtensions(Display *, int *);
-    extern XListFonts(Display *, const char *, int, int *);
-    extern XListFontsWithInfo(Display *, const char *, int, int *,
-			      XFontStruct * *);
+    extern char **XListExtensions(Display *, int *);
+    extern char **XListFonts(Display *, const char *, int, int *);
+    extern char **XListFontsWithInfo(Display *, const char *, int, int *,
+				     XFontStruct * *);
     extern XHostAddress *XListHosts(Display *, int *, int *);
     extern Colormap *XListInstalledColormaps(Display *, Window, int *);
     extern XPixmapFormatValues *XListPixmapFormats(Display *, int *);

@@ -45,6 +45,8 @@ extern "C" {
 
     typedef XrmHashBucket *XrmHashTable;
 
+    typedef XrmHashTable XrmSearchList;
+
     typedef struct _XrmHashBucketRec *XrmDatabase;
 
     typedef enum {

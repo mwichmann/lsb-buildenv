@@ -2136,8 +2136,6 @@ $select.= "  WHERE AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
 $select.= "  AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
 $select.= ")) AND ";
 $select.= "AIappearedin > '' AND (AIwithdrawnin IS NULL OR AIwithdrawnin > '3.0') ) ";
-# $select.= " (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-# $select.= " AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ";
 $select.= ") ";
 # Hope check for libstdcxx is temporary and will be eliminated when we get more
 # graceful c++ headers generators
@@ -2163,16 +2161,17 @@ for(1..$sth->rows) {
         $selectGeneric.= "WHERE AIarch=1 AND AIint='$entry->{'AIint'}'";
         $selectGeneric.= "AND Iid NOT IN ( ";
         $selectGeneric.= " SELECT AAsrcint FROM AbiApi ";
-        $selectGeneric.= " WHERE AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
-        $selectGeneric.= " AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
+        $selectGeneric.= " WHERE AAappearedin > '' ";
+        $selectGeneric.= " AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '3.0') ";
         $selectGeneric.= ") AND (Isrcbin='SrcOnly' ";
         $selectGeneric.= "OR ( (Isrcbin='Both' OR Iid IN ( ";
         $selectGeneric.= " SELECT AAbinint FROM AbiApi ";
-        $selectGeneric.= " WHERE AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
-        $selectGeneric.= " AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
+        $selectGeneric.= " WHERE AAappearedin > '' ";
+        $selectGeneric.= " AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '3.0') ";
         $selectGeneric.= ")) AND ";
-        $selectGeneric.= "(AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
-        $selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ) ) ";
+        $selectGeneric.= "(AIappearedin > '') ";
+        $selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'3.0') ) ) ";
+        $selectGeneric.= "LIMIT 1";
         $sthGeneric = $dbh->prepare($selectGeneric) or die "Couldn't prepare $selectGeneric query: ".DBI->errstr;
         $sthGeneric->execute or die "Couldn't execute $selectGeneric query: ".DBI->errstr;
         if( $sthGeneric->rows ) {
@@ -2198,6 +2197,22 @@ for(1..$sth->rows) {
             $oldVersionAppeared = '';
         }
     }
+
+    # Check if we have a macro with the same name; undef, if any
+    $macroName = $entry->{'Iname'};
+    $macroName =~ s/_/\\_/g;
+    $checkMacro = "SELECT Cid FROM Constant ";
+    $checkMacro.= "JOIN ArchConst ON ACcid=Cid ";
+    $checkMacro.= "WHERE Cname LIKE '$macroName(%' ";
+    $checkMacro.= "AND ACappearedin > '' ";
+    $checkMacro.= "AND (ACwithdrawnin IS NULL OR ACwithdrawnin > '3.0') ";
+    $checkMacro.= "LIMIT 1";
+    $cth = $dbh->prepare($checkMacro) or die "Couldn't prepare $checkMacro query".DBI->errstr;
+    $cth->execute or die "Couldn't execute $checkMacro query: ".DBI->errstr;
+    if( $cth->rows ) {
+        print "#undef ".$entry->{'Iname'}."\n";
+    }
+    $cth->finish;
 
     if( $entry->{'Itype'} eq "Function" ) {
         $TMaid = $tentry->{'Aid'} ? $tentry->{'Aid'} : $Aid;
