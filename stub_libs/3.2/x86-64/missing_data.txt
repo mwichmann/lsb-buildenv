@@ -1432,6 +1432,8 @@ libQtGui _ZTI10QUndoGroup 18
 libQtGui _ZTI9QUndoView 18
 libQtGui _ZTI15QCalendarWidget 18
 libQtGui _ZTI16QDialogButtonBox 18
+libQtGui _ZTI17QGraphicsTextItem 38
+libQtGui _ZTV10QUndoGroup 70
 libQtNetwork _ZTI10QTcpServer 18
 libQtNetwork _ZTI10QTcpSocket 18
 libQtNetwork _ZTI10QUdpSocket 18
@@ -1512,6 +1514,8 @@ libQtSvg _ZTV16QXmlErrorHandler 40
 libQtSvg _ZTV18QXmlContentHandler 80
 libQtSvg _ZTV18QXmlEntityResolver 30
 libQtSvg _ZTV18QXmlLexicalHandler 60
+libQtSvg _ZTI16QGraphicsSvgItem 38
+libQtSvg _ZTV16QGraphicsSvgItem 1c0
 libQtXml _ZTI10QXmlReader 10
 libQtXml _ZTI11QXmlLocator 10
 libQtXml _ZTI14QXmlAttributes 10

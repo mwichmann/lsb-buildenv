@@ -8087,7 +8087,7 @@ __asm__(".globl _ZTI17QFileIconProvider; .pushsection .data; .type _ZTI17QFileIc
 __asm__(".globl _ZTI17QGraphicsLineItem; .pushsection .data; .type _ZTI17QGraphicsLineItem,@object; .size _ZTI17QGraphicsLineItem, 12; _ZTI17QGraphicsLineItem: .long 0; .popsection");
 __asm__(".globl _ZTI17QGraphicsPathItem; .pushsection .data; .type _ZTI17QGraphicsPathItem,@object; .size _ZTI17QGraphicsPathItem, 12; _ZTI17QGraphicsPathItem: .long 0; .popsection");
 __asm__(".globl _ZTI17QGraphicsRectItem; .pushsection .data; .type _ZTI17QGraphicsRectItem,@object; .size _ZTI17QGraphicsRectItem, 12; _ZTI17QGraphicsRectItem: .long 0; .popsection");
-__asm__(".globl _ZTI17QGraphicsTextItem; .pushsection .data; .type _ZTI17QGraphicsTextItem,@object; .size _ZTI17QGraphicsTextItem, 0; _ZTI17QGraphicsTextItem: .long 0; .popsection");
+__asm__(".globl _ZTI17QGraphicsTextItem; .pushsection .data; .type _ZTI17QGraphicsTextItem,@object; .size _ZTI17QGraphicsTextItem, 32; _ZTI17QGraphicsTextItem: .long 0; .popsection");
 __asm__(".globl _ZTI17QIconEnginePlugin; .pushsection .data; .type _ZTI17QIconEnginePlugin,@object; .size _ZTI17QIconEnginePlugin, 32; _ZTI17QIconEnginePlugin: .long 0; .popsection");
 __asm__(".globl _ZTI17QInputMethodEvent; .pushsection .data; .type _ZTI17QInputMethodEvent,@object; .size _ZTI17QInputMethodEvent, 12; _ZTI17QInputMethodEvent: .long 0; .popsection");
 __asm__(".globl _ZTI17QTextImageHandler; .pushsection .data; .type _ZTI17QTextImageHandler,@object; .size _ZTI17QTextImageHandler, 32; _ZTI17QTextImageHandler: .long 0; .popsection");
@@ -8198,7 +8198,7 @@ __asm__(".globl _ZTV10QTabWidget; .pushsection .data; .type _ZTV10QTabWidget,@ob
 __asm__(".globl _ZTV10QTableView; .pushsection .data; .type _ZTV10QTableView,@object; .size _ZTV10QTableView, 412; _ZTV10QTableView: .long 0; .popsection");
 __asm__(".globl _ZTV10QTextFrame; .pushsection .data; .type _ZTV10QTextFrame,@object; .size _ZTV10QTextFrame, 56; _ZTV10QTextFrame: .long 0; .popsection");
 __asm__(".globl _ZTV10QTextTable; .pushsection .data; .type _ZTV10QTextTable,@object; .size _ZTV10QTextTable, 56; _ZTV10QTextTable: .long 0; .popsection");
-__asm__(".globl _ZTV10QUndoGroup; .pushsection .data; .type _ZTV10QUndoGroup,@object; .size _ZTV10QUndoGroup, 0; _ZTV10QUndoGroup: .long 0; .popsection");
+__asm__(".globl _ZTV10QUndoGroup; .pushsection .data; .type _ZTV10QUndoGroup,@object; .size _ZTV10QUndoGroup, 56; _ZTV10QUndoGroup: .long 0; .popsection");
 __asm__(".globl _ZTV10QUndoStack; .pushsection .data; .type _ZTV10QUndoStack,@object; .size _ZTV10QUndoStack, 56; _ZTV10QUndoStack: .long 0; .popsection");
 __asm__(".globl _ZTV10QValidator; .pushsection .data; .type _ZTV10QValidator,@object; .size _ZTV10QValidator, 64; _ZTV10QValidator: .long 0; .popsection");
 __asm__(".globl _ZTV10QWorkspace; .pushsection .data; .type _ZTV10QWorkspace,@object; .size _ZTV10QWorkspace, 252; _ZTV10QWorkspace: .long 0; .popsection");
