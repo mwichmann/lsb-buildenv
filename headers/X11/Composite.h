@@ -12,6 +12,10 @@ extern "C" {
     typedef void (*XtDoChangeProc) (Widget, WidgetList, Cardinal *,
 				    WidgetList, Cardinal *, XtPointer);
 
+    typedef struct _CompositeClassRec *CompositeWidgetClass;
+
+    typedef Cardinal(*XtOrderProc) (Widget);
+
 
 /* Function prototypes */
 

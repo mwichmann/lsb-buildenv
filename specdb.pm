@@ -35,6 +35,7 @@ sub displayconstant($)
     if($scth->rows) {
         $scentry = $scth->fetchrow_hashref;
         print $scentry->{'CAvalue'}."\n";
+        $scth->finish;
         return;
     }
 

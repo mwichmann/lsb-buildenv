@@ -1,4 +1,56 @@
 
+#define XtOffset(p_type,field)	((Cardinal) (((char *) (&(((p_type)NULL)->field))) - ((char *) NULL)))
+#define XtNumber(arr)	((Cardinal) (sizeof(arr) / sizeof(arr[0])))
+#define XtAllEvents	((EventMask) -1L)
+#define XtUnspecifiedPixmap	((Pixmap)2)
+#define XtNew(type)	((type *) XtMalloc((unsigned) sizeof(type)))
+#define XtSetArg(arg,n,d)	((void)( (arg).name = (n), (arg).value = (XtArgVal)(d) ))
+#define XtUnspecifiedWindow	((Window)2)
+#define XtUnspecifiedWindowGroup	((Window)3)
+#define XtUnspecifiedShellInt	(-1)
+#define XtCWQueryOnly	(1 << 7)
+#define XtInputReadMask	(1L<<0)
+#define XtInputWriteMask	(1L<<1)
+#define XtInputExceptMask	(1L<<2)
+#define XT_CONVERT_FAIL	(Atom)0x80000001
+#define XtIMAll	(XtIMXEvent | XtIMTimer | XtIMAlternateInput | XtIMSignal)
+#define XtIsRectObj(object)	(_XtCheckSubclassFlag(object, (XtEnum)0x02))
+#define XtIsWidget(object)	(_XtCheckSubclassFlag(object, (XtEnum)0x04))
+#define XtIsComposite(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x08))
+#define XtIsConstraint(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x10))
+#define XtIsShell(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x20))
+#define XtIsWMShell(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x40))
+#define XtInputNoneMask	0L
+#define XtCacheNone	0x001
+#define XtCacheAll	0x002
+#define XtCacheByDisplay	0x003
+#define XtCacheRefCount	0x100
+#define XtIMXEvent	1
+#define XtIMTimer	2
+#define XtIMAlternateInput	4
+#define XtSMDontChange	5
+#define XtSpecificationRelease	6
+#define XtIMSignal	8
+#define _XtString	char*
+#define externalref	extern
+#define _XtBoolean	int
+#define _XtPosition	int
+#define XtOffsetOf(s_type,field)	offsetof(s_type,field)
+#define _XtDimension	unsigned int
+#define _XtKeyCode	unsigned int
+#define _XtXtEnum	unsigned int
+#define XtCurrentDirectory	"XtCurrentDirectory"
+#define XtCvtPixelToColor	"XtCvtIntToColor"
+#define XtCvtIntToDimension	"XtCvtIntToShort"
+#define XtCvtIntToPosition	"XtCvtIntToShort"
+#define XtCvtStringToPosition	"XtCvtStringToShort"
+#define XtDefaultBackground	"XtDefaultBackground"
+#define XtDefaultFont	"XtDefaultFont"
+#define XtDefaultFontSet	"XtDefaultFontSet"
+#define XtDefaultForeground	"XtDefaultForeground"
+#define XtVaNestedList	"XtVaNestedList"
+#define XtVaTypedArg	"XtVaTypedArg"
+
 typedef unsigned int Cardinal;
 typedef void *XtPointer;
 struct _WidgetRec;
@@ -48,7 +100,6 @@ typedef long unsigned int XtIntervalId;
 struct _WidgetClassRec;
 typedef struct _WidgetClassRec *WidgetClass;
 typedef Widget *WidgetList;
-struct _TranslationData;
 typedef struct _TranslationData *XtAccelerators;
 typedef struct _TranslationData *XtTranslations;
 typedef enum XtGeometryResult;
