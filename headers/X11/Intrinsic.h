@@ -285,6 +285,12 @@ extern "C" {
 #include <X11/EventI.h>
     typedef XtActionProc *XtBoundActions;
 
+    typedef struct _XtResource XtResource;
+
+    typedef struct _XtCallbackRec XtCallbackRec;
+
+    typedef struct _XtCheckpointTokenRec XtCheckpointTokenRec;
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12

@@ -71,15 +71,6 @@ typedef struct {
 } XtWidgetGeometry;
 typedef unsigned int Modifiers;
 typedef void *XtCacheRef;
-struct _XtResource {
-    String resource_name;
-    String resource_class;
-    String resource_type;
-    Cardinal resource_size;
-    Cardinal resource_offset;
-    String default_type;
-    XtPointer default_addr;
-};
 typedef struct _XtResource *XtResourceList;
 struct _XtAppStruct;
 typedef struct _XtAppStruct *XtAppContext;
@@ -123,10 +114,6 @@ typedef void (*XtTimerCallbackProc) (XtPointer, XtIntervalId *);
 typedef long unsigned int XtInputMask;
 typedef enum XtListPosition;
 typedef void (*XtCallbackProc) (Widget, XtPointer, XtPointer);
-struct _XtCallbackRec {
-    XtCallbackProc callback;
-    XtPointer closure;
-};
 typedef struct _XtCallbackRec *XtCallbackList;
 typedef long unsigned int EventMask;
 typedef void *XtVarArgsList;
@@ -166,20 +153,6 @@ typedef void (*XtErrorMsgHandler) (String, String, String, String,
 				   String *, Cardinal *);
 typedef String(*XtLanguageProc) (Display *, String, XtPointer);
 typedef enum XtGrabKind;
-struct _XtCheckpointTokenRec {
-    int save_type;
-    int interact_style;
-    Boolean shutdown;
-    Boolean fast;
-    Boolean cancel_shutdown;
-    int phase;
-    int interact_dialog_type;
-    Boolean request_cancel;
-    Boolean request_next_phase;
-    Boolean save_success;
-    int type;
-    Widget widget;
-};
 typedef struct _XtCheckpointTokenRec *XtCheckpointToken;
 typedef void (*XtExtensionSelectProc) (Widget, int *, XtPointer *, int,
 				       XtPointer);
@@ -197,6 +170,33 @@ typedef void (*XtLoseSelectionIncrProc) (Widget, Atom *, XtPointer);
 typedef long unsigned int XtValueMask;
 typedef struct _XtEventRec *XtEventTable;
 typedef XtActionProc *XtBoundActions;
+typedef struct _XtResource {
+    String resource_name;
+    String resource_class;
+    String resource_type;
+    Cardinal resource_size;
+    Cardinal resource_offset;
+    String default_type;
+    XtPointer default_addr;
+} XtResource;
+typedef struct _XtCallbackRec {
+    XtCallbackProc callback;
+    XtPointer closure;
+} XtCallbackRec;
+typedef struct _XtCheckpointTokenRec {
+    int save_type;
+    int interact_style;
+    Boolean shutdown;
+    Boolean fast;
+    Boolean cancel_shutdown;
+    int phase;
+    int interact_dialog_type;
+    Boolean request_cancel;
+    Boolean request_next_phase;
+    Boolean save_success;
+    int type;
+    Widget widget;
+} XtCheckpointTokenRec;
 extern void XtAddActions(XtActionList, Cardinal);
 extern void XtAddCallback(Widget, const char *, XtCallbackProc, XtPointer);
 extern void XtAddCallbacks(Widget, const char *, XtCallbackList);
