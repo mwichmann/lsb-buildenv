@@ -350,6 +350,7 @@ extern "C" {
 #define XLookupKeySym	3
 #define XLookupBoth	4
 #define XlibSpecificationRelease	6
+#define Status	int
 #define DefaultScreenOfDisplay(dpy)	ScreenOfDisplay(dpy,DefaultScreen(dpy))
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

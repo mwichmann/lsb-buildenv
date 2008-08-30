@@ -9,7 +9,7 @@ extern "C" {
 
 
 #define NARROWPROTO
-#define NeedWidePrototypes
+#define NeedWidePrototypes	0
 #define NeedFunctionPrototypes	1
 #define NeedNestedPrototypes	1
 #define NeedVarargsPrototypes	1

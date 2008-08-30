@@ -271,6 +271,7 @@ typedef void (*XConnectionWatchProc) (Display *, XPointer, int, int,
 #define XLookupBoth	4
 #define XlibSpecificationRelease	6
 #define Bool	int
+#define Status	int
 #define DefaultScreenOfDisplay(dpy)	ScreenOfDisplay(dpy,DefaultScreen(dpy))
 
 typedef struct _XExtData {
