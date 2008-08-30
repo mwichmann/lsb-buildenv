@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 
-#define XI_DeviceValuator
+#define XI_DeviceValuator	0
 #define InputClassBits	0x3F
 #define DEVICE_BITS	0x7F
 #define MORE_EVENTS	0x80
