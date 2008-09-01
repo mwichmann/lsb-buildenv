@@ -66,6 +66,9 @@ void _ZNK16QGraphicsSvgItem8rendererEv() {} ;
 void _ZNK16QGraphicsSvgItem9elementIdEv() {} ;
 void _ZThn16_N10QSvgWidgetD0Ev() {} ;
 void _ZThn16_N10QSvgWidgetD1Ev() {} ;
+void _ZThn16_N16QGraphicsSvgItem5paintEP8QPainterPK24QStyleOptionGraphicsItemP7QWidget() {} ;
+void _ZThn16_NK16QGraphicsSvgItem12boundingRectEv() {} ;
+void _ZThn16_NK16QGraphicsSvgItem4typeEv() {} ;
 __asm__(".globl _ZN10QSvgWidget16staticMetaObjectE; .pushsection .data; .type _ZN10QSvgWidget16staticMetaObjectE,@object; .size _ZN10QSvgWidget16staticMetaObjectE, 32; _ZN10QSvgWidget16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN12QSvgRenderer16staticMetaObjectE; .pushsection .data; .type _ZN12QSvgRenderer16staticMetaObjectE,@object; .size _ZN12QSvgRenderer16staticMetaObjectE, 32; _ZN12QSvgRenderer16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN16QGraphicsSvgItem16staticMetaObjectE; .pushsection .data; .type _ZN16QGraphicsSvgItem16staticMetaObjectE,@object; .size _ZN16QGraphicsSvgItem16staticMetaObjectE, 32; _ZN16QGraphicsSvgItem16staticMetaObjectE: .long 0; .popsection");
@@ -77,6 +80,3 @@ __asm__(".globl _ZTV10QSvgWidget; .pushsection .data; .type _ZTV10QSvgWidget,@ob
 __asm__(".globl _ZTV12QSvgRenderer; .pushsection .data; .type _ZTV12QSvgRenderer,@object; .size _ZTV12QSvgRenderer, 112; _ZTV12QSvgRenderer: .long 0; .popsection");
 __asm__(".globl _ZTV16QGraphicsSvgItem; .pushsection .data; .type _ZTV16QGraphicsSvgItem,@object; .size _ZTV16QGraphicsSvgItem, 448; _ZTV16QGraphicsSvgItem: .long 0; .popsection");
 __asm__(".globl _ZTV16QSvgTinyDocument; .pushsection .data; .type _ZTV16QSvgTinyDocument,@object; .size _ZTV16QSvgTinyDocument, 56; _ZTV16QSvgTinyDocument: .long 0; .popsection");
-__asm__(".globl _ZThn16_N16QGraphicsSvgItem5paintEP8QPainterPK24QStyleOptionGraphicsItemP7QWidget; .pushsection .data; .type _ZThn16_N16QGraphicsSvgItem5paintEP8QPainterPK24QStyleOptionGraphicsItemP7QWidget,@object; .size _ZThn16_N16QGraphicsSvgItem5paintEP8QPainterPK24QStyleOptionGraphicsItemP7QWidget, 0; _ZThn16_N16QGraphicsSvgItem5paintEP8QPainterPK24QStyleOptionGraphicsItemP7QWidget: .long 0; .popsection");
-__asm__(".globl _ZThn16_NK16QGraphicsSvgItem12boundingRectEv; .pushsection .data; .type _ZThn16_NK16QGraphicsSvgItem12boundingRectEv,@object; .size _ZThn16_NK16QGraphicsSvgItem12boundingRectEv, 0; _ZThn16_NK16QGraphicsSvgItem12boundingRectEv: .long 0; .popsection");
-__asm__(".globl _ZThn16_NK16QGraphicsSvgItem4typeEv; .pushsection .data; .type _ZThn16_NK16QGraphicsSvgItem4typeEv,@object; .size _ZThn16_NK16QGraphicsSvgItem4typeEv, 0; _ZThn16_NK16QGraphicsSvgItem4typeEv: .long 0; .popsection");
