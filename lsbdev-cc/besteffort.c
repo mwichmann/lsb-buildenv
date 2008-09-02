@@ -79,10 +79,13 @@ void _lsb_init()
   cmdread = 0;
   do {
     result = read(fd, cmdbuf + cmdread, PATH_MAX - cmdread);
-    if (result < 0)
+    if (result < 0) {
+      close(fd);
       return;
+    }
     cmdread += result;
   } while ((result > 0) && (cmdread < PATH_MAX));
+  close(fd);
   if (cmdread >= PATH_MAX)
     return;
   cmdbuf[cmdread] = '\0';
