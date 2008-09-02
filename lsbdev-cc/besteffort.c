@@ -24,6 +24,8 @@
 char *lsb_linker_path = LSB_LINKER;
 char *native_linker_path = NATIVE_LINKER;
 
+#define ARGV_MAX 128
+
 #if HAVE_GCC_CONSTRUCTOR_PRIORITY
 void _lsb_init() __attribute__((constructor(101)));
 #else
@@ -34,12 +36,12 @@ void _lsb_init()
 {
   struct stat lsblinker;
   struct stat nativelinker;
-  char cmdbuf[1024];
+  char cmdbuf[PATH_MAX];
   char exebuf[PATH_MAX];
   ssize_t result, cmdread;
   int fd;
   int argc = 0;
-  char *argv[128];
+  char *argv[ARGV_MAX];
   char *pos;
 
   if (getenv("LSB_BESTEFFORT_DONE") != NULL) {
@@ -75,20 +77,24 @@ void _lsb_init()
 
   cmdread = 0;
   do {
-    result = read(fd, cmdbuf + cmdread, 1024 - cmdread);
+    result = read(fd, cmdbuf + cmdread, PATH_MAX - cmdread);
     if (result < 0)
       return;
     cmdread += result;
-  } while (result > 0);
+  } while ((result > 0) && (cmdread < PATH_MAX));
+  if (cmdread >= PATH_MAX)
+    return;
   cmdbuf[cmdread] = '\0';
 
   argv[argc++] = lsb_linker_path;
   pos = cmdbuf;
-  while (*pos && argc < 128) {
+  while (*pos && argc < ARGV_MAX) {
     argv[argc++] = pos;
     while (*(++pos)) ;
     pos++;
   }
+  if (argc >= ARGV_MAX)
+    return;
   argv[argc] = NULL;
 
   /* Now, use /proc/self/exe to get the path to the executable. */
