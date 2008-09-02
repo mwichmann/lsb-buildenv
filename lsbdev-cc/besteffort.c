@@ -42,6 +42,11 @@ void _lsb_init()
   char *argv[128];
   char *pos;
 
+  if (getenv("LSB_BESTEFFORT_DONE") != NULL) {
+    unsetenv("LSB_BESTEFFORT_DONE");
+    return;
+  }
+
   if (getenv("LSB_BESTEFFORT_TEST") == NULL) {
 
     if (lstat(lsb_linker_path, &lsblinker) ||
@@ -58,6 +63,9 @@ void _lsb_init()
 
   /* At this point, we've decided to re-exec.  We only abort on some
      failure or other. */
+
+  if (setenv("LSB_BESTEFFORT_DONE", "1", 1) != 0)
+    return;
 
   /* First, build argv for the exec. */
 
