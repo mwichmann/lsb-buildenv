@@ -113,5 +113,5 @@ void _lsb_init()
 
   execv(lsb_linker_path, argv);
   fputs("lsb best-effort exec failed\n", stderr);
-  exit(255);
+  /* exit(255); */
 }
