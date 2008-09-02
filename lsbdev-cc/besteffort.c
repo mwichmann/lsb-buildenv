@@ -23,7 +23,11 @@
 char *lsb_linker_path = LSB_LINKER;
 char *native_linker_path = NATIVE_LINKER;
 
+#if HAVE_GCC_CONSTRUCTOR_PRIORITY
+void _lsb_init() __attribute__((constructor(101)));
+#else
 void _lsb_init() __attribute__((constructor));
+#endif
 
 void _lsb_init()
 {
