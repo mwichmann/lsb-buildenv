@@ -13,6 +13,9 @@ extern "C" {
 #endif
 
 
+#define _XtintrinsicP_h	1
+
+
 #if __LSB_VERSION__ >= 12
     typedef struct {
 	long int xrm_name;

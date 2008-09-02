@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _XtShell_h	1
+
+
 
 /* Function prototypes */
 

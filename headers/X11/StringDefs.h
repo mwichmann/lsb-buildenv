@@ -262,6 +262,7 @@ extern "C" {
 #define XtCEditType	((char*)&XtStrings[989])
 #define XtCEventBindings	((char*)&XtStrings[998])
 #define XtNborder	((char*)&XtStrings[99])
+#define _XtStringDefs_h_	1
 
 
 

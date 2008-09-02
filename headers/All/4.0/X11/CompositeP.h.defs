@@ -2,6 +2,7 @@
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
+#define _XtCompositeP_h	1
 #define XtCompositeExtensionVersion	2L
 
 typedef struct _CompositeClassPart {

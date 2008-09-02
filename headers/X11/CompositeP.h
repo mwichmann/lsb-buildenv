@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 
+#define _XtCompositeP_h	1
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)

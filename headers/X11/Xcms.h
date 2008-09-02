@@ -96,16 +96,20 @@ extern "C" {
 	XcmsFloat pad3;
     } XcmsPad;
 
-    typedef union {
-	XcmsRGB RGB;
-	XcmsRGBi RGBi;
-	XcmsCIEXYZ CIEXYZ;
-	XcmsCIEuvY CIEuvY;
-	XcmsCIExyY CIExyY;
-	XcmsCIELab CIELab;
-	XcmsCIELuv CIELuv;
-	XcmsTekHVC TekHVC;
-	XcmsPad Pad;
+    typedef struct {
+	union {
+	    XcmsRGB RGB;
+	    XcmsRGBi RGBi;
+	    XcmsCIEXYZ CIEXYZ;
+	    XcmsCIEuvY CIEuvY;
+	    XcmsCIExyY CIExyY;
+	    XcmsCIELab CIELab;
+	    XcmsCIELuv CIELuv;
+	    XcmsTekHVC TekHVC;
+	    XcmsPad Pad;
+	} spec;
+	unsigned long int pixel;
+	XcmsColorFormat pixel;
     } XcmsColor;
 
     typedef struct _XcmsPerScrnInfo XcmsPerScrnInfo;

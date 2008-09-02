@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define NULLQUARK	((XrmQuark) 0)
+
+
 #if __LSB_VERSION__ >= 12
     typedef int XrmQuark;
 

@@ -1,4 +1,6 @@
 
+#define _XtintrinsicP_h	1
+
 typedef struct {
     long int xrm_name;
     long int xrm_class;

@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _XtCore_h	1
+
+
     typedef struct _WidgetClassRec *CoreWidgetClass;
 
     typedef struct _WidgetClassRec *CoreWidget;

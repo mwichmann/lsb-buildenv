@@ -1,4 +1,6 @@
 
+#define _XtShell_h	1
+
 extern char XtShellStrings[];
 extern WidgetClass applicationShellWidgetClass;
 extern WidgetClass overrideShellWidgetClass;

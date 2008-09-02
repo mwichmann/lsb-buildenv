@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _XtComposite_h	1
+
+
     typedef void (*XtDoChangeProc) (Widget, WidgetList, Cardinal *,
 				    WidgetList, Cardinal *, XtPointer);
 

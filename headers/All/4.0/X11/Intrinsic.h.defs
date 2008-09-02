@@ -26,6 +26,7 @@
 #define XtCacheByDisplay	0x003
 #define XtCacheRefCount	0x100
 #define XtIMXEvent	1
+#define _XtIntrinsic_h	1
 #define XtIMTimer	2
 #define XtIMAlternateInput	4
 #define XtSMDontChange	5
@@ -197,6 +198,46 @@ typedef struct _XtCheckpointTokenRec {
     int type;
     Widget widget;
 } XtCheckpointTokenRec;
+typedef long unsigned int Pixel;
+typedef struct {
+    Widget shell_widget;
+    Widget enable_widget;
+} XtPopdownIDRec;
+typedef XtPopdownIDRec *XtPopdownID;
+typedef struct {
+    String type;
+    Widget widget;
+    ArgList args;
+    Cardinal num_args;
+} XtCreateHookDataRec;
+typedef XtCreateHookDataRec *XtCreateHookData;
+typedef struct {
+    String type;
+    Widget widget;
+    XtPointer event_data;
+    Cardinal num_event_data;
+} XtChangeHookDataRec;
+typedef XtChangeHookDataRec *XtChangeHookData;
+typedef struct {
+    Widget old;
+    Widget req;
+    ArgList args;
+    Cardinal num_args;
+} XtChangeHookSetValuesDataRec;
+typedef XtChangeHookSetValuesDataRec *XtChangeHookSetValuesData;
+typedef struct {
+    String type;
+    Widget widget;
+    XtWidgetGeometry *request;
+    XtWidgetGeometry *reply;
+    XtGeometryResult result;
+} XtGeometryHookDataRec;
+typedef XtGeometryHookDataRec *XtGeometryHookData;
+typedef struct {
+    String type;
+    Widget widget;
+} XtDestroyHookDataRec;
+typedef XtDestroyHookDataRec *XtDestroyHookData;
 extern void XtAddActions(XtActionList, Cardinal);
 extern void XtAddCallback(Widget, const char *, XtCallbackProc, XtPointer);
 extern void XtAddCallbacks(Widget, const char *, XtCallbackList);

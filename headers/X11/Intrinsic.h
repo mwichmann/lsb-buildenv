@@ -40,6 +40,7 @@ extern "C" {
 #define XtCacheByDisplay	0x003
 #define XtCacheRefCount	0x100
 #define XtIMXEvent	1
+#define _XtIntrinsic_h	1
 #define XtIMTimer	2
 #define XtIMAlternateInput	4
 #define XtSMDontChange	5
@@ -64,6 +65,8 @@ extern "C" {
 #define XtVaNestedList	"XtVaNestedList"
 #define XtVaTypedArg	"XtVaTypedArg"
 
+
+    typedef long unsigned int Pixel;
 
 #if __LSB_VERSION__ >= 12
     typedef unsigned int Cardinal;
@@ -290,6 +293,57 @@ extern "C" {
     typedef struct _XtCallbackRec XtCallbackRec;
 
     typedef struct _XtCheckpointTokenRec XtCheckpointTokenRec;
+
+    typedef struct {
+	Widget shell_widget;
+	Widget enable_widget;
+    } XtPopdownIDRec;
+
+    typedef XtPopdownIDRec *XtPopdownID;
+
+    typedef struct {
+	String type;
+	Widget widget;
+	ArgList args;
+	Cardinal num_args;
+    } XtCreateHookDataRec;
+
+    typedef XtCreateHookDataRec *XtCreateHookData;
+
+    typedef struct {
+	String type;
+	Widget widget;
+	XtPointer event_data;
+	Cardinal num_event_data;
+    } XtChangeHookDataRec;
+
+    typedef XtChangeHookDataRec *XtChangeHookData;
+
+    typedef struct {
+	Widget old;
+	Widget req;
+	ArgList args;
+	Cardinal num_args;
+    } XtChangeHookSetValuesDataRec;
+
+    typedef XtChangeHookSetValuesDataRec *XtChangeHookSetValuesData;
+
+    typedef struct {
+	String type;
+	Widget widget;
+	XtWidgetGeometry *request;
+	XtWidgetGeometry *reply;
+	XtGeometryResult result;
+    } XtGeometryHookDataRec;
+
+    typedef XtGeometryHookDataRec *XtGeometryHookData;
+
+    typedef struct {
+	String type;
+	Widget widget;
+    } XtDestroyHookDataRec;
+
+    typedef XtDestroyHookDataRec *XtDestroyHookData;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

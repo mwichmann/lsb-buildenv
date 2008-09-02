@@ -1,4 +1,6 @@
 
+#define NULLQUARK	((XrmQuark) 0)
+
 typedef int XrmQuark;
 typedef int *XrmQuarkList;
 typedef char *XrmString;
