@@ -11,6 +11,7 @@
  * if no LSB environment exists.
  */
 
+#include <libgen.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -18,6 +19,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <string.h>
 
 #include "linkers.h"
 
@@ -51,8 +53,7 @@ void _lsb_init()
 
   if (getenv("LSB_BESTEFFORT_TEST") == NULL) {
 
-    if (lstat(lsb_linker_path, &lsblinker) ||
-	S_ISLNK(lsblinker.st_mode))
+    if (stat(lsb_linker_path, &lsblinker))
       return;
 
     if (stat(native_linker_path, &nativelinker))
