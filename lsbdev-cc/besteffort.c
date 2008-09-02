@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 #include "linkers.h"
 
@@ -34,31 +35,46 @@ void _lsb_init()
   struct stat lsblinker;
   struct stat nativelinker;
   char cmdbuf[1024];
+  char exebuf[PATH_MAX];
+  ssize_t result, cmdread;
   int fd;
   int argc = 0;
   char *argv[128];
   char *pos;
 
-  if (lstat(lsb_linker_path, &lsblinker) ||
-      S_ISLNK(lsblinker.st_mode))
-    return;
+  if (getenv("LSB_BESTEFFORT_TEST") == NULL) {
 
-  if (stat(native_linker_path, &nativelinker))
-    return;
+    if (lstat(lsb_linker_path, &lsblinker) ||
+	S_ISLNK(lsblinker.st_mode))
+      return;
 
-  if (lsblinker.st_ino == nativelinker.st_ino)
-    return;
+    if (stat(native_linker_path, &nativelinker))
+      return;
+
+    if (lsblinker.st_ino == nativelinker.st_ino)
+      return;
+
+  }
 
   /* At this point, we've decided to re-exec.  We only abort on some
      failure or other. */
+
+  /* First, build argv for the exec. */
 
   fd = open("/proc/self/cmdline", O_RDONLY);
   if (fd == -1)
     return;
 
-  if (read(fd, cmdbuf, 1024) <= 0)
-    return;
+  cmdread = 0;
+  do {
+    result = read(fd, cmdbuf + cmdread, 1024 - cmdread);
+    if (result < 0)
+      return;
+    cmdread += result;
+  } while (result > 0);
+  cmdbuf[cmdread] = '\0';
 
+  argv[argc++] = lsb_linker_path;
   pos = cmdbuf;
   while (*pos && argc < 128) {
     argv[argc++] = pos;
@@ -67,7 +83,17 @@ void _lsb_init()
   }
   argv[argc] = NULL;
 
-  execv("/proc/self/exe", argv);
+  /* Now, use /proc/self/exe to get the path to the executable. */
+
+  result = readlink("/proc/self/exe", exebuf, PATH_MAX);
+  if ((result == -1) || (result == PATH_MAX))
+    return;
+  exebuf[result] = '\0';
+  argv[1] = exebuf;
+
+  /* Finally, do the re-exec. */
+
+  execv(lsb_linker_path, argv);
   fputs("lsb best-effort exec failed\n", stderr);
   exit(255);
 }
