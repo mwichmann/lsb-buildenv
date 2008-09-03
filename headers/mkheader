@@ -292,7 +292,8 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
     $Tid=$$type{'Tid'};
     #print $$type{'Tdescription'}."\n";
 
-    $tmselect = "SELECT * FROM TypeMember ";
+    $tmselect = "SELECT distinct TypeMember.*,TMEdeclaration FROM TypeMember ";
+    $tmselect.= "LEFT JOIN TypeMemberExtras ON TMEtmid=TMid ";
     $tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
     $tmselect.= "ORDER BY TMposition";
     $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
@@ -306,6 +307,10 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
     }
     for(1..$tmh->rows) {
         $tmentry = $tmh->fetchrow_hashref;
+        if( $tmentry->{'TMEdeclaration'} ) {
+            print $tmentry->{'TMEdeclaration'}."\n";
+            next;
+        }
         $TMtypeid=$tmentry->{'TMtypeid'};
         #joining Type table with ArchType to get ATsize value for Array bounds.
         $tselect = "SELECT * FROM Type ";
@@ -408,7 +413,9 @@ if( $$type{'Ttype'} eq "Union" ) {
     if( $nameonly ) { return; }
     #print $$type{'Tdescription'}."\n";
 
-    $tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN(1,$TMaid) ";
+    $tmselect = "SELECT distinct TypeMember.*, TMEdeclaration FROM TypeMember ";
+    $tmselect.= "LEFT JOIN TypeMemberExtras ON TMEtmid=TMid ";
+    $tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN(1,$TMaid) ";
     $tmselect.= "ORDER BY TMposition";
     $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
     $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -421,6 +428,10 @@ if( $$type{'Ttype'} eq "Union" ) {
     }
     for(1..$tmh->rows) {
         $tmentry = $tmh->fetchrow_hashref;
+        if( $tmentry->{'TMEdeclaration'} ) {
+            print $tmentry->{'TMEdeclaration'}."\n";
+            next;
+        }
         $TMtypeid=$tmentry->{'TMtypeid'};
         $tselect="SELECT * FROM Type ";
         $tselect.="LEFT JOIN ArchType ON ATtid=Tid ";

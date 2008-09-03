@@ -440,7 +440,11 @@ extern "C" {
     typedef struct {
 	XExtData *ext_data;
 	VisualID visualid;
+#if defined(__cplusplus) || defined(c_plusplus)
 	int c_class;
+#else
+	int class;
+#endif
 	unsigned long int red_mask;
 	unsigned long int green_mask;
 	unsigned long int blue_mask;
@@ -531,7 +535,11 @@ extern "C" {
 	int depth;
 	Visual *visual;
 	Window root;
+#if defined(__cplusplus) || defined(c_plusplus)
 	int c_class;
+#else
+	int class;
+#endif
 	int bit_gravity;
 	int win_gravity;
 	int backing_store;
@@ -1106,7 +1114,11 @@ extern "C" {
 	Display *display;
 	Window window;
 	Colormap colormap;
+#if defined(__cplusplus) || defined(c_plusplus)
 	int c_new;
+#else
+	int new;
+#endif
 	int state;
     } XColormapEvent;
 

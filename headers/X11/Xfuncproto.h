@@ -18,7 +18,8 @@ extern "C" {
 #ifdef __cplusplus
 #define _XFUNCPROTOBEGIN extern "C" {
 #else
-#define _XFUNCPROTOBEGIN
+#define
+    _XFUNCPROTOBEGIN
 #endif
 #define _X_INLINE	inline
 #define _X_SENTINEL(x)	__attribute__ ((__sentinel__(x)))
@@ -34,8 +35,6 @@ extern "C" {
 #else
 #define _XFUNCPROTOEND
 #endif
-
-
 #ifdef __cplusplus
 }
 #endif

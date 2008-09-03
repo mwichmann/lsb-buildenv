@@ -76,6 +76,10 @@ typedef struct _XtResource *XtResourceList;
 struct _XtAppStruct;
 typedef struct _XtAppStruct *XtAppContext;
 typedef void (*XtActionProc) (Widget, XEvent *, String *, Cardinal *);
+struct _XtActionsRec {
+    String string;
+    XtActionProc proc;
+};
 typedef struct _XtActionsRec *XtActionList;
 typedef char Boolean;
 typedef int XtCacheType;
@@ -195,10 +199,6 @@ typedef struct _XtCheckpointTokenRec {
     Widget widget;
 } XtCheckpointTokenRec;
 typedef long unsigned int Pixel;
-typedef struct _XtActionsRec {
-    String string;
-    XtActionProc proc;
-} XtActionsRec;
 typedef struct {
     Widget shell_widget;
     Widget enable_widget;
@@ -225,13 +225,6 @@ typedef struct {
     Cardinal num_args;
 } XtChangeHookSetValuesDataRec;
 typedef XtChangeHookSetValuesDataRec *XtChangeHookSetValuesData;
-typedef struct {
-    String type;
-    Widget widget;
-    XtGeometryMask changeMask;
-    XWindowChanges changes;
-} XtConfigureHookDataRec;
-typedef XtConfigureHookDataRec *XtConfigureHookData;
 typedef struct {
     String type;
     Widget widget;

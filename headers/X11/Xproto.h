@@ -376,7 +376,11 @@ extern "C" {
 
     typedef struct {
 	CARD32 visualID;
+#if defined(__cplusplus) || defined(c_plusplus)
 	CARD8 c_class;
+#else
+	CARD8 class;
+#endif
 	CARD8 bitsPerRGB;
 	CARD16 colormapEntries;
 	CARD32 redMask;
@@ -472,7 +476,11 @@ extern "C" {
 	CARD16 sequenceNumber;
 	CARD32 length;
 	CARD32 visualID;
+#if defined(__cplusplus) || defined(c_plusplus)
 	CARD16 c_class;
+#else
+	CARD16 class;
+#endif
 	CARD8 bitGravity;
 	CARD8 winGravity;
 	CARD32 backingBitPlanes;
@@ -1030,7 +1038,11 @@ extern "C" {
 	CARD16 width;
 	CARD16 height;
 	CARD16 borderWidth;
+#if defined(__cplusplus) || defined(c_plusplus)
 	CARD16 c_class;
+#else
+	CARD16 class;
+#endif
 	CARD32 visual;
 	CARD32 mask;
     } xCreateWindowReq;
@@ -1106,7 +1118,11 @@ extern "C" {
 
     typedef struct {
 	CARD8 reqType;
+#if defined(__cplusplus) || defined(c_plusplus)
 	BOOL c_delete;
+#else
+	BOOL delete;
+#endif
 	CARD16 length;
 	CARD32 window;
 	CARD32 property;
@@ -1616,7 +1632,11 @@ extern "C" {
 
     typedef struct {
 	CARD8 reqType;
+#if defined(__cplusplus) || defined(c_plusplus)
 	CARD8 c_class;
+#else
+	CARD8 class;
+#endif
 	CARD16 length;
 	CARD32 drawable;
 	CARD16 width;
@@ -1957,7 +1977,11 @@ extern "C" {
 		CARD32 pad00;
 		CARD32 window;
 		CARD32 colormap;
+#if defined(__cplusplus) || defined(c_plusplus)
 		BOOL c_new;
+#else
+		BOOL new;
+#endif
 		BYTE state;
 		BYTE pad1;
 		BYTE pad2;

@@ -109,7 +109,7 @@ extern "C" {
 	    XcmsPad Pad;
 	} spec;
 	unsigned long int pixel;
-	XcmsColorFormat format;
+	XcmsColorFormat pixel;
     } XcmsColor;
 
     typedef struct _XcmsPerScrnInfo XcmsPerScrnInfo;

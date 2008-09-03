@@ -152,7 +152,11 @@ extern "C" {
 	VisualID visualid;
 	int screen;
 	int depth;
+#if defined(__cplusplus) || defined(c_plusplus)
 	int c_class;
+#else
+	int class;
+#endif
 	unsigned long int red_mask;
 	unsigned long int green_mask;
 	unsigned long int blue_mask;

@@ -81,8 +81,6 @@ core_headers_remove = [
     'features.h',
     'float.h',
     'rpc/pmap_clnt.h',
-    'X11/CompositeP.h',
-    'X11/ConstrainP.h',
     'X11/extensions/XInput.h',
     'X11/extensions/XKBgeom.h',
     'X11/ObjectP.h',

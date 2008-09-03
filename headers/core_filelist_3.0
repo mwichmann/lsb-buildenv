@@ -67,6 +67,7 @@ X11/Xutil.h
 X11/extensions/security.h
 X11/extensions/dpms.h
 X11/extensions/sync.h
+X11/ConstrainP.h
 X11/Xauth.h
 X11/extensions/shape.h
 X11/extensions/XShm.h
@@ -88,6 +89,7 @@ complex.h
 rpc/svc.h
 getopt.h
 sys/io.h
+X11/CompositeP.h
 endian.h
 stddef.h
 sys/uio.h
@@ -169,6 +171,7 @@ X11/ICE/ICEproto.h
 X11/SM/SMproto.h
 X11/SM/SM.h
 X11/TranslateI.h
+X11/CoreP.h
 X11/extensions/XTest.h
 sys/inotify.h
 sys/epoll.h

@@ -68,8 +68,6 @@ extern "C" {
 
     typedef long unsigned int Pixel;
 
-    typedef struct _XtActionsRec XtActionsRec;
-
 #if __LSB_VERSION__ >= 12
     typedef unsigned int Cardinal;
 
@@ -329,15 +327,6 @@ extern "C" {
     } XtChangeHookSetValuesDataRec;
 
     typedef XtChangeHookSetValuesDataRec *XtChangeHookSetValuesData;
-
-    typedef struct {
-	String type;
-	Widget widget;
-	XtGeometryMask changeMask;
-	XWindowChanges changes;
-    } XtConfigureHookDataRec;
-
-    typedef XtConfigureHookDataRec *XtConfigureHookData;
 
     typedef struct {
 	String type;

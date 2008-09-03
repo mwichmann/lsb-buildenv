@@ -207,7 +207,11 @@ extern "C" {
     typedef XProximityNotifyEvent XProximityOutEvent;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
     } XInputClass;
 
@@ -224,7 +228,11 @@ extern "C" {
     } XDeviceStateNotifyEvent;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
 	unsigned char num_valuators;
 	unsigned char mode;
@@ -232,14 +240,22 @@ extern "C" {
     } XValuatorStatus;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
 	short int num_keys;
 	char keys[32];
     } XKeyStatus;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
 	short int num_buttons;
 	char buttons[32];
@@ -270,13 +286,21 @@ extern "C" {
     } XChangeDeviceNotifyEvent;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
     } XFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int click;
@@ -289,7 +313,11 @@ extern "C" {
     } XKbdFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int accelNum;
@@ -298,7 +326,11 @@ extern "C" {
     } XPtrFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int resolution;
@@ -307,7 +339,11 @@ extern "C" {
     } XIntegerFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int max_symbols;
@@ -316,7 +352,11 @@ extern "C" {
     } XStringFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int percent;
@@ -325,7 +365,11 @@ extern "C" {
     } XBellFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int led_values;
@@ -333,13 +377,21 @@ extern "C" {
     } XLedFeedbackState;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
     } XFeedbackControl;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int accelNum;
@@ -348,7 +400,11 @@ extern "C" {
     } XPtrFeedbackControl;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int click;
@@ -362,7 +418,11 @@ extern "C" {
     } XKbdFeedbackControl;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int num_keysyms;
@@ -370,14 +430,22 @@ extern "C" {
     } XStringFeedbackControl;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int int_to_display;
     } XIntegerFeedbackControl;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int percent;
@@ -386,7 +454,11 @@ extern "C" {
     } XBellFeedbackControl;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	XID id;
 	int led_mask;
@@ -456,7 +528,11 @@ extern "C" {
     } XDeviceState;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
 	unsigned char num_valuators;
 	unsigned char mode;
@@ -464,14 +540,22 @@ extern "C" {
     } XValuatorState;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
 	short int num_keys;
 	char keys[32];
     } XKeyState;
 
     typedef struct {
-	unsigned char c_class;
+#if defined(__cplusplus) || defined(c_plusplus)
+	unsigned c_class;
+#else
+	unsigned class;
+#endif
 	unsigned char length;
 	short int num_buttons;
 	char buttons[32];
@@ -479,7 +563,11 @@ extern "C" {
 
 
     struct _XAnyClassinfo {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
     };
 
@@ -495,7 +583,11 @@ extern "C" {
 
 
     struct _XKeyInfo {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	short unsigned int min_keycode;
 	short unsigned int max_keycode;
@@ -504,7 +596,11 @@ extern "C" {
 
 
     struct _XButtonInfo {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	short int num_buttons;
     };
@@ -518,7 +614,11 @@ extern "C" {
 
 
     struct _XValuatorInfo {
+#if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
+#else
+	XID class;
+#endif
 	int length;
 	unsigned char num_axes;
 	unsigned char mode;
