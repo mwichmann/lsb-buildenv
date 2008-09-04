@@ -38,6 +38,7 @@ libgtk-x11-2.0 libgtk-x11-2.0.so.0
 libjpeg libjpeg.so.62
 libm libm.so.6
 libncurses libncurses.so.5
+libnspr4 libnspr4.so
 libnss3 libnss3.so
 libpam libpam.so.0
 libpango-1.0 libpango-1.0.so.0

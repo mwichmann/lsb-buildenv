@@ -159,6 +159,7 @@ char *lsb_libs_40[] = {
 	"jpeg",
 	"m",
 	"ncurses",
+	"nspr4",
 	"nss3",
 	"pam",
 	"pango-1.0",

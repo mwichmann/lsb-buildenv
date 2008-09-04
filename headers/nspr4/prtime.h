@@ -11,6 +11,10 @@ extern "C" {
 
     typedef PRInt64 PRTime;
 
+
+/* Function prototypes */
+
+    extern PRTime PR_Now(void);
 #ifdef __cplusplus
 }
 #endif
