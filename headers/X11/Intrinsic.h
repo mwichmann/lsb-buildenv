@@ -294,6 +294,8 @@ extern "C" {
 
     typedef struct _XtCheckpointTokenRec XtCheckpointTokenRec;
 
+    typedef struct _XtActionsRec XtActionsRec;
+
     typedef struct {
 	Widget shell_widget;
 	Widget enable_widget;
@@ -327,6 +329,15 @@ extern "C" {
     } XtChangeHookSetValuesDataRec;
 
     typedef XtChangeHookSetValuesDataRec *XtChangeHookSetValuesData;
+
+    typedef struct {
+	String type;
+	Widget widget;
+	XtGeometryMask changeMask;
+	XWindowChanges changes;
+    } XtConfigureHookDataRec;
+
+    typedef XtConfigureHookDataRec *XtConfigureHookData;
 
     typedef struct {
 	String type;

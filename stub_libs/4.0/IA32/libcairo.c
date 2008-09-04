@@ -175,3 +175,4 @@ void cairo_xlib_surface_create_for_bitmap() {} ;
 void cairo_xlib_surface_create_with_xrender_format() {} ;
 void cairo_xlib_surface_set_drawable() {} ;
 void cairo_xlib_surface_set_size() {} ;
+__asm__(".globl cairo_ft_font_face_create_for_ft_face; .pushsection .data; .type cairo_ft_font_face_create_for_ft_face,@object; .size cairo_ft_font_face_create_for_ft_face, 0; cairo_ft_font_face_create_for_ft_face: .long 0; .popsection");
