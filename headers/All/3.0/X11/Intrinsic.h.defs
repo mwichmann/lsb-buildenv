@@ -204,6 +204,7 @@ typedef struct {
     Widget enable_widget;
 } XtPopdownIDRec;
 typedef XtPopdownIDRec *XtPopdownID;
+typedef void (*XtCreatePopupChildProc) (Widget);
 typedef struct {
     String type;
     Widget widget;

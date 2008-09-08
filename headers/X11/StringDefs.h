@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+#define XtRAtom	((char*)&XtShellStrings[368])
 #define XtNaccelerators	((char*)&XtStrings[0])
 #define XtCFile	((char*)&XtStrings[1012])
 #define XtCFont	((char*)&XtStrings[1017])

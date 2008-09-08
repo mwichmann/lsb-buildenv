@@ -430,7 +430,14 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    struct _XGC;
+    struct _XGC {
+	XExtData *ext_data;
+	GContext gid;
+	int rects;
+	int dashes;
+	unsigned long int dirty;
+	XGCValues values;
+    };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

@@ -319,7 +319,14 @@ typedef struct {
     char dashes;
 } XGCValues;
 
-struct _XGC;
+struct _XGC {
+    XExtData *ext_data;
+    GContext gid;
+    int rects;
+    int dashes;
+    unsigned long int dirty;
+    XGCValues values;
+};
 typedef struct _XGC *GC;
 
 typedef struct {

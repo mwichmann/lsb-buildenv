@@ -66,6 +66,8 @@ extern "C" {
 #define XtVaTypedArg	"XtVaTypedArg"
 
 
+    typedef void (*XtCreatePopupChildProc) (Widget);
+
     typedef long unsigned int Pixel;
 
 #if __LSB_VERSION__ >= 12
@@ -624,6 +626,7 @@ extern "C" {
     extern void XtDisplayInitialize(XtAppContext, Display *, const char *,
 				    const char *, XrmOptionDescRec *,
 				    Cardinal, int *, char **);
+#undef XtDisplayOfObject
     extern Display *XtDisplayOfObject(Widget);
     extern void XtDisplayStringConversionWarning(Display *, const char *,
 						 const char *);
@@ -704,10 +707,12 @@ extern "C" {
     extern void XtInstallAccelerators(Widget, Widget);
     extern void XtInstallAllAccelerators(Widget, Widget);
     extern Boolean XtIsApplicationShell(Widget);
+#undef XtIsManaged
     extern Boolean XtIsManaged(Widget);
     extern Boolean XtIsObject(Widget);
     extern Boolean XtIsOverrideShell(Widget);
     extern Boolean XtIsRealized(Widget);
+#undef XtIsSensitive
     extern Boolean XtIsSensitive(Widget);
     extern Boolean XtIsSessionShell(Widget);
     extern Boolean XtIsSubclass(Widget, WidgetClass);
@@ -798,6 +803,7 @@ extern "C" {
 				    XtFilePredicate);
     extern Screen *XtScreen(Widget);
     extern XrmDatabase XtScreenDatabase(Screen *);
+#undef XtScreenOfObject
     extern Screen *XtScreenOfObject(Widget);
     extern void XtSendSelectionRequest(Widget, Atom, Time);
     extern XtCheckpointToken XtSessionGetToken(Widget);
@@ -872,6 +878,7 @@ extern "C" {
 			     const char *, String *, Cardinal *);
     extern XtAppContext XtWidgetToApplicationContext(Widget);
     extern Window XtWindow(Widget);
+#undef XtWindowOfObject
     extern Window XtWindowOfObject(Widget);
     extern Widget XtWindowToWidget(Display *, Window);
     extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass,
