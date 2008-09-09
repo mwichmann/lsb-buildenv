@@ -2,10 +2,15 @@
 #ifndef _X11_CONSTRAINP_H_
 #define _X11_CONSTRAINP_H_
 
+#include <X11/Xlib.h>
+#include <X11/X.h>
 #include <X11/Xresource.h>
 #include <X11/Intrinsic.h>
+#include <X11/Composite.h>
 #include <X11/IntrinsicP.h>
 #include <X11/CompositeP.h>
+#include <X11/TranslateI.h>
+#include <X11/EventI.h>
 #include <X11/CoreP.h>
 
 #ifdef __cplusplus
@@ -16,9 +21,25 @@ extern "C" {
 #define XtConstraintExtensionVersion	1L
 
 
+    typedef struct _ConstraintPart ConstraintPart;
+
     typedef struct _ConstraintClassRec *ConstraintClassRec;
 
     typedef struct _ConstraintClassPart ConstraintClassPart;
+
+    typedef struct _ConstraintRec ConstraintRec;
+
+    typedef struct _ConstraintRec *ConstraintWidget;
+
+    typedef struct {
+	XtPointer next_extension;
+	XrmQuark record_type;
+	long int version;
+	Cardinal record_size;
+	XtArgsProc get_values_hook;
+    } ConstraintClassExtensionRec;
+
+    typedef ConstraintClassExtensionRec *ConstraintClassExtension;
 
     struct _ConstraintClassPart {
 	XtResourceList resources;
@@ -34,6 +55,18 @@ extern "C" {
 	CoreClassPart core_class;
 	CompositeClassPart composite_class;
 	ConstraintClassPart constraint_class;
+    };
+
+
+    struct _ConstraintPart {
+	XtPointer mumble;	/* No new fields, keep C compiler happy */
+    };
+
+
+    struct _ConstraintRec {
+	CorePart core;
+	CompositePart composite;
+	ConstraintPart constraint;
     };
 
 

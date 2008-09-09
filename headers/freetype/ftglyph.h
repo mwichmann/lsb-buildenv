@@ -17,8 +17,7 @@ extern "C" {
     typedef struct FT_GlyphRec_ *FT_Glyph;
 
 #include <freetype/ftoutln.h>
-    typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_Glyph, FT_GlyphSlot,
-					  FT_GlyphSlot);
+    typedef FT_Error(*FT_Glyph_InitFunc) (FT_Glyph, FT_GlyphSlot);
 
     typedef void (*FT_Glyph_DoneFunc) (FT_Glyph);
 
@@ -29,8 +28,7 @@ extern "C" {
 
     typedef void (*FT_Glyph_GetBBoxFunc) (FT_Glyph, FT_BBox *);
 
-    typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_Glyph,
-					     FT_GlyphSlot, FT_GlyphSlot);
+    typedef FT_Error(*FT_Glyph_PrepareFunc) (FT_Glyph, FT_GlyphSlot);
 
     typedef enum FT_Glyph_BBox_Mode_ {
 	FT_GLYPH_BBOX_UNSCALED = 0,

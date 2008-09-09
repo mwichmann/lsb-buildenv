@@ -77,8 +77,7 @@ extern "C" {
 
     typedef struct FT_Span_ FT_Span;
 
-    typedef void (*FT_SpanFunc) (int, int, int, int, FT_Span *, FT_Span *,
-				 void *, void *);
+    typedef void (*FT_SpanFunc) (int, int, FT_Span *, void *);
 
     typedef int (*FT_Raster_BitTest_Func) (int, int, void *);
 
@@ -86,9 +85,7 @@ extern "C" {
 
     typedef struct FT_Raster_Params_ FT_Raster_Params;
 
-    typedef int (*FT_Raster_RenderFunc) (FT_Raster, FT_Raster,
-					 FT_Raster_Params *,
-					 FT_Raster_Params *);
+    typedef int (*FT_Raster_RenderFunc) (FT_Raster, FT_Raster_Params *);
 
     typedef void (*FT_Raster_DoneFunc) (FT_Raster);
 

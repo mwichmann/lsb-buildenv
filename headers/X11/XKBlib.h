@@ -41,9 +41,9 @@ extern "C" {
 
     typedef struct _XkbKbdDpyState *XkbKbdDpyStatePtr;
 
-    typedef Atom(*XkbInternAtomFunc) (void);
+    typedef Atom(*XkbInternAtomFunc) (Display *, const char *, int);
 
-    typedef char *(*XkbGetAtomNameFunc) (void);
+    typedef char *(*XkbGetAtomNameFunc) (Display *, Atom);
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

@@ -4,6 +4,7 @@
 
 #include <stddef.h>
 #include <sys/poll.h>
+#include <alsa/control.h>
 #include <alsa/pcm.h>
 
 #ifdef __cplusplus
@@ -22,13 +23,18 @@ extern "C" {
 
     typedef struct _snd_mixer_class snd_mixer_class_t;
 
-    typedef int (*snd_mixer_compare_t) (void);
+    typedef int (*snd_mixer_compare_t) (const snd_mixer_elem_t *,
+					const snd_mixer_elem_t *);
 
-    typedef int (*snd_mixer_elem_callback_t) (void);
+    typedef int (*snd_mixer_elem_callback_t) (snd_mixer_elem_t *,
+					      unsigned int);
 
-    typedef int (*snd_mixer_callback_t) (void);
+    typedef int (*snd_mixer_callback_t) (snd_mixer_t *, unsigned int,
+					 snd_mixer_elem_t *);
 
-    typedef int (*snd_mixer_event_t) (void);
+    typedef int (*snd_mixer_event_t) (snd_mixer_class_t *, unsigned int,
+				      snd_hctl_elem_t *,
+				      snd_mixer_elem_t *);
 
     typedef enum _snd_mixer_selem_channel_id {
 	SND_MIXER_SCHN_UNKNOWN = -1,

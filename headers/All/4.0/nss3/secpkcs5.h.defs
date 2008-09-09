@@ -1,0 +1,8 @@
+
+typedef enum {
+    pbeBitGenIDNull,
+    pbeBitGenCipherKey = 1,
+    pbeBitGenCipherIV = 2,
+    pbeBitGenIntegrityKey = 3
+} PBEBitGenID;
+typedef struct PBEBitGenContextStr PBEBitGenContext;

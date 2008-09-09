@@ -9,9 +9,18 @@ extern "C" {
 #endif
 
 
+#define _XtCore_h	1
+
+
+    typedef struct _WidgetClassRec *CoreWidgetClass;
+
+    typedef struct _WidgetClassRec *CoreWidget;
+
+
 /* Function prototypes */
 
     extern WidgetClass coreWidgetClass;
+    extern widgetClass;
 #ifdef __cplusplus
 }
 #endif

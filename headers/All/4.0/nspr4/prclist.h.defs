@@ -1,0 +1,5 @@
+
+typedef struct PRCListStr {
+    PRCList *next;
+    PRCList *prev;
+} PRCList;

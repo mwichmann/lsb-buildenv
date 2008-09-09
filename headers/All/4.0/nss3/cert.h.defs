@@ -1,0 +1,12 @@
+
+extern void CERT_DestroyCertificate(CERTCertificate *);
+extern CERTCertificate *CERT_DupCertificate(CERTCertificate *);
+extern CERTCertDBHandle *CERT_GetDefaultCertDB(void);
+extern SECStatus CERT_VerifyCertName(CERTCertificate *, const char *);
+extern SECCertTimeValidity CERT_CheckCertValidTimes(CERTCertificate *,
+						    PRTime, PRBool);
+extern SECStatus CERT_VerifyCertNow(CERTCertDBHandle *, CERTCertificate *,
+				    PRBool, SECCertUsage, void *);
+extern CERTCertNicknames *CERT_GetCertNicknames(CERTCertDBHandle *, int,
+						void *);
+extern void CERT_FreeNicknames(CERTCertNicknames *);

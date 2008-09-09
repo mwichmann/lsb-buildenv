@@ -14,7 +14,8 @@ typedef enum {
     leaf
 } VISIT;
 
-typedef void (*__action_fn_t) (void *__nodep, VISIT __value, int __level);
+typedef void (*__action_fn_t) (const void *__nodep, VISIT __value,
+			       int __level);
 extern int hcreate(size_t);
 extern ENTRY *hsearch(ENTRY, ACTION);
 extern void insque(void *, void *);

@@ -1,0 +1,14 @@
+
+typedef struct PRHostEnt {
+    char *h_name;
+    char **h_aliases;
+    PRInt32 h_addrtype;
+    PRInt32 h_length;
+    char **h_addr_list;
+} PRHostEnt;
+extern PRStatus PR_GetHostByName(const char *, char *, PRIntn,
+				 PRHostEnt *);
+extern PRStatus PR_GetHostByAddr(const PRNetAddr *, char *, PRIntn,
+				 PRHostEnt *);
+extern PRIntn PR_EnumerateHostEnt(PRIntn, const PRHostEnt *, PRUint16,
+				  PRNetAddr *);

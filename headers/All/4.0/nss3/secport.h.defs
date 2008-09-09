@@ -1,0 +1,9 @@
+
+typedef PRBool(*PORTCharConversionWSwapFunc) (PRBool, unsigned char *,
+					      unsigned int,
+					      unsigned char *,
+					      unsigned int, unsigned int *,
+					      PRBool);
+typedef PRBool(*PORTCharConversionFunc) (PRBool, unsigned char *,
+					 unsigned int, unsigned char *,
+					 unsigned int, unsigned int *);

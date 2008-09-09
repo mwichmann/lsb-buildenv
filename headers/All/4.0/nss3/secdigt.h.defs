@@ -1,0 +1,6 @@
+
+typedef struct SGNDigestInfoStr {
+    PLArenaPool *arena;
+    SECAlgorithmID digestAlgorithm;
+    SECItem digest;
+} SGNDigestInfo;

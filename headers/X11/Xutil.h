@@ -19,11 +19,6 @@ extern "C" {
 #define IsPFKey(keysym)	(((KeySym)(keysym)>=XK_KP_F1)&&((KeySym)(keysym)<=XK_KP_F4))
 #define IsKeypadKey(keysym)	(((KeySym)(keysym)>=XK_KP_Space)&&((KeySym)(keysym)<=XK_KP_E
 #define IsMiscFunctionKey(keysym)	(((KeySym)(keysym)>=XK_Select)&&((KeySym)(keysym)<=XK_Break)
-#define XAddPixel(ximage,value)	((*((ximage)->f.add_pixel))((ximage), (value)))
-#define XDestroyImage(ximage)	((*((ximage)->f.destroy_image))((ximage)))
-#define XGetPixel(ximage,x,y)	((*((ximage)->f.get_pixel))((ximage), (x), (y)))
-#define XPutPixel(ximage,x,y,pixel)	((*((ximage)->f.put_pixel))((ximage), (x), (y), (pixel)))
-#define XSubImage(ximage,x,y,width,height)	((*((ximage)->f.sub_image))((ximage), (x), (y), (width), (height)))
 #define XStringToContext(string)	((XContext)XrmStringToQuark(string))
 #define XUniqueContext()	((XContext)XrmUniqueQuark())
 #define ReleaseByFreeingColormap	((XID)1L)
@@ -90,28 +85,107 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-    typedef struct XSizeHints;
+    typedef struct {
+	long int flags;
+	int x;
+	int y;
+	int width;
+	int height;
+	int min_width;
+	int min_height;
+	int max_width;
+	int max_height;
+	int width_inc;
+	int height_inc;
+	struct {
+	    int x;
+	    int y;
+	} min_aspect;
+	struct {
+	    int x;
+	    int y;
+	} max_aspect;
+	int base_width;
+	int base_height;
+	int win_gravity;
+    } XSizeHints;
 
-    typedef struct XWMHints;
+    typedef struct {
+	long int flags;
+	int input;
+	int initial_state;
+	Pixmap icon_pixmap;
+	Window icon_window;
+	int icon_x;
+	int icon_y;
+	Pixmap icon_mask;
+	XID window_group;
+    } XWMHints;
 
-    typedef struct XTextProperty;
+    typedef struct {
+	unsigned char *value;
+	Atom encoding;
+	int format;
+	unsigned long int nitems;
+    } XTextProperty;
 
-    typedef struct XIconSize;
+    typedef struct {
+	int min_width;
+	int min_height;
+	int max_width;
+	int max_height;
+	int width_inc;
+	int height_inc;
+    } XIconSize;
 
-    typedef struct XClassHint;
+    typedef struct {
+	char *res_name;
+	char *res_class;
+    } XClassHint;
 
     typedef struct _XComposeStatus XComposeStatus;
 
     typedef struct _XRegion *Region;
 
-    typedef struct XVisualInfo;
+    typedef struct {
+	Visual *visual;
+	VisualID visualid;
+	int screen;
+	int depth;
+#if defined(__cplusplus) || defined(c_plusplus)
+	int c_class;
+#else
+	int class;
+#endif
+	unsigned long int red_mask;
+	unsigned long int green_mask;
+	unsigned long int blue_mask;
+	int colormap_size;
+	int bits_per_rgb;
+    } XVisualInfo;
 
-    typedef struct XStandardColormap;
+    typedef struct {
+	Colormap colormap;
+	unsigned long int red_max;
+	unsigned long int red_mult;
+	unsigned long int green_max;
+	unsigned long int green_mult;
+	unsigned long int blue_max;
+	unsigned long int blue_mult;
+	unsigned long int base_pixel;
+	VisualID visualid;
+	XID killid;
+    } XStandardColormap;
 
     typedef int XContext;
 
-    typedef enum
-	XICCEncodingStyle;
+    typedef enum {
+	XStringStyle = 0,
+	XCompoundTextStyle = 1,
+	XTextStyle = 2,
+	XStdICCTextStyle = 3,
+	XUTF8StringStyle = 4
+    } XICCEncodingStyle;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -119,16 +193,6 @@ extern "C" {
     struct _XComposeStatus {
 	XPointer compose_ptr;
 	int chars_matched;
-    };
-
-    enum;
-
-    enum {
-	XStringStyle,
-	XCompoundTextStyle,
-	XTextStyle,
-	XStdICCTextStyle,
-	XUTF8StringStyle
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */

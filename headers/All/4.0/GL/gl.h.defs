@@ -841,7 +841,9 @@ typedef double GLclampd;
 #define GL_CLIENT_ACTIVE_TEXTURE_ARB	0x84E1
 #define GL_MAX_TEXTURE_UNITS_ARB	0x84E2
 #define GL_ARB_imaging	1
+#ifndef GL_ARB_multitexture
 #define GL_ARB_multitexture	1
+#endif
 
 extern void glAccum(GLenum, GLfloat);
 extern void glAlphaFunc(GLenum, GLclampf);
@@ -1063,7 +1065,8 @@ extern void glPopAttrib(void);
 extern void glPopClientAttrib(void);
 extern void glPopMatrix(void);
 extern void glPopName(void);
-extern void glPrioritizeTextures(GLsizei, GLuint *, const GLclampf *);
+extern void glPrioritizeTextures(GLsizei, const GLuint *,
+				 const GLclampf *);
 extern void glPushAttrib(GLbitfield);
 extern void glPushClientAttrib(GLbitfield);
 extern void glPushMatrix(void);
@@ -1237,7 +1240,7 @@ extern void glActiveTextureARB(GLenum);
 extern void glGetSeparableFilter(GLenum, GLenum, GLenum, GLvoid *,
 				 GLvoid *, GLvoid *);
 extern void glSeparableFilter2D(GLenum, GLenum, GLsizei, GLsizei, GLenum,
-				GLenum, GLvoid *, GLvoid *);
+				GLenum, const GLvoid *, const GLvoid *);
 extern void glGetConvolutionParameteriv(GLenum, GLenum, GLint *);
 extern void glGetConvolutionParameterfv(GLenum, GLenum, GLfloat *);
 extern void glGetConvolutionFilter(GLenum, GLenum, GLenum, GLvoid *);
@@ -1245,14 +1248,14 @@ extern void glCopyConvolutionFilter2D(GLenum, GLenum, GLint, GLint,
 				      GLsizei, GLsizei);
 extern void glCopyConvolutionFilter1D(GLenum, GLenum, GLint, GLint,
 				      GLsizei);
-extern void glConvolutionParameteriv(GLenum, GLenum, GLint *);
+extern void glConvolutionParameteriv(GLenum, GLenum, const GLint *);
 extern void glConvolutionParameteri(GLenum, GLenum, GLint);
-extern void glConvolutionParameterfv(GLenum, GLenum, GLfloat *);
+extern void glConvolutionParameterfv(GLenum, GLenum, const GLfloat *);
 extern void glConvolutionParameterf(GLenum, GLenum, GLfloat);
 extern void glConvolutionFilter2D(GLenum, GLenum, GLsizei, GLsizei, GLenum,
-				  GLenum, GLvoid *);
+				  GLenum, const GLvoid *);
 extern void glConvolutionFilter1D(GLenum, GLenum, GLsizei, GLenum, GLenum,
-				  GLvoid *);
+				  const GLvoid *);
 extern void glGetMinmaxParameteriv(GLenum, GLenum, GLint *);
 extern void glGetMinmaxParameterfv(GLenum, GLenum, GLfloat *);
 extern void glGetMinmax(GLenum, GLboolean, GLenum, GLenum, GLvoid *);
@@ -1270,17 +1273,18 @@ extern void glGetColorTableParameterfv(GLenum, GLenum, GLfloat *);
 extern void glGetColorTable(GLenum, GLenum, GLenum, GLvoid *);
 extern void glCopyColorTable(GLenum, GLenum, GLint, GLint, GLsizei);
 extern void glCopyColorSubTable(GLenum, GLsizei, GLint, GLint, GLsizei);
-extern void glColorTableParameterfv(GLenum, GLenum, GLfloat *);
-extern void glColorTableParameteriv(GLenum, GLenum, GLint *);
+extern void glColorTableParameterfv(GLenum, GLenum, const GLfloat *);
+extern void glColorTableParameteriv(GLenum, GLenum, const GLint *);
 extern void glColorSubTable(GLenum, GLsizei, GLsizei, GLenum, GLenum,
-			    GLvoid *);
+			    const GLvoid *);
 extern void glColorTable(GLenum, GLenum, GLsizei, GLenum, GLenum,
-			 GLvoid *);
+			 const GLvoid *);
 extern void glCopyTexSubImage3D(GLenum, GLint, GLint, GLint, GLint, GLint,
 				GLint, GLsizei, GLsizei);
 extern void glTexSubImage3D(GLenum, GLint, GLint, GLint, GLint, GLsizei,
-			    GLsizei, GLsizei, GLenum, GLenum, GLvoid *);
+			    GLsizei, GLsizei, GLenum, GLenum,
+			    const GLvoid *);
 extern void glTexImage3D(GLenum, GLint, GLint, GLsizei, GLsizei, GLsizei,
-			 GLint, GLenum, GLenum, GLvoid *);
+			 GLint, GLenum, GLenum, const GLvoid *);
 extern void glDrawRangeElements(GLenum, GLuint, GLuint, GLsizei, GLenum,
-				GLvoid *);
+				const GLvoid *);

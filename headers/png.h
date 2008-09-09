@@ -5,6 +5,8 @@
 #include <setjmp.h>
 #include <signal.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <time.h>
 #include <zlib.h>
 #include <stddef.h>
 
@@ -163,6 +165,7 @@ extern "C" {
 	(png_uint_32)(alpha)) + (png_uint_32)32768L); (composite) = \
 	(png_uint_16)((temp + (temp >> 16)) >> 16); }
 #define PNG_MMX_WRITE_FLAGS	( 0 )
+#define png_jmpbuf(png_ptr)	((png_ptr)->jmpbuf)
 #define PNG_SIZE_MAX	((png_size_t)(-1))
 #define PNG_UINT_32_MAX	((png_uint_32)(-1))
 #define PNG_UINT_31_MAX	((png_uint_32)0x7fffffffL)
@@ -351,7 +354,7 @@ extern "C" {
 #define png_strncpy	strncpy
 
 
-    typedef struct __jmp_buf_tag *png_unknown_chunkp;
+    /* typedef png_unknown_chunk *png_unknown_chunkp;   XXX move down */
 
     typedef struct png_sPLT_entry_struct png_sPLT_entry;
 
@@ -366,6 +369,7 @@ extern "C" {
     typedef png_sPLT_t **png_sPLT_tpp;
 
     typedef struct png_unknown_chunk_t png_unknown_chunk;
+    typedef png_unknown_chunk *png_unknown_chunkp;   /* XXX from above */
 
     typedef struct png_struct_def png_struct;
 
@@ -499,11 +503,16 @@ extern "C" {
 
     typedef void (*png_write_status_ptr) (png_structp, png_uint_32, int);
 
-    typedef void (*png_user_chunk_ptr) (png_structp, png_unknown_chunkp);
+    typedef int (*png_user_chunk_ptr) (png_structp, png_unknown_chunkp);
 
     typedef png_voidp(*png_malloc_ptr) (png_structp, png_size_t);
 
     typedef void (*png_free_ptr) (png_structp, png_voidp);
+
+#if __LSB_VERSION__ >= 40
+    typedef png_unknown_chunk **png_unknown_chunkpp;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
     struct png_sPLT_struct {
 	png_charp name;
@@ -938,7 +947,50 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
     extern int png_check_sig(png_bytep, int);
+    extern void png_convert_from_struct_tm(png_timep, struct tm *);
+    extern void png_convert_from_time_t(png_timep, time_t);
+    extern png_structp png_create_read_struct_2(png_const_charp, png_voidp,
+						png_error_ptr,
+						png_error_ptr, png_voidp,
+						png_malloc_ptr,
+						png_free_ptr);
+    extern png_structp png_create_write_struct_2(png_const_charp,
+						 png_voidp, png_error_ptr,
+						 png_error_ptr, png_voidp,
+						 png_malloc_ptr,
+						 png_free_ptr);
+    extern void png_data_freer(png_structp, png_infop, int, png_uint_32);
     extern void png_destroy_info_struct(png_structp, png_infopp);
+    extern void png_free_data(png_structp, png_infop, png_uint_32, int);
+    extern png_charp png_get_header_ver(png_structp);
+    extern png_uint_32 png_get_unknown_chunks(png_structp, png_infop,
+					      png_unknown_chunkpp);
+    extern png_voidp png_get_user_chunk_ptr(png_structp);
+    extern void png_info_init_3(png_infopp, png_size_t);
+    extern png_uint_32 png_permit_mng_features(png_structp, png_uint_32);
+    extern void png_set_compression_buffer_size(png_structp, png_uint_32);
+    extern void png_set_compression_mem_level(png_structp, int);
+    extern void png_set_compression_method(png_structp, int);
+    extern void png_set_compression_strategy(png_structp, int);
+    extern void png_set_compression_window_bits(png_structp, int);
+    extern void png_set_invert_alpha(png_structp);
+    extern void png_set_keep_unknown_chunks(png_structp, int, png_bytep,
+					    int);
+    extern void png_set_mem_fn(png_structp, png_voidp, png_malloc_ptr,
+			       png_free_ptr);
+    extern void png_set_read_user_chunk_fn(png_structp, png_voidp,
+					   png_user_chunk_ptr);
+    extern void png_set_read_user_transform_fn(png_structp,
+					       png_user_transform_ptr);
+    extern void png_set_sRGB_gAMA_and_cHRM(png_structp, png_infop, int);
+    extern void png_set_unknown_chunk_location(png_structp, png_infop, int,
+					       int);
+    extern void png_set_unknown_chunks(png_structp, png_infop,
+				       png_unknown_chunkp, int);
+    extern void png_set_write_status_fn(png_structp, png_write_status_ptr);
+    extern void png_set_write_user_transform_fn(png_structp,
+						png_user_transform_ptr);
+    extern void png_start_read_image(png_structp);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

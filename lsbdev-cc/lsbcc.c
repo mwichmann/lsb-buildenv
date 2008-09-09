@@ -65,6 +65,8 @@
 #include "lsbcc_argv.h"
 #include "linkers.h"
 
+#include "elf_utils.h"
+
 /*
  * These are the catagories of options that we are going to be grouping
  * together.
@@ -143,7 +145,7 @@ int b_dynamic = 1;
  * Some options require a little bit of additional processing, so we have
  * a few routines here that are used to do the special processing.
  */
-void
+int
 process_opt_l(char *val)
 {
 char	buf[32];
@@ -160,7 +162,7 @@ for(i=0;i<lsblibs->numargv;i++) {
 			b_dynamic = 1;
 		}
 		argvaddstring(userlibs,strdup(buf));
-		return;
+		return 1;
 	}
 }
 
@@ -178,6 +180,133 @@ if (b_dynamic) {
 }
 argvaddstring(userlibs,strdup(buf));
 
+return 0;
+}
+
+void process_opt_L(char *libdir)
+{
+    int i;
+
+    for (i = 0; i < libpaths->numargv; i++) {
+	if ((strlen(libpaths->argv[i]) == strlen(libdir)) &&
+	    strcmp(libpaths->argv[i], libdir) == 0) {
+	    return;
+	}
+    }
+
+    argvadd(libpaths, "L", libdir);
+}
+
+/*
+ * libtool (cooperation?) hack:
+ * Because libtool sometimes inserts fully qualified paths to shared libs
+ * rather than adding -llib args, we have more fixups to do.  We are sure
+ * that libtool has its reasons for doing this when it does, but the result
+ * won't be LSB compliant, so we can't let that stand.  We however will
+ * make an attempt to be as friendly about it as possible and attempt to
+ * fixup the command line.
+ */
+int perform_libtool_fixups(const char *optarg)
+{
+    ElfFile *efile = NULL;
+    char *libfile, *libdir, *tmp;
+    int i;
+
+    /*
+     * We do a first level filter on /usr/lib
+     * If the file is in /usr/lib and has '.so' in it someplace,
+     * we assume that it is a shared lib.  
+     * This takes care of ld scripts like /usr/lib/libc.so
+     */
+
+    /* check if the file is a shared lib */
+    efile = OpenElfFile(optarg);
+    if (!efile && strncmp(optarg, "/usr/lib", strlen("/usr/lib")) != 0) {
+	return 0;
+    }
+    if (efile && efile->elf_header->e_type != ET_DYN) {
+	CloseElfFile(efile);
+	return 0;
+    }
+
+    /*
+     * If so, check to see if its a shared lib lsb includes,
+     * re-write the path in terms of -L and -llib
+     */
+    libdir = strdup(optarg);
+    libfile = basename(libdir);
+    tmp = strstr(libfile, ".so");
+    if (!tmp) {
+	fprintf(stderr,
+		"Warning: Shared library %s does not follow the libfoo.so convention\n",
+		optarg);
+	CloseElfFile(efile);
+	return 0;
+    }
+    *tmp = '\0';
+    if (strlen(libfile) <= strlen("lib")) {
+	fprintf(stderr,
+		"Warning: Shared library %s does not follow the libfoo.so convention\n",
+		optarg);
+	if (efile) {
+	    CloseElfFile(efile);
+	}
+	return 0;
+    }
+
+    libfile += strlen("lib");
+    if (1 == process_opt_l(libfile)) {
+	CloseElfFile(efile);
+	/*
+	 * add an -L for non LSB libs.
+	 */
+	return 1;
+    }
+
+    /*
+     * add a -L for this lib if we made it static
+     */
+    process_opt_L(dirname(libdir));
+
+    /* 
+     * Now also check to see if the shared lib
+     * had any DT_NEEDED tags and do the same for
+     * them.
+     */
+    if (efile) {
+	for (i = 0; i < efile->numdynents; i++) {
+	    if (efile->dyns[i].d_tag == DT_NEEDED) {
+		libfile = strdup(ElfGetStringIndex(efile,
+						   efile->dyns[i].d_un.d_val,
+						   efile->dynhdr->sh_link));
+		if (lsbcc_debug & DEBUG_LIB_CHANGES) {
+		    printf("Adding DT_NEEDED lib %s from %s\n",
+			   libfile, optarg);
+		}
+
+		tmp = strstr(libfile, ".so");
+		if (!tmp) {
+		    fprintf(stderr,
+			    "Warning: DT_NEEDED Shared library %s from %s does not follow the libfoo.so convention\n",
+			    libfile, optarg);
+		    free(libfile);
+		    continue;
+		}
+		*tmp = '\0';
+		if (strlen(libfile) <= strlen("lib")) {
+		    fprintf(stderr,
+			    "Warning: DT_NEEDED Shared library %s from %s does not follow the libfoo.so convention\n",
+			    libfile, optarg);
+		    free(libfile);
+		    continue;
+		}
+		libfile += strlen("lib");
+		process_opt_l(libfile);
+	    }
+	}
+	CloseElfFile(efile);
+    }
+    return 1;
 }
 
 /* end option processing routines */
@@ -472,35 +601,39 @@ struct option long_options[] = {
 	{"lsb-shared-libpath",required_argument,NULL,16},
 	{"static",no_argument,NULL,17},
 	{"lsb-use-default-linker",no_argument,NULL,18},
-	{"lsb-besteffort",no_argument,NULL,19},
+	{"lsb-libtool-fixups",no_argument,NULL,19},
+	{"lsb-besteffort",no_argument,NULL,20},
 	{NULL,0,0,0}
-	};
+};
 
 char *get_modules_strings(void)
 {
-	int	i = 0;
-	char	*modules = NULL;
-	char	*tmp = NULL;
+    int	i = 0;
+    char	*modules = NULL;
+    char	*tmp = NULL;
+
     for(;i < lsb_num_modules[lsbversion_index]; i++) {
         lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-		if (lsb_module->lib_names == NULL) {
-			continue;
-		}
-
-		tmp = modules;
-		modules = malloc((tmp ? strlen(tmp) : 0) + strlen(lsb_module->module_name) + 2);
-		memset(modules, 0, (tmp ? strlen(tmp) : 0) + strlen(lsb_module->module_name) + 2);
-		if (tmp) {
-			strcpy(modules, tmp);
-			strcat(modules, ",");
-		}
-		strcat(modules, lsb_module->module_name);
-		if (tmp) {
-			free(tmp);
-		}
+	if (lsb_module->lib_names == NULL) {
+	    continue;
 	}
-	return modules;
+
+	tmp = modules;
+	modules = malloc((tmp ? strlen(tmp) : 0) + 
+                         strlen(lsb_module->module_name) + 2);
+	memset(modules, 0, (tmp ? strlen(tmp) : 0) + 
+                           strlen(lsb_module->module_name) + 2);
+	if (tmp) {
+	    strcpy(modules, tmp);
+	    strcat(modules, ",");
+	}
+	strcat(modules, lsb_module->module_name);
+	if (tmp) {
+	    free(tmp);
+	}
+    }
+    return modules;
 }
 
 void
@@ -547,11 +680,16 @@ usage(const char *progname) {
 		"\t                    Modules will added in addition to any added from \n"
 		"\t                    the LSB_MODULES environment setting.\n"
 		"\t                    known modules: %s\n"
-                "\t--lsb-use-default-linker\n"
-                "\t                   Do not set dynamic linker to the LSB one.\n"
-                "\t--lsb-besteffort\n"
-                "\t                   Use best-effort code to choose the dynamic linker\n"
-		"\t                    at runtime.\n\n"
+		"\t--lsb-use-default-linker\n"
+		"\t                   Do not set dynamic linker to the LSB one.\n"
+		"\t--lsb-besteffort\n"
+		"\t                   Use best-effort code to choose the dynamic linker\n"
+		"\t                    at runtime.\n"
+		"\t--lsb-libtool-fixups\n"
+		"\t                   Enable support for command line analysis and fixups that\n"
+		"\t                    help when using lsbcc in conjunction with libtoo.  See the\n"
+		"\t                    man page for details.\n"
+		"\n"
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
@@ -734,6 +872,7 @@ int	found_file = 0;
 int	no_link = 0;
 int	no_as_needed = 1;
 int	cc_is_icc = 0;
+int	libtool_fixups = 0;
 int	default_linker = 0;
 char	progintbuf[256];
 char	tmpbuf[256];
@@ -824,9 +963,8 @@ if( (ptr=getenv("LSBCC_DEBUG")) != NULL ) {
 if(LSBCPLUS != lsbccmode) {
 	if( (ptr=getenv("LSBCC")) != NULL ) {
 		ccname=ptr;
-		if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
+		if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
 			fprintf(stderr,"cc name set to %s\n", ccname );
-		}
 	}
 } else {
 
@@ -869,6 +1007,10 @@ if( (ptr=getenv("LSBCC_BESTEFFORT")) != NULL ) {
 
 if( (ptr=getenv("LSBCC_USE_DEFAULT_LINKER")) != NULL ) {
 	default_linker = 1;
+}
+
+if( (ptr=getenv("LSBCC_LIBTOOLFIXUPS")) != NULL ) {
+	libtool_fixups = 1;
 }
 
 if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
@@ -955,8 +1097,9 @@ if( (ptr=getenv("LSBCC_SHAREDLIBS")) != NULL ) {
 	libarg = strdup(ptr);
 		lib = strtok(libarg, ":");
 		while (lib) {
-			if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
+			if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
 				fprintf(stderr,"added %s to allowed dsos\n", lib);
+			}
 			argvaddstring(lsblibs,strdup(lib));
 			lib = strtok(NULL, ":");
 		}
@@ -987,11 +1130,17 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		}
 		break;
 	case 1: /* all args not prefixed by - */
+		if (stat(optarg, &st_buf) == 0) {
+		    if (S_ISREG(st_buf.st_mode) || S_ISLNK(st_buf.st_mode)) {
+			found_file = 1;
+				
+			if (libtool_fixups && perform_libtool_fixups(optarg)) {
+			    break;
+			}
+		    }
+		}
 		argvaddstring(options,strdup(optarg));
 		found_gcc_arg = 1;
-		if (0 == stat(optarg, &st_buf)) {
-			found_file = 1;
-		}
 		/* special case: file fed to stdin */
 		if(strcmp( optarg, "-" ) == 0) {
 			if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
@@ -1036,7 +1185,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		break;
 	case 16: /* --lsb-shared-libpath=<path:...> */
 		process_shared_lib_path(strdup(optarg));
-
 		break;
 	case 11: /* --lsb-shared-libs=<lib:...> */
 		{
@@ -1131,7 +1279,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		found_gcc_arg = 1;
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS )
 			fprintf(stderr,"option: -L %s\n", optarg );
-		argvadd(libpaths,"L",optarg);
+		process_opt_L(optarg);
 		break;
 	case 'W':
 		if ((strstr(argv[optind-1], "no-whole-archive") != NULL) ||
@@ -1195,6 +1343,15 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		argvaddstring(syslibs,"-Wl,--start-group");
 		argvaddstring(syslibs,"-lgcc_eh");
 		break;
+	case 18:/* --lsb-use-default-linker */
+		default_linker=1;
+		break;
+	case 19: /* --lsb-libtool-fixups */
+		libtool_fixups = 1;
+		break;
+	case 20:/* --lsb-besteffort */
+		best_effort=1;
+		break;
 	case 's':
 		/*
 		 * We must explicitly recognize '-s' to distinguish it
@@ -1227,12 +1384,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			fprintf(stderr,"ERROR: Dropping argument %s\n",
 							argv[optind-1] );
 		}
-		break;
-	case 18:/* --lsb-use-default-linker */
-		default_linker=1;
-		break;
-	case 19:/* --lsb-besteffort */
-		best_effort=1;
 		break;
 	default:
 		/* We shouldn't get here */

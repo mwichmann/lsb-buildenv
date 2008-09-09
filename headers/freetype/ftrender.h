@@ -23,10 +23,8 @@ extern "C" {
 #define FTRenderer_transform	FT_Renderer_TransformFunc
 
 
-    typedef FT_Error(*FT_Renderer_RenderFunc) (FT_Renderer, FT_Renderer,
-					       FT_GlyphSlot, FT_GlyphSlot,
-					       FT_UInt, FT_UInt,
-					       FT_Vector *, FT_Vector *);
+    typedef FT_Error(*FT_Renderer_RenderFunc) (FT_Renderer, FT_GlyphSlot,
+					       FT_UInt, FT_Vector *);
 
     typedef FT_Error(*FT_Renderer_TransformFunc) (FT_Renderer,
 						  FT_GlyphSlot,

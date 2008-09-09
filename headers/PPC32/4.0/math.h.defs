@@ -18,4 +18,3 @@
 extern int __fpclassifyl(long double);
 extern long double exp2l(long double);
 extern int __signbitl(long double);
-extern float __nldbl_nexttowardf(float, long double);

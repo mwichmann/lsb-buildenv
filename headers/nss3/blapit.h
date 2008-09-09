@@ -1,0 +1,68 @@
+#if (__LSB_VERSION__ >= 40 )
+#ifndef _NSS3_BLAPIT_H_
+#define _NSS3_BLAPIT_H_
+
+#include <nss3/seccomon.h>
+#include <nspr4/plarena.h>
+#include <nspr4/prtypes.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#define PQG_PBITS_TO_INDEX(bits)	 \
+   (((bits) < 512 || (bits) > 1024 || (bits) % 64) ? -1 : \
+ (int)((bits)-512)/64)
+#define PQG_INDEX_TO_PBITS(j)	 \
+   (((unsigned)(j) > 8) ? -1 : (512 + 64 * (j)))
+#define NSS_AES	0
+#define NSS_DES	0
+#define NSS_RC2	0
+#define NSS_RC5	0
+#define NSS_AES_CBC	1
+#define NSS_DES_CBC	1
+#define NSS_RC2_CBC	1
+#define NSS_RC5_CBC	1
+#define DSA_MAX_P_BITS	1024
+#define DH_MIN_P_BITS	128
+#define RSA_MIN_MODULUS_BITS	128
+#define AES_BLOCK_SIZE	16
+#define DSA_Q_BITS	160
+#define NSS_DES_EDE3	2
+#define DSA_SUBPRIME_LEN	20
+#define NSS_FREEBL_DEFAULT_CHUNKSIZE	2048
+#define DH_MAX_P_BITS	2236
+#define NSS_DES_EDE3_CBC	3
+#define DSA_SIGNATURE_LEN	40
+#define DSA_MIN_P_BITS	512
+#define AES_KEY_WRAP_BLOCK_SIZE	8
+#define AES_KEY_WRAP_IV_BYTES	8
+#define DES_KEY_LENGTH	8
+
+
+    typedef struct PQGParamsStr PQGParams;
+
+    typedef struct PQGVerifyStr PQGVerify;
+
+
+    struct PQGParamsStr {
+	PLArenaPool *arena;
+	SECItem prime;
+	SECItem subPrime;
+	SECItem base;
+    };
+
+
+    struct PQGVerifyStr {
+	PLArenaPool *arena;
+	unsigned int counter;
+	SECItem seed;
+	SECItem h;
+    };
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* protection */
+#endif				/* LSB version */

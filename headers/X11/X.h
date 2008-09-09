@@ -248,6 +248,8 @@ extern "C" {
 #define FamilyInternet	0
 #define FamilyDECnet	1
 #define FamilyChaos	2
+#define FamilyServerInterpreted	5
+#define FamilyInternet6	6	/* IPv6 */
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

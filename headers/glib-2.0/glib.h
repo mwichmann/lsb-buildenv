@@ -1015,6 +1015,16 @@ extern "C" {
 #endif				/* __LSB_VERSION__ < 4.0 */
 
 #if __LSB_VERSION__ >= 40
+#ifdef __cplusplus
+# define G_BEGIN_DECLS  extern "C" {
+#else
+# define G_BEGIN_DECLS
+#endif
+#ifdef __cplusplus
+# define G_END_DECLS  }
+#else
+# define G_END_DECLS
+#endif
 #define GLIB_MINOR_VERSION	8
 #endif				/* __LSB_VERSION__ >= 4.0 */
 

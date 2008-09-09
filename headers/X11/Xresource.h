@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define NULLQUARK	((XrmQuark) 0)
+
+
 #if __LSB_VERSION__ >= 12
     typedef int XrmQuark;
 
@@ -19,9 +22,7 @@ extern "C" {
     typedef enum {
 	XrmBindTightly,
 	XrmBindLoosely
-    } XrmBinding;
-
-    typedef enum *XrmBindingList;
+    } XrmBinding, *XrmBindingList;
 
     typedef XrmQuark XrmName;
 
@@ -46,6 +47,8 @@ extern "C" {
     typedef struct _XrmHashBucketRec *XrmHashBucket;
 
     typedef XrmHashBucket *XrmHashTable;
+
+    typedef XrmHashTable XrmSearchList[];
 
     typedef struct _XrmHashBucketRec *XrmDatabase;
 
@@ -76,30 +79,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 12
-    enum {
-	XrmBindTightly,
-	XrmBindLoosely
-    };
-
-    enum {
-	XrmBindTightly,
-	XrmBindLoosely
-    };
-
-    enum {
-	XrmoptionNoArg,
-	XrmoptionIsArg,
-	XrmoptionStickyArg,
-	XrmoptionSepArg,
-	XrmoptionResArg,
-	XrmoptionSkipArg,
-	XrmoptionSkipLine,
-	XrmoptionSkipNArgs
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Function prototypes */
 
@@ -107,7 +86,12 @@ extern "C" {
     extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
     extern void XrmDestroyDatabase(XrmDatabase);
     extern int XrmEnumerateDatabase(XrmDatabase, XrmNameList, XrmClassList,
-				    int, int, XPointer);
+				    int, int (*)(XrmDatabase *,
+						 XrmBindingList,
+						 XrmQuarkList,
+						 XrmRepresentation *,
+						 XrmValue *, XPointer)
+				    , XPointer);
     extern XrmDatabase XrmGetDatabase(Display *);
     extern XrmDatabase XrmGetFileDatabase(const char *);
     extern int XrmGetResource(XrmDatabase, const char *, const char *,

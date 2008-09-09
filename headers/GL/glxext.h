@@ -5,6 +5,7 @@
 #include <GL/gl.h>
 #include <GL/glx.h>
 #include <X11/Xlib.h>
+#include <X11/X.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,8 +51,10 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void glXFreeContextEXT(Display *, int);
-    extern int glXQueryContextInfoEXT(Display *, int, int, int *);
+    extern void glXFreeContextEXT(Display *, GLXContext);
+    extern GLXContextID glXGetContextIDEXT(GLXContext);
+    extern GLXContext glXImportContextEXT(Display *, GLXContextID);
+    extern int glXQueryContextInfoEXT(Display *, GLXContext, int, int *);
 #if __LSB_VERSION__ >= 13
     extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte *);
 #endif				/* __LSB_VERSION__ >= 1.3 */

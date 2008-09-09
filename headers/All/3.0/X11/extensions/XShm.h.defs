@@ -1,4 +1,15 @@
 
+#define X_ShmQueryVersion	0
+#define X_ShmAttach	1
+#define X_ShmDetach	2
+#define X_ShmPutImage	3
+#define X_ShmGetImage	4
+#define X_ShmCreatePixmap	5
+#define ShmCompletion	0
+#define ShmNumberEvents	(ShmCompletion + 1)
+#define BadShmSeg	0
+#define ShmNumberErrors	(BadShmSeg + 1)
+
 typedef unsigned long int ShmSeg;
 typedef struct {
     int type;

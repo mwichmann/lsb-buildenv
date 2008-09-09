@@ -1,0 +1,9 @@
+
+#define X_EXTENSION_MISSING	"missing"
+#define X_EXTENSION_UNKNOWN	"unknown"
+
+extern
+    int (*XSetExtensionErrorHandler
+	 (int (*XSetExtensionErrorHandler) (Display *, char *, char *)
+	 )) (Display *, char *, char *);
+extern int XMissingExtension(Display *, const char *);

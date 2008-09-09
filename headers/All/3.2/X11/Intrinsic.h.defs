@@ -1,4 +1,57 @@
 
+#define XtOffset(p_type,field)	((Cardinal) (((char *) (&(((p_type)NULL)->field))) - ((char *) NULL)))
+#define XtNumber(arr)	((Cardinal) (sizeof(arr) / sizeof(arr[0])))
+#define XtAllEvents	((EventMask) -1L)
+#define XtUnspecifiedPixmap	((Pixmap)2)
+#define XtNew(type)	((type *) XtMalloc((unsigned) sizeof(type)))
+#define XtSetArg(arg,n,d)	((void)( (arg).name = (n), (arg).value = (XtArgVal)(d) ))
+#define XtUnspecifiedWindow	((Window)2)
+#define XtUnspecifiedWindowGroup	((Window)3)
+#define XtUnspecifiedShellInt	(-1)
+#define XtCWQueryOnly	(1 << 7)
+#define XtInputReadMask	(1L<<0)
+#define XtInputWriteMask	(1L<<1)
+#define XtInputExceptMask	(1L<<2)
+#define XT_CONVERT_FAIL	(Atom)0x80000001
+#define XtIMAll	(XtIMXEvent | XtIMTimer | XtIMAlternateInput | XtIMSignal)
+#define XtIsRectObj(object)	(_XtCheckSubclassFlag(object, (XtEnum)0x02))
+#define XtIsWidget(object)	(_XtCheckSubclassFlag(object, (XtEnum)0x04))
+#define XtIsComposite(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x08))
+#define XtIsConstraint(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x10))
+#define XtIsShell(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x20))
+#define XtIsWMShell(widget)	(_XtCheckSubclassFlag(widget, (XtEnum)0x40))
+#define XtInputNoneMask	0L
+#define XtCacheNone	0x001
+#define XtCacheAll	0x002
+#define XtCacheByDisplay	0x003
+#define XtCacheRefCount	0x100
+#define XtIMXEvent	1
+#define _XtIntrinsic_h	1
+#define XtIMTimer	2
+#define XtIMAlternateInput	4
+#define XtSMDontChange	5
+#define XtSpecificationRelease	6
+#define XtIMSignal	8
+#define _XtString	char*
+#define externalref	extern
+#define _XtBoolean	int
+#define _XtPosition	int
+#define XtOffsetOf(s_type,field)	offsetof(s_type,field)
+#define _XtDimension	unsigned int
+#define _XtKeyCode	unsigned int
+#define _XtXtEnum	unsigned int
+#define XtCurrentDirectory	"XtCurrentDirectory"
+#define XtCvtPixelToColor	"XtCvtIntToColor"
+#define XtCvtIntToDimension	"XtCvtIntToShort"
+#define XtCvtIntToPosition	"XtCvtIntToShort"
+#define XtCvtStringToPosition	"XtCvtStringToShort"
+#define XtDefaultBackground	"XtDefaultBackground"
+#define XtDefaultFont	"XtDefaultFont"
+#define XtDefaultFontSet	"XtDefaultFontSet"
+#define XtDefaultForeground	"XtDefaultForeground"
+#define XtVaNestedList	"XtVaNestedList"
+#define XtVaTypedArg	"XtVaTypedArg"
+
 typedef unsigned int Cardinal;
 typedef void *XtPointer;
 struct _WidgetRec;
@@ -19,23 +72,10 @@ typedef struct {
 } XtWidgetGeometry;
 typedef unsigned int Modifiers;
 typedef void *XtCacheRef;
-struct _XtResource {
-    String resource_name;
-    String resource_class;
-    String resource_type;
-    Cardinal resource_size;
-    Cardinal resource_offset;
-    String default_type;
-    XtPointer default_addr;
-};
 typedef struct _XtResource *XtResourceList;
 struct _XtAppStruct;
 typedef struct _XtAppStruct *XtAppContext;
 typedef void (*XtActionProc) (Widget, XEvent *, String *, Cardinal *);
-struct _XtActionsRec {
-    String string;
-    XtActionProc proc;
-};
 typedef struct _XtActionsRec *XtActionList;
 typedef char Boolean;
 typedef int XtCacheType;
@@ -48,26 +88,12 @@ typedef long unsigned int XtIntervalId;
 struct _WidgetClassRec;
 typedef struct _WidgetClassRec *WidgetClass;
 typedef Widget *WidgetList;
-struct _TranslationData;
 typedef struct _TranslationData *XtAccelerators;
 typedef struct _TranslationData *XtTranslations;
-enum XtGeometryResult {
-    XtGeometryYes = 0,
-    XtGeometryNo = 1,
-    XtGeometryAlmost = 2,
-    XtGeometryDone = 3
-};
-enum XtAddressMode {
-    XtAddress = 0,
-    XtBaseOffset = 1,
-    XtImmediate = 2,
-    XtResourceString = 3,
-    XtResourceQuark = 4,
-    XtWidgetBaseOffset = 5,
-    XtProcedureArg = 6
-};
+typedef enum XtGeometryResult;
+typedef enum XtAddressMode;
 typedef struct {
-    enum XtAddressMode address_mode;
+    XtAddressMode address_mode;
     XtPointer address_id;
     Cardinal size;
 } XtConvertArgRec;
@@ -79,23 +105,12 @@ typedef struct {
 } Arg;
 typedef Arg *ArgList;
 typedef void (*XtSignalCallbackProc) (XtPointer, XtSignalId *);
-enum XtCallbackStatus {
-    XtCallbackNoList = 0,
-    XtCallbackHasNone = 1,
-    XtCallbackHasSome = 2
-};
+typedef enum XtCallbackStatus;
 typedef void (*XtInputCallbackProc) (XtPointer, int *, XtInputId *);
 typedef void (*XtTimerCallbackProc) (XtPointer, XtIntervalId *);
 typedef long unsigned int XtInputMask;
-enum XtListPosition {
-    XtListHead = 0,
-    XtListTail = 1
-};
+typedef enum XtListPosition;
 typedef void (*XtCallbackProc) (Widget, XtPointer, XtPointer);
-struct _XtCallbackRec {
-    XtCallbackProc callback;
-    XtPointer closure;
-};
 typedef struct _XtCallbackRec *XtCallbackList;
 typedef long unsigned int EventMask;
 typedef void *XtVarArgsList;
@@ -134,25 +149,7 @@ typedef Boolean(*XtConvertSelectionProc) (Widget, Atom *, Atom *, Atom *,
 typedef void (*XtErrorMsgHandler) (String, String, String, String,
 				   String *, Cardinal *);
 typedef String(*XtLanguageProc) (Display *, String, XtPointer);
-enum XtGrabKind {
-    XtGrabNone = 0,
-    XtGrabNonexclusive = 1,
-    XtGrabExclusive = 2
-};
-struct _XtCheckpointTokenRec {
-    int save_type;
-    int interact_style;
-    Boolean shutdown;
-    Boolean fast;
-    Boolean cancel_shutdown;
-    int phase;
-    int interact_dialog_type;
-    Boolean request_cancel;
-    Boolean request_next_phase;
-    Boolean save_success;
-    int type;
-    Widget widget;
-};
+typedef enum XtGrabKind;
 typedef struct _XtCheckpointTokenRec *XtCheckpointToken;
 typedef void (*XtExtensionSelectProc) (Widget, int *, XtPointer *, int,
 				       XtPointer);
@@ -170,6 +167,85 @@ typedef void (*XtLoseSelectionIncrProc) (Widget, Atom *, XtPointer);
 typedef long unsigned int XtValueMask;
 typedef struct _XtEventRec *XtEventTable;
 typedef XtActionProc *XtBoundActions;
+typedef struct _XtResource {
+    String resource_name;
+    String resource_class;
+    String resource_type;
+    Cardinal resource_size;
+    Cardinal resource_offset;
+    String default_type;
+    XtPointer default_addr;
+} XtResource;
+typedef struct _XtCallbackRec {
+    XtCallbackProc callback;
+    XtPointer closure;
+} XtCallbackRec;
+typedef struct _XtCheckpointTokenRec {
+    int save_type;
+    int interact_style;
+    Boolean shutdown;
+    Boolean fast;
+    Boolean cancel_shutdown;
+    int phase;
+    int interact_dialog_type;
+    Boolean request_cancel;
+    Boolean request_next_phase;
+    Boolean save_success;
+    int type;
+    Widget widget;
+} XtCheckpointTokenRec;
+typedef long unsigned int Pixel;
+typedef struct _XtActionsRec {
+    String string;
+    XtActionProc proc;
+} XtActionsRec;
+typedef struct {
+    Widget shell_widget;
+    Widget enable_widget;
+} XtPopdownIDRec;
+typedef XtPopdownIDRec *XtPopdownID;
+typedef void (*XtCreatePopupChildProc) (Widget);
+typedef struct {
+    String type;
+    Widget widget;
+    ArgList args;
+    Cardinal num_args;
+} XtCreateHookDataRec;
+typedef XtCreateHookDataRec *XtCreateHookData;
+typedef struct {
+    String type;
+    Widget widget;
+    XtPointer event_data;
+    Cardinal num_event_data;
+} XtChangeHookDataRec;
+typedef XtChangeHookDataRec *XtChangeHookData;
+typedef struct {
+    Widget old;
+    Widget req;
+    ArgList args;
+    Cardinal num_args;
+} XtChangeHookSetValuesDataRec;
+typedef XtChangeHookSetValuesDataRec *XtChangeHookSetValuesData;
+typedef struct {
+    String type;
+    Widget widget;
+    XtGeometryMask changeMask;
+    XWindowChanges changes;
+} XtConfigureHookDataRec;
+typedef XtConfigureHookDataRec *XtConfigureHookData;
+typedef struct {
+    String type;
+    Widget widget;
+    XtWidgetGeometry *request;
+    XtWidgetGeometry *reply;
+    XtGeometryResult result;
+} XtGeometryHookDataRec;
+typedef XtGeometryHookDataRec *XtGeometryHookData;
+typedef struct {
+    String type;
+    Widget widget;
+} XtDestroyHookDataRec;
+typedef XtDestroyHookDataRec *XtDestroyHookData;
 extern void XtAddActions(XtActionList, Cardinal);
 extern void XtAddCallback(Widget, const char *, XtCallbackProc, XtPointer);
 extern void XtAddCallbacks(Widget, const char *, XtCallbackList);
@@ -183,6 +259,7 @@ extern XtInputId XtAddInput(int, XtPointer, XtInputCallbackProc,
 			    XtPointer);
 extern void XtAddRawEventHandler(Widget, EventMask, Boolean,
 				 XtEventHandler, XtPointer);
+extern XtSignalId XtAddSignal(XtSignalCallbackProc, XtPointer);
 extern XtIntervalId XtAddTimeOut(long unsigned int, XtTimerCallbackProc,
 				 XtPointer);
 extern XtWorkProcId XtAddWorkProc(XtWorkProc, XtPointer);
@@ -425,50 +502,41 @@ extern void XtGrabKey(Widget, KeyCode, Modifiers, Boolean, int, int);
 extern int XtGrabKeyboard(Widget, Boolean, int, int, Time);
 extern int XtGrabPointer(Widget, Boolean, unsigned int, int, int, Window,
 			 Cursor, Time);
-extern enum XtCallbackStatus XtHasCallbacks(Widget, const char *);
+extern XtCallbackStatus XtHasCallbacks(Widget, const char *);
 extern Widget XtHooksOfDisplay(Display *);
 extern Widget XtInitialize(const char *, const char *, XrmOptionDescRec *,
 			   Cardinal, int *, char **);
 extern void XtInitializeWidgetClass(WidgetClass);
 extern void XtInsertEventHandler(Widget, EventMask, Boolean,
 				 XtEventHandler, XtPointer,
-				 enum XtListPosition);
+				 XtListPosition);
 extern void XtInsertEventTypeHandler(Widget, int, XtPointer,
 				     XtEventHandler, XtPointer,
-				     enum XtListPosition);
+				     XtListPosition);
 extern void XtInsertRawEventHandler(Widget, EventMask, Boolean,
 				    XtEventHandler, XtPointer,
-				    enum XtListPosition);
+				    XtListPosition);
 extern void XtInstallAccelerators(Widget, Widget);
 extern void XtInstallAllAccelerators(Widget, Widget);
 extern Boolean XtIsApplicationShell(Widget);
-extern Boolean XtIsComposite(Widget);
-extern Boolean XtIsConstraint(Widget);
 extern Boolean XtIsManaged(Widget);
 extern Boolean XtIsObject(Widget);
 extern Boolean XtIsOverrideShell(Widget);
 extern Boolean XtIsRealized(Widget);
-extern Boolean XtIsRectObj(Widget);
 extern Boolean XtIsSensitive(Widget);
 extern Boolean XtIsSessionShell(Widget);
-extern Boolean XtIsShell(Widget);
 extern Boolean XtIsSubclass(Widget, WidgetClass);
-extern Boolean XtIsTopLevelShell(Widget);
 extern Boolean XtIsTransientShell(Widget);
 extern Boolean XtIsVendorShell(Widget);
-extern Boolean XtIsWMShell(Widget);
-extern Boolean XtIsWidget(Widget);
 extern void XtKeysymToKeycodeList(Display *, KeySym, KeyCode * *,
 				  Cardinal *);
 extern XEvent *XtLastEventProcessed(Display *);
 extern Time XtLastTimestampProcessed(Display *);
 extern void XtMainLoop(void);
-extern enum XtGeometryResult XtMakeGeometryRequest(Widget,
-						   XtWidgetGeometry *,
-						   XtWidgetGeometry *);
-extern enum XtGeometryResult XtMakeResizeRequest(Widget, Dimension,
-						 Dimension, Dimension *,
-						 Dimension *);
+extern XtGeometryResult XtMakeGeometryRequest(Widget, XtWidgetGeometry *,
+					      XtWidgetGeometry *);
+extern XtGeometryResult XtMakeResizeRequest(Widget, Dimension, Dimension,
+					    Dimension *, Dimension *);
 extern char *XtMalloc(Cardinal);
 extern void XtMapWidget(Widget);
 extern void XtMenuPopupAction(Widget, XEvent *, String *, Cardinal *);
@@ -500,11 +568,11 @@ extern XtTranslations XtParseTranslationTable(const char *);
 extern Boolean XtPeekEvent(XEvent *);
 extern Boolean XtPending(void);
 extern void XtPopdown(Widget);
-extern void XtPopup(Widget, enum XtGrabKind);
+extern void XtPopup(Widget, XtGrabKind);
 extern void XtPopupSpringLoaded(Widget);
 extern void XtProcessEvent(XtInputMask);
-extern enum XtGeometryResult XtQueryGeometry(Widget, XtWidgetGeometry *,
-					     XtWidgetGeometry *);
+extern XtGeometryResult XtQueryGeometry(Widget, XtWidgetGeometry *,
+					XtWidgetGeometry *);
 extern void XtRealizeWidget(Widget);
 extern char *XtRealloc(char *, Cardinal);
 extern void XtRegisterCaseConverter(Display *, XtCaseProc, KeySym, KeySym);
@@ -584,25 +652,27 @@ extern void XtUnmapWidget(Widget);
 extern void XtUnrealizeWidget(Widget);
 extern void XtUnregisterDrawable(Display *, Drawable);
 extern Widget XtVaAppCreateShell(const char *, const char *, WidgetClass,
-				 Display *);
+				 Display *, ...);
 extern Widget XtVaAppInitialize(XtAppContext *, const char *,
 				XrmOptionDescList, Cardinal, int *,
-				String *, String *);
-extern XtVarArgsList XtVaCreateArgsList(XtPointer);
-extern Widget XtVaCreateManagedWidget(const char *, WidgetClass, Widget);
-extern Widget XtVaCreatePopupShell(const char *, WidgetClass, Widget);
-extern Widget XtVaCreateWidget(const char *, WidgetClass, Widget);
+				String *, String *, ...);
+extern XtVarArgsList XtVaCreateArgsList(XtPointer, ...);
+extern Widget XtVaCreateManagedWidget(const char *, WidgetClass, Widget,
+				      ...);
+extern Widget XtVaCreatePopupShell(const char *, WidgetClass, Widget, ...);
+extern Widget XtVaCreateWidget(const char *, WidgetClass, Widget, ...);
 extern void XtVaGetApplicationResources(Widget, XtPointer, XtResourceList,
-					Cardinal);
+					Cardinal, ...);
 extern void XtVaGetSubresources(Widget, XtPointer, const char *,
-				const char *, XtResourceList, Cardinal);
-extern void XtVaGetSubvalues(XtPointer, XtResourceList, Cardinal);
-extern void XtVaGetValues(Widget);
+				const char *, XtResourceList, Cardinal,
+				...);
+extern void XtVaGetSubvalues(XtPointer, XtResourceList, Cardinal, ...);
+extern void XtVaGetValues(Widget, ...);
 extern Widget XtVaOpenApplication(XtAppContext *, const char *,
 				  XrmOptionDescList, Cardinal, int *,
-				  String *, String *, WidgetClass);
-extern void XtVaSetSubvalues(XtPointer, XtResourceList, Cardinal);
-extern void XtVaSetValues(Widget);
+				  String *, String *, WidgetClass, ...);
+extern void XtVaSetSubvalues(XtPointer, XtResourceList, Cardinal, ...);
+extern void XtVaSetValues(Widget, ...);
 extern void XtWarning(const char *);
 extern void XtWarningMsg(const char *, const char *, const char *,
 			 const char *, String *, Cardinal *);

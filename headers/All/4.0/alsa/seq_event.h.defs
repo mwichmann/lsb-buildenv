@@ -21,9 +21,6 @@ typedef struct snd_seq_connect {
     snd_seq_addr_t sender;
     snd_seq_addr_t dest;
 } snd_seq_connect_t;
-typedef struct snd_seq_ev_cluster {
-    snd_seq_instr_cluster_t cluster;
-} snd_seq_ev_cluster_t;
 typedef struct snd_seq_ev_ctrl {
     unsigned char channel;
     unsigned char unused[3];
@@ -35,13 +32,6 @@ typedef struct snd_seq_ev_ext {
     void *ptr;
 } __attribute__ ((packed))
     snd_seq_ev_ext_t;
-typedef struct snd_seq_ev_instr_begin {
-    int timeout;
-} snd_seq_ev_instr_begin_t;
-typedef struct snd_seq_ev_loop {
-    unsigned int start;
-    unsigned int end;
-} snd_seq_ev_loop_t;
 typedef struct snd_seq_ev_note {
     unsigned char channel;
     unsigned char note;
@@ -67,31 +57,6 @@ typedef struct snd_seq_ev_raw32 {
 typedef struct snd_seq_ev_raw8 {
     unsigned char d[12];
 } snd_seq_ev_raw8_t;
-typedef struct snd_seq_ev_sample_control {
-    unsigned char channel;
-    unsigned char unused[3];
-    union {
-	snd_seq_ev_sample_t sample;
-	snd_seq_ev_cluster_t cluster;
-	snd_seq_position_t position;
-	snd_seq_stop_mode_t stop_mode;
-	snd_seq_frequency_t frequency;
-	snd_seq_ev_volume_t volume;
-	snd_seq_ev_loop_t loop;
-	unsigned char raw8[8];
-    } param;
-} snd_seq_ev_sample_control_t;
-typedef struct snd_seq_ev_sample {
-    unsigned int std;
-    short unsigned int bank;
-    short unsigned int prg;
-} snd_seq_ev_sample_t;
-typedef struct snd_seq_ev_volume {
-    short int volume;
-    short int lr;
-    short int fr;
-    short int du;
-} snd_seq_ev_volume_t;
 typedef struct snd_seq_event {
     snd_seq_event_type_t type;
     unsigned char flags;
@@ -111,20 +76,9 @@ typedef struct snd_seq_event {
 	snd_seq_addr_t addr;
 	snd_seq_connect_t connect;
 	snd_seq_result_t result;
-	snd_seq_ev_instr_begin_t instr_begin;
-	snd_seq_ev_sample_control_t sample;
     } data;
 } snd_seq_event_t;
 typedef unsigned char snd_seq_event_type_t;
-typedef int snd_seq_frequency_t;
-typedef unsigned int snd_seq_instr_cluster_t;
-typedef struct snd_seq_instr {
-    snd_seq_instr_cluster_t cluster;
-    unsigned int std;
-    short unsigned int bank;
-    short unsigned int prg;
-} snd_seq_instr_t;
-typedef unsigned int snd_seq_position_t;
 typedef struct snd_seq_queue_skew {
     unsigned int value;
     unsigned int base;
@@ -141,11 +95,6 @@ typedef struct snd_seq_result {
     int event;
     int result;
 } snd_seq_result_t;
-typedef enum snd_seq_stop_mode {
-    SND_SEQ_SAMPLE_STOP_IMMEDIATELY,
-    SND_SEQ_SAMPLE_STOP_VENVELOPE = 1,
-    SND_SEQ_SAMPLE_STOP_LOOP = 2
-} snd_seq_stop_mode_t;
 typedef unsigned int snd_seq_tick_time_t;
 typedef union snd_seq_timestamp {
     snd_seq_tick_time_t tick;

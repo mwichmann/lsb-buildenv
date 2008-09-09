@@ -14,6 +14,9 @@ extern "C" {
 #endif
 
 
+#define _XtConstraint_h	1
+
+
     typedef struct _ConstraintClassRec *ConstraintWidgetClass;
 
 

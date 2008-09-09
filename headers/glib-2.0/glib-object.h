@@ -669,7 +669,7 @@ extern "C" {
     typedef gchar **GStrv;
 
 #if __LSB_VERSION__ >= 40
-    typedef void (*GToggleNotify) (gpointer, GObject, gboolean);
+    typedef void (*GToggleNotify) (gpointer, GObject *, gboolean);
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 

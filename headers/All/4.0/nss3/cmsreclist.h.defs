@@ -1,0 +1,13 @@
+
+typedef struct NSSCMSRecipientStr {
+    int riIndex;
+    int subIndex;
+    enum kind;
+    union {
+	CERTIssuerAndSN *issuerAndSN;
+	SECItem *subjectKeyID;
+    } id;
+    CERTCertificate *cert;
+    SECKEYPrivateKey *privkey;
+    PK11SlotInfo *slot;
+} NSSCMSRecipient;

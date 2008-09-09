@@ -1,0 +1,5 @@
+
+typedef struct CERTOCSPRequestStr CERTOCSPRequest;
+typedef struct CERTOCSPResponseStr CERTOCSPResponse;
+typedef struct CERTOCSPCertIDStr CERTOCSPCertID;
+typedef struct CERTOCSPSingleResponseStr CERTOCSPSingleResponse;

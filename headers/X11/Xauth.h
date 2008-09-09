@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+#define _Xauth_h	1
 #if __LSB_VERSION__ >= 12
 #define FamilyLocalHost	(252)
 #define FamilyKrb5Principal	(253)

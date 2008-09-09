@@ -13,6 +13,9 @@ extern "C" {
 #endif
 
 
+#define _XtintrinsicP_h	1
+
+
 #if __LSB_VERSION__ >= 12
     typedef struct {
 	long int xrm_name;
@@ -64,12 +67,20 @@ extern "C" {
 
     typedef long unsigned int XtVersionType;
 
-    typedef enum XtGeometryResult (*XtGeometryHandler) (Widget,
-							XtWidgetGeometry *,
-							XtWidgetGeometry
-							*);
+    typedef XtGeometryResult(*XtGeometryHandler) (Widget,
+						  XtWidgetGeometry *,
+						  XtWidgetGeometry *);
 
     typedef void (*XtStringProc) (Widget, String);
+
+    typedef void (*XtAllocateProc) (WidgetClass, Cardinal *, Cardinal *,
+				    ArgList, Cardinal *, XtTypedArgList,
+				    Cardinal *, struct _WidgetRec * *,
+				    void **);
+
+    typedef void (*XtDeallocateProc) (struct _WidgetRec *, void *);
+
+    typedef struct _XtTMRec XtTMRec;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -90,6 +101,19 @@ extern "C" {
 				  Dimension, Dimension);
     extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
 			       XSetWindowAttributes *);
+#undef XtIsComposite
+    extern Boolean XtIsComposite(Widget);
+#undef XtIsConstraint
+    extern Boolean XtIsConstraint(Widget);
+#undef XtIsRectObj
+    extern Boolean XtIsRectObj(Widget);
+#undef XtIsShell
+    extern Boolean XtIsShell(Widget);
+    extern Boolean XtIsTopLevelShell(Widget);
+#undef XtIsWMShell
+    extern Boolean XtIsWMShell(Widget);
+#undef XtIsWidget
+    extern Boolean XtIsWidget(Widget);
     extern void XtMoveWidget(Widget, Position, Position);
     extern void XtProcessLock(void);
     extern void XtProcessUnlock(void);

@@ -31,6 +31,8 @@
 #define GLX_SAMPLE_BUFFERS_ARB	100000
 #define GLX_SAMPLES_ARB	100001
 
-extern void glXFreeContextEXT(Display *, int);
-extern int glXQueryContextInfoEXT(Display *, int, int, int *);
+extern void glXFreeContextEXT(Display *, GLXContext);
+extern GLXContextID glXGetContextIDEXT(GLXContext);
+extern GLXContext glXImportContextEXT(Display *, GLXContextID);
+extern int glXQueryContextInfoEXT(Display *, GLXContext, int, int *);
 extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte *);

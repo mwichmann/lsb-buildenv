@@ -23,17 +23,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 12
-    struct exception {
-	int type;
-	char *name;
-	double arg1;
-	double arg2;
-	double retval;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* All floating-point numbers can be put in one of these categories.*/
 #if __LSB_VERSION__ >= 21
@@ -714,22 +703,6 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 /* S390 */
     extern int __fpclassifyl(long double);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern float __nldbl_nexttowardf(float, long double);
-#endif
-#if defined __s390x__
-/* S390X */
-    extern float __nldbl_nexttowardf(float, long double);
 #endif
 #if defined __powerpc64__
 /* PPC64 */

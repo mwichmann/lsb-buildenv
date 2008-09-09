@@ -148,6 +148,8 @@ typedef XID KeySym;
 #define FamilyInternet	0
 #define FamilyDECnet	1
 #define FamilyChaos	2
+#define FamilyServerInterpreted	5
+#define FamilyInternet6	6	/* IPv6 */
 
 #define PropModeReplace	0
 #define PropertyNewValue	0

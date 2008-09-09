@@ -2,8 +2,15 @@
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)
 #define XtInheritInsertChild	((XtWidgetProc) _XtInherit)
+#define _XtCompositeP_h	1
 #define XtCompositeExtensionVersion	2L
 
+typedef struct _CompositePart {
+    WidgetList children;
+    Cardinal num_children;
+    Cardinal num_slots;
+    XtOrderProc insert_position;
+} CompositePart;
 typedef struct _CompositeClassPart {
     XtGeometryHandler geometry_manager;
     XtWidgetProc change_managed;
@@ -11,6 +18,21 @@ typedef struct _CompositeClassPart {
     XtWidgetProc delete_child;
     XtPointer extension;
 } CompositeClassPart;
+typedef struct _CompositePart *CompositePtr;
+typedef struct _CompositeRec {
+    CorePart core;
+    CompositePart composite;
+} CompositeRec;
+typedef struct _CompositeClassPart *CompositePartPtr;
+typedef struct {
+    XtPointer next_extension;
+    XrmQuark record_type;
+    long int version;
+    Cardinal record_size;
+    Boolean accepts_objects;
+    Boolean allows_change_managed_set;
+} CompositeClassExtensionRec;
+typedef CompositeClassExtensionRec *CompositeClassExtension;
 
 typedef struct _CompositeClassRec CompositeClassRec;
 extern CompositeClassRec compositeClassRec;

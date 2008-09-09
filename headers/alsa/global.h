@@ -12,7 +12,7 @@ extern "C" {
 
     typedef struct _snd_async_handler snd_async_handler_t;
 
-    typedef void (*snd_async_callback_t) (void);
+    typedef void (*snd_async_callback_t) (snd_async_handler_t *);
 
     typedef struct timespec snd_htimestamp_t;
 

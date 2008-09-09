@@ -3,6 +3,7 @@
 #define _X11_EXTENSIONS_DPMS_H_
 
 #include <X11/Xlib.h>
+#include <X11/Xmd.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,12 +25,12 @@ extern "C" {
     extern int DPMSCapable(Display *);
     extern int DPMSDisable(Display *);
     extern int DPMSEnable(Display *);
-    extern int DPMSForceLevel(Display *,);
-    extern int DPMSGetTimeouts(Display *, *, *, *);
+    extern int DPMSForceLevel(Display *, CARD16);
+    extern int DPMSGetTimeouts(Display *, CARD16 *, CARD16 *, CARD16 *);
     extern int DPMSGetVersion(Display *, int *, int *);
-    extern int DPMSInfo(Display *, *, *);
+    extern int DPMSInfo(Display *, CARD16 *, BOOL *);
     extern int DPMSQueryExtension(Display *, int *, int *);
-    extern int DPMSSetTimeouts(Display *,,,);
+    extern int DPMSSetTimeouts(Display *, CARD16, CARD16, CARD16);
 #ifdef __cplusplus
 }
 #endif

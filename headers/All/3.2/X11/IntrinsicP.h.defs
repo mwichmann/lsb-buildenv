@@ -1,4 +1,6 @@
 
+#define _XtintrinsicP_h	1
+
 typedef struct {
     long int xrm_name;
     long int xrm_class;
@@ -9,12 +11,6 @@ typedef struct {
     XtPointer xrm_default_addr;
 } XrmResource;
 typedef XrmResource *XrmResourceList;
-struct _XtTMRec {
-    XtTranslations translations;
-    XtBoundActions proc_table;
-    struct _XtStateRec *current_state;
-    long unsigned int lastEventTime;
-};
 typedef struct _XtTMRec *XtTM;
 typedef struct {
     String name;
@@ -38,14 +34,31 @@ typedef void (*XtAlmostProc) (Widget, Widget, XtWidgetGeometry *,
 			      XtWidgetGeometry *);
 typedef Boolean(*XtAcceptFocusProc) (Widget, Time *);
 typedef long unsigned int XtVersionType;
-typedef enum XtGeometryResult (*XtGeometryHandler) (Widget,
-						    XtWidgetGeometry *,
-						    XtWidgetGeometry *);
+typedef XtGeometryResult(*XtGeometryHandler) (Widget, XtWidgetGeometry *,
+					      XtWidgetGeometry *);
 typedef void (*XtStringProc) (Widget, String);
+typedef void (*XtAllocateProc) (WidgetClass, Cardinal *, Cardinal *,
+				ArgList, Cardinal *, XtTypedArgList,
+				Cardinal *, struct _WidgetRec * *,
+				void **);
+typedef void (*XtDeallocateProc) (struct _WidgetRec *, void *);
+typedef struct _XtTMRec {
+    XtTranslations translations;
+    XtBoundActions proc_table;
+    struct _XtStateRec *current_state;
+    long unsigned int lastEventTime;
+} XtTMRec;
 extern void XtConfigureWidget(Widget, Position, Position, Dimension,
 			      Dimension, Dimension);
 extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
 			   XSetWindowAttributes *);
+extern Boolean XtIsComposite(Widget);
+extern Boolean XtIsConstraint(Widget);
+extern Boolean XtIsRectObj(Widget);
+extern Boolean XtIsShell(Widget);
+extern Boolean XtIsTopLevelShell(Widget);
+extern Boolean XtIsWMShell(Widget);
+extern Boolean XtIsWidget(Widget);
 extern void XtMoveWidget(Widget, Position, Position);
 extern void XtProcessLock(void);
 extern void XtProcessUnlock(void);

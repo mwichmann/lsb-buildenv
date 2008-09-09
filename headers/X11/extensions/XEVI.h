@@ -32,7 +32,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int XeviGetVisualInfo(Display *, Visual *, int,
+    extern int XeviGetVisualInfo(Display *, VisualID *, int,
 				 ExtendedVisualInfo * *, int *);
     extern int XeviQueryExtension(Display *);
     extern int XeviQueryVersion(Display *, int *, int *);

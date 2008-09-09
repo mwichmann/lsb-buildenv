@@ -1,0 +1,3 @@
+
+typedef struct SGNContextStr SGNContext;
+typedef struct VFYContextStr VFYContext;

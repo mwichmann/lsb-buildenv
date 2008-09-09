@@ -2,7 +2,6 @@
 #ifndef _GL_GLX_H_
 #define _GL_GLX_H_
 
-#include <GL/gl.h>
 #include <X11/Xlib.h>
 #include <X11/X.h>
 #include <X11/Xutil.h>
@@ -143,7 +142,7 @@ extern "C" {
 
     typedef XID GLXFBConfigID;
 
-    typedef void (*__GLXextFuncPtr) (const GLubyte * procName);
+    typedef void (*__GLXextFuncPtr) (void);
 
 #include <GL/glxext.h>
 #if __LSB_VERSION__ >= 12
@@ -180,31 +179,32 @@ extern "C" {
 				     Window, const int *);
     extern void glXDestroyContext(Display *, struct __GLXcontextRec *);
     extern void glXDestroyGLXPixmap(Display *, GLXPixmap);
-    extern void glXDestroyPbuffer(Display *, int);
-    extern void glXDestroyPixmap(Display *, int);
-    extern void glXDestroyWindow(Display *, int);
+    extern void glXDestroyPbuffer(Display *, GLXPbuffer);
+    extern void glXDestroyPixmap(Display *, GLXPixmap);
+    extern void glXDestroyWindow(Display *, GLXWindow);
     extern const char *glXGetClientString(Display *, int);
     extern int glXGetConfig(Display *, XVisualInfo *, int, int *);
-    extern GLXContextID glXGetContextIDEXT(GLXContext);
     extern GLXContext glXGetCurrentContext(void);
     extern Display *glXGetCurrentDisplay(void);
     extern GLXDrawable glXGetCurrentDrawable(void);
     extern GLXDrawable glXGetCurrentReadDrawable(void);
-    extern int glXGetFBConfigAttrib(Display *, int, int, int *);
-    extern void glXGetSelectedEvent(Display *, int, unsigned long int *);
-    extern XVisualInfo *glXGetVisualFromFBConfig(Display *, int);
-    extern GLXContext glXImportContextEXT(Display *, GLXContextID);
+    extern int glXGetFBConfigAttrib(Display *, GLXFBConfig, int, int *);
+    extern void glXGetSelectedEvent(Display *, GLXDrawable,
+				    unsigned long int *);
+    extern XVisualInfo *glXGetVisualFromFBConfig(Display *, GLXFBConfig);
     extern int glXIsDirect(Display *, struct __GLXcontextRec *);
-    extern int glXMakeContextCurrent(Display *, int, int, int);
+    extern int glXMakeContextCurrent(Display *, GLXDrawable, GLXDrawable,
+				     GLXContext);
     extern int glXMakeCurrent(Display *, GLXDrawable,
 			      struct __GLXcontextRec *);
-    extern int glXQueryContext(Display *, int, int, int *);
-    extern void glXQueryDrawable(Display *, int, int, unsigned int *);
+    extern int glXQueryContext(Display *, GLXContext, int, int *);
+    extern void glXQueryDrawable(Display *, GLXDrawable, int,
+				 unsigned int *);
     extern int glXQueryExtension(Display *, int *, int *);
     extern const char *glXQueryExtensionsString(Display *, int);
     extern const char *glXQueryServerString(Display *, int, int);
     extern int glXQueryVersion(Display *, int *, int *);
-    extern void glXSelectEvent(Display *, int, long unsigned int);
+    extern void glXSelectEvent(Display *, GLXDrawable, long unsigned int);
     extern void glXSwapBuffers(Display *, GLXDrawable);
     extern void glXUseXFont(Font, int, int, int);
     extern void glXWaitGL(void);

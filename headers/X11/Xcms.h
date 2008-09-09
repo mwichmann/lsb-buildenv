@@ -37,21 +37,6 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-    typedef struct _XcmsFunctionSet XcmsFunctionSet;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
-    struct _XcmsFunctionSet {
-	XcmsColorSpace **DDColorSpaces;
-	XcmsScreenInitProc screenInitProc;
-	XcmsScreenFreeProc screenFreeProc;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-#if __LSB_VERSION__ >= 12
     typedef unsigned long int XcmsColorFormat;
 
     typedef double XcmsFloat;
@@ -111,29 +96,54 @@ extern "C" {
 	XcmsFloat pad3;
     } XcmsPad;
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-/* XCMS Color Structure*/
-#if __LSB_VERSION__ >= 12
-    typedef union {
-	XcmsRGB RGB;
-	XcmsRGBi RGBi;
-	XcmsCIEXYZ CIEXYZ;
-	XcmsCIEuvY CIEuvY;
-	XcmsCIExyY CIExyY;
-	XcmsCIELab CIELab;
-	XcmsCIELuv CIELuv;
-	XcmsTekHVC TekHVC;
-	XcmsPad Pad;
+    typedef struct {
+	union {
+	    XcmsRGB RGB;
+	    XcmsRGBi RGBi;
+	    XcmsCIEXYZ CIEXYZ;
+	    XcmsCIEuvY CIEuvY;
+	    XcmsCIExyY CIExyY;
+	    XcmsCIELab CIELab;
+	    XcmsCIELuv CIELuv;
+	    XcmsTekHVC TekHVC;
+	    XcmsPad Pad;
+	} spec;
+	unsigned long int pixel;
+	XcmsColorFormat format;
     } XcmsColor;
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-/* XCMS Per Screen related data*/
-#if __LSB_VERSION__ >= 12
     typedef struct _XcmsPerScrnInfo XcmsPerScrnInfo;
+
+    typedef struct _XcmsCCC XcmsCCCRec;
+
+    typedef struct _XcmsColorSpace XcmsColorSpace;
+
+    typedef struct _XcmsFunctionSet XcmsFunctionSet;
+
+    typedef struct _XcmsCCC *XcmsCCC;
+
+    typedef int (*XcmsCompressionProc) (XcmsCCC, XcmsColor *, unsigned int,
+					unsigned int, int *);
+
+    typedef int (*XcmsWhiteAdjustProc) (XcmsCCC, XcmsColor *, XcmsColor *,
+					XcmsColorFormat, XcmsColor *,
+					unsigned int, int *);
+
+    typedef int (*XcmsScreenInitProc) (Display *, int, XcmsPerScrnInfo *);
+
+    typedef void (*XcmsScreenFreeProc) (XPointer);
+
+    typedef int (*XcmsDIConversionProc) (XcmsCCC, XcmsColor *, XcmsColor *,
+					 unsigned int);
+
+    typedef XcmsDIConversionProc XcmsConversionProc;
+
+    typedef int (*XcmsParseStringProc) (char *, XcmsColor *);
+
+    typedef XcmsConversionProc *XcmsFuncListPtr;
+
+    typedef int (*XcmsDDConversionProc) (XcmsCCC, XcmsColor *,
+					 unsigned int, int *);
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -146,34 +156,6 @@ extern "C" {
 	char pad[1];
     };
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-#if __LSB_VERSION__ >= 12
-    typedef int (*XcmsCompressionProc) (void);
-
-    typedef int (*XcmsWhiteAdjustProc) (void);
-
-    typedef int (*XcmsScreenInitProc) (void);
-
-    typedef void (*XcmsScreenFreeProc) (void);
-
-    typedef int (*XcmsConversionProc) (void);
-
-    typedef int (*XcmsParseStringProc) (void);
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-/* XCMS Color Conversion Context*/
-#if __LSB_VERSION__ >= 12
-    typedef struct _XcmsCCC XcmsCCCRec;
-
-    typedef struct _XcmsCCC *XcmsCCC;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
     struct _XcmsCCC {
 	Display *dpy;
 	int screenNumber;
@@ -186,22 +168,6 @@ extern "C" {
 	XcmsPerScrnInfo *pPerScrnInfo;
     };
 
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-#if __LSB_VERSION__ >= 12
-    typedef XcmsConversionProc *XcmsFuncListPtr;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-/* Color Space -- per Color Space related data (Device-Independent or Device-Dependent)*/
-#if __LSB_VERSION__ >= 12
-    typedef struct _XcmsColorSpace XcmsColorSpace;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 12
     struct _XcmsColorSpace {
 	char *prefix;
 	XcmsColorFormat id;
@@ -211,8 +177,25 @@ extern "C" {
 	int inverse_flag;
     };
 
+    struct _XcmsFunctionSet {
+	XcmsColorSpace **DDColorSpaces;
+	XcmsScreenInitProc screenInitProc;
+	XcmsScreenFreeProc screenFreeProc;
+    };
+
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+
+
+/* XCMS Color Structure*/
+
+/* XCMS Per Screen related data*/
+
+
+/* XCMS Color Conversion Context*/
+
+
+/* Color Space -- per Color Space related data (Device-Independent or Device-Dependent)*/
 
 /* Function prototypes */
 
