@@ -472,6 +472,7 @@ struct option long_options[] = {
 	{"lsb-shared-libpath",required_argument,NULL,16},
 	{"static",no_argument,NULL,17},
 	{"lsb-use-default-linker",no_argument,NULL,18},
+	{"lsb-besteffort",no_argument,NULL,19},
 	{NULL,0,0,0}
 	};
 
@@ -547,7 +548,9 @@ usage(const char *progname) {
 		"\t                    the LSB_MODULES environment setting.\n"
 		"\t                    known modules: %s\n"
                 "\t--lsb-use-default-linker\n"
-                "\t                   Do not set dynamic linker to the LSB one.\n\n"
+                "\t                   Do not set dynamic linker to the LSB one.\n"
+                "\t--lsb-besteffort\n"
+                "\t                   Use best-effort code to choose the dynamic linker at runtime.\n\n"
 		"All other options are passed to the compiler more or\n"
 		"less unmodified, --lsb options should appear before system\n"
 		"compiler options.\n"
@@ -721,6 +724,7 @@ int	option_index;
 int 	auto_pthread = 1;
 int	force_static = 0;
 int	feature_settings = 0;
+int	best_effort = 0;
 int	display_cmd = 0;
 int	found_gcc_arg = 0;
 int	found_gcc_standalone = 0;
@@ -856,6 +860,10 @@ if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
 
 if( (ptr=getenv("LSBCC_FORCEFEATURES")) != NULL ) {
 	feature_settings = 1;
+}
+
+if( (ptr=getenv("LSBCC_BESTEFFORT")) != NULL ) {
+	best_effort = 1;
 }
 
 if( (ptr=getenv("LSBCC_USE_DEFAULT_LINKER")) != NULL ) {
@@ -1222,6 +1230,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 18:/* --lsb-use-default-linker */
 		default_linker=1;
 		break;
+	case 19:/* --lsb-besteffort */
+		best_effort=1;
+		break;
 	default:
 		/* We shouldn't get here */
 		printf("unhandled option %c", c );
@@ -1364,8 +1375,10 @@ if (!no_link) {
 	}
 
 	/* Best-effort dynamic linking. */
-	argvaddstring(syslibs, "/opt/lsb/lib/besteffort.o");
-	default_linker = 1;
+	if( best_effort ) {
+		argvaddstring(syslibs, "/opt/lsb/lib/besteffort.o");
+		default_linker = 1;
+	}
 
 	if( lsbcc_debug&DEBUG_LIB_CHANGES ) {
 		fprintf(stderr,"Appending -lgcc\n");
