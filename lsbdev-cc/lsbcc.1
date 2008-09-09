@@ -149,6 +149,11 @@ LSB_MODULES environment setting.
 .TP
 --lsb-use-default-linker
 Do not set dynamic linker to the LSB one.
+.TP
+--lsb-besteffort
+This will unset the dynamic linker (like --lsb-use-default-linker),
+but will also link in code that tries to use the LSB dynamic linker if
+needed.
 .TP 
 --lsb-libtool_fixups
 Enable semantics that assist in compiling applications with
@@ -264,6 +269,11 @@ library must be linked statically.
 .TP
 LSBCC_USE_DEFAULT_LINKER
 Do not set dynamic linker to the LSB one.
+.TP
+LSBCC_BESTEFFORT
+This will unset the dynamic linker (like LSBCC_USE_DEFAULT_LINKER),
+but will also link in code that tries to use the LSB dynamic linker if
+needed.
 .TP
 LSBCC_DEBUG
 A numeric value which represents a bit pattern specifying what

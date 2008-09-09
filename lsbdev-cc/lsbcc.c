@@ -63,6 +63,7 @@
 #include "lsbcc_version.h"
 #include "lsbcc_libs.h"
 #include "lsbcc_argv.h"
+#include "linkers.h"
 
 #include "elf_utils.h"
 
@@ -601,6 +602,7 @@ struct option long_options[] = {
 	{"static",no_argument,NULL,17},
 	{"lsb-use-default-linker",no_argument,NULL,18},
 	{"lsb-libtool-fixups",no_argument,NULL,19},
+	{"lsb-besteffort",no_argument,NULL,20},
 	{NULL,0,0,0}
 };
 
@@ -660,26 +662,29 @@ usage(const char *progname) {
 		"\t                    (overrides the LSBCXX_INCLUDES environment\n "
 		"\t                    setting)\n"
 		"\t--lsb-shared-libs=<shared_lib:...>\n"
-		"\t                   Add libs to the list of non-lsb libs to link as\n"
-		"\t                    shared libs (product internal shared libs),\n"
-		"\t                    these libs will be in addition to any libs added\n"
-		"\t                    through the LSBCC_SHAREDLIBS environment setting.\n"
-		"\t                    shared libs must be added before any -l options\n"
-		"\t                    to have effect.\n"
+		"\t                   Add libs to the list of non-lsb libs to link\n"
+		"\t                    as shared libs (product internal shared libs),\n"
+		"\t                    these libs will be in addition to any libs\n"
+		"\t                    added through the LSBCC_SHAREDLIBS environment\n"
+		"\t                    setting.  Shared libs must be added before any\n"
+		"\t                    -l options to have effect.\n"
 		"\t--lsb-shared-libpath=<path:...>\n"
-		"\t                   Add lib path to the list of non-lsb lib paths to link as\n"
-		"\t                    shared libs (product internal shared libs),\n"
-		"\t                    these lib paths will be in addition to any lib paths added\n"
-		"\t                    through the LSB_SHAREDLIBPATH environment setting.\n"
-		"\t                    shared lib paths must be added before any -l options\n"
-		"\t                    to have effect.\n"
+		"\t                   Add path to the list of non-lsb lib paths to link\n"
+		"\t                    as shared libs (product internal shared libs),\n"
+		"\t                    these paths will be in addition to any paths\n"
+		"\t                    added through the LSB_SHAREDLIBPATH environment\n"
+		"\t                    setting.  Shared lib paths must be added before any\n"
+		"\t                    -l options to have effect.\n"
 		"\t--lsb-modules=<module,..>\n"
 		"\t                   Enable support for the optional LSB modules listed.\n"
 		"\t                    Modules will added in addition to any added from \n"
 		"\t                    the LSB_MODULES environment setting.\n"
 		"\t                    known modules: %s\n"
 		"\t--lsb-use-default-linker\n"
-		"\t                   Do not set dynamic linker to the LSB one.\n\n"
+		"\t                   Do not set dynamic linker to the LSB one.\n"
+		"\t--lsb-besteffort\n"
+		"\t                   Use best-effort code to choose the dynamic linker\n"
+		"\t                    at runtime.\n"
 		"\t--lsb-libtool-fixups\n"
 		"\t                   Enable support for command line analysis and fixups that\n"
 		"\t                    help when using lsbcc in conjunction with libtoo.  See the\n"
@@ -696,24 +701,7 @@ usage(const char *progname) {
  * The program intepreter isn't the same everywhere, so set it here,
  * and just use it below.
  */
-char *proginterpreter =
-#if   __i386__
-	"/lib/ld-lsb.so.3";
-#elif __powerpc__ && !__powerpc64__
-	"/lib/ld-lsb-ppc32.so.3";
-#elif __powerpc64__
-	"/lib64/ld-lsb-ppc64.so.3";
-#elif __ia64__
-	"/lib/ld-lsb-ia64.so.3";
-#elif __s390__ && !__s390x__
-	"/lib/ld-lsb-s390.so.3";
-#elif __s390x__
-	"/lib64/ld-lsb-s390x.so.3";
-#elif __x86_64__
-	"/lib64/ld-lsb-x86-64.so.3";
-#else
-	"Unknown_program_interpreter";
-#endif
+char *proginterpreter = LSB_LINKER;
 
 /*
  * We need to set some defines to correctly describe the assumed environment.
@@ -875,6 +863,7 @@ int	option_index;
 int 	auto_pthread = 1;
 int	force_static = 0;
 int	feature_settings = 0;
+int	best_effort = 0;
 int	display_cmd = 0;
 int	found_gcc_arg = 0;
 int	found_gcc_standalone = 0;
@@ -1010,6 +999,10 @@ if( (ptr=getenv("LSBCC_INCLUDES")) != NULL ) {
 
 if( (ptr=getenv("LSBCC_FORCEFEATURES")) != NULL ) {
 	feature_settings = 1;
+}
+
+if( (ptr=getenv("LSBCC_BESTEFFORT")) != NULL ) {
+	best_effort = 1;
 }
 
 if( (ptr=getenv("LSBCC_USE_DEFAULT_LINKER")) != NULL ) {
@@ -1356,6 +1349,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 19: /* --lsb-libtool-fixups */
 		libtool_fixups = 1;
 		break;
+	case 20:/* --lsb-besteffort */
+		best_effort=1;
+		break;
 	case 's':
 		/*
 		 * We must explicitly recognize '-s' to distinguish it
@@ -1528,6 +1524,12 @@ if (!no_link) {
 		}
 		argvaddstring(syslibs,"-lstdc++");
 		argvaddstring(syslibs,"-lgcc_s");
+	}
+
+	/* Best-effort dynamic linking. */
+	if( best_effort ) {
+		argvaddstring(syslibs, "/opt/lsb/lib/besteffort.o");
+		default_linker = 1;
 	}
 
 	if( lsbcc_debug&DEBUG_LIB_CHANGES ) {
