@@ -8,10 +8,17 @@
 #include <X11/Xmd.h>
 #include <X11/Xproto.h>
 #include <X11/Xfuncproto.h>
+#include <X11/Xosdefs.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+#if __LSB_VERSION__ >= 12
+    struct _XDisplay;
+
+#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 #if __LSB_VERSION__ >= 12
@@ -128,8 +135,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-    struct _XDisplay;
-
     struct _XIMText {
 	unsigned short length;
 	XIMFeedback *feedback;
