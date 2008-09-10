@@ -1045,12 +1045,6 @@ extern "C" {
     };
 
 
-    struct _GdkScreen {
-	GObject parent_instance;
-	guint closed:1;
-	GdkGC *normal_gcs[32];
-	GdkGC *exposure_gcs[32];
-    };
 
 
     struct _GdkDisplayPointerHooks {
