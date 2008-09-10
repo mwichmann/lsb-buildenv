@@ -3,6 +3,9 @@
 #define _X11_XLIBINT_H_
 
 #include <X11/Xlib.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 #include <X11/X.h>
 #include <X11/Xmd.h>
 #include <X11/Xproto.h>

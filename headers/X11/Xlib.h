@@ -2,6 +2,7 @@
 #ifndef _X11_XLIB_H_
 #define _X11_XLIB_H_
 
+#include <stdlib.h>
 #include <X11/X.h>
 #include <stddef.h>
 #include <X11/Xmd.h>
