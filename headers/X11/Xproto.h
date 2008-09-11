@@ -3,6 +3,7 @@
 #define _X11_XPROTO_H_
 
 #include <X11/Xmd.h>
+#include <X11/Xprotostr.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -290,18 +291,6 @@ extern "C" {
 #define X_QueryBestSize	97
 #define X_QueryExtension	98
 #define X_ListExtensions	99
-#define Atom	CARD32
-#define Colormap	CARD32
-#define Cursor	CARD32
-#define Drawable	CARD32
-#define Font	CARD32
-#define GContext	CARD32
-#define KeySym	CARD32
-#define Pixmap	CARD32
-#define Time	CARD32
-#define VisualID	CARD32
-#define Window	CARD32
-#define KeyCode	CARD8
 
 
     typedef struct _xEvent xEvent;

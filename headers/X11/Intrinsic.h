@@ -66,8 +66,6 @@ extern "C" {
 #define XtVaTypedArg	"XtVaTypedArg"
 
 
-    typedef void (*XtCreatePopupChildProc) (Widget);
-
     typedef long unsigned int Pixel;
 
 #if __LSB_VERSION__ >= 12
@@ -304,6 +302,8 @@ extern "C" {
     } XtPopdownIDRec;
 
     typedef XtPopdownIDRec *XtPopdownID;
+
+    typedef void (*XtCreatePopupChildProc) (Widget);
 
     typedef struct {
 	String type;

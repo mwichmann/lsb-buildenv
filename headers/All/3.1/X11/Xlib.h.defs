@@ -1,4 +1,6 @@
 
+struct _XDisplay;
+
 typedef char *XPointer;
 typedef struct {
     unsigned long int pixel;

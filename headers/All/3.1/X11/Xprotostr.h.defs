@@ -1,0 +1,25 @@
+
+typedef struct _xSegment {
+    INT16 x1;
+    INT16 y1;
+    INT16 x2;
+    INT16 y2;
+} xSegment;
+typedef struct _xPoint {
+    INT16 x;
+    INT16 y;
+} xPoint;
+typedef struct _xRectangle {
+    INT16 x;
+    INT16 y;
+    CARD16 width;
+    CARD16 height;
+} xRectangle;
+typedef struct _xArc {
+    INT16 x;
+    INT16 y;
+    CARD16 width;
+    CARD16 height;
+    INT16 angle1;
+    INT16 angle2;
+} xArc;
