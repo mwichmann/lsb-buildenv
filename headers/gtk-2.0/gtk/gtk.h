@@ -9899,7 +9899,8 @@ extern "C" {
     extern GtkReliefStyle gtk_toolbar_get_relief_style(GtkToolbar *);
     extern gboolean gtk_toolbar_get_show_arrow(GtkToolbar *);
     extern GtkToolbarStyle gtk_toolbar_get_style(GtkToolbar *);
-    extern gboolean gtk_toolbar_get_tooltips(GtkToolbar *);
+    extern gboolean gtk_toolbar_get_tooltips(GtkToolbar *)
+	LSB_DECL_DEPRECATED;
     extern GType gtk_toolbar_get_type(void);
     extern void gtk_toolbar_insert(GtkToolbar *, GtkToolItem *, gint);
     extern GtkWidget *gtk_toolbar_new(void);
@@ -9908,7 +9909,8 @@ extern "C" {
     extern void gtk_toolbar_set_orientation(GtkToolbar *, GtkOrientation);
     extern void gtk_toolbar_set_show_arrow(GtkToolbar *, gboolean);
     extern void gtk_toolbar_set_style(GtkToolbar *, GtkToolbarStyle);
-    extern void gtk_toolbar_set_tooltips(GtkToolbar *, gboolean);
+    extern void gtk_toolbar_set_tooltips(GtkToolbar *,
+					 gboolean) LSB_DECL_DEPRECATED;
     extern GType gtk_toolbar_space_style_get_type(void);
     extern GType gtk_toolbar_style_get_type(void);
     extern void gtk_toolbar_unset_style(GtkToolbar *);

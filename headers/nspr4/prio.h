@@ -335,39 +335,26 @@ extern "C" {
 				 PRNetAddr * *, void *, PRInt32,
 				 PRIntervalTime);
     extern PRStatus PR_Bind(PRFileDesc *, const PRNetAddr *);
+    extern PRStatus PR_Close(PRFileDesc *);
     extern PRStatus PR_Connect(PRFileDesc *, const PRNetAddr *,
 			       PRIntervalTime);
-    extern PRFileDesc *PR_CreateIOLayerStub(PRDescIdentity,
-					    const struct PRIOMethods *);
     extern PRStatus PR_GetConnectStatus(const PRPollDesc *);
-    extern const struct PRIOMethods *PR_GetDefaultIOMethods(void);
-    extern PRDescIdentity PR_GetLayersIdentity(PRFileDesc *);
+    extern PRFileDesc *PR_GetIdentitiesLayer(PRFileDesc *, PRDescIdentity);
     extern const char *PR_GetNameForIdentity(PRDescIdentity);
     extern PRStatus PR_GetPeerName(PRFileDesc *, PRNetAddr *);
     extern PRStatus PR_GetSockName(PRFileDesc *, PRNetAddr *);
-    extern PRStatus PR_GetSocketOption(PRFileDesc *, PRSocketOptionData *);
-    extern PRDescIdentity PR_GetUniqueIdentity(const char *);
     extern PRStatus PR_Listen(PRFileDesc *, PRIntn);
     extern PRFileDesc *PR_NewTCPSocket(void);
     extern PRFileDesc *PR_NewUDPSocket(void);
     extern PRInt32 PR_Poll(PRPollDesc *, PRIntn, PRIntervalTime);
-    extern PRFileDesc *PR_PopIOLayer(PRFileDesc *, PRDescIdentity);
-    extern PRStatus PR_PushIOLayer(PRFileDesc *, PRDescIdentity,
-				   PRFileDesc *);
-    extern PRInt32 PR_Recv(PRFileDesc *, void *, PRInt32, PRIntn,
-			   PRIntervalTime);
     extern PRInt32 PR_RecvFrom(PRFileDesc *, void *, PRInt32, PRIntn,
 			       PRNetAddr *, PRIntervalTime);
-    extern PRInt32 PR_Send(PRFileDesc *, const void *, PRInt32, PRIntn,
-			   PRIntervalTime);
     extern PRInt32 PR_SendTo(PRFileDesc *, const void *, PRInt32, PRIntn,
 			     const PRNetAddr *, PRIntervalTime);
-    extern PRStatus PR_SetSocketOption(PRFileDesc *,
-				       const PRSocketOptionData *);
-    extern PRStatus PR_Shutdown(PRFileDesc *, PRShutdownHow);
     extern PRInt32 PR_TransmitFile(PRFileDesc *, PRFileDesc *,
 				   const void *, PRInt32,
 				   PRTransmitFileFlags, PRIntervalTime);
+    extern PRInt32 PR_Write(PRFileDesc *, const void *, PRInt32);
 #ifdef __cplusplus
 }
 #endif

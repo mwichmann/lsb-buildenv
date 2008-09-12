@@ -1,6 +1,6 @@
 #if (__LSB_VERSION__ >= 40 )
-#ifndef _NSPR4_PRERROR_H_
-#define _NSPR4_PRERROR_H_
+#ifndef _NSPR4_PRIVATE_PPRIO_H_
+#define _NSPR4_PRIVATE_PPRIO_H_
 
 #include <nspr4/prio.h>
 #include <nspr4/prtypes.h>
@@ -10,13 +10,12 @@ extern "C" {
 #endif
 
 
-    typedef PRInt32 PRErrorCode;
+    typedef PRInt32 PROsfd;
 
 
 /* Function prototypes */
 
-    extern PRInt32 PR_GetOSError(void);
-    extern void PR_SetError(PRFileDesc *, PRInt32);
+    extern PRFileDesc *PR_ImportTCPSocket(PROsfd);
 #ifdef __cplusplus
 }
 #endif
