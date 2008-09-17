@@ -110,7 +110,7 @@ sub CreateTmpLibTable($$) {
 
     $create = "CREATE TEMPORARY TABLE tmp_LibInts_$libId "
         . "(KEY `Iid`(`Iid`)) "
-        . "SELECT Iid, Iname, Ireturn, Itype FROM Interface "
+        . "SELECT Iid, Iname, Ireturn, Itype, Ilibrary FROM Interface "
         . "LEFT JOIN LGInt ON LGIint=Iid "
         . "LEFT JOIN LibGroup ON LGid=LGIlibg "
         . "WHERE LGlib=$libId";
@@ -119,7 +119,7 @@ sub CreateTmpLibTable($$) {
 
     $create = "CREATE TEMPORARY TABLE tmp_LibIncludedInts_$libId "
         . "(KEY `Iid`(`Iid`), KEY `AIarch`(`AIarch`), KEY `Iname`(`Iname`,`AIarch`), KEY `Itype`(`Itype`,`AIarch`)) "
-        . "SELECT Iid, Iname, Ireturn, Itype, AIarch, AIversion, AIdeprecatedsince FROM tmp_LibInts_$libId "
+        . "SELECT Iid, Iname, Ireturn, Itype, AIarch, AIversion, AIdeprecatedsince, Ilibrary FROM tmp_LibInts_$libId "
         . "LEFT JOIN ArchInt ON AIint=Iid "
         . "WHERE (AIappearedin <= '$lsbversion' and AIappearedin > '') "
         . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
@@ -158,7 +158,7 @@ sub GenerateLibrary($$$) {
     # is not. AIdeprecatedsince is added to GROUP list in order to handle situations when we have multiple versions of one symbol
     # on the same arch; in this case not more that one version should be not-deprecated.
     $select =
-        "SELECT DISTINCT Iname,max(Vname) AS Vname,AIdeprecatedsince FROM tmp_LibIncludedInts_$libId "
+        "SELECT DISTINCT Iname,max(Vname) AS Vname,AIdeprecatedsince, Ilibrary FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
       . "WHERE Itype='Function' "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 )"
@@ -221,7 +221,7 @@ sub GenerateLibrary($$$) {
     # NOTE: AIdeprecatedsince is present here for completeness. We don't have data symbols with several versions on the same archs.
     #       In case they appear, the code below should be improved to handle this.
     $select =
-      "SELECT DISTINCT Iname, Itype,max(Vname) AS Vname,Ireturn,max(ATsize) AS ATsize,AIdeprecatedsince FROM tmp_LibIncludedInts_$libId "
+      "SELECT DISTINCT Iname, Itype,max(Vname) AS Vname,Ireturn,max(ATsize) AS ATsize,AIdeprecatedsince, Ilibrary FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
       . "LEFT JOIN ArchType ON ATaid=$TargetArchId AND ATtid=Ireturn "
       . "WHERE "
@@ -270,7 +270,7 @@ sub GenerateLibrary($$$) {
                 # Size is not required for aliases
                 if ( $row->{Itype} ne "Alias" ) {
                     print
-                      "No data for symbol $row->{Iname} ($row->{Ireturn})\n";
+                      $row->{Ilibrary}.": No data for symbol $row->{Iname} ($row->{Ireturn})\n";
                 }
             }
 
