@@ -13,6 +13,10 @@ extern "C" {
 #endif
 
 
+#define XtVersion	(XT_VERSION * 1000 + XT_REVISION)
+#define XtVersionDontCheck	0
+#define XT_VERSION	11
+#define XT_REVISION	6
 #define _XtintrinsicP_h	1
 
 

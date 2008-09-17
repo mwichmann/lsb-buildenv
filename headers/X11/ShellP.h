@@ -94,7 +94,6 @@ extern "C" {
     typedef struct _WMShellClassRec WMShellClassRec;
 
     typedef struct {
-	struct _OldXSizeHints;
 	char *title;
 	int wm_timeout;
 	Boolean wait_for_wm;
@@ -252,6 +251,28 @@ extern "C" {
     } SessionShellRec;
 
     typedef SessionShellRec *SessionShellWidget;
+
+    struct _OldXSizeHints {
+	long int flags;
+	int x;
+	int y;
+	int width;
+	int height;
+	int min_width;
+	int min_height;
+	int max_width;
+	int max_height;
+	int width_inc;
+	int height_inc;
+	struct {
+	    int x;
+	    int y;
+	} min_aspect;
+	struct {
+	    int x;
+	    int y;
+	} max_aspect;
+    };
 
 
     struct _ShellClassRec {

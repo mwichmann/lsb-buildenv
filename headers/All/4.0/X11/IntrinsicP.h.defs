@@ -1,5 +1,9 @@
 
+#define XtVersion	(XT_VERSION * 1000 + XT_REVISION)
+#define XtVersionDontCheck	0
 #define _XtintrinsicP_h	1
+#define XT_VERSION	11
+#define XT_REVISION	6
 
 typedef struct {
     long int xrm_name;

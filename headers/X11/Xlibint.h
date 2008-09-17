@@ -174,8 +174,8 @@ extern "C" {
 	unsigned long int scratch_length;
 	int ext_number;
 	struct _XExten *ext_procs;
-	int (*event_vec) (Display *, XEvent *, xEvent *) event_vec[];
-	int (*wire_vec) (Display *, XEvent *, xEvent *);
+	int (*event_vec[128]) (Display *, XEvent *, xEvent *);
+	int (*wire_vec[128]) (Display *, XEvent *, xEvent *);
 	KeySym lock_meaning;
 	struct _XLockInfo *lock;
 	struct _XInternalAsync *async_handlers;
@@ -188,7 +188,7 @@ extern "C" {
 	unsigned int mode_switch;
 	unsigned int num_lock;
 	struct _XContextDB *context_db;
-	int (*error_vec) (Display *, XErrorEvent *, xError *);
+	int (**error_vec) (Display *, XErrorEvent *, xError *) error_vec;
 	struct {
 	    XPointer defaultCCCs;
 	    XPointer clientCmaps;

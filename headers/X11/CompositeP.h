@@ -17,6 +17,7 @@ extern "C" {
 #endif
 
 
+#define XtInheritChangeManaged	((XtWidgetProc) _XtInherit)
 #define _XtCompositeP_h	1
 #define XtInheritGeometryManager	((XtGeometryHandler) _XtInherit)
 #define XtInheritDeleteChild	((XtWidgetProc) _XtInherit)

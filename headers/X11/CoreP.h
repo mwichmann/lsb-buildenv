@@ -16,6 +16,9 @@ extern "C" {
 #endif
 
 
+#define XtInheritSetValuesAlmost	((XtAlmostProc) _XtInherit)
+#define XtInheritRealize	((XtRealizeProc) _XtInherit)
+#define XtInheritResize	((XtWidgetProc) _XtInherit)
 #define _XtCoreP_h	1
 
 
