@@ -47,3 +47,6 @@ void IceSwapping() {} ;
 void IceUnlockAuthFile() {} ;
 void IceVendor() {} ;
 void IceWriteAuthFileEntry() {} ;
+void _IceRead() {} ;
+void _IceReadSkip() {} ;
+void _IceWrite() {} ;

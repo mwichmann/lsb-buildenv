@@ -9,9 +9,6 @@ class QColorDialog : public QDialog
 {
 private:
 public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
     QColor getColor(QColor const&, QWidget*);
     QRgb getRgba(unsigned int, bool*, QWidget*);
     int customCount();

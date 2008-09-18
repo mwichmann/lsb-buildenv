@@ -9,9 +9,6 @@ class QFontDialog : public QDialog
 {
 private:
 public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
     QFont getFont(bool*, QFont const&, QWidget*);
     QFont getFont(bool*, QWidget*);
      ~QFontDialog();

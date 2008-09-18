@@ -215,5 +215,12 @@ struct _XDisplay {
     int xcmisc_opcode;
     struct _XkbInfoRec *xkb_info;
     struct _XtransConnInfo *trans_conn;
-    struct _X11XCBPrivate *xcb;
+};
+struct _XGC {
+    XExtData *ext_data;
+    GContext gid;
+    int rects;
+    int dashes;
+    unsigned long int dirty;
+    XGCValues values;
 };

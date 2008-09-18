@@ -329,7 +329,6 @@ class QClipboardEvent : public QEvent
 {
 private:
 public:
-     ~QClipboardEvent();
 };
 
 class QWindowStateChangeEvent : public QEvent

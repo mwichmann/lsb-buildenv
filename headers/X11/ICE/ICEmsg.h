@@ -2,6 +2,8 @@
 #ifndef _X11_ICE_ICEMSG_H_
 #define _X11_ICE_ICEMSG_H_
 
+#include <X11/ICE/ICElib.h>
+#include <X11/ICE/ICEconn.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,6 +32,15 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
+
+
+/* Function prototypes */
+
+#if __LSB_VERSION__ >= 40
+    extern int _IceRead(IceConn, unsigned long int, char *);
+    extern void _IceReadSkip(IceConn, unsigned long int);
+    extern void _IceWrite(IceConn, unsigned long int, char *);
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
 }

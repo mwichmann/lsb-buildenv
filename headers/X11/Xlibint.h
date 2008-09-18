@@ -188,7 +188,7 @@ extern "C" {
 	unsigned int mode_switch;
 	unsigned int num_lock;
 	struct _XContextDB *context_db;
-	int (**error_vec) (Display *, XErrorEvent *, xError *) error_vec;
+	int (**error_vec) (Display *, XErrorEvent *, xError *);
 	struct {
 	    XPointer defaultCCCs;
 	    XPointer clientCmaps;
@@ -208,7 +208,15 @@ extern "C" {
 	int xcmisc_opcode;
 	struct _XkbInfoRec *xkb_info;
 	struct _XtransConnInfo *trans_conn;
-	struct _X11XCBPrivate *xcb;
+    };
+
+    struct _XGC {
+	XExtData *ext_data;
+	GContext gid;
+	int rects;
+	int dashes;
+	unsigned long int dirty;
+	XGCValues values;
     };
 
 

@@ -17,3 +17,7 @@
 #define IceReadData16(_iceConn,_swap,_bytes,_pData)	{ _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData) }
 #define IceReadData32(_iceConn,_swap,_bytes,_pData)	{ _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData) }
 #define IceReadMessageHeader(_iceConn,_headerSize,_msgType,_pMsg)	{ _IceRead (_iceConn, (unsigned long) (_headerSize - SIZEOF (iceMsg)), _iceConn->inbufptr) _pMsg = (_msgType *) (_iceConn->inbuf) _iceConn->inbufptr += (_headerSize - SIZEOF (iceMsg)) }
+
+extern void _IceWrite(IceConn, unsigned long int, char *);
+extern void _IceReadSkip(IceConn, unsigned long int);
+extern int _IceRead(IceConn, unsigned long int, char *);

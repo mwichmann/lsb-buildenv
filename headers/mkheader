@@ -348,6 +348,15 @@ if( $$type{'Ttype'} eq "Struct" and ($$type{'Tclass'} == 0 or $$type{'Tunmangled
             } else {
                 $suffix = "[]";
             }
+        } elsif( $entry->{'Ttype'} eq 'Pointer' ) {
+            $baseselect ="SELECT * FROM Type ";
+            $baseselect.= "LEFT JOIN ArchType ON ATtid=Tid ";
+            $baseselect.="WHERE Tid=$entry->{'ATbasetype'} ";
+            $bth = $dbh->prepare($baseselect) or die "Couldn't prepare $baseselect query: ".DBI->errstr;
+            $bth->execute or die "Couldn't execute $baseselect query: ".DBI->errstr;
+            $bentry = $bth->fetchrow_hashref;
+            $bth->finish;
+	
         } else {
             $suffix = "";
         }
