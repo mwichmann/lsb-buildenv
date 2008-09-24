@@ -340,6 +340,15 @@ extern "C" {
 	SessionShellClassPart session_shell_class;
     };
 
+
+/* Function prototypes */
+
+    extern OverrideShellClassRec overrideShellClassRec;
+    extern SessionShellClassRec sessionShellClassRec;
+    extern ShellClassRec shellClassRec;
+    extern TopLevelShellClassRec topLevelShellClassRec;
+    extern TransientShellClassRec transientShellClassRec;
+    extern WMShellClassRec wmShellClassRec;
 #ifdef __cplusplus
 }
 #endif
