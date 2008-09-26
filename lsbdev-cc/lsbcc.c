@@ -1528,7 +1528,8 @@ if (!no_link) {
 
 	/* Best-effort dynamic linking. */
 	if( best_effort ) {
-		argvaddstring(syslibs, "/opt/lsb/lib/besteffort.o");
+		sprintf(tmpbuf, "%s/besteffort.o", libpath);
+		argvaddstring(syslibs, strdup(tmpbuf));
 		default_linker = 1;
 	}
 
