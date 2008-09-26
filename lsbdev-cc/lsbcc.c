@@ -936,7 +936,7 @@ strcpy(lsbversion_option, "-D__LSB_VERSION__=");
  */
 ptr = strdup(lsbcc_lsbversion);
 strcat(lsbversion_option, strsep(&ptr,"."));
-if(&ptr)
+if(ptr)
     strcat(lsbversion_option, strsep(&ptr,"."));
 
 #if __powerpc64__ || __s390x__ || __x86_64__
