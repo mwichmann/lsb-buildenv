@@ -288,20 +288,21 @@ extern "C" {
     extern int XmbTextListToTextProperty(Display *, char **, int,
 					 XICCEncodingStyle,
 					 XTextProperty *);
-    extern int XmbTextPropertyToTextList(Display *, XTextProperty *,
+    extern int XmbTextPropertyToTextList(Display *, const XTextProperty *,
 					 char ***, int *);
     extern void XwcFreeStringList(wchar_t * *);
     extern int XwcTextListToTextProperty(Display *, wchar_t * *, int,
 					 XICCEncodingStyle,
 					 XTextProperty *);
-    extern int XwcTextPropertyToTextList(Display *, XTextProperty *,
+    extern int XwcTextPropertyToTextList(Display *, const XTextProperty *,
 					 wchar_t * **, int *);
 #if __LSB_VERSION__ >= 12
     extern int Xutf8TextListToTextProperty(Display *, char **, int,
 					   XICCEncodingStyle,
 					   XTextProperty *);
-    extern int Xutf8TextPropertyToTextList(Display *, XTextProperty *,
-					   char ***, int *);
+    extern int Xutf8TextPropertyToTextList(Display *,
+					   const XTextProperty *, char ***,
+					   int *);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

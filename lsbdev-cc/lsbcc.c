@@ -139,6 +139,11 @@ int lsbcc_buildingshared=0;
  */
 int b_dynamic = 1;
 
+/*
+ * Variable to store optind value - we'll have to process command line twice.
+ */
+int optind_old;
+
 /* begin option processing routines */
 
 /*
@@ -603,6 +608,7 @@ struct option long_options[] = {
 	{"lsb-use-default-linker",no_argument,NULL,18},
 	{"lsb-libtool-fixups",no_argument,NULL,19},
 	{"lsb-besteffort",no_argument,NULL,20},
+	{"lsb-target-version",required_argument,NULL,21},
 	{NULL,0,0,0}
 };
 
@@ -685,6 +691,8 @@ usage(const char *progname) {
 		"\t--lsb-besteffort\n"
 		"\t                   Use best-effort code to choose the dynamic linker\n"
 		"\t                    at runtime.\n"
+		"\t--lsb-target-version=<target_lsb_version>\n"
+		"\t                   Target LSB version.\n"
 		"\t--lsb-libtool-fixups\n"
 		"\t                   Enable support for command line analysis and fixups that\n"
 		"\t                    help when using lsbcc in conjunction with libtoo.  See the\n"
@@ -914,16 +922,46 @@ lsbversion_index=get_version_index(lsbcc_lsbversion);
  * we need to know it (if any) before setting libpath.
  */
 if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
+    if (get_version_index(ptr) ) {
     lsbcc_lsbversion = strdup(ptr);
-    if ((lsbversion_index = get_version_index(lsbcc_lsbversion)) < 0) {
-        fprintf(stderr,"unrecognized lsb version value %s\n", lsbcc_lsbversion);
-        exit(3);
+        if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
+            fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
+        }
+    } else {
+        fprintf(stderr,"LSBCC_LSBVERSION is set to unrecognized value %s\n", ptr);
     }
-
-    if( lsbcc_debug&DEBUG_ENV_OVERRIDES )
-        fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
 }
-/* set up __LSB_VERSION__ define */
+
+optind_old = optind;
+opterr = 0;
+
+/*
+ * Do we have '--lsb-target-version' option?
+ * Override other settings, if this option provides a valid value
+ */
+while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
+    if(c == 21) { /* --lsb-target-version=<LSB_version> */
+        if (get_version_index(optarg) >= 0 ) {
+            lsbcc_lsbversion = strdup(optarg);
+        } else {
+            fprintf(stderr,"--lsb-target-version option has illegal value %s\n", optarg);
+        }
+    }
+}
+
+/*
+ * Restore optind - we'll process all other options later
+ */
+optind = optind_old;
+
+/*
+ * Index in the lsb_*_modules arrays corresponding to target LSB version
+ */
+lsbversion_index = get_version_index(lsbcc_lsbversion);
+
+/*
+ * Set up __LSB_VERSION__ define
+ */
 lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
 		                               strlen(lsbcc_lsbversion) + 1));
 if(lsbversion_option == NULL) {
@@ -1352,6 +1390,9 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 20:/* --lsb-besteffort */
 		best_effort=1;
 		break;
+	case 21:/* --lsb-target-version */
+		/* We have already processed this option */
+ 		break;
 	case 's':
 		/*
 		 * We must explicitly recognize '-s' to distinguish it

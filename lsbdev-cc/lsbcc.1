@@ -155,6 +155,11 @@ This will unset the dynamic linker (like --lsb-use-default-linker),
 but will also link in code that tries to use the LSB dynamic linker if
 needed.
 .TP 
+--lsb-target-version=<LSB_version>
+Target LSB version. If set to valid value, this option overrides LSBCC_LSBVERSION
+environment variable. For the list of valid values, call lsbcc
+with --lsb-version option.
+.TP 
 --lsb-libtool_fixups
 Enable semantics that assist in compiling applications with
 .I lsbcc

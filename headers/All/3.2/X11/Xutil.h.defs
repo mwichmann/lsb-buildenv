@@ -243,14 +243,14 @@ extern void XmbSetWMProperties(Display *, Window, const char *,
 			       XWMHints *, XClassHint *);
 extern int XmbTextListToTextProperty(Display *, char **, int,
 				     XICCEncodingStyle, XTextProperty *);
-extern int XmbTextPropertyToTextList(Display *, XTextProperty *, char ***,
-				     int *);
+extern int XmbTextPropertyToTextList(Display *, const XTextProperty *,
+				     char ***, int *);
 extern void XwcFreeStringList(wchar_t * *);
 extern int XwcTextListToTextProperty(Display *, wchar_t * *, int,
 				     XICCEncodingStyle, XTextProperty *);
-extern int XwcTextPropertyToTextList(Display *, XTextProperty *,
+extern int XwcTextPropertyToTextList(Display *, const XTextProperty *,
 				     wchar_t * **, int *);
-extern int Xutf8TextPropertyToTextList(Display *, XTextProperty *,
+extern int Xutf8TextPropertyToTextList(Display *, const XTextProperty *,
 				       char ***, int *);
 extern int Xutf8TextListToTextProperty(Display *, char **, int,
 				       XICCEncodingStyle, XTextProperty *);

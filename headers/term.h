@@ -3,6 +3,14 @@
 #define _TERM_H_
 
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -17,11 +25,11 @@ extern "C" {
 /* Function prototypes */
 
     extern int putp(const char *);
-    extern int tgetent(char *, const char *);
-    extern int tgetflag(char *);
-    extern int tgetnum(char *);
-    extern char *tgetstr(char *, char **);
-    extern char *tgoto(const char *, int, int);
+    extern int tgetent(char *, const char *) LSB_DECL_DEPRECATED;
+    extern int tgetflag(char *) LSB_DECL_DEPRECATED;
+    extern int tgetnum(char *) LSB_DECL_DEPRECATED;
+    extern char *tgetstr(char *, char **) LSB_DECL_DEPRECATED;
+    extern char *tgoto(const char *, int, int) LSB_DECL_DEPRECATED;
     extern int tigetflag(const char *);
     extern int tigetnum(const char *);
     extern char *tigetstr(const char *);

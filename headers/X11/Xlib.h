@@ -1459,7 +1459,8 @@ extern "C" {
     extern GC XCreateGC(Display *, Drawable, unsigned long int,
 			XGCValues *);
     extern Cursor XCreateGlyphCursor(Display *, Font, Font, unsigned int,
-				     unsigned int, XColor *, XColor *);
+				     unsigned int, const XColor *,
+				     const XColor *);
     extern XIC XCreateIC(XIM, ...);
     extern XImage *XCreateImage(Display *, Visual *, unsigned int, int,
 				int, char *, unsigned int, unsigned int,
@@ -1525,7 +1526,7 @@ extern "C" {
     extern int XDrawImageString(Display *, Drawable, GC, int, int,
 				const char *, int);
     extern int XDrawImageString16(Display *, Drawable, GC, int, int,
-				  XChar2b *, int);
+				  const XChar2b *, int);
     extern int XDrawLine(Display *, Drawable, GC, int, int, int, int);
     extern int XDrawLines(Display *, Drawable, GC, XPoint *, int, int);
     extern int XDrawPoint(Display *, Drawable, GC, int, int);
@@ -1536,8 +1537,8 @@ extern "C" {
     extern int XDrawSegments(Display *, Drawable, GC, XSegment *, int);
     extern int XDrawString(Display *, Drawable, GC, int, int, const char *,
 			   int);
-    extern int XDrawString16(Display *, Drawable, GC, int, int, XChar2b *,
-			     int);
+    extern int XDrawString16(Display *, Drawable, GC, int, int,
+			     const XChar2b *, int);
     extern int XDrawText(Display *, Drawable, GC, int, int, XTextItem *,
 			 int);
     extern int XDrawText16(Display *, Drawable, GC, int, int,
@@ -1735,8 +1736,8 @@ extern "C" {
 			     int *, int *, int *, unsigned int *);
     extern int XQueryTextExtents(Display *, XID, const char *, int, int *,
 				 int *, int *, XCharStruct *);
-    extern int XQueryTextExtents16(Display *, XID, XChar2b *, int, int *,
-				   int *, int *, XCharStruct *);
+    extern int XQueryTextExtents16(Display *, XID, const XChar2b *, int,
+				   int *, int *, int *, XCharStruct *);
     extern int XQueryTree(Display *, Window, Window *, Window *,
 			  Window * *, unsigned int *);
     extern int XRaiseWindow(Display *, Window);
@@ -1844,10 +1845,10 @@ extern "C" {
     extern int (*XSynchronize(Display *, int)) (Display *);
     extern int XTextExtents(XFontStruct *, const char *, int, int *, int *,
 			    int *, XCharStruct *);
-    extern int XTextExtents16(XFontStruct *, XChar2b *, int, int *, int *,
-			      int *, XCharStruct *);
+    extern int XTextExtents16(XFontStruct *, const XChar2b *, int, int *,
+			      int *, int *, XCharStruct *);
     extern int XTextWidth(XFontStruct *, const char *, int);
-    extern int XTextWidth16(XFontStruct *, XChar2b *, int);
+    extern int XTextWidth16(XFontStruct *, const XChar2b *, int);
     extern int XTranslateCoordinates(Display *, Window, Window, int, int,
 				     int *, int *, Window *);
     extern int XUndefineCursor(Display *, Window);
@@ -1897,18 +1898,18 @@ extern "C" {
 				     int *, XRectangle *, XRectangle *);
     extern void XrmInitialize(void);
     extern void XwcDrawImageString(Display *, Drawable, XFontSet, GC, int,
-				   int, wchar_t *, int);
+				   int, const wchar_t *, int);
     extern void XwcDrawString(Display *, Drawable, XFontSet, GC, int, int,
-			      wchar_t *, int);
+			      const wchar_t *, int);
     extern void XwcDrawText(Display *, Drawable, GC, int, int,
 			    XwcTextItem *, int);
     extern int XwcLookupString(XIC, XKeyPressedEvent *, wchar_t *, int,
 			       KeySym *, int *);
     extern wchar_t *XwcResetIC(XIC);
-    extern int XwcTextEscapement(XFontSet, wchar_t *, int);
-    extern int XwcTextExtents(XFontSet, wchar_t *, int, XRectangle *,
+    extern int XwcTextEscapement(XFontSet, const wchar_t *, int);
+    extern int XwcTextExtents(XFontSet, const wchar_t *, int, XRectangle *,
 			      XRectangle *);
-    extern int XwcTextPerCharExtents(XFontSet, wchar_t *, int,
+    extern int XwcTextPerCharExtents(XFontSet, const wchar_t *, int,
 				     XRectangle *, XRectangle *, int,
 				     int *, XRectangle *, XRectangle *);
 #if __LSB_VERSION__ >= 12
