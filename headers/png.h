@@ -791,6 +791,15 @@ extern "C" {
 	png_charp key;
 	png_charp text;
 	png_size_t text_length;
+#ifdef PNG_iTXt_SUPPORTED
+	png_size_t itxt_length;
+#endif
+#ifdef PNG_iTXt_SUPPORTED
+	png_charp lang;
+#endif
+#ifdef PNG_iTXt_SUPPORTED
+	png_charp lang_key;
+#endif
     };
 
 

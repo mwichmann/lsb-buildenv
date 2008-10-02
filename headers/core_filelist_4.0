@@ -237,6 +237,7 @@ X11/ShellP.h
 nspr4/private/pprio.h
 X11/Xprotostr.h
 X11/Xosdefs.h
+netinet/ip6.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h

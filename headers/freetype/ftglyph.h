@@ -42,6 +42,11 @@ extern "C" {
 
     typedef struct FT_GlyphRec_ FT_GlyphRec;
 
+#if __LSB_VERSION__ >= 40
+    typedef struct FT_BitmapGlyphRec_ *FT_BitmapGlyph;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
     struct FT_Glyph_Class_ {
 	FT_Long glyph_size;
 	FT_Glyph_Format glyph_format;
@@ -64,6 +69,16 @@ extern "C" {
 	FT_GlyphRec root;
 	FT_Outline outline;
     };
+
+#if __LSB_VERSION__ >= 40
+    struct FT_BitmapGlyphRec_ {
+	FT_GlyphRec root;
+	FT_Int left;
+	FT_Int top;
+	FT_Bitmap bitmap;
+    };
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
 
 
 /* Function prototypes */
