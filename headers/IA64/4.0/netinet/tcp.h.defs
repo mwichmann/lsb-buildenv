@@ -12,6 +12,7 @@ struct tcphdr {
     uint16_t psh:1;
     uint16_t ack:1;
     uint16_t urg:1;
+    uint16_t res2:2;
     uint16_t window;
     uint16_t check;
     uint16_t urg_ptr;
