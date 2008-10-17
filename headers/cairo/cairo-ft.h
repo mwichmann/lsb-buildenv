@@ -25,6 +25,7 @@ extern "C" {
 	*cairo_ft_font_face_create_for_pattern(FcPattern *);
     extern void cairo_ft_font_options_substitute(const cairo_font_options_t
 						 *, FcPattern *);
+    extern void cairo_ft_scaled_font_lock_face(cairo_scaled_font_t *);
     extern void cairo_ft_scaled_font_unlock_face(cairo_scaled_font_t *);
 #ifdef __cplusplus
 }

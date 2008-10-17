@@ -39,6 +39,7 @@ void cairo_font_options_status() {} ;
 void cairo_ft_font_face_create_for_ft_face() {} ;
 void cairo_ft_font_face_create_for_pattern() {} ;
 void cairo_ft_font_options_substitute() {} ;
+void cairo_ft_scaled_font_lock_face() {} ;
 void cairo_ft_scaled_font_unlock_face() {} ;
 void cairo_get_antialias() {} ;
 void cairo_get_current_point() {} ;
