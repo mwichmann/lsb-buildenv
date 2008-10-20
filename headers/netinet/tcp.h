@@ -2,8 +2,6 @@
 #ifndef _NETINET_TCP_H_
 #define _NETINET_TCP_H_
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -24,7 +22,6 @@ extern "C" {
 #define TCP_QUICKACK	12
 #define TCP_CONGESTION	13
 #define TCP_MAX_WINSHIFT	14
-#define TCP_MD5SIG	14
 #define TCPI_OPT_SACK	2
 #define TCPOLEN_SACK_PERMITTED	2
 #define TCPOPT_MAXSEG	2
@@ -46,7 +43,6 @@ extern "C" {
 #define TCPI_OPT_ECN	8
 #define TCPOPT_TIMESTAMP	8
 #define TCP_LINGER2	8
-#define TCP_MD5SIG_MAXKEYLEN	80
 #define TCP_DEFER_ACCEPT	9
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
@@ -259,14 +255,6 @@ extern "C" {
 	TCP_LAST_ACK = 9,
 	TCP_LISTEN = 10,
 	TCP_CLOSING = 11
-    };
-
-    struct tcp_md5sig {
-	struct sockaddr_storage tcpm_addr;
-	u_int16_t __tcpm_pad1;
-	u_int16_t tcpm_keylen;
-	u_int32_t __tcpm_pad2;
-	u_int8_t tcpm_key[TCP_MD5SIG_MAXKEYLEN];
     };
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
