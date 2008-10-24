@@ -23,6 +23,13 @@ extern "C" {
 
 
 
+#if __LSB_VERSION__ >= 32
+    typedef long double float_t;
+
+    typedef long double double_t;
+
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
 
 /* All floating-point numbers can be put in one of these categories.*/
 #if __LSB_VERSION__ >= 21
