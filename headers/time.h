@@ -19,7 +19,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
-#define CLK_TCK	((clock_t)__sysconf(2))
+#define CLK_TCK	((clock_t)sysconf(2))
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 
