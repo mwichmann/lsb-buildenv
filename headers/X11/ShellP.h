@@ -21,6 +21,29 @@ extern "C" {
 #endif
 
 
+    struct _OldXSizeHints {
+	long int flags;
+	int x;
+	int y;
+	int width;
+	int height;
+	int min_width;
+	int min_height;
+	int max_width;
+	int max_height;
+	int width_inc;
+	int height_inc;
+	struct {
+	    int x;
+	    int y;
+	} min_aspect;
+	struct {
+	    int x;
+	    int y;
+	} max_aspect;
+    };
+
+
 #define _XtShellPositionValid	((Boolean)(1<<0))
 #define _XtShellNotReparented	((Boolean)(1<<1))
 #define _XtShellPPositionOK	((Boolean)(1<<2))
@@ -251,28 +274,6 @@ extern "C" {
     } SessionShellRec;
 
     typedef SessionShellRec *SessionShellWidget;
-
-    struct _OldXSizeHints {
-	long int flags;
-	int x;
-	int y;
-	int width;
-	int height;
-	int min_width;
-	int min_height;
-	int max_width;
-	int max_height;
-	int width_inc;
-	int height_inc;
-	struct {
-	    int x;
-	    int y;
-	} min_aspect;
-	struct {
-	    int x;
-	    int y;
-	} max_aspect;
-    };
 
 
     struct _ShellClassRec {
