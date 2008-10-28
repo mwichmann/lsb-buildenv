@@ -61,6 +61,11 @@ extern "C" {
 
     typedef struct FT_ListNodeRec_ FT_ListNodeRec;
 
+#if __LSB_VERSION__ >= 40
+    typedef char FT_Char;
+
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
     struct FT_ListRec_ {
 	FT_ListNode head;
 	FT_ListNode tail;

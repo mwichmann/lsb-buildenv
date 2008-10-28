@@ -41,10 +41,10 @@
 #define _XtKeyCode	unsigned int
 #define _XtXtEnum	unsigned int
 #define XtCurrentDirectory	"XtCurrentDirectory"
-#define XtCvtPixelToColor	"XtCvtIntToColor"
-#define XtCvtIntToDimension	"XtCvtIntToShort"
-#define XtCvtIntToPosition	"XtCvtIntToShort"
-#define XtCvtStringToPosition	"XtCvtStringToShort"
+#define XtCvtPixelToColor	XtCvtIntToColor
+#define XtCvtIntToDimension	XtCvtIntToShort
+#define XtCvtIntToPosition	XtCvtIntToShort
+#define XtCvtStringToPosition	XtCvtStringToShort
 #define XtDefaultBackground	"XtDefaultBackground"
 #define XtDefaultFont	"XtDefaultFont"
 #define XtDefaultFontSet	"XtDefaultFontSet"

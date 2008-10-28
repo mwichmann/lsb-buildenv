@@ -44,3 +44,4 @@ typedef struct FT_ListNodeRec_ {
     FT_ListNode next;
     void *data;
 } FT_ListNodeRec;
+typedef char FT_Char;
