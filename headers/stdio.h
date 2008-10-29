@@ -183,6 +183,8 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
     extern char *__fgets_chk(char *, size_t, int, FILE *);
+    extern char *__fgets_unlocked_chk(char *, size_t, int, FILE *);
+    extern wchar_t *__fgetws_unlocked_chk(wchar_t *, size_t, int, FILE *);
     extern int __printf_chk(int, const char *, ...);
     extern int __snprintf_chk(char *, size_t, int, size_t, const char *,
 			      ...);

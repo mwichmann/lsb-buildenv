@@ -492,9 +492,16 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
+    extern size_t __confstr_chk(int, char *, size_t, size_t);
     extern char *__getcwd_chk(char *, size_t, size_t);
+    extern int __getgroups_chk(int, __gid_t *, size_t);
+    extern int __gethostname_chk(char *, size_t, size_t);
+    extern int __getlogin_r_chk(char *, size_t, size_t);
+    extern ssize_t __pread64_chk(int, void *, size_t, off64_t, size_t);
+    extern ssize_t __pread_chk(int, void *, size_t, off_t, size_t);
     extern ssize_t __read_chk(int, void *, size_t, size_t);
     extern ssize_t __readlink_chk(const char *, char *, size_t, size_t);
+    extern int __ttyname_r_chk(int, char *, size_t, size_t);
     extern int faccessat(int, const char *, int, int);
     extern int fchownat(int, const char *, uid_t, gid_t, int);
     extern int fexecve(int, char *const[], char *const[]);

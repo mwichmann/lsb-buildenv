@@ -129,6 +129,8 @@ extern int getloadavg(double, int);
 extern int mkstemp64(char *);
 extern int posix_memalign(void **, size_t, size_t);
 extern int posix_openpt(int);
+extern size_t __mbstowcs_chk(wchar_t *, const char *, size_t, size_t);
 extern char *__realpath_chk(const char *, char *, size_t);
+extern size_t __wcstombs_chk(char *, const wchar_t *, size_t, size_t);
 extern int __wctomb_chk(char *, wchar_t, size_t);
 extern char *mkdtemp(char *);

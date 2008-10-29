@@ -122,6 +122,8 @@ GLIBC_2.3.4 {
   pthread_setschedprio;
 };
 GLIBC_2.4 {
+  __pread64_chk;
+  __pread_chk;
   pthread_mutex_getprioceiling;
   pthread_mutex_setprioceiling;
   pthread_mutexattr_getprioceiling;

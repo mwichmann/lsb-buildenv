@@ -1,3 +1,5 @@
+void __pread64_chk() {} ;
+void __pread_chk() {} ;
 void _pthread_cleanup_pop() {} ;
 void _pthread_cleanup_push() {} ;
 void lseek64() {} ;

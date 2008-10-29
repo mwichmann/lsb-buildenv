@@ -124,15 +124,40 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 40
+    extern wchar_t *__fgetws_chk(wchar_t *, size_t, int, FILE *);
     extern int __fwprintf_chk(FILE *, int, const wchar_t *, ...);
+    extern size_t __mbsnrtowcs_chk(wchar_t *, const char **, size_t,
+				   size_t, mbstate_t *, size_t);
+    extern size_t __mbsrtowcs_chk(wchar_t *, const char **, size_t,
+				  mbstate_t *, size_t);
     extern int __swprintf_chk(wchar_t *, size_t, int, size_t,
 			      const wchar_t *, ...);
+    extern int __vfwprintf_chk(FILE *, int, const wchar_t *, va_list);
+    extern int __vswprintf_chk(wchar_t *, size_t, int, size_t,
+			       const wchar_t *, va_list);
+    extern int __vwprintf_chk(int, const wchar_t *, va_list);
+    extern wchar_t *__wcpcpy_chk(wchar_t *, const wchar_t *, size_t);
+    extern wchar_t *__wcpncpy_chk(wchar_t *, const wchar_t *, size_t,
+				  size_t);
+    extern size_t __wcrtomb_chk(char *, wchar_t, mbstate_t *, size_t);
     extern wchar_t *__wcscat_chk(wchar_t *, const wchar_t *, size_t);
     extern wchar_t *__wcscpy_chk(wchar_t *, const wchar_t *, size_t);
+    extern wchar_t *__wcsncat_chk(wchar_t *, const wchar_t *, size_t,
+				  size_t);
     extern wchar_t *__wcsncpy_chk(wchar_t *, const wchar_t *, size_t,
+				  size_t);
+    extern size_t __wcsnrtombs_chk(char *, const wchar_t * *, size_t,
+				   size_t, mbstate_t *, size_t);
+    extern size_t __wcsrtombs_chk(char *, const wchar_t * *, size_t,
+				  mbstate_t *, size_t);
+    extern wchar_t *__wmemcpy_chk(wchar_t *, const wchar_t *, size_t,
 				  size_t);
     extern wchar_t *__wmemmove_chk(wchar_t *, const wchar_t *, size_t,
 				   size_t);
+    extern wchar_t *__wmempcpy_chk(wchar_t *, const wchar_t *, size_t,
+				   size_t);
+    extern wchar_t *__wmemset_chk(wchar_t *, wchar_t, size_t, size_t);
+    extern int __wprintf_chk(int, const wchar_t *, ...);
     extern wchar_t *fgetws_unlocked(wchar_t *, int, FILE *);
     extern wint_t fputwc_unlocked(wchar_t, FILE *);
     extern int fputws_unlocked(const wchar_t *, FILE *);

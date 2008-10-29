@@ -180,7 +180,9 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 40
+    extern size_t __mbstowcs_chk(wchar_t *, const char *, size_t, size_t);
     extern char *__realpath_chk(const char *, char *, size_t);
+    extern size_t __wcstombs_chk(char *, const wchar_t *, size_t, size_t);
     extern int __wctomb_chk(char *, wchar_t, size_t);
     extern int drand48_r(struct drand48_data *, double *);
     extern int erand48_r(unsigned short[], struct drand48_data *,
