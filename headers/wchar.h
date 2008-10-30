@@ -125,6 +125,7 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
     extern wchar_t *__fgetws_chk(wchar_t *, size_t, int, FILE *);
+    extern wchar_t *__fgetws_unlocked_chk(wchar_t *, size_t, int, FILE *);
     extern int __fwprintf_chk(FILE *, int, const wchar_t *, ...);
     extern size_t __mbsnrtowcs_chk(wchar_t *, const char **, size_t,
 				   size_t, mbstate_t *, size_t);

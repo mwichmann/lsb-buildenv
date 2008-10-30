@@ -494,7 +494,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern size_t __confstr_chk(int, char *, size_t, size_t);
     extern char *__getcwd_chk(char *, size_t, size_t);
-    extern int __getgroups_chk(int, __gid_t *, size_t);
+    extern int __getgroups_chk(int, gid_t *, size_t);
     extern int __gethostname_chk(char *, size_t, size_t);
     extern int __getlogin_r_chk(char *, size_t, size_t);
     extern ssize_t __pread64_chk(int, void *, size_t, off64_t, size_t);
