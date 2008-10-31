@@ -40,7 +40,6 @@ extern char *stpncpy(char *, const char *, size_t);
 extern void *memrchr(const void *, int, size_t);
 extern int __xpg_strerror_r(int, char *, size_t);
 extern void *__memmove_chk(void *, const void *, size_t, size_t);
-extern char *__stpncpy_chk(char *, const char *, size_t, size_t);
 extern char *__strcat_chk(char *, const char *, size_t);
 extern char *__strncat_chk(char *, const char *, size_t, size_t);
 extern char *__strncpy_chk(char *, const char *, size_t, size_t);

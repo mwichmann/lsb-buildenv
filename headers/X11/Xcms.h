@@ -153,7 +153,7 @@ extern "C" {
 	XPointer functionSet;
 	XPointer screenData;
 	unsigned char state;
-	char pad[1];
+	char pad[3];
     };
 
     struct _XcmsCCC {

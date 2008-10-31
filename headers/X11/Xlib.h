@@ -1205,7 +1205,7 @@ extern "C" {
 	XMappingEvent xmapping;
 	XErrorEvent xerror;
 	XKeymapEvent xkeymap;
-	long int pad[1];
+	long int pad[24];
     };
 
 #endif				/* __LSB_VERSION__ >= 1.2 */

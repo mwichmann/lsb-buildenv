@@ -150,7 +150,7 @@ extern "C" {
 	Widget transient_for;
     } TransientShellPart;
 
-#include <X11/VendorP.h>
+#include <X11/VendorP.h>	/* XXX hand-edit */
 
     typedef struct {
 	CorePart core;
