@@ -3,6 +3,7 @@
 #define _LIBXML2_LIBXML_XMLSTRING_H_
 
 #include <stdarg.h>
+#include <libxml2/libxml/xmlversion.h>
 
 #ifdef __cplusplus
 extern "C" {

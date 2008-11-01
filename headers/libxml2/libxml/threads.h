@@ -2,6 +2,7 @@
 #ifndef _LIBXML2_LIBXML_THREADS_H_
 #define _LIBXML2_LIBXML_THREADS_H_
 
+#include <libxml2/libxml/xmlversion.h>
 #include <libxml2/libxml/globals.h>
 
 #ifdef __cplusplus

@@ -2,6 +2,7 @@
 #ifndef _LIBXML2_LIBXML_SAX2_H_
 #define _LIBXML2_LIBXML_SAX2_H_
 
+#include <stdlib.h>
 #include <libxml2/libxml/xmlstring.h>
 #include <libxml2/libxml/xmlmemory.h>
 #include <libxml2/libxml/tree.h>

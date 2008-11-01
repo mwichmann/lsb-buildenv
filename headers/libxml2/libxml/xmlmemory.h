@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stddef.h>
+#include <libxml2/libxml/xmlversion.h>
 
 #ifdef __cplusplus
 extern "C" {

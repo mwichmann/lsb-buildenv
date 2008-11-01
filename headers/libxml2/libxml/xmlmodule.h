@@ -2,6 +2,7 @@
 #ifndef _LIBXML2_LIBXML_XMLMODULE_H_
 #define _LIBXML2_LIBXML_XMLMODULE_H_
 
+#include <libxml2/libxml/xmlversion.h>
 
 #ifdef __cplusplus
 extern "C" {
