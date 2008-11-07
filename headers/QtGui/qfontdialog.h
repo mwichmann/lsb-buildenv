@@ -11,9 +11,9 @@ private:
 public:
     QFont getFont(bool*, QFont const&, QWidget*);
     QFont getFont(bool*, QWidget*);
-     ~QFontDialog();
     QFont getFont(bool*, QFont const&, QWidget*, QString const&);
 private:
+     ~QFontDialog();
     bool eventFilter(QObject*, QEvent*);
 };
 

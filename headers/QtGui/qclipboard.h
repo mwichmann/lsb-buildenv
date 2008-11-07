@@ -27,7 +27,6 @@ public:
     QPixmap pixmap(QClipboard::Mode) const;
     void setImage(QImage const&, QClipboard::Mode);
     void setPixmap(QPixmap const&, QClipboard::Mode);
-     ~QClipboard();
     bool ownsFindBuffer() const;
     bool supportsFindBuffer() const;
 protected:
@@ -37,6 +36,8 @@ protected:
     bool event(QEvent*);
     void findBufferChanged();
     void changed(QClipboard::Mode);
+private:
+     ~QClipboard();
 };
 
 enum Mode	

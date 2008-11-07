@@ -15,6 +15,7 @@ public:
     QRgb customColor(int);
     void setCustomColor(int, unsigned int);
     void setStandardColor(int, unsigned int);
+private:
      ~QColorDialog();
 };
 

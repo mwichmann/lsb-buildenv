@@ -29,6 +29,7 @@ public:
     void setManagerProperty(QString const&, QStringList const&);
     bool isPhase2() const;
     void requestPhase2();
+private:
      ~QSessionManager();
 };
 

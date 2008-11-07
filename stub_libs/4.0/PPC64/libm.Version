@@ -217,7 +217,6 @@ GLIBC_2.3 {
 GLIBC_2.4 {
   __finitel;
   __fpclassifyl;
-  __nldbl_nexttowardf;
   __signbitl;
   acoshl;
   acosl;

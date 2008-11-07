@@ -6,7 +6,6 @@ __asm__(".symver __finitel_depr_0,__finitel@GLIBC_2.1");
 void __fpclassify() {} ;
 void __fpclassifyf() {} ;
 void __fpclassifyl() {} ;
-void __nldbl_nexttowardf() {} ;
 void __signbit() {} ;
 void __signbitf() {} ;
 void __signbitl() {} ;

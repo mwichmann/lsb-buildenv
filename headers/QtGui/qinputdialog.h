@@ -13,6 +13,7 @@ public:
     int getInteger(QWidget*, QString const&, QString const&, int, int, int, int, bool*, QFlags<Qt::WindowType>);
     double getDouble(QWidget*, QString const&, QString const&, double, double, double, int, bool*, QFlags<Qt::WindowType>);
     QString getItem(QWidget*, QString const&, QString const&, QStringList const&, int, bool, bool*, QFlags<Qt::WindowType>);
+private:
      ~QInputDialog();
 };
 
