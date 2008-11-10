@@ -5,6 +5,7 @@
 #include <setjmp.h>
 #include <signal.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 #include <time.h>
 #include <zlib.h>
@@ -152,8 +153,6 @@ extern "C" {
 #define PNG_ALL_FILTERS	 \
 	(PNG_FILTER_NONE | PNG_FILTER_SUB | PNG_FILTER_UP | PNG_FILTER_AVG | \
 	PNG_FILTER_PAETH)
-#define png_info_init(info_ptr)	 \
-	png_info_init_3(&info_ptr, png_sizeof(png_info));
 #define png_composite(composite,fg,alpha,bg)	 \
 	{ png_uint_16 temp = (png_uint_16)((png_uint_16)(fg) * \
 	(png_uint_16)(alpha) + (png_uint_16)(bg)*(png_uint_16)(255 - \
@@ -339,7 +338,6 @@ extern "C" {
 #define png_memcmp	memcmp
 #define png_memcpy	memcpy
 #define png_memset	memset
-#define PNGARG(arglist)	OF(arglist)
 #define PNG_COLOR_TYPE_GA	PNG_COLOR_TYPE_GRAY_ALPHA
 #define PNG_COLOR_TYPE_RGBA	PNG_COLOR_TYPE_RGB_ALPHA
 #define PNG_COMPRESSION_TYPE_DEFAULT	PNG_COMPRESSION_TYPE_BASE
@@ -352,6 +350,11 @@ extern "C" {
 #define png_strcpy	strcpy
 #define png_strlen	strlen
 #define png_strncpy	strncpy
+#if __LSB_VERSION__ >= 40
+#define png_info_init(info_ptr)	 \
+	png_info_init_3(&info_ptr, png_sizeof(png_info));
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
     /* typedef png_unknown_chunk *png_unknown_chunkp;   XXX move down */

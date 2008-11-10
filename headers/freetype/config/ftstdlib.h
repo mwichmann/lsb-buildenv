@@ -2,6 +2,12 @@
 #ifndef _FREETYPE_CONFIG_FTSTDLIB_H_
 #define _FREETYPE_CONFIG_FTSTDLIB_H_
 
+#include <ctype.h>
+#include <limits.h>
+#include <setjmp.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -457,7 +457,7 @@ extern "C" {
 
     struct CERTOKDomainNameStr {
 	CERTOKDomainName *next;
-	char name[];
+	char name[1];
     };
 
 

@@ -2,6 +2,7 @@
 #ifndef _FREETYPE_TTTAGS_H_
 #define _FREETYPE_TTTAGS_H_
 
+#include <freetype/freetype.h>
 
 #ifdef __cplusplus
 extern "C" {

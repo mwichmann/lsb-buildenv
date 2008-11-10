@@ -136,8 +136,6 @@
 #define PNG_ALL_FILTERS	 \
 	(PNG_FILTER_NONE | PNG_FILTER_SUB | PNG_FILTER_UP | PNG_FILTER_AVG | \
 	PNG_FILTER_PAETH)
-#define png_info_init(info_ptr)	 \
-	png_info_init_3(&info_ptr, png_sizeof(png_info));
 #define png_composite(composite,fg,alpha,bg)	 \
 	{ png_uint_16 temp = (png_uint_16)((png_uint_16)(fg) * \
 	(png_uint_16)(alpha) + (png_uint_16)(bg)*(png_uint_16)(255 - \
@@ -323,7 +321,6 @@
 #define png_memcmp	memcmp
 #define png_memcpy	memcpy
 #define png_memset	memset
-#define PNGARG(arglist)	OF(arglist)
 #define PNG_COLOR_TYPE_GA	PNG_COLOR_TYPE_GRAY_ALPHA
 #define PNG_COLOR_TYPE_RGBA	PNG_COLOR_TYPE_RGB_ALPHA
 #define PNG_COMPRESSION_TYPE_DEFAULT	PNG_COMPRESSION_TYPE_BASE

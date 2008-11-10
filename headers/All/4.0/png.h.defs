@@ -323,7 +323,6 @@
 #define png_memcmp	memcmp
 #define png_memcpy	memcpy
 #define png_memset	memset
-#define PNGARG(arglist)	OF(arglist)
 #define PNG_COLOR_TYPE_GA	PNG_COLOR_TYPE_GRAY_ALPHA
 #define PNG_COLOR_TYPE_RGBA	PNG_COLOR_TYPE_RGB_ALPHA
 #define PNG_COMPRESSION_TYPE_DEFAULT	PNG_COMPRESSION_TYPE_BASE

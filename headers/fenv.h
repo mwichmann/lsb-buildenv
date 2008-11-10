@@ -357,16 +357,16 @@ extern "C" {
 #define FE_DFL_ENV	(&__fe_dfl_env)
 #endif
 #if defined __i386__
-#define FE_DFL_ENV	((__const fenv_t *) -1)
+#define FE_DFL_ENV	((const fenv_t *) -1)
 #endif
 #if defined __s390__ && !defined __s390x__
-#define FE_DFL_ENV	((__const fenv_t *) -1)
+#define FE_DFL_ENV	((const fenv_t *) -1)
 #endif
 #if defined __x86_64__
-#define FE_DFL_ENV	((__const fenv_t *) -1)
+#define FE_DFL_ENV	((const fenv_t *) -1)
 #endif
 #if defined __s390x__
-#define FE_DFL_ENV	((__const fenv_t *) -1)
+#define FE_DFL_ENV	((const fenv_t *) -1)
 #endif
 #if defined __ia64__
 #define FE_DFL_ENV	((__const fenv_t *) 0xc009804c0270033fUL)

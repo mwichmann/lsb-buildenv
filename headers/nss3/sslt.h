@@ -107,10 +107,10 @@ extern "C" {
 	const char *macAlgorithmName;
 	SSLMACAlgorithm macAlgorithm;
 	PRUint16 macBits;
-	PRUintn isFIPS;
-	PRUintn isExportable;
-	PRUintn nonStandard;
-	PRUintn reservedBits;
+	PRUintn isFIPS:1;
+	PRUintn isExportable:1;
+	PRUintn nonStandard:1;
+	PRUintn reservedBits:29;
     };
 
 #ifdef __cplusplus

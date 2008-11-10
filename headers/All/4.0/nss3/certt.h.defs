@@ -213,7 +213,7 @@ typedef struct CERTNameConstraintsStr {
 } CERTNameConstraints;
 typedef struct CERTOKDomainNameStr {
     CERTOKDomainName *next;
-    char name[0];
+    char name[1];
 } CERTOKDomainName;
 typedef struct CERTPrivKeyUsagePeriodStr {
     SECItem notBefore;
