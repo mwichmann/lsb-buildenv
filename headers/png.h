@@ -873,7 +873,7 @@ extern "C" {
     extern png_int_32 png_get_y_offset_pixels(png_structp, png_infop);
     extern png_uint_32 png_get_y_pixels_per_meter(png_structp, png_infop);
     extern void png_init_io(png_structp, png_FILE_p);
-    extern const char png_libpng_ver[];
+    extern const char png_libpng_ver[18];
     extern png_voidp png_malloc(png_structp, png_uint_32);
     extern void png_process_data(png_structp, png_infop, png_bytep,
 				 png_size_t);
