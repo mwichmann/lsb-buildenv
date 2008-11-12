@@ -370,3 +370,6 @@ extern int XkbUpdateMapFromCore(XkbDescPtr, KeyCode, int, int, KeySym *,
 				XkbChangesPtr);
 extern int XkbUseExtension(Display *, int *, int *);
 extern int XkbVirtualModsToReal(XkbDescPtr, unsigned int, unsigned int *);
+extern int XkbGetPerClientControls(Display *, unsigned int *);
+extern int XkbSetPerClientControls(Display *, unsigned int,
+				   unsigned int *);
