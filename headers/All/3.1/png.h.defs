@@ -595,9 +595,6 @@ typedef struct png_text_struct {
     png_charp key;
     png_charp text;
     png_size_t text_length;
-    png_size_t itxt_length;
-    png_charp lang;
-    png_charp lang_key;
 } png_text;
 typedef png_text *png_textp;
 typedef png_byte **png_bytepp;
