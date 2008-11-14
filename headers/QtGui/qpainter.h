@@ -104,7 +104,6 @@ public:
     QRectF boundingRect(QRectF const&, int, QString const&);
     QRect boundingRect(QRect const&, int, QString const&);
     QRectF boundingRect(QRectF const&, QString const&, QTextOption const&);
-    void drawTextItem(QPointF const&, QTextItem const&);
     void fillRect(QRectF const&, QBrush const&);
     void fillRect(QRect const&, QBrush const&);
     void eraseRect(QRectF const&);

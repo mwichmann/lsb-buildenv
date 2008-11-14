@@ -226,8 +226,7 @@ typedef enum PRShutdownHow {
     PR_SHUTDOWN_SEND = 1,
     PR_SHUTDOWN_BOTH = 2
 } PRShutdownHow;
-extern PRFileDesc *PR_NewUDPSocket(void);
-extern PRFileDesc *PR_NewTCPSocket(void);
+extern PRFileDesc *PR_OpenTCPSocket(PRIntn);
 extern PRStatus PR_Connect(PRFileDesc *, const PRNetAddr *,
 			   PRIntervalTime);
 extern PRFileDesc *PR_Accept(PRFileDesc *, PRNetAddr *, PRIntervalTime);
@@ -250,3 +249,4 @@ extern PRInt32 PR_AcceptRead(PRFileDesc *, PRFileDesc * *, PRNetAddr * *,
 extern PRStatus PR_Close(PRFileDesc *);
 extern PRFileDesc *PR_GetIdentitiesLayer(PRFileDesc *, PRDescIdentity);
 extern PRInt32 PR_Write(PRFileDesc *, const void *, PRInt32);
+extern PRFileDesc *PR_OpenUDPSocket(PRIntn);

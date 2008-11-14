@@ -10,6 +10,7 @@ NSS_3.2 {
   CERT_VerifyCertNow;
   NSS_Init;
   NSS_InitReadWrite;
+  NSS_NoDB_Init;
   NSS_Shutdown;
   PK11_FindCertFromNickname;
   PK11_FindKeyByAnyCert;

@@ -344,8 +344,8 @@ extern "C" {
     extern PRStatus PR_GetPeerName(PRFileDesc *, PRNetAddr *);
     extern PRStatus PR_GetSockName(PRFileDesc *, PRNetAddr *);
     extern PRStatus PR_Listen(PRFileDesc *, PRIntn);
-    extern PRFileDesc *PR_NewTCPSocket(void);
-    extern PRFileDesc *PR_NewUDPSocket(void);
+    extern PRFileDesc *PR_OpenTCPSocket(PRIntn);
+    extern PRFileDesc *PR_OpenUDPSocket(PRIntn);
     extern PRInt32 PR_Poll(PRPollDesc *, PRIntn, PRIntervalTime);
     extern PRInt32 PR_RecvFrom(PRFileDesc *, void *, PRInt32, PRIntn,
 			       PRNetAddr *, PRIntervalTime);

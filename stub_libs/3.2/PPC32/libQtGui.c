@@ -1359,6 +1359,7 @@ void _ZN12QPaintEngine11drawEllipseERK5QRect() {} ;
 void _ZN12QPaintEngine11drawEllipseERK6QRectF() {} ;
 void _ZN12QPaintEngine11drawPolygonEPK6QPointiNS_15PolygonDrawModeE() {} ;
 void _ZN12QPaintEngine11drawPolygonEPK7QPointFiNS_15PolygonDrawModeE() {} ;
+void _ZN12QPaintEngine12drawTextItemERK7QPointFRK9QTextItem() {} ;
 void _ZN12QPaintEngine13setSystemClipERK7QRegion() {} ;
 void _ZN12QPaintEngine13setSystemRectERK5QRect() {} ;
 void _ZN12QPaintEngine14setPaintDeviceEP12QPaintDevice() {} ;
