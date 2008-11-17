@@ -10674,7 +10674,6 @@ extern "C" {
     extern gboolean gtk_window_activate_focus(GtkWindow *);
     extern gboolean gtk_window_activate_key(GtkWindow *, GdkEventKey *);
     extern void gtk_window_add_accel_group(GtkWindow *, GtkAccelGroup *);
-    extern void gtk_window_add_embedded_xid(GtkWindow *, guint);
     extern void gtk_window_add_mnemonic(GtkWindow *, guint, GtkWidget *);
     extern void gtk_window_begin_move_drag(GtkWindow *, gint, gint, gint,
 					   guint32);
@@ -10730,7 +10729,6 @@ extern "C" {
 						   GdkEventKey *);
     extern void gtk_window_remove_accel_group(GtkWindow *,
 					      GtkAccelGroup *);
-    extern void gtk_window_remove_embedded_xid(GtkWindow *, guint);
     extern void gtk_window_remove_mnemonic(GtkWindow *, guint,
 					   GtkWidget *);
     extern void gtk_window_reshow_with_initial_size(GtkWindow *);
@@ -10783,6 +10781,11 @@ extern "C" {
     extern void gtk_window_unmaximize(GtkWindow *);
     extern void gtk_window_unstick(GtkWindow *);
     extern GType gtk_wrap_mode_get_type(void);
+#if __LSB_VERSION__ < 40
+    extern void gtk_window_add_embedded_xid(GtkWindow *, guint);
+    extern void gtk_window_remove_embedded_xid(GtkWindow *, guint);
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #if __LSB_VERSION__ >= 32
     extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);
 #endif				/* __LSB_VERSION__ >= 3.2 */
