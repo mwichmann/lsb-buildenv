@@ -1,2 +1,3 @@
 
 typedef PRInt64 PRTime;
+extern PRTime PR_Now(void);

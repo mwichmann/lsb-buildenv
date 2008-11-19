@@ -12,6 +12,8 @@ extern "C" {
 
     typedef struct PRHostEnt PRHostEnt;
 
+    typedef struct PRAddrInfo PRAddrInfo;
+
 
     struct PRHostEnt {
 	char *h_name;
@@ -22,14 +24,18 @@ extern "C" {
     };
 
 
+
+
 /* Function prototypes */
 
-    extern PRIntn PR_EnumerateHostEnt(PRIntn, const PRHostEnt *, PRUint16,
+    extern void *PR_EnumerateAddrInfo(void *, const PRAddrInfo *, PRUint16,
 				      PRNetAddr *);
-    extern PRStatus PR_GetHostByAddr(const PRNetAddr *, char *, PRIntn,
-				     PRHostEnt *);
-    extern PRStatus PR_GetHostByName(const char *, char *, PRIntn,
-				     PRHostEnt *);
+    extern void PR_FreeAddrInfo(PRAddrInfo *);
+    extern PRAddrInfo *PR_GetAddrInfoByName(const char *, PRUint16,
+					    PRIntn);
+    extern PRStatus PR_NetAddrToString(const PRNetAddr *, char *,
+				       PRUint32);
+    extern PRStatus PR_StringToNetAddr(const char *, PRNetAddr *);
 #ifdef __cplusplus
 }
 #endif

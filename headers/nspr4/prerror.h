@@ -14,7 +14,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern PRInt32 PR_GetOSError(void);
+    extern PRErrorCode PR_GetError(void);
     extern void PR_SetError(PRErrorCode, PRInt32);
 #ifdef __cplusplus
 }

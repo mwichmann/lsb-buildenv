@@ -16,7 +16,6 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern PRThread *PR_GetCurrentThread(void);
     extern PRStatus PR_Interrupt(PRThread *);
 #ifdef __cplusplus
 }

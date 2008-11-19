@@ -1,4 +1,3 @@
 
 typedef struct PRThread PRThread;
-extern PRThread *PR_GetCurrentThread(void);
 extern PRStatus PR_Interrupt(PRThread *);

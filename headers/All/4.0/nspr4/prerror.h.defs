@@ -1,4 +1,4 @@
 
 typedef PRInt32 PRErrorCode;
-extern PRInt32 PR_GetOSError(void);
+extern PRErrorCode PR_GetError(void);
 extern void PR_SetError(PRErrorCode, PRInt32);
