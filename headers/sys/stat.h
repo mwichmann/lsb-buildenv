@@ -83,6 +83,30 @@ extern "C" {
 #define st_mtime	st_mtim.tv_sec
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+#if __LSB_VERSION__ >= 32
+#if defined __ia64__
+#define _MKNOD_VER	0
+#endif
+#if defined __powerpc64__
+#define _MKNOD_VER	0
+#endif
+#if defined __x86_64__
+#define _MKNOD_VER	0
+#endif
+#if defined __s390x__
+#define _MKNOD_VER	0
+#endif
+#if defined __i386__
+#define _MKNOD_VER	1
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define _MKNOD_VER	1
+#endif
+#if defined __s390__ && !defined __s390x__
+#define _MKNOD_VER	1
+#endif
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
 
 
 #if __LSB_VERSION__ >= 20

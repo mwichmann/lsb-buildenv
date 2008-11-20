@@ -141,7 +141,7 @@ extern "C" {
     extern long int random(void);
     extern void *realloc(void *, size_t);
     extern char *realpath(const char *, char *);
-    extern unsigned short *seed48(unsigned short[]);
+    extern unsigned short *seed48(unsigned short[3]);
     extern char *setstate(char *);
     extern void srand(unsigned int);
     extern void srand48(long int);
@@ -185,19 +185,20 @@ extern "C" {
     extern size_t __wcstombs_chk(char *, const wchar_t *, size_t, size_t);
     extern int __wctomb_chk(char *, wchar_t, size_t);
     extern int drand48_r(struct drand48_data *, double *);
-    extern int erand48_r(unsigned short[], struct drand48_data *,
+    extern int erand48_r(unsigned short[3], struct drand48_data *,
 			 double *);
     extern int initstate_r(unsigned int, char *, size_t,
 			   struct random_data *);
-    extern int jrand48_r(unsigned short[], struct drand48_data *,
+    extern int jrand48_r(unsigned short[3], struct drand48_data *,
 			 long int *);
+    extern int lcong48_r(unsigned short[7], struct drand48_data *);
     extern int lrand48_r(struct drand48_data *, long int *);
     extern char *mkdtemp(char *);
     extern int mrand48_r(struct drand48_data *, long int *);
-    extern int nrand48_r(unsigned short[], struct drand48_data *,
+    extern int nrand48_r(unsigned short[3], struct drand48_data *,
 			 long int *);
     extern int random_r(struct random_data *, int32_t *);
-    extern int seed48_r(unsigned short[], struct drand48_data *);
+    extern int seed48_r(unsigned short[3], struct drand48_data *);
     extern int setstate_r(char *, struct random_data *);
     extern int srand48_r(long int, struct drand48_data *);
     extern int srandom_r(unsigned int, struct random_data *);
