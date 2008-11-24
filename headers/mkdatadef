@@ -643,6 +643,13 @@ for (1..$eh->rows) {
                 $pentry = $ph->fetchrow_hashref;
                 printf ", " if ($moreargs++);
                 displaytype($pentry,1);
+                if( $pentry->{'Ttype'} eq 'Array' ) {
+                    print "[";
+                    if( $pentry->{'Parsize'} != 0 ) {
+                        print $pentry->{'Parsize'};
+                    }
+                    print "]";
+                }
             }
         } else {
             printf "void";

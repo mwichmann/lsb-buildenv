@@ -128,5 +128,5 @@ extern int getpeername(int, struct sockaddr *, socklen_t *);
 extern int getsockopt(int, int, int, void *, socklen_t *);
 extern int shutdown(int, int);
 extern int socket(int, int, int);
-extern int socketpair(int, int, int, int);
+extern int socketpair(int, int, int, int[2]);
 extern int sockatmark(int);
