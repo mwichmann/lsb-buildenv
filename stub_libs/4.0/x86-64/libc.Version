@@ -996,7 +996,6 @@ GLIBC_2.4 {
   fchmodat;
   fchownat;
   fdopendir;
-  futimesat;
   inotify_add_watch;
   inotify_init;
   inotify_rm_watch;

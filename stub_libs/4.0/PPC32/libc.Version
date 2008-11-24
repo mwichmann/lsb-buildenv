@@ -981,7 +981,6 @@ GLIBC_2.4 {
   fdopendir;
   fprintf;
   fscanf;
-  futimesat;
   fwprintf;
   fwscanf;
   inotify_add_watch;

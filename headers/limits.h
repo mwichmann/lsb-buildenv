@@ -16,8 +16,11 @@ extern "C" {
 #if defined __i386__
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
-#define OPEN_MAX	256
 #define PATH_MAX	4096
+#if __LSB_VERSION__ < 40
+#define OPEN_MAX	256
+#endif				/* __LSB_VERSION__ < 4.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12

@@ -324,7 +324,6 @@ void ftrylockfile() {} ;
 void ftw() {} ;
 void ftw64() {} ;
 void funlockfile() {} ;
-void futimesat() {} ;
 void fwide() {} ;
 void fwprintf() {} ;
 void fwprintf_depr_0() {} ;
