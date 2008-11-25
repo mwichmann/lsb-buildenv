@@ -1731,7 +1731,7 @@ extern "C" {
     extern int XQueryExtension(Display *, const char *, int *, int *,
 			       int *);
     extern XFontStruct *XQueryFont(Display *, XID);
-    extern int XQueryKeymap(Display *, char[]);
+    extern int XQueryKeymap(Display *, char[32]);
     extern int XQueryPointer(Display *, Window, Window *, Window *, int *,
 			     int *, int *, int *, unsigned int *);
     extern int XQueryTextExtents(Display *, XID, const char *, int, int *,
