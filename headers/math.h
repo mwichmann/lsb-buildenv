@@ -24,10 +24,76 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 32
+#if defined __i386__
+/* IA32 */
     typedef long double float_t;
 
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef float float_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef float float_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef float float_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef float float_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef double float_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef double float_t;
+
+#endif
+#if defined __i386__
+/* IA32 */
     typedef long double double_t;
 
+#endif
+#if defined __ia64__
+/* IA64 */
+    typedef double double_t;
+
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    typedef double double_t;
+
+#endif
+#if defined __powerpc64__
+/* PPC64 */
+    typedef double double_t;
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    typedef double double_t;
+
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
+    typedef double double_t;
+
+#endif
+#if defined __s390x__
+/* S390X */
+    typedef double double_t;
+
+#endif
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 
