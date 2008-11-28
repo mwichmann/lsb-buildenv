@@ -54,6 +54,8 @@ void __memmove_chk() {} ;
 void __mempcpy() {} ;
 void __mempcpy_chk() {} ;
 void __memset_chk() {} ;
+void __pread64_chk() {} ;
+void __pread_chk() {} ;
 void __printf_chk() {} ;
 void __rawmemchr() {} ;
 void __read_chk() {} ;

@@ -969,6 +969,8 @@ GLIBC_2.4 {
   __mbsnrtowcs_chk;
   __mbsrtowcs_chk;
   __mbstowcs_chk;
+  __pread64_chk;
+  __pread_chk;
   __read_chk;
   __readlink_chk;
   __realpath_chk;
