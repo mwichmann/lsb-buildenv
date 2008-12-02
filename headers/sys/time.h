@@ -67,10 +67,6 @@ the second and third arguments `setitimer'.*/
     extern int setitimer(__itimer_which_t, const struct itimerval *,
 			 struct itimerval *);
     extern int utimes(const char *, const struct timeval *);
-#if __LSB_VERSION__ >= 40
-    extern int futimesat(int, const char *, const struct timeval[2]);
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 #ifdef __cplusplus
 }
 #endif

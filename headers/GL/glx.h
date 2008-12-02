@@ -209,9 +209,9 @@ extern "C" {
     extern void glXUseXFont(Font, int, int, int);
     extern void glXWaitGL(void);
     extern void glXWaitX(void);
-#if __LSB_VERSION__ >= 40
+#if __LSB_VERSION__ >= 32
     extern GLXFBConfig *glXGetFBConfigs(Display *, int, int *);
-#endif				/* __LSB_VERSION__ >= 4.0 */
+#endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus
 }
