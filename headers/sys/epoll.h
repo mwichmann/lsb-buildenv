@@ -9,21 +9,17 @@ extern "C" {
 #endif
 
 
+#define EPOLL_CTL_ADD	1	/* Add a file decriptor to the interface. */
+#define EPOLL_CTL_DEL	2	/* Remove a file decriptor from the interface. */
+#define EPOLL_CTL_MOD	3	/* Change file decriptor epoll_event structure. */
+#define EPOLLIN	1
+#define EPOLLPRI	2
+#define EPOLLOUT	4
+#define EPOLLERR	8
+#define EPOLLHUP	16
+#define EPOLLRDHUP
 #define EPOLLONESHOT	(1 << 30)
 #define EPOLLET	(1 << 31)
-#define EPOLLIN	1
-#define EPOLL_CTL_ADD	1
-#define EPOLLMSG	1024
-#define EPOLLRDBAND	128
-#define EPOLLHUP	16
-#define EPOLLPRI	2
-#define EPOLL_CTL_DEL	2
-#define EPOLLWRNORM	256
-#define EPOLL_CTL_MOD	3
-#define EPOLLOUT	4
-#define EPOLLWRBAND	512
-#define EPOLLRDNORM	64
-#define EPOLLERR	8
 
 
     typedef union epoll_data epoll_data_t;
@@ -34,6 +30,7 @@ extern "C" {
 	uint32_t u32;
 	uint64_t u64;
     };
+
 
     struct epoll_event {
 	uint32_t events;
