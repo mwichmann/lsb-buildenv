@@ -347,7 +347,6 @@ extern "C" {
 #define QueuedAfterReading	1
 #define True	1
 #define XLookupNone	1
-#define X_HAVE_UTF8_STRING	1
 #define XIMInitialState	1L
 #define XIMPreeditEnable	1L
 #define XIMReverse	1L
