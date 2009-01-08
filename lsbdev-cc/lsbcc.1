@@ -77,23 +77,24 @@ see the effects of lsbcc and options.
 .TP 
 --lsb-cc=<path to c compiler>
 Specifies the name of the C compiler to invoke with the modified
-argument set. If this environment variable is not found,
-the default 
+argument set. If this option or the LSBCC environment
+variable is not set, the default 
 .I cc
 will be used.  This setting overrides the LSBCC environment setting.
 .TP 
 --lsb-cxx=<path to c++ compiler>
 Specifies the name of the C++ compiler to invoke with the modified
-argument set. If this environment variable is not found,
-the default 
+argument set.  If this option or the LSBCCX environment
+variable is not set, the default 
 .I c++
 will be used.  This setting overrides the LSBCXX environment setting.
 .TP
 --lsb-cpp=<path to c preprocessor>
 Specifies the name of the C preprocessor to invoke with the modified
-argument set.  If this setting is not found, the default
+argument set. If this option or the LSB_CPP environment
+variable is not set, the default 
 .I cpp
-will be used.  This setting overrides the LSB_CPP environment setting.
+will be used. This option overrides the LSB_CPP environment setting.
 .TP 
 --lsb-forcefeatures
 This causes lsbcc to insert macro defines for all of the 
@@ -134,18 +135,22 @@ of the library only, for example to add
 .I libfoo.so
 use the name
 .IR foo .
+Libraries specified by this option are appended to the list specified
+by the LSBCC_SHAREDLIBS environment variable, if any.
 .TP
 --lsb-shared-libpath=<path:...>
 This option adds paths to be searched for shared libraries. Libraries found in
 the given set of paths will be added to the list of non-lsb libraries to link
 as shared libraries.
+Paths specified by this option are appended to the list specified
+by the LSBCC_SHAREDLIBPATH environment variable, if any.
 .TP 
 --lsb-modules=<module,..>
 Enable support for the optional/trial-use LSB modules listed.  
 Currently the only supported optional module is 'Multimedia' which
 provides the ALSA libraries.
-Modules will added in addition to any added from the
-LSB_MODULES environment setting.
+Modules specified by this option are appended to the list specified
+by the LSB_MODULES environment variable, if any.
 .TP
 --lsb-use-default-linker
 Do not set dynamic linker to the LSB one.
@@ -154,6 +159,11 @@ Do not set dynamic linker to the LSB one.
 This will unset the dynamic linker (like --lsb-use-default-linker),
 but will also link in code that tries to use the LSB dynamic linker if
 needed.
+.TP 
+--lsb-target-version=<LSB_version>
+Target LSB version. If set to valid value, this option overrides LSBCC_LSBVERSION
+environment variable. For the list of valid values, call the program
+with --lsb-version option.
 .TP 
 --lsb-target-version=<LSB_version>
 Target LSB version. If set to valid value, this option overrides LSBCC_LSBVERSION
