@@ -7060,7 +7060,7 @@ extern "C" {
 
     struct _GtkStatusbarClass {
 	GtkHBoxClass parent_class;
-	GMemChunk *messages_mem_chunk;
+	gpointer reserved;
 	void (*text_pushed) (GtkStatusbar *, guint, const gchar *);
 	void (*text_popped) (GtkStatusbar *, guint, const gchar *);
 	void (*_gtk_reserved1) (void);
@@ -10781,10 +10781,10 @@ extern "C" {
     extern void gtk_window_unmaximize(GtkWindow *);
     extern void gtk_window_unstick(GtkWindow *);
     extern GType gtk_wrap_mode_get_type(void);
-#if __LSB_VERSION__ < 40
+#if __LSB_VERSION__ < 32
     extern void gtk_window_add_embedded_xid(GtkWindow *, guint);
     extern void gtk_window_remove_embedded_xid(GtkWindow *, guint);
-#endif				/* __LSB_VERSION__ < 4.0 */
+#endif				/* __LSB_VERSION__ < 3.2 */
 
 #if __LSB_VERSION__ >= 32
     extern void gtk_toolbar_set_icon_size(GtkToolbar *, GtkIconSize);

@@ -1881,7 +1881,7 @@ extern "C" {
 	guint hook_size:16;
 	guint is_setup:1;
 	GHook *hooks;
-	GMemChunk *hook_memchunk;
+	gpointer dummy3;
 	GHookFinalizeFunc finalize_hook;
 	gpointer dummy[2];
     };

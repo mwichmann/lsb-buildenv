@@ -5316,7 +5316,7 @@ typedef struct _GtkColorSelectionDialog {
 } GtkColorSelectionDialog;
 typedef struct _GtkStatusbarClass {
     GtkHBoxClass parent_class;
-    GMemChunk *messages_mem_chunk;
+    gpointer reserved;
     void (*text_pushed) (GtkStatusbar *, guint, const gchar *);
     void (*text_popped) (GtkStatusbar *, guint, const gchar *);
     void (*_gtk_reserved1) (void);
@@ -5942,7 +5942,6 @@ extern gboolean gtk_window_get_destroy_with_parent(GtkWindow *);
 extern void gtk_container_add(GtkContainer *, GtkWidget *);
 extern GtkShadowType gtk_handle_box_get_shadow_type(GtkHandleBox *);
 extern GtkWidget *gtk_text_view_new(void);
-extern void gtk_window_add_embedded_xid(GtkWindow *, guint);
 extern gboolean gtk_label_get_use_underline(GtkLabel *);
 extern gboolean gtk_text_view_starts_display_line(GtkTextView *,
 						  const GtkTextIter *);
@@ -8361,7 +8360,6 @@ extern gboolean gtk_window_mnemonic_activate(GtkWindow *, guint,
 					     GdkModifierType);
 extern GtkWidget *gtk_hseparator_new(void);
 extern const gchar *gtk_progress_bar_get_text(GtkProgressBar *);
-extern void gtk_window_remove_embedded_xid(GtkWindow *, guint);
 extern GtkWidget *gtk_menu_item_new(void);
 extern void gtk_window_set_has_frame(GtkWindow *, gboolean);
 extern void gtk_tree_model_filter_set_modify_func(GtkTreeModelFilter *,
