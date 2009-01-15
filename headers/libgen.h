@@ -26,6 +26,12 @@ extern "C" {
 /* Function prototypes */
 
     extern char *dirname(char *);
+
+/*XXX temporary hack */
+#if __LSB_VERSION__ < 32
+    extern char *basename(const char *);
+#endif                         /* __LSB_VERSION__ < 3.2 */
+
 #if __LSB_VERSION__ >= 32
     extern char *__xpg_basename(char *);
 #endif				/* __LSB_VERSION__ >= 3.2 */
