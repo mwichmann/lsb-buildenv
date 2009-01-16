@@ -1005,6 +1005,10 @@ extern "C" {
     extern int sigismember(const sigset_t *, int);
     extern sighandler_t signal(int, sighandler_t);
     extern int sigorset(sigset_t *, const sigset_t *, const sigset_t *);
+#if __LSB_VERSION__ < 32
+    extern int sigpause(int) LSB_DECL_DEPRECATED;
+#endif				/* __LSB_VERSION__ < 3.2 */
+
     extern int sigpending(sigset_t *);
     extern int sigprocmask(int, const sigset_t *, sigset_t *);
     extern int sigqueue(pid_t, int, const union sigval);

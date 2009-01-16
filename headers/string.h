@@ -48,6 +48,10 @@ extern "C" {
     extern size_t strcspn(const char *, const char *);
     extern char *strdup(const char *);
     extern char *strerror(int);
+#if __LSB_VERSION__ < 32
+    extern char *strerror_r(int, char *, size_t) LSB_DECL_DEPRECATED;
+#endif				/* __LSB_VERSION__ < 3.2 */
+
     extern size_t strlen(const char *);
     extern char *strncat(char *, const char *, size_t);
     extern int strncmp(const char *, const char *, size_t);

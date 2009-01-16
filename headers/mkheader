@@ -1736,10 +1736,8 @@ if( $Hsrcerror eq 'Yes' ) {
 $select = "SELECT DISTINCT AAvalue, AAappearedin, AAwithdrawnin FROM AbiApi ";
 $select.= "LEFT JOIN Interface ON (Iid=AAbinint OR Iid=AAsrcint) ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND AAappearedin <> '' ";
+$select.= "AND AAappearedin > '' ";
 $select.= "ORDER BY AAappearedin, AAwithdrawnin ";
-# $select.= "AND AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
-# $select.= "AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
 print $select,"\n" if $trace;
 my $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
@@ -2164,15 +2162,11 @@ $select.= "LEFT JOIN ArchInt ON Iid=AIint ";
 $select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
 $select.= "LEFT JOIN Architecture ON AIarch=Aid ";
 $select.= "WHERE Iheader=$Hid ";
-$select.= "AND Iid NOT IN ( SELECT AAsrcint FROM AbiApi ";
-$select.= "  WHERE AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
-$select.= "  AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
-$select.= ") ";
 $select.= "AND (Isrcbin='SrcOnly' ";
 $select.= " OR ( (Isrcbin='Both' OR Iid IN ( ";
 $select.= "  SELECT AAbinint FROM AbiApi ";
-$select.= "  WHERE AAappearedin <= '$lsbversion' AND AAappearedin <> '' ";
-$select.= "  AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '$lsbversion') ";
+$select.= "  WHERE AAappearedin > '' ";
+$select.= "  AND AAwithdrawnin IS NULL "; # No check for 3.0, there were no AbiApi there
 $select.= ")) AND ";
 $select.= "AIappearedin > '' AND (AIwithdrawnin IS NULL OR AIwithdrawnin > '3.0') ) ";
 $select.= ") ";
@@ -2198,17 +2192,13 @@ for(1..$sth->rows) {
         $selectGeneric = "SELECT Iid FROM Interface ";
         $selectGeneric.= "LEFT JOIN ArchInt ON Iid=AIint ";
         $selectGeneric.= "WHERE AIarch=1 AND AIint='$entry->{'AIint'}'";
-        $selectGeneric.= "AND Iid NOT IN ( ";
-        $selectGeneric.= " SELECT AAsrcint FROM AbiApi ";
-        $selectGeneric.= " WHERE AAappearedin > '' ";
-        $selectGeneric.= " AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '3.0') ";
-        $selectGeneric.= ") AND (Isrcbin='SrcOnly' ";
+        $selectGeneric.= "AND (Isrcbin='SrcOnly' ";
         $selectGeneric.= "OR ( (Isrcbin='Both' OR Iid IN ( ";
         $selectGeneric.= " SELECT AAbinint FROM AbiApi ";
         $selectGeneric.= " WHERE AAappearedin > '' ";
-        $selectGeneric.= " AND (AAwithdrawnin IS NULL OR AAwithdrawnin > '3.0') ";
+        $selectGeneric.= " AND AAwithdrawnin IS NULL ";
         $selectGeneric.= ")) AND ";
-        $selectGeneric.= "(AIappearedin > '') ";
+        $selectGeneric.= "AIappearedin > '' ";
         $selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'3.0') ) ) ";
         $selectGeneric.= "LIMIT 1";
         $sthGeneric = $dbh->prepare($selectGeneric) or die "Couldn't prepare $selectGeneric query: ".DBI->errstr;
@@ -2219,6 +2209,23 @@ for(1..$sth->rows) {
         }
         $sthGeneric->finish;
     }
+
+    # Check, if this interface is overridden through the AbiApi table.
+    # If so, provide the prototype only for those versions where it is not overridden.
+    $selectSrcInt = "SELECT AAappearedin, AAwithdrawnin FROM AbiApi ";
+    $selectSrcInt.= "WHERE AAsrcint=".$entry->{'Iid'};
+    $srcth = $dbh->prepare($selectSrcInt) or die "Couldn't prepare $selectSrcInt query".DBI->errstr;
+    $srcth->execute or die "Couldn't execute $selectSrcInt query: ".DBI->errstr;
+    if( $srcth->rows ) {
+        $srcentry = $srcth->fetchrow_hashref;
+        $srcAppearedin = $srcentry->{'AAappearedin'};
+        $srcAwithdrawnin = $srcentry->{'AAwithdrawnin'};
+        specdb::printLsbVersionBounds('','',$srcAwithdrawnin,$srcAppearedin);
+    }
+    else {
+        $srcAppearedin = $srcWithdrawnin = '';
+    }
+    $srcth->finish;
 
     if( $entry->{'Isrcbin'} ne 'SrcOnly' ) {
         specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $entry->{'AIappearedin'}, $entry->{'AIwithdrawnin'});
@@ -2442,6 +2449,13 @@ for(1..$sth->rows) {
             print "]";
         }
         printf " ;\n";
+    }
+
+    if( $srcAppearedin ) {
+        print "#endif /* __LSB_VERSION__ < $srcAppearedin */\n\n";
+    }
+    if( $srcWithdrawnin ) {
+        print "#endif /* __LSB_VERSION__ >= $srcWithdrawnin */\n\n";
     }
 }
 $sth->finish;
