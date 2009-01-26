@@ -51,16 +51,16 @@ extern "C" {
 #define SYNC_NAME	"SYNC"
 #define _XSyncValueIsPositive(v)	(((v).hi&0x80000000)?0:1)
 #define _XSyncValueIsNegative(v)	(((v).hi&0x80000000)?1:0)
-#define _XSyncValueLessThan(a,b)	((a).hi<(b).hi||((a).hi==(b).hi&&(a).lo<(b).lo)))
-#define _XSyncValueLessOrEqual(a,b)	((a).hi<(b).hi||((a).hi==(b).hi&&(a).lo<=(b).lo)))
-#define _XSyncValueGreaterThan(a,b)	((a).hi>(b).hi||((a).hi==(b).hi&&(a).lo>(b).lo)))
-#define _XSyncValueGreaterOrEqual(a,b)	((a).hi>(b).hi||((a).hi==(b).hi&&(a).lo>=(b).lo)))
-#define _XSyncValueEqual(a,b)	((a).lo==(b).lo&&(a).hi==(b).hi))
+#define _XSyncValueLessThan(a,b)	((a).hi<(b).hi || ((a).hi==(b).hi && (a).lo<(b).lo))
+#define _XSyncValueLessOrEqual(a,b)	((a).hi<(b).hi || ((a).hi==(b).hi && (a).lo<=(b).lo))
+#define _XSyncValueGreaterThan(a,b)	((a).hi>(b).hi || ((a).hi==(b).hi && (a).lo>(b).lo))
+#define _XSyncValueGreaterOrEqual(a,b)	((a).hi>(b).hi || ((a).hi==(b).hi && (a).lo>=(b).lo))
+#define _XSyncValueEqual(a,b)	((a).lo==(b).lo && (a).hi==(b).hi)
 #define _XSyncValueIsZero(a)	((a).lo==0&&(a).hi==0)
-#define _XSyncIntToValue(pv,i)	((pv)->hi=((i<0)?~0:0),(pv)->lo=(i)))
+#define _XSyncIntToValue(pv,i)	((pv)->hi=((i<0)?~0:0),(pv)->lo=(i))
 #define _XSyncMaxValue(pv)	((pv)->hi=0x7fffffff,(pv)->lo=0xffffffff)
 #define _XSyncMinValue(pv)	((pv)->hi=0x80000000,(pv)->lo=0)
-#define _XSyncIntsToValue(pv,l,h)	((pv)->lo=(l),(pv)->hi=(h)))
+#define _XSyncIntsToValue(pv,l,h)	((pv)->lo = (l), (pv)->hi = (h))
 #define _XSyncValueHigh32(v)	((v).hi)
 #define _XSyncValueLow32(v)	((v).lo)
 #define XSyncCACounter	(1L<<0)
@@ -92,8 +92,24 @@ extern "C" {
 #define X_SyncAwait	7
 #define X_SyncCreateAlarm	8
 #define X_SyncChangeAlarm	9
-#define _XSyncValueAdd(presult,a,b,poverflow)	{intt=(a).lo;Boolsigna=XSyncValueIsNegative(a);Boolsignb=XSyncValueIsNegative(b);((presult)->lo=(a).lo+(b).lo);((presult)->hi=(a
-#define _XSyncValueSubtract(presult,a,b,poverflow)	{intt=(a).lo;Boolsigna=XSyncValueIsNegative(a);Boolsignb=XSyncValueIsNegative(b);((presult)->lo=(a).lo-(b).lo);((presult)->hi=(a
+#define _XSyncValueAdd(presult,a,b,poverflow)	{\
+int t = (a).lo;\
+ Bool signa = XSyncValueIsNegative(a);\
+ Bool signb = XSyncValueIsNegative(b);\
+ ((presult)->lo = (a).lo + (b).lo);\
+ ((presult)->hi = (a).hi + (b).hi);\
+ if (t>(presult)->lo) (presult)->hi++;\
+  *poverflow = ((signa == signb) && !(signa == XSyncValueIsNegative(*presult)));\
+}
+#define _XSyncValueSubtract(presult,a,b,poverflow)	{\
+int t = (a).lo;\
+ Bool signa = XSyncValueIsNegative(a);\
+ Bool signb = XSyncValueIsNegative(b);\
+ ((presult)->lo = (a).lo - (b).lo);\
+ ((presult)->hi = (a).hi - (b).hi);\
+ if (t>(presult)->lo) (presult)->hi--;\
+ *poverflow = ((signa == signb) && !(signa == XSyncValueIsNegative(*presult)));\
+}
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

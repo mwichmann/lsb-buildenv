@@ -12,13 +12,13 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
-#define IsModifierKey(keysym)	((((KeySym)(keysym)>=XK_Shift_L)&&((KeySym)(keysym)<=XK_Hype
-#define IsPrivateKeypadKey(keysym)	(((KeySym)(keysym)>=0x11000000)&&((KeySym)(keysym)<=0x1100FF
+#define IsModifierKey(keysym)	((((KeySym)(keysym) >= XK_Shift_L) && ((KeySym)(keysym) <= XK_Hyper_R)) || (((KeySym)(keysym) >= XK_ISO_Lock) && ((KeySym)(keysym) <= XK_ISO_Last_Group_Lock)) || ((KeySym)(keysym) == XK_Mode_switch) || ((KeySym)(keysym) == XK_Num_Lock))
+#define IsPrivateKeypadKey(keysym)	(((KeySym)(keysym) >= 0x11000000) && ((KeySym)(keysym) <= 0x1100FFFF))
+#define IsKeypadKey(keysym)	(((KeySym)(keysym) >= XK_KP_Space) && ((KeySym)(keysym) <= XK_KP_Equal))
+#define IsMiscFunctionKey(keysym)	(((KeySym)(keysym) >= XK_Select) && ((KeySym)(keysym) <= XK_Break))
 #define IsFunctionKey(keysym)	(((KeySym)(keysym)>=XK_F1)&&((KeySym)(keysym)<=XK_F35))
 #define IsCursorKey(keysym)	(((KeySym)(keysym)>=XK_Home)&&((KeySym)(keysym)<XK_Select))
 #define IsPFKey(keysym)	(((KeySym)(keysym)>=XK_KP_F1)&&((KeySym)(keysym)<=XK_KP_F4))
-#define IsKeypadKey(keysym)	(((KeySym)(keysym)>=XK_KP_Space)&&((KeySym)(keysym)<=XK_KP_E
-#define IsMiscFunctionKey(keysym)	(((KeySym)(keysym)>=XK_Select)&&((KeySym)(keysym)<=XK_Break)
 #define XStringToContext(string)	((XContext)XrmStringToQuark(string))
 #define XUniqueContext()	((XContext)XrmUniqueQuark())
 #define ReleaseByFreeingColormap	((XID)1L)
