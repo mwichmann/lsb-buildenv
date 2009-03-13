@@ -34,11 +34,11 @@ foreach $version (@lsbversions) {
     $vername =~ s/\.//;
     print "char *lsb_libs_".$vername."[] = {\n";
     $select  = "SELECT DISTINCT * FROM Library ";
-    $select .= "LEFT JOIN ModLib ON MLlid=Lid ";
-    $select .= "LEFT JOIN SubModule ON SMid=MLmid ";
+    $select .= "LEFT JOIN SModLib ON SMLlid=Lid ";
+    $select .= "LEFT JOIN SubModule ON SMid=SMLsmid ";
     $select .= "WHERE SMmandatorysince <= '$version' ";
     $select .= "AND SMmandatorysince <> '' ";
-    $select .= "AND MLappearedin <= '$version' ";
+    $select .= "AND SMLappearedin <= '$version' ";
     $select .= "ORDER BY Lname";
 
     $th = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
@@ -83,13 +83,13 @@ foreach $version (@lsbversions) {
     $module_name =~ s/^LSB_//;
 
     $select  = "SELECT DISTINCT * FROM Library ";
-    $select .= "LEFT JOIN ModLib ON MLlid=Lid ";
-    $select .= "LEFT JOIN SubModule ON SMid=MLmid ";
+    $select .= "LEFT JOIN SModLib ON SMLlid=Lid ";
+    $select .= "LEFT JOIN SubModule ON SMid=SMLsmid ";
     $select .= "WHERE (SMmandatorysince > '$version' ";
     $select .= "OR SMmandatorysince = '') ";
-    $select .= "AND MLappearedin <= '$version' ";
-    $select .= "AND (MLwithdrawnin IS NULL ";
-    $select .= "OR MLwithdrawnin > '$version') ";
+    $select .= "AND SMLappearedin <= '$version' ";
+    $select .= "AND (SMLwithdrawnin IS NULL ";
+    $select .= "OR SMLwithdrawnin > '$version') ";
     $select .= "AND SMid = $entry->{'SMid'} ";
     $select .= "ORDER BY Lname";
     $th2 = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
@@ -158,16 +158,16 @@ foreach $version (@lsbversions) {
     $module_name =~ s/^LSB_//;
 
     $select  = "SELECT DISTINCT * FROM Library ";
-    $select .= "LEFT JOIN ModLib ON MLlid=Lid ";
-    $select .= "LEFT JOIN SubModule ON SMid=MLmid ";
+    $select .= "LEFT JOIN SModLib ON SMLlid=Lid ";
+    $select .= "LEFT JOIN SubModule ON SMid=SMLsmid ";
     $select .= "WHERE SMid = $entry->{'SMid'} ";
     $select .= "AND (SMdeprecatedsince IS NOT NULL ";
     $select .= "AND SMdeprecatedsince <= '$version') ";
     $select .= "AND (SMmandatorysince <> '' ";
     $select .= "AND SMmandatorysince <= '$version') ";
-    $select .= "AND MLappearedin <= '$version' ";
-    $select .= "AND (MLwithdrawnin IS NULL ";
-    $select .= "OR MLwithdrawnin > '$version') ";
+    $select .= "AND SMLappearedin <= '$version' ";
+    $select .= "AND (SMLwithdrawnin IS NULL ";
+    $select .= "OR SMLwithdrawnin > '$version') ";
     $select .= "ORDER BY Lname";
 
     $xh2 = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;

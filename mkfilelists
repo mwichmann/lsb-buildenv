@@ -38,9 +38,9 @@ else :
 # from the database.
 
 header_query = """
-SELECT SMname, Hname FROM SubModule,Header,ModLib,Library
-WHERE SubModule.SMid = ModLib.MLmid
-AND Library.Lid = ModLib.MLlid
+SELECT SMname, Hname FROM SubModule,Header,SModLib,Library
+WHERE SubModule.SMid = SModLib.SMLmid
+AND Library.Lid = SModLib.SMLlid
 AND Library.Lid = Header.Hlib
 AND ( ( Happearedin > ''
 AND ( Hwithdrawnin IS NULL OR Hwithdrawnin > '3.0') )
@@ -48,18 +48,18 @@ OR Hsrcerror='Yes' )"""
 
 if length == 2:
     lib_query = """
-    SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
+    SELECT DISTINCT SMname,Lname FROM SubModule,SModLib,Library
     LEFT JOIN ArchLib ON Lid=ALlid
     WHERE Lname LIKE 'lib%'
-    AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
+    AND (SubModule.SMid = SModLib.SMLsmid AND Library.Lid = SModLib.SMLlid)
     AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
     AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 else:
     lib_query = """
-    SELECT DISTINCT SMname,Lname FROM SubModule,ModLib,Library
+    SELECT DISTINCT SMname,Lname FROM SubModule,SModLib,Library
     LEFT JOIN ArchLib ON Lid=ALlid
     WHERE Lname LIKE 'lib%'
-    AND (SubModule.SMid = ModLib.MLmid AND Library.Lid = ModLib.MLlid)
+    AND (SubModule.SMid = SModLib.SMLsmid AND Library.Lid = SModLib.SMLlid)
     AND ALappearedin > ''
     AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '3.0')"""
 
@@ -78,12 +78,6 @@ core_headers_add = [
 
 core_headers_remove = [
     'err.h',
-    'features.h',
-    'float.h',
-    'rpc/pmap_clnt.h',
-    'X11/extensions/XInput.h',
-    'X11/extensions/XKBgeom.h',
-    'X11/XKBlib.h',
     ]
 
 
