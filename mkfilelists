@@ -39,7 +39,7 @@ else :
 
 header_query = """
 SELECT SMname, Hname FROM SubModule,Header,SModLib,Library
-WHERE SubModule.SMid = SModLib.SMLmid
+WHERE SubModule.SMid = SModLib.SMLsmid
 AND Library.Lid = SModLib.SMLlid
 AND Library.Lid = Header.Hlib
 AND ( ( Happearedin > ''
