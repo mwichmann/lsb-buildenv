@@ -16,7 +16,7 @@ INSTALL_DIR=$(INSTALL_ROOT)$(LIBDIR)-$(LSB_VERSION)/$(SUBDIR)
 SYMLINK_DIR=$(INSTALL_ROOT)$(LIBDIR)
 
 # For ppc64 platform add flag to generate 64-bit shared libs
-ifeq ($(shell arch),ppc64)
+ifeq ($(shell uname -m),ppc64)
 	LD=ld -m elf64ppc
 else
 	LD=ld
