@@ -1,15 +1,8 @@
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 
 LSBVERSION=$(shell cat LSB_VERSION)
-DEVEL_VERSIONS=All_4.0 IA32_4.0 IA64_4.0 x86-64_4.0 PPC32_4.0 PPC64_4.0 S390_4.0 S390X_4.0
-VERSIONS=All_3.0 All_3.1 All_3.2 All_4.0 \
-	IA32_3.0 IA32_3.1 IA32_3.2 IA32_4.0 \
-	IA64_3.0 IA64_3.1 IA64_3.2 IA64_4.0 \
-	x86-64_3.0 x86-64_3.1 x86-64_3.2 x86-64_4.0 \
-	PPC32_3.0 PPC32_3.1 PPC32_3.2 PPC32_4.0 \
-	PPC64_3.0 PPC64_3.1 PPC64_3.2 PPC64_4.0 \
-	S390_3.0 S390_3.1 S390_3.2 S390_4.0 \
-	S390X_3.0 S390X_3.1 S390X_3.2 S390X_4.0
+DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
+VERSIONS=$(shell cat lsb_versions)
 
 all: $(foreach archver,$(VERSIONS),headers-$(archver))
 
@@ -18,7 +11,13 @@ devel: $(foreach archver,$(DEVEL_VERSIONS),headers-$(archver))
 headers-%: $(foreach headerfile,$(shell ./getheaderlist),%/$(headerfile).defs)
 	@echo Made header files for $*
 
-core_filelist desktop_filelist:
+gensrc: lsb_versions core_filelist desktop_filelist
+
+lsb_versions:
+	mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVvalue>='3.0'" | grep -v Aname | sed s/\\t/_/g >lsb_versions
+	mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVreleased='No'" | grep -v Aname | sed s/\\t/_/g >lsb_devel_versions
+
+core_filelist desktop_filelist: lsb_versions
 	cd .. && ./mkfilelists
 
 %.defs: 
@@ -27,14 +26,7 @@ core_filelist desktop_filelist:
 
 %.h:
 	mkdir -p $(dir $@)
-	./mkheader -a All -v $(LSBVERSION) -h $@ | indent -kr >$@
-	
-# no idea why this was added, but it breaks autobuilder's "make install"
-#%:
-#	@$(if $(filter-out all clean,$@),\
-#	mkdir -p $(dir $@);\
-#	./mkheader -a All -v `cat LSB_VERSION` -h $@ | indent -kr >$@\
-#	)
+	./mkheader -a All -h $@ | indent -kr >$@
 
 headers-All_4.0: $(foreach headerfile,$(shell ./getheaderlist),All_4.0/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
@@ -54,8 +46,6 @@ install-desktop: desktop_filelist
 	xargs md5sum < desktop_filelist > $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)/MD5SUMS.desktop || true
 
 clean:
-
-distclean: clean
 	find . -name '*.html' -print | xargs rm -f
 	find . -name '*.h' -print | xargs rm -f
 	find . -name '*.defs' -print | xargs rm -f
@@ -63,7 +53,9 @@ distclean: clean
 	find . -name '*.m4' -print | xargs rm -f
 	find . -name '*.cpp' -print | xargs rm -f
 	find . -name '*.txt' -print | xargs rm -f
-	rm -f core_filelist desktop_filelist
+
+distclean: clean
+	rm -f core_filelist* desktop_filelist* lsb_versions lsb_devel_versions
 
 .SECONDARY:
 
