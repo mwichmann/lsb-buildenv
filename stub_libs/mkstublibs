@@ -239,7 +239,7 @@ sub GenerateLibrary($$$) {
         # Work out size of data variable
         $size = 0;
 
-        if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
+        if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} eq "0" ) {
             my $selectGenericSize;
             my $sthGenericSize;
             my $rowGenericSize;
@@ -256,7 +256,7 @@ sub GenerateLibrary($$$) {
             $sthGenericSize->finish;
         }
 
-        if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} == 0 ) {
+        if ( !defined( $row->{"ATsize"} ) || $row->{"ATsize"} eq "0" ) {
             if( $row->{Iname} =~ /^_ZTSN/ ) { # "typeinfo name" size is always equal to `strlen(Iname)-3`
                 $size = length($row->{Iname}) - 3;
             }
@@ -281,7 +281,7 @@ sub GenerateLibrary($$$) {
 
             if (   defined( $MissingData{$libName} )
                 && defined( $MissingData{$libName}{ $row->{Iname} } )
-                && $MissingData{$libName}{ $row->{Iname} } != $size )
+                && $MissingData{$libName}{ $row->{Iname} } ne $size )
             {
                 print STDOUT "Overriding size of $row->{Iname} from $size to "
                   . $MissingData{$libName}{ $row->{Iname} } . "\n";
