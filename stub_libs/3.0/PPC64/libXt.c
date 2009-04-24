@@ -303,7 +303,7 @@ void _XtInherit() {} ;
 void _XtIsSubclassOf() {} ;
 __asm__(".globl XtCXtToolkitError; .pushsection .data; .type XtCXtToolkitError,@object; .size XtCXtToolkitError, 8; XtCXtToolkitError: .long 0; .popsection");
 __asm__(".globl XtShellStrings; .pushsection .data; .type XtShellStrings,@object; .size XtShellStrings, 1289; XtShellStrings: .long 0; .popsection");
-__asm__(".globl XtStrings; .pushsection .data; .type XtStrings,@object; .size XtStrings, 2649; XtStrings: .long 0; .popsection");
+__asm__(".globl XtStrings; .pushsection .data; .type XtStrings,@object; .size XtStrings, ; XtStrings: .long 0; .popsection");
 __asm__(".globl _XtInheritTranslations; .pushsection .data; .type _XtInheritTranslations,@object; .size _XtInheritTranslations, 4; _XtInheritTranslations: .long 0; .popsection");
 __asm__(".globl applicationShellWidgetClass; .pushsection .data; .type applicationShellWidgetClass,@object; .size applicationShellWidgetClass, 8; applicationShellWidgetClass: .long 0; .popsection");
 __asm__(".globl compositeClassRec; .pushsection .data; .type compositeClassRec,@object; .size compositeClassRec, 264; compositeClassRec: .long 0; .popsection");
