@@ -1343,19 +1343,20 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern speed_t cfgetispeed(const struct termios *);
-    extern speed_t cfgetospeed(const struct termios *);
-    extern void cfmakeraw(struct termios *);
-    extern int cfsetispeed(struct termios *, speed_t);
-    extern int cfsetospeed(struct termios *, speed_t);
-    extern int cfsetspeed(struct termios *, speed_t);
-    extern int tcdrain(int);
-    extern int tcflow(int, int);
-    extern int tcflush(int, int);
-    extern int tcgetattr(int, struct termios *);
-    extern pid_t tcgetsid(int);
-    extern int tcsendbreak(int, int);
-    extern int tcsetattr(int, int, const struct termios *);
+    extern speed_t cfgetispeed(const struct termios *__termios_p);
+    extern speed_t cfgetospeed(const struct termios *__termios_p);
+    extern void cfmakeraw(struct termios *__termios_p);
+    extern int cfsetispeed(struct termios *__termios_p, speed_t __speed);
+    extern int cfsetospeed(struct termios *__termios_p, speed_t __speed);
+    extern int cfsetspeed(struct termios *__termios_p, speed_t __speed);
+    extern int tcdrain(int __fd);
+    extern int tcflow(int __fd, int __action);
+    extern int tcflush(int __fd, int __queue_selector);
+    extern int tcgetattr(int __fd, struct termios *__termios_p);
+    extern pid_t tcgetsid(int __fd);
+    extern int tcsendbreak(int __fd, int __duration);
+    extern int tcsetattr(int __fd, int __optional_actions,
+			 const struct termios *__termios_p);
 #ifdef __cplusplus
 }
 #endif

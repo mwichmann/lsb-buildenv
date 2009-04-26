@@ -22,7 +22,8 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern ssize_t strfmon(char *, size_t, const char *, ...);
+    extern ssize_t strfmon(char *__s, size_t __maxsize,
+			   const char *__format, ...);
 #ifdef __cplusplus
 }
 #endif

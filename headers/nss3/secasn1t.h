@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _SECASN1T_H_
+
+
     typedef struct sec_ASN1Template_struct SEC_ASN1Template;
 
     typedef struct sec_DecoderContext_struct SEC_ASN1DecoderContext;
@@ -28,17 +31,12 @@ extern "C" {
 				       unsigned long int, int,
 				       SEC_ASN1EncodingPart);
 
-
     struct sec_ASN1Template_struct {
 	unsigned long int kind;
 	unsigned long int offset;
 	const void *sub;
 	unsigned int size;
     };
-
-
-
-
 
 #ifdef __cplusplus
 }

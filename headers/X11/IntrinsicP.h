@@ -59,9 +59,6 @@ extern "C" {
 
     typedef void (*XtExposeProc) (Widget, XEvent *, Region);
 
-    typedef Boolean(*XtSetValuesFunc) (Widget, Widget, Widget, ArgList,
-				       Cardinal *);
-
     typedef Boolean(*XtArgsFunc) (Widget, ArgList, Cardinal *);
 
     typedef void (*XtAlmostProc) (Widget, Widget, XtWidgetGeometry *,
@@ -74,8 +71,6 @@ extern "C" {
     typedef XtGeometryResult(*XtGeometryHandler) (Widget,
 						  XtWidgetGeometry *,
 						  XtWidgetGeometry *);
-
-    typedef void (*XtStringProc) (Widget, String);
 
     typedef void (*XtAllocateProc) (WidgetClass, Cardinal *, Cardinal *,
 				    ArgList, Cardinal *, XtTypedArgList,
@@ -99,10 +94,20 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
+#if __LSB_VERSION__ >= 12
+    typedef void (*XtStringProc) (Widget, String);
+
+    typedef Boolean(*XtSetValuesFunc) (Widget, Widget, Widget, ArgList,
+				       Cardinal *);
+
+#include <X11/ConstrainP.h>
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+
 /* Function prototypes */
 
-    extern void XtConfigureWidget(Widget, Position, Position, Dimension,
-				  Dimension, Dimension);
+    extern void XtConfigureWidget(Widget, int, int, unsigned int,
+				  unsigned int, unsigned int);
     extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
 			       XSetWindowAttributes *);
 #undef XtIsComposite
@@ -118,10 +123,11 @@ extern "C" {
     extern Boolean XtIsWMShell(Widget);
 #undef XtIsWidget
     extern Boolean XtIsWidget(Widget);
-    extern void XtMoveWidget(Widget, Position, Position);
+    extern void XtMoveWidget(Widget, int, int);
     extern void XtProcessLock(void);
     extern void XtProcessUnlock(void);
-    extern void XtResizeWidget(Widget, Dimension, Dimension, Dimension);
+    extern void XtResizeWidget(Widget, unsigned int, unsigned int,
+			       unsigned int);
     extern void XtResizeWindow(Widget);
     extern void _XtInherit(void);
 #ifdef __cplusplus

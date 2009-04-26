@@ -8,7 +8,7 @@ enum _ZN7QString11SectionFlagE {
     SectionCaseInsensitiveSeps = 8
 };
 class QFlags < QString::SectionFlag >;
-typedef class QFlags < QString::SectionFlag > _ZN7QString12SectionFlagsE;
+typedef class QFlags < QString::SectionFlag > QString::SectionFlags;
 enum _ZN7QString13SplitBehaviorE {
     KeepEmptyParts = 0,
     SkipEmptyParts = 1
@@ -19,12 +19,12 @@ enum _ZN7QString17NormalizationFormE {
     NormalizationForm_KD = 2,
     NormalizationForm_KC = 3
 };
-typedef class QChar_ZN7QString8iteratorE;
-typedef class QChar_ZN7QString14const_iteratorE;
-typedef _ZN7QString8iteratorE _ZN7QString8IteratorE;
-typedef _ZN7QString14const_iteratorE _ZN7QString13ConstIteratorE;
-struct _ZN7QString4NullE;
-struct _ZN7QString4DataE;
+typedef class QCharQString::iterator;
+typedef class QCharQString::const_iterator;
+typedef QString::iterator QString::Iterator;
+typedef QString::const_iterator QString::ConstIterator;
+struct QString::Null;
+struct QString::Data;
 class QLatin1String;
 class QCharRef;
 class QConstString;

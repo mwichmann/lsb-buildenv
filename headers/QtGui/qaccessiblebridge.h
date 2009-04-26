@@ -5,24 +5,11 @@
 class QAccessibleBridgePlugin;
 // *INDENT-OFF*
 
-class QAccessibleBridge
-{
-private:
-public:
-};
+class QAccessibleBridge;
 
 struct QAccessibleBridgeFactoryInterface	;
 
-class QAccessibleBridgePlugin : public QAccessibleBridgeFactoryInterface, public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QAccessibleBridgePlugin(QObject*);
-     ~QAccessibleBridgePlugin();
-};
+class QAccessibleBridgePlugin;
 
 
 /* Function prototypes */

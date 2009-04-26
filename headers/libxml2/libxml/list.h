@@ -24,40 +24,37 @@ extern "C" {
     typedef int (*xmlListDataCompare) (const void *, const void *);
 
 
-
-
-
-
 /* Function prototypes */
 
-    extern void *xmlLinkGetData(xmlLinkPtr);
-    extern int xmlListAppend(xmlListPtr, void *);
-    extern void xmlListClear(xmlListPtr);
-    extern int xmlListCopy(xmlListPtr, const xmlListPtr);
-    extern xmlListPtr xmlListCreate(xmlListDeallocator,
-				    xmlListDataCompare);
-    extern void xmlListDelete(xmlListPtr);
-    extern xmlListPtr xmlListDup(const xmlListPtr);
-    extern int xmlListEmpty(xmlListPtr);
-    extern xmlLinkPtr xmlListEnd(xmlListPtr);
-    extern xmlLinkPtr xmlListFront(xmlListPtr);
-    extern int xmlListInsert(xmlListPtr, void *);
-    extern void xmlListMerge(xmlListPtr, xmlListPtr);
-    extern void xmlListPopBack(xmlListPtr);
-    extern void xmlListPopFront(xmlListPtr);
-    extern int xmlListPushBack(xmlListPtr, void *);
-    extern int xmlListPushFront(xmlListPtr, void *);
-    extern int xmlListRemoveAll(xmlListPtr, void *);
-    extern int xmlListRemoveFirst(xmlListPtr, void *);
-    extern int xmlListRemoveLast(xmlListPtr, void *);
-    extern void xmlListReverse(xmlListPtr);
-    extern void *xmlListReverseSearch(xmlListPtr, void *);
-    extern void xmlListReverseWalk(xmlListPtr, xmlListWalker,
-				   const void *);
-    extern void *xmlListSearch(xmlListPtr, void *);
-    extern int xmlListSize(xmlListPtr);
-    extern void xmlListSort(xmlListPtr);
-    extern void xmlListWalk(xmlListPtr, xmlListWalker, const void *);
+    extern void *xmlLinkGetData(xmlLinkPtr lk);
+    extern int xmlListAppend(xmlListPtr l, void *data);
+    extern void xmlListClear(xmlListPtr l);
+    extern int xmlListCopy(xmlListPtr cur, const xmlListPtr old);
+    extern xmlListPtr xmlListCreate(xmlListDeallocator deallocator,
+				    xmlListDataCompare compare);
+    extern void xmlListDelete(xmlListPtr l);
+    extern xmlListPtr xmlListDup(const xmlListPtr old);
+    extern int xmlListEmpty(xmlListPtr l);
+    extern xmlLinkPtr xmlListEnd(xmlListPtr l);
+    extern xmlLinkPtr xmlListFront(xmlListPtr l);
+    extern int xmlListInsert(xmlListPtr l, void *data);
+    extern void xmlListMerge(xmlListPtr l1, xmlListPtr l2);
+    extern void xmlListPopBack(xmlListPtr l);
+    extern void xmlListPopFront(xmlListPtr l);
+    extern int xmlListPushBack(xmlListPtr l, void *data);
+    extern int xmlListPushFront(xmlListPtr l, void *data);
+    extern int xmlListRemoveAll(xmlListPtr l, void *data);
+    extern int xmlListRemoveFirst(xmlListPtr l, void *data);
+    extern int xmlListRemoveLast(xmlListPtr l, void *data);
+    extern void xmlListReverse(xmlListPtr l);
+    extern void *xmlListReverseSearch(xmlListPtr l, void *data);
+    extern void xmlListReverseWalk(xmlListPtr l, xmlListWalker walker,
+				   const void *user);
+    extern void *xmlListSearch(xmlListPtr l, void *data);
+    extern int xmlListSize(xmlListPtr l);
+    extern void xmlListSort(xmlListPtr l);
+    extern void xmlListWalk(xmlListPtr l, xmlListWalker walker,
+			    const void *user);
 #ifdef __cplusplus
 }
 #endif

@@ -8,25 +8,6 @@ extern "C" {
 #endif
 
 
-#define XI_BARCODE	"BARCODE"
-#define XI_BUTTONBOX	"BUTTONBOX"
-#define XI_CURSORKEYS	"CURSORKEYS"
-#define XI_DATAGLOVE	"DATAGLOVE"
-#define XI_EYETRACKER	"EYETRACKER"
-#define XI_FOOTMOUSE	"FOOTMOUSE"
-#define XI_ID_MODULE	"ID_MODULE"
-#define XI_KEYBOARD	"KEYBOARD"
-#define XI_KNOB_BOX	"KNOB_BOX"
-#define XI_MOUSE	"MOUSE"
-#define XI_NINE_KNOB	"NINE_KNOB"
-#define XI_ONE_KNOB	"ONE_KNOB"
-#define XI_QUADRATURE	"QUADRATURE"
-#define XI_SPACEBALL	"SPACEBALL"
-#define XI_TABLET	"TABLET"
-#define XI_TOUCHPAD	"TOUCHPAD"
-#define XI_TOUCHSCREEN	"TOUCHSCREEN"
-#define XI_TRACKBALL	"TRACKBALL"
-#define INAME	"XInputExtension"
 #define InProximity	(0L << 1)
 #define DeviceMode	(1L << 0)
 #define DvAccelNum	(1L << 0)
@@ -183,6 +164,25 @@ extern "C" {
 #define sz_xSetDeviceModifierMappingReq	8
 #define sz_xSetDeviceValuatorsReq	8
 #define _noExtensionEvent	9
+#define XI_BARCODE	"BARCODE"
+#define XI_BUTTONBOX	"BUTTONBOX"
+#define XI_CURSORKEYS	"CURSORKEYS"
+#define XI_DATAGLOVE	"DATAGLOVE"
+#define XI_EYETRACKER	"EYETRACKER"
+#define XI_FOOTMOUSE	"FOOTMOUSE"
+#define XI_ID_MODULE	"ID_MODULE"
+#define XI_KEYBOARD	"KEYBOARD"
+#define XI_KNOB_BOX	"KNOB_BOX"
+#define XI_MOUSE	"MOUSE"
+#define XI_NINE_KNOB	"NINE_KNOB"
+#define XI_ONE_KNOB	"ONE_KNOB"
+#define XI_QUADRATURE	"QUADRATURE"
+#define XI_SPACEBALL	"SPACEBALL"
+#define XI_TABLET	"TABLET"
+#define XI_TOUCHPAD	"TOUCHPAD"
+#define XI_TOUCHSCREEN	"TOUCHSCREEN"
+#define XI_TRACKBALL	"TRACKBALL"
+#define INAME	"XInputExtension"
 
 
     typedef long unsigned int XEventClass;

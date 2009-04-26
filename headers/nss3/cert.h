@@ -16,21 +16,30 @@ extern "C" {
 #endif
 
 
+#define _CERT_H_
+
+
 
 /* Function prototypes */
 
-    extern SECCertTimeValidity CERT_CheckCertValidTimes(CERTCertificate *,
-							PRTime, PRBool);
-    extern void CERT_DestroyCertificate(CERTCertificate *);
-    extern CERTCertificate *CERT_DupCertificate(CERTCertificate *);
-    extern void CERT_FreeNicknames(CERTCertNicknames *);
-    extern CERTCertNicknames *CERT_GetCertNicknames(CERTCertDBHandle *,
-						    int, void *);
+    extern SECCertTimeValidity CERT_CheckCertValidTimes(CERTCertificate *
+							cert, PRTime t,
+							PRBool
+							allowOverride);
+    extern void CERT_DestroyCertificate(CERTCertificate * cert);
+    extern CERTCertificate *CERT_DupCertificate(CERTCertificate * c);
+    extern void CERT_FreeNicknames(CERTCertNicknames * nicknames);
+    extern CERTCertNicknames *CERT_GetCertNicknames(CERTCertDBHandle *
+						    handle, int what,
+						    void *wincx);
     extern CERTCertDBHandle *CERT_GetDefaultCertDB(void);
-    extern SECStatus CERT_VerifyCertName(CERTCertificate *, const char *);
-    extern SECStatus CERT_VerifyCertNow(CERTCertDBHandle *,
-					CERTCertificate *, PRBool,
-					SECCertUsage, void *);
+    extern SECStatus CERT_VerifyCertName(CERTCertificate * cert,
+					 const char *hostname);
+    extern SECStatus CERT_VerifyCertNow(CERTCertDBHandle * handle,
+					CERTCertificate * cert,
+					PRBool checkSig,
+					SECCertUsage certUsage,
+					void *wincx);
 #ifdef __cplusplus
 }
 #endif

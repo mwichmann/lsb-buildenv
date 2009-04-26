@@ -28,28 +28,25 @@ extern "C" {
     } xmlPatternFlags;
 
 
-
-
-
-
 /* Function prototypes */
 
-    extern void xmlFreePattern(xmlPatternPtr);
-    extern void xmlFreePatternList(xmlPatternPtr);
-    extern void xmlFreeStreamCtxt(xmlStreamCtxtPtr);
-    extern int xmlPatternFromRoot(xmlPatternPtr);
-    extern xmlStreamCtxtPtr xmlPatternGetStreamCtxt(xmlPatternPtr);
-    extern int xmlPatternMatch(xmlPatternPtr, xmlNodePtr);
-    extern int xmlPatternMaxDepth(xmlPatternPtr);
-    extern int xmlPatternMinDepth(xmlPatternPtr);
-    extern int xmlPatternStreamable(xmlPatternPtr);
-    extern xmlPatternPtr xmlPatterncompile(const xmlChar *, xmlDict *, int,
-					   const xmlChar * *);
-    extern int xmlStreamPop(xmlStreamCtxtPtr);
-    extern int xmlStreamPush(xmlStreamCtxtPtr, const xmlChar *,
-			     const xmlChar *);
-    extern int xmlStreamPushAttr(xmlStreamCtxtPtr, const xmlChar *,
-				 const xmlChar *);
+    extern void xmlFreePattern(xmlPatternPtr comp);
+    extern void xmlFreePatternList(xmlPatternPtr comp);
+    extern void xmlFreeStreamCtxt(xmlStreamCtxtPtr stream);
+    extern int xmlPatternFromRoot(xmlPatternPtr comp);
+    extern xmlStreamCtxtPtr xmlPatternGetStreamCtxt(xmlPatternPtr comp);
+    extern int xmlPatternMatch(xmlPatternPtr comp, xmlNodePtr node);
+    extern int xmlPatternMaxDepth(xmlPatternPtr comp);
+    extern int xmlPatternMinDepth(xmlPatternPtr comp);
+    extern int xmlPatternStreamable(xmlPatternPtr comp);
+    extern xmlPatternPtr xmlPatterncompile(const xmlChar * pattern,
+					   xmlDict * dict, int flags,
+					   const xmlChar * *namespaces);
+    extern int xmlStreamPop(xmlStreamCtxtPtr stream);
+    extern int xmlStreamPush(xmlStreamCtxtPtr stream, const xmlChar * name,
+			     const xmlChar * ns);
+    extern int xmlStreamPushAttr(xmlStreamCtxtPtr stream,
+				 const xmlChar * name, const xmlChar * ns);
 #ifdef __cplusplus
 }
 #endif

@@ -5,21 +5,9 @@
 class QSize;
 // *INDENT-OFF*
 
-class QSize
-{
-private:
-public:
-    void transpose();
-    void scale(QSize const&, Qt::AspectRatioMode);
-};
+class QSize;
 
-class QSizeF
-{
-private:
-public:
-    void transpose();
-    void scale(QSizeF const&, Qt::AspectRatioMode);
-};
+class QSizeF;
 
 
 /* Function prototypes */

@@ -12,7 +12,7 @@ extern "C" {
 
     struct QHashData;
 
-    struct Node;
+    struct QHashData::Node;
 
     struct QHashDummyValue;
 

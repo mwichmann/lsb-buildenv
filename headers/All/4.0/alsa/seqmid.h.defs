@@ -32,16 +32,21 @@
 #define snd_seq_ev_set_tag(ev,t)	((ev)->tag = (t))
 #define snd_seq_ev_clear(ev)	memset(ev, 0, sizeof(snd_seq_event_t))
 
-extern int snd_seq_connect_from(snd_seq_t *, int, int, int);
-extern int snd_seq_connect_to(snd_seq_t *, int, int, int);
-extern int snd_seq_control_queue(snd_seq_t *, int, int, int,
-				 snd_seq_event_t *);
-extern int snd_seq_create_simple_port(snd_seq_t *, const char *,
-				      unsigned int, unsigned int);
-extern int snd_seq_delete_simple_port(snd_seq_t *, int);
-extern int snd_seq_disconnect_from(snd_seq_t *, int, int, int);
-extern int snd_seq_disconnect_to(snd_seq_t *, int, int, int);
-extern int snd_seq_parse_address(snd_seq_t *, snd_seq_addr_t *,
-				 const char *);
-extern int snd_seq_set_client_name(snd_seq_t *, const char *);
-extern int snd_seq_sync_output_queue(snd_seq_t *);
+extern int snd_seq_connect_from(snd_seq_t * seq, int my_port,
+				int src_client, int src_port);
+extern int snd_seq_connect_to(snd_seq_t * seq, int my_port,
+			      int dest_client, int dest_port);
+extern int snd_seq_control_queue(snd_seq_t * seq, int q, int type,
+				 int value, snd_seq_event_t * ev);
+extern int snd_seq_create_simple_port(snd_seq_t * seq, const char *name,
+				      unsigned int caps,
+				      unsigned int type);
+extern int snd_seq_delete_simple_port(snd_seq_t * seq, int port);
+extern int snd_seq_disconnect_from(snd_seq_t * seq, int my_port,
+				   int src_client, int src_port);
+extern int snd_seq_disconnect_to(snd_seq_t * seq, int my_port,
+				 int dest_client, int dest_port);
+extern int snd_seq_parse_address(snd_seq_t * seq, snd_seq_addr_t * addr,
+				 const char *str);
+extern int snd_seq_set_client_name(snd_seq_t * seq, const char *name);
+extern int snd_seq_sync_output_queue(snd_seq_t * seq);

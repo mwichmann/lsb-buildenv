@@ -5,17 +5,7 @@
 class QSemaphore;
 // *INDENT-OFF*
 
-class QSemaphore
-{
-private:
-public:
-     QSemaphore(int);
-     ~QSemaphore();
-    void acquire(int);
-    bool tryAcquire(int);
-    void release(int);
-    int available() const;
-};
+class QSemaphore;
 
 // *INDENT-ON*
 #endif				/* protection */

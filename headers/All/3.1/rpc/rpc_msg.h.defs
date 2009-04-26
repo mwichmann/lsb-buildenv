@@ -48,7 +48,7 @@ struct rejected_reply {
 	    unsigned long int low;
 	    unsigned long int high;
 	} RJ_versions;
-	enum auth_stat RJ_why;
+	enum auth_stat RJ_why;	/* why authentication did not work */
     } ru;
 };
 
@@ -64,12 +64,12 @@ struct reply_body {
 };
 
 struct call_body {
-    unsigned long int cb_rpcvers;
+    unsigned long int cb_rpcvers;	/* must be equal to two */
     unsigned long int cb_prog;
     unsigned long int cb_vers;
     unsigned long int cb_proc;
     struct opaque_auth cb_cred;
-    struct opaque_auth cb_verf;
+    struct opaque_auth cb_verf;	/* protocol specific - provided by client */
 };
 
 #define rm_call	ru.RM_cmb
@@ -86,7 +86,7 @@ struct rpc_msg {
     } ru;
 };
 extern bool_t xdr_accepted_reply(XDR *, struct accepted_reply *);
-extern bool_t xdr_callhdr(XDR *, struct rpc_msg *);
-extern bool_t xdr_callmsg(XDR *, struct rpc_msg *);
+extern bool_t xdr_callhdr(XDR * __xdrs, struct rpc_msg *__cmsg);
+extern bool_t xdr_callmsg(XDR * __xdrs, struct rpc_msg *__cmsg);
 extern bool_t xdr_rejected_reply(XDR *, struct rejected_reply *);
-extern bool_t xdr_replymsg(XDR *, struct rpc_msg *);
+extern bool_t xdr_replymsg(XDR * __xdrs, struct rpc_msg *__rmsg);

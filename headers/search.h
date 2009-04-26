@@ -40,7 +40,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #if __LSB_VERSION__ >= 12
-
     struct entry {
 	char *key;
 	void *data;
@@ -55,26 +54,31 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int hcreate(size_t);
+    extern int hcreate(size_t __nel);
     extern void hdestroy(void);
-    extern ENTRY *hsearch(ENTRY, ACTION);
-    extern void insque(void *, void *);
-    extern void *lfind(const void *, const void *, size_t *, size_t,
-		       __compar_fn_t);
-    extern void *lsearch(const void *, void *, size_t *, size_t,
-			 __compar_fn_t);
-    extern void remque(void *);
-    extern void *tfind(const void *, void *const *, __compar_fn_t);
-    extern void *tsearch(const void *, void **, __compar_fn_t);
-    extern void twalk(const void *, __action_fn_t);
+    extern ENTRY *hsearch(ENTRY __item, ACTION __action);
+    extern void insque(void *__elem, void *__prev);
+    extern void *lfind(const void *__key, const void *__base,
+		       size_t * __nmemb, size_t __size,
+		       __compar_fn_t __compar);
+    extern void *lsearch(const void *__key, void *__base, size_t * __nmemb,
+			 size_t __size, __compar_fn_t __compar);
+    extern void remque(void *__elem);
+    extern void *tfind(const void *__key, void *const *__rootp,
+		       __compar_fn_t __compar);
+    extern void *tsearch(const void *__key, void **__rootp,
+			 __compar_fn_t __compar);
+    extern void twalk(const void *__root, __action_fn_t __action);
 #if __LSB_VERSION__ >= 13
-    extern void *tdelete(const void *, void **, __compar_fn_t);
+    extern void *tdelete(const void *__key, void **__rootp,
+			 __compar_fn_t __compar);
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 40
-    extern int hcreate_r(size_t, struct hsearch_data *);
-    extern void hdestroy_r(struct hsearch_data *);
-    extern int hsearch_r(ENTRY, ACTION, ENTRY * *, struct hsearch_data *);
+    extern int hcreate_r(size_t __nel, struct hsearch_data *__htab);
+    extern void hdestroy_r(struct hsearch_data *__htab);
+    extern int hsearch_r(ENTRY __item, ACTION __action, ENTRY * *__retval,
+			 struct hsearch_data *__htab);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

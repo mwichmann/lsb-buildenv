@@ -12,7 +12,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int poll(struct pollfd *, nfds_t, int);
+    extern int poll(struct pollfd *__fds, nfds_t __nfds, int __timeout);
 #ifdef __cplusplus
 }
 #endif

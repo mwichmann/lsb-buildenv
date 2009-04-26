@@ -9,7 +9,7 @@ struct sigaction {
 	void (*_sa_sigaction) (int, siginfo_t *, void *);
     } __sigaction_handler;
     unsigned long int sa_flags;
-    sigset_t sa_mask;
+    sigset_t sa_mask;		/* mask last for extensibility */
 };
 
 #define MINSIGSTKSZ	131027	/* Minimum stack size for a signal handler. */
@@ -18,7 +18,7 @@ struct sigaction {
 struct ia64_fpreg {
     union {
 	unsigned long int bits[2];
-	long double __dummy;
+	long double __dummy;	/* force 16-byte alignment */
     } u;
 };
 
@@ -41,10 +41,10 @@ struct sigcontext {
     unsigned long int sc_br[8];
     unsigned long int sc_gr[32];
     struct ia64_fpreg sc_fr[128];
-    unsigned long int sc_rbs_base;
-    unsigned long int sc_loadrs;
-    unsigned long int sc_ar25;
-    unsigned long int sc_ar26;
+    unsigned long int sc_rbs_base;	/* NULL or new base of sighandler's rbs */
+    unsigned long int sc_loadrs;	/* see description above */
+    unsigned long int sc_ar25;	/* cmp8xchg16 uses this */
+    unsigned long int sc_ar26;	/*  rsvd for scratch use */
     unsigned long int sc_rsvd[12];
-    unsigned long int sc_mask;
+    unsigned long int sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
 };

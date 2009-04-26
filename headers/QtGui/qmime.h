@@ -5,13 +5,7 @@
 class QMimeSource;
 // *INDENT-OFF*
 
-class QMimeSource
-{
-private:
-public:
-     ~QMimeSource();
-    bool provides(char const*) const;
-};
+class QMimeSource;
 
 // *INDENT-ON*
 #endif				/* protection */

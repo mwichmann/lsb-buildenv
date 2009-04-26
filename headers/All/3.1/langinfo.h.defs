@@ -66,4 +66,4 @@
 #define YESSTR	0x50002
 #define NOSTR	0x50003
 
-extern char *nl_langinfo(nl_item);
+extern char *nl_langinfo(nl_item __item);

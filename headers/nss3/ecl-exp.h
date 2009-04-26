@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+#define __ecl_exp_h_
 #define ECCurve_SECG_CHAR2_163R2	ECCurve_NIST_B163
 #define ECCurve_SECG_CHAR2_233R1	ECCurve_NIST_B233
 #define ECCurve_WTLS_11	ECCurve_NIST_B233
@@ -103,7 +104,6 @@ extern "C" {
 	ECCurve_WTLS_9 = 57,
 	ECCurve_pastLastCurve = 58
     };
-
 
     struct ECCurveParamsStr {
 	char *text;

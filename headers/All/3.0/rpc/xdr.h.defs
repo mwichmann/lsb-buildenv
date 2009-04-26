@@ -32,34 +32,42 @@ struct xdr_discrim {
     int value;
     xdrproc_t proc;
 };
-extern bool_t xdr_array(XDR *, caddr_t *, u_int *, u_int, u_int,
-			xdrproc_t);
-extern bool_t xdr_bool(XDR *, bool_t *);
-extern bool_t xdr_bytes(XDR *, char **, u_int *, u_int);
-extern bool_t xdr_char(XDR *, char *);
-extern bool_t xdr_double(XDR *, double *);
-extern bool_t xdr_enum(XDR *, enum_t *);
-extern bool_t xdr_float(XDR *, float *);
-extern void xdr_free(xdrproc_t, char *);
-extern bool_t xdr_int(XDR *, int *);
-extern bool_t xdr_long(XDR *, long int *);
-extern bool_t xdr_opaque(XDR *, caddr_t, u_int);
-extern bool_t xdr_pointer(XDR *, char **, u_int, xdrproc_t);
-extern bool_t xdr_reference(XDR *, caddr_t *, u_int, xdrproc_t);
-extern bool_t xdr_short(XDR *, short *);
-extern bool_t xdr_string(XDR *, char **, u_int);
-extern bool_t xdr_u_char(XDR *, u_char *);
-extern bool_t xdr_u_int(XDR *, u_int *);
-extern bool_t xdr_u_long(XDR *, u_long *);
-extern bool_t xdr_u_short(XDR *, u_short *);
-extern bool_t xdr_union(XDR *, enum_t *, char *,
-			const struct xdr_discrim *, xdrproc_t);
-extern bool_t xdr_vector(XDR *, char *, u_int, u_int, xdrproc_t);
+extern bool_t xdr_array(XDR * _xdrs, caddr_t * __addrp, u_int * __sizep,
+			u_int __maxsize, u_int __elsize,
+			xdrproc_t __elproc);
+extern bool_t xdr_bool(XDR * __xdrs, bool_t * __bp);
+extern bool_t xdr_bytes(XDR * __xdrs, char **__cpp, u_int * __sizep,
+			u_int __maxsize);
+extern bool_t xdr_char(XDR * __xdrs, char *__cp);
+extern bool_t xdr_double(XDR * __xdrs, double *__dp);
+extern bool_t xdr_enum(XDR * __xdrs, enum_t * __ep);
+extern bool_t xdr_float(XDR * __xdrs, float *__fp);
+extern void xdr_free(xdrproc_t __proc, char *__objp);
+extern bool_t xdr_int(XDR * __xdrs, int *__ip);
+extern bool_t xdr_long(XDR * __xdrs, long int *__lp);
+extern bool_t xdr_opaque(XDR * __xdrs, caddr_t __cp, u_int __cnt);
+extern bool_t xdr_pointer(XDR * __xdrs, char **__objpp, u_int __obj_size,
+			  xdrproc_t __xdr_obj);
+extern bool_t xdr_reference(XDR * __xdrs, caddr_t * __xpp, u_int __size,
+			    xdrproc_t __proc);
+extern bool_t xdr_short(XDR * __xdrs, short *__sp);
+extern bool_t xdr_string(XDR * __xdrs, char **__cpp, u_int __maxsize);
+extern bool_t xdr_u_char(XDR * __xdrs, u_char * __cp);
+extern bool_t xdr_u_int(XDR * __xdrs, u_int * __up);
+extern bool_t xdr_u_long(XDR * __xdrs, u_long * __ulp);
+extern bool_t xdr_u_short(XDR * __xdrs, u_short * __usp);
+extern bool_t xdr_union(XDR * __xdrs, enum_t * __dscmp, char *__unp,
+			const struct xdr_discrim *__choices,
+			xdrproc_t dfault);
+extern bool_t xdr_vector(XDR * __xdrs, char *__basep, u_int __nelem,
+			 u_int __elemsize, xdrproc_t __xdr_elem);
 extern bool_t xdr_void(void);
-extern bool_t xdr_wrapstring(XDR *, char **);
-extern void xdrmem_create(XDR *, caddr_t, u_int, enum xdr_op);
-extern void xdrrec_create(XDR *, u_int, u_int, caddr_t,
-			  int (*)(char *p1, char *p2, int p3)
-			  , int (*)(char *p1, char *p2, int p3)
-    );
-extern bool_t xdrrec_eof(XDR *);
+extern bool_t xdr_wrapstring(XDR * __xdrs, char **__cpp);
+extern void xdrmem_create(XDR * __xdrs, caddr_t __addr, u_int __size,
+			  enum xdr_op __xop);
+extern void xdrrec_create(XDR * __xdrs, u_int __sendsize, u_int __recvsize,
+			  caddr_t __tcp_handle, int (*__readit) (char *,
+								 char *,
+								 int),
+			  int (*__writeit) (char *, char *, int));
+extern bool_t xdrrec_eof(XDR * __xdrs);

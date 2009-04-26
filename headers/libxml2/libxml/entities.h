@@ -27,7 +27,6 @@ extern "C" {
 
     typedef xmlEntitiesTable *xmlEntitiesTablePtr;
 
-
     struct _xmlEntity {
 	void *_private;
 	xmlElementType type;
@@ -50,26 +49,35 @@ extern "C" {
     };
 
 
-
-
 /* Function prototypes */
 
-    extern xmlEntityPtr xmlAddDocEntity(xmlDocPtr, const xmlChar *, int,
-					const xmlChar *, const xmlChar *,
-					const xmlChar *);
-    extern xmlEntityPtr xmlAddDtdEntity(xmlDocPtr, const xmlChar *, int,
-					const xmlChar *, const xmlChar *,
-					const xmlChar *);
-    extern xmlEntitiesTablePtr xmlCopyEntitiesTable(xmlEntitiesTablePtr);
-    extern void xmlDumpEntitiesTable(xmlBufferPtr, xmlEntitiesTablePtr);
-    extern void xmlDumpEntityDecl(xmlBufferPtr, xmlEntityPtr);
-    extern xmlChar *xmlEncodeEntitiesReentrant(xmlDocPtr, const xmlChar *);
-    extern xmlChar *xmlEncodeSpecialChars(xmlDocPtr, const xmlChar *);
-    extern void xmlFreeEntitiesTable(xmlEntitiesTablePtr);
-    extern xmlEntityPtr xmlGetDocEntity(xmlDocPtr, const xmlChar *);
-    extern xmlEntityPtr xmlGetDtdEntity(xmlDocPtr, const xmlChar *);
-    extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr, const xmlChar *);
-    extern xmlEntityPtr xmlGetPredefinedEntity(const xmlChar *);
+    extern xmlEntityPtr xmlAddDocEntity(xmlDocPtr doc,
+					const xmlChar * name, int type,
+					const xmlChar * ExternalID,
+					const xmlChar * SystemID,
+					const xmlChar * content);
+    extern xmlEntityPtr xmlAddDtdEntity(xmlDocPtr doc,
+					const xmlChar * name, int type,
+					const xmlChar * ExternalID,
+					const xmlChar * SystemID,
+					const xmlChar * content);
+    extern xmlEntitiesTablePtr xmlCopyEntitiesTable(xmlEntitiesTablePtr
+						    table);
+    extern void xmlDumpEntitiesTable(xmlBufferPtr buf,
+				     xmlEntitiesTablePtr table);
+    extern void xmlDumpEntityDecl(xmlBufferPtr buf, xmlEntityPtr ent);
+    extern xmlChar *xmlEncodeEntitiesReentrant(xmlDocPtr doc,
+					       const xmlChar * input);
+    extern xmlChar *xmlEncodeSpecialChars(xmlDocPtr doc,
+					  const xmlChar * input);
+    extern void xmlFreeEntitiesTable(xmlEntitiesTablePtr table);
+    extern xmlEntityPtr xmlGetDocEntity(xmlDocPtr doc,
+					const xmlChar * name);
+    extern xmlEntityPtr xmlGetDtdEntity(xmlDocPtr doc,
+					const xmlChar * name);
+    extern xmlEntityPtr xmlGetParameterEntity(xmlDocPtr doc,
+					      const xmlChar * name);
+    extern xmlEntityPtr xmlGetPredefinedEntity(const xmlChar * name);
 #ifdef __cplusplus
 }
 #endif

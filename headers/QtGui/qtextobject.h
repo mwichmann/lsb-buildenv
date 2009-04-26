@@ -5,141 +5,29 @@
 class QTextFrame;
 // *INDENT-OFF*
 
-typedef class QTextFrame::iterator
-{
-private:
-public:
-     iterator();
-     iterator(QTextFrame::iterator const&);
-}Iterator	
+typedef class QTextFrame::iteratorQTextFrame::Iterator	
 ;
 
-typedef class QTextBlock::iterator
-{
-private:
-public:
-}Iterator	
+typedef class QTextBlock::iteratorQTextBlock::Iterator	
 ;
 
-class QTextObject : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QTextObject(QTextDocument*);
-     ~QTextObject();
-    QTextFormat format() const;
-    int formatIndex() const;
-    QTextDocument * document() const;
-    int objectIndex() const;
-     docHandle() const;
-protected:
-    void setFormat(QTextFormat const&);
-};
+class QTextObject;
 
-class QTextBlockGroup : public QTextObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QTextBlockGroup(QTextDocument*);
-     ~QTextBlockGroup();
-protected:
-    void blockInserted(QTextBlock const&);
-    void blockRemoved(QTextBlock const&);
-    void blockFormatChanged(QTextBlock const&);
-    QList<QTextBlock> blockList() const;
-};
+class QTextBlockGroup;
 
-class QTextFrameLayoutData
-{
-private:
-public:
-     ~QTextFrameLayoutData();
-};
+class QTextFrameLayoutData;
 
-class QTextFrame : public QTextObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QTextFrame(QTextDocument*);
-     ~QTextFrame();
-    QTextCursor firstCursorPosition() const;
-    QTextCursor lastCursorPosition() const;
-    int firstPosition() const;
-    int lastPosition() const;
-    QTextFrameLayoutData * layoutData() const;
-    void setLayoutData(QTextFrameLayoutData*);
-     childFrames() const;
-     parentFrame() const;
-    QTextFrame::iterator begin() const;
-    QTextFrame::iterator end() const;
-};
+class QTextFrame;
 
-class QTextFrame::iterator
-{
-private:
-public:
-     iterator();
-     iterator(QTextFrame::iterator const&);
-};
+class QTextFrame::iterator;
 
-class QTextBlockUserData
-{
-private:
-public:
-     ~QTextBlockUserData();
-};
+class QTextBlockUserData;
 
-class QTextBlock
-{
-private:
-public:
-    int position() const;
-    int length() const;
-    bool contains(int) const;
-     layout() const;
-    QTextBlockFormat blockFormat() const;
-    int blockFormatIndex() const;
-    QTextCharFormat charFormat() const;
-    int charFormatIndex() const;
-    QString text() const;
-    const QTextDocument * document() const;
-     textList() const;
-    QTextBlockUserData * userData() const;
-    void setUserData(QTextBlockUserData*);
-    int userState() const;
-    void setUserState(int);
-    QTextBlock::iterator begin() const;
-    QTextBlock::iterator end() const;
-    QTextBlock next() const;
-    QTextBlock previous() const;
-};
+class QTextBlock;
 
-class QTextBlock::iterator
-{
-private:
-public:
-};
+class QTextBlock::iterator;
 
-class QTextFragment
-{
-private:
-public:
-    int position() const;
-    int length() const;
-    bool contains(int) const;
-    QTextCharFormat charFormat() const;
-    int charFormatIndex() const;
-    QString text() const;
-};
+class QTextFragment;
 
 
 /* Function prototypes */

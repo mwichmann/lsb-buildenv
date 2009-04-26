@@ -5,38 +5,9 @@
 class QFontDatabase;
 // *INDENT-OFF*
 
-class QFontDatabase
-{
-private:
-public:
-    QList<int> standardSizes();
-     QFontDatabase();
-    QList<QFontDatabase::WritingSystem> writingSystems() const;
-    QStringList families(QFontDatabase::WritingSystem) const;
-    QStringList styles(QString const&) const;
-    QList<int> pointSizes(QString const&, QString const&);
-    QList<int> smoothSizes(QString const&, QString const&);
-    QString styleString(QFont const&);
-    QString styleString(QFontInfo const&);
-    QFont font(QString const&, QString const&, int) const;
-    bool isBitmapScalable(QString const&, QString const&) const;
-    bool isSmoothlyScalable(QString const&, QString const&) const;
-    bool isScalable(QString const&, QString const&) const;
-    bool isFixedPitch(QString const&, QString const&) const;
-    bool italic(QString const&, QString const&) const;
-    bool bold(QString const&, QString const&) const;
-    int weight(QString const&, QString const&) const;
-    QString writingSystemName(QFontDatabase::WritingSystem);
-    QString writingSystemSample(QFontDatabase::WritingSystem);
-    int addApplicationFont(QString const&);
-    bool removeApplicationFont(int);
-    QStringList applicationFontFamilies(int);
-    bool removeAllApplicationFonts();
-    int addApplicationFontFromData(QByteArray const&);
-    QList<QFontDatabase::WritingSystem> writingSystems(QString const&) const;
-};
+class QFontDatabase;
 
-enum WritingSystem	
+enum _ZN13QFontDatabase13WritingSystemE	
 {
 Any = 0,	
 Latin = 1,	

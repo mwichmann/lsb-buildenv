@@ -25,6 +25,6 @@ typedef struct FT_Renderer_Class_ {
     FT_Renderer_SetModeFunc set_mode;
     FT_Raster_Funcs *raster_class;
 } FT_Renderer_Class;
+extern FT_Renderer FT_Get_Renderer(FT_Library, FT_Glyph_Format);
 extern FT_Error FT_Set_Renderer(FT_Library, FT_Renderer, FT_UInt,
 				FT_Parameter *);
-extern FT_Renderer FT_Get_Renderer(FT_Library, FT_Glyph_Format);

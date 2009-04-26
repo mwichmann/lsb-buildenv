@@ -423,32 +423,44 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int mknodat(int, const char *, mode_t, dev_t);
-    extern int fstat(int, struct stat *);
-    extern int fstat64(int, struct stat64 *);
-    extern int lstat(const char *, struct stat *);
-    extern int lstat64(const char *, struct stat64 *);
-    extern int mknod(const char *, mode_t, dev_t);
-    extern int stat(const char *, struct stat *);
-    extern int stat64(const char *, struct stat64 *);
-    extern int __fxstat(int, int, struct stat *);
-    extern int __fxstat64(int, int, struct stat64 *);
-    extern int __lxstat(int, const char *, struct stat *);
-    extern int __lxstat64(int, const char *, struct stat64 *);
-    extern int __xmknod(int, const char *, mode_t, dev_t *);
-    extern int __xstat(int, const char *, struct stat *);
-    extern int __xstat64(int, const char *, struct stat64 *);
-    extern int chmod(const char *, mode_t);
-    extern int fchmod(int, mode_t);
-    extern int mkfifo(const char *, mode_t);
-    extern mode_t umask(mode_t);
+    extern int mknodat(int __fd, const char *__path, mode_t __mode,
+		       dev_t __dev);
+    extern int fstat(int __fd, struct stat *__buf);
+    extern int fstat64(int __fd, struct stat64 *__buf);
+    extern int lstat(const char *__file, struct stat *__buf);
+    extern int lstat64(const char *__file, struct stat64 *__buf);
+    extern int mknod(const char *__path, mode_t __mode, dev_t __dev);
+    extern int stat(const char *__file, struct stat *__buf);
+    extern int stat64(const char *__file, struct stat64 *__buf);
+    extern int __fxstat(int __ver, int __fildes, struct stat *__stat_buf);
+    extern int __fxstat64(int __ver, int __fildes,
+			  struct stat64 *__stat_buf);
+    extern int __lxstat(int __ver, const char *__filename,
+			struct stat *__stat_buf);
+    extern int __lxstat64(int __ver, const char *__filename,
+			  struct stat64 *__stat_buf);
+    extern int __xmknod(int __ver, const char *__path, mode_t __mode,
+			dev_t * __dev);
+    extern int __xstat(int __ver, const char *__filename,
+		       struct stat *__stat_buf);
+    extern int __xstat64(int __ver, const char *__filename,
+			 struct stat64 *__stat_buf);
+    extern int chmod(const char *__file, mode_t __mode);
+    extern int fchmod(int __fd, mode_t __mode);
+    extern int mkfifo(const char *__path, mode_t __mode);
+    extern mode_t umask(mode_t __mask);
 #if __LSB_VERSION__ >= 40
-    extern int __fxstatat(int, int, const char *, struct stat *, int);
-    extern int __fxstatat64(int, int, const char *, struct stat64 *, int);
-    extern int __xmknodat(int, int, const char *, mode_t, dev_t *);
-    extern int fchmodat(int, const char *, mode_t, int);
-    extern int mkdirat(int, const char *, mode_t);
-    extern int mkfifoat(int, const char *, mode_t);
+    extern int __fxstatat(int __ver, int __fildes, const char *__filename,
+			  struct stat *__stat_buf, int __flag);
+    extern int __fxstatat64(int __ver, int __fildes,
+			    const char *__filename,
+			    struct stat64 *__stat_buf, int __flag);
+    extern int __xmknodat(int __ver, int __fd, const char *__path,
+			  mode_t __mode, dev_t * __dev);
+    extern int fchmodat(int __fd, const char *__file, mode_t mode,
+			int __flag);
+    extern int mkdirat(int __fd, const char *__path, mode_t __mode);
+    extern int mkfifoat(int __fd, const char *__path, mode_t __mode);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

@@ -1,10 +1,10 @@
 
 class QByteArray;
-typedef char _ZN10QByteArray8iteratorE;
-typedef char _ZN10QByteArray14const_iteratorE;
-typedef _ZN10QByteArray8iteratorE _ZN10QByteArray8IteratorE;
-typedef _ZN10QByteArray14const_iteratorE _ZN10QByteArray13ConstIteratorE;
-typedef char _ZN10QByteArray15const_referenceE;
-typedef char _ZN10QByteArray9referenceE;
-struct _ZN10QByteArray4DataE;
+typedef char QByteArray::iterator;
+typedef char QByteArray::const_iterator;
+typedef QByteArray::iterator QByteArray::Iterator;
+typedef QByteArray::const_iterator QByteArray::ConstIterator;
+typedef char QByteArray::const_reference;
+typedef char QByteArray::reference;
+struct QByteArray::Data;
 class QByteRef;

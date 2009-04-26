@@ -83,13 +83,9 @@ typedef unsigned long int	Q_ULONG
 typedef void	QtMsgHandler	
 ;
 
-class QSysInfo
-{
-private:
-public:
-};
+class QSysInfo;
 
-enum Endian	
+enum _ZN8QSysInfo6EndianE	
 {
 BigEndian = 0,	
 LittleEndian = 1,	
@@ -107,17 +103,9 @@ QtFatalMsg = 3
 }
 ;
 
-class QBool
-{
-private:
-public:
-};
+class QBool;
 
-class QFlag
-{
-private:
-public:
-};
+class QFlag;
 
 enum QtValidLicenseForCoreModule	
 {
@@ -195,8 +183,7 @@ extern char _Z16qInstallPathDocsv(void);
 extern char _Z16qInstallPathLibsv(void);
 extern void _Z16qt_check_pointerPKci(const char *, int);
 extern void _Z17qt_message_output9QtMsgTypePKc(enum QtMsgType, const char *);
-extern QtMsgHandler _Z18qInstallMsgHandlerPFv9QtMsgTypePKcE(void(*)(enum QtMsgType	,const char	* )
-);
+extern QtMsgHandler _Z18qInstallMsgHandlerPFv9QtMsgTypePKcE(void(*)(enum QtMsgType,const char *));
 extern char _Z19qInstallPathHeadersv(void);
 extern char _Z19qInstallPathPluginsv(void);
 extern char _Z19qInstallPathSysconfv(void);

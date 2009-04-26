@@ -16,6 +16,7 @@ extern "C" {
 #endif
 
 
+#define _CERTT_H_
 #define NS_CERT_TYPE_CA	 \
 	( NS_CERT_TYPE_SSL_CA | NS_CERT_TYPE_EMAIL_CA | \
 	NS_CERT_TYPE_OBJECT_SIGNING_CA | EXT_KEY_USAGE_STATUS_RESPONDER )
@@ -273,25 +274,21 @@ extern "C" {
 	struct CERTVerifyLogNodeStr *prev;
     };
 
-
     struct CERTAVAStr {
 	SECItem type;
 	SECItem value;
     };
-
 
     struct CERTAttributeStr {
 	SECItem attrType;
 	SECItem **attrValue;
     };
 
-
     struct CERTAuthInfoAccessStr {
 	SECItem method;
 	SECItem derLocation;
 	CERTGeneralName *location;
     };
-
 
     struct CERTAuthKeyIDStr {
 	SECItem keyID;
@@ -300,14 +297,10 @@ extern "C" {
 	SECItem **DERAuthCertIssuer;
     };
 
-
     struct CERTBasicConstraintsStr {
 	PRBool isCA;
 	int pathLenConstraint;
     };
-
-
-
 
     struct CERTCertExtensionStr {
 	SECItem id;
@@ -315,19 +308,16 @@ extern "C" {
 	SECItem value;
     };
 
-
     struct CERTCertListStr {
 	PRCList list;
 	PLArenaPool *arena;
     };
-
 
     struct CERTCertListNodeStr {
 	PRCList links;
 	CERTCertificate *cert;
 	void *appData;
     };
-
 
     struct CERTCertNicknamesStr {
 	PLArenaPool *arena;
@@ -338,13 +328,11 @@ extern "C" {
 	int totallen;
     };
 
-
     struct CERTCertTrustStr {
 	unsigned int sslFlags;
 	unsigned int emailFlags;
 	unsigned int objectSigningFlags;
     };
-
 
     struct CERTSignedDataStr {
 	SECItem data;
@@ -352,19 +340,16 @@ extern "C" {
 	SECItem signature;
     };
 
-
     struct CERTCertificateListStr {
 	SECItem *certs;
 	int len;
 	PLArenaPool *arena;
     };
 
-
     struct CERTNameStr {
 	PLArenaPool *arena;
 	CERTRDN **rdns;
     };
-
 
     struct CERTCrlStr {
 	PLArenaPool *arena;
@@ -378,18 +363,15 @@ extern "C" {
 	CERTCertExtension **extensions;
     };
 
-
     struct CERTCrlDistributionPointsStr {
 	CRLDistributionPoint **distPoints;
     };
-
 
     struct CERTCrlEntryStr {
 	SECItem serialNumber;
 	SECItem revocationDate;
 	CERTCertExtension **extensions;
     };
-
 
     struct CERTCrlHeadNodeStr {
 	PLArenaPool *arena;
@@ -398,19 +380,16 @@ extern "C" {
 	CERTCrlNode *last;
     };
 
-
     struct CERTCrlNodeStr {
 	CERTCrlNode *next;
 	int type;
 	CERTSignedCrl *crl;
     };
 
-
     struct OtherNameStr {
 	SECItem name;
 	SECItem oid;
     };
-
 
     struct CERTGeneralNameListStr {
 	PLArenaPool *arena;
@@ -420,20 +399,17 @@ extern "C" {
 	PRLock *lock;
     };
 
-
     struct CERTIssuerAndSNStr {
 	SECItem derIssuer;
 	CERTName issuer;
 	SECItem serialNumber;
     };
 
-
     struct CERTSubjectPublicKeyInfoStr {
 	PLArenaPool *arena;
 	SECAlgorithmID algorithm;
 	SECItem subjectPublicKey;
     };
-
 
     struct CERTGeneralNameStr {
 	CERTGeneralNameType type;
@@ -446,7 +422,6 @@ extern "C" {
 	PRCList l;
     };
 
-
     struct CERTNameConstraintsStr {
 	CERTNameConstraint *permited;
 	CERTNameConstraint *excluded;
@@ -454,12 +429,10 @@ extern "C" {
 	SECItem **DERExcluded;
     };
 
-
     struct CERTOKDomainNameStr {
 	CERTOKDomainName *next;
 	char name[1];
     };
-
 
     struct CERTPrivKeyUsagePeriodStr {
 	SECItem notBefore;
@@ -467,11 +440,9 @@ extern "C" {
 	PLArenaPool *arena;
     };
 
-
     struct CERTRDNStr {
 	CERTAVA **avas;
     };
-
 
     struct CERTSignedCrlStr {
 	PLArenaPool *arena;
@@ -490,20 +461,17 @@ extern "C" {
 	void *opaque;
     };
 
-
     struct CERTValidityStr {
 	PLArenaPool *arena;
 	SECItem notBefore;
 	SECItem notAfter;
     };
 
-
     struct CERTStatusConfigStr {
 	CERTStatusChecker statusChecker;
 	CERTStatusDestroy statusDestroy;
 	void *statusContext;
     };
-
 
     struct CERTSubjectListStr {
 	PLArenaPool *arena;
@@ -514,14 +482,12 @@ extern "C" {
 	void *entry;
     };
 
-
     struct CERTSubjectNodeStr {
 	struct CERTSubjectNodeStr *next;
 	struct CERTSubjectNodeStr *prev;
 	SECItem certKey;
 	SECItem keyID;
     };
-
 
     struct CERTCertificateRequestStr {
 	PLArenaPool *arena;
@@ -530,7 +496,6 @@ extern "C" {
 	CERTSubjectPublicKeyInfo subjectPublicKeyInfo;
 	CERTAttribute **attributes;
     };
-
 
     struct CERTCertificateStr {
 	PLArenaPool *arena;
@@ -585,14 +550,12 @@ extern "C" {
 	PRBool ownSlot;
     };
 
-
     struct CERTVerifyLogStr {
 	PLArenaPool *arena;
 	unsigned int count;
 	struct CERTVerifyLogNodeStr *head;
 	struct CERTVerifyLogNodeStr *tail;
     };
-
 
     struct CRLDistributionPointStr {
 	DistributionPointTypes distPointType;
@@ -608,7 +571,6 @@ extern "C" {
 	SECItem **derFullName;
 	SECItem bitsmap;
     };
-
 
     struct CERTNameConstraintStr {
 	CERTGeneralName name;

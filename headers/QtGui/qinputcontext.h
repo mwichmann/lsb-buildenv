@@ -5,29 +5,9 @@
 class QInputContext;
 // *INDENT-OFF*
 
-class QInputContext : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QInputContext(QObject*);
-     ~QInputContext();
-    void update();
-    void mouseHandler(int, QMouseEvent*);
-    QFont font() const;
-    QWidget * focusWidget() const;
-    void setFocusWidget(QWidget*);
-    void widgetDestroyed(QWidget*);
-     actions();
-    bool x11FilterEvent(QWidget*, _XEvent*);
-    bool filterEvent(QEvent const*);
-    void sendEvent(QInputMethodEvent const&);
-    QTextFormat standardFormat(QInputContext::StandardFormat) const;
-};
+class QInputContext;
 
-enum StandardFormat	
+enum _ZN13QInputContext14StandardFormatE	
 {
 PreeditFormat = 0,	
 SelectionFormat = 1

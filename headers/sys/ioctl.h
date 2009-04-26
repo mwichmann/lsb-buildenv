@@ -98,7 +98,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int ioctl(int, unsigned long int, ...);
+    extern int ioctl(int __fd, unsigned long int __request, ...);
 #ifdef __cplusplus
 }
 #endif

@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 
-    typedef QMatrix QWMatrix;
+    typedef class QMatrixQWMatrix;
 
 #ifdef __cplusplus
 }

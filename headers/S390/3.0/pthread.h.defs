@@ -1,10 +1,10 @@
 
 typedef struct _pthread_rwlock_t {
-    struct _pthread_fastlock __rw_lock;
-    int __rw_readers;
-    _pthread_descr __rw_writer;
-    _pthread_descr __rw_read_waiting;
-    _pthread_descr __rw_write_waiting;
-    int __rw_kind;
-    int __rw_pshared;
+    struct _pthread_fastlock __rw_lock;	/* Lock to guarantee mutual exclusion */
+    int __rw_readers;		/* Number of readers */
+    _pthread_descr __rw_writer;	/* Identity of writer, or NULL if none */
+    _pthread_descr __rw_read_waiting;	/* Threads waiting for reading */
+    _pthread_descr __rw_write_waiting;	/* Threads waiting for writing */
+    int __rw_kind;		/* Reader/Writer preference selection */
+    int __rw_pshared;		/* Shared between processes or not */
 } pthread_rwlock_t;

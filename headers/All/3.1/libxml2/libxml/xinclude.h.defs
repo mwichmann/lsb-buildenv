@@ -12,11 +12,12 @@
 
 typedef struct _xmlXIncludeCtxt xmlXIncludeCtxt;
 typedef xmlXIncludeCtxt *xmlXIncludeCtxtPtr;
-extern int xmlXIncludeProcess(xmlDocPtr);
-extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr);
-extern int xmlXIncludeProcessTree(xmlNodePtr);
-extern xmlXIncludeCtxtPtr xmlXIncludeNewContext(xmlDocPtr);
-extern int xmlXIncludeSetFlags(xmlXIncludeCtxtPtr, int);
-extern int xmlXIncludeProcessNode(xmlXIncludeCtxtPtr, xmlNodePtr);
-extern int xmlXIncludeProcessTreeFlags(xmlNodePtr, int);
-extern int xmlXIncludeProcessFlags(xmlDocPtr, int);
+extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr ctxt);
+extern xmlXIncludeCtxtPtr xmlXIncludeNewContext(xmlDocPtr doc);
+extern int xmlXIncludeProcess(xmlDocPtr doc);
+extern int xmlXIncludeProcessFlags(xmlDocPtr doc, int flags);
+extern int xmlXIncludeProcessNode(xmlXIncludeCtxtPtr ctxt,
+				  xmlNodePtr tree);
+extern int xmlXIncludeProcessTree(xmlNodePtr tree);
+extern int xmlXIncludeProcessTreeFlags(xmlNodePtr tree, int flags);
+extern int xmlXIncludeSetFlags(xmlXIncludeCtxtPtr ctxt, int flags);

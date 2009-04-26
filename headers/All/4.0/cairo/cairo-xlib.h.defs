@@ -1,10 +1,16 @@
 
-extern cairo_surface_t *cairo_xlib_surface_create(Display *, Drawable,
-						  Visual *, int, int);
-extern cairo_surface_t *cairo_xlib_surface_create_for_bitmap(Display *,
-							     Pixmap,
-							     Screen *, int,
-							     int);
-extern void cairo_xlib_surface_set_size(cairo_surface_t *, int, int);
-extern void cairo_xlib_surface_set_drawable(cairo_surface_t *, Drawable,
-					    int, int);
+extern cairo_surface_t *cairo_xlib_surface_create(Display * dpy,
+						  Drawable drawable,
+						  Visual * visual,
+						  int width, int height);
+extern cairo_surface_t *cairo_xlib_surface_create_for_bitmap(Display * dpy,
+							     Pixmap bitmap,
+							     Screen *
+							     screen,
+							     int width,
+							     int height);
+extern void cairo_xlib_surface_set_drawable(cairo_surface_t * surface,
+					    Drawable drawable, int width,
+					    int height);
+extern void cairo_xlib_surface_set_size(cairo_surface_t * surface,
+					int width, int height);

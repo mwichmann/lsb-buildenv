@@ -129,26 +129,37 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern struct CLIENT *clnt_create(const char *, const u_long,
-				      const u_long, const char *);
-    extern void clnt_pcreateerror(const char *);
-    extern void clnt_perrno(enum clnt_stat);
-    extern void clnt_perror(struct CLIENT *, const char *);
-    extern char *clnt_spcreateerror(const char *);
-    extern char *clnt_sperrno(enum clnt_stat);
-    extern char *clnt_sperror(struct CLIENT *, const char *);
+    extern struct CLIENT *clnt_create(const char *__host,
+				      const u_long __prog,
+				      const u_long __vers,
+				      const char *__prot);
+    extern void clnt_pcreateerror(const char *__msg);
+    extern void clnt_perrno(enum clnt_stat __num);
+    extern void clnt_perror(struct CLIENT *__clnt, const char *__msg);
+    extern char *clnt_spcreateerror(const char *__msg);
+    extern char *clnt_sperrno(enum clnt_stat __num);
+    extern char *clnt_sperror(struct CLIENT *__clnt, const char *__msg);
 #if __LSB_VERSION__ >= 40
-    extern int callrpc(const char *, const u_long, const u_long,
-		       const u_long, const xdrproc_t, const char *,
-		       const xdrproc_t, char *);
-    extern struct CLIENT *clntraw_create(u_long, u_long);
-    extern struct CLIENT *clnttcp_create(struct sockaddr_in *, u_long,
-					 u_long, int *, u_int, u_int);
-    extern struct CLIENT *clntudp_bufcreate(struct sockaddr_in *, u_long,
-					    u_long, struct timeval, int *,
-					    u_int, u_int);
-    extern struct CLIENT *clntudp_create(struct sockaddr_in *, u_long,
-					 u_long, struct timeval, int *);
+    extern int callrpc(const char *__host, const u_long __prognum,
+		       const u_long __versnum, const u_long __procnum,
+		       const xdrproc_t __inproc, const char *__in,
+		       const xdrproc_t __outproc, char *__out);
+    extern struct CLIENT *clntraw_create(u_long __prog, u_long __vers);
+    extern struct CLIENT *clnttcp_create(struct sockaddr_in *__raddr,
+					 u_long __prog, u_long __version,
+					 int *__sockp, u_int __sendsz,
+					 u_int __recvsz);
+    extern struct CLIENT *clntudp_bufcreate(struct sockaddr_in *__raddr,
+					    u_long __program,
+					    u_long __version,
+					    struct timeval __wait_resend,
+					    int *__sockp, u_int __sendsz,
+					    u_int __recvsz);
+    extern struct CLIENT *clntudp_create(struct sockaddr_in *__raddr,
+					 u_long __program,
+					 u_long __version,
+					 struct timeval __wait_resend,
+					 int *__sockp);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

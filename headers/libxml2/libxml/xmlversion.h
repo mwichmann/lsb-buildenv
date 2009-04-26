@@ -50,7 +50,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void xmlCheckVersion(int);
+    extern void xmlCheckVersion(int version);
 #ifdef __cplusplus
 }
 #endif

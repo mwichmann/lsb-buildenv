@@ -7,11 +7,7 @@ class QAtomic;
 
 struct QBasicAtomic	;
 
-class QAtomic :  
-{
-private:
-public:
-};
+class QAtomic;
 
 // *INDENT-ON*
 #endif				/* protection */

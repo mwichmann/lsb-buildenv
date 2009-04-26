@@ -79,12 +79,14 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int glob(const char *, int, int (*)(const char *, int)
-		    , glob_t *);
-    extern int glob64(const char *, int, int (*)(const char *, int)
-		      , glob64_t *);
-    extern void globfree(glob_t *);
-    extern void globfree64(glob64_t *);
+    extern int glob(const char *__pattern, int __flags,
+		    int (*__errfunc) (const char *, int),
+		    glob_t * __pglob);
+    extern int glob64(const char *__pattern, int __flags,
+		      int (*__errfunc) (const char *, int),
+		      glob64_t * __pglob);
+    extern void globfree(glob_t * __pglob);
+    extern void globfree64(glob64_t * __pglob);
 #ifdef __cplusplus
 }
 #endif

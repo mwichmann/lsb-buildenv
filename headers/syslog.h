@@ -88,10 +88,10 @@ extern "C" {
 /* Function prototypes */
 
     extern void closelog(void);
-    extern void openlog(const char *, int, int);
-    extern void syslog(int, const char *, ...);
-    extern int setlogmask(int);
-    extern void vsyslog(int, const char *, va_list);
+    extern void openlog(const char *__ident, int __option, int __facility);
+    extern void syslog(int __pri, const char *__fmt, ...);
+    extern int setlogmask(int __mask);
+    extern void vsyslog(int __pri, const char *__fmt, va_list __ap);
 #if __LSB_VERSION__ >= 40
     extern void __syslog_chk(int, int, const char *, ...);
     extern void __vsyslog_chk(int, int, const char *, va_list);

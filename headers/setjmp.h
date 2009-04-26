@@ -73,11 +73,11 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int __sigsetjmp(jmp_buf, int);
-    extern void _longjmp(jmp_buf, int);
-    extern int _setjmp(jmp_buf);
-    extern void longjmp(jmp_buf, int);
-    extern void siglongjmp(sigjmp_buf, int);
+    extern int __sigsetjmp(jmp_buf __env, int __savemask);
+    extern void _longjmp(jmp_buf __env, int __val);
+    extern int _setjmp(jmp_buf __env);
+    extern void longjmp(jmp_buf __env, int __val);
+    extern void siglongjmp(sigjmp_buf __env, int __val);
 #ifdef __cplusplus
 }
 #endif

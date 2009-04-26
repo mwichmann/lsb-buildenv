@@ -285,24 +285,33 @@ extern "C" {
     extern void XmbSetWMProperties(Display *, Window, const char *,
 				   const char *, char **, int,
 				   XSizeHints *, XWMHints *, XClassHint *);
-    extern int XmbTextListToTextProperty(Display *, char **, int,
-					 XICCEncodingStyle,
-					 XTextProperty *);
-    extern int XmbTextPropertyToTextList(Display *, const XTextProperty *,
-					 char ***, int *);
-    extern void XwcFreeStringList(wchar_t * *);
-    extern int XwcTextListToTextProperty(Display *, wchar_t * *, int,
-					 XICCEncodingStyle,
-					 XTextProperty *);
-    extern int XwcTextPropertyToTextList(Display *, const XTextProperty *,
-					 wchar_t * **, int *);
+    extern int XmbTextListToTextProperty(Display * display, char **list,
+					 int count,
+					 XICCEncodingStyle style,
+					 XTextProperty * text_prop_return);
+    extern int XmbTextPropertyToTextList(Display * display,
+					 const XTextProperty * text_prop,
+					 char ***list_return,
+					 int *count_return);
+    extern void XwcFreeStringList(wchar_t * *list);
+    extern int XwcTextListToTextProperty(Display * display,
+					 wchar_t * *list, int count,
+					 XICCEncodingStyle style,
+					 XTextProperty * text_prop_return);
+    extern int XwcTextPropertyToTextList(Display * display,
+					 const XTextProperty * text_prop,
+					 wchar_t * **list_return,
+					 int *count_return);
 #if __LSB_VERSION__ >= 12
-    extern int Xutf8TextListToTextProperty(Display *, char **, int,
-					   XICCEncodingStyle,
-					   XTextProperty *);
-    extern int Xutf8TextPropertyToTextList(Display *,
-					   const XTextProperty *, char ***,
-					   int *);
+    extern int Xutf8TextListToTextProperty(Display * display, char **list,
+					   int count,
+					   XICCEncodingStyle style,
+					   XTextProperty *
+					   text_prop_return);
+    extern int Xutf8TextPropertyToTextList(Display * display,
+					   const XTextProperty * text_prop,
+					   char ***list_return,
+					   int *count_return);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

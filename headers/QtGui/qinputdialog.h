@@ -5,19 +5,9 @@
 class QInputDialog;
 // *INDENT-OFF*
 
-class QInputDialog : public QDialog
-{
-private:
-public:
-    QString getText(QWidget*, QString const&, QString const&, QLineEdit::EchoMode, QString const&, bool*, QFlags<Qt::WindowType>);
-    int getInteger(QWidget*, QString const&, QString const&, int, int, int, int, bool*, QFlags<Qt::WindowType>);
-    double getDouble(QWidget*, QString const&, QString const&, double, double, double, int, bool*, QFlags<Qt::WindowType>);
-    QString getItem(QWidget*, QString const&, QString const&, QStringList const&, int, bool, bool*, QFlags<Qt::WindowType>);
-private:
-     ~QInputDialog();
-};
+class QInputDialog;
 
-enum Type	
+enum _ZN12QInputDialog4TypeE	
 {
 LineEdit = 0,	
 SpinBox = 1,	

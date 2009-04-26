@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _KEY_H_
+
+
 #ifdef __cplusplus
 }
 #endif

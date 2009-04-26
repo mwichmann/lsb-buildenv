@@ -116,14 +116,12 @@ extern "C" {
 
     typedef xmlOutputBuffer *xmlOutputBufferPtr;
 
-
     struct _xmlBuffer {
 	xmlChar *content;
 	unsigned int use;
 	unsigned int size;
 	xmlBufferAllocationScheme alloc;
     };
-
 
     struct _xmlNs {
 	struct _xmlNs *next;
@@ -132,7 +130,6 @@ extern "C" {
 	const xmlChar *prefix;
 	void *_private;
     };
-
 
     struct _xmlNode {
 	void *_private;
@@ -152,7 +149,6 @@ extern "C" {
 	unsigned short line;
 	unsigned short extra;
     };
-
 
     struct _xmlDoc {
 	void *_private;
@@ -179,7 +175,6 @@ extern "C" {
 	void *psvi;
     };
 
-
     struct _xmlDtd {
 	void *_private;
 	xmlElementType type;
@@ -199,11 +194,9 @@ extern "C" {
 	void *pentities;
     };
 
-
     struct _xmlDOMWrapCtxt {
 	void *_private;
     };
-
 
     struct _xmlAttr {
 	void *_private;
@@ -220,7 +213,6 @@ extern "C" {
 	void *psvi;
     };
 
-
     struct _xmlCharEncodingHandler {
 	char *name;
 	xmlCharEncodingInputFunc input;
@@ -228,7 +220,6 @@ extern "C" {
 	iconv_t iconv_in;
 	iconv_t iconv_out;
     };
-
 
     struct _xmlOutputBuffer {
 	void *context;
@@ -244,179 +235,228 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern xmlNodePtr xmlAddChild(xmlNodePtr, xmlNodePtr);
-    extern xmlNodePtr xmlAddChildList(xmlNodePtr, xmlNodePtr);
-    extern xmlNodePtr xmlAddNextSibling(xmlNodePtr, xmlNodePtr);
-    extern xmlNodePtr xmlAddPrevSibling(xmlNodePtr, xmlNodePtr);
-    extern xmlNodePtr xmlAddSibling(xmlNodePtr, xmlNodePtr);
-    extern void xmlAttrSerializeTxtContent(xmlBufferPtr, xmlDocPtr,
-					   xmlAttrPtr, const xmlChar *);
-    extern int xmlBufferAdd(xmlBufferPtr, const xmlChar *, int);
-    extern int xmlBufferAddHead(xmlBufferPtr, const xmlChar *, int);
-    extern int xmlBufferCCat(xmlBufferPtr, const char *);
-    extern int xmlBufferCat(xmlBufferPtr, const xmlChar *);
-    extern const xmlChar *xmlBufferContent(const xmlBufferPtr);
+    extern xmlNodePtr xmlAddChild(xmlNodePtr parent, xmlNodePtr cur);
+    extern xmlNodePtr xmlAddChildList(xmlNodePtr parent, xmlNodePtr cur);
+    extern xmlNodePtr xmlAddNextSibling(xmlNodePtr cur, xmlNodePtr elem);
+    extern xmlNodePtr xmlAddPrevSibling(xmlNodePtr cur, xmlNodePtr elem);
+    extern xmlNodePtr xmlAddSibling(xmlNodePtr cur, xmlNodePtr elem);
+    extern void xmlAttrSerializeTxtContent(xmlBufferPtr buf, xmlDocPtr doc,
+					   xmlAttrPtr attr,
+					   const xmlChar * string);
+    extern int xmlBufferAdd(xmlBufferPtr buf, const xmlChar * str,
+			    int len);
+    extern int xmlBufferAddHead(xmlBufferPtr buf, const xmlChar * str,
+				int len);
+    extern int xmlBufferCCat(xmlBufferPtr buf, const char *str);
+    extern int xmlBufferCat(xmlBufferPtr buf, const xmlChar * str);
+    extern const xmlChar *xmlBufferContent(const xmlBufferPtr buf);
     extern xmlBufferPtr xmlBufferCreate(void);
-    extern xmlBufferPtr xmlBufferCreateSize(size_t);
-    extern xmlBufferPtr xmlBufferCreateStatic(void *, size_t);
-    extern int xmlBufferDump(FILE *, xmlBufferPtr);
-    extern void xmlBufferEmpty(xmlBufferPtr);
-    extern void xmlBufferFree(xmlBufferPtr);
-    extern int xmlBufferGrow(xmlBufferPtr, unsigned int);
-    extern int xmlBufferLength(const xmlBufferPtr);
-    extern int xmlBufferResize(xmlBufferPtr, unsigned int);
-    extern void xmlBufferSetAllocationScheme(xmlBufferPtr,
-					     xmlBufferAllocationScheme);
-    extern int xmlBufferShrink(xmlBufferPtr, unsigned int);
-    extern void xmlBufferWriteCHAR(xmlBufferPtr, const xmlChar *);
-    extern void xmlBufferWriteChar(xmlBufferPtr, const char *);
-    extern void xmlBufferWriteQuotedString(xmlBufferPtr, const xmlChar *);
-    extern xmlChar *xmlBuildQName(const xmlChar *, const xmlChar *,
-				  xmlChar *, int);
-    extern xmlDocPtr xmlCopyDoc(xmlDocPtr, int);
-    extern xmlDtdPtr xmlCopyDtd(xmlDtdPtr);
-    extern xmlNsPtr xmlCopyNamespace(xmlNsPtr);
-    extern xmlNsPtr xmlCopyNamespaceList(xmlNsPtr);
-    extern xmlNodePtr xmlCopyNode(const xmlNodePtr, int);
-    extern xmlNodePtr xmlCopyNodeList(const xmlNodePtr);
-    extern xmlAttrPtr xmlCopyProp(xmlNodePtr, xmlAttrPtr);
-    extern xmlAttrPtr xmlCopyPropList(xmlNodePtr, xmlAttrPtr);
-    extern xmlDtdPtr xmlCreateIntSubset(xmlDocPtr, const xmlChar *,
-					const xmlChar *, const xmlChar *);
-    extern void xmlDOMWrapFreeCtxt(xmlDOMWrapCtxtPtr);
+    extern xmlBufferPtr xmlBufferCreateSize(size_t size);
+    extern xmlBufferPtr xmlBufferCreateStatic(void *mem, size_t size);
+    extern int xmlBufferDump(FILE * file, xmlBufferPtr buf);
+    extern void xmlBufferEmpty(xmlBufferPtr buf);
+    extern void xmlBufferFree(xmlBufferPtr buf);
+    extern int xmlBufferGrow(xmlBufferPtr buf, unsigned int len);
+    extern int xmlBufferLength(const xmlBufferPtr buf);
+    extern int xmlBufferResize(xmlBufferPtr buf, unsigned int size);
+    extern void xmlBufferSetAllocationScheme(xmlBufferPtr buf,
+					     xmlBufferAllocationScheme
+					     scheme);
+    extern int xmlBufferShrink(xmlBufferPtr buf, unsigned int len);
+    extern void xmlBufferWriteCHAR(xmlBufferPtr buf,
+				   const xmlChar * string);
+    extern void xmlBufferWriteChar(xmlBufferPtr buf, const char *string);
+    extern void xmlBufferWriteQuotedString(xmlBufferPtr buf,
+					   const xmlChar * string);
+    extern xmlChar *xmlBuildQName(const xmlChar * ncname,
+				  const xmlChar * prefix, xmlChar * memory,
+				  int len);
+    extern xmlDocPtr xmlCopyDoc(xmlDocPtr doc, int recursive);
+    extern xmlDtdPtr xmlCopyDtd(xmlDtdPtr dtd);
+    extern xmlNsPtr xmlCopyNamespace(xmlNsPtr cur);
+    extern xmlNsPtr xmlCopyNamespaceList(xmlNsPtr cur);
+    extern xmlNodePtr xmlCopyNode(const xmlNodePtr node, int recursive);
+    extern xmlNodePtr xmlCopyNodeList(const xmlNodePtr node);
+    extern xmlAttrPtr xmlCopyProp(xmlNodePtr target, xmlAttrPtr cur);
+    extern xmlAttrPtr xmlCopyPropList(xmlNodePtr target, xmlAttrPtr cur);
+    extern xmlDtdPtr xmlCreateIntSubset(xmlDocPtr doc,
+					const xmlChar * name,
+					const xmlChar * ExternalID,
+					const xmlChar * SystemID);
+    extern void xmlDOMWrapFreeCtxt(xmlDOMWrapCtxtPtr ctxt);
     extern xmlDOMWrapCtxtPtr xmlDOMWrapNewCtxt(void);
-    extern xmlNodePtr xmlDocCopyNode(const xmlNodePtr, xmlDocPtr, int);
-    extern xmlNodePtr xmlDocCopyNodeList(xmlDocPtr, const xmlNodePtr);
-    extern int xmlDocDump(FILE *, xmlDocPtr);
-    extern void xmlDocDumpFormatMemory(xmlDocPtr, xmlChar * *, int *, int);
-    extern void xmlDocDumpFormatMemoryEnc(xmlDocPtr, xmlChar * *, int *,
-					  const char *, int);
-    extern void xmlDocDumpMemory(xmlDocPtr, xmlChar * *, int *);
-    extern void xmlDocDumpMemoryEnc(xmlDocPtr, xmlChar * *, int *,
-				    const char *);
-    extern int xmlDocFormatDump(FILE *, xmlDocPtr, int);
-    extern xmlNodePtr xmlDocGetRootElement(xmlDocPtr);
-    extern xmlNodePtr xmlDocSetRootElement(xmlDocPtr, xmlNodePtr);
-    extern void xmlElemDump(FILE *, xmlDocPtr, xmlNodePtr);
-    extern void xmlFreeDoc(xmlDocPtr);
-    extern void xmlFreeDtd(xmlDtdPtr);
-    extern void xmlFreeNode(xmlNodePtr);
-    extern void xmlFreeNodeList(xmlNodePtr);
-    extern void xmlFreeNs(xmlNsPtr);
-    extern void xmlFreeNsList(xmlNsPtr);
-    extern void xmlFreeProp(xmlAttrPtr);
-    extern void xmlFreePropList(xmlAttrPtr);
+    extern xmlNodePtr xmlDocCopyNode(const xmlNodePtr node, xmlDocPtr doc,
+				     int recursive);
+    extern xmlNodePtr xmlDocCopyNodeList(xmlDocPtr doc,
+					 const xmlNodePtr node);
+    extern int xmlDocDump(FILE * f, xmlDocPtr cur);
+    extern void xmlDocDumpFormatMemory(xmlDocPtr cur, xmlChar * *mem,
+				       int *size, int format);
+    extern void xmlDocDumpFormatMemoryEnc(xmlDocPtr out_doc,
+					  xmlChar * *doc_txt_ptr,
+					  int *doc_txt_len,
+					  const char *txt_encoding,
+					  int format);
+    extern void xmlDocDumpMemory(xmlDocPtr cur, xmlChar * *mem, int *size);
+    extern void xmlDocDumpMemoryEnc(xmlDocPtr out_doc,
+				    xmlChar * *doc_txt_ptr,
+				    int *doc_txt_len,
+				    const char *txt_encoding);
+    extern int xmlDocFormatDump(FILE * f, xmlDocPtr cur, int format);
+    extern xmlNodePtr xmlDocGetRootElement(xmlDocPtr doc);
+    extern xmlNodePtr xmlDocSetRootElement(xmlDocPtr doc, xmlNodePtr root);
+    extern void xmlElemDump(FILE * f, xmlDocPtr doc, xmlNodePtr cur);
+    extern void xmlFreeDoc(xmlDocPtr cur);
+    extern void xmlFreeDtd(xmlDtdPtr cur);
+    extern void xmlFreeNode(xmlNodePtr cur);
+    extern void xmlFreeNodeList(xmlNodePtr cur);
+    extern void xmlFreeNs(xmlNsPtr cur);
+    extern void xmlFreeNsList(xmlNsPtr cur);
+    extern void xmlFreeProp(xmlAttrPtr cur);
+    extern void xmlFreePropList(xmlAttrPtr cur);
     extern xmlBufferAllocationScheme xmlGetBufferAllocationScheme(void);
     extern int xmlGetCompressMode(void);
-    extern int xmlGetDocCompressMode(xmlDocPtr);
-    extern xmlDtdPtr xmlGetIntSubset(xmlDocPtr);
-    extern xmlNodePtr xmlGetLastChild(xmlNodePtr);
-    extern long int xmlGetLineNo(xmlNodePtr);
-    extern xmlChar *xmlGetNoNsProp(xmlNodePtr, const xmlChar *);
-    extern xmlChar *xmlGetNodePath(xmlNodePtr);
-    extern xmlNsPtr *xmlGetNsList(xmlDocPtr, xmlNodePtr);
-    extern xmlChar *xmlGetNsProp(xmlNodePtr, const xmlChar *,
-				 const xmlChar *);
-    extern xmlChar *xmlGetProp(xmlNodePtr, const xmlChar *);
-    extern xmlAttrPtr xmlHasNsProp(xmlNodePtr, const xmlChar *,
-				   const xmlChar *);
-    extern xmlAttrPtr xmlHasProp(xmlNodePtr, const xmlChar *);
-    extern int xmlIsBlankNode(xmlNodePtr);
-    extern int xmlIsXHTML(const xmlChar *, const xmlChar *);
-    extern xmlNodePtr xmlNewCDataBlock(xmlDocPtr, const xmlChar *, int);
-    extern xmlNodePtr xmlNewCharRef(xmlDocPtr, const xmlChar *);
-    extern xmlNodePtr xmlNewChild(xmlNodePtr, xmlNsPtr, const xmlChar *,
-				  const xmlChar *);
-    extern xmlNodePtr xmlNewComment(const xmlChar *);
-    extern xmlDocPtr xmlNewDoc(const xmlChar *);
-    extern xmlNodePtr xmlNewDocComment(xmlDocPtr, const xmlChar *);
-    extern xmlNodePtr xmlNewDocFragment(xmlDocPtr);
-    extern xmlNodePtr xmlNewDocNode(xmlDocPtr, xmlNsPtr, const xmlChar *,
-				    const xmlChar *);
-    extern xmlNodePtr xmlNewDocNodeEatName(xmlDocPtr, xmlNsPtr, xmlChar *,
-					   const xmlChar *);
-    extern xmlNodePtr xmlNewDocPI(xmlDocPtr, const xmlChar *,
-				  const xmlChar *);
-    extern xmlAttrPtr xmlNewDocProp(xmlDocPtr, const xmlChar *,
-				    const xmlChar *);
-    extern xmlNodePtr xmlNewDocRawNode(xmlDocPtr, xmlNsPtr,
-				       const xmlChar *, const xmlChar *);
-    extern xmlNodePtr xmlNewDocText(xmlDocPtr, const xmlChar *);
-    extern xmlNodePtr xmlNewDocTextLen(xmlDocPtr, const xmlChar *, int);
-    extern xmlDtdPtr xmlNewDtd(xmlDocPtr, const xmlChar *, const xmlChar *,
-			       const xmlChar *);
-    extern xmlNodePtr xmlNewNode(xmlNsPtr, const xmlChar *);
-    extern xmlNodePtr xmlNewNodeEatName(xmlNsPtr, xmlChar *);
-    extern xmlNsPtr xmlNewNs(xmlNodePtr, const xmlChar *, const xmlChar *);
-    extern xmlAttrPtr xmlNewNsProp(xmlNodePtr, xmlNsPtr, const xmlChar *,
-				   const xmlChar *);
-    extern xmlAttrPtr xmlNewNsPropEatName(xmlNodePtr, xmlNsPtr, xmlChar *,
-					  const xmlChar *);
-    extern xmlNodePtr xmlNewPI(const xmlChar *, const xmlChar *);
-    extern xmlAttrPtr xmlNewProp(xmlNodePtr, const xmlChar *,
-				 const xmlChar *);
-    extern xmlNodePtr xmlNewReference(xmlDocPtr, const xmlChar *);
-    extern xmlNodePtr xmlNewText(const xmlChar *);
-    extern xmlNodePtr xmlNewTextChild(xmlNodePtr, xmlNsPtr,
-				      const xmlChar *, const xmlChar *);
-    extern xmlNodePtr xmlNewTextLen(const xmlChar *, int);
-    extern void xmlNodeAddContent(xmlNodePtr, const xmlChar *);
-    extern void xmlNodeAddContentLen(xmlNodePtr, const xmlChar *, int);
-    extern int xmlNodeBufGetContent(xmlBufferPtr, xmlNodePtr);
-    extern int xmlNodeDump(xmlBufferPtr, xmlDocPtr, xmlNodePtr, int, int);
-    extern void xmlNodeDumpOutput(xmlOutputBufferPtr, xmlDocPtr,
-				  xmlNodePtr, int, int, const char *);
-    extern xmlChar *xmlNodeGetBase(xmlDocPtr, xmlNodePtr);
-    extern xmlChar *xmlNodeGetContent(xmlNodePtr);
-    extern xmlChar *xmlNodeGetLang(xmlNodePtr);
-    extern int xmlNodeGetSpacePreserve(xmlNodePtr);
-    extern int xmlNodeIsText(xmlNodePtr);
-    extern xmlChar *xmlNodeListGetRawString(xmlDocPtr, xmlNodePtr, int);
-    extern xmlChar *xmlNodeListGetString(xmlDocPtr, xmlNodePtr, int);
-    extern void xmlNodeSetBase(xmlNodePtr, const xmlChar *);
-    extern void xmlNodeSetContent(xmlNodePtr, const xmlChar *);
-    extern void xmlNodeSetContentLen(xmlNodePtr, const xmlChar *, int);
-    extern void xmlNodeSetLang(xmlNodePtr, const xmlChar *);
-    extern void xmlNodeSetName(xmlNodePtr, const xmlChar *);
-    extern void xmlNodeSetSpacePreserve(xmlNodePtr, int);
-    extern int xmlReconciliateNs(xmlDocPtr, xmlNodePtr);
-    extern int xmlRemoveProp(xmlAttrPtr);
-    extern xmlNodePtr xmlReplaceNode(xmlNodePtr, xmlNodePtr);
-    extern int xmlSaveFile(const char *, xmlDocPtr);
-    extern int xmlSaveFileEnc(const char *, xmlDocPtr, const char *);
-    extern int xmlSaveFileTo(xmlOutputBufferPtr, xmlDocPtr, const char *);
-    extern int xmlSaveFormatFile(const char *, xmlDocPtr, int);
-    extern int xmlSaveFormatFileEnc(const char *, xmlDocPtr, const char *,
-				    int);
-    extern int xmlSaveFormatFileTo(xmlOutputBufferPtr, xmlDocPtr,
-				   const char *, int);
-    extern xmlNsPtr xmlSearchNs(xmlDocPtr, xmlNodePtr, const xmlChar *);
-    extern xmlNsPtr xmlSearchNsByHref(xmlDocPtr, xmlNodePtr,
-				      const xmlChar *);
-    extern void xmlSetBufferAllocationScheme(xmlBufferAllocationScheme);
-    extern void xmlSetCompressMode(int);
-    extern void xmlSetDocCompressMode(xmlDocPtr, int);
-    extern void xmlSetListDoc(xmlNodePtr, xmlDocPtr);
-    extern void xmlSetNs(xmlNodePtr, xmlNsPtr);
-    extern xmlAttrPtr xmlSetNsProp(xmlNodePtr, xmlNsPtr, const xmlChar *,
-				   const xmlChar *);
-    extern xmlAttrPtr xmlSetProp(xmlNodePtr, const xmlChar *,
-				 const xmlChar *);
-    extern void xmlSetTreeDoc(xmlNodePtr, xmlDocPtr);
-    extern xmlChar *xmlSplitQName2(const xmlChar *, xmlChar * *);
-    extern const xmlChar *xmlSplitQName3(const xmlChar *, int *);
-    extern xmlNodePtr xmlStringGetNodeList(xmlDocPtr, const xmlChar *);
-    extern xmlNodePtr xmlStringLenGetNodeList(xmlDocPtr, const xmlChar *,
-					      int);
-    extern int xmlTextConcat(xmlNodePtr, const xmlChar *, int);
-    extern xmlNodePtr xmlTextMerge(xmlNodePtr, xmlNodePtr);
-    extern void xmlUnlinkNode(xmlNodePtr);
-    extern int xmlUnsetNsProp(xmlNodePtr, xmlNsPtr, const xmlChar *);
-    extern int xmlUnsetProp(xmlNodePtr, const xmlChar *);
-    extern int xmlValidateNCName(const xmlChar *, int);
-    extern int xmlValidateNMToken(const xmlChar *, int);
-    extern int xmlValidateName(const xmlChar *, int);
-    extern int xmlValidateQName(const xmlChar *, int);
+    extern int xmlGetDocCompressMode(xmlDocPtr doc);
+    extern xmlDtdPtr xmlGetIntSubset(xmlDocPtr doc);
+    extern xmlNodePtr xmlGetLastChild(xmlNodePtr parent);
+    extern long int xmlGetLineNo(xmlNodePtr node);
+    extern xmlChar *xmlGetNoNsProp(xmlNodePtr node, const xmlChar * name);
+    extern xmlChar *xmlGetNodePath(xmlNodePtr node);
+    extern xmlNsPtr *xmlGetNsList(xmlDocPtr doc, xmlNodePtr node);
+    extern xmlChar *xmlGetNsProp(xmlNodePtr node, const xmlChar * name,
+				 const xmlChar * nameSpace);
+    extern xmlChar *xmlGetProp(xmlNodePtr node, const xmlChar * name);
+    extern xmlAttrPtr xmlHasNsProp(xmlNodePtr node, const xmlChar * name,
+				   const xmlChar * nameSpace);
+    extern xmlAttrPtr xmlHasProp(xmlNodePtr node, const xmlChar * name);
+    extern int xmlIsBlankNode(xmlNodePtr node);
+    extern int xmlIsXHTML(const xmlChar * systemID,
+			  const xmlChar * publicID);
+    extern xmlNodePtr xmlNewCDataBlock(xmlDocPtr doc,
+				       const xmlChar * content, int len);
+    extern xmlNodePtr xmlNewCharRef(xmlDocPtr doc, const xmlChar * name);
+    extern xmlNodePtr xmlNewChild(xmlNodePtr parent, xmlNsPtr ns,
+				  const xmlChar * name,
+				  const xmlChar * content);
+    extern xmlNodePtr xmlNewComment(const xmlChar * content);
+    extern xmlDocPtr xmlNewDoc(const xmlChar * version);
+    extern xmlNodePtr xmlNewDocComment(xmlDocPtr doc,
+				       const xmlChar * content);
+    extern xmlNodePtr xmlNewDocFragment(xmlDocPtr doc);
+    extern xmlNodePtr xmlNewDocNode(xmlDocPtr doc, xmlNsPtr ns,
+				    const xmlChar * name,
+				    const xmlChar * content);
+    extern xmlNodePtr xmlNewDocNodeEatName(xmlDocPtr doc, xmlNsPtr ns,
+					   xmlChar * name,
+					   const xmlChar * content);
+    extern xmlNodePtr xmlNewDocPI(xmlDocPtr doc, const xmlChar * name,
+				  const xmlChar * content);
+    extern xmlAttrPtr xmlNewDocProp(xmlDocPtr doc, const xmlChar * name,
+				    const xmlChar * value);
+    extern xmlNodePtr xmlNewDocRawNode(xmlDocPtr doc, xmlNsPtr ns,
+				       const xmlChar * name,
+				       const xmlChar * content);
+    extern xmlNodePtr xmlNewDocText(xmlDocPtr doc,
+				    const xmlChar * content);
+    extern xmlNodePtr xmlNewDocTextLen(xmlDocPtr doc,
+				       const xmlChar * content, int len);
+    extern xmlDtdPtr xmlNewDtd(xmlDocPtr doc, const xmlChar * name,
+			       const xmlChar * ExternalID,
+			       const xmlChar * SystemID);
+    extern xmlNodePtr xmlNewNode(xmlNsPtr ns, const xmlChar * name);
+    extern xmlNodePtr xmlNewNodeEatName(xmlNsPtr ns, xmlChar * name);
+    extern xmlNsPtr xmlNewNs(xmlNodePtr node, const xmlChar * href,
+			     const xmlChar * prefix);
+    extern xmlAttrPtr xmlNewNsProp(xmlNodePtr node, xmlNsPtr ns,
+				   const xmlChar * name,
+				   const xmlChar * value);
+    extern xmlAttrPtr xmlNewNsPropEatName(xmlNodePtr node, xmlNsPtr ns,
+					  xmlChar * name,
+					  const xmlChar * value);
+    extern xmlNodePtr xmlNewPI(const xmlChar * name,
+			       const xmlChar * content);
+    extern xmlAttrPtr xmlNewProp(xmlNodePtr node, const xmlChar * name,
+				 const xmlChar * value);
+    extern xmlNodePtr xmlNewReference(xmlDocPtr doc, const xmlChar * name);
+    extern xmlNodePtr xmlNewText(const xmlChar * content);
+    extern xmlNodePtr xmlNewTextChild(xmlNodePtr parent, xmlNsPtr ns,
+				      const xmlChar * name,
+				      const xmlChar * content);
+    extern xmlNodePtr xmlNewTextLen(const xmlChar * content, int len);
+    extern void xmlNodeAddContent(xmlNodePtr cur, const xmlChar * content);
+    extern void xmlNodeAddContentLen(xmlNodePtr cur,
+				     const xmlChar * content, int len);
+    extern int xmlNodeBufGetContent(xmlBufferPtr buffer, xmlNodePtr cur);
+    extern int xmlNodeDump(xmlBufferPtr buf, xmlDocPtr doc, xmlNodePtr cur,
+			   int level, int format);
+    extern void xmlNodeDumpOutput(xmlOutputBufferPtr buf, xmlDocPtr doc,
+				  xmlNodePtr cur, int level, int format,
+				  const char *encoding);
+    extern xmlChar *xmlNodeGetBase(xmlDocPtr doc, xmlNodePtr cur);
+    extern xmlChar *xmlNodeGetContent(xmlNodePtr cur);
+    extern xmlChar *xmlNodeGetLang(xmlNodePtr cur);
+    extern int xmlNodeGetSpacePreserve(xmlNodePtr cur);
+    extern int xmlNodeIsText(xmlNodePtr node);
+    extern xmlChar *xmlNodeListGetRawString(xmlDocPtr doc, xmlNodePtr list,
+					    int inLine);
+    extern xmlChar *xmlNodeListGetString(xmlDocPtr doc, xmlNodePtr list,
+					 int inLine);
+    extern void xmlNodeSetBase(xmlNodePtr cur, const xmlChar * uri);
+    extern void xmlNodeSetContent(xmlNodePtr cur, const xmlChar * content);
+    extern void xmlNodeSetContentLen(xmlNodePtr cur,
+				     const xmlChar * content, int len);
+    extern void xmlNodeSetLang(xmlNodePtr cur, const xmlChar * lang);
+    extern void xmlNodeSetName(xmlNodePtr cur, const xmlChar * name);
+    extern void xmlNodeSetSpacePreserve(xmlNodePtr cur, int val);
+    extern int xmlReconciliateNs(xmlDocPtr doc, xmlNodePtr tree);
+    extern int xmlRemoveProp(xmlAttrPtr cur);
+    extern xmlNodePtr xmlReplaceNode(xmlNodePtr old, xmlNodePtr cur);
+    extern int xmlSaveFile(const char *filename, xmlDocPtr cur);
+    extern int xmlSaveFileEnc(const char *filename, xmlDocPtr cur,
+			      const char *encoding);
+    extern int xmlSaveFileTo(xmlOutputBufferPtr buf, xmlDocPtr cur,
+			     const char *encoding);
+    extern int xmlSaveFormatFile(const char *filename, xmlDocPtr cur,
+				 int format);
+    extern int xmlSaveFormatFileEnc(const char *filename, xmlDocPtr cur,
+				    const char *encoding, int format);
+    extern int xmlSaveFormatFileTo(xmlOutputBufferPtr buf, xmlDocPtr cur,
+				   const char *encoding, int format);
+    extern xmlNsPtr xmlSearchNs(xmlDocPtr doc, xmlNodePtr node,
+				const xmlChar * nameSpace);
+    extern xmlNsPtr xmlSearchNsByHref(xmlDocPtr doc, xmlNodePtr node,
+				      const xmlChar * href);
+    extern void xmlSetBufferAllocationScheme(xmlBufferAllocationScheme
+					     scheme);
+    extern void xmlSetCompressMode(int mode);
+    extern void xmlSetDocCompressMode(xmlDocPtr doc, int mode);
+    extern void xmlSetListDoc(xmlNodePtr list, xmlDocPtr doc);
+    extern void xmlSetNs(xmlNodePtr node, xmlNsPtr ns);
+    extern xmlAttrPtr xmlSetNsProp(xmlNodePtr node, xmlNsPtr ns,
+				   const xmlChar * name,
+				   const xmlChar * value);
+    extern xmlAttrPtr xmlSetProp(xmlNodePtr node, const xmlChar * name,
+				 const xmlChar * value);
+    extern void xmlSetTreeDoc(xmlNodePtr tree, xmlDocPtr doc);
+    extern xmlChar *xmlSplitQName2(const xmlChar * name,
+				   xmlChar * *prefix);
+    extern const xmlChar *xmlSplitQName3(const xmlChar * name, int *len);
+    extern xmlNodePtr xmlStringGetNodeList(xmlDocPtr doc,
+					   const xmlChar * value);
+    extern xmlNodePtr xmlStringLenGetNodeList(xmlDocPtr doc,
+					      const xmlChar * value,
+					      int len);
+    extern int xmlTextConcat(xmlNodePtr node, const xmlChar * content,
+			     int len);
+    extern xmlNodePtr xmlTextMerge(xmlNodePtr first, xmlNodePtr second);
+    extern void xmlUnlinkNode(xmlNodePtr cur);
+    extern int xmlUnsetNsProp(xmlNodePtr node, xmlNsPtr ns,
+			      const xmlChar * name);
+    extern int xmlUnsetProp(xmlNodePtr node, const xmlChar * name);
+    extern int xmlValidateNCName(const xmlChar * value, int space);
+    extern int xmlValidateNMToken(const xmlChar * value, int space);
+    extern int xmlValidateName(const xmlChar * value, int space);
+    extern int xmlValidateQName(const xmlChar * value, int space);
 #ifdef __cplusplus
 }
 #endif

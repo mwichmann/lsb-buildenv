@@ -5,18 +5,9 @@
 class QPoint;
 // *INDENT-OFF*
 
-class QPoint
-{
-private:
-public:
-    int manhattanLength() const;
-};
+class QPoint;
 
-class QPointF
-{
-private:
-public:
-};
+class QPointF;
 
 
 /* Function prototypes */

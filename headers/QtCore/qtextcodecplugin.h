@@ -7,19 +7,7 @@ class QTextCodecPlugin;
 
 struct QTextCodecFactoryInterface	;
 
-class QTextCodecPlugin : public QObject, public QTextCodecFactoryInterface
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QTextCodecPlugin(QObject*);
-     ~QTextCodecPlugin();
-private:
-    QStringList keys() const;
-    QTextCodec * create(QString const&);
-};
+class QTextCodecPlugin;
 
 
 /* Function prototypes */

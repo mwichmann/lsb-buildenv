@@ -5,20 +5,16 @@
 class QFile;
 // *INDENT-OFF*
 
-typedef class QFlags<QFile::Permission>
-{
-private:
-public:
-}Permissions	
+typedef class QFlags<QFile::Permission>QFile::Permissions	
 ;
 
-typedef QByteArray EncoderFn	
+typedef class QByteArrayQFile::EncoderFn	
 ;
 
-typedef QString DecoderFn	
+typedef class QStringQFile::DecoderFn	
 ;
 
-typedef enum Permission	
+typedef enum _ZN5QFile10PermissionE	
 {
 ExeOther = 1,	
 WriteOther = 2,	
@@ -33,66 +29,12 @@ ExeOwner = 4096,
 WriteOwner = 8192,	
 ReadOwner = 16384
 }
-PermissionSpec	
+QFile::PermissionSpec	
 ;
 
-class QFile : public QIODevice
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QFile();
-     QFile(QString const&);
-     QFile(QObject*);
-     QFile(QString const&, QObject*);
-     ~QFile();
-    enum _ZN5QFile9FileErrorE error() const;
-    void unsetError();
-    QString fileName() const;
-    void setFileName(QString const&);
-    static QByteArray encodeName(QString const&);
-    static QString decodeName(QByteArray const&);
-    static void setEncodingFunction(QByteArray (*)(QString const&));
-    static void setDecodingFunction(QString (*)(QByteArray const&));
-    bool exists() const;
-    static bool exists(QString const&);
-    QString readLink() const;
-    static QString readLink(QString const&);
-    bool remove();
-    static bool remove(QString const&);
-    bool rename(QString const&);
-    static bool rename(QString const&, QString const&);
-    bool link(QString const&);
-    static bool link(QString const&, QString const&);
-    bool copy(QString const&);
-    static bool copy(QString const&, QString const&);
-    bool isSequential() const;
-    bool open(QFlags<QIODevice::OpenModeFlag>);
-    bool open(_IO_FILE*, QFlags<QIODevice::OpenModeFlag>);
-    bool open(int, QFlags<QIODevice::OpenModeFlag>);
-    void close();
-    qint64 size() const;
-    qint64 pos() const;
-    bool seek(long long);
-    bool atEnd() const;
-    bool flush();
-    bool resize(long long);
-    static bool resize(QString const&, long long);
-    QFlags<QFile::Permission> permissions() const;
-    static QFlags<QFile::Permission> permissions(QString const&);
-    bool setPermissions(QFlags<QFile::Permission>);
-    static bool setPermissions(QString const&, QFlags<QFile::Permission>);
-    int handle() const;
-     fileEngine() const;
-protected:
-    qint64 readData(char*, long long);
-    qint64 writeData(char const*, long long);
-    qint64 readLineData(char*, long long);
-};
+class QFile;
 
-enum FileError	
+enum _ZN5QFile9FileErrorE	
 {
 NoError = 0,	
 ReadError = 1,	
@@ -113,7 +55,7 @@ ConnectError = 30
 }
 ;
 
-enum Permission	
+enum _ZN5QFile10PermissionE	
 {
 ExeOther = 1,	
 WriteOther = 2,	
@@ -130,11 +72,7 @@ ReadOwner = 16384
 }
 ;
 
-class QFlags<QFile::Permission>
-{
-private:
-public:
-};
+class QFlags<QFile::Permission>;
 
 
 /* Function prototypes */

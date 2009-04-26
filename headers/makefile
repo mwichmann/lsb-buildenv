@@ -1,23 +1,17 @@
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 
-LSBVERSION=$(shell cat LSB_VERSION)
-DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
-VERSIONS=$(shell cat lsb_versions)
+all: 
 
-all: $(foreach archver,$(VERSIONS),headers-$(archver))
+gensrc: core_filelist desktop_filelist datadefs
 
-devel: $(foreach archver,$(DEVEL_VERSIONS),headers-$(archver))
+datadefs: $(foreach archver,$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVvalue>='3.0'" | grep -v Aname | sed s/\\t/_/g),headers-$(archver))
+
+devel: lsb_versions $(foreach archver,$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVreleased='No'" | grep -v Aname | sed s/\\t/_/g),headers-$(archver))
 
 headers-%: $(foreach headerfile,$(shell ./getheaderlist),%/$(headerfile).defs)
 	@echo Made header files for $*
 
-gensrc: lsb_versions core_filelist desktop_filelist
-
-lsb_versions:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVvalue>='3.0'" | grep -v Aname | sed s/\\t/_/g >lsb_versions
-	mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVreleased='No'" | grep -v Aname | sed s/\\t/_/g >lsb_devel_versions
-
-core_filelist desktop_filelist: lsb_versions
+core_filelist desktop_filelist:
 	cd .. && ./mkfilelists
 
 %.defs: 
@@ -55,7 +49,7 @@ clean:
 	find . -name '*.txt' -print | xargs rm -f
 
 distclean: clean
-	rm -f core_filelist* desktop_filelist* lsb_versions lsb_devel_versions
+	rm -f core_filelist* desktop_filelist*
 
 .SECONDARY:
 

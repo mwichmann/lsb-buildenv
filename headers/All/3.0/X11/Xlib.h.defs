@@ -326,7 +326,11 @@ typedef struct _XGC *GC;
 typedef struct {
     XExtData *ext_data;
     VisualID visualid;
+#if defined(__cplusplus) || defined(c_plusplus)
     int c_class;
+#else
+    int class;
+#endif
     unsigned long int red_mask;
     unsigned long int green_mask;
     unsigned long int blue_mask;
@@ -396,7 +400,11 @@ typedef struct {
     int depth;
     Visual *visual;
     Window root;
+#if defined(__cplusplus) || defined(c_plusplus)
     int c_class;
+#else
+    int class;
+#endif
     int bit_gravity;
     int win_gravity;
     int backing_store;
@@ -877,7 +885,11 @@ typedef struct {
     Display *display;
     Window window;
     Colormap colormap;
+#if defined(__cplusplus) || defined(c_plusplus)
     int c_new;
+#else
+    int new;
+#endif
     int state;
 } XColormapEvent;
 typedef struct {
@@ -1066,7 +1078,13 @@ typedef struct {
     int charset_count;
     char **charset_list;
 } XOMCharSetList;
-typedef enum XOrientation;
+typedef enum {
+    XOMOrientation_LTR_TTB = 0,
+    XOMOrientation_RTL_TTB = 1,
+    XOMOrientation_TTB_LTR = 2,
+    XOMOrientation_TTB_RTL = 3,
+    XOMOrientation_Context = 4
+} XOrientation;
 typedef struct {
     int num_font;
     XFontStruct **font_struct_list;
@@ -1131,8 +1149,7 @@ extern int XChangeSaveSet(Display *, Window, int);
 extern int XChangeWindowAttributes(Display *, Window, unsigned long int,
 				   XSetWindowAttributes *);
 extern int XCheckIfEvent(Display *, XEvent *,
-			 int (*)(Display *, XEvent *, XPointer)
-			 , XPointer);
+			 int (*)(Display *, XEvent *, XPointer), XPointer);
 extern int XCheckMaskEvent(Display *, long int, XEvent *);
 extern int XCheckTypedEvent(Display *, int, XEvent *);
 extern int XCheckTypedWindowEvent(Display *, Window, int, XEvent *);
@@ -1250,69 +1267,79 @@ extern XExtData **XEHeadOfExtensionList(XEDataObject);
 extern
     void (*XESetBeforeFlush
 	  (Display *, int,
-	   void (*XESetBeforeFlush) (Display *, XExtCodes *, const char *,
-				     long int)
-	  )) (Display *, XExtCodes *, const char *, long int);
+	   void (*)(Display *, XExtCodes *, const char *,
+		    long int))) (Display *, XExtCodes *, const char *,
+				 long int);
 extern
     int (*XESetCloseDisplay
-	 (Display *, int, int (*XESetCloseDisplay) (Display *, XExtCodes *)
-	 )) (Display *, XExtCodes *);
+	 (Display *, int, int (*)(Display *, XExtCodes *))) (Display *,
+							     XExtCodes *);
 extern
-    int (*XESetCopyGC
-	 (Display *, int, int (*XESetCopyGC) (Display *, GC, XExtCodes *)
-	 )) (Display *, GC, XExtCodes *);
+    int (*XESetCopyGC(Display *, int, int (*)(Display *, GC, XExtCodes *)))
+    (Display *, GC, XExtCodes *);
 extern
     int (*XESetCreateFont
 	 (Display *, int,
-	  int (*XESetCreateFont) (Display *, XFontStruct *, XExtCodes *)
-	 )) (Display *, XFontStruct *, XExtCodes *);
+	  int (*)(Display *, XFontStruct *, XExtCodes *))) (Display *,
+							    XFontStruct *,
+							    XExtCodes *);
 extern
     int (*XESetCreateGC
-	 (Display *, int, int (*XESetCreateGC) (Display *, GC, XExtCodes *)
-	 )) (Display *, GC, XExtCodes *);
+	 (Display *, int, int (*)(Display *, GC, XExtCodes *))) (Display *,
+								 GC,
+								 XExtCodes
+								 *);
 extern
     int (*XESetError
 	 (Display *, int,
-	  int (*XESetError) (Display *, xError *, XExtCodes *, int *)
-	 )) (Display *, xError *, XExtCodes *, int *);
+	  int (*)(Display *, xError *, XExtCodes *, int *))) (Display *,
+							      xError *,
+							      XExtCodes *,
+							      int *);
 extern char
     *(*XESetErrorString
       (Display *, int,
-       char *(*XESetErrorString) (Display *, int, XExtCodes *, char *, int)
-      )) (Display *, int, XExtCodes *, char *, int);
+       char *(*)(Display *, int, XExtCodes *, char *, int))) (Display *,
+							      int,
+							      XExtCodes *,
+							      char *, int);
 extern
     int (*XESetEventToWire
 	 (Display *, int,
-	  int (*XESetEventToWire) (Display *, XEvent *, xEvent *)
-	 )) (Display *, XEvent *, xEvent *);
+	  int (*)(Display *, XEvent *, xEvent *))) (Display *, XEvent *,
+						    xEvent *);
 extern
     int (*XESetFlushGC
-	 (Display *, int, int (*XESetFlushGC) (Display *, GC, XExtCodes *)
-	 )) (Display *, GC, XExtCodes *);
+	 (Display *, int, int (*)(Display *, GC, XExtCodes *))) (Display *,
+								 GC,
+								 XExtCodes
+								 *);
 extern
     int (*XESetFreeFont
 	 (Display *, int,
-	  int (*XESetFreeFont) (Display *, XFontStruct *, XExtCodes *)
-	 )) (Display *, XFontStruct *, XExtCodes *);
+	  int (*)(Display *, XFontStruct *, XExtCodes *))) (Display *,
+							    XFontStruct *,
+							    XExtCodes *);
 extern
-    int (*XESetFreeGC
-	 (Display *, int, int (*XESetFreeGC) (Display *, GC, XExtCodes *)
-	 )) (Display *, GC, XExtCodes *);
+    int (*XESetFreeGC(Display *, int, int (*)(Display *, GC, XExtCodes *)))
+    (Display *, GC, XExtCodes *);
 extern
     void (*XESetPrintErrorValues
 	  (Display *, int,
-	   void (*XESetPrintErrorValues) (Display *, XErrorEvent *, void *)
-	  )) (Display *, XErrorEvent *, void *);
+	   void (*)(Display *, XErrorEvent *, void *))) (Display *,
+							 XErrorEvent *,
+							 void *);
 extern
     int (*XESetWireToError
 	 (Display *, int,
-	  int (*XESetWireToError) (Display *, XErrorEvent *, xError *)
-	 )) (Display *, XErrorEvent *, xError *);
+	  int (*)(Display *, XErrorEvent *, xError *))) (Display *,
+							 XErrorEvent *,
+							 xError *);
 extern
     int (*XESetWireToEvent
 	 (Display *, int,
-	  int (*XESetWireToEvent) (Display *, XEvent *, xEvent *)
-	 )) (Display *, XEvent *, xEvent *);
+	  int (*)(Display *, XEvent *, xEvent *))) (Display *, XEvent *,
+						    xEvent *);
 extern int XEnableAccessControl(Display *);
 extern long int XEventMaskOfScreen(Screen *);
 extern int XEventsQueued(Display *, int);
@@ -1405,8 +1432,7 @@ extern int XHeightOfScreen(Screen *);
 extern XIM XIMOfIC(XIC);
 extern int XIconifyWindow(Display *, Window, int);
 extern int XIfEvent(Display *, XEvent *,
-		    int (*)(Display *, XEvent *, XPointer)
-		    , XPointer);
+		    int (*)(Display *, XEvent *, XPointer), XPointer);
 extern int XImageByteOrder(Display *);
 extern XExtCodes *XInitExtension(Display *, const char *);
 extern int XInitImage(XImage *);
@@ -1465,8 +1491,7 @@ extern int XParseGeometry(const char *, int *, int *, unsigned int *,
 			  unsigned int *);
 extern int XPeekEvent(Display *, XEvent *);
 extern int XPeekIfEvent(Display *, XEvent *,
-			int (*)(Display *, XEvent *, XPointer)
-			, XPointer);
+			int (*)(Display *, XEvent *, XPointer), XPointer);
 extern int XPending(Display *);
 extern int XPlanesOfScreen(Screen *);
 extern void XProcessInternalConnection(Display *, int);
@@ -1536,9 +1561,7 @@ extern int XSelectInput(Display *, Window, long int);
 extern int XSendEvent(Display *, Window, int, long int, XEvent *);
 extern char *XServerVendor(Display *);
 extern int XSetAccessControl(Display *, int);
-extern
-    int (*XSetAfterFunction(Display *, int (*XSetAfterFunction) (Display *)
-	 )) (Display *);
+extern int (*XSetAfterFunction(Display *, int (*)(Display *))) (Display *);
 extern int XSetArcMode(Display *, GC, int);
 extern void XSetAuthorization(char *, int, char *, int);
 extern int XSetBackground(Display *, GC, unsigned long int);

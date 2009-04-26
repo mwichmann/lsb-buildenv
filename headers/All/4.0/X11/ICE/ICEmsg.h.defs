@@ -71,6 +71,6 @@
  _iceConn->inbufptr += (_headerSize - SIZEOF (iceMsg));\
  }
 
-extern void _IceWrite(IceConn, unsigned long int, char *);
-extern void _IceReadSkip(IceConn, unsigned long int);
 extern int _IceRead(IceConn, unsigned long int, char *);
+extern void _IceReadSkip(IceConn, unsigned long int);
+extern void _IceWrite(IceConn, unsigned long int, char *);

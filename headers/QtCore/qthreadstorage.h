@@ -5,16 +5,7 @@
 class QThreadStorageData;
 // *INDENT-OFF*
 
-class QThreadStorageData
-{
-private:
-public:
-     QThreadStorageData(void (*)(void*));
-     ~QThreadStorageData();
-    void * * get() const;
-    void * * set(void*);
-    static void finish(void**);
-};
+class QThreadStorageData;
 
 // *INDENT-ON*
 #endif				/* protection */

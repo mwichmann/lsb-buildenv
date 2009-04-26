@@ -5,32 +5,13 @@
 class QAbstractEventDispatcher;
 // *INDENT-OFF*
 
-typedef struct QPair<int, int>	TimerInfo	
+typedef struct QPair<int, int>	QAbstractEventDispatcher::TimerInfo	
 ;
 
-typedef bool	EventFilter	
+typedef bool	QAbstractEventDispatcher::EventFilter	
 ;
 
-class QAbstractEventDispatcher : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QAbstractEventDispatcher(QObject*);
-     ~QAbstractEventDispatcher();
-    static  instance(QThread*);
-    int registerTimer(int, QObject*);
-    void startingUp();
-    void closingDown();
-    bool(*)(void	* )
- setEventFilter(bool (*)(void*));
-    bool filterEvent(void*);
-protected:
-    void aboutToBlock();
-    void awake();
-};
+class QAbstractEventDispatcher;
 
 
 /* Function prototypes */

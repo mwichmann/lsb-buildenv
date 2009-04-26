@@ -1,9 +1,9 @@
 
 #define NARROWPROTO
-#define NeedWidePrototypes	0
 #define NeedFunctionPrototypes	1
 #define NeedNestedPrototypes	1
 #define NeedVarargsPrototypes	1
+#define NeedWidePrototypes	1
 #define FUNCPROTO	15
 #define _Xconst	const
 #ifdef __cplusplus

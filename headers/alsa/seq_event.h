@@ -119,18 +119,15 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-
     struct snd_seq_addr {
 	unsigned char client;
 	unsigned char port;
     };
 
-
     struct snd_seq_connect {
 	snd_seq_addr_t sender;
 	snd_seq_addr_t dest;
     };
-
 
     struct snd_seq_ev_ctrl {
 	unsigned char channel;
@@ -139,12 +136,10 @@ extern "C" {
 	int value;
     };
 
-
     struct snd_seq_ev_ext {
 	unsigned int len;
 	void *ptr;
     };
-
 
     struct snd_seq_ev_note {
 	unsigned char channel;
@@ -153,7 +148,6 @@ extern "C" {
 	unsigned char off_velocity;
 	unsigned int duration;
     };
-
 
     struct snd_seq_ev_queue_control {
 	unsigned char queue;
@@ -168,16 +162,13 @@ extern "C" {
 	} param;
     };
 
-
     struct snd_seq_ev_raw32 {
 	unsigned int d[3];
     };
 
-
     struct snd_seq_ev_raw8 {
 	unsigned char d[12];
     };
-
 
     struct snd_seq_event {
 	snd_seq_event_type_t type;
@@ -202,22 +193,18 @@ extern "C" {
     };
 
 #if __LSB_VERSION__ < 40
-
     struct snd_seq_ev_cluster {
 	snd_seq_instr_cluster_t cluster;
     };
-
 
     struct snd_seq_ev_instr_begin {
 	int timeout;
     };
 
-
     struct snd_seq_ev_loop {
 	unsigned int start;
 	unsigned int end;
     };
-
 
     struct snd_seq_ev_sample_control {
 	unsigned char channel;
@@ -233,7 +220,6 @@ extern "C" {
 	    unsigned char raw8[8];	/* raw 8-bit */
 	} param;
     };
-
 
     struct snd_seq_instr {
 	snd_seq_instr_cluster_t cluster;

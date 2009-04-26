@@ -273,21 +273,24 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int creat(const char *, mode_t);
-    extern int creat64(const char *, mode_t);
-    extern int fcntl(int, int, ...);
-    extern int open(const char *, int, ...);
-    extern int open64(const char *, int, ...);
+    extern int creat(const char *__file, mode_t __mode);
+    extern int creat64(const char *__file, mode_t __mode);
+    extern int fcntl(int __fd, int __cmd, ...);
+    extern int open(const char *__file, int __oflag, ...);
+    extern int open64(const char *__file, int __oflag, ...);
 #if __LSB_VERSION__ >= 32
-    extern int posix_fadvise(int, off_t, off_t, int);
-    extern int posix_fadvise64(int, off64_t, off64_t, int);
-    extern int posix_fallocate(int, off_t, off_t);
-    extern int posix_fallocate64(int, off64_t, off64_t);
+    extern int posix_fadvise(int __fd, off_t __offset, off_t __len,
+			     int __advise);
+    extern int posix_fadvise64(int __fd, off64_t __offset, off64_t __len,
+			       int __advise);
+    extern int posix_fallocate(int __fd, off_t __offset, off_t __len);
+    extern int posix_fallocate64(int __fd, off64_t __offset,
+				 off64_t __len);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int openat(int, const char *, int, ...);
-    extern int openat64(int, const char *, int, ...);
+    extern int openat(int __fd, const char *__file, int __oflag, ...);
+    extern int openat64(int __fd, const char *__file, int __oflag, ...);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

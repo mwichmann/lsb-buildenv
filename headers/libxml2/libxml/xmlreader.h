@@ -69,127 +69,156 @@ extern "C" {
     } xmlTextReaderMode;
 
 
-
-
 /* Function prototypes */
 
-    extern void xmlFreeTextReader(xmlTextReaderPtr);
-    extern xmlTextReaderPtr xmlNewTextReader(xmlParserInputBufferPtr,
-					     const char *);
-    extern xmlTextReaderPtr xmlNewTextReaderFilename(const char *);
-    extern xmlTextReaderPtr xmlReaderForDoc(const xmlChar *, const char *,
-					    const char *, int);
-    extern xmlTextReaderPtr xmlReaderForFd(int, const char *, const char *,
-					   int);
-    extern xmlTextReaderPtr xmlReaderForFile(const char *, const char *,
-					     int);
-    extern xmlTextReaderPtr xmlReaderForIO(xmlInputReadCallback,
-					   xmlInputCloseCallback, void *,
-					   const char *, const char *,
-					   int);
-    extern xmlTextReaderPtr xmlReaderForMemory(const char *, int,
-					       const char *, const char *,
-					       int);
-    extern int xmlReaderNewDoc(xmlTextReaderPtr, const xmlChar *,
-			       const char *, const char *, int);
-    extern int xmlReaderNewFd(xmlTextReaderPtr, int, const char *,
-			      const char *, int);
-    extern int xmlReaderNewFile(xmlTextReaderPtr, const char *,
-				const char *, int);
-    extern int xmlReaderNewIO(xmlTextReaderPtr, xmlInputReadCallback,
-			      xmlInputCloseCallback, void *, const char *,
-			      const char *, int);
-    extern int xmlReaderNewMemory(xmlTextReaderPtr, const char *, int,
-				  const char *, const char *, int);
-    extern int xmlReaderNewWalker(xmlTextReaderPtr, xmlDocPtr);
-    extern xmlTextReaderPtr xmlReaderWalker(xmlDocPtr);
-    extern int xmlTextReaderAttributeCount(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderBaseUri(xmlTextReaderPtr);
-    extern long int xmlTextReaderByteConsumed(xmlTextReaderPtr);
-    extern int xmlTextReaderClose(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstBaseUri(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstEncoding(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstLocalName(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstName(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstNamespaceUri(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstPrefix(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstString(xmlTextReaderPtr,
-						   const xmlChar *);
-    extern const xmlChar *xmlTextReaderConstValue(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstXmlLang(xmlTextReaderPtr);
-    extern const xmlChar *xmlTextReaderConstXmlVersion(xmlTextReaderPtr);
-    extern xmlDocPtr xmlTextReaderCurrentDoc(xmlTextReaderPtr);
-    extern xmlNodePtr xmlTextReaderCurrentNode(xmlTextReaderPtr);
-    extern int xmlTextReaderDepth(xmlTextReaderPtr);
-    extern xmlNodePtr xmlTextReaderExpand(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderGetAttribute(xmlTextReaderPtr,
-					      const xmlChar *);
-    extern xmlChar *xmlTextReaderGetAttributeNo(xmlTextReaderPtr, int);
-    extern xmlChar *xmlTextReaderGetAttributeNs(xmlTextReaderPtr,
-						const xmlChar *,
-						const xmlChar *);
-    extern void xmlTextReaderGetErrorHandler(xmlTextReaderPtr,
-					     xmlTextReaderErrorFunc *,
-					     void **);
-    extern int xmlTextReaderGetParserColumnNumber(xmlTextReaderPtr);
-    extern int xmlTextReaderGetParserLineNumber(xmlTextReaderPtr);
-    extern int xmlTextReaderGetParserProp(xmlTextReaderPtr, int);
+    extern void xmlFreeTextReader(xmlTextReaderPtr reader);
+    extern xmlTextReaderPtr xmlNewTextReader(xmlParserInputBufferPtr input,
+					     const char *URI);
+    extern xmlTextReaderPtr xmlNewTextReaderFilename(const char *URI);
+    extern xmlTextReaderPtr xmlReaderForDoc(const xmlChar * cur,
+					    const char *URL,
+					    const char *encoding,
+					    int options);
+    extern xmlTextReaderPtr xmlReaderForFd(int fd, const char *URL,
+					   const char *encoding,
+					   int options);
+    extern xmlTextReaderPtr xmlReaderForFile(const char *filename,
+					     const char *encoding,
+					     int options);
+    extern xmlTextReaderPtr xmlReaderForIO(xmlInputReadCallback ioread,
+					   xmlInputCloseCallback ioclose,
+					   void *ioctx, const char *URL,
+					   const char *encoding,
+					   int options);
+    extern xmlTextReaderPtr xmlReaderForMemory(const char *buffer,
+					       int size, const char *URL,
+					       const char *encoding,
+					       int options);
+    extern int xmlReaderNewDoc(xmlTextReaderPtr reader,
+			       const xmlChar * cur, const char *URL,
+			       const char *encoding, int options);
+    extern int xmlReaderNewFd(xmlTextReaderPtr reader, int fd,
+			      const char *URL, const char *encoding,
+			      int options);
+    extern int xmlReaderNewFile(xmlTextReaderPtr reader,
+				const char *filename, const char *encoding,
+				int options);
+    extern int xmlReaderNewIO(xmlTextReaderPtr reader,
+			      xmlInputReadCallback ioread,
+			      xmlInputCloseCallback ioclose, void *ioctx,
+			      const char *URL, const char *encoding,
+			      int options);
+    extern int xmlReaderNewMemory(xmlTextReaderPtr reader,
+				  const char *buffer, int size,
+				  const char *URL, const char *encoding,
+				  int options);
+    extern int xmlReaderNewWalker(xmlTextReaderPtr reader, xmlDocPtr doc);
+    extern xmlTextReaderPtr xmlReaderWalker(xmlDocPtr doc);
+    extern int xmlTextReaderAttributeCount(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderBaseUri(xmlTextReaderPtr reader);
+    extern long int xmlTextReaderByteConsumed(xmlTextReaderPtr reader);
+    extern int xmlTextReaderClose(xmlTextReaderPtr reader);
+    extern const xmlChar *xmlTextReaderConstBaseUri(xmlTextReaderPtr
+						    reader);
+    extern const xmlChar *xmlTextReaderConstEncoding(xmlTextReaderPtr
+						     reader);
+    extern const xmlChar *xmlTextReaderConstLocalName(xmlTextReaderPtr
+						      reader);
+    extern const xmlChar *xmlTextReaderConstName(xmlTextReaderPtr reader);
+    extern const xmlChar *xmlTextReaderConstNamespaceUri(xmlTextReaderPtr
+							 reader);
+    extern const xmlChar *xmlTextReaderConstPrefix(xmlTextReaderPtr
+						   reader);
+    extern const xmlChar *xmlTextReaderConstString(xmlTextReaderPtr reader,
+						   const xmlChar * str);
+    extern const xmlChar *xmlTextReaderConstValue(xmlTextReaderPtr reader);
+    extern const xmlChar *xmlTextReaderConstXmlLang(xmlTextReaderPtr
+						    reader);
+    extern const xmlChar *xmlTextReaderConstXmlVersion(xmlTextReaderPtr
+						       reader);
+    extern xmlDocPtr xmlTextReaderCurrentDoc(xmlTextReaderPtr reader);
+    extern xmlNodePtr xmlTextReaderCurrentNode(xmlTextReaderPtr reader);
+    extern int xmlTextReaderDepth(xmlTextReaderPtr reader);
+    extern xmlNodePtr xmlTextReaderExpand(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderGetAttribute(xmlTextReaderPtr reader,
+					      const xmlChar * name);
+    extern xmlChar *xmlTextReaderGetAttributeNo(xmlTextReaderPtr reader,
+						int no);
+    extern xmlChar *xmlTextReaderGetAttributeNs(xmlTextReaderPtr reader,
+						const xmlChar * localName,
+						const xmlChar *
+						namespaceURI);
+    extern void xmlTextReaderGetErrorHandler(xmlTextReaderPtr reader,
+					     xmlTextReaderErrorFunc * f,
+					     void **arg);
+    extern int xmlTextReaderGetParserColumnNumber(xmlTextReaderPtr reader);
+    extern int xmlTextReaderGetParserLineNumber(xmlTextReaderPtr reader);
+    extern int xmlTextReaderGetParserProp(xmlTextReaderPtr reader,
+					  int prop);
     extern xmlParserInputBufferPtr
-	xmlTextReaderGetRemainder(xmlTextReaderPtr);
-    extern int xmlTextReaderHasAttributes(xmlTextReaderPtr);
-    extern int xmlTextReaderHasValue(xmlTextReaderPtr);
-    extern int xmlTextReaderIsDefault(xmlTextReaderPtr);
-    extern int xmlTextReaderIsEmptyElement(xmlTextReaderPtr);
-    extern int xmlTextReaderIsNamespaceDecl(xmlTextReaderPtr);
-    extern int xmlTextReaderIsValid(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderLocalName(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderLocatorBaseURI(xmlTextReaderLocatorPtr);
-    extern int xmlTextReaderLocatorLineNumber(xmlTextReaderLocatorPtr);
-    extern xmlChar *xmlTextReaderLookupNamespace(xmlTextReaderPtr,
-						 const xmlChar *);
-    extern int xmlTextReaderMoveToAttribute(xmlTextReaderPtr,
-					    const xmlChar *);
-    extern int xmlTextReaderMoveToAttributeNo(xmlTextReaderPtr, int);
-    extern int xmlTextReaderMoveToAttributeNs(xmlTextReaderPtr,
-					      const xmlChar *,
-					      const xmlChar *);
-    extern int xmlTextReaderMoveToElement(xmlTextReaderPtr);
-    extern int xmlTextReaderMoveToFirstAttribute(xmlTextReaderPtr);
-    extern int xmlTextReaderMoveToNextAttribute(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderName(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderNamespaceUri(xmlTextReaderPtr);
-    extern int xmlTextReaderNext(xmlTextReaderPtr);
-    extern int xmlTextReaderNextSibling(xmlTextReaderPtr);
-    extern int xmlTextReaderNodeType(xmlTextReaderPtr);
-    extern int xmlTextReaderNormalization(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderPrefix(xmlTextReaderPtr);
-    extern xmlNodePtr xmlTextReaderPreserve(xmlTextReaderPtr);
-    extern int xmlTextReaderPreservePattern(xmlTextReaderPtr,
-					    const xmlChar *,
-					    const xmlChar * *);
-    extern int xmlTextReaderQuoteChar(xmlTextReaderPtr);
-    extern int xmlTextReaderRead(xmlTextReaderPtr);
-    extern int xmlTextReaderReadAttributeValue(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderReadInnerXml(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderReadOuterXml(xmlTextReaderPtr);
-    extern int xmlTextReaderReadState(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderReadString(xmlTextReaderPtr);
-    extern int xmlTextReaderRelaxNGSetSchema(xmlTextReaderPtr,
-					     xmlRelaxNGPtr);
-    extern int xmlTextReaderRelaxNGValidate(xmlTextReaderPtr,
-					    const char *);
-    extern int xmlTextReaderSchemaValidate(xmlTextReaderPtr, const char *);
-    extern void xmlTextReaderSetErrorHandler(xmlTextReaderPtr,
-					     xmlTextReaderErrorFunc,
-					     void *);
-    extern int xmlTextReaderSetParserProp(xmlTextReaderPtr, int, int);
-    extern int xmlTextReaderSetSchema(xmlTextReaderPtr, xmlSchemaPtr);
-    extern void xmlTextReaderSetStructuredErrorHandler(xmlTextReaderPtr,
-						       xmlStructuredErrorFunc,
-						       void *);
-    extern int xmlTextReaderStandalone(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderValue(xmlTextReaderPtr);
-    extern xmlChar *xmlTextReaderXmlLang(xmlTextReaderPtr);
+	xmlTextReaderGetRemainder(xmlTextReaderPtr reader);
+    extern int xmlTextReaderHasAttributes(xmlTextReaderPtr reader);
+    extern int xmlTextReaderHasValue(xmlTextReaderPtr reader);
+    extern int xmlTextReaderIsDefault(xmlTextReaderPtr reader);
+    extern int xmlTextReaderIsEmptyElement(xmlTextReaderPtr reader);
+    extern int xmlTextReaderIsNamespaceDecl(xmlTextReaderPtr reader);
+    extern int xmlTextReaderIsValid(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderLocalName(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderLocatorBaseURI(xmlTextReaderLocatorPtr
+						locator);
+    extern int xmlTextReaderLocatorLineNumber(xmlTextReaderLocatorPtr
+					      locator);
+    extern xmlChar *xmlTextReaderLookupNamespace(xmlTextReaderPtr reader,
+						 const xmlChar * prefix);
+    extern int xmlTextReaderMoveToAttribute(xmlTextReaderPtr reader,
+					    const xmlChar * name);
+    extern int xmlTextReaderMoveToAttributeNo(xmlTextReaderPtr reader,
+					      int no);
+    extern int xmlTextReaderMoveToAttributeNs(xmlTextReaderPtr reader,
+					      const xmlChar * localName,
+					      const xmlChar *
+					      namespaceURI);
+    extern int xmlTextReaderMoveToElement(xmlTextReaderPtr reader);
+    extern int xmlTextReaderMoveToFirstAttribute(xmlTextReaderPtr reader);
+    extern int xmlTextReaderMoveToNextAttribute(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderName(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderNamespaceUri(xmlTextReaderPtr reader);
+    extern int xmlTextReaderNext(xmlTextReaderPtr reader);
+    extern int xmlTextReaderNextSibling(xmlTextReaderPtr reader);
+    extern int xmlTextReaderNodeType(xmlTextReaderPtr reader);
+    extern int xmlTextReaderNormalization(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderPrefix(xmlTextReaderPtr reader);
+    extern xmlNodePtr xmlTextReaderPreserve(xmlTextReaderPtr reader);
+    extern int xmlTextReaderPreservePattern(xmlTextReaderPtr reader,
+					    const xmlChar * pattern,
+					    const xmlChar * *namespaces);
+    extern int xmlTextReaderQuoteChar(xmlTextReaderPtr reader);
+    extern int xmlTextReaderRead(xmlTextReaderPtr reader);
+    extern int xmlTextReaderReadAttributeValue(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderReadInnerXml(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderReadOuterXml(xmlTextReaderPtr reader);
+    extern int xmlTextReaderReadState(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderReadString(xmlTextReaderPtr reader);
+    extern int xmlTextReaderRelaxNGSetSchema(xmlTextReaderPtr reader,
+					     xmlRelaxNGPtr schema);
+    extern int xmlTextReaderRelaxNGValidate(xmlTextReaderPtr reader,
+					    const char *rng);
+    extern int xmlTextReaderSchemaValidate(xmlTextReaderPtr reader,
+					   const char *xsd);
+    extern void xmlTextReaderSetErrorHandler(xmlTextReaderPtr reader,
+					     xmlTextReaderErrorFunc f,
+					     void *arg);
+    extern int xmlTextReaderSetParserProp(xmlTextReaderPtr reader,
+					  int prop, int value);
+    extern int xmlTextReaderSetSchema(xmlTextReaderPtr reader,
+				      xmlSchemaPtr schema);
+    extern void xmlTextReaderSetStructuredErrorHandler(xmlTextReaderPtr
+						       reader,
+						       xmlStructuredErrorFunc
+						       f, void *arg);
+    extern int xmlTextReaderStandalone(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderValue(xmlTextReaderPtr reader);
+    extern xmlChar *xmlTextReaderXmlLang(xmlTextReaderPtr reader);
 #ifdef __cplusplus
 }
 #endif

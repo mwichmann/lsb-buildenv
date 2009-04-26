@@ -5,34 +5,9 @@
 class QKeySequence;
 // *INDENT-OFF*
 
-class QKeySequence
-{
-private:
-public:
-     QKeySequence();
-     QKeySequence(QString const&);
-     QKeySequence(int, int, int, int);
-     QKeySequence(QKeySequence const&);
-     ~QKeySequence();
-    uint count() const;
-    bool isEmpty() const;
-    QString toString(QKeySequence::SequenceFormat) const;
-    QKeySequence fromString(QString const&, QKeySequence::SequenceFormat);
-    enum _ZN12QKeySequence13SequenceMatchE matches(QKeySequence const&) const;
-    QKeySequence mnemonic(QString const&);
-    QString operator QString() const;
-    QVariant operator QVariant() const;
-    int operator int() const;
-    int operator[](unsigned int) const;
-    QKeySequence & operator=(QKeySequence const&);
-    bool operator==(QKeySequence const&) const;
-    bool operator<(QKeySequence const&) const;
-    bool isDetached() const;
-     QKeySequence(QKeySequence::StandardKey);
-    QList<QKeySequence> keyBindings(QKeySequence::StandardKey);
-};
+class QKeySequence;
 
-enum SequenceMatch	
+enum _ZN12QKeySequence13SequenceMatchE	
 {
 NoMatch = 0,	
 PartialMatch = 1,	
@@ -41,7 +16,7 @@ Identical = 2
 }
 ;
 
-enum SequenceFormat	
+enum _ZN12QKeySequence14SequenceFormatE	
 {
 NativeText = 0,	
 PortableText = 1

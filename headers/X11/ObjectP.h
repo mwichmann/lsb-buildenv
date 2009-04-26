@@ -34,7 +34,6 @@ extern "C" {
 
     typedef ObjectClassExtensionRec *ObjectClassExtension;
 
-
     struct _ObjectPart {
 	Widget self;
 	WidgetClass widget_class;
@@ -45,11 +44,9 @@ extern "C" {
 	XtPointer constraints;
     };
 
-
     struct _ObjectRec {
 	ObjectPart object;
     };
-
 
     struct _ObjectClassPart {
 	WidgetClass superclass;
@@ -95,7 +92,6 @@ extern "C" {
 
 
     typedef struct _ObjectClassRec ObjectClassRec;
-
 
     struct _ObjectClassRec {
 	ObjectClassPart object_class;

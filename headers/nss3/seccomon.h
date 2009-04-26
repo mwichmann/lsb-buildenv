@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define _SECCOMMON_H_
+
+
     typedef enum {
 	siBuffer,
 	siClearDataBuffer = 1,
@@ -40,7 +43,6 @@ extern "C" {
 	SECEqual,
 	SECGreaterThan = 1
     } SECComparison;
-
 
     struct SECItemStr {
 	SECItemType type;

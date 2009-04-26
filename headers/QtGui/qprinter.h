@@ -5,77 +5,9 @@
 class QPrinter;
 // *INDENT-OFF*
 
-class QPrinter : public QPaintDevice
-{
-private:
-public:
-     QPrinter(QPrinter::PrinterMode);
-     ~QPrinter();
-    int devType() const;
-    void setOutputFormat(QPrinter::OutputFormat);
-    enum _ZN8QPrinter12OutputFormatE outputFormat() const;
-    void setPrinterName(QString const&);
-    QString printerName() const;
-    void setOutputFileName(QString const&);
-    QString outputFileName() const;
-    void setPrintProgram(QString const&);
-    QString printProgram() const;
-    void setDocName(QString const&);
-    QString docName() const;
-    void setCreator(QString const&);
-    QString creator() const;
-    void setOrientation(QPrinter::Orientation);
-    enum _ZN8QPrinter11OrientationE orientation() const;
-    void setPageSize(QPrinter::PageSize);
-    enum _ZN8QPrinter8PageSizeE pageSize() const;
-    void setPageOrder(QPrinter::PageOrder);
-    enum _ZN8QPrinter9PageOrderE pageOrder() const;
-    void setResolution(int);
-    int resolution() const;
-    void setColorMode(QPrinter::ColorMode);
-    enum _ZN8QPrinter9ColorModeE colorMode() const;
-    void setCollateCopies(bool);
-    bool collateCopies() const;
-    void setFullPage(bool);
-    bool fullPage() const;
-    void setNumCopies(int);
-    int numCopies() const;
-    void setPaperSource(QPrinter::PaperSource);
-    enum _ZN8QPrinter11PaperSourceE paperSource() const;
-    QList<int> supportedResolutions() const;
-    void setFontEmbeddingEnabled(bool);
-    bool fontEmbeddingEnabled() const;
-    QRect paperRect() const;
-    QRect pageRect() const;
-    QString printerSelectionOption() const;
-    void setPrinterSelectionOption(QString const&);
-    bool newPage();
-    bool abort();
-    enum _ZN8QPrinter12PrinterStateE printerState() const;
-    QPaintEngine * paintEngine() const;
-    QPrintEngine * printEngine() const;
-    void setFromTo(int, int);
-    int fromPage() const;
-    int toPage() const;
-    void setPrintRange(QPrinter::PrintRange);
-    enum _ZN8QPrinter10PrintRangeE printRange() const;
-    bool setup(QWidget*);
-    void setMinMax(int, int);
-    int minPage() const;
-    int maxPage() const;
-    void setCollateCopiesEnabled(bool);
-    bool collateCopiesEnabled() const;
-    void setOptionEnabled(QPrinter::PrinterOption, bool);
-    bool isOptionEnabled(QPrinter::PrinterOption) const;
-    void setOutputToFile(bool);
-    void setDoubleSidedPrinting(bool);
-    bool doubleSidedPrinting() const;
-protected:
-    int metric(QPaintDevice::PaintDeviceMetric) const;
-    void setEngines(QPrintEngine*, QPaintEngine*);
-};
+class QPrinter;
 
-enum PrinterMode	
+enum _ZN8QPrinter11PrinterModeE	
 {
 ScreenResolution = 0,	
 PrinterResolution = 1,	
@@ -83,14 +15,14 @@ HighResolution = 2
 }
 ;
 
-enum Orientation	
+enum _ZN8QPrinter11OrientationE	
 {
 Portrait = 0,	
 Landscape = 1
 }
 ;
 
-enum PageSize	
+enum _ZN8QPrinter8PageSizeE	
 {
 A4 = 0,	
 B5 = 1,	
@@ -127,21 +59,21 @@ NPageSize = 30
 }
 ;
 
-enum PageOrder	
+enum _ZN8QPrinter9PageOrderE	
 {
 FirstPageFirst = 0,	
 LastPageFirst = 1
 }
 ;
 
-enum ColorMode	
+enum _ZN8QPrinter9ColorModeE	
 {
 GrayScale = 0,	
 Color = 1
 }
 ;
 
-enum PaperSource	
+enum _ZN8QPrinter11PaperSourceE	
 {
 OnlyOne = 0,	
 Lower = 1,	
@@ -159,7 +91,7 @@ FormSource = 12
 }
 ;
 
-enum PrinterState	
+enum _ZN8QPrinter12PrinterStateE	
 {
 Idle = 0,	
 Active = 1,	
@@ -168,14 +100,14 @@ Error = 3
 }
 ;
 
-enum OutputFormat	
+enum _ZN8QPrinter12OutputFormatE	
 {
 NativeFormat = 0,	
 PdfFormat = 1
 }
 ;
 
-enum PrintRange	
+enum _ZN8QPrinter10PrintRangeE	
 {
 AllPages = 0,	
 Selection = 1,	
@@ -183,7 +115,7 @@ PageRange = 2
 }
 ;
 
-enum PrinterOption	
+enum _ZN8QPrinter13PrinterOptionE	
 {
 PrintToFile = 0,	
 PrintSelection = 1,	

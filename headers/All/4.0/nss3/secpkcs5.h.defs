@@ -1,4 +1,6 @@
 
+#define _SECPKCS5_H_
+
 typedef enum {
     pbeBitGenIDNull,
     pbeBitGenCipherKey = 1,

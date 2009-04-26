@@ -5,11 +5,7 @@
 class QSharedData;
 // *INDENT-OFF*
 
-class QSharedData
-{
-private:
-public:
-};
+class QSharedData;
 
 // *INDENT-ON*
 #endif				/* protection */

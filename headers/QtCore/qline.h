@@ -5,24 +5,11 @@
 class QLineF;
 // *INDENT-OFF*
 
-class QLine
-{
-private:
-public:
-};
+class QLine;
 
-class QLineF
-{
-private:
-public:
-    bool isNull() const;
-    qreal length() const;
-    QLineF unitVector() const;
-    enum _ZN6QLineF13IntersectTypeE intersect(QLineF const&, QPointF*) const;
-    qreal angle(QLineF const&) const;
-};
+class QLineF;
 
-enum IntersectType	
+enum _ZN6QLineF13IntersectTypeE	
 {
 NoIntersection = 0,	
 BoundedIntersection = 1,	

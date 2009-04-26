@@ -8,13 +8,16 @@ struct passwd {
     char *pw_dir;
     char *pw_shell;
 };
-extern int getpwent_r(struct passwd *, char *, size_t, struct passwd **);
 extern void endpwent(void);
 extern struct passwd *getpwent(void);
-extern struct passwd *getpwnam(const char *);
-extern struct passwd *getpwuid(uid_t);
+extern int getpwent_r(struct passwd *__resultbuf, char *__buffer,
+		      size_t __buflen, struct passwd **__result);
+extern struct passwd *getpwnam(const char *__name);
+extern int getpwnam_r(const char *__name, struct passwd *__resultbuf,
+		      char *__buffer, size_t __buflen,
+		      struct passwd **__result);
+extern struct passwd *getpwuid(uid_t __uid);
+extern int getpwuid_r(uid_t __uid, struct passwd *__resultbuf,
+		      char *__buffer, size_t __buflen,
+		      struct passwd **__result);
 extern void setpwent(void);
-extern int getpwnam_r(const char *, struct passwd *, char *, size_t,
-		      struct passwd **);
-extern int getpwuid_r(uid_t, struct passwd *, char *, size_t,
-		      struct passwd **);

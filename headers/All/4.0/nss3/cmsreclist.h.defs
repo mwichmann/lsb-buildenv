@@ -1,8 +1,13 @@
 
+#define _CMSRECLIST_H
+
 typedef struct NSSCMSRecipientStr {
     int riIndex;
     int subIndex;
-    enum kind;
+    enum {
+	RLIssuerSN,
+	RLSubjKeyID = 1
+    } kind;
     union {
 	CERTIssuerAndSN *issuerAndSN;
 	SECItem *subjectKeyID;

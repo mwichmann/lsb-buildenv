@@ -5,53 +5,13 @@
 class QConicalGradient;
 // *INDENT-OFF*
 
-class QBrush
-{
-private:
-public:
-     QBrush();
-     QBrush(Qt::BrushStyle);
-     QBrush(QColor const&, Qt::BrushStyle);
-     QBrush(Qt::GlobalColor, Qt::BrushStyle);
-     QBrush(QColor const&, QPixmap const&);
-     QBrush(Qt::GlobalColor, QPixmap const&);
-     QBrush(QPixmap const&);
-     QBrush(QBrush const&);
-     QBrush(QGradient const&);
-     ~QBrush();
-    QBrush & operator=(QBrush const&);
-    QVariant operator QVariant() const;
-    void setStyle(Qt::BrushStyle);
-    QPixmap texture() const;
-    void setTexture(QPixmap const&);
-    void setColor(QColor const&);
-     gradient() const;
-    bool isOpaque() const;
-    bool operator==(QBrush const&) const;
-    QPixmap * pixmap() const;
-     QBrush(QImage const&);
-    void setTextureImage(QImage const&);
-    void setMatrix(QMatrix const&);
-    QImage textureImage() const;
-};
+class QBrush;
 
 struct QBrushData	;
 
-class QGradient
-{
-private:
-public:
-     QGradient();
-    void setColorAt(double, QColor const&);
-    void setStops(QVector<QPair<double, QColor> > const&);
-     stops() const;
-    bool operator==(QGradient const&);
-    bool operator==(QGradient const&) const;
-    void setCoordinateMode(QGradient::CoordinateMode);
-     coordinateMode() const;
-};
+class QGradient;
 
-enum Type	
+enum _ZN9QGradient4TypeE	
 {
 LinearGradient = 0,	
 RadialGradient = 1,	
@@ -60,7 +20,7 @@ NoGradient = 3
 }
 ;
 
-enum Spread	
+enum _ZN9QGradient6SpreadE	
 {
 PadSpread = 0,	
 ReflectSpread = 1,	
@@ -68,48 +28,11 @@ RepeatSpread = 2
 }
 ;
 
-class QLinearGradient :  
-{
-private:
-public:
-     QLinearGradient(QPointF const&, QPointF const&);
-     QLinearGradient(double, double, double, double);
-    QPointF start() const;
-    QPointF finalStop() const;
-     QLinearGradient();
-    void setFinalStop(QPointF const&);
-    void setStart(QPointF const&);
-};
+class QLinearGradient;
 
-class QRadialGradient :  
-{
-private:
-public:
-     QRadialGradient(QPointF const&, double, QPointF const&);
-     QRadialGradient(double, double, double, double, double);
-    QPointF center() const;
-    QPointF focalPoint() const;
-    qreal radius() const;
-     QRadialGradient(double, double, double);
-     QRadialGradient(QPointF const&, double);
-     QRadialGradient();
-    void setFocalPoint(QPointF const&);
-    void setCenter(QPointF const&);
-    void setRadius(double);
-};
+class QRadialGradient;
 
-class QConicalGradient :  
-{
-private:
-public:
-     QConicalGradient(QPointF const&, double);
-     QConicalGradient(double, double, double);
-    QPointF center() const;
-    qreal angle() const;
-     QConicalGradient();
-    void setAngle(double);
-    void setCenter(QPointF const&);
-};
+class QConicalGradient;
 
 
 /* Function prototypes */

@@ -115,28 +115,37 @@ struct msghdr {
 #define MSG_DONTROUTE	4
 #define MSG_CTRUNC	8
 
-extern int bind(int, const struct sockaddr *, socklen_t);
-extern int getnameinfo(const struct sockaddr *, socklen_t, char *,
-		       socklen_t, char *, socklen_t, unsigned int);
-extern int getsockname(int, struct sockaddr *, socklen_t *);
-extern int listen(int, int);
-extern int setsockopt(int, int, int, const void *, socklen_t);
-extern int accept(int, struct sockaddr *, socklen_t *);
-extern int connect(int, const struct sockaddr *, socklen_t);
-extern ssize_t recv(int, void *, size_t, int);
-extern ssize_t recvfrom(int, void *, size_t, int, struct sockaddr *,
-			socklen_t *);
-extern ssize_t recvmsg(int, struct msghdr *, int);
-extern ssize_t send(int, const void *, size_t, int);
-extern ssize_t sendmsg(int, const struct msghdr *, int);
-extern ssize_t sendto(int, const void *, size_t, int,
-		      const struct sockaddr *, socklen_t);
-extern int getpeername(int, struct sockaddr *, socklen_t *);
-extern int getsockopt(int, int, int, void *, socklen_t *);
-extern int shutdown(int, int);
-extern int socket(int, int, int);
-extern int socketpair(int, int, int, int[2]);
-extern int sockatmark(int);
 extern ssize_t __recv_chk(int, void *, size_t, size_t, int);
 extern ssize_t __recvfrom_chk(int, void *, size_t, size_t, int,
 			      struct sockaddr *, socklen_t *);
+extern int accept(int __fd, struct sockaddr *__addr,
+		  socklen_t * __addr_len);
+extern int bind(int __fd, const struct sockaddr *__addr, socklen_t __len);
+extern int connect(int __fd, const struct sockaddr *__addr,
+		   socklen_t __len);
+extern int getnameinfo(const struct sockaddr *__sa, socklen_t __salen,
+		       char *__host, socklen_t __hostlen, char *__serv,
+		       socklen_t __servlen, unsigned int __flags);
+extern int getpeername(int __fd, struct sockaddr *__addr,
+		       socklen_t * __len);
+extern int getsockname(int __fd, struct sockaddr *__addr,
+		       socklen_t * __len);
+extern int getsockopt(int __fd, int __level, int __optname, void *__optval,
+		      socklen_t * __optlen);
+extern int listen(int __fd, int __n);
+extern ssize_t recv(int __fd, void *__buf, size_t __n, int __flags);
+extern ssize_t recvfrom(int __fd, void *__buf, size_t __n, int __flags,
+			struct sockaddr *__addr, socklen_t * __addr_len);
+extern ssize_t recvmsg(int __fd, struct msghdr *__message, int __flags);
+extern ssize_t send(int __fd, const void *__buf, size_t __n, int __flags);
+extern ssize_t sendmsg(int __fd, const struct msghdr *__message,
+		       int __flags);
+extern ssize_t sendto(int __fd, const void *__buf, size_t __n, int __flags,
+		      const struct sockaddr *__addr, socklen_t __addr_len);
+extern int setsockopt(int __fd, int __level, int __optname,
+		      const void *__optval, socklen_t __optlen);
+extern int shutdown(int __fd, int __how);
+extern int sockatmark(int __fd);
+extern int socket(int __domain, int __type, int __protocol);
+extern int socketpair(int __domain, int __type, int __protocol,
+		      int __fds[2]);

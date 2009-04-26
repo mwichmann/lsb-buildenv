@@ -5,59 +5,12 @@
 class QFlags < QAbstractFileEngine::FileFlag >;
 // *INDENT-OFF*
 
-typedef class QFlags<QAbstractFileEngine::FileFlag>
-{
-private:
-public:
-}FileFlags	
+typedef class QFlags<QAbstractFileEngine::FileFlag>QAbstractFileEngine::FileFlags	
 ;
 
-class QAbstractFileEngine
-{
-private:
-public:
-     ~QAbstractFileEngine();
-    bool open(QFlags<QIODevice::OpenModeFlag>);
-    bool close();
-    bool flush();
-    qint64 size() const;
-    qint64 pos() const;
-    bool seek(long long);
-    bool isSequential() const;
-    bool remove();
-    bool copy(QString const&);
-    bool rename(QString const&);
-    bool link(QString const&);
-    bool mkdir(QString const&, bool) const;
-    bool rmdir(QString const&, bool) const;
-    bool setSize(long long);
-    bool caseSensitive() const;
-    bool isRelativePath() const;
-    QStringList entryList(QFlags<QDir::Filter>, QStringList const&) const;
-    QFlags<QAbstractFileEngine::FileFlag> fileFlags(QFlags<QAbstractFileEngine::FileFlag>) const;
-    bool setPermissions(unsigned int);
-    QString fileName(QAbstractFileEngine::FileName) const;
-    uint ownerId(QAbstractFileEngine::FileOwner) const;
-    QString owner(QAbstractFileEngine::FileOwner) const;
-    QDateTime fileTime(QAbstractFileEngine::FileTime) const;
-    void setFileName(QString const&);
-    int handle() const;
-     beginEntryList(QFlags<QDir::Filter>, QStringList const&);
-     endEntryList();
-    qint64 read(char*, long long);
-    qint64 readLine(char*, long long);
-    qint64 write(char const*, long long);
-    enum _ZN5QFile9FileErrorE error() const;
-    QString errorString() const;
-    bool extension(QAbstractFileEngine::Extension, QAbstractFileEngine::ExtensionOption const*, QAbstractFileEngine::ExtensionReturn*);
-    bool supportsExtension(QAbstractFileEngine::Extension) const;
-    static  create(QString const&);
-     QAbstractFileEngine();
-protected:
-    void setError(QFile::FileError, QString const&);
-};
+class QAbstractFileEngine;
 
-enum FileFlag	
+enum _ZN19QAbstractFileEngine8FileFlagE	
 {
 ExeOtherPerm = 1,	
 WriteOtherPerm = 2,	
@@ -85,13 +38,9 @@ FileInfoAll = 268435455
 }
 ;
 
-class QFlags<QAbstractFileEngine::FileFlag>
-{
-private:
-public:
-};
+class QFlags<QAbstractFileEngine::FileFlag>;
 
-enum FileName	
+enum _ZN19QAbstractFileEngine8FileNameE	
 {
 DefaultName = 0,	
 BaseName = 1,	
@@ -104,14 +53,14 @@ CanonicalPathName = 7
 }
 ;
 
-enum FileOwner	
+enum _ZN19QAbstractFileEngine9FileOwnerE	
 {
 OwnerUser = 0,	
 OwnerGroup = 1
 }
 ;
 
-enum FileTime	
+enum _ZN19QAbstractFileEngine8FileTimeE	
 {
 CreationTime = 0,	
 ModificationTime = 1,	
@@ -119,28 +68,14 @@ AccessTime = 2
 }
 ;
 
-enum Extension	
+enum _ZN19QAbstractFileEngine9ExtensionE	
 ;
 
-class QAbstractFileEngine::ExtensionOption
-{
-private:
-public:
-};
+class QAbstractFileEngine::ExtensionOption;
 
-class QAbstractFileEngine::ExtensionReturn
-{
-private:
-public:
-};
+class QAbstractFileEngine::ExtensionReturn;
 
-class QAbstractFileEngineHandler
-{
-private:
-public:
-     QAbstractFileEngineHandler();
-     ~QAbstractFileEngineHandler();
-};
+class QAbstractFileEngineHandler;
 
 // *INDENT-ON*
 #endif				/* protection */

@@ -5,59 +5,14 @@
 class QItemSelectionRange;
 // *INDENT-OFF*
 
-typedef class QFlags<QItemSelectionModel::SelectionFlag>
-{
-private:
-public:
-}SelectionFlags	
+typedef class QFlags<QItemSelectionModel::SelectionFlag>QItemSelectionModel::SelectionFlags	
 ;
 
-class QItemSelectionRange
-{
-private:
-public:
-    bool intersects(QItemSelectionRange const&) const;
-    QItemSelectionRange intersect(QItemSelectionRange const&) const;
-    QModelIndexList indexes() const;
-};
+class QItemSelectionRange;
 
-class QItemSelectionModel : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QItemSelectionModel(QAbstractItemModel*);
-     QItemSelectionModel(QAbstractItemModel*, QObject*);
-     ~QItemSelectionModel();
-    QModelIndex currentIndex() const;
-    bool isSelected(QModelIndex const&) const;
-    bool isRowSelected(int, QModelIndex const&) const;
-    bool isColumnSelected(int, QModelIndex const&) const;
-    bool rowIntersectsSelection(int, QModelIndex const&) const;
-    bool columnIntersectsSelection(int, QModelIndex const&) const;
-    QModelIndexList selectedIndexes() const;
-    const QItemSelection selection() const;
-    const QAbstractItemModel * model() const;
-    void setCurrentIndex(QModelIndex const&, QFlags<QItemSelectionModel::SelectionFlag>);
-    void select(QModelIndex const&, QFlags<QItemSelectionModel::SelectionFlag>);
-    void select(QItemSelection const&, QFlags<QItemSelectionModel::SelectionFlag>);
-    void clear();
-    void reset();
-    void clearSelection();
-    bool hasSelection() const;
-    QModelIndexList selectedRows(int) const;
-    QModelIndexList selectedColumns(int) const;
-protected:
-    void selectionChanged(QItemSelection const&, QItemSelection const&);
-    void currentChanged(QModelIndex const&, QModelIndex const&);
-    void currentRowChanged(QModelIndex const&, QModelIndex const&);
-    void currentColumnChanged(QModelIndex const&, QModelIndex const&);
-    void emitSelectionChanged(QItemSelection const&, QItemSelection const&);
-};
+class QItemSelectionModel;
 
-enum SelectionFlag	
+enum _ZN19QItemSelectionModel13SelectionFlagE	
 {
 NoUpdate = 0,	
 Clear = 1,	
@@ -73,23 +28,9 @@ Columns = 64
 }
 ;
 
-class QFlags<QItemSelectionModel::SelectionFlag>
-{
-private:
-public:
-};
+class QFlags<QItemSelectionModel::SelectionFlag>;
 
-class QItemSelection
-{
-private:
-public:
-     QItemSelection(QModelIndex const&, QModelIndex const&);
-    void select(QModelIndex const&, QModelIndex const&);
-    bool contains(QModelIndex const&) const;
-    QModelIndexList indexes() const;
-    void merge(QItemSelection const&, QFlags<QItemSelectionModel::SelectionFlag>);
-    void split(QItemSelectionRange const&, QItemSelectionRange const&, QItemSelection*);
-};
+class QItemSelection;
 
 
 /* Function prototypes */

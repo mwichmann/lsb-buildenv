@@ -14,27 +14,33 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern const char *pango_language_get_sample_string(PangoLanguage *);
-    extern gboolean pango_log2vis_get_embedding_levels(gunichar *, gint,
-						       PangoDirection *,
+    extern const char *pango_language_get_sample_string(PangoLanguage *
+							language);
+    extern gboolean pango_log2vis_get_embedding_levels(gunichar * text,
+						       gint length,
+						       PangoDirection *
+						       pbase_dir,
 						       guint8 *);
-    extern gboolean pango_parse_stretch(const char *, PangoStretch *,
-					gboolean);
-    extern gboolean pango_parse_style(const char *, PangoStyle *,
-				      gboolean);
-    extern gboolean pango_parse_variant(const char *, PangoVariant *,
-					gboolean);
-    extern gboolean pango_parse_weight(const char *, PangoWeight *,
-				       gboolean);
-    extern gint pango_read_line(FILE *, GString *);
-    extern gboolean pango_scan_int(const char **, int *);
-    extern gboolean pango_scan_string(const char **, GString *);
-    extern gboolean pango_scan_word(const char **, GString *);
-    extern gboolean pango_skip_space(const char **);
-    extern char **pango_split_file_list(const char *);
-    extern char *pango_trim_string(const char *);
+    extern gboolean pango_parse_stretch(const char *str,
+					PangoStretch * stretch,
+					gboolean warn);
+    extern gboolean pango_parse_style(const char *str, PangoStyle * style,
+				      gboolean warn);
+    extern gboolean pango_parse_variant(const char *str,
+					PangoVariant * variant,
+					gboolean warn);
+    extern gboolean pango_parse_weight(const char *str,
+				       PangoWeight * weight,
+				       gboolean warn);
+    extern gint pango_read_line(FILE * stream, GString * str);
+    extern gboolean pango_scan_int(const char **pos, int *out);
+    extern gboolean pango_scan_string(const char **pos, GString * out);
+    extern gboolean pango_scan_word(const char **pos, GString * out);
+    extern gboolean pango_skip_space(const char **pos);
+    extern char **pango_split_file_list(const char *str);
+    extern char *pango_trim_string(const char *str);
 #if __LSB_VERSION__ >= 40
-    extern gboolean pango_is_zero_width(gunichar);
+    extern gboolean pango_is_zero_width(gunichar ch);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

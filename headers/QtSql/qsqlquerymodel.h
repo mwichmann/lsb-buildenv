@@ -5,36 +5,7 @@
 class QSqlQueryModel;
 // *INDENT-OFF*
 
-class QSqlQueryModel : public QAbstractTableModel
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QSqlQueryModel(QObject*);
-     ~QSqlQueryModel();
-    int rowCount(QModelIndex const&) const;
-    int columnCount(QModelIndex const&) const;
-    QSqlRecord record(int) const;
-    QSqlRecord record() const;
-    QVariant data(QModelIndex const&, int) const;
-    QVariant headerData(int, Qt::Orientation, int) const;
-    bool setHeaderData(int, Qt::Orientation, QVariant const&, int);
-    bool insertColumns(int, int, QModelIndex const&);
-    bool removeColumns(int, int, QModelIndex const&);
-    void setQuery(QSqlQuery const&);
-    void setQuery(QString const&, QSqlDatabase const&);
-    QSqlQuery query() const;
-    void clear();
-    QSqlError lastError() const;
-    void fetchMore(QModelIndex const&);
-    bool canFetchMore(QModelIndex const&) const;
-protected:
-    void queryChange();
-    QModelIndex indexInQuery(QModelIndex const&) const;
-    void setLastError(QSqlError const&);
-};
+class QSqlQueryModel;
 
 
 /* Function prototypes */

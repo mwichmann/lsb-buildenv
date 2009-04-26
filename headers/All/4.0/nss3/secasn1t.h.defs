@@ -1,4 +1,6 @@
 
+#define _SECASN1T_H_
+
 typedef struct sec_ASN1Template_struct {
     unsigned long int kind;
     unsigned long int offset;

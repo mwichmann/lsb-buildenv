@@ -11,7 +11,6 @@ extern "C" {
 #endif
 
 
-#define XTestExtensionName	"XTEST"
 #define XTestNumberErrors	0
 #define XTestNumberEvents	0
 #define X_XTestGetVersion	0
@@ -20,6 +19,7 @@ extern "C" {
 #define XTestMinorVersion	2
 #define X_XTestFakeInput	2
 #define X_XTestGrabControl	3
+#define XTestExtensionName	"XTEST"
 
 
 

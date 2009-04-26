@@ -14,7 +14,6 @@ extern "C" {
 
     typedef xmlURI *xmlURIPtr;
 
-
     struct _xmlURI {
 	char *scheme;
 	char *opaque;
@@ -31,20 +30,23 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern xmlChar *xmlBuildRelativeURI(const xmlChar *, const xmlChar *);
-    extern xmlChar *xmlBuildURI(const xmlChar *, const xmlChar *);
-    extern xmlChar *xmlCanonicPath(const xmlChar *);
+    extern xmlChar *xmlBuildRelativeURI(const xmlChar * URI,
+					const xmlChar * base);
+    extern xmlChar *xmlBuildURI(const xmlChar * URI, const xmlChar * base);
+    extern xmlChar *xmlCanonicPath(const xmlChar * path);
     extern xmlURIPtr xmlCreateURI(void);
-    extern void xmlFreeURI(xmlURIPtr);
-    extern int xmlNormalizeURIPath(char *);
-    extern xmlURIPtr xmlParseURI(const char *);
-    extern xmlURIPtr xmlParseURIRaw(const char *, int);
-    extern int xmlParseURIReference(xmlURIPtr, const char *);
-    extern void xmlPrintURI(FILE *, xmlURIPtr);
-    extern xmlChar *xmlSaveUri(xmlURIPtr);
-    extern xmlChar *xmlURIEscape(const xmlChar *);
-    extern xmlChar *xmlURIEscapeStr(const xmlChar *, const xmlChar *);
-    extern char *xmlURIUnescapeString(const char *, int, char *);
+    extern void xmlFreeURI(xmlURIPtr uri);
+    extern int xmlNormalizeURIPath(char *path);
+    extern xmlURIPtr xmlParseURI(const char *str);
+    extern xmlURIPtr xmlParseURIRaw(const char *str, int raw);
+    extern int xmlParseURIReference(xmlURIPtr uri, const char *str);
+    extern void xmlPrintURI(FILE * stream, xmlURIPtr uri);
+    extern xmlChar *xmlSaveUri(xmlURIPtr uri);
+    extern xmlChar *xmlURIEscape(const xmlChar * str);
+    extern xmlChar *xmlURIEscapeStr(const xmlChar * str,
+				    const xmlChar * list);
+    extern char *xmlURIUnescapeString(const char *str, int len,
+				      char *target);
 #ifdef __cplusplus
 }
 #endif

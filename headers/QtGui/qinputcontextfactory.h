@@ -5,16 +5,7 @@
 class QInputContextFactory;
 // *INDENT-OFF*
 
-class QInputContextFactory
-{
-private:
-public:
-    QStringList keys();
-    QInputContext * create(QString const&, QObject*);
-    QStringList languages(QString const&);
-    QString displayName(QString const&);
-    QString description(QString const&);
-};
+class QInputContextFactory;
 
 // *INDENT-ON*
 #endif				/* protection */

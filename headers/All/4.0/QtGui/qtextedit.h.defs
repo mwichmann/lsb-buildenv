@@ -13,7 +13,7 @@ enum _ZN9QTextEdit18AutoFormattingFlagE {
 };
 class QFlags < QTextEdit::AutoFormattingFlag >;
 typedef class QFlags < QTextEdit::AutoFormattingFlag >
-    _ZN9QTextEdit14AutoFormattingE;
+    QTextEdit::AutoFormatting;
 enum _ZN9QTextEdit12CursorActionE {
     MoveBackward = 0,
     MoveForward = 1,

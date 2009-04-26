@@ -5,14 +5,10 @@
 class QFlags < QSql::ParamTypeFlag >;
 // *INDENT-OFF*
 
-typedef class QFlags<QSql::ParamTypeFlag>
-{
-private:
-public:
-}ParamType	
+typedef class QFlags<QSql::ParamTypeFlag>QSql::ParamType	
 ;
 
-enum Location	
+enum _ZN4QSql8LocationE	
 {
 AfterLastRow = -2,	
 AfterLast = -2,	
@@ -21,7 +17,7 @@ BeforeFirst = -1
 }
 ;
 
-enum ParamTypeFlag	
+enum _ZN4QSql13ParamTypeFlagE	
 {
 In = 1,	
 Out = 2,	
@@ -30,13 +26,9 @@ Binary = 4
 }
 ;
 
-class QFlags<QSql::ParamTypeFlag>
-{
-private:
-public:
-};
+class QFlags<QSql::ParamTypeFlag>;
 
-enum TableType	
+enum _ZN4QSql9TableTypeE	
 {
 Tables = 1,	
 SystemTables = 2,	
@@ -45,7 +37,7 @@ AllTables = 255
 }
 ;
 
-enum Op	
+enum _ZN4QSql2OpE	
 {
 None = -1,	
 Insert = 0,	
@@ -54,7 +46,7 @@ Delete = 2
 }
 ;
 
-enum Confirm	
+enum _ZN4QSql7ConfirmE	
 {
 Cancel = -1,	
 No = 0,	

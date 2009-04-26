@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 
+#define _BLAPIT_H_
 #define PQG_PBITS_TO_INDEX(bits)	 \
    (((bits) < 512 || (bits) > 1024 || (bits) % 64) ? -1 : \
  (int)((bits)-512)/64)
@@ -45,14 +46,12 @@ extern "C" {
 
     typedef struct PQGVerifyStr PQGVerify;
 
-
     struct PQGParamsStr {
 	PLArenaPool *arena;
 	SECItem prime;
 	SECItem subPrime;
 	SECItem base;
     };
-
 
     struct PQGVerifyStr {
 	PLArenaPool *arena;

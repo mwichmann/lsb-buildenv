@@ -5,57 +5,21 @@
 class QFlags < QStyle::SubControl >;
 // *INDENT-OFF*
 
-typedef class QFlags<QStyle::StateFlag>
-{
-private:
-public:
-}State	
+typedef class QFlags<QStyle::StateFlag>QStyle::State	
 ;
 
-typedef State	SFlags	
+typedef QStyle::State	QStyle::SFlags	
 ;
 
-typedef class QFlags<QStyle::SubControl>
-{
-private:
-public:
-}SubControls	
+typedef class QFlags<QStyle::SubControl>QStyle::SubControls	
 ;
 
-typedef SubControls	SCFlags	
+typedef QStyle::SubControls	QStyle::SCFlags	
 ;
 
-class QStyle : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QStyle();
-     ~QStyle();
-    void polish(QWidget*);
-    void unpolish(QWidget*);
-    void polish(QApplication*);
-    void unpolish(QApplication*);
-    void polish(QPalette&);
-    QRect itemTextRect(QFontMetrics const&, QRect const&, int, bool, QString const&) const;
-    QRect itemPixmapRect(QRect const&, int, QPixmap const&) const;
-    void drawItemText(QPainter*, QRect const&, int, QPalette const&, bool, QString const&, QPalette::ColorRole) const;
-    void drawItemPixmap(QPainter*, QRect const&, int, QPixmap const&) const;
-    QPalette standardPalette() const;
-    QIcon standardIcon(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
-    QRect visualRect(Qt::LayoutDirection, QRect const&, QRect const&);
-    QPoint visualPos(Qt::LayoutDirection, QRect const&, QPoint const&);
-    int sliderPositionFromValue(int, int, int, int, bool);
-    int sliderValueFromPosition(int, int, int, int, bool);
-     visualAlignment(Qt::LayoutDirection, QFlags<Qt::AlignmentFlag>);
-    QRect alignedRect(Qt::LayoutDirection, QFlags<Qt::AlignmentFlag>, QSize const&, QRect const&);
-protected:
-    QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
-};
+class QStyle;
 
-enum StateFlag	
+enum _ZN6QStyle9StateFlagE	
 {
 State_None = 0,	
 State_Default = 0,	
@@ -86,13 +50,9 @@ State_ReadOnly = 33554432
 }
 ;
 
-class QFlags<QStyle::StateFlag>
-{
-private:
-public:
-};
+class QFlags<QStyle::StateFlag>;
 
-enum PrimitiveElement	
+enum _ZN6QStyle16PrimitiveElementE	
 {
 PE_Q3CheckListController = 0,	
 PE_Q3CheckListExclusiveIndicator = 1,	
@@ -143,7 +103,7 @@ PE_CustomBase = 251658240
 }
 ;
 
-enum ControlElement	
+enum _ZN6QStyle14ControlElementE	
 {
 CE_CustomBase = -268435456,	
 CE_PushButton = 0,	
@@ -191,7 +151,7 @@ CE_ToolBar = 41
 }
 ;
 
-enum SubElement	
+enum _ZN6QStyle10SubElementE	
 {
 SE_CustomBase = -268435456,	
 SE_PushButtonContents = 0,	
@@ -233,7 +193,7 @@ SE_TreeViewDisclosureItem = 35
 }
 ;
 
-enum ComplexControl	
+enum _ZN6QStyle14ComplexControlE	
 {
 CC_CustomBase = -268435456,	
 CC_SpinBox = 0,	
@@ -248,7 +208,7 @@ CC_GroupBox = 8
 }
 ;
 
-enum SubControl	
+enum _ZN6QStyle10SubControlE	
 {
 SC_All = -1,	
 SC_None = 0,	
@@ -295,13 +255,9 @@ SC_TitleBarLabel = 256
 }
 ;
 
-class QFlags<QStyle::SubControl>
-{
-private:
-public:
-};
+class QFlags<QStyle::SubControl>;
 
-enum PixelMetric	
+enum _ZN6QStyle11PixelMetricE	
 {
 PM_CustomBase = -268435456,	
 PM_ButtonMargin = 0,	
@@ -383,7 +339,7 @@ PM_DockWidgetTitleMargin = 75
 }
 ;
 
-enum ContentsType	
+enum _ZN6QStyle12ContentsTypeE	
 {
 CT_CustomBase = -268435456,	
 CT_PushButton = 0,	
@@ -412,7 +368,7 @@ CT_GroupBox = 22
 }
 ;
 
-enum StyleHint	
+enum _ZN6QStyle9StyleHintE	
 {
 SH_CustomBase = -268435456,	
 SH_EtchDisabledText = 0,	
@@ -486,7 +442,7 @@ SH_ScrollBar_BackgroundMode = 257
 }
 ;
 
-enum StandardPixmap	
+enum _ZN6QStyle14StandardPixmapE	
 {
 SP_CustomBase = -268435456,	
 SP_TitleBarMenuButton = 0,	

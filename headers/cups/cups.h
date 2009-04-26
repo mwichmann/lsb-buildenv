@@ -5,7 +5,6 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <utmpx.h>
 #include <cups/ppd.h>
 
 #ifdef __cplusplus
@@ -228,7 +227,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ < 4.0 */
 
-
     struct cups_lang_str {
 	struct cups_lang_str *next;
 	int used;
@@ -238,7 +236,6 @@ extern "C" {
     };
 
 #if __LSB_VERSION__ < 40
-
     struct md5_state_s {
 	md5_word_t count[2];
 	md5_word_t abcd[4];
@@ -287,50 +284,50 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-#if __LSB_VERSION__ >= 40
-
-
-#endif				/* __LSB_VERSION__ >= 4.0 */
-
 
 /* Function prototypes */
 
-    extern int cupsAddDest(const char *, const char *, int,
-			   cups_dest_t * *);
-    extern int cupsAddOption(const char *, const char *, int,
-			     cups_option_t * *);
-    extern int cupsCancelJob(const char *, int);
+    extern int cupsAddDest(const char *name, const char *instance,
+			   int num_dests, cups_dest_t * *dests);
+    extern int cupsAddOption(const char *name, const char *value,
+			     int num_options, cups_option_t * *options);
+    extern int cupsCancelJob(const char *printer, int job);
     extern http_encryption_t cupsEncryption(void);
-    extern void cupsFreeDests(int, cups_dest_t *);
-    extern void cupsFreeJobs(int, cups_job_t *);
-    extern void cupsFreeOptions(int, cups_option_t *);
+    extern void cupsFreeDests(int num_dests, cups_dest_t * dests);
+    extern void cupsFreeJobs(int num_jobs, cups_job_t * jobs);
+    extern void cupsFreeOptions(int num_options, cups_option_t * options);
     extern const char *cupsGetDefault(void);
-    extern cups_dest_t *cupsGetDest(const char *, const char *, int,
-				    cups_dest_t *);
-    extern int cupsGetDests(cups_dest_t * *);
-    extern int cupsGetJobs(cups_job_t * *, const char *, int, int);
-    extern const char *cupsGetOption(const char *, int, cups_option_t *);
-    extern const char *cupsGetPPD(const char *);
-    extern const char *cupsGetPassword(const char *);
-    extern char *cupsLangEncoding(cups_lang_t *);
+    extern cups_dest_t *cupsGetDest(const char *name, const char *instance,
+				    int num_dests, cups_dest_t * dests);
+    extern int cupsGetDests(cups_dest_t * *dests);
+    extern int cupsGetJobs(cups_job_t * *jobs, const char *dest,
+			   int myjobs, int completed);
+    extern const char *cupsGetOption(const char *name, int num_options,
+				     cups_option_t * options);
+    extern const char *cupsGetPPD(const char *printer);
+    extern const char *cupsGetPassword(const char *prompt);
+    extern char *cupsLangEncoding(cups_lang_t * lang);
     extern void cupsLangFlush(void);
-    extern void cupsLangFree(cups_lang_t *);
-    extern cups_lang_t *cupsLangGet(const char *);
+    extern void cupsLangFree(cups_lang_t * lang);
+    extern cups_lang_t *cupsLangGet(const char *language);
     extern ipp_status_t cupsLastError(void);
-    extern int cupsMarkOptions(ppd_file_t *, int, cups_option_t *);
-    extern int cupsParseOptions(const char *, int, cups_option_t * *);
-    extern int cupsPrintFile(const char *, const char *, const char *, int,
-			     cups_option_t *);
-    extern int cupsPrintFiles(const char *, int, const char **,
-			      const char *, int, cups_option_t *);
+    extern int cupsMarkOptions(ppd_file_t * ppd, int num_options,
+			       cups_option_t * options);
+    extern int cupsParseOptions(const char *arg, int num_options,
+				cups_option_t * *options);
+    extern int cupsPrintFile(const char *printer, const char *filename,
+			     const char *title, int num_options,
+			     cups_option_t * options);
+    extern int cupsPrintFiles(const char *printer, int num_files,
+			      const char **files, const char *title,
+			      int num_options, cups_option_t * options);
     extern const char *cupsServer(void);
-    extern void cupsSetDests(int, cups_dest_t *);
-    extern void cupsSetEncryption(http_encryption_t);
-    extern void cupsSetPasswordCB(const char *(*)(const char *)
-	);
-    extern void cupsSetServer(const char *);
-    extern void cupsSetUser(const char *);
-    extern int cupsTempFd(char *, int);
+    extern void cupsSetDests(int num_dests, cups_dest_t * dests);
+    extern void cupsSetEncryption(http_encryption_t e);
+    extern void cupsSetPasswordCB(const char *(*cb) (const char *));
+    extern void cupsSetServer(const char *server);
+    extern void cupsSetUser(const char *user);
+    extern int cupsTempFd(char *filename, int len);
     extern const char *cupsUser(void);
 #ifdef __cplusplus
 }

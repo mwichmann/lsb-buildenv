@@ -49,8 +49,9 @@ extern "C" {
     extern void XauDisposeAuth(Xauth *);
     extern char *XauFileName(void);
     extern Xauth *XauGetBestAuthByAddr(unsigned int, unsigned int,
-				       const char *, unsigned int, char *,
-				       int, char **, int *);
+				       const char *, unsigned int,
+				       const char *, int, char **,
+				       const int *);
     extern Xauth *XauReadAuth(FILE *);
 #ifdef __cplusplus
 }

@@ -1,4 +1,6 @@
 
+#define _KEYTHI_H_
+
 typedef enum {
     nullKey,
     rsaKey = 1,

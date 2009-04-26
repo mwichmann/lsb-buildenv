@@ -5,33 +5,12 @@
 class QUdpSocket;
 // *INDENT-OFF*
 
-typedef class QFlags<QUdpSocket::BindFlag>
-{
-private:
-public:
-}BindMode	
+typedef class QFlags<QUdpSocket::BindFlag>QUdpSocket::BindMode	
 ;
 
-class QUdpSocket : public QAbstractSocket
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QUdpSocket(QObject*);
-     ~QUdpSocket();
-    bool bind(QHostAddress const&, unsigned short);
-    bool bind(unsigned short);
-    bool bind(QHostAddress const&, unsigned short, QFlags<QUdpSocket::BindFlag>);
-    bool bind(unsigned short, QFlags<QUdpSocket::BindFlag>);
-    bool hasPendingDatagrams() const;
-    qint64 pendingDatagramSize() const;
-    qint64 readDatagram(char*, long long, QHostAddress*, unsigned short*);
-    qint64 writeDatagram(char const*, long long, QHostAddress const&, unsigned short);
-};
+class QUdpSocket;
 
-enum BindFlag	
+enum _ZN10QUdpSocket8BindFlagE	
 {
 DefaultForPlatform = 0,	
 ShareAddress = 1,	
@@ -40,11 +19,7 @@ ReuseAddressHint = 4
 }
 ;
 
-class QFlags<QUdpSocket::BindFlag>
-{
-private:
-public:
-};
+class QFlags<QUdpSocket::BindFlag>;
 
 
 /* Function prototypes */

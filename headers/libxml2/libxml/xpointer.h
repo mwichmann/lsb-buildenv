@@ -19,7 +19,6 @@ extern "C" {
 
     typedef xmlLocationSet *xmlLocationSetPtr;
 
-
     struct _xmlLocationSet {
 	int locNr;
 	int locMax;
@@ -29,38 +28,49 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern xmlNodePtr xmlXPtrBuildNodeList(xmlXPathObjectPtr);
-    extern xmlXPathObjectPtr xmlXPtrEval(const xmlChar *,
-					 xmlXPathContextPtr);
-    extern void xmlXPtrEvalRangePredicate(xmlXPathParserContextPtr);
-    extern void xmlXPtrFreeLocationSet(xmlLocationSetPtr);
-    extern void xmlXPtrLocationSetAdd(xmlLocationSetPtr,
-				      xmlXPathObjectPtr);
-    extern xmlLocationSetPtr xmlXPtrLocationSetCreate(xmlXPathObjectPtr);
-    extern void xmlXPtrLocationSetDel(xmlLocationSetPtr,
-				      xmlXPathObjectPtr);
-    extern xmlLocationSetPtr xmlXPtrLocationSetMerge(xmlLocationSetPtr,
-						     xmlLocationSetPtr);
-    extern void xmlXPtrLocationSetRemove(xmlLocationSetPtr, int);
-    extern xmlXPathObjectPtr xmlXPtrNewCollapsedRange(xmlNodePtr);
-    extern xmlXPathContextPtr xmlXPtrNewContext(xmlDocPtr, xmlNodePtr,
-						xmlNodePtr);
-    extern xmlXPathObjectPtr xmlXPtrNewLocationSetNodeSet(xmlNodeSetPtr);
-    extern xmlXPathObjectPtr xmlXPtrNewLocationSetNodes(xmlNodePtr,
-							xmlNodePtr);
-    extern xmlXPathObjectPtr xmlXPtrNewRange(xmlNodePtr, int, xmlNodePtr,
-					     int);
-    extern xmlXPathObjectPtr xmlXPtrNewRangeNodeObject(xmlNodePtr,
-						       xmlXPathObjectPtr);
-    extern xmlXPathObjectPtr xmlXPtrNewRangeNodePoint(xmlNodePtr,
-						      xmlXPathObjectPtr);
-    extern xmlXPathObjectPtr xmlXPtrNewRangeNodes(xmlNodePtr, xmlNodePtr);
-    extern xmlXPathObjectPtr xmlXPtrNewRangePointNode(xmlXPathObjectPtr,
-						      xmlNodePtr);
-    extern xmlXPathObjectPtr xmlXPtrNewRangePoints(xmlXPathObjectPtr,
-						   xmlXPathObjectPtr);
-    extern void xmlXPtrRangeToFunction(xmlXPathParserContextPtr, int);
-    extern xmlXPathObjectPtr xmlXPtrWrapLocationSet(xmlLocationSetPtr);
+    extern xmlNodePtr xmlXPtrBuildNodeList(xmlXPathObjectPtr obj);
+    extern xmlXPathObjectPtr xmlXPtrEval(const xmlChar * str,
+					 xmlXPathContextPtr ctx);
+    extern void xmlXPtrEvalRangePredicate(xmlXPathParserContextPtr ctxt);
+    extern void xmlXPtrFreeLocationSet(xmlLocationSetPtr obj);
+    extern void xmlXPtrLocationSetAdd(xmlLocationSetPtr cur,
+				      xmlXPathObjectPtr val);
+    extern xmlLocationSetPtr xmlXPtrLocationSetCreate(xmlXPathObjectPtr
+						      val);
+    extern void xmlXPtrLocationSetDel(xmlLocationSetPtr cur,
+				      xmlXPathObjectPtr val);
+    extern xmlLocationSetPtr xmlXPtrLocationSetMerge(xmlLocationSetPtr
+						     val1,
+						     xmlLocationSetPtr
+						     val2);
+    extern void xmlXPtrLocationSetRemove(xmlLocationSetPtr cur, int val);
+    extern xmlXPathObjectPtr xmlXPtrNewCollapsedRange(xmlNodePtr start);
+    extern xmlXPathContextPtr xmlXPtrNewContext(xmlDocPtr doc,
+						xmlNodePtr here,
+						xmlNodePtr origin);
+    extern xmlXPathObjectPtr xmlXPtrNewLocationSetNodeSet(xmlNodeSetPtr
+							  set);
+    extern xmlXPathObjectPtr xmlXPtrNewLocationSetNodes(xmlNodePtr start,
+							xmlNodePtr end);
+    extern xmlXPathObjectPtr xmlXPtrNewRange(xmlNodePtr start,
+					     int startindex,
+					     xmlNodePtr end, int endindex);
+    extern xmlXPathObjectPtr xmlXPtrNewRangeNodeObject(xmlNodePtr start,
+						       xmlXPathObjectPtr
+						       end);
+    extern xmlXPathObjectPtr xmlXPtrNewRangeNodePoint(xmlNodePtr start,
+						      xmlXPathObjectPtr
+						      end);
+    extern xmlXPathObjectPtr xmlXPtrNewRangeNodes(xmlNodePtr start,
+						  xmlNodePtr end);
+    extern xmlXPathObjectPtr xmlXPtrNewRangePointNode(xmlXPathObjectPtr
+						      start,
+						      xmlNodePtr end);
+    extern xmlXPathObjectPtr xmlXPtrNewRangePoints(xmlXPathObjectPtr start,
+						   xmlXPathObjectPtr end);
+    extern void xmlXPtrRangeToFunction(xmlXPathParserContextPtr ctxt,
+				       int nargs);
+    extern xmlXPathObjectPtr xmlXPtrWrapLocationSet(xmlLocationSetPtr val);
 #ifdef __cplusplus
 }
 #endif

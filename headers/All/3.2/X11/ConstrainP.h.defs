@@ -2,7 +2,7 @@
 #define XtConstraintExtensionVersion	1L
 
 typedef struct _ConstraintPart {
-    XtPointer mumble;
+    XtPointer mumble;		/* No new fields, keep C compiler happy */
 } ConstraintPart;
 typedef struct _ConstraintClassRec *ConstraintClassRec;
 typedef struct _ConstraintClassPart {

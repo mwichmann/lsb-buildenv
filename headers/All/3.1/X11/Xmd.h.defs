@@ -2,6 +2,15 @@
 #define B16
 #define B32
 #define NEXTPTR(p,t)	(((t *)(p)) + 1)
+#define cvtINT16toInt(val)	(val)
+#define cvtINT16toLong(val)	(val)
+#define cvtINT16toShort(val)	(val)
+#define cvtINT32toInt(val)	(val)
+#define cvtINT32toLong(val)	(val)
+#define cvtINT32toShort(val)	(val)
+#define cvtINT8toInt(val)	(val)
+#define cvtINT8toLong(val)	(val)
+#define cvtINT8toShort(val)	(val)
 #define _SIZEOF(x)	sz_ ##x
 #define SIZEOF(x)	_SIZEOF(x)
 

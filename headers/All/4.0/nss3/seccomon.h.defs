@@ -1,4 +1,6 @@
 
+#define _SECCOMMON_H_
+
 typedef enum {
     siBuffer,
     siClearDataBuffer = 1,

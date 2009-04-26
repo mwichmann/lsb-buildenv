@@ -5,95 +5,10 @@
 class QFlags < QTextStream::NumberFlag >;
 // *INDENT-OFF*
 
-typedef class QFlags<QTextStream::NumberFlag>
-{
-private:
-public:
-}NumberFlags	
+typedef class QFlags<QTextStream::NumberFlag>QTextStream::NumberFlags	
 ;
 
-typedef class QTextStream
-{
-private:
-public:
-     QTextStream();
-     QTextStream(QIODevice*);
-     QTextStream(_IO_FILE*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QString*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QByteArray*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QByteArray const&, QFlags<QIODevice::OpenModeFlag>);
-     ~QTextStream();
-    void setCodec(QTextCodec*);
-    void setCodec(char const*);
-    QTextCodec * codec() const;
-    void setAutoDetectUnicode(bool);
-    bool autoDetectUnicode() const;
-    void setGenerateByteOrderMark(bool);
-    bool generateByteOrderMark() const;
-    void setDevice(QIODevice*);
-    QIODevice * device() const;
-    void setString(QString*, QFlags<QIODevice::OpenModeFlag>);
-    QString * string() const;
-    enum _ZN11QTextStream6StatusE status() const;
-    void setStatus(QTextStream::Status);
-    void resetStatus();
-    bool atEnd() const;
-    void reset();
-    void flush();
-    bool seek(long long);
-    void skipWhiteSpace();
-    QString readLine(long long);
-    QString readAll();
-    QString read(long long);
-    void setFieldAlignment(QTextStream::FieldAlignment);
-    enum _ZN11QTextStream14FieldAlignmentE fieldAlignment() const;
-    void setPadChar(QChar);
-    QChar padChar() const;
-    void setFieldWidth(int);
-    int fieldWidth() const;
-    void setNumberFlags(QFlags<QTextStream::NumberFlag>);
-    QFlags<QTextStream::NumberFlag> numberFlags() const;
-    void setIntegerBase(int);
-    int integerBase() const;
-    void setRealNumberNotation(QTextStream::RealNumberNotation);
-    enum _ZN11QTextStream18RealNumberNotationE realNumberNotation() const;
-    void setRealNumberPrecision(int);
-    int realNumberPrecision() const;
-    QTextStream & operator>>(QChar&);
-    QTextStream & operator>>(char&);
-    QTextStream & operator>>(short&);
-    QTextStream & operator>>(unsigned short&);
-    QTextStream & operator>>(int&);
-    QTextStream & operator>>(unsigned int&);
-    QTextStream & operator>>(long&);
-    QTextStream & operator>>(unsigned long&);
-    QTextStream & operator>>(long long&);
-    QTextStream & operator>>(unsigned long long&);
-    QTextStream & operator>>(float&);
-    QTextStream & operator>>(double&);
-    QTextStream & operator>>(QString&);
-    QTextStream & operator>>(QByteArray&);
-    QTextStream & operator>>(char*);
-    QTextStream & operator<<(QBool);
-    QTextStream & operator<<(QChar);
-    QTextStream & operator<<(char);
-    QTextStream & operator<<(short);
-    QTextStream & operator<<(unsigned short);
-    QTextStream & operator<<(int);
-    QTextStream & operator<<(unsigned int);
-    QTextStream & operator<<(long);
-    QTextStream & operator<<(unsigned long);
-    QTextStream & operator<<(long long);
-    QTextStream & operator<<(unsigned long long);
-    QTextStream & operator<<(float);
-    QTextStream & operator<<(double);
-    QTextStream & operator<<(QString const&);
-    QTextStream & operator<<(QByteArray const&);
-    QTextStream & operator<<(char const*);
-    QTextStream & operator<<(void const*);
-    void setEncoding(QTextStream::Encoding);
-    qint64 pos() const;
-}QTextStreamFunction	
+typedef class QTextStreamQTextStreamFunction	
 ;
 
 typedef void	QTSMFI	
@@ -102,174 +17,12 @@ typedef void	QTSMFI
 typedef void	QTSMFC	
 ;
 
-typedef class QTextStream
-{
-private:
-public:
-     QTextStream();
-     QTextStream(QIODevice*);
-     QTextStream(_IO_FILE*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QString*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QByteArray*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QByteArray const&, QFlags<QIODevice::OpenModeFlag>);
-     ~QTextStream();
-    void setCodec(QTextCodec*);
-    void setCodec(char const*);
-    QTextCodec * codec() const;
-    void setAutoDetectUnicode(bool);
-    bool autoDetectUnicode() const;
-    void setGenerateByteOrderMark(bool);
-    bool generateByteOrderMark() const;
-    void setDevice(QIODevice*);
-    QIODevice * device() const;
-    void setString(QString*, QFlags<QIODevice::OpenModeFlag>);
-    QString * string() const;
-    enum _ZN11QTextStream6StatusE status() const;
-    void setStatus(QTextStream::Status);
-    void resetStatus();
-    bool atEnd() const;
-    void reset();
-    void flush();
-    bool seek(long long);
-    void skipWhiteSpace();
-    QString readLine(long long);
-    QString readAll();
-    QString read(long long);
-    void setFieldAlignment(QTextStream::FieldAlignment);
-    enum _ZN11QTextStream14FieldAlignmentE fieldAlignment() const;
-    void setPadChar(QChar);
-    QChar padChar() const;
-    void setFieldWidth(int);
-    int fieldWidth() const;
-    void setNumberFlags(QFlags<QTextStream::NumberFlag>);
-    QFlags<QTextStream::NumberFlag> numberFlags() const;
-    void setIntegerBase(int);
-    int integerBase() const;
-    void setRealNumberNotation(QTextStream::RealNumberNotation);
-    enum _ZN11QTextStream18RealNumberNotationE realNumberNotation() const;
-    void setRealNumberPrecision(int);
-    int realNumberPrecision() const;
-    QTextStream & operator>>(QChar&);
-    QTextStream & operator>>(char&);
-    QTextStream & operator>>(short&);
-    QTextStream & operator>>(unsigned short&);
-    QTextStream & operator>>(int&);
-    QTextStream & operator>>(unsigned int&);
-    QTextStream & operator>>(long&);
-    QTextStream & operator>>(unsigned long&);
-    QTextStream & operator>>(long long&);
-    QTextStream & operator>>(unsigned long long&);
-    QTextStream & operator>>(float&);
-    QTextStream & operator>>(double&);
-    QTextStream & operator>>(QString&);
-    QTextStream & operator>>(QByteArray&);
-    QTextStream & operator>>(char*);
-    QTextStream & operator<<(QBool);
-    QTextStream & operator<<(QChar);
-    QTextStream & operator<<(char);
-    QTextStream & operator<<(short);
-    QTextStream & operator<<(unsigned short);
-    QTextStream & operator<<(int);
-    QTextStream & operator<<(unsigned int);
-    QTextStream & operator<<(long);
-    QTextStream & operator<<(unsigned long);
-    QTextStream & operator<<(long long);
-    QTextStream & operator<<(unsigned long long);
-    QTextStream & operator<<(float);
-    QTextStream & operator<<(double);
-    QTextStream & operator<<(QString const&);
-    QTextStream & operator<<(QByteArray const&);
-    QTextStream & operator<<(char const*);
-    QTextStream & operator<<(void const*);
-    void setEncoding(QTextStream::Encoding);
-    qint64 pos() const;
-}QTS	
+typedef class QTextStreamQTS	
 ;
 
-class QTextStream
-{
-private:
-public:
-     QTextStream();
-     QTextStream(QIODevice*);
-     QTextStream(_IO_FILE*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QString*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QByteArray*, QFlags<QIODevice::OpenModeFlag>);
-     QTextStream(QByteArray const&, QFlags<QIODevice::OpenModeFlag>);
-     ~QTextStream();
-    void setCodec(QTextCodec*);
-    void setCodec(char const*);
-    QTextCodec * codec() const;
-    void setAutoDetectUnicode(bool);
-    bool autoDetectUnicode() const;
-    void setGenerateByteOrderMark(bool);
-    bool generateByteOrderMark() const;
-    void setDevice(QIODevice*);
-    QIODevice * device() const;
-    void setString(QString*, QFlags<QIODevice::OpenModeFlag>);
-    QString * string() const;
-    enum _ZN11QTextStream6StatusE status() const;
-    void setStatus(QTextStream::Status);
-    void resetStatus();
-    bool atEnd() const;
-    void reset();
-    void flush();
-    bool seek(long long);
-    void skipWhiteSpace();
-    QString readLine(long long);
-    QString readAll();
-    QString read(long long);
-    void setFieldAlignment(QTextStream::FieldAlignment);
-    enum _ZN11QTextStream14FieldAlignmentE fieldAlignment() const;
-    void setPadChar(QChar);
-    QChar padChar() const;
-    void setFieldWidth(int);
-    int fieldWidth() const;
-    void setNumberFlags(QFlags<QTextStream::NumberFlag>);
-    QFlags<QTextStream::NumberFlag> numberFlags() const;
-    void setIntegerBase(int);
-    int integerBase() const;
-    void setRealNumberNotation(QTextStream::RealNumberNotation);
-    enum _ZN11QTextStream18RealNumberNotationE realNumberNotation() const;
-    void setRealNumberPrecision(int);
-    int realNumberPrecision() const;
-    QTextStream & operator>>(QChar&);
-    QTextStream & operator>>(char&);
-    QTextStream & operator>>(short&);
-    QTextStream & operator>>(unsigned short&);
-    QTextStream & operator>>(int&);
-    QTextStream & operator>>(unsigned int&);
-    QTextStream & operator>>(long&);
-    QTextStream & operator>>(unsigned long&);
-    QTextStream & operator>>(long long&);
-    QTextStream & operator>>(unsigned long long&);
-    QTextStream & operator>>(float&);
-    QTextStream & operator>>(double&);
-    QTextStream & operator>>(QString&);
-    QTextStream & operator>>(QByteArray&);
-    QTextStream & operator>>(char*);
-    QTextStream & operator<<(QBool);
-    QTextStream & operator<<(QChar);
-    QTextStream & operator<<(char);
-    QTextStream & operator<<(short);
-    QTextStream & operator<<(unsigned short);
-    QTextStream & operator<<(int);
-    QTextStream & operator<<(unsigned int);
-    QTextStream & operator<<(long);
-    QTextStream & operator<<(unsigned long);
-    QTextStream & operator<<(long long);
-    QTextStream & operator<<(unsigned long long);
-    QTextStream & operator<<(float);
-    QTextStream & operator<<(double);
-    QTextStream & operator<<(QString const&);
-    QTextStream & operator<<(QByteArray const&);
-    QTextStream & operator<<(char const*);
-    QTextStream & operator<<(void const*);
-    void setEncoding(QTextStream::Encoding);
-    qint64 pos() const;
-};
+class QTextStream;
 
-enum RealNumberNotation	
+enum _ZN11QTextStream18RealNumberNotationE	
 {
 SmartNotation = 0,	
 FixedNotation = 1,	
@@ -277,7 +30,7 @@ ScientificNotation = 2
 }
 ;
 
-enum FieldAlignment	
+enum _ZN11QTextStream14FieldAlignmentE	
 {
 AlignLeft = 0,	
 AlignRight = 1,	
@@ -286,7 +39,7 @@ AlignAccountingStyle = 3
 }
 ;
 
-enum Status	
+enum _ZN11QTextStream6StatusE	
 {
 Ok = 0,	
 ReadPastEnd = 1,	
@@ -294,7 +47,7 @@ ReadCorruptData = 2
 }
 ;
 
-enum NumberFlag	
+enum _ZN11QTextStream10NumberFlagE	
 {
 ShowBase = 1,	
 ForcePoint = 2,	
@@ -304,13 +57,9 @@ UppercaseDigits = 16
 }
 ;
 
-class QFlags<QTextStream::NumberFlag>
-{
-private:
-public:
-};
+class QFlags<QTextStream::NumberFlag>;
 
-enum Encoding	
+enum _ZN11QTextStream8EncodingE	
 {
 Locale = 0,	
 Latin1 = 1,	
@@ -322,23 +71,11 @@ UnicodeUTF8 = 6
 }
 ;
 
-class QTextStreamManipulator
-{
-private:
-public:
-};
+class QTextStreamManipulator;
 
-class QTextIStream : public QTextStream
-{
-private:
-public:
-};
+class QTextIStream;
 
-class QTextOStream : public QTextStream
-{
-private:
-public:
-};
+class QTextOStream;
 
 
 /* Function prototypes */

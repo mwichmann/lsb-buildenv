@@ -21,8 +21,8 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void __assert_fail(const char *, const char *, unsigned int,
-			      const char *);
+    extern void __assert_fail(const char *__assertion, const char *__file,
+			      unsigned int __line, const char *__function);
 #ifdef __cplusplus
 }
 #endif

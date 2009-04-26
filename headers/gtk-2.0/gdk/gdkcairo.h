@@ -16,12 +16,15 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern cairo_t *gdk_cairo_create(GdkDrawable *);
-    extern void gdk_cairo_rectangle(cairo_t *, GdkRectangle *);
-    extern void gdk_cairo_region(cairo_t *, GdkRegion *);
-    extern void gdk_cairo_set_source_color(cairo_t *, GdkColor *);
-    extern void gdk_cairo_set_source_pixbuf(cairo_t *, GdkPixbuf *, double,
-					    double);
+    extern cairo_t *gdk_cairo_create(GdkDrawable * drawable);
+    extern void gdk_cairo_rectangle(cairo_t * cr,
+				    GdkRectangle * rectangle);
+    extern void gdk_cairo_region(cairo_t * cr, GdkRegion * region);
+    extern void gdk_cairo_set_source_color(cairo_t * cr, GdkColor * color);
+    extern void gdk_cairo_set_source_pixbuf(cairo_t * cr,
+					    GdkPixbuf * pixbuf,
+					    double pixbuf_x,
+					    double pixbuf_y);
 #ifdef __cplusplus
 }
 #endif

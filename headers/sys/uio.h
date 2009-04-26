@@ -15,8 +15,10 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern ssize_t readv(int, const struct iovec *, int);
-    extern ssize_t writev(int, const struct iovec *, int);
+    extern ssize_t readv(int __fd, const struct iovec *__iovec,
+			 int __count);
+    extern ssize_t writev(int __fd, const struct iovec *__iovec,
+			  int __count);
 #ifdef __cplusplus
 }
 #endif

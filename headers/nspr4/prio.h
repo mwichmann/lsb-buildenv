@@ -12,6 +12,9 @@ extern "C" {
 #endif
 
 
+#define prio_h___
+
+
     typedef enum PRDescType {
 	PR_DESC_FILE = 1,
 	PR_DESC_SOCKET_TCP = 2,
@@ -205,7 +208,6 @@ extern "C" {
 	PRReservedFN reserved_fn_0;
     };
 
-
     struct PRIPv6Addr {
 	union {
 	    PRUint8 _S6_u8[15];
@@ -215,14 +217,10 @@ extern "C" {
 	} _S6_un;
     };
 
-
     struct PRLinger {
 	PRBool polarity;
 	PRIntervalTime linger;
     };
-
-
-
 
     struct PRFileDesc {
 	const struct PRIOMethods *methods;
@@ -236,7 +234,7 @@ extern "C" {
     union PRNetAddr {
 	struct {
 	    PRUint16 family;
-	    char data[];
+	    char data[14];
 	} raw;
 	struct {
 	    PRUint16 family;
@@ -257,18 +255,15 @@ extern "C" {
 	} local;
     };
 
-
     struct PRMcastRequest {
 	union PRNetAddr mcaddr;
 	union PRNetAddr ifaddr;
     };
 
-
     struct PRIOVec {
 	char *iov_base;
 	int iov_len;
     };
-
 
     struct PRSocketOptionData {
 	PRSockOption option;
@@ -292,7 +287,6 @@ extern "C" {
 	} value;
     };
 
-
     struct PRFileInfo64 {
 	PRFileType type;
 	PROffset64 size;
@@ -300,14 +294,12 @@ extern "C" {
 	PRTime modifyTime;
     };
 
-
     struct PRFileInfo {
 	PRFileType type;
 	PROffset32 size;
 	PRTime creationTime;
 	PRTime modifyTime;
     };
-
 
     struct PRSendFileData {
 	PRFileDesc *fd;
@@ -319,7 +311,6 @@ extern "C" {
 	PRInt32 tlen;
     };
 
-
     struct PRPollDesc {
 	PRFileDesc *fd;
 	PRInt16 in_flags;
@@ -329,38 +320,47 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern PRFileDesc *PR_Accept(PRFileDesc *, PRNetAddr *,
-				 PRIntervalTime);
-    extern PRStatus PR_Bind(PRFileDesc *, const PRNetAddr *);
-    extern PRStatus PR_Close(PRFileDesc *);
-    extern PRStatus PR_Connect(PRFileDesc *, const PRNetAddr *,
-			       PRIntervalTime);
-    extern PRFileDesc *PR_CreateIOLayerStub(PRDescIdentity,
-					    const struct PRIOMethods *);
+    extern PRFileDesc *PR_Accept(PRFileDesc * fd, PRNetAddr * addr,
+				 PRIntervalTime timeout);
+    extern PRStatus PR_Bind(PRFileDesc * fd, const PRNetAddr * addr);
+    extern PRStatus PR_Close(PRFileDesc * fd);
+    extern PRStatus PR_Connect(PRFileDesc * fd, const PRNetAddr * addr,
+			       PRIntervalTime timeout);
+    extern PRFileDesc *PR_CreateIOLayerStub(PRDescIdentity ident,
+					    const struct PRIOMethods
+					    *methods);
     extern const struct PRIOMethods *PR_GetDefaultIOMethods(void);
-    extern PRDescIdentity PR_GetLayersIdentity(PRFileDesc *);
-    extern PRStatus PR_GetSocketOption(PRFileDesc *, PRSocketOptionData *);
-    extern PRDescIdentity PR_GetUniqueIdentity(const char *);
-    extern PRStatus PR_Listen(PRFileDesc *, PRIntn);
-    extern PRFileDesc *PR_OpenTCPSocket(PRIntn);
-    extern PRFileDesc *PR_OpenUDPSocket(PRIntn);
-    extern PRInt32 PR_Poll(PRPollDesc *, PRIntn, PRIntervalTime);
-    extern PRFileDesc *PR_PopIOLayer(PRFileDesc *, PRDescIdentity);
-    extern PRStatus PR_PushIOLayer(PRFileDesc *, PRDescIdentity,
-				   PRFileDesc *);
-    extern PRInt32 PR_Read(PRFileDesc *, void *, PRInt32);
-    extern PRInt32 PR_Recv(PRFileDesc *, void *, PRInt32, PRIntn,
-			   PRIntervalTime);
-    extern PRInt32 PR_RecvFrom(PRFileDesc *, void *, PRInt32, PRIntn,
-			       PRNetAddr *, PRIntervalTime);
-    extern PRInt32 PR_Send(PRFileDesc *, const void *, PRInt32, PRIntn,
-			   PRIntervalTime);
-    extern PRInt32 PR_SendTo(PRFileDesc *, const void *, PRInt32, PRIntn,
-			     const PRNetAddr *, PRIntervalTime);
-    extern PRStatus PR_SetSocketOption(PRFileDesc *,
-				       const PRSocketOptionData *);
-    extern PRStatus PR_Shutdown(PRFileDesc *, PRShutdownHow);
-    extern PRInt32 PR_Write(PRFileDesc *, const void *, PRInt32);
+    extern PRDescIdentity PR_GetLayersIdentity(PRFileDesc * fd);
+    extern PRStatus PR_GetSocketOption(PRFileDesc * fd,
+				       PRSocketOptionData * data);
+    extern PRDescIdentity PR_GetUniqueIdentity(const char *layer_name);
+    extern PRStatus PR_Listen(PRFileDesc * fd, PRIntn backlog);
+    extern PRFileDesc *PR_OpenTCPSocket(PRIntn af);
+    extern PRFileDesc *PR_OpenUDPSocket(PRIntn af);
+    extern PRInt32 PR_Poll(PRPollDesc * pds, PRIntn npds,
+			   PRIntervalTime timeout);
+    extern PRFileDesc *PR_PopIOLayer(PRFileDesc * fd_stack,
+				     PRDescIdentity id);
+    extern PRStatus PR_PushIOLayer(PRFileDesc * fd_stack,
+				   PRDescIdentity id, PRFileDesc * layer);
+    extern PRInt32 PR_Read(PRFileDesc * fd, void *buf, PRInt32 amount);
+    extern PRInt32 PR_Recv(PRFileDesc * fd, void *buf, PRInt32 amount,
+			   PRIntn flags, PRIntervalTime timeout);
+    extern PRInt32 PR_RecvFrom(PRFileDesc * fd, void *buf, PRInt32 amount,
+			       PRIntn flags, PRNetAddr * addr,
+			       PRIntervalTime timeout);
+    extern PRInt32 PR_Send(PRFileDesc * fd, const void *buf,
+			   PRInt32 amount, PRIntn flags,
+			   PRIntervalTime timeout);
+    extern PRInt32 PR_SendTo(PRFileDesc * fd, const void *buf,
+			     PRInt32 amount, PRIntn flags,
+			     const PRNetAddr * addr,
+			     PRIntervalTime timeout);
+    extern PRStatus PR_SetSocketOption(PRFileDesc * fd,
+				       const PRSocketOptionData * data);
+    extern PRStatus PR_Shutdown(PRFileDesc * fd, PRShutdownHow how);
+    extern PRInt32 PR_Write(PRFileDesc * fd, const void *buf,
+			    PRInt32 amount);
 #ifdef __cplusplus
 }
 #endif

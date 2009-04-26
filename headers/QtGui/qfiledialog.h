@@ -5,14 +5,10 @@
 class QFileDialog;
 // *INDENT-OFF*
 
-typedef class QFlags<QFileDialog::Option>
-{
-private:
-public:
-}Options	
+typedef class QFlags<QFileDialog::Option>QFileDialog::Options	
 ;
 
-typedef enum FileMode	
+typedef enum _ZN11QFileDialog8FileModeE	
 {
 AnyFile = 0,	
 ExistingFile = 1,	
@@ -20,71 +16,19 @@ Directory = 2,
 ExistingFiles = 3,	
 DirectoryOnly = 4
 }
-Mode	
+QFileDialog::Mode	
 ;
 
-class QFileDialog : public QDialog
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QFileDialog(QWidget*, QFlags<Qt::WindowType>);
-     QFileDialog(QWidget*, QString const&, QString const&, QString const&);
-     ~QFileDialog();
-    void setDirectory(QString const&);
-    QDir directory() const;
-    void selectFile(QString const&);
-    QStringList selectedFiles() const;
-    void setFilter(QString const&);
-    void setFilters(QStringList const&);
-    QStringList filters() const;
-    void selectFilter(QString const&);
-    QString selectedFilter() const;
-    void setViewMode(QFileDialog::ViewMode);
-    enum _ZN11QFileDialog8ViewModeE viewMode() const;
-    void setFileMode(QFileDialog::FileMode);
-    enum _ZN11QFileDialog8FileModeE fileMode() const;
-    void setAcceptMode(QFileDialog::AcceptMode);
-    enum _ZN11QFileDialog10AcceptModeE acceptMode() const;
-    void setReadOnly(bool);
-    bool isReadOnly() const;
-    void setResolveSymlinks(bool);
-    bool resolveSymlinks() const;
-    void setConfirmOverwrite(bool);
-    bool confirmOverwrite() const;
-    void setDefaultSuffix(QString const&);
-    QString defaultSuffix() const;
-    void setHistory(QStringList const&);
-    QStringList history() const;
-    void setItemDelegate(QAbstractItemDelegate*);
-    QAbstractItemDelegate * itemDelegate() const;
-    void setIconProvider(QFileIconProvider*);
-    QFileIconProvider * iconProvider() const;
-    void setLabelText(QFileDialog::DialogLabel, QString const&);
-    QString labelText(QFileDialog::DialogLabel) const;
-    QString selectedFile() const;
-    QString getOpenFileName(QWidget*, QString const&, QString const&, QString const&, QString*, QFlags<QFileDialog::Option>);
-    QString getSaveFileName(QWidget*, QString const&, QString const&, QString const&, QString*, QFlags<QFileDialog::Option>);
-    QString getExistingDirectory(QWidget*, QString const&, QString const&, QFlags<QFileDialog::Option>);
-    QStringList getOpenFileNames(QWidget*, QString const&, QString const&, QString const&, QString*, QFlags<QFileDialog::Option>);
-     QFileDialog(QFileDialogArgs const&);
-protected:
-    void filesSelected(QStringList const&);
-    void currentChanged(QString const&);
-    void done(int);
-    void accept();
-};
+class QFileDialog;
 
-enum ViewMode	
+enum _ZN11QFileDialog8ViewModeE	
 {
 Detail = 0,	
 List = 1
 }
 ;
 
-enum FileMode	
+enum _ZN11QFileDialog8FileModeE	
 {
 AnyFile = 0,	
 ExistingFile = 1,	
@@ -94,14 +38,14 @@ DirectoryOnly = 4
 }
 ;
 
-enum AcceptMode	
+enum _ZN11QFileDialog10AcceptModeE	
 {
 AcceptOpen = 0,	
 AcceptSave = 1
 }
 ;
 
-enum DialogLabel	
+enum _ZN11QFileDialog11DialogLabelE	
 {
 LookIn = 0,	
 FileName = 1,	
@@ -111,7 +55,7 @@ Reject = 4
 }
 ;
 
-enum Option	
+enum _ZN11QFileDialog6OptionE	
 {
 ShowDirsOnly = 1,	
 DontResolveSymlinks = 2,	
@@ -121,11 +65,7 @@ DontUseNativeDialog = 16
 }
 ;
 
-class QFlags<QFileDialog::Option>
-{
-private:
-public:
-};
+class QFlags<QFileDialog::Option>;
 
 
 /* Function prototypes */

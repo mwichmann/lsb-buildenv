@@ -16,16 +16,19 @@ typedef enum {
 
 typedef void (*__action_fn_t) (const void *__nodep, VISIT __value,
 			       int __level);
-extern int hcreate(size_t);
-extern ENTRY *hsearch(ENTRY, ACTION);
-extern void insque(void *, void *);
-extern void *lfind(const void *, const void *, size_t *, size_t,
-		   __compar_fn_t);
-extern void *lsearch(const void *, void *, size_t *, size_t,
-		     __compar_fn_t);
-extern void remque(void *);
+extern int hcreate(size_t __nel);
 extern void hdestroy(void);
-extern void *tdelete(const void *, void **, __compar_fn_t);
-extern void *tfind(const void *, void *const *, __compar_fn_t);
-extern void *tsearch(const void *, void **, __compar_fn_t);
-extern void twalk(const void *, __action_fn_t);
+extern ENTRY *hsearch(ENTRY __item, ACTION __action);
+extern void insque(void *__elem, void *__prev);
+extern void *lfind(const void *__key, const void *__base, size_t * __nmemb,
+		   size_t __size, __compar_fn_t __compar);
+extern void *lsearch(const void *__key, void *__base, size_t * __nmemb,
+		     size_t __size, __compar_fn_t __compar);
+extern void remque(void *__elem);
+extern void *tdelete(const void *__key, void **__rootp,
+		     __compar_fn_t __compar);
+extern void *tfind(const void *__key, void *const *__rootp,
+		   __compar_fn_t __compar);
+extern void *tsearch(const void *__key, void **__rootp,
+		     __compar_fn_t __compar);
+extern void twalk(const void *__root, __action_fn_t __action);

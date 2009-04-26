@@ -5,38 +5,12 @@
 class QFlags < QAbstractPrintDialog::PrintDialogOption >;
 // *INDENT-OFF*
 
-typedef class QFlags<QAbstractPrintDialog::PrintDialogOption>
-{
-private:
-public:
-}PrintDialogOptions	
+typedef class QFlags<QAbstractPrintDialog::PrintDialogOption>QAbstractPrintDialog::PrintDialogOptions	
 ;
 
-class QAbstractPrintDialog : public QDialog
-{
-private:
-public:
-     ~QAbstractPrintDialog();
-     QAbstractPrintDialog(QPrinter*, QWidget*);
-    void addEnabledOption(QAbstractPrintDialog::PrintDialogOption);
-    void setEnabledOptions(QFlags<QAbstractPrintDialog::PrintDialogOption>);
-    QFlags<QAbstractPrintDialog::PrintDialogOption> enabledOptions() const;
-    bool isOptionEnabled(QAbstractPrintDialog::PrintDialogOption) const;
-    void setPrintRange(QAbstractPrintDialog::PrintRange);
-    enum _ZN20QAbstractPrintDialog10PrintRangeE printRange() const;
-    void setMinMax(int, int);
-    int minPage() const;
-    int maxPage() const;
-    void setFromTo(int, int);
-    int fromPage() const;
-    int toPage() const;
-    QPrinter * printer() const;
-    int qt_metacall(QMetaObject::Call, int, void**);
-    void * qt_metacast(char const*);
-    struct QMetaObject * metaObject() const;
-};
+class QAbstractPrintDialog;
 
-enum PrintRange	
+enum _ZN20QAbstractPrintDialog10PrintRangeE	
 {
 AllPages = 0,	
 Selection = 1,	
@@ -44,7 +18,7 @@ PageRange = 2
 }
 ;
 
-enum PrintDialogOption	
+enum _ZN20QAbstractPrintDialog17PrintDialogOptionE	
 {
 None = 0,	
 PrintToFile = 1,	
@@ -54,11 +28,7 @@ PrintCollateCopies = 16
 }
 ;
 
-class QFlags<QAbstractPrintDialog::PrintDialogOption>
-{
-private:
-public:
-};
+class QFlags<QAbstractPrintDialog::PrintDialogOption>;
 
 // *INDENT-ON*
 #endif				/* protection */

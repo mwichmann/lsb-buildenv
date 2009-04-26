@@ -34,11 +34,9 @@ extern "C" {
 
     typedef struct _PangoFcDecoderClass PangoFcDecoderClass;
 
-
     struct _PangoFcDecoder {
 	GObject parent_instance;
     };
-
 
     struct _PangoFcDecoderClass {
 	GObjectClass parent_class;
@@ -53,10 +51,12 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern FcCharSet *pango_fc_decoder_get_charset(PangoFcDecoder *,
-						   PangoFcFont *);
-    extern PangoGlyph pango_fc_decoder_get_glyph(PangoFcDecoder *,
-						 PangoFcFont *, guint32);
+    extern FcCharSet *pango_fc_decoder_get_charset(PangoFcDecoder *
+						   decoder,
+						   PangoFcFont * fcfont);
+    extern PangoGlyph pango_fc_decoder_get_glyph(PangoFcDecoder * decoder,
+						 PangoFcFont * fcfont,
+						 guint32 wc);
     extern GType pango_fc_decoder_get_type(void);
 #ifdef __cplusplus
 }

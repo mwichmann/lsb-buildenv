@@ -19,26 +19,22 @@ extern "C" {
     typedef xmlMutex *xmlMutexPtr;
 
 
-
-
-
-
 /* Function prototypes */
 
     extern void xmlCleanupThreads(void);
-    extern void xmlFreeMutex(xmlMutexPtr);
-    extern void xmlFreeRMutex(xmlRMutexPtr);
+    extern void xmlFreeMutex(xmlMutexPtr tok);
+    extern void xmlFreeRMutex(xmlRMutexPtr tok);
     extern xmlGlobalStatePtr xmlGetGlobalState(void);
     extern int xmlGetThreadId(void);
     extern void xmlInitThreads(void);
     extern int xmlIsMainThread(void);
     extern void xmlLockLibrary(void);
-    extern void xmlMutexLock(xmlMutexPtr);
-    extern void xmlMutexUnlock(xmlMutexPtr);
+    extern void xmlMutexLock(xmlMutexPtr tok);
+    extern void xmlMutexUnlock(xmlMutexPtr tok);
     extern xmlMutexPtr xmlNewMutex(void);
     extern xmlRMutexPtr xmlNewRMutex(void);
-    extern void xmlRMutexLock(xmlRMutexPtr);
-    extern void xmlRMutexUnlock(xmlRMutexPtr);
+    extern void xmlRMutexLock(xmlRMutexPtr tok);
+    extern void xmlRMutexUnlock(xmlRMutexPtr tok);
     extern void xmlUnlockLibrary(void);
 #ifdef __cplusplus
 }

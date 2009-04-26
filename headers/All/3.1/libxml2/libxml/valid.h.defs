@@ -82,37 +82,6 @@ typedef struct _xmlHashTable xmlIDTable;
 typedef xmlIDTable *xmlIDTablePtr;
 typedef struct _xmlHashTable xmlRefTable;
 typedef xmlRefTable *xmlRefTablePtr;
-extern int xmlIsRef(xmlDocPtr, xmlNodePtr, xmlAttrPtr);
-extern int xmlValidateOneNamespace(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
-				   const xmlChar *, xmlNsPtr,
-				   const xmlChar *);
-extern xmlEnumerationPtr xmlCreateEnumeration(const xmlChar *);
-extern xmlListPtr xmlGetRefs(xmlDocPtr, const xmlChar *);
-extern int xmlIsMixedElement(xmlDocPtr, const xmlChar *);
-extern int xmlValidateNmtokensValue(const xmlChar *);
-extern int xmlValidateNameValue(const xmlChar *);
-extern xmlAttributeTablePtr xmlCopyAttributeTable(xmlAttributeTablePtr);
-extern xmlElementContentPtr xmlNewDocElementContent(xmlDocPtr,
-						    const xmlChar *,
-						    xmlElementContentType);
-extern int xmlValidateAttributeValue(xmlAttributeType, const xmlChar *);
-extern void xmlDumpElementDecl(xmlBufferPtr, xmlElementPtr);
-extern int xmlRemoveID(xmlDocPtr, xmlAttrPtr);
-extern void xmlDumpNotationTable(xmlBufferPtr, xmlNotationTablePtr);
-extern void xmlFreeEnumeration(xmlEnumerationPtr);
-extern void xmlSnprintfElementContent(char *, int, xmlElementContentPtr,
-				      int);
-extern int xmlValidateNotationUse(xmlValidCtxtPtr, xmlDocPtr,
-				  const xmlChar *);
-extern int xmlValidateDocument(xmlValidCtxtPtr, xmlDocPtr);
-extern int xmlValidateOneAttribute(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
-				   xmlAttrPtr, const xmlChar *);
-extern xmlChar *xmlValidNormalizeAttributeValue(xmlDocPtr, xmlNodePtr,
-						const xmlChar *,
-						const xmlChar *);
-extern xmlElementPtr xmlGetDtdElementDesc(xmlDtdPtr, const xmlChar *);
-extern int xmlValidateDtd(xmlValidCtxtPtr, xmlDocPtr, xmlDtdPtr);
-extern int xmlValidateDocumentFinal(xmlValidCtxtPtr, xmlDocPtr);
 extern xmlAttributePtr xmlAddAttributeDecl(xmlValidCtxtPtr, xmlDtdPtr,
 					   const xmlChar *,
 					   const xmlChar *,
@@ -121,67 +90,98 @@ extern xmlAttributePtr xmlAddAttributeDecl(xmlValidCtxtPtr, xmlDtdPtr,
 					   xmlAttributeDefault,
 					   const xmlChar *,
 					   xmlEnumerationPtr);
-extern int xmlValidateNamesValue(const xmlChar *);
-extern xmlAttributePtr xmlGetDtdQAttrDesc(xmlDtdPtr, const xmlChar *,
-					  const xmlChar *,
-					  const xmlChar *);
-extern void xmlFreeDocElementContent(xmlDocPtr, xmlElementContentPtr);
-extern int xmlValidateElementDecl(xmlValidCtxtPtr, xmlDocPtr,
-				  xmlElementPtr);
-extern xmlValidCtxtPtr xmlNewValidCtxt(void);
-extern int xmlValidateNmtokenValue(const xmlChar *);
-extern xmlElementPtr xmlGetDtdQElementDesc(xmlDtdPtr, const xmlChar *,
-					   const xmlChar *);
-extern xmlNotationTablePtr xmlCopyNotationTable(xmlNotationTablePtr);
-extern void xmlDumpNotationDecl(xmlBufferPtr, xmlNotationPtr);
-extern int xmlValidatePushElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
-				  const xmlChar *);
-extern int xmlValidateNotationDecl(xmlValidCtxtPtr, xmlDocPtr,
-				   xmlNotationPtr);
-extern xmlNotationPtr xmlAddNotationDecl(xmlValidCtxtPtr, xmlDtdPtr,
-					 const xmlChar *, const xmlChar *,
-					 const xmlChar *);
-extern int xmlValidBuildContentModel(xmlValidCtxtPtr, xmlElementPtr);
-extern int xmlValidatePopElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
-				 const xmlChar *);
-extern xmlIDPtr xmlAddID(xmlValidCtxtPtr, xmlDocPtr, const xmlChar *,
-			 xmlAttrPtr);
-extern xmlElementContentPtr xmlCopyDocElementContent(xmlDocPtr,
-						     xmlElementContentPtr);
-extern xmlAttributePtr xmlGetDtdAttrDesc(xmlDtdPtr, const xmlChar *,
-					 const xmlChar *);
-extern xmlEnumerationPtr xmlCopyEnumeration(xmlEnumerationPtr);
-extern int xmlValidateAttributeDecl(xmlValidCtxtPtr, xmlDocPtr,
-				    xmlAttributePtr);
-extern xmlRefPtr xmlAddRef(xmlValidCtxtPtr, xmlDocPtr, const xmlChar *,
-			   xmlAttrPtr);
-extern void xmlFreeElementTable(xmlElementTablePtr);
-extern void xmlDumpAttributeTable(xmlBufferPtr, xmlAttributeTablePtr);
-extern int xmlValidateOneElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr);
-extern int xmlIsID(xmlDocPtr, xmlNodePtr, xmlAttrPtr);
-extern void xmlFreeIDTable(xmlIDTablePtr);
-extern int xmlRemoveRef(xmlDocPtr, xmlAttrPtr);
-extern int xmlValidGetValidElements(xmlNode *, xmlNode *,
-				    const xmlChar * *, int);
-extern void xmlFreeNotationTable(xmlNotationTablePtr);
-extern void xmlFreeRefTable(xmlRefTablePtr);
-extern xmlNotationPtr xmlGetDtdNotationDesc(xmlDtdPtr, const xmlChar *);
-extern int xmlValidateRoot(xmlValidCtxtPtr, xmlDocPtr);
-extern xmlElementTablePtr xmlCopyElementTable(xmlElementTablePtr);
 extern xmlElementPtr xmlAddElementDecl(xmlValidCtxtPtr, xmlDtdPtr,
 				       const xmlChar *, xmlElementTypeVal,
 				       xmlElementContentPtr);
-extern void xmlFreeValidCtxt(xmlValidCtxtPtr);
-extern int xmlValidateDtdFinal(xmlValidCtxtPtr, xmlDocPtr);
-extern void xmlDumpElementTable(xmlBufferPtr, xmlElementTablePtr);
+extern xmlIDPtr xmlAddID(xmlValidCtxtPtr, xmlDocPtr, const xmlChar *,
+			 xmlAttrPtr);
+extern xmlNotationPtr xmlAddNotationDecl(xmlValidCtxtPtr, xmlDtdPtr,
+					 const xmlChar *, const xmlChar *,
+					 const xmlChar *);
+extern xmlRefPtr xmlAddRef(xmlValidCtxtPtr, xmlDocPtr, const xmlChar *,
+			   xmlAttrPtr);
+extern xmlAttributeTablePtr xmlCopyAttributeTable(xmlAttributeTablePtr);
+extern xmlElementContentPtr xmlCopyDocElementContent(xmlDocPtr,
+						     xmlElementContentPtr);
+extern xmlElementTablePtr xmlCopyElementTable(xmlElementTablePtr);
+extern xmlEnumerationPtr xmlCopyEnumeration(xmlEnumerationPtr);
+extern xmlNotationTablePtr xmlCopyNotationTable(xmlNotationTablePtr);
+extern xmlEnumerationPtr xmlCreateEnumeration(const xmlChar *);
 extern void xmlDumpAttributeDecl(xmlBufferPtr, xmlAttributePtr);
-extern int xmlValidateElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr);
-extern xmlAttrPtr xmlGetID(xmlDocPtr, const xmlChar *);
-extern int xmlValidatePushCData(xmlValidCtxtPtr, const xmlChar *, int);
+extern void xmlDumpAttributeTable(xmlBufferPtr, xmlAttributeTablePtr);
+extern void xmlDumpElementDecl(xmlBufferPtr, xmlElementPtr);
+extern void xmlDumpElementTable(xmlBufferPtr, xmlElementTablePtr);
+extern void xmlDumpNotationDecl(xmlBufferPtr, xmlNotationPtr);
+extern void xmlDumpNotationTable(xmlBufferPtr, xmlNotationTablePtr);
 extern void xmlFreeAttributeTable(xmlAttributeTablePtr);
-extern int xmlValidGetPotentialChildren(xmlElementContent *,
-					const xmlChar * *, int *, int);
+extern void xmlFreeDocElementContent(xmlDocPtr, xmlElementContentPtr);
+extern void xmlFreeElementTable(xmlElementTablePtr);
+extern void xmlFreeEnumeration(xmlEnumerationPtr);
+extern void xmlFreeIDTable(xmlIDTablePtr);
+extern void xmlFreeNotationTable(xmlNotationTablePtr);
+extern void xmlFreeRefTable(xmlRefTablePtr);
+extern void xmlFreeValidCtxt(xmlValidCtxtPtr);
+extern xmlAttributePtr xmlGetDtdAttrDesc(xmlDtdPtr, const xmlChar *,
+					 const xmlChar *);
+extern xmlElementPtr xmlGetDtdElementDesc(xmlDtdPtr, const xmlChar *);
+extern xmlNotationPtr xmlGetDtdNotationDesc(xmlDtdPtr, const xmlChar *);
+extern xmlAttributePtr xmlGetDtdQAttrDesc(xmlDtdPtr, const xmlChar *,
+					  const xmlChar *,
+					  const xmlChar *);
+extern xmlElementPtr xmlGetDtdQElementDesc(xmlDtdPtr, const xmlChar *,
+					   const xmlChar *);
+extern xmlAttrPtr xmlGetID(xmlDocPtr, const xmlChar *);
+extern xmlListPtr xmlGetRefs(xmlDocPtr, const xmlChar *);
+extern int xmlIsID(xmlDocPtr, xmlNodePtr, xmlAttrPtr);
+extern int xmlIsMixedElement(xmlDocPtr, const xmlChar *);
+extern int xmlIsRef(xmlDocPtr, xmlNodePtr, xmlAttrPtr);
+extern xmlElementContentPtr xmlNewDocElementContent(xmlDocPtr,
+						    const xmlChar *,
+						    xmlElementContentType);
+extern xmlValidCtxtPtr xmlNewValidCtxt(void);
+extern int xmlRemoveID(xmlDocPtr, xmlAttrPtr);
+extern int xmlRemoveRef(xmlDocPtr, xmlAttrPtr);
+extern void xmlSnprintfElementContent(char *, int, xmlElementContentPtr,
+				      int);
+extern int xmlValidBuildContentModel(xmlValidCtxtPtr, xmlElementPtr);
 extern xmlChar *xmlValidCtxtNormalizeAttributeValue(xmlValidCtxtPtr,
 						    xmlDocPtr, xmlNodePtr,
 						    const xmlChar *,
 						    const xmlChar *);
+extern int xmlValidGetPotentialChildren(xmlElementContent *,
+					const xmlChar * *, int *, int);
+extern int xmlValidGetValidElements(xmlNode *, xmlNode *,
+				    const xmlChar * *, int);
+extern xmlChar *xmlValidNormalizeAttributeValue(xmlDocPtr, xmlNodePtr,
+						const xmlChar *,
+						const xmlChar *);
+extern int xmlValidateAttributeDecl(xmlValidCtxtPtr, xmlDocPtr,
+				    xmlAttributePtr);
+extern int xmlValidateAttributeValue(xmlAttributeType, const xmlChar *);
+extern int xmlValidateDocument(xmlValidCtxtPtr, xmlDocPtr);
+extern int xmlValidateDocumentFinal(xmlValidCtxtPtr, xmlDocPtr);
+extern int xmlValidateDtd(xmlValidCtxtPtr, xmlDocPtr, xmlDtdPtr);
+extern int xmlValidateDtdFinal(xmlValidCtxtPtr, xmlDocPtr);
+extern int xmlValidateElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr);
+extern int xmlValidateElementDecl(xmlValidCtxtPtr, xmlDocPtr,
+				  xmlElementPtr);
+extern int xmlValidateNameValue(const xmlChar *);
+extern int xmlValidateNamesValue(const xmlChar *);
+extern int xmlValidateNmtokenValue(const xmlChar *);
+extern int xmlValidateNmtokensValue(const xmlChar *);
+extern int xmlValidateNotationDecl(xmlValidCtxtPtr, xmlDocPtr,
+				   xmlNotationPtr);
+extern int xmlValidateNotationUse(xmlValidCtxtPtr, xmlDocPtr,
+				  const xmlChar *);
+extern int xmlValidateOneAttribute(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
+				   xmlAttrPtr, const xmlChar *);
+extern int xmlValidateOneElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr);
+extern int xmlValidateOneNamespace(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
+				   const xmlChar *, xmlNsPtr,
+				   const xmlChar *);
+extern int xmlValidatePopElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
+				 const xmlChar *);
+extern int xmlValidatePushCData(xmlValidCtxtPtr, const xmlChar *, int);
+extern int xmlValidatePushElement(xmlValidCtxtPtr, xmlDocPtr, xmlNodePtr,
+				  const xmlChar *);
+extern int xmlValidateRoot(xmlValidCtxtPtr, xmlDocPtr);

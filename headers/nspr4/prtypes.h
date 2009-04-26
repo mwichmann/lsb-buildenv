@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define prtypes_h___
+
+
     typedef int PRInt32;
 
     typedef unsigned long int PRUword;

@@ -33,6 +33,6 @@
 
 extern void glXFreeContextEXT(Display *, GLXContext);
 extern GLXContextID glXGetContextIDEXT(GLXContext);
+extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte * procName);
 extern GLXContext glXImportContextEXT(Display *, GLXContextID);
 extern int glXQueryContextInfoEXT(Display *, GLXContext, int, int *);
-extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte *);

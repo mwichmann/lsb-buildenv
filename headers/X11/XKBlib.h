@@ -4,10 +4,35 @@
 
 #include <X11/Xlib.h>
 #include <X11/X.h>
+#include <X11/extensions/XKBstr.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+#define _XKBLIB_H_
+#define XkbNoteIndicatorMapChanges(o,n,w)	((o)->map_changes|=((n)->map_changes&(w)))
+#define XkbNoteIndicatorStateChanges(o,n,w)	((o)->state_changes|=((n)->state_changes&(w)))
+#define XkbLC_AllComposeControls	(0xc0000000)
+#define XkbLC_AllControls	(0xc000001f)
+#define XkbLC_ForceLatin1Lookup	(1<<0)
+#define XkbLC_ConsumeLookupMods	(1<<1)
+#define XkbLC_AlwaysConsumeShiftAndLock	(1<<2)
+#define XkbLC_ConsumeKeysOnComposeFail	(1<<29)
+#define XkbLC_IgnoreNewKeyboards	(1<<3)
+#define XkbLC_ComposeLED	(1<<30)
+#define XkbLC_BeepOnComposeFail	(1<<31)
+#define XkbLC_ControlFallback	(1<<4)
+#define XkbGetIndicatorMapChanges(d,x,c)	(XkbGetIndicatorMap((d),(c)->map_changes,x)
+#define XkbChangeIndicatorMaps(d,x,c)	(XkbSetIndicatorMap((d),(c)->map_changes,x))
+#define XkbOD_Success	0
+#define XkbOD_BadLibraryVersion	1
+#define XkbOD_ConnectionRefused	2
+#define XkbOD_NonXkbServer	3
+#define XkbOD_BadServerVersion	4
+#define XkbGetControlsChanges(d,x,c)	XkbGetControls(d,(c)->changed_ctrls,x)
+#define XkbChangeControls(d,x,c)	XkbSetControls(d,(c)->changed_ctrls,x)
 
 
 #if __LSB_VERSION__ >= 12
@@ -289,70 +314,83 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int XkbAllocClientMap(, unsigned int, unsigned int);
-    extern int XkbAllocCompatMap(, unsigned int, unsigned int);
-    extern int XkbAllocControls(, unsigned int);
-    extern int XkbAllocIndicatorMaps();
-    extern XkbAllocKeyboard(void);
-    extern int XkbAllocNames(, unsigned int, int, int);
-    extern int XkbAllocServerMap(, unsigned int, unsigned int);
-    extern int XkbApplyCompatMapToKey(, KeyCode,);
+    extern int XkbAllocClientMap(XkbDescPtr, unsigned int, unsigned int);
+    extern int XkbAllocCompatMap(XkbDescPtr, unsigned int, unsigned int);
+    extern int XkbAllocControls(XkbDescPtr, unsigned int);
+    extern int XkbAllocIndicatorMaps(XkbDescPtr);
+    extern XkbDescPtr XkbAllocKeyboard(void);
+    extern int XkbAllocNames(XkbDescPtr, unsigned int, int, int);
+    extern int XkbAllocServerMap(XkbDescPtr, unsigned int, unsigned int);
+    extern int XkbApplyCompatMapToKey(XkbDescPtr, KeyCode, XkbChangesPtr);
     extern int XkbBell(Display *, Window, int, Atom);
     extern int XkbBellEvent(Display *, Window, int, Atom);
     extern int XkbChangeEnabledControls(Display *, unsigned int,
 					unsigned int, unsigned int);
-    extern int XkbChangeMap(Display *,,);
-    extern int XkbChangeNames(Display *,,);
-    extern int XkbChangeTypesOfKey(, int, int, unsigned int, int *,);
-    extern int XkbComputeEffectiveMap(,, unsigned char *);
-    extern int XkbCopyKeyType(,);
-    extern int XkbCopyKeyTypes(,, int);
+    extern int XkbChangeMap(Display *, XkbDescPtr, XkbMapChangesPtr);
+    extern int XkbChangeNames(Display *, XkbDescPtr, XkbNameChangesPtr);
+    extern int XkbChangeTypesOfKey(XkbDescPtr, int, int, unsigned int,
+				   int *, XkbMapChangesPtr);
+    extern int XkbComputeEffectiveMap(XkbDescPtr, XkbKeyTypePtr,
+				      unsigned char *);
+    extern int XkbCopyKeyType(XkbKeyTypePtr, XkbKeyTypePtr);
+    extern int XkbCopyKeyTypes(XkbKeyTypePtr, XkbKeyTypePtr, int);
     extern int XkbForceBell(Display *, int);
-    extern void XkbFreeClientMap(, unsigned int, int);
-    extern void XkbFreeCompatMap(, unsigned int, int);
-    extern void XkbFreeComponentList();
-    extern void XkbFreeControls(, unsigned int, int);
-    extern void XkbFreeIndicatorMaps();
-    extern void XkbFreeKeyboard(, unsigned int, int);
-    extern void XkbFreeNames(, unsigned int, int);
-    extern void XkbFreeServerMap(, unsigned int, int);
+    extern void XkbFreeClientMap(XkbDescPtr, unsigned int, int);
+    extern void XkbFreeCompatMap(XkbDescPtr, unsigned int, int);
+    extern void XkbFreeComponentList(XkbComponentListPtr);
+    extern void XkbFreeControls(XkbDescPtr, unsigned int, int);
+    extern void XkbFreeIndicatorMaps(XkbDescPtr);
+    extern void XkbFreeKeyboard(XkbDescPtr, unsigned int, int);
+    extern void XkbFreeNames(XkbDescPtr, unsigned int, int);
+    extern void XkbFreeServerMap(XkbDescPtr, unsigned int, int);
     extern int XkbGetAutoRepeatRate(Display *, unsigned int,
 				    unsigned int *, unsigned int *);
-    extern int XkbGetCompatMap(Display *, unsigned int,);
-    extern int XkbGetControls(Display *, unsigned long int,);
-    extern int XkbGetIndicatorMap(Display *, unsigned long int,);
+    extern int XkbGetCompatMap(Display *, unsigned int, XkbDescPtr);
+    extern int XkbGetControls(Display *, unsigned long int, XkbDescPtr);
+    extern int XkbGetIndicatorMap(Display *, unsigned long int,
+				  XkbDescPtr);
     extern int XkbGetIndicatorState(Display *, unsigned int,
 				    unsigned int *);
-    extern int XkbGetKeyActions(Display *, unsigned int, unsigned int,);
-    extern int XkbGetKeyBehaviors(Display *, unsigned int, unsigned int,);
+    extern int XkbGetKeyActions(Display *, unsigned int, unsigned int,
+				XkbDescPtr);
+    extern int XkbGetKeyBehaviors(Display *, unsigned int, unsigned int,
+				  XkbDescPtr);
     extern int XkbGetKeyExplicitComponents(Display *, unsigned int,
-					   unsigned int,);
-    extern int XkbGetKeyModifierMap(Display *, unsigned int,
-				    unsigned int,);
-    extern int XkbGetKeySyms(Display *, unsigned int, unsigned int,);
-    extern int XkbGetKeyTypes(Display *, unsigned int, unsigned int,);
-    extern XkbGetKeyboard(Display *, unsigned int, unsigned int);
-    extern XkbGetKeyboardByName(Display *, unsigned int,, unsigned int,
-				unsigned int, int);
-    extern XkbGetMap(Display *, unsigned int, unsigned int);
-    extern int XkbGetMapChanges(Display *,,);
-    extern int XkbGetNamedIndicator(Display *, Atom, int *, int *,, int *);
-    extern int XkbGetNames(Display *, unsigned int,);
-    extern int XkbGetState(Display *, unsigned int,);
-    extern int XkbGetUpdatedMap(Display *, unsigned int,);
-    extern int XkbGetVirtualMods(Display *, unsigned int,);
+					   unsigned int, XkbDescPtr);
+    extern int XkbGetKeyModifierMap(Display *, unsigned int, unsigned int,
+				    XkbDescPtr);
+    extern int XkbGetKeySyms(Display *, unsigned int, unsigned int,
+			     XkbDescPtr);
+    extern int XkbGetKeyTypes(Display *, unsigned int, unsigned int,
+			      XkbDescPtr);
+    extern XkbDescPtr XkbGetKeyboard(Display *, unsigned int,
+				     unsigned int);
+    extern XkbDescPtr XkbGetKeyboardByName(Display *, unsigned int,
+					   XkbComponentNamesPtr,
+					   unsigned int, unsigned int,
+					   int);
+    extern XkbDescPtr XkbGetMap(Display *, unsigned int, unsigned int);
+    extern int XkbGetMapChanges(Display *, XkbDescPtr, XkbMapChangesPtr);
+    extern int XkbGetNamedIndicator(Display *, Atom, int *, int *,
+				    XkbIndicatorMapPtr, int *);
+    extern int XkbGetNames(Display *, unsigned int, XkbDescPtr);
+    extern int XkbGetState(Display *, unsigned int, XkbStatePtr);
+    extern int XkbGetUpdatedMap(Display *, unsigned int, XkbDescPtr);
+    extern int XkbGetVirtualMods(Display *, unsigned int, XkbDescPtr);
     extern unsigned int XkbGetXlibControls(Display *);
     extern int XkbIgnoreExtension(int);
-    extern int XkbInitCanonicalKeyTypes(, unsigned int, int);
-    extern int XkbKeyTypesForCoreSymbols(, int, KeySym *, unsigned int,
-					 int *, KeySym *);
+    extern int XkbInitCanonicalKeyTypes(XkbDescPtr, unsigned int, int);
+    extern int XkbKeyTypesForCoreSymbols(XkbDescPtr, int, KeySym *,
+					 unsigned int, int *, KeySym *);
     extern KeySym XkbKeycodeToKeysym(Display *, unsigned int, int, int);
     extern unsigned int XkbKeysymToModifiers(Display *, KeySym);
     extern int XkbLatchGroup(Display *, unsigned int, unsigned int);
     extern int XkbLatchModifiers(Display *, unsigned int, unsigned int,
 				 unsigned int);
     extern int XkbLibraryVersion(int *, int *);
-    extern XkbListComponents(Display *, unsigned int,, int *);
+    extern XkbComponentListPtr XkbListComponents(Display *, unsigned int,
+						 XkbComponentNamesPtr,
+						 int *);
     extern int XkbLockGroup(Display *, unsigned int, unsigned int);
     extern int XkbLockModifiers(Display *, unsigned int, unsigned int,
 				unsigned int);
@@ -360,18 +398,21 @@ extern "C" {
 				   int, int *);
     extern int XkbLookupKeySym(Display *, KeyCode, unsigned int,
 			       unsigned int *, KeySym *);
-    extern void XkbNoteControlsChanges(, XkbControlsNotifyEvent *,
+    extern void XkbNoteControlsChanges(XkbControlsChangesPtr,
+				       XkbControlsNotifyEvent *,
 				       unsigned int);
-    extern void XkbNoteMapChanges(, XkbMapNotifyEvent *, unsigned int);
-    extern void XkbNoteNameChanges(, XkbNamesNotifyEvent *, unsigned int);
+    extern void XkbNoteMapChanges(XkbMapChangesPtr, XkbMapNotifyEvent *,
+				  unsigned int);
+    extern void XkbNoteNameChanges(XkbNameChangesPtr,
+				   XkbNamesNotifyEvent *, unsigned int);
     extern Display *XkbOpenDisplay(char *, int *, int *, int *, int *,
 				   int *);
     extern int XkbQueryExtension(Display *, int *, int *, int *, int *,
 				 int *);
     extern int XkbRefreshKeyboardMapping(XkbMapNotifyEvent *);
-    extern *XkbResizeKeyActions(, int, int);
-    extern KeySym *XkbResizeKeySyms(, int, int);
-    extern int XkbResizeKeyType(, int, int, int, int);
+    extern XkbAction *XkbResizeKeyActions(XkbDescPtr, int, int);
+    extern KeySym *XkbResizeKeySyms(XkbDescPtr, int, int);
+    extern int XkbResizeKeyType(XkbDescPtr, int, int, int, int);
     extern int XkbSelectEventDetails(Display *, unsigned int, unsigned int,
 				     unsigned long int, unsigned long int);
     extern int XkbSelectEvents(Display *, unsigned int, unsigned int,
@@ -381,8 +422,8 @@ extern "C" {
 				    unsigned int);
     extern int XkbSetAutoResetControls(Display *, unsigned int,
 				       unsigned int *, unsigned int *);
-    extern int XkbSetCompatMap(Display *, unsigned int,, int);
-    extern int XkbSetControls(Display *, unsigned long int,);
+    extern int XkbSetCompatMap(Display *, unsigned int, XkbDescPtr, int);
+    extern int XkbSetControls(Display *, unsigned long int, XkbDescPtr);
     extern int XkbSetDebuggingFlags(Display *, unsigned int, unsigned int,
 				    char *, unsigned int, unsigned int,
 				    unsigned int *, unsigned int *);
@@ -390,24 +431,28 @@ extern "C" {
     extern int XkbSetIgnoreLockMods(Display *, unsigned int, unsigned int,
 				    unsigned int, unsigned int,
 				    unsigned int);
-    extern int XkbSetIndicatorMap(Display *, unsigned long int,);
-    extern int XkbSetMap(Display *, unsigned int,);
-    extern int XkbSetNamedIndicator(Display *, Atom, int, int, int,);
+    extern int XkbSetIndicatorMap(Display *, unsigned long int,
+				  XkbDescPtr);
+    extern int XkbSetMap(Display *, unsigned int, XkbDescPtr);
+    extern int XkbSetNamedIndicator(Display *, Atom, int, int, int,
+				    XkbIndicatorMapPtr);
     extern int XkbSetNames(Display *, unsigned int, unsigned int,
-			   unsigned int,);
+			   unsigned int, XkbDescPtr);
     extern int XkbSetServerInternalMods(Display *, unsigned int,
 					unsigned int, unsigned int,
 					unsigned int, unsigned int);
     extern unsigned int XkbSetXlibControls(Display *, unsigned int,
 					   unsigned int);
     extern char XkbToControl(char);
-    extern int XkbTranslateKeyCode(, KeyCode, unsigned int, unsigned int *,
-				   KeySym *);
+    extern int XkbTranslateKeyCode(XkbDescPtr, KeyCode, unsigned int,
+				   unsigned int *, KeySym *);
     extern int XkbTranslateKeySym(Display *, KeySym *, unsigned int,
 				  char *, int, int *);
-    extern int XkbUpdateMapFromCore(, KeyCode, int, int, KeySym *,);
+    extern int XkbUpdateMapFromCore(XkbDescPtr, KeyCode, int, int,
+				    KeySym *, XkbChangesPtr);
     extern int XkbUseExtension(Display *, int *, int *);
-    extern int XkbVirtualModsToReal(, unsigned int, unsigned int *);
+    extern int XkbVirtualModsToReal(XkbDescPtr, unsigned int,
+				    unsigned int *);
 #if __LSB_VERSION__ >= 40
     extern int XkbGetPerClientControls(Display *, unsigned int *);
     extern int XkbSetPerClientControls(Display *, unsigned int,

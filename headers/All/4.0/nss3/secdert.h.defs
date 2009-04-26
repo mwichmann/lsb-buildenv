@@ -1,4 +1,6 @@
 
+#define _SECDERT_H_
+
 typedef struct DERTemplateStr {
     unsigned long int kind;
     unsigned int offset;

@@ -1,5 +1,5 @@
 
 #define basename __xpg_basename
 
-extern char *dirname(char *);
-extern char *__xpg_basename(char *);
+extern char *__xpg_basename(char *__path);
+extern char *dirname(char *__path);

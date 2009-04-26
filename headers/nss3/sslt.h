@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define __sslt_h_
+
+
     typedef struct SSL3StatisticsStr SSL3Statistics;
 
     typedef enum {
@@ -59,7 +62,6 @@ extern "C" {
 
     typedef struct SSLCipherSuiteInfoStr SSLCipherSuiteInfo;
 
-
     struct SSL3StatisticsStr {
 	long int sch_sid_cache_hits;
 	long int sch_sid_cache_misses;
@@ -76,7 +78,6 @@ extern "C" {
 	long int hch_sid_ticket_parse_failures;
     };
 
-
     struct SSLChannelInfoStr {
 	PRUint32 length;
 	PRUint16 protocolVersion;
@@ -89,7 +90,6 @@ extern "C" {
 	PRUint32 sessionIDLength;
 	PRUint8 sessionID[31];
     };
-
 
     struct SSLCipherSuiteInfoStr {
 	PRUint16 length;

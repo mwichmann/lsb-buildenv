@@ -5,26 +5,7 @@
 class QTimer;
 // *INDENT-OFF*
 
-class QTimer : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QTimer(QObject*);
-     QTimer(QObject*, char const*);
-     ~QTimer();
-    void setInterval(int);
-    static void singleShot(int, QObject*, char const*);
-    void start(int);
-    void start();
-    void stop();
-    int start(int, bool);
-protected:
-    void timeout();
-    void timerEvent(QTimerEvent*);
-};
+class QTimer;
 
 
 /* Function prototypes */

@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define prinit_h___
+
+
 
 /* Function prototypes */
 

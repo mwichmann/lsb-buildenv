@@ -20,8 +20,7 @@ enum _ZN13QTextDocument8FindFlagE {
     FindWholeWords = 4
 };
 class QFlags < QTextDocument::FindFlag >;
-typedef class QFlags < QTextDocument::FindFlag >
-    _ZN13QTextDocument9FindFlagsE;
+typedef class QFlags < QTextDocument::FindFlag > QTextDocument::FindFlags;
 enum _ZN13QTextDocument12ResourceTypeE {
     HtmlResource = 1,
     ImageResource = 2,

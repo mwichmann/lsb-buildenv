@@ -18,8 +18,10 @@ extern "C" {
 /* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
-    extern int pselect(int, fd_set *, fd_set *, fd_set *,
-		       const struct timespec *, const sigset_t *);
+    extern int pselect(int __nfds, fd_set * __readfds, fd_set * __writefds,
+		       fd_set * __exceptfds,
+		       const struct timespec *__timeout,
+		       const sigset_t * __sigmask);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

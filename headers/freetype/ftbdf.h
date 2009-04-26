@@ -23,7 +23,6 @@ extern "C" {
 
     typedef struct BDF_PropertyRec_ BDF_PropertyRec;
 
-
     struct BDF_PropertyRec_ {
 	BDF_PropertyType type;
 	union {

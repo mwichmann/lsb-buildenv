@@ -5,41 +5,7 @@
 class QMatrix;
 // *INDENT-OFF*
 
-class QMatrix
-{
-private:
-public:
-     QMatrix();
-     QMatrix(double, double, double, double, double, double);
-     QMatrix(QMatrix const&);
-    void setMatrix(double, double, double, double, double, double);
-    void map(int, int, int*, int*) const;
-    void map(double, double, double*, double*) const;
-    QRect mapRect(QRect const&) const;
-    QRectF mapRect(QRectF const&) const;
-    QPoint map(QPoint const&) const;
-    QPointF map(QPointF const&) const;
-    QLine map(QLine const&) const;
-    QLineF map(QLineF const&) const;
-    QPolygonF map(QPolygonF const&) const;
-    QPolygon map(QPolygon const&) const;
-    QRegion map(QRegion const&) const;
-    QPainterPath map(QPainterPath const&) const;
-    QPolygon mapToPolygon(QRect const&) const;
-    void reset();
-     translate(double, double);
-     scale(double, double);
-     shear(double, double);
-     rotate(double);
-    QMatrix inverted(bool*) const;
-    bool operator==(QMatrix const&) const;
-    bool operator!=(QMatrix const&) const;
-     operator*=(QMatrix const&);
-    QMatrix operator*(QMatrix const&) const;
-     operator=(QMatrix const&);
-    QRegion mapToRegion(QRect const&) const;
-    QVariant operator QVariant() const;
-};
+class QMatrix;
 
 
 /* Function prototypes */

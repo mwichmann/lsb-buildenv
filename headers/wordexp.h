@@ -51,8 +51,9 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int wordexp(const char *, wordexp_t *, int);
-    extern void wordfree(wordexp_t *);
+    extern int wordexp(const char *__words, wordexp_t * __pwordexp,
+		       int __flags);
+    extern void wordfree(wordexp_t * __wordexp);
 #ifdef __cplusplus
 }
 #endif

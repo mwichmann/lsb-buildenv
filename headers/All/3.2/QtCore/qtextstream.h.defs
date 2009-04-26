@@ -24,8 +24,7 @@ enum _ZN11QTextStream10NumberFlagE {
     UppercaseDigits = 16
 };
 class QFlags < QTextStream::NumberFlag >;
-typedef class QFlags < QTextStream::NumberFlag >
-    _ZN11QTextStream11NumberFlagsE;
+typedef class QFlags < QTextStream::NumberFlag > QTextStream::NumberFlags;
 enum _ZN11QTextStream8EncodingE {
     Locale = 0,
     Latin1 = 1,

@@ -58,4 +58,4 @@ typedef enum _ZN15QAbstractSocket11SocketStateE {
     ListeningState = 5,
     Closing = 6,
     ClosingState = 6
-} _ZN15QAbstractSocket5StateE;
+} QAbstractSocket::State;

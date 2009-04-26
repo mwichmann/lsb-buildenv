@@ -5,62 +5,12 @@
 class QIcon;
 // *INDENT-OFF*
 
-typedef class QIcon
-{
-private:
-public:
-     QIcon();
-     QIcon(QPixmap const&);
-     QIcon(QIcon const&);
-     QIcon(QString const&);
-     QIcon(QIconEngine*);
-     ~QIcon();
-     operator=(QIcon const&);
-    QVariant operator QVariant() const;
-    QPixmap pixmap(QSize const&, QIcon::Mode, QIcon::State) const;
-    QSize actualSize(QSize const&, QIcon::Mode, QIcon::State) const;
-    void paint(QPainter*, QRect const&, QFlags<Qt::AlignmentFlag>, QIcon::Mode, QIcon::State) const;
-    bool isNull() const;
-    bool isDetached() const;
-    int serialNumber() const;
-    void addPixmap(QPixmap const&, QIcon::Mode, QIcon::State);
-    void addFile(QString const&, QSize const&, QIcon::Mode, QIcon::State);
-    void setPixmapSize(QIcon::Size, QSize const&);
-    QSize pixmapSize(QIcon::Size);
-    QPixmap pixmap(QIcon::Size, QIcon::Mode, QIcon::State) const;
-    QPixmap pixmap(QIcon::Size, bool, QIcon::State) const;
-    QPixmap pixmap() const;
-}QIconSet	
+typedef class QIconQIconSet	
 ;
 
-class QIcon
-{
-private:
-public:
-     QIcon();
-     QIcon(QPixmap const&);
-     QIcon(QIcon const&);
-     QIcon(QString const&);
-     QIcon(QIconEngine*);
-     ~QIcon();
-     operator=(QIcon const&);
-    QVariant operator QVariant() const;
-    QPixmap pixmap(QSize const&, QIcon::Mode, QIcon::State) const;
-    QSize actualSize(QSize const&, QIcon::Mode, QIcon::State) const;
-    void paint(QPainter*, QRect const&, QFlags<Qt::AlignmentFlag>, QIcon::Mode, QIcon::State) const;
-    bool isNull() const;
-    bool isDetached() const;
-    int serialNumber() const;
-    void addPixmap(QPixmap const&, QIcon::Mode, QIcon::State);
-    void addFile(QString const&, QSize const&, QIcon::Mode, QIcon::State);
-    void setPixmapSize(QIcon::Size, QSize const&);
-    QSize pixmapSize(QIcon::Size);
-    QPixmap pixmap(QIcon::Size, QIcon::Mode, QIcon::State) const;
-    QPixmap pixmap(QIcon::Size, bool, QIcon::State) const;
-    QPixmap pixmap() const;
-};
+class QIcon;
 
-enum Mode	
+enum _ZN5QIcon4ModeE	
 {
 Normal = 0,	
 Disabled = 1,	
@@ -68,14 +18,14 @@ Active = 2
 }
 ;
 
-enum State	
+enum _ZN5QIcon5StateE	
 {
 On = 0,	
 Off = 1
 }
 ;
 
-enum Size	
+enum _ZN5QIcon4SizeE	
 {
 Small = 0,	
 Automatic = 0,	

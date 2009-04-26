@@ -1,4 +1,6 @@
 
+#define prclist_h___
+
 typedef struct PRCListStr {
     PRCList *next;
     PRCList *prev;

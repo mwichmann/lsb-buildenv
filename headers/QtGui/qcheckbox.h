@@ -5,34 +5,9 @@
 class QCheckBox;
 // *INDENT-OFF*
 
-class QCheckBox : public QAbstractButton
-{
-private:
-public:
-     ~QCheckBox();
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QCheckBox(QWidget*);
-     QCheckBox(QString const&, QWidget*);
-    QSize sizeHint() const;
-    void setTristate(bool);
-    bool isTristate() const;
-    enum _ZN2Qt10CheckStateE checkState() const;
-    void setCheckState(Qt::CheckState);
-     QCheckBox(QWidget*, char const*);
-     QCheckBox(QString const&, QWidget*, char const*);
-protected:
-    void stateChanged(int);
-    bool event(QEvent*);
-    bool hitButton(QPoint const&) const;
-    void checkStateSet();
-    void nextCheckState();
-    void paintEvent(QPaintEvent*);
-    void mouseMoveEvent(QMouseEvent*);
-};
+class QCheckBox;
 
-enum ToggleState	
+enum _ZN9QCheckBox11ToggleStateE	
 {
 Off = 0,	
 NoChange = 1,	

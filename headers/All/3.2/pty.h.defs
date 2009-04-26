@@ -1,4 +1,5 @@
 
-extern int openpty(int *, int *, char *, struct termios *,
-		   struct winsize *);
-extern int forkpty(int *, char *, struct termios *, struct winsize *);
+extern int forkpty(int *__amaster, char *__name, struct termios *__termp,
+		   struct winsize *__winp);
+extern int openpty(int *__amaster, int *__aslave, char *__name,
+		   struct termios *__termp, struct winsize *__winp);

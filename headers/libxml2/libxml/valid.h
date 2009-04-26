@@ -74,7 +74,6 @@ extern "C" {
 
     typedef xmlRefTable *xmlRefTablePtr;
 
-
     struct _xmlAttribute {
 	void *_private;
 	xmlElementType type;
@@ -94,7 +93,6 @@ extern "C" {
 	const xmlChar *elem;
     };
 
-
     struct _xmlElement {
 	void *_private;
 	xmlElementType type;
@@ -112,13 +110,11 @@ extern "C" {
 	xmlRegexpPtr contModel;
     };
 
-
     struct _xmlNotation {
 	const xmlChar *name;
 	const xmlChar *PublicID;
 	const xmlChar *SystemID;
     };
-
 
     struct _xmlID {
 	struct _xmlID *next;
@@ -128,7 +124,6 @@ extern "C" {
 	int lineno;
 	struct _xmlDoc *doc;
     };
-
 
     struct _xmlRef {
 	struct _xmlRef *next;

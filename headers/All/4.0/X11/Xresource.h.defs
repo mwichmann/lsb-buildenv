@@ -7,8 +7,11 @@ typedef char *XrmString;
 typedef enum {
     XrmBindTightly,
     XrmBindLoosely
-} XrmBinding;
-typedef enum *XrmBindingList;
+} XrmBinding, *XrmBindingList;
+typedef enum {
+    XrmBindTightly,
+    XrmBindLoosely
+} *XrmBindingList;
 typedef XrmQuark XrmName;
 typedef XrmQuarkList XrmNameList;
 typedef XrmQuark XrmClass;
@@ -55,8 +58,8 @@ extern int XrmEnumerateDatabase(XrmDatabase, XrmNameList, XrmClassList,
 				int, int (*)(XrmDatabase *, XrmBindingList,
 					     XrmQuarkList,
 					     XrmRepresentation *,
-					     XrmValue *, XPointer)
-				, XPointer);
+					     XrmValue *, XPointer),
+				XPointer);
 extern XrmDatabase XrmGetDatabase(Display *);
 extern XrmDatabase XrmGetFileDatabase(const char *);
 extern int XrmGetResource(XrmDatabase, const char *, const char *, char **,

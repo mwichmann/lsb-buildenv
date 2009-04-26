@@ -5,17 +5,7 @@
 class QFontDialog;
 // *INDENT-OFF*
 
-class QFontDialog : public QDialog
-{
-private:
-public:
-    QFont getFont(bool*, QFont const&, QWidget*);
-    QFont getFont(bool*, QWidget*);
-    QFont getFont(bool*, QFont const&, QWidget*, QString const&);
-private:
-     ~QFontDialog();
-    bool eventFilter(QObject*, QEvent*);
-};
+class QFontDialog;
 
 
 /* Function prototypes */

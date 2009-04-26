@@ -5,25 +5,9 @@
 class QBitRef;
 // *INDENT-OFF*
 
-class QBitArray
-{
-private:
-public:
-     QBitArray(int, bool);
-    int count(bool) const;
-    void resize(int);
-    QBitArray & operator&=(QBitArray const&);
-    QBitArray & operator|=(QBitArray const&);
-    QBitArray & operator^=(QBitArray const&);
-    QBitArray operator~() const;
-    void fill(bool, int, int);
-};
+class QBitArray;
 
-class QBitRef
-{
-private:
-public:
-};
+class QBitRef;
 
 
 /* Function prototypes */

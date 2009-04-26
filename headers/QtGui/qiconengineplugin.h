@@ -7,16 +7,7 @@ class QIconEnginePlugin;
 
 struct QIconEngineFactoryInterface	;
 
-class QIconEnginePlugin : public QIconEngineFactoryInterface, public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QIconEnginePlugin(QObject*);
-     ~QIconEnginePlugin();
-};
+class QIconEnginePlugin;
 
 
 /* Function prototypes */

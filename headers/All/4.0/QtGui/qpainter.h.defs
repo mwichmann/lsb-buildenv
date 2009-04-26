@@ -6,7 +6,7 @@ enum _ZN8QPainter10RenderHintE {
     SmoothPixmapTransform = 4
 };
 class QFlags < QPainter::RenderHint >;
-typedef class QFlags < QPainter::RenderHint > _ZN8QPainter11RenderHintsE;
+typedef class QFlags < QPainter::RenderHint > QPainter::RenderHints;
 enum _ZN8QPainter15CompositionModeE {
     CompositionMode_SourceOver = 0,
     CompositionMode_DestinationOver = 1,

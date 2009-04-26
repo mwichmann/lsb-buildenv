@@ -5,13 +5,9 @@
 class QDebug;
 // *INDENT-OFF*
 
-class QDebug
-{
-private:
-public:
-};
+class QDebug;
 
-struct Stream	;
+struct QDebug::Stream	;
 
 // *INDENT-ON*
 #endif				/* protection */

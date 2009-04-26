@@ -5,11 +5,7 @@
 class QVector < QVariant >;
 // *INDENT-OFF*
 
-class QVector<QVariant>
-{
-private:
-public:
-};
+class QVector<QVariant>;
 
 struct QVectorData	;
 

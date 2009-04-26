@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 
+#define _XINPUT_H_
 #define DeviceButtonPress(d,type,_class)	 \
 	FindTypeAndClass(d, type, _class, ButtonClass, _deviceButtonPress)
 #define DeviceButtonRelease(d,type,_class)	 \
@@ -69,11 +70,13 @@ extern "C" {
 #define _deviceMappingNotify	1
 #define _proximityOut	1
 #define _changeDeviceNotify	2
-#define BadClass(dpy,error)	_xibadclass(dpy, &error)
-#define BadDevice(dpy,error)	_xibaddevice(dpy, &error)
-#define BadEvent(dpy,error)	_xibadevent(dpy, &error)
-#define BadMode(dpy,error)	_xibadmode(dpy, &error)
-#define DeviceBusy(dpy,error)	_xidevicebusy(dpy, &error)
+#define DeviceButton4Motion(d,type, _class)	{ _class =  ((XDevice *) d)->device_id << 8 | _deviceButton4Motion;}
+#define DeviceButtonMotion(d,type, _class)	{ _class =  ((XDevice *) d)->device_id << 8 | _deviceButtonMotion;}
+#define DevicePresence(dpy, type, _class)	{\
+    extern int _XiGetDevicePresenceNotifyEvent(Display *); \
+    type = _XiGetDevicePresenceNotifyEvent(dpy);            \
+ _class =  (0x10000 | _devicePresence); \
+ }
 
 
     typedef struct {
@@ -286,6 +289,18 @@ extern "C" {
     } XChangeDeviceNotifyEvent;
 
     typedef struct {
+	int type;
+	long unsigned int serial;
+	int send_event;
+	Display *display;
+	Window window;
+	Time time;
+	int devchange;
+	XID deviceid;
+	XID control;
+    } XDevicePresenceNotifyEvent;
+
+    typedef struct {
 #if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
 #else
@@ -487,6 +502,55 @@ extern "C" {
 	int *max_resolutions;
     } XDeviceResolutionState;
 
+    typedef struct {
+	XID control;
+	int length;
+	int min_x;
+	int max_x;
+	int min_y;
+	int max_y;
+	int flip_x;
+	int flip_y;
+	int rotation;
+	int button_threshold;
+    } XDeviceAbsCalibControl;
+
+    typedef XDeviceAbsCalibControl XDeviceAbsCalibState;
+
+    typedef struct {
+	XID control;
+	int length;
+	int offset_x;
+	int offset_y;
+	int width;
+	int height;
+	int screen;
+	XID following;
+    } XDeviceAbsAreaControl;
+
+    typedef XDeviceAbsAreaControl XDeviceAbsAreaState;
+
+    typedef struct {
+	XID control;
+	int length;
+	int status;
+    } XDeviceCoreControl;
+
+    typedef struct {
+	XID control;
+	int length;
+	int status;
+	int iscore;
+    } XDeviceCoreState;
+
+    typedef struct {
+	XID control;
+	int length;
+	int enable;
+    } XDeviceEnableControl;
+
+    typedef XDeviceEnableControl XDeviceEnableState;
+
     typedef struct _XAnyClassinfo *XAnyClassPtr;
 
     typedef struct _XAnyClassinfo XAnyClassInfo;
@@ -561,7 +625,6 @@ extern "C" {
 	char buttons[32];
     } XButtonState;
 
-
     struct _XAnyClassinfo {
 #if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
@@ -571,7 +634,6 @@ extern "C" {
 	int length;
     };
 
-
     struct _XDeviceInfo {
 	XID id;
 	Atom type;
@@ -580,7 +642,6 @@ extern "C" {
 	int use;
 	XAnyClassPtr inputclassinfo;
     };
-
 
     struct _XKeyInfo {
 #if defined(__cplusplus) || defined(c_plusplus)
@@ -594,7 +655,6 @@ extern "C" {
 	short unsigned int num_keys;
     };
 
-
     struct _XButtonInfo {
 #if defined(__cplusplus) || defined(c_plusplus)
 	XID c_class;
@@ -605,13 +665,11 @@ extern "C" {
 	short int num_buttons;
     };
 
-
     struct _XAxisInfo {
 	int resolution;
 	int min_value;
 	int max_value;
     };
-
 
     struct _XValuatorInfo {
 #if defined(__cplusplus) || defined(c_plusplus)
@@ -655,8 +713,8 @@ extern "C" {
 						    int *);
     extern int XGetDeviceFocus(Display *, XDevice *, Window *, int *,
 			       Time *);
-    extern KeySym *XGetDeviceKeyMapping(Display *, XDevice *, KeyCode, int,
-					int *);
+    extern KeySym *XGetDeviceKeyMapping(Display *, XDevice *, unsigned int,
+					int, int *);
     extern XModifierKeymap *XGetDeviceModifierMapping(Display *,
 						      XDevice *);
     extern XDeviceTimeCoord *XGetDeviceMotionEvents(Display *, XDevice *,

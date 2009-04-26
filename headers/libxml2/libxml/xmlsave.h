@@ -22,23 +22,25 @@ extern "C" {
     } xmlSaveOption;
 
 
-
-
 /* Function prototypes */
 
-    extern int xmlSaveClose(xmlSaveCtxtPtr);
-    extern long int xmlSaveDoc(xmlSaveCtxtPtr, xmlDocPtr);
-    extern int xmlSaveFlush(xmlSaveCtxtPtr);
-    extern int xmlSaveSetAttrEscape(xmlSaveCtxtPtr,
-				    xmlCharEncodingOutputFunc);
-    extern int xmlSaveSetEscape(xmlSaveCtxtPtr, xmlCharEncodingOutputFunc);
-    extern xmlSaveCtxtPtr xmlSaveToFd(int, const char *, int);
-    extern xmlSaveCtxtPtr xmlSaveToFilename(const char *, const char *,
-					    int);
-    extern xmlSaveCtxtPtr xmlSaveToIO(xmlOutputWriteCallback,
-				      xmlOutputCloseCallback, void *,
-				      const char *, int);
-    extern long int xmlSaveTree(xmlSaveCtxtPtr, xmlNodePtr);
+    extern int xmlSaveClose(xmlSaveCtxtPtr ctxt);
+    extern long int xmlSaveDoc(xmlSaveCtxtPtr ctxt, xmlDocPtr doc);
+    extern int xmlSaveFlush(xmlSaveCtxtPtr ctxt);
+    extern int xmlSaveSetAttrEscape(xmlSaveCtxtPtr ctxt,
+				    xmlCharEncodingOutputFunc escape);
+    extern int xmlSaveSetEscape(xmlSaveCtxtPtr ctxt,
+				xmlCharEncodingOutputFunc escape);
+    extern xmlSaveCtxtPtr xmlSaveToFd(int fd, const char *encoding,
+				      int options);
+    extern xmlSaveCtxtPtr xmlSaveToFilename(const char *filename,
+					    const char *encoding,
+					    int options);
+    extern xmlSaveCtxtPtr xmlSaveToIO(xmlOutputWriteCallback iowrite,
+				      xmlOutputCloseCallback ioclose,
+				      void *ioctx, const char *encoding,
+				      int options);
+    extern long int xmlSaveTree(xmlSaveCtxtPtr ctxt, xmlNodePtr node);
 #ifdef __cplusplus
 }
 #endif

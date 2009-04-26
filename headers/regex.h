@@ -35,7 +35,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-
     struct re_pattern_buffer {
 	unsigned char *buffer;
 	unsigned long int allocated;
@@ -104,11 +103,14 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int regcomp(regex_t *, const char *, int);
-    extern size_t regerror(int, const regex_t *, char *, size_t);
-    extern int regexec(const regex_t *, const char *, size_t, regmatch_t[],
-		       int);
-    extern void regfree(regex_t *);
+    extern int regcomp(regex_t * __preg, const char *__pattern,
+		       int __cflags);
+    extern size_t regerror(int __errcode, const regex_t * __preg,
+			   char *__errbuf, size_t __errbuf_size);
+    extern int regexec(const regex_t * __preg, const char *__string,
+		       size_t __nmatch, regmatch_t __pmatch[],
+		       int __eflags);
+    extern void regfree(regex_t * __preg);
 #ifdef __cplusplus
 }
 #endif

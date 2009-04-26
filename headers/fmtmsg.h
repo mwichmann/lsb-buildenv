@@ -64,8 +64,9 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int fmtmsg(long int, const char *, int, const char *,
-		      const char *, const char *);
+    extern int fmtmsg(long int __classification, const char *__label,
+		      int __severity, const char *__text,
+		      const char *__action, const char *__tag);
 #ifdef __cplusplus
 }
 #endif

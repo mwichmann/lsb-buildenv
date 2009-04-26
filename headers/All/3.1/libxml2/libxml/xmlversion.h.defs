@@ -37,4 +37,4 @@
 #define LIBXML_TEST_VERSION	xmlCheckVersion(20622);
 #define ATTRIBUTE_UNUSED	__attribute__((unused))
 
-extern void xmlCheckVersion(int);
+extern void xmlCheckVersion(int version);

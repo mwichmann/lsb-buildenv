@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 
-    typedef QList < QWidget * >QWidgetList;
+    typedef class QList < QWidget * >QWidgetList;
 
     typedef unsigned long int WId;
 

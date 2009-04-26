@@ -16,10 +16,12 @@ extern "C" {
 /* Function prototypes */
 
     extern cairo_surface_t
-	*cairo_xlib_surface_create_with_xrender_format(Display *, Drawable,
-						       Screen *,
-						       XRenderPictFormat *,
-						       int, int);
+	*cairo_xlib_surface_create_with_xrender_format(Display * dpy,
+						       Drawable drawable,
+						       Screen * screen,
+						       XRenderPictFormat *
+						       format, int width,
+						       int height);
 #ifdef __cplusplus
 }
 #endif

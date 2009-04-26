@@ -24,4 +24,4 @@ enum _ZN23QTreeWidgetItemIterator12IteratorFlagE {
 };
 class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
 typedef class QFlags < QTreeWidgetItemIterator::IteratorFlag >
-    _ZN23QTreeWidgetItemIterator13IteratorFlagsE;
+    QTreeWidgetItemIterator::IteratorFlags;

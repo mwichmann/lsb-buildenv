@@ -5,38 +5,9 @@
 class QFrame;
 // *INDENT-OFF*
 
-class QFrame : public QWidget
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QFrame(QWidget*, QFlags<Qt::WindowType>);
-     ~QFrame();
-    int frameStyle() const;
-    void setFrameStyle(int);
-    int frameWidth() const;
-    QSize sizeHint() const;
-    enum _ZN6QFrame5ShapeE frameShape() const;
-    void setFrameShape(QFrame::Shape);
-    enum _ZN6QFrame6ShadowE frameShadow() const;
-    void setFrameShadow(QFrame::Shadow);
-    int lineWidth() const;
-    void setLineWidth(int);
-    int midLineWidth() const;
-    void setMidLineWidth(int);
-    QRect frameRect() const;
-    void setFrameRect(QRect const&);
-     QFrame(QWidget*, char const*, QFlags<Qt::WindowType>);
-protected:
-    bool event(QEvent*);
-    void paintEvent(QPaintEvent*);
-    void changeEvent(QEvent*);
-    void drawFrame(QPainter*);
-};
+class QFrame;
 
-enum Shape	
+enum _ZN6QFrame5ShapeE	
 {
 NoFrame = 0,	
 Box = 1,	
@@ -54,7 +25,7 @@ GroupBoxPanel = 6
 }
 ;
 
-enum Shadow	
+enum _ZN6QFrame6ShadowE	
 {
 Plain = 16,	
 Raised = 32,	

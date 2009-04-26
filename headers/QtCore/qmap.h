@@ -5,21 +5,13 @@
 class QMap < QString, QVariant >;
 // *INDENT-OFF*
 
-class QMap<int, QVariant>
-{
-private:
-public:
-};
+class QMap<int, QVariant>;
 
-class QMap<QString, QVariant>
-{
-private:
-public:
-};
+class QMap<QString, QVariant>;
 
 struct QMapData	;
 
-struct Node	;
+struct QMapData::Node	;
 
 
 /* Function prototypes */

@@ -7,18 +7,7 @@ class QPictureFormatPlugin;
 
 struct QPictureFormatInterface	;
 
-class QPictureFormatPlugin : public QObject, public QPictureFormatInterface
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QPictureFormatPlugin(QObject*);
-     ~QPictureFormatPlugin();
-    bool loadPicture(QString const&, QString const&, QPicture*);
-    bool savePicture(QString const&, QString const&, QPicture const&);
-};
+class QPictureFormatPlugin;
 
 
 /* Function prototypes */

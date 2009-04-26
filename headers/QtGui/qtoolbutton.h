@@ -5,57 +5,9 @@
 class QToolButton;
 // *INDENT-OFF*
 
-class QToolButton : public QAbstractButton
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QToolButton(QWidget*);
-     ~QToolButton();
-    QSize sizeHint() const;
-    QSize minimumSizeHint() const;
-    enum _ZN2Qt15ToolButtonStyleE toolButtonStyle() const;
-    enum _ZN2Qt9ArrowTypeE arrowType() const;
-    void setArrowType(Qt::ArrowType);
-    void setMenu(QMenu*);
-    QMenu * menu() const;
-    void setPopupMode(QToolButton::ToolButtonPopupMode);
-    enum _ZN11QToolButton19ToolButtonPopupModeE popupMode() const;
-    QAction * defaultAction() const;
-    void setAutoRaise(bool);
-    bool autoRaise() const;
-    void showMenu();
-    void setToolButtonStyle(Qt::ToolButtonStyle);
-    void setDefaultAction(QAction*);
-     QToolButton(QWidget*, char const*);
-     QToolButton(Qt::ArrowType, QWidget*, char const*);
-     QToolButton(QIcon const&, QString const&, QString const&, QObject*, char const*, QWidget*, char const*);
-    void setOnIconSet(QIcon const&);
-    void setOffIconSet(QIcon const&);
-    void setIconSet(QIcon const&, bool);
-    QIcon onIconSet() const;
-    QIcon offIconSet() const;
-    QIcon iconSet(bool) const;
-    void setPopupDelay(int);
-    int popupDelay() const;
-protected:
-    void triggered(QAction*);
-    bool event(QEvent*);
-    void mousePressEvent(QMouseEvent*);
-    void paintEvent(QPaintEvent*);
-    void actionEvent(QActionEvent*);
-    void enterEvent(QEvent*);
-    void leaveEvent(QEvent*);
-    void timerEvent(QTimerEvent*);
-    void changeEvent(QEvent*);
-    void nextCheckState();
-    void mouseReleaseEvent(QMouseEvent*);
-    bool hitButton(QPoint const&) const;
-};
+class QToolButton;
 
-enum ToolButtonPopupMode	
+enum _ZN11QToolButton19ToolButtonPopupModeE	
 {
 DelayedPopup = 0,	
 MenuButtonPopup = 1,	
@@ -63,7 +15,7 @@ InstantPopup = 2
 }
 ;
 
-enum TextPosition	
+enum _ZN11QToolButton12TextPositionE	
 {
 BesideIcon = 0,	
 Right = 0,	

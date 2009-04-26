@@ -16,8 +16,10 @@ extern "C" {
 #endif
 
 
-    typedef struct NSSCMSRecipientStr NSSCMSRecipient;
+#define _CMSRECLIST_H
 
+
+    typedef struct NSSCMSRecipientStr NSSCMSRecipient;
 
     struct NSSCMSRecipientStr {
 	int riIndex;

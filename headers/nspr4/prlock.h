@@ -8,9 +8,10 @@ extern "C" {
 #endif
 
 
+#define prlock_h___
+
+
     typedef struct PRLock PRLock;
-
-
 
 #ifdef __cplusplus
 }

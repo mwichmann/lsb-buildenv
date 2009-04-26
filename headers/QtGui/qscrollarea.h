@@ -5,32 +5,7 @@
 class QScrollArea;
 // *INDENT-OFF*
 
-class QScrollArea : public QAbstractScrollArea
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QScrollArea(QWidget*);
-     ~QScrollArea();
-    QWidget * widget() const;
-    void setWidget(QWidget*);
-    QWidget * takeWidget();
-    bool widgetResizable() const;
-    void setWidgetResizable(bool);
-    QSize sizeHint() const;
-    bool focusNextPrevChild(bool);
-    void ensureVisible(int, int, int, int);
-    void setAlignment(QFlags<Qt::AlignmentFlag>);
-    void ensureWidgetVisible(QWidget*, int, int);
-     alignment() const;
-protected:
-    bool event(QEvent*);
-    bool eventFilter(QObject*, QEvent*);
-    void resizeEvent(QResizeEvent*);
-    void scrollContentsBy(int, int);
-};
+class QScrollArea;
 
 
 /* Function prototypes */

@@ -15,8 +15,10 @@ extern "C" {
 #endif
 
 
-    typedef struct SEC_PKCS7RecipientInfoStr SEC_PKCS7RecipientInfo;
+#define _PKCS7T_H_
 
+
+    typedef struct SEC_PKCS7RecipientInfoStr SEC_PKCS7RecipientInfo;
 
     struct SEC_PKCS7RecipientInfoStr {
 	SECItem version;

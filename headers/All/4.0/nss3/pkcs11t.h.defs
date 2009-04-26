@@ -1,4 +1,6 @@
 
+#define _PKCS11T_H_
+
 typedef unsigned char CK_BYTE;
 typedef CK_BYTE CK_CHAR;
 typedef CK_BYTE CK_UTF8CHAR;

@@ -5,30 +5,9 @@
 class QRectF;
 // *INDENT-OFF*
 
-class QRect
-{
-private:
-public:
-    QRect normalized() const;
-    void moveCenter(QPoint const&);
-    QRect operator|(QRect const&) const;
-    QRect operator&(QRect const&) const;
-    bool contains(QPoint const&, bool) const;
-    bool contains(QRect const&, bool) const;
-    bool intersects(QRect const&) const;
-};
+class QRect;
 
-class QRectF
-{
-private:
-public:
-    QRectF normalized() const;
-    QRectF operator|(QRectF const&) const;
-    QRectF operator&(QRectF const&) const;
-    bool contains(QPointF const&) const;
-    bool contains(QRectF const&) const;
-    bool intersects(QRectF const&) const;
-};
+class QRectF;
 
 
 /* Function prototypes */

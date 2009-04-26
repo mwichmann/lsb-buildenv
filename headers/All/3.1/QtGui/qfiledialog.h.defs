@@ -30,11 +30,11 @@ enum _ZN11QFileDialog6OptionE {
     DontUseNativeDialog = 16
 };
 class QFlags < QFileDialog::Option >;
-typedef class QFlags < QFileDialog::Option > _ZN11QFileDialog7OptionsE;
+typedef class QFlags < QFileDialog::Option > QFileDialog::Options;
 typedef enum _ZN11QFileDialog8FileModeE {
     AnyFile = 0,
     ExistingFile = 1,
     Directory = 2,
     ExistingFiles = 3,
     DirectoryOnly = 4
-} _ZN11QFileDialog4ModeE;
+} QFileDialog::Mode;

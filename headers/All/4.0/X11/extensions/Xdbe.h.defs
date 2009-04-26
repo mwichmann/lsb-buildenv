@@ -1,4 +1,6 @@
 
+#define XdbeBadBuffer	0
+
 typedef Drawable XdbeBackBuffer;
 typedef unsigned char XdbeSwapAction;
 typedef struct {

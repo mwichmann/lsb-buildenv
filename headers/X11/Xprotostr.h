@@ -17,7 +17,6 @@ extern "C" {
 
     typedef struct _xArc xArc;
 
-
     struct _xSegment {
 	INT16 x1;
 	INT16 y1;
@@ -25,12 +24,10 @@ extern "C" {
 	INT16 y2;
     };
 
-
     struct _xPoint {
 	INT16 x;
 	INT16 y;
     };
-
 
     struct _xRectangle {
 	INT16 x;
@@ -38,7 +35,6 @@ extern "C" {
 	CARD16 width;
 	CARD16 height;
     };
-
 
     struct _xArc {
 	INT16 x;

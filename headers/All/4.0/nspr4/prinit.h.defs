@@ -1,2 +1,4 @@
 
+#define prinit_h___
+
 extern PRStatus PR_Cleanup(void);

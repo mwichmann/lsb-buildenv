@@ -8,13 +8,12 @@ extern "C" {
 #endif
 
 
+#define _NSSB64T_H_
+
+
     typedef struct NSSBase64DecoderStr NSSBase64Decoder;
 
     typedef struct NSSBase64EncoderStr NSSBase64Encoder;
-
-
-
-
 
 #ifdef __cplusplus
 }

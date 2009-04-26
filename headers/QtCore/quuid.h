@@ -12,7 +12,7 @@ extern "C" {
 
     struct QUuid;
 
-    enum Variant {
+    enum _ZN5QUuid7VariantE {
 	VarUnknown = -1,
 	NCS = 0,
 	DCE = 2,
@@ -20,7 +20,7 @@ extern "C" {
 	Reserved = 7
     };
 
-    enum Version {
+    enum _ZN5QUuid7VersionE {
 	VerUnknown = -1,
 	Time = 1,
 	EmbeddedPOSIX = 2,

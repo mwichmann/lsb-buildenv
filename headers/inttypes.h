@@ -24,12 +24,16 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern intmax_t imaxabs(intmax_t);
-    extern imaxdiv_t imaxdiv(intmax_t, intmax_t);
-    extern intmax_t strtoimax(const char *, char **, int);
-    extern uintmax_t strtoumax(const char *, char **, int);
-    extern intmax_t wcstoimax(const wchar_t *, wchar_t * *, int);
-    extern uintmax_t wcstoumax(const wchar_t *, wchar_t * *, int);
+    extern intmax_t imaxabs(intmax_t __n);
+    extern imaxdiv_t imaxdiv(intmax_t __numer, intmax_t __denom);
+    extern intmax_t strtoimax(const char *__nptr, char **__endptr,
+			      int __base);
+    extern uintmax_t strtoumax(const char *__nptr, char **__endptr,
+			       int __base);
+    extern intmax_t wcstoimax(const wchar_t * __nptr, wchar_t * *__endptr,
+			      int __base);
+    extern uintmax_t wcstoumax(const wchar_t * __nptr, wchar_t * *__endptr,
+			       int __base);
 #ifdef __cplusplus
 }
 #endif

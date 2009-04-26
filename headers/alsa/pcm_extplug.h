@@ -19,7 +19,6 @@ extern "C" {
 
     typedef struct snd_pcm_extplug snd_pcm_extplug_t;
 
-
     struct snd_pcm_extplug_callback {
 	snd_pcm_sframes_t(*transfer) (void);
 	int (*close) (void);
@@ -28,7 +27,6 @@ extern "C" {
 	void (*dump) (void);
 	int (*init) (void);
     };
-
 
     struct snd_pcm_extplug {
 	unsigned int version;

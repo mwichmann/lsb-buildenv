@@ -5,21 +5,13 @@
 class QGenericReturnArgument;
 // *INDENT-OFF*
 
-class QGenericArgument
-{
-private:
-public:
-};
+class QGenericArgument;
 
-class QGenericReturnArgument :  
-{
-private:
-public:
-};
+class QGenericReturnArgument;
 
 struct QMetaObject	;
 
-enum Call	
+enum _ZN11QMetaObject4CallE	
 {
 InvokeMetaMethod = 0,	
 ReadProperty = 1,	

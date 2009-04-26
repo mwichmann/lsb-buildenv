@@ -31,8 +31,6 @@ typedef void (*XtRealizeProc) (Widget, XtValueMask *,
 			       XSetWindowAttributes *);
 typedef void (*XtWidgetProc) (Widget);
 typedef void (*XtExposeProc) (Widget, XEvent *, Region);
-typedef Boolean(*XtSetValuesFunc) (Widget, Widget, Widget, ArgList,
-				   Cardinal *);
 typedef Boolean(*XtArgsFunc) (Widget, ArgList, Cardinal *);
 typedef void (*XtAlmostProc) (Widget, Widget, XtWidgetGeometry *,
 			      XtWidgetGeometry *);
@@ -40,7 +38,6 @@ typedef Boolean(*XtAcceptFocusProc) (Widget, Time *);
 typedef long unsigned int XtVersionType;
 typedef XtGeometryResult(*XtGeometryHandler) (Widget, XtWidgetGeometry *,
 					      XtWidgetGeometry *);
-typedef void (*XtStringProc) (Widget, String);
 typedef void (*XtAllocateProc) (WidgetClass, Cardinal *, Cardinal *,
 				ArgList, Cardinal *, XtTypedArgList,
 				Cardinal *, struct _WidgetRec * *,
@@ -52,8 +49,12 @@ typedef struct _XtTMRec {
     struct _XtStateRec *current_state;
     long unsigned int lastEventTime;
 } XtTMRec;
-extern void XtConfigureWidget(Widget, Position, Position, Dimension,
-			      Dimension, Dimension);
+
+typedef void (*XtStringProc) (Widget, String);
+typedef Boolean(*XtSetValuesFunc) (Widget, Widget, Widget, ArgList,
+				   Cardinal *);
+extern void XtConfigureWidget(Widget, int, int, unsigned int, unsigned int,
+			      unsigned int);
 extern void XtCreateWindow(Widget, unsigned int, Visual *, XtValueMask,
 			   XSetWindowAttributes *);
 extern Boolean XtIsComposite(Widget);
@@ -63,9 +64,10 @@ extern Boolean XtIsShell(Widget);
 extern Boolean XtIsTopLevelShell(Widget);
 extern Boolean XtIsWMShell(Widget);
 extern Boolean XtIsWidget(Widget);
-extern void XtMoveWidget(Widget, Position, Position);
+extern void XtMoveWidget(Widget, int, int);
 extern void XtProcessLock(void);
 extern void XtProcessUnlock(void);
-extern void XtResizeWidget(Widget, Dimension, Dimension, Dimension);
+extern void XtResizeWidget(Widget, unsigned int, unsigned int,
+			   unsigned int);
 extern void XtResizeWindow(Widget);
 extern void _XtInherit(void);

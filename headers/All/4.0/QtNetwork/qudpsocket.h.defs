@@ -7,4 +7,4 @@ enum _ZN10QUdpSocket8BindFlagE {
     ReuseAddressHint = 4
 };
 class QFlags < QUdpSocket::BindFlag >;
-typedef class QFlags < QUdpSocket::BindFlag > _ZN10QUdpSocket8BindModeE;
+typedef class QFlags < QUdpSocket::BindFlag > QUdpSocket::BindMode;

@@ -1,4 +1,4 @@
 
-struct _Z9QHashData;
-struct _ZN9QHashData4NodeE;
-struct _Z15QHashDummyValue;
+struct QHashData;
+struct QHashData::Node;
+struct QHashDummyValue;

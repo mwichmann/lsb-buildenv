@@ -12,8 +12,8 @@
 #include <X11/IntrinsicP.h>
 #include <X11/CompositeP.h>
 #include <X11/TranslateI.h>
-#include <X11/EventI.h>
 #include <X11/CoreP.h>
+#include <X11/VendorP.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -150,8 +150,6 @@ extern "C" {
 	Widget transient_for;
     } TransientShellPart;
 
-#include <X11/VendorP.h>	/* XXX hand-edit */
-
     typedef struct {
 	CorePart core;
 	CompositePart composite;
@@ -276,13 +274,11 @@ extern "C" {
 
     typedef SessionShellRec *SessionShellWidget;
 
-
     struct _ShellClassRec {
 	CoreClassPart core_class;
 	CompositeClassPart composite_class;
 	ShellClassPart shell_class;
     };
-
 
     struct _OverrideShellClassRec {
 	CoreClassPart core_class;
@@ -291,14 +287,12 @@ extern "C" {
 	OverrideShellClassPart override_shell_class;
     };
 
-
     struct _WMShellClassRec {
 	CoreClassPart core_class;
 	CompositeClassPart composite_class;
 	ShellClassPart shell_class;
 	WMShellClassPart wm_shell_class;
     };
-
 
     struct _TransientShellClassRec {
 	CoreClassPart core_class;
@@ -309,7 +303,6 @@ extern "C" {
 	TransientShellClassPart transient_shell_class;
     };
 
-
     struct _TopLevelShellClassRec {
 	CoreClassPart core_class;
 	CompositeClassPart composite_class;
@@ -318,7 +311,6 @@ extern "C" {
 	VendorShellClassPart vendor_shell_class;
 	TopLevelShellClassPart top_level_shell_class;
     };
-
 
     struct _ApplicationShellClassRec {
 	CoreClassPart core_class;
@@ -329,7 +321,6 @@ extern "C" {
 	TopLevelShellClassPart top_level_shell_class;
 	ApplicationShellClassPart application_shell_class;
     };
-
 
     struct _SessionShellClassRec {
 	CoreClassPart core_class;

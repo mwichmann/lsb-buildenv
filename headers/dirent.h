@@ -43,37 +43,38 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int closedir(DIR *);
-    extern DIR *opendir(const char *);
-    extern struct dirent *readdir(DIR *);
-    extern struct dirent64 *readdir64(DIR *);
-    extern void rewinddir(DIR *);
-    extern void seekdir(DIR *, long int);
-    extern long int telldir(DIR *);
+    extern int closedir(DIR * __dirp);
+    extern DIR *opendir(const char *__name);
+    extern struct dirent *readdir(DIR * __dirp);
+    extern struct dirent64 *readdir64(DIR * __dirp);
+    extern void rewinddir(DIR * __dirp);
+    extern void seekdir(DIR * __dirp, long int __pos);
+    extern long int telldir(DIR * __dirp);
 #if __LSB_VERSION__ >= 11
-    extern int readdir_r(DIR *, struct dirent *, struct dirent **);
+    extern int readdir_r(DIR * __dirp, struct dirent *__entry,
+			 struct dirent **__result);
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 32
-    extern int readdir64_r(DIR *, struct dirent64 *, struct dirent64 **);
+    extern int readdir64_r(DIR * __dirp, struct dirent64 *__entry,
+			   struct dirent64 **__result);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int alphasort(const struct dirent **, const struct dirent **);
-    extern int alphasort64(const struct dirent64 **,
-			   const struct dirent64 **);
-    extern int dirfd(DIR *);
-    extern DIR *fdopendir(int);
-    extern int scandir(const char *, struct dirent ***,
-		       int (*)(const struct dirent *)
-		       , int (*)(const struct dirent *,
-				 const struct dirent *)
-	);
-    extern int scandir64(const char *, struct dirent64 ***,
-			 int (*)(const struct dirent64 *)
-			 , int (*)(const struct dirent64 *,
-				   const struct dirent64 *)
-	);
+    extern int alphasort(const struct dirent **__e1,
+			 const struct dirent **__e2);
+    extern int alphasort64(const struct dirent64 **__e1,
+			   const struct dirent64 **__e2);
+    extern int dirfd(DIR * __dirp);
+    extern DIR *fdopendir(int __fd);
+    extern int scandir(const char *__dir, struct dirent ***__namelist,
+		       int (*__selector) (const struct dirent *),
+		       int (*__cmp) (const struct dirent *,
+				     const struct dirent *));
+    extern int scandir64(const char *__dir, struct dirent64 ***__namelist,
+			 int (*__selector) (const struct dirent64 *),
+			 int (*__cmp) (const struct dirent64 *,
+				       const struct dirent64 *));
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

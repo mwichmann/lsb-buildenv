@@ -36,11 +36,13 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern pid_t wait(int *);
-    extern pid_t wait4(pid_t, int *, int, struct rusage *);
-    extern pid_t waitpid(pid_t, int *, int);
+    extern pid_t wait(int *__stat_loc);
+    extern pid_t wait4(pid_t __pid, int *__stat_loc, int __options,
+		       struct rusage *__usage);
+    extern pid_t waitpid(pid_t __pid, int *__stat_loc, int __options);
 #if __LSB_VERSION__ >= 32
-    extern int waitid(idtype_t, id_t, siginfo_t *, int);
+    extern int waitid(idtype_t __idtype, id_t __id, siginfo_t * __infop,
+		      int __options);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

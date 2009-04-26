@@ -8,8 +8,10 @@ extern "C" {
 #endif
 
 
-    typedef struct PRCListStr PRCList;
+#define prclist_h___
 
+
+    typedef struct PRCListStr PRCList;
 
     struct PRCListStr {
 	PRCList *next;

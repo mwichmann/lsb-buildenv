@@ -8,13 +8,12 @@ extern "C" {
 #endif
 
 
+#define _CRYPTOHT_H_
+
+
     typedef struct SGNContextStr SGNContext;
 
     typedef struct VFYContextStr VFYContext;
-
-
-
-
 
 #ifdef __cplusplus
 }

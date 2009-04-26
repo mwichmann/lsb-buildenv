@@ -22,7 +22,7 @@ enum _ZN3QGL12FormatOptionE {
     NoSampleBuffers = 33554432
 };
 class QFlags < QGL::FormatOption >;
-typedef class QFlags < QGL::FormatOption > _ZN3QGL13FormatOptionsE;
+typedef class QFlags < QGL::FormatOption > QGL::FormatOptions;
 class QGLFormat;
 class QGLContext;
 class QGLWidget;

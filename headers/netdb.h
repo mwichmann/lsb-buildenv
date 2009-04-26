@@ -139,57 +139,75 @@ extern "C" {
 
     extern void endprotoent(void);
     extern void endservent(void);
-    extern struct hostent *gethostbyaddr(const void *, socklen_t,
-					 int) LSB_DECL_DEPRECATED;
-    extern struct hostent *gethostbyname(const char *) LSB_DECL_DEPRECATED;
-    extern struct protoent *getprotobyname(const char *);
-    extern struct protoent *getprotobynumber(int);
+    /* Use getaddrinfo instead */
+    extern struct hostent *gethostbyaddr(const void *__addr,
+					 socklen_t __len,
+					 int __type) LSB_DECL_DEPRECATED;
+    /* Use getaddrinfo instead */
+    extern struct hostent *gethostbyname(const char *__name)
+	LSB_DECL_DEPRECATED;
+    extern struct protoent *getprotobyname(const char *__name);
+    extern struct protoent *getprotobynumber(int __proto);
     extern struct protoent *getprotoent(void);
-    extern struct servent *getservbyname(const char *, const char *);
-    extern struct servent *getservbyport(int, const char *);
+    extern struct servent *getservbyname(const char *__name,
+					 const char *__proto);
+    extern struct servent *getservbyport(int __port, const char *__proto);
     extern struct servent *getservent(void);
-    extern void setprotoent(int);
-    extern void setservent(int);
+    extern void setprotoent(int __stay_open);
+    extern void setservent(int __stay_open);
 #if __LSB_VERSION__ >= 12
     extern int *__h_errno_location(void);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13
-    extern void freeaddrinfo(struct addrinfo *);
-    extern const char *gai_strerror(int);
-    extern int getaddrinfo(const char *, const char *,
-			   const struct addrinfo *, struct addrinfo **);
+    extern void freeaddrinfo(struct addrinfo *__ai);
+    extern const char *gai_strerror(int __ecode);
+    extern int getaddrinfo(const char *__name, const char *__service,
+			   const struct addrinfo *__req,
+			   struct addrinfo **__pai);
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 32
-    extern int gethostbyaddr_r(const void *, socklen_t, int,
-			       struct hostent *, char *, size_t,
-			       struct hostent **,
-			       int *) LSB_DECL_DEPRECATED;
-    extern struct hostent *gethostbyname2(const char *,
-					  int) LSB_DECL_DEPRECATED;
-    extern int gethostbyname2_r(const char *, int, struct hostent *,
-				char *, size_t, struct hostent **,
-				int *) LSB_DECL_DEPRECATED;
-    extern int gethostbyname_r(const char *, struct hostent *, char *,
-			       size_t, struct hostent **,
-			       int *) LSB_DECL_DEPRECATED;
+    /* Use getaddrinfo instead */
+    extern int gethostbyaddr_r(const void *__addr, socklen_t __len,
+			       int __type, struct hostent *__result_buf,
+			       char *__buf, size_t __buflen,
+			       struct hostent **__result,
+			       int *__h_errnop) LSB_DECL_DEPRECATED;
+    /* Use getaddrinfo instead */
+    extern struct hostent *gethostbyname2(const char *__name,
+					  int __af) LSB_DECL_DEPRECATED;
+    /* Use getaddrinfo instead */
+    extern int gethostbyname2_r(const char *__name, int __af,
+				struct hostent *__result_buf, char *__buf,
+				size_t __buflen, struct hostent **__result,
+				int *__h_errnop) LSB_DECL_DEPRECATED;
+    /* Use getaddrinfo instead */
+    extern int gethostbyname_r(const char *__name,
+			       struct hostent *__result_buf, char *__buf,
+			       size_t __buflen, struct hostent **__result,
+			       int *__h_errnop) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int getprotobyname_r(const char *, struct protoent *, char *,
-				size_t, struct protoent **);
-    extern int getprotobynumber_r(int, struct protoent *, char *, size_t,
-				  struct protoent **);
-    extern int getprotoent_r(struct protoent *, char *, size_t,
-			     struct protoent **);
-    extern int getservbyname_r(const char *, const char *,
-			       struct servent *, char *, size_t,
-			       struct servent **);
-    extern int getservbyport_r(int, const char *, struct servent *, char *,
-			       size_t, struct servent **);
-    extern int getservent_r(struct servent *, char *, size_t,
-			    struct servent **);
+    extern int getprotobyname_r(const char *__name,
+				struct protoent *__result_buf, char *__buf,
+				size_t __buflen,
+				struct protoent **__result);
+    extern int getprotobynumber_r(int __proto,
+				  struct protoent *__result_buf,
+				  char *__buf, size_t __buflen,
+				  struct protoent **__result);
+    extern int getprotoent_r(struct protoent *__result_buf, char *__buf,
+			     size_t __buflen, struct protoent **__result);
+    extern int getservbyname_r(const char *__name, const char *__proto,
+			       struct servent *__result_buf, char *__buf,
+			       size_t __buflen, struct servent **__result);
+    extern int getservbyport_r(int __port, const char *__proto,
+			       struct servent *__result_buf, char *__buf,
+			       size_t __buflen, struct servent **__result);
+    extern int getservent_r(struct servent *__result_buf, char *__buf,
+			    size_t __buflen, struct servent **__result);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

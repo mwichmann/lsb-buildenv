@@ -26,12 +26,12 @@ extern "C" {
 /* Function prototypes */
 
 #if __LSB_VERSION__ < 32
-    extern char *basename(const char *) LSB_DECL_DEPRECATED;
+    extern char *basename(const char *__filename) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ < 3.2 */
 
-    extern char *dirname(char *);
+    extern char *dirname(char *__path);
 #if __LSB_VERSION__ >= 32
-    extern char *__xpg_basename(char *);
+    extern char *__xpg_basename(char *__path);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

@@ -22,30 +22,41 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void htmlDocContentDumpFormatOutput(xmlOutputBufferPtr,
-					       xmlDocPtr, const char *,
-					       int);
-    extern void htmlDocContentDumpOutput(xmlOutputBufferPtr, xmlDocPtr,
-					 const char *);
-    extern int htmlDocDump(FILE *, xmlDocPtr);
-    extern void htmlDocDumpMemory(xmlDocPtr, xmlChar * *, int *);
-    extern const xmlChar *htmlGetMetaEncoding(htmlDocPtr);
-    extern int htmlIsBooleanAttr(const xmlChar *);
-    extern htmlDocPtr htmlNewDoc(const xmlChar *, const xmlChar *);
-    extern htmlDocPtr htmlNewDocNoDtD(const xmlChar *, const xmlChar *);
-    extern int htmlNodeDump(xmlBufferPtr, xmlDocPtr, xmlNodePtr);
-    extern void htmlNodeDumpFile(FILE *, xmlDocPtr, xmlNodePtr);
-    extern int htmlNodeDumpFileFormat(FILE *, xmlDocPtr, xmlNodePtr,
-				      const char *, int);
-    extern void htmlNodeDumpFormatOutput(xmlOutputBufferPtr, xmlDocPtr,
-					 xmlNodePtr, const char *, int);
-    extern void htmlNodeDumpOutput(xmlOutputBufferPtr, xmlDocPtr,
-				   xmlNodePtr, const char *);
-    extern int htmlSaveFile(const char *, xmlDocPtr);
-    extern int htmlSaveFileEnc(const char *, xmlDocPtr, const char *);
-    extern int htmlSaveFileFormat(const char *, xmlDocPtr, const char *,
-				  int);
-    extern int htmlSetMetaEncoding(htmlDocPtr, const xmlChar *);
+    extern void htmlDocContentDumpFormatOutput(xmlOutputBufferPtr buf,
+					       xmlDocPtr cur,
+					       const char *encoding,
+					       int format);
+    extern void htmlDocContentDumpOutput(xmlOutputBufferPtr buf,
+					 xmlDocPtr cur,
+					 const char *encoding);
+    extern int htmlDocDump(FILE * f, xmlDocPtr cur);
+    extern void htmlDocDumpMemory(xmlDocPtr cur, xmlChar * *mem,
+				  int *size);
+    extern const xmlChar *htmlGetMetaEncoding(htmlDocPtr doc);
+    extern int htmlIsBooleanAttr(const xmlChar * name);
+    extern htmlDocPtr htmlNewDoc(const xmlChar * URI,
+				 const xmlChar * ExternalID);
+    extern htmlDocPtr htmlNewDocNoDtD(const xmlChar * URI,
+				      const xmlChar * ExternalID);
+    extern int htmlNodeDump(xmlBufferPtr buf, xmlDocPtr doc,
+			    xmlNodePtr cur);
+    extern void htmlNodeDumpFile(FILE * out, xmlDocPtr doc,
+				 xmlNodePtr cur);
+    extern int htmlNodeDumpFileFormat(FILE * out, xmlDocPtr doc,
+				      xmlNodePtr cur, const char *encoding,
+				      int format);
+    extern void htmlNodeDumpFormatOutput(xmlOutputBufferPtr buf,
+					 xmlDocPtr doc, xmlNodePtr cur,
+					 const char *encoding, int format);
+    extern void htmlNodeDumpOutput(xmlOutputBufferPtr buf, xmlDocPtr doc,
+				   xmlNodePtr cur, const char *encoding);
+    extern int htmlSaveFile(const char *filename, xmlDocPtr cur);
+    extern int htmlSaveFileEnc(const char *filename, xmlDocPtr cur,
+			       const char *encoding);
+    extern int htmlSaveFileFormat(const char *filename, xmlDocPtr cur,
+				  const char *encoding, int format);
+    extern int htmlSetMetaEncoding(htmlDocPtr doc,
+				   const xmlChar * encoding);
 #ifdef __cplusplus
 }
 #endif

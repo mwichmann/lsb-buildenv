@@ -7,38 +7,9 @@ class QChar;
 
 struct QLatin1Char	;
 
-class QChar
-{
-private:
-public:
-     QChar(char);
-     QChar(unsigned char);
-    int digitValue() const;
-    QChar toLower() const;
-    QChar toUpper() const;
-    enum _ZN5QChar8CategoryE category() const;
-    enum _ZN5QChar9DirectionE direction() const;
-    enum _ZN5QChar7JoiningE joining() const;
-    bool hasMirrored() const;
-    QChar mirroredChar() const;
-    QString decomposition() const;
-    enum _ZN5QChar13DecompositionE decompositionTag() const;
-    unsigned char combiningClass() const;
-    enum _ZN5QChar14UnicodeVersionE unicodeVersion() const;
-    const char toAscii() const;
-    static QChar fromAscii(char);
-    bool isPrint() const;
-    bool isPunct() const;
-    bool isSpace() const;
-    bool isMark() const;
-    bool isLetter() const;
-    bool isNumber() const;
-    bool isLetterOrNumber() const;
-    bool isDigit() const;
-    bool isSymbol() const;
-};
+class QChar;
 
-enum SpecialCharacter	
+enum _ZN5QChar16SpecialCharacterE	
 {
 Null = 0,	
 null = 0,	
@@ -56,7 +27,7 @@ ByteOrderSwapped = 65534
 }
 ;
 
-enum Category	
+enum _ZN5QChar8CategoryE	
 {
 NoCategory = 0,	
 Mark_NonSpacing = 1,	
@@ -93,7 +64,7 @@ Symbol_Other = 30
 }
 ;
 
-enum Direction	
+enum _ZN5QChar9DirectionE	
 {
 DirL = 0,	
 DirR = 1,	
@@ -117,7 +88,7 @@ DirBN = 18
 }
 ;
 
-enum Decomposition	
+enum _ZN5QChar13DecompositionE	
 {
 NoDecomposition = 0,	
 Single = 0,	
@@ -141,7 +112,7 @@ Fraction = 17
 }
 ;
 
-enum Joining	
+enum _ZN5QChar7JoiningE	
 {
 OtherJoining = 0,	
 Dual = 1,	
@@ -150,7 +121,7 @@ Center = 3
 }
 ;
 
-enum CombiningClass	
+enum _ZN5QChar14CombiningClassE	
 {
 Combining_BelowLeftAttached = 200,	
 Combining_BelowAttached = 202,	
@@ -174,7 +145,7 @@ Combining_IotaSubscript = 240
 }
 ;
 
-enum UnicodeVersion	
+enum _ZN5QChar14UnicodeVersionE	
 {
 Unicode_Unassigned = 0,	
 Unicode_1_1 = 1,	

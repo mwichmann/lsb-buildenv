@@ -285,7 +285,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-
     struct sigevent {
 	sigval_t sigev_value;
 	int sigev_signo;
@@ -355,7 +354,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-
     struct siginfo {
 	int si_signo;		/* Signal number. */
 	int si_errno;
@@ -674,7 +672,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-
     struct sigaltstack {
 	void *ss_sp;
 	int ss_flags;
@@ -980,46 +977,50 @@ extern "C" {
 
     extern int __libc_current_sigrtmax(void);
     extern int __libc_current_sigrtmin(void);
-    extern sighandler_t __sysv_signal(int, sighandler_t);
+    extern sighandler_t __sysv_signal(int __sig, sighandler_t __handler);
     extern char *const _sys_siglist[64];
-    extern sighandler_t bsd_signal(int, sighandler_t);
-    extern int kill(pid_t, int);
-    extern int killpg(pid_t, int);
-    extern void psignal(int, const char *);
+    extern sighandler_t bsd_signal(int __sig, sighandler_t __handler);
+    extern int kill(pid_t __pid, int __sig);
+    extern int killpg(pid_t __pgrp, int __sig);
+    extern void psignal(int __sig, const char *__s);
     extern int pthread_kill(pthread_t, int);
     extern int pthread_sigmask(int, const sigset_t *, sigset_t *);
-    extern int raise(int);
-    extern int sigaction(int, const struct sigaction *,
-			 struct sigaction *);
-    extern int sigaddset(sigset_t *, int);
-    extern int sigaltstack(const struct sigaltstack *,
-			   struct sigaltstack *);
-    extern int sigandset(sigset_t *, const sigset_t *, const sigset_t *);
-    extern int sigdelset(sigset_t *, int);
-    extern int sigemptyset(sigset_t *);
-    extern int sigfillset(sigset_t *);
-    extern int sighold(int);
-    extern int sigignore(int);
-    extern int siginterrupt(int, int);
-    extern int sigisemptyset(const sigset_t *);
-    extern int sigismember(const sigset_t *, int);
-    extern sighandler_t signal(int, sighandler_t);
-    extern int sigorset(sigset_t *, const sigset_t *, const sigset_t *);
+    extern int raise(int __sig);
+    extern int sigaction(int __sig, const struct sigaction *__act,
+			 struct sigaction *__oact);
+    extern int sigaddset(sigset_t * __set, int __signo);
+    extern int sigaltstack(const struct sigaltstack *__ss,
+			   struct sigaltstack *__oss);
+    extern int sigandset(sigset_t * __set, const sigset_t * __left,
+			 const sigset_t * __right);
+    extern int sigdelset(sigset_t * __set, int __signo);
+    extern int sigemptyset(sigset_t * __set);
+    extern int sigfillset(sigset_t * __set);
+    extern int sighold(int __sig);
+    extern int sigignore(int __sig);
+    extern int siginterrupt(int __sig, int __interrupt);
+    extern int sigisemptyset(const sigset_t * __set);
+    extern int sigismember(const sigset_t * __set, int __signo);
+    extern sighandler_t signal(int __sig, sighandler_t __handler);
+    extern int sigorset(sigset_t * __set, const sigset_t * __left,
+			const sigset_t * __right);
 #if __LSB_VERSION__ < 32
-    extern int sigpause(int) LSB_DECL_DEPRECATED;
+    /* Binary sigpause symbol does not implement POSIX-conforming behavior, __xpg_sigpause should be used instead. Consider building the application in LSB mode. */
+    extern int sigpause(int __sig) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ < 3.2 */
 
-    extern int sigpending(sigset_t *);
-    extern int sigprocmask(int, const sigset_t *, sigset_t *);
-    extern int sigqueue(pid_t, int, const union sigval);
-    extern int sigrelse(int);
-    extern int sigreturn(struct sigcontext *);
-    extern sighandler_t sigset(int, sighandler_t);
-    extern int sigsuspend(const sigset_t *);
-    extern int sigtimedwait(const sigset_t *, siginfo_t *,
-			    const struct timespec *);
-    extern int sigwait(const sigset_t *, int *);
-    extern int sigwaitinfo(const sigset_t *, siginfo_t *);
+    extern int sigpending(sigset_t * __set);
+    extern int sigprocmask(int __how, const sigset_t * __set,
+			   sigset_t * __oset);
+    extern int sigqueue(pid_t __pid, int __sig, const union sigval __val);
+    extern int sigrelse(int __sig);
+    extern int sigreturn(struct sigcontext *__scp);
+    extern sighandler_t sigset(int __sig, sighandler_t __disp);
+    extern int sigsuspend(const sigset_t * __set);
+    extern int sigtimedwait(const sigset_t * __set, siginfo_t * __info,
+			    const struct timespec *__timeout);
+    extern int sigwait(const sigset_t * __set, int *__sig);
+    extern int sigwaitinfo(const sigset_t * __set, siginfo_t * __info);
 #if __LSB_VERSION__ >= 32
     extern int __xpg_sigpause(int);
 #endif				/* __LSB_VERSION__ >= 3.2 */

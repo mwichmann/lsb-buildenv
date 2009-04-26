@@ -216,10 +216,10 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void *shmat(int, const void *, int);
-    extern int shmctl(int, int, struct shmid_ds *);
-    extern int shmdt(const void *);
-    extern int shmget(key_t, size_t, int);
+    extern void *shmat(int __shmid, const void *__shmaddr, int __shmflg);
+    extern int shmctl(int __shmid, int __cmd, struct shmid_ds *__buf);
+    extern int shmdt(const void *__shmaddr);
+    extern int shmget(key_t __key, size_t __size, int __shmflg);
 #if __LSB_VERSION__ >= 11
     extern int __getpagesize(void);
 #endif				/* __LSB_VERSION__ >= 1.1 */

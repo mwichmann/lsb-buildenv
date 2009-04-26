@@ -2,6 +2,7 @@
 #ifndef _X11_INTRINSICI_H_
 #define _X11_INTRINSICI_H_
 
+#include <X11/Intrinsic.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,6 +35,10 @@ extern "C" {
 #define XtStackFree(pointer,stack_cache_array)	{ if ((pointer) != ((XtPointer)(stack_cache_array))) XtFree(pointer); }
 
 
+
+/* Function prototypes */
+
+    extern String XtCXtToolkitError;
 #ifdef __cplusplus
 }
 #endif

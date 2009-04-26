@@ -5,11 +5,7 @@
 class QStringList;
 // *INDENT-OFF*
 
-class QStringList
-{
-private:
-public:
-};
+class QStringList;
 
 // *INDENT-ON*
 #endif				/* protection */

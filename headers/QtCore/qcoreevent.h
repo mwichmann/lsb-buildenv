@@ -5,15 +5,9 @@
 class QCustomEvent;
 // *INDENT-OFF*
 
-class QEvent
-{
-private:
-public:
-     QEvent(QEvent::Type);
-     ~QEvent();
-};
+class QEvent;
 
-enum Type	
+enum _ZN6QEvent4TypeE	
 {
 None = 0,	
 Timer = 1,	
@@ -135,29 +129,11 @@ MaxUser = 65535
 }
 ;
 
-class QTimerEvent : public QEvent
-{
-private:
-public:
-     QTimerEvent(int);
-     ~QTimerEvent();
-};
+class QTimerEvent;
 
-class QChildEvent : public QEvent
-{
-private:
-public:
-     QChildEvent(QEvent::Type, QObject*);
-     ~QChildEvent();
-};
+class QChildEvent;
 
-class QCustomEvent : public QEvent
-{
-private:
-public:
-     QCustomEvent(int, void*);
-     ~QCustomEvent();
-};
+class QCustomEvent;
 
 // *INDENT-ON*
 #endif				/* protection */

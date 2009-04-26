@@ -60,110 +60,129 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern htmlParserCtxtPtr htmlCreateFileParserCtxt(const char *,
-						      const char *);
+    extern htmlParserCtxtPtr htmlCreateFileParserCtxt(const char *filename,
+						      const char
+						      *encoding);
     extern void htmlInitAutoClose(void);
-    extern xmlParserInputPtr inputPop(xmlParserCtxtPtr);
-    extern int inputPush(xmlParserCtxtPtr, xmlParserInputPtr);
-    extern const xmlChar *namePop(xmlParserCtxtPtr);
-    extern int namePush(xmlParserCtxtPtr, const xmlChar *);
-    extern xmlNodePtr nodePop(xmlParserCtxtPtr);
-    extern int nodePush(xmlParserCtxtPtr, xmlNodePtr);
-    extern int xmlCopyChar(int, xmlChar *, int);
-    extern int xmlCopyCharMultiByte(xmlChar *, int);
-    extern xmlParserCtxtPtr xmlCreateEntityParserCtxt(const xmlChar *,
-						      const xmlChar *,
-						      const xmlChar *);
-    extern xmlParserCtxtPtr xmlCreateFileParserCtxt(const char *);
-    extern xmlParserCtxtPtr xmlCreateMemoryParserCtxt(const char *, int);
-    extern xmlParserCtxtPtr xmlCreateURLParserCtxt(const char *, int);
-    extern int xmlCurrentChar(xmlParserCtxtPtr, int *);
-    extern void xmlFreeInputStream(xmlParserInputPtr);
-    extern int xmlIsLetter(int);
-    extern xmlParserInputPtr xmlNewEntityInputStream(xmlParserCtxtPtr,
-						     xmlEntityPtr);
-    extern xmlParserInputPtr xmlNewInputFromFile(xmlParserCtxtPtr,
-						 const char *);
-    extern xmlParserInputPtr xmlNewInputStream(xmlParserCtxtPtr);
-    extern xmlParserInputPtr xmlNewStringInputStream(xmlParserCtxtPtr,
-						     const xmlChar *);
-    extern void xmlNextChar(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseAttValue(xmlParserCtxtPtr);
-    extern const xmlChar *xmlParseAttribute(xmlParserCtxtPtr, xmlChar * *);
-    extern void xmlParseAttributeListDecl(xmlParserCtxtPtr);
-    extern int xmlParseAttributeType(xmlParserCtxtPtr,
-				     xmlEnumerationPtr *);
-    extern void xmlParseCDSect(xmlParserCtxtPtr);
-    extern void xmlParseCharData(xmlParserCtxtPtr, int);
-    extern int xmlParseCharRef(xmlParserCtxtPtr);
-    extern void xmlParseComment(xmlParserCtxtPtr);
-    extern void xmlParseContent(xmlParserCtxtPtr);
-    extern int xmlParseDefaultDecl(xmlParserCtxtPtr, xmlChar * *);
-    extern void xmlParseDocTypeDecl(xmlParserCtxtPtr);
-    extern void xmlParseElement(xmlParserCtxtPtr);
+    extern xmlParserInputPtr inputPop(xmlParserCtxtPtr ctxt);
+    extern int inputPush(xmlParserCtxtPtr ctxt, xmlParserInputPtr value);
+    extern const xmlChar *namePop(xmlParserCtxtPtr ctxt);
+    extern int namePush(xmlParserCtxtPtr ctxt, const xmlChar * value);
+    extern xmlNodePtr nodePop(xmlParserCtxtPtr ctxt);
+    extern int nodePush(xmlParserCtxtPtr ctxt, xmlNodePtr value);
+    extern int xmlCopyChar(int len, xmlChar * out, int val);
+    extern int xmlCopyCharMultiByte(xmlChar * out, int val);
+    extern xmlParserCtxtPtr xmlCreateEntityParserCtxt(const xmlChar * URL,
+						      const xmlChar * ID,
+						      const xmlChar *
+						      base);
+    extern xmlParserCtxtPtr xmlCreateFileParserCtxt(const char *filename);
+    extern xmlParserCtxtPtr xmlCreateMemoryParserCtxt(const char *buffer,
+						      int size);
+    extern xmlParserCtxtPtr xmlCreateURLParserCtxt(const char *filename,
+						   int options);
+    extern int xmlCurrentChar(xmlParserCtxtPtr ctxt, int *len);
+    extern void xmlFreeInputStream(xmlParserInputPtr input);
+    extern int xmlIsLetter(int c);
+    extern xmlParserInputPtr xmlNewEntityInputStream(xmlParserCtxtPtr ctxt,
+						     xmlEntityPtr entity);
+    extern xmlParserInputPtr xmlNewInputFromFile(xmlParserCtxtPtr ctxt,
+						 const char *filename);
+    extern xmlParserInputPtr xmlNewInputStream(xmlParserCtxtPtr ctxt);
+    extern xmlParserInputPtr xmlNewStringInputStream(xmlParserCtxtPtr ctxt,
+						     const xmlChar *
+						     buffer);
+    extern void xmlNextChar(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParseAttValue(xmlParserCtxtPtr ctxt);
+    extern const xmlChar *xmlParseAttribute(xmlParserCtxtPtr ctxt,
+					    xmlChar * *value);
+    extern void xmlParseAttributeListDecl(xmlParserCtxtPtr ctxt);
+    extern int xmlParseAttributeType(xmlParserCtxtPtr ctxt,
+				     xmlEnumerationPtr * tree);
+    extern void xmlParseCDSect(xmlParserCtxtPtr ctxt);
+    extern void xmlParseCharData(xmlParserCtxtPtr ctxt, int cdata);
+    extern int xmlParseCharRef(xmlParserCtxtPtr ctxt);
+    extern void xmlParseComment(xmlParserCtxtPtr ctxt);
+    extern void xmlParseContent(xmlParserCtxtPtr ctxt);
+    extern int xmlParseDefaultDecl(xmlParserCtxtPtr ctxt,
+				   xmlChar * *value);
+    extern void xmlParseDocTypeDecl(xmlParserCtxtPtr ctxt);
+    extern void xmlParseElement(xmlParserCtxtPtr ctxt);
     extern xmlElementContentPtr
-	xmlParseElementChildrenContentDecl(xmlParserCtxtPtr, int);
-    extern int xmlParseElementContentDecl(xmlParserCtxtPtr,
-					  const xmlChar *,
-					  xmlElementContentPtr *);
-    extern int xmlParseElementDecl(xmlParserCtxtPtr);
+	xmlParseElementChildrenContentDecl(xmlParserCtxtPtr ctxt,
+					   int inputchk);
+    extern int xmlParseElementContentDecl(xmlParserCtxtPtr ctxt,
+					  const xmlChar * name,
+					  xmlElementContentPtr * result);
+    extern int xmlParseElementDecl(xmlParserCtxtPtr ctxt);
     extern xmlElementContentPtr
-	xmlParseElementMixedContentDecl(xmlParserCtxtPtr, int);
-    extern xmlChar *xmlParseEncName(xmlParserCtxtPtr);
-    extern const xmlChar *xmlParseEncodingDecl(xmlParserCtxtPtr);
-    extern void xmlParseEndTag(xmlParserCtxtPtr);
-    extern void xmlParseEntityDecl(xmlParserCtxtPtr);
-    extern xmlEntityPtr xmlParseEntityRef(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseEntityValue(xmlParserCtxtPtr, xmlChar * *);
-    extern int xmlParseEnumeratedType(xmlParserCtxtPtr,
-				      xmlEnumerationPtr *);
-    extern xmlEnumerationPtr xmlParseEnumerationType(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseExternalID(xmlParserCtxtPtr, xmlChar * *, int);
-    extern void xmlParseExternalSubset(xmlParserCtxtPtr, const xmlChar *,
-				       const xmlChar *);
-    extern void xmlParseMarkupDecl(xmlParserCtxtPtr);
-    extern void xmlParseMisc(xmlParserCtxtPtr);
-    extern const xmlChar *xmlParseName(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseNmtoken(xmlParserCtxtPtr);
-    extern void xmlParseNotationDecl(xmlParserCtxtPtr);
-    extern xmlEnumerationPtr xmlParseNotationType(xmlParserCtxtPtr);
-    extern void xmlParsePEReference(xmlParserCtxtPtr);
-    extern void xmlParsePI(xmlParserCtxtPtr);
-    extern const xmlChar *xmlParsePITarget(xmlParserCtxtPtr);
-    extern xmlChar *xmlParsePubidLiteral(xmlParserCtxtPtr);
-    extern void xmlParseReference(xmlParserCtxtPtr);
-    extern int xmlParseSDDecl(xmlParserCtxtPtr);
-    extern const xmlChar *xmlParseStartTag(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseSystemLiteral(xmlParserCtxtPtr);
-    extern void xmlParseTextDecl(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseVersionInfo(xmlParserCtxtPtr);
-    extern xmlChar *xmlParseVersionNum(xmlParserCtxtPtr);
-    extern void xmlParseXMLDecl(xmlParserCtxtPtr);
-    extern void xmlParserHandlePEReference(xmlParserCtxtPtr);
-    extern void xmlParserInputShrink(xmlParserInputPtr);
+	xmlParseElementMixedContentDecl(xmlParserCtxtPtr ctxt,
+					int inputchk);
+    extern xmlChar *xmlParseEncName(xmlParserCtxtPtr ctxt);
+    extern const xmlChar *xmlParseEncodingDecl(xmlParserCtxtPtr ctxt);
+    extern void xmlParseEndTag(xmlParserCtxtPtr ctxt);
+    extern void xmlParseEntityDecl(xmlParserCtxtPtr ctxt);
+    extern xmlEntityPtr xmlParseEntityRef(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParseEntityValue(xmlParserCtxtPtr ctxt,
+					xmlChar * *orig);
+    extern int xmlParseEnumeratedType(xmlParserCtxtPtr ctxt,
+				      xmlEnumerationPtr * tree);
+    extern xmlEnumerationPtr xmlParseEnumerationType(xmlParserCtxtPtr
+						     ctxt);
+    extern xmlChar *xmlParseExternalID(xmlParserCtxtPtr ctxt,
+				       xmlChar * *publicID, int strict);
+    extern void xmlParseExternalSubset(xmlParserCtxtPtr ctxt,
+				       const xmlChar * ExternalID,
+				       const xmlChar * SystemID);
+    extern void xmlParseMarkupDecl(xmlParserCtxtPtr ctxt);
+    extern void xmlParseMisc(xmlParserCtxtPtr ctxt);
+    extern const xmlChar *xmlParseName(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParseNmtoken(xmlParserCtxtPtr ctxt);
+    extern void xmlParseNotationDecl(xmlParserCtxtPtr ctxt);
+    extern xmlEnumerationPtr xmlParseNotationType(xmlParserCtxtPtr ctxt);
+    extern void xmlParsePEReference(xmlParserCtxtPtr ctxt);
+    extern void xmlParsePI(xmlParserCtxtPtr ctxt);
+    extern const xmlChar *xmlParsePITarget(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParsePubidLiteral(xmlParserCtxtPtr ctxt);
+    extern void xmlParseReference(xmlParserCtxtPtr ctxt);
+    extern int xmlParseSDDecl(xmlParserCtxtPtr ctxt);
+    extern const xmlChar *xmlParseStartTag(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParseSystemLiteral(xmlParserCtxtPtr ctxt);
+    extern void xmlParseTextDecl(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParseVersionInfo(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlParseVersionNum(xmlParserCtxtPtr ctxt);
+    extern void xmlParseXMLDecl(xmlParserCtxtPtr ctxt);
+    extern void xmlParserHandlePEReference(xmlParserCtxtPtr ctxt);
+    extern void xmlParserInputShrink(xmlParserInputPtr in);
     extern unsigned int xmlParserMaxDepth;
-    extern xmlChar xmlPopInput(xmlParserCtxtPtr);
-    extern void xmlPushInput(xmlParserCtxtPtr, xmlParserInputPtr);
-    extern void xmlSetEntityReferenceFunc(xmlEntityReferenceFunc);
-    extern int xmlSkipBlankChars(xmlParserCtxtPtr);
-    extern xmlChar *xmlSplitQName(xmlParserCtxtPtr, const xmlChar *,
-				  xmlChar * *);
+    extern xmlChar xmlPopInput(xmlParserCtxtPtr ctxt);
+    extern void xmlPushInput(xmlParserCtxtPtr ctxt,
+			     xmlParserInputPtr input);
+    extern void xmlSetEntityReferenceFunc(xmlEntityReferenceFunc func);
+    extern int xmlSkipBlankChars(xmlParserCtxtPtr ctxt);
+    extern xmlChar *xmlSplitQName(xmlParserCtxtPtr ctxt,
+				  const xmlChar * name, xmlChar * *prefix);
     extern const xmlChar const xmlStringComment[];
-    extern int xmlStringCurrentChar(xmlParserCtxtPtr, const xmlChar *,
-				    int *);
-    extern xmlChar *xmlStringDecodeEntities(xmlParserCtxtPtr,
-					    const xmlChar *, int, xmlChar,
-					    xmlChar, xmlChar);
-    extern xmlChar *xmlStringLenDecodeEntities(xmlParserCtxtPtr,
-					       const xmlChar *, int, int,
-					       xmlChar, xmlChar, xmlChar);
+    extern int xmlStringCurrentChar(xmlParserCtxtPtr ctxt,
+				    const xmlChar * cur, int *len);
+    extern xmlChar *xmlStringDecodeEntities(xmlParserCtxtPtr ctxt,
+					    const xmlChar * str, int what,
+					    xmlChar end, xmlChar end2,
+					    xmlChar end3);
+    extern xmlChar *xmlStringLenDecodeEntities(xmlParserCtxtPtr ctxt,
+					       const xmlChar * str,
+					       int len, int what,
+					       xmlChar end, xmlChar end2,
+					       xmlChar end3);
     extern const xmlChar const xmlStringText[];
     extern const xmlChar const xmlStringTextNoenc[];
-    extern int xmlSwitchEncoding(xmlParserCtxtPtr, xmlCharEncoding);
-    extern int xmlSwitchInputEncoding(xmlParserCtxtPtr, xmlParserInputPtr,
-				      xmlCharEncodingHandlerPtr);
-    extern int xmlSwitchToEncoding(xmlParserCtxtPtr,
-				   xmlCharEncodingHandlerPtr);
+    extern int xmlSwitchEncoding(xmlParserCtxtPtr ctxt,
+				 xmlCharEncoding enc);
+    extern int xmlSwitchInputEncoding(xmlParserCtxtPtr ctxt,
+				      xmlParserInputPtr input,
+				      xmlCharEncodingHandlerPtr handler);
+    extern int xmlSwitchToEncoding(xmlParserCtxtPtr ctxt,
+				   xmlCharEncodingHandlerPtr handler);
 #ifdef __cplusplus
 }
 #endif

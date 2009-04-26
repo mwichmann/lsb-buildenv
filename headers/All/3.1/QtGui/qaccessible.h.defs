@@ -70,7 +70,7 @@ enum _ZN11QAccessible9StateFlagE {
     HasPopup = 1073741824
 };
 class QFlags < QAccessible::StateFlag >;
-typedef class QFlags < QAccessible::StateFlag > _ZN11QAccessible5StateE;
+typedef class QFlags < QAccessible::StateFlag > QAccessible::State;
 enum _ZN11QAccessible4RoleE {
     NoRole = 0,
     TitleBar = 1,
@@ -168,8 +168,7 @@ enum _ZN11QAccessible12RelationFlagE {
     LogicalMask = 16711680
 };
 class QFlags < QAccessible::RelationFlag >;
-typedef class QFlags < QAccessible::RelationFlag >
-    _ZN11QAccessible8RelationE;
+typedef class QFlags < QAccessible::RelationFlag > QAccessible::Relation;
 enum _ZN11QAccessible6ActionE {
     LastStandardAction = -11,
     AddToSelection = -11,
@@ -186,7 +185,7 @@ enum _ZN11QAccessible6ActionE {
     Press = -1,
     DefaultAction = 0
 };
-typedef void _ZN11QAccessible13UpdateHandlerE;
-typedef void _ZN11QAccessible17RootObjectHandlerE;
+typedef void QAccessible::UpdateHandler;
+typedef void QAccessible::RootObjectHandler;
 class QAccessibleInterface;
 class QAccessibleEvent;

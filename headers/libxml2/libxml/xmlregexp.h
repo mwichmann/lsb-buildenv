@@ -41,62 +41,64 @@ extern "C" {
     } xmlExpNodeType;
 
 
-
-
-
-
-
-
-
-
 /* Function prototypes */
 
     extern xmlExpNodePtr emptyExp;
     extern xmlExpNodePtr forbiddenExp;
-    extern int xmlExpCtxtNbCons(xmlExpCtxtPtr);
-    extern int xmlExpCtxtNbNodes(xmlExpCtxtPtr);
-    extern void xmlExpDump(xmlBufferPtr, xmlExpNodePtr);
-    extern xmlExpNodePtr xmlExpExpDerive(xmlExpCtxtPtr, xmlExpNodePtr,
-					 xmlExpNodePtr);
-    extern void xmlExpFree(xmlExpCtxtPtr, xmlExpNodePtr);
-    extern void xmlExpFreeCtxt(xmlExpCtxtPtr);
-    extern int xmlExpGetLanguage(xmlExpCtxtPtr, xmlExpNodePtr,
-				 const xmlChar * *, int);
-    extern int xmlExpGetStart(xmlExpCtxtPtr, xmlExpNodePtr,
-			      const xmlChar * *, int);
-    extern int xmlExpIsNillable(xmlExpNodePtr);
-    extern int xmlExpMaxToken(xmlExpNodePtr);
-    extern xmlExpNodePtr xmlExpNewAtom(xmlExpCtxtPtr, const xmlChar *,
-				       int);
-    extern xmlExpCtxtPtr xmlExpNewCtxt(int, xmlDictPtr);
-    extern xmlExpNodePtr xmlExpNewOr(xmlExpCtxtPtr, xmlExpNodePtr,
-				     xmlExpNodePtr);
-    extern xmlExpNodePtr xmlExpNewRange(xmlExpCtxtPtr, xmlExpNodePtr, int,
-					int);
-    extern xmlExpNodePtr xmlExpNewSeq(xmlExpCtxtPtr, xmlExpNodePtr,
-				      xmlExpNodePtr);
-    extern xmlExpNodePtr xmlExpParse(xmlExpCtxtPtr, const char *);
-    extern void xmlExpRef(xmlExpNodePtr);
-    extern xmlExpNodePtr xmlExpStringDerive(xmlExpCtxtPtr, xmlExpNodePtr,
-					    const xmlChar *, int);
-    extern int xmlExpSubsume(xmlExpCtxtPtr, xmlExpNodePtr, xmlExpNodePtr);
-    extern int xmlRegExecErrInfo(xmlRegExecCtxtPtr, const xmlChar * *,
-				 int *, int *, xmlChar * *, int *);
-    extern int xmlRegExecNextValues(xmlRegExecCtxtPtr, int *, int *,
-				    xmlChar * *, int *);
-    extern int xmlRegExecPushString(xmlRegExecCtxtPtr, const xmlChar *,
-				    void *);
-    extern int xmlRegExecPushString2(xmlRegExecCtxtPtr, const xmlChar *,
-				     const xmlChar *, void *);
-    extern void xmlRegFreeExecCtxt(xmlRegExecCtxtPtr);
-    extern void xmlRegFreeRegexp(xmlRegexpPtr);
-    extern xmlRegExecCtxtPtr xmlRegNewExecCtxt(xmlRegexpPtr,
-					       xmlRegExecCallbacks,
-					       void *);
-    extern xmlRegexpPtr xmlRegexpCompile(const xmlChar *);
-    extern int xmlRegexpExec(xmlRegexpPtr, const xmlChar *);
-    extern int xmlRegexpIsDeterminist(xmlRegexpPtr);
-    extern void xmlRegexpPrint(FILE *, xmlRegexpPtr);
+    extern int xmlExpCtxtNbCons(xmlExpCtxtPtr ctxt);
+    extern int xmlExpCtxtNbNodes(xmlExpCtxtPtr ctxt);
+    extern void xmlExpDump(xmlBufferPtr buf, xmlExpNodePtr expr);
+    extern xmlExpNodePtr xmlExpExpDerive(xmlExpCtxtPtr ctxt,
+					 xmlExpNodePtr expr,
+					 xmlExpNodePtr sub);
+    extern void xmlExpFree(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr);
+    extern void xmlExpFreeCtxt(xmlExpCtxtPtr ctxt);
+    extern int xmlExpGetLanguage(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr,
+				 const xmlChar * *langList, int len);
+    extern int xmlExpGetStart(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr,
+			      const xmlChar * *tokList, int len);
+    extern int xmlExpIsNillable(xmlExpNodePtr expr);
+    extern int xmlExpMaxToken(xmlExpNodePtr expr);
+    extern xmlExpNodePtr xmlExpNewAtom(xmlExpCtxtPtr ctxt,
+				       const xmlChar * name, int len);
+    extern xmlExpCtxtPtr xmlExpNewCtxt(int maxNodes, xmlDictPtr dict);
+    extern xmlExpNodePtr xmlExpNewOr(xmlExpCtxtPtr ctxt,
+				     xmlExpNodePtr left,
+				     xmlExpNodePtr right);
+    extern xmlExpNodePtr xmlExpNewRange(xmlExpCtxtPtr ctxt,
+					xmlExpNodePtr subset, int min,
+					int max);
+    extern xmlExpNodePtr xmlExpNewSeq(xmlExpCtxtPtr ctxt,
+				      xmlExpNodePtr left,
+				      xmlExpNodePtr right);
+    extern xmlExpNodePtr xmlExpParse(xmlExpCtxtPtr ctxt, const char *expr);
+    extern void xmlExpRef(xmlExpNodePtr expr);
+    extern xmlExpNodePtr xmlExpStringDerive(xmlExpCtxtPtr ctxt,
+					    xmlExpNodePtr expr,
+					    const xmlChar * str, int len);
+    extern int xmlExpSubsume(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr,
+			     xmlExpNodePtr sub);
+    extern int xmlRegExecErrInfo(xmlRegExecCtxtPtr exec,
+				 const xmlChar * *string, int *nbval,
+				 int *nbneg, xmlChar * *values,
+				 int *terminal);
+    extern int xmlRegExecNextValues(xmlRegExecCtxtPtr exec, int *nbval,
+				    int *nbneg, xmlChar * *values,
+				    int *terminal);
+    extern int xmlRegExecPushString(xmlRegExecCtxtPtr exec,
+				    const xmlChar * value, void *data);
+    extern int xmlRegExecPushString2(xmlRegExecCtxtPtr exec,
+				     const xmlChar * value,
+				     const xmlChar * value2, void *data);
+    extern void xmlRegFreeExecCtxt(xmlRegExecCtxtPtr exec);
+    extern void xmlRegFreeRegexp(xmlRegexpPtr regexp);
+    extern xmlRegExecCtxtPtr xmlRegNewExecCtxt(xmlRegexpPtr comp,
+					       xmlRegExecCallbacks
+					       callback, void *data);
+    extern xmlRegexpPtr xmlRegexpCompile(const xmlChar * regexp);
+    extern int xmlRegexpExec(xmlRegexpPtr comp, const xmlChar * value);
+    extern int xmlRegexpIsDeterminist(xmlRegexpPtr comp);
+    extern void xmlRegexpPrint(FILE * output, xmlRegexpPtr regexp);
 #ifdef __cplusplus
 }
 #endif

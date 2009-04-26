@@ -91,7 +91,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-
     struct z_stream_s {
 	Bytef *next_in;		/* next input byte */
 	uInt avail_in;		/* number of bytes available at next_in */
@@ -195,50 +194,61 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern uLong adler32(uLong, const Bytef *, uInt);
-    extern int compress(Bytef *, uLongf *, const Bytef *, uLong);
-    extern int compress2(Bytef *, uLongf *, const Bytef *, uLong, int);
-    extern uLong crc32(uLong, const Bytef *, uInt);
-    extern int deflate(z_streamp, int);
-    extern int deflateCopy(z_streamp, z_streamp);
-    extern int deflateEnd(z_streamp);
-    extern int deflateInit2_(z_streamp, int, int, int, int, int,
-			     const char *, int);
-    extern int deflateInit_(z_streamp, int, const char *, int);
-    extern int deflateParams(z_streamp, int, int);
-    extern int deflateReset(z_streamp);
-    extern int deflateSetDictionary(z_streamp, const Bytef *, uInt);
+    extern uLong adler32(uLong adler, const Bytef * buf, uInt len);
+    extern int compress(Bytef * dest, uLongf * destLen,
+			const Bytef * source, uLong sourceLen);
+    extern int compress2(Bytef * dest, uLongf * destLen,
+			 const Bytef * source, uLong sourceLen, int level);
+    extern uLong crc32(uLong crc, const Bytef * buf, uInt len);
+    extern int deflate(z_streamp strm, int flush);
+    extern int deflateCopy(z_streamp dest, z_streamp source);
+    extern int deflateEnd(z_streamp strm);
+    extern int deflateInit2_(z_streamp strm, int level, int method,
+			     int windowBits, int memLevel, int strategy,
+			     const char *version, int stream_size);
+    extern int deflateInit_(z_streamp strm, int level, const char *version,
+			    int stream_size);
+    extern int deflateParams(z_streamp strm, int level, int strategy);
+    extern int deflateReset(z_streamp strm);
+    extern int deflateSetDictionary(z_streamp strm,
+				    const Bytef * dictionary,
+				    uInt dictLength);
     extern const uLongf *get_crc_table(void);
-    extern int gzclose(gzFile);
-    extern gzFile gzdopen(int, const char *);
-    extern int gzeof(gzFile);
-    extern const char *gzerror(gzFile, int *);
-    extern int gzflush(gzFile, int);
-    extern int gzgetc(gzFile);
-    extern char *gzgets(gzFile, char *, int);
-    extern gzFile gzopen(const char *, const char *);
-    extern int gzprintf(gzFile, const char *, ...);
-    extern int gzputc(gzFile, int);
-    extern int gzputs(gzFile, const char *);
-    extern int gzread(gzFile, voidp, unsigned int);
-    extern int gzrewind(gzFile);
-    extern z_off_t gzseek(gzFile, z_off_t, int);
-    extern int gzsetparams(gzFile, int, int);
-    extern z_off_t gztell(gzFile);
-    extern int gzwrite(gzFile, voidpc, unsigned int);
-    extern int inflate(z_streamp, int);
-    extern int inflateEnd(z_streamp);
-    extern int inflateInit2_(z_streamp, int, const char *, int);
-    extern int inflateInit_(z_streamp, const char *, int);
-    extern int inflateReset(z_streamp);
-    extern int inflateSetDictionary(z_streamp, const Bytef *, uInt);
-    extern int inflateSync(z_streamp);
-    extern int inflateSyncPoint(z_streamp);
-    extern int uncompress(Bytef *, uLongf *, const Bytef *, uLong);
+    extern int gzclose(gzFile file);
+    extern gzFile gzdopen(int fd, const char *mode);
+    extern int gzeof(gzFile file);
+    extern const char *gzerror(gzFile file, int *errnum);
+    extern int gzflush(gzFile file, int flush);
+    extern int gzgetc(gzFile file);
+    extern char *gzgets(gzFile file, char *buf, int len);
+    extern gzFile gzopen(const char *path, const char *mode);
+    extern int gzprintf(gzFile file, const char *format, ...);
+    extern int gzputc(gzFile file, int c);
+    extern int gzputs(gzFile file, const char *s);
+    extern int gzread(gzFile file, voidp buf, unsigned int len);
+    extern int gzrewind(gzFile file);
+    extern z_off_t gzseek(gzFile file, z_off_t offset, int whence);
+    extern int gzsetparams(gzFile file, int level, int strategy);
+    extern z_off_t gztell(gzFile file);
+    extern int gzwrite(gzFile file, voidpc buf, unsigned int len);
+    extern int inflate(z_streamp strm, int flush);
+    extern int inflateEnd(z_streamp strm);
+    extern int inflateInit2_(z_streamp strm, int windowBits,
+			     const char *version, int stream_size);
+    extern int inflateInit_(z_streamp strm, const char *version,
+			    int stream_size);
+    extern int inflateReset(z_streamp strm);
+    extern int inflateSetDictionary(z_streamp strm,
+				    const Bytef * dictionary,
+				    uInt dictLength);
+    extern int inflateSync(z_streamp strm);
+    extern int inflateSyncPoint(z_streamp z);
+    extern int uncompress(Bytef * dest, uLongf * destLen,
+			  const Bytef * source, uLong sourceLen);
     extern const char *zError(int);
 #if __LSB_VERSION__ >= 30
-    extern uLong compressBound(uLong);
-    extern uLong deflateBound(z_streamp, uLong);
+    extern uLong compressBound(uLong sourceLen);
+    extern uLong deflateBound(z_streamp strm, uLong sourceLen);
     extern const char *zlibVersion(void);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 

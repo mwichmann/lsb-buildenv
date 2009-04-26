@@ -1,13 +1,13 @@
 
 enum auth_stat {
     AUTH_OK = 0,
-    AUTH_BADCRED = 1,
-    AUTH_REJECTEDCRED = 2,
-    AUTH_BADVERF = 3,
-    AUTH_REJECTEDVERF = 4,
-    AUTH_TOOWEAK = 5,
-    AUTH_INVALIDRESP = 6,
-    AUTH_FAILED = 7
+    AUTH_BADCRED = 1,		/* bogus credentials (seal broken) */
+    AUTH_REJECTEDCRED = 2,	/* client should begin new session */
+    AUTH_BADVERF = 3,		/* bogus verifier (seal broken) */
+    AUTH_REJECTEDVERF = 4,	/* verifier expired or was replayed */
+    AUTH_TOOWEAK = 5,		/* Rpc calls return an enum clnt_stat. */
+    AUTH_INVALIDRESP = 6,	/* bogus response verifier */
+    AUTH_FAILED = 7		/* some unknown reason */
 };
 
 union des_block {
@@ -19,9 +19,9 @@ union des_block {
 };
 
 struct opaque_auth {
-    enum_t oa_flavor;
-    caddr_t oa_base;
-    u_int oa_length;
+    enum_t oa_flavor;		/* flavor of auth */
+    caddr_t oa_base;		/* address of more auth stuff */
+    u_int oa_length;		/* not to exceed MAX_AUTH_BYTES */
 };
 
 typedef struct AUTH {
@@ -34,10 +34,10 @@ typedef struct AUTH {
 
 struct auth_ops {
     void (*ah_nextverf) (struct AUTH *);
-    int (*ah_marshal) (struct AUTH *, XDR *);
-    int (*ah_validate) (struct AUTH *, struct opaque_auth *);
-    int (*ah_refresh) (struct AUTH *);
-    void (*ah_destroy) (struct AUTH *);
+    int (*ah_marshal) (struct AUTH *, XDR *);	/* nextverf & serialize */
+    int (*ah_validate) (struct AUTH *, struct opaque_auth *);	/* validate verifier */
+    int (*ah_refresh) (struct AUTH *);	/* refresh credentials */
+    void (*ah_destroy) (struct AUTH *);	/* Rpc calls return an enum clnt_stat. */
 };
 extern struct AUTH *authnone_create(void);
 extern int key_decryptsession(char *, union des_block *);

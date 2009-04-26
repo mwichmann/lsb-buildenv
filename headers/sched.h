@@ -51,17 +51,21 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int sched_get_priority_max(int);
-    extern int sched_get_priority_min(int);
-    extern int sched_getparam(pid_t, struct sched_param *);
-    extern int sched_getscheduler(pid_t);
-    extern int sched_rr_get_interval(pid_t, struct timespec *);
-    extern int sched_setparam(pid_t, const struct sched_param *);
-    extern int sched_setscheduler(pid_t, int, const struct sched_param *);
+    extern int sched_get_priority_max(int __algorithm);
+    extern int sched_get_priority_min(int __algorithm);
+    extern int sched_getparam(pid_t __pid, struct sched_param *__param);
+    extern int sched_getscheduler(pid_t __pid);
+    extern int sched_rr_get_interval(pid_t __pid, struct timespec *__t);
+    extern int sched_setparam(pid_t __pid,
+			      const struct sched_param *__param);
+    extern int sched_setscheduler(pid_t __pid, int __policy,
+				  const struct sched_param *__param);
     extern int sched_yield(void);
 #if __LSB_VERSION__ >= 40
-    extern int sched_getaffinity(pid_t, size_t, cpu_set_t *);
-    extern int sched_setaffinity(pid_t, size_t, const cpu_set_t *);
+    extern int sched_getaffinity(pid_t __pid, size_t __cpusetsize,
+				 cpu_set_t * __cpuset);
+    extern int sched_setaffinity(pid_t __pid, size_t __cpusetsize,
+				 const cpu_set_t * __cpuset);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

@@ -4,10 +4,50 @@
 
 #include <X11/Xlib.h>
 #include <X11/X.h>
+#include <X11/extensions/XKBstr.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+#define _XKBGEOM_H_
+#define XkbLogoDoodadColor(g,d)	(&(g)->colors[(d)->color_ndx])
+#define XkbShapeDoodadColor(g,d)	(&(g)->colors[(d)->color_ndx])
+#define XkbTextDoodadColor(g,d)	(&(g)->colors[(d)->color_ndx])
+#define XkbIndicatorDoodadOffColor(g,d)	(&(g)->colors[(d)->off_color_ndx])
+#define XkbIndicatorDoodadOnColor(g,d)	(&(g)->colors[(d)->on_color_ndx])
+#define XkbKeyColor(g,k)	(&(g)->colors[(k)->color_ndx])
+#define XkbIndicatorDoodadShape(g,d)	(&(g)->shapes[(d)->shape_ndx])
+#define XkbLogoDoodadShape(g,d)	(&(g)->shapes[(d)->shape_ndx])
+#define XkbShapeDoodadShape(g,d)	(&(g)->shapes[(d)->shape_ndx])
+#define XkbKeyShape(g,k)	(&(g)->shapes[(k)->shape_ndx])
+#define XkbBoundsHeight(b)	(((b)->y2)-((b)->y1))
+#define XkbSetLogoDoodadColor(g,d,c)	((d)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetShapeDoodadColor(g,d,c)	((d)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetTextDoodadColor(g,d,c)	((d)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetIndicatorDoodadOffColor(g,d,c)	((d)->off_color_ndx= (c)-&(g)->colors[0])
+#define XkbSetIndicatorDoodadOnColor(g,d,c)	((d)->on_color_ndx= (c)-&(g)->colors[0])
+#define XkbSetIndicatorDoodadShape(g,d,s)	((d)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbSetLogoDoodadShape(g,d,s)	((d)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbSetShapeDoodadShape(g,d,s)	((d)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbGeomColorIndex(g,c)	((int)((c)-&(g)->colors[0]))
+#define XkbOutlineIndex(s,o)	((int)((o)-&(s)->outlines[0]))
+#define XkbSetKeyColor(g,k,c)	((k)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetKeyShape(g,k,s)	((k)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbGeomAllMask	(0x3f)
+#define XkbGeomPropertiesMask	(1<<0)
+#define XkbGeomColorsMask	(1<<1)
+#define XkbGeomShapesMask	(1<<2)
+#define XkbGeomSectionsMask	(1<<3)
+#define XkbGeomDoodadsMask	(1<<4)
+#define XkbGeomKeyAliasesMask	(1<<5)
+#define XkbUnknownDoodad	0
+#define XkbOutlineDoodad	1
+#define XkbSolidDoodad	2
+#define XkbTextDoodad	3
+#define XkbIndicatorDoodad	4
+#define XkbLogoDoodad	5
 
 
 #if __LSB_VERSION__ >= 12
@@ -69,7 +109,7 @@ extern "C" {
 
     typedef struct _XkbSection XkbSectionRec;
 
-    typedef struct _XkbOverlay **XkbSectionPtr;
+    typedef struct _XkbSection *XkbSectionPtr;
 
     typedef struct _XkbOverlayKey XkbOverlayKeyRec;
 
@@ -198,7 +238,7 @@ extern "C" {
     };
 
     struct _XkbKey {
-	XkbKeyNameRecname;
+	XkbKeyNameRec name;
 	short gap;
 	unsigned char shape_ndx;
 	unsigned char color_ndx;
@@ -244,8 +284,8 @@ extern "C" {
     };
 
     struct _XkbOverlayKey {
-	XkbKeyNameRecover;
-	XkbKeyNameRecunder;
+	XkbKeyNameRec over;
+	XkbKeyNameRec under;
     };
 
     struct _XkbOverlayRow {
@@ -279,7 +319,7 @@ extern "C" {
 	XkbShapePtr shapes;
 	XkbSectionPtr sections;
 	XkbDoodadPtr doodads;
-	 XkbKeyAliasPtrkey_aliases;
+	XkbKeyAliasPtr key_aliases;
     };
 
     struct _XkbGeometrySizes {
@@ -297,43 +337,45 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int XkbAllocGeomColors(, int);
-    extern int XkbAllocGeomDoodads(, int);
-    extern int XkbAllocGeomKeyAliases(, int);
+    extern int XkbAllocGeomColors(XkbGeometryPtr, int);
+    extern int XkbAllocGeomDoodads(XkbGeometryPtr, int);
+    extern int XkbAllocGeomKeyAliases(XkbGeometryPtr, int);
     extern int XkbAllocGeomKeys(XkbRowPtr, int);
     extern int XkbAllocGeomOutlines(XkbShapePtr, int);
     extern int XkbAllocGeomOverlayKeys(XkbOverlayRowPtr, int);
     extern int XkbAllocGeomOverlayRows(XkbOverlayPtr, int);
     extern int XkbAllocGeomOverlays(XkbSectionPtr, int);
     extern int XkbAllocGeomPoints(XkbOutlinePtr, int);
-    extern int XkbAllocGeomProps(, int);
+    extern int XkbAllocGeomProps(XkbGeometryPtr, int);
     extern int XkbAllocGeomRows(XkbSectionPtr, int);
     extern int XkbAllocGeomSectionDoodads(XkbSectionPtr, int);
-    extern int XkbAllocGeomSections(, int);
-    extern int XkbAllocGeomShapes(, int);
-    extern int XkbAllocGeometry(, XkbGeometrySizesPtr);
-    extern int XkbComputeRowBounds(, XkbSectionPtr, XkbRowPtr);
-    extern int XkbComputeSectionBounds(, XkbSectionPtr);
+    extern int XkbAllocGeomSections(XkbGeometryPtr, int);
+    extern int XkbAllocGeomShapes(XkbGeometryPtr, int);
+    extern int XkbAllocGeometry(XkbDescPtr, XkbGeometrySizesPtr);
+    extern int XkbComputeRowBounds(XkbGeometryPtr, XkbSectionPtr,
+				   XkbRowPtr);
+    extern int XkbComputeSectionBounds(XkbGeometryPtr, XkbSectionPtr);
     extern int XkbComputeShapeBounds(XkbShapePtr);
     extern int XkbComputeShapeTop(XkbShapePtr, XkbBoundsPtr);
-    extern char *XkbFindOverlayForKey(, XkbSectionPtr, char *);
-    extern void XkbFreeGeomColors(, int, int, int);
+    extern char *XkbFindOverlayForKey(XkbGeometryPtr, XkbSectionPtr,
+				      char *);
+    extern void XkbFreeGeomColors(XkbGeometryPtr, int, int, int);
     extern void XkbFreeGeomDoodads(XkbDoodadPtr, int, int);
-    extern void XkbFreeGeomKeyAliases(, int, int, int);
+    extern void XkbFreeGeomKeyAliases(XkbGeometryPtr, int, int, int);
     extern void XkbFreeGeomKeys(XkbRowPtr, int, int, int);
     extern void XkbFreeGeomOutlines(XkbShapePtr, int, int, int);
     extern void XkbFreeGeomOverlayKeys(XkbOverlayRowPtr, int, int, int);
     extern void XkbFreeGeomOverlayRows(XkbOverlayPtr, int, int, int);
     extern void XkbFreeGeomOverlays(XkbSectionPtr, int, int, int);
     extern void XkbFreeGeomPoints(XkbOutlinePtr, int, int, int);
-    extern void XkbFreeGeomProperties(, int, int, int);
+    extern void XkbFreeGeomProperties(XkbGeometryPtr, int, int, int);
     extern void XkbFreeGeomRows(XkbSectionPtr, int, int, int);
-    extern void XkbFreeGeomSections(, int, int, int);
-    extern void XkbFreeGeomShapes(, int, int, int);
-    extern void XkbFreeGeometry(, unsigned int, int);
-    extern int XkbGetGeometry(Display *,);
-    extern int XkbGetNamedGeometry(Display *,, Atom);
-    extern int XkbSetGeometry(Display *, unsigned int,);
+    extern void XkbFreeGeomSections(XkbGeometryPtr, int, int, int);
+    extern void XkbFreeGeomShapes(XkbGeometryPtr, int, int, int);
+    extern void XkbFreeGeometry(XkbGeometryPtr, unsigned int, int);
+    extern int XkbGetGeometry(Display *, XkbDescPtr);
+    extern int XkbGetNamedGeometry(Display *, XkbDescPtr, Atom);
+    extern int XkbSetGeometry(Display *, unsigned int, XkbGeometryPtr);
 #ifdef __cplusplus
 }
 #endif

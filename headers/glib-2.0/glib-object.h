@@ -673,23 +673,19 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-
     struct _GTypeClass {
 	GType g_type;
     };
 
-
     struct _GTypeInstance {
 	GTypeClass *g_class;
     };
-
 
     struct _GObject {
 	GTypeInstance g_type_instance;
 	volatile guint ref_count;
 	GData *qdata;
     };
-
 
     struct _GValue {
 	GType g_type;
@@ -706,7 +702,6 @@ extern "C" {
 	} data[2];
     };
 
-
     struct _GParamSpec {
 	GTypeInstance g_type_instance;
 	gchar *name;
@@ -720,12 +715,10 @@ extern "C" {
 	guint param_id;
     };
 
-
     struct _GObjectConstructParam {
 	GParamSpec *pspec;
 	GValue *value;
     };
-
 
     struct _GObjectClass {
 	GTypeClass g_type_class;
@@ -741,7 +734,6 @@ extern "C" {
 	void (*notify) (GObject *, GParamSpec *);
 	gpointer pdummy[8];
     };
-
 
     struct _GClosure {
 	volatile guint ref_count:15;
@@ -760,12 +752,10 @@ extern "C" {
 	GClosureNotifyData *notifiers;
     };
 
-
     struct _GClosureNotifyData {
 	gpointer data;
 	GClosureNotify notify;
     };
-
 
     struct _GValueArray {
 	guint n_values;
@@ -773,13 +763,11 @@ extern "C" {
 	guint n_prealloced;
     };
 
-
     struct _GEnumValue {
 	gint value;
 	gchar *value_name;
 	gchar *value_nick;
     };
-
 
     struct _GEnumClass {
 	GTypeClass g_type_class;
@@ -789,17 +777,11 @@ extern "C" {
 	GEnumValue *values;
     };
 
-
-
-
-
-
     struct _GFlagsValue {
 	guint value;
 	gchar *value_name;
 	gchar *value_nick;
     };
-
 
     struct _GFlagsClass {
 	GTypeClass g_type_class;
@@ -808,15 +790,11 @@ extern "C" {
 	GFlagsValue *values;
     };
 
-
     struct _GSignalInvocationHint {
 	guint signal_id;
 	GQuark detail;
 	GSignalFlags run_type;
     };
-
-
-
 
     struct _GTypeValueTable {
 	void (*value_init) (GValue *);
@@ -829,7 +807,6 @@ extern "C" {
 	gchar *(*lcopy_value) (const GValue *, guint, GTypeCValue *,
 			       guint);
     };
-
 
     struct _GTypeInfo {
 	guint16 class_size;
@@ -844,7 +821,6 @@ extern "C" {
 	const GTypeValueTable *value_table;
     };
 
-
     struct _GTypeModule {
 	GObject parent_instance;
 	guint use_count;
@@ -853,18 +829,15 @@ extern "C" {
 	gchar *name;
     };
 
-
     struct _GInterfaceInfo {
 	GInterfaceInitFunc interface_init;
 	GInterfaceFinalizeFunc interface_finalize;
 	gpointer interface_data;
     };
 
-
     struct _GTypeFundamentalInfo {
 	GTypeFundamentalFlags type_flags;
     };
-
 
     struct _GTypeQuery {
 	GType type;
@@ -873,12 +846,10 @@ extern "C" {
 	guint instance_size;
     };
 
-
     struct _GParameter {
 	const gchar *name;
 	GValue value;
     };
-
 
     struct _GParamSpecTypeInfo {
 	guint16 instance_size;
@@ -891,7 +862,6 @@ extern "C" {
 	 gint(*values_cmp) (GParamSpec *, const GValue *, const GValue *);
     };
 
-
     struct _GSignalQuery {
 	guint signal_id;
 	const gchar *signal_name;
@@ -902,17 +872,14 @@ extern "C" {
 	const GType *param_types;
     };
 
-
     struct _GTypeInterface {
 	GType g_type;
 	GType g_instance_type;
     };
 
-
     struct _GParamSpecObject {
 	GParamSpec parent_instance;
     };
-
 
     struct _GTypePluginClass {
 	GTypeInterface base_iface;
@@ -922,18 +889,15 @@ extern "C" {
 	GTypePluginCompleteInterfaceInfo complete_interface_info;
     };
 
-
     struct _GCClosure {
 	GClosure closure;
 	gpointer callback;
     };
 
-
     struct _GParamSpecUnichar {
 	GParamSpec parent_instance;
 	gunichar default_value;
     };
-
 
     struct _GParamSpecUInt64 {
 	GParamSpec parent_instance;
@@ -942,17 +906,14 @@ extern "C" {
 	guint64 default_value;
     };
 
-
     struct _GParamSpecBoxed {
 	GParamSpec parent_instance;
     };
-
 
     struct _GParamSpecOverride {
 	GParamSpec parent_instance;
 	GParamSpec *overridden;
     };
-
 
     struct _GParamSpecClass {
 	GTypeClass g_type_class;
@@ -964,7 +925,6 @@ extern "C" {
 	gpointer dummy[4];
     };
 
-
     struct _GParamSpecLong {
 	GParamSpec parent_instance;
 	glong minimum;
@@ -972,13 +932,11 @@ extern "C" {
 	glong default_value;
     };
 
-
     struct _GParamSpecEnum {
 	GParamSpec parent_instance;
 	GEnumClass *enum_class;
 	gint default_value;
     };
-
 
     struct _GParamSpecFloat {
 	GParamSpec parent_instance;
@@ -987,7 +945,6 @@ extern "C" {
 	gfloat default_value;
 	gfloat epsilon;
     };
-
 
     struct _GParamSpecString {
 	GParamSpec parent_instance;
@@ -999,7 +956,6 @@ extern "C" {
 	guint ensure_non_null:1;
     };
 
-
     struct _GParamSpecDouble {
 	GParamSpec parent_instance;
 	gdouble minimum;
@@ -1008,11 +964,9 @@ extern "C" {
 	gdouble epsilon;
     };
 
-
     struct _GParamSpecParam {
 	GParamSpec parent_instance;
     };
-
 
     struct _GParamSpecValueArray {
 	GParamSpec parent_instance;
@@ -1020,13 +974,11 @@ extern "C" {
 	guint fixed_n_elements;
     };
 
-
     struct _GParamSpecFlags {
 	GParamSpec parent_instance;
 	GFlagsClass *flags_class;
 	guint default_value;
     };
-
 
     struct _GParamSpecInt64 {
 	GParamSpec parent_instance;
@@ -1035,11 +987,9 @@ extern "C" {
 	gint64 default_value;
     };
 
-
     struct _GParamSpecPointer {
 	GParamSpec parent_instance;
     };
-
 
     struct _GParamSpecInt {
 	GParamSpec parent_instance;
@@ -1047,7 +997,6 @@ extern "C" {
 	gint maximum;
 	gint default_value;
     };
-
 
     struct _GTypeModuleClass {
 	GObjectClass parent_class;
@@ -1059,14 +1008,12 @@ extern "C" {
 	void (*reserved4) (void);
     };
 
-
     struct _GParamSpecUInt {
 	GParamSpec parent_instance;
 	guint minimum;
 	guint maximum;
 	guint default_value;
     };
-
 
     struct _GParamSpecUChar {
 	GParamSpec parent_instance;
@@ -1075,7 +1022,6 @@ extern "C" {
 	guint8 default_value;
     };
 
-
     struct _GParamSpecULong {
 	GParamSpec parent_instance;
 	gulong minimum;
@@ -1083,14 +1029,12 @@ extern "C" {
 	gulong default_value;
     };
 
-
     struct _GParamSpecChar {
 	GParamSpec parent_instance;
 	gint8 minimum;
 	gint8 maximum;
 	gint8 default_value;
     };
-
 
     struct _GParamSpecBoolean {
 	GParamSpec parent_instance;

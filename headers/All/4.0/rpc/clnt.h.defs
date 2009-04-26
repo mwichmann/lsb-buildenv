@@ -24,26 +24,26 @@
 	((*(rh)->cl_ops->cl_call)(rh, proc, xargs, argsp, xres, resp, secs))
 
 enum clnt_stat {
-    RPC_SUCCESS = 0,
-    RPC_CANTENCODEARGS = 1,
-    RPC_CANTDECODERES = 2,
-    RPC_CANTSEND = 3,
-    RPC_CANTRECV = 4,
-    RPC_TIMEDOUT = 5,
-    RPC_VERSMISMATCH = 6,
-    RPC_AUTHERROR = 7,
-    RPC_PROGUNAVAIL = 8,
-    RPC_PROGVERSMISMATCH = 9,
-    RPC_PROCUNAVAIL = 10,
-    RPC_CANTDECODEARGS = 11,
-    RPC_SYSTEMERROR = 12,
-    RPC_NOBROADCAST = 21,
-    RPC_UNKNOWNHOST = 13,
-    RPC_UNKNOWNPROTO = 17,
-    RPC_UNKNOWNADDR = 19,
-    RPC_RPCBFAILURE = 14,
-    RPC_PROGNOTREGISTERED = 15,
-    RPC_N2AXLATEFAILURE = 22,
+    RPC_SUCCESS = 0,		/* call succeeded */
+    RPC_CANTENCODEARGS = 1,	/* can't encode arguments */
+    RPC_CANTDECODERES = 2,	/* can't decode results */
+    RPC_CANTSEND = 3,		/* failure in sending call */
+    RPC_CANTRECV = 4,		/* failure in receiving result */
+    RPC_TIMEDOUT = 5,		/* call timed out */
+    RPC_VERSMISMATCH = 6,	/* rpc versions not compatible */
+    RPC_AUTHERROR = 7,		/* authentication error */
+    RPC_PROGUNAVAIL = 8,	/* program not available */
+    RPC_PROGVERSMISMATCH = 9,	/* program version mismatched */
+    RPC_PROCUNAVAIL = 10,	/* procedure unavailable */
+    RPC_CANTDECODEARGS = 11,	/* decode arguments error */
+    RPC_SYSTEMERROR = 12,	/* generic "other problem" */
+    RPC_NOBROADCAST = 21,	/* Broadcasting not supported */
+    RPC_UNKNOWNHOST = 13,	/* unknown host name */
+    RPC_UNKNOWNPROTO = 17,	/* unknown protocol */
+    RPC_UNKNOWNADDR = 19,	/* Remote address unknown */
+    RPC_RPCBFAILURE = 14,	/* portmapper failed in its call */
+    RPC_PROGNOTREGISTERED = 15,	/* remote program is not registered */
+    RPC_N2AXLATEFAILURE = 22,	/* Name to addr translation failed */
     RPC_FAILED = 16,
     RPC_INTR = 18,
     RPC_TLIERROR = 20,
@@ -82,21 +82,29 @@ struct clnt_ops {
     void (*cl_destroy) (struct CLIENT *);
      bool_t(*cl_control) (struct CLIENT *, int, char *);
 };
-extern struct CLIENT *clntraw_create(u_long, u_long);
-extern struct CLIENT *clnttcp_create(struct sockaddr_in *, u_long, u_long,
-				     int *, u_int, u_int);
-extern struct CLIENT *clntudp_bufcreate(struct sockaddr_in *, u_long,
-					u_long, struct timeval, int *,
-					u_int, u_int);
-extern struct CLIENT *clntudp_create(struct sockaddr_in *, u_long, u_long,
-				     struct timeval, int *);
-extern int callrpc(const char *, const u_long, const u_long, const u_long,
-		   const xdrproc_t, const char *, const xdrproc_t, char *);
-extern struct CLIENT *clnt_create(const char *, const u_long, const u_long,
-				  const char *);
-extern void clnt_pcreateerror(const char *);
-extern void clnt_perrno(enum clnt_stat);
-extern void clnt_perror(struct CLIENT *, const char *);
-extern char *clnt_spcreateerror(const char *);
-extern char *clnt_sperrno(enum clnt_stat);
-extern char *clnt_sperror(struct CLIENT *, const char *);
+extern int callrpc(const char *__host, const u_long __prognum,
+		   const u_long __versnum, const u_long __procnum,
+		   const xdrproc_t __inproc, const char *__in,
+		   const xdrproc_t __outproc, char *__out);
+extern struct CLIENT *clnt_create(const char *__host, const u_long __prog,
+				  const u_long __vers, const char *__prot);
+extern void clnt_pcreateerror(const char *__msg);
+extern void clnt_perrno(enum clnt_stat __num);
+extern void clnt_perror(struct CLIENT *__clnt, const char *__msg);
+extern char *clnt_spcreateerror(const char *__msg);
+extern char *clnt_sperrno(enum clnt_stat __num);
+extern char *clnt_sperror(struct CLIENT *__clnt, const char *__msg);
+extern struct CLIENT *clntraw_create(u_long __prog, u_long __vers);
+extern struct CLIENT *clnttcp_create(struct sockaddr_in *__raddr,
+				     u_long __prog, u_long __version,
+				     int *__sockp, u_int __sendsz,
+				     u_int __recvsz);
+extern struct CLIENT *clntudp_bufcreate(struct sockaddr_in *__raddr,
+					u_long __program, u_long __version,
+					struct timeval __wait_resend,
+					int *__sockp, u_int __sendsz,
+					u_int __recvsz);
+extern struct CLIENT *clntudp_create(struct sockaddr_in *__raddr,
+				     u_long __program, u_long __version,
+				     struct timeval __wait_resend,
+				     int *__sockp);

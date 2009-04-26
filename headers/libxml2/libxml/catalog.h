@@ -34,50 +34,56 @@ extern "C" {
     } xmlCatalogPrefer;
 
 
-
-
 /* Function prototypes */
 
-    extern int xmlACatalogAdd(xmlCatalogPtr, const xmlChar *,
-			      const xmlChar *, const xmlChar *);
-    extern void xmlACatalogDump(xmlCatalogPtr, FILE *);
-    extern int xmlACatalogRemove(xmlCatalogPtr, const xmlChar *);
-    extern xmlChar *xmlACatalogResolve(xmlCatalogPtr, const xmlChar *,
-				       const xmlChar *);
-    extern xmlChar *xmlACatalogResolvePublic(xmlCatalogPtr,
-					     const xmlChar *);
-    extern xmlChar *xmlACatalogResolveSystem(xmlCatalogPtr,
-					     const xmlChar *);
-    extern xmlChar *xmlACatalogResolveURI(xmlCatalogPtr, const xmlChar *);
-    extern int xmlCatalogAdd(const xmlChar *, const xmlChar *,
-			     const xmlChar *);
-    extern void *xmlCatalogAddLocal(void *, const xmlChar *);
+    extern int xmlACatalogAdd(xmlCatalogPtr catal, const xmlChar * type,
+			      const xmlChar * orig,
+			      const xmlChar * replace);
+    extern void xmlACatalogDump(xmlCatalogPtr catal, FILE * out);
+    extern int xmlACatalogRemove(xmlCatalogPtr catal,
+				 const xmlChar * value);
+    extern xmlChar *xmlACatalogResolve(xmlCatalogPtr catal,
+				       const xmlChar * pubID,
+				       const xmlChar * sysID);
+    extern xmlChar *xmlACatalogResolvePublic(xmlCatalogPtr catal,
+					     const xmlChar * pubID);
+    extern xmlChar *xmlACatalogResolveSystem(xmlCatalogPtr catal,
+					     const xmlChar * sysID);
+    extern xmlChar *xmlACatalogResolveURI(xmlCatalogPtr catal,
+					  const xmlChar * URI);
+    extern int xmlCatalogAdd(const xmlChar * type, const xmlChar * orig,
+			     const xmlChar * replace);
+    extern void *xmlCatalogAddLocal(void *catalogs, const xmlChar * URL);
     extern void xmlCatalogCleanup(void);
     extern int xmlCatalogConvert(void);
-    extern void xmlCatalogDump(FILE *);
-    extern void xmlCatalogFreeLocal(void *);
+    extern void xmlCatalogDump(FILE * out);
+    extern void xmlCatalogFreeLocal(void *catalogs);
     extern xmlCatalogAllow xmlCatalogGetDefaults(void);
-    extern int xmlCatalogIsEmpty(xmlCatalogPtr);
-    extern xmlChar *xmlCatalogLocalResolve(void *, const xmlChar *,
-					   const xmlChar *);
-    extern xmlChar *xmlCatalogLocalResolveURI(void *, const xmlChar *);
-    extern int xmlCatalogRemove(const xmlChar *);
-    extern xmlChar *xmlCatalogResolve(const xmlChar *, const xmlChar *);
-    extern xmlChar *xmlCatalogResolvePublic(const xmlChar *);
-    extern xmlChar *xmlCatalogResolveSystem(const xmlChar *);
-    extern xmlChar *xmlCatalogResolveURI(const xmlChar *);
-    extern int xmlCatalogSetDebug(int);
-    extern xmlCatalogPrefer xmlCatalogSetDefaultPrefer(xmlCatalogPrefer);
-    extern void xmlCatalogSetDefaults(xmlCatalogAllow);
-    extern int xmlConvertSGMLCatalog(xmlCatalogPtr);
-    extern void xmlFreeCatalog(xmlCatalogPtr);
+    extern int xmlCatalogIsEmpty(xmlCatalogPtr catal);
+    extern xmlChar *xmlCatalogLocalResolve(void *catalogs,
+					   const xmlChar * pubID,
+					   const xmlChar * sysID);
+    extern xmlChar *xmlCatalogLocalResolveURI(void *catalogs,
+					      const xmlChar * URI);
+    extern int xmlCatalogRemove(const xmlChar * value);
+    extern xmlChar *xmlCatalogResolve(const xmlChar * pubID,
+				      const xmlChar * sysID);
+    extern xmlChar *xmlCatalogResolvePublic(const xmlChar * pubID);
+    extern xmlChar *xmlCatalogResolveSystem(const xmlChar * sysID);
+    extern xmlChar *xmlCatalogResolveURI(const xmlChar * URI);
+    extern int xmlCatalogSetDebug(int level);
+    extern xmlCatalogPrefer xmlCatalogSetDefaultPrefer(xmlCatalogPrefer
+						       prefer);
+    extern void xmlCatalogSetDefaults(xmlCatalogAllow allow);
+    extern int xmlConvertSGMLCatalog(xmlCatalogPtr catal);
+    extern void xmlFreeCatalog(xmlCatalogPtr catal);
     extern void xmlInitializeCatalog(void);
-    extern xmlCatalogPtr xmlLoadACatalog(const char *);
-    extern int xmlLoadCatalog(const char *);
-    extern void xmlLoadCatalogs(const char *);
-    extern xmlCatalogPtr xmlLoadSGMLSuperCatalog(const char *);
-    extern xmlCatalogPtr xmlNewCatalog(int);
-    extern xmlDocPtr xmlParseCatalogFile(const char *);
+    extern xmlCatalogPtr xmlLoadACatalog(const char *filename);
+    extern int xmlLoadCatalog(const char *filename);
+    extern void xmlLoadCatalogs(const char *paths);
+    extern xmlCatalogPtr xmlLoadSGMLSuperCatalog(const char *filename);
+    extern xmlCatalogPtr xmlNewCatalog(int sgml);
+    extern xmlDocPtr xmlParseCatalogFile(const char *filename);
 #ifdef __cplusplus
 }
 #endif

@@ -12,4 +12,4 @@ enum _ZN10QEventLoop17ProcessEventsFlagE {
 };
 class QFlags < QEventLoop::ProcessEventsFlag >;
 typedef class QFlags < QEventLoop::ProcessEventsFlag >
-    _ZN10QEventLoop18ProcessEventsFlagsE;
+    QEventLoop::ProcessEventsFlags;

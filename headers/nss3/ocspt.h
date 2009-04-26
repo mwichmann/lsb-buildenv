@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define _OCSPT_H_
+
+
     typedef struct CERTOCSPRequestStr CERTOCSPRequest;
 
     typedef struct CERTOCSPResponseStr CERTOCSPResponse;
@@ -15,14 +18,6 @@ extern "C" {
     typedef struct CERTOCSPCertIDStr CERTOCSPCertID;
 
     typedef struct CERTOCSPSingleResponseStr CERTOCSPSingleResponse;
-
-
-
-
-
-
-
-
 
 #ifdef __cplusplus
 }

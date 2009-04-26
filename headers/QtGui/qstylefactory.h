@@ -5,13 +5,7 @@
 class QStyleFactory;
 // *INDENT-OFF*
 
-class QStyleFactory
-{
-private:
-public:
-    QStringList keys();
-    QStyle * create(QString const&);
-};
+class QStyleFactory;
 
 // *INDENT-ON*
 #endif				/* protection */

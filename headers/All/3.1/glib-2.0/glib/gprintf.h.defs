@@ -1,10 +1,13 @@
 
-extern gint g_sprintf(gchar *, const gchar *, ...);
-extern gint g_fprintf(FILE *, const gchar *, ...);
-extern gint g_vasprintf(gchar * *, const gchar *, va_list);
-extern gint g_vprintf(const gchar *, va_list);
-extern gint g_printf(const gchar *, ...);
-extern gint g_vfprintf(FILE *, const gchar *, va_list);
-extern gint g_vsnprintf(gchar *, gulong, const gchar *, va_list);
-extern gint g_vsprintf(gchar *, const gchar *, va_list);
-extern gint g_snprintf(gchar *, gulong, const gchar *, ...);
+extern gint g_fprintf(FILE * file, const gchar * format, ...);
+extern gint g_printf(const gchar * format, ...);
+extern gint g_snprintf(gchar * string, gulong n, const gchar * format,
+		       ...);
+extern gint g_sprintf(gchar * string, const gchar * format, ...);
+extern gint g_vasprintf(gchar * *string, const gchar * format,
+			va_list args);
+extern gint g_vfprintf(FILE * file, const gchar * format, va_list args);
+extern gint g_vprintf(const gchar * format, va_list args);
+extern gint g_vsnprintf(gchar * string, gulong n, const gchar * format,
+			va_list args);
+extern gint g_vsprintf(gchar * string, const gchar * format, va_list args);

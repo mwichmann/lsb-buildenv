@@ -4,4 +4,4 @@
 #define LOCK_NB	4
 #define LOCK_UN	8
 
-extern int flock(int, int);
+extern int flock(int __fd, int __operation);

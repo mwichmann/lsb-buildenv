@@ -5,58 +5,18 @@
 class QSettings;
 // *INDENT-OFF*
 
-typedef QMap<QString, QVariant> SettingsMap	
+typedef class QMap<QString, QVariant>QSettings::SettingsMap	
 ;
 
-typedef bool	ReadFunc	
+typedef bool	QSettings::ReadFunc	
 ;
 
-typedef bool	WriteFunc	
+typedef bool	QSettings::WriteFunc	
 ;
 
-class QSettings : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QSettings(QString const&, QString const&, QObject*);
-     QSettings(QSettings::Scope, QString const&, QString const&, QObject*);
-     QSettings(QSettings::Format, QSettings::Scope, QString const&, QString const&, QObject*);
-     QSettings(QString const&, QSettings::Format, QObject*);
-     QSettings(QObject*);
-     ~QSettings();
-    void clear();
-    void sync();
-    enum _ZN9QSettings6StatusE status() const;
-    void beginGroup(QString const&);
-    void endGroup();
-    QString group() const;
-    int beginReadArray(QString const&);
-    void beginWriteArray(QString const&, int);
-    void endArray();
-    void setArrayIndex(int);
-    QStringList allKeys() const;
-    QStringList childKeys() const;
-    QStringList childGroups() const;
-    bool isWritable() const;
-    void setValue(QString const&, QVariant const&);
-    QVariant value(QString const&, QVariant const&) const;
-    void remove(QString const&);
-    bool contains(QString const&) const;
-    void setFallbacksEnabled(bool);
-    bool fallbacksEnabled() const;
-    QString fileName() const;
-    static void setSystemIniPath(QString const&);
-    static void setUserIniPath(QString const&);
-    static void setPath(QSettings::Format, QSettings::Scope, QString const&);
-    static enum _ZN9QSettings6FormatE registerFormat(QString const&, bool (*)(QIODevice&, QMap<QString, QVariant>&), bool (*)(QIODevice&, QMap<QString, QVariant> const&), Qt::CaseSensitivity);
-protected:
-    bool event(QEvent*);
-};
+class QSettings;
 
-enum Status	
+enum _ZN9QSettings6StatusE	
 {
 NoError = 0,	
 AccessError = 1,	
@@ -64,7 +24,7 @@ FormatError = 2
 }
 ;
 
-enum Format	
+enum _ZN9QSettings6FormatE	
 {
 NativeFormat = 0,	
 IniFormat = 1,	
@@ -88,7 +48,7 @@ CustomFormat16 = 32
 }
 ;
 
-enum Scope	
+enum _ZN9QSettings5ScopeE	
 {
 UserScope = 0,	
 User = 0,	
@@ -97,7 +57,7 @@ Global = 1
 }
 ;
 
-enum System	
+enum _ZN9QSettings6SystemE	
 {
 Unix = 0,	
 Windows = 1,	

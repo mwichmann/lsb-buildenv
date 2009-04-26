@@ -70,23 +70,22 @@ extern "C" {
     } xmlSchemaValType;
 
 
-
-
-
-
 /* Function prototypes */
 
     extern void xmlSchemaCleanupTypes(void);
-    extern xmlChar *xmlSchemaCollapseString(const xmlChar *);
-    extern int xmlSchemaCompareValues(xmlSchemaValPtr, xmlSchemaValPtr);
-    extern void xmlSchemaFreeValue(xmlSchemaValPtr);
-    extern xmlSchemaTypePtr xmlSchemaGetBuiltInType(xmlSchemaValType);
-    extern int xmlSchemaGetCanonValue(xmlSchemaValPtr, const xmlChar * *);
-    extern xmlSchemaValType xmlSchemaGetValType(xmlSchemaValPtr);
+    extern xmlChar *xmlSchemaCollapseString(const xmlChar * value);
+    extern int xmlSchemaCompareValues(xmlSchemaValPtr x,
+				      xmlSchemaValPtr y);
+    extern void xmlSchemaFreeValue(xmlSchemaValPtr val);
+    extern xmlSchemaTypePtr xmlSchemaGetBuiltInType(xmlSchemaValType type);
+    extern int xmlSchemaGetCanonValue(xmlSchemaValPtr val,
+				      const xmlChar * *retValue);
+    extern xmlSchemaValType xmlSchemaGetValType(xmlSchemaValPtr val);
     extern void xmlSchemaInitTypes(void);
-    extern int xmlSchemaValPredefTypeNode(xmlSchemaTypePtr,
-					  const xmlChar *,
-					  xmlSchemaValPtr *, xmlNodePtr);
+    extern int xmlSchemaValPredefTypeNode(xmlSchemaTypePtr type,
+					  const xmlChar * value,
+					  xmlSchemaValPtr * val,
+					  xmlNodePtr node);
 #ifdef __cplusplus
 }
 #endif

@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _SECOIDT_H_
+
+
     typedef struct SECOidDataStr SECOidData;
 
     typedef struct SECAlgorithmIDStr SECAlgorithmID;
@@ -325,7 +328,6 @@ extern "C" {
 	SUPPORTED_CERT_EXTENSION = 2
     } SECSupportExtenTag;
 
-
     struct SECOidDataStr {
 	SECItem oid;
 	SECOidTag offset;
@@ -333,7 +335,6 @@ extern "C" {
 	unsigned long int mechanism;
 	SECSupportExtenTag supportedExtension;
     };
-
 
     struct SECAlgorithmIDStr {
 	SECItem algorithm;

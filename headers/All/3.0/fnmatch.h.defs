@@ -4,4 +4,4 @@
 #define FNM_PERIOD	(1<<2)
 #define FNM_NOMATCH	1
 
-extern int fnmatch(const char *, const char *, int);
+extern int fnmatch(const char *__pattern, const char *__name, int __flags);

@@ -72,7 +72,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
-
     struct AUTH {
 	struct opaque_auth ah_cred;
 	struct opaque_auth ah_verf;
@@ -99,6 +98,7 @@ extern "C" {
 /* Function prototypes */
 
     extern struct AUTH *authnone_create(void);
+    /* This function was supposed to be used within the RPC's secure authentication mechanism. There should be no need for user programs to use this functions. Note also that this routine was a part of the Linux/Doors-project, abandoned by now. */
     extern int key_decryptsession(char *,
 				  union des_block *) LSB_DECL_DEPRECATED;
     extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);

@@ -12,8 +12,10 @@ extern "C" {
 #endif
 
 
-    typedef struct SGNDigestInfoStr SGNDigestInfo;
+#define _SECDIGT_H_
 
+
+    typedef struct SGNDigestInfoStr SGNDigestInfo;
 
     struct SGNDigestInfoStr {
 	PLArenaPool *arena;

@@ -23,3 +23,5 @@
 #define XtMemcmp(b1,b2,size)	memcmp((char *) (b1), (char *) (b2), (int) (size))
 #define _XBCOPYFUNC	_XtBcopy
 #define XtStackFree(pointer,stack_cache_array)	{ if ((pointer) != ((XtPointer)(stack_cache_array))) XtFree(pointer); }
+
+extern String XtCXtToolkitError;

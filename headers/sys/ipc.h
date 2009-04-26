@@ -146,7 +146,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern key_t ftok(const char *, int);
+    extern key_t ftok(const char *__pathname, int __proj_id);
 #ifdef __cplusplus
 }
 #endif

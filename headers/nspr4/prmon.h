@@ -8,9 +8,10 @@ extern "C" {
 #endif
 
 
+#define prmon_h___
+
+
     typedef struct PRMonitor PRMonitor;
-
-
 
 #ifdef __cplusplus
 }

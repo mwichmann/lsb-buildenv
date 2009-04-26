@@ -17,7 +17,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int flock(int, int);
+    extern int flock(int __fd, int __operation);
 #ifdef __cplusplus
 }
 #endif

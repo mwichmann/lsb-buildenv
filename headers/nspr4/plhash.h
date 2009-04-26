@@ -10,6 +10,9 @@ extern "C" {
 #endif
 
 
+#define plhash_h___
+
+
     typedef PRUint32 PLHashNumber;
 
     typedef PRIntn(*PLHashComparator) (const void *, const void *);
@@ -35,7 +38,6 @@ extern "C" {
 	const PLHashAllocOps *allocOps;
 	void *allocPriv;
     };
-
 
     struct PLHashAllocOps {
 	void *(*allocTable) (void *, PRSize);

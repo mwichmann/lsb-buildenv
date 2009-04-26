@@ -5,27 +5,9 @@
 class QAbstractItemDelegate;
 // *INDENT-OFF*
 
-class QAbstractItemDelegate : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QAbstractItemDelegate(QObject*);
-     ~QAbstractItemDelegate();
-    QWidget * createEditor(QWidget*, QStyleOptionViewItem const&, QModelIndex const&) const;
-    void setEditorData(QWidget*, QModelIndex const&) const;
-    void setModelData(QWidget*, QAbstractItemModel*, QModelIndex const&) const;
-    void updateEditorGeometry(QWidget*, QStyleOptionViewItem const&, QModelIndex const&) const;
-    bool editorEvent(QEvent*, QAbstractItemModel*, QStyleOptionViewItem const&, QModelIndex const&);
-    QString elidedText(QFontMetrics const&, int, Qt::TextElideMode, QString const&);
-protected:
-    void commitData(QWidget*);
-    void closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint);
-};
+class QAbstractItemDelegate;
 
-enum EndEditHint	
+enum _ZN21QAbstractItemDelegate11EndEditHintE	
 {
 NoHint = 0,	
 EditNextItem = 1,	

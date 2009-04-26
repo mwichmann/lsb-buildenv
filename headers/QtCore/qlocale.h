@@ -5,52 +5,9 @@
 class QLocale;
 // *INDENT-OFF*
 
-class QLocale
-{
-private:
-public:
-     QLocale();
-     QLocale(QString const&);
-     QLocale(QLocale::Language, QLocale::Country);
-     QLocale(QLocale const&);
-    QLocale & operator=(QLocale const&);
-    enum _ZN7QLocale8LanguageE language() const;
-    enum _ZN7QLocale7CountryE country() const;
-    QString name() const;
-    short int toShort(QString const&, bool*, int) const;
-    ushort toUShort(QString const&, bool*, int) const;
-    int toInt(QString const&, bool*, int) const;
-    uint toUInt(QString const&, bool*, int) const;
-    qlonglong toLongLong(QString const&, bool*, int) const;
-    qlonglong toULongLong(QString const&, bool*, int) const;
-    float toFloat(QString const&, bool*) const;
-    double toDouble(QString const&, bool*) const;
-    QString toString(long long) const;
-    QString toString(unsigned long long) const;
-    QString toString(double, char, int) const;
-    QString toString(QDate const&, QString const&) const;
-    QString toString(QDate const&, QLocale::FormatType) const;
-    QString toString(QTime const&, QString const&) const;
-    QString toString(QTime const&, QLocale::FormatType) const;
-    QString dateFormat(QLocale::FormatType) const;
-    QString timeFormat(QLocale::FormatType) const;
-    QChar decimalPoint() const;
-    QChar groupSeparator() const;
-    QChar percent() const;
-    QChar zeroDigit() const;
-    QChar negativeSign() const;
-    QChar exponential() const;
-    static QString languageToString(QLocale::Language);
-    static QString countryToString(QLocale::Country);
-    static void setDefault(QLocale const&);
-    static QLocale system();
-    void setNumberOptions(QFlags<QLocale::NumberOption>);
-    QFlags<QLocale::NumberOption> numberOptions() const;
-    QString dayName(int, QLocale::FormatType) const;
-    QString monthName(int, QLocale::FormatType) const;
-};
+class QLocale;
 
-enum Language	
+enum _ZN7QLocale8LanguageE	
 {
 C = 1,	
 Abkhazian = 2,	
@@ -201,7 +158,7 @@ LastLanguage = 145
 }
 ;
 
-enum Country	
+enum _ZN7QLocale7CountryE	
 {
 AnyCountry = 0,	
 Afghanistan = 1,	
@@ -449,7 +406,7 @@ LastCountry = 241
 }
 ;
 
-enum FormatType	
+enum _ZN7QLocale10FormatTypeE	
 {
 LongFormat = 0,	
 ShortFormat = 1

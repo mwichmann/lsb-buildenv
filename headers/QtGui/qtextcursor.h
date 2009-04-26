@@ -5,90 +5,16 @@
 class QTextCursor;
 // *INDENT-OFF*
 
-class QTextCursor
-{
-private:
-public:
-     QTextCursor();
-     QTextCursor(QTextDocument*);
-     QTextCursor(QTextFrame*);
-     QTextCursor(QTextBlock const&);
-     QTextCursor(QTextCursor const&);
-    QTextCursor & operator=(QTextCursor const&);
-     ~QTextCursor();
-    bool isNull() const;
-    void setPosition(int, QTextCursor::MoveMode);
-    int position() const;
-    int anchor() const;
-    void insertText(QString const&);
-    void insertText(QString const&, QTextCharFormat const&);
-    bool movePosition(QTextCursor::MoveOperation, QTextCursor::MoveMode, int);
-    void deleteChar();
-    void deletePreviousChar();
-    void select(QTextCursor::SelectionType);
-    bool hasSelection() const;
-    bool hasComplexSelection() const;
-    void removeSelectedText();
-    void clearSelection();
-    int selectionStart() const;
-    int selectionEnd() const;
-    QString selectedText() const;
-    QTextDocumentFragment selection() const;
-    void selectedTableCells(int*, int*, int*, int*) const;
-    QTextBlock block() const;
-    QTextCharFormat charFormat() const;
-    void setCharFormat(QTextCharFormat const&);
-    void mergeCharFormat(QTextCharFormat const&);
-    QTextBlockFormat blockFormat() const;
-    void setBlockFormat(QTextBlockFormat const&);
-    void mergeBlockFormat(QTextBlockFormat const&);
-    QTextCharFormat blockCharFormat() const;
-    void setBlockCharFormat(QTextCharFormat const&);
-    void mergeBlockCharFormat(QTextCharFormat const&);
-    bool atBlockStart() const;
-    bool atBlockEnd() const;
-    bool atStart() const;
-    bool atEnd() const;
-    void insertBlock();
-    void insertBlock(QTextBlockFormat const&);
-    void insertBlock(QTextBlockFormat const&, QTextCharFormat const&);
-     insertList(QTextListFormat const&);
-     insertList(QTextListFormat::Style);
-     createList(QTextListFormat const&);
-     createList(QTextListFormat::Style);
-     currentList() const;
-    QTextTable * insertTable(int, int, QTextTableFormat const&);
-    QTextTable * insertTable(int, int);
-    QTextTable * currentTable() const;
-     insertFrame(QTextFrameFormat const&);
-     currentFrame() const;
-    void insertFragment(QTextDocumentFragment const&);
-    void insertImage(QTextImageFormat const&);
-    void insertImage(QString const&);
-    void beginEditBlock();
-    void joinPreviousEditBlock();
-    void endEditBlock();
-    bool operator!=(QTextCursor const&) const;
-    bool operator<(QTextCursor const&) const;
-    bool operator<=(QTextCursor const&) const;
-    bool operator==(QTextCursor const&) const;
-    bool operator>=(QTextCursor const&) const;
-    bool operator>(QTextCursor const&) const;
-    bool isCopyOf(QTextCursor const&) const;
-    void insertHtml(QString const&);
-    void insertImage(QTextImageFormat const&, QTextFrameFormat::Position);
-    int blockNumber() const;
-    int columnNumber() const;
-};
+class QTextCursor;
 
-enum MoveMode	
+enum _ZN11QTextCursor8MoveModeE	
 {
 MoveAnchor = 0,	
 KeepAnchor = 1
 }
 ;
 
-enum MoveOperation	
+enum _ZN11QTextCursor13MoveOperationE	
 {
 NoMove = 0,	
 Start = 1,	
@@ -114,7 +40,7 @@ WordRight = 20
 }
 ;
 
-enum SelectionType	
+enum _ZN11QTextCursor13SelectionTypeE	
 {
 WordUnderCursor = 0,	
 LineUnderCursor = 1,	

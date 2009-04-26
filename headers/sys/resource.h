@@ -123,14 +123,18 @@ indicating what flavor of entity the WHO argument specifies.*/
 
 /* Function prototypes */
 
-    extern int getpriority(__priority_which_t, id_t);
-    extern int getrlimit(__rlimit_resource_t, struct rlimit *);
-    extern int getrlimit64(id_t, struct rlimit64 *);
-    extern int getrusage(int, struct rusage *);
-    extern int setpriority(__priority_which_t, id_t, int);
-    extern int setrlimit(__rlimit_resource_t, const struct rlimit *);
+    extern int getpriority(__priority_which_t __which, id_t __who);
+    extern int getrlimit(__rlimit_resource_t __resource,
+			 struct rlimit *__rlimits);
+    extern int getrlimit64(id_t __resource, struct rlimit64 *__rlimits);
+    extern int getrusage(int __who, struct rusage *__usage);
+    extern int setpriority(__priority_which_t __which, id_t __who,
+			   int __prio);
+    extern int setrlimit(__rlimit_resource_t __resource,
+			 const struct rlimit *__rlimits);
 #if __LSB_VERSION__ >= 12
-    extern int setrlimit64(__rlimit_resource_t, const struct rlimit64 *);
+    extern int setrlimit64(__rlimit_resource_t __resource,
+			   const struct rlimit64 *__rlimits);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

@@ -5,17 +5,9 @@
 class QLibraryInfo;
 // *INDENT-OFF*
 
-class QLibraryInfo
-{
-private:
-public:
-    static QString licensee();
-    static QString licensedProducts();
-    static QString buildKey();
-    static QString location(QLibraryInfo::LibraryLocation);
-};
+class QLibraryInfo;
 
-enum LibraryLocation	
+enum _ZN12QLibraryInfo15LibraryLocationE	
 {
 PrefixPath = 0,	
 DocumentationPath = 1,	

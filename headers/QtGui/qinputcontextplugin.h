@@ -7,16 +7,7 @@ class QInputContextPlugin;
 
 struct QInputContextFactoryInterface	;
 
-class QInputContextPlugin : public QInputContextFactoryInterface, public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QInputContextPlugin(QObject*);
-     ~QInputContextPlugin();
-};
+class QInputContextPlugin;
 
 
 /* Function prototypes */

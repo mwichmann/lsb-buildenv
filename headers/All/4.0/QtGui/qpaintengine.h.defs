@@ -8,7 +8,7 @@ enum _ZN9QTextItem10RenderFlagE {
     StrikeOut = 64
 };
 class QFlags < QTextItem::RenderFlag >;
-typedef class QFlags < QTextItem::RenderFlag > _ZN9QTextItem11RenderFlagsE;
+typedef class QFlags < QTextItem::RenderFlag > QTextItem::RenderFlags;
 class QPaintEngine;
 enum _ZN12QPaintEngine18PaintEngineFeatureE {
     AllFeatures = -1,
@@ -28,7 +28,7 @@ enum _ZN12QPaintEngine18PaintEngineFeatureE {
 };
 class QFlags < QPaintEngine::PaintEngineFeature >;
 typedef class QFlags < QPaintEngine::PaintEngineFeature >
-    _ZN12QPaintEngine19PaintEngineFeaturesE;
+    QPaintEngine::PaintEngineFeatures;
 enum _ZN12QPaintEngine9DirtyFlagE {
     DirtyPen = 1,
     DirtyBrush = 2,
@@ -45,8 +45,7 @@ enum _ZN12QPaintEngine9DirtyFlagE {
     AllDirty = 65535
 };
 class QFlags < QPaintEngine::DirtyFlag >;
-typedef class QFlags < QPaintEngine::DirtyFlag >
-    _ZN12QPaintEngine10DirtyFlagsE;
+typedef class QFlags < QPaintEngine::DirtyFlag > QPaintEngine::DirtyFlags;
 enum _ZN12QPaintEngine15PolygonDrawModeE {
     OddEvenMode = 0,
     WindingMode = 1,

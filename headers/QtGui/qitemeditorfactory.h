@@ -5,23 +5,9 @@
 class QItemEditorCreatorBase;
 // *INDENT-OFF*
 
-class QItemEditorCreatorBase
-{
-private:
-public:
-};
+class QItemEditorCreatorBase;
 
-class QItemEditorFactory
-{
-private:
-public:
-     ~QItemEditorFactory();
-    QWidget * createEditor(QVariant::Type, QWidget*) const;
-    QByteArray valuePropertyName(QVariant::Type) const;
-    void registerEditor(QVariant::Type, QItemEditorCreatorBase*);
-     defaultFactory();
-    void setDefaultFactory(QItemEditorFactory*);
-};
+class QItemEditorFactory;
 
 // *INDENT-ON*
 #endif				/* protection */

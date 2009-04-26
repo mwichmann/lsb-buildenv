@@ -11,11 +11,11 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void err(int, const char *, ...);
+    extern void err(int __status, const char *__format, ...);
     extern void error(int, int, const char *, ...);
-    extern void errx(int, const char *, ...);
-    extern void warn(const char *, ...);
-    extern void warnx(const char *, ...);
+    extern void errx(int __status, const char *__format, ...);
+    extern void warn(const char *__format, ...);
+    extern void warnx(const char *__format, ...);
 #ifdef __cplusplus
 }
 #endif

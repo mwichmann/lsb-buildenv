@@ -5,109 +5,29 @@
 class QByteRef;
 // *INDENT-OFF*
 
-typedef char	iterator	
+typedef char	QByteArray::iterator	
 ;
 
-typedef char	const_iterator	
+typedef char	QByteArray::const_iterator	
 ;
 
-typedef iterator	Iterator	
+typedef QByteArray::iterator	QByteArray::Iterator	
 ;
 
-typedef const_iterator	ConstIterator	
+typedef QByteArray::const_iterator	QByteArray::ConstIterator	
 ;
 
-typedef char	const_reference	
+typedef char	QByteArray::const_reference	
 ;
 
-typedef char	reference	
+typedef char	QByteArray::reference	
 ;
 
-class QByteArray
-{
-private:
-public:
-     QByteArray(char const*);
-     QByteArray(char const*, int);
-     QByteArray(int, char);
-    QByteArray & operator=(QByteArray const&);
-    QByteArray & operator=(char const*);
-    void resize(int);
-    QByteArray & fill(char, int);
-    void clear();
-    int indexOf(char, int) const;
-    int indexOf(QByteArray const&, int) const;
-    int lastIndexOf(char, int) const;
-    int lastIndexOf(QByteArray const&, int) const;
-    int count(char) const;
-    int count(char const*) const;
-    int count(QByteArray const&) const;
-    QByteArray left(int) const;
-    QByteArray right(int) const;
-    QByteArray mid(int, int) const;
-    bool startsWith(QByteArray const&) const;
-    bool startsWith(char) const;
-    bool startsWith(char const*) const;
-    bool endsWith(QByteArray const&) const;
-    bool endsWith(char) const;
-    bool endsWith(char const*) const;
-    void truncate(int);
-    void chop(int);
-    QByteArray toLower() const;
-    QByteArray toUpper() const;
-    QByteArray trimmed() const;
-    QByteArray simplified() const;
-    QByteArray leftJustified(int, char, bool) const;
-    QByteArray rightJustified(int, char, bool) const;
-    QByteArray & prepend(char);
-    QByteArray & prepend(char const*);
-    QByteArray & prepend(QByteArray const&);
-    QByteArray & append(char);
-    QByteArray & append(char const*);
-    QByteArray & append(QByteArray const&);
-    QByteArray & insert(int, char);
-    QByteArray & insert(int, char const*);
-    QByteArray & insert(int, QByteArray const&);
-    QByteArray & remove(int, int);
-    QByteArray & replace(int, int, QByteArray const&);
-    QByteArray & replace(char, QByteArray const&);
-    QByteArray & replace(QByteArray const&, QByteArray const&);
-    QByteArray & replace(char, char);
-    QList<QByteArray> split(char) const;
-    short int toShort(bool*, int) const;
-    ushort toUShort(bool*, int) const;
-    int toInt(bool*, int) const;
-    uint toUInt(bool*, int) const;
-    long int toLong(bool*, int) const;
-    ulong toULong(bool*, int) const;
-    qlonglong toLongLong(bool*, int) const;
-    qulonglong toULongLong(bool*, int) const;
-    float toFloat(bool*) const;
-    double toDouble(bool*) const;
-    QByteArray toBase64() const;
-    QByteArray & setNum(long long, int);
-    QByteArray & setNum(unsigned long long, int);
-    QByteArray & setNum(double, char, int);
-    static QByteArray number(int, int);
-    static QByteArray number(unsigned int, int);
-    static QByteArray number(long long, int);
-    static QByteArray number(unsigned long long, int);
-    static QByteArray number(double, char, int);
-    static QByteArray fromRawData(char const*, int);
-    static QByteArray fromBase64(QByteArray const&);
-    bool isNull() const;
-private:
-    void realloc(int);
-    void expand(int);
-};
+class QByteArray;
 
-struct Data	;
+struct QByteArray::Data	;
 
-class QByteRef
-{
-private:
-public:
-};
+class QByteRef;
 
 
 /* Function prototypes */
@@ -177,7 +97,7 @@ extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 extern int _Z9qstrnicmpPKcS0_j(const char *, const char *, unsigned int);
-extern struct Data _ZN10QByteArray11shared_nullE ;
+extern struct QByteArray::Data _ZN10QByteArray11shared_nullE ;
 extern  _ZlsR11QDataStreamRK10QByteArray(QDataStream &, QByteArray & &);
 extern  _ZrsR11QDataStreamR10QByteArray(QDataStream &, QByteArray &);
 // *INDENT-ON*

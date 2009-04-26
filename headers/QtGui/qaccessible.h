@@ -5,43 +5,21 @@
 class QAccessibleEvent;
 // *INDENT-OFF*
 
-typedef class QFlags<QAccessible::StateFlag>
-{
-private:
-public:
-}State	
+typedef class QFlags<QAccessible::StateFlag>QAccessible::State	
 ;
 
-typedef class QFlags<QAccessible::RelationFlag>
-{
-private:
-public:
-}Relation	
+typedef class QFlags<QAccessible::RelationFlag>QAccessible::Relation	
 ;
 
-typedef void	UpdateHandler	
+typedef void	QAccessible::UpdateHandler	
 ;
 
-typedef void	RootObjectHandler	
+typedef void	QAccessible::RootObjectHandler	
 ;
 
-class QAccessible
-{
-private:
-public:
-    void installFactory(QAccessibleInterface* (*)(QString const&, QObject*));
-    void removeFactory(QAccessibleInterface* (*)(QString const&, QObject*));
-     installUpdateHandler(void (*)(QObject*, int, QAccessible::Event));
-     installRootObjectHandler(void (*)(QObject*));
-    QAccessibleInterface * queryAccessibleInterface(QObject*);
-    void updateAccessibility(QObject*, int, QAccessible::Event);
-    bool isActive();
-    void setRootObject(QObject*);
-    void initialize();
-    void cleanup();
-};
+class QAccessible;
 
-enum Event	
+enum _ZN11QAccessible5EventE	
 {
 SoundPlayed = 1,	
 Alert = 2,	
@@ -81,7 +59,7 @@ AcceleratorChanged = 32960
 }
 ;
 
-enum StateFlag	
+enum _ZN11QAccessible9StateFlagE	
 {
 Modal = -2147483648,	
 Normal = 0,	
@@ -116,13 +94,9 @@ HasPopup = 1073741824
 }
 ;
 
-class QFlags<QAccessible::StateFlag>
-{
-private:
-public:
-};
+class QFlags<QAccessible::StateFlag>;
 
-enum Role	
+enum _ZN11QAccessible4RoleE	
 {
 NoRole = 0,	
 TitleBar = 1,	
@@ -191,7 +165,7 @@ UserRole = 65535
 }
 ;
 
-enum Text	
+enum _ZN11QAccessible4TextE	
 {
 Name = 0,	
 Description = 1,	
@@ -202,7 +176,7 @@ UserText = 65535
 }
 ;
 
-enum RelationFlag	
+enum _ZN11QAccessible12RelationFlagE	
 {
 Unrelated = 0,	
 Self = 1,	
@@ -227,13 +201,9 @@ LogicalMask = 16711680
 }
 ;
 
-class QFlags<QAccessible::RelationFlag>
-{
-private:
-public:
-};
+class QFlags<QAccessible::RelationFlag>;
 
-enum Action	
+enum _ZN11QAccessible6ActionE	
 {
 LastStandardAction = -11,	
 AddToSelection = -11,	
@@ -252,19 +222,9 @@ DefaultAction = 0
 }
 ;
 
-class QAccessibleInterface : public QAccessible
-{
-private:
-public:
-     ~QAccessibleInterface();
-    QVariant invokeMethod(QAccessible::Method, int, QList<QVariant> const&);
-};
+class QAccessibleInterface;
 
-class QAccessibleEvent : public QEvent
-{
-private:
-public:
-};
+class QAccessibleEvent;
 
 // *INDENT-ON*
 #endif				/* protection */

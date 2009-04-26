@@ -140,7 +140,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern char *nl_langinfo(nl_item);
+    extern char *nl_langinfo(nl_item __item);
 #ifdef __cplusplus
 }
 #endif

@@ -5,18 +5,7 @@
 class QByteArrayMatcher;
 // *INDENT-OFF*
 
-class QByteArrayMatcher
-{
-private:
-public:
-     QByteArrayMatcher();
-     QByteArrayMatcher(QByteArray const&);
-     QByteArrayMatcher(QByteArrayMatcher const&);
-     ~QByteArrayMatcher();
-    QByteArrayMatcher & operator=(QByteArrayMatcher const&);
-    void setPattern(QByteArray const&);
-    int indexIn(QByteArray const&, int) const;
-};
+class QByteArrayMatcher;
 
 // *INDENT-ON*
 #endif				/* protection */

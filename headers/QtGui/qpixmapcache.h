@@ -5,18 +5,7 @@
 class QPixmapCache;
 // *INDENT-OFF*
 
-class QPixmapCache
-{
-private:
-public:
-    int cacheLimit();
-    void setCacheLimit(int);
-    QPixmap * find(QString const&);
-    bool find(QString const&, QPixmap&);
-    bool insert(QString const&, QPixmap const&);
-    void remove(QString const&);
-    void clear();
-};
+class QPixmapCache;
 
 // *INDENT-ON*
 #endif				/* protection */

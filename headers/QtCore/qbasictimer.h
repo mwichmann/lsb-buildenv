@@ -5,13 +5,7 @@
 class QBasicTimer;
 // *INDENT-OFF*
 
-class QBasicTimer
-{
-private:
-public:
-    void start(int, QObject*);
-    void stop();
-};
+class QBasicTimer;
 
 // *INDENT-ON*
 #endif				/* protection */

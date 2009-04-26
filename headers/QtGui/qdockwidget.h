@@ -5,42 +5,12 @@
 class QDockWidget;
 // *INDENT-OFF*
 
-typedef class QFlags<QDockWidget::DockWidgetFeature>
-{
-private:
-public:
-}DockWidgetFeatures	
+typedef class QFlags<QDockWidget::DockWidgetFeature>QDockWidget::DockWidgetFeatures	
 ;
 
-class QDockWidget : public QWidget
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QDockWidget(QString const&, QWidget*, QFlags<Qt::WindowType>);
-     QDockWidget(QWidget*, QFlags<Qt::WindowType>);
-     ~QDockWidget();
-    QWidget * widget() const;
-    void setWidget(QWidget*);
-    void setFeatures(QFlags<QDockWidget::DockWidgetFeature>);
-    QFlags<QDockWidget::DockWidgetFeature> features() const;
-    void setFloating(bool);
-    void setAllowedAreas(QFlags<Qt::DockWidgetArea>);
-     allowedAreas() const;
-    QAction * toggleViewAction() const;
-protected:
-    void featuresChanged(QFlags<QDockWidget::DockWidgetFeature>);
-    void topLevelChanged(bool);
-    void allowedAreasChanged(QFlags<Qt::DockWidgetArea>);
-    void changeEvent(QEvent*);
-    void closeEvent(QCloseEvent*);
-    void paintEvent(QPaintEvent*);
-    bool event(QEvent*);
-};
+class QDockWidget;
 
-enum DockWidgetFeature	
+enum _ZN11QDockWidget17DockWidgetFeatureE	
 {
 NoDockWidgetFeatures = 0,	
 DockWidgetClosable = 1,	
@@ -52,11 +22,7 @@ Reserved = 255
 }
 ;
 
-class QFlags<QDockWidget::DockWidgetFeature>
-{
-private:
-public:
-};
+class QFlags<QDockWidget::DockWidgetFeature>;
 
 
 /* Function prototypes */

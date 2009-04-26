@@ -125,8 +125,12 @@ extern "C" {
 
     typedef struct _WidgetClassRec *WidgetClass;
 
+#include <X11/Shell.h>
+#include <X11/Object.h>
+#include <X11/Core.h>
     typedef Widget *WidgetList;
 
+#include <X11/Composite.h>
     typedef struct _TranslationData *XtAccelerators;
 
     typedef struct _TranslationData *XtTranslations;
@@ -198,8 +202,8 @@ extern "C" {
 
     typedef void (*XtCaseProc) (Display *, KeySym, KeySym *, KeySym *);
 
-    typedef void (*XtKeyProc) (Display *, KeyCode, Modifiers, Modifiers *,
-			       KeySym *);
+    typedef void (*XtKeyProc) (Display *, unsigned int, Modifiers,
+			       Modifiers *, KeySym *);
 
     typedef void (*XtBlockHookProc) (XtPointer);
 
@@ -286,8 +290,7 @@ extern "C" {
 
     typedef struct _XtEventRec *XtEventTable;
 
-#include <X11/EventI.h>
-    typedef XtActionProc *XtBoundActions;
+    typedef void (*XtCreatePopupChildProc) (Widget);
 
     typedef struct _XtResource XtResource;
 
@@ -304,8 +307,9 @@ extern "C" {
 
     typedef XtPopdownIDRec *XtPopdownID;
 
-    typedef void (*XtCreatePopupChildProc) (Widget);
+    typedef XtActionProc *XtBoundActions;
 
+#include <X11/IntrinsicP.h>
     typedef struct {
 	String type;
 	Widget widget;
@@ -414,13 +418,13 @@ extern "C" {
     extern void XtAddCallbacks(Widget, const char *, XtCallbackList);
     extern void XtAddConverter(const char *, const char *, XtConverter,
 			       XtConvertArgList, Cardinal);
-    extern void XtAddEventHandler(Widget, EventMask, Boolean,
-				  XtEventHandler, XtPointer);
+    extern void XtAddEventHandler(Widget, EventMask, int, XtEventHandler,
+				  XtPointer);
     extern void XtAddExposureToRegion(XEvent *, Region);
-    extern void XtAddGrab(Widget, Boolean, Boolean);
+    extern void XtAddGrab(Widget, int, int);
     extern XtInputId XtAddInput(int, XtPointer, XtInputCallbackProc,
 				XtPointer);
-    extern void XtAddRawEventHandler(Widget, EventMask, Boolean,
+    extern void XtAddRawEventHandler(Widget, EventMask, int,
 				     XtEventHandler, XtPointer);
     extern XtSignalId XtAddSignal(XtSignalCallbackProc, XtPointer);
     extern XtIntervalId XtAddTimeOut(long unsigned int,
@@ -488,7 +492,6 @@ extern "C" {
 				Cardinal *);
     extern void XtAugmentTranslations(Widget, XtTranslations);
     extern EventMask XtBuildEventMask(Widget);
-    extern String XtCXtToolkitError;
     extern Boolean XtCallAcceptFocus(Widget, Time *);
     extern void XtCallActionProc(Widget, const char *, XEvent *, String *,
 				 Cardinal);
@@ -684,25 +687,25 @@ extern "C" {
     extern void XtGetSubvalues(XtPointer, XtResourceList, Cardinal,
 			       ArgList, Cardinal);
     extern void XtGetValues(Widget, ArgList, Cardinal);
-    extern void XtGrabButton(Widget, int, Modifiers, Boolean, unsigned int,
+    extern void XtGrabButton(Widget, int, Modifiers, int, unsigned int,
 			     int, int, Window, Cursor);
-    extern void XtGrabKey(Widget, KeyCode, Modifiers, Boolean, int, int);
-    extern int XtGrabKeyboard(Widget, Boolean, int, int, Time);
-    extern int XtGrabPointer(Widget, Boolean, unsigned int, int, int,
-			     Window, Cursor, Time);
+    extern void XtGrabKey(Widget, unsigned int, Modifiers, int, int, int);
+    extern int XtGrabKeyboard(Widget, int, int, int, Time);
+    extern int XtGrabPointer(Widget, int, unsigned int, int, int, Window,
+			     Cursor, Time);
     extern XtCallbackStatus XtHasCallbacks(Widget, const char *);
     extern Widget XtHooksOfDisplay(Display *);
     extern Widget XtInitialize(const char *, const char *,
 			       XrmOptionDescRec *, Cardinal, int *,
 			       char **);
     extern void XtInitializeWidgetClass(WidgetClass);
-    extern void XtInsertEventHandler(Widget, EventMask, Boolean,
+    extern void XtInsertEventHandler(Widget, EventMask, int,
 				     XtEventHandler, XtPointer,
 				     XtListPosition);
     extern void XtInsertEventTypeHandler(Widget, int, XtPointer,
 					 XtEventHandler, XtPointer,
 					 XtListPosition);
-    extern void XtInsertRawEventHandler(Widget, EventMask, Boolean,
+    extern void XtInsertRawEventHandler(Widget, EventMask, int,
 					XtEventHandler, XtPointer,
 					XtListPosition);
     extern void XtInstallAccelerators(Widget, Widget);
@@ -727,8 +730,8 @@ extern "C" {
     extern XtGeometryResult XtMakeGeometryRequest(Widget,
 						  XtWidgetGeometry *,
 						  XtWidgetGeometry *);
-    extern XtGeometryResult XtMakeResizeRequest(Widget, Dimension,
-						Dimension, Dimension *,
+    extern XtGeometryResult XtMakeResizeRequest(Widget, unsigned int,
+						unsigned int, Dimension *,
 						Dimension *);
     extern char *XtMalloc(Cardinal);
     extern void XtMapWidget(Widget);
@@ -776,8 +779,8 @@ extern "C" {
     extern void XtRegisterExtensionSelector(Display *, int, int,
 					    XtExtensionSelectProc,
 					    XtPointer);
-    extern void XtRegisterGrabAction(XtActionProc, Boolean, unsigned int,
-				     int, int);
+    extern void XtRegisterGrabAction(XtActionProc, int, unsigned int, int,
+				     int);
     extern void XtReleaseGC(Widget, GC);
     extern void XtReleasePropertyAtom(Widget, Atom);
     extern void XtRemoveActionHook(XtActionHookId);
@@ -786,13 +789,13 @@ extern "C" {
     extern void XtRemoveCallback(Widget, const char *, XtCallbackProc,
 				 XtPointer);
     extern void XtRemoveCallbacks(Widget, const char *, XtCallbackList);
-    extern void XtRemoveEventHandler(Widget, EventMask, Boolean,
+    extern void XtRemoveEventHandler(Widget, EventMask, int,
 				     XtEventHandler, XtPointer);
     extern void XtRemoveEventTypeHandler(Widget, int, XtPointer,
 					 XtEventHandler, XtPointer);
     extern void XtRemoveGrab(Widget);
     extern void XtRemoveInput(XtInputId);
-    extern void XtRemoveRawEventHandler(Widget, EventMask, Boolean,
+    extern void XtRemoveRawEventHandler(Widget, EventMask, int,
 					XtEventHandler, XtPointer);
     extern void XtRemoveSignal(XtSignalId);
     extern void XtRemoveTimeOut(XtIntervalId);
@@ -817,12 +820,12 @@ extern "C" {
     extern void XtSetKeyboardFocus(Widget, Widget);
     extern XtLanguageProc XtSetLanguageProc(XtAppContext, XtLanguageProc,
 					    XtPointer);
-    extern void XtSetMappedWhenManaged(Widget, Boolean);
+    extern void XtSetMappedWhenManaged(Widget, int);
     extern void XtSetMultiClickTime(Display *, int);
     extern void XtSetSelectionParameters(Widget, Atom, Atom, XtPointer,
 					 long unsigned int, int);
     extern void XtSetSelectionTimeout(long unsigned int);
-    extern void XtSetSensitive(Widget, Boolean);
+    extern void XtSetSensitive(Widget, int);
     extern void XtSetSubvalues(XtPointer, XtResourceList, Cardinal,
 			       ArgList, Cardinal);
     extern void XtSetTypeConverter(const char *, const char *,
@@ -836,14 +839,14 @@ extern "C" {
     extern WidgetClass XtSuperclass(Widget);
     extern void XtToolkitInitialize(void);
     extern Boolean XtToolkitThreadInitialize(void);
-    extern void XtTranslateCoords(Widget, Position, Position, Position *,
+    extern void XtTranslateCoords(Widget, int, int, Position *,
 				  Position *);
-    extern void XtTranslateKey(Display *, KeyCode, Modifiers, Modifiers *,
-			       KeySym *);
-    extern void XtTranslateKeycode(Display *, KeyCode, Modifiers,
+    extern void XtTranslateKey(Display *, unsigned int, Modifiers,
+			       Modifiers *, KeySym *);
+    extern void XtTranslateKeycode(Display *, unsigned int, Modifiers,
 				   Modifiers *, KeySym *);
     extern void XtUngrabButton(Widget, unsigned int, Modifiers);
-    extern void XtUngrabKey(Widget, KeyCode, Modifiers);
+    extern void XtUngrabKey(Widget, unsigned int, Modifiers);
     extern void XtUngrabKeyboard(Widget, Time);
     extern void XtUngrabPointer(Widget, Time);
     extern void XtUninstallTranslations(Widget);
@@ -883,9 +886,9 @@ extern "C" {
     extern Window XtWindowOfObject(Widget);
     extern Widget XtWindowToWidget(Display *, Window);
     extern Boolean _XtIsSubclassOf(Widget, WidgetClass, WidgetClass,
-				   XtEnum);
+				   unsigned int);
 #if __LSB_VERSION__ >= 12
-    extern Boolean _XtCheckSubclassFlag(Widget, XtEnum);
+    extern Boolean _XtCheckSubclassFlag(Widget, unsigned int);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #ifdef __cplusplus

@@ -5,34 +5,21 @@
 class QMetaType;
 // *INDENT-OFF*
 
-typedef void	Destructor	
+typedef void	QMetaType::Destructor	
 ;
 
-typedef void	Constructor	
+typedef void	QMetaType::Constructor	
 ;
 
-typedef void	SaveOperator	
+typedef void	QMetaType::SaveOperator	
 ;
 
-typedef void	LoadOperator	
+typedef void	QMetaType::LoadOperator	
 ;
 
-class QMetaType
-{
-private:
-public:
-    static void registerStreamOperators(char const*, void (*)(QDataStream&, void const*), void (*)(QDataStream&, void*));
-    static int registerType(char const*, void (*)(void*), void* (*)(void const*));
-    static int type(char const*);
-    static const char * typeName(int);
-    static bool isRegistered(int);
-    static void * construct(int, void const*);
-    static void destroy(int, void*);
-    static bool save(QDataStream&, int, void const*);
-    static bool load(QDataStream&, int, void*);
-};
+class QMetaType;
 
-enum Type	
+enum _ZN9QMetaType4TypeE	
 {
 Void = 0,	
 Bool = 1,	

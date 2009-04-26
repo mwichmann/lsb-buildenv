@@ -5,22 +5,7 @@
 class QCDEStyle;
 // *INDENT-OFF*
 
-class QCDEStyle : public QMotifStyle
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QCDEStyle(bool);
-     ~QCDEStyle();
-    int pixelMetric(QStyle::PixelMetric, QStyleOption const*, QWidget const*) const;
-    void drawControl(QStyle::ControlElement, QStyleOption const*, QPainter*, QWidget const*) const;
-    void drawPrimitive(QStyle::PrimitiveElement, QStyleOption const*, QPainter*, QWidget const*) const;
-    QPalette standardPalette() const;
-protected:
-    QIcon standardIconImplementation(QStyle::StandardPixmap, QStyleOption const*, QWidget const*) const;
-};
+class QCDEStyle;
 
 
 /* Function prototypes */

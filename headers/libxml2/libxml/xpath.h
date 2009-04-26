@@ -119,15 +119,11 @@ extern "C" {
 
     typedef xmlXPathFunct *xmlXPathFuncPtr;
 
-
-
-
     struct _xmlNodeSet {
 	int nodeNr;
 	int nodeMax;
 	xmlNodePtr *nodeTab;
     };
-
 
     struct _xmlXPathObject {
 	xmlXPathObjectType type;
@@ -141,12 +137,10 @@ extern "C" {
 	int index2;
     };
 
-
     struct _xmlXPathType {
 	const xmlChar *name;
 	xmlXPathConvertFunc func;
     };
-
 
     struct _xmlXPathContext {
 	xmlDocPtr doc;
@@ -189,7 +183,6 @@ extern "C" {
 	int flags;
     };
 
-
     struct _xmlXPathParserContext {
 	const xmlChar *cur;
 	const xmlChar *base;
@@ -204,18 +197,15 @@ extern "C" {
 	xmlNodePtr ancestor;
     };
 
-
     struct _xmlXPathAxis {
 	const xmlChar *name;
 	xmlXPathAxisFunc func;
     };
 
-
     struct _xmlXPathFunct {
 	const xmlChar *name;
 	xmlXPathEvalFunc func;
     };
-
 
     struct _xmlXPathVariable {
 	const xmlChar *name;
@@ -225,49 +215,50 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern double xmlXPathCastBooleanToNumber(int);
-    extern xmlChar *xmlXPathCastBooleanToString(int);
-    extern int xmlXPathCastNodeSetToBoolean(xmlNodeSetPtr);
-    extern double xmlXPathCastNodeSetToNumber(xmlNodeSetPtr);
-    extern xmlChar *xmlXPathCastNodeSetToString(xmlNodeSetPtr);
-    extern double xmlXPathCastNodeToNumber(xmlNodePtr);
-    extern xmlChar *xmlXPathCastNodeToString(xmlNodePtr);
-    extern int xmlXPathCastNumberToBoolean(double);
-    extern xmlChar *xmlXPathCastNumberToString(double);
-    extern int xmlXPathCastStringToBoolean(const xmlChar *);
-    extern double xmlXPathCastStringToNumber(const xmlChar *);
-    extern int xmlXPathCastToBoolean(xmlXPathObjectPtr);
-    extern double xmlXPathCastToNumber(xmlXPathObjectPtr);
-    extern xmlChar *xmlXPathCastToString(xmlXPathObjectPtr);
-    extern int xmlXPathCmpNodes(xmlNodePtr, xmlNodePtr);
-    extern xmlXPathCompExprPtr xmlXPathCompile(const xmlChar *);
-    extern xmlXPathObjectPtr xmlXPathCompiledEval(xmlXPathCompExprPtr,
-						  xmlXPathContextPtr);
-    extern xmlXPathObjectPtr xmlXPathConvertBoolean(xmlXPathObjectPtr);
-    extern xmlXPathObjectPtr xmlXPathConvertNumber(xmlXPathObjectPtr);
-    extern xmlXPathObjectPtr xmlXPathConvertString(xmlXPathObjectPtr);
-    extern xmlXPathCompExprPtr xmlXPathCtxtCompile(xmlXPathContextPtr,
-						   const xmlChar *);
-    extern xmlXPathObjectPtr xmlXPathEval(const xmlChar *,
-					  xmlXPathContextPtr);
-    extern xmlXPathObjectPtr xmlXPathEvalExpression(const xmlChar *,
-						    xmlXPathContextPtr);
-    extern int xmlXPathEvalPredicate(xmlXPathContextPtr,
-				     xmlXPathObjectPtr);
-    extern void xmlXPathFreeCompExpr(xmlXPathCompExprPtr);
-    extern void xmlXPathFreeContext(xmlXPathContextPtr);
-    extern void xmlXPathFreeNodeSet(xmlNodeSetPtr);
-    extern void xmlXPathFreeNodeSetList(xmlXPathObjectPtr);
-    extern void xmlXPathFreeObject(xmlXPathObjectPtr);
+    extern double xmlXPathCastBooleanToNumber(int val);
+    extern xmlChar *xmlXPathCastBooleanToString(int val);
+    extern int xmlXPathCastNodeSetToBoolean(xmlNodeSetPtr ns);
+    extern double xmlXPathCastNodeSetToNumber(xmlNodeSetPtr ns);
+    extern xmlChar *xmlXPathCastNodeSetToString(xmlNodeSetPtr ns);
+    extern double xmlXPathCastNodeToNumber(xmlNodePtr node);
+    extern xmlChar *xmlXPathCastNodeToString(xmlNodePtr node);
+    extern int xmlXPathCastNumberToBoolean(double val);
+    extern xmlChar *xmlXPathCastNumberToString(double val);
+    extern int xmlXPathCastStringToBoolean(const xmlChar * val);
+    extern double xmlXPathCastStringToNumber(const xmlChar * val);
+    extern int xmlXPathCastToBoolean(xmlXPathObjectPtr val);
+    extern double xmlXPathCastToNumber(xmlXPathObjectPtr val);
+    extern xmlChar *xmlXPathCastToString(xmlXPathObjectPtr val);
+    extern int xmlXPathCmpNodes(xmlNodePtr node1, xmlNodePtr node2);
+    extern xmlXPathCompExprPtr xmlXPathCompile(const xmlChar * str);
+    extern xmlXPathObjectPtr xmlXPathCompiledEval(xmlXPathCompExprPtr comp,
+						  xmlXPathContextPtr ctx);
+    extern xmlXPathObjectPtr xmlXPathConvertBoolean(xmlXPathObjectPtr val);
+    extern xmlXPathObjectPtr xmlXPathConvertNumber(xmlXPathObjectPtr val);
+    extern xmlXPathObjectPtr xmlXPathConvertString(xmlXPathObjectPtr val);
+    extern xmlXPathCompExprPtr xmlXPathCtxtCompile(xmlXPathContextPtr ctxt,
+						   const xmlChar * str);
+    extern xmlXPathObjectPtr xmlXPathEval(const xmlChar * str,
+					  xmlXPathContextPtr ctx);
+    extern xmlXPathObjectPtr xmlXPathEvalExpression(const xmlChar * str,
+						    xmlXPathContextPtr
+						    ctxt);
+    extern int xmlXPathEvalPredicate(xmlXPathContextPtr ctxt,
+				     xmlXPathObjectPtr res);
+    extern void xmlXPathFreeCompExpr(xmlXPathCompExprPtr comp);
+    extern void xmlXPathFreeContext(xmlXPathContextPtr ctxt);
+    extern void xmlXPathFreeNodeSet(xmlNodeSetPtr obj);
+    extern void xmlXPathFreeNodeSetList(xmlXPathObjectPtr obj);
+    extern void xmlXPathFreeObject(xmlXPathObjectPtr obj);
     extern void xmlXPathInit(void);
-    extern int xmlXPathIsInf(double);
-    extern int xmlXPathIsNaN(double);
+    extern int xmlXPathIsInf(double val);
+    extern int xmlXPathIsNaN(double val);
     extern double xmlXPathNAN;
     extern double xmlXPathNINF;
-    extern xmlXPathContextPtr xmlXPathNewContext(xmlDocPtr);
-    extern xmlNodeSetPtr xmlXPathNodeSetCreate(xmlNodePtr);
-    extern xmlXPathObjectPtr xmlXPathObjectCopy(xmlXPathObjectPtr);
-    extern long int xmlXPathOrderDocElems(xmlDocPtr);
+    extern xmlXPathContextPtr xmlXPathNewContext(xmlDocPtr doc);
+    extern xmlNodeSetPtr xmlXPathNodeSetCreate(xmlNodePtr val);
+    extern xmlXPathObjectPtr xmlXPathObjectCopy(xmlXPathObjectPtr val);
+    extern long int xmlXPathOrderDocElems(xmlDocPtr doc);
     extern double xmlXPathPINF;
 #ifdef __cplusplus
 }

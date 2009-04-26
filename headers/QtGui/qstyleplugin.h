@@ -7,16 +7,7 @@ class QStylePlugin;
 
 struct QStyleFactoryInterface	;
 
-class QStylePlugin : public QObject, public QStyleFactoryInterface
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QStylePlugin(QObject*);
-     ~QStylePlugin();
-};
+class QStylePlugin;
 
 
 /* Function prototypes */

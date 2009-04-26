@@ -1,6 +1,6 @@
 
 class QBrush;
-struct _Z10QBrushData;
+struct QBrushData;
 class QGradient;
 enum _ZN9QGradient4TypeE {
     LinearGradient = 0,

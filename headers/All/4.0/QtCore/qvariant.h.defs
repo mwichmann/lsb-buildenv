@@ -52,19 +52,19 @@ enum _ZN8QVariant4TypeE {
     TextFormat = 79,
     UserType = 127
 };
-struct _ZN8QVariant13PrivateSharedE;
-struct _ZN8QVariant7PrivateE;
+struct QVariant::PrivateShared;
+struct QVariant::Private;
 union _ZN8QVariant7Private4DataE;
-typedef void _ZN8QVariant11f_constructE;
-typedef void _ZN8QVariant7f_clearE;
-typedef bool _ZN8QVariant6f_nullE;
-typedef void _ZN8QVariant6f_loadE;
-typedef void _ZN8QVariant6f_saveE;
-typedef bool _ZN8QVariant9f_compareE;
-typedef bool _ZN8QVariant9f_convertE;
-typedef bool _ZN8QVariant12f_canConvertE;
-typedef void _ZN8QVariant13f_debugStreamE;
-struct _ZN8QVariant7HandlerE;
+typedef void QVariant::f_construct;
+typedef void QVariant::f_clear;
+typedef bool QVariant::f_null;
+typedef void QVariant::f_load;
+typedef void QVariant::f_save;
+typedef bool QVariant::f_compare;
+typedef bool QVariant::f_convert;
+typedef bool QVariant::f_canConvert;
+typedef void QVariant::f_debugStream;
+struct QVariant::Handler;
 typedef class QList < QVariant > QVariantList;
 typedef class QMap < QString, QVariant > QVariantMap;
 class QVariantComparisonHelper;

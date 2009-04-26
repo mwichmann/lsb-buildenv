@@ -5,27 +5,12 @@
 class QFlags < QTreeWidgetItemIterator::IteratorFlag >;
 // *INDENT-OFF*
 
-typedef class QFlags<QTreeWidgetItemIterator::IteratorFlag>
-{
-private:
-public:
-}IteratorFlags	
+typedef class QFlags<QTreeWidgetItemIterator::IteratorFlag>QTreeWidgetItemIterator::IteratorFlags	
 ;
 
-class QTreeWidgetItemIterator
-{
-private:
-public:
-     QTreeWidgetItemIterator(QTreeWidgetItemIterator const&);
-     QTreeWidgetItemIterator(QTreeWidget*, QFlags<QTreeWidgetItemIterator::IteratorFlag>);
-     QTreeWidgetItemIterator(QTreeWidgetItem*, QFlags<QTreeWidgetItemIterator::IteratorFlag>);
-     ~QTreeWidgetItemIterator();
-     operator=(QTreeWidgetItemIterator const&);
-     operator++();
-     operator--();
-};
+class QTreeWidgetItemIterator;
 
-enum IteratorFlag	
+enum _ZN23QTreeWidgetItemIterator12IteratorFlagE	
 {
 All = 0,	
 Hidden = 1,	
@@ -50,11 +35,7 @@ UserFlag = 16777216
 }
 ;
 
-class QFlags<QTreeWidgetItemIterator::IteratorFlag>
-{
-private:
-public:
-};
+class QFlags<QTreeWidgetItemIterator::IteratorFlag>;
 
 // *INDENT-ON*
 #endif				/* protection */

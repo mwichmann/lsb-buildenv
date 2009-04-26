@@ -11,4 +11,4 @@ enum _ZN11QDockWidget17DockWidgetFeatureE {
 };
 class QFlags < QDockWidget::DockWidgetFeature >;
 typedef class QFlags < QDockWidget::DockWidgetFeature >
-    _ZN11QDockWidget18DockWidgetFeaturesE;
+    QDockWidget::DockWidgetFeatures;

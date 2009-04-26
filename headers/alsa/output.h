@@ -15,14 +15,16 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int snd_output_buffer_open(snd_output_t * *);
-    extern size_t snd_output_buffer_string(snd_output_t *, char **);
-    extern int snd_output_close(snd_output_t *);
-    extern int snd_output_putc(snd_output_t *, int);
-    extern int snd_output_puts(snd_output_t *, const char *);
-    extern int snd_output_stdio_attach(snd_output_t * *, FILE *, int);
-    extern int snd_output_stdio_open(snd_output_t * *, const char *,
-				     const char *);
+    extern int snd_output_buffer_open(snd_output_t * *outputp);
+    extern size_t snd_output_buffer_string(snd_output_t * output,
+					   char **buf);
+    extern int snd_output_close(snd_output_t * output);
+    extern int snd_output_putc(snd_output_t * output, int c);
+    extern int snd_output_puts(snd_output_t * output, const char *str);
+    extern int snd_output_stdio_attach(snd_output_t * *outputp, FILE * fp,
+				       int _close);
+    extern int snd_output_stdio_open(snd_output_t * *outputp,
+				     const char *file, const char *mode);
 #ifdef __cplusplus
 }
 #endif

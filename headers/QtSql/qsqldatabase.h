@@ -5,63 +5,9 @@
 class QSqlDriverCreatorBase;
 // *INDENT-OFF*
 
-class QSqlDriverCreatorBase
-{
-private:
-public:
-};
+class QSqlDriverCreatorBase;
 
-class QSqlDatabase
-{
-private:
-public:
-     QSqlDatabase();
-     QSqlDatabase(QSqlDatabase const&);
-     ~QSqlDatabase();
-    QSqlDatabase & operator=(QSqlDatabase const&);
-    bool open();
-    bool open(QString const&, QString const&);
-    void close();
-    bool isOpen() const;
-    bool isOpenError() const;
-    QStringList tables(QSql::TableType) const;
-    QSqlIndex primaryIndex(QString const&) const;
-    QSqlRecord record(QString const&) const;
-    QSqlRecord record(QSqlQuery const&) const;
-    QSqlRecord recordInfo(QSqlQuery const&) const;
-    QSqlQuery exec(QString const&) const;
-    QSqlError lastError() const;
-    bool isValid() const;
-    bool transaction();
-    bool commit();
-    bool rollback();
-    void setDatabaseName(QString const&);
-    void setUserName(QString const&);
-    void setPassword(QString const&);
-    void setHostName(QString const&);
-    void setPort(int);
-    void setConnectOptions(QString const&);
-    QString databaseName() const;
-    QString userName() const;
-    QString password() const;
-    QString hostName() const;
-    QString driverName() const;
-    int port() const;
-    QString connectOptions() const;
-    QSqlDriver * driver() const;
-    static QSqlDatabase addDatabase(QString const&, QString const&);
-    static QSqlDatabase addDatabase(QSqlDriver*, QString const&);
-    static QSqlDatabase cloneDatabase(QSqlDatabase const&, QString const&);
-    static QSqlDatabase database(QString const&, bool);
-    static void removeDatabase(QString const&);
-    static bool contains(QString const&);
-    static QStringList drivers();
-    static QStringList connectionNames();
-    static void registerSqlDriver(QString const&, QSqlDriverCreatorBase*);
-    static bool isDriverAvailable(QString const&);
-     QSqlDatabase(QString const&);
-     QSqlDatabase(QSqlDriver*);
-};
+class QSqlDatabase;
 
 
 /* Function prototypes */

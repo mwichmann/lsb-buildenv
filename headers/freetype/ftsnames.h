@@ -16,7 +16,6 @@ extern "C" {
 
     typedef struct FT_SfntName_ FT_SfntName;
 
-
     struct FT_SfntName_ {
 	FT_UShort platform_id;
 	FT_UShort encoding_id;

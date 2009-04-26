@@ -12,42 +12,50 @@ typedef xmlSchema *xmlSchemaPtr;
 typedef enum {
     XML_SCHEMA_VAL_VC_I_CREATE = 1 << 0
 } xmlSchemaValidOption;
-extern int xmlSchemaValidateFile(xmlSchemaValidCtxtPtr, const char *, int);
-extern int xmlSchemaSAXUnplug(xmlSchemaSAXPlugPtr);
-extern xmlSchemaParserCtxtPtr xmlSchemaNewMemParserCtxt(const char *, int);
-extern int xmlSchemaValidateOneElement(xmlSchemaValidCtxtPtr, xmlNodePtr);
-extern int xmlSchemaIsValid(xmlSchemaValidCtxtPtr);
-extern xmlSchemaSAXPlugPtr xmlSchemaSAXPlug(xmlSchemaValidCtxtPtr,
-					    xmlSAXHandlerPtr *, void **);
-extern void xmlSchemaFreeParserCtxt(xmlSchemaParserCtxtPtr);
-extern int xmlSchemaValidateDoc(xmlSchemaValidCtxtPtr, xmlDocPtr);
-extern int xmlSchemaGetValidErrors(xmlSchemaValidCtxtPtr,
-				   xmlSchemaValidityErrorFunc *,
-				   xmlSchemaValidityWarningFunc *,
-				   void **);
-extern void xmlSchemaDump(FILE *, xmlSchemaPtr);
-extern void xmlSchemaSetValidStructuredErrors(xmlSchemaValidCtxtPtr,
-					      xmlStructuredErrorFunc,
-					      void *);
-extern int xmlSchemaValidateStream(xmlSchemaValidCtxtPtr,
-				   xmlParserInputBufferPtr,
-				   xmlCharEncoding, xmlSAXHandlerPtr,
-				   void *);
-extern xmlSchemaPtr xmlSchemaParse(xmlSchemaParserCtxtPtr);
-extern xmlSchemaValidCtxtPtr xmlSchemaNewValidCtxt(xmlSchemaPtr);
-extern int xmlSchemaGetParserErrors(xmlSchemaParserCtxtPtr,
-				    xmlSchemaValidityErrorFunc *,
-				    xmlSchemaValidityWarningFunc *,
-				    void **);
-extern void xmlSchemaFreeValidCtxt(xmlSchemaValidCtxtPtr);
-extern int xmlSchemaSetValidOptions(xmlSchemaValidCtxtPtr, int);
-extern int xmlSchemaValidCtxtGetOptions(xmlSchemaValidCtxtPtr);
-extern xmlSchemaParserCtxtPtr xmlSchemaNewParserCtxt(const char *);
-extern void xmlSchemaSetValidErrors(xmlSchemaValidCtxtPtr,
-				    xmlSchemaValidityErrorFunc,
-				    xmlSchemaValidityWarningFunc, void *);
-extern xmlSchemaParserCtxtPtr xmlSchemaNewDocParserCtxt(xmlDocPtr);
-extern void xmlSchemaSetParserErrors(xmlSchemaParserCtxtPtr,
-				     xmlSchemaValidityErrorFunc,
-				     xmlSchemaValidityWarningFunc, void *);
-extern void xmlSchemaFree(xmlSchemaPtr);
+extern void xmlSchemaDump(FILE * output, xmlSchemaPtr schema);
+extern void xmlSchemaFree(xmlSchemaPtr schema);
+extern void xmlSchemaFreeParserCtxt(xmlSchemaParserCtxtPtr ctxt);
+extern void xmlSchemaFreeValidCtxt(xmlSchemaValidCtxtPtr ctxt);
+extern int xmlSchemaGetParserErrors(xmlSchemaParserCtxtPtr ctxt,
+				    xmlSchemaValidityErrorFunc * err,
+				    xmlSchemaValidityWarningFunc * warn,
+				    void **ctx);
+extern int xmlSchemaGetValidErrors(xmlSchemaValidCtxtPtr ctxt,
+				   xmlSchemaValidityErrorFunc * err,
+				   xmlSchemaValidityWarningFunc * warn,
+				   void **ctx);
+extern int xmlSchemaIsValid(xmlSchemaValidCtxtPtr ctxt);
+extern xmlSchemaParserCtxtPtr xmlSchemaNewDocParserCtxt(xmlDocPtr doc);
+extern xmlSchemaParserCtxtPtr xmlSchemaNewMemParserCtxt(const char *buffer,
+							int size);
+extern xmlSchemaParserCtxtPtr xmlSchemaNewParserCtxt(const char *URL);
+extern xmlSchemaValidCtxtPtr xmlSchemaNewValidCtxt(xmlSchemaPtr schema);
+extern xmlSchemaPtr xmlSchemaParse(xmlSchemaParserCtxtPtr ctxt);
+extern xmlSchemaSAXPlugPtr xmlSchemaSAXPlug(xmlSchemaValidCtxtPtr ctxt,
+					    xmlSAXHandlerPtr * sax,
+					    void **user_data);
+extern int xmlSchemaSAXUnplug(xmlSchemaSAXPlugPtr plug);
+extern void xmlSchemaSetParserErrors(xmlSchemaParserCtxtPtr ctxt,
+				     xmlSchemaValidityErrorFunc err,
+				     xmlSchemaValidityWarningFunc warn,
+				     void *ctx);
+extern void xmlSchemaSetValidErrors(xmlSchemaValidCtxtPtr ctxt,
+				    xmlSchemaValidityErrorFunc err,
+				    xmlSchemaValidityWarningFunc warn,
+				    void *ctx);
+extern int xmlSchemaSetValidOptions(xmlSchemaValidCtxtPtr ctxt,
+				    int options);
+extern void xmlSchemaSetValidStructuredErrors(xmlSchemaValidCtxtPtr ctxt,
+					      xmlStructuredErrorFunc
+					      serror, void *ctx);
+extern int xmlSchemaValidCtxtGetOptions(xmlSchemaValidCtxtPtr ctxt);
+extern int xmlSchemaValidateDoc(xmlSchemaValidCtxtPtr ctxt,
+				xmlDocPtr instance);
+extern int xmlSchemaValidateFile(xmlSchemaValidCtxtPtr ctxt,
+				 const char *filename, int options);
+extern int xmlSchemaValidateOneElement(xmlSchemaValidCtxtPtr ctxt,
+				       xmlNodePtr elem);
+extern int xmlSchemaValidateStream(xmlSchemaValidCtxtPtr ctxt,
+				   xmlParserInputBufferPtr input,
+				   xmlCharEncoding enc,
+				   xmlSAXHandlerPtr sax, void *user_data);

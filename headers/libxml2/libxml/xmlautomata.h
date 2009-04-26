@@ -19,10 +19,6 @@ extern "C" {
     typedef xmlAutomata *xmlAutomataPtr;
 
 
-
-
-
-
 /* Function prototypes */
 
     extern xmlRegexpPtr xmlAutomataCompile(xmlAutomataPtr);

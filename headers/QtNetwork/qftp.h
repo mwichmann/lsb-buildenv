@@ -5,55 +5,9 @@
 class QFtp;
 // *INDENT-OFF*
 
-class QFtp : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QFtp(QObject*);
-     ~QFtp();
-    int setProxy(QString const&, unsigned short);
-    int connectToHost(QString const&, unsigned short);
-    int login(QString const&, QString const&);
-    int close();
-    int setTransferMode(QFtp::TransferMode);
-    int list(QString const&);
-    int cd(QString const&);
-    int get(QString const&, QIODevice*, QFtp::TransferType);
-    int put(QByteArray const&, QString const&, QFtp::TransferType);
-    int put(QIODevice*, QString const&, QFtp::TransferType);
-    int remove(QString const&);
-    int mkdir(QString const&);
-    int rmdir(QString const&);
-    int rename(QString const&, QString const&);
-    int rawCommand(QString const&);
-    qint64 bytesAvailable() const;
-    qint64 read(char*, long long);
-    QByteArray readAll();
-    int currentId() const;
-    QIODevice * currentDevice() const;
-    enum _ZN4QFtp7CommandE currentCommand() const;
-    bool hasPendingCommands() const;
-    void clearPendingCommands();
-    enum _ZN4QFtp5StateE state() const;
-    enum _ZN4QFtp5ErrorE error() const;
-    QString errorString() const;
-    void abort();
-     QFtp(QObject*, char const*);
-protected:
-    void stateChanged(int);
-    void listInfo(QUrlInfo const&);
-    void readyRead();
-    void dataTransferProgress(long long, long long);
-    void rawCommandReply(int, QString const&);
-    void commandStarted(int);
-    void commandFinished(int, bool);
-    void done(bool);
-};
+class QFtp;
 
-enum State	
+enum _ZN4QFtp5StateE	
 {
 Unconnected = 0,	
 HostLookup = 1,	
@@ -64,7 +18,7 @@ Closing = 5
 }
 ;
 
-enum Error	
+enum _ZN4QFtp5ErrorE	
 {
 NoError = 0,	
 UnknownError = 1,	
@@ -74,7 +28,7 @@ NotConnected = 4
 }
 ;
 
-enum Command	
+enum _ZN4QFtp7CommandE	
 {
 None = 0,	
 SetTransferMode = 1,	
@@ -94,14 +48,14 @@ RawCommand = 14
 }
 ;
 
-enum TransferMode	
+enum _ZN4QFtp12TransferModeE	
 {
 Active = 0,	
 Passive = 1
 }
 ;
 
-enum TransferType	
+enum _ZN4QFtp12TransferTypeE	
 {
 Binary = 0,	
 Ascii = 1

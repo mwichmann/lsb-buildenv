@@ -22,7 +22,8 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int fnmatch(const char *, const char *, int);
+    extern int fnmatch(const char *__pattern, const char *__name,
+		       int __flags);
 #ifdef __cplusplus
 }
 #endif

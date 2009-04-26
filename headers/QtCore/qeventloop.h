@@ -5,32 +5,12 @@
 class QFlags < QEventLoop::ProcessEventsFlag >;
 // *INDENT-OFF*
 
-typedef class QFlags<QEventLoop::ProcessEventsFlag>
-{
-private:
-public:
-}ProcessEventsFlags	
+typedef class QFlags<QEventLoop::ProcessEventsFlag>QEventLoop::ProcessEventsFlags	
 ;
 
-class QEventLoop : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QEventLoop(QObject*);
-     ~QEventLoop();
-    bool processEvents(QFlags<QEventLoop::ProcessEventsFlag>);
-    void processEvents(QFlags<QEventLoop::ProcessEventsFlag>, int);
-    int exec(QFlags<QEventLoop::ProcessEventsFlag>);
-    void exit(int);
-    bool isRunning() const;
-    void wakeUp();
-    void quit();
-};
+class QEventLoop;
 
-enum ProcessEventsFlag	
+enum _ZN10QEventLoop17ProcessEventsFlagE	
 {
 AllEvents = 0,	
 ExcludeUserInputEvents = 1,	
@@ -43,11 +23,7 @@ DeferredDeletion = 16
 }
 ;
 
-class QFlags<QEventLoop::ProcessEventsFlag>
-{
-private:
-public:
-};
+class QFlags<QEventLoop::ProcessEventsFlag>;
 
 
 /* Function prototypes */

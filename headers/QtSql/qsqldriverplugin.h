@@ -7,16 +7,7 @@ class QSqlDriverPlugin;
 
 struct QSqlDriverFactoryInterface	;
 
-class QSqlDriverPlugin : public QObject, public QSqlDriverFactoryInterface
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QSqlDriverPlugin(QObject*);
-     ~QSqlDriverPlugin();
-};
+class QSqlDriverPlugin;
 
 
 /* Function prototypes */

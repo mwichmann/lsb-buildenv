@@ -13,12 +13,12 @@
 #define IFF_NOARP	0x80	/* No address resolution protocol. */
 
 struct if_nameindex {
-    unsigned int if_index;
-    char *if_name;
+    unsigned int if_index;	/* 1, 2, ... */
+    char *if_name;		/* null terminated name: */
 };
 
 struct ifaddr {
-    struct sockaddr ifa_addr;
+    struct sockaddr ifa_addr;	/* Address of interface. */
     union {
 	struct sockaddr ifu_broadaddr;
 	struct sockaddr ifu_dstaddr;
@@ -73,7 +73,7 @@ struct ifconf {
 	struct ifreq *ifcu_req;
     } ifc_ifcu;
 };
-extern void if_freenameindex(struct if_nameindex *);
-extern char *if_indextoname(unsigned int, char *);
+extern void if_freenameindex(struct if_nameindex *__ptr);
+extern char *if_indextoname(unsigned int __ifindex, char *__ifname);
 extern struct if_nameindex *if_nameindex(void);
-extern unsigned int if_nametoindex(const char *);
+extern unsigned int if_nametoindex(const char *__ifname);

@@ -5,40 +5,9 @@
 class QThread;
 // *INDENT-OFF*
 
-class QThread : public QObject
-{
-private:
-public:
-    static  currentThreadId();
-    static QThread * currentThread();
-     QThread(QObject*);
-     ~QThread();
-    void setPriority(QThread::Priority);
-    enum _ZN7QThread8PriorityE priority() const;
-    bool isFinished() const;
-    bool isRunning() const;
-    void setStackSize(unsigned int);
-    uint stackSize() const;
-    void exit(int);
-    void start(QThread::Priority);
-    void terminate();
-    void quit();
-    bool wait(unsigned long);
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-protected:
-    void started();
-    void finished();
-    void terminated();
-    int exec();
-    static void setTerminationEnabled(bool);
-    static void sleep(unsigned long);
-    static void msleep(unsigned long);
-    static void usleep(unsigned long);
-};
+class QThread;
 
-enum Priority	
+enum _ZN7QThread8PriorityE	
 {
 IdlePriority = 0,	
 LowestPriority = 1,	

@@ -29,8 +29,8 @@ enum _ZN6QStyle9StateFlagE {
     State_ReadOnly = 33554432
 };
 class QFlags < QStyle::StateFlag >;
-typedef class QFlags < QStyle::StateFlag > _ZN6QStyle5StateE;
-typedef _ZN6QStyle5StateE _ZN6QStyle6SFlagsE;
+typedef class QFlags < QStyle::StateFlag > QStyle::State;
+typedef QStyle::State QStyle::SFlags;
 enum _ZN6QStyle16PrimitiveElementE {
     PE_Q3CheckListController = 0,
     PE_Q3CheckListExclusiveIndicator = 1,
@@ -220,8 +220,8 @@ enum _ZN6QStyle10SubControlE {
     SC_TitleBarLabel = 256
 };
 class QFlags < QStyle::SubControl >;
-typedef class QFlags < QStyle::SubControl > _ZN6QStyle11SubControlsE;
-typedef _ZN6QStyle11SubControlsE _ZN6QStyle7SCFlagsE;
+typedef class QFlags < QStyle::SubControl > QStyle::SubControls;
+typedef QStyle::SubControls QStyle::SCFlags;
 enum _ZN6QStyle11PixelMetricE {
     PM_CustomBase = -268435456,
     PM_ButtonMargin = 0,

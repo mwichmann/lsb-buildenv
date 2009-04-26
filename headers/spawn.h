@@ -39,47 +39,62 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int posix_spawn(pid_t *, const char *,
-			   const posix_spawn_file_actions_t *,
-			   const posix_spawnattr_t *, char *const[],
-			   char *const[]);
+    extern int posix_spawn(pid_t * __pid, const char *__path,
+			   const posix_spawn_file_actions_t *
+			   __file_actions,
+			   const posix_spawnattr_t * __attrp,
+			   char *const argv[], char *const envp[]);
     extern int posix_spawn_file_actions_addclose(posix_spawn_file_actions_t
-						 *, int);
+						 * __file_actions,
+						 int __fd);
     extern int posix_spawn_file_actions_adddup2(posix_spawn_file_actions_t
-						*, int, int);
+						* __file_actions, int __fd,
+						int __newfd);
     extern int posix_spawn_file_actions_addopen(posix_spawn_file_actions_t
-						*, int, const char *, int,
-						mode_t);
+						* __file_actions, int __fd,
+						const char *__path,
+						int __oflag,
+						mode_t __mode);
     extern int posix_spawn_file_actions_destroy(posix_spawn_file_actions_t
-						*);
-    extern int posix_spawn_file_actions_init(posix_spawn_file_actions_t *);
-    extern int posix_spawnattr_destroy(posix_spawnattr_t *);
-    extern int posix_spawnattr_getflags(const posix_spawnattr_t *,
-					short int *);
-    extern int posix_spawnattr_getpgroup(const posix_spawnattr_t *,
-					 pid_t *);
-    extern int posix_spawnattr_getschedparam(const posix_spawnattr_t *,
-					     struct sched_param *);
-    extern int posix_spawnattr_getschedpolicy(const posix_spawnattr_t *,
-					      int *);
-    extern int posix_spawnattr_getsigdefault(const posix_spawnattr_t *,
-					     sigset_t *);
-    extern int posix_spawnattr_getsigmask(const posix_spawnattr_t *,
-					  sigset_t *);
-    extern int posix_spawnattr_init(posix_spawnattr_t *);
-    extern int posix_spawnattr_setflags(posix_spawnattr_t *, short int);
-    extern int posix_spawnattr_setpgroup(posix_spawnattr_t *, pid_t);
-    extern int posix_spawnattr_setschedparam(posix_spawnattr_t *,
-					     const struct sched_param *);
-    extern int posix_spawnattr_setschedpolicy(posix_spawnattr_t *, int);
-    extern int posix_spawnattr_setsigdefault(posix_spawnattr_t *,
-					     const sigset_t *);
-    extern int posix_spawnattr_setsigmask(posix_spawnattr_t *,
-					  const sigset_t *);
-    extern int posix_spawnp(pid_t *, const char *,
-			    const posix_spawn_file_actions_t *,
-			    const posix_spawnattr_t *, char *const[],
-			    char *const[]);
+						* __file_actions);
+    extern int posix_spawn_file_actions_init(posix_spawn_file_actions_t *
+					     __file_actions);
+    extern int posix_spawnattr_destroy(posix_spawnattr_t * __attr);
+    extern int posix_spawnattr_getflags(const posix_spawnattr_t * __attr,
+					short int *__flags);
+    extern int posix_spawnattr_getpgroup(const posix_spawnattr_t * __attr,
+					 pid_t * __pgroup);
+    extern int posix_spawnattr_getschedparam(const posix_spawnattr_t *
+					     __attr,
+					     struct sched_param
+					     *__schedparam);
+    extern int posix_spawnattr_getschedpolicy(const posix_spawnattr_t *
+					      __attr, int *__schedpolicy);
+    extern int posix_spawnattr_getsigdefault(const posix_spawnattr_t *
+					     __attr,
+					     sigset_t * __sigdefault);
+    extern int posix_spawnattr_getsigmask(const posix_spawnattr_t * __attr,
+					  sigset_t * __sigmask);
+    extern int posix_spawnattr_init(posix_spawnattr_t * __attr);
+    extern int posix_spawnattr_setflags(posix_spawnattr_t * _attr,
+					short int __flags);
+    extern int posix_spawnattr_setpgroup(posix_spawnattr_t * __attr,
+					 pid_t __pgroup);
+    extern int posix_spawnattr_setschedparam(posix_spawnattr_t * __attr,
+					     const struct sched_param
+					     *__schedparam);
+    extern int posix_spawnattr_setschedpolicy(posix_spawnattr_t * __attr,
+					      int __schedpolicy);
+    extern int posix_spawnattr_setsigdefault(posix_spawnattr_t * __attr,
+					     const sigset_t *
+					     __sigdefault);
+    extern int posix_spawnattr_setsigmask(posix_spawnattr_t * __attr,
+					  const sigset_t * __sigmask);
+    extern int posix_spawnp(pid_t * __pid, const char *__file,
+			    const posix_spawn_file_actions_t *
+			    __file_actions,
+			    const posix_spawnattr_t * __attrp,
+			    char *const argv[], char *const envp[]);
 #ifdef __cplusplus
 }
 #endif

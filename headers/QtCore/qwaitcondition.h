@@ -5,16 +5,7 @@
 class QWaitCondition;
 // *INDENT-OFF*
 
-class QWaitCondition
-{
-private:
-public:
-     QWaitCondition();
-     ~QWaitCondition();
-    bool wait(QMutex*, unsigned long);
-    void wakeOne();
-    void wakeAll();
-};
+class QWaitCondition;
 
 // *INDENT-ON*
 #endif				/* protection */

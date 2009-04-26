@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define _SECPORT_H_
+
+
     typedef PRBool(*PORTCharConversionWSwapFunc) (PRBool, unsigned char *,
 						  unsigned int,
 						  unsigned char *,

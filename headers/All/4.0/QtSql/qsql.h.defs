@@ -12,7 +12,7 @@ enum _ZN4QSql13ParamTypeFlagE {
     Binary = 4
 };
 class QFlags < QSql::ParamTypeFlag >;
-typedef class QFlags < QSql::ParamTypeFlag > _ZN4QSql9ParamTypeE;
+typedef class QFlags < QSql::ParamTypeFlag > QSql::ParamType;
 enum _ZN4QSql9TableTypeE {
     Tables = 1,
     SystemTables = 2,

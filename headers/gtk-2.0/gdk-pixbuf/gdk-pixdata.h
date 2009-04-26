@@ -39,7 +39,6 @@ extern "C" {
 	GDK_PIXDATA_ENCODING_MASK = 0x0f << 24
     } GdkPixdataType;
 
-
     struct _GdkPixdata {
 	guint32 magic;
 	gint32 length;
@@ -53,15 +52,21 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern GdkPixbuf *gdk_pixbuf_from_pixdata(const GdkPixdata *, gboolean,
-					      GError * *);
-    extern gboolean gdk_pixdata_deserialize(GdkPixdata *, guint,
-					    const guint8 *, GError * *);
-    extern gpointer gdk_pixdata_from_pixbuf(GdkPixdata *,
-					    const GdkPixbuf *, gboolean);
-    extern guint8 *gdk_pixdata_serialize(const GdkPixdata *, guint *);
-    extern GString *gdk_pixdata_to_csource(GdkPixdata *, const gchar *,
-					   GdkPixdataDumpType);
+    extern GdkPixbuf *gdk_pixbuf_from_pixdata(const GdkPixdata * pixdata,
+					      gboolean copy_pixels,
+					      GError * *error);
+    extern gboolean gdk_pixdata_deserialize(GdkPixdata * pixdata,
+					    guint stream_length,
+					    const guint8 * stream,
+					    GError * *error);
+    extern gpointer gdk_pixdata_from_pixbuf(GdkPixdata * pixdata,
+					    const GdkPixbuf * pixbuf,
+					    gboolean use_rle);
+    extern guint8 *gdk_pixdata_serialize(const GdkPixdata * pixdata,
+					 guint * stream_length_p);
+    extern GString *gdk_pixdata_to_csource(GdkPixdata * pixdata,
+					   const gchar * name,
+					   GdkPixdataDumpType dump_type);
 #ifdef __cplusplus
 }
 #endif

@@ -161,7 +161,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
-
     struct _win_st {
 	short _cury;		/* current cursor position */
 	short _curx;
@@ -497,8 +496,7 @@ extern "C" {
     extern int reset_prog_mode(void);
     extern int reset_shell_mode(void);
     extern int resetty(void);
-    extern int ripoffline(int, int (*)(WINDOW *, int)
-	);
+    extern int ripoffline(int, int (*)(WINDOW *, int));
     extern int savetty(void);
     extern int scanw(const char *, ...);
     extern int scr_dump(const char *);
@@ -538,8 +536,7 @@ extern "C" {
     extern int untouchwin(WINDOW *);
     extern void use_env(bool);
     extern int vidattr(chtype);
-    extern int vidputs(chtype, int (*)(int)
-	);
+    extern int vidputs(chtype, int (*)(int));
     extern int vline(chtype, int);
     extern int vw_printw(WINDOW *, const char *, va_list);
     extern int vw_scanw(WINDOW *, const char *, va_list);

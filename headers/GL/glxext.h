@@ -56,7 +56,7 @@ extern "C" {
     extern GLXContext glXImportContextEXT(Display *, GLXContextID);
     extern int glXQueryContextInfoEXT(Display *, GLXContext, int, int *);
 #if __LSB_VERSION__ >= 13
-    extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte *);
+    extern __GLXextFuncPtr glXGetProcAddressARB(const GLubyte * procName);
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #ifdef __cplusplus

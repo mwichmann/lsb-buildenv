@@ -45,10 +45,10 @@
 #define LOG_NOWAIT	0x10	/* don't wait for console forks: DEPRECATED */
 #define LOG_PERROR	0x20	/* log to stderr as well */
 
-extern void closelog(void);
-extern void openlog(const char *, int, int);
-extern int setlogmask(int);
-extern void syslog(int, const char *, ...);
-extern void vsyslog(int, const char *, va_list);
 extern void __syslog_chk(int, int, const char *, ...);
 extern void __vsyslog_chk(int, int, const char *, va_list);
+extern void closelog(void);
+extern void openlog(const char *__ident, int __option, int __facility);
+extern int setlogmask(int __mask);
+extern void syslog(int __pri, const char *__fmt, ...);
+extern void vsyslog(int __pri, const char *__fmt, va_list __ap);

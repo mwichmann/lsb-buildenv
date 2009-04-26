@@ -15,8 +15,10 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern ssize_t sendfile(int, int, off_t *, size_t);
-    extern ssize_t sendfile64(int, int, off64_t *, size_t);
+    extern ssize_t sendfile(int __out_fd, int __in_fd, off_t * __offset,
+			    size_t __count);
+    extern ssize_t sendfile64(int __out_fd, int __in_fd,
+			      off64_t * __offset, size_t __count);
 #ifdef __cplusplus
 }
 #endif

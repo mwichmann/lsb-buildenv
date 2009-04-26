@@ -1172,13 +1172,11 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 30
-
     struct _XExtEventInfo {
 	Mask mask;
 	BYTE type;
 	BYTE word;
     };
-
 
     struct _xAnyClassinfo {
 #if defined(__cplusplus) || defined(c_plusplus)
@@ -1189,7 +1187,6 @@ extern "C" {
 	CARD8 length;
     };
 
-
     struct _xDeviceInfo {
 	CARD32 type;
 	CARD8 id;
@@ -1197,7 +1194,6 @@ extern "C" {
 	CARD8 use;
 	CARD8 pad1;
     };
-
 
     struct _xKeyInfo {
 #if defined(__cplusplus) || defined(c_plusplus)
@@ -1213,7 +1209,6 @@ extern "C" {
 	CARD8 pad2;
     };
 
-
     struct _xButtonInfo {
 #if defined(__cplusplus) || defined(c_plusplus)
 	CARD8 c_class;
@@ -1223,7 +1218,6 @@ extern "C" {
 	CARD8 length;
 	CARD16 num_buttons;
     };
-
 
     struct _xValuatorInfo {
 #if defined(__cplusplus) || defined(c_plusplus)
@@ -1236,7 +1230,6 @@ extern "C" {
 	CARD8 mode;
 	CARD32 motion_buffer_size;
     };
-
 
     struct _xAxisInfo {
 	CARD32 resolution;

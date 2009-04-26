@@ -122,10 +122,10 @@ extern "C" {
 /* Function prototypes */
 
 #if __LSB_VERSION__ >= 30
-    extern void if_freenameindex(struct if_nameindex *);
-    extern char *if_indextoname(unsigned int, char *);
+    extern void if_freenameindex(struct if_nameindex *__ptr);
+    extern char *if_indextoname(unsigned int __ifindex, char *__ifname);
     extern struct if_nameindex *if_nameindex(void);
-    extern unsigned int if_nametoindex(const char *);
+    extern unsigned int if_nametoindex(const char *__ifname);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus

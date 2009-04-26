@@ -5,33 +5,9 @@
 class QPolygonF;
 // *INDENT-OFF*
 
-class QPolygon
-{
-private:
-public:
-     QPolygon(QRect const&, bool);
-     QPolygon(int, int const*);
-    QVariant operator QVariant() const;
-    void translate(int, int);
-    QRect boundingRect() const;
-    void point(int, int*, int*) const;
-    void setPoints(int, int const*);
-    void setPoints(int, int, int, ...);
-    void putPoints(int, int, int const*);
-    void putPoints(int, int, int, int, ...);
-    void putPoints(int, int, QPolygon const&, int);
-};
+class QPolygon;
 
-class QPolygonF
-{
-private:
-public:
-     QPolygonF(QRectF const&);
-     QPolygonF(QPolygon const&);
-    void translate(QPointF const&);
-    QPolygon toPolygon() const;
-    QRectF boundingRect() const;
-};
+class QPolygonF;
 
 
 /* Function prototypes */

@@ -71,7 +71,6 @@ extern "C" {
 
     typedef xmlGlobalState *xmlGlobalStatePtr;
 
-
     struct _xmlSAXHandlerV1 {
 	internalSubsetSAXFunc internalSubset;
 	isStandaloneSAXFunc isStandalone;
@@ -102,8 +101,6 @@ extern "C" {
 	externalSubsetSAXFunc externalSubset;
 	unsigned int initialized;
     };
-
-
 
 
 /* Function prototypes */
@@ -139,52 +136,56 @@ extern "C" {
     extern const char **__xmlTreeIndentString(void);
     extern void xmlCleanupGlobals(void);
     extern xmlDeregisterNodeFunc
-	xmlDeregisterNodeDefault(xmlDeregisterNodeFunc);
+	xmlDeregisterNodeDefault(xmlDeregisterNodeFunc func);
     extern xmlFreeFunc xmlFree;
     extern void xmlInitGlobals(void);
-    extern void xmlInitializeGlobalState(xmlGlobalStatePtr);
+    extern void xmlInitializeGlobalState(xmlGlobalStatePtr gs);
     extern xmlMallocFunc xmlMalloc;
     extern xmlMallocFunc xmlMallocAtomic;
     extern xmlStrdupFunc xmlMemStrdup;
     extern xmlOutputBufferCreateFilenameFunc
 	xmlOutputBufferCreateFilenameDefault
-	(xmlOutputBufferCreateFilenameFunc);
+	(xmlOutputBufferCreateFilenameFunc func);
     extern xmlParserInputBufferPtr xmlParserInputBufferCreateFilename(const
 								      char
-								      *,
-								      xmlCharEncoding);
+								      *URI,
+								      xmlCharEncoding
+								      enc);
     extern xmlParserInputBufferCreateFilenameFunc
 	xmlParserInputBufferCreateFilenameDefault
-	(xmlParserInputBufferCreateFilenameFunc);
+	(xmlParserInputBufferCreateFilenameFunc func);
     extern xmlReallocFunc xmlRealloc;
-    extern xmlRegisterNodeFunc xmlRegisterNodeDefault(xmlRegisterNodeFunc);
+    extern xmlRegisterNodeFunc xmlRegisterNodeDefault(xmlRegisterNodeFunc
+						      func);
     extern xmlBufferAllocationScheme
-	xmlThrDefBufferAllocScheme(xmlBufferAllocationScheme);
-    extern int xmlThrDefDefaultBufferSize(int);
+	xmlThrDefBufferAllocScheme(xmlBufferAllocationScheme v);
+    extern int xmlThrDefDefaultBufferSize(int v);
     extern xmlDeregisterNodeFunc
-	xmlThrDefDeregisterNodeDefault(xmlDeregisterNodeFunc);
-    extern int xmlThrDefDoValidityCheckingDefaultValue(int);
-    extern int xmlThrDefGetWarningsDefaultValue(int);
-    extern int xmlThrDefIndentTreeOutput(int);
-    extern int xmlThrDefKeepBlanksDefaultValue(int);
-    extern int xmlThrDefLineNumbersDefaultValue(int);
-    extern int xmlThrDefLoadExtDtdDefaultValue(int);
+	xmlThrDefDeregisterNodeDefault(xmlDeregisterNodeFunc func);
+    extern int xmlThrDefDoValidityCheckingDefaultValue(int v);
+    extern int xmlThrDefGetWarningsDefaultValue(int v);
+    extern int xmlThrDefIndentTreeOutput(int v);
+    extern int xmlThrDefKeepBlanksDefaultValue(int v);
+    extern int xmlThrDefLineNumbersDefaultValue(int v);
+    extern int xmlThrDefLoadExtDtdDefaultValue(int v);
     extern xmlOutputBufferCreateFilenameFunc
 	xmlThrDefOutputBufferCreateFilenameDefault
-	(xmlOutputBufferCreateFilenameFunc);
-    extern int xmlThrDefParserDebugEntities(int);
+	(xmlOutputBufferCreateFilenameFunc func);
+    extern int xmlThrDefParserDebugEntities(int v);
     extern xmlParserInputBufferCreateFilenameFunc
 	xmlThrDefParserInputBufferCreateFilenameDefault
-	(xmlParserInputBufferCreateFilenameFunc);
-    extern int xmlThrDefPedanticParserDefaultValue(int);
+	(xmlParserInputBufferCreateFilenameFunc func);
+    extern int xmlThrDefPedanticParserDefaultValue(int v);
     extern xmlRegisterNodeFunc
-	xmlThrDefRegisterNodeDefault(xmlRegisterNodeFunc);
-    extern int xmlThrDefSaveNoEmptyTags(int);
-    extern void xmlThrDefSetGenericErrorFunc(void *, xmlGenericErrorFunc);
-    extern void xmlThrDefSetStructuredErrorFunc(void *,
-						xmlStructuredErrorFunc);
-    extern int xmlThrDefSubstituteEntitiesDefaultValue(int);
-    extern const char *xmlThrDefTreeIndentString(const char *);
+	xmlThrDefRegisterNodeDefault(xmlRegisterNodeFunc func);
+    extern int xmlThrDefSaveNoEmptyTags(int v);
+    extern void xmlThrDefSetGenericErrorFunc(void *ctx,
+					     xmlGenericErrorFunc handler);
+    extern void xmlThrDefSetStructuredErrorFunc(void *ctx,
+						xmlStructuredErrorFunc
+						handler);
+    extern int xmlThrDefSubstituteEntitiesDefaultValue(int v);
+    extern const char *xmlThrDefTreeIndentString(const char *v);
 #ifdef __cplusplus
 }
 #endif

@@ -9,14 +9,15 @@ extern "C" {
 #endif
 
 
+#define prthread_h___
+
+
     typedef struct PRThread PRThread;
-
-
 
 
 /* Function prototypes */
 
-    extern PRStatus PR_Interrupt(PRThread *);
+    extern PRStatus PR_Interrupt(PRThread * thread);
 #ifdef __cplusplus
 }
 #endif

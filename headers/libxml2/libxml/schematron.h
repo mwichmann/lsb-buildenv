@@ -32,29 +32,27 @@ extern "C" {
     } xmlSchematronValidOptions;
 
 
-
-
-
-
-
-
 /* Function prototypes */
 
-    extern void xmlSchematronFree(xmlSchematronPtr);
-    extern void xmlSchematronFreeParserCtxt(xmlSchematronParserCtxtPtr);
-    extern void xmlSchematronFreeValidCtxt(xmlSchematronValidCtxtPtr);
+    extern void xmlSchematronFree(xmlSchematronPtr schema);
+    extern void xmlSchematronFreeParserCtxt(xmlSchematronParserCtxtPtr
+					    ctxt);
+    extern void xmlSchematronFreeValidCtxt(xmlSchematronValidCtxtPtr ctxt);
     extern xmlSchematronParserCtxtPtr
-	xmlSchematronNewDocParserCtxt(xmlDocPtr);
+	xmlSchematronNewDocParserCtxt(xmlDocPtr doc);
     extern xmlSchematronParserCtxtPtr xmlSchematronNewMemParserCtxt(const
-								    char *,
-								    int);
+								    char
+								    *buffer,
+								    int
+								    size);
     extern xmlSchematronParserCtxtPtr xmlSchematronNewParserCtxt(const char
-								 *);
+								 *URL);
     extern xmlSchematronValidCtxtPtr
-	xmlSchematronNewValidCtxt(xmlSchematronPtr, int);
-    extern xmlSchematronPtr xmlSchematronParse(xmlSchematronParserCtxtPtr);
-    extern int xmlSchematronValidateDoc(xmlSchematronValidCtxtPtr,
-					xmlDocPtr);
+	xmlSchematronNewValidCtxt(xmlSchematronPtr schema, int options);
+    extern xmlSchematronPtr xmlSchematronParse(xmlSchematronParserCtxtPtr
+					       ctxt);
+    extern int xmlSchematronValidateDoc(xmlSchematronValidCtxtPtr ctxt,
+					xmlDocPtr instance);
 #ifdef __cplusplus
 }
 #endif

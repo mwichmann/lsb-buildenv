@@ -5,19 +5,7 @@
 class QStringMatcher;
 // *INDENT-OFF*
 
-class QStringMatcher
-{
-private:
-public:
-     QStringMatcher();
-     QStringMatcher(QString const&, Qt::CaseSensitivity);
-     QStringMatcher(QStringMatcher const&);
-     ~QStringMatcher();
-    QStringMatcher & operator=(QStringMatcher const&);
-    void setPattern(QString const&);
-    void setCaseSensitivity(Qt::CaseSensitivity);
-    int indexIn(QString const&, int) const;
-};
+class QStringMatcher;
 
 // *INDENT-ON*
 #endif				/* protection */

@@ -33,7 +33,6 @@ extern "C" {
 
     typedef struct _sm_class_basic sm_class_basic_t;
 
-
     struct _sm_class_basic {
 	char *device;
 	snd_ctl_t *ctl;

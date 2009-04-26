@@ -1,4 +1,6 @@
 
+#define _SECOIDT_H_
+
 typedef struct SECOidDataStr {
     SECItem oid;
     SECOidTag offset;

@@ -10,10 +10,12 @@ extern "C" {
 #endif
 
 
+#define prnetdb_h___
+
+
     typedef struct PRHostEnt PRHostEnt;
 
     typedef struct PRAddrInfo PRAddrInfo;
-
 
     struct PRHostEnt {
 	char *h_name;
@@ -24,18 +26,18 @@ extern "C" {
     };
 
 
-
-
 /* Function prototypes */
 
-    extern void *PR_EnumerateAddrInfo(void *, const PRAddrInfo *, PRUint16,
-				      PRNetAddr *);
-    extern void PR_FreeAddrInfo(PRAddrInfo *);
-    extern PRAddrInfo *PR_GetAddrInfoByName(const char *, PRUint16,
-					    PRIntn);
-    extern PRStatus PR_NetAddrToString(const PRNetAddr *, char *,
-				       PRUint32);
-    extern PRStatus PR_StringToNetAddr(const char *, PRNetAddr *);
+    extern void *PR_EnumerateAddrInfo(void *enumPtr,
+				      const PRAddrInfo * addrInfo,
+				      PRUint16 port, PRNetAddr * result);
+    extern void PR_FreeAddrInfo(PRAddrInfo * addrInfo);
+    extern PRAddrInfo *PR_GetAddrInfoByName(const char *hostname,
+					    PRUint16 af, PRIntn flags);
+    extern PRStatus PR_NetAddrToString(const PRNetAddr * addr,
+				       char *string, PRUint32 size);
+    extern PRStatus PR_StringToNetAddr(const char *string,
+				       PRNetAddr * addr);
 #ifdef __cplusplus
 }
 #endif

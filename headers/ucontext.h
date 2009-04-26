@@ -65,7 +65,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
 /* PPC64 */
-
     struct _libc_vscr {
 	int __pad[3];
 	int vscr_word;
@@ -74,7 +73,6 @@ extern "C" {
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-
     struct _libc_vrstate {
 	unsigned int vrregs[128];
 	unsigned int vrsave;
@@ -85,7 +83,6 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-
     struct _libc_vrstate {
 	unsigned int vrregs[128];
 	vscr_t vscr;
@@ -275,7 +272,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-
     struct _libc_fpstate {
 	double fpregs[32];
 	double fpscr;
@@ -432,7 +428,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __i386__
 /* IA32 */
-
     struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
@@ -445,7 +440,6 @@ extern "C" {
 #endif
 #if defined __ia64__
 /* IA64 */
-
     struct ucontext {
 	union {
 	    mcontext_t _mc;
@@ -459,7 +453,6 @@ extern "C" {
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-
     struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
@@ -473,7 +466,6 @@ extern "C" {
 #endif
 #if defined __s390x__
 /* S390X */
-
     struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
@@ -485,7 +477,6 @@ extern "C" {
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-
     struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
@@ -497,7 +488,6 @@ extern "C" {
 #endif
 #if defined __x86_64__
 /* x86-64 */
-
     struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
@@ -510,7 +500,6 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 /* PPC64 */
-
     struct ucontext {
 	unsigned long int uc_flags;
 	struct ucontext *uc_link;
@@ -525,11 +514,12 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int getcontext(ucontext_t *);
-    extern void makecontext(ucontext_t *, void (*)(void)
-			    , int, ...);
-    extern int setcontext(const struct ucontext *);
-    extern int swapcontext(ucontext_t *, const struct ucontext *);
+    extern int getcontext(ucontext_t * __ucp);
+    extern void makecontext(ucontext_t * __ucp, void (*__func) (void),
+			    int __argc, ...);
+    extern int setcontext(const struct ucontext *__ucp);
+    extern int swapcontext(ucontext_t * __oucp,
+			   const struct ucontext *__ucp);
 #ifdef __cplusplus
 }
 #endif

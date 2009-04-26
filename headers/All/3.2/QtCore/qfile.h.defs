@@ -33,9 +33,9 @@ enum _ZN5QFile10PermissionE {
     ReadOwner = 16384
 };
 class QFlags < QFile::Permission >;
-typedef class QFlags < QFile::Permission > _ZN5QFile11PermissionsE;
-typedef class QByteArray_ZN5QFile9EncoderFnE;
-typedef class QString_ZN5QFile9DecoderFnE;
+typedef class QFlags < QFile::Permission > QFile::Permissions;
+typedef class QByteArrayQFile::EncoderFn;
+typedef class QStringQFile::DecoderFn;
 typedef enum _ZN5QFile10PermissionE {
     ExeOther = 1,
     WriteOther = 2,
@@ -49,4 +49,4 @@ typedef enum _ZN5QFile10PermissionE {
     ExeOwner = 4096,
     WriteOwner = 8192,
     ReadOwner = 16384
-} _ZN5QFile14PermissionSpecE;
+} QFile::PermissionSpec;

@@ -26,24 +26,28 @@ extern "C" {
 
     extern void endgrent(void);
     extern struct group *getgrent(void);
-    extern struct group *getgrgid(gid_t);
-    extern struct group *getgrnam(const char *);
-    extern int initgroups(const char *, gid_t);
+    extern struct group *getgrgid(gid_t __gid);
+    extern struct group *getgrnam(const char *__name);
+    extern int initgroups(const char *__user, gid_t __group);
     extern void setgrent(void);
-    extern int setgroups(size_t, const gid_t *);
+    extern int setgroups(size_t __n, const gid_t * __groups);
 #if __LSB_VERSION__ >= 13
-    extern int getgrgid_r(gid_t, struct group *, char *, size_t,
-			  struct group **);
-    extern int getgrnam_r(const char *, struct group *, char *, size_t,
-			  struct group **);
+    extern int getgrgid_r(gid_t __gid, struct group *__resultbuf,
+			  char *__buffer, size_t __buflen,
+			  struct group **__result);
+    extern int getgrnam_r(const char *__name, struct group *__resultbuf,
+			  char *__buffer, size_t __buflen,
+			  struct group **__result);
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 30
-    extern int getgrouplist(const char *, gid_t, gid_t *, int *);
+    extern int getgrouplist(const char *__user, gid_t __group,
+			    gid_t * __groups, int *__ngroups);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 40
-    extern int getgrent_r(struct group *, char *, size_t, struct group **);
+    extern int getgrent_r(struct group *__resultbuf, char *__buffer,
+			  size_t __buflen, struct group **__result);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

@@ -74,39 +74,52 @@ struct addrinfo {
 #define EAI_SERVICE	-8	/* SERVICE not supported for `ai_socktype'. */
 #define EAI_ADDRFAMILY	-9	/* Address family for NAME not supported. */
 
-extern int gethostbyname2_r(const char *, int, struct hostent *, char *,
-			    size_t, struct hostent **, int *);
-extern int getprotobyname_r(const char *, struct protoent *, char *,
-			    size_t, struct protoent **);
-extern int getprotobynumber_r(int, struct protoent *, char *, size_t,
-			      struct protoent **);
-extern int getprotoent_r(struct protoent *, char *, size_t,
-			 struct protoent **);
-extern int getservbyname_r(const char *, const char *, struct servent *,
-			   char *, size_t, struct servent **);
-extern int getservbyport_r(int, const char *, struct servent *, char *,
-			   size_t, struct servent **);
-extern int getservent_r(struct servent *, char *, size_t,
-			struct servent **);
+extern int *__h_errno_location(void);
 extern void endprotoent(void);
 extern void endservent(void);
-extern void freeaddrinfo(struct addrinfo *);
-extern const char *gai_strerror(int);
-extern int getaddrinfo(const char *, const char *, const struct addrinfo *,
-		       struct addrinfo **);
-extern struct hostent *gethostbyaddr(const void *, socklen_t, int);
-extern struct hostent *gethostbyname(const char *);
-extern struct hostent *gethostbyname2(const char *, int);
-extern struct protoent *getprotobyname(const char *);
-extern struct protoent *getprotobynumber(int);
+extern void freeaddrinfo(struct addrinfo *__ai);
+extern const char *gai_strerror(int __ecode);
+extern int getaddrinfo(const char *__name, const char *__service,
+		       const struct addrinfo *__req,
+		       struct addrinfo **__pai);
+extern struct hostent *gethostbyaddr(const void *__addr, socklen_t __len,
+				     int __type);
+extern int gethostbyaddr_r(const void *__addr, socklen_t __len, int __type,
+			   struct hostent *__result_buf, char *__buf,
+			   size_t __buflen, struct hostent **__result,
+			   int *__h_errnop);
+extern struct hostent *gethostbyname(const char *__name);
+extern struct hostent *gethostbyname2(const char *__name, int __af);
+extern int gethostbyname2_r(const char *__name, int __af,
+			    struct hostent *__result_buf, char *__buf,
+			    size_t __buflen, struct hostent **__result,
+			    int *__h_errnop);
+extern int gethostbyname_r(const char *__name,
+			   struct hostent *__result_buf, char *__buf,
+			   size_t __buflen, struct hostent **__result,
+			   int *__h_errnop);
+extern struct protoent *getprotobyname(const char *__name);
+extern int getprotobyname_r(const char *__name,
+			    struct protoent *__result_buf, char *__buf,
+			    size_t __buflen, struct protoent **__result);
+extern struct protoent *getprotobynumber(int __proto);
+extern int getprotobynumber_r(int __proto, struct protoent *__result_buf,
+			      char *__buf, size_t __buflen,
+			      struct protoent **__result);
 extern struct protoent *getprotoent(void);
-extern struct servent *getservbyname(const char *, const char *);
-extern struct servent *getservbyport(int, const char *);
+extern int getprotoent_r(struct protoent *__result_buf, char *__buf,
+			 size_t __buflen, struct protoent **__result);
+extern struct servent *getservbyname(const char *__name,
+				     const char *__proto);
+extern int getservbyname_r(const char *__name, const char *__proto,
+			   struct servent *__result_buf, char *__buf,
+			   size_t __buflen, struct servent **__result);
+extern struct servent *getservbyport(int __port, const char *__proto);
+extern int getservbyport_r(int __port, const char *__proto,
+			   struct servent *__result_buf, char *__buf,
+			   size_t __buflen, struct servent **__result);
 extern struct servent *getservent(void);
-extern void setprotoent(int);
-extern void setservent(int);
-extern int *__h_errno_location(void);
-extern int gethostbyaddr_r(const void *, socklen_t, int, struct hostent *,
-			   char *, size_t, struct hostent **, int *);
-extern int gethostbyname_r(const char *, struct hostent *, char *, size_t,
-			   struct hostent **, int *);
+extern int getservent_r(struct servent *__result_buf, char *__buf,
+			size_t __buflen, struct servent **__result);
+extern void setprotoent(int __stay_open);
+extern void setservent(int __stay_open);

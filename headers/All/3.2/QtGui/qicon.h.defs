@@ -14,4 +14,4 @@ enum _ZN5QIcon4SizeE {
     Automatic = 0,
     Large = 1
 };
-typedef class QIcon_Z8QIconSet;
+typedef class QIconQIconSet;

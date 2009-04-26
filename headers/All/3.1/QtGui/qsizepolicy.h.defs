@@ -28,5 +28,5 @@ typedef enum _ZN11QSizePolicy6PolicyE {
     Preferred = 5,
     Expanding = 7,
     Ignored = 13
-} _ZN11QSizePolicy8SizeTypeE;
-typedef _ZN2Qt12OrientationsE _ZN11QSizePolicy10ExpandDataE;
+} QSizePolicy::SizeType;
+typedef Qt::Orientations QSizePolicy::ExpandData;

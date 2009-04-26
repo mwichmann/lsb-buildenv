@@ -5,29 +5,16 @@
 class QMutexLocker;
 // *INDENT-OFF*
 
-class QMutex
-{
-private:
-public:
-     QMutex(QMutex::RecursionMode);
-     ~QMutex();
-    void lock();
-    bool tryLock();
-    void unlock();
-};
+class QMutex;
 
-enum RecursionMode	
+enum _ZN6QMutex13RecursionModeE	
 {
 NonRecursive = 0,	
 Recursive = 1
 }
 ;
 
-class QMutexLocker
-{
-private:
-public:
-};
+class QMutexLocker;
 
 // *INDENT-ON*
 #endif				/* protection */

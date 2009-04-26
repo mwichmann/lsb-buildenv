@@ -13,6 +13,8 @@ extern "C" {
 #define XEVI_TRANSPARENCY_NONE	0
 #define XEVI_TRANSPARENCY_PIXEL	1
 #define XEVI_TRANSPARENCY_MASK	2
+#define X_EVIQueryVersion	0
+#define X_EVIGetVisualInfo	1
 
 
 

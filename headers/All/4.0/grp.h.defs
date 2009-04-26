@@ -8,14 +8,18 @@ struct group {
 
 extern void endgrent(void);
 extern struct group *getgrent(void);
-extern struct group *getgrgid(gid_t);
-extern struct group *getgrnam(const char *);
-extern int initgroups(const char *, gid_t);
+extern int getgrent_r(struct group *__resultbuf, char *__buffer,
+		      size_t __buflen, struct group **__result);
+extern struct group *getgrgid(gid_t __gid);
+extern int getgrgid_r(gid_t __gid, struct group *__resultbuf,
+		      char *__buffer, size_t __buflen,
+		      struct group **__result);
+extern struct group *getgrnam(const char *__name);
+extern int getgrnam_r(const char *__name, struct group *__resultbuf,
+		      char *__buffer, size_t __buflen,
+		      struct group **__result);
+extern int getgrouplist(const char *__user, gid_t __group,
+			gid_t * __groups, int *__ngroups);
+extern int initgroups(const char *__user, gid_t __group);
 extern void setgrent(void);
-extern int setgroups(size_t, const gid_t *);
-extern int getgrgid_r(gid_t, struct group *, char *, size_t,
-		      struct group **);
-extern int getgrnam_r(const char *, struct group *, char *, size_t,
-		      struct group **);
-extern int getgrent_r(struct group *, char *, size_t, struct group **);
-extern int getgrouplist(const char *, gid_t, gid_t *, int *);
+extern int setgroups(size_t __n, const gid_t * __groups);

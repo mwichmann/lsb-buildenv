@@ -8,9 +8,10 @@ extern "C" {
 #endif
 
 
+#define nssrwlkt_h___
+
+
     typedef struct nssRWLockStr NSSRWLock;
-
-
 
 #ifdef __cplusplus
 }

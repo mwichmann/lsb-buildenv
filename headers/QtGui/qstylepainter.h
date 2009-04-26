@@ -5,11 +5,7 @@
 class QStylePainter;
 // *INDENT-OFF*
 
-class QStylePainter :  
-{
-private:
-public:
-};
+class QStylePainter;
 
 // *INDENT-ON*
 #endif				/* protection */

@@ -16,5 +16,5 @@ enum _ZN19QItemSelectionModel13SelectionFlagE {
 };
 class QFlags < QItemSelectionModel::SelectionFlag >;
 typedef class QFlags < QItemSelectionModel::SelectionFlag >
-    _ZN19QItemSelectionModel14SelectionFlagsE;
+    QItemSelectionModel::SelectionFlags;
 class QItemSelection;

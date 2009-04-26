@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define _PKCS11T_H_
+
+
     typedef unsigned char CK_BYTE;
 
     typedef CK_BYTE CK_CHAR;
@@ -52,12 +55,10 @@ extern "C" {
 
     typedef CK_ULONG CK_RV;
 
-
     struct CK_VERSION {
 	CK_BYTE major;
 	CK_BYTE minor;
     };
-
 
     struct CK_INFO {
 	CK_VERSION cryptokiVersion;
@@ -67,7 +68,6 @@ extern "C" {
 	CK_VERSION libraryVersion;
     };
 
-
     struct CK_SLOT_INFO {
 	CK_UTF8CHAR slotDescription[63];
 	CK_UTF8CHAR manufacturerID[31];
@@ -75,7 +75,6 @@ extern "C" {
 	CK_VERSION hardwareVersion;
 	CK_VERSION firmwareVersion;
     };
-
 
     struct CK_TOKEN_INFO {
 	CK_UTF8CHAR label[31];
@@ -98,13 +97,11 @@ extern "C" {
 	CK_CHAR utcTime[15];
     };
 
-
     struct CK_ATTRIBUTE {
 	CK_ATTRIBUTE_TYPE type;
 	CK_VOID_PTR pValue;
 	CK_ULONG ulValueLen;
     };
-
 
     struct CK_MECHANISM {
 	CK_MECHANISM_TYPE mechanism;

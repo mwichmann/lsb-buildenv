@@ -16,19 +16,22 @@ extern "C" {
 #endif
 
 
+#define _PK11PUB_H_
+
+
 
 /* Function prototypes */
 
-    extern CERTCertificate *PK11_FindCertFromNickname(const char *,
-						      void *);
-    extern SECKEYPrivateKey *PK11_FindKeyByAnyCert(CERTCertificate *,
-						   void *);
-    extern char *PK11_GetSlotName(PK11SlotInfo *);
-    extern char *PK11_GetTokenName(PK11SlotInfo *);
-    extern PRBool PK11_IsHW(PK11SlotInfo *);
-    extern PRBool PK11_IsPresent(PK11SlotInfo *);
-    extern PRBool PK11_IsReadOnly(PK11SlotInfo *);
-    extern void PK11_SetPasswordFunc(PK11PasswordFunc);
+    extern CERTCertificate *PK11_FindCertFromNickname(const char *nickname,
+						      void *wincx);
+    extern SECKEYPrivateKey *PK11_FindKeyByAnyCert(CERTCertificate * cert,
+						   void *wincx);
+    extern char *PK11_GetSlotName(PK11SlotInfo * slot);
+    extern char *PK11_GetTokenName(PK11SlotInfo * slot);
+    extern PRBool PK11_IsHW(PK11SlotInfo * slot);
+    extern PRBool PK11_IsPresent(PK11SlotInfo * slot);
+    extern PRBool PK11_IsReadOnly(PK11SlotInfo * slot);
+    extern void PK11_SetPasswordFunc(PK11PasswordFunc func);
 #ifdef __cplusplus
 }
 #endif

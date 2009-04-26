@@ -10,12 +10,15 @@ extern "C" {
 #endif
 
 
+#define pprio_h___
+
+
     typedef PRInt32 PROsfd;
 
 
 /* Function prototypes */
 
-    extern PRFileDesc *PR_ImportTCPSocket(PROsfd);
+    extern PRFileDesc *PR_ImportTCPSocket(PROsfd osfd);
 #ifdef __cplusplus
 }
 #endif

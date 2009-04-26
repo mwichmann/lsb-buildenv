@@ -15,6 +15,5 @@ enum _ZN9QFileInfo10PermissionE {
     ReadOwner = 16384
 };
 class QFlags < QFileInfo::Permission >;
-typedef class QFlags < QFileInfo::Permission >
-    _ZN9QFileInfo14PermissionSpecE;
+typedef class QFlags < QFileInfo::Permission > QFileInfo::PermissionSpec;
 typedef class QList < QFileInfo > QFileInfoList;

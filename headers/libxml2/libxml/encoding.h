@@ -41,36 +41,39 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int UTF8Toisolat1(unsigned char *, int *, const unsigned char *,
-			     int *);
-    extern int isolat1ToUTF8(unsigned char *, int *, const unsigned char *,
-			     int *);
-    extern int xmlAddEncodingAlias(const char *, const char *);
-    extern int xmlCharEncCloseFunc(xmlCharEncodingHandler *);
-    extern int xmlCharEncFirstLine(xmlCharEncodingHandler *, xmlBufferPtr,
-				   xmlBufferPtr);
-    extern int xmlCharEncInFunc(xmlCharEncodingHandler *, xmlBufferPtr,
-				xmlBufferPtr);
-    extern int xmlCharEncOutFunc(xmlCharEncodingHandler *, xmlBufferPtr,
-				 xmlBufferPtr);
+    extern int UTF8Toisolat1(unsigned char *out, int *outlen,
+			     const unsigned char *in, int *inlen);
+    extern int isolat1ToUTF8(unsigned char *out, int *outlen,
+			     const unsigned char *in, int *inlen);
+    extern int xmlAddEncodingAlias(const char *name, const char *alias);
+    extern int xmlCharEncCloseFunc(xmlCharEncodingHandler * handler);
+    extern int xmlCharEncFirstLine(xmlCharEncodingHandler * handler,
+				   xmlBufferPtr out, xmlBufferPtr in);
+    extern int xmlCharEncInFunc(xmlCharEncodingHandler * handler,
+				xmlBufferPtr out, xmlBufferPtr in);
+    extern int xmlCharEncOutFunc(xmlCharEncodingHandler * handler,
+				 xmlBufferPtr out, xmlBufferPtr in);
     extern void xmlCleanupCharEncodingHandlers(void);
     extern void xmlCleanupEncodingAliases(void);
-    extern int xmlDelEncodingAlias(const char *);
-    extern xmlCharEncoding xmlDetectCharEncoding(const unsigned char *,
-						 int);
+    extern int xmlDelEncodingAlias(const char *alias);
+    extern xmlCharEncoding xmlDetectCharEncoding(const unsigned char *in,
+						 int len);
     extern xmlCharEncodingHandlerPtr xmlFindCharEncodingHandler(const char
-								*);
+								*name);
     extern xmlCharEncodingHandlerPtr
-	xmlGetCharEncodingHandler(xmlCharEncoding);
-    extern const char *xmlGetCharEncodingName(xmlCharEncoding);
-    extern const char *xmlGetEncodingAlias(const char *);
+	xmlGetCharEncodingHandler(xmlCharEncoding enc);
+    extern const char *xmlGetCharEncodingName(xmlCharEncoding enc);
+    extern const char *xmlGetEncodingAlias(const char *alias);
     extern void xmlInitCharEncodingHandlers(void);
     extern xmlCharEncodingHandlerPtr xmlNewCharEncodingHandler(const char
-							       *,
-							       xmlCharEncodingInputFunc,
-							       xmlCharEncodingOutputFunc);
-    extern xmlCharEncoding xmlParseCharEncoding(const char *);
-    extern void xmlRegisterCharEncodingHandler(xmlCharEncodingHandlerPtr);
+							       *name,
+							       xmlCharEncodingInputFunc
+							       input,
+							       xmlCharEncodingOutputFunc
+							       output);
+    extern xmlCharEncoding xmlParseCharEncoding(const char *name);
+    extern void xmlRegisterCharEncodingHandler(xmlCharEncodingHandlerPtr
+					       handler);
 #ifdef __cplusplus
 }
 #endif

@@ -10,8 +10,9 @@
 #include <X11/IntrinsicP.h>
 #include <X11/CompositeP.h>
 #include <X11/TranslateI.h>
-#include <X11/EventI.h>
 #include <X11/CoreP.h>
+#include <X11/ShellP.h>
+#include <X11/RectObjP.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,11 +58,9 @@ extern "C" {
 	ConstraintClassPart constraint_class;
     };
 
-
     struct _ConstraintPart {
 	XtPointer mumble;	/* No new fields, keep C compiler happy */
     };
-
 
     struct _ConstraintRec {
 	CorePart core;

@@ -791,7 +791,6 @@ extern "C" {
 	XML_I18N_NO_OUTPUT
     } xmlParserErrors;
 
-
     struct _xmlParserInputBuffer {
 	void *context;
 	xmlInputReadCallback readcallback;
@@ -803,7 +802,6 @@ extern "C" {
 	int error;
 	long unsigned int rawconsumed;
     };
-
 
     struct _xmlParserInput {
 	xmlParserInputBufferPtr buf;
@@ -822,7 +820,6 @@ extern "C" {
 	int standalone;
 	int id;
     };
-
 
     struct _xmlError {
 	int domain;
@@ -843,21 +840,23 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void initGenericErrorDefaultFunc(xmlGenericErrorFunc *);
-    extern int xmlCopyError(xmlErrorPtr, xmlErrorPtr);
-    extern xmlErrorPtr xmlCtxtGetLastError(void *);
-    extern void xmlCtxtResetLastError(void *);
+    extern void initGenericErrorDefaultFunc(xmlGenericErrorFunc * handler);
+    extern int xmlCopyError(xmlErrorPtr from, xmlErrorPtr to);
+    extern xmlErrorPtr xmlCtxtGetLastError(void *ctx);
+    extern void xmlCtxtResetLastError(void *ctx);
     extern xmlErrorPtr xmlGetLastError(void);
-    extern void xmlParserError(void *, const char *, ...);
-    extern void xmlParserPrintFileContext(xmlParserInputPtr);
-    extern void xmlParserPrintFileInfo(xmlParserInputPtr);
-    extern void xmlParserValidityError(void *, const char *, ...);
-    extern void xmlParserValidityWarning(void *, const char *, ...);
-    extern void xmlParserWarning(void *, const char *, ...);
-    extern void xmlResetError(xmlErrorPtr);
+    extern void xmlParserError(void *ctx, const char *msg, ...);
+    extern void xmlParserPrintFileContext(xmlParserInputPtr input);
+    extern void xmlParserPrintFileInfo(xmlParserInputPtr input);
+    extern void xmlParserValidityError(void *ctx, const char *msg, ...);
+    extern void xmlParserValidityWarning(void *ctx, const char *msg, ...);
+    extern void xmlParserWarning(void *ctx, const char *msg, ...);
+    extern void xmlResetError(xmlErrorPtr err);
     extern void xmlResetLastError(void);
-    extern void xmlSetGenericErrorFunc(void *, xmlGenericErrorFunc);
-    extern void xmlSetStructuredErrorFunc(void *, xmlStructuredErrorFunc);
+    extern void xmlSetGenericErrorFunc(void *ctx,
+				       xmlGenericErrorFunc handler);
+    extern void xmlSetStructuredErrorFunc(void *ctx,
+					  xmlStructuredErrorFunc handler);
 #ifdef __cplusplus
 }
 #endif

@@ -1,7 +1,9 @@
 
 #define MSG_NOERROR	010000
 
-extern int msgctl(int, int, struct msqid_ds *);
-extern int msgget(key_t, int);
-extern ssize_t msgrcv(int, void *, size_t, long int, int);
-extern int msgsnd(int, const void *, size_t, int);
+extern int msgctl(int __msqid, int __cmd, struct msqid_ds *__buf);
+extern int msgget(key_t __key, int __msgflg);
+extern ssize_t msgrcv(int __msqid, void *__msgp, size_t __msgsz,
+		      long int __msgtyp, int __msgflg);
+extern int msgsnd(int __msqid, const void *__msgp, size_t __msgsz,
+		  int __msgflg);

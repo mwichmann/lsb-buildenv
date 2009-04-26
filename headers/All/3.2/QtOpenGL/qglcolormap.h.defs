@@ -1,3 +1,3 @@
 
 class QGLColormap;
-struct _ZN11QGLColormap15QGLColormapDataE;
+struct QGLColormap::QGLColormapData;

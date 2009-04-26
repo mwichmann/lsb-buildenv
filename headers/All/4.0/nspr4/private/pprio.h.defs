@@ -1,3 +1,5 @@
 
+#define pprio_h___
+
 typedef PRInt32 PROsfd;
-extern PRFileDesc *PR_ImportTCPSocket(PROsfd);
+extern PRFileDesc *PR_ImportTCPSocket(PROsfd osfd);

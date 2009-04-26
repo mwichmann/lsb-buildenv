@@ -6,8 +6,7 @@
 typedef struct {
     unsigned long int mask;
     unsigned long int addr;
-} __attribute__ ((aligned(8)))
-    _psw_t;
+} __attribute__ ((aligned(8))) _psw_t;
 typedef struct {
     _psw_t psw;
     unsigned long int gprs[16];

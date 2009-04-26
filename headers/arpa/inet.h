@@ -24,18 +24,20 @@ extern "C" {
 
     extern uint32_t htonl(uint32_t);
     extern uint16_t htons(uint16_t);
-    extern in_addr_t inet_addr(const char *);
-    extern char *inet_ntoa(struct in_addr);
+    extern in_addr_t inet_addr(const char *__cp);
+    extern char *inet_ntoa(struct in_addr __in);
     extern uint32_t ntohl(uint32_t);
     extern uint16_t ntohs(uint16_t);
 #if __LSB_VERSION__ >= 13
-    extern const char *inet_ntop(int, const void *, char *, socklen_t);
-    extern int inet_pton(int, const char *, void *);
+    extern const char *inet_ntop(int __af, const void *__cp, char *__buf,
+				 socklen_t __len);
+    extern int inet_pton(int __af, const char *__cp, void *__buf);
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 32
-    extern int inet_aton(const char *,
-			 struct in_addr *) LSB_DECL_DEPRECATED;
+    /* This interface is deprecated. Use inet_pton instead */
+    extern int inet_aton(const char *__cp,
+			 struct in_addr *__inp) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

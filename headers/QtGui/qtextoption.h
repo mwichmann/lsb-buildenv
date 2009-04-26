@@ -5,27 +5,12 @@
 class QTextOption;
 // *INDENT-OFF*
 
-typedef class QFlags<QTextOption::Flag>
-{
-private:
-public:
-}Flags	
+typedef class QFlags<QTextOption::Flag>QTextOption::Flags	
 ;
 
-class QTextOption
-{
-private:
-public:
-     QTextOption();
-     QTextOption(QFlags<Qt::AlignmentFlag>);
-     ~QTextOption();
-     QTextOption(QTextOption const&);
-     operator=(QTextOption const&);
-    void setTabArray(QList<double>);
-    QList<double> tabArray() const;
-};
+class QTextOption;
 
-enum WrapMode	
+enum _ZN11QTextOption8WrapModeE	
 {
 NoWrap = 0,	
 WordWrap = 1,	
@@ -35,17 +20,13 @@ WrapAtWordBoundaryOrAnywhere = 4
 }
 ;
 
-enum Flag	
+enum _ZN11QTextOption4FlagE	
 {
 IncludeTrailingSpaces = -2147483648
 }
 ;
 
-class QFlags<QTextOption::Flag>
-{
-private:
-public:
-};
+class QFlags<QTextOption::Flag>;
 
 // *INDENT-ON*
 #endif				/* protection */

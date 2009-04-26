@@ -5,74 +5,34 @@
 class QList < QModelIndex >;
 // *INDENT-OFF*
 
-class QList<QByteArray>
-{
-private:
-public:
-};
+class QList<QByteArray>;
 
-class QList<QFileInfo>
-{
-private:
-public:
-};
+class QList<QFileInfo>;
 
-class QList<QVariant>
-{
-private:
-public:
-};
+class QList<QVariant>;
 
-class QList<QUrl>
-{
-private:
-public:
-};
+class QList<QUrl>;
 
-class QList<QModelIndex>
-{
-private:
-public:
-};
+class QList<QModelIndex>;
 
-class QList<QHostAddress>
-{
-private:
-public:
-};
+class QList<QHostAddress>;
 
-class QList<int>
-{
-private:
-public:
-};
+class QList<int>;
 
-class QList<QObject*>
-{
-private:
-public:
-};
+class QList<QObject*>;
 
-class QList<QWidget*>
-{
-private:
-public:
-};
+class QList<QWidget*>;
 
-class QList<QPair<QString, QString> >
-{
-private:
-public:
-};
+class QList<QPair<QString, QString> >;
 
 struct QListData	;
 
-struct Data	;
+struct QListData::Data	;
 
 
 /* Function prototypes */
 
-extern struct Data _ZN9QListData11shared_nullE ;
+extern struct QListData::Data _ZN9QListData11shared_nullE ;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

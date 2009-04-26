@@ -19,14 +19,13 @@ extern "C" {
     } xmlModuleOption;
 
 
-
-
 /* Function prototypes */
 
-    extern int xmlModuleClose(xmlModulePtr);
-    extern int xmlModuleFree(xmlModulePtr);
-    extern xmlModulePtr xmlModuleOpen(const char *, int);
-    extern int xmlModuleSymbol(xmlModulePtr, const char *, void **);
+    extern int xmlModuleClose(xmlModulePtr module);
+    extern int xmlModuleFree(xmlModulePtr module);
+    extern xmlModulePtr xmlModuleOpen(const char *filename, int options);
+    extern int xmlModuleSymbol(xmlModulePtr module, const char *name,
+			       void **result);
 #ifdef __cplusplus
 }
 #endif

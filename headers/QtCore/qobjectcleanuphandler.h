@@ -5,20 +5,7 @@
 class QObjectCleanupHandler;
 // *INDENT-OFF*
 
-class QObjectCleanupHandler : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QObjectCleanupHandler();
-     ~QObjectCleanupHandler();
-    QObject * add(QObject*);
-    void remove(QObject*);
-    bool isEmpty() const;
-    void clear();
-};
+class QObjectCleanupHandler;
 
 
 /* Function prototypes */

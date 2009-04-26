@@ -239,14 +239,15 @@ extern "C" {
 
     extern void endutent(void);
     extern struct utmp *getutent(void);
-    extern void login(const struct utmp *);
-    extern int login_tty(int);
-    extern int logout(const char *);
-    extern void logwtmp(const char *, const char *, const char *);
+    extern void login(const struct utmp *__entry);
+    extern int login_tty(int __fd);
+    extern int logout(const char *__ut_line);
+    extern void logwtmp(const char *__ut_line, const char *__ut_name,
+			const char *__ut_host);
     extern void setutent(void);
-    extern int getutent_r(struct utmp *, struct utmp **);
+    extern int getutent_r(struct utmp *__buffer, struct utmp **__result);
 #if __LSB_VERSION__ >= 30
-    extern int utmpname(const char *);
+    extern int utmpname(const char *__file);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus

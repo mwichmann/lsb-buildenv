@@ -11,8 +11,8 @@
 #define POLLWRBAND	0x0200	/* Priority data may be written */
 
 struct pollfd {
-    int fd;
-    short events;
-    short revents;
+    int fd;			/* File descriptor to poll. */
+    short events;		/* Types of events poller cares about. */
+    short revents;		/* Types of events that actually occurred. */
 };
 typedef unsigned long int nfds_t;

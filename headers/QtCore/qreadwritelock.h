@@ -8,30 +8,11 @@ class QReadLocker;
 typedef enum QtValidLicenseForCoreModule	QtCoreModule	
 ;
 
-class QReadWriteLock
-{
-private:
-public:
-     QReadWriteLock();
-     ~QReadWriteLock();
-    void lockForRead();
-    bool tryLockForRead();
-    void lockForWrite();
-    bool tryLockForWrite();
-    void unlock();
-};
+class QReadWriteLock;
 
-class QReadLocker
-{
-private:
-public:
-};
+class QReadLocker;
 
-class QWriteLocker
-{
-private:
-public:
-};
+class QWriteLocker;
 
 // *INDENT-ON*
 #endif				/* protection */

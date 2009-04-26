@@ -30,22 +30,24 @@ extern "C" {
 
     extern void endpwent(void);
     extern struct passwd *getpwent(void);
-    extern struct passwd *getpwnam(const char *);
-    extern struct passwd *getpwuid(uid_t);
+    extern struct passwd *getpwnam(const char *__name);
+    extern struct passwd *getpwuid(uid_t __uid);
     extern void setpwent(void);
 #if __LSB_VERSION__ >= 11
-    extern int getpwuid_r(uid_t, struct passwd *, char *, size_t,
-			  struct passwd **);
+    extern int getpwuid_r(uid_t __uid, struct passwd *__resultbuf,
+			  char *__buffer, size_t __buflen,
+			  struct passwd **__result);
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 12
-    extern int getpwnam_r(const char *, struct passwd *, char *, size_t,
-			  struct passwd **);
+    extern int getpwnam_r(const char *__name, struct passwd *__resultbuf,
+			  char *__buffer, size_t __buflen,
+			  struct passwd **__result);
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 40
-    extern int getpwent_r(struct passwd *, char *, size_t,
-			  struct passwd **);
+    extern int getpwent_r(struct passwd *__resultbuf, char *__buffer,
+			  size_t __buflen, struct passwd **__result);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

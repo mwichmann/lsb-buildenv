@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define prtime_h___
+
+
     typedef PRInt64 PRTime;
 
 

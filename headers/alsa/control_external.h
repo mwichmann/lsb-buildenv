@@ -22,7 +22,6 @@ extern "C" {
 
     typedef struct snd_ctl_ext snd_ctl_ext_t;
 
-
     struct snd_ctl_ext_callback {
 	void (*close) (void);
 	int (*elem_count) (void);
@@ -50,7 +49,6 @@ extern "C" {
 	int (*poll_descriptors) (void);
 	int (*poll_revents) (void);
     };
-
 
     struct snd_ctl_ext {
 	unsigned int version;

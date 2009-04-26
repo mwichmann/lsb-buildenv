@@ -131,9 +131,9 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int semctl(int, int, int, ...);
-    extern int semget(key_t, int, int);
-    extern int semop(int, struct sembuf *, size_t);
+    extern int semctl(int __semid, int __semnum, int __cmd, ...);
+    extern int semget(key_t __key, int __nsems, int __semflg);
+    extern int semop(int __semid, struct sembuf *__sops, size_t __nsops);
 #ifdef __cplusplus
 }
 #endif

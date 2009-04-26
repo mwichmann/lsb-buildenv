@@ -6,13 +6,13 @@
 
 typedef int (*__compar_fn_t) (const void *, const void *);
 struct random_data {
-    int32_t *fptr;
-    int32_t *rptr;
-    int32_t *state;
-    int rand_type;
-    int rand_deg;
-    int rand_sep;
-    int32_t *end_ptr;
+    int32_t *fptr;		/* Front pointer. */
+    int32_t *rptr;		/* Rear pointer. */
+    int32_t *state;		/* Array of state values. */
+    int rand_type;		/* Type of random number generator. */
+    int rand_deg;		/* Degree of random number generator. */
+    int rand_sep;		/* Distance between front and rear. */
+    int32_t *end_ptr;		/* Pointer behind state table. */
 };
 
 typedef struct {
@@ -29,6 +29,8 @@ typedef struct {
     long long int quot;
     long long int rem;
 } lldiv_t;
+extern void _Exit(int __status);
+extern size_t __ctype_get_mb_cur_max(void);
 extern double __strtod_internal(const char *, char **, int);
 extern float __strtof_internal(const char *, char **, int);
 extern long int __strtol_internal(const char *, char **, int, int);
@@ -38,75 +40,82 @@ extern unsigned long int __strtoul_internal(const char *, char **, int,
 					    int);
 extern unsigned long long int __strtoull_internal(const char *, char **,
 						  int, int);
-extern long int a64l(const char *);
+extern long int a64l(const char *__s);
 extern void abort(void);
-extern int abs(int);
-extern double atof(const char *);
-extern int atoi(const char *);
-extern long int atol(const char *);
-extern long long int atoll(const char *);
-extern void *bsearch(const void *, const void *, size_t, size_t,
-		     __compar_fn_t);
-extern div_t div(int, int);
+extern int abs(int __x);
+extern double atof(const char *__nptr);
+extern int atoi(const char *__nptr);
+extern long int atol(const char *__nptr);
+extern long long int atoll(const char *__nptr);
+extern void *bsearch(const void *__key, const void *__base, size_t __nmemb,
+		     size_t __size, __compar_fn_t __compar);
+extern void *calloc(size_t __nmemb, size_t __size);
+extern div_t div(int __numer, int __denom);
 extern double drand48(void);
-extern char *ecvt(double, int, int *, int *);
-extern double erand48(unsigned short[3]);
-extern void exit(int);
-extern char *fcvt(double, int, int *, int *);
-extern char *gcvt(double, int, char *);
-extern char *getenv(const char *);
-extern int getsubopt(char **, char *const *, char **);
-extern int grantpt(int);
-extern long int jrand48(unsigned short[3]);
-extern char *l64a(long int);
-extern long int labs(long int);
-extern void lcong48(unsigned short[7]);
-extern ldiv_t ldiv(long int, long int);
-extern long long int llabs(long long int);
-extern lldiv_t lldiv(long long int, long long int);
-extern long int lrand48(void);
-extern int mblen(const char *, size_t);
-extern size_t mbstowcs(wchar_t *, const char *, size_t);
-extern int mbtowc(wchar_t *, const char *, size_t);
-extern char *mktemp(char *);
-extern long int mrand48(void);
-extern long int nrand48(unsigned short[3]);
-extern char *ptsname(int);
-extern int putenv(char *);
-extern void qsort(void *, size_t, size_t, const __compar_fn_t);
-extern int rand(void);
-extern int rand_r(unsigned int *);
-extern unsigned short *seed48(unsigned short[3]);
-extern void srand48(long int);
-extern int unlockpt(int);
-extern size_t wcstombs(char *, const wchar_t *, size_t);
-extern int wctomb(char *, wchar_t);
-extern int system(const char *);
-extern void *calloc(size_t, size_t);
-extern void free(void *);
-extern char *initstate(unsigned int, char *, size_t);
-extern void *malloc(size_t);
-extern long int random(void);
-extern void *realloc(void *, size_t);
-extern char *setstate(char *);
-extern void srand(unsigned int);
-extern void srandom(unsigned int);
-extern double strtod(const char *, char **);
-extern float strtof(const char *, char **);
-extern long int strtol(const char *, char **, int);
-extern long double strtold(const char *, char **);
-extern long long int strtoll(const char *, char **, int);
-extern long long int strtoq(const char *, char **, int);
-extern unsigned long int strtoul(const char *, char **, int);
-extern unsigned long long int strtoull(const char *, char **, int);
-extern unsigned long long int strtouq(const char *, char **, int);
-extern void _Exit(int);
-extern size_t __ctype_get_mb_cur_max(void);
+extern char *ecvt(double __value, int __ndigit, int *__decpt, int *__sign);
 extern char **environ;
-extern char *realpath(const char *, char *);
-extern int setenv(const char *, const char *, int);
-extern int unsetenv(const char *);
-extern int getloadavg(double[], int);
-extern int mkstemp64(char *);
-extern int posix_memalign(void **, size_t, size_t);
-extern int posix_openpt(int);
+extern double erand48(unsigned short __xsubi[3]);
+extern void exit(int __status);
+extern char *fcvt(double __value, int __ndigit, int *__decpt, int *__sign);
+extern void free(void *__ptr);
+extern char *gcvt(double __value, int __ndigit, char *__buf);
+extern char *getenv(const char *__name);
+extern int getloadavg(double __loadavg[], int __nelem);
+extern int getsubopt(char **__optionp, char *const *__tokens,
+		     char **__valuep);
+extern int grantpt(int __fd);
+extern char *initstate(unsigned int __seed, char *__statebuf,
+		       size_t __statelen);
+extern long int jrand48(unsigned short __xsubi[3]);
+extern char *l64a(long int __n);
+extern long int labs(long int __x);
+extern void lcong48(unsigned short __param[7]);
+extern ldiv_t ldiv(long int __numer, long int __denom);
+extern long long int llabs(long long int __x);
+extern lldiv_t lldiv(long long int __numer, long long int __denom);
+extern long int lrand48(void);
+extern void *malloc(size_t __size);
+extern int mblen(const char *__s, size_t __n);
+extern size_t mbstowcs(wchar_t * __pwcs, const char *__s, size_t __n);
+extern int mbtowc(wchar_t * __pwc, const char *__s, size_t __n);
+extern int mkstemp64(char *__template);
+extern char *mktemp(char *__template);
+extern long int mrand48(void);
+extern long int nrand48(unsigned short __xsubi[3]);
+extern int posix_memalign(void **__memptr, size_t __alignment,
+			  size_t __size);
+extern int posix_openpt(int __oflag);
+extern char *ptsname(int __fd);
+extern int putenv(char *__string);
+extern void qsort(void *__base, size_t __nmemb, size_t __size,
+		  const __compar_fn_t __compar);
+extern int rand(void);
+extern int rand_r(unsigned int *__seed);
+extern long int random(void);
+extern void *realloc(void *__ptr, size_t __size);
+extern char *realpath(const char *__name, char *__resolved);
+extern unsigned short *seed48(unsigned short __seed16v[3]);
+extern int setenv(const char *__name, const char *__value, int __replace);
+extern char *setstate(char *__statebuf);
+extern void srand(unsigned int __seed);
+extern void srand48(long int __seedval);
+extern void srandom(unsigned int __seed);
+extern double strtod(const char *__nptr, char **__endptr);
+extern float strtof(const char *__nptr, char **__endptr);
+extern long int strtol(const char *__nptr, char **__endptr, int __base);
+extern long double strtold(const char *__nptr, char **__endptr);
+extern long long int strtoll(const char *__nptr, char **__endptr,
+			     int __base);
+extern long long int strtoq(const char *__nptr, char **__endptr,
+			    int __base);
+extern unsigned long int strtoul(const char *__nptr, char **__endptr,
+				 int __base);
+extern unsigned long long int strtoull(const char *__nptr, char **__endptr,
+				       int __base);
+extern unsigned long long int strtouq(const char *__nptr, char **__endptr,
+				      int __base);
+extern int system(const char *__command);
+extern int unlockpt(int __fd);
+extern int unsetenv(const char *__name);
+extern size_t wcstombs(char *__s, const wchar_t * __pwcs, size_t __n);
+extern int wctomb(char *__s, wchar_t __wchar);

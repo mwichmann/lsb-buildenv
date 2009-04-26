@@ -50,7 +50,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 13
-
     struct SVCXPRT {
 	int xp_sock;
 	u_short xp_port;
@@ -102,21 +101,26 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void svc_getreqset(fd_set *);
-    extern void svcerr_auth(SVCXPRT *, enum auth_stat);
-    extern void svcerr_decode(SVCXPRT *);
-    extern void svcerr_noproc(SVCXPRT *);
-    extern void svcerr_noprog(SVCXPRT *);
-    extern void svcerr_progvers(SVCXPRT *, rpcvers_t, rpcvers_t);
-    extern void svcerr_systemerr(SVCXPRT *);
-    extern void svcerr_weakauth(SVCXPRT *);
+    extern void svc_getreqset(fd_set * __readfds);
+    extern void svcerr_auth(SVCXPRT * __xprt, enum auth_stat __why);
+    extern void svcerr_decode(SVCXPRT * __xprt);
+    extern void svcerr_noproc(SVCXPRT * __xprt);
+    extern void svcerr_noprog(SVCXPRT * __xprt);
+    extern void svcerr_progvers(SVCXPRT * __xprt, rpcvers_t __low_vers,
+				rpcvers_t __high_vers);
+    extern void svcerr_systemerr(SVCXPRT * __xprt);
+    extern void svcerr_weakauth(SVCXPRT * __xprt);
 #if __LSB_VERSION__ >= 20
-    extern bool_t svc_register(SVCXPRT *, rpcprog_t, rpcvers_t,
-			       __dispatch_fn_t, rpcprot_t);
+    extern bool_t svc_register(SVCXPRT * __xprt, rpcprog_t __prog,
+			       rpcvers_t __vers,
+			       __dispatch_fn_t __dispatch,
+			       rpcprot_t __protocol);
     extern void svc_run(void);
-    extern bool_t svc_sendreply(SVCXPRT *, xdrproc_t, caddr_t);
-    extern SVCXPRT *svctcp_create(int, u_int, u_int);
-    extern SVCXPRT *svcudp_create(int);
+    extern bool_t svc_sendreply(SVCXPRT * xprt, xdrproc_t __xdr_results,
+				caddr_t __xdr_location);
+    extern SVCXPRT *svctcp_create(int __sock, u_int __sendsize,
+				  u_int __recvsize);
+    extern SVCXPRT *svcudp_create(int __sock);
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 40

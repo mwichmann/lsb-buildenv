@@ -19,6 +19,9 @@ extern "C" {
 #endif
 
 
+#define nspr_h___
+
+
 #ifdef __cplusplus
 }
 #endif

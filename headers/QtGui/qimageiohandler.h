@@ -5,39 +5,12 @@
 class QFlags < QImageIOPlugin::Capability >;
 // *INDENT-OFF*
 
-typedef class QFlags<QImageIOPlugin::Capability>
-{
-private:
-public:
-}Capabilities	
+typedef class QFlags<QImageIOPlugin::Capability>QImageIOPlugin::Capabilities	
 ;
 
-class QImageIOHandler
-{
-private:
-public:
-     QImageIOHandler();
-     ~QImageIOHandler();
-    void setDevice(QIODevice*);
-    QIODevice * device() const;
-    void setFormat(QByteArray const&);
-    void setFormat(QByteArray const&) const;
-    QByteArray format() const;
-    QByteArray name() const;
-    bool write(QImage const&);
-    QVariant option(QImageIOHandler::ImageOption) const;
-    void setOption(QImageIOHandler::ImageOption, QVariant const&);
-    bool supportsOption(QImageIOHandler::ImageOption) const;
-    bool jumpToNextImage();
-    bool jumpToImage(int);
-    int loopCount() const;
-    int imageCount() const;
-    int nextImageDelay() const;
-    int currentImageNumber() const;
-    QRect currentImageRect() const;
-};
+class QImageIOHandler;
 
-enum ImageOption	
+enum _ZN15QImageIOHandler11ImageOptionE	
 {
 Size = 0,	
 ClipRect = 1,	
@@ -58,18 +31,9 @@ BackgroundColor = 13
 
 struct QImageIOHandlerFactoryInterface	;
 
-class QImageIOPlugin : public QImageIOHandlerFactoryInterface, public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QImageIOPlugin(QObject*);
-     ~QImageIOPlugin();
-};
+class QImageIOPlugin;
 
-enum Capability	
+enum _ZN14QImageIOPlugin10CapabilityE	
 {
 CanRead = 1,	
 CanWrite = 2,	
@@ -77,11 +41,7 @@ CanReadIncremental = 4
 }
 ;
 
-class QFlags<QImageIOPlugin::Capability>
-{
-private:
-public:
-};
+class QFlags<QImageIOPlugin::Capability>;
 
 
 /* Function prototypes */

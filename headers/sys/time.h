@@ -61,12 +61,15 @@ the second and third arguments `setitimer'.*/
 
 /* Function prototypes */
 
-    extern int adjtime(const struct timeval *, struct timeval *);
-    extern int getitimer(__itimer_which_t, struct itimerval *);
-    extern int gettimeofday(struct timeval *, struct timezone *);
-    extern int setitimer(__itimer_which_t, const struct itimerval *,
-			 struct itimerval *);
-    extern int utimes(const char *, const struct timeval *);
+    extern int adjtime(const struct timeval *__delta,
+		       struct timeval *__olddelta);
+    extern int getitimer(__itimer_which_t __which,
+			 struct itimerval *__value);
+    extern int gettimeofday(struct timeval *__tv, struct timezone *__tz);
+    extern int setitimer(__itimer_which_t __which,
+			 const struct itimerval *__new,
+			 struct itimerval *__old);
+    extern int utimes(const char *__file, const struct timeval *__tvp);
 #ifdef __cplusplus
 }
 #endif

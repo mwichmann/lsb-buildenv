@@ -81,10 +81,14 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int ftw(const char *, __ftw_func_t, int);
-    extern int ftw64(const char *, __ftw64_func_t, int);
-    extern int nftw(const char *, __nftw_func_t, int, int);
-    extern int nftw64(const char *, __nftw64_func_t, int, int);
+    extern int ftw(const char *__dir, __ftw_func_t __func,
+		   int __descriptors);
+    extern int ftw64(const char *__dir, __ftw64_func_t __func,
+		     int __descriptors);
+    extern int nftw(const char *__dir, __nftw_func_t __func,
+		    int __descriptors, int __flag);
+    extern int nftw64(const char *__dir, __nftw64_func_t __func,
+		      int __descriptors, int __flag);
 #ifdef __cplusplus
 }
 #endif

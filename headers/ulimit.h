@@ -18,7 +18,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern long int ulimit(int, ...);
+    extern long int ulimit(int __cmd, ...);
 #ifdef __cplusplus
 }
 #endif

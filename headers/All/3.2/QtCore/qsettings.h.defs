@@ -32,9 +32,9 @@ enum _ZN9QSettings5ScopeE {
     SystemScope = 1,
     Global = 1
 };
-typedef class QMap < QString, QVariant > _ZN9QSettings11SettingsMapE;
-typedef bool _ZN9QSettings8ReadFuncE;
-typedef bool _ZN9QSettings9WriteFuncE;
+typedef class QMap < QString, QVariant > QSettings::SettingsMap;
+typedef bool QSettings::ReadFunc;
+typedef bool QSettings::WriteFunc;
 enum _ZN9QSettings6SystemE {
     Unix = 0,
     Windows = 1,

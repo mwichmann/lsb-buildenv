@@ -16,10 +16,12 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern u_short pmap_getport(struct sockaddr_in *, const u_long,
-				const u_long, u_int);
-    extern bool_t pmap_set(const u_long, const u_long, int, u_short);
-    extern bool_t pmap_unset(u_long, u_long);
+    extern u_short pmap_getport(struct sockaddr_in *__address,
+				const u_long __program,
+				const u_long __version, u_int __protocol);
+    extern bool_t pmap_set(const u_long __program, const u_long __vers,
+			   int __protocol, u_short __port);
+    extern bool_t pmap_unset(u_long __program, u_long __vers);
 #ifdef __cplusplus
 }
 #endif

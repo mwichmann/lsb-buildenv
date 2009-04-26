@@ -11,12 +11,8 @@ extern "C" {
 #if __LSB_VERSION__ < 40
 #define SND_SEQ_INSTR_ID_DLS1	"DLS1"
 #define SND_SEQ_INSTR_ID_DLS2	"DLS2"
-#define SND_SEQ_INSTR_ID_GUS_PATCH	"GUS Patch"
-#define SND_SEQ_INSTR_ID_INTERWAVE	"Interwave FFFF"
 #define SND_SEQ_INSTR_ID_OPL2_3	"OPL2/3 FM"
 #define SND_SEQ_INSTR_ID_OPL4	"OPL4"
-#define SND_SEQ_INSTR_ID_SIMPLE	"Simple Wave"
-#define SND_SEQ_INSTR_ID_SOUNDFONT	"SoundFont"
 #define SND_SEQ_INSTR_QUERY_FOLLOW_ALIAS	(1<<0)
 #define SND_SEQ_INSTR_TYPE0_DLS1	(1<<0)
 #define SND_SEQ_INSTR_TYPE1_SIMPLE	(1<<0)
@@ -39,6 +35,10 @@ extern "C" {
 #define SND_SEQ_INSTR_FREE_CMD_SINGLE	3
 #define SND_SEQ_INSTR_PUT_CMD_ADD	3
 #define SND_SEQ_INSTR_PUT_CMD_REMOVE	4
+#define SND_SEQ_INSTR_ID_GUS_PATCH	"GUS Patch"
+#define SND_SEQ_INSTR_ID_INTERWAVE	"Interwave FFFF"
+#define SND_SEQ_INSTR_ID_SIMPLE	"Simple Wave"
+#define SND_SEQ_INSTR_ID_SOUNDFONT	"SoundFont"
 #endif				/* __LSB_VERSION__ < 4.0 */
 
 

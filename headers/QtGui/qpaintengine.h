@@ -5,40 +5,18 @@
 class QPaintEngine;
 // *INDENT-OFF*
 
-typedef class QFlags<QTextItem::RenderFlag>
-{
-private:
-public:
-}RenderFlags	
+typedef class QFlags<QTextItem::RenderFlag>QTextItem::RenderFlags	
 ;
 
-typedef class QFlags<QPaintEngine::PaintEngineFeature>
-{
-private:
-public:
-}PaintEngineFeatures	
+typedef class QFlags<QPaintEngine::PaintEngineFeature>QPaintEngine::PaintEngineFeatures	
 ;
 
-typedef class QFlags<QPaintEngine::DirtyFlag>
-{
-private:
-public:
-}DirtyFlags	
+typedef class QFlags<QPaintEngine::DirtyFlag>QPaintEngine::DirtyFlags	
 ;
 
-class QTextItem
-{
-private:
-public:
-    qreal descent() const;
-    qreal ascent() const;
-    qreal width() const;
-    QFlags<QTextItem::RenderFlag> renderFlags() const;
-    QString text() const;
-    QFont font() const;
-};
+class QTextItem;
 
-enum RenderFlag	
+enum _ZN9QTextItem10RenderFlagE	
 {
 Dummy = -1,	
 RightToLeft = 1,	
@@ -48,43 +26,11 @@ StrikeOut = 64
 }
 ;
 
-class QFlags<QTextItem::RenderFlag>
-{
-private:
-public:
-};
+class QFlags<QTextItem::RenderFlag>;
 
-class QPaintEngine
-{
-private:
-public:
-     QPaintEngine(QFlags<QPaintEngine::PaintEngineFeature>);
-     ~QPaintEngine();
-    void drawRects(QRect const*, int);
-    void drawRects(QRectF const*, int);
-    void drawLines(QLine const*, int);
-    void drawLines(QLineF const*, int);
-    void drawEllipse(QRectF const&);
-    void drawEllipse(QRect const&);
-    void drawPath(QPainterPath const&);
-    void drawPoints(QPointF const*, int);
-    void drawPoints(QPoint const*, int);
-    void drawPolygon(QPointF const*, int, QPaintEngine::PolygonDrawMode);
-    void drawPolygon(QPoint const*, int, QPaintEngine::PolygonDrawMode);
-    void drawTextItem(QPointF const&, QTextItem const&);
-    void drawTiledPixmap(QRectF const&, QPixmap const&, QPointF const&);
-    void drawImage(QRectF const&, QImage const&, QRectF const&, QFlags<Qt::ImageConversionFlag>);
-    void setPaintDevice(QPaintDevice*);
-    QPaintDevice * paintDevice() const;
-    void setSystemClip(QRegion const&);
-    QRegion systemClip() const;
-    void setSystemRect(QRect const&);
-    QRect systemRect() const;
-    QPoint coordinateOffset() const;
-    QPainter * painter() const;
-};
+class QPaintEngine;
 
-enum PaintEngineFeature	
+enum _ZN12QPaintEngine18PaintEngineFeatureE	
 {
 AllFeatures = -1,	
 PrimitiveTransform = 1,	
@@ -103,13 +49,9 @@ PaintOutsidePaintEvent = 536870912
 }
 ;
 
-class QFlags<QPaintEngine::PaintEngineFeature>
-{
-private:
-public:
-};
+class QFlags<QPaintEngine::PaintEngineFeature>;
 
-enum DirtyFlag	
+enum _ZN12QPaintEngine9DirtyFlagE	
 {
 DirtyPen = 1,	
 DirtyBrush = 2,	
@@ -127,13 +69,9 @@ AllDirty = 65535
 }
 ;
 
-class QFlags<QPaintEngine::DirtyFlag>
-{
-private:
-public:
-};
+class QFlags<QPaintEngine::DirtyFlag>;
 
-enum PolygonDrawMode	
+enum _ZN12QPaintEngine15PolygonDrawModeE	
 {
 OddEvenMode = 0,	
 WindingMode = 1,	
@@ -142,7 +80,7 @@ PolylineMode = 3
 }
 ;
 
-enum Type	
+enum _ZN12QPaintEngine4TypeE	
 {
 X11 = 0,	
 Windows = 1,	
@@ -160,26 +98,7 @@ MaxUser = 100
 }
 ;
 
-class QPaintEngineState
-{
-private:
-public:
-    QPen pen() const;
-    QBrush brush() const;
-    QPointF brushOrigin() const;
-    QBrush backgroundBrush() const;
-    enum _ZN2Qt6BGModeE backgroundMode() const;
-    QFont font() const;
-    QMatrix matrix() const;
-    enum _ZN2Qt13ClipOperationE clipOperation() const;
-    QRegion clipRegion() const;
-    QPainterPath clipPath() const;
-    bool isClipEnabled() const;
-    QFlags<QPainter::RenderHint> renderHints() const;
-    enum _ZN8QPainter15CompositionModeE compositionMode() const;
-    QPainter * painter() const;
-    qreal opacity() const;
-};
+class QPaintEngineState;
 
 // *INDENT-ON*
 #endif				/* protection */

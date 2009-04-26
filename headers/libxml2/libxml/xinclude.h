@@ -27,18 +27,17 @@ extern "C" {
     typedef xmlXIncludeCtxt *xmlXIncludeCtxtPtr;
 
 
-
-
 /* Function prototypes */
 
-    extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr);
-    extern xmlXIncludeCtxtPtr xmlXIncludeNewContext(xmlDocPtr);
-    extern int xmlXIncludeProcess(xmlDocPtr);
-    extern int xmlXIncludeProcessFlags(xmlDocPtr, int);
-    extern int xmlXIncludeProcessNode(xmlXIncludeCtxtPtr, xmlNodePtr);
-    extern int xmlXIncludeProcessTree(xmlNodePtr);
-    extern int xmlXIncludeProcessTreeFlags(xmlNodePtr, int);
-    extern int xmlXIncludeSetFlags(xmlXIncludeCtxtPtr, int);
+    extern void xmlXIncludeFreeContext(xmlXIncludeCtxtPtr ctxt);
+    extern xmlXIncludeCtxtPtr xmlXIncludeNewContext(xmlDocPtr doc);
+    extern int xmlXIncludeProcess(xmlDocPtr doc);
+    extern int xmlXIncludeProcessFlags(xmlDocPtr doc, int flags);
+    extern int xmlXIncludeProcessNode(xmlXIncludeCtxtPtr ctxt,
+				      xmlNodePtr tree);
+    extern int xmlXIncludeProcessTree(xmlNodePtr tree);
+    extern int xmlXIncludeProcessTreeFlags(xmlNodePtr tree, int flags);
+    extern int xmlXIncludeSetFlags(xmlXIncludeCtxtPtr ctxt, int flags);
 #ifdef __cplusplus
 }
 #endif

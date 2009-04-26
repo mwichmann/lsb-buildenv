@@ -2,4 +2,4 @@
 #define UL_GETFSIZE	1
 #define UL_SETFSIZE	2
 
-extern long int ulimit(int, ...);
+extern long int ulimit(int __cmd, ...);

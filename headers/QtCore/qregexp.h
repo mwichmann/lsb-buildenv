@@ -5,39 +5,9 @@
 class QRegExp;
 // *INDENT-OFF*
 
-class QRegExp
-{
-private:
-public:
-     QRegExp();
-     QRegExp(QString const&, Qt::CaseSensitivity, QRegExp::PatternSyntax);
-     QRegExp(QRegExp const&);
-     ~QRegExp();
-    QRegExp & operator=(QRegExp const&);
-    bool operator==(QRegExp const&) const;
-    bool isEmpty() const;
-    bool isValid() const;
-    QString pattern() const;
-    void setPattern(QString const&);
-    enum _ZN2Qt15CaseSensitivityE caseSensitivity() const;
-    void setCaseSensitivity(Qt::CaseSensitivity);
-    enum _ZN7QRegExp13PatternSyntaxE patternSyntax() const;
-    void setPatternSyntax(QRegExp::PatternSyntax);
-    bool isMinimal() const;
-    void setMinimal(bool);
-    bool exactMatch(QString const&) const;
-    int indexIn(QString const&, int, QRegExp::CaretMode) const;
-    int lastIndexIn(QString const&, int, QRegExp::CaretMode) const;
-    int matchedLength() const;
-    int numCaptures() const;
-    QStringList capturedTexts();
-    QString cap(int);
-    int pos(int);
-    QString errorString();
-    static QString escape(QString const&);
-};
+class QRegExp;
 
-enum PatternSyntax	
+enum _ZN7QRegExp13PatternSyntaxE	
 {
 RegExp = 0,	
 Wildcard = 1,	
@@ -45,7 +15,7 @@ FixedString = 2
 }
 ;
 
-enum CaretMode	
+enum _ZN7QRegExp9CaretModeE	
 {
 CaretAtZero = 0,	
 CaretAtOffset = 1,	

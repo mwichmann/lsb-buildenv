@@ -20,7 +20,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int ftime(struct timeb *);
+    extern int ftime(struct timeb *__timebuf);
 #ifdef __cplusplus
 }
 #endif

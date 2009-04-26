@@ -5,35 +5,9 @@
 class QSqlDriver;
 // *INDENT-OFF*
 
-class QSqlDriver : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QSqlDriver(QObject*);
-     ~QSqlDriver();
-    bool isOpen() const;
-    bool isOpenError() const;
-    bool beginTransaction();
-    bool commitTransaction();
-    bool rollbackTransaction();
-    QStringList tables(QSql::TableType) const;
-    QSqlIndex primaryIndex(QString const&) const;
-    QSqlRecord record(QString const&) const;
-    QString formatValue(QSqlField const&, bool) const;
-    QString escapeIdentifier(QString const&, QSqlDriver::IdentifierType) const;
-    QString sqlStatement(QSqlDriver::StatementType, QString const&, QSqlRecord const&, bool) const;
-    QSqlError lastError() const;
-    QVariant handle() const;
-protected:
-    void setOpen(bool);
-    void setOpenError(bool);
-    void setLastError(QSqlError const&);
-};
+class QSqlDriver;
 
-enum DriverFeature	
+enum _ZN10QSqlDriver13DriverFeatureE	
 {
 Transactions = 0,	
 QuerySize = 1,	
@@ -47,7 +21,7 @@ BatchOperations = 8
 }
 ;
 
-enum StatementType	
+enum _ZN10QSqlDriver13StatementTypeE	
 {
 WhereStatement = 0,	
 SelectStatement = 1,	
@@ -57,7 +31,7 @@ DeleteStatement = 4
 }
 ;
 
-enum IdentifierType	
+enum _ZN10QSqlDriver14IdentifierTypeE	
 {
 FieldName = 0,	
 TableName = 1

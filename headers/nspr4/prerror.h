@@ -9,13 +9,16 @@ extern "C" {
 #endif
 
 
+#define prerror_h___
+
+
     typedef PRInt32 PRErrorCode;
 
 
 /* Function prototypes */
 
     extern PRErrorCode PR_GetError(void);
-    extern void PR_SetError(PRErrorCode, PRInt32);
+    extern void PR_SetError(PRErrorCode errorCode, PRInt32 oserr);
 #ifdef __cplusplus
 }
 #endif

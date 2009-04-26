@@ -28,7 +28,7 @@ enum _ZN17QAbstractItemView11EditTriggerE {
 };
 class QFlags < QAbstractItemView::EditTrigger >;
 typedef class QFlags < QAbstractItemView::EditTrigger >
-    _ZN17QAbstractItemView12EditTriggersE;
+    QAbstractItemView::EditTriggers;
 enum _ZN17QAbstractItemView12CursorActionE {
     MoveUp = 0,
     MoveDown = 1,

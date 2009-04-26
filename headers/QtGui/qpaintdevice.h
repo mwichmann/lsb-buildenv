@@ -5,39 +5,9 @@
 class QPaintDevice;
 // *INDENT-OFF*
 
-class QPaintDevice
-{
-private:
-public:
-     ~QPaintDevice();
-     QPaintDevice();
-    Display * x11Display() const;
-    int x11Screen() const;
-    int x11Depth() const;
-    int x11Cells() const;
-     x11Colormap() const;
-    bool x11DefaultColormap() const;
-    void * x11Visual() const;
-    bool x11DefaultVisual() const;
-    Display * x11AppDisplay();
-    int x11AppScreen();
-    int x11AppDepth(int);
-    int x11AppCells(int);
-     x11AppRootWindow(int);
-     x11AppColormap(int);
-    void * x11AppVisual(int);
-    bool x11AppDefaultColormap(int);
-    bool x11AppDefaultVisual(int);
-    int x11AppDpiX(int);
-    int x11AppDpiY(int);
-    void x11SetAppDpiX(int, int);
-    void x11SetAppDpiY(int, int);
-    int devType() const;
-protected:
-    int metric(QPaintDevice::PaintDeviceMetric) const;
-};
+class QPaintDevice;
 
-enum PaintDeviceMetric	
+enum _ZN12QPaintDevice17PaintDeviceMetricE	
 {
 PdmWidth = 1,	
 PdmHeight = 2,	

@@ -75,78 +75,84 @@ typedef struct _xmlSAXHandlerV1 {
 typedef void (*xmlDeregisterNodeFunc) (xmlNodePtr);
 typedef struct _xmlGlobalState xmlGlobalState;
 typedef xmlGlobalState *xmlGlobalStatePtr;
-extern int *__xmlParserDebugEntities(void);
-extern int xmlThrDefDoValidityCheckingDefaultValue(int);
+extern xmlSAXHandlerV1 *__docbDefaultSAXHandler(void);
+extern xmlSAXHandlerV1 *__htmlDefaultSAXHandler(void);
+extern int *__oldXMLWDcompatibility(void);
+extern xmlBufferAllocationScheme *__xmlBufferAllocScheme(void);
+extern int *__xmlDefaultBufferSize(void);
+extern xmlSAXHandlerV1 *__xmlDefaultSAXHandler(void);
+extern xmlSAXLocator *__xmlDefaultSAXLocator(void);
+extern xmlDeregisterNodeFunc *__xmlDeregisterNodeDefaultValue(void);
+extern int *__xmlDoValidityCheckingDefaultValue(void);
+extern xmlGenericErrorFunc *__xmlGenericError(void);
+extern void **__xmlGenericErrorContext(void);
+extern int *__xmlGetWarningsDefaultValue(void);
+extern int *__xmlIndentTreeOutput(void);
+extern int *__xmlKeepBlanksDefaultValue(void);
+extern xmlError *__xmlLastError(void);
+extern int *__xmlLineNumbersDefaultValue(void);
+extern int *__xmlLoadExtDtdDefaultValue(void);
 extern xmlOutputBufferCreateFilenameFunc
     *__xmlOutputBufferCreateFilenameValue(void);
-extern xmlRegisterNodeFunc
-xmlThrDefRegisterNodeDefault(xmlRegisterNodeFunc);
-extern const char **__xmlTreeIndentString(void);
-extern xmlParserInputBufferCreateFilenameFunc
-xmlThrDefParserInputBufferCreateFilenameDefault
-(xmlParserInputBufferCreateFilenameFunc);
-extern xmlSAXLocator *__xmlDefaultSAXLocator(void);
+extern int *__xmlParserDebugEntities(void);
 extern xmlParserInputBufferCreateFilenameFunc
     *__xmlParserInputBufferCreateFilenameValue(void);
-extern xmlSAXHandlerV1 *__htmlDefaultSAXHandler(void);
+extern const char **__xmlParserVersion(void);
 extern int *__xmlPedanticParserDefaultValue(void);
-extern int xmlThrDefLineNumbersDefaultValue(int);
-extern int xmlThrDefIndentTreeOutput(int);
-extern xmlMallocFunc xmlMallocAtomic;
-extern xmlBufferAllocationScheme
-xmlThrDefBufferAllocScheme(xmlBufferAllocationScheme);
-extern xmlDeregisterNodeFunc *__xmlDeregisterNodeDefaultValue(void);
-extern int xmlThrDefDefaultBufferSize(int);
-extern int xmlThrDefKeepBlanksDefaultValue(int);
-extern int *__xmlKeepBlanksDefaultValue(void);
-extern void xmlThrDefSetStructuredErrorFunc(void *,
-					    xmlStructuredErrorFunc);
 extern xmlRegisterNodeFunc *__xmlRegisterNodeDefaultValue(void);
-extern int *__xmlDefaultBufferSize(void);
-extern xmlRegisterNodeFunc xmlRegisterNodeDefault(xmlRegisterNodeFunc);
-extern void xmlInitGlobals(void);
-extern xmlSAXHandlerV1 *__docbDefaultSAXHandler(void);
-extern xmlBufferAllocationScheme *__xmlBufferAllocScheme(void);
-extern int xmlThrDefPedanticParserDefaultValue(int);
+extern int *__xmlSaveNoEmptyTags(void);
 extern xmlStructuredErrorFunc *__xmlStructuredError(void);
-extern void xmlThrDefSetGenericErrorFunc(void *, xmlGenericErrorFunc);
+extern int *__xmlSubstituteEntitiesDefaultValue(void);
+extern const char **__xmlTreeIndentString(void);
+extern void xmlCleanupGlobals(void);
+extern xmlDeregisterNodeFunc xmlDeregisterNodeDefault(xmlDeregisterNodeFunc
+						      func);
+extern xmlFreeFunc xmlFree;
+extern void xmlInitGlobals(void);
+extern void xmlInitializeGlobalState(xmlGlobalStatePtr gs);
+extern xmlMallocFunc xmlMalloc;
+extern xmlMallocFunc xmlMallocAtomic;
+extern xmlStrdupFunc xmlMemStrdup;
 extern xmlOutputBufferCreateFilenameFunc
-xmlOutputBufferCreateFilenameDefault(xmlOutputBufferCreateFilenameFunc);
-extern int *__xmlGetWarningsDefaultValue(void);
-extern xmlOutputBufferCreateFilenameFunc
-xmlThrDefOutputBufferCreateFilenameDefault
-(xmlOutputBufferCreateFilenameFunc);
-extern int xmlThrDefGetWarningsDefaultValue(int);
+xmlOutputBufferCreateFilenameDefault(xmlOutputBufferCreateFilenameFunc
+				     func);
+extern xmlParserInputBufferPtr xmlParserInputBufferCreateFilename(const
+								  char
+								  *URI,
+								  xmlCharEncoding
+								  enc);
 extern xmlParserInputBufferCreateFilenameFunc
 xmlParserInputBufferCreateFilenameDefault
-(xmlParserInputBufferCreateFilenameFunc);
-extern xmlParserInputBufferPtr xmlParserInputBufferCreateFilename(const
-								  char *,
-								  xmlCharEncoding);
-extern int *__xmlIndentTreeOutput(void);
-extern int xmlThrDefSaveNoEmptyTags(int);
-extern int *__xmlSaveNoEmptyTags(void);
-extern xmlStrdupFunc xmlMemStrdup;
-extern int *__xmlSubstituteEntitiesDefaultValue(void);
-extern int xmlThrDefParserDebugEntities(int);
-extern int *__xmlDoValidityCheckingDefaultValue(void);
+(xmlParserInputBufferCreateFilenameFunc func);
 extern xmlReallocFunc xmlRealloc;
-extern void xmlInitializeGlobalState(xmlGlobalStatePtr);
-extern const char **__xmlParserVersion(void);
-extern int xmlThrDefLoadExtDtdDefaultValue(int);
-extern const char *xmlThrDefTreeIndentString(const char *);
-extern int *__oldXMLWDcompatibility(void);
-extern int xmlThrDefSubstituteEntitiesDefaultValue(int);
+extern xmlRegisterNodeFunc xmlRegisterNodeDefault(xmlRegisterNodeFunc
+						  func);
+extern xmlBufferAllocationScheme
+xmlThrDefBufferAllocScheme(xmlBufferAllocationScheme v);
+extern int xmlThrDefDefaultBufferSize(int v);
 extern xmlDeregisterNodeFunc
-xmlThrDefDeregisterNodeDefault(xmlDeregisterNodeFunc);
-extern void **__xmlGenericErrorContext(void);
-extern void xmlCleanupGlobals(void);
-extern xmlError *__xmlLastError(void);
-extern xmlMallocFunc xmlMalloc;
-extern int *__xmlLoadExtDtdDefaultValue(void);
-extern xmlFreeFunc xmlFree;
-extern int *__xmlLineNumbersDefaultValue(void);
-extern xmlDeregisterNodeFunc
-xmlDeregisterNodeDefault(xmlDeregisterNodeFunc);
-extern xmlSAXHandlerV1 *__xmlDefaultSAXHandler(void);
-extern xmlGenericErrorFunc *__xmlGenericError(void);
+xmlThrDefDeregisterNodeDefault(xmlDeregisterNodeFunc func);
+extern int xmlThrDefDoValidityCheckingDefaultValue(int v);
+extern int xmlThrDefGetWarningsDefaultValue(int v);
+extern int xmlThrDefIndentTreeOutput(int v);
+extern int xmlThrDefKeepBlanksDefaultValue(int v);
+extern int xmlThrDefLineNumbersDefaultValue(int v);
+extern int xmlThrDefLoadExtDtdDefaultValue(int v);
+extern xmlOutputBufferCreateFilenameFunc
+xmlThrDefOutputBufferCreateFilenameDefault
+(xmlOutputBufferCreateFilenameFunc func);
+extern int xmlThrDefParserDebugEntities(int v);
+extern xmlParserInputBufferCreateFilenameFunc
+xmlThrDefParserInputBufferCreateFilenameDefault
+(xmlParserInputBufferCreateFilenameFunc func);
+extern int xmlThrDefPedanticParserDefaultValue(int v);
+extern xmlRegisterNodeFunc xmlThrDefRegisterNodeDefault(xmlRegisterNodeFunc
+							func);
+extern int xmlThrDefSaveNoEmptyTags(int v);
+extern void xmlThrDefSetGenericErrorFunc(void *ctx,
+					 xmlGenericErrorFunc handler);
+extern void xmlThrDefSetStructuredErrorFunc(void *ctx,
+					    xmlStructuredErrorFunc
+					    handler);
+extern int xmlThrDefSubstituteEntitiesDefaultValue(int v);
+extern const char *xmlThrDefTreeIndentString(const char *v);

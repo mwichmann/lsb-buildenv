@@ -20,8 +20,8 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int snd_lib_error_set_handler(snd_lib_error_handler_t);
-    extern const char *snd_strerror(int);
+    extern int snd_lib_error_set_handler(snd_lib_error_handler_t handler);
+    extern const char *snd_strerror(int errnum);
 #ifdef __cplusplus
 }
 #endif

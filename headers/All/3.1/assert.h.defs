@@ -5,5 +5,5 @@
 #define assert(expr)	((void) ((expr) ? 0 : (__assert_fail (#expr, __FILE__, __LINE__, __PRETTY_FUNCTION__), 0)))
 #endif
 
-extern void __assert_fail(const char *, const char *, unsigned int,
-			  const char *);
+extern void __assert_fail(const char *__assertion, const char *__file,
+			  unsigned int __line, const char *__function);

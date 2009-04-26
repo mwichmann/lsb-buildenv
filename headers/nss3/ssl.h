@@ -18,7 +18,7 @@ extern "C" {
 #endif
 
 
-#define SSL_ENV_VAR_NAME	"SSL_INHERITANCE"
+#define __ssl_h_
 #define SSL_IS_SSL2_CIPHER(which)	(((which) & 0xfff0) == 0xff00)
 #define SSL_REQUIRE_NEVER	((PRBool)0)
 #define SSL_REQUIRE_ALWAYS	((PRBool)1)
@@ -47,6 +47,7 @@ extern "C" {
 #define SSL_ENABLE_SSL2	7
 #define SSL_ENABLE_SSL3	8
 #define SSL_NO_CACHE	9
+#define SSL_ENV_VAR_NAME	"SSL_INHERITANCE"
 
 
     typedef SECStatus(*SSLAuthCertificate) (void *, PRFileDesc *, PRBool,
@@ -64,60 +65,76 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern SECStatus NSS_CmpCertChainWCANames(CERTCertificate *,
-					      CERTDistNames *);
-    extern SSLKEAType NSS_FindCertKEAType(CERTCertificate *);
-    extern SECStatus NSS_GetClientAuthData(void *, PRFileDesc *,
-					   struct CERTDistNamesStr *,
-					   struct CERTCertificateStr **,
-					   struct SECKEYPrivateKeyStr **);
-    extern SECStatus SSL_AuthCertificate(void *, PRFileDesc *, PRBool,
-					 PRBool);
-    extern SECStatus SSL_AuthCertificateHook(PRFileDesc *,
-					     SSLAuthCertificate, void *);
-    extern SECStatus SSL_BadCertHook(PRFileDesc *, SSLBadCertHandler,
-				     void *);
-    extern SECStatus SSL_CipherPolicyGet(PRInt32, PRInt32 *);
-    extern SECStatus SSL_CipherPolicySet(PRInt32, PRInt32);
-    extern SECStatus SSL_CipherPrefGet(PRFileDesc *, PRInt32, PRBool *);
-    extern SECStatus SSL_CipherPrefGetDefault(PRInt32, PRBool *);
-    extern SECStatus SSL_CipherPrefSet(PRFileDesc *, PRInt32, PRBool);
-    extern SECStatus SSL_CipherPrefSetDefault(PRInt32, PRBool);
+    extern SECStatus NSS_CmpCertChainWCANames(CERTCertificate * cert,
+					      CERTDistNames * caNames);
+    extern SSLKEAType NSS_FindCertKEAType(CERTCertificate * cert);
+    extern SECStatus NSS_GetClientAuthData(void *arg, PRFileDesc * socket,
+					   struct CERTDistNamesStr
+					   *caNames,
+					   struct CERTCertificateStr
+					   **pRetCert,
+					   struct SECKEYPrivateKeyStr
+					   **pRetKey);
+    extern SECStatus SSL_AuthCertificate(void *arg, PRFileDesc * fd,
+					 PRBool checkSig, PRBool isServer);
+    extern SECStatus SSL_AuthCertificateHook(PRFileDesc * fd,
+					     SSLAuthCertificate f,
+					     void *arg);
+    extern SECStatus SSL_BadCertHook(PRFileDesc * fd, SSLBadCertHandler f,
+				     void *arg);
+    extern SECStatus SSL_CipherPolicyGet(PRInt32 cipher, PRInt32 * policy);
+    extern SECStatus SSL_CipherPolicySet(PRInt32 cipher, PRInt32 policy);
+    extern SECStatus SSL_CipherPrefGet(PRFileDesc * fd, PRInt32 cipher,
+				       PRBool * enabled);
+    extern SECStatus SSL_CipherPrefGetDefault(PRInt32 cipher,
+					      PRBool * enabled);
+    extern SECStatus SSL_CipherPrefSet(PRFileDesc * fd, PRInt32 cipher,
+				       PRBool enabled);
+    extern SECStatus SSL_CipherPrefSetDefault(PRInt32 cipher,
+					      PRBool enabled);
     extern void SSL_ClearSessionCache(void);
-    extern SECStatus SSL_ConfigMPServerSIDCache(int, PRUint32, PRUint32,
-						const char *);
-    extern SECStatus SSL_ConfigSecureServer(PRFileDesc *,
-					    CERTCertificate *,
-					    SECKEYPrivateKey *,
-					    SSLKEAType);
-    extern SECStatus SSL_ConfigServerSessionIDCache(int, PRUint32,
-						    PRUint32,
-						    const char *);
-    extern int SSL_DataPending(PRFileDesc *);
-    extern SECStatus SSL_ForceHandshake(PRFileDesc *);
-    extern SECStatus SSL_GetClientAuthDataHook(PRFileDesc *,
-					       SSLGetClientAuthData,
-					       void *);
-    extern SECItem *SSL_GetSessionID(PRFileDesc *);
-    extern SECStatus SSL_HandshakeCallback(PRFileDesc *,
-					   SSLHandshakeCallback, void *);
-    extern PRFileDesc *SSL_ImportFD(PRFileDesc *, PRFileDesc *);
-    extern SECStatus SSL_InheritMPServerSIDCache(const char *);
-    extern SECStatus SSL_InvalidateSession(PRFileDesc *);
-    extern SECStatus SSL_OptionGet(PRFileDesc *, PRInt32, PRBool *);
-    extern SECStatus SSL_OptionGetDefault(PRInt32, PRBool *);
-    extern SECStatus SSL_OptionSet(PRFileDesc *, PRInt32, PRBool);
-    extern SECStatus SSL_OptionSetDefault(PRInt32, PRBool);
-    extern CERTCertificate *SSL_PeerCertificate(PRFileDesc *);
-    extern SECStatus SSL_ReHandshake(PRFileDesc *, PRBool);
-    extern SECStatus SSL_ResetHandshake(PRFileDesc *, PRBool);
-    extern void *SSL_RevealPinArg(PRFileDesc *);
-    extern char *SSL_RevealURL(PRFileDesc *);
-    extern SECStatus SSL_SecurityStatus(PRFileDesc *, int *, char **,
-					int *, int *, char **, char **);
-    extern SECStatus SSL_SetPKCS11PinArg(PRFileDesc *, void *);
-    extern SECStatus SSL_SetSockPeerID(PRFileDesc *, char *);
-    extern SECStatus SSL_SetURL(PRFileDesc *, const char *);
+    extern SECStatus SSL_ConfigMPServerSIDCache(int maxCacheEntries,
+						PRUint32 timeout,
+						PRUint32 ssl3_timeout,
+						const char *directory);
+    extern SECStatus SSL_ConfigSecureServer(PRFileDesc * fd,
+					    CERTCertificate * cert,
+					    SECKEYPrivateKey * key,
+					    SSLKEAType kea);
+    extern SECStatus SSL_ConfigServerSessionIDCache(int maxCacheEntries,
+						    PRUint32 timeout,
+						    PRUint32 ssl3_timeout,
+						    const char *directory);
+    extern int SSL_DataPending(PRFileDesc * fd);
+    extern SECStatus SSL_ForceHandshake(PRFileDesc * fd);
+    extern SECStatus SSL_GetClientAuthDataHook(PRFileDesc * fd,
+					       SSLGetClientAuthData f,
+					       void *a);
+    extern SECItem *SSL_GetSessionID(PRFileDesc * fd);
+    extern SECStatus SSL_HandshakeCallback(PRFileDesc * fd,
+					   SSLHandshakeCallback cb,
+					   void *client_data);
+    extern PRFileDesc *SSL_ImportFD(PRFileDesc * model, PRFileDesc * fd);
+    extern SECStatus SSL_InheritMPServerSIDCache(const char *envString);
+    extern SECStatus SSL_InvalidateSession(PRFileDesc * fd);
+    extern SECStatus SSL_OptionGet(PRFileDesc * fd, PRInt32 option,
+				   PRBool * on);
+    extern SECStatus SSL_OptionGetDefault(PRInt32 option, PRBool * on);
+    extern SECStatus SSL_OptionSet(PRFileDesc * fd, PRInt32 option,
+				   PRBool on);
+    extern SECStatus SSL_OptionSetDefault(PRInt32 option, PRBool on);
+    extern CERTCertificate *SSL_PeerCertificate(PRFileDesc * fd);
+    extern SECStatus SSL_ReHandshake(PRFileDesc * fd, PRBool flushCache);
+    extern SECStatus SSL_ResetHandshake(PRFileDesc * fd, PRBool asServer);
+    extern void *SSL_RevealPinArg(PRFileDesc * socket);
+    extern char *SSL_RevealURL(PRFileDesc * socket);
+    extern SECStatus SSL_SecurityStatus(PRFileDesc * fd, int *on,
+					char **cipher, int *keySize,
+					int *secretKeySize, char **issuer,
+					char **subject);
+    extern SECStatus SSL_SetPKCS11PinArg(PRFileDesc * fd, void *a);
+    extern SECStatus SSL_SetSockPeerID(PRFileDesc * fd, char *peerID);
+    extern SECStatus SSL_SetURL(PRFileDesc * fd, const char *url);
 #ifdef __cplusplus
 }
 #endif

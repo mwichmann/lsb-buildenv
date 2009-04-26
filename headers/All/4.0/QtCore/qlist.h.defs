@@ -9,5 +9,5 @@ class QList < int >;
 class QList < QObject * >;
 class QList < QWidget * >;
 class QList < QPair < QString, QString > >;
-struct _Z9QListData;
-struct _ZN9QListData4DataE;
+struct QListData;
+struct QListData::Data;

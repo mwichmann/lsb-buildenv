@@ -38,7 +38,7 @@ enum _ZN19QStyleOptionFrameV212FrameFeatureE {
 };
 class QFlags < QStyleOptionFrameV2::FrameFeature >;
 typedef class QFlags < QStyleOptionFrameV2::FrameFeature >
-    _ZN19QStyleOptionFrameV213FrameFeaturesE;
+    QStyleOptionFrameV2::FrameFeatures;
 class QStyleOptionTabWidgetFrame;
 class QStyleOptionTabBarBase;
 class QStyleOptionHeader;
@@ -69,7 +69,7 @@ enum _ZN18QStyleOptionButton13ButtonFeatureE {
 };
 class QFlags < QStyleOptionButton::ButtonFeature >;
 typedef class QFlags < QStyleOptionButton::ButtonFeature >
-    _ZN18QStyleOptionButton14ButtonFeaturesE;
+    QStyleOptionButton::ButtonFeatures;
 class QStyleOptionTab;
 enum _ZN15QStyleOptionTab11TabPositionE {
     Beginning = 0,
@@ -89,7 +89,7 @@ enum _ZN15QStyleOptionTab12CornerWidgetE {
 };
 class QFlags < QStyleOptionTab::CornerWidget >;
 typedef class QFlags < QStyleOptionTab::CornerWidget >
-    _ZN15QStyleOptionTab13CornerWidgetsE;
+    QStyleOptionTab::CornerWidgets;
 class QStyleOptionTabV2;
 class QStyleOptionToolBar;
 enum _ZN19QStyleOptionToolBar15ToolBarPositionE {
@@ -104,7 +104,7 @@ enum _ZN19QStyleOptionToolBar14ToolBarFeatureE {
 };
 class QFlags < QStyleOptionToolBar::ToolBarFeature >;
 typedef class QFlags < QStyleOptionToolBar::ToolBarFeature >
-    _ZN19QStyleOptionToolBar15ToolBarFeaturesE;
+    QStyleOptionToolBar::ToolBarFeatures;
 class QStyleOptionProgressBar;
 class QStyleOptionProgressBarV2;
 class QStyleOptionMenuItem;
@@ -133,7 +133,7 @@ enum _ZN26QStyleOptionQ3ListViewItem21Q3ListViewItemFeatureE {
 };
 class QFlags < QStyleOptionQ3ListViewItem::Q3ListViewItemFeature >;
 typedef class QFlags < QStyleOptionQ3ListViewItem::Q3ListViewItemFeature >
-    _ZN26QStyleOptionQ3ListViewItem22Q3ListViewItemFeaturesE;
+    QStyleOptionQ3ListViewItem::Q3ListViewItemFeatures;
 class QStyleOptionQ3DockWindow;
 class QStyleOptionDockWidget;
 class QStyleOptionViewItem;
@@ -158,7 +158,7 @@ enum _ZN22QStyleOptionToolButton17ToolButtonFeatureE {
 };
 class QFlags < QStyleOptionToolButton::ToolButtonFeature >;
 typedef class QFlags < QStyleOptionToolButton::ToolButtonFeature >
-    _ZN22QStyleOptionToolButton18ToolButtonFeaturesE;
+    QStyleOptionToolButton::ToolButtonFeatures;
 class QStyleOptionComboBox;
 class QStyleOptionTitleBar;
 class QStyleOptionGroupBox;

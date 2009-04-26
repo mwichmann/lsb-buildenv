@@ -5,24 +5,7 @@
 class QTextDocumentFragment;
 // *INDENT-OFF*
 
-class QTextDocumentFragment
-{
-private:
-public:
-     QTextDocumentFragment();
-     QTextDocumentFragment(QTextDocument const*);
-     QTextDocumentFragment(QTextCursor const&);
-     QTextDocumentFragment(QTextDocumentFragment const&);
-     operator=(QTextDocumentFragment const&);
-     ~QTextDocumentFragment();
-    bool isEmpty() const;
-    QString toPlainText() const;
-    QString toHtml() const;
-    QTextDocumentFragment fromPlainText(QString const&);
-    QTextDocumentFragment fromHtml(QString const&);
-    QTextDocumentFragment fromHtml(QString const&, QTextDocument const*);
-    QString toHtml(QByteArray const&) const;
-};
+class QTextDocumentFragment;
 
 // *INDENT-ON*
 #endif				/* protection */

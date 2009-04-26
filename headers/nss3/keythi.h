@@ -14,6 +14,9 @@ extern "C" {
 #endif
 
 
+#define _KEYTHI_H_
+
+
     typedef enum {
 	nullKey,
 	rsaKey = 1,
@@ -73,13 +76,11 @@ extern "C" {
 	PRUint32 staticflags;
     };
 
-
     struct SECKEYRSAPublicKeyStr {
 	PLArenaPool *arena;
 	SECItem modulus;
 	SECItem publicExponent;
     };
-
 
     struct SECKEYPQGParamsStr {
 	PLArenaPool *arena;
@@ -88,19 +89,16 @@ extern "C" {
 	SECItem base;
     };
 
-
     struct SECKEYDSAPublicKeyStr {
 	SECKEYPQGParams params;
 	SECItem publicValue;
     };
-
 
     struct SECKEYDHParamsStr {
 	PLArenaPool *arena;
 	SECItem prime;
 	SECItem base;
     };
-
 
     struct SECKEYDHPublicKeyStr {
 	PLArenaPool *arena;
@@ -109,13 +107,11 @@ extern "C" {
 	SECItem publicValue;
     };
 
-
     struct SECKEYECPublicKeyStr {
 	SECKEYECParams DEREncodedParams;
 	int size;
 	SECItem publicValue;
     };
-
 
     struct SECKEYFortezzaPublicKeyStr {
 	int KEAversion;
@@ -130,18 +126,15 @@ extern "C" {
 	SECKEYPQGParams keaParams;
     };
 
-
     struct SECKEYKEAParamsStr {
 	PLArenaPool *arena;
 	SECItem hash;
     };
 
-
     struct SECKEYKEAPublicKeyStr {
 	SECKEYKEAParams params;
 	SECItem publicValue;
     };
-
 
     struct SECKEYPublicKeyStr {
 	PLArenaPool *arena;

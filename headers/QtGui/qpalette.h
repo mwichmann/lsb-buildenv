@@ -5,33 +5,9 @@
 class QPalette;
 // *INDENT-OFF*
 
-class QPalette
-{
-private:
-public:
-     QPalette();
-     QPalette(QColor const&);
-     QPalette(Qt::GlobalColor);
-     QPalette(QColor const&, QColor const&);
-     QPalette(QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&);
-     QPalette(QColor const&, QColor const&, QColor const&, QColor const&, QColor const&, QColor const&, QColor const&);
-     QPalette(QColorGroup const&, QColorGroup const&, QColorGroup const&);
-     QPalette(QPalette const&);
-     ~QPalette();
-    QPalette & operator=(QPalette const&);
-    QVariant operator QVariant() const;
-    const QBrush & brush(QPalette::ColorGroup, QPalette::ColorRole) const;
-    void setBrush(QPalette::ColorGroup, QPalette::ColorRole, QBrush const&);
-    void setColorGroup(QPalette::ColorGroup, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&, QBrush const&);
-    bool isEqual(QPalette::ColorGroup, QPalette::ColorGroup) const;
-    bool operator==(QPalette const&) const;
-    bool isCopyOf(QPalette const&) const;
-    int serialNumber() const;
-    QPalette resolve(QPalette const&) const;
-    bool isBrushSet(QPalette::ColorGroup, QPalette::ColorRole) const;
-};
+class QPalette;
 
-enum ColorGroup	
+enum _ZN8QPalette10ColorGroupE	
 {
 Active = 0,	
 Normal = 0,	
@@ -43,7 +19,7 @@ All = 5
 }
 ;
 
-enum ColorRole	
+enum _ZN8QPalette9ColorRoleE	
 {
 WindowText = 0,	
 Foreground = 0,	
@@ -69,13 +45,7 @@ NoRole = 17
 }
 ;
 
-class QColorGroup :  
-{
-private:
-public:
-    bool operator==(QColorGroup const&) const;
-    QVariant operator QVariant() const;
-};
+class QColorGroup;
 
 
 /* Function prototypes */

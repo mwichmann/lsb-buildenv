@@ -39,7 +39,6 @@ extern "C" {
 
     typedef struct FT_Renderer_Class_ FT_Renderer_Class;
 
-
     struct FT_Renderer_Class_ {
 	FT_Module_Class root;
 	FT_Glyph_Format glyph_format;

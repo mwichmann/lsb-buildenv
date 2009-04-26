@@ -5,27 +5,9 @@
 class QSqlError;
 // *INDENT-OFF*
 
-class QSqlError
-{
-private:
-public:
-     QSqlError(QString const&, QString const&, QSqlError::ErrorType, int);
-     QSqlError(QSqlError const&);
-    QSqlError & operator=(QSqlError const&);
-     ~QSqlError();
-    QString driverText() const;
-    void setDriverText(QString const&);
-    QString databaseText() const;
-    void setDatabaseText(QString const&);
-    enum _ZN9QSqlError9ErrorTypeE type() const;
-    void setType(QSqlError::ErrorType);
-    int number() const;
-    void setNumber(int);
-    QString text() const;
-    bool isValid() const;
-};
+class QSqlError;
 
-enum ErrorType	
+enum _ZN9QSqlError9ErrorTypeE	
 {
 NoError = 0,	
 None = 0,	

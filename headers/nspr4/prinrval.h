@@ -9,13 +9,16 @@ extern "C" {
 #endif
 
 
+#define prinrval_h
+
+
     typedef PRUint32 PRIntervalTime;
 
 
 /* Function prototypes */
 
-    extern PRIntervalTime PR_MillisecondsToInterval(PRUint32);
-    extern PRIntervalTime PR_SecondsToInterval(PRUint32);
+    extern PRIntervalTime PR_MillisecondsToInterval(PRUint32 milli);
+    extern PRIntervalTime PR_SecondsToInterval(PRUint32 seconds);
 #ifdef __cplusplus
 }
 #endif

@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+#define _HASHT_H_
 #define MD2_LENGTH	16
 #define MD5_LENGTH	16
 #define SHA1_LENGTH	20
@@ -33,7 +34,6 @@ extern "C" {
 	HASH_AlgTOTAL = 7
     } HASH_HashType;
 
-
     struct SECHashObjectStr {
 	unsigned int length;
 	void *(*create) (void);
@@ -46,7 +46,6 @@ extern "C" {
 	unsigned int blocklength;
 	HASH_HashType type;
     };
-
 
     struct HASHContextStr {
 	const struct SECHashObjectStr *hashobj;

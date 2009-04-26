@@ -26,9 +26,10 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int catclose(nl_catd);
-    extern char *catgets(nl_catd, int, int, const char *);
-    extern nl_catd catopen(const char *, int);
+    extern int catclose(nl_catd __catalog);
+    extern char *catgets(nl_catd __catalog, int __set, int __number,
+			 const char *__string);
+    extern nl_catd catopen(const char *__cat_name, int __flag);
 #ifdef __cplusplus
 }
 #endif

@@ -8,8 +8,10 @@ extern "C" {
 #endif
 
 
-    typedef struct DERTemplateStr DERTemplate;
+#define _SECDERT_H_
 
+
+    typedef struct DERTemplateStr DERTemplate;
 
     struct DERTemplateStr {
 	unsigned long int kind;

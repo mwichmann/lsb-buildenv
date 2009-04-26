@@ -5,25 +5,7 @@
 class QRadioButton;
 // *INDENT-OFF*
 
-class QRadioButton : public QAbstractButton
-{
-private:
-public:
-     ~QRadioButton();
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QRadioButton(QWidget*);
-     QRadioButton(QString const&, QWidget*);
-    QSize sizeHint() const;
-     QRadioButton(QWidget*, char const*);
-     QRadioButton(QString const&, QWidget*, char const*);
-protected:
-    bool event(QEvent*);
-    bool hitButton(QPoint const&) const;
-    void paintEvent(QPaintEvent*);
-    void mouseMoveEvent(QMouseEvent*);
-};
+class QRadioButton;
 
 
 /* Function prototypes */

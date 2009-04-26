@@ -7,16 +7,7 @@ class QAccessiblePlugin;
 
 struct QAccessibleFactoryInterface	;
 
-class QAccessiblePlugin : public QAccessibleFactoryInterface, public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QAccessiblePlugin(QObject*);
-     ~QAccessiblePlugin();
-};
+class QAccessiblePlugin;
 
 
 /* Function prototypes */

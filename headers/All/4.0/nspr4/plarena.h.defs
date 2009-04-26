@@ -1,4 +1,6 @@
 
+#define plarena_h___
+
 typedef struct PLArenaPool {
     struct PLArena first;
     struct PLArena *current;

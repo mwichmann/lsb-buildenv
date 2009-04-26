@@ -20,7 +20,8 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int utime(const char *, const struct utimbuf *);
+    extern int utime(const char *__file,
+		     const struct utimbuf *__file_times);
 #ifdef __cplusplus
 }
 #endif

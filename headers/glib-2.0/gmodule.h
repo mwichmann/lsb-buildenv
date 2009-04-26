@@ -26,18 +26,20 @@ extern "C" {
     typedef const gchar *(*GModuleCheckInit) (GModule *);
 
 
-
-
 /* Function prototypes */
 
-    extern gchar *g_module_build_path(const gchar *, const gchar *);
-    extern gboolean g_module_close(GModule *);
+    extern gchar *g_module_build_path(const gchar * directory,
+				      const gchar * module_name);
+    extern gboolean g_module_close(GModule * module);
     extern const gchar *g_module_error(void);
-    extern void g_module_make_resident(GModule *);
-    extern const gchar *g_module_name(GModule *);
-    extern GModule *g_module_open(const gchar *, GModuleFlags);
+    extern void g_module_make_resident(GModule * module);
+    extern const gchar *g_module_name(GModule * module);
+    extern GModule *g_module_open(const gchar * file_name,
+				  GModuleFlags flags);
     extern gboolean g_module_supported(void);
-    extern gboolean g_module_symbol(GModule *, const gchar *, gpointer *);
+    extern gboolean g_module_symbol(GModule * module,
+				    const gchar * symbol_name,
+				    gpointer * symbol);
 #ifdef __cplusplus
 }
 #endif

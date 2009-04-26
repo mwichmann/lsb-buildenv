@@ -38,11 +38,11 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int dladdr(const void *, Dl_info *);
-    extern int dlclose(void *);
+    extern int dladdr(const void *__address, Dl_info * __info);
+    extern int dlclose(void *__handle);
     extern char *dlerror(void);
-    extern void *dlopen(const char *, int);
-    extern void *dlsym(void *, const char *);
+    extern void *dlopen(const char *__file, int __mode);
+    extern void *dlsym(void *__handle, const char *__name);
 #ifdef __cplusplus
 }
 #endif

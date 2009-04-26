@@ -5,20 +5,7 @@
 class QPrintDialog;
 // *INDENT-OFF*
 
-class QPrintDialog : public QAbstractPrintDialog
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QPrintDialog(QPrinter*, QWidget*);
-     ~QPrintDialog();
-    void setPrinter(QPrinter*, bool);
-    QPrinter * printer() const;
-    void addButton(QPushButton*);
-    int exec();
-};
+class QPrintDialog;
 
 
 /* Function prototypes */

@@ -4,4 +4,4 @@ enum _ZN7QRegion10RegionTypeE {
     Rectangle = 0,
     Ellipse = 1
 };
-struct _ZN7QRegion11QRegionDataE;
+struct QRegion::QRegionData;

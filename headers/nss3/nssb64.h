@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define _NSSB64_H_
+
+
 #ifdef __cplusplus
 }
 #endif

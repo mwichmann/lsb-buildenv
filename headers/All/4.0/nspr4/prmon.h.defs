@@ -1,2 +1,4 @@
 
+#define prmon_h___
+
 typedef struct PRMonitor PRMonitor;

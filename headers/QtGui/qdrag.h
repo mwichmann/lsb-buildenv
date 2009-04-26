@@ -5,29 +5,7 @@
 class QDrag;
 // *INDENT-OFF*
 
-class QDrag : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QDrag(QWidget*);
-     ~QDrag();
-    void setMimeData(QMimeData*);
-    QMimeData * mimeData() const;
-    void setPixmap(QPixmap const&);
-    QPixmap pixmap() const;
-    void setHotSpot(QPoint const&);
-    QPoint hotSpot() const;
-    QWidget * source() const;
-    QWidget * target() const;
-    enum _ZN2Qt10DropActionE start(QFlags<Qt::DropAction>);
-    void setDragCursor(QPixmap const&, Qt::DropAction);
-protected:
-    void actionChanged(Qt::DropAction);
-    void targetChanged(QWidget*);
-};
+class QDrag;
 
 
 /* Function prototypes */

@@ -1,7 +1,7 @@
 
 class QTextInlineObject;
 class QTextLayout;
-struct _ZN11QTextLayout11FormatRangeE;
+struct QTextLayout::FormatRange;
 enum _ZN11QTextLayout10CursorModeE {
     SkipCharacters = 0,
     SkipWords = 1

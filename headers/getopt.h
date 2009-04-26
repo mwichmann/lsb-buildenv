@@ -29,10 +29,14 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int getopt_long(int, char *const[], const char *,
-			   const struct option *, int *);
-    extern int getopt_long_only(int, char *const[], const char *,
-				const struct option *, int *);
+    extern int getopt_long(int ___argc, char *const ___argv[],
+			   const char *__shortopts,
+			   const struct option *__longopts,
+			   int *__longind);
+    extern int getopt_long_only(int ___argc, char *const ___argv[],
+				const char *__shortopts,
+				const struct option *__longopts,
+				int *__longind);
 #ifdef __cplusplus
 }
 #endif

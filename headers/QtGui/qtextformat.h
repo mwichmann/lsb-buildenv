@@ -5,14 +5,9 @@
 class QTextImageFormat;
 // *INDENT-OFF*
 
-class QTextLength
-{
-private:
-public:
-    QVariant operator QVariant() const;
-};
+class QTextLength;
 
-enum Type	
+enum _ZN11QTextLength4TypeE	
 {
 VariableLength = 0,	
 FixedLength = 1,	
@@ -20,45 +15,9 @@ PercentageLength = 2
 }
 ;
 
-class QTextFormat
-{
-private:
-public:
-     QTextFormat();
-     QTextFormat(int);
-     QTextFormat(QTextFormat const&);
-    QTextFormat & operator=(QTextFormat const&);
-     ~QTextFormat();
-    void merge(QTextFormat const&);
-    int type() const;
-    int objectIndex() const;
-    void setObjectIndex(int);
-    QVariant property(int) const;
-    void setProperty(int, QVariant const&);
-    void clearProperty(int);
-    bool hasProperty(int) const;
-    bool boolProperty(int) const;
-    int intProperty(int) const;
-    qreal doubleProperty(int) const;
-    QString stringProperty(int) const;
-    QColor colorProperty(int) const;
-    QPen penProperty(int) const;
-    QBrush brushProperty(int) const;
-    QTextLength lengthProperty(int) const;
-    QVector<QTextLength> lengthVectorProperty(int) const;
-    void setProperty(int, QVector<QTextLength> const&);
-     properties() const;
-    QTextBlockFormat toBlockFormat() const;
-    QTextCharFormat toCharFormat() const;
-    QTextListFormat toListFormat() const;
-    QTextTableFormat toTableFormat() const;
-    QTextFrameFormat toFrameFormat() const;
-    QTextImageFormat toImageFormat() const;
-    bool operator==(QTextFormat const&) const;
-    QVariant operator QVariant() const;
-};
+class QTextFormat;
 
-enum FormatType	
+enum _ZN11QTextFormat10FormatTypeE	
 {
 InvalidFormat = -1,	
 BlockFormat = 1,	
@@ -70,7 +29,7 @@ UserFormat = 100
 }
 ;
 
-enum Property	
+enum _ZN11QTextFormat8PropertyE	
 {
 ObjectIndex = 0,	
 CssFloat = 2048,	
@@ -125,7 +84,7 @@ UserProperty = 1048576
 }
 ;
 
-enum ObjectTypes	
+enum _ZN11QTextFormat11ObjectTypesE	
 {
 NoObject = 0,	
 ImageObject = 1,	
@@ -134,18 +93,9 @@ UserObject = 4096
 }
 ;
 
-class QTextCharFormat :  
-{
-private:
-public:
-     QTextCharFormat();
-    void setFont(QFont const&);
-    QFont font() const;
-    void setUnderlineStyle(QTextCharFormat::UnderlineStyle);
-    bool fontUnderline() const;
-};
+class QTextCharFormat;
 
-enum VerticalAlignment	
+enum _ZN15QTextCharFormat17VerticalAlignmentE	
 {
 AlignNormal = 0,	
 AlignSuperScript = 1,	
@@ -153,21 +103,11 @@ AlignSubScript = 2
 }
 ;
 
-class QTextBlockFormat :  
-{
-private:
-public:
-     QTextBlockFormat();
-};
+class QTextBlockFormat;
 
-class QTextListFormat :  
-{
-private:
-public:
-     QTextListFormat();
-};
+class QTextListFormat;
 
-enum Style	
+enum _ZN15QTextListFormat5StyleE	
 {
 ListUpperAlpha = -6,	
 ListLowerAlpha = -5,	
@@ -179,21 +119,11 @@ ListStyleUndefined = 0
 }
 ;
 
-class QTextImageFormat :  
-{
-private:
-public:
-     QTextImageFormat();
-};
+class QTextImageFormat;
 
-class QTextFrameFormat :  
-{
-private:
-public:
-     QTextFrameFormat();
-};
+class QTextFrameFormat;
 
-enum Position	
+enum _ZN16QTextFrameFormat8PositionE	
 {
 InFlow = 0,	
 FloatLeft = 1,	
@@ -201,12 +131,7 @@ FloatRight = 2
 }
 ;
 
-class QTextTableFormat :  
-{
-private:
-public:
-     QTextTableFormat();
-};
+class QTextTableFormat;
 
 
 /* Function prototypes */

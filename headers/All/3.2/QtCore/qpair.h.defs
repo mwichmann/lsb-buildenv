@@ -1,2 +1,2 @@
 
-struct _ZN5QPairIiiEE;
+struct QPair <int, int >;

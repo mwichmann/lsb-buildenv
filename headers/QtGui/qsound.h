@@ -5,26 +5,7 @@
 class QSound;
 // *INDENT-OFF*
 
-class QSound : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-    bool isAvailable();
-    void play(QString const&);
-     QSound(QString const&, QObject*);
-     ~QSound();
-    int loops() const;
-    int loopsRemaining() const;
-    void setLoops(int);
-    QString fileName() const;
-    bool isFinished() const;
-    void play();
-    void stop();
-     QSound(QString const&, QObject*, char const*);
-};
+class QSound;
 
 
 /* Function prototypes */

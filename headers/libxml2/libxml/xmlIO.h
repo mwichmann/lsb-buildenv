@@ -5,7 +5,6 @@
 #include <iconv.h>
 #include <stdio.h>
 #include <libxml2/libxml/xmlstring.h>
-#include <libxml2/libxml/xmlmemory.h>
 #include <libxml2/libxml/tree.h>
 #include <libxml2/libxml/xmlerror.h>
 #include <libxml2/libxml/dict.h>
@@ -75,7 +74,6 @@ extern "C" {
 
     typedef void *(*xmlInputOpenCallback) (const char *);
 
-
     struct _xmlParserNodeInfo {
 	const struct _xmlNode *node;
 	long unsigned int begin_pos;
@@ -84,15 +82,11 @@ extern "C" {
 	long unsigned int end_line;
     };
 
-
     struct _xmlParserNodeInfoSeq {
 	long unsigned int maximum;
 	long unsigned int length;
 	xmlParserNodeInfo *buffer;
     };
-
-
-
 
     struct _xmlValidCtxt {
 	void *userData;
@@ -112,7 +106,6 @@ extern "C" {
 	xmlAutomataPtr am;
 	xmlAutomataStatePtr state;
     };
-
 
     struct _xmlParserCtxt {
 	struct _xmlSAXHandler *sax;
@@ -202,83 +195,103 @@ extern "C" {
 /* Function prototypes */
 
     extern xmlOutputBufferPtr
-	xmlAllocOutputBuffer(xmlCharEncodingHandlerPtr);
+	xmlAllocOutputBuffer(xmlCharEncodingHandlerPtr encoder);
     extern xmlParserInputBufferPtr
-	xmlAllocParserInputBuffer(xmlCharEncoding);
-    extern int xmlCheckFilename(const char *);
-    extern xmlParserInputPtr xmlCheckHTTPInput(xmlParserCtxtPtr,
-					       xmlParserInputPtr);
+	xmlAllocParserInputBuffer(xmlCharEncoding enc);
+    extern int xmlCheckFilename(const char *path);
+    extern xmlParserInputPtr xmlCheckHTTPInput(xmlParserCtxtPtr ctxt,
+					       xmlParserInputPtr ret);
     extern void xmlCleanupInputCallbacks(void);
     extern void xmlCleanupOutputCallbacks(void);
-    extern int xmlFileClose(void *);
-    extern int xmlFileMatch(const char *);
-    extern void *xmlFileOpen(const char *);
-    extern int xmlFileRead(void *, char *, int);
-    extern void xmlFreeParserInputBuffer(xmlParserInputBufferPtr);
-    extern int xmlIOFTPClose(void *);
-    extern int xmlIOFTPMatch(const char *);
-    extern void *xmlIOFTPOpen(const char *);
-    extern int xmlIOFTPRead(void *, char *, int);
-    extern int xmlIOHTTPClose(void *);
-    extern int xmlIOHTTPMatch(const char *);
-    extern void *xmlIOHTTPOpen(const char *);
-    extern void *xmlIOHTTPOpenW(const char *, int);
-    extern int xmlIOHTTPRead(void *, char *, int);
-    extern xmlParserInputPtr xmlNoNetExternalEntityLoader(const char *,
-							  const char *,
-							  xmlParserCtxtPtr);
-    extern xmlChar *xmlNormalizeWindowsPath(const xmlChar *);
-    extern int xmlOutputBufferClose(xmlOutputBufferPtr);
-    extern xmlOutputBufferPtr xmlOutputBufferCreateFd(int,
-						      xmlCharEncodingHandlerPtr);
-    extern xmlOutputBufferPtr xmlOutputBufferCreateFile(FILE *,
-							xmlCharEncodingHandlerPtr);
-    extern xmlOutputBufferPtr xmlOutputBufferCreateFilename(const char *,
-							    xmlCharEncodingHandlerPtr,
-							    int);
+    extern int xmlFileClose(void *context);
+    extern int xmlFileMatch(const char *filename);
+    extern void *xmlFileOpen(const char *filename);
+    extern int xmlFileRead(void *context, char *buffer, int len);
+    extern void xmlFreeParserInputBuffer(xmlParserInputBufferPtr in);
+    extern int xmlIOFTPClose(void *context);
+    extern int xmlIOFTPMatch(const char *filename);
+    extern void *xmlIOFTPOpen(const char *filename);
+    extern int xmlIOFTPRead(void *context, char *buffer, int len);
+    extern int xmlIOHTTPClose(void *context);
+    extern int xmlIOHTTPMatch(const char *filename);
+    extern void *xmlIOHTTPOpen(const char *filename);
+    extern void *xmlIOHTTPOpenW(const char *post_uri, int compression);
+    extern int xmlIOHTTPRead(void *context, char *buffer, int len);
+    extern xmlParserInputPtr xmlNoNetExternalEntityLoader(const char *URL,
+							  const char *ID,
+							  xmlParserCtxtPtr
+							  ctxt);
+    extern xmlChar *xmlNormalizeWindowsPath(const xmlChar * path);
+    extern int xmlOutputBufferClose(xmlOutputBufferPtr out);
+    extern xmlOutputBufferPtr xmlOutputBufferCreateFd(int fd,
+						      xmlCharEncodingHandlerPtr
+						      encoder);
+    extern xmlOutputBufferPtr xmlOutputBufferCreateFile(FILE * file,
+							xmlCharEncodingHandlerPtr
+							encoder);
+    extern xmlOutputBufferPtr xmlOutputBufferCreateFilename(const char
+							    *URI,
+							    xmlCharEncodingHandlerPtr
+							    encoder,
+							    int
+							    compression);
     extern xmlOutputBufferPtr
-	xmlOutputBufferCreateIO(xmlOutputWriteCallback,
-				xmlOutputCloseCallback, void *,
-				xmlCharEncodingHandlerPtr);
-    extern int xmlOutputBufferFlush(xmlOutputBufferPtr);
-    extern int xmlOutputBufferWrite(xmlOutputBufferPtr, int, const char *);
-    extern int xmlOutputBufferWriteEscape(xmlOutputBufferPtr,
-					  const xmlChar *,
-					  xmlCharEncodingOutputFunc);
-    extern int xmlOutputBufferWriteString(xmlOutputBufferPtr,
-					  const char *);
-    extern char *xmlParserGetDirectory(const char *);
-    extern xmlParserInputBufferPtr xmlParserInputBufferCreateFd(int,
-								xmlCharEncoding);
-    extern xmlParserInputBufferPtr xmlParserInputBufferCreateFile(FILE *,
-								  xmlCharEncoding);
+	xmlOutputBufferCreateIO(xmlOutputWriteCallback iowrite,
+				xmlOutputCloseCallback ioclose,
+				void *ioctx,
+				xmlCharEncodingHandlerPtr encoder);
+    extern int xmlOutputBufferFlush(xmlOutputBufferPtr out);
+    extern int xmlOutputBufferWrite(xmlOutputBufferPtr out, int len,
+				    const char *buf);
+    extern int xmlOutputBufferWriteEscape(xmlOutputBufferPtr out,
+					  const xmlChar * str,
+					  xmlCharEncodingOutputFunc
+					  escaping);
+    extern int xmlOutputBufferWriteString(xmlOutputBufferPtr out,
+					  const char *str);
+    extern char *xmlParserGetDirectory(const char *filename);
+    extern xmlParserInputBufferPtr xmlParserInputBufferCreateFd(int fd,
+								xmlCharEncoding
+								enc);
+    extern xmlParserInputBufferPtr xmlParserInputBufferCreateFile(FILE *
+								  file,
+								  xmlCharEncoding
+								  enc);
     extern xmlParserInputBufferPtr
-	xmlParserInputBufferCreateIO(xmlInputReadCallback,
-				     xmlInputCloseCallback, void *,
-				     xmlCharEncoding);
+	xmlParserInputBufferCreateIO(xmlInputReadCallback ioread,
+				     xmlInputCloseCallback ioclose,
+				     void *ioctx, xmlCharEncoding enc);
     extern xmlParserInputBufferPtr xmlParserInputBufferCreateMem(const char
-								 *, int,
-								 xmlCharEncoding);
+								 *mem,
+								 int size,
+								 xmlCharEncoding
+								 enc);
     extern xmlParserInputBufferPtr xmlParserInputBufferCreateStatic(const
-								    char *,
-								    int,
-								    xmlCharEncoding);
-    extern int xmlParserInputBufferGrow(xmlParserInputBufferPtr, int);
-    extern int xmlParserInputBufferPush(xmlParserInputBufferPtr, int,
-					const char *);
-    extern int xmlParserInputBufferRead(xmlParserInputBufferPtr, int);
+								    char
+								    *mem,
+								    int
+								    size,
+								    xmlCharEncoding
+								    enc);
+    extern int xmlParserInputBufferGrow(xmlParserInputBufferPtr in,
+					int len);
+    extern int xmlParserInputBufferPush(xmlParserInputBufferPtr in,
+					int len, const char *buf);
+    extern int xmlParserInputBufferRead(xmlParserInputBufferPtr in,
+					int len);
     extern int xmlPopInputCallbacks(void);
     extern void xmlRegisterDefaultInputCallbacks(void);
     extern void xmlRegisterDefaultOutputCallbacks(void);
     extern void xmlRegisterHTTPPostCallbacks(void);
-    extern int xmlRegisterInputCallbacks(xmlInputMatchCallback,
-					 xmlInputOpenCallback,
-					 xmlInputReadCallback,
-					 xmlInputCloseCallback);
-    extern int xmlRegisterOutputCallbacks(xmlOutputMatchCallback,
-					  xmlOutputOpenCallback,
-					  xmlOutputWriteCallback,
-					  xmlOutputCloseCallback);
+    extern int xmlRegisterInputCallbacks(xmlInputMatchCallback matchFunc,
+					 xmlInputOpenCallback openFunc,
+					 xmlInputReadCallback readFunc,
+					 xmlInputCloseCallback closeFunc);
+    extern int xmlRegisterOutputCallbacks(xmlOutputMatchCallback matchFunc,
+					  xmlOutputOpenCallback openFunc,
+					  xmlOutputWriteCallback writeFunc,
+					  xmlOutputCloseCallback
+					  closeFunc);
 #ifdef __cplusplus
 }
 #endif

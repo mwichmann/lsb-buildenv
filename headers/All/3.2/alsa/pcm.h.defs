@@ -193,366 +193,454 @@ typedef enum _snd_spcm_xrun_type {
     SND_SPCM_XRUN_IGNORE,
     SND_SPCM_XRUN_STOP = 1
 } snd_spcm_xrun_type_t;
-extern int snd_async_add_pcm_handler(snd_async_handler_t * *, snd_pcm_t *,
-				     snd_async_callback_t, void *);
-extern snd_pcm_t *snd_async_handler_get_pcm(snd_async_handler_t *);
-extern void snd_pcm_access_mask_any(snd_pcm_access_mask_t *);
-extern void snd_pcm_access_mask_copy(snd_pcm_access_mask_t *,
-				     const snd_pcm_access_mask_t *);
-extern void snd_pcm_access_mask_free(snd_pcm_access_mask_t *);
-extern int snd_pcm_access_mask_malloc(snd_pcm_access_mask_t * *);
-extern void snd_pcm_access_mask_none(snd_pcm_access_mask_t *);
-extern void snd_pcm_access_mask_set(snd_pcm_access_mask_t *,
-				    snd_pcm_access_t);
+extern int snd_async_add_pcm_handler(snd_async_handler_t * *handler,
+				     snd_pcm_t * pcm,
+				     snd_async_callback_t callback,
+				     void *private_data);
+extern snd_pcm_t *snd_async_handler_get_pcm(snd_async_handler_t * handler);
+extern void snd_pcm_access_mask_any(snd_pcm_access_mask_t * mask);
+extern void snd_pcm_access_mask_copy(snd_pcm_access_mask_t * dst,
+				     const snd_pcm_access_mask_t * src);
+extern void snd_pcm_access_mask_free(snd_pcm_access_mask_t * obj);
+extern int snd_pcm_access_mask_malloc(snd_pcm_access_mask_t * *ptr);
+extern void snd_pcm_access_mask_none(snd_pcm_access_mask_t * mask);
+extern void snd_pcm_access_mask_set(snd_pcm_access_mask_t * mask,
+				    snd_pcm_access_t val);
 extern size_t snd_pcm_access_mask_sizeof(void);
-extern int snd_pcm_access_mask_test(const snd_pcm_access_mask_t *,
-				    snd_pcm_access_t);
-extern const char *snd_pcm_access_name(snd_pcm_access_t);
-extern int snd_pcm_area_copy(const snd_pcm_channel_area_t *,
-			     snd_pcm_uframes_t,
-			     const snd_pcm_channel_area_t *,
-			     snd_pcm_uframes_t, unsigned int,
-			     snd_pcm_format_t);
-extern int snd_pcm_area_silence(const snd_pcm_channel_area_t *,
-				snd_pcm_uframes_t, unsigned int,
-				snd_pcm_format_t);
-extern int snd_pcm_areas_copy(const snd_pcm_channel_area_t *,
-			      snd_pcm_uframes_t,
-			      const snd_pcm_channel_area_t *,
-			      snd_pcm_uframes_t, unsigned int,
-			      snd_pcm_uframes_t, snd_pcm_format_t);
-extern int snd_pcm_areas_silence(const snd_pcm_channel_area_t *,
-				 snd_pcm_uframes_t, unsigned int,
-				 snd_pcm_uframes_t, snd_pcm_format_t);
-extern snd_pcm_sframes_t snd_pcm_avail_update(snd_pcm_t *);
-extern snd_pcm_format_t snd_pcm_build_linear_format(int, int, int, int);
-extern snd_pcm_sframes_t snd_pcm_bytes_to_frames(snd_pcm_t *, ssize_t);
-extern long int snd_pcm_bytes_to_samples(snd_pcm_t *, ssize_t);
-extern int snd_pcm_close(snd_pcm_t *);
-extern int snd_pcm_delay(snd_pcm_t *, snd_pcm_sframes_t *);
-extern int snd_pcm_drain(snd_pcm_t *);
-extern int snd_pcm_drop(snd_pcm_t *);
-extern int snd_pcm_dump(snd_pcm_t *, snd_output_t *);
-extern int snd_pcm_format_big_endian(snd_pcm_format_t);
-extern int snd_pcm_format_cpu_endian(snd_pcm_format_t);
-extern const char *snd_pcm_format_description(snd_pcm_format_t);
-extern int snd_pcm_format_float(snd_pcm_format_t);
-extern int snd_pcm_format_linear(snd_pcm_format_t);
-extern int snd_pcm_format_little_endian(snd_pcm_format_t);
-extern void snd_pcm_format_mask_any(snd_pcm_format_mask_t *);
-extern void snd_pcm_format_mask_copy(snd_pcm_format_mask_t *,
-				     const snd_pcm_format_mask_t *);
-extern void snd_pcm_format_mask_free(snd_pcm_format_mask_t *);
-extern int snd_pcm_format_mask_malloc(snd_pcm_format_mask_t * *);
-extern void snd_pcm_format_mask_none(snd_pcm_format_mask_t *);
-extern void snd_pcm_format_mask_set(snd_pcm_format_mask_t *,
-				    snd_pcm_format_t);
+extern int snd_pcm_access_mask_test(const snd_pcm_access_mask_t * mask,
+				    snd_pcm_access_t val);
+extern const char *snd_pcm_access_name(snd_pcm_access_t _access);
+extern int snd_pcm_area_copy(const snd_pcm_channel_area_t * dst_channel,
+			     snd_pcm_uframes_t dst_offset,
+			     const snd_pcm_channel_area_t * src_channel,
+			     snd_pcm_uframes_t src_offset,
+			     unsigned int samples,
+			     snd_pcm_format_t format);
+extern int snd_pcm_area_silence(const snd_pcm_channel_area_t * dst_channel,
+				snd_pcm_uframes_t dst_offset,
+				unsigned int samples,
+				snd_pcm_format_t format);
+extern int snd_pcm_areas_copy(const snd_pcm_channel_area_t * dst_channels,
+			      snd_pcm_uframes_t dst_offset,
+			      const snd_pcm_channel_area_t * src_channels,
+			      snd_pcm_uframes_t src_offset,
+			      unsigned int channels,
+			      snd_pcm_uframes_t frames,
+			      snd_pcm_format_t format);
+extern int snd_pcm_areas_silence(const snd_pcm_channel_area_t *
+				 dst_channels,
+				 snd_pcm_uframes_t dst_offset,
+				 unsigned int channels,
+				 snd_pcm_uframes_t frames,
+				 snd_pcm_format_t format);
+extern snd_pcm_sframes_t snd_pcm_avail_update(snd_pcm_t * pcm);
+extern snd_pcm_format_t snd_pcm_build_linear_format(int width, int pwidth,
+						    int unsignd,
+						    int big_endian);
+extern snd_pcm_sframes_t snd_pcm_bytes_to_frames(snd_pcm_t * pcm,
+						 ssize_t bytes);
+extern long int snd_pcm_bytes_to_samples(snd_pcm_t * pcm, ssize_t bytes);
+extern int snd_pcm_close(snd_pcm_t * pcm);
+extern int snd_pcm_delay(snd_pcm_t * pcm, snd_pcm_sframes_t * delayp);
+extern int snd_pcm_drain(snd_pcm_t * pcm);
+extern int snd_pcm_drop(snd_pcm_t * pcm);
+extern int snd_pcm_dump(snd_pcm_t * pcm, snd_output_t * out);
+extern int snd_pcm_format_big_endian(snd_pcm_format_t format);
+extern int snd_pcm_format_cpu_endian(snd_pcm_format_t format);
+extern const char *snd_pcm_format_description(snd_pcm_format_t format);
+extern int snd_pcm_format_float(snd_pcm_format_t format);
+extern int snd_pcm_format_linear(snd_pcm_format_t format);
+extern int snd_pcm_format_little_endian(snd_pcm_format_t format);
+extern void snd_pcm_format_mask_any(snd_pcm_format_mask_t * mask);
+extern void snd_pcm_format_mask_copy(snd_pcm_format_mask_t * dst,
+				     const snd_pcm_format_mask_t * src);
+extern void snd_pcm_format_mask_free(snd_pcm_format_mask_t * obj);
+extern int snd_pcm_format_mask_malloc(snd_pcm_format_mask_t * *ptr);
+extern void snd_pcm_format_mask_none(snd_pcm_format_mask_t * mask);
+extern void snd_pcm_format_mask_set(snd_pcm_format_mask_t * mask,
+				    snd_pcm_format_t val);
 extern size_t snd_pcm_format_mask_sizeof(void);
-extern int snd_pcm_format_mask_test(const snd_pcm_format_mask_t *,
-				    snd_pcm_format_t);
-extern const char *snd_pcm_format_name(snd_pcm_format_t);
-extern int snd_pcm_format_physical_width(snd_pcm_format_t);
-extern int snd_pcm_format_set_silence(snd_pcm_format_t, void *,
-				      unsigned int);
-extern int snd_pcm_format_signed(snd_pcm_format_t);
-extern ssize_t snd_pcm_format_size(snd_pcm_format_t, size_t);
-extern int snd_pcm_format_unsigned(snd_pcm_format_t);
-extern snd_pcm_format_t snd_pcm_format_value(const char *);
-extern int snd_pcm_format_width(snd_pcm_format_t);
-extern ssize_t snd_pcm_frames_to_bytes(snd_pcm_t *, snd_pcm_sframes_t);
-extern int snd_pcm_hw_free(snd_pcm_t *);
-extern int snd_pcm_hw_params(snd_pcm_t *, snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_any(snd_pcm_t *, snd_pcm_hw_params_t *);
+extern int snd_pcm_format_mask_test(const snd_pcm_format_mask_t * mask,
+				    snd_pcm_format_t val);
+extern const char *snd_pcm_format_name(snd_pcm_format_t format);
+extern int snd_pcm_format_physical_width(snd_pcm_format_t format);
+extern int snd_pcm_format_set_silence(snd_pcm_format_t format, void *buf,
+				      unsigned int samples);
+extern int snd_pcm_format_signed(snd_pcm_format_t format);
+extern ssize_t snd_pcm_format_size(snd_pcm_format_t format,
+				   size_t samples);
+extern int snd_pcm_format_unsigned(snd_pcm_format_t format);
+extern snd_pcm_format_t snd_pcm_format_value(const char *name);
+extern int snd_pcm_format_width(snd_pcm_format_t format);
+extern snd_pcm_sframes_t snd_pcm_forward(snd_pcm_t * pcm,
+					 snd_pcm_uframes_t frames);
+extern ssize_t snd_pcm_frames_to_bytes(snd_pcm_t * pcm,
+				       snd_pcm_sframes_t frames);
+extern int snd_pcm_hw_free(snd_pcm_t * pcm);
+extern int snd_pcm_hw_params(snd_pcm_t * pcm,
+			     snd_pcm_hw_params_t * params);
+extern int snd_pcm_hw_params_any(snd_pcm_t * pcm,
+				 snd_pcm_hw_params_t * params);
 extern int snd_pcm_hw_params_can_mmap_sample_resolution(const
 							snd_pcm_hw_params_t
-							*);
-extern int snd_pcm_hw_params_can_pause(const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_can_resume(const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_can_sync_start(const snd_pcm_hw_params_t *);
-extern void snd_pcm_hw_params_copy(snd_pcm_hw_params_t *,
-				   const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_current(snd_pcm_t *, snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_dump(snd_pcm_hw_params_t *, snd_output_t *);
-extern void snd_pcm_hw_params_free(snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_get_access_mask(snd_pcm_hw_params_t *,
-					     snd_pcm_access_mask_t *);
-extern void snd_pcm_hw_params_get_format_mask(snd_pcm_hw_params_t *,
-					      snd_pcm_format_mask_t *);
-extern int snd_pcm_hw_params_get_rate_numden(const snd_pcm_hw_params_t *,
-					     unsigned int *,
-					     unsigned int *);
-extern int snd_pcm_hw_params_get_rate_resample(snd_pcm_t *,
-					       snd_pcm_hw_params_t *,
-					       unsigned int *);
-extern int snd_pcm_hw_params_get_sbits(const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_is_double(const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_is_half_duplex(const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_is_joint_duplex(const snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_malloc(snd_pcm_hw_params_t * *);
-extern int snd_pcm_hw_params_set_access(snd_pcm_t *, snd_pcm_hw_params_t *,
-					snd_pcm_access_t);
-extern int snd_pcm_hw_params_set_access_mask(snd_pcm_t *,
-					     snd_pcm_hw_params_t *,
-					     snd_pcm_access_mask_t *);
-extern int snd_pcm_hw_params_set_buffer_size(snd_pcm_t *,
-					     snd_pcm_hw_params_t *,
-					     snd_pcm_uframes_t);
-extern int snd_pcm_hw_params_set_buffer_time(snd_pcm_t *,
-					     snd_pcm_hw_params_t *,
-					     unsigned int, int);
-extern int snd_pcm_hw_params_set_channels(snd_pcm_t *,
-					  snd_pcm_hw_params_t *,
-					  unsigned int);
-extern int snd_pcm_hw_params_set_format(snd_pcm_t *, snd_pcm_hw_params_t *,
-					snd_pcm_format_t);
-extern int snd_pcm_hw_params_set_format_mask(snd_pcm_t *,
-					     snd_pcm_hw_params_t *,
-					     snd_pcm_format_mask_t *);
-extern int snd_pcm_hw_params_set_period_size(snd_pcm_t *,
-					     snd_pcm_hw_params_t *,
-					     snd_pcm_uframes_t, int);
-extern int snd_pcm_hw_params_set_period_time(snd_pcm_t *,
-					     snd_pcm_hw_params_t *,
-					     unsigned int, int);
-extern int snd_pcm_hw_params_set_periods(snd_pcm_t *,
-					 snd_pcm_hw_params_t *,
-					 unsigned int, int);
-extern int snd_pcm_hw_params_set_periods_integer(snd_pcm_t *,
-						 snd_pcm_hw_params_t *);
-extern int snd_pcm_hw_params_set_rate(snd_pcm_t *, snd_pcm_hw_params_t *,
-				      unsigned int, int);
-extern int snd_pcm_hw_params_set_rate_resample(snd_pcm_t *,
-					       snd_pcm_hw_params_t *,
-					       unsigned int);
-extern size_t snd_pcm_hw_params_sizeof(void);
-extern int snd_pcm_hw_params_test_access(snd_pcm_t *,
-					 snd_pcm_hw_params_t *,
-					 snd_pcm_access_t);
-extern int snd_pcm_hw_params_test_buffer_size(snd_pcm_t *,
-					      snd_pcm_hw_params_t *,
-					      snd_pcm_uframes_t);
-extern int snd_pcm_hw_params_test_buffer_time(snd_pcm_t *,
-					      snd_pcm_hw_params_t *,
-					      unsigned int, int);
-extern int snd_pcm_hw_params_test_channels(snd_pcm_t *,
-					   snd_pcm_hw_params_t *,
-					   unsigned int);
-extern int snd_pcm_hw_params_test_format(snd_pcm_t *,
-					 snd_pcm_hw_params_t *,
-					 snd_pcm_format_t);
-extern int snd_pcm_hw_params_test_period_size(snd_pcm_t *,
-					      snd_pcm_hw_params_t *,
-					      snd_pcm_uframes_t, int);
-extern int snd_pcm_hw_params_test_period_time(snd_pcm_t *,
-					      snd_pcm_hw_params_t *,
-					      unsigned int, int);
-extern int snd_pcm_hw_params_test_periods(snd_pcm_t *,
-					  snd_pcm_hw_params_t *,
-					  unsigned int, int);
-extern int snd_pcm_hw_params_test_rate(snd_pcm_t *, snd_pcm_hw_params_t *,
-				       unsigned int, int);
-extern int snd_pcm_hwsync(snd_pcm_t *);
-extern int snd_pcm_info(snd_pcm_t *, snd_pcm_info_t *);
-extern void snd_pcm_info_copy(snd_pcm_info_t *, const snd_pcm_info_t *);
-extern void snd_pcm_info_free(snd_pcm_info_t *);
-extern int snd_pcm_info_get_card(const snd_pcm_info_t *);
-extern snd_pcm_class_t snd_pcm_info_get_class(const snd_pcm_info_t *);
-extern unsigned int snd_pcm_info_get_device(const snd_pcm_info_t *);
-extern const char *snd_pcm_info_get_id(const snd_pcm_info_t *);
-extern const char *snd_pcm_info_get_name(const snd_pcm_info_t *);
-extern snd_pcm_stream_t snd_pcm_info_get_stream(const snd_pcm_info_t *);
-extern unsigned int snd_pcm_info_get_subdevice(const snd_pcm_info_t *);
-extern const char *snd_pcm_info_get_subdevice_name(const snd_pcm_info_t *);
-extern unsigned int snd_pcm_info_get_subdevices_avail(const snd_pcm_info_t
-						      *);
-extern unsigned int snd_pcm_info_get_subdevices_count(const snd_pcm_info_t
-						      *);
-extern int snd_pcm_info_malloc(snd_pcm_info_t * *);
-extern void snd_pcm_info_set_device(snd_pcm_info_t *, unsigned int);
-extern void snd_pcm_info_set_stream(snd_pcm_info_t *, snd_pcm_stream_t);
-extern void snd_pcm_info_set_subdevice(snd_pcm_info_t *, unsigned int);
-extern size_t snd_pcm_info_sizeof(void);
-extern int snd_pcm_link(snd_pcm_t *, snd_pcm_t *);
-extern int snd_pcm_mmap_begin(snd_pcm_t *,
-			      const snd_pcm_channel_area_t * *,
-			      snd_pcm_uframes_t *, snd_pcm_uframes_t *);
-extern snd_pcm_sframes_t snd_pcm_mmap_commit(snd_pcm_t *,
-					     snd_pcm_uframes_t,
-					     snd_pcm_uframes_t);
-extern snd_pcm_sframes_t snd_pcm_mmap_readi(snd_pcm_t *, void *,
-					    snd_pcm_uframes_t);
-extern snd_pcm_sframes_t snd_pcm_mmap_readn(snd_pcm_t *, void **,
-					    snd_pcm_uframes_t);
-extern snd_pcm_sframes_t snd_pcm_mmap_writei(snd_pcm_t *, const void *,
-					     snd_pcm_uframes_t);
-extern snd_pcm_sframes_t snd_pcm_mmap_writen(snd_pcm_t *, void **,
-					     snd_pcm_uframes_t);
-extern const char *snd_pcm_name(snd_pcm_t *);
-extern int snd_pcm_nonblock(snd_pcm_t *, int);
-extern int snd_pcm_open(snd_pcm_t * *, const char *, snd_pcm_stream_t,
-			int);
-extern int snd_pcm_open_lconf(snd_pcm_t * *, const char *,
-			      snd_pcm_stream_t, int, snd_config_t *);
-extern int snd_pcm_pause(snd_pcm_t *, int);
-extern int snd_pcm_poll_descriptors(snd_pcm_t *, struct pollfd *,
-				    unsigned int);
-extern int snd_pcm_poll_descriptors_count(snd_pcm_t *);
-extern int snd_pcm_poll_descriptors_revents(snd_pcm_t *, struct pollfd *,
-					    unsigned int,
-					    short unsigned int *);
-extern int snd_pcm_prepare(snd_pcm_t *);
-extern snd_pcm_sframes_t snd_pcm_readi(snd_pcm_t *, void *,
-				       snd_pcm_uframes_t);
-extern snd_pcm_sframes_t snd_pcm_readn(snd_pcm_t *, void **,
-				       snd_pcm_uframes_t);
-extern int snd_pcm_recover(snd_pcm_t *, int, int);
-extern int snd_pcm_reset(snd_pcm_t *);
-extern int snd_pcm_resume(snd_pcm_t *);
-extern snd_pcm_sframes_t snd_pcm_rewind(snd_pcm_t *, snd_pcm_uframes_t);
-extern ssize_t snd_pcm_samples_to_bytes(snd_pcm_t *, long int);
-extern int snd_pcm_start(snd_pcm_t *);
-extern snd_pcm_state_t snd_pcm_state(snd_pcm_t *);
-extern const char *snd_pcm_state_name(snd_pcm_state_t);
-extern int snd_pcm_status(snd_pcm_t *, snd_pcm_status_t *);
-extern void snd_pcm_status_copy(snd_pcm_status_t *,
-				const snd_pcm_status_t *);
-extern int snd_pcm_status_dump(snd_pcm_status_t *, snd_output_t *);
-extern void snd_pcm_status_free(snd_pcm_status_t *);
-extern snd_pcm_uframes_t snd_pcm_status_get_avail(const snd_pcm_status_t
-						  *);
-extern snd_pcm_uframes_t snd_pcm_status_get_avail_max(const
-						      snd_pcm_status_t *);
-extern snd_pcm_sframes_t snd_pcm_status_get_delay(const snd_pcm_status_t
-						  *);
-extern snd_pcm_state_t snd_pcm_status_get_state(const snd_pcm_status_t *);
-extern void snd_pcm_status_get_trigger_tstamp(const snd_pcm_status_t *,
-					      snd_timestamp_t *);
-extern void snd_pcm_status_get_tstamp(const snd_pcm_status_t *,
-				      snd_timestamp_t *);
-extern int snd_pcm_status_malloc(snd_pcm_status_t * *);
-extern size_t snd_pcm_status_sizeof(void);
-extern snd_pcm_stream_t snd_pcm_stream(snd_pcm_t *);
-extern const char *snd_pcm_stream_name(snd_pcm_stream_t);
-extern int snd_pcm_sw_params(snd_pcm_t *, snd_pcm_sw_params_t *);
-extern void snd_pcm_sw_params_copy(snd_pcm_sw_params_t *,
-				   const snd_pcm_sw_params_t *);
-extern int snd_pcm_sw_params_current(snd_pcm_t *, snd_pcm_sw_params_t *);
-extern int snd_pcm_sw_params_dump(snd_pcm_sw_params_t *, snd_output_t *);
-extern void snd_pcm_sw_params_free(snd_pcm_sw_params_t *);
-extern int snd_pcm_sw_params_get_boundary(const snd_pcm_sw_params_t *,
-					  snd_pcm_uframes_t *);
-extern int snd_pcm_sw_params_malloc(snd_pcm_sw_params_t * *);
-extern int snd_pcm_sw_params_set_avail_min(snd_pcm_t *,
-					   snd_pcm_sw_params_t *,
-					   snd_pcm_uframes_t);
-extern int snd_pcm_sw_params_set_silence_size(snd_pcm_t *,
-					      snd_pcm_sw_params_t *,
-					      snd_pcm_uframes_t);
-extern int snd_pcm_sw_params_set_silence_threshold(snd_pcm_t *,
-						   snd_pcm_sw_params_t *,
-						   snd_pcm_uframes_t);
-extern int snd_pcm_sw_params_set_start_threshold(snd_pcm_t *,
-						 snd_pcm_sw_params_t *,
-						 snd_pcm_uframes_t);
-extern int snd_pcm_sw_params_set_stop_threshold(snd_pcm_t *,
-						snd_pcm_sw_params_t *,
-						snd_pcm_uframes_t);
-extern int snd_pcm_sw_params_set_tstamp_mode(snd_pcm_t *,
-					     snd_pcm_sw_params_t *,
-					     snd_pcm_tstamp_t);
-extern int snd_pcm_sw_params_set_xfer_align(snd_pcm_t *,
-					    snd_pcm_sw_params_t *,
-					    snd_pcm_uframes_t);
-extern size_t snd_pcm_sw_params_sizeof(void);
-extern snd_pcm_type_t snd_pcm_type(snd_pcm_t *);
-extern int snd_pcm_unlink(snd_pcm_t *);
-extern int snd_pcm_wait(snd_pcm_t *, int);
-extern snd_pcm_sframes_t snd_pcm_writei(snd_pcm_t *, const void *,
-					snd_pcm_uframes_t);
-extern snd_pcm_sframes_t snd_pcm_writen(snd_pcm_t *, void **,
-					snd_pcm_uframes_t);
-extern int snd_pcm_hw_params_get_rate_min(const snd_pcm_hw_params_t *,
-					  unsigned int *, int *);
-extern int snd_pcm_sw_params_get_avail_min(const snd_pcm_sw_params_t *,
-					   snd_pcm_uframes_t *);
-extern int snd_pcm_hw_params_get_period_time(const snd_pcm_hw_params_t *,
-					     unsigned int *, int *);
-extern int snd_pcm_hw_params_set_buffer_time_near(snd_pcm_t *,
-						  snd_pcm_hw_params_t *,
-						  unsigned int *, int *);
-extern int snd_pcm_hw_params_get_format(const snd_pcm_hw_params_t *,
-					snd_pcm_format_t *);
-extern int snd_pcm_hw_params_get_channels_min(const snd_pcm_hw_params_t *,
-					      unsigned int *);
-extern int snd_pcm_sw_params_get_start_threshold(const snd_pcm_sw_params_t
-						 *, snd_pcm_uframes_t *);
-extern int snd_pcm_hw_params_set_period_time_near(snd_pcm_t *,
-						  snd_pcm_hw_params_t *,
-						  unsigned int *, int *);
-extern int snd_pcm_hw_params_set_channels_near(snd_pcm_t *,
-					       snd_pcm_hw_params_t *,
-					       unsigned int *);
-extern int snd_pcm_hw_params_get_rate_max(const snd_pcm_hw_params_t *,
-					  unsigned int *, int *);
-extern int snd_pcm_hw_params_get_period_size(const snd_pcm_hw_params_t *,
-					     snd_pcm_uframes_t *, int *);
-extern int snd_pcm_hw_params_get_period_time_max(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-extern int snd_pcm_hw_params_get_buffer_size(const snd_pcm_hw_params_t *,
-					     snd_pcm_uframes_t *);
-extern int snd_pcm_sw_params_get_silence_threshold(const
-						   snd_pcm_sw_params_t *,
-						   snd_pcm_uframes_t *);
-extern int snd_pcm_hw_params_get_access(const snd_pcm_hw_params_t *,
-					snd_pcm_access_t *);
-extern int snd_pcm_hw_params_get_buffer_time_min(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-extern int snd_pcm_hw_params_get_buffer_time(const snd_pcm_hw_params_t *,
-					     unsigned int *, int *);
-extern int snd_pcm_hw_params_get_rate(const snd_pcm_hw_params_t *,
-				      unsigned int *, int *);
-extern int snd_pcm_sw_params_get_stop_threshold(const snd_pcm_sw_params_t
-						*, snd_pcm_uframes_t *);
-extern int snd_pcm_hw_params_get_period_size_max(const snd_pcm_hw_params_t
-						 *, snd_pcm_uframes_t *,
-						 int *);
-extern int snd_pcm_hw_params_get_buffer_size_min(const snd_pcm_hw_params_t
-						 *, snd_pcm_uframes_t *);
-extern const char *snd_pcm_type_name(snd_pcm_type_t);
-extern int snd_pcm_sw_params_get_silence_size(const snd_pcm_sw_params_t *,
-					      snd_pcm_uframes_t *);
-extern int snd_pcm_hw_params_get_periods(const snd_pcm_hw_params_t *,
-					 unsigned int *, int *);
+							* params);
+extern int snd_pcm_hw_params_can_pause(const snd_pcm_hw_params_t * params);
+extern int snd_pcm_hw_params_can_resume(const snd_pcm_hw_params_t *
+					params);
+extern int snd_pcm_hw_params_can_sync_start(const snd_pcm_hw_params_t *
+					    params);
+extern void snd_pcm_hw_params_copy(snd_pcm_hw_params_t * dst,
+				   const snd_pcm_hw_params_t * src);
+extern int snd_pcm_hw_params_current(snd_pcm_t * pcm,
+				     snd_pcm_hw_params_t * params);
+extern int snd_pcm_hw_params_dump(snd_pcm_hw_params_t * params,
+				  snd_output_t * out);
+extern void snd_pcm_hw_params_free(snd_pcm_hw_params_t * obj);
+extern int snd_pcm_hw_params_get_access(const snd_pcm_hw_params_t * params,
+					snd_pcm_access_t * _access);
+extern int snd_pcm_hw_params_get_access_mask(snd_pcm_hw_params_t * params,
+					     snd_pcm_access_mask_t * mask);
+extern int snd_pcm_hw_params_get_buffer_size(const snd_pcm_hw_params_t *
+					     params,
+					     snd_pcm_uframes_t * val);
 extern int snd_pcm_hw_params_get_buffer_size_max(const snd_pcm_hw_params_t
-						 *, snd_pcm_uframes_t *);
-extern int snd_pcm_sw_params_get_tstamp_mode(const snd_pcm_sw_params_t *,
-					     snd_pcm_tstamp_t *);
-extern int snd_pcm_hw_params_set_period_size_near(snd_pcm_t *,
-						  snd_pcm_hw_params_t *,
-						  snd_pcm_uframes_t *,
-						  int *);
+						 * params,
+						 snd_pcm_uframes_t * val);
+extern int snd_pcm_hw_params_get_buffer_size_min(const snd_pcm_hw_params_t
+						 * params,
+						 snd_pcm_uframes_t * val);
+extern int snd_pcm_hw_params_get_buffer_time(const snd_pcm_hw_params_t *
+					     params, unsigned int *val,
+					     int *dir);
 extern int snd_pcm_hw_params_get_buffer_time_max(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-extern int snd_pcm_hw_params_get_period_time_min(const snd_pcm_hw_params_t
-						 *, unsigned int *, int *);
-extern int snd_pcm_hw_params_set_periods_near(snd_pcm_t *,
-					      snd_pcm_hw_params_t *,
-					      unsigned int *, int *);
-extern snd_pcm_sframes_t snd_pcm_forward(snd_pcm_t *, snd_pcm_uframes_t);
-extern int snd_pcm_hw_params_set_rate_near(snd_pcm_t *,
-					   snd_pcm_hw_params_t *,
-					   unsigned int *, int *);
+						 * params,
+						 unsigned int *val,
+						 int *dir);
+extern int snd_pcm_hw_params_get_buffer_time_min(const snd_pcm_hw_params_t
+						 * params,
+						 unsigned int *val,
+						 int *dir);
+extern int snd_pcm_hw_params_get_channels(const snd_pcm_hw_params_t *
+					  params, unsigned int *val);
+extern int snd_pcm_hw_params_get_channels_max(const snd_pcm_hw_params_t *
+					      params, unsigned int *val);
+extern int snd_pcm_hw_params_get_channels_min(const snd_pcm_hw_params_t *
+					      params, unsigned int *val);
+extern int snd_pcm_hw_params_get_format(const snd_pcm_hw_params_t * params,
+					snd_pcm_format_t * val);
+extern void snd_pcm_hw_params_get_format_mask(snd_pcm_hw_params_t * params,
+					      snd_pcm_format_mask_t *
+					      mask);
+extern int snd_pcm_hw_params_get_period_size(const snd_pcm_hw_params_t *
+					     params,
+					     snd_pcm_uframes_t * frames,
+					     int *dir);
+extern int snd_pcm_hw_params_get_period_size_max(const snd_pcm_hw_params_t
+						 * params,
+						 snd_pcm_uframes_t *
+						 frames, int *dir);
 extern int snd_pcm_hw_params_get_period_size_min(const snd_pcm_hw_params_t
-						 *, snd_pcm_uframes_t *,
-						 int *);
-extern int snd_pcm_hw_params_get_periods_min(const snd_pcm_hw_params_t *,
-					     unsigned int *, int *);
-extern int snd_pcm_hw_params_get_channels(const snd_pcm_hw_params_t *,
-					  unsigned int *);
-extern int snd_pcm_hw_params_get_channels_max(const snd_pcm_hw_params_t *,
-					      unsigned int *);
-extern int snd_pcm_hw_params_get_periods_max(const snd_pcm_hw_params_t *,
-					     unsigned int *, int *);
-extern int snd_pcm_hw_params_set_buffer_size_near(snd_pcm_t *,
-						  snd_pcm_hw_params_t *,
-						  snd_pcm_uframes_t *);
+						 * params,
+						 snd_pcm_uframes_t *
+						 frames, int *dir);
+extern int snd_pcm_hw_params_get_period_time(const snd_pcm_hw_params_t *
+					     params, unsigned int *val,
+					     int *dir);
+extern int snd_pcm_hw_params_get_period_time_max(const snd_pcm_hw_params_t
+						 * params,
+						 unsigned int *val,
+						 int *dir);
+extern int snd_pcm_hw_params_get_period_time_min(const snd_pcm_hw_params_t
+						 * params,
+						 unsigned int *val,
+						 int *dir);
+extern int snd_pcm_hw_params_get_periods(const snd_pcm_hw_params_t *
+					 params, unsigned int *val,
+					 int *dir);
+extern int snd_pcm_hw_params_get_periods_max(const snd_pcm_hw_params_t *
+					     params, unsigned int *val,
+					     int *dir);
+extern int snd_pcm_hw_params_get_periods_min(const snd_pcm_hw_params_t *
+					     params, unsigned int *val,
+					     int *dir);
+extern int snd_pcm_hw_params_get_rate(const snd_pcm_hw_params_t * params,
+				      unsigned int *val, int *dir);
+extern int snd_pcm_hw_params_get_rate_max(const snd_pcm_hw_params_t *
+					  params, unsigned int *val,
+					  int *dir);
+extern int snd_pcm_hw_params_get_rate_min(const snd_pcm_hw_params_t *
+					  params, unsigned int *val,
+					  int *dir);
+extern int snd_pcm_hw_params_get_rate_numden(const snd_pcm_hw_params_t *
+					     params,
+					     unsigned int *rate_num,
+					     unsigned int *rate_den);
+extern int snd_pcm_hw_params_get_rate_resample(snd_pcm_t * pcm,
+					       snd_pcm_hw_params_t *
+					       params, unsigned int *val);
+extern int snd_pcm_hw_params_get_sbits(const snd_pcm_hw_params_t * params);
+extern int snd_pcm_hw_params_is_double(const snd_pcm_hw_params_t * params);
+extern int snd_pcm_hw_params_is_half_duplex(const snd_pcm_hw_params_t *
+					    params);
+extern int snd_pcm_hw_params_is_joint_duplex(const snd_pcm_hw_params_t *
+					     params);
+extern int snd_pcm_hw_params_malloc(snd_pcm_hw_params_t * *ptr);
+extern int snd_pcm_hw_params_set_access(snd_pcm_t * pcm,
+					snd_pcm_hw_params_t * params,
+					snd_pcm_access_t _access);
+extern int snd_pcm_hw_params_set_access_mask(snd_pcm_t * pcm,
+					     snd_pcm_hw_params_t * params,
+					     snd_pcm_access_mask_t * mask);
+extern int snd_pcm_hw_params_set_buffer_size(snd_pcm_t * pcm,
+					     snd_pcm_hw_params_t * params,
+					     snd_pcm_uframes_t val);
+extern int snd_pcm_hw_params_set_buffer_size_near(snd_pcm_t * pcm,
+						  snd_pcm_hw_params_t *
+						  params,
+						  snd_pcm_uframes_t * val);
+extern int snd_pcm_hw_params_set_buffer_time(snd_pcm_t * pcm,
+					     snd_pcm_hw_params_t * params,
+					     unsigned int val, int dir);
+extern int snd_pcm_hw_params_set_buffer_time_near(snd_pcm_t * pcm,
+						  snd_pcm_hw_params_t *
+						  params,
+						  unsigned int *val,
+						  int *dir);
+extern int snd_pcm_hw_params_set_channels(snd_pcm_t * pcm,
+					  snd_pcm_hw_params_t * params,
+					  unsigned int val);
+extern int snd_pcm_hw_params_set_channels_near(snd_pcm_t * pcm,
+					       snd_pcm_hw_params_t *
+					       params, unsigned int *val);
+extern int snd_pcm_hw_params_set_format(snd_pcm_t * pcm,
+					snd_pcm_hw_params_t * params,
+					snd_pcm_format_t val);
+extern int snd_pcm_hw_params_set_format_mask(snd_pcm_t * pcm,
+					     snd_pcm_hw_params_t * params,
+					     snd_pcm_format_mask_t * mask);
+extern int snd_pcm_hw_params_set_period_size(snd_pcm_t * pcm,
+					     snd_pcm_hw_params_t * params,
+					     snd_pcm_uframes_t val,
+					     int dir);
+extern int snd_pcm_hw_params_set_period_size_near(snd_pcm_t * pcm,
+						  snd_pcm_hw_params_t *
+						  params,
+						  snd_pcm_uframes_t * val,
+						  int *dir);
+extern int snd_pcm_hw_params_set_period_time(snd_pcm_t * pcm,
+					     snd_pcm_hw_params_t * params,
+					     unsigned int val, int dir);
+extern int snd_pcm_hw_params_set_period_time_near(snd_pcm_t * pcm,
+						  snd_pcm_hw_params_t *
+						  params,
+						  unsigned int *val,
+						  int *dir);
+extern int snd_pcm_hw_params_set_periods(snd_pcm_t * pcm,
+					 snd_pcm_hw_params_t * params,
+					 unsigned int val, int dir);
+extern int snd_pcm_hw_params_set_periods_integer(snd_pcm_t * pcm,
+						 snd_pcm_hw_params_t *
+						 params);
+extern int snd_pcm_hw_params_set_periods_near(snd_pcm_t * pcm,
+					      snd_pcm_hw_params_t * params,
+					      unsigned int *val, int *dir);
+extern int snd_pcm_hw_params_set_rate(snd_pcm_t * pcm,
+				      snd_pcm_hw_params_t * params,
+				      unsigned int val, int dir);
+extern int snd_pcm_hw_params_set_rate_near(snd_pcm_t * pcm,
+					   snd_pcm_hw_params_t * params,
+					   unsigned int *val, int *dir);
+extern int snd_pcm_hw_params_set_rate_resample(snd_pcm_t * pcm,
+					       snd_pcm_hw_params_t *
+					       params, unsigned int val);
+extern size_t snd_pcm_hw_params_sizeof(void);
+extern int snd_pcm_hw_params_test_access(snd_pcm_t * pcm,
+					 snd_pcm_hw_params_t * params,
+					 snd_pcm_access_t _access);
+extern int snd_pcm_hw_params_test_buffer_size(snd_pcm_t * pcm,
+					      snd_pcm_hw_params_t * params,
+					      snd_pcm_uframes_t val);
+extern int snd_pcm_hw_params_test_buffer_time(snd_pcm_t * pcm,
+					      snd_pcm_hw_params_t * params,
+					      unsigned int val, int dir);
+extern int snd_pcm_hw_params_test_channels(snd_pcm_t * pcm,
+					   snd_pcm_hw_params_t * params,
+					   unsigned int val);
+extern int snd_pcm_hw_params_test_format(snd_pcm_t * pcm,
+					 snd_pcm_hw_params_t * params,
+					 snd_pcm_format_t val);
+extern int snd_pcm_hw_params_test_period_size(snd_pcm_t * pcm,
+					      snd_pcm_hw_params_t * params,
+					      snd_pcm_uframes_t val,
+					      int dir);
+extern int snd_pcm_hw_params_test_period_time(snd_pcm_t * pcm,
+					      snd_pcm_hw_params_t * params,
+					      unsigned int val, int dir);
+extern int snd_pcm_hw_params_test_periods(snd_pcm_t * pcm,
+					  snd_pcm_hw_params_t * params,
+					  unsigned int val, int dir);
+extern int snd_pcm_hw_params_test_rate(snd_pcm_t * pcm,
+				       snd_pcm_hw_params_t * params,
+				       unsigned int val, int dir);
+extern int snd_pcm_hwsync(snd_pcm_t * pcm);
+extern int snd_pcm_info(snd_pcm_t * pcm, snd_pcm_info_t * info);
+extern void snd_pcm_info_copy(snd_pcm_info_t * dst,
+			      const snd_pcm_info_t * src);
+extern void snd_pcm_info_free(snd_pcm_info_t * obj);
+extern int snd_pcm_info_get_card(const snd_pcm_info_t * obj);
+extern snd_pcm_class_t snd_pcm_info_get_class(const snd_pcm_info_t * obj);
+extern unsigned int snd_pcm_info_get_device(const snd_pcm_info_t * obj);
+extern const char *snd_pcm_info_get_id(const snd_pcm_info_t * obj);
+extern const char *snd_pcm_info_get_name(const snd_pcm_info_t * obj);
+extern snd_pcm_stream_t snd_pcm_info_get_stream(const snd_pcm_info_t *
+						obj);
+extern unsigned int snd_pcm_info_get_subdevice(const snd_pcm_info_t * obj);
+extern const char *snd_pcm_info_get_subdevice_name(const snd_pcm_info_t *
+						   obj);
+extern unsigned int snd_pcm_info_get_subdevices_avail(const snd_pcm_info_t
+						      * obj);
+extern unsigned int snd_pcm_info_get_subdevices_count(const snd_pcm_info_t
+						      * obj);
+extern int snd_pcm_info_malloc(snd_pcm_info_t * *ptr);
+extern void snd_pcm_info_set_device(snd_pcm_info_t * obj,
+				    unsigned int val);
+extern void snd_pcm_info_set_stream(snd_pcm_info_t * obj,
+				    snd_pcm_stream_t val);
+extern void snd_pcm_info_set_subdevice(snd_pcm_info_t * obj,
+				       unsigned int val);
+extern size_t snd_pcm_info_sizeof(void);
+extern int snd_pcm_link(snd_pcm_t * pcm1, snd_pcm_t * pcm2);
+extern int snd_pcm_mmap_begin(snd_pcm_t * pcm,
+			      const snd_pcm_channel_area_t * *areas,
+			      snd_pcm_uframes_t * offset,
+			      snd_pcm_uframes_t * frames);
+extern snd_pcm_sframes_t snd_pcm_mmap_commit(snd_pcm_t * pcm,
+					     snd_pcm_uframes_t offset,
+					     snd_pcm_uframes_t frames);
+extern snd_pcm_sframes_t snd_pcm_mmap_readi(snd_pcm_t * pcm, void *buffer,
+					    snd_pcm_uframes_t size);
+extern snd_pcm_sframes_t snd_pcm_mmap_readn(snd_pcm_t * pcm, void **bufs,
+					    snd_pcm_uframes_t size);
+extern snd_pcm_sframes_t snd_pcm_mmap_writei(snd_pcm_t * pcm,
+					     const void *buffer,
+					     snd_pcm_uframes_t size);
+extern snd_pcm_sframes_t snd_pcm_mmap_writen(snd_pcm_t * pcm, void **bufs,
+					     snd_pcm_uframes_t size);
+extern const char *snd_pcm_name(snd_pcm_t * pcm);
+extern int snd_pcm_nonblock(snd_pcm_t * pcm, int nonblock);
+extern int snd_pcm_open(snd_pcm_t * *pcm, const char *name,
+			snd_pcm_stream_t stream, int mode);
+extern int snd_pcm_open_lconf(snd_pcm_t * *pcm, const char *name,
+			      snd_pcm_stream_t stream, int mode,
+			      snd_config_t * lconf);
+extern int snd_pcm_pause(snd_pcm_t * pcm, int enable);
+extern int snd_pcm_poll_descriptors(snd_pcm_t * pcm, struct pollfd *pfds,
+				    unsigned int space);
+extern int snd_pcm_poll_descriptors_count(snd_pcm_t * pcm);
+extern int snd_pcm_poll_descriptors_revents(snd_pcm_t * pcm,
+					    struct pollfd *pfds,
+					    unsigned int nfds,
+					    short unsigned int *revents);
+extern int snd_pcm_prepare(snd_pcm_t * pcm);
+extern snd_pcm_sframes_t snd_pcm_readi(snd_pcm_t * pcm, void *buffer,
+				       snd_pcm_uframes_t size);
+extern snd_pcm_sframes_t snd_pcm_readn(snd_pcm_t * pcm, void **bufs,
+				       snd_pcm_uframes_t size);
+extern int snd_pcm_recover(snd_pcm_t * pcm, int err, int silent);
+extern int snd_pcm_reset(snd_pcm_t * pcm);
+extern int snd_pcm_resume(snd_pcm_t * pcm);
+extern snd_pcm_sframes_t snd_pcm_rewind(snd_pcm_t * pcm,
+					snd_pcm_uframes_t frames);
+extern ssize_t snd_pcm_samples_to_bytes(snd_pcm_t * pcm, long int samples);
+extern int snd_pcm_start(snd_pcm_t * pcm);
+extern snd_pcm_state_t snd_pcm_state(snd_pcm_t * pcm);
+extern const char *snd_pcm_state_name(snd_pcm_state_t state);
+extern int snd_pcm_status(snd_pcm_t * pcm, snd_pcm_status_t * status);
+extern void snd_pcm_status_copy(snd_pcm_status_t * dst,
+				const snd_pcm_status_t * src);
+extern int snd_pcm_status_dump(snd_pcm_status_t * status,
+			       snd_output_t * out);
+extern void snd_pcm_status_free(snd_pcm_status_t * obj);
+extern snd_pcm_uframes_t snd_pcm_status_get_avail(const snd_pcm_status_t *
+						  obj);
+extern snd_pcm_uframes_t snd_pcm_status_get_avail_max(const
+						      snd_pcm_status_t *
+						      obj);
+extern snd_pcm_sframes_t snd_pcm_status_get_delay(const snd_pcm_status_t *
+						  obj);
+extern snd_pcm_state_t snd_pcm_status_get_state(const snd_pcm_status_t *
+						obj);
+extern void snd_pcm_status_get_trigger_tstamp(const snd_pcm_status_t * obj,
+					      snd_timestamp_t * ptr);
+extern void snd_pcm_status_get_tstamp(const snd_pcm_status_t * obj,
+				      snd_timestamp_t * ptr);
+extern int snd_pcm_status_malloc(snd_pcm_status_t * *ptr);
+extern size_t snd_pcm_status_sizeof(void);
+extern snd_pcm_stream_t snd_pcm_stream(snd_pcm_t * pcm);
+extern const char *snd_pcm_stream_name(snd_pcm_stream_t stream);
+extern int snd_pcm_sw_params(snd_pcm_t * pcm,
+			     snd_pcm_sw_params_t * params);
+extern void snd_pcm_sw_params_copy(snd_pcm_sw_params_t * dst,
+				   const snd_pcm_sw_params_t * src);
+extern int snd_pcm_sw_params_current(snd_pcm_t * pcm,
+				     snd_pcm_sw_params_t * params);
+extern int snd_pcm_sw_params_dump(snd_pcm_sw_params_t * params,
+				  snd_output_t * out);
+extern void snd_pcm_sw_params_free(snd_pcm_sw_params_t * obj);
+extern int snd_pcm_sw_params_get_avail_min(const snd_pcm_sw_params_t *
+					   params,
+					   snd_pcm_uframes_t * val);
+extern int snd_pcm_sw_params_get_boundary(const snd_pcm_sw_params_t *
+					  params, snd_pcm_uframes_t * val);
+extern int snd_pcm_sw_params_get_silence_size(const snd_pcm_sw_params_t *
+					      params,
+					      snd_pcm_uframes_t * val);
+extern int snd_pcm_sw_params_get_silence_threshold(const
+						   snd_pcm_sw_params_t *
+						   params,
+						   snd_pcm_uframes_t *
+						   val);
+extern int snd_pcm_sw_params_get_start_threshold(const snd_pcm_sw_params_t
+						 * paramsm,
+						 snd_pcm_uframes_t * val);
+extern int snd_pcm_sw_params_get_stop_threshold(const snd_pcm_sw_params_t *
+						params,
+						snd_pcm_uframes_t * val);
+extern int snd_pcm_sw_params_get_tstamp_mode(const snd_pcm_sw_params_t *
+					     params,
+					     snd_pcm_tstamp_t * val);
+extern int snd_pcm_sw_params_malloc(snd_pcm_sw_params_t * *ptr);
+extern int snd_pcm_sw_params_set_avail_min(snd_pcm_t * pcm,
+					   snd_pcm_sw_params_t * params,
+					   snd_pcm_uframes_t val);
+extern int snd_pcm_sw_params_set_silence_size(snd_pcm_t * pcm,
+					      snd_pcm_sw_params_t * params,
+					      snd_pcm_uframes_t val);
+extern int snd_pcm_sw_params_set_silence_threshold(snd_pcm_t * pcm,
+						   snd_pcm_sw_params_t *
+						   params,
+						   snd_pcm_uframes_t val);
+extern int snd_pcm_sw_params_set_start_threshold(snd_pcm_t * pcm,
+						 snd_pcm_sw_params_t *
+						 params,
+						 snd_pcm_uframes_t val);
+extern int snd_pcm_sw_params_set_stop_threshold(snd_pcm_t * pcm,
+						snd_pcm_sw_params_t *
+						params,
+						snd_pcm_uframes_t val);
+extern int snd_pcm_sw_params_set_tstamp_mode(snd_pcm_t * pcm,
+					     snd_pcm_sw_params_t * params,
+					     snd_pcm_tstamp_t val);
+extern int snd_pcm_sw_params_set_xfer_align(snd_pcm_t * pcm,
+					    snd_pcm_sw_params_t * params,
+					    snd_pcm_uframes_t val);
+extern size_t snd_pcm_sw_params_sizeof(void);
+extern snd_pcm_type_t snd_pcm_type(snd_pcm_t * pcm);
+extern const char *snd_pcm_type_name(snd_pcm_type_t type);
+extern int snd_pcm_unlink(snd_pcm_t * pcm);
+extern int snd_pcm_wait(snd_pcm_t * pcm, int timeout);
+extern snd_pcm_sframes_t snd_pcm_writei(snd_pcm_t * pcm,
+					const void *buffer,
+					snd_pcm_uframes_t size);
+extern snd_pcm_sframes_t snd_pcm_writen(snd_pcm_t * pcm, void **bufs,
+					snd_pcm_uframes_t size);

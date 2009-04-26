@@ -90,8 +90,8 @@ extern "C" {
 						 XrmBindingList,
 						 XrmQuarkList,
 						 XrmRepresentation *,
-						 XrmValue *, XPointer)
-				    , XPointer);
+						 XrmValue *, XPointer),
+				    XPointer);
     extern XrmDatabase XrmGetDatabase(Display *);
     extern XrmDatabase XrmGetFileDatabase(const char *);
     extern int XrmGetResource(XrmDatabase, const char *, const char *,

@@ -45,9 +45,10 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int inotify_add_watch(int, const char *, uint32_t);
+    extern int inotify_add_watch(int __fd, const char *__name,
+				 uint32_t __mask);
     extern int inotify_init(void);
-    extern int inotify_rm_watch(int, uint32_t);
+    extern int inotify_rm_watch(int __fd, uint32_t __wd);
 #ifdef __cplusplus
 }
 #endif

@@ -522,7 +522,9 @@ extern "C" {
     extern float coshf(float);
     extern long double coshl(long double);
     extern long double cosl(long double);
+    /* This interface is obsolete. Use remainderf() from ISO C99 */
     extern float dremf(float, float) LSB_DECL_DEPRECATED;
+    /* This interface is obsolete. Use remainderl() from ISO C99 */
     extern long double dreml(long double, long double) LSB_DECL_DEPRECATED;
     extern double erf(double);
     extern double erfc(double);
@@ -538,8 +540,11 @@ extern "C" {
     extern double fdim(double, double);
     extern float fdimf(float, float);
     extern long double fdiml(long double, long double);
+    /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
     extern int finite(double) LSB_DECL_DEPRECATED;
+    /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
     extern int finitef(float) LSB_DECL_DEPRECATED;
+    /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
     extern int finitel(long double) LSB_DECL_DEPRECATED;
     extern double floor(double);
     extern float floorf(float);
@@ -559,8 +564,11 @@ extern "C" {
     extern double frexp(double, int *);
     extern float frexpf(float, int *);
     extern long double frexpl(long double, int *);
+    /* This name for the interface is obsolete. Use lgamma instead */
     extern double gamma(double) LSB_DECL_DEPRECATED;
+    /* This name for the interface is obsolete. Use lgammaf instead */
     extern float gammaf(float) LSB_DECL_DEPRECATED;
+    /* This name for the interface is obsolete. Use lgammal instead */
     extern long double gammal(long double) LSB_DECL_DEPRECATED;
     extern double hypot(double, double);
     extern float hypotf(float, float);
@@ -754,6 +762,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 32
+    /* This interface is obsolete. Use remainder() from ISO C99 */
     extern double drem(double, double) LSB_DECL_DEPRECATED;
     extern double exp10(double);
     extern float exp10f(float);

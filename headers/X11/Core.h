@@ -20,7 +20,7 @@ extern "C" {
 /* Function prototypes */
 
     extern WidgetClass coreWidgetClass;
-    extern widgetClass;
+    extern WidgetClass widgetClass;
 #ifdef __cplusplus
 }
 #endif

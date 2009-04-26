@@ -18,8 +18,9 @@ extern "C" {
 
     extern int XMissingExtension(Display *, const char *);
     extern
-	int (*XSetExtensionErrorHandler(int (*)(Display *, char *, char *)
-	     )) (Display *, char *, char *);
+	int (*XSetExtensionErrorHandler
+	     (int (*)(Display *, char *, char *))) (Display *, char *,
+						    char *);
 #ifdef __cplusplus
 }
 #endif

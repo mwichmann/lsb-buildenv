@@ -24,38 +24,46 @@ extern "C" {
     typedef struct _PangoCairoFontMap PangoCairoFontMap;
 
 
-
-
-
-
 /* Function prototypes */
 
     extern const cairo_font_options_t
-	*pango_cairo_context_get_font_options(PangoContext *);
-    extern double pango_cairo_context_get_resolution(PangoContext *);
-    extern void pango_cairo_context_set_font_options(PangoContext *,
+	*pango_cairo_context_get_font_options(PangoContext * context);
+    extern double pango_cairo_context_get_resolution(PangoContext *
+						     context);
+    extern void pango_cairo_context_set_font_options(PangoContext *
+						     context,
 						     const
-						     cairo_font_options_t
-						     *);
-    extern void pango_cairo_context_set_resolution(PangoContext *, double);
-    extern PangoLayout *pango_cairo_create_layout(cairo_t *);
+						     cairo_font_options_t *
+						     options);
+    extern void pango_cairo_context_set_resolution(PangoContext * context,
+						   double dpi);
+    extern PangoLayout *pango_cairo_create_layout(cairo_t * cr);
     extern PangoContext
-	*pango_cairo_font_map_create_context(PangoCairoFontMap *);
+	*pango_cairo_font_map_create_context(PangoCairoFontMap * fontmap);
     extern PangoFontMap *pango_cairo_font_map_get_default(void);
-    extern double pango_cairo_font_map_get_resolution(PangoCairoFontMap *);
+    extern double pango_cairo_font_map_get_resolution(PangoCairoFontMap *
+						      fontmap);
     extern PangoFontMap *pango_cairo_font_map_new(void);
-    extern void pango_cairo_font_map_set_resolution(PangoCairoFontMap *,
-						    double);
-    extern void pango_cairo_glyph_string_path(cairo_t *, PangoFont *,
-					      PangoGlyphString *);
-    extern void pango_cairo_layout_line_path(cairo_t *, PangoLayoutLine *);
-    extern void pango_cairo_layout_path(cairo_t *, PangoLayout *);
-    extern void pango_cairo_show_glyph_string(cairo_t *, PangoFont *,
-					      PangoGlyphString *);
-    extern void pango_cairo_show_layout(cairo_t *, PangoLayout *);
-    extern void pango_cairo_show_layout_line(cairo_t *, PangoLayoutLine *);
-    extern void pango_cairo_update_context(cairo_t *, PangoContext *);
-    extern void pango_cairo_update_layout(cairo_t *, PangoLayout *);
+    extern void pango_cairo_font_map_set_resolution(PangoCairoFontMap *
+						    fontmap, double dpi);
+    extern void pango_cairo_glyph_string_path(cairo_t * cr,
+					      PangoFont * font,
+					      PangoGlyphString * glyphs);
+    extern void pango_cairo_layout_line_path(cairo_t * cr,
+					     PangoLayoutLine * line);
+    extern void pango_cairo_layout_path(cairo_t * cr,
+					PangoLayout * layout);
+    extern void pango_cairo_show_glyph_string(cairo_t * cr,
+					      PangoFont * font,
+					      PangoGlyphString * glyphs);
+    extern void pango_cairo_show_layout(cairo_t * cr,
+					PangoLayout * layout);
+    extern void pango_cairo_show_layout_line(cairo_t * cr,
+					     PangoLayoutLine * line);
+    extern void pango_cairo_update_context(cairo_t * cr,
+					   PangoContext * context);
+    extern void pango_cairo_update_layout(cairo_t * cr,
+					  PangoLayout * layout);
 #ifdef __cplusplus
 }
 #endif

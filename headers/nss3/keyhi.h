@@ -13,10 +13,13 @@ extern "C" {
 #endif
 
 
+#define _KEYHI_H_
+
+
 
 /* Function prototypes */
 
-    extern void SECKEY_DestroyPrivateKey(SECKEYPrivateKey *);
+    extern void SECKEY_DestroyPrivateKey(SECKEYPrivateKey * key);
 #ifdef __cplusplus
 }
 #endif

@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define _NSSILCKT_H_
+
+
     typedef enum {
 	nssILockArena,
 	nssILockSession = 1,

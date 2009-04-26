@@ -5,127 +5,42 @@
 class QVariantComparisonHelper;
 // *INDENT-OFF*
 
-typedef void	f_construct	
+typedef void	QVariant::f_construct	
 ;
 
-typedef void	f_clear	
+typedef void	QVariant::f_clear	
 ;
 
-typedef bool	f_null	
+typedef bool	QVariant::f_null	
 ;
 
-typedef void	f_load	
+typedef void	QVariant::f_load	
 ;
 
-typedef void	f_save	
+typedef void	QVariant::f_save	
 ;
 
-typedef bool	f_compare	
+typedef bool	QVariant::f_compare	
 ;
 
-typedef bool	f_convert	
+typedef bool	QVariant::f_convert	
 ;
 
-typedef bool	f_canConvert	
+typedef bool	QVariant::f_canConvert	
 ;
 
-typedef void	f_debugStream	
+typedef void	QVariant::f_debugStream	
 ;
 
-typedef QList<QVariant> QVariantList	
+typedef class QList<QVariant>QVariantList	
 ;
 
-typedef QMap<QString, QVariant> QVariantMap	
+typedef class QMap<QString, QVariant>QVariantMap	
 ;
 
-class QVariant
-{
-private:
-public:
-     ~QVariant();
-     QVariant(QVariant::Type);
-     QVariant(int, void const*);
-     QVariant(QVariant const&);
-     QVariant(QDataStream&);
-     QVariant(int);
-     QVariant(unsigned int);
-     QVariant(long long);
-     QVariant(unsigned long long);
-     QVariant(bool);
-     QVariant(double);
-     QVariant(char const*);
-     QVariant(QByteArray const&);
-     QVariant(QBitArray const&);
-     QVariant(QString const&);
-     QVariant(QLatin1String const&);
-     QVariant(QStringList const&);
-     QVariant(QChar const&);
-     QVariant(QDate const&);
-     QVariant(QTime const&);
-     QVariant(QDateTime const&);
-     QVariant(QList<QVariant> const&);
-     QVariant(QMap<QString, QVariant> const&);
-     QVariant(QSize const&);
-     QVariant(QSizeF const&);
-     QVariant(QPoint const&);
-     QVariant(QPointF const&);
-     QVariant(QLine const&);
-     QVariant(QLineF const&);
-     QVariant(QRect const&);
-     QVariant(QRectF const&);
-     QVariant(QUrl const&);
-     QVariant(QLocale const&);
-     QVariant(QRegExp const&);
-    QVariant & operator=(QVariant const&);
-    enum _ZN8QVariant4TypeE type() const;
-    int userType() const;
-    const char * typeName() const;
-    bool canConvert(QVariant::Type) const;
-    bool convert(QVariant::Type);
-    bool isNull() const;
-    void clear();
-    void detach();
-    int toInt(bool*) const;
-    uint toUInt(bool*) const;
-    qlonglong toLongLong(bool*) const;
-    qulonglong toULongLong(bool*) const;
-    bool toBool() const;
-    double toDouble(bool*) const;
-    QByteArray toByteArray() const;
-    QBitArray toBitArray() const;
-    QString toString() const;
-    QStringList toStringList() const;
-    QChar toChar() const;
-    QDate toDate() const;
-    QTime toTime() const;
-    QDateTime toDateTime() const;
-    QList<QVariant> toList() const;
-     toMap() const;
-    QPoint toPoint() const;
-    QPointF toPointF() const;
-    QRect toRect() const;
-    QSize toSize() const;
-    QSizeF toSizeF() const;
-    QLine toLine() const;
-    QLineF toLineF() const;
-    QRectF toRectF() const;
-    QUrl toUrl() const;
-    QLocale toLocale() const;
-    QRegExp toRegExp() const;
-    void load(QDataStream&);
-    void save(QDataStream&) const;
-    static const char * typeToName(QVariant::Type);
-    static enum _ZN8QVariant4TypeE nameToType(char const*);
-    void * data();
-    const void * constData() const;
-     QVariant(Qt::GlobalColor);
-protected:
-    void create(int, void const*);
-    void * castOrDetach(QVariant::Type);
-    bool cmp(QVariant const&) const;
-};
+class QVariant;
 
-enum Type	
+enum _ZN8QVariant4TypeE	
 {
 LastType = -1,	
 Invalid = 0,	
@@ -180,24 +95,20 @@ UserType = 127
 }
 ;
 
-struct PrivateShared	;
+struct QVariant::PrivateShared	;
 
-struct Private	;
+struct QVariant::Private	;
 
-union Private::Data	;
+union _ZN8QVariant7Private4DataE	;
 
-struct Handler	;
+struct QVariant::Handler	;
 
-class QVariantComparisonHelper
-{
-private:
-public:
-};
+class QVariantComparisonHelper;
 
 
 /* Function prototypes */
 
-extern struct Handler * _ZN8QVariant7handlerE ;
+extern struct QVariant::Handler * _ZN8QVariant7handlerE ;
 extern QDebug _Zls6QDebugN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
 extern QDebug _Zls6QDebugRK8QVariant(const QVariant &);
 extern QDataStream _ZlsR11QDataStreamN8QVariant4TypeE(enum _ZN8QVariant4TypeE);

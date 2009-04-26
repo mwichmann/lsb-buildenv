@@ -5,47 +5,9 @@
 class QDataStream;
 // *INDENT-OFF*
 
-class QDataStream
-{
-private:
-public:
-     QDataStream();
-     QDataStream(QIODevice*);
-     QDataStream(QByteArray*, int);
-     QDataStream(QByteArray*, QFlags<QIODevice::OpenModeFlag>);
-     QDataStream(QByteArray const&);
-     ~QDataStream();
-    void setDevice(QIODevice*);
-    void unsetDevice();
-    bool atEnd() const;
-    enum _ZN11QDataStream6StatusE status() const;
-    void setStatus(QDataStream::Status);
-    void resetStatus();
-    void setByteOrder(QDataStream::ByteOrder);
-    QDataStream & operator>>(signed char&);
-    QDataStream & operator>>(short&);
-    QDataStream & operator>>(int&);
-    QDataStream & operator>>(long long&);
-    QDataStream & operator>>(bool&);
-    QDataStream & operator>>(float&);
-    QDataStream & operator>>(double&);
-    QDataStream & operator>>(char*&);
-    QDataStream & operator<<(signed char);
-    QDataStream & operator<<(short);
-    QDataStream & operator<<(int);
-    QDataStream & operator<<(long long);
-    QDataStream & operator<<(bool);
-    QDataStream & operator<<(float);
-    QDataStream & operator<<(double);
-    QDataStream & operator<<(char const*);
-    QDataStream & readBytes(char*&, unsigned int&);
-    int readRawData(char*, int);
-    QDataStream & writeBytes(char const*, unsigned int);
-    int writeRawData(char const*, int);
-    int skipRawData(int);
-};
+class QDataStream;
 
-enum Version	
+enum _ZN11QDataStream7VersionE	
 {
 Qt_1_0 = 1,	
 Qt_2_0 = 2,	
@@ -58,14 +20,14 @@ Qt_4_1 = 7
 }
 ;
 
-enum ByteOrder	
+enum _ZN11QDataStream9ByteOrderE	
 {
 BigEndian = 0,	
 LittleEndian = 1
 }
 ;
 
-enum Status	
+enum _ZN11QDataStream6StatusE	
 {
 Ok = 0,	
 ReadPastEnd = 1,	

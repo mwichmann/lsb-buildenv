@@ -27,7 +27,7 @@ enum _ZN19QAbstractFileEngine8FileFlagE {
 };
 class QFlags < QAbstractFileEngine::FileFlag >;
 typedef class QFlags < QAbstractFileEngine::FileFlag >
-    _ZN19QAbstractFileEngine9FileFlagsE;
+    QAbstractFileEngine::FileFlags;
 enum _ZN19QAbstractFileEngine8FileNameE {
     DefaultName = 0,
     BaseName = 1,

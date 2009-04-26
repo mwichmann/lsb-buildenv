@@ -7,4 +7,4 @@
 #define IPC_SET	1
 #define IPC_STAT	2
 
-extern key_t ftok(const char *, int);
+extern key_t ftok(const char *__pathname, int __proj_id);

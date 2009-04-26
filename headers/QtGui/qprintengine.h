@@ -5,14 +5,9 @@
 class QPrintEngine;
 // *INDENT-OFF*
 
-class QPrintEngine
-{
-private:
-public:
-     ~QPrintEngine();
-};
+class QPrintEngine;
 
-enum PrintEnginePropertyKey	
+enum _ZN12QPrintEngine22PrintEnginePropertyKeyE	
 {
 PPK_CollateCopies = 0,	
 PPK_ColorMode = 1,	

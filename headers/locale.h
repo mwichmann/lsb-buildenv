@@ -115,12 +115,13 @@ extern "C" {
 /* Function prototypes */
 
     extern struct lconv *localeconv(void);
-    extern char *setlocale(int, const char *);
+    extern char *setlocale(int __category, const char *__locale);
 #if __LSB_VERSION__ >= 30
-    extern locale_t duplocale(locale_t);
-    extern void freelocale(locale_t);
-    extern locale_t newlocale(int, const char *, locale_t);
-    extern locale_t uselocale(locale_t);
+    extern locale_t duplocale(locale_t __dataset);
+    extern void freelocale(locale_t __dataset);
+    extern locale_t newlocale(int __category_mask, const char *__locale,
+			      locale_t __base);
+    extern locale_t uselocale(locale_t __dataset);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #ifdef __cplusplus

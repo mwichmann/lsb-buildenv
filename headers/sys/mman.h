@@ -93,23 +93,26 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int mlock(const void *, size_t);
-    extern int mlockall(int);
-    extern void *mmap(void *, size_t, int, int, int, off_t);
-    extern void *mmap64(void *, size_t, int, int, int, off64_t);
-    extern int mprotect(void *, size_t, int);
-    extern int msync(void *, size_t, int);
-    extern int munlock(const void *, size_t);
+    extern int mlock(const void *__addr, size_t __len);
+    extern int mlockall(int __flags);
+    extern void *mmap(void *__addr, size_t __len, int __prot, int __flags,
+		      int __fd, off_t __offset);
+    extern void *mmap64(void *__addr, size_t __len, int __prot,
+			int __flags, int __fd, off64_t __offset);
+    extern int mprotect(void *__addr, size_t __len, int __prot);
+    extern int msync(void *__addr, size_t __len, int __flags);
+    extern int munlock(const void *__addr, size_t __len);
     extern int munlockall(void);
-    extern int munmap(void *, size_t);
+    extern int munmap(void *__addr, size_t __len);
 #if __LSB_VERSION__ >= 30
-    extern int shm_open(const char *, int, mode_t);
-    extern int shm_unlink(const char *);
+    extern int shm_open(const char *__name, int __oflag, mode_t __mode);
+    extern int shm_unlink(const char *__name);
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 32
-    extern void *mremap(void *, size_t, size_t, int, ...);
-    extern int posix_madvise(void *, size_t, int);
+    extern void *mremap(void *__addr, size_t __old_len, size_t __new_len,
+			int __flags, ...);
+    extern int posix_madvise(void *__addr, size_t __len, int __advice);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

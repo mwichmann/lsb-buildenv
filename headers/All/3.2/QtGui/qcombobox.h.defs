@@ -27,7 +27,7 @@ typedef enum _ZN9QComboBox12InsertPolicyE {
     AfterCurrent = 4,
     InsertBeforeCurrent = 5,
     BeforeCurrent = 5
-} _ZN9QComboBox6PolicyE;
+} QComboBox::Policy;
 enum _ZN9QComboBox16SizeAdjustPolicyE {
     AdjustToContents = 0,
     AdjustToContentsOnFirstShow = 1,

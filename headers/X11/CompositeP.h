@@ -9,7 +9,6 @@
 #include <X11/Composite.h>
 #include <X11/IntrinsicP.h>
 #include <X11/TranslateI.h>
-#include <X11/EventI.h>
 #include <X11/CoreP.h>
 
 #ifdef __cplusplus
@@ -54,14 +53,12 @@ extern "C" {
 	XtPointer extension;
     };
 
-
     struct _CompositePart {
 	WidgetList children;
 	Cardinal num_children;
 	Cardinal num_slots;
 	XtOrderProc insert_position;
     };
-
 
     struct _CompositeRec {
 	CorePart core;
@@ -76,7 +73,6 @@ extern "C" {
 
 
     typedef struct _CompositeClassRec CompositeClassRec;
-
 
     struct _CompositeClassRec {
 	CoreClassPart core_class;

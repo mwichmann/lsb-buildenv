@@ -25,17 +25,21 @@ extern "C" {
 /* Function prototypes */
 
     extern int putp(const char *);
+    /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
     extern int tgetent(char *, const char *) LSB_DECL_DEPRECATED;
+    /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
     extern int tgetflag(char *) LSB_DECL_DEPRECATED;
+    /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
     extern int tgetnum(char *) LSB_DECL_DEPRECATED;
+    /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
     extern char *tgetstr(char *, char **) LSB_DECL_DEPRECATED;
+    /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
     extern char *tgoto(const char *, int, int) LSB_DECL_DEPRECATED;
     extern int tigetflag(const char *);
     extern int tigetnum(const char *);
     extern char *tigetstr(const char *);
     extern char *tparm(const char *, ...);
-    extern int tputs(const char *, int, int (*)(int)
-	);
+    extern int tputs(const char *, int, int (*)(int));
     extern int setupterm(char *, int, int *);
 #if __LSB_VERSION__ >= 20
     extern TERMINAL *cur_term;

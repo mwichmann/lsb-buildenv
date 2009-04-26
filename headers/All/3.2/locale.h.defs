@@ -69,9 +69,10 @@ typedef struct __locale_struct *locale_t;
          LC_MESSAGES_MASK| LC_PAPER_MASK| LC_NAME_MASK| LC_ADDRESS_MASK| LC_TELEPHONE_MASK|\
          LC_MEASUREMENT_MASK| LC_IDENTIFICATION_MASK)
 
+extern locale_t duplocale(locale_t __dataset);
+extern void freelocale(locale_t __dataset);
 extern struct lconv *localeconv(void);
-extern char *setlocale(int, const char *);
-extern locale_t uselocale(locale_t);
-extern void freelocale(locale_t);
-extern locale_t duplocale(locale_t);
-extern locale_t newlocale(int, const char *, locale_t);
+extern locale_t newlocale(int __category_mask, const char *__locale,
+			  locale_t __base);
+extern char *setlocale(int __category, const char *__locale);
+extern locale_t uselocale(locale_t __dataset);

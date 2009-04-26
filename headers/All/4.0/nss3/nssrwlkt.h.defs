@@ -1,2 +1,4 @@
 
+#define nssrwlkt_h___
+
 typedef struct nssRWLockStr NSSRWLock;

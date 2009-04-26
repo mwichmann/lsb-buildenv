@@ -130,7 +130,7 @@ extern "C" {
     extern int _toupper(int);
     extern int isalnum(int);
     extern int isalpha(int);
-    extern int isascii(int);
+    extern int isascii(int __c);
     extern int isblank(int);
     extern int iscntrl(int);
     extern int isdigit(int);
@@ -141,9 +141,9 @@ extern "C" {
     extern int isspace(int);
     extern int isupper(int);
     extern int isxdigit(int);
-    extern int toascii(int);
-    extern int tolower(int);
-    extern int toupper(int);
+    extern int toascii(int __c);
+    extern int tolower(int __c);
+    extern int toupper(int __c);
 #if __LSB_VERSION__ >= 20
     extern const unsigned short **__ctype_b_loc(void);
     extern const int32_t **__ctype_tolower_loc(void);

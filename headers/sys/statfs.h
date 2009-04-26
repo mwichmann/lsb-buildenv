@@ -268,11 +268,18 @@ extern "C" {
 /* Function prototypes */
 
 #if __LSB_VERSION__ >= 31
-    extern int fstatfs(int, struct statfs *) LSB_DECL_DEPRECATED;
-    extern int fstatfs64(int, struct statfs64 *) LSB_DECL_DEPRECATED;
-    extern int statfs(const char *, struct statfs *) LSB_DECL_DEPRECATED;
-    extern int statfs64(const char *,
-			struct statfs64 *) LSB_DECL_DEPRECATED;
+    /* Use fstatvfs instead */
+    extern int fstatfs(int __fildes,
+		       struct statfs *__buf) LSB_DECL_DEPRECATED;
+    /* Use fstatvfs64 instead */
+    extern int fstatfs64(int __fildes,
+			 struct statfs64 *__buf) LSB_DECL_DEPRECATED;
+    /* Use statvfs instead */
+    extern int statfs(const char *__file,
+		      struct statfs *__buf) LSB_DECL_DEPRECATED;
+    /* Use stavfs64 instead */
+    extern int statfs64(const char *__file,
+			struct statfs64 *__buf) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ >= 3.1 */
 
 #ifdef __cplusplus

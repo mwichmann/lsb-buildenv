@@ -161,18 +161,18 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void cupsRasterClose(cups_raster_t *);
-    extern cups_raster_t *cupsRasterOpen(int, cups_mode_t);
-    extern unsigned int cupsRasterReadHeader(cups_raster_t *,
-					     cups_page_header_t *);
-    extern unsigned int cupsRasterReadPixels(cups_raster_t *,
-					     unsigned char *,
-					     unsigned int);
-    extern unsigned int cupsRasterWriteHeader(cups_raster_t *,
-					      cups_page_header_t *);
-    extern unsigned int cupsRasterWritePixels(cups_raster_t *,
-					      unsigned char *,
-					      unsigned int);
+    extern void cupsRasterClose(cups_raster_t * r);
+    extern cups_raster_t *cupsRasterOpen(int fd, cups_mode_t mode);
+    extern unsigned int cupsRasterReadHeader(cups_raster_t * r,
+					     cups_page_header_t * h);
+    extern unsigned int cupsRasterReadPixels(cups_raster_t * r,
+					     unsigned char *p,
+					     unsigned int len);
+    extern unsigned int cupsRasterWriteHeader(cups_raster_t * r,
+					      cups_page_header_t * h);
+    extern unsigned int cupsRasterWritePixels(cups_raster_t * r,
+					      unsigned char *p,
+					      unsigned int len);
 #ifdef __cplusplus
 }
 #endif

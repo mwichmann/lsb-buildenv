@@ -158,59 +158,76 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern GLXFBConfig *glXChooseFBConfig(Display *, int, const int *,
-					  int *);
-    extern XVisualInfo *glXChooseVisual(Display *, int, int *);
-    extern void glXCopyContext(Display *, struct __GLXcontextRec *,
-			       struct __GLXcontextRec *,
-			       long unsigned int);
-    extern GLXContext glXCreateContext(Display *, XVisualInfo *,
-				       struct __GLXcontextRec *, int);
-    extern GLXPixmap glXCreateGLXPixmap(Display *, XVisualInfo *, Pixmap);
-    extern GLXContext glXCreateNewContext(Display *,
-					  struct __GLXFBConfigRec *, int,
-					  struct __GLXcontextRec *, int);
-    extern GLXPbuffer glXCreatePbuffer(Display *,
-				       struct __GLXFBConfigRec *,
-				       const int *);
-    extern GLXPixmap glXCreatePixmap(Display *, struct __GLXFBConfigRec *,
-				     Pixmap, const int *);
-    extern GLXWindow glXCreateWindow(Display *, struct __GLXFBConfigRec *,
-				     Window, const int *);
-    extern void glXDestroyContext(Display *, struct __GLXcontextRec *);
-    extern void glXDestroyGLXPixmap(Display *, GLXPixmap);
-    extern void glXDestroyPbuffer(Display *, GLXPbuffer);
-    extern void glXDestroyPixmap(Display *, GLXPixmap);
-    extern void glXDestroyWindow(Display *, GLXWindow);
-    extern const char *glXGetClientString(Display *, int);
-    extern int glXGetConfig(Display *, XVisualInfo *, int, int *);
+    extern GLXFBConfig *glXChooseFBConfig(Display * dpy, int screen,
+					  const int *attribList,
+					  int *nitems);
+    extern XVisualInfo *glXChooseVisual(Display * dpy, int screen,
+					int *attribList);
+    extern void glXCopyContext(Display * dpy, struct __GLXcontextRec *src,
+			       struct __GLXcontextRec *dst,
+			       long unsigned int mask);
+    extern GLXContext glXCreateContext(Display * dpy, XVisualInfo * vis,
+				       struct __GLXcontextRec *shareList,
+				       int direct);
+    extern GLXPixmap glXCreateGLXPixmap(Display * dpy, XVisualInfo * vis,
+					Pixmap pixmap);
+    extern GLXContext glXCreateNewContext(Display * dpy,
+					  struct __GLXFBConfigRec *config,
+					  int renderType,
+					  struct __GLXcontextRec
+					  *shareList, int direct);
+    extern GLXPbuffer glXCreatePbuffer(Display * dpy,
+				       struct __GLXFBConfigRec *config,
+				       const int *attribList);
+    extern GLXPixmap glXCreatePixmap(Display * dpy,
+				     struct __GLXFBConfigRec *config,
+				     Pixmap pixmap, const int *attribList);
+    extern GLXWindow glXCreateWindow(Display * dpy,
+				     struct __GLXFBConfigRec *config,
+				     Window win, const int *attribList);
+    extern void glXDestroyContext(Display * dpy,
+				  struct __GLXcontextRec *ctx);
+    extern void glXDestroyGLXPixmap(Display * dpy, GLXPixmap pix);
+    extern void glXDestroyPbuffer(Display * dpy, GLXPbuffer pbuf);
+    extern void glXDestroyPixmap(Display * dpy, GLXPixmap pixmap);
+    extern void glXDestroyWindow(Display * dpy, GLXWindow window);
+    extern const char *glXGetClientString(Display * dpy, int name);
+    extern int glXGetConfig(Display * dpy, XVisualInfo * vis, int attrib,
+			    int *value);
     extern GLXContext glXGetCurrentContext(void);
     extern Display *glXGetCurrentDisplay(void);
     extern GLXDrawable glXGetCurrentDrawable(void);
     extern GLXDrawable glXGetCurrentReadDrawable(void);
-    extern int glXGetFBConfigAttrib(Display *, GLXFBConfig, int, int *);
-    extern void glXGetSelectedEvent(Display *, GLXDrawable,
-				    unsigned long int *);
-    extern XVisualInfo *glXGetVisualFromFBConfig(Display *, GLXFBConfig);
-    extern int glXIsDirect(Display *, struct __GLXcontextRec *);
-    extern int glXMakeContextCurrent(Display *, GLXDrawable, GLXDrawable,
-				     GLXContext);
-    extern int glXMakeCurrent(Display *, GLXDrawable,
-			      struct __GLXcontextRec *);
-    extern int glXQueryContext(Display *, GLXContext, int, int *);
-    extern void glXQueryDrawable(Display *, GLXDrawable, int,
-				 unsigned int *);
-    extern int glXQueryExtension(Display *, int *, int *);
-    extern const char *glXQueryExtensionsString(Display *, int);
-    extern const char *glXQueryServerString(Display *, int, int);
-    extern int glXQueryVersion(Display *, int *, int *);
-    extern void glXSelectEvent(Display *, GLXDrawable, long unsigned int);
-    extern void glXSwapBuffers(Display *, GLXDrawable);
-    extern void glXUseXFont(Font, int, int, int);
+    extern int glXGetFBConfigAttrib(Display * dpy, GLXFBConfig config,
+				    int attribute, int *value);
+    extern void glXGetSelectedEvent(Display * dpy, GLXDrawable drawable,
+				    unsigned long int *mask);
+    extern XVisualInfo *glXGetVisualFromFBConfig(Display * dpy,
+						 GLXFBConfig config);
+    extern int glXIsDirect(Display * dpy, struct __GLXcontextRec *ctx);
+    extern int glXMakeContextCurrent(Display * dpy, GLXDrawable draw,
+				     GLXDrawable read, GLXContext ctx);
+    extern int glXMakeCurrent(Display * dpy, GLXDrawable drawable,
+			      struct __GLXcontextRec *ctx);
+    extern int glXQueryContext(Display * dpy, GLXContext ctx,
+			       int attribute, int *value);
+    extern void glXQueryDrawable(Display * dpy, GLXDrawable draw,
+				 int attribute, unsigned int *value);
+    extern int glXQueryExtension(Display * dpy, int *errorBase,
+				 int *eventBase);
+    extern const char *glXQueryExtensionsString(Display * dpy, int screen);
+    extern const char *glXQueryServerString(Display * dpy, int screen,
+					    int name);
+    extern int glXQueryVersion(Display * dpy, int *major, int *minor);
+    extern void glXSelectEvent(Display * dpy, GLXDrawable drawable,
+			       long unsigned int mask);
+    extern void glXSwapBuffers(Display * dpy, GLXDrawable drawable);
+    extern void glXUseXFont(Font font, int first, int count, int listBase);
     extern void glXWaitGL(void);
     extern void glXWaitX(void);
 #if __LSB_VERSION__ >= 32
-    extern GLXFBConfig *glXGetFBConfigs(Display *, int, int *);
+    extern GLXFBConfig *glXGetFBConfigs(Display * dpy, int screen,
+					int *nelements);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #ifdef __cplusplus

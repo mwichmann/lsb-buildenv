@@ -148,9 +148,9 @@ extern "C" {
 
     extern void endutxent(void);
     extern struct utmpx *getutxent(void);
-    extern struct utmpx *getutxid(const struct utmpx *);
-    extern struct utmpx *getutxline(const struct utmpx *);
-    extern struct utmpx *pututxline(const struct utmpx *);
+    extern struct utmpx *getutxid(const struct utmpx *__id);
+    extern struct utmpx *getutxline(const struct utmpx *__line);
+    extern struct utmpx *pututxline(const struct utmpx *__utmpx);
     extern void setutxent(void);
 #ifdef __cplusplus
 }

@@ -1742,7 +1742,6 @@ extern "C" {
 	INT16 nPositions;
     } xRotatePropertiesReq;
 
-
     struct _xEvent {
 	union {
 	    struct {
@@ -2016,7 +2015,6 @@ extern "C" {
 	} u;
     };
 
-
     struct _xQueryFontReply {
 	BYTE type;
 	BYTE pad1;
@@ -2039,13 +2037,11 @@ extern "C" {
 	CARD32 nCharInfos;
     };
 
-
     struct _xReq {
 	CARD8 reqType;
 	CARD8 data;
 	CARD16 length;
     };
-
 
     struct _FillPolyReq {
 	CARD8 reqType;
@@ -2057,7 +2053,6 @@ extern "C" {
 	BYTE coordMode;
 	CARD16 pad1;
     };
-
 
     struct _PutImageReq {
 	CARD8 reqType;

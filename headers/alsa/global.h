@@ -22,11 +22,12 @@ extern "C" {
 /* Function prototypes */
 
     extern const char *snd_asoundlib_version(void);
-    extern int snd_async_add_handler(snd_async_handler_t * *, int,
-				     snd_async_callback_t, void *);
-    extern int snd_async_del_handler(snd_async_handler_t *);
+    extern int snd_async_add_handler(snd_async_handler_t * *handler,
+				     int fd, snd_async_callback_t callback,
+				     void *private_data);
+    extern int snd_async_del_handler(snd_async_handler_t * handler);
     extern void *snd_async_handler_get_callback_private(snd_async_handler_t
-							*);
+							* handler);
 #ifdef __cplusplus
 }
 #endif

@@ -1,4 +1,42 @@
 
+#define _XKBGEOM_H_
+#define XkbLogoDoodadColor(g,d)	(&(g)->colors[(d)->color_ndx])
+#define XkbShapeDoodadColor(g,d)	(&(g)->colors[(d)->color_ndx])
+#define XkbTextDoodadColor(g,d)	(&(g)->colors[(d)->color_ndx])
+#define XkbIndicatorDoodadOffColor(g,d)	(&(g)->colors[(d)->off_color_ndx])
+#define XkbIndicatorDoodadOnColor(g,d)	(&(g)->colors[(d)->on_color_ndx])
+#define XkbKeyColor(g,k)	(&(g)->colors[(k)->color_ndx])
+#define XkbIndicatorDoodadShape(g,d)	(&(g)->shapes[(d)->shape_ndx])
+#define XkbLogoDoodadShape(g,d)	(&(g)->shapes[(d)->shape_ndx])
+#define XkbShapeDoodadShape(g,d)	(&(g)->shapes[(d)->shape_ndx])
+#define XkbKeyShape(g,k)	(&(g)->shapes[(k)->shape_ndx])
+#define XkbBoundsHeight(b)	(((b)->y2)-((b)->y1))
+#define XkbSetLogoDoodadColor(g,d,c)	((d)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetShapeDoodadColor(g,d,c)	((d)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetTextDoodadColor(g,d,c)	((d)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetIndicatorDoodadOffColor(g,d,c)	((d)->off_color_ndx= (c)-&(g)->colors[0])
+#define XkbSetIndicatorDoodadOnColor(g,d,c)	((d)->on_color_ndx= (c)-&(g)->colors[0])
+#define XkbSetIndicatorDoodadShape(g,d,s)	((d)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbSetLogoDoodadShape(g,d,s)	((d)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbSetShapeDoodadShape(g,d,s)	((d)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbGeomColorIndex(g,c)	((int)((c)-&(g)->colors[0]))
+#define XkbOutlineIndex(s,o)	((int)((o)-&(s)->outlines[0]))
+#define XkbSetKeyColor(g,k,c)	((k)->color_ndx= (c)-&(g)->colors[0])
+#define XkbSetKeyShape(g,k,s)	((k)->shape_ndx= (s)-&(g)->shapes[0])
+#define XkbGeomAllMask	(0x3f)
+#define XkbGeomPropertiesMask	(1<<0)
+#define XkbGeomColorsMask	(1<<1)
+#define XkbGeomShapesMask	(1<<2)
+#define XkbGeomSectionsMask	(1<<3)
+#define XkbGeomDoodadsMask	(1<<4)
+#define XkbGeomKeyAliasesMask	(1<<5)
+#define XkbUnknownDoodad	0
+#define XkbOutlineDoodad	1
+#define XkbSolidDoodad	2
+#define XkbTextDoodad	3
+#define XkbIndicatorDoodad	4
+#define XkbLogoDoodad	5
+
 typedef struct _XkbProperty {
     char *name;
     char *value;
@@ -112,7 +150,7 @@ typedef union _XkbDoodad {
 } XkbDoodadRec;
 typedef union _XkbDoodad *XkbDoodadPtr;
 typedef struct _XkbKey {
-    XkbKeyNameRecname;
+    XkbKeyNameRec name;
     short gap;
     unsigned char shape_ndx;
     unsigned char color_ndx;
@@ -147,10 +185,10 @@ typedef struct _XkbSection {
     XkbBoundsRec bounds;
     struct _XkbOverlay *overlays;
 } XkbSectionRec;
-typedef struct _XkbOverlay **XkbSectionPtr;
+typedef struct _XkbSection *XkbSectionPtr;
 typedef struct _XkbOverlayKey {
-    XkbKeyNameRecover;
-    XkbKeyNameRecunder;
+    XkbKeyNameRec over;
+    XkbKeyNameRec under;
 } XkbOverlayKeyRec;
 typedef struct _XkbOverlayKey *XkbOverlayKeyPtr;
 typedef struct _XkbOverlayRow {
@@ -193,7 +231,7 @@ typedef struct _XkbGeometry {
     XkbShapePtr shapes;
     XkbSectionPtr sections;
     XkbDoodadPtr doodads;
-     XkbKeyAliasPtrkey_aliases;
+    XkbKeyAliasPtr key_aliases;
 } XkbGeometryRec;
 typedef struct _XkbGeometrySizes {
     unsigned int which;

@@ -3,16 +3,16 @@ struct pt_regs {
     unsigned long int gpr[32];
     unsigned long int nip;
     unsigned long int msr;
-    unsigned long int orig_gpr3;
+    unsigned long int orig_gpr3;	/* Used for restarting system calls */
     unsigned long int ctr;
     unsigned long int link;
     unsigned long int xer;
     unsigned long int ccr;
-    unsigned long int mq;
-    unsigned long int trap;
-    unsigned long int dar;
+    unsigned long int mq;	/* 601 only (not used at present). Used on APUS to hold IPL val */
+    unsigned long int trap;	/* Reason for being here */
+    unsigned long int dar;	/* Fault registers */
     unsigned long int dsisr;
-    unsigned long int result;
+    unsigned long int result;	/* Result of a system call */
 };
 
 #define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)

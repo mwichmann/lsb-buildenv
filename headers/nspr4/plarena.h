@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 
+#define plarena_h___
+
+
     typedef struct PLArenaPool PLArenaPool;
 
     struct PLArena {
@@ -17,7 +20,6 @@ extern "C" {
 	PRUword limit;
 	PRUword avail;
     };
-
 
     struct PLArenaPool {
 	struct PLArena first;

@@ -5,57 +5,9 @@
 class QAbstractSlider;
 // *INDENT-OFF*
 
-class QAbstractSlider : public QWidget
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QAbstractSlider(QWidget*);
-     ~QAbstractSlider();
-    enum _ZN2Qt11OrientationE orientation() const;
-    void setMinimum(int);
-    int minimum() const;
-    void setMaximum(int);
-    int maximum() const;
-    void setRange(int, int);
-    void setSingleStep(int);
-    int singleStep() const;
-    void setPageStep(int);
-    int pageStep() const;
-    void setTracking(bool);
-    bool hasTracking() const;
-    void setSliderDown(bool);
-    bool isSliderDown() const;
-    void setSliderPosition(int);
-    int sliderPosition() const;
-    void setInvertedAppearance(bool);
-    bool invertedAppearance() const;
-    void setInvertedControls(bool);
-    bool invertedControls() const;
-    int value() const;
-    void triggerAction(QAbstractSlider::SliderAction);
-    void setValue(int);
-    void setOrientation(Qt::Orientation);
-protected:
-    void valueChanged(int);
-    void sliderPressed();
-    void sliderMoved(int);
-    void sliderReleased();
-    void rangeChanged(int, int);
-    void actionTriggered(int);
-    bool event(QEvent*);
-    void setRepeatAction(QAbstractSlider::SliderAction, int, int);
-    enum _ZN15QAbstractSlider12SliderActionE repeatAction() const;
-    void sliderChange(QAbstractSlider::SliderChange);
-    void keyPressEvent(QKeyEvent*);
-    void timerEvent(QTimerEvent*);
-    void wheelEvent(QWheelEvent*);
-    void changeEvent(QEvent*);
-};
+class QAbstractSlider;
 
-enum SliderAction	
+enum _ZN15QAbstractSlider12SliderActionE	
 {
 SliderNoAction = 0,	
 SliderSingleStepAdd = 1,	
@@ -68,7 +20,7 @@ SliderMove = 7
 }
 ;
 
-enum SliderChange	
+enum _ZN15QAbstractSlider12SliderChangeE	
 {
 SliderRangeChange = 0,	
 SliderOrientationChange = 1,	

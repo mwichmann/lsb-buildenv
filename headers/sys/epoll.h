@@ -17,7 +17,7 @@ extern "C" {
 #define EPOLLOUT	4
 #define EPOLLERR	8
 #define EPOLLHUP	16
-#define EPOLLRDHUP
+#define EPOLLRDHUP	32
 #define EPOLLONESHOT	(1 << 30)
 #define EPOLLET	(1 << 31)
 
@@ -40,9 +40,11 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int epoll_create(int);
-    extern int epoll_ctl(int, int, int, struct epoll_event *);
-    extern int epoll_wait(int, struct epoll_event *, int, int);
+    extern int epoll_create(int __size);
+    extern int epoll_ctl(int __epfd, int __op, int __fd,
+			 struct epoll_event *__event);
+    extern int epoll_wait(int __epfd, struct epoll_event *__events,
+			  int __maxevents, int __timeout);
 #ifdef __cplusplus
 }
 #endif

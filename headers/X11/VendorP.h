@@ -11,7 +11,6 @@
 #include <X11/IntrinsicP.h>
 #include <X11/CompositeP.h>
 #include <X11/TranslateI.h>
-#include <X11/EventI.h>
 #include <X11/CoreP.h>
 #include <X11/ShellP.h>
 
@@ -39,7 +38,6 @@ extern "C" {
     } VendorShellRec;
 
     typedef VendorShellRec *VendorShellWidget;
-
 
     struct _VendorShellClassRec {
 	CoreClassPart core_class;

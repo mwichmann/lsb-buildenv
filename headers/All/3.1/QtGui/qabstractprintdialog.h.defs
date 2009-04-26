@@ -14,4 +14,4 @@ enum _ZN20QAbstractPrintDialog17PrintDialogOptionE {
 };
 class QFlags < QAbstractPrintDialog::PrintDialogOption >;
 typedef class QFlags < QAbstractPrintDialog::PrintDialogOption >
-    _ZN20QAbstractPrintDialog18PrintDialogOptionsE;
+    QAbstractPrintDialog::PrintDialogOptions;

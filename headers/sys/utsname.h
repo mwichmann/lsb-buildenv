@@ -29,7 +29,7 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern int uname(struct utsname *);
+    extern int uname(struct utsname *__name);
 #ifdef __cplusplus
 }
 #endif

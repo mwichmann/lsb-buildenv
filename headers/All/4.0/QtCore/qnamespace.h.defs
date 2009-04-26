@@ -30,7 +30,7 @@ enum _ZN2Qt16KeyboardModifierE {
     MetaModifier = 268435456,
     KeypadModifier = 536870912
 };
-typedef class QFlags < Qt::KeyboardModifier > _ZN2Qt17KeyboardModifiersE;
+typedef class QFlags < Qt::KeyboardModifier > Qt::KeyboardModifiers;
 enum _ZN2Qt8ModifierE {
     MODIFIER_MASK = -33554432,
     UNICODE_ACCEL = 0,
@@ -49,7 +49,7 @@ enum _ZN2Qt11MouseButtonE {
     MouseButtonMask = 255
 };
 class QFlags < Qt::MouseButton >;
-typedef class QFlags < Qt::MouseButton > _ZN2Qt12MouseButtonsE;
+typedef class QFlags < Qt::MouseButton > Qt::MouseButtons;
 enum _ZN2Qt16ButtonState_enumE {
     KeyButtonMask = -33554432,
     ShiftButton = 33554432,
@@ -58,13 +58,13 @@ enum _ZN2Qt16ButtonState_enumE {
     MetaButton = 268435456,
     Keypad = 536870912
 };
-typedef int _ZN2Qt11ButtonStateE;
+typedef int Qt::ButtonState;
 enum _ZN2Qt11OrientationE {
     Horizontal = 1,
     Vertical = 2
 };
 class QFlags < Qt::Orientation >;
-typedef class QFlags < Qt::Orientation > _ZN2Qt12OrientationsE;
+typedef class QFlags < Qt::Orientation > Qt::Orientations;
 enum _ZN2Qt11FocusPolicyE {
     NoFocus = 0,
     TabFocus = 1,
@@ -95,7 +95,7 @@ enum _ZN2Qt13AlignmentFlagE {
     AlignVertical_Mask = 224
 };
 class QFlags < Qt::AlignmentFlag >;
-typedef class QFlags < Qt::AlignmentFlag > _ZN2Qt9AlignmentE;
+typedef class QFlags < Qt::AlignmentFlag > Qt::Alignment;
 enum _ZN2Qt8TextFlagE {
     TextSingleLine = 256,
     SingleLine = 256,
@@ -135,7 +135,7 @@ typedef enum _ZN2Qt8TextFlagE {
     NoAccel = 32768,
     TextIncludeTrailingSpaces = 134217728,
     IncludeTrailingSpaces = 134217728
-} _ZN2Qt9TextFlagsE;
+} Qt::TextFlags;
 enum _ZN2Qt13TextElideModeE {
     ElideLeft = 0,
     ElideRight = 1,
@@ -206,7 +206,7 @@ enum _ZN2Qt10WindowTypeE {
     WNoMousePropagation = 16777216
 };
 class QFlags < Qt::WindowType >;
-typedef class QFlags < Qt::WindowType > _ZN2Qt11WindowFlagsE;
+typedef class QFlags < Qt::WindowType > Qt::WindowFlags;
 enum _ZN2Qt11WindowStateE {
     WindowNoState = 0,
     WindowMinimized = 1,
@@ -215,7 +215,7 @@ enum _ZN2Qt11WindowStateE {
     WindowActive = 8
 };
 class QFlags < Qt::WindowState >;
-typedef class QFlags < Qt::WindowState > _ZN2Qt12WindowStatesE;
+typedef class QFlags < Qt::WindowState > Qt::WindowStates;
 enum _ZN2Qt15WidgetAttributeE {
     WA_Disabled = 0,
     WA_UnderMouse = 1,
@@ -305,8 +305,7 @@ enum _ZN2Qt19ImageConversionFlagE {
     AvoidDither = 128,
     DitherMode_Mask = 192
 };
-typedef class QFlags < Qt::ImageConversionFlag >
-    _ZN2Qt20ImageConversionFlagsE;
+typedef class QFlags < Qt::ImageConversionFlag > Qt::ImageConversionFlags;
 enum _ZN2Qt6BGModeE {
     TransparentMode = 0,
     OpaqueMode = 1
@@ -792,7 +791,7 @@ typedef enum _ZN2Qt15AspectRatioModeE {
     ScaleMin = 1,
     KeepAspectRatioByExpanding = 2,
     ScaleMax = 2
-} _ZN2Qt9ScaleModeE;
+} Qt::ScaleMode;
 enum _ZN2Qt15AnchorAttributeE {
     AnchorName = 0,
     AnchorHref = 1
@@ -805,7 +804,7 @@ enum _ZN2Qt14DockWidgetAreaE {
     DockWidgetArea_Mask = 15,
     AllDockWidgetAreas = 15
 };
-typedef class QFlags < Qt::DockWidgetArea > _ZN2Qt15DockWidgetAreasE;
+typedef class QFlags < Qt::DockWidgetArea > Qt::DockWidgetAreas;
 enum _ZN2Qt11ToolBarAreaE {
     LeftToolBarArea = 1,
     RightToolBarArea = 2,
@@ -814,7 +813,7 @@ enum _ZN2Qt11ToolBarAreaE {
     ToolBarArea_Mask = 15,
     AllToolBarAreas = 15
 };
-typedef class QFlags < Qt::ToolBarArea > _ZN2Qt12ToolBarAreasE;
+typedef class QFlags < Qt::ToolBarArea > Qt::ToolBarAreas;
 enum _ZN2Qt4DockE {
     DockUnmanaged = 0,
     Unmanaged = 0,
@@ -846,7 +845,7 @@ typedef enum _ZN2Qt4DockE {
     Left = 5,
     DockMinimized = 6,
     Minimized = 6
-} _ZN2Qt11ToolBarDockE;
+} Qt::ToolBarDock;
 enum _ZN2Qt10DateFormatE {
     TextDate = 0,
     ISODate = 1,
@@ -973,7 +972,7 @@ enum _ZN2Qt10DropActionE {
     ActionMask = 255,
     TargetMoveAction = 32770
 };
-typedef class QFlags < Qt::DropAction > _ZN2Qt11DropActionsE;
+typedef class QFlags < Qt::DropAction > Qt::DropActions;
 enum _ZN2Qt10CheckStateE {
     Unchecked = 0,
     PartiallyChecked = 1,
@@ -1006,7 +1005,7 @@ enum _ZN2Qt8ItemFlagE {
     ItemIsTristate = 64
 };
 class QFlags < Qt::ItemFlag >;
-typedef class QFlags < Qt::ItemFlag > _ZN2Qt9ItemFlagsE;
+typedef class QFlags < Qt::ItemFlag > Qt::ItemFlags;
 enum _ZN2Qt9MatchFlagE {
     MatchExactly = 0,
     MatchContains = 1,
@@ -1018,9 +1017,9 @@ enum _ZN2Qt9MatchFlagE {
     MatchWrap = 32,
     MatchRecursive = 64
 };
-typedef class QFlags < Qt::MatchFlag > _ZN2Qt10MatchFlagsE;
-typedef unsigned long int _ZN2Qt6HANDLEE;
-typedef _ZN2Qt11WindowFlagsE _ZN2Qt6WFlagsE;
+typedef class QFlags < Qt::MatchFlag > Qt::MatchFlags;
+typedef unsigned long int Qt::HANDLE;
+typedef Qt::WindowFlags Qt::WFlags;
 enum _ZN2Qt14WindowModalityE {
     NonModal = 0,
     WindowModal = 1,

@@ -80,56 +80,60 @@ extern "C" {
     } xmlRelaxNGParserFlag;
 
 
-
-
-
-
-
-
 /* Function prototypes */
 
     extern void xmlRelaxNGCleanupTypes(void);
-    extern void xmlRelaxNGDump(FILE *, xmlRelaxNGPtr);
-    extern void xmlRelaxNGDumpTree(FILE *, xmlRelaxNGPtr);
-    extern void xmlRelaxNGFree(xmlRelaxNGPtr);
-    extern void xmlRelaxNGFreeParserCtxt(xmlRelaxNGParserCtxtPtr);
-    extern void xmlRelaxNGFreeValidCtxt(xmlRelaxNGValidCtxtPtr);
-    extern int xmlRelaxNGGetParserErrors(xmlRelaxNGParserCtxtPtr,
-					 xmlRelaxNGValidityErrorFunc *,
-					 xmlRelaxNGValidityWarningFunc *,
-					 void **);
-    extern int xmlRelaxNGGetValidErrors(xmlRelaxNGValidCtxtPtr,
-					xmlRelaxNGValidityErrorFunc *,
-					xmlRelaxNGValidityWarningFunc *,
-					void **);
+    extern void xmlRelaxNGDump(FILE * output, xmlRelaxNGPtr schema);
+    extern void xmlRelaxNGDumpTree(FILE * output, xmlRelaxNGPtr schema);
+    extern void xmlRelaxNGFree(xmlRelaxNGPtr schema);
+    extern void xmlRelaxNGFreeParserCtxt(xmlRelaxNGParserCtxtPtr ctxt);
+    extern void xmlRelaxNGFreeValidCtxt(xmlRelaxNGValidCtxtPtr ctxt);
+    extern int xmlRelaxNGGetParserErrors(xmlRelaxNGParserCtxtPtr ctxt,
+					 xmlRelaxNGValidityErrorFunc * err,
+					 xmlRelaxNGValidityWarningFunc *
+					 warn, void **ctx);
+    extern int xmlRelaxNGGetValidErrors(xmlRelaxNGValidCtxtPtr ctxt,
+					xmlRelaxNGValidityErrorFunc * err,
+					xmlRelaxNGValidityWarningFunc *
+					warn, void **ctx);
     extern int xmlRelaxNGInitTypes(void);
-    extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewDocParserCtxt(xmlDocPtr);
-    extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewMemParserCtxt(const char *,
-							      int);
-    extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewParserCtxt(const char *);
-    extern xmlRelaxNGValidCtxtPtr xmlRelaxNGNewValidCtxt(xmlRelaxNGPtr);
-    extern xmlRelaxNGPtr xmlRelaxNGParse(xmlRelaxNGParserCtxtPtr);
-    extern void xmlRelaxNGSetParserErrors(xmlRelaxNGParserCtxtPtr,
-					  xmlRelaxNGValidityErrorFunc,
-					  xmlRelaxNGValidityWarningFunc,
-					  void *);
-    extern void xmlRelaxNGSetValidErrors(xmlRelaxNGValidCtxtPtr,
-					 xmlRelaxNGValidityErrorFunc,
-					 xmlRelaxNGValidityWarningFunc,
-					 void *);
-    extern void xmlRelaxNGSetValidStructuredErrors(xmlRelaxNGValidCtxtPtr,
-						   xmlStructuredErrorFunc,
-						   void *);
-    extern int xmlRelaxNGValidateDoc(xmlRelaxNGValidCtxtPtr, xmlDocPtr);
-    extern int xmlRelaxNGValidateFullElement(xmlRelaxNGValidCtxtPtr,
-					     xmlDocPtr, xmlNodePtr);
-    extern int xmlRelaxNGValidatePopElement(xmlRelaxNGValidCtxtPtr,
-					    xmlDocPtr, xmlNodePtr);
-    extern int xmlRelaxNGValidatePushCData(xmlRelaxNGValidCtxtPtr,
-					   const xmlChar *, int);
-    extern int xmlRelaxNGValidatePushElement(xmlRelaxNGValidCtxtPtr,
-					     xmlDocPtr, xmlNodePtr);
-    extern int xmlRelaxParserSetFlag(xmlRelaxNGParserCtxtPtr, int);
+    extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewDocParserCtxt(xmlDocPtr
+							      doc);
+    extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewMemParserCtxt(const char
+							      *buffer,
+							      int size);
+    extern xmlRelaxNGParserCtxtPtr xmlRelaxNGNewParserCtxt(const char
+							   *URL);
+    extern xmlRelaxNGValidCtxtPtr xmlRelaxNGNewValidCtxt(xmlRelaxNGPtr
+							 schema);
+    extern xmlRelaxNGPtr xmlRelaxNGParse(xmlRelaxNGParserCtxtPtr ctxt);
+    extern void xmlRelaxNGSetParserErrors(xmlRelaxNGParserCtxtPtr ctxt,
+					  xmlRelaxNGValidityErrorFunc err,
+					  xmlRelaxNGValidityWarningFunc
+					  warn, void *ctx);
+    extern void xmlRelaxNGSetValidErrors(xmlRelaxNGValidCtxtPtr ctxt,
+					 xmlRelaxNGValidityErrorFunc err,
+					 xmlRelaxNGValidityWarningFunc
+					 warn, void *ctx);
+    extern void xmlRelaxNGSetValidStructuredErrors(xmlRelaxNGValidCtxtPtr
+						   ctxt,
+						   xmlStructuredErrorFunc
+						   serror, void *ctx);
+    extern int xmlRelaxNGValidateDoc(xmlRelaxNGValidCtxtPtr ctxt,
+				     xmlDocPtr doc);
+    extern int xmlRelaxNGValidateFullElement(xmlRelaxNGValidCtxtPtr ctxt,
+					     xmlDocPtr doc,
+					     xmlNodePtr elem);
+    extern int xmlRelaxNGValidatePopElement(xmlRelaxNGValidCtxtPtr ctxt,
+					    xmlDocPtr doc,
+					    xmlNodePtr elem);
+    extern int xmlRelaxNGValidatePushCData(xmlRelaxNGValidCtxtPtr ctxt,
+					   const xmlChar * data, int len);
+    extern int xmlRelaxNGValidatePushElement(xmlRelaxNGValidCtxtPtr ctxt,
+					     xmlDocPtr doc,
+					     xmlNodePtr elem);
+    extern int xmlRelaxParserSetFlag(xmlRelaxNGParserCtxtPtr ctxt,
+				     int flag);
 #ifdef __cplusplus
 }
 #endif

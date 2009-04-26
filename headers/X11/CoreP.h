@@ -9,7 +9,6 @@
 #include <X11/Intrinsic.h>
 #include <X11/IntrinsicP.h>
 #include <X11/TranslateI.h>
-#include <X11/EventI.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,6 +18,7 @@ extern "C" {
 #define XtInheritSetValuesAlmost	((XtAlmostProc) _XtInherit)
 #define XtInheritRealize	((XtRealizeProc) _XtInherit)
 #define XtInheritResize	((XtWidgetProc) _XtInherit)
+#define XtInheritDisplayAccelerator	((XtStringProc) _XtInherit)
 #define _XtCoreP_h	1
 
 
@@ -75,7 +75,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-
     struct _CorePart {
 	Widget self;
 	WidgetClass widget_class;
@@ -110,11 +109,9 @@ extern "C" {
 	Boolean mapped_when_managed;
     };
 
-
     struct _WidgetRec {
 	CorePart core;
     };
-
 
     struct _WidgetClassRec {
 	CoreClassPart core_class;

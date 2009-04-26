@@ -219,20 +219,17 @@ extern "C" {
 	XGCValues values;
     };
 
-
     struct _XSQEvent {
 	struct _XSQEvent *next;
 	XEvent event;
 	unsigned long int qserial_num;
     };
 
-
     struct _XInternalAsync {
 	struct _XInternalAsync *next;
 	int (*handler) (Display *, xReply *, char *, int, XPointer);
 	XPointer data;
     };
-
 
     struct _XAsyncEState {
 	unsigned long int min_sequence_number;
@@ -243,7 +240,6 @@ extern "C" {
 	unsigned char last_error_received;
 	int error_count;
     };
-
 
     struct _XFreeFuncs {
 	FreeFuncType atoms;
@@ -256,7 +252,6 @@ extern "C" {
 	FreeFuncType im_filters;
 	FreeFuncType xkb;
     };
-
 
     struct _XExten {
 	struct _XExten *next;

@@ -14,7 +14,6 @@ enum _ZN13QDateTimeEdit7SectionE {
     DateSections_Mask = 1792
 };
 class QFlags < QDateTimeEdit::Section >;
-typedef class QFlags < QDateTimeEdit::Section >
-    _ZN13QDateTimeEdit8SectionsE;
+typedef class QFlags < QDateTimeEdit::Section > QDateTimeEdit::Sections;
 class QTimeEdit;
 class QDateEdit;

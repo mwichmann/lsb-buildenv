@@ -15,15 +15,13 @@ extern "C" {
 #endif
 
 
+#define _SECMODT_H_
 #define SECMOD_MAKE_NSS_FLAGS(fips,slot)	 \
 	"Flags=internal,critical"fips" \
 	slotparams=("#slot"={"SECMOD_SLOT_FLAGS"})"
-#define PK11_PW_AUTHENTICATED	"AUTH"
 #define SECMOD_FIPS_NAME	"NSS Internal FIPS PKCS #11 Module"
 #define SECMOD_INT_NAME	"NSS Internal PKCS #11 Module"
-#define PK11_PW_RETRY	"RETRY"
 #define SECMOD_SLOT_FLAGS	"slotFlags=[RSA,DSA,DH,RC2,RC4,DES,RANDOM,SHA1,MD5,MD2,SSL,TLS,AES,SHA256,SHA512]"
-#define PK11_PW_TRY	"TRY"
 #define SECMOD_EXTERNAL	0
 #define CRL_IMPORT_DEFAULT_OPTIONS	0x00000000
 #define CRL_IMPORT_BYPASS_CHECKS	0x00000001
@@ -65,8 +63,11 @@ extern "C" {
 #define CKM_INVALID_MECHANISM	0xffffffffL
 #define SECMOD_INTERNAL	1
 #define SECMOD_FIPS	2
+#define PK11_PW_AUTHENTICATED	"AUTH"
+#define PK11_PW_RETRY	"RETRY"
 #define SECMOD_INT_FLAGS	SECMOD_MAKE_NSS_FLAGS("",1)
 #define SECMOD_FIPS_FLAGS	SECMOD_MAKE_NSS_FLAGS(",fips",3)
+#define PK11_PW_TRY	"TRY"
 
 
     typedef struct SECMODModuleStr SECMODModule;
@@ -152,7 +153,6 @@ extern "C" {
 	PK11TokenPresentEvent = 1
     } PK11TokenEvent;
 
-
     struct SECMODModuleStr {
 	PLArenaPool *arena;
 	PRBool internal;
@@ -183,34 +183,15 @@ extern "C" {
 	CK_VERSION cryptokiVersion;
     };
 
-
     struct SECMODModuleListStr {
 	SECMODModuleList *next;
 	SECMODModule *module;
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     struct SECKEYAttributeStr {
 	SECItem attrType;
 	SECItem **attrValue;
     };
-
 
     struct SECKEYPrivateKeyInfoStr {
 	PLArenaPool *arena;
@@ -219,7 +200,6 @@ extern "C" {
 	SECItem privateKey;
 	SECKEYAttribute **attributes;
     };
-
 
     struct SECKEYEncryptedPrivateKeyInfoStr {
 	PLArenaPool *arena;

@@ -10,4 +10,4 @@ enum _ZN12QApplication9ColorSpecE {
     CustomColor = 1,
     ManyColor = 2
 };
-typedef int _ZN12QApplication9ColorModeE;
+typedef int QApplication::ColorMode;

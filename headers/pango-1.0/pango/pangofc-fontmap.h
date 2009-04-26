@@ -29,18 +29,18 @@ extern "C" {
     typedef struct _PangoFcFontMapClass PangoFcFontMapClass;
 
 
-
-
-
-
 /* Function prototypes */
 
     extern PangoFontDescription
-	*pango_fc_font_description_from_pattern(FcPattern *, gboolean);
-    extern void pango_fc_font_map_add_decoder_find_func(PangoFcFontMap *,
-							PangoFcDecoderFindFunc,
-							gpointer,
-							GDestroyNotify);
+	*pango_fc_font_description_from_pattern(FcPattern * pattern,
+						gboolean include_size);
+    extern void pango_fc_font_map_add_decoder_find_func(PangoFcFontMap *
+							fcfontmap,
+							PangoFcDecoderFindFunc
+							findfunc,
+							gpointer user_data,
+							GDestroyNotify
+							dnotify);
     extern GType pango_fc_font_map_get_type(void);
 #ifdef __cplusplus
 }

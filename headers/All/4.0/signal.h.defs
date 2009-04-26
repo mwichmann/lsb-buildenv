@@ -97,9 +97,9 @@ typedef struct sigevent {
 #define si_timer2	_sifields._timer._timer2
 
 typedef struct siginfo {
-    int si_signo;
+    int si_signo;		/* Signal number. */
     int si_errno;
-    int si_code;
+    int si_code;		/* Signal code. */
     union {
 	int _pad[SI_PAD_SIZE];
 	struct {
@@ -212,38 +212,43 @@ typedef struct sigaltstack {
 
 extern int __libc_current_sigrtmax(void);
 extern int __libc_current_sigrtmin(void);
-extern sighandler_t __sysv_signal(int, sighandler_t);
+extern sighandler_t __sysv_signal(int __sig, sighandler_t __handler);
+extern int __xpg_sigpause(int);
 extern char *const _sys_siglist[];
-extern int killpg(pid_t, int);
-extern void psignal(int, const char *);
-extern int raise(int);
-extern int sigaddset(sigset_t *, int);
-extern int sigandset(sigset_t *, const sigset_t *, const sigset_t *);
-extern int sigdelset(sigset_t *, int);
-extern int sigemptyset(sigset_t *);
-extern int sigfillset(sigset_t *);
-extern int sighold(int);
-extern int sigignore(int);
-extern int siginterrupt(int, int);
-extern int sigisemptyset(const sigset_t *);
-extern int sigismember(const sigset_t *, int);
-extern int sigorset(sigset_t *, const sigset_t *, const sigset_t *);
-extern int sigpending(sigset_t *);
-extern int sigrelse(int);
-extern sighandler_t sigset(int, sighandler_t);
+extern sighandler_t bsd_signal(int __sig, sighandler_t __handler);
+extern int kill(pid_t __pid, int __sig);
+extern int killpg(pid_t __pgrp, int __sig);
+extern void psignal(int __sig, const char *__s);
 extern int pthread_kill(pthread_t, int);
 extern int pthread_sigmask(int, const sigset_t *, sigset_t *);
-extern int sigaction(int, const struct sigaction *, struct sigaction *);
-extern int sigwait(const sigset_t *, int *);
-extern int kill(pid_t, int);
-extern int sigaltstack(const struct sigaltstack *, struct sigaltstack *);
-extern sighandler_t signal(int, sighandler_t);
-extern int sigprocmask(int, const sigset_t *, sigset_t *);
-extern int sigreturn(struct sigcontext *);
-extern int sigsuspend(const sigset_t *);
-extern int sigqueue(pid_t, int, const union sigval);
-extern int sigwaitinfo(const sigset_t *, siginfo_t *);
-extern int sigtimedwait(const sigset_t *, siginfo_t *,
-			const struct timespec *);
-extern sighandler_t bsd_signal(int, sighandler_t);
-extern int __xpg_sigpause(int);
+extern int raise(int __sig);
+extern int sigaction(int __sig, const struct sigaction *__act,
+		     struct sigaction *__oact);
+extern int sigaddset(sigset_t * __set, int __signo);
+extern int sigaltstack(const struct sigaltstack *__ss,
+		       struct sigaltstack *__oss);
+extern int sigandset(sigset_t * __set, const sigset_t * __left,
+		     const sigset_t * __right);
+extern int sigdelset(sigset_t * __set, int __signo);
+extern int sigemptyset(sigset_t * __set);
+extern int sigfillset(sigset_t * __set);
+extern int sighold(int __sig);
+extern int sigignore(int __sig);
+extern int siginterrupt(int __sig, int __interrupt);
+extern int sigisemptyset(const sigset_t * __set);
+extern int sigismember(const sigset_t * __set, int __signo);
+extern sighandler_t signal(int __sig, sighandler_t __handler);
+extern int sigorset(sigset_t * __set, const sigset_t * __left,
+		    const sigset_t * __right);
+extern int sigpending(sigset_t * __set);
+extern int sigprocmask(int __how, const sigset_t * __set,
+		       sigset_t * __oset);
+extern int sigqueue(pid_t __pid, int __sig, const union sigval __val);
+extern int sigrelse(int __sig);
+extern int sigreturn(struct sigcontext *__scp);
+extern sighandler_t sigset(int __sig, sighandler_t __disp);
+extern int sigsuspend(const sigset_t * __set);
+extern int sigtimedwait(const sigset_t * __set, siginfo_t * __info,
+			const struct timespec *__timeout);
+extern int sigwait(const sigset_t * __set, int *__sig);
+extern int sigwaitinfo(const sigset_t * __set, siginfo_t * __info);

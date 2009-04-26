@@ -8,6 +8,9 @@ extern "C" {
 #endif
 
 
+#define _SECPKCS5_H_
+
+
     typedef enum {
 	pbeBitGenIDNull,
 	pbeBitGenCipherKey = 1,
@@ -16,8 +19,6 @@ extern "C" {
     } PBEBitGenID;
 
     typedef struct PBEBitGenContextStr PBEBitGenContext;
-
-
 
 #ifdef __cplusplus
 }

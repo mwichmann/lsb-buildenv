@@ -17,5 +17,4 @@ enum _ZN4QUrl16FormattingOptionE {
     StripTrailingSlash = 65536
 };
 class QFlags < QUrl::FormattingOption >;
-typedef class QFlags < QUrl::FormattingOption >
-    _ZN4QUrl17FormattingOptionsE;
+typedef class QFlags < QUrl::FormattingOption > QUrl::FormattingOptions;

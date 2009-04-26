@@ -1,4 +1,6 @@
 
+#define plhash_h___
+
 typedef PRUint32 PLHashNumber;
 typedef PRIntn(*PLHashComparator) (const void *, const void *);
 typedef struct PLHashAllocOps {

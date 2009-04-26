@@ -5,70 +5,18 @@
 class QIODevice;
 // *INDENT-OFF*
 
-typedef class QFlags<QIODevice::OpenModeFlag>
-{
-private:
-public:
-}OpenMode	
+typedef class QFlags<QIODevice::OpenModeFlag>QIODevice::OpenMode	
 ;
 
-typedef qint64	Offset	
+typedef qint64	QIODevice::Offset	
 ;
 
-typedef int	Status	
+typedef int	QIODevice::Status	
 ;
 
-class QIODevice : public QObject
-{
-private:
-public:
-    struct QMetaObject * metaObject() const;
-    void * qt_metacast(char const*);
-    int qt_metacall(QMetaObject::Call, int, void**);
-     QIODevice();
-     QIODevice(QObject*);
-     ~QIODevice();
-    QFlags<QIODevice::OpenModeFlag> openMode() const;
-    void setTextModeEnabled(bool);
-    bool isTextModeEnabled() const;
-    bool isOpen() const;
-    bool isReadable() const;
-    bool isWritable() const;
-    bool isSequential() const;
-    bool open(QFlags<QIODevice::OpenModeFlag>);
-    void close();
-    qint64 pos() const;
-    qint64 size() const;
-    bool seek(long long);
-    bool atEnd() const;
-    bool reset();
-    qint64 bytesAvailable() const;
-    qint64 bytesToWrite() const;
-    qint64 read(char*, long long);
-    QByteArray read(long long);
-    QByteArray readAll();
-    qint64 readLine(char*, long long);
-    QByteArray readLine(long long);
-    bool canReadLine() const;
-    qint64 write(char const*, long long);
-    qint64 peek(char*, long long);
-    QByteArray peek(long long);
-    bool waitForReadyRead(int);
-    bool waitForBytesWritten(int);
-    void ungetChar(char);
-    QString errorString() const;
-    int status() const;
-    void resetStatus();
-protected:
-    void readyRead();
-    void bytesWritten(long long);
-    void aboutToClose();
-    qint64 readLineData(char*, long long);
-    void setOpenMode(QFlags<QIODevice::OpenModeFlag>);
-    void setErrorString(QString const&);
-};
+class QIODevice;
 
-enum OpenModeFlag	
+enum _ZN9QIODevice12OpenModeFlagE	
 {
 NotOpen = 0,	
 ReadOnly = 1,	
@@ -81,11 +29,7 @@ Unbuffered = 32
 }
 ;
 
-class QFlags<QIODevice::OpenModeFlag>
-{
-private:
-public:
-};
+class QFlags<QIODevice::OpenModeFlag>;
 
 
 /* Function prototypes */
