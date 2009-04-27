@@ -13,7 +13,7 @@
 #include <X11/CompositeP.h>
 #include <X11/TranslateI.h>
 #include <X11/CoreP.h>
-#include <X11/VendorP.h>
+/* #include <X11/VendorP.h>	XXX hand-edit: move down */
 
 #ifdef __cplusplus
 extern "C" {
@@ -149,6 +149,8 @@ extern "C" {
     typedef struct {
 	Widget transient_for;
     } TransientShellPart;
+
+#include <X11/VendorP.h>	/* XXX hand-edit */
 
     typedef struct {
 	CorePart core;
