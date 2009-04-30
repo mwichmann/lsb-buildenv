@@ -12,7 +12,7 @@ class QIconEnginePlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN17QIconEnginePlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN17QIconEnginePlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,7 @@ class QMimeData;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QMimeData16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QMimeData16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

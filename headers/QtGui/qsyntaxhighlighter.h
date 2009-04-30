@@ -10,7 +10,7 @@ class QSyntaxHighlighter;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN18QSyntaxHighlighter16staticMetaObjectE ;
+extern struct QMetaObject _ZN18QSyntaxHighlighter16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

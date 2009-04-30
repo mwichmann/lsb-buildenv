@@ -712,44 +712,53 @@ extern "C" {
     extern int __fpclassifyf(float);
 #if defined __i386__
 /* IA32 */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
 #if defined __ia64__
 /* IA64 */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
 #if defined __x86_64__
 /* x86-64 */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
     extern int __signbit(double);
     extern int __signbitf(float);
 #if defined __i386__
 /* IA32 */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
 #if defined __ia64__
 /* IA64 */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
 #if defined __x86_64__
 /* x86-64 */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
     extern double exp2(double);
     extern float exp2f(float);
 #if defined __i386__
 /* IA32 */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
 #if defined __ia64__
 /* IA64 */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
 #if defined __x86_64__
 /* x86-64 */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
     extern float expm1f(float);
     extern long double expm1l(long double);
     extern float log1pf(float);
@@ -772,52 +781,64 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
 #if defined __powerpc64__
 /* PPC64 */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
 #if defined __s390x__
 /* S390X */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-    extern int __fpclassifyl(long double);
+    extern int __fpclassifyl(long double)
 #endif
+    ;
 #if defined __powerpc64__
 /* PPC64 */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
 #if defined __s390x__
 /* S390X */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-    extern int __signbitl(long double);
+    extern int __signbitl(long double)
 #endif
+    ;
 #if defined __powerpc64__
 /* PPC64 */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
 #if defined __s390x__
 /* S390X */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-    extern long double exp2l(long double);
+    extern long double exp2l(long double)
 #endif
+    ;
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus

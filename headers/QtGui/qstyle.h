@@ -488,7 +488,7 @@ SP_FileDialogBack = 36
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN6QStyle16staticMetaObjectE ;
+extern struct QMetaObject _ZN6QStyle16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

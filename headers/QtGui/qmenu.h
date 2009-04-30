@@ -10,7 +10,7 @@ class QMenu;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN5QMenu16staticMetaObjectE ;
+extern struct QMetaObject _ZN5QMenu16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

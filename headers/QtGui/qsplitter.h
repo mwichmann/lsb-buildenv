@@ -21,8 +21,8 @@ class QSplitterHandle;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QSplitterHandle16staticMetaObjectE ;
-extern struct QMetaObject _ZN9QSplitter16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QSplitterHandle16staticMetaObjectE;
+extern struct QMetaObject _ZN9QSplitter16staticMetaObjectE;
 extern QTextStream _ZlsR11QTextStreamRK9QSplitter(QTextStream &, const QSplitter &);
 extern QTextStream _ZrsR11QTextStreamR9QSplitter(QTextStream &, QSplitter &);
 // *INDENT-ON*

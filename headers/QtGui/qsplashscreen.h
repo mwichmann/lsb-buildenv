@@ -10,7 +10,7 @@ class QSplashScreen;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QSplashScreen16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QSplashScreen16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

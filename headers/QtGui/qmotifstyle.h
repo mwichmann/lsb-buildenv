@@ -10,7 +10,7 @@ class QMotifStyle;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QMotifStyle16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QMotifStyle16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

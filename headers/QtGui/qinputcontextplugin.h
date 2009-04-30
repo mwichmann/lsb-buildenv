@@ -12,7 +12,7 @@ class QInputContextPlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN19QInputContextPlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN19QInputContextPlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

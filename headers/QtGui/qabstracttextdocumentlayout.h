@@ -16,7 +16,7 @@ class QTextObjectInterface;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN27QAbstractTextDocumentLayout16staticMetaObjectE ;
+extern struct QMetaObject _ZN27QAbstractTextDocumentLayout16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

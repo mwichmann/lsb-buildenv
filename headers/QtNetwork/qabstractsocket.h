@@ -88,7 +88,7 @@ ErrHostNotFound = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QAbstractSocket16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QAbstractSocket16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

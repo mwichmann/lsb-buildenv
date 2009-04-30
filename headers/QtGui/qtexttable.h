@@ -12,7 +12,7 @@ class QTextTable;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QTextTable16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QTextTable16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

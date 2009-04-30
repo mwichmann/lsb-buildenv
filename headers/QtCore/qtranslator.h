@@ -10,7 +10,7 @@ class QTranslator;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QTranslator16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QTranslator16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

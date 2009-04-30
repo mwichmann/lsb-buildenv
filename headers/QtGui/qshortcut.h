@@ -10,7 +10,7 @@ class QShortcut;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QShortcut16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QShortcut16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

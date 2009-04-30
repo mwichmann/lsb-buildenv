@@ -34,12 +34,12 @@ class QTextFragment;
 
 extern QTextBlock::iterator _ZN10QTextBlock8iteratormmEv(void);
 extern QTextBlock::iterator _ZN10QTextBlock8iteratorppEv(void);
-extern struct QMetaObject _ZN10QTextFrame16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QTextFrame16staticMetaObjectE;
 extern QTextFrame::iterator _ZN10QTextFrame8iteratoraSERKS0_(const QTextFrame::iterator &);
 extern QTextFrame::iterator _ZN10QTextFrame8iteratormmEv(void);
 extern QTextFrame::iterator _ZN10QTextFrame8iteratorppEv(void);
-extern struct QMetaObject _ZN11QTextObject16staticMetaObjectE ;
-extern struct QMetaObject _ZN15QTextBlockGroup16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QTextObject16staticMetaObjectE;
+extern struct QMetaObject _ZN15QTextBlockGroup16staticMetaObjectE;
 extern  _ZNK10QTextBlock8iterator8fragmentEv(void);
 extern  _ZNK10QTextFrame8iterator12currentBlockEv(void);
 extern QTextFrame _ZNK10QTextFrame8iterator12currentFrameEv(void);

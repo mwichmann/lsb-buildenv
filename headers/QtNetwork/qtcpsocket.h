@@ -13,7 +13,7 @@ class QTcpSocket;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QTcpSocket16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QTcpSocket16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

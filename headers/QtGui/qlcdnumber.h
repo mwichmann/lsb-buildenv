@@ -31,7 +31,7 @@ Flat = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QLCDNumber16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QLCDNumber16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

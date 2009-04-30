@@ -12,7 +12,7 @@ class QTextCodecPlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN16QTextCodecPlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN16QTextCodecPlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

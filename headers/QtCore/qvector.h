@@ -12,7 +12,7 @@ struct QVectorData	;
 
 /* Function prototypes */
 
-extern struct QVectorData _ZN11QVectorData11shared_nullE ;
+extern struct QVectorData _ZN11QVectorData11shared_nullE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

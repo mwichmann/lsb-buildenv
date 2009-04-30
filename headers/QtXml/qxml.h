@@ -41,8 +41,8 @@ class QXmlDefaultHandler;
 
 /* Function prototypes */
 
-extern unsigned short _ZN15QXmlInputSource13EndOfDocumentE ;
-extern unsigned short _ZN15QXmlInputSource9EndOfDataE ;
+extern unsigned short _ZN15QXmlInputSource13EndOfDocumentE;
+extern unsigned short _ZN15QXmlInputSource9EndOfDataE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

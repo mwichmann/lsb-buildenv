@@ -12,7 +12,7 @@ class QSqlDriverPlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN16QSqlDriverPlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN16QSqlDriverPlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

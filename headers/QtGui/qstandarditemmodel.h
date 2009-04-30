@@ -10,7 +10,7 @@ class QStandardItemModel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN18QStandardItemModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN18QStandardItemModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

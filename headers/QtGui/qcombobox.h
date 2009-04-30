@@ -53,7 +53,7 @@ AdjustToMinimumContentsLength = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QComboBox16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QComboBox16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

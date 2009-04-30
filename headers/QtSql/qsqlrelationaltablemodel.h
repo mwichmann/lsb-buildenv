@@ -15,7 +15,7 @@ class QSqlRelationalTableModel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN24QSqlRelationalTableModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN24QSqlRelationalTableModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

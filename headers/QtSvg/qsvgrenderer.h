@@ -10,7 +10,7 @@ class QSvgRenderer;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QSvgRenderer16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QSvgRenderer16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

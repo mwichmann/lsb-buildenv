@@ -10,7 +10,7 @@ class QStackedWidget;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QStackedWidget16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QStackedWidget16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

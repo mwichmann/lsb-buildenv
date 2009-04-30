@@ -18,7 +18,7 @@ Password = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QLineEdit16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QLineEdit16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

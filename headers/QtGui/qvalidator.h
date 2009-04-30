@@ -25,10 +25,10 @@ class QRegExpValidator;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QValidator16staticMetaObjectE ;
-extern struct QMetaObject _ZN13QIntValidator16staticMetaObjectE ;
-extern struct QMetaObject _ZN16QDoubleValidator16staticMetaObjectE ;
-extern struct QMetaObject _ZN16QRegExpValidator16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QValidator16staticMetaObjectE;
+extern struct QMetaObject _ZN13QIntValidator16staticMetaObjectE;
+extern struct QMetaObject _ZN16QDoubleValidator16staticMetaObjectE;
+extern struct QMetaObject _ZN16QRegExpValidator16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

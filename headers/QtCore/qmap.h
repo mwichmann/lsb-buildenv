@@ -16,7 +16,7 @@ struct QMapData::Node	;
 
 /* Function prototypes */
 
-extern struct QMapData _ZN8QMapData11shared_nullE ;
+extern struct QMapData _ZN8QMapData11shared_nullE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

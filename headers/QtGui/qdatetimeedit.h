@@ -35,9 +35,9 @@ class QDateEdit;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QDateTimeEdit16staticMetaObjectE ;
-extern struct QMetaObject _ZN9QDateEdit16staticMetaObjectE ;
-extern struct QMetaObject _ZN9QTimeEdit16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QDateTimeEdit16staticMetaObjectE;
+extern struct QMetaObject _ZN9QDateEdit16staticMetaObjectE;
+extern struct QMetaObject _ZN9QTimeEdit16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

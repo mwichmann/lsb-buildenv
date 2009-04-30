@@ -50,7 +50,7 @@ class QColorGroup;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN8QPalette16staticMetaObjectE ;
+extern struct QMetaObject _ZN8QPalette16staticMetaObjectE;
 extern QDataStream _ZlsR11QDataStreamRK11QColorGroup(QDataStream &, const QColorGroup &);
 extern QDataStream _ZlsR11QDataStreamRK8QPalette(QDataStream &, const QPalette &);
 extern QDataStream _ZrsR11QDataStreamR11QColorGroup(QDataStream &, QColorGroup &);

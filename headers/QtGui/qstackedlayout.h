@@ -10,7 +10,7 @@ class QStackedLayout;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QStackedLayout16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QStackedLayout16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

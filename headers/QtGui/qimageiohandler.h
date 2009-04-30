@@ -46,7 +46,7 @@ class QFlags<QImageIOPlugin::Capability>;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QImageIOPlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QImageIOPlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

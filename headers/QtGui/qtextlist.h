@@ -10,7 +10,7 @@ class QTextList;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QTextList16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QTextList16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

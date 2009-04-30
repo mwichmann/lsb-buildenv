@@ -10,7 +10,7 @@ class QSizeGrip;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QSizeGrip16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QSizeGrip16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -136,7 +136,7 @@ class QTextTableFormat;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QTextFormat16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QTextFormat16staticMetaObjectE;
 extern QDataStream _ZlsR11QDataStreamRK11QTextFormat(QDataStream &, const QTextFormat &);
 extern QDataStream _ZlsR11QDataStreamRK11QTextLength(QDataStream &);
 extern QDataStream _ZrsR11QDataStreamR11QTextFormat(QDataStream &, QTextFormat &);

@@ -12,7 +12,7 @@ class QAccessiblePlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN17QAccessiblePlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN17QAccessiblePlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

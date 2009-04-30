@@ -17,7 +17,7 @@ SelectionFormat = 1
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QInputContext16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QInputContext16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -20,7 +20,7 @@ EditableComboBox = 4
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QInputDialog16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QInputDialog16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

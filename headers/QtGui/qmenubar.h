@@ -17,7 +17,7 @@ InWindowsStyle = 1
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN8QMenuBar16staticMetaObjectE ;
+extern struct QMetaObject _ZN8QMenuBar16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

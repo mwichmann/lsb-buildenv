@@ -21,7 +21,7 @@ AncestorOrigin = 3
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN7QWidget16staticMetaObjectE ;
+extern struct QMetaObject _ZN7QWidget16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

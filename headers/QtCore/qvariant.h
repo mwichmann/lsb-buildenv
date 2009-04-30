@@ -108,7 +108,7 @@ class QVariantComparisonHelper;
 
 /* Function prototypes */
 
-extern struct QVariant::Handler * _ZN8QVariant7handlerE ;
+extern struct QVariant::Handler * _ZN8QVariant7handlerE;
 extern QDebug _Zls6QDebugN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
 extern QDebug _Zls6QDebugRK8QVariant(const QVariant &);
 extern QDataStream _ZlsR11QDataStreamN8QVariant4TypeE(enum _ZN8QVariant4TypeE);

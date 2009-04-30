@@ -55,7 +55,7 @@ UserResource = 100
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QTextDocument16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QTextDocument16staticMetaObjectE;
 extern QTextCodec * _ZN2Qt12codecForHtmlERK10QByteArray(QByteArray & &);
 extern bool _ZN2Qt15mightBeRichTextERK7QString(QString & &);
 extern QString _ZN2Qt20convertFromPlainTextERK7QStringNS_14WhiteSpaceModeE(QString & &);

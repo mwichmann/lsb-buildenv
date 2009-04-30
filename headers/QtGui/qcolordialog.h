@@ -10,7 +10,7 @@ class QColorDialog;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QColorDialog16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QColorDialog16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

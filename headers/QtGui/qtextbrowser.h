@@ -10,7 +10,7 @@ class QTextBrowser;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QTextBrowser16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QTextBrowser16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

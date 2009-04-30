@@ -12,8 +12,6 @@ extern "C" {
 #define __sslt_h_
 
 
-    typedef struct SSL3StatisticsStr SSL3Statistics;
-
     typedef enum {
 	ssl_kea_null,
 	ssl_kea_rsa = 1,
@@ -61,22 +59,6 @@ extern "C" {
     typedef struct SSLChannelInfoStr SSLChannelInfo;
 
     typedef struct SSLCipherSuiteInfoStr SSLCipherSuiteInfo;
-
-    struct SSL3StatisticsStr {
-	long int sch_sid_cache_hits;
-	long int sch_sid_cache_misses;
-	long int sch_sid_cache_not_ok;
-	long int hsh_sid_cache_hits;
-	long int hsh_sid_cache_misses;
-	long int hsh_sid_cache_not_ok;
-	long int hch_sid_cache_hits;
-	long int hch_sid_cache_misses;
-	long int hch_sid_cache_not_ok;
-	long int sch_sid_stateless_resumes;
-	long int hsh_sid_stateless_resumes;
-	long int hch_sid_stateless_resumes;
-	long int hch_sid_ticket_parse_failures;
-    };
 
     struct SSLChannelInfoStr {
 	PRUint32 length;

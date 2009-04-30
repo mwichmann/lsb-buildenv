@@ -10,7 +10,7 @@ class QErrorMessage;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QErrorMessage16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QErrorMessage16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

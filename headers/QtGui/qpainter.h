@@ -41,7 +41,7 @@ CompositionMode_Xor = 11
 /* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
-extern struct QMetaObject _ZN8QPainter16staticMetaObjectE ;
+extern struct QMetaObject _ZN8QPainter16staticMetaObjectE;
 #endif /* __LSB_VERSION__ >= 3.2 */
 
 // *INDENT-ON*

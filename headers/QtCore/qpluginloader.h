@@ -10,7 +10,7 @@ class QPluginLoader;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QPluginLoader16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QPluginLoader16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

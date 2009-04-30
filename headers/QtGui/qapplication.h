@@ -29,7 +29,7 @@ ManyColor = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QApplication16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QApplication16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

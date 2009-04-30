@@ -16,7 +16,7 @@ class QAbstractEventDispatcher;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN24QAbstractEventDispatcher16staticMetaObjectE ;
+extern struct QMetaObject _ZN24QAbstractEventDispatcher16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

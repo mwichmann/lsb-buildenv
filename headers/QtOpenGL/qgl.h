@@ -44,8 +44,8 @@ class QGLWidget;
 
 /* Function prototypes */
 
-extern QGLContext * _ZN10QGLContext10currentCtxE ;
-extern struct QMetaObject _ZN9QGLWidget16staticMetaObjectE ;
+extern QGLContext * _ZN10QGLContext10currentCtxE;
+extern struct QMetaObject _ZN9QGLWidget16staticMetaObjectE;
 extern bool _ZeqRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
 extern bool _ZneRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
 // *INDENT-ON*

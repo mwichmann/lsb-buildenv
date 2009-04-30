@@ -10,7 +10,7 @@ class QCommonStyle;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QCommonStyle16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QCommonStyle16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,7 @@ class QRadioButton;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QRadioButton16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QRadioButton16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

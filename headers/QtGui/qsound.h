@@ -10,7 +10,7 @@ class QSound;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN6QSound16staticMetaObjectE ;
+extern struct QMetaObject _ZN6QSound16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

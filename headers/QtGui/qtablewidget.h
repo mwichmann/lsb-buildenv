@@ -14,7 +14,7 @@ class QTableWidget;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QTableWidget16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QTableWidget16staticMetaObjectE;
 extern QDataStream _ZlsR11QDataStreamRK16QTableWidgetItem(QDataStream &);
 extern QDataStream _ZrsR11QDataStreamR16QTableWidgetItem(QDataStream &);
 // *INDENT-ON*

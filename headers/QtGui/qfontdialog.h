@@ -10,7 +10,7 @@ class QFontDialog;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QFontDialog16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QFontDialog16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

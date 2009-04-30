@@ -12,7 +12,7 @@ class QStylePlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QStylePlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QStylePlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

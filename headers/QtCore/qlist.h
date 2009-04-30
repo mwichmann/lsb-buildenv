@@ -32,7 +32,7 @@ struct QListData::Data	;
 
 /* Function prototypes */
 
-extern struct QListData::Data _ZN9QListData11shared_nullE ;
+extern struct QListData::Data _ZN9QListData11shared_nullE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

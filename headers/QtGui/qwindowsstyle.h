@@ -10,7 +10,7 @@ class QWindowsStyle;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN13QWindowsStyle16staticMetaObjectE ;
+extern struct QMetaObject _ZN13QWindowsStyle16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

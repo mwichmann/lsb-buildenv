@@ -10,7 +10,7 @@ class QDesktopWidget;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QDesktopWidget16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QDesktopWidget16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

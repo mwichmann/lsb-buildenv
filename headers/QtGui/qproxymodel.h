@@ -10,7 +10,7 @@ class QProxyModel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QProxyModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QProxyModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,7 @@ class QPlastiqueStyle;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QPlastiqueStyle16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QPlastiqueStyle16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

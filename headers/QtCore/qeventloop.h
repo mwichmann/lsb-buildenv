@@ -28,7 +28,7 @@ class QFlags<QEventLoop::ProcessEventsFlag>;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QEventLoop16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QEventLoop16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

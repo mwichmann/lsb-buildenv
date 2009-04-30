@@ -10,7 +10,7 @@ class QTemporaryFile;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QTemporaryFile16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QTemporaryFile16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

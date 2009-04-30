@@ -10,7 +10,7 @@ class QGroupBox;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QGroupBox16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QGroupBox16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

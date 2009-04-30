@@ -12,7 +12,7 @@ class QPictureFormatPlugin;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN20QPictureFormatPlugin16staticMetaObjectE ;
+extern struct QMetaObject _ZN20QPictureFormatPlugin16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

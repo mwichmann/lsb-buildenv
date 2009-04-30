@@ -98,7 +98,7 @@ extern "C" {
 /* Function prototypes */
 
     extern struct AUTH *authnone_create(void);
-    /* This function was supposed to be used within the RPC's secure authentication mechanism. There should be no need for user programs to use this functions. Note also that this routine was a part of the Linux/Doors-project, abandoned by now. */
+    /* This function was supposed to be used within the RPC's secure authentication mechanism. There should be no need for user programs to use this function. Note also that this routine was a part of the Linux/Doors-project, abandoned by now. */
     extern int key_decryptsession(char *,
 				  union des_block *) LSB_DECL_DEPRECATED;
     extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);

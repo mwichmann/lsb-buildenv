@@ -39,7 +39,7 @@ FlagMask = 768
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QMessageBox16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QMessageBox16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

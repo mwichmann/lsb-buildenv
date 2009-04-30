@@ -25,7 +25,7 @@ CacheAll = 1
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN6QMovie16staticMetaObjectE ;
+extern struct QMetaObject _ZN6QMovie16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

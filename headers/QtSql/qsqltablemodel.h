@@ -18,7 +18,7 @@ OnManualSubmit = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QSqlTableModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QSqlTableModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

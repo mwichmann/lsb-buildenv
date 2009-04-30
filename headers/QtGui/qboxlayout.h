@@ -25,9 +25,9 @@ class QVBoxLayout;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QBoxLayout16staticMetaObjectE ;
-extern struct QMetaObject _ZN11QHBoxLayout16staticMetaObjectE ;
-extern struct QMetaObject _ZN11QVBoxLayout16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QBoxLayout16staticMetaObjectE;
+extern struct QMetaObject _ZN11QHBoxLayout16staticMetaObjectE;
+extern struct QMetaObject _ZN11QVBoxLayout16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -41,7 +41,7 @@ Aborted = 7
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN5QHttp16staticMetaObjectE ;
+extern struct QMetaObject _ZN5QHttp16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

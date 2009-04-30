@@ -27,7 +27,7 @@ class QFlags<QDockWidget::DockWidgetFeature>;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QDockWidget16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QDockWidget16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,7 @@ class QActionGroup;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QActionGroup16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QActionGroup16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

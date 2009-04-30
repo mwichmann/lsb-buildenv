@@ -10,7 +10,7 @@ class QStatusBar;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QStatusBar16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QStatusBar16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

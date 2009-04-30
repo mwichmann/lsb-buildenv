@@ -18,7 +18,7 @@ Exception = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QSocketNotifier16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QSocketNotifier16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

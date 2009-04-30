@@ -10,7 +10,7 @@ class QCDEStyle;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QCDEStyle16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QCDEStyle16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

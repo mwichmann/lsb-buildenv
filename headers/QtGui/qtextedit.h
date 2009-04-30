@@ -62,7 +62,7 @@ ActionWordDelete = 5
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN9QTextEdit16staticMetaObjectE ;
+extern struct QMetaObject _ZN9QTextEdit16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

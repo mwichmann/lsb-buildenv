@@ -34,8 +34,8 @@ UnicodeUTF8 = 1
 extern void _Z15qAddPostRoutinePFvvE(void(*)(void));
 extern void _Z18qRemovePostRoutinePFvvE(void(*)(void));
 extern QString _Z8qAppNamev(void);
-extern struct QMetaObject _ZN16QCoreApplication16staticMetaObjectE ;
-extern QCoreApplication * _ZN16QCoreApplication4selfE ;
+extern struct QMetaObject _ZN16QCoreApplication16staticMetaObjectE;
+extern QCoreApplication * _ZN16QCoreApplication4selfE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

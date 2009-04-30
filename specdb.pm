@@ -1280,9 +1280,10 @@ sub display_interface($ )
             }
         }
 
+        if( $datadef ) {
         print ";\n";
-
-        if( !$datadef ) {
+        }
+        else {
             if( $entry->{'Aid'} && $entry->{'Aname'} ne "All" ) {
                 print "#endif\n";
             }
@@ -1321,7 +1322,7 @@ sub display_interface($ )
                 print "]";
             }
         }
-        printf " ;\n";
+        printf " ;\n" if( $datadef );
     }
     if( $entry->{'Itype'} eq "Alias" ) {
         printf "extern ";
@@ -1335,7 +1336,7 @@ sub display_interface($ )
             }
             print "]";
         }
-        printf " ;\n";
+        printf " ;\n" if( $datadef );
     }
     if( $entry->{'Itype'} eq "Common" ) {
         printf "extern ";
@@ -1349,7 +1350,7 @@ sub display_interface($ )
             }
             print "]";
         }
-        printf " ;\n";
+        printf " ;\n" if( $datadef );
     }
 }
 

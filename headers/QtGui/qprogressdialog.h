@@ -10,7 +10,7 @@ class QProgressDialog;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QProgressDialog16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QProgressDialog16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

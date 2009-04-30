@@ -10,7 +10,7 @@ class QGridLayout;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QGridLayout16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QGridLayout16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,7 @@ class QSqlQueryModel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QSqlQueryModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QSqlQueryModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

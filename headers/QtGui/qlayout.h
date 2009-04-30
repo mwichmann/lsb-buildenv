@@ -27,7 +27,7 @@ SetMinAndMaxSize = 5
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN7QLayout16staticMetaObjectE ;
+extern struct QMetaObject _ZN7QLayout16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

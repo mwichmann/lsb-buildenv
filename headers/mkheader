@@ -1112,7 +1112,21 @@ for(1..$sth->rows) {
     }
     $cth->finish;
 
-    specdb::display_interface($entry);
+    if( $entry->{'Ithrow'} eq "Yes" ) {
+        print "#ifdef __cplusplus\n";
+        print "}\n";
+        specdb::display_interface($entry);
+        print " throw();\n";
+        print "extern \"C\" {\n";
+        print "#else\n";
+        specdb::display_interface($entry);
+        print ";\n";
+        print "#endif\n";
+    }
+    else {
+        specdb::display_interface($entry);
+        print ";\n";
+    }
 
     if( $srcAppearedin ) {
         print "#endif /* __LSB_VERSION__ < $srcAppearedin */\n\n";

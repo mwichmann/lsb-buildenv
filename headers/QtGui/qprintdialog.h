@@ -10,7 +10,7 @@ class QPrintDialog;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QPrintDialog16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QPrintDialog16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

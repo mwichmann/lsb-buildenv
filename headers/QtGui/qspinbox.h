@@ -12,8 +12,8 @@ class QDoubleSpinBox;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN14QDoubleSpinBox16staticMetaObjectE ;
-extern struct QMetaObject _ZN8QSpinBox16staticMetaObjectE ;
+extern struct QMetaObject _ZN14QDoubleSpinBox16staticMetaObjectE;
+extern struct QMetaObject _ZN8QSpinBox16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

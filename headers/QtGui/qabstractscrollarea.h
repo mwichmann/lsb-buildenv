@@ -10,7 +10,7 @@ class QAbstractScrollArea;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN19QAbstractScrollArea16staticMetaObjectE ;
+extern struct QMetaObject _ZN19QAbstractScrollArea16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

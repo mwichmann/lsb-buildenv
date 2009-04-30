@@ -20,7 +20,7 @@ RevertModelCache = 4
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN21QAbstractItemDelegate16staticMetaObjectE ;
+extern struct QMetaObject _ZN21QAbstractItemDelegate16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

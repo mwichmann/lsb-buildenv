@@ -32,7 +32,7 @@ SliderValueChange = 3
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QAbstractSlider16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QAbstractSlider16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

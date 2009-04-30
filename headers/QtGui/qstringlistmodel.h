@@ -10,7 +10,7 @@ class QStringListModel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN16QStringListModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN16QStringListModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -10,7 +10,7 @@ class QMainWindow;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QMainWindow16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QMainWindow16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

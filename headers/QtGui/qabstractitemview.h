@@ -88,7 +88,7 @@ OnViewport = 3
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN17QAbstractItemView16staticMetaObjectE ;
+extern struct QMetaObject _ZN17QAbstractItemView16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

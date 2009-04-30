@@ -12,7 +12,7 @@ class QTreeWidget;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QTreeWidget16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QTreeWidget16staticMetaObjectE;
 extern QDataStream _ZlsR11QDataStreamRK15QTreeWidgetItem(QDataStream &);
 extern QDataStream _ZrsR11QDataStreamR15QTreeWidgetItem(QDataStream &);
 // *INDENT-ON*

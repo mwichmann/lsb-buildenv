@@ -19,7 +19,7 @@ RestartNever = 3
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN15QSessionManager16staticMetaObjectE ;
+extern struct QMetaObject _ZN15QSessionManager16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

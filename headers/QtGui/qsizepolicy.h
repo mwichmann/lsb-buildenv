@@ -55,7 +55,7 @@ Ignored = 13
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QSizePolicy16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QSizePolicy16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

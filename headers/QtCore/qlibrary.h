@@ -10,7 +10,7 @@ class QLibrary;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN8QLibrary16staticMetaObjectE ;
+extern struct QMetaObject _ZN8QLibrary16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

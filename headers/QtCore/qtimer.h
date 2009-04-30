@@ -10,7 +10,7 @@ class QTimer;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN6QTimer16staticMetaObjectE ;
+extern struct QMetaObject _ZN6QTimer16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

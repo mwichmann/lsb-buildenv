@@ -24,7 +24,7 @@ class QFlags<QUdpSocket::BindFlag>;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QUdpSocket16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QUdpSocket16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

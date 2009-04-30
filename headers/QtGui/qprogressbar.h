@@ -17,7 +17,7 @@ BottomToTop = 1
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN12QProgressBar16staticMetaObjectE ;
+extern struct QMetaObject _ZN12QProgressBar16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

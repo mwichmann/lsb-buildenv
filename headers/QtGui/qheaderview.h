@@ -18,7 +18,7 @@ Custom = 2
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN11QHeaderView16staticMetaObjectE ;
+extern struct QMetaObject _ZN11QHeaderView16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

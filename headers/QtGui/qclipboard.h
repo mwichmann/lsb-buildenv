@@ -17,7 +17,7 @@ Selection = 1
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN10QClipboard16staticMetaObjectE ;
+extern struct QMetaObject _ZN10QClipboard16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

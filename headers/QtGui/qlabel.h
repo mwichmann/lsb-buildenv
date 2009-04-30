@@ -10,7 +10,7 @@ class QLabel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN6QLabel16staticMetaObjectE ;
+extern struct QMetaObject _ZN6QLabel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

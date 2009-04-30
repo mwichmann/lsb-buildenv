@@ -10,7 +10,7 @@ class QAbstractProxyModel;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN19QAbstractProxyModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN19QAbstractProxyModel16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

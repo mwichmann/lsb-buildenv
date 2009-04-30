@@ -13,7 +13,7 @@ class QDial;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN5QDial16staticMetaObjectE ;
+extern struct QMetaObject _ZN5QDial16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

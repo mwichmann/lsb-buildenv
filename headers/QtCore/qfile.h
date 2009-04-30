@@ -77,7 +77,7 @@ class QFlags<QFile::Permission>;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN5QFile16staticMetaObjectE ;
+extern struct QMetaObject _ZN5QFile16staticMetaObjectE;
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

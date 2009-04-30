@@ -35,7 +35,7 @@ class QItemSelection;
 
 /* Function prototypes */
 
-extern struct QMetaObject _ZN19QItemSelectionModel16staticMetaObjectE ;
+extern struct QMetaObject _ZN19QItemSelectionModel16staticMetaObjectE;
 extern QDebug _Zls6QDebugRK19QItemSelectionRange(_Z6QDebug, const QItemSelectionRange &);
 // *INDENT-ON*
 #endif				/* protection */
