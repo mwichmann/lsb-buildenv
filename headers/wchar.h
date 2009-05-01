@@ -190,7 +190,6 @@ extern "C" {
 				    FILE * __stream);
     extern wint_t fputwc_unlocked(wchar_t __wc, FILE * __stream);
     extern int fputws_unlocked(const wchar_t * __ws, FILE * __stream);
-    ;
     extern wint_t getwchar_unlocked(void);
     extern FILE *open_wmemstream(wchar_t * *__bufloc, size_t * __sizeloc);
     extern wint_t putwc_unlocked(wchar_t __wc, FILE * __stream);
