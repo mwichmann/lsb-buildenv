@@ -784,7 +784,7 @@ extern "C" {
 #endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
-    extern int __fpclassifyl(long double);;
+    extern int __fpclassifyl(long double);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
