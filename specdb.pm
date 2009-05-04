@@ -1161,11 +1161,6 @@ sub display_interface($ )
         $TMaid = $ArchId;
 
         if( !$datadef ) {
-            if( $entry->{'Aid'} && $entry->{'Aname'} ne "All" ) {
-                print "#if ".$entry->{'Asymbol'}."\n";
-                print "/* ".$entry->{'Aname'}." */\n";
-            }
-
             # Dump a comment for deprecated interfaces, if any
             if( $entry->{'AIdeprecatedsince'} and $entry->{'AIdeprecatedsince'} ne 'Unknown' ) {
                 $selectComment = "SELECT IAvalue FROM InterfaceAttribute ";
@@ -1279,14 +1274,8 @@ sub display_interface($ )
                 print " LSB_DECL_DEPRECATED";
             }
         }
-
-        if( $datadef ) {
-        print ";\n";
-        }
         else {
-            if( $entry->{'Aid'} && $entry->{'Aname'} ne "All" ) {
-                print "#endif\n";
-            }
+            print ";\n";
         }
     }
 

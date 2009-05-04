@@ -1112,6 +1112,11 @@ for(1..$sth->rows) {
     }
     $cth->finish;
 
+    if( $entry->{'Aid'} && $entry->{'Aname'} ne "All" ) {
+        print "#if ".$entry->{'Asymbol'}."\n";
+        print "/* ".$entry->{'Aname'}." */\n";
+    }
+
     if( $entry->{'Ithrow'} eq "Yes" ) {
         print "#ifdef __cplusplus\n";
         print "}\n";
@@ -1126,6 +1131,10 @@ for(1..$sth->rows) {
     else {
         specdb::display_interface($entry);
         print ";\n";
+    }
+
+    if( $entry->{'Aid'} && $entry->{'Aname'} ne "All" ) {
+        print "#endif\n";
     }
 
     if( $srcAppearedin ) {
