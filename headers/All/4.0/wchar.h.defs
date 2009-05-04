@@ -51,6 +51,7 @@ extern int fwide(FILE * __fp, int __mode);
 extern int fwprintf(FILE * __stream, const wchar_t * __format, ...);
 extern int fwscanf(FILE * __stream, const wchar_t * __format, ...);
 extern wint_t getwc(FILE * __stream);
+extern wint_t getwc_unlocked(FILE * __stream);
 extern wint_t getwchar(void);
 extern wint_t getwchar_unlocked(void);
 extern size_t mbrlen(const char *__s, size_t __n, mbstate_t * __ps);
