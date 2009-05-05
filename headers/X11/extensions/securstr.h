@@ -1,0 +1,100 @@
+#if (__LSB_VERSION__ >= 40 )
+#ifndef _X11_EXTENSIONS_SECURSTR_H_
+#define _X11_EXTENSIONS_SECURSTR_H_
+
+#include <X11/extensions/security.h>
+#include <X11/Xmd.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#define SECURITY_MINOR_VERSION	0
+#define X_SecurityQueryVersion	0
+#define SECURITY_MAJOR_VERSION	1
+#define X_SecurityGenerateAuthorization	1
+#define _SECURSTR_H	1
+#define sz_xSecurityGenerateAuthorizationReq	12
+#define X_SecurityRevokeAuthorization	2
+#define sz_xSecurityAuthorizationRevokedEvent	32
+#define sz_xSecurityGenerateAuthorizationReply	32
+#define sz_xSecurityQueryVersionReply	32
+#define sz_xSecurityQueryVersionReq	8
+#define sz_xSecurityRevokeAuthorizationReq	8
+#define SECURITY_EXTENSION_NAME	"SECURITY"
+
+
+    typedef struct {
+	CARD8 reqType;
+	CARD8 securityReqType;
+	CARD16 length;
+	CARD16 majorVersion;
+	CARD16 minorVersion;
+    } xSecurityQueryVersionReq;
+
+    typedef struct {
+	CARD8 type;
+	CARD8 pad0;
+	CARD16 sequenceNumber;
+	CARD32 length;
+	CARD16 majorVersion;
+	CARD16 minorVersion;
+	CARD32 pad1;
+	CARD32 pad2;
+	CARD32 pad3;
+	CARD32 pad4;
+	CARD32 pad5;
+    } xSecurityQueryVersionReply;
+
+    typedef struct {
+	CARD8 reqType;
+	CARD8 securityReqType;
+	CARD16 length;
+	CARD16 nbytesAuthProto;
+	CARD16 nbytesAuthData;
+	CARD32 valueMask;
+    } xSecurityGenerateAuthorizationReq;
+
+    typedef struct {
+	CARD8 type;
+	CARD8 pad0;
+	CARD16 sequenceNumber;
+	CARD32 length;
+	CARD32 authId;
+	CARD16 dataLength;
+	CARD16 pad1;
+	CARD32 pad2;
+	CARD32 pad3;
+	CARD32 pad4;
+	CARD32 pad5;
+    } xSecurityGenerateAuthorizationReply;
+
+    typedef struct {
+	CARD8 reqType;
+	CARD8 securityReqType;
+	CARD16 length;
+	CARD32 authId;
+    } xSecurityRevokeAuthorizationReq;
+
+    typedef struct _xSecurityAuthorizationRevokedEvent
+	xSecurityAuthorizationRevokedEvent;
+
+    struct _xSecurityAuthorizationRevokedEvent {
+	BYTE type;
+	BYTE detail;
+	CARD16 sequenceNumber;
+	CARD32 authId;
+	CARD32 pad0;
+	CARD32 pad1;
+	CARD32 pad2;
+	CARD32 pad3;
+	CARD32 pad4;
+	CARD32 pad5;
+    };
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* protection */
+#endif				/* LSB version */
