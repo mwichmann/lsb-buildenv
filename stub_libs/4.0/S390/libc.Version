@@ -817,6 +817,7 @@ GLIBC_2.2 {
   getrlimit;
   getrlimit64;
   getwc;
+  getwc_unlocked;
   getwchar;
   getwchar_unlocked;
   localeconv;

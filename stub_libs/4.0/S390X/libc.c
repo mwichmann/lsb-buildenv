@@ -419,6 +419,7 @@ void getutxid() {} ;
 void getutxline() {} ;
 void getw() {} ;
 void getwc() {} ;
+void getwc_unlocked() {} ;
 void getwchar() {} ;
 void getwchar_unlocked() {} ;
 void getwd() {} ;

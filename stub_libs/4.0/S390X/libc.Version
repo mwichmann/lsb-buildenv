@@ -311,6 +311,7 @@ GLIBC_2.2 {
   getutxline;
   getw;
   getwc;
+  getwc_unlocked;
   getwchar;
   getwchar_unlocked;
   getwd;
