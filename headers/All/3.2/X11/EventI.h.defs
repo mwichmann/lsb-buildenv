@@ -1,13 +1,4 @@
 
-struct _XtEventRec {
-    XtEventTable next;
-    EventMask mask;
-    XtEventHandler proc;
-    XtPointer closure;
-    unsigned int select:1;
-    unsigned int has_type_specifier:1;
-    unsigned int async:1;
-};
 typedef struct _XtGrabRec *XtGrabList;
 typedef struct _XtGrabRec {
     XtGrabList next;
@@ -15,3 +6,12 @@ typedef struct _XtGrabRec {
     unsigned int exclusive:1;
     unsigned int spring_loaded:1;
 } XtGrabRec;
+typedef struct _XtEventRec {
+    XtEventTable next;
+    EventMask mask;
+    XtEventHandler proc;
+    XtPointer closure;
+    unsigned int select:1;
+    unsigned int has_type_specifier:1;
+    unsigned int async:1;
+} XtEventRec;

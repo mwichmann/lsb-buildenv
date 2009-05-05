@@ -1,10 +1,10 @@
 
-#define IPOPT_EOL
-#define IPOPT_OPTVAL
-#define IPOPT_TS_TSONLY
 #define IPOPT_CLASS(o)	((o) & IPOPT_CLASS_MASK)
 #define IPOPT_COPIED(o)	((o) & IPOPT_COPY)
 #define IPOPT_NUMBER(o)	((o) & IPOPT_NUMBER_MASK)
+#define IPOPT_EOL	0
+#define IPOPT_OPTVAL	0
+#define IPOPT_TS_TSONLY	0
 #define IPOPT_CONTROL	0x00
 #define IPOPT_SECUR_UNCLASS	0x0000
 #define IPOPT_NUMBER_MASK	0x1f

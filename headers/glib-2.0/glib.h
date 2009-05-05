@@ -296,12 +296,24 @@ extern "C" {
 #define ABS(a)	(((a) < 0) ? -(a) : (a))
 #define MAX(a,b)	(((a) > (b)) ? (a) : (b))
 #define G_NODE_IS_LEAF(node)	(((GNode*) (node))->children == NULL)
-#define g_array_index(a,t,i)	(((t*) (a)->data) [(i)])
+#define g_array_index(a,t,i)	(((t*) (void *) (a)->data) [(i)])
 #define g_ptr_array_index(array,index_)	((array)->pdata)[index_]
 #define G_IS_DIR_SEPARATOR(c)	((c) == G_DIR_SEPARATOR)
 #define G_STRFUNC	((const char*) (__PRETTY_FUNCTION__))
 #define G_LOG_DOMAIN	((gchar*) 0)
 #define G_HOOK(hook)	((GHook*) (hook))
+#if defined __ia64__
+#define GPOINTER_TO_INT(p)	((gint) (glong) (p))
+#endif
+#if defined __powerpc64__
+#define GPOINTER_TO_INT(p)	((gint) (glong) (p))
+#endif
+#if defined __x86_64__
+#define GPOINTER_TO_INT(p)	((gint) (glong) (p))
+#endif
+#if defined __s390x__
+#define GPOINTER_TO_INT(p)	((gint) (glong) (p))
+#endif
 #if defined __i386__
 #define GPOINTER_TO_INT(p)	((gint) (p))
 #endif
@@ -325,18 +337,6 @@ extern "C" {
 #define GINT64_TO_BE(val)	((gint64) GUINT64_SWAP_LE_BE (val))
 #define G_MAXINT8	((gint8) 0x7f)
 #define G_MININT8	((gint8) 0x80)
-#if defined __ia64__
-#define GPOINTER_TO_INT(p)	((glong) (p))
-#endif
-#if defined __powerpc64__
-#define GPOINTER_TO_INT(p)	((glong) (p))
-#endif
-#if defined __x86_64__
-#define GPOINTER_TO_INT(p)	((glong) (p))
-#endif
-#if defined __s390x__
-#define GPOINTER_TO_INT(p)	((glong) (p))
-#endif
 #if defined __i386__
 #define GLONG_TO_BE(val)	((glong) GINT32_TO_BE (val))
 #endif
@@ -423,6 +423,18 @@ extern "C" {
 #define GUINT_TO_POINTER(u)	((gpointer) (u))
 #endif
 #define GPOINTER_TO_SIZE(p)	((gsize) (p))
+#if defined __ia64__
+#define GPOINTER_TO_UINT(p)	((guint) (gulong) (p))
+#endif
+#if defined __powerpc64__
+#define GPOINTER_TO_UINT(p)	((guint) (gulong) (p))
+#endif
+#if defined __x86_64__
+#define GPOINTER_TO_UINT(p)	((guint) (gulong) (p))
+#endif
+#if defined __s390x__
+#define GPOINTER_TO_UINT(p)	((guint) (gulong) (p))
+#endif
 #if defined __i386__
 #define GPOINTER_TO_UINT(p)	((guint) (p))
 #endif
@@ -441,18 +453,6 @@ extern "C" {
 #define G_MAXUINT32	((guint32) 0xffffffff)
 #define GUINT64_TO_LE(val)	((guint64) (val))
 #define G_MAXUINT8	((guint8) 0xff)
-#if defined __ia64__
-#define GPOINTER_TO_UINT(p)	((gulong) (p))
-#endif
-#if defined __powerpc64__
-#define GPOINTER_TO_UINT(p)	((gulong) (p))
-#endif
-#if defined __x86_64__
-#define GPOINTER_TO_UINT(p)	((gulong) (p))
-#endif
-#if defined __s390x__
-#define GPOINTER_TO_UINT(p)	((gulong) (p))
-#endif
 #if defined __i386__
 #define GULONG_TO_BE(val)	((gulong) GUINT32_TO_BE (val))
 #endif
@@ -512,7 +512,7 @@ extern "C" {
 #define G_HOOK_FLAG_USER_SHIFT	(4)
 #define G_LOG_LEVEL_USER_SHIFT	(8)
 #define g_ATEXIT(proc)	(atexit (proc))
-#define g_utf8_next_char(p)	(char *)((p) + g_utf8_skip[*(guchar *)(p)])
+#define g_utf8_next_char(p)	(char *)((p) + g_utf8_skip[*(const guchar *)(p)])
 #define G_LIKELY(expr)	(expr)
 #define G_UNLIKELY(expr)	(expr)
 #define GINT16_FROM_BE(val)	(GINT16_TO_BE (val))

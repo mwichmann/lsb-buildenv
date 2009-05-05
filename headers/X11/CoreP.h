@@ -19,7 +19,7 @@ extern "C" {
 #define XtInheritRealize	((XtRealizeProc) _XtInherit)
 #define XtInheritResize	((XtWidgetProc) _XtInherit)
 #define XtInheritDisplayAccelerator	((XtStringProc) _XtInherit)
-#define _XtCoreP_h	1
+#define XtCoreP_h_	1
 
 
     typedef struct _CorePart CorePart;

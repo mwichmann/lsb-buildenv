@@ -14,6 +14,8 @@ extern "C" {
 
     typedef struct _XtGrabRec XtGrabRec;
 
+    typedef struct _XtEventRec XtEventRec;
+
     struct _XtEventRec {
 	XtEventTable next;
 	EventMask mask;

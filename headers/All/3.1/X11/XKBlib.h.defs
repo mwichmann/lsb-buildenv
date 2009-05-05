@@ -12,7 +12,7 @@
 #define XkbLC_ComposeLED	(1<<30)
 #define XkbLC_BeepOnComposeFail	(1<<31)
 #define XkbLC_ControlFallback	(1<<4)
-#define XkbGetIndicatorMapChanges(d,x,c)	(XkbGetIndicatorMap((d),(c)->map_changes,x)
+#define XkbGetIndicatorMapChanges(d,x,c)	(XkbGetIndicatorMap((d),(c)->map_changes,x))
 #define XkbChangeIndicatorMaps(d,x,c)	(XkbSetIndicatorMap((d),(c)->map_changes,x))
 #define XkbOD_Success	0
 #define XkbOD_BadLibraryVersion	1

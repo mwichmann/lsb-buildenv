@@ -10,8 +10,8 @@ extern "C" {
 #endif
 
 
-#define IP6OPT_PAD1
 #define IP6OPT_TYPE(o)	((o) & 0xc0)
+#define IP6OPT_PAD1	0
 #define IP6OPT_TYPE_SKIP	0x00
 #if defined __i386__
 #define IP6_ALERT_MLD	0x0000

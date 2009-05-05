@@ -1,7 +1,7 @@
 
 #define XtInheritAllocate	((XtAllocateProc) _XtInherit)
 #define XtInheritDeallocate	((XtDeallocateProc) _XtInherit)
-#define _XtObjectP_h_	1
+#define _Xt_ObjectP_h_	1
 #define XtObjectExtensionVersion	1L
 
 typedef struct _ObjectPart {

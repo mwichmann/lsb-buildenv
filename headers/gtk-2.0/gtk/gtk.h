@@ -1804,7 +1804,7 @@ extern "C" {
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) &= ~(flag)); }G_STMT_END
 #define GTK_WIDGET_SET_FLAGS(wid,flag)	 \
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) |= (flag)); }G_STMT_END
-#define GTK_SIGNAL_FUNC(f)	((GtkSignalFunc) (f))
+#define GTK_SIGNAL_FUNC(f)	((GCallback) (f))
 #define GTK_INTERFACE_AGE	(10)
 #define GTK_MAJOR_VERSION	(2)
 #define GTK_BINARY_AGE	(610)

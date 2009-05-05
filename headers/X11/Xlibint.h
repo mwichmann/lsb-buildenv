@@ -18,7 +18,6 @@ extern "C" {
 
 #define NEED_EVENTS
 #define NEED_REPLIES
-#define UNLOCKED
 #define WORD64ALIGN
 #define min(a,b)	(((a) < (b)) ? (a) : (b))
 #define max(a,b)	(((a) > (b)) ? (a) : (b))
@@ -33,6 +32,7 @@ extern "C" {
 #define XlibDisplayReply	(1L << 5)
 #define XlibDisplayWriting	(1L << 6)
 #define XlibDisplayDfltRMDB	(1L << 7)
+#define UNLOCKED	0
 #define LOCKED	1
 #define WRCTSPERBATCH	10
 #define PTSPERBATCH	1024
