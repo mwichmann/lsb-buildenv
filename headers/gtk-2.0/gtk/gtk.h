@@ -1804,7 +1804,6 @@ extern "C" {
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) &= ~(flag)); }G_STMT_END
 #define GTK_WIDGET_SET_FLAGS(wid,flag)	 \
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) |= (flag)); }G_STMT_END
-#define GTK_SIGNAL_FUNC(f)	((GCallback) (f))
 #define GTK_INTERFACE_AGE	(10)
 #define GTK_MAJOR_VERSION	(2)
 #define GTK_BINARY_AGE	(610)
@@ -2150,6 +2149,7 @@ extern "C" {
 #define gtk_accel_label_accelerator_width	gtk_accel_label_get_accel_width
 #define gtk_binding_entry_add	gtk_binding_entry_clear
 #define GTK_ICON_THEME_ERROR	gtk_icon_theme_error_quark ()
+#define GTK_SIGNAL_FUNC(f)	G_CALLBACK(f)
 #define GTK_CHECK_CLASS_CAST	G_TYPE_CHECK_CLASS_CAST
 #define GTK_CHECK_CLASS_TYPE	G_TYPE_CHECK_CLASS_TYPE
 #define GTK_CHECK_CAST	G_TYPE_CHECK_INSTANCE_CAST
