@@ -1820,7 +1820,6 @@ extern "C" {
 #define GTK_TYPE_ALIGNMENT	(gtk_alignment_get_type ())
 #define GTK_TYPE_ANCHOR_TYPE	(gtk_anchor_type_get_type())
 #define GTK_TYPE_ARG_FLAGS	(gtk_arg_flags_get_type())
-#define GTK_ARG_READWRITE	(GTK_ARG_READABLE | GTK_ARG_WRITABLE)
 #define GTK_TYPE_ARROW	(gtk_arrow_get_type ())
 #define GTK_TYPE_ARROW_TYPE	(gtk_arrow_type_get_type())
 #define GTK_TYPE_ASPECT_FRAME	(gtk_aspect_frame_get_type ())
