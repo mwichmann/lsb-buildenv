@@ -11,17 +11,17 @@ extern "C" {
 #endif
 
 
-#define ICMP_ECHOREPLY
-#define ICMP_EXC_TTL
-#define ICMP_NET_UNREACH
-#define ICMP_REDIRECT_NET
-#define ICMP_REDIR_NET
-#define ICMP_TIMXCEED_INTRANS
-#define ICMP_UNREACH_NET
 #define ICMP_INFOTYPE(type)	((type) == ICMP_ECHOREPLY || (type) == ICMP_ECHO || (type) == ICMP_ROUTERADVERT || (type) == ICMP_ROUTERSOLICIT || (type) == ICMP_TSTAMP || (type) == ICMP_TSTAMPREPLY || (type) == ICMP_IREQ || (type) == ICMP_IREQREPLY || (type) == ICMP_MASKREQ || (type) == ICMP_MASKREPLY)
 #define ICMP_ADVLEN(p)	(8 + ((p)->icmp_ip.ip_hl << 2) + 8)
 #define ICMP_TSLEN	(8 + 3 * sizeof (n_time))
 #define ICMP_ADVLENMIN	(8 + sizeof (struct ip) + 8)
+#define ICMP_ECHOREPLY	0
+#define ICMP_EXC_TTL	0
+#define ICMP_NET_UNREACH	0
+#define ICMP_REDIRECT_NET	0
+#define ICMP_REDIR_NET	0
+#define ICMP_TIMXCEED_INTRANS	0
+#define ICMP_UNREACH_NET	0
 #define ICMP_EXC_FRAGTIME	1
 #define ICMP_HOST_UNREACH	1
 #define ICMP_PARAMPROB_OPTABSENT	1

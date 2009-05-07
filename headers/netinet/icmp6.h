@@ -10,13 +10,13 @@ extern "C" {
 #endif
 
 
-#define ICMP6_DST_UNREACH_NOROUTE
-#define ICMP6_PARAMPROB_HEADER
-#define ICMP6_TIME_EXCEED_TRANSIT
 #define ICMP6_FILTER_WILLBLOCK(type,filterp)	((((filterp)->icmp6_filt[(type) >> 5]) & (1 << ((type) & 31))) != 0)
 #define ICMP6_FILTER_WILLPASS(type,filterp)	((((filterp)->icmp6_filt[(type) >> 5]) & (1 << ((type) & 31))) == 0)
 #define ICMP6_FILTER_SETPASS(type,filterp)	((((filterp)->icmp6_filt[(type) >> 5]) &= ~(1 << ((type) & 31))))
 #define ICMP6_FILTER_SETBLOCK(type,filterp)	((((filterp)->icmp6_filt[(type) >> 5]) |= (1 << ((type) & 31))))
+#define ICMP6_DST_UNREACH_NOROUTE	0
+#define ICMP6_PARAMPROB_HEADER	0
+#define ICMP6_TIME_EXCEED_TRANSIT	0
 #if defined __i386__
 #define ND_NA_FLAG_OVERRIDE	0x00000020
 #endif
