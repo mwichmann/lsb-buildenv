@@ -30,8 +30,6 @@ extern "C" {
 #define sz_xSyncInitializeReq	8
 #define sz_xSyncQueryAlarmReq	8
 #define sz_xSyncQueryCounterReq	8
-#define XSyncAlarm	CARD32
-#define XSyncCounter	CARD32
 
 
     typedef struct _xSyncInitialize xSyncInitializeReq;
@@ -156,45 +154,10 @@ extern "C" {
 	CARD16 pad;
     };
 
-    struct {
-	BYTE type;
-	CARD8 unused;
-	CARD16 sequenceNumber;
-	CARD32 length;
-	CARD8 majorVersion;
-	CARD8 minorVersion;
-	CARD16 pad;
-	CARD32 pad0;
-	CARD32 pad1;
-	CARD32 pad2;
-	CARD32 pad3;
-	CARD32 pad4;
-    };
-
     struct _xSyncListSystemCounters {
 	CARD8 reqType;
 	CARD8 syncReqType;
 	CARD16 length;
-    };
-
-    struct {
-	BYTE type;
-	CARD8 unused;
-	CARD16 sequenceNumber;
-	CARD32 length;
-	INT32 nCounters;
-	CARD32 pad0;
-	CARD32 pad1;
-	CARD32 pad2;
-	CARD32 pad3;
-	CARD32 pad4;
-    };
-
-    struct {
-	CARD32 counter;
-	INT32 resolution_hi;
-	CARD32 resolution_lo;
-	CARD16 name_length;
     };
 
     struct _xSyncCreateCounterReq {
@@ -238,19 +201,6 @@ extern "C" {
 	CARD32 counter;
     };
 
-    struct {
-	BYTE type;
-	CARD8 unused;
-	CARD16 sequenceNumber;
-	CARD32 length;
-	INT32 value_hi;
-	CARD32 value_lo;
-	CARD32 pad0;
-	CARD32 pad1;
-	CARD32 pad2;
-	CARD32 pad3;
-    };
-
     struct _xSyncAwaitReq {
 	CARD8 reqType;
 	CARD8 syncReqType;
@@ -289,24 +239,6 @@ extern "C" {
 	CARD32 alarm;
     };
 
-    struct {
-	BYTE type;
-	CARD8 unused;
-	CARD16 sequenceNumber;
-	CARD32 length;
-	CARD32 counter;
-	CARD32 value_type;
-	INT32 wait_value_hi;
-	CARD32 wait_value_lo;
-	CARD32 test_type;
-	INT32 delta_hi;
-	CARD32 delta_lo;
-	BOOL events;
-	BYTE state;
-	BYTE pad0;
-	BYTE pad1;
-    };
-
     struct _xSyncChangeAlarmReq {
 	CARD8 reqType;
 	CARD8 syncReqType;
@@ -328,19 +260,6 @@ extern "C" {
 	CARD8 syncReqType;
 	CARD16 length;
 	CARD32 id;
-    };
-
-    struct {
-	BYTE type;
-	CARD8 unused;
-	CARD16 sequenceNumber;
-	CARD32 length;
-	INT32 priority;
-	CARD32 pad0;
-	CARD32 pad1;
-	CARD32 pad2;
-	CARD32 pad3;
-	CARD32 pad4;
     };
 
     struct _xSyncCounterNotifyEvent {

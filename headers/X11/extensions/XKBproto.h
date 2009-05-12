@@ -1384,21 +1384,6 @@ extern "C" {
 	CARD16 pad3;
     };
 
-    union {
-	xkbAnyEvent any;
-	xkbNewKeyboardNotify new_kbd;
-	xkbMapNotify map;
-	xkbStateNotify state;
-	xkbControlsNotify ctrls;
-	xkbIndicatorNotify indicators;
-	xkbNamesNotify names;
-	xkbCompatMapNotify compat;
-	xkbBellNotify bell;
-	xkbActionMessage message;
-	xkbAccessXNotify accessx;
-	xkbExtensionDeviceNotify device;
-    };
-
     struct _xkbEvent {
 	union {
 	    xkbAnyEvent any;
