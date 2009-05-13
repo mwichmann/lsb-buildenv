@@ -64,6 +64,11 @@ install_scripts:
 	cd scripts;make install
 	#cd lsb_release-1.0;make install
 
+test: lsbcc
+	./test_lsbcc
+
+check: test
+
 clean:
 	rm -f $(PROGRAMS) $(LIBS) *.o
 

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Regression tests for lsbcc
+
+# Try executing lsbcc with no arguments
+# We expect it to return with error code 1
+printf "Running lsbcc with no arguments. Expect non-zero exit code... "
+./lsbcc > /dev/null 2>&1
+if [ $? -ne 1 ]; then
+  echo "Unexpected result of lsbcc called with no arguments."
+  exit 1
+else
+  echo "OK"
+fi
+
+# Try to compile a minimalistic program with lsbcc
+# WARNING: Do not set PROG to any existing (valuable) file
+PROG=test.c
+echo "int main() { return 0; }" >test.c
+printf "Compiling $PROG with lsbcc..."
+./lsbcc $PROG > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "Failed to compile $PROG with lsbcc"
+  rm -f $PROG
+  exit 1
+else
+  # Check that the journal file exists.
+  if [ \! -e "a.out" ]; then
+    echo "Output file not found."
+    rm -f $PROG
+    exit 1
+  fi
+
+  # Check that the journal file is complete (it has an end marker)
+  ./a.out
+  if [ $? -ne 0 ]; then
+    echo "Failed to execute a.out"
+    rm -f a.out $PROG
+    exit 1
+  else
+    rm -f a.out $PROG
+    echo OK
+  fi
+fi
+
+echo 
+echo All tests succeeded
+
+exit 0
