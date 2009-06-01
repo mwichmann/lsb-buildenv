@@ -446,13 +446,9 @@ need_stack_prot_suppression()
 
   case '1':
   case '2':
+  case '3':
     /* We pretty much need it for newer versions of 4.x, though here
        we hedge our bets and only test for known gcc versions. */
-    return 1;
-
-  case '3':
-    /* gcc 4.3 is giving trouble for now */
-    fprintf(stderr, "Warning: gcc version \"%s\" may have problems for LSB builds\n", gccversion);
     return 1;
 
   default:
@@ -523,6 +519,7 @@ need_long_double_64()
 
   case '1':
   case '2':
+  case '3':
     /* We pretty much need it for newer versions of 4.x, though here
        we hedge our bets and only test for known gcc versions. */
     return 1;
