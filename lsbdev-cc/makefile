@@ -38,7 +38,7 @@ libgcc34compat.a: gcc34-compat.o
 	ar rcs libgcc34compat.a gcc34-compat.o
 
 gcc34-compat.o: gcc34-compat.cc
-	g++ $(CXXFLAGS) $(GCC34_COMPAT_CFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) $(GCC34_COMPAT_CFLAGS) -c $<
 
 install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 	install -d $(INSTALL_ROOT)/$(BINDIR)
