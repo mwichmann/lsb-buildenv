@@ -9,13 +9,14 @@ extern "C" {
 #endif
 
 
+#define TCP_NODELAY	1
+#define SOL_TCP	6
 #if __LSB_VERSION__ >= 40
 #define TCPOLEN_TSTAMP_APPA	(TCPOLEN_TIMESTAMP+2)
 #define TCPOPT_TSTAMP_HDR	(TCPOPT_NOP<<24|TCPOPT_NOP<<16|TCPOPT_TIMESTAMP<<8|TCPOLEN_TIMESTAMP)
 #define TCPOPT_EOL	0
 #define TCPI_OPT_TIMESTAMPS	1
 #define TCPOPT_NOP	1
-#define TCP_NODELAY	1
 #define TCPOLEN_TIMESTAMP	10
 #define TCP_WINDOW_CLAMP	10
 #define TCP_INFO	11
@@ -36,7 +37,6 @@ extern "C" {
 #define TCPOPT_SACK	5
 #define TCP_KEEPINTVL	5
 #define TCP_MSS	512
-#define SOL_TCP	6
 #define TCP_KEEPCNT	6
 #define TCP_MAXWIN	65535
 #define TCP_SYNCNT	7
