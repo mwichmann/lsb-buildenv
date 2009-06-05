@@ -6,6 +6,6 @@ qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass
 
 Name: Qtnetwork
 Description: Qtnetwork Library
-Version: 4.1.1
+Version: 4.2.1
 Libs: -L${libdir} -lQtNetwork -lQtCore -lz -lm -lpthread -ldl  
 Cflags: -DQT_SHARED -I/opt/lsb/include -I${includedir}

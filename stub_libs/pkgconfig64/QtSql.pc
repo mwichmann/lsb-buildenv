@@ -6,6 +6,6 @@ qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass
 
 Name: Qtsql
 Description: Qtsql Library
-Version: 4.1.1
+Version: 4.2.1
 Libs: -L${libdir} -lQtSql -lQtCore -lpthread -ldl  
 Cflags: -DQT_SHARED -I/opt/lsb/include -I${includedir}
