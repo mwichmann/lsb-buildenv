@@ -583,7 +583,7 @@ check_include_path(const char *include_path)
  * to list it for "special handling".  Only do this for long options
  * that are really used...
  */
-char *optstr="-cL:l:o:ESI:W::su:vV:";
+char *optstr="-cL:l:o:EI:W::u:vV:";
 struct option long_options[] = {
 	{"include",required_argument,0,0},
 	{"pthread",no_argument,0,0},
@@ -610,6 +610,38 @@ struct option long_options[] = {
 	{"lsb-libtool-fixups",no_argument,NULL,19},
 	{"lsb-besteffort",no_argument,NULL,20},
 	{"lsb-target-version",required_argument,NULL,21},
+#define COPY_ARG_START 100
+#define COPY_ARG_END 201
+	/*
+         * The options with numbers between 100 and 200 are of special kind.
+	 * They expect another argument right after them.  Therefore, after
+	 * option processing, this argument should remain succeeding these
+	 * options. However, such options may be encountere in other places
+	 * (for example, in short-options-array).  
+	 * Here's the full list of them (gcc 4.3.3 man):
+	   -x  language  
+	   -aux-info  filename 
+	   --param  name=value 
+	   -idirafter  dir 
+	   -include  file  
+	   -Xpreprocessor  option
+	   -Xassembler  option
+	   -Xlinker  option
+	   -u  symbol
+	   -V  version  
+	   -b  machine
+	   -G  num  
+	 */
+	{"Xlinker",no_argument,NULL,100},
+	{"x",no_argument,NULL,101},
+	{"aux-info",no_argument,NULL,102},
+	{"param",no_argument,NULL,103},
+	{"idirafter",no_argument,NULL,104},
+	{"include",no_argument,NULL,105},
+	{"Xpreprocessor",no_argument,NULL,106},
+	{"Xassembler",no_argument,NULL,107},
+	{"b",no_argument,NULL,108},
+	{"G",no_argument,NULL,109},
 	{NULL,0,0,0}
 };
 
@@ -1395,14 +1427,8 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 21:/* --lsb-target-version */
 		/* We have already processed this option */
  		break;
-	case 's':
-		/*
-		 * We must explicitly recognize '-s' to distinguish it
-		 * from '-shared'. We just fall through and treat it like
-		 * any other option.
-		 */
 	case '?':
-		if (strncmp(argv[optind-1], "--lsb-",6) == 0) {
+		if (strncmp(argv[optind_old], "--lsb-",6) == 0) {
 			/*
 			 * We simply refuse to pass --lsb- prefixed
 			 * options along to gcc, since they are likely
@@ -1419,22 +1445,49 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 */
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
 			fprintf(stderr,"option?: %s optopt %x %c\n",
-					argv[optind-1], optopt, optopt );
+					argv[optind_old], optopt, optopt );
 		}
-		if( (optopt && (optopt != '?')) || (argv[optind-1][0] == '-') ) {
-			argvaddstring(options,argv[optind-1]);
+		if( (optopt && (optopt != '?')) || (argv[optind_old][0] == '-') ) {
+			argvaddstring(options,argv[optind_old]);
 		} else {
-			fprintf(stderr,"ERROR: Dropping argument %s\n",
-							argv[optind-1] );
+			fprintf(stderr,"Warning: Dropping argument '%s'\n",
+							argv[optind_old] );
 		}
 		break;
 	default:
+		/* the option from 100-200 range, copy argument after it */
+		if (c>=COPY_ARG_START && c<COPY_ARG_END) {
+		    /* In this case the next argument from command line is 
+		     * immediately appended to the option list.*/
+		    argvaddstring(options,argv[optind_old]);
+		    if (optind_old+1 < argc) {
+			argvaddstring(options,argv[optind_old+1]);
+			optind ++;
+		    } else {
+			/* find option's name to print error message */
+			struct option *opt;
+			for (opt = long_options; opt->name ; opt++){
+			    if (opt->val == c) break;
+			}
+			assert(opt->name); /* How come we didn't find it??? */
+			fprintf(stderr,"%s: argument to '%s' is missing\n",
+				basename(argv[0]),opt->name);
+			exit(EXIT_FAILURE);
+		    }
+		    break;
+		}
 		/* We shouldn't get here */
 		printf("unhandled option %c", c );
 		if( optarg )
 			printf (" with arg %s", optarg);
 		printf("\n");
 	}
+
+	/*
+	 * Save optind value to catch cases of options like '-std'
+	 * that are treated as two separate options without shifting optind
+	 */	
+	optind_old = optind;
 }
 
 /*
