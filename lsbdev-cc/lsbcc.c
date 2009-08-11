@@ -1693,22 +1693,24 @@ if (found_gcc_arg) {
 	argvappend(gccargs,target);
 
 	/*
- 	* The lsb/include directory needs to come after application supplied paths,
- 	* but before the default /usr/include path.
- 	* This does make the assumption that application builds are well behaved
- 	* and don't pass in -I/usr/include themselves.
+ 	* The lsb/include directory needs to come after application supplied 
+ 	* paths, but before the default /usr/include path.
+	* Such behaviour is achieved with the use of the -isystem option,
+	* the positions of this option among -I includes does not matter.
+ 	* This does make the assumption that application builds are well
+ 	* behaved and don't pass in -I/usr/include themselves.
  	*/
 	argvappend(gccargs,incpaths);
 	if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
-		fprintf(stderr,"Prepending %s to include path\n", incpath);
-	argvadd(gccargs,"I",incpath);
+	    fprintf(stderr,"Prepending %s to system include path\n", incpath);
+	argvadd(gccargs,"isystem",incpath);
 
 	if( lsbccmode == LSBCPLUS ) {
 		if( lsbcc_debug&DEBUG_INCLUDE_CHANGES )
-			fprintf(stderr,"Prepending %s to include path\n", cxxincpath);
-		argvadd(gccargs,"I",cxxincpath);
+			fprintf(stderr,"Prepending %s to system include path\n", cxxincpath);
+		argvadd(gccargs,"isystem",cxxincpath);
 		/* this is grotty: looks like we also need -Icxxincpath/backward */
-		sprintf(tmpbuf, "-I%s/backward", cxxincpath);
+		sprintf(tmpbuf, "-isystem %s/backward", cxxincpath);
 		argvaddstring(incpaths,strdup(tmpbuf));
 		argvappend(gccargs,incpaths);
 	}
