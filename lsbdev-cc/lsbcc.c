@@ -1623,7 +1623,7 @@ if (!no_link) {
 	}
 
 	/* Best-effort dynamic linking. */
-	if( best_effort ) {
+	if( best_effort && !lsbcc_buildingshared) {
 		sprintf(tmpbuf, "%s/besteffort.o", libpath);
 		argvaddstring(syslibs, strdup(tmpbuf));
 		default_linker = 1;
