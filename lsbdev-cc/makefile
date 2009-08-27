@@ -6,7 +6,7 @@ LIBS = libgcc34compat.a
 EXTRA_OBJS = besteffort.o
 CFLAGS=-g -Wall
 CXXFLAGS=$(CFLAGS)
-GCC34_COMPAT_CFLAGS = -fPIC
+EXTRA_CFLAGS=-fPIC
 LSB_VERSION ?= "3.0,3.1,3.2,4.0"
 LSB_VERSIONS=3.0 3.1 3.2 4.0
 
@@ -24,7 +24,8 @@ $(LSBCC_OBJS): lsbcc_libs.h lsbcc_version.h
 
 $(LSBCPP_OBJS): lsbcc_version.h
 
-$(COMMON_OBJS):
+besteffort.o: besteffort.c
+	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $<
 
 lsbcc: $(LSBCC_OBJS) $(COMMON_OBJS)
 
@@ -38,7 +39,7 @@ libgcc34compat.a: gcc34-compat.o
 	ar rcs libgcc34compat.a gcc34-compat.o
 
 gcc34-compat.o: gcc34-compat.cc
-	$(CXX) $(CXXFLAGS) $(GCC34_COMPAT_CFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) $(EXTRA_CFLAGS) -c $<
 
 install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 	install -d $(INSTALL_ROOT)/$(BINDIR)
