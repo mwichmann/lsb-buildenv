@@ -22,6 +22,12 @@ extern "C" {
 #define CLK_TCK	((clock_t)sysconf(2))
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+#if __LSB_VERSION__ >= 40
+#define CLOCK_MONOTONIC	1
+#define CLOCK_PROCESS_CPUTIME_ID	2
+#define CLOCK_THREAD_CPUTIME_ID	3
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
 #if __LSB_VERSION__ >= 12
