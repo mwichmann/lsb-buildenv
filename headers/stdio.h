@@ -60,6 +60,10 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 2.1 */
 
+#if __LSB_VERSION__ >= 40
+#define TMP_MAX	238328
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
 #if __LSB_VERSION__ >= 12
