@@ -57,11 +57,8 @@ extern "C" {
     for (__i = 0; __i < __imax; ++__i)\
        __arr->__bits[__i] = 0; \
   } while (0)
-#define CPU_ALLOC(count)	__CPU_ALLOC (count)
 #define CPU_ALLOC_SIZE(count)	__CPU_ALLOC_SIZE (count)
 #define CPU_CLR(cpu, cpusetp)	__CPU_CLR_S (cpu, sizeof (cpu_set_t), cpusetp)
-#define CPU_COUNT(cpusetp)	__CPU_COUNT_S (sizeof (cpu_set_t), cpusetp)
-#define CPU_FREE(cpuset)	__CPU_FREE (cpuset)
 #define CPU_ISSET(cpu, cpusetp)	__CPU_ISSET_S (cpu, sizeof (cpu_set_t), cpusetp)
 #define CPU_AND_S(setsize, destset, srcset1, srcset2)	__CPU_OP_S (setsize, destset, srcset1, srcset2, &)
 #define CPU_XOR_S(setsize, destset, srcset1, srcset2)	__CPU_OP_S (setsize, destset, srcset1, srcset2, ^)
