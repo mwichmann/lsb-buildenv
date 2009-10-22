@@ -1,0 +1,9 @@
+LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.2.5 {
+  forkpty;
+  login;
+  login_tty;
+  logout;
+  logwtmp;
+  openpty;
+};
