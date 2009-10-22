@@ -1590,6 +1590,25 @@ if (!no_link) {
 	}
 	argvadd(syslibs,"L",gccbasedir);
 
+	/*
+	 * this is for the case where a library on the command line has
+	 * dependencies (bug 1475).  From the ld manpage:
+	 *
+	 *  When the linker encounters such a dependency when doing a non-
+	 *  shared, non-relocatable link, it will automatically try to locate
+	 *  the required shared library and include it in the link, if it is
+	 *  not included explicitly.  In such a case, the -rpath-link option
+	 *  specifies the first set of directories to search.  The -rpath-link
+	 *  option may specify a sequence of directory names either by
+	 *  specifying a list of names separated by colons, or by appearing
+	 *   multiple times.
+	 */
+	sprintf(tmpbuf, "-Wl,-rpath-link,%s", libpath);
+	argvaddstring(syslibs, strdup(tmpbuf));
+	if( lsbcc_debug&DEBUG_MODIFIED_ARGS ) {
+		fprintf(stderr, "Adding %s to args\n", tmpbuf);
+	}
+
 	/* these need to go after user-specified library paths */
 #if __powerpc64__ || __s390x__ || __x86_64__
 	argvaddstring(syslibs,"-L/lib64");
