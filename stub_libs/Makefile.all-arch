@@ -56,10 +56,14 @@ install: install-core
 
 install-core:
 	install -d $(DESTDIR)/$(INSTALL_DIR)
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin
 	install $(CORE_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	mv $(DESTDIR)/$(INSTALL_DIR)/libstdcxx.so $(DESTDIR)/$(INSTALL_DIR)/libstdc++.so
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
 	cd $(DESTDIR)/$(INSTALL_DIR) && rm -f libstdc++.so.6 && ln -s libstdc++.so libstdc++.so.6
+	# need to handle relocations of the cups-config files
+	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/*
+	install ../../bin$(LIB64)/cups-config $(DESTDIR)/$(INSTALL_ROOT)/bin
 	# Create symlink to libs in the most recent LSB version.
 	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -f ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
 
