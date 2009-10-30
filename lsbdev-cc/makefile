@@ -4,7 +4,9 @@ LSBCC_OBJS = lsbcc.o
 LSBCPP_OBJS = lsbcpp.o
 LIBS = libgcc34compat.a
 EXTRA_OBJS = besteffort.o
-CFLAGS=-g -Wall
+# note this defaults to /opt/lsb here, /usr/local if built from above
+BASE_PATH ?= \"/opt/lsb\"
+CFLAGS=-g -Wall -DBASE_PATH=$(BASE_PATH)
 CXXFLAGS=$(CFLAGS)
 EXTRA_CFLAGS=-fPIC
 LSB_VERSION ?= "3.0,3.1,3.2,4.0"

@@ -1,8 +1,10 @@
-SUBDIRS=header stub_libs lsbdev-cc
+SUBDIRS=headers stub_libs lsbdev-cc
 
 export BINDIR=/bin
 export MANDIR=/man
 export INSTALL_ROOT=/usr/local
+# BASE_PATH is passed to the lsbcc build
+export BASE_PATH=\"$(INSTALL_ROOT)\"
 export INCLUDEDIR=/include
 export LIB64=$(shell case `uname -m` in (ppc64|s390x|x86_64) echo 64 ;; esac)
 export LIBDIR=/lib$(LIB64)
