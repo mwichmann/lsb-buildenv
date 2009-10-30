@@ -18,6 +18,10 @@ extern "C" {
 #define XT_VERSION	11
 #define XT_REVISION	6
 #define _XtintrinsicP_h	1
+#if __LSB_VERSION__ >= 40
+#define XtCheckSubclass(w,widget_class,message)
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
 #if __LSB_VERSION__ >= 12

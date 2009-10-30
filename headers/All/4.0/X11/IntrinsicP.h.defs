@@ -1,4 +1,5 @@
 
+#define XtCheckSubclass(w,widget_class,message)
 #define XtVersion	(XT_VERSION * 1000 + XT_REVISION)
 #define XtVersionDontCheck	0
 #define _XtintrinsicP_h	1
