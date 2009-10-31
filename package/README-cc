@@ -1,0 +1,20 @@
+LSB Base Build Environment - Compiler Wrapper
+=============================================
+
+The package contains the following:
+
+  - CC compiler wrapper (lsbcc)
+  - C++ compiler wrapper (lsbc++)
+  - cpp preprocessor wrapper (lsbcpp)
+
+Licence
+-------
+
+lsb-build-cc is Copyright 2007, Linux Foundation, and distributed
+under the terms of the BSD Licence. See the Licence file for details.
+
+Feedback
+--------
+Please send any comments you may have to lsb-discuss@linux-foundation.org
+or file bugs at bugs.linuxbase.org.
+

@@ -1,0 +1,19 @@
+LSB Desktop Build Environment
+=============================
+
+This package supplies the files needed for building applications that
+conform to the LSB Desktop specification, including header files and
+libraries.
+
+Licence
+-------
+
+lsb-build-desktop is Copyright 2007, Linux Foundation, and distributed
+distributed under the terms of the BSD Licence. See the Licence file 
+for details.
+
+Feedback
+--------
+Please send any comments you may have to lsb-discuss@linux-foundation.org
+or file bugs at bugs.linuxbase.org.
+

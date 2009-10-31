@@ -1,0 +1,25 @@
+LSB Base Build Environment
+=====================
+
+The package contains the following:
+
+  - LSB stub libraries (stub_libs). 
+    These libraries contain the versioned symbols as required by
+    the LSB specification. Linking against these libraries will ensure
+    that the application attempts to use the correct versions 
+    at runtime. They do not contain the code necessary for
+    a program to operate during runtime.
+
+  - LSB Header files
+
+Licence
+-------
+
+lsb-build-base is Copyright 2007, Linux Foundation, and distributed
+under the terms of the BSD Licence. See the Licence file for details.
+
+Feedback
+--------
+Please send any comments you may have to lsb-discuss@linux-foundation.org
+or file bugs at bugs.linuxbase.org.
+
