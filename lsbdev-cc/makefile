@@ -5,7 +5,8 @@ LSBCPP_OBJS = lsbcpp.o
 LIBS = libgcc34compat.a
 EXTRA_OBJS = besteffort.o
 # note this defaults to /opt/lsb here, /usr/local if built from above
-BASE_PATH ?= \"/opt/lsb\"
+INSTALL_ROOT ?= /opt/lsb
+BASE_PATH ?=\"$(INSTALL_ROOT)\"
 CFLAGS=-g -Wall -DBASE_PATH=$(BASE_PATH)
 CXXFLAGS=$(CFLAGS)
 EXTRA_CFLAGS=-fPIC
@@ -44,20 +45,20 @@ gcc34-compat.o: gcc34-compat.cc
 	$(CXX) $(CXXFLAGS) $(EXTRA_CFLAGS) -c $<
 
 install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
-	install -d $(INSTALL_ROOT)/$(BINDIR)
-	install lsbcc $(INSTALL_ROOT)/$(BINDIR)/lsbcc
-	install lsbcc $(INSTALL_ROOT)/$(BINDIR)/lsbc++
-	install lsbcpp $(INSTALL_ROOT)/$(BINDIR)/lsbcpp
-	install -d $(INSTALL_ROOT)/$(MANDIR)/man1
-	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
-	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
-	install lsbcc.1 $(INSTALL_ROOT)/$(MANDIR)/man1/lsbcpp.1
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)
+	install lsbcc $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)/lsbcc
+	install lsbcc $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)/lsbc++
+	install lsbcpp $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)/lsbcpp
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1
+	install lsbcc.1 $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
+	install lsbcc.1 $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
+	install lsbcc.1 $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1/lsbcpp.1
 	for version in $(LSB_VERSIONS); do  \
 	  install -D libgcc34compat.a \
-	  $(INSTALL_ROOT)/$(LIBDIR)-$$version/libgcc34compat.a; \
+	  $(DESTDIR)/$(INSTALL_ROOT)/$(LIBDIR)-$$version/libgcc34compat.a; \
 	  install -D besteffort.o \
-	  $(INSTALL_ROOT)/$(LIBDIR)-$$version/besteffort.o; \
-	  done
+	  $(DESTDIR)/$(INSTALL_ROOT)/$(LIBDIR)-$$version/besteffort.o; \
+	done
 
 scripts:
 	cd scripts;make

@@ -1,3 +1,7 @@
+# note this defaults to /opt/lsb here, /usr/local if built from above
+INSTALL_ROOT ?= /opt/lsb
+INCLUDEDIR ?= include
+
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 
 all: 
@@ -40,15 +44,10 @@ install-desktop: desktop_filelist
 	xargs md5sum < desktop_filelist > $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)/MD5SUMS.desktop || true
 
 clean:
-	find . -name '*.html' -print | xargs rm -f
+
+distclean:
 	find . -name '*.h' -print | xargs rm -f
 	find . -name '*.defs' -print | xargs rm -f
-	find . -name '*.proto' -print | xargs rm -f
-	find . -name '*.m4' -print | xargs rm -f
-	find . -name '*.cpp' -print | xargs rm -f
-	find . -name '*.txt' -print | xargs rm -f
-
-distclean: clean
 	rm -f core_filelist* desktop_filelist*
 
 .SECONDARY:
