@@ -359,6 +359,10 @@ extern "C" {
 #define DefaultScreenOfDisplay(dpy)	ScreenOfDisplay(dpy,DefaultScreen(dpy))
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 40
+#define _XLIB_H_	1
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
 
