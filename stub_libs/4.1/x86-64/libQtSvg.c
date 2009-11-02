@@ -79,4 +79,4 @@ __asm__(".globl _ZTI16QSvgTinyDocument; .pushsection .data; .type _ZTI16QSvgTiny
 __asm__(".globl _ZTV10QSvgWidget; .pushsection .data; .type _ZTV10QSvgWidget,@object; .size _ZTV10QSvgWidget, 504; _ZTV10QSvgWidget: .long 0; .popsection");
 __asm__(".globl _ZTV12QSvgRenderer; .pushsection .data; .type _ZTV12QSvgRenderer,@object; .size _ZTV12QSvgRenderer, 112; _ZTV12QSvgRenderer: .long 0; .popsection");
 __asm__(".globl _ZTV16QGraphicsSvgItem; .pushsection .data; .type _ZTV16QGraphicsSvgItem,@object; .size _ZTV16QGraphicsSvgItem, 448; _ZTV16QGraphicsSvgItem: .long 0; .popsection");
-__asm__(".globl _ZTV16QSvgTinyDocument; .pushsection .data; .type _ZTV16QSvgTinyDocument,@object; .size _ZTV16QSvgTinyDocument, 64; _ZTV16QSvgTinyDocument: .long 0; .popsection");
+__asm__(".globl _ZTV16QSvgTinyDocument; .pushsection .data; .type _ZTV16QSvgTinyDocument,@object; .size _ZTV16QSvgTinyDocument, 56; _ZTV16QSvgTinyDocument: .long 0; .popsection");
