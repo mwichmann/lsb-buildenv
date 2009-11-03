@@ -1,5 +1,9 @@
 
+#define XtInheritTranslations	((String) &_XtInheritTranslations)
+#define XtInheritAcceptFocus	((XtAcceptFocusProc) _XtInherit)
 #define XtInheritSetValuesAlmost	((XtAlmostProc) _XtInherit)
+#define XtInheritExpose	((XtExposeProc) _XtInherit)
+#define XtInheritQueryGeometry	((XtGeometryHandler) _XtInherit)
 #define XtInheritRealize	((XtRealizeProc) _XtInherit)
 #define XtInheritDisplayAccelerator	((XtStringProc) _XtInherit)
 #define XtInheritResize	((XtWidgetProc) _XtInherit)

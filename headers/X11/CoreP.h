@@ -20,6 +20,13 @@ extern "C" {
 #define XtInheritResize	((XtWidgetProc) _XtInherit)
 #define XtInheritDisplayAccelerator	((XtStringProc) _XtInherit)
 #define XtCoreP_h_	1
+#if __LSB_VERSION__ >= 40
+#define XtInheritTranslations	((String) &_XtInheritTranslations)
+#define XtInheritAcceptFocus	((XtAcceptFocusProc) _XtInherit)
+#define XtInheritExpose	((XtExposeProc) _XtInherit)
+#define XtInheritQueryGeometry	((XtGeometryHandler) _XtInherit)
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
     typedef struct _CorePart CorePart;
