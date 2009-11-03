@@ -68,14 +68,7 @@ extern "C" {
 	char *specifier;
 	XrmOptionKind argKind;
 	XPointer value;
-    } XrmOptionDescRec;
-
-    typedef struct {
-	char *option;
-	char *specifier;
-	XrmOptionKind argKind;
-	XPointer value;
-    } *XrmOptionDescList;
+    } XrmOptionDescRec, *XrmOptionDescList;
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

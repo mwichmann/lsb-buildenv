@@ -554,10 +554,10 @@ sub displaytype($$)
             print "\n";
         }
 
-        # We can have different typedefs on the same anonymous enum;
+        # We can have different typedefs on the same anonymous enums and structs;
         # let's print declarations of all such enums in one place,
         # without redeclaring enum members
-        if( $entry->{'Ttype'} eq 'Enum' and !$entry->{'Tname'} ) {
+        if( ($entry->{'Ttype'} eq 'Enum' or $entry->{'Ttype'} eq 'Struct') and !$entry->{'Tname'} ) {
             $DervidedTypes = $entry->{'Tid'};
             $deriviations{$entry->{'Tid'}} = "";
             $cur_deriviation = "";

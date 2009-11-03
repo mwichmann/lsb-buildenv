@@ -193,7 +193,9 @@ for(1..$hgh->rows) {
     print $th->rows," rows\n" if $trace;
     for(1..$th->rows) {
         $tentry = $th->fetchrow_hashref;
-        if( $tentry->{'Aid'} && $tentry->{'Aname'} eq "None" ) { next; }
+        if( $specdb::processed_typedefs{$tentry->{'Tid'}} ) {
+            next;
+        }
         specdb::displaytype($tentry,0);
         print ";\n";
         $totrows++;

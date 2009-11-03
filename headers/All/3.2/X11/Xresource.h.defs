@@ -8,10 +8,6 @@ typedef enum {
     XrmBindTightly,
     XrmBindLoosely
 } XrmBinding, *XrmBindingList;
-typedef enum {
-    XrmBindTightly,
-    XrmBindLoosely
-} *XrmBindingList;
 typedef XrmQuark XrmName;
 typedef XrmQuarkList XrmNameList;
 typedef XrmQuark XrmClass;
@@ -44,13 +40,7 @@ typedef struct {
     char *specifier;
     XrmOptionKind argKind;
     XPointer value;
-} XrmOptionDescRec;
-typedef struct {
-    char *option;
-    char *specifier;
-    XrmOptionKind argKind;
-    XPointer value;
-} *XrmOptionDescList;
+} XrmOptionDescRec, *XrmOptionDescList;
 extern void XrmCombineDatabase(XrmDatabase, XrmDatabase *, int);
 extern int XrmCombineFileDatabase(const char *, XrmDatabase *, int);
 extern void XrmDestroyDatabase(XrmDatabase);
