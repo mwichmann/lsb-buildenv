@@ -73,7 +73,7 @@ install-desktop:
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin
 	install $(DESKTOP_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
-	# need to handle relocations of the pkgconfig and freetype-config files
+	# need to handle relocations of the pkgconfig, freetype-config, xft-config files
 	sed -i 's|/opt/lsb/include|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' ../../pkgconfig$(LIB64)/*.pc
 	sed -i 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' ../../pkgconfig$(LIB64)/*.pc
 	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../pkgconfig$(LIB64)/*.pc
@@ -81,4 +81,5 @@ install-desktop:
 	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/*
 	install ../../pkgconfig$(LIB64)/*.pc $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
 	install ../../bin$(LIB64)/freetype-config $(DESTDIR)/$(INSTALL_ROOT)/bin
+	install ../../bin$(LIB64)/xft-config $(DESTDIR)/$(INSTALL_ROOT)/bin
 
