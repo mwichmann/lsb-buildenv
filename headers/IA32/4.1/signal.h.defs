@@ -1,0 +1,80 @@
+
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    sigset_t sa_mask;
+    unsigned long int sa_flags;
+    void (*sa_restorer) (void);
+};
+
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
+#define SIGSTKSZ	8192	/* System default stack size. */
+
+struct _fpreg {
+    unsigned short significand[4];
+    unsigned short exponent;
+};
+struct _fpxreg {
+    unsigned short significand[4];
+    unsigned short exponent;
+    unsigned short padding[3];
+};
+struct _xmmreg {
+    unsigned long int element[4];
+};
+
+struct _fpstate {
+    unsigned long int cw;
+    unsigned long int sw;
+    unsigned long int tag;
+    unsigned long int ipoff;
+    unsigned long int cssel;
+    unsigned long int dataoff;
+    unsigned long int datasel;
+    struct _fpreg _st[8];
+    unsigned short status;
+    unsigned short magic;
+    unsigned long int _fxsr_env[6];
+    unsigned long int mxcsr;
+    unsigned long int reserved;
+    struct _fpxreg _fxsr_st[8];
+    struct _xmmreg _xmm[8];
+    unsigned long int padding[56];
+};
+
+struct sigcontext {
+    unsigned short gs;
+    unsigned short __gsh;
+    unsigned short fs;
+    unsigned short __fsh;
+    unsigned short es;
+    unsigned short __esh;
+    unsigned short ds;
+    unsigned short __dsh;
+    unsigned long int edi;
+    unsigned long int esi;
+    unsigned long int ebp;
+    unsigned long int esp;
+    unsigned long int ebx;
+    unsigned long int edx;
+    unsigned long int ecx;
+    unsigned long int eax;
+    unsigned long int trapno;
+    unsigned long int err;
+    unsigned long int eip;
+    unsigned short cs;
+    unsigned short __csh;
+    unsigned long int eflags;
+    unsigned long int esp_at_signal;
+    unsigned short ss;
+    unsigned short __ssh;
+    struct _fpstate *fpstate;
+    unsigned long int oldmask;
+    unsigned long int cr2;
+};

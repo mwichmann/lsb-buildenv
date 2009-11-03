@@ -1,0 +1,10 @@
+
+typedef int (*xmlC14NIsVisibleCallback) (void *, xmlNodePtr, xmlNodePtr);
+extern int xmlC14NDocDumpMemory(xmlDocPtr, xmlNodeSetPtr, int, xmlChar * *,
+				int, xmlChar * *);
+extern int xmlC14NDocSave(xmlDocPtr, xmlNodeSetPtr, int, xmlChar * *, int,
+			  const char *, int);
+extern int xmlC14NDocSaveTo(xmlDocPtr, xmlNodeSetPtr, int, xmlChar * *,
+			    int, xmlOutputBufferPtr);
+extern int xmlC14NExecute(xmlDocPtr, xmlC14NIsVisibleCallback, void *, int,
+			  xmlChar * *, int, xmlOutputBufferPtr);

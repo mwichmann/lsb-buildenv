@@ -1,0 +1,10 @@
+
+class QByteArray;
+typedef char QByteArray::iterator;
+typedef char QByteArray::const_iterator;
+typedef QByteArray::iterator QByteArray::Iterator;
+typedef QByteArray::const_iterator QByteArray::ConstIterator;
+typedef char QByteArray::const_reference;
+typedef char QByteArray::reference;
+struct QByteArray::Data;
+class QByteRef;

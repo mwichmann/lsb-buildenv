@@ -1,0 +1,3 @@
+
+struct QBasicAtomic;
+class QAtomic;

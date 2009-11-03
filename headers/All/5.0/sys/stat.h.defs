@@ -1,0 +1,66 @@
+
+#define S_ISBLK(m)	(((m)&S_IFMT)==S_IFBLK)
+#define S_ISCHR(m)	(((m)&S_IFMT)==S_IFCHR)
+#define S_ISDIR(m)	(((m)&S_IFMT)==S_IFDIR)
+#define S_ISFIFO(m)	(((m)&S_IFMT)==S_IFIFO)
+#define S_ISLNK(m)	(((m)&S_IFMT)==S_IFLNK)
+#define S_ISREG(m)	(((m)&S_IFMT)==S_IFREG)
+#define S_ISSOCK(m)	(((m)&S_IFMT)==S_IFSOCK)
+#define S_TYPEISMQ(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSEM(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_TYPEISSHM(buf)	((buf)->st_mode - (buf)->st_mode)
+#define S_IRWXU	(S_IREAD|S_IWRITE|S_IEXEC)
+#define S_IROTH	(S_IRGRP>>3)
+#define S_IRGRP	(S_IRUSR>>3)
+#define S_IRWXO	(S_IRWXG>>3)
+#define S_IRWXG	(S_IRWXU>>3)
+#define S_IWOTH	(S_IWGRP>>3)
+#define S_IWGRP	(S_IWUSR>>3)
+#define S_IXOTH	(S_IXGRP>>3)
+#define S_IXGRP	(S_IXUSR>>3)
+#define S_ISVTX	01000
+#define S_IXUSR	0x0040
+#define S_IWUSR	0x0080
+#define S_IRUSR	0x0100
+#define S_ISGID	0x0400
+#define S_ISUID	0x0800
+#define S_IFIFO	0x1000
+#define S_IFCHR	0x2000
+#define S_IFDIR	0x4000
+#define S_IFBLK	0x6000
+#define S_IFREG	0x8000
+#define S_IFLNK	0xa000
+#define S_IFSOCK	0xc000
+#define S_IFMT	0xf000
+#define st_atime	st_atim.tv_sec
+#define st_ctime	st_ctim.tv_sec
+#define st_mtime	st_mtim.tv_sec
+#define S_IREAD	S_IRUSR
+#define S_IWRITE	S_IWUSR
+#define S_IEXEC	S_IXUSR
+
+extern int __fxstat(int __ver, int __fildes, struct stat *__stat_buf);
+extern int __fxstat64(int __ver, int __fildes, struct stat64 *__stat_buf);
+extern int __fxstatat(int __ver, int __fildes, const char *__filename,
+		      struct stat *__stat_buf, int __flag);
+extern int __fxstatat64(int __ver, int __fildes, const char *__filename,
+			struct stat64 *__stat_buf, int __flag);
+extern int __lxstat(int __ver, const char *__filename,
+		    struct stat *__stat_buf);
+extern int __lxstat64(int __ver, const char *__filename,
+		      struct stat64 *__stat_buf);
+extern int __xmknod(int __ver, const char *__path, mode_t __mode,
+		    dev_t * __dev);
+extern int __xmknodat(int __ver, int __fd, const char *__path,
+		      mode_t __mode, dev_t * __dev);
+extern int __xstat(int __ver, const char *__filename,
+		   struct stat *__stat_buf);
+extern int __xstat64(int __ver, const char *__filename,
+		     struct stat64 *__stat_buf);
+extern int chmod(const char *__file, mode_t __mode);
+extern int fchmod(int __fd, mode_t __mode);
+extern int fchmodat(int __fd, const char *__file, mode_t mode, int __flag);
+extern int mkdirat(int __fd, const char *__path, mode_t __mode);
+extern int mkfifo(const char *__path, mode_t __mode);
+extern int mkfifoat(int __fd, const char *__path, mode_t __mode);
+extern mode_t umask(mode_t __mask);

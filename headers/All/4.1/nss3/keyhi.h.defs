@@ -1,0 +1,4 @@
+
+#define _KEYHI_H_
+
+extern void SECKEY_DestroyPrivateKey(SECKEYPrivateKey * key);

@@ -1,0 +1,20 @@
+
+#define _SC_GR0_OFFSET	\
+	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
+
+typedef struct sigcontext mcontext_t;
+
+#define uc_mcontext	_u._mc
+#define uc_sigmask	_u._mc.sc_mask
+#define uc_stack	_u._mc.sc_stack
+#define uc_link	_u._uc._link
+
+typedef struct ucontext {
+    union {
+	mcontext_t _mc;
+	struct {
+	    unsigned long int _pad[_SC_GR0_OFFSET / 8];
+	    struct ucontext *_link;
+	} _uc;
+    } _u;
+} ucontext_t;

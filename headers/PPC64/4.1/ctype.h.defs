@@ -1,0 +1,15 @@
+
+enum {
+    _ISupper = 1,
+    _ISlower = 2,
+    _ISalpha = 4,
+    _ISdigit = 8,
+    _ISxdigit = 16,
+    _ISspace = 32,
+    _ISprint = 64,
+    _ISgraph = 128,
+    _ISblank = 256,
+    _IScntrl = 512,
+    _ISpunct = 1024,
+    _ISalnum = 2048
+};

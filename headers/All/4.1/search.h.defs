@@ -1,0 +1,44 @@
+
+typedef struct entry {
+    char *key;
+    void *data;
+} ENTRY;
+typedef enum {
+    FIND,
+    ENTER
+} ACTION;
+struct _ENTRY;
+typedef enum {
+    preorder,
+    postorder,
+    endorder,
+    leaf
+} VISIT;
+struct hsearch_data {
+    struct _ENTRY *table;
+    unsigned int size;
+    unsigned int filled;
+};
+
+typedef void (*__action_fn_t) (const void *__nodep, VISIT __value,
+			       int __level);
+extern int hcreate(size_t __nel);
+extern int hcreate_r(size_t __nel, struct hsearch_data *__htab);
+extern void hdestroy(void);
+extern void hdestroy_r(struct hsearch_data *__htab);
+extern ENTRY *hsearch(ENTRY __item, ACTION __action);
+extern int hsearch_r(ENTRY __item, ACTION __action, ENTRY * *__retval,
+		     struct hsearch_data *__htab);
+extern void insque(void *__elem, void *__prev);
+extern void *lfind(const void *__key, const void *__base, size_t * __nmemb,
+		   size_t __size, __compar_fn_t __compar);
+extern void *lsearch(const void *__key, void *__base, size_t * __nmemb,
+		     size_t __size, __compar_fn_t __compar);
+extern void remque(void *__elem);
+extern void *tdelete(const void *__key, void **__rootp,
+		     __compar_fn_t __compar);
+extern void *tfind(const void *__key, void *const *__rootp,
+		   __compar_fn_t __compar);
+extern void *tsearch(const void *__key, void **__rootp,
+		     __compar_fn_t __compar);
+extern void twalk(const void *__root, __action_fn_t __action);

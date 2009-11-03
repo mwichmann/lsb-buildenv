@@ -1,0 +1,41 @@
+
+struct pt_regs {
+    unsigned long int gpr[32];
+    unsigned long int nip;
+    unsigned long int msr;
+    unsigned long int orig_gpr3;	/* Used for restarting system calls */
+    unsigned long int ctr;
+    unsigned long int link;
+    unsigned long int xer;
+    unsigned long int ccr;
+    unsigned long int mq;	/* 601 only (not used at present). Used on APUS to hold IPL val */
+    unsigned long int trap;	/* Reason for being here */
+    unsigned long int dar;	/* Fault registers */
+    unsigned long int dsisr;
+    unsigned long int result;	/* Result of a system call */
+};
+
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-3)
+
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-3)
+
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    sigset_t sa_mask;
+    unsigned long int sa_flags;
+    void (*sa_restorer) (void);
+};
+
+#define MINSIGSTKSZ	2048	/* Minimum stack size for a signal handler. */
+#define SIGSTKSZ	8192	/* System default stack size. */
+
+struct sigcontext {
+    long int _unused[4];
+    int signal;
+    unsigned long int handler;
+    unsigned long int oldmask;
+    struct pt_regs *regs;
+};

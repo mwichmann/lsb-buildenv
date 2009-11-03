@@ -1,0 +1,10 @@
+
+#define _PKCS7T_H_
+
+typedef struct SEC_PKCS7RecipientInfoStr {
+    SECItem version;
+    CERTIssuerAndSN *issuerAndSN;
+    SECAlgorithmID keyEncAlg;
+    SECItem encKey;
+    CERTCertificate *cert;
+} SEC_PKCS7RecipientInfo;

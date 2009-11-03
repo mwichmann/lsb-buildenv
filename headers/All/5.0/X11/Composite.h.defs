@@ -1,0 +1,14 @@
+
+#define _XtComposite_h	1
+
+typedef void (*XtDoChangeProc) (Widget, WidgetList, Cardinal *, WidgetList,
+				Cardinal *, XtPointer);
+typedef struct _CompositeClassRec *CompositeWidgetClass;
+typedef Cardinal(*XtOrderProc) (Widget);
+extern void XtChangeManagedSet(WidgetList, Cardinal, XtDoChangeProc,
+			       XtPointer, WidgetList, Cardinal);
+extern void XtManageChild(Widget);
+extern void XtManageChildren(WidgetList, Cardinal);
+extern void XtUnmanageChild(Widget);
+extern void XtUnmanageChildren(WidgetList, Cardinal);
+extern WidgetClass compositeWidgetClass;

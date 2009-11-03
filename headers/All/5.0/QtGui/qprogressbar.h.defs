@@ -1,0 +1,6 @@
+
+class QProgressBar;
+enum _ZN12QProgressBar9DirectionE {
+    TopToBottom = 0,
+    BottomToTop = 1
+};

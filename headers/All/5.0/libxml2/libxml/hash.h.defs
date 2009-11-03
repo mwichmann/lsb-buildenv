@@ -1,0 +1,65 @@
+
+#define XML_CAST_FPTR(fptr)	fptr
+
+typedef struct _xmlHashTable xmlHashTable;
+typedef xmlHashTable *xmlHashTablePtr;
+typedef void (*xmlHashDeallocator) (void *, xmlChar *);
+typedef void (*xmlHashScannerFull) (void *, void *, const xmlChar *,
+				    const xmlChar *, const xmlChar *);
+typedef void *(*xmlHashCopier) (void *, xmlChar *);
+typedef void (*xmlHashScanner) (void *, void *, xmlChar *);
+extern int xmlHashAddEntry(xmlHashTablePtr table, const xmlChar * name,
+			   void *userdata);
+extern int xmlHashAddEntry2(xmlHashTablePtr table, const xmlChar * name,
+			    const xmlChar * name2, void *userdata);
+extern int xmlHashAddEntry3(xmlHashTablePtr table, const xmlChar * name,
+			    const xmlChar * name2, const xmlChar * name3,
+			    void *userdata);
+extern xmlHashTablePtr xmlHashCopy(xmlHashTablePtr table, xmlHashCopier f);
+extern xmlHashTablePtr xmlHashCreate(int size);
+extern xmlHashTablePtr xmlHashCreateDict(int size, xmlDictPtr dict);
+extern void xmlHashFree(xmlHashTablePtr table, xmlHashDeallocator f);
+extern void *xmlHashLookup(xmlHashTablePtr table, const xmlChar * name);
+extern void *xmlHashLookup2(xmlHashTablePtr table, const xmlChar * name,
+			    const xmlChar * name2);
+extern void *xmlHashLookup3(xmlHashTablePtr table, const xmlChar * name,
+			    const xmlChar * name2, const xmlChar * name3);
+extern void *xmlHashQLookup(xmlHashTablePtr table, const xmlChar * name,
+			    const xmlChar * prefix);
+extern void *xmlHashQLookup2(xmlHashTablePtr table, const xmlChar * name,
+			     const xmlChar * prefix, const xmlChar * name2,
+			     const xmlChar * prefix2);
+extern void *xmlHashQLookup3(xmlHashTablePtr table, const xmlChar * name,
+			     const xmlChar * prefix, const xmlChar * name2,
+			     const xmlChar * prefix2,
+			     const xmlChar * name3,
+			     const xmlChar * prefix3);
+extern int xmlHashRemoveEntry(xmlHashTablePtr table, const xmlChar * name,
+			      xmlHashDeallocator f);
+extern int xmlHashRemoveEntry2(xmlHashTablePtr table, const xmlChar * name,
+			       const xmlChar * name2,
+			       xmlHashDeallocator f);
+extern int xmlHashRemoveEntry3(xmlHashTablePtr table, const xmlChar * name,
+			       const xmlChar * name2,
+			       const xmlChar * name3,
+			       xmlHashDeallocator f);
+extern void xmlHashScan(xmlHashTablePtr table, xmlHashScanner f,
+			void *data);
+extern void xmlHashScan3(xmlHashTablePtr table, const xmlChar * name,
+			 const xmlChar * name2, const xmlChar * name3,
+			 xmlHashScanner f, void *data);
+extern void xmlHashScanFull(xmlHashTablePtr table, xmlHashScannerFull f,
+			    void *data);
+extern void xmlHashScanFull3(xmlHashTablePtr table, const xmlChar * name,
+			     const xmlChar * name2, const xmlChar * name3,
+			     xmlHashScannerFull f, void *data);
+extern int xmlHashSize(xmlHashTablePtr table);
+extern int xmlHashUpdateEntry(xmlHashTablePtr table, const xmlChar * name,
+			      void *userdata, xmlHashDeallocator f);
+extern int xmlHashUpdateEntry2(xmlHashTablePtr table, const xmlChar * name,
+			       const xmlChar * name2, void *userdata,
+			       xmlHashDeallocator f);
+extern int xmlHashUpdateEntry3(xmlHashTablePtr table, const xmlChar * name,
+			       const xmlChar * name2,
+			       const xmlChar * name3, void *userdata,
+			       xmlHashDeallocator f);

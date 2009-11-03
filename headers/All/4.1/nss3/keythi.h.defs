@@ -1,0 +1,99 @@
+
+#define _KEYTHI_H_
+
+typedef enum {
+    nullKey,
+    rsaKey = 1,
+    dsaKey = 2,
+    fortezzaKey = 3,
+    dhKey = 4,
+    keaKey = 5,
+    ecKey = 6
+} KeyType;
+typedef struct SECKEYRSAPublicKeyStr {
+    PLArenaPool *arena;
+    SECItem modulus;
+    SECItem publicExponent;
+} SECKEYRSAPublicKey;
+typedef struct SECKEYPQGParamsStr {
+    PLArenaPool *arena;
+    SECItem prime;
+    SECItem subPrime;
+    SECItem base;
+} SECKEYPQGParams;
+typedef struct SECKEYDSAPublicKeyStr {
+    SECKEYPQGParams params;
+    SECItem publicValue;
+} SECKEYDSAPublicKey;
+typedef struct SECKEYDHParamsStr {
+    PLArenaPool *arena;
+    SECItem prime;
+    SECItem base;
+} SECKEYDHParams;
+typedef struct SECKEYDHPublicKeyStr {
+    PLArenaPool *arena;
+    SECItem prime;
+    SECItem base;
+    SECItem publicValue;
+} SECKEYDHPublicKey;
+typedef SECItem SECKEYECParams;
+typedef struct SECKEYECPublicKeyStr {
+    SECKEYECParams DEREncodedParams;
+    int size;
+    SECItem publicValue;
+} SECKEYECPublicKey;
+typedef struct SECKEYFortezzaPublicKeyStr {
+    int KEAversion;
+    int DSSversion;
+    unsigned char KMID[8];
+    SECItem clearance;
+    SECItem KEApriviledge;
+    SECItem DSSpriviledge;
+    SECItem KEAKey;
+    SECItem DSSKey;
+    SECKEYPQGParams params;
+    SECKEYPQGParams keaParams;
+} SECKEYFortezzaPublicKey;
+typedef struct SECKEYKEAParamsStr {
+    PLArenaPool *arena;
+    SECItem hash;
+} SECKEYKEAParams;
+typedef struct SECKEYKEAPublicKeyStr {
+    SECKEYKEAParams params;
+    SECItem publicValue;
+} SECKEYKEAPublicKey;
+typedef struct SECKEYPublicKeyStr {
+    PLArenaPool *arena;
+    KeyType keyType;
+    PK11SlotInfo *pkcs11Slot;
+    CK_OBJECT_HANDLE pkcs11ID;
+    union {
+	SECKEYRSAPublicKey rsa;
+	SECKEYDSAPublicKey dsa;
+	SECKEYDHPublicKey dh;
+	SECKEYKEAPublicKey kea;
+	SECKEYFortezzaPublicKey fortezza;
+	SECKEYECPublicKey ec;
+    } u;
+} SECKEYPublicKey;
+typedef struct SECKEYPrivateKeyStr {
+    PLArenaPool *arena;
+    KeyType keyType;
+    PK11SlotInfo *pkcs11Slot;
+    CK_OBJECT_HANDLE pkcs11ID;
+    PRBool pkcs11IsTemp;
+    void *wincx;
+    PRUint32 staticflags;
+} SECKEYPrivateKey;
+typedef struct {
+    PRCList links;
+    SECKEYPrivateKey *key;
+} SECKEYPrivateKeyListNode;
+typedef struct {
+    PRCList list;
+    PLArenaPool *arena;
+} SECKEYPrivateKeyList;
+typedef struct {
+    PRCList list;
+    PLArenaPool *arena;
+} SECKEYPublicKeyList;

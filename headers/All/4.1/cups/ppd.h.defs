@@ -1,0 +1,191 @@
+
+#define _CUPS_PPD_H_
+#define PPD_MAX_LINE	256
+#define PPD_VERSION	4.3
+#define PPD_MAX_NAME	41
+#define PPD_MAX_TEXT	81
+
+typedef enum {
+    PPD_CS_CMYK = -4,
+    PPD_CS_CMY = -3,
+    PPD_CS_GRAY = 1,
+    PPD_CS_RGB = 3,
+    PPD_CS_RGBK = 4,
+    PPD_CS_N = 5
+} ppd_cs_t;
+typedef struct {
+    char name[41];
+    char *start;
+    char *stop;
+} ppd_emul_t;
+typedef enum {
+    PPD_UI_BOOLEAN = 0,
+    PPD_UI_PICKONE = 1,
+    PPD_UI_PICKMANY = 2
+} ppd_ui_t;
+typedef enum {
+    PPD_ORDER_ANY = 0,
+    PPD_ORDER_DOCUMENT = 1,
+    PPD_ORDER_EXIT = 2,
+    PPD_ORDER_JCL = 3,
+    PPD_ORDER_PAGE = 4,
+    PPD_ORDER_PROLOG = 5
+} ppd_section_t;
+typedef struct {
+    char marked;
+    char choice[41];
+    char text[81];
+    char *code;
+    void *option;
+} ppd_choice_t;
+typedef struct {
+    char conflicted;
+    char keyword[41];
+    char defchoice[41];
+    char text[81];
+    ppd_ui_t ui;
+    ppd_section_t section;
+    float order;
+    int num_choices;
+    ppd_choice_t *choices;
+} ppd_option_t;
+typedef struct ppd_group_str {
+    char text[40];
+    char name[41];
+    int num_options;
+    ppd_option_t *options;
+    int num_subgroups;
+    struct ppd_group_str *subgroups;
+} ppd_group_t;
+typedef struct {
+    int marked;
+    char name[41];
+    float width;
+    float length;
+    float left;
+    float bottom;
+    float right;
+    float top;
+} ppd_size_t;
+typedef struct {
+    char option1[41];
+    char choice1[41];
+    char option2[41];
+    char choice2[41];
+} ppd_const_t;
+typedef struct {
+    char resolution[41];
+    char media_type[41];
+    float density;
+    float gamma;
+    float matrix[3][3];
+} ppd_profile_t;
+typedef struct {
+    char name[41];
+    char spec[41];
+    char text[81];
+    char *value;
+} ppd_attr_t;
+typedef struct {
+    int language_level;
+    int color_device;
+    int variable_sizes;
+    int accurate_screens;
+    int contone_only;
+    int landscape;
+    int model_number;
+    int manual_copies;
+    int throughput;
+    ppd_cs_t colorspace;
+    char *patches;
+    int num_emulations;
+    ppd_emul_t *emulations;
+    char *jcl_begin;
+    char *jcl_ps;
+    char *jcl_end;
+    char *lang_encoding;
+    char *lang_version;
+    char *modelname;
+    char *ttrasterizer;
+    char *manufacturer;
+    char *product;
+    char *nickname;
+    char *shortnickname;
+    int num_groups;
+    ppd_group_t *groups;
+    int num_sizes;
+    ppd_size_t *sizes;
+    float custom_min[2];
+    float custom_max[2];
+    float custom_margins[4];
+    int num_consts;
+    ppd_const_t *consts;
+    int num_fonts;
+    char **fonts;
+    int num_profiles;
+    ppd_profile_t *profiles;
+    int num_filters;
+    char **filters;
+    int flip_duplex;
+    char *protocols;
+    char *pcfilename;
+    int num_attrs;
+    int cur_attr;
+    ppd_attr_t **attrs;
+} ppd_file_t;
+typedef enum {
+    PPD_OK = 0,
+    PPD_FILE_OPEN_ERROR = 1,
+    PPD_NULL_FILE = 2,
+    PPD_ALLOC_ERROR = 3,
+    PPD_MISSING_PPDADOBE4 = 4,
+    PPD_MISSING_VALUE = 5,
+    PPD_INTERNAL_ERROR = 6,
+    PPD_BAD_OPEN_GROUP = 7,
+    PPD_NESTED_OPEN_GROUP = 8,
+    PPD_BAD_OPEN_UI = 9,
+    PPD_NESTED_OPEN_UI = 10,
+    PPD_BAD_ORDER_DEPENDENCY = 11,
+    PPD_BAD_UI_CONSTRAINTS = 12,
+    PPD_MISSING_ASTERISK = 13,
+    PPD_LINE_TOO_LONG = 14,
+    PPD_ILLEGAL_CHARACTER = 15,
+    PPD_ILLEGAL_MAIN_KEYWORD = 16,
+    PPD_ILLEGAL_OPTION_KEYWORD = 17,
+    PPD_ILLEGAL_TRANSLATION = 18,
+    PPD_ILLEGAL_WHITESPACE = 19
+} ppd_status_t;
+typedef enum {
+    PPD_CONFORM_RELAXED = 0,
+    PPD_CONFORM_STRICT = 1
+} ppd_conform_t;
+extern void ppdClose(ppd_file_t * ppd);
+extern int ppdCollect(ppd_file_t * ppd, ppd_section_t section,
+		      ppd_choice_t * **choices);
+extern int ppdConflicts(ppd_file_t * ppd);
+extern int ppdEmit(ppd_file_t * ppd, FILE * fp, ppd_section_t section);
+extern int ppdEmitFd(ppd_file_t * ppd, int fd, ppd_section_t section);
+extern int ppdEmitJCL(ppd_file_t * ppd, FILE * fp, int job_id,
+		      const char *user, const char *title);
+extern const char *ppdErrorString(ppd_status_t status);
+extern ppd_attr_t *ppdFindAttr(ppd_file_t * ppd, const char *name,
+			       const char *spec);
+extern ppd_choice_t *ppdFindChoice(ppd_option_t * o, const char *option);
+extern ppd_choice_t *ppdFindMarkedChoice(ppd_file_t * ppd,
+					 const char *keyword);
+extern ppd_attr_t *ppdFindNextAttr(ppd_file_t * ppd, const char *name,
+				   const char *spec);
+extern ppd_option_t *ppdFindOption(ppd_file_t * ppd, const char *keyword);
+extern int ppdIsMarked(ppd_file_t * ppd, const char *keyword,
+		       const char *option);
+extern ppd_status_t ppdLastError(int *line);
+extern void ppdMarkDefaults(ppd_file_t * ppd);
+extern int ppdMarkOption(ppd_file_t * ppd, const char *keyword,
+			 const char *option);
+extern ppd_file_t *ppdOpen(FILE * fp);
+extern ppd_file_t *ppdOpenFd(int fd);
+extern ppd_file_t *ppdOpenFile(const char *filename);
+extern float ppdPageLength(ppd_file_t * ppd, const char *name);
+extern ppd_size_t *ppdPageSize(ppd_file_t * ppd, const char *name);
+extern float ppdPageWidth(ppd_file_t * ppd, const char *name);
+extern void ppdSetConformance(ppd_conform_t c);

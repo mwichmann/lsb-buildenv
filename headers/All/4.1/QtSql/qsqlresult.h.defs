@@ -1,0 +1,11 @@
+
+class QSqlResult;
+enum _ZN10QSqlResult13BindingSyntaxE {
+    PositionalBinding = 0,
+    BindByPosition = 0,
+    NamedBinding = 1,
+    BindByName = 1
+};
+enum _ZN10QSqlResult20VirtualHookOperationE {
+    BatchOperation = 0
+};

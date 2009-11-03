@@ -1,0 +1,4 @@
+
+typedef struct _RectObjRec *RectObj;
+typedef struct _RectObjClassRec *RectObjClass;
+extern WidgetClass rectObjClass;

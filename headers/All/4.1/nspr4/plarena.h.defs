@@ -1,0 +1,15 @@
+
+#define plarena_h___
+
+typedef struct PLArenaPool {
+    struct PLArena first;
+    struct PLArena *current;
+    PRUint32 arenasize;
+    PRUword mask;
+} PLArenaPool;
+struct PLArena {
+    struct PLArena *next;
+    PRUword base;
+    PRUword limit;
+    PRUword avail;
+};

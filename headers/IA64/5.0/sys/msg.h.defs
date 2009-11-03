@@ -1,0 +1,14 @@
+
+struct msqid_ds {
+    struct ipc_perm msg_perm;	/* structure describing operation permission */
+    time_t msg_stime;		/* time of last msgsnd command */
+    time_t msg_rtime;		/* time of last msgrcv command */
+    time_t msg_ctime;		/* time of last change */
+    unsigned long int __msg_cbytes;	/* current number of bytes on queue */
+    unsigned long int msg_qnum;	/* number of messages currently on queue */
+    unsigned long int msg_qbytes;	/* max number of bytes allowed on queue */
+    pid_t msg_lspid;		/* pid of last msgsnd() */
+    pid_t msg_lrpid;		/* pid of last msgrcv() */
+    unsigned long int __unused1;
+    unsigned long int __unused2;
+};

@@ -1,0 +1,8 @@
+
+class QColor;
+enum _ZN6QColor4SpecE {
+    Invalid = 0,
+    Rgb = 1,
+    Hsv = 2,
+    Cmyk = 3
+};

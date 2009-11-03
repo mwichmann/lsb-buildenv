@@ -1,0 +1,70 @@
+
+class QTextItem;
+enum _ZN9QTextItem10RenderFlagE {
+    Dummy = -1,
+    RightToLeft = 1,
+    Overline = 16,
+    Underline = 32,
+    StrikeOut = 64
+};
+class QFlags < QTextItem::RenderFlag >;
+typedef class QFlags < QTextItem::RenderFlag > QTextItem::RenderFlags;
+class QPaintEngine;
+enum _ZN12QPaintEngine18PaintEngineFeatureE {
+    AllFeatures = -1,
+    PrimitiveTransform = 1,
+    PatternTransform = 2,
+    PixmapTransform = 4,
+    PatternBrush = 8,
+    LinearGradientFill = 16,
+    RadialGradientFill = 32,
+    ConicalGradientFill = 64,
+    AlphaBlend = 128,
+    PorterDuff = 256,
+    PainterPaths = 512,
+    Antialiasing = 1024,
+    BrushStroke = 2048,
+    PaintOutsidePaintEvent = 536870912
+};
+class QFlags < QPaintEngine::PaintEngineFeature >;
+typedef class QFlags < QPaintEngine::PaintEngineFeature >
+    QPaintEngine::PaintEngineFeatures;
+enum _ZN12QPaintEngine9DirtyFlagE {
+    DirtyPen = 1,
+    DirtyBrush = 2,
+    DirtyBrushOrigin = 4,
+    DirtyFont = 8,
+    DirtyBackground = 16,
+    DirtyBackgroundMode = 32,
+    DirtyTransform = 64,
+    DirtyClipRegion = 128,
+    DirtyClipPath = 256,
+    DirtyHints = 512,
+    DirtyCompositionMode = 1024,
+    DirtyClipEnabled = 2048,
+    AllDirty = 65535
+};
+class QFlags < QPaintEngine::DirtyFlag >;
+typedef class QFlags < QPaintEngine::DirtyFlag > QPaintEngine::DirtyFlags;
+enum _ZN12QPaintEngine15PolygonDrawModeE {
+    OddEvenMode = 0,
+    WindingMode = 1,
+    ConvexMode = 2,
+    PolylineMode = 3
+};
+enum _ZN12QPaintEngine4TypeE {
+    X11 = 0,
+    Windows = 1,
+    QuickDraw = 2,
+    CoreGraphics = 3,
+    MacPrinter = 4,
+    QWindowSystem = 5,
+    PostScript = 6,
+    OpenGL = 7,
+    Picture = 8,
+    SVG = 9,
+    Raster = 10,
+    User = 50,
+    MaxUser = 100
+};
+class QPaintEngineState;

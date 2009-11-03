@@ -1,0 +1,5 @@
+
+class QAbstractTextDocumentLayout;
+struct QAbstractTextDocumentLayout::Selection;
+struct QAbstractTextDocumentLayout::PaintContext;
+class QTextObjectInterface;

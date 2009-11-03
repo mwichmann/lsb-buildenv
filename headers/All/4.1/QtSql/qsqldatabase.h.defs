@@ -1,0 +1,3 @@
+
+class QSqlDriverCreatorBase;
+class QSqlDatabase;

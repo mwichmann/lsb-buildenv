@@ -1,0 +1,4 @@
+
+typedef enum QtValidLicenseForSqlModule QtSqlModule;
+class QSqlRelation;
+class QSqlRelationalTableModel;

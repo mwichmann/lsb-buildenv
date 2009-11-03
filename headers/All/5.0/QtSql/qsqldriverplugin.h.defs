@@ -1,0 +1,3 @@
+
+struct QSqlDriverFactoryInterface;
+class QSqlDriverPlugin;

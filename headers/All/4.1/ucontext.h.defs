@@ -1,0 +1,6 @@
+
+extern int getcontext(ucontext_t * __ucp);
+extern void makecontext(ucontext_t * __ucp, void (*__func) (void),
+			int __argc, ...);
+extern int setcontext(const struct ucontext *__ucp);
+extern int swapcontext(ucontext_t * __oucp, const struct ucontext *__ucp);

@@ -1,0 +1,3 @@
+
+struct QPictureFormatInterface;
+class QPictureFormatPlugin;

@@ -1,0 +1,5 @@
+
+extern int fstatvfs(int __fildes, struct statvfs *__buf);
+extern int fstatvfs64(int __fildes, struct statvfs64 *__buf);
+extern int statvfs(const char *__file, struct statvfs *__buf);
+extern int statvfs64(const char *__file, struct statvfs64 *__buf);

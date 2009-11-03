@@ -1,0 +1,5 @@
+
+class QMap < int, QVariant >;
+class QMap < QString, QVariant >;
+struct QMapData;
+struct QMapData::Node;

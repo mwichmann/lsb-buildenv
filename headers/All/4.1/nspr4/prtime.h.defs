@@ -1,0 +1,5 @@
+
+#define prtime_h___
+
+typedef PRInt64 PRTime;
+extern PRTime PR_Now(void);

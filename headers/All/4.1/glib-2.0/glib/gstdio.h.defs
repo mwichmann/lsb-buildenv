@@ -1,0 +1,15 @@
+
+#define g_access	access
+#define g_chdir	chdir
+#define g_chmod	chmod
+#define g_creat	creat
+#define g_fopen	fopen
+#define g_freopen	freopen
+#define g_lstat	lstat
+#define g_mkdir	mkdir
+#define g_open	open
+#define g_remove	remove
+#define g_rename	rename
+#define g_rmdir	rmdir
+#define g_stat	stat
+#define g_unlink	unlink

@@ -1,0 +1,9 @@
+
+class QImageReader;
+enum _ZN12QImageReader16ImageReaderErrorE {
+    UnknownError = 0,
+    FileNotFoundError = 1,
+    DeviceError = 2,
+    UnsupportedFormatError = 3,
+    InvalidDataError = 4
+};

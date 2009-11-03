@@ -1,0 +1,72 @@
+
+typedef struct _xmlRegexp xmlRegexp;
+typedef xmlRegexp *xmlRegexpPtr;
+typedef struct _xmlRegExecCtxt xmlRegExecCtxt;
+typedef xmlRegExecCtxt *xmlRegExecCtxtPtr;
+typedef struct _xmlExpNode xmlExpNode;
+typedef xmlExpNode *xmlExpNodePtr;
+typedef void (*xmlRegExecCallbacks) (xmlRegExecCtxtPtr, const xmlChar *,
+				     void *, void *);
+typedef struct _xmlExpCtxt xmlExpCtxt;
+typedef xmlExpCtxt *xmlExpCtxtPtr;
+typedef enum {
+    XML_EXP_EMPTY = 0,
+    XML_EXP_FORBID = 1,
+    XML_EXP_ATOM = 2,
+    XML_EXP_SEQ = 3,
+    XML_EXP_OR = 4,
+    XML_EXP_COUNT = 5
+} xmlExpNodeType;
+extern xmlExpNodePtr emptyExp;
+extern xmlExpNodePtr forbiddenExp;
+extern int xmlExpCtxtNbCons(xmlExpCtxtPtr ctxt);
+extern int xmlExpCtxtNbNodes(xmlExpCtxtPtr ctxt);
+extern void xmlExpDump(xmlBufferPtr buf, xmlExpNodePtr expr);
+extern xmlExpNodePtr xmlExpExpDerive(xmlExpCtxtPtr ctxt,
+				     xmlExpNodePtr expr,
+				     xmlExpNodePtr sub);
+extern void xmlExpFree(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr);
+extern void xmlExpFreeCtxt(xmlExpCtxtPtr ctxt);
+extern int xmlExpGetLanguage(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr,
+			     const xmlChar * *langList, int len);
+extern int xmlExpGetStart(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr,
+			  const xmlChar * *tokList, int len);
+extern int xmlExpIsNillable(xmlExpNodePtr expr);
+extern int xmlExpMaxToken(xmlExpNodePtr expr);
+extern xmlExpNodePtr xmlExpNewAtom(xmlExpCtxtPtr ctxt,
+				   const xmlChar * name, int len);
+extern xmlExpCtxtPtr xmlExpNewCtxt(int maxNodes, xmlDictPtr dict);
+extern xmlExpNodePtr xmlExpNewOr(xmlExpCtxtPtr ctxt, xmlExpNodePtr left,
+				 xmlExpNodePtr right);
+extern xmlExpNodePtr xmlExpNewRange(xmlExpCtxtPtr ctxt,
+				    xmlExpNodePtr subset, int min,
+				    int max);
+extern xmlExpNodePtr xmlExpNewSeq(xmlExpCtxtPtr ctxt, xmlExpNodePtr left,
+				  xmlExpNodePtr right);
+extern xmlExpNodePtr xmlExpParse(xmlExpCtxtPtr ctxt, const char *expr);
+extern void xmlExpRef(xmlExpNodePtr expr);
+extern xmlExpNodePtr xmlExpStringDerive(xmlExpCtxtPtr ctxt,
+					xmlExpNodePtr expr,
+					const xmlChar * str, int len);
+extern int xmlExpSubsume(xmlExpCtxtPtr ctxt, xmlExpNodePtr expr,
+			 xmlExpNodePtr sub);
+extern int xmlRegExecErrInfo(xmlRegExecCtxtPtr exec,
+			     const xmlChar * *string, int *nbval,
+			     int *nbneg, xmlChar * *values, int *terminal);
+extern int xmlRegExecNextValues(xmlRegExecCtxtPtr exec, int *nbval,
+				int *nbneg, xmlChar * *values,
+				int *terminal);
+extern int xmlRegExecPushString(xmlRegExecCtxtPtr exec,
+				const xmlChar * value, void *data);
+extern int xmlRegExecPushString2(xmlRegExecCtxtPtr exec,
+				 const xmlChar * value,
+				 const xmlChar * value2, void *data);
+extern void xmlRegFreeExecCtxt(xmlRegExecCtxtPtr exec);
+extern void xmlRegFreeRegexp(xmlRegexpPtr regexp);
+extern xmlRegExecCtxtPtr xmlRegNewExecCtxt(xmlRegexpPtr comp,
+					   xmlRegExecCallbacks callback,
+					   void *data);
+extern xmlRegexpPtr xmlRegexpCompile(const xmlChar * regexp);
+extern int xmlRegexpExec(xmlRegexpPtr comp, const xmlChar * value);
+extern int xmlRegexpIsDeterminist(xmlRegexpPtr comp);
+extern void xmlRegexpPrint(FILE * output, xmlRegexpPtr regexp);

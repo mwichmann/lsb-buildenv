@@ -1,0 +1,5 @@
+
+#define prthread_h___
+
+typedef struct PRThread PRThread;
+extern PRStatus PR_Interrupt(PRThread * thread);

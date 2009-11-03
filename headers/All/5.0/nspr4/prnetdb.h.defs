@@ -1,0 +1,20 @@
+
+#define prnetdb_h___
+
+typedef struct PRHostEnt {
+    char *h_name;
+    char **h_aliases;
+    PRInt32 h_addrtype;
+    PRInt32 h_length;
+    char **h_addr_list;
+} PRHostEnt;
+typedef struct PRAddrInfo PRAddrInfo;
+extern void *PR_EnumerateAddrInfo(void *enumPtr,
+				  const PRAddrInfo * addrInfo,
+				  PRUint16 port, PRNetAddr * result);
+extern void PR_FreeAddrInfo(PRAddrInfo * addrInfo);
+extern PRAddrInfo *PR_GetAddrInfoByName(const char *hostname, PRUint16 af,
+					PRIntn flags);
+extern PRStatus PR_NetAddrToString(const PRNetAddr * addr, char *string,
+				   PRUint32 size);
+extern PRStatus PR_StringToNetAddr(const char *string, PRNetAddr * addr);

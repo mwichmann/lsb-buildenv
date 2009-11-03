@@ -1,0 +1,2 @@
+
+#define __SIZEOF_SEM_T	16

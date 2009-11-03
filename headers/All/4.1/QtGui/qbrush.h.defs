@@ -1,0 +1,18 @@
+
+class QBrush;
+struct QBrushData;
+class QGradient;
+enum _ZN9QGradient4TypeE {
+    LinearGradient = 0,
+    RadialGradient = 1,
+    ConicalGradient = 2,
+    NoGradient = 3
+};
+enum _ZN9QGradient6SpreadE {
+    PadSpread = 0,
+    ReflectSpread = 1,
+    RepeatSpread = 2
+};
+class QLinearGradient;
+class QRadialGradient;
+class QConicalGradient;

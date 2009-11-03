@@ -1,0 +1,14 @@
+
+class QDockWidget;
+enum _ZN11QDockWidget17DockWidgetFeatureE {
+    NoDockWidgetFeatures = 0,
+    DockWidgetClosable = 1,
+    DockWidgetMovable = 2,
+    DockWidgetFloatable = 4,
+    DockWidgetFeatureMask = 7,
+    AllDockWidgetFeatures = 7,
+    Reserved = 255
+};
+class QFlags < QDockWidget::DockWidgetFeature >;
+typedef class QFlags < QDockWidget::DockWidgetFeature >
+    QDockWidget::DockWidgetFeatures;

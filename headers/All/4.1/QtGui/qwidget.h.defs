@@ -1,0 +1,9 @@
+
+class QWidgetData;
+class QWidget;
+enum _ZN7QWidget16BackgroundOriginE {
+    WidgetOrigin = 0,
+    ParentOrigin = 1,
+    WindowOrigin = 2,
+    AncestorOrigin = 3
+};

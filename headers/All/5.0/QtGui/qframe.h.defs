@@ -1,0 +1,22 @@
+
+class QFrame;
+enum _ZN6QFrame5ShapeE {
+    NoFrame = 0,
+    Box = 1,
+    Panel = 2,
+    WinPanel = 3,
+    HLine = 4,
+    VLine = 5,
+    TabWidgetPanel = 6,
+    LineEditPanel = 6,
+    ToolBarPanel = 6,
+    MenuBarPanel = 6,
+    PopupPanel = 6,
+    StyledPanel = 6,
+    GroupBoxPanel = 6
+};
+enum _ZN6QFrame6ShadowE {
+    Plain = 16,
+    Raised = 32,
+    Sunken = 48
+};

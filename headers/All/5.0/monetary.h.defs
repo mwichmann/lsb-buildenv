@@ -1,0 +1,3 @@
+
+extern ssize_t strfmon(char *__s, size_t __maxsize, const char *__format,
+		       ...);

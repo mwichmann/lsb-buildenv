@@ -1,0 +1,4 @@
+
+struct QHashData;
+struct QHashData::Node;
+struct QHashDummyValue;

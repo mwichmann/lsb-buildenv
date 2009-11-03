@@ -1,0 +1,41 @@
+
+#define _MKNOD_VER	1
+#define _STAT_VER	3
+
+struct stat {
+    dev_t st_dev;
+    unsigned short __pad1;
+    unsigned long int st_ino;
+    mode_t st_mode;
+    nlink_t st_nlink;
+    uid_t st_uid;
+    gid_t st_gid;
+    dev_t st_rdev;
+    unsigned short __pad2;
+    off_t st_size;
+    blksize_t st_blksize;
+    blkcnt_t st_blocks;
+    struct timespec st_atim;	/* Time of last access. */
+    struct timespec st_mtim;	/* Time of last modification. */
+    struct timespec st_ctim;	/* Time of last status change. */
+    unsigned long int __unused4;
+    unsigned long int __unused5;
+};
+struct stat64 {
+    dev_t st_dev;
+    unsigned int __pad1;
+    ino_t __st_ino;
+    mode_t st_mode;
+    nlink_t st_nlink;
+    uid_t st_uid;
+    gid_t st_gid;
+    dev_t st_rdev;
+    unsigned int __pad2;
+    off64_t st_size;
+    blksize_t st_blksize;
+    blkcnt64_t st_blocks;
+    struct timespec st_atim;	/* Time of last access. */
+    struct timespec st_mtim;	/* Time of last modification. */
+    struct timespec st_ctim;	/* Time of last status change. */
+    ino64_t st_ino;
+};

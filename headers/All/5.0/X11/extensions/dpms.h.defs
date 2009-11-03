@@ -1,0 +1,15 @@
+
+#define DPMSModeOn	0
+#define DPMSModeStandby	1
+#define DPMSModeSuspend	2
+#define DPMSModeOff	3
+
+extern int DPMSCapable(Display *);
+extern int DPMSDisable(Display *);
+extern int DPMSEnable(Display *);
+extern int DPMSForceLevel(Display *, CARD16);
+extern int DPMSGetTimeouts(Display *, CARD16 *, CARD16 *, CARD16 *);
+extern int DPMSGetVersion(Display *, int *, int *);
+extern int DPMSInfo(Display *, CARD16 *, BOOL *);
+extern int DPMSQueryExtension(Display *, int *, int *);
+extern int DPMSSetTimeouts(Display *, CARD16, CARD16, CARD16);

@@ -1,0 +1,16 @@
+
+class QIODevice;
+enum _ZN9QIODevice12OpenModeFlagE {
+    NotOpen = 0,
+    ReadOnly = 1,
+    WriteOnly = 2,
+    ReadWrite = 3,
+    Append = 4,
+    Truncate = 8,
+    Text = 16,
+    Unbuffered = 32
+};
+class QFlags < QIODevice::OpenModeFlag >;
+typedef class QFlags < QIODevice::OpenModeFlag > QIODevice::OpenMode;
+typedef qint64 QIODevice::Offset;
+typedef int QIODevice::Status;

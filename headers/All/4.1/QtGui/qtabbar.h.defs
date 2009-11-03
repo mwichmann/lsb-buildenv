@@ -1,0 +1,16 @@
+
+class QTabBar;
+enum _ZN7QTabBar5ShapeE {
+    RoundedNorth = 0,
+    RoundedAbove = 0,
+    RoundedSouth = 1,
+    RoundedBelow = 1,
+    RoundedWest = 2,
+    RoundedEast = 3,
+    TriangularNorth = 4,
+    TriangularAbove = 4,
+    TriangularBelow = 5,
+    TriangularSouth = 5,
+    TriangularWest = 6,
+    TriangularEast = 7
+};

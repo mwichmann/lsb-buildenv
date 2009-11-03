@@ -1,0 +1,64 @@
+
+#define XML_CATALOGS_NAMESPACE	 \
+	(const xmlChar *) "urn:oasis:names:tc:entity:xmlns:xml:catalog"
+#define XML_CATALOG_PI	(const xmlChar *) "oasis-xml-catalog"
+
+typedef enum {
+    XML_CATA_ALLOW_NONE = 0,
+    XML_CATA_ALLOW_GLOBAL = 1,
+    XML_CATA_ALLOW_DOCUMENT = 2,
+    XML_CATA_ALLOW_ALL = 3
+} xmlCatalogAllow;
+typedef struct _xmlCatalog xmlCatalog;
+typedef xmlCatalog *xmlCatalogPtr;
+typedef enum {
+    XML_CATA_PREFER_NONE = 0,
+    XML_CATA_PREFER_PUBLIC = 1,
+    XML_CATA_PREFER_SYSTEM = 2
+} xmlCatalogPrefer;
+extern int xmlACatalogAdd(xmlCatalogPtr catal, const xmlChar * type,
+			  const xmlChar * orig, const xmlChar * replace);
+extern void xmlACatalogDump(xmlCatalogPtr catal, FILE * out);
+extern int xmlACatalogRemove(xmlCatalogPtr catal, const xmlChar * value);
+extern xmlChar *xmlACatalogResolve(xmlCatalogPtr catal,
+				   const xmlChar * pubID,
+				   const xmlChar * sysID);
+extern xmlChar *xmlACatalogResolvePublic(xmlCatalogPtr catal,
+					 const xmlChar * pubID);
+extern xmlChar *xmlACatalogResolveSystem(xmlCatalogPtr catal,
+					 const xmlChar * sysID);
+extern xmlChar *xmlACatalogResolveURI(xmlCatalogPtr catal,
+				      const xmlChar * URI);
+extern int xmlCatalogAdd(const xmlChar * type, const xmlChar * orig,
+			 const xmlChar * replace);
+extern void *xmlCatalogAddLocal(void *catalogs, const xmlChar * URL);
+extern void xmlCatalogCleanup(void);
+extern int xmlCatalogConvert(void);
+extern void xmlCatalogDump(FILE * out);
+extern void xmlCatalogFreeLocal(void *catalogs);
+extern xmlCatalogAllow xmlCatalogGetDefaults(void);
+extern int xmlCatalogIsEmpty(xmlCatalogPtr catal);
+extern xmlChar *xmlCatalogLocalResolve(void *catalogs,
+				       const xmlChar * pubID,
+				       const xmlChar * sysID);
+extern xmlChar *xmlCatalogLocalResolveURI(void *catalogs,
+					  const xmlChar * URI);
+extern int xmlCatalogRemove(const xmlChar * value);
+extern xmlChar *xmlCatalogResolve(const xmlChar * pubID,
+				  const xmlChar * sysID);
+extern xmlChar *xmlCatalogResolvePublic(const xmlChar * pubID);
+extern xmlChar *xmlCatalogResolveSystem(const xmlChar * sysID);
+extern xmlChar *xmlCatalogResolveURI(const xmlChar * URI);
+extern int xmlCatalogSetDebug(int level);
+extern xmlCatalogPrefer xmlCatalogSetDefaultPrefer(xmlCatalogPrefer
+						   prefer);
+extern void xmlCatalogSetDefaults(xmlCatalogAllow allow);
+extern int xmlConvertSGMLCatalog(xmlCatalogPtr catal);
+extern void xmlFreeCatalog(xmlCatalogPtr catal);
+extern void xmlInitializeCatalog(void);
+extern xmlCatalogPtr xmlLoadACatalog(const char *filename);
+extern int xmlLoadCatalog(const char *filename);
+extern void xmlLoadCatalogs(const char *paths);
+extern xmlCatalogPtr xmlLoadSGMLSuperCatalog(const char *filename);
+extern xmlCatalogPtr xmlNewCatalog(int sgml);
+extern xmlDocPtr xmlParseCatalogFile(const char *filename);
