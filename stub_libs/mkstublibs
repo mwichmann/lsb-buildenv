@@ -40,6 +40,9 @@ my (%LibcAliases) = (
 
 my ($DestinationDirectory) = "";
 
+# Use this value for symbol size if no other information is found
+my $DEFAULT_SIZE = 4;
+
 #----------------------------------------------------------------------
 # Load data missing from database for size of variables
 sub LoadMissingData() {
@@ -287,6 +290,11 @@ sub GenerateLibrary($$$) {
                   . $MissingData{$libName}{ $row->{Iname} } . "\n";
                 $size = $MissingData{$libName}{ $row->{Iname} };
             }
+        }
+
+        if( !$size ) {
+            print STDOUT "Did not find size for $row->{Iname} ($libName) symbol; using default value.\n";
+            $size = $DEFAULT_SIZE;
         }
 
         if ( $row->{Itype} eq "Common" ) {

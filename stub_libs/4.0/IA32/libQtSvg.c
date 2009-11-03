@@ -73,10 +73,10 @@ __asm__(".globl _ZN10QSvgWidget16staticMetaObjectE; .pushsection .data; .type _Z
 __asm__(".globl _ZN12QSvgRenderer16staticMetaObjectE; .pushsection .data; .type _ZN12QSvgRenderer16staticMetaObjectE,@object; .size _ZN12QSvgRenderer16staticMetaObjectE, 16; _ZN12QSvgRenderer16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZN16QGraphicsSvgItem16staticMetaObjectE; .pushsection .data; .type _ZN16QGraphicsSvgItem16staticMetaObjectE,@object; .size _ZN16QGraphicsSvgItem16staticMetaObjectE, 16; _ZN16QGraphicsSvgItem16staticMetaObjectE: .long 0; .popsection");
 __asm__(".globl _ZTI10QSvgWidget; .pushsection .data; .type _ZTI10QSvgWidget,@object; .size _ZTI10QSvgWidget, 12; _ZTI10QSvgWidget: .long 0; .popsection");
-__asm__(".globl _ZTI12QSvgRenderer; .pushsection .data; .type _ZTI12QSvgRenderer,@object; .size _ZTI12QSvgRenderer, 12; _ZTI12QSvgRenderer: .long 0; .popsection");
-__asm__(".globl _ZTI16QGraphicsSvgItem; .pushsection .data; .type _ZTI16QGraphicsSvgItem,@object; .size _ZTI16QGraphicsSvgItem, 32; _ZTI16QGraphicsSvgItem: .long 0; .popsection");
-__asm__(".globl _ZTI16QSvgTinyDocument; .pushsection .data; .type _ZTI16QSvgTinyDocument,@object; .size _ZTI16QSvgTinyDocument, 12; _ZTI16QSvgTinyDocument: .long 0; .popsection");
-__asm__(".globl _ZTV10QSvgWidget; .pushsection .data; .type _ZTV10QSvgWidget,@object; .size _ZTV10QSvgWidget, 252; _ZTV10QSvgWidget: .long 0; .popsection");
-__asm__(".globl _ZTV12QSvgRenderer; .pushsection .data; .type _ZTV12QSvgRenderer,@object; .size _ZTV12QSvgRenderer, 56; _ZTV12QSvgRenderer: .long 0; .popsection");
-__asm__(".globl _ZTV16QGraphicsSvgItem; .pushsection .data; .type _ZTV16QGraphicsSvgItem,@object; .size _ZTV16QGraphicsSvgItem, 224; _ZTV16QGraphicsSvgItem: .long 0; .popsection");
-__asm__(".globl _ZTV16QSvgTinyDocument; .pushsection .data; .type _ZTV16QSvgTinyDocument,@object; .size _ZTV16QSvgTinyDocument, 28; _ZTV16QSvgTinyDocument: .long 0; .popsection");
+__asm__(".globl _ZTI12QSvgRenderer; .pushsection .data; .type _ZTI12QSvgRenderer,@object; .size _ZTI12QSvgRenderer, 32; _ZTI12QSvgRenderer: .long 0; .popsection");
+__asm__(".globl _ZTI16QGraphicsSvgItem; .pushsection .data; .type _ZTI16QGraphicsSvgItem,@object; .size _ZTI16QGraphicsSvgItem, 8; _ZTI16QGraphicsSvgItem: .long 0; .popsection");
+__asm__(".globl _ZTI16QSvgTinyDocument; .pushsection .data; .type _ZTI16QSvgTinyDocument,@object; .size _ZTI16QSvgTinyDocument, 40; _ZTI16QSvgTinyDocument: .long 0; .popsection");
+__asm__(".globl _ZTV10QSvgWidget; .pushsection .data; .type _ZTV10QSvgWidget,@object; .size _ZTV10QSvgWidget, 12; _ZTV10QSvgWidget: .long 0; .popsection");
+__asm__(".globl _ZTV12QSvgRenderer; .pushsection .data; .type _ZTV12QSvgRenderer,@object; .size _ZTV12QSvgRenderer, 12; _ZTV12QSvgRenderer: .long 0; .popsection");
+__asm__(".globl _ZTV16QGraphicsSvgItem; .pushsection .data; .type _ZTV16QGraphicsSvgItem,@object; .size _ZTV16QGraphicsSvgItem, 12; _ZTV16QGraphicsSvgItem: .long 0; .popsection");
+__asm__(".globl _ZTV16QSvgTinyDocument; .pushsection .data; .type _ZTV16QSvgTinyDocument,@object; .size _ZTV16QSvgTinyDocument, 1; _ZTV16QSvgTinyDocument: .long 0; .popsection");
