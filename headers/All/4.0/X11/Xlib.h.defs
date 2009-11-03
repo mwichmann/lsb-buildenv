@@ -263,6 +263,7 @@ typedef void (*XConnectionWatchProc) (Display *, XPointer, int, int,
 #define QueuedAfterReading	1
 #define True	1
 #define XLookupNone	1
+#define _XLIB_H_	1
 #define XIMInitialState	1L
 #define XIMPreeditEnable	1L
 #define XIMReverse	1L
