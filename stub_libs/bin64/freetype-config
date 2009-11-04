@@ -128,7 +128,6 @@ else
 fi
 
 if test "$echo_cflags" = "yes" ; then
-  cflags="-I$includedir/freetype"
   if test "$includedir" != "/usr/include" ; then
     echo $cflags -I$includedir
   else
