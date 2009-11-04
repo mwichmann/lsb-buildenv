@@ -11261,7 +11261,7 @@ __asm__(".globl _ZN11QGridLayout7metaObjE; .pushsection .data; .type _ZN11QGridL
 __asm__(".globl _ZN11QHBoxLayout7metaObjE; .pushsection .data; .type _ZN11QHBoxLayout7metaObjE,@object; .size _ZN11QHBoxLayout7metaObjE, 8; _ZN11QHBoxLayout7metaObjE: .long 0; .popsection");
 __asm__(".globl _ZN11QMainWindow7metaObjE; .pushsection .data; .type _ZN11QMainWindow7metaObjE,@object; .size _ZN11QMainWindow7metaObjE, 8; _ZN11QMainWindow7metaObjE: .long 0; .popsection");
 __asm__(".globl _ZN11QMessageBox7metaObjE; .pushsection .data; .type _ZN11QMessageBox7metaObjE,@object; .size _ZN11QMessageBox7metaObjE, 8; _ZN11QMessageBox7metaObjE: .long 0; .popsection");
-__asm__(".globl _ZN11QPointArray2spE; .pushsection .data; .type _ZN11QPointArray2spE,@object; .size _ZN11QPointArray2spE, 4; _ZN11QPointArray2spE: .long 0; .popsection");
+__asm__(".globl _ZN11QPointArray2spE; .pushsection .data; .type _ZN11QPointArray2spE,@object; .size _ZN11QPointArray2spE, 8; _ZN11QPointArray2spE: .long 0; .popsection");
 __asm__(".globl _ZN11QPointArray5splenE; .pushsection .data; .type _ZN11QPointArray5splenE,@object; .size _ZN11QPointArray5splenE, 4; _ZN11QPointArray5splenE: .long 0; .popsection");
 __asm__(".globl _ZN11QPushButton7metaObjE; .pushsection .data; .type _ZN11QPushButton7metaObjE,@object; .size _ZN11QPushButton7metaObjE, 8; _ZN11QPushButton7metaObjE: .long 0; .popsection");
 __asm__(".globl _ZN11QScrollView7metaObjE; .pushsection .data; .type _ZN11QScrollView7metaObjE,@object; .size _ZN11QScrollView7metaObjE, 8; _ZN11QScrollView7metaObjE: .long 0; .popsection");
@@ -11318,7 +11318,7 @@ __asm__(".globl _ZN12QListBoxText4RTTIE; .pushsection .data; .type _ZN12QListBox
 __asm__(".globl _ZN12QPaintDevice10x_appcellsE; .pushsection .data; .type _ZN12QPaintDevice10x_appcellsE,@object; .size _ZN12QPaintDevice10x_appcellsE, 4; _ZN12QPaintDevice10x_appcellsE: .long 0; .popsection");
 __asm__(".globl _ZN12QPaintDevice10x_appdepthE; .pushsection .data; .type _ZN12QPaintDevice10x_appdepthE,@object; .size _ZN12QPaintDevice10x_appdepthE, 4; _ZN12QPaintDevice10x_appdepthE: .long 0; .popsection");
 __asm__(".globl _ZN12QPaintDevice11x_appscreenE; .pushsection .data; .type _ZN12QPaintDevice11x_appscreenE,@object; .size _ZN12QPaintDevice11x_appscreenE, 4; _ZN12QPaintDevice11x_appscreenE: .long 0; .popsection");
-__asm__(".globl _ZN12QPaintDevice11x_appvisualE; .pushsection .data; .type _ZN12QPaintDevice11x_appvisualE,@object; .size _ZN12QPaintDevice11x_appvisualE, 4; _ZN12QPaintDevice11x_appvisualE: .long 0; .popsection");
+__asm__(".globl _ZN12QPaintDevice11x_appvisualE; .pushsection .data; .type _ZN12QPaintDevice11x_appvisualE,@object; .size _ZN12QPaintDevice11x_appvisualE, 8; _ZN12QPaintDevice11x_appvisualE: .long 0; .popsection");
 __asm__(".globl _ZN12QPaintDevice12x_appdisplayE; .pushsection .data; .type _ZN12QPaintDevice12x_appdisplayE,@object; .size _ZN12QPaintDevice12x_appdisplayE, 8; _ZN12QPaintDevice12x_appdisplayE: .long 0; .popsection");
 __asm__(".globl _ZN12QPaintDevice13x_appcolormapE; .pushsection .data; .type _ZN12QPaintDevice13x_appcolormapE,@object; .size _ZN12QPaintDevice13x_appcolormapE, 8; _ZN12QPaintDevice13x_appcolormapE: .long 0; .popsection");
 __asm__(".globl _ZN12QPaintDevice14x_appcells_arrE; .pushsection .data; .type _ZN12QPaintDevice14x_appcells_arrE,@object; .size _ZN12QPaintDevice14x_appcells_arrE, 8; _ZN12QPaintDevice14x_appcells_arrE: .long 0; .popsection");
