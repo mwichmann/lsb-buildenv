@@ -110,3 +110,4 @@ cairo/cairo-ps.h
 gtk-2.0/gdk/gdkcairo.h
 pango-1.0/pango/pangocairo.h
 jerror.h
+X11/Xft/XftCompat.h
