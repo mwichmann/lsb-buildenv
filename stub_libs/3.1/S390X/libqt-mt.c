@@ -11737,7 +11737,7 @@ __asm__(".globl _ZTI5QVBox; .pushsection .data; .type _ZTI5QVBox,@object; .size 
 __asm__(".globl _ZTI6QAccel; .pushsection .data; .type _ZTI6QAccel,@object; .size _ZTI6QAccel, 112; _ZTI6QAccel: .long 0; .popsection");
 __asm__(".globl _ZTI6QEvent; .pushsection .data; .type _ZTI6QEvent,@object; .size _ZTI6QEvent, 560; _ZTI6QEvent: .long 0; .popsection");
 __asm__(".globl _ZTI6QFrame; .pushsection .data; .type _ZTI6QFrame,@object; .size _ZTI6QFrame, 112; _ZTI6QFrame: .long 0; .popsection");
-__asm__(".globl _ZTI6QGDict; .pushsection .data; .type _ZTI6QGDict,@object; .size _ZTI6QGDict, 8; _ZTI6QGDict: .long 0; .popsection");
+__asm__(".globl _ZTI6QGDict; .pushsection .data; .type _ZTI6QGDict,@object; .size _ZTI6QGDict, 24; _ZTI6QGDict: .long 0; .popsection");
 __asm__(".globl _ZTI6QGList; .pushsection .data; .type _ZTI6QGList,@object; .size _ZTI6QGList, 24; _ZTI6QGList: .long 0; .popsection");
 __asm__(".globl _ZTI6QLabel; .pushsection .data; .type _ZTI6QLabel,@object; .size _ZTI6QLabel, 536; _ZTI6QLabel: .long 0; .popsection");
 __asm__(".globl _ZTI6QMutex; .pushsection .data; .type _ZTI6QMutex,@object; .size _ZTI6QMutex, 112; _ZTI6QMutex: .long 0; .popsection");
@@ -12091,7 +12091,7 @@ __asm__(".globl _ZTV7QThread; .pushsection .data; .type _ZTV7QThread,@object; .s
 __asm__(".globl _ZTV7QWidget; .pushsection .data; .type _ZTV7QWidget,@object; .size _ZTV7QWidget, 4; _ZTV7QWidget: .long 0; .popsection");
 __asm__(".globl _ZTV7QWizard; .pushsection .data; .type _ZTV7QWizard,@object; .size _ZTV7QWizard, 1; _ZTV7QWizard: .long 0; .popsection");
 __asm__(".globl _ZTV8QAsyncIO; .pushsection .data; .type _ZTV8QAsyncIO,@object; .size _ZTV8QAsyncIO, 504; _ZTV8QAsyncIO: .long 0; .popsection");
-__asm__(".globl _ZTV8QCString; .pushsection .data; .type _ZTV8QCString,@object; .size _ZTV8QCString, 16; _ZTV8QCString: .long 0; .popsection");
+__asm__(".globl _ZTV8QCString; .pushsection .data; .type _ZTV8QCString,@object; .size _ZTV8QCString, 56; _ZTV8QCString: .long 0; .popsection");
 __asm__(".globl _ZTV8QDomAttr; .pushsection .data; .type _ZTV8QDomAttr,@object; .size _ZTV8QDomAttr, 24; _ZTV8QDomAttr: .long 0; .popsection");
 __asm__(".globl _ZTV8QDomNode; .pushsection .data; .type _ZTV8QDomNode,@object; .size _ZTV8QDomNode, 376; _ZTV8QDomNode: .long 0; .popsection");
 __asm__(".globl _ZTV8QDomText; .pushsection .data; .type _ZTV8QDomText,@object; .size _ZTV8QDomText, 504; _ZTV8QDomText: .long 0; .popsection");
