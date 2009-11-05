@@ -12124,7 +12124,7 @@ __asm__(".globl _ZTV9QDateEdit; .pushsection .data; .type _ZTV9QDateEdit,@object
 __asm__(".globl _ZTV9QDockArea; .pushsection .data; .type _ZTV9QDockArea,@object; .size _ZTV9QDockArea, 1000; _ZTV9QDockArea: .long 0; .popsection");
 __asm__(".globl _ZTV9QDropSite; .pushsection .data; .type _ZTV9QDropSite,@object; .size _ZTV9QDropSite, 32; _ZTV9QDropSite: .long 0; .popsection");
 __asm__(".globl _ZTV9QGLWidget; .pushsection .data; .type _ZTV9QGLWidget,@object; .size _ZTV9QGLWidget, 1136; _ZTV9QGLWidget: .long 0; .popsection");
-__asm__(".globl _ZTV9QGbkCodec; .pushsection .data; .type _ZTV9QGbkCodec,@object; .size _ZTV9QGbkCodec, 36; _ZTV9QGbkCodec: .long 0; .popsection");
+__asm__(".globl _ZTV9QGbkCodec; .pushsection .data; .type _ZTV9QGbkCodec,@object; .size _ZTV9QGbkCodec, 136; _ZTV9QGbkCodec: .long 0; .popsection");
 __asm__(".globl _ZTV9QGridView; .pushsection .data; .type _ZTV9QGridView,@object; .size _ZTV9QGridView, 1408; _ZTV9QGridView: .long 0; .popsection");
 __asm__(".globl _ZTV9QGroupBox; .pushsection .data; .type _ZTV9QGroupBox,@object; .size _ZTV9QGroupBox, 1088; _ZTV9QGroupBox: .long 0; .popsection");
 __asm__(".globl _ZTV9QIODevice; .pushsection .data; .type _ZTV9QIODevice,@object; .size _ZTV9QIODevice, 144; _ZTV9QIODevice: .long 0; .popsection");
