@@ -16,7 +16,7 @@ CFLAGS=-g -Wall  -fno-builtin -fPIC
 INSTALL_ROOT ?= /usr/local
 INSTALL_DIR=$(INSTALL_ROOT)$(LIBDIR)-$(LSB_VERSION)/$(SUBDIR)
 SYMLINK_DIR=$(INSTALL_ROOT)$(LIBDIR)
-LIB64 ?:= $(shell case `uname -m` in (ppc64|s390x|x86_64) echo 64 ;; esac)
+LIB64 ?= $(shell case `uname -m` in (ppc64|s390x|x86_64) echo 64 ;; esac)
 LIBDIR ?= /lib$(LIB64)
 
 ## For ppc64 platform add flag to generate 64-bit shared libs
