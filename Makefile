@@ -1,4 +1,5 @@
 SUBDIRS=headers stub_libs lsbdev-cc
+SUBDIRS_SPLIT=headers stub_libs
 
 export BINDIR=/bin
 export MANDIR=/man
@@ -12,6 +13,12 @@ all:
 
 install:
 	for d in $(SUBDIRS);do (cd $$d && $(MAKE) install);done
+
+install-core:
+	for d in $(SUBDIRS_SPLIT);do (cd $$d && $(MAKE) install-core);done
+
+install-desktop:
+	for d in $(SUBDIRS_SPLIT);do (cd $$d && $(MAKE) install-desktop);done
 
 gensrc:
 	for d in $(SUBDIRS);do (cd $$d && $(MAKE) gensrc);done

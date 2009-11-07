@@ -29,7 +29,7 @@ core_filelist desktop_filelist:
 headers-All_4.0: $(foreach headerfile,$(shell ./getheaderlist),All_4.0/$(headerfile).defs $(headerfile)) 
 	@echo Made All component of header files 
 
-install: install-core
+install: install-core install-desktop
 
 install-core: core_filelist
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(INCLUDEDIR)/$(SUBDIR)
@@ -48,7 +48,7 @@ clean:
 distclean:
 	find . -name '*.h' -print | xargs rm -f
 	find . -name '*.defs' -print | xargs rm -f
-	rm -f core_filelist* desktop_filelist*
+	rm -f core_filelist desktop_filelist
 
 .SECONDARY:
 

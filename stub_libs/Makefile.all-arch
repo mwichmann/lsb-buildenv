@@ -1,17 +1,19 @@
 # Arch independent components for creating stub libraries
 
-LSB_VERSION = $(shell basename "`cd ../ && pwd`")
-CORE_STUBLIBS = $(shell cat ../../core_filelist_$(LSB_VERSION))
-DESKTOP_STUBLIBS = $(shell cat ../../desktop_filelist_$(LSB_VERSION))
+LSB_VERSION := $(shell basename "`cd ../ && pwd`")
+CORE_STUBLIBS := $(shell cat ../../core_filelist_$(LSB_VERSION))
+DESKTOP_STUBLIBS := $(shell cat ../../desktop_filelist_$(LSB_VERSION))
 
-CORE_CFILES = $(addsuffix .c,$(CORE_STUBLIBS))
-CORE_OFILES = $(addsuffix .o,$(CORE_STUBLIBS))
-CORE_SOFILES = $(addsuffix .so,$(CORE_STUBLIBS))
-DESKTOP_CFILES = $(addsuffix .c,$(DESKTOP_STUBLIBS))
-DESKTOP_OFILES = $(addsuffix .o,$(DESKTOP_STUBLIBS))
-DESKTOP_SOFILES = $(addsuffix .so,$(DESKTOP_STUBLIBS))
+CORE_CFILES := $(addsuffix .c,$(CORE_STUBLIBS))
+CORE_OFILES := $(addsuffix .o,$(CORE_STUBLIBS))
+CORE_SOFILES := $(addsuffix .so,$(CORE_STUBLIBS))
+DESKTOP_CFILES := $(addsuffix .c,$(DESKTOP_STUBLIBS))
+DESKTOP_OFILES := $(addsuffix .o,$(DESKTOP_STUBLIBS))
+DESKTOP_SOFILES := $(addsuffix .so,$(DESKTOP_STUBLIBS))
 
 CFLAGS=-g -Wall  -fno-builtin -fPIC
+# note this defaults to /opt/lsb here, /usr/local if built from above
+INSTALL_ROOT ?= /opt/lsb
 INSTALL_DIR=$(INSTALL_ROOT)$(LIBDIR)-$(LSB_VERSION)/$(SUBDIR)
 SYMLINK_DIR=$(INSTALL_ROOT)$(LIBDIR)
 
