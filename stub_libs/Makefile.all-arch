@@ -1,5 +1,6 @@
 # Arch independent components for creating stub libraries
 
+DEFAULT_VERSION := $(shell cat ../../LSB_VERSION)
 LSB_VERSION := $(shell basename "`cd ../ && pwd`")
 CORE_STUBLIBS := $(shell cat ../../core_filelist_$(LSB_VERSION))
 DESKTOP_STUBLIBS := $(shell cat ../../desktop_filelist_$(LSB_VERSION))
@@ -12,10 +13,11 @@ DESKTOP_OFILES := $(addsuffix .o,$(DESKTOP_STUBLIBS))
 DESKTOP_SOFILES := $(addsuffix .so,$(DESKTOP_STUBLIBS))
 
 CFLAGS=-g -Wall  -fno-builtin -fPIC
-# note this defaults to /opt/lsb here, /usr/local if built from above
-INSTALL_ROOT ?= /opt/lsb
+INSTALL_ROOT ?= /usr/local
 INSTALL_DIR=$(INSTALL_ROOT)$(LIBDIR)-$(LSB_VERSION)/$(SUBDIR)
 SYMLINK_DIR=$(INSTALL_ROOT)$(LIBDIR)
+LIB64 ?:= $(shell case `uname -m` in (ppc64|s390x|x86_64) echo 64 ;; esac)
+LIBDIR ?= /lib$(LIB64)
 
 ## For ppc64 platform add flag to generate 64-bit shared libs
 #ifeq ($(shell uname -m),ppc64)
@@ -54,9 +56,9 @@ clean:
 
 .PHONY: clean distclean libs
 
-install: install-core
+install: install-core install-desktop
 
-install-core:
+install-core: core-libs
 	install -d $(DESTDIR)/$(INSTALL_DIR)
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin
 	install $(CORE_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
@@ -67,9 +69,11 @@ install-core:
 	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/*
 	install ../../bin$(LIB64)/cups-config $(DESTDIR)/$(INSTALL_ROOT)/bin
 	# Create symlink to libs in the most recent LSB version.
+ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
 	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -f ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
+endif
 
-install-desktop:
+install-desktop: desktop-libs
 	install -d $(DESTDIR)/$(INSTALL_DIR)
 	install -d $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin

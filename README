@@ -1,0 +1,191 @@
+Sorry, this build is complex as a result of evolutionary development.
+
+Here's what exists in build_env:
+
+headers		- include files for the LSB SDK
+lsbdev-cc	- compiler wrapper for the LSB SDK
+lsbdev-chroot	- obsolete, ignore
+lsbdev-rpmbuild	- script to run rpmbuild in LSB mode (not used currently)
+lsbdev-runner	- tool to run LSB apps in non-LSB system (expect it to move)
+package		- package construction
+stub_libs	- stub libraries for the LSB SDK
+
+
+Three SDK packages are built here, the materials in "package" know how
+to do this, using a single spec file and three sub-packages (there is no
+main package in this instance).  In the past, these packages were
+built separately out of the "packaging" project, not in this directory.
+
+===
+
+headers:
+
+this tree contains two flavors of header file: include files which are
+used in the SDK, these are the normal foo.h form, and are constructed
+version-independently with lots of ifdefs; and defs files which are
+used in construction of the specification, and is named as foo.h.defs.
+Since the specification is not version-independent, these are built
+multiple times, each in their own subdirectory:  there is one tree per
+supported LSB architecture, and then under that one subdirectory per
+LSB version.  The list of architectures also includes "All", which is the
+version of the files used in the generic specification. When doing work
+with the specification, it is actually necessary to check out both the
+"lsbspec" and "build_env" branches from version control, and have them in
+the same parent directory - that is, lsbspec expects to find the .defs
+files by starting at ../build_env.  For the specification generation
+to work, the tree of .defs files needs to be fully populated first (if
+there have been no changes, the branch from version control will meet
+this requirement, otherwise you'll need to regenerate to update them).
+This has nothing to do with the usage of this directory for the SDK,
+but is worth mentioning nonetheless.  since headers and defs always
+need to update together to maintain consistency, it was felt best to
+keep them together in one tree and build off of a single command.
+
+headers are built from the LSB specification database, but it is not
+necessary to regenerate them this way in the normal case, only developers
+who are making database changes which affect headers need to do this.
+To regenerate all the headers, go in the the headers directory, run
+"make distclean" then "make gensrc". This currently takes a long time -
+over an hour on a reasonably modern machine.  This will only work if
+a copy of the LSB database in a MySql server is available, and the
+environment variables LSBDB, LSBDBHOST, LSBUSER, and LSBDBPASSWD are
+set up to reference this database.
+
+the "all" target can always safely be invoked ("make all", or just
+"make"), it does nothing.
+
+the more normal case is to want to put the headers into a place where
+they can be used, either directly or for packaging purposes.  This can
+be done by invoking the install target.  If you don't want the files
+to go into /usr/local/include, you'll need to set one or more variables
+when installing.  INSTALL_ROOT controls the path under which the files
+are installed, and as noted, defaults to /usr/local.  INCLUDEDIR can be
+set if the files are to be placed in a subdirectory not named "include";
+it is not recommended to change this in general as there's no automated
+way to tell "lsbcc" (see next section) about this, you'll either need
+to supply command-line or environment variables to lsbcc or hack it
+to know about a different suffix.  Finally, DESTDIR is the path under
+which the other two are placed, and defaults to nothing (that is, to
+the normal system root); this is usually set in the packaging context
+where installation is to an alternate root.
+
+There are two partial install targets in this directory.  install-core
+will install the headers matching the LSB Core specification set, and
+which are used in the lsb-build-base package.  install-desktop will
+install the headers matching the LSB Desktop specification set, and which
+are used in the lsb-build-desktop package.  Just running "make install"
+will install both sets.
+
+===
+
+lsbdev-cc:
+
+this directory provides three binaries: lsbcc, lsbc++, lsbcpp.  these are
+wrapper programs for cc, c++ and cpp (the C preprocessor), which will
+insert references to the headers and stub_libs parts.  It also provides
+some build-time pieces for compatibility with older versions of the LSB
+(libgcc34compat.a) and for a special mode known as best-effort linking
+(besteffort.o).
+
+lsbcc and cousins are somewhat relocatable - defining an alternate
+value for BASE_PATH will cause lsbcc to change its idea of where to
+find the stub libraries and headers. Since BASE_PATH is clearly the
+same thing as INSTALL_ROOT, the makefile will set BASE_PATH from the
+value of INSTALL_ROOT if it's not otherwise provided; in other words,
+"INSTALL_ROOT=/some/location make" will build an lsbcc correctly expecting
+to find "include" and "lib*" directories under /some/location.
+
+the other thing that should be known about lsbcc is that it's multi-
+version, but needs a default version to build for. At the moment, that
+target is set in the code itself, so to change it you'll need to locate
+and change this line in lsbcc.c:
+
+char *lsbcc_lsbversion="4.0";
+
+This is mentioned to try and reduce confusion...  the normal rule for
+applications is that you build them to the lowest version of the LSB that
+will run your app usefully, this gets it the widest possible range of
+systems to run on.  When built for packaging, lsbcc is normally built as
+an LSB app itself, and since it doesn't use a lot of "modern" features,
+it's built as an LSB 3.0 app.  So if you notice it being built this way:
+
+LSBCC_LSBVERSION=3.0 INSTALL_ROOT=/opt/lsb  make
+
+that means lsbcc will be built as a 3.0 app, but it does not change
+the default that copy of lsbcc will build for, which will remain at
+4.0 (as of this writing).  clear?
+
+Of course the DESTDIR is honored as well at install time, and
+does not affect the contents of the lsbcc binary.
+
+===
+
+stub_libs:
+
+this directory provides dummy ("stub") libraries which are used for
+link-time symbol resolution, and to force the correct so-name into the
+resulting binary.  there is nothing in these libraries except an empty
+stub for each function which is part of the LSB specification, so you
+can't run against them - doing so will have immediately fatal results,
+although in a way that's not terribly obvious.  NOTE: do not set an rpath
+or runpath to point to the directory where these stubs are installed, or
+you will run into this problem when running a binary which contains such.
+
+again, the stubs are generated from the LSB database, and unless you
+are making changes to the database that will affect the contents, there
+is no reason to need to regenerate.  If you do need to regenerate,
+the same sequence as for headers will do the trick, "make distclean"
+followed by "make gensrc".  Similar to the headers, generation is
+done for all architectures and for all versions, but there are two
+differences to headers.  First, there is no "All" since the stubs are
+by their nature architecture-dependent.  Second, the ordering is for
+some reason reversed - the top-level directories are the version, the
+subdirectories are the architectures.
+
+similar to headers, there are two partial install targets, "install-core"
+and "install-desktop", as well as a generic one "install" which
+installs everything. installation locations are controlled by DESTDIR
+and INSTALL_ROOT. A variable LIBDIR is also used, but should not be
+changed, because it's generated from rules which know, based on the
+architecture, whether it should be "lib" or "lib64".  There's a twist to
+how installation happens, though; for the current target architecture,
+all of the version directories are copied to the install location,
+so you'll end up with multiple directories, as in this example:
+
+/opt/lsb/lib64-3.0
+/opt/lsb/lib64-3.1
+/opt/lsb/lib64-3.2
+/opt/lsb/lib64-4.0
+/opt/lsb/lib64-4.1
+/opt/lsb/lib64-5.0
+
+lsbcc will pick the appropriate one of those depending on the version
+of LSB you request to build for, and in this way is able to provide
+support for multiple version targets from one SDK.
+
+there's an issue here, though: it's expected that there will be
+an /opt/lsb/lib64 (for example), and that that one refer to the 
+default version.  this is handled by the package construction rules,
+but does not come out right when just building and installing in
+place.  FIXME!!
+
+=================================
+
+Other SDK pieces
+
+Just to have the information in one place, there are other pieces
+to the LSB SDK, which don't come from this directory // version control
+branch.  There are three packages which are repackaging of headers
+which come from upstream projects:
+
+lsb-build-c++		headers from libstd++ in gcc-g++ tarball
+lsb-build-qt3		headers and tools from Qt3 tarball
+lsb-build-qt4		headers and tools from Qt4 tarball
+
+Since those files remain under their original license, it is easier
+to keep them separate, rather than trying to mix files of different
+licenses in other packages.
+
+There's also an Eclipse plugin which adds information on how to
+build LSB conforming code from within Eclipse.
+

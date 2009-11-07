@@ -4,8 +4,7 @@ LSBCC_OBJS = lsbcc.o
 LSBCPP_OBJS = lsbcpp.o
 LIBS = libgcc34compat.a
 EXTRA_OBJS = besteffort.o
-# note this defaults to /opt/lsb here, /usr/local if built from above
-INSTALL_ROOT ?= /opt/lsb
+INSTALL_ROOT ?= /usr/local
 BASE_PATH ?=\"$(INSTALL_ROOT)\"
 CFLAGS=-g -Wall -DBASE_PATH=$(BASE_PATH)
 CXXFLAGS=$(CFLAGS)
@@ -59,6 +58,9 @@ install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 	  install -D besteffort.o \
 	  $(DESTDIR)/$(INSTALL_ROOT)/$(LIBDIR)-$$version/besteffort.o; \
 	done
+
+# dummies
+install-core install-desktop: install
 
 scripts:
 	cd scripts;make

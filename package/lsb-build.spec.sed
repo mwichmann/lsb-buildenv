@@ -51,6 +51,7 @@ build LSB conforming applications.
 
 %build
 # (sb) bug 2487 - we need to bootstrap the build on systems without lsbcc
+make INSTALL_ROOT=$RPM_BUILD_ROOT/xbuild
 make install-core INSTALL_ROOT=$RPM_BUILD_ROOT/xbuild
 make clean
 # now rebuild using our just-built binaries

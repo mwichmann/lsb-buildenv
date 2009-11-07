@@ -1,5 +1,4 @@
-# note this defaults to /opt/lsb here, /usr/local if built from above
-INSTALL_ROOT ?= /opt/lsb
+INSTALL_ROOT ?= /usr/local
 INCLUDEDIR ?= include
 
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
