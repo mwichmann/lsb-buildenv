@@ -38,7 +38,7 @@ LSB_COMPILE_FOR_ARCH := `case \`uname -m\` in \
 all: libs
 
 core_filelist_% desktop_filelist_%:
-	cd .. && for version in $(LSB_VERSIONS); do ./mkfilelists $$version; done
+	../mkfilelists --libs
 
 # Desktop libs appeared in 3.1
 lsb_versions:

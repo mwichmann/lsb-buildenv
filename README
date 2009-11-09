@@ -37,7 +37,7 @@ to work, the tree of .defs files needs to be fully populated first (if
 there have been no changes, the branch from version control will meet
 this requirement, otherwise you'll need to regenerate to update them).
 This has nothing to do with the usage of this directory for the SDK,
-but is worth mentioning nonetheless.  since headers and defs always
+but is worth mentioning nonetheless.  Since headers and defs always
 need to update together to maintain consistency, it was felt best to
 keep them together in one tree and build off of a single command.
 
@@ -80,7 +80,7 @@ will install both sets.
 
 lsbdev-cc:
 
-this directory provides three binaries: lsbcc, lsbc++, lsbcpp.  these are
+This directory provides three binaries: lsbcc, lsbc++, lsbcpp.  These are
 wrapper programs for cc, c++ and cpp (the C preprocessor), which will
 insert references to the headers and stub_libs parts.  It also provides
 some build-time pieces for compatibility with older versions of the LSB
@@ -90,13 +90,13 @@ some build-time pieces for compatibility with older versions of the LSB
 lsbcc and cousins are somewhat relocatable - defining an alternate
 value for BASE_PATH will cause lsbcc to change its idea of where to find
 the stub libraries and headers. Since I the internal define BASE_PATH
-is clearly the same thing as INSTALL_ROOT used by the makefile, the
+is essentially the same thing as INSTALL_ROOT used by the makefile, the
 makefile will set BASE_PATH from the value of INSTALL_ROOT if it's not
 otherwise provided; in other words, "INSTALL_ROOT=/some/location make"
 will build an lsbcc correctly expecting to find "include" and "lib*"
 directories under /some/location.
 
-the other thing that should be mentioned about lsbcc is that it's multi-
+The other thing that should be mentioned about lsbcc is that it's multi-
 version, but needs a default version to build for. At the moment, that
 target is set in the code itself, so to change it you'll need to locate
 and change this line in lsbcc.c:
@@ -112,25 +112,25 @@ it's built as an LSB 3.0 app.  So if you notice it being built this way:
 
 LSBCC_LSBVERSION=3.0 INSTALL_ROOT=/opt/lsb  make
 
-that means lsbcc will be built as a 3.0 app, but it does not change
-the default that copy of lsbcc will build for, which will remain at
-4.0 (as of this writing).  clear?
+That means lsbcc will be built as a 3.0 app, but it does not change
+the default that copy of lsbcc will build for, which will remain at 4.0
+(as of this writing).  clear?
 
-Of course the DESTDIR is honored as well at install time, and
-does not affect the contents of the lsbcc binary.
+Of course the DESTDIR is honored as well at install time, and does not
+affect the contents of the lsbcc binary.
 
 ===
 
 stub_libs:
 
-this directory provides dummy ("stub") libraries which are used for
+This directory provides dummy ("stub") libraries which are used for
 link-time symbol resolution, and to force the correct so-name into the
-resulting binary.  there is nothing in these libraries except an empty
+resulting binary.  There is nothing in these libraries except an empty
 stub for each function which is part of the LSB specification, so you
 can't run against them - doing so will have immediately fatal results,
 although in a way that's not terribly obvious.  NOTE: do not set an rpath
 or runpath to point to the directory where these stubs are installed, or
-you will run into this problem when running a binary which contains such.
+the binaries built that way will not work.
 
 Again, the stubs are generated from the LSB database, and unless you
 are making changes to the database that will affect the contents, there
@@ -147,7 +147,7 @@ LSBDB, LSBDBHOST, LSBUSER, and LSBDBPASSWD are set up to reference it.
 
 Similar to headers, there are two partial install targets, "install-core"
 and "install-desktop", as well as a generic one "install" which
-installs everything. installation locations are controlled by DESTDIR
+installs everything. Installation locations are controlled by DESTDIR
 and INSTALL_ROOT. A variable LIBDIR is also used, but should not be
 changed, because it's generated from rules which know, based on the
 architecture, whether it should be "lib" or "lib64".  There's a twist to

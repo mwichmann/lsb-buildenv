@@ -15,7 +15,7 @@ headers-%: $(foreach headerfile,$(shell ./getheaderlist),%/$(headerfile).defs)
 	@echo Made header files for $*
 
 core_filelist desktop_filelist:
-	cd .. && ./mkfilelists
+	../mkfilelists --headers
 
 %.defs: 
 	mkdir -p $(dir $(shell echo "$@" | sed s/_/\\//))
