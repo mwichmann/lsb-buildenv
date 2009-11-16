@@ -11,6 +11,7 @@
 
 Name: lsb-build
 Summary: LSB Build environment packages
+Group: Development/Tools
 Version: %ver
 Release: @PACKAGE_RELEASE@
 License: LF
@@ -35,6 +36,7 @@ files. These can be used with lsbcc to build LSB conforming applications.
 
 %package desktop
 Summary: LSB Build environment desktop package
+Group: Development/Tools
 Requires: lsb-build-base
 Obsoletes: lsbdev-desktop
 BuildRequires: lsb-build-base lsb-build-cc
@@ -45,6 +47,7 @@ conforming applications.
 
 %package cc
 Summary: LSB Build environment lsbcc package
+Group: Development/Tools
 Requires: lsb-build-base
 Obsoletes: lsbdev-cc
 BuildRequires: lsb-build-base
