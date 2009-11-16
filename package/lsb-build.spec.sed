@@ -79,11 +79,7 @@ cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
 cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
 ( cd $RPM_BUILD_ROOT/opt/lsb/include ; ln -s curses.h ncurses.h )
 ( cd $RPM_BUILD_ROOT/opt/lsb/include ; rm -fr All IA32 IA64 PPC32 PPC64 S390 S390X x86-64 )
-%ifarch ppc64 s390x x86_64
-( for i in $RPM_BUILD_ROOT/opt/lsb/lib64-*; do cd $i && ln -s libncurses.so libcurses.so; done )
-%else
-( for i in $RPM_BUILD_ROOT/opt/lsb/lib-*; do cd $i && ln -s libncurses.so libcurses.so; done )
-%endif
+( for i in $RPM_BUILD_ROOT/opt/lsb/%xlib-*; do cd $i && ln -s libncurses.so libcurses.so; done )
 
 # (sb) bug XXXX, let lib{64}-CURRENT be a symlink to lib{64}, 
 # owned by lsb-setup, this needs to be tweaked for a new LSB version
@@ -208,11 +204,11 @@ sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pk
 %dir /opt/lsb/include/X11
 %dir /opt/lsb/include/X11/extensions
 %dir /opt/lsb/include/X11/Xft
-%dir /opt/lsb/lib64-3.1/pkgconfig
-%dir /opt/lsb/lib64-3.2/pkgconfig
-%dir /opt/lsb/lib64-4.1/pkgconfig
-%dir /opt/lsb/lib64-5.0/pkgconfig
-%dir /opt/lsb/lib64/pkgconfig
+%dir /opt/lsb/%xlib-3.1/pkgconfig
+%dir /opt/lsb/%xlib-3.2/pkgconfig
+%dir /opt/lsb/%xlib-4.1/pkgconfig
+%dir /opt/lsb/%xlib-5.0/pkgconfig
+%dir /opt/lsb/%xlib/pkgconfig
 
 # extra files
 /opt/lsb/bin/freetype-config
