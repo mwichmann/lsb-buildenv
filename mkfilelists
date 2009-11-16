@@ -5,16 +5,16 @@ Options:
 
 --headers          -- generate lists of header files
 --libs             -- generate lists of libraries, per LSB version
+--package          -- generate packaging lists
+--lsbversion=VER   -- target different LSB version than 4.0
 -h, --help         -- print this text and exit
 """
 
-# add this above when implemented:
-#--package=PATH     -- generate packaging lists, install location is PATH
-
 # Three operation modes:
 # 1. make lists for header subdirectory - one pair
-# 2. make lists for stub_libs sibdirectory - one pair per LSB version
-# 3. make lists for package subdirectory - full paths, combining hdr+lib
+# 2. make lists for stub_libs subdirectory - one pair per LSB version
+# 3. make lists for package subdirectory - one pair combining 1. and 2.
+#
 # will no longer work if invoked without a mode-specifier argument
 #
 # Copyright (C) 2006-2009 Linux Foundation
@@ -27,6 +27,10 @@ import MySQLdb
 HANDLE = None
 
 #============== Editable section ============== 
+# for package lists, one library-version name corresponding to the
+# default version vanishes and becomes just lib - this version:
+DEFAULTVER = "4.0"
+
 # Lists of names of the modules in core and desktop as they appear
 # in the database - this may need manual tweaking on changes
 
@@ -72,29 +76,60 @@ CORE_HEADERS_ADD = [
 CORE_HEADERS_REMOVE = [
     'err.h',
 ]
+
+# some libraries need to be dropped here (for package lists)
+# because they're not the same across all architectures.
+# at package construction time they'll be added back conditionally
+
+CORE_LIBS_REMOVE = [
+    'libc.so.6',
+    'libc.so.6.1',
+    'libm.so.6',
+    'libm.so.6.1',
+    'libc',
+    'libm'
+]
 #============== end Editable section ============== 
 
 def usage(code, msg=''):
+    """print usage message and quit"""
     if msg: 
         print "ERROR:", msg
         print
     print __doc__ 
     sys.exit(code)
 
+
 def do_query(query, core_list, desktop_list, ignore_list):
     """query LSB database for filenames and split by core/desktop"""
     itemlist = HANDLE.cursor()
     itemlist.execute(query)
-    for (module, item) in itemlist.fetchall():
+    for result in itemlist.fetchall():
+        # one form of the sql returns two values, the other three -
+        # when we need not just the name of the library but also the soname
+        soname = None
+        if len(result) == 2:
+            (module, item) = result
+        else:
+            (module, item, soname) = result
         if module in ignore_list:
             continue
-        elif module in CORE_MODULES:
-            core_list.append(item)
+        if module in CORE_MODULES:
+            if soname:
+                core_list.append(item + ".so")
+                core_list.append(soname)
+            else:
+                core_list.append(item)
         elif module in DESKTOP_MODULES:
-            desktop_list.append(item)
+            if soname:
+                desktop_list.append(item + ".so")
+                desktop_list.append(soname)
+            else:
+                desktop_list.append(item)
         else:
             raise ValueError('unknown module found: ' + module)
     itemlist.close()
+
 
 def createfiles(core_name, core_list, desktop_name, desktop_list):
     """write out generated core/desktop file pair"""
@@ -104,6 +139,7 @@ def createfiles(core_name, core_list, desktop_name, desktop_list):
         headerfile.write('\n'.join(flist))
         headerfile.write('\n')
         headerfile.close()
+
 
 def get_headerlist():
     """create LSB header list"""
@@ -129,8 +165,9 @@ OR Hsrcerror='Yes' )"""
     core_headers = [x for x in core_headers + CORE_HEADERS_ADD if
                     x not in CORE_HEADERS_REMOVE]
 
-    createfiles('core_filelist', core_headers, 
+    createfiles('core_filelist', core_headers,
                 'desktop_filelist', desktop_headers)
+
 
 def get_liblist(lsbversion):
     """create library list for a particular LSB version"""
@@ -154,13 +191,91 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
     desktop_libs = [x for x in desktop_libs if ' ' not in x]
 
     createfiles('core_filelist_' + lsbversion, core_libs, 
-		'desktop_filelist_' + lsbversion, desktop_libs)
+                'desktop_filelist_' + lsbversion, desktop_libs)
 
-def do_pkglists(lsbversions, location="/opt/lsb"):
-    """create lists for packaging use
-    We need to preface every filename with a path,
-    and we need to generate all the lib versions together"""
-    usage(1, "Not implemented yet")
+
+def do_pkglists(lsbversions, version=DEFAULTVER):
+    """create lists for packaging use, combines all versions and arch differences"""
+
+    query = """
+SELECT SMname, Hname FROM SubModule,Header,SModLib,Library
+WHERE SubModule.SMid = SModLib.SMLsmid
+AND Library.Lid = SModLib.SMLlid
+AND Library.Lid = Header.Hlib
+AND ( ( Happearedin > ''
+AND ( Hwithdrawnin IS NULL OR Hwithdrawnin > '3.0') )
+OR Hsrcerror='Yes' )"""
+
+    core_pkglist = []
+    desktop_pkglist = []
+    do_query(query, core_pkglist, desktop_pkglist, LIB_ONLY_MODULES)
+
+    # For some reason, some of the header info returned will include
+    # some Nones.  Filter those out.
+    core_pkglist = [x for x in core_pkglist if x]
+    desktop_pkglist = [x for x in desktop_pkglist if x]
+
+    # Apply the core header munging mentioned above.
+    core_pkglist = [x for x in core_pkglist + CORE_HEADERS_ADD if
+                    x not in CORE_HEADERS_REMOVE]
+
+    # prefix with relocatable path
+    core_pkglist =  ["BASE/include/" + x for x in core_pkglist]
+    desktop_pkglist =  ["BASE/include/" + x for x in desktop_pkglist]
+
+    for lsbversion in lsbversions:
+        query = """
+SELECT DISTINCT SMname,Lname,ALrunname FROM SubModule,SModLib,Library
+LEFT JOIN ArchLib ON Lid=ALlid
+WHERE Lname LIKE 'lib%'
+AND (SubModule.SMid = SModLib.SMLsmid AND Library.Lid = SModLib.SMLlid)
+AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
+AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
+        core_libs = []
+        desktop_libs = []
+        do_query (query, core_libs, desktop_libs, [])
+
+        # The database contains at least one entry with information
+        # in the library name field that isn't a library name.  For
+        # now, filter that out by removing all entries containing
+        # spaces.
+        core_libs = [x for x in core_libs if ' ' not in x]
+        desktop_libs = [x for x in desktop_libs if ' ' not in x]
+
+        # a couple of library sonames need to be dropped from here
+        core_libs = [x for x in core_libs if x not in CORE_LIBS_REMOVE]
+
+        # one library will have the wrong name, but the correct soname, fix
+        core_libs = [x.replace("libstdcxx", "libstdc++") for x in core_libs]
+
+        # due to some oddities, we need to clean the lists of dupes
+        tmp_dict = {}
+        for x in core_libs:
+            tmp_dict[x] = 1
+        core_libs= tmp_dict.keys()
+        tmp_dict = {}
+        for x in desktop_libs:
+            tmp_dict[x] = 1
+        desktop_libs= tmp_dict.keys()
+
+        # prefix with relocatable path: BASE will be replaced with 
+        # install loc, LIB with lib or lib64 depending on arch
+        if (lsbversion == version):
+            reloc = "BASE/LIB/"
+        else:
+            reloc = "BASE/LIB-" + lsbversion + "/"
+        core_libs =  [reloc + x for x in core_libs]
+        desktop_libs =  [reloc + x for x in desktop_libs]
+
+        # and append them to the existing collection
+        core_pkglist.extend(core_libs)
+        desktop_pkglist.extend(desktop_libs)
+
+    core_pkglist.sort()
+    desktop_pkglist.sort()
+    createfiles('core_pkglist', core_pkglist,
+                'desktop_pkglist', desktop_pkglist)
+
 
 def main():
     """process arguments and generate file list pair"""
@@ -178,22 +293,25 @@ def main():
                                  db=os.environ['LSBDB'])
 
     shortopts = 'h'
-    #longopts = ['headers', 'libs', 'package=', 'help']
-    longopts = ['headers', 'libs', 'help']
+    longopts = ['headers', 'libs', 'package', 'lsbversion=', 'help']
 
     try:
         (opts, args) = getopt.getopt(sys.argv[1:], shortopts, longopts)
     except getopt.error, msg:
         usage(2, msg)
+    if args:
+        usage(2, msg)
 
     mode = None
+    lsbversion = None
     if opts:
         for (opt, arg) in opts:
             if opt in ('--help', '-h'):
                 usage(0)
-            #if opt in ('--package'): 
-            #    mode = 'package'
-            #    packagepath = arg
+            if opt in ('--package'): 
+                mode = 'package'
+            if opt in ('--lsbversion'):
+                lsbversion = arg
             if opt in ('--headers'):
                 mode = 'headers'
             if opt in ('--libs'):
@@ -213,15 +331,19 @@ def main():
         lsbversions.append(version[0])
     itemlist.close()
 
-    if mode is 'headers':
+    if mode == 'headers':
         get_headerlist()
 
-    if mode is 'libs':
+    if mode == 'libs':
         for version in lsbversions:
             get_liblist(version)
 
-    if mode is 'package':
-        do_pkglists(lsbversions)
+    if mode == 'package':
+        if lsbversion:
+            do_pkglists(lsbversions, lsbversion)
+        else:
+            do_pkglists(lsbversions)
+
 
 if __name__ == '__main__':
     main()

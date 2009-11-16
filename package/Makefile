@@ -118,8 +118,7 @@ endif
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_BASE) .
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_DESKTOP) .
 	@cp $(RPM_SRPM_DIR)/$(RPM_SOURCE_NAME) .
-	#XXX
-	#@rm -rf $(RPM_TMP_BUILD_DIR)
+	@rm -rf $(RPM_TMP_BUILD_DIR)
 
 # Rules to build deb packages
 deb_package: $(RPM_BINARY_CC)
@@ -137,6 +136,11 @@ endif
 # Default test target
 test:
 
+gensrc: core_pkglist desktop_pkglist
+
+core_pkglist desktop_pkglist:
+	../mkfilelists --package
+
 clean:
 	rm -f $(PACKAGE).spec
 	rm -f $(FULL_PACKAGE_NAME_CLEAN).tar.gz
@@ -145,6 +149,9 @@ clean:
 	rm -f $(FULL_PACKAGE_NAME_BASE).rpm
 	rm -f $(FULL_PACKAGE_NAME_DESKTOP).rpm
 	rm -rf $(FULL_PACKAGE_NAME_CLEAN)
+
+distclean: clean
+	rm -f core_pkglist desktop_pkglist
 
 .PHONY: check_config deb_package .need_config_update
 
