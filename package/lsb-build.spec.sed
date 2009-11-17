@@ -60,6 +60,7 @@ build LSB conforming applications.
 
 %build
 # (sb) bug 2487 - we need to bootstrap the build on systems without lsbcc
+# bootstrap reworked (mdw)
 make INSTALL_ROOT=$RPM_BUILD_ROOT/xbuild
 make install-core INSTALL_ROOT=$RPM_BUILD_ROOT/xbuild
 make clean
@@ -73,7 +74,7 @@ make -C lsbdev-cc/crti
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT INSTALL_ROOT=/opt/lsb
 
-# base part:
+# specifics for base part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
 cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
@@ -87,7 +88,7 @@ rm $RPM_BUILD_ROOT/opt/lsb/%xlib
 mv $RPM_BUILD_ROOT/opt/lsb/%xlib-%lsbver $RPM_BUILD_ROOT/opt/lsb/%xlib
 (cd $RPM_BUILD_ROOT/opt/lsb; ln -s %xlib %xlib-%lsbver)
 
-# desktop part:
+# specifics for desktop part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
@@ -95,12 +96,12 @@ cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
 # did not exist in 3.0, clean out
 rm $RPM_BUILD_ROOT/opt/lsb/%xlib-3.0/libpng.so
 
-# cc part:
+# specifics for cc part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
 cp package/README-cc $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc/README
 %ifarch ppc 
-for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install ../lsbdev-cc/crti/crti.o "$i"; done
+for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install lsbdev-cc/crti/crti.o "$i"; done
 %endif
 
 # before leaving, we have to fix up the file lists:

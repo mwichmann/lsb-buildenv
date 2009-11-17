@@ -53,10 +53,10 @@ dbfiles: lsb_versions $(foreach version,$(LSB_VERSIONS),core_filelist_$(version)
 
 install: install-core install-desktop
 
-install-core:
+install-core: core-libs
 	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-core ); done
 
-install-desktop:
+install-desktop: desktop-libs
 	for version in $(LSB_DESKTOP_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
 
 libs: core-libs
