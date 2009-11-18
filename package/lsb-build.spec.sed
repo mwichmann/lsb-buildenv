@@ -74,9 +74,7 @@ make -C lsbdev-cc/crti
 
 %install
 [ -e $RPM_BUILD_ROOT ] && rm -rf $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-export INSTALL_ROOT=/opt/lsb
-make install 
+make install DESTDIR=$RPM_BUILD_ROOT INSTALL_ROOT=/opt/lsb
 
 # specifics for base part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
