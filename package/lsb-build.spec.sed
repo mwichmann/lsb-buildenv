@@ -1,5 +1,6 @@
+# vim: set filetype=spec :
 %define ver     @LSBVERSION@
-%define lsbver	@TRUELSBVERSION@
+%define lsbver  @TRUELSBVERSION@
 # build for LSB 3.0 (bug 2327) 
 %define build_target 3.0
 %ifarch ppc64 s390x x86_64
@@ -7,7 +8,6 @@
 %else
 %define xlib lib
 %endif
-
 
 Name: lsb-build
 Summary: LSB Build environment packages
@@ -18,17 +18,19 @@ License: LF
 Vendor: Linux Foundation
 Packager: LSB Project <lsb-discuss@linux-foundation.org>
 Source: lsb-build-%ver.tar.gz
-BuildRoot: /var/tmp/lsb-build-root
+BuildRoot: %{_tmppath}/%name-root
 AutoReqProv: no
 # Does not strictly require lsb
 #PreReq: lsb >= 3.1
+
 %description
 The LSB Build environment including stubs, headers and compiler wrapper
 
 %package base
 Summary: LSB Build environment base package
 Group: Development/Tools
-Obsoletes: lsbdev-base
+Obsoletes: lsbdev-base < 3.0
+Conflicts: lsbdev-base
 Requires: lsb-setup
 %description base
 The LSB Build environment base package provides stub libraries and header
@@ -38,8 +40,8 @@ files. These can be used with lsbcc to build LSB conforming applications.
 Summary: LSB Build environment desktop package
 Group: Development/Tools
 Requires: lsb-build-base
-Obsoletes: lsbdev-desktop
-BuildRequires: lsb-build-base lsb-build-cc
+Obsoletes: lsbdev-desktop < 3.0
+Conflicts: lsbdev-desktop
 %description desktop
 The LSB Build Environment desktop package adds stub libraries and headers
 files for desktop support which can be used with lsbcc to build LSB
@@ -49,8 +51,8 @@ conforming applications.
 Summary: LSB Build environment lsbcc package
 Group: Development/Tools
 Requires: lsb-build-base
-Obsoletes: lsbdev-cc
-BuildRequires: lsb-build-base
+Obsoletes: lsbdev-cc < 3.0
+Conflicts: lsbdev-cc
 %description cc
 The LSB Build Environment cc package lsbcc, which can be used to help
 build LSB conforming applications.
@@ -60,19 +62,21 @@ build LSB conforming applications.
 
 %build
 # (sb) bug 2487 - we need to bootstrap the build on systems without lsbcc
-# bootstrap reworked (mdw)
-make INSTALL_ROOT=$RPM_BUILD_ROOT/xbuild
-make install-core INSTALL_ROOT=$RPM_BUILD_ROOT/xbuild
+# (mdw) bootstrap reworked, now cross-builds the effect of -base as well
+make INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
+make install-core INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
 make clean
 # now rebuild using our just-built binaries
-make CC=$RPM_BUILD_ROOT/xbuild/bin/lsbcc CXX=$RPM_BUILD_ROOT/xbuild/bin/lsbc++ LSBCC_LSBVERSION=%build_target INSTALL_ROOT=/opt/lsb
+make CC=$RPM_BUILD_DIR/xbuild/bin/lsbcc CXX=$RPM_BUILD_DIR/xbuild/bin/lsbc++ LSBCC_LSBVERSION=%build_target INSTALL_ROOT=/opt/lsb
 %ifarch ppc
 make -C lsbdev-cc/crti
 %endif
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT INSTALL_ROOT=/opt/lsb
+[ -e $RPM_BUILD_ROOT ] && rm -rf $RPM_BUILD_ROOT
+export DESTDIR=$RPM_BUILD_ROOT
+export INSTALL_ROOT=/opt/lsb
+make install 
 
 # specifics for base part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
@@ -388,7 +392,7 @@ sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pk
 /opt/lsb/%xlib/pkgconfig/QtXml.pc
 
 # locally created symlinks
-#/opt/lsb/%xlib-4.0		# covered in lsb-build-base
+#/opt/lsb/%xlib-4.0         # covered in lsb-build-base, don't duplicate
 /opt/lsb/%xlib/libpng.so
 /opt/lsb/%xlib-3.1/libpng.so
 /opt/lsb/%xlib-3.2/libpng.so
@@ -423,5 +427,7 @@ sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pk
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Nov 18 2009 Mats Wichmann <mats@linuxfoundation.org> - 4.0.5
+- the subpackage scheme is working properly now
 * Fri Oct 30 2009 Mats Wichmann <mats@linuxfoundation.org>
 - specfiles for -base, -desktop, -cc coalesced into one, changlog cleared

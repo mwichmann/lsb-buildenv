@@ -13,7 +13,7 @@ SUB_VERSION=.5
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=1
+RPM_PACKAGE_RELEASE=2
 
 # Derive date string for daily snapshots
 ISO_DATE:=$(shell date +"%Y%m%d")
@@ -79,9 +79,14 @@ else
 	RPM_BUILD_CMD=rpmbuild 
 endif
 
-# Root for bzr branches, only used if BZR_ROOT not already set
-ifndef BZR_ROOT
-export BZR_ROOT=http://bzr.linuxfoundation.org/lsb/devel
+# Root for bzr branches, only used if BZRTREES not already set
+# during transition, accept old value, BZR_ROOT
+ifndef BZRTREES
+ifdef BZR_ROOT
+export BZRTREES=$BZR_ROOT
+else
+export BZRTREES=http://bzr.linuxfoundation.org/lsb/devel
+endif
 endif
 
 # Default target
@@ -155,8 +160,10 @@ distclean: clean
 
 .PHONY: check_config deb_package .need_config_update
 
+# current version of this rule depends on not needing to change 
+# what's grabbed from version control, let bzr make the tarball
 $(TARBALL):
 	echo "FULL_PACKAGE_NAME=$(FULL_PACKAGE_NAME)"
-	bzr export $(EXPORT_TAG) $(TARBALL) $(BZR_ROOT)/$(BZR_MODULE)
+	bzr export $(EXPORT_TAG) $(TARBALL) $(BZRTREES)/$(BZR_MODULE)
 
 .PHONY : tarball rpm_package

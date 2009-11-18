@@ -14,6 +14,7 @@
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
+#include <X11/Xft/XftCompat.h>
 
 #ifdef __cplusplus
 extern "C" {
