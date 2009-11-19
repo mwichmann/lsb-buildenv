@@ -83,7 +83,7 @@ endif
 # during transition, accept old value, BZR_ROOT
 ifndef BZRTREES
 ifdef BZR_ROOT
-export BZRTREES=$BZR_ROOT
+export BZRTREES=$(BZR_ROOT)
 else
 export BZRTREES=http://bzr.linuxfoundation.org/lsb/devel
 endif
