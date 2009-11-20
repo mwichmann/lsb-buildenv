@@ -69,12 +69,12 @@ extern "C" {
     extern DIR *fdopendir(int __fd);
     extern int scandir(const char *__dir, struct dirent ***__namelist,
 		       int (*__selector) (const struct dirent *),
-		       int (*__cmp) (const struct dirent *,
-				     const struct dirent *));
+		       int (*__cmp) (const struct dirent * *,
+				     const struct dirent * *));
     extern int scandir64(const char *__dir, struct dirent64 ***__namelist,
 			 int (*__selector) (const struct dirent64 *),
-			 int (*__cmp) (const struct dirent64 *,
-				       const struct dirent64 *));
+			 int (*__cmp) (const struct dirent64 * *,
+				       const struct dirent64 * *));
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #ifdef __cplusplus
