@@ -65,12 +65,12 @@ install-core: core-libs
 	mv $(DESTDIR)/$(INSTALL_DIR)/libstdcxx.so $(DESTDIR)/$(INSTALL_DIR)/libstdc++.so
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
 	cd $(DESTDIR)/$(INSTALL_DIR) && rm -f libstdc++.so.6 && ln -s libstdc++.so libstdc++.so.6
-	# need to handle relocations of the cups-config files
-	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/*
-	install ../../bin$(LIB64)/cups-config $(DESTDIR)/$(INSTALL_ROOT)/bin
+	# relocate cups-config
+	sed 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/cups-config > \
+        $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
 	# Create symlink to libs in the most recent LSB version.
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
-	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -f ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
+	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -fr ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
 endif
 
 install-desktop: desktop-libs
@@ -79,13 +79,16 @@ install-desktop: desktop-libs
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin
 	install $(DESKTOP_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
-	# need to handle relocations of the pkgconfig, freetype-config, xft-config files
+	# relocate pkgconfig files
 	sed -i 's|/opt/lsb/include|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' ../../pkgconfig$(LIB64)/*.pc
 	sed -i 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' ../../pkgconfig$(LIB64)/*.pc
 	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../pkgconfig$(LIB64)/*.pc
-	sed -i 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' ../../bin$(LIB64)/*
-	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/*
 	install ../../pkgconfig$(LIB64)/*.pc $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
-	install ../../bin$(LIB64)/freetype-config $(DESTDIR)/$(INSTALL_ROOT)/bin
-	install ../../bin$(LIB64)/xft-config $(DESTDIR)/$(INSTALL_ROOT)/bin
-
+	# relocate freetype-config, xft-config
+	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
+            -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
+        ../../bin$(LIB64)/freetype-config > \
+        $(DESTDIR)/$(INSTALL_ROOT)/bin/freetype-config
+	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
+            -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
+        ../../bin$(LIB64)/xft-config > $(DESTDIR)/$(INSTALL_ROOT)/bin/xft-config

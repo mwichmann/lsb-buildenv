@@ -86,7 +86,7 @@ cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
 
 # (sb) bug XXXX, let lib{64}-CURRENT be a symlink to lib{64}, 
 # owned by lsb-setup, this needs to be tweaked for a new LSB version
-rm $RPM_BUILD_ROOT/opt/lsb/%xlib
+[ -e $RPM_BUILD_ROOT/opt/lsb/%xlib ] && rm -fr $RPM_BUILD_ROOT/opt/lsb/%xlib
 mv $RPM_BUILD_ROOT/opt/lsb/%xlib-%lsbver $RPM_BUILD_ROOT/opt/lsb/%xlib
 (cd $RPM_BUILD_ROOT/opt/lsb; ln -s %xlib %xlib-%lsbver)
 
