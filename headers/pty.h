@@ -14,9 +14,11 @@ extern "C" {
 /* Function prototypes */
 
     extern int forkpty(int *__amaster, char *__name,
-		       struct termios *__termp, struct winsize *__winp);
+		       const struct termios *__termp,
+		       const struct winsize *__winp);
     extern int openpty(int *__amaster, int *__aslave, char *__name,
-		       struct termios *__termp, struct winsize *__winp);
+		       const struct termios *__termp,
+		       const struct winsize *__winp);
 #ifdef __cplusplus
 }
 #endif
