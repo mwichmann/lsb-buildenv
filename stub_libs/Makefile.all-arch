@@ -86,13 +86,18 @@ install-desktop: desktop-libs
 	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../pkgconfig$(LIB64)/*.pc
 	install ../../pkgconfig$(LIB64)/*.pc $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
-	# relocate freetype-config, xft-config
+	# relocate freetype-config, xft-config, xml2-config
 	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
             -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
         ../../bin$(LIB64)/freetype-config > \
         $(DESTDIR)/$(INSTALL_ROOT)/bin/freetype-config
 	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
             -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
-        ../../bin$(LIB64)/xft-config > $(DESTDIR)/$(INSTALL_ROOT)/bin/xft-config
+        ../../bin$(LIB64)/xft-config > \
+	$(DESTDIR)/$(INSTALL_ROOT)/bin/xft-config
+	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
+            -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
+        ../../bin$(LIB64)/xml2-config > \
+	$(DESTDIR)/$(INSTALL_ROOT)/bin/xml2-config
 	chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/*-config
 endif

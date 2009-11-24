@@ -216,6 +216,7 @@ sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pk
 # extra files
 /opt/lsb/bin/freetype-config
 /opt/lsb/bin/xft-config
+/opt/lsb/bin/xml2-config
 %doc /opt/lsb/doc/lsb-build-desktop/Licence
 %doc /opt/lsb/doc/lsb-build-desktop/README
 /opt/lsb/%xlib-3.1/pkgconfig/atk.pc
