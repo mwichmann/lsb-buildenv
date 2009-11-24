@@ -15,8 +15,9 @@ exec_prefix_set=no
 includedir=${prefix}/include
 libdir=/opt/lsb/lib
 enable_shared=yes
-wl=-Wl,
-hardcode_libdir_flag_spec='${wl}--rpath ${wl}$libdir'
+# for LSB, we do not want to rpath $libdir
+#wl=-Wl,
+#hardcode_libdir_flag_spec='${wl}--rpath ${wl}$libdir'
 
 usage()
 {
