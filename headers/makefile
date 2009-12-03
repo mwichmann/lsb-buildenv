@@ -38,7 +38,6 @@ lsb_devel_versions:
 	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | indent -kr -sob > $(shell echo "$@" | sed s/_/\\//)
 
 %.h:
-	mkdir -p $(dir $(shell echo "$@" | sed s/_/\\//))
 	./mkheader -a All -h $@ | indent -kr >$@
 
 install: install-core install-desktop

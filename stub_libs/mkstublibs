@@ -166,7 +166,7 @@ sub GenerateLibrary($$$) {
       . "WHERE Itype='Function' "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 )"
       . "GROUP BY Iid,AIdeprecatedsince "
-      . "ORDER BY Iname,AIdeprecatedsince,Vname";
+      . "ORDER BY Iname,Vname DESC,AIdeprecatedsince";
 
     #print STDERR $select,"\n";
     $sth = $dbh->prepare($select) || die $dbh->errstr;

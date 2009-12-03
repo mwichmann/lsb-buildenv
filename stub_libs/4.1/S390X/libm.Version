@@ -78,7 +78,6 @@ GLIBC_2.2 {
   ctanhf;
   drem;
   dremf;
-  dreml;
   erf;
   erfc;
   erfcf;
@@ -111,7 +110,6 @@ GLIBC_2.2 {
   feupdateenv;
   finite;
   finitef;
-  finitel;
   floor;
   floorf;
   fma;
@@ -126,7 +124,6 @@ GLIBC_2.2 {
   frexpf;
   gamma;
   gammaf;
-  gammal;
   hypot;
   hypotf;
   ilogb;
@@ -253,6 +250,7 @@ GLIBC_2.4 {
   csqrtl;
   ctanhl;
   ctanl;
+  dreml;
   erfcl;
   erfl;
   exp10l;
@@ -261,12 +259,14 @@ GLIBC_2.4 {
   expm1l;
   fabsl;
   fdiml;
+  finitel;
   floorl;
   fmal;
   fmaxl;
   fminl;
   fmodl;
   frexpl;
+  gammal;
   hypotl;
   ilogbl;
   j0l;
