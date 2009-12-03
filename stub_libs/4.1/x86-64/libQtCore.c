@@ -2157,7 +2157,6 @@ __asm__(".globl _ZTI11QDataStream; .pushsection .data; .type _ZTI11QDataStream,@
 __asm__(".globl _ZTI11QTextStream; .pushsection .data; .type _ZTI11QTextStream,@object; .size _ZTI11QTextStream, 16; _ZTI11QTextStream: .long 0; .popsection");
 __asm__(".globl _ZTI11QTimerEvent; .pushsection .data; .type _ZTI11QTimerEvent,@object; .size _ZTI11QTimerEvent, 24; _ZTI11QTimerEvent: .long 0; .popsection");
 __asm__(".globl _ZTI11QTranslator; .pushsection .data; .type _ZTI11QTranslator,@object; .size _ZTI11QTranslator, 24; _ZTI11QTranslator: .long 0; .popsection");
-__asm__(".globl _ZTI11QTsciiCodec; .pushsection .data; .type _ZTI11QTsciiCodec,@object; .size _ZTI11QTsciiCodec, 24; _ZTI11QTsciiCodec: .long 0; .popsection");
 __asm__(".globl _ZTI12QCustomEvent; .pushsection .data; .type _ZTI12QCustomEvent,@object; .size _ZTI12QCustomEvent, 24; _ZTI12QCustomEvent: .long 0; .popsection");
 __asm__(".globl _ZTI13QFSFileEngine; .pushsection .data; .type _ZTI13QFSFileEngine,@object; .size _ZTI13QFSFileEngine, 24; _ZTI13QFSFileEngine: .long 0; .popsection");
 __asm__(".globl _ZTI13QFontLaoCodec; .pushsection .data; .type _ZTI13QFontLaoCodec,@object; .size _ZTI13QFontLaoCodec, 24; _ZTI13QFontLaoCodec: .long 0; .popsection");
@@ -2207,7 +2206,6 @@ __asm__(".globl _ZTV11QDataStream; .pushsection .data; .type _ZTV11QDataStream,@
 __asm__(".globl _ZTV11QTextStream; .pushsection .data; .type _ZTV11QTextStream,@object; .size _ZTV11QTextStream, 32; _ZTV11QTextStream: .long 0; .popsection");
 __asm__(".globl _ZTV11QTimerEvent; .pushsection .data; .type _ZTV11QTimerEvent,@object; .size _ZTV11QTimerEvent, 32; _ZTV11QTimerEvent: .long 0; .popsection");
 __asm__(".globl _ZTV11QTranslator; .pushsection .data; .type _ZTV11QTranslator,@object; .size _ZTV11QTranslator, 128; _ZTV11QTranslator: .long 0; .popsection");
-__asm__(".globl _ZTV11QTsciiCodec; .pushsection .data; .type _ZTV11QTsciiCodec,@object; .size _ZTV11QTsciiCodec, 72; _ZTV11QTsciiCodec: .long 0; .popsection");
 __asm__(".globl _ZTV12QCustomEvent; .pushsection .data; .type _ZTV12QCustomEvent,@object; .size _ZTV12QCustomEvent, 32; _ZTV12QCustomEvent: .long 0; .popsection");
 __asm__(".globl _ZTV13QFSFileEngine; .pushsection .data; .type _ZTV13QFSFileEngine,@object; .size _ZTV13QFSFileEngine, 288; _ZTV13QFSFileEngine: .long 0; .popsection");
 __asm__(".globl _ZTV13QFontLaoCodec; .pushsection .data; .type _ZTV13QFontLaoCodec,@object; .size _ZTV13QFontLaoCodec, 72; _ZTV13QFontLaoCodec: .long 0; .popsection");

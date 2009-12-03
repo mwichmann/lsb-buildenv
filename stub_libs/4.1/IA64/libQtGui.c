@@ -7673,8 +7673,6 @@ void _ZThn16_N17QGraphicsTextItemD0Ev() {} ;
 void _ZThn16_N17QGraphicsTextItemD1Ev() {} ;
 void _ZThn16_N17QIconEnginePluginD0Ev() {} ;
 void _ZThn16_N17QIconEnginePluginD1Ev() {} ;
-void _ZThn16_N17QTextImageHandler10drawObjectEP8QPainterRK6QRectFP13QTextDocumentiRK11QTextFormat() {} ;
-void _ZThn16_N17QTextImageHandler13intrinsicSizeEP13QTextDocumentiRK11QTextFormat() {} ;
 void _ZThn16_N18QX11EmbedContainerD0Ev() {} ;
 void _ZThn16_N18QX11EmbedContainerD1Ev() {} ;
 void _ZThn16_N19QAbstractScrollAreaD0Ev() {} ;
@@ -8045,7 +8043,6 @@ __asm__(".globl _ZTI13QDateTimeEdit; .pushsection .data; .type _ZTI13QDateTimeEd
 __asm__(".globl _ZTI13QErrorMessage; .pushsection .data; .type _ZTI13QErrorMessage,@object; .size _ZTI13QErrorMessage, 24; _ZTI13QErrorMessage: .long 0; .popsection");
 __asm__(".globl _ZTI13QFontComboBox; .pushsection .data; .type _ZTI13QFontComboBox,@object; .size _ZTI13QFontComboBox, 24; _ZTI13QFontComboBox: .long 0; .popsection");
 __asm__(".globl _ZTI13QFontEngineFT; .pushsection .data; .type _ZTI13QFontEngineFT,@object; .size _ZTI13QFontEngineFT, 24; _ZTI13QFontEngineFT: .long 0; .popsection");
-__asm__(".globl _ZTI13QFramePrivate; .pushsection .data; .type _ZTI13QFramePrivate,@object; .size _ZTI13QFramePrivate, 24; _ZTI13QFramePrivate: .long 0; .popsection");
 __asm__(".globl _ZTI13QGraphicsItem; .pushsection .data; .type _ZTI13QGraphicsItem,@object; .size _ZTI13QGraphicsItem, 16; _ZTI13QGraphicsItem: .long 0; .popsection");
 __asm__(".globl _ZTI13QGraphicsView; .pushsection .data; .type _ZTI13QGraphicsView,@object; .size _ZTI13QGraphicsView, 24; _ZTI13QGraphicsView: .long 0; .popsection");
 __asm__(".globl _ZTI13QInputContext; .pushsection .data; .type _ZTI13QInputContext,@object; .size _ZTI13QInputContext, 24; _ZTI13QInputContext: .long 0; .popsection");
@@ -8089,7 +8086,6 @@ __asm__(".globl _ZTI16QAbstractSpinBox; .pushsection .data; .type _ZTI16QAbstrac
 __asm__(".globl _ZTI16QCleanlooksStyle; .pushsection .data; .type _ZTI16QCleanlooksStyle,@object; .size _ZTI16QCleanlooksStyle, 24; _ZTI16QCleanlooksStyle: .long 0; .popsection");
 __asm__(".globl _ZTI16QDialogButtonBox; .pushsection .data; .type _ZTI16QDialogButtonBox,@object; .size _ZTI16QDialogButtonBox, 24; _ZTI16QDialogButtonBox: .long 0; .popsection");
 __asm__(".globl _ZTI16QDoubleValidator; .pushsection .data; .type _ZTI16QDoubleValidator,@object; .size _ZTI16QDoubleValidator, 24; _ZTI16QDoubleValidator: .long 0; .popsection");
-__asm__(".globl _ZTI16QFontEngineMulti; .pushsection .data; .type _ZTI16QFontEngineMulti,@object; .size _ZTI16QFontEngineMulti, 24; _ZTI16QFontEngineMulti: .long 0; .popsection");
 __asm__(".globl _ZTI16QPageSetupDialog; .pushsection .data; .type _ZTI16QPageSetupDialog,@object; .size _ZTI16QPageSetupDialog, 24; _ZTI16QPageSetupDialog: .long 0; .popsection");
 __asm__(".globl _ZTI16QRegExpValidator; .pushsection .data; .type _ZTI16QRegExpValidator,@object; .size _ZTI16QRegExpValidator, 24; _ZTI16QRegExpValidator: .long 0; .popsection");
 __asm__(".globl _ZTI16QStringListModel; .pushsection .data; .type _ZTI16QStringListModel,@object; .size _ZTI16QStringListModel, 24; _ZTI16QStringListModel: .long 0; .popsection");
@@ -8108,9 +8104,7 @@ __asm__(".globl _ZTI17QGraphicsRectItem; .pushsection .data; .type _ZTI17QGraphi
 __asm__(".globl _ZTI17QGraphicsTextItem; .pushsection .data; .type _ZTI17QGraphicsTextItem,@object; .size _ZTI17QGraphicsTextItem, 56; _ZTI17QGraphicsTextItem: .long 0; .popsection");
 __asm__(".globl _ZTI17QIconEnginePlugin; .pushsection .data; .type _ZTI17QIconEnginePlugin,@object; .size _ZTI17QIconEnginePlugin, 56; _ZTI17QIconEnginePlugin: .long 0; .popsection");
 __asm__(".globl _ZTI17QInputMethodEvent; .pushsection .data; .type _ZTI17QInputMethodEvent,@object; .size _ZTI17QInputMethodEvent, 24; _ZTI17QInputMethodEvent: .long 0; .popsection");
-__asm__(".globl _ZTI17QTextImageHandler; .pushsection .data; .type _ZTI17QTextImageHandler,@object; .size _ZTI17QTextImageHandler, 56; _ZTI17QTextImageHandler: .long 0; .popsection");
 __asm__(".globl _ZTI18QDragResponseEvent; .pushsection .data; .type _ZTI18QDragResponseEvent,@object; .size _ZTI18QDragResponseEvent, 24; _ZTI18QDragResponseEvent: .long 0; .popsection");
-__asm__(".globl _ZTI18QFontEngineMultiFT; .pushsection .data; .type _ZTI18QFontEngineMultiFT,@object; .size _ZTI18QFontEngineMultiFT, 24; _ZTI18QFontEngineMultiFT: .long 0; .popsection");
 __asm__(".globl _ZTI18QGraphicsItemGroup; .pushsection .data; .type _ZTI18QGraphicsItemGroup,@object; .size _ZTI18QGraphicsItemGroup, 24; _ZTI18QGraphicsItemGroup: .long 0; .popsection");
 __asm__(".globl _ZTI18QItemEditorFactory; .pushsection .data; .type _ZTI18QItemEditorFactory,@object; .size _ZTI18QItemEditorFactory, 16; _ZTI18QItemEditorFactory: .long 0; .popsection");
 __asm__(".globl _ZTI18QStandardItemModel; .pushsection .data; .type _ZTI18QStandardItemModel,@object; .size _ZTI18QStandardItemModel, 24; _ZTI18QStandardItemModel: .long 0; .popsection");
@@ -8145,7 +8139,6 @@ __asm__(".globl _ZTI23QGraphicsSceneHelpEvent; .pushsection .data; .type _ZTI23Q
 __asm__(".globl _ZTI23QGraphicsSimpleTextItem; .pushsection .data; .type _ZTI23QGraphicsSimpleTextItem,@object; .size _ZTI23QGraphicsSimpleTextItem, 24; _ZTI23QGraphicsSimpleTextItem: .long 0; .popsection");
 __asm__(".globl _ZTI23QPictureFormatInterface; .pushsection .data; .type _ZTI23QPictureFormatInterface,@object; .size _ZTI23QPictureFormatInterface, 24; _ZTI23QPictureFormatInterface: .long 0; .popsection");
 __asm__(".globl _ZTI23QWindowStateChangeEvent; .pushsection .data; .type _ZTI23QWindowStateChangeEvent,@object; .size _ZTI23QWindowStateChangeEvent, 24; _ZTI23QWindowStateChangeEvent: .long 0; .popsection");
-__asm__(".globl _ZTI24QAbstractItemViewPrivate; .pushsection .data; .type _ZTI24QAbstractItemViewPrivate,@object; .size _ZTI24QAbstractItemViewPrivate, 24; _ZTI24QAbstractItemViewPrivate: .long 0; .popsection");
 __asm__(".globl _ZTI24QAbstractPageSetupDialog; .pushsection .data; .type _ZTI24QAbstractPageSetupDialog,@object; .size _ZTI24QAbstractPageSetupDialog, 24; _ZTI24QAbstractPageSetupDialog: .long 0; .popsection");
 __asm__(".globl _ZTI24QGraphicsSceneHoverEvent; .pushsection .data; .type _ZTI24QGraphicsSceneHoverEvent,@object; .size _ZTI24QGraphicsSceneHoverEvent, 24; _ZTI24QGraphicsSceneHoverEvent: .long 0; .popsection");
 __asm__(".globl _ZTI24QGraphicsSceneMouseEvent; .pushsection .data; .type _ZTI24QGraphicsSceneMouseEvent,@object; .size _ZTI24QGraphicsSceneMouseEvent, 24; _ZTI24QGraphicsSceneMouseEvent: .long 0; .popsection");
@@ -8275,7 +8268,6 @@ __asm__(".globl _ZTV12QUndoCommand; .pushsection .data; .type _ZTV12QUndoCommand
 __asm__(".globl _ZTV13QDateTimeEdit; .pushsection .data; .type _ZTV13QDateTimeEdit,@object; .size _ZTV13QDateTimeEdit, 560; _ZTV13QDateTimeEdit: .long 0; .popsection");
 __asm__(".globl _ZTV13QErrorMessage; .pushsection .data; .type _ZTV13QErrorMessage,@object; .size _ZTV13QErrorMessage, 528; _ZTV13QErrorMessage: .long 0; .popsection");
 __asm__(".globl _ZTV13QFontEngineFT; .pushsection .data; .type _ZTV13QFontEngineFT,@object; .size _ZTV13QFontEngineFT, 400; _ZTV13QFontEngineFT: .long 0; .popsection");
-__asm__(".globl _ZTV13QFramePrivate; .pushsection .data; .type _ZTV13QFramePrivate,@object; .size _ZTV13QFramePrivate, 40; _ZTV13QFramePrivate: .long 0; .popsection");
 __asm__(".globl _ZTV13QGraphicsItem; .pushsection .data; .type _ZTV13QGraphicsItem,@object; .size _ZTV13QGraphicsItem, 312; _ZTV13QGraphicsItem: .long 0; .popsection");
 __asm__(".globl _ZTV13QInputContext; .pushsection .data; .type _ZTV13QInputContext,@object; .size _ZTV13QInputContext, 208; _ZTV13QInputContext: .long 0; .popsection");
 __asm__(".globl _ZTV13QIntValidator; .pushsection .data; .type _ZTV13QIntValidator,@object; .size _ZTV13QIntValidator, 136; _ZTV13QIntValidator: .long 0; .popsection");
@@ -8316,7 +8308,6 @@ __asm__(".globl _ZTV15QX11EmbedWidget; .pushsection .data; .type _ZTV15QX11Embed
 __asm__(".globl _ZTV16QAbstractSpinBox; .pushsection .data; .type _ZTV16QAbstractSpinBox,@object; .size _ZTV16QAbstractSpinBox, 544; _ZTV16QAbstractSpinBox: .long 0; .popsection");
 __asm__(".globl _ZTV16QCleanlooksStyle; .pushsection .data; .type _ZTV16QCleanlooksStyle,@object; .size _ZTV16QCleanlooksStyle, 280; _ZTV16QCleanlooksStyle: .long 0; .popsection");
 __asm__(".globl _ZTV16QDoubleValidator; .pushsection .data; .type _ZTV16QDoubleValidator,@object; .size _ZTV16QDoubleValidator, 136; _ZTV16QDoubleValidator: .long 0; .popsection");
-__asm__(".globl _ZTV16QFontEngineMulti; .pushsection .data; .type _ZTV16QFontEngineMulti,@object; .size _ZTV16QFontEngineMulti, 384; _ZTV16QFontEngineMulti: .long 0; .popsection");
 __asm__(".globl _ZTV16QPageSetupDialog; .pushsection .data; .type _ZTV16QPageSetupDialog,@object; .size _ZTV16QPageSetupDialog, 536; _ZTV16QPageSetupDialog: .long 0; .popsection");
 __asm__(".globl _ZTV16QRegExpValidator; .pushsection .data; .type _ZTV16QRegExpValidator,@object; .size _ZTV16QRegExpValidator, 128; _ZTV16QRegExpValidator: .long 0; .popsection");
 __asm__(".globl _ZTV16QStringListModel; .pushsection .data; .type _ZTV16QStringListModel,@object; .size _ZTV16QStringListModel, 336; _ZTV16QStringListModel: .long 0; .popsection");
@@ -8334,9 +8325,7 @@ __asm__(".globl _ZTV17QGraphicsPathItem; .pushsection .data; .type _ZTV17QGraphi
 __asm__(".globl _ZTV17QGraphicsRectItem; .pushsection .data; .type _ZTV17QGraphicsRectItem,@object; .size _ZTV17QGraphicsRectItem, 312; _ZTV17QGraphicsRectItem: .long 0; .popsection");
 __asm__(".globl _ZTV17QIconEnginePlugin; .pushsection .data; .type _ZTV17QIconEnginePlugin,@object; .size _ZTV17QIconEnginePlugin, 176; _ZTV17QIconEnginePlugin: .long 0; .popsection");
 __asm__(".globl _ZTV17QInputMethodEvent; .pushsection .data; .type _ZTV17QInputMethodEvent,@object; .size _ZTV17QInputMethodEvent, 32; _ZTV17QInputMethodEvent: .long 0; .popsection");
-__asm__(".globl _ZTV17QTextImageHandler; .pushsection .data; .type _ZTV17QTextImageHandler,@object; .size _ZTV17QTextImageHandler, 176; _ZTV17QTextImageHandler: .long 0; .popsection");
 __asm__(".globl _ZTV18QDragResponseEvent; .pushsection .data; .type _ZTV18QDragResponseEvent,@object; .size _ZTV18QDragResponseEvent, 32; _ZTV18QDragResponseEvent: .long 0; .popsection");
-__asm__(".globl _ZTV18QFontEngineMultiFT; .pushsection .data; .type _ZTV18QFontEngineMultiFT,@object; .size _ZTV18QFontEngineMultiFT, 384; _ZTV18QFontEngineMultiFT: .long 0; .popsection");
 __asm__(".globl _ZTV18QGraphicsItemGroup; .pushsection .data; .type _ZTV18QGraphicsItemGroup,@object; .size _ZTV18QGraphicsItemGroup, 312; _ZTV18QGraphicsItemGroup: .long 0; .popsection");
 __asm__(".globl _ZTV18QItemEditorFactory; .pushsection .data; .type _ZTV18QItemEditorFactory,@object; .size _ZTV18QItemEditorFactory, 48; _ZTV18QItemEditorFactory: .long 0; .popsection");
 __asm__(".globl _ZTV18QStandardItemModel; .pushsection .data; .type _ZTV18QStandardItemModel,@object; .size _ZTV18QStandardItemModel, 336; _ZTV18QStandardItemModel: .long 0; .popsection");
@@ -8371,7 +8360,6 @@ __asm__(".globl _ZTV23QGraphicsSceneHelpEvent; .pushsection .data; .type _ZTV23Q
 __asm__(".globl _ZTV23QGraphicsSimpleTextItem; .pushsection .data; .type _ZTV23QGraphicsSimpleTextItem,@object; .size _ZTV23QGraphicsSimpleTextItem, 312; _ZTV23QGraphicsSimpleTextItem: .long 0; .popsection");
 __asm__(".globl _ZTV23QPictureFormatInterface; .pushsection .data; .type _ZTV23QPictureFormatInterface,@object; .size _ZTV23QPictureFormatInterface, 64; _ZTV23QPictureFormatInterface: .long 0; .popsection");
 __asm__(".globl _ZTV23QWindowStateChangeEvent; .pushsection .data; .type _ZTV23QWindowStateChangeEvent,@object; .size _ZTV23QWindowStateChangeEvent, 32; _ZTV23QWindowStateChangeEvent: .long 0; .popsection");
-__asm__(".globl _ZTV24QAbstractItemViewPrivate; .pushsection .data; .type _ZTV24QAbstractItemViewPrivate,@object; .size _ZTV24QAbstractItemViewPrivate, 72; _ZTV24QAbstractItemViewPrivate: .long 0; .popsection");
 __asm__(".globl _ZTV24QAbstractPageSetupDialog; .pushsection .data; .type _ZTV24QAbstractPageSetupDialog,@object; .size _ZTV24QAbstractPageSetupDialog, 536; _ZTV24QAbstractPageSetupDialog: .long 0; .popsection");
 __asm__(".globl _ZTV24QGraphicsSceneHoverEvent; .pushsection .data; .type _ZTV24QGraphicsSceneHoverEvent,@object; .size _ZTV24QGraphicsSceneHoverEvent, 32; _ZTV24QGraphicsSceneHoverEvent: .long 0; .popsection");
 __asm__(".globl _ZTV24QGraphicsSceneMouseEvent; .pushsection .data; .type _ZTV24QGraphicsSceneMouseEvent,@object; .size _ZTV24QGraphicsSceneMouseEvent, 32; _ZTV24QGraphicsSceneMouseEvent: .long 0; .popsection");
