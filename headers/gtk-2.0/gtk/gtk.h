@@ -7374,9 +7374,10 @@ extern "C" {
 					       GdkEvent * event,
 					       GtkWidget * widget,
 					       const gchar * path,
-					       GdkRectangle *
+					       const GdkRectangle *
 					       background_area,
-					       GdkRectangle * cell_area,
+					       const GdkRectangle *
+					       cell_area,
 					       GtkCellRendererState flags);
     extern GType gtk_cell_renderer_combo_get_type(void);
     extern GtkCellRenderer *gtk_cell_renderer_combo_new(void);
@@ -7385,7 +7386,7 @@ extern "C" {
 						 gint * height);
     extern void gtk_cell_renderer_get_size(GtkCellRenderer * cell,
 					   GtkWidget * widget,
-					   GdkRectangle * cell_area,
+					   const GdkRectangle * cell_area,
 					   gint * x_offset,
 					   gint * y_offset, gint * width,
 					   gint * height);
@@ -7398,9 +7399,10 @@ extern "C" {
     extern void gtk_cell_renderer_render(GtkCellRenderer * cell,
 					 GdkWindow * window,
 					 GtkWidget * widget,
-					 GdkRectangle * background_area,
-					 GdkRectangle * cell_area,
-					 GdkRectangle * expose_area,
+					 const GdkRectangle *
+					 background_area,
+					 const GdkRectangle * cell_area,
+					 const GdkRectangle * expose_area,
 					 GtkCellRendererState flags);
     extern void gtk_cell_renderer_set_fixed_size(GtkCellRenderer * cell,
 						 gint width, gint height);
@@ -7412,8 +7414,10 @@ extern "C" {
 							    widget,
 							    const gchar *
 							    path,
+							    const
 							    GdkRectangle *
 							    background_area,
+							    const
 							    GdkRectangle *
 							    cell_area,
 							    GtkCellRendererState
@@ -7487,9 +7491,9 @@ extern "C" {
 						     gboolean setting);
     extern void gtk_check_menu_item_toggled(GtkCheckMenuItem *
 					    check_menu_item);
-    extern gchar *gtk_check_version(guint required_major,
-				    guint required_minor,
-				    guint required_micro);
+    extern const gchar *gtk_check_version(guint required_major,
+					  guint required_minor,
+					  guint required_micro);
     extern void gtk_clipboard_clear(GtkClipboard * clipboard);
     extern GtkClipboard *gtk_clipboard_get(GdkAtom selection);
     extern GdkDisplay *gtk_clipboard_get_display(GtkClipboard * clipboard);
@@ -7920,8 +7924,8 @@ extern "C" {
     extern void gtk_drag_unhighlight(GtkWidget * widget);
     extern void gtk_draw_insertion_cursor(GtkWidget * widget,
 					  GdkDrawable * drawable,
-					  GdkRectangle * area,
-					  GdkRectangle * location,
+					  const GdkRectangle * area,
+					  const GdkRectangle * location,
 					  gboolean is_primary,
 					  GtkTextDirection direction,
 					  gboolean draw_arrow);
@@ -8678,7 +8682,8 @@ extern "C" {
     extern void gtk_im_context_set_client_window(GtkIMContext * context,
 						 GdkWindow * window);
     extern void gtk_im_context_set_cursor_location(GtkIMContext * context,
-						   GdkRectangle * area);
+						   const GdkRectangle *
+						   area);
     extern void gtk_im_context_set_surrounding(GtkIMContext * context,
 					       const gchar * text,
 					       gint len,
@@ -9174,91 +9179,96 @@ extern "C" {
     extern void gtk_paint_arrow(GtkStyle * style, GdkWindow * window,
 				GtkStateType state_type,
 				GtkShadowType shadow_type,
-				GdkRectangle * area, GtkWidget * widget,
-				const gchar * detail,
+				const GdkRectangle * area,
+				GtkWidget * widget, const gchar * detail,
 				GtkArrowType arrow_type, gboolean fill,
 				gint x, gint y, gint width, gint height);
     extern void gtk_paint_box(GtkStyle * style, GdkWindow * window,
 			      GtkStateType state_type,
 			      GtkShadowType shadow_type,
-			      GdkRectangle * area, GtkWidget * widget,
-			      const gchar * detail, gint x, gint y,
-			      gint width, gint height);
+			      const GdkRectangle * area,
+			      GtkWidget * widget, const gchar * detail,
+			      gint x, gint y, gint width, gint height);
     extern void gtk_paint_box_gap(GtkStyle * style, GdkWindow * window,
 				  GtkStateType state_type,
 				  GtkShadowType shadow_type,
-				  GdkRectangle * area, GtkWidget * widget,
-				  gchar * detail, gint x, gint y,
-				  gint width, gint height,
+				  const GdkRectangle * area,
+				  GtkWidget * widget, const gchar * detail,
+				  gint x, gint y, gint width, gint height,
 				  GtkPositionType gap_side, gint gap_x,
 				  gint gap_width);
     extern void gtk_paint_check(GtkStyle * style, GdkWindow * window,
 				GtkStateType state_type,
 				GtkShadowType shadow_type,
-				GdkRectangle * area, GtkWidget * widget,
-				const gchar * detail, gint x, gint y,
-				gint width, gint height);
+				const GdkRectangle * area,
+				GtkWidget * widget, const gchar * detail,
+				gint x, gint y, gint width, gint height);
     extern void gtk_paint_diamond(GtkStyle * style, GdkWindow * window,
 				  GtkStateType state_type,
 				  GtkShadowType shadow_type,
-				  GdkRectangle * area, GtkWidget * widget,
-				  const gchar * detail, gint x, gint y,
-				  gint width, gint height);
+				  const GdkRectangle * area,
+				  GtkWidget * widget, const gchar * detail,
+				  gint x, gint y, gint width, gint height);
     extern void gtk_paint_expander(GtkStyle * style, GdkWindow * window,
 				   GtkStateType state_type,
-				   GdkRectangle * area, GtkWidget * widget,
+				   const GdkRectangle * area,
+				   GtkWidget * widget,
 				   const gchar * detail, gint x, gint y,
 				   GtkExpanderStyle expander_style);
     extern void gtk_paint_extension(GtkStyle * style, GdkWindow * window,
 				    GtkStateType state_type,
 				    GtkShadowType shadow_type,
-				    GdkRectangle * area,
-				    GtkWidget * widget, gchar * detail,
-				    gint x, gint y, gint width,
-				    gint height, GtkPositionType gap_side);
+				    const GdkRectangle * area,
+				    GtkWidget * widget,
+				    const gchar * detail, gint x, gint y,
+				    gint width, gint height,
+				    GtkPositionType gap_side);
     extern void gtk_paint_flat_box(GtkStyle * style, GdkWindow * window,
 				   GtkStateType state_type,
 				   GtkShadowType shadow_type,
-				   GdkRectangle * area, GtkWidget * widget,
+				   const GdkRectangle * area,
+				   GtkWidget * widget,
 				   const gchar * detail, gint x, gint y,
 				   gint width, gint height);
     extern void gtk_paint_focus(GtkStyle * style, GdkWindow * window,
 				GtkStateType state_type,
-				GdkRectangle * area, GtkWidget * widget,
-				const gchar * detail, gint x, gint y,
-				gint width, gint height);
+				const GdkRectangle * area,
+				GtkWidget * widget, const gchar * detail,
+				gint x, gint y, gint width, gint height);
     extern void gtk_paint_handle(GtkStyle * style, GdkWindow * window,
 				 GtkStateType state_type,
 				 GtkShadowType shadow_type,
-				 GdkRectangle * area, GtkWidget * widget,
-				 const gchar * detail, gint x, gint y,
-				 gint width, gint height,
+				 const GdkRectangle * area,
+				 GtkWidget * widget, const gchar * detail,
+				 gint x, gint y, gint width, gint height,
 				 GtkOrientation orientation);
     extern void gtk_paint_hline(GtkStyle * style, GdkWindow * window,
 				GtkStateType state_type,
-				GdkRectangle * area, GtkWidget * widget,
-				const gchar * detail, gint x1, gint x2,
-				gint y);
+				const GdkRectangle * area,
+				GtkWidget * widget, const gchar * detail,
+				gint x1, gint x2, gint y);
     extern void gtk_paint_layout(GtkStyle * style, GdkWindow * window,
 				 GtkStateType state_type,
-				 gboolean use_text, GdkRectangle * area,
+				 gboolean use_text,
+				 const GdkRectangle * area,
 				 GtkWidget * widget, const gchar * detail,
 				 gint x, gint y, PangoLayout * layout);
     extern void gtk_paint_option(GtkStyle * style, GdkWindow * window,
 				 GtkStateType state_type,
 				 GtkShadowType shadow_type,
-				 GdkRectangle * area, GtkWidget * widget,
-				 const gchar * detail, gint x, gint y,
-				 gint width, gint height);
+				 const GdkRectangle * area,
+				 GtkWidget * widget, const gchar * detail,
+				 gint x, gint y, gint width, gint height);
     extern void gtk_paint_polygon(GtkStyle * style, GdkWindow * window,
 				  GtkStateType state_type,
 				  GtkShadowType shadow_type,
-				  GdkRectangle * area, GtkWidget * widget,
-				  const gchar * detail, GdkPoint * points,
-				  gint npoints, gboolean fill);
+				  const GdkRectangle * area,
+				  GtkWidget * widget, const gchar * detail,
+				  const GdkPoint * points, gint npoints,
+				  gboolean fill);
     extern void gtk_paint_resize_grip(GtkStyle * style, GdkWindow * window,
 				      GtkStateType state_type,
-				      GdkRectangle * area,
+				      const GdkRectangle * area,
 				      GtkWidget * widget,
 				      const gchar * detail,
 				      GdkWindowEdge edge, gint x, gint y,
@@ -9266,35 +9276,36 @@ extern "C" {
     extern void gtk_paint_shadow(GtkStyle * style, GdkWindow * window,
 				 GtkStateType state_type,
 				 GtkShadowType shadow_type,
-				 GdkRectangle * area, GtkWidget * widget,
-				 const gchar * detail, gint x, gint y,
-				 gint width, gint height);
+				 const GdkRectangle * area,
+				 GtkWidget * widget, const gchar * detail,
+				 gint x, gint y, gint width, gint height);
     extern void gtk_paint_shadow_gap(GtkStyle * style, GdkWindow * window,
 				     GtkStateType state_type,
 				     GtkShadowType shadow_type,
-				     GdkRectangle * area,
-				     GtkWidget * widget, gchar * detail,
-				     gint x, gint y, gint width,
-				     gint height, GtkPositionType gap_side,
-				     gint gap_x, gint gap_width);
+				     const GdkRectangle * area,
+				     GtkWidget * widget,
+				     const gchar * detail, gint x, gint y,
+				     gint width, gint height,
+				     GtkPositionType gap_side, gint gap_x,
+				     gint gap_width);
     extern void gtk_paint_slider(GtkStyle * style, GdkWindow * window,
 				 GtkStateType state_type,
 				 GtkShadowType shadow_type,
-				 GdkRectangle * area, GtkWidget * widget,
-				 const gchar * detail, gint x, gint y,
-				 gint width, gint height,
+				 const GdkRectangle * area,
+				 GtkWidget * widget, const gchar * detail,
+				 gint x, gint y, gint width, gint height,
 				 GtkOrientation orientation);
     extern void gtk_paint_tab(GtkStyle * style, GdkWindow * window,
 			      GtkStateType state_type,
 			      GtkShadowType shadow_type,
-			      GdkRectangle * area, GtkWidget * widget,
-			      const gchar * detail, gint x, gint y,
-			      gint width, gint height);
+			      const GdkRectangle * area,
+			      GtkWidget * widget, const gchar * detail,
+			      gint x, gint y, gint width, gint height);
     extern void gtk_paint_vline(GtkStyle * style, GdkWindow * window,
 				GtkStateType state_type,
-				GdkRectangle * area, GtkWidget * widget,
-				const gchar * detail, gint y1_, gint y2_,
-				gint x);
+				const GdkRectangle * area,
+				GtkWidget * widget, const gchar * detail,
+				gint y1_, gint y2_, gint x);
     extern void gtk_paned_add1(GtkPaned * paned, GtkWidget * child);
     extern void gtk_paned_add2(GtkPaned * paned, GtkWidget * child);
     extern GtkWidget *gtk_paned_get_child1(GtkPaned * paned);
@@ -9774,8 +9785,8 @@ extern "C" {
 						   GdkWindow * window,
 						   gboolean set_bg,
 						   GtkStateType state_type,
-						   GdkRectangle * area,
-						   gint x, gint y,
+						   const GdkRectangle *
+						   area, gint x, gint y,
 						   gint width,
 						   gint height);
     extern GtkStyle *gtk_style_attach(GtkStyle * style,
@@ -11030,7 +11041,7 @@ extern "C" {
 					       gint * width);
     extern void gtk_tree_view_column_cell_get_size(GtkTreeViewColumn *
 						   tree_column,
-						   GdkRectangle *
+						   const GdkRectangle *
 						   cell_area,
 						   gint * x_offset,
 						   gint * y_offset,
@@ -11572,7 +11583,7 @@ extern "C" {
     extern void gtk_widget_hide_all(GtkWidget * widget);
     extern gboolean gtk_widget_hide_on_delete(GtkWidget * widget);
     extern gboolean gtk_widget_intersect(GtkWidget * widget,
-					 GdkRectangle * area,
+					 const GdkRectangle * area,
 					 GdkRectangle * intersection);
     extern gboolean gtk_widget_is_ancestor(GtkWidget * widget,
 					   GtkWidget * ancestor);
@@ -11618,7 +11629,8 @@ extern "C" {
     extern GtkWidget *gtk_widget_ref(GtkWidget *
 				     widget) LSB_DECL_DEPRECATED;
     extern GdkRegion *gtk_widget_region_intersect(GtkWidget * widget,
-						  GdkRegion * region);
+						  const GdkRegion *
+						  region);
     extern gboolean gtk_widget_remove_accelerator(GtkWidget * widget,
 						  GtkAccelGroup *
 						  accel_group,

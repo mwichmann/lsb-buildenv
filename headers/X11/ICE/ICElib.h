@@ -170,15 +170,15 @@ extern "C" {
     extern int IceProtocolShutdown(IceConn, int);
     extern int IceProtocolVersion(IceConn);
     extern int IceRegisterForProtocolReply(char *, char *, char *, int,
-					   IcePaVersionRec *, int, char **,
-					   IcePaAuthProc *,
+					   IcePaVersionRec *, int,
+					   const char **, IcePaAuthProc *,
 					   IceHostBasedAuthProc,
 					   IceProtocolSetupProc,
 					   IceProtocolActivateProc,
 					   IceIOErrorProc);
     extern int IceRegisterForProtocolSetup(char *, char *, char *, int,
-					   IcePoVersionRec *, int, char **,
-					   IcePoAuthProc *,
+					   IcePoVersionRec *, int,
+					   const char **, IcePoAuthProc *,
 					   IceIOErrorProc);
     extern char *IceRelease(IceConn);
     extern void IceRemoveConnectionWatch(IceWatchProc, IcePointer);

@@ -229,9 +229,6 @@ extern "C" {
 	FT_Pos y_ppem;
     };
 
-
-
-
     struct FT_Open_Args_ {
 	FT_UInt flags;
 	const FT_Byte *memory_base;
@@ -242,7 +239,6 @@ extern "C" {
 	FT_Int num_params;
 	FT_Parameter *params;
     };
-
 
     struct FT_FaceRec_ {
 	FT_Long num_faces;

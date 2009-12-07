@@ -23,8 +23,8 @@ extern "C" {
 
     typedef FT_Error(*FT_Glyph_CopyFunc) (FT_Glyph, FT_Glyph);
 
-    typedef void (*FT_Glyph_TransformFunc) (FT_Glyph, FT_Matrix *,
-					    FT_Vector *);
+    typedef void (*FT_Glyph_TransformFunc) (FT_Glyph, const FT_Matrix *,
+					    const FT_Vector *);
 
     typedef void (*FT_Glyph_GetBBoxFunc) (FT_Glyph, FT_BBox *);
 

@@ -77,7 +77,7 @@ extern "C" {
 
     typedef struct FT_Span_ FT_Span;
 
-    typedef void (*FT_SpanFunc) (int, int, FT_Span *, void *);
+    typedef void (*FT_SpanFunc) (int, int, const FT_Span *, void *);
 
     typedef int (*FT_Raster_BitTest_Func) (int, int, void *);
 
@@ -85,21 +85,23 @@ extern "C" {
 
     typedef struct FT_Raster_Params_ FT_Raster_Params;
 
-    typedef int (*FT_Raster_RenderFunc) (FT_Raster, FT_Raster_Params *);
+    typedef int (*FT_Raster_RenderFunc) (FT_Raster,
+					 const FT_Raster_Params *);
 
     typedef void (*FT_Raster_DoneFunc) (FT_Raster);
 
     typedef struct FT_Raster_Funcs_ FT_Raster_Funcs;
 
-    typedef int (*FT_Outline_MoveToFunc) (FT_Vector *, void *);
+    typedef int (*FT_Outline_MoveToFunc) (const FT_Vector *, void *);
 
-    typedef int (*FT_Outline_LineToFunc) (FT_Vector *, void *);
+    typedef int (*FT_Outline_LineToFunc) (const FT_Vector *, void *);
 
-    typedef int (*FT_Outline_ConicToFunc) (FT_Vector *, FT_Vector *,
-					   void *);
+    typedef int (*FT_Outline_ConicToFunc) (const FT_Vector *,
+					   const FT_Vector *, void *);
 
-    typedef int (*FT_Outline_CubicToFunc) (FT_Vector *, FT_Vector *,
-					   FT_Vector *, void *);
+    typedef int (*FT_Outline_CubicToFunc) (const FT_Vector *,
+					   const FT_Vector *,
+					   const FT_Vector *, void *);
 
     typedef struct FT_Outline_Funcs_ FT_Outline_Funcs;
 
@@ -139,7 +141,6 @@ extern "C" {
 	void *palette;
     };
 
-
     struct FT_Outline_ {
 	short n_contours;
 	short n_points;
@@ -149,13 +150,11 @@ extern "C" {
 	int flags;
     };
 
-
     struct FT_Span_ {
 	short x;
 	unsigned short len;
 	unsigned char coverage;
     };
-
 
     struct FT_Raster_Params_ {
 	const FT_Bitmap *target;
@@ -169,7 +168,6 @@ extern "C" {
 	FT_BBox clip_box;
     };
 
-
     struct FT_Raster_Funcs_ {
 	FT_Glyph_Format glyph_format;
 	FT_Raster_NewFunc raster_new;
@@ -178,7 +176,6 @@ extern "C" {
 	FT_Raster_RenderFunc raster_render;
 	FT_Raster_DoneFunc raster_done;
     };
-
 
     struct FT_Outline_Funcs_ {
 	FT_Outline_MoveToFunc move_to;

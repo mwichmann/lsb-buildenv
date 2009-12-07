@@ -24,12 +24,12 @@ extern "C" {
 
 
     typedef FT_Error(*FT_Renderer_RenderFunc) (FT_Renderer, FT_GlyphSlot,
-					       FT_UInt, FT_Vector *);
+					       FT_UInt, const FT_Vector *);
 
     typedef FT_Error(*FT_Renderer_TransformFunc) (FT_Renderer,
 						  FT_GlyphSlot,
-						  FT_Matrix *,
-						  FT_Vector *);
+						  const FT_Matrix *,
+						  const FT_Vector *);
 
     typedef void (*FT_Renderer_GetCBoxFunc) (FT_Renderer, FT_GlyphSlot,
 					     FT_BBox *);

@@ -306,7 +306,7 @@ extern "C" {
 				     cups_option_t * options);
     extern const char *cupsGetPPD(const char *printer);
     extern const char *cupsGetPassword(const char *prompt);
-    extern char *cupsLangEncoding(cups_lang_t * lang);
+    extern const char *cupsLangEncoding(cups_lang_t * lang);
     extern void cupsLangFlush(void);
     extern void cupsLangFree(cups_lang_t * lang);
     extern cups_lang_t *cupsLangGet(const char *language);

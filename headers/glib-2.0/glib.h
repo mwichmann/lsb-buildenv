@@ -2271,7 +2271,8 @@ extern "C" {
 						      volatile atomic,
 						      gint oldval,
 						      gint newval);
-    extern gint g_atomic_int_exchange_and_add(gint * atomic, gint val);
+    extern gint g_atomic_int_exchange_and_add(gint * volatile atomic,
+					      gint val);
     extern gboolean g_atomic_pointer_compare_and_exchange(gpointer *
 							  volatile atomic,
 							  gpointer oldval,

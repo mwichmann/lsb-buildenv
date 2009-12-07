@@ -1226,7 +1226,7 @@ extern "C" {
 						  int length);
     extern gboolean pango_script_iter_next(PangoScriptIter * iter);
     extern void pango_shape(const gchar * text, gint length,
-			    PangoAnalysis * analysis,
+			    const PangoAnalysis * analysis,
 			    PangoGlyphString * glyphs);
     extern GType pango_stretch_get_type(void);
     extern GType pango_style_get_type(void);
