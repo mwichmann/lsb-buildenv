@@ -25,7 +25,6 @@ void XGetSelectedExtensionEvents() {} ;
 void XGrabDevice() {} ;
 void XGrabDeviceButton() {} ;
 void XGrabDeviceKey() {} ;
-void XInput_find_display() {} ;
 void XListInputDevices() {} ;
 void XOpenDevice() {} ;
 void XQueryDeviceState() {} ;
