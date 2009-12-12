@@ -19,7 +19,6 @@ Vendor: Linux Foundation
 Packager: LSB Project <lsb-discuss@linux-foundation.org>
 Source: lsb-build-%ver.tar.gz
 BuildRoot: %{_tmppath}/%name-root
-AutoReqProv: no
 # Does not strictly require lsb
 #PreReq: lsb >= 3.1
 
@@ -32,6 +31,7 @@ Group: Development/Tools
 Obsoletes: lsbdev-base < 3.0
 Conflicts: lsbdev-base
 Requires: lsb-setup
+AutoReqProv: no
 %description base
 The LSB Build environment base package provides stub libraries and header
 files. These can be used with lsbcc to build LSB conforming applications.
@@ -42,6 +42,7 @@ Group: Development/Tools
 Requires: lsb-build-base
 Obsoletes: lsbdev-desktop < 3.0
 Conflicts: lsbdev-desktop
+AutoReqProv: no
 %description desktop
 The LSB Build Environment desktop package adds stub libraries and headers
 files for desktop support which can be used with lsbcc to build LSB
@@ -53,9 +54,10 @@ Group: Development/Tools
 Requires: lsb-build-base
 Obsoletes: lsbdev-cc < 3.0
 Conflicts: lsbdev-cc
+AutoReqProv: no
 %description cc
-The LSB Build Environment cc package lsbcc, which can be used to help
-build LSB conforming applications.
+The LSB Build Environment cc package provides lsbcc, which can be used
+to help build LSB conforming applications.
 
 %prep
 %setup -q
