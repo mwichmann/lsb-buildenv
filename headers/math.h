@@ -770,8 +770,16 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
+#if defined __powerpc__ && !defined __powerpc64__
+/* PPC32 */
+    extern int __fpclassifyl(long double);
+#endif
 #if defined __powerpc64__
 /* PPC64 */
+    extern int __fpclassifyl(long double);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
     extern int __fpclassifyl(long double);
 #endif
 #if defined __s390x__
@@ -780,14 +788,14 @@ extern "C" {
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-    extern int __fpclassifyl(long double);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern int __fpclassifyl(long double);
+    extern int __signbitl(long double);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
+    extern int __signbitl(long double);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
     extern int __signbitl(long double);
 #endif
 #if defined __s390x__
@@ -796,26 +804,18 @@ extern "C" {
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 /* PPC32 */
-    extern int __signbitl(long double);
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    extern int __signbitl(long double);
+    extern long double exp2l(long double);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
     extern long double exp2l(long double);
 #endif
-#if defined __s390x__
-/* S390X */
-    extern long double exp2l(long double);
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    extern long double exp2l(long double);
-#endif
 #if defined __s390__ && !defined __s390x__
 /* S390 */
+    extern long double exp2l(long double);
+#endif
+#if defined __s390x__
+/* S390X */
     extern long double exp2l(long double);
 #endif
 #endif				/* __LSB_VERSION__ >= 4.0 */

@@ -76,16 +76,16 @@ extern int _Z9qsnprintfPcjPKcz(char *, unsigned int, const char *, ...);
 /* PPC32 */
 extern int _Z9qsnprintfPcjPKcz(char *, unsigned int, const char *, ...);
 #endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
-#endif
 #if defined __ia64__
 /* IA64 */
 extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 #if defined __powerpc64__
 /* PPC64 */
+extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
+#endif
+#if defined __s390__ && !defined __s390x__
+/* S390 */
 extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 #if defined __x86_64__

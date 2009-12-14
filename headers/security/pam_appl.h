@@ -94,7 +94,6 @@ extern "C" {
 
 /* Function prototypes */
 
-#if __LSB_VERSION__ < 41
     extern int pam_acct_mgmt(pam_handle_t *, int);
     extern int pam_authenticate(pam_handle_t *, int);
     extern int pam_chauthtok(pam_handle_t *, int);
@@ -109,34 +108,10 @@ extern "C" {
     extern int pam_start(const char *, const char *,
 			 const struct pam_conv *, pam_handle_t * *);
     extern const char *pam_strerror(pam_handle_t *, int);
-#endif				/* __LSB_VERSION__ < 4.1 */
-
 #if __LSB_VERSION__ >= 32
-#if __LSB_VERSION__ < 41
     extern const char *pam_getenv(pam_handle_t *, const char *);
     extern int pam_putenv(pam_handle_t *, const char *);
-#endif				/* __LSB_VERSION__ < 4.1 */
-
 #endif				/* __LSB_VERSION__ >= 3.2 */
-
-#if __LSB_VERSION__ >= 41
-    extern int pam_acct_mgmt(pam_handle_t *, int);
-    extern int pam_authenticate(pam_handle_t *, int);
-    extern int pam_chauthtok(pam_handle_t *, int);
-    extern int pam_close_session(pam_handle_t *, int);
-    extern int pam_end(pam_handle_t *, int);
-    extern int pam_fail_delay(pam_handle_t *, unsigned int);
-    extern int pam_get_item(const pam_handle_t *, int, const void **);
-    extern const char *pam_getenv(pam_handle_t *, const char *);
-    extern char **pam_getenvlist(pam_handle_t *);
-    extern int pam_open_session(pam_handle_t *, int);
-    extern int pam_putenv(pam_handle_t *, const char *);
-    extern int pam_set_item(pam_handle_t *, int, const void *);
-    extern int pam_setcred(pam_handle_t *, int);
-    extern int pam_start(const char *, const char *,
-			 const struct pam_conv *, pam_handle_t * *);
-    extern const char *pam_strerror(pam_handle_t *, int);
-#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
 }

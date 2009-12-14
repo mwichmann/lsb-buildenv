@@ -544,20 +544,45 @@ if( $classlist ne "" ) {
     $sth->finish;
 }
 
+$create = "CREATE TEMPORARY TABLE tmp_IncludedInts ";
+$create.= "(KEY k_Iid(Iid, AIarch)) ";
+$create.= "SELECT Interface.*, Type.*, ArchType.*, Architecture.*, ";
+$create.= "   AI_1.AIarch AS AIarch, AI_1.AIappearedin AS AIappearedin, ";
+$create.= "   IF(AI_2.AIappearedin IS NULL, AI_1.AIwithdrawnin, AI_2.AIwithdrawnin) AS AIwithdrawnin, ";
+$create.= "   IF(AI_2.AIappearedin IS NULL, AI_1.AIdeprecatedsince, AI_2.AIdeprecatedsince) AS AIdeprecatedsince ";
+$create.= "FROM Interface ";
+$create.= "LEFT JOIN Type ON Ireturn=Tid ";
+$create.= "LEFT JOIN ArchInt AI_1 ON Iid=AI_1.AIint ";
+# A trick here - join ArchInt once more to join two intervals for the same symbol,
+# if 'appearedin' value of one of them is equal to 'withdrawnin' value of another.
+# This can happen if we change version of binary symbol without affecting source-level information
+$create.= "LEFT JOIN ArchInt AI_2 ON AI_1.AIarch=AI_2.AIarch AND AI_1.AIint=AI_2.AIint AND AI_1.AIwithdrawnin=AI_2.AIappearedin ";
+$create.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AI_1.AIarch ";
+$create.= "LEFT JOIN Architecture ON AI_1.AIarch=Aid ";
+$create.= "WHERE Iheader=$Hid ";
+$create.= "AND (Isrcbin='SrcOnly' ";
+$create.= " OR ( (Isrcbin='Both' OR Iid IN ( ";
+$create.= "  SELECT AAbinint FROM AbiApi ";
+$create.= "  WHERE AAappearedin > '' ";
+$create.= "  AND AAwithdrawnin IS NULL "; # No check for 3.0, there were no AbiApi there
+$create.= ")) AND ";
+$create.= "AI_1.AIappearedin > '' AND (AI_1.AIwithdrawnin IS NULL OR AI_1.AIwithdrawnin > '3.0') ) ";
+$create.= ") ";
+# graceful c++ headers generators would remove the need for this...
+$create.= "AND (Iclass=0 OR Ilibrary='libstdcxx') ";
+$create.= "GROUP BY Iid, AIarch, AIwithdrawnin ";
+print $create,"\n" if $trace;
+$dbh->do($create);
+
 # if we have deprecated interfaces inside this header,
 #     print LSB_DECL_DEPRECATED macro definition
-$selectDepr = "SELECT Iid FROM Interface ";
-$selectDepr.= "JOIN ArchInt ON AIint=Iid ";
-$selectDepr.= "WHERE Iheader=$Hid ";
-$selectDepr.= "AND AIdeprecatedsince IS NOT NULL ";
-$selectDepr.= "AND AIappearedin > '' ";
-$selectDepr.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin  > '3.0') ";
+$selectDepr = "SELECT 1 FROM tmp_IncludedInts ";
+$selectDepr.= "WHERE AIdeprecatedsince IS NOT NULL ";
 $selectDepr.= "LIMIT 1";
 print $selectDepr,"\n" if $trace;
-my $sthDepr = $dbh->prepare($selectDepr) or die "Couldn't prepare $selectDepr query: ".DBI->errstr;
-$sthDepr->execute or die "Couldn't execute $selectDepr query: ".DBI->errstr;
+my ($deprIntExists) = $dbh->selectrow_array($selectDepr);
 
-if( $sthDepr->rows ) {
+if( $deprIntExists ) {
     print "\n";
     print "#if !defined(LSB_DECL_DEPRECATED)\n";
     print "#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))\n";
@@ -567,8 +592,6 @@ if( $sthDepr->rows ) {
     print "#endif\n";
     print "#endif    /* LSB_DECL_DEPRECATED */\n";
 }
-
-$sthDepr->finish;
 
 if( !$classlist ) {
     print "\n#ifdef __cplusplus\n";
@@ -1008,23 +1031,7 @@ $hgh->finish;
 # Dump out the function prototypes
 #
 
-$select = "SELECT * FROM Interface ";
-$select.= "LEFT JOIN Type ON Ireturn=Tid ";
-$select.= "LEFT JOIN ArchInt ON Iid=AIint ";
-$select.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AIarch ";
-$select.= "LEFT JOIN Architecture ON AIarch=Aid ";
-$select.= "WHERE Iheader=$Hid ";
-$select.= "AND (Isrcbin='SrcOnly' ";
-$select.= " OR ( (Isrcbin='Both' OR Iid IN ( ";
-$select.= "  SELECT AAbinint FROM AbiApi ";
-$select.= "  WHERE AAappearedin > '' ";
-$select.= "  AND AAwithdrawnin IS NULL "; # No check for 3.0, there were no AbiApi there
-$select.= ")) AND ";
-$select.= "AIappearedin > '' AND (AIwithdrawnin IS NULL OR AIwithdrawnin > '3.0') ) ";
-$select.= ") ";
-# Hope check for libstdcxx is temporary and will be eliminated when we get more
-# graceful c++ headers generators
-$select.= "AND (Iclass=0 OR Ilibrary='libstdcxx') ";
+$select = "SELECT * FROM tmp_IncludedInts ";
 $select.= "ORDER BY AIappearedin, AIwithdrawnin, Iname ";
 print $select,"\n" if $trace;
 $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
@@ -1041,25 +1048,13 @@ for(1..$sth->rows) {
     $entry = $sth->fetchrow_hashref;
 
     if( $entry->{'Aid'} != 1 ) {
-        $selectGeneric = "SELECT Iid FROM Interface ";
-        $selectGeneric.= "LEFT JOIN ArchInt ON Iid=AIint ";
-        $selectGeneric.= "WHERE AIarch=1 AND AIint='$entry->{'AIint'}'";
-        $selectGeneric.= "AND (Isrcbin='SrcOnly' ";
-        $selectGeneric.= "OR ( (Isrcbin='Both' OR Iid IN ( ";
-        $selectGeneric.= " SELECT AAbinint FROM AbiApi ";
-        $selectGeneric.= " WHERE AAappearedin > '' ";
-        $selectGeneric.= " AND AAwithdrawnin IS NULL ";
-        $selectGeneric.= ")) AND ";
-        $selectGeneric.= "AIappearedin > '' ";
-        $selectGeneric.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'3.0') ) ) ";
+        $selectGeneric = "SELECT 1 FROM tmp_IncludedInts ";
+        $selectGeneric.= "WHERE Iid=".$entry->{'Iid'}." AND AIarch=1 ";
         $selectGeneric.= "LIMIT 1";
-        $sthGeneric = $dbh->prepare($selectGeneric) or die "Couldn't prepare $selectGeneric query: ".DBI->errstr;
-        $sthGeneric->execute or die "Couldn't execute $selectGeneric query: ".DBI->errstr;
-        if( $sthGeneric->rows ) {
-            $sthGeneric->finish;
+        ($genericRecExists) = $dbh->selectrow_array($selectGeneric);
+        if( $genericRecExists ) {
             next;
         }
-        $sthGeneric->finish;
     }
 
     # Check, if this interface is overridden through the AbiApi table.
