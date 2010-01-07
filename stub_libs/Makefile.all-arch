@@ -64,6 +64,8 @@ install-core: core-libs
 	install $(CORE_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	mv $(DESTDIR)/$(INSTALL_DIR)/libstdcxx.so $(DESTDIR)/$(INSTALL_DIR)/libstdc++.so
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
+	# these get copied over again in install-desktop, and break symlinks
+	rm -f libstdc*.so.*
 	cd $(DESTDIR)/$(INSTALL_DIR) && rm -f libstdc++.so.6 && ln -s libstdc++.so libstdc++.so.6
 	# relocate cups-config
 	sed 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/cups-config > \
