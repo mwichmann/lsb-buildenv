@@ -1529,6 +1529,16 @@ void _ZNSt17__gnu_cxx_ldbl1287num_getIwSt19istreambuf_iteratorIwSt11char_traitsI
 void _ZNSt17__gnu_cxx_ldbl1287num_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED0Ev() {} ;
 void _ZNSt17__gnu_cxx_ldbl1287num_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev() {} ;
 void _ZNSt17__gnu_cxx_ldbl1287num_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED2Ev() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEEC1Em() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEEC2Em() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED0Ev() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED1Ev() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED2Ev() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEEC1Em() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEEC2Em() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED0Ev() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED1Ev() {} ;
+void _ZNSt17__gnu_cxx_ldbl1287num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED2Ev() {} ;
 void _ZNSt17moneypunct_bynameIcLb0EEC1EPKcj() {} ;
 void _ZNSt17moneypunct_bynameIcLb0EEC2EPKcj() {} ;
 void _ZNSt17moneypunct_bynameIcLb0EED0Ev() {} ;
