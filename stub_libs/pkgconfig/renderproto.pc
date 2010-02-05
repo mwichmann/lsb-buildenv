@@ -1,0 +1,9 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+ 
+Name: RenderProto
+Description: Render extension headers
+Version: 0.9
+Cflags: -I${includedir}

@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+includex11dir=/opt/lsb/include/X11
+ 
+Name: Xproto
+Description: Xproto headers
+Version: 6.9.0
+Cflags: -I${includedir}

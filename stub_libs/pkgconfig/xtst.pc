@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+
+Name: Xtst
+Description: The Xtst Library
+Version: 1.0.1
+Requires: recordproto
+Cflags: -I${includedir}
+Libs: -L${libdir} -lXtst

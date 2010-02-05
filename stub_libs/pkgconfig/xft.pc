@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+
+Name: Xft
+Description: X FreeType library
+Version: 2.1.10
+Requires: xproto, xrender, fontconfig, freetype2
+Cflags: -I${includedir}
+Libs: -L${libdir} -lXft

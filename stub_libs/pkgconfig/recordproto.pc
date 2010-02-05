@@ -1,0 +1,9 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+ 
+Name: RecordProto
+Description: Record extension headers
+Version: 1.0.1
+Cflags: -I${includedir}

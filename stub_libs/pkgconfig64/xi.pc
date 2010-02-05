@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/opt/lsb/lib64
+includedir=/opt/lsb/include
+
+Name: Xi
+Description: X Input Extension Library
+Version: 1.0.1
+Requires: inputproto
+Cflags: -I${includedir}
+Libs: -L${libdir} -lXi

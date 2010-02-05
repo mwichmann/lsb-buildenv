@@ -1,0 +1,9 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+ 
+Name: XExtProto
+Description: XExt extension headers
+Version: 6.9.0
+Cflags: -I${includedir}
