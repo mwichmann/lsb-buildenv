@@ -1,10 +1,10 @@
 #! /bin/sh
 
-prefix="/opt/lsb"
-exec_prefix="/opt/lsb"
-libdir="/opt/lsb/lib"
-includedir="/opt/lsb/include"
-version="1.2.8"
+prefix=/opt/lsb
+exec_prefix=/opt/lsb
+libdir=/opt/lsb/lib
+includedir=/opt/lsb/include
+version=1.2.8
 freetypelibs="-lfreetype -lz  "
 freetypecflags="-I/opt/lsb/include/freetype  "
 fontconfiglibs="-lfontconfig  "
