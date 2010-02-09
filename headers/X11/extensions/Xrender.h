@@ -411,6 +411,9 @@ extern "C" {
 						int n);
     extern void XRenderSetPictureClipRegion(Display * dpy, Picture picture,
 					    Region r);
+    extern void XRenderSetPictureFilter(Display * dpy, Picture picture,
+					const char *filter,
+					XFixed * params, int nparams);
     extern void XRenderSetPictureTransform(Display * dpy, Picture picture,
 					   XTransform * transform);
     extern int XRenderSetSubpixelOrder(Display * dpy, int screen,
