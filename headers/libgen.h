@@ -26,6 +26,7 @@ extern "C" {
 /* Function prototypes */
 
 #if __LSB_VERSION__ < 32
+    /* Binary basename symbol does not implement POSIX-conforming behavior, __xpg_basename should be used instead. Consider building the application in LSB mode. */
     extern char *basename(const char *__filename) LSB_DECL_DEPRECATED;
 #endif				/* __LSB_VERSION__ < 3.2 */
 

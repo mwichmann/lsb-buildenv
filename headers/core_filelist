@@ -260,6 +260,7 @@ netinet/icmp6.h
 netinet/igmp.h
 netinet/in_systm.h
 netinet/ip_icmp.h
+X11/cursorfont.h
 linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
