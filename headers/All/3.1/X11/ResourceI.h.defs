@@ -1,0 +1,7 @@
+
+#define _XtresourceI_h
+#define StringToClass(string)	XrmStringToQuark(string)
+#define StringToName(string)	XrmStringToQuark(string)
+#define StringToQuark(string)	XrmStringToQuark(string)
+
+extern void _XtCopyFromArg(XtArgVal, char *, unsigned int);
