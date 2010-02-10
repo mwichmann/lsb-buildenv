@@ -678,6 +678,12 @@ ALSA_0.9 {
   snd_timer_read;
   snd_timer_start;
   snd_timer_status;
+  snd_timer_status_free;
+  snd_timer_status_get_lost;
+  snd_timer_status_get_overrun;
+  snd_timer_status_get_queue;
+  snd_timer_status_get_resolution;
+  snd_timer_status_malloc;
   snd_timer_stop;
   snd_config;
   snd_seq_event_types;

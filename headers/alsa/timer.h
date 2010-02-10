@@ -97,6 +97,18 @@ extern "C" {
     extern int snd_timer_status(snd_timer_t * handle,
 				snd_timer_status_t * status);
     extern int snd_timer_stop(snd_timer_t * handle);
+#if __LSB_VERSION__ >= 41
+    extern void snd_timer_status_free(snd_timer_status_t * obj);
+    extern long int snd_timer_status_get_lost(snd_timer_status_t * status);
+    extern long int snd_timer_status_get_overrun(snd_timer_status_t *
+						 status);
+    extern long int snd_timer_status_get_queue(snd_timer_status_t *
+					       status);
+    extern long int snd_timer_status_get_resolution(snd_timer_status_t *
+						    status);
+    extern int snd_timer_status_malloc(snd_timer_status_t * *ptr);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif
