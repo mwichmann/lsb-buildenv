@@ -245,6 +245,7 @@ X11/Xprotostr.h
 X11/Xosdefs.h
 netinet/ip6.h
 X11/RectObjP.h
+X11/ResourceI.h
 X11/extensions/XKBstr.h
 X11/extensions/XKB.h
 X11/extensions/XKBbells.h

@@ -284,6 +284,7 @@ BASE/include/X11/Object.h
 BASE/include/X11/ObjectP.h
 BASE/include/X11/RectObj.h
 BASE/include/X11/RectObjP.h
+BASE/include/X11/ResourceI.h
 BASE/include/X11/SM/SM.h
 BASE/include/X11/SM/SMlib.h
 BASE/include/X11/SM/SMproto.h
@@ -306,6 +307,7 @@ BASE/include/X11/Xproto.h
 BASE/include/X11/Xprotostr.h
 BASE/include/X11/Xresource.h
 BASE/include/X11/Xutil.h
+BASE/include/X11/cursorfont.h
 BASE/include/X11/extensions/XEVI.h
 BASE/include/X11/extensions/XEVIstr.h
 BASE/include/X11/extensions/XI.h
