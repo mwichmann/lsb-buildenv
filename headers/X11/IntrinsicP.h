@@ -17,7 +17,15 @@ extern "C" {
 #define XtVersionDontCheck	0
 #define XT_VERSION	11
 #define XT_REVISION	6
+#define XtExposeNoCompress	((XtEnum)False)
+#define XtExposeCompressSeries	((XtEnum)True)
+#define XtExposeGraphicsExpose	0x10
+#define XtExposeGraphicsExposeMerged	0x20
+#define XtExposeNoExpose	0x40
+#define XtExposeNoRegion	0x80
 #define _XtintrinsicP_h	1
+#define XtExposeCompressMultiple	2
+#define XtExposeCompressMaximal	3
 #if __LSB_VERSION__ >= 40
 #define XtCheckSubclass(w,widget_class,message)
 #endif				/* __LSB_VERSION__ >= 4.0 */
