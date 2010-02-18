@@ -9,12 +9,29 @@ BASE_PATH ?=\"$(INSTALL_ROOT)\"
 CFLAGS=-g -Wall -DBASE_PATH=$(BASE_PATH)
 CXXFLAGS=$(CFLAGS)
 EXTRA_CFLAGS=-fPIC
-LSB_VERSION ?= "3.0,3.1,3.2,4.0,4.1,5.0"
-LSB_VERSIONS=3.0 3.1 3.2 4.0 4.1 5.0
+DBOPTS = -h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
+
+# Store released and devel versions separately.
+RELEASED_ONLY_QUERY = AND LVreleased='Yes'
+
+LSB_VERSIONS=$(shell cat lsb_versions)
+
+ifndef SKIP_DEVEL_VERSIONS
+LSB_DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
+endif
+
+LSB_ALL_VERSIONS=$(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS)
+LSB_VERSION=$(shell echo $(LSB_ALL_VERSIONS) | sed 's/ /,/g')
 
 all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 
-gensrc: lsbcc_libs.h lsbcc_version.h
+gensrc: lsb_versions lsb_devel_versions lsbcc_libs.h lsbcc_version.h
+
+lsb_versions:
+	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
+
+lsb_devel_versions:
+	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
 lsbcc_libs.h:
 	./mk_lsbcc_libs.pl $(LSB_VERSION) > lsbcc_libs.h
