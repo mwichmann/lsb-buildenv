@@ -35,6 +35,8 @@ LSB_COMPILE_FOR_ARCH := `case \`uname -m\` in \
 	echo Unknown; \
 	esac`
 
+RELEASED_ONLY_QUERY = AND LVreleased='Yes'
+
 all: libs
 
 core_filelist_% desktop_filelist_%:
@@ -42,8 +44,8 @@ core_filelist_% desktop_filelist_%:
 
 # Desktop libs appeared in 3.1
 lsb_versions:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0'" | grep -v LVvalue > lsb_versions
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.1'" | grep -v LVvalue > lsb_desktop_versions
+	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
+	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.1' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_desktop_versions
 
 # only need to depend on one filelist, the rule above will gen them all
 gensrc: dbfiles core_filelist_3.0
