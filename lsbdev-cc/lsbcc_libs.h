@@ -177,11 +177,129 @@ char *lsb_libs_40[] = {
 	"z",
 NULL
 };
+char *lsb_libs_41[] = {
+	"GL",
+	"GLU",
+	"ICE",
+	"QtCore",
+	"QtGui",
+	"QtNetwork",
+	"QtOpenGL",
+	"QtSql",
+	"QtSvg",
+	"QtXml",
+	"SM",
+	"X11",
+	"Xext",
+	"Xft",
+	"Xi",
+	"Xrender",
+	"Xt",
+	"Xtst",
+	"atk-1.0",
+	"c",
+	"cairo",
+	"crypt",
+	"cups",
+	"cupsimage",
+	"dl",
+	"fontconfig",
+	"freetype",
+	"gcc_s",
+	"gdk-x11-2.0",
+	"gdk_pixbuf-2.0",
+	"gdk_pixbuf_xlib-2.0",
+	"glib-2.0",
+	"gmodule-2.0",
+	"gobject-2.0",
+	"gthread-2.0",
+	"gtk-x11-2.0",
+	"jpeg",
+	"m",
+	"ncurses",
+	"nspr4",
+	"nss3",
+	"pam",
+	"pango-1.0",
+	"pangocairo-1.0",
+	"pangoft2-1.0",
+	"pangoxft-1.0",
+	"png12",
+	"png",
+	"pthread",
+	"qt-mt",
+	"rt",
+	"ssl3",
+	"util",
+	"xml2",
+	"z",
+NULL
+};
+char *lsb_libs_50[] = {
+	"GL",
+	"GLU",
+	"ICE",
+	"QtCore",
+	"QtGui",
+	"QtNetwork",
+	"QtOpenGL",
+	"QtSql",
+	"QtSvg",
+	"QtXml",
+	"SM",
+	"X11",
+	"Xext",
+	"Xft",
+	"Xi",
+	"Xrender",
+	"Xt",
+	"Xtst",
+	"atk-1.0",
+	"c",
+	"cairo",
+	"crypt",
+	"cups",
+	"cupsimage",
+	"dl",
+	"fontconfig",
+	"freetype",
+	"gcc_s",
+	"gdk-x11-2.0",
+	"gdk_pixbuf-2.0",
+	"gdk_pixbuf_xlib-2.0",
+	"glib-2.0",
+	"gmodule-2.0",
+	"gobject-2.0",
+	"gthread-2.0",
+	"gtk-x11-2.0",
+	"jpeg",
+	"m",
+	"ncurses",
+	"nspr4",
+	"nss3",
+	"pam",
+	"pango-1.0",
+	"pangocairo-1.0",
+	"pangoft2-1.0",
+	"pangoxft-1.0",
+	"png12",
+	"png",
+	"pthread",
+	"qt-mt",
+	"rt",
+	"ssl3",
+	"util",
+	"xml2",
+	"z",
+NULL
+};
 char **lsb_libs[] = {
 	lsb_libs_30,
 	lsb_libs_31,
 	lsb_libs_32,
 	lsb_libs_40,
+	lsb_libs_41,
+	lsb_libs_50,
 	NULL
 };
 
@@ -229,11 +347,35 @@ lsb_lib_modules_t lsb_modules_40[] = {
 	{"Multimedia", lsb_Multimedia_libs_40 },
 };
 
+char *lsb_Multimedia_libs_41[] = {
+	"asound",
+	NULL
+};
+
+#define lsb_num_modules_41 1
+
+lsb_lib_modules_t lsb_modules_41[] = {
+	{"Multimedia", lsb_Multimedia_libs_41 },
+};
+
+char *lsb_Multimedia_libs_50[] = {
+	"asound",
+	NULL
+};
+
+#define lsb_num_modules_50 1
+
+lsb_lib_modules_t lsb_modules_50[] = {
+	{"Multimedia", lsb_Multimedia_libs_50 },
+};
+
 lsb_lib_modules_t *lsb_modules[] = {
 	lsb_modules_30,
 	lsb_modules_31,
 	lsb_modules_32,
 	lsb_modules_40,
+	lsb_modules_41,
+	lsb_modules_50,
 	NULL
 };
 
@@ -242,6 +384,8 @@ int lsb_num_modules[] = {
 	lsb_num_modules_31,
 	lsb_num_modules_32,
 	lsb_num_modules_40,
+	lsb_num_modules_41,
+	lsb_num_modules_50,
 	0
 };
 
@@ -277,11 +421,35 @@ lsb_lib_modules_t lsb_deprecated_modules_40[] = {
 	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_40 },
 };
 
+char *lsb_Toolkit_Qt3_libs_41[] = {
+	"qt-mt",
+	NULL
+};
+
+#define lsb_num_deprecated_modules_41 1
+
+lsb_lib_modules_t lsb_deprecated_modules_41[] = {
+	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_41 },
+};
+
+char *lsb_Toolkit_Qt3_libs_50[] = {
+	"qt-mt",
+	NULL
+};
+
+#define lsb_num_deprecated_modules_50 1
+
+lsb_lib_modules_t lsb_deprecated_modules_50[] = {
+	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_50 },
+};
+
 lsb_lib_modules_t *lsb_deprecated_modules[] = {
 	lsb_deprecated_modules_30,
 	lsb_deprecated_modules_31,
 	lsb_deprecated_modules_32,
 	lsb_deprecated_modules_40,
+	lsb_deprecated_modules_41,
+	lsb_deprecated_modules_50,
 	NULL
 };
 
@@ -290,6 +458,8 @@ int lsb_num_deprecated_modules[] = {
 	lsb_num_deprecated_modules_31,
 	lsb_num_deprecated_modules_32,
 	lsb_num_deprecated_modules_40,
+	lsb_num_deprecated_modules_41,
+	lsb_num_deprecated_modules_50,
 	0
 };
 
@@ -305,6 +475,12 @@ inline int get_version_index( char* vername ) {
 	}
 	if( strcmp(vername, "4.0") == 0 ) {
 		 return 3;
+	}
+	if( strcmp(vername, "4.1") == 0 ) {
+		 return 4;
+	}
+	if( strcmp(vername, "5.0") == 0 ) {
+		 return 5;
 	}
 	else {
 		return -1;

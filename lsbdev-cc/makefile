@@ -18,6 +18,9 @@ LSB_VERSIONS=$(shell cat lsb_versions)
 
 ifndef SKIP_DEVEL_VERSIONS
 LSB_DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
+DEFAULT_LSB_VERSION=$(shell cat lsb_devel_versions | head -n 1)
+else
+DEFAULT_LSB_VERSION=$(shell cat lsb_versions | tail -n 1)
 endif
 
 LSB_ALL_VERSIONS=$(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS)
@@ -37,7 +40,7 @@ lsbcc_libs.h:
 	./mk_lsbcc_libs.pl $(LSB_VERSION) > lsbcc_libs.h
 
 lsbcc_version.h:
-	./mk_lsbcc_version.pl $(LSB_VERSION) > lsbcc_version.h
+	./mk_lsbcc_version.pl $(LSB_VERSION) $(DEFAULT_LSB_VERSION) > lsbcc_version.h
 
 $(LSBCC_OBJS): lsbcc_libs.h lsbcc_version.h
 

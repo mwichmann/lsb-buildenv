@@ -93,8 +93,6 @@ struct argvgroup *gccstartargs;
 
 int lsbccmode=LSBCC;
 
-#define DEFAULT_LSB_VERSION "40"
-
 /*
  * Set the default names of the compiler to call and the paths
  * to LSB headers and libraries.  These can be changed through
@@ -109,7 +107,7 @@ char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
 char libpath[PATH_MAX];
 /* 'Normal' version name */
-char *lsbcc_lsbversion="4.0";
+char *lsbcc_lsbversion=DEFAULT_LSB_VERSION;
 /* Version name with dot removed */
 char *lsbversion_option;
 /* Index in the lsb_libs array corresponding to the target LSB version */
