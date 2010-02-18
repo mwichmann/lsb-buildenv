@@ -7,9 +7,8 @@ LSB_SUPPORTED_ARCHS = IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 LSB_VERSIONS := $(shell cat lsb_versions)
 LSB_DESKTOP_VERSIONS := $(shell cat lsb_desktop_versions)
 
-ifdef USE_DEVEL_VERSIONS
-LSB_VERSIONS += $(shell cat lsb_devel_versions)
-LSB_DESKTOP_VERSIONS += $(shell cat lsb_devel_versions)
+ifndef SKIP_DEVEL_VERSIONS
+LSB_DEVEL_VERSIONS := $(shell cat lsb_devel_versions)
 endif
 
 # Determine arch to compile for from uname
@@ -62,32 +61,32 @@ lsb_devel_versions:
 gensrc: dbfiles core_filelist_3.0
 
 dbfiles: lsb_versions lsb_desktop_versions lsb_devel_versions $(foreach version,$(LSB_VERSIONS),core_filelist_$(version) desktop_filelist_$(version))
-	for version in $(LSB_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
 
 install: install-core install-desktop
 
 install-core: core-libs
-	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-core ); done
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-core ); done
 
 install-desktop: desktop-libs
-	for version in $(LSB_DESKTOP_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
+	for version in $(LSB_DESKTOP_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
 
 libs: core-libs
 
 core-libs:
-	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) core-libs ); done
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) core-libs ); done
 
 desktop-libs:
-	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) desktop-libs ); done
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) desktop-libs ); done
 
 # Distclean means will need database to rebuild
 distclean: 
-	for version in $(LSB_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ( cd $$version/$$arch && $(MAKE) distclean ); done; done;
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ( cd $$version/$$arch && $(MAKE) distclean ); done; done;
 	rm -f core_filelist_* desktop_filelist_* lsb_versions lsb_desktop_versions lsb_devel_versions
 
 # Only remove compiler generated files
 clean:
-	for version in $(LSB_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) clean ); done
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) clean ); done
 
 .PHONY: dbfiles
 
