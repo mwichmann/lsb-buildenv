@@ -60,6 +60,7 @@ EXPORT_TAG=--revision=$(OFFICIAL_RELEASE)
 else
 VERSION_SUFFIX=.$(ISO_DATE)
 EXPORT_TAG=
+USE_DEVEL_VERSIONS=yes
 endif
 
 # Get RPM configuration information

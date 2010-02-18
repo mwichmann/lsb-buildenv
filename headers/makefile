@@ -10,8 +10,6 @@ ARCHVER = $(foreach ver,$(LSB_VERSIONS),defs-$(arch)_$(ver))
 DATADEFS := $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(ARCHVER))
 #DATADEFS := $(foreach archver,$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVvalue>='3.0'" | grep -v Aname | sed s/\\t/_/g),headers-$(archver))
 
-RELEASED_ONLY_QUERY = AND LVreleased='Yes'
-
 all: 
 
 gensrc: lsb_versions core_filelist desktop_filelist headers datadefs
@@ -30,7 +28,7 @@ core_filelist desktop_filelist:
 	../mkfilelists --headers
 
 lsb_versions:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
+	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.0'" | grep -v LVvalue > lsb_versions
 
 lsb_devel_versions:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
