@@ -4,12 +4,20 @@
 #  
 # Copyright (C) 2006, 2007 Linux Foundation
 
-$version = $ARGV[0];
-$default = $ARGV[1];
-if ( $version eq '' ) {
-    printf("$ARGV[-1] <lsb version> <default lsb version>\n");
-    exit(-1);
-}
+open(my $lsbfile, "lsb_versions");
+@lsbversions = <$lsbfile>;
+close $lsbfile;
+chomp @lsbversions;
+
+open(my $lsbdevfile, "lsb_devel_versions");
+@lsbdevversions = <$lsbdevfile>;
+close $lsbdevfile;
+chomp @lsbdevversions;
+
+$version = join(",", @lsbversions);
+$devversion = join(",", @lsbversions, @lsbdevversions);
+$default = $lsbversions[$#lsbversions];
+$devdefault = $lsbdevversions[0];
 
 print <<HEADER;
 #ifndef LSBCC_VERSION_H
@@ -17,9 +25,19 @@ print <<HEADER;
 
 /* This is a generated file, do not edit */
 
+#ifdef SKIP_DEVEL_VERSIONS
+
 #define DEFAULT_LSB_VERSION "$default"
 
 static char lsbcc_lsb_version [] = "LSB version $version";
+
+#else
+
+#define DEFAULT_LSB_VERSION "$devdefault"
+
+static char lsbcc_lsb_version [] = "LSB version $devversion";
+
+#endif /* SKIP_DEVEL_VERSIONS */
 
 #endif
 HEADER

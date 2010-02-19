@@ -15,16 +15,11 @@ DBOPTS = -h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 RELEASED_ONLY_QUERY = AND LVreleased='Yes'
 
 LSB_VERSIONS=$(shell cat lsb_versions)
-
-ifndef SKIP_DEVEL_VERSIONS
 LSB_DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
-DEFAULT_LSB_VERSION=$(shell cat lsb_devel_versions | head -n 1)
-else
-DEFAULT_LSB_VERSION=$(shell cat lsb_versions | tail -n 1)
-endif
 
-LSB_ALL_VERSIONS=$(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS)
-LSB_VERSION=$(shell echo $(LSB_ALL_VERSIONS) | sed 's/ /,/g')
+ifdef SKIP_DEVEL_VERSIONS
+CFLAGS += -DSKIP_DEVEL_VERSIONS
+endif
 
 all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 
@@ -37,10 +32,10 @@ lsb_devel_versions:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
 lsbcc_libs.h:
-	./mk_lsbcc_libs.pl $(LSB_VERSION) > lsbcc_libs.h
+	./mk_lsbcc_libs.pl > lsbcc_libs.h
 
 lsbcc_version.h:
-	./mk_lsbcc_version.pl $(LSB_VERSION) $(DEFAULT_LSB_VERSION) > lsbcc_version.h
+	./mk_lsbcc_version.pl > lsbcc_version.h
 
 $(LSBCC_OBJS): lsbcc_libs.h lsbcc_version.h
 

@@ -4,14 +4,15 @@ use DBI;
 
 use Env qw(LSBUSER LSBDBPASSWD LSBDB LSBDBHOST);
 
-$lsbversion = $ARGV[0];
-if ($lsbversion eq '') {
-    print STDERR "Usage: $0 <lsb version(s)>\n";
-    print STDERR "    LSB versions should be comma-separated.\n";
-    exit(-1);
-}
+open(my $lsbfile, "lsb_versions");
+@lsbversions = <$lsbfile>;
+close $lsbfile;
+chomp @lsbversions;
 
-@lsbversions = sort split(/,/, $lsbversion);
+open(my $lsbdevfile, "lsb_devel_versions");
+@lsbdevversions = <$lsbdevfile>;
+close $lsbdevfile;
+chomp @lsbdevversions;
 
 $dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, $LSBDBPASSWD)
     or die "Couldn't connect to database: ".DBI->errstr;
@@ -29,7 +30,7 @@ typedef struct {
 
 HEADER
 
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     print "char *lsb_libs_".$vername."[] = {\n";
@@ -61,7 +62,7 @@ foreach $version (@lsbversions) {
 }
 
 print "char **lsb_libs[] = {\n";
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     print "\tlsb_libs_$vername,\n";
@@ -69,7 +70,7 @@ foreach $version (@lsbversions) {
 print "\tNULL\n};\n\n";
 
 # optional/trial-use modules
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     @modules = ();
@@ -128,7 +129,7 @@ foreach $version (@lsbversions) {
 }
 
 print "lsb_lib_modules_t *lsb_modules[] = {\n";
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     print "\tlsb_modules_$vername,\n";
@@ -136,7 +137,7 @@ foreach $version (@lsbversions) {
 print "\tNULL\n};\n\n";
 
 print "int lsb_num_modules[] = {\n";
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     print "\tlsb_num_modules_$vername,\n";
@@ -144,7 +145,7 @@ foreach $version (@lsbversions) {
 print "\t0\n};\n\n";
 
 # deprecated modules
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     @modules = ();
@@ -206,7 +207,7 @@ foreach $version (@lsbversions) {
 }
 
 print "lsb_lib_modules_t *lsb_deprecated_modules[] = {\n";
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     print "\tlsb_deprecated_modules_$vername,\n";
@@ -214,7 +215,7 @@ foreach $version (@lsbversions) {
 print "\tNULL\n};\n\n";
 
 print "int lsb_num_deprecated_modules[] = {\n";
-foreach $version (@lsbversions) {
+foreach $version (@lsbversions, @lsbdevversions) {
     $vername = $version;
     $vername =~ s/\.//;
     print "\tlsb_num_deprecated_modules_$vername,\n";
@@ -229,6 +230,14 @@ foreach $version (@lsbversions) {
     print "\t}\n";
     $index++;
 }
+print "#ifndef SKIP_DEVEL_VERSIONS\n";
+foreach $version (@lsbdevversions) {
+    print "\tif( strcmp(vername, \"$version\") == 0 ) {\n";
+    print "\t\t return $index;\n";
+    print "\t}\n";
+    $index++;
+}
+print "#endif /* SKIP_DEVEL_VERSIONS */\n";
 print "\telse {\n";
 print "\t\treturn -1;\n";
 print "\t}\n";
