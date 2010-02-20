@@ -40,7 +40,7 @@ cups_serverroot=/etc/opt/lsb/cups
 # flags for C++ compiler:
 CFLAGS=""
 LDFLAGS="-Wl,-rpath,/opt/lsb/lib"
-LIBS="-lssl -lcrypto  -lnsl "
+LIBS="-lssl -lcrypto "
 IMGLIBS="-ltiff -ljpeg -lpng -lm -lz"
 
 if test $includedir != /opt/lsb/include; then
