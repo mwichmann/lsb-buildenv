@@ -19,6 +19,9 @@ LSB_DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
 
 ifdef SKIP_DEVEL_VERSIONS
 CFLAGS += -DSKIP_DEVEL_VERSIONS
+LSB_ALL_VERSIONS=$(LSB_VERSIONS)
+else
+LSB_ALL_VERSIONS=$(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS)
 endif
 
 all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
@@ -67,7 +70,7 @@ install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 	install lsbcc.1 $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1/lsbcc.1
 	install lsbcc.1 $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1/lsbc++.1
 	install lsbcc.1 $(DESTDIR)/$(INSTALL_ROOT)/$(MANDIR)/man1/lsbcpp.1
-	for version in $(LSB_VERSIONS); do  \
+	for version in $(LSB_ALL_VERSIONS); do  \
 	  install -D libgcc34compat.a \
 	  $(DESTDIR)/$(INSTALL_ROOT)/$(LIBDIR)-$$version/libgcc34compat.a; \
 	  install -D besteffort.o \
