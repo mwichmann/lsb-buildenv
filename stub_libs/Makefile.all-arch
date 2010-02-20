@@ -1,6 +1,11 @@
 # Arch independent components for creating stub libraries
 
-DEFAULT_VERSION := $(shell cat ../../LSB_VERSION)
+ifdef SKIP_DEVEL_VERSIONS
+DEFAULT_VERSION := $(shell tail -n 1 ../../lsb_versions)
+else
+DEFAULT_VERSION := $(shell head -n 1 ../../lsb_devel_versions)
+endif
+
 LSB_VERSION := $(shell basename "`cd ../ && pwd`")
 CORE_STUBLIBS := $(shell cat ../../core_filelist_$(LSB_VERSION))
 DESKTOP_STUBLIBS := $(shell cat ../../desktop_filelist_$(LSB_VERSION))

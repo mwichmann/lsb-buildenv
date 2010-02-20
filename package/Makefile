@@ -43,15 +43,6 @@ RPM_BINARY_BASE=$(FULL_PACKAGE_BASE)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rp
 RPM_BINARY_DESKTOP=$(FULL_PACKAGE_DESKTOP)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_SOURCE_NAME=$(FULL_PACKAGE_NAME)-$(RPM_PACKAGE_RELEASE).src.rpm
 
-# Supply default LSBVERSION (Version of lsb spec against which it is built)
-LSBVERSION=4.0
-
-# True LSB version for multiversion support (affects build-base, build-desktop)
-TRUELSBVERSION=4.0
-
-# Get value of RPM_PACKAGE_VERSION from LSBVERSION.
-RPM_PACKAGE_VERSION=$(LSBVERSION)
-
 # Handle different version generation for daily snapshots than official builds
 # OFFICIAL_RELEASE should be set to the bzr tag to use for exporting
 ifdef OFFICIAL_RELEASE
@@ -62,6 +53,19 @@ else
 VERSION_SUFFIX=.$(ISO_DATE)
 EXPORT_TAG=
 endif
+
+# Supply default LSBVERSION (Version of lsb spec against which it is built)
+LSBVERSION=4.0
+
+# True LSB version for multiversion support (affects build-base, build-desktop)
+ifdef SKIP_DEVEL_VERSIONS
+TRUELSBVERSION := $(shell tail -n 1 ../stub_libs/lsb_versions)
+else
+TRUELSBVERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
+endif
+
+# Get value of RPM_PACKAGE_VERSION from LSBVERSION.
+RPM_PACKAGE_VERSION=$(LSBVERSION)
 
 # Get RPM configuration information
 # NOTE: RPM_TMP_BUILD_DIR is deleted after the rpm build is completed!!!
