@@ -76,9 +76,9 @@ install-core: core-libs
 	sed 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/cups-config > \
         $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
 	chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
-	# Create symlink to libs in the most recent LSB version.
+	# Create symlink to libs in the default LSB version.
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
-	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -fr ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
+	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -fr ./$(LIBDIR) && ln -s ./$(LIBDIR) ./$(LIBDIR)-$(LSB_VERSION)
 endif
 
 install-desktop: desktop-libs
