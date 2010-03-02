@@ -30,7 +30,7 @@ Summary: LSB Build environment base package
 Group: Development/Tools
 Obsoletes: lsbdev-base < 3.0
 Conflicts: lsbdev-base
-Requires: lsb-setup
+Requires: lsb-setup > 4.0.0-3
 AutoReqProv: no
 %description base
 The LSB Build environment base package provides stub libraries and header
