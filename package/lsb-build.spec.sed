@@ -103,6 +103,9 @@ rm $RPM_BUILD_ROOT/opt/lsb/%xlib-3.0/libpng.so
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
 cp package/README-cc $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc/README
+for manpage in lsbcc.1 lsbc++.1 lsbcpp.1; do
+  gzip -9 $RPM_BUILD_ROOT/opt/lsb/man/man1/$manpage
+done
 %ifarch ppc 
 for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install lsbdev-cc/crti/crti.o "$i"; done
 %endif
@@ -490,9 +493,9 @@ sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pk
 /opt/lsb/%xlib-4.1/libgcc34compat.a
 /opt/lsb/%xlib-5.0/besteffort.o
 /opt/lsb/%xlib-5.0/libgcc34compat.a
-/opt/lsb/man/man1/lsbc++.1
-/opt/lsb/man/man1/lsbcc.1
-/opt/lsb/man/man1/lsbcpp.1
+/opt/lsb/man/man1/lsbc++.1.gz
+/opt/lsb/man/man1/lsbcc.1.gz
+/opt/lsb/man/man1/lsbcpp.1.gz
   
 %clean
 rm -rf $RPM_BUILD_ROOT
