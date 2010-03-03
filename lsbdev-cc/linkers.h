@@ -9,7 +9,7 @@
 #define NATIVE_LINKER "/lib/ld.so.1"
 #elif __powerpc64__
 #define LSB_LINKER "/lib64/ld-lsb-ppc64.so.3"
-#define NATIVE_LINKER "/lib/ld.so.1"
+#define NATIVE_LINKER "/lib64/ld64.so.1"
 #elif __ia64__
 #define LSB_LINKER "/lib/ld-lsb-ia64.so.3"
 #define NATIVE_LINKER "/lib/ld-linux-ia64.so.2"
