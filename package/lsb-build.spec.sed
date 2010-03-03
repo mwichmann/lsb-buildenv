@@ -30,7 +30,7 @@ Summary: LSB Build environment base package
 Group: Development/Tools
 Obsoletes: lsbdev-base < 3.0
 Conflicts: lsbdev-base
-Requires: lsb-setup
+Requires: lsb-setup > 4.0.0-3
 AutoReqProv: no
 %description base
 The LSB Build environment base package provides stub libraries and header
@@ -103,6 +103,9 @@ rm $RPM_BUILD_ROOT/opt/lsb/%xlib-3.0/libpng.so
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
 cp package/README-cc $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc/README
+for manpage in lsbcc.1 lsbc++.1 lsbcpp.1; do
+  gzip -9 $RPM_BUILD_ROOT/opt/lsb/man/man1/$manpage
+done
 %ifarch ppc 
 for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install lsbdev-cc/crti/crti.o "$i"; done
 %endif
@@ -110,6 +113,14 @@ for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install lsbdev-cc/crti/crti.o "$i"; do
 # before leaving, we have to fix up the file lists:
 sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/core_pkglist > core_pkglist
 sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pkglist
+
+%pre base
+for lib in lib lib64; do
+  if [ -L /opt/lsb/$lib-4.0 ]; then
+    rm -f /opt/lsb/$lib-4.0
+    rm -rf /opt/lsb/$lib
+  fi
+done
 
 %files base -f core_pkglist
 %defattr(-,root,root)
@@ -490,9 +501,9 @@ sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pk
 /opt/lsb/%xlib-4.1/libgcc34compat.a
 /opt/lsb/%xlib-5.0/besteffort.o
 /opt/lsb/%xlib-5.0/libgcc34compat.a
-/opt/lsb/man/man1/lsbc++.1
-/opt/lsb/man/man1/lsbcc.1
-/opt/lsb/man/man1/lsbcpp.1
+/opt/lsb/man/man1/lsbc++.1.gz
+/opt/lsb/man/man1/lsbcc.1.gz
+/opt/lsb/man/man1/lsbcpp.1.gz
   
 %clean
 rm -rf $RPM_BUILD_ROOT
