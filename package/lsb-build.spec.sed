@@ -65,8 +65,8 @@ to help build LSB conforming applications.
 %build
 # (sb) bug 2487 - we need to bootstrap the build on systems without lsbcc
 # (mdw) bootstrap reworked, now cross-builds the effect of -base as well
-make INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
-make install-core INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
+make bootstrap INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
+make install-bootstrap INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
 make clean
 # now rebuild using our just-built binaries
 make CC=$RPM_BUILD_DIR/xbuild/bin/lsbcc CXX=$RPM_BUILD_DIR/xbuild/bin/lsbc++ LSBCC_LSBVERSION=%build_target INSTALL_ROOT=/opt/lsb

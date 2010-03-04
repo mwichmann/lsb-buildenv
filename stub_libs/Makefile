@@ -71,7 +71,7 @@ install-core: core-libs
 install-desktop: desktop-libs
 	for version in $(LSB_DESKTOP_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
 
-libs: core-libs
+libs: core-libs desktop-libs
 
 core-libs:
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) core-libs ); done

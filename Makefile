@@ -1,4 +1,5 @@
 SUBDIRS=headers stub_libs lsbdev-cc
+SUBDIRS_NOSTUB=headers lsbdev-cc
 
 export BINDIR=/bin
 export MANDIR=/man
@@ -10,6 +11,12 @@ export LIBDIR=/lib$(LIB64)
 all:
 	for d in $(SUBDIRS);do (cd $$d && $(MAKE) all LSBVERSION=$$LSBVERSION);done
 
+# this target is for skipping the desktop build, mostly for bootstrapping
+# a known good lsbcc
+bootstrap:
+	for d in $(SUBDIRS_NOSTUB); do (cd $$d && $(MAKE) all LSBVERSION=$$LSBVERSION); done
+	cd stub_libs && $(MAKE) core-libs LSBVERSION=$$LSBVERSION
+
 install:
 	for d in $(SUBDIRS);do (cd $$d && $(MAKE) install);done
 
@@ -18,6 +25,8 @@ install-core:
 
 install-desktop:
 	for d in $(SUBDIRS);do (cd $$d && $(MAKE) install-desktop);done
+
+install-bootstrap: install-core
 
 gensrc:
 	for d in $(SUBDIRS);do (cd $$d && $(MAKE) gensrc);done
