@@ -11,6 +11,14 @@
 #include <alsa/conf.h>
 #include <alsa/global.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -765,10 +773,12 @@ extern "C" {
 						 snd_pcm_sw_params_t *
 						 params,
 						 snd_pcm_tstamp_t val);
+    /* This function is deprecated and should not be used. The function is superfluous and can be safely dropped, since the transfer alignment always is one frame (i.e., there is none). */
     extern int snd_pcm_sw_params_set_xfer_align(snd_pcm_t * pcm,
 						snd_pcm_sw_params_t *
 						params,
-						snd_pcm_uframes_t val);
+						snd_pcm_uframes_t val)
+	LSB_DECL_DEPRECATED;
     extern size_t snd_pcm_sw_params_sizeof(void);
     extern snd_pcm_type_t snd_pcm_type(snd_pcm_t * pcm);
     extern const char *snd_pcm_type_name(snd_pcm_type_t type);
