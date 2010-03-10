@@ -29,7 +29,7 @@ The LSB Build environment including stubs, headers and compiler wrapper
 Summary: LSB Build environment base package
 Group: Development/Tools
 Obsoletes: lsbdev-base < 3.0
-Conflicts: lsbdev-base
+Conflicts: lsbdev-base, lsb-build-libbat < 1.4.1
 Requires: lsb-setup >= 4.0.1
 AutoReqProv: no
 %description base
