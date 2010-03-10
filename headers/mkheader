@@ -1066,8 +1066,8 @@ for(1..$sth->rows) {
     if( $srcth->rows ) {
         $srcentry = $srcth->fetchrow_hashref;
         $srcAppearedin = $srcentry->{'AAappearedin'};
-        $srcAwithdrawnin = $srcentry->{'AAwithdrawnin'};
-        specdb::printLsbVersionBounds('','',$srcAwithdrawnin,$srcAppearedin);
+        $srcWithdrawnin = $srcentry->{'AAwithdrawnin'};
+        specdb::printLsbVersionBounds('','',$srcWithdrawnin,$srcAppearedin);
     }
     else {
         $srcAppearedin = $srcWithdrawnin = '';
@@ -1110,6 +1110,12 @@ for(1..$sth->rows) {
     if( $entry->{'Aid'} && $entry->{'Aname'} ne "All" ) {
         print "#if ".$entry->{'Asymbol'}."\n";
         print "/* ".$entry->{'Aname'}." */\n";
+    }
+
+    if( !$entry->{'AIwithdrawnin'} and $srcAppearedin ) {
+        # In display_interface, we should treat appearence of BinOnly analogue
+        # as dissappearence of the current symbol
+        $entry->{'AIwithdrawnin'} = $srcAppearedin;
     }
 
     if( $entry->{'Ithrow'} eq "Yes" ) {

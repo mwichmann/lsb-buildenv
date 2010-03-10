@@ -1270,8 +1270,21 @@ sub display_interface($ )
         $sth2->finish;
 
         if( !$datadef ) {
-            if( $entry->{'AIdeprecatedsince'} and $entry->{'AIdeprecatedsince'} ne 'Unknown' ) {
+            # Dump LSB_DECL_DEPRECATED for deprecated symbols
+            # Enclose with conditions on __LSB_VERSION__, if necessary
+            if( $entry->{'AIdeprecatedsince'}
+                    and $entry->{'AIdeprecatedsince'} ne 'Unknown'
+                    and (!$entry->{'AIwithdrawnin'} or $entry->{'AIwithdrawnin'} gt $entry->{'AIdeprecatedsince'}) ) {
+
+                if( $entry->{'AIappearedin'} lt $entry->{'AIdeprecatedsince'} ) {
+                    $depr_ver = $entry->{'AIdeprecatedsince'};
+                    $depr_ver =~ s/\.//g;
+                    print "\n #if __LSB_VERSION__ >= ".$depr_ver."\n";
+                }
                 print " LSB_DECL_DEPRECATED";
+                if( $entry->{'AIappearedin'} lt $entry->{'AIdeprecatedsince'} ) {
+                    print "\n#endif /* __LSB_VERSION__ >= ".$depr_ver." */\n";
+                }
             }
         }
         else {

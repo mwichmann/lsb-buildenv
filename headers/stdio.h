@@ -173,12 +173,19 @@ extern "C" {
     extern FILE *stdin;
     extern FILE *stdout;
     /* Never use this function, use mkstemp or tmpfile instead. It is possible that between the time that tempnam returns a pathname, and the time that the program opens it, another program might create that pathname using open, or create it as a symbolic link. This can lead to security holes. */
-    extern char *tempnam(const char *__dir,
-			 const char *__pfx) LSB_DECL_DEPRECATED;
+    extern char *tempnam(const char *__dir, const char *__pfx)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     extern FILE *tmpfile(void);
     extern FILE *tmpfile64(void);
     /* Never use this function, use mkstemp or tmpfile instead. It is possible that between the time that tmpnam returns a pathname, and the time that the program opens it, another program might create that pathname using open, or create it as a symbolic link. This can lead to security holes. */
-    extern char *tmpnam(char *__s) LSB_DECL_DEPRECATED;
+    extern char *tmpnam(char *__s)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     extern int ungetc(int __c, FILE * __stream);
     extern int vasprintf(char **__ptr, const char *__f, va_list __arg);
     extern int vdprintf(int __fd, const char *__fmt, va_list __arg);

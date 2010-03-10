@@ -141,11 +141,17 @@ extern "C" {
     extern void endservent(void);
     /* Use getaddrinfo instead */
     extern struct hostent *gethostbyaddr(const void *__addr,
-					 socklen_t __len,
-					 int __type) LSB_DECL_DEPRECATED;
+					 socklen_t __len, int __type)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* Use getaddrinfo instead */
     extern struct hostent *gethostbyname(const char *__name)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern struct protoent *getprotobyname(const char *__name);
     extern struct protoent *getprotobynumber(int __proto);
     extern struct protoent *getprotoent(void);

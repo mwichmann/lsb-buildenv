@@ -1006,7 +1006,7 @@ extern "C" {
 			const sigset_t * __right);
 #if __LSB_VERSION__ < 32
     /* Binary sigpause symbol does not implement POSIX-conforming behavior, __xpg_sigpause should be used instead. Consider building the application in LSB mode. */
-    extern int sigpause(int __sig) LSB_DECL_DEPRECATED;
+    extern int sigpause(int __sig);
 #endif				/* __LSB_VERSION__ < 3.2 */
 
     extern int sigpending(sigset_t * __set);

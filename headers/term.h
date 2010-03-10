@@ -26,15 +26,35 @@ extern "C" {
 
     extern int putp(const char *);
     /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
-    extern int tgetent(char *, const char *) LSB_DECL_DEPRECATED;
+    extern int tgetent(char *, const char *)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
-    extern int tgetflag(char *) LSB_DECL_DEPRECATED;
+    extern int tgetflag(char *)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
-    extern int tgetnum(char *) LSB_DECL_DEPRECATED;
+    extern int tgetnum(char *)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
-    extern char *tgetstr(char *, char **) LSB_DECL_DEPRECATED;
+    extern char *tgetstr(char *, char **)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     /* Functions tgetent(), tgetflag(), tgetnum(), tgetstr() and tgoto() are provided only as a conversion aid for programs that use the termcap library. Applications should use tigetflag(), tigetnum(), tigetstr() and tparm() instead. */
-    extern char *tgoto(const char *, int, int) LSB_DECL_DEPRECATED;
+    extern char *tgoto(const char *, int, int)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     extern int tigetflag(const char *);
     extern int tigetnum(const char *);
     extern char *tigetstr(const char *);

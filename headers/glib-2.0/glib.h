@@ -2322,7 +2322,10 @@ extern "C" {
     /* g_cache_value_foreach is deprecated and should not be used in newly-written code.The reason is that it passes pointers to internal data structures to func; use g_cache_key_foreach() instead. */
     extern void g_cache_value_foreach(GCache * cache, GHFunc func,
 				      gpointer user_data)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern guint g_child_watch_add(GPid pid, GChildWatchFunc function,
 				   gpointer data);
     extern guint g_child_watch_add_full(gint priority, GPid pid,

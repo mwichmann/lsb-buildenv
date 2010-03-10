@@ -778,7 +778,10 @@ extern "C" {
 						snd_pcm_sw_params_t *
 						params,
 						snd_pcm_uframes_t val)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern size_t snd_pcm_sw_params_sizeof(void);
     extern snd_pcm_type_t snd_pcm_type(snd_pcm_t * pcm);
     extern const char *snd_pcm_type_name(snd_pcm_type_t type);

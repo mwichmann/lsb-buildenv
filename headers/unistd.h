@@ -49,16 +49,15 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 12
+#define _POSIX_FSYNC	200112
+#define _POSIX_MAPPED_FILES	200112
+#define _POSIX_MEMLOCK	200112
+#define _POSIX_MEMLOCK_RANGE	200112
+#define _POSIX_MEMORY_PROTECTION	200112
+#define _POSIX_SEMAPHORES	200112
+#define _POSIX_SHARED_MEMORY_OBJECTS	200112
+#define _POSIX_TIMERS	200112
 #define _POSIX2_VERSION	200112L
-#define _POSIX_FSYNC	200112L
-#define _POSIX_MAPPED_FILES	200112L
-#define _POSIX_MEMLOCK	200112L
-#define _POSIX_MEMLOCK_RANGE	200112L
-#define _POSIX_MEMORY_PROTECTION	200112L
-#define _POSIX_SEMAPHORES	200112L
-#define _POSIX_SHARED_MEMORY_OBJECTS	200112L
-#define _POSIX_THREAD_PROCESS_SHARED	200112L
-#define _POSIX_TIMERS	200112L
 #define _POSIX_VERSION	200112L
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
@@ -421,7 +420,11 @@ extern "C" {
     extern int getopt(int ___argc, char *const ___argv[],
 		      const char *__shortopts);
     /* This interface is deprecated. Use sysconf(_SC_GET_PAGE_SIZE) instead */
-    extern int getpagesize(void) LSB_DECL_DEPRECATED;
+    extern int getpagesize(void)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern pid_t getpgid(pid_t __pid);
     extern pid_t getpgrp(void);
     extern pid_t getpid(void);
@@ -429,7 +432,11 @@ extern "C" {
     extern pid_t getsid(pid_t __pid);
     extern uid_t getuid(void);
     /* This interface is obsolete. Use the getcwd() function */
-    extern char *getwd(char *__buf) LSB_DECL_DEPRECATED;
+    extern char *getwd(char *__buf)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern int isatty(int __fd);
     extern int lchown(const char *__file, uid_t __owner, gid_t __group);
     extern int link(const char *__from, const char *__to);

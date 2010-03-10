@@ -7223,8 +7223,11 @@ extern "C" {
     extern void gtk_binding_entry_remove(GtkBindingSet * binding_set,
 					 guint keyval,
 					 GdkModifierType modifiers);
-    extern guint gtk_binding_parse_binding(GScanner *
-					   scanner) LSB_DECL_DEPRECATED;
+    extern guint gtk_binding_parse_binding(GScanner * scanner)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern gboolean gtk_binding_set_activate(GtkBindingSet * binding_set,
 					     guint keyval,
 					     GdkModifierType modifiers,
@@ -8275,44 +8278,69 @@ extern "C" {
 					 const gchar * name);
     /* gtk_file_selection_complete is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern void gtk_file_selection_complete(GtkFileSelection * filesel,
-					    const gchar *
-					    pattern) LSB_DECL_DEPRECATED;
+					    const gchar * pattern)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_get_filename is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern const gchar *gtk_file_selection_get_filename(GtkFileSelection *
 							filesel)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_get_select_multiple is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern gboolean gtk_file_selection_get_select_multiple(GtkFileSelection
-							   *
-							   filesel)
-	LSB_DECL_DEPRECATED;
+							   * filesel)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_get_selections is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern gchar **gtk_file_selection_get_selections(GtkFileSelection *
 						     filesel)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern GType gtk_file_selection_get_type(void);
     /* gtk_file_selection_hide_fileop_buttons is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern void gtk_file_selection_hide_fileop_buttons(GtkFileSelection *
 						       filesel)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_new is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
-    extern GtkWidget *gtk_file_selection_new(const gchar *
-					     title) LSB_DECL_DEPRECATED;
+    extern GtkWidget *gtk_file_selection_new(const gchar * title)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_set_filename is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern void gtk_file_selection_set_filename(GtkFileSelection * filesel,
-						const gchar *
-						filename)
-	LSB_DECL_DEPRECATED;
+						const gchar * filename)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_set_select_multiple is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern void gtk_file_selection_set_select_multiple(GtkFileSelection *
 						       filesel,
 						       gboolean
 						       select_multiple)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_file_selection_show_fileop_buttons is deprecated and should not be used in newly-written code. GtkFileSelection has been superseded by the newer GtkFileChooser family of widgets. */
     extern void gtk_file_selection_show_fileop_buttons(GtkFileSelection *
 						       filesel)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern gboolean gtk_fixed_get_has_window(GtkFixed * fixed);
     extern GType gtk_fixed_get_type(void);
     extern void gtk_fixed_move(GtkFixed * fixed, GtkWidget * widget,
@@ -8965,9 +8993,11 @@ extern "C" {
     extern GtkWidget *gtk_menu_item_new_with_label(const gchar * label);
     extern GtkWidget *gtk_menu_item_new_with_mnemonic(const gchar * label);
     /* gtk_menu_item_remove_submenu is deprecated and should not be used in newly-written code. Use gtk_menu_item_set_submenu() instead. */
-    extern void gtk_menu_item_remove_submenu(GtkMenuItem *
-					     menu_item)
-	LSB_DECL_DEPRECATED;
+    extern void gtk_menu_item_remove_submenu(GtkMenuItem * menu_item)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern void gtk_menu_item_select(GtkMenuItem * menu_item);
     extern void gtk_menu_item_set_accel_path(GtkMenuItem * menu_item,
 					     const gchar * accel_path);
@@ -9504,11 +9534,17 @@ extern "C" {
     extern GType gtk_rc_style_get_type(void);
     extern GtkRcStyle *gtk_rc_style_new(void);
     /* gtk_rc_style_ref is deprecated and should not be used in newly-written code. Use g_object_ref() instead. */
-    extern void gtk_rc_style_ref(GtkRcStyle *
-				 rc_style) LSB_DECL_DEPRECATED;
+    extern void gtk_rc_style_ref(GtkRcStyle * rc_style)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* gtk_rc_style_unref is deprecated and should not be used in newly-written code. Use g_object_unref() instead. */
-    extern void gtk_rc_style_unref(GtkRcStyle *
-				   rc_style) LSB_DECL_DEPRECATED;
+    extern void gtk_rc_style_unref(GtkRcStyle * rc_style)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern GType gtk_rc_token_type_get_type(void);
     extern GType gtk_relief_style_get_type(void);
     extern GtkRequisition *gtk_requisition_copy(const GtkRequisition *
@@ -10594,8 +10630,11 @@ extern "C" {
     extern gboolean gtk_toolbar_get_show_arrow(GtkToolbar * toolbar);
     extern GtkToolbarStyle gtk_toolbar_get_style(GtkToolbar * toolbar);
     /* gtk_toolbar_get_tooltips is deprecated in modern GTK and should not be used in newly-written code. The toolkit-wide "gtk-enable-tooltips" property is now used instead. */
-    extern gboolean gtk_toolbar_get_tooltips(GtkToolbar *
-					     toolbar) LSB_DECL_DEPRECATED;
+    extern gboolean gtk_toolbar_get_tooltips(GtkToolbar * toolbar)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     extern GType gtk_toolbar_get_type(void);
     extern void gtk_toolbar_insert(GtkToolbar * toolbar,
 				   GtkToolItem * item, gint pos);
@@ -10613,7 +10652,10 @@ extern "C" {
     /* gtk_toolbar_set_tooltips is deprecated in modern GTK and should not be used in newly-written code. The toolkit-wide "gtk-enable-tooltips" property is now used instead. */
     extern void gtk_toolbar_set_tooltips(GtkToolbar * toolbar,
 					 gboolean enable)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     extern GType gtk_toolbar_space_style_get_type(void);
     extern GType gtk_toolbar_style_get_type(void);
     extern void gtk_toolbar_unset_style(GtkToolbar * toolbar);
@@ -11402,9 +11444,11 @@ extern "C" {
     extern void gtk_tree_view_tree_to_widget_coords(GtkTreeView *
 						    tree_view, gint tx,
 						    gint ty, gint * wx,
-						    gint *
-						    wy)
-	LSB_DECL_DEPRECATED;
+						    gint * wy)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern void gtk_tree_view_unset_rows_drag_dest(GtkTreeView *
 						   tree_view);
     extern void gtk_tree_view_unset_rows_drag_source(GtkTreeView *
@@ -11413,9 +11457,11 @@ extern "C" {
     extern void gtk_tree_view_widget_to_tree_coords(GtkTreeView *
 						    tree_view, gint wx,
 						    gint wy, gint * tx,
-						    gint *
-						    ty)
-	LSB_DECL_DEPRECATED;
+						    gint * ty)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern gboolean gtk_true(void);
     extern gpointer gtk_type_class(GtkType type);
     extern void gtk_ui_manager_add_ui(GtkUIManager * self, guint merge_id,
@@ -11626,8 +11672,11 @@ extern "C" {
     extern void gtk_widget_queue_resize_no_redraw(GtkWidget * widget);
     extern void gtk_widget_realize(GtkWidget * widget);
     /* gtk_widget_ref is deprecated and should not be used in newly-written code. Use g_object_ref() instead. */
-    extern GtkWidget *gtk_widget_ref(GtkWidget *
-				     widget) LSB_DECL_DEPRECATED;
+    extern GtkWidget *gtk_widget_ref(GtkWidget * widget)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern GdkRegion *gtk_widget_region_intersect(GtkWidget * widget,
 						  const GdkRegion *
 						  region);
@@ -11726,7 +11775,11 @@ extern "C" {
     extern void gtk_widget_unparent(GtkWidget * widget);
     extern void gtk_widget_unrealize(GtkWidget * widget);
     /* gtk_widget_unref is deprecated and should not be used in newly-written code. Use g_object_unref() instead. */
-    extern void gtk_widget_unref(GtkWidget * widget) LSB_DECL_DEPRECATED;
+    extern void gtk_widget_unref(GtkWidget * widget)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern gboolean gtk_window_activate_default(GtkWindow * window);
     extern gboolean gtk_window_activate_focus(GtkWindow * window);
     extern gboolean gtk_window_activate_key(GtkWindow * window,

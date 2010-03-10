@@ -977,7 +977,10 @@ extern "C" {
     /* This interface is obsolete. Use the pthread_attr_getstack() function */
     extern int pthread_attr_getstackaddr(const pthread_attr_t * __attr,
 					 void **__stackaddr)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern int pthread_attr_getstacksize(const pthread_attr_t * __attr,
 					 size_t * __stacksize);
     extern int pthread_attr_init(pthread_attr_t * __attr);
@@ -990,7 +993,10 @@ extern "C" {
 					  *__param);
     extern int pthread_attr_setstackaddr(pthread_attr_t * __attr,
 					 void *__stackaddr)
-	LSB_DECL_DEPRECATED;
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern int pthread_attr_setstacksize(pthread_attr_t * __attr,
 					 size_t __stacksize);
     extern int pthread_cancel(pthread_t __th);

@@ -523,9 +523,17 @@ extern "C" {
     extern long double coshl(long double);
     extern long double cosl(long double);
     /* This interface is obsolete. Use remainderf() from ISO C99 */
-    extern float dremf(float, float) LSB_DECL_DEPRECATED;
+    extern float dremf(float, float)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* This interface is obsolete. Use remainderl() from ISO C99 */
-    extern long double dreml(long double, long double) LSB_DECL_DEPRECATED;
+    extern long double dreml(long double, long double)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern double erf(double);
     extern double erfc(double);
     extern float erfcf(float);
@@ -541,11 +549,23 @@ extern "C" {
     extern float fdimf(float, float);
     extern long double fdiml(long double, long double);
     /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
-    extern int finite(double) LSB_DECL_DEPRECATED;
+    extern int finite(double)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
-    extern int finitef(float) LSB_DECL_DEPRECATED;
+    extern int finitef(float)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
-    extern int finitel(long double) LSB_DECL_DEPRECATED;
+    extern int finitel(long double)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern double floor(double);
     extern float floorf(float);
     extern long double floorl(long double);
@@ -565,11 +585,23 @@ extern "C" {
     extern float frexpf(float, int *);
     extern long double frexpl(long double, int *);
     /* This name for the interface is obsolete. Use lgamma instead */
-    extern double gamma(double) LSB_DECL_DEPRECATED;
+    extern double gamma(double)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* This name for the interface is obsolete. Use lgammaf instead */
-    extern float gammaf(float) LSB_DECL_DEPRECATED;
+    extern float gammaf(float)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     /* This name for the interface is obsolete. Use lgammal instead */
-    extern long double gammal(long double) LSB_DECL_DEPRECATED;
+    extern long double gammal(long double)
+#if __LSB_VERSION__ >= 32
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 32 */
+    ;
     extern double hypot(double, double);
     extern float hypotf(float, float);
     extern long double hypotl(long double, long double);

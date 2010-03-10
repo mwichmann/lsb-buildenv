@@ -53,8 +53,7 @@ extern "C" {
     extern char *strerror(int __errnum);
 #if __LSB_VERSION__ < 32
     /* Binary strerror_r symbol does not implement POSIX-conforming behavior, __xpg_strerror_r should be used instead. Consider building the application in LSB mode. */
-    extern char *strerror_r(int __errnum, char *__buf,
-			    size_t __buflen) LSB_DECL_DEPRECATED;
+    extern char *strerror_r(int __errnum, char *__buf, size_t __buflen);
 #endif				/* __LSB_VERSION__ < 3.2 */
 
     extern size_t strlen(const char *__s);

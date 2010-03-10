@@ -3,7 +3,7 @@ INCLUDEDIR ?= include
 
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD --disable-auto-rehash
 
-LSB_SUPPORTED_ARCHS = All IA32 IA64 PPC32 PPC64 S390 x86-64 S390X 
+LSB_SUPPORTED_ARCHS = All IA32 x86-64 IA64 PPC32 PPC64 S390 S390X 
 LSB_VERSIONS = $(shell cat lsb_versions)
 LSB_DEVEL_VERSIONS = $(shell cat lsb_devel_versions)
 ARCHVER = $(foreach ver,$(LSB_VERSIONS),defs-$(arch)_$(ver))

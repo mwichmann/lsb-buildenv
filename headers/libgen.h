@@ -27,7 +27,7 @@ extern "C" {
 
 #if __LSB_VERSION__ < 32
     /* Binary basename symbol does not implement POSIX-conforming behavior, __xpg_basename should be used instead. Consider building the application in LSB mode. */
-    extern char *basename(const char *__filename) LSB_DECL_DEPRECATED;
+    extern char *basename(const char *__filename);
 #endif				/* __LSB_VERSION__ < 3.2 */
 
     extern char *dirname(char *__path);

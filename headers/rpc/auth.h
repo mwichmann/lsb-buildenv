@@ -99,8 +99,11 @@ extern "C" {
 
     extern struct AUTH *authnone_create(void);
     /* This function was supposed to be used within the RPC's secure authentication mechanism. There should be no need for user programs to use this function. Note also that this routine was a part of the Linux/Doors-project, abandoned by now. */
-    extern int key_decryptsession(char *,
-				  union des_block *) LSB_DECL_DEPRECATED;
+    extern int key_decryptsession(char *, union des_block *)
+#if __LSB_VERSION__ >= 40
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 40 */
+    ;
     extern bool_t xdr_opaque_auth(XDR *, struct opaque_auth *);
 #ifdef __cplusplus
 }
