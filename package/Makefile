@@ -112,17 +112,38 @@ tarball: $(TARBALL)
 # Specfile generation rule
 %.spec : %.spec.sed Makefile .need_config_update
 	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
+ifdef SKIP_DEVEL_VERSIONS
+	for libdir in lib lib64; do \
+	  for version in 4.1 5.0; do \
+	    grep -v $$libdir-$$version $@ > $@.nodev; \
+	    rm -f $@; \
+	    mv $@.nodev $@; \
+	  done; \
+	done
+endif
+
+%_pruned: %
+ifdef SKIP_DEVEL_VERSIONS
+	cp $< $@
+	for version in 4.1 5.0; do \
+	    grep -v LIB-$$version $@ > $@.nodev; \
+	    rm -f $@; \
+	    mv $@.nodev $@; \
+	done
+else
+	ln -s $< $@
+endif
 
 rpm_package: $(RPM_BINARY_CC)
 
-$(RPM_BINARY_CC) $(RPM_SOURCE_NAME): $(PACKAGE).spec $(TARBALL) 
+$(RPM_BINARY_CC) $(RPM_SOURCE_NAME): $(PACKAGE).spec $(TARBALL)
 	@mkdir -p $(RPM_TMP_BUILD_DIR)/BUILD
 	@mkdir -p $(RPM_TMP_BUILD_DIR)/RPMS
 	@mkdir -p $(RPM_TMP_BUILD_DIR)/SRPMS
 ifdef SIGN_PACKAGES
-	@expect -c 'set timeout -1' -c 'spawn $(RPM_BUILD_CMD) --sign --rcfile ${RCFILELIST} --define=_sourcedir\ $(PWD) --define=buildroot\ $(RPM_BUILD_ROOT) --define=_topdir\ $(RPM_TMP_BUILD_DIR) --define=_target_cpu\ $(RPM_BUILD_ARCH) -ba $(PACKAGE).spec' -c 'expect -ex "Enter pass phrase:"' -c 'send "\n"' -c 'expect "Executing(%clean)"' -c 'expect "exit 0"' -c 'send "\n"'
+	@SKIP_DEVEL_VERSIONS=$(SKIP_DEVEL_VERSIONS) expect -c 'set timeout -1' -c 'spawn $(RPM_BUILD_CMD) --sign --rcfile ${RCFILELIST} --define=_sourcedir\ $(PWD) --define=buildroot\ $(RPM_BUILD_ROOT) --define=_topdir\ $(RPM_TMP_BUILD_DIR) --define=_target_cpu\ $(RPM_BUILD_ARCH) -ba $(PACKAGE).spec' -c 'expect -ex "Enter pass phrase:"' -c 'send "\n"' -c 'expect "Executing(%clean)"' -c 'expect "exit 0"' -c 'send "\n"'
 else
-	@$(RPM_BUILD_CMD) --rcfile ${RCFILELIST} --define="_sourcedir $(PWD)" --define=buildroot\ $(RPM_BUILD_ROOT) --define="_topdir $(RPM_TMP_BUILD_DIR)" --define="_target_cpu $(RPM_BUILD_ARCH)" -ba $(PACKAGE).spec
+	@SKIP_DEVEL_VERSIONS=$(SKIP_DEVEL_VERSIONS) $(RPM_BUILD_CMD) --rcfile ${RCFILELIST} --define="_sourcedir $(PWD)" --define=buildroot\ $(RPM_BUILD_ROOT) --define="_topdir $(RPM_TMP_BUILD_DIR)" --define="_target_cpu $(RPM_BUILD_ARCH)" -ba $(PACKAGE).spec
 endif
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_CC) .
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_BASE) .
@@ -159,6 +180,7 @@ clean:
 	rm -f $(FULL_PACKAGE_NAME_BASE).rpm
 	rm -f $(FULL_PACKAGE_NAME_DESKTOP).rpm
 	rm -rf $(FULL_PACKAGE_NAME_CLEAN)
+	rm -f core_pkglist_pruned desktop_pkglist_pruned
 
 distclean: clean
 	rm -f core_pkglist desktop_pkglist

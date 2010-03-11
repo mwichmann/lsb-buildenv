@@ -29,7 +29,7 @@ The LSB Build environment including stubs, headers and compiler wrapper
 Summary: LSB Build environment base package
 Group: Development/Tools
 Obsoletes: lsbdev-base < 3.0
-Conflicts: lsbdev-base
+Conflicts: lsbdev-base, lsb-build-libbat < 1.4.1
 Requires: lsb-setup >= 4.0.1
 AutoReqProv: no
 %description base
@@ -111,8 +111,9 @@ for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install lsbdev-cc/crti/crti.o "$i"; do
 %endif
 
 # before leaving, we have to fix up the file lists:
-sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/core_pkglist > core_pkglist
-sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist > desktop_pkglist
+(cd package && make core_pkglist_pruned && make desktop_pkglist_pruned)
+sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/core_pkglist_pruned > core_pkglist_final
+sed -e 's,BASE,/opt/lsb,' -e 's,LIB,%xlib,' package/desktop_pkglist_pruned > desktop_pkglist_final
 
 %pre base
 for lib in lib lib64; do
@@ -122,7 +123,7 @@ for lib in lib lib64; do
   fi
 done
 
-%files base -f core_pkglist
+%files base -f core_pkglist_final
 %defattr(-,root,root)
 # directories
 %dir /opt/lsb/doc/lsb-build-base
@@ -195,7 +196,7 @@ done
 /opt/lsb/%xlib-4.0/libm.so.6
 %endif
 
-%files desktop -f desktop_pkglist
+%files desktop -f desktop_pkglist_final
 %defattr(-,root,root)
 # directories
 %dir /opt/lsb/doc/lsb-build-desktop
