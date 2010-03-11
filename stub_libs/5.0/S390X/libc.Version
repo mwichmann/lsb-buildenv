@@ -403,6 +403,7 @@ GLIBC_2.2 {
   lrand48_r;
   lsearch;
   lseek;
+  lseek64;
   makecontext;
   malloc;
   mblen;
@@ -453,6 +454,7 @@ GLIBC_2.2 {
   ntohl;
   ntohs;
   open;
+  open64;
   open_memstream;
   opendir;
   openlog;
@@ -493,6 +495,8 @@ GLIBC_2.2 {
   posix_spawnattr_setsigdefault;
   posix_spawnattr_setsigmask;
   posix_spawnp;
+  pread;
+  pread64;
   pselect;
   psignal;
   ptsname;
@@ -508,6 +512,8 @@ GLIBC_2.2 {
   putwc_unlocked;
   putwchar;
   putwchar_unlocked;
+  pwrite;
+  pwrite64;
   qsort;
   raise;
   rand;

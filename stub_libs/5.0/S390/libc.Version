@@ -821,11 +821,13 @@ GLIBC_2.2 {
   getwchar;
   getwchar_unlocked;
   localeconv;
+  lseek64;
   memrchr;
   mkdtemp;
   mkstemp64;
   msgctl;
   ngettext;
+  open64;
   posix_fadvise;
   posix_fallocate;
   posix_madvise;
@@ -851,10 +853,14 @@ GLIBC_2.2 {
   posix_spawnattr_setsigdefault;
   posix_spawnattr_setsigmask;
   posix_spawnp;
+  pread;
+  pread64;
   putwc;
   putwc_unlocked;
   putwchar;
   putwchar_unlocked;
+  pwrite;
+  pwrite64;
   readdir64;
   readdir64_r;
   scandir64;

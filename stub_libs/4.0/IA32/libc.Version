@@ -745,12 +745,18 @@ GLIBC_2.1 {
   iswblank;
   key_decryptsession;
   lockf64;
+  lseek64;
   makecontext;
   mmap64;
+  open64;
   pclose;
   popen;
+  pread;
+  pread64;
   ptsname;
   pututxline;
+  pwrite;
+  pwrite64;
   sendfile;
   setrlimit64;
   setutxent;
