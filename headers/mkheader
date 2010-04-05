@@ -79,10 +79,12 @@ sub get_typelist {
     my $Query_Hid = $_[0];
     my $ignore_typedefed = $_[1];
 
+    $typelist = "0"; # initialize to non-existing Tid (not to empty value - this will simplify our life in future)
+
     #
     # This next section, which tries to determine all of the types for which
     # a dependency exists could probably be replaced by a loop that repeats until
-    # no more new type s are added during a pass.
+    # no more new types are added during a pass.
     #
 
     #
@@ -90,36 +92,33 @@ sub get_typelist {
     #
     %return_types = specdb::getReturnTypes($Query_Hid, $Aid, "All");
     while( ($k,$v) = each(%return_types) ) {
-        $type{$k} = $v;
+        $typelist.= ",".$k;
     }
 
     %param_types = specdb::getParameterTypes($Query_Hid, $Aid, "All");
     while( ($k,$v) = each(%param_types) ) {
-        $type{$k} = $v;
+        $typelist.= ",".$k;
     }
 
     #
     # Get any other type that is assigned to this header
     #
-    $select = "SELECT Tid,Tname FROM Type ";
+    $select = "SELECT DISTINCT Tid FROM Type ";
     $select.= "JOIN HeaderGroup ON Theadgroup=HGid ";
     $select.= "JOIN ArchType ON ATtid=Tid ";
     $select.= "WHERE HGheader=$Query_Hid ";
+    $select.= "AND Tid NOT IN ($typelist) ";
     $select.= "AND ( (ATappearedin > '' ";
     $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
-    $select.= "OR Tindirect='Yes' OR Tsrconly='Yes' OR Tconly='Yes' ) ";
+    $select.= "OR Tindirect='Yes' OR Tsrconly='Yes' ) ";
     print $select,"\n" if $trace;
     $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
     $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
     for(1..$sth->rows) {
         $entry = $sth->fetchrow_hashref;
-        if ($entry->{'Tid'}) {
-            $type{$entry->{'Tid'}}=1;
-        }
+        $typelist.= ",".$entry->{'Tid'};
     }
     $sth->finish;
-
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of Typedefs
@@ -136,12 +135,11 @@ sub get_typelist {
             $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
             for(1..$sth->rows) {
                 $entry = $sth->fetchrow_hashref;
-                $type{$entry->{'ATbasetype'}}=1;
+                $typelist.= ",".$entry->{'ATbasetype'};
             }
             $sth->finish;
         }
     }
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of Pointers
@@ -157,11 +155,10 @@ sub get_typelist {
         $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
         for(1..$sth->rows) {
             $entry = $sth->fetchrow_hashref;
-            $type{$entry->{'ATbasetype'}}=1;
+            $typelist.= ",".$entry->{'ATbasetype'};
         }
         $sth->finish;
     }
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of Struct/Union/Fptr members
@@ -169,17 +166,17 @@ sub get_typelist {
     if( $typelist ne "" ) {
         $select = "SELECT DISTINCT TMtypeid FROM TypeMember ";
         $select.= "WHERE TMmemberof IN ($typelist) "; # here we should process all type members on all archs
-        $select.= "AND TMtypeid NOT IN ($typelist) ";
+        $select.= "AND TMtypeid NOT IN ($typelist) "; # ... which are not gathered yet
+        $select.= "AND TMappearedin > '' ";           # ... and were included at least in one LSB version
         print $select,"\n" if $trace;
         $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
         $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
         for(1..$sth->rows) {
             $entry = $sth->fetchrow_hashref;
-            $type{$entry->{'TMtypeid'}}=1;
+            $typelist.= ",".$entry->{'TMtypeid'};
         }
         $sth->finish;
     }
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of Pointers found in Struct/Union/Fptr members
@@ -195,11 +192,10 @@ sub get_typelist {
         $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
         for(1..$sth->rows) {
             $entry = $sth->fetchrow_hashref;
-            $type{$entry->{'ATbasetype'}}=1;
+            $typelist.= ",".$entry->{'ATbasetype'};
         }
         $sth->finish;
     }
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of Typedefs found in Struct/Union/Fptr members
@@ -216,13 +212,11 @@ sub get_typelist {
             $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
             for(1..$sth->rows) {
                 $entry = $sth->fetchrow_hashref;
-                $type{$entry->{'ATbasetype'}}=1;
+                $typelist.= ",".$entry->{'ATbasetype'};
             }
             $sth->finish;
         }
     }
-
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of type we have picked up in the Struct/Union/Fptr members
@@ -237,11 +231,10 @@ sub get_typelist {
         $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
         for(1..$sth->rows) {
             $entry = $sth->fetchrow_hashref;
-            $type{$entry->{'ATbasetype'}}=1;
+            $typelist.= ",".$entry->{'ATbasetype'};
         }
         $sth->finish;
     }
-    $typelist=join ',', keys(%type);
 
     #
     # Do this once more to get nested Struct/Unions/Fptr members
@@ -249,19 +242,18 @@ sub get_typelist {
     if( !$ignore_typedefed ) {
         if( $typelist ne "" ) {
             $select = "SELECT DISTINCT TMtypeid FROM TypeMember ";
-            $select.= "WHERE TMmemberof IN ($typelist)";
+            $select.= "WHERE TMmemberof IN ($typelist) ";
             $select.= "AND TMtypeid NOT IN ($typelist) ";
+            $select.= "AND TMappearedin > '' ";
             print $select,"\n" if $trace;
             $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
             $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
             for(1..$sth->rows) {
                 $entry = $sth->fetchrow_hashref;
-                $type{$entry->{'TMtypeid'}}=1;
+                $typelist.= ",".$entry->{'TMtypeid'};
             }
             $sth->finish;
         }
-
-        $typelist=join ',', keys(%type);
 
         #
         # Get the base types of type we have picked up in the Struct/Union/Fptr members
@@ -276,12 +268,11 @@ sub get_typelist {
             $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
             for(1..$sth->rows) {
                 $entry = $sth->fetchrow_hashref;
-                $type{$entry->{'ATbasetype'}}=1;
+                $typelist.= ",".$entry->{'ATbasetype'};
             }
             $sth->finish;
         }
     }
-    $typelist=join ',', keys(%type);
 
     if( !$ignore_typedefed ) {
         if( $typelist ne "" ) {
@@ -294,12 +285,11 @@ sub get_typelist {
             $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
             for(1..$sth->rows) {
                 $entry = $sth->fetchrow_hashref;
-                $type{$entry->{'ATbasetype'}}=1;
+                $typelist.= ",".$entry->{'ATbasetype'};
             }
             $sth->finish;
         }
     }
-    $typelist=join ',', keys(%type);
 
     #
     # Get the base types of Const
@@ -315,12 +305,10 @@ sub get_typelist {
         $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
         for(1..$sth->rows) {
             $entry = $sth->fetchrow_hashref;
-            $type{$entry->{'ATbasetype'}}=1;
+            $typelist.= ",".$entry->{'ATbasetype'};
         }
+        $sth->finish;
     }
-    $sth->finish;
-
-    $typelist=join ',', keys(%type);
 
     return $typelist;
 }
@@ -337,7 +325,7 @@ $select.= "WHERE HGheader=$Hid ";
 $select.= "AND (Ttype='Class' ";
 $select.= "OR (Ttype='Struct' AND Tclass > 0 AND Tunmangled NOT LIKE '%::%') ) ";
 $select.= "AND ATappearedin > '' ";
-$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) ";
+$select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0') ";
 print $select,"\n" if $trace;
 $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
@@ -352,7 +340,8 @@ $classlist=join ',', keys(%class);
 
 if( $classlist ne "" ) {
     $select = "SELECT TMtypeid FROM TypeMember ";
-    $select.= "WHERE TMmemberof in ($classlist)";
+    $select.= "WHERE TMmemberof IN ($classlist) ";
+    $select.= "AND TMappearedin > ''";
     print $select,"\n" if $trace;
     $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
     $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
@@ -446,7 +435,7 @@ if( $typelist ne "" ) {
     $select.= "WHERE Tid IN ($typelist) ";
     $select.= "AND ( (ATappearedin > '' ";
     $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
-    $select.= "OR Tindirect='Yes' OR Tsrconly='Yes' OR Tconly='Yes' )";
+    $select.= "OR Tindirect='Yes' OR Tsrconly='Yes' )";
     $select.= "AND Hid != $Hid ";
     print $select,"\n" if $trace;
     $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
@@ -501,7 +490,7 @@ if( $hdrlist ne "" ) {
                 $select.= "LEFT JOIN Header ON Hid=HGheader ";
                 $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
                 $select.= "WHERE Tid IN ($header_typelist) ";
-                $select.= "AND ( (ATappearedin <> '' ";
+                $select.= "AND ( (ATappearedin > '' ";
                 $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
                 $select.= "OR Tsrconly='Yes' ) ";
                 $select.= "AND Hid = $Hid ";
@@ -570,7 +559,7 @@ $create.= "AI_1.AIappearedin > '' AND (AI_1.AIwithdrawnin IS NULL OR AI_1.AIwith
 $create.= ") ";
 # graceful c++ headers generators would remove the need for this...
 $create.= "AND (Iclass=0 OR Ilibrary='libstdcxx') ";
-$create.= "GROUP BY Iid, AIarch, AIwithdrawnin ";
+$create.= "GROUP BY Iname, AIarch, AIwithdrawnin ";
 print $create,"\n" if $trace;
 $dbh->do($create);
 
@@ -726,7 +715,7 @@ for(1..$hgh->rows) {
     $select.= "WHERE Theadgroup=$HGid ";
     $select.= "AND ( (ATappearedin<>'' ";
     $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
-    $select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+    $select.= "OR Tsrconly = 'Yes' ) ";
     $select.= "AND Ttype = 'Typedef' ";
     $select.= "AND Tclass = 0 ";
 #   $select.= "AND Aid = $Aid ";
@@ -764,14 +753,14 @@ for(1..$hgh->rows) {
         if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
             print "#if ".$tentry->{'Asymbol'}."\n";
             print "/* ".$tentry->{'Aname'}." */\n";
-            specdb::displaytype($tentry,0);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
             }
             print "\n\n#endif\n";
         } else {
-            specdb::displaytype($tentry,0);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
@@ -816,7 +805,7 @@ for(1..$hgh->rows) {
     $select.= "AND ( (ATappearedin > '' ";
     $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
 #   $select.= "OR ( Tid IN ($param_typelist) AND Ttype IN ('Struct','Union','Enum') AND Tname NOT LIKE 'anon%' )";
-    $select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+    $select.= "OR Tsrconly = 'Yes' ) ";
     $select.= "AND Ttype != 'Typedef' ";
     $select.= "AND (Tclass=0 OR Ttype='Struct' OR Ttype='Class') ";
 #   $select.= "AND Aid = $Aid ";
@@ -867,14 +856,14 @@ for(1..$hgh->rows) {
         if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
             print "#if ".$tentry->{'Asymbol'}."\n";
             print "/* ".$tentry->{'Aname'}." */\n";
-            specdb::displaytype($tentry,0);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
             }
             print "\n\n#endif\n";
         } else {
-            specdb::displaytype($tentry,0);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
@@ -917,7 +906,7 @@ for(1..$hgh->rows) {
     $select.= "WHERE Theadgroup=$HGid ";
     $select.= "AND ( (ATappearedin > '' ";
     $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
-    $select.= "OR Tsrconly = 'Yes' OR Tconly = 'Yes' ) ";
+    $select.= "OR Tsrconly = 'Yes' ) ";
     $select.= "ORDER BY ATappearedin, ATwithdrawnin, Tid";
     print $select,"\n" if $trace;
 
@@ -935,7 +924,7 @@ for(1..$hgh->rows) {
 
         if( $tentry->{'Ttype'} eq "Typedef" ) {
             $OldAid = $Aid;
-            # Check if generic record for the basetype presents
+            # Check if generic record for the basetype is present
             if( specdb::isGenericTypePresent($tentry->{'ATbasetype'}, "All") ) {
                 $Aid=1;
             }
@@ -954,10 +943,14 @@ for(1..$hgh->rows) {
             $processedNamesOnly{$tentry->{'ATbasetype'}} = 1;
             #~ $processedNames{$tentry->{'ATbasetype'},1} = 1;
 
-            $tselect = "SELECT * FROM Type LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
+            $tselect = "SELECT * FROM Type ";
+            $tselect.= "LEFT JOIN HeaderGroup ON Theadgroup=HGid ";
             $tselect.= "JOIN TypeMember ON TMmemberof=Tid "; # Straight join here; no need to declare structs without members
             $tselect.= "WHERE Tid=".$tentry->{'ATbasetype'};
-            $tselect.= " AND ( Ttype='Struct' OR Ttype='Union' ) AND HGheader=$Hid AND Tname NOT LIKE 'anon%' ";
+            $tselect.= " AND ( Ttype='Struct' OR Ttype='Union' ) ";
+            $tselect.= " AND HGheader=$Hid ";
+            $tselect.= " AND Tname NOT LIKE 'anon%' ";
+            $tselect.= " AND TMappearedin > '' "; # drop type members that were never included
 
             $tth = $dbh->prepare($tselect) or die "Couldn't prepare $tselect query: ".DBI->errstr;
             $tth->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
@@ -976,7 +969,7 @@ for(1..$hgh->rows) {
                 if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
                     print "#if ".$tentry->{'Asymbol'}."\n";
                     print "/* ".$tentry->{'Aname'}." */\n";
-                    specdb::displaytype($ttentry,0);
+                    specdb::displaytype($ttentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
                     if ($semicolonNeeded) {
                         $semicolonNeeded = 0;
                         print ";";
@@ -986,7 +979,7 @@ for(1..$hgh->rows) {
                     }
                     print "\n\n#endif\n";
                 } else {
-                    specdb::displaytype($ttentry,0);
+                    specdb::displaytype($ttentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
                     if ($semicolonNeeded) {
                         $semicolonNeeded = 0;
                         print ";";

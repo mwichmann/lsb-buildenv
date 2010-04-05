@@ -49,9 +49,8 @@ sub prepareQueries()
         WHERE Tid = ? ') or die "Cannot prepare type_Q query";
 
     $basetype_Q = $dbh->prepare('
-        SELECT ATbasetype FROM ArchType
-        WHERE ATtid = ?
-        GROUP BY ATbasetype') or die "Cannot prepare basetype_Q query";
+        SELECT DISTINCT ATbasetype FROM ArchType
+        WHERE ATtid = ?') or die "Cannot prepare basetype_Q query";
 
     $baserecord_Q = $dbh->prepare('
         SELECT * FROM Type
@@ -165,9 +164,8 @@ sub getBaseTypeID($)
 
     $Tid = $$param{'Tid'} ? $$param{'Tid'} : 0;
     if( $trace ) {
-        $selectBase = "SELECT ATbasetype FROM ArchType ";
+        $selectBase = "SELECT DISTINCT ATbasetype FROM ArchType ";
         $selectBase.= "WHERE ATtid=".$$param{'Tid'}; #$Tid ";
-        $selectBase.= " GROUP BY ATbasetype";
         print $selectBase."\n" if $trace;
     }
 
@@ -438,9 +436,10 @@ sub displayconstant($)
 #
 # Display type declaration
 #
-sub displaytype($$)
+sub displaytype($$$$)
 {
-    local ($type,$nameonly) = @_;
+    # $typeAppeared and $typeWithdrawn are spec version bounds where the type is included
+    local ($type,$nameonly,$typeAppeared,$typeWithdrawn) = @_;
     local (*entry,*tentry,*tmentry,*dtentry);
     local($th);
     local($tmh, $dth, $dsth);
@@ -463,11 +462,11 @@ sub displaytype($$)
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
         if( $entry->{'Ttype'} eq "Pointer" || $entry->{'Ttype'} eq "Array" ) {
-            displaytype($entry,$nameonly);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
             print "volatile ";
         } else {
             print "volatile ";
-            displaytype($entry,$nameonly);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
         }
         return;
     }
@@ -478,11 +477,11 @@ sub displaytype($$)
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
         if( $entry->{'Ttype'} eq "Pointer" || $entry->{'Ttype'} eq "Array" ) {
-            displaytype($entry,$nameonly);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
             print "const ";
         } else {
             print "const ";
-            displaytype($entry,$nameonly);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
         }
         return;
     }
@@ -514,24 +513,24 @@ sub displaytype($$)
                 if($entry->{'Ttype'} eq 'FuncPtr' || $entry->{'Ttype'} eq 'Function') {
                     $funcPtrName = '';
                 }
-                displaytype($entry,1);
+                displaytype($entry,1,$typeAppeared,$typeWithdrawn);
             } elsif( ($entry->{'Ttype'} eq 'Struct' || $entry->{'Ttype'} eq 'Union') && $entry->{'Theadgroup'} == $HGid  ) {
                 # In case of datadef, we don't bother about types dependencies,
                 # so let's simply dump unions/structs declarations inside typedef declaration.
                 if( $entry->{'Tname'} !~ "anon" and !$datadef ) {
-                    displaytype($entry,1);
+                    displaytype($entry,1,$typeAppeared,$typeWithdrawn);
                 } else {
-                    displaytype($entry,0);
+                    displaytype($entry,0,$typeAppeared,$typeWithdrawn);
                 }
             } else {
                 if( $entry->{'Theadgroup'} == $HGid or $entry->{'Tname'} =~ "anon" ) {
                     # If we are here, we either have anon type or enum from the same header.
                     # Enum declaration can be safely dumped inside typedef declaration, since it doesn't
                     # have any dependencies on other types.
-                    displaytype($entry,0);
+                    displaytype($entry,0,$typeAppeared,$typeWithdrawn);
                 }
                 else {
-                    displaytype($entry,1);
+                    displaytype($entry,1,$typeAppeared,$typeWithdrawn);
                 }
             }
         }
@@ -565,8 +564,9 @@ sub displaytype($$)
             $lastType = $entry->{'Tid'};
             while( $lastType ) {
                 $calcDerivedTypes = "SELECT Tid FROM Type ";
-                $calcDerivedTypes.= "LEFT JOIN ArchType ON ATtid=Tid ";
-                $calcDerivedTypes.= "WHERE Ttype = 'Pointer' AND ATbasetype = $lastType ";
+                $calcDerivedTypes.= "JOIN ArchType ON ATtid=Tid ";
+                $calcDerivedTypes.= "WHERE Ttype = 'Pointer' ";
+                $calcDerivedTypes.= "AND ATbasetype = $lastType ";
                 print $calcDerivedTypes."\n" if($trace);
                 $dth = $dbh->prepare($calcDerivedTypes) or die "Couldn't prepare $calcDerivedTypes query: ".DBI->errstr;
                 $dth->execute or die "Couldn't execute $calcDerivedTypes query: ".DBI->errstr;
@@ -584,14 +584,13 @@ sub displaytype($$)
             }
 
             #~ $select = "SELECT * FROM Type ";
-            $select = "SELECT Tid, Tname, ATbasetype FROM Type ";
+            $select = "SELECT DISTINCT Tid, Tname, ATbasetype FROM Type ";
             $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
             $select.= "WHERE Theadgroup = $HGid ";
             $select.= "AND Tid != ".$$type{'Tid'}." ";
             $select.= "AND Ttype = 'Typedef' ";
             $select.= "AND ATappearedin > '' ";
             $select.= "AND ATbasetype IN ($DervidedTypes) ";
-            $select.= "GROUP BY Tid ";
             print $select."\n" if ($trace);
             $dsth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
             $dsth->execute or die "Couldn't execute $select query: ".DBI->errstr;
@@ -623,16 +622,16 @@ sub displaytype($$)
         $tth->finish;
         if (!$nameonly) {
             if( $entry->{'Ttype'} eq 'Typedef' or $entry->{'Ttype'} eq 'FuncPtr' ) {
-                displaytype($entry,1);
+                displaytype($entry,1,$typeAppeared,$typeWithdrawn);
             } else {
                 if( ($entry->{'Ttype'} eq 'Struct' or $entry->{'Ttype'} eq 'Union') ) {
-                    displaytype($entry,1);
+                    displaytype($entry,1,$typeAppeared,$typeWithdrawn);
                 } else {
-                    displaytype($entry,0);
+                    displaytype($entry,0,$typeAppeared,$typeWithdrawn);
                 }
             }
         } else {
-            displaytype($entry,1);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
         }
 
         if( $RootBase ne 'FuncPtr' ) {
@@ -655,6 +654,7 @@ sub displaytype($$)
         $tmselect = "SELECT DISTINCT TypeMember.*,TMEdeclaration FROM TypeMember ";
         $tmselect.= "LEFT JOIN TypeMemberExtras ON TMEtmid=TMid ";
         $tmselect.= "WHERE TMmemberof=$Tid AND (TMaid=1 OR TMaid=$TMaid) ";
+        $tmselect.= "AND TMappearedin > '' ";
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -663,8 +663,26 @@ sub displaytype($$)
         }
         for(1..$tmh->rows) {
             $tmentry = $tmh->fetchrow_hashref;
+
+            if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                $appearedin = $tmentry->{'TMappearedin'};
+                $appearedin =~ s/\.//g;
+                print "#if __LSB_VERSION__ >= $appearedin\n";
+            }
+            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                $withdrawnin = $tmentry->{'TMwithdrawnin'};
+                $withdrawnin =~ s/\.//g;
+                print "#if __LSB_VERSION__ < $withdrawnin\n";
+            }
+
             if( $tmentry->{'TMEdeclaration'} ) {
                 print $tmentry->{'TMEdeclaration'}."\n";
+                if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                    print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
+                }
+                if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                    print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
+                }
                 next;
             }
             $tmentry->{'Tid'} = $tmentry->{'TMtypeid'};
@@ -719,7 +737,7 @@ sub displaytype($$)
             if( !$tmentry->{'TMname'} ) {
                 $struct_anon_member=1;
             }
-            displaytype($entry,1);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
             $struct_anon_member=0;
 
             if( $entry->{'Ttype'} ne 'FuncPtr' and $bentry->{'Ttype'} ne 'FuncPtr' ) {
@@ -757,6 +775,13 @@ sub displaytype($$)
                 print "/* ".$tmentry->{'TMdescription'}." */";
             }
             print "\n";
+
+            if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
+            }
+            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
+            }
         }
         if ($tmh->rows ) { print "}\n"; }
         if( $$type{'ATattribute'} ) {
@@ -783,6 +808,7 @@ sub displaytype($$)
         $tmselect = "SELECT DISTINCT TypeMember.*, TMEdeclaration FROM TypeMember ";
         $tmselect.= "LEFT JOIN TypeMemberExtras ON TMEtmid=TMid ";
         $tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN(1,$TMaid) ";
+        $tmselect.= "AND TMappearedin > '' ";
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -791,10 +817,28 @@ sub displaytype($$)
         }
         for(1..$tmh->rows) {
             $tmentry = $tmh->fetchrow_hashref;
+            if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                $appearedin = $tmentry->{'TMappearedin'};
+                $appearedin =~ s/\.//g;
+                print "#if __LSB_VERSION__ >= $appearedin\n";
+            }
+            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                $withdrawnin = $tmentry->{'TMwithdrawnin'};
+                $withdrawnin =~ s/\.//g;
+                print "#if __LSB_VERSION__ < $withdrawnin\n";
+            }
+
             if( $tmentry->{'TMEdeclaration'} ) {
                 print $tmentry->{'TMEdeclaration'}."\n";
+                if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                    print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
+                }
+                if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                    print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
+                }
                 next;
             }
+
             $TMtypeid=$tmentry->{'TMtypeid'};
             $funcPtrName = $tmentry->{'TMname'};
 
@@ -811,7 +855,7 @@ sub displaytype($$)
             $type_Q->execute($TMtypeid) or die "Couldn't execute type_Q query for Tid=$TMtypeid query: ".DBI->errstr;
             $entry = $type_Q->fetchrow_hashref;
 
-            displaytype($entry,1);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
             if( $entry->{'Ttype'} ne 'FuncPtr' ) {
                 print $tmentry->{'TMname'};
             }
@@ -836,6 +880,13 @@ sub displaytype($$)
                 print "/* ".$tmentry->{'TMdescription'}." */";
             }
             print "\n";
+
+            if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
+            }
+            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
+            }
         }
         if ($tmh->rows ) { print "}\n"; }
         $tmh->finish;
@@ -857,8 +908,9 @@ sub displaytype($$)
         print "\n";
 
         $Tid=$$type{'Tid'};
-        $tmselect = "SELECT TMdescription, TMname, TMaid, TMvalue FROM TypeMember ";
+        $tmselect = "SELECT TMdescription, TMname, TMaid, TMvalue, TMappearedin, TMwithdrawnin FROM TypeMember ";
         $tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+        $tmselect.= "AND TMappearedin > '' ";
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -866,9 +918,10 @@ sub displaytype($$)
         # Is it enum with arch specific contents?
         if (!$tmh->rows ) {
             $tmh->finish;
-            $tmselect = "SELECT TMdescription, TMname, TMaid, TMvalue, Aname, Asymbol FROM TypeMember ";
+            $tmselect = "SELECT TMdescription, TMname, TMaid, TMvalue, TMappearedin, TMwithdrawnin, Aname, Asymbol FROM TypeMember ";
             $tmselect.= "LEFT JOIN Architecture ON Aid=TMaid ";
             $tmselect.= "WHERE TMmemberof=$Tid ";
+            $tmselect.= "AND TMappearedin > '' ";
             $tmselect.= "ORDER BY TMaid,TMposition ";
             $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
             $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -879,6 +932,17 @@ sub displaytype($$)
 
         for(1..$tmh->rows) {
             $tmentry = $tmh->fetchrow_hashref;
+
+            if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                $appearedin = $tmentry->{'TMappearedin'};
+                $appearedin =~ s/\.//g;
+                print "#if __LSB_VERSION__ >= $appearedin\n";
+            }
+            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                $withdrawnin = $tmentry->{'TMwithdrawnin'};
+                $withdrawnin =~ s/\.//g;
+                print "#if __LSB_VERSION__ < $withdrawnin\n";
+            }
 
             if( ($TMaid == 1) and ($tmentry->{'TMaid'} != 1) ) {
                 if( $prevArch != $tmentry->{'TMaid'} ) {
@@ -903,6 +967,13 @@ sub displaytype($$)
                 print "/* ".$tmentry->{'TMdescription'}."*/";
             }
             print "\n";
+
+            if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
+                print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
+            }
+            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
+            }
         }
         if( $prevArch != 0 ) {
             print "#endif\n";
@@ -917,7 +988,7 @@ sub displaytype($$)
         $sth = getBaseTypeRecord($ArchId,$basetype);
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
-        displaytype($entry,1);
+        displaytype($entry,1,$typeAppeared,$typeWithdrawn);
 
         print "(*$deriviation" if ($$type{'Ttype'} eq "FuncPtr");
         $deriviation = "";
@@ -930,6 +1001,7 @@ sub displaytype($$)
         print "(";
 
         $tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND (TMaid = 1 OR TMaid = $TMaid) ";
+        $tmselect.= "AND TMappearedin > '' ";
         $tmselect.= "ORDER BY TMposition";
         print $tmselect."\n" if $trace;
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
@@ -939,6 +1011,7 @@ sub displaytype($$)
         }
         for(1..$tmh->rows) {
             $tmentry = $tmh->fetchrow_hashref;
+
             $TMtypeid=$tmentry->{'TMtypeid'};
             if( $trace ) {
                 $tselect ="SELECT Type.*, ATbasetype, ATsize FROM Type ";
@@ -953,7 +1026,7 @@ sub displaytype($$)
             $type_Q->execute($TMtypeid) or die "Couldn't execute type_Q query for Tid=$TMtypeid query: ".DBI->errstr;
             $entry = $type_Q->fetchrow_hashref;
 
-            displaytype($entry,1);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
             print $tmentry->{'TMname'};
             if( $tmentry->{'Ttype'} eq 'Array' ) {
                 if( $tmentry->{'TMarray'} ) {
@@ -987,7 +1060,7 @@ sub displaytype($$)
         $sth = getBaseTypeRecord($ArchId,$basetype);
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
-        displaytype($entry,1);
+        displaytype($entry,1,$typeAppeared,$typeWithdrawn);
         return;
     }
 
@@ -1007,7 +1080,7 @@ sub displaytype($$)
 # used to print interface signatures
 #
 # Note: Unlike displaytype, this function doesn't print declarations directly,
-#  but collect them to a variable that is returned at the end.
+#  but collects them to a variable that is returned at the end.
 sub displaytyperef($$)
 {
     local ($param,$nameonly) = @_;
@@ -1109,6 +1182,7 @@ sub displaytyperef($$)
         $retval.= ")(";
 
         $tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
+        $tmselect.= "AND TMappearedin > '' ";
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -1121,7 +1195,8 @@ sub displaytyperef($$)
             $tselect="SELECT * FROM Type ";
             $tselect.="LEFT JOIN ArchType ON ATtid=Tid ";
             $tselect.="WHERE Tid=$TMtypeid ";
-            $tselect.="AND ATaid IN($ArchId,1) GROUP BY Tid ";
+            $tselect.="AND ATaid IN($ArchId,1) ";
+            $tselect.="LIMIT 1";
             $th = $dbh->prepare($tselect) or die "Couldn't prepare $tselect query: ".DBI->errstr;
             $th->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
             $entry = $th->fetchrow_hashref;
@@ -1170,6 +1245,11 @@ sub display_interface($ )
                 print $selectComment,"\n" if $trace;
                 ($Comment) = $dbh->selectrow_array($selectComment);
                 if( $Comment ) {
+                    # Remove URLs to other interfaces/constants
+                    $Comment =~ s/<\/int>//g;
+                    $Comment =~ s/<\/const>//g;
+                    $Comment =~ s/<int ((\w|-|\.)+);(\w+)>//g;
+                    $Comment =~ s/<const ((\w|-|\.)+)>//g;
                     print "    /* $Comment */\n";
                 }
             }
@@ -1241,6 +1321,7 @@ sub display_interface($ )
         if( $Ttype eq "FuncPtr" ) {
             print ")(";
             $tmselect = "SELECT * FROM TypeMember WHERE TMmemberof=$Tid AND (TMaid=1 OR TMaid=$TMaid) ";
+            $tmselect.= "AND TMappearedin > '' ";
             $tmselect.= "ORDER BY TMposition";
             $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
             $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -1253,12 +1334,14 @@ sub display_interface($ )
                 $tselect="SELECT * FROM Type ";
                 $tselect.="LEFT JOIN ArchType ON ATtid=Tid ";
                 $tselect.="WHERE Tid=$TMtypeid ";
-                $tselect.="AND (ATaid=$ArchId OR ATaid=1) GROUP BY Tid ";
+                $tselect.="AND (ATaid=$ArchId OR ATaid=1) ";
+                $tselect.="LIMIT 1";
                 $th = $dbh->prepare($tselect) or die "Couldn't prepare $tselect query: ".DBI->errstr;
                 $th->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
                 $entry = $th->fetchrow_hashref;
                 $th->finish;
-                displaytype($entry,1);
+                displaytype($entry,1,'',''); # no need to pass typeAppearedin and typeWithdrawnin,
+                                             # since we are not going to dump type members
                 if( $_ != $tmh->rows ) {
                     print ",";
                 }

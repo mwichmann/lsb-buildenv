@@ -51,6 +51,9 @@ $TMaid=$Aid;
 $specdb::TMaid = $TMaid;
 $specdb::ArchId = $Aid;
 
+# We need some value that will be greater that any legal LSB version
+$tooLargeLSBVersion = "1000";
+
 #
 # Auxiliary temporary tables
 #
@@ -66,7 +69,12 @@ if( $Aid!=1 ) {
     $create.= "AND ATaid=1 ";
     $create.= "AND ATappearedin <='$lsbversion' AND ATappearedin > '' ";
     $create.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin > '$lsbversion') ";
-    $create.= "AND (TMaid IS NULL OR TMaid=1) "; # Some types can be marked as generic, but have arch-specific members
+    $create.= "AND (TMaid IS NULL ";
+    $create.= "     OR ( TMaid=1 "; # Some types can be marked as generic, but have arch-specific members
+    $create.= "         AND TMappearedin > '' AND TMappearedin <='$lsbversion' ";
+    $create.= "         AND (TMwithdrawnin IS NULL OR TMwithdrawnin > '$lsbversion') ";
+    $create.= "     )";
+    $create.= ")";
     print $create,"\n" if $trace;
     $dbh->do("$create") or die "Couldn't execute $create query: ".DBI->errstr;;
 
@@ -170,14 +178,19 @@ for(1..$hgh->rows) {
 
     # Display the Types
     $select = "SELECT * FROM Type ";
-    $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+    $select.= "JOIN ArchType ON ATtid=Tid ";
     $select.= "LEFT JOIN TypeMember ON TMmemberof=Tid ";
     $select.= "LEFT JOIN Architecture ON ATaid=Aid ";
     $select.= "WHERE Theadgroup=$HGid ";
     $select.= "AND ATappearedin <= '$lsbversion' AND ATappearedin > '' ";
     $select.= "AND (ATwithdrawnin IS NULL OR ATwithdrawnin >'$lsbversion') ";
     $select.= "AND Aid=$Aid ";
-    $select.= "AND (TMaid IS NULL OR TMaid=$Aid) ";
+    $select.= "AND (TMaid IS NULL ";
+    $select.= "     OR ( TMaid=$Aid ";
+    $select.= "         AND TMappearedin > '' AND TMappearedin <='$lsbversion' ";
+    $seelct.= "         AND (TMwithdrawnin IS NULL OR TMwithdrawnin > '$lsbversion') ";
+    $select.= "     )";
+    $select.= ")";
     if( $Aid!=1 ) {
         $select.= "AND Tid NOT IN ";
         $select.= "(SELECT Tid FROM tmp_GenericTypes) ";
@@ -196,7 +209,8 @@ for(1..$hgh->rows) {
         if( $specdb::processed_typedefs{$tentry->{'Tid'}} ) {
             next;
         }
-        specdb::displaytype($tentry,0);
+#        specdb::displaytype($tentry,0,$tooLargeLSBVersion,'');
+        specdb::displaytype($tentry,0,'','');
         print ";\n";
         $totrows++;
     }
@@ -231,6 +245,7 @@ if( $Aid!=1 and $generic_ints_list ) {
     $select.= $generic_ints_list;
     $select.= ")";
 }
+$select.= " GROUP BY Iname";
 $select.= " ORDER BY Iname";
 
 print $select,"\n" if $trace;
