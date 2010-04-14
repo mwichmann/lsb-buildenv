@@ -600,7 +600,12 @@ extern "C" {
     extern int snd_pcm_hw_params_test_rate(snd_pcm_t * pcm,
 					   snd_pcm_hw_params_t * params,
 					   unsigned int val, int dir);
-    extern int snd_pcm_hwsync(snd_pcm_t * pcm);
+    /* This function does not update the actual r/w pointer for applications. The function snd_pcm_avail_update() have to be called before any mmap begin+commit operation. */
+    extern int snd_pcm_hwsync(snd_pcm_t * pcm)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern int snd_pcm_info(snd_pcm_t * pcm, snd_pcm_info_t * info);
     extern void snd_pcm_info_copy(snd_pcm_info_t * dst,
 				  const snd_pcm_info_t * src);

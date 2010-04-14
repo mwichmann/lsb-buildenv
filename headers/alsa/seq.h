@@ -9,6 +9,14 @@
 #include <stdint.h>
 #include <alsa/seq_event.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -205,7 +213,12 @@ extern "C" {
     extern int snd_seq_event_output_direct(snd_seq_t * handle,
 					   snd_seq_event_t * ev);
     extern const unsigned int snd_seq_event_types[];
-    extern int snd_seq_free_event(snd_seq_event_t * ev);
+    /* This function was used to release the event pointer which was allocated by snd_seq_event_input(). In the modern ALSA versions, the event record is not allocated, so you don't have to call this function any more. */
+    extern int snd_seq_free_event(snd_seq_event_t * ev)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern int snd_seq_free_queue(snd_seq_t * handle, int q);
     extern int snd_seq_get_any_client_info(snd_seq_t * handle, int client,
 					   snd_seq_client_info_t * info);
