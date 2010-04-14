@@ -40,6 +40,11 @@ lsb_devel_versions:
 %.h:
 	./mkheader -a All -h $@ | indent -kr >$@
 
+# Use 'header.h-defs' to unconditionally regenerate header.h and all header.h.defs
+%.h-defs: 
+	make $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(foreach ver,$(LSB_VERSIONS),$(arch)_$(ver)/$(subst h-defs,h.defs,$@)))
+	./mkheader -a All -h $(subst -defs,,$@) | indent -kr > $(subst -defs,,$@)
+
 install: install-core install-desktop
 
 install-core: core_filelist
