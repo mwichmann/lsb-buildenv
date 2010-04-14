@@ -3,6 +3,14 @@
 #define _X11_ICE_ICELIB_H_
 
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -133,8 +141,16 @@ extern "C" {
     extern IceConn IceAcceptConnection(IceListenObj, IceAcceptStatus *);
     extern int IceAddConnectionWatch(IceWatchProc, IcePointer);
     extern char *IceAllocScratch(IceConn, long unsigned int);
-    extern void IceAppLockConn(IceConn);
-    extern void IceAppUnlockConn(IceConn);
+    extern void IceAppLockConn(IceConn)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    extern void IceAppUnlockConn(IceConn)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern int IceCheckShutdownNegotiation(IceConn);
     extern IceCloseStatus IceCloseConnection(IceConn);
     extern char *IceComposeNetworkIdList(int, IceListenObj *);
@@ -148,7 +164,12 @@ extern "C" {
     extern int IceGetListenConnectionNumber(IceListenObj);
     extern char *IceGetListenConnectionString(IceListenObj);
     extern int IceGetOutBufSize(IceConn);
-    extern int IceInitThreads(void);
+    /* Multi-threading support of libICE is not implemented yet, IceInitThreads always returns 0. */
+    extern int IceInitThreads(void)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern long unsigned int IceLastReceivedSequenceNumber(IceConn);
     extern long unsigned int IceLastSentSequenceNumber(IceConn);
     extern int IceListenForConnections(int *, IceListenObj * *, int,

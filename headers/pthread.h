@@ -974,7 +974,7 @@ extern "C" {
 					 size_t * __guardsize);
     extern int pthread_attr_getschedparam(const pthread_attr_t * __attr,
 					  struct sched_param *__param);
-    /* This interface is obsolete. Use the pthread_attr_getstack() function */
+    /* This interface is obsolete. Use the pthread_attr_getstack function. */
     extern int pthread_attr_getstackaddr(const pthread_attr_t * __attr,
 					 void **__stackaddr)
 #if __LSB_VERSION__ >= 32

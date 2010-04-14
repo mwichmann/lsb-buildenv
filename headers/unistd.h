@@ -432,7 +432,7 @@ extern "C" {
     extern pid_t getppid(void);
     extern pid_t getsid(pid_t __pid);
     extern uid_t getuid(void);
-    /* This interface is obsolete. Use the getcwd() function */
+    /* This interface is obsolete. Use the getcwd function. */
     extern char *getwd(char *__buf)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED

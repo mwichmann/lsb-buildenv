@@ -37,12 +37,7 @@ extern "C" {
     typedef struct {
 	unsigned int size;
 	XPointer addr;
-    } XrmValue;
-
-    typedef struct {
-	unsigned int size;
-	XPointer addr;
-    } *XrmValuePtr;
+    } XrmValue, *XrmValuePtr;
 
     typedef struct _XrmHashBucketRec *XrmHashBucket;
 

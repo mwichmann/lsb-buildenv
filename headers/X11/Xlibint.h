@@ -75,12 +75,56 @@ extern "C" {
 #define _XRead16(dpy,data,len)	_XRead((dpy), (char *)(data), (len))
 #define _XRead16Pad(dpy,data,len)	_XReadPad((dpy), (char *)(data), (len))
 #define OneDataCard32(dpy,dstaddr,srcvar)	{ *(CARD32 *)(dstaddr) = (srcvar); }
+#if defined __ia64__
 #define MakeBigReq(req,n)	{ CARD64 _BRdat; CARD32 _BRlen = req->length - 1; req->length = 0; _BRdat = ((CARD32 *)req)[_BRlen]; memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); ((CARD32 *)req)[1] = _BRlen + n + 2; Data32(dpy, &_BRdat, 4); }
+#endif
+#if defined __powerpc64__
+#define MakeBigReq(req,n)	{ CARD64 _BRdat; CARD32 _BRlen = req->length - 1; req->length = 0; _BRdat = ((CARD32 *)req)[_BRlen]; memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); ((CARD32 *)req)[1] = _BRlen + n + 2; Data32(dpy, &_BRdat, 4); }
+#endif
+#if defined __x86_64__
+#define MakeBigReq(req,n)	{ CARD64 _BRdat; CARD32 _BRlen = req->length - 1; req->length = 0; _BRdat = ((CARD32 *)req)[_BRlen]; memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); ((CARD32 *)req)[1] = _BRlen + n + 2; Data32(dpy, &_BRdat, 4); }
+#endif
+#if defined __s390x__
+#define MakeBigReq(req,n)	{ CARD64 _BRdat; CARD32 _BRlen = req->length - 1; req->length = 0; _BRdat = ((CARD32 *)req)[_BRlen]; memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); ((CARD32 *)req)[1] = _BRlen + n + 2; Data32(dpy, &_BRdat, 4); }
+#endif
 #define CI_GET_CHAR_INFO_1D(fs,col,def,cs)	{ cs = def; if (col >= fs->min_char_or_byte2 && col <= fs->max_char_or_byte2) { if (fs->per_char == NULL) { cs = &fs->min_bounds; } else { cs = &fs->per_char[(col - fs->min_char_or_byte2)]; if (CI_NONEXISTCHAR(cs)) cs = def; } } }
 #define CI_GET_CHAR_INFO_2D(fs,row,col,def,cs)	{ cs = def; if (row >= fs->min_byte1 && row <= fs->max_byte1 && col >= fs->min_char_or_byte2 && col <= fs->max_char_or_byte2) { if (fs->per_char == NULL) { cs = &fs->min_bounds; } else { cs = &fs->per_char[((row - fs->min_byte1) * (fs->max_char_or_byte2 - fs->min_char_or_byte2 + 1)) + (col - fs->min_char_or_byte2)]; if (CI_NONEXISTCHAR(cs)) cs = def; } } }
 #define DeqAsyncHandler(dpy,handler)	{ if (dpy->async_handlers == (handler)) dpy->async_handlers = (handler)->next; else _XDeqAsyncHandler(dpy, handler); }
 #define Data(dpy,data,len)	{ if (dpy->bufptr + (len) <= dpy->bufmax) { memcpy(dpy->bufptr, data, (int)len); dpy->bufptr += ((len) + 3) & ~3; } else _XSend(dpy, data, len); }
 #define CI_GET_DEFAULT_INFO_2D(fs,cs)	{ unsigned int r = (fs->default_char >> 8); unsigned int c = (fs->default_char & 0xff); CI_GET_CHAR_INFO_2D (fs, r, c, NULL, cs); }
+#if defined __i386__
+#define MakeBigReq(req,n)	{ \
+    CARD32 _BRdat; \
+    CARD32 _BRlen = req->length - 1; \
+    req->length = 0; \
+    _BRdat = ((CARD32 *)req)[_BRlen]; \
+    memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); \
+    ((CARD32 *)req)[1] = _BRlen + n + 2; \
+    Data32(dpy, &_BRdat, 4); \
+    }
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define MakeBigReq(req,n)	{ \
+    CARD32 _BRdat; \
+    CARD32 _BRlen = req->length - 1; \
+    req->length = 0; \
+    _BRdat = ((CARD32 *)req)[_BRlen]; \
+    memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); \
+    ((CARD32 *)req)[1] = _BRlen + n + 2; \
+    Data32(dpy, &_BRdat, 4); \
+    }
+#endif
+#if defined __s390__ && !defined __s390x__
+#define MakeBigReq(req,n)	{ \
+    CARD32 _BRdat; \
+    CARD32 _BRlen = req->length - 1; \
+    req->length = 0; \
+    _BRdat = ((CARD32 *)req)[_BRlen]; \
+    memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); \
+    ((CARD32 *)req)[1] = _BRlen + n + 2; \
+    Data32(dpy, &_BRdat, 4); \
+    }
+#endif
 
 
     typedef struct _XSQEvent _XQEvent;

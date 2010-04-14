@@ -522,13 +522,13 @@ extern "C" {
     extern float coshf(float);
     extern long double coshl(long double);
     extern long double cosl(long double);
-    /* This interface is obsolete. Use remainderf() from ISO C99 */
+    /* This interface is obsolete. Use remainderf from ISO C99 */
     extern float dremf(float, float)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 32 */
     ;
-    /* This interface is obsolete. Use remainderl() from ISO C99 */
+    /* This interface is obsolete. Use remainderl from ISO C99 */
     extern long double dreml(long double, long double)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
@@ -554,13 +554,13 @@ extern "C" {
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 32 */
     ;
-    /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
+    /* This interface is obsolete. Use the isfinite macro from ISO C99 */
     extern int finitef(float)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 32 */
     ;
-    /* This interface is obsolete. Use the isfinite() macro from ISO C99 */
+    /* This interface is obsolete. Use the isfinite macro from ISO C99 */
     extern int finitel(long double)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
@@ -584,19 +584,19 @@ extern "C" {
     extern double frexp(double, int *);
     extern float frexpf(float, int *);
     extern long double frexpl(long double, int *);
-    /* This name for the interface is obsolete. Use lgamma instead */
+    /* This name for the interface is obsolete. Use lgamma instead. */
     extern double gamma(double)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 32 */
     ;
-    /* This name for the interface is obsolete. Use lgammaf instead */
+    /* This name for the interface is obsolete. Use lgammaf instead. */
     extern float gammaf(float)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 32 */
     ;
-    /* This name for the interface is obsolete. Use lgammal instead */
+    /* This name for the interface is obsolete. Use lgammal instead. */
     extern long double gammal(long double)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
@@ -794,7 +794,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
 #if __LSB_VERSION__ >= 32
-    /* This interface is obsolete. Use remainder() from ISO C99 */
+    /* This interface is obsolete. Use remainder from ISO C99 */
     extern double drem(double, double) LSB_DECL_DEPRECATED;
     extern double exp10(double);
     extern float exp10f(float);

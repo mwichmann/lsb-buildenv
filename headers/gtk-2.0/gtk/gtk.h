@@ -8992,7 +8992,7 @@ extern "C" {
     extern GtkWidget *gtk_menu_item_new(void);
     extern GtkWidget *gtk_menu_item_new_with_label(const gchar * label);
     extern GtkWidget *gtk_menu_item_new_with_mnemonic(const gchar * label);
-    /* gtk_menu_item_remove_submenu is deprecated and should not be used in newly-written code. Use gtk_menu_item_set_submenu() instead. */
+    /* gtk_menu_item_remove_submenu is deprecated and should not be used in newly-written code. Use gtk_menu_item_set_submenu instead. */
     extern void gtk_menu_item_remove_submenu(GtkMenuItem * menu_item)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
@@ -9533,13 +9533,13 @@ extern "C" {
     extern GtkRcStyle *gtk_rc_style_copy(GtkRcStyle * orig);
     extern GType gtk_rc_style_get_type(void);
     extern GtkRcStyle *gtk_rc_style_new(void);
-    /* gtk_rc_style_ref is deprecated and should not be used in newly-written code. Use g_object_ref() instead. */
+    /* gtk_rc_style_ref is deprecated and should not be used in newly-written code. Use g_object_ref instead. */
     extern void gtk_rc_style_ref(GtkRcStyle * rc_style)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 32 */
     ;
-    /* gtk_rc_style_unref is deprecated and should not be used in newly-written code. Use g_object_unref() instead. */
+    /* gtk_rc_style_unref is deprecated and should not be used in newly-written code. Use g_object_unref instead. */
     extern void gtk_rc_style_unref(GtkRcStyle * rc_style)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
@@ -11671,7 +11671,7 @@ extern "C" {
     extern void gtk_widget_queue_resize(GtkWidget * widget);
     extern void gtk_widget_queue_resize_no_redraw(GtkWidget * widget);
     extern void gtk_widget_realize(GtkWidget * widget);
-    /* gtk_widget_ref is deprecated and should not be used in newly-written code. Use g_object_ref() instead. */
+    /* gtk_widget_ref is deprecated and should not be used in newly-written code. Use g_object_ref instead. */
     extern GtkWidget *gtk_widget_ref(GtkWidget * widget)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED
@@ -11774,7 +11774,7 @@ extern "C" {
     extern void gtk_widget_unmap(GtkWidget * widget);
     extern void gtk_widget_unparent(GtkWidget * widget);
     extern void gtk_widget_unrealize(GtkWidget * widget);
-    /* gtk_widget_unref is deprecated and should not be used in newly-written code. Use g_object_unref() instead. */
+    /* gtk_widget_unref is deprecated and should not be used in newly-written code. Use g_object_unref instead. */
     extern void gtk_widget_unref(GtkWidget * widget)
 #if __LSB_VERSION__ >= 32
      LSB_DECL_DEPRECATED

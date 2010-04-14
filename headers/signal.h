@@ -1005,7 +1005,7 @@ extern "C" {
     extern int sigorset(sigset_t * __set, const sigset_t * __left,
 			const sigset_t * __right);
 #if __LSB_VERSION__ < 32
-    /* Binary sigpause symbol does not implement POSIX-conforming behavior, __xpg_sigpause should be used instead. Consider building the application in LSB mode. */
+    /* Binary sigpause symbol does not implement POSIX-conforming behavior, ___xpg_sigpause should be used instead. Consider building the application in LSB mode. */
     extern int sigpause(int __sig);
 #endif				/* __LSB_VERSION__ < 3.2 */
 

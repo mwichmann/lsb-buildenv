@@ -29,10 +29,6 @@ extern "C" {
 	((unsigned char *) (cmsg) + CMSG_ALIGN(sizeof(struct cmsghdr)))
 #define CMSG_SPACE(len)	\
 	(CMSG_ALIGN(sizeof(struct cmsghdr))+CMSG_ALIGN(len))
-#define CMSG_FIRSTHDR(msg)	\
-           ((msg)->msg_controllen >= sizeof(struct cmsghdr) ? \
-            (struct cmsghdr *)(msg)->msg_control : \
-            (struct cmsghdr *)NULL)
 #define CMSG_NXTHDR(mhdr,cmsg)	\
         (((cmsg) == NULL) ? CMSG_FIRSTHDR(mhdr) : \
          (((u_char *)(cmsg) + CMSG_ALIGN((cmsg)->cmsg_len) \
@@ -40,7 +36,18 @@ extern "C" {
            (u_char *)((mhdr)->msg_control) + (mhdr)->msg_controllen) ? \
           (struct cmsghdr *)NULL : \
           (struct cmsghdr *)((u_char *)(cmsg) + CMSG_ALIGN((cmsg)->cmsg_len))))
+#if __LSB_VERSION__ < 41
+#define CMSG_FIRSTHDR(msg)	\
+           ((msg)->msg_controllen >= sizeof(struct cmsghdr) ? \
+            (struct cmsghdr *)(msg)->msg_control : \
+            (struct cmsghdr *)NULL)
+#endif				/* __LSB_VERSION__ < 4.1 */
+
 #endif				/* __LSB_VERSION__ >= 3.0 */
+
+#if __LSB_VERSION__ >= 41
+#define CMSG_FIRSTHDR(msg)	((size_t) (msg)->msg_controllen >= sizeof(struct cmsghdr) ? (struct cmsghdr *)(msg)->msg_control : (struct cmsghdr *) NULL)
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 
 

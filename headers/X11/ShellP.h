@@ -193,7 +193,11 @@ extern "C" {
     typedef struct _ApplicationShellClassRec ApplicationShellClassRec;
 
     typedef struct {
+#if defined(__cplusplus) || defined(c_plusplus)
 	char *c_class;
+#else
+	char *class;
+#endif
 	XrmClass xrm_class;
 	int argc;
 	char **argv;

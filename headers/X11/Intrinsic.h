@@ -65,6 +65,15 @@ extern "C" {
 #define XtDefaultForeground	"XtDefaultForeground"
 #define XtVaNestedList	"XtVaNestedList"
 #define XtVaTypedArg	"XtVaTypedArg"
+#if __LSB_VERSION__ >= 40
+#ifndef FALSE
+#define FALSE	0
+#endif
+#ifndef TRUE
+#define TRUE	1
+#endif
+#endif				/* __LSB_VERSION__ >= 4.0 */
+
 
 
     typedef long unsigned int Pixel;

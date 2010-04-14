@@ -89,6 +89,7 @@ net/if.h
 sys/un.h
 sys/statvfs.h
 sys/vfs.h
+stropts.h
 pty.h
 sys/statfs.h
 libintl.h

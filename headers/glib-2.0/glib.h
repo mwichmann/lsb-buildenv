@@ -2319,7 +2319,7 @@ extern "C" {
 			       GHashFunc hash_value_func,
 			       GEqualFunc key_equal_func);
     extern void g_cache_remove(GCache * cache, gconstpointer value);
-    /* g_cache_value_foreach is deprecated and should not be used in newly-written code.The reason is that it passes pointers to internal data structures to func; use g_cache_key_foreach() instead. */
+    /* g_cache_value_foreach is deprecated and should not be used in newly-written code.The reason is that it passes pointers to internal data structures to func; use g_cache_key_foreach instead. */
     extern void g_cache_value_foreach(GCache * cache, GHFunc func,
 				      gpointer user_data)
 #if __LSB_VERSION__ >= 32
