@@ -28,6 +28,34 @@ extern "C" {
 #define CLOCK_THREAD_CPUTIME_ID	3
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 41
+#define timerclear(tvp)	((tvp)->tv_sec = (tvp)->tv_usec = 0)
+#define timerisset(tvp)	((tvp)->tv_sec || (tvp)->tv_usec)
+#define timeradd(a,b,result)	\
+  do { \
+    (result)->tv_sec = (a)->tv_sec + (b)->tv_sec; \
+    (result)->tv_usec = (a)->tv_usec + (b)->tv_usec; \
+    if ((result)->tv_usec >= 1000000) \
+      { \
+        ++(result)->tv_sec; \
+        (result)->tv_usec -= 1000000; \
+      } \
+  } while (0)
+#define timersub(a,b,result)	\
+  do { \
+    (result)->tv_sec = (a)->tv_sec - (b)->tv_sec; \
+    (result)->tv_usec = (a)->tv_usec - (b)->tv_usec; \
+    if ((result)->tv_usec < 0) { \
+      --(result)->tv_sec; \
+      (result)->tv_usec += 1000000; \
+    } \
+  } while (0)
+#define timercmp(a,b,CMP)	\
+ (((a)->tv_sec == (b)->tv_sec) ? \
+  ((a)->tv_usec CMP (b)->tv_usec) : \
+  ((a)->tv_sec CMP (b)->tv_sec))
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 
 #if __LSB_VERSION__ >= 12
