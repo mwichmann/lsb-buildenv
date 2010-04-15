@@ -43,6 +43,18 @@ extern "C" {
 	SND_TIMER_TYPE_INET = 2
     } snd_timer_type_t;
 
+#if __LSB_VERSION__ >= 41
+    typedef enum _snd_timer_class {
+	SND_TIMER_CLASS_NONE = -1,	/* invalid */
+	SND_TIMER_CLASS_SLAVE = 0,	/* slave timer */
+	SND_TIMER_CLASS_GLOBAL,	/* global timer */
+	SND_TIMER_CLASS_CARD,	/* card timer */
+	SND_TIMER_CLASS_PCM,	/* PCM timer */
+	SND_TIMER_CLASS_LAST	/* last timer */
+    } snd_timer_class_t;
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 /* Function prototypes */
 

@@ -19,6 +19,14 @@ typedef enum _snd_timer_type {
     SND_TIMER_TYPE_SHM = 1,
     SND_TIMER_TYPE_INET = 2
 } snd_timer_type_t;
+typedef enum _snd_timer_class {
+    SND_TIMER_CLASS_NONE = -1,	/* invalid */
+    SND_TIMER_CLASS_SLAVE = 0,	/* slave timer */
+    SND_TIMER_CLASS_GLOBAL,	/* global timer */
+    SND_TIMER_CLASS_CARD,	/* card timer */
+    SND_TIMER_CLASS_PCM,	/* PCM timer */
+    SND_TIMER_CLASS_LAST	/* last timer */
+} snd_timer_class_t;
 extern int snd_timer_close(snd_timer_t * handle);
 extern int snd_timer_continue(snd_timer_t * handle);
 extern void snd_timer_id_copy(snd_timer_id_t * dst,
