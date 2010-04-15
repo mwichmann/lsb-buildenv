@@ -4,6 +4,14 @@
 
 #include <stdarg.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -282,7 +290,12 @@ extern "C" {
     extern FcBool FcConfigEnableHome(FcBool enable);
     extern FcChar8 *FcConfigFilename(const FcChar8 * url);
     extern FcBlanks *FcConfigGetBlanks(FcConfig * config);
-    extern FcChar8 *FcConfigGetCache(FcConfig * config);
+    /* With fontconfig no longer using per-user cache files, this function now simply returns NULL to indicate that no per-user file exists. */
+    extern FcChar8 *FcConfigGetCache(FcConfig * config)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern FcStrList *FcConfigGetConfigDirs(FcConfig * config);
     extern FcStrList *FcConfigGetConfigFiles(FcConfig * config);
     extern FcConfig *FcConfigGetCurrent(void);
@@ -305,11 +318,21 @@ extern "C" {
     extern FcBool FcConfigUptoDate(FcConfig * config);
     extern void FcDefaultSubstitute(FcPattern * pattern);
     extern FcBool FcDirCacheValid(const FcChar8 * cache_file);
+    /* This function is obsolete. In modern fontconfig, it does nothing aside from returning FcFalse. */
     extern FcBool FcDirSave(FcFontSet * set, FcStrSet * dirs,
-			    const FcChar8 * dir);
+			    const FcChar8 * dir)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This function is obsolete. In modern fontconfig, it does nothing aside from returning FcFalse. */
     extern FcBool FcDirScan(FcFontSet * set, FcStrSet * dirs,
 			    FcGlobalCache * cache, FcBlanks * blanks,
-			    const FcChar8 * dir, FcBool force);
+			    const FcChar8 * dir, FcBool force)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern FcBool FcFileScan(FcFontSet * set, FcStrSet * dirs,
 			     FcGlobalCache * cache, FcBlanks * blanks,
 			     const FcChar8 * file, FcBool force);
@@ -333,7 +356,12 @@ extern "C" {
     extern FcFontSet *FcFontSetSort(FcConfig * config, FcFontSet * *sets,
 				    int nsets, FcPattern * p, FcBool trim,
 				    FcCharSet * *csp, FcResult * result);
-    extern void FcFontSetSortDestroy(FcFontSet * fs);
+    /* This function is deprecated. Applications should use FcFontSetDestroy directly instead. */
+    extern void FcFontSetSortDestroy(FcFontSet * fs)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern FcFontSet *FcFontSort(FcConfig * config, FcPattern * p,
 				 FcBool trim, FcCharSet * *csp,
 				 FcResult * result);
