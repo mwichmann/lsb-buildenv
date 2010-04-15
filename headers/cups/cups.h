@@ -53,13 +53,6 @@ extern "C" {
 
     typedef struct cups_lang_str cups_lang_t;
 
-    typedef enum {
-	HTTP_ENCRYPT_IF_REQUESTED = 0,
-	HTTP_ENCRYPT_NEVER = 1,
-	HTTP_ENCRYPT_REQUIRED = 2,
-	HTTP_ENCRYPT_ALWAYS = 3
-    } http_encryption_t;
-
     typedef struct {
 	char *name;
 	char *value;
@@ -72,6 +65,37 @@ extern "C" {
 	int num_options;
 	cups_option_t *options;
     } cups_dest_t;
+
+    typedef struct {
+	int id;
+	char *dest;
+	char *title;
+	char *user;
+	char *format;
+	ipp_jstate_t state;
+	int size;
+	int priority;
+	time_t completed_time;
+	time_t creation_time;
+	time_t processing_time;
+    } cups_job_t;
+
+#if __LSB_VERSION__ < 40
+    typedef unsigned int md5_word_t;
+
+    typedef unsigned char md5_byte_t;
+
+    typedef struct md5_state_s md5_state_t;
+
+#endif				/* __LSB_VERSION__ < 4.0 */
+
+#if __LSB_VERSION__ >= 41
+    typedef enum {
+	HTTP_ENCRYPT_IF_REQUESTED = 0,
+	HTTP_ENCRYPT_NEVER = 1,
+	HTTP_ENCRYPT_REQUIRED = 2,
+	HTTP_ENCRYPT_ALWAYS = 3
+    } http_encryption_t;
 
     typedef enum {
 	HTTP_WAITING = 0,
@@ -158,20 +182,6 @@ extern "C" {
 	IPP_JOB_COMPLETED = 9
     } ipp_jstate_t;
 
-    typedef struct {
-	int id;
-	char *dest;
-	char *title;
-	char *user;
-	char *format;
-	ipp_jstate_t state;
-	int size;
-	int priority;
-	time_t completed_time;
-	time_t creation_time;
-	time_t processing_time;
-    } cups_job_t;
-
     typedef enum {
 	IPP_OK = 0,
 	IPP_OK_SUBST = 1,
@@ -218,14 +228,7 @@ extern "C" {
 	IPP_PRINTER_IS_DEACTIVATED = 1290
     } ipp_status_t;
 
-#if __LSB_VERSION__ < 40
-    typedef unsigned int md5_word_t;
-
-    typedef unsigned char md5_byte_t;
-
-    typedef struct md5_state_s md5_state_t;
-
-#endif				/* __LSB_VERSION__ < 4.0 */
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
     struct cups_lang_str {
 	struct cups_lang_str *next;
