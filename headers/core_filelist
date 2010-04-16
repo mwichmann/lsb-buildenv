@@ -193,6 +193,8 @@ GL/glu.h
 X11/extensions/XTest.h
 cups/cups.h
 cups/ppd.h
+cups/ipp.h
+cups/http.h
 cups/raster.h
 alsa/control.h
 alsa/control_external.h
