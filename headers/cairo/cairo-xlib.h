@@ -33,6 +33,20 @@ extern "C" {
 						int width, int height);
     extern void cairo_xlib_surface_set_size(cairo_surface_t * surface,
 					    int width, int height);
+#if __LSB_VERSION__ >= 41
+    extern int cairo_xlib_surface_get_depth(cairo_surface_t * surface);
+    extern Display *cairo_xlib_surface_get_display(cairo_surface_t *
+						   surface);
+    extern Drawable cairo_xlib_surface_get_drawable(cairo_surface_t *
+						    surface);
+    extern int cairo_xlib_surface_get_height(cairo_surface_t * surface);
+    extern Screen *cairo_xlib_surface_get_screen(cairo_surface_t *
+						 surface);
+    extern Visual *cairo_xlib_surface_get_visual(cairo_surface_t *
+						 surface);
+    extern int cairo_xlib_surface_get_width(cairo_surface_t * surface);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif

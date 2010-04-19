@@ -188,7 +188,10 @@ extern "C" {
 	CAIRO_FORMAT_ARGB32,
 	CAIRO_FORMAT_RGB24 = 1,
 	CAIRO_FORMAT_A8 = 2,
-	CAIRO_FORMAT_A1 = 3
+	CAIRO_FORMAT_A1 = 3,
+#if __LSB_VERSION__ >= 41
+	CAIRO_FORMAT_RGB16_565 = 4
+#endif				/* __LSB_VERSION__ >= 41 */
     } cairo_format_t;
 
     typedef enum _cairo_extend {
@@ -206,6 +209,18 @@ extern "C" {
 	CAIRO_FILTER_BILINEAR = 4,
 	CAIRO_FILTER_GAUSSIAN = 5
     } cairo_filter_t;
+
+#if __LSB_VERSION__ >= 41
+    typedef enum _cairo_font_type
+     cairo_font_type_t;
+
+    typedef enum _cairo_surface_type
+     cairo_surface_type_t;
+
+    typedef enum _cairo_pattern_type
+     cairo_pattern_type_t;
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
     struct _cairo_matrix {
 	double xx;
@@ -591,6 +606,62 @@ extern "C" {
 					      double *dy);
     extern int cairo_version(void);
     extern const char *cairo_version_string(void);
+#if __LSB_VERSION__ >= 41
+    extern cairo_font_type_t cairo_font_face_get_type(cairo_font_face_t *
+						      font_face);
+    extern cairo_surface_t *cairo_get_group_target(cairo_t * cr);
+    extern unsigned char *cairo_image_surface_get_data(cairo_surface_t *
+						       surface);
+    extern cairo_format_t cairo_image_surface_get_format(cairo_surface_t *
+							 surface);
+    extern int cairo_image_surface_get_stride(cairo_surface_t * surface);
+    extern void cairo_new_sub_path(cairo_t * cr);
+    extern cairo_pattern_type_t cairo_pattern_get_type(cairo_pattern_t *
+						       pattern);
+    extern cairo_pattern_t *cairo_pop_group(cairo_t * cr);
+    extern void cairo_pop_group_to_source(cairo_t * cr);
+    extern void cairo_push_group(cairo_t * cr);
+    extern void cairo_push_group_with_content(cairo_t * cr,
+					      cairo_content_t content);
+    extern void cairo_scaled_font_get_ctm(cairo_scaled_font_t *
+					  scaled_font,
+					  cairo_matrix_t * ctm);
+    extern cairo_font_face_t
+	*cairo_scaled_font_get_font_face(cairo_scaled_font_t *
+					 scaled_font);
+    extern void cairo_scaled_font_get_font_matrix(cairo_scaled_font_t *
+						  scaled_font,
+						  cairo_matrix_t *
+						  font_matrix);
+    extern void cairo_scaled_font_get_font_options(cairo_scaled_font_t *
+						   scaled_font,
+						   cairo_font_options_t *
+						   options);
+    extern cairo_font_type_t cairo_scaled_font_get_type(cairo_scaled_font_t
+							* scaled_font);
+    extern void cairo_scaled_font_text_extents(cairo_scaled_font_t *
+					       scaled_font,
+					       const char *utf8,
+					       cairo_text_extents_t *
+					       extents);
+    extern void cairo_set_scaled_font(cairo_t * cr,
+				      const cairo_scaled_font_t *
+				      scaled_font);
+    extern cairo_content_t cairo_surface_get_content(cairo_surface_t *
+						     surface);
+    extern void cairo_surface_get_device_offset(cairo_surface_t * surface,
+						double *x_offset,
+						double *y_offset);
+    extern cairo_surface_type_t cairo_surface_get_type(cairo_surface_t *
+						       surface);
+    extern void cairo_surface_set_fallback_resolution(cairo_surface_t *
+						      surface,
+						      double
+						      x_pixels_per_inch,
+						      double
+						      y_pixels_per_inch);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif

@@ -7,3 +7,6 @@ extern cairo_surface_t
 					 void *closure,
 					 double width_in_points,
 					 double height_in_points);
+extern void cairo_pdf_surface_set_size(cairo_surface_t * surface,
+				       double width_in_points,
+				       double height_in_points);
