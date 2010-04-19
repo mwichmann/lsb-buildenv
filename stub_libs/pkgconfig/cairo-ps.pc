@@ -5,7 +5,7 @@ includedir=/opt/lsb/include
 
 Name: cairo-ps
 Description: PostScript backend for cairo graphics library
-Version: 1.0.2
+Version: 1.2.4
 Requires: cairo 
 Libs: -lz 
 Cflags: -I${includedir}/cairo 
