@@ -140,11 +140,8 @@ extern "C" {
     extern char *httpMD5String(const unsigned char *, char *);
     extern int httpOptions(http_t * http, const char *uri);
     extern int httpPost(http_t * http, const char *uri);
-    extern int httpPrintf(http_t * http, const char *format, ...);
     extern int httpPut(http_t * http, const char *uri);
     extern int httpReconnect(http_t * http);
-    extern void httpSeparate(const char *uri, char *method, char *username,
-			     char *host, int *port, char *resource);
     extern void httpSetCookie(http_t * http, const char *cookie);
     extern void httpSetField(http_t * http, http_field_t field,
 			     const char *value);

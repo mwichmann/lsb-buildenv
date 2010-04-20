@@ -273,6 +273,13 @@ extern "C" {
 					   const char *name,
 					   int num_values,
 					   const char *values);
+    extern ipp_attribute_t *ippAddCollection(ipp_t * ipp, ipp_tag_t group,
+					     const char *name,
+					     ipp_t * value);
+    extern ipp_attribute_t *ippAddCollections(ipp_t * ipp, ipp_tag_t group,
+					      const char *name,
+					      int num_values,
+					      const ipp_t * *values);
     extern ipp_attribute_t *ippAddDate(ipp_t * ipp, ipp_tag_t group,
 				       const char *name,
 				       const ipp_uchar_t * value);
@@ -326,6 +333,7 @@ extern "C" {
     extern void ippSetPort(int p);
     extern const ipp_uchar_t *ippTimeToDate(time_t t);
     extern ipp_state_t ippWrite(http_t * http, ipp_t * ipp);
+    extern ipp_state_t ippWriteFile(int fd, ipp_t * ipp);
 #ifdef __cplusplus
 }
 #endif

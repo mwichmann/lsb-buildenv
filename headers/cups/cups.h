@@ -51,7 +51,12 @@ extern "C" {
 	CUPS_KOI8_U = 26
     } cups_encoding_t;
 
-    typedef struct cups_lang_str cups_lang_t;
+    typedef enum {
+	HTTP_ENCRYPT_IF_REQUESTED = 0,
+	HTTP_ENCRYPT_NEVER = 1,
+	HTTP_ENCRYPT_REQUIRED = 2,
+	HTTP_ENCRYPT_ALWAYS = 3
+    } http_encryption_t;
 
     typedef struct {
 	char *name;
@@ -65,6 +70,16 @@ extern "C" {
 	int num_options;
 	cups_option_t *options;
     } cups_dest_t;
+
+    typedef enum {
+	IPP_JOB_PENDING = 3,
+	IPP_JOB_HELD = 4,
+	IPP_JOB_PROCESSING = 5,
+	IPP_JOB_STOPPED = 6,
+	IPP_JOB_CANCELLED = 7,
+	IPP_JOB_ABORTED = 8,
+	IPP_JOB_COMPLETED = 9
+    } ipp_jstate_t;
 
     typedef struct {
 	int id;
@@ -89,13 +104,13 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ < 4.0 */
 
+#if __LSB_VERSION__ < 41
+    typedef struct cups_lang_str cups_lang_t;
+
+#endif				/* __LSB_VERSION__ < 4.1 */
+
 #if __LSB_VERSION__ >= 41
-    typedef enum {
-	HTTP_ENCRYPT_IF_REQUESTED = 0,
-	HTTP_ENCRYPT_NEVER = 1,
-	HTTP_ENCRYPT_REQUIRED = 2,
-	HTTP_ENCRYPT_ALWAYS = 3
-    } http_encryption_t;
+    typedef struct cups_lang_s cups_lang_t;
 
     typedef enum {
 	HTTP_WAITING = 0,
@@ -173,16 +188,6 @@ extern "C" {
     } http_encoding_t;
 
     typedef enum {
-	IPP_JOB_PENDING = 3,
-	IPP_JOB_HELD = 4,
-	IPP_JOB_PROCESSING = 5,
-	IPP_JOB_STOPPED = 6,
-	IPP_JOB_CANCELLED = 7,
-	IPP_JOB_ABORTED = 8,
-	IPP_JOB_COMPLETED = 9
-    } ipp_jstate_t;
-
-    typedef enum {
 	IPP_OK = 0,
 	IPP_OK_SUBST = 1,
 	IPP_OK_CONFLICT = 2,
@@ -228,15 +233,9 @@ extern "C" {
 	IPP_PRINTER_IS_DEACTIVATED = 1290
     } ipp_status_t;
 
-#endif				/* __LSB_VERSION__ >= 4.1 */
+    typedef struct _cups_array_s cups_array_t;
 
-    struct cups_lang_str {
-	struct cups_lang_str *next;
-	int used;
-	cups_encoding_t encoding;
-	char language[16];
-	char *messages[506];
-    };
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #if __LSB_VERSION__ < 40
     struct md5_state_s {
@@ -246,6 +245,28 @@ extern "C" {
     };
 
 #endif				/* __LSB_VERSION__ < 4.0 */
+
+#if __LSB_VERSION__ < 41
+    struct cups_lang_str {
+	struct cups_lang_str *next;
+	int used;
+	cups_encoding_t encoding;
+	char language[16];
+	char *messages[506];
+    };
+
+#endif				/* __LSB_VERSION__ < 4.1 */
+
+#if __LSB_VERSION__ >= 41
+    struct cups_lang_s {
+	struct cups_lang_s *next;
+	int used;
+	cups_encoding_t encoding;
+	char language[16];
+	cups_array_t *strings;
+    };
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 
 #if __LSB_VERSION__ < 40
@@ -332,6 +353,30 @@ extern "C" {
     extern void cupsSetUser(const char *user);
     extern int cupsTempFd(char *filename, int len);
     extern const char *cupsUser(void);
+#if __LSB_VERSION__ >= 41
+    extern int cupsGetDests2(http_t * http, cups_dest_t * *dests);
+    extern http_status_t cupsGetFd(http_t * http, const char *resource,
+				   int fd);
+    extern http_status_t cupsGetFile(http_t * http, const char *resource,
+				     const char *filename);
+    extern int cupsGetJobs2(http_t * http, cups_job_t * *jobs,
+			    const char *dest, int myjobs, int completed);
+    extern const char *cupsGetPPD2(http_t * http, const char *printer);
+    extern int cupsPrintFile2(http_t * http, const char *printer,
+			      const char *filename, const char *title,
+			      int num_options, cups_option_t * options);
+    extern int cupsPrintFiles2(http_t * http, const char *printer,
+			       int num_files, const char **files,
+			       const char *title, int num_options,
+			       cups_option_t * options);
+    extern http_status_t cupsPutFd(http_t * http, const char *resource,
+				   int fd);
+    extern http_status_t cupsPutFile(http_t * http, const char *resource,
+				     const char *filename);
+    extern int cupsSetDests2(http_t * http, int num_dests,
+			     cups_dest_t * dests);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif
