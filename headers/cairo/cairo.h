@@ -211,14 +211,34 @@ extern "C" {
     } cairo_filter_t;
 
 #if __LSB_VERSION__ >= 41
-    typedef enum _cairo_font_type
-     cairo_font_type_t;
+    typedef enum _cairo_font_type {
+	CAIRO_FONT_TYPE_TOY,
+	CAIRO_FONT_TYPE_FT = 1,
+	CAIRO_FONT_TYPE_WIN32 = 2,
+	CAIRO_FONT_TYPE_ATSUI = 3
+    } cairo_font_type_t;
 
-    typedef enum _cairo_surface_type
-     cairo_surface_type_t;
+    typedef enum _cairo_surface_type {
+	CAIRO_SURFACE_TYPE_IMAGE,
+	CAIRO_SURFACE_TYPE_PDF = 1,
+	CAIRO_SURFACE_TYPE_PS = 2,
+	CAIRO_SURFACE_TYPE_XLIB = 3,
+	CAIRO_SURFACE_TYPE_XCB = 4,
+	CAIRO_SURFACE_TYPE_GLITZ = 5,
+	CAIRO_SURFACE_TYPE_QUARTZ = 6,
+	CAIRO_SURFACE_TYPE_WIN32 = 7,
+	CAIRO_SURFACE_TYPE_BEOS = 8,
+	CAIRO_SURFACE_TYPE_DIRECTFB = 9,
+	CAIRO_SURFACE_TYPE_SVG = 10,
+	CAIRO_SURFACE_TYPE_OS2 = 11
+    } cairo_surface_type_t;
 
-    typedef enum _cairo_pattern_type
-     cairo_pattern_type_t;
+    typedef enum _cairo_pattern_type {
+	CAIRO_PATTERN_TYPE_SOLID,
+	CAIRO_PATTERN_TYPE_SURFACE = 1,
+	CAIRO_PATTERN_TYPE_LINEAR = 2,
+	CAIRO_PATTERN_TYPE_RADIAL = 3
+    } cairo_pattern_type_t;
 
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
