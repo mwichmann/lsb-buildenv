@@ -284,6 +284,7 @@ BASE/include/cairo/cairo-features.h
 BASE/include/cairo/cairo-ft.h
 BASE/include/cairo/cairo-pdf.h
 BASE/include/cairo/cairo-ps.h
+BASE/include/cairo/cairo-svg.h
 BASE/include/cairo/cairo-xlib-xrender.h
 BASE/include/cairo/cairo-xlib.h
 BASE/include/cairo/cairo.h
