@@ -260,10 +260,13 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 
         # prefix with relocatable path: BASE will be replaced with 
         # install loc, LIB with lib or lib64 depending on arch
-        if (lsbversion == version):
-            reloc = "BASE/LIB/"
-        else:
-            reloc = "BASE/LIB-" + lsbversion + "/"
+## don't bother with special-casing "current" version
+##        if (lsbversion == version):
+##            reloc = "BASE/LIB/"
+##        else:
+##            reloc = "BASE/LIB-" + lsbversion + "/"
+## instead just version-suffix them all
+        reloc = "BASE/LIB-" + lsbversion + "/"
         core_libs =  [reloc + x for x in core_libs]
         desktop_libs =  [reloc + x for x in desktop_libs]
 
