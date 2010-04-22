@@ -1,19 +1,33 @@
 LSB Desktop Build Environment
 =============================
 
-This package supplies the files needed for building applications that
-conform to the LSB Desktop specification, including header files and
-libraries.
+The package contains the following:
+
+  - LSB stub libraries (stub_libs), desktop portion.
+    These libraries contain the versioned symbols as required by the LSB
+    specification. Linking against these libraries helps ensure that
+    the application references the correct set of symbols and symbol
+    versions at runtime.  They do not contain the code necessary for a
+    program to operate during runtime.
+
+  - LSB Header files matching the stubs in this package
+    Note that these headers are generated from the LSB database based
+    on elements captured as necessary.  As a result they are not likely
+    to be as "complete" as the native headers, and in some cases may
+    have a different structure - the chain of inclusion should satisfy
+    the standard's claim "visbile when this header is included" but
+    may not match the exact file native headers place things in. Please
+    report issues using the information below.
 
 Licence
 -------
 
-lsb-build-desktop is Copyright 2007, Linux Foundation, and distributed
+lsb-build-desktop is Copyright 2010, Linux Foundation, and distributed
 distributed under the terms of the BSD Licence. See the Licence file 
 for details.
 
 Feedback
 --------
-Please send any comments you may have to lsb-discuss@linux-foundation.org
+Please send any comments you may have to lsbdiscuss@linux-foundation.org
 or file bugs at bugs.linuxbase.org.
 

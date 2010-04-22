@@ -1,0 +1,5 @@
+
+#define ZEXPORT
+#define ZEXPORTVA
+#define OF(args)	args
+#define ZEXTERN	extern

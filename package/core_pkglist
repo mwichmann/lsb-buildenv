@@ -530,4 +530,5 @@ BASE/include/utmpx.h
 BASE/include/wchar.h
 BASE/include/wctype.h
 BASE/include/wordexp.h
+BASE/include/zconf.h
 BASE/include/zlib.h

@@ -327,6 +327,7 @@ BASE/include/freetype/ttunpat.h
 BASE/include/ft2build.h
 BASE/include/glib-2.0/glib-object.h
 BASE/include/glib-2.0/glib.h
+BASE/include/glib-2.0/glib/gi18n.h
 BASE/include/glib-2.0/glib/gprintf.h
 BASE/include/glib-2.0/glib/gstdio.h
 BASE/include/glib-2.0/gmodule.h

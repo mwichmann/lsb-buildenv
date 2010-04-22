@@ -13,6 +13,14 @@
 #include <QtGui/qpixmap.h>
 #include <QtGui/qpainter.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -20,10 +28,15 @@ extern "C" {
 
 /* Function prototypes */
 
+    /* This function is obsolete. Use QStyle::drawPrimitive() instead. */
     extern void
 	_Z10qDrawArrowP8QPainterN2Qt9ArrowTypeENS1_8GUIStyleEbiiiiRK8QPaletteb
 	(QPainter *, enum _ZN2Qt9ArrowTypeE, enum _ZN2Qt8GUIStyleE,
-	 const QPalette &);
+	 const QPalette &)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern void
 	_Z13qDrawWinPanelP8QPainterRK5QRectRK8QPalettebPK6QBrush(QPainter
 								 *,
@@ -99,13 +112,23 @@ extern "C" {
 								QPalette &,
 								const
 								QBrush *);
+    /* This function is obsolete. Use QStyle::drawPrimitive() instead. */
     extern void
 	_Z9qDrawItemP8QPainterN2Qt8GUIStyleEiiiiiRK8QPalettebPK7QPixmapRK7QStringiPK6QColor
 	(QPainter *, enum _ZN2Qt8GUIStyleE, const QPalette &,
-	 const QPixmap *, QString & &, const QColor *);
+	 const QPixmap *, QString & &, const QColor *)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This function is obsolete. Use QStyle::drawPrimitive() instead. */
     extern QRect
 	_Z9qItemRectP8QPainterN2Qt8GUIStyleEiiiiibPK7QPixmapRK7QStringi
-	(QPainter *, enum _ZN2Qt8GUIStyleE, const QPixmap *, QString & &);
+	(QPainter *, enum _ZN2Qt8GUIStyleE, const QPixmap *, QString & &)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
 #ifdef __cplusplus
 }
 #endif

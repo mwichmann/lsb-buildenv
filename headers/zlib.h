@@ -3,6 +3,7 @@
 #define _ZLIB_H_
 
 #include <sys/types.h>
+#include <zconf.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -4,6 +4,7 @@ fenv.h
 dlfcn.h
 crypt.h
 zlib.h
+zconf.h
 curses.h
 term.h
 unctrl.h

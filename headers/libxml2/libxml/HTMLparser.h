@@ -6,6 +6,7 @@
 #include <libxml2/libxml/tree.h>
 #include <libxml2/libxml/xmlerror.h>
 #include <libxml2/libxml/xmlregexp.h>
+#include <libxml2/libxml/entities.h>
 #include <libxml2/libxml/encoding.h>
 #include <libxml2/libxml/SAX2.h>
 #include <libxml2/libxml/xmlIO.h>
@@ -59,6 +60,11 @@ extern "C" {
     typedef htmlEntityDesc *htmlEntityDescPtr;
 
     typedef xmlParserInput htmlParserInput;
+
+#if __LSB_VERSION__ >= 41
+    typedef xmlSAXHandler htmlSAXHandler;
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
     struct _htmlElemDesc {
 	const char *name;

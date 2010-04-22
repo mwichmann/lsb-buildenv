@@ -12,8 +12,6 @@
 #include <sys/poll.h>
 #include <errno.h>
 #include <stdarg.h>
-#include <alsa/asoundef.h>
-#include <alsa/version.h>
 #include <alsa/global.h>
 #include <alsa/input.h>
 #include <alsa/output.h>

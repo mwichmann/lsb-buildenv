@@ -1,6 +1,7 @@
 glib-2.0/glib.h
 glib-2.0/glib/gprintf.h
 glib-2.0/glib/gstdio.h
+glib-2.0/glib/gi18n.h
 glib-2.0/glib-object.h
 glib-2.0/gobject/gvaluecollector.h
 glib-2.0/gmodule.h
