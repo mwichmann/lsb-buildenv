@@ -210,6 +210,7 @@ extern void cupsFreeDests(int num_dests, cups_dest_t * dests);
 extern void cupsFreeJobs(int num_jobs, cups_job_t * jobs);
 extern void cupsFreeOptions(int num_options, cups_option_t * options);
 extern const char *cupsGetDefault(void);
+extern const char *cupsGetDefault2(http_t * http);
 extern cups_dest_t *cupsGetDest(const char *name, const char *instance,
 				int num_dests, cups_dest_t * dests);
 extern int cupsGetDests(cups_dest_t * *dests);

@@ -354,6 +354,7 @@ extern "C" {
     extern int cupsTempFd(char *filename, int len);
     extern const char *cupsUser(void);
 #if __LSB_VERSION__ >= 41
+    extern const char *cupsGetDefault2(http_t * http);
     extern int cupsGetDests2(http_t * http, cups_dest_t * *dests);
     extern http_status_t cupsGetFd(http_t * http, const char *resource,
 				   int fd);

@@ -6,6 +6,7 @@ void cupsFreeDests() {} ;
 void cupsFreeJobs() {} ;
 void cupsFreeOptions() {} ;
 void cupsGetDefault() {} ;
+void cupsGetDefault2() {} ;
 void cupsGetDest() {} ;
 void cupsGetDests() {} ;
 void cupsGetDests2() {} ;
