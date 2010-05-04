@@ -252,6 +252,7 @@ done
 /opt/lsb/%xlib-3.1/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-3.1/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-3.1/pkgconfig/libpng.pc
@@ -300,6 +301,7 @@ done
 /opt/lsb/%xlib-3.2/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-3.2/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-3.2/pkgconfig/libpng.pc
@@ -348,6 +350,7 @@ done
 /opt/lsb/%xlib-4.1/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-4.1/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-4.1/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-4.1/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-4.1/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-4.1/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-4.1/pkgconfig/libpng.pc
@@ -396,6 +399,7 @@ done
 /opt/lsb/%xlib-5.0/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-5.0/pkgconfig/libpng.pc
@@ -444,6 +448,7 @@ done
 /opt/lsb/%xlib-4.0/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-4.0/pkgconfig/libpng.pc
@@ -510,7 +515,11 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue May 04 2010 Stew Benedict <stewb@linux-foundation.org>
+- gtk/glib uplift (bug 2862)
+
 * Wed Nov 18 2009 Mats Wichmann <mats@linuxfoundation.org> - 4.0.5
 - the subpackage scheme is working properly now
+
 * Fri Oct 30 2009 Mats Wichmann <mats@linuxfoundation.org>
 - specfiles for -base, -desktop, -cc coalesced into one, changlog cleared

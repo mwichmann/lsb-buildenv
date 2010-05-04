@@ -6,6 +6,6 @@ includedir=/opt/lsb/include
 Name: GObject
 Description: GLib Type, Object, Parameter and Signal Library
 Requires: glib-2.0
-Version: 2.8.6
+Version: 2.12.3
 Libs: -L${libdir} -lgobject-2.0
 Cflags:

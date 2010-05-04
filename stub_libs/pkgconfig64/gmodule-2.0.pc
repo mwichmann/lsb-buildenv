@@ -8,6 +8,6 @@ gmodule_supported=true
 Name: GModule
 Description: Dynamic module loader for GLib
 Requires: glib-2.0
-Version: 2.8.6
+Version: 2.12.3
 Libs: -L${libdir} -Wl,--export-dynamic -lgmodule-2.0 -ldl
 Cflags:
