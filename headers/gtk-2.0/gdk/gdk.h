@@ -8,6 +8,7 @@
 #include <pango-1.0/pango/pango.h>
 #include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk-2.0/gdk-pixbuf-xlib/gdk-pixbuf-xlib.h>
+#include <cairo/cairo.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -2656,6 +2657,39 @@ extern "C" {
     extern void gdk_window_set_urgency_hint(GdkWindow * window,
 					    gboolean urgent);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+    extern GdkAtom gdk_atom_intern_static_string(const gchar * atom_name);
+    extern gboolean gdk_display_supports_input_shapes(GdkDisplay *
+						      display);
+    extern gboolean gdk_display_supports_shapes(GdkDisplay * display);
+    extern GdkPixmap *gdk_pixmap_foreign_new_for_screen(GdkScreen * screen,
+							GdkNativeWindow
+							anid, gint width,
+							gint height,
+							gint depth);
+    extern GdkWindow *gdk_screen_get_active_window(GdkScreen * screen);
+    extern const cairo_font_options_t
+	*gdk_screen_get_font_options(GdkScreen * screen);
+    extern gdouble gdk_screen_get_resolution(GdkScreen * screen);
+    extern GList *gdk_screen_get_window_stack(GdkScreen * screen);
+    extern gboolean gdk_screen_is_composited(GdkScreen * screen);
+    extern void gdk_screen_set_font_options(GdkScreen * screen,
+					    const cairo_font_options_t *
+					    options);
+    extern void gdk_screen_set_resolution(GdkScreen * screen, gdouble dpi);
+    extern GdkWindowTypeHint gdk_window_get_type_hint(GdkWindow * window);
+    extern void gdk_window_input_shape_combine_mask(GdkWindow * window,
+						    GdkBitmap * mask,
+						    gint x, gint y);
+    extern void gdk_window_input_shape_combine_region(GdkWindow * window,
+						      const GdkRegion *
+						      shape_region,
+						      gint offset_x,
+						      gint offset_y);
+    extern void gdk_window_merge_child_input_shapes(GdkWindow * window);
+    extern void gdk_window_set_child_input_shapes(GdkWindow * window);
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
 }

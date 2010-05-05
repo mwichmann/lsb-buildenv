@@ -9,6 +9,11 @@
 #include <pango-1.0/pango/pango.h>
 #include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk-2.0/gdk/gdk.h>
+#include <cairo/cairo.h>
+#include <gtk-2.0/gtk/gtkenums.h>
+#include <gtk-2.0/gtk/gtkprintoperationpreview.h>
+#include <gtk-2.0/gtk/gtkrecentfilter.h>
+#include <gtk-2.0/gtk/gtkrecentmanager.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
@@ -1804,9 +1809,7 @@ extern "C" {
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) &= ~(flag)); }G_STMT_END
 #define GTK_WIDGET_SET_FLAGS(wid,flag)	 \
 	G_STMT_START{ (GTK_WIDGET_FLAGS (wid) |= (flag)); }G_STMT_END
-#define GTK_INTERFACE_AGE	(10)
 #define GTK_MAJOR_VERSION	(2)
-#define GTK_BINARY_AGE	(610)
 #define GTK_TEXT_VIEW_PRIORITY_VALIDATE	(GDK_PRIORITY_REDRAW + 5)
 #define GTK_TYPE_ABOUT_DIALOG	(gtk_about_dialog_get_type ())
 #define GTK_TYPE_ACCEL_FLAGS	(gtk_accel_flags_get_type())
@@ -2159,13 +2162,159 @@ extern "C" {
 #define GTK_MINOR_VERSION	(6)
 #endif				/* __LSB_VERSION__ < 4.0 */
 
+#if __LSB_VERSION__ < 41
+#define GTK_INTERFACE_AGE	(10)
+#define GTK_BINARY_AGE	(610)
+#endif				/* __LSB_VERSION__ < 4.1 */
+
 #if __LSB_VERSION__ >= 40
-#define GTK_MICRO_VERSION	(11)
-#define GTK_MINOR_VERSION	(8)
 #define GTK_STOCK_FULLSCREEN	"gtk-fullscreen"
 #define GTK_STOCK_INFO	"gtk-info"
 #define GTK_STOCK_LEAVE_FULLSCREEN	"gtk-leave-fullscreen"
+#if __LSB_VERSION__ < 41
+#define GTK_MICRO_VERSION	(11)
+#define GTK_MINOR_VERSION	(8)
+#endif				/* __LSB_VERSION__ < 4.1 */
+
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+#define __GTK_ASSISTANT_H__
+#define __GTK_PAGE_SETUP_H__
+#define __GTK_PAPER_SIZE_H__
+#define __GTK_PRINT_CONTEXT_H__
+#define __GTK_PRINT_OPERATION_H__
+#define __GTK_PRINT_SETTINGS_H__
+#define __GTK_RECENT_CHOOSER_DIALOG_H__
+#define __GTK_RECENT_CHOOSER_H__
+#define __GTK_RECENT_CHOOSER_MENU_H__
+#define __GTK_RECENT_CHOOSER_WIDGET_H__
+#define GTK_TYPE_ASSISTANT	(gtk_assistant_get_type ())
+#define GTK_TYPE_CELL_RENDERER_ACCEL	(gtk_cell_renderer_accel_get_type ())
+#define GTK_TYPE_CELL_RENDERER_ACCEL_MODE	(gtk_cell_renderer_accel_mode_get_type ())
+#define GTK_TYPE_CELL_RENDERER_SPIN	(gtk_cell_renderer_spin_get_type ())
+#define GTK_TYPE_LINK_BUTTON	(gtk_link_button_get_type ())
+#define __GTK_LINK_BUTTON_H__	(gtk_link_button_get_type ())
+#define GTK_TYPE_PAGE_ORIENTATION	(gtk_page_orientation_get_type ())
+#define GTK_TYPE_PAGE_SETUP	(gtk_page_setup_get_type ())
+#define GTK_TYPE_PAGE_SET	(gtk_page_set_get_type ())
+#define GTK_TYPE_PAPER_SIZE	(gtk_paper_size_get_type ())
+#define GTK_TYPE_PRINT_CONTEXT	(gtk_print_context_get_type ())
+#define GTK_TYPE_PRINT_DUPLEX	(gtk_print_duplex_get_type ())
+#define GTK_TYPE_PRINT_ERROR	(gtk_print_error_get_type ())
+#define GTK_TYPE_PRINT_OPERATION_ACTION	(gtk_print_operation_action_get_type ())
+#define GTK_TYPE_PRINT_OPERATION	(gtk_print_operation_get_type ())
+#define GTK_TYPE_PRINT_OPERATION_RESULT	(gtk_print_operation_result_get_type ())
+#define GTK_TYPE_PRINT_PAGES	(gtk_print_pages_get_type ())
+#define GTK_TYPE_PRINT_QUALITY	(gtk_print_quality_get_type ())
+#define GTK_TYPE_PRINT_SETTINGS	(gtk_print_settings_get_type ())
+#define GTK_TYPE_PRINT_STATUS	(gtk_print_status_get_type ())
+#define GTK_TYPE_RECENT_CHOOSER_DIALOG	(gtk_recent_chooser_dialog_get_type ())
+#define GTK_TYPE_RECENT_CHOOSER_ERROR	(gtk_recent_chooser_error_get_type ())
+#define GTK_RECENT_CHOOSER_ERROR	(gtk_recent_chooser_error_quark ())
+#define GTK_TYPE_RECENT_CHOOSER	(gtk_recent_chooser_get_type ())
+#define GTK_TYPE_RECENT_CHOOSER_MENU	(gtk_recent_chooser_menu_get_type ())
+#define GTK_TYPE_RECENT_CHOOSER_WIDGET	(gtk_recent_chooser_widget_get_type ())
+#define GTK_TYPE_RECENT_FILTER_FLAGS	(gtk_recent_filter_flags_get_type ())
+#define GTK_TYPE_RECENT_MANAGER_ERROR	(gtk_recent_manager_error_get_type ())
+#define GTK_TYPE_RECENT_SORT_TYPE	(gtk_recent_sort_type_get_type ())
+#define GTK_TYPE_SENSITIVITY_TYPE	(gtk_sensitivity_type_get_type ())
+#define GTK_TYPE_TARGET_LIST	(gtk_target_list_get_type ())
+#define GTK_TYPE_TEXT_BUFFER_TARGET_INFO	(gtk_text_buffer_target_info_get_type ())
+#define GTK_TYPE_TREE_VIEW_GRID_LINES	(gtk_tree_view_grid_lines_get_type ())
+#define GTK_TYPE_UNIT	(gtk_unit_get_type ())
+#define GTK_ASSISTANT_CLASS(c)	(G_TYPE_CHECK_CLASS_CAST ((c), GTK_TYPE_ASSISTANT, GtkAssistantClass))
+#define GTK_CELL_RENDERER_ACCEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_CELL_RENDERER_ACCEL, GtkCellRendererAccelClass))
+#define GTK_CELL_RENDERER_SPIN_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_CELL_RENDERER_SPIN, GtkCellRendererSpinClass))
+#define GTK_LINK_BUTTON_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_LINK_BUTTON, GtkLinkButtonClass))
+#define GTK_PRINT_OPERATION_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_PRINT_OPERATION, GtkPrintOperationClass))
+#define GTK_RECENT_CHOOSER_DIALOG_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_RECENT_CHOOSER_DIALOG, GtkRecentChooserDialogClass))
+#define GTK_RECENT_CHOOSER_MENU_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_RECENT_CHOOSER_MENU, GtkRecentChooserMenuClass))
+#define GTK_RECENT_CHOOSER_WIDGET_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_RECENT_CHOOSER_WIDGET, GtkRecentChooserWidgetClass))
+#define GTK_IS_ASSISTANT_CLASS(c)	(G_TYPE_CHECK_CLASS_TYPE ((c), GTK_TYPE_ASSISTANT))
+#define GTK_IS_CELL_RENDERER_ACCEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_CELL_RENDERER_ACCEL))
+#define GTK_IS_CELL_RENDERER_SPIN_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_CELL_RENDERER_SPIN))
+#define GTK_IS_LINK_BUTTON_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_LINK_BUTTON))
+#define GTK_IS_PRINT_OPERATION_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_PRINT_OPERATION))
+#define GTK_IS_RECENT_CHOOSER_DIALOG_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_RECENT_CHOOSER_DIALOG))
+#define GTK_IS_RECENT_CHOOSER_MENU_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_RECENT_CHOOSER_MENU))
+#define GTK_IS_RECENT_CHOOSER_WIDGET_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_RECENT_CHOOSER_WIDGET))
+#define GTK_ASSISTANT(o)	(G_TYPE_CHECK_INSTANCE_CAST ((o), GTK_TYPE_ASSISTANT, GtkAssistant))
+#define GTK_CELL_RENDERER_ACCEL(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_CELL_RENDERER_ACCEL, GtkCellRendererAccel))
+#define GTK_CELL_RENDERER_SPIN(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_CELL_RENDERER_SPIN, GtkCellRendererSpin))
+#define GTK_LINK_BUTTON(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_LINK_BUTTON, GtkLinkButton))
+#define GTK_PAGE_SETUP(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_PAGE_SETUP, GtkPageSetup))
+#define GTK_PRINT_CONTEXT(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_PRINT_CONTEXT, GtkPrintContext))
+#define GTK_PRINT_OPERATION(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_PRINT_OPERATION, GtkPrintOperation))
+#define GTK_PRINT_SETTINGS(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_PRINT_SETTINGS, GtkPrintSettings))
+#define GTK_RECENT_CHOOSER(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_RECENT_CHOOSER, GtkRecentChooser))
+#define GTK_RECENT_CHOOSER_DIALOG(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_RECENT_CHOOSER_DIALOG, GtkRecentChooserDialog))
+#define GTK_RECENT_CHOOSER_MENU(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_RECENT_CHOOSER_MENU, GtkRecentChooserMenu))
+#define GTK_RECENT_CHOOSER_WIDGET(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_RECENT_CHOOSER_WIDGET, GtkRecentChooserWidget))
+#define GTK_IS_ASSISTANT(o)	(G_TYPE_CHECK_INSTANCE_TYPE ((o), GTK_TYPE_ASSISTANT))
+#define GTK_IS_CELL_RENDERER_ACCEL(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_CELL_RENDERER_ACCEL))
+#define GTK_IS_CELL_RENDERER_SPIN(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_CELL_RENDERER_SPIN))
+#define GTK_IS_LINK_BUTTON(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_LINK_BUTTON))
+#define GTK_IS_PAGE_SETUP(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_PAGE_SETUP))
+#define GTK_IS_PRINT_CONTEXT(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_PRINT_CONTEXT))
+#define GTK_IS_PRINT_OPERATION(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_PRINT_OPERATION))
+#define GTK_IS_PRINT_SETTINGS(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_PRINT_SETTINGS))
+#define GTK_IS_RECENT_CHOOSER(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_RECENT_CHOOSER))
+#define GTK_IS_RECENT_CHOOSER_DIALOG(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_RECENT_CHOOSER_DIALOG))
+#define GTK_IS_RECENT_CHOOSER_MENU(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_RECENT_CHOOSER_MENU))
+#define GTK_IS_RECENT_CHOOSER_WIDGET(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_RECENT_CHOOSER_WIDGET))
+#define GTK_ASSISTANT_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), GTK_TYPE_ASSISTANT, GtkAssistantClass))
+#define GTK_CELL_RENDERER_ACCEL_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_CELL_RENDERER_ACCEL, GtkCellRendererAccelClass))
+#define GTK_CELL_RENDERER_SPIN_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_CELL_RENDERER_SPIN, GtkCellRendererTextClass))
+#define GTK_LINK_BUTTON_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_LINK_BUTTON, GtkLinkButtonClass))
+#define GTK_PRINT_OPERATION_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_PRINT_OPERATION, GtkPrintOperationClass))
+#define GTK_RECENT_CHOOSER_DIALOG_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_RECENT_CHOOSER_DIALOG, GtkRecentChooserDialogClass))
+#define GTK_RECENT_CHOOSER_MENU_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_RECENT_CHOOSER_MENU, GtkRecentChooserMenuClass))
+#define GTK_RECENT_CHOOSER_WIDGET_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_RECENT_CHOOSER_WIDGET, GtkRecentChooserWidgetClass))
+#define GTK_RECENT_CHOOSER_GET_IFACE(inst)	(G_TYPE_INSTANCE_GET_INTERFACE ((inst), GTK_TYPE_RECENT_CHOOSER, GtkRecentChooserIface))
+#define GTK_MINOR_VERSION	10
+#define GTK_BINARY_AGE	1004
+#define GTK_INTERFACE_AGE	4
+#define GTK_MICRO_VERSION	4
+#define GTK_PRINT_SETTINGS_COLLATE	"collate"
+#define GTK_PRINT_SETTINGS_DEFAULT_SOURCE	"default-source"
+#define GTK_PRINT_SETTINGS_DITHER	"dither"
+#define GTK_PRINT_SETTINGS_DUPLEX	"duplex"
+#define GTK_PRINT_SETTINGS_FINISHINGS	"finishings"
+#define GTK_PRINT_ERROR	gtk_print_error_quark ()
+#define GTK_PAPER_NAME_A3	"iso_a3"
+#define GTK_PAPER_NAME_A4	"iso_a4"
+#define GTK_PAPER_NAME_A5	"iso_a5"
+#define GTK_PAPER_NAME_B5	"iso_b5"
+#define GTK_PRINT_SETTINGS_MEDIA_TYPE	"media-type"
+#define GTK_PRINT_SETTINGS_N_COPIES	"n-copies"
+#define GTK_PAPER_NAME_EXECUTIVE	"na_executive"
+#define GTK_PAPER_NAME_LEGAL	"na_legal"
+#define GTK_PAPER_NAME_LETTER	"na_letter"
+#define GTK_PRINT_SETTINGS_NUMBER_UP	"number-up"
+#define GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT	"number-up-layout"
+#define GTK_PRINT_SETTINGS_ORIENTATION	"orientation"
+#define GTK_PRINT_SETTINGS_OUTPUT_BIN	"output-bin"
+#define GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT	"output-file-format"
+#define GTK_PRINT_SETTINGS_OUTPUT_URI	"output-uri"
+#define GTK_PRINT_SETTINGS_PAGE_RANGES	"page-ranges"
+#define GTK_PRINT_SETTINGS_PAGE_SET	"page-set"
+#define GTK_PRINT_SETTINGS_PAPER_FORMAT	"paper-format"
+#define GTK_PRINT_SETTINGS_PAPER_HEIGHT	"paper-height"
+#define GTK_PRINT_SETTINGS_PAPER_WIDTH	"paper-width"
+#define GTK_PRINT_SETTINGS_PRINT_PAGES	"print-pages"
+#define GTK_PRINT_SETTINGS_PRINTER	"printer"
+#define GTK_PRINT_SETTINGS_PRINTER_LPI	"printer-lpi"
+#define GTK_PRINT_SETTINGS_QUALITY	"quality"
+#define GTK_PRINT_SETTINGS_RESOLUTION	"resolution"
+#define GTK_PRINT_SETTINGS_RESOLUTION_X	"resolution-x"
+#define GTK_PRINT_SETTINGS_RESOLUTION_Y	"resolution-y"
+#define GTK_PRINT_SETTINGS_REVERSE	"reverse"
+#define GTK_PRINT_SETTINGS_SCALE	"scale"
+#define GTK_PRINT_SETTINGS_USE_COLOR	"use-color"
+#define GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA	"win32-driver-extra"
+#define GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION	"win32-driver-version"
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 
 
@@ -2218,6 +2367,7 @@ extern "C" {
 
     typedef struct _GtkTextIter GtkTextIter;
 
+#include <gtk-2.0/gtk/gtktextbufferrichtext.h>
     typedef GType GtkType;
 
     typedef struct _GtkContainer GtkContainer;
@@ -2244,14 +2394,6 @@ extern "C" {
 
     typedef struct _GtkWindowGroup GtkWindowGroup;
 
-    typedef enum {
-	GTK_STATE_NORMAL = 0,
-	GTK_STATE_ACTIVE = 1,
-	GTK_STATE_PRELIGHT = 2,
-	GTK_STATE_SELECTED = 3,
-	GTK_STATE_INSENSITIVE = 4
-    } GtkStateType;
-
     typedef struct _GtkTreeRowReference GtkTreeRowReference;
 
     typedef enum {
@@ -2273,11 +2415,6 @@ extern "C" {
 
     typedef struct _GtkLayout GtkLayout;
 
-    typedef enum {
-	GTK_SORT_ASCENDING = 0,
-	GTK_SORT_DESCENDING = 1
-    } GtkSortType;
-
     typedef struct _GtkTreeIter GtkTreeIter;
 
     typedef gint(*GtkTreeIterCompareFunc) (GtkTreeModel *, GtkTreeIter *,
@@ -2296,17 +2433,6 @@ extern "C" {
 						    gpointer);
 
     typedef struct _GtkTreeSortable GtkTreeSortable;
-
-    typedef enum {
-	GTK_UPDATE_CONTINUOUS = 0,
-	GTK_UPDATE_DISCONTINUOUS = 1,
-	GTK_UPDATE_DELAYED = 2
-    } GtkUpdateType;
-
-    typedef enum {
-	GTK_ORIENTATION_HORIZONTAL = 0,
-	GTK_ORIENTATION_VERTICAL = 1
-    } GtkOrientation;
 
     typedef struct _GtkRangeLayout GtkRangeLayout;
 
@@ -2334,14 +2460,6 @@ extern "C" {
 
     typedef struct _GtkCellRenderer GtkCellRenderer;
 
-    typedef enum {
-	GTK_BUTTONBOX_DEFAULT_STYLE = 0,
-	GTK_BUTTONBOX_SPREAD = 1,
-	GTK_BUTTONBOX_EDGE = 2,
-	GTK_BUTTONBOX_START = 3,
-	GTK_BUTTONBOX_END = 4
-    } GtkButtonBoxStyle;
-
     typedef struct _GtkButtonBox GtkButtonBox;
 
     typedef struct _GtkActionPrivate GtkActionPrivate;
@@ -2353,26 +2471,6 @@ extern "C" {
     typedef struct _GtkToggleAction GtkToggleAction;
 
     typedef struct _GtkTextAppearance GtkTextAppearance;
-
-    typedef enum {
-	GTK_JUSTIFY_LEFT = 0,
-	GTK_JUSTIFY_RIGHT = 1,
-	GTK_JUSTIFY_CENTER = 2,
-	GTK_JUSTIFY_FILL = 3
-    } GtkJustification;
-
-    typedef enum {
-	GTK_TEXT_DIR_NONE = 0,
-	GTK_TEXT_DIR_LTR = 1,
-	GTK_TEXT_DIR_RTL = 2
-    } GtkTextDirection;
-
-    typedef enum {
-	GTK_WRAP_NONE = 0,
-	GTK_WRAP_CHAR = 1,
-	GTK_WRAP_WORD = 2,
-	GTK_WRAP_WORD_CHAR = 3
-    } GtkWrapMode;
 
     typedef struct _GtkTextAttributes GtkTextAttributes;
 
@@ -2435,12 +2533,6 @@ extern "C" {
 
     typedef struct _GtkDrawingArea GtkDrawingArea;
 
-    typedef enum {
-	GTK_CURVE_TYPE_LINEAR = 0,
-	GTK_CURVE_TYPE_SPLINE = 1,
-	GTK_CURVE_TYPE_FREE = 2
-    } GtkCurveType;
-
     typedef struct _GtkCurve GtkCurve;
 
     typedef struct _GtkNotebookPage GtkNotebookPage;
@@ -2454,11 +2546,6 @@ extern "C" {
     typedef struct _GtkRadioAction GtkRadioAction;
 
     typedef struct _GtkTextMark GtkTextMark;
-
-    typedef enum {
-	GTK_PACK_START = 0,
-	GTK_PACK_END = 1
-    } GtkPackType;
 
     typedef struct _GtkVBox GtkVBox;
 
@@ -2508,21 +2595,6 @@ extern "C" {
 
     typedef struct _GtkIconTheme GtkIconTheme;
 
-    typedef enum {
-	GTK_ARROW_UP = 0,
-	GTK_ARROW_DOWN = 1,
-	GTK_ARROW_LEFT = 2,
-	GTK_ARROW_RIGHT = 3
-    } GtkArrowType;
-
-    typedef enum {
-	GTK_SHADOW_NONE = 0,
-	GTK_SHADOW_IN = 1,
-	GTK_SHADOW_OUT = 2,
-	GTK_SHADOW_ETCHED_IN = 3,
-	GTK_SHADOW_ETCHED_OUT = 4
-    } GtkShadowType;
-
     typedef struct _GtkTextWindow GtkTextWindow;
 
     typedef struct _GtkTextPendingScroll GtkTextPendingScroll;
@@ -2540,15 +2612,6 @@ extern "C" {
     } GtkTextWindowType;
 
     typedef struct _GtkObjectClass GtkObjectClass;
-
-    typedef enum {
-	GTK_DIR_TAB_FORWARD = 0,
-	GTK_DIR_TAB_BACKWARD = 1,
-	GTK_DIR_UP = 2,
-	GTK_DIR_DOWN = 3,
-	GTK_DIR_LEFT = 4,
-	GTK_DIR_RIGHT = 5
-    } GtkDirectionType;
 
     typedef enum {
 	GTK_WIDGET_HELP_TOOLTIP = 0,
@@ -2571,6 +2634,7 @@ extern "C" {
 	GTK_IMAGE_ICON_NAME = 7
     } GtkImageType;
 
+#include <gtk-2.0/gtk/gtkstatusicon.h>
     typedef struct _GtkImagePixmapData GtkImagePixmapData;
 
     typedef struct _GtkImageImageData GtkImageImageData;
@@ -2584,16 +2648,6 @@ extern "C" {
     typedef struct _GtkImageAnimationData GtkImageAnimationData;
 
     typedef struct _GtkImageIconNameData GtkImageIconNameData;
-
-    typedef enum {
-	GTK_ICON_SIZE_INVALID = 0,
-	GTK_ICON_SIZE_MENU = 1,
-	GTK_ICON_SIZE_SMALL_TOOLBAR = 2,
-	GTK_ICON_SIZE_LARGE_TOOLBAR = 3,
-	GTK_ICON_SIZE_BUTTON = 4,
-	GTK_ICON_SIZE_DND = 5,
-	GTK_ICON_SIZE_DIALOG = 6
-    } GtkIconSize;
 
     typedef struct _GtkImage GtkImage;
 
@@ -2651,14 +2705,6 @@ extern "C" {
 
     typedef struct _GtkHandleBox GtkHandleBox;
 
-    typedef enum {
-	GTK_SELECTION_NONE = 0,
-	GTK_SELECTION_SINGLE = 1,
-	GTK_SELECTION_BROWSE = 2,
-	GTK_SELECTION_MULTIPLE = 3,
-	GTK_SELECTION_EXTENDED = 3
-    } GtkSelectionMode;
-
     typedef struct _GtkActionGroupPrivate GtkActionGroupPrivate;
 
     typedef struct _GtkActionGroup GtkActionGroup;
@@ -2672,13 +2718,6 @@ extern "C" {
     typedef struct _GtkBindingArg GtkBindingArg;
 
     typedef struct _GtkScrolledWindow GtkScrolledWindow;
-
-    typedef enum {
-	GTK_CORNER_TOP_LEFT = 0,
-	GTK_CORNER_BOTTOM_LEFT = 1,
-	GTK_CORNER_TOP_RIGHT = 2,
-	GTK_CORNER_BOTTOM_RIGHT = 3
-    } GtkCornerType;
 
     typedef struct _GtkFrame GtkFrame;
 
@@ -2698,13 +2737,6 @@ extern "C" {
     typedef struct _GtkExpanderPrivate GtkExpanderPrivate;
 
     typedef struct _GtkExpander GtkExpander;
-
-    typedef enum {
-	GTK_POS_LEFT = 0,
-	GTK_POS_RIGHT = 1,
-	GTK_POS_TOP = 2,
-	GTK_POS_BOTTOM = 3
-    } GtkPositionType;
 
     typedef enum {
 	GTK_UI_MANAGER_AUTO = 0,
@@ -2768,13 +2800,6 @@ extern "C" {
 
     typedef gchar *(*GtkTranslateFunc) (const gchar *, gpointer);
 
-    typedef enum {
-	GTK_TOOLBAR_ICONS = 0,
-	GTK_TOOLBAR_TEXT = 1,
-	GTK_TOOLBAR_BOTH = 2,
-	GTK_TOOLBAR_BOTH_HORIZ = 3
-    } GtkToolbarStyle;
-
     typedef struct _GtkToolbar GtkToolbar;
 
     typedef void (*GtkCellLayoutDataFunc) (GtkCellLayout *,
@@ -2783,12 +2808,6 @@ extern "C" {
 					   gpointer);
 
     typedef struct _GtkCellRendererToggle GtkCellRendererToggle;
-
-    typedef enum {
-	GTK_RELIEF_NORMAL = 0,
-	GTK_RELIEF_HALF = 1,
-	GTK_RELIEF_NONE = 2
-    } GtkReliefStyle;
 
     typedef void (*GtkClipboardImageReceivedFunc) (GtkClipboard *,
 						   GdkPixbuf *, gpointer);
@@ -2871,23 +2890,11 @@ extern "C" {
 						   GtkTreeIter *,
 						   gpointer);
 
-    typedef enum {
-	GTK_PIXELS = 0,
-	GTK_INCHES = 1,
-	GTK_CENTIMETERS = 2
-    } GtkMetricType;
-
     typedef struct _GtkIMContextSimple GtkIMContextSimple;
 
     typedef void (*GtkClipboardTargetsReceivedFunc) (GtkClipboard *,
 						     GdkAtom *, gint,
 						     gpointer);
-
-    typedef enum {
-	GTK_EXPAND = 1,
-	GTK_SHRINK = 2,
-	GTK_FILL = 4
-    } GtkAttachOptions;
 
     typedef struct _GtkFontSelection GtkFontSelection;
 
@@ -2917,13 +2924,6 @@ extern "C" {
     typedef struct _GtkIMMulticontext GtkIMMulticontext;
 
     typedef enum {
-	GTK_MESSAGE_INFO = 0,
-	GTK_MESSAGE_WARNING = 1,
-	GTK_MESSAGE_QUESTION = 2,
-	GTK_MESSAGE_ERROR = 3
-    } GtkMessageType;
-
-    typedef enum {
 	GTK_BUTTONS_NONE = 0,
 	GTK_BUTTONS_OK = 1,
 	GTK_BUTTONS_CLOSE = 2,
@@ -2934,18 +2934,6 @@ extern "C" {
 
     typedef void (*GtkAccelMapForeach) (gpointer, const gchar *, guint,
 					GdkModifierType, gboolean);
-
-    typedef enum {
-	GTK_POLICY_ALWAYS = 0,
-	GTK_POLICY_AUTOMATIC = 1,
-	GTK_POLICY_NEVER = 2
-    } GtkPolicyType;
-
-    typedef enum {
-	GTK_RESIZE_PARENT = 0,
-	GTK_RESIZE_QUEUE = 1,
-	GTK_RESIZE_IMMEDIATE = 2
-    } GtkResizeMode;
 
     typedef void (*GtkColorSelectionChangePaletteWithScreenFunc) (GdkScreen
 								  *,
@@ -2990,22 +2978,9 @@ extern "C" {
 	GTK_SPIN_USER_DEFINED = 6
     } GtkSpinType;
 
-    typedef enum {
-	GTK_WINDOW_TOPLEVEL = 0,
-	GTK_WINDOW_POPUP = 1
-    } GtkWindowType;
-
     typedef void (*GtkMenuDetachFunc) (GtkWidget *, GtkMenu *);
 
     typedef struct _GtkInvisible GtkInvisible;
-
-    typedef enum {
-	GTK_WIN_POS_NONE = 0,
-	GTK_WIN_POS_CENTER = 1,
-	GTK_WIN_POS_MOUSE = 2,
-	GTK_WIN_POS_CENTER_ALWAYS = 3,
-	GTK_WIN_POS_CENTER_ON_PARENT = 4
-    } GtkWindowPosition;
 
     typedef void (*GtkTextTagTableForeach) (GtkTextTag *, gpointer);
 
@@ -3015,22 +2990,6 @@ extern "C" {
 						    gpointer);
 
     typedef struct _GtkAccessible GtkAccessible;
-
-    typedef enum {
-	GTK_EXPANDER_COLLAPSED = 0,
-	GTK_EXPANDER_SEMI_COLLAPSED = 1,
-	GTK_EXPANDER_SEMI_EXPANDED = 2,
-	GTK_EXPANDER_EXPANDED = 3
-    } GtkExpanderStyle;
-
-    typedef enum {
-	GTK_PATH_PRIO_LOWEST = 0,
-	GTK_PATH_PRIO_GTK = 4,
-	GTK_PATH_PRIO_APPLICATION = 8,
-	GTK_PATH_PRIO_THEME = 10,
-	GTK_PATH_PRIO_RC = 12,
-	GTK_PATH_PRIO_HIGHEST = 15
-    } GtkPathPriorityType;
 
     typedef struct _GtkArrow GtkArrow;
 
@@ -3049,36 +3008,11 @@ extern "C" {
 
     typedef struct _GtkSettingsValue GtkSettingsValue;
 
-    typedef enum {
-	GTK_PATH_WIDGET = 0,
-	GTK_PATH_WIDGET_CLASS = 1,
-	GTK_PATH_CLASS = 2
-    } GtkPathType;
-
     typedef struct _GtkAccelMap GtkAccelMap;
 
     typedef struct _GtkBinClass GtkBinClass;
 
     typedef struct _GtkWindowClass GtkWindowClass;
-
-    typedef enum {
-	GTK_SCROLL_NONE = 0,
-	GTK_SCROLL_JUMP = 1,
-	GTK_SCROLL_STEP_BACKWARD = 2,
-	GTK_SCROLL_STEP_FORWARD = 3,
-	GTK_SCROLL_PAGE_BACKWARD = 4,
-	GTK_SCROLL_PAGE_FORWARD = 5,
-	GTK_SCROLL_STEP_UP = 6,
-	GTK_SCROLL_STEP_DOWN = 7,
-	GTK_SCROLL_PAGE_UP = 8,
-	GTK_SCROLL_PAGE_DOWN = 9,
-	GTK_SCROLL_STEP_LEFT = 10,
-	GTK_SCROLL_STEP_RIGHT = 11,
-	GTK_SCROLL_PAGE_LEFT = 12,
-	GTK_SCROLL_PAGE_RIGHT = 13,
-	GTK_SCROLL_START = 14,
-	GTK_SCROLL_END = 15
-    } GtkScrollType;
 
     typedef struct _GtkRangeClass GtkRangeClass;
 
@@ -3099,19 +3033,6 @@ extern "C" {
     typedef struct _GtkSizeGroupClass GtkSizeGroupClass;
 
     typedef struct _GtkViewportClass GtkViewportClass;
-
-    typedef enum {
-	GTK_MOVEMENT_LOGICAL_POSITIONS = 0,
-	GTK_MOVEMENT_VISUAL_POSITIONS = 1,
-	GTK_MOVEMENT_WORDS = 2,
-	GTK_MOVEMENT_DISPLAY_LINES = 3,
-	GTK_MOVEMENT_DISPLAY_LINE_ENDS = 4,
-	GTK_MOVEMENT_PARAGRAPHS = 5,
-	GTK_MOVEMENT_PARAGRAPH_ENDS = 6,
-	GTK_MOVEMENT_PAGES = 7,
-	GTK_MOVEMENT_BUFFER_ENDS = 8,
-	GTK_MOVEMENT_HORIZONTAL_PAGES = 9
-    } GtkMovementStep;
 
     typedef struct _GtkEditableClass GtkEditableClass;
 
@@ -3189,13 +3110,6 @@ extern "C" {
     typedef struct _GtkIconFactoryClass GtkIconFactoryClass;
 
     typedef struct _GtkTreeSelectionClass GtkTreeSelectionClass;
-
-    typedef enum {
-	GTK_MENU_DIR_PARENT = 0,
-	GTK_MENU_DIR_CHILD = 1,
-	GTK_MENU_DIR_NEXT = 2,
-	GTK_MENU_DIR_PREV = 3
-    } GtkMenuDirectionType;
 
     typedef struct _GtkMenuShellClass GtkMenuShellClass;
 
@@ -3301,15 +3215,6 @@ extern "C" {
 
     typedef struct _GtkVPanedClass GtkVPanedClass;
 
-    typedef enum {
-	GTK_SCROLL_STEPS = 0,
-	GTK_SCROLL_PAGES = 1,
-	GTK_SCROLL_ENDS = 2,
-	GTK_SCROLL_HORIZONTAL_STEPS = 3,
-	GTK_SCROLL_HORIZONTAL_PAGES = 4,
-	GTK_SCROLL_HORIZONTAL_ENDS = 5
-    } GtkScrollStep;
-
     typedef struct _GtkToggleButtonClass GtkToggleButtonClass;
 
     typedef struct _GtkCellRendererToggleClass GtkCellRendererToggleClass;
@@ -3328,17 +3233,6 @@ extern "C" {
     typedef struct _GtkImageClass GtkImageClass;
 
     typedef struct _GtkMessageDialogClass GtkMessageDialogClass;
-
-    typedef enum {
-	GTK_DELETE_CHARS = 0,
-	GTK_DELETE_WORD_ENDS = 1,
-	GTK_DELETE_WORDS = 2,
-	GTK_DELETE_DISPLAY_LINES = 3,
-	GTK_DELETE_DISPLAY_LINE_ENDS = 4,
-	GTK_DELETE_PARAGRAPH_ENDS = 5,
-	GTK_DELETE_PARAGRAPHS = 6,
-	GTK_DELETE_WHITESPACE = 7
-    } GtkDeleteType;
 
     typedef struct _GtkTreeSortableIface GtkTreeSortableIface;
 
@@ -3367,12 +3261,6 @@ extern "C" {
     typedef struct _GtkVSeparatorClass GtkVSeparatorClass;
 
     typedef struct _GtkCheckButtonClass GtkCheckButtonClass;
-
-    typedef enum {
-	GTK_VISIBILITY_NONE = 0,
-	GTK_VISIBILITY_PARTIAL = 1,
-	GTK_VISIBILITY_FULL = 2
-    } GtkVisibility;
 
     typedef struct _GtkRadioMenuItemClass GtkRadioMenuItemClass;
 
@@ -3507,12 +3395,6 @@ extern "C" {
 					      guint, GdkModifierType);
 
     typedef enum {
-	GTK_IM_PREEDIT_NOTHING,
-	GTK_IM_PREEDIT_CALLBACK,
-	GTK_IM_PREEDIT_NONE
-    } GtkIMPreeditStyle;
-
-    typedef enum {
 	GTK_DEBUG_MISC = 1 << 0,
 	GTK_DEBUG_PLUGSOCKET = 1 << 1,
 	GTK_DEBUG_TEXT = 1 << 2,
@@ -3554,32 +3436,6 @@ extern "C" {
 	GTK_TARGET_SAME_APP = 1 << 0,
 	GTK_TARGET_SAME_WIDGET = 1 << 1
     } GtkTargetFlags;
-
-    typedef enum {
-	GTK_ANCHOR_CENTER,
-	GTK_ANCHOR_NORTH,
-	GTK_ANCHOR_NORTH_WEST,
-	GTK_ANCHOR_NORTH_EAST,
-	GTK_ANCHOR_SOUTH,
-	GTK_ANCHOR_SOUTH_WEST,
-	GTK_ANCHOR_SOUTH_EAST,
-	GTK_ANCHOR_WEST,
-	GTK_ANCHOR_EAST,
-	GTK_ANCHOR_N = GTK_ANCHOR_NORTH,
-	GTK_ANCHOR_NW = GTK_ANCHOR_NORTH_WEST,
-	GTK_ANCHOR_NE = GTK_ANCHOR_NORTH_EAST,
-	GTK_ANCHOR_S = GTK_ANCHOR_SOUTH,
-	GTK_ANCHOR_SW = GTK_ANCHOR_SOUTH_WEST,
-	GTK_ANCHOR_SE = GTK_ANCHOR_SOUTH_EAST,
-	GTK_ANCHOR_W = GTK_ANCHOR_WEST,
-	GTK_ANCHOR_E = GTK_ANCHOR_EAST
-    } GtkAnchorType;
-
-    typedef enum {
-	GTK_IM_STATUS_NOTHING,
-	GTK_IM_STATUS_CALLBACK,
-	GTK_IM_STATUS_NONE
-    } GtkIMStatusStyle;
 
     typedef enum {
 	GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
@@ -3666,14 +3522,159 @@ extern "C" {
 	GTK_ICON_VIEW_DROP_BELOW
     } GtkIconViewDropPosition;
 
-    typedef enum {
-	GTK_PACK_DIRECTION_LTR,
-	GTK_PACK_DIRECTION_RTL,
-	GTK_PACK_DIRECTION_TTB,
-	GTK_PACK_DIRECTION_BTT
-    } GtkPackDirection;
-
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+    typedef struct _GtkPageSetup GtkPageSetup;
+
+    typedef struct _GtkPrintContext GtkPrintContext;
+
+    typedef struct _GtkPaperSize GtkPaperSize;
+
+    typedef struct _GtkPrintOperationClass GtkPrintOperationClass;
+
+    typedef struct _GtkPrintOperationPrivate GtkPrintOperationPrivate;
+
+    typedef struct _GtkPrintOperation GtkPrintOperation;
+
+    typedef enum {
+	GTK_PRINT_STATUS_INITIAL,
+	GTK_PRINT_STATUS_PREPARING,
+	GTK_PRINT_STATUS_GENERATING_DATA,
+	GTK_PRINT_STATUS_SENDING_DATA,
+	GTK_PRINT_STATUS_PENDING,
+	GTK_PRINT_STATUS_PENDING_ISSUE,
+	GTK_PRINT_STATUS_PRINTING,
+	GTK_PRINT_STATUS_FINISHED,
+	GTK_PRINT_STATUS_FINISHED_ABORTED
+    } GtkPrintStatus;
+
+    typedef enum {
+	GTK_PRINT_OPERATION_RESULT_ERROR,
+	GTK_PRINT_OPERATION_RESULT_APPLY,
+	GTK_PRINT_OPERATION_RESULT_CANCEL,
+	GTK_PRINT_OPERATION_RESULT_IN_PROGRESS
+    } GtkPrintOperationResult;
+
+    typedef enum {
+	GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+	GTK_PRINT_OPERATION_ACTION_PRINT,
+	GTK_PRINT_OPERATION_ACTION_PREVIEW,
+	GTK_PRINT_OPERATION_ACTION_EXPORT
+    } GtkPrintOperationAction;
+
+    typedef enum {
+	GTK_PRINT_ERROR_GENERAL,
+	GTK_PRINT_ERROR_INTERNAL_ERROR,
+	GTK_PRINT_ERROR_NOMEM,
+	GTK_PRINT_ERROR_INVALID_FILE
+    } GtkPrintError;
+
+    typedef void (*GtkPageSetupDoneFunc) (GtkPageSetup *, gpointer);
+
+    typedef struct _GtkPrintSettings GtkPrintSettings;
+
+    typedef void (*GtkPrintSettingsFunc) (const char *, const char *,
+					  gpointer);
+
+    typedef struct _GtkPageRange GtkPageRange;
+
+    typedef struct _GtkLinkButton GtkLinkButton;
+
+    typedef struct _GtkLinkButtonClass GtkLinkButtonClass;
+
+    typedef struct _GtkLinkButtonPrivate GtkLinkButtonPrivate;
+
+    typedef void (*GtkLinkButtonUriFunc) (GtkLinkButton *, const char *,
+					  gpointer);
+
+    typedef GtkNotebook *(*GtkNotebookWindowCreationFunc) (GtkNotebook *,
+							   GtkWidget *,
+							   gint, gint,
+							   gpointer);
+
+    typedef enum {
+	GTK_ASSISTANT_PAGE_CONTENT,
+	GTK_ASSISTANT_PAGE_INTRO,
+	GTK_ASSISTANT_PAGE_CONFIRM,
+	GTK_ASSISTANT_PAGE_SUMMARY,
+	GTK_ASSISTANT_PAGE_PROGRESS
+    } GtkAssistantPageType;
+
+    typedef struct _GtkAssistant GtkAssistant;
+
+    typedef struct _GtkAssistantPrivate GtkAssistantPrivate;
+
+    typedef struct _GtkAssistantClass GtkAssistantClass;
+
+    typedef gint(*GtkAssistantPageFunc) (gint, gpointer);
+
+    typedef enum {
+	GTK_RECENT_SORT_NONE,
+	GTK_RECENT_SORT_MRU,
+	GTK_RECENT_SORT_LRU,
+	GTK_RECENT_SORT_CUSTOM
+    } GtkRecentSortType;
+
+    typedef gint(*GtkRecentSortFunc) (GtkRecentInfo *, GtkRecentInfo *,
+				      gpointer);
+
+    typedef struct _GtkRecentChooser GtkRecentChooser;
+
+    typedef struct _GtkRecentChooserIface GtkRecentChooserIface;
+
+    typedef enum {
+	GTK_RECENT_CHOOSER_ERROR_NOT_FOUND,
+	GTK_RECENT_CHOOSER_ERROR_INVALID_URI
+    } GtkRecentChooserError;
+
+    typedef struct _GtkRecentChooserDialog GtkRecentChooserDialog;
+
+    typedef struct _GtkRecentChooserDialogClass
+	GtkRecentChooserDialogClass;
+
+    typedef struct _GtkRecentChooserDialogPrivate
+	GtkRecentChooserDialogPrivate;
+
+    typedef struct _GtkRecentChooserWidget GtkRecentChooserWidget;
+
+    typedef struct _GtkRecentChooserWidgetClass
+	GtkRecentChooserWidgetClass;
+
+    typedef struct _GtkRecentChooserWidgetPrivate
+	GtkRecentChooserWidgetPrivate;
+
+    typedef struct _GtkRecentChooserMenu GtkRecentChooserMenu;
+
+    typedef struct _GtkRecentChooserMenuClass GtkRecentChooserMenuClass;
+
+    typedef struct _GtkRecentChooserMenuPrivate
+	GtkRecentChooserMenuPrivate;
+
+    typedef void (*GtkClipboardRichTextReceivedFunc) (GtkClipboard *,
+						      GdkAtom,
+						      const unsigned char
+						      *, gsize, gpointer);
+
+    typedef struct _GtkCellRendererSpin GtkCellRendererSpin;
+
+    typedef struct _GtkCellRendererSpinClass GtkCellRendererSpinClass;
+
+    typedef struct _GtkCellRendererSpinPrivate GtkCellRendererSpinPrivate;
+
+    typedef struct _GtkCellRendererAccel GtkCellRendererAccel;
+
+    typedef struct _GtkCellRendererAccelClass GtkCellRendererAccelClass;
+
+    typedef enum {
+	GTK_CELL_RENDERER_ACCEL_MODE_GTK,
+	GTK_CELL_RENDERER_ACCEL_MODE_OTHER
+    } GtkCellRendererAccelMode;
+
+    typedef void (*GtkTreeViewSearchPositionFunc) (GtkTreeView *,
+						   GtkWidget *, gpointer);
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
     enum {
 	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID = -1,
@@ -3970,6 +3971,9 @@ extern "C" {
 	guint select_words:1;
 	guint select_lines:1;
 	guint resolved_dir:4;
+#if __LSB_VERSION__ >= 41
+	guint truncate_multiline:1;
+#endif				/* __LSB_VERSION__ >= 41 */
 	guint button;
 	guint blink_timeout;
 	guint recompute_idle;
@@ -6866,6 +6870,156 @@ extern "C" {
 	GtkWidget *gamma_dialog;
 	GtkWidget *gamma_text;
     };
+
+#if __LSB_VERSION__ >= 41
+    struct _GtkPrintOperationClass {
+	GObjectClass parent_class;
+	void (*done) (void);
+	void (*begin_print) (void);
+	 gboolean(*paginate) (void);
+	void (*request_page_setup) (void);
+	void (*draw_page) (void);
+	void (*end_print) (void);
+	void (*status_changed) (void);
+	GtkWidget *(*create_custom_widget) (void);
+	void (*custom_widget_apply) (void);
+	 gboolean(*preview) (void);
+	void (*update_custom_widget) (void);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+    };
+
+    struct _GtkPrintOperation {
+	GObject parent_instance;
+	GtkPrintOperationPrivate *priv;
+    };
+
+    struct _GtkPageRange {
+	gint start;
+	gint end;
+    };
+
+    struct _GtkLinkButton {
+	GtkButton parent_instance;
+	GtkLinkButtonPrivate *priv;
+    };
+
+    struct _GtkLinkButtonClass {
+	GtkButtonClass parent_class;
+	void (*_gtk_padding1) (void);
+	void (*_gtk_padding2) (void);
+	void (*_gtk_padding3) (void);
+	void (*_gtk_padding4) (void);
+    };
+
+    struct _GtkAssistant {
+	GtkWindow parent;
+	GtkWidget *cancel;
+	GtkWidget *forward;
+	GtkWidget *back;
+	GtkWidget *apply;
+	GtkWidget *close;
+	GtkWidget *last;
+	GtkAssistantPrivate *priv;
+    };
+
+    struct _GtkAssistantClass {
+	GtkWindowClass parent_class;
+	void (*prepare) (void);
+	void (*apply) (void);
+	void (*close) (void);
+	void (*cancel) (void);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+    };
+
+    struct _GtkRecentChooserIface {
+	GTypeInterface base_iface;
+	 gboolean(*set_current_uri) (void);
+	gchar *(*get_current_uri) (void);
+	 gboolean(*select_uri) (void);
+	void (*unselect_uri) (void);
+	void (*select_all) (void);
+	void (*unselect_all) (void);
+	GList *(*get_items) (void);
+	GtkRecentManager *(*get_recent_manager) (void);
+	void (*add_filter) (void);
+	void (*remove_filter) (void);
+	GSList *(*list_filters) (void);
+	void (*set_sort_func) (void);
+	void (*item_activated) (void);
+	void (*selection_changed) (void);
+    };
+
+    struct _GtkRecentChooserDialog {
+	GtkDialog parent_instance;
+	GtkRecentChooserDialogPrivate *priv;
+    };
+
+    struct _GtkRecentChooserDialogClass {
+	GtkDialogClass parent_class;
+    };
+
+    struct _GtkRecentChooserWidget {
+	GtkVBox parent_instance;
+	GtkRecentChooserWidgetPrivate *priv;
+    };
+
+    struct _GtkRecentChooserWidgetClass {
+	GtkVBoxClass parent_class;
+    };
+
+    struct _GtkRecentChooserMenu {
+	GtkMenu parent_instance;
+	GtkRecentChooserMenuPrivate *priv;
+    };
+
+    struct _GtkRecentChooserMenuClass {
+	GtkMenuClass parent_class;
+	void (*gtk_recent1) (void);
+	void (*gtk_recent2) (void);
+	void (*gtk_recent3) (void);
+	void (*gtk_recent4) (void);
+    };
+
+    struct _GtkCellRendererSpin {
+	GtkCellRendererText parent;
+    };
+
+    struct _GtkCellRendererSpinClass {
+	GtkCellRendererTextClass parent;
+    };
+
+    struct _GtkCellRendererAccel {
+	GtkCellRendererText parent;
+	guint accel_key;
+	GdkModifierType accel_mods;
+	guint keycode;
+	GtkCellRendererAccelMode accel_mode;
+	GtkWidget *edit_widget;
+	GtkWidget *grab_widget;
+	GtkWidget *sizing_label;
+    };
+
+    struct _GtkCellRendererAccelClass {
+	GtkCellRendererTextClass parent_class;
+	void (*accel_edited) (void);
+	void (*accel_cleared) (void);
+	void (*_gtk_reserved0) (void);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 
 /* Function prototypes */
@@ -12102,6 +12256,711 @@ extern "C" {
     extern void gtk_window_set_urgency_hint(GtkWindow * window,
 					    gboolean setting);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+    extern void gtk_assistant_add_action_widget(GtkAssistant * assistant,
+						GtkWidget * child);
+    extern gint gtk_assistant_append_page(GtkAssistant * assistant,
+					  GtkWidget * page);
+    extern gint gtk_assistant_get_current_page(GtkAssistant * assistant);
+    extern gint gtk_assistant_get_n_pages(GtkAssistant * assistant);
+    extern GtkWidget *gtk_assistant_get_nth_page(GtkAssistant * assistant,
+						 gint page_num);
+    extern gboolean gtk_assistant_get_page_complete(GtkAssistant *
+						    assistant,
+						    GtkWidget * page);
+    extern GdkPixbuf *gtk_assistant_get_page_header_image(GtkAssistant *
+							  assistant,
+							  GtkWidget *
+							  page);
+    extern GdkPixbuf *gtk_assistant_get_page_side_image(GtkAssistant *
+							assistant,
+							GtkWidget * page);
+    extern const char *gtk_assistant_get_page_title(GtkAssistant *
+						    assistant,
+						    GtkWidget * page);
+    extern GtkAssistantPageType gtk_assistant_get_page_type(GtkAssistant *
+							    assistant,
+							    GtkWidget *
+							    page);
+    extern GType gtk_assistant_get_type(void);
+    extern gint gtk_assistant_insert_page(GtkAssistant * assistant,
+					  GtkWidget * page, gint position);
+    extern GtkWidget *gtk_assistant_new(void);
+    extern GType gtk_assistant_page_type_get_type(void);
+    extern gint gtk_assistant_prepend_page(GtkAssistant * assistant,
+					   GtkWidget * page);
+    extern void gtk_assistant_remove_action_widget(GtkAssistant *
+						   assistant,
+						   GtkWidget * child);
+    extern void gtk_assistant_set_current_page(GtkAssistant * assistant,
+					       gint page_num);
+    extern void gtk_assistant_set_forward_page_func(GtkAssistant *
+						    assistant,
+						    GtkAssistantPageFunc
+						    page_func,
+						    gpointer data,
+						    GDestroyNotify
+						    destroy);
+    extern void gtk_assistant_set_page_complete(GtkAssistant * assistant,
+						GtkWidget * page,
+						gboolean complete);
+    extern void gtk_assistant_set_page_header_image(GtkAssistant *
+						    assistant,
+						    GtkWidget * page,
+						    GdkPixbuf * pixbuf);
+    extern void gtk_assistant_set_page_side_image(GtkAssistant * assistant,
+						  GtkWidget * page,
+						  GdkPixbuf * pixbuf);
+    extern void gtk_assistant_set_page_title(GtkAssistant * assistant,
+					     GtkWidget * page,
+					     const char *title);
+    extern void gtk_assistant_set_page_type(GtkAssistant * assistant,
+					    GtkWidget * page,
+					    GtkAssistantPageType type);
+    extern void gtk_assistant_update_buttons_state(GtkAssistant *
+						   assistant);
+    extern GtkPositionType gtk_button_get_image_position(GtkButton *
+							 button);
+    extern void gtk_button_set_image_position(GtkButton * button,
+					      GtkPositionType position);
+    extern GType gtk_cell_renderer_accel_get_type(void);
+    extern GType gtk_cell_renderer_accel_mode_get_type(void);
+    extern GtkCellRenderer *gtk_cell_renderer_accel_new(void);
+    extern GType gtk_cell_renderer_spin_get_type(void);
+    extern GtkCellRenderer *gtk_cell_renderer_spin_new(void);
+    extern void gtk_clipboard_request_rich_text(GtkClipboard * clipboard,
+						GtkTextBuffer * buffer,
+						GtkClipboardRichTextReceivedFunc
+						callback,
+						gpointer user_data);
+    extern guint8 *gtk_clipboard_wait_for_rich_text(GtkClipboard *
+						    clipboard,
+						    GtkTextBuffer * buffer,
+						    GdkAtom * format,
+						    gsize * length);
+    extern gboolean gtk_clipboard_wait_is_rich_text_available(GtkClipboard
+							      * clipboard,
+							      GtkTextBuffer
+							      * buffer);
+    extern const gchar *gtk_combo_box_get_title(GtkComboBox * combo_box);
+    extern void gtk_combo_box_set_title(GtkComboBox * combo_box,
+					const gchar * title);
+    extern gboolean gtk_drag_dest_get_track_motion(GtkWidget * widget);
+    extern void gtk_drag_dest_set_track_motion(GtkWidget * widget,
+					       gboolean track_motion);
+    extern const GtkBorder *gtk_entry_get_inner_border(GtkEntry * entry);
+    extern void gtk_entry_set_inner_border(GtkEntry * entry,
+					   const GtkBorder * border);
+    extern gboolean
+	gtk_file_chooser_button_get_focus_on_click(GtkFileChooserButton *
+						   button);
+    extern void
+	gtk_file_chooser_button_set_focus_on_click(GtkFileChooserButton *
+						   button,
+						   gboolean
+						   focus_on_click);
+    extern PangoWrapMode gtk_label_get_line_wrap_mode(GtkLabel * label);
+    extern void gtk_label_set_line_wrap_mode(GtkLabel * label,
+					     PangoWrapMode wrap_mode);
+    extern GType gtk_link_button_get_type(void);
+    extern const char *gtk_link_button_get_uri(GtkLinkButton *
+					       link_button);
+    extern GtkWidget *gtk_link_button_new(const char *uri);
+    extern GtkWidget *gtk_link_button_new_with_label(const char *uri,
+						     const char *label);
+    extern void gtk_link_button_set_uri(GtkLinkButton * link_button,
+					const char *uri);
+    extern GtkLinkButtonUriFunc
+	gtk_link_button_set_uri_hook(GtkLinkButtonUriFunc func,
+				     gpointer data,
+				     GDestroyNotify destroy);
+    extern void gtk_message_dialog_set_image(GtkMessageDialog * dialog,
+					     GtkWidget * image);
+    extern gboolean gtk_notebook_get_tab_detachable(GtkNotebook * notebook,
+						    GtkWidget * child);
+    extern gboolean gtk_notebook_get_tab_reorderable(GtkNotebook *
+						     notebook,
+						     GtkWidget * child);
+    extern void gtk_notebook_set_tab_detachable(GtkNotebook * notebook,
+						GtkWidget * child,
+						gboolean detachable);
+    extern void gtk_notebook_set_tab_reorderable(GtkNotebook * notebook,
+						 GtkWidget * child,
+						 gboolean reorderable);
+    extern void
+	gtk_notebook_set_window_creation_hook(GtkNotebookWindowCreationFunc
+					      func, gpointer data,
+					      GDestroyNotify destroy);
+    extern GType gtk_page_orientation_get_type(void);
+    extern GType gtk_page_set_get_type(void);
+    extern GtkPageSetup *gtk_page_setup_copy(GtkPageSetup * other);
+    extern gdouble gtk_page_setup_get_bottom_margin(GtkPageSetup * setup,
+						    GtkUnit unit);
+    extern gdouble gtk_page_setup_get_left_margin(GtkPageSetup * setup,
+						  GtkUnit unit);
+    extern GtkPageOrientation gtk_page_setup_get_orientation(GtkPageSetup *
+							     setup);
+    extern gdouble gtk_page_setup_get_page_height(GtkPageSetup * setup,
+						  GtkUnit unit);
+    extern gdouble gtk_page_setup_get_page_width(GtkPageSetup * setup,
+						 GtkUnit unit);
+    extern gdouble gtk_page_setup_get_paper_height(GtkPageSetup * setup,
+						   GtkUnit unit);
+    extern GtkPaperSize *gtk_page_setup_get_paper_size(GtkPageSetup *
+						       setup);
+    extern gdouble gtk_page_setup_get_paper_width(GtkPageSetup * setup,
+						  GtkUnit unit);
+    extern gdouble gtk_page_setup_get_right_margin(GtkPageSetup * setup,
+						   GtkUnit unit);
+    extern gdouble gtk_page_setup_get_top_margin(GtkPageSetup * setup,
+						 GtkUnit unit);
+    extern GType gtk_page_setup_get_type(void);
+    extern GtkPageSetup *gtk_page_setup_new(void);
+    extern void gtk_page_setup_set_bottom_margin(GtkPageSetup * setup,
+						 gdouble margin,
+						 GtkUnit unit);
+    extern void gtk_page_setup_set_left_margin(GtkPageSetup * setup,
+					       gdouble margin,
+					       GtkUnit unit);
+    extern void gtk_page_setup_set_orientation(GtkPageSetup * setup,
+					       GtkPageOrientation
+					       orientation);
+    extern void gtk_page_setup_set_paper_size(GtkPageSetup * setup,
+					      GtkPaperSize * size);
+    extern void
+	gtk_page_setup_set_paper_size_and_default_margins(GtkPageSetup *
+							  setup,
+							  GtkPaperSize *
+							  size);
+    extern void gtk_page_setup_set_right_margin(GtkPageSetup * setup,
+						gdouble margin,
+						GtkUnit unit);
+    extern void gtk_page_setup_set_top_margin(GtkPageSetup * setup,
+					      gdouble margin,
+					      GtkUnit unit);
+    extern GtkPaperSize *gtk_paper_size_copy(GtkPaperSize * other);
+    extern void gtk_paper_size_free(GtkPaperSize * size);
+    extern const char *gtk_paper_size_get_default(void);
+    extern gdouble gtk_paper_size_get_default_bottom_margin(GtkPaperSize *
+							    size,
+							    GtkUnit unit);
+    extern gdouble gtk_paper_size_get_default_left_margin(GtkPaperSize *
+							  size,
+							  GtkUnit unit);
+    extern gdouble gtk_paper_size_get_default_right_margin(GtkPaperSize *
+							   size,
+							   GtkUnit unit);
+    extern gdouble gtk_paper_size_get_default_top_margin(GtkPaperSize *
+							 size,
+							 GtkUnit unit);
+    extern const char *gtk_paper_size_get_display_name(GtkPaperSize *
+						       size);
+    extern gdouble gtk_paper_size_get_height(GtkPaperSize * size,
+					     GtkUnit unit);
+    extern const char *gtk_paper_size_get_name(GtkPaperSize * size);
+    extern const char *gtk_paper_size_get_ppd_name(GtkPaperSize * size);
+    extern GType gtk_paper_size_get_type(void);
+    extern gdouble gtk_paper_size_get_width(GtkPaperSize * size,
+					    GtkUnit unit);
+    extern gboolean gtk_paper_size_is_custom(GtkPaperSize * size);
+    extern gboolean gtk_paper_size_is_equal(GtkPaperSize * size1,
+					    GtkPaperSize * size2);
+    extern GtkPaperSize *gtk_paper_size_new(const char *name);
+    extern GtkPaperSize *gtk_paper_size_new_custom(const char *name,
+						   const char
+						   *display_name,
+						   gdouble width,
+						   gdouble height,
+						   GtkUnit unit);
+    extern GtkPaperSize *gtk_paper_size_new_from_ppd(const char *ppd_name,
+						     const char
+						     *ppd_display_name,
+						     gdouble width,
+						     gdouble height);
+    extern void gtk_paper_size_set_size(GtkPaperSize * size, gdouble width,
+					gdouble height, GtkUnit unit);
+    extern PangoContext
+	*gtk_print_context_create_pango_context(GtkPrintContext * context);
+    extern PangoLayout
+	*gtk_print_context_create_pango_layout(GtkPrintContext * context);
+    extern cairo_t *gtk_print_context_get_cairo_context(GtkPrintContext *
+							context);
+    extern gdouble gtk_print_context_get_dpi_x(GtkPrintContext * context);
+    extern gdouble gtk_print_context_get_dpi_y(GtkPrintContext * context);
+    extern gdouble gtk_print_context_get_height(GtkPrintContext * context);
+    extern GtkPageSetup *gtk_print_context_get_page_setup(GtkPrintContext *
+							  context);
+    extern PangoFontMap
+	*gtk_print_context_get_pango_fontmap(GtkPrintContext * context);
+    extern GType gtk_print_context_get_type(void);
+    extern gdouble gtk_print_context_get_width(GtkPrintContext * context);
+    extern void gtk_print_context_set_cairo_context(GtkPrintContext *
+						    context, cairo_t * cr,
+						    double dpi_x,
+						    double dpi_y);
+    extern GType gtk_print_duplex_get_type(void);
+    extern GType gtk_print_error_get_type(void);
+    extern GQuark gtk_print_error_quark(void);
+    extern GType gtk_print_operation_action_get_type(void);
+    extern void gtk_print_operation_cancel(GtkPrintOperation * op);
+    extern GtkPageSetup
+	*gtk_print_operation_get_default_page_setup(GtkPrintOperation *
+						    op);
+    extern void gtk_print_operation_get_error(GtkPrintOperation * op,
+					      GError * *error);
+    extern GtkPrintSettings
+	*gtk_print_operation_get_print_settings(GtkPrintOperation * op);
+    extern GtkPrintStatus gtk_print_operation_get_status(GtkPrintOperation
+							 * op);
+    extern const char
+	*gtk_print_operation_get_status_string(GtkPrintOperation * op);
+    extern GType gtk_print_operation_get_type(void);
+    extern gboolean gtk_print_operation_is_finished(GtkPrintOperation *
+						    op);
+    extern GtkPrintOperation *gtk_print_operation_new(void);
+    extern GType gtk_print_operation_result_get_type(void);
+    extern GtkPrintOperationResult
+	gtk_print_operation_run(GtkPrintOperation * op,
+				GtkPrintOperationAction action,
+				GtkWindow * parent, GError * *error);
+    extern void gtk_print_operation_set_allow_async(GtkPrintOperation * op,
+						    gboolean allow_async);
+    extern void gtk_print_operation_set_current_page(GtkPrintOperation *
+						     op,
+						     gint current_page);
+    extern void gtk_print_operation_set_custom_tab_label(GtkPrintOperation
+							 * op,
+							 const char
+							 *label);
+    extern void
+	gtk_print_operation_set_default_page_setup(GtkPrintOperation * op,
+						   GtkPageSetup *
+						   default_page_setup);
+    extern void gtk_print_operation_set_export_filename(GtkPrintOperation *
+							op,
+							const char
+							*filename);
+    extern void gtk_print_operation_set_job_name(GtkPrintOperation * op,
+						 const char *job_name);
+    extern void gtk_print_operation_set_n_pages(GtkPrintOperation * op,
+						gint n_pages);
+    extern void gtk_print_operation_set_print_settings(GtkPrintOperation *
+						       op,
+						       GtkPrintSettings *
+						       print_settings);
+    extern void gtk_print_operation_set_show_progress(GtkPrintOperation *
+						      op,
+						      gboolean
+						      show_progress);
+    extern void
+	gtk_print_operation_set_track_print_status(GtkPrintOperation * op,
+						   gboolean track_status);
+    extern void gtk_print_operation_set_unit(GtkPrintOperation * op,
+					     GtkUnit unit);
+    extern void gtk_print_operation_set_use_full_page(GtkPrintOperation *
+						      op,
+						      gboolean full_page);
+    extern GType gtk_print_pages_get_type(void);
+    extern GType gtk_print_quality_get_type(void);
+    extern GtkPageSetup *gtk_print_run_page_setup_dialog(GtkWindow *
+							 parent,
+							 GtkPageSetup *
+							 page_setup,
+							 GtkPrintSettings *
+							 settings);
+    extern void gtk_print_run_page_setup_dialog_async(GtkWindow * parent,
+						      GtkPageSetup *
+						      page_setup,
+						      GtkPrintSettings *
+						      settings,
+						      GtkPageSetupDoneFunc
+						      done_cb,
+						      gpointer data);
+    extern GtkPrintSettings *gtk_print_settings_copy(GtkPrintSettings *
+						     other);
+    extern void gtk_print_settings_foreach(GtkPrintSettings * settings,
+					   GtkPrintSettingsFunc func,
+					   gpointer user_data);
+    extern const char *gtk_print_settings_get(GtkPrintSettings * settings,
+					      const char *key);
+    extern gboolean gtk_print_settings_get_bool(GtkPrintSettings *
+						settings, const char *key);
+    extern gboolean gtk_print_settings_get_collate(GtkPrintSettings *
+						   settings);
+    extern const char
+	*gtk_print_settings_get_default_source(GtkPrintSettings *
+					       settings);
+    extern const char *gtk_print_settings_get_dither(GtkPrintSettings *
+						     settings);
+    extern gdouble gtk_print_settings_get_double(GtkPrintSettings *
+						 settings,
+						 const char *key);
+    extern gdouble
+	gtk_print_settings_get_double_with_default(GtkPrintSettings *
+						   settings,
+						   const char *key,
+						   gdouble def);
+    extern GtkPrintDuplex gtk_print_settings_get_duplex(GtkPrintSettings *
+							settings);
+    extern const char *gtk_print_settings_get_finishings(GtkPrintSettings *
+							 settings);
+    extern gint gtk_print_settings_get_int(GtkPrintSettings * settings,
+					   const char *key);
+    extern gint gtk_print_settings_get_int_with_default(GtkPrintSettings *
+							settings,
+							const char *key,
+							gint def);
+    extern gdouble gtk_print_settings_get_length(GtkPrintSettings *
+						 settings, const char *key,
+						 GtkUnit unit);
+    extern const char *gtk_print_settings_get_media_type(GtkPrintSettings *
+							 settings);
+    extern gint gtk_print_settings_get_n_copies(GtkPrintSettings *
+						settings);
+    extern gint gtk_print_settings_get_number_up(GtkPrintSettings *
+						 settings);
+    extern GtkPageOrientation
+	gtk_print_settings_get_orientation(GtkPrintSettings * settings);
+    extern const char *gtk_print_settings_get_output_bin(GtkPrintSettings *
+							 settings);
+    extern GtkPageRange
+	*gtk_print_settings_get_page_ranges(GtkPrintSettings * settings,
+					    gint * num_ranges);
+    extern GtkPageSet gtk_print_settings_get_page_set(GtkPrintSettings *
+						      settings);
+    extern gdouble gtk_print_settings_get_paper_height(GtkPrintSettings *
+						       settings,
+						       GtkUnit unit);
+    extern GtkPaperSize *gtk_print_settings_get_paper_size(GtkPrintSettings
+							   * settings);
+    extern gdouble gtk_print_settings_get_paper_width(GtkPrintSettings *
+						      settings,
+						      GtkUnit unit);
+    extern GtkPrintPages
+	gtk_print_settings_get_print_pages(GtkPrintSettings * settings);
+    extern const char *gtk_print_settings_get_printer(GtkPrintSettings *
+						      settings);
+    extern GtkPrintQuality gtk_print_settings_get_quality(GtkPrintSettings
+							  * settings);
+    extern gint gtk_print_settings_get_resolution(GtkPrintSettings *
+						  settings);
+    extern gboolean gtk_print_settings_get_reverse(GtkPrintSettings *
+						   settings);
+    extern gdouble gtk_print_settings_get_scale(GtkPrintSettings *
+						settings);
+    extern GType gtk_print_settings_get_type(void);
+    extern gboolean gtk_print_settings_get_use_color(GtkPrintSettings *
+						     settings);
+    extern gboolean gtk_print_settings_has_key(GtkPrintSettings * settings,
+					       const char *key);
+    extern GtkPrintSettings *gtk_print_settings_new(void);
+    extern void gtk_print_settings_set(GtkPrintSettings * settings,
+				       const char *key, const char *value);
+    extern void gtk_print_settings_set_bool(GtkPrintSettings * settings,
+					    const char *key,
+					    gboolean value);
+    extern void gtk_print_settings_set_collate(GtkPrintSettings * settings,
+					       gboolean collate);
+    extern void gtk_print_settings_set_default_source(GtkPrintSettings *
+						      settings,
+						      const char
+						      *default_source);
+    extern void gtk_print_settings_set_dither(GtkPrintSettings * settings,
+					      const char *dither);
+    extern void gtk_print_settings_set_double(GtkPrintSettings * settings,
+					      const char *key,
+					      gdouble value);
+    extern void gtk_print_settings_set_duplex(GtkPrintSettings * settings,
+					      GtkPrintDuplex duplex);
+    extern void gtk_print_settings_set_finishings(GtkPrintSettings *
+						  settings,
+						  const char *finishings);
+    extern void gtk_print_settings_set_int(GtkPrintSettings * settings,
+					   const char *key, gint value);
+    extern void gtk_print_settings_set_length(GtkPrintSettings * settings,
+					      const char *key,
+					      gdouble value, GtkUnit unit);
+    extern void gtk_print_settings_set_media_type(GtkPrintSettings *
+						  settings,
+						  const char *media_type);
+    extern void gtk_print_settings_set_n_copies(GtkPrintSettings *
+						settings, gint num_copies);
+    extern void gtk_print_settings_set_number_up(GtkPrintSettings *
+						 settings, gint number_up);
+    extern void gtk_print_settings_set_orientation(GtkPrintSettings *
+						   settings,
+						   GtkPageOrientation
+						   orientation);
+    extern void gtk_print_settings_set_output_bin(GtkPrintSettings *
+						  settings,
+						  const char *output_bin);
+    extern void gtk_print_settings_set_page_ranges(GtkPrintSettings *
+						   settings,
+						   GtkPageRange *
+						   page_ranges,
+						   gint num_ranges);
+    extern void gtk_print_settings_set_page_set(GtkPrintSettings *
+						settings,
+						GtkPageSet page_set);
+    extern void gtk_print_settings_set_paper_height(GtkPrintSettings *
+						    settings,
+						    gdouble height,
+						    GtkUnit unit);
+    extern void gtk_print_settings_set_paper_size(GtkPrintSettings *
+						  settings,
+						  GtkPaperSize *
+						  paper_size);
+    extern void gtk_print_settings_set_paper_width(GtkPrintSettings *
+						   settings, gdouble width,
+						   GtkUnit unit);
+    extern void gtk_print_settings_set_print_pages(GtkPrintSettings *
+						   settings,
+						   GtkPrintPages pages);
+    extern void gtk_print_settings_set_printer(GtkPrintSettings * settings,
+					       const char *printer);
+    extern void gtk_print_settings_set_quality(GtkPrintSettings * settings,
+					       GtkPrintQuality quality);
+    extern void gtk_print_settings_set_resolution(GtkPrintSettings *
+						  settings,
+						  gint resolution);
+    extern void gtk_print_settings_set_reverse(GtkPrintSettings * settings,
+					       gboolean reverse);
+    extern void gtk_print_settings_set_scale(GtkPrintSettings * settings,
+					     gdouble scale);
+    extern void gtk_print_settings_set_use_color(GtkPrintSettings *
+						 settings,
+						 gboolean use_color);
+    extern void gtk_print_settings_unset(GtkPrintSettings * settings,
+					 const char *key);
+    extern GType gtk_print_status_get_type(void);
+    extern void gtk_radio_action_set_current_value(GtkRadioAction * action,
+						   gint current_value);
+    extern GtkSensitivityType
+	gtk_range_get_lower_stepper_sensitivity(GtkRange * range);
+    extern GtkSensitivityType
+	gtk_range_get_upper_stepper_sensitivity(GtkRange * range);
+    extern void gtk_range_set_lower_stepper_sensitivity(GtkRange * range,
+							GtkSensitivityType
+							sensitivity);
+    extern void gtk_range_set_upper_stepper_sensitivity(GtkRange * range,
+							GtkSensitivityType
+							sensitivity);
+    extern void gtk_recent_chooser_add_filter(GtkRecentChooser * chooser,
+					      GtkRecentFilter * filter);
+    extern GType gtk_recent_chooser_dialog_get_type(void);
+    extern GtkWidget *gtk_recent_chooser_dialog_new(const char *title,
+						    GtkWindow * parent,
+						    const char
+						    *first_button_text,
+						    ...);
+    extern GtkWidget *gtk_recent_chooser_dialog_new_for_manager(const char
+								*title,
+								GtkWindow *
+								parent,
+								GtkRecentManager
+								* manager,
+								const char
+								*first_button_text,
+								...);
+    extern GType gtk_recent_chooser_error_get_type(void);
+    extern GQuark gtk_recent_chooser_error_quark(void);
+    extern GtkRecentInfo
+	*gtk_recent_chooser_get_current_item(GtkRecentChooser * chooser);
+    extern gchar *gtk_recent_chooser_get_current_uri(GtkRecentChooser *
+						     chooser);
+    extern GtkRecentFilter *gtk_recent_chooser_get_filter(GtkRecentChooser
+							  * chooser);
+    extern GList *gtk_recent_chooser_get_items(GtkRecentChooser * chooser);
+    extern gint gtk_recent_chooser_get_limit(GtkRecentChooser * chooser);
+    extern gboolean gtk_recent_chooser_get_local_only(GtkRecentChooser *
+						      chooser);
+    extern gboolean gtk_recent_chooser_get_select_multiple(GtkRecentChooser
+							   * chooser);
+    extern gboolean gtk_recent_chooser_get_show_icons(GtkRecentChooser *
+						      chooser);
+    extern gboolean gtk_recent_chooser_get_show_not_found(GtkRecentChooser
+							  * chooser);
+    extern gboolean gtk_recent_chooser_get_show_private(GtkRecentChooser *
+							chooser);
+    extern gboolean gtk_recent_chooser_get_show_tips(GtkRecentChooser *
+						     chooser);
+    extern GtkRecentSortType
+	gtk_recent_chooser_get_sort_type(GtkRecentChooser * chooser);
+    extern GType gtk_recent_chooser_get_type(void);
+    extern gchar **gtk_recent_chooser_get_uris(GtkRecentChooser * chooser,
+					       gsize * length);
+    extern GSList *gtk_recent_chooser_list_filters(GtkRecentChooser *
+						   chooser);
+    extern gboolean
+	gtk_recent_chooser_menu_get_show_numbers(GtkRecentChooserMenu *
+						 menu);
+    extern GType gtk_recent_chooser_menu_get_type(void);
+    extern GtkWidget *gtk_recent_chooser_menu_new(void);
+    extern GtkWidget
+	*gtk_recent_chooser_menu_new_for_manager(GtkRecentManager *
+						 manager);
+    extern void
+	gtk_recent_chooser_menu_set_show_numbers(GtkRecentChooserMenu *
+						 menu,
+						 gboolean show_numbers);
+    extern void gtk_recent_chooser_remove_filter(GtkRecentChooser *
+						 chooser,
+						 GtkRecentFilter * filter);
+    extern void gtk_recent_chooser_select_all(GtkRecentChooser * chooser);
+    extern gboolean gtk_recent_chooser_select_uri(GtkRecentChooser *
+						  chooser, const char *uri,
+						  GError * *error);
+    extern gboolean gtk_recent_chooser_set_current_uri(GtkRecentChooser *
+						       chooser,
+						       const char *uri,
+						       GError * *error);
+    extern void gtk_recent_chooser_set_filter(GtkRecentChooser * chooser,
+					      GtkRecentFilter * filter);
+    extern void gtk_recent_chooser_set_limit(GtkRecentChooser * chooser,
+					     gint limit);
+    extern void gtk_recent_chooser_set_local_only(GtkRecentChooser *
+						  chooser,
+						  gboolean local_only);
+    extern void gtk_recent_chooser_set_select_multiple(GtkRecentChooser *
+						       chooser,
+						       gboolean
+						       select_multiple);
+    extern void gtk_recent_chooser_set_show_icons(GtkRecentChooser *
+						  chooser,
+						  gboolean show_icons);
+    extern void gtk_recent_chooser_set_show_not_found(GtkRecentChooser *
+						      chooser,
+						      gboolean
+						      show_not_found);
+    extern void gtk_recent_chooser_set_show_private(GtkRecentChooser *
+						    chooser,
+						    gboolean show_private);
+    extern void gtk_recent_chooser_set_show_tips(GtkRecentChooser *
+						 chooser,
+						 gboolean show_tips);
+    extern void gtk_recent_chooser_set_sort_func(GtkRecentChooser *
+						 chooser,
+						 GtkRecentSortFunc
+						 sort_func,
+						 gpointer sort_data,
+						 GDestroyNotify
+						 data_destroy);
+    extern void gtk_recent_chooser_set_sort_type(GtkRecentChooser *
+						 chooser,
+						 GtkRecentSortType
+						 sort_type);
+    extern void gtk_recent_chooser_unselect_all(GtkRecentChooser *
+						chooser);
+    extern void gtk_recent_chooser_unselect_uri(GtkRecentChooser * chooser,
+						const char *uri);
+    extern GType gtk_recent_chooser_widget_get_type(void);
+    extern GtkWidget *gtk_recent_chooser_widget_new(void);
+    extern GtkWidget
+	*gtk_recent_chooser_widget_new_for_manager(GtkRecentManager *
+						   manager);
+    extern GType gtk_recent_filter_flags_get_type(void);
+    extern GType gtk_recent_manager_error_get_type(void);
+    extern GType gtk_recent_sort_type_get_type(void);
+    extern void gtk_scrolled_window_unset_placement(GtkScrolledWindow *
+						    scrolled_window);
+    extern gboolean
+	gtk_selection_data_targets_include_rich_text(GtkSelectionData *
+						     selection_data,
+						     GtkTextBuffer *
+						     buffer);
+    extern gboolean gtk_selection_data_targets_include_uri(GtkSelectionData
+							   *
+							   selection_data);
+    extern GType gtk_sensitivity_type_get_type(void);
+    extern GSList *gtk_size_group_get_widgets(GtkSizeGroup * size_group);
+    extern gboolean gtk_style_lookup_color(GtkStyle * style,
+					   const gchar * color_name,
+					   GdkColor * color);
+    extern void gtk_target_list_add_rich_text_targets(GtkTargetList * list,
+						      guint info,
+						      gboolean
+						      deserializable,
+						      GtkTextBuffer *
+						      buffer);
+    extern GType gtk_target_list_get_type(void);
+    extern void gtk_target_table_free(GtkTargetEntry * targets,
+				      gint n_targets);
+    extern GtkTargetEntry *gtk_target_table_new_from_list(GtkTargetList *
+							  list,
+							  gint *
+							  n_targets);
+    extern gboolean gtk_targets_include_image(GdkAtom * targets,
+					      gint n_targets,
+					      gboolean writable);
+    extern gboolean gtk_targets_include_rich_text(GdkAtom * targets,
+						  gint n_targets,
+						  GtkTextBuffer * buffer);
+    extern gboolean gtk_targets_include_text(GdkAtom * targets,
+					     gint n_targets);
+    extern gboolean gtk_targets_include_uri(GdkAtom * targets,
+					    gint n_targets);
+    extern GtkTargetList
+	*gtk_text_buffer_get_copy_target_list(GtkTextBuffer * buffer);
+    extern gboolean gtk_text_buffer_get_has_selection(GtkTextBuffer *
+						      buffer);
+    extern GtkTargetList
+	*gtk_text_buffer_get_paste_target_list(GtkTextBuffer * buffer);
+    extern GType gtk_text_buffer_target_info_get_type(void);
+    extern void gtk_tree_store_insert_with_values(GtkTreeStore *
+						  tree_store,
+						  GtkTreeIter * iter,
+						  GtkTreeIter * parent,
+						  gint position, ...);
+    extern void gtk_tree_store_insert_with_valuesv(GtkTreeStore *
+						   tree_store,
+						   GtkTreeIter * iter,
+						   GtkTreeIter * parent,
+						   gint position,
+						   gint * columns,
+						   GValue * values,
+						   gint n_values);
+    extern gboolean gtk_tree_view_get_enable_tree_lines(GtkTreeView *
+							tree_view);
+    extern GtkTreeViewGridLines gtk_tree_view_get_grid_lines(GtkTreeView *
+							     tree_view);
+    extern gboolean gtk_tree_view_get_headers_clickable(GtkTreeView *
+							tree_view);
+    extern gboolean gtk_tree_view_get_rubber_banding(GtkTreeView *
+						     tree_view);
+    extern GtkEntry *gtk_tree_view_get_search_entry(GtkTreeView *
+						    tree_view);
+    extern GtkTreeViewSearchPositionFunc
+	gtk_tree_view_get_search_position_func(GtkTreeView * tree_view);
+    extern GType gtk_tree_view_grid_lines_get_type(void);
+    extern void gtk_tree_view_set_enable_tree_lines(GtkTreeView *
+						    tree_view,
+						    gboolean enabled);
+    extern void gtk_tree_view_set_grid_lines(GtkTreeView * tree_view,
+					     GtkTreeViewGridLines
+					     grid_lines);
+    extern void gtk_tree_view_set_rubber_banding(GtkTreeView * tree_view,
+						 gboolean enable);
+    extern void gtk_tree_view_set_search_entry(GtkTreeView * tree_view,
+					       GtkEntry * entry);
+    extern void gtk_tree_view_set_search_position_func(GtkTreeView *
+						       tree_view,
+						       GtkTreeViewSearchPositionFunc
+						       func, gpointer data,
+						       GDestroyNotify
+						       destroy);
+    extern GType gtk_unit_get_type(void);
+    extern GtkAction *gtk_widget_get_action(GtkWidget * widget);
+    extern void gtk_widget_input_shape_combine_mask(GtkWidget * widget,
+						    GdkBitmap * shape_mask,
+						    gint offset_x,
+						    gint offset_y);
+    extern gboolean gtk_widget_is_composited(GtkWidget * widget);
+    extern gboolean gtk_window_get_deletable(GtkWindow * window);
+    extern GtkWindowGroup *gtk_window_get_group(GtkWindow * window);
+    extern void gtk_window_set_deletable(GtkWindow * window,
+					 gboolean setting);
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
 }

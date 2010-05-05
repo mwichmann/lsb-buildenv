@@ -3,6 +3,7 @@
 #define _GLIB_2_0_GLIB_H_
 
 #include <limits.h>
+#include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -684,7 +685,6 @@ extern "C" {
 #define GLIB_LSB_PADDING_SIZE	40
 #endif
 #define G_BIG_ENDIAN	4321
-#define GLIB_MICRO_VERSION	6
 #if defined __ia64__
 #define GLIB_LSB_DATA_SIZE	8
 #endif
@@ -1014,6 +1014,10 @@ extern "C" {
 #define GLIB_MINOR_VERSION	6
 #endif				/* __LSB_VERSION__ < 4.0 */
 
+#if __LSB_VERSION__ < 41
+#define GLIB_MICRO_VERSION	6
+#endif				/* __LSB_VERSION__ < 4.1 */
+
 #if __LSB_VERSION__ >= 40
 #ifdef __cplusplus
 # define G_BEGIN_DECLS  extern "C" {
@@ -1025,8 +1029,18 @@ extern "C" {
 #else
 # define G_END_DECLS
 #endif
+#if __LSB_VERSION__ < 41
 #define GLIB_MINOR_VERSION	8
+#endif				/* __LSB_VERSION__ < 4.1 */
+
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+#define g_atomic_int_set(atomic, newval)	((void) (*(atomic) = (newval)))
+#define g_atomic_pointer_set(atomic, newval)	((void) (*(atomic) = (newval)))
+#define GLIB_MINOR_VERSION	12
+#define GLIB_MICRO_VERSION	3
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 
 
@@ -1139,6 +1153,19 @@ extern "C" {
 #endif
 
 /* Default Header Section for glib-2.0/glib.h*/
+#if __LSB_VERSION__ >= 41
+#define __G_BOOKMARK_FILE_H__
+#define __G_SLICE_H__
+#define g_slice_new(type)	((type*) g_slice_alloc (sizeof (type)))
+#define g_slice_new0(type)	((type*) g_slice_alloc0 (sizeof (type)))
+#define g_slice_dup(type,mem)	(1 ? (type*) g_slice_copy (sizeof (type), (mem)) : ((void) ((type*) 0 == (mem)), (type*) 0))
+#define G_BOOKMARK_FILE_ERROR	(g_bookmark_file_error_quark ())
+#define g_slice_free(type,mem)	do { if (1) g_slice_free1 (sizeof (type), (mem)); else (void) ((type*) 0 == (mem)); } while (0)
+#define g_slice_free_chain(type,mem_chain,next)	do { if (1) g_slice_free_chain_with_offset (sizeof (type), (mem_chain), G_STRUCT_OFFSET (type, next)); else (void) ((type*) 0 == (mem_chain)); } while (0)
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
+
+
     typedef short unsigned int guint16;
 
     typedef int gint;
@@ -1837,6 +1864,22 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 41
+    typedef enum {
+	G_BOOKMARK_FILE_ERROR_INVALID_URI,
+	G_BOOKMARK_FILE_ERROR_INVALID_VALUE,
+	G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED,
+	G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND,
+	G_BOOKMARK_FILE_ERROR_READ,
+	G_BOOKMARK_FILE_ERROR_UNKNOWN_ENCODING,
+	G_BOOKMARK_FILE_ERROR_WRITE,
+	G_BOOKMARK_FILE_ERROR_FILE_NOT_FOUND
+    } GBookmarkFileError;
+
+    typedef struct _GBookmarkFile GBookmarkFile;
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
     struct _GThread {
 	GThreadFunc func;
 	gpointer data;
@@ -2280,7 +2323,12 @@ extern "C" {
     extern gint g_bit_nth_lsf(gulong mask, gint nth_bit);
     extern gint g_bit_nth_msf(gulong mask, gint nth_bit);
     extern guint g_bit_storage(gulong number);
-    extern void g_blow_chunks(void);
+    /* g_blow_chunks has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
+    extern void g_blow_chunks(void)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern gchar *g_build_filename(const gchar * first_element, ...);
     extern gchar *g_build_path(const gchar * separator,
 			       const gchar * first_element, ...);
@@ -2428,7 +2476,12 @@ extern "C" {
     extern void g_date_set_julian(GDate * date, guint32 julian_date);
     extern void g_date_set_month(GDate * date, GDateMonth month);
     extern void g_date_set_parse(GDate * date, const gchar * str);
-    extern void g_date_set_time(GDate * date, GTime time_);
+    /* g_date_set_time has been deprecated since Glib 2.10 and should not be used in newly-written code. Use g_date_set_time_t() instead. */
+    extern void g_date_set_time(GDate * date, GTime time_)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern void g_date_set_year(GDate * date, GDateYear year);
     extern gsize g_date_strftime(gchar * s, gsize slen,
 				 const gchar * format, const GDate * date);
@@ -2828,10 +2881,20 @@ extern "C" {
     extern GList *g_list_nth(GList * list, guint n);
     extern gpointer g_list_nth_data(GList * list, guint n);
     extern GList *g_list_nth_prev(GList * list, guint n);
-    extern void g_list_pop_allocator(void);
+    /* g_list_pop_allocator has been deprecated since Glib 2.10 and should not be used in newly-written code. It does nothing, since GList has been converted to the slice allocator. */
+    extern void g_list_pop_allocator(void)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern gint g_list_position(GList * list, GList * llink);
     extern GList *g_list_prepend(GList * list, gpointer data);
-    extern void g_list_push_allocator(GAllocator * allocator);
+    /* g_list_push_allocator has been deprecated since Glib 2.10 and should not be used in newly-written code. It does nothing, since GList has been converted to the slice allocator. */
+    extern void g_list_push_allocator(GAllocator * allocator)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern GList *g_list_remove(GList * list, gconstpointer data);
     extern GList *g_list_remove_all(GList * list, gconstpointer data);
     extern GList *g_list_remove_link(GList * list, GList * llink);
@@ -2947,16 +3010,61 @@ extern "C" {
     extern char *g_markup_printf_escaped(const char *format, ...);
     extern char *g_markup_vprintf_escaped(const char *format,
 					  va_list args);
-    extern gpointer g_mem_chunk_alloc(GMemChunk * mem_chunk);
-    extern gpointer g_mem_chunk_alloc0(GMemChunk * mem_chunk);
-    extern void g_mem_chunk_clean(GMemChunk * mem_chunk);
-    extern void g_mem_chunk_destroy(GMemChunk * mem_chunk);
-    extern void g_mem_chunk_free(GMemChunk * mem_chunk, gpointer mem);
-    extern void g_mem_chunk_info(void);
+    /* g_mem_chunk_alloc has been deprecated since Glib 2.10 and should not be used in newly-written code. Use g_slice_alloc() instead. */
+    extern gpointer g_mem_chunk_alloc(GMemChunk * mem_chunk)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_alloc0 has been deprecated since Glib 2.10 and should not be used in newly-written code. Use g_slice_alloc0() instead. */
+    extern gpointer g_mem_chunk_alloc0(GMemChunk * mem_chunk)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_clean has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
+    extern void g_mem_chunk_clean(GMemChunk * mem_chunk)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_destroy has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
+    extern void g_mem_chunk_destroy(GMemChunk * mem_chunk)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_free has been deprecated since Glib 2.10 and should not be used in newly-written code. Use g_slice_free1() instead. */
+    extern void g_mem_chunk_free(GMemChunk * mem_chunk, gpointer mem)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_info has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
+    extern void g_mem_chunk_info(void)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_new has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
     extern GMemChunk *g_mem_chunk_new(const gchar * name, gint atom_size,
-				      gulong area_size, gint type);
-    extern void g_mem_chunk_print(GMemChunk * mem_chunk);
-    extern void g_mem_chunk_reset(GMemChunk * mem_chunk);
+				      gulong area_size, gint type)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_print has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
+    extern void g_mem_chunk_print(GMemChunk * mem_chunk)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* g_mem_chunk_reset has been deprecated since Glib 2.10 and should not be used in newly-written code. Use the slice allocator instead. */
+    extern void g_mem_chunk_reset(GMemChunk * mem_chunk)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern gboolean g_mem_is_system_malloc(void);
     extern void g_mem_profile(void);
     extern void g_mem_set_vtable(GMemVTable * vtable);
@@ -2992,9 +3100,19 @@ extern "C" {
     extern guint g_node_n_nodes(GNode * root, GTraverseFlags flags);
     extern GNode *g_node_new(gpointer data);
     extern GNode *g_node_nth_child(GNode * node, guint n);
-    extern void g_node_pop_allocator(void);
+    /* g_node_pop_allocator has been deprecated since Glib 2.10 and should not be used in newly-written code. It does nothing, since GNode has been converted to the slice allocator. */
+    extern void g_node_pop_allocator(void)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern GNode *g_node_prepend(GNode * parent, GNode * node);
-    extern void g_node_push_allocator(GAllocator * dummy);
+    /* g_node_push_allocator has been deprecated since Glib 2.10 and should not be used in newly-written code. It does nothing, since GNode has been converted to the slice allocator. */
+    extern void g_node_push_allocator(GAllocator * dummy)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern void g_node_reverse_children(GNode * node);
     extern void g_node_traverse(GNode * root, GTraverseType order,
 				GTraverseFlags flags, gint max_depth,
@@ -3271,10 +3389,20 @@ extern "C" {
     extern guint g_slist_length(GSList * list);
     extern GSList *g_slist_nth(GSList * list, guint n);
     extern gpointer g_slist_nth_data(GSList * list, guint n);
-    extern void g_slist_pop_allocator(void);
+    /* g_slist_pop_allocator has been deprecated since Glib 2.10 and should not be used in newly-written code. It does nothing, since GSList has been converted to the slice allocator. */
+    extern void g_slist_pop_allocator(void)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern gint g_slist_position(GSList * list, GSList * llink);
     extern GSList *g_slist_prepend(GSList * list, gpointer data);
-    extern void g_slist_push_allocator(GAllocator * dummy);
+    /* g_slist_push_allocator has been deprecated since Glib 2.10 and should not be used in newly-written code. It does nothing, since GSList has been converted to the slice allocator. */
+    extern void g_slist_push_allocator(GAllocator * dummy)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern GSList *g_slist_remove(GSList * list, gconstpointer data);
     extern GSList *g_slist_remove_all(GSList * list, gconstpointer data);
     extern GSList *g_slist_remove_link(GSList * list, GSList * link_);
@@ -3658,6 +3786,242 @@ extern "C" {
     extern gchar *g_utf8_collate_key_for_filename(const gchar * str,
 						  gssize len);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+    extern gint64 g_ascii_strtoll(const gchar * nptr, gchar * *endptr,
+				  guint base);
+    extern void g_async_queue_push_sorted(GAsyncQueue * queue,
+					  gpointer data,
+					  GCompareDataFunc func,
+					  gpointer user_data);
+    extern void g_async_queue_push_sorted_unlocked(GAsyncQueue * queue,
+						   gpointer data,
+						   GCompareDataFunc func,
+						   gpointer user_data);
+    extern void g_async_queue_sort(GAsyncQueue * queue,
+				   GCompareDataFunc func,
+				   gpointer user_data);
+    extern void g_async_queue_sort_unlocked(GAsyncQueue * queue,
+					    GCompareDataFunc func,
+					    gpointer user_data);
+    extern guchar *g_base64_decode(const char *text, gsize * out_len);
+    extern gsize g_base64_decode_step(const char *in, gsize len,
+				      guchar * out, gint * state,
+				      guint * save);
+    extern gchar *g_base64_encode(const unsigned char *data, gsize len);
+    extern gsize g_base64_encode_close(gboolean break_lines, gchar * out,
+				       gint * state, gint * save);
+    extern gsize g_base64_encode_step(const unsigned char *in, gsize len,
+				      gboolean break_lines, gchar * out,
+				      gint * state, gint * save);
+    extern void g_bookmark_file_add_application(GBookmarkFile * bookmark,
+						const char *uri,
+						const char *name,
+						const char *exec);
+    extern void g_bookmark_file_add_group(GBookmarkFile * bookmark,
+					  const char *uri,
+					  const char *group);
+    extern GQuark g_bookmark_file_error_quark(void);
+    extern void g_bookmark_file_free(GBookmarkFile * bookmark);
+    extern time_t g_bookmark_file_get_added(GBookmarkFile * bookmark,
+					    const char *uri,
+					    GError * *error);
+    extern gboolean g_bookmark_file_get_app_info(GBookmarkFile * bookmark,
+						 const char *uri,
+						 const char *name,
+						 gchar * *exec,
+						 guint * count,
+						 time_t * stamp,
+						 GError * *error);
+    extern gchar **g_bookmark_file_get_applications(GBookmarkFile *
+						    bookmark,
+						    const char *uri,
+						    gsize * length,
+						    GError * *error);
+    extern gchar *g_bookmark_file_get_description(GBookmarkFile * bookmark,
+						  const char *uri,
+						  GError * *error);
+    extern gchar **g_bookmark_file_get_groups(GBookmarkFile * bookmark,
+					      const char *uri,
+					      gsize * length,
+					      GError * *error);
+    extern gboolean g_bookmark_file_get_icon(GBookmarkFile * bookmark,
+					     const char *uri,
+					     gchar * *href,
+					     gchar * *mime_type,
+					     GError * *error);
+    extern gboolean g_bookmark_file_get_is_private(GBookmarkFile *
+						   bookmark,
+						   const char *uri,
+						   GError * *error);
+    extern gchar *g_bookmark_file_get_mime_type(GBookmarkFile * bookmark,
+						const char *uri,
+						GError * *error);
+    extern time_t g_bookmark_file_get_modified(GBookmarkFile * bookmark,
+					       const char *uri,
+					       GError * *error);
+    extern gint g_bookmark_file_get_size(GBookmarkFile * bookmark);
+    extern gchar *g_bookmark_file_get_title(GBookmarkFile * bookmark,
+					    const char *uri,
+					    GError * *error);
+    extern gchar **g_bookmark_file_get_uris(GBookmarkFile * bookmark,
+					    gsize * length);
+    extern time_t g_bookmark_file_get_visited(GBookmarkFile * bookmark,
+					      const char *uri,
+					      GError * *error);
+    extern gboolean g_bookmark_file_has_application(GBookmarkFile *
+						    bookmark,
+						    const char *uri,
+						    const char *name,
+						    GError * *error);
+    extern gboolean g_bookmark_file_has_group(GBookmarkFile * bookmark,
+					      const char *uri,
+					      const char *group,
+					      GError * *error);
+    extern gboolean g_bookmark_file_has_item(GBookmarkFile * bookmark,
+					     const char *uri);
+    extern gboolean g_bookmark_file_load_from_data(GBookmarkFile *
+						   bookmark,
+						   const char *data,
+						   gsize length,
+						   GError * *error);
+    extern gboolean g_bookmark_file_load_from_data_dirs(GBookmarkFile *
+							bookmark,
+							const char *file,
+							gchar * *full_path,
+							GError * *error);
+    extern gboolean g_bookmark_file_load_from_file(GBookmarkFile *
+						   bookmark,
+						   const char *filename,
+						   GError * *error);
+    extern gboolean g_bookmark_file_move_item(GBookmarkFile * bookmark,
+					      const char *old_uri,
+					      const char *new_uri,
+					      GError * *error);
+    extern GBookmarkFile *g_bookmark_file_new(void);
+    extern gboolean g_bookmark_file_remove_application(GBookmarkFile *
+						       bookmark,
+						       const char *uri,
+						       const char *name,
+						       GError * *error);
+    extern gboolean g_bookmark_file_remove_group(GBookmarkFile * bookmark,
+						 const char *uri,
+						 const char *group,
+						 GError * *error);
+    extern gboolean g_bookmark_file_remove_item(GBookmarkFile * bookmark,
+						const char *uri,
+						GError * *error);
+    extern void g_bookmark_file_set_added(GBookmarkFile * bookmark,
+					  const char *uri, time_t added);
+    extern gboolean g_bookmark_file_set_app_info(GBookmarkFile * bookmark,
+						 const char *uri,
+						 const char *name,
+						 const char *exec,
+						 gint count, time_t stamp,
+						 GError * *error);
+    extern void g_bookmark_file_set_description(GBookmarkFile * bookmark,
+						const char *uri,
+						const char *description);
+    extern void g_bookmark_file_set_groups(GBookmarkFile * bookmark,
+					   const char *uri,
+					   const char **groups,
+					   gsize length);
+    extern void g_bookmark_file_set_icon(GBookmarkFile * bookmark,
+					 const char *uri, const char *href,
+					 const char *mime_type);
+    extern void g_bookmark_file_set_is_private(GBookmarkFile * bookmark,
+					       const char *uri,
+					       gboolean is_private);
+    extern void g_bookmark_file_set_mime_type(GBookmarkFile * bookmark,
+					      const char *uri,
+					      const char *mime_type);
+    extern void g_bookmark_file_set_modified(GBookmarkFile * bookmark,
+					     const char *uri,
+					     time_t modified);
+    extern void g_bookmark_file_set_title(GBookmarkFile * bookmark,
+					  const char *uri,
+					  const char *title);
+    extern void g_bookmark_file_set_visited(GBookmarkFile * bookmark,
+					    const char *uri,
+					    time_t visited);
+    extern gchar *g_bookmark_file_to_data(GBookmarkFile * bookmark,
+					  gsize * length, GError * *error);
+    extern gboolean g_bookmark_file_to_file(GBookmarkFile * bookmark,
+					    const char *filename,
+					    GError * *error);
+    extern void g_date_set_time_t(GDate * date, time_t timet);
+    extern void g_date_set_time_val(GDate * date, GTimeVal * timeval);
+    extern GHashTable *g_hash_table_ref(GHashTable * hash_table);
+    extern void g_hash_table_remove_all(GHashTable * hash_table);
+    extern void g_hash_table_steal_all(GHashTable * hash_table);
+    extern void g_hash_table_unref(GHashTable * hash_table);
+    extern const gchar *g_intern_static_string(const gchar * string);
+    extern const gchar *g_intern_string(const gchar * string);
+    extern gdouble g_key_file_get_double(GKeyFile * key_file,
+					 const gchar * group_name,
+					 const gchar * key,
+					 GError * *error);
+    extern gdouble *g_key_file_get_double_list(GKeyFile * key_file,
+					       const gchar * group_name,
+					       const gchar * key,
+					       gsize * length,
+					       GError * *error);
+    extern void g_key_file_set_double(GKeyFile * key_file,
+				      const gchar * group_name,
+				      const gchar * key, gdouble value);
+    extern void g_key_file_set_double_list(GKeyFile * key_file,
+					   const gchar * group_name,
+					   const gchar * key,
+					   gdouble * list, gsize length);
+    extern GList *g_list_insert_sorted_with_data(GList * list,
+						 gpointer data,
+						 GCompareDataFunc func,
+						 gpointer user_data);
+    extern gboolean g_main_context_is_owner(GMainContext * context);
+    extern GSource *g_main_current_source(void);
+    extern gboolean g_mem_gc_friendly;
+    extern const gchar *g_option_context_get_description(GOptionContext *
+							 context);
+    extern const gchar *g_option_context_get_summary(GOptionContext *
+						     context);
+    extern void g_option_context_set_description(GOptionContext * context,
+						 const gchar *
+						 description);
+    extern void g_option_context_set_summary(GOptionContext * context,
+					     const gchar * summary);
+    extern void g_option_context_set_translate_func(GOptionContext *
+						    context,
+						    GTranslateFunc func,
+						    gpointer data,
+						    GDestroyNotify
+						    destroy_notify);
+    extern void g_option_context_set_translation_domain(GOptionContext *
+							context,
+							const gchar *
+							domain);
+    extern gpointer g_slice_alloc(gsize block_size);
+    extern gpointer g_slice_alloc0(gsize block_size);
+    extern void g_slice_free1(gsize block_size, gpointer mem_block);
+    extern void g_slice_free_chain_with_offset(gsize block_size,
+					       gpointer mem_chain,
+					       gsize next_offset);
+    extern GSList *g_slist_insert_sorted_with_data(GSList * list,
+						   gpointer data,
+						   GCompareDataFunc func,
+						   gpointer user_data);
+    extern gboolean g_source_is_destroyed(GSource * source);
+    extern void g_source_set_funcs(GSource * source, GSourceFuncs * funcs);
+    extern void g_thread_foreach(GFunc thread_func, gpointer user_data);
+    extern guint g_thread_pool_get_max_idle_time(void);
+    extern void g_thread_pool_set_max_idle_time(guint interval);
+    extern void g_thread_pool_set_sort_function(GThreadPool * pool,
+						GCompareDataFunc func,
+						gpointer user_data);
+    extern gboolean g_time_val_from_iso8601(const gchar * iso_date,
+					    GTimeVal * time);
+    extern gchar *g_time_val_to_iso8601(GTimeVal * time);
+    extern gboolean g_unichar_iswide_cjk(gunichar c);
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
 }

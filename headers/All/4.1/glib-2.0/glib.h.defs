@@ -284,6 +284,8 @@
 #define g_list_next(list)	((list) ? (((GList *)(list))->next) : NULL)
 #define g_list_previous(list)	((list) ? (((GList *)(list))->prev) : NULL)
 #define g_slist_next(slist)	((slist) ? (((GSList *)(slist))->next) : NULL)
+#define g_atomic_int_set(atomic, newval)	((void) (*(atomic) = (newval)))
+#define g_atomic_pointer_set(atomic, newval)	((void) (*(atomic) = (newval)))
 #define g_atomic_int_get(atomic)	(*(atomic))
 #define g_atomic_pointer_get(atomic)	(*(atomic))
 #define G_LOG_2_BASE_10	(0.30102999566398119521)
@@ -362,18 +364,18 @@
 #define G_PI_2	1.5707963267948966192313216916397514420985846996876
 #define G_PRIORITY_HIGH_IDLE	100
 #define G_USEC_PER_SEC	1000000
+#define GLIB_MINOR_VERSION	12
 #define G_LITTLE_ENDIAN	1234
 #define GLIB_MAJOR_VERSION	2
 #define G_ALLOC_AND_FREE	2
 #define G_LN10	2.3025850929940456840179914546843642076011014886288
 #define G_E	2.7182818284590452353602874713526624977572470937000
 #define G_PRIORITY_DEFAULT_IDLE	200
+#define GLIB_MICRO_VERSION	3
 #define G_PI	3.1415926535897932384626433832795028841971693993751
 #define G_PRIORITY_LOW	300
 #define G_PDP_ENDIAN	3412
 #define G_BIG_ENDIAN	4321
-#define GLIB_MICRO_VERSION	6
-#define GLIB_MINOR_VERSION	8
 #define G_SEARCHPATH_SEPARATOR	:
 #define G_SEARCHPATH_SEPARATOR_S	":"
 #define GLIB_SYSDEF_POLLIN	=1
@@ -471,6 +473,15 @@
 #define G_STATIC_PRIVATE_INIT	{ 0 }
 #define G_ONCE_INIT	{ G_ONCE_STATUS_NOTCALLED, NULL }
 #define G_STATIC_REC_MUTEX_INIT	{ G_STATIC_MUTEX_INIT }
+
+#define __G_BOOKMARK_FILE_H__
+#define __G_SLICE_H__
+#define g_slice_new(type)	((type*) g_slice_alloc (sizeof (type)))
+#define g_slice_new0(type)	((type*) g_slice_alloc0 (sizeof (type)))
+#define g_slice_dup(type,mem)	(1 ? (type*) g_slice_copy (sizeof (type), (mem)) : ((void) ((type*) 0 == (mem)), (type*) 0))
+#define G_BOOKMARK_FILE_ERROR	(g_bookmark_file_error_quark ())
+#define g_slice_free(type,mem)	do { if (1) g_slice_free1 (sizeof (type), (mem)); else (void) ((type*) 0 == (mem)); } while (0)
+#define g_slice_free_chain(type,mem_chain,next)	do { if (1) g_slice_free_chain_with_offset (sizeof (type), (mem_chain), G_STRUCT_OFFSET (type, next)); else (void) ((type*) 0 == (mem_chain)); } while (0)
 
 typedef short unsigned int guint16;
 typedef int gint;
@@ -1256,6 +1267,17 @@ typedef enum {
     G_SHELL_ERROR_FAILED
 } GShellError;
 typedef struct _GMappedFile GMappedFile;
+typedef enum {
+    G_BOOKMARK_FILE_ERROR_INVALID_URI,
+    G_BOOKMARK_FILE_ERROR_INVALID_VALUE,
+    G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED,
+    G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND,
+    G_BOOKMARK_FILE_ERROR_READ,
+    G_BOOKMARK_FILE_ERROR_UNKNOWN_ENCODING,
+    G_BOOKMARK_FILE_ERROR_WRITE,
+    G_BOOKMARK_FILE_ERROR_FILE_NOT_FOUND
+} GBookmarkFileError;
+typedef struct _GBookmarkFile GBookmarkFile;
 extern void g_allocator_free(GAllocator * allocator);
 extern GAllocator *g_allocator_new(const gchar * name, guint n_preallocs);
 extern GArray *g_array_append_vals(GArray * array, gconstpointer data,
@@ -1287,6 +1309,8 @@ extern gchar *g_ascii_strdown(const gchar * str, gssize len);
 extern gint g_ascii_strncasecmp(const gchar * s1, const gchar * s2,
 				gsize n);
 extern gdouble g_ascii_strtod(const gchar * nptr, gchar * *endptr);
+extern gint64 g_ascii_strtoll(const gchar * nptr, gchar * *endptr,
+			      guint base);
 extern guint64 g_ascii_strtoull(const gchar * nptr, gchar * *endptr,
 				guint base);
 extern gchar *g_ascii_strup(const gchar * str, gssize len);
@@ -1304,9 +1328,21 @@ extern GAsyncQueue *g_async_queue_new(void);
 extern gpointer g_async_queue_pop(GAsyncQueue * queue);
 extern gpointer g_async_queue_pop_unlocked(GAsyncQueue * queue);
 extern void g_async_queue_push(GAsyncQueue * queue, gpointer data);
+extern void g_async_queue_push_sorted(GAsyncQueue * queue, gpointer data,
+				      GCompareDataFunc func,
+				      gpointer user_data);
+extern void g_async_queue_push_sorted_unlocked(GAsyncQueue * queue,
+					       gpointer data,
+					       GCompareDataFunc func,
+					       gpointer user_data);
 extern void g_async_queue_push_unlocked(GAsyncQueue * queue,
 					gpointer data);
 extern GAsyncQueue *g_async_queue_ref(GAsyncQueue * queue);
+extern void g_async_queue_sort(GAsyncQueue * queue, GCompareDataFunc func,
+			       gpointer user_data);
+extern void g_async_queue_sort_unlocked(GAsyncQueue * queue,
+					GCompareDataFunc func,
+					gpointer user_data);
 extern gpointer g_async_queue_timed_pop(GAsyncQueue * queue,
 					GTimeVal * end_time);
 extern gpointer g_async_queue_timed_pop_unlocked(GAsyncQueue * queue,
@@ -1326,10 +1362,139 @@ extern gboolean g_atomic_pointer_compare_and_exchange(gpointer *
 						      volatile atomic,
 						      gpointer oldval,
 						      gpointer newval);
+extern guchar *g_base64_decode(const char *text, gsize * out_len);
+extern gsize g_base64_decode_step(const char *in, gsize len, guchar * out,
+				  gint * state, guint * save);
+extern gchar *g_base64_encode(const unsigned char *data, gsize len);
+extern gsize g_base64_encode_close(gboolean break_lines, gchar * out,
+				   gint * state, gint * save);
+extern gsize g_base64_encode_step(const unsigned char *in, gsize len,
+				  gboolean break_lines, gchar * out,
+				  gint * state, gint * save);
 extern gint g_bit_nth_lsf(gulong mask, gint nth_bit);
 extern gint g_bit_nth_msf(gulong mask, gint nth_bit);
 extern guint g_bit_storage(gulong number);
 extern void g_blow_chunks(void);
+extern void g_bookmark_file_add_application(GBookmarkFile * bookmark,
+					    const char *uri,
+					    const char *name,
+					    const char *exec);
+extern void g_bookmark_file_add_group(GBookmarkFile * bookmark,
+				      const char *uri, const char *group);
+extern GQuark g_bookmark_file_error_quark(void);
+extern void g_bookmark_file_free(GBookmarkFile * bookmark);
+extern time_t g_bookmark_file_get_added(GBookmarkFile * bookmark,
+					const char *uri, GError * *error);
+extern gboolean g_bookmark_file_get_app_info(GBookmarkFile * bookmark,
+					     const char *uri,
+					     const char *name,
+					     gchar * *exec, guint * count,
+					     time_t * stamp,
+					     GError * *error);
+extern gchar **g_bookmark_file_get_applications(GBookmarkFile * bookmark,
+						const char *uri,
+						gsize * length,
+						GError * *error);
+extern gchar *g_bookmark_file_get_description(GBookmarkFile * bookmark,
+					      const char *uri,
+					      GError * *error);
+extern gchar **g_bookmark_file_get_groups(GBookmarkFile * bookmark,
+					  const char *uri, gsize * length,
+					  GError * *error);
+extern gboolean g_bookmark_file_get_icon(GBookmarkFile * bookmark,
+					 const char *uri, gchar * *href,
+					 gchar * *mime_type,
+					 GError * *error);
+extern gboolean g_bookmark_file_get_is_private(GBookmarkFile * bookmark,
+					       const char *uri,
+					       GError * *error);
+extern gchar *g_bookmark_file_get_mime_type(GBookmarkFile * bookmark,
+					    const char *uri,
+					    GError * *error);
+extern time_t g_bookmark_file_get_modified(GBookmarkFile * bookmark,
+					   const char *uri,
+					   GError * *error);
+extern gint g_bookmark_file_get_size(GBookmarkFile * bookmark);
+extern gchar *g_bookmark_file_get_title(GBookmarkFile * bookmark,
+					const char *uri, GError * *error);
+extern gchar **g_bookmark_file_get_uris(GBookmarkFile * bookmark,
+					gsize * length);
+extern time_t g_bookmark_file_get_visited(GBookmarkFile * bookmark,
+					  const char *uri,
+					  GError * *error);
+extern gboolean g_bookmark_file_has_application(GBookmarkFile * bookmark,
+						const char *uri,
+						const char *name,
+						GError * *error);
+extern gboolean g_bookmark_file_has_group(GBookmarkFile * bookmark,
+					  const char *uri,
+					  const char *group,
+					  GError * *error);
+extern gboolean g_bookmark_file_has_item(GBookmarkFile * bookmark,
+					 const char *uri);
+extern gboolean g_bookmark_file_load_from_data(GBookmarkFile * bookmark,
+					       const char *data,
+					       gsize length,
+					       GError * *error);
+extern gboolean g_bookmark_file_load_from_data_dirs(GBookmarkFile *
+						    bookmark,
+						    const char *file,
+						    gchar * *full_path,
+						    GError * *error);
+extern gboolean g_bookmark_file_load_from_file(GBookmarkFile * bookmark,
+					       const char *filename,
+					       GError * *error);
+extern gboolean g_bookmark_file_move_item(GBookmarkFile * bookmark,
+					  const char *old_uri,
+					  const char *new_uri,
+					  GError * *error);
+extern GBookmarkFile *g_bookmark_file_new(void);
+extern gboolean g_bookmark_file_remove_application(GBookmarkFile *
+						   bookmark,
+						   const char *uri,
+						   const char *name,
+						   GError * *error);
+extern gboolean g_bookmark_file_remove_group(GBookmarkFile * bookmark,
+					     const char *uri,
+					     const char *group,
+					     GError * *error);
+extern gboolean g_bookmark_file_remove_item(GBookmarkFile * bookmark,
+					    const char *uri,
+					    GError * *error);
+extern void g_bookmark_file_set_added(GBookmarkFile * bookmark,
+				      const char *uri, time_t added);
+extern gboolean g_bookmark_file_set_app_info(GBookmarkFile * bookmark,
+					     const char *uri,
+					     const char *name,
+					     const char *exec, gint count,
+					     time_t stamp,
+					     GError * *error);
+extern void g_bookmark_file_set_description(GBookmarkFile * bookmark,
+					    const char *uri,
+					    const char *description);
+extern void g_bookmark_file_set_groups(GBookmarkFile * bookmark,
+				       const char *uri,
+				       const char **groups, gsize length);
+extern void g_bookmark_file_set_icon(GBookmarkFile * bookmark,
+				     const char *uri, const char *href,
+				     const char *mime_type);
+extern void g_bookmark_file_set_is_private(GBookmarkFile * bookmark,
+					   const char *uri,
+					   gboolean is_private);
+extern void g_bookmark_file_set_mime_type(GBookmarkFile * bookmark,
+					  const char *uri,
+					  const char *mime_type);
+extern void g_bookmark_file_set_modified(GBookmarkFile * bookmark,
+					 const char *uri, time_t modified);
+extern void g_bookmark_file_set_title(GBookmarkFile * bookmark,
+				      const char *uri, const char *title);
+extern void g_bookmark_file_set_visited(GBookmarkFile * bookmark,
+					const char *uri, time_t visited);
+extern gchar *g_bookmark_file_to_data(GBookmarkFile * bookmark,
+				      gsize * length, GError * *error);
+extern gboolean g_bookmark_file_to_file(GBookmarkFile * bookmark,
+					const char *filename,
+					GError * *error);
 extern gchar *g_build_filename(const gchar * first_element, ...);
 extern gchar *g_build_filenamev(gchar * *args);
 extern gchar *g_build_path(const gchar * separator,
@@ -1464,6 +1629,8 @@ extern void g_date_set_julian(GDate * date, guint32 julian_date);
 extern void g_date_set_month(GDate * date, GDateMonth month);
 extern void g_date_set_parse(GDate * date, const gchar * str);
 extern void g_date_set_time(GDate * date, GTime time_);
+extern void g_date_set_time_t(GDate * date, time_t timet);
+extern void g_date_set_time_val(GDate * date, GTimeVal * timeval);
 extern void g_date_set_year(GDate * date, GDateYear year);
 extern gsize g_date_strftime(gchar * s, gsize slen, const gchar * format,
 			     const GDate * date);
@@ -1561,13 +1728,17 @@ extern GHashTable *g_hash_table_new_full(GHashFunc hash_func,
 					 GDestroyNotify key_destroy_func,
 					 GDestroyNotify
 					 value_destroy_func);
+extern GHashTable *g_hash_table_ref(GHashTable * hash_table);
 extern gboolean g_hash_table_remove(GHashTable * hash_table,
 				    gconstpointer key);
+extern void g_hash_table_remove_all(GHashTable * hash_table);
 extern void g_hash_table_replace(GHashTable * hash_table, gpointer key,
 				 gpointer value);
 extern guint g_hash_table_size(GHashTable * hash_table);
 extern gboolean g_hash_table_steal(GHashTable * hash_table,
 				   gconstpointer key);
+extern void g_hash_table_steal_all(GHashTable * hash_table);
+extern void g_hash_table_unref(GHashTable * hash_table);
 extern GHook *g_hook_alloc(GHookList * hook_list);
 extern gint g_hook_compare_ids(GHook * new_hook, GHook * sibling);
 extern gboolean g_hook_destroy(GHookList * hook_list, gulong hook_id);
@@ -1622,6 +1793,8 @@ extern gboolean g_idle_remove_by_data(gpointer data);
 extern GSource *g_idle_source_new(void);
 extern gboolean g_int_equal(gconstpointer v1, gconstpointer v2);
 extern guint g_int_hash(gconstpointer v);
+extern const gchar *g_intern_static_string(const gchar * string);
+extern const gchar *g_intern_string(const gchar * string);
 extern guint g_io_add_watch(GIOChannel * channel, GIOCondition condition,
 			    GIOFunc func, gpointer user_data);
 extern guint g_io_add_watch_full(GIOChannel * channel, gint priority,
@@ -1707,6 +1880,14 @@ extern gboolean *g_key_file_get_boolean_list(GKeyFile * key_file,
 extern gchar *g_key_file_get_comment(GKeyFile * key_file,
 				     const gchar * group_name,
 				     const gchar * key, GError * *error);
+extern gdouble g_key_file_get_double(GKeyFile * key_file,
+				     const gchar * group_name,
+				     const gchar * key, GError * *error);
+extern gdouble *g_key_file_get_double_list(GKeyFile * key_file,
+					   const gchar * group_name,
+					   const gchar * key,
+					   gsize * length,
+					   GError * *error);
 extern gchar **g_key_file_get_groups(GKeyFile * key_file, gsize * length);
 extern gint g_key_file_get_integer(GKeyFile * key_file,
 				   const gchar * group_name,
@@ -1779,6 +1960,13 @@ extern void g_key_file_set_comment(GKeyFile * key_file,
 				   const gchar * group_name,
 				   const gchar * key,
 				   const gchar * comment, GError * *error);
+extern void g_key_file_set_double(GKeyFile * key_file,
+				  const gchar * group_name,
+				  const gchar * key, gdouble value);
+extern void g_key_file_set_double_list(GKeyFile * key_file,
+				       const gchar * group_name,
+				       const gchar * key, gdouble * list,
+				       gsize length);
 extern void g_key_file_set_integer(GKeyFile * key_file,
 				   const gchar * group_name,
 				   const gchar * key, gint value);
@@ -1830,6 +2018,9 @@ extern GList *g_list_insert_before(GList * list, GList * sibling,
 				   gpointer data);
 extern GList *g_list_insert_sorted(GList * list, gpointer data,
 				   GCompareFunc func);
+extern GList *g_list_insert_sorted_with_data(GList * list, gpointer data,
+					     GCompareDataFunc func,
+					     gpointer user_data);
 extern GList *g_list_last(GList * list);
 extern guint g_list_length(GList * list);
 extern GList *g_list_nth(GList * list, guint n);
@@ -1892,6 +2083,7 @@ extern GSource *g_main_context_find_source_by_user_data(GMainContext *
 							gpointer
 							user_data);
 extern GPollFunc g_main_context_get_poll_func(GMainContext * context);
+extern gboolean g_main_context_is_owner(GMainContext * context);
 extern gboolean g_main_context_iteration(GMainContext * context,
 					 gboolean may_block);
 extern GMainContext *g_main_context_new(void);
@@ -1911,6 +2103,7 @@ extern void g_main_context_unref(GMainContext * context);
 extern gboolean g_main_context_wait(GMainContext * context, GCond * cond,
 				    GMutex * mutex);
 extern void g_main_context_wakeup(GMainContext * context);
+extern GSource *g_main_current_source(void);
 extern int g_main_depth(void);
 extern GMainContext *g_main_loop_get_context(GMainLoop * loop);
 extern gboolean g_main_loop_is_running(GMainLoop * loop);
@@ -1961,6 +2154,7 @@ extern GMemChunk *g_mem_chunk_new(const gchar * name, gint atom_size,
 				  gulong area_size, gint type);
 extern void g_mem_chunk_print(GMemChunk * mem_chunk);
 extern void g_mem_chunk_reset(GMemChunk * mem_chunk);
+extern gboolean g_mem_gc_friendly;
 extern gboolean g_mem_is_system_malloc(void);
 extern void g_mem_profile(void);
 extern void g_mem_set_vtable(GMemVTable * vtable);
@@ -2014,17 +2208,22 @@ extern void g_option_context_add_main_entries(GOptionContext * context,
 					      const gchar *
 					      translation_domain);
 extern void g_option_context_free(GOptionContext * context);
+extern const gchar *g_option_context_get_description(GOptionContext *
+						     context);
 extern gboolean g_option_context_get_help_enabled(GOptionContext *
 						  context);
 extern gboolean g_option_context_get_ignore_unknown_options(GOptionContext
 							    * context);
 extern GOptionGroup *g_option_context_get_main_group(GOptionContext *
 						     context);
+extern const gchar *g_option_context_get_summary(GOptionContext * context);
 extern GOptionContext *g_option_context_new(const gchar *
 					    parameter_string);
 extern gboolean g_option_context_parse(GOptionContext * context,
 				       gint * argc, gchar * **argv,
 				       GError * *error);
+extern void g_option_context_set_description(GOptionContext * context,
+					     const gchar * description);
 extern void g_option_context_set_help_enabled(GOptionContext * context,
 					      gboolean help_enabled);
 extern void g_option_context_set_ignore_unknown_options(GOptionContext *
@@ -2033,6 +2232,16 @@ extern void g_option_context_set_ignore_unknown_options(GOptionContext *
 							ignore_unknown);
 extern void g_option_context_set_main_group(GOptionContext * context,
 					    GOptionGroup * group);
+extern void g_option_context_set_summary(GOptionContext * context,
+					 const gchar * summary);
+extern void g_option_context_set_translate_func(GOptionContext * context,
+						GTranslateFunc func,
+						gpointer data,
+						GDestroyNotify
+						destroy_notify);
+extern void g_option_context_set_translation_domain(GOptionContext *
+						    context,
+						    const gchar * domain);
 extern GQuark g_option_error_quark(void);
 extern void g_option_group_add_entries(GOptionGroup * group,
 				       const GOptionEntry * entries);
@@ -2234,6 +2443,12 @@ extern gboolean g_shell_parse_argv(const gchar * command_line,
 extern gchar *g_shell_quote(const gchar * unquoted_string);
 extern gchar *g_shell_unquote(const gchar * quoted_string,
 			      GError * *error);
+extern gpointer g_slice_alloc(gsize block_size);
+extern gpointer g_slice_alloc0(gsize block_size);
+extern void g_slice_free1(gsize block_size, gpointer mem_block);
+extern void g_slice_free_chain_with_offset(gsize block_size,
+					   gpointer mem_chain,
+					   gsize next_offset);
 extern GSList *g_slist_alloc(void);
 extern GSList *g_slist_append(GSList * list, gpointer data);
 extern GSList *g_slist_concat(GSList * list1, GSList * list2);
@@ -2251,6 +2466,10 @@ extern GSList *g_slist_insert_before(GSList * slist, GSList * sibling,
 				     gpointer data);
 extern GSList *g_slist_insert_sorted(GSList * list, gpointer data,
 				     GCompareFunc func);
+extern GSList *g_slist_insert_sorted_with_data(GSList * list,
+					       gpointer data,
+					       GCompareDataFunc func,
+					       gpointer user_data);
 extern GSList *g_slist_last(GSList * list);
 extern guint g_slist_length(GSList * list);
 extern GSList *g_slist_nth(GSList * list, guint n);
@@ -2276,6 +2495,7 @@ extern void g_source_get_current_time(GSource * source,
 				      GTimeVal * timeval);
 extern guint g_source_get_id(GSource * source);
 extern gint g_source_get_priority(GSource * source);
+extern gboolean g_source_is_destroyed(GSource * source);
 extern GSource *g_source_new(GSourceFuncs * source_funcs,
 			     guint struct_size);
 extern GSource *g_source_ref(GSource * source);
@@ -2292,6 +2512,7 @@ extern void g_source_set_callback_indirect(GSource * source,
 					   callback_funcs);
 extern void g_source_set_can_recurse(GSource * source,
 				     gboolean can_recurse);
+extern void g_source_set_funcs(GSource * source, GSourceFuncs * funcs);
 extern void g_source_set_priority(GSource * source, gint priority);
 extern void g_source_unref(GSource * source);
 extern guint g_spaced_primes_closest(guint num);
@@ -2439,6 +2660,7 @@ extern GThread *g_thread_create_full(GThreadFunc func, gpointer data,
 				     GError * *error);
 extern GQuark g_thread_error_quark(void);
 extern void g_thread_exit(gpointer retval);
+extern void g_thread_foreach(GFunc thread_func, gpointer user_data);
 extern GThreadFunctions g_thread_functions_for_glib_use;
 extern void g_thread_init(GThreadFunctions * vtable);
 extern void g_thread_init_with_errorcheck_mutexes(GThreadFunctions *
@@ -2446,6 +2668,7 @@ extern void g_thread_init_with_errorcheck_mutexes(GThreadFunctions *
 extern gpointer g_thread_join(GThread * thread);
 extern void g_thread_pool_free(GThreadPool * pool, gboolean immediate,
 			       gboolean wait_);
+extern guint g_thread_pool_get_max_idle_time(void);
 extern gint g_thread_pool_get_max_threads(GThreadPool * pool);
 extern gint g_thread_pool_get_max_unused_threads(void);
 extern guint g_thread_pool_get_num_threads(GThreadPool * pool);
@@ -2455,10 +2678,14 @@ extern GThreadPool *g_thread_pool_new(GFunc func, gpointer user_data,
 				      GError * *error);
 extern void g_thread_pool_push(GThreadPool * pool, gpointer data,
 			       GError * *error);
+extern void g_thread_pool_set_max_idle_time(guint interval);
 extern void g_thread_pool_set_max_threads(GThreadPool * pool,
 					  gint max_threads,
 					  GError * *error);
 extern void g_thread_pool_set_max_unused_threads(gint max_threads);
+extern void g_thread_pool_set_sort_function(GThreadPool * pool,
+					    GCompareDataFunc func,
+					    gpointer user_data);
 extern void g_thread_pool_stop_unused_threads(void);
 extern guint g_thread_pool_unprocessed(GThreadPool * pool);
 extern GThread *g_thread_self(void);
@@ -2467,6 +2694,9 @@ extern void g_thread_set_priority(GThread * thread,
 extern gboolean g_thread_use_default_impl;
 extern gboolean g_threads_got_initialized;
 extern void g_time_val_add(GTimeVal * time_, glong microseconds);
+extern gboolean g_time_val_from_iso8601(const gchar * iso_date,
+					GTimeVal * time);
+extern gchar *g_time_val_to_iso8601(GTimeVal * time);
 extern guint g_timeout_add(guint32 interval, GSourceFunc function,
 			   gpointer data);
 extern guint g_timeout_add_full(gint priority, guint interval,
@@ -2535,6 +2765,7 @@ extern gboolean g_unichar_isspace(gunichar c);
 extern gboolean g_unichar_istitle(gunichar c);
 extern gboolean g_unichar_isupper(gunichar c);
 extern gboolean g_unichar_iswide(gunichar c);
+extern gboolean g_unichar_iswide_cjk(gunichar c);
 extern gboolean g_unichar_isxdigit(gunichar c);
 extern gint g_unichar_to_utf8(gunichar c, gchar * outbuf);
 extern gunichar g_unichar_tolower(gunichar c);

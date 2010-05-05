@@ -435,6 +435,12 @@ extern "C" {
 #define G_TYPE_UINT	G_TYPE_MAKE_FUNDAMENTAL (7)
 #define G_TYPE_LONG	G_TYPE_MAKE_FUNDAMENTAL (8)
 #define G_TYPE_ULONG	G_TYPE_MAKE_FUNDAMENTAL (9)
+#if __LSB_VERSION__ >= 41
+#define G_TYPE_GTYPE	(g_gtype_get_type())
+#define G_TYPE_HASH_TABLE	(g_hash_table_get_type ())
+#define G_TYPE_INITIALLY_UNOWNED	(g_initially_unowned_get_type())
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 
     typedef gulong GType;
@@ -1544,6 +1550,31 @@ extern "C" {
     extern void g_object_remove_toggle_ref(GObject *, GToggleNotify,
 					   gpointer);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 41
+    extern GType g_gtype_get_type(void);
+    extern GType g_hash_table_get_type(void);
+    extern GType g_initially_unowned_get_type(void);
+    extern void g_object_force_floating(GObject * object);
+    extern gboolean g_object_is_floating(gpointer object);
+    extern gpointer g_object_ref_sink(gpointer object);
+    extern GParamSpec *g_param_spec_gtype(const gchar * name,
+					  const gchar * nick,
+					  const gchar * blurb,
+					  GType is_a_type,
+					  GParamFlags flags);
+    extern GParamSpec *g_param_spec_ref_sink(GParamSpec * pspec);
+    extern GType g_type_register_static_simple(GType parent_type,
+					       const gchar * type_name,
+					       guint class_size,
+					       GClassInitFunc class_init,
+					       guint instance_size,
+					       GInstanceInitFunc
+					       instance_init,
+					       GTypeFlags flags);
+    extern GType g_value_get_gtype(const GValue * value);
+    extern void g_value_set_gtype(GValue * value, GType v_gtype);
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
 }

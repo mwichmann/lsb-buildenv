@@ -89,7 +89,7 @@ extern "C" {
 
     typedef struct FT_GlyphSlotRec_ *FT_GlyphSlot;
 
-/* #include <freetype/ftoutln.h>	XXX hand-edit */
+#include <freetype/ftoutln.h>
     typedef struct FT_Glyph_Metrics_ FT_Glyph_Metrics;
 
     typedef struct FT_SubGlyphRec_ *FT_SubGlyph;

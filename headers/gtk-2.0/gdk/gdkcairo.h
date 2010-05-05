@@ -25,6 +25,13 @@ extern "C" {
 					    const GdkPixbuf * pixbuf,
 					    double pixbuf_x,
 					    double pixbuf_y);
+#if __LSB_VERSION__ >= 41
+    extern void gdk_cairo_set_source_pixmap(cairo_t * cr,
+					    GdkPixmap * pixmap,
+					    double pixmap_x,
+					    double pixmap_y);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif

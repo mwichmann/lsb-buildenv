@@ -1,0 +1,146 @@
+#if (__LSB_VERSION__ >= 41 )
+#ifndef _GTK_2_0_GTK_GTKRECENTMANAGER_H_
+#define _GTK_2_0_GTK_GTKRECENTMANAGER_H_
+
+#include <sys/types.h>
+#include <glib-2.0/glib.h>
+#include <glib-2.0/glib-object.h>
+#include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#define __GTK_RECENT_MANAGER_H__
+#define GTK_TYPE_RECENT_INFO	(gtk_recent_info_get_type ())
+#define GTK_RECENT_MANAGER_ERROR	(gtk_recent_manager_error_quark ())
+#define GTK_TYPE_RECENT_MANAGER	(gtk_recent_manager_get_type ())
+#define GTK_RECENT_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_RECENT_MANAGER, GtkRecentManagerClass))
+#define GTK_IS_RECENT_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_RECENT_MANAGER))
+#define GTK_RECENT_MANAGER(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_RECENT_MANAGER, GtkRecentManager))
+#define GTK_IS_RECENT_MANAGER(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_RECENT_MANAGER))
+#define GTK_RECENT_MANAGER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_RECENT_MANAGER, GtkRecentManagerClass))
+
+
+    typedef struct _GtkRecentInfo GtkRecentInfo;
+
+    typedef struct _GtkRecentData GtkRecentData;
+
+    typedef struct _GtkRecentManager GtkRecentManager;
+
+    typedef struct _GtkRecentManagerClass GtkRecentManagerClass;
+
+    typedef struct _GtkRecentManagerPrivate GtkRecentManagerPrivate;
+
+    typedef enum {
+	GTK_RECENT_MANAGER_ERROR_NOT_FOUND,
+	GTK_RECENT_MANAGER_ERROR_INVALID_URI,
+	GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING,
+	GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED,
+	GTK_RECENT_MANAGER_ERROR_READ,
+	GTK_RECENT_MANAGER_ERROR_WRITE,
+	GTK_RECENT_MANAGER_ERROR_UNKNOWN
+    } GtkRecentManagerError;
+
+    struct _GtkRecentData {
+	gchar *display_name;
+	gchar *description;
+	gchar *mime_type;
+	gchar *app_name;
+	gchar *app_exec;
+	gchar **groups;
+	gboolean is_private;
+    };
+
+    struct _GtkRecentManager {
+	GObject parent_instance;
+	GtkRecentManagerPrivate *priv;
+    };
+
+    struct _GtkRecentManagerClass {
+	GObjectClass parent_class;
+	void (*changed) (void);
+	void (*_gtk_recent1) (void);
+	void (*_gtk_recent2) (void);
+	void (*_gtk_recent3) (void);
+	void (*_gtk_recent4) (void);
+    };
+
+
+/* Function prototypes */
+
+    extern gboolean gtk_recent_info_exists(GtkRecentInfo * info);
+    extern time_t gtk_recent_info_get_added(GtkRecentInfo * info);
+    extern gint gtk_recent_info_get_age(GtkRecentInfo * info);
+    extern gboolean gtk_recent_info_get_application_info(GtkRecentInfo *
+							 info,
+							 const char
+							 *app_name,
+							 const char
+							 **app_exec,
+							 guint * count,
+							 time_t * time_);
+    extern gchar **gtk_recent_info_get_applications(GtkRecentInfo * info,
+						    gsize * length);
+    extern const char *gtk_recent_info_get_description(GtkRecentInfo *
+						       info);
+    extern const char *gtk_recent_info_get_display_name(GtkRecentInfo *
+							info);
+    extern gchar **gtk_recent_info_get_groups(GtkRecentInfo * info,
+					      gsize * length);
+    extern GdkPixbuf *gtk_recent_info_get_icon(GtkRecentInfo * info,
+					       gint size);
+    extern const char *gtk_recent_info_get_mime_type(GtkRecentInfo * info);
+    extern time_t gtk_recent_info_get_modified(GtkRecentInfo * info);
+    extern gboolean gtk_recent_info_get_private_hint(GtkRecentInfo * info);
+    extern gchar *gtk_recent_info_get_short_name(GtkRecentInfo * info);
+    extern GType gtk_recent_info_get_type(void);
+    extern const char *gtk_recent_info_get_uri(GtkRecentInfo * info);
+    extern gchar *gtk_recent_info_get_uri_display(GtkRecentInfo * info);
+    extern time_t gtk_recent_info_get_visited(GtkRecentInfo * info);
+    extern gboolean gtk_recent_info_has_application(GtkRecentInfo * info,
+						    const char *app_name);
+    extern gboolean gtk_recent_info_has_group(GtkRecentInfo * info,
+					      const char *group_name);
+    extern gboolean gtk_recent_info_is_local(GtkRecentInfo * info);
+    extern gchar *gtk_recent_info_last_application(GtkRecentInfo * info);
+    extern gboolean gtk_recent_info_match(GtkRecentInfo * info_a,
+					  GtkRecentInfo * info_b);
+    extern GtkRecentInfo *gtk_recent_info_ref(GtkRecentInfo * info);
+    extern void gtk_recent_info_unref(GtkRecentInfo * info);
+    extern gboolean gtk_recent_manager_add_full(GtkRecentManager * manager,
+						const char *uri,
+						const GtkRecentData *
+						recent_data);
+    extern gboolean gtk_recent_manager_add_item(GtkRecentManager * manager,
+						const char *uri);
+    extern GQuark gtk_recent_manager_error_quark(void);
+    extern GtkRecentManager *gtk_recent_manager_get_default(void);
+    extern GList *gtk_recent_manager_get_items(GtkRecentManager * manager);
+    extern gint gtk_recent_manager_get_limit(GtkRecentManager * manager);
+    extern GType gtk_recent_manager_get_type(void);
+    extern gboolean gtk_recent_manager_has_item(GtkRecentManager * manager,
+						const char *uri);
+    extern GtkRecentInfo *gtk_recent_manager_lookup_item(GtkRecentManager *
+							 manager,
+							 const char *uri,
+							 GError * *error);
+    extern gboolean gtk_recent_manager_move_item(GtkRecentManager *
+						 manager, const char *uri,
+						 const char *new_uri,
+						 GError * *error);
+    extern GtkRecentManager *gtk_recent_manager_new(void);
+    extern gint gtk_recent_manager_purge_items(GtkRecentManager * manager,
+					       GError * *error);
+    extern gboolean gtk_recent_manager_remove_item(GtkRecentManager *
+						   manager,
+						   const char *uri,
+						   GError * *error);
+    extern void gtk_recent_manager_set_limit(GtkRecentManager * manager,
+					     gint limit);
+#ifdef __cplusplus
+}
+#endif
+#endif				/* protection */
+#endif				/* LSB version */

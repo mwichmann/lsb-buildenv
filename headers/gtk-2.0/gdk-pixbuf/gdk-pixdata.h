@@ -3,7 +3,6 @@
 #define _GTK_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
 
 #include <glib-2.0/glib.h>
-#include <glib-2.0/glib-object.h>
 #include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
 
 #ifdef __cplusplus
