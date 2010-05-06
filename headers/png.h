@@ -358,7 +358,7 @@ extern "C" {
 
 
 
-    typedef png_unknown_chunk *png_unknown_chunkp;
+    /* typedef png_unknown_chunk *png_unknown_chunkp;   XXX hand-edit: move down */
 
     typedef struct png_sPLT_entry_struct png_sPLT_entry;
 
@@ -373,6 +373,7 @@ extern "C" {
     typedef png_sPLT_t **png_sPLT_tpp;
 
     typedef struct png_unknown_chunk_t png_unknown_chunk;
+    typedef png_unknown_chunk *png_unknown_chunkp;   /* XXX from above */
 
     typedef struct png_struct_def png_struct;
 
