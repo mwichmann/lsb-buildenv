@@ -128,7 +128,8 @@ extern "C" {
 	FT_Pos yMax;
     };
 
-#include <freetype/ftoutln.h>
+/* #include <freetype/ftoutln.h>		XXX hand-edit */
+
     struct FT_Bitmap_ {
 	int rows;
 	int width;
