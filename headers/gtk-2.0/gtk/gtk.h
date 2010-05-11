@@ -2281,6 +2281,7 @@ extern "C" {
 #define GTK_PRINT_SETTINGS_DITHER	"dither"
 #define GTK_PRINT_SETTINGS_DUPLEX	"duplex"
 #define GTK_PRINT_SETTINGS_FINISHINGS	"finishings"
+#define GTK_STOCK_SELECT_ALL	"gtk-select-all"
 #define GTK_PRINT_ERROR	gtk_print_error_quark ()
 #define GTK_PAPER_NAME_A3	"iso_a3"
 #define GTK_PAPER_NAME_A4	"iso_a4"
