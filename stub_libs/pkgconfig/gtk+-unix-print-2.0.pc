@@ -10,5 +10,5 @@ gtk_host=i386-redhat-linux-gnu
 Name: GTK+
 Description: GIMP Tool Kit Unix print support
 Version: 2.10.4
-Requires: gtk+-${target}-2.0 atk cairo
+Requires: gtk+-${target}-2.0 atk cairo pangoft2
 Cflags: -I${includedir}/gtk-unix-print-2.0

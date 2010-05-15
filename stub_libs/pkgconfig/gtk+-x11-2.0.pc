@@ -10,6 +10,6 @@ gtk_host=i386-redhat-linux-gnu
 Name: GTK+
 Description: GIMP Tool Kit (${target} target)
 Version: 2.10.4
-Requires: gdk-${target}-2.0 atk
+Requires: gdk-${target}-2.0 atk cairo pangoft2
 Libs: -L${libdir} -lgtk-${target}-2.0 
 Cflags: -I${includedir}/gtk-2.0 
