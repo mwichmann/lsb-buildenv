@@ -107,6 +107,11 @@ GLIBC_2.2 {
   pwrite64;
   sem_timedwait;
 };
+GLIBC_2.2.3 {
+  pthread_getattr_np;
+  pthread_rwlockattr_getkind_np;
+  pthread_rwlockattr_setkind_np;
+};
 GLIBC_2.3.2 {
   pthread_cond_broadcast;
   pthread_cond_destroy;

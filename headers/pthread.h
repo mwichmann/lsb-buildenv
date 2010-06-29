@@ -1154,6 +1154,14 @@ extern "C" {
 					     int __protocol);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 41
+    extern int pthread_getattr_np(pthread_t thread, pthread_attr_t * attr);
+    extern int pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t *
+					     __attr, int *__pref);
+    extern int pthread_rwlockattr_setkind_np(pthread_rwlockattr_t * __attr,
+					     int __pref);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif

@@ -41,6 +41,7 @@ GLIBC_2.3 {
   pthread_detach;
   pthread_equal;
   pthread_exit;
+  pthread_getattr_np;
   pthread_getconcurrency;
   pthread_getcpuclockid;
   pthread_getschedparam;
@@ -72,8 +73,10 @@ GLIBC_2.3 {
   pthread_rwlock_unlock;
   pthread_rwlock_wrlock;
   pthread_rwlockattr_destroy;
+  pthread_rwlockattr_getkind_np;
   pthread_rwlockattr_getpshared;
   pthread_rwlockattr_init;
+  pthread_rwlockattr_setkind_np;
   pthread_rwlockattr_setpshared;
   pthread_self;
   pthread_setcancelstate;
