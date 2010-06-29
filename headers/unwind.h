@@ -730,6 +730,10 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 3.0 */
 
+#if __LSB_VERSION__ >= 41
+    extern _Unwind_Ptr _Unwind_GetIPInfo(struct _Unwind_Context *, int *);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif

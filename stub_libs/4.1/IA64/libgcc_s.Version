@@ -20,3 +20,6 @@ GCC_3.3 {
 GCC_3.3.2 {
   _Unwind_GetBSP;
 };
+GCC_4.2.0 {
+  _Unwind_GetIPInfo;
+};

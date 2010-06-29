@@ -20,3 +20,6 @@ GCC_3.3 {
   _Unwind_GetCFA;
   _Unwind_Resume_or_Rethrow;
 };
+GCC_4.2.0 {
+  _Unwind_GetIPInfo;
+};
