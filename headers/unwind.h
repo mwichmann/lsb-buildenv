@@ -9,6 +9,10 @@ extern "C" {
 #endif
 
 
+    struct _Unwind_Context;
+
+    struct _Unwind_Exception;
+
 #if __LSB_VERSION__ < 30
 #if defined __i386__
 /* IA32 */
@@ -39,7 +43,6 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ < 3.0 */
 
-    struct _Unwind_Context;     /* XXX hand-edit */
 
     typedef unsigned int _Unwind_Ptr
 	__attribute__ ((__mode__(__pointer__)));
@@ -64,10 +67,10 @@ extern "C" {
 	_URC_CONTINUE_UNWIND = 8
     } _Unwind_Reason_Code;
 
-    struct _Unwind_Exception;   /* XXX hand-edit */
 
     typedef void (*_Unwind_Exception_Cleanup_Fn) (_Unwind_Reason_Code,
-						  struct _Unwind_Exception *);
+						  struct _Unwind_Exception
+						  *);
 
 
 /* The unwind interface uses a pointer to an exception header object
