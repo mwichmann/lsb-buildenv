@@ -1,5 +1,4 @@
 
-struct _Unwind_Context;
 struct _Unwind_Exception;
 
 typedef unsigned int _Unwind_Ptr __attribute__ ((__mode__(__pointer__)));

@@ -1,0 +1,3 @@
+
+extern int dl_iterate_phdr(int (*)(struct dl_phdr_info *, size_t, void *),
+			   void *);

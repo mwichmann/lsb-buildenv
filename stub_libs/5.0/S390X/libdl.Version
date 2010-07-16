@@ -5,4 +5,8 @@ GLIBC_2.2 {
   dlerror;
   dlopen;
   dlsym;
+  dlvsym;
+};
+GLIBC_2.2.4 {
+  dl_iterate_phdr;
 };

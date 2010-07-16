@@ -1,8 +1,10 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.2.5 {
+  dl_iterate_phdr;
   dladdr;
   dlclose;
   dlerror;
   dlopen;
   dlsym;
+  dlvsym;
 };

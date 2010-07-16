@@ -17,3 +17,4 @@ extern int dlclose(void *__handle);
 extern char *dlerror(void);
 extern void *dlopen(const char *__file, int __mode);
 extern void *dlsym(void *__handle, const char *__name);
+extern void *dlvsym(void *handle, char *name, char *version);
