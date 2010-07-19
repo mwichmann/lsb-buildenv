@@ -369,6 +369,7 @@ BASE/include/cups/raster.h
 BASE/include/curses.h
 BASE/include/dirent.h
 BASE/include/dlfcn.h
+BASE/include/elf.h
 BASE/include/endian.h
 BASE/include/errno.h
 BASE/include/fcntl.h
@@ -385,6 +386,7 @@ BASE/include/langinfo.h
 BASE/include/libgen.h
 BASE/include/libintl.h
 BASE/include/limits.h
+BASE/include/link.h
 BASE/include/linux/netlink.h
 BASE/include/linux/rtnetlink.h
 BASE/include/linux/socket.h
