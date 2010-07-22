@@ -29,6 +29,7 @@ extern "C" {
 #define DT_ADDRTAGIDX(tag)	(DT_ADDRRNGHI - (tag))
 #define DT_VALTAGIDX(tag)	(DT_VALRNGHI - (tag))
 #define DT_VERSIONTAGIDX(tag)	(DT_VERNEEDNUM - (tag))
+#define PT_IA_64_UNWIND	(PT_LOPROC + 1)
 #define DT_NULL	0
 #define EI_MAG0	0
 #define ELFCLASSNONE	0
@@ -86,11 +87,13 @@ extern "C" {
 #define DT_VERNEEDNUM	0x6fffffff
 #define SHT_GNU_versym	0x6fffffff
 #define DT_LOPROC	0x70000000
+#define PT_LOPROC	0x70000000
 #define SHT_LOPROC	0x70000000
 #define ELFMAG0	0x7f
 #define DT_AUXILIARY	0x7ffffffd
 #define DT_FILTER	0x7fffffff
 #define DT_HIPROC	0x7fffffff
+#define PT_HIPROC	0x7fffffff
 #define SHT_HIPROC	0x7fffffff
 #define SHT_LOUSER	0x80000000
 #define SHT_HIUSER	0x8fffffff
@@ -281,8 +284,8 @@ extern "C" {
 	Elf32_Addr st_value;
 	Elf32_Word st_size;
 	unsigned char st_info;
-	Elf32_Section st_shndx;
 	unsigned char st_other;
+	Elf32_Section st_shndx;
     } Elf32_Sym;
 
     typedef struct {
@@ -292,7 +295,7 @@ extern "C" {
 
     typedef struct {
 	Elf32_Addr r_offset;
-	Elf32_Xword r_info;
+	Elf32_Word r_info;
     } Elf32_Rel;
 
     typedef struct {
@@ -431,7 +434,7 @@ extern "C" {
 
     typedef struct {
 	Elf32_Sword d_tag;
-	struct {
+	union {
 	    Elf32_Word d_val;
 	    Elf32_Addr d_ptr;
 	} d_un;
@@ -439,7 +442,7 @@ extern "C" {
 
     typedef struct {
 	Elf64_Sxword d_tag;
-	struct {
+	union {
 	    Elf64_Xword d_val;
 	    Elf64_Addr d_ptr;
 	} d_un;
