@@ -1113,10 +1113,8 @@ for(1..$sth->rows) {
 
     if( $entry->{'Ithrow'} eq "Yes" ) {
         print "#ifdef __cplusplus\n";
-        print "}\n";
         specdb::display_interface($entry);
         print " throw();\n";
-        print "extern \"C\" {\n";
         print "#else\n";
         specdb::display_interface($entry);
         print ";\n";

@@ -139,9 +139,8 @@ extern "C" {
     extern long int mrand48(void);
     extern long int nrand48(unsigned short __xsubi[3]);
 #ifdef __cplusplus
-} extern int posix_memalign(void **__memptr, size_t __alignment,
-			    size_t __size) throw();
-extern "C" {
+    extern int posix_memalign(void **__memptr, size_t __alignment,
+			      size_t __size) throw();
 #else
     extern int posix_memalign(void **__memptr, size_t __alignment,
 			      size_t __size);
