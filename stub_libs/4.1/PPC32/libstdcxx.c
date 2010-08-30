@@ -2879,7 +2879,7 @@ __asm__(".globl _ZTSPc; .pushsection .data; .type _ZTSPc,@object; .size _ZTSPc, 
 __asm__(".globl _ZTSPd; .pushsection .data; .type _ZTSPd,@object; .size _ZTSPd, 3; _ZTSPd: .long 0; .popsection");
 __asm__(".globl _ZTSPe; .pushsection .data; .type _ZTSPe,@object; .size _ZTSPe, 3; _ZTSPe: .long 0; .popsection");
 __asm__(".globl _ZTSPf; .pushsection .data; .type _ZTSPf,@object; .size _ZTSPf, 3; _ZTSPf: .long 0; .popsection");
-__asm__(".globl _ZTSPg; .pushsection .data; .type _ZTSPg,@object; .size _ZTSPg, 4; _ZTSPg: .long 0; .popsection");
+__asm__(".globl _ZTSPg; .pushsection .data; .type _ZTSPg,@object; .size _ZTSPg, 3; _ZTSPg: .long 0; .popsection");
 __asm__(".globl _ZTSPh; .pushsection .data; .type _ZTSPh,@object; .size _ZTSPh, 3; _ZTSPh: .long 0; .popsection");
 __asm__(".globl _ZTSPi; .pushsection .data; .type _ZTSPi,@object; .size _ZTSPi, 3; _ZTSPi: .long 0; .popsection");
 __asm__(".globl _ZTSPj; .pushsection .data; .type _ZTSPj,@object; .size _ZTSPj, 3; _ZTSPj: .long 0; .popsection");
@@ -2994,7 +2994,7 @@ __asm__(".globl _ZTSc; .pushsection .data; .type _ZTSc,@object; .size _ZTSc, 2; 
 __asm__(".globl _ZTSd; .pushsection .data; .type _ZTSd,@object; .size _ZTSd, 2; _ZTSd: .long 0; .popsection");
 __asm__(".globl _ZTSe; .pushsection .data; .type _ZTSe,@object; .size _ZTSe, 2; _ZTSe: .long 0; .popsection");
 __asm__(".globl _ZTSf; .pushsection .data; .type _ZTSf,@object; .size _ZTSf, 2; _ZTSf: .long 0; .popsection");
-__asm__(".globl _ZTSg; .pushsection .data; .type _ZTSg,@object; .size _ZTSg, 4; _ZTSg: .long 0; .popsection");
+__asm__(".globl _ZTSg; .pushsection .data; .type _ZTSg,@object; .size _ZTSg, 2; _ZTSg: .long 0; .popsection");
 __asm__(".globl _ZTSh; .pushsection .data; .type _ZTSh,@object; .size _ZTSh, 2; _ZTSh: .long 0; .popsection");
 __asm__(".globl _ZTSi; .pushsection .data; .type _ZTSi,@object; .size _ZTSi, 2; _ZTSi: .long 0; .popsection");
 __asm__(".globl _ZTSj; .pushsection .data; .type _ZTSj,@object; .size _ZTSj, 2; _ZTSj: .long 0; .popsection");
