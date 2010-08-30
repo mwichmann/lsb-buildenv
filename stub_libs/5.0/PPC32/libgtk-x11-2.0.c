@@ -1763,6 +1763,7 @@ void gtk_status_icon_set_from_file() {} ;
 void gtk_status_icon_set_from_icon_name() {} ;
 void gtk_status_icon_set_from_pixbuf() {} ;
 void gtk_status_icon_set_from_stock() {} ;
+void gtk_status_icon_set_tooltip() {} ;
 void gtk_status_icon_set_visible() {} ;
 void gtk_statusbar_get_context_id() {} ;
 void gtk_statusbar_get_has_resize_grip() {} ;

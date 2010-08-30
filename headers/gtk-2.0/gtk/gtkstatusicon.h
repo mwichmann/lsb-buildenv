@@ -96,6 +96,8 @@ extern "C" {
 						GdkPixbuf * pixbuf);
     extern void gtk_status_icon_set_from_stock(GtkStatusIcon * status_icon,
 					       const char *stock_id);
+    extern void gtk_status_icon_set_tooltip(GtkStatusIcon * status_icon,
+					    const gchar * tooltip_text);
     extern void gtk_status_icon_set_visible(GtkStatusIcon * status_icon,
 					    gboolean visible);
 #ifdef __cplusplus
