@@ -1020,14 +1020,14 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
 #ifdef __cplusplus
-# define G_BEGIN_DECLS  extern "C" {
+#define G_BEGIN_DECLS  extern "C" {
 #else
-# define G_BEGIN_DECLS
+#define G_BEGIN_DECLS
 #endif
 #ifdef __cplusplus
-# define G_END_DECLS  }
+#define G_END_DECLS  }
 #else
-# define G_END_DECLS
+#define G_END_DECLS
 #endif
 #if __LSB_VERSION__ < 41
 #define GLIB_MINOR_VERSION	8
@@ -2383,21 +2383,60 @@ extern "C" {
     extern GSourceFuncs g_child_watch_funcs;
     extern GSource *g_child_watch_source_new(GPid pid);
     extern void g_clear_error(GError * *err);
-    extern void g_completion_add_items(GCompletion * cmp, GList * items);
-    extern void g_completion_clear_items(GCompletion * cmp);
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_completion_add_items(GCompletion * cmp, GList * items)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_completion_clear_items(GCompletion * cmp)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern GList *g_completion_complete(GCompletion * cmp,
 					const gchar * prefix,
-					gchar * *new_prefix);
+					gchar * *new_prefix)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern GList *g_completion_complete_utf8(GCompletion * cmp,
 					     const gchar * prefix,
-					     gchar * *new_prefix);
-    extern void g_completion_free(GCompletion * cmp);
-    extern GCompletion *g_completion_new(GCompletionFunc func);
-    extern void g_completion_remove_items(GCompletion * cmp,
-					  GList * items);
+					     gchar * *new_prefix)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_completion_free(GCompletion * cmp)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern GCompletion *g_completion_new(GCompletionFunc func)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_completion_remove_items(GCompletion * cmp, GList * items)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern void g_completion_set_compare(GCompletion * cmp,
 					 GCompletionStrncmpFunc
-					 strncmp_func);
+					 strncmp_func)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern gchar *g_convert(const gchar * str, gssize len,
 			    const gchar * to_codeset,
 			    const gchar * from_codeset, gsize * bytes_read,
@@ -2540,10 +2579,10 @@ extern "C" {
     extern gchar *g_find_program_in_path(const gchar * program);
     extern void g_free(gpointer mem);
     extern const gchar *g_get_application_name(void);
-    extern gboolean g_get_charset(const char **charset);
+    extern gboolean g_get_charset(const char * *charset);
     extern gchar *g_get_current_dir(void);
     extern void g_get_current_time(GTimeVal * result);
-    extern gboolean g_get_filename_charsets(const gchar * **charsets);
+    extern gboolean g_get_filename_charsets(const gchar * * *charsets);
     extern const gchar *g_get_home_dir(void);
     extern const gchar *const *g_get_language_names(void);
     extern gchar *g_get_prgname(void);
@@ -3141,7 +3180,7 @@ extern "C" {
     extern GOptionContext *g_option_context_new(const gchar *
 						parameter_string);
     extern gboolean g_option_context_parse(GOptionContext * context,
-					   gint * argc, gchar * **argv,
+					   gint * argc, gchar * * *argv,
 					   GError * *error);
     extern void g_option_context_set_help_enabled(GOptionContext * context,
 						  gboolean help_enabled);
@@ -3294,20 +3333,65 @@ extern "C" {
     extern gint32 g_random_int_range(gint32 begin, gint32 end);
     extern void g_random_set_seed(guint32 seed);
     extern gpointer g_realloc(gpointer mem, gulong n_bytes);
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern gint g_relation_count(GRelation * relation, gconstpointer key,
-				 gint field);
+				 gint field)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern gint g_relation_delete(GRelation * relation, gconstpointer key,
-				  gint field);
-    extern void g_relation_destroy(GRelation * relation);
-    extern gboolean g_relation_exists(GRelation * relation, ...);
+				  gint field)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_relation_destroy(GRelation * relation)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern gboolean g_relation_exists(GRelation * relation, ...)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern void g_relation_index(GRelation * relation, gint field,
 				 GHashFunc hash_func,
-				 GEqualFunc key_equal_func);
-    extern void g_relation_insert(GRelation * relation, ...);
-    extern GRelation *g_relation_new(gint fields);
-    extern void g_relation_print(GRelation * relation);
+				 GEqualFunc key_equal_func)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_relation_insert(GRelation * relation, ...)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern GRelation *g_relation_new(gint fields)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_relation_print(GRelation * relation)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern GTuples *g_relation_select(GRelation * relation,
-				      gconstpointer key, gint field);
+				      gconstpointer key, gint field)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern void g_return_if_fail_warning(const char *log_domain,
 					 const char *pretty_function,
 					 const char *expression);
@@ -3361,7 +3445,7 @@ extern "C" {
 			     gboolean overwrite);
     extern GQuark g_shell_error_quark(void);
     extern gboolean g_shell_parse_argv(const gchar * command_line,
-				       gint * argcp, gchar * **argvp,
+				       gint * argcp, gchar * * *argvp,
 				       GError * *error);
     extern gchar *g_shell_quote(const gchar * unquoted_string);
     extern gchar *g_shell_unquote(const gchar * quoted_string,
@@ -3672,9 +3756,19 @@ extern "C" {
     extern gboolean g_tree_steal(GTree * tree, gconstpointer key);
     extern gpointer g_try_malloc(gulong n_bytes);
     extern gpointer g_try_realloc(gpointer mem, gulong n_bytes);
-    extern void g_tuples_destroy(GTuples * tuples);
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
+    extern void g_tuples_destroy(GTuples * tuples)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
+    /* This interface is deprecated in modern Glib and should not be used in newly-written code. */
     extern gpointer g_tuples_index(GTuples * tuples, gint index_,
-				   gint field);
+				   gint field)
+#if __LSB_VERSION__ >= 41
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 41 */
+    ;
     extern gunichar2 *g_ucs4_to_utf16(const gunichar * str, glong len,
 				      glong * items_read,
 				      glong * items_written,
@@ -3924,7 +4018,7 @@ extern "C" {
 						const char *description);
     extern void g_bookmark_file_set_groups(GBookmarkFile * bookmark,
 					   const char *uri,
-					   const char **groups,
+					   const char * *groups,
 					   gsize length);
     extern void g_bookmark_file_set_icon(GBookmarkFile * bookmark,
 					 const char *uri, const char *href,
