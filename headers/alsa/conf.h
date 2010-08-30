@@ -41,15 +41,15 @@ extern "C" {
     extern int snd_config_copy(snd_config_t * *dst, snd_config_t * src);
     extern int snd_config_delete(snd_config_t * config);
     extern int snd_config_get_ascii(const snd_config_t * config,
-				    char **value);
+				    char * *value);
     extern int snd_config_get_id(const snd_config_t * config,
-				 const char **value);
+				 const char * *value);
     extern int snd_config_get_integer(const snd_config_t * config,
 				      long int *value);
     extern int snd_config_get_integer64(const snd_config_t * config,
 					long long int *value);
     extern int snd_config_get_string(const snd_config_t * config,
-				     const char **value);
+				     const char * *value);
     extern snd_config_type_t snd_config_get_type(const snd_config_t *
 						 config);
     extern int snd_config_imake_integer(snd_config_t * *config,

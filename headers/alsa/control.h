@@ -119,8 +119,8 @@ extern "C" {
     extern snd_ctl_t *snd_async_handler_get_ctl(snd_async_handler_t *
 						handler);
     extern int snd_card_get_index(const char *name);
-    extern int snd_card_get_longname(int card, char **name);
-    extern int snd_card_get_name(int card, char **name);
+    extern int snd_card_get_longname(int card, char * *name);
+    extern int snd_card_get_name(int card, char * *name);
     extern int snd_card_load(int card);
     extern int snd_card_next(int *card);
     extern int snd_ctl_card_info(snd_ctl_t * ctl,

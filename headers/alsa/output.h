@@ -17,7 +17,7 @@ extern "C" {
 
     extern int snd_output_buffer_open(snd_output_t * *outputp);
     extern size_t snd_output_buffer_string(snd_output_t * output,
-					   char **buf);
+					   char * *buf);
     extern int snd_output_close(snd_output_t * output);
     extern int snd_output_putc(snd_output_t * output, int c);
     extern int snd_output_puts(snd_output_t * output, const char *str);

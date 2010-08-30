@@ -84,6 +84,28 @@ extern "C" {
     extern size_t snd_rawmidi_info_sizeof(void);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 41
+    extern int snd_rawmidi_info(snd_rawmidi_t * rmidi,
+				snd_rawmidi_info_t * info);
+    extern void snd_rawmidi_info_copy(snd_rawmidi_info_t * dst,
+				      const snd_rawmidi_info_t * src);
+    extern int snd_rawmidi_info_get_card(const snd_rawmidi_info_t * obj);
+    extern unsigned int snd_rawmidi_info_get_device(const
+						    snd_rawmidi_info_t *
+						    obj);
+    extern unsigned int snd_rawmidi_info_get_flags(const snd_rawmidi_info_t
+						   * obj);
+    extern snd_rawmidi_stream_t snd_rawmidi_info_get_stream(const
+							    snd_rawmidi_info_t
+							    * obj);
+    extern unsigned int snd_rawmidi_info_get_subdevice(const
+						       snd_rawmidi_info_t *
+						       obj);
+    extern unsigned int snd_rawmidi_info_get_subdevices_avail(const
+							      snd_rawmidi_info_t
+							      * obj);
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif
