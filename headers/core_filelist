@@ -113,8 +113,8 @@ netinet/icmp6.h
 netinet/igmp.h
 netinet/in_systm.h
 netinet/ip_icmp.h
-link.h
 elf.h
+link.h
 pthread.h
 semaphore.h
 mqueue.h

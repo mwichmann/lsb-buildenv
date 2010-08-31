@@ -649,13 +649,13 @@ extern "C" {
 						void *buffer,
 						snd_pcm_uframes_t size);
     extern snd_pcm_sframes_t snd_pcm_mmap_readn(snd_pcm_t * pcm,
-						void * *bufs,
+						void **bufs,
 						snd_pcm_uframes_t size);
     extern snd_pcm_sframes_t snd_pcm_mmap_writei(snd_pcm_t * pcm,
 						 const void *buffer,
 						 snd_pcm_uframes_t size);
     extern snd_pcm_sframes_t snd_pcm_mmap_writen(snd_pcm_t * pcm,
-						 void * *bufs,
+						 void **bufs,
 						 snd_pcm_uframes_t size);
     extern const char *snd_pcm_name(snd_pcm_t * pcm);
     extern int snd_pcm_nonblock(snd_pcm_t * pcm, int nonblock);
@@ -677,7 +677,7 @@ extern "C" {
     extern int snd_pcm_prepare(snd_pcm_t * pcm);
     extern snd_pcm_sframes_t snd_pcm_readi(snd_pcm_t * pcm, void *buffer,
 					   snd_pcm_uframes_t size);
-    extern snd_pcm_sframes_t snd_pcm_readn(snd_pcm_t * pcm, void * *bufs,
+    extern snd_pcm_sframes_t snd_pcm_readn(snd_pcm_t * pcm, void **bufs,
 					   snd_pcm_uframes_t size);
     extern int snd_pcm_recover(snd_pcm_t * pcm, int err, int silent);
     extern int snd_pcm_reset(snd_pcm_t * pcm);
@@ -795,7 +795,7 @@ extern "C" {
     extern snd_pcm_sframes_t snd_pcm_writei(snd_pcm_t * pcm,
 					    const void *buffer,
 					    snd_pcm_uframes_t size);
-    extern snd_pcm_sframes_t snd_pcm_writen(snd_pcm_t * pcm, void * *bufs,
+    extern snd_pcm_sframes_t snd_pcm_writen(snd_pcm_t * pcm, void **bufs,
 					    snd_pcm_uframes_t size);
 #ifdef __cplusplus
 }

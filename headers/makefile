@@ -1,5 +1,6 @@
 INSTALL_ROOT ?= /usr/local
 INCLUDEDIR ?= include
+INDENT ?= indent
 
 DBOPTS=-h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD --disable-auto-rehash
 
@@ -35,15 +36,15 @@ lsb_devel_versions:
 
 %.defs: 
 	mkdir -p $(dir $(shell echo "$@" | sed s/_/\\//))
-	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | indent -kr -sob > $(shell echo "$@" | sed s/_/\\//)
+	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | $(INDENT) -kr -sob > $(shell echo "$@" | sed s/_/\\//)
 
 %.h:
-	./mkheader -a All -h $@ | indent -kr >$@
+	./mkheader -a All -h $@ | $(INDENT) -kr >$@
 
 # Use 'header.h-defs' to unconditionally regenerate header.h and all header.h.defs
 %.h-defs: 
 	make $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(foreach ver,$(LSB_VERSIONS),$(arch)_$(ver)/$(subst h-defs,h.defs,$@)))
-	./mkheader -a All -h $(subst -defs,,$@) | indent -kr > $(subst -defs,,$@)
+	./mkheader -a All -h $(subst -defs,,$@) | $(INDENT) -kr > $(subst -defs,,$@)
 
 install: install-core install-desktop
 

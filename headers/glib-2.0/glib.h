@@ -1020,14 +1020,14 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
 #ifdef __cplusplus
-#define G_BEGIN_DECLS  extern "C" {
+# define G_BEGIN_DECLS  extern "C" {
 #else
-#define G_BEGIN_DECLS
+# define G_BEGIN_DECLS
 #endif
 #ifdef __cplusplus
-#define G_END_DECLS  }
+# define G_END_DECLS  }
 #else
-#define G_END_DECLS
+# define G_END_DECLS
 #endif
 #if __LSB_VERSION__ < 41
 #define GLIB_MINOR_VERSION	8
@@ -2579,10 +2579,10 @@ extern "C" {
     extern gchar *g_find_program_in_path(const gchar * program);
     extern void g_free(gpointer mem);
     extern const gchar *g_get_application_name(void);
-    extern gboolean g_get_charset(const char * *charset);
+    extern gboolean g_get_charset(const char **charset);
     extern gchar *g_get_current_dir(void);
     extern void g_get_current_time(GTimeVal * result);
-    extern gboolean g_get_filename_charsets(const gchar * * *charsets);
+    extern gboolean g_get_filename_charsets(const gchar * **charsets);
     extern const gchar *g_get_home_dir(void);
     extern const gchar *const *g_get_language_names(void);
     extern gchar *g_get_prgname(void);
@@ -3180,7 +3180,7 @@ extern "C" {
     extern GOptionContext *g_option_context_new(const gchar *
 						parameter_string);
     extern gboolean g_option_context_parse(GOptionContext * context,
-					   gint * argc, gchar * * *argv,
+					   gint * argc, gchar * **argv,
 					   GError * *error);
     extern void g_option_context_set_help_enabled(GOptionContext * context,
 						  gboolean help_enabled);
@@ -3445,7 +3445,7 @@ extern "C" {
 			     gboolean overwrite);
     extern GQuark g_shell_error_quark(void);
     extern gboolean g_shell_parse_argv(const gchar * command_line,
-				       gint * argcp, gchar * * *argvp,
+				       gint * argcp, gchar * **argvp,
 				       GError * *error);
     extern gchar *g_shell_quote(const gchar * unquoted_string);
     extern gchar *g_shell_unquote(const gchar * quoted_string,
@@ -4018,7 +4018,7 @@ extern "C" {
 						const char *description);
     extern void g_bookmark_file_set_groups(GBookmarkFile * bookmark,
 					   const char *uri,
-					   const char * *groups,
+					   const char **groups,
 					   gsize length);
     extern void g_bookmark_file_set_icon(GBookmarkFile * bookmark,
 					 const char *uri, const char *href,

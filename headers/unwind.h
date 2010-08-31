@@ -9,8 +9,6 @@ extern "C" {
 #endif
 
 
-    struct _Unwind_Context;
-
     struct _Unwind_Exception;
 
 #if __LSB_VERSION__ < 30
