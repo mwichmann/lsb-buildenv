@@ -67,11 +67,7 @@ struct rpc_err {
     } ru;
 };
 
-typedef struct CLIENT {
-    struct AUTH *cl_auth;
-    struct clnt_ops *cl_ops;
-    caddr_t cl_private;
-} CLIENT;
+typedef struct CLIENT CLIENT;
 
 struct clnt_ops {
     enum clnt_stat (*cl_call) (struct CLIENT *, u_long, xdrproc_t, caddr_t,

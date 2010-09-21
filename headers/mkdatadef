@@ -210,7 +210,7 @@ for(1..$hgh->rows) {
             next;
         }
 #        specdb::displaytype($tentry,0,$tooLargeLSBVersion,'');
-        specdb::displaytype($tentry,0,'','');
+        specdb::displaytype($tentry,0,'','',$lsbversion);
         print ";\n";
         $totrows++;
     }

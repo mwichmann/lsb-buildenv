@@ -753,14 +753,14 @@ for(1..$hgh->rows) {
         if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
             print "#if ".$tentry->{'Asymbol'}."\n";
             print "/* ".$tentry->{'Aname'}." */\n";
-            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn,'');
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
             }
             print "\n\n#endif\n";
         } else {
-            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn,'');
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
@@ -856,14 +856,14 @@ for(1..$hgh->rows) {
         if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
             print "#if ".$tentry->{'Asymbol'}."\n";
             print "/* ".$tentry->{'Aname'}." */\n";
-            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn,'');
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
             }
             print "\n\n#endif\n";
         } else {
-            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
+            specdb::displaytype($tentry,0,$oldVersionAppeared,$oldVersionWithdrawn,'');
             print ";";
             if( $tentry->{'Tdescription'} ) {
                 print "/* ".$tentry->{'Tdescription'}." */";
@@ -969,7 +969,7 @@ for(1..$hgh->rows) {
                 if( $tentry->{'Aid'} && $tentry->{'Aname'} ne "All" ) {
                     print "#if ".$tentry->{'Asymbol'}."\n";
                     print "/* ".$tentry->{'Aname'}." */\n";
-                    specdb::displaytype($ttentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
+                    specdb::displaytype($ttentry,0,$oldVersionAppeared,$oldVersionWithdrawn,'');
                     if ($semicolonNeeded) {
                         $semicolonNeeded = 0;
                         print ";";
@@ -979,7 +979,7 @@ for(1..$hgh->rows) {
                     }
                     print "\n\n#endif\n";
                 } else {
-                    specdb::displaytype($ttentry,0,$oldVersionAppeared,$oldVersionWithdrawn);
+                    specdb::displaytype($ttentry,0,$oldVersionAppeared,$oldVersionWithdrawn,'');
                     if ($semicolonNeeded) {
                         $semicolonNeeded = 0;
                         print ";";

@@ -436,10 +436,12 @@ sub displayconstant($)
 #
 # Display type declaration
 #
-sub displaytype($$$$)
+sub displaytype($$$$$)
 {
     # $typeAppeared and $typeWithdrawn are spec version bounds where the type is included
-    local ($type,$nameonly,$typeAppeared,$typeWithdrawn) = @_;
+    # $lsbversion specifies particular LSB version for which information should be dumped.
+    #   If empty, declarations will be dumped for all versions.
+    local ($type,$nameonly,$typeAppeared,$typeWithdrawn,$lsbversion) = @_;
     local (*entry,*tentry,*tmentry,*dtentry);
     local($th);
     local($tmh, $dth, $dsth);
@@ -462,11 +464,11 @@ sub displaytype($$$$)
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
         if( $entry->{'Ttype'} eq "Pointer" || $entry->{'Ttype'} eq "Array" ) {
-            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn,$lsbversion);
             print "volatile ";
         } else {
             print "volatile ";
-            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn,$lsbversion);
         }
         return;
     }
@@ -477,11 +479,11 @@ sub displaytype($$$$)
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
         if( $entry->{'Ttype'} eq "Pointer" || $entry->{'Ttype'} eq "Array" ) {
-            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn,$lsbversion);
             print "const ";
         } else {
             print "const ";
-            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,$nameonly,$typeAppeared,$typeWithdrawn,$lsbversion);
         }
         return;
     }
@@ -513,24 +515,24 @@ sub displaytype($$$$)
                 if($entry->{'Ttype'} eq 'FuncPtr' || $entry->{'Ttype'} eq 'Function') {
                     $funcPtrName = '';
                 }
-                displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+                displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
             } elsif( ($entry->{'Ttype'} eq 'Struct' || $entry->{'Ttype'} eq 'Union') && $entry->{'Theadgroup'} == $HGid  ) {
                 # In case of datadef, we don't bother about types dependencies,
                 # so let's simply dump unions/structs declarations inside typedef declaration.
                 if( $entry->{'Tname'} !~ "anon" and !$datadef ) {
-                    displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+                    displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
                 } else {
-                    displaytype($entry,0,$typeAppeared,$typeWithdrawn);
+                    displaytype($entry,0,$typeAppeared,$typeWithdrawn,$lsbversion);
                 }
             } else {
                 if( $entry->{'Theadgroup'} == $HGid or $entry->{'Tname'} =~ "anon" ) {
                     # If we are here, we either have anon type or enum from the same header.
                     # Enum declaration can be safely dumped inside typedef declaration, since it doesn't
                     # have any dependencies on other types.
-                    displaytype($entry,0,$typeAppeared,$typeWithdrawn);
+                    displaytype($entry,0,$typeAppeared,$typeWithdrawn,$lsbversion);
                 }
                 else {
-                    displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+                    displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
                 }
             }
         }
@@ -622,16 +624,16 @@ sub displaytype($$$$)
         $tth->finish;
         if (!$nameonly) {
             if( $entry->{'Ttype'} eq 'Typedef' or $entry->{'Ttype'} eq 'FuncPtr' ) {
-                displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+                displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
             } else {
                 if( ($entry->{'Ttype'} eq 'Struct' or $entry->{'Ttype'} eq 'Union') ) {
-                    displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+                    displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
                 } else {
-                    displaytype($entry,0,$typeAppeared,$typeWithdrawn);
+                    displaytype($entry,0,$typeAppeared,$typeWithdrawn,$lsbversion);
                 }
             }
         } else {
-            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
         }
 
         if( $RootBase ne 'FuncPtr' ) {
@@ -655,6 +657,10 @@ sub displaytype($$$$)
         $tmselect.= "LEFT JOIN TypeMemberExtras ON TMEtmid=TMid ";
         $tmselect.= "WHERE TMmemberof=$Tid AND (TMaid=1 OR TMaid=$TMaid) ";
         $tmselect.= "AND TMappearedin > '' ";
+        if( $lsbversion ) {
+            $tmselect.= "AND TMappearedin <= '$lsbversion' ";
+            $tmselect.= "AND (TMwithdrawnin IS NULL OR TMwithdrawnin > '$lsbversion') "
+        }
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -669,7 +675,8 @@ sub displaytype($$$$)
                 $appearedin =~ s/\.//g;
                 print "#if __LSB_VERSION__ >= $appearedin\n";
             }
-            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+            if( $tmentry->{'TMwithdrawnin'}
+        	    and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                 $withdrawnin = $tmentry->{'TMwithdrawnin'};
                 $withdrawnin =~ s/\.//g;
                 print "#if __LSB_VERSION__ < $withdrawnin\n";
@@ -680,7 +687,8 @@ sub displaytype($$$$)
                 if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
                     print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
                 }
-                if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                if( $tmentry->{'TMwithdrawnin'}
+            		and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                     print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
                 }
                 next;
@@ -737,7 +745,7 @@ sub displaytype($$$$)
             if( !$tmentry->{'TMname'} ) {
                 $struct_anon_member=1;
             }
-            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
             $struct_anon_member=0;
 
             if( $entry->{'Ttype'} ne 'FuncPtr' and $bentry->{'Ttype'} ne 'FuncPtr' ) {
@@ -779,7 +787,8 @@ sub displaytype($$$$)
             if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
                 print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
             }
-            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+            if( $tmentry->{'TMwithdrawnin'}
+        	    and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                 print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
             }
         }
@@ -809,6 +818,10 @@ sub displaytype($$$$)
         $tmselect.= "LEFT JOIN TypeMemberExtras ON TMEtmid=TMid ";
         $tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN(1,$TMaid) ";
         $tmselect.= "AND TMappearedin > '' ";
+        if( $lsbversion ) {
+            $tmselect.= "AND TMappearedin <= '$lsbversion' ";
+            $tmselect.= "AND (TMwithdrawnin IS NULL OR TMwithdrawnin > '$lsbversion') "
+        }
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -822,7 +835,8 @@ sub displaytype($$$$)
                 $appearedin =~ s/\.//g;
                 print "#if __LSB_VERSION__ >= $appearedin\n";
             }
-            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+            if( $tmentry->{'TMwithdrawnin'}
+        	    and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                 $withdrawnin = $tmentry->{'TMwithdrawnin'};
                 $withdrawnin =~ s/\.//g;
                 print "#if __LSB_VERSION__ < $withdrawnin\n";
@@ -833,7 +847,8 @@ sub displaytype($$$$)
                 if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
                     print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
                 }
-                if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+                if( $tmentry->{'TMwithdrawnin'}
+            		and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                     print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
                 }
                 next;
@@ -855,7 +870,7 @@ sub displaytype($$$$)
             $type_Q->execute($TMtypeid) or die "Couldn't execute type_Q query for Tid=$TMtypeid query: ".DBI->errstr;
             $entry = $type_Q->fetchrow_hashref;
 
-            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
             if( $entry->{'Ttype'} ne 'FuncPtr' ) {
                 print $tmentry->{'TMname'};
             }
@@ -884,7 +899,8 @@ sub displaytype($$$$)
             if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
                 print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
             }
-            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+            if( $tmentry->{'TMwithdrawnin'}
+        	    and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                 print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
             }
         }
@@ -911,6 +927,10 @@ sub displaytype($$$$)
         $tmselect = "SELECT TMdescription, TMname, TMaid, TMvalue, TMappearedin, TMwithdrawnin FROM TypeMember ";
         $tmselect.= "WHERE TMmemberof=$Tid AND TMaid IN (1,$TMaid) ";
         $tmselect.= "AND TMappearedin > '' ";
+        if( $lsbversion ) {
+            $tmselect.= "AND TMappearedin <= '$lsbversion' ";
+            $tmselect.= "AND (TMwithdrawnin IS NULL OR TMwithdrawnin > '$lsbversion') "
+        }
         $tmselect.= "ORDER BY TMposition";
         $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
         $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -922,6 +942,10 @@ sub displaytype($$$$)
             $tmselect.= "LEFT JOIN Architecture ON Aid=TMaid ";
             $tmselect.= "WHERE TMmemberof=$Tid ";
             $tmselect.= "AND TMappearedin > '' ";
+            if( $lsbversion ) {
+                $tmselect.= "AND TMappearedin <= '$lsbversion' ";
+                $tmselect.= "AND (TMwithdrawnin IS NULL OR TMwithdrawnin > '$lsbversion') "
+            }
             $tmselect.= "ORDER BY TMaid,TMposition ";
             $tmh = $dbh->prepare($tmselect) or die "Couldn't prepare $tmselect query: ".DBI->errstr;
             $tmh->execute or die "Couldn't execute $tmselect query: ".DBI->errstr;
@@ -938,7 +962,8 @@ sub displaytype($$$$)
                 $appearedin =~ s/\.//g;
                 print "#if __LSB_VERSION__ >= $appearedin\n";
             }
-            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+            if( $tmentry->{'TMwithdrawnin'}
+        	    and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                 $withdrawnin = $tmentry->{'TMwithdrawnin'};
                 $withdrawnin =~ s/\.//g;
                 print "#if __LSB_VERSION__ < $withdrawnin\n";
@@ -971,7 +996,8 @@ sub displaytype($$$$)
             if( $typeAppeared and $tmentry->{'TMappearedin'} gt $typeAppeared ) {
                 print "#endif /* __LSB_VERSION__ >= $appearedin */\n";
             }
-            if( $tmentry->{'TMwithdrawnin'} and $tmentry->{'TMwithdrawnin'} lt $typeWithdrawn ) {
+            if( $tmentry->{'TMwithdrawnin'}
+        	    and ($tmentry->{'TMwithdrawnin'} lt $typeWithdrawn or !$typeWithdrawn and !$lsbversion) ) {
                 print "#endif /* __LSB_VERSION__ < $withdrawnin */\n";
             }
         }
@@ -988,7 +1014,7 @@ sub displaytype($$$$)
         $sth = getBaseTypeRecord($ArchId,$basetype);
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
-        displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+        displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
 
         print "(*$deriviation" if ($$type{'Ttype'} eq "FuncPtr");
         $deriviation = "";
@@ -1026,7 +1052,7 @@ sub displaytype($$$$)
             $type_Q->execute($TMtypeid) or die "Couldn't execute type_Q query for Tid=$TMtypeid query: ".DBI->errstr;
             $entry = $type_Q->fetchrow_hashref;
 
-            displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+            displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
             print $tmentry->{'TMname'};
             if( $tmentry->{'Ttype'} eq 'Array' ) {
                 if( $tmentry->{'TMarray'} ) {
@@ -1060,7 +1086,7 @@ sub displaytype($$$$)
         $sth = getBaseTypeRecord($ArchId,$basetype);
         $entry = $sth->fetchrow_hashref;
         $sth->finish;
-        displaytype($entry,1,$typeAppeared,$typeWithdrawn);
+        displaytype($entry,1,$typeAppeared,$typeWithdrawn,$lsbversion);
         return;
     }
 
@@ -1340,7 +1366,7 @@ sub display_interface($ )
                 $th->execute or die "Couldn't execute $tselect query: ".DBI->errstr;
                 $entry = $th->fetchrow_hashref;
                 $th->finish;
-                displaytype($entry,1,'',''); # no need to pass typeAppearedin and typeWithdrawnin,
+                displaytype($entry,1,'','',$lsbversion); # no need to pass typeAppearedin and typeWithdrawnin,
                                              # since we are not going to dump type members
                 if( $_ != $tmh->rows ) {
                     print ",";
