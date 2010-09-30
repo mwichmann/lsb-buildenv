@@ -187,52 +187,6 @@ extern "C" {
 	HTTP_ENCODE_CHUNKED = 1
     } http_encoding_t;
 
-    typedef enum {
-	IPP_OK = 0,
-	IPP_OK_SUBST = 1,
-	IPP_OK_CONFLICT = 2,
-	IPP_OK_IGNORED_SUBSCRIPTIONS = 3,
-	IPP_OK_IGNORED_NOTIFICATIONS = 4,
-	IPP_OK_TOO_MANY_EVENTS = 5,
-	IPP_OK_BUT_CANCEL_SUBSCRIPTION = 6,
-	IPP_REDIRECTION_OTHER_SITE = 768,
-	IPP_BAD_REQUEST = 1024,
-	IPP_FORBIDDEN = 1025,
-	IPP_NOT_AUTHENTICATED = 1026,
-	IPP_NOT_AUTHORIZED = 1027,
-	IPP_NOT_POSSIBLE = 1028,
-	IPP_TIMEOUT = 1029,
-	IPP_NOT_FOUND = 1030,
-	IPP_GONE = 1031,
-	IPP_REQUEST_ENTITY = 1032,
-	IPP_REQUEST_VALUE = 1033,
-	IPP_DOCUMENT_FORMAT = 1034,
-	IPP_ATTRIBUTES = 1035,
-	IPP_URI_SCHEME = 1036,
-	IPP_CHARSET = 1037,
-	IPP_CONFLICT = 1038,
-	IPP_COMPRESSION_NOT_SUPPORTED = 1039,
-	IPP_COMPRESSION_ERROR = 1040,
-	IPP_DOCUMENT_FORMAT_ERROR = 1041,
-	IPP_DOCUMENT_ACCESS_ERROR = 1042,
-	IPP_ATTRIBUTES_NOT_SETTABLE = 1043,
-	IPP_IGNORED_ALL_SUBSCRIPTIONS = 1044,
-	IPP_TOO_MANY_SUBSCRIPTIONS = 1045,
-	IPP_IGNORED_ALL_NOTIFICATIONS = 1046,
-	IPP_PRINT_SUPPORT_FILE_NOT_FOUND = 1047,
-	IPP_INTERNAL_ERROR = 1280,
-	IPP_OPERATION_NOT_SUPPORTED = 1281,
-	IPP_SERVICE_UNAVAILABLE = 1282,
-	IPP_VERSION_NOT_SUPPORTED = 1283,
-	IPP_DEVICE_ERROR = 1284,
-	IPP_TEMPORARY_ERROR = 1285,
-	IPP_NOT_ACCEPTING = 1286,
-	IPP_PRINTER_BUSY = 1287,
-	IPP_ERROR_JOB_CANCELLED = 1288,
-	IPP_MULTIPLE_JOBS_NOT_SUPPORTED = 1289,
-	IPP_PRINTER_IS_DEACTIVATED = 1290
-    } ipp_status_t;
-
     typedef struct _cups_array_s cups_array_t;
 
 #endif				/* __LSB_VERSION__ >= 4.1 */
@@ -301,6 +255,7 @@ extern "C" {
 	int digest_tries;
     } http_t;
 
+/*#include <cups/ipp.h>		XXX hand-edit: move down */
 #endif				/* __LSB_VERSION__ < 4.0 */
 
 #if __LSB_VERSION__ >= 40
@@ -308,45 +263,46 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#include <cups/ipp.h> 		/* XXX hand-edit: move from above */
 
 /* Function prototypes */
 
     extern int cupsAddDest(const char *name, const char *instance,
-			   int num_dests, cups_dest_t * *dests);
+			   int num_dests, cups_dest_t **dests);
     extern int cupsAddOption(const char *name, const char *value,
-			     int num_options, cups_option_t * *options);
+			     int num_options, cups_option_t **options);
     extern int cupsCancelJob(const char *printer, int job);
     extern http_encryption_t cupsEncryption(void);
-    extern void cupsFreeDests(int num_dests, cups_dest_t * dests);
-    extern void cupsFreeJobs(int num_jobs, cups_job_t * jobs);
-    extern void cupsFreeOptions(int num_options, cups_option_t * options);
+    extern void cupsFreeDests(int num_dests, cups_dest_t *dests);
+    extern void cupsFreeJobs(int num_jobs, cups_job_t *jobs);
+    extern void cupsFreeOptions(int num_options, cups_option_t *options);
     extern const char *cupsGetDefault(void);
     extern cups_dest_t *cupsGetDest(const char *name, const char *instance,
-				    int num_dests, cups_dest_t * dests);
-    extern int cupsGetDests(cups_dest_t * *dests);
-    extern int cupsGetJobs(cups_job_t * *jobs, const char *dest,
+				    int num_dests, cups_dest_t *dests);
+    extern int cupsGetDests(cups_dest_t **dests);
+    extern int cupsGetJobs(cups_job_t **jobs, const char *dest,
 			   int myjobs, int completed);
     extern const char *cupsGetOption(const char *name, int num_options,
-				     cups_option_t * options);
+				     cups_option_t *options);
     extern const char *cupsGetPPD(const char *printer);
     extern const char *cupsGetPassword(const char *prompt);
-    extern const char *cupsLangEncoding(cups_lang_t * lang);
+    extern const char *cupsLangEncoding(cups_lang_t *lang);
     extern void cupsLangFlush(void);
-    extern void cupsLangFree(cups_lang_t * lang);
+    extern void cupsLangFree(cups_lang_t *lang);
     extern cups_lang_t *cupsLangGet(const char *language);
     extern ipp_status_t cupsLastError(void);
-    extern int cupsMarkOptions(ppd_file_t * ppd, int num_options,
-			       cups_option_t * options);
+    extern int cupsMarkOptions(ppd_file_t *ppd, int num_options,
+			       cups_option_t *options);
     extern int cupsParseOptions(const char *arg, int num_options,
-				cups_option_t * *options);
+				cups_option_t **options);
     extern int cupsPrintFile(const char *printer, const char *filename,
 			     const char *title, int num_options,
-			     cups_option_t * options);
+			     cups_option_t *options);
     extern int cupsPrintFiles(const char *printer, int num_files,
 			      const char **files, const char *title,
-			      int num_options, cups_option_t * options);
+			      int num_options, cups_option_t *options);
     extern const char *cupsServer(void);
-    extern void cupsSetDests(int num_dests, cups_dest_t * dests);
+    extern void cupsSetDests(int num_dests, cups_dest_t *dests);
     extern void cupsSetEncryption(http_encryption_t e);
     extern void cupsSetPasswordCB(const char *(*cb) (const char *));
     extern void cupsSetServer(const char *server);
@@ -354,28 +310,35 @@ extern "C" {
     extern int cupsTempFd(char *filename, int len);
     extern const char *cupsUser(void);
 #if __LSB_VERSION__ >= 41
-    extern const char *cupsGetDefault2(http_t * http);
-    extern int cupsGetDests2(http_t * http, cups_dest_t * *dests);
-    extern http_status_t cupsGetFd(http_t * http, const char *resource,
+    extern int cupsDoAuthentication(http_t *http, const char *method,
+				    const char *resource);
+    extern ipp_t cupsDoFileRequest(http_t *http, ipp_t *request,
+				   const char *resource,
+				   const char *filename);
+    extern void cupsEncodeOptions(ipp_t *ipp, int num_options,
+				  cups_option_t *options);
+    extern const char *cupsGetDefault2(http_t *http);
+    extern int cupsGetDests2(http_t *http, cups_dest_t **dests);
+    extern http_status_t cupsGetFd(http_t *http, const char *resource,
 				   int fd);
-    extern http_status_t cupsGetFile(http_t * http, const char *resource,
+    extern http_status_t cupsGetFile(http_t *http, const char *resource,
 				     const char *filename);
-    extern int cupsGetJobs2(http_t * http, cups_job_t * *jobs,
+    extern int cupsGetJobs2(http_t *http, cups_job_t **jobs,
 			    const char *dest, int myjobs, int completed);
-    extern const char *cupsGetPPD2(http_t * http, const char *printer);
-    extern int cupsPrintFile2(http_t * http, const char *printer,
+    extern const char *cupsGetPPD2(http_t *http, const char *printer);
+    extern int cupsPrintFile2(http_t *http, const char *printer,
 			      const char *filename, const char *title,
-			      int num_options, cups_option_t * options);
-    extern int cupsPrintFiles2(http_t * http, const char *printer,
+			      int num_options, cups_option_t *options);
+    extern int cupsPrintFiles2(http_t *http, const char *printer,
 			       int num_files, const char **files,
 			       const char *title, int num_options,
-			       cups_option_t * options);
-    extern http_status_t cupsPutFd(http_t * http, const char *resource,
+			       cups_option_t *options);
+    extern http_status_t cupsPutFd(http_t *http, const char *resource,
 				   int fd);
-    extern http_status_t cupsPutFile(http_t * http, const char *resource,
+    extern http_status_t cupsPutFile(http_t *http, const char *resource,
 				     const char *filename);
-    extern int cupsSetDests2(http_t * http, int num_dests,
-			     cups_dest_t * dests);
+    extern int cupsSetDests2(http_t *http, int num_dests,
+			     cups_dest_t *dests);
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus

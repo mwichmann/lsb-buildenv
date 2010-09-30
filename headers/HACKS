@@ -1,3 +1,4 @@
+cups/cups.h
 X11/ShellP.h
 freetype/freetype.h
 freetype/ftimage.h
