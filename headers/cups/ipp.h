@@ -366,6 +366,7 @@ extern "C" {
 					  const char *const *values);
     extern time_t ippDateToTime(const ipp_uchar_t * date);
     extern void ippDelete(ipp_t * ipp);
+    extern void ippDeleteAttribute(ipp_t * ipp, ipp_attribute_t * attr);
     extern const char *ippErrorString(ipp_status_t error);
     extern ipp_attribute_t *ippFindAttribute(ipp_t * ipp, const char *name,
 					     ipp_tag_t type);
@@ -376,6 +377,7 @@ extern "C" {
     extern ipp_t *ippNew(void);
     extern int ippPort(void);
     extern ipp_state_t ippRead(http_t * http, ipp_t * ipp);
+    extern ipp_state_t ippReadFile(int fd, ipp_t * ipp);
     extern void ippSetPort(int p);
     extern const ipp_uchar_t *ippTimeToDate(time_t t);
     extern ipp_state_t ippWrite(http_t * http, ipp_t * ipp);
