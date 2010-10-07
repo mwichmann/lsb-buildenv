@@ -5087,7 +5087,7 @@ typedef struct _GtkColorSelectionDialog {
 } GtkColorSelectionDialog;
 typedef struct _GtkStatusbarClass {
     GtkHBoxClass parent_class;
-    gpointer reserved;
+    GMemChunk *messages_memchunk;
     void (*text_pushed) (GtkStatusbar *, guint, const gchar *);
     void (*text_popped) (GtkStatusbar *, guint, const gchar *);
     void (*_gtk_reserved1) (void);

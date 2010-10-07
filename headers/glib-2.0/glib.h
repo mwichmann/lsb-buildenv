@@ -1915,7 +1915,12 @@ extern "C" {
 	guint hook_size:16;
 	guint is_setup:1;
 	GHook *hooks;
+#if __LSB_VERSION__ < 40
+	GMemChunk *hook_memchunk;
+#endif				/* __LSB_VERSION__ < 40 */
+#if __LSB_VERSION__ >= 40
 	gpointer dummy3;
+#endif				/* __LSB_VERSION__ >= 40 */
 	GHookFinalizeFunc finalize_hook;
 	gpointer dummy[2];
     };

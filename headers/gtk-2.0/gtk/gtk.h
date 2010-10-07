@@ -6657,7 +6657,12 @@ extern "C" {
 
     struct _GtkStatusbarClass {
 	GtkHBoxClass parent_class;
+#if __LSB_VERSION__ < 40
+	GMemChunk *messages_memchunk;
+#endif				/* __LSB_VERSION__ < 40 */
+#if __LSB_VERSION__ >= 40
 	gpointer reserved;
+#endif				/* __LSB_VERSION__ >= 40 */
 	void (*text_pushed) (GtkStatusbar *, guint, const gchar *);
 	void (*text_popped) (GtkStatusbar *, guint, const gchar *);
 	void (*_gtk_reserved1) (void);
