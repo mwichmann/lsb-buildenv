@@ -305,7 +305,9 @@ __asm__(".globl XtCXtToolkitError; .pushsection .data; .type XtCXtToolkitError,@
 __asm__(".globl XtShellStrings; .pushsection .data; .type XtShellStrings,@object; .size XtShellStrings, 1289; XtShellStrings: .long 0; .popsection");
 __asm__(".globl XtStrings; .pushsection .data; .type XtStrings,@object; .size XtStrings, 2649; XtStrings: .long 0; .popsection");
 __asm__(".globl _XtInheritTranslations; .pushsection .data; .type _XtInheritTranslations,@object; .size _XtInheritTranslations, 4; _XtInheritTranslations: .long 0; .popsection");
+__asm__(".globl applicationShellClassRec; .pushsection .data; .type applicationShellClassRec,@object; .size applicationShellClassRec, 304; applicationShellClassRec: .long 0; .popsection");
 __asm__(".globl applicationShellWidgetClass; .pushsection .data; .type applicationShellWidgetClass,@object; .size applicationShellWidgetClass, 8; applicationShellWidgetClass: .long 0; .popsection");
+__asm__(".globl colorConvertArgs; .pushsection .data; .type colorConvertArgs,@object; .size colorConvertArgs, 48; colorConvertArgs: .long 0; .popsection");
 __asm__(".globl compositeClassRec; .pushsection .data; .type compositeClassRec,@object; .size compositeClassRec, 264; compositeClassRec: .long 0; .popsection");
 __asm__(".globl compositeWidgetClass; .pushsection .data; .type compositeWidgetClass,@object; .size compositeWidgetClass, 8; compositeWidgetClass: .long 0; .popsection");
 __asm__(".globl constraintClassRec; .pushsection .data; .type constraintClassRec,@object; .size constraintClassRec, 312; constraintClassRec: .long 0; .popsection");

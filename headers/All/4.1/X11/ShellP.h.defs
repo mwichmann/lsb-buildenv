@@ -262,6 +262,7 @@ typedef struct {
     SessionShellPart session;
 } SessionShellRec;
 typedef SessionShellRec *SessionShellWidget;
+extern ApplicationShellClassRec applicationShellClassRec;
 extern OverrideShellClassRec overrideShellClassRec;
 extern SessionShellClassRec sessionShellClassRec;
 extern ShellClassRec shellClassRec;

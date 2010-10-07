@@ -348,6 +348,10 @@ extern "C" {
     extern TopLevelShellClassRec topLevelShellClassRec;
     extern TransientShellClassRec transientShellClassRec;
     extern WMShellClassRec wmShellClassRec;
+#if __LSB_VERSION__ >= 41
+    extern ApplicationShellClassRec applicationShellClassRec;
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 #ifdef __cplusplus
 }
 #endif
