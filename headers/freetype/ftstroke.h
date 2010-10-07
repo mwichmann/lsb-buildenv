@@ -2,12 +2,10 @@
 #ifndef _FREETYPE_FTSTROKE_H_
 #define _FREETYPE_FTSTROKE_H_
 
-#include <freetype/ftlist.h>
 #include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
-#include <freetype/ftsystem.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,7 +55,7 @@ extern "C" {
 					       FT_UInt *);
     extern FT_Error FT_Stroker_GetCounts(FT_Stroker, FT_UInt *, FT_UInt *);
     extern FT_Error FT_Stroker_LineTo(FT_Stroker, FT_Vector *);
-    extern FT_Error FT_Stroker_New(FT_Memory, FT_Stroker *);
+    extern FT_Error FT_Stroker_New(FT_Library, FT_Stroker *);
     extern FT_Error FT_Stroker_ParseOutline(FT_Stroker, FT_Outline *,
 					    FT_Bool);
     extern void FT_Stroker_Rewind(FT_Stroker);
