@@ -545,6 +545,7 @@ GLIBC_2.0 {
   symlink;
   sync;
   sysconf;
+  sysinfo;
   syslog;
   system;
   tcdrain;

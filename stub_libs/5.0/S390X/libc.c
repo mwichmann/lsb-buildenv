@@ -856,6 +856,7 @@ void symlink() {} ;
 void symlinkat() {} ;
 void sync() {} ;
 void sysconf() {} ;
+void sysinfo() {} ;
 void syslog() {} ;
 void syslog_depr_0() {} ;
 __asm__(".symver syslog_depr_0,syslog@GLIBC_2.2");

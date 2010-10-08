@@ -704,6 +704,7 @@ GLIBC_2.3 {
   symlink;
   sync;
   sysconf;
+  sysinfo;
   system;
   tcdrain;
   tcflow;

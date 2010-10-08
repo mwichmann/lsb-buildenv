@@ -699,6 +699,7 @@ GLIBC_2.2 {
   symlink;
   sync;
   sysconf;
+  sysinfo;
   system;
   tcdrain;
   tcflow;

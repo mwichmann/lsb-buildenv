@@ -820,6 +820,7 @@ void symlink() {} ;
 void symlinkat() {} ;
 void sync() {} ;
 void sysconf() {} ;
+void sysinfo() {} ;
 void syslog() {} ;
 void system() {} ;
 void tcdrain() {} ;
