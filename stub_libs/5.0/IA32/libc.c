@@ -603,6 +603,7 @@ void pread64() {} ;
 void printf() {} ;
 void pselect() {} ;
 void psignal() {} ;
+void ptrace() {} ;
 void ptsname() {} ;
 void putc() {} ;
 void putc_unlocked() {} ;

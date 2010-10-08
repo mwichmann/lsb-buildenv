@@ -361,6 +361,7 @@ GLIBC_2.0 {
   poll;
   pselect;
   psignal;
+  ptrace;
   putc;
   putc_unlocked;
   putchar;

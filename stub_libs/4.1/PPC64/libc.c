@@ -623,6 +623,7 @@ void printf_depr_0() {} ;
 __asm__(".symver printf_depr_0,printf@GLIBC_2.3");
 void pselect() {} ;
 void psignal() {} ;
+void ptrace() {} ;
 void ptsname() {} ;
 void putc() {} ;
 void putc_unlocked() {} ;

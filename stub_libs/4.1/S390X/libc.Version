@@ -499,6 +499,7 @@ GLIBC_2.2 {
   pread64;
   pselect;
   psignal;
+  ptrace;
   ptsname;
   putc;
   putc_unlocked;
