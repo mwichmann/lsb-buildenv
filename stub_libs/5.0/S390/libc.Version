@@ -678,6 +678,9 @@ GLIBC_2.1 {
   __libc_current_sigrtmax;
   __libc_current_sigrtmin;
   __rawmemchr;
+  backtrace;
+  backtrace_symbols;
+  backtrace_symbols_fd;
   chown;
   creat64;
   endutxent;

@@ -70,6 +70,9 @@ GLIBC_2.3 {
   atol;
   atoll;
   authnone_create;
+  backtrace;
+  backtrace_symbols;
+  backtrace_symbols_fd;
   basename;
   bcmp;
   bcopy;

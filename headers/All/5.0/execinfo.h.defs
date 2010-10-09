@@ -1,0 +1,5 @@
+
+extern int backtrace(void **__array, int __size);
+extern char **backtrace_symbols(void *const *__array, int __size);
+extern void backtrace_symbols_fd(void *const *__array, int __size,
+				 int __fd);
