@@ -372,6 +372,7 @@ BASE/include/dlfcn.h
 BASE/include/elf.h
 BASE/include/endian.h
 BASE/include/errno.h
+BASE/include/execinfo.h
 BASE/include/fcntl.h
 BASE/include/fenv.h
 BASE/include/fmtmsg.h
@@ -497,6 +498,7 @@ BASE/include/sys/mmap.h
 BASE/include/sys/msg.h
 BASE/include/sys/param.h
 BASE/include/sys/poll.h
+BASE/include/sys/ptrace.h
 BASE/include/sys/resource.h
 BASE/include/sys/select.h
 BASE/include/sys/sem.h
@@ -506,6 +508,7 @@ BASE/include/sys/socket.h
 BASE/include/sys/stat.h
 BASE/include/sys/statfs.h
 BASE/include/sys/statvfs.h
+BASE/include/sys/sysinfo.h
 BASE/include/sys/time.h
 BASE/include/sys/timeb.h
 BASE/include/sys/times.h
