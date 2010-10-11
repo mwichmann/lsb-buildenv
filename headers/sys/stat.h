@@ -447,6 +447,7 @@ extern "C" {
 			 struct stat64 *__stat_buf);
     extern int chmod(const char *__file, mode_t __mode);
     extern int fchmod(int __fd, mode_t __mode);
+    extern int mkdir(const char *__path, mode_t __mode);
     extern int mkfifo(const char *__path, mode_t __mode);
     extern mode_t umask(mode_t __mask);
 #if __LSB_VERSION__ >= 40

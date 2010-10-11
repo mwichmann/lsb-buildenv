@@ -60,6 +60,7 @@ extern int __xstat64(int __ver, const char *__filename,
 extern int chmod(const char *__file, mode_t __mode);
 extern int fchmod(int __fd, mode_t __mode);
 extern int fchmodat(int __fd, const char *__file, mode_t mode, int __flag);
+extern int mkdir(const char *__path, mode_t __mode);
 extern int mkdirat(int __fd, const char *__path, mode_t __mode);
 extern int mkfifo(const char *__path, mode_t __mode);
 extern int mkfifoat(int __fd, const char *__path, mode_t __mode);

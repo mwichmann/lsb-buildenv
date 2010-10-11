@@ -2,6 +2,7 @@
 #ifndef _CAIRO_CAIRO_H_
 #define _CAIRO_CAIRO_H_
 
+#include <cairo/cairo-features.h>
 
 #ifdef __cplusplus
 extern "C" {
