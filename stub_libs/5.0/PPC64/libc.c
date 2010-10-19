@@ -432,6 +432,8 @@ void globfree() {} ;
 void globfree64() {} ;
 void gmtime() {} ;
 void gmtime_r() {} ;
+void gnu_get_libc_release() {} ;
+void gnu_get_libc_version() {} ;
 void grantpt() {} ;
 void hcreate() {} ;
 void hcreate_r() {} ;

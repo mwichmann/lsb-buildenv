@@ -336,6 +336,8 @@ GLIBC_2.2.5 {
   globfree64;
   gmtime;
   gmtime_r;
+  gnu_get_libc_release;
+  gnu_get_libc_version;
   grantpt;
   hcreate;
   hcreate_r;

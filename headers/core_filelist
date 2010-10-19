@@ -118,6 +118,7 @@ elf.h
 link.h
 sys/ptrace.h
 execinfo.h
+gnu/libc-version.h
 pthread.h
 semaphore.h
 mqueue.h

@@ -380,6 +380,7 @@ BASE/include/fnmatch.h
 BASE/include/ftw.h
 BASE/include/getopt.h
 BASE/include/glob.h
+BASE/include/gnu/libc-version.h
 BASE/include/grp.h
 BASE/include/iconv.h
 BASE/include/inttypes.h

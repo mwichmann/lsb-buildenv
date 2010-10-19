@@ -739,6 +739,8 @@ GLIBC_2.1 {
   getutxid;
   getutxline;
   globfree64;
+  gnu_get_libc_release;
+  gnu_get_libc_version;
   grantpt;
   iconv;
   iconv_close;
