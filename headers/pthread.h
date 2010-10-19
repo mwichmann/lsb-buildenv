@@ -346,6 +346,16 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 41
+    enum {
+	PTHREAD_MUTEX_STALLED = 0,
+	PTHREAD_MUTEX_STALLED_NP = 0,
+	PTHREAD_MUTEX_ROBUST = 1,
+	PTHREAD_MUTEX_ROBUST_NP = 1
+    };
+
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 /* Base Types*/
 #if __LSB_VERSION__ >= 12
@@ -1156,6 +1166,11 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 41
     extern int pthread_getattr_np(pthread_t thread, pthread_attr_t * attr);
+    extern int pthread_mutex_consistent_np(pthread_mutex_t * __mutex);
+    extern int pthread_mutexattr_getrobust_np(const pthread_mutexattr_t *
+					      __attr, int *__robustness);
+    extern int pthread_mutexattr_setrobust_np(const pthread_mutexattr_t *
+					      __attr, int __robustness);
     extern int pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t *
 					     __attr, int *__pref);
     extern int pthread_rwlockattr_setkind_np(pthread_rwlockattr_t * __attr,
