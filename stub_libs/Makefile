@@ -7,7 +7,7 @@ LSB_SUPPORTED_ARCHS = IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 LSB_VERSIONS := $(shell cat lsb_versions)
 LSB_DESKTOP_VERSIONS := $(shell cat lsb_desktop_versions)
 
-ifndef SKIP_DEVEL_VERSIONS
+ifneq ($(SKIP_DEVEL_VERSIONS),yes)
 LSB_DEVEL_VERSIONS := $(shell cat lsb_devel_versions)
 endif
 

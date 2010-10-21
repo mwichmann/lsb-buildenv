@@ -17,7 +17,7 @@ RELEASED_ONLY_QUERY = AND LVreleased='Yes'
 LSB_VERSIONS=$(shell cat lsb_versions)
 LSB_DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
 
-ifdef SKIP_DEVEL_VERSIONS
+ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 CFLAGS += -DSKIP_DEVEL_VERSIONS
 LSB_ALL_VERSIONS=$(LSB_VERSIONS)
 else

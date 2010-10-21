@@ -48,7 +48,9 @@ RPM_SOURCE_NAME=$(FULL_PACKAGE_NAME)-$(RPM_PACKAGE_RELEASE).src.rpm
 ifdef OFFICIAL_RELEASE
 VERSION_SUFFIX=
 EXPORT_TAG=--revision=$(OFFICIAL_RELEASE)
+ifndef SKIP_DEVEL_VERSIONS
 SKIP_DEVEL_VERSIONS=yes
+endif
 else
 VERSION_SUFFIX=.$(ISO_DATE)
 EXPORT_TAG=
@@ -58,7 +60,7 @@ endif
 LSBVERSION=4.0
 
 # True LSB version for multiversion support (affects build-base, build-desktop)
-ifdef SKIP_DEVEL_VERSIONS
+ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 TRUELSBVERSION := $(shell tail -n 1 ../stub_libs/lsb_versions)
 else
 TRUELSBVERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
@@ -112,7 +114,7 @@ tarball: $(TARBALL)
 # Specfile generation rule
 %.spec : %.spec.sed Makefile .need_config_update
 	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
-ifdef SKIP_DEVEL_VERSIONS
+ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	for libdir in lib lib64; do \
 	  for version in 4.1 5.0; do \
 	    grep -v $$libdir-$$version $@ > $@.nodev; \
@@ -123,7 +125,7 @@ ifdef SKIP_DEVEL_VERSIONS
 endif
 
 %_pruned: %
-ifdef SKIP_DEVEL_VERSIONS
+ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	cp $< $@
 	for version in 4.1 5.0; do \
 	    grep -v LIB-$$version $@ > $@.nodev; \
