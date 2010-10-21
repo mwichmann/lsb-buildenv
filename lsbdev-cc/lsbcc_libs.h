@@ -196,6 +196,7 @@ char *lsb_libs_41[] = {
 	"Xrender",
 	"Xt",
 	"Xtst",
+	"asound",
 	"atk-1.0",
 	"c",
 	"cairo",
@@ -254,6 +255,7 @@ char *lsb_libs_50[] = {
 	"Xrender",
 	"Xt",
 	"Xtst",
+	"asound",
 	"atk-1.0",
 	"c",
 	"cairo",
@@ -347,26 +349,14 @@ lsb_lib_modules_t lsb_modules_40[] = {
 	{"Multimedia", lsb_Multimedia_libs_40 },
 };
 
-char *lsb_Multimedia_libs_41[] = {
-	"asound",
-	NULL
-};
-
-#define lsb_num_modules_41 1
+#define lsb_num_modules_41 0
 
 lsb_lib_modules_t lsb_modules_41[] = {
-	{"Multimedia", lsb_Multimedia_libs_41 },
 };
 
-char *lsb_Multimedia_libs_50[] = {
-	"asound",
-	NULL
-};
-
-#define lsb_num_modules_50 1
+#define lsb_num_modules_50 0
 
 lsb_lib_modules_t lsb_modules_50[] = {
-	{"Multimedia", lsb_Multimedia_libs_50 },
 };
 
 lsb_lib_modules_t *lsb_modules[] = {
