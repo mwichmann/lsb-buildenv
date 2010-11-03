@@ -159,8 +159,6 @@ char *lsb_libs_40[] = {
 	"jpeg",
 	"m",
 	"ncurses",
-	"nspr4",
-	"nss3",
 	"pam",
 	"pango-1.0",
 	"pangocairo-1.0",
@@ -171,7 +169,6 @@ char *lsb_libs_40[] = {
 	"pthread",
 	"qt-mt",
 	"rt",
-	"ssl3",
 	"util",
 	"xml2",
 	"z",
@@ -343,10 +340,18 @@ char *lsb_Multimedia_libs_40[] = {
 	NULL
 };
 
-#define lsb_num_modules_40 1
+char *lsb_Security_libs_40[] = {
+	"nspr4",
+	"nss3",
+	"ssl3",
+	NULL
+};
+
+#define lsb_num_modules_40 2
 
 lsb_lib_modules_t lsb_modules_40[] = {
 	{"Multimedia", lsb_Multimedia_libs_40 },
+	{"Security", lsb_Security_libs_40 },
 };
 
 #define lsb_num_modules_41 0
