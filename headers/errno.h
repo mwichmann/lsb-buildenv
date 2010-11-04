@@ -169,6 +169,11 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+#if __LSB_VERSION__ >= 41
+#define EOWNERDEAD	130
+#define ENOTRECOVERABLE	131
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 
 
