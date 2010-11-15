@@ -638,7 +638,7 @@ extern "C" {
     extern Display *XtDisplay(Widget);
     extern void XtDisplayInitialize(XtAppContext, Display *, const char *,
 				    const char *, XrmOptionDescRec *,
-				    Cardinal, int *, char * *);
+				    Cardinal, int *, char **);
 #undef XtDisplayOfObject
     extern Display *XtDisplayOfObject(Widget);
     extern void XtDisplayStringConversionWarning(Display *, const char *,
@@ -661,7 +661,7 @@ extern "C" {
 					 long int, Cardinal);
     extern void XtGetConstraintResourceList(WidgetClass, XtResourceList *,
 					    Cardinal *);
-    extern void XtGetDisplays(XtAppContext, Display * * *, Cardinal *);
+    extern void XtGetDisplays(XtAppContext, Display * **, Cardinal *);
     extern XrmDatabase *XtGetErrorDatabase(void);
     extern void XtGetErrorDatabaseText(const char *, const char *,
 				       const char *, const char *, String,
@@ -706,7 +706,7 @@ extern "C" {
     extern Widget XtHooksOfDisplay(Display *);
     extern Widget XtInitialize(const char *, const char *,
 			       XrmOptionDescRec *, Cardinal, int *,
-			       char * *);
+			       char **);
     extern void XtInitializeWidgetClass(WidgetClass);
     extern void XtInsertEventHandler(Widget, EventMask, int,
 				     XtEventHandler, XtPointer,
@@ -757,7 +757,7 @@ extern "C" {
 				    ArgList, Cardinal);
     extern Display *XtOpenDisplay(XtAppContext, const char *, const char *,
 				  const char *, XrmOptionDescRec *,
-				  Cardinal, int *, char * *);
+				  Cardinal, int *, char **);
     extern void XtOverrideTranslations(Widget, XtTranslations);
     extern Boolean XtOwnSelection(Widget, Atom, Time,
 				  XtConvertSelectionProc,
