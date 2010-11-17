@@ -917,6 +917,7 @@ GLIBC_2.2.3 {
   fnmatch;
 };
 GLIBC_2.2.4 {
+  dl_iterate_phdr;
   getgrouplist;
   sockatmark;
 };

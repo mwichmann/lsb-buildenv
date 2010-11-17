@@ -138,6 +138,7 @@ GLIBC_2.2.5 {
   dirfd;
   dirname;
   div;
+  dl_iterate_phdr;
   dngettext;
   dprintf;
   drand48;

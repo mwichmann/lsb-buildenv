@@ -207,6 +207,7 @@ void difftime() {} ;
 void dirfd() {} ;
 void dirname() {} ;
 void div() {} ;
+void dl_iterate_phdr() {} ;
 void dngettext() {} ;
 void dprintf() {} ;
 void drand48() {} ;

@@ -7,6 +7,3 @@ GLIBC_2.2 {
   dlsym;
   dlvsym;
 };
-GLIBC_2.2.4 {
-  dl_iterate_phdr;
-};
