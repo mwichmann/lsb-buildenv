@@ -1,4 +1,4 @@
-#if (__LSB_VERSION__ >= 41 )
+#if (__LSB_VERSION__ >= 30 )
 #ifndef _ZCONF_H_
 #define _ZCONF_H_
 

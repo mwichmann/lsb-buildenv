@@ -1,0 +1,6 @@
+
+#define __G_I18N_H__
+#define NC_(Context,String)	(String)
+#define N_(String)	(String)
+#define _(String)	gettext (String)
+#define Q_(String)	g_strip_context ((String), gettext (String))

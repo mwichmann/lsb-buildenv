@@ -61,10 +61,7 @@ extern "C" {
 
     typedef xmlParserInput htmlParserInput;
 
-#if __LSB_VERSION__ >= 41
     typedef xmlSAXHandler htmlSAXHandler;
-
-#endif				/* __LSB_VERSION__ >= 4.1 */
 
     struct _htmlElemDesc {
 	const char *name;

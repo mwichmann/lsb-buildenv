@@ -105,7 +105,7 @@ extern "C" {
 /* Function prototypes */
 
     extern size_t __fpending(FILE *);
-    extern char *const _sys_errlist[128];
+    extern char *const _sys_errlist[];
     extern void clearerr(FILE * __stream);
     extern int fclose(FILE * __stream);
     extern FILE *fdopen(int __fd, const char *__modes);

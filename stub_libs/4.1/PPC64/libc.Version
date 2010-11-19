@@ -861,7 +861,6 @@ GLIBC_2.3 {
   __tzname;
   _environ;
   _nl_msg_cat_cntr;
-  _sys_errlist;
   daylight;
   environ;
   getdate_err;
@@ -1024,4 +1023,5 @@ GLIBC_2.4 {
   wcstold;
   wprintf;
   wscanf;
+  _sys_errlist;
 };

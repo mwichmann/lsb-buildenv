@@ -890,7 +890,6 @@ GLIBC_2.3 {
   realpath;
   sendfile64;
   uselocale;
-  _sys_errlist;
 };
 GLIBC_2.3.2 {
   __register_atfork;
@@ -1032,4 +1031,5 @@ GLIBC_2.4 {
   wcstold;
   wprintf;
   wscanf;
+  _sys_errlist;
 };

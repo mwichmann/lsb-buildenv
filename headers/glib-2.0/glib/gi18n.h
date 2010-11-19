@@ -1,4 +1,4 @@
-#if (__LSB_VERSION__ >= 41 )
+#if (__LSB_VERSION__ >= 31 )
 #ifndef _GLIB_2_0_GLIB_GI18N_H_
 #define _GLIB_2_0_GLIB_GI18N_H_
 
