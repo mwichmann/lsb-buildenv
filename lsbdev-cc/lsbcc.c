@@ -677,7 +677,7 @@ char *get_modules_strings(void)
 
 void
 usage(const char *progname) {
-	printf(
+  printf(
 "Usage %s:\n"
 "  --lsb-help               Display this message\n"
 "  --lsb-version            Display the version of LSB this tool can build for.\n"
@@ -720,7 +720,9 @@ usage(const char *progname) {
 "                           modules listed.  Module names will be appended to\n"
 "                           the list specified through the LSB_MODULES\n"
 "                           environment setting.\n"
-"                           known modules: %s\n"
+"                           Known modules for LSB %s: %s\n"
+"                           (use --lsb-target-version with --help to list\n"
+"                           modules recognized in other LSB versions)\n"
 "  --lsb-use-default-linker\n"
 "                           Do not set dynamic linker to the LSB one.\n"
 "  --lsb-besteffort         Use best-effort code to choose the dynamic linker\n"
@@ -734,9 +736,9 @@ usage(const char *progname) {
 "All other options are passed to the compiler more or\n"
 "less unmodified, --lsb options should appear before system\n"
 "compiler options.\n"
-"\n"
-		,progname,
-        (lsb_num_modules[lsbversion_index] ? get_modules_strings() : "none"));
+"\n",
+progname, lsbcc_lsbversion,
+(lsb_num_modules[lsbversion_index] ? get_modules_strings() : "none"));
 }
 
 /*

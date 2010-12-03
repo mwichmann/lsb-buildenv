@@ -147,10 +147,9 @@ by the LSBCC_SHAREDLIBPATH environment variable, if any.
 .TP 
 --lsb-modules=<module,..>
 Enable support for the optional/trial-use LSB modules listed.  
-Currently the only supported optional module is 'Multimedia' which
-provides the ALSA libraries.
 Modules specified by this option are appended to the list specified
-by the LSB_MODULES environment variable, if any.
+by the LSB_MODULES environment variable, if any. For a list of modules
+supported in any LSB version, use 'lsbcc --lsb-target-version=ver --help'.
 .TP
 --lsb-use-default-linker
 Do not set dynamic linker to the LSB one.
@@ -248,8 +247,8 @@ as shared libraries.
 .TP
 LSB_MODULES
 Specify which optional/trial-use LSB modules to include interfaces for.
-Currently the only supported optional module is 'Multimedia' which
-provides the ALSA libraries.
+For a list of modules supported in any LSB version, use 
+'lsbcc --lsb-target-version=ver --help'.
 .TP
 LSBCC_FORCEFEATURES
 This causes lsbcc to insert macro defines for all of the 
