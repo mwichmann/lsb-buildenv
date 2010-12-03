@@ -1152,14 +1152,14 @@ if(LSBCPLUS == lsbccmode) {
      }
 
      /*
-      * Print a useful error message if we couldn't find
-      * one of the modules.
+      * If the module has just been withdrawn, print a warning instead of
+      * an error.
       */
      if (!found) {
        for (i = 0; lsb_modules[i] != NULL; i++) {
          for (j = 0; j < lsb_num_modules[i]; j++) {
            if (strcasecmp(module, lsb_modules[i][j].module_name) == 0) {
-             fprintf(stderr, "module %s not in LSB %s\n", 
+             fprintf(stderr, "warning: module %s not in LSB %s\n", 
                      module, lsbcc_lsbversion);
              found = 1;
              break;
@@ -1168,11 +1168,10 @@ if(LSBCPLUS == lsbccmode) {
          if (found)
            break;
        }
+     }
 
-       if (!found) {
-         fprintf(stderr,"unrecognized module in LSB_MODULES: %s\n", module);
-       }
-
+     if (!found) {
+       fprintf(stderr,"unrecognized module: %s\n", module);
        exit(EXIT_FAILURE);
      }
 
