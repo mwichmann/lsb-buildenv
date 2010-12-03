@@ -1121,12 +1121,13 @@ if(LSBCPLUS == lsbccmode) {
    module = strtok(modulearg, ",");
    while (module) {
      int found = 0;
+     int j;
      for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
-       int j = 0;
+       j = 0;
        lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-       if (strcasecmp(module, 
-		      lsb_modules[lsbversion_index][i].module_name) == 0) {
+       if(strcasecmp(module, 
+                     lsb_modules[lsbversion_index][i].module_name) == 0) {
          if (lsb_module->lib_names != NULL) {
            for(; lsb_module->lib_names[j] != NULL; j++) {
              argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
@@ -1150,10 +1151,31 @@ if(LSBCPLUS == lsbccmode) {
        }
      }
 
+     /*
+      * Print a useful error message if we couldn't find
+      * one of the modules.
+      */
      if (!found) {
-       fprintf(stderr,"unknown module in LSB_MODULES: %s\n", module);
+       for (i = 0; lsb_modules[i] != NULL; i++) {
+         for (j = 0; j < lsb_num_modules[i]; j++) {
+           if (strcasecmp(module, lsb_modules[i][j].module_name) == 0) {
+             fprintf(stderr, "module %s not in LSB %s\n", 
+                     module, lsbcc_lsbversion);
+             found = 1;
+             break;
+           }
+         }
+         if (found)
+           break;
+       }
+
+       if (!found) {
+         fprintf(stderr,"unrecognized module in LSB_MODULES: %s\n", module);
+       }
+
        exit(EXIT_FAILURE);
      }
+
      module = strtok(NULL, ",");
    }
  }
