@@ -1112,50 +1112,51 @@ if(LSBCPLUS == lsbccmode) {
 	}
 }
 
-/*
- * check if we should pull in optional LSB modules.
- */
-if((ptr = getenv("LSB_MODULES")) != NULL) {
-	char *modulearg, *module;
-	modulearg = strdup(ptr);
-	module = strtok(modulearg, ",");
-	while (module) {
-		int	found = 0;
-        for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
-			int	j = 0;
-            lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
+ /*
+  * check if we should pull in optional LSB modules.
+  */
+ if((ptr = getenv("LSB_MODULES")) != NULL) {
+   char *modulearg, *module;
+   modulearg = strdup(ptr);
+   module = strtok(modulearg, ",");
+   while (module) {
+     int found = 0;
+     for (i = 0; i < lsb_num_modules[lsbversion_index]; i++) {
+       int j = 0;
+       lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-            if(strcasecmp(module, lsb_modules[lsbversion_index][i].module_name) == 0) {
-				if (lsb_module->lib_names != NULL) {
-        				for(;lsb_module->lib_names[j] != NULL;j++) {
-               					argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
-					}
-				}
-				found = 1;
-				break;
-			}
-		}
+       if (strcasecmp(module, 
+		      lsb_modules[lsbversion_index][i].module_name) == 0) {
+         if (lsb_module->lib_names != NULL) {
+           for(; lsb_module->lib_names[j] != NULL; j++) {
+             argvaddstring(lsblibs, strdup(lsb_module->lib_names[j]));
+           }
+         }
+         found = 1;
+         break;
+       }
+     }
 
-		/*
-		 * XXX temporary hack: accept names of deprecated
-		 * modules - no need to do anything with them
-		 * this is just for the Qt3 scripts, really;
-		 * until a better answer is developed
-		 */
-        for (i = 0; i < lsb_num_deprecated_modules[lsbversion_index]; i++) {
-            if(strcasecmp(module, lsb_deprecated_modules[lsbversion_index][i].module_name) == 0) {
-				found = 1;
-				break;
-			}
-		}
+     /*
+      * XXX temporary hack: accept names of deprecated
+      * modules - no need to do anything with them
+      * this is just for the Qt3 scripts, really;
+      * until a better answer is developed
+      */
+     for (i = 0; i < lsb_num_deprecated_modules[lsbversion_index]; i++) {
+       if (strcasecmp(module, lsb_deprecated_modules[lsbversion_index][i].module_name) == 0) {
+         found = 1;
+         break;
+       }
+     }
 
-		if (!found) {
-			fprintf(stderr,"unknown module in LSB_MODULES: %s\n", module);
-			exit(EXIT_FAILURE);
-		}
-		module = strtok(NULL, ",");
-	}
-}
+     if (!found) {
+       fprintf(stderr,"unknown module in LSB_MODULES: %s\n", module);
+       exit(EXIT_FAILURE);
+     }
+     module = strtok(NULL, ",");
+   }
+ }
 
 if( (ptr=getenv("LSB_SHAREDLIBPATH")) != NULL ) {
 	process_shared_lib_path(strdup(ptr));
