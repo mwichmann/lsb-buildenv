@@ -39,12 +39,12 @@ extern "C" {
 	void (*activate) (void);
 	void (*popup_menu) (void);
 	 gboolean(*size_changed) (void);
-	 gboolean(*button_press_event) (void);
-	 gboolean(*button_release_event) (void);
-	 gboolean(*scroll_event) (void);
-	 gboolean(*query_tooltip) (void);
 	void *__gtk_reserved1;
 	void *__gtk_reserved2;
+	void *__gtk_reserved3;
+	void *__gtk_reserved4;
+	void *__gtk_reserved5;
+	void *__gtk_reserved6;
     };
 
 

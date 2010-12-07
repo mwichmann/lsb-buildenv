@@ -113,8 +113,9 @@ extern "C" {
 /* Function prototypes */
 
     extern int
-	dl_iterate_phdr(int (*)(struct dl_phdr_info *, size_t, void *),
-			void *);
+	dl_iterate_phdr(int (*callback)
+			(struct dl_phdr_info *, size_t, void *),
+			void *data);
 #ifdef __cplusplus
 }
 #endif

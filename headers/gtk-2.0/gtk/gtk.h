@@ -6890,13 +6890,13 @@ extern "C" {
 	GtkWidget *(*create_custom_widget) (void);
 	void (*custom_widget_apply) (void);
 	 gboolean(*preview) (void);
-	void (*update_custom_widget) (void);
 	void (*_gtk_reserved1) (void);
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
 	void (*_gtk_reserved5) (void);
 	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
     };
 
     struct _GtkPrintOperation {
