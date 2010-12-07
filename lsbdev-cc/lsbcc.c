@@ -165,6 +165,14 @@ for(i=0;i<lsblibs->numargv;i++) {
 			b_dynamic = 1;
 		}
 		argvaddstring(userlibs,strdup(buf));
+
+		/* If it's pthread, add pthread_nonshared. */
+		if (strcmp("pthread",val) == 0) {
+			if (lsbcc_debug & DEBUG_LIB_CHANGES)
+				fprintf(stderr, "Appending -lpthread_nonshared\n");
+			argvaddstring(userlibs,"-lpthread_nonshared");
+		}
+
 		return 1;
 	}
 }
