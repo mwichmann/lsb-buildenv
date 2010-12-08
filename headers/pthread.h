@@ -1167,8 +1167,8 @@ extern "C" {
 #if __LSB_VERSION__ >= 41
     extern int pthread_getattr_np(pthread_t thread, pthread_attr_t * attr);
     extern int pthread_mutex_consistent_np(pthread_mutex_t * __mutex);
-    extern int pthread_mutexattr_getrobust_np(const pthread_mutexattr_t *
-					      __attr, int *__robustness);
+    extern int pthread_mutexattr_getrobust_np(pthread_mutexattr_t * __attr,
+					      int *__robustness);
     extern int pthread_mutexattr_setrobust_np(const pthread_mutexattr_t *
 					      __attr, int __robustness);
     extern int pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t *

@@ -133,7 +133,8 @@ extern "C" {
 					int *secretKeySize, char **issuer,
 					char **subject);
     extern SECStatus SSL_SetPKCS11PinArg(PRFileDesc * fd, void *a);
-    extern SECStatus SSL_SetSockPeerID(PRFileDesc * fd, char *peerID);
+    extern SECStatus SSL_SetSockPeerID(PRFileDesc * fd,
+				       const char *peerID);
     extern SECStatus SSL_SetURL(PRFileDesc * fd, const char *url);
 #ifdef __cplusplus
 }

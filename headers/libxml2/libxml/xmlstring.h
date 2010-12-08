@@ -31,7 +31,7 @@ extern "C" {
 			     va_list ap);
     extern int xmlStrcasecmp(const xmlChar * str1, const xmlChar * str2);
     extern const xmlChar *xmlStrcasestr(const xmlChar * str,
-					xmlChar * val);
+					const xmlChar * val);
     extern xmlChar *xmlStrcat(xmlChar * cur, const xmlChar * add);
     extern const xmlChar *xmlStrchr(const xmlChar * str, xmlChar val);
     extern int xmlStrcmp(const xmlChar * str1, const xmlChar * str2);

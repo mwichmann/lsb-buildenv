@@ -214,7 +214,7 @@ extern "C" {
     extern xmlDocPtr xmlReadMemory(const char *buffer, int size,
 				   const char *URL, const char *encoding,
 				   int options);
-    extern xmlDocPtr xmlRecoverDoc(xmlChar * cur);
+    extern xmlDocPtr xmlRecoverDoc(const xmlChar * cur);
     extern xmlDocPtr xmlRecoverFile(const char *filename);
     extern xmlDocPtr xmlRecoverMemory(const char *buffer, int size);
     extern xmlDtdPtr xmlSAXParseDTD(xmlSAXHandlerPtr sax,

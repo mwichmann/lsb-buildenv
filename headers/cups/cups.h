@@ -312,7 +312,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 41
     extern int cupsDoAuthentication(http_t *http, const char *method,
 				    const char *resource);
-    extern ipp_t cupsDoFileRequest(http_t *http, ipp_t *request,
+    extern ipp_t *cupsDoFileRequest(http_t *http, ipp_t *request,
 				   const char *resource,
 				   const char *filename);
     extern void cupsEncodeOptions(ipp_t *ipp, int num_options,

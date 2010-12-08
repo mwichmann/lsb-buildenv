@@ -144,8 +144,7 @@ extern "C" {
 #endif
     extern _Unwind_Word _Unwind_GetGR(struct _Unwind_Context *, int);
     extern _Unwind_Ptr _Unwind_GetIP(struct _Unwind_Context *);
-    extern _Unwind_Ptr _Unwind_GetLanguageSpecificData(struct
-						       _Unwind_Context *);
+    extern void *_Unwind_GetLanguageSpecificData(struct _Unwind_Context *);
     extern _Unwind_Ptr _Unwind_GetRegionStart(struct _Unwind_Context *);
 #if defined __i386__
 /* IA32 */

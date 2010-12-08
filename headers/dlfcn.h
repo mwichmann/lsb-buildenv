@@ -44,7 +44,8 @@ extern "C" {
     extern void *dlopen(const char *__file, int __mode);
     extern void *dlsym(void *__handle, const char *__name);
 #if __LSB_VERSION__ >= 41
-    extern void *dlvsym(void *handle, char *name, char *version);
+    extern void *dlvsym(void *handle, const char *name,
+			const char *version);
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
