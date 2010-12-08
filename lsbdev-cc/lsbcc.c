@@ -912,7 +912,7 @@ int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
-int 	auto_pthread = 0;
+int 	auto_pthread = 1;
 int	force_static = 0;
 int	feature_settings = 0;
 int	best_effort = 0;
