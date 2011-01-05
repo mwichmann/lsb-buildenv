@@ -232,6 +232,7 @@
 	{ G_STATIC_MUTEX_INIT, NULL, NULL, 0, FALSE, 0, 0 }
 #define G_STRINGIFY_ARG(contents)	#contents
 #define G_DIR_SEPARATOR	'/'
+#define G_SEARCHPATH_SEPARATOR	':'
 #define g_chunk_new(type,chunk)	( (type *) g_mem_chunk_alloc (chunk) )
 #define g_chunk_new0(type,chunk)	( (type *) g_mem_chunk_alloc0 (chunk) )
 #define MIN(a,b)	(((a) < (b)) ? (a) : (b))
@@ -364,7 +365,6 @@
 #define G_BIG_ENDIAN	4321
 #define GLIB_MICRO_VERSION	6
 #define GLIB_MINOR_VERSION	6
-#define G_SEARCHPATH_SEPARATOR	:
 #define G_SEARCHPATH_SEPARATOR_S	":"
 #define GLIB_SYSDEF_POLLIN	=1
 #define GLIB_SYSDEF_POLLHUP	=16

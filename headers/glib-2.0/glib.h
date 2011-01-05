@@ -291,6 +291,7 @@ extern "C" {
 #endif
 #define G_STRINGIFY_ARG(contents)	#contents
 #define G_DIR_SEPARATOR	'/'
+#define G_SEARCHPATH_SEPARATOR	':'
 #define g_chunk_new(type,chunk)	( (type *) g_mem_chunk_alloc (chunk) )
 #define g_chunk_new0(type,chunk)	( (type *) g_mem_chunk_alloc0 (chunk) )
 #define MIN(a,b)	(((a) < (b)) ? (a) : (b))
@@ -733,7 +734,6 @@ extern "C" {
 #if defined __s390x__
 #define GLIB_SIZEOF_VOID_P	8
 #endif
-#define G_SEARCHPATH_SEPARATOR	:
 #define G_SEARCHPATH_SEPARATOR_S	":"
 #define GLIB_SYSDEF_POLLIN	=1
 #define GLIB_SYSDEF_POLLHUP	=16

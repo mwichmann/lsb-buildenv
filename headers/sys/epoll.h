@@ -17,7 +17,7 @@ extern "C" {
 #define EPOLLOUT	4
 #define EPOLLERR	8
 #define EPOLLHUP	16
-#define EPOLLRDHUP	32
+#define EPOLLRDHUP	0x2000
 #define EPOLLONESHOT	(1 << 30)
 #define EPOLLET	(1 << 31)
 
