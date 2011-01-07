@@ -1447,9 +1447,6 @@
 #define GL_SUN_slice_accum	1
 #define GL_SUN_triangle_list	1
 #define GL_SUN_vertex	1
-#define GL_VERSION_1_4	1
-#define GL_VERSION_1_5	1
-#define GL_VERSION_2_0	1
 #define GL_WIN_phong_shading	1
 #define GL_WIN_specular_fog	1
 #define GL_CULL_VERTEX_IBM	103050
