@@ -10,7 +10,6 @@ extern "C" {
 
 #define GL_VERSION_1_1	1
 #define GL_VERSION_1_2	1
-#define GL_VERSION_1_3	1
 
 
 
