@@ -44,7 +44,7 @@ endif
 
 %.so : %.o
 	$(LD) -shared -nostdlib -o $@ -Wl,--version-script=$(subst .o,.Version,$<) -Wl,-h,`grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`  $<
-	if [[ ! -e `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '` ]]; then ln -s $@ `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`; fi
+	if [ ! -e `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '` ]; then ln -s $@ `grep "$(subst .o,,$<) " LibNameMap.txt | cut -f2 -d' '`; fi
 
 libs: core-libs desktop-libs
 
