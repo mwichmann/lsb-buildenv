@@ -1,0 +1,9 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+ 
+Name: RecordProto
+Description: Record extension headers
+Version: 1.0.1
+Cflags: -I${includedir}

@@ -88,10 +88,13 @@ install-desktop: desktop-libs
 	install $(DESKTOP_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
 	# relocate pkgconfig files
-	sed -i 's|/opt/lsb/include|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' ../../pkgconfig$(LIB64)/*.pc
-	sed -i 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' ../../pkgconfig$(LIB64)/*.pc
-	sed -i 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../pkgconfig$(LIB64)/*.pc
-	install ../../pkgconfig$(LIB64)/*.pc $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
+	for pcin in ../../pkgconfig/*.pc.in; do \
+	  pc=$$(basename $$pcin | sed 's|.in$$||'); \
+	  echo "$$pcin:$$pc"; \
+	  sed 's|@INCLUDEDIR@|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' < $$pcin | \
+	  sed 's|@LIBDIR@|$(INSTALL_DIR)|g' | \
+	  sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' > $(DESTDIR)/$(INSTALL_DIR)/pkgconfig/$$pc; \
+	done
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
 	# relocate freetype-config, xft-config, xml2-config
 	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
