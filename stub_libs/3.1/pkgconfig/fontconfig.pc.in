@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: Fontconfig
+Description: Font configuration and customization library
+Version: 2.3.2
+Libs: -L${libdir} -lfontconfig
+Cflags: -I${includedir}

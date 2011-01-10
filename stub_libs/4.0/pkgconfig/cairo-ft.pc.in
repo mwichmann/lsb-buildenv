@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: cairo-ft
+Description: FreeType font backend for cairo graphics library
+Version: 1.0.2
+Requires: cairo freetype2 >= 8.0.2 fontconfig 
+Libs: 
+Cflags: -I${includedir}/cairo 
