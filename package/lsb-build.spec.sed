@@ -234,13 +234,6 @@ done
 %doc /opt/lsb/doc/lsb-build-desktop/Licence
 %doc /opt/lsb/doc/lsb-build-desktop/README
 /opt/lsb/%xlib-3.1/pkgconfig/atk.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo-ft.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo-pdf.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo-png.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo-ps.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo-xlib.pc
-/opt/lsb/%xlib-3.1/pkgconfig/cairo-xlib-xrender.pc
 /opt/lsb/%xlib-3.1/pkgconfig/fontconfig.pc
 /opt/lsb/%xlib-3.1/pkgconfig/freetype2.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gdk-2.0.pc
@@ -252,12 +245,10 @@ done
 /opt/lsb/%xlib-3.1/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gtk+-2.0.pc
-/opt/lsb/%xlib-3.1/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-3.1/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-3.1/pkgconfig/libpng.pc
 /opt/lsb/%xlib-3.1/pkgconfig/libxml-2.0.pc
-/opt/lsb/%xlib-3.1/pkgconfig/pangocairo.pc
 /opt/lsb/%xlib-3.1/pkgconfig/pangoft2.pc
 /opt/lsb/%xlib-3.1/pkgconfig/pango.pc
 /opt/lsb/%xlib-3.1/pkgconfig/pangoxft.pc
@@ -268,28 +259,7 @@ done
 /opt/lsb/%xlib-3.1/pkgconfig/QtSql.pc
 /opt/lsb/%xlib-3.1/pkgconfig/QtSvg.pc
 /opt/lsb/%xlib-3.1/pkgconfig/QtXml.pc
-/opt/lsb/%xlib-3.1/pkgconfig/ice.pc
-/opt/lsb/%xlib-3.1/pkgconfig/inputproto.pc
-/opt/lsb/%xlib-3.1/pkgconfig/recordproto.pc
-/opt/lsb/%xlib-3.1/pkgconfig/renderproto.pc
-/opt/lsb/%xlib-3.1/pkgconfig/sm.pc
-/opt/lsb/%xlib-3.1/pkgconfig/x11.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xext.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xextproto.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xft.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xi.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xproto.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xrender.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xt.pc
-/opt/lsb/%xlib-3.1/pkgconfig/xtst.pc
 /opt/lsb/%xlib-3.2/pkgconfig/atk.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo-ft.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo-pdf.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo-png.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo-ps.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo-xlib.pc
-/opt/lsb/%xlib-3.2/pkgconfig/cairo-xlib-xrender.pc
 /opt/lsb/%xlib-3.2/pkgconfig/fontconfig.pc
 /opt/lsb/%xlib-3.2/pkgconfig/freetype2.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gdk-2.0.pc
@@ -301,12 +271,10 @@ done
 /opt/lsb/%xlib-3.2/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gtk+-2.0.pc
-/opt/lsb/%xlib-3.2/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-3.2/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-3.2/pkgconfig/libpng.pc
 /opt/lsb/%xlib-3.2/pkgconfig/libxml-2.0.pc
-/opt/lsb/%xlib-3.2/pkgconfig/pangocairo.pc
 /opt/lsb/%xlib-3.2/pkgconfig/pangoft2.pc
 /opt/lsb/%xlib-3.2/pkgconfig/pango.pc
 /opt/lsb/%xlib-3.2/pkgconfig/pangoxft.pc
@@ -317,20 +285,6 @@ done
 /opt/lsb/%xlib-3.2/pkgconfig/QtSql.pc
 /opt/lsb/%xlib-3.2/pkgconfig/QtSvg.pc
 /opt/lsb/%xlib-3.2/pkgconfig/QtXml.pc
-/opt/lsb/%xlib-3.2/pkgconfig/ice.pc
-/opt/lsb/%xlib-3.2/pkgconfig/inputproto.pc
-/opt/lsb/%xlib-3.2/pkgconfig/recordproto.pc
-/opt/lsb/%xlib-3.2/pkgconfig/renderproto.pc
-/opt/lsb/%xlib-3.2/pkgconfig/sm.pc
-/opt/lsb/%xlib-3.2/pkgconfig/x11.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xext.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xextproto.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xft.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xi.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xproto.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xrender.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xt.pc
-/opt/lsb/%xlib-3.2/pkgconfig/xtst.pc
 /opt/lsb/%xlib-4.1/pkgconfig/atk.pc
 /opt/lsb/%xlib-4.1/pkgconfig/cairo-ft.pc
 /opt/lsb/%xlib-4.1/pkgconfig/cairo.pc
@@ -448,7 +402,6 @@ done
 /opt/lsb/%xlib-4.0/pkgconfig/gobject-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/gthread-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/gtk+-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-4.0/pkgconfig/libpng12.pc
 /opt/lsb/%xlib-4.0/pkgconfig/libpng.pc
@@ -464,20 +417,6 @@ done
 /opt/lsb/%xlib-4.0/pkgconfig/QtSql.pc
 /opt/lsb/%xlib-4.0/pkgconfig/QtSvg.pc
 /opt/lsb/%xlib-4.0/pkgconfig/QtXml.pc
-/opt/lsb/%xlib-4.0/pkgconfig/ice.pc
-/opt/lsb/%xlib-4.0/pkgconfig/inputproto.pc
-/opt/lsb/%xlib-4.0/pkgconfig/recordproto.pc
-/opt/lsb/%xlib-4.0/pkgconfig/renderproto.pc
-/opt/lsb/%xlib-4.0/pkgconfig/sm.pc
-/opt/lsb/%xlib-4.0/pkgconfig/x11.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xext.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xextproto.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xft.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xi.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xproto.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xrender.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xt.pc
-/opt/lsb/%xlib-4.0/pkgconfig/xtst.pc
 
 # locally created symlinks
 #/opt/lsb/%xlib-4.0         # covered in lsb-build-base, don't duplicate
