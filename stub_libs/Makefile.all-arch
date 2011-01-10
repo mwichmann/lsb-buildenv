@@ -88,7 +88,7 @@ install-desktop: desktop-libs
 	install $(DESKTOP_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
 	# relocate pkgconfig files
-	for pcin in ../../pkgconfig/*.pc.in; do \
+	for pcin in ../../$(LSB_VERSION)/pkgconfig/*.pc.in; do \
 	  pc=$$(basename $$pcin | sed 's|.in$$||'); \
 	  echo "$$pcin:$$pc"; \
 	  sed 's|@INCLUDEDIR@|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' < $$pcin | \
