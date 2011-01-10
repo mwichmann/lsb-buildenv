@@ -26,20 +26,27 @@
 VERSION="1.1.23"
 APIVERSION="1.1"
 
+deflsbversion="@DEFAULT_LSB_VERSION@"
+if [ "$LSBCC_LSBVERSION" != "" ]; then
+    lsbversion="$LSBCC_LSBVERSION"
+else
+    lsbversion="$deflsbversion"
+fi
+
 prefix=/
-exec_prefix=/opt/lsb
+exec_prefix=@ROOTDIR@
 bindir=${exec_prefix}/bin
-includedir=/opt/lsb/include
-libdir=/opt/lsb/lib
-datadir=/opt/lsb/share
+includedir=${exec_prefix}/include
+libdir=${exec_prefix}/lib@LIB64@-${lsbversion}
+datadir=${exec_prefix}/share
 sysconfdir=/etc/opt/lsb
-cups_datadir=/opt/lsb/share/cups
-cups_serverbin=/opt/lsb/lib/cups
+cups_datadir=${exec_prefix}/share/cups
+cups_serverbin=${libdir}/cups
 cups_serverroot=/etc/opt/lsb/cups
 
 # flags for C++ compiler:
 CFLAGS=""
-LDFLAGS="-Wl,-rpath,/opt/lsb/lib"
+LDFLAGS="-Wl,-rpath,${libdir}"
 LIBS=" "
 IMGLIBS="-ltiff -ljpeg -lpng -lm -lz"
 
@@ -47,7 +54,7 @@ if test $includedir != /opt/lsb/include; then
     CFLAGS="$CFLAGS -I$includedir"
 fi
 
-if test $libdir != /opt/lsb/lib; then
+if test $libdir != /opt/lsb/lib@LIB64@; then
     LDFLAGS="$LDFLAGS -L$libdir"
 fi
 

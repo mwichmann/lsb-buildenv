@@ -1,9 +1,16 @@
 #! /bin/sh
 
-prefix=/opt/lsb
+deflsbversion="@DEFAULT_LSB_VERSION@"
+if [ "$LSBCC_LSBVERSION" != "" ]; then
+    lsbversion="$LSBCC_LSBVERSION"
+else
+    lsbversion="$deflsbversion"
+fi
+
+prefix=@ROOTDIR@
 exec_prefix=${prefix}
 includedir=${prefix}/include
-libdir=/opt/lsb/lib
+libdir=${prefix}/lib@LIB64@-$lsbversion
 
 usage()
 {

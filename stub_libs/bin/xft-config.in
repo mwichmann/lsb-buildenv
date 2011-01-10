@@ -1,12 +1,19 @@
 #! /bin/sh
 
-prefix=/opt/lsb
-exec_prefix=/opt/lsb
-libdir=/opt/lsb/lib
-includedir=/opt/lsb/include
+deflsbversion="@DEFAULT_LSB_VERSION@"
+if [ "$LSBCC_LSBVERSION" != "" ]; then
+    lsbversion="$LSBCC_LSBVERSION"
+else
+    lsbversion="$deflsbversion"
+fi
+
+prefix=@ROOTDIR@
+exec_prefix=${prefix}
+libdir=${prefix}/lib@LIB64@-$lsbversion
+includedir=${prefix}/include
 version=1.2.8
 freetypelibs="-lfreetype -lz  "
-freetypecflags="-I/opt/lsb/include/freetype  "
+freetypecflags="-I${includedir}/freetype  "
 fontconfiglibs="-lfontconfig  "
 fontconfigcflags=" "
 xrenderlibs="-lXrender -lX11  "

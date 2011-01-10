@@ -73,8 +73,10 @@ install-core: core-libs
 	rm -f libstdc*.so.*
 	cd $(DESTDIR)/$(INSTALL_DIR) && rm -f libstdc++.so.6 && ln -s libstdc++.so libstdc++.so.6
 	# relocate cups-config
-	sed 's|/opt/lsb|$(INSTALL_ROOT)|g' ../../bin$(LIB64)/cups-config > \
-        $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
+	sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' ../../bin/cups-config.in | \
+	  sed 's|@LIB64@|$(LIB64)|g' | \
+	  sed 's|@DEFAULT_LSB_VERSION@|$(DEFAULT_VERSION)|g' > \
+	  $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
 	chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
 	# Create symlink to libs in the default LSB version.
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
@@ -97,17 +99,11 @@ install-desktop: desktop-libs
 	done
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
 	# relocate freetype-config, xft-config, xml2-config
-	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
-            -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
-        ../../bin$(LIB64)/freetype-config > \
-        $(DESTDIR)/$(INSTALL_ROOT)/bin/freetype-config
-	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
-            -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
-        ../../bin$(LIB64)/xft-config > \
-	$(DESTDIR)/$(INSTALL_ROOT)/bin/xft-config
-	sed -e 's|/opt/lsb/lib.*|$(INSTALL_DIR)|g' \
-            -e 's|/opt/lsb|$(INSTALL_ROOT)|g' \
-        ../../bin$(LIB64)/xml2-config > \
-	$(DESTDIR)/$(INSTALL_ROOT)/bin/xml2-config
-	chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/*-config
+	for f in freetype-config xft-config xml2-config; do \
+	  sed -e 's|@ROOTDIR@|$(INSTALL_ROOT)|g' \
+	      -e 's|@LIB64@|$(LIB64)|g' \
+	      -e 's|@DEFAULT_LSB_VERSION@|$(DEFAULT_VERSION)|g' \
+	  ../../bin/$$f.in > $(DESTDIR)/$(INSTALL_ROOT)/bin/$$f; \
+	  chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/$$f; \
+	done
 endif
