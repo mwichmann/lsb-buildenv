@@ -32,10 +32,10 @@ versionfiles:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
-lsbcc_libs.h:
+lsbcc_libs.h: lsb_versions lsb_devel_versions
 	./mk_lsbcc_libs.pl > lsbcc_libs.h
 
-lsbcc_version.h:
+lsbcc_version.h: lsb_versions lsb_devel_versions
 	./mk_lsbcc_version.pl > lsbcc_version.h
 
 $(LSBCC_OBJS): lsbcc_libs.h lsbcc_version.h
