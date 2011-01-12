@@ -26,12 +26,10 @@ endif
 
 all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 
-gensrc: lsb_versions lsb_devel_versions lsbcc_libs.h lsbcc_version.h
+gensrc: versionfiles lsbcc_libs.h lsbcc_version.h
 
-lsb_versions:
+versionfiles:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
-
-lsb_devel_versions:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
 lsbcc_libs.h:
