@@ -9,7 +9,7 @@ BZR_MODULE=build_env
 
 # Release number of package relative to specification version
 # Should have leading "."
-SUB_VERSION=.21
+SUB_VERSION=.0
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
@@ -57,7 +57,7 @@ EXPORT_TAG=
 endif
 
 # Supply default LSBVERSION (Version of lsb spec against which it is built)
-LSBVERSION=4.0
+LSBVERSION=4.1
 
 # True LSB version for multiversion support (affects build-base, build-desktop)
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)

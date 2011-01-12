@@ -471,10 +471,10 @@ inline int get_version_index( char* vername ) {
 	if( strcmp(vername, "4.0") == 0 ) {
 		 return 3;
 	}
-#ifndef SKIP_DEVEL_VERSIONS
 	if( strcmp(vername, "4.1") == 0 ) {
 		 return 4;
 	}
+#ifndef SKIP_DEVEL_VERSIONS
 	if( strcmp(vername, "5.0") == 0 ) {
 		 return 5;
 	}
