@@ -1,7 +1,7 @@
 prefix=/usr
 exec_prefix=${prefix}
 libdir=@LIBDIR@
-includedir=@INCLUDEDIR@/QtXml
+includedir=@INCLUDEDIR@QtXml
 qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass qt warn_on release incremental link_prl release stl qt_no_framework release shared dll largefile stl sse dylib create_prl link_prl depend_includepath QTDIR_build release ReleaseBuild Release build_pass qt_install_headers qt warn_on depend_includepath qmake_cache target_qt debug_and_release create_libtool create_pc explicitlib release ReleaseBuild Release build_pass no_autoqmake moc thread shared dll
 
 Name: Qtxml

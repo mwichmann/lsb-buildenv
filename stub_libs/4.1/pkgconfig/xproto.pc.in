@@ -2,7 +2,7 @@ prefix=/usr
 exec_prefix=${prefix}
 libdir=@LIBDIR@
 includedir=@INCLUDEDIR@
-includex11dir=@INCLUDEDIR@/X11
+includex11dir=@INCLUDEDIR@X11
  
 Name: Xproto
 Description: Xproto headers
