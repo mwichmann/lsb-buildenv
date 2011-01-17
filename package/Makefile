@@ -116,7 +116,7 @@ tarball: $(TARBALL)
 	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	for libdir in lib lib64; do \
-	  for version in 4.1 5.0; do \
+	  for version in 5.0; do \
 	    grep -v $$libdir-$$version $@ > $@.nodev; \
 	    rm -f $@; \
 	    mv $@.nodev $@; \
@@ -127,7 +127,7 @@ endif
 %_pruned: %
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	cp $< $@
-	for version in 4.1 5.0; do \
+	for version in 5.0; do \
 	    grep -v LIB-$$version $@ > $@.nodev; \
 	    rm -f $@; \
 	    mv $@.nodev $@; \
