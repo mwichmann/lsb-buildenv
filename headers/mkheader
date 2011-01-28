@@ -1067,22 +1067,22 @@ for(1..$sth->rows) {
     }
     $srcth->finish;
 
-    if( $entry->{'Isrcbin'} ne 'SrcOnly' ) {
+#    if( $entry->{'Isrcbin'} ne 'SrcOnly' ) {
         specdb::printLsbVersionBounds( $oldVersionAppeared, $oldVersionWithdrawn, $entry->{'AIappearedin'}, $entry->{'AIwithdrawnin'});
         $oldVersionAppeared = $entry->{'AIappearedin'};
         $oldVersionWithdrawn = $entry->{'AIwithdrawnin'};
-    }
-    else {
-        if( $oldVersionWithdrawn ) {
-            print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
-            $oldVersionWithdrawn = '';
-        }
-
-        if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
-            print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
-            $oldVersionAppeared = '';
-        }
-    }
+#    }
+#    else {
+#        if( $oldVersionWithdrawn ) {
+#            print "#endif /* __LSB_VERSION__ < $oldVersionWithdrawn */\n\n";
+#            $oldVersionWithdrawn = '';
+#        }
+#
+#        if( $oldVersionAppeared and $oldVersionAppeared gt $header_appin ) {
+#            print "#endif /* __LSB_VERSION__ >= $oldVersionAppeared */\n\n";
+#            $oldVersionAppeared = '';
+#        }
+#    }
 
     # Check if we have a macro with the same name; undef, if any
     $macroName = $entry->{'Iname'};

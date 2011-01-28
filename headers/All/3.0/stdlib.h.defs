@@ -43,6 +43,7 @@ extern unsigned long long int __strtoull_internal(const char *, char **,
 extern long int a64l(const char *__s);
 extern void abort(void);
 extern int abs(int __x);
+extern int atexit(void (*__func) (void));
 extern double atof(const char *__nptr);
 extern int atoi(const char *__nptr);
 extern long int atol(const char *__nptr);

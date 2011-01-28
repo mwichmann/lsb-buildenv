@@ -98,6 +98,7 @@ extern "C" {
     extern long int a64l(const char *__s);
     extern void abort(void);
     extern int abs(int __x);
+    extern int atexit(void (*__func) (void));
     extern double atof(const char *__nptr);
     extern int atoi(const char *__nptr);
     extern long int atol(const char *__nptr);
@@ -177,7 +178,6 @@ extern "C" {
     extern int unlockpt(int __fd);
     extern size_t wcstombs(char *__s, const wchar_t * __pwcs, size_t __n);
     extern int wctomb(char *__s, wchar_t __wchar);
-    extern int atexit(void (*__func) (void));
 #if __LSB_VERSION__ >= 11
     extern int rand_r(unsigned int *__seed);
 #endif				/* __LSB_VERSION__ >= 1.1 */
