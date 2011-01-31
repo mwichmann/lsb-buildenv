@@ -194,10 +194,6 @@ extern "C" {
     extern int vsnprintf(char *__s, size_t __maxlen, const char *__format,
 			 va_list __arg);
     extern int vsprintf(char *__s, const char *__format, va_list __arg);
-#if __LSB_VERSION__ < 20
-    extern char *gets(char *__s);
-#endif				/* __LSB_VERSION__ < 2.0 */
-
 #if __LSB_VERSION__ >= 13
     extern int asprintf(char **__ptr, const char *__fmt, ...);
     extern int vfscanf(FILE * __s, const char *__format, va_list __arg);
