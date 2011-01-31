@@ -6,7 +6,7 @@ Options:
 --headers          -- generate lists of header files
 --libs             -- generate lists of libraries, per LSB version
 --package          -- generate packaging lists
---lsbversion=VER   -- target different LSB version than 4.0
+--lsbversion=VER   -- target different LSB version than 4.1
 -h, --help         -- print this text and exit
 """
 
@@ -29,7 +29,7 @@ HANDLE = None
 #============== Editable section ============== 
 # for package lists, one library-version name corresponding to the
 # default version vanishes and becomes just lib - this version:
-DEFAULTVER = "4.0"
+DEFAULTVER = "4.1"
 
 # Lists of names of the modules in core and desktop as they appear
 # in the database - this may need manual tweaking on changes
@@ -136,7 +136,7 @@ def createfiles(core_name, core_list, desktop_name, desktop_list):
     for (name, flist) in ((core_name, core_list),
                           (desktop_name, desktop_list)):
         headerfile = open(name, 'w')
-        headerfile.write('\n'.join(flist))
+        headerfile.write('\n'.join(sorted(flist)))
         headerfile.write('\n')
         headerfile.close()
 
@@ -274,8 +274,6 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
         core_pkglist.extend(core_libs)
         desktop_pkglist.extend(desktop_libs)
 
-    core_pkglist.sort()
-    desktop_pkglist.sort()
     createfiles('core_pkglist', core_pkglist,
                 'desktop_pkglist', desktop_pkglist)
 
