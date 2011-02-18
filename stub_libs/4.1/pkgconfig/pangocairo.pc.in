@@ -8,4 +8,4 @@ Description: Cairo rendering support for Pango
 Version: 1.10.2
 Requires: pango cairo 
 Libs: -L${libdir} -lpangocairo-1.0 
-Cflags: -I${includedir}/pango-1.0 -I${includedir}/cairo -I/usr/X11R6/include 
+Cflags: -I${includedir}/pango-1.0 -I${includedir}/cairo  
