@@ -7,5 +7,5 @@ qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass
 Name: Qtsvg
 Description: Qtsvg Library
 Version: 4.1.1
-Libs: -L${libdir} -lQtSvg -lQtXml -lQtGui  -lSM -lICE -lXi -lXrender -lXrandr -lXcursor -lXinerama -lfreetype -lfontconfig -lXext -lX11 -lm -lQtCore -lpthread -ldl  
+Libs: -L${libdir} -lQtSvg -lQtXml -lQtGui  -lSM -lICE -lXi -lXrender -lfreetype -lfontconfig -lXext -lX11 -lm -lQtCore -lpthread -ldl  
 Cflags: -DQT_SHARED -I@INCLUDEDIR@ -I${includedir}

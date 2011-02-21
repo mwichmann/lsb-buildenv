@@ -7,5 +7,5 @@ qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass
 Name: Qtgui
 Description: Qtgui Library
 Version: 4.1.1
-Libs: -L${libdir} -lQtGui  -lSM -lICE -lQtCore -lpthread -lXi -lXrender -lXrandr -lXcursor -lXinerama -lfreetype -lfontconfig -lXext -lX11 -lm -ldl  
+Libs: -L${libdir} -lQtGui  -lSM -lICE -lQtCore -lpthread -lXi -lXrender -lfreetype -lfontconfig -lXext -lX11 -lm -ldl  
 Cflags: -DQT_SHARED -I@INCLUDEDIR@ -I${includedir}

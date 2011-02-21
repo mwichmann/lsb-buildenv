@@ -7,5 +7,5 @@ qt_config=lex yacc warn_on uic resources release ReleaseBuild Release build_pass
 Name: Qtopengl
 Description: Qtopengl Library
 Version: 4.2.1
-Libs: -L${libdir} -lQtOpenGL  -lGLU -lGL -lQtGui  -lSM -lICE -lXi -lXrender -lXrandr -lXcursor -lXinerama -lfreetype -lfontconfig -lXext -lX11 -lQtCore -lz -lm -lpthread -ldl  
+Libs: -L${libdir} -lQtOpenGL  -lGLU -lGL -lQtGui  -lSM -lICE -lXi -lXrender -lfreetype -lfontconfig -lXext -lX11 -lQtCore -lz -lm -lpthread -ldl  
 Cflags: -DQT_SHARED -I@INCLUDEDIR@ -I${includedir}
