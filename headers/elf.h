@@ -205,6 +205,18 @@ extern "C" {
 #define ELF64_ST_INFO(bind,type)	ELF32_ST_INFO ((bind), (type))
 #define ELF64_ST_TYPE(val)	ELF32_ST_TYPE (val)
 #define ELFMAG	"\177ELF"
+#if __LSB_VERSION__ >= 30
+#define DF_ORIGIN	0x00000001	/* Object may use DF_ORIGIN */
+#define DF_SYMBOLIC	0x00000002	/* Symbol resolutions start with this object */
+#define DF_TEXTREL	0x00000004	/* Object contains text relocations */
+#define DF_BIND_NOW	0x00000008	/* No lazy binding for this object */
+#define DF_STATIC_TLS	0x00000010	/* Module uses the static TLS model */
+#define DT_FLAGS	30
+#define DT_ENCODING	32
+#define DT_PREINIT_ARRAY	32
+#define DT_PREINIT_ARRAYSZ	33
+#endif				/* __LSB_VERSION__ >= 3.0 */
+
 
 
     typedef uint32_t Elf32_Addr;
