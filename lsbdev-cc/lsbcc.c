@@ -459,9 +459,10 @@ need_stack_prot_suppression()
     return 1;
 
   default:
-    /* Some other value we don't recognize. */
+    /* Some other value we don't recognize.  Following the previous
+       pattern, we assume we need it here. */
     fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
-    return 0;
+    return 1;
   }
 }
 
@@ -533,9 +534,10 @@ need_long_double_64()
     return 1;
 
   default:
-    /* Some other value we don't recognize. */
+    /* Some other value we don't recognize.  Assume we need it, since
+       that's been the pattern so far. */
     fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
-    return 0;
+    return 1;
   }
 #else
   /* Don't need this except on PPC and S390 systems (32- or 64-bit). */
