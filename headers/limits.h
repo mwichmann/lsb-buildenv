@@ -126,6 +126,10 @@ extern "C" {
 #define _POSIX_HIWAT	_POSIX_PIPE_BUF
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 41
+#define IOV_MAX	1024
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 
 
