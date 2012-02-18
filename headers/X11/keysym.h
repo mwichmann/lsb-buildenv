@@ -30,6 +30,14 @@ extern "C" {
 #define XK_THAI
 #define XK_VIETNAMESE
 #define XK_XKB_KEYS
+#if __LSB_VERSION__ >= 50
+#define XK_APL
+#define XK_MISCELLANY
+#define XK_PUBLISHING
+#define XK_SPECIAL
+#define XK_TECHNICAL
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
 #ifdef __cplusplus

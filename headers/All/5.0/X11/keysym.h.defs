@@ -1,4 +1,5 @@
 
+#define XK_APL
 #define XK_ARABIC
 #define XK_ARMENIAN
 #define XK_BRAILLE
@@ -17,6 +18,10 @@
 #define XK_LATIN8
 #define XK_LATIN9
 #define XK_MATHEMATICAL
+#define XK_MISCELLANY
+#define XK_PUBLISHING
+#define XK_SPECIAL
+#define XK_TECHNICAL
 #define XK_THAI
 #define XK_VIETNAMESE
 #define XK_XKB_KEYS

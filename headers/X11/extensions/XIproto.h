@@ -1192,7 +1192,12 @@ extern "C" {
 	CARD8 id;
 	CARD8 num_classes;
 	CARD8 use;
+#if __LSB_VERSION__ < 50
 	CARD8 pad1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	CARD8 attached;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _xKeyInfo {
