@@ -25,15 +25,23 @@ print <<HEADER;
 
 /* This is a generated file, do not edit */
 
+/* note LSBCC_VERSION should be overridden by packaging, which knows the version */
+
 #ifdef SKIP_DEVEL_VERSIONS
 
 #define DEFAULT_LSB_VERSION "$default"
+#ifndef LSBCC_VERSION
+#define LSBCC_VERSION "$default.unreleased"
+#endif
 
 static char lsbcc_lsb_version [] = "LSB version $version";
 
 #else
 
 #define DEFAULT_LSB_VERSION "$devdefault"
+#ifndef LSBCC_VERSION
+#define LSBCC_VERSION "$default.development (for $devdefault)"
+#endif
 
 static char lsbcc_lsb_version [] = "LSB version $devversion";
 

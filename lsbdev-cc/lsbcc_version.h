@@ -3,15 +3,23 @@
 
 /* This is a generated file, do not edit */
 
+/* note LSBCC_VERSION should be overridden by packaging, which knows the version */
+
 #ifdef SKIP_DEVEL_VERSIONS
 
 #define DEFAULT_LSB_VERSION "4.1"
+#ifndef LSBCC_VERSION
+#define LSBCC_VERSION "4.1.unreleased"
+#endif
 
 static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1";
 
 #else
 
 #define DEFAULT_LSB_VERSION "5.0"
+#ifndef LSBCC_VERSION
+#define LSBCC_VERSION "4.1.development (for 5.0)"
+#endif
 
 static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1,5.0";
 

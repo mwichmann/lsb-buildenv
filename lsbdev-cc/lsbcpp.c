@@ -85,6 +85,7 @@ struct option long_options[] = {
 	{"lsb-cxx-includepath",required_argument,NULL,10},
 	{"verbose",required_argument,NULL,14},
 	{"version",required_argument,NULL,15},
+	{"lsbcc-version",no_argument,NULL,22},
 	{NULL,0,0,0}
 	};
 
@@ -93,6 +94,7 @@ usage(const char *progname) {
 	printf("Usage %s:\n"
 		"\t--lsb-help         Display this message\n"	
 		"\t--lsb-version      Display the version of LSB this tool can build for.\n"	
+                "\t--lsbcc-version    Display the version of the tool itself.\n"
 		"\t--lsb-verbose      Print out full commands to system compiler.\n"	
 		"\t--lsb-cpp=<cpp>    Set an alternate cpp to use\n" 
 		"\t--lsb-includepath=<include_path>\n"
@@ -214,6 +216,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 10: /* --lsb-cxx-includepath=<path> */
 		memset(cxxincpath, 0, strlen(cxxincpath));
 		strcpy(cxxincpath, optarg);
+		break;
+	case 22: /* --lsbcc-version */
+		printf("%s\n", LSBCC_VERSION);
+		exit(0);
 		break;
 	case '?':
 		if (strncmp(argv[optind-1], "--lsb-",6) == 0) {

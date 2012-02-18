@@ -69,7 +69,7 @@ make bootstrap INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
 make install-bootstrap INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
 make clean
 # now rebuild using our just-built binaries
-make CC=$RPM_BUILD_DIR/xbuild/bin/lsbcc CXX=$RPM_BUILD_DIR/xbuild/bin/lsbc++ LSBCC_LSBVERSION=%build_target INSTALL_ROOT=/opt/lsb
+make CC=$RPM_BUILD_DIR/xbuild/bin/lsbcc CXX=$RPM_BUILD_DIR/xbuild/bin/lsbc++ LSBCC_LSBVERSION=%build_target INSTALL_ROOT=/opt/lsb CFLAGS="-g -Wall -DLSBCC_VERSION=\\\"%ver\\\""
 %ifarch ppc
 make -C lsbdev-cc/crti
 %endif

@@ -620,6 +620,7 @@ struct option long_options[] = {
 	{"lsb-libtool-fixups",no_argument,NULL,19},
 	{"lsb-besteffort",no_argument,NULL,20},
 	{"lsb-target-version",required_argument,NULL,21},
+	{"lsbcc-version",no_argument,NULL,22},
 #define COPY_ARG_START 100
 #define COPY_ARG_END 201
 	/*
@@ -691,6 +692,7 @@ usage(const char *progname) {
 "Usage %s:\n"
 "  --lsb-help               Display this message\n"
 "  --lsb-version            Display the version of LSB this tool can build for.\n"
+"  --lsbcc-version          Display the version of the tool itself.\n"
 "  --lsb-verbose            Print out full commands to system compiler.\n"
 "  --lsb-cc=<path to c compiler>\n"
 "                           Set the system c compiler (overrides the LSBCC\n"
@@ -1461,6 +1463,10 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 21:/* --lsb-target-version */
 		/* We have already processed this option */
  		break;
+	case 22: /* --lsbcc-version */
+		printf("%s\n", LSBCC_VERSION);
+		exit(0);
+		break;
 	case '?':
 		if (strncmp(argv[optind_old], "--lsb-",6) == 0) {
 			/*
