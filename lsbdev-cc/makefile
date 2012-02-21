@@ -6,8 +6,7 @@ LIBS = libgcc34compat.a
 EXTRA_OBJS = besteffort.o
 INSTALL_ROOT ?= /usr/local
 BASE_PATH ?=\"$(INSTALL_ROOT)\"
-CFLAGS ?= -g -Wall 
-CFLAGS += -DBASE_PATH=$(BASE_PATH)
+override CFLAGS += -g -Wall -DBASE_PATH=$(BASE_PATH)
 CXXFLAGS = $(CFLAGS)
 EXTRA_CFLAGS = -fPIC
 DBOPTS = -h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD

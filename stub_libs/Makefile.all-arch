@@ -17,7 +17,7 @@ DESKTOP_CFILES := $(addsuffix .c,$(DESKTOP_STUBLIBS))
 DESKTOP_OFILES := $(addsuffix .o,$(DESKTOP_STUBLIBS))
 DESKTOP_SOFILES := $(addsuffix .so,$(DESKTOP_STUBLIBS))
 
-CFLAGS=-g -Wall  -fno-builtin -fPIC
+override CFLAGS += -g -Wall -fno-builtin -fPIC
 INSTALL_ROOT ?= /usr/local
 INSTALL_DIR=$(INSTALL_ROOT)$(LIBDIR)-$(LSB_VERSION)/$(SUBDIR)
 SYMLINK_DIR=$(INSTALL_ROOT)$(LIBDIR)
