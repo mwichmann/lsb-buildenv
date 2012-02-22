@@ -64,7 +64,7 @@ extern void svcerr_progvers(SVCXPRT * __xprt, rpcvers_t __low_vers,
 			    rpcvers_t __high_vers);
 extern void svcerr_systemerr(SVCXPRT * __xprt);
 extern void svcerr_weakauth(SVCXPRT * __xprt);
-extern svcfd_create(void);
+extern SVCXPRT *svcfd_create(int, unsigned int, unsigned int);
 extern SVCXPRT *svcraw_create(void);
 extern SVCXPRT *svctcp_create(int __sock, u_int __sendsize,
 			      u_int __recvsize);

@@ -1,0 +1,5 @@
+
+#define __PRIPTR_PREFIX
+#define __PRI64_PREFIX	"ll"
+
+typedef lldiv_t imaxdiv_t;

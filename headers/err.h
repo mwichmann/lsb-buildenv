@@ -2,6 +2,7 @@
 #ifndef _ERR_H_
 #define _ERR_H_
 
+#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +15,7 @@ extern "C" {
     extern void err(int __status, const char *__format, ...);
     extern void error(int, int, const char *, ...);
     extern void errx(int __status, const char *__format, ...);
-    extern void verrx(void);
+    extern void verrx(int, const char *, va_list);
     extern void warn(const char *__format, ...);
     extern void warnx(const char *__format, ...);
 #ifdef __cplusplus

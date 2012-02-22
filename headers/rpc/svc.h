@@ -124,7 +124,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 40
-    extern svcfd_create(void);
+    extern SVCXPRT *svcfd_create(int, unsigned int, unsigned int);
     extern SVCXPRT *svcraw_create(void);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 

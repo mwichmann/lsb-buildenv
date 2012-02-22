@@ -295,13 +295,16 @@ BASE/include/X11/TranslateI.h
 BASE/include/X11/VendorP.h
 BASE/include/X11/X.h
 BASE/include/X11/XKBlib.h
+BASE/include/X11/Xarch.h
 BASE/include/X11/Xatom.h
 BASE/include/X11/Xauth.h
 BASE/include/X11/Xcms.h
 BASE/include/X11/Xfuncproto.h
+BASE/include/X11/Xfuncs.h
 BASE/include/X11/Xlib.h
 BASE/include/X11/Xlibint.h
 BASE/include/X11/Xmd.h
+BASE/include/X11/Xos.h
 BASE/include/X11/Xosdefs.h
 BASE/include/X11/Xproto.h
 BASE/include/X11/Xprotostr.h
