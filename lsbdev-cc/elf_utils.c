@@ -166,7 +166,7 @@ void getSymbolVersionInfo(ElfFile * file)
 	(Elf_Dyn *) ((caddr_t) file->addr + file->dynhdr->sh_offset);
 
     /*
-     * Look in dynhdr to get the number of entries in verd, 
+     * Look in dynhdr to get the number of entries in verd,
      * so we can parse it.
      */
     file->numdynents = file->dynhdr->sh_size / file->dynhdr->sh_entsize;
@@ -186,8 +186,8 @@ void getSymbolVersionInfo(ElfFile * file)
 	    verdaux =
 		(Elf_Verdaux *) ((char *) file->verd + file->verd->vd_aux);
 	    numverdaux = file->verd->vd_cnt;
-	    /* Note, we only want the first (ie best) 
-	     * version in a list 
+	    /* Note, we only want the first (ie best)
+	     * version in a list
 	     */
 	    file->versionnames[file->verd->vd_ndx] =
 		ElfGetStringIndex(file,

@@ -226,7 +226,7 @@ int perform_libtool_fixups(const char *optarg)
     /*
      * We do a first level filter on /usr/lib
      * If the file is in /usr/lib and has '.so' in it someplace,
-     * we assume that it is a shared lib.  
+     * we assume that it is a shared lib.
      * This takes care of ld scripts like /usr/lib/libc.so
      */
 
@@ -279,7 +279,7 @@ int perform_libtool_fixups(const char *optarg)
      */
     process_opt_L(dirname(libdir));
 
-    /* 
+    /*
      * Now also check to see if the shared lib
      * had any DT_NEEDED tags and do the same for
      * them.
@@ -628,20 +628,20 @@ struct option long_options[] = {
 	 * They expect another argument right after them.  Therefore, after
 	 * option processing, this argument should remain succeeding these
 	 * options. However, such options may be encountere in other places
-	 * (for example, in short-options-array).  
+	 * (for example, in short-options-array).
 	 * Here's the full list of them (gcc 4.3.3 man):
-	   -x  language  
-	   -aux-info  filename 
-	   --param  name=value 
-	   -idirafter  dir 
-	   -include  file  
+	   -x  language
+	   -aux-info  filename
+	   --param  name=value
+	   -idirafter  dir
+	   -include  file
 	   -Xpreprocessor  option
 	   -Xassembler  option
 	   -Xlinker  option
 	   -u  symbol
-	   -V  version  
+	   -V  version
 	   -b  machine
-	   -G  num  
+	   -G  num
 	 */
 	{"Xlinker",no_argument,NULL,100},
 	{"x",no_argument,NULL,101},
@@ -670,9 +670,9 @@ char *get_modules_strings(void)
 	}
 
 	tmp = modules;
-	modules = malloc((tmp ? strlen(tmp) : 0) + 
+	modules = malloc((tmp ? strlen(tmp) : 0) +
                          strlen(lsb_module->module_name) + 2);
-	memset(modules, 0, (tmp ? strlen(tmp) : 0) + 
+	memset(modules, 0, (tmp ? strlen(tmp) : 0) +
                            strlen(lsb_module->module_name) + 2);
 	if (tmp) {
 	    strcpy(modules, tmp);
@@ -745,11 +745,9 @@ usage(const char *progname) {
 "                           fixups that help when using lsbcc in conjunction\n"
 "                           with libtool.  See the man page for details.\n"
 "\n"
-"All other options are passed to the compiler more or\n"
-"less unmodified, --lsb options should appear before system\n"
-"compiler options.\n"
-"\n",
-progname, lsbcc_lsbversion,
+"All other options are passed to the compiler more or less unmodified.\n"
+"  --lsb options should appear before system compiler options.\n"
+"\n", progname, lsbcc_lsbversion,
 (lsb_num_modules[lsbversion_index] ? get_modules_strings() : "none"));
 }
 
@@ -901,7 +899,7 @@ process_shared_lib_path(char *libarg)
 		} else {
 			if (num_libs < 0) {
 				fprintf(stderr,"Could not open %s: %s\n", libpath, strerror(errno));
-				exit(-1);
+				exit(EXIT_FAILURE);
 			} else {
 				if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
 					fprintf(stderr,"Did not find any shared libs in %s\n", libpath);
@@ -1010,10 +1008,11 @@ lsbversion_index = get_version_index(lsbcc_lsbversion);
 /*
  * Set up __LSB_VERSION__ define
  */
-lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") + 
+lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") +
 		                               strlen(lsbcc_lsbversion) + 1));
 if(lsbversion_option == NULL) {
-    exit(3);
+    /*XXX FIXME no error message? */
+    exit(EXIT_FAILURE);
 }
 strcpy(lsbversion_option, "-D__LSB_VERSION__=");
 /*
@@ -1114,7 +1113,7 @@ if( lsbcc_debug&DEBUG_ARGUMENTS ) {
  */
 if( lsbversion_index == -1 ) {
     fprintf(stderr,"Incorrect LSB version: %s\n", lsbcc_lsbversion);
-    exit(-1);
+    exit(EXIT_FAILURE);
 }
 for(i=0;lsb_libs[lsbversion_index][i]; i++) {
 	argvaddstring(lsblibs, strdup(lsb_libs[lsbversion_index][i]));
@@ -1140,7 +1139,7 @@ if(LSBCPLUS == lsbccmode) {
        j = 0;
        lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
 
-       if(strcasecmp(module, 
+       if(strcasecmp(module,
                      lsb_modules[lsbversion_index][i].module_name) == 0) {
          if (lsb_module->lib_names != NULL) {
            for(; lsb_module->lib_names[j] != NULL; j++) {
@@ -1173,7 +1172,7 @@ if(LSBCPLUS == lsbccmode) {
        for (i = 0; lsb_modules[i] != NULL; i++) {
          for (j = 0; j < lsb_num_modules[i]; j++) {
            if (strcasecmp(module, lsb_modules[i][j].module_name) == 0) {
-             fprintf(stderr, "warning: module %s not in LSB %s\n", 
+             fprintf(stderr, "warning: module %s not in LSB %s\n",
                      module, lsbcc_lsbversion);
              found = 1;
              break;
@@ -1241,7 +1240,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		if (stat(optarg, &st_buf) == 0) {
 		    if (S_ISREG(st_buf.st_mode) || S_ISLNK(st_buf.st_mode)) {
 			found_file = 1;
-				
 			if (libtool_fixups && perform_libtool_fixups(optarg)) {
 			    break;
 			}
@@ -1263,12 +1261,12 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 3: /* --lsb-help */
 		usage(argv[0]);
 		if (c == 3) {
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 		break;
 	case 4: /* --lsb-version */
 		printf("%s\n", lsbcc_lsb_version);
-		exit(0);
+		exit(EXIT_SUCCESS);
 		break;
 	case 5: /* --lsb-verbose */
 		display_cmd = 1;
@@ -1465,7 +1463,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
  		break;
 	case 22: /* --lsbcc-version */
 		printf("%s\n", LSBCC_VERSION);
-		exit(0);
+		exit(EXIT_SUCCESS);
 		break;
 	case '?':
 		if (strncmp(argv[optind_old], "--lsb-",6) == 0) {
@@ -1497,7 +1495,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	default:
 		/* the option from 100-200 range, copy argument after it */
 		if (c>=COPY_ARG_START && c<COPY_ARG_END) {
-		    /* In this case the next argument from command line is 
+		    /* In this case the next argument from command line is
 		     * immediately appended to the option list.*/
 		    argvaddstring(options,argv[optind_old]);
 		    if (optind_old+1 < argc) {
@@ -1526,7 +1524,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	/*
 	 * Save optind value to catch cases of options like '-std'
 	 * that are treated as two separate options without shifting optind
-	 */	
+	 */
 	optind_old = optind;
 }
 
@@ -1538,7 +1536,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 if ((strcmp(basename(ccname), "lsbcc") == 0) ||
 	(strcmp(basename(ccname), "lsbc++") == 0)) {
 	printf("You can not use %s as your compiler!\n", argv[0]);
-	exit(-1);
+	exit(EXIT_FAILURE);
 }
 
 /*
@@ -1752,7 +1750,7 @@ if (found_gcc_arg) {
 	argvappend(gccargs,target);
 
 	/*
- 	* The lsb/include directory needs to come after application supplied 
+ 	* The lsb/include directory needs to come after application supplied
  	* paths, but before the default /usr/include path.
 	* Such behaviour is achieved with the use of the -isystem option,
 	* the positions of this option among -I includes does not matter.

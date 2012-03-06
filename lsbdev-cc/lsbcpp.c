@@ -8,8 +8,8 @@
 /*
  * This is the lsbccp tool. It is mostly useful for situations where
  * configure scripts perform tests based solely on passing intput to
- * cpp rather than passing input to a compiler. 
- * 
+ * cpp rather than passing input to a compiler.
+ *
  * Set your CPP environment variable to lsbcpp to gain effect.
  *
  * This code is a stripped down version of lsbcc.c
@@ -39,7 +39,7 @@
  */
 
 struct argvgroup *cppargs;
-struct argvgroup *args;
+struct argvgroup *options;
 
 /*
  * Set the default names of the cpp to call and the paths
@@ -70,8 +70,8 @@ char cxxincpath[PATH_MAX];
 #define WARN_LIB_CHANGES	0x0001
 
 int lsbcc_debug=0; /* Default to none. ./configure likes things to be quiet. */
-int lsbcc_warn=0; 
-int lsbcc_buildingshared=0; 
+int lsbcc_warn=0;
+int lsbcc_buildingshared=0;
 
 /*
  */
@@ -80,9 +80,10 @@ struct option long_options[] = {
 	{"help",0, NULL,2},
 	{"lsb-help",0, NULL,3},
 	{"lsb-version",0, NULL,4},
-	{"lsb-cpp",0,NULL,6}, 
+	{"lsb-cpp",0,NULL,6},
 	{"lsb-includepath",required_argument,NULL,9},
 	{"lsb-cxx-includepath",required_argument,NULL,10},
+	{"lsb-forcefeatures",no_argument,NULL,12},
 	{"verbose",required_argument,NULL,14},
 	{"version",required_argument,NULL,15},
 	{"lsbcc-version",no_argument,NULL,22},
@@ -91,38 +92,58 @@ struct option long_options[] = {
 
 void
 usage(const char *progname) {
-	printf("Usage %s:\n"
-		"\t--lsb-help         Display this message\n"	
-		"\t--lsb-version      Display the version of LSB this tool can build for.\n"	
-                "\t--lsbcc-version    Display the version of the tool itself.\n"
-		"\t--lsb-verbose      Print out full commands to system compiler.\n"	
-		"\t--lsb-cpp=<cpp>    Set an alternate cpp to use\n" 
-		"\t--lsb-includepath=<include_path>\n"
-		"\t                   Set the path to the lsb includes directory\n"
-		"\t                    (overrides the LSBCC_INCLUDES environment setting)\n"
-		"\t--lsb-cxx-includepath=<include_path>\n"
-		"\t                   Set the path to the lsb c++ include directory\n"
-		"\t                    (overrides the LSBCXX_INCLUDES environment\n "
-		"\t                    setting)\n"
-	
-		"All other options are passed to the cpp more or\n"
-		"less unmodified, --lsb options should appear before system\n"
-		"cpp options.\n"
-		,progname);
+  printf(
+"Usage %s:\n"
+"  --lsb-help           Display this message\n"
+"  --lsb-version        Display the version of LSB this tool can build for.\n"
+"  --lsbcc-version      Display the version of the tool itself.\n"
+"  --lsb-verbose        Print out full commands to system compiler.\n"
+"  --lsb-cpp=<path to c preprocessor>\n"
+"                       Set the system c prepdocessor (overrides the LSB_CPP\n"
+"                       environment setting)\n"
+"  --lsb-forcefeatures  Force setting -D flags for full feature set LSB supports\n"
+"  --lsb-includepath=<include_path>\n"
+"                       Set the path to the lsb includes directory\n"
+"                       (overrides the LSBCC_INCLUDES environment setting)\n"
+"  --lsb-cxx-includepath=<include_path>\n"
+"                       Set the path to the lsb c++ include directory\n"
+"                       (overrides the LSBCXX_INCLUDES environment setting)\n "
+"\n"
+"All other options are passed to the preprocessor more or less unmodified.\n"
+"  --lsb options should appear before system cpp options.\n"
+"\n", progname);
 }
+
+/*
+ * We need to set some defines to correctly describe the assumed environment.
+ */
+char *featuresettings[] = {
+	"-D_ISOC99_SOURCE=1",
+	"-D_XOPEN_SOURCE=600",
+	"-D_XOPEN_SOURCE_EXTENDED=1",
+	"-D_LARGEFILE_SOURCE=1",
+	"-D_LARGEFILE64_SOURCE=1",
+	"-D_BSD_SOURCE=1",
+	"-D_SVID_SOURCE=1",
+	"-D_GNU_SOURCE=1"
+};
+
+int numfeaturesettings=(sizeof(featuresettings)/sizeof(char *));
+
 
 int main(int argc, char *argv[])
 {
 int	c,i;
 int	option_index;
 int	display_cmd = 0;
+int     feature_settings = 0;
 char	*ptr;
 
 /*
  * Initialize various argv groups.
  */
 cppargs=argvinit();
-args=argvinit();
+options=argvinit();
 
 /*
  * Set up the paths we will need
@@ -157,20 +178,23 @@ if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
 	display_cmd = 1;
 }
 
-if( (ptr=getenv("LSB_CPP")) != NULL ) {
+if( (ptr=getenv("LSBCPP")) != NULL ) {
 	cppname=ptr;
 	if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
        		fprintf(stderr,"cpp name set to %s\n", cppname );
 	}
 }
 
+if( (ptr=getenv("LSBCC_FORCEFEATURES")) != NULL ) {
+	feature_settings = 1;
+}
 
 if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++) {
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 	}
 }
-	
+
 
 /* Process the options passed in */
 opterr = 0;
@@ -179,29 +203,30 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	switch(c) {
 	case 0:
 		if( lsbcc_debug&DEBUG_RECOGNIZED_ARGS ) {
-			fprintf(stderr,"option0: -%s", 
+			fprintf(stderr,"option0: -%s",
 				long_options[option_index].name);
 			if( optarg ) {
 				fprintf(stderr, " with arg %s", optarg);
 			}
 			fprintf(stderr,"\n");
 		}
-		argvadd(args,long_options[option_index].name,optarg);
+		argvadd(options,long_options[option_index].name,optarg);
 		break;
 	case 1: /* all args not prefixed by - */
-		argvaddstring(args,strdup(optarg));
+		argvaddstring(options,strdup(optarg));
 		break;
 	case 2: /* --help intended for cpp, we'll add our 2cents however */
-		argvaddstring(args, strdup("--help"));
+/*gccsartargs*/
+		argvaddstring(options, strdup("--help"));
 	case 3: /* --lsb-help */
 		usage(argv[0]);
 		if (c == 3) {
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 		break;
 	case 4: /* --lsb-version */
 		printf("%s\n", lsbcc_lsb_version);
-		exit(0);
+		exit(EXIT_SUCCESS);
 		break;
 	case 5: /* --lsb-verbose */
 		display_cmd = 1;
@@ -217,9 +242,12 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		memset(cxxincpath, 0, strlen(cxxincpath));
 		strcpy(cxxincpath, optarg);
 		break;
+	case 12:/* --lsb-forcefeatures */
+		feature_settings = 1;
+		break;
 	case 22: /* --lsbcc-version */
 		printf("%s\n", LSBCC_VERSION);
-		exit(0);
+		exit(EXIT_SUCCESS);
 		break;
 	case '?':
 		if (strncmp(argv[optind-1], "--lsb-",6) == 0) {
@@ -230,7 +258,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 			 */
 			usage(argv[0]);
 			exit(EXIT_FAILURE);
-			
 		}
 		/*
 		 * This is an attempt to catch things that we don't
@@ -241,7 +268,7 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 					argv[optind-1], optopt, optopt );
 		}
 		if( (optopt && (optopt != '?')) || (argv[optind-1][0] == '-') ) {
-			argvaddstring(args,argv[optind-1]);
+			argvaddstring(options,argv[optind-1]);
 		} else {
 			fprintf(stderr,"ERROR: Dropping argument %s\n",
 							argv[optind-1] );
@@ -263,8 +290,20 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
  */
 if (strcmp(basename(cppname), "lsbcpp") == 0) {
 	printf("You can not use %s as your cpp!\n", argv[0]);
-	exit(-1);
+	exit(EXIT_FAILURE);
 }
+
+/*
+ * Only force feature settings if LSBCC_FORCEFEATURES is defined
+ * Otherwise assume the app developer knew what they where doing
+ * with feature define flags.
+ */
+if (feature_settings) {
+	for(i=0;i<numfeaturesettings;i++) {
+		argvaddstring(options,featuresettings[i]);
+	}
+}
+
 
 /*
  * set the compiler
@@ -274,7 +313,7 @@ argvaddstring(cppargs,cppname);
 argvaddstring(cppargs,"-nostdinc");
 argvadd(cppargs,"I",incpath);
 argvadd(cppargs,"I",cxxincpath);
-argvappend(cppargs,args);
+argvappend(cppargs,options);
 
 
 /* ensure argument list is null terminated */
