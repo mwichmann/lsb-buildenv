@@ -188,27 +188,35 @@ library must be linked statically.
 .P
 .SH ENVIRONMENT
 The following environment variables affect the behavior of
-.I lsbcc
+.I lsbcc 
+and
+.IR lsbc++ .
+Not all apply to
+.IR lsbcpp .
 .TP
 LSBCC
 Specifies the name of the C compiler to invoke with the modified
 argument set. If this environment variable is not found,
 the default 
 .I cc
-will be used.
+will be used. (Not for
+.IR lsbcpp ).
 .TP
 LSBCXX
 Specifies the name of the C++ compiler to invoke with the modified
 argument set. If this environment variable is not found,
 the default 
 .I c++
-will be used.
+will be used. (Not for
+.IR lsbcpp ).
 .TP
 LSBCPP
 Specifies the name of the C preprocessor to invoke with the modified
 argument set.  If this environment variable is not found, the default
 .I cpp
-will be used.
+will be used
+.RI ( lsbcpp 
+only).
 .P
 .TP
 LSBCC_LIBS
