@@ -1585,12 +1585,19 @@ if (optind < argc) {
 	}
 }
 
+#if __powerpc__ && !__powerpc64__
 /* fugly hack for issue with compiled apps on some plats not
  * running on others (SLES10 compiled segfaults on Debian4 ppc)
  * provide our own crti.o to work around the issue
-*/
-#if __powerpc__ && !__powerpc64__
+ */
 argvaddstring(gccargs, "-B/opt/lsb/lib");
+#endif
+
+#if __powerpc__ && !__powerpc64__
+/* new defaults in gcc no longer produce the ppc32 cpu instructions
+ * specified by the LSB ABI.  Force this.  Bug 3253.
+ */
+argvaddstring(gccargs, "-mcpu=603");
 #endif
 
 /* Check if we need to specify the length of long double. */
