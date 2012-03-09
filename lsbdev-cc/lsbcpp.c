@@ -13,6 +13,7 @@
  * Set your CPP environment variable to lsbcpp to gain effect.
  *
  * This code is a stripped down version of lsbcc.c
+ * it needs to be kept in sync to some extent.
  */
 
 #include <sys/types.h>
@@ -31,10 +32,11 @@
 #include <errno.h>
 
 #include "lsbcc_version.h"
+#include "lsbcc_libs.h"
 #include "lsbcc_argv.h"
 
 /*
- * These are the catagories of options that we are going to be grouping
+ * These are the categories of options that we are going to be grouping
  * together.
  */
 
@@ -53,6 +55,11 @@ struct argvgroup *options;
 char *cppname="cpp";
 char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
+
+/* 'Normal' version name */
+char *lsbcc_lsbversion=DEFAULT_LSB_VERSION;
+/* Version name with dot removed */
+char *lsbversion_option;
 
 /*
  * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
@@ -74,21 +81,31 @@ int lsbcc_warn=0;
 int lsbcc_buildingshared=0;
 
 /*
+ * Variable to store optind value - we'll have to process command line twice.
  */
-char *optstr="-";
+int optind_old;
+
+/*
+ * options we need to reognize.  some of these are for this program,
+ * some are options for the compiler that need some knowledge while
+ * we're still in this program.  this list is a lot shorter than in lsbcc.
+ */
+char *optstr="vV:";
 struct option long_options[] = {
 	{"help",0, NULL,2},
 	{"lsb-help",0, NULL,3},
 	{"lsb-version",0, NULL,4},
+	{"lsb-verbose",no_argument,NULL,5},
 	{"lsb-cpp",0,NULL,6},
 	{"lsb-includepath",required_argument,NULL,9},
 	{"lsb-cxx-includepath",required_argument,NULL,10},
 	{"lsb-forcefeatures",no_argument,NULL,12},
 	{"verbose",required_argument,NULL,14},
 	{"version",required_argument,NULL,15},
+	{"lsb-target-version",required_argument,NULL,21},
 	{"lsbcc-version",no_argument,NULL,22},
 	{NULL,0,0,0}
-	};
+};
 
 void
 usage(const char *progname) {
@@ -108,6 +125,8 @@ usage(const char *progname) {
 "  --lsb-cxx-includepath=<include_path>\n"
 "                       Set the path to the lsb c++ include directory\n"
 "                       (overrides the LSBCXX_INCLUDES environment setting)\n "
+"  --lsb-target-version=<target_lsb_version>\n"
+"                       Target LSB version.\n"
 "\n"
 "All other options are passed to the preprocessor more or less unmodified.\n"
 "  --lsb options should appear before system cpp options.\n"
@@ -136,7 +155,7 @@ int main(int argc, char *argv[])
 int	c,i;
 int	option_index;
 int	display_cmd = 0;
-int     feature_settings = 0;
+int	feature_settings = 0;
 char	*ptr;
 
 /*
@@ -152,9 +171,62 @@ snprintf(incpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include");
 snprintf(cxxincpath, PATH_MAX-1, "%s/%s", BASE_PATH, "include/c++");
 
 /*
- * Check for some environment variable, and adjust things if they are found.
+ * first figure out if the user has requested a change to the target LSB vers.
+ * In lsbcc, this has to happen first because it may affect other constructions
+ * like library paths.  In lsbcpp this should not be a problem, but it
+ * seems easier to keep the order in sync between the two.
  */
+if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
+    if (get_version_index(ptr) >= 0) {
+    lsbcc_lsbversion = strdup(ptr);
+	if( lsbcc_debug&DEBUG_ENV_OVERRIDES ) {
+	    fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
+	}
+    } else {
+	fprintf(stderr,"LSBCC_LSBVERSION contains unrecognized value %s, ignored\n", ptr);
+    }
+}
 
+/*
+ * Do we have '--lsb-target-version' option?
+ * Override other settings, if this option provides a valid value
+ */
+optind_old = optind;
+opterr = 0;
+while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
+    if(c == 21) { /* --lsb-target-version=<LSB_version> */
+	if (get_version_index(optarg) >= 0 ) {
+	    lsbcc_lsbversion = strdup(optarg);
+	} else {
+	    fprintf(stderr,"--lsb-target-version contains unrecognized value %s, ignored\n", optarg);
+	}
+    }
+}
+
+/* Restore optind - we'll process all other options later */
+optind = optind_old;
+
+/* Set up __LSB_VERSION__ define */
+lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") +
+                                               strlen(lsbcc_lsbversion) + 1));
+if(lsbversion_option == NULL) {
+    /*XXX FIXME no error message? */
+    exit(EXIT_FAILURE);
+}
+strcpy(lsbversion_option, "-D__LSB_VERSION__=");
+
+/*
+ * LSB_VERSION values contain dots, we need a non-dotted version to
+ * append for the -D.  Make a copy first since strsep modifies its 1st arg.
+ */
+ptr = strdup(lsbcc_lsbversion);
+strcat(lsbversion_option, strsep(&ptr,"."));
+if(ptr)
+    strcat(lsbversion_option, strsep(&ptr,"."));
+
+/*
+ * Check for more environment variables, and adjust things if they are found.
+ */
 if( (ptr=getenv("LSBCC_WARN")) != NULL ) {
 	lsbcc_warn=strtod(ptr,NULL);
 }
@@ -189,12 +261,15 @@ if( (ptr=getenv("LSBCC_FORCEFEATURES")) != NULL ) {
 	feature_settings = 1;
 }
 
+if( (ptr=getenv("LSBCC_VERBOSE")) != NULL ) {
+	display_cmd = 1;
+}
+
 if( lsbcc_debug&DEBUG_ARGUMENTS ) {
 	for(i=0;i<argc;i++) {
 		fprintf(stderr,"%3.3d: %s\n", i, argv[i] );
 	}
 }
-
 
 /* Process the options passed in */
 opterr = 0;
@@ -245,9 +320,20 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 	case 12:/* --lsb-forcefeatures */
 		feature_settings = 1;
 		break;
-	case 22: /* --lsbcc-version */
-		printf("%s\n", LSBCC_VERSION);
-		exit(EXIT_SUCCESS);
+	case 'V':
+	case 14:/* --verbose */
+	case 15:/* --version */
+	case 'v':
+		/* for these four, fall through to add this program's version */
+		argvaddstring(options,argv[optind-1]);
+	case 22:/* --lsbcc-version */
+		printf("%s (lsbcc) %s\n", argv[0], LSBCC_VERSION);
+		if (c == 22) {
+			exit(EXIT_SUCCESS);
+		}
+		break;
+	case 21:/* --lsb-target-version */
+		/* We have already processed this option */
 		break;
 	case '?':
 		if (strncmp(argv[optind-1], "--lsb-",6) == 0) {
@@ -303,7 +389,7 @@ if (feature_settings) {
 		argvaddstring(options,featuresettings[i]);
 	}
 }
-
+argvaddstring(options,lsbversion_option);
 
 /*
  * set the compiler

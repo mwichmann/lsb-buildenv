@@ -29,11 +29,11 @@
  *
  * The approach taken here is to recognize enough of the regular options to
  * allow the extra options to be inserted into the right place. Fortunately,
- * the options can be grouped into a few catagories, and the order in which
- * the catagories are passed to gcc is not important, as long as the order of
- * items within each catagory is preserved.
+ * the options can be grouped into a few categories, and the order in which
+ * the categories are passed to gcc is not important, as long as the order of
+ * items within each category is preserved.
  *
- * The extra options are easily inserted in between the catagories.
+ * The extra options are easily inserted in between the categories.
  *
  * A couple of things that complicate this process (and this is what ended the
  * life of the shell script based lsbcc) is that some of the options have
@@ -809,8 +809,10 @@ is_file_so(const struct dirent *ent)
 }
 
 /*
- * FIXME: If LSB ever gets around to including scandir get rid of
- * this code.
+ * FIXME: If LSB adds scandir, drop this code.
+ * UPDATE: as described in bug 1997, scandir was added @LSB 4.0,
+ * but LSB builds lsbcc "pessimistically" (targeting oldest possible
+ * LSB version), so the option to drop isn't available yet.
  */
 int lsbcc_scandir(
 	char *libpath,
@@ -974,50 +976,45 @@ if( (ptr=getenv("LSBCC_LSBVERSION")) != NULL ) {
             fprintf(stderr,"lsb version value set to %s\n", lsbcc_lsbversion );
         }
     } else {
-        fprintf(stderr,"LSBCC_LSBVERSION is set to unrecognized value %s\n", ptr);
+        fprintf(stderr,"LSBCC_LSBVERSION contains unrecognized value %s, ignored\n", ptr);
     }
 }
 
-optind_old = optind;
-opterr = 0;
 
 /*
  * Do we have '--lsb-target-version' option?
  * Override other settings, if this option provides a valid value
  */
+optind_old = optind;
+opterr = 0;
 while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
     if(c == 21) { /* --lsb-target-version=<LSB_version> */
         if (get_version_index(optarg) >= 0 ) {
             lsbcc_lsbversion = strdup(optarg);
         } else {
-            fprintf(stderr,"--lsb-target-version option has illegal value %s\n", optarg);
+            fprintf(stderr,"--lsb-target-version contains unrecognized value %s, ignored\n", optarg);
         }
     }
 }
 
-/*
- * Restore optind - we'll process all other options later
- */
+/* Restore optind - we'll process all other options later */
 optind = optind_old;
 
-/*
- * Index in the lsb_*_modules arrays corresponding to target LSB version
- */
+/* Index in the lsb_*_modules arrays corresponding to target LSB version */
 lsbversion_index = get_version_index(lsbcc_lsbversion);
 
-/*
- * Set up __LSB_VERSION__ define
- */
+/* Set up __LSB_VERSION__ define */
 lsbversion_option=(char*)malloc(sizeof(char)* (strlen("-D__LSB_VERSION__=") +
 		                               strlen(lsbcc_lsbversion) + 1));
 if(lsbversion_option == NULL) {
-    /*XXX FIXME no error message? */
+    /* FIXME no error message? */
     exit(EXIT_FAILURE);
 }
 strcpy(lsbversion_option, "-D__LSB_VERSION__=");
+
 /*
- * Normally, LSB_VERSION values contain dot - copy without the dot
- * this method would destroy lsbcc_lsbversion, so make a dup first
+ * LSB_VERSION values contain dots, we need a non-dotted version to
+ * append for the -D.  Make a copy first since strsep modifies its 1st arg.
  */
 ptr = strdup(lsbcc_lsbversion);
 strcat(lsbversion_option, strsep(&ptr,"."));
@@ -1031,8 +1028,7 @@ snprintf(libpath, PATH_MAX-1, "%s/%s%s", BASE_PATH, "lib-", lsbcc_lsbversion);
 #endif
 
 /*
- * Check for some other environment variables,
- * and adjust things if they are found.
+ * Check for more environment variables, and adjust things if they are found.
  */
 
 if( (ptr=getenv("LSBCC_WARN")) != NULL ) {
@@ -1152,9 +1148,8 @@ if(LSBCPLUS == lsbccmode) {
      }
 
      /*
-      * XXX temporary hack: accept names of deprecated
-      * modules - no need to do anything with them
-      * this is just for the Qt3 scripts, really;
+      * FIXME temporary hack: accept names of deprecated modules - 
+      * no need to do anything with them. This is just for the Qt3 scripts
       * until a better answer is developed
       */
      for (i = 0; i < lsb_num_deprecated_modules[lsbversion_index]; i++) {
@@ -1423,8 +1418,8 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		argvaddstring(userlibs,argv[optind-1]);
 		break;
 	case 'V':
-	case 14:
-	case 15:
+	case 14:/* --verbose */
+	case 15:/* --version */
 	case 'v':
 		/* Handle a standalone --version, --verbose, '-v', and '-V'
 		 * argument specially to make sure it only
@@ -1433,13 +1428,18 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		 * of having the compiler call the linker.  Unless of course
 		 * we need to call the linker, which will happen whenever
 		 * found_gcc_arg gets set.
+		 * Fall through to add this program's version.
 		 */
 		found_gcc_standalone = 1;
 		argvaddstring(gccstartargs,argv[optind-1]);
+	case 22:/* --lsbcc-version */
+		printf("%s (lsbcc) %s\n", argv[0], LSBCC_VERSION);
+		if (c == 22) {
+			exit(EXIT_SUCCESS);
+		}
 		break;
-	case 17:
-		/* -static
-		 * no -Wl,Bdynamic, add -Wl,--start-group, add -lgcc_eh */
+	case 17:/* -static */
+		/* no -Wl,Bdynamic, add -Wl,--start-group, add -lgcc_eh */
 		found_gcc_arg = 1;
 		b_dynamic = 0;
 		force_static = 1;
@@ -1460,10 +1460,6 @@ while((c=getopt_long_only(argc,argv,optstr,long_options, &option_index))>=0 ) {
 		break;
 	case 21:/* --lsb-target-version */
 		/* We have already processed this option */
- 		break;
-	case 22: /* --lsbcc-version */
-		printf("%s\n", LSBCC_VERSION);
-		exit(EXIT_SUCCESS);
 		break;
 	case '?':
 		if (strncmp(argv[optind_old], "--lsb-",6) == 0) {
@@ -1570,7 +1566,6 @@ if (feature_settings) {
 		argvaddstring(options,featuresettings[i]);
 	}
 }
-
 argvaddstring(options,lsbversion_option);
 
 /* Gather together the non-options arguments */
