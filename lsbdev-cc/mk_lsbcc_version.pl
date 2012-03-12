@@ -2,7 +2,10 @@
 #
 # generate version file for lsbcc
 #  
-# Copyright (C) 2006, 2007 Linux Foundation
+# Copyright (C) 2006-2012 Linux Foundation
+#
+# This file is part of lsbcc.  lsbcc is free software, covered
+# under the terms of the BSD license.
 
 open(my $lsbfile, "lsb_versions");
 @lsbversions = <$lsbfile>;

@@ -1,8 +1,10 @@
 /*
- * Copyright (C) 2002-2007 Linux Foundation
+ * Copyright (C) 2002-2012 Linux Foundation
  *
- * 2002/05/09 Stuart Anderson, Free Standards Group
+ * Originally written 2002/05/09 Stuart Anderson, Free Standards Group
  *
+ * This file is part of lsbcc.  lsbcc is free software, covered
+ * under the terms of the BSD license.
  */
 
 #include <sys/types.h>

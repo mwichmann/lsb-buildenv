@@ -1,9 +1,11 @@
 /*
- * Copyright (C) 2002-2007 Linux Foundation
+ * Copyright (C) 2002-2012 Linux Foundation
  *
  * Derived from lsbcc.c,
  * 2002/05/09 Stuart Anderson, Free Standards Group
  *
+ * This file is part of lsbcc.  lsbcc is free software, covered
+ * under the terms of the BSD license.
  */
 /*
  * This is the lsbccp tool. It is mostly useful for situations where

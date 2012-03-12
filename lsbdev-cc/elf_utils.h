@@ -1,9 +1,12 @@
 /*
+ * Copyright 2009-2012 Linux Foundation
  *
- * Copyright (c) 2001-2002 The Free Standards Group Inc
+ * Portions
  * Copyright (c) 2000-2002 Stuart Anderson (anderson@freestandards.org)
  * Copyright (c) 2002 Chris Yeoh (yeohc@au.ibm.com)
  *
+ * This file is part of lsbcc.  lsbcc is free software, covered
+ * under the terms of the BSD license.
  */
 #ifndef _ELFUTILS_H
 #define _ELFUTILS_H

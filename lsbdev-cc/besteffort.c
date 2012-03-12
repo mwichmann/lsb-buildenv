@@ -1,7 +1,10 @@
 /*
- * Copyright 2008 Linux Foundation
+ * Copyright 2008-2012 Linux Foundation
  *
  * Originally written by Jeff Licquia <licquia@linuxfoundation.org>.
+ *
+ * This file is part of lsbcc.  lsbcc is free software, covered
+ * under the terms of the BSD license.
  */
 
 /*

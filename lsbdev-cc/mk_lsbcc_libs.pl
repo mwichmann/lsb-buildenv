@@ -1,4 +1,9 @@
 #!/usr/bin/perl
+#
+# Copyright 2009-2012 Linux Foundation
+#
+# This file is part of lsbcc.  lsbcc is free software, covered
+# under the terms of the BSD license.
 
 use DBI;
 
