@@ -14,7 +14,7 @@ Summary: LSB Build environment packages
 Group: Development/Tools
 Version: %ver
 Release: @PACKAGE_RELEASE@
-License: LF
+License: BSD
 Vendor: Linux Foundation
 Packager: LSB Project <lsb-discuss@linux-foundation.org>
 Source: lsb-build-%ver.tar.gz
