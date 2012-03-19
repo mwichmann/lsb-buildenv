@@ -1,7 +1,23 @@
 LSB_DUMMY { __LSB_DUMMY; };
 GLIBC_2.0 {
+  __errno_location;
+  __h_errno_location;
   _pthread_cleanup_pop;
   _pthread_cleanup_push;
+  accept;
+  close;
+  connect;
+  fcntl;
+  flockfile;
+  fork;
+  fsync;
+  ftrylockfile;
+  funlockfile;
+  lseek;
+  msync;
+  nanosleep;
+  open;
+  pause;
   pthread_attr_destroy;
   pthread_attr_getdetachstate;
   pthread_attr_getinheritsched;
@@ -40,8 +56,26 @@ GLIBC_2.0 {
   pthread_setspecific;
   pthread_sigmask;
   pthread_testcancel;
+  raise;
+  read;
+  recv;
+  recvfrom;
+  recvmsg;
+  send;
+  sendmsg;
+  sendto;
+  sigaction;
+  sigwait;
+  system;
+  tcdrain;
+  vfork;
+  wait;
+  waitpid;
+  write;
 };
 GLIBC_2.1 {
+  __libc_current_sigrtmax;
+  __libc_current_sigrtmin;
   pthread_attr_getguardsize;
   pthread_attr_getstackaddr;
   pthread_attr_getstacksize;
@@ -124,7 +158,9 @@ GLIBC_2.3.3 {
   pthread_barrierattr_getpshared;
 };
 GLIBC_2.3.4 {
+  longjmp;
   pthread_setschedprio;
+  siglongjmp;
 };
 GLIBC_2.4 {
   pthread_mutex_consistent_np;
