@@ -20,6 +20,7 @@ extern "C" {
 #define _FCFUNCPROTOBEGIN
 #define _FCFUNCPROTOEND
 #define FC_USER_CACHE_FILE	".fonts.cache-"FC_CACHE_VERSION
+#define FC_CACHE_VERSION	"1"
 #define FC_DIR_CACHE_FILE	"fonts.cache-"FC_CACHE_VERSION
 #define FcIsUpper(c)	((0101 <= (c) && (c) <= 0132))
 #define FcIsLower(c)	((0141 <= (c) && (c) <= 0172))
@@ -34,7 +35,6 @@ extern "C" {
 #define FC_SLANT_ROMAN	0
 #define FC_WEIGHT_THIN	0
 #define FcFalse	0
-#define FC_CACHE_VERSION	"1"
 #define FC_HINT_SLIGHT	1
 #define FC_RGBA_RGB	1
 #define FcTrue	1
@@ -301,14 +301,22 @@ extern "C" {
     extern FcConfig *FcConfigGetCurrent(void);
     extern FcStrList *FcConfigGetFontDirs(FcConfig * config);
     extern FcFontSet *FcConfigGetFonts(FcConfig * config, FcSetName set);
-    extern int FcConfigGetRescanInverval(FcConfig * config);
+    extern int FcConfigGetRescanInverval(FcConfig * config)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern FcChar8 *FcConfigHome(void);
     extern FcBool FcConfigParseAndLoad(FcConfig * config,
 				       const FcChar8 * file,
 				       FcBool complain);
     extern FcBool FcConfigSetCurrent(FcConfig * config);
     extern FcBool FcConfigSetRescanInverval(FcConfig * config,
-					    int rescanInterval);
+					    int rescanInterval)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern FcBool FcConfigSubstitute(FcConfig * config, FcPattern * p,
 				     FcMatchKind kind);
     extern FcBool FcConfigSubstituteWithPat(FcConfig * config,
@@ -498,6 +506,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern void FcFini(void);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern int FcConfigGetRescanInterval(FcConfig * config);
+    extern FcBool FcConfigSetRescanInterval(FcConfig * config,
+					    int rescanInterval);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

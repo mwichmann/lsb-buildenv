@@ -23,6 +23,12 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 
+#if __LSB_VERSION__ >= 50
+#define bzero(s,n)	memset(s,0,n)
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
+
+
 
 /* Function prototypes */
 

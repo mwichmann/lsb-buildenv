@@ -1,6 +1,8 @@
 
 #define strerror_r __xpg_strerror_r
 
+#define bzero(s,n)	memset(s,0,n)
+
 extern void *__memcpy_chk(void *, const void *, size_t, size_t);
 extern void *__memmove_chk(void *, const void *, size_t, size_t);
 extern void *__mempcpy(void *__dest, const void *__src, size_t __n);

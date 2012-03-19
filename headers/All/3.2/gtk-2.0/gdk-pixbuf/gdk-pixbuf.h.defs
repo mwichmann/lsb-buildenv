@@ -29,6 +29,7 @@
 #define GDK_PIXBUF_LOADER_GET_CLASS(obj)	 \
 	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_LOADER, \
 	GdkPixbufLoaderClass))
+#define GDK_PIXBUF_VERSION	"2.6.10"
 #define GDK_PIXBUF_MICRO	(10)
 #define GDK_PIXBUF_MAJOR	(2)
 #define GDK_PIXBUF_MINOR	(6)
@@ -40,7 +41,6 @@
 #define GDK_TYPE_PIXBUF	(gdk_pixbuf_get_type ())
 #define GDK_TYPE_PIXBUF_LOADER	(gdk_pixbuf_loader_get_type ())
 #define GDK_TYPE_PIXBUF_ROTATION	(gdk_pixbuf_rotation_get_type())
-#define GDK_PIXBUF_VERSION	"2.6.10"
 #define GDK_PIXBUF_VAR	extern
 #define GDK_PIXBUF_ERROR	gdk_pixbuf_error_quark ()
 

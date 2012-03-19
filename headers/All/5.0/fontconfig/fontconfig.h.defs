@@ -2,6 +2,7 @@
 #define _FCFUNCPROTOBEGIN
 #define _FCFUNCPROTOEND
 #define FC_USER_CACHE_FILE	".fonts.cache-"FC_CACHE_VERSION
+#define FC_CACHE_VERSION	"1"
 #define FC_DIR_CACHE_FILE	"fonts.cache-"FC_CACHE_VERSION
 #define FcIsUpper(c)	((0101 <= (c) && (c) <= 0132))
 #define FcIsLower(c)	((0141 <= (c) && (c) <= 0172))
@@ -16,7 +17,6 @@
 #define FC_SLANT_ROMAN	0
 #define FC_WEIGHT_THIN	0
 #define FcFalse	0
-#define FC_CACHE_VERSION	"1"
 #define FC_HINT_SLIGHT	1
 #define FC_RGBA_RGB	1
 #define FcTrue	1
@@ -235,11 +235,14 @@ extern FcStrList *FcConfigGetConfigFiles(FcConfig * config);
 extern FcConfig *FcConfigGetCurrent(void);
 extern FcStrList *FcConfigGetFontDirs(FcConfig * config);
 extern FcFontSet *FcConfigGetFonts(FcConfig * config, FcSetName set);
+extern int FcConfigGetRescanInterval(FcConfig * config);
 extern int FcConfigGetRescanInverval(FcConfig * config);
 extern FcChar8 *FcConfigHome(void);
 extern FcBool FcConfigParseAndLoad(FcConfig * config, const FcChar8 * file,
 				   FcBool complain);
 extern FcBool FcConfigSetCurrent(FcConfig * config);
+extern FcBool FcConfigSetRescanInterval(FcConfig * config,
+					int rescanInterval);
 extern FcBool FcConfigSetRescanInverval(FcConfig * config,
 					int rescanInterval);
 extern FcBool FcConfigSubstitute(FcConfig * config, FcPattern * p,

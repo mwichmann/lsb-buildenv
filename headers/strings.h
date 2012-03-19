@@ -14,6 +14,7 @@ extern "C" {
 
     extern int bcmp(const void *__s1, const void *__s2, size_t __n);
     extern void bcopy(const void *__src, void *__dest, size_t __n);
+#undef bzero
     extern void bzero(void *__s, size_t __n);
     extern int ffs(int __i);
     extern char *index(const char *__s, int __c);
