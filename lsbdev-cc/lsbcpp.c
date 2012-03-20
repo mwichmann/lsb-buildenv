@@ -398,11 +398,28 @@ argvaddstring(options,lsbversion_option);
  */
 argvaddstring(cppargs,cppname);
 
+/* Gather together the non-options arguments */
+if (optind < argc) {
+	if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS ) {
+		fprintf(stderr, "non-option ARGV-elements: ");
+	}
+	while (optind < argc) {
+		if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS ) {
+			fprintf(stderr,"%s ", argv[optind]);
+		}
+		argvaddstring(options,argv[optind++]);
+	}
+	if( lsbcc_debug&DEBUG_UNRECOGNIZED_ARGS ) {
+		fprintf(stderr,"\n");
+	}
+}
+
+/*XXX this doesn't seem to be done in lsbcc any longer */
 argvaddstring(cppargs,"-nostdinc");
+
 argvadd(cppargs,"I",incpath);
 argvadd(cppargs,"I",cxxincpath);
 argvappend(cppargs,options);
-
 
 /* ensure argument list is null terminated */
 cppargs->argv[cppargs->numargv] = NULL;
