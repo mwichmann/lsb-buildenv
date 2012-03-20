@@ -113,7 +113,7 @@ sub CreateTmpLibTable($$) {
 
     $create = "CREATE TEMPORARY TABLE tmp_LibInts_$libId "
         . "(KEY `Iid`(`Iid`)) "
-        . "SELECT Iid, Iname, Ireturn, Itype, Ilibrary FROM Interface "
+        . "SELECT Iid, Iname, Itype, Ilibrary FROM Interface "
         . "LEFT JOIN LGInt ON LGIint=Iid "
         . "LEFT JOIN LibGroup ON LGid=LGIlibg "
         . "WHERE LGlib=$libId";
@@ -122,7 +122,7 @@ sub CreateTmpLibTable($$) {
 
     $create = "CREATE TEMPORARY TABLE tmp_LibIncludedInts_$libId "
         . "(KEY `Iid`(`Iid`), KEY `AIarch`(`AIarch`), KEY `Iname`(`Iname`,`AIarch`), KEY `Itype`(`Itype`,`AIarch`)) "
-        . "SELECT Iid, Iname, Ireturn, Itype, AIarch, AIversion, AIdeprecatedsince, Ilibrary FROM tmp_LibInts_$libId "
+        . "SELECT Iid, Iname, AIreturn, Itype, AIarch, AIversion, AIdeprecatedsince, Ilibrary FROM tmp_LibInts_$libId "
         . "LEFT JOIN ArchInt ON AIint=Iid "
         . "WHERE (AIappearedin <= '$lsbversion' and AIappearedin > '') "
         . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
@@ -224,9 +224,9 @@ sub GenerateLibrary($$$) {
     # NOTE: AIdeprecatedsince is present here for completeness. We don't have data symbols with several versions on the same archs.
     #       In case they appear, the code below should be improved to handle this.
     $select =
-      "SELECT DISTINCT Iname, Itype,max(Vname) AS Vname,Ireturn,max(ATsize) AS ATsize,AIdeprecatedsince, Ilibrary FROM tmp_LibIncludedInts_$libId "
+      "SELECT DISTINCT Iname, Itype,max(Vname) AS Vname,AIreturn,max(ATsize) AS ATsize,AIdeprecatedsince, Ilibrary FROM tmp_LibIncludedInts_$libId "
       . "LEFT JOIN Version ON Vid=AIversion "
-      . "LEFT JOIN ArchType ON ATaid=$TargetArchId AND ATtid=Ireturn "
+      . "LEFT JOIN ArchType ON ATaid=$TargetArchId AND ATtid=AIreturn "
       . "WHERE "
       . "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) "
       . "AND ( AIarch=$TargetArchId OR AIarch=1 ) "
@@ -249,7 +249,7 @@ sub GenerateLibrary($$$) {
 
             $selectGenericSize = "SELECT ATsize FROM ArchType ";
             $selectGenericSize .=
-              "WHERE ATaid=1 AND ATtid=" . $row->{"Ireturn"};
+              "WHERE ATaid=1 AND ATtid=" . $row->{"AIreturn"};
             $sthGenericSize = $dbh->prepare($selectGenericSize)
               || die $dbh->errstr;
             $sthGenericSize->execute() || die $sthGenericSize->errstr;
@@ -273,7 +273,7 @@ sub GenerateLibrary($$$) {
                 # Size is not required for aliases
                 if ( $row->{Itype} ne "Alias" ) {
                     print
-                      $row->{Ilibrary}.": No data for symbol $row->{Iname} ($row->{Ireturn})\n";
+                      $row->{Ilibrary}.": No data for symbol $row->{Iname} ($row->{AIreturn})\n";
                 }
             }
 

@@ -230,7 +230,7 @@ sub getReturnTypes($$$)
     $Hid = $_[0];
     $Aid = $_[1];
     $lsbversion = $_[2];
-    $select = "SELECT DISTINCT Ireturn FROM Interface ";
+    $select = "SELECT DISTINCT AIreturn FROM Interface ";
     $select.= "LEFT JOIN ArchInt AS ArchIntMain ON Iid=AIint ";
     $select.= "WHERE Iheader=$Hid AND Isrcbin<>'BinOnly' ";
     if( $lsbversion eq "All" ) {
@@ -259,8 +259,8 @@ sub getReturnTypes($$$)
     $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
     for(1..$sth->rows) {
         $entry = $sth->fetchrow_hashref;
-        if ($entry->{'Ireturn'}) {
-            $type{$entry->{'Ireturn'}}=1;
+        if ($entry->{'AIreturn'}) {
+            $type{$entry->{'AIreturn'}}=1;
         }
     }
     $sth->finish;
@@ -1292,7 +1292,7 @@ sub display_interface($ )
         $Iid = $entry->{'Iid'};
         $Ttype = $entry->{'Ttype'};
         $Iname = $entry->{'Iname'};
-        $Tid = $entry->{'Ireturn'};
+        $Tid = $entry->{'AIreturn'};
 
         $typedecl = displaytyperef($entry,$nameonly);
         print $typedecl;

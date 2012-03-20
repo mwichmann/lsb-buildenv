@@ -74,11 +74,11 @@ $headname =~ s/^\.\///;
 $dbh = DBI->connect('DBI:mysql:database='.$LSBDB.';host='.$LSBDBHOST, $LSBUSER, $LSBDBPASSWD)
     or die "Couldn't connect to database: ".DBI->errstr;
 
-$select = "SELECT * FROM Interface,Header,Type ";
+$select = "SELECT * FROM Interface,Header,Type,ArchInt ";
 $select.= "WHERE (AIappearedin <= '$lsbversion' and AIappearedin<>'') ";
 $select.= "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
 $select.= "AND Iheader=Hid AND Hname=".$dbh->quote($headname)." ";
-$select.= "AND Ireturn=Tid";
+$select.= "AND AIreturn=Tid";
 print $select,"\n" if $trace;
 $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;

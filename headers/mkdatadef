@@ -225,8 +225,8 @@ $hgh->finish;
 # readability ...
 #
 $select = "SELECT * FROM Interface ";
-$select.= "LEFT JOIN Type on Ireturn = Tid ";
 $select.= "LEFT JOIN ArchInt ON Iid=AIint ";
+$select.= "LEFT JOIN Type on AIreturn = Tid ";
 $select.= "WHERE Iheader = $Hid AND (Isrcbin<>'BinOnly' OR Iid IN ( ";
 $select.= "  SELECT AAbinint FROM AbiApi ";
 $select.= "  WHERE AAappearedin <= '$lsbversion' AND AAappearedin > '' ";

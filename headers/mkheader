@@ -540,8 +540,8 @@ $create.= "   AI_1.AIarch AS AIarch, AI_1.AIappearedin AS AIappearedin, ";
 $create.= "   IF(AI_2.AIappearedin IS NULL, AI_1.AIwithdrawnin, AI_2.AIwithdrawnin) AS AIwithdrawnin, ";
 $create.= "   IF(AI_2.AIappearedin IS NULL, AI_1.AIdeprecatedsince, AI_2.AIdeprecatedsince) AS AIdeprecatedsince ";
 $create.= "FROM Interface ";
-$create.= "LEFT JOIN Type ON Ireturn=Tid ";
 $create.= "LEFT JOIN ArchInt AI_1 ON Iid=AI_1.AIint ";
+$create.= "LEFT JOIN Type ON AIreturn=Tid ";
 # A trick here - join ArchInt once more to join two intervals for the same symbol,
 # if 'appearedin' value of one of them is equal to 'withdrawnin' value of another.
 # This can happen if we change version of binary symbol without affecting source-level information
