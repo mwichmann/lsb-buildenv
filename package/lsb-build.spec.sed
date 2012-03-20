@@ -70,9 +70,6 @@ make install-bootstrap INSTALL_ROOT=$RPM_BUILD_DIR/xbuild
 make clean
 # now rebuild using our just-built binaries
 make CC=$RPM_BUILD_DIR/xbuild/bin/lsbcc CXX=$RPM_BUILD_DIR/xbuild/bin/lsbc++ LSBCC_LSBVERSION=%build_target INSTALL_ROOT=/opt/lsb CFLAGS="-g -Wall -DLSBCC_VERSION=\\\"%ver\\\""
-%ifarch ppc
-make -C lsbdev-cc/crti
-%endif
 
 %install
 [ -e $RPM_BUILD_ROOT ] && rm -rf $RPM_BUILD_ROOT
@@ -106,9 +103,6 @@ cp package/README-cc $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc/README
 for manpage in lsbcc.1 lsbc++.1 lsbcpp.1; do
   gzip -9 $RPM_BUILD_ROOT/opt/lsb/man/man1/$manpage
 done
-%ifarch ppc 
-for i in $RPM_BUILD_ROOT/opt/lsb/lib*; do install lsbdev-cc/crti/crti.o "$i"; done
-%endif
 
 # before leaving, we have to fix up the file lists:
 (cd package && make core_pkglist_pruned && make desktop_pkglist_pruned)
