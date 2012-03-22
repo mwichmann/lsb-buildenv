@@ -36,15 +36,15 @@ lsb_devel_versions:
 
 %.defs: 
 	mkdir -p $(dir $(shell echo "$@" | sed s/_/\\//))
-	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | $(INDENT) -kr -sob > $(shell echo "$@" | sed s/_/\\//)
+	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | $(INDENT) -kr -sob | ./collapse_ifdefs.pl > $(shell echo "$@" | sed s/_/\\//)
 
 %.h:
-	./mkheader -a All -h $@ | $(INDENT) -kr >$@
+	./mkheader -a All -h $@ | $(INDENT) -kr | ./collapse_ifdefs.pl >$@
 
 # Use 'header.h-defs' to unconditionally regenerate header.h and all header.h.defs
 %.h-defs: 
 	make $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(foreach ver,$(LSB_VERSIONS),$(arch)_$(ver)/$(subst h-defs,h.defs,$@)))
-	./mkheader -a All -h $(subst -defs,,$@) | $(INDENT) -kr > $(subst -defs,,$@)
+	./mkheader -a All -h $(subst -defs,,$@) | $(INDENT) -kr | ./collapse_ifdefs.pl > $(subst -defs,,$@)
 
 install: install-core install-desktop
 
