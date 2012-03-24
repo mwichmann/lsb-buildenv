@@ -7,8 +7,22 @@
 PACKAGE=lsb-build
 BZR_MODULE=build_env
 
+# Supply default LSBVERSION - target spec version.
+# a big second number (80-99) is leading up to next major spec
+# build_env is version-independent so can wait till late to bump this
+LSBVERSION=4.1
+
+# True LSB version for multiversion support (affects build-base, build-desktop)
+ifeq ($(SKIP_DEVEL_VERSIONS),yes)
+TRUELSBVERSION := $(shell tail -n 1 ../stub_libs/lsb_versions)
+else
+TRUELSBVERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
+endif
+
 # Release number of package relative to specification version
 # Should have leading "."
+# a big number (80-99) is leading up to the next minor spec
+# build_env is version-independent so can wait till late to bump this
 SUB_VERSION=.7
 
 # We define this here instead of directly in the spec file as
@@ -54,16 +68,6 @@ endif
 else
 VERSION_SUFFIX=.$(ISO_DATE)
 EXPORT_TAG=
-endif
-
-# Supply default LSBVERSION (Version of lsb spec against which it is built)
-LSBVERSION=4.1
-
-# True LSB version for multiversion support (affects build-base, build-desktop)
-ifeq ($(SKIP_DEVEL_VERSIONS),yes)
-TRUELSBVERSION := $(shell tail -n 1 ../stub_libs/lsb_versions)
-else
-TRUELSBVERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
 endif
 
 # Get value of RPM_PACKAGE_VERSION from LSBVERSION.
