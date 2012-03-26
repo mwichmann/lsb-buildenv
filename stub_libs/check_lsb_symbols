@@ -410,11 +410,11 @@ sub CheckSymbols($$$$$)
   $sth->finish;
 
   # Do variables next
-  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname,Ireturn,ATsize FROM ".
+  $sth = $dbh->prepare("SELECT DISTINCT Iname,Vname,AIreturn,ATsize FROM ".
                        "LibGroup,LGInt,Interface ".
 		       "LEFT JOIN ArchInt ON AIint=Iid ".
                        "LEFT JOIN Version ON Vid=AIversion ".
-                       "LEFT JOIN ArchType ON ATtid=Ireturn and ".
+                       "LEFT JOIN ArchType ON ATtid=AIreturn and ".
                        "ATaid=$TargetArchId WHERE ".
                        "( Itype='Data' OR Itype='Alias' OR Itype='Common' ) " .
                        "AND Interface.Iid=LGInt.LGIint ".
