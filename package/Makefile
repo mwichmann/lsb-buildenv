@@ -7,6 +7,23 @@
 PACKAGE=lsb-build
 BZR_MODULE=build_env
 
+# Derive date string for daily snapshots
+ISO_DATE:=$(shell date +"%Y%m%d")
+PWD:=$(shell pwd)
+
+# Handle different version generation for daily snapshots than official builds
+# OFFICIAL_RELEASE should be set to the bzr tag to use for exporting
+ifdef OFFICIAL_RELEASE
+VERSION_SUFFIX=
+EXPORT_TAG=--revision=$(OFFICIAL_RELEASE)
+ifndef SKIP_DEVEL_VERSIONS
+SKIP_DEVEL_VERSIONS=yes
+endif
+else
+VERSION_SUFFIX=.$(ISO_DATE)
+EXPORT_TAG=
+endif
+
 # Supply default LSBVERSION - target spec version.
 # a big second number (80-99) is leading up to next major spec
 # build_env is version-independent so can wait till late to bump this
@@ -28,10 +45,6 @@ SUB_VERSION=.7
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
 RPM_PACKAGE_RELEASE=7
-
-# Derive date string for daily snapshots
-ISO_DATE:=$(shell date +"%Y%m%d")
-PWD:=$(shell pwd)
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)
@@ -56,19 +69,6 @@ RPM_BINARY_CC=$(FULL_PACKAGE_CC)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_BINARY_BASE=$(FULL_PACKAGE_BASE)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_BINARY_DESKTOP=$(FULL_PACKAGE_DESKTOP)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_SOURCE_NAME=$(FULL_PACKAGE_NAME)-$(RPM_PACKAGE_RELEASE).src.rpm
-
-# Handle different version generation for daily snapshots than official builds
-# OFFICIAL_RELEASE should be set to the bzr tag to use for exporting
-ifdef OFFICIAL_RELEASE
-VERSION_SUFFIX=
-EXPORT_TAG=--revision=$(OFFICIAL_RELEASE)
-ifndef SKIP_DEVEL_VERSIONS
-SKIP_DEVEL_VERSIONS=yes
-endif
-else
-VERSION_SUFFIX=.$(ISO_DATE)
-EXPORT_TAG=
-endif
 
 # Get value of RPM_PACKAGE_VERSION from LSBVERSION.
 RPM_PACKAGE_VERSION=$(LSBVERSION)
