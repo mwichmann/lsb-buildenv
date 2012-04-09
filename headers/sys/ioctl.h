@@ -17,8 +17,6 @@ extern "C" {
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
 #define TIOCNOTTY	0x5422
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define FIONREAD	1074030207
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -50,8 +48,6 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 #define FIONREAD	1074030207
-#endif
-#if defined __powerpc64__
 #define TIOCNOTTY	21538
 #endif
 #if defined __x86_64__

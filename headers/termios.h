@@ -22,11 +22,7 @@ extern "C" {
 #define OPOST	0000001
 #if defined __i386__
 #define OLCUC	0000002
-#endif
-#if defined __i386__
 #define ONLCR	0000004
-#endif
-#if defined __i386__
 #define XCASE	0000004
 #endif
 #define OCRNL	0000010
@@ -37,50 +33,20 @@ extern "C" {
 #define NL1	0000400
 #if defined __i386__
 #define NLDLY	0000400
-#endif
-#if defined __i386__
 #define CR1	0001000
-#endif
-#if defined __i386__
 #define IUCLC	0001000
-#endif
-#if defined __i386__
 #define CR2	0002000
-#endif
-#if defined __i386__
 #define CR3	0003000
-#endif
-#if defined __i386__
 #define CRDLY	0003000
-#endif
-#if defined __i386__
 #define TAB1	0004000
-#endif
-#if defined __i386__
 #define TAB2	0010000
-#endif
-#if defined __i386__
 #define TAB3	0014000
-#endif
-#if defined __i386__
 #define TABDLY	0014000
-#endif
-#if defined __i386__
 #define BS1	0020000
-#endif
-#if defined __i386__
 #define BSDLY	0020000
-#endif
-#if defined __i386__
 #define VT1	0040000
-#endif
-#if defined __i386__
 #define VTDLY	0040000
-#endif
-#if defined __i386__
 #define FF1	0100000
-#endif
-#if defined __i386__
 #define FFDLY	0100000
 #endif
 #define TCOFLUSH	1
@@ -95,59 +61,23 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define TAB1	1024
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CR3	12288
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CRDLY	12288
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define FF1	16384
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define FFDLY	16384
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define XCASE	16384
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ONLCR	2
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define TAB2	2048
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define TAB3	3072
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define TABDLY	3072
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define BS1	32768
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define BSDLY	32768
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define OLCUC	4
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CR1	4096
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define IUCLC	4096
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VT1	65536
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VTDLY	65536
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define NLDLY	768
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CR2	8192
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -269,59 +199,23 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define CR2	1024
-#endif
-#if defined __s390x__
 #define CR3	1536
-#endif
-#if defined __s390x__
 #define CRDLY	1536
-#endif
-#if defined __s390x__
 #define VT1	16384
-#endif
-#if defined __s390x__
 #define VTDLY	16384
-#endif
-#if defined __s390x__
 #define OLCUC	2
-#endif
-#if defined __s390x__
 #define TAB1	2048
-#endif
-#if defined __s390x__
 #define NLDLY	256
-#endif
-#if defined __s390x__
 #define FF1	32768
-#endif
-#if defined __s390x__
 #define FFDLY	32768
-#endif
-#if defined __s390x__
 #define ONLCR	4
-#endif
-#if defined __s390x__
 #define XCASE	4
-#endif
-#if defined __s390x__
 #define TAB2	4096
-#endif
-#if defined __s390x__
 #define CR1	512
-#endif
-#if defined __s390x__
 #define IUCLC	512
-#endif
-#if defined __s390x__
 #define TAB3	6144
-#endif
-#if defined __s390x__
 #define TABDLY	6144
-#endif
-#if defined __s390x__
 #define BS1	8192
-#endif
-#if defined __s390x__
 #define BSDLY	8192
 #endif
 #endif				/* __LSB_VERSION__ >= 1.3 */
@@ -329,116 +223,44 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
 #define OLCUC	0000002
-#endif
-#if defined __x86_64__
 #define ONLCR	0000004
-#endif
-#if defined __x86_64__
 #define XCASE	0000004
-#endif
-#if defined __x86_64__
 #define NLDLY	0000400
-#endif
-#if defined __x86_64__
 #define CR1	0001000
-#endif
-#if defined __x86_64__
 #define IUCLC	0001000
-#endif
-#if defined __x86_64__
 #define CR2	0002000
-#endif
-#if defined __x86_64__
 #define CR3	0003000
-#endif
-#if defined __x86_64__
 #define CRDLY	0003000
-#endif
-#if defined __x86_64__
 #define TAB1	0004000
-#endif
-#if defined __x86_64__
 #define TAB2	0010000
-#endif
-#if defined __x86_64__
 #define TAB3	0014000
-#endif
-#if defined __x86_64__
 #define TABDLY	0014000
-#endif
-#if defined __x86_64__
 #define BS1	0020000
-#endif
-#if defined __x86_64__
 #define BSDLY	0020000
-#endif
-#if defined __x86_64__
 #define VT1	0040000
-#endif
-#if defined __x86_64__
 #define VTDLY	0040000
-#endif
-#if defined __x86_64__
 #define FF1	0100000
-#endif
-#if defined __x86_64__
 #define FFDLY	0100000
 #endif
 #if defined __powerpc64__
 #define TAB1	1024
-#endif
-#if defined __powerpc64__
 #define CR3	12288
-#endif
-#if defined __powerpc64__
 #define CRDLY	12288
-#endif
-#if defined __powerpc64__
 #define FF1	16384
-#endif
-#if defined __powerpc64__
 #define FFDLY	16384
-#endif
-#if defined __powerpc64__
 #define XCASE	16384
-#endif
-#if defined __powerpc64__
 #define ONLCR	2
-#endif
-#if defined __powerpc64__
 #define TAB2	2048
-#endif
-#if defined __powerpc64__
 #define TAB3	3072
-#endif
-#if defined __powerpc64__
 #define TABDLY	3072
-#endif
-#if defined __powerpc64__
 #define BS1	32768
-#endif
-#if defined __powerpc64__
 #define BSDLY	32768
-#endif
-#if defined __powerpc64__
 #define OLCUC	4
-#endif
-#if defined __powerpc64__
 #define CR1	4096
-#endif
-#if defined __powerpc64__
 #define IUCLC	4096
-#endif
-#if defined __powerpc64__
 #define VT1	65536
-#endif
-#if defined __powerpc64__
 #define VTDLY	65536
-#endif
-#if defined __powerpc64__
 #define NLDLY	768
-#endif
-#if defined __powerpc64__
 #define CR2	8192
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
@@ -483,17 +305,9 @@ extern "C" {
 #define VQUIT	1
 #if defined __i386__
 #define VSUSP	10
-#endif
-#if defined __i386__
 #define VEOL	11
-#endif
-#if defined __i386__
 #define VREPRINT	12
-#endif
-#if defined __i386__
 #define VDISCARD	13
-#endif
-#if defined __i386__
 #define VWERASE	14
 #endif
 #define VLNEXT	15
@@ -505,14 +319,8 @@ extern "C" {
 #define VEOF	4
 #if defined __i386__
 #define VMIN	6
-#endif
-#if defined __i386__
 #define VSWTC	7
-#endif
-#if defined __i386__
 #define VSTART	8
-#endif
-#if defined __i386__
 #define VSTOP	9
 #endif
 #endif				/* __LSB_VERSION__ >= 1.1 */
@@ -520,32 +328,14 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define VWERASE	10
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VREPRINT	11
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VSUSP	12
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VSTART	13
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VSTOP	14
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VDISCARD	16
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VMIN	5
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VEOL	6
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VEOL2	8
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VSWTC	9
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -667,8 +457,6 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 #define VSTART	13
-#endif
-#if defined __powerpc64__
 #define VSTOP	14
 #endif
 #if defined __x86_64__
@@ -682,14 +470,10 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 #define VMIN	5
-#endif
-#if defined __powerpc64__
 #define VEOL	6
 #endif
 #if defined __x86_64__
 #define VMIN	6
-#endif
-#if defined __x86_64__
 #define VSWTC	7
 #endif
 #if defined __powerpc64__
@@ -697,8 +481,6 @@ extern "C" {
 #endif
 #if defined __x86_64__
 #define VSTART	8
-#endif
-#if defined __x86_64__
 #define VSTOP	9
 #endif
 #if defined __powerpc64__
@@ -733,8 +515,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define IXOFF	1024
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define IXON	512
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -754,8 +534,6 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define IXON	1024
-#endif
-#if defined __s390x__
 #define IXOFF	4096
 #endif
 #endif				/* __LSB_VERSION__ >= 1.3 */
@@ -763,14 +541,10 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
 #define IXON	0002000
-#endif
-#if defined __x86_64__
 #define IXOFF	0010000
 #endif
 #if defined __powerpc64__
 #define IXOFF	1024
-#endif
-#if defined __powerpc64__
 #define IXON	512
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
@@ -785,35 +559,15 @@ extern "C" {
 #define CS5	0000000
 #if defined __i386__
 #define CS6	0000020
-#endif
-#if defined __i386__
 #define CS7	0000040
-#endif
-#if defined __i386__
 #define CS8	0000060
-#endif
-#if defined __i386__
 #define CSIZE	0000060
-#endif
-#if defined __i386__
 #define CSTOPB	0000100
-#endif
-#if defined __i386__
 #define CREAD	0000200
-#endif
-#if defined __i386__
 #define PARENB	0000400
-#endif
-#if defined __i386__
 #define PARODD	0001000
-#endif
-#if defined __i386__
 #define HUPCL	0002000
-#endif
-#if defined __i386__
 #define CLOCAL	0004000
-#endif
-#if defined __i386__
 #define VTIME	5
 #endif
 #endif				/* __LSB_VERSION__ >= 1.1 */
@@ -821,35 +575,15 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define CSTOPB	1024
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define HUPCL	16384
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CREAD	2048
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CS6	256
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CLOCAL	32768
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define PARENB	4096
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CS7	512
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define VTIME	7
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CS8	768
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CSIZE	768
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define PARODD	8192
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -917,26 +651,12 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define HUPCL	1024
-#endif
-#if defined __s390x__
 #define CREAD	128
-#endif
-#if defined __s390x__
 #define CS6	16
-#endif
-#if defined __s390x__
 #define CLOCAL	2048
-#endif
-#if defined __s390x__
 #define PARENB	256
-#endif
-#if defined __s390x__
 #define CS7	32
-#endif
-#if defined __s390x__
 #define CS8	48
-#endif
-#if defined __s390x__
 #define CSIZE	48
 #endif
 #if defined __ia64__
@@ -947,11 +667,7 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define VTIME	5
-#endif
-#if defined __s390x__
 #define PARODD	512
-#endif
-#if defined __s390x__
 #define CSTOPB	64
 #endif
 #endif				/* __LSB_VERSION__ >= 1.3 */
@@ -959,50 +675,22 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
 #define CS6	0000020
-#endif
-#if defined __x86_64__
 #define CS7	0000040
-#endif
-#if defined __x86_64__
 #define CS8	0000060
-#endif
-#if defined __x86_64__
 #define CSIZE	0000060
-#endif
-#if defined __x86_64__
 #define CSTOPB	0000100
-#endif
-#if defined __x86_64__
 #define CREAD	0000200
-#endif
-#if defined __x86_64__
 #define PARENB	0000400
-#endif
-#if defined __x86_64__
 #define PARODD	0001000
-#endif
-#if defined __x86_64__
 #define HUPCL	0002000
-#endif
-#if defined __x86_64__
 #define CLOCAL	0004000
 #endif
 #if defined __powerpc64__
 #define CSTOPB	1024
-#endif
-#if defined __powerpc64__
 #define HUPCL	16384
-#endif
-#if defined __powerpc64__
 #define CREAD	2048
-#endif
-#if defined __powerpc64__
 #define CS6	256
-#endif
-#if defined __powerpc64__
 #define CLOCAL	32768
-#endif
-#if defined __powerpc64__
 #define PARENB	4096
 #endif
 #if defined __x86_64__
@@ -1010,17 +698,9 @@ extern "C" {
 #endif
 #if defined __powerpc64__
 #define CS7	512
-#endif
-#if defined __powerpc64__
 #define VTIME	7
-#endif
-#if defined __powerpc64__
 #define CS8	768
-#endif
-#if defined __powerpc64__
 #define CSIZE	768
-#endif
-#if defined __powerpc64__
 #define PARODD	8192
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
@@ -1032,42 +712,20 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #if defined __i386__
 #define ISIG	0000001
-#endif
-#if defined __i386__
 #define ICANON	0000002
 #endif
 #define ECHO	0000010
 #if defined __i386__
 #define ECHOE	0000020
-#endif
-#if defined __i386__
 #define ECHOK	0000040
-#endif
-#if defined __i386__
 #define ECHONL	0000100
-#endif
-#if defined __i386__
 #define NOFLSH	0000200
-#endif
-#if defined __i386__
 #define TOSTOP	0000400
-#endif
-#if defined __i386__
 #define ECHOCTL	0001000
-#endif
-#if defined __i386__
 #define ECHOPRT	0002000
-#endif
-#if defined __i386__
 #define ECHOKE	0004000
-#endif
-#if defined __i386__
 #define FLUSHO	0010000
-#endif
-#if defined __i386__
 #define PENDIN	0040000
-#endif
-#if defined __i386__
 #define IEXTEN	0100000
 #endif
 #endif				/* __LSB_VERSION__ >= 1.1 */
@@ -1075,41 +733,17 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define NOFLSH	0x80000000
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ECHOKE	1
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define IEXTEN	1024
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ISIG	128
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ECHONL	16
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ECHOE	2
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ICANON	256
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ECHOPRT	32
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ECHOK	4
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define TOSTOP	4194304
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define PENDIN	536870912
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define ECHOCTL	64
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define FLUSHO	8388608
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -1195,41 +829,17 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define ISIG	1
-#endif
-#if defined __s390x__
 #define ECHOPRT	1024
-#endif
-#if defined __s390x__
 #define NOFLSH	128
-#endif
-#if defined __s390x__
 #define ECHOE	16
-#endif
-#if defined __s390x__
 #define PENDIN	16384
-#endif
-#if defined __s390x__
 #define ICANON	2
-#endif
-#if defined __s390x__
 #define ECHOKE	2048
-#endif
-#if defined __s390x__
 #define TOSTOP	256
-#endif
-#if defined __s390x__
 #define ECHOK	32
-#endif
-#if defined __s390x__
 #define IEXTEN	32768
-#endif
-#if defined __s390x__
 #define FLUSHO	4096
-#endif
-#if defined __s390x__
 #define ECHOCTL	512
-#endif
-#if defined __s390x__
 #define ECHONL	64
 #endif
 #endif				/* __LSB_VERSION__ >= 1.3 */
@@ -1237,80 +847,32 @@ extern "C" {
 #if __LSB_VERSION__ >= 20
 #if defined __x86_64__
 #define ISIG	0000001
-#endif
-#if defined __x86_64__
 #define ICANON	0000002
-#endif
-#if defined __x86_64__
 #define ECHOE	0000020
-#endif
-#if defined __x86_64__
 #define ECHOK	0000040
-#endif
-#if defined __x86_64__
 #define ECHONL	0000100
-#endif
-#if defined __x86_64__
 #define NOFLSH	0000200
-#endif
-#if defined __x86_64__
 #define TOSTOP	0000400
-#endif
-#if defined __x86_64__
 #define ECHOCTL	0001000
-#endif
-#if defined __x86_64__
 #define ECHOPRT	0002000
-#endif
-#if defined __x86_64__
 #define ECHOKE	0004000
-#endif
-#if defined __x86_64__
 #define FLUSHO	0010000
-#endif
-#if defined __x86_64__
 #define PENDIN	0040000
-#endif
-#if defined __x86_64__
 #define IEXTEN	0100000
 #endif
 #if defined __powerpc64__
 #define NOFLSH	0x80000000
-#endif
-#if defined __powerpc64__
 #define ECHOKE	1
-#endif
-#if defined __powerpc64__
 #define IEXTEN	1024
-#endif
-#if defined __powerpc64__
 #define ISIG	128
-#endif
-#if defined __powerpc64__
 #define ECHONL	16
-#endif
-#if defined __powerpc64__
 #define ECHOE	2
-#endif
-#if defined __powerpc64__
 #define ICANON	256
-#endif
-#if defined __powerpc64__
 #define ECHOPRT	32
-#endif
-#if defined __powerpc64__
 #define ECHOK	4
-#endif
-#if defined __powerpc64__
 #define TOSTOP	4194304
-#endif
-#if defined __powerpc64__
 #define PENDIN	536870912
-#endif
-#if defined __powerpc64__
 #define ECHOCTL	64
-#endif
-#if defined __powerpc64__
 #define FLUSHO	8388608
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */

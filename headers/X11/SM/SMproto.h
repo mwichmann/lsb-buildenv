@@ -277,8 +277,6 @@ extern "C" {
 	CARD8 unused2[4];
     } smSaveYourselfMsg;
 
-#endif
-#if defined __i386__
 /* IA32 */
     typedef struct {
 	CARD8 majorOpcode;

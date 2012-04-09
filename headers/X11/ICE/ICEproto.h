@@ -98,8 +98,6 @@ extern "C" {
 	CARD32 length;
     } iceMsg;
 
-#endif
-#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
 	CARD8 majorOpcode;
@@ -693,8 +691,6 @@ extern "C" {
 	CARD8 unused2[6];
     } iceAuthReplyMsg;
 
-#endif
-#if defined __x86_64__
 /* x86-64 */
     typedef struct {
 	CARD8 majorOpcode;

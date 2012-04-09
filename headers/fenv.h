@@ -42,17 +42,9 @@ extern "C" {
 #endif
 #if defined __ia64__
 #define FE_INVALID	(1UL << 0)
-#endif
-#if defined __ia64__
 #define FE_DIVBYZERO	(1UL << 2)
-#endif
-#if defined __ia64__
 #define FE_OVERFLOW	(1UL << 3)
-#endif
-#if defined __ia64__
 #define FE_UNDERFLOW	(1UL << 4)
-#endif
-#if defined __ia64__
 #define FE_INEXACT	(1UL << 5)
 #endif
 #if defined __i386__

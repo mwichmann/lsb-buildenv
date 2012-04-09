@@ -705,20 +705,10 @@ extern "C" {
 	GDK_WINDOW_TYPE_HINT_DESKTOP = 7,
 #if __LSB_VERSION__ >= 41
 	GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU,
-#endif				/* __LSB_VERSION__ >= 41 */
-#if __LSB_VERSION__ >= 41
 	GDK_WINDOW_TYPE_HINT_POPUP_MENU,
-#endif				/* __LSB_VERSION__ >= 41 */
-#if __LSB_VERSION__ >= 41
 	GDK_WINDOW_TYPE_HINT_TOOLTIP,
-#endif				/* __LSB_VERSION__ >= 41 */
-#if __LSB_VERSION__ >= 41
 	GDK_WINDOW_TYPE_HINT_NOTIFICATION,
-#endif				/* __LSB_VERSION__ >= 41 */
-#if __LSB_VERSION__ >= 41
 	GDK_WINDOW_TYPE_HINT_COMBO,
-#endif				/* __LSB_VERSION__ >= 41 */
-#if __LSB_VERSION__ >= 41
 	GDK_WINDOW_TYPE_HINT_DND
 #endif				/* __LSB_VERSION__ >= 41 */
     } GdkWindowTypeHint;

@@ -52,8 +52,6 @@ extern "C" {
 	unsigned short padding[3];
     };
 
-#endif
-#if defined __x86_64__
 /* x86-64 */
     struct _libc_xmmreg {
 	uint32_t element[4];
@@ -373,14 +371,8 @@ extern "C" {
 #if __LSB_VERSION__ >= 32
 #if defined __ia64__
 #define uc_mcontext	_u._mc
-#endif
-#if defined __ia64__
 #define uc_sigmask	_u._mc.sc_mask
-#endif
-#if defined __ia64__
 #define uc_stack	_u._mc.sc_stack
-#endif
-#if defined __ia64__
 #define uc_link	_u._uc._link
 #endif
 #endif				/* __LSB_VERSION__ >= 3.2 */

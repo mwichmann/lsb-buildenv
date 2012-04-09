@@ -407,8 +407,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 21
 #if defined __i386__
 #define FP_ILOGB0	(-2147483647 - 1)
-#endif
-#if defined __i386__
 #define FP_ILOGBNAN	(-2147483647 - 1)
 #endif
 #if defined __powerpc__ && !defined __powerpc64__
@@ -428,8 +426,6 @@ extern "C" {
 #endif
 #if defined __x86_64__
 #define FP_ILOGB0	-2147483648
-#endif
-#if defined __x86_64__
 #define FP_ILOGBNAN	-2147483648
 #endif
 #if defined __ia64__

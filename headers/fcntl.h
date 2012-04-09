@@ -91,8 +91,6 @@ extern "C" {
 #endif
 #if defined __s390x__
 #define POSIX_FADV_DONTNEED	6
-#endif
-#if defined __s390x__
 #define POSIX_FADV_NOREUSE	7
 #endif
 #endif				/* __LSB_VERSION__ >= 3.2 */

@@ -12,8 +12,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #if defined __i386__
 #define LONG_MAX	0x7FFFFFFFL
-#endif
-#if defined __i386__
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
 #define PATH_MAX	4096
@@ -26,8 +24,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define ULONG_MAX	0xFFFFFFFFUL
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define LONG_MAX	2147483647L
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -35,8 +31,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 13
 #if defined __ia64__
 #define LONG_MAX	0x7FFFFFFFFFFFFFFFL
-#endif
-#if defined __ia64__
 #define ULONG_MAX	0xFFFFFFFFFFFFFFFFUL
 #endif
 #if defined __s390x__
@@ -44,8 +38,6 @@ extern "C" {
 #endif
 #if defined __s390__ && !defined __s390x__
 #define ULONG_MAX	0xFFFFFFFFUL
-#endif
-#if defined __s390__ && !defined __s390x__
 #define LONG_MAX	2147483647
 #endif
 #if defined __s390x__
@@ -149,8 +141,6 @@ extern "C" {
 #define CHAR_BIT	8
 #if defined __i386__
 #define CHAR_MAX	SCHAR_MAX
-#endif
-#if defined __i386__
 #define CHAR_MIN	SCHAR_MIN
 #endif
 #endif				/* __LSB_VERSION__ >= 1.1 */
@@ -158,8 +148,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
 #if defined __powerpc__ && !defined __powerpc64__
 #define CHAR_MIN	0
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
 #define CHAR_MAX	255
 #endif
 #endif				/* __LSB_VERSION__ >= 1.2 */
@@ -179,8 +167,6 @@ extern "C" {
 #endif
 #if defined __ia64__
 #define CHAR_MAX	SCHAR_MAX
-#endif
-#if defined __ia64__
 #define CHAR_MIN	SCHAR_MIN
 #endif
 #endif				/* __LSB_VERSION__ >= 1.3 */

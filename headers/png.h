@@ -577,392 +577,134 @@ extern "C" {
 	struct __jmp_buf_tag jmpbuf[1];
 #if __LSB_VERSION__ < 50
 	png_error_ptr error_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_error_ptr warning_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_voidp error_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_rw_ptr write_data_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_rw_ptr read_data_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_voidp io_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_user_transform_ptr read_user_transform_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_user_transform_ptr write_user_transform_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_voidp user_transform_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte user_transform_depth;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte user_transform_channels;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 mode;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 flags;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 transformations;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	z_stream zstream;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep zbuf;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t zbuf_size;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int zlib_level;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int zlib_method;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int zlib_window_bits;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int zlib_mem_level;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int zlib_strategy;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 width;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 height;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 num_rows;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 usr_width;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 rowbytes;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 irowbytes;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 iwidth;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 row_number;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep prev_row;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep row_buf;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep sub_row;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep up_row;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep avg_row;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep paeth_row;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_row_info row_info;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 idat_size;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 crc;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_colorp palette;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16 num_palette;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16 num_trans;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte chunk_name[5];
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte compression;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte filter;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte interlaced;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte pass;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte do_filter;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte color_type;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte bit_depth;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte usr_bit_depth;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte pixel_depth;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte channels;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte usr_channels;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte sig_bytes;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16 filler;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte background_gamma_type;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	float background_gamma;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_color_16 background;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_color_16 background_1;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_flush_ptr output_flush_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 flush_dist;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 flush_rows;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int gamma_shift;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	float gamma;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	float screen_gamma;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep gamma_table;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep gamma_from_1;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep gamma_to_1;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16pp gamma_16_table;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16pp gamma_16_from_1;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16pp gamma_16_to_1;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_color_8 sig_bit;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_color_8 shift;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep trans;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_color_16 trans_values;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_read_status_ptr read_row_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_write_status_ptr write_row_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_progressive_info_ptr info_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_progressive_row_ptr row_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_progressive_end_ptr end_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep save_buffer_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep save_buffer;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep current_buffer_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep current_buffer;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 push_length;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 skip_length;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t save_buffer_size;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t save_buffer_max;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t buffer_size;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t current_buffer_size;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int process_mode;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int cur_palette;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t current_text_size;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_size_t current_text_left;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_charp current_text;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_charp current_text_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep palette_lookup;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep dither_index;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16p hist;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte heuristic_method;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte num_prev_filters;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep prev_filters;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16p filter_weights;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16p inv_filter_weights;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16p filter_costs;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16p inv_filter_costs;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_charp time_buffer;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 free_me;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_voidp user_chunk_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_user_chunk_ptr read_user_chunk_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	int num_chunk_list;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep chunk_list;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte rgb_to_gray_status;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16 rgb_to_gray_red_coeff;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16 rgb_to_gray_green_coeff;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_16 rgb_to_gray_blue_coeff;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 mng_features_permitted;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_fixed_point int_gamma;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte filter_type;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_voidp mem_ptr;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_malloc_ptr malloc_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_free_ptr free_fn;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep big_row_buf;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep dither_sort;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep index_to_palette;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_bytep palette_to_index;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_byte compression_type;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 user_width_max;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ < 50
 	png_uint_32 user_height_max;
 #endif				/* __LSB_VERSION__ < 50 */
     };

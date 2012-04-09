@@ -87,8 +87,6 @@ extern "C" {
 	unsigned long int addr;
     } __attribute__ ((aligned(8))) _psw_t;
 
-#endif
-#if defined __s390__ && !defined __s390x__
 /* S390 */
     typedef struct {
 	_psw_t psw;

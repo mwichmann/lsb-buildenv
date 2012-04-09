@@ -545,7 +545,7 @@ $create.= "LEFT JOIN Type ON AIreturn=Tid ";
 # A trick here - join ArchInt once more to join two intervals for the same symbol,
 # if 'appearedin' value of one of them is equal to 'withdrawnin' value of another.
 # This can happen if we change version of binary symbol without affecting source-level information
-$create.= "LEFT JOIN ArchInt AI_2 ON AI_1.AIarch=AI_2.AIarch AND AI_1.AIint=AI_2.AIint AND AI_1.AIwithdrawnin=AI_2.AIappearedin AND AI_1.AIreturn=AI_2.AIreturn ";
+$create.= "LEFT JOIN ArchInt AI_2 ON AI_1.AIarch=AI_2.AIarch AND AI_1.AIint=AI_2.AIint AND AI_1.AIwithdrawnin=AI_2.AIappearedin ";
 $create.= "LEFT JOIN ArchType ON ATtid=Tid AND ATaid=AI_1.AIarch ";
 $create.= "LEFT JOIN Architecture ON AI_1.AIarch=Aid ";
 $create.= "WHERE Iheader=$Hid ";
