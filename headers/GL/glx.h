@@ -2,9 +2,11 @@
 #ifndef _GL_GLX_H_
 #define _GL_GLX_H_
 
+#include <GL/gl.h>
 #include <X11/Xlib.h>
 #include <X11/X.h>
 #include <X11/Xutil.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -105,8 +107,15 @@ extern "C" {
 #define GLX_GREEN_SIZE	9
 #if __LSB_VERSION__ >= 13
 #define GLX_ARB_get_proc_address	1
+#if __LSB_VERSION__ < 50
 #define GLX_GLXEXT_VERSION	6
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.3 */
+
+#if __LSB_VERSION__ >= 50
+#define GLX_GLXEXT_VERSION	32
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
@@ -150,9 +159,30 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
+#if __LSB_VERSION__ >= 50
+    typedef struct {
+	int type;
+	unsigned long int serial;
+	int send_event;
+	Display *display;
+	GLXDrawable drawable;
+	int event_type;
+	int64_t ust;
+	int64_t msc;
+	int64_t sbc;
+    } GLXBufferSwapComplete;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     union __GLXEvent {
 	GLXPbufferClobberEvent glxpbufferclobber;
+#if __LSB_VERSION__ < 50
 	long int pad;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	GLXBufferSwapComplete glxbufferswapcomplete;
+	long int pad[24];
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
 
@@ -229,6 +259,10 @@ extern "C" {
     extern GLXFBConfig *glXGetFBConfigs(Display * dpy, int screen,
 					int *nelements);
 #endif				/* __LSB_VERSION__ >= 3.2 */
+
+#if __LSB_VERSION__ >= 50
+    extern void (*glXGetProcAddress(const GLubyte * procName)) (void);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

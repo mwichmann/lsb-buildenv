@@ -1,6 +1,7 @@
 
 #define GL_VERSION_1_1	1
 #define GL_VERSION_1_2	1
+#define GL_VERSION_1_3	1
 
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
@@ -845,6 +846,7 @@ typedef double GLclampd;
 #define GL_TRUE	0x1
 
 extern void glAccum(GLenum op, GLfloat value);
+extern void glActiveTexture(GLenum texture);
 extern void glActiveTextureARB(GLenum texture);
 extern void glAlphaFunc(GLenum func, GLclampf ref);
 extern GLboolean glAreTexturesResident(GLsizei n, const GLuint * textures,
@@ -869,6 +871,7 @@ extern void glClearColor(GLclampf red, GLclampf green, GLclampf blue,
 extern void glClearDepth(GLclampd depth);
 extern void glClearIndex(GLfloat c);
 extern void glClearStencil(GLint s);
+extern void glClientActiveTexture(GLenum texture);
 extern void glClientActiveTextureARB(GLenum texture);
 extern void glClipPlane(GLenum plane, const GLdouble * equation);
 extern void glColor3b(GLbyte red, GLbyte green, GLbyte blue);
@@ -924,6 +927,34 @@ extern void glColorTableParameterfv(GLenum target, GLenum pname,
 				    const GLfloat * params);
 extern void glColorTableParameteriv(GLenum target, GLenum pname,
 				    const GLint * params);
+extern void glCompressedTexImage1D(GLenum target, GLint level,
+				   GLenum internalformat, GLsizei width,
+				   GLint border, GLsizei imageSize,
+				   const GLvoid * data);
+extern void glCompressedTexImage2D(GLenum target, GLint level,
+				   GLenum internalformat, GLsizei width,
+				   GLsizei height, GLint border,
+				   GLsizei imageSize, const GLvoid * data);
+extern void glCompressedTexImage3D(GLenum target, GLint level,
+				   GLenum internalformat, GLsizei width,
+				   GLsizei height, GLsizei depth,
+				   GLint border, GLsizei imageSize,
+				   const GLvoid * data);
+extern void glCompressedTexSubImage1D(GLenum target, GLint level,
+				      GLint xoffset, GLsizei width,
+				      GLenum format, GLsizei imageSize,
+				      const GLvoid * data);
+extern void glCompressedTexSubImage2D(GLenum target, GLint level,
+				      GLint xoffset, GLint yoffset,
+				      GLsizei width, GLsizei height,
+				      GLenum format, GLsizei imageSize,
+				      const GLvoid * data);
+extern void glCompressedTexSubImage3D(GLenum target, GLint level,
+				      GLint xoffset, GLint yoffset,
+				      GLint zoffset, GLsizei width,
+				      GLsizei height, GLsizei depth,
+				      GLenum format, GLsizei imageSize,
+				      const GLvoid * data);
 extern void glConvolutionFilter1D(GLenum target, GLenum internalformat,
 				  GLsizei width, GLenum format,
 				  GLenum type, const GLvoid * image);
@@ -1021,6 +1052,8 @@ extern void glGetColorTableParameterfv(GLenum target, GLenum pname,
 				       GLfloat * params);
 extern void glGetColorTableParameteriv(GLenum target, GLenum pname,
 				       GLint * params);
+extern void glGetCompressedTexImage(GLenum target, GLint lod,
+				    GLvoid * img);
 extern void glGetConvolutionFilter(GLenum target, GLenum format,
 				   GLenum type, GLvoid * image);
 extern void glGetConvolutionParameterfv(GLenum target, GLenum pname,
@@ -1111,6 +1144,8 @@ extern void glLoadIdentity(void);
 extern void glLoadMatrixd(const GLdouble * m);
 extern void glLoadMatrixf(const GLfloat * m);
 extern void glLoadName(GLuint name);
+extern void glLoadTransposeMatrixd(const GLdouble * m);
+extern void glLoadTransposeMatrixf(const GLfloat * m);
 extern void glLogicOp(GLenum opcode);
 extern void glMap1d(GLenum target, GLdouble u1, GLdouble u2, GLint stride,
 		    GLint order, const GLdouble * points);
@@ -1137,44 +1172,85 @@ extern void glMatrixMode(GLenum mode);
 extern void glMinmax(GLenum target, GLenum internalformat, GLboolean sink);
 extern void glMultMatrixd(const GLdouble * m);
 extern void glMultMatrixf(const GLfloat * m);
+extern void glMultTransposeMatrixd(const GLdouble * m);
+extern void glMultTransposeMatrixf(const GLfloat * m);
+extern void glMultiTexCoord1d(GLenum target, GLdouble s);
 extern void glMultiTexCoord1dARB(GLenum target, GLdouble s);
+extern void glMultiTexCoord1dv(GLenum target, const GLdouble * v);
 extern void glMultiTexCoord1dvARB(GLenum target, const GLdouble * v);
+extern void glMultiTexCoord1f(GLenum target, GLfloat s);
 extern void glMultiTexCoord1fARB(GLenum target, GLfloat s);
+extern void glMultiTexCoord1fv(GLenum target, const GLfloat * v);
 extern void glMultiTexCoord1fvARB(GLenum target, const GLfloat * v);
+extern void glMultiTexCoord1i(GLenum target, GLint s);
 extern void glMultiTexCoord1iARB(GLenum target, GLint s);
+extern void glMultiTexCoord1iv(GLenum target, const GLint * v);
 extern void glMultiTexCoord1ivARB(GLenum target, const GLint * v);
+extern void glMultiTexCoord1s(GLenum target, GLshort s);
 extern void glMultiTexCoord1sARB(GLenum target, GLshort s);
+extern void glMultiTexCoord1sv(GLenum target, const GLshort * v);
 extern void glMultiTexCoord1svARB(GLenum target, const GLshort * v);
+extern void glMultiTexCoord2d(GLenum target, GLdouble s, GLdouble t);
 extern void glMultiTexCoord2dARB(GLenum target, GLdouble s, GLdouble t);
+extern void glMultiTexCoord2dv(GLenum target, const GLdouble * v);
 extern void glMultiTexCoord2dvARB(GLenum target, const GLdouble * v);
+extern void glMultiTexCoord2f(GLenum target, GLfloat s, GLfloat t);
 extern void glMultiTexCoord2fARB(GLenum target, GLfloat s, GLfloat t);
+extern void glMultiTexCoord2fv(GLenum target, const GLfloat * v);
 extern void glMultiTexCoord2fvARB(GLenum target, const GLfloat * v);
+extern void glMultiTexCoord2i(GLenum target, GLint s, GLint t);
 extern void glMultiTexCoord2iARB(GLenum target, GLint s, GLint t);
+extern void glMultiTexCoord2iv(GLenum target, const GLint * v);
 extern void glMultiTexCoord2ivARB(GLenum target, const GLint * v);
+extern void glMultiTexCoord2s(GLenum target, GLshort s, GLshort t);
 extern void glMultiTexCoord2sARB(GLenum target, GLshort s, GLshort t);
+extern void glMultiTexCoord2sv(GLenum target, const GLshort * v);
 extern void glMultiTexCoord2svARB(GLenum target, const GLshort * v);
+extern void glMultiTexCoord3d(GLenum target, GLdouble s, GLdouble t,
+			      GLdouble r);
 extern void glMultiTexCoord3dARB(GLenum target, GLdouble s, GLdouble t,
 				 GLdouble r);
+extern void glMultiTexCoord3dv(GLenum target, const GLdouble * v);
 extern void glMultiTexCoord3dvARB(GLenum target, const GLdouble * v);
+extern void glMultiTexCoord3f(GLenum target, GLfloat s, GLfloat t,
+			      GLfloat r);
 extern void glMultiTexCoord3fARB(GLenum target, GLfloat s, GLfloat t,
 				 GLfloat r);
+extern void glMultiTexCoord3fv(GLenum target, const GLfloat * v);
 extern void glMultiTexCoord3fvARB(GLenum target, const GLfloat * v);
+extern void glMultiTexCoord3i(GLenum target, GLint s, GLint t, GLint r);
 extern void glMultiTexCoord3iARB(GLenum target, GLint s, GLint t, GLint r);
+extern void glMultiTexCoord3iv(GLenum target, const GLint * v);
 extern void glMultiTexCoord3ivARB(GLenum target, const GLint * v);
+extern void glMultiTexCoord3s(GLenum target, GLshort s, GLshort t,
+			      GLshort r);
 extern void glMultiTexCoord3sARB(GLenum target, GLshort s, GLshort t,
 				 GLshort r);
+extern void glMultiTexCoord3sv(GLenum target, const GLshort * v);
 extern void glMultiTexCoord3svARB(GLenum target, const GLshort * v);
+extern void glMultiTexCoord4d(GLenum target, GLdouble s, GLdouble t,
+			      GLdouble r, GLdouble q);
 extern void glMultiTexCoord4dARB(GLenum target, GLdouble s, GLdouble t,
 				 GLdouble r, GLdouble q);
+extern void glMultiTexCoord4dv(GLenum target, const GLdouble * v);
 extern void glMultiTexCoord4dvARB(GLenum target, const GLdouble * v);
+extern void glMultiTexCoord4f(GLenum target, GLfloat s, GLfloat t,
+			      GLfloat r, GLfloat q);
 extern void glMultiTexCoord4fARB(GLenum target, GLfloat s, GLfloat t,
 				 GLfloat r, GLfloat q);
+extern void glMultiTexCoord4fv(GLenum target, const GLfloat * v);
 extern void glMultiTexCoord4fvARB(GLenum target, const GLfloat * v);
+extern void glMultiTexCoord4i(GLenum target, GLint s, GLint t, GLint r,
+			      GLint q);
 extern void glMultiTexCoord4iARB(GLenum target, GLint s, GLint t, GLint r,
 				 GLint q);
+extern void glMultiTexCoord4iv(GLenum target, const GLint * v);
 extern void glMultiTexCoord4ivARB(GLenum target, const GLint * v);
+extern void glMultiTexCoord4s(GLenum target, GLshort s, GLshort t,
+			      GLshort r, GLshort q);
 extern void glMultiTexCoord4sARB(GLenum target, GLshort s, GLshort t,
 				 GLshort r, GLshort q);
+extern void glMultiTexCoord4sv(GLenum target, const GLshort * v);
 extern void glMultiTexCoord4svARB(GLenum target, const GLshort * v);
 extern void glNewList(GLuint list, GLenum mode);
 extern void glNormal3b(GLbyte nx, GLbyte ny, GLbyte nz);
@@ -1257,6 +1333,7 @@ extern void glResetHistogram(GLenum target);
 extern void glResetMinmax(GLenum target);
 extern void glRotated(GLdouble angle, GLdouble x, GLdouble y, GLdouble z);
 extern void glRotatef(GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
+extern void glSampleCoverage(GLclampf value, GLboolean invert);
 extern void glScaled(GLdouble x, GLdouble y, GLdouble z);
 extern void glScalef(GLfloat x, GLfloat y, GLfloat z);
 extern void glScissor(GLint x, GLint y, GLsizei width, GLsizei height);
