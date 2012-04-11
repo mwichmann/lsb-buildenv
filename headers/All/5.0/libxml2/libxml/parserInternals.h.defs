@@ -123,7 +123,7 @@ extern void xmlParserHandlePEReference(xmlParserCtxtPtr ctxt);
 extern void xmlParserInputShrink(xmlParserInputPtr in);
 extern unsigned int xmlParserMaxDepth;
 extern xmlChar xmlPopInput(xmlParserCtxtPtr ctxt);
-extern void xmlPushInput(xmlParserCtxtPtr ctxt, xmlParserInputPtr input);
+extern int xmlPushInput(xmlParserCtxtPtr ctxt, xmlParserInputPtr input);
 extern void xmlSetEntityReferenceFunc(xmlEntityReferenceFunc func);
 extern int xmlSkipBlankChars(xmlParserCtxtPtr ctxt);
 extern xmlChar *xmlSplitQName(xmlParserCtxtPtr ctxt, const xmlChar * name,
