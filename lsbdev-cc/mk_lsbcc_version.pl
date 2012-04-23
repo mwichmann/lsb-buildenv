@@ -28,7 +28,7 @@ print <<HEADER;
 
 /* This is a generated file, do not edit */
 
-/* note LSBCC_VERSION should be overridden by packaging, which knows the version */
+/* LSBCC_VERSION should be overridden by packaging, which knows the version */
 
 #ifdef SKIP_DEVEL_VERSIONS
 

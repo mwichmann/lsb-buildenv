@@ -103,6 +103,7 @@ void CloseElfFile(ElfFile * efile)
     free(efile);
 }
 
+/* this is the imported code */
 /*
  *
  * Copyright (c) 2001-2002 The Free Standards Group Inc

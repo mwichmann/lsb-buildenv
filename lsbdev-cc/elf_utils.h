@@ -32,7 +32,7 @@ typedef struct {
 typedef unsigned long fptr;
 #endif
 
-//In memory format
+/* In memory format */
 struct classtypeinfo_mem {
     void *basevtable;
     char *name;
@@ -94,14 +94,14 @@ struct pbasetypeinfo_mem {
     void *basetypeinfo[0];
 };
 
-//DB format
+/* DB format */
 struct classtypeinfo {
     char *basevtable;
     char *name;
     char **basetypeinfo;
 };
 
-//In memory format
+/* In memory format */
 struct cat1vtable_mem {
     unsigned long baseoffset;
     const char *typeinfo;
@@ -120,7 +120,7 @@ union classvtable_mem {
     struct cat2vtable_mem cat2;
 };
 
-//DB format
+/* DB format */
 struct classvtable {
     unsigned long vcalloffset;
     unsigned long baseoffset;
@@ -130,7 +130,7 @@ struct classvtable {
     const char **virtfuncs;
 };
 
-// No in memory format for this one
+/* No in memory format for this one */
 struct classinfo {
     char *name;
     char *vtablename;
@@ -147,8 +147,7 @@ struct classinfo {
     struct base_type_info *btinfo;
 };
 
-#if defined(__alpha) || defined(__alpha__) || \
-    defined(__ia64__) || defined(__powerpc64__) || defined(__s390x__) || \
+#if defined(__ia64__) || defined(__powerpc64__) || defined(__s390x__) || \
     defined(__x86_64__)
 
 #define Elf_Ehdr Elf64_Ehdr
@@ -189,11 +188,11 @@ typedef struct {
     int fd;
     caddr_t addr;		/* Start address of the file */
     Elf_Ehdr *elf_header;
-    caddr_t araddr;		/* Start address of the file if an archive */
-    Elf_Shdr *saddr;		/* Start address of the next section of the file */
-    Elf_Phdr *paddr;		/* address of the program header of the file */
-    caddr_t straddr;		/* Start address of the string table */
-    int strndx;			/* index of the string table */
+    caddr_t araddr;		/* Start address of file if an archive */
+    Elf_Shdr *saddr;		/* Start address of next section of the file */
+    Elf_Phdr *paddr;		/* address of the program header of file */
+    caddr_t straddr;		/* Start address of string table */
+    int strndx;			/* index of string table */
     int size;
     int numph;
     int numsh;

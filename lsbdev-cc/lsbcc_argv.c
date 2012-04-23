@@ -30,12 +30,14 @@ struct argvgroup *argvinit(void)
 {
     struct argvgroup *ag;
 
-    if ((ag = (struct argvgroup *) malloc(sizeof(struct argvgroup))) == NULL) {
+    if ((ag =
+	 (struct argvgroup *) malloc(sizeof(struct argvgroup))) == NULL) {
 	fprintf(stderr, "Unable to allocate memory for a new argvgroup\n");
 	exit(2);
     }
 
-    if ((ag->argv = (char **)malloc(sizeof(char *) * ARGVCHUNKSIZE)) == NULL) {
+    if ((ag->argv =
+	 (char **) malloc(sizeof(char *) * ARGVCHUNKSIZE)) == NULL) {
 	fprintf(stderr, "Unable to allocate memory for a argv items\n");
 	exit(2);
     }
@@ -79,7 +81,8 @@ void argvadd(struct argvgroup *ag, const char *opt, char *val)
     char *dashopt;
 
     if ((dashopt = (char *) malloc(strlen(opt) + 2)) == NULL) {
-	fprintf(stderr, "Unable to allocate memory for an option string\n");
+	fprintf(stderr,
+		"Unable to allocate memory for an option string\n");
 	exit(4);
     }
 
