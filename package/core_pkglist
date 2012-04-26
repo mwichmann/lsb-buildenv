@@ -252,6 +252,8 @@ BASE/LIB-5.0/libpthread.so
 BASE/LIB-5.0/libpthread.so.0
 BASE/LIB-5.0/librt.so
 BASE/LIB-5.0/librt.so.1
+BASE/LIB-5.0/libsane.so
+BASE/LIB-5.0/libsane.so.1
 BASE/LIB-5.0/libssl3.so
 BASE/LIB-5.0/libstdc++.so
 BASE/LIB-5.0/libstdc++.so.6
@@ -484,6 +486,8 @@ BASE/include/rpc/rpc_msg.h
 BASE/include/rpc/svc.h
 BASE/include/rpc/types.h
 BASE/include/rpc/xdr.h
+BASE/include/sane/sane.h
+BASE/include/sane/saneopts.h
 BASE/include/sched.h
 BASE/include/search.h
 BASE/include/security/pam_appl.h

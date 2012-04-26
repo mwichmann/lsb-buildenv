@@ -21,6 +21,7 @@ libnss3
 libpam
 libpthread
 librt
+libsane
 libssl3
 libstdcxx
 libutil

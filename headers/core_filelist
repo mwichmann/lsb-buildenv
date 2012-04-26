@@ -223,6 +223,8 @@ rpc/rpc_msg.h
 rpc/svc.h
 rpc/types.h
 rpc/xdr.h
+sane/sane.h
+sane/saneopts.h
 sched.h
 search.h
 security/pam_appl.h
