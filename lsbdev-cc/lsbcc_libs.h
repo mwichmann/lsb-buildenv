@@ -286,6 +286,7 @@ char *lsb_libs_50[] = {
 	"pthread",
 	"qt-mt",
 	"rt",
+	"sane",
 	"ssl3",
 	"util",
 	"xml2",
