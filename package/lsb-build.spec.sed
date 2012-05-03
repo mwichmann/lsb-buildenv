@@ -331,6 +331,8 @@ done
 /opt/lsb/%xlib-4.1/pkgconfig/xrender.pc
 /opt/lsb/%xlib-4.1/pkgconfig/xt.pc
 /opt/lsb/%xlib-4.1/pkgconfig/xtst.pc
+/opt/lsb/%xlib-4.1/pkgconfig/nss.pc
+/opt/lsb/%xlib-4.1/pkgconfig/nspr.pc
 /opt/lsb/%xlib-5.0/pkgconfig/atk.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo-ft.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo.pc
@@ -380,6 +382,8 @@ done
 /opt/lsb/%xlib-5.0/pkgconfig/xrender.pc
 /opt/lsb/%xlib-5.0/pkgconfig/xt.pc
 /opt/lsb/%xlib-5.0/pkgconfig/xtst.pc
+/opt/lsb/%xlib-5.0/pkgconfig/nss.pc
+/opt/lsb/%xlib-5.0/pkgconfig/nspr.pc
 /opt/lsb/%xlib-4.0/pkgconfig/atk.pc
 /opt/lsb/%xlib-4.0/pkgconfig/cairo-ft.pc
 /opt/lsb/%xlib-4.0/pkgconfig/cairo.pc
@@ -414,6 +418,8 @@ done
 /opt/lsb/%xlib-4.0/pkgconfig/QtSql.pc
 /opt/lsb/%xlib-4.0/pkgconfig/QtSvg.pc
 /opt/lsb/%xlib-4.0/pkgconfig/QtXml.pc
+/opt/lsb/%xlib-4.0/pkgconfig/nss.pc
+/opt/lsb/%xlib-4.0/pkgconfig/nspr.pc
 
 # locally created symlinks
 #/opt/lsb/%xlib-4.0         # covered in lsb-build-base, don't duplicate
