@@ -45,6 +45,7 @@ foreach $version (@lsbversions, @lsbdevversions) {
     $select .= "WHERE SMmandatorysince <= '$version' ";
     $select .= "AND SMmandatorysince <> '' ";
     $select .= "AND SMLappearedin <= '$version' ";
+    $select .= "AND (SMLwithdrawnin IS NULL OR SMLwithdrawnin > '$version') ";
     $select .= "ORDER BY Lname";
 
     $th = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
