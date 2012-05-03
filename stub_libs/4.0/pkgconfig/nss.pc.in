@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+
+Name: NSS
+Version: 3.11.4
+Description: Network Security Services
+Requires: nspr >= 4.8.2
+Libs: -L${libdir} -lssl3 -lnss3
+Cflags: -I${includedir}/nss
