@@ -849,13 +849,13 @@ int lsbcc_scandir(char *libpath,
 	    if (num_ents == ents_available) {
 		if (*dirents != NULL) {
 		    struct dirent **tmpdirents = *dirents;
-		    *dirents = malloc(ents_available + 1024);
-		    memcpy(*dirents, tmpdirents, ents_available);
+		    *dirents = malloc(ents_available * sizeof(struct dirent*) + 1024);
+		    memcpy(*dirents, tmpdirents, ents_available * sizeof(struct dirent*));
 		    free(tmpdirents);
 		} else {
 		    *dirents = malloc(1024);
 		}
-		ents_available += 1024;
+		ents_available += 1024 / sizeof(struct dirent*);
 	    }
 	    (*dirents)[num_ents] = malloc(sizeof(struct dirent));
 	    if (!(*dirents)[num_ents]) {
