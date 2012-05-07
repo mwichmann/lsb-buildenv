@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <stddef.h>
 #include <netinet/in.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -245,6 +246,11 @@ extern "C" {
 
     typedef struct ipp_attribute_s ipp_attribute_t;
 
+#if __LSB_VERSION__ >= 50
+    typedef ssize_t(*ipp_iocb_t) (void *, ipp_uchar_t *, size_t);
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     union ipp_request_u {
 	struct {
 	    ipp_uchar_t version[2];
@@ -382,6 +388,13 @@ extern "C" {
     extern const ipp_uchar_t *ippTimeToDate(time_t t);
     extern ipp_state_t ippWrite(http_t * http, ipp_t * ipp);
     extern ipp_state_t ippWriteFile(int fd, ipp_t * ipp);
+#if __LSB_VERSION__ >= 50
+    extern ipp_state_t ippReadIO(void *src, ipp_iocb_t cb, int blocking,
+				 ipp_t * parent, ipp_t * ipp);
+    extern ipp_state_t ippWriteIO(void *dst, ipp_iocb_t cb, int blocking,
+				  ipp_t * parent, ipp_t * ipp);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

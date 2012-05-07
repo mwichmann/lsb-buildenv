@@ -213,6 +213,7 @@ typedef enum ipp_op_e {
     CUPS_GET_PPD
 } ipp_op_t;
 typedef unsigned char ipp_uchar_t;
+typedef ssize_t(*ipp_iocb_t) (void *, ipp_uchar_t *, size_t);
 typedef union ipp_request_u {
     struct {
 	ipp_uchar_t version[2];
@@ -328,7 +329,11 @@ extern ipp_t *ippNew(void);
 extern int ippPort(void);
 extern ipp_state_t ippRead(http_t * http, ipp_t * ipp);
 extern ipp_state_t ippReadFile(int fd, ipp_t * ipp);
+extern ipp_state_t ippReadIO(void *src, ipp_iocb_t cb, int blocking,
+			     ipp_t * parent, ipp_t * ipp);
 extern void ippSetPort(int p);
 extern const ipp_uchar_t *ippTimeToDate(time_t t);
 extern ipp_state_t ippWrite(http_t * http, ipp_t * ipp);
 extern ipp_state_t ippWriteFile(int fd, ipp_t * ipp);
+extern ipp_state_t ippWriteIO(void *dst, ipp_iocb_t cb, int blocking,
+			      ipp_t * parent, ipp_t * ipp);
