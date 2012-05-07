@@ -8970,9 +8970,9 @@ extern "C" {
     extern void gtk_init_add(GtkFunction function, gpointer data);
     extern gboolean gtk_init_check(int *argc, char ***argv);
     extern gboolean gtk_init_with_args(int *argc, char ***argv,
-				       char *parameter_string,
+				       const char *parameter_string,
 				       GOptionEntry * entries,
-				       char *translation_domain,
+				       const char *translation_domain,
 				       GError * *error);
     extern GType gtk_input_dialog_get_type(void);
     extern GtkWidget *gtk_input_dialog_new(void);

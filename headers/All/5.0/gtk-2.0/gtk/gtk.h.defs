@@ -7596,9 +7596,9 @@ extern void gtk_init(int *argc, char ***argv);
 extern void gtk_init_add(GtkFunction function, gpointer data);
 extern gboolean gtk_init_check(int *argc, char ***argv);
 extern gboolean gtk_init_with_args(int *argc, char ***argv,
-				   char *parameter_string,
+				   const char *parameter_string,
 				   GOptionEntry * entries,
-				   char *translation_domain,
+				   const char *translation_domain,
 				   GError * *error);
 extern GType gtk_input_dialog_get_type(void);
 extern GtkWidget *gtk_input_dialog_new(void);
@@ -9063,7 +9063,7 @@ extern gboolean gtk_target_list_find(GtkTargetList * list, GdkAtom target,
 extern GType gtk_target_list_get_type(void);
 extern GtkTargetList *gtk_target_list_new(const GtkTargetEntry * targets,
 					  guint ntargets);
-extern void gtk_target_list_ref(GtkTargetList * list);
+extern GtkTargetList gtk_target_list_ref(GtkTargetList * list);
 extern void gtk_target_list_remove(GtkTargetList * list, GdkAtom target);
 extern void gtk_target_list_unref(GtkTargetList * list);
 extern void gtk_target_table_free(GtkTargetEntry * targets,
@@ -9795,7 +9795,7 @@ extern GtkTreeIter *gtk_tree_iter_copy(GtkTreeIter * iter);
 extern void gtk_tree_iter_free(GtkTreeIter * iter);
 extern GType gtk_tree_iter_get_type(void);
 extern void gtk_tree_model_filter_clear_cache(GtkTreeModelFilter * filter);
-extern void
+extern gboolean
 gtk_tree_model_filter_convert_child_iter_to_iter(GtkTreeModelFilter *
 						 filter,
 						 GtkTreeIter * filter_iter,
@@ -9905,13 +9905,11 @@ extern void gtk_tree_model_rows_reordered(GtkTreeModel * tree_model,
 					  gint * new_order);
 extern void gtk_tree_model_sort_clear_cache(GtkTreeModelSort *
 					    tree_model_sort);
-extern void gtk_tree_model_sort_convert_child_iter_to_iter(GtkTreeModelSort
-							   *
-							   tree_model_sort,
-							   GtkTreeIter *
-							   sort_iter,
-							   GtkTreeIter *
-							   child_iter);
+extern gboolean
+gtk_tree_model_sort_convert_child_iter_to_iter(GtkTreeModelSort *
+					       tree_model_sort,
+					       GtkTreeIter * sort_iter,
+					       GtkTreeIter * child_iter);
 extern GtkTreePath
     *gtk_tree_model_sort_convert_child_path_to_path(GtkTreeModelSort *
 						    tree_model_sort,

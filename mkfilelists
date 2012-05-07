@@ -29,7 +29,7 @@ HANDLE = None
 #============== Editable section ============== 
 # for package lists, one library-version name corresponding to the
 # default version vanishes and becomes just lib - this version:
-DEFAULTVER = "4.1"
+DEFAULTVER = "5.0"
 
 # Lists of names of the modules in core and desktop as they appear
 # in the database - this may need manual tweaking on changes

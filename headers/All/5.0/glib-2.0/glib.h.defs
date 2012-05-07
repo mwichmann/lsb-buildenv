@@ -1563,7 +1563,8 @@ extern GQuark g_convert_error_quark(void);
 extern gchar *g_convert_with_fallback(const gchar * str, gssize len,
 				      const gchar * to_codeset,
 				      const gchar * from_codeset,
-				      gchar * fallback, gsize * bytes_read,
+				      const gchar * fallback,
+				      gsize * bytes_read,
 				      gsize * bytes_written,
 				      GError * *error);
 extern gchar *g_convert_with_iconv(const gchar * str, gssize len,
@@ -1940,15 +1941,16 @@ extern gboolean g_key_file_load_from_file(GKeyFile * key_file,
 					  GKeyFileFlags flags,
 					  GError * *error);
 extern GKeyFile *g_key_file_new(void);
-extern void g_key_file_remove_comment(GKeyFile * key_file,
+extern gboolean g_key_file_remove_comment(GKeyFile * key_file,
+					  const gchar * group_name,
+					  const gchar * key,
+					  GError * *error);
+extern gboolean g_key_file_remove_group(GKeyFile * key_file,
+					const gchar * group_name,
+					GError * *error);
+extern gboolean g_key_file_remove_key(GKeyFile * key_file,
 				      const gchar * group_name,
 				      const gchar * key, GError * *error);
-extern void g_key_file_remove_group(GKeyFile * key_file,
-				    const gchar * group_name,
-				    GError * *error);
-extern void g_key_file_remove_key(GKeyFile * key_file,
-				  const gchar * group_name,
-				  const gchar * key, GError * *error);
 extern void g_key_file_set_boolean(GKeyFile * key_file,
 				   const gchar * group_name,
 				   const gchar * key, gboolean value);
@@ -1956,10 +1958,11 @@ extern void g_key_file_set_boolean_list(GKeyFile * key_file,
 					const gchar * group_name,
 					const gchar * key, gboolean * list,
 					gsize length);
-extern void g_key_file_set_comment(GKeyFile * key_file,
-				   const gchar * group_name,
-				   const gchar * key,
-				   const gchar * comment, GError * *error);
+extern gboolean g_key_file_set_comment(GKeyFile * key_file,
+				       const gchar * group_name,
+				       const gchar * key,
+				       const gchar * comment,
+				       GError * *error);
 extern void g_key_file_set_double(GKeyFile * key_file,
 				  const gchar * group_name,
 				  const gchar * key, gdouble value);

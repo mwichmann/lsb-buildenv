@@ -2450,7 +2450,7 @@ extern "C" {
     extern gchar *g_convert_with_fallback(const gchar * str, gssize len,
 					  const gchar * to_codeset,
 					  const gchar * from_codeset,
-					  gchar * fallback,
+					  const gchar * fallback,
 					  gsize * bytes_read,
 					  gsize * bytes_written,
 					  GError * *error);
