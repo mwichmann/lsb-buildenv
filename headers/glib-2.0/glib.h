@@ -1880,6 +1880,11 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
+#if __LSB_VERSION__ >= 50
+    typedef struct _GSourcePrivate GSourcePrivate;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     struct _GThread {
 	GThreadFunc func;
 	gpointer data;
@@ -2013,8 +2018,18 @@ extern "C" {
 	GSList *poll_fds;
 	GSource *prev;
 	GSource *next;
+#if __LSB_VERSION__ < 50
 	gpointer reserved1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	char *name;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	gpointer reserved2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	GSourcePrivate *priv;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _GSourceCallbackFuncs {

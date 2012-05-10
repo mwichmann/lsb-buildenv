@@ -3677,6 +3677,11 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
+#if __LSB_VERSION__ >= 50
+    typedef struct _GtkTooltip GtkTooltip;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     enum {
 	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID = -1,
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
@@ -4223,7 +4228,12 @@ extern "C" {
 	PangoTabArray *tabs;
 	GtkWrapMode wrap_mode;
 	PangoLanguage *language;
+#if __LSB_VERSION__ < 50
 	gpointer padding1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	GdkColor *pg_bg_color;
+#endif				/* __LSB_VERSION__ >= 50 */
 	guint invisible:1;
 	guint bg_full_height:1;
 	guint editable:1;
@@ -4707,9 +4717,25 @@ extern "C" {
 	AtkObject *(*get_accessible) (GtkWidget *);
 	void (*screen_changed) (GtkWidget *, GdkScreen *);
 	 gboolean(*can_activate_accel) (GtkWidget *, guint);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved2) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*grab_broken_event) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved3) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*composited_changed) (GtkWidget *);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved4) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*query_tooltip) (GtkWidget *, gint, gint, gboolean,
+				   GtkTooltip *);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved5) (void);
 	void (*_gtk_reserved6) (void);
 	void (*_gtk_reserved7) (void);
@@ -5537,8 +5563,18 @@ extern "C" {
 	void (*activate_item) (GtkMenuItem *);
 	void (*toggle_size_request) (GtkMenuItem *, gint *);
 	void (*toggle_size_allocate) (GtkMenuItem *, gint);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*set_label) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved2) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	const gchar *(*get_label) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
     };
@@ -5582,7 +5618,12 @@ extern "C" {
 	GtkWidget *(*create_tool_item) (GtkAction *);
 	void (*connect_proxy) (GtkAction *, GtkWidget *);
 	void (*disconnect_proxy) (GtkAction *, GtkWidget *);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	GtkWidget *(*create_menu) (GtkAction *);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
@@ -5686,7 +5727,12 @@ extern "C" {
 	void (*select_item) (GtkMenuShell *, GtkWidget *);
 	void (*insert) (GtkMenuShell *, GtkWidget *, gint);
 	 gint(*get_popup_delay) (GtkMenuShell *);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*move_selected) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
     };
@@ -5704,7 +5750,12 @@ extern "C" {
 	void (*move_cursor) (GtkLabel *, GtkMovementStep, gint, gboolean);
 	void (*copy_clipboard) (GtkLabel *);
 	void (*populate_popup) (GtkLabel *, GtkMenu *);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*activate_link) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
@@ -5890,7 +5941,12 @@ extern "C" {
 			    const GtkTextIter *, const GtkTextIter *);
 	void (*begin_user_action) (GtkTextBuffer *);
 	void (*end_user_action) (GtkTextBuffer *);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*paste_done) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
@@ -6139,7 +6195,12 @@ extern "C" {
 				  GdkRectangle *, GtkWidget *,
 				  const gchar *, GdkWindowEdge, gint, gint,
 				  gint, gint);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*get_text_area_size) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
@@ -6296,7 +6357,12 @@ extern "C" {
 	void (*copy_clipboard) (GtkEntry *);
 	void (*paste_clipboard) (GtkEntry *);
 	void (*toggle_overwrite) (GtkEntry *);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*get_text_area_size) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
     };
@@ -6307,7 +6373,12 @@ extern "C" {
 	 gint(*output) (GtkSpinButton *);
 	void (*value_changed) (GtkSpinButton *);
 	void (*change_value) (GtkSpinButton *, GtkScrollType);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*cursor_on_match) (GtkSpinButton *);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
@@ -6342,7 +6413,13 @@ extern "C" {
 				    GtkTreeIter *);
 	void (*action_activated) (GtkEntryCompletion *, gint);
 	 gboolean(*insert_prefix) (GtkEntryCompletion *, const gchar *);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved0) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*cursor_on_match) (GtkEntryCompletion *, GtkTreeModel *,
+				     GtkTreeIter *);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved1) (void);
 	void (*_gtk_reserved2) (void);
     };
@@ -6677,7 +6754,12 @@ extern "C" {
 
     struct _GtkAboutDialogClass {
 	GtkDialogClass parent_class;
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*activate_link) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
@@ -6693,7 +6775,12 @@ extern "C" {
 
     struct _GtkFileChooserButtonClass {
 	GtkHBoxClass parent_class;
+#if __LSB_VERSION__ < 50
 	void *__gtk_reserved1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*file_set) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void *__gtk_reserved2;
 	void *__gtk_reserved3;
 	void *__gtk_reserved4;
@@ -6739,9 +6826,24 @@ extern "C" {
 	 gboolean(*focus_tab) (GtkNotebook *, GtkNotebookTab);
 	void (*change_current_page) (GtkNotebook *, gint);
 	void (*move_focus_out) (GtkNotebook *, GtkDirectionType);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*reorder_tab) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved2) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gint(*insert_page) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved3) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	GtkNotebook *(*create_window) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved4) (void);
     };
 
@@ -6890,7 +6992,12 @@ extern "C" {
 	GtkWidget *(*create_custom_widget) (void);
 	void (*custom_widget_apply) (void);
 	 gboolean(*preview) (void);
+#if __LSB_VERSION__ < 50
 	void (*_gtk_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*update_custom_widget) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);

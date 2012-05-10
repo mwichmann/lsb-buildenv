@@ -16,14 +16,16 @@ typedef struct _GtkStatusIconClass {
     void (*activate) (void);
     void (*popup_menu) (void);
      gboolean(*size_changed) (void);
-    void *__gtk_reserved1;
-    void *__gtk_reserved2;
-    void *__gtk_reserved3;
-    void *__gtk_reserved4;
+     gboolean(*button_press_event) (GtkStatusIcon *, GdkEventButton *);
+     gboolean(*button_release_event) (GtkStatusIcon *, GdkEventButton *);
+     gboolean(*scroll_event) (GtkStatusIcon *, GdkEventButton *);
+     gboolean(*query_tooltip) (GtkStatusIcon *, gint, gint, gboolean,
+			       GtkTooltip *);
     void *__gtk_reserved5;
     void *__gtk_reserved6;
 } GtkStatusIconClass;
 typedef struct _GtkStatusIconPrivate GtkStatusIconPrivate;
+typedef struct _GtkTooltip GtkTooltip;
 extern gboolean gtk_status_icon_get_blinking(GtkStatusIcon * status_icon);
 extern gboolean gtk_status_icon_get_geometry(GtkStatusIcon * status_icon,
 					     GdkScreen * *screen,

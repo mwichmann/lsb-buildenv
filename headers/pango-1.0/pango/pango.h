@@ -568,7 +568,12 @@ extern "C" {
 	void (*begin) (PangoRenderer *);
 	void (*end) (PangoRenderer *);
 	void (*prepare_run) (PangoRenderer *, PangoLayoutRun *);
+#if __LSB_VERSION__ < 50
 	void (*_pango_reserved1) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*draw_glyph_item) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_pango_reserved2) (void);
 	void (*_pango_reserved3) (void);
 	void (*_pango_reserved4) (void);

@@ -29,6 +29,11 @@ extern "C" {
 
     typedef struct _GtkStatusIconPrivate GtkStatusIconPrivate;
 
+#if __LSB_VERSION__ >= 50
+    typedef struct _GtkTooltip GtkTooltip;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     struct _GtkStatusIcon {
 	GObject parent_instance;
 	GtkStatusIconPrivate *priv;
@@ -39,10 +44,32 @@ extern "C" {
 	void (*activate) (void);
 	void (*popup_menu) (void);
 	 gboolean(*size_changed) (void);
+#if __LSB_VERSION__ < 50
 	void *__gtk_reserved1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*button_press_event) (GtkStatusIcon *, GdkEventButton *);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void *__gtk_reserved2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*button_release_event) (GtkStatusIcon *,
+					  GdkEventButton *);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void *__gtk_reserved3;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*scroll_event) (GtkStatusIcon *, GdkEventButton *);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void *__gtk_reserved4;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*query_tooltip) (GtkStatusIcon *, gint, gint, gboolean,
+				   GtkTooltip *);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void *__gtk_reserved5;
 	void *__gtk_reserved6;
     };

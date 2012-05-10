@@ -646,8 +646,8 @@ typedef struct _GSource {
     GSList *poll_fds;
     GSource *prev;
     GSource *next;
-    gpointer reserved1;
-    gpointer reserved2;
+    char *name;
+    GSourcePrivate *priv;
 } GSource;
 typedef gboolean(*GSourceFunc) (gpointer);
 typedef struct _GSourceCallbackFuncs {
@@ -1278,6 +1278,7 @@ typedef enum {
     G_BOOKMARK_FILE_ERROR_FILE_NOT_FOUND
 } GBookmarkFileError;
 typedef struct _GBookmarkFile GBookmarkFile;
+typedef struct _GSourcePrivate GSourcePrivate;
 extern void g_allocator_free(GAllocator * allocator);
 extern GAllocator *g_allocator_new(const gchar * name, guint n_preallocs);
 extern GArray *g_array_append_vals(GArray * array, gconstpointer data,

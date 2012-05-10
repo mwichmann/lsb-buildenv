@@ -959,6 +959,11 @@ extern "C" {
 	GDK_WA_NOREDIR = 1 << 8
     } GdkWindowAttributesType;
 
+#if __LSB_VERSION__ >= 50
+    typedef struct _GdkEventGrabBroken GdkEventGrabBroken;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     struct _GdkDrawable {
 	GObject parent_instance;
     };
@@ -1520,11 +1525,36 @@ extern "C" {
 					 gint, PangoGlyphString *);
 	void (*draw_trapezoids) (GdkDrawable *, GdkGC *, GdkTrapezoid *,
 				 gint);
+#if __LSB_VERSION__ < 50
 	void (*_gdk_reserved3) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	cairo_surface_t *(*ref_cairo_surface) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gdk_reserved4) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	GdkDrawable *(*get_source_drawable) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gdk_reserved5) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*set_cairo_clip) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gdk_reserved6) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	cairo_surface_t *(*create_cairo_surface) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	void (*_gdk_reserved7) (void);
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*draw_drawable_with_src) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	void (*_gdk_reserved9) (void);
 	void (*_gdk_reserved10) (void);
 	void (*_gdk_reserved11) (void);
@@ -1589,6 +1619,18 @@ extern "C" {
 	void (*_gdk_reserved3) (void);
 	void (*_gdk_reserved4) (void);
     };
+
+#if __LSB_VERSION__ >= 50
+    struct _GdkEventGrabBroken {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	gboolean keyboard;
+	gboolean implicit;
+	GdkWindow *grab_window;
+    };
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 /* Function prototypes */

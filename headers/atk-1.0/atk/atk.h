@@ -696,7 +696,12 @@ extern "C" {
 	 gint(*get_n_mime_types) (AtkStreamableContent *);
 	const gchar *(*get_mime_type) (AtkStreamableContent *, gint);
 	GIOChannel *(*get_stream) (AtkStreamableContent *, const gchar *);
+#if __LSB_VERSION__ < 50
 	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	const gchar *(*get_uri) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	AtkFunction pad2;
 	AtkFunction pad3;
 	AtkFunction pad4;
@@ -746,7 +751,12 @@ extern "C" {
 	void (*state_change) (AtkObject *, const gchar *, gboolean);
 	void (*visible_data_changed) (AtkObject *);
 	void (*active_descendant_changed) (AtkObject *, gpointer *);
+#if __LSB_VERSION__ < 50
 	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkAttributeSet *(*get_attributes) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	AtkFunction pad2;
 	AtkFunction pad3;
     };
@@ -832,7 +842,12 @@ extern "C" {
 	void (*get_maximum_value) (AtkValue *, GValue *);
 	void (*get_minimum_value) (AtkValue *, GValue *);
 	 gboolean(*set_current_value) (AtkValue *, const GValue *);
+#if __LSB_VERSION__ < 50
 	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	void (*create_window) (AtkValue *, GValue *);
+#endif				/* __LSB_VERSION__ >= 50 */
 	AtkFunction pad2;
     };
 
@@ -922,7 +937,12 @@ extern "C" {
 	void (*get_image_size) (AtkImage *, gint *, gint *);
 	 gboolean(*set_image_description) (AtkImage *, const gchar *);
 	AtkFunction pad1;
+#if __LSB_VERSION__ < 50
 	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	const gchar *(*get_image_locale) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _AtkComponentIface {
@@ -946,7 +966,12 @@ extern "C" {
 	 AtkLayer(*get_layer) (AtkComponent *);
 	 gint(*get_mdi_zorder) (AtkComponent *);
 	void (*bounds_changed) (AtkComponent *, AtkRectangle *);
+#if __LSB_VERSION__ < 50
 	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gdouble(*get_alpha) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _AtkEditableTextIface {
@@ -968,10 +993,30 @@ extern "C" {
 	GTypeInterface parent;
 	const gchar *(*get_document_type) (AtkDocument *);
 	 gpointer(*get_document) (AtkDocument *);
+#if __LSB_VERSION__ < 50
 	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	const gchar *(*get_document_locale) (AtkDocument *);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkAttributeSet *(*get_document_attributes) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad3;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	const gchar *(*get_document_attribute_value) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad4;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	 gboolean(*set_document_attribute) (void);
+#endif				/* __LSB_VERSION__ >= 50 */
 	AtkFunction pad5;
 	AtkFunction pad6;
 	AtkFunction pad7;
