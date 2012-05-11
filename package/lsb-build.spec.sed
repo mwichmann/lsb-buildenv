@@ -29,7 +29,7 @@ The LSB Build environment including stubs, headers and compiler wrapper
 Summary: LSB Build environment base package
 Group: Development/Tools
 Obsoletes: lsbdev-base < 3.0
-Conflicts: lsbdev-base, lsb-build-libbat < 1.4.1
+Conflicts: lsbdev-base, lsb-build-libbat < 1.4.1, lsb-build-desktop < 4.1.12 
 Requires: lsb-setup >= 4.0.1
 AutoReqProv: no
 %description base
@@ -41,7 +41,7 @@ Summary: LSB Build environment desktop package
 Group: Development/Tools
 Requires: lsb-build-base
 Obsoletes: lsbdev-desktop < 3.0
-Conflicts: lsbdev-desktop
+Conflicts: lsbdev-desktop, lsb-build-base < 4.1.12
 AutoReqProv: no
 %description desktop
 The LSB Build Environment desktop package adds stub libraries and headers
@@ -148,8 +148,21 @@ done
 
 # extra files
 /opt/lsb/bin/cups-config
+/opt/lsb/bin/nspr-config
+/opt/lsb/bin/nss-config
 /opt/lsb/doc/lsb-build-base/Licence
 /opt/lsb/doc/lsb-build-base/README
+%dir /opt/lsb/%xlib-3.1/pkgconfig
+%dir /opt/lsb/%xlib-3.2/pkgconfig
+%dir /opt/lsb/%xlib-4.1/pkgconfig
+%dir /opt/lsb/%xlib-5.0/pkgconfig
+%dir /opt/lsb/%xlib-4.0/pkgconfig
+/opt/lsb/%xlib-4.0/pkgconfig/nss.pc
+/opt/lsb/%xlib-4.0/pkgconfig/nspr.pc
+/opt/lsb/%xlib-4.1/pkgconfig/nss.pc
+/opt/lsb/%xlib-4.1/pkgconfig/nspr.pc
+/opt/lsb/%xlib-5.0/pkgconfig/nss.pc
+/opt/lsb/%xlib-5.0/pkgconfig/nspr.pc
 
 # locally created symlinks
 /opt/lsb/include/ncurses.h
@@ -218,11 +231,6 @@ done
 %dir /opt/lsb/include/X11
 %dir /opt/lsb/include/X11/extensions
 %dir /opt/lsb/include/X11/Xft
-%dir /opt/lsb/%xlib-3.1/pkgconfig
-%dir /opt/lsb/%xlib-3.2/pkgconfig
-%dir /opt/lsb/%xlib-4.1/pkgconfig
-%dir /opt/lsb/%xlib-5.0/pkgconfig
-%dir /opt/lsb/%xlib-4.0/pkgconfig
 
 # extra files
 /opt/lsb/bin/freetype-config
@@ -331,8 +339,6 @@ done
 /opt/lsb/%xlib-4.1/pkgconfig/xrender.pc
 /opt/lsb/%xlib-4.1/pkgconfig/xt.pc
 /opt/lsb/%xlib-4.1/pkgconfig/xtst.pc
-/opt/lsb/%xlib-4.1/pkgconfig/nss.pc
-/opt/lsb/%xlib-4.1/pkgconfig/nspr.pc
 /opt/lsb/%xlib-5.0/pkgconfig/atk.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo-ft.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo.pc
@@ -382,8 +388,6 @@ done
 /opt/lsb/%xlib-5.0/pkgconfig/xrender.pc
 /opt/lsb/%xlib-5.0/pkgconfig/xt.pc
 /opt/lsb/%xlib-5.0/pkgconfig/xtst.pc
-/opt/lsb/%xlib-5.0/pkgconfig/nss.pc
-/opt/lsb/%xlib-5.0/pkgconfig/nspr.pc
 /opt/lsb/%xlib-4.0/pkgconfig/atk.pc
 /opt/lsb/%xlib-4.0/pkgconfig/cairo-ft.pc
 /opt/lsb/%xlib-4.0/pkgconfig/cairo.pc
@@ -418,8 +422,6 @@ done
 /opt/lsb/%xlib-4.0/pkgconfig/QtSql.pc
 /opt/lsb/%xlib-4.0/pkgconfig/QtSvg.pc
 /opt/lsb/%xlib-4.0/pkgconfig/QtXml.pc
-/opt/lsb/%xlib-4.0/pkgconfig/nss.pc
-/opt/lsb/%xlib-4.0/pkgconfig/nspr.pc
 
 # locally created symlinks
 #/opt/lsb/%xlib-4.0         # covered in lsb-build-base, don't duplicate

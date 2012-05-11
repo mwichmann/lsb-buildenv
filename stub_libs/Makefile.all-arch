@@ -66,18 +66,31 @@ install: install-core install-desktop
 install-core: core-libs
 	install -d $(DESTDIR)/$(INSTALL_DIR)
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/bin
+	install -d $(DESTDIR)/$(INSTALL_DIR)/pkgconfig
 	install $(CORE_SOFILES) $(DESTDIR)/$(INSTALL_DIR)
 	mv $(DESTDIR)/$(INSTALL_DIR)/libstdcxx.so $(DESTDIR)/$(INSTALL_DIR)/libstdc++.so
 	cp -P *.so.* $(DESTDIR)/$(INSTALL_DIR)/
 	# these get copied over again in install-desktop, and break symlinks
 	rm -f libstdc*.so.*
 	cd $(DESTDIR)/$(INSTALL_DIR) && rm -f libstdc++.so.6 && ln -s libstdc++.so libstdc++.so.6
-	# relocate cups-config
-	sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' ../../bin/cups-config.in | \
-	  sed 's|@LIB64@|$(LIB64)|g' | \
-	  sed 's|@DEFAULT_LSB_VERSION@|$(DEFAULT_VERSION)|g' > \
-	  $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
-	chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/cups-config
+	# relocate pkgconfig files
+	for pcin in ../../$(LSB_VERSION)/pkgconfig/ns*.pc.in; do \
+	  pc=$$(basename $$pcin | sed 's|.in$$||'); \
+	  echo "$$pcin:$$pc"; \
+	  if [ -f "$$pcin" ]; then \
+	    sed 's|@INCLUDEDIR@|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' < $$pcin | \
+	    sed 's|@LIBDIR@|$(INSTALL_DIR)|g' | \
+	    sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' > $(DESTDIR)/$(INSTALL_DIR)/pkgconfig/$$pc; \
+	  fi; \
+	done
+	# relocate cups-config, nspr-config, nss-config
+	for f in cups-config nspr-config nss-config; do \
+	  sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' ../../bin/$$f.in | \
+	    sed 's|@LIB64@|$(LIB64)|g' | \
+	    sed 's|@DEFAULT_LSB_VERSION@|$(DEFAULT_VERSION)|g' > \
+	    $(DESTDIR)/$(INSTALL_ROOT)/bin/$$f; \
+	  chmod +x $(DESTDIR)/$(INSTALL_ROOT)/bin/$$f; \
+	done
 	# Create symlink to libs in the default LSB version.
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
 	cd $(DESTDIR)/$(INSTALL_ROOT) && rm -fr ./$(LIBDIR) && ln -s ./$(LIBDIR)-$(LSB_VERSION) ./$(LIBDIR)
@@ -92,11 +105,13 @@ install-desktop: desktop-libs
 	# relocate pkgconfig files
 	for pcin in ../../$(LSB_VERSION)/pkgconfig/*.pc.in; do \
 	  pc=$$(basename $$pcin | sed 's|.in$$||'); \
-	  echo "$$pcin:$$pc"; \
-	  sed 's|@INCLUDEDIR@|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' < $$pcin | \
-	  sed 's|@LIBDIR@|$(INSTALL_DIR)|g' | \
-	  sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' > $(DESTDIR)/$(INSTALL_DIR)/pkgconfig/$$pc; \
-	done
+	  if [ "$$pc" != 'nspr.pc' -a "$$pc" != 'nss.pc' ]; then \
+	    echo "$$pcin:$$pc"; \
+	    sed 's|@INCLUDEDIR@|$(INSTALL_ROOT)$(INCLUDEDIR)/$(SUBDIR)|g' < $$pcin | \
+	    sed 's|@LIBDIR@|$(INSTALL_DIR)|g' | \
+	    sed 's|@ROOTDIR@|$(INSTALL_ROOT)|g' > $(DESTDIR)/$(INSTALL_DIR)/pkgconfig/$$pc; \
+	  fi; \
+	done;
 ifeq ($(DEFAULT_VERSION),$(LSB_VERSION))
 	# relocate freetype-config, xft-config, xml2-config
 	for f in freetype-config xft-config xml2-config; do \
