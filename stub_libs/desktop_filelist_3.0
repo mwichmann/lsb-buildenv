@@ -1,1 +1,7 @@
-
+libGL
+libICE
+libSM
+libX11
+libXext
+libXi
+libXt

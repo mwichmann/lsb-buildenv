@@ -1,12 +1,3 @@
-libGL
-libGLU
-libICE
-libSM
-libX11
-libXext
-libXi
-libXt
-libXtst
 libasound
 libc
 libcrypt

@@ -124,7 +124,6 @@ done
 %dir /opt/lsb/include/alsa
 %dir /opt/lsb/include/arpa
 %dir /opt/lsb/include/cups
-%dir /opt/lsb/include/GL
 %dir /opt/lsb/include/linux
 %dir /opt/lsb/include/net
 %dir /opt/lsb/include/netinet
@@ -135,10 +134,6 @@ done
 %dir /opt/lsb/include/rpc
 %dir /opt/lsb/include/security
 %dir /opt/lsb/include/sys
-%dir /opt/lsb/include/X11
-%dir /opt/lsb/include/X11/extensions
-%dir /opt/lsb/include/X11/ICE
-%dir /opt/lsb/include/X11/SM
 %dir /opt/lsb/%xlib-3.0
 %dir /opt/lsb/%xlib-3.1
 %dir /opt/lsb/%xlib-3.2
@@ -228,8 +223,11 @@ done
 %dir /opt/lsb/include/libxml2/libxml
 %dir /opt/lsb/include/pango-1.0
 %dir /opt/lsb/include/pango-1.0/pango
+%dir /opt/lsb/include/GL
 %dir /opt/lsb/include/X11
 %dir /opt/lsb/include/X11/extensions
+%dir /opt/lsb/include/X11/ICE
+%dir /opt/lsb/include/X11/SM
 %dir /opt/lsb/include/X11/Xft
 
 # extra files

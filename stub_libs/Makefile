@@ -5,7 +5,6 @@ DBOPTS = -h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 LSB_SUPPORTED_ARCHS = IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 
 LSB_VERSIONS := $(shell cat lsb_versions)
-LSB_DESKTOP_VERSIONS := $(shell cat lsb_desktop_versions)
 
 ifneq ($(SKIP_DEVEL_VERSIONS),yes)
 LSB_DEVEL_VERSIONS := $(shell cat lsb_devel_versions)
@@ -50,7 +49,9 @@ core_filelist_% desktop_filelist_%:
 versionfiles:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
 	# Desktop libs appeared in 3.1
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.1' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_desktop_versions
+	# after a rearrange, though, we have "desktop" libs in 3.0 as well
+	# (libs from LSB_Graphics are moved to the "desktop" set)
+	#mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.1' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_desktop_versions
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
 # only need to depend on one filelist, the rule above will gen them all
@@ -65,7 +66,7 @@ install-core: core-libs
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-core ); done
 
 install-desktop: desktop-libs
-	for version in $(LSB_DESKTOP_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do ( cd $$version/$(LSB_COMPILE_FOR_ARCH) && $(MAKE) install-desktop ); done
 
 libs: core-libs desktop-libs
 
@@ -78,7 +79,7 @@ desktop-libs:
 # Distclean means will need database to rebuild
 distclean: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ( cd $$version/$$arch && $(MAKE) distclean ); done; done;
-	rm -f core_filelist_* desktop_filelist_* lsb_versions lsb_desktop_versions lsb_devel_versions
+	rm -f core_filelist_* desktop_filelist_* lsb_versions lsb_devel_versions
 
 # Only remove compiler generated files
 clean:
