@@ -321,7 +321,6 @@ BASE/include/stdlib.h
 BASE/include/string.h
 BASE/include/strings.h
 BASE/include/stropts.h
-BASE/include/stropts.h
 BASE/include/sys/epoll.h
 BASE/include/sys/file.h
 BASE/include/sys/inotify.h

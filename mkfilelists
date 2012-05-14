@@ -74,7 +74,7 @@ CORE_HEADERS_ADD = [
     'linux/netlink.h',
     'linux/rtnetlink.h',
     'linux/socket.h',
-    'stropts.h',
+    #'stropts.h',		# comes from DB now
     'netpacket/packet.h',
 ]
 
