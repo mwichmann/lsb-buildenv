@@ -48,10 +48,6 @@ core_filelist_% desktop_filelist_%:
 
 versionfiles:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
-	# Desktop libs appeared in 3.1
-	# after a rearrange, though, we have "desktop" libs in 3.0 as well
-	# (libs from LSB_Graphics are moved to the "desktop" set)
-	#mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.1' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_desktop_versions
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
 # only need to depend on one filelist, the rule above will gen them all
