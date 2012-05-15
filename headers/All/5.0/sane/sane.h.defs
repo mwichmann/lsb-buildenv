@@ -18,7 +18,6 @@
 #define SANE_CAP_AUTOMATIC	(1 << 4)
 #define SANE_CAP_INACTIVE	(1 << 5)
 #define SANE_CAP_ADVANCED	(1 << 6)
-#define SANE_CAP_ALWAYS_SETTABLE	(1 << 7)
 #define SANE_CURRENT_MINOR	0
 #define SANE_FALSE	0
 #define SANE_CURRENT_MAJOR	1
