@@ -153,26 +153,31 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern sane_cancel(SANE_Handle handle);
-    extern sane_close(SANE_Handle handle);
-    extern sane_control_option(SANE_Handle handle, SANE_Int option,
-			       SANE_Action action, void *value,
-			       SANE_Int * info);
-    extern sane_exit(void);
-    extern sane_get_devices(const SANE_Device * **device_list,
-			    SANE_Bool local_only);
-    extern sane_get_option_descriptor(SANE_Handle handle, SANE_Int option);
-    extern sane_get_parameters(SANE_Handle handle,
-			       SANE_Parameters * params);
-    extern sane_get_select_fd(SANE_Handle handle, SANE_Int * fd);
-    extern sane_init(SANE_Int * version_code,
-		     SANE_Auth_Callback authorize);
-    extern sane_open(SANE_String_Const devicename, SANE_Handle * handle);
-    extern sane_read(SANE_Handle handle, SANE_Byte * data,
-		     SANE_Int max_length, SANE_Int * length);
-    extern sane_set_io_mode(SANE_Handle handle, SANE_Bool non_blocking);
-    extern sane_start(SANE_Handle handle);
-    extern sane_strstatus(SANE_Status status);
+    extern void sane_cancel(SANE_Handle handle);
+    extern void sane_close(SANE_Handle handle);
+    extern SANE_Status sane_control_option(SANE_Handle handle,
+					   SANE_Int option,
+					   SANE_Action action, void *value,
+					   SANE_Int * info);
+    extern void sane_exit(void);
+    extern SANE_Status sane_get_devices(const SANE_Device * **device_list,
+					SANE_Bool local_only);
+    extern const SANE_Option_Descriptor
+	*sane_get_option_descriptor(SANE_Handle handle, SANE_Int option);
+    extern SANE_Status sane_get_parameters(SANE_Handle handle,
+					   SANE_Parameters * params);
+    extern SANE_Status sane_get_select_fd(SANE_Handle handle,
+					  SANE_Int * fd);
+    extern SANE_Status sane_init(SANE_Int * version_code,
+				 SANE_Auth_Callback authorize);
+    extern SANE_Status sane_open(SANE_String_Const devicename,
+				 SANE_Handle * handle);
+    extern SANE_Status sane_read(SANE_Handle handle, SANE_Byte * data,
+				 SANE_Int max_length, SANE_Int * length);
+    extern SANE_Status sane_set_io_mode(SANE_Handle handle,
+					SANE_Bool non_blocking);
+    extern SANE_Status sane_start(SANE_Handle handle);
+    extern SANE_String_Const sane_strstatus(SANE_Status status);
 #ifdef __cplusplus
 }
 #endif
