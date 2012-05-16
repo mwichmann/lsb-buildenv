@@ -34,17 +34,16 @@ DEFAULTVER = "4.1"
 # Lists of names of submodules from the database, divided into
 # the two packages -base (CORE) and -desktop (DESKTOP)
 # This division is somewhat arbitrary, e.g. Printing/Multimedia in Core  
-#
-# Bug 3510 asks for submodule renaming, this script as yet has no
-# idea how to handle the different submodules in a way that works
-# for all LSB versions.
 
 CORE_MODULES = [
     'LSB_Core',
     'LSB_Cpp',
     'LSB_Printing',
     'LSB_Multimedia',
-    'LSB_Security'
+    'LSB_Security',
+    'LSB_Base',
+    'LSB_Print',
+    'LSB_Scan'
 ]
 
 DESKTOP_MODULES = [
@@ -53,7 +52,8 @@ DESKTOP_MODULES = [
     'LSB_Toolkit_Qt',
     'LSB_Graphics_Ext',
     'LSB_XML',
-    'LSB_Toolkit_Qt3'
+    'LSB_Toolkit_Qt3',
+    'LSB_Toolkit_Independent'
 ]
 
 # For some modules, we should only include the stub libraries;
@@ -69,13 +69,15 @@ LIB_ONLY_MODULES = [
 # 1. some "dummy" headers that are in vcs but not in the database
 # 2. the fact that some headers are generated but not shipped
 # add and subtract these from the generated lists
+# UPDATE: these headers now come from DB with Hsrcerror=Yes
+# keep this code for now in case a reason appears to use it.
 
 CORE_HEADERS_ADD = [
-    'linux/netlink.h',
-    'linux/rtnetlink.h',
-    'linux/socket.h',
-    #'stropts.h',		# comes from DB now
-    'netpacket/packet.h',
+#    'linux/netlink.h',
+#    'linux/rtnetlink.h',
+#    'linux/socket.h',
+#    'stropts.h',
+#    'netpacket/packet.h',
 ]
 
 CORE_HEADERS_REMOVE = [
@@ -109,14 +111,26 @@ def do_query(query, core_list, desktop_list, ignore_list):
     """query LSB database for filenames and split by core/desktop"""
     itemlist = HANDLE.cursor()
     itemlist.execute(query)
+    processed_items = []
     for result in itemlist.fetchall():
         # one form of the sql returns two values, the other three -
         # when we need not just the name of the library but also the soname
         soname = None
         if len(result) == 2:
             (module, item) = result
+            try:
+                processed_items.index(item)
+                continue
+            except:
+                processed_items.append(item)
         else:
             (module, item, soname) = result
+            try:
+                processed_items.index((item,soname))
+                continue
+            except:
+                processed_items.append((item,soname))
+
         if module in ignore_list:
             continue
         if module in CORE_MODULES:

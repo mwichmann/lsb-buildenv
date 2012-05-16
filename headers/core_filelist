@@ -154,7 +154,6 @@ stdlib.h
 string.h
 strings.h
 stropts.h
-stropts.h
 sys/epoll.h
 sys/file.h
 sys/inotify.h
