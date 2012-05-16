@@ -366,8 +366,6 @@ BASE/LIB-5.0/libpangoxft-1.0.so
 BASE/LIB-5.0/libpangoxft-1.0.so.0
 BASE/LIB-5.0/libpng12.so
 BASE/LIB-5.0/libpng12.so.0
-BASE/LIB-5.0/libqt-mt.so
-BASE/LIB-5.0/libqt-mt.so.3
 BASE/LIB-5.0/libxml2.so
 BASE/LIB-5.0/libxml2.so.2
 BASE/include/GL/gl.h

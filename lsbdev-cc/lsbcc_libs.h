@@ -284,7 +284,6 @@ char *lsb_libs_50[] = {
 	"png12",
 	"png",
 	"pthread",
-	"qt-mt",
 	"rt",
 	"sane",
 	"ssl3",
@@ -428,15 +427,9 @@ lsb_lib_modules_t lsb_deprecated_modules_41[] = {
 	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_41 },
 };
 
-char *lsb_Toolkit_Qt3_libs_50[] = {
-	"qt-mt",
-	NULL
-};
-
-#define lsb_num_deprecated_modules_50 1
+#define lsb_num_deprecated_modules_50 0
 
 lsb_lib_modules_t lsb_deprecated_modules_50[] = {
-	{"Toolkit_Qt3", lsb_Toolkit_Qt3_libs_50 },
 };
 
 lsb_lib_modules_t *lsb_deprecated_modules[] = {
