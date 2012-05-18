@@ -804,7 +804,18 @@ extern "C" {
 	unsigned long int reserved;
 	struct _fpxreg _fxsr_st[8];
 	struct _xmmreg _xmm[8];
+#if __LSB_VERSION__ < 50
 	unsigned long int padding[56];
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	unsigned long int padding1[44];
+	union {
+#if __LSB_VERSION__ >= 50
+	    unsigned long int padding2[12];
+	    struct _fpx_sw_bytes sw_reserved;
+#endif				/* __LSB_VERSION__ >= 50 */
+	} padding1;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
 #endif
@@ -826,6 +837,20 @@ extern "C" {
 
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
+
+#if __LSB_VERSION__ >= 50
+#if defined __i386__
+/* IA32 */
+    struct _fpx_sw_bytes {
+	unsigned int magic1;
+	unsigned int extended_size;
+	unsigned long long int xstate_bv;
+	unsigned int xstate_size;
+	unsigned long int padding[7];
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 /* Process context when signal delivered*/
