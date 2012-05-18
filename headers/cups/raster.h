@@ -158,6 +158,68 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 50
+    typedef struct cups_page_header2_s cups_page_header2_t;
+
+    typedef int (*cups_interpret_cb_t) (cups_page_header2_t *, int);
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
+#if __LSB_VERSION__ >= 50
+    struct cups_page_header2_s {
+	char MediaClass[64];
+	char MediaColor[64];
+	char MediaType[64];
+	char OutputType[64];
+	unsigned int AdvanceDistance;
+	cups_adv_t AdvanceMedia;
+	cups_bool_t Collate;
+	cups_cut_t CutMedia;
+	cups_bool_t Duplex;
+	unsigned int HWResolution[3];
+	unsigned int ImagingBoundingBox[4];
+	cups_bool_t InsertSheet;
+	cups_jog_t Jog;
+	cups_edge_t LeadingEdge;
+	unsigned int Margins[3];
+	cups_bool_t ManualFeed;
+	unsigned int MediaPosition;
+	unsigned int MediaWeight;
+	cups_bool_t MirrorPrint;
+	cups_bool_t NegativePrint;
+	unsigned int NumCopies;
+	cups_orient_t Orientation;
+	cups_bool_t OutputFaceUp;
+	unsigned int PageSize[3];
+	cups_bool_t Separations;
+	cups_bool_t TraySwitch;
+	cups_bool_t Tumble;
+	unsigned int cupsWidth;
+	unsigned int cupsHeight;
+	unsigned int cupsMediaType;
+	unsigned int cupsBitsPerColor;
+	unsigned int cupsBitsPerPixel;
+	unsigned int cupsBytesPerLine;
+	cups_order_t cupsColorOrder;
+	cups_cspace_t cupsColorSpace;
+	unsigned int cupsCompression;
+	unsigned int cupsRowCount;
+	unsigned int cupsRowFeed;
+	unsigned int cupsRowStep;
+	unsigned int cupsNumColors;
+	float cupsBorderlessScalingFactor;
+	float cupsPageSize[2];
+	float cupsImagingBBox[4];
+	unsigned int cupsInteger[16];
+	float cupsReal[16];
+	char cupsString[16][64];
+	char cupsMarkerType[64];
+	char cupsRenderingIntent[64];
+	char cupsPageSizeName[64];
+    };
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 /* Function prototypes */
 
@@ -173,6 +235,13 @@ extern "C" {
     extern unsigned int cupsRasterWritePixels(cups_raster_t * r,
 					      unsigned char *p,
 					      unsigned int len);
+#if __LSB_VERSION__ >= 50
+    extern unsigned int cupsRasterReadHeader2(cups_raster_t * r,
+					      cups_page_header2_t * h);
+    extern unsigned int cupsRasterWriteHeader2(cups_raster_t * r,
+					       cups_page_header2_t * h);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif
