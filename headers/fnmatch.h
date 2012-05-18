@@ -8,6 +8,13 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 41
+#define FNM_CASEFOLD	(1<<4)
+#define FNM_FILE_NAME	FNM_PATHNAME
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
+
+
 
 /* Filename Matching*/
 #if __LSB_VERSION__ >= 11
