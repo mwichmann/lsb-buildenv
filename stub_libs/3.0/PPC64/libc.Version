@@ -11,6 +11,7 @@ GLIBC_2.3 {
   __ctype_tolower_loc;
   __ctype_toupper_loc;
   __cxa_atexit;
+  __cxa_finalize;
   __errno_location;
   __fpending;
   __fxstat;

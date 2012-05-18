@@ -8,6 +8,7 @@ GLIBC_2.2 {
   __assert_fail;
   __ctype_get_mb_cur_max;
   __cxa_atexit;
+  __cxa_finalize;
   __errno_location;
   __fpending;
   __fxstat;

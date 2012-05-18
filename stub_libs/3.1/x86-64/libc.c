@@ -9,6 +9,7 @@ void __ctype_get_mb_cur_max() {} ;
 void __ctype_tolower_loc() {} ;
 void __ctype_toupper_loc() {} ;
 void __cxa_atexit() {} ;
+void __cxa_finalize() {} ;
 void __errno_location() {} ;
 void __fpending() {} ;
 void __fxstat() {} ;

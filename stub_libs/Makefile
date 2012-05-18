@@ -50,11 +50,11 @@ versionfiles:
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
 	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
 
-# only need to depend on one filelist, the rule above will gen them all
-gensrc: dbfiles core_filelist_3.0
-
-dbfiles: versionfiles $(foreach version,$(LSB_VERSIONS),core_filelist_$(version) desktop_filelist_$(version))
+dbfiles: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
+
+# only need to depend on one filelist, the rule above will gen them all
+gensrc: versionfiles dbfiles core_filelist_3.0
 
 install: install-core install-desktop
 
