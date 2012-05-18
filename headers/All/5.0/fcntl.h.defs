@@ -7,7 +7,6 @@
 #define O_TRUNC	01000
 #define O_DSYNC	010000
 #define O_RSYNC	010000
-#define O_SYNC	010000
 #define O_RDWR	02
 #define O_EXCL	0200
 #define O_APPEND	02000
@@ -15,10 +14,12 @@
 #define O_NOCTTY	0400
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000
+#define O_SYNC	04010000
 #define FD_CLOEXEC	1
 #define POSIX_FADV_RANDOM	1
 #define POSIX_FADV_SEQUENTIAL	2
 #define POSIX_FADV_WILLNEED	3
+#define O_RSYNC	O_SYNC
 
 struct flock {
     short l_type;

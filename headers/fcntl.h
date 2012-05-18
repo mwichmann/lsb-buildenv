@@ -16,7 +16,6 @@ extern "C" {
 #define O_WRONLY	01
 #define O_CREAT	0100
 #define O_TRUNC	01000
-#define O_SYNC	010000
 #define O_RDWR	02
 #define O_EXCL	0200
 #define O_APPEND	02000
@@ -25,6 +24,10 @@ extern "C" {
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000
 #define FD_CLOEXEC	1
+#if __LSB_VERSION__ < 50
+#define O_SYNC	010000
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 32
@@ -141,6 +144,11 @@ extern "C" {
 #define O_NOFOLLOW	0400000
 #endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+#define O_SYNC	04010000
+#define O_RSYNC	O_SYNC
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
