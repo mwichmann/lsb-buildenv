@@ -16,11 +16,10 @@ extern "C" {
 
     extern const char *pango_language_get_sample_string(PangoLanguage *
 							language);
-    extern gboolean pango_log2vis_get_embedding_levels(gunichar * text,
-						       gint length,
-						       PangoDirection *
-						       pbase_dir,
-						       guint8 *);
+    extern guint8 *pango_log2vis_get_embedding_levels(const gchar * text,
+						      int length,
+						      PangoDirection *
+						      pbase_dir);
     extern gboolean pango_parse_stretch(const char *str,
 					PangoStretch * stretch,
 					gboolean warn);
