@@ -809,12 +809,12 @@ extern "C" {
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
 	unsigned long int padding1[44];
-	union {
+	__extension__ union {
 #if __LSB_VERSION__ >= 50
 	    unsigned long int padding2[12];
 	    struct _fpx_sw_bytes sw_reserved;
 #endif				/* __LSB_VERSION__ >= 50 */
-	} padding1;
+	};
 #endif				/* __LSB_VERSION__ >= 50 */
     };
 
