@@ -122,6 +122,31 @@ extern "C" {
 #define IOV_MAX	1024
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
+#if __LSB_VERSION__ >= 50
+#if defined __i386__
+#define LONG_BIT	32
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define LONG_BIT	32
+#endif
+#if defined __s390__ && !defined __s390x__
+#define LONG_BIT	32
+#endif
+#define WORD_BIT	32
+#if defined __ia64__
+#define LONG_BIT	64
+#endif
+#if defined __powerpc64__
+#define LONG_BIT	64
+#endif
+#if defined __x86_64__
+#define LONG_BIT	64
+#endif
+#if defined __s390x__
+#define LONG_BIT	64
+#endif
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
 
