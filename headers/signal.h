@@ -783,6 +783,20 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+/*XXX hand-edit: moved from below _fpstate definition */
+#if __LSB_VERSION__ >= 50
+#if defined __i386__
+/* IA32 */
+    struct _fpx_sw_bytes {
+	unsigned int magic1;
+	unsigned int extended_size;
+	unsigned long long int xstate_bv;
+	unsigned int xstate_size;
+	unsigned long int padding[7];
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 /* FPU state information*/
 #if __LSB_VERSION__ >= 20
@@ -838,6 +852,7 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+#ifdef notdef			/*XXX hand-edit: moved to above _fpstate */
 #if __LSB_VERSION__ >= 50
 #if defined __i386__
 /* IA32 */
@@ -851,6 +866,7 @@ extern "C" {
 
 #endif
 #endif				/* __LSB_VERSION__ >= 5.0 */
+#endif
 
 
 /* Process context when signal delivered*/
