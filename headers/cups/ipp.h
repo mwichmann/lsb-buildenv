@@ -4,6 +4,7 @@
 
 #include <sys/types.h>
 #include <stddef.h>
+#include <sys/select.h>
 #include <netinet/in.h>
 #include <stdint.h>
 

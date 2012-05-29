@@ -13,6 +13,7 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 11
+#if __LSB_VERSION__ < 50
 #define FD_SETSIZE	1024
 #define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
 #define FD_ISSET(d,set)	\
@@ -21,6 +22,8 @@ extern "C" {
   ((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1L<<((d)%(8*sizeof(long)))))
 #define FD_SET(d,set)	\
   ((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1L<<((d)%(8*sizeof(long)))))
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 20
@@ -174,6 +177,7 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 21
+#if __LSB_VERSION__ < 50
 #if defined __ia64__
 #define __FDSET_LONGS	16
 #endif
@@ -195,14 +199,19 @@ extern "C" {
 #if defined __s390__ && !defined __s390x__
 #define __FDSET_LONGS	32
 #endif
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 2.1 */
 
 
 
 #if __LSB_VERSION__ >= 12
+#if __LSB_VERSION__ < 50
     typedef struct {
 	unsigned long int fds_bits[__FDSET_LONGS];
     } fd_set;
+
+#endif				/* __LSB_VERSION__ < 5.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 

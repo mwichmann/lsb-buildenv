@@ -12,7 +12,22 @@ extern "C" {
 
 
 #define NFDBITS	(8 * sizeof (long))
+#if __LSB_VERSION__ >= 50
+#define FD_ISSET(d,set)	(((set)->fds_bits[((d)/(8*sizeof(long)))]&(1L<<((d)%(8*sizeof(long)))))!=0)
+#define FD_CLR(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1L<<((d)%(8*sizeof(long)))))
+#define FD_SET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1L<<((d)%(8*sizeof(long)))))
+#define FD_SETSIZE	1024
+#define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
+
+
+#if __LSB_VERSION__ >= 50
+    typedef struct {
+	unsigned long int fds_bits[FD_SETSIZE / NFDBITS];
+    } fd_set;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 /* Function prototypes */

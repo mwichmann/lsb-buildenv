@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <rpc/auth.h>
 #include <rpc/xdr.h>
+#include <sys/select.h>
 #include <netinet/in.h>
 #include <rpc/types.h>
 #include <rpc/rpc_msg.h>

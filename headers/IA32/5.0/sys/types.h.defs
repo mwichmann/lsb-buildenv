@@ -1,4 +1,2 @@
 
 typedef int32_t ssize_t;
-
-#define __FDSET_LONGS	32
