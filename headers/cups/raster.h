@@ -3,6 +3,14 @@
 #define _CUPS_RASTER_H_
 
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -225,13 +233,23 @@ extern "C" {
 
     extern void cupsRasterClose(cups_raster_t * r);
     extern cups_raster_t *cupsRasterOpen(int fd, cups_mode_t mode);
+    /* This function is deprecated. Use cupsRasterReadHeader2 instead. */
     extern unsigned int cupsRasterReadHeader(cups_raster_t * r,
-					     cups_page_header_t * h);
+					     cups_page_header_t * h)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern unsigned int cupsRasterReadPixels(cups_raster_t * r,
 					     unsigned char *p,
 					     unsigned int len);
+    /* This function is deprecated. Use cupsRasterWriteHeader2 instead. */
     extern unsigned int cupsRasterWriteHeader(cups_raster_t * r,
-					      cups_page_header_t * h);
+					      cups_page_header_t * h)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern unsigned int cupsRasterWritePixels(cups_raster_t * r,
 					      unsigned char *p,
 					      unsigned int len);
