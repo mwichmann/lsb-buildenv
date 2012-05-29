@@ -4,6 +4,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/select.h>
 #include <netinet/in.h>
 #include <cups/ppd.h>
 
@@ -314,41 +315,41 @@ extern "C" {
 /* Function prototypes */
 
     extern int cupsAddDest(const char *name, const char *instance,
-			   int num_dests, cups_dest_t **dests);
+			   int num_dests, cups_dest_t * *dests);
     extern int cupsAddOption(const char *name, const char *value,
-			     int num_options, cups_option_t **options);
+			     int num_options, cups_option_t * *options);
     extern int cupsCancelJob(const char *printer, int job);
     extern http_encryption_t cupsEncryption(void);
-    extern void cupsFreeDests(int num_dests, cups_dest_t *dests);
-    extern void cupsFreeJobs(int num_jobs, cups_job_t *jobs);
-    extern void cupsFreeOptions(int num_options, cups_option_t *options);
+    extern void cupsFreeDests(int num_dests, cups_dest_t * dests);
+    extern void cupsFreeJobs(int num_jobs, cups_job_t * jobs);
+    extern void cupsFreeOptions(int num_options, cups_option_t * options);
     extern const char *cupsGetDefault(void);
     extern cups_dest_t *cupsGetDest(const char *name, const char *instance,
-				    int num_dests, cups_dest_t *dests);
-    extern int cupsGetDests(cups_dest_t **dests);
-    extern int cupsGetJobs(cups_job_t **jobs, const char *dest,
+				    int num_dests, cups_dest_t * dests);
+    extern int cupsGetDests(cups_dest_t * *dests);
+    extern int cupsGetJobs(cups_job_t * *jobs, const char *dest,
 			   int myjobs, int completed);
     extern const char *cupsGetOption(const char *name, int num_options,
-				     cups_option_t *options);
+				     cups_option_t * options);
     extern const char *cupsGetPPD(const char *printer);
     extern const char *cupsGetPassword(const char *prompt);
-    extern const char *cupsLangEncoding(cups_lang_t *lang);
+    extern const char *cupsLangEncoding(cups_lang_t * lang);
     extern void cupsLangFlush(void);
-    extern void cupsLangFree(cups_lang_t *lang);
+    extern void cupsLangFree(cups_lang_t * lang);
     extern cups_lang_t *cupsLangGet(const char *language);
     extern ipp_status_t cupsLastError(void);
-    extern int cupsMarkOptions(ppd_file_t *ppd, int num_options,
-			       cups_option_t *options);
+    extern int cupsMarkOptions(ppd_file_t * ppd, int num_options,
+			       cups_option_t * options);
     extern int cupsParseOptions(const char *arg, int num_options,
-				cups_option_t **options);
+				cups_option_t * *options);
     extern int cupsPrintFile(const char *printer, const char *filename,
 			     const char *title, int num_options,
-			     cups_option_t *options);
+			     cups_option_t * options);
     extern int cupsPrintFiles(const char *printer, int num_files,
 			      const char **files, const char *title,
-			      int num_options, cups_option_t *options);
+			      int num_options, cups_option_t * options);
     extern const char *cupsServer(void);
-    extern void cupsSetDests(int num_dests, cups_dest_t *dests);
+    extern void cupsSetDests(int num_dests, cups_dest_t * dests);
     extern void cupsSetEncryption(http_encryption_t e);
     extern void cupsSetPasswordCB(const char *(*cb) (const char *));
     extern void cupsSetServer(const char *server);
@@ -356,35 +357,35 @@ extern "C" {
     extern int cupsTempFd(char *filename, int len);
     extern const char *cupsUser(void);
 #if __LSB_VERSION__ >= 41
-    extern int cupsDoAuthentication(http_t *http, const char *method,
+    extern int cupsDoAuthentication(http_t * http, const char *method,
 				    const char *resource);
-    extern ipp_t *cupsDoFileRequest(http_t *http, ipp_t *request,
+    extern ipp_t *cupsDoFileRequest(http_t * http, ipp_t * request,
 				    const char *resource,
 				    const char *filename);
-    extern void cupsEncodeOptions(ipp_t *ipp, int num_options,
-				  cups_option_t *options);
-    extern const char *cupsGetDefault2(http_t *http);
-    extern int cupsGetDests2(http_t *http, cups_dest_t **dests);
-    extern http_status_t cupsGetFd(http_t *http, const char *resource,
+    extern void cupsEncodeOptions(ipp_t * ipp, int num_options,
+				  cups_option_t * options);
+    extern const char *cupsGetDefault2(http_t * http);
+    extern int cupsGetDests2(http_t * http, cups_dest_t * *dests);
+    extern http_status_t cupsGetFd(http_t * http, const char *resource,
 				   int fd);
-    extern http_status_t cupsGetFile(http_t *http, const char *resource,
+    extern http_status_t cupsGetFile(http_t * http, const char *resource,
 				     const char *filename);
-    extern int cupsGetJobs2(http_t *http, cups_job_t **jobs,
+    extern int cupsGetJobs2(http_t * http, cups_job_t * *jobs,
 			    const char *dest, int myjobs, int completed);
-    extern const char *cupsGetPPD2(http_t *http, const char *printer);
-    extern int cupsPrintFile2(http_t *http, const char *printer,
+    extern const char *cupsGetPPD2(http_t * http, const char *printer);
+    extern int cupsPrintFile2(http_t * http, const char *printer,
 			      const char *filename, const char *title,
-			      int num_options, cups_option_t *options);
-    extern int cupsPrintFiles2(http_t *http, const char *printer,
+			      int num_options, cups_option_t * options);
+    extern int cupsPrintFiles2(http_t * http, const char *printer,
 			       int num_files, const char **files,
 			       const char *title, int num_options,
-			       cups_option_t *options);
-    extern http_status_t cupsPutFd(http_t *http, const char *resource,
+			       cups_option_t * options);
+    extern http_status_t cupsPutFd(http_t * http, const char *resource,
 				   int fd);
-    extern http_status_t cupsPutFile(http_t *http, const char *resource,
+    extern http_status_t cupsPutFile(http_t * http, const char *resource,
 				     const char *filename);
-    extern int cupsSetDests2(http_t *http, int num_dests,
-			     cups_dest_t *dests);
+    extern int cupsSetDests2(http_t * http, int num_dests,
+			     cups_dest_t * dests);
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #ifdef __cplusplus
