@@ -126,7 +126,8 @@ indicating what flavor of entity the WHO argument specifies.*/
     extern int getpriority(__priority_which_t __which, id_t __who);
     extern int getrlimit(__rlimit_resource_t __resource,
 			 struct rlimit *__rlimits);
-    extern int getrlimit64(id_t __resource, struct rlimit64 *__rlimits);
+    extern int getrlimit64(__rlimit_resource_t __resource,
+			   struct rlimit64 *__rlimits);
     extern int getrusage(int __who, struct rusage *__usage);
     extern int setpriority(__priority_which_t __which, id_t __who,
 			   int __prio);
