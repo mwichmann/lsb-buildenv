@@ -301,6 +301,7 @@ extern "C" {
     extern FcConfig *FcConfigGetCurrent(void);
     extern FcStrList *FcConfigGetFontDirs(FcConfig * config);
     extern FcFontSet *FcConfigGetFonts(FcConfig * config, FcSetName set);
+    /* There is a misspelling in the function name, use FcConfigGetRescanIn_t_erval instead */
     extern int FcConfigGetRescanInverval(FcConfig * config)
 #if __LSB_VERSION__ >= 50
      LSB_DECL_DEPRECATED
@@ -311,6 +312,7 @@ extern "C" {
 				       const FcChar8 * file,
 				       FcBool complain);
     extern FcBool FcConfigSetCurrent(FcConfig * config);
+    /* There is a misspelling in the function name, use FcConfigSetRescanIn_t_erval instead */
     extern FcBool FcConfigSetRescanInverval(FcConfig * config,
 					    int rescanInterval)
 #if __LSB_VERSION__ >= 50

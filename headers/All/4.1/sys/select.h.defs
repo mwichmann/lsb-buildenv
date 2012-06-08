@@ -4,3 +4,5 @@
 extern int pselect(int __nfds, fd_set * __readfds, fd_set * __writefds,
 		   fd_set * __exceptfds, const struct timespec *__timeout,
 		   const sigset_t * __sigmask);
+extern int select(int __nfds, fd_set * __readfds, fd_set * __writefds,
+		  fd_set * __exceptfds, struct timeval *__timeout);

@@ -32,6 +32,8 @@ extern "C" {
 
 /* Function prototypes */
 
+    extern int select(int __nfds, fd_set * __readfds, fd_set * __writefds,
+		      fd_set * __exceptfds, struct timeval *__timeout);
 #if __LSB_VERSION__ >= 32
     extern int pselect(int __nfds, fd_set * __readfds, fd_set * __writefds,
 		       fd_set * __exceptfds,

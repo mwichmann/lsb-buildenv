@@ -3,9 +3,7 @@
 #define _UNISTD_H_
 
 #include <sys/types.h>
-#include <sys/time.h>
 #include <stddef.h>
-#include <sys/select.h>
 #include <stdint.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
@@ -466,8 +464,6 @@ extern "C" {
     extern int rename(const char *__old, const char *__new);
     extern int rmdir(const char *__path);
     extern void *sbrk(intptr_t __delta);
-    extern int select(int __nfds, fd_set * __readfds, fd_set * __writefds,
-		      fd_set * __exceptfds, struct timeval *__timeout);
     extern int setegid(gid_t __gid);
     extern int seteuid(uid_t __uid);
     extern int setgid(gid_t __gid);
