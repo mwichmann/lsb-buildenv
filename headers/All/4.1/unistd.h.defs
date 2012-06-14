@@ -386,6 +386,8 @@ extern ssize_t readlinkat(int __fd, const char *__path, char *__buf,
 extern int rename(const char *__old, const char *__new);
 extern int rmdir(const char *__path);
 extern void *sbrk(intptr_t __delta);
+extern int select(int __nfds, fd_set * __readfds, fd_set * __writefds,
+		  fd_set * __exceptfds, struct timeval *__timeout);
 extern int setegid(gid_t __gid);
 extern int seteuid(uid_t __uid);
 extern int setgid(gid_t __gid);
