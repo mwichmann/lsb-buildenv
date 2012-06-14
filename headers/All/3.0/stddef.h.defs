@@ -1,5 +1,7 @@
 
-#define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
+#if !defined(__GNUC__)
+#define __builtin_offsetof (TYPE, MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
+#endif
 #ifndef NULL
 #  ifdef __cplusplus
 #    define NULL        (0L)
@@ -7,3 +9,4 @@
 #    define NULL        ((void*) 0)
 #  endif
 #endif
+#define offsetof(TYPE,MEMBER)	__builtin_offsetof (TYPE, MEMBER)

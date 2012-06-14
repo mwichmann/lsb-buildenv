@@ -16,7 +16,10 @@ extern "C" {
 #  endif
 #endif
 #if __LSB_VERSION__ >= 12
-#define offsetof(TYPE,MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
+#if !defined(__GNUC__)
+#define __builtin_offsetof (TYPE, MEMBER)	((size_t)&((TYPE*)0)->MEMBER)
+#endif
+#define offsetof(TYPE,MEMBER)	__builtin_offsetof (TYPE, MEMBER)
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
