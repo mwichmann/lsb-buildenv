@@ -222,6 +222,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     typedef long int time_t;
 
+#include <sys/select.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
