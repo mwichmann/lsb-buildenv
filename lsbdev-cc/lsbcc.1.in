@@ -73,7 +73,9 @@ Display the version of LSB this tool can build for.
 --lsb-verbose
 The complete command line passed to either the C or C++ compiler
 will be printed to stderr just prior to execution.  This helps
-see the effects of lsbcc and options.
+see the effects of 
+.I lsbcc 
+and options.
 .TP 
 --lsb-cc=<path to c compiler>
 Specifies the name of the C compiler to invoke with the modified
@@ -97,13 +99,16 @@ variable is not set, the default
 will be used. This option overrides the LSBCPP environment setting.
 .TP 
 --lsb-forcefeatures
-This causes lsbcc to insert macro defines for all of the 
+This causes 
+.I lsbcc 
+to insert macro defines for all of the 
 interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
 These macros are not needed for the LSB headers but may
 select necessary behavior in non-LSB headers that have
 conditionals. However, predefining the macros may collide with
 application definitions of the macros, so this is no longer
-the default behavior for lsbcc.
+the default behavior for 
+.IR lsbcc .
 .TP 
 --lsb-libpath=<lsb_lib_path>
 Specifies the location of the LSB stub libraries that will
@@ -160,9 +165,16 @@ but will also link in code that tries to use the LSB dynamic linker if
 needed.
 .TP 
 --lsb-target-version=<LSB_version>
-Target LSB version. If set to valid value, this option overrides LSBCC_LSBVERSION
-environment variable. For the list of valid values, call lsbcc
-with --lsb-version option.
+Set the version of LSB to build for.
+For the list of valid values, call 
+.I lsbcc
+with the
+.I --lsb-version 
+option.  If set to a valid value, 
+this option overrides the LSBCC_LSBVERSION environment variable. 
+If neither are set, the default
+.I '@DEFAULT_LSB_VERSION@'
+will be used.
 .TP 
 --lsbcc-version
 Print the version of this program, and quit.
@@ -176,8 +188,12 @@ Libtool in some situations will pass filesystem paths to shared libraries
 to the compiler rather than as -l arguments.
 .I lsbcc
 needs to evaluate all shared libraries to determine if they should be linked
-shared or statically, lsbcc does this by analyzing -l arguments.  This option 
-causes lsbcc to evaluate all files on the command line to determine if they are
+shared or statically, 
+.I lsbcc 
+does this by analyzing -l arguments.  This option 
+causes 
+.I lsbcc 
+to evaluate all files on the command line to determine if they are
 shared libraries and to re-write shared libraries found in terms of -L and -l
 either as shared or static depending upon if the library is in the list of
 LSB allowed shared libraries.
@@ -262,12 +278,16 @@ For a list of modules supported in any LSB version,
 use 'lsbcc --lsb-target-version=ver --help'.
 .TP
 LSBCC_FORCEFEATURES
-This causes lsbcc to insert macro defines for all of the 
+This causes 
+.I lsbcc 
+to insert macro defines for all of the 
 interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
 This can be helpful in some situations and was formerly
-the default behavior for lsbcc, but also can collide with
-feature macro definitions from other sources, so is no longer
-the default behavior for lsbcc.
+the default behavior for 
+.IR lsbcc , 
+but also can collide with feature macro definitions from other sources,
+so is no longer the default behavior for 
+.IR lsbcc .
 .TP 
 LSBCC_LIBTOOLFIXUPS
 Enable semantics that assist in compiling applications with
@@ -278,8 +298,12 @@ Libtool in some situations will pass filesystem paths to shared libraries
 to the compiler rather than as -l arguments.
 .I lsbcc
 needs to evaluate all shared libraries to determine if they should be linked
-shared or statically, lsbcc does this by analyzing -l arguments.  This option 
-causes lsbcc to evaluate all files on the command line to determine if they are
+shared or statically, 
+.I lsbcc 
+does this by analyzing -l arguments.  This option 
+causes 
+.I lsbcc 
+to evaluate all files on the command line to determine if they are
 shared libraries and to re-write shared libraries found in terms of -L and -l
 either as shared or static depending upon if the library is in the list of
 LSB allowed shared libraries.
@@ -322,14 +346,18 @@ an LSBCC_WARN where the low bit is set to zero.
 LSBCC_VERBOSE
 The complete command line passed to either the C or C++ compiler
 will be printed to stderr just prior to execution.  This helps
-see the effects of lsbcc and options.
+see the effects of 
+.I lsbcc 
+and options.
 .P
 .TP
 LSBCC_LSBVERSION
 Target LSB version. If this environment variable
 is not found, the default
-.I '4.0'
-value (i.e. compile against LSB 4.0) will be used.
+.I '@DEFAULT_LSB_VERSION@'
+value (i.e. compile targeting LSB @DEFAULT_LSB_VERSION@) will be used.
+Note this value will be overridden by the
+--lsb-target-version command-line option if supplied.
 .P
 .SH Non LSB Shared Libraries
 Normally, only LSB-defined libraries should be linked
@@ -390,11 +418,15 @@ and other LSB contributors.
 Report bugs at http://bugs.linuxbase.org.
 .SH "BUGS"
 .P
-It is possible to confuse lsbcc's (and lsbc++) automatic
-library processing.
+It is possible to confuse the automatic library processing of
+.I lsbcc (and 
+.IR lsbc++ ).
 In particular, build systems that include "clever" tools
-to manage which libraries to use, such as GNU libtool
-and pkgconfig, may defeat the checks for non-LSB libraries
+to manage which libraries to use, such as GNU 
+.I libtool
+and 
+.IR pkgconfig , 
+may defeat the checks for non-LSB libraries
 by silently supplying full pathnames instead of the 
 .BI -l lib
 form.
@@ -404,7 +436,15 @@ form.
 the LSB header files
 .TP
 /opt/lsb/lib
-the LSB stub libraries
+the LSB stub libraries. To be more precise, these will appear
+as a set of directories 
+.IR /opt/lsb/lib-3.0 ,
+.IR /opt/lsb/lib-3.1 ,
+and so on, for each supported version and
+.I /opt/lsb/lib
+will represent the default version.  In the case of a 64-bit architecture,
+the paths will be of the type
+.IR /opt/lsb/lib64 .
 .TP
 /lib/ld-lsb.so.3
 The LSB program interpreter (dynamic linker) for the IA32 architecture
@@ -436,12 +476,15 @@ is commonly delivered as a package named
 .IR lsb-build-cc .
 If this package is used, the support package
 .I lsb-build-base
-must also be installed.
+must also be installed; 
+.I lsb-build-desktop
+is optional but would normally be used.
 .P
 .I lsb-build-c++
 supplies necessary header files for C++ compilation;
 it is a separate package as the c++ headers come
-from a different source than the base headers.
+from a different source than the base headers,
+and may be under a separate license as well.
 .\" .P
 .\" lsbcc will add 
 .\" .I -Wl,--as-needed
@@ -471,7 +514,7 @@ may silently change (apparent) dynamic links to static, the
 .B LSBCC_WARN
 environment variable should be used to notify of such changes.
 .SH COPYRIGHT
-Copyright \(co 2002-2007 Linux Foundation
+Copyright \(co 2002-2012 Linux Foundation
 .SH "SEE ALSO"
 Linux Standard Base specification and other documents at
 http://www.linuxbase.org/

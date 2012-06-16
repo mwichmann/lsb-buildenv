@@ -11,6 +11,7 @@ override CFLAGS += -DBASE_PATH=$(BASE_PATH)
 CXXFLAGS = $(CFLAGS)
 EXTRA_CFLAGS = -fPIC
 DBOPTS = -h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
+MANPAGE = lsbcc.1
 
 # Store released and devel versions separately.
 RELEASED_ONLY_QUERY = AND LVreleased='Yes'
@@ -21,11 +22,13 @@ LSB_DEVEL_VERSIONS=$(shell cat lsb_devel_versions)
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 override CFLAGS += -DSKIP_DEVEL_VERSIONS
 LSB_ALL_VERSIONS=$(LSB_VERSIONS)
+DEFAULT_LSB_VERSION=4.1
 else
 LSB_ALL_VERSIONS=$(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS)
+DEFAULT_LSB_VERSION=5.0
 endif
 
-all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
+all: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS) $(MANPAGE)
 
 gensrc: versionfiles lsbcc_libs.h lsbcc_version.h
 
@@ -38,6 +41,9 @@ lsbcc_libs.h: lsb_versions lsb_devel_versions
 
 lsbcc_version.h: lsb_versions lsb_devel_versions
 	./mk_lsbcc_version.pl > lsbcc_version.h
+
+%.1: %.1.in
+	sed -e "s#@DEFAULT_LSB_VERSION@#`echo $(DEFAULT_LSB_VERSION)`#" < $< > $@
 
 $(LSBCC_OBJS): lsbcc_libs.h lsbcc_version.h
 
@@ -93,7 +99,7 @@ test: lsbcc
 check: test
 
 clean:
-	rm -f $(PROGRAMS) $(LIBS) *.o
+	rm -f $(PROGRAMS) $(LIBS) *.o *.1
 
 distclean:
 	rm lsbcc_libs.h
