@@ -53,6 +53,9 @@ versionfiles:
 dbfiles: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
 
+dbfiles-%: 
+	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version -l $(shell echo "$@" | sed s/dbfiles-//); done; done
+
 # only need to depend on one filelist, the rule above will gen them all
 gensrc: versionfiles dbfiles core_filelist_3.0
 

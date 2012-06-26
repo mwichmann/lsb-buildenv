@@ -19,6 +19,7 @@ my ($DBName) = $LSBDB;
 my ($DBUser) = $LSBUSER;
 my ($DBPass) = $LSBDBPASSWD;
 my ($DBHost) = $LSBDBHOST;
+my ($LibName) = "";
 my ($lsbversion);
 my ($TargetArch);
 my ($TargetArchId);
@@ -114,16 +115,16 @@ sub CreateTmpLibTable($$) {
     $create = "CREATE TEMPORARY TABLE tmp_LibInts_$libId "
         . "(KEY `Iid`(`Iid`)) "
         . "SELECT Iid, Iname, Itype, Ilibrary FROM Interface "
-        . "LEFT JOIN LGInt ON LGIint=Iid "
-        . "LEFT JOIN LibGroup ON LGid=LGIlibg "
+        . "JOIN LGInt ON LGIint=Iid "
+        . "JOIN LibGroup ON LGid=LGIlibg "
         . "WHERE LGlib=$libId";
     $sth = $dbh->prepare($create) || die $dbh->errstr;
     $sth->execute() || die $sth->errstr;
 
     $create = "CREATE TEMPORARY TABLE tmp_LibIncludedInts_$libId "
-        . "(KEY `Iid`(`Iid`), KEY `AIarch`(`AIarch`), KEY `Iname`(`Iname`,`AIarch`), KEY `Itype`(`Itype`,`AIarch`)) "
+        . "(KEY `Iid`(`Iid`), KEY `AIarch`(`AIarch`), KEY `Itype`(`Itype`,`AIarch`)) "
         . "SELECT Iid, Iname, AIreturn, Itype, AIarch, AIversion, AIdeprecatedsince, Ilibrary FROM tmp_LibInts_$libId "
-        . "LEFT JOIN ArchInt ON AIint=Iid "
+        . "JOIN ArchInt ON AIint=Iid "
         . "WHERE (AIappearedin <= '$lsbversion' and AIappearedin > '') "
         . "AND (AIwithdrawnin IS NULL OR AIwithdrawnin >'$lsbversion') ";
     $sth = $dbh->prepare($create) || die $dbh->errstr;
@@ -391,17 +392,18 @@ EOF
 
 ######################################################################
 # Main bit
-getopts( 'd:u:p:v:o:ha:', \%Options );
+getopts( 'd:u:p:v:o:l:ha:', \%Options );
 
 if ( ( exists( $Options{'h'} ) ) or ( not exists( $Options{'v'} ) ) ) {
     print STDERR <<"EOM"
-Usage $0 -a arch -v lsbversion [-d db_name] [-u username] [-p password] [-o hostname] [-h]
+Usage $0 -a arch -v lsbversion [-d db_name] [-u username] [-p password] [-o hostname] [-l library] [-h]
     -h           Display this help
     -v           Target LSB version
     -d db_name   Database name
     -u username  Name of user for db access
     -p password  Password for db access
     -o hostname  Hostname for DB
+    -l library   Generate code for the given library only
     -a arch      Architecture to generate shared libraries for
                  (Note this is not magic - you have to compile it on
                   the correct platform still!)
@@ -423,6 +425,9 @@ $DBUser = $Options{'u'} if exists( $Options{'u'} );
 $DBPass = $Options{'p'} if exists( $Options{'p'} );
 $DBHost = $Options{'o'} if exists( $Options{'o'} );
 $DBName = $Options{'d'} if exists( $Options{'d'} );
+
+
+$LibName = exists( $Options{'l'} ) ? $Options{'l'} : "";
 
 my ($dbh);
 my ($sth);
@@ -458,8 +463,10 @@ LoadOverrideSymbolData();
 
 # Map of name to run-time name of shared library
 local (*LIBMAPFILE);
-open( LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt" )
-  || die "Could not open file LibNameMap.txt file for writing\n";
+if( !$LibName ) {
+  open( LIBMAPFILE, ">$DestinationDirectory/LibNameMap.txt" )
+    || die "Could not open file LibNameMap.txt file for writing\n";
+}
 
 # Get list of libraries we want to produce stub libraries for
 my $select;
@@ -470,8 +477,11 @@ $select =
   . "WHERE (ALappearedin <= \'$lsbversion\' and ALappearedin<>\'\') "
   . "AND (ALwithdrawnin IS NULL OR ALwithdrawnin > \'$lsbversion\') "
   . "AND ( ALaid=\'$TargetArchId\' OR ALaid=1 ) "
-  . "AND ALrunname<>\'\' "
-  . "ORDER BY Lname";
+  . "AND ALrunname<>\'\' ";
+if( $LibName ) {
+    $select.= "AND Lname='$LibName' ";
+}
+  $select.="ORDER BY Lname";
 $sth = $dbh->prepare($select)
   || die $dbh->errstr;
 $sth->execute() || die $sth->errstr;
@@ -483,7 +493,9 @@ while ( $row = $sth->fetchrow_hashref ) {
     if ( $row->{Lname} eq $lastlib ) { next; }
     $lastlib = $row->{Lname};
     print "Generating c stubs for $row->{Lname} library ($row->{ALrunname})\n";
-    print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
+    if( !$LibName ) {
+        print LIBMAPFILE "$row->{Lname} $row->{ALrunname}\n";
+    }
     CreateTmpLibTable( $dbh, $row->{Lid} );
     GenerateLibrary( $dbh, $row->{Lname}, $row->{Lid} );
 }
