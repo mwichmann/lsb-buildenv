@@ -1495,7 +1495,6 @@ extern "C" {
 						     gpointer);
     extern void g_value_copy(const GValue *, GValue *);
     extern gpointer g_value_dup_boxed(const GValue *);
-    extern GObject *g_value_dup_object(const GValue *);
     extern GParamSpec *g_value_dup_param(const GValue *);
     extern gchar *g_value_dup_string(const GValue *);
     extern gboolean g_value_fits_pointer(const GValue *);
@@ -1552,6 +1551,10 @@ extern "C" {
     extern gboolean g_value_type_compatible(GType, GType);
     extern gboolean g_value_type_transformable(GType, GType);
     extern void g_value_unset(GValue *);
+#if __LSB_VERSION__ < 50
+    extern GObject *g_value_dup_object(const GValue *);
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 40
     extern void g_object_add_toggle_ref(GObject *, GToggleNotify,
 					gpointer);
@@ -1583,6 +1586,10 @@ extern "C" {
     extern GType g_value_get_gtype(const GValue * value);
     extern void g_value_set_gtype(GValue * value, GType v_gtype);
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+    extern gpointer g_value_dup_object(const GValue *);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

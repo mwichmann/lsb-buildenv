@@ -10161,7 +10161,6 @@ extern "C" {
 					 GdkAtom target, guint * info);
     extern GtkTargetList *gtk_target_list_new(const GtkTargetEntry *
 					      targets, guint ntargets);
-    extern void gtk_target_list_ref(GtkTargetList * list);
     extern void gtk_target_list_remove(GtkTargetList * list,
 				       GdkAtom target);
     extern void gtk_target_list_unref(GtkTargetList * list);
@@ -10978,13 +10977,6 @@ extern "C" {
     extern GType gtk_tree_iter_get_type(void);
     extern void gtk_tree_model_filter_clear_cache(GtkTreeModelFilter *
 						  filter);
-    extern void
-	gtk_tree_model_filter_convert_child_iter_to_iter(GtkTreeModelFilter
-							 * filter,
-							 GtkTreeIter *
-							 filter_iter,
-							 GtkTreeIter *
-							 child_iter);
     extern GtkTreePath
 	*gtk_tree_model_filter_convert_child_path_to_path
 	(GtkTreeModelFilter * filter, GtkTreePath * child_path);
@@ -11095,13 +11087,6 @@ extern "C" {
 					      gint * new_order);
     extern void gtk_tree_model_sort_clear_cache(GtkTreeModelSort *
 						tree_model_sort);
-    extern void
-	gtk_tree_model_sort_convert_child_iter_to_iter(GtkTreeModelSort *
-						       tree_model_sort,
-						       GtkTreeIter *
-						       sort_iter,
-						       GtkTreeIter *
-						       child_iter);
     extern GtkTreePath
 	*gtk_tree_model_sort_convert_child_path_to_path(GtkTreeModelSort *
 							tree_model_sort,
@@ -12208,6 +12193,24 @@ extern "C" {
 					       guint xid);
 #endif				/* __LSB_VERSION__ < 3.2 */
 
+#if __LSB_VERSION__ < 50
+    extern void gtk_target_list_ref(GtkTargetList * list);
+    extern void
+	gtk_tree_model_filter_convert_child_iter_to_iter(GtkTreeModelFilter
+							 * filter,
+							 GtkTreeIter *
+							 filter_iter,
+							 GtkTreeIter *
+							 child_iter);
+    extern void
+	gtk_tree_model_sort_convert_child_iter_to_iter(GtkTreeModelSort *
+						       tree_model_sort,
+						       GtkTreeIter *
+						       sort_iter,
+						       GtkTreeIter *
+						       child_iter);
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 32
     extern void gtk_toolbar_set_icon_size(GtkToolbar * toolbar,
 					  GtkIconSize icon_size);
@@ -13074,6 +13077,24 @@ extern "C" {
     extern void gtk_window_set_deletable(GtkWindow * window,
 					 gboolean setting);
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+    extern GtkTargetList gtk_target_list_ref(GtkTargetList * list);
+    extern gboolean
+	gtk_tree_model_filter_convert_child_iter_to_iter(GtkTreeModelFilter
+							 * filter,
+							 GtkTreeIter *
+							 filter_iter,
+							 GtkTreeIter *
+							 child_iter);
+    extern gboolean
+	gtk_tree_model_sort_convert_child_iter_to_iter(GtkTreeModelSort *
+						       tree_model_sort,
+						       GtkTreeIter *
+						       sort_iter,
+						       GtkTreeIter *
+						       child_iter);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

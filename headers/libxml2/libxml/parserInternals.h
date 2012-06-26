@@ -156,8 +156,6 @@ extern "C" {
     extern void xmlParserInputShrink(xmlParserInputPtr in);
     extern unsigned int xmlParserMaxDepth;
     extern xmlChar xmlPopInput(xmlParserCtxtPtr ctxt);
-    extern void xmlPushInput(xmlParserCtxtPtr ctxt,
-			     xmlParserInputPtr input);
     extern void xmlSetEntityReferenceFunc(xmlEntityReferenceFunc func);
     extern int xmlSkipBlankChars(xmlParserCtxtPtr ctxt);
     extern xmlChar *xmlSplitQName(xmlParserCtxtPtr ctxt,
@@ -183,6 +181,16 @@ extern "C" {
 				      xmlCharEncodingHandlerPtr handler);
     extern int xmlSwitchToEncoding(xmlParserCtxtPtr ctxt,
 				   xmlCharEncodingHandlerPtr handler);
+#if __LSB_VERSION__ < 50
+    extern void xmlPushInput(xmlParserCtxtPtr ctxt,
+			     xmlParserInputPtr input);
+#endif				/* __LSB_VERSION__ < 5.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern int xmlPushInput(xmlParserCtxtPtr ctxt,
+			    xmlParserInputPtr input);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

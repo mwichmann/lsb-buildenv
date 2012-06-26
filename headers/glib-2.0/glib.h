@@ -2857,16 +2857,6 @@ extern "C" {
 					      GKeyFileFlags flags,
 					      GError * *error);
     extern GKeyFile *g_key_file_new(void);
-    extern void g_key_file_remove_comment(GKeyFile * key_file,
-					  const gchar * group_name,
-					  const gchar * key,
-					  GError * *error);
-    extern void g_key_file_remove_group(GKeyFile * key_file,
-					const gchar * group_name,
-					GError * *error);
-    extern void g_key_file_remove_key(GKeyFile * key_file,
-				      const gchar * group_name,
-				      const gchar * key, GError * *error);
     extern void g_key_file_set_boolean(GKeyFile * key_file,
 				       const gchar * group_name,
 				       const gchar * key, gboolean value);
@@ -2874,11 +2864,6 @@ extern "C" {
 					    const gchar * group_name,
 					    const gchar * key,
 					    gboolean * list, gsize length);
-    extern void g_key_file_set_comment(GKeyFile * key_file,
-				       const gchar * group_name,
-				       const gchar * key,
-				       const gchar * comment,
-				       GError * *error);
     extern void g_key_file_set_integer(GKeyFile * key_file,
 				       const gchar * group_name,
 				       const gchar * key, gint value);
@@ -3879,6 +3864,24 @@ extern "C" {
     extern GMemVTable *glib_mem_profiler_table;
     extern const guint glib_micro_version;
     extern const guint glib_minor_version;
+#if __LSB_VERSION__ < 50
+    extern void g_key_file_remove_comment(GKeyFile * key_file,
+					  const gchar * group_name,
+					  const gchar * key,
+					  GError * *error);
+    extern void g_key_file_remove_group(GKeyFile * key_file,
+					const gchar * group_name,
+					GError * *error);
+    extern void g_key_file_remove_key(GKeyFile * key_file,
+				      const gchar * group_name,
+				      const gchar * key, GError * *error);
+    extern void g_key_file_set_comment(GKeyFile * key_file,
+				       const gchar * group_name,
+				       const gchar * key,
+				       const gchar * comment,
+				       GError * *error);
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 40
     extern gchar *g_build_filenamev(gchar * *args);
     extern gchar *g_build_pathv(const gchar * separator, gchar * *args);
@@ -4136,6 +4139,25 @@ extern "C" {
     extern gchar *g_time_val_to_iso8601(GTimeVal * time);
     extern gboolean g_unichar_iswide_cjk(gunichar c);
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+    extern gboolean g_key_file_remove_comment(GKeyFile * key_file,
+					      const gchar * group_name,
+					      const gchar * key,
+					      GError * *error);
+    extern gboolean g_key_file_remove_group(GKeyFile * key_file,
+					    const gchar * group_name,
+					    GError * *error);
+    extern gboolean g_key_file_remove_key(GKeyFile * key_file,
+					  const gchar * group_name,
+					  const gchar * key,
+					  GError * *error);
+    extern gboolean g_key_file_set_comment(GKeyFile * key_file,
+					   const gchar * group_name,
+					   const gchar * key,
+					   const gchar * comment,
+					   GError * *error);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

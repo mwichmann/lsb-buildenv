@@ -28,10 +28,18 @@ extern "C" {
     extern void cairo_ft_font_options_substitute(const cairo_font_options_t
 						 * options,
 						 FcPattern * pattern);
-    extern void cairo_ft_scaled_font_lock_face(cairo_scaled_font_t *
-					       scaled_font);
     extern void cairo_ft_scaled_font_unlock_face(cairo_scaled_font_t *
 						 scaled_font);
+#if __LSB_VERSION__ < 50
+    extern void cairo_ft_scaled_font_lock_face(cairo_scaled_font_t *
+					       scaled_font);
+#endif				/* __LSB_VERSION__ < 5.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern FT_Face cairo_ft_scaled_font_lock_face(cairo_scaled_font_t *
+						  scaled_font);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif
