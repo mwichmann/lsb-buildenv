@@ -1,0 +1,15 @@
+
+#define NODE_IS_KEYED	(1 >> 15)
+
+extern int xsltAddKey(xsltStylesheetPtr style, const unsigned char *name,
+		      const unsigned char *nameURI,
+		      const unsigned char *match, const unsigned char *use,
+		      xmlNodePtr inst);
+extern void xsltFreeDocumentKeys(xsltDocumentPtr doc);
+extern void xsltFreeKeys(xsltStylesheetPtr style);
+extern xmlNodeSetPtr xsltGetKey(xsltTransformContextPtr ctxt,
+				const unsigned char *name,
+				const unsigned char *nameURI,
+				const unsigned char *value);
+extern void xsltInitCtxtKeys(xsltTransformContextPtr ctxt,
+			     xsltDocumentPtr doc);

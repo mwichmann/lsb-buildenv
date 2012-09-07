@@ -1,0 +1,21 @@
+
+typedef enum {
+    XSLT_LOAD_START,
+    XSLT_LOAD_STYLESHEET,
+    XSLT_LOAD_DOCUMENT
+} xsltLoadType;
+typedef xmlDocPtr(*xsltDocLoaderFunc) (void);
+extern xsltDocLoaderFunc xsltDocDefaultLoader;
+extern xsltDocumentPtr xsltFindDocument(xsltTransformContextPtr ctxt,
+					xmlDocPtr doc);
+extern void xsltFreeDocuments(xsltTransformContextPtr ctxt);
+extern void xsltFreeStyleDocuments(xsltStylesheetPtr style);
+extern xsltDocumentPtr xsltLoadDocument(xsltTransformContextPtr ctxt,
+					const unsigned char *URI);
+extern xsltDocumentPtr xsltLoadStyleDocument(xsltStylesheetPtr style,
+					     const unsigned char *URI);
+extern xsltDocumentPtr xsltNewDocument(xsltTransformContextPtr ctxt,
+				       xmlDocPtr doc);
+extern xsltDocumentPtr xsltNewStyleDocument(xsltStylesheetPtr style,
+					    xmlDocPtr doc);
+extern void xsltSetLoaderFunc(xsltDocLoaderFunc f);

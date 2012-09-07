@@ -53,5 +53,6 @@ libssl3 libssl3.so
 libstdcxx libstdc++.so.6
 libutil libutil.so.1
 libxml2 libxml2.so.2
+libxslt libxslt.so.1
 libz libz.so.1
 proginterp /lib64/ld-lsb-s390x.so.3
