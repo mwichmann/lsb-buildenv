@@ -289,6 +289,7 @@ char *lsb_libs_50[] = {
 	"ssl3",
 	"util",
 	"xml2",
+	"xslt",
 	"z",
 NULL
 };
