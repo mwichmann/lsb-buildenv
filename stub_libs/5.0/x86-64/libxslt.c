@@ -216,8 +216,6 @@ void xsltTemplateProcess() {} ;
 void xsltTestCompMatchList() {} ;
 void xsltText() {} ;
 void xsltTimestamp() {} ;
-void xsltTransStorageAdd() {} ;
-void xsltTransStorageRemove() {} ;
 void xsltTransformError() {} ;
 void xsltUninit() {} ;
 void xsltUnparsedEntityURIFunction() {} ;

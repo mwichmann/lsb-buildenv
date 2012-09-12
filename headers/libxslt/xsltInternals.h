@@ -171,10 +171,6 @@ extern "C" {
 				  xmlDocPtr RVT);
     extern void xsltReleaseRVT(xsltTransformContextPtr ctxt,
 			       xmlDocPtr RVT);
-    extern int xsltTransStorageAdd(xsltTransformContextPtr ctxt, void *id,
-				   void *data);
-    extern void *xsltTransStorageRemove(xsltTransformContextPtr ctxt,
-					void *id);
     extern void xsltUninit(void);
 #ifdef __cplusplus
 }
