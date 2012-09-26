@@ -130,10 +130,6 @@ extern "C" {
 	    void *ptr;
 	    int ival;
 	} val;
-	union {
-	    void *ptr;
-	    int ival;
-	}._47;
     };
 
     struct _xsltTemplate {

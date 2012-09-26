@@ -21,10 +21,6 @@ typedef struct _xsltRuntimeExtra {
 	void *ptr;
 	int ival;
     } val;
-    union {
-	void *ptr;
-	int ival;
-    }._47;
 } xsltRuntimeExtra;
 typedef xsltRuntimeExtra *xsltRuntimeExtraPtr;
 typedef struct _xsltTemplate {
