@@ -3,9 +3,15 @@
 #define _LIBXSLT_XSLTINTERNALS_H_
 
 #include <libxml2/libxml/xmlstring.h>
+#include <libxml2/libxml/xmlmemory.h>
 #include <libxml2/libxml/tree.h>
+#include <libxml2/libxml/xmlerror.h>
+#include <libxml2/libxml/dict.h>
+#include <libxml2/libxml/entities.h>
+#include <libxml2/libxml/hash.h>
 #include <libxml2/libxml/xpath.h>
 #include <libxslt/numbersInternals.h>
+#include <libxslt/xsltlocale.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,6 +53,8 @@ extern "C" {
     typedef struct _xsltKeyDef xsltKeyDef;
 
     typedef xsltKeyDef *xsltKeyDefPtr;
+
+    typedef struct _xsltKeyTable xsltKeyTable;
 
     typedef struct _xsltStylesheet xsltStylesheet;
 
@@ -114,6 +122,273 @@ extern "C" {
 	XSLT_STATE_ERROR,
 	XSLT_STATE_STOPPED
     } xsltTransformState;
+
+    struct _xsltRuntimeExtra {
+	void *info;
+	xmlFreeFunc deallocate;
+	union {
+	    void *ptr;
+	    int ival;
+	} val;
+	union {
+	    void *ptr;
+	    int ival;
+	}._47;
+    };
+
+    struct _xsltTemplate {
+	struct _xsltTemplate *next;
+	struct _xsltStylesheet *style;
+	xmlChar *match;
+	float priority;
+	const unsigned char *name;
+	const unsigned char *nameURI;
+	const unsigned char *mode;
+	const unsigned char *modeURI;
+	xmlNodePtr content;
+	xmlNodePtr elem;
+	int inheritedNsNr;
+	xmlNs **inheritedNs;
+	int nbCalls;
+	unsigned long int time;
+	void *params;
+    };
+
+    struct _xsltDecimalFormat {
+	struct _xsltDecimalFormat *next;
+	xmlChar *name;
+	xmlChar *digit;
+	xmlChar *patternSeparator;
+	xmlChar *minusSign;
+	xmlChar *infinity;
+	xmlChar *noNumber;
+	xmlChar *decimalPoint;
+	xmlChar *grouping;
+	xmlChar *percent;
+	xmlChar *permille;
+	xmlChar *zeroDigit;
+    };
+
+    struct _xsltDocument {
+	struct _xsltDocument *next;
+	int main;
+	xmlDocPtr doc;
+	void *keys;
+	struct _xsltDocument *includes;
+	int preproc;
+	int nbKeysComputed;
+    };
+
+    struct _xsltKeyDef {
+	struct _xsltKeyDef *next;
+	xmlNodePtr inst;
+	xmlChar *name;
+	xmlChar *nameURI;
+	xmlChar *match;
+	xmlChar *use;
+	xmlXPathCompExprPtr comp;
+	xmlXPathCompExprPtr usecomp;
+	xmlNs **nsList;
+	int nsNr;
+    };
+
+    struct _xsltKeyTable {
+	struct _xsltKeyTable *next;
+	xmlChar *name;
+	xmlChar *nameURI;
+	xmlHashTablePtr keys;
+    };
+
+    struct _xsltElemPreComp {
+	xsltElemPreCompPtr next;
+	xsltStyleType type;
+	xsltTransformFunction func;
+	xmlNode *inst;
+	xsltElemPreCompDeallocator free;
+    };
+
+    struct _xsltStylePreComp {
+	xsltElemPreCompPtr next;
+	xsltStyleType type;
+	xsltTransformFunction func;
+	xmlNode *inst;
+	const unsigned char *stype;
+	int has_stype;
+	int number;
+	const unsigned char *order;
+	int has_order;
+	int descending;
+	const unsigned char *lang;
+	int has_lang;
+	xsltLocale locale;
+	const unsigned char *case_order;
+	int lower_first;
+	const unsigned char *use;
+	int has_use;
+	int noescape;
+	const unsigned char *name;
+	int has_name;
+	const unsigned char *ns;
+	int has_ns;
+	const unsigned char *mode;
+	const unsigned char *modeURI;
+	const unsigned char *test;
+	xsltTemplatePtr templ;
+	const unsigned char *select;
+	int ver11;
+	const unsigned char *filename;
+	int has_filename;
+	xsltNumberData numdata;
+	xmlXPathCompExprPtr comp;
+	xmlNs **nsList;
+	int nsNr;
+    };
+
+    struct _xsltStackElem {
+	struct _xsltStackElem *next;
+	xsltStylePreCompPtr comp;
+	int computed;
+	const unsigned char *name;
+	const unsigned char *nameURI;
+	const unsigned char *select;
+	xmlNode *tree;
+	xmlXPathObjectPtr value;
+	xmlDocPtr fragment;
+	int level;
+	xsltTransformContextPtr context;
+	int flags;
+    };
+
+    struct _xsltStylesheet {
+	struct _xsltStylesheet *parent;
+	struct _xsltStylesheet *next;
+	struct _xsltStylesheet *imports;
+	xsltDocumentPtr docList;
+	xmlDocPtr doc;
+	xmlHashTablePtr stripSpaces;
+	int stripAll;
+	xmlHashTablePtr cdataSection;
+	xsltStackElemPtr variables;
+	xsltTemplatePtr templates;
+	void *templatesHash;
+	void *rootMatch;
+	void *keyMatch;
+	void *elemMatch;
+	void *attrMatch;
+	void *parentMatch;
+	void *textMatch;
+	void *piMatch;
+	void *commentMatch;
+	xmlHashTablePtr nsAliases;
+	xmlHashTablePtr attributeSets;
+	xmlHashTablePtr nsHash;
+	void *nsDefs;
+	void *keys;
+	xmlChar *method;
+	xmlChar *methodURI;
+	xmlChar *version;
+	xmlChar *encoding;
+	int omitXmlDeclaration;
+	xsltDecimalFormatPtr decimalFormat;
+	int standalone;
+	xmlChar *doctypePublic;
+	xmlChar *doctypeSystem;
+	int indent;
+	xmlChar *mediaType;
+	xsltElemPreCompPtr preComps;
+	int warnings;
+	int errors;
+	xmlChar *exclPrefix;
+	xmlChar **exclPrefixTab;
+	int exclPrefixNr;
+	int exclPrefixMax;
+	void *_private;
+	xmlHashTablePtr extInfos;
+	int extrasNr;
+	xsltDocumentPtr includes;
+	xmlDictPtr dict;
+	void *attVTs;
+	const unsigned char *defaultAlias;
+	int nopreproc;
+	int internalized;
+	int literal_result;
+	xsltStylesheetPtr principal;
+    };
+
+    struct _xsltTransformCache {
+	xmlDocPtr RVT;
+	int nbRVT;
+	xsltStackElemPtr stackItems;
+	int nbStackItems;
+    };
+
+    struct _xsltTransformContext {
+	xsltStylesheetPtr style;
+	xsltOutputType type;
+	xsltTemplatePtr templ;
+	int templNr;
+	int templMax;
+	xsltTemplatePtr *templTab;
+	xsltStackElemPtr vars;
+	int varsNr;
+	int varsMax;
+	xsltStackElemPtr *varsTab;
+	int varsBase;
+	xmlHashTablePtr extFunctions;
+	xmlHashTablePtr extElements;
+	xmlHashTablePtr extInfos;
+	const unsigned char *mode;
+	const unsigned char *modeURI;
+	xsltDocumentPtr docList;
+	xsltDocumentPtr document;
+	xmlNode *node;
+	xmlNodeSetPtr nodeList;
+	xmlDocPtr output;
+	xmlNode *insert;
+	xmlXPathContextPtr xpathCtxt;
+	xsltTransformState state;
+	xmlHashTablePtr globalVars;
+	xmlNode *inst;
+	int xinclude;
+	const char *outputFile;
+	int profile;
+	long int prof;
+	int profNr;
+	int profMax;
+	long int *profTab;
+	void *_private;
+	int extrasNr;
+	int extrasMax;
+	xsltRuntimeExtraPtr extras;
+	xsltDocumentPtr styleList;
+	void *sec;
+	xmlGenericErrorFunc error;
+	void *errctx;
+	xsltSortFunc sortfunc;
+	xmlDocPtr tmpRVT;
+	xmlDocPtr persistRVT;
+	int ctxtflags;
+	const unsigned char *lasttext;
+	unsigned int lasttsize;
+	unsigned int lasttuse;
+	int debugStatus;
+	unsigned long int *traceCode;
+	int parserOptions;
+	xmlDictPtr dict;
+	xmlDocPtr tmpDoc;
+	int internalized;
+	int nbKeys;
+	int hasTemplKeyPatterns;
+	xsltTemplatePtr currentTemplateRule;
+	xmlNode *initialContextNode;
+	xmlDocPtr initialContextDoc;
+	xsltTransformCachePtr cache;
+	void *contextVariable;
+	xmlDocPtr localRVT;
+	xmlDocPtr localRVTBase;
+	int keyInitLevel;
+	int funcLevel;
+    };
 
 
 /* Function prototypes */

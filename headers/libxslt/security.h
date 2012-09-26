@@ -2,6 +2,11 @@
 #ifndef _LIBXSLT_SECURITY_H_
 #define _LIBXSLT_SECURITY_H_
 
+#include <libxml2/libxml/tree.h>
+#include <libxml2/libxml/xmlerror.h>
+#include <libxml2/libxml/dict.h>
+#include <libxml2/libxml/hash.h>
+#include <libxml2/libxml/xpath.h>
 #include <libxslt/xsltInternals.h>
 
 #ifdef __cplusplus

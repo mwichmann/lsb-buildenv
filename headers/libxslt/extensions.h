@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <libxml2/libxml/xmlstring.h>
 #include <libxml2/libxml/tree.h>
+#include <libxml2/libxml/xmlerror.h>
+#include <libxml2/libxml/dict.h>
 #include <libxml2/libxml/entities.h>
 #include <libxml2/libxml/hash.h>
 #include <libxml2/libxml/xpath.h>
