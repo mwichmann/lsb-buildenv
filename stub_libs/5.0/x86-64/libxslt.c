@@ -230,7 +230,7 @@ void xsltXPathFunctionLookup() {} ;
 void xsltXPathGetTransformContext() {} ;
 void xsltXPathVariableLookup() {} ;
 __asm__(".globl xslDebugStatus; .pushsection .data; .type xslDebugStatus,@object; .size xslDebugStatus, 4; xslDebugStatus: .long 0; .popsection");
-__asm__(".globl xsltDocDefaultLoader; .pushsection .data; .type xsltDocDefaultLoader,@object; .size xsltDocDefaultLoader, 4; xsltDocDefaultLoader: .long 0; .popsection");
+__asm__(".globl xsltDocDefaultLoader; .pushsection .data; .type xsltDocDefaultLoader,@object; .size xsltDocDefaultLoader, 8; xsltDocDefaultLoader: .long 0; .popsection");
 __asm__(".globl xsltEngineVersion; .pushsection .data; .type xsltEngineVersion,@object; .size xsltEngineVersion, 8; xsltEngineVersion: .long 0; .popsection");
 __asm__(".globl xsltExtMarker; .pushsection .data; .type xsltExtMarker,@object; .size xsltExtMarker, 4; xsltExtMarker: .long 0; .popsection");
 __asm__(".globl xsltGenericDebug; .pushsection .data; .type xsltGenericDebug,@object; .size xsltGenericDebug, 8; xsltGenericDebug: .long 0; .popsection");
