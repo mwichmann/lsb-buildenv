@@ -366,6 +366,8 @@ BASE/LIB-5.0/libpangoxft-1.0.so
 BASE/LIB-5.0/libpangoxft-1.0.so.0
 BASE/LIB-5.0/libpng12.so
 BASE/LIB-5.0/libpng12.so.0
+BASE/LIB-5.0/libtiff.so
+BASE/LIB-5.0/libtiff.so.5
 BASE/LIB-5.0/libxml2.so
 BASE/LIB-5.0/libxml2.so.2
 BASE/LIB-5.0/libxslt.so
@@ -602,3 +604,7 @@ BASE/include/pango-1.0/pango/pangofc-fontmap.h
 BASE/include/pango-1.0/pango/pangoft2.h
 BASE/include/pango-1.0/pango/pangoxft.h
 BASE/include/png.h
+BASE/include/tiff.h
+BASE/include/tiffconf.h
+BASE/include/tiffio.h
+BASE/include/tiffvers.h

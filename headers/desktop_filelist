@@ -230,3 +230,7 @@ pango-1.0/pango/pangofc-fontmap.h
 pango-1.0/pango/pangoft2.h
 pango-1.0/pango/pangoxft.h
 png.h
+tiff.h
+tiffconf.h
+tiffio.h
+tiffvers.h

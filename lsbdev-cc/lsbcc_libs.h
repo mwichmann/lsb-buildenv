@@ -287,6 +287,7 @@ char *lsb_libs_50[] = {
 	"rt",
 	"sane",
 	"ssl3",
+	"tiff",
 	"util",
 	"xml2",
 	"xslt",
