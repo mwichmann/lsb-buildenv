@@ -2533,7 +2533,7 @@ extern gchar *g_utf8_casefold(const gchar * str, gssize len);
 extern gint g_utf8_collate(const gchar * str1, const gchar * str2);
 extern gchar *g_utf8_collate_key(const gchar * str, gssize len);
 extern gchar *g_utf8_find_next_char(const gchar * p, const gchar * end);
-extern gchar *g_utf8_find_prev_char(const char *str, const char *p);
+extern gchar *g_utf8_find_prev_char(const gchar * str, const gchar * p);
 extern gunichar g_utf8_get_char(const gchar * p);
 extern gunichar g_utf8_get_char_validated(const gchar * p, gssize max_len);
 extern gchar *g_utf8_normalize(const gchar * str, gssize len,
@@ -2543,11 +2543,11 @@ extern glong g_utf8_pointer_to_offset(const gchar * str,
 				      const gchar * pos);
 extern gchar *g_utf8_prev_char(const gchar * p);
 extern const gchar *const g_utf8_skip;
-extern gchar *g_utf8_strchr(const char *p, gssize len, gunichar c);
+extern gchar *g_utf8_strchr(const gchar * p, gssize len, gunichar c);
 extern gchar *g_utf8_strdown(const gchar * str, gssize len);
 extern glong g_utf8_strlen(const gchar * p, gssize max);
 extern gchar *g_utf8_strncpy(gchar * dest, const gchar * src, gsize n);
-extern gchar *g_utf8_strrchr(const char *p, gssize len, gunichar c);
+extern gchar *g_utf8_strrchr(const gchar * p, gssize len, gunichar c);
 extern gchar *g_utf8_strreverse(const gchar * str, gssize len);
 extern gchar *g_utf8_strup(const gchar * str, gssize len);
 extern gunichar *g_utf8_to_ucs4(const gchar * str, glong len,
@@ -2558,7 +2558,7 @@ extern gunichar *g_utf8_to_ucs4_fast(const gchar * str, glong len,
 extern gunichar2 *g_utf8_to_utf16(const gchar * str, glong len,
 				  glong * items_read,
 				  glong * items_written, GError * *error);
-extern gboolean g_utf8_validate(const char *str, gssize max_len,
+extern gboolean g_utf8_validate(const gchar * str, gssize max_len,
 				const gchar * *end);
 extern const guint glib_binary_age;
 extern const gchar *glib_check_version(guint required_major,

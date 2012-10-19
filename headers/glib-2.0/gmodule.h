@@ -16,9 +16,24 @@ extern "C" {
     typedef struct _GModule GModule;
 
     typedef enum {
+#if __LSB_VERSION__ < 50
 	G_MODULE_BIND_LAZY = 1,
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	G_MODULE_BIND_LAZY = 1 << 0,
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	G_MODULE_BIND_LOCAL = 2,
-	G_MODULE_BIND_MASK = 3
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	G_MODULE_BIND_LOCAL = 1 << 1,
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
+	G_MODULE_BIND_MASK = 3,
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	G_MODULE_BIND_MASK = 0x03
+#endif				/* __LSB_VERSION__ >= 50 */
     } GModuleFlags;
 
     typedef void (*GModuleUnload) (GModule *);

@@ -334,6 +334,8 @@ BASE/LIB-5.0/libatk-1.0.so
 BASE/LIB-5.0/libatk-1.0.so.0
 BASE/LIB-5.0/libcairo.so
 BASE/LIB-5.0/libcairo.so.2
+BASE/LIB-5.0/libffi.so
+BASE/LIB-5.0/libffi.so.6
 BASE/LIB-5.0/libfontconfig.so
 BASE/LIB-5.0/libfontconfig.so.1
 BASE/LIB-5.0/libfreetype.so
@@ -471,6 +473,8 @@ BASE/include/cairo/cairo-svg.h
 BASE/include/cairo/cairo-xlib-xrender.h
 BASE/include/cairo/cairo-xlib.h
 BASE/include/cairo/cairo.h
+BASE/include/ffi.h
+BASE/include/ffitarget.h
 BASE/include/fontconfig/fcfreetype.h
 BASE/include/fontconfig/fcprivate.h
 BASE/include/fontconfig/fontconfig.h

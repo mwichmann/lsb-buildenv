@@ -24,6 +24,7 @@ libcrypt libcrypt.so.1
 libcups libcups.so.2
 libcupsimage libcupsimage.so.2
 libdl libdl.so.2
+libffi libffi.so.6
 libfontconfig libfontconfig.so.1
 libfreetype libfreetype.so.6
 libgcc_s libgcc_s.so.1

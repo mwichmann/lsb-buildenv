@@ -3,6 +3,7 @@
 #define _GLIB_2_0_GLIB_H_
 
 #include <limits.h>
+#include <pthread.h>
 #include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
@@ -1038,9 +1039,17 @@ extern "C" {
 #if __LSB_VERSION__ >= 41
 #define g_atomic_int_set(atomic, newval)	((void) (*(atomic) = (newval)))
 #define g_atomic_pointer_set(atomic, newval)	((void) (*(atomic) = (newval)))
+#if __LSB_VERSION__ < 50
 #define GLIB_MINOR_VERSION	12
 #define GLIB_MICRO_VERSION	3
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+#define GLIB_MICRO_VERSION	1
+#define GLIB_MINOR_VERSION	32
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
@@ -1151,6 +1160,11 @@ extern "C" {
     typedef unsigned long int guint64;
 
 #endif
+#if __LSB_VERSION__ >= 50
+    typedef float gfloat;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 /* Default Header Section for glib-2.0/glib.h*/
 #if __LSB_VERSION__ >= 41
@@ -1286,8 +1300,6 @@ extern "C" {
     typedef guint(*GHashFunc) (gconstpointer);
 
     typedef gboolean(*GEqualFunc) (gconstpointer, gconstpointer);
-
-    typedef struct _GStaticMutex GStaticMutex;
 
     typedef union _GSystemThread GSystemThread;
 
@@ -1859,6 +1871,11 @@ extern "C" {
 	G_SHELL_ERROR_FAILED
     } GShellError;
 
+#if __LSB_VERSION__ < 50
+    typedef struct _GStaticMutex GStaticMutex;
+
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 40
     typedef struct _GMappedFile GMappedFile;
 
@@ -1882,6 +1899,423 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 50
     typedef struct _GSourcePrivate GSourcePrivate;
+
+    typedef struct GTestCase GTestCase;
+
+    typedef struct GTestSuite GTestSuite;
+
+    typedef void (*GTestFunc) (void);
+
+    typedef void (*GTestDataFunc) (gconstpointer);
+
+    typedef void (*GTestFixtureFunc) (gconstpointer);
+
+    typedef enum {
+	G_TEST_TRAP_SILENCE_STDOUT = 1 << 7,
+	G_TEST_TRAP_SILENCE_STDERR = 1 << 8,
+	G_TEST_TRAP_INHERIT_STDIN = 1 << 9
+    } GTestTrapFlags;
+
+    typedef struct {
+	gboolean test_initialized;
+	gboolean test_quick;
+	gboolean test_perf;
+	gboolean test_verbose;
+	gboolean test_quiet;
+	gboolean test_undefined;
+    } GTestConfig;
+
+    typedef enum {
+	G_TEST_LOG_NONE,
+	G_TEST_LOG_ERROR,
+	G_TEST_LOG_START_BINARY,
+	G_TEST_LOG_LIST_CASE,
+	G_TEST_LOG_SKIP_CASE,
+	G_TEST_LOG_START_CASE,
+	G_TEST_LOG_STOP_CASE,
+	G_TEST_LOG_MIN_RESULT,
+	G_TEST_LOG_MAX_RESULT,
+	G_TEST_LOG_MESSAGE
+    } GTestLogType;
+
+    typedef struct {
+	GTestLogType log_type;
+	guint n_strings;
+	gchar **strings;
+	guint n_nums;
+	long double *nums;
+    } GTestLogMsg;
+
+    typedef struct {
+	GString *data;
+	GSList *msgs;
+    } GTestLogBuffer;
+
+    typedef gboolean(*GTestLogFatalFunc) (const gchar *, GLogLevelFlags,
+					  const gchar *, gpointer);
+
+    typedef enum {
+	G_USER_DIRECTORY_DESKTOP,
+	G_USER_DIRECTORY_DOCUMENTS,
+	G_USER_DIRECTORY_DOWNLOAD,
+	G_USER_DIRECTORY_MUSIC,
+	G_USER_DIRECTORY_PICTURES,
+	G_USER_DIRECTORY_PUBLIC_SHARE,
+	G_USER_DIRECTORY_TEMPLATES,
+	G_USER_DIRECTORY_VIDEOS,
+	G_USER_N_DIRECTORIES
+    } GUserDirectory;
+
+    typedef enum {
+	G_FORMAT_SIZE_DEFAULT,
+	G_FORMAT_SIZE_LONG_FORMAT,
+	G_FORMAT_SIZE_IEC_UNITS
+    } GFormatSizeFlags;
+
+    typedef struct _GSequence GSequence;
+
+    typedef struct _GSequenceNode GSequenceIter;
+
+    typedef gint(*GSequenceIterCompareFunc) (void *);
+
+    typedef enum {
+	G_MARKUP_COLLECT_INVALID,
+	G_MARKUP_COLLECT_STRING,
+	G_MARKUP_COLLECT_STRDUP,
+	G_MARKUP_COLLECT_BOOLEAN,
+	G_MARKUP_COLLECT_TRISTATE,
+	G_MARKUP_COLLECT_OPTIONAL
+    } GMarkupCollectType;
+
+    typedef struct _GHashTableIter GHashTableIter;
+
+    typedef enum {
+	G_UNICODE_SCRIPT_INVALID_CODE,
+	G_UNICODE_SCRIPT_COMMON,
+	G_UNICODE_SCRIPT_INHERITED,
+	G_UNICODE_SCRIPT_ARABIC,
+	G_UNICODE_SCRIPT_ARMENIAN,
+	G_UNICODE_SCRIPT_BENGALI,
+	G_UNICODE_SCRIPT_BOPOMOFO,
+	G_UNICODE_SCRIPT_CHEROKEE,
+	G_UNICODE_SCRIPT_COPTIC,
+	G_UNICODE_SCRIPT_CYRILLIC,
+	G_UNICODE_SCRIPT_DESERET,
+	G_UNICODE_SCRIPT_DEVANAGARI,
+	G_UNICODE_SCRIPT_ETHIOPIC,
+	G_UNICODE_SCRIPT_GEORGIAN,
+	G_UNICODE_SCRIPT_GOTHIC,
+	G_UNICODE_SCRIPT_GREEK,
+	G_UNICODE_SCRIPT_GUJARATI,
+	G_UNICODE_SCRIPT_GURMUKHI,
+	G_UNICODE_SCRIPT_HAN,
+	G_UNICODE_SCRIPT_HANGUL,
+	G_UNICODE_SCRIPT_HEBREW,
+	G_UNICODE_SCRIPT_HIRAGANA,
+	G_UNICODE_SCRIPT_KANNADA,
+	G_UNICODE_SCRIPT_KATAKANA,
+	G_UNICODE_SCRIPT_KHMER,
+	G_UNICODE_SCRIPT_LAO,
+	G_UNICODE_SCRIPT_LATIN,
+	G_UNICODE_SCRIPT_MALAYALAM,
+	G_UNICODE_SCRIPT_MONGOLIAN,
+	G_UNICODE_SCRIPT_MYANMAR,
+	G_UNICODE_SCRIPT_OGHAM,
+	G_UNICODE_SCRIPT_OLD_ITALIC,
+	G_UNICODE_SCRIPT_ORIYA,
+	G_UNICODE_SCRIPT_RUNIC,
+	G_UNICODE_SCRIPT_SINHALA,
+	G_UNICODE_SCRIPT_SYRIAC,
+	G_UNICODE_SCRIPT_TAMIL,
+	G_UNICODE_SCRIPT_TELUGU,
+	G_UNICODE_SCRIPT_THAANA,
+	G_UNICODE_SCRIPT_THAI,
+	G_UNICODE_SCRIPT_TIBETAN,
+	G_UNICODE_SCRIPT_CANADIAN_ABORIGINAL,
+	G_UNICODE_SCRIPT_YI,
+	G_UNICODE_SCRIPT_TAGALOG,
+	G_UNICODE_SCRIPT_HANUNOO,
+	G_UNICODE_SCRIPT_BUHID,
+	G_UNICODE_SCRIPT_TAGBANWA,
+	G_UNICODE_SCRIPT_BRAILLE,
+	G_UNICODE_SCRIPT_CYPRIOT,
+	G_UNICODE_SCRIPT_LIMBU,
+	G_UNICODE_SCRIPT_OSMANYA,
+	G_UNICODE_SCRIPT_SHAVIAN,
+	G_UNICODE_SCRIPT_LINEAR_B,
+	G_UNICODE_SCRIPT_TAI_LE,
+	G_UNICODE_SCRIPT_UGARITIC,
+	G_UNICODE_SCRIPT_NEW_TAI_LUE,
+	G_UNICODE_SCRIPT_BUGINESE,
+	G_UNICODE_SCRIPT_GLAGOLITIC,
+	G_UNICODE_SCRIPT_TIFINAGH,
+	G_UNICODE_SCRIPT_SYLOTI_NAGRI,
+	G_UNICODE_SCRIPT_OLD_PERSIAN,
+	G_UNICODE_SCRIPT_KHAROSHTHI,
+	G_UNICODE_SCRIPT_UNKNOWN,
+	G_UNICODE_SCRIPT_BALINESE,
+	G_UNICODE_SCRIPT_CUNEIFORM,
+	G_UNICODE_SCRIPT_PHOENICIAN,
+	G_UNICODE_SCRIPT_PHAGS_PA,
+	G_UNICODE_SCRIPT_NKO,
+	G_UNICODE_SCRIPT_KAYAH_LI,
+	G_UNICODE_SCRIPT_LEPCHA,
+	G_UNICODE_SCRIPT_REJANG,
+	G_UNICODE_SCRIPT_SUNDANESE,
+	G_UNICODE_SCRIPT_SAURASHTRA,
+	G_UNICODE_SCRIPT_CHAM,
+	G_UNICODE_SCRIPT_OL_CHIKI,
+	G_UNICODE_SCRIPT_VAI,
+	G_UNICODE_SCRIPT_CARIAN,
+	G_UNICODE_SCRIPT_LYCIAN,
+	G_UNICODE_SCRIPT_LYDIAN,
+	G_UNICODE_SCRIPT_AVESTAN,
+	G_UNICODE_SCRIPT_BAMUM,
+	G_UNICODE_SCRIPT_EGYPTIAN_HIEROGLYPHS,
+	G_UNICODE_SCRIPT_IMPERIAL_ARAMAIC,
+	G_UNICODE_SCRIPT_INSCRIPTIONAL_PAHLAVI,
+	G_UNICODE_SCRIPT_INSCRIPTIONAL_PARTHIAN,
+	G_UNICODE_SCRIPT_JAVANESE,
+	G_UNICODE_SCRIPT_KAITHI,
+	G_UNICODE_SCRIPT_LISU,
+	G_UNICODE_SCRIPT_MEETEI_MAYEK,
+	G_UNICODE_SCRIPT_OLD_SOUTH_ARABIAN,
+	G_UNICODE_SCRIPT_OLD_TURKIC,
+	G_UNICODE_SCRIPT_SAMARITAN,
+	G_UNICODE_SCRIPT_TAI_THAM,
+	G_UNICODE_SCRIPT_TAI_VIET,
+	G_UNICODE_SCRIPT_BATAK,
+	G_UNICODE_SCRIPT_BRAHMI,
+	G_UNICODE_SCRIPT_MANDAIC,
+	G_UNICODE_SCRIPT_CHAKMA,
+	G_UNICODE_SCRIPT_MEROITIC_CURSIVE,
+	G_UNICODE_SCRIPT_MEROITIC_HIEROGLYPHS,
+	G_UNICODE_SCRIPT_MIAO,
+	G_UNICODE_SCRIPT_SHARADA,
+	G_UNICODE_SCRIPT_SORA_SOMPENG,
+	G_UNICODE_SCRIPT_TAKRI
+    } GUnicodeScript;
+
+    typedef struct _GTimeZone GTimeZone;
+
+    typedef enum {
+	G_TIME_TYPE_STANDARD,
+	G_TIME_TYPE_DAYLIGHT,
+	G_TIME_TYPE_UNIVERSAL
+    } GTimeType;
+
+    typedef struct _GBytes GBytes;
+
+    typedef struct _GVariantType GVariantType;
+
+    typedef enum {
+	G_CHECKSUM_MD5,
+	G_CHECKSUM_SHA1,
+	G_CHECKSUM_SHA256
+    } GChecksumType;
+
+    typedef struct _GChecksum GChecksum;
+
+    typedef union _GDoubleIEEE754 GDoubleIEEE754;
+
+    typedef union _GFloatIEEE754 GFloatIEEE754;
+
+    typedef struct _GHmac GHmac;
+
+    typedef struct _GVariant GVariant;
+
+    typedef enum {
+	G_VARIANT_CLASS_BOOLEAN,
+	G_VARIANT_CLASS_BYTE,
+	G_VARIANT_CLASS_INT16,
+	G_VARIANT_CLASS_UINT16,
+	G_VARIANT_CLASS_INT32,
+	G_VARIANT_CLASS_UINT32,
+	G_VARIANT_CLASS_INT64,
+	G_VARIANT_CLASS_UINT64,
+	G_VARIANT_CLASS_HANDLE,
+	G_VARIANT_CLASS_DOUBLE,
+	G_VARIANT_CLASS_STRING,
+	G_VARIANT_CLASS_OBJECT_PATH,
+	G_VARIANT_CLASS_SIGNATURE,
+	G_VARIANT_CLASS_VARIANT,
+	G_VARIANT_CLASS_MAYBE,
+	G_VARIANT_CLASS_ARRAY,
+	G_VARIANT_CLASS_TUPLE,
+	G_VARIANT_CLASS_DICT_ENTRY
+    } GVariantClass;
+
+    typedef struct _GVariantIter GVariantIter;
+
+    typedef struct _GVariantBuilder GVariantBuilder;
+
+    typedef enum {
+	G_VARIANT_PARSE_ERROR_FAILED,
+	G_VARIANT_PARSE_ERROR_BASIC_TYPE_EXPECTED,
+	G_VARIANT_PARSE_ERROR_CANNOT_INFER_TYPE,
+	G_VARIANT_PARSE_ERROR_DEFINITE_TYPE_EXPECTED,
+	G_VARIANT_PARSE_ERROR_INPUT_NOT_AT_END,
+	G_VARIANT_PARSE_ERROR_INVALID_CHARACTER,
+	G_VARIANT_PARSE_ERROR_INVALID_FORMAT_STRING,
+	G_VARIANT_PARSE_ERROR_INVALID_OBJECT_PATH,
+	G_VARIANT_PARSE_ERROR_INVALID_SIGNATURE,
+	G_VARIANT_PARSE_ERROR_INVALID_TYPE_STRING,
+	G_VARIANT_PARSE_ERROR_NO_COMMON_TYPE,
+	G_VARIANT_PARSE_ERROR_NUMBER_OUT_OF_RANGE,
+	G_VARIANT_PARSE_ERROR_NUMBER_TOO_BIG,
+	G_VARIANT_PARSE_ERROR_TYPE_ERROR,
+	G_VARIANT_PARSE_ERROR_UNEXPECTED_TOKEN,
+	G_VARIANT_PARSE_ERROR_UNKNOWN_KEYWORD,
+	G_VARIANT_PARSE_ERROR_UNTERMINATED_STRING_CONSTANT,
+	G_VARIANT_PARSE_ERROR_VALUE_EXPECTED
+    } GVariantParseError;
+
+    typedef enum {
+	G_REGEX_ERROR_COMPILE,
+	G_REGEX_ERROR_OPTIMIZE,
+	G_REGEX_ERROR_REPLACE,
+	G_REGEX_ERROR_MATCH,
+	G_REGEX_ERROR_INTERNAL,
+	G_REGEX_ERROR_STRAY_BACKSLASH,
+	G_REGEX_ERROR_MISSING_CONTROL_CHAR,
+	G_REGEX_ERROR_UNRECOGNIZED_ESCAPE,
+	G_REGEX_ERROR_QUANTIFIERS_OUT_OF_ORDER,
+	G_REGEX_ERROR_QUANTIFIER_TOO_BIG,
+	G_REGEX_ERROR_UNTERMINATED_CHARACTER_CLASS,
+	G_REGEX_ERROR_INVALID_ESCAPE_IN_CHARACTER_CLASS,
+	G_REGEX_ERROR_RANGE_OUT_OF_ORDER,
+	G_REGEX_ERROR_NOTHING_TO_REPEAT,
+	G_REGEX_ERROR_UNRECOGNIZED_CHARACTER,
+	G_REGEX_ERROR_POSIX_NAMED_CLASS_OUTSIDE_CLASS,
+	G_REGEX_ERROR_UNMATCHED_PARENTHESIS,
+	G_REGEX_ERROR_INEXISTENT_SUBPATTERN_REFERENCE,
+	G_REGEX_ERROR_UNTERMINATED_COMMENT,
+	G_REGEX_ERROR_EXPRESSION_TOO_LARGE,
+	G_REGEX_ERROR_MEMORY_ERROR,
+	G_REGEX_ERROR_VARIABLE_LENGTH_LOOKBEHIND,
+	G_REGEX_ERROR_MALFORMED_CONDITION,
+	G_REGEX_ERROR_TOO_MANY_CONDITIONAL_BRANCHES,
+	G_REGEX_ERROR_ASSERTION_EXPECTED,
+	G_REGEX_ERROR_UNKNOWN_POSIX_CLASS_NAME,
+	G_REGEX_ERROR_POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED,
+	G_REGEX_ERROR_HEX_CODE_TOO_LARGE,
+	G_REGEX_ERROR_INVALID_CONDITION,
+	G_REGEX_ERROR_SINGLE_BYTE_MATCH_IN_LOOKBEHIND,
+	G_REGEX_ERROR_INFINITE_LOOP,
+	G_REGEX_ERROR_MISSING_SUBPATTERN_NAME_TERMINATOR,
+	G_REGEX_ERROR_DUPLICATE_SUBPATTERN_NAME,
+	G_REGEX_ERROR_MALFORMED_PROPERTY,
+	G_REGEX_ERROR_UNKNOWN_PROPERTY,
+	G_REGEX_ERROR_SUBPATTERN_NAME_TOO_LONG,
+	G_REGEX_ERROR_TOO_MANY_SUBPATTERNS,
+	G_REGEX_ERROR_INVALID_OCTAL_VALUE,
+	G_REGEX_ERROR_TOO_MANY_BRANCHES_IN_DEFINE,
+	G_REGEX_ERROR_DEFINE_REPETION,
+	G_REGEX_ERROR_INCONSISTENT_NEWLINE_OPTIONS,
+	G_REGEX_ERROR_MISSING_BACK_REFERENCE
+    } GRegexError;
+
+    typedef enum {
+	G_REGEX_CASELESS,
+	G_REGEX_MULTILINE,
+	G_REGEX_DOTALL,
+	G_REGEX_EXTENDED,
+	G_REGEX_ANCHORED,
+	G_REGEX_DOLLAR_ENDONLY,
+	G_REGEX_UNGREEDY,
+	G_REGEX_RAW,
+	G_REGEX_NO_AUTO_CAPTURE,
+	G_REGEX_OPTIMIZE,
+	G_REGEX_DUPNAMES,
+	G_REGEX_NEWLINE_CR,
+	G_REGEX_NEWLINE_LF,
+	G_REGEX_NEWLINE_CRLF
+    } GRegexCompileFlags;
+
+    typedef enum {
+	G_REGEX_MATCH_ANCHORED,
+	G_REGEX_MATCH_NOTBOL,
+	G_REGEX_MATCH_NOTEOL,
+	G_REGEX_MATCH_NOTEMPTY,
+	G_REGEX_MATCH_PARTIAL,
+	G_REGEX_MATCH_NEWLINE_CR,
+	G_REGEX_MATCH_NEWLINE_LF,
+	G_REGEX_MATCH_NEWLINE_CRLF,
+	G_REGEX_MATCH_NEWLINE_ANY
+    } GRegexMatchFlags;
+
+    typedef struct _GRegex GRegex;
+
+    typedef struct _GMatchInfo GMatchInfo;
+
+    typedef gboolean(*GRegexEvalCallback) (const GMatchInfo *, GString *,
+					   gpointer);
+
+    typedef struct _GRecMutex GRecMutex;
+
+    typedef struct _GRWLock GRWLock;
+
+    typedef gint64 GTimeSpan;
+
+    typedef struct _GDateTime GDateTime;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
+#if __LSB_VERSION__ >= 50
+    struct _GHashTableIter {
+	gpointer dummy1;
+	gpointer dummy2;
+	gpointer dummy3;
+	int dummy4;
+	gboolean dummy5;
+	gpointer dummy6;
+    };
+
+    union _GFloatIEEE754 {
+	gfloat v_float;
+	struct {
+	    guint mantissa:23;
+	    guint biased_exponent:8;
+	    guint sign:1;
+	} mpn;
+    };
+
+    union _GDoubleIEEE754 {
+	gdouble v_double;
+	struct {
+	    guint mantissa_low:32;
+	    guint mantissa_high:20;
+	    guint biased_exponent:11;
+	    guint sign:1;
+	} mpn;
+    };
+
+    struct _GVariantIter {
+	gsize x[16];
+    };
+
+    struct _GVariantBuilder {
+	gsize x[16];
+    };
+
+    union _GMutex {
+	gpointer p;
+	guint i[2];
+    };
+
+    struct _GRWLock {
+	gpointer p;
+	guint i[2];
+    };
+
+    struct _GRecMutex {
+	gpointer p;
+	guint i[2];
+    };
+
+    struct GStaticMutex {
+	GMutex *mutex;
+    };
 
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
@@ -1960,16 +2394,6 @@ extern "C" {
 	GCompletionStrncmpFunc strncmp_func;
     };
 
-    struct _GStaticMutex {
-	struct _GMutex *runtime_mutex;
-	union {
-	    char pad[GLIB_LSB_PADDING_SIZE];
-	    double dummy_double;
-	    void *dummy_pointer;
-	    long int dummy_long;
-	} static_mutex;
-    };
-
     union _GSystemThread {
 	char data[GLIB_LSB_DATA_SIZE];
 	double dummy_double;
@@ -1980,7 +2404,17 @@ extern "C" {
     struct _GStaticRecMutex {
 	GStaticMutex mutex;
 	guint depth;
+#if __LSB_VERSION__ >= 50
+	union {
+#if __LSB_VERSION__ >= 50
+	    pthread_t owner;
+	    gdouble dummy;
+#endif				/* __LSB_VERSION__ >= 50 */
+	} unused;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	GSystemThread owner;
+#endif				/* __LSB_VERSION__ < 50 */
     };
 
     struct _GIOChannel {
@@ -2263,6 +2697,19 @@ extern "C" {
 	 gboolean(*thread_equal) (gpointer, gpointer);
     };
 
+#if __LSB_VERSION__ < 50
+    struct _GStaticMutex {
+	struct _GMutex *runtime_mutex;
+	union {
+	    char pad[GLIB_LSB_PADDING_SIZE];
+	    double dummy_double;
+	    void *dummy_pointer;
+	    long int dummy_long;
+	} static_mutex;
+    };
+
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 
 /* Function prototypes */
 
@@ -2321,21 +2768,36 @@ extern "C" {
 					    gpointer data);
     extern GAsyncQueue *g_async_queue_ref(GAsyncQueue * queue);
     extern gpointer g_async_queue_timed_pop(GAsyncQueue * queue,
-					    GTimeVal * end_time);
+					    GTimeVal * end_time)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gpointer g_async_queue_timed_pop_unlocked(GAsyncQueue * queue,
-						     GTimeVal * end_time);
+						     GTimeVal * end_time)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gpointer g_async_queue_try_pop(GAsyncQueue * queue);
     extern gpointer g_async_queue_try_pop_unlocked(GAsyncQueue * queue);
     extern void g_async_queue_unlock(GAsyncQueue * queue);
     extern void g_async_queue_unref(GAsyncQueue * queue);
-    extern void g_atexit(GVoidFunc func);
-    extern void g_atomic_int_add(gint * volatile atomic, gint val);
+    extern void g_atexit(GVoidFunc func)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gboolean g_atomic_int_compare_and_exchange(gint *
 						      volatile atomic,
 						      gint oldval,
 						      gint newval);
     extern gint g_atomic_int_exchange_and_add(gint * volatile atomic,
-					      gint val);
+					      gint val)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gboolean g_atomic_pointer_compare_and_exchange(gpointer *
 							  volatile atomic,
 							  gpointer oldval,
@@ -2375,18 +2837,38 @@ extern "C" {
     extern void g_byte_array_sort_with_data(GByteArray * array,
 					    GCompareDataFunc compare_func,
 					    gpointer user_data);
-    extern void g_cache_destroy(GCache * cache);
-    extern gpointer g_cache_insert(GCache * cache, gpointer key);
+    extern void g_cache_destroy(GCache * cache)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern gpointer g_cache_insert(GCache * cache, gpointer key)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern void g_cache_key_foreach(GCache * cache, GHFunc func,
-				    gpointer user_data);
+				    gpointer user_data)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern GCache *g_cache_new(GCacheNewFunc value_new_func,
 			       GCacheDestroyFunc value_destroy_func,
 			       GCacheDupFunc key_dup_func,
 			       GCacheDestroyFunc key_destroy_func,
 			       GHashFunc hash_key_func,
 			       GHashFunc hash_value_func,
-			       GEqualFunc key_equal_func);
-    extern void g_cache_remove(GCache * cache, gconstpointer value);
+			       GEqualFunc key_equal_func)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_cache_remove(GCache * cache, gconstpointer value)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     /* g_cache_value_foreach is deprecated and should not be used in newly-written code.The reason is that it passes pointers to internal data structures to func; use g_cache_key_foreach instead. */
     extern void g_cache_value_foreach(GCache * cache, GHFunc func,
 				      gpointer user_data)
@@ -2690,9 +3172,6 @@ extern "C" {
     extern void g_hook_prepend(GHookList * hook_list, GHook * hook);
     extern GHook *g_hook_ref(GHookList * hook_list, GHook * hook);
     extern void g_hook_unref(GHookList * hook_list, GHook * hook);
-    extern size_t g_iconv(GIConv converter, gchar * *inbuf,
-			  gsize * inbytes_left, gchar * *outbuf,
-			  gsize * outbytes_left);
     extern gint g_iconv_close(GIConv converter);
     extern GIConv g_iconv_open(const gchar * to_codeset,
 			       const gchar * from_codeset);
@@ -3014,7 +3493,6 @@ extern "C" {
     extern gboolean g_main_context_wait(GMainContext * context,
 					GCond * cond, GMutex * mutex);
     extern void g_main_context_wakeup(GMainContext * context);
-    extern int g_main_depth(void);
     extern GMainContext *g_main_loop_get_context(GMainLoop * loop);
     extern gboolean g_main_loop_is_running(GMainLoop * loop);
     extern GMainLoop *g_main_loop_new(GMainContext * context,
@@ -3311,8 +3789,6 @@ extern "C" {
 				      GList * link_);
     extern void g_queue_push_tail(GQueue * queue, gpointer data);
     extern void g_queue_push_tail_link(GQueue * queue, GList * link_);
-    extern void g_queue_remove(GQueue * queue, gconstpointer data);
-    extern void g_queue_remove_all(GQueue * queue, gconstpointer data);
     extern void g_queue_reverse(GQueue * queue);
     extern void g_queue_sort(GQueue * queue, GCompareDataFunc compare_func,
 			     gpointer user_data);
@@ -3506,7 +3982,11 @@ extern "C" {
     extern gboolean g_source_get_can_recurse(GSource * source);
     extern GMainContext *g_source_get_context(GSource * source);
     extern void g_source_get_current_time(GSource * source,
-					  GTimeVal * timeval);
+					  GTimeVal * timeval)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern guint g_source_get_id(GSource * source);
     extern gint g_source_get_priority(GSource * source);
     extern GSource *g_source_new(GSourceFuncs * source_funcs,
@@ -3565,25 +4045,73 @@ extern "C" {
 				 gchar * *standard_output,
 				 gchar * *standard_error,
 				 gint * exit_status, GError * *error);
-    extern void g_static_mutex_free(GStaticMutex * mutex);
+    extern void g_static_mutex_free(GStaticMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern GMutex *g_static_mutex_get_mutex_impl(GMutex * *mutex);
-    extern void g_static_mutex_init(GStaticMutex * mutex);
+    extern void g_static_mutex_init(GStaticMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern void g_static_private_free(GStaticPrivate * private_key);
     extern gpointer g_static_private_get(GStaticPrivate * private_key);
     extern void g_static_private_init(GStaticPrivate * private_key);
     extern void g_static_private_set(GStaticPrivate * private_key,
 				     gpointer data, GDestroyNotify notify);
-    extern void g_static_rec_mutex_free(GStaticRecMutex * mutex);
-    extern void g_static_rec_mutex_init(GStaticRecMutex * mutex);
-    extern void g_static_rec_mutex_lock(GStaticRecMutex * mutex);
+    extern void g_static_rec_mutex_free(GStaticRecMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_static_rec_mutex_init(GStaticRecMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_static_rec_mutex_lock(GStaticRecMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern void g_static_rec_mutex_lock_full(GStaticRecMutex * mutex,
-					     guint depth);
-    extern gboolean g_static_rec_mutex_trylock(GStaticRecMutex * mutex);
-    extern void g_static_rec_mutex_unlock(GStaticRecMutex * mutex);
-    extern guint g_static_rec_mutex_unlock_full(GStaticRecMutex * mutex);
-    extern void g_static_rw_lock_free(GStaticRWLock * lock);
-    extern void g_static_rw_lock_init(GStaticRWLock * lock);
-    extern void g_static_rw_lock_reader_lock(GStaticRWLock * lock);
+					     guint depth)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern gboolean g_static_rec_mutex_trylock(GStaticRecMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_static_rec_mutex_unlock(GStaticRecMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern guint g_static_rec_mutex_unlock_full(GStaticRecMutex * mutex)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_static_rw_lock_free(GStaticRWLock * lock)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_static_rw_lock_init(GStaticRWLock * lock)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
+    extern void g_static_rw_lock_reader_lock(GStaticRWLock * lock)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gboolean g_static_rw_lock_reader_trylock(GStaticRWLock * lock);
     extern void g_static_rw_lock_reader_unlock(GStaticRWLock * lock);
     extern void g_static_rw_lock_writer_lock(GStaticRWLock * lock);
@@ -3685,7 +4213,11 @@ extern "C" {
 					 gulong stack_size,
 					 gboolean joinable, gboolean bound,
 					 GThreadPriority priority,
-					 GError * *error);
+					 GError * *error)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern GQuark g_thread_error_quark(void);
     extern void g_thread_exit(gpointer retval);
     extern GThreadFunctions g_thread_functions_for_glib_use;
@@ -3703,17 +4235,16 @@ extern "C" {
 					  gint max_threads,
 					  gboolean exclusive,
 					  GError * *error);
-    extern void g_thread_pool_push(GThreadPool * pool, gpointer data,
-				   GError * *error);
-    extern void g_thread_pool_set_max_threads(GThreadPool * pool,
-					      gint max_threads,
-					      GError * *error);
     extern void g_thread_pool_set_max_unused_threads(gint max_threads);
     extern void g_thread_pool_stop_unused_threads(void);
     extern guint g_thread_pool_unprocessed(GThreadPool * pool);
     extern GThread *g_thread_self(void);
     extern void g_thread_set_priority(GThread * thread,
-				      GThreadPriority priority);
+				      GThreadPriority priority)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gboolean g_thread_use_default_impl;
     extern gboolean g_threads_got_initialized;
     extern void g_time_val_add(GTimeVal * time_, glong microseconds);
@@ -3807,7 +4338,11 @@ extern "C" {
     extern gboolean g_unichar_validate(gunichar ch);
     extern gint g_unichar_xdigit_value(gunichar c);
     extern gunichar *g_unicode_canonical_decomposition(gunichar ch,
-						       gsize * result_len);
+						       gsize * result_len)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern void g_unicode_canonical_ordering(gunichar * string, gsize len);
     extern void g_unsetenv(const gchar * variable);
     extern gchar **g_uri_list_extract_uris(const gchar * uri_list);
@@ -3824,7 +4359,8 @@ extern "C" {
     extern gchar *g_utf8_collate_key(const gchar * str, gssize len);
     extern gchar *g_utf8_find_next_char(const gchar * p,
 					const gchar * end);
-    extern gchar *g_utf8_find_prev_char(const char *str, const char *p);
+    extern gchar *g_utf8_find_prev_char(const gchar * str,
+					const gchar * p);
     extern gunichar g_utf8_get_char(const gchar * p);
     extern gunichar g_utf8_get_char_validated(const gchar * p,
 					      gssize max_len);
@@ -3836,11 +4372,11 @@ extern "C" {
 					  const gchar * pos);
     extern gchar *g_utf8_prev_char(const gchar * p);
     extern const gchar *const g_utf8_skip;
-    extern gchar *g_utf8_strchr(const char *p, gssize len, gunichar c);
+    extern gchar *g_utf8_strchr(const gchar * p, gssize len, gunichar c);
     extern gchar *g_utf8_strdown(const gchar * str, gssize len);
     extern glong g_utf8_strlen(const gchar * p, gssize max);
     extern gchar *g_utf8_strncpy(gchar * dest, const gchar * src, gsize n);
-    extern gchar *g_utf8_strrchr(const char *p, gssize len, gunichar c);
+    extern gchar *g_utf8_strrchr(const gchar * p, gssize len, gunichar c);
     extern gchar *g_utf8_strreverse(const gchar * str, gssize len);
     extern gchar *g_utf8_strup(const gchar * str, gssize len);
     extern gunichar *g_utf8_to_ucs4(const gchar * str, glong len,
@@ -3853,7 +4389,7 @@ extern "C" {
 				      glong * items_read,
 				      glong * items_written,
 				      GError * *error);
-    extern gboolean g_utf8_validate(const char *str, gssize max_len,
+    extern gboolean g_utf8_validate(const gchar * str, gssize max_len,
 				    const gchar * *end);
     extern const guint glib_binary_age;
     extern const gchar *glib_check_version(guint required_major,
@@ -3865,6 +4401,10 @@ extern "C" {
     extern const guint glib_micro_version;
     extern const guint glib_minor_version;
 #if __LSB_VERSION__ < 50
+    extern void g_atomic_int_add(gint * volatile atomic, gint val);
+    extern size_t g_iconv(GIConv converter, gchar * *inbuf,
+			  gsize * inbytes_left, gchar * *outbuf,
+			  gsize * outbytes_left);
     extern void g_key_file_remove_comment(GKeyFile * key_file,
 					  const gchar * group_name,
 					  const gchar * key,
@@ -3880,6 +4420,14 @@ extern "C" {
 				       const gchar * key,
 				       const gchar * comment,
 				       GError * *error);
+    extern int g_main_depth(void);
+    extern void g_queue_remove(GQueue * queue, gconstpointer data);
+    extern void g_queue_remove_all(GQueue * queue, gconstpointer data);
+    extern void g_thread_pool_push(GThreadPool * pool, gpointer data,
+				   GError * *error);
+    extern void g_thread_pool_set_max_threads(GThreadPool * pool,
+					      gint max_threads,
+					      GError * *error);
 #endif				/* __LSB_VERSION__ < 5.0 */
 
 #if __LSB_VERSION__ >= 40
@@ -3893,15 +4441,22 @@ extern "C" {
 					gssize length, GError * *error);
     extern const gchar *g_get_host_name(void);
     extern gchar **g_listenv(void);
-    extern void g_mapped_file_free(GMappedFile * file);
+    extern void g_mapped_file_free(GMappedFile * file)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gchar *g_mapped_file_get_contents(GMappedFile * file);
     extern gsize g_mapped_file_get_length(GMappedFile * file);
     extern GMappedFile *g_mapped_file_new(const gchar * filename,
 					  gboolean writable,
 					  GError * *error);
-    extern int g_mkdir_with_parents(const gchar * pathname, int mode);
     extern gchar *g_utf8_collate_key_for_filename(const gchar * str,
 						  gssize len);
+#if __LSB_VERSION__ < 50
+    extern int g_mkdir_with_parents(const gchar * pathname, int mode);
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #if __LSB_VERSION__ >= 41
@@ -3921,8 +4476,8 @@ extern "C" {
     extern void g_async_queue_sort_unlocked(GAsyncQueue * queue,
 					    GCompareDataFunc func,
 					    gpointer user_data);
-    extern guchar *g_base64_decode(const char *text, gsize * out_len);
-    extern gsize g_base64_decode_step(const char *in, gsize len,
+    extern guchar *g_base64_decode(const gchar * text, gsize * out_len);
+    extern gsize g_base64_decode_step(const gchar * in, gsize len,
 				      guchar * out, gint * state,
 				      guint * save);
     extern gchar *g_base64_encode(const unsigned char *data, gsize len);
@@ -4128,7 +4683,11 @@ extern "C" {
 						   gpointer user_data);
     extern gboolean g_source_is_destroyed(GSource * source);
     extern void g_source_set_funcs(GSource * source, GSourceFuncs * funcs);
-    extern void g_thread_foreach(GFunc thread_func, gpointer user_data);
+    extern void g_thread_foreach(GFunc thread_func, gpointer user_data)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern guint g_thread_pool_get_max_idle_time(void);
     extern void g_thread_pool_set_max_idle_time(guint interval);
     extern void g_thread_pool_set_sort_function(GThreadPool * pool,
@@ -4141,6 +4700,322 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #if __LSB_VERSION__ >= 50
+    extern guint g_array_get_element_size(GArray * array);
+    extern GArray *g_array_ref(GArray * array);
+    extern void g_array_set_clear_func(GArray * array,
+				       GDestroyNotify clear_func);
+    extern void g_array_unref(GArray * array);
+    extern void g_assertion_message(const char *domain, const char *file,
+				    int line, const char *func,
+				    const char *message);
+    extern void g_assertion_message_cmpnum(const char *domain,
+					   const char *file, int line,
+					   const char *func,
+					   const char *expr,
+					   long double arg1,
+					   const char *cmp,
+					   long double arg2, char numtype);
+    extern void g_assertion_message_cmpstr(const char *domain,
+					   const char *file, int line,
+					   const char *func,
+					   const char *expr,
+					   const char *arg1,
+					   const char *cmp,
+					   const char *arg2);
+    extern void g_assertion_message_error(const char *domain,
+					  const char *file, int line,
+					  const char *func,
+					  const char *expr,
+					  const struct _GError *error,
+					  GQuark error_domain,
+					  int error_code);
+    extern void g_assertion_message_expr(const char *domain,
+					 const char *file, int line,
+					 const char *func,
+					 const char *expr);
+    extern GAsyncQueue *g_async_queue_new_full(GDestroyNotify
+					       item_free_func);
+    /* g_async_queue_ref_unlocked is deprecated and should not be used in newly-written code. Since 2.8, reference counting is done atomically so g_async_queue_ref can be used regardless of the queue's lock. */
+    extern void g_async_queue_ref_unlocked(GAsyncQueue *
+					   queue) LSB_DECL_DEPRECATED;
+    extern g_async_queue_timeout_pop(GAsyncQueue * queue, guint64 timeout);
+    extern g_async_queue_timeout_pop_unlocked(GAsyncQueue * queue,
+					      guint64 timeout);
+    /* g_async_queue_unref_and_unlock is deprecated and should not be used in newly-written code. Since 2.8, reference counting is done atomically so g_async_queue_unref can be used regardless of the queue's lock. */
+    extern void g_async_queue_unref_and_unlock(GAsyncQueue *
+					       queue) LSB_DECL_DEPRECATED;
+    extern gint g_atomic_int_add(gint * volatile atomic, gint val);
+    extern guint g_atomic_int_and(volatile guint * atomic, guint val);
+#undef g_atomic_int_dec_and_test
+    extern gboolean g_atomic_int_dec_and_test(volatile int *atomic);
+#undef g_atomic_int_get
+    extern gint g_atomic_int_get(volatile int *atomic);
+#undef g_atomic_int_inc
+    extern void g_atomic_int_inc(volatile int *atomic);
+    extern guint g_atomic_int_or(volatile guint * atomic, guint val);
+#undef g_atomic_int_set
+    extern void g_atomic_int_set(volatile int *atomic, gint newval);
+    extern guint g_atomic_int_xor(volatile guint * atomic, guint val);
+    extern gssize g_atomic_pointer_add(volatile void *atomic, gssize val);
+    extern gsize g_atomic_pointer_and(volatile void *atomic, gsize val);
+#undef g_atomic_pointer_get
+    extern void *g_atomic_pointer_get(volatile void *atomic);
+    extern gsize g_atomic_pointer_or(volatile void *atomic, gsize val);
+#undef g_atomic_pointer_set
+    extern void g_atomic_pointer_set(volatile void *atomic, void *newval);
+    extern gsize g_atomic_pointer_xor(volatile void *atomic, gsize val);
+    extern guchar *g_base64_decode_inplace(gchar *, gsize *);
+    /* g_basename is deprecated and should not be used in newly-written code. Use g_path_get_basename instead, but notice that g_path_get_basename allocates new memory for the returned string, unlike this function which returns a pointer into the argument. */
+    extern const char *g_basename(const char *file_name)
+	LSB_DECL_DEPRECATED;
+    extern void g_bit_lock(volatile int *address, gint lock_bit);
+    extern gboolean g_bit_trylock(volatile int *address, gint lock_bit);
+    extern void g_bit_unlock(volatile int *address, gint lock_bit);
+    extern GBytes *g_byte_array_free_to_bytes(GByteArray * array);
+    extern GByteArray *g_byte_array_new_take(guint8 * data, gsize len);
+    extern GByteArray *g_byte_array_ref(GByteArray * array);
+    extern void g_byte_array_unref(GByteArray * array);
+    extern gint g_bytes_compare(gconstpointer bytes1,
+				gconstpointer bytes2);
+    extern gboolean g_bytes_equal(gconstpointer bytes1,
+				  gconstpointer bytes2);
+    extern gconstpointer g_bytes_get_data(GBytes * bytes, gsize * size);
+    extern gsize g_bytes_get_size(GBytes * bytes);
+    extern guint g_bytes_hash(gconstpointer bytes);
+    extern GBytes *g_bytes_new(gconstpointer data, gsize size);
+    extern GBytes *g_bytes_new_from_bytes(GBytes * bytes, gsize offset,
+					  gsize length);
+    extern GBytes *g_bytes_new_static(gconstpointer data, gsize size);
+    extern GBytes *g_bytes_new_take(void *data, gsize size);
+    extern GBytes *g_bytes_new_with_free_func(gconstpointer data,
+					      gsize size,
+					      GDestroyNotify free_func,
+					      void *user_data);
+    extern GBytes *g_bytes_ref(GBytes * bytes);
+    extern void g_bytes_unref(GBytes * bytes);
+    extern GByteArray *g_bytes_unref_to_array(GBytes * bytes);
+    extern void *g_bytes_unref_to_data(GBytes * bytes, gsize * size);
+    extern GChecksum *g_checksum_copy(const GChecksum * checksum);
+    extern void g_checksum_free(GChecksum * checksum);
+    extern void g_checksum_get_digest(GChecksum * checksum,
+				      guint8 * buffer, gsize * digest_len);
+    extern const gchar *g_checksum_get_string(GChecksum * checksum);
+    extern GChecksum *g_checksum_new(GChecksumType checksum_type);
+    extern void g_checksum_reset(GChecksum * checksum);
+    extern gssize g_checksum_type_get_length(GChecksumType checksum_type);
+    extern void g_checksum_update(GChecksum * checksum,
+				  const unsigned char *data,
+				  gssize length);
+    extern gchar *g_compute_checksum_for_data(GChecksumType checksum_type,
+					      const unsigned char *data,
+					      gsize length);
+    extern gchar *g_compute_checksum_for_string(GChecksumType
+						checksum_type,
+						const gchar * str,
+						gssize length);
+    extern gchar *g_compute_hmac_for_data(GChecksumType digest_type,
+					  const guchar * key,
+					  gsize key_len,
+					  const guchar * data,
+					  gsize length);
+    extern gchar *g_compute_hmac_for_string(GChecksumType digest_type,
+					    const guchar * key,
+					    gsize key_len,
+					    const gchar * str,
+					    gssize length);
+#undef g_cond_broadcast
+    extern void g_cond_broadcast(GCond * cond);
+    extern void g_cond_clear(GCond * cond);
+#undef g_cond_free
+    extern void g_cond_free(GCond * cond) LSB_DECL_DEPRECATED;
+    extern void g_cond_init(GCond * cond);
+#undef g_cond_new
+    extern GCond *g_cond_new(void) LSB_DECL_DEPRECATED;
+#undef g_cond_signal
+    extern void g_cond_signal(GCond * cond);
+#undef g_cond_timed_wait
+    extern gboolean g_cond_timed_wait(GCond * cond, GMutex * mutex,
+				      GTimeVal *
+				      timeval) LSB_DECL_DEPRECATED;
+#undef g_cond_wait
+    extern void g_cond_wait(GCond * cond, GMutex * mutex);
+    extern gboolean g_cond_wait_until(GCond * cond, GMutex * mutex,
+				      gint64 end_time);
+#undef g_datalist_get_data
+    extern g_datalist_get_data(GData * *datalist, const char *key);
+    extern GDateTime *g_date_time_add(GDateTime * datetime,
+				      GTimeSpan timespan);
+    extern GDateTime *g_date_time_add_days(GDateTime * datetime,
+					   gint days);
+    extern GDateTime *g_date_time_add_full(GDateTime * datetime,
+					   gint years, gint months,
+					   gint days, gint hours,
+					   gint minutes, gdouble seconds);
+    extern GDateTime *g_date_time_add_hours(GDateTime * datetime,
+					    gint hours);
+    extern GDateTime *g_date_time_add_minutes(GDateTime * datetime,
+					      gint minutes);
+    extern GDateTime *g_date_time_add_months(GDateTime * datetime,
+					     gint months);
+    extern GDateTime *g_date_time_add_seconds(GDateTime * datetime,
+					      gdouble seconds);
+    extern GDateTime *g_date_time_add_weeks(GDateTime * datetime,
+					    gint weeks);
+    extern GDateTime *g_date_time_add_years(GDateTime * datetime,
+					    gint years);
+    extern gint g_date_time_compare(gconstpointer dt1, gconstpointer dt2);
+    extern GTimeSpan g_date_time_difference(GDateTime * end,
+					    GDateTime * begin);
+    extern gboolean g_date_time_equal(gconstpointer dt1,
+				      gconstpointer dt2);
+    extern gchar *g_date_time_format(GDateTime * datetime,
+				     const gchar * format);
+    extern gint g_date_time_get_day_of_month(GDateTime * datetime);
+    extern gint g_date_time_get_day_of_week(GDateTime * datetime);
+    extern gint g_date_time_get_day_of_year(GDateTime * datetime);
+    extern gint g_date_time_get_hour(GDateTime * datetime);
+    extern gint g_date_time_get_microsecond(GDateTime * datetime);
+    extern gint g_date_time_get_minute(GDateTime * datetime);
+    extern gint g_date_time_get_month(GDateTime * datetime);
+    extern gint g_date_time_get_second(GDateTime * datetime);
+    extern gdouble g_date_time_get_seconds(GDateTime * datetime);
+    extern const gchar *g_date_time_get_timezone_abbreviation(GDateTime *
+							      datetime);
+    extern GTimeSpan g_date_time_get_utc_offset(GDateTime * datetime);
+    extern gint g_date_time_get_week_numbering_year(GDateTime * datetime);
+    extern gint g_date_time_get_week_of_year(GDateTime * datetime);
+    extern gint g_date_time_get_year(GDateTime * datetime);
+    extern void g_date_time_get_ymd(GDateTime * datetime, gint * year,
+				    gint * month, gint * day);
+    extern guint g_date_time_hash(gconstpointer datetime);
+    extern gboolean g_date_time_is_daylight_savings(GDateTime * datetime);
+    extern GDateTime *g_date_time_new(GTimeZone * tz, gint year,
+				      gint month, gint day, gint hour,
+				      gint minute, gdouble seconds);
+    extern GDateTime *g_date_time_new_from_timeval_local(const GTimeVal *
+							 tv);
+    extern GDateTime *g_date_time_new_from_timeval_utc(const GTimeVal *
+						       tv);
+    extern GDateTime *g_date_time_new_from_unix_local(gint64 t);
+    extern GDateTime *g_date_time_new_from_unix_utc(gint64 t);
+    extern GDateTime *g_date_time_new_local(gint year, gint month,
+					    gint day, gint hour,
+					    gint minute, gdouble seconds);
+    extern GDateTime *g_date_time_new_now(GTimeZone * tz);
+    extern GDateTime *g_date_time_new_now_local(void);
+    extern GDateTime *g_date_time_new_now_utc(void);
+    extern GDateTime *g_date_time_new_utc(gint year, gint month, gint day,
+					  gint hour, gint minute,
+					  gdouble seconds);
+    extern GDateTime *g_date_time_ref(GDateTime * datetime);
+    extern GDateTime *g_date_time_to_local(GDateTime * datetime);
+    extern gboolean g_date_time_to_timeval(GDateTime * datetime,
+					   GTimeVal * tv);
+    extern GDateTime *g_date_time_to_timezone(GDateTime * datetime,
+					      GTimeZone * tz);
+    extern gint64 g_date_time_to_unix(GDateTime * datetime);
+    extern GDateTime *g_date_time_to_utc(GDateTime * datetime);
+    extern void g_date_time_unref(GDateTime * datetime);
+    extern const gchar *g_dcgettext(const gchar * domain,
+				    const gchar * msgid, gint category);
+    extern const gchar *g_dgettext(const gchar * domain,
+				   const gchar * msgid);
+    extern gchar *g_dir_make_tmp(const gchar * tmpl, GError * *error);
+    extern const gchar *g_dngettext(const gchar * domain,
+				    const gchar * msgid,
+				    const gchar * msgid_plural, gulong n);
+    extern gboolean g_double_equal(gconstpointer v1, gconstpointer v2);
+    extern guint g_double_hash(gconstpointer v);
+    extern const gchar *g_dpgettext(const gchar * domain,
+				    const gchar * msgctxtid,
+				    gsize msgidoffset);
+    extern const gchar *g_dpgettext2(const gchar * domain,
+				     const gchar * context,
+				     const gchar * msgid);
+    extern const gchar *g_environ_getenv(gchar * *envp,
+					 const gchar * variable);
+    extern gchar **g_environ_setenv(gchar * *envp, const gchar * variable,
+				    const gchar * value,
+				    gboolean overwrite);
+    extern gchar **g_environ_unsetenv(gchar * *envp,
+				      const gchar * variable);
+    extern GError *g_error_new_valist(GQuark domain, gint code,
+				      const gchar * format, void args);
+    extern gchar *g_format_size(guint64 size);
+    extern gchar *g_format_size_for_display(void) LSB_DECL_DEPRECATED;
+    extern gchar *g_format_size_full(guint64 size, GFormatSizeFlags flags);
+    extern gchar *g_get_codeset(void);
+    extern gchar **g_get_environ(void);
+    extern gchar **g_get_locale_variants(const gchar * locale);
+    extern gint64 g_get_monotonic_time(void);
+    extern gint64 g_get_real_time(void);
+    extern const gchar *g_get_user_runtime_dir(void);
+    extern const gchar *g_get_user_special_dir(GUserDirectory directory);
+    extern void g_hash_table_add(GHashTable * hash_table, void *key);
+    extern gboolean g_hash_table_contains(GHashTable * hash_table,
+					  gconstpointer key);
+    extern GList *g_hash_table_get_keys(GHashTable * hash_table);
+    extern GList *g_hash_table_get_values(GHashTable * hash_table);
+    extern GHashTable *g_hash_table_iter_get_hash_table(GHashTableIter *
+							iter);
+    extern void g_hash_table_iter_init(GHashTableIter * iter,
+				       GHashTable * hash_table);
+    extern gboolean g_hash_table_iter_next(GHashTableIter * iter,
+					   void **key, void **value);
+    extern void g_hash_table_iter_remove(GHashTableIter * iter);
+    extern void g_hash_table_iter_replace(GHashTableIter * iter,
+					  void *value);
+    extern void g_hash_table_iter_steal(GHashTableIter * iter);
+    extern GHmac *g_hmac_copy(const GHmac * hmac);
+    extern void g_hmac_get_digest(GHmac * hmac, guint8 * buffer,
+				  gsize * digest_len);
+    extern const gchar *g_hmac_get_string(GHmac * hmac);
+    extern GHmac *g_hmac_new(GChecksumType digest_type, const guchar * key,
+			     gsize key_len);
+    extern GHmac *g_hmac_ref(GHmac * hmac);
+    extern void g_hmac_unref(GHmac * hmac);
+    extern void g_hmac_update(GHmac * hmac, const guchar * data,
+			      gssize length);
+    extern gboolean g_hostname_is_ascii_encoded(const gchar * hostname);
+    extern gboolean g_hostname_is_ip_address(const gchar * hostname);
+    extern gboolean g_hostname_is_non_ascii(const gchar * hostname);
+    extern gchar *g_hostname_to_ascii(const gchar * hostname);
+    extern gchar *g_hostname_to_unicode(const gchar * hostname);
+    extern gsize g_iconv(GIConv converter, gchar * *inbuf,
+			 gsize * inbytes_left, gchar * *outbuf,
+			 gsize * outbytes_left);
+    extern gboolean g_int64_equal(gconstpointer v1, gconstpointer v2);
+    extern guint g_int64_hash(gconstpointer v);
+    /* g_io_channel_close is deprecated and should not be used in newly-written code. Use g_io_channel_shutdown instead. */
+    extern void g_io_channel_close(GIOChannel *
+				   channel) LSB_DECL_DEPRECATED;
+    /* g_io_channel_read is deprecated and should not be used in newly-written code. Use g_io_channel_read_chars instead. */
+    extern GIOError g_io_channel_read(GIOChannel * channel, gchar * buf,
+				      gsize count,
+				      gsize *
+				      bytes_read) LSB_DECL_DEPRECATED;
+    /* g_io_channel_seek is deprecated and should not be used in newly-written code. Use g_io_channel_seek_position instead. */
+    extern GIOError g_io_channel_seek(GIOChannel * channel, gint64 offset,
+				      GSeekType type) LSB_DECL_DEPRECATED;
+    /* g_io_channel_write is deprecated and should not be used in newly-written code. Use g_io_channel_write_chars instead. */
+    extern GIOError g_io_channel_write(GIOChannel * channel,
+				       const char *buf, gsize count,
+				       gsize *
+				       bytes_written) LSB_DECL_DEPRECATED;
+    extern gint64 g_key_file_get_int64(GKeyFile * key_file,
+				       const gchar * group_name,
+				       const gchar * key, GError * *error);
+    extern guint64 g_key_file_get_uint64(GKeyFile * key_file,
+					 const gchar * group_name,
+					 const gchar * key,
+					 GError * *error);
+    extern gboolean g_key_file_load_from_dirs(GKeyFile * key_file,
+					      const gchar * file,
+					      const gchar * *search_dirs,
+					      gchar * *full_path,
+					      GKeyFileFlags flags,
+					      GError * *error);
+    extern GKeyFile *g_key_file_ref(GKeyFile * key_file);
     extern gboolean g_key_file_remove_comment(GKeyFile * key_file,
 					      const gchar * group_name,
 					      const gchar * key,
@@ -4157,6 +5032,700 @@ extern "C" {
 					   const gchar * key,
 					   const gchar * comment,
 					   GError * *error);
+    extern void g_key_file_set_int64(GKeyFile * key_file,
+				     const gchar * group_name,
+				     const gchar * key, gint64 value);
+    extern void g_key_file_set_uint64(GKeyFile * key_file,
+				      const gchar * group_name,
+				      const gchar * key, guint64 value);
+    extern void g_key_file_unref(GKeyFile * key_file);
+    extern void g_list_free_full(GList * list, GDestroyNotify free_func);
+    extern GMainContext *g_main_context_get_thread_default(void);
+    extern void g_main_context_invoke(GMainContext * context,
+				      GSourceFunc function, void *data);
+    extern void g_main_context_invoke_full(GMainContext * context,
+					   gint priority,
+					   GSourceFunc function,
+					   void *data,
+					   GDestroyNotify notify);
+    extern void g_main_context_pop_thread_default(GMainContext * context);
+    extern void g_main_context_push_thread_default(GMainContext * context);
+    extern GMainContext *g_main_context_ref_thread_default(void);
+    extern gint g_main_depth(void);
+    extern void *g_malloc0_n(gsize n_blocks, gsize n_block_bytes);
+    extern void *g_malloc_n(gsize n_blocks, gsize n_block_bytes);
+    extern GMappedFile *g_mapped_file_new_from_fd(gint fd,
+						  gboolean writable,
+						  GError * *error);
+    extern GMappedFile *g_mapped_file_ref(GMappedFile * file);
+    extern void g_mapped_file_unref(GMappedFile * file);
+    extern gboolean g_markup_collect_attributes(const gchar * element_name,
+						const gchar *
+						*attribute_names,
+						const gchar *
+						*attribute_values,
+						GError * *error,
+						GMarkupCollectType
+						first_type,
+						const gchar * first_attr,
+						...);
+    extern const struct _GSList
+	*g_markup_parse_context_get_element_stack(GMarkupParseContext *
+						  context);
+    extern void *g_markup_parse_context_get_user_data(GMarkupParseContext *
+						      context);
+    extern void *g_markup_parse_context_pop(GMarkupParseContext * context);
+    extern void g_markup_parse_context_push(GMarkupParseContext * context,
+					    const GMarkupParser * parser,
+					    void *user_data);
+    extern gchar *g_match_info_expand_references(const GMatchInfo *
+						 match_info,
+						 const gchar *
+						 string_to_expand,
+						 GError * *error);
+    extern gchar *g_match_info_fetch(const GMatchInfo * match_info,
+				     gint match_num);
+    extern gchar **g_match_info_fetch_all(const GMatchInfo * match_info);
+    extern gchar *g_match_info_fetch_named(const GMatchInfo * match_info,
+					   const gchar * name);
+    extern gboolean g_match_info_fetch_named_pos(const GMatchInfo *
+						 match_info,
+						 const gchar * name,
+						 gint * start_pos,
+						 gint * end_pos);
+    extern gboolean g_match_info_fetch_pos(const GMatchInfo * match_info,
+					   gint match_num,
+					   gint * start_pos,
+					   gint * end_pos);
+    extern void g_match_info_free(GMatchInfo * match_info);
+    extern gint g_match_info_get_match_count(const GMatchInfo *
+					     match_info);
+    extern GRegex *g_match_info_get_regex(const GMatchInfo * match_info);
+    extern const gchar *g_match_info_get_string(const GMatchInfo *
+						match_info);
+    extern gboolean g_match_info_is_partial_match(const GMatchInfo *
+						  match_info);
+    extern gboolean g_match_info_matches(const GMatchInfo * match_info);
+    extern gboolean g_match_info_next(GMatchInfo * match_info,
+				      GError * *error);
+    extern GMatchInfo *g_match_info_ref(GMatchInfo * match_info);
+    extern void g_match_info_unref(GMatchInfo * match_info);
+    extern gint g_mkdir_with_parents(const gchar * pathname, int mode);
+    extern gchar *g_mkdtemp(gchar * tmpl);
+    extern gchar *g_mkdtemp_full(gchar * tmpl, gint mode);
+    extern gint g_mkstemp_full(gchar * tmpl, gint flags, gint mode);
+    extern void g_mutex_clear(GMutex * mutex);
+#undef g_mutex_free
+    extern void g_mutex_free(GMutex * mutex) LSB_DECL_DEPRECATED;
+    extern void g_mutex_init(GMutex * mutex);
+#undef g_mutex_lock
+    extern void g_mutex_lock(GMutex * mutex);
+#undef g_mutex_new
+    extern GMutex *g_mutex_new(void) LSB_DECL_DEPRECATED;
+#undef g_mutex_trylock
+    extern gboolean g_mutex_trylock(GMutex * mutex);
+#undef g_mutex_unlock
+    extern void g_mutex_unlock(GMutex * mutex);
+    extern gboolean g_once_init_enter(volatile void *location);
+    extern gboolean g_once_init_enter_impl(volatile unsigned int
+					   *location);
+    extern void g_once_init_leave(volatile void *location, gsize result);
+    extern gchar *g_option_context_get_help(GOptionContext * context,
+					    gboolean main_help,
+					    GOptionGroup * group);
+    extern void g_pointer_bit_lock(volatile void *address, gint lock_bit);
+    extern gboolean g_pointer_bit_trylock(volatile void *address,
+					  gint lock_bit);
+    extern void g_pointer_bit_unlock(volatile void *address,
+				     gint lock_bit);
+    extern gint g_poll(GPollFD * fds, guint nfds, gint timeout);
+    extern void g_prefix_error(GError * *err, const gchar * format, ...);
+#undef g_private_get
+    extern void *g_private_get(GPrivate * key);
+#undef g_private_new
+    extern GPrivate *g_private_new(GDestroyNotify notify)
+	LSB_DECL_DEPRECATED;
+    extern void g_private_replace(GPrivate * key, void *value);
+#undef g_private_set
+    extern void g_private_set(GPrivate * key, void *value);
+    extern void g_propagate_prefixed_error(GError * *dest, GError * src,
+					   const gchar * format, ...);
+    extern GPtrArray *g_ptr_array_new_full(guint reserved_size,
+					   GDestroyNotify
+					   element_free_func);
+    extern GPtrArray *g_ptr_array_new_with_free_func(GDestroyNotify
+						     element_free_func);
+    extern GPtrArray *g_ptr_array_ref(GPtrArray * array);
+    extern void g_ptr_array_set_free_func(GPtrArray * array,
+					  GDestroyNotify
+					  element_free_func);
+    extern void g_ptr_array_unref(GPtrArray * array);
+    extern void g_queue_clear(GQueue * queue);
+    extern void g_queue_free_full(GQueue * queue,
+				  GDestroyNotify free_func);
+    extern void g_queue_init(GQueue * queue);
+    extern gboolean g_queue_remove(GQueue * queue, gconstpointer data);
+    extern guint g_queue_remove_all(GQueue * queue, gconstpointer data);
+    extern void *g_realloc_n(void *mem, gsize n_blocks,
+			     gsize n_block_bytes);
+    extern void g_rec_mutex_clear(GRecMutex * rec_mutex);
+    extern void g_rec_mutex_init(GRecMutex * rec_mutex);
+    extern void g_rec_mutex_lock(GRecMutex * rec_mutex);
+    extern gboolean g_rec_mutex_trylock(GRecMutex * rec_mutex);
+    extern void g_rec_mutex_unlock(GRecMutex * rec_mutex);
+    extern gboolean g_regex_check_replacement(const gchar * replacement,
+					      gboolean * has_references,
+					      GError * *error);
+    extern GQuark g_regex_error_quark(void);
+    extern gchar *g_regex_escape_nul(const gchar * string, gint length);
+    extern gchar *g_regex_escape_string(const gchar * string, gint length);
+    extern gint g_regex_get_capture_count(const GRegex * regex);
+    extern GRegexCompileFlags g_regex_get_compile_flags(const GRegex *
+							regex);
+    extern GRegexMatchFlags g_regex_get_match_flags(const GRegex * regex);
+    extern gint g_regex_get_max_backref(const GRegex * regex);
+    extern const gchar *g_regex_get_pattern(const GRegex * regex);
+    extern gint g_regex_get_string_number(const GRegex * regex,
+					  const gchar * name);
+    extern gboolean g_regex_match(const GRegex * regex,
+				  const gchar * string,
+				  GRegexMatchFlags match_options,
+				  GMatchInfo * *match_info);
+    extern gboolean g_regex_match_all(const GRegex * regex,
+				      const gchar * string,
+				      GRegexMatchFlags match_options,
+				      GMatchInfo * *match_info);
+    extern gboolean g_regex_match_all_full(const GRegex * regex,
+					   const gchar * string,
+					   gssize string_len,
+					   gint start_position,
+					   GRegexMatchFlags match_options,
+					   GMatchInfo * *match_info,
+					   GError * *error);
+    extern gboolean g_regex_match_full(const GRegex * regex,
+				       const gchar * string,
+				       gssize string_len,
+				       gint start_position,
+				       GRegexMatchFlags match_options,
+				       GMatchInfo * *match_info,
+				       GError * *error);
+    extern gboolean g_regex_match_simple(const gchar * pattern,
+					 const gchar * string,
+					 GRegexCompileFlags
+					 compile_options,
+					 GRegexMatchFlags match_options);
+    extern GRegex *g_regex_new(const gchar * pattern,
+			       GRegexCompileFlags compile_options,
+			       GRegexMatchFlags match_options,
+			       GError * *error);
+    extern GRegex *g_regex_ref(GRegex * regex);
+    extern gchar *g_regex_replace(const GRegex * regex,
+				  const gchar * string, gssize string_len,
+				  gint start_position,
+				  const gchar * replacement,
+				  GRegexMatchFlags match_options,
+				  GError * *error);
+    extern gchar *g_regex_replace_eval(const GRegex * regex,
+				       const gchar * string,
+				       gssize string_len,
+				       gint start_position,
+				       GRegexMatchFlags match_options,
+				       GRegexEvalCallback eval,
+				       void *user_data, GError * *error);
+    extern gchar *g_regex_replace_literal(const GRegex * regex,
+					  const gchar * string,
+					  gssize string_len,
+					  gint start_position,
+					  const gchar * replacement,
+					  GRegexMatchFlags match_options,
+					  GError * *error);
+    extern gchar **g_regex_split(const GRegex * regex,
+				 const gchar * string,
+				 GRegexMatchFlags match_options);
+    extern gchar **g_regex_split_full(const GRegex * regex,
+				      const gchar * string,
+				      gssize string_len,
+				      gint start_position,
+				      GRegexMatchFlags match_options,
+				      gint max_tokens, GError * *error);
+    extern gchar **g_regex_split_simple(const gchar * pattern,
+					const gchar * string,
+					GRegexCompileFlags compile_options,
+					GRegexMatchFlags match_options);
+    extern void g_regex_unref(GRegex * regex);
+    extern void g_reload_user_special_dirs_cache(void);
+    extern void g_rw_lock_clear(GRWLock * rw_lock);
+    extern void g_rw_lock_init(GRWLock * rw_lock);
+    extern void g_rw_lock_reader_lock(GRWLock * rw_lock);
+    extern gboolean g_rw_lock_reader_trylock(GRWLock * rw_lock);
+    extern void g_rw_lock_reader_unlock(GRWLock * rw_lock);
+    extern void g_rw_lock_writer_lock(GRWLock * rw_lock);
+    extern gboolean g_rw_lock_writer_trylock(GRWLock * rw_lock);
+    extern void g_rw_lock_writer_unlock(GRWLock * rw_lock);
+    extern GSequenceIter *g_sequence_append(GSequence * seq, void *data);
+    extern void g_sequence_foreach(GSequence * seq, GFunc func,
+				   void *user_data);
+    extern void g_sequence_foreach_range(GSequenceIter * begin,
+					 GSequenceIter * end, GFunc func,
+					 void *user_data);
+    extern void g_sequence_free(GSequence * seq);
+    extern void *g_sequence_get(GSequenceIter * iter);
+    extern GSequenceIter *g_sequence_get_begin_iter(GSequence * seq);
+    extern GSequenceIter *g_sequence_get_end_iter(GSequence * seq);
+    extern GSequenceIter *g_sequence_get_iter_at_pos(GSequence * seq,
+						     gint pos);
+    extern gint g_sequence_get_length(GSequence * seq);
+    extern GSequenceIter *g_sequence_insert_before(GSequenceIter * iter,
+						   void *data);
+    extern GSequenceIter *g_sequence_insert_sorted(GSequence * seq,
+						   void *data,
+						   GCompareDataFunc
+						   cmp_func,
+						   void *cmp_data);
+    extern GSequenceIter *g_sequence_insert_sorted_iter(GSequence * seq,
+							void *data,
+							GSequenceIterCompareFunc
+							iter_cmp,
+							void *cmp_data);
+    extern gint g_sequence_iter_compare(GSequenceIter * a,
+					GSequenceIter * b);
+    extern gint g_sequence_iter_get_position(GSequenceIter * iter);
+    extern GSequence *g_sequence_iter_get_sequence(GSequenceIter * iter);
+    extern gboolean g_sequence_iter_is_begin(GSequenceIter * iter);
+    extern gboolean g_sequence_iter_is_end(GSequenceIter * iter);
+    extern GSequenceIter *g_sequence_iter_move(GSequenceIter * iter,
+					       gint delta);
+    extern GSequenceIter *g_sequence_iter_next(GSequenceIter * iter);
+    extern GSequenceIter *g_sequence_iter_prev(GSequenceIter * iter);
+    extern GSequenceIter *g_sequence_lookup(GSequence * seq, void *data,
+					    GCompareDataFunc cmp_func,
+					    void *cmp_data);
+    extern GSequenceIter *g_sequence_lookup_iter(GSequence * seq,
+						 void *data,
+						 GSequenceIterCompareFunc
+						 iter_cmp, void *cmp_data);
+    extern void g_sequence_move(GSequenceIter * src, GSequenceIter * dest);
+    extern void g_sequence_move_range(GSequenceIter * dest,
+				      GSequenceIter * begin,
+				      GSequenceIter * end);
+    extern GSequence *g_sequence_new(GDestroyNotify data_destroy);
+    extern GSequenceIter *g_sequence_prepend(GSequence * seq, void *data);
+    extern GSequenceIter *g_sequence_range_get_midpoint(GSequenceIter *
+							begin,
+							GSequenceIter *
+							end);
+    extern void g_sequence_remove(GSequenceIter * iter);
+    extern void g_sequence_remove_range(GSequenceIter * begin,
+					GSequenceIter * end);
+    extern GSequenceIter *g_sequence_search(GSequence * seq, void *data,
+					    GCompareDataFunc cmp_func,
+					    void *cmp_data);
+    extern GSequenceIter *g_sequence_search_iter(GSequence * seq,
+						 void *data,
+						 GSequenceIterCompareFunc
+						 iter_cmp, void *cmp_data);
+    extern void g_sequence_set(GSequenceIter * iter, void *data);
+    extern void g_sequence_sort(GSequence * seq, GCompareDataFunc cmp_func,
+				void *cmp_data);
+    extern void g_sequence_sort_changed(GSequenceIter * iter,
+					GCompareDataFunc cmp_func,
+					void *cmp_data);
+    extern void g_sequence_sort_changed_iter(GSequenceIter * iter,
+					     GSequenceIterCompareFunc
+					     iter_cmp, void *cmp_data);
+    extern void g_sequence_sort_iter(GSequence * seq,
+				     GSequenceIterCompareFunc cmp_func,
+				     void *cmp_data);
+    extern void g_sequence_swap(GSequenceIter * a, GSequenceIter * b);
+    extern void g_set_error_literal(GError * *err, GQuark domain,
+				    gint code, const gchar * message);
+    extern void *g_slice_copy(gsize, gconstpointer);
+    extern void g_slist_free_full(GSList * list, GDestroyNotify free_func);
+    extern void g_source_add_child_source(GSource * source,
+					  GSource * child_source);
+    extern const char *g_source_get_name(GSource * source);
+    extern gint64 g_source_get_time(GSource * source);
+    extern void g_source_remove_child_source(GSource * source,
+					     GSource * child_source);
+    extern void g_source_set_name(GSource * source, const char *name);
+    extern void g_source_set_name_by_id(guint tag, const char *name);
+    /* g_strcasecmp is deprecated and should not be used in newly-written code. This function is broken if your string is guaranteed to be ASCII, since it's locale-sensitive, and it's broken if your string is localized, since it doesn't work on many encodings at all, including UTF-8, EUC-JP, etc. There are therefore two replacement functions: g_ascii_strcasecmp, which only works on ASCII and is not locale-sensitive, and g_utf8_casefold, which is good for case-insensitive sorting of UTF-8. */
+    extern gint g_strcasecmp(const char *s1,
+			     const char *s2) LSB_DECL_DEPRECATED;
+    extern int g_strcmp0(const char *str1, const char *str2);
+    /* g_strdown is deprecated and should not be used in newly-written code. This function is broken if your string is guaranteed to be ASCII, since it's locale-sensitive, and it's broken if your string is localized, since it doesn't work on many encodings at all, including UTF-8, EUC-JP, etc. There are therefore two replacement functions: g_ascii_strdown and g_utf8_strdown. */
+    extern gchar *g_strdown(gchar * string) LSB_DECL_DEPRECATED;
+    extern GString *g_string_append_c_inline(GString * gstring, gchar c);
+    extern GString *g_string_append_uri_escaped(GString * string,
+						const gchar * unescaped,
+						const gchar *
+						reserved_chars_allowed,
+						gboolean allow_utf8);
+    extern void g_string_append_vprintf(GString * string,
+					const gchar * format, void args);
+    extern void g_string_chunk_clear(GStringChunk * chunk);
+    /* g_string_down is deprecated and should not be used in newly-written code. This function uses the locale-specific tolower() function, which is almost never the right thing. Use g_string_ascii_down or g_utf8_strdown instead. */
+    extern GString *g_string_down(GString * string) LSB_DECL_DEPRECATED;
+    extern GString *g_string_overwrite(GString * string, gsize pos,
+				       const gchar * val);
+    extern GString *g_string_overwrite_len(GString * string, gsize pos,
+					   const gchar * val, gssize len);
+    /* g_string_up is deprecated and should not be used in newly-written code. This function uses the locale-specific toupper() function, which is almost never the right thing. Use g_string_ascii_up or g_utf8_strup instead. */
+    extern GString *g_string_up(GString * string) LSB_DECL_DEPRECATED;
+    extern void g_string_vprintf(GString * string, const gchar * format,
+				 void args);
+    /* g_strncasecmp is deprecated and should not be used in newly-written code. This function is broken if your string is guaranteed to be ASCII, since it's locale-sensitive, and it's broken if your string is localized, since it doesn't work on many encodings at all, including UTF-8, EUC-JP, etc. There are therefore two replacement functions: g_ascii_strncasecmp, which only works on ASCII and is not locale-sensitive, and g_utf8_casefold, which is good for case-insensitive sorting of UTF-8. */
+    extern gint g_strncasecmp(const char *s1, const char *s2,
+			      guint n) LSB_DECL_DEPRECATED;
+    /* g_strup is deprecated and should not be used in newly-written code. This function is broken if your string is guaranteed to be ASCII, since it's locale-sensitive, and it's broken if your string is localized, since it doesn't work on many encodings at all, including UTF-8, EUC-JP, etc. There are therefore two replacement functions: g_ascii_strup or g_utf8_strup. */
+    extern gchar *g_strup(gchar * string) LSB_DECL_DEPRECATED;
+    extern void g_test_add_data_func(const char *testpath,
+				     gconstpointer test_data,
+				     GTestDataFunc test_func);
+    extern void g_test_add_func(const char *testpath, GTestFunc test_func);
+    extern void g_test_add_vtable(const char *testpath, gsize data_size,
+				  gconstpointer test_data,
+				  GTestFixtureFunc data_setup,
+				  GTestFixtureFunc data_test,
+				  GTestFixtureFunc data_teardown);
+    extern void g_test_bug(const char *bug_uri_snippet);
+    extern void g_test_bug_base(const char *uri_pattern);
+    extern const GTestConfig *const g_test_config_vars;
+    extern GTestCase *g_test_create_case(const char *test_name,
+					 gsize data_size,
+					 gconstpointer test_data,
+					 GTestFixtureFunc data_setup,
+					 GTestFixtureFunc data_test,
+					 GTestFixtureFunc data_teardown);
+    extern GTestSuite *g_test_create_suite(const char *suite_name);
+    extern void g_test_fail(void);
+    extern GTestSuite *g_test_get_root(void);
+    extern void g_test_init(int *argc, char ***argv, ...);
+    extern void g_test_log_buffer_free(GTestLogBuffer * tbuffer);
+    extern GTestLogBuffer *g_test_log_buffer_new(void);
+    extern GTestLogMsg *g_test_log_buffer_pop(GTestLogBuffer * tbuffer);
+    extern void g_test_log_buffer_push(GTestLogBuffer * tbuffer,
+				       guint n_bytes,
+				       const unsigned char *bytes);
+    extern void g_test_log_msg_free(GTestLogMsg * tmsg);
+    extern void g_test_log_set_fatal_handler(GTestLogFatalFunc log_func,
+					     gpointer user_data);
+    extern const char *g_test_log_type_name(GTestLogType log_type);
+    extern void g_test_maximized_result(double maximized_quantity,
+					const char *format, ...);
+    extern void g_test_message(const char *format, ...);
+    extern void g_test_minimized_result(double minimized_quantity,
+					const char *format, ...);
+    extern void g_test_queue_destroy(GDestroyNotify destroy_func,
+				     gpointer destroy_data);
+    extern void g_test_queue_free(gpointer gfree_pointer);
+    extern double g_test_rand_double(void);
+    extern double g_test_rand_double_range(double range_start,
+					   double range_end);
+    extern gint32 g_test_rand_int(void);
+    extern gint32 g_test_rand_int_range(gint32 begin, gint32 end);
+    extern int g_test_run(void);
+    extern int g_test_run_suite(GTestSuite * suite);
+    extern void g_test_suite_add(GTestSuite * suite,
+				 GTestCase * test_case);
+    extern void g_test_suite_add_suite(GTestSuite * suite,
+				       GTestSuite * nestedsuite);
+    extern double g_test_timer_elapsed(void);
+    extern double g_test_timer_last(void);
+    extern void g_test_timer_start(void);
+    extern void g_test_trap_assertions(const char *domain,
+				       const char *file, int line,
+				       const char *func,
+				       guint64 assertion_flags,
+				       const char *pattern);
+    extern gboolean g_test_trap_fork(guint64 usec_timeout,
+				     GTestTrapFlags test_trap_flags);
+    extern gboolean g_test_trap_has_passed(void);
+    extern gboolean g_test_trap_reached_timeout(void);
+#undef g_thread_create
+    extern GThread *g_thread_create(GThreadFunc func, void *data,
+				    gboolean joinable,
+				    GError * *error) LSB_DECL_DEPRECATED;
+    extern gboolean g_thread_get_initialized(void);
+    extern guint64(*) (void) g_thread_gettime;
+    extern GThread *g_thread_new(const char *name, GThreadFunc func,
+				 void *data);
+    extern gboolean g_thread_pool_push(GThreadPool * pool, gpointer data,
+				       GError * *error);
+    extern gboolean g_thread_pool_set_max_threads(GThreadPool * pool,
+						  gint max_threads,
+						  GError * *error);
+    extern GThread *g_thread_ref(GThread * thread);
+    extern GThread *g_thread_try_new(const char *name, GThreadFunc func,
+				     void *data, GError * *error);
+    extern void g_thread_unref(GThread * thread);
+#undef g_thread_yield
+    extern void g_thread_yield(void);
+    extern gint g_time_zone_adjust_time(GTimeZone * tz, GTimeType type,
+					gint64 * time_);
+    extern gint g_time_zone_find_interval(GTimeZone * tz, GTimeType type,
+					  gint64 time_);
+    extern const gchar *g_time_zone_get_abbreviation(GTimeZone * tz,
+						     gint interval);
+    extern gint32 g_time_zone_get_offset(GTimeZone * tz, gint interval);
+    extern gboolean g_time_zone_is_dst(GTimeZone * tz, gint interval);
+    extern GTimeZone *g_time_zone_new(const gchar * identifier);
+    extern GTimeZone *g_time_zone_new_local(void);
+    extern GTimeZone *g_time_zone_new_utc(void);
+    extern GTimeZone *g_time_zone_ref(GTimeZone * tz);
+    extern void g_time_zone_unref(GTimeZone * tz);
+    extern guint g_timeout_add_seconds(guint interval,
+				       GSourceFunc function, void *data);
+    extern guint g_timeout_add_seconds_full(gint priority, guint interval,
+					    GSourceFunc function,
+					    void *data,
+					    GDestroyNotify notify);
+    extern GSource *g_timeout_source_new_seconds(guint interval);
+    extern GTree *g_tree_ref(GTree * tree);
+    /* g_tree_traverse is deprecated and should not be used in newly-written code. The order of a balanced tree is somewhat arbitrary. If you just want to visit all nodes in sorted order, use g_tree_foreach instead. If you really need to visit nodes in a different order, consider using an N-ary Tree. */
+    extern void g_tree_traverse(GTree * tree, GTraverseFunc traverse_func,
+				void *user_data) LSB_DECL_DEPRECATED;
+    extern void g_tree_unref(GTree * tree);
+    extern void *g_try_malloc0(gsize n_bytes);
+    extern void *g_try_malloc0_n(gsize n_blocks, gsize n_block_bytes);
+    extern void *g_try_malloc_n(gsize n_blocks, gsize n_block_bytes);
+    extern void *g_try_realloc_n(void *mem, gsize n_blocks,
+				 gsize n_block_bytes);
+    extern gint g_unichar_combining_class(gunichar uc);
+    extern gboolean g_unichar_compose(gunichar a, gunichar b,
+				      gunichar * ch);
+    extern gboolean g_unichar_decompose(gunichar ch, gunichar * a,
+					gunichar * b);
+    extern gsize g_unichar_fully_decompose(gunichar ch, gboolean compat,
+					   gunichar * result,
+					   gsize result_len);
+    extern GUnicodeScript g_unichar_get_script(gunichar ch);
+    extern gboolean g_unichar_ismark(gunichar c);
+    extern gboolean g_unichar_iszerowidth(gunichar c);
+    extern GUnicodeScript g_unicode_script_from_iso15924(guint32 iso15924);
+    extern guint32 g_unicode_script_to_iso15924(GUnicodeScript script);
+    extern char *g_uri_escape_string(const char *unescaped,
+				     const char *reserved_chars_allowed,
+				     gboolean allow_utf8);
+    extern char *g_uri_parse_scheme(const char *uri);
+    extern char *g_uri_unescape_segment(const char *escaped_string,
+					const char *escaped_string_end,
+					const char *illegal_characters);
+    extern char *g_uri_unescape_string(const char *escaped_string,
+				       const char *illegal_characters);
+    extern gchar *g_utf8_substring(const gchar * str, glong start_pos,
+				   glong end_pos);
+    extern void g_variant_builder_add(GVariantBuilder * builder,
+				      const gchar * format_string, ...);
+    extern void g_variant_builder_add_parsed(GVariantBuilder * builder,
+					     const gchar * format, ...);
+    extern void g_variant_builder_add_value(GVariantBuilder * builder,
+					    GVariant * value);
+    extern void g_variant_builder_clear(GVariantBuilder * builder);
+    extern void g_variant_builder_close(GVariantBuilder * builder);
+    extern GVariant *g_variant_builder_end(GVariantBuilder * builder);
+    extern void g_variant_builder_init(GVariantBuilder * builder,
+				       const GVariantType * type);
+    extern GVariantBuilder *g_variant_builder_new(const GVariantType *
+						  type);
+    extern void g_variant_builder_open(GVariantBuilder * builder,
+				       const GVariantType * type);
+    extern GVariantBuilder *g_variant_builder_ref(GVariantBuilder *
+						  builder);
+    extern void g_variant_builder_unref(GVariantBuilder * builder);
+    extern GVariant *g_variant_byteswap(GVariant * value);
+    extern GVariantClass g_variant_classify(GVariant * value);
+    extern gint g_variant_compare(gconstpointer one, gconstpointer two);
+    extern gchar *g_variant_dup_bytestring(GVariant * value,
+					   gsize * length);
+    extern gchar **g_variant_dup_bytestring_array(GVariant * value,
+						  gsize * length);
+    extern gchar **g_variant_dup_objv(GVariant * value, gsize * length);
+    extern gchar *g_variant_dup_string(GVariant * value, gsize * length);
+    extern gchar **g_variant_dup_strv(GVariant * value, gsize * length);
+    extern gboolean g_variant_equal(gconstpointer one, gconstpointer two);
+    extern void g_variant_get(GVariant * value,
+			      const gchar * format_string, ...);
+    extern gboolean g_variant_get_boolean(GVariant * value);
+    extern guchar g_variant_get_byte(GVariant * value);
+    extern const gchar *g_variant_get_bytestring(GVariant * value);
+    extern const gchar **g_variant_get_bytestring_array(GVariant * value,
+							gsize * length);
+    extern void g_variant_get_child(GVariant * value, gsize index_,
+				    const gchar * format_string, ...);
+    extern GVariant *g_variant_get_child_value(GVariant * value,
+					       gsize index_);
+    extern gconstpointer g_variant_get_data(GVariant * value);
+    extern gdouble g_variant_get_double(GVariant * value);
+    extern gconstpointer g_variant_get_fixed_array(GVariant * value,
+						   gsize * n_elements,
+						   gsize element_size);
+    extern gint32 g_variant_get_handle(GVariant * value);
+    extern gint16 g_variant_get_int16(GVariant * value);
+    extern gint32 g_variant_get_int32(GVariant * value);
+    extern gint64 g_variant_get_int64(GVariant * value);
+    extern GVariant *g_variant_get_maybe(GVariant * value);
+    extern GVariant *g_variant_get_normal_form(GVariant * value);
+    extern const gchar **g_variant_get_objv(GVariant * value,
+					    gsize * length);
+    extern gsize g_variant_get_size(GVariant * value);
+    extern const gchar *g_variant_get_string(GVariant * value,
+					     gsize * length);
+    extern const gchar **g_variant_get_strv(GVariant * value,
+					    gsize * length);
+    extern const GVariantType *g_variant_get_type(GVariant * value);
+    extern const gchar *g_variant_get_type_string(GVariant * value);
+    extern guint16 g_variant_get_uint16(GVariant * value);
+    extern guint32 g_variant_get_uint32(GVariant * value);
+    extern guint64 g_variant_get_uint64(GVariant * value);
+    extern void g_variant_get_va(GVariant * value,
+				 const gchar * format_string,
+				 const gchar * *endptr,
+				 struct __va_list_tag *app[]);
+    extern GVariant *g_variant_get_variant(GVariant * value);
+    extern guint g_variant_hash(gconstpointer value);
+    extern gboolean g_variant_is_container(GVariant * value);
+    extern gboolean g_variant_is_floating(GVariant * value);
+    extern gboolean g_variant_is_normal_form(GVariant * value);
+    extern gboolean g_variant_is_object_path(const gchar * string);
+    extern gboolean g_variant_is_of_type(GVariant * value,
+					 const GVariantType * type);
+    extern gboolean g_variant_is_signature(const gchar * string);
+    extern GVariantIter *g_variant_iter_copy(GVariantIter * iter);
+    extern void g_variant_iter_free(GVariantIter * iter);
+    extern gsize g_variant_iter_init(GVariantIter * iter,
+				     GVariant * value);
+    extern gboolean g_variant_iter_loop(GVariantIter * iter,
+					const gchar * format_string, ...);
+    extern gsize g_variant_iter_n_children(GVariantIter * iter);
+    extern GVariantIter *g_variant_iter_new(GVariant * value);
+    extern gboolean g_variant_iter_next(GVariantIter * iter,
+					const gchar * format_string, ...);
+    extern GVariant *g_variant_iter_next_value(GVariantIter * iter);
+    extern gboolean g_variant_lookup(GVariant * dictionary,
+				     const gchar * key,
+				     const gchar * format_string, ...);
+    extern GVariant *g_variant_lookup_value(GVariant * dictionary,
+					    const gchar * key,
+					    const GVariantType *
+					    expected_type);
+    extern gsize g_variant_n_children(GVariant * value);
+    extern GVariant *g_variant_new(const gchar * format_string, ...);
+    extern GVariant *g_variant_new_array(const GVariantType * child_type,
+					 GVariant * const *children,
+					 gsize n_children);
+    extern GVariant *g_variant_new_boolean(gboolean value);
+    extern GVariant *g_variant_new_byte(guchar value);
+    extern GVariant *g_variant_new_bytestring(const gchar * string);
+    extern GVariant *g_variant_new_bytestring_array(const gchar *
+						    const *strv,
+						    gssize length);
+    extern GVariant *g_variant_new_dict_entry(GVariant * key,
+					      GVariant * value);
+    extern GVariant *g_variant_new_double(gdouble value);
+    extern GVariant *g_variant_new_fixed_array(const GVariantType *
+					       element_type,
+					       gconstpointer elements,
+					       gsize n_elements,
+					       gsize element_size);
+    extern GVariant *g_variant_new_from_data(const GVariantType * type,
+					     gconstpointer data,
+					     gsize size, gboolean trusted,
+					     GDestroyNotify notify,
+					     void *user_data);
+    extern GVariant *g_variant_new_handle(gint32 value);
+    extern GVariant *g_variant_new_int16(gint16 value);
+    extern GVariant *g_variant_new_int32(gint32 value);
+    extern GVariant *g_variant_new_int64(gint64 value);
+    extern GVariant *g_variant_new_maybe(const GVariantType * child_type,
+					 GVariant * child);
+    extern GVariant *g_variant_new_object_path(const gchar * object_path);
+    extern GVariant *g_variant_new_objv(const gchar * const *strv,
+					gssize length);
+    extern GVariant *g_variant_new_parsed(const gchar * format, ...);
+    extern GVariant *g_variant_new_parsed_va(const gchar * format,
+					     struct __va_list_tag *app[]);
+    extern GVariant *g_variant_new_signature(const gchar * signature);
+    extern GVariant *g_variant_new_string(const gchar * string);
+    extern GVariant *g_variant_new_strv(const gchar * const *strv,
+					gssize length);
+    extern GVariant *g_variant_new_tuple(GVariant * const *children,
+					 gsize n_children);
+    extern GVariant *g_variant_new_uint16(guint16 value);
+    extern GVariant *g_variant_new_uint32(guint32 value);
+    extern GVariant *g_variant_new_uint64(guint64 value);
+    extern GVariant *g_variant_new_va(const gchar * format_string,
+				      const gchar * *endptr,
+				      struct __va_list_tag *app[]);
+    extern GVariant *g_variant_new_variant(GVariant * value);
+    extern GVariant *g_variant_parse(const GVariantType * type,
+				     const char *text, const char *limit,
+				     const char **endptr, GError * *error);
+    extern GQuark g_variant_parser_get_error_quark(void);
+    extern gchar *g_variant_print(GVariant * value,
+				  gboolean type_annotate);
+    extern GString *g_variant_print_string(GVariant * value,
+					   GString * string,
+					   gboolean type_annotate);
+    extern GVariant *g_variant_ref(GVariant * value);
+    extern GVariant *g_variant_ref_sink(GVariant * value);
+    extern void g_variant_store(GVariant * value, void *data);
+    extern GVariant *g_variant_take_ref(GVariant * value);
+    extern const GVariantType *g_variant_type_checked_(const gchar *);
+    extern GVariantType *g_variant_type_copy(const GVariantType * type);
+    extern gchar *g_variant_type_dup_string(const GVariantType * type);
+    extern const GVariantType *g_variant_type_element(const GVariantType *
+						      type);
+    extern gboolean g_variant_type_equal(gconstpointer type1,
+					 gconstpointer type2);
+    extern const GVariantType *g_variant_type_first(const GVariantType *
+						    type);
+    extern void g_variant_type_free(GVariantType * type);
+    extern gsize g_variant_type_get_string_length(const GVariantType *
+						  type);
+    extern guint g_variant_type_hash(gconstpointer type);
+    extern gboolean g_variant_type_is_array(const GVariantType * type);
+    extern gboolean g_variant_type_is_basic(const GVariantType * type);
+    extern gboolean g_variant_type_is_container(const GVariantType * type);
+    extern gboolean g_variant_type_is_definite(const GVariantType * type);
+    extern gboolean g_variant_type_is_dict_entry(const GVariantType *
+						 type);
+    extern gboolean g_variant_type_is_maybe(const GVariantType * type);
+    extern gboolean g_variant_type_is_subtype_of(const GVariantType * type,
+						 const GVariantType *
+						 supertype);
+    extern gboolean g_variant_type_is_tuple(const GVariantType * type);
+    extern gboolean g_variant_type_is_variant(const GVariantType * type);
+    extern const GVariantType *g_variant_type_key(const GVariantType *
+						  type);
+    extern gsize g_variant_type_n_items(const GVariantType * type);
+    extern GVariantType *g_variant_type_new(const gchar * type_string);
+    extern GVariantType *g_variant_type_new_array(const GVariantType *
+						  element);
+    extern GVariantType *g_variant_type_new_dict_entry(const GVariantType *
+						       key,
+						       const GVariantType *
+						       value);
+    extern GVariantType *g_variant_type_new_maybe(const GVariantType *
+						  element);
+    extern GVariantType *g_variant_type_new_tuple(const GVariantType *
+						  const *items,
+						  gint length);
+    extern const GVariantType *g_variant_type_next(const GVariantType *
+						   type);
+    extern const char *g_variant_type_peek_string(const GVariantType *
+						  type);
+    extern gboolean g_variant_type_string_is_valid(const gchar *
+						   type_string);
+    extern gboolean g_variant_type_string_scan(const gchar * string,
+					       const gchar * limit,
+					       const gchar * *endptr);
+    extern const GVariantType *g_variant_type_value(const GVariantType *
+						    type);
+    extern void g_variant_unref(GVariant * value);
+    extern void g_warn_message(const char *domain, const char *file,
+			       int line, const char *func,
+			       const char *warnexpr);
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus

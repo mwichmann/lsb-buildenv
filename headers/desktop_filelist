@@ -97,6 +97,8 @@ cairo/cairo-svg.h
 cairo/cairo-xlib-xrender.h
 cairo/cairo-xlib.h
 cairo/cairo.h
+ffi.h
+ffitarget.h
 fontconfig/fcfreetype.h
 fontconfig/fcprivate.h
 fontconfig/fontconfig.h

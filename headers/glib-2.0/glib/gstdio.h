@@ -2,6 +2,9 @@
 #ifndef _GLIB_2_0_GLIB_GSTDIO_H_
 #define _GLIB_2_0_GLIB_GSTDIO_H_
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/time.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,6 +29,11 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 
+
+#if __LSB_VERSION__ >= 50
+    typedef struct stat GStatBuf;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

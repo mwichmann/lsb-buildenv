@@ -260,6 +260,7 @@ char *lsb_libs_50[] = {
 	"cups",
 	"cupsimage",
 	"dl",
+	"ffi",
 	"fontconfig",
 	"freetype",
 	"gcc_s",

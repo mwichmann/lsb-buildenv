@@ -451,8 +451,6 @@ extern "C" {
 
     typedef struct _GObject GObject;
 
-    typedef float gfloat;
-
     typedef struct _GValue GValue;
 
     typedef enum {
@@ -673,6 +671,11 @@ extern "C" {
     typedef gchar *gchararray;
 
     typedef gchar **GStrv;
+
+#if __LSB_VERSION__ < 50
+    typedef float gfloat;
+
+#endif				/* __LSB_VERSION__ < 5.0 */
 
 #if __LSB_VERSION__ >= 40
     typedef void (*GToggleNotify) (gpointer, GObject *, gboolean);

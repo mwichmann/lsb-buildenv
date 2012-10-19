@@ -440,7 +440,6 @@ typedef struct _GObject {
     volatile guint ref_count;
     GData *qdata;
 } GObject;
-typedef float gfloat;
 typedef struct _GValue {
     GType g_type;
     union {
