@@ -579,15 +579,7 @@ typedef struct _GHashTable GHashTable;
 typedef const void *gconstpointer;
 typedef guint(*GHashFunc) (gconstpointer);
 typedef gboolean(*GEqualFunc) (gconstpointer, gconstpointer);
-typedef struct _GStaticMutex {
-    struct _GMutex *runtime_mutex;
-    union {
-	char pad[GLIB_LSB_PADDING_SIZE];
-	double dummy_double;
-	void *dummy_pointer;
-	long int dummy_long;
-    } static_mutex;
-} GStaticMutex;
+typedef struct _GMutex GMutex;
 typedef union _GSystemThread {
     char data[GLIB_LSB_DATA_SIZE];
     double dummy_double;
@@ -987,7 +979,15 @@ typedef enum {
     G_NORMALIZE_ALL_COMPOSE = 3,
     G_NORMALIZE_NFKC = 3
 } GNormalizeMode;
-typedef struct _GMutex GMutex;
+typedef struct _GStaticMutex {
+    struct _GMutex *runtime_mutex;
+    union {
+	char pad[GLIB_LSB_PADDING_SIZE];
+	double dummy_double;
+	void *dummy_pointer;
+	long int dummy_long;
+    } static_mutex;
+} GStaticMutex;
 typedef struct _GStaticPrivate {
     guint index;
 } GStaticPrivate;

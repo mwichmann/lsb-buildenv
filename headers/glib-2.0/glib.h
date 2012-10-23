@@ -1590,8 +1590,6 @@ extern "C" {
 	G_NORMALIZE_NFKC = 3
     } GNormalizeMode;
 
-    typedef struct _GMutex GMutex;
-
     typedef struct _GStaticPrivate GStaticPrivate;
 
     typedef enum {
@@ -1872,6 +1870,8 @@ extern "C" {
     } GShellError;
 
 #if __LSB_VERSION__ < 50
+    typedef struct _GMutex GMutex;
+
     typedef struct _GStaticMutex GStaticMutex;
 
 #endif				/* __LSB_VERSION__ < 5.0 */
@@ -1898,6 +1898,12 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #if __LSB_VERSION__ >= 50
+    typedef union _GMutex GMutex;
+
+    typedef struct {
+	GMutex *mutex;
+    } GStaticMutex;
+
     typedef struct _GSourcePrivate GSourcePrivate;
 
     typedef struct GTestCase GTestCase;
@@ -2311,10 +2317,6 @@ extern "C" {
     struct _GRecMutex {
 	gpointer p;
 	guint i[2];
-    };
-
-    struct GStaticMutex {
-	GMutex *mutex;
     };
 
 #endif				/* __LSB_VERSION__ >= 5.0 */
@@ -5447,7 +5449,7 @@ extern "C" {
 				    gboolean joinable,
 				    GError * *error) LSB_DECL_DEPRECATED;
     extern gboolean g_thread_get_initialized(void);
-    extern guint64(*) (void) g_thread_gettime;
+    extern guint64 *g_thread_gettime(void);
     extern GThread *g_thread_new(const char *name, GThreadFunc func,
 				 void *data);
     extern gboolean g_thread_pool_push(GThreadPool * pool, gpointer data,

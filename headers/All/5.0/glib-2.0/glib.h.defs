@@ -579,6 +579,10 @@ typedef struct _GHashTable GHashTable;
 typedef const void *gconstpointer;
 typedef guint(*GHashFunc) (gconstpointer);
 typedef gboolean(*GEqualFunc) (gconstpointer, gconstpointer);
+typedef union _GMutex {
+    gpointer p;
+    guint i[2];
+} GMutex;
 typedef union _GSystemThread {
     char data[GLIB_LSB_DATA_SIZE];
     double dummy_double;
@@ -981,7 +985,9 @@ typedef enum {
     G_NORMALIZE_ALL_COMPOSE = 3,
     G_NORMALIZE_NFKC = 3
 } GNormalizeMode;
-typedef struct _GMutex GMutex;
+typedef struct {
+    GMutex *mutex;
+} GStaticMutex;
 typedef struct _GStaticPrivate {
     guint index;
 } GStaticPrivate;
@@ -1639,9 +1645,6 @@ typedef struct _GRWLock {
 union _GMutex {
     gpointer p;
     guint i[2];
-};
-struct GStaticMutex {
-    GMutex *mutex;
 };
 typedef gint64 GTimeSpan;
 typedef struct _GDateTime GDateTime;
@@ -3641,7 +3644,7 @@ extern void g_thread_exit(gpointer retval);
 extern void g_thread_foreach(GFunc thread_func, gpointer user_data);
 extern GThreadFunctions g_thread_functions_for_glib_use;
 extern gboolean g_thread_get_initialized(void);
-extern guint64(*) (void) g_thread_gettime;
+extern guint64 *g_thread_gettime(void);
 extern void g_thread_init(GThreadFunctions * vtable);
 extern void g_thread_init_with_errorcheck_mutexes(GThreadFunctions *
 						  vtable);
