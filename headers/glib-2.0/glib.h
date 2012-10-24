@@ -1168,6 +1168,8 @@ extern "C" {
 #if __LSB_VERSION__ >= 50
     typedef float gfloat;
 
+    typedef gint64 goffset;
+
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 
@@ -4745,9 +4747,10 @@ extern "C" {
     /* g_async_queue_ref_unlocked is deprecated and should not be used in newly-written code. Since 2.8, reference counting is done atomically so g_async_queue_ref can be used regardless of the queue's lock. */
     extern void g_async_queue_ref_unlocked(GAsyncQueue *
 					   queue) LSB_DECL_DEPRECATED;
-    extern g_async_queue_timeout_pop(GAsyncQueue * queue, guint64 timeout);
-    extern g_async_queue_timeout_pop_unlocked(GAsyncQueue * queue,
+    extern gpointer g_async_queue_timeout_pop(GAsyncQueue * queue,
 					      guint64 timeout);
+    extern gpointer g_async_queue_timeout_pop_unlocked(GAsyncQueue * queue,
+						       guint64 timeout);
     /* g_async_queue_unref_and_unlock is deprecated and should not be used in newly-written code. Since 2.8, reference counting is done atomically so g_async_queue_unref can be used regardless of the queue's lock. */
     extern void g_async_queue_unref_and_unlock(GAsyncQueue *
 					       queue) LSB_DECL_DEPRECATED;
@@ -4849,7 +4852,8 @@ extern "C" {
     extern gboolean g_cond_wait_until(GCond * cond, GMutex * mutex,
 				      gint64 end_time);
 #undef g_datalist_get_data
-    extern g_datalist_get_data(GData * *datalist, const char *key);
+    extern gpointer g_datalist_get_data(GData * *datalist,
+					const char *key);
     extern GDateTime *g_date_time_add(GDateTime * datetime,
 				      GTimeSpan timespan);
     extern GDateTime *g_date_time_add_days(GDateTime * datetime,
@@ -4949,7 +4953,8 @@ extern "C" {
     extern GError *g_error_new_valist(GQuark domain, gint code,
 				      const gchar * format, va_list args);
     extern gchar *g_format_size(guint64 size);
-    extern gchar *g_format_size_for_display(void) LSB_DECL_DEPRECATED;
+    extern gchar *g_format_size_for_display(goffset size)
+	LSB_DECL_DEPRECATED;
     extern gchar *g_format_size_full(guint64 size, GFormatSizeFlags flags);
     extern gchar *g_get_codeset(void);
     extern gchar **g_get_environ(void);
@@ -5492,6 +5497,7 @@ extern "C" {
     extern GTree *g_tree_ref(GTree * tree);
     /* g_tree_traverse is deprecated and should not be used in newly-written code. The order of a balanced tree is somewhat arbitrary. If you just want to visit all nodes in sorted order, use g_tree_foreach instead. If you really need to visit nodes in a different order, consider using an N-ary Tree. */
     extern void g_tree_traverse(GTree * tree, GTraverseFunc traverse_func,
+				GTraverseType traverse_type,
 				void *user_data) LSB_DECL_DEPRECATED;
     extern void g_tree_unref(GTree * tree);
     extern void *g_try_malloc0(gsize n_bytes);

@@ -472,6 +472,7 @@
 #define G_STATIC_MUTEX_INIT	{ NULL }
 
 typedef float gfloat;
+typedef gint64 goffset;
 
 #define __G_BOOKMARK_FILE_H__
 #define __G_SLICE_H__
@@ -1744,9 +1745,10 @@ extern gpointer g_async_queue_timed_pop(GAsyncQueue * queue,
 					GTimeVal * end_time);
 extern gpointer g_async_queue_timed_pop_unlocked(GAsyncQueue * queue,
 						 GTimeVal * end_time);
-extern g_async_queue_timeout_pop(GAsyncQueue * queue, guint64 timeout);
-extern g_async_queue_timeout_pop_unlocked(GAsyncQueue * queue,
+extern gpointer g_async_queue_timeout_pop(GAsyncQueue * queue,
 					  guint64 timeout);
+extern gpointer g_async_queue_timeout_pop_unlocked(GAsyncQueue * queue,
+						   guint64 timeout);
 extern gpointer g_async_queue_try_pop(GAsyncQueue * queue);
 extern gpointer g_async_queue_try_pop_unlocked(GAsyncQueue * queue);
 extern void g_async_queue_unlock(GAsyncQueue * queue);
@@ -2047,7 +2049,7 @@ extern gchar *g_convert_with_iconv(const gchar * str, gssize len,
 extern void g_datalist_clear(GData * *datalist);
 extern void g_datalist_foreach(GData * *datalist, GDataForeachFunc func,
 			       gpointer user_data);
-extern g_datalist_get_data(GData * *datalist, const char *key);
+extern gpointer g_datalist_get_data(GData * *datalist, const char *key);
 extern guint g_datalist_get_flags(GData * *datalist);
 extern gpointer g_datalist_id_get_data(GData * *datalist, GQuark key_id);
 extern gpointer g_datalist_id_remove_no_notify(GData * *datalist,
@@ -2248,7 +2250,7 @@ extern gchar *g_filename_to_utf8(const gchar * opsysstring, gssize len,
 				 GError * *error);
 extern gchar *g_find_program_in_path(const gchar * program);
 extern gchar *g_format_size(guint64 size);
-extern gchar *g_format_size_for_display(void);
+extern gchar *g_format_size_for_display(goffset size);
 extern gchar *g_format_size_full(guint64 size, GFormatSizeFlags flags);
 extern void g_free(gpointer mem);
 extern const gchar *g_get_application_name(void);
@@ -3748,7 +3750,7 @@ extern gpointer g_tree_search(GTree * tree, GCompareFunc search_func,
 			      gconstpointer user_data);
 extern gboolean g_tree_steal(GTree * tree, gconstpointer key);
 extern void g_tree_traverse(GTree * tree, GTraverseFunc traverse_func,
-			    void *user_data);
+			    GTraverseType traverse_type, void *user_data);
 extern void g_tree_unref(GTree * tree);
 extern gpointer g_try_malloc(gulong n_bytes);
 extern void *g_try_malloc0(gsize n_bytes);
