@@ -2,12 +2,12 @@
 #define GLIB_HAVE_ALLOCA_H
 #define GLIB_HAVE_SYS_POLL_H
 #define G_GINT32_MODIFIER	""
-#define G_GNUC_FUNCTION	""
-#define G_GNUC_PRETTY_FUNCTION	""
+#define G_GNUC_FUNCTION	""	/* DEPRECATED */
+#define G_GNUC_PRETTY_FUNCTION	""	/* DEPRECATED */
 #define G_OPTION_REMAINING	""
 #define G_OS_UNIX
 #define G_THREADS_ENABLED
-#define G_THREADS_IMPL_POSIX
+#define G_THREADS_IMPL_POSIX	/* DEPRECATED */
 #define G_WIN32_DLLMAIN_FOR_DLL_NAME(static,dll_name)
 #define G_CSET_LATINC	 \
 	"\300\301\302\303\304\305\306" \
@@ -375,7 +375,7 @@
 #define G_CSET_A_2_Z	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define G_CSET_a_2_z	"abcdefghijklmnopqrstuvwxyz"
 #define g_alloca(size)	alloca (size)
-#define G_CONST_RETURN	const
+#define G_CONST_RETURN	const	/* DEPRECATED */
 #define G_MAXDOUBLE	DBL_MAX
 #define G_MINDOUBLE	DBL_MIN
 #define GLIB_VAR	extern

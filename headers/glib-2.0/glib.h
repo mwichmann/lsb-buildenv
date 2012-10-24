@@ -25,8 +25,8 @@ extern "C" {
 #define GLIB_HAVE_ALLOCA_H
 #define GLIB_HAVE_SYS_POLL_H
 #define G_GINT32_MODIFIER	""
-#define G_GNUC_FUNCTION	""
-#define G_GNUC_PRETTY_FUNCTION	""
+#define G_GNUC_FUNCTION	""	/* DEPRECATED */
+#define G_GNUC_PRETTY_FUNCTION	""	/* DEPRECATED */
 #if defined __i386__
 #define G_GSIZE_MODIFIER	""
 #endif
@@ -39,7 +39,7 @@ extern "C" {
 #define G_OPTION_REMAINING	""
 #define G_OS_UNIX
 #define G_THREADS_ENABLED
-#define G_THREADS_IMPL_POSIX
+#define G_THREADS_IMPL_POSIX	/* DEPRECATED */
 #define G_WIN32_DLLMAIN_FOR_DLL_NAME(static,dll_name)
 #define G_CSET_LATINC	 \
 	"\300\301\302\303\304\305\306" \
@@ -166,9 +166,6 @@ extern "C" {
 	G_STRLOC) : (fail))
 #define G_THREAD_CF(op,fail,arg)	 \
 	(g_thread_supported () ? G_THREAD_UF (op, arg) : (fail))
-#define g_static_mutex_get_mutex(mutex)	 \
-	(g_thread_use_default_impl ? ((GMutex*) &((mutex)->static_mutex)) : \
-	g_static_mutex_get_mutex_impl_shortcut (&((mutex)->runtime_mutex)))
 #define G_LOCK_DEFINE(name)	 \
 	GStaticMutex G_LOCK_NAME (name) = G_STATIC_MUTEX_INIT
 #define g_datalist_remove_no_notify(dl,k)	 \
@@ -262,34 +259,6 @@ extern "C" {
 	__attribute__((__format__ (__scanf__, format_idx, arg_idx)))
 #define G_STATIC_RW_LOCK_INIT	 \
 	{ G_STATIC_MUTEX_INIT, NULL, NULL, 0, FALSE, 0, 0 }
-#if defined __ia64__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
-#if defined __powerpc64__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
-#if defined __x86_64__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
-#if defined __s390x__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
-#if defined __i386__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
-#if defined __s390__ && !defined __s390x__
-#define G_STATIC_MUTEX_INIT	 \
-	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
-#endif
 #define G_STRINGIFY_ARG(contents)	#contents
 #define G_DIR_SEPARATOR	'/'
 #define G_SEARCHPATH_SEPARATOR	':'
@@ -745,7 +714,7 @@ extern "C" {
 #define G_CSET_A_2_Z	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define G_CSET_a_2_z	"abcdefghijklmnopqrstuvwxyz"
 #define g_alloca(size)	alloca (size)
-#define G_CONST_RETURN	const
+#define G_CONST_RETURN	const	/* DEPRECATED */
 #define G_MAXDOUBLE	DBL_MAX
 #define G_MINDOUBLE	DBL_MIN
 #define GLIB_VAR	extern
@@ -1019,6 +988,40 @@ extern "C" {
 #define GLIB_MICRO_VERSION	6
 #endif				/* __LSB_VERSION__ < 4.1 */
 
+#if __LSB_VERSION__ < 50
+#define g_static_mutex_get_mutex(mutex)	 \
+	(g_thread_use_default_impl ? ((GMutex*) &((mutex)->static_mutex)) : \
+	g_static_mutex_get_mutex_impl_shortcut (&((mutex)->runtime_mutex)))
+#if defined __ia64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if defined __powerpc64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if defined __x86_64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if defined __s390x__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if defined __i386__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#if defined __s390__ && !defined __s390x__
+#define G_STATIC_MUTEX_INIT	 \
+	{ NULL, { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} } }
+#endif
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 40
 #ifdef __cplusplus
 # define G_BEGIN_DECLS  extern "C" {
@@ -1049,6 +1052,8 @@ extern "C" {
 #if __LSB_VERSION__ >= 50
 #define GLIB_MICRO_VERSION	1
 #define GLIB_MINOR_VERSION	32
+#define g_static_mutex_get_mutex(mutex)	g_static_mutex_get_mutex_impl
+#define G_STATIC_MUTEX_INIT	{ NULL }
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 
@@ -4942,7 +4947,7 @@ extern "C" {
     extern gchar **g_environ_unsetenv(gchar * *envp,
 				      const gchar * variable);
     extern GError *g_error_new_valist(GQuark domain, gint code,
-				      const gchar * format, void args);
+				      const gchar * format, va_list args);
     extern gchar *g_format_size(guint64 size);
     extern gchar *g_format_size_for_display(void) LSB_DECL_DEPRECATED;
     extern gchar *g_format_size_full(guint64 size, GFormatSizeFlags flags);
@@ -5364,7 +5369,8 @@ extern "C" {
 						reserved_chars_allowed,
 						gboolean allow_utf8);
     extern void g_string_append_vprintf(GString * string,
-					const gchar * format, void args);
+					const gchar * format,
+					va_list args);
     extern void g_string_chunk_clear(GStringChunk * chunk);
     /* g_string_down is deprecated and should not be used in newly-written code. This function uses the locale-specific tolower() function, which is almost never the right thing. Use g_string_ascii_down or g_utf8_strdown instead. */
     extern GString *g_string_down(GString * string) LSB_DECL_DEPRECATED;
@@ -5375,7 +5381,7 @@ extern "C" {
     /* g_string_up is deprecated and should not be used in newly-written code. This function uses the locale-specific toupper() function, which is almost never the right thing. Use g_string_ascii_up or g_utf8_strup instead. */
     extern GString *g_string_up(GString * string) LSB_DECL_DEPRECATED;
     extern void g_string_vprintf(GString * string, const gchar * format,
-				 void args);
+				 va_list args);
     /* g_strncasecmp is deprecated and should not be used in newly-written code. This function is broken if your string is guaranteed to be ASCII, since it's locale-sensitive, and it's broken if your string is localized, since it doesn't work on many encodings at all, including UTF-8, EUC-JP, etc. There are therefore two replacement functions: g_ascii_strncasecmp, which only works on ASCII and is not locale-sensitive, and g_utf8_casefold, which is good for case-insensitive sorting of UTF-8. */
     extern gint g_strncasecmp(const char *s1, const char *s2,
 			      guint n) LSB_DECL_DEPRECATED;

@@ -12,12 +12,12 @@
 # define G_END_DECLS
 #endif
 #define G_GINT32_MODIFIER	""
-#define G_GNUC_FUNCTION	""
-#define G_GNUC_PRETTY_FUNCTION	""
+#define G_GNUC_FUNCTION	""	/* DEPRECATED */
+#define G_GNUC_PRETTY_FUNCTION	""	/* DEPRECATED */
 #define G_OPTION_REMAINING	""
 #define G_OS_UNIX
 #define G_THREADS_ENABLED
-#define G_THREADS_IMPL_POSIX
+#define G_THREADS_IMPL_POSIX	/* DEPRECATED */
 #define G_WIN32_DLLMAIN_FOR_DLL_NAME(static,dll_name)
 #define G_CSET_LATINC	 \
 	"\300\301\302\303\304\305\306" \
@@ -144,9 +144,6 @@
 	G_STRLOC) : (fail))
 #define G_THREAD_CF(op,fail,arg)	 \
 	(g_thread_supported () ? G_THREAD_UF (op, arg) : (fail))
-#define g_static_mutex_get_mutex(mutex)	 \
-	(g_thread_use_default_impl ? ((GMutex*) &((mutex)->static_mutex)) : \
-	g_static_mutex_get_mutex_impl_shortcut (&((mutex)->runtime_mutex)))
 #define G_LOCK_DEFINE(name)	 \
 	GStaticMutex G_LOCK_NAME (name) = G_STATIC_MUTEX_INIT
 #define g_datalist_remove_no_notify(dl,k)	 \
@@ -385,7 +382,7 @@
 #define G_CSET_A_2_Z	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define G_CSET_a_2_z	"abcdefghijklmnopqrstuvwxyz"
 #define g_alloca(size)	alloca (size)
-#define G_CONST_RETURN	const
+#define G_CONST_RETURN	const	/* DEPRECATED */
 #define G_MAXDOUBLE	DBL_MAX
 #define G_MINDOUBLE	DBL_MIN
 #define GLIB_VAR	extern
@@ -421,6 +418,7 @@
 #define G_MARKUP_ERROR	g_markup_error_quark ()
 #define G_SHELL_ERROR	g_shell_error_quark ()
 #define G_SPAWN_ERROR	g_spawn_error_quark ()
+#define g_static_mutex_get_mutex(mutex)	g_static_mutex_get_mutex_impl
 #define G_LOCK(name)	g_static_mutex_lock (&G_LOCK_NAME (name))
 #define G_TRYLOCK(name)	g_static_mutex_trylock (&G_LOCK_NAME (name))
 #define G_UNLOCK(name)	g_static_mutex_unlock (&G_LOCK_NAME (name))
@@ -471,6 +469,7 @@
 #define G_STATIC_PRIVATE_INIT	{ 0 }
 #define G_ONCE_INIT	{ G_ONCE_STATUS_NOTCALLED, NULL }
 #define G_STATIC_REC_MUTEX_INIT	{ G_STATIC_MUTEX_INIT }
+#define G_STATIC_MUTEX_INIT	{ NULL }
 
 typedef float gfloat;
 
@@ -2222,7 +2221,7 @@ extern GError *g_error_new(GQuark domain, gint code, const gchar * format,
 extern GError *g_error_new_literal(GQuark domain, gint code,
 				   const gchar * message);
 extern GError *g_error_new_valist(GQuark domain, gint code,
-				  const gchar * format, void args);
+				  const gchar * format, va_list args);
 extern GFileError g_file_error_from_errno(gint err_no);
 extern GQuark g_file_error_quark(void);
 extern gboolean g_file_get_contents(const gchar * filename,
@@ -3506,7 +3505,7 @@ extern GString *g_string_append_uri_escaped(GString * string,
 					    reserved_chars_allowed,
 					    gboolean allow_utf8);
 extern void g_string_append_vprintf(GString * string, const gchar * format,
-				    void args);
+				    va_list args);
 extern GString *g_string_ascii_down(GString * string);
 extern GString *g_string_ascii_up(GString * string);
 extern GString *g_string_assign(GString * string, const gchar * rval);
@@ -3548,7 +3547,7 @@ extern GString *g_string_sized_new(gsize dfl_size);
 extern GString *g_string_truncate(GString * string, gsize len);
 extern GString *g_string_up(GString * string);
 extern void g_string_vprintf(GString * string, const gchar * format,
-			     void args);
+			     va_list args);
 extern const gchar *g_strip_context(const gchar * msgid,
 				    const gchar * msgval);
 extern gchar *g_strjoin(const gchar * separator, ...);
