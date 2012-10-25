@@ -1,4 +1,6 @@
 
+#define FFI_TRAMPOLINE_SIZE	10
+
 typedef unsigned long int ffi_arg;
 typedef long int ffi_sarg;
 typedef enum ffi_abi {

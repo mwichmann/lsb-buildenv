@@ -5367,7 +5367,6 @@ extern "C" {
     extern int g_strcmp0(const char *str1, const char *str2);
     /* g_strdown is deprecated and should not be used in newly-written code. This function is broken if your string is guaranteed to be ASCII, since it's locale-sensitive, and it's broken if your string is localized, since it doesn't work on many encodings at all, including UTF-8, EUC-JP, etc. There are therefore two replacement functions: g_ascii_strdown and g_utf8_strdown. */
     extern gchar *g_strdown(gchar * string) LSB_DECL_DEPRECATED;
-    extern GString *g_string_append_c_inline(GString * gstring, gchar c);
     extern GString *g_string_append_uri_escaped(GString * string,
 						const gchar * unescaped,
 						const gchar *
@@ -5594,8 +5593,7 @@ extern "C" {
     extern guint64 g_variant_get_uint64(GVariant * value);
     extern void g_variant_get_va(GVariant * value,
 				 const gchar * format_string,
-				 const gchar * *endptr,
-				 struct __va_list_tag *app[]);
+				 const gchar * *endptr, va_list * app);
     extern GVariant *g_variant_get_variant(GVariant * value);
     extern guint g_variant_hash(gconstpointer value);
     extern gboolean g_variant_is_container(GVariant * value);
@@ -5658,7 +5656,7 @@ extern "C" {
 					gssize length);
     extern GVariant *g_variant_new_parsed(const gchar * format, ...);
     extern GVariant *g_variant_new_parsed_va(const gchar * format,
-					     struct __va_list_tag *app[]);
+					     va_list * app);
     extern GVariant *g_variant_new_signature(const gchar * signature);
     extern GVariant *g_variant_new_string(const gchar * string);
     extern GVariant *g_variant_new_strv(const gchar * const *strv,
@@ -5670,7 +5668,7 @@ extern "C" {
     extern GVariant *g_variant_new_uint64(guint64 value);
     extern GVariant *g_variant_new_va(const gchar * format_string,
 				      const gchar * *endptr,
-				      struct __va_list_tag *app[]);
+				      va_list * app);
     extern GVariant *g_variant_new_variant(GVariant * value);
     extern GVariant *g_variant_parse(const GVariantType * type,
 				     const char *text, const char *limit,

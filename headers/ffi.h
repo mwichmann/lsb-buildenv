@@ -2,12 +2,22 @@
 #ifndef _FFI_H_
 #define _FFI_H_
 
+#include <limits.h>
 #include <stddef.h>
 #include <ffitarget.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+#define FFI_64_BIT_MAX	9223372036854775807
+#if LONG_MAX == 2147483647
+#  define FFI_SIZEOF_ARG        4
+#elif LONG_MAX == FFI_64_BIT_MAX
+#  define FFI_SIZEOF_ARG        8
+#endif
+#define FFI_SIZEOF_JAVA_RAW	FFI_SIZEOF_ARG
 
 
     typedef struct _ffi_type ffi_type;
@@ -40,25 +50,25 @@ extern "C" {
     struct ffi_closure {
 	char tramp[FFI_TRAMPOLINE_SIZE];
 	struct ffi_cif *cif;
-	void (*fun) (void);
+	void (*fun) (struct ffi_cif *, void *, void **, void *);
 	void *user_data;
     };
 
     struct ffi_raw_closure {
 	char tramp[FFI_TRAMPOLINE_SIZE];
 	struct ffi_cif *cif;
-	void (*translate_args) (void);
+	void (*translate_args) (struct ffi_cif *, void *, void **, void *);
 	void *this_closure;
-	void (*fun) (void);
+	void (*fun) (struct ffi_cif *, void *, union ffi_raw *, void *);
 	void *user_data;
     };
 
     struct ffi_java_raw_closure {
 	char tramp[FFI_TRAMPOLINE_SIZE];
 	struct ffi_cif *cif;
-	void (*translate_args) (void);
+	void (*translate_args) (struct ffi_cif *, void *, void **, void *);
 	void *this_closure;
-	void (*fun) (void);
+	void (*fun) (struct ffi_cif *, void *, ffi_java_raw *, void *);
 	void *user_data;
     };
 
@@ -93,29 +103,47 @@ extern "C" {
 				       ffi_type * *atypes);
     extern ffi_status ffi_prep_closure(struct ffi_closure *,
 				       struct ffi_cif *,
-				       void (*fun) (void),
+				       void (*fun) (struct ffi_cif *,
+						    void *, void **,
+						    void *),
 				       void *user_data);
     extern ffi_status ffi_prep_closure_loc(struct ffi_closure *,
 					   struct ffi_cif *,
-					   void (*fun) (void),
+					   void (*fun) (struct ffi_cif *,
+							void *, void **,
+							void *),
 					   void *user_data, void *codeloc);
     extern ffi_status ffi_prep_java_raw_closure(struct ffi_java_raw_closure
 						*, struct ffi_cif *cif,
-						void (*fun) (void),
+						void (*fun) (struct ffi_cif
+							     *, void *,
+							     ffi_java_raw
+							     *, void *),
 						void *user_data);
     extern ffi_status ffi_prep_java_raw_closure_loc(struct
 						    ffi_java_raw_closure *,
 						    struct ffi_cif *cif,
-						    void (*fun) (void),
+						    void (*fun) (struct
+								 ffi_cif *,
+								 void *,
+								 ffi_java_raw
+								 *,
+								 void *),
 						    void *user_data,
 						    void *codeloc);
     extern ffi_status ffi_prep_raw_closure(struct ffi_raw_closure *,
 					   struct ffi_cif *cif,
-					   void (*fun) (void),
+					   void (*fun) (struct ffi_cif *,
+							void *,
+							union ffi_raw *,
+							void *),
 					   void *user_data);
     extern ffi_status ffi_prep_raw_closure_loc(struct ffi_raw_closure *,
 					       struct ffi_cif *cif,
-					       void (*fun) (void),
+					       void (*fun) (struct ffi_cif
+							    *, void *,
+							    union ffi_raw
+							    *, void *),
 					       void *user_data,
 					       void *codeloc);
     extern void ffi_ptrarray_to_raw(struct ffi_cif *cif, void **args,

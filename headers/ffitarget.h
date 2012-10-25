@@ -8,6 +8,12 @@ extern "C" {
 #endif
 
 
+#define FFI_TRAMPOLINE_SIZE	10
+#if defined __x86_64__
+#define FFI_TRAMPOLINE_SIZE	24
+#endif
+
+
     typedef unsigned long int ffi_arg;
 
     typedef long int ffi_sarg;
