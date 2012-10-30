@@ -24,7 +24,7 @@ extern "C" {
 	size_t size;
 	unsigned short alignment;
 	unsigned short type;
-	_ffi_type **elements;
+	struct _ffi_type **elements;
     } _ffi_type;
 
     typedef _ffi_type ffi_type;
