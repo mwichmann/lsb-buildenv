@@ -18,7 +18,6 @@ libXt
 libXtst
 libatk-1.0
 libcairo
-libffi
 libfontconfig
 libfreetype
 libgdk-x11-2.0
