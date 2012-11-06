@@ -284,6 +284,7 @@ char *lsb_libs_50[] = {
 	"pangoxft-1.0",
 	"png12",
 	"png",
+	"png15",
 	"pthread",
 	"rt",
 	"sane",

@@ -164,6 +164,9 @@ gtk-unix-print-2.0/gtk/gtkprintunixdialog.h
 gtk-unix-print-2.0/gtk/gtkunixprint.h
 jerror.h
 jpeglib.h
+libpng15/png.h
+libpng15/pngconf.h
+libpng15/pnglibconf.h
 libxml2/libxml/HTMLparser.h
 libxml2/libxml/HTMLtree.h
 libxml2/libxml/SAX2.h
