@@ -57,7 +57,7 @@ dbfiles-%:
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version -l $(shell echo "$@" | sed s/dbfiles-//); done; done
 
 # only need to depend on one filelist, the rule above will gen them all
-gensrc: versionfiles dbfiles core_filelist_3.0
+gensrc: core_filelist_3.0 dbfiles
 
 install: install-core install-desktop
 
@@ -78,7 +78,7 @@ desktop-libs:
 # Distclean means will need database to rebuild
 distclean: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ( cd $$version/$$arch && $(MAKE) distclean ); done; done;
-	rm -f core_filelist_* desktop_filelist_* lsb_versions lsb_devel_versions
+	rm -f core_filelist_* desktop_filelist_* 
 
 # Only remove compiler generated files
 clean:
