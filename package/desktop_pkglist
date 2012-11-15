@@ -370,6 +370,8 @@ BASE/LIB-5.0/libpng15.so
 BASE/LIB-5.0/libpng15.so.15
 BASE/LIB-5.0/libtiff.so
 BASE/LIB-5.0/libtiff.so.5
+BASE/LIB-5.0/libxcb.so
+BASE/LIB-5.0/libxcb.so.1
 BASE/LIB-5.0/libxml2.so
 BASE/LIB-5.0/libxml2.so.2
 BASE/LIB-5.0/libxslt.so
@@ -615,3 +617,8 @@ BASE/include/tiff.h
 BASE/include/tiffconf.h
 BASE/include/tiffio.h
 BASE/include/tiffvers.h
+BASE/include/xcb/bigreq.h
+BASE/include/xcb/xc_misc.h
+BASE/include/xcb/xcb.h
+BASE/include/xcb/xcbext.h
+BASE/include/xcb/xproto.h

@@ -291,6 +291,7 @@ char *lsb_libs_50[] = {
 	"ssl3",
 	"tiff",
 	"util",
+	"xcb",
 	"xml2",
 	"xslt",
 	"z",

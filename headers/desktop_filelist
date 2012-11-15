@@ -239,3 +239,8 @@ tiff.h
 tiffconf.h
 tiffio.h
 tiffvers.h
+xcb/bigreq.h
+xcb/xc_misc.h
+xcb/xcb.h
+xcb/xcbext.h
+xcb/xproto.h
