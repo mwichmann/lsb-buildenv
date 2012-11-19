@@ -3,7 +3,6 @@
 #define _XCB_XPROTO_H_
 
 #include <stdint.h>
-#include <xcb/xcb.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -2815,6 +2814,7 @@ extern "C" {
 	uint8_t first_error;
     } xcb_query_extension_reply_t;
 
+#include <xcb/xcb.h>
     typedef struct {
 	unsigned int sequence;
     } xcb_list_extensions_cookie_t;
@@ -4749,10 +4749,11 @@ extern "C" {
     extern int xcb_setup_failed_reason_length(const xcb_setup_failed_t *
 					      R);
     extern void xcb_setup_next(xcb_setup_iterator_t * i);
-    extern xcb_format_t *xcb_setup_pixmap_formats(const *R);
+    extern xcb_format_t *xcb_setup_pixmap_formats(const xcb_setup_t * R);
     extern xcb_format_iterator_t xcb_setup_pixmap_formats_iterator(const
-								   *R);
-    extern int xcb_setup_pixmap_formats_length(const *R);
+								   xcb_setup_t
+								   * R);
+    extern int xcb_setup_pixmap_formats_length(const xcb_setup_t * R);
     extern char *xcb_setup_request_authorization_protocol_data(const
 							       xcb_setup_request_t
 							       * R);
@@ -4776,11 +4777,13 @@ extern "C" {
     extern xcb_generic_iterator_t
 	xcb_setup_request_end(xcb_setup_request_iterator_t i);
     extern void xcb_setup_request_next(xcb_setup_request_iterator_t * i);
-    extern xcb_screen_iterator_t xcb_setup_roots_iterator(const *R);
-    extern int xcb_setup_roots_length(const *R);
-    extern char *xcb_setup_vendor(const *R);
-    extern xcb_generic_iterator_t xcb_setup_vendor_end(const *R);
-    extern int xcb_setup_vendor_length(const *R);
+    extern xcb_screen_iterator_t xcb_setup_roots_iterator(const xcb_setup_t
+							  * R);
+    extern int xcb_setup_roots_length(const xcb_setup_t * R);
+    extern char *xcb_setup_vendor(const xcb_setup_t * R);
+    extern xcb_generic_iterator_t xcb_setup_vendor_end(const xcb_setup_t *
+						       R);
+    extern int xcb_setup_vendor_length(const xcb_setup_t * R);
     extern xcb_void_cookie_t xcb_store_colors(xcb_connection_t * c,
 					      xcb_colormap_t cmap,
 					      uint32_t items_len,

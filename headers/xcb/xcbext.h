@@ -43,7 +43,7 @@ extern "C" {
 					 request);
     extern int xcb_take_socket(xcb_connection_t * c,
 			       void (*return_socket) (void *),
-			       void *closure, int flags, *sent);
+			       void *closure, int flags, uint64_t * sent);
     extern void *xcb_wait_for_reply(xcb_connection_t * c,
 				    unsigned int request,
 				    xcb_generic_error_t * *e);

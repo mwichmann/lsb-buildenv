@@ -101,11 +101,12 @@ extern "C" {
     extern void xcb_disconnect(xcb_connection_t * c);
     extern int xcb_flush(xcb_connection_t * c);
     extern uint32_t xcb_generate_id(xcb_connection_t * c);
-    extern const *xcb_get_extension_data(xcb_connection_t * c,
-					 xcb_extension_t * ext);
+    extern const xcb_query_extension_reply_t
+	*xcb_get_extension_data(xcb_connection_t * c,
+				xcb_extension_t * ext);
     extern int xcb_get_file_descriptor(xcb_connection_t * c);
     extern uint32_t xcb_get_maximum_request_length(xcb_connection_t * c);
-    extern const *xcb_get_setup(xcb_connection_t * c);
+    extern const xcb_setup_t *xcb_get_setup(xcb_connection_t * c);
     extern int xcb_parse_display(const char *name, void host, int *display,
 				 int *screen);
     extern xcb_generic_event_t *xcb_poll_for_event(xcb_connection_t * c);

@@ -23,7 +23,7 @@ extern unsigned int xcb_send_request(xcb_connection_t * c, int flags,
 				     request);
 extern int xcb_take_socket(xcb_connection_t * c,
 			   void (*return_socket) (void *), void *closure,
-			   int flags, *sent);
+			   int flags, uint64_t * sent);
 extern void *xcb_wait_for_reply(xcb_connection_t * c, unsigned int request,
 				xcb_generic_error_t * *e);
 extern int xcb_writev(xcb_connection_t * c, struct iovec *vector,
