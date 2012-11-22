@@ -13,7 +13,7 @@ extern "C" {
 
     typedef struct {
 	size_t count;
-	xcb_extension_t *ext;
+	struct xcb_extension_t *ext;
 	uint8_t opcode;
 	uint8_t isvoid;
     } xcb_protocol_request_t;
