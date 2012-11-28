@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: cairo-pdf
+Description: PDF backend for cairo graphics library
+Version: 1.2.4
+Requires: cairo 
+Libs: -lz 
+Cflags: -I${includedir}/cairo 

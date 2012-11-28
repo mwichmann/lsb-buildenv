@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: cairo-xlib_xrender
+Description: Xlib Xrender backend for cairo graphics library
+Version: 1.2.4
+Requires: cairo-xlib 
+Libs: 
+Cflags: -I${includedir}/cairo 

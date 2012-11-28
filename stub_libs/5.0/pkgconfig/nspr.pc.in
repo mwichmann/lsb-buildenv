@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+
+Name: NSPR
+Version: 4.8.2
+Description: The Netscape Portable Runtime
+Libs: -L${libdir} -lnspr4 -lpthread -ldl
+Cflags: -I${includedir}/nspr4
