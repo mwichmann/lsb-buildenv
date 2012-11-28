@@ -92,9 +92,8 @@ cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
-( for i in $RPM_BUILD_ROOT/opt/lsb/%xlib-*; do cd $i && ln -s libpng12.so libpng.so; done )
-# did not exist in 3.0, clean out
-rm $RPM_BUILD_ROOT/opt/lsb/%xlib-3.0/libpng.so
+( for v in 3.1 3.2 4.0 4.1; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng12.so libpng.so; done )
+( for v in 5.0; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng15.so libpng.so; done )
 
 # specifics for cc part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
