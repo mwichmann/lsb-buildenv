@@ -164,6 +164,7 @@ gtk-unix-print-2.0/gtk/gtkprintunixdialog.h
 gtk-unix-print-2.0/gtk/gtkunixprint.h
 jerror.h
 jpeglib.h
+libpng12/png.h
 libpng15/png.h
 libpng15/pngconf.h
 libpng15/pnglibconf.h
@@ -234,7 +235,6 @@ pango-1.0/pango/pangofc-decoder.h
 pango-1.0/pango/pangofc-fontmap.h
 pango-1.0/pango/pangoft2.h
 pango-1.0/pango/pangoxft.h
-png.h
 tiff.h
 tiffconf.h
 tiffio.h

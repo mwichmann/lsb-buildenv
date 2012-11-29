@@ -542,6 +542,7 @@ BASE/include/gtk-unix-print-2.0/gtk/gtkprintunixdialog.h
 BASE/include/gtk-unix-print-2.0/gtk/gtkunixprint.h
 BASE/include/jerror.h
 BASE/include/jpeglib.h
+BASE/include/libpng12/png.h
 BASE/include/libpng15/png.h
 BASE/include/libpng15/pngconf.h
 BASE/include/libpng15/pnglibconf.h
@@ -612,7 +613,6 @@ BASE/include/pango-1.0/pango/pangofc-decoder.h
 BASE/include/pango-1.0/pango/pangofc-fontmap.h
 BASE/include/pango-1.0/pango/pangoft2.h
 BASE/include/pango-1.0/pango/pangoxft.h
-BASE/include/png.h
 BASE/include/tiff.h
 BASE/include/tiffconf.h
 BASE/include/tiffio.h

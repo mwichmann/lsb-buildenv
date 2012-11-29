@@ -1,6 +1,6 @@
 #if (__LSB_VERSION__ >= 31 )
-#ifndef _PNG_H_
-#define _PNG_H_
+#ifndef _LIBPNG12_PNG_H_
+#define _LIBPNG12_PNG_H_
 
 #include <setjmp.h>
 #include <signal.h>
@@ -1029,6 +1029,7 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
 #if __LSB_VERSION__ >= 40
+#undef png_check_sig
     extern int png_check_sig(png_bytep sig, int num);
     extern void png_convert_from_struct_tm(png_timep ptime,
 					   struct tm *ttime);
