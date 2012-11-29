@@ -4,8 +4,8 @@ DBOPTS = -h $$LSBDBHOST -u $$LSBUSER --password=$$LSBDBPASSWD
 
 LSB_SUPPORTED_ARCHS = IA32 IA64 PPC32 PPC64 S390 S390X x86-64
 
+VERSIONFILES = lsb_versions lsb_devel_versions
 LSB_VERSIONS := $(shell cat lsb_versions)
-
 ifneq ($(SKIP_DEVEL_VERSIONS),yes)
 LSB_DEVEL_VERSIONS := $(shell cat lsb_devel_versions)
 endif
@@ -38,23 +38,24 @@ LSB_COMPILE_FOR_ARCH := `case \`uname -m\` in \
 	echo Unknown; \
 	esac`
 
-# Store released and devel versions separately.
-RELEASED_ONLY_QUERY = AND LVreleased='Yes'
-
 all: libs
 
 core_filelist_% desktop_filelist_%:
 	../mkfilelists --libs
 
-versionfiles:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' $(RELEASED_ONLY_QUERY)" | grep -v LVvalue > lsb_versions
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
+$(VERSIONFILES):
+	./mkversionfiles
 
 dbfiles: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
 
+# make dbfiles-libpng12 builds only libpng12 for all versions/arches
 dbfiles-%: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version -l $(shell echo "$@" | sed s/dbfiles-//); done; done
+
+# make dbfiles-V5.0 builds only for LSB 5.0
+dbfiles-V%: 
+	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $(shell echo "$@" | sed s/dbfiles-V//); done
 
 # only need to depend on one filelist, the rule above will gen them all
 gensrc: core_filelist_3.0 dbfiles

@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# build lsb_versions and lsb_devel_versions
+# moved out of makefile where it used to live
+# needed only when changing versions, e.g. 5.0 released & 5.1 work started
+
+DBOPTS="-h ${LSBDBHOST} -u ${LSBUSER} --password=${LSBDBPASSWD}"
+QUERY="SELECT LVvalue FROM LSBVersion WHERE LVvalue >= '3.0' "
+RELEASED="AND LVreleased='Yes'"
+UNRELEASED="AND LVreleased='No'"
+
+mysql ${DBOPTS} ${LSBDB} -e "${QUERY} ${RELEASED} "| grep -v LVvalue > lsb_versions
+mysql ${DBOPTS} ${LSBDB} -e "${QUERY} ${UNRELEASED}" | grep -v LVvalue > lsb_devel_versions
