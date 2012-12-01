@@ -144,6 +144,26 @@ int b_dynamic = 1;
  */
 int optind_old;
 
+/*
+ * Lookup table for extra include paths for each LSB version.
+ */
+
+char *lsb30_version_include_paths[] = { NULL };
+char *lsb31_version_include_paths[] = { BASE_PATH "/include/libpng12", NULL };
+char *lsb32_version_include_paths[] = { BASE_PATH "/include/libpng12", NULL };
+char *lsb40_version_include_paths[] = { BASE_PATH "/include/libpng12", NULL };
+char *lsb41_version_include_paths[] = { BASE_PATH "/include/libpng12", NULL };
+char *lsb50_version_include_paths[] = { BASE_PATH "/include/libpng15", NULL };
+
+char **lsb_version_include_paths[] = {
+  lsb30_version_include_paths,
+  lsb31_version_include_paths,
+  lsb32_version_include_paths,
+  lsb40_version_include_paths,
+  lsb41_version_include_paths,
+  lsb50_version_include_paths
+};
+
 /* begin option processing routines */
 
 /*
@@ -1598,6 +1618,13 @@ int main(int argc, char *argv[])
 
     /* set the compiler */
     argvaddstring(gccargs, ccname);
+
+    /*
+     * Set up per-LSB-version include paths.
+     */
+    for (i = 0; lsb_version_include_paths[lsbversion_index][i] != NULL; i++) {
+      argvadd(incpaths, "I", lsb_version_include_paths[lsbversion_index][i]);
+    }
 
     /*
      * Only force feature settings if LSBCC_FORCEFEATURES is defined
