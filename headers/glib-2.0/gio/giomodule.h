@@ -1,0 +1,78 @@
+#if (__LSB_VERSION__ >= 50 )
+#ifndef _GLIB_2_0_GIO_GIOMODULE_H_
+#define _GLIB_2_0_GIO_GIOMODULE_H_
+
+#include <glib-2.0/glib.h>
+#include <glib-2.0/glib-object.h>
+#include <glib-2.0/gio/gioenums.h>
+#include <glib-2.0/gio/giotypes.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#define G_IO_TYPE_MODULE	(g_io_module_get_type ())
+#define G_IO_MODULE_CLASS(k)	(G_TYPE_CHECK_CLASS_CAST((k), G_IO_TYPE_MODULE, GIOModuleClass))
+#define G_IO_IS_MODULE_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), G_IO_TYPE_MODULE))
+#define G_IO_MODULE(o)	(G_TYPE_CHECK_INSTANCE_CAST ((o), G_IO_TYPE_MODULE, GIOModule))
+#define G_IO_IS_MODULE(o)	(G_TYPE_CHECK_INSTANCE_TYPE ((o), G_IO_TYPE_MODULE))
+#define G_IO_MODULE_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), G_IO_TYPE_MODULE, GIOModuleClass))
+
+
+    typedef struct _GIOModuleScope GIOModuleScope;
+
+
+/* Function prototypes */
+
+    extern const char *g_io_extension_get_name(GIOExtension * extension);
+    extern gint g_io_extension_get_priority(GIOExtension * extension);
+    extern GType g_io_extension_get_type(GIOExtension * extension);
+    extern GIOExtension
+	*g_io_extension_point_get_extension_by_name(GIOExtensionPoint *
+						    extension_point,
+						    const char *name);
+    extern GList *g_io_extension_point_get_extensions(GIOExtensionPoint *
+						      extension_point);
+    extern GType g_io_extension_point_get_required_type(GIOExtensionPoint *
+							extension_point);
+    extern GIOExtension *g_io_extension_point_implement(const char
+							*extension_point_name,
+							GType type,
+							const char
+							*extension_name,
+							gint priority);
+    extern GIOExtensionPoint *g_io_extension_point_lookup(const char
+							  *name);
+    extern GIOExtensionPoint *g_io_extension_point_register(const char
+							    *name);
+    extern void g_io_extension_point_set_required_type(GIOExtensionPoint *
+						       extension_point,
+						       GType type);
+    extern GTypeClass *g_io_extension_ref_class(GIOExtension * extension);
+    extern GType g_io_module_get_type(void);
+    extern void g_io_module_load(GIOModule * module);
+    extern GIOModule *g_io_module_new(const gchar * filename);
+    extern void g_io_module_query(void);
+    extern void g_io_module_scope_block(GIOModuleScope * scope,
+					const gchar * basename);
+    extern void g_io_module_scope_free(GIOModuleScope * scope);
+    extern GIOModuleScope *g_io_module_scope_new(GIOModuleScopeFlags
+						 flags);
+    extern void g_io_module_unload(GIOModule * module);
+    extern GList *g_io_modules_load_all_in_directory(const gchar *
+						     dirname);
+    extern GList *g_io_modules_load_all_in_directory_with_scope(const gchar
+								* dirname,
+								GIOModuleScope
+								* scope);
+    extern void g_io_modules_scan_all_in_directory(const char *dirname);
+    extern void g_io_modules_scan_all_in_directory_with_scope(const gchar *
+							      dirname,
+							      GIOModuleScope
+							      * scope);
+#ifdef __cplusplus
+}
+#endif
+#endif				/* protection */
+#endif				/* LSB version */

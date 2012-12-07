@@ -1,0 +1,178 @@
+#if (__LSB_VERSION__ >= 50 )
+#ifndef _GLIB_2_0_GIO_GSOCKETCLIENT_H_
+#define _GLIB_2_0_GIO_GSOCKETCLIENT_H_
+
+#include <glib-2.0/glib.h>
+#include <glib-2.0/glib-object.h>
+#include <glib-2.0/gio/gioenums.h>
+#include <glib-2.0/gio/giotypes.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#define G_TYPE_SOCKET_CLIENT	(g_socket_client_get_type ())
+#define G_SOCKET_CLIENT_CLASS(class)	(G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_SOCKET_CLIENT, GSocketClientClass))
+#define G_IS_SOCKET_CLIENT_CLASS(class)	(G_TYPE_CHECK_CLASS_TYPE ((class), G_TYPE_SOCKET_CLIENT))
+#define G_SOCKET_CLIENT(inst)	(G_TYPE_CHECK_INSTANCE_CAST ((inst), G_TYPE_SOCKET_CLIENT, GSocketClient))
+#define G_IS_SOCKET_CLIENT(inst)	(G_TYPE_CHECK_INSTANCE_TYPE ((inst), G_TYPE_SOCKET_CLIENT))
+#define G_SOCKET_CLIENT_GET_CLASS(inst)	(G_TYPE_INSTANCE_GET_CLASS ((inst), G_TYPE_SOCKET_CLIENT, GSocketClientClass))
+
+
+    typedef struct _GSocketClientPrivate GSocketClientPrivate;
+
+    typedef struct _GSocketClientClass GSocketClientClass;
+
+    struct _GSocketClientClass {
+	GObjectClass parent_class;
+	void (*event) (GSocketClient * client, GSocketClientEvent event,
+		       GSocketConnectable * connectable,
+		       GIOStream * connection);
+	void (*_g_reserved1) (void);
+	void (*_g_reserved2) (void);
+	void (*_g_reserved3) (void);
+	void (*_g_reserved4) (void);
+    };
+
+    struct _GSocketClient {
+	GObject parent_instance;
+	GSocketClientPrivate *priv;
+    };
+
+
+/* Function prototypes */
+
+    extern void g_socket_client_add_application_proxy(GSocketClient *
+						      client,
+						      const gchar *
+						      protocol);
+    extern GSocketConnection *g_socket_client_connect(GSocketClient *
+						      client,
+						      GSocketConnectable *
+						      connectable,
+						      GCancellable *
+						      cancellable,
+						      GError * *error);
+    extern void g_socket_client_connect_async(GSocketClient * client,
+					      GSocketConnectable *
+					      connectable,
+					      GCancellable * cancellable,
+					      GAsyncReadyCallback callback,
+					      gpointer user_data);
+    extern GSocketConnection *g_socket_client_connect_finish(GSocketClient
+							     * client,
+							     GAsyncResult *
+							     result,
+							     GError *
+							     *error);
+    extern GSocketConnection *g_socket_client_connect_to_host(GSocketClient
+							      * client,
+							      const gchar *
+							      host_and_port,
+							      guint16
+							      default_port,
+							      GCancellable
+							      *
+							      cancellable,
+							      GError *
+							      *error);
+    extern void g_socket_client_connect_to_host_async(GSocketClient *
+						      client,
+						      const gchar *
+						      host_and_port,
+						      guint16 default_port,
+						      GCancellable *
+						      cancellable,
+						      GAsyncReadyCallback
+						      callback,
+						      gpointer user_data);
+    extern GSocketConnection
+	*g_socket_client_connect_to_host_finish(GSocketClient * client,
+						GAsyncResult * result,
+						GError * *error);
+    extern GSocketConnection
+	*g_socket_client_connect_to_service(GSocketClient * client,
+					    const gchar * domain,
+					    const gchar * service,
+					    GCancellable * cancellable,
+					    GError * *error);
+    extern void g_socket_client_connect_to_service_async(GSocketClient *
+							 client,
+							 const gchar *
+							 domain,
+							 const gchar *
+							 service,
+							 GCancellable *
+							 cancellable,
+							 GAsyncReadyCallback
+							 callback,
+							 gpointer
+							 user_data);
+    extern GSocketConnection
+	*g_socket_client_connect_to_service_finish(GSocketClient * client,
+						   GAsyncResult * result,
+						   GError * *error);
+    extern GSocketConnection *g_socket_client_connect_to_uri(GSocketClient
+							     * client,
+							     const gchar *
+							     uri,
+							     guint16
+							     default_port,
+							     GCancellable *
+							     cancellable,
+							     GError *
+							     *error);
+    extern void g_socket_client_connect_to_uri_async(GSocketClient *
+						     client,
+						     const gchar * uri,
+						     guint16 default_port,
+						     GCancellable *
+						     cancellable,
+						     GAsyncReadyCallback
+						     callback,
+						     gpointer user_data);
+    extern GSocketConnection
+	*g_socket_client_connect_to_uri_finish(GSocketClient * client,
+					       GAsyncResult * result,
+					       GError * *error);
+    extern gboolean g_socket_client_get_enable_proxy(GSocketClient *
+						     client);
+    extern GSocketFamily g_socket_client_get_family(GSocketClient *
+						    client);
+    extern GSocketAddress *g_socket_client_get_local_address(GSocketClient
+							     * client);
+    extern GSocketProtocol g_socket_client_get_protocol(GSocketClient *
+							client);
+    extern GSocketType g_socket_client_get_socket_type(GSocketClient *
+						       client);
+    extern guint g_socket_client_get_timeout(GSocketClient * client);
+    extern gboolean g_socket_client_get_tls(GSocketClient * client);
+    extern GTlsCertificateFlags
+	g_socket_client_get_tls_validation_flags(GSocketClient * client);
+    extern GType g_socket_client_get_type(void);
+    extern GSocketClient *g_socket_client_new(void);
+    extern void g_socket_client_set_enable_proxy(GSocketClient * client,
+						 gboolean enable);
+    extern void g_socket_client_set_family(GSocketClient * client,
+					   GSocketFamily family);
+    extern void g_socket_client_set_local_address(GSocketClient * client,
+						  GSocketAddress *
+						  address);
+    extern void g_socket_client_set_protocol(GSocketClient * client,
+					     GSocketProtocol protocol);
+    extern void g_socket_client_set_socket_type(GSocketClient * client,
+						GSocketType type);
+    extern void g_socket_client_set_timeout(GSocketClient * client,
+					    guint timeout);
+    extern void g_socket_client_set_tls(GSocketClient * client,
+					gboolean tls);
+    extern void g_socket_client_set_tls_validation_flags(GSocketClient *
+							 client,
+							 GTlsCertificateFlags
+							 flags);
+#ifdef __cplusplus
+}
+#endif
+#endif				/* protection */
+#endif				/* LSB version */
