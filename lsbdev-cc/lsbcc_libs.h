@@ -267,6 +267,7 @@ char *lsb_libs_50[] = {
 	"gdk-x11-2.0",
 	"gdk_pixbuf-2.0",
 	"gdk_pixbuf_xlib-2.0",
+	"gio-2.0",
 	"glib-2.0",
 	"gmodule-2.0",
 	"gobject-2.0",

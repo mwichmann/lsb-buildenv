@@ -1,0 +1,18 @@
+
+#define G_TYPE_DBUS_SERVER	(g_dbus_server_get_type ())
+#define G_DBUS_SERVER(o)	(G_TYPE_CHECK_INSTANCE_CAST ((o), G_TYPE_DBUS_SERVER, GDBusServer))
+#define G_IS_DBUS_SERVER(o)	(G_TYPE_CHECK_INSTANCE_TYPE ((o), G_TYPE_DBUS_SERVER))
+
+extern const char *g_dbus_server_get_client_address(GDBusServer * server);
+extern GDBusServerFlags g_dbus_server_get_flags(GDBusServer * server);
+extern const char *g_dbus_server_get_guid(GDBusServer * server);
+extern GType g_dbus_server_get_type(void);
+extern gboolean g_dbus_server_is_active(GDBusServer * server);
+extern GDBusServer *g_dbus_server_new_sync(const gchar * address,
+					   GDBusServerFlags flags,
+					   const gchar * guid,
+					   GDBusAuthObserver * observer,
+					   GCancellable * cancellable,
+					   GError * *error);
+extern void g_dbus_server_start(GDBusServer * server);
+extern void g_dbus_server_stop(GDBusServer * server);

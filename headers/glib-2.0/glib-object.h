@@ -682,20 +682,7 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
-    struct _GTypeClass {
-	GType g_type;
-    };
-
-    struct _GTypeInstance {
-	GTypeClass *g_class;
-    };
-
-    struct _GObject {
-	GTypeInstance g_type_instance;
-	volatile guint ref_count;
-	GData *qdata;
-    };
-
+#if __LSB_VERSION__ >= 50
     struct _GValue {
 	GType g_type;
 	union {
@@ -709,6 +696,34 @@ extern "C" {
 	    gdouble v_double;
 	    gpointer v_pointer;
 	} data[2];
+    };
+
+    union {
+	gint v_int;
+	guint v_uint;
+	glong v_long;
+	gulong v_ulong;
+	gint64 v_int64;
+	guint64 v_uint64;
+	gfloat v_float;
+	gdouble v_double;
+	gpointer v_pointer;
+    };
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
+    struct _GTypeClass {
+	GType g_type;
+    };
+
+    struct _GTypeInstance {
+	GTypeClass *g_class;
+    };
+
+    struct _GObject {
+	GTypeInstance g_type_instance;
+	volatile guint ref_count;
+	GData *qdata;
     };
 
     struct _GParamSpec {

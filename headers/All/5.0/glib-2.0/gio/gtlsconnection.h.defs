@@ -1,0 +1,81 @@
+
+#define G_TYPE_TLS_CONNECTION	(g_tls_connection_get_type ())
+#define G_TLS_ERROR	(g_tls_error_quark ())
+#define G_TLS_CONNECTION_CLASS(class)	(G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_TLS_CONNECTION, GTlsConnectionClass))
+#define G_IS_TLS_CONNECTION_CLASS(class)	(G_TYPE_CHECK_CLASS_TYPE ((class), G_TYPE_TLS_CONNECTION))
+#define G_TLS_CONNECTION(inst)	(G_TYPE_CHECK_INSTANCE_CAST ((inst), G_TYPE_TLS_CONNECTION, GTlsConnection))
+#define G_IS_TLS_CONNECTION(inst)	(G_TYPE_CHECK_INSTANCE_TYPE ((inst), G_TYPE_TLS_CONNECTION))
+#define G_TLS_CONNECTION_GET_CLASS(inst)	(G_TYPE_INSTANCE_GET_CLASS ((inst), G_TYPE_TLS_CONNECTION, GTlsConnectionClass))
+
+typedef struct _GTlsConnectionClass {
+    GIOStreamClass parent_class;
+     gboolean(*accept_certificate) (GTlsConnection * connection,
+				    GTlsCertificate * peer_cert,
+				    GTlsCertificateFlags errors);
+     gboolean(*handshake) (GTlsConnection * conn,
+			   GCancellable * cancellable, GError * *error);
+    void (*handshake_async) (GTlsConnection * conn, int io_priority,,
+			     GCancellable * cancellable,
+			     GAsyncReadyCallback callback,
+			     gpointer user_data);
+     gboolean(*handshake_finish) (GTlsConnection * conn,
+				  GAsyncResult * result, GError * *error);
+    gpointer padding[8];
+} GTlsConnectionClass;
+typedef struct _GTlsConnectionPrivate GTlsConnectionPrivate;
+struct _GTlsConnection {
+    GIOStream parent_instance;
+    GTlsConnectionPrivate *priv;
+};
+extern gboolean g_tls_connection_emit_accept_certificate(GTlsConnection *
+							 conn,
+							 GTlsCertificate *
+							 peer_cert,
+							 GTlsCertificateFlags
+							 errors);
+extern GTlsCertificate *g_tls_connection_get_certificate(GTlsConnection *
+							 conn);
+extern GTlsDatabase *g_tls_connection_get_database(GTlsConnection * conn);
+extern GTlsInteraction *g_tls_connection_get_interaction(GTlsConnection *
+							 conn);
+extern GTlsCertificate
+    *g_tls_connection_get_peer_certificate(GTlsConnection * conn);
+extern GTlsCertificateFlags
+g_tls_connection_get_peer_certificate_errors(GTlsConnection * conn);
+extern GTlsRehandshakeMode
+g_tls_connection_get_rehandshake_mode(GTlsConnection * conn);
+extern gboolean g_tls_connection_get_require_close_notify(GTlsConnection *
+							  conn);
+extern GType g_tls_connection_get_type(void);
+extern gboolean g_tls_connection_get_use_system_certdb(GTlsConnection *
+						       conn);
+extern gboolean g_tls_connection_handshake(GTlsConnection * conn,
+					   GCancellable * cancellable,
+					   GError * *error);
+extern void g_tls_connection_handshake_async(GTlsConnection * conn,
+					     int io_priority,
+					     GCancellable * cancellable,
+					     GAsyncReadyCallback callback,
+					     gpointer user_data);
+extern gboolean g_tls_connection_handshake_finish(GTlsConnection * conn,
+						  GAsyncResult * result,
+						  GError * *error);
+extern void g_tls_connection_set_certificate(GTlsConnection * conn,
+					     GTlsCertificate *
+					     certificate);
+extern void g_tls_connection_set_database(GTlsConnection * conn,
+					  GTlsDatabase * database);
+extern void g_tls_connection_set_interaction(GTlsConnection * conn,
+					     GTlsInteraction *
+					     interaction);
+extern void g_tls_connection_set_rehandshake_mode(GTlsConnection * conn,
+						  GTlsRehandshakeMode
+						  mode);
+extern void g_tls_connection_set_require_close_notify(GTlsConnection *
+						      conn,
+						      gboolean
+						      require_close_notify);
+extern void g_tls_connection_set_use_system_certdb(GTlsConnection * conn,
+						   gboolean
+						   use_system_certdb);
+extern GQuark g_tls_error_quark(void);

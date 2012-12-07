@@ -1,0 +1,25 @@
+
+struct _GFileAttributeInfo {
+    char *name;
+    GFileAttributeType type;
+    GFileAttributeInfoFlags flags;
+};
+struct _GFileAttributeInfoList {
+    GFileAttributeInfo *infos;
+    int n_infos;
+};
+extern void g_file_attribute_info_list_add(GFileAttributeInfoList * list,
+					   const char *name,
+					   GFileAttributeType type,
+					   GFileAttributeInfoFlags flags);
+extern GFileAttributeInfoList
+    *g_file_attribute_info_list_dup(GFileAttributeInfoList * list);
+extern GType g_file_attribute_info_list_get_type(void);
+extern const struct _GFileAttributeInfo
+    *g_file_attribute_info_list_lookup(GFileAttributeInfoList * list,
+				       const char *name);
+extern GFileAttributeInfoList *g_file_attribute_info_list_new(void);
+extern GFileAttributeInfoList
+    *g_file_attribute_info_list_ref(GFileAttributeInfoList * list);
+extern void g_file_attribute_info_list_unref(GFileAttributeInfoList *
+					     list);

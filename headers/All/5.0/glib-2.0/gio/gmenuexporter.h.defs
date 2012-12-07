@@ -1,0 +1,9 @@
+
+extern guint g_dbus_connection_export_menu_model(GDBusConnection *
+						 connection,
+						 const gchar * object_path,
+						 GMenuModel * menu,
+						 GError * *error);
+extern void g_dbus_connection_unexport_menu_model(GDBusConnection *
+						  connection,
+						  guint export_id);

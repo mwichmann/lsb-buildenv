@@ -1,0 +1,23 @@
+
+#define G_TYPE_TCP_CONNECTION	(g_tcp_connection_get_type ())
+#define G_TCP_CONNECTION_CLASS(class)	(G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_TCP_CONNECTION, GTcpConnectionClass))
+#define G_IS_TCP_CONNECTION_CLASS(class)	(G_TYPE_CHECK_CLASS_TYPE ((class), G_TYPE_TCP_CONNECTION))
+#define G_TCP_CONNECTION(inst)	(G_TYPE_CHECK_INSTANCE_CAST ((inst), G_TYPE_TCP_CONNECTION, GTcpConnection))
+#define G_IS_TCP_CONNECTION(inst)	(G_TYPE_CHECK_INSTANCE_TYPE ((inst), G_TYPE_TCP_CONNECTION))
+#define G_TCP_CONNECTION_GET_CLASS(inst)	(G_TYPE_INSTANCE_GET_CLASS ((inst), G_TYPE_TCP_CONNECTION, GTcpConnectionClass))
+
+typedef struct _GTcpConnectionPrivate GTcpConnectionPrivate;
+typedef struct _GTcpConnectionClass {
+    GSocketConnectionClass parent_class;
+} GTcpConnectionClass;
+struct _GTcpConnection {
+    GSocketConnection parent_instance;
+    GTcpConnectionPrivate *priv;
+};
+extern gboolean g_tcp_connection_get_graceful_disconnect(GTcpConnection *
+							 connection);
+extern GType g_tcp_connection_get_type(void);
+extern void g_tcp_connection_set_graceful_disconnect(GTcpConnection *
+						     connection,
+						     gboolean
+						     graceful_disconnect);

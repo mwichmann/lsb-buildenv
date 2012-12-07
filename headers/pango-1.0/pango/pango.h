@@ -4,7 +4,6 @@
 
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
-#include <atk-1.0/atk/atk.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,0 +1,43 @@
+
+typedef void (*GBusNameAppearedCallback) (GDBusConnection * connection,
+					  const gchar * name,
+					  const gchar * name_owner,
+					  gpointer user_data);
+typedef void (*GBusNameVanishedCallback) (GDBusConnection * connection,
+					  const gchar * name,
+					  gpointer user_data);
+extern void g_bus_unwatch_name(guint watcher_id);
+extern guint g_bus_watch_name(GBusType bus_type, const gchar * name,
+			      GBusNameWatcherFlags flags,
+			      GBusNameAppearedCallback
+			      name_appeared_handler,
+			      GBusNameVanishedCallback
+			      name_vanished_handler, gpointer user_data,
+			      GDestroyNotify user_data_free_func);
+extern guint g_bus_watch_name_on_connection(GDBusConnection * connection,
+					    const gchar * name,
+					    GBusNameWatcherFlags flags,
+					    GBusNameAppearedCallback
+					    name_appeared_handler,
+					    GBusNameVanishedCallback
+					    name_vanished_handler,
+					    gpointer user_data,
+					    GDestroyNotify
+					    user_data_free_func);
+extern guint g_bus_watch_name_on_connection_with_closures(GDBusConnection *
+							  connection,
+							  const gchar *
+							  name,
+							  GBusNameWatcherFlags
+							  flags,
+							  GClosure *
+							  name_appeared_closure,
+							  GClosure *
+							  name_vanished_closure);
+extern guint g_bus_watch_name_with_closures(GBusType bus_type,
+					    const gchar * name,
+					    GBusNameWatcherFlags flags,
+					    GClosure *
+					    name_appeared_closure,
+					    GClosure *
+					    name_vanished_closure);

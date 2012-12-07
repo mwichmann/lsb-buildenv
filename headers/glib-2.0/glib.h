@@ -2284,6 +2284,8 @@ extern "C" {
 	gpointer dummy6;
     };
 
+    struct _GVariantType;
+
     union _GFloatIEEE754 {
 	gfloat v_float;
 	struct {

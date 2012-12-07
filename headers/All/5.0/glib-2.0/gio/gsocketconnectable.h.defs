@@ -1,0 +1,19 @@
+
+#define G_TYPE_SOCKET_CONNECTABLE	(g_socket_connectable_get_type ())
+#define G_SOCKET_CONNECTABLE(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_SOCKET_CONNECTABLE, GSocketConnectable))
+#define G_IS_SOCKET_CONNECTABLE(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), G_TYPE_SOCKET_CONNECTABLE))
+#define G_SOCKET_CONNECTABLE_GET_IFACE(obj)	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), G_TYPE_SOCKET_CONNECTABLE, GSocketConnectableIface))
+
+typedef struct _GSocketConnectableIface {
+    GTypeInterface g_iface;
+    GSocketAddressEnumerator *(*enumerate) (GSocketConnectable *
+					    connectable);
+    GSocketAddressEnumerator *(*proxy_enumerate) (GSocketConnectable *
+						  connectable);
+} GSocketConnectableIface;
+extern GSocketAddressEnumerator
+    *g_socket_connectable_enumerate(GSocketConnectable * connectable);
+extern GType g_socket_connectable_get_type(void);
+extern GSocketAddressEnumerator
+    *g_socket_connectable_proxy_enumerate(GSocketConnectable *
+					  connectable);

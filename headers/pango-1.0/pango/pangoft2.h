@@ -13,6 +13,7 @@
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
+#include <pango-1.0/pango/pangofc-font.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,7 +36,8 @@ extern "C" {
 
     typedef struct _PangoFT2FontMap PangoFT2FontMap;
 
-    typedef void (*PangoFT2SubstituteFunc) (FcPattern *, gpointer);
+    typedef void (*PangoFT2SubstituteFunc) (FcPattern * pattern,
+					    gpointer data);
 
 
 /* Function prototypes */

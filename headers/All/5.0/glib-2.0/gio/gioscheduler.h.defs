@@ -1,0 +1,17 @@
+
+extern void g_io_scheduler_cancel_all_jobs(void);
+extern gboolean g_io_scheduler_job_send_to_mainloop(GIOSchedulerJob * job,
+						    GSourceFunc func,
+						    gpointer user_data,
+						    GDestroyNotify notify);
+extern void g_io_scheduler_job_send_to_mainloop_async(GIOSchedulerJob *
+						      job,
+						      GSourceFunc func,
+						      gpointer user_data,
+						      GDestroyNotify
+						      notify);
+extern void g_io_scheduler_push_job(GIOSchedulerJobFunc job_func,
+				    gpointer user_data,
+				    GDestroyNotify notify,
+				    gint io_priority,
+				    GCancellable * cancellable);

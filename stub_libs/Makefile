@@ -49,11 +49,11 @@ $(VERSIONFILES):
 dbfiles: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version; done; done
 
-# make dbfiles-libpng12 builds only libpng12 for all versions/arches
+# ex: make dbfiles-libpng12 builds only libpng12 for all versions/arches
 dbfiles-%: 
 	for version in $(LSB_VERSIONS) $(LSB_DEVEL_VERSIONS); do for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $$version -l $(shell echo "$@" | sed s/dbfiles-//); done; done
 
-# make dbfiles-V5.0 builds only for LSB 5.0
+# ex: make dbfiles-V5.0 builds only for LSB 5.0
 dbfiles-V%: 
 	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $(shell echo "$@" | sed s/dbfiles-V//); done
 
