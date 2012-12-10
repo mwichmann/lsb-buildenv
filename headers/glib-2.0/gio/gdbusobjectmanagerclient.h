@@ -42,7 +42,7 @@ extern "C" {
 	void (*interface_proxy_properties_changed)
 	    (GDBusObjectManagerClient * manager,
 	     GDBusObjectProxy * object_proxy, GDBusProxy * interface_proxy,
-	     GVariant * changed properties,
+	     GVariant * changed_properties,
 	     const gchar * const *invalidated_properties);
 	gpointer padding[8];
     };

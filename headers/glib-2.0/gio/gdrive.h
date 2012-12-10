@@ -53,15 +53,14 @@ extern "C" {
 	 gboolean(*poll_for_media_finish) (GDrive * drive,
 					   GAsyncResult * result,
 					   GError * *error);
-	char *(*get_identifier) (GDrive * drive, GDrive * drive,
-				 const char *kind);
+	char *(*get_identifier) (GDrive * drive, const char *kind);
 	char **(*enumerate_identifiers) (GDrive * drive);
 	 GDriveStartStopType(*get_start_stop_type) (GDrive * drive);
 	 gboolean(*can_start) (GDrive * drive);
 	 gboolean(*can_start_degraded) (GDrive * drive);
 	void (*start) (GDrive * drive, GDriveStartFlags flags,
-		       GMountOperation mount_operation,,
-		       GCancellable * cancellable,,
+		       GMountOperation mount_operation,
+		       GCancellable * cancellable,
 		       GAsyncReadyCallback callback, gpointer user_data);
 	 gboolean(*start_finish) (GDrive * drive, GAsyncResult * result,
 				  GError * *error);

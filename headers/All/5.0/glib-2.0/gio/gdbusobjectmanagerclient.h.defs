@@ -21,7 +21,7 @@ typedef struct _GDBusObjectManagerClientClass {
 						GDBusProxy *
 						interface_proxy,
 						GVariant *
-						changed properties,
+						changed_properties,
 						const gchar *
 						const
 						*invalidated_properties);

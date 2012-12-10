@@ -57,8 +57,8 @@ extern "C" {
 	 gboolean(*query_action) (GActionGroup * action_group,
 				  const gchar * action_name,
 				  gboolean * enabled,
-				  const GVariantType * *parameter_type,
-				  const GVariantType * *state_type,
+				  const GVariantType * parameter_type,
+				  const GVariantType * state_type,
 				  GVariant * *state_hint,
 				  GVariant * *state);
     };
@@ -115,8 +115,10 @@ extern "C" {
 						action_group,
 						const char *action_name,
 						gboolean * enabled,
-						*parameter_type,
-						*state_type,
+						const GVariantType *
+						parameter_type,
+						const GVariantType *
+						state_type,
 						GVariant * *state_hint,
 						GVariant * *state);
 #ifdef __cplusplus

@@ -47,7 +47,7 @@ extern "C" {
 	 gboolean(*handshake) (GTlsConnection * conn,
 			       GCancellable * cancellable,
 			       GError * *error);
-	void (*handshake_async) (GTlsConnection * conn, int io_priority,,
+	void (*handshake_async) (GTlsConnection * conn, int io_priority,
 				 GCancellable * cancellable,
 				 GAsyncReadyCallback callback,
 				 gpointer user_data);

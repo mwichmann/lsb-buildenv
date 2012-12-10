@@ -42,8 +42,8 @@ typedef struct _GActionGroupInterface {
      gboolean(*query_action) (GActionGroup * action_group,
 			      const gchar * action_name,
 			      gboolean * enabled,
-			      const GVariantType * *parameter_type,
-			      const GVariantType * *state_type,
+			      const GVariantType * parameter_type,
+			      const GVariantType * state_type,
 			      GVariant * *state_hint, GVariant * *state);
 } GActionGroupInterface;
 extern void g_action_group_action_added(GActionGroup * action_group,
@@ -86,6 +86,9 @@ extern gchar **g_action_group_list_actions(GActionGroup * action_group);
 extern gboolean g_action_group_query_action(GActionGroup * action_group,
 					    const char *action_name,
 					    gboolean * enabled,
-					    *parameter_type, *state_type,
+					    const GVariantType *
+					    parameter_type,
+					    const GVariantType *
+					    state_type,
 					    GVariant * *state_hint,
 					    GVariant * *state);

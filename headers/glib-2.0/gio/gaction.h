@@ -22,9 +22,9 @@ extern "C" {
 
     struct _GActionInterface {
 	GTypeInterface g_iface;
-	const char *(*get_name) (GAction * action);
-	 (*get_parameter_type) (GAction * action);
-	 (*get_state_type) (GAction * action);
+	const gchar *get_name;
+	const GVariantType(*get_parameter_type) (GAction * action);
+	const GVariantType(*get_state_type) (GAction * action);
 	GVariant *(*get_state_hint) (GAction * action);
 	 gboolean(*get_enabled) (GAction * action);
 	GVariant *(*get_state) (GAction * action);
