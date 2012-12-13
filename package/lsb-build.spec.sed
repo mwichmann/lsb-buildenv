@@ -358,6 +358,7 @@ done
 /opt/lsb/%xlib-5.0/pkgconfig/gtk+-unix-print-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/gtk+-x11-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/libpng12.pc
+/opt/lsb/%xlib-5.0/pkgconfig/libpng15.pc
 /opt/lsb/%xlib-5.0/pkgconfig/libpng.pc
 /opt/lsb/%xlib-5.0/pkgconfig/libxml-2.0.pc
 /opt/lsb/%xlib-5.0/pkgconfig/pangocairo.pc
