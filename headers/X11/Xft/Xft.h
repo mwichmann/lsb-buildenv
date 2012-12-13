@@ -38,7 +38,6 @@ extern "C" {
 
     typedef struct _XftDraw XftDraw;
 
-#include <pango-1.0/pango/pangoxft.h>
     typedef struct _XftColor XftColor;
 
     typedef struct _XftFont XftFont;

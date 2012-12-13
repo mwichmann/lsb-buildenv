@@ -6,8 +6,8 @@
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
+#include <pango-1.0/pango/pangoxft.h>
 #include <pango-1.0/pango/pangoft2.h>
-#include <pango-1.0/pango/pangofc-font.h>
 
 #ifdef __cplusplus
 extern "C" {

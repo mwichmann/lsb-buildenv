@@ -13,7 +13,6 @@
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
-#include <pango-1.0/pango/pangofc-font.h>
 
 #ifdef __cplusplus
 extern "C" {

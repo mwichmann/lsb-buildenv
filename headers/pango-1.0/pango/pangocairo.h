@@ -18,11 +18,11 @@ extern "C" {
 #define PANGO_IS_CAIRO_FONT_MAP(object)	 \
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_CAIRO_FONT_MAP))
 #define PANGO_TYPE_CAIRO_FONT_MAP	(pango_cairo_font_map_get_type ())
-#if __LSB_VERSION__ >= 5,0
+#if __LSB_VERSION__ >= 50
 #define PANGO_CAIRO_FONT(object)	(G_TYPE_CHECK_INSTANCE_CAST ((object), PANGO_TYPE_CAIRO_FONT, PangoCairoFont))
 #define PANGO_IS_CAIRO_FONT(object)	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_CAIRO_FONT))
 #define PANGO_TYPE_CAIRO_FONT	(pango_cairo_font_get_type ())
-#endif				/* __LSB_VERSION__ >= 5,0 */
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
@@ -30,13 +30,13 @@ extern "C" {
 
     typedef struct _PangoCairoFontMap PangoCairoFontMap;
 
-#if __LSB_VERSION__ >= 5,0
+#if __LSB_VERSION__ >= 50
     typedef void (*PangoCairoShapeRendererFunc) (cairo_t * cr,
 						 PangoAttrShape * attr,
 						 gboolean do_path,
 						 gpointer data);
 
-#endif				/* __LSB_VERSION__ >= 5,0 */
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 /* Function prototypes */
@@ -79,7 +79,7 @@ extern "C" {
 					   PangoContext * context);
     extern void pango_cairo_update_layout(cairo_t * cr,
 					  PangoLayout * layout);
-#if __LSB_VERSION__ >= 5,0
+#if __LSB_VERSION__ >= 50
     extern PangoCairoShapeRendererFunc
 	pango_cairo_context_get_shape_renderer(PangoContext * context,
 					       gpointer * data);
@@ -89,6 +89,7 @@ extern "C" {
 						       func, gpointer data,
 						       GDestroyNotify
 						       dnotify);
+    extern PangoContext *pango_cairo_create_context(cairo_t * cr);
     extern void pango_cairo_error_underline_path(cairo_t * cr, double x,
 						 double y, double width,
 						 double height);
@@ -101,15 +102,11 @@ extern "C" {
     extern PangoFontMap
 	*pango_cairo_font_map_new_for_font_type(cairo_font_type_t
 						fonttype);
+    extern void pango_cairo_font_map_set_default(PangoCairoFontMap *
+						 fontmap);
     extern void pango_cairo_show_error_underline(cairo_t * cr, double x,
 						 double y, double width,
 						 double height);
-#endif				/* __LSB_VERSION__ >= 5,0 */
-
-#if __LSB_VERSION__ >= 50
-    extern PangoContext *pango_cairo_create_context(cairo_t * cr);
-    extern void pango_cairo_font_map_set_default(PangoCairoFontMap *
-						 fontmap);
     extern void pango_cairo_show_glyph_item(cairo_t * cr, const char *text,
 					    PangoGlyphItem * glyph_item);
 #endif				/* __LSB_VERSION__ >= 5.0 */
