@@ -27,6 +27,22 @@ extern "C" {
 #define png_sizeof(x)	(sizeof (x))
 
 
+
+    typedef unsigned long int png_uint_32;
+
+    typedef long int png_int_32;
+
+    typedef unsigned short png_uint_16;
+
+    typedef short png_int_16;
+
+    typedef unsigned char png_byte;
+
+    typedef size_t png_size_t;
+
+    typedef const char *png_fixed_point;
+
+
     typedef const void *png_const_voidp;
 
     typedef const png_byte *png_const_bytep;
@@ -46,18 +62,6 @@ extern "C" {
     typedef const png_size_t *png_const_size_tp;
 
     typedef png_size_t png_alloc_size_t;
-
-    typedef unsigned long int png_uint_32;
-
-    typedef long int png_int_32;
-
-    typedef unsigned short png_uint_16;
-
-    typedef short png_int_16;
-
-    typedef unsigned char png_byte;
-
-    typedef size_t png_size_t;
 
     typedef void *png_voidp;
 
