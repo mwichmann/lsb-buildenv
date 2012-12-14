@@ -19,10 +19,10 @@ datadefs: $(DATADEFS)
 
 devel: $(foreach archver,$(shell cat lsb_devel_archver),headers-$(archver))
 
-headers: $(foreach headerfile,$(shell cat headerlist),$(headerfile))
+headers: headerlist lsb_versions lsb_devel_archver $(foreach headerfile,$(shell cat headerlist),$(headerfile))
 	@echo Made header files
 
-defs-%: $(foreach headerfile,$(shell cat headerlist),%/$(headerfile).defs)
+defs-%: headerlist lsb_versions lsb_devel_archver $(foreach headerfile,$(shell cat headerlist),%/$(headerfile).defs)
 	@echo Made data definitions for $*
 
 core_filelist desktop_filelist:
