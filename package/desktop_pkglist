@@ -476,8 +476,6 @@ BASE/include/cairo/cairo-svg.h
 BASE/include/cairo/cairo-xlib-xrender.h
 BASE/include/cairo/cairo-xlib.h
 BASE/include/cairo/cairo.h
-BASE/include/ffi.h
-BASE/include/ffitarget.h
 BASE/include/fontconfig/fcfreetype.h
 BASE/include/fontconfig/fcprivate.h
 BASE/include/fontconfig/fontconfig.h
