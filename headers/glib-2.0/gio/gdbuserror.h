@@ -2,7 +2,9 @@
 #ifndef _GLIB_2_0_GIO_GDBUSERROR_H_
 #define _GLIB_2_0_GIO_GDBUSERROR_H_
 
+#include <stdarg.h>
 #include <glib-2.0/glib.h>
+#include <glib-2.0/gio/giotypes.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,6 +38,8 @@ extern "C" {
 						   error_domain_quark_name,
 						   volatile gsize *
 						   quark_volatile,
+						   const GDBusErrorEntry *
+						   entries,
 						   guint num_entries);
     extern void g_dbus_error_set_dbus_error(GError * *error,
 					    const gchar * dbus_error_name,
@@ -48,7 +52,7 @@ extern "C" {
 						   const gchar *
 						   dbus_error_message,
 						   const gchar * format,
-						   void var_args);
+						   va_list var_args);
     extern gboolean g_dbus_error_strip_remote_error(GError * error);
     extern gboolean g_dbus_error_unregister_error(GQuark error_domain,
 						  gint error_code,

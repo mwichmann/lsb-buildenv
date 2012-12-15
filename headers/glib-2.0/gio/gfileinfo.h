@@ -231,7 +231,7 @@ extern "C" {
 						 const char *attr_value);
     extern void g_file_info_set_attribute_stringv(GFileInfo * info,
 						  const char *attribute,
-						  void attr_value);
+						  char **attr_value);
     extern void g_file_info_set_attribute_uint32(GFileInfo * info,
 						 const char *attribute,
 						 guint32 attr_value);

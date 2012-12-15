@@ -20,8 +20,12 @@ extern "C" {
 /* Function prototypes */
 
     extern GType g_simple_action_get_type(void);
-    extern GSimpleAction *g_simple_action_new(const gchar * name);
+    extern GSimpleAction *g_simple_action_new(const gchar * name,
+					      GVariantType *
+					      parameter_type);
     extern GSimpleAction *g_simple_action_new_stateful(const gchar * name,
+						       GVariantType *
+						       parameter_type,
 						       GVariant * state);
     extern void g_simple_action_set_enabled(GSimpleAction * simple,
 					    gboolean enabled);

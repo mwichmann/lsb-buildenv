@@ -2,6 +2,7 @@
 #ifndef _GLIB_2_0_GIO_GSIMPLEASYNCRESULT_H_
 #define _GLIB_2_0_GIO_GSIMPLEASYNCRESULT_H_
 
+#include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <glib-2.0/gio/giotypes.h>
@@ -126,7 +127,7 @@ extern "C" {
 						   simple, GQuark domain,
 						   gint code,
 						   const char *format,
-						   void args);
+						   va_list args);
     extern void g_simple_async_result_set_from_error(GSimpleAsyncResult *
 						     simple,
 						     const struct _GError

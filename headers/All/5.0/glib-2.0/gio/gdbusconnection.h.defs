@@ -264,6 +264,8 @@ extern guint g_dbus_connection_register_object(GDBusConnection *
 extern guint g_dbus_connection_register_subtree(GDBusConnection *
 						connection,
 						const gchar * object_path,
+						const GDBusSubtreeVTable *
+						vtable,
 						GDBusSubtreeFlags flags,
 						void *user_data,
 						GDestroyNotify

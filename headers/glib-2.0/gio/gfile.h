@@ -508,17 +508,17 @@ extern "C" {
     extern gboolean g_file_is_native(GFile * file);
     extern gboolean g_file_load_contents(GFile * file,
 					 GCancellable * cancellable,
-					 void contents, gsize * length,
-					 void etag_out, GError * *error);
+					 char **contents, gsize * length,
+					 char **etag_out, GError * *error);
     extern void g_file_load_contents_async(GFile * file,
 					   GCancellable * cancellable,
 					   GAsyncReadyCallback callback,
 					   gpointer user_data);
     extern gboolean g_file_load_contents_finish(GFile * file,
 						GAsyncResult * res,
-						void contents,
+						char **contents,
 						gsize * length,
-						void etag_out,
+						char **etag_out,
 						GError * *error);
     extern void g_file_load_partial_contents_async(GFile * file,
 						   GCancellable *
@@ -530,9 +530,9 @@ extern "C" {
 						   gpointer user_data);
     extern gboolean g_file_load_partial_contents_finish(GFile * file,
 							GAsyncResult * res,
-							void contents,
+							char **contents,
 							gsize * length,
-							void etag_out,
+							char **etag_out,
 							GError * *error);
     extern gboolean g_file_make_directory(GFile * file,
 					  GCancellable * cancellable,
@@ -688,12 +688,11 @@ extern "C" {
 				     GCancellable * cancellable,
 				     GAsyncReadyCallback callback,
 				     gpointer user_data);
-    extern gboolean g_file_replace_contents(GFile * file,
-					    const char *contents,
+    extern gboolean g_file_replace_contents(GFile * file, char **contents,
 					    gsize length, const char *etag,
 					    gboolean make_backup,
 					    GFileCreateFlags flags,
-					    void new_etag,
+					    char **new_etag,
 					    GCancellable * cancellable,
 					    GError * *error);
     extern void g_file_replace_contents_async(GFile * file,
@@ -707,7 +706,7 @@ extern "C" {
 					      gpointer user_data);
     extern gboolean g_file_replace_contents_finish(GFile * file,
 						   GAsyncResult * res,
-						   void new_etag,
+						   char **new_etag,
 						   GError * *error);
     extern GFileOutputStream *g_file_replace_finish(GFile * file,
 						    GAsyncResult * res,

@@ -2,6 +2,7 @@
 #ifndef _GLIB_2_0_GIO_GDBUSMETHODINVOCATION_H_
 #define _GLIB_2_0_GIO_GDBUSMETHODINVOCATION_H_
 
+#include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <glib-2.0/gio/giotypes.h>
@@ -73,7 +74,7 @@ extern "C" {
 						     GQuark domain,
 						     gint code,
 						     const gchar * format,
-						     void var_args);
+						     va_list var_args);
     extern void
 	g_dbus_method_invocation_return_gerror(GDBusMethodInvocation *
 					       invocation,

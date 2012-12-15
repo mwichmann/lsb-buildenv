@@ -89,7 +89,7 @@ extern "C" {
 					   GError * *error);
     extern void g_application_release(GApplication * application);
     extern int g_application_run(GApplication * application, int argc,
-				 void argv);
+				 char **argv);
     extern void g_application_set_action_group(GApplication * application,
 					       GActionGroup *
 					       action_group)

@@ -50,7 +50,7 @@ g_dbus_method_invocation_return_error_valist(GDBusMethodInvocation *
 					     invocation, GQuark domain,
 					     gint code,
 					     const gchar * format,
-					     void var_args);
+					     va_list var_args);
 extern void g_dbus_method_invocation_return_gerror(GDBusMethodInvocation *
 						   invocation,
 						   const struct _GError

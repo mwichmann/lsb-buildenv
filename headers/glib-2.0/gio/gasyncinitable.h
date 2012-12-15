@@ -2,6 +2,7 @@
 #ifndef _GLIB_2_0_GIO_GASYNCINITABLE_H_
 #define _GLIB_2_0_GIO_GASYNCINITABLE_H_
 
+#include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <glib-2.0/gio/giotypes.h>
@@ -47,15 +48,15 @@ extern "C" {
 					   GCancellable * cancellable,
 					   GAsyncReadyCallback callback,
 					   gpointer user_data,
-					   const char *first_property_name,
-					   ...);
+					   const gchar *
+					   first_property_name, ...);
     extern GObject *g_async_initable_new_finish(GAsyncInitable * initable,
 						GAsyncResult * res,
 						GError * *error);
     extern void g_async_initable_new_valist_async(GType object_type,
-						  const char
-						  *first_property_name,
-						  void var_args,
+						  const gchar *
+						  first_property_name,
+						  va_list var_args,
 						  int io_priority,
 						  GCancellable *
 						  cancellable,

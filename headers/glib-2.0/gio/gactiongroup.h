@@ -91,10 +91,10 @@ extern "C" {
 						      action_group,
 						      const char
 						      *action_name);
-    extern g_action_group_get_action_parameter_type(GActionGroup *
-						    action_group,
-						    const char
-						    *action_name);
+    extern GVariantType
+	*g_action_group_get_action_parameter_type(GActionGroup *
+						  action_group,
+						  const char *action_name);
     extern GVariant *g_action_group_get_action_state(GActionGroup *
 						     action_group,
 						     const char
@@ -103,9 +103,11 @@ extern "C" {
 							  action_group,
 							  const char
 							  *action_name);
-    extern g_action_group_get_action_state_type(GActionGroup *
-						action_group,
-						const char *action_name);
+    extern GVariantType *g_action_group_get_action_state_type(GActionGroup
+							      *
+							      action_group,
+							      const char
+							      *action_name);
     extern GType g_action_group_get_type(void);
     extern gboolean g_action_group_has_action(GActionGroup * action_group,
 					      const char *action_name);

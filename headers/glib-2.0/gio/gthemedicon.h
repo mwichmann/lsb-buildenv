@@ -29,7 +29,7 @@ extern "C" {
     extern const char *const *g_themed_icon_get_names(GThemedIcon * icon);
     extern GType g_themed_icon_get_type(void);
     extern GIcon *g_themed_icon_new(const char *iconname);
-    extern GIcon *g_themed_icon_new_from_names(void iconnames, int len);
+    extern GIcon *g_themed_icon_new_from_names(char **iconnames, int len);
     extern GIcon *g_themed_icon_new_with_default_fallbacks(const char
 							   *iconname);
     extern void g_themed_icon_prepend_name(GThemedIcon * icon,

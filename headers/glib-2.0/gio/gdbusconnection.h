@@ -333,6 +333,9 @@ extern "C" {
 						    connection,
 						    const gchar *
 						    object_path,
+						    const
+						    GDBusSubtreeVTable *
+						    vtable,
 						    GDBusSubtreeFlags
 						    flags, void *user_data,
 						    GDestroyNotify

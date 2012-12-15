@@ -63,7 +63,8 @@ extern GDBusMessage *g_dbus_message_new_method_error_valist(GDBusMessage *
 							    error_name,
 							    const gchar *
 							    error_message_format,
-							    void var_args);
+							    va_list
+							    var_args);
 extern GDBusMessage *g_dbus_message_new_method_reply(GDBusMessage *
 						     method_call_message);
 extern GDBusMessage *g_dbus_message_new_signal(const gchar * path,

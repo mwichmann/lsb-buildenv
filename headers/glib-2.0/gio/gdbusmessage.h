@@ -2,6 +2,7 @@
 #ifndef _GLIB_2_0_GIO_GDBUSMESSAGE_H_
 #define _GLIB_2_0_GIO_GDBUSMESSAGE_H_
 
+#include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <glib-2.0/gio/gioenums.h>
@@ -88,7 +89,7 @@ extern "C" {
 						const gchar * error_name,
 						const gchar *
 						error_message_format,
-						void var_args);
+						va_list var_args);
     extern GDBusMessage *g_dbus_message_new_method_reply(GDBusMessage *
 							 method_call_message);
     extern GDBusMessage *g_dbus_message_new_signal(const gchar * path,
