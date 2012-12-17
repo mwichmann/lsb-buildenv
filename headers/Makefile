@@ -9,38 +9,31 @@ LSB_VERSIONS = $(shell cat lsb_versions)
 LSB_DEVEL_VERSIONS = $(shell cat lsb_devel_versions)
 ARCHVER = $(foreach ver,$(LSB_VERSIONS),defs-$(arch)_$(ver))
 DATADEFS := $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(ARCHVER))
-#DATADEFS := $(foreach archver,$(shell mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVvalue>='3.0'" | grep -v Aname | sed s/\\t/_/g),headers-$(archver))
 
 all: 
 
-gensrc: lsb_versions core_filelist desktop_filelist headers datadefs headerlist lsb_devel_archver
+gensrc: versionfiles core_filelist desktop_filelist headers datadefs headerlist
 
 datadefs: $(DATADEFS)
 
 devel: $(foreach archver,$(shell cat lsb_devel_archver),headers-$(archver))
 
-headers: headerlist lsb_versions lsb_devel_archver $(foreach headerfile,$(shell cat headerlist),$(headerfile))
+headers: headerlist versionfiles $(foreach headerfile,$(shell cat headerlist),$(headerfile))
 	@echo Made header files
 
-defs-%: headerlist lsb_versions lsb_devel_archver $(foreach headerfile,$(shell cat headerlist),%/$(headerfile).defs)
+defs-%: headerlist lsb_versionfiles $(foreach headerfile,$(shell cat headerlist),%/$(headerfile).defs)
 	@echo Made data definitions for $*
 
 core_filelist desktop_filelist:
 	../mkfilelists --headers
 
-.PHONY: lsb_versions lsb_devel_versions lsb_devel_archver headerlist
+.PHONY: versionfiles headerlist
 
 headerlist:
 	./getheaderlist > headerlist
 
-lsb_versions:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.0'" | grep -v LVvalue > lsb_versions
-
-lsb_devel_versions:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
-
-lsb_devel_archver:
-	mysql $(DBOPTS) $$LSBDB -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVreleased='No'" | grep -v Aname | sed s/\\t/_/g > lsb_devel_archver
+versionfiles:
+	./mkversionfiles
 
 %.defs: 
 	mkdir -p $(dir $(shell echo "$@" | sed s/_/\\//))

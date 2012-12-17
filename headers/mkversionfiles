@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# build lsb_versions, lsb_devel_versions and lsb_devel_archver
+
+DBOPTS="-h ${LSBDBHOST} -u ${LSBUSER} --password=${LSBDBPASSWD}"
+
+mysql ${DBOPTS} ${LSBDB} -e "SELECT LVvalue FROM LSBVersion WHERE LVvalue>='3.0'" | grep -v LVvalue > lsb_versions
+mysql ${DBOPTS} ${LSBDB} -e "SELECT LVvalue FROM LSBVersion WHERE LVreleased='No'" | grep -v LVvalue > lsb_devel_versions
+mysql ${DBOPTS} ${LSBDB} -e "SELECT Aname,LVvalue FROM Architecture,LSBVersion WHERE LVreleased='No'" | grep -v Aname | sed s/\\t/_/g > lsb_devel_archver
