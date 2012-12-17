@@ -43,7 +43,9 @@ all: libs
 core_filelist_% desktop_filelist_%:
 	../mkfilelists --libs
 
-$(VERSIONFILES):
+.PHONY: versionfiles
+
+versionfiles:
 	./mkversionfiles
 
 dbfiles: 
@@ -58,7 +60,7 @@ dbfiles-V%:
 	for arch in $(LSB_SUPPORTED_ARCHS); do ./mkstublibs -a $$arch -v $(shell echo "$@" | sed s/dbfiles-V//); done
 
 # only need to depend on one filelist, the rule above will gen them all
-gensrc: core_filelist_3.0 dbfiles
+gensrc: versionfiles core_filelist_3.0 dbfiles
 
 install: install-core install-desktop
 
