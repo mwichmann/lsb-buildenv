@@ -21,7 +21,7 @@ devel: $(foreach archver,$(shell cat lsb_devel_archver),headers-$(archver))
 headers: headerlist versionfiles $(foreach headerfile,$(shell cat headerlist),$(headerfile))
 	@echo Made header files
 
-defs-%: headerlist lsb_versionfiles $(foreach headerfile,$(shell cat headerlist),%/$(headerfile).defs)
+defs-%: headerlist versionfiles $(foreach headerfile,$(shell cat headerlist),%/$(headerfile).defs)
 	@echo Made data definitions for $*
 
 core_filelist desktop_filelist:
