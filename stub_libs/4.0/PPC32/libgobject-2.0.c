@@ -156,7 +156,6 @@ void g_signal_handler_find() {} ;
 void g_signal_handler_is_connected() {} ;
 void g_signal_handler_unblock() {} ;
 void g_signal_handlers_block_matched() {} ;
-void g_signal_handlers_destroy() {} ;
 void g_signal_handlers_disconnect_matched() {} ;
 void g_signal_handlers_unblock_matched() {} ;
 void g_signal_has_handler_pending() {} ;
