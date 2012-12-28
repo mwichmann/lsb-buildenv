@@ -45,6 +45,7 @@ foreach $version (@lsbversions, @lsbdevversions) {
     $select .= "WHERE SMmandatorysince <= '$version' ";
     $select .= "AND SMmandatorysince <> '' ";
     $select .= "AND SMLappearedin <= '$version' ";
+    $select .= "AND SMLappearedin <> '' ";
     $select .= "AND (SMLwithdrawnin IS NULL OR SMLwithdrawnin > '$version') ";
     $select .= "ORDER BY Lname";
 
@@ -95,6 +96,7 @@ foreach $version (@lsbversions, @lsbdevversions) {
     $select .= "WHERE (SMmandatorysince > '$version' ";
     $select .= "OR SMmandatorysince = '') ";
     $select .= "AND SMLappearedin <= '$version' ";
+    $select .= "AND SMLappearedin <> '' ";
     $select .= "AND (SMLwithdrawnin IS NULL ";
     $select .= "OR SMLwithdrawnin > '$version') ";
     $select .= "AND SMid = $entry->{'SMid'} ";
