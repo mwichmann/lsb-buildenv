@@ -1,0 +1,3 @@
+
+#define NCURSES_UNCTRL_H_incl	1
+#define NCURSES_VERSION	"5.9"

@@ -62,6 +62,10 @@ malloc.h
 math.h
 monetary.h
 mqueue.h
+ncursesw/curses.h
+ncursesw/ncurses_dll.h
+ncursesw/term.h
+ncursesw/unctrl.h
 net/if.h
 netdb.h
 netinet/icmp6.h

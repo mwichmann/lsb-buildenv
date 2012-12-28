@@ -148,6 +148,8 @@ BASE/LIB-5.0/libgcc_s.so.1
 BASE/LIB-5.0/libm.so
 BASE/LIB-5.0/libncurses.so
 BASE/LIB-5.0/libncurses.so.5
+BASE/LIB-5.0/libncursesw.so
+BASE/LIB-5.0/libncursesw.so.5
 BASE/LIB-5.0/libnspr4.so
 BASE/LIB-5.0/libnss3.so
 BASE/LIB-5.0/libpam.so
@@ -229,6 +231,10 @@ BASE/include/malloc.h
 BASE/include/math.h
 BASE/include/monetary.h
 BASE/include/mqueue.h
+BASE/include/ncursesw/curses.h
+BASE/include/ncursesw/ncurses_dll.h
+BASE/include/ncursesw/term.h
+BASE/include/ncursesw/unctrl.h
 BASE/include/net/if.h
 BASE/include/netdb.h
 BASE/include/netinet/icmp6.h
