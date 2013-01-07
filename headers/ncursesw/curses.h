@@ -1159,7 +1159,6 @@ extern "C" {
     extern int touchline(WINDOW *, int, int);
 #undef touchwin
     extern int touchwin(WINDOW *);
-    extern void trace(void);
     extern int typeahead(int);
     extern char *unctrl(chtype);
     extern int unget_wch(wchar_t);

@@ -217,7 +217,6 @@ void touchline() {} ;
 void touchwin() {} ;
 void tparm() {} ;
 void tputs() {} ;
-void trace() {} ;
 void typeahead() {} ;
 void unctrl() {} ;
 void ungetch() {} ;
