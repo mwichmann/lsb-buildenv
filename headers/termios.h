@@ -906,6 +906,7 @@ extern "C" {
 /* Function prototypes */
 
     extern speed_t cfgetispeed(const struct termios *__termios_p);
+#undef cfgetospeed
     extern speed_t cfgetospeed(const struct termios *__termios_p);
     extern void cfmakeraw(struct termios *__termios_p);
     extern int cfsetispeed(struct termios *__termios_p, speed_t __speed);
@@ -913,10 +914,13 @@ extern "C" {
     extern int cfsetspeed(struct termios *__termios_p, speed_t __speed);
     extern int tcdrain(int __fd);
     extern int tcflow(int __fd, int __action);
+#undef tcflush
     extern int tcflush(int __fd, int __queue_selector);
+#undef tcgetattr
     extern int tcgetattr(int __fd, struct termios *__termios_p);
     extern pid_t tcgetsid(int __fd);
     extern int tcsendbreak(int __fd, int __duration);
+#undef tcsetattr
     extern int tcsetattr(int __fd, int __optional_actions,
 			 const struct termios *__termios_p);
 #ifdef __cplusplus

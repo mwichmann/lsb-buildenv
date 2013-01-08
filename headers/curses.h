@@ -334,33 +334,54 @@ extern "C" {
 
 /* Function prototypes */
 
+#undef addch
     extern int addch(const chtype);
+#undef addchnstr
     extern int addchnstr(const chtype *, int);
+#undef addchstr
     extern int addchstr(const chtype *);
+#undef addnstr
     extern int addnstr(const char *, int);
+#undef addstr
     extern int addstr(const char *);
+#undef attr_get
     extern int attr_get(attr_t *, short *, void *);
+#undef attr_off
     extern int attr_off(attr_t, void *);
+#undef attr_on
     extern int attr_on(attr_t, void *);
+#undef attr_set
     extern int attr_set(attr_t, short, void *);
+#undef attroff
     extern int attroff(int);
+#undef attron
     extern int attron(int);
+#undef attrset
     extern int attrset(int);
     extern int baudrate(void);
     extern int beep(void);
+#undef bkgd
     extern int bkgd(chtype);
+#undef bkgdset
     extern void bkgdset(chtype);
+#undef border
     extern int border(chtype, chtype, chtype, chtype, chtype, chtype,
 		      chtype, chtype);
+#undef box
     extern int box(WINDOW *, chtype, chtype);
     extern bool can_change_color(void);
     extern int cbreak(void);
+#undef chgat
     extern int chgat(int, attr_t, short, const void *);
+#undef clear
     extern int clear(void);
     extern int clearok(WINDOW *, bool);
+#undef clrtobot
     extern int clrtobot(void);
+#undef clrtoeol
     extern int clrtoeol(void);
     extern int color_content(short, short *, short *, short *);
+#undef color_set
     extern int color_set(short, void *);
     extern int copywin(const WINDOW *, WINDOW *, int, int, int, int, int,
 		       int, int);
@@ -369,7 +390,9 @@ extern "C" {
     extern int def_prog_mode(void);
     extern int def_shell_mode(void);
     extern int delay_output(int);
+#undef delch
     extern int delch(void);
+#undef deleteln
     extern int deleteln(void);
     extern void delscreen(SCREEN *);
     extern int delwin(WINDOW *);
@@ -377,38 +400,55 @@ extern "C" {
     extern int doupdate(void);
     extern WINDOW *dupwin(WINDOW *);
     extern int echo(void);
+#undef echochar
     extern int echochar(const chtype);
     extern int endwin(void);
+#undef erase
     extern int erase(void);
     extern char erasechar(void);
     extern void filter(void);
     extern int flash(void);
     extern int flushinp(void);
+#undef getbkgd
     extern chtype getbkgd(WINDOW *);
+#undef getch
     extern int getch(void);
+#undef getnstr
     extern int getnstr(char *, int);
+#undef getstr
     extern int getstr(char *);
     extern WINDOW *getwin(FILE *);
     extern int halfdelay(int);
     extern bool has_colors(void);
     extern bool has_ic(void);
     extern bool has_il(void);
+#undef hline
     extern int hline(chtype, int);
     extern void idcok(WINDOW *, bool);
     extern int idlok(WINDOW *, bool);
     extern void immedok(WINDOW *, bool);
+#undef inch
     extern chtype inch(void);
+#undef inchnstr
     extern int inchnstr(chtype *, int);
+#undef inchstr
     extern int inchstr(chtype *);
     extern int init_color(short, short, short, short);
     extern int init_pair(short, short, short);
     extern WINDOW *initscr(void);
+#undef innstr
     extern int innstr(char *, int);
+#undef insch
     extern int insch(chtype);
+#undef insdelln
     extern int insdelln(int);
+#undef insertln
     extern int insertln(void);
+#undef insnstr
     extern int insnstr(const char *, int);
+#undef insstr
     extern int insstr(const char *);
+#undef instr
     extern int instr(char *);
     extern int intrflush(WINDOW *, bool);
     extern bool is_linetouched(WINDOW *, int);
@@ -420,54 +460,95 @@ extern "C" {
     extern int leaveok(WINDOW *, bool);
     extern char *longname(void);
     extern int meta(WINDOW *, bool);
+#undef move
     extern int move(int, int);
+#undef mvaddch
     extern int mvaddch(int, int, const chtype);
+#undef mvaddchnstr
     extern int mvaddchnstr(int, int, const chtype *, int);
+#undef mvaddchstr
     extern int mvaddchstr(int, int, const chtype *);
+#undef mvaddnstr
     extern int mvaddnstr(int, int, const char *, int);
+#undef mvaddstr
     extern int mvaddstr(int, int, const char *);
+#undef mvchgat
     extern int mvchgat(int, int, int, attr_t, short, const void *);
     extern int mvcur(int, int, int, int);
+#undef mvdelch
     extern int mvdelch(int, int);
     extern int mvderwin(WINDOW *, int, int);
+#undef mvgetch
     extern int mvgetch(int, int);
+#undef mvgetnstr
     extern int mvgetnstr(int, int, char *, int);
+#undef mvgetstr
     extern int mvgetstr(int, int, char *);
+#undef mvhline
     extern int mvhline(int, int, chtype, int);
+#undef mvinch
     extern chtype mvinch(int, int);
+#undef mvinchnstr
     extern int mvinchnstr(int, int, chtype *, int);
+#undef mvinchstr
     extern int mvinchstr(int, int, chtype *);
+#undef mvinnstr
     extern int mvinnstr(int, int, char *, int);
+#undef mvinsch
     extern int mvinsch(int, int, chtype);
+#undef mvinsnstr
     extern int mvinsnstr(int, int, const char *, int);
+#undef mvinsstr
     extern int mvinsstr(int, int, const char *);
+#undef mvinstr
     extern int mvinstr(int, int, char *);
     extern int mvprintw(int, int, const char *, ...);
     extern int mvscanw(int, int, const char *, ...);
+#undef mvvline
     extern int mvvline(int, int, chtype, int);
+#undef mvwaddch
     extern int mvwaddch(WINDOW *, int, int, const chtype);
+#undef mvwaddchnstr
     extern int mvwaddchnstr(WINDOW *, int, int, const chtype *, int);
+#undef mvwaddchstr
     extern int mvwaddchstr(WINDOW *, int, int, const chtype *);
+#undef mvwaddnstr
     extern int mvwaddnstr(WINDOW *, int, int, const char *, int);
+#undef mvwaddstr
     extern int mvwaddstr(WINDOW *, int, int, const char *);
+#undef mvwchgat
     extern int mvwchgat(WINDOW *, int, int, int, attr_t, short,
 			const void *);
+#undef mvwdelch
     extern int mvwdelch(WINDOW *, int, int);
+#undef mvwgetch
     extern int mvwgetch(WINDOW *, int, int);
+#undef mvwgetnstr
     extern int mvwgetnstr(WINDOW *, int, int, char *, int);
+#undef mvwgetstr
     extern int mvwgetstr(WINDOW *, int, int, char *);
+#undef mvwhline
     extern int mvwhline(WINDOW *, int, int, chtype, int);
     extern int mvwin(WINDOW *, int, int);
+#undef mvwinch
     extern chtype mvwinch(WINDOW *, int, int);
+#undef mvwinchnstr
     extern int mvwinchnstr(WINDOW *, int, int, chtype *, int);
+#undef mvwinchstr
     extern int mvwinchstr(WINDOW *, int, int, chtype *);
+#undef mvwinnstr
     extern int mvwinnstr(WINDOW *, int, int, char *, int);
+#undef mvwinsch
     extern int mvwinsch(WINDOW *, int, int, chtype);
+#undef mvwinsnstr
     extern int mvwinsnstr(WINDOW *, int, int, const char *, int);
+#undef mvwinsstr
     extern int mvwinsstr(WINDOW *, int, int, const char *);
+#undef mvwinstr
     extern int mvwinstr(WINDOW *, int, int, char *);
     extern int mvwprintw(WINDOW *, int, int, const char *, ...);
     extern int mvwscanw(WINDOW *, int, int, const char *, ...);
+#undef mvwvline
     extern int mvwvline(WINDOW *, int, int, chtype, int);
     extern int napms(int);
     extern WINDOW *newpad(int, int);
@@ -491,7 +572,9 @@ extern "C" {
     extern int putwin(WINDOW *, FILE *);
     extern void qiflush(void);
     extern int raw(void);
+#undef redrawwin
     extern int redrawwin(WINDOW *);
+#undef refresh
     extern int refresh(void);
     extern int reset_prog_mode(void);
     extern int reset_shell_mode(void);
@@ -503,10 +586,13 @@ extern "C" {
     extern int scr_init(const char *);
     extern int scr_restore(const char *);
     extern int scr_set(const char *);
+#undef scrl
     extern int scrl(int);
+#undef scroll
     extern int scroll(WINDOW *);
     extern int scrollok(WINDOW *, bool);
     extern SCREEN *set_term(SCREEN *);
+#undef setscrreg
     extern int setscrreg(int, int);
     extern int slk_attr_set(const attr_t, short, void *);
     extern int slk_attroff(const chtype);
@@ -521,7 +607,9 @@ extern "C" {
     extern int slk_restore(void);
     extern int slk_set(int, const char *, int);
     extern int slk_touch(void);
+#undef standend
     extern int standend(void);
+#undef standout
     extern int standout(void);
     extern int start_color(void);
     extern WINDOW *stdscr;
@@ -530,13 +618,16 @@ extern "C" {
     extern int syncok(WINDOW *, bool);
     extern chtype termattrs(void);
     extern char *termname(void);
+#undef timeout
     extern void timeout(int);
     extern int typeahead(int);
     extern int ungetch(int);
+#undef untouchwin
     extern int untouchwin(WINDOW *);
     extern void use_env(bool);
     extern int vidattr(chtype);
     extern int vidputs(chtype, int (*)(int));
+#undef vline
     extern int vline(chtype, int);
     extern int vw_printw(WINDOW *, const char *, va_list);
     extern int vw_scanw(WINDOW *, const char *, va_list);
@@ -544,14 +635,19 @@ extern "C" {
     extern int vwscanw(WINDOW *, const char *, va_list);
     extern int waddch(WINDOW *, const chtype);
     extern int waddchnstr(WINDOW *, const chtype *, int);
+#undef waddchstr
     extern int waddchstr(WINDOW *, const chtype *);
     extern int waddnstr(WINDOW *, const char *, int);
+#undef waddstr
     extern int waddstr(WINDOW *, const char *);
     extern int wattr_get(WINDOW *, attr_t *, short *, void *);
     extern int wattr_off(WINDOW *, attr_t, void *);
     extern int wattr_on(WINDOW *, attr_t, void *);
+#undef wattr_set
     extern int wattr_set(WINDOW *, attr_t, short, void *);
+#undef wattroff
     extern int wattroff(WINDOW *, int);
+#undef wattron
     extern int wattron(WINDOW *, int);
     extern int wattrset(WINDOW *, int);
     extern int wbkgd(WINDOW *, chtype);
@@ -565,22 +661,28 @@ extern "C" {
     extern int wcolor_set(WINDOW *, short, void *);
     extern void wcursyncup(WINDOW *);
     extern int wdelch(WINDOW *);
+#undef wdeleteln
     extern int wdeleteln(WINDOW *);
     extern int wechochar(WINDOW *, const chtype);
     extern int werase(WINDOW *);
     extern int wgetch(WINDOW *);
     extern int wgetnstr(WINDOW *, char *, int);
+#undef wgetstr
     extern int wgetstr(WINDOW *, char *);
     extern int whline(WINDOW *, chtype, int);
     extern chtype winch(WINDOW *);
     extern int winchnstr(WINDOW *, chtype *, int);
+#undef winchstr
     extern int winchstr(WINDOW *, chtype *);
     extern int winnstr(WINDOW *, char *, int);
     extern int winsch(WINDOW *, chtype);
     extern int winsdelln(WINDOW *, int);
+#undef winsertln
     extern int winsertln(WINDOW *);
     extern int winsnstr(WINDOW *, const char *, int);
+#undef winsstr
     extern int winsstr(WINDOW *, const char *);
+#undef winstr
     extern int winstr(WINDOW *, char *);
     extern int wmove(WINDOW *, int, int);
     extern int wnoutrefresh(WINDOW *);
@@ -590,7 +692,9 @@ extern "C" {
     extern int wscanw(WINDOW *, const char *, ...);
     extern int wscrl(WINDOW *, int);
     extern int wsetscrreg(WINDOW *, int, int);
+#undef wstandend
     extern int wstandend(WINDOW *);
+#undef wstandout
     extern int wstandout(WINDOW *);
     extern void wsyncdown(WINDOW *);
     extern void wsyncup(WINDOW *);
@@ -603,7 +707,9 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 #if __LSB_VERSION__ >= 13
+#undef touchline
     extern int touchline(WINDOW *, int, int);
+#undef touchwin
     extern int touchwin(WINDOW *);
 #endif				/* __LSB_VERSION__ >= 1.3 */
 

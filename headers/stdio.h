@@ -198,6 +198,7 @@ extern "C" {
     extern int asprintf(char **__ptr, const char *__fmt, ...);
     extern int vfscanf(FILE * __s, const char *__format, va_list __arg);
     extern int vscanf(const char *__format, va_list __arg);
+#undef vsscanf
     extern int vsscanf(const char *__s, const char *__format,
 		       va_list __arg);
 #endif				/* __LSB_VERSION__ >= 1.3 */
