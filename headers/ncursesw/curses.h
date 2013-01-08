@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stddef.h>
+#include <stdarg.h>
 #include <ncursesw/ncurses_dll.h>
 
 #ifdef __cplusplus
@@ -56,7 +57,6 @@ extern "C" {
 #define COLOR_MAGENTA	5
 #define COLOR_CYAN	6
 #define COLOR_WHITE	7
-#define acs_map	NCURSES_PUBLIC_VAR(acs_map())
 #define NCURSES_ACS(c)	(acs_map[NCURSES_CAST(unsigned char,c)])
 #define ACS_ULCORNER	NCURSES_ACS('l')
 #define ACS_LLCORNER	NCURSES_ACS('m')
@@ -289,16 +289,6 @@ extern "C" {
 #define is_syncok(win)	((win) ? (win)->_sync : FALSE)
 #define wgetparent(win)	((win) ? (win)->_parent : 0)
 #define wgetscrreg(win,t,b)	((win) ? (*(t) = (win)->_regtop, *(b) = (win)->_regbottom, OK) : ERR)
-#define curscr	NCURSES_PUBLIC_VAR(curscr())
-#define newscr	NCURSES_PUBLIC_VAR(newscr())
-#define stdscr	NCURSES_PUBLIC_VAR(stdscr())
-#define ttytype	NCURSES_PUBLIC_VAR(ttytype())
-#define COLORS	NCURSES_PUBLIC_VAR(COLORS())
-#define COLOR_PAIRS	NCURSES_PUBLIC_VAR(COLOR_PAIRS())
-#define COLS	NCURSES_PUBLIC_VAR(COLS())
-#define ESCDELAY	NCURSES_PUBLIC_VAR(ESCDELAY())
-#define LINES	NCURSES_PUBLIC_VAR(LINES())
-#define TABSIZE	NCURSES_PUBLIC_VAR(TABSIZE())
 #define KEY_CODE_YES	0400
 #define KEY_MIN	0401
 #define KEY_BREAK	0401
@@ -623,26 +613,16 @@ extern "C" {
 #define OPTIMIZE_ALL	0xff
 
 
-    typedef unsigned char NCURSES_BOOL;
+
+    typedef unsigned long int chtype;
+
+    typedef chtype attr_t;
+
 
     typedef struct {
 	attr_t attr;
 	wchar_t chars[CCHARW_MAX];
     } cchar_t;
-
-    typedef int (*NCURSES_OUTC) (int);
-
-    typedef int (*NCURSES_WINDOW_CB) (WINDOW *, void *);
-
-    typedef int (*NCURSES_SCREEN_CB) (SCREEN *, void *);
-
-    typedef struct {
-	short id;
-	int x;
-	int y;
-	int z;
-	mmask_t bstate;
-    } MEVENT;
 
     typedef struct screen SCREEN;
 
@@ -650,13 +630,7 @@ extern "C" {
 
     typedef unsigned long int mmask_t;
 
-    typedef unsigned long int chtype;
-
-    typedef chtype attr_t;
-
     typedef unsigned char bool;
-
-    typedef unsigned int wint_t;
 
     struct pdat {
 	short _pad_y;
@@ -698,13 +672,28 @@ extern "C" {
 	cchar_t _bkgrnd;	/* current background char/attribute pair */
     };
 
-    int (*_bkgrnd) (WINDOW *, int);
+
+    typedef unsigned char NCURSES_BOOL;
+
+    typedef int (*NCURSES_OUTC) (int);
+
+    typedef int (*NCURSES_WINDOW_CB) (WINDOW *, void *);
+
+    typedef int (*NCURSES_SCREEN_CB) (SCREEN *, void *);
+
+    typedef struct {
+	short id;
+	int x;
+	int y;
+	int z;
+	mmask_t bstate;
+    } MEVENT;
+
+    typedef unsigned int wint_t;
+
+    int (*bstate) (WINDOW *, int);
 
     struct ldat;
-
-    const typedef struct _win_st WINDOW;
-
-    const typedef unsigned long int chtype;
 
 
 /* Function prototypes */
@@ -720,7 +709,7 @@ extern "C" {
     extern int PAIR_NUMBER(int);
     extern int TABSIZE;
     extern char *_tracemouse(const MEVENT *);
-    extern acs_map;
+    extern chtype acs_map[];
 #undef add_wch
     extern int add_wch(cchar_t *);
 #undef add_wchnstr
@@ -1178,10 +1167,10 @@ extern "C" {
     extern int vline(chtype, int);
 #undef vline_set
     extern int vline_set(cchar_t *, int);
-    extern int vw_printw(WINDOW *, const char *, void);
-    extern int vw_scanw(WINDOW *, char *, void);
-    extern int vwprintw(WINDOW *, const char *, void);
-    extern int vwscanw(WINDOW *, char *, void);
+    extern int vw_printw(WINDOW *, const char *, va_list);
+    extern int vw_scanw(WINDOW *, char *, va_list);
+    extern int vwprintw(WINDOW *, const char *, va_list);
+    extern int vwscanw(WINDOW *, char *, va_list);
     extern int wadd_wch(WINDOW *, cchar_t *);
     extern int wadd_wchnstr(WINDOW *, cchar_t *, int);
 #undef wadd_wchstr

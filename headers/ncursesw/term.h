@@ -553,9 +553,9 @@ extern "C" {
 	char *str_table;
 	char *Booleans;
 	short *Numbers;
-	void Strings;
+	char **Strings;
 	char *ext_str_table;
-	void ext_Names;
+	char **ext_Names;
 	unsigned short num_Booleans;
 	unsigned short num_Numbers;
 	unsigned short num_Strings;
@@ -591,7 +591,7 @@ extern "C" {
     extern int tgetent(char *, const char *);
     extern int tgetflag(char *);
     extern int tgetnum(char *);
-    extern char *tgetstr(char *, void);
+    extern char *tgetstr(char *, char **);
     extern char *tgoto(const char *, int, int);
     extern int tigetflag(char *);
     extern int tigetnum(char *);

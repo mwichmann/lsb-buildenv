@@ -44,7 +44,6 @@
 #define COLOR_MAGENTA	5
 #define COLOR_CYAN	6
 #define COLOR_WHITE	7
-#define acs_map	NCURSES_PUBLIC_VAR(acs_map())
 #define NCURSES_ACS(c)	(acs_map[NCURSES_CAST(unsigned char,c)])
 #define ACS_ULCORNER	NCURSES_ACS('l')
 #define ACS_LLCORNER	NCURSES_ACS('m')
@@ -277,16 +276,6 @@
 #define is_syncok(win)	((win) ? (win)->_sync : FALSE)
 #define wgetparent(win)	((win) ? (win)->_parent : 0)
 #define wgetscrreg(win,t,b)	((win) ? (*(t) = (win)->_regtop, *(b) = (win)->_regbottom, OK) : ERR)
-#define curscr	NCURSES_PUBLIC_VAR(curscr())
-#define newscr	NCURSES_PUBLIC_VAR(newscr())
-#define stdscr	NCURSES_PUBLIC_VAR(stdscr())
-#define ttytype	NCURSES_PUBLIC_VAR(ttytype())
-#define COLORS	NCURSES_PUBLIC_VAR(COLORS())
-#define COLOR_PAIRS	NCURSES_PUBLIC_VAR(COLOR_PAIRS())
-#define COLS	NCURSES_PUBLIC_VAR(COLS())
-#define ESCDELAY	NCURSES_PUBLIC_VAR(ESCDELAY())
-#define LINES	NCURSES_PUBLIC_VAR(LINES())
-#define TABSIZE	NCURSES_PUBLIC_VAR(TABSIZE())
 #define KEY_CODE_YES	0400
 #define KEY_MIN	0401
 #define KEY_BREAK	0401
@@ -610,7 +599,9 @@
 #define OPTIMIZE_SCROLL	0x04
 #define OPTIMIZE_ALL	0xff
 
-typedef unsigned char NCURSES_BOOL;
+typedef unsigned long int chtype;
+typedef chtype attr_t;
+
 struct pdat {
     short _pad_y;
     short _pad_x;
@@ -619,11 +610,16 @@ struct pdat {
     short _pad_bottom;
     short _pad_right;
 };
+typedef struct screen SCREEN;
+typedef struct _win_st WINDOW;
+typedef unsigned long int mmask_t;
+typedef unsigned char bool;
+
+typedef unsigned char NCURSES_BOOL;
 typedef int (*NCURSES_OUTC) (int);
 typedef int (*NCURSES_WINDOW_CB) (WINDOW *, void *);
 typedef int (*NCURSES_SCREEN_CB) (SCREEN *, void *);
-typedef struct screen SCREEN;
-typedef struct _win_st {
+struct _win_st {
     short _cury;		/* current cursor position */
     short _curx;
     short _maxy;		/* maximums of x and y, NOT window size */
@@ -652,44 +648,9 @@ typedef struct _win_st {
     struct pdat _pad;
     short _yoffset;		/* real begy is _begy + _yoffset */
     cchar_t _bkgrnd;		/* current background char/attribute pair */
-} WINDOW;
+};
 int (*_bkgrnd) (WINDOW *, int);
-typedef unsigned long int mmask_t;
 struct ldat;
-typedef unsigned long int chtype;
-typedef chtype attr_t;
-typedef unsigned char bool;
-const typedef struct _win_st {
-    short _cury;		/* current cursor position */
-    short _curx;
-    short _maxy;		/* maximums of x and y, NOT window size */
-    short _maxx;
-    short _begy;		/* screen coords of upper-left-hand corner */
-    short _begx;
-    short _flags;		/* window state flags */
-    attr_t _attrs;		/* current attribute for non-space character */
-    chtype _bkgd;		/* current background char/attribute pair */
-    bool _notimeout;		/* no time out on function-key entry? */
-    bool _clear;		/* consider all data in the window invalid? */
-    bool _leaveok;		/* OK to not reset cursor on exit? */
-    bool _scroll;		/* OK to scroll this window? */
-    bool _idlok;		/* OK to use insert/delete line? */
-    bool _idcok;		/* OK to use insert/delete char? */
-    bool _immed;		/* window in immed mode? (not yet used) */
-    bool _sync;			/* window in sync mode? */
-    bool _use_keypad;		/* process function keys into KEY_ symbols? */
-    int _delay;			/* 0 = nodelay, <0 = blocking, >0 = delay */
-    struct ldat *_line;		/* the actual line data */
-    short _regtop;		/* top line of scrolling region */
-    short _regbottom;		/* bottom line of scrolling region */
-    int _parx;			/* x coordinate of this window in parent */
-    int _pary;			/* y coordinate of this window in parent */
-    WINDOW *_parent;		/* pointer to parent if a sub-window */
-    struct pdat _pad;
-    short _yoffset;		/* real begy is _begy + _yoffset */
-    cchar_t _bkgrnd;		/* current background char/attribute pair */
-} WINDOW;
-const typedef unsigned long int chtype;
 typedef unsigned int wint_t;
 extern int COLORS;
 extern int COLOR_PAIR(int);
@@ -700,7 +661,7 @@ extern int LINES;
 extern int PAIR_NUMBER(int);
 extern int TABSIZE;
 extern char *_tracemouse(const MEVENT *);
-extern acs_map;
+extern chtype acs_map[];
 extern int add_wch(cchar_t *);
 extern int add_wchnstr(cchar_t *, int);
 extern int add_wchstr(cchar_t *);
@@ -999,10 +960,10 @@ extern int vidattr(chtype);
 extern int vidputs(chtype, NCURSES_OUTC);
 extern int vline(chtype, int);
 extern int vline_set(cchar_t *, int);
-extern int vw_printw(WINDOW *, const char *, void);
-extern int vw_scanw(WINDOW *, char *, void);
-extern int vwprintw(WINDOW *, const char *, void);
-extern int vwscanw(WINDOW *, char *, void);
+extern int vw_printw(WINDOW *, const char *, va_list);
+extern int vw_scanw(WINDOW *, char *, va_list);
+extern int vwprintw(WINDOW *, const char *, va_list);
+extern int vwscanw(WINDOW *, char *, va_list);
 extern int wadd_wch(WINDOW *, cchar_t *);
 extern int wadd_wchnstr(WINDOW *, cchar_t *, int);
 extern int wadd_wchstr(WINDOW *, cchar_t *);
