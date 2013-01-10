@@ -19,8 +19,10 @@ typedef struct _PangoFcDecoder {
 } PangoFcDecoder;
 typedef struct _PangoFcDecoderClass {
     GObjectClass parent_class;
-    FcCharSet *(*get_charset) (PangoFcDecoder *, PangoFcFont *);
-     PangoGlyph(*get_glyph) (PangoFcDecoder *, PangoFcFont *, guint32);
+    FcCharSet *(*get_charset) (PangoFcDecoder * decoder,
+			       PangoFcFont * fcfont);
+     PangoGlyph(*get_glyph) (PangoFcDecoder * decoder,
+			     PangoFcFont * fcfont, guint32 wc);
     void (*_pango_reserved1) (void);
     void (*_pango_reserved2) (void);
     void (*_pango_reserved3) (void);

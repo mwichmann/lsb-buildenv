@@ -14,6 +14,14 @@
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,8 +52,13 @@ extern "C" {
     extern GType pango_fc_font_get_type(void);
     extern FT_Face pango_fc_font_lock_face(PangoFcFont * font);
     extern void pango_fc_font_unlock_face(PangoFcFont * font);
+    /* This function is deprecated use pango_font_map_create_context instead */
     extern PangoContext *pango_ft2_font_map_create_context(PangoFT2FontMap
-							   * fontmap);
+							   * fontmap)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern GType pango_ft2_font_map_get_type(void);
     extern PangoFontMap *pango_ft2_font_map_new(void);
     extern void pango_ft2_font_map_set_default_substitute(PangoFT2FontMap *
@@ -61,7 +74,8 @@ extern "C" {
     extern void pango_ft2_font_map_substitute_changed(PangoFT2FontMap *
 						      fontmap);
     extern void pango_ft2_render(FT_Bitmap * bitmap, PangoFont * font,
-				 PangoGlyphString * glyphs, int x, int y);
+				 PangoGlyphString * glyphs, gint x,
+				 gint y);
     extern void pango_ft2_render_layout(FT_Bitmap * bitmap,
 					PangoLayout * layout, int x,
 					int y);

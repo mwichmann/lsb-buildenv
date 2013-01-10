@@ -33,7 +33,7 @@ extern void pango_ft2_font_map_set_resolution(PangoFT2FontMap * fontmap,
 extern void pango_ft2_font_map_substitute_changed(PangoFT2FontMap *
 						  fontmap);
 extern void pango_ft2_render(FT_Bitmap * bitmap, PangoFont * font,
-			     PangoGlyphString * glyphs, int x, int y);
+			     PangoGlyphString * glyphs, gint x, gint y);
 extern void pango_ft2_render_layout(FT_Bitmap * bitmap,
 				    PangoLayout * layout, int x, int y);
 extern void pango_ft2_render_layout_line(FT_Bitmap * bitmap,

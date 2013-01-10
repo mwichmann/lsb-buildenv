@@ -294,7 +294,7 @@ __asm__(".globl COLS; .pushsection .data; .type COLS,@object; .size COLS, 4; COL
 __asm__(".globl ESCDELAY; .pushsection .data; .type ESCDELAY,@object; .size ESCDELAY, 4; ESCDELAY: .long 0; .popsection");
 __asm__(".globl LINES; .pushsection .data; .type LINES,@object; .size LINES, 4; LINES: .long 0; .popsection");
 __asm__(".globl TABSIZE; .pushsection .data; .type TABSIZE,@object; .size TABSIZE, 4; TABSIZE: .long 0; .popsection");
-__asm__(".globl acs_map; .pushsection .data; .type acs_map,@object; .size acs_map, 4; acs_map: .long 0; .popsection");
+__asm__(".globl acs_map; .pushsection .data; .type acs_map,@object; .size acs_map, 512; acs_map: .long 0; .popsection");
 __asm__(".globl boolcodes; .pushsection .data; .type boolcodes,@object; .size boolcodes, 4; boolcodes: .long 0; .popsection");
 __asm__(".globl boolfnames; .pushsection .data; .type boolfnames,@object; .size boolfnames, 4; boolfnames: .long 0; .popsection");
 __asm__(".globl boolnames; .pushsection .data; .type boolnames,@object; .size boolnames, 4; boolnames: .long 0; .popsection");

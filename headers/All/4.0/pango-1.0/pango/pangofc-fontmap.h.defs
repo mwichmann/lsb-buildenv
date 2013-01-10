@@ -7,7 +7,8 @@
 #define PANGO_TYPE_FC_FONT_MAP	(pango_fc_font_map_get_type ())
 
 typedef struct _PangoFcFontMap PangoFcFontMap;
-typedef PangoFcDecoder *(*PangoFcDecoderFindFunc) (FcPattern *, gpointer);
+typedef PangoFcDecoder *(*PangoFcDecoderFindFunc) (FcPattern * pattern,
+						   gpointer user_data);
 typedef struct _PangoFcFontMapClass PangoFcFontMapClass;
 extern PangoFontDescription
     *pango_fc_font_description_from_pattern(FcPattern * pattern,

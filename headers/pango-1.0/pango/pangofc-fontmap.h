@@ -23,8 +23,8 @@ extern "C" {
 
     typedef struct _PangoFcFontMap PangoFcFontMap;
 
-    typedef PangoFcDecoder *(*PangoFcDecoderFindFunc) (FcPattern *,
-						       gpointer);
+    typedef PangoFcDecoder *(*PangoFcDecoderFindFunc) (FcPattern * pattern,
+						       gpointer user_data);
 
     typedef struct _PangoFcFontMapClass PangoFcFontMapClass;
 
@@ -42,6 +42,14 @@ extern "C" {
 							GDestroyNotify
 							dnotify);
     extern GType pango_fc_font_map_get_type(void);
+#if __LSB_VERSION__ >= 50
+    extern void pango_fc_font_map_cache_clear(PangoFcFontMap * fcfontmap);
+    extern PangoFcDecoder *pango_fc_font_map_find_decoder(PangoFcFontMap *
+							  fcfontmap,
+							  FcPattern *
+							  pattern);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

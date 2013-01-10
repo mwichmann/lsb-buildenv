@@ -5,6 +5,8 @@ void pango_fc_font_description_from_pattern() {} ;
 void pango_fc_font_get_type() {} ;
 void pango_fc_font_lock_face() {} ;
 void pango_fc_font_map_add_decoder_find_func() {} ;
+void pango_fc_font_map_cache_clear() {} ;
+void pango_fc_font_map_find_decoder() {} ;
 void pango_fc_font_map_get_type() {} ;
 void pango_fc_font_unlock_face() {} ;
 void pango_ft2_font_map_create_context() {} ;
