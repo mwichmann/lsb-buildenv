@@ -784,7 +784,7 @@ extern "C" {
     extern int curs_set(int);
     extern WINDOW *curscr;
 #undef curses_version
-    extern curses_version(void);
+    extern const char *curses_version(void);
     extern int def_prog_mode(void);
     extern int def_shell_mode(void);
     extern int define_key(const char *, int);
