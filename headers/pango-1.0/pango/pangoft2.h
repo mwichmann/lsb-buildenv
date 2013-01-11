@@ -39,6 +39,10 @@ extern "C" {
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_FT2_FONT_MAP))
 #define PANGO_TYPE_FC_FONT	(pango_fc_font_get_type ())
 #define PANGO_TYPE_FT2_FONT_MAP	(pango_ft2_font_map_get_type ())
+#if __LSB_VERSION__ >= 50
+#define PANGO_RENDER_TYPE_FT2	"PangoRenderFT2"
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
     typedef struct _PangoFT2FontMap PangoFT2FontMap;

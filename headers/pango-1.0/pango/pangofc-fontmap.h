@@ -19,6 +19,12 @@ extern "C" {
 #define PANGO_IS_FC_FONT_MAP(object)	 \
 	(G_TYPE_CHECK_INSTANCE_TYPE ((object), PANGO_TYPE_FC_FONT_MAP))
 #define PANGO_TYPE_FC_FONT_MAP	(pango_fc_font_map_get_type ())
+#if __LSB_VERSION__ >= 50
+#define PANGO_FC_GRAVITY	"pangogravity"
+#define PANGO_FC_PRGNAME	"pangoprgname"
+#define PANGO_FC_VERSION	"pangoversion"
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
     typedef struct _PangoFcFontMap PangoFcFontMap;

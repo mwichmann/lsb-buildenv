@@ -366,6 +366,7 @@ libxslt/xsltconfig.h
 libxslt/xsltexports.h
 libxslt/xsltlocale.h
 libxslt/xsltutils.h
+pango-1.0/pango/pango-bidi-type.h
 pango-1.0/pango/pango-utils.h
 pango-1.0/pango/pango.h
 pango-1.0/pango/pangocairo.h

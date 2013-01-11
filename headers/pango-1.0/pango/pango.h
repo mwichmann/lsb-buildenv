@@ -4,6 +4,7 @@
 
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
+#include <pango-1.0/pango/pango-bidi-type.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -126,6 +127,29 @@ extern "C" {
 #define PANGO_GLYPH_UNKNOWN_FLAG	((PangoGlyph)0x10000000)
 #endif
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+#define PANGO_UNITS_ROUND(d)	(((d) + (PANGO_SCALE >> 1)) & ~(PANGO_SCALE - 1))
+#define PANGO_PIXELS_CEIL(d)	(((int)(d) + 1023) >> 10)
+#define PANGO_PIXELS_FLOOR(d)	(((int)(d)) >> 10)
+#define PANGO_GRAVITY_IS_VERTICAL(gravity)	((gravity) == PANGO_GRAVITY_EAST || (gravity) == PANGO_GRAVITY_WEST)
+#define PANGO_GLYPH_EMPTY	((PangoGlyph)0x0FFFFFFF)
+#define PANGO_GLYPH_INVALID_INPUT	((PangoGlyph)0xFFFFFFFF)
+#define PANGO_ANALYSIS_FLAG_CENTERED_BASELINE	(1 << 0)
+#define PANGO_TYPE_BIDI_TYPE	(pango_bidi_type_get_type())
+#define PANGO_TYPE_GLYPH_ITEM	(pango_glyph_item_get_type ())
+#define PANGO_TYPE_GLYPH_ITEM_ITER	(pango_glyph_item_iter_get_type ())
+#define PANGO_TYPE_GRAVITY	(pango_gravity_get_type())
+#define PANGO_TYPE_GRAVITY_HINT	(pango_gravity_hint_get_type())
+#define PANGO_TYPE_ITEM	(pango_item_get_type ())
+#define PANGO_TYPE_LAYOUT_LINE	(pango_layout_line_get_type ())
+#define PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING	0
+#define PANGO_VERSION_MAJOR	1
+#define PANGO_VERSION_MICRO	1
+#define PANGO_VERSION_STRING	"1.30.1"
+#define PANGO_VERSION_MINOR	30
+#define PANGO_ATTR_INDEX_TO_TEXT_END	G_MAXUINT
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
@@ -411,6 +435,39 @@ extern "C" {
 
     typedef struct _PangoLayoutClass PangoLayoutClass;
 
+#if __LSB_VERSION__ >= 50
+    typedef enum {
+	PANGO_GRAVITY_SOUTH,
+	PANGO_GRAVITY_EAST,
+	PANGO_GRAVITY_NORTH,
+	PANGO_GRAVITY_WEST,
+	PANGO_GRAVITY_AUTO
+    } PangoGravity;
+
+    typedef enum {
+	PANGO_GRAVITY_HINT_NATURAL,
+	PANGO_GRAVITY_HINT_STRONG,
+	PANGO_GRAVITY_HINT_LINE
+    } PangoGravityHint;
+
+    typedef struct _PangoGlyphItemIter PangoGlyphItemIter;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
+#if __LSB_VERSION__ >= 50
+    struct _PangoGlyphItemIter {
+	PangoGlyphItem *glyph_item;
+	const gchar *text;
+	int start_glyph;
+	int start_index;
+	int start_char;
+	int end_glyph;
+	int end_index;
+	int end_char;
+    };
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
     struct _PangoAttribute {
 	const PangoAttrClass *klass;
 	guint start_index;
@@ -436,6 +493,10 @@ extern "C" {
 	guint is_sentence_start:1;
 	guint is_sentence_end:1;
 	guint backspace_deletes_character:1;
+#if __LSB_VERSION__ >= 50
+	unsigned int is_expandable_space:1;
+	unsigned int is_word_boundary:1;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _PangoColor {
@@ -1271,6 +1332,141 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern PangoFontMap *pango_font_get_font_map(PangoFont * font);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern PangoAttribute *pango_attr_gravity_hint_new(PangoGravityHint
+						       hint);
+    extern PangoAttribute *pango_attr_gravity_new(PangoGravity gravity);
+    extern const char *pango_attr_type_get_name(PangoAttrType type);
+    extern void pango_attribute_init(PangoAttribute * attr,
+				     const PangoAttrClass * klass);
+    extern GType pango_bidi_type_get_type(void);
+    extern gchar *pango_color_to_string(const PangoColor * color);
+    extern PangoGravity pango_context_get_base_gravity(PangoContext *
+						       context);
+    extern PangoGravity pango_context_get_gravity(PangoContext * context);
+    extern PangoGravityHint pango_context_get_gravity_hint(PangoContext *
+							   context);
+    extern PangoContext *pango_context_new(void);
+    extern void pango_context_set_base_gravity(PangoContext * context,
+					       PangoGravity gravity);
+    extern void pango_context_set_font_map(PangoContext * context,
+					   PangoFontMap * font_map);
+    extern void pango_context_set_gravity_hint(PangoContext * context,
+					       PangoGravityHint hint);
+    extern PangoCoverage *pango_coverage_copy(PangoCoverage * coverage);
+    extern void pango_extents_to_pixels(PangoRectangle * inclusive,
+					PangoRectangle * nearest);
+    extern PangoFontDescription
+	*pango_font_describe_with_absolute_size(PangoFont * font);
+    extern PangoGravity pango_font_description_get_gravity(const
+							   PangoFontDescription
+							   * desc);
+    extern void pango_font_description_set_gravity(PangoFontDescription *
+						   desc,
+						   PangoGravity gravity);
+    extern gboolean pango_font_face_is_synthesized(PangoFontFace * face);
+    extern PangoContext *pango_font_map_create_context(PangoFontMap *
+						       fontmap);
+    extern PangoGlyphItem *pango_glyph_item_copy(PangoGlyphItem * orig);
+    extern void pango_glyph_item_get_logical_widths(PangoGlyphItem *
+						    glyph_item,
+						    const char *text,
+						    int *logical_widths);
+    extern GType pango_glyph_item_get_type(void);
+    extern PangoGlyphItemIter
+	*pango_glyph_item_iter_copy(PangoGlyphItemIter * orig);
+    extern void pango_glyph_item_iter_free(PangoGlyphItemIter * iter);
+    extern GType pango_glyph_item_iter_get_type(void);
+    extern gboolean pango_glyph_item_iter_init_end(PangoGlyphItemIter *
+						   iter,
+						   PangoGlyphItem *
+						   glyph_item,
+						   const char *text);
+    extern gboolean pango_glyph_item_iter_init_start(PangoGlyphItemIter *
+						     iter,
+						     PangoGlyphItem *
+						     glyph_item,
+						     const char *text);
+    extern gboolean pango_glyph_item_iter_next_cluster(PangoGlyphItemIter *
+						       iter);
+    extern gboolean pango_glyph_item_iter_prev_cluster(PangoGlyphItemIter *
+						       iter);
+    extern int pango_glyph_string_get_width(PangoGlyphString * glyphs);
+    extern PangoGravity pango_gravity_get_for_matrix(const PangoMatrix *
+						     matrix);
+    extern PangoGravity pango_gravity_get_for_script(PangoScript script,
+						     PangoGravity
+						     base_gravity,
+						     PangoGravityHint
+						     hint);
+    extern PangoGravity pango_gravity_get_for_script_and_width(PangoScript
+							       script,
+							       gboolean
+							       wide,
+							       PangoGravity
+							       base_gravity,
+							       PangoGravityHint
+							       hint);
+    extern GType pango_gravity_get_type(void);
+    extern GType pango_gravity_hint_get_type(void);
+    extern double pango_gravity_to_rotation(PangoGravity gravity);
+    extern GType pango_item_get_type(void);
+    extern PangoLanguage *pango_language_get_default(void);
+    extern const PangoScript *pango_language_get_scripts(PangoLanguage *
+							 language,
+							 int *num_scripts);
+#undef pango_language_to_string
+    extern const char *pango_language_to_string(PangoLanguage * language);
+    extern int pango_layout_get_baseline(PangoLayout * layout);
+    extern gint pango_layout_get_character_count(PangoLayout * layout);
+    extern int pango_layout_get_height(PangoLayout * layout);
+    extern PangoLayoutLine *pango_layout_get_line_readonly(PangoLayout *
+							   layout,
+							   int line);
+    extern GSList *pango_layout_get_lines_readonly(PangoLayout * layout);
+    extern const PangoLogAttr
+	*pango_layout_get_log_attrs_readonly(PangoLayout * layout,
+					     gint * n_attrs);
+    extern int pango_layout_get_unknown_glyphs_count(PangoLayout * layout);
+    extern void pango_layout_index_to_line_x(PangoLayout * layout,
+					     int index_, gboolean trailing,
+					     int *line, int *x_pos);
+    extern gboolean pango_layout_is_ellipsized(PangoLayout * layout);
+    extern gboolean pango_layout_is_wrapped(PangoLayout * layout);
+    extern PangoLayoutIter *pango_layout_iter_copy(PangoLayoutIter * iter);
+    extern PangoLayout *pango_layout_iter_get_layout(PangoLayoutIter *
+						     iter);
+    extern PangoLayoutLine
+	*pango_layout_iter_get_line_readonly(PangoLayoutIter * iter);
+    extern PangoLayoutRun
+	*pango_layout_iter_get_run_readonly(PangoLayoutIter * iter);
+    extern GType pango_layout_line_get_type(void);
+    extern void pango_layout_set_height(PangoLayout * layout, int height);
+    extern double pango_matrix_get_font_scale_factor(const PangoMatrix *
+						     matrix);
+    extern void pango_matrix_transform_distance(const PangoMatrix * matrix,
+						double *dx, double *dy);
+    extern void pango_matrix_transform_pixel_rectangle(const PangoMatrix *
+						       matrix,
+						       PangoRectangle *
+						       rect);
+    extern void pango_matrix_transform_point(const PangoMatrix * matrix,
+					     double *x, double *y);
+    extern void pango_matrix_transform_rectangle(const PangoMatrix *
+						 matrix,
+						 PangoRectangle * rect);
+    extern void pango_renderer_draw_glyph_item(PangoRenderer * renderer,
+					       const char *text,
+					       PangoGlyphItem * glyph_item,
+					       int x, int y);
+    extern PangoLayout *pango_renderer_get_layout(PangoRenderer *
+						  renderer);
+    extern PangoLayoutLine *pango_renderer_get_layout_line(PangoRenderer *
+							   renderer);
+    extern int pango_units_from_double(double d);
+    extern double pango_units_to_double(int i);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

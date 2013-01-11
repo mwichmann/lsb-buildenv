@@ -62,7 +62,10 @@
 #define PANGO_RENDERER_GET_CLASS(obj)	 \
 	(G_TYPE_INSTANCE_GET_CLASS ((obj), PANGO_TYPE_RENDERER, \
 	PangoRendererClass))
+#define PANGO_UNITS_ROUND(d)	(((d) + (PANGO_SCALE >> 1)) & ~(PANGO_SCALE - 1))
+#define PANGO_PIXELS_CEIL(d)	(((int)(d) + 1023) >> 10)
 #define PANGO_PIXELS(d)	(((int)(d) + 512) >> 10)
+#define PANGO_PIXELS_FLOOR(d)	(((int)(d)) >> 10)
 #define pango_language_to_string(language)	((const char *)language)
 #define PANGO_SCALE_XX_SMALL	((double)0.5787037037037)
 #define PANGO_SCALE_X_SMALL	((double)0.6444444444444)
@@ -71,16 +74,23 @@
 #define PANGO_SCALE_LARGE	((double)1.2)
 #define PANGO_SCALE_X_LARGE	((double)1.4399999999999)
 #define PANGO_SCALE_XX_LARGE	((double)1.728)
+#define PANGO_GRAVITY_IS_VERTICAL(gravity)	((gravity) == PANGO_GRAVITY_EAST || (gravity) == PANGO_GRAVITY_WEST)
 #if defined(PANGO_ENABLE_ENGINE) || defined(PANGO_ENABLE_BACKEND)
 #define PANGO_GET_UNKNOWN_GLYPH(wc)	((PangoGlyph)(wc)|PANGO_GLYPH_UNKNOWN_FLAG)
+#endif
+#define PANGO_GLYPH_EMPTY	((PangoGlyph)0x0FFFFFFF)
+#if defined(PANGO_ENABLE_ENGINE) || defined(PANGO_ENABLE_BACKEND)
 #define PANGO_GLYPH_UNKNOWN_FLAG	((PangoGlyph)0x10000000)
 #endif
+#define PANGO_GLYPH_INVALID_INPUT	((PangoGlyph)0xFFFFFFFF)
 #define PANGO_RBEARING(rect)	((rect).x + (rect).width)
 #define PANGO_LBEARING(rect)	((rect).x)
 #define PANGO_DESCENT(rect)	((rect).y + (rect).height)
 #define PANGO_ASCENT(rect)	(-(rect).y)
+#define PANGO_ANALYSIS_FLAG_CENTERED_BASELINE	(1 << 0)
 #define PANGO_TYPE_ALIGNMENT	(pango_alignment_get_type())
 #define PANGO_TYPE_ATTR_TYPE	(pango_attr_type_get_type())
+#define PANGO_TYPE_BIDI_TYPE	(pango_bidi_type_get_type())
 #define PANGO_TYPE_CONTEXT	(pango_context_get_type ())
 #define PANGO_TYPE_COVERAGE_LEVEL	(pango_coverage_level_get_type())
 #define PANGO_TYPE_DIRECTION	(pango_direction_get_type())
@@ -93,10 +103,16 @@
 #define PANGO_TYPE_FONT_MAP	(pango_font_map_get_type ())
 #define PANGO_TYPE_FONT_MASK	(pango_font_mask_get_type())
 #define PANGO_TYPE_FONT_METRICS	(pango_font_metrics_get_type ())
+#define PANGO_TYPE_GLYPH_ITEM	(pango_glyph_item_get_type ())
+#define PANGO_TYPE_GLYPH_ITEM_ITER	(pango_glyph_item_iter_get_type ())
 #define PANGO_TYPE_GLYPH_STRING	(pango_glyph_string_get_type ())
+#define PANGO_TYPE_GRAVITY	(pango_gravity_get_type())
+#define PANGO_TYPE_GRAVITY_HINT	(pango_gravity_hint_get_type())
+#define PANGO_TYPE_ITEM	(pango_item_get_type ())
 #define PANGO_TYPE_LANGUAGE	(pango_language_get_type ())
 #define PANGO_TYPE_LAYOUT	(pango_layout_get_type ())
 #define PANGO_TYPE_LAYOUT_ITER	(pango_layout_iter_get_type ())
+#define PANGO_TYPE_LAYOUT_LINE	(pango_layout_line_get_type ())
 #define PANGO_TYPE_MATRIX	(pango_matrix_get_type ())
 #define PANGO_TYPE_RENDERER	(pango_renderer_get_type())
 #define PANGO_TYPE_RENDER_PART	(pango_render_part_get_type())
@@ -109,7 +125,13 @@
 #define PANGO_TYPE_VARIANT	(pango_variant_get_type())
 #define PANGO_TYPE_WEIGHT	(pango_weight_get_type())
 #define PANGO_TYPE_WRAP_MODE	(pango_wrap_mode_get_type())
+#define PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING	0
+#define PANGO_VERSION_MAJOR	1
+#define PANGO_VERSION_MICRO	1
+#define PANGO_VERSION_STRING	"1.30.1"
 #define PANGO_SCALE	1024
+#define PANGO_VERSION_MINOR	30
+#define PANGO_ATTR_INDEX_TO_TEXT_END	G_MAXUINT
 #define PANGO_TYPE_ATTR_LIST	pango_attr_list_get_type ()
 #define PANGO_TYPE_COLOR	pango_color_get_type ()
 #define PANGO_MATRIX_INIT	{ 1., 0., 0., 1., 0., 0. }
@@ -229,6 +251,8 @@ typedef struct _PangoLogAttr {
     guint is_sentence_start:1;
     guint is_sentence_end:1;
     guint backspace_deletes_character:1;
+    unsigned int is_expandable_space:1;
+    unsigned int is_word_boundary:1;
 } PangoLogAttr;
 typedef struct _PangoColor {
     guint16 red;
@@ -460,6 +484,28 @@ typedef struct _PangoAttrSize {
     guint absolute:1;
 } PangoAttrSize;
 typedef struct _PangoLayoutClass PangoLayoutClass;
+typedef enum {
+    PANGO_GRAVITY_SOUTH,
+    PANGO_GRAVITY_EAST,
+    PANGO_GRAVITY_NORTH,
+    PANGO_GRAVITY_WEST,
+    PANGO_GRAVITY_AUTO
+} PangoGravity;
+typedef enum {
+    PANGO_GRAVITY_HINT_NATURAL,
+    PANGO_GRAVITY_HINT_STRONG,
+    PANGO_GRAVITY_HINT_LINE
+} PangoGravityHint;
+typedef struct _PangoGlyphItemIter {
+    PangoGlyphItem *glyph_item;
+    const gchar *text;
+    int start_glyph;
+    int start_index;
+    int start_char;
+    int end_glyph;
+    int end_index;
+    int end_char;
+} PangoGlyphItemIter;
 extern GType pango_alignment_get_type(void);
 extern PangoAttribute *pango_attr_background_new(guint16 red,
 						 guint16 green,
@@ -471,6 +517,8 @@ extern PangoAttribute *pango_attr_font_desc_new(const PangoFontDescription
 extern PangoAttribute *pango_attr_foreground_new(guint16 red,
 						 guint16 green,
 						 guint16 blue);
+extern PangoAttribute *pango_attr_gravity_hint_new(PangoGravityHint hint);
+extern PangoAttribute *pango_attr_gravity_new(PangoGravity gravity);
 extern PangoAttrIterator *pango_attr_iterator_copy(PangoAttrIterator *
 						   iterator);
 extern void pango_attr_iterator_destroy(PangoAttrIterator * iterator);
@@ -530,6 +578,7 @@ extern PangoAttribute *pango_attr_strikethrough_color_new(guint16 red,
 extern PangoAttribute *pango_attr_strikethrough_new(gboolean
 						    strikethrough);
 extern PangoAttribute *pango_attr_style_new(PangoStyle style);
+extern const char *pango_attr_type_get_name(PangoAttrType type);
 extern GType pango_attr_type_get_type(void);
 extern PangoAttrType pango_attr_type_register(const gchar * name);
 extern PangoAttribute *pango_attr_underline_color_new(guint16 red,
@@ -542,6 +591,9 @@ extern PangoAttribute *pango_attribute_copy(const PangoAttribute * attr);
 extern void pango_attribute_destroy(PangoAttribute * attr);
 extern gboolean pango_attribute_equal(const PangoAttribute * attr1,
 				      const PangoAttribute * attr2);
+extern void pango_attribute_init(PangoAttribute * attr,
+				 const PangoAttrClass * klass);
+extern GType pango_bidi_type_get_type(void);
 extern void pango_break(const gchar * text, gint length,
 			PangoAnalysis * analysis, PangoLogAttr * attrs,
 			int attrs_len);
@@ -549,10 +601,15 @@ extern PangoColor *pango_color_copy(const PangoColor * src);
 extern void pango_color_free(PangoColor * color);
 extern GType pango_color_get_type(void);
 extern gboolean pango_color_parse(PangoColor * color, const char *spec);
+extern gchar *pango_color_to_string(const PangoColor * color);
 extern PangoDirection pango_context_get_base_dir(PangoContext * context);
+extern PangoGravity pango_context_get_base_gravity(PangoContext * context);
 extern PangoFontDescription
     *pango_context_get_font_description(PangoContext * context);
 extern PangoFontMap *pango_context_get_font_map(PangoContext * context);
+extern PangoGravity pango_context_get_gravity(PangoContext * context);
+extern PangoGravityHint pango_context_get_gravity_hint(PangoContext *
+						       context);
 extern PangoLanguage *pango_context_get_language(PangoContext * context);
 extern const PangoMatrix *pango_context_get_matrix(PangoContext * context);
 extern PangoFontMetrics *pango_context_get_metrics(PangoContext * context,
@@ -572,15 +629,23 @@ extern PangoFontset *pango_context_load_fontset(PangoContext * context,
 						const PangoFontDescription
 						* desc,
 						PangoLanguage * language);
+extern PangoContext *pango_context_new(void);
 extern void pango_context_set_base_dir(PangoContext * context,
 				       PangoDirection direction);
+extern void pango_context_set_base_gravity(PangoContext * context,
+					   PangoGravity gravity);
 extern void pango_context_set_font_description(PangoContext * context,
 					       const PangoFontDescription *
 					       desc);
+extern void pango_context_set_font_map(PangoContext * context,
+				       PangoFontMap * font_map);
+extern void pango_context_set_gravity_hint(PangoContext * context,
+					   PangoGravityHint hint);
 extern void pango_context_set_language(PangoContext * context,
 				       PangoLanguage * language);
 extern void pango_context_set_matrix(PangoContext * context,
 				     const PangoMatrix * matrix);
+extern PangoCoverage *pango_coverage_copy(PangoCoverage * coverage);
 extern PangoCoverage *pango_coverage_from_bytes(guchar * bytes,
 						int n_bytes);
 extern PangoCoverageLevel pango_coverage_get(PangoCoverage * coverage,
@@ -597,11 +662,15 @@ extern void pango_coverage_to_bytes(PangoCoverage * coverage,
 extern void pango_coverage_unref(PangoCoverage * coverage);
 extern GType pango_direction_get_type(void);
 extern GType pango_ellipsize_mode_get_type(void);
+extern void pango_extents_to_pixels(PangoRectangle * inclusive,
+				    PangoRectangle * nearest);
 extern PangoDirection pango_find_base_dir(const gchar * text, gint length);
 extern void pango_find_paragraph_boundary(const gchar * text, gint length,
 					  gint * paragraph_delimiter_index,
 					  gint * next_paragraph_start);
 extern PangoFontDescription *pango_font_describe(PangoFont * font);
+extern PangoFontDescription
+    *pango_font_describe_with_absolute_size(PangoFont * font);
 extern gboolean pango_font_description_better_match(const
 						    PangoFontDescription *
 						    desc,
@@ -627,6 +696,9 @@ extern PangoFontDescription *pango_font_description_from_string(const char
 extern const char *pango_font_description_get_family(const
 						     PangoFontDescription *
 						     desc);
+extern PangoGravity pango_font_description_get_gravity(const
+						       PangoFontDescription
+						       * desc);
 extern PangoFontMask pango_font_description_get_set_fields(const
 							   PangoFontDescription
 							   * desc);
@@ -667,6 +739,8 @@ extern void pango_font_description_set_family(PangoFontDescription * desc,
 extern void pango_font_description_set_family_static(PangoFontDescription *
 						     desc,
 						     const char *family);
+extern void pango_font_description_set_gravity(PangoFontDescription * desc,
+					       PangoGravity gravity);
 extern void pango_font_description_set_size(PangoFontDescription * desc,
 					    gint size);
 extern void pango_font_description_set_stretch(PangoFontDescription * desc,
@@ -690,6 +764,7 @@ extern PangoFontDescription *pango_font_face_describe(PangoFontFace *
 						      face);
 extern const char *pango_font_face_get_face_name(PangoFontFace * face);
 extern GType pango_font_face_get_type(void);
+extern gboolean pango_font_face_is_synthesized(PangoFontFace * face);
 extern void pango_font_face_list_sizes(PangoFontFace * face, int **sizes,
 				       int *n_sizes);
 extern const char *pango_font_family_get_name(PangoFontFamily * family);
@@ -711,6 +786,7 @@ extern void pango_font_get_glyph_extents(PangoFont * font,
 extern PangoFontMetrics *pango_font_get_metrics(PangoFont * font,
 						PangoLanguage * language);
 extern GType pango_font_get_type(void);
+extern PangoContext *pango_font_map_create_context(PangoFontMap * fontmap);
 extern GType pango_font_map_get_type(void);
 extern void pango_font_map_list_families(PangoFontMap * fontmap,
 					 PangoFontFamily * **families,
@@ -754,7 +830,28 @@ extern void pango_get_log_attrs(const char *text, int length, int level,
 extern GSList *pango_glyph_item_apply_attrs(PangoGlyphItem * glyph_item,
 					    const char *text,
 					    PangoAttrList * list);
+extern PangoGlyphItem *pango_glyph_item_copy(PangoGlyphItem * orig);
 extern void pango_glyph_item_free(PangoGlyphItem * glyph_item);
+extern void pango_glyph_item_get_logical_widths(PangoGlyphItem *
+						glyph_item,
+						const char *text,
+						int *logical_widths);
+extern GType pango_glyph_item_get_type(void);
+extern PangoGlyphItemIter *pango_glyph_item_iter_copy(PangoGlyphItemIter *
+						      orig);
+extern void pango_glyph_item_iter_free(PangoGlyphItemIter * iter);
+extern GType pango_glyph_item_iter_get_type(void);
+extern gboolean pango_glyph_item_iter_init_end(PangoGlyphItemIter * iter,
+					       PangoGlyphItem * glyph_item,
+					       const char *text);
+extern gboolean pango_glyph_item_iter_init_start(PangoGlyphItemIter * iter,
+						 PangoGlyphItem *
+						 glyph_item,
+						 const char *text);
+extern gboolean pango_glyph_item_iter_next_cluster(PangoGlyphItemIter *
+						   iter);
+extern gboolean pango_glyph_item_iter_prev_cluster(PangoGlyphItemIter *
+						   iter);
 extern void pango_glyph_item_letter_space(PangoGlyphItem * glyph_item,
 					  const char *text,
 					  PangoLogAttr * log_attrs,
@@ -781,6 +878,7 @@ extern void pango_glyph_string_get_logical_widths(PangoGlyphString *
 						  int embedding_level,
 						  int *logical_widths);
 extern GType pango_glyph_string_get_type(void);
+extern int pango_glyph_string_get_width(PangoGlyphString * glyphs);
 extern void pango_glyph_string_index_to_x(PangoGlyphString * glyphs,
 					  char *text, int length,
 					  PangoAnalysis * analysis,
@@ -794,8 +892,24 @@ extern void pango_glyph_string_x_to_index(PangoGlyphString * glyphs,
 					  PangoAnalysis * analysis,
 					  int x_pos, int *index_,
 					  gboolean * trailing);
+extern PangoGravity pango_gravity_get_for_matrix(const PangoMatrix *
+						 matrix);
+extern PangoGravity pango_gravity_get_for_script(PangoScript script,
+						 PangoGravity base_gravity,
+						 PangoGravityHint hint);
+extern PangoGravity pango_gravity_get_for_script_and_width(PangoScript
+							   script,
+							   gboolean wide,
+							   PangoGravity
+							   base_gravity,
+							   PangoGravityHint
+							   hint);
+extern GType pango_gravity_get_type(void);
+extern GType pango_gravity_hint_get_type(void);
+extern double pango_gravity_to_rotation(PangoGravity gravity);
 extern PangoItem *pango_item_copy(PangoItem * item);
 extern void pango_item_free(PangoItem * item);
+extern GType pango_item_get_type(void);
 extern PangoItem *pango_item_new(void);
 extern PangoItem *pango_item_split(PangoItem * orig, int split_index,
 				   int split_offset);
@@ -810,16 +924,23 @@ extern GList *pango_itemize_with_base_dir(PangoContext * context,
 					  PangoAttrList * attrs,
 					  PangoAttrIterator * cached_iter);
 extern PangoLanguage *pango_language_from_string(const char *language);
+extern PangoLanguage *pango_language_get_default(void);
+extern const PangoScript *pango_language_get_scripts(PangoLanguage *
+						     language,
+						     int *num_scripts);
 extern GType pango_language_get_type(void);
 extern gboolean pango_language_includes_script(PangoLanguage * language,
 					       PangoScript script);
 extern gboolean pango_language_matches(PangoLanguage * language,
 				       const char *range_list);
+extern const char *pango_language_to_string(PangoLanguage * language);
 extern void pango_layout_context_changed(PangoLayout * layout);
 extern PangoLayout *pango_layout_copy(PangoLayout * src);
 extern PangoAlignment pango_layout_get_alignment(PangoLayout * layout);
 extern PangoAttrList *pango_layout_get_attributes(PangoLayout * layout);
 extern gboolean pango_layout_get_auto_dir(PangoLayout * layout);
+extern int pango_layout_get_baseline(PangoLayout * layout);
+extern gint pango_layout_get_character_count(PangoLayout * layout);
 extern PangoContext *pango_layout_get_context(PangoLayout * layout);
 extern void pango_layout_get_cursor_pos(PangoLayout * layout, int index_,
 					PangoRectangle * strong_pos,
@@ -830,16 +951,24 @@ extern void pango_layout_get_extents(PangoLayout * layout,
 				     PangoRectangle * logical_rect);
 extern const PangoFontDescription
     *pango_layout_get_font_description(PangoLayout * layout);
+extern int pango_layout_get_height(PangoLayout * layout);
 extern int pango_layout_get_indent(PangoLayout * layout);
 extern PangoLayoutIter *pango_layout_get_iter(PangoLayout * layout);
 extern gboolean pango_layout_get_justify(PangoLayout * layout);
 extern PangoLayoutLine *pango_layout_get_line(PangoLayout * layout,
 					      int line);
 extern int pango_layout_get_line_count(PangoLayout * layout);
+extern PangoLayoutLine *pango_layout_get_line_readonly(PangoLayout *
+						       layout, int line);
 extern GSList *pango_layout_get_lines(PangoLayout * layout);
+extern GSList *pango_layout_get_lines_readonly(PangoLayout * layout);
 extern void pango_layout_get_log_attrs(PangoLayout * layout,
 				       PangoLogAttr * *attrs,
 				       gint * n_attrs);
+extern const PangoLogAttr *pango_layout_get_log_attrs_readonly(PangoLayout
+							       * layout,
+							       gint *
+							       n_attrs);
 extern void pango_layout_get_pixel_extents(PangoLayout * layout,
 					   PangoRectangle * ink_rect,
 					   PangoRectangle * logical_rect);
@@ -853,11 +982,18 @@ extern int pango_layout_get_spacing(PangoLayout * layout);
 extern PangoTabArray *pango_layout_get_tabs(PangoLayout * layout);
 extern const char *pango_layout_get_text(PangoLayout * layout);
 extern GType pango_layout_get_type(void);
+extern int pango_layout_get_unknown_glyphs_count(PangoLayout * layout);
 extern int pango_layout_get_width(PangoLayout * layout);
 extern PangoWrapMode pango_layout_get_wrap(PangoLayout * layout);
+extern void pango_layout_index_to_line_x(PangoLayout * layout, int index_,
+					 gboolean trailing, int *line,
+					 int *x_pos);
 extern void pango_layout_index_to_pos(PangoLayout * layout, int index_,
 				      PangoRectangle * pos);
+extern gboolean pango_layout_is_ellipsized(PangoLayout * layout);
+extern gboolean pango_layout_is_wrapped(PangoLayout * layout);
 extern gboolean pango_layout_iter_at_last_line(PangoLayoutIter * iter);
+extern PangoLayoutIter *pango_layout_iter_copy(PangoLayoutIter * iter);
 extern void pango_layout_iter_free(PangoLayoutIter * iter);
 extern int pango_layout_iter_get_baseline(PangoLayoutIter * iter);
 extern void pango_layout_iter_get_char_extents(PangoLayoutIter * iter,
@@ -869,6 +1005,7 @@ extern void pango_layout_iter_get_cluster_extents(PangoLayoutIter * iter,
 						  PangoRectangle *
 						  logical_rect);
 extern int pango_layout_iter_get_index(PangoLayoutIter * iter);
+extern PangoLayout *pango_layout_iter_get_layout(PangoLayoutIter * iter);
 extern void pango_layout_iter_get_layout_extents(PangoLayoutIter * iter,
 						 PangoRectangle * ink_rect,
 						 PangoRectangle *
@@ -878,6 +1015,8 @@ extern void pango_layout_iter_get_line_extents(PangoLayoutIter * iter,
 					       PangoRectangle * ink_rect,
 					       PangoRectangle *
 					       logical_rect);
+extern PangoLayoutLine *pango_layout_iter_get_line_readonly(PangoLayoutIter
+							    * iter);
 extern void pango_layout_iter_get_line_yrange(PangoLayoutIter * iter,
 					      int *y0_, int *y1_);
 extern PangoLayoutRun *pango_layout_iter_get_run(PangoLayoutIter * iter);
@@ -885,6 +1024,8 @@ extern void pango_layout_iter_get_run_extents(PangoLayoutIter * iter,
 					      PangoRectangle * ink_rect,
 					      PangoRectangle *
 					      logical_rect);
+extern PangoLayoutRun *pango_layout_iter_get_run_readonly(PangoLayoutIter *
+							  iter);
 extern GType pango_layout_iter_get_type(void);
 extern gboolean pango_layout_iter_next_char(PangoLayoutIter * iter);
 extern gboolean pango_layout_iter_next_cluster(PangoLayoutIter * iter);
@@ -898,6 +1039,7 @@ extern void pango_layout_line_get_pixel_extents(PangoLayoutLine *
 						PangoRectangle * ink_rect,
 						PangoRectangle *
 						logical_rect);
+extern GType pango_layout_line_get_type(void);
 extern void pango_layout_line_get_x_ranges(PangoLayoutLine * line,
 					   int start_index, int end_index,
 					   int **ranges, int *n_ranges);
@@ -928,6 +1070,7 @@ extern void pango_layout_set_ellipsize(PangoLayout * layout,
 extern void pango_layout_set_font_description(PangoLayout * layout,
 					      const PangoFontDescription *
 					      desc);
+extern void pango_layout_set_height(PangoLayout * layout, int height);
 extern void pango_layout_set_indent(PangoLayout * layout, int indent);
 extern void pango_layout_set_justify(PangoLayout * layout,
 				     gboolean justify);
@@ -955,10 +1098,21 @@ extern void pango_matrix_concat(PangoMatrix * matrix,
 				const PangoMatrix * new_matrix);
 extern PangoMatrix *pango_matrix_copy(const PangoMatrix * matrix);
 extern void pango_matrix_free(PangoMatrix * matrix);
+extern double pango_matrix_get_font_scale_factor(const PangoMatrix *
+						 matrix);
 extern GType pango_matrix_get_type(void);
 extern void pango_matrix_rotate(PangoMatrix * matrix, double degrees);
 extern void pango_matrix_scale(PangoMatrix * matrix, double scale_x,
 			       double scale_y);
+extern void pango_matrix_transform_distance(const PangoMatrix * matrix,
+					    double *dx, double *dy);
+extern void pango_matrix_transform_pixel_rectangle(const PangoMatrix *
+						   matrix,
+						   PangoRectangle * rect);
+extern void pango_matrix_transform_point(const PangoMatrix * matrix,
+					 double *x, double *y);
+extern void pango_matrix_transform_rectangle(const PangoMatrix * matrix,
+					     PangoRectangle * rect);
 extern void pango_matrix_translate(PangoMatrix * matrix, double tx,
 				   double ty);
 extern gboolean pango_parse_markup(const char *markup_text, int length,
@@ -974,6 +1128,10 @@ extern void pango_renderer_draw_error_underline(PangoRenderer * renderer,
 extern void pango_renderer_draw_glyph(PangoRenderer * renderer,
 				      PangoFont * font, PangoGlyph glyph,
 				      double x, double y);
+extern void pango_renderer_draw_glyph_item(PangoRenderer * renderer,
+					   const char *text,
+					   PangoGlyphItem * glyph_item,
+					   int x, int y);
 extern void pango_renderer_draw_glyphs(PangoRenderer * renderer,
 				       PangoFont * font,
 				       PangoGlyphString * glyphs, int x,
@@ -993,6 +1151,9 @@ extern void pango_renderer_draw_trapezoid(PangoRenderer * renderer,
 					  double x22);
 extern PangoColor *pango_renderer_get_color(PangoRenderer * renderer,
 					    PangoRenderPart part);
+extern PangoLayout *pango_renderer_get_layout(PangoRenderer * renderer);
+extern PangoLayoutLine *pango_renderer_get_layout_line(PangoRenderer *
+						       renderer);
 extern const PangoMatrix *pango_renderer_get_matrix(PangoRenderer *
 						    renderer);
 extern GType pango_renderer_get_type(void);
@@ -1052,6 +1213,8 @@ extern void pango_tab_array_set_tab(PangoTabArray * tab_array,
 				    gint location);
 extern GType pango_underline_get_type(void);
 extern PangoDirection pango_unichar_direction(gunichar ch);
+extern int pango_units_from_double(double d);
+extern double pango_units_to_double(int i);
 extern GType pango_variant_get_type(void);
 extern GType pango_weight_get_type(void);
 extern GType pango_wrap_mode_get_type(void);

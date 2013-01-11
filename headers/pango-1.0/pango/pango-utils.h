@@ -4,11 +4,20 @@
 
 #include <stdio.h>
 #include <glib-2.0/glib.h>
+#include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+#if __LSB_VERSION__ >= 50
+#define PANGO_VERSION_ENCODE(major,minor,micro)	( ((major) * 10000) + ((minor) * 100) + ((micro) * 1))
+#define PANGO_VERSION_CHECK(major,minor,micro)	(PANGO_VERSION >= PANGO_VERSION_ENCODE(major,minor,micro))
+#define PANGO_VERSION	PANGO_VERSION_ENCODE( PANGO_VERSION_MAJOR, PANGO_VERSION_MINOR, PANGO_VERSION_MICRO)
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
 
@@ -41,6 +50,19 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern gboolean pango_is_zero_width(gunichar ch);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern gboolean pango_parse_enum(GType type, const char *str,
+				     int *value, gboolean warn,
+				     char **possible_values);
+    extern void pango_quantize_line_geometry(int *thickness,
+					     int *position);
+    extern int pango_version(void);
+    extern const char *pango_version_check(int required_major,
+					   int required_minor,
+					   int required_micro);
+    extern const char *pango_version_string(void);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

@@ -746,6 +746,7 @@ BASE/include/libxslt/xsltconfig.h
 BASE/include/libxslt/xsltexports.h
 BASE/include/libxslt/xsltlocale.h
 BASE/include/libxslt/xsltutils.h
+BASE/include/pango-1.0/pango/pango-bidi-type.h
 BASE/include/pango-1.0/pango/pango-utils.h
 BASE/include/pango-1.0/pango/pango.h
 BASE/include/pango-1.0/pango/pangocairo.h
