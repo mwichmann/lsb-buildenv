@@ -308,7 +308,7 @@ __asm__(".globl _XtInheritTranslations; .pushsection .data; .type _XtInheritTran
 __asm__(".globl applicationShellWidgetClass; .pushsection .data; .type applicationShellWidgetClass,@object; .size applicationShellWidgetClass, 4; applicationShellWidgetClass: .long 0; .popsection");
 __asm__(".globl compositeClassRec; .pushsection .data; .type compositeClassRec,@object; .size compositeClassRec, 136; compositeClassRec: .long 0; .popsection");
 __asm__(".globl compositeWidgetClass; .pushsection .data; .type compositeWidgetClass,@object; .size compositeWidgetClass, 4; compositeWidgetClass: .long 0; .popsection");
-__asm__(".globl constraintClassRec; .pushsection .data; .type constraintClassRec,@object; .size constraintClassRec, 164; constraintClassRec: .long 0; .popsection");
+__asm__(".globl constraintClassRec; .pushsection .data; .type constraintClassRec,@object; .size constraintClassRec, 4; constraintClassRec: .long 0; .popsection");
 __asm__(".globl constraintWidgetClass; .pushsection .data; .type constraintWidgetClass,@object; .size constraintWidgetClass, 4; constraintWidgetClass: .long 0; .popsection");
 __asm__(".globl coreWidgetClass; .pushsection .data; .type coreWidgetClass,@object; .size coreWidgetClass, 4; coreWidgetClass: .long 0; .popsection");
 __asm__(".globl objectClass; .pushsection .data; .type objectClass,@object; .size objectClass, 4; objectClass: .long 0; .popsection");
