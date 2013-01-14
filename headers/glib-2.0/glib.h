@@ -2799,18 +2799,17 @@ extern "C" {
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 50 */
     ;
-    extern gboolean g_atomic_int_compare_and_exchange(gint *
-						      volatile atomic,
-						      gint oldval,
+    extern gboolean g_atomic_int_compare_and_exchange(volatile gint *
+						      atomic, gint oldval,
 						      gint newval);
-    extern gint g_atomic_int_exchange_and_add(gint * volatile atomic,
+    extern gint g_atomic_int_exchange_and_add(volatile gint * atomic,
 					      gint val)
 #if __LSB_VERSION__ >= 50
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 50 */
     ;
-    extern gboolean g_atomic_pointer_compare_and_exchange(gpointer *
-							  volatile atomic,
+    extern gboolean g_atomic_pointer_compare_and_exchange(volatile void
+							  *atomic,
 							  gpointer oldval,
 							  gpointer newval);
     extern gint g_bit_nth_lsf(gulong mask, gint nth_bit);
@@ -4412,7 +4411,7 @@ extern "C" {
     extern const guint glib_micro_version;
     extern const guint glib_minor_version;
 #if __LSB_VERSION__ < 50
-    extern void g_atomic_int_add(gint * volatile atomic, gint val);
+    extern void g_atomic_int_add(volatile gint * atomic, gint val);
     extern size_t g_iconv(GIConv converter, gchar * *inbuf,
 			  gsize * inbytes_left, gchar * *outbuf,
 			  gsize * outbytes_left);
@@ -4756,7 +4755,7 @@ extern "C" {
     /* g_async_queue_unref_and_unlock is deprecated and should not be used in newly-written code. Since 2.8, reference counting is done atomically so g_async_queue_unref can be used regardless of the queue's lock. */
     extern void g_async_queue_unref_and_unlock(GAsyncQueue *
 					       queue) LSB_DECL_DEPRECATED;
-    extern gint g_atomic_int_add(gint * volatile atomic, gint val);
+    extern gint g_atomic_int_add(volatile gint * atomic, gint val);
     extern guint g_atomic_int_and(volatile guint * atomic, guint val);
 #undef g_atomic_int_dec_and_test
     extern gboolean g_atomic_int_dec_and_test(volatile int *atomic);
