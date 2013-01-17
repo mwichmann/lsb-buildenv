@@ -469,6 +469,9 @@ BASE/include/X11/keysym.h
 BASE/include/X11/keysymdef.h
 BASE/include/atk-1.0/atk/atk-enum-types.h
 BASE/include/atk-1.0/atk/atk.h
+BASE/include/atk-1.0/atk/atkplug.h
+BASE/include/atk-1.0/atk/atksocket.h
+BASE/include/atk-1.0/atk/atkwindow.h
 BASE/include/cairo/cairo-features.h
 BASE/include/cairo/cairo-ft.h
 BASE/include/cairo/cairo-pdf.h

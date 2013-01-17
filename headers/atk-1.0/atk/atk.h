@@ -5,6 +5,14 @@
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -265,6 +273,71 @@ extern "C" {
 #define ATK_TYPE_VALUE	(atk_value_get_type ())
 #define ATK_IS_TEXT(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_TEXT)
 #define ATK_IS_UTIL(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_UTIL)
+#if __LSB_VERSION__ >= 50
+#define _ATK_DEFINE_TYPE_EXTENDED_END()	 \
+      /* following custom code */     \
+      } \
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id); \
+    } \
+  return g_define_type_id__volatile; \
+}				/* closes type_name##_get_type() */
+#define _ATK_DEFINE_TYPE_EXTENDED_BEGIN(TypeName,type_name,TYPE,flags)	 \
+\
+static void     type_name##_init              (TypeName        *self); \
+static void     type_name##_class_init        (TypeName##Class *klass); \
+static gpointer type_name##_parent_class = NULL; \
+static void     type_name##_class_intern_init (gpointer klass) \
+{ \
+  type_name##_parent_class = g_type_class_peek_parent (klass); \
+  type_name##_class_init ((TypeName##Class*) klass); \
+} \
+\
+GType \
+type_name##_get_type (void) \
+{ \
+  static volatile gsize g_define_type_id__volatile = 0; \
+  if (g_once_init_enter (&g_define_type_id__volatile))  \
+    { \
+      AtkObjectFactory *factory; \
+      GType derived_type; \
+      GTypeQuery query; \
+      GType derived_atk_type; \
+      GType g_define_type_id; \
+\
+      /* Figure out the size of the class and instance we are deriving from */ \
+      derived_type = g_type_parent (TYPE); \
+      factory = atk_registry_get_factory (atk_get_default_registry (), \
+                                          derived_type); \
+      derived_atk_type = atk_object_factory_get_accessible_type (factory); \
+      g_type_query (derived_atk_type, &query); \
+\
+      g_define_type_id = \
+        g_type_register_static_simple (derived_atk_type, \
+                                       g_intern_static_string (#TypeName), \
+                                       query.class_size, \
+                                       (GClassInitFunc) type_name##_class_intern_init, \
+                                       query.instance_size, \
+                                       (GInstanceInitFunc) type_name##_init, \
+                                       (GTypeFlags) flags); \
+      {				/* custom code follows */
+#define ATK_TYPE_HYPERLINK_IMPL	(atk_hyperlink_impl_get_type ())
+#define ATK_TYPE_MISC	(atk_misc_get_type ())
+#define ATK_MISC_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), ATK_TYPE_MISC, AtkMiscClass))
+#define ATK_IS_MISC_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), ATK_TYPE_MISC))
+#define ATK_MISC_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), ATK_TYPE_MISC, AtkMiscClass))
+#define ATK_DEFINE_TYPE(TN,t_n,T_P)	ATK_DEFINE_TYPE_EXTENDED (TN, t_n, T_P, 0, {})
+#define ATK_DEFINE_ABSTRACT_TYPE(TN,t_n,T_P)	ATK_DEFINE_TYPE_EXTENDED (TN, t_n, T_P, G_TYPE_FLAG_ABSTRACT, {})
+#define ATK_VAR	extern
+#define ATK_HYPERLINK_IMPL(obj)	G_TYPE_CHECK_INSTANCE_CAST ((obj), ATK_TYPE_HYPERLINK_IMPL, AtkHyperlinkImpl)
+#define ATK_MISC(obj)	G_TYPE_CHECK_INSTANCE_CAST ((obj), ATK_TYPE_MISC, AtkMisc)
+#define ATK_IS_HYPERLINK_IMPL(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_HYPERLINK_IMPL)
+#define ATK_IS_MISC(obj)	G_TYPE_CHECK_INSTANCE_TYPE ((obj), ATK_TYPE_MISC)
+#define ATK_HYPERLINK_IMPL_GET_IFACE(obj)	G_TYPE_INSTANCE_GET_INTERFACE ((obj), ATK_TYPE_HYPERLINK_IMPL, AtkHyperlinkImplIface)
+#define ATK_DEFINE_TYPE_WITH_CODE(TN,t_n,T_P,_C_)	_ATK_DEFINE_TYPE_EXTENDED_BEGIN (TN, t_n, T_P, 0) {_C_;} _ATK_DEFINE_TYPE_EXTENDED_END()
+#define ATK_DEFINE_ABSTRACT_TYPE_WITH_CODE(TN,t_n,T_P,_C_)	_ATK_DEFINE_TYPE_EXTENDED_BEGIN (TN, t_n, T_P, G_TYPE_FLAG_ABSTRACT) {_C_;} _ATK_DEFINE_TYPE_EXTENDED_END()
+#define ATK_DEFINE_TYPE_EXTENDED(TN,t_n,T_P,_f_,_C_)	_ATK_DEFINE_TYPE_EXTENDED_BEGIN (TN, t_n, T_P, _f_) {_C_;} _ATK_DEFINE_TYPE_EXTENDED_END()
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
     typedef struct _AtkText AtkText;
@@ -349,7 +422,38 @@ extern "C" {
 	ATK_ROLE_AUTOCOMPLETE = 74,
 	ATK_ROLE_EDITBAR = 75,
 	ATK_ROLE_EMBEDDED = 76,
-	ATK_ROLE_LAST_DEFINED = 77
+#if __LSB_VERSION__ >= 50
+	ATK_ROLE_ENTRY = 77,
+	ATK_ROLE_CHART = 78,
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
+	ATK_ROLE_LAST_DEFINED = 77,
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	ATK_ROLE_CAPTION = 79,
+	ATK_ROLE_DOCUMENT_FRAME = 80,
+	ATK_ROLE_HEADING = 81,
+	ATK_ROLE_PAGE = 82,
+	ATK_ROLE_SECTION = 83,
+	ATK_ROLE_REDUNDANT_OBJECT = 84,
+	ATK_ROLE_FORM = 85,
+	ATK_ROLE_LINK = 86,
+	ATK_ROLE_INPUT_METHOD_WINDOW = 87,
+	ATK_ROLE_TABLE_ROW = 88,
+	ATK_ROLE_TREE_ITEM = 89,
+	ATK_ROLE_DOCUMENT_SPREADSHEET = 90,
+	ATK_ROLE_DOCUMENT_PRESENTATION = 91,
+	ATK_ROLE_DOCUMENT_TEXT = 92,
+	ATK_ROLE_DOCUMENT_WEB = 93,
+	ATK_ROLE_DOCUMENT_EMAIL = 94,
+	ATK_ROLE_COMMENT = 95,
+	ATK_ROLE_LIST_BOX = 96,
+	ATK_ROLE_GROUPING = 97,
+	ATK_ROLE_IMAGE_MAP = 98,
+	ATK_ROLE_NOTIFICATION = 99,
+	ATK_ROLE_INFO_BAR = 100,
+	ATK_ROLE_LAST_DEFINED = 101
+#endif				/* __LSB_VERSION__ >= 50 */
     } AtkRole;
 
     typedef struct _AtkRelationSet AtkRelationSet;
@@ -392,7 +496,17 @@ extern "C" {
 	ATK_RELATION_EMBEDDED_BY = 11,
 	ATK_RELATION_POPUP_FOR = 12,
 	ATK_RELATION_PARENT_WINDOW_OF = 13,
-	ATK_RELATION_LAST_DEFINED = 14
+#if __LSB_VERSION__ >= 50
+	ATK_RELATION_DESCRIBED_BY = 14,
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
+	ATK_RELATION_LAST_DEFINED = 14,
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	ATK_RELATION_DESCRIPTION_FOR = 15,
+	ATK_RELATION_NODE_PARENT_OF = 16,
+	ATK_RELATION_LAST_DEFINED = 17
+#endif				/* __LSB_VERSION__ >= 50 */
     } AtkRelationType;
 
     typedef struct _AtkRelation AtkRelation;
@@ -501,8 +615,22 @@ extern "C" {
 	ATK_STATE_VISIBLE = 28,
 	ATK_STATE_MANAGES_DESCENDANTS = 29,
 	ATK_STATE_INDETERMINATE = 30,
+#if __LSB_VERSION__ >= 50
+	ATK_STATE_REQUIRED = 32,
+#endif				/* __LSB_VERSION__ >= 50 */
 	ATK_STATE_TRUNCATED = 31,
-	ATK_STATE_LAST_DEFINED = 32
+#if __LSB_VERSION__ < 50
+	ATK_STATE_LAST_DEFINED = 32,
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	ATK_STATE_INVALID_ENTRY = 33,
+	ATK_STATE_SUPPORTS_AUTOCOMPLETION = 34,
+	ATK_STATE_SELECTABLE_TEXT = 35,
+	ATK_STATE_DEFAULT = 36,
+	ATK_STATE_ANIMATED = 37,
+	ATK_STATE_VISITED = 38,
+	ATK_STATE_LAST_DEFINED = 39
+#endif				/* __LSB_VERSION__ >= 50 */
     } AtkStateType;
 
     typedef struct _AtkGObjectAccessible AtkGObjectAccessible;
@@ -597,6 +725,39 @@ extern "C" {
     typedef struct _AtkNoOpObjectFactory AtkNoOpObjectFactory;
 
     typedef struct _AtkNoOpObject AtkNoOpObject;
+
+#if __LSB_VERSION__ >= 50
+    typedef struct _AtkMisc AtkMisc;
+
+    typedef struct _AtkMiscClass AtkMiscClass;
+
+    typedef struct _AtkHyperlinkImpl AtkHyperlinkImpl;
+
+    typedef struct _AtkHyperlinkImplIface AtkHyperlinkImplIface;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
+#if __LSB_VERSION__ >= 50
+    struct _AtkMisc {
+	GObject parent;
+    };
+
+    struct _AtkMiscClass {
+	GObjectClass parent;
+	void (*threads_enter) (AtkMisc *);
+	void (*threads_leave) (AtkMisc *);
+	gpointer vfuncs[32];
+    };
+
+    struct _AtkHyperlinkImpl;
+
+    struct _AtkHyperlinkImplIface {
+	GTypeInterface parent;
+	AtkHyperlink *(*get_hyperlink) (AtkHyperlinkImpl *);
+	AtkFunction pad1;
+    };
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
     struct _AtkObject {
 	GObject parent;
@@ -700,11 +861,26 @@ extern "C" {
 	AtkFunction pad1;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	const gchar *(*get_uri) (void);
+	const gchar *(*get_uri) (AtkStreamableContent *, const gchar *);
 #endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad3;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad4;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad3;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _AtkRectangle {
@@ -755,10 +931,20 @@ extern "C" {
 	AtkFunction pad1;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	AtkAttributeSet *(*get_attributes) (void);
+	AtkAttributeSet *(*get_attributes) (AtkObject *);
 #endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad3;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _AtkGObjectAccessibleClass {
@@ -842,13 +1028,7 @@ extern "C" {
 	void (*get_maximum_value) (AtkValue *, GValue *);
 	void (*get_minimum_value) (AtkValue *, GValue *);
 	 gboolean(*set_current_value) (AtkValue *, const GValue *);
-#if __LSB_VERSION__ < 50
 	AtkFunction pad1;
-#endif				/* __LSB_VERSION__ < 50 */
-#if __LSB_VERSION__ >= 50
-	void (*create_window) (AtkValue *, GValue *);
-#endif				/* __LSB_VERSION__ >= 50 */
-	AtkFunction pad2;
     };
 
     struct _AtkRelationClass {
@@ -933,15 +1113,20 @@ extern "C" {
 	GTypeInterface parent;
 	void (*get_image_position) (AtkImage *, gint *, gint *,
 				    AtkCoordType);
-	const gchar *(*get_image_description) (AtkImage *);
+	const gchar *(*get_image_description) (AtkImage *, AtkImage *);
 	void (*get_image_size) (AtkImage *, gint *, gint *);
 	 gboolean(*set_image_description) (AtkImage *, const gchar *);
+#if __LSB_VERSION__ < 50
 	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	const gchar *(*get_image_locale) (AtkImage *, AtkImage *);
+#endif				/* __LSB_VERSION__ >= 50 */
 #if __LSB_VERSION__ < 50
 	AtkFunction pad2;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	const gchar *(*get_image_locale) (void);
+	AtkFunction pad1;
 #endif				/* __LSB_VERSION__ >= 50 */
     };
 
@@ -970,7 +1155,7 @@ extern "C" {
 	AtkFunction pad2;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	 gdouble(*get_alpha) (void);
+	 gdouble(*get_alpha) (AtkComponent *);
 #endif				/* __LSB_VERSION__ >= 50 */
     };
 
@@ -1003,24 +1188,46 @@ extern "C" {
 	AtkFunction pad2;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	AtkAttributeSet *(*get_document_attributes) (void);
+	AtkAttributeSet *(*get_document_attributes) (AtkDocument *);
 #endif				/* __LSB_VERSION__ >= 50 */
 #if __LSB_VERSION__ < 50
 	AtkFunction pad3;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	const gchar *(*get_document_attribute_value) (void);
+	const gchar *(*get_document_attribute_value) (AtkDocument *,
+						      const gchar *);
 #endif				/* __LSB_VERSION__ >= 50 */
 #if __LSB_VERSION__ < 50
 	AtkFunction pad4;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	 gboolean(*set_document_attribute) (void);
+	 gboolean(*set_document_attribute) (AtkDocument *, const gchar *,
+					    const gchar *);
 #endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad5;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad1;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad6;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad2;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad7;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad3;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
 	AtkFunction pad8;
+#endif				/* __LSB_VERSION__ < 50 */
+#if __LSB_VERSION__ >= 50
+	AtkFunction pad4;
+#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _AtkHyperlinkClass {
@@ -1151,7 +1358,12 @@ extern "C" {
     extern GType atk_hyperlink_get_type(void);
     extern gchar *atk_hyperlink_get_uri(AtkHyperlink * link_, gint i);
     extern gboolean atk_hyperlink_is_inline(AtkHyperlink * link_);
-    extern gboolean atk_hyperlink_is_selected_link(AtkHyperlink * link_);
+    /* This function is deprecated use <const libatk-1.0;ATK_STATE_SELECTED>ATK_STATE_SELECTED instead */
+    extern gboolean atk_hyperlink_is_selected_link(AtkHyperlink * link_)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gboolean atk_hyperlink_is_valid(AtkHyperlink * link_);
     extern AtkHyperlink *atk_hypertext_get_link(AtkHypertext * hypertext,
 						gint link_index);
@@ -1234,12 +1446,15 @@ extern "C" {
     extern void atk_registry_set_factory_type(AtkRegistry * registry,
 					      GType type,
 					      GType factory_type);
-    extern void atk_relation_add_target(AtkRelation *, AtkObject *);
-    extern AtkRelationType atk_relation_get_relation_type(AtkRelation *);
-    extern GPtrArray *atk_relation_get_target(AtkRelation *);
+    extern void atk_relation_add_target(AtkRelation * relation,
+					AtkObject * target);
+    extern AtkRelationType atk_relation_get_relation_type(AtkRelation *
+							  relation);
+    extern GPtrArray *atk_relation_get_target(AtkRelation * relation);
     extern GType atk_relation_get_type(void);
-    extern AtkRelation *atk_relation_new(AtkObject * *, gint,
-					 AtkRelationType);
+    extern AtkRelation *atk_relation_new(AtkObject * *targets,
+					 gint n_targets,
+					 AtkRelationType relationship);
     extern void atk_relation_set_add(AtkRelationSet * set,
 				     AtkRelation * relation);
     extern void atk_relation_set_add_relation_by_type(AtkRelationSet * set,
@@ -1260,9 +1475,9 @@ extern "C" {
     extern AtkRelationSet *atk_relation_set_new(void);
     extern void atk_relation_set_remove(AtkRelationSet * set,
 					AtkRelation * relation);
-    extern AtkRelationType atk_relation_type_for_name(const gchar *);
-    extern const gchar *atk_relation_type_get_name(AtkRelationType);
-    extern AtkRelationType atk_relation_type_register(const gchar *);
+    extern AtkRelationType atk_relation_type_for_name(const gchar * name);
+    extern const gchar *atk_relation_type_get_name(AtkRelationType type);
+    extern AtkRelationType atk_relation_type_register(const gchar * name);
     extern void atk_remove_focus_tracker(guint tracker_id);
     extern void atk_remove_global_event_listener(guint listener_id);
     extern void atk_remove_key_event_listener(guint listener_id);
@@ -1459,6 +1674,43 @@ extern "C" {
     extern GType atk_value_get_type(void);
     extern gboolean atk_value_set_current_value(AtkValue * obj,
 						const GValue * value);
+#if __LSB_VERSION__ >= 50
+    extern gdouble atk_component_get_alpha(AtkComponent * component);
+    extern const char *atk_document_get_attribute_value(AtkDocument *
+							document,
+							const char
+							*attribute_name);
+    extern AtkAttributeSet *atk_document_get_attributes(AtkDocument *
+							document);
+    extern const char *atk_document_get_locale(AtkDocument * document);
+    extern gboolean atk_document_set_attribute_value(AtkDocument *
+						     document,
+						     const gchar *
+						     attribute_name,
+						     const gchar *
+						     attribute_value);
+    extern const char *atk_get_version(void);
+    extern AtkHyperlink *atk_hyperlink_impl_get_hyperlink(AtkHyperlinkImpl
+							  * obj);
+    extern GType atk_hyperlink_impl_get_type(void);
+    extern const char *atk_image_get_image_locale(AtkImage * image);
+    extern const AtkMisc *atk_misc_get_instance(void);
+    extern GType atk_misc_get_type(void);
+    extern void atk_misc_threads_enter(AtkMisc * misc);
+    extern void atk_misc_threads_leave(AtkMisc * misc);
+    extern AtkAttributeSet *atk_object_get_attributes(AtkObject *
+						      accessible);
+    extern gboolean atk_relation_remove_target(AtkRelation * relation,
+					       AtkObject * target);
+    extern const char *atk_streamable_content_get_uri(AtkStreamableContent
+						      * streamable,
+						      const char
+						      *mime_type);
+    extern GType atk_text_range_get_type(void);
+    extern void atk_value_get_minimum_increment(AtkValue * obj,
+						GValue * value);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

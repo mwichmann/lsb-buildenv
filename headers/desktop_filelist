@@ -89,6 +89,9 @@ X11/keysym.h
 X11/keysymdef.h
 atk-1.0/atk/atk-enum-types.h
 atk-1.0/atk/atk.h
+atk-1.0/atk/atkplug.h
+atk-1.0/atk/atksocket.h
+atk-1.0/atk/atkwindow.h
 cairo/cairo-features.h
 cairo/cairo-ft.h
 cairo/cairo-pdf.h
