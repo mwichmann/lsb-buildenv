@@ -6,3 +6,5 @@ extern cairo_surface_t
 						   XRenderPictFormat *
 						   format, int width,
 						   int height);
+extern XRenderPictFormat
+    *cairo_xlib_surface_get_xrender_format(cairo_surface_t * surface);

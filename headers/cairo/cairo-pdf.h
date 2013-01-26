@@ -9,6 +9,14 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 50
+    typedef enum _cairo_pdf_version {
+	CAIRO_PDF_VERSION_1_4,
+	CAIRO_PDF_VERSION_1_5
+    } cairo_pdf_version_t;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 /* Function prototypes */
 
@@ -27,6 +35,17 @@ extern "C" {
 					   double width_in_points,
 					   double height_in_points);
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+    extern void cairo_pdf_get_versions(const cairo_pdf_version_t *
+				       *versions, int *num_versions);
+    extern void cairo_pdf_surface_restrict_to_version(cairo_surface_t *
+						      surface,
+						      cairo_pdf_version_t
+						      version);
+    extern const char *cairo_pdf_version_to_string(cairo_pdf_version_t
+						   version);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

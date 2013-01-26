@@ -22,12 +22,23 @@ extern "C" {
 #endif				/* __LSB_VERSION__ < 4.1 */
 
 #if __LSB_VERSION__ >= 41
-#define CAIRO_VERSION_STRING	"1.2.4"
 #define CAIRO_HAS_SVG_SURFACE	1
 #define CAIRO_HAS_XLIB_XRENDER_SURFACE	1
-#define CAIRO_VERSION_MINOR	2
 #define CAIRO_VERSION_MICRO	4
+#if __LSB_VERSION__ < 50
+#define CAIRO_VERSION_STRING	"1.2.4"
+#define CAIRO_VERSION_MINOR	2
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+#define CAIRO_VERSION_MINOR	12
+#define CAIRO_VERSION_STRING	CAIRO_VERSION_STRINGIZE( \
+        CAIRO_VERSION_MAJOR, \
+	CAIRO_VERSION_MINOR, \
+	CAIRO_VERSION_MICRO)
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 

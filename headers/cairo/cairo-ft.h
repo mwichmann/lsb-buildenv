@@ -16,6 +16,14 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 50
+    typedef enum {
+	CAIRO_FT_SYNTHESIZE_BOLD = 1 << 0,
+	CAIRO_FT_SYNTHESIZE_OBLIQUE = 1 << 1
+    } cairo_ft_synthesize_t;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 /* Function prototypes */
 
@@ -36,6 +44,16 @@ extern "C" {
 #endif				/* __LSB_VERSION__ < 5.0 */
 
 #if __LSB_VERSION__ >= 50
+    extern unsigned int cairo_ft_font_face_get_synthesize(cairo_font_face_t
+							  * font_face);
+    extern void cairo_ft_font_face_set_synthesize(cairo_font_face_t *
+						  font_face,
+						  unsigned int
+						  synth_flags);
+    extern void cairo_ft_font_face_unset_synthesize(cairo_font_face_t *
+						    font_face,
+						    unsigned int
+						    synth_flags);
     extern FT_Face cairo_ft_scaled_font_lock_face(cairo_scaled_font_t *
 						  scaled_font);
 #endif				/* __LSB_VERSION__ >= 5.0 */

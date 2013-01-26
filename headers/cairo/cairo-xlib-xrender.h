@@ -22,6 +22,11 @@ extern "C" {
 						       XRenderPictFormat *
 						       format, int width,
 						       int height);
+#if __LSB_VERSION__ >= 50
+    extern XRenderPictFormat
+	*cairo_xlib_surface_get_xrender_format(cairo_surface_t * surface);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

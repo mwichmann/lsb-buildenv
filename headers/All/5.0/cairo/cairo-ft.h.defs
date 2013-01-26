@@ -1,10 +1,22 @@
 
+typedef enum {
+    CAIRO_FT_SYNTHESIZE_BOLD = 1 << 0,
+    CAIRO_FT_SYNTHESIZE_OBLIQUE = 1 << 1
+} cairo_ft_synthesize_t;
 extern cairo_font_face_t *cairo_ft_font_face_create_for_ft_face(FT_Face
 								face,
 								int
 								load_flags);
 extern cairo_font_face_t *cairo_ft_font_face_create_for_pattern(FcPattern *
 								pattern);
+extern unsigned int cairo_ft_font_face_get_synthesize(cairo_font_face_t *
+						      font_face);
+extern void cairo_ft_font_face_set_synthesize(cairo_font_face_t *
+					      font_face,
+					      unsigned int synth_flags);
+extern void cairo_ft_font_face_unset_synthesize(cairo_font_face_t *
+						font_face,
+						unsigned int synth_flags);
 extern void cairo_ft_font_options_substitute(const cairo_font_options_t *
 					     options, FcPattern * pattern);
 extern FT_Face cairo_ft_scaled_font_lock_face(cairo_scaled_font_t *
