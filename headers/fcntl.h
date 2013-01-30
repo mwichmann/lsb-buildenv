@@ -3,7 +3,6 @@
 #define _FCNTL_H_
 
 #include <sys/types.h>
-#include <unistd.h>
 
 #ifdef __cplusplus
 extern "C" {

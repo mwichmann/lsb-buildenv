@@ -52,6 +52,8 @@ extern "C" {
 
     typedef unsigned int uid_t;
 
+    typedef long long int off64_t;
+
     typedef long int suseconds_t;
 
     typedef unsigned int u_int;

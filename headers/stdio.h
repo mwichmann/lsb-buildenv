@@ -3,7 +3,6 @@
 #define _STDIO_H_
 
 #include <sys/types.h>
-#include <unistd.h>
 #include <wctype.h>
 #include <stddef.h>
 #include <stdarg.h>

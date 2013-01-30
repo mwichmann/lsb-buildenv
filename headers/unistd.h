@@ -32,11 +32,6 @@ extern "C" {
 
 
 
-#if __LSB_VERSION__ >= 12
-    typedef long long int off64_t;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 /* Values for the second argument to access.*/
 #if __LSB_VERSION__ >= 11

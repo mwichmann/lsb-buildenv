@@ -3,7 +3,6 @@
 #define _SYS_STAT_H_
 
 #include <sys/types.h>
-#include <unistd.h>
 #include <sys/time.h>
 
 #ifdef __cplusplus
