@@ -327,6 +327,8 @@ extern "C" {
 #define si_band	_sifields._sigpoll._band
 #define si_fd	_sifields._sigpoll._fd
 #define si_timer1	_sifields._timer._timer1
+#define sigev_notify_attributes	_sigev_un._sigev_thread._attribute
+#define sigev_notify_function	_sigev_un._sigev_thread._function
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 13

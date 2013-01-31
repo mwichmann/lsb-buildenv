@@ -93,6 +93,8 @@ typedef struct sigevent {
 #define si_fd	_sifields._sigpoll._fd
 #define si_timer1	_sifields._timer._timer1
 #define si_timer2	_sifields._timer._timer2
+#define sigev_notify_attributes	_sigev_un._sigev_thread._attribute
+#define sigev_notify_function	_sigev_un._sigev_thread._function
 
 typedef struct siginfo {
     int si_signo;		/* Signal number. */
