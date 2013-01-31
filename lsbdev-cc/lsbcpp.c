@@ -424,8 +424,10 @@ int main(int argc, char *argv[])
 	}
     }
 
-    /* XXX FIXME this doesn't seem to be done in lsbcc any longer */
+    /* XXX this doesn't seem to be done in lsbcc any longer
+     * removed for now per bug 3714
     argvaddstring(cppargs, "-nostdinc");
+     */
 
     argvadd(cppargs, "I", incpath);
     argvadd(cppargs, "I", cxxincpath);
