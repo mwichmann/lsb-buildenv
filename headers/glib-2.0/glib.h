@@ -1310,8 +1310,6 @@ extern "C" {
 
     typedef union _GSystemThread GSystemThread;
 
-    typedef struct _GStaticRecMutex GStaticRecMutex;
-
     typedef struct _GMarkupParseContext GMarkupParseContext;
 
     typedef struct _GData GData;
@@ -1530,8 +1528,6 @@ extern "C" {
     typedef struct _GStringChunk GStringChunk;
 
     typedef struct _GCond GCond;
-
-    typedef struct _GStaticRWLock GStaticRWLock;
 
     typedef void (*GChildWatchFunc) (GPid, gint, gpointer);
 
@@ -2412,22 +2408,6 @@ extern "C" {
 	long int dummy_long;
     };
 
-    struct _GStaticRecMutex {
-	GStaticMutex mutex;
-	guint depth;
-#if __LSB_VERSION__ >= 50
-	union {
-#if __LSB_VERSION__ >= 50
-	    pthread_t owner;
-	    gdouble dummy;
-#endif				/* __LSB_VERSION__ >= 50 */
-	} unused;
-#endif				/* __LSB_VERSION__ >= 50 */
-#if __LSB_VERSION__ < 50
-	GSystemThread owner;
-#endif				/* __LSB_VERSION__ < 50 */
-    };
-
     struct _GIOChannel {
 	guint ref_count;
 	GIOFuncs *funcs;
@@ -2617,16 +2597,6 @@ extern "C" {
 	GNode *children;
     };
 
-    struct _GStaticRWLock {
-	GStaticMutex mutex;
-	GCond *read_cond;
-	GCond *write_cond;
-	guint read_counter;
-	gboolean have_writer;
-	guint want_to_read;
-	guint want_to_write;
-    };
-
     struct _GTimeVal {
 	glong tv_sec;
 	glong tv_usec;
@@ -2720,6 +2690,38 @@ extern "C" {
     };
 
 #endif				/* __LSB_VERSION__ < 5.0 */
+
+
+/* Forced Ordering Header Section for glib-2.0/glib.h*/
+    typedef struct _GStaticRecMutex GStaticRecMutex;
+
+    typedef struct _GStaticRWLock GStaticRWLock;
+
+    struct _GStaticRecMutex {
+	GStaticMutex mutex;
+	guint depth;
+#if __LSB_VERSION__ >= 50
+	union {
+#if __LSB_VERSION__ >= 50
+	    pthread_t owner;
+	    gdouble dummy;
+#endif				/* __LSB_VERSION__ >= 50 */
+	} unused;
+#endif				/* __LSB_VERSION__ >= 50 */
+#if __LSB_VERSION__ < 50
+	GSystemThread owner;
+#endif				/* __LSB_VERSION__ < 50 */
+    };
+
+    struct _GStaticRWLock {
+	GStaticMutex mutex;
+	GCond *read_cond;
+	GCond *write_cond;
+	guint read_counter;
+	gboolean have_writer;
+	guint want_to_read;
+	guint want_to_write;
+    };
 
 
 /* Function prototypes */

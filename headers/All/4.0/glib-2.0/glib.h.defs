@@ -575,11 +575,6 @@ typedef union _GSystemThread {
     void *dummy_pointer;
     long int dummy_long;
 } GSystemThread;
-typedef struct _GStaticRecMutex {
-    GStaticMutex mutex;
-    guint depth;
-    GSystemThread owner;
-} GStaticRecMutex;
 typedef struct _GMarkupParseContext GMarkupParseContext;
 typedef struct _GData GData;
 typedef enum {
@@ -892,15 +887,6 @@ typedef enum {
 } GUnicodeBreakType;
 typedef struct _GStringChunk GStringChunk;
 typedef struct _GCond GCond;
-typedef struct _GStaticRWLock {
-    GStaticMutex mutex;
-    GCond *read_cond;
-    GCond *write_cond;
-    guint read_counter;
-    gboolean have_writer;
-    guint want_to_read;
-    guint want_to_write;
-} GStaticRWLock;
 typedef void (*GChildWatchFunc) (GPid, gint, gpointer);
 typedef struct _GTimeVal {
     glong tv_sec;
@@ -1256,6 +1242,9 @@ typedef enum {
     G_SHELL_ERROR_FAILED
 } GShellError;
 typedef struct _GMappedFile GMappedFile;
+
+typedef struct _GStaticRecMutex GStaticRecMutex;
+typedef struct _GStaticRWLock GStaticRWLock;
 extern void g_allocator_free(GAllocator * allocator);
 extern GAllocator *g_allocator_new(const gchar * name, guint n_preallocs);
 extern GArray *g_array_append_vals(GArray * array, gconstpointer data,
