@@ -3,9 +3,7 @@
 #define _UNISTD_H_
 
 #include <sys/types.h>
-#include <sys/time.h>
 #include <stddef.h>
-#include <sys/select.h>
 #include <stdint.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
@@ -22,11 +20,17 @@ extern "C" {
 
 
 #if __LSB_VERSION__ >= 11
+#ifndef SEEK_SET
 #define SEEK_SET	0
+#endif
 #define STDIN_FILENO	0
+#ifndef SEEK_CUR
 #define SEEK_CUR	1
+#endif
 #define STDOUT_FILENO	1
+#ifndef SEEK_END
 #define SEEK_END	2
+#endif
 #define STDERR_FILENO	2
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
@@ -461,8 +465,6 @@ extern "C" {
     extern int rename(const char *__old, const char *__new);
     extern int rmdir(const char *__path);
     extern void *sbrk(intptr_t __delta);
-    extern int select(int __nfds, fd_set * __readfds, fd_set * __writefds,
-		      fd_set * __exceptfds, struct timeval *__timeout);
     extern int setegid(gid_t __gid);
     extern int seteuid(uid_t __uid);
     extern int setgid(gid_t __gid);

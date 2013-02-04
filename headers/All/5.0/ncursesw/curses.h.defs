@@ -13,7 +13,9 @@
 #define NCURSES_SIZE_T	short
 #define NCURSES_TPARM_VARARGS	1
 #define NCURSES_CH_T	cchar_t
+#ifndef TRUE
 #define TRUE	1
+#endif
 #define NCURSES_BOOL	bool
 #ifdef __cplusplus
 #  define NCURSES_CAST(type,value)        static_cast<type>(value)

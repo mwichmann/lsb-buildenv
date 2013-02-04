@@ -189,10 +189,19 @@ extern "C" {
 #if __LSB_VERSION__ >= 11
 #define F_DUPFD	0
 #define F_RDLCK	0
+#ifndef SEEK_SET
+#define SEEK_SET	0
+#endif
 #define F_GETFD	1
 #define F_WRLCK	1
+#ifndef SEEK_CUR
+#define SEEK_CUR	1
+#endif
 #define F_SETFD	2
 #define F_UNLCK	2
+#ifndef SEEK_END
+#define SEEK_END	2
+#endif
 #define F_GETFL	3
 #define F_SETFL	4
 #define F_GETLK	5

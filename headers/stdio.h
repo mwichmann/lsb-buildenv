@@ -23,6 +23,15 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 11
 #define EOF	(-1)
+#ifndef SEEK_SET
+#define SEEK_SET	0
+#endif
+#ifndef SEEK_CUR
+#define SEEK_CUR	1
+#endif
+#ifndef SEEK_END
+#define SEEK_END	2
+#endif
 #define BUFSIZ	8192
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
