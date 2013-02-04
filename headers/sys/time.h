@@ -48,7 +48,6 @@ extern "C" {
 	suseconds_t tv_usec;
     };
 
-#include <sys/select.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
