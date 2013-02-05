@@ -22,9 +22,6 @@ extern "C" {
 	(((GClosure*) (closure))->marshal == NULL)
 #define G_TYPE_FROM_INTERFACE(g_iface)	 \
 	(((GTypeInterface*) (g_iface))->g_type)
-#define G_CLOSURE_N_NOTIFIERS(cl)	 \
-	((cl)->meta_marshal + ((cl)->n_guards << 1L) + (cl)->n_fnotifiers + \
-	(cl)->n_inotifiers)
 #define _G_TYPE_CCC(cp,gt,ct)	 \
 	((ct*) g_type_check_class_cast ((GTypeClass*) cp, gt))
 #define _G_TYPE_CIC(ip,gt,ct)	 \
@@ -307,21 +304,6 @@ extern "C" {
 	g_signal_handlers_unblock_matched ((instance), (GSignalMatchType) \
 	(G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA), 0, 0, NULL, (func), \
 	(data))
-#define G_DEFINE_TYPE_EXTENDED(TypeName,type_name,TYPE_PARENT,flags,CODE)	 \
-	static void type_name ##_init (TypeName *self); static void type_name \
-	##_class_init (TypeName ##Class *klass); static gpointer type_name \
-	##_parent_class = NULL; static void type_name ##_class_intern_init \
-	(gpointer klass) { type_name ##_parent_class = \
-	g_type_class_peek_parent (klass); type_name ##_class_init ((TypeName \
-	##Class*) klass); } GType type_name ##_get_type (void) { static GType \
-	g_define_type_id = 0; if (G_UNLIKELY (g_define_type_id == 0)) { static \
-	const GTypeInfo g_define_type_info = { sizeof (TypeName ##Class), \
-	(GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) \
-	type_name ##_class_intern_init, (GClassFinalizeFunc) NULL, NULL, \
-	sizeof (TypeName), 0, (GInstanceInitFunc) type_name ##_init, NULL }; \
-	g_define_type_id = g_type_register_static (TYPE_PARENT, #TypeName, \
-	&g_define_type_info, (GTypeFlags) flags); { CODE ; } } return \
-	g_define_type_id; }
 #define G_CCLOSURE_SWAP_DATA(cclosure)	 \
  (((GClosure*) (cclosure))->derivative_flag)
 #define G_TYPE_FROM_CLASS(g_class)	(((GTypeClass*) (g_class))->g_type)
@@ -419,8 +401,26 @@ extern "C" {
 #define G_TYPE_LONG	G_TYPE_MAKE_FUNDAMENTAL (8)
 #define G_TYPE_ULONG	G_TYPE_MAKE_FUNDAMENTAL (9)
 #if __LSB_VERSION__ < 50
+#define G_CLOSURE_N_NOTIFIERS(cl)	 \
+	((cl)->meta_marshal + ((cl)->n_guards << 1L) + (cl)->n_fnotifiers + \
+	(cl)->n_inotifiers)
 #define G_DEFINE_ABSTRACT_TYPE_WITH_CODE(TN,t_n,T_P,_C_)	 \
 	G_DEFINE_TYPE_EXTENDED (TN, t_n, T_P, G_TYPE_FLAG_ABSTRACT, _C_)
+#define G_DEFINE_TYPE_EXTENDED(TypeName,type_name,TYPE_PARENT,flags,CODE)	 \
+	static void type_name ##_init (TypeName *self); static void type_name \
+	##_class_init (TypeName ##Class *klass); static gpointer type_name \
+	##_parent_class = NULL; static void type_name ##_class_intern_init \
+	(gpointer klass) { type_name ##_parent_class = \
+	g_type_class_peek_parent (klass); type_name ##_class_init ((TypeName \
+	##Class*) klass); } GType type_name ##_get_type (void) { static GType \
+	g_define_type_id = 0; if (G_UNLIKELY (g_define_type_id == 0)) { static \
+	const GTypeInfo g_define_type_info = { sizeof (TypeName ##Class), \
+	(GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) \
+	type_name ##_class_intern_init, (GClassFinalizeFunc) NULL, NULL, \
+	sizeof (TypeName), 0, (GInstanceInitFunc) type_name ##_init, NULL }; \
+	g_define_type_id = g_type_register_static (TYPE_PARENT, #TypeName, \
+	&g_define_type_info, (GTypeFlags) flags); { CODE ; } } return \
+	g_define_type_id; }
 #define G_IMPLEMENT_INTERFACE(TYPE_IFACE,iface_init)	 \
 	{ static const GInterfaceInfo g_implement_interface_info = { \
 	(GInterfaceInitFunc) iface_init }; g_type_add_interface_static \
@@ -436,7 +436,21 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #if __LSB_VERSION__ >= 50
-#define TRACE(probe)
+#define G_OBJECT_WARN_INVALID_PSPEC(object,pname,property_id,pspec)	 \
+G_STMT_START { \
+  GObject *_object = (GObject*) (object); \
+  GParamSpec *_pspec = (GParamSpec*) (pspec); \
+  guint _property_id = (property_id); \
+  g_warning ("%s: invalid %s id %u for \"%s\" of type `%s' in `%s'", \
+	     G_STRLOC, \
+             (pname), \
+             _property_id, \
+             _pspec->name, \
+             g_type_name (G_PARAM_SPEC_TYPE (_pspec)), \
+             G_OBJECT_TYPE_NAME (_object)); \
+} G_STMT_END
+#define G_CLOSURE_N_NOTIFIERS(cl)	(((cl)->n_guards << 1L) + \
+	(cl)->n_fnotifiers + (cl)->n_inotifiers)
 #define G_TYPE_CLASS_GET_PRIVATE(klass,g_type,c_type)	((c_type*) g_type_class_get_private ((GTypeClass*) (klass), (g_type)))
 #define G_REAL_CLOSURE(_c)	((GRealClosure *)G_STRUCT_MEMBER_P ((_c), -G_STRUCT_OFFSET (GRealClosure, closure)))
 #define G_ATOMIC_ARRAY_GET_LOCKED(_array,_type)	((_type *)((_array)->data))
@@ -487,19 +501,6 @@ extern "C" {
 #define g_clear_object(object_ptr)	G_STMT_START { gpointer *_p = (gpointer) (object_ptr); gpointer _o; do _o = g_atomic_pointer_get (_p); while G_UNLIKELY (!g_atomic_pointer_compare_and_exchange (_p, _o, NULL)); if (_o) g_object_unref (_o); } G_STMT_END
 #define G_ATOMIC_ARRAY_DO_TRANSACTION(_array,_type,_C_)	G_STMT_START { volatile gpointer *_datap = &(_array)->data; _type *transaction_data, *__check; __check = g_atomic_pointer_get (_datap); do { transaction_data = __check; {_C_;} __check = g_atomic_pointer_get (_datap); } while (transaction_data != __check); } G_STMT_END
 #define G_TYPE_VARIANT	G_TYPE_MAKE_FUNDAMENTAL (21)
-#define G_OBJECT_WARN_INVALID_PSPEC(object,pname,property_id,pspec)	\
-G_STMT_START { \
-  GObject *_object = (GObject*) (object); \
-  GParamSpec *_pspec = (GParamSpec*) (pspec); \
-  guint _property_id = (property_id); \
-  g_warning ("%s: invalid %s id %u for "%s" of type `%s' in `%s'", \
-             G_STRLOC, \
-             (pname), \
-             _property_id, \
-             _pspec->name, \
-             g_type_name (G_PARAM_SPEC_TYPE (_pspec)), \
-             G_OBJECT_TYPE_NAME (_object)); \
-} G_STMT_END
 #define G_DEFINE_DYNAMIC_TYPE_EXTENDED(TypeName,type_name,TYPE_PARENT,flags,CODE)	\
 static void     type_name##_init              (TypeName        *self); \
 static void     type_name##_class_init        (TypeName##Class *klass); \
