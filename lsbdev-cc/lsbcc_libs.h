@@ -256,6 +256,8 @@ char *lsb_libs_50[] = {
 	"atk-1.0",
 	"c",
 	"cairo",
+	"cairo-gobject",
+	"cairo-script-interpreter",
 	"crypt",
 	"cups",
 	"cupsimage",
