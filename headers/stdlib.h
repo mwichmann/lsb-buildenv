@@ -135,6 +135,7 @@ extern "C" {
     extern int mblen(const char *__s, size_t __n);
     extern size_t mbstowcs(wchar_t * __pwcs, const char *__s, size_t __n);
     extern int mbtowc(wchar_t * __pwc, const char *__s, size_t __n);
+    extern int mkstemp(char *__template);
     extern int mkstemp64(char *__template);
     extern char *mktemp(char *__template);
     extern long int mrand48(void);

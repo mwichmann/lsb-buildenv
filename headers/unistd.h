@@ -445,7 +445,6 @@ extern "C" {
     extern int lockf64(int __fd, int __cmd, off64_t __len);
     extern off_t lseek(int __fd, off_t __offset, int __whence);
     extern loff_t lseek64(int __fd, loff_t __offset, int __whence);
-    extern int mkstemp(char *__template);
     extern int nice(int __inc);
     extern char *optarg;
     extern int opterr;
