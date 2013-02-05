@@ -332,6 +332,10 @@ BASE/LIB-5.0/libXtst.so
 BASE/LIB-5.0/libXtst.so.6
 BASE/LIB-5.0/libatk-1.0.so
 BASE/LIB-5.0/libatk-1.0.so.0
+BASE/LIB-5.0/libcairo-gobject.so
+BASE/LIB-5.0/libcairo-gobject.so.2
+BASE/LIB-5.0/libcairo-script-interpreter.so
+BASE/LIB-5.0/libcairo-script-interpreter.so.2
 BASE/LIB-5.0/libcairo.so
 BASE/LIB-5.0/libcairo.so.2
 BASE/LIB-5.0/libfontconfig.so

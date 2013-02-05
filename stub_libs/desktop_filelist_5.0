@@ -18,6 +18,8 @@ libXt
 libXtst
 libatk-1.0
 libcairo
+libcairo-gobject
+libcairo-script-interpreter
 libfontconfig
 libfreetype
 libgdk-x11-2.0
