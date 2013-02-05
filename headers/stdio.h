@@ -167,6 +167,7 @@ extern "C" {
     extern int puts(const char *__s);
     extern int putw(int __w, FILE * __stream);
     extern int remove(const char *__filename);
+    extern int rename(const char *__old, const char *__new);
     extern void rewind(FILE * __stream);
     extern int scanf(const char *__format, ...);
     extern void setbuf(FILE * __stream, char *__buf);

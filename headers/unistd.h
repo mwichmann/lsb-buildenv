@@ -461,7 +461,6 @@ extern "C" {
 			    off64_t __offset);
     extern ssize_t read(int __fd, void *__buf, size_t __nbytes);
     extern ssize_t readlink(const char *__path, char *__buf, size_t __len);
-    extern int rename(const char *__old, const char *__new);
     extern int rmdir(const char *__path);
     extern void *sbrk(intptr_t __delta);
     extern int setegid(gid_t __gid);
