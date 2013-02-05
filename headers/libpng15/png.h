@@ -542,7 +542,8 @@ extern "C" {
 					  png_fixed_point *
 					  int_file_gamma);
     extern png_uint_32 png_get_hIST(png_const_structp png_ptr,
-				    png_const_infop info_ptr);
+				    png_const_infop info_ptr,
+				    png_uint_16p * hist);
     extern png_const_charp png_get_header_ver(png_const_structp png_ptr);
     extern png_const_charp png_get_header_version(png_const_structp
 						  png_ptr);
@@ -577,12 +578,12 @@ extern "C" {
 				    png_charpp * params);
     extern png_uint_32 png_get_pHYs(png_const_structp png_ptr,
 				    png_const_infop info_ptr,
-				    png_int_32 * res_x, png_int_32 * res_y,
-				    int *unit_type);
+				    png_uint_32 * res_x,
+				    png_uint_32 * res_y, int *unit_type);
     extern png_uint_32 png_get_pHYs_dpi(png_const_structp png_ptr,
 					png_const_infop info_ptr,
-					png_int_32 * res_x,
-					png_int_32 * res_y,
+					png_uint_32 * res_x,
+					png_uint_32 * res_y,
 					int *unit_type);
     extern float png_get_pixel_aspect_ratio(png_const_structp png_ptr,
 					    png_const_infop info_ptr);
