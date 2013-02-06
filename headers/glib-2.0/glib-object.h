@@ -651,10 +651,8 @@ type_name##_get_type (void) \
     };
 
     struct _GValue {
-#if __LSB_VERSION__ >= 50
 	GType g_type;
 	union {
-#if __LSB_VERSION__ >= 50
 	    gint v_int;
 	    guint v_uint;
 	    glong v_long;
@@ -664,9 +662,7 @@ type_name##_get_type (void) \
 	    gfloat v_float;
 	    gdouble v_double;
 	    gpointer v_pointer;
-#endif				/* __LSB_VERSION__ >= 50 */
 	} data[2];
-#endif				/* __LSB_VERSION__ >= 50 */
     };
 
     struct _GParamSpec {
