@@ -25,6 +25,9 @@ extern "C" {
 
 
 #define PNG_LIBPNG_VER_STRING	"1.5.13"
+#define PNG_COLOR_TYPE_GRAY	0
+#define PNG_FILLER_BEFORE	0
+#define PNG_FILLER_AFTER	1
 #define PNG_HEADER_VERSION_STRING	" libpng version 1.5.13 - September 27, 2012\n"
 #define PNG_LIBPNG_VER_SONUM	15
 #define PNG_LIBPNG_VER_DLLNUM	15
