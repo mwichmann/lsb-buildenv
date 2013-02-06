@@ -20,11 +20,16 @@ struct tm {
     long int tm_gmtoff;
     char *tm_zone;
 };
+
+struct timeval {
+    time_t tv_sec;
+    suseconds_t tv_usec;
+};
+
 struct itimerspec {
     struct timespec it_interval;
     struct timespec it_value;
 };
-
 extern int __daylight;
 extern long int __timezone;
 extern char *__tzname[];

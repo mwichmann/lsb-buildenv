@@ -38,17 +38,10 @@ extern "C" {
 	long int tv_nsec;
     };
 
+#include <time.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-
-#if __LSB_VERSION__ >= 12
-    struct timeval {
-	time_t tv_sec;
-	suseconds_t tv_usec;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Type of the second argument to `getitimer' and

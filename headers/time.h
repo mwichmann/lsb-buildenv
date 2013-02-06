@@ -4,7 +4,6 @@
 
 #include <signal.h>
 #include <sys/types.h>
-#include <sys/time.h>
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -58,6 +57,10 @@ extern "C" {
 
 
 
+
+
+
+/* Returned by `time'*/
 #if __LSB_VERSION__ >= 12
     struct tm {
 	int tm_sec;
@@ -73,6 +76,22 @@ extern "C" {
 	char *tm_zone;
     };
 
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+
+/* POSIX.1b structure for a time value.*/
+#if __LSB_VERSION__ >= 12
+    struct timeval {
+	time_t tv_sec;
+	suseconds_t tv_usec;
+    };
+
+#include <sys/time.h>
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+
+/* Used by other time functions.*/
+#if __LSB_VERSION__ >= 12
     struct itimerspec {
 	struct timespec it_interval;
 	struct timespec it_value;
@@ -80,15 +99,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-
-
-/* Returned by clock()*/
-
-/* Returned by `time'*/
-
-/* POSIX.1b structure for a time value.*/
-
-/* Used by other time functions.*/
 
 /* Function prototypes */
 

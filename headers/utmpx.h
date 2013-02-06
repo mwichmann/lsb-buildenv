@@ -3,7 +3,7 @@
 #define _UTMPX_H_
 
 #include <sys/types.h>
-#include <sys/time.h>
+#include <time.h>
 #include <utmp.h>
 #include <stdint.h>
 

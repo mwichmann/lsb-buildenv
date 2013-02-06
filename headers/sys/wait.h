@@ -5,7 +5,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/resource.h>
-#include <sys/time.h>
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C" {

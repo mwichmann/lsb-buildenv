@@ -4,6 +4,7 @@
 
 #include <signal.h>
 #include <sys/types.h>
+#include <time.h>
 #include <sys/time.h>
 
 #ifdef __cplusplus

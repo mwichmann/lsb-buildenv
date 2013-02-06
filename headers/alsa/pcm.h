@@ -3,7 +3,7 @@
 #define _ALSA_PCM_H_
 
 #include <sys/types.h>
-#include <sys/time.h>
+#include <time.h>
 #include <stddef.h>
 #include <sys/poll.h>
 #include <stdint.h>
