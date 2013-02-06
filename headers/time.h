@@ -2,7 +2,6 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
-#include <signal.h>
 #include <sys/types.h>
 #include <stddef.h>
 
@@ -79,14 +78,13 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
-/* POSIX.1b structure for a time value.*/
 #if __LSB_VERSION__ >= 12
-    struct timeval {
+    struct timespec {
 	time_t tv_sec;
-	suseconds_t tv_usec;
+	long int tv_nsec;
     };
 
-#include <sys/time.h>
+#include <signal.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

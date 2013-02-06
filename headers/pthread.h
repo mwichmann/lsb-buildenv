@@ -4,7 +4,7 @@
 
 #include <sched.h>
 #include <sys/types.h>
-#include <sys/time.h>
+#include <time.h>
 #include <stddef.h>
 
 #if !defined(LSB_DECL_DEPRECATED)

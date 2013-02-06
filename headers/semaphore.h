@@ -4,7 +4,7 @@
 
 #include <pthread.h>
 #include <sys/types.h>
-#include <sys/time.h>
+#include <time.h>
 #include <netdb.h>
 
 #ifdef __cplusplus

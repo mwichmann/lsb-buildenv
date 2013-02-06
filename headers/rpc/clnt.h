@@ -4,7 +4,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <time.h>
+#include <sys/time.h>
 #include <rpc/auth.h>
 #include <rpc/xdr.h>
 #include <netinet/in.h>

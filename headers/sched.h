@@ -3,7 +3,7 @@
 #define _SCHED_H_
 
 #include <sys/types.h>
-#include <sys/time.h>
+#include <time.h>
 #include <stddef.h>
 
 #ifdef __cplusplus

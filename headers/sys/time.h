@@ -32,13 +32,13 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 
+/* POSIX.1b structure for a time value.*/
 #if __LSB_VERSION__ >= 12
-    struct timespec {
+    struct timeval {
 	time_t tv_sec;
-	long int tv_nsec;
+	suseconds_t tv_usec;
     };
 
-#include <time.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 

@@ -4,7 +4,6 @@
 
 #include <pthread.h>
 #include <sys/types.h>
-#include <sys/time.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -246,6 +245,7 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     typedef union sigval sigval_t;
 
+#include <time.h>
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 #if __LSB_VERSION__ >= 12
