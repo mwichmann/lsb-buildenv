@@ -3,11 +3,11 @@
 #define _GLIB_2_0_GLIB_H_
 
 #include <limits.h>
-#include <pthread.h>
 #include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
 #include <stdarg.h>
+#include <lsb/pthread.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))

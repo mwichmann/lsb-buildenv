@@ -58,6 +58,8 @@ linux/netlink.h
 linux/rtnetlink.h
 linux/socket.h
 locale.h
+lsb/pthread.h
+lsb/time.h
 malloc.h
 math.h
 monetary.h

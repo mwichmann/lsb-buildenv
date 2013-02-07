@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stdint.h>
+#include <lsb/time.h>
 
 #ifdef __cplusplus
 extern "C" {

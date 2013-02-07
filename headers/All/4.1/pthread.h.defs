@@ -40,8 +40,6 @@ enum {
     PTHREAD_MUTEX_ROBUST_NP = 1
 };
 
-typedef unsigned long int pthread_t;
-
 typedef union {
     struct __pthread_mutex_s __data;
     char __size[__SIZEOF_PTHREAD_MUTEX_T];

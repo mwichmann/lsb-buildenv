@@ -3,7 +3,9 @@
 #define _SYS_TIME_H_
 
 #include <sys/types.h>
+#include <sys/select.h>
 #include <stdint.h>
+#include <lsb/time.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,14 +35,6 @@ extern "C" {
 
 
 /* POSIX.1b structure for a time value.*/
-#if __LSB_VERSION__ >= 12
-    struct timeval {
-	time_t tv_sec;
-	suseconds_t tv_usec;
-    };
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 
 
 

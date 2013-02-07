@@ -3,9 +3,9 @@
 #define _UTMPX_H_
 
 #include <sys/types.h>
-#include <sys/time.h>
 #include <utmp.h>
 #include <stdint.h>
+#include <lsb/time.h>
 
 #ifdef __cplusplus
 extern "C" {

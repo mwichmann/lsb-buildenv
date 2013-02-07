@@ -28,7 +28,6 @@ typedef unsigned int pthread_key_t;
 typedef int pthread_once_t;
 typedef long long int __pthread_cond_align_t;
 
-typedef unsigned long int pthread_t;
 struct _pthread_fastlock {
     long int __status;
     int __spinlock;

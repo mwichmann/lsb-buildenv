@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
+#include <lsb/pthread.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
@@ -356,11 +357,6 @@ extern "C" {
 
 
 /* Base Types*/
-#if __LSB_VERSION__ >= 12
-    typedef unsigned long int pthread_t;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
 #if __LSB_VERSION__ >= 12
 #if __LSB_VERSION__ < 40
     struct _pthread_fastlock {

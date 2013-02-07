@@ -4,12 +4,12 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <sys/time.h>
 #include <rpc/auth.h>
 #include <rpc/xdr.h>
 #include <netinet/in.h>
 #include <rpc/types.h>
 #include <stdint.h>
+#include <lsb/time.h>
 
 #ifdef __cplusplus
 extern "C" {

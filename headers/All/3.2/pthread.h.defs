@@ -37,7 +37,6 @@ typedef union {
     int __align;
 } pthread_barrierattr_t;
 
-typedef unsigned long int pthread_t;
 struct _pthread_fastlock {
     long int __status;
     int __spinlock;

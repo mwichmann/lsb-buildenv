@@ -10,11 +10,6 @@ struct timezone {
 
 typedef int __itimer_which_t;
 
-struct timeval {
-    time_t tv_sec;
-    suseconds_t tv_usec;
-};
-
 struct itimerval {
     struct timeval it_interval;
     struct timeval it_value;
