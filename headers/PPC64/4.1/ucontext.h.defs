@@ -1,4 +1,7 @@
 
+#define define NFPREG	33
+#define define NVRREG	34
+
 typedef struct _libc_vscr {
     int __pad[3];
     int vscr_word;

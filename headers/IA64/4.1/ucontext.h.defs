@@ -1,4 +1,22 @@
 
+#define rPOS	r16
+#define rTMP	r16
+#define rCPOS	r17
+#define rB5	r18
+#define rNAT	r18
+#define rB4	r19
+#define rB3	r20
+#define rB2	r21
+#define rB1	r22
+#define rB0	r23
+#define rRSC	r24
+#define rBSP	r25
+#define rRNAT	r26
+#define rUNAT	r27
+#define rFPSR	r28
+#define rPFS	r29
+#define rLC	r30
+#define rPR	r31
 #define _SC_GR0_OFFSET	\
 	(((char *) &((struct sigcontext *) 0)->sc_gr[0]) - (char *) 0)
 

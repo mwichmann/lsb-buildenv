@@ -21,6 +21,33 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
+#if __LSB_VERSION__ >= 41
+#if defined __powerpc64__
+#define define NFPREG	33
+#define define NVRREG	34
+#endif
+#if defined __ia64__
+#define rPOS	r16
+#define rTMP	r16
+#define rCPOS	r17
+#define rB5	r18
+#define rNAT	r18
+#define rB4	r19
+#define rB3	r20
+#define rB2	r21
+#define rB1	r22
+#define rB0	r23
+#define rRSC	r24
+#define rBSP	r25
+#define rRNAT	r26
+#define rUNAT	r27
+#define rFPSR	r28
+#define rPFS	r29
+#define rLC	r30
+#define rPR	r31
+#endif
+#endif				/* __LSB_VERSION__ >= 4.1 */
+
 
 
 #if __LSB_VERSION__ >= 20
@@ -59,6 +86,63 @@ extern "C" {
 
 #endif
 #endif				/* __LSB_VERSION__ >= 2.0 */
+
+#if __LSB_VERSION__ >= 41
+#if defined __i386__
+/* IA32 */
+    enum {
+	REG_GS = 0,
+	REG_FS = 1,
+	REG_ES = 2,
+	REG_DS = 3,
+	REG_EDI = 4,
+	REG_ESI = 5,
+	REG_EBP = 6,
+	REG_ESP = 7,
+	REG_EBX = 8,
+	REG_EDX = 9,
+	REG_ECX = 10,
+	REG_EAX = 11,
+	REG_TRAPNO = 12,
+	REG_ERR = 13,
+	REG_EIP = 14,
+	REG_CS = 15,
+	REG_EFL = 16,
+	REG_UESP = 17,
+	REG_SS = 18
+    };
+
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    enum {
+	REG_R8 = 0,
+	REG_R9 = 1,
+	REG_R10 = 2,
+	REG_R11 = 3,
+	REG_R12 = 4,
+	REG_R13 = 5,
+	REG_R14 = 6,
+	REG_R15 = 7,
+	REG_RDI = 8,
+	REG_RSI = 9,
+	REG_RBP = 10,
+	REG_RBX = 11,
+	REG_RDX = 12,
+	REG_RAX = 13,
+	REG_RCX = 14,
+	REG_RSP = 15,
+	REG_RIP = 16,
+	REG_ELF = 17,
+	REG_CSGSFS = 18,
+	REG_ERR = 19,
+	REG_TRAPNO1 = 20,
+	REG_OLDMASK = 21,
+	REG_CR2 = 22
+    };
+
+#endif
+#endif				/* __LSB_VERSION__ >= 4.1 */
 
 #if __LSB_VERSION__ >= 20
 #if defined __powerpc64__
