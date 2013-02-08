@@ -311,6 +311,19 @@
 	(g_define_type_id, TYPE_IFACE, &g_implement_interface_info); }
 #define G_CCLOSURE_SWAP_DATA(cclosure)	 \
  (((GClosure*) (cclosure))->derivative_flag)
+#define G_OBJECT_WARN_INVALID_PSPEC(object,pname,property_id,pspec)	 \
+G_STMT_START { \
+  GObject *_object = (GObject*) (object); \
+  GParamSpec *_pspec = (GParamSpec*) (pspec); \
+  guint _property_id = (property_id); \
+  g_warning ("%s: invalid %s id %u for \"%s\" of type `%s' in `%s'", \
+	     G_STRLOC, \
+             (pname), \
+             _property_id, \
+             _pspec->name, \
+             g_type_name (G_PARAM_SPEC_TYPE (_pspec)), \
+             G_OBJECT_TYPE_NAME (_object)); \
+} G_STMT_END
 #define G_TYPE_FROM_CLASS(g_class)	(((GTypeClass*) (g_class))->g_type)
 #define G_VALUE_TYPE(value)	(((GValue*) (value))->g_type)
 #define _G_TYPE_IGC(ip,gt,ct)	((ct*) (((GTypeInstance*) ip)->g_class))
@@ -416,6 +429,7 @@ typedef struct _GTypeClass GTypeClass;
 typedef struct _GTypeInstance {
     GTypeClass *g_class;
 } GTypeInstance;
+typedef float gfloat;
 typedef struct _GValue GValue;
 typedef enum {
     G_PARAM_READABLE = 1,
@@ -480,7 +494,6 @@ struct _GValue {
 	gpointer v_pointer;
     } data[2];
 };
-typedef float gfloat;
 typedef struct _GObjectConstructParam {
     GParamSpec *pspec;
     GValue *value;

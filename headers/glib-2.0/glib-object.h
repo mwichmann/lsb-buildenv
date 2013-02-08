@@ -306,6 +306,19 @@ extern "C" {
 	(data))
 #define G_CCLOSURE_SWAP_DATA(cclosure)	 \
  (((GClosure*) (cclosure))->derivative_flag)
+#define G_OBJECT_WARN_INVALID_PSPEC(object,pname,property_id,pspec)	 \
+G_STMT_START { \
+  GObject *_object = (GObject*) (object); \
+  GParamSpec *_pspec = (GParamSpec*) (pspec); \
+  guint _property_id = (property_id); \
+  g_warning ("%s: invalid %s id %u for \"%s\" of type `%s' in `%s'", \
+	     G_STRLOC, \
+             (pname), \
+             _property_id, \
+             _pspec->name, \
+             g_type_name (G_PARAM_SPEC_TYPE (_pspec)), \
+             G_OBJECT_TYPE_NAME (_object)); \
+} G_STMT_END
 #define G_TYPE_FROM_CLASS(g_class)	(((GTypeClass*) (g_class))->g_type)
 #define G_VALUE_TYPE(value)	(((GValue*) (value))->g_type)
 #define _G_TYPE_IGC(ip,gt,ct)	((ct*) (((GTypeInstance*) ip)->g_class))
@@ -436,19 +449,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
 #if __LSB_VERSION__ >= 50
-#define G_OBJECT_WARN_INVALID_PSPEC(object,pname,property_id,pspec)	 \
-G_STMT_START { \
-  GObject *_object = (GObject*) (object); \
-  GParamSpec *_pspec = (GParamSpec*) (pspec); \
-  guint _property_id = (property_id); \
-  g_warning ("%s: invalid %s id %u for \"%s\" of type `%s' in `%s'", \
-	     G_STRLOC, \
-             (pname), \
-             _property_id, \
-             _pspec->name, \
-             g_type_name (G_PARAM_SPEC_TYPE (_pspec)), \
-             G_OBJECT_TYPE_NAME (_object)); \
-} G_STMT_END
 #define G_CLOSURE_N_NOTIFIERS(cl)	(((cl)->n_guards << 1L) + \
 	(cl)->n_fnotifiers + (cl)->n_inotifiers)
 #define G_TYPE_CLASS_GET_PRIVATE(klass,g_type,c_type)	((c_type*) g_type_class_get_private ((GTypeClass*) (klass), (g_type)))
@@ -641,6 +641,11 @@ type_name##_get_type (void) \
     typedef struct _GClosureNotifyData GClosureNotifyData;
 
     typedef gboolean(*GTypeClassCacheFunc) (gpointer, GTypeClass *);
+
+#if __LSB_VERSION__ < 50
+    typedef float gfloat;
+
+#endif				/* __LSB_VERSION__ < 5.0 */
 
     struct _GTypeClass {
 	GType g_type;
@@ -931,11 +936,6 @@ type_name##_get_type (void) \
     typedef gchar *gchararray;
 
     typedef gchar **GStrv;
-
-#if __LSB_VERSION__ < 50
-    typedef float gfloat;
-
-#endif				/* __LSB_VERSION__ < 5.0 */
 
 #if __LSB_VERSION__ >= 40
     typedef void (*GToggleNotify) (gpointer data, GObject * object,
