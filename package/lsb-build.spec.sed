@@ -93,7 +93,7 @@ mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
 ( for v in 3.1 3.2 4.0 4.1; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng12.so libpng.so; done )
-( for v in 5.0; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng15.so libpng.so; done )
+( for v in 5.0; do if [ -d $RPM_BUILD_ROOT/opt/lsb/%xlib-$v ]; then cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng15.so libpng.so; fi; done )
 
 # specifics for cc part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
