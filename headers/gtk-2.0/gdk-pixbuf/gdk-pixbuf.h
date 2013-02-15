@@ -4,6 +4,15 @@
 
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
+#include <glib-2.0/gio/giotypes.h>
+
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,9 +49,7 @@ extern "C" {
 #define GDK_PIXBUF_LOADER_GET_CLASS(obj)	 \
 	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_LOADER, \
 	GdkPixbufLoaderClass))
-#define GDK_PIXBUF_MICRO	(10)
 #define GDK_PIXBUF_MAJOR	(2)
-#define GDK_PIXBUF_MINOR	(6)
 #define GDK_TYPE_COLORSPACE	(gdk_colorspace_get_type())
 #define GDK_TYPE_INTERP_TYPE	(gdk_interp_type_get_type())
 #define GDK_TYPE_PIXBUF_ALPHA_MODE	(gdk_pixbuf_alpha_mode_get_type())
@@ -57,8 +64,12 @@ extern "C" {
 #define GDK_PIXBUF_VERSION	"2.6.10"
 #endif				/* __LSB_VERSION__ < 4.0 */
 
+#if __LSB_VERSION__ < 50
+#define GDK_PIXBUF_MICRO	(10)
+#define GDK_PIXBUF_MINOR	(6)
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 40
-#define GDK_PIXBUF_VERSION	"2.8.11"
 #define GDK_TYPE_PIXBUF_SIMPLE_ANIM	(gdk_pixbuf_simple_anim_get_type ())
 #define GDK_PIXBUF_SIMPLE_ANIM_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
 
@@ -66,7 +77,17 @@ extern "C" {
 #define GDK_PIXBUF_SIMPLE_ANIM(object)	(G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnim))
 #define GDK_IS_PIXBUF_SIMPLE_ANIM(object)	(G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_PIXBUF_SIMPLE_ANIM))
 #define GDK_PIXBUF_SIMPLE_ANIM_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
+#if __LSB_VERSION__ < 50
+#define GDK_PIXBUF_VERSION	"2.8.11"
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+#define GDK_PIXBUF_VERSION	"2.26.0"
+#define GDK_PIXBUF_MICRO	(0)
+#define GDK_PIXBUF_MINOR	(26)
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
@@ -270,7 +291,7 @@ extern "C" {
 							    GError *
 							    *error);
     extern void gdk_pixbuf_loader_set_size(GdkPixbufLoader * loader,
-					   gint width, gint height);
+					   int width, int height);
     extern gboolean gdk_pixbuf_loader_write(GdkPixbufLoader * loader,
 					    const guchar * buf,
 					    gsize count, GError * *error);
@@ -374,6 +395,96 @@ extern "C" {
 							   gint height,
 							   gfloat rate);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+    /* gdk_pixbuf_animation_ref is deprecated and should not be used in newly-written code. Use g_object_ref. */
+    extern GdkPixbufAnimation *gdk_pixbuf_animation_ref(GdkPixbufAnimation
+							*
+							animation)
+	LSB_DECL_DEPRECATED;
+    /* gdk_pixbuf_animation_unref is deprecated and should not be used in newly-written code. Use g_object_unref. */
+    extern void gdk_pixbuf_animation_unref(GdkPixbufAnimation *
+					   animation) LSB_DECL_DEPRECATED;
+    extern GdkPixbuf *gdk_pixbuf_apply_embedded_orientation(GdkPixbuf *
+							    src);
+    extern GdkPixbufFormat *gdk_pixbuf_format_copy(const GdkPixbufFormat *
+						   format);
+    extern void gdk_pixbuf_format_free(GdkPixbufFormat * format);
+    extern GType gdk_pixbuf_format_get_type(void);
+    extern gsize gdk_pixbuf_get_byte_length(const GdkPixbuf * pixbuf);
+    extern guchar *gdk_pixbuf_get_pixels_with_length(const GdkPixbuf *
+						     pixbuf,
+						     guint * length);
+    extern GdkPixbuf *gdk_pixbuf_new_from_resource(const char
+						   *resource_path,
+						   GError * *error);
+    extern GdkPixbuf *gdk_pixbuf_new_from_resource_at_scale(const char
+							    *resource_path,
+							    int width,
+							    int height,
+							    gboolean
+							    preserve_aspect_ratio,
+							    GError *
+							    *error);
+    extern GdkPixbuf *gdk_pixbuf_new_from_stream(GInputStream * stream,
+						 GCancellable *
+						 cancellable,
+						 GError * *error);
+    extern void gdk_pixbuf_new_from_stream_async(GInputStream * stream,
+						 GCancellable *
+						 cancellable,
+						 GAsyncReadyCallback
+						 callback,
+						 gpointer user_data);
+    extern GdkPixbuf *gdk_pixbuf_new_from_stream_at_scale(GInputStream *
+							  stream,
+							  gint width,
+							  gint height,
+							  gboolean
+							  preserve_aspect_ratio,
+							  GCancellable *
+							  cancellable,
+							  GError * *error);
+    extern void gdk_pixbuf_new_from_stream_at_scale_async(GInputStream *
+							  stream,
+							  gint width,
+							  gint height,
+							  gboolean
+							  preserve_aspect_ratio,
+							  GCancellable *
+							  cancellable,
+							  GAsyncReadyCallback
+							  callback,
+							  gpointer
+							  user_data);
+    extern GdkPixbuf *gdk_pixbuf_new_from_stream_finish(GAsyncResult *
+							async_result,
+							GError * *error);
+    /* gdk_pixbuf_ref is deprecated and should not be used in newly-written code. Use g_object_ref. */
+    extern GdkPixbuf *gdk_pixbuf_ref(GdkPixbuf *
+				     pixbuf) LSB_DECL_DEPRECATED;
+    extern gboolean gdk_pixbuf_save_to_stream(GdkPixbuf * pixbuf,
+					      GOutputStream * stream,
+					      const char *type,
+					      GCancellable * cancellable,
+					      GError * *error, ...);
+    extern void gdk_pixbuf_save_to_stream_async(GdkPixbuf * pixbuf,
+						GOutputStream * stream,
+						const char *type,
+						GCancellable * cancellable,
+						GAsyncReadyCallback
+						callback,
+						gpointer user_data, ...);
+    extern gboolean gdk_pixbuf_save_to_stream_finish(GAsyncResult *
+						     async_result,
+						     GError * *error);
+    extern gboolean gdk_pixbuf_simple_anim_get_loop(GdkPixbufSimpleAnim *
+						    animation);
+    extern void gdk_pixbuf_simple_anim_set_loop(GdkPixbufSimpleAnim *
+						animation, gboolean loop);
+    /* gdk_pixbuf_unref is deprecated and should not be used in newly-written code. Use g_object_unref. */
+    extern void gdk_pixbuf_unref(GdkPixbuf * pixbuf) LSB_DECL_DEPRECATED;
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }
