@@ -25,6 +25,7 @@ extern "C" {
 
 
 #define PNG_LIBPNG_VER_STRING	"1.5.13"
+#define png_jmpbuf(png_ptr)	(*png_set_longjmp_fn((png_ptr), longjmp, sizeof (jmp_buf)))
 #define PNG_COLOR_TYPE_GRAY	0
 #define PNG_FILLER_BEFORE	0
 #define PNG_FILLER_AFTER	1
@@ -320,9 +321,7 @@ extern "C" {
 
     typedef const png_struct *png_const_structp;
 
-    typedef void (*png_unknown_chunk_ptr) (void);
-
-    typedef void (*png_longjmp_ptr) (void);
+    typedef void (*png_longjmp_ptr) (jmp_buf, int);
 
     typedef png_sPLT_struct png_sPLT;
 
@@ -404,6 +403,9 @@ extern "C" {
     typedef void (*png_error_ptr) (png_structp, png_const_charp);
 
     typedef void (*png_rw_ptr) (png_structp, png_bytep, png_size_t);
+
+
+    typedef void (*png_unknown_chunk_ptr) (png_structp);
 
 
 /* Function prototypes */
