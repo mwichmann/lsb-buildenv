@@ -112,7 +112,7 @@ extern "C" {
 					      int ydith);
     extern void xlib_rgb_cmap_free(XlibRgbCmap * cmap);
     extern XlibRgbCmap *xlib_rgb_cmap_new(guint32 * colors, int n_colors);
-    extern bool xlib_rgb_ditherable(void);
+    extern int xlib_rgb_ditherable(void);
     extern void xlib_rgb_gc_set_background(GC gc, guint32 rgb);
     extern void xlib_rgb_gc_set_foreground(GC gc, guint32 rgb);
     extern Colormap xlib_rgb_get_cmap(void);
@@ -124,9 +124,9 @@ extern "C" {
     extern void xlib_rgb_init(Display * display, Screen * screen);
     extern void xlib_rgb_init_with_depth(Display * display,
 					 Screen * screen, int prefDepth);
-    extern void xlib_rgb_set_install(bool install);
+    extern void xlib_rgb_set_install(int install);
     extern void xlib_rgb_set_min_colors(int min_colors);
-    extern void xlib_rgb_set_verbose(bool verbose);
+    extern void xlib_rgb_set_verbose(int verbose);
     extern long unsigned int xlib_rgb_xpixel_from_rgb(guint32 rgb);
 #ifdef __cplusplus
 }
