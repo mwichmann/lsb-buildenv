@@ -1171,6 +1171,13 @@ extern "C" {
 					     int __pref);
 #endif				/* __LSB_VERSION__ >= 4.1 */
 
+#if __LSB_VERSION__ >= 50
+    extern int pthread_condattr_getclock(const pthread_condattr_t * attr,
+					 clockid_t * clock_id);
+    extern int pthread_condattr_setclock(pthread_condattr_t * attr,
+					 clockid_t clock_id);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

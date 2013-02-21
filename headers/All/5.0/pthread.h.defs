@@ -160,9 +160,13 @@ extern int pthread_cond_timedwait(pthread_cond_t * __cond,
 extern int pthread_cond_wait(pthread_cond_t * __cond,
 			     pthread_mutex_t * __mutex);
 extern int pthread_condattr_destroy(pthread_condattr_t * __attr);
+extern int pthread_condattr_getclock(const pthread_condattr_t * attr,
+				     clockid_t * clock_id);
 extern int pthread_condattr_getpshared(const pthread_condattr_t * __attr,
 				       int *__pshared);
 extern int pthread_condattr_init(pthread_condattr_t * __attr);
+extern int pthread_condattr_setclock(pthread_condattr_t * attr,
+				     clockid_t clock_id);
 extern int pthread_condattr_setpshared(pthread_condattr_t * __attr,
 				       int __pshared);
 extern int pthread_create(pthread_t * __newthread,
