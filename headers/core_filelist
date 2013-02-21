@@ -20,6 +20,7 @@ alsa/seq_event.h
 alsa/seq_midi_event.h
 alsa/seqmid.h
 alsa/timer.h
+argz.h
 arpa/inet.h
 assert.h
 complex.h
@@ -36,6 +37,7 @@ dirent.h
 dlfcn.h
 elf.h
 endian.h
+envz.h
 errno.h
 execinfo.h
 fcntl.h

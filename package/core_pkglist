@@ -189,6 +189,7 @@ BASE/include/alsa/seq_event.h
 BASE/include/alsa/seq_midi_event.h
 BASE/include/alsa/seqmid.h
 BASE/include/alsa/timer.h
+BASE/include/argz.h
 BASE/include/arpa/inet.h
 BASE/include/assert.h
 BASE/include/complex.h
@@ -205,6 +206,7 @@ BASE/include/dirent.h
 BASE/include/dlfcn.h
 BASE/include/elf.h
 BASE/include/endian.h
+BASE/include/envz.h
 BASE/include/errno.h
 BASE/include/execinfo.h
 BASE/include/fcntl.h
