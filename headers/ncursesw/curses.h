@@ -3,6 +3,7 @@
 #define _NCURSESW_CURSES_H_
 
 #include <stdio.h>
+#include <curses.h>
 #include <stddef.h>
 #include <stdarg.h>
 #include <ncursesw/ncurses_dll.h>
@@ -1069,7 +1070,7 @@ extern "C" {
     extern int napms(int);
     extern WINDOW *newpad(int, int);
     extern WINDOW *newscr;
-    extern newterm(char *, FILE *, FILE *);
+    extern SCREEN *newterm(char *, FILE *, FILE *);
     extern WINDOW *newwin(int, int, int, int);
     extern int nl(void);
     extern int nocbreak(void);
@@ -1110,7 +1111,7 @@ extern "C" {
 #undef scroll
     extern int scroll(WINDOW *);
     extern int scrollok(WINDOW *, unsigned char);
-    extern set_term(SCREEN *);
+    extern SCREEN *set_term(SCREEN *);
     extern int setcchar(cchar_t *, wchar_t *, attr_t, short, void *);
 #undef setscrreg
     extern int setscrreg(int, int);
