@@ -16,8 +16,10 @@ struct itimerval {
 };
 extern int adjtime(const struct timeval *__delta,
 		   struct timeval *__olddelta);
+extern int futimes(int fd, const struct timeval tv[2]);
 extern int getitimer(__itimer_which_t __which, struct itimerval *__value);
 extern int gettimeofday(struct timeval *__tv, struct timezone *__tz);
+extern int lutimes(const char *filename, const struct timeval tv[2]);
 extern int setitimer(__itimer_which_t __which,
 		     const struct itimerval *__new,
 		     struct itimerval *__old);

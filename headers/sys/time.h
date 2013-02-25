@@ -57,6 +57,11 @@ the second and third arguments `setitimer'.*/
 			 const struct itimerval *__new,
 			 struct itimerval *__old);
     extern int utimes(const char *__file, const struct timeval *__tvp);
+#if __LSB_VERSION__ >= 50
+    extern int futimes(int fd, const struct timeval tv[2]);
+    extern int lutimes(const char *filename, const struct timeval tv[2]);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

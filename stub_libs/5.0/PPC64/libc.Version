@@ -251,6 +251,7 @@ GLIBC_2.3 {
   ftw;
   ftw64;
   funlockfile;
+  futimes;
   fwide;
   fwrite;
   fwrite_unlocked;
@@ -431,6 +432,7 @@ GLIBC_2.3 {
   lsearch;
   lseek;
   lseek64;
+  lutimes;
   makecontext;
   malloc;
   mblen;
