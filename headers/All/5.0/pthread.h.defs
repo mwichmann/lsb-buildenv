@@ -186,6 +186,7 @@ extern int pthread_join(pthread_t __th, void **__thread_return);
 extern int pthread_key_create(pthread_key_t * __key,
 			      void (*__destr_function) (void *));
 extern int pthread_key_delete(pthread_key_t __key);
+extern int pthread_mutex_consistent(pthread_mutex_t * mutex);
 extern int pthread_mutex_consistent_np(pthread_mutex_t * __mutex);
 extern int pthread_mutex_destroy(pthread_mutex_t * __mutex);
 extern int pthread_mutex_getprioceiling(const pthread_mutex_t * __mutex,
@@ -207,6 +208,8 @@ extern int pthread_mutexattr_getprotocol(const pthread_mutexattr_t *
 					 __attr, int *__protocol);
 extern int pthread_mutexattr_getpshared(const pthread_mutexattr_t * __attr,
 					int *__pshared);
+extern int pthread_mutexattr_getrobust(const pthread_mutexattr_t * attr,
+				       int *robust);
 extern int pthread_mutexattr_getrobust_np(const pthread_mutexattr_t *
 					  __attr, int *__robustness);
 extern int pthread_mutexattr_gettype(const pthread_mutexattr_t * __attr,
@@ -218,6 +221,8 @@ extern int pthread_mutexattr_setprotocol(pthread_mutexattr_t * __attr,
 					 int __protocol);
 extern int pthread_mutexattr_setpshared(pthread_mutexattr_t * __attr,
 					int __pshared);
+extern int pthread_mutexattr_setrobust(pthread_mutexattr_t * attr,
+				       int robust);
 extern int pthread_mutexattr_setrobust_np(pthread_mutexattr_t * __attr,
 					  int __robustness);
 extern int pthread_mutexattr_settype(pthread_mutexattr_t * __attr,

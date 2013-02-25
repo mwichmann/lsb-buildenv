@@ -1,4 +1,9 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.12 {
+  pthread_mutex_consistent;
+  pthread_mutexattr_getrobust;
+  pthread_mutexattr_setrobust;
+};
 GLIBC_2.2.5 {
   __errno_location;
   __h_errno_location;

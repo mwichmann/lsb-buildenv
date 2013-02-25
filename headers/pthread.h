@@ -1176,6 +1176,11 @@ extern "C" {
 					 clockid_t * clock_id);
     extern int pthread_condattr_setclock(pthread_condattr_t * attr,
 					 clockid_t clock_id);
+    extern int pthread_mutex_consistent(pthread_mutex_t * mutex);
+    extern int pthread_mutexattr_getrobust(const pthread_mutexattr_t *
+					   attr, int *robust);
+    extern int pthread_mutexattr_setrobust(pthread_mutexattr_t * attr,
+					   int robust);
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
