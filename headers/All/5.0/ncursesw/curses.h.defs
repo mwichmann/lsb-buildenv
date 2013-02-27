@@ -662,7 +662,6 @@ extern int ESCDELAY;
 extern int LINES;
 extern int PAIR_NUMBER(int);
 extern int TABSIZE;
-extern char *_tracemouse(const MEVENT *);
 extern chtype acs_map[];
 extern int add_wch(cchar_t *);
 extern int add_wchnstr(cchar_t *, int);

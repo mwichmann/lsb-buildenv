@@ -711,7 +711,6 @@ extern "C" {
 #undef PAIR_NUMBER
     extern int PAIR_NUMBER(int);
     extern int TABSIZE;
-    extern char *_tracemouse(const MEVENT *);
     extern chtype acs_map[];
 #undef add_wch
     extern int add_wch(cchar_t *);
