@@ -1,1 +1,5 @@
 LSB_DUMMY { __LSB_DUMMY; };
+ZLIB_1.2.0 {
+  compressBound;
+  deflateBound;
+};
