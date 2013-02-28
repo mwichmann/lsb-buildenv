@@ -11,6 +11,9 @@
 	inflateInit2_((strm), (windowBits), ZLIB_VERSION, sizeof(z_stream))
 #define inflateInit(strm)	\
 	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
+#define inflateBackInit(strm, windowBits, window)	\
+        inflateBackInit_((strm), (windowBits), (window), \
+                                            ZLIB_VERSION, sizeof(z_stream))
 
 typedef char charf;
 typedef int intf;
@@ -31,6 +34,8 @@ struct internal_state {
 };
 typedef Byte Bytef;
 typedef uInt uIntf;
+typedef unsigned int (*in_func) (void *, unsigned char **);
+typedef int (*out_func) (void *, unsigned char *, unsigned int);
 
 typedef struct z_stream_s {
     Bytef *next_in;		/* next input byte */
@@ -101,10 +106,12 @@ extern int deflateInit2_(z_streamp strm, int level, int method,
 extern int deflateInit_(z_streamp strm, int level, const char *version,
 			int stream_size);
 extern int deflateParams(z_streamp strm, int level, int strategy);
+extern int deflatePrime(z_streamp strm, int bits, int value);
 extern int deflateReset(z_streamp strm);
 extern int deflateSetDictionary(z_streamp strm, const Bytef * dictionary,
 				uInt dictLength);
 extern const uLongf *get_crc_table(void);
+extern void gzclearerr(gzFile file);
 extern int gzclose(gzFile file);
 extern gzFile gzdopen(int fd, const char *mode);
 extern int gzeof(gzFile file);
@@ -123,6 +130,13 @@ extern int gzsetparams(gzFile file, int level, int strategy);
 extern z_off_t gztell(gzFile file);
 extern int gzwrite(gzFile file, voidpc buf, unsigned int len);
 extern int inflate(z_streamp strm, int flush);
+extern int inflateBack(z_streamp strm, in_func in, void *in_desc,
+		       out_func out, void *out_desc);
+extern int inflateBackEnd(z_streamp strm);
+extern int inflateBackInit_(z_streamp strm, int windowBits,
+			    unsigned char *window, const char *version,
+			    int stream_size);
+extern int inflateCopy(z_streamp dest, z_streamp source);
 extern int inflateEnd(z_streamp strm);
 extern int inflateInit2_(z_streamp strm, int windowBits,
 			 const char *version, int stream_size);

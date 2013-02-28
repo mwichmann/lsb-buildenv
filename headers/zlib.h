@@ -25,6 +25,12 @@ extern "C" {
 	inflateInit_((strm),                ZLIB_VERSION, sizeof(z_stream))
 #endif				/* __LSB_VERSION__ >= 1.3 */
 
+#if __LSB_VERSION__ >= 50
+#define inflateBackInit(strm, windowBits, window)	\
+        inflateBackInit_((strm), (windowBits), (window), \
+                                            ZLIB_VERSION, sizeof(z_stream))
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
 #if __LSB_VERSION__ >= 13
@@ -77,6 +83,13 @@ extern "C" {
     typedef uInt uIntf;
 
 #endif				/* __LSB_VERSION__ >= 1.3 */
+
+#if __LSB_VERSION__ >= 50
+    typedef unsigned int (*in_func) (void *, unsigned char **);
+
+    typedef int (*out_func) (void *, unsigned char *, unsigned int);
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #if __LSB_VERSION__ >= 12
     struct internal_state {
@@ -252,6 +265,18 @@ extern "C" {
     extern uLong deflateBound(z_streamp strm, uLong sourceLen);
     extern const char *zlibVersion(void);
 #endif				/* __LSB_VERSION__ >= 3.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern int deflatePrime(z_streamp strm, int bits, int value);
+    extern void gzclearerr(gzFile file);
+    extern int inflateBack(z_streamp strm, in_func in, void *in_desc,
+			   out_func out, void *out_desc);
+    extern int inflateBackEnd(z_streamp strm);
+    extern int inflateBackInit_(z_streamp strm, int windowBits,
+				unsigned char *window, const char *version,
+				int stream_size);
+    extern int inflateCopy(z_streamp dest, z_streamp source);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }
