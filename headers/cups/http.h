@@ -11,6 +11,14 @@
 #include <stdint.h>
 #include <cups/cups.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -114,7 +122,13 @@ extern "C" {
     extern void httpClearCookie(http_t * http);
     extern void httpClearFields(http_t * http);
     extern void httpClose(http_t * http);
-    extern http_t *httpConnect(const char *host, int port);
+    /* This function is deprecated. Use
+       httpConnectEncrypt instead */
+    extern http_t *httpConnect(const char *host, int port)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern http_t *httpConnectEncrypt(const char *host, int port,
 				      http_encryption_t encryption);
     extern char *httpDecode64_2(char *out, int *outlen, const char *in);

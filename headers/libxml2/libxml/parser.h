@@ -13,6 +13,14 @@
 #include <libxml2/libxml/SAX2.h>
 #include <libxml2/libxml/xmlIO.h>
 
+#if !defined(LSB_DECL_DEPRECATED)
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
+#define LSB_DECL_DEPRECATED __attribute__ ((__deprecated__))
+#else
+#define LSB_DECL_DEPRECATED
+#endif
+#endif				/* LSB_DECL_DEPRECATED */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -199,7 +207,13 @@ extern "C" {
 							const xmlNodePtr
 							node);
     extern int xmlParserInputGrow(xmlParserInputPtr in, int len);
-    extern int xmlParserInputRead(xmlParserInputPtr in, int len);
+    /* This function was internal
+       and is now marked as deprecated; it always returns an error. */
+    extern int xmlParserInputRead(xmlParserInputPtr in, int len)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern int xmlPedanticParserDefault(int val);
     extern xmlDocPtr xmlReadDoc(const xmlChar * cur, const char *URL,
 				const char *encoding, int options);
