@@ -15,3 +15,4 @@ extern int tigetnum(const char *);
 extern char *tigetstr(const char *);
 extern char *tparm(const char *, ...);
 extern int tputs(const char *, int, int (*)(int));
+extern char ttytype[];

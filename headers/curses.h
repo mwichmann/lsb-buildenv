@@ -52,6 +52,12 @@ extern "C" {
 #define ACS_BULLET	(acs_map['~'])
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
+#if __LSB_VERSION__ >= 50
+#define getattrs(win)	((win)?(win)->_attrs:A_NORMAL)
+#define setsyx(y,x)	do{if((y)==-1&&(x)==-1)newscr->_leaveok=TRUE;else{newscr->_leaveok=FALSE;wmove(newscr,(y),(x));}}while(0)
+#define getsyx(y,x)	do{if(newscr->_leaveok)(y)=(x)=-1;elsegetyx(newscr,(y),(x));}while(0)
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
     struct ldat;
@@ -719,6 +725,10 @@ extern "C" {
     extern chtype acs_map[];
     extern const char *unctrl(chtype);
 #endif				/* __LSB_VERSION__ >= 2.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern WINDOW *newscr;
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

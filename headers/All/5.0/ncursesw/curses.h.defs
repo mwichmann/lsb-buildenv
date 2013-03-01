@@ -1,5 +1,21 @@
 
 #define CURSES	1
+#define setsyx(y,x)	do { if (newscr) { \
+				 if ((y) == -1 && (x) == -1) \
+					 leaveok(newscr, TRUE); \
+				 else { \
+					 leaveok(newscr, FALSE); \
+					 wmove(newscr, (y), (x)); \
+				} \
+			 } \
+		  } while(0)
+#define getsyx(y,x)	do { if (newscr) { \
+				 if (is_leaveok(newscr)) \
+					 (y) = (x) = -1; \
+				 else \
+					 getyx(newscr,(y), (x)); \
+			 } \
+		 } while(0)
 #define CURSES_H	1
 #define NCURSES_VERSION_MAJOR	5
 #define NCURSES_VERSION_MINOR	9

@@ -398,17 +398,8 @@ __asm__(".globl ESCDELAY; .pushsection .data; .type ESCDELAY,@object; .size ESCD
 __asm__(".globl LINES; .pushsection .data; .type LINES,@object; .size LINES, 4; LINES: .long 0; .popsection");
 __asm__(".globl TABSIZE; .pushsection .data; .type TABSIZE,@object; .size TABSIZE, 4; TABSIZE: .long 0; .popsection");
 __asm__(".globl acs_map; .pushsection .data; .type acs_map,@object; .size acs_map, 512; acs_map: .long 0; .popsection");
-__asm__(".globl boolcodes; .pushsection .data; .type boolcodes,@object; .size boolcodes, 4; boolcodes: .long 0; .popsection");
-__asm__(".globl boolfnames; .pushsection .data; .type boolfnames,@object; .size boolfnames, 4; boolfnames: .long 0; .popsection");
-__asm__(".globl boolnames; .pushsection .data; .type boolnames,@object; .size boolnames, 4; boolnames: .long 0; .popsection");
 __asm__(".globl cur_term; .pushsection .data; .type cur_term,@object; .size cur_term, 4; cur_term: .long 0; .popsection");
 __asm__(".globl curscr; .pushsection .data; .type curscr,@object; .size curscr, 4; curscr: .long 0; .popsection");
 __asm__(".globl newscr; .pushsection .data; .type newscr,@object; .size newscr, 4; newscr: .long 0; .popsection");
-__asm__(".globl numcodes; .pushsection .data; .type numcodes,@object; .size numcodes, 4; numcodes: .long 0; .popsection");
-__asm__(".globl numfnames; .pushsection .data; .type numfnames,@object; .size numfnames, 4; numfnames: .long 0; .popsection");
-__asm__(".globl numnames; .pushsection .data; .type numnames,@object; .size numnames, 4; numnames: .long 0; .popsection");
 __asm__(".globl stdscr; .pushsection .data; .type stdscr,@object; .size stdscr, 4; stdscr: .long 0; .popsection");
-__asm__(".globl strcodes; .pushsection .data; .type strcodes,@object; .size strcodes, 4; strcodes: .long 0; .popsection");
-__asm__(".globl strfnames; .pushsection .data; .type strfnames,@object; .size strfnames, 4; strfnames: .long 0; .popsection");
-__asm__(".globl strnames; .pushsection .data; .type strnames,@object; .size strnames, 4; strnames: .long 0; .popsection");
 __asm__(".globl ttytype; .pushsection .data; .type ttytype,@object; .size ttytype, 4; ttytype: .long 0; .popsection");
