@@ -480,5 +480,5 @@ void xcb_xc_misc_get_xid_list_unchecked() {} ;
 void xcb_xc_misc_get_xid_range() {} ;
 void xcb_xc_misc_get_xid_range_reply() {} ;
 void xcb_xc_misc_get_xid_range_unchecked() {} ;
-__asm__(".globl xcb_big_requests_id; .pushsection .data; .type xcb_big_requests_id,@object; .size xcb_big_requests_id, 4; xcb_big_requests_id: .long 0; .popsection");
-__asm__(".globl xcb_xc_misc_id; .pushsection .data; .type xcb_xc_misc_id,@object; .size xcb_xc_misc_id, 4; xcb_xc_misc_id: .long 0; .popsection");
+__asm__(".globl xcb_big_requests_id; .pushsection .data; .type xcb_big_requests_id,@object; .size xcb_big_requests_id, 16; xcb_big_requests_id: .long 0; .popsection");
+__asm__(".globl xcb_xc_misc_id; .pushsection .data; .type xcb_xc_misc_id,@object; .size xcb_xc_misc_id, 16; xcb_xc_misc_id: .long 0; .popsection");

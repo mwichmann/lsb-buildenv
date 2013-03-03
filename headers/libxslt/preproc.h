@@ -20,7 +20,7 @@ extern "C" {
 					       xmlNodePtr inst,
 					       xsltTransformFunction
 					       function);
-    extern const unsigned char *xsltExtMarker;
+    extern const xmlChar *xsltExtMarker;
     extern void xsltFreeStylePreComps(xsltStylesheetPtr style);
     extern void xsltStylePreCompute(xsltStylesheetPtr style,
 				    xmlNodePtr inst);
