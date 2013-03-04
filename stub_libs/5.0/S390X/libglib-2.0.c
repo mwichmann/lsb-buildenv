@@ -1484,7 +1484,7 @@ __asm__(".globl g_child_watch_funcs; .pushsection .data; .type g_child_watch_fun
 __asm__(".globl g_idle_funcs; .pushsection .data; .type g_idle_funcs,@object; .size g_idle_funcs, 48; g_idle_funcs: .long 0; .popsection");
 __asm__(".globl g_io_watch_funcs; .pushsection .data; .type g_io_watch_funcs,@object; .size g_io_watch_funcs, 48; g_io_watch_funcs: .long 0; .popsection");
 __asm__(".globl g_mem_gc_friendly; .pushsection .data; .type g_mem_gc_friendly,@object; .size g_mem_gc_friendly, 4; g_mem_gc_friendly: .long 0; .popsection");
-__asm__(".globl g_test_config_vars; .pushsection .data; .type g_test_config_vars,@object; .size g_test_config_vars, 4; g_test_config_vars: .long 0; .popsection");
+__asm__(".globl g_test_config_vars; .pushsection .data; .type g_test_config_vars,@object; .size g_test_config_vars, 8; g_test_config_vars: .long 0; .popsection");
 __asm__(".globl g_thread_functions_for_glib_use; .pushsection .data; .type g_thread_functions_for_glib_use,@object; .size g_thread_functions_for_glib_use, 168; g_thread_functions_for_glib_use: .long 0; .popsection");
 __asm__(".globl g_thread_use_default_impl; .pushsection .data; .type g_thread_use_default_impl,@object; .size g_thread_use_default_impl, 4; g_thread_use_default_impl: .long 0; .popsection");
 __asm__(".globl g_threads_got_initialized; .pushsection .data; .type g_threads_got_initialized,@object; .size g_threads_got_initialized, 4; g_threads_got_initialized: .long 0; .popsection");

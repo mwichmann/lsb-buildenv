@@ -402,4 +402,4 @@ __asm__(".globl cur_term; .pushsection .data; .type cur_term,@object; .size cur_
 __asm__(".globl curscr; .pushsection .data; .type curscr,@object; .size curscr, 4; curscr: .long 0; .popsection");
 __asm__(".globl newscr; .pushsection .data; .type newscr,@object; .size newscr, 4; newscr: .long 0; .popsection");
 __asm__(".globl stdscr; .pushsection .data; .type stdscr,@object; .size stdscr, 4; stdscr: .long 0; .popsection");
-__asm__(".globl ttytype; .pushsection .data; .type ttytype,@object; .size ttytype, 4; ttytype: .long 0; .popsection");
+__asm__(".globl ttytype; .pushsection .data; .type ttytype,@object; .size ttytype, 256; ttytype: .long 0; .popsection");
