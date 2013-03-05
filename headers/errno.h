@@ -170,9 +170,13 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 2.0 */
 
 #if __LSB_VERSION__ >= 41
-#define EOWNERDEAD	130
-#define ENOTRECOVERABLE	131
+#define EOWNERDEAD	130	/* Owner died */
+#define ENOTRECOVERABLE	131	/* State not recoverable */
 #endif				/* __LSB_VERSION__ >= 4.1 */
+
+#if __LSB_VERSION__ >= 50
+#define ERFKILL	132		/* Operation not possible due to RF-kill */
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 

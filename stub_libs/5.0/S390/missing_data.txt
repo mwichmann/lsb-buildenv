@@ -1,1 +1,1 @@
-libc _sys_errlist 84
+libc _sys_errlist 21c

@@ -1,4 +1,7 @@
 LSB_DUMMY { __LSB_DUMMY; };
+GLIBC_2.12 {
+  _sys_errlist;
+};
 GLIBC_2.2.5 {
   _Exit;
   _IO_feof;
@@ -1045,5 +1048,4 @@ GLIBC_2.4 {
   renameat;
   symlinkat;
   unlinkat;
-  _sys_errlist;
 };

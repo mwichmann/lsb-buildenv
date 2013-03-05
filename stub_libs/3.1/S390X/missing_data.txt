@@ -1,1 +1,1 @@
-libc _sys_errlist 80
+libc _sys_errlist 3f0

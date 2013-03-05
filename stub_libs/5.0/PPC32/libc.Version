@@ -811,6 +811,9 @@ GLIBC_2.1.3 {
   __cxa_atexit;
   __cxa_finalize;
 };
+GLIBC_2.12 {
+  _sys_errlist;
+};
 GLIBC_2.2 {
   __fpending;
   __fxstat64;
@@ -1061,5 +1064,4 @@ GLIBC_2.4 {
   wcstold;
   wprintf;
   wscanf;
-  _sys_errlist;
 };
