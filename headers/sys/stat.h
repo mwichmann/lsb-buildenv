@@ -467,6 +467,12 @@ extern "C" {
 		       dev_t __dev);
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
+#if __LSB_VERSION__ >= 50
+    extern int futimens(int fd, const struct timespec times[2]);
+    extern int utimensat(int fd, const char *path,
+			 const struct timespec times[2], int flags);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

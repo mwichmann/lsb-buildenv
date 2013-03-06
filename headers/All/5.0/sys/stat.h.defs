@@ -66,6 +66,7 @@ extern int fstatat(int __fd, const char *__file, struct stat *__buf,
 		   int __flag);
 extern int fstatat64(int __fd, const char *__file, struct stat64 *__buf,
 		     int __flag);
+extern int futimens(int fd, const struct timespec times[2]);
 extern int lstat(const char *__file, struct stat *__buf);
 extern int lstat64(const char *__file, struct stat64 *__buf);
 extern int mkdir(const char *__path, mode_t __mode);
@@ -78,3 +79,5 @@ extern int mknodat(int __fd, const char *__path, mode_t __mode,
 extern int stat(const char *__file, struct stat *__buf);
 extern int stat64(const char *__file, struct stat64 *__buf);
 extern mode_t umask(mode_t __mask);
+extern int utimensat(int fd, const char *path,
+		     const struct timespec times[2], int flags);

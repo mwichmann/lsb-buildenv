@@ -2,6 +2,7 @@
 #ifndef _WCHAR_H_
 #define _WCHAR_H_
 
+#include <locale.h>
 #include <stdio.h>
 #include <time.h>
 #include <wctype.h>
@@ -196,6 +197,17 @@ extern "C" {
     extern wint_t putwc_unlocked(wchar_t __wc, FILE * __stream);
     extern wint_t putwchar_unlocked(wchar_t __wc);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern int wcscasecmp_l(const wchar_t * ws1, const wchar_t * ws2,
+			    locale_t locale);
+    extern int wcscoll_l(const wchar_t * ws1, const wchar_t * ws2,
+			 locale_t locale);
+    extern int wcsncasecmp_l(const wchar_t * ws1, const wchar_t * ws2,
+			     size_t n, locale_t locale);
+    extern size_t wcsxfrm_l(const wchar_t * ws1, const wchar_t * ws2,
+			    size_t n, locale_t locale);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

@@ -3,6 +3,7 @@
 #define _NCURSESW_CURSES_H_
 
 #include <stdio.h>
+#include <wctype.h>
 #include <curses.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -707,8 +708,6 @@ extern "C" {
 	int z;
 	mmask_t bstate;
     } MEVENT;
-
-    typedef unsigned int wint_t;
 
     int (*bstate) (WINDOW *, int);
 

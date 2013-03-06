@@ -1050,6 +1050,10 @@ extern "C" {
     extern int __xpg_sigpause(int);
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 50
+    extern void psiginfo(const siginfo_t * pinfo, const char *message);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

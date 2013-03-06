@@ -220,6 +220,7 @@ extern char *const _sys_siglist[];
 extern sighandler_t bsd_signal(int __sig, sighandler_t __handler);
 extern int kill(pid_t __pid, int __sig);
 extern int killpg(pid_t __pgrp, int __sig);
+extern void psiginfo(const siginfo_t * pinfo, const char *message);
 extern void psignal(int __sig, const char *__s);
 extern int pthread_kill(pthread_t, int);
 extern int pthread_sigmask(int, const sigset_t *, sigset_t *);

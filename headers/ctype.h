@@ -2,6 +2,7 @@
 #ifndef _CTYPE_H_
 #define _CTYPE_H_
 
+#include <locale.h>
 #include <sys/types.h>
 #include <stdint.h>
 
@@ -149,6 +150,23 @@ extern "C" {
     extern const int32_t **__ctype_tolower_loc(void);
     extern const int32_t **__ctype_toupper_loc(void);
 #endif				/* __LSB_VERSION__ >= 2.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern int isalnum_l(int c, locale_t locale);
+    extern int isalpha_l(int c, locale_t locale);
+    extern int isblank_l(int c, locale_t locale);
+    extern int iscnrtl_l(int c, locale_t locale);
+    extern int isdigit_l(int c, locale_t locale);
+    extern int isgraph_l(int c, locale_t locale);
+    extern int islower_l(int c, locale_t locale);
+    extern int isprint_l(int c, locale_t locale);
+    extern int ispunct_l(int c, locale_t locale);
+    extern int isspace_l(int c, locale_t locale);
+    extern int isupper_l(int c, locale_t locale);
+    extern int isxdigit_l(int c, locale_t locale);
+    extern int tolower_l(int c, locale_t locale);
+    extern int toupper_l(int c, locale_t locale);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }
