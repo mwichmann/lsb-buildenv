@@ -2,9 +2,9 @@
 #ifndef _MONETARY_H_
 #define _MONETARY_H_
 
-#include <sys/types.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <lsb/types.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))

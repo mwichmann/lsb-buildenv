@@ -89,44 +89,6 @@ extern "C" {
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
-#if __LSB_VERSION__ >= 20
-#if defined __i386__
-/* IA32 */
-    typedef int32_t ssize_t;
-
-#endif
-#if defined __s390__ && !defined __s390x__
-/* S390 */
-    typedef int32_t ssize_t;
-
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-/* PPC32 */
-    typedef int32_t ssize_t;
-
-#endif
-#if defined __ia64__
-/* IA64 */
-    typedef int64_t ssize_t;
-
-#endif
-#if defined __powerpc64__
-/* PPC64 */
-    typedef int64_t ssize_t;
-
-#endif
-#if defined __x86_64__
-/* x86-64 */
-    typedef int64_t ssize_t;
-
-#endif
-#if defined __s390x__
-/* S390X */
-    typedef int64_t ssize_t;
-
-#endif
-#endif				/* __LSB_VERSION__ >= 2.0 */
-
 
 /* Stuff that really in bits/types.h*/
 #if __LSB_VERSION__ >= 12

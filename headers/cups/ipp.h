@@ -7,6 +7,7 @@
 #include <sys/select.h>
 #include <netinet/in.h>
 #include <stdint.h>
+#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {

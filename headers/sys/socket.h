@@ -2,9 +2,9 @@
 #ifndef _SYS_SOCKET_H_
 #define _SYS_SOCKET_H_
 
-#include <sys/types.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {

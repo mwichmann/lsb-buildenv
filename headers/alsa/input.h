@@ -3,8 +3,8 @@
 #define _ALSA_INPUT_H_
 
 #include <stdio.h>
-#include <sys/types.h>
 #include <stdint.h>
+#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -3,9 +3,9 @@
 #define _STRINGS_H_
 
 #include <locale.h>
-#include <sys/types.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {

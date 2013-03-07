@@ -2,10 +2,10 @@
 #ifndef _ALSA_HWDEP_H_
 #define _ALSA_HWDEP_H_
 
-#include <sys/types.h>
 #include <stddef.h>
 #include <sys/poll.h>
 #include <stdint.h>
+#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {

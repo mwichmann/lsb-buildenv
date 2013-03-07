@@ -62,6 +62,7 @@ linux/socket.h
 locale.h
 lsb/pthread.h
 lsb/time.h
+lsb/types.h
 malloc.h
 math.h
 monetary.h

@@ -2,12 +2,12 @@
 #ifndef _ALSA_SEQ_H_
 #define _ALSA_SEQ_H_
 
-#include <sys/types.h>
 #include <stddef.h>
 #include <sys/poll.h>
 #include <jpeglib.h>
 #include <stdint.h>
 #include <alsa/seq_event.h>
+#include <lsb/types.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
