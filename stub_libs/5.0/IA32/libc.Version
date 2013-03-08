@@ -343,7 +343,6 @@ GLIBC_2.0 {
   memccpy;
   memchr;
   memcmp;
-  memcpy;
   memmem;
   memmove;
   memset;
@@ -851,6 +850,13 @@ GLIBC_2.10 {
 GLIBC_2.12 {
   _sys_errlist;
 };
+GLIBC_2.14 {
+  memcpy;
+};
+GLIBC_2.15 {
+  posix_spawn;
+  posix_spawnp;
+};
 GLIBC_2.2 {
   __fpending;
   __fxstat64;
@@ -896,7 +902,6 @@ GLIBC_2.2 {
   posix_fallocate;
   posix_madvise;
   posix_memalign;
-  posix_spawn;
   posix_spawn_file_actions_addclose;
   posix_spawn_file_actions_adddup2;
   posix_spawn_file_actions_addopen;
@@ -916,7 +921,6 @@ GLIBC_2.2 {
   posix_spawnattr_setschedpolicy;
   posix_spawnattr_setsigdefault;
   posix_spawnattr_setsigmask;
-  posix_spawnp;
   putwc;
   putwc_unlocked;
   putwchar;
