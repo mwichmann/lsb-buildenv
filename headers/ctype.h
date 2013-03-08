@@ -155,7 +155,7 @@ extern "C" {
     extern int isalnum_l(int c, locale_t locale);
     extern int isalpha_l(int c, locale_t locale);
     extern int isblank_l(int c, locale_t locale);
-    extern int iscnrtl_l(int c, locale_t locale);
+    extern int iscntrl_l(int c, locale_t locale);
     extern int isdigit_l(int c, locale_t locale);
     extern int isgraph_l(int c, locale_t locale);
     extern int islower_l(int c, locale_t locale);

@@ -393,8 +393,8 @@ GLIBC_2.3 {
   isatty;
   isblank;
   isblank_l;
-  iscnrtl_l;
   iscntrl;
+  iscntrl_l;
   isdigit;
   isdigit_l;
   isgraph;
@@ -702,7 +702,6 @@ GLIBC_2.3 {
   statvfs;
   statvfs64;
   stime;
-  stncasecmp_l;
   stpcpy;
   stpncpy;
   strcasecmp;
@@ -722,6 +721,7 @@ GLIBC_2.3 {
   strftime;
   strlen;
   strncasecmp;
+  strncasecmp_l;
   strncat;
   strncmp;
   strncpy;
