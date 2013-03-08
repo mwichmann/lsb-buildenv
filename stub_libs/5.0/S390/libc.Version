@@ -335,6 +335,7 @@ GLIBC_2.0 {
   memccpy;
   memchr;
   memcmp;
+  memcpy;
   memmem;
   memmove;
   memset;
@@ -823,9 +824,6 @@ GLIBC_2.10 {
 };
 GLIBC_2.12 {
   _sys_errlist;
-};
-GLIBC_2.14 {
-  memcpy;
 };
 GLIBC_2.15 {
   posix_spawn;
