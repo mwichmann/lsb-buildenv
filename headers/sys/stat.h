@@ -106,6 +106,11 @@ extern "C" {
 #endif
 #endif				/* __LSB_VERSION__ >= 3.2 */
 
+#if __LSB_VERSION__ >= 50
+#define UTIME_NOW	((1l << 30) - 1l)
+#define UTIME_OMIT	((1l << 30) - 2l)
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
 #if __LSB_VERSION__ >= 20

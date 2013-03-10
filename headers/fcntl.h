@@ -145,7 +145,15 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #if __LSB_VERSION__ >= 50
+#define AT_FDCWD	-100	/* Use the current working directory to determine the target of relative file paths. */
+#define O_CLOEXEC	02000000	/* The FD_CLOEXEC flag associated with the new descriptor shall be set to close the file descriptor upon execution of an exec family function. */
 #define O_SYNC	04010000
+#define AT_SYMLINK_NOFOLLOW	0x100	/* Do not follow symbolic links. */
+#define AT_EMPTY_PATH	0x1000	/* Allow empty relative pathname. */
+#define AT_EACCESS	0x200	/* Check access using effective user and group ID. */
+#define AT_REMOVEDIR	0x200	/* Remove directory instead of file. */
+#define AT_SYMLINK_FOLLOW	0x400	/* Follow symbolic link. */
+#define AT_NO_AUTOMOUNT	0x800	/* Suppress terminal automount traversal. */
 #define O_RSYNC	O_SYNC
 #endif				/* __LSB_VERSION__ >= 5.0 */
 

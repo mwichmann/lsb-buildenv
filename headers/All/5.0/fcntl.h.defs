@@ -1,4 +1,5 @@
 
+#define AT_FDCWD	-100	/* Use the current working directory to determine the target of relative file paths. */
 #define POSIX_FADV_NORMAL	0
 #define O_RDONLY	00
 #define O_ACCMODE	0003
@@ -11,10 +12,17 @@
 #define O_EXCL	0200
 #define O_APPEND	02000
 #define O_ASYNC	020000
+#define O_CLOEXEC	02000000	/* The FD_CLOEXEC flag associated with the new descriptor shall be set to close the file descriptor upon execution of an exec family function. */
 #define O_NOCTTY	0400
 #define O_NDELAY	04000
 #define O_NONBLOCK	04000
 #define O_SYNC	04010000
+#define AT_SYMLINK_NOFOLLOW	0x100	/* Do not follow symbolic links. */
+#define AT_EMPTY_PATH	0x1000	/* Allow empty relative pathname. */
+#define AT_EACCESS	0x200	/* Check access using effective user and group ID. */
+#define AT_REMOVEDIR	0x200	/* Remove directory instead of file. */
+#define AT_SYMLINK_FOLLOW	0x400	/* Follow symbolic link. */
+#define AT_NO_AUTOMOUNT	0x800	/* Suppress terminal automount traversal. */
 #define FD_CLOEXEC	1
 #define POSIX_FADV_RANDOM	1
 #define POSIX_FADV_SEQUENTIAL	2
