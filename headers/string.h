@@ -2,6 +2,7 @@
 #ifndef _STRING_H_
 #define _STRING_H_
 
+#include <locale.h>
 #include <stddef.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
@@ -93,6 +94,13 @@ extern "C" {
     extern char *__strncat_chk(char *, const char *, size_t, size_t);
     extern char *__strncpy_chk(char *, const char *, size_t, size_t);
 #endif				/* __LSB_VERSION__ >= 4.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern int strcoll_l(const char *s1, const char *s2, locale_t locale);
+    extern char *strerror_l(int errnum, locale_t locale);
+    extern size_t strxfrm_l(char *s1, const char *s2, size_t n,
+			    locale_t locale);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

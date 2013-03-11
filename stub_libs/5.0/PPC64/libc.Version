@@ -721,6 +721,7 @@ GLIBC_2.3 {
   strerror_r;
   strfmon_l;
   strftime;
+  strftime_l;
   strlen;
   strncasecmp;
   strncasecmp_l;
@@ -1095,5 +1096,6 @@ GLIBC_2.4 {
 };
 GLIBC_2.6 {
   futimens;
+  strerror_l;
   utimensat;
 };

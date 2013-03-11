@@ -32,10 +32,12 @@ extern char *strcat(char *__dest, const char *__src);
 extern char *strchr(const char *__s, int __c);
 extern int strcmp(const char *__s1, const char *__s2);
 extern int strcoll(const char *__s1, const char *__s2);
+extern int strcoll_l(const char *s1, const char *s2, locale_t locale);
 extern char *strcpy(char *__dest, const char *__src);
 extern size_t strcspn(const char *__s, const char *__reject);
 extern char *strdup(const char *__s);
 extern char *strerror(int __errnum);
+extern char *strerror_l(int errnum, locale_t locale);
 extern size_t strlen(const char *__s);
 extern char *strncat(char *__dest, const char *__src, size_t __n);
 extern int strncmp(const char *__s1, const char *__s2, size_t __n);
@@ -51,3 +53,5 @@ extern char *strstr(const char *__haystack, const char *__needle);
 extern char *strtok(char *__s, const char *__delim);
 extern char *strtok_r(char *__s, const char *__delim, char **__save_ptr);
 extern size_t strxfrm(char *__dest, const char *__src, size_t __n);
+extern size_t strxfrm_l(char *s1, const char *s2, size_t n,
+			locale_t locale);

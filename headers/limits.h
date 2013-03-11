@@ -145,6 +145,11 @@ extern "C" {
 #if defined __s390x__
 #define LONG_BIT	64
 #endif
+#define NL_MSGMAX	INT_MAX
+#define NL_SETMAX	INT_MAX
+#define NL_TEXTMAX	INT_MAX
+#define NL_LANGMAX	_POSIX2_LINE_MAX
+#define NL_ARGMAX	_POSIX_ARG_MAX
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 

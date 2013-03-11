@@ -349,7 +349,13 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 41
     enum {
+#if __LSB_VERSION__ >= 50
+	PTHREAD_MUTEX_STALLED = 0,
+#endif				/* __LSB_VERSION__ >= 50 */
 	PTHREAD_MUTEX_STALLED_NP = 0,
+#if __LSB_VERSION__ >= 50
+	PTHREAD_MUTEX_ROBUST = 1,
+#endif				/* __LSB_VERSION__ >= 50 */
 	PTHREAD_MUTEX_ROBUST_NP = 1
     };
 

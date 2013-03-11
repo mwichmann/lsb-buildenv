@@ -2,6 +2,7 @@
 #ifndef _TIME_H_
 #define _TIME_H_
 
+#include <locale.h>
 #include <sys/types.h>
 #include <stddef.h>
 
@@ -150,6 +151,11 @@ extern "C" {
 			     const struct itimerspec *__value,
 			     struct itimerspec *__ovalue);
 #endif				/* __LSB_VERSION__ >= 3.0 */
+
+#if __LSB_VERSION__ >= 50
+    extern size_t strftime_l(char *s, size_t maxsize, const char *format,
+			     const struct tm *timeptr, locale_t locale);
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
 }

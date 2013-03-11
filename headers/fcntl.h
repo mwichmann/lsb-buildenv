@@ -154,6 +154,7 @@ extern "C" {
 #define AT_REMOVEDIR	0x200	/* Remove directory instead of file. */
 #define AT_SYMLINK_FOLLOW	0x400	/* Follow symbolic link. */
 #define AT_NO_AUTOMOUNT	0x800	/* Suppress terminal automount traversal. */
+#define F_DUPFD_CLOEXEC	1030	/* Duplicate file descriptor with the close-on-exec flag FD_CLOEXEC set. */
 #define O_RSYNC	O_SYNC
 #endif				/* __LSB_VERSION__ >= 5.0 */
 

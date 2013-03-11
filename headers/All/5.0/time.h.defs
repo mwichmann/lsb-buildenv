@@ -85,6 +85,8 @@ extern int nanosleep(const struct timespec *__requested_time,
 extern int stime(const time_t * __when);
 extern size_t strftime(char *__s, size_t __maxsize, const char *__format,
 		       const struct tm *__tp);
+extern size_t strftime_l(char *s, size_t maxsize, const char *format,
+			 const struct tm *timeptr, locale_t locale);
 extern char *strptime(const char *__s, const char *__fmt, struct tm *__tp);
 extern time_t time(time_t * __timer);
 extern int timer_create(clockid_t __clock_id, struct sigevent *__evp,

@@ -4,8 +4,6 @@
 
 #include <locale.h>
 #include <stddef.h>
-#include <stdint.h>
-#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,13 +25,8 @@ extern "C" {
 #if __LSB_VERSION__ >= 50
     extern int strcasecmp_l(const char *s1, const char *s2,
 			    locale_t locale);
-    extern int strcoll_l(const char *s1, const char *s2, locale_t locale);
-    extern ssize_t strfmon_l(char *s, size_t maxsize, locale_t locale,
-			     const char *format);
     extern int strncasecmp_l(const char *s1, const char *s2, size_t n,
 			     locale_t locale);
-    extern size_t strxfrm_l(char *s1, const char *s2, size_t n,
-			    locale_t locale);
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus

@@ -2,6 +2,7 @@
 #ifndef _MONETARY_H_
 #define _MONETARY_H_
 
+#include <locale.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <lsb/types.h>
@@ -24,6 +25,11 @@ extern "C" {
 
     extern ssize_t strfmon(char *__s, size_t __maxsize,
 			   const char *__format, ...);
+#if __LSB_VERSION__ >= 50
+    extern ssize_t strfmon_l(char *s, size_t maxsize, locale_t locale,
+			     const char *format, ...);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

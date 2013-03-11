@@ -25,6 +25,7 @@
 #define AT_NO_AUTOMOUNT	0x800	/* Suppress terminal automount traversal. */
 #define FD_CLOEXEC	1
 #define POSIX_FADV_RANDOM	1
+#define F_DUPFD_CLOEXEC	1030	/* Duplicate file descriptor with the close-on-exec flag FD_CLOEXEC set. */
 #define POSIX_FADV_SEQUENTIAL	2
 #define POSIX_FADV_WILLNEED	3
 #define O_RSYNC	O_SYNC
