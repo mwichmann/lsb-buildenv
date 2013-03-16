@@ -61,13 +61,9 @@ to help build LSB conforming applications.
 
 %package -n lsbdev-runner
 Summary: LSB application runner for non-LSB systems
-
-%description -n lsbdev-runner
-This package provides lsbrun, a utility for running LSB-compliant
-applications on Linux systems that do not provide a LSB runtime
-(at least as well as such applications can run).
 Group: Development/Tools
 AutoReqProv: no
+
 %description -n lsbdev-runner
 This package provides lsbrun, a utility for running LSB-compliant
 applications on Linux systems that do not provide a LSB runtime
