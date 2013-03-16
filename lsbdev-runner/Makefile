@@ -1,13 +1,24 @@
 CFLAGS = -g -Wall
 LDFLAGS = -static
 
+all: lsbrun
+
 lsbrun: lsbrun.o
+
+install: lsbrun
+	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)
+	install lsbrun $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)/lsbrun
+
+# dummies
+install-core install-desktop: install
 
 clean:
 	rm -f lsbrun.o lsbrun
 
-install: lsbrun
-	install -d $(INSTALL_ROOT)/$(BINDIR)
-	install lsbrun $(INSTALL_ROOT)/$(BINDIR)/lsbrun
+distclean:
+
+test:
+
+check: test
 
 .PHONY: install clean

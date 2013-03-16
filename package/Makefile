@@ -42,11 +42,11 @@ endif
 # Should have leading "."
 # a big number (80-99) is leading up to the next minor spec
 # build_env is version-independent so can wait till late to bump this
-SUB_VERSION=.31
+SUB_VERSION=.32
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=8
+RPM_PACKAGE_RELEASE=1
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)
@@ -64,12 +64,14 @@ FULL_PACKAGE_NAME_CLEAN=$(PACKAGE)-$(LSBVERSION)$(SUB_VERSION)*
 FULL_PACKAGE_NAME_CC=$(PACKAGE)-cc-$(LSBVERSION)$(SUB_VERSION)*
 FULL_PACKAGE_NAME_BASE=$(PACKAGE)-base-$(LSBVERSION)$(SUB_VERSION)*
 FULL_PACKAGE_NAME_DESKTOP=$(PACKAGE)-desktop-$(LSBVERSION)$(SUB_VERSION)*
+FULL_PACKAGE_NAME_LSBRUN=lsbdev-runner-$(LSBVERSION)$(SUB_VERSION)*
 
 TARBALL=$(FULL_PACKAGE_NAME).tar.gz
 
 RPM_BINARY_CC=$(FULL_PACKAGE_CC)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_BINARY_BASE=$(FULL_PACKAGE_BASE)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_BINARY_DESKTOP=$(FULL_PACKAGE_DESKTOP)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
+RPM_BINARY_LSBRUN=$(FULL_PACKAGE_LSBRUN)-$(RPM_PACKAGE_RELEASE).$(RPM_BUILD_ARCH).rpm
 RPM_SOURCE_NAME=$(FULL_PACKAGE_NAME)-$(RPM_PACKAGE_RELEASE).src.rpm
 
 # Get value of RPM_PACKAGE_VERSION from LSBVERSION.
@@ -157,6 +159,7 @@ endif
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_CC) .
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_BASE) .
 	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_DESKTOP) .
+	@cp $(RPM_BINARY_DIR)/$(RPM_BINARY_LSBRUN) .
 	@cp $(RPM_SRPM_DIR)/$(RPM_SOURCE_NAME) .
 	@rm -rf $(RPM_TMP_BUILD_DIR)
 
@@ -188,6 +191,7 @@ clean:
 	rm -f $(FULL_PACKAGE_NAME_CC).rpm
 	rm -f $(FULL_PACKAGE_NAME_BASE).rpm
 	rm -f $(FULL_PACKAGE_NAME_DESKTOP).rpm
+	rm -f $(FULL_PACKAGE_NAME_LSBRUN).rpm
 	rm -rf $(FULL_PACKAGE_NAME_CLEAN)
 	rm -f core_pkglist_pruned desktop_pkglist_pruned
 

@@ -59,6 +59,20 @@ AutoReqProv: no
 The LSB Build Environment cc package provides lsbcc, which can be used
 to help build LSB conforming applications.
 
+%package -n lsbdev-runner
+Summary: LSB application runner for non-LSB systems
+
+%description -n lsbdev-runner
+This package provides lsbrun, a utility for running LSB-compliant
+applications on Linux systems that do not provide a LSB runtime
+(at least as well as such applications can run).
+Group: Development/Tools
+AutoReqProv: no
+%description -n lsbdev-runner
+This package provides lsbrun, a utility for running LSB-compliant
+applications on Linux systems that do not provide a LSB runtime
+(at least as well as such applications can run).
+
 %prep
 %setup -q
 
@@ -102,6 +116,11 @@ cp package/README-cc $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc/README
 for manpage in lsbcc.1 lsbc++.1 lsbcpp.1; do
   gzip -9 $RPM_BUILD_ROOT/opt/lsb/man/man1/$manpage
 done
+
+# specifics for lsbdev-runner:
+mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsbrun
+cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsbrun
+cp package/README-lsbrun $RPM_BUILD_ROOT/opt/lsb/doc/lsbrun/README
 
 # before leaving, we have to fix up the file lists:
 (cd package && make core_pkglist_pruned && make desktop_pkglist_pruned)
@@ -452,11 +471,21 @@ done
 /opt/lsb/man/man1/lsbc++.1.gz
 /opt/lsb/man/man1/lsbcc.1.gz
 /opt/lsb/man/man1/lsbcpp.1.gz
+
+%files -n lsbdev-runner
+%defattr(-,root,root)
+/opt/lsb/bin/lsbrun
+%dir /opt/lsb/doc/lsbrun
+/opt/lsb/doc/lsbrun/Licence
+/opt/lsb/doc/lsbrun/README
   
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat Mar 16 2013 Mats Wichmann <mats@linuxfounation.org
+- import the build of lsbdev-runner here from old packaging dir
+
 * Thu Feb 24 2011 Stew Benedict <stewb@linux-foundation.org>
 -  own the directories we populate (bug 3195)
 

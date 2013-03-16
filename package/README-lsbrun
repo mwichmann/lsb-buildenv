@@ -1,0 +1,37 @@
+LSB Application Runner
+======================
+
+This package contains lsbrun, a simple utility which can mimic an LSB
+environment for LSB-compliant applications on systems which do not
+provide an LSB runtime environment.
+
+Please note that lsbrun is not a miracle worker.  It can only allow an
+application to run if the system is mostly LSB-compliant, and is only
+missing the LSB dynamic linker.  It cannot emulate missing libraries
+or API calls, or correct incorrect behavior.
+
+License
+-------
+
+lsbrun is Copyright 2007 The Linux Foundation, and distributed under
+the terms of the BSD license.  See the Licence file for details.
+
+Usage
+-----
+
+The lsbrun utility acts as a helper for LSB-compliant apps, setting up
+the environment to compensate for a missing LSB dynamic linker.  You
+can run it in this way by just running "lsbrun <app>".
+
+It can also install itself as a transparent shim around an LSB app.
+Run it as "lsbrun --check <app>", and it will check for an LSB
+environment.  If it finds one, lsbrun will simply exit.  If not, it
+will move the original app binary and copy itself in its place.  From
+then on, running the original binary's path will invoke lsbrun
+transparently.
+
+Feedback
+--------
+
+Please send any comments you may have to
+lsb-discuss@lists.linux-foundation.org.

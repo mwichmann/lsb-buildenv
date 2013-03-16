@@ -1,4 +1,4 @@
-SUBDIRS=headers stub_libs lsbdev-cc
+SUBDIRS=headers stub_libs lsbdev-cc lsbdev-runner
 SUBDIRS_NOSTUB=headers lsbdev-cc
 
 export BINDIR=/bin
