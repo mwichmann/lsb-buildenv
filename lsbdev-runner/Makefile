@@ -6,7 +6,7 @@ all: lsbrun
 # lsbrun specifially has to be linked with native compiler,
 # so avoid using $(CC) which may be set to lsbcc
 LINK = cc
-lsbrun: 
+lsbrun: lsbrun.o
 	$(LINK) $(LDFLAGS) lsbrun.o -o lsbrun
 
 install: lsbrun
