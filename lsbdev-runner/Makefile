@@ -3,7 +3,11 @@ LDFLAGS = -static
 
 all: lsbrun
 
-lsbrun: lsbrun.o
+# lsbrun specifially has to be linked with native compiler,
+# so avoid using $(CC) which may be set to lsbcc
+LINK = cc
+lsbrun: 
+	$(LINK) $(LDFLAGS) lsbrun.o -o lsbrun
 
 install: lsbrun
 	install -d $(DESTDIR)/$(INSTALL_ROOT)/$(BINDIR)
