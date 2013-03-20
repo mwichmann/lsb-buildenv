@@ -1,3 +1,4 @@
+aio.h
 alsa/asoundlib.h
 alsa/conf.h
 alsa/control.h

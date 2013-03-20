@@ -167,6 +167,7 @@ BASE/LIB-5.0/libutil.so
 BASE/LIB-5.0/libutil.so.1
 BASE/LIB-5.0/libz.so
 BASE/LIB-5.0/libz.so.1
+BASE/include/aio.h
 BASE/include/alsa/asoundlib.h
 BASE/include/alsa/conf.h
 BASE/include/alsa/control.h
