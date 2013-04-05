@@ -1,1 +1,3 @@
 libc _sys_errlist 438
+libncursesw ttytype 100
+libncurses ttytype 100
