@@ -1,24 +1,101 @@
-This directory contains the code capable of generating stub libraries
-for a LSB compliant build environment. 
+This directory contains the "stub" libraries and related materials
+for a build environment (SDK) capable of producing compliant code.
+
+There is one stub library for each library defined in LSB, for each
+version of LSB in which it appears, for each architecture.  The tree
+is structured to support this, as {LSBVERSION}/{ARCH}, so so you can
+see for example 5.0/IA32/libc.* A stub library is made up of two files,
+a .c which defines all the official LSB entry points for that library,
+and including any global data, and a .version file which is a linker
+script used to assign symbol versions to the entry points, assuming the
+library is versioned.
+
+Stub libraries are per-version so they define only the symbol versions
+required by that version of the LSB, in this way the SDK can help you
+target any specific version by using the appropriate set of stubs.
 
 Building the stub libraries
 ---------------------------
-
 To compile the stub libraries simply type make.
 
 Generating the necessary files from the LSB database
 ----------------------------------------------------
-
-1. Depending on how you have configured your local LSB database you
-may need to edit the dbfiles Makefile target to pass the appropriate
-user, password and database name parameters.
+1. Local database setup is described elsewhere, all the build expects
+is you define the environment variables LSBDB, LSBUSER, LSBDBHOST,
+LSBDBPASSWD.
 
 2. Clean out any existing files
-# make distclean
+% make distclean
 
 3. Generate the database files
-# make dbfiles
+% make gensrc
+
+During development cycles, it may help to target only things that
+are changing, as a full regen is a bit slow.  These examples may
+help show how to do so:
+
+% make dbfiles-V5.0		generate stubs for LSB=5.0 only
+% make dbfiles-libc		generate stubs for libc only, all versions
+
+
+A special note on two files:
+---------------------------
+
+missing_data.txt in each stub directory is used to fill in data sizes for
+global data when this cannot be determined from the database.  Most data
+is fully described, so the cases of this are rare.  The specific use
+case is for an array type when the size is hidden in the header, but
+must appear in the library.  Example - in libncurses (and libncursesw),
+upstream defines:
+
+    extern NCURSES_EXPORT_VAR(char) ttytype[];
+
+
+    extern char ttytype[];
+
+But in the stub we must have the size defined, so space is reserved
+when linking against the stub.  The code looks like:
+
+    __asm__(".globl ttytype; .pushsection .data; .type ttytype,@object; .size ttytype, 256; ttytype: .long 0; .popsection");
+
+If we set the size to 256 in the database, that would be visible in the
+declaration in the header also - not a disaster, but not matching
+upstream, so we don't want to do.  So an entry in the missing_data.txt
+file takes care of it:
+
+    libncursesw ttytype 100
+
+The form is "library symbol size", where size is in hex.
+
+
+override_versions.txt provides the ability to overrride the symbol
+version.  There are no current uses for this since version-independence
+has been implemented (database join tables assign different versions to
+a symbol for different ranges of LSB versions, if needed).
+
+
+Related materials
+-------------------
+Despite all the good LSB stubs can do in pinning the correct versions
+of things for your target LSB version, it's easy to defeat.  One way
+that makes a mess for the LSB SDK is pkg-config, which gets asked
+questions at build time, and answers with versions, paths, etc which
+are to be used in the build.  These answers would be based on the
+host system's installed libraries, which have a good chance of being
+the wrong versions compared to what LSB requires, especially if you're
+trying to increase portability by targeting an older LSB version.  So
+the LSB SDK provides its own pkgconfig files to answer the questions
+appropriately for the SDK.  These are stored in {LSBVERSION}/pkgconfig,
+and need to be appropriately tweaked for new versions.
+
+There are also some scripts for certain subsystems that are part of
+LSB that are normally used for build (or configure) time queries,
+like cups-config, freetype-config, etc.  Prototypes for building these
+in LSB mode appear in the bin/ subdirectory.
+
+
 
 Feedback
 --------
-Please send any feedback you may have to lsb-impl@linuxbase.org
+Please send any feedback you may have to lsb-discuss@lists.linuxfoundation.org
+or file a bug at bugs.linuxbase.org
