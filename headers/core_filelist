@@ -51,6 +51,7 @@ glob.h
 gnu/libc-version.h
 grp.h
 iconv.h
+ifaddrs.h
 inttypes.h
 langinfo.h
 libgen.h

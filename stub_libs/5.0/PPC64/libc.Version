@@ -237,6 +237,7 @@ GLIBC_2.3 {
   fread_unlocked;
   free;
   freeaddrinfo;
+  freeifaddrs;
   freelocale;
   freopen;
   freopen64;
@@ -297,6 +298,7 @@ GLIBC_2.3 {
   gethostbyname_r;
   gethostid;
   gethostname;
+  getifaddrs;
   getitimer;
   getline;
   getloadavg;

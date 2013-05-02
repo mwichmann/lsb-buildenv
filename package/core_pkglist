@@ -220,6 +220,7 @@ BASE/include/glob.h
 BASE/include/gnu/libc-version.h
 BASE/include/grp.h
 BASE/include/iconv.h
+BASE/include/ifaddrs.h
 BASE/include/inttypes.h
 BASE/include/langinfo.h
 BASE/include/libgen.h
