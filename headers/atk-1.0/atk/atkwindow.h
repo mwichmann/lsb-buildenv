@@ -20,8 +20,6 @@ extern "C" {
 
     typedef struct _AtkWindowIface AtkWindowIface;
 
-    struct _AtkWindow;
-
     struct _AtkWindowIface {
 	GTypeInterface parent;
 	gpointer _padding_dummy[16];

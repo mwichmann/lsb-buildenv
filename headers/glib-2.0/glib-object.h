@@ -981,8 +981,6 @@ type_name##_get_type (void) \
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 #if __LSB_VERSION__ >= 50
-    struct _GBinding;
-
     struct GWeakRef {
 	union {
 	    void *p;

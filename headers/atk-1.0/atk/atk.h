@@ -749,8 +749,6 @@ type_name##_get_type (void) \
 	gpointer vfuncs[32];
     };
 
-    struct _AtkHyperlinkImpl;
-
     struct _AtkHyperlinkImplIface {
 	GTypeInterface parent;
 	AtkHyperlink *(*get_hyperlink) (AtkHyperlinkImpl *);

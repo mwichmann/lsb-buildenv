@@ -293,62 +293,6 @@ extern "C" {
 					const gchar * interface_name,
 					gpointer user_data);
 
-    struct _GSimpleActionGroup;
-
-    struct _GSettingsBackend;
-
-    struct _GSettings;
-
-    struct _GPermission;
-
-    struct _GMenuModel;
-
-    struct _GMemoryInputStream;
-
-    struct _GMemoryOutputStream;
-
-    struct _GNetworkAddress;
-
-    struct _GNetworkService;
-
-    struct _GOutputStream;
-
-    struct _GResolver;
-
-    struct _GSocket;
-
-    struct _GSocketControlMessage;
-
-    struct _GSocketConnection;
-
-    struct _GSocketListener;
-
-    struct _GSocketService;
-
-    struct _GSocketAddress;
-
-    struct _GSocketAddressEnumerator;
-
-    struct _GTcpConnection;
-
-    struct _GTcpWrapperConnection;
-
-    struct _GThreadedSocketService;
-
-    struct _GTlsDatabase;
-
-    struct _GTlsInteraction;
-
-    struct _GTlsPassword;
-
-    struct _GVfs;
-
-    struct _GProxyAddress;
-
-    struct _GProxyAddressEnumerator;
-
-    struct _GVolumeMonitor;
-
     struct _GInputVector {
 	gpointer buffer;
 	gsize size;
