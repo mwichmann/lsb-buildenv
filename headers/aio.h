@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include <time.h>
 #include <stddef.h>
+#include <stdint.h>
+#include <lsb/types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,8 +47,8 @@ extern "C" {
 	int __abs_prio;
 	int __policy;
 	int __error_code;
-	__ssize_t __return_value;
-	__off_t aio_offset;	/* File offset. */
+	ssize_t __return_value;
+	off_t aio_offset;	/* File offset. */
 	char __pad[1];
 	char __unused[1];
     };
@@ -62,8 +64,8 @@ extern "C" {
 	int __abs_prio;
 	int __policy;
 	int __error_code;
-	__ssize_t __return_value;
-	__off64_t aio_offset;
+	ssize_t __return_value;
+	off64_t aio_offset;
 	char __unused[1];
     };
 
