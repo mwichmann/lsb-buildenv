@@ -548,7 +548,11 @@ extern "C" {
 #define strfnames	NCURSES_PUBLIC_VAR(strfnames())
 
 
-    typedef struct {
+    typedef struct termtype TERMTYPE;
+
+    typedef struct term TERMINAL;
+
+    struct termtype {
 	char *term_names;
 	char *str_table;
 	char *Booleans;
@@ -562,31 +566,25 @@ extern "C" {
 	unsigned short ext_Booleans;
 	unsigned short ext_Numbers;
 	unsigned short ext_Strings;
-    } termtype;
+    };
 
-    typedef termtype TERMTYPE;
-
-    typedef struct {
+    struct term {
 	TERMTYPE type;
 	short Filedes;
 	struct termios Ottyb;
 	struct termios Nttyb;
 	int _baudrate;
 	char *_termname;
-    } term;
-
-    typedef term TERMINAL;
-
-    struct term;
+    };
 
 
 /* Function prototypes */
 
-    extern struct term *cur_term;
-    extern int del_curterm(struct term *);
+    extern TERMINAL *cur_term;
+    extern int del_curterm(TERMINAL *);
     extern int putp(const char *);
     extern int restartterm(char *, int, int *);
-    extern struct term *set_curterm(struct term *);
+    extern TERMINAL *set_curterm(TERMINAL *);
     extern int setupterm(char *, int, int *);
     extern int tgetent(char *, const char *);
     extern int tgetflag(char *);
