@@ -90,6 +90,7 @@ mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base
 cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
 ( cd $RPM_BUILD_ROOT/opt/lsb/include ; ln -s curses.h ncurses.h )
+( cd $RPM_BUILD_ROOT/opt/lsb/include/ncursesw ; ln -s curses.h ncurses.h )
 ( cd $RPM_BUILD_ROOT/opt/lsb/include ; rm -fr All IA32 IA64 PPC32 PPC64 S390 S390X x86-64 )
 ( for i in $RPM_BUILD_ROOT/opt/lsb/%xlib-*; do cd $i && ln -s libncurses.so libcurses.so; done )
 
