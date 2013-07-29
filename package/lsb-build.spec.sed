@@ -140,6 +140,7 @@ done
 %dir /opt/lsb/include/arpa
 %dir /opt/lsb/include/cups
 %dir /opt/lsb/include/linux
+%dir /opt/lsb/include/ncursesw
 %dir /opt/lsb/include/net
 %dir /opt/lsb/include/netinet
 %dir /opt/lsb/include/netpacket
@@ -176,6 +177,7 @@ done
 
 # locally created symlinks
 /opt/lsb/include/ncurses.h
+/opt/lsb/include/ncursesw/ncurses.h
 /opt/lsb/%xlib
 /opt/lsb/%xlib-3.0/libcurses.so
 /opt/lsb/%xlib-3.1/libcurses.so
