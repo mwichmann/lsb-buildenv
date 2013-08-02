@@ -341,7 +341,6 @@ void wdelch() {} ;
 void wdeleteln() {} ;
 void wecho_wchar() {} ;
 void wechochar() {} ;
-void wenclose() {} ;
 void werase() {} ;
 void wget_wch() {} ;
 void wget_wstr() {} ;

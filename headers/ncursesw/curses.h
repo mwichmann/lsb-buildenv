@@ -1127,7 +1127,7 @@ extern "C" {
     extern int setscrreg(int, int);
     extern attr_t slk_attr(void);
 #undef slk_attr_off
-    extern int slk_attr_off(attr_t, void *);
+    extern int slk_attr_off(const attr_t, void *);
 #undef slk_attr_on
     extern int slk_attr_on(attr_t, void *);
     extern int slk_attroff(const chtype);
@@ -1228,7 +1228,6 @@ extern "C" {
     extern int wdeleteln(WINDOW *);
     extern int wecho_wchar(WINDOW *, cchar_t *);
     extern int wechochar(const chtype, const chtype);
-    extern unsigned char wenclose(WINDOW *, int, int);
     extern int werase(WINDOW *);
     extern int wget_wch(WINDOW *, wint_t *);
 #undef wget_wstr
