@@ -254,6 +254,7 @@ void setupterm() {} ;
 void slk_attr() {} ;
 void slk_attr_off() {} ;
 void slk_attr_on() {} ;
+void slk_attr_set() {} ;
 void slk_attroff() {} ;
 void slk_attron() {} ;
 void slk_attrset() {} ;

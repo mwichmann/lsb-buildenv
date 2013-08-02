@@ -729,10 +729,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 50
     extern WINDOW *newscr;
     extern attr_t slk_attr(void);
-#undef slk_attr_off
-    extern int slk_attr_off(const attr_t, void *);
-#undef slk_attr_on
-    extern int slk_attr_on(attr_t, void *);
     extern attr_t term_attrs(void);
 #undef vid_attr
     extern int vid_attr(attr_t, short, void *);

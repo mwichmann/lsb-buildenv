@@ -1130,6 +1130,7 @@ extern "C" {
     extern int slk_attr_off(const attr_t, void *);
 #undef slk_attr_on
     extern int slk_attr_on(attr_t, void *);
+    extern int slk_attr_set(const attr_t, short, void *);
     extern int slk_attroff(const chtype);
     extern int slk_attron(const chtype);
     extern int slk_attrset(const chtype);

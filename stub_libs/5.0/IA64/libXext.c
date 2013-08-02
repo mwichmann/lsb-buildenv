@@ -84,8 +84,3 @@ void XextCreateExtension() {} ;
 void XextDestroyExtension() {} ;
 void XextFindDisplay() {} ;
 void XextRemoveDisplay() {} ;
-void slk_attr() {} ;
-void slk_attr_off() {} ;
-void slk_attr_on() {} ;
-void term_attrs() {} ;
-void vid_attr() {} ;
