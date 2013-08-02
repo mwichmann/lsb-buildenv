@@ -1,5 +1,3 @@
-void COLOR_PAIR() {} ;
-void PAIR_NUMBER() {} ;
 void add_wch() {} ;
 void add_wchnstr() {} ;
 void add_wchstr() {} ;

@@ -670,12 +670,10 @@ struct _win_st {
 int (*_bkgrnd) (WINDOW *, int);
 struct ldat;
 extern int COLORS;
-extern int COLOR_PAIR(int);
 extern int COLOR_PAIRS;
 extern int COLS;
 extern int ESCDELAY;
 extern int LINES;
-extern int PAIR_NUMBER(int);
 extern int TABSIZE;
 extern chtype acs_map[];
 extern int add_wch(cchar_t *);

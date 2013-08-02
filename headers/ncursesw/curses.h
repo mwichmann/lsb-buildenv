@@ -717,14 +717,10 @@ extern "C" {
 /* Function prototypes */
 
     extern int COLORS;
-#undef COLOR_PAIR
-    extern int COLOR_PAIR(int);
     extern int COLOR_PAIRS;
     extern int COLS;
     extern int ESCDELAY;
     extern int LINES;
-#undef PAIR_NUMBER
-    extern int PAIR_NUMBER(int);
     extern int TABSIZE;
     extern chtype acs_map[];
 #undef add_wch
