@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <wctype.h>
-#include <curses.h>
+/* #include <curses.h>		XXX hand-edit: bogus dependency */
 #include <stddef.h>
 #include <stdarg.h>
 #include <ncursesw/ncurses_dll.h>
@@ -38,12 +38,8 @@ extern "C" {
 #define NCURSES_VERSION	"5.9"
 #define NCURSES_MOUSE_VERSION	1
 #define NCURSES_ENABLE_STDBOOL_H	1
-#define NCURSES_ATTR_T	int
 #define NCURSES_INLINE	inline
-#define NCURSES_COLOR_T	short
-#define NCURSES_SIZE_T	short
 #define NCURSES_TPARM_VARARGS	1
-#define NCURSES_CH_T	cchar_t
 #ifndef TRUE
 #define TRUE	1
 #endif
@@ -709,9 +705,9 @@ extern "C" {
 	mmask_t bstate;
     } MEVENT;
 
-    int (*bstate) (WINDOW *, int);
-
     struct ldat;
+
+    int (*bstate) (WINDOW *, int);
 
 
 /* Function prototypes */
