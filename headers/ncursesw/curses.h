@@ -715,9 +715,7 @@ extern "C" {
     extern int COLORS;
     extern int COLOR_PAIRS;
     extern int COLS;
-    extern int ESCDELAY;
     extern int LINES;
-    extern int TABSIZE;
     extern chtype acs_map[];
 #undef add_wch
     extern int add_wch(cchar_t *);
