@@ -89,7 +89,9 @@ nl_types.h
 nspr4/nspr.h
 nspr4/plarena.h
 nspr4/plhash.h
+nspr4/pratom.h
 nspr4/prclist.h
+nspr4/prcvar.h
 nspr4/prerror.h
 nspr4/prinit.h
 nspr4/prinrval.h

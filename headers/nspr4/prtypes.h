@@ -42,7 +42,7 @@ extern "C" {
 
     typedef enum {
 	PR_FAILURE = -1,
-	PR_SUCCESS
+	PR_SUCCESS = 0
     } PRStatus;
 
 #ifdef __cplusplus

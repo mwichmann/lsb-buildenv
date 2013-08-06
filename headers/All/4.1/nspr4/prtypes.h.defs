@@ -17,5 +17,5 @@ typedef PRInt64 PROffset64;
 typedef PRInt32 PROffset32;
 typedef enum {
     PR_FAILURE = -1,
-    PR_SUCCESS
+    PR_SUCCESS = 0
 } PRStatus;

@@ -258,7 +258,9 @@ BASE/include/nl_types.h
 BASE/include/nspr4/nspr.h
 BASE/include/nspr4/plarena.h
 BASE/include/nspr4/plhash.h
+BASE/include/nspr4/pratom.h
 BASE/include/nspr4/prclist.h
+BASE/include/nspr4/prcvar.h
 BASE/include/nspr4/prerror.h
 BASE/include/nspr4/prinit.h
 BASE/include/nspr4/prinrval.h

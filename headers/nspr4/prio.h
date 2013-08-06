@@ -26,7 +26,7 @@ extern "C" {
     typedef struct PRIPv6Addr PRIPv6Addr;
 
     typedef enum PRTransmitFileFlags {
-	PR_TRANSMITFILE_KEEP_OPEN,
+	PR_TRANSMITFILE_KEEP_OPEN = 0,
 	PR_TRANSMITFILE_CLOSE_SOCKET = 1
     } PRTransmitFileFlags;
 
@@ -49,7 +49,7 @@ extern "C" {
     typedef PRStatus(*PRListenFN) (PRFileDesc *, PRIntn);
 
     typedef enum PRSeekWhence {
-	PR_SEEK_SET,
+	PR_SEEK_SET = 0,
 	PR_SEEK_CUR = 1,
 	PR_SEEK_END = 2
     } PRSeekWhence;
@@ -164,7 +164,7 @@ extern "C" {
     typedef PRStatus(*PRGetpeernameFN) (PRFileDesc *, PRNetAddr *);
 
     typedef enum PRShutdownHow {
-	PR_SHUTDOWN_RCV,
+	PR_SHUTDOWN_RCV = 0,
 	PR_SHUTDOWN_SEND = 1,
 	PR_SHUTDOWN_BOTH = 2
     } PRShutdownHow;
