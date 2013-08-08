@@ -13,6 +13,17 @@ extern "C" {
 
 
 #define prio_h___
+#if __LSB_VERSION__ >= 50
+#define PR_RDONLY	0x01
+#define PR_WRONLY	0x02
+#define PR_RDWR	0x04
+#define PR_CREATE_FILE	0x08
+#define PR_APPEND	0x10
+#define PR_TRUNCATE	0x20
+#define PR_SYNC	0x40
+#define PR_EXCL	0x80
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 
 
     typedef enum PRDescType {
@@ -361,6 +372,15 @@ extern "C" {
     extern PRStatus PR_Shutdown(PRFileDesc * fd, PRShutdownHow how);
     extern PRInt32 PR_Write(PRFileDesc * fd, const void *buf,
 			    PRInt32 amount);
+#if __LSB_VERSION__ >= 50
+    extern PRStatus PR_ConnectContinue(PRFileDesc * fd, PRInt16 out_flags);
+    extern PRStatus PR_CreatePipe(PRFileDesc * *readPipe,
+				  PRFileDesc * *writePipe);
+    extern PRDescType PR_GetDescType(PRFileDesc * file);
+    extern PRFileDesc *PR_Open(const char *name, PRIntn flags,
+			       PRIntn mode);
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif

@@ -1,5 +1,13 @@
 
 #define prio_h___
+#define PR_RDONLY	0x01
+#define PR_WRONLY	0x02
+#define PR_RDWR	0x04
+#define PR_CREATE_FILE	0x08
+#define PR_APPEND	0x10
+#define PR_TRUNCATE	0x20
+#define PR_SYNC	0x40
+#define PR_EXCL	0x80
 
 typedef enum PRDescType {
     PR_DESC_FILE = 1,
@@ -234,14 +242,19 @@ extern PRStatus PR_Bind(PRFileDesc * fd, const PRNetAddr * addr);
 extern PRStatus PR_Close(PRFileDesc * fd);
 extern PRStatus PR_Connect(PRFileDesc * fd, const PRNetAddr * addr,
 			   PRIntervalTime timeout);
+extern PRStatus PR_ConnectContinue(PRFileDesc * fd, PRInt16 out_flags);
 extern PRFileDesc *PR_CreateIOLayerStub(PRDescIdentity ident,
 					const struct PRIOMethods *methods);
+extern PRStatus PR_CreatePipe(PRFileDesc * *readPipe,
+			      PRFileDesc * *writePipe);
 extern const struct PRIOMethods *PR_GetDefaultIOMethods(void);
+extern PRDescType PR_GetDescType(PRFileDesc * file);
 extern PRDescIdentity PR_GetLayersIdentity(PRFileDesc * fd);
 extern PRStatus PR_GetSocketOption(PRFileDesc * fd,
 				   PRSocketOptionData * data);
 extern PRDescIdentity PR_GetUniqueIdentity(const char *layer_name);
 extern PRStatus PR_Listen(PRFileDesc * fd, PRIntn backlog);
+extern PRFileDesc *PR_Open(const char *name, PRIntn flags, PRIntn mode);
 extern PRFileDesc *PR_OpenTCPSocket(PRIntn af);
 extern PRFileDesc *PR_OpenUDPSocket(PRIntn af);
 extern PRInt32 PR_Poll(PRPollDesc * pds, PRIntn npds,

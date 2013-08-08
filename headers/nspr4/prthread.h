@@ -41,7 +41,7 @@ extern "C" {
 	PR_PRIORITY_LAST = 3
     } PRThreadPriority;
 
-    typedef void (*PRThreadPrivateDTOR) (void *);
+    typedef void (*PRThreadPrivateDTOR) (void *priv);
 
 #endif				/* __LSB_VERSION__ >= 5.0 */
 

@@ -1,4 +1,12 @@
 
 #define prinit_h___
 
+typedef PRIntn(*PRPrimordialFn) (PRIntn argc, char **argv);
+extern void PR_Abort(void);
 extern PRStatus PR_Cleanup(void);
+extern void PR_Init(PRThreadType type, PRThreadPriority priority,
+		    PRUintn maxPTDs);
+extern PRIntn PR_Initialize(PRPrimordialFn prmain, PRIntn argc,
+			    char **argv, PRUintn maxPTDs);
+extern PRBool PR_Initialized(void);
+extern void PR_ProcessExit(PRIntn status);

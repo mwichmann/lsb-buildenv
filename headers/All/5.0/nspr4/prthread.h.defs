@@ -23,7 +23,7 @@ typedef enum PRThreadPriority {
     PR_PRIORITY_URGENT = 3,
     PR_PRIORITY_LAST = 3
 } PRThreadPriority;
-typedef void (*PRThreadPrivateDTOR) (void *);
+typedef void (*PRThreadPrivateDTOR) (void *priv);
 extern PRStatus PR_ClearInterrupt(void);
 extern void *PR_GetThreadPrivate(PRUintn tpdIndex);
 extern PRThreadScope PR_GetThreadScope(const PRThread * thread);

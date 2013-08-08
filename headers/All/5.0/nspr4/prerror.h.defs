@@ -3,4 +3,8 @@
 
 typedef PRInt32 PRErrorCode;
 extern PRErrorCode PR_GetError(void);
+extern PRInt32 PR_GetErrorText(char *text);
+extern PRInt32 PR_GetErrorTextLength(void);
+extern PRInt32 PR_GetOSError(void);
 extern void PR_SetError(PRErrorCode errorCode, PRInt32 oserr);
+extern void PR_SetErrorText(PRIntn textLength, const char *text);
