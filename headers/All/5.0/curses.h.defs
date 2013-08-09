@@ -29,6 +29,7 @@
 #define ACS_BULLET	(acs_map['~'])
 #define setsyx(y,x)	do{if((y)==-1&&(x)==-1)newscr->_leaveok=TRUE;else{newscr->_leaveok=FALSE;wmove(newscr,(y),(x));}}while(0)
 #define getsyx(y,x)	do{if(newscr->_leaveok)(y)=(x)=-1;elsegetyx(newscr,(y),(x));}while(0)
+#define vid_attr(a,pair,opts)	vidattr(a)
 #define getmaxyx(win,y,x)	\
 	(y=(win)?((win)->_maxy+1):ERR,x=(win)?((win)->_maxx+1):ERR)
 #define getbegyx(win,y,x)	\
@@ -446,7 +447,6 @@ extern WINDOW *stdscr;
 extern WINDOW *subpad(WINDOW *, int, int, int, int);
 extern WINDOW *subwin(WINDOW *, int, int, int, int);
 extern int syncok(WINDOW *, bool);
-extern attr_t term_attrs(void);
 extern chtype termattrs(void);
 extern char *termname(void);
 extern void timeout(int);
@@ -457,7 +457,6 @@ extern const char *unctrl(chtype);
 extern int ungetch(int);
 extern int untouchwin(WINDOW *);
 extern void use_env(bool);
-extern int vid_attr(attr_t, short, void *);
 extern int vidattr(chtype);
 extern int vidputs(chtype, int (*)(int));
 extern int vline(chtype, int);

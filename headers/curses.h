@@ -56,6 +56,7 @@ extern "C" {
 #define getattrs(win)	((win)?(win)->_attrs:A_NORMAL)
 #define setsyx(y,x)	do{if((y)==-1&&(x)==-1)newscr->_leaveok=TRUE;else{newscr->_leaveok=FALSE;wmove(newscr,(y),(x));}}while(0)
 #define getsyx(y,x)	do{if(newscr->_leaveok)(y)=(x)=-1;elsegetyx(newscr,(y),(x));}while(0)
+#define vid_attr(a,pair,opts)	vidattr(a)
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 
@@ -729,9 +730,6 @@ extern "C" {
 #if __LSB_VERSION__ >= 50
     extern WINDOW *newscr;
     extern attr_t slk_attr(void);
-    extern attr_t term_attrs(void);
-#undef vid_attr
-    extern int vid_attr(attr_t, short, void *);
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus
