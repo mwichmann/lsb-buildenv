@@ -267,6 +267,7 @@ BASE/include/nspr4/prinrval.h
 BASE/include/nspr4/prio.h
 BASE/include/nspr4/private/pprio.h
 BASE/include/nspr4/prlock.h
+BASE/include/nspr4/prmem.h
 BASE/include/nspr4/prmon.h
 BASE/include/nspr4/prnetdb.h
 BASE/include/nspr4/prthread.h

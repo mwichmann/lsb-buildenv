@@ -98,6 +98,7 @@ nspr4/prinrval.h
 nspr4/prio.h
 nspr4/private/pprio.h
 nspr4/prlock.h
+nspr4/prmem.h
 nspr4/prmon.h
 nspr4/prnetdb.h
 nspr4/prthread.h
