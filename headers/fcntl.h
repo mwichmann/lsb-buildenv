@@ -99,49 +99,52 @@ extern "C" {
 
 #if __LSB_VERSION__ >= 40
 #define O_DSYNC	010000
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_NOFOLLOW	0100000
+#endif
+#if defined __powerpc64__
+#define O_NOFOLLOW	0100000
+#endif
+#if defined __i386__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __ia64__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __s390__ && !defined __s390x__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __x86_64__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __s390x__
+#define O_DIRECTORY	0200000
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define O_DIRECTORY	040000
+#endif
+#if defined __powerpc64__
+#define O_DIRECTORY	040000
+#endif
+#if defined __i386__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __ia64__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __s390__ && !defined __s390x__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __x86_64__
+#define O_NOFOLLOW	0400000
+#endif
+#if defined __s390x__
+#define O_NOFOLLOW	0400000
+#endif
+#if __LSB_VERSION__ < 50
 #define O_RSYNC	010000
-#if defined __powerpc__ && !defined __powerpc64__
-#define O_NOFOLLOW	0100000
-#endif
-#if defined __powerpc64__
-#define O_NOFOLLOW	0100000
-#endif
-#if defined __i386__
-#define O_DIRECTORY	0200000
-#endif
-#if defined __ia64__
-#define O_DIRECTORY	0200000
-#endif
-#if defined __s390__ && !defined __s390x__
-#define O_DIRECTORY	0200000
-#endif
-#if defined __x86_64__
-#define O_DIRECTORY	0200000
-#endif
-#if defined __s390x__
-#define O_DIRECTORY	0200000
-#endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define O_DIRECTORY	040000
-#endif
-#if defined __powerpc64__
-#define O_DIRECTORY	040000
-#endif
-#if defined __i386__
-#define O_NOFOLLOW	0400000
-#endif
-#if defined __ia64__
-#define O_NOFOLLOW	0400000
-#endif
-#if defined __s390__ && !defined __s390x__
-#define O_NOFOLLOW	0400000
-#endif
-#if defined __x86_64__
-#define O_NOFOLLOW	0400000
-#endif
-#if defined __s390x__
-#define O_NOFOLLOW	0400000
-#endif
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 4.0 */
 
 #if __LSB_VERSION__ >= 50
