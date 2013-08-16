@@ -16,6 +16,10 @@ extern "C" {
 #if __LSB_VERSION__ >= 50
     typedef PRIntn(*PRPrimordialFn) (PRIntn argc, char **argv);
 
+    typedef PRStatus(*PRCallOnceFN) (void);
+
+    typedef PRStatus(*PRCallOnceWithArgFN) (void *arg);
+
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 
