@@ -707,8 +707,6 @@ extern "C" {
 
     struct ldat;
 
-    int (*bstate) (WINDOW *, int);
-
 
 /* Function prototypes */
 
