@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <wctype.h>
-/* #include <curses.h>		XXX hand-edit: bogus dependency */
 #include <stddef.h>
 #include <stdarg.h>
 #include <ncursesw/ncurses_dll.h>
