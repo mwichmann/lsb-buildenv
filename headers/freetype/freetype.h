@@ -2,7 +2,6 @@
 #ifndef _FREETYPE_FREETYPE_H_
 #define _FREETYPE_FREETYPE_H_
 
-#include <freetype/ftlist.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
 #include <freetype/ftsystem.h>

@@ -2,7 +2,6 @@
 #ifndef _FREETYPE_TTTABLES_H_
 #define _FREETYPE_TTTABLES_H_
 
-#include <freetype/ftlist.h>
 #include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>

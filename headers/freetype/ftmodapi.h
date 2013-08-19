@@ -2,7 +2,6 @@
 #ifndef _FREETYPE_FTMODAPI_H_
 #define _FREETYPE_FTMODAPI_H_
 
-#include <freetype/ftlist.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftsystem.h>

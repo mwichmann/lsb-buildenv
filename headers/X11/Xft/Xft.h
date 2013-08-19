@@ -8,8 +8,6 @@
 #include <fontconfig/fontconfig.h>
 #include <X11/extensions/render.h>
 #include <X11/extensions/Xrender.h>
-#include <freetype/ftlist.h>
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>

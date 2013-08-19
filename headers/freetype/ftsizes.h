@@ -2,8 +2,6 @@
 #ifndef _FREETYPE_FTSIZES_H_
 #define _FREETYPE_FTSIZES_H_
 
-#include <freetype/ftlist.h>
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>

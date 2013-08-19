@@ -3,8 +3,6 @@
 #define _FONTCONFIG_FCFREETYPE_H_
 
 #include <fontconfig/fontconfig.h>
-#include <freetype/ftlist.h>
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>

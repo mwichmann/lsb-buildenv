@@ -2,8 +2,6 @@
 #ifndef _FREETYPE_FTMM_H_
 #define _FREETYPE_FTMM_H_
 
-#include <freetype/ftlist.h>
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/ftpfr.h>
 #include <freetype/fttypes.h>

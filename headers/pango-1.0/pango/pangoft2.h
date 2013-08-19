@@ -7,8 +7,6 @@
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
 #include <pango-1.0/pango/pangoxft.h>
-#include <freetype/ftlist.h>
-#include <freetype/ftoutln.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 #include <freetype/ftimage.h>
