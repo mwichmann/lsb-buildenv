@@ -22,6 +22,9 @@ $struct_anon_member=0;
 # Let's remember LSB version where the header appeared to omit extra checks for LSB version
 $header_appin='';
 
+# if set via -d, emit info on which types force which headers to be included
+$debugmode = 0;
+
 # We can have long chains of inheritance with FuncPtr base (e.g. typedef to pointer to FuncPtr)
 # such types cannot be processed in a usual way (i.e. we can't print '*' after FuncPtr declaration.
 #  we should place it in brackets inside that declaration)
@@ -34,11 +37,12 @@ $specdb::datadef = 0;
 sub
 usage()
 {
-die "mkheader -h <headername> -a <archname>";
+die "mkheader -h <headername> -a <archname> [-d]";
 }
 
 GetOptions("h=s" => \$headname,
-        "a=s" => \$archname);
+        "a=s" => \$archname,
+	"d" => \$debugmode);
 
 if( !$headname ) { usage(); }
 if( !$archname ) { usage(); }
@@ -330,8 +334,8 @@ print $select,"\n" if $trace;
 $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
 $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
 for(1..$sth->rows) {
-    $entry = $sth->fetchrow_hashref;
-    if( $entry->{'Tid'} ) {
+	$entry = $sth->fetchrow_hashref;
+	if( $entry->{'Tid'} ) {
         $class{$entry->{'Tid'}}=1;
     }
 }
@@ -428,24 +432,49 @@ print "\n";
 #
 
 if( $typelist ne "" ) {
-    $select = "SELECT DISTINCT Hid FROM Type ";
-    $select.= "LEFT JOIN HeaderGroup ON HGid=Theadgroup ";
-    $select.= "LEFT JOIN Header ON Hid=HGheader ";
-    $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
-    $select.= "WHERE Tid IN ($typelist) ";
-    $select.= "AND ( (ATappearedin > '' ";
-    $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
-    $select.= "OR Tindirect='Yes' OR Tsrconly='Yes' )";
-    $select.= "AND Hid != $Hid ";
-    print $select,"\n" if $trace;
-    $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
-    $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
-    for(1..$sth->rows) {
-        $entry = $sth->fetchrow_hashref;
-        $header{$entry->{'Hid'}}=1;
-        }
+    if ($debugmode) {
+	#my @types = (split ',', $typelist);
+	#foreach $typeid (@types) {
+	foreach $typeid (split ',', $typelist) {
+	    $select = "SELECT DISTINCT Hid,Hname,Tname FROM Type ";
+	    $select.= "LEFT JOIN HeaderGroup ON HGid=Theadgroup ";
+	    $select.= "LEFT JOIN Header ON Hid=HGheader ";
+	    $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+	    $select.= "WHERE Tid=$typeid ";
+	    $select.= "AND ( (ATappearedin > '' ";
+	    $select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
+	    $select.= "OR Tindirect='Yes' OR Tsrconly='Yes' )";
+	    $select.= "AND Hid != $Hid ";
+	    print $select,"\n" if $trace;
+	    $sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+	    $sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
+	    for(1..$sth->rows) {
+		$entry = $sth->fetchrow_hashref;
+		$header{$entry->{'Hid'}}=1;
+		print "/* DEBUG: type=$typeid ($entry->{'Tname'}) found in $entry->{'Hname'} */\n";
+	    }
+	    $sth->finish;
+	}
+    } else {
+	$select = "SELECT DISTINCT Hid FROM Type ";
+	$select.= "LEFT JOIN HeaderGroup ON HGid=Theadgroup ";
+	$select.= "LEFT JOIN Header ON Hid=HGheader ";
+	$select.= "LEFT JOIN ArchType ON ATtid=Tid ";
+	$select.= "WHERE Tid IN ($typelist) ";
+	$select.= "AND ( (ATappearedin > '' ";
+	$select.= " AND (ATwithdrawnin IS NULL OR ATwithdrawnin >= '3.0' ) )";
+	$select.= "OR Tindirect='Yes' OR Tsrconly='Yes' )";
+	$select.= "AND Hid != $Hid ";
+	print $select,"\n" if $trace;
+	$sth = $dbh->prepare($select) or die "Couldn't prepare $select query: ".DBI->errstr;
+	$sth->execute or die "Couldn't execute $select query: ".DBI->errstr;
+	for(1..$sth->rows) {
+	    $entry = $sth->fetchrow_hashref;
+	    $header{$entry->{'Hid'}}=1;
+	}
+	$sth->finish;
     }
-    $sth->finish;
+}
 
 #
 # Output the headers this header needs to include
