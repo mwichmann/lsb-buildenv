@@ -730,7 +730,8 @@ sub displaytype($$$$$)
                     $suffix = "[]";
                 }
             } elsif( $entry->{'Ttype'} eq 'Pointer' ) {
-                $baseselect ="SELECT Ttype FROM Type ";
+                $baseselect ="SELECT DISTINCT Ttype, ATbasetype, ATsize FROM Type ";
+                $baseselect.="JOIN ArchType ON ATtid=Tid ";
                 $baseselect.="WHERE Tid=$entry->{'ATbasetype'} ";
                 $bth = $dbh->prepare($baseselect) or die "Couldn't prepare $baseselect query: ".DBI->errstr;
                 $bth->execute or die "Couldn't execute $baseselect query: ".DBI->errstr;
