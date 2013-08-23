@@ -10,6 +10,10 @@ LSB_DEVEL_VERSIONS = $(shell cat lsb_devel_versions)
 ARCHVER = $(foreach ver,$(LSB_VERSIONS),defs-$(arch)_$(ver))
 DATADEFS := $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(ARCHVER))
 
+# Use HEADER_DEBUG to output debug information into the header.
+# Please don't commit debug into into version control.
+# HEADER_DEBUG = -d
+
 all: 
 
 gensrc: versionfiles core_filelist desktop_filelist headers datadefs headerlist
@@ -40,12 +44,12 @@ versionfiles:
 	./mkdatadef -a $(shell expr $* : '\([^_]*\)') -v $(shell expr $* : '[^_]*_\([^/]*\)') -h $(shell expr $* : '[^_]*_[^/]*/\(.*\)') | $(INDENT) -kr -sob | ./collapse_ifdefs.pl > $(shell echo "$@" | sed s/_/\\//)
 
 %.h:
-	./mkheader -a All -h $@ | $(INDENT) -kr | ./collapse_ifdefs.pl >$@
+	./mkheader $(HEADER_DEBUG) -a All -h $@ | $(INDENT) -kr | ./collapse_ifdefs.pl >$@
 
 # Use 'header.h-defs' to unconditionally regenerate header.h and all header.h.defs
 %.h-defs: 
 	make $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(foreach ver,$(LSB_VERSIONS),$(arch)_$(ver)/$(subst h-defs,h.defs,$@)))
-	./mkheader -a All -h $(subst -defs,,$@) | $(INDENT) -kr | ./collapse_ifdefs.pl > $(subst -defs,,$@)
+	./mkheader $(HEADER_DEBUG) -a All -h $(subst -defs,,$@) | $(INDENT) -kr | ./collapse_ifdefs.pl > $(subst -defs,,$@)
 
 install: install-core install-desktop
 
