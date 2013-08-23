@@ -514,7 +514,7 @@ if( $hdrlist ne "" ) {
             #
             $header_typelist = get_typelist($entry->{'Hid'},1);
             if ($header_typelist) {
-                $select = "SELECT DISTINCT Tid FROM Type ";
+                $select = "SELECT DISTINCT Tid, Tname FROM Type ";
                 $select.= "LEFT JOIN HeaderGroup ON HGid=Theadgroup ";
                 $select.= "LEFT JOIN Header ON Hid=HGheader ";
                 $select.= "LEFT JOIN ArchType ON ATtid=Tid ";
@@ -533,6 +533,11 @@ if( $hdrlist ne "" ) {
 
                         $$header_name{$tid} = 1;
                         $$tid{$header_name} = 1;
+
+                        if ($debugmode) {
+                            my $tname = $header_entry->{'Tname'};
+                            print "/* DEBUG: Postponed ".$header_name."; depends on ".$tname.". */\n";
+                        }
                     }
                 } else {
                     print "#include <".$header_name.">\n";
