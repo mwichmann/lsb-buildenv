@@ -774,6 +774,18 @@ sub displaytype($$$$$)
                         }
                     }
                 }
+                elsif( $bentry->{'Ttype'} eq 'Array' ) {
+                    $tth = getBaseTypeRecord( $ArchId, $bentry->{'ATbasetype'} );
+                    $bentry2 = $tth->fetchrow_hashref;
+                    $tth->finish;
+                    if ($bentry2->{'Ttype'} eq 'Array') {
+                        print "[".$bentry2->{'ATsize'}."]"."[".$bentry->{'ATsize'}."]";
+                    } elsif( $bentry->{'ATsize'} and $bentry->{'ATsize'} ne '0' ) {
+                        print "[".$bentry->{'ATsize'}."]";
+                    } else {
+                        print "[]";
+                    }
+                }
                 if( $tmentry->{'TMbitfield'} != 0 ) {
                     print ":".$tmentry->{'TMbitfield'};
                 }
