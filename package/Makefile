@@ -42,11 +42,11 @@ endif
 # Should have leading "."
 # a big number (80-99) is leading up to the next minor spec
 # build_env is version-independent so can wait till late to bump this
-SUB_VERSION=.37
+SUB_VERSION=.38
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=8
+RPM_PACKAGE_RELEASE=1
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)

@@ -750,7 +750,12 @@ sub displaytype($$$$$)
             $struct_anon_member=0;
 
             if( $entry->{'Ttype'} ne 'FuncPtr' and $bentry->{'Ttype'} ne 'FuncPtr' ) {
-                print $tmentry->{'TMname'};
+                if( $entry->{'Ttype'} eq 'Pointer' and $bentry->{'Ttype'} eq 'Array' ) {
+		    # needs special syntax
+		    print "(".$tmentry->{'TMname'}.")";
+		} else {
+		    print $tmentry->{'TMname'};
+		}
                 # Adding code to support both values from TMarray and ATsize for Array bounds.
                 # TMarray condition should be removed once we deprecate it.
                 if( $entry->{'Ttype'} eq 'Array' ) {

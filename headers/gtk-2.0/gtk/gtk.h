@@ -4397,7 +4397,7 @@ extern "C" {
 	gint num_points;
 	GdkPoint *point;
 	gint num_ctlpoints;
-	gfloat *ctlpoint;
+	gfloat *(ctlpoint)[2];
     };
 
     struct _GtkNotebook {
