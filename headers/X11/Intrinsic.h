@@ -116,16 +116,25 @@ extern "C" {
 #if __LSB_VERSION__ >= 12
     typedef struct _WidgetClassRec *WidgetClass;
 
+/* HACK: move these down
 #include <X11/Shell.h>
 #include <X11/Composite.h>
 #include <X11/Object.h>
 #include <X11/Core.h>
+*/
 #endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* XtTranslations*/
 #if __LSB_VERSION__ >= 12
     typedef struct _TranslationData *XtTranslations;
+
+/* HACK: relocated from just above */
+#include <X11/Shell.h>
+#include <X11/Composite.h>
+#include <X11/Object.h>
+#include <X11/Core.h>
+/* End of HACK */
 
 #include <X11/IntrinsicP.h>
 #include <X11/TranslateI.h>

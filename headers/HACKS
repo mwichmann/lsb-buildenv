@@ -1,2 +1,3 @@
 cups/cups.h
+X11/Intrinsic.h
 X11/ShellP.h
