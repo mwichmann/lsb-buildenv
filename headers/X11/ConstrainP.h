@@ -6,13 +6,13 @@
 #include <X11/X.h>
 #include <X11/Xresource.h>
 #include <X11/Intrinsic.h>
-#include <X11/Composite.h>
 #include <X11/IntrinsicP.h>
 #include <X11/CompositeP.h>
 #include <X11/TranslateI.h>
 #include <X11/CoreP.h>
 #include <X11/ShellP.h>
 #include <X11/RectObjP.h>
+#include <lsb/Composite.h>
 
 #ifdef __cplusplus
 extern "C" {

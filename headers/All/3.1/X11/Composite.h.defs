@@ -4,7 +4,6 @@
 typedef void (*XtDoChangeProc) (Widget, WidgetList, Cardinal *, WidgetList,
 				Cardinal *, XtPointer);
 typedef struct _CompositeClassRec *CompositeWidgetClass;
-typedef Cardinal(*XtOrderProc) (Widget);
 extern void XtChangeManagedSet(WidgetList, Cardinal, XtDoChangeProc,
 			       XtPointer, WidgetList, Cardinal);
 extern void XtManageChild(Widget);

@@ -21,8 +21,6 @@ extern "C" {
 
     typedef struct _CompositeClassRec *CompositeWidgetClass;
 
-    typedef Cardinal(*XtOrderProc) (Widget);
-
 
 /* Function prototypes */
 

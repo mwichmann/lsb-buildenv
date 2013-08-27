@@ -1,0 +1,2 @@
+
+typedef Cardinal(*XtOrderProc) (Widget);
