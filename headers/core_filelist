@@ -65,6 +65,7 @@ locale.h
 lsb/pthread.h
 lsb/time.h
 lsb/types.h
+lsb/wchar.h
 malloc.h
 math.h
 monetary.h

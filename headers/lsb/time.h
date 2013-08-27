@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+/* Special header to avoid header inclusion loops*/
 #if __LSB_VERSION__ >= 12
     struct timeval {
 	time_t tv_sec;

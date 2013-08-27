@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 
+/* Special header to avoid header inclusion loops*/
     typedef Cardinal(*XtOrderProc) (Widget);
 
 #ifdef __cplusplus

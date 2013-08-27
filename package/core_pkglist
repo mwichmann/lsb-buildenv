@@ -234,6 +234,7 @@ BASE/include/locale.h
 BASE/include/lsb/pthread.h
 BASE/include/lsb/time.h
 BASE/include/lsb/types.h
+BASE/include/lsb/wchar.h
 BASE/include/malloc.h
 BASE/include/math.h
 BASE/include/monetary.h
