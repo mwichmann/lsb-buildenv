@@ -45,11 +45,13 @@ versionfiles:
 
 %.h:
 	./mkheader $(HEADER_DEBUG) -a All -h $@ | $(INDENT) -kr | ./collapse_ifdefs.pl >$@
+	grep $(subst -defs,,$@) HACKS | cut -f2 -d' ' | (while read p; do patch -p0 < $$p; done)
 
 # Use 'header.h-defs' to unconditionally regenerate header.h and all header.h.defs
 %.h-defs: 
 	make $(foreach arch,$(LSB_SUPPORTED_ARCHS),$(foreach ver,$(LSB_VERSIONS),$(arch)_$(ver)/$(subst h-defs,h.defs,$@)))
 	./mkheader $(HEADER_DEBUG) -a All -h $(subst -defs,,$@) | $(INDENT) -kr | ./collapse_ifdefs.pl > $(subst -defs,,$@)
+	grep $(subst -defs,,$@) HACKS | cut -f2 -d' ' | (while read p; do patch -p0 < $$p; done)
 
 install: install-core install-desktop
 
