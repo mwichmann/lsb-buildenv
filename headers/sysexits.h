@@ -1,4 +1,4 @@
-#if (__LSB_VERSION__ >= 10 )
+#if (__LSB_VERSION__ >= 50 )
 #ifndef _SYSEXITS_H_
 #define _SYSEXITS_H_
 
@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-#if __LSB_VERSION__ >= 50
 #define EX_OK	0		/* successful termination  */
 #define EX_USAGE	64	/* command line usage error  */
 #define EX__BASE	64	/* base value for error messages  */
@@ -26,8 +25,6 @@ extern "C" {
 #define EX_PROTOCOL	76	/* remote error in protocol  */
 #define EX_NOPERM	77	/* permission denied  */
 #define EX_CONFIG	78	/* configuration error  */
-#endif				/* __LSB_VERSION__ >= 5.0 */
-
 
 
 #ifdef __cplusplus

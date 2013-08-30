@@ -370,6 +370,7 @@ BASE/include/sys/un.h
 BASE/include/sys/utsname.h
 BASE/include/sys/vfs.h
 BASE/include/sys/wait.h
+BASE/include/sysexits.h
 BASE/include/syslog.h
 BASE/include/tar.h
 BASE/include/term.h

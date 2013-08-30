@@ -201,6 +201,7 @@ sys/un.h
 sys/utsname.h
 sys/vfs.h
 sys/wait.h
+sysexits.h
 syslog.h
 tar.h
 term.h
