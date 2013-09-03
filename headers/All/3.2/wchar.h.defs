@@ -3,9 +3,6 @@
 #define WCHAR_MAX	0x7FFFFFFF
 #define WCHAR_MIN	0x80000000
 
-typedef unsigned long int wctype_t;
-typedef const int32_t *wctrans_t;
-
 extern double __wcstod_internal(const wchar_t *, wchar_t * *, int);
 extern float __wcstof_internal(const wchar_t *, wchar_t * *, int);
 extern long int __wcstol_internal(const wchar_t *, wchar_t * *, int, int);

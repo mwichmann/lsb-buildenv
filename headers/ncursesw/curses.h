@@ -3,10 +3,10 @@
 #define _NCURSESW_CURSES_H_
 
 #include <stdio.h>
+#include <wctype.h>
 #include <stddef.h>
 #include <stdarg.h>
 #include <ncursesw/ncurses_dll.h>
-#include <lsb/wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
