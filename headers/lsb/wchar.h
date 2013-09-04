@@ -9,6 +9,22 @@ extern "C" {
 
 
 /* Special header to avoid header inclusion loops */
+    typedef unsigned int wint_t;
+
+#if __LSB_VERSION__ >= 12
+    typedef struct {
+	int count;
+	wint_t value;
+    } __mbstate_t;
+
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
+
+#if __LSB_VERSION__ >= 12
+    typedef __mbstate_t mbstate_t;
+
+#endif				/* __LSB_VERSION__ >= 1.2 */
+
 #ifdef __cplusplus
 }
 #endif

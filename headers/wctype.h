@@ -4,34 +4,15 @@
 
 #include <locale.h>
 #include <sys/types.h>
+#include <wchar.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <lsb/wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
-    typedef unsigned long int wctype_t;
-
-    typedef unsigned int wint_t;
-
-    typedef const int32_t *wctrans_t;
-
-#if __LSB_VERSION__ >= 12
-    typedef struct {
-	int count;
-	wint_t value;
-    } __mbstate_t;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
-
-
-/* This really belongs in wchar.h, but creates a circular dependency with stdio.h, so put it here to break the circle.*/
-#if __LSB_VERSION__ >= 12
-    typedef __mbstate_t mbstate_t;
-
-#endif				/* __LSB_VERSION__ >= 1.2 */
 
 
 /* Function prototypes */

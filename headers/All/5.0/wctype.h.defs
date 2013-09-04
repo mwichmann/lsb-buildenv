@@ -1,13 +1,4 @@
 
-typedef unsigned long int wctype_t;
-typedef unsigned int wint_t;
-typedef const int32_t *wctrans_t;
-typedef struct {
-    int count;
-    wint_t value;
-} __mbstate_t;
-
-typedef __mbstate_t mbstate_t;
 extern int iswalnum(wint_t __wc);
 extern int iswalnum_l(wint_t wc, locale_t locale);
 extern int iswalpha(wint_t __wc);

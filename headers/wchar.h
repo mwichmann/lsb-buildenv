@@ -4,10 +4,12 @@
 
 #include <locale.h>
 #include <stdio.h>
+#include <sys/types.h>
 #include <time.h>
-#include <wctype.h>
 #include <stddef.h>
 #include <stdarg.h>
+#include <stdint.h>
+#include <lsb/wchar.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
@@ -29,6 +31,10 @@ extern "C" {
 #endif				/* __LSB_VERSION__ >= 1.1 */
 
 
+
+    typedef unsigned long int wctype_t;
+
+    typedef const int32_t *wctrans_t;
 
 
 

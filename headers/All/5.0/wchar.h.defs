@@ -3,6 +3,9 @@
 #define WCHAR_MAX	0x7FFFFFFF
 #define WCHAR_MIN	0x80000000
 
+typedef unsigned long int wctype_t;
+typedef const int32_t *wctrans_t;
+
 extern wchar_t *__fgetws_chk(wchar_t *, size_t, int, FILE *);
 extern wchar_t *__fgetws_unlocked_chk(wchar_t *, size_t, int, FILE *);
 extern int __fwprintf_chk(FILE *, int, const wchar_t *, ...);
