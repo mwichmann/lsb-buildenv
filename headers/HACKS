@@ -1,3 +1,2 @@
 cups/cups.h cups-hack.patch
-X11/Intrinsic.h Intrinsic-hack.patch
 X11/ShellP.h ShellP-hack.patch

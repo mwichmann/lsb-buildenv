@@ -3,11 +3,11 @@
 #define _X11_RECTOBJ_H_
 
 #include <X11/Xresource.h>
-#include <X11/Intrinsic.h>
 #include <X11/IntrinsicP.h>
 #include <X11/Constraint.h>
 #include <X11/ObjectP.h>
 #include <X11/RectObjP.h>
+#include <lsb/Intrinsic.h>
 
 #ifdef __cplusplus
 extern "C" {

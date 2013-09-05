@@ -5,8 +5,8 @@
 #include <X11/Xlib.h>
 #include <X11/X.h>
 #include <X11/Xutil.h>
-#include <X11/Intrinsic.h>
 #include <X11/TranslateI.h>
+#include <lsb/Intrinsic.h>
 
 #ifdef __cplusplus
 extern "C" {
