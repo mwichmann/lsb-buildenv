@@ -10,7 +10,10 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ < 50
 #define RLIM_NLIMITS	11
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #if __LSB_VERSION__ >= 11
 #define RLIM_INFINITY	(~0UL)
 #define RLIMIT_CPU	0
@@ -39,6 +42,15 @@ extern "C" {
 #endif				/* __LSB_VERSION__ < 3.1 */
 
 #endif				/* __LSB_VERSION__ >= 2.0 */
+
+#if __LSB_VERSION__ >= 50
+#define RLIMIT_SIGPENDING	11
+#define RLIMIT_MSGQUEUE	12
+#define RLIMIT_NICE	13
+#define RLIMIT_RTPRIO	14
+#define RLIMIT_RTTIME	15
+#define RLIM_NLIMITS	16
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
