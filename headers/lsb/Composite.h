@@ -2,7 +2,7 @@
 #ifndef _LSB_COMPOSITE_H_
 #define _LSB_COMPOSITE_H_
 
-#include <X11/Intrinsic.h>
+#include <lsb/Intrinsic.h>
 
 #ifdef __cplusplus
 extern "C" {
