@@ -216,10 +216,12 @@ extern "C" {
 #if __LSB_VERSION__ >= 40
     extern char *__fgets_chk(char *, size_t, int, FILE *);
     extern char *__fgets_unlocked_chk(char *, size_t, int, FILE *);
+    extern int __fprintf_chk(FILE *, int, const char *, ...);
     extern int __printf_chk(int, const char *, ...);
     extern int __snprintf_chk(char *, size_t, int, size_t, const char *,
 			      ...);
     extern int __sprintf_chk(char *, int, size_t, const char *, ...);
+    extern int __vfprintf_chk(FILE *, int, const char *, va_list);
     extern int __vprintf_chk(int, const char *, va_list);
     extern int __vsnprintf_chk(char *, size_t, int, size_t, const char *,
 			       va_list);

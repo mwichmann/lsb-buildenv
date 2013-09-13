@@ -89,6 +89,7 @@ extern "C" {
     extern void *__mempcpy_chk(void *, const void *, size_t, size_t);
     extern void *__memset_chk(void *, int, size_t, size_t);
     extern char *__stpcpy_chk(char *, const char *, size_t);
+    extern char *__stpncpy_chk(char *, const char *, size_t, size_t);
     extern char *__strcat_chk(char *, const char *, size_t);
     extern char *__strcpy_chk(char *, const char *, size_t);
     extern char *__strncat_chk(char *, const char *, size_t, size_t);
