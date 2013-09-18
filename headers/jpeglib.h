@@ -58,16 +58,13 @@ extern "C" {
 #define DCTSIZE	8
 #define JMSG_STR_PARM_MAX	80
 #define JPP(arglist)	arglist
+#define EXTERN(type)	extern type
 #define JDCT_FASTEST	JDCT_IFAST
 #define JDCT_DEFAULT	JDCT_ISLOW
-#define JMETHOD(type,methodname,arglist)	type (*methodname) arglist
-#if __LSB_VERSION__ < 41
-#define EXTERN(type)	extern type
 #define LOCAL(type)	static type
 #define METHODDEF(type)	static type
 #define GLOBAL(type)	type
-#endif				/* __LSB_VERSION__ < 4.1 */
-
+#define JMETHOD(type,methodname,arglist)	type (*methodname) arglist
 
 
     typedef struct jpeg_common_struct *j_common_ptr;
