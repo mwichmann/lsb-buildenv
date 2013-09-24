@@ -344,9 +344,10 @@ int perform_libtool_fixups(const char *optarg)
 
 /* begin utility functions */
 
-/* We need to figure out what the path to the gcc base directory is
- * This is one place where lsbcc is be more gcc-dependent than one
- * might like.
+/* We need to figure out the path to the compiler base directory.
+ * Unfortunately, we don't know how to do this in a compiler-independent way.
+ * This would need tweaking if a non-gcc compiler didn't recognize
+ * option -print-libgcc-file-name.
  */
 char *gccbasedir;
 
@@ -367,11 +368,12 @@ void find_gcc_base_dir()
 
     if (fgets(buf, PATH_MAX, cccmd) == NULL) {
 	fprintf(stderr, "nothing to read from \"%s\"\n", cmd);
+	pclose(cccmd);
 	return;
     }
 
     gccbasedir = dirname(buf);
-
+    pclose(cccmd);
     return;
 }
 
@@ -884,6 +886,7 @@ int lsbcc_scandir(char *libpath,
 		    free((*dirents)[num_ents]);
 		}
 		free(*dirents);
+		closedir(dir);
 		errno = ENOMEM;
 		return -1;
 	    }
@@ -891,6 +894,7 @@ int lsbcc_scandir(char *libpath,
 	    num_ents++;
 	}
     }
+    closedir(dir);
     return num_ents;
 }
 
