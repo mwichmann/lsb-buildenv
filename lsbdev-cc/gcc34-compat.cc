@@ -86,6 +86,7 @@ __cxa_get_exception_ptr(void *exc_obj_in) throw()
     real_cxa_get_exception_ptr =
 	(void *(*)(void *)) dlsym(cpplib, "__cxa_get_exception_ptr");
     errstr = dlerror();
+    dlclose(cpplib);
     if (errstr != 0)
 	return fake_cxa_get_exception_ptr(exc_obj_in);
 

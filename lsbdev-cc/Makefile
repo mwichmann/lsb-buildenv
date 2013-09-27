@@ -85,14 +85,6 @@ install: $(PROGRAMS) $(LIBS) $(EXTRA_OBJS)
 # dummies
 install-core install-desktop: install
 
-scripts:
-	cd scripts;make
-	#cd lsb_release-1.0;make
-
-install_scripts:
-	cd scripts;make install
-	#cd lsb_release-1.0;make install
-
 test: lsbcc
 	./test_lsbcc
 

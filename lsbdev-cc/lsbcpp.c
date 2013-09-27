@@ -84,6 +84,11 @@ int lsbcc_buildingshared = 0;
  * Variable to store optind value - we'll have to process command line twice.
  */
 int optind_old;
+ 
+/* TODO XXX
+ * The code to add per-LSB-version include paths that was added
+ * to lsbcc.c should probably be ported over to lsbcpp.c
+ */
 
 /*
  * options we need to recognize.  some of these are for this program,
@@ -148,6 +153,20 @@ char *featuresettings[] = {
 
 int numfeaturesettings = (sizeof(featuresettings) / sizeof(char *));
 
+/*
+ * modify, in place, a string to strip 'chr' characters from it
+ * current use is to transform versions, like "5.0" -> "50"
+ */
+void cleanvers(char *s, char chr)
+{
+    int i, j;
+
+    for ( i = 0, j = 0; s[i] != '\0'; i++ ) {
+	if ( s[i] != chr )
+	    s[j++] = s[i];
+    }
+    s[j] = '\0'; /* re-null-terminate */
+}
 
 int main(int argc, char *argv[])
 {
@@ -225,12 +244,12 @@ int main(int argc, char *argv[])
 
     /*
      * LSB_VERSION values contain dots, we need a non-dotted version to
-     * append for the -D.  Make a copy first since strsep modifies its 1st arg.
+     * append for the -D.  Make a copy first since string will be modified
      */
     ptr = strdup(lsbcc_lsbversion);
-    strcat(lsbversion_option, strsep(&ptr, "."));
-    if (ptr)
-	strcat(lsbversion_option, strsep(&ptr, "."));
+    cleanvers(ptr, '.');
+    strcat(lsbversion_option, ptr);
+    free (ptr);
 
     /*
      * Check for more environment variables, and adjust things if found.
@@ -246,31 +265,35 @@ int main(int argc, char *argv[])
 	}
     }
 
+    if ((ptr = getenv("LSBCXX_INCLUDES")) != NULL) {
+	strncpy(cxxincpath, ptr, sizeof(cxxincpath)-1);
+	cxxincpath[sizeof(cxxincpath)-1] = '\0';
+	if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
+	    fprintf(stderr, "c++ include prefix set to %s\n", cxxincpath);
+	}
+    }
+
     if ((ptr = getenv("LSBCC_INCLUDES")) != NULL) {
-	memset(incpath, 0, strlen(incpath));
-	strcpy(incpath, ptr);
+	strncpy(incpath, ptr, sizeof(incpath)-1);
+	incpath[sizeof(incpath)-1] = '\0';
 	if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
 	    fprintf(stderr, "include prefix set to %s\n", incpath);
 	}
     }
 
-    if ((ptr = getenv("LSBCC_VERBOSE")) != NULL) {
+    if (getenv("LSBCC_VERBOSE") != NULL) {
 	display_cmd = 1;
     }
 
     if ((ptr = getenv("LSBCPP")) != NULL) {
-	cppname = ptr;
+	cppname = strdup(ptr);
 	if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
 	    fprintf(stderr, "cpp name set to %s\n", cppname);
 	}
     }
 
-    if ((ptr = getenv("LSBCC_FORCEFEATURES")) != NULL) {
+    if (getenv("LSBCC_FORCEFEATURES") != NULL) {
 	feature_settings = 1;
-    }
-
-    if ((ptr = getenv("LSBCC_VERBOSE")) != NULL) {
-	display_cmd = 1;
     }
 
     if (lsbcc_debug & DEBUG_ARGUMENTS) {
@@ -304,6 +327,7 @@ int main(int argc, char *argv[])
 	    /* --help intended for cpp, we'll add our 2cents however */
 	    /*gccstartargs*/
 	    argvaddstring(options, strdup("--help"));
+	    /* fallthrough */
 	case 3:		/* --lsb-help */
 	    usage(argv[0]);
 	    if (c == 3) {
@@ -321,12 +345,12 @@ int main(int argc, char *argv[])
 	    cppname = strdup(optarg);
 	    break;
 	case 9:		/* --lsb-includepath=<path> */
-	    memset(incpath, 0, strlen(incpath));
-	    strcpy(incpath, optarg);
+	    strncpy(incpath, optarg, sizeof(incpath)-1);
+	    incpath[sizeof(incpath)-1] = '\0';
 	    break;
 	case 10:		/* --lsb-cxx-includepath=<path> */
-	    memset(cxxincpath, 0, strlen(cxxincpath));
-	    strcpy(cxxincpath, optarg);
+	    strncpy(cxxincpath, optarg, sizeof(cxxincpath)-1);
+	    incpath[sizeof(cxxincpath)-1] = '\0';
 	    break;
 	case 12:		/* --lsb-forcefeatures */
 	    feature_settings = 1;
@@ -335,8 +359,8 @@ int main(int argc, char *argv[])
 	case 14:		/* --verbose */
 	case 15:		/* --version */
 	case 'v':
-	    /* for these four, fall through to add this program's version */
 	    argvaddstring(options, argv[optind - 1]);
+	    /* fallthrough to add this program's version */
 	case 22:		/* --lsbcc-version */
 	    printf("%s (lsbcc) %s\n", argv[0], LSBCC_VERSION);
 	    if (c == 22) {

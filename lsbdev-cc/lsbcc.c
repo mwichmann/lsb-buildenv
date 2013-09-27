@@ -37,8 +37,13 @@
  *
  * The extra options are easily inserted in between the categories.
  *
+ * NOTE: the above two claims turn out to be a lie; there are known
+ * problems caused by reordering things from the command line the
+ * user originally passed in. LSB bug 2941 describes an instance of this.
+ * The solution unfortunately appears to involve yet another rewrite.
+ *
  * A couple of things that complicate this process (and this is what ended the
- * life of the shell script based lsbcc) is that some of the options have
+ * life of the shellscript-based lsbcc) is that some of the options have
  * optional parameters (ie -W and -O) and the getopt command wasn't able to
  * communicate this to the rest of the shell script. Another tough one is when
  * strings are passed in as a define (ie -DFOO="A String Here"). The quotes
@@ -278,18 +283,19 @@ int perform_libtool_fixups(const char *optarg)
 	fprintf(stderr,
 		"Warning: Shared library %s does not follow the libfoo.so convention\n",
 		optarg);
-	if (efile) {
+	if (efile)
 	    CloseElfFile(efile);
-	}
+	free (libdir);
 	return 0;
     }
 
     libfile += strlen("lib");
-    if (1 == process_opt_l(libfile)) {
+    if (process_opt_l(libfile) == 1) {
 	CloseElfFile(efile);
 	/*
 	 * add an -L for non LSB libs.
 	 */
+	free (libdir);
 	return 1;
     }
 
@@ -297,6 +303,7 @@ int perform_libtool_fixups(const char *optarg)
      * add a -L for this lib if we made it static
      */
     process_opt_L(dirname(libdir));
+    free (libdir);
 
     /*
      * Now also check to see if the shared lib
@@ -331,8 +338,8 @@ int perform_libtool_fixups(const char *optarg)
 		    free(libfile);
 		    continue;
 		}
-		libfile += strlen("lib");
-		process_opt_l(libfile);
+		process_opt_l(libfile + strlen("lib"));
+		free(libfile);
 	    }
 	}
 	CloseElfFile(efile);
@@ -692,38 +699,34 @@ struct option long_options[] = {
     {NULL, 0, 0, 0}
 };
 
+/*
+ * return string of available optional/trial-use module names for 
+ * the target LSB version, or "None"
+ * Used only for the usage message at the moment
+ * Side effect: memory is allocated for the string
+ */
 char *get_modules_strings(void)
 {
     int i = 0;
     char *modules = NULL;
-    char *tmp = NULL;
 
     for (; i < lsb_num_modules[lsbversion_index]; i++) {
 	lsb_lib_modules_t *lsb_module = &lsb_modules[lsbversion_index][i];
-
-	if (lsb_module->lib_names == NULL) {
+	if (lsb_module->lib_names == NULL)
 	    continue;
-	}
-
-	tmp = modules;
-	modules = malloc((tmp ? strlen(tmp) : 0) +
-			 strlen(lsb_module->module_name) + 2);
-	memset(modules, 0, (tmp ? strlen(tmp) : 0) +
-	       strlen(lsb_module->module_name) + 2);
-	if (tmp) {
-	    strcpy(modules, tmp);
-	    strcat(modules, ",");
-	}
+	modules = realloc(modules, (modules ? strlen(modules) : 0) +
+			            strlen(lsb_module->module_name) + 2);
 	strcat(modules, lsb_module->module_name);
-	if (tmp) {
-	    free(tmp);
-	}
     }
+    if (!modules)
+        modules = strdup("None");
     return modules;
 }
 
 void usage(const char *progname)
 {
+    char *mp = get_modules_strings();
+
     printf("Usage %s:\n"
 "  --lsb-help               Display this message\n"
 "  --lsb-version            Display the version of LSB this tool can build for.\n"
@@ -782,9 +785,8 @@ void usage(const char *progname)
 "\n"
 "All other options are passed to the compiler more or less unmodified.\n"
 "  --lsb options should appear before system compiler options.\n"
-    "\n", progname, lsbcc_lsbversion,
-    (lsb_num_modules[lsbversion_index] ? get_modules_strings() :
-    "none"));
+    "\n", progname, lsbcc_lsbversion, mp);
+    free (mp);
 }
 
 /*
@@ -933,7 +935,7 @@ void process_shared_lib_path(char *libarg)
 		    strdup((dirents[num_libs]->d_name) + strlen("lib"));
 		*(strstr(libstr, ".so")) = '\0';
 		argvaddstring(lsblibs, libstr);
-		free(dirents[num_libs]);
+		free(libstr);
 	    }
 	    free(dirents);
 	} else {
@@ -950,6 +952,21 @@ void process_shared_lib_path(char *libarg)
 	}
 	libpath = strtok(NULL, ":");
     }
+}
+
+/*
+ * modify, in place, a string to strip 'chr' characters from it
+ * current use is to transform versions, like "5.0" -> "50"
+ */
+void cleanvers(char *s, char chr)
+{
+    int i, j;
+
+    for ( i = 0, j = 0; s[i] != '\0'; i++ ) {
+	if ( s[i] != chr )
+	    s[j++] = s[i];
+    }
+    s[j] = '\0'; /* re-null-terminate */
 }
 
 int main(int argc, char *argv[])
@@ -1061,12 +1078,12 @@ int main(int argc, char *argv[])
 
     /*
      * LSB_VERSION values contain dots, we need a non-dotted version to
-     * append for the -D.  Make a copy first since strsep modifies its 1st arg.
+     * append for the -D.  Make a copy first since string will be modified
      */
     ptr = strdup(lsbcc_lsbversion);
-    strcat(lsbversion_option, strsep(&ptr, "."));
-    if (ptr)
-	strcat(lsbversion_option, strsep(&ptr, "."));
+    cleanvers(ptr, '.');
+    strcat(lsbversion_option, ptr);
+    free (ptr);
 
 #if __powerpc64__ || __s390x__ || __x86_64__
     snprintf(libpath, PATH_MAX - 1, "%s/%s%s", BASE_PATH, "lib64-",
@@ -1091,59 +1108,58 @@ int main(int argc, char *argv[])
 
     if (LSBCPLUS != lsbccmode) {
 	if ((ptr = getenv("LSBCC")) != NULL) {
-	    ccname = ptr;
+	    ccname = strdup(ptr);
 	    if (lsbcc_debug & DEBUG_ENV_OVERRIDES)
 		fprintf(stderr, "cc name set to %s\n", ccname);
 	}
     } else {
 
 	if ((ptr = getenv("LSBCXX")) != NULL) {
-	    ccname = ptr;
+	    ccname = strdup(ptr);
 	    if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
 		fprintf(stderr, "c++ name set to %s\n", ccname);
 	    }
 	}
 	if ((ptr = getenv("LSBCXX_INCLUDES")) != NULL) {
-	    memset(cxxincpath, 0, strlen(cxxincpath));
-	    strcpy(cxxincpath, ptr);
+	    strncpy(cxxincpath, ptr, sizeof(cxxincpath)-1);
+	    incpath[sizeof(cxxincpath)-1] = '\0';
 	    if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
-		fprintf(stderr, "c++ include prefix set to %s\n",
-			cxxincpath);
+		fprintf(stderr, "c++ include prefix set to %s\n", cxxincpath);
 	    }
 	}
     }
 
     if ((ptr = getenv("LSBCC_LIBS")) != NULL) {
-	memset(libpath, 0, strlen(libpath));
-	strcpy(libpath, ptr);
+	strncpy(libpath, ptr, sizeof(libpath)-1);
+	libpath[sizeof(libpath)-1] = '\0';
 	if (lsbcc_debug & DEBUG_ENV_OVERRIDES)
 	    fprintf(stderr, "library prefix set to %s\n", libpath);
     }
 
     if ((ptr = getenv("LSBCC_INCLUDES")) != NULL) {
-	memset(incpath, 0, strlen(incpath));
-	strcpy(incpath, ptr);
+	strncpy(incpath, ptr, sizeof(incpath)-1);
+	incpath[sizeof(incpath)-1] = '\0';
 	if (lsbcc_debug & DEBUG_ENV_OVERRIDES)
 	    fprintf(stderr, "include prefix set to %s\n", incpath);
     }
 
-    if ((ptr = getenv("LSBCC_FORCEFEATURES")) != NULL) {
+    if (getenv("LSBCC_FORCEFEATURES") != NULL) {
 	feature_settings = 1;
     }
 
-    if ((ptr = getenv("LSBCC_BESTEFFORT")) != NULL) {
+    if (getenv("LSBCC_BESTEFFORT") != NULL) {
 	best_effort = 1;
     }
 
-    if ((ptr = getenv("LSBCC_USE_DEFAULT_LINKER")) != NULL) {
+    if (getenv("LSBCC_USE_DEFAULT_LINKER") != NULL) {
 	default_linker = 1;
     }
 
-    if ((ptr = getenv("LSBCC_LIBTOOLFIXUPS")) != NULL) {
+    if (getenv("LSBCC_LIBTOOLFIXUPS") != NULL) {
 	libtool_fixups = 1;
     }
 
-    if ((ptr = getenv("LSBCC_VERBOSE")) != NULL) {
+    if (getenv("LSBCC_VERBOSE") != NULL) {
 	display_cmd = 1;
     }
 
@@ -1316,6 +1332,7 @@ int main(int argc, char *argv[])
 	    /* --help intended for gcc, we'll add our 2cents however */
 	    found_gcc_standalone = 1;
 	    argvaddstring(gccstartargs, strdup("--help"));
+	    /* fallthrough */
 	case 3:		/* --lsb-help */
 	    usage(argv[0]);
 	    if (c == 3) {
@@ -1336,16 +1353,16 @@ int main(int argc, char *argv[])
 	    ccname = strdup(optarg);
 	    break;
 	case 8:		/* --lsb-libpath=<path> */
-	    memset(libpath, 0, strlen(libpath));
-	    strcpy(libpath, optarg);
+	    strncpy(libpath, optarg, sizeof(libpath)-1);
+	    libpath[sizeof(libpath)-1] = '\0';
 	    break;
 	case 9:		/* --lsb-includepath=<path> */
-	    memset(incpath, 0, strlen(incpath));
-	    strcpy(incpath, optarg);
+	    strncpy(incpath, optarg, sizeof(incpath)-1);
+	    incpath[sizeof(incpath)-1] = '\0';
 	    break;
 	case 10:		/* --lsb-cxx-includepath=<path> */
-	    memset(cxxincpath, 0, strlen(cxxincpath));
-	    strcpy(cxxincpath, optarg);
+	    strncpy(cxxincpath, optarg, sizeof(cxxincpath)-1);
+	    cxxincpath[sizeof(cxxincpath)-1] = '\0';
 	    break;
 	case 16:		/* --lsb-shared-libpath=<path:...> */
 	    process_shared_lib_path(strdup(optarg));
@@ -1496,10 +1513,10 @@ int main(int argc, char *argv[])
 	     * of having the compiler call the linker.  Unless of course
 	     * we need to call the linker, which will happen whenever
 	     * found_gcc_arg gets set.
-	     * Fall through to add this program's version.
 	     */
 	    found_gcc_standalone = 1;
 	    argvaddstring(gccstartargs, argv[optind - 1]);
+	    /* fallthrough to add this program's version. */
 	case 22:		/* --lsbcc-version */
 	    printf("%s (lsbcc) %s\n", argv[0], LSBCC_VERSION);
 	    if (c == 22) {
