@@ -16,6 +16,7 @@
  *
  * This code is a stripped down version of lsbcc.c
  * it needs to be kept in sync to some extent.
+ * Please see that file for some general comments on how this all works.
  */
 
 #include <sys/types.h>

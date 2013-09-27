@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2002-2012 Linux Foundation
+ * Copyright (C) 2002-2013 Linux Foundation
  *
  * Originally written 2002/05/09 Stuart Anderson, Free Standards Group
  *
@@ -7,49 +7,49 @@
  * under the terms of the BSD license.
  */
 /*
- * This is the lsbcc tool. It is used to build LSB conforming applications.
+ * This is the lsbcc wrapper (which can also be known as lsbc++). 
+ * It is used to aid in building LSB conforming applications.
  * LSB conforming applications can be built without this tool, but using
- * lsbcc make it easier to get everything right. This is a re-implementation
- * of the original shell script.
+ * lsbcc make it easier to get everything right. 
+ * This is a re-implementation of the original shell script.
  *
  * The basic premise is this: The LSB development environment provides
- * a set of headers and libraries nominally found in /opt/lsb/include
- * and /opt/lsb/lib respectively. These headers and libraries have
- * been carefully built so that they contain only the interfaces provided by
- * the LSB. And LSB conforming application must also use be linked with
- * a special program intepreter (usually ld-lsb.so.3 but this is described
- * in each archLSB)
+ * a set of headers and libraries found in /opt/lsb/include and 
+ * /opt/lsb/lib respectively (configurable). These headers and libraries have
+ * been carefully constructed so that they contain only the interfaces 
+ * provided by the LSB. An LSB conforming application must also be linked 
+ * with a special program intepreter, usually ld-lsb.so.3 but the name
+ * is defined in each LSB architecture supplement). lsbcc arranges the
+ * task of including these headers and link-editing against these libraries
+ * specifying the correct program interpreter.
  *
- * The purpose of the lsbcc tool is to cause programs to be built against
- * these headers and libraries and with the correct program interpreter.
  * There are still some parts of a development system (gcc headers, crt0.o,
- * etc) that must be used but are not provided by the LSB, so the normal
+ * etc) that must be used but are not provided by the LSB, so the native
  * version of these gets used. The trick is to ensure that the LSB provided
  * parts take precedence over the regular versions. This is accomplished by
  * inserting a couple of extra options in the right place before actually
- * calling gcc.
+ * calling gcc (or other specified native compiler).
  *
- * The approach taken here is to recognize enough of the regular options to
- * allow the extra options to be inserted into the right place. Fortunately,
+ * The approach is to recognize enough of the regular options to allow the 
+ * extra options to be inserted into the right place. Fortunately,
  * the options can be grouped into a few categories, and the order in which
  * the categories are passed to gcc is not important, as long as the order of
- * items within each category is preserved.
+ * items within each category is preserved. The extra options are easily 
+ * inserted in between the categories.
  *
- * The extra options are easily inserted in between the categories.
- *
- * NOTE: the above two claims turn out to be a lie; there are known
+ * NOTE: the above claim turn out to be a lie; there are known
  * problems caused by reordering things from the command line the
  * user originally passed in. LSB bug 2941 describes an instance of this.
- * The solution unfortunately appears to involve yet another rewrite.
+ * The solution unfortunately appears to involve yet another rewrite,
+ * which has not yet been attempted.
  *
- * A couple of things that complicate this process (and this is what ended the
- * life of the shellscript-based lsbcc) is that some of the options have
- * optional parameters (ie -W and -O) and the getopt command wasn't able to
- * communicate this to the rest of the shell script. Another tough one is when
- * strings are passed in as a define (ie -DFOO="A String Here"). The quotes
- * were getting stripped off, so what got passed to gcc was a buch of invalid
- * options.
- *
+ * There are some problems that complicate this process (and this is what 
+ * ended the life of the shellscript-based lsbcc). For one, some of the 
+ * options have optional parameters (i.e. -W and -O) and the getopt command 
+ * wasn't able to communicate this to the rest of the shell script. Another 
+ * is that when strings are passed in as a define (ie -DFOO="A String Here"),
+ * the quotes were getting stripped off, so what got passed to gcc was a bunch
+ * of invalid options.
  */
 
 #include <sys/types.h>
@@ -845,58 +845,51 @@ int is_file_so(const struct dirent *ent)
 }
 
 /*
+ * Scan a directory for entries selected by a filter function
+ * Returns the number of directory entries selected or -1 if an error occurs
+ *
  * FIXME: If LSB adds scandir, drop this code.
- * UPDATE: as described in bug 1997, scandir was added @LSB 4.0,
- * but LSB builds lsbcc "pessimistically" (targeting oldest possible
- * LSB version), so we can't drop yet. 
- * This block should be #ifdef'd.
+ * UPDATE: as described in bug 1997, scandir was added @LSB 4.0, but LSB 
+ * builds lsbcc "pessimistically" (targeting oldest possible LSB version), 
+ * so this needs to remain.
  */
-int lsbcc_scandir(char *libpath,
-		  struct dirent ***dirents,
-		  int (*filter) (const struct dirent *))
+int lsbcc_scandir(const char *dir,
+		  struct dirent ***namelist,
+		  int (*sel)(const struct dirent *),
+		  int (*compar)(const struct dirent **, const struct dirent **))
 {
-    DIR *dir;
+    DIR *dirp;
     struct dirent *tmpent;
     int num_ents = 0;
     int ents_available = 0;
 
-    *dirents = NULL;
+    *namelist = NULL;
 
-    dir = opendir(libpath);
-    if (!dir) {
+    if ((dirp = opendir(dir)) == NULL)
 	return -1;
-    }
-    while ((tmpent = readdir(dir)) != NULL) {
-	if (filter(tmpent)) {
-	    /*
-	     * grow the return array buffer in 1k chunks
-	     */
-	    if (num_ents == ents_available) {
-		if (*dirents != NULL) {
-		    struct dirent **tmpdirents = *dirents;
-		    *dirents = malloc(ents_available * sizeof(struct dirent*) + 1024);
-		    memcpy(*dirents, tmpdirents, ents_available * sizeof(struct dirent*));
-		    free(tmpdirents);
-		} else {
-		    *dirents = malloc(1024);
-		}
-		ents_available += 1024 / sizeof(struct dirent*);
-	    }
-	    (*dirents)[num_ents] = malloc(sizeof(struct dirent));
-	    if (!(*dirents)[num_ents]) {
-		while (num_ents-- > 0) {
-		    free((*dirents)[num_ents]);
-		}
-		free(*dirents);
-		closedir(dir);
-		errno = ENOMEM;
-		return -1;
-	    }
-	    memcpy((*dirents)[num_ents], tmpent, sizeof(struct dirent));
-	    num_ents++;
+    while ((tmpent = readdir(dirp)) != NULL) {
+	if (!sel(tmpent)) 
+	    continue;
+	if (num_ents == ents_available) {
+	    /* grow the return array buffer in 1k chunks as needed */
+	    *namelist = realloc(*namelist, 1024 + 
+				    ents_available * sizeof(struct dirent*));
+	    ents_available += 1024 / sizeof(struct dirent*);
 	}
+
+	if (((*namelist)[num_ents] = malloc(sizeof(struct dirent))) == NULL) {
+	    while (num_ents-- > 0) {
+		free((*namelist)[num_ents]);
+	    }
+	    free(*namelist);
+	    closedir(dirp);
+	    errno = ENOMEM;
+	    return -1;
+	}
+	memcpy((*namelist)[num_ents], tmpent, sizeof(struct dirent));
+	num_ents++;
     }
-    closedir(dir);
+    closedir(dirp);
     return num_ents;
 }
 
@@ -921,15 +914,19 @@ void process_shared_lib_path(char *libarg)
 		    "adding shared libraries found in %s to allowed dsos\n",
 		    libpath);
 	}
-	num_libs = lsbcc_scandir(libpath, &dirents, is_file_so);
+	num_libs = lsbcc_scandir(libpath, &dirents, is_file_so, NULL);
 	if (num_libs > 0) {
 	    while (num_libs--) {
 		/*
-		 * NOTE: If the implementation of is_file_so changes,
-		 * this code very likey will need to change as well
-		 * since the following is only safe because we know
-		 * that all dirents start with lib and have a .so in
-		 * them someplace!!!
+		 * The filter is_file_so() selects only names which match
+		 * a pattern which includes starting with "lib" and 
+		 * containing a ".so" somewhere after that (e.g.
+		 * libfoo.so.1.37 is a match, as is libfoo.so).
+		 * Unfortunately, this is too complex for external scanning 
+		 * tools, so for example Coverity flags this as a 
+		 * high-priority defect, due to dereferencing null pointer 
+		 * if the strstr returns NULL - which we know can't happen 
+		 * because of is_file_so.
 		 */
 		char *libstr =
 		    strdup((dirents[num_libs]->d_name) + strlen("lib"));
