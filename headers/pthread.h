@@ -32,6 +32,7 @@ extern "C" {
 #define PTHREAD_MUTEX_RECURSIVE	1
 #define PTHREAD_MUTEX_ERRORCHECK	2
 #if __LSB_VERSION__ < 40
+#define PTHREAD_RWLOCK_DEFAULT_NP	2
 #define PTHREAD_MUTEX_INITIALIZER	\
 	{0,0,0,PTHREAD_MUTEX_NORMAL,__LOCK_INITIALIZER}
 #define PTHREAD_RWLOCK_INITIALIZER	\
@@ -42,10 +43,6 @@ extern "C" {
 #endif				/* __LSB_VERSION__ < 4.0 */
 
 #endif				/* __LSB_VERSION__ >= 1.2 */
-
-#if __LSB_VERSION__ >= 13
-#define PTHREAD_RWLOCK_DEFAULT_NP	2
-#endif				/* __LSB_VERSION__ >= 1.3 */
 
 #if __LSB_VERSION__ >= 20
 #define pthread_cleanup_push(routine,arg)	\
