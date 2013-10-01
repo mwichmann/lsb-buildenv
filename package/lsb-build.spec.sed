@@ -229,10 +229,11 @@ done
 %dir /opt/lsb/include/glib-2.0/glib
 %dir /opt/lsb/include/glib-2.0/gobject
 %dir /opt/lsb/include/gnu
+%dir /opt/lsb/include/gdk-pixbuf-2.0
+%dir /opt/lsb/include/gdk-pixbuf-2.0/gdk-pixbuf
+%dir /opt/lsb/include/gdk-pixbuf-2.0/gdk-pixbuf-xlib
 %dir /opt/lsb/include/gtk-2.0
 %dir /opt/lsb/include/gtk-2.0/gdk
-%dir /opt/lsb/include/gtk-2.0/gdk-pixbuf
-%dir /opt/lsb/include/gtk-2.0/gdk-pixbuf-xlib
 %dir /opt/lsb/include/gtk-2.0/gtk
 %dir /opt/lsb/include/gtk-unix-print-2.0
 %dir /opt/lsb/include/gtk-unix-print-2.0/gtk
