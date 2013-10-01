@@ -525,6 +525,9 @@ BASE/include/freetype/tttables.h
 BASE/include/freetype/tttags.h
 BASE/include/freetype/ttunpat.h
 BASE/include/ft2build.h
+BASE/include/gdk-pixbuf-2.0/gdk-pixbuf-xlib/gdk-pixbuf-xlib.h
+BASE/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h
+BASE/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixdata.h
 BASE/include/gio-unix-2.0/gio/gdesktopappinfo.h
 BASE/include/gio-unix-2.0/gio/gfiledescriptorbased.h
 BASE/include/gio-unix-2.0/gio/gunixconnection.h
@@ -672,9 +675,6 @@ BASE/include/glib-2.0/glib/gprintf.h
 BASE/include/glib-2.0/glib/gstdio.h
 BASE/include/glib-2.0/gmodule.h
 BASE/include/glib-2.0/gobject/gvaluecollector.h
-BASE/include/gtk-2.0/gdk-pixbuf-xlib/gdk-pixbuf-xlib.h
-BASE/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf.h
-BASE/include/gtk-2.0/gdk-pixbuf/gdk-pixdata.h
 BASE/include/gtk-2.0/gdk/gdk.h
 BASE/include/gtk-2.0/gdk/gdkcairo.h
 BASE/include/gtk-2.0/gdk/gdkkeysyms.h

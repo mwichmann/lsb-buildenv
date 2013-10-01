@@ -1,9 +1,9 @@
 #if (__LSB_VERSION__ >= 31 )
-#ifndef _GTK_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
-#define _GTK_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
+#ifndef _GDK_PIXBUF_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
+#define _GDK_PIXBUF_2_0_GDK_PIXBUF_GDK_PIXDATA_H_
 
 #include <glib-2.0/glib.h>
-#include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
 
 #ifdef __cplusplus
 extern "C" {

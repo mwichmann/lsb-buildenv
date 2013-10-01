@@ -5,7 +5,7 @@
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <pango-1.0/pango/pango.h>
-#include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
 #include <cairo/cairo.h>
 
 #ifdef __cplusplus

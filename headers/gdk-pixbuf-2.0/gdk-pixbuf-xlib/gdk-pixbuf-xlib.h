@@ -1,12 +1,12 @@
 #if (__LSB_VERSION__ >= 31 )
-#ifndef _GTK_2_0_GDK_PIXBUF_XLIB_GDK_PIXBUF_XLIB_H_
-#define _GTK_2_0_GDK_PIXBUF_XLIB_GDK_PIXBUF_XLIB_H_
+#ifndef _GDK_PIXBUF_2_0_GDK_PIXBUF_XLIB_GDK_PIXBUF_XLIB_H_
+#define _GDK_PIXBUF_2_0_GDK_PIXBUF_XLIB_GDK_PIXBUF_XLIB_H_
 
 #include <X11/Xlib.h>
 #include <X11/X.h>
 #include <X11/Xutil.h>
 #include <glib-2.0/glib.h>
-#include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
 
 #ifdef __cplusplus
 extern "C" {
