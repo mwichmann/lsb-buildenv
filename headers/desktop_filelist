@@ -141,6 +141,9 @@ freetype/tttables.h
 freetype/tttags.h
 freetype/ttunpat.h
 ft2build.h
+gdk-pixbuf-2.0/gdk-pixbuf-xlib/gdk-pixbuf-xlib.h
+gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h
+gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixdata.h
 gio-unix-2.0/gio/gdesktopappinfo.h
 gio-unix-2.0/gio/gfiledescriptorbased.h
 gio-unix-2.0/gio/gunixconnection.h
@@ -288,9 +291,6 @@ glib-2.0/glib/gprintf.h
 glib-2.0/glib/gstdio.h
 glib-2.0/gmodule.h
 glib-2.0/gobject/gvaluecollector.h
-gtk-2.0/gdk-pixbuf-xlib/gdk-pixbuf-xlib.h
-gtk-2.0/gdk-pixbuf/gdk-pixbuf.h
-gtk-2.0/gdk-pixbuf/gdk-pixdata.h
 gtk-2.0/gdk/gdk.h
 gtk-2.0/gdk/gdkcairo.h
 gtk-2.0/gdk/gdkkeysyms.h

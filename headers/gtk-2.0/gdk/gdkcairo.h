@@ -3,7 +3,7 @@
 #define _GTK_2_0_GDK_GDKCAIRO_H_
 
 #include <glib-2.0/glib-object.h>
-#include <gtk-2.0/gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk-2.0/gdk/gdk.h>
 #include <cairo/cairo.h>
 
