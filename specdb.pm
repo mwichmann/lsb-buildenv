@@ -1312,9 +1312,8 @@ sub display_interface($ )
         $Iname = $entry->{'Iname'};
         $Tid = $entry->{'AIreturn'};
 
-        die "FATAL: no return value found for interface $Iname" unless $Tid > 0;
-
         $typedecl = displaytyperef($entry,$nameonly);
+        die "FATAL: no return value found for interface $Iname" unless $typedecl;
         print $typedecl;
         if ($Ttype eq "FuncPtr") {
             print "(\n";
