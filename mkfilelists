@@ -26,14 +26,14 @@ import MySQLdb
 
 HANDLE = None
 
-#============== Editable section ============== 
+#============== Editable section ==============
 # for package lists, one library-version name corresponding to the
 # default version vanishes and becomes just lib - this version:
 DEFAULTVER = "4.1"
 
 # Lists of names of submodules from the database, divided into
 # the two packages -base (CORE) and -desktop (DESKTOP)
-# This division is somewhat arbitrary, e.g. Printing/Multimedia in Core  
+# This division is somewhat arbitrary, e.g. Printing/Multimedia in Core
 
 CORE_MODULES = [
     'LSB_Core',
@@ -73,11 +73,11 @@ LIB_ONLY_MODULES = [
 # keep this code for now in case a reason appears to use it.
 
 CORE_HEADERS_ADD = [
-#    'linux/netlink.h',
-#    'linux/rtnetlink.h',
-#    'linux/socket.h',
-#    'stropts.h',
-#    'netpacket/packet.h',
+    #    'linux/netlink.h',
+    #    'linux/rtnetlink.h',
+    #    'linux/socket.h',
+    #    'stropts.h',
+    #    'netpacket/packet.h',
 ]
 
 CORE_HEADERS_REMOVE = [
@@ -96,14 +96,15 @@ CORE_LIBS_REMOVE = [
     'libc',
     'libm'
 ]
-#============== end Editable section ============== 
+#============== end Editable section ==============
+
 
 def usage(code, msg=''):
     """print usage message and quit"""
-    if msg: 
+    if msg:
         print "ERROR:", msg
         print
-    print __doc__ 
+    print __doc__
     sys.exit(code)
 
 
@@ -126,10 +127,10 @@ def do_query(query, core_list, desktop_list, ignore_list):
         else:
             (module, item, soname) = result
             try:
-                processed_items.index((item,soname))
+                processed_items.index((item, soname))
                 continue
             except:
-                processed_items.append((item,soname))
+                processed_items.append((item, soname))
 
         if module in ignore_list:
             continue
@@ -200,7 +201,7 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 
     core_libs = []
     desktop_libs = []
-    do_query (query, core_libs, desktop_libs, [])
+    do_query(query, core_libs, desktop_libs, [])
 
     # The database contains at least one entry with information
     # in the library name field that isn't a library name.  For
@@ -209,7 +210,7 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
     core_libs = [x for x in core_libs if ' ' not in x]
     desktop_libs = [x for x in desktop_libs if ' ' not in x]
 
-    createfiles('core_filelist_' + lsbversion, core_libs, 
+    createfiles('core_filelist_' + lsbversion, core_libs,
                 'desktop_filelist_' + lsbversion, desktop_libs)
 
 
@@ -239,8 +240,8 @@ OR Hsrcerror='Yes' )"""
                     x not in CORE_HEADERS_REMOVE]
 
     # prefix with relocatable path
-    core_pkglist =  ["BASE/include/" + x for x in core_pkglist]
-    desktop_pkglist =  ["BASE/include/" + x for x in desktop_pkglist]
+    core_pkglist = ["BASE/include/" + x for x in core_pkglist]
+    desktop_pkglist = ["BASE/include/" + x for x in desktop_pkglist]
 
     for lsbversion in lsbversions:
         query = """
@@ -252,7 +253,7 @@ AND (ALappearedin <= '""" + lsbversion + """' and ALappearedin<>'')
 AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
         core_libs = []
         desktop_libs = []
-        do_query (query, core_libs, desktop_libs, [])
+        do_query(query, core_libs, desktop_libs, [])
 
         # The database contains at least one entry with information
         # in the library name field that isn't a library name.  For
@@ -271,13 +272,13 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
         tmp_dict = {}
         for x in core_libs:
             tmp_dict[x] = 1
-        core_libs= tmp_dict.keys()
+        core_libs = tmp_dict.keys()
         tmp_dict = {}
         for x in desktop_libs:
             tmp_dict[x] = 1
-        desktop_libs= tmp_dict.keys()
+        desktop_libs = tmp_dict.keys()
 
-        # prefix with relocatable path: BASE will be replaced with 
+        # prefix with relocatable path: BASE will be replaced with
         # install loc, LIB with lib or lib64 depending on arch
 ## don't bother with special-casing "current" version
 ##        if (lsbversion == version):
@@ -286,8 +287,8 @@ AND (ALwithdrawnin IS NULL OR ALwithdrawnin > '""" + lsbversion + """')"""
 ##            reloc = "BASE/LIB-" + lsbversion + "/"
 ## instead just version-suffix them all
         reloc = "BASE/LIB-" + lsbversion + "/"
-        core_libs =  [reloc + x for x in core_libs]
-        desktop_libs =  [reloc + x for x in desktop_libs]
+        core_libs = [reloc + x for x in core_libs]
+        desktop_libs = [reloc + x for x in desktop_libs]
 
         # and append them to the existing collection
         core_pkglist.extend(core_libs)
@@ -308,9 +309,9 @@ def main():
 
     global HANDLE
     HANDLE = MySQLdb.connect(host=os.environ['LSBDBHOST'],
-                                 user=os.environ['LSBUSER'],
-                                 passwd=os.environ['LSBDBPASSWD'],
-                                 db=os.environ['LSBDB'])
+                             user=os.environ['LSBUSER'],
+                             passwd=os.environ['LSBDBPASSWD'],
+                             db=os.environ['LSBDB'])
 
     shortopts = 'h'
     longopts = ['headers', 'libs', 'package', 'lsbversion=', 'help']
@@ -328,7 +329,7 @@ def main():
         for (opt, arg) in opts:
             if opt in ('--help', '-h'):
                 usage(0)
-            if opt in ('--package'): 
+            if opt in ('--package'):
                 mode = 'package'
             if opt in ('--lsbversion'):
                 lsbversion = arg
@@ -367,4 +368,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
