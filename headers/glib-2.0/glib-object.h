@@ -932,11 +932,6 @@ type_name##_get_type (void) \
 
     typedef gchar **GStrv;
 
-#if __LSB_VERSION__ < 50
-    typedef float gfloat;
-
-#endif				/* __LSB_VERSION__ < 5.0 */
-
 #if __LSB_VERSION__ >= 40
     typedef void (*GToggleNotify) (gpointer data, GObject * object,
 				   gboolean is_last_ref);
