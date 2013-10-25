@@ -39,14 +39,4 @@ ReadCorruptData = 2
 /* Function prototypes */
 
 #if __LSB_VERSION__ >= 32
-extern  _ZlsR11QDataStreamRK11QSizePolicy(QDataStream &, const QSizePolicy &);
-extern  _ZlsR11QDataStreamRK13QStandardItem(QDataStream &);
-extern  _ZlsR11QDataStreamRK5QIcon(QDataStream &);
-extern  _ZrsR11QDataStreamR11QSizePolicy(QDataStream &, QSizePolicy &);
-extern  _ZrsR11QDataStreamR13QStandardItem(QDataStream &);
-extern  _ZrsR11QDataStreamR5QIcon(QDataStream &);
-#endif /* __LSB_VERSION__ >= 3.2 */
-
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

@@ -98,8 +98,4 @@ extern int _Z9qsnprintfPcmPKcz(char *, unsigned long int, const char *, ...);
 #endif
 extern int _Z9qstrnicmpPKcS0_j(const char *, const char *, unsigned int);
 extern struct QByteArray::Data _ZN10QByteArray11shared_nullE;
-extern  _ZlsR11QDataStreamRK10QByteArray(QDataStream &, QByteArray & &);
-extern  _ZrsR11QDataStreamR10QByteArray(QDataStream &, QByteArray &);
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

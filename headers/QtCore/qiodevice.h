@@ -35,7 +35,4 @@ class QFlags<QIODevice::OpenModeFlag>;
 /* Function prototypes */
 
 extern struct QMetaObject _ZN9QIODevice16staticMetaObjectE;
-extern  _Zls6QDebug6QFlagsIN9QIODevice12OpenModeFlagEE(_Z6QDebug, _Z356QFlagsIN9QIODevice12OpenModeFlagEE);
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

@@ -28,11 +28,4 @@ AnyIPv6 = 5
 
 extern QDebug _Zls6QDebugRK12QHostAddress(const QHostAddress &);
 #if __LSB_VERSION__ >= 32
-extern  _Z5qHashRK12QHostAddress(const QHostAddress &);
-extern  _ZlsR11QDataStreamRK12QHostAddress(QDataStream &, const QHostAddress &);
-extern  _ZrsR11QDataStreamR12QHostAddress(QDataStream &, QHostAddress &);
-#endif /* __LSB_VERSION__ >= 3.2 */
-
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

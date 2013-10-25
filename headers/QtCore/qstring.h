@@ -63,8 +63,4 @@ class QConstString;
 
 /* Function prototypes */
 
-extern  _ZlsR11QDataStreamRK7QString(QDataStream &, QString & &);
-extern  _ZrsR11QDataStreamR7QString(QDataStream &, QString &);
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

@@ -40,9 +40,4 @@ extern QTextFrame::iterator _ZN10QTextFrame8iteratormmEv(void);
 extern QTextFrame::iterator _ZN10QTextFrame8iteratorppEv(void);
 extern struct QMetaObject _ZN11QTextObject16staticMetaObjectE;
 extern struct QMetaObject _ZN15QTextBlockGroup16staticMetaObjectE;
-extern  _ZNK10QTextBlock8iterator8fragmentEv(void);
-extern  _ZNK10QTextFrame8iterator12currentBlockEv(void);
-extern QTextFrame _ZNK10QTextFrame8iterator12currentFrameEv(void);
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

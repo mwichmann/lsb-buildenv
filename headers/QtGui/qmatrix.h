@@ -12,8 +12,4 @@ class QMatrix;
 
 extern QDebug _Zls6QDebugRK7QMatrix(_Z6QDebug, const QMatrix &);
 extern QDataStream _ZlsR11QDataStreamRK7QMatrix(QDataStream &);
-extern  _ZmlRK12QPainterPathRK7QMatrix(const QPainterPath &, const QMatrix &);
-extern QDataStream _ZrsR11QDataStreamR7QMatrix(QDataStream &);
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 

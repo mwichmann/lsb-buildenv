@@ -161,8 +161,4 @@ Unicode_4_0 = 7
 
 /* Function prototypes */
 
-extern  _ZlsR11QDataStreamRK5QChar(const QChar &);
-extern  _ZrsR11QDataStreamR5QChar(QChar &);
-// *INDENT-ON*
-#endif				/* protection */
-#endif				/* LSB version */
+extern 
