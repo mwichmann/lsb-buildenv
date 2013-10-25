@@ -1165,10 +1165,7 @@ extern "C" {
     typedef unsigned long int guint64;
 
 #endif
-#if __LSB_VERSION__ < 50
     typedef float gfloat;
-
-#endif				/* __LSB_VERSION__ < 5.0 */
 
 #if __LSB_VERSION__ >= 50
     typedef gint64 goffset;
