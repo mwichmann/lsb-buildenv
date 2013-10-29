@@ -265,6 +265,7 @@ char *lsb_libs_50[] = {
 	"fontconfig",
 	"freetype",
 	"gcc_s",
+	"gdk-3",
 	"gdk-x11-2.0",
 	"gdk_pixbuf-2.0",
 	"gdk_pixbuf_xlib-2.0",
