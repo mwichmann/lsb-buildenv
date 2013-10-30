@@ -199,7 +199,7 @@ extern "C" {
     extern GType gdk_x11_screen_get_type(void);
     extern const char *gdk_x11_screen_get_window_manager_name(GdkScreen *
 							      screen);
-    extern *gdk_x11_screen_get_xscreen(GdkScreen * screen);
+    extern Screen *gdk_x11_screen_get_xscreen(GdkScreen * screen);
     extern GdkVisual *gdk_x11_screen_lookup_visual(GdkScreen * screen,
 						   VisualID);
     extern gboolean gdk_x11_screen_supports_net_wm_hint(GdkScreen * screen,
@@ -207,7 +207,7 @@ extern "C" {
     extern void gdk_x11_set_sm_client_id(const char *sm_client_id);
     extern void gdk_x11_ungrab_server(void);
     extern GType gdk_x11_visual_get_type(void);
-    extern *gdk_x11_visual_get_xvisual(GdkVisual * visual);
+    extern Visual *gdk_x11_visual_get_xvisual(GdkVisual * visual);
     extern GdkWindow *gdk_x11_window_foreign_new_for_display(GdkDisplay *
 							     display,
 							     Window);

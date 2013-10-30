@@ -752,6 +752,13 @@ extern "C" {
 	GDK_ALL_EVENTS_MASK
     } GdkEventMask;
 
+    struct _GdkRGBA {
+	gdouble red;
+	gdouble green;
+	gdouble blue;
+	gdouble alpha;
+    };
+
 
 /* Function prototypes */
 

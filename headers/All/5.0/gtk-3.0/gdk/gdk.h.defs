@@ -590,7 +590,12 @@ typedef enum {
 typedef struct _cairo_rectangle_int GdkRectangle;
 typedef struct _GdkAtom *GdkAtom;
 typedef struct _GdkColor GdkColor;
-typedef struct _GdkRGBA GdkRGBA;
+typedef struct _GdkRGBA {
+    gdouble red;
+    gdouble green;
+    gdouble blue;
+    gdouble alpha;
+} GdkRGBA;
 typedef struct _GdkCursor GdkCursor;
 typedef struct _GdkVisual GdkVisual;
 typedef struct _GdkDevice GdkDevice;
