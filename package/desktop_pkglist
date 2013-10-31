@@ -360,6 +360,8 @@ BASE/LIB-5.0/libgobject-2.0.so
 BASE/LIB-5.0/libgobject-2.0.so.0
 BASE/LIB-5.0/libgthread-2.0.so
 BASE/LIB-5.0/libgthread-2.0.so.0
+BASE/LIB-5.0/libgtk-3.so
+BASE/LIB-5.0/libgtk-3.so.0
 BASE/LIB-5.0/libgtk-x11-2.0.so
 BASE/LIB-5.0/libgtk-x11-2.0.so.0
 BASE/LIB-5.0/libjpeg.so
@@ -693,6 +695,8 @@ BASE/include/gtk-3.0/gdk/gdkbroadway.h
 BASE/include/gtk-3.0/gdk/gdkkeysyms-compat.h
 BASE/include/gtk-3.0/gdk/gdkkeysyms.h
 BASE/include/gtk-3.0/gdk/gdkx.h
+BASE/include/gtk-3.0/gtk/gtk.h
+BASE/include/gtk-3.0/gtk/gtkunixprint.h
 BASE/include/gtk-unix-print-2.0/gtk/gtkpagesetupunixdialog.h
 BASE/include/gtk-unix-print-2.0/gtk/gtkprinter.h
 BASE/include/gtk-unix-print-2.0/gtk/gtkprintjob.h

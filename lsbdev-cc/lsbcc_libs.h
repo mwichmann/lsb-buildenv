@@ -274,6 +274,7 @@ char *lsb_libs_50[] = {
 	"gmodule-2.0",
 	"gobject-2.0",
 	"gthread-2.0",
+	"gtk-3",
 	"gtk-x11-2.0",
 	"jpeg",
 	"m",
