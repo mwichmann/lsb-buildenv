@@ -374,9 +374,10 @@ int main(int argc, char *argv[])
 	case '?':
 	    if (strncmp(argv[optind - 1], "--lsb-", 6) == 0) {
 		/*
-		 * We simply refuse to pass --lsb- prefixed
-		 * options along to cpp, since they are likely
-		 * just typos of legit --lsb- options..
+		 * Refuse to pass unrecognized --lsb- prefixed options 
+		 * along to the real compiler. Likely just typos of 
+		 * legitmate --lsb- options.
+		 * No chance compiler would recognize anyway.
 		 */
 		usage(argv[0]);
 		exit(EXIT_FAILURE);

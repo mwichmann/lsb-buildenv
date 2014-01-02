@@ -135,7 +135,8 @@ int lsbversion_index = 0;
 
 #define WARN_LIB_CHANGES	0x0001
 
-int lsbcc_debug = 0;		/* Default to none. ./configure likes things to be quiet. */
+int lsbcc_debug = 0;		/* off by default, autoconf fails on msg to stderr */
+int cpp_only = 0;		/* another flag to help autoconf */
 int lsbcc_warn = 0;
 int lsbcc_buildingshared = 0;
 
@@ -497,8 +498,13 @@ int need_stack_prot_suppression()
 	/*
 	 * Some other value we don't recognize.  
 	 * Following the previous pattern, assume we need it here.
+	 *
+	 * Bug 3816 comment #4 notes that it breaks autoconf scripts if 
+	 * "lsbcc -E" writes to stderr.  Since we're trying to let untested 
+	 * new versions still work, avoid doing this in the preprocessor case.
 	 */
-	fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
+	if (! cpp_only)
+	    fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
 	return 1;
     }
 }
@@ -1419,6 +1425,8 @@ int main(int argc, char *argv[])
 	    }
 	    break;
 	case 'E':
+	    cpp_only = 1;
+	    /* fallthrough */
 	case 'S':
 	case 'c':
 	    found_gcc_arg = 1;
@@ -1547,9 +1555,10 @@ int main(int argc, char *argv[])
 	case '?':
 	    if (strncmp(argv[optind_old], "--lsb-", 6) == 0) {
 		/*
-		 * Refuse to pass --lsb- prefixed options along to gcc, 
-		 * likely just typos of legit --lsb- options..
-		 * No chance gcc would recognize anyway.
+		 * Refuse to pass unrecognized --lsb- prefixed options 
+		 * along to the real compiler. Likely just typos of 
+		 * legitmate --lsb- options.
+		 * No chance compiler would recognize anyway.
 		 */
 		usage(argv[0]);
 		exit(EXIT_FAILURE);
