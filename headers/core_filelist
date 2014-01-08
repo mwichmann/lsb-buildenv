@@ -157,6 +157,7 @@ sane/sane.h
 sane/saneopts.h
 sched.h
 search.h
+security/_pam_types.h
 security/pam_appl.h
 semaphore.h
 setjmp.h

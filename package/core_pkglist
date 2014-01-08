@@ -326,6 +326,7 @@ BASE/include/sane/sane.h
 BASE/include/sane/saneopts.h
 BASE/include/sched.h
 BASE/include/search.h
+BASE/include/security/_pam_types.h
 BASE/include/security/pam_appl.h
 BASE/include/semaphore.h
 BASE/include/setjmp.h

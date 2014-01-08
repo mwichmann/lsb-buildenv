@@ -1,0 +1,111 @@
+#if (__LSB_VERSION__ >= 13 )
+#ifndef _SECURITY__PAM_TYPES_H_
+#define _SECURITY__PAM_TYPES_H_
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+    struct pam_handle;
+
+
+    typedef struct pam_handle pam_handle_t;
+
+    struct pam_message {
+	int msg_style;
+	const char *msg;
+    };
+
+    struct pam_response {
+	char *resp;
+	int resp_retcode;	/* currently un-used, zero expected */
+    };
+
+
+    struct pam_conv {
+	int (*conv) (int num_msg, const struct pam_message * *msg,
+		     struct pam_response * *resp, void *appdata_ptr);
+	void *appdata_ptr;
+    };
+
+
+/* Valid choices for msg_style*/
+#define PAM_PROMPT_ECHO_OFF	1
+#define PAM_PROMPT_ECHO_ON	2
+#define PAM_ERROR_MSG	3
+#define PAM_TEXT_INFO	4
+
+
+
+/* Possible Values for Item_type*/
+#define PAM_SERVICE	1	/* The service name */
+#define PAM_USER	2	/* The user name */
+#define PAM_TTY	3		/* The tty name */
+#define PAM_RHOST	4	/* The remote host name */
+#define PAM_CONV	5	/* The pam_conv structure */
+#define PAM_RUSER	8	/* The remote user name */
+#define PAM_USER_PROMPT	9	/* the prompt for getting a username */
+
+
+
+/* PAM API Return Values*/
+#define PAM_SUCCESS	0	/* Successful function return */
+#define PAM_OPEN_ERR	1	/* dlopen() failure */
+#define PAM_USER_UNKNOWN	10	/* User not known to the underlying authenticaiton module */
+#define PAM_MAXTRIES	11	/* An authentication service has maintained a retry count which */
+#define PAM_NEW_AUTHTOK_REQD	12	/* New authentication token required */
+#define PAM_ACCT_EXPIRED	13	/* User account has expired */
+#define PAM_SESSION_ERR	14	/* Can not make/remove an entry for  the specified session */
+#define PAM_CRED_UNAVAIL	15	/* Underlying authentication service can not retrieve user cred */
+#define PAM_CRED_EXPIRED	16	/* User credentials expired */
+#define PAM_CRED_ERR	17	/* Failure setting user credentials */
+#define PAM_CONV_ERR	19	/* Conversation error */
+#define PAM_SYMBOL_ERR	2	/* Symbol not found */
+#define PAM_AUTHTOK_ERR	20	/* Authentication token manipulation error */
+#define PAM_AUTHTOK_RECOVER_ERR	21	/* Authentication information cannot be recovered */
+#define PAM_AUTHTOK_LOCK_BUSY	22	/* Authentication token lock busy */
+#define PAM_AUTHTOK_DISABLE_AGING	23	/* Authentication token aging disabled */
+#define PAM_TRY_AGAIN	24	/* Preliminary check by password service */
+#define PAM_ABORT	26	/* Critical error (?module fail now request) */
+#define PAM_AUTHTOK_EXPIRED	27	/* user's authentication token has expired */
+#define PAM_BAD_ITEM	29	/* Bad item passed to pam_*_item() */
+#define PAM_SERVICE_ERR	3	/* Error in service module */
+#define PAM_SYSTEM_ERR	4	/* System error */
+#define PAM_BUF_ERR	5	/* Memory buffer error */
+#define PAM_PERM_DENIED	6	/* Permission denied */
+#define PAM_AUTH_ERR	7	/* Authentication failure */
+#define PAM_CRED_INSUFFICIENT	8	/* Can not access authentication data due to insufficient crede */
+#define PAM_AUTHINFO_UNAVAIL	9	/* Underlying authentication service can not retrieve authentic */
+
+
+
+/* PAM Flags*/
+#define PAM_DISALLOW_NULL_AUTHTOK	0x0001U
+#define PAM_ESTABLISH_CRED	0x0002U	/* Set user credentials for an authentication service */
+#define PAM_DELETE_CRED	0x0004U	/* Delete user credentials associated with an authentication se */
+#define PAM_REINITIALIZE_CRED	0x0008U	/* Reinitialize user credentials */
+#define PAM_REFRESH_CRED	0x0010U	/* Extend lifetime of user credentials */
+#define PAM_CHANGE_EXPIRED_AUTHTOK	0x0020U	/* Extend lifetime of user credentials */
+#define PAM_SILENT	0x8000U	/* Authentication service should not generate any messages */
+
+
+
+/* Function prototypes */
+
+    extern int pam_fail_delay(pam_handle_t *, unsigned int);
+    extern int pam_get_item(const pam_handle_t *, int, const void **);
+    extern char **pam_getenvlist(pam_handle_t *);
+    extern int pam_set_item(pam_handle_t *, int, const void *);
+    extern const char *pam_strerror(pam_handle_t *, int);
+#if __LSB_VERSION__ >= 32
+    extern const char *pam_getenv(pam_handle_t *, const char *);
+    extern int pam_putenv(pam_handle_t *, const char *);
+#endif				/* __LSB_VERSION__ >= 3.2 */
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* protection */
+#endif				/* LSB version */
