@@ -1,0 +1,3 @@
+
+extern int ioperm(unsigned long int from, unsigned long int num,
+		  int turn_on);

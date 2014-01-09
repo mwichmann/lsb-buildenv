@@ -282,6 +282,7 @@ GLIBC_2.0 {
   initstate_r;
   insque;
   ioctl;
+  ioperm;
   isalnum;
   isalpha;
   isascii;
