@@ -159,6 +159,7 @@ sched.h
 search.h
 security/_pam_types.h
 security/pam_appl.h
+security/pam_modules.h
 semaphore.h
 setjmp.h
 signal.h
