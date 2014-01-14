@@ -170,7 +170,7 @@ sub display_ATattribute($$$)
             $entry = $attrh->fetchrow_hashref;
             print "#if ".$entry->{'Asymbol'}."\n";
             print "/* ".$entry->{'Aname'}." */\n";
-            print $entry->{'ATattribute'}."\n";
+            print "__attribute__ (".$entry->{'ATattribute'}.")\n";
             print "#endif\n";
         }
         $attrh->finish;

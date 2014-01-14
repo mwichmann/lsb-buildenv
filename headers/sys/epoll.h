@@ -37,13 +37,13 @@ extern "C" {
 	epoll_data_t data;
     }
 #if defined __i386__
-/* IA32 */ (__packed__)
+/* IA32 */  __attribute__ ((__packed__))
 #endif
 #if defined __x86_64__
 /* x86-64 */
-     (__packed__)
+	__attribute__ ((__packed__))
 #endif
-    ;
+	;
 
 
 /* Function prototypes */
