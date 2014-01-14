@@ -150,6 +150,33 @@ sub calculateInitialBaseType($$)
     return $roottypes{($Aid,$basetype)};
 }
 
+# Dump ATattribute for type
+
+sub display_ATattribute($$$)
+{
+    local ($Tid, $ArchId, $ATattribute) = @_;
+
+    if( $ATattribute ) {
+        print "__attribute__ (".$ATattribute.")";
+    }
+    elsif ($ArchId == 1) {
+        $attrselect = "SELECT ATattribute, ATaid, Aname, Asymbol FROM ArchType ";
+        $attrselect.= "JOIN Architecture ON Aid=ATaid ";
+        $attrselect.= "WHERE ATtid=$Tid AND ATattribute IS NOT NULL ";
+        $attrselect.= "AND ATappearedin='$typeAppeared'";
+        $attrh = $dbh->prepare($attrselect);
+        $attrh->execute or die "Couldn't execute $attrselect query: ".DBI->errstr;
+        for(1..$attrh->rows) {
+            $entry = $attrh->fetchrow_hashref;
+            print "#if ".$entry->{'Asymbol'}."\n";
+            print "/* ".$entry->{'Aname'}." */\n";
+            print $entry->{'ATattribute'}."\n";
+            print "#endif\n";
+        }
+        $attrh->finish;
+    }
+}
+
 ##############################################
 # Get identifiers for elements by their names
 ##############################################
@@ -546,7 +573,7 @@ sub displaytype($$$$$)
             print "[".$entry->{'ATsize'}."]";
         }
         if( !$nameonly && $$type{'ATattribute'} ) {
-            print "__attribute__ (".$$type{'ATattribute'}.")";
+            display_ATattribute($$type{'Tid'}, $ArchId, $$type{'ATattribute'});
         }
         if (!$nameonly) {
             if( $$type{'Tdescription'} ) {
@@ -811,9 +838,8 @@ sub displaytype($$$$$)
             }
         }
         if ($tmh->rows ) { print "}\n"; }
-        if( $$type{'ATattribute'} ) {
-            print "__attribute__ (".$$type{'ATattribute'}.")";
-        }
+
+        display_ATattribute($Tid, $ArchId, $$type{'ATattribute'});
         $tmh->finish;
         return;
     }

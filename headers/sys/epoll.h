@@ -35,7 +35,15 @@ extern "C" {
     struct epoll_event {
 	uint32_t events;
 	epoll_data_t data;
-    };
+    }
+#if defined __i386__
+/* IA32 */ (__packed__)
+#endif
+#if defined __x86_64__
+/* x86-64 */
+     (__packed__)
+#endif
+    ;
 
 
 /* Function prototypes */
