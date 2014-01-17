@@ -9,7 +9,6 @@ extern "C" {
 
 
 #define JERROR_H
-#define JMESSAGE(code,string)	code ,
 #define MAKESTMT(stuff)	do { stuff } while (0)
 #define TRACEMS(cinfo,lvl,code)	\
   ((cinfo)->err->msg_code = (code), \

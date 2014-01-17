@@ -42,7 +42,7 @@ endif
 # Should have leading "."
 # a big number (80-99) is leading up to the next minor spec
 # build_env is version-independent so can wait till late to bump this
-SUB_VERSION=.54
+SUB_VERSION=.55
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
