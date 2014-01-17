@@ -27,6 +27,18 @@ extern "C" {
     extern int ioperm(unsigned long int from, unsigned long int num,
 		      int turn_on);
 #endif
+#if defined __i386__
+/* IA32 */
+    extern int iopl(int level);
+#endif
+#if defined __ia64__
+/* IA64 */
+    extern int iopl(int level);
+#endif
+#if defined __x86_64__
+/* x86-64 */
+    extern int iopl(int level);
+#endif
 #endif				/* __LSB_VERSION__ >= 5.0 */
 
 #ifdef __cplusplus

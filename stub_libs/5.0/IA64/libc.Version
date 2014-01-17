@@ -394,6 +394,7 @@ GLIBC_2.2 {
   insque;
   ioctl;
   ioperm;
+  iopl;
   isalnum;
   isalpha;
   isascii;

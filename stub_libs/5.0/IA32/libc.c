@@ -472,6 +472,7 @@ void inotify_rm_watch() {} ;
 void insque() {} ;
 void ioctl() {} ;
 void ioperm() {} ;
+void iopl() {} ;
 void isalnum() {} ;
 void isalnum_l() {} ;
 void isalpha() {} ;
