@@ -100,6 +100,27 @@ extern "C" {
 #define IOC_IN	(_IOC_WRITE << _IOC_DIRSHIFT)
 #define _IOC_NRSHIFT	0
 #define _IOC_NONE	0U
+#if defined __i386__
+#define TIOCSWINSZ	0x5414
+#endif
+#if defined __ia64__
+#define TIOCSWINSZ	0x5414
+#endif
+#if defined __s390__ && !defined __s390x__
+#define TIOCSWINSZ	0x5414
+#endif
+#if defined __x86_64__
+#define TIOCSWINSZ	0x5414
+#endif
+#if defined __s390x__
+#define TIOCSWINSZ	0x5414
+#endif
+#if defined __powerpc__ && !defined __powerpc64__
+#define TIOCSWINSZ	0x80087467
+#endif
+#if defined __powerpc64__
+#define TIOCSWINSZ	0x80087467
+#endif
 #define _IOC_SIZEBITS	14
 #define _IOC_WRITE	1U
 #define _IOC_DIRBITS	2
