@@ -938,7 +938,18 @@ void process_shared_lib_path(char *libarg)
 		    strdup((dirents[num_libs]->d_name) + strlen("lib"));
 		*(strstr(libstr, ".so")) = '\0';
 		argvaddstring(lsblibs, libstr);
-		free(libstr);
+		/* 
+		 * Coverity will flag this as a leak, because we don't
+		 * free the strdup above; this is true, but it's not
+		 * a major concern.  We use this memory through the 
+		 * program's lifetime, and it doesn't grow without
+		 * bounds.  At some point, we should probably have
+		 * argvaddstring do the strdup itself and write a
+		 * cleanup function to do the right thing.  See bug
+		 * 3908 for the instance where this problem got caught,
+		 * and bug 3911 for the proper solution to all this.
+		 */
+		/* free(libstr); */
 	    }
 	    free(dirents);
 	} else {
