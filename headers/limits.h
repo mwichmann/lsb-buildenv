@@ -257,12 +257,6 @@ extern "C" {
 #if defined __i386__
 #define PTHREAD_STACK_MIN	16384
 #endif
-#if defined __powerpc__ && !defined __powerpc64__
-#define PTHREAD_STACK_MIN	16384
-#endif
-#if defined __powerpc64__
-#define PTHREAD_STACK_MIN	16384
-#endif
 #if defined __s390__ && !defined __s390x__
 #define PTHREAD_STACK_MIN	16384
 #endif
@@ -277,7 +271,25 @@ extern "C" {
 #define PTHREAD_STACK_MIN	196608
 #endif
 #define PTHREAD_DESTRUCTOR_ITERATIONS	4
+#if __LSB_VERSION__ < 50
+#if defined __powerpc__ && !defined __powerpc64__
+#define PTHREAD_STACK_MIN	16384
+#endif
+#if defined __powerpc64__
+#define PTHREAD_STACK_MIN	16384
+#endif
+#endif				/* __LSB_VERSION__ < 5.0 */
+
 #endif				/* __LSB_VERSION__ >= 3.0 */
+
+#if __LSB_VERSION__ >= 50
+#if defined __powerpc__ && !defined __powerpc64__
+#define PTHREAD_STACK_MIN	131072
+#endif
+#if defined __powerpc64__
+#define PTHREAD_STACK_MIN	131072
+#endif
+#endif				/* __LSB_VERSION__ >= 5.0 */
 
 
 
