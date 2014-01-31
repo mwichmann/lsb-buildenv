@@ -85,7 +85,7 @@ typedef void	QtMsgHandler
 
 class QSysInfo;
 
-enum _ZN8QSysInfo6EndianE	
+enum QSysInfo::Endian	
 {
 BigEndian = 0,	
 LittleEndian = 1,	
@@ -170,10 +170,10 @@ LicensedActiveQt = 1
 
 /* Function prototypes */
 
-extern void _Z11qt_assert_xPKcS0_S0_i(const char *, const char *, const char *, int);
-extern char _Z12qInstallPathv(void);
-extern bool _Z12qSharedBuildv(void);
-extern void _Z13qErrnoWarningPKcz(const char *, ...);
-extern void _Z13qErrnoWarningiPKcz(int, const char *, ...);
-extern void _Z14qSystemWarningPKci(const char *, int);
+extern void qt_assert_x(char const*, char const*, char const*, int)(const char *, const char *, const char *, int);
+extern char qInstallPath()(void);
+extern bool qSharedBuild()(void);
+extern void qErrnoWarning(char const*, ...)(const char *, ...);
+extern void qErrnoWarning(int, char const*, ...)(int, const char *, ...);
+extern void qSystemWarning(char const*, int)(const char *, int);
 extern 

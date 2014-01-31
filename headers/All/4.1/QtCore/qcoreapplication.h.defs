@@ -1,6 +1,6 @@
 
 class QCoreApplication;
-enum _ZN16QCoreApplication8EncodingE {
+enum QCoreApplication::Encoding {
     DefaultCodec = 0,
     UnicodeUTF8 = 1
 };

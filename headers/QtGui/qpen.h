@@ -10,9 +10,9 @@ class QPen;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK4QPen(const QPen &);
-extern QDataStream _ZlsR11QDataStreamRK4QPen(QDataStream &, const QPen &);
-extern QDataStream _ZrsR11QDataStreamR4QPen(QDataStream &, QPen &);
+extern QDebug operator<<(QDebug, QPen const&)(const QPen &);
+extern QDataStream operator<<(QDataStream&, QPen const&)(QDataStream &, const QPen &);
+extern QDataStream operator>>(QDataStream&, QPen&)(QDataStream &, QPen &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -9,7 +9,7 @@ struct QLatin1Char	;
 
 class QChar;
 
-enum _ZN5QChar16SpecialCharacterE	
+enum QChar::SpecialCharacter	
 {
 Null = 0,	
 null = 0,	
@@ -27,7 +27,7 @@ ByteOrderSwapped = 65534
 }
 ;
 
-enum _ZN5QChar8CategoryE	
+enum QChar::Category	
 {
 NoCategory = 0,	
 Mark_NonSpacing = 1,	
@@ -64,7 +64,7 @@ Symbol_Other = 30
 }
 ;
 
-enum _ZN5QChar9DirectionE	
+enum QChar::Direction	
 {
 DirL = 0,	
 DirR = 1,	
@@ -88,7 +88,7 @@ DirBN = 18
 }
 ;
 
-enum _ZN5QChar13DecompositionE	
+enum QChar::Decomposition	
 {
 NoDecomposition = 0,	
 Single = 0,	
@@ -112,7 +112,7 @@ Fraction = 17
 }
 ;
 
-enum _ZN5QChar7JoiningE	
+enum QChar::Joining	
 {
 OtherJoining = 0,	
 Dual = 1,	
@@ -121,7 +121,7 @@ Center = 3
 }
 ;
 
-enum _ZN5QChar14CombiningClassE	
+enum QChar::CombiningClass	
 {
 Combining_BelowLeftAttached = 200,	
 Combining_BelowAttached = 202,	
@@ -145,7 +145,7 @@ Combining_IotaSubscript = 240
 }
 ;
 
-enum _ZN5QChar14UnicodeVersionE	
+enum QChar::UnicodeVersion	
 {
 Unicode_Unassigned = 0,	
 Unicode_1_1 = 1,	

@@ -19,7 +19,7 @@ typedef QStyle::SubControls	QStyle::SCFlags
 
 class QStyle;
 
-enum _ZN6QStyle9StateFlagE	
+enum QStyle::StateFlag	
 {
 State_None = 0,	
 State_Default = 0,	
@@ -52,7 +52,7 @@ State_ReadOnly = 33554432
 
 class QFlags<QStyle::StateFlag>;
 
-enum _ZN6QStyle16PrimitiveElementE	
+enum QStyle::PrimitiveElement	
 {
 PE_Q3CheckListController = 0,	
 PE_Q3CheckListExclusiveIndicator = 1,	
@@ -103,7 +103,7 @@ PE_CustomBase = 251658240
 }
 ;
 
-enum _ZN6QStyle14ControlElementE	
+enum QStyle::ControlElement	
 {
 CE_CustomBase = -268435456,	
 CE_PushButton = 0,	
@@ -151,7 +151,7 @@ CE_ToolBar = 41
 }
 ;
 
-enum _ZN6QStyle10SubElementE	
+enum QStyle::SubElement	
 {
 SE_CustomBase = -268435456,	
 SE_PushButtonContents = 0,	
@@ -193,7 +193,7 @@ SE_TreeViewDisclosureItem = 35
 }
 ;
 
-enum _ZN6QStyle14ComplexControlE	
+enum QStyle::ComplexControl	
 {
 CC_CustomBase = -268435456,	
 CC_SpinBox = 0,	
@@ -208,7 +208,7 @@ CC_GroupBox = 8
 }
 ;
 
-enum _ZN6QStyle10SubControlE	
+enum QStyle::SubControl	
 {
 SC_All = -1,	
 SC_None = 0,	
@@ -257,7 +257,7 @@ SC_TitleBarLabel = 256
 
 class QFlags<QStyle::SubControl>;
 
-enum _ZN6QStyle11PixelMetricE	
+enum QStyle::PixelMetric	
 {
 PM_CustomBase = -268435456,	
 PM_ButtonMargin = 0,	
@@ -339,7 +339,7 @@ PM_DockWidgetTitleMargin = 75
 }
 ;
 
-enum _ZN6QStyle12ContentsTypeE	
+enum QStyle::ContentsType	
 {
 CT_CustomBase = -268435456,	
 CT_PushButton = 0,	
@@ -368,7 +368,7 @@ CT_GroupBox = 22
 }
 ;
 
-enum _ZN6QStyle9StyleHintE	
+enum QStyle::StyleHint	
 {
 SH_CustomBase = -268435456,	
 SH_EtchDisabledText = 0,	
@@ -442,7 +442,7 @@ SH_ScrollBar_BackgroundMode = 257
 }
 ;
 
-enum _ZN6QStyle14StandardPixmapE	
+enum QStyle::StandardPixmap	
 {
 SP_CustomBase = -268435456,	
 SP_TitleBarMenuButton = 0,	

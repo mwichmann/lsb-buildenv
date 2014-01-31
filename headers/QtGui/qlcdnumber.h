@@ -7,7 +7,7 @@ class QLCDNumber;
 
 class QLCDNumber;
 
-enum _ZN10QLCDNumber4ModeE	
+enum QLCDNumber::Mode	
 {
 Hex = 0,	
 HEX = 0,	
@@ -20,7 +20,7 @@ BIN = 3
 }
 ;
 
-enum _ZN10QLCDNumber12SegmentStyleE	
+enum QLCDNumber::SegmentStyle	
 {
 Outline = 0,	
 Filled = 1,	

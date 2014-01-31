@@ -7,7 +7,7 @@ class QPaintDevice;
 
 class QPaintDevice;
 
-enum _ZN12QPaintDevice17PaintDeviceMetricE	
+enum QPaintDevice::PaintDeviceMetric	
 {
 PdmWidth = 1,	
 PdmHeight = 2,	
@@ -25,9 +25,9 @@ PdmPhysicalDpiY = 10
 
 /* Function prototypes */
 
-extern void _Z6bitBltP12QPaintDeviceRK6QPointPKS_RK5QRectb(QPaintDevice *, const QPoint &, const QPaintDevice *, const QRect &);
-extern void _Z6bitBltP12QPaintDeviceiiPK6QImageiiiii(QPaintDevice *, const QImage *);
-extern void _Z6bitBltP12QPaintDeviceiiPKS_iiiib(QPaintDevice *, const QPaintDevice *);
+extern void bitBlt(QPaintDevice*, QPoint const&, QPaintDevice const*, QRect const&, bool)(QPaintDevice *, const QPoint &, const QPaintDevice *, const QRect &);
+extern void bitBlt(QPaintDevice*, int, int, QImage const*, int, int, int, int, int)(QPaintDevice *, const QImage *);
+extern void bitBlt(QPaintDevice*, int, int, QPaintDevice const*, int, int, int, int, bool)(QPaintDevice *, const QPaintDevice *);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

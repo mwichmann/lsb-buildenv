@@ -25,7 +25,7 @@ typedef quint64 Q_ULLONG;
 typedef long int Q_LONG;
 typedef unsigned long int Q_ULONG;
 class QSysInfo;
-enum _ZN8QSysInfo6EndianE {
+enum QSysInfo::Endian {
     BigEndian = 0,
     LittleEndian = 1,
     ByteOrder = 1

@@ -10,7 +10,7 @@ typedef class QFlags<QTextOption::Flag>QTextOption::Flags
 
 class QTextOption;
 
-enum _ZN11QTextOption8WrapModeE	
+enum QTextOption::WrapMode	
 {
 NoWrap = 0,	
 WordWrap = 1,	
@@ -20,7 +20,7 @@ WrapAtWordBoundaryOrAnywhere = 4
 }
 ;
 
-enum _ZN11QTextOption4FlagE	
+enum QTextOption::Flag	
 {
 IncludeTrailingSpaces = -2147483648
 }

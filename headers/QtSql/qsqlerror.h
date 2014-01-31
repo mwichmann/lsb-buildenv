@@ -7,7 +7,7 @@ class QSqlError;
 
 class QSqlError;
 
-enum _ZN9QSqlError9ErrorTypeE	
+enum QSqlError::ErrorType	
 {
 NoError = 0,	
 None = 0,	
@@ -25,7 +25,7 @@ Unknown = 4
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK9QSqlError(const QSqlError &);
+extern QDebug operator<<(QDebug, QSqlError const&)(const QSqlError &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

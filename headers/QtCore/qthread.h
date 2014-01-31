@@ -7,7 +7,7 @@ class QThread;
 
 class QThread;
 
-enum _ZN7QThread8PriorityE	
+enum QThread::Priority	
 {
 IdlePriority = 0,	
 LowestPriority = 1,	

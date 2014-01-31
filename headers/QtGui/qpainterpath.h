@@ -7,7 +7,7 @@ class QPainterPathStroker;
 
 class QPainterPath;
 
-enum _ZN12QPainterPath11ElementTypeE	
+enum QPainterPath::ElementType	
 {
 MoveToElement = 0,	
 LineToElement = 1,	
@@ -25,8 +25,8 @@ class QPainterPathStroker;
 
 /* Function prototypes */
 
-extern QDataStream _ZlsR11QDataStreamRK12QPainterPath(QDataStream &);
-extern QDataStream _ZrsR11QDataStreamR12QPainterPath(QDataStream &);
+extern QDataStream operator<<(QDataStream&, QPainterPath const&)(QDataStream &);
+extern QDataStream operator>>(QDataStream&, QPainterPath&)(QDataStream &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

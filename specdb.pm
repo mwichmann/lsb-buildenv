@@ -959,7 +959,12 @@ sub displaytype($$$$$)
             $$type{'Tname'} ="";
         }
 
-        print $$type{'Tname'}."\t";
+	# don't print mangled names if we can avoid it
+	if ($$type{'Tunmangled'}) {
+		print $$type{'Tunmangled'}."\t";
+	} else {
+		print $$type{'Tname'}."\t";
+	}
 
         if( $nameonly and $$type{'Tname'} ) { return; }
         if( $$type{'Tdescription'} and !$nameonly ) {
@@ -1336,6 +1341,7 @@ sub display_interface($ )
         $Iid = $entry->{'Iid'};
         $Ttype = $entry->{'Ttype'};
         $Iname = $entry->{'Iname'};
+        $Iunmangled = $entry->{'Iunmangled'};
         $Tid = $entry->{'AIreturn'};
 
         $typedecl = displaytyperef($entry,$nameonly);
@@ -1344,7 +1350,12 @@ sub display_interface($ )
         if ($Ttype eq "FuncPtr") {
             print "(\n";
         } else {
-            print " $Iname(";
+	    # don't print mangled names if we can avoid it
+	    if ($Iunmangled) {
+		print " $Iunmangled(";
+	    } else {
+		print " $Iname(";
+	    }
         }
         $funcPtrName='';
 

@@ -7,7 +7,7 @@ class QDataStream;
 
 class QDataStream;
 
-enum _ZN11QDataStream7VersionE	
+enum QDataStream::Version	
 {
 Qt_1_0 = 1,	
 Qt_2_0 = 2,	
@@ -20,14 +20,14 @@ Qt_4_1 = 7
 }
 ;
 
-enum _ZN11QDataStream9ByteOrderE	
+enum QDataStream::ByteOrder	
 {
 BigEndian = 0,	
 LittleEndian = 1
 }
 ;
 
-enum _ZN11QDataStream6StatusE	
+enum QDataStream::Status	
 {
 Ok = 0,	
 ReadPastEnd = 1,	

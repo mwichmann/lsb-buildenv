@@ -12,7 +12,7 @@ class QIPv6Address;
 
 class QHostAddress;
 
-enum _ZN12QHostAddress14SpecialAddressE	
+enum QHostAddress::SpecialAddress	
 {
 Null = 0,	
 Broadcast = 1,	
@@ -26,6 +26,6 @@ AnyIPv6 = 5
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK12QHostAddress(const QHostAddress &);
+extern QDebug operator<<(QDebug, QHostAddress const&)(const QHostAddress &);
 #if __LSB_VERSION__ >= 32
 extern 

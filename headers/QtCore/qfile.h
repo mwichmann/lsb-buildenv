@@ -14,7 +14,7 @@ typedef class QByteArrayQFile::EncoderFn
 typedef class QStringQFile::DecoderFn	
 ;
 
-typedef enum _ZN5QFile10PermissionE	
+typedef enum QFile::Permission	
 {
 ExeOther = 1,	
 WriteOther = 2,	
@@ -34,7 +34,7 @@ QFile::PermissionSpec
 
 class QFile;
 
-enum _ZN5QFile9FileErrorE	
+enum QFile::FileError	
 {
 NoError = 0,	
 ReadError = 1,	
@@ -55,7 +55,7 @@ ConnectError = 30
 }
 ;
 
-enum _ZN5QFile10PermissionE	
+enum QFile::Permission	
 {
 ExeOther = 1,	
 WriteOther = 2,	

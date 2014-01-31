@@ -10,7 +10,7 @@ typedef class QFlags<QDockWidget::DockWidgetFeature>QDockWidget::DockWidgetFeatu
 
 class QDockWidget;
 
-enum _ZN11QDockWidget17DockWidgetFeatureE	
+enum QDockWidget::DockWidgetFeature	
 {
 NoDockWidgetFeatures = 0,	
 DockWidgetClosable = 1,	

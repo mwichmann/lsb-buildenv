@@ -29,102 +29,91 @@ extern "C" {
 /* Function prototypes */
 
     /* This function is obsolete. Use QStyle::drawPrimitive() instead. */
-    extern void
-	_Z10qDrawArrowP8QPainterN2Qt9ArrowTypeENS1_8GUIStyleEbiiiiRK8QPaletteb
-	(QPainter *, enum _ZN2Qt9ArrowTypeE, enum _ZN2Qt8GUIStyleE,
-	 const QPalette &)
+    extern void qDrawArrow(QPainter *, Qt::ArrowType, Qt::GUIStyle, bool,
+			   int, int, int, int, QPalette const &,
+			   bool) (QPainter *, enum _ZN2Qt9ArrowTypeE,
+				  enum _ZN2Qt8GUIStyleE, const QPalette &)
 #if __LSB_VERSION__ >= 41
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 41 */
     ;
-    extern void
-	_Z13qDrawWinPanelP8QPainterRK5QRectRK8QPalettebPK6QBrush(QPainter
-								 *,
-								 const
-								 QRect &,
-								 const
-								 QPalette
-								 &,
-								 const
-								 QBrush *);
-    extern void
-	_Z13qDrawWinPanelP8QPainteriiiiRK8QPalettebPK6QBrush(QPainter *,
-							     const QPalette
-							     &,
-							     const QBrush
-							     *);
-    extern void
-	_Z14qDrawPlainRectP8QPainterRK5QRectRK6QColoriPK6QBrush(QPainter *,
+    extern void qDrawWinPanel(QPainter *, QRect const &, QPalette const &,
+			      bool, QBrush const *) (QPainter *,
+						     const QRect &,
+						     const QPalette &,
+						     const QBrush *);
+    extern void qDrawWinPanel(QPainter *, int, int, int, int,
+			      QPalette const &, bool,
+			      QBrush const *) (QPainter *,
+					       const QPalette &,
+					       const QBrush *);
+    extern void qDrawPlainRect(QPainter *, QRect const &, QColor const &,
+			       int, QBrush const *) (QPainter *,
+						     const QRect &,
+						     const QColor &,
+						     const QBrush *);
+    extern void qDrawPlainRect(QPainter *, int, int, int, int,
+			       QColor const &, int,
+			       QBrush const *) (QPainter *, const QColor &,
+						const QBrush *);
+    extern void qDrawShadeLine(QPainter *, QPoint const &, QPoint const &,
+			       QPalette const &, bool, int,
+			       int) (QPainter *, const QPoint &,
+				     const QPoint &, const QPalette &);
+    extern void qDrawShadeLine(QPainter *, int, int, int, int,
+			       QPalette const &, bool, int,
+			       int) (QPainter *, const QPalette &);
+    extern void qDrawShadeRect(QPainter *, QRect const &, QPalette const &,
+			       bool, int, int, QBrush const *) (QPainter *,
 								const QRect
 								&,
 								const
-								QColor &,
-								const
-								QBrush *);
-    extern void
-	_Z14qDrawPlainRectP8QPainteriiiiRK6QColoriPK6QBrush(QPainter *,
-							    const QColor &,
-							    const QBrush
-							    *);
-    extern void
-	_Z14qDrawShadeLineP8QPainterRK6QPointS3_RK8QPalettebii(QPainter *,
-							       const QPoint
-							       &,
-							       const QPoint
-							       &,
-							       const
-							       QPalette &);
-    extern void _Z14qDrawShadeLineP8QPainteriiiiRK8QPalettebii(QPainter *,
-							       const
-							       QPalette &);
-    extern void
-	_Z14qDrawShadeRectP8QPainterRK5QRectRK8QPalettebiiPK6QBrush
-	(QPainter *, const QRect &, const QPalette &, const QBrush *);
-    extern void
-	_Z14qDrawShadeRectP8QPainteriiiiRK8QPalettebiiPK6QBrush(QPainter *,
-								const
 								QPalette &,
 								const
 								QBrush *);
-    extern void
-	_Z14qDrawWinButtonP8QPainterRK5QRectRK8QPalettebPK6QBrush(QPainter
-								  *,
-								  const
-								  QRect &,
-								  const
-								  QPalette
-								  &,
-								  const
-								  QBrush
-								  *);
-    extern void
-	_Z14qDrawWinButtonP8QPainteriiiiRK8QPalettebPK6QBrush(QPainter *,
-							      const
-							      QPalette &,
-							      const QBrush
-							      *);
-    extern void
-	_Z15qDrawShadePanelP8QPainterRK5QRectRK8QPalettebiPK6QBrush
-	(QPainter *, const QRect &, const QPalette &, const QBrush *);
-    extern void
-	_Z15qDrawShadePanelP8QPainteriiiiRK8QPalettebiPK6QBrush(QPainter *,
-								const
-								QPalette &,
-								const
-								QBrush *);
+    extern void qDrawShadeRect(QPainter *, int, int, int, int,
+			       QPalette const &, bool, int, int,
+			       QBrush const *) (QPainter *,
+						const QPalette &,
+						const QBrush *);
+    extern void qDrawWinButton(QPainter *, QRect const &, QPalette const &,
+			       bool, QBrush const *) (QPainter *,
+						      const QRect &,
+						      const QPalette &,
+						      const QBrush *);
+    extern void qDrawWinButton(QPainter *, int, int, int, int,
+			       QPalette const &, bool,
+			       QBrush const *) (QPainter *,
+						const QPalette &,
+						const QBrush *);
+    extern void qDrawShadePanel(QPainter *, QRect const &,
+				QPalette const &, bool, int,
+				QBrush const *) (QPainter *, const QRect &,
+						 const QPalette &,
+						 const QBrush *);
+    extern void qDrawShadePanel(QPainter *, int, int, int, int,
+				QPalette const &, bool, int,
+				QBrush const *) (QPainter *,
+						 const QPalette &,
+						 const QBrush *);
     /* This function is obsolete. Use QStyle::drawPrimitive() instead. */
-    extern void
-	_Z9qDrawItemP8QPainterN2Qt8GUIStyleEiiiiiRK8QPalettebPK7QPixmapRK7QStringiPK6QColor
-	(QPainter *, enum _ZN2Qt8GUIStyleE, const QPalette &,
-	 const QPixmap *, QString & &, const QColor *)
+    extern void qDrawItem(QPainter *, Qt::GUIStyle, int, int, int, int,
+			  int, QPalette const &, bool, QPixmap const *,
+			  QString const &, int,
+			  QColor const *) (QPainter *,
+					   enum _ZN2Qt8GUIStyleE,
+					   const QPalette &,
+					   const QPixmap *, QString & &,
+					   const QColor *)
 #if __LSB_VERSION__ >= 41
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 41 */
     ;
     /* This function is obsolete. Use QStyle::drawPrimitive() instead. */
-    extern QRect
-	_Z9qItemRectP8QPainterN2Qt8GUIStyleEiiiiibPK7QPixmapRK7QStringi
-	(QPainter *, enum _ZN2Qt8GUIStyleE, const QPixmap *, QString & &)
+    extern QRect qItemRect(QPainter *, Qt::GUIStyle, int, int, int, int,
+			   int, bool, QPixmap const *, QString const &,
+			   int) (QPainter *, enum _ZN2Qt8GUIStyleE,
+				 const QPixmap *, QString & &)
 #if __LSB_VERSION__ >= 41
      LSB_DECL_DEPRECATED
 #endif				/* __LSB_VERSION__ >= 41 */

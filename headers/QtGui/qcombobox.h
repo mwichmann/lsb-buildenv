@@ -5,7 +5,7 @@
 class QComboBox;
 // *INDENT-OFF*
 
-typedef enum _ZN9QComboBox12InsertPolicyE	
+typedef enum QComboBox::InsertPolicy	
 {
 NoInsert = 0,	
 NoInsertion = 0,	
@@ -25,7 +25,7 @@ QComboBox::Policy
 
 class QComboBox;
 
-enum _ZN9QComboBox12InsertPolicyE	
+enum QComboBox::InsertPolicy	
 {
 NoInsert = 0,	
 NoInsertion = 0,	
@@ -42,7 +42,7 @@ BeforeCurrent = 5
 }
 ;
 
-enum _ZN9QComboBox16SizeAdjustPolicyE	
+enum QComboBox::SizeAdjustPolicy	
 {
 AdjustToContents = 0,	
 AdjustToContentsOnFirstShow = 1,	

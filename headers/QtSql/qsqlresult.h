@@ -7,7 +7,7 @@ class QSqlResult;
 
 class QSqlResult;
 
-enum _ZN10QSqlResult13BindingSyntaxE	
+enum QSqlResult::BindingSyntax	
 {
 PositionalBinding = 0,	
 BindByPosition = 0,	
@@ -16,7 +16,7 @@ BindByName = 1
 }
 ;
 
-enum _ZN10QSqlResult20VirtualHookOperationE	
+enum QSqlResult::VirtualHookOperation	
 {
 BatchOperation = 0
 }

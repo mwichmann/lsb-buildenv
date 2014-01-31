@@ -10,7 +10,7 @@ typedef class QFlags<QTextCodec::ConversionFlag>QTextCodec::ConversionFlags
 
 class QTextCodec;
 
-enum _ZN10QTextCodec14ConversionFlagE	
+enum QTextCodec::ConversionFlag	
 {
 ConvertInvalidToNull = -2147483648,	
 DefaultConversion = 0,	

@@ -7,7 +7,7 @@ class QClipboard;
 
 class QClipboard;
 
-enum _ZN10QClipboard4ModeE	
+enum QClipboard::Mode	
 {
 Clipboard = 0,	
 Selection = 1

@@ -8,7 +8,7 @@ class QFlags < QSql::ParamTypeFlag >;
 typedef class QFlags<QSql::ParamTypeFlag>QSql::ParamType	
 ;
 
-enum _ZN4QSql8LocationE	
+enum QSql::Location	
 {
 AfterLastRow = -2,	
 AfterLast = -2,	
@@ -17,7 +17,7 @@ BeforeFirst = -1
 }
 ;
 
-enum _ZN4QSql13ParamTypeFlagE	
+enum QSql::ParamTypeFlag	
 {
 In = 1,	
 Out = 2,	
@@ -28,7 +28,7 @@ Binary = 4
 
 class QFlags<QSql::ParamTypeFlag>;
 
-enum _ZN4QSql9TableTypeE	
+enum QSql::TableType	
 {
 Tables = 1,	
 SystemTables = 2,	
@@ -37,7 +37,7 @@ AllTables = 255
 }
 ;
 
-enum _ZN4QSql2OpE	
+enum QSql::Op	
 {
 None = -1,	
 Insert = 0,	
@@ -46,7 +46,7 @@ Delete = 2
 }
 ;
 
-enum _ZN4QSql7ConfirmE	
+enum QSql::Confirm	
 {
 Cancel = -1,	
 No = 0,	

@@ -7,7 +7,7 @@ class QToolButton;
 
 class QToolButton;
 
-enum _ZN11QToolButton19ToolButtonPopupModeE	
+enum QToolButton::ToolButtonPopupMode	
 {
 DelayedPopup = 0,	
 MenuButtonPopup = 1,	
@@ -15,7 +15,7 @@ InstantPopup = 2
 }
 ;
 
-enum _ZN11QToolButton12TextPositionE	
+enum QToolButton::TextPosition	
 {
 BesideIcon = 0,	
 Right = 0,	

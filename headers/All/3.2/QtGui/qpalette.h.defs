@@ -1,6 +1,6 @@
 
 class QPalette;
-enum _ZN8QPalette10ColorGroupE {
+enum QPalette::ColorGroup {
     Active = 0,
     Normal = 0,
     Disabled = 1,
@@ -9,7 +9,7 @@ enum _ZN8QPalette10ColorGroupE {
     Current = 4,
     All = 5
 };
-enum _ZN8QPalette9ColorRoleE {
+enum QPalette::ColorRole {
     WindowText = 0,
     Foreground = 0,
     Button = 1,

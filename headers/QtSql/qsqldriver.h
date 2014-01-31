@@ -7,7 +7,7 @@ class QSqlDriver;
 
 class QSqlDriver;
 
-enum _ZN10QSqlDriver13DriverFeatureE	
+enum QSqlDriver::DriverFeature	
 {
 Transactions = 0,	
 QuerySize = 1,	
@@ -21,7 +21,7 @@ BatchOperations = 8
 }
 ;
 
-enum _ZN10QSqlDriver13StatementTypeE	
+enum QSqlDriver::StatementType	
 {
 WhereStatement = 0,	
 SelectStatement = 1,	
@@ -31,7 +31,7 @@ DeleteStatement = 4
 }
 ;
 
-enum _ZN10QSqlDriver14IdentifierTypeE	
+enum QSqlDriver::IdentifierType	
 {
 FieldName = 0,	
 TableName = 1

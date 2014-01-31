@@ -7,7 +7,7 @@ class QWorkspace;
 
 class QWorkspace;
 
-enum _ZN10QWorkspace11WindowOrderE	
+enum QWorkspace::WindowOrder	
 {
 CreationOrder = 0,	
 StackingOrder = 1

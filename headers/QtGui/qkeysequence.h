@@ -7,7 +7,7 @@ class QKeySequence;
 
 class QKeySequence;
 
-enum _ZN12QKeySequence13SequenceMatchE	
+enum QKeySequence::SequenceMatch	
 {
 NoMatch = 0,	
 PartialMatch = 1,	
@@ -16,7 +16,7 @@ Identical = 2
 }
 ;
 
-enum _ZN12QKeySequence14SequenceFormatE	
+enum QKeySequence::SequenceFormat	
 {
 NativeText = 0,	
 PortableText = 1
@@ -26,9 +26,9 @@ PortableText = 1
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK12QKeySequence(const QKeySequence &);
-extern QDataStream _ZlsR11QDataStreamRK12QKeySequence(QDataStream &, const QKeySequence &);
-extern QDataStream _ZrsR11QDataStreamR12QKeySequence(QDataStream &, QKeySequence &);
+extern QDebug operator<<(QDebug, QKeySequence const&)(const QKeySequence &);
+extern QDataStream operator<<(QDataStream&, QKeySequence const&)(QDataStream &, const QKeySequence &);
+extern QDataStream operator>>(QDataStream&, QKeySequence&)(QDataStream &, QKeySequence &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

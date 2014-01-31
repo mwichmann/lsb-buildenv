@@ -1,17 +1,17 @@
 
 class QSizePolicy;
-enum _ZN11QSizePolicy15SizePolicyMasksE {
+enum QSizePolicy::SizePolicyMasks {
     HSize = 4,
     HMask = 15,
     VMask = 240
 };
-enum _ZN11QSizePolicy10PolicyFlagE {
+enum QSizePolicy::PolicyFlag {
     GrowFlag = 1,
     ExpandFlag = 2,
     ShrinkFlag = 4,
     IgnoreFlag = 8
 };
-enum _ZN11QSizePolicy6PolicyE {
+enum QSizePolicy::Policy {
     Fixed = 0,
     Minimum = 1,
     MinimumExpanding = 3,
@@ -20,7 +20,7 @@ enum _ZN11QSizePolicy6PolicyE {
     Expanding = 7,
     Ignored = 13
 };
-typedef enum _ZN11QSizePolicy6PolicyE {
+typedef enum QSizePolicy::Policy {
     Fixed = 0,
     Minimum = 1,
     MinimumExpanding = 3,

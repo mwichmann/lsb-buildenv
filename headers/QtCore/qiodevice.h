@@ -16,7 +16,7 @@ typedef int	QIODevice::Status
 
 class QIODevice;
 
-enum _ZN9QIODevice12OpenModeFlagE	
+enum QIODevice::OpenModeFlag	
 {
 NotOpen = 0,	
 ReadOnly = 1,	

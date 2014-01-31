@@ -7,7 +7,7 @@ class QFileIconProvider;
 
 class QFileIconProvider;
 
-enum _ZN17QFileIconProvider8IconTypeE	
+enum QFileIconProvider::IconType	
 {
 Computer = 0,	
 Desktop = 1,	
@@ -21,7 +21,7 @@ File = 6
 
 class QDirModel;
 
-enum _ZN9QDirModel5RolesE	
+enum QDirModel::Roles	
 {
 FileIconRole = 1,	
 FilePathRole = 33,	

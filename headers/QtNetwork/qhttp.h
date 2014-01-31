@@ -13,7 +13,7 @@ class QHttpRequestHeader;
 
 class QHttp;
 
-enum _ZN5QHttp5StateE	
+enum QHttp::State	
 {
 Unconnected = 0,	
 HostLookup = 1,	
@@ -25,7 +25,7 @@ Closing = 6
 }
 ;
 
-enum _ZN5QHttp5ErrorE	
+enum QHttp::Error	
 {
 NoError = 0,	
 UnknownError = 1,	

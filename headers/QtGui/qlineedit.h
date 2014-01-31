@@ -7,7 +7,7 @@ class QLineEdit;
 
 class QLineEdit;
 
-enum _ZN9QLineEdit8EchoModeE	
+enum QLineEdit::EchoMode	
 {
 Normal = 0,	
 NoEcho = 1,	

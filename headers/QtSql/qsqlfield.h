@@ -7,7 +7,7 @@ class QSqlField;
 
 class QSqlField;
 
-enum _ZN9QSqlField14RequiredStatusE	
+enum QSqlField::RequiredStatus	
 {
 Unknown = -1,	
 Optional = 0,	
@@ -18,7 +18,7 @@ Required = 1
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK9QSqlField(const QSqlField &);
+extern QDebug operator<<(QDebug, QSqlField const&)(const QSqlField &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

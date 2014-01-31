@@ -1,6 +1,6 @@
 
 class QLocale;
-enum _ZN7QLocale8LanguageE {
+enum QLocale::Language {
     C = 1,
     Abkhazian = 2,
     Afan = 3,
@@ -148,7 +148,7 @@ enum _ZN7QLocale8LanguageE {
     Cornish = 145,
     LastLanguage = 145
 };
-enum _ZN7QLocale7CountryE {
+enum QLocale::Country {
     AnyCountry = 0,
     Afghanistan = 1,
     Albania = 2,
@@ -393,7 +393,7 @@ enum _ZN7QLocale7CountryE {
     SerbiaAndMontenegro = 241,
     LastCountry = 241
 };
-enum _ZN7QLocale10FormatTypeE {
+enum QLocale::FormatType {
     LongFormat = 0,
     ShortFormat = 1
 };

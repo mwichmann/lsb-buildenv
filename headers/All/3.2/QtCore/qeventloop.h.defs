@@ -1,6 +1,6 @@
 
 class QEventLoop;
-enum _ZN10QEventLoop17ProcessEventsFlagE {
+enum QEventLoop::ProcessEventsFlag {
     AllEvents = 0,
     ExcludeUserInputEvents = 1,
     ExcludeUserInput = 1,

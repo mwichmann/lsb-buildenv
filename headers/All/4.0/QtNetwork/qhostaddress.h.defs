@@ -2,7 +2,7 @@
 class QIPv6Address;
 typedef class QIPv6AddressQ_IPV6ADDR;
 class QHostAddress;
-enum _ZN12QHostAddress14SpecialAddressE {
+enum QHostAddress::SpecialAddress {
     Null = 0,
     Broadcast = 1,
     LocalHost = 2,

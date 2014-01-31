@@ -17,8 +17,8 @@ class QObjectUserData;
 
 /* Function prototypes */
 
-extern QObject _Z20qt_qFindChild_helperPK7QObjectRK7QStringRK11QMetaObject(const QObject *);
-extern void _Z23qt_qFindChildren_helperPK7QObjectRK7QStringPK7QRegExpRK11QMetaObjectP5QListIPvE(const QObject *);
+extern QObject qt_qFindChild_helper(QObject const*, QString const&, QMetaObject const&)(const QObject *);
+extern void qt_qFindChildren_helper(QObject const*, QString const&, QRegExp const*, QMetaObject const&, QList<void*>*)(const QObject *);
 extern struct QMetaObject _ZN7QObject16staticMetaObjectE;
 extern struct QMetaObject _ZN7QObject18staticQtMetaObjectE;
 extern 

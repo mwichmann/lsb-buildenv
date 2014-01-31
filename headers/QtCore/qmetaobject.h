@@ -7,7 +7,7 @@ class QMetaProperty;
 
 class QMetaMethod;
 
-enum _ZN11QMetaMethod6AccessE	
+enum QMetaMethod::Access	
 {
 Private = 0,	
 Protected = 1,	
@@ -15,7 +15,7 @@ Public = 2
 }
 ;
 
-enum _ZN11QMetaMethod10MethodTypeE	
+enum QMetaMethod::MethodType	
 {
 Method = 0,	
 Signal = 1,	
@@ -23,7 +23,7 @@ Slot = 2
 }
 ;
 
-enum _ZN11QMetaMethod10AttributesE	
+enum QMetaMethod::Attributes	
 {
 Compatibility = 1,	
 Cloned = 2,	

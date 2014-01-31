@@ -8,7 +8,7 @@ class QGLFormat;
 typedef class QFlags<QGL::FormatOption>QGL::FormatOptions	
 ;
 
-enum _ZN3QGL12FormatOptionE	
+enum QGL::FormatOption	
 {
 DoubleBuffer = 1,	
 DepthBuffer = 2,	
@@ -46,8 +46,8 @@ class QGLWidget;
 
 extern QGLContext * _ZN10QGLContext10currentCtxE;
 extern struct QMetaObject _ZN9QGLWidget16staticMetaObjectE;
-extern bool _ZeqRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
-extern bool _ZneRK9QGLFormatS1_(const QGLFormat &, const QGLFormat &);
+extern bool operator==(QGLFormat const&, QGLFormat const&)(const QGLFormat &, const QGLFormat &);
+extern bool operator!=(QGLFormat const&, QGLFormat const&)(const QGLFormat &, const QGLFormat &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -7,7 +7,7 @@ class QRegion;
 
 class QRegion;
 
-enum _ZN7QRegion10RegionTypeE	
+enum QRegion::RegionType	
 {
 Rectangle = 0,	
 Ellipse = 1
@@ -19,9 +19,9 @@ struct QRegion::QRegionData	;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK7QRegion(const QRegion &);
-extern QDataStream _ZlsR11QDataStreamRK7QRegion(QDataStream &, const QRegion &);
-extern QDataStream _ZrsR11QDataStreamR7QRegion(QDataStream &, QRegion &);
+extern QDebug operator<<(QDebug, QRegion const&)(const QRegion &);
+extern QDataStream operator<<(QDataStream&, QRegion const&)(QDataStream &, const QRegion &);
+extern QDataStream operator>>(QDataStream&, QRegion&)(QDataStream &, QRegion &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

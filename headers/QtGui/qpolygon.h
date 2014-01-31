@@ -12,10 +12,10 @@ class QPolygonF;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK8QPolygon(_Z6QDebug, const QPolygon &);
-extern QDebug _Zls6QDebugRK9QPolygonF(_Z6QDebug, const QPolygonF &);
-extern QDataStream _ZlsR11QDataStreamRK9QPolygonF(QDataStream &);
-extern QDataStream _ZrsR11QDataStreamR9QPolygonF(QDataStream &);
+extern QDebug operator<<(QDebug, QPolygon const&)(_Z6QDebug, const QPolygon &);
+extern QDebug operator<<(QDebug, QPolygonF const&)(_Z6QDebug, const QPolygonF &);
+extern QDataStream operator<<(QDataStream&, QPolygonF const&)(QDataStream &);
+extern QDataStream operator>>(QDataStream&, QPolygonF&)(QDataStream &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

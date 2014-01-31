@@ -10,7 +10,7 @@ typedef int	QApplication::ColorMode
 
 class QApplication;
 
-enum _ZN12QApplication4TypeE	
+enum QApplication::Type	
 {
 Tty = 0,	
 GuiClient = 1,	
@@ -18,7 +18,7 @@ GuiServer = 2
 }
 ;
 
-enum _ZN12QApplication9ColorSpecE	
+enum QApplication::ColorSpec	
 {
 NormalColor = 0,	
 CustomColor = 1,	

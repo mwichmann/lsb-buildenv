@@ -1,6 +1,6 @@
 
 class QDir;
-enum _ZN4QDir6FilterE {
+enum QDir::Filter {
     DefaultFilter = -1,
     NoFilter = -1,
     Dirs = 1,
@@ -26,7 +26,7 @@ enum _ZN4QDir6FilterE {
 class QFlags < QDir::Filter >;
 typedef class QFlags < QDir::Filter > QDir::Filters;
 typedef QDir::Filters QDir::FilterSpec;
-enum _ZN4QDir8SortFlagE {
+enum QDir::SortFlag {
     DefaultSort = -1,
     NoSort = -1,
     Name = 0,

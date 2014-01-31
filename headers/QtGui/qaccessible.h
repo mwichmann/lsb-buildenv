@@ -19,7 +19,7 @@ typedef void	QAccessible::RootObjectHandler
 
 class QAccessible;
 
-enum _ZN11QAccessible5EventE	
+enum QAccessible::Event	
 {
 SoundPlayed = 1,	
 Alert = 2,	
@@ -59,7 +59,7 @@ AcceleratorChanged = 32960
 }
 ;
 
-enum _ZN11QAccessible9StateFlagE	
+enum QAccessible::StateFlag	
 {
 Modal = -2147483648,	
 Normal = 0,	
@@ -96,7 +96,7 @@ HasPopup = 1073741824
 
 class QFlags<QAccessible::StateFlag>;
 
-enum _ZN11QAccessible4RoleE	
+enum QAccessible::Role	
 {
 NoRole = 0,	
 TitleBar = 1,	
@@ -165,7 +165,7 @@ UserRole = 65535
 }
 ;
 
-enum _ZN11QAccessible4TextE	
+enum QAccessible::Text	
 {
 Name = 0,	
 Description = 1,	
@@ -176,7 +176,7 @@ UserText = 65535
 }
 ;
 
-enum _ZN11QAccessible12RelationFlagE	
+enum QAccessible::RelationFlag	
 {
 Unrelated = 0,	
 Self = 1,	
@@ -203,7 +203,7 @@ LogicalMask = 16711680
 
 class QFlags<QAccessible::RelationFlag>;
 
-enum _ZN11QAccessible6ActionE	
+enum QAccessible::Action	
 {
 LastStandardAction = -11,	
 AddToSelection = -11,	

@@ -5,7 +5,7 @@
 class QCursor;
 // *INDENT-OFF*
 
-typedef enum _ZN2Qt11CursorShapeE	QCursorShape	
+typedef enum Qt::CursorShape	QCursorShape	
 ;
 
 class QCursor;
@@ -13,8 +13,8 @@ class QCursor;
 
 /* Function prototypes */
 
-extern QDataStream _ZlsR11QDataStreamRK7QCursor(QDataStream &, const QCursor &);
-extern QDataStream _ZrsR11QDataStreamR7QCursor(QDataStream &, QCursor &);
+extern QDataStream operator<<(QDataStream&, QCursor const&)(QDataStream &, const QCursor &);
+extern QDataStream operator>>(QDataStream&, QCursor&)(QDataStream &, QCursor &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

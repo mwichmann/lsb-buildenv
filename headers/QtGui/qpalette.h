@@ -7,7 +7,7 @@ class QPalette;
 
 class QPalette;
 
-enum _ZN8QPalette10ColorGroupE	
+enum QPalette::ColorGroup	
 {
 Active = 0,	
 Normal = 0,	
@@ -19,7 +19,7 @@ All = 5
 }
 ;
 
-enum _ZN8QPalette9ColorRoleE	
+enum QPalette::ColorRole	
 {
 WindowText = 0,	
 Foreground = 0,	
@@ -51,10 +51,10 @@ class QColorGroup;
 /* Function prototypes */
 
 extern struct QMetaObject _ZN8QPalette16staticMetaObjectE;
-extern QDataStream _ZlsR11QDataStreamRK11QColorGroup(QDataStream &, const QColorGroup &);
-extern QDataStream _ZlsR11QDataStreamRK8QPalette(QDataStream &, const QPalette &);
-extern QDataStream _ZrsR11QDataStreamR11QColorGroup(QDataStream &, QColorGroup &);
-extern QDataStream _ZrsR11QDataStreamR8QPalette(QDataStream &, QPalette &);
+extern QDataStream operator<<(QDataStream&, QColorGroup const&)(QDataStream &, const QColorGroup &);
+extern QDataStream operator<<(QDataStream&, QPalette const&)(QDataStream &, const QPalette &);
+extern QDataStream operator>>(QDataStream&, QColorGroup&)(QDataStream &, QColorGroup &);
+extern QDataStream operator>>(QDataStream&, QPalette&)(QDataStream &, QPalette &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

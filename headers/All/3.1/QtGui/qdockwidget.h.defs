@@ -1,6 +1,6 @@
 
 class QDockWidget;
-enum _ZN11QDockWidget17DockWidgetFeatureE {
+enum QDockWidget::DockWidgetFeature {
     NoDockWidgetFeatures = 0,
     DockWidgetClosable = 1,
     DockWidgetMovable = 2,

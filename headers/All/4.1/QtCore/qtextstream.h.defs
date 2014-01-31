@@ -1,22 +1,22 @@
 
 class QTextStream;
-enum _ZN11QTextStream18RealNumberNotationE {
+enum QTextStream::RealNumberNotation {
     SmartNotation = 0,
     FixedNotation = 1,
     ScientificNotation = 2
 };
-enum _ZN11QTextStream14FieldAlignmentE {
+enum QTextStream::FieldAlignment {
     AlignLeft = 0,
     AlignRight = 1,
     AlignCenter = 2,
     AlignAccountingStyle = 3
 };
-enum _ZN11QTextStream6StatusE {
+enum QTextStream::Status {
     Ok = 0,
     ReadPastEnd = 1,
     ReadCorruptData = 2
 };
-enum _ZN11QTextStream10NumberFlagE {
+enum QTextStream::NumberFlag {
     ShowBase = 1,
     ForcePoint = 2,
     ForceSign = 4,
@@ -25,7 +25,7 @@ enum _ZN11QTextStream10NumberFlagE {
 };
 class QFlags < QTextStream::NumberFlag >;
 typedef class QFlags < QTextStream::NumberFlag > QTextStream::NumberFlags;
-enum _ZN11QTextStream8EncodingE {
+enum QTextStream::Encoding {
     Locale = 0,
     Latin1 = 1,
     Unicode = 2,

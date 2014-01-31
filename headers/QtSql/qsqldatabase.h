@@ -13,7 +13,7 @@ class QSqlDatabase;
 /* Function prototypes */
 
 extern char * _ZN12QSqlDatabase17defaultConnectionE;
-extern QDebug _Zls6QDebugRK12QSqlDatabase(_Z6QDebug, QSqlDatabase & &);
+extern QDebug operator<<(QDebug, QSqlDatabase const&)(_Z6QDebug, QSqlDatabase & &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

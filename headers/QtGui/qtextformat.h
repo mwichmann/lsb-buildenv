@@ -7,7 +7,7 @@ class QTextImageFormat;
 
 class QTextLength;
 
-enum _ZN11QTextLength4TypeE	
+enum QTextLength::Type	
 {
 VariableLength = 0,	
 FixedLength = 1,	
@@ -17,7 +17,7 @@ PercentageLength = 2
 
 class QTextFormat;
 
-enum _ZN11QTextFormat10FormatTypeE	
+enum QTextFormat::FormatType	
 {
 InvalidFormat = -1,	
 BlockFormat = 1,	
@@ -29,7 +29,7 @@ UserFormat = 100
 }
 ;
 
-enum _ZN11QTextFormat8PropertyE	
+enum QTextFormat::Property	
 {
 ObjectIndex = 0,	
 CssFloat = 2048,	
@@ -84,7 +84,7 @@ UserProperty = 1048576
 }
 ;
 
-enum _ZN11QTextFormat11ObjectTypesE	
+enum QTextFormat::ObjectTypes	
 {
 NoObject = 0,	
 ImageObject = 1,	
@@ -95,7 +95,7 @@ UserObject = 4096
 
 class QTextCharFormat;
 
-enum _ZN15QTextCharFormat17VerticalAlignmentE	
+enum QTextCharFormat::VerticalAlignment	
 {
 AlignNormal = 0,	
 AlignSuperScript = 1,	
@@ -107,7 +107,7 @@ class QTextBlockFormat;
 
 class QTextListFormat;
 
-enum _ZN15QTextListFormat5StyleE	
+enum QTextListFormat::Style	
 {
 ListUpperAlpha = -6,	
 ListLowerAlpha = -5,	
@@ -123,7 +123,7 @@ class QTextImageFormat;
 
 class QTextFrameFormat;
 
-enum _ZN16QTextFrameFormat8PositionE	
+enum QTextFrameFormat::Position	
 {
 InFlow = 0,	
 FloatLeft = 1,	
@@ -137,10 +137,10 @@ class QTextTableFormat;
 /* Function prototypes */
 
 extern struct QMetaObject _ZN11QTextFormat16staticMetaObjectE;
-extern QDataStream _ZlsR11QDataStreamRK11QTextFormat(QDataStream &, const QTextFormat &);
-extern QDataStream _ZlsR11QDataStreamRK11QTextLength(QDataStream &);
-extern QDataStream _ZrsR11QDataStreamR11QTextFormat(QDataStream &, QTextFormat &);
-extern QDataStream _ZrsR11QDataStreamR11QTextLength(QDataStream &);
+extern QDataStream operator<<(QDataStream&, QTextFormat const&)(QDataStream &, const QTextFormat &);
+extern QDataStream operator<<(QDataStream&, QTextLength const&)(QDataStream &);
+extern QDataStream operator>>(QDataStream&, QTextFormat&)(QDataStream &, QTextFormat &);
+extern QDataStream operator>>(QDataStream&, QTextLength&)(QDataStream &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -7,7 +7,7 @@ class QTabWidget;
 
 class QTabWidget;
 
-enum _ZN10QTabWidget11TabPositionE	
+enum QTabWidget::TabPosition	
 {
 North = 0,	
 Top = 0,	
@@ -18,7 +18,7 @@ East = 3
 }
 ;
 
-enum _ZN10QTabWidget8TabShapeE	
+enum QTabWidget::TabShape	
 {
 Rounded = 0,	
 Triangular = 1

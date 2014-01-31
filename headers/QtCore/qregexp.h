@@ -7,7 +7,7 @@ class QRegExp;
 
 class QRegExp;
 
-enum _ZN7QRegExp13PatternSyntaxE	
+enum QRegExp::PatternSyntax	
 {
 RegExp = 0,	
 Wildcard = 1,	
@@ -15,7 +15,7 @@ FixedString = 2
 }
 ;
 
-enum _ZN7QRegExp9CaretModeE	
+enum QRegExp::CaretMode	
 {
 CaretAtZero = 0,	
 CaretAtOffset = 1,	
@@ -26,8 +26,8 @@ CaretWontMatch = 2
 
 /* Function prototypes */
 
-extern QDataStream _ZlsR11QDataStreamRK7QRegExp(const QRegExp &);
-extern QDataStream _ZrsR11QDataStreamR7QRegExp(QRegExp &);
+extern QDataStream operator<<(QDataStream&, QRegExp const&)(const QRegExp &);
+extern QDataStream operator>>(QDataStream&, QRegExp&)(QRegExp &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

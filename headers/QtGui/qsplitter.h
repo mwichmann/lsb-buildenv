@@ -7,7 +7,7 @@ class QSplitter;
 
 class QSplitter;
 
-enum _ZN9QSplitter10ResizeModeE	
+enum QSplitter::ResizeMode	
 {
 Stretch = 0,	
 KeepSize = 1,	
@@ -23,8 +23,8 @@ class QSplitterHandle;
 
 extern struct QMetaObject _ZN15QSplitterHandle16staticMetaObjectE;
 extern struct QMetaObject _ZN9QSplitter16staticMetaObjectE;
-extern QTextStream _ZlsR11QTextStreamRK9QSplitter(QTextStream &, const QSplitter &);
-extern QTextStream _ZrsR11QTextStreamR9QSplitter(QTextStream &, QSplitter &);
+extern QTextStream operator<<(QTextStream&, QSplitter const&)(QTextStream &, const QSplitter &);
+extern QTextStream operator>>(QTextStream&, QSplitter&)(QTextStream &, QSplitter &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

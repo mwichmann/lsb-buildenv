@@ -7,7 +7,7 @@ class QHostInfo;
 
 class QHostInfo;
 
-enum _ZN9QHostInfo13HostInfoErrorE	
+enum QHostInfo::HostInfoError	
 {
 NoError = 0,	
 HostNotFound = 1,	

@@ -7,7 +7,7 @@ class QFont;
 
 class QFont;
 
-enum _ZN5QFont9StyleHintE	
+enum QFont::StyleHint	
 {
 Helvetica = 0,	
 SansSerif = 0,	
@@ -22,7 +22,7 @@ AnyStyle = 5
 }
 ;
 
-enum _ZN5QFont13StyleStrategyE	
+enum QFont::StyleStrategy	
 {
 PreferDefault = 1,	
 PreferBitmap = 2,	
@@ -37,7 +37,7 @@ OpenGLCompatible = 512
 }
 ;
 
-enum _ZN5QFont6WeightE	
+enum QFont::Weight	
 {
 Light = 25,	
 Normal = 50,	
@@ -47,7 +47,7 @@ Black = 87
 }
 ;
 
-enum _ZN5QFont5StyleE	
+enum QFont::Style	
 {
 StyleNormal = 0,	
 StyleItalic = 1,	
@@ -55,7 +55,7 @@ StyleOblique = 2
 }
 ;
 
-enum _ZN5QFont7StretchE	
+enum QFont::Stretch	
 {
 UltraCondensed = 50,	
 ExtraCondensed = 62,	
@@ -72,8 +72,8 @@ UltraExpanded = 200
 
 /* Function prototypes */
 
-extern QDataStream _ZlsR11QDataStreamRK5QFont(QDataStream &, const QFont &);
-extern QDataStream _ZrsR11QDataStreamR5QFont(QDataStream &, QFont &);
+extern QDataStream operator<<(QDataStream&, QFont const&)(QDataStream &, const QFont &);
+extern QDataStream operator>>(QDataStream&, QFont&)(QDataStream &, QFont &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

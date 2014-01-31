@@ -7,14 +7,14 @@ class QTextCursor;
 
 class QTextCursor;
 
-enum _ZN11QTextCursor8MoveModeE	
+enum QTextCursor::MoveMode	
 {
 MoveAnchor = 0,	
 KeepAnchor = 1
 }
 ;
 
-enum _ZN11QTextCursor13MoveOperationE	
+enum QTextCursor::MoveOperation	
 {
 NoMove = 0,	
 Start = 1,	
@@ -40,7 +40,7 @@ WordRight = 20
 }
 ;
 
-enum _ZN11QTextCursor13SelectionTypeE	
+enum QTextCursor::SelectionType	
 {
 WordUnderCursor = 0,	
 LineUnderCursor = 1,	

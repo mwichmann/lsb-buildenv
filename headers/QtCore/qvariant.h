@@ -40,7 +40,7 @@ typedef class QMap<QString, QVariant>QVariantMap
 
 class QVariant;
 
-enum _ZN8QVariant4TypeE	
+enum QVariant::Type	
 {
 LastType = -1,	
 Invalid = 0,	
@@ -109,12 +109,12 @@ class QVariantComparisonHelper;
 /* Function prototypes */
 
 extern struct QVariant::Handler * _ZN8QVariant7handlerE;
-extern QDebug _Zls6QDebugN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
-extern QDebug _Zls6QDebugRK8QVariant(const QVariant &);
-extern QDataStream _ZlsR11QDataStreamN8QVariant4TypeE(enum _ZN8QVariant4TypeE);
-extern QDataStream _ZlsR11QDataStreamRK8QVariant(const QVariant &);
-extern QDataStream _ZrsR11QDataStreamR8QVariant(QVariant &);
-extern QDataStream _ZrsR11QDataStreamRN8QVariant4TypeE(enum _ZN8QVariant4TypeE &);
+extern QDebug operator<<(QDebug, QVariant::Type)(enum _ZN8QVariant4TypeE);
+extern QDebug operator<<(QDebug, QVariant const&)(const QVariant &);
+extern QDataStream operator<<(QDataStream&, QVariant::Type)(enum _ZN8QVariant4TypeE);
+extern QDataStream operator<<(QDataStream&, QVariant const&)(const QVariant &);
+extern QDataStream operator>>(QDataStream&, QVariant&)(QVariant &);
+extern QDataStream operator>>(QDataStream&, QVariant::Type&)(enum _ZN8QVariant4TypeE &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

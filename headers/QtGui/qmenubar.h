@@ -7,7 +7,7 @@ class QMenuBar;
 
 class QMenuBar;
 
-enum _ZN8QMenuBar9SeparatorE	
+enum QMenuBar::Separator	
 {
 Never = 0,	
 InWindowsStyle = 1

@@ -7,7 +7,7 @@ class QAction;
 
 class QAction;
 
-enum _ZN7QAction11ActionEventE	
+enum QAction::ActionEvent	
 {
 Trigger = 0,	
 Hover = 1

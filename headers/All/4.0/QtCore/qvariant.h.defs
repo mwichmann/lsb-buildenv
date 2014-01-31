@@ -1,6 +1,6 @@
 
 class QVariant;
-enum _ZN8QVariant4TypeE {
+enum QVariant::Type {
     LastType = -1,
     Invalid = 0,
     Bool = 1,

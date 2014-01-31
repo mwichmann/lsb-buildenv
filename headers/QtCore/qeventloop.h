@@ -10,7 +10,7 @@ typedef class QFlags<QEventLoop::ProcessEventsFlag>QEventLoop::ProcessEventsFlag
 
 class QEventLoop;
 
-enum _ZN10QEventLoop17ProcessEventsFlagE	
+enum QEventLoop::ProcessEventsFlag	
 {
 AllEvents = 0,	
 ExcludeUserInputEvents = 1,	

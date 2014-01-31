@@ -9,7 +9,7 @@ class QWidgetData;
 
 class QWidget;
 
-enum _ZN7QWidget16BackgroundOriginE	
+enum QWidget::BackgroundOrigin	
 {
 WidgetOrigin = 0,	
 ParentOrigin = 1,	

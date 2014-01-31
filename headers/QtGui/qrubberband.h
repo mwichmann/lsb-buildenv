@@ -7,7 +7,7 @@ class QRubberBand;
 
 class QRubberBand;
 
-enum _ZN11QRubberBand5ShapeE	
+enum QRubberBand::Shape	
 {
 Line = 0,	
 Rectangle = 1

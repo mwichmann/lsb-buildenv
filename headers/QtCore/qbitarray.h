@@ -12,11 +12,11 @@ class QBitRef;
 
 /* Function prototypes */
 
-extern QBitArray _ZanRK9QBitArrayS1_(const QBitArray &, const QBitArray &);
-extern QBitArray _ZeoRK9QBitArrayS1_(const QBitArray &, const QBitArray &);
-extern QDataStream _ZlsR11QDataStreamRK9QBitArray(const QBitArray &);
-extern QBitArray _ZorRK9QBitArrayS1_(const QBitArray &, const QBitArray &);
-extern QDataStream _ZrsR11QDataStreamR9QBitArray(QBitArray &);
+extern QBitArray operator&(QBitArray const&, QBitArray const&)(const QBitArray &, const QBitArray &);
+extern QBitArray operator^(QBitArray const&, QBitArray const&)(const QBitArray &, const QBitArray &);
+extern QDataStream operator<<(QDataStream&, QBitArray const&)(const QBitArray &);
+extern QBitArray operator|(QBitArray const&, QBitArray const&)(const QBitArray &, const QBitArray &);
+extern QDataStream operator>>(QDataStream&, QBitArray&)(QBitArray &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

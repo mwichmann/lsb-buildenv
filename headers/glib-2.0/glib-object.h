@@ -1403,12 +1403,13 @@ type_name##_get_type (void) \
 					       const GValue * param_value,
 					       gpointer invocation_hint,
 					       gpointer marshal_data);
-    extern void g_cclosure_marshal_VOID__INT(GClosure * closure,
-					     GValue * return_value,
-					     guint n_param_values,
-					     const GValue * param_value,
-					     gpointer invocation_hint,
-					     gpointer marshal_data);
+    extern void g_cclosure_marshal_VOID(int0_t) (GClosure * closure,
+						 GValue * return_value,
+						 guint n_param_values,
+						 const GValue *
+						 param_value,
+						 gpointer invocation_hint,
+						 gpointer marshal_data);
     extern void g_cclosure_marshal_VOID__LONG(GClosure * closure,
 					      GValue * return_value,
 					      guint n_param_values,
@@ -1446,12 +1447,18 @@ type_name##_get_type (void) \
 					       const GValue * param_value,
 					       gpointer invocation_hint,
 					       gpointer marshal_data);
-    extern void g_cclosure_marshal_VOID__UINT(GClosure * closure,
-					      GValue * return_value,
-					      guint n_param_values,
-					      const GValue * param_value,
-					      gpointer invocation_hint,
-					      gpointer marshal_data);
+    extern void g_cclosure_marshal_VOID(unsigned int0_t) (GClosure *
+							  closure,
+							  GValue *
+							  return_value,
+							  guint
+							  n_param_values,
+							  const GValue *
+							  param_value,
+							  gpointer
+							  invocation_hint,
+							  gpointer
+							  marshal_data);
     extern void g_cclosure_marshal_VOID__UINT_POINTER(GClosure * closure,
 						      GValue *
 						      return_value,

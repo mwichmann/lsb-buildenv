@@ -1,6 +1,6 @@
 
 class QTextItem;
-enum _ZN9QTextItem10RenderFlagE {
+enum QTextItem::RenderFlag {
     Dummy = -1,
     RightToLeft = 1,
     Overline = 16,
@@ -10,7 +10,7 @@ enum _ZN9QTextItem10RenderFlagE {
 class QFlags < QTextItem::RenderFlag >;
 typedef class QFlags < QTextItem::RenderFlag > QTextItem::RenderFlags;
 class QPaintEngine;
-enum _ZN12QPaintEngine18PaintEngineFeatureE {
+enum QPaintEngine::PaintEngineFeature {
     AllFeatures = -1,
     PrimitiveTransform = 1,
     PatternTransform = 2,
@@ -29,7 +29,7 @@ enum _ZN12QPaintEngine18PaintEngineFeatureE {
 class QFlags < QPaintEngine::PaintEngineFeature >;
 typedef class QFlags < QPaintEngine::PaintEngineFeature >
     QPaintEngine::PaintEngineFeatures;
-enum _ZN12QPaintEngine9DirtyFlagE {
+enum QPaintEngine::DirtyFlag {
     DirtyPen = 1,
     DirtyBrush = 2,
     DirtyBrushOrigin = 4,
@@ -46,13 +46,13 @@ enum _ZN12QPaintEngine9DirtyFlagE {
 };
 class QFlags < QPaintEngine::DirtyFlag >;
 typedef class QFlags < QPaintEngine::DirtyFlag > QPaintEngine::DirtyFlags;
-enum _ZN12QPaintEngine15PolygonDrawModeE {
+enum QPaintEngine::PolygonDrawMode {
     OddEvenMode = 0,
     WindingMode = 1,
     ConvexMode = 2,
     PolylineMode = 3
 };
-enum _ZN12QPaintEngine4TypeE {
+enum QPaintEngine::Type {
     X11 = 0,
     Windows = 1,
     QuickDraw = 2,

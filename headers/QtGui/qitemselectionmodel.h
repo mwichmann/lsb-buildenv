@@ -12,7 +12,7 @@ class QItemSelectionRange;
 
 class QItemSelectionModel;
 
-enum _ZN19QItemSelectionModel13SelectionFlagE	
+enum QItemSelectionModel::SelectionFlag	
 {
 NoUpdate = 0,	
 Clear = 1,	
@@ -36,7 +36,7 @@ class QItemSelection;
 /* Function prototypes */
 
 extern struct QMetaObject _ZN19QItemSelectionModel16staticMetaObjectE;
-extern QDebug _Zls6QDebugRK19QItemSelectionRange(_Z6QDebug, const QItemSelectionRange &);
+extern QDebug operator<<(QDebug, QItemSelectionRange const&)(_Z6QDebug, const QItemSelectionRange &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

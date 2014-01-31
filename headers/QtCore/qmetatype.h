@@ -19,7 +19,7 @@ typedef void	QMetaType::LoadOperator
 
 class QMetaType;
 
-enum _ZN9QMetaType4TypeE	
+enum QMetaType::Type	
 {
 Void = 0,	
 Bool = 1,	

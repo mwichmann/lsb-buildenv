@@ -13,7 +13,7 @@ typedef class QList<QFileInfo>QFileInfoList
 
 class QFileInfo;
 
-enum _ZN9QFileInfo10PermissionE	
+enum QFileInfo::Permission	
 {
 ExeOther = 1,	
 WriteOther = 2,	

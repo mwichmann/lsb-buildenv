@@ -1,6 +1,6 @@
 
 class QDateTimeEdit;
-enum _ZN13QDateTimeEdit7SectionE {
+enum QDateTimeEdit::Section {
     NoSection = 0,
     AmPmSection = 1,
     MSecSection = 2,

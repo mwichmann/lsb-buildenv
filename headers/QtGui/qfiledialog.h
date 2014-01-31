@@ -8,7 +8,7 @@ class QFileDialog;
 typedef class QFlags<QFileDialog::Option>QFileDialog::Options	
 ;
 
-typedef enum _ZN11QFileDialog8FileModeE	
+typedef enum QFileDialog::FileMode	
 {
 AnyFile = 0,	
 ExistingFile = 1,	
@@ -21,14 +21,14 @@ QFileDialog::Mode
 
 class QFileDialog;
 
-enum _ZN11QFileDialog8ViewModeE	
+enum QFileDialog::ViewMode	
 {
 Detail = 0,	
 List = 1
 }
 ;
 
-enum _ZN11QFileDialog8FileModeE	
+enum QFileDialog::FileMode	
 {
 AnyFile = 0,	
 ExistingFile = 1,	
@@ -38,14 +38,14 @@ DirectoryOnly = 4
 }
 ;
 
-enum _ZN11QFileDialog10AcceptModeE	
+enum QFileDialog::AcceptMode	
 {
 AcceptOpen = 0,	
 AcceptSave = 1
 }
 ;
 
-enum _ZN11QFileDialog11DialogLabelE	
+enum QFileDialog::DialogLabel	
 {
 LookIn = 0,	
 FileName = 1,	
@@ -55,7 +55,7 @@ Reject = 4
 }
 ;
 
-enum _ZN11QFileDialog6OptionE	
+enum QFileDialog::Option	
 {
 ShowDirsOnly = 1,	
 DontResolveSymlinks = 2,	

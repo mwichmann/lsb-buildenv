@@ -1,6 +1,6 @@
 
 class QTreeWidgetItemIterator;
-enum _ZN23QTreeWidgetItemIterator12IteratorFlagE {
+enum QTreeWidgetItemIterator::IteratorFlag {
     All = 0,
     Hidden = 1,
     NotHidden = 2,

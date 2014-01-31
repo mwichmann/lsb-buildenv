@@ -7,7 +7,7 @@ class QPrintEngine;
 
 class QPrintEngine;
 
-enum _ZN12QPrintEngine22PrintEnginePropertyKeyE	
+enum QPrintEngine::PrintEnginePropertyKey	
 {
 PPK_CollateCopies = 0,	
 PPK_ColorMode = 1,	

@@ -7,7 +7,7 @@ class QListView;
 
 class QListView;
 
-enum _ZN9QListView8MovementE	
+enum QListView::Movement	
 {
 Static = 0,	
 Free = 1,	
@@ -15,28 +15,28 @@ Snap = 2
 }
 ;
 
-enum _ZN9QListView4FlowE	
+enum QListView::Flow	
 {
 LeftToRight = 0,	
 TopToBottom = 1
 }
 ;
 
-enum _ZN9QListView10ResizeModeE	
+enum QListView::ResizeMode	
 {
 Fixed = 0,	
 Adjust = 1
 }
 ;
 
-enum _ZN9QListView10LayoutModeE	
+enum QListView::LayoutMode	
 {
 SinglePass = 0,	
 Batched = 1
 }
 ;
 
-enum _ZN9QListView8ViewModeE	
+enum QListView::ViewMode	
 {
 ListMode = 0,	
 IconMode = 1

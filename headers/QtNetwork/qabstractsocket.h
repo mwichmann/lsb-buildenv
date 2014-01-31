@@ -5,7 +5,7 @@
 class QAbstractSocket;
 // *INDENT-OFF*
 
-typedef enum _ZN15QAbstractSocket11SocketStateE	
+typedef enum QAbstractSocket::SocketState	
 {
 UnconnectedState = 0,	
 Idle = 0,	
@@ -26,7 +26,7 @@ QAbstractSocket::State
 
 class QAbstractSocket;
 
-enum _ZN15QAbstractSocket10SocketTypeE	
+enum QAbstractSocket::SocketType	
 {
 UnknownSocketType = -1,	
 TcpSocket = 0,	
@@ -34,7 +34,7 @@ UdpSocket = 1
 }
 ;
 
-enum _ZN15QAbstractSocket20NetworkLayerProtocolE	
+enum QAbstractSocket::NetworkLayerProtocol	
 {
 UnknownNetworkLayerProtocol = -1,	
 IPv4Protocol = 0,	
@@ -42,7 +42,7 @@ IPv6Protocol = 1
 }
 ;
 
-enum _ZN15QAbstractSocket11SocketErrorE	
+enum QAbstractSocket::SocketError	
 {
 UnknownSocketError = -1,	
 ConnectionRefusedError = 0,	
@@ -59,7 +59,7 @@ UnsupportedSocketOperationError = 10
 }
 ;
 
-enum _ZN15QAbstractSocket11SocketStateE	
+enum QAbstractSocket::SocketState	
 {
 UnconnectedState = 0,	
 Idle = 0,	
@@ -77,7 +77,7 @@ ClosingState = 6
 }
 ;
 
-enum _ZN15QAbstractSocket5ErrorE	
+enum QAbstractSocket::Error	
 {
 ErrSocketRead = -1,	
 ErrConnectionRefused = 0,	

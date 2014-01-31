@@ -10,14 +10,14 @@ typedef class QFlags<QUrl::FormattingOption>QUrl::FormattingOptions
 
 class QUrl;
 
-enum _ZN4QUrl11ParsingModeE	
+enum QUrl::ParsingMode	
 {
 TolerantMode = 0,	
 StrictMode = 1
 }
 ;
 
-enum _ZN4QUrl16FormattingOptionE	
+enum QUrl::FormattingOption	
 {
 None = 0,	
 RemoveScheme = 1,	
@@ -37,9 +37,9 @@ class QFlags<QUrl::FormattingOption>;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK4QUrl(const QUrl &);
-extern QDataStream _ZlsR11QDataStreamRK4QUrl(const QUrl &);
-extern QDataStream _ZrsR11QDataStreamR4QUrl(QUrl &);
+extern QDebug operator<<(QDebug, QUrl const&)(const QUrl &);
+extern QDataStream operator<<(QDataStream&, QUrl const&)(const QUrl &);
+extern QDataStream operator>>(QDataStream&, QUrl&)(QUrl &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

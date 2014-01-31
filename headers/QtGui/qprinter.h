@@ -7,7 +7,7 @@ class QPrinter;
 
 class QPrinter;
 
-enum _ZN8QPrinter11PrinterModeE	
+enum QPrinter::PrinterMode	
 {
 ScreenResolution = 0,	
 PrinterResolution = 1,	
@@ -15,14 +15,14 @@ HighResolution = 2
 }
 ;
 
-enum _ZN8QPrinter11OrientationE	
+enum QPrinter::Orientation	
 {
 Portrait = 0,	
 Landscape = 1
 }
 ;
 
-enum _ZN8QPrinter8PageSizeE	
+enum QPrinter::PageSize	
 {
 A4 = 0,	
 B5 = 1,	
@@ -59,21 +59,21 @@ NPageSize = 30
 }
 ;
 
-enum _ZN8QPrinter9PageOrderE	
+enum QPrinter::PageOrder	
 {
 FirstPageFirst = 0,	
 LastPageFirst = 1
 }
 ;
 
-enum _ZN8QPrinter9ColorModeE	
+enum QPrinter::ColorMode	
 {
 GrayScale = 0,	
 Color = 1
 }
 ;
 
-enum _ZN8QPrinter11PaperSourceE	
+enum QPrinter::PaperSource	
 {
 OnlyOne = 0,	
 Lower = 1,	
@@ -91,7 +91,7 @@ FormSource = 12
 }
 ;
 
-enum _ZN8QPrinter12PrinterStateE	
+enum QPrinter::PrinterState	
 {
 Idle = 0,	
 Active = 1,	
@@ -100,14 +100,14 @@ Error = 3
 }
 ;
 
-enum _ZN8QPrinter12OutputFormatE	
+enum QPrinter::OutputFormat	
 {
 NativeFormat = 0,	
 PdfFormat = 1
 }
 ;
 
-enum _ZN8QPrinter10PrintRangeE	
+enum QPrinter::PrintRange	
 {
 AllPages = 0,	
 Selection = 1,	
@@ -115,7 +115,7 @@ PageRange = 2
 }
 ;
 
-enum _ZN8QPrinter13PrinterOptionE	
+enum QPrinter::PrinterOption	
 {
 PrintToFile = 0,	
 PrintSelection = 1,	

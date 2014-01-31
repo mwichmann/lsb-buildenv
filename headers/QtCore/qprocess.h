@@ -10,7 +10,7 @@ typedef qint64	Q_PID
 
 class QProcess;
 
-enum _ZN8QProcess12ProcessErrorE	
+enum QProcess::ProcessError	
 {
 FailedToStart = 0,	
 Crashed = 1,	
@@ -21,7 +21,7 @@ UnknownError = 5
 }
 ;
 
-enum _ZN8QProcess12ProcessStateE	
+enum QProcess::ProcessState	
 {
 NotRunning = 0,	
 Starting = 1,	
@@ -29,14 +29,14 @@ Running = 2
 }
 ;
 
-enum _ZN8QProcess14ProcessChannelE	
+enum QProcess::ProcessChannel	
 {
 StandardOutput = 0,	
 StandardError = 1
 }
 ;
 
-enum _ZN8QProcess18ProcessChannelModeE	
+enum QProcess::ProcessChannelMode	
 {
 SeparateChannels = 0,	
 MergedChannels = 1,	
@@ -44,7 +44,7 @@ ForwardedChannels = 2
 }
 ;
 
-enum _ZN8QProcess10ExitStatusE	
+enum QProcess::ExitStatus	
 {
 NormalExit = 0,	
 CrashExit = 1

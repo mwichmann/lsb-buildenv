@@ -7,7 +7,7 @@ class QLibraryInfo;
 
 class QLibraryInfo;
 
-enum _ZN12QLibraryInfo15LibraryLocationE	
+enum QLibraryInfo::LibraryLocation	
 {
 PrefixPath = 0,	
 DocumentationPath = 1,	

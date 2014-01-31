@@ -7,7 +7,7 @@ class QSocketNotifier;
 
 class QSocketNotifier;
 
-enum _ZN15QSocketNotifier4TypeE	
+enum QSocketNotifier::Type	
 {
 Read = 0,	
 Write = 1,	

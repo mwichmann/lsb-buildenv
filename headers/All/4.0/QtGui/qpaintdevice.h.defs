@@ -1,6 +1,6 @@
 
 class QPaintDevice;
-enum _ZN12QPaintDevice17PaintDeviceMetricE {
+enum QPaintDevice::PaintDeviceMetric {
     PdmWidth = 1,
     PdmHeight = 2,
     PdmWidthMM = 3,

@@ -10,6 +10,6 @@ class QMatrix;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK7QMatrix(_Z6QDebug, const QMatrix &);
-extern QDataStream _ZlsR11QDataStreamRK7QMatrix(QDataStream &);
+extern QDebug operator<<(QDebug, QMatrix const&)(_Z6QDebug, const QMatrix &);
+extern QDataStream operator<<(QDataStream&, QMatrix const&)(QDataStream &);
 extern 

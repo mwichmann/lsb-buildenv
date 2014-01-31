@@ -12,12 +12,12 @@ class QPointF;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK6QPoint(const QPoint &);
-extern QDebug _Zls6QDebugRK7QPointF(_Z6QDebug, QPointF & &);
-extern QDataStream _ZlsR11QDataStreamRK6QPoint(const QPoint &);
-extern QDataStream _ZlsR11QDataStreamRK7QPointF(QDataStream &, QPointF & &);
-extern QDataStream _ZrsR11QDataStreamR6QPoint(QPoint &);
-extern QDataStream _ZrsR11QDataStreamR7QPointF(QDataStream &, QPointF &);
+extern QDebug operator<<(QDebug, QPoint const&)(const QPoint &);
+extern QDebug operator<<(QDebug, QPointF const&)(_Z6QDebug, QPointF & &);
+extern QDataStream operator<<(QDataStream&, QPoint const&)(const QPoint &);
+extern QDataStream operator<<(QDataStream&, QPointF const&)(QDataStream &, QPointF & &);
+extern QDataStream operator>>(QDataStream&, QPoint&)(QPoint &);
+extern QDataStream operator>>(QDataStream&, QPointF&)(QDataStream &, QPointF &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

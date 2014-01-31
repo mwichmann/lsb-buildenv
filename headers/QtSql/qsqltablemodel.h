@@ -7,7 +7,7 @@ class QSqlTableModel;
 
 class QSqlTableModel;
 
-enum _ZN14QSqlTableModel12EditStrategyE	
+enum QSqlTableModel::EditStrategy	
 {
 OnFieldChange = 0,	
 OnRowChange = 1,	

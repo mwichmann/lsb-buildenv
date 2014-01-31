@@ -7,7 +7,7 @@ class QImageWriter;
 
 class QImageWriter;
 
-enum _ZN12QImageWriter16ImageWriterErrorE	
+enum QImageWriter::ImageWriterError	
 {
 UnknownError = 0,	
 DeviceError = 1,	

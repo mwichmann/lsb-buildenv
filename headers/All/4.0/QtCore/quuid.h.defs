@@ -1,13 +1,13 @@
 
 struct QUuid;
-enum _ZN5QUuid7VariantE {
+enum QUuid::Variant {
     VarUnknown = -1,
     NCS = 0,
     DCE = 2,
     Microsoft = 6,
     Reserved = 7
 };
-enum _ZN5QUuid7VersionE {
+enum QUuid::Version {
     VerUnknown = -1,
     Time = 1,
     EmbeddedPOSIX = 2,

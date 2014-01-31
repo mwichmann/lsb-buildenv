@@ -1,6 +1,6 @@
 
 class QFont;
-enum _ZN5QFont9StyleHintE {
+enum QFont::StyleHint {
     Helvetica = 0,
     SansSerif = 0,
     Times = 1,
@@ -12,7 +12,7 @@ enum _ZN5QFont9StyleHintE {
     System = 4,
     AnyStyle = 5
 };
-enum _ZN5QFont13StyleStrategyE {
+enum QFont::StyleStrategy {
     PreferDefault = 1,
     PreferBitmap = 2,
     PreferDevice = 4,
@@ -24,19 +24,19 @@ enum _ZN5QFont13StyleStrategyE {
     NoAntialias = 256,
     OpenGLCompatible = 512
 };
-enum _ZN5QFont6WeightE {
+enum QFont::Weight {
     Light = 25,
     Normal = 50,
     DemiBold = 63,
     Bold = 75,
     Black = 87
 };
-enum _ZN5QFont5StyleE {
+enum QFont::Style {
     StyleNormal = 0,
     StyleItalic = 1,
     StyleOblique = 2
 };
-enum _ZN5QFont7StretchE {
+enum QFont::Stretch {
     UltraCondensed = 50,
     ExtraCondensed = 62,
     Condensed = 75,

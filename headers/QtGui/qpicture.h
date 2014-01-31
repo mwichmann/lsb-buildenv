@@ -15,8 +15,8 @@ class QPictureIO;
 
 /* Function prototypes */
 
-extern QDataStream _ZlsR11QDataStreamRK8QPicture(QDataStream &, const QPicture &);
-extern QDataStream _ZrsR11QDataStreamR8QPicture(QDataStream &, QPicture &);
+extern QDataStream operator<<(QDataStream&, QPicture const&)(QDataStream &, const QPicture &);
+extern QDataStream operator>>(QDataStream&, QPicture&)(QDataStream &, QPicture &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

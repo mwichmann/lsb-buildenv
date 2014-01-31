@@ -10,7 +10,7 @@ typedef class QIconQIconSet
 
 class QIcon;
 
-enum _ZN5QIcon4ModeE	
+enum QIcon::Mode	
 {
 Normal = 0,	
 Disabled = 1,	
@@ -18,14 +18,14 @@ Active = 2
 }
 ;
 
-enum _ZN5QIcon5StateE	
+enum QIcon::State	
 {
 On = 0,	
 Off = 1
 }
 ;
 
-enum _ZN5QIcon4SizeE	
+enum QIcon::Size	
 {
 Small = 0,	
 Automatic = 0,	

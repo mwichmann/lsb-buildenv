@@ -10,7 +10,7 @@ typedef class QFlags<QDateTimeEdit::Section>QDateTimeEdit::Sections
 
 class QDateTimeEdit;
 
-enum _ZN13QDateTimeEdit7SectionE	
+enum QDateTimeEdit::Section	
 {
 NoSection = 0,	
 AmPmSection = 1,	

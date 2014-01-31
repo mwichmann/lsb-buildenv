@@ -7,7 +7,7 @@ class QFrame;
 
 class QFrame;
 
-enum _ZN6QFrame5ShapeE	
+enum QFrame::Shape	
 {
 NoFrame = 0,	
 Box = 1,	
@@ -25,7 +25,7 @@ GroupBoxPanel = 6
 }
 ;
 
-enum _ZN6QFrame6ShadowE	
+enum QFrame::Shadow	
 {
 Plain = 16,	
 Raised = 32,	

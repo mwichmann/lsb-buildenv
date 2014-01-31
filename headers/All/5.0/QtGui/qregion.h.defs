@@ -1,6 +1,6 @@
 
 class QRegion;
-enum _ZN7QRegion10RegionTypeE {
+enum QRegion::RegionType {
     Rectangle = 0,
     Ellipse = 1
 };

@@ -7,7 +7,7 @@ class QMutexLocker;
 
 class QMutex;
 
-enum _ZN6QMutex13RecursionModeE	
+enum QMutex::RecursionMode	
 {
 NonRecursive = 0,	
 Recursive = 1

@@ -7,7 +7,7 @@ class QUrlInfo;
 
 class QUrlInfo;
 
-enum _ZN8QUrlInfo14PermissionSpecE	
+enum QUrlInfo::PermissionSpec	
 {
 ExeOther = 1,	
 WriteOther = 2,	

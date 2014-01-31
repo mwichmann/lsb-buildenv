@@ -7,7 +7,7 @@ class QFontDatabase;
 
 class QFontDatabase;
 
-enum _ZN13QFontDatabase13WritingSystemE	
+enum QFontDatabase::WritingSystem	
 {
 Any = 0,	
 Latin = 1,	

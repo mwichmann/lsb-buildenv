@@ -7,7 +7,7 @@ class QSessionManager;
 
 class QSessionManager;
 
-enum _ZN15QSessionManager11RestartHintE	
+enum QSessionManager::RestartHint	
 {
 RestartIfRunning = 0,	
 RestartAnyway = 1,	

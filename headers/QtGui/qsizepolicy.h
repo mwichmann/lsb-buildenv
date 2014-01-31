@@ -5,7 +5,7 @@
 class QSizePolicy;
 // *INDENT-OFF*
 
-typedef enum _ZN11QSizePolicy6PolicyE	
+typedef enum QSizePolicy::Policy	
 {
 Fixed = 0,	
 Minimum = 1,	
@@ -23,7 +23,7 @@ typedef Qt::Orientations	QSizePolicy::ExpandData
 
 class QSizePolicy;
 
-enum _ZN11QSizePolicy15SizePolicyMasksE	
+enum QSizePolicy::SizePolicyMasks	
 {
 HSize = 4,	
 HMask = 15,	
@@ -31,7 +31,7 @@ VMask = 240
 }
 ;
 
-enum _ZN11QSizePolicy10PolicyFlagE	
+enum QSizePolicy::PolicyFlag	
 {
 GrowFlag = 1,	
 ExpandFlag = 2,	
@@ -40,7 +40,7 @@ IgnoreFlag = 8
 }
 ;
 
-enum _ZN11QSizePolicy6PolicyE	
+enum QSizePolicy::Policy	
 {
 Fixed = 0,	
 Minimum = 1,	

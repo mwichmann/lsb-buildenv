@@ -13,8 +13,8 @@ class QListWidget;
 /* Function prototypes */
 
 extern struct QMetaObject _ZN11QListWidget16staticMetaObjectE;
-extern QDataStream _ZlsR11QDataStreamRK15QListWidgetItem(QDataStream &);
-extern QDataStream _ZrsR11QDataStreamR15QListWidgetItem(QDataStream &);
+extern QDataStream operator<<(QDataStream&, QListWidgetItem const&)(QDataStream &);
+extern QDataStream operator>>(QDataStream&, QListWidgetItem&)(QDataStream &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

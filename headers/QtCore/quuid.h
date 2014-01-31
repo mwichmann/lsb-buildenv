@@ -12,7 +12,7 @@ extern "C" {
 
     struct QUuid;
 
-    enum _ZN5QUuid7VariantE {
+    enum QUuid::Variant {
 	VarUnknown = -1,
 	NCS = 0,
 	DCE = 2,
@@ -20,7 +20,7 @@ extern "C" {
 	Reserved = 7
     };
 
-    enum _ZN5QUuid7VersionE {
+    enum QUuid::Version {
 	VerUnknown = -1,
 	Time = 1,
 	EmbeddedPOSIX = 2,
@@ -31,8 +31,9 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern QDataStream _ZlsR11QDataStreamRK5QUuid(const struct QUuid &);
-    extern QDataStream _ZrsR11QDataStreamR5QUuid(struct QUuid &);
+    extern QDataStream operator<<(QDataStream &,
+				  QUuid const &) (const struct QUuid &);
+    extern QDataStream operator>>(QDataStream &, QUuid &) (struct QUuid &);
 #ifdef __cplusplus
 }
 #endif

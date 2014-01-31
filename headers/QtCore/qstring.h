@@ -22,7 +22,7 @@ typedef QString::const_iterator	QString::ConstIterator
 
 class QString;
 
-enum _ZN7QString11SectionFlagE	
+enum QString::SectionFlag	
 {
 SectionDefault = 0,	
 SectionSkipEmpty = 1,	
@@ -34,14 +34,14 @@ SectionCaseInsensitiveSeps = 8
 
 class QFlags<QString::SectionFlag>;
 
-enum _ZN7QString13SplitBehaviorE	
+enum QString::SplitBehavior	
 {
 KeepEmptyParts = 0,	
 SkipEmptyParts = 1
 }
 ;
 
-enum _ZN7QString17NormalizationFormE	
+enum QString::NormalizationForm	
 {
 NormalizationForm_D = 0,	
 NormalizationForm_C = 1,	

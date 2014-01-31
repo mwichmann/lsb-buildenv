@@ -1,6 +1,6 @@
 
 class QPainterPath;
-enum _ZN12QPainterPath11ElementTypeE {
+enum QPainterPath::ElementType {
     MoveToElement = 0,
     LineToElement = 1,
     CurveToElement = 2,

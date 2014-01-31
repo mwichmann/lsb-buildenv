@@ -1,11 +1,11 @@
 
 class QImageTextKeyLang;
 class QImage;
-enum _ZN6QImage10InvertModeE {
+enum QImage::InvertMode {
     InvertRgb = 0,
     InvertRgba = 1
 };
-enum _ZN6QImage6FormatE {
+enum QImage::Format {
     Format_Invalid = 0,
     Format_Mono = 1,
     Format_MonoLSB = 2,
@@ -14,7 +14,7 @@ enum _ZN6QImage6FormatE {
     Format_ARGB32 = 5,
     Format_ARGB32_Premultiplied = 6
 };
-enum _ZN6QImage6EndianE {
+enum QImage::Endian {
     BigEndian = 0,
     LittleEndian = 1,
     IgnoreEndian = 2

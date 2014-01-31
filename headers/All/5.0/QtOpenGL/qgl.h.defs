@@ -1,5 +1,5 @@
 
-enum _ZN3QGL12FormatOptionE {
+enum QGL::FormatOption {
     DoubleBuffer = 1,
     DepthBuffer = 2,
     Rgba = 4,

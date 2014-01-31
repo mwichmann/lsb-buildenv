@@ -7,7 +7,7 @@ class QDomText;
 
 class QDomImplementation;
 
-enum _ZN18QDomImplementation17InvalidDataPolicyE	
+enum QDomImplementation::InvalidDataPolicy	
 {
 AcceptInvalidChars = 0,	
 DropInvalidChars = 1,	
@@ -17,7 +17,7 @@ ReturnNullNode = 2
 
 class QDomNode;
 
-enum _ZN8QDomNode8NodeTypeE	
+enum QDomNode::NodeType	
 {
 ElementNode = 1,	
 AttributeNode = 2,	
@@ -69,7 +69,7 @@ class QDomProcessingInstruction;
 
 /* Function prototypes */
 
-extern QTextStream _ZlsR11QTextStreamRK8QDomNode(QTextStream &, const QDomNode &);
+extern QTextStream operator<<(QTextStream&, QDomNode const&)(QTextStream &, const QDomNode &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

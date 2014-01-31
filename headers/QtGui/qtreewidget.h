@@ -13,8 +13,8 @@ class QTreeWidget;
 /* Function prototypes */
 
 extern struct QMetaObject _ZN11QTreeWidget16staticMetaObjectE;
-extern QDataStream _ZlsR11QDataStreamRK15QTreeWidgetItem(QDataStream &);
-extern QDataStream _ZrsR11QDataStreamR15QTreeWidgetItem(QDataStream &);
+extern QDataStream operator<<(QDataStream&, QTreeWidgetItem const&)(QDataStream &);
+extern QDataStream operator>>(QDataStream&, QTreeWidgetItem&)(QDataStream &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

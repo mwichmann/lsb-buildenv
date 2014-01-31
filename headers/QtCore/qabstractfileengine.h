@@ -10,7 +10,7 @@ typedef class QFlags<QAbstractFileEngine::FileFlag>QAbstractFileEngine::FileFlag
 
 class QAbstractFileEngine;
 
-enum _ZN19QAbstractFileEngine8FileFlagE	
+enum QAbstractFileEngine::FileFlag	
 {
 ExeOtherPerm = 1,	
 WriteOtherPerm = 2,	
@@ -40,7 +40,7 @@ FileInfoAll = 268435455
 
 class QFlags<QAbstractFileEngine::FileFlag>;
 
-enum _ZN19QAbstractFileEngine8FileNameE	
+enum QAbstractFileEngine::FileName	
 {
 DefaultName = 0,	
 BaseName = 1,	
@@ -53,14 +53,14 @@ CanonicalPathName = 7
 }
 ;
 
-enum _ZN19QAbstractFileEngine9FileOwnerE	
+enum QAbstractFileEngine::FileOwner	
 {
 OwnerUser = 0,	
 OwnerGroup = 1
 }
 ;
 
-enum _ZN19QAbstractFileEngine8FileTimeE	
+enum QAbstractFileEngine::FileTime	
 {
 CreationTime = 0,	
 ModificationTime = 1,	
@@ -68,7 +68,7 @@ AccessTime = 2
 }
 ;
 
-enum _ZN19QAbstractFileEngine9ExtensionE	
+enum QAbstractFileEngine::Extension	
 ;
 
 class QAbstractFileEngine::ExtensionOption;

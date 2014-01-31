@@ -10,7 +10,7 @@ typedef class QFlags<QAbstractPrintDialog::PrintDialogOption>QAbstractPrintDialo
 
 class QAbstractPrintDialog;
 
-enum _ZN20QAbstractPrintDialog10PrintRangeE	
+enum QAbstractPrintDialog::PrintRange	
 {
 AllPages = 0,	
 Selection = 1,	
@@ -18,7 +18,7 @@ PageRange = 2
 }
 ;
 
-enum _ZN20QAbstractPrintDialog17PrintDialogOptionE	
+enum QAbstractPrintDialog::PrintDialogOption	
 {
 None = 0,	
 PrintToFile = 1,	

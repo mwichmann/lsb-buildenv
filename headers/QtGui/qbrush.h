@@ -11,7 +11,7 @@ struct QBrushData	;
 
 class QGradient;
 
-enum _ZN9QGradient4TypeE	
+enum QGradient::Type	
 {
 LinearGradient = 0,	
 RadialGradient = 1,	
@@ -20,7 +20,7 @@ NoGradient = 3
 }
 ;
 
-enum _ZN9QGradient6SpreadE	
+enum QGradient::Spread	
 {
 PadSpread = 0,	
 ReflectSpread = 1,	
@@ -37,9 +37,9 @@ class QConicalGradient;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK6QBrush(const QBrush &);
-extern QDataStream _ZlsR11QDataStreamRK6QBrush(QDataStream &, const QBrush &);
-extern QDataStream _ZrsR11QDataStreamR6QBrush(QDataStream &, QBrush &);
+extern QDebug operator<<(QDebug, QBrush const&)(const QBrush &);
+extern QDataStream operator<<(QDataStream&, QBrush const&)(QDataStream &, const QBrush &);
+extern QDataStream operator>>(QDataStream&, QBrush&)(QDataStream &, QBrush &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

@@ -1,6 +1,6 @@
 
 class QUdpSocket;
-enum _ZN10QUdpSocket8BindFlagE {
+enum QUdpSocket::BindFlag {
     DefaultForPlatform = 0,
     ShareAddress = 1,
     DontShareAddress = 2,

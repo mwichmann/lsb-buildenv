@@ -10,7 +10,7 @@ typedef class QFlags<QTextEdit::AutoFormattingFlag>QTextEdit::AutoFormatting
 
 class QTextEdit;
 
-enum _ZN9QTextEdit12LineWrapModeE	
+enum QTextEdit::LineWrapMode	
 {
 NoWrap = 0,	
 WidgetWidth = 1,	
@@ -19,7 +19,7 @@ FixedColumnWidth = 3
 }
 ;
 
-enum _ZN9QTextEdit18AutoFormattingFlagE	
+enum QTextEdit::AutoFormattingFlag	
 {
 AutoAll = -1,	
 AutoNone = 0,	
@@ -29,7 +29,7 @@ AutoBulletList = 1
 
 class QFlags<QTextEdit::AutoFormattingFlag>;
 
-enum _ZN9QTextEdit12CursorActionE	
+enum QTextEdit::CursorAction	
 {
 MoveBackward = 0,	
 MoveForward = 1,	
@@ -48,7 +48,7 @@ MovePgDown = 11
 }
 ;
 
-enum _ZN9QTextEdit14KeyboardActionE	
+enum QTextEdit::KeyboardAction	
 {
 ActionBackspace = 0,	
 ActionDelete = 1,	

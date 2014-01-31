@@ -7,7 +7,7 @@ class QIntValidator;
 
 class QValidator;
 
-enum _ZN10QValidator5StateE	
+enum QValidator::State	
 {
 Invalid = 0,	
 Intermediate = 1,	

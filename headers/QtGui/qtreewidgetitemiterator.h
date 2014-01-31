@@ -10,7 +10,7 @@ typedef class QFlags<QTreeWidgetItemIterator::IteratorFlag>QTreeWidgetItemIterat
 
 class QTreeWidgetItemIterator;
 
-enum _ZN23QTreeWidgetItemIterator12IteratorFlagE	
+enum QTreeWidgetItemIterator::IteratorFlag	
 {
 All = 0,	
 Hidden = 1,	

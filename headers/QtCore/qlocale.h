@@ -7,7 +7,7 @@ class QLocale;
 
 class QLocale;
 
-enum _ZN7QLocale8LanguageE	
+enum QLocale::Language	
 {
 C = 1,	
 Abkhazian = 2,	
@@ -158,7 +158,7 @@ LastLanguage = 145
 }
 ;
 
-enum _ZN7QLocale7CountryE	
+enum QLocale::Country	
 {
 AnyCountry = 0,	
 Afghanistan = 1,	
@@ -406,7 +406,7 @@ LastCountry = 241
 }
 ;
 
-enum _ZN7QLocale10FormatTypeE	
+enum QLocale::FormatType	
 {
 LongFormat = 0,	
 ShortFormat = 1
@@ -416,8 +416,8 @@ ShortFormat = 1
 
 /* Function prototypes */
 
-extern QDataStream _ZlsR11QDataStreamRK7QLocale(const QLocale &);
-extern QDataStream _ZrsR11QDataStreamR7QLocale(QLocale &);
+extern QDataStream operator<<(QDataStream&, QLocale const&)(const QLocale &);
+extern QDataStream operator>>(QDataStream&, QLocale&)(QLocale &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

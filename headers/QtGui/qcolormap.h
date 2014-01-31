@@ -7,7 +7,7 @@ class QColormap;
 
 class QColormap;
 
-enum _ZN9QColormap4ModeE	
+enum QColormap::Mode	
 {
 Direct = 0,	
 Indexed = 1,	

@@ -25,7 +25,7 @@ typedef class QFlags<QStyleOptionToolButton::ToolButtonFeature>QStyleOptionToolB
 
 class QStyleOption;
 
-enum _ZN12QStyleOption10OptionTypeE	
+enum QStyleOption::OptionType	
 {
 SO_Default = 0,	
 SO_FocusRect = 1,	
@@ -63,7 +63,7 @@ class QStyleOptionFrame;
 
 class QStyleOptionFrameV2;
 
-enum _ZN19QStyleOptionFrameV212FrameFeatureE	
+enum QStyleOptionFrameV2::FrameFeature	
 {
 None = 0,	
 Flat = 1
@@ -78,7 +78,7 @@ class QStyleOptionTabBarBase;
 
 class QStyleOptionHeader;
 
-enum _ZN18QStyleOptionHeader15SectionPositionE	
+enum QStyleOptionHeader::SectionPosition	
 {
 Beginning = 0,	
 Middle = 1,	
@@ -87,7 +87,7 @@ OnlyOneSection = 3
 }
 ;
 
-enum _ZN18QStyleOptionHeader16SelectedPositionE	
+enum QStyleOptionHeader::SelectedPosition	
 {
 NotAdjacent = 0,	
 NextIsSelected = 1,	
@@ -96,7 +96,7 @@ NextAndPreviousAreSelected = 3
 }
 ;
 
-enum _ZN18QStyleOptionHeader13SortIndicatorE	
+enum QStyleOptionHeader::SortIndicator	
 {
 None = 0,	
 SortUp = 1,	
@@ -106,7 +106,7 @@ SortDown = 2
 
 class QStyleOptionButton;
 
-enum _ZN18QStyleOptionButton13ButtonFeatureE	
+enum QStyleOptionButton::ButtonFeature	
 {
 None = 0,	
 Flat = 1,	
@@ -120,7 +120,7 @@ class QFlags<QStyleOptionButton::ButtonFeature>;
 
 class QStyleOptionTab;
 
-enum _ZN15QStyleOptionTab11TabPositionE	
+enum QStyleOptionTab::TabPosition	
 {
 Beginning = 0,	
 Middle = 1,	
@@ -129,7 +129,7 @@ OnlyOneTab = 3
 }
 ;
 
-enum _ZN15QStyleOptionTab16SelectedPositionE	
+enum QStyleOptionTab::SelectedPosition	
 {
 NotAdjacent = 0,	
 NextIsSelected = 1,	
@@ -137,7 +137,7 @@ PreviousIsSelected = 2
 }
 ;
 
-enum _ZN15QStyleOptionTab12CornerWidgetE	
+enum QStyleOptionTab::CornerWidget	
 {
 NoCornerWidgets = 0,	
 LeftCornerWidget = 1,	
@@ -151,7 +151,7 @@ class QStyleOptionTabV2;
 
 class QStyleOptionToolBar;
 
-enum _ZN19QStyleOptionToolBar15ToolBarPositionE	
+enum QStyleOptionToolBar::ToolBarPosition	
 {
 Beginning = 0,	
 Middle = 1,	
@@ -160,7 +160,7 @@ OnlyOne = 3
 }
 ;
 
-enum _ZN19QStyleOptionToolBar14ToolBarFeatureE	
+enum QStyleOptionToolBar::ToolBarFeature	
 {
 None = 0,	
 Movable = 1
@@ -175,7 +175,7 @@ class QStyleOptionProgressBarV2;
 
 class QStyleOptionMenuItem;
 
-enum _ZN20QStyleOptionMenuItem12MenuItemTypeE	
+enum QStyleOptionMenuItem::MenuItemType	
 {
 Normal = 0,	
 DefaultItem = 1,	
@@ -188,7 +188,7 @@ EmptyArea = 7
 }
 ;
 
-enum _ZN20QStyleOptionMenuItem9CheckTypeE	
+enum QStyleOptionMenuItem::CheckType	
 {
 NotCheckable = 0,	
 Exclusive = 1,	
@@ -198,7 +198,7 @@ NonExclusive = 2
 
 class QStyleOptionQ3ListViewItem;
 
-enum _ZN26QStyleOptionQ3ListViewItem21Q3ListViewItemFeatureE	
+enum QStyleOptionQ3ListViewItem::Q3ListViewItemFeature	
 {
 None = 0,	
 Expandable = 1,	
@@ -216,7 +216,7 @@ class QStyleOptionDockWidget;
 
 class QStyleOptionViewItem;
 
-enum _ZN20QStyleOptionViewItem8PositionE	
+enum QStyleOptionViewItem::Position	
 {
 Left = 0,	
 Right = 1,	
@@ -239,7 +239,7 @@ class QStyleOptionQ3ListView;
 
 class QStyleOptionToolButton;
 
-enum _ZN22QStyleOptionToolButton17ToolButtonFeatureE	
+enum QStyleOptionToolButton::ToolButtonFeature	
 {
 None = 0,	
 Arrow = 1,	
@@ -258,7 +258,7 @@ class QStyleOptionGroupBox;
 
 class QStyleHintReturn;
 
-enum _ZN16QStyleHintReturn14HintReturnTypeE	
+enum QStyleHintReturn::HintReturnType	
 {
 SH_Default = 61440,	
 SH_Mask = 61441

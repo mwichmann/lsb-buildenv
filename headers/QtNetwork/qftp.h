@@ -7,7 +7,7 @@ class QFtp;
 
 class QFtp;
 
-enum _ZN4QFtp5StateE	
+enum QFtp::State	
 {
 Unconnected = 0,	
 HostLookup = 1,	
@@ -18,7 +18,7 @@ Closing = 5
 }
 ;
 
-enum _ZN4QFtp5ErrorE	
+enum QFtp::Error	
 {
 NoError = 0,	
 UnknownError = 1,	
@@ -28,7 +28,7 @@ NotConnected = 4
 }
 ;
 
-enum _ZN4QFtp7CommandE	
+enum QFtp::Command	
 {
 None = 0,	
 SetTransferMode = 1,	
@@ -48,14 +48,14 @@ RawCommand = 14
 }
 ;
 
-enum _ZN4QFtp12TransferModeE	
+enum QFtp::TransferMode	
 {
 Active = 0,	
 Passive = 1
 }
 ;
 
-enum _ZN4QFtp12TransferTypeE	
+enum QFtp::TransferType	
 {
 Binary = 0,	
 Ascii = 1

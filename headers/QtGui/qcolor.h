@@ -7,7 +7,7 @@ class QColor;
 
 class QColor;
 
-enum _ZN6QColor4SpecE	
+enum QColor::Spec	
 {
 Invalid = 0,	
 Rgb = 1,	
@@ -19,9 +19,9 @@ Cmyk = 3
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK6QColor(const QColor &);
-extern QDataStream _ZlsR11QDataStreamRK6QColor(QDataStream &, const QColor &);
-extern QDataStream _ZrsR11QDataStreamR6QColor(QDataStream &, QColor &);
+extern QDebug operator<<(QDebug, QColor const&)(const QColor &);
+extern QDataStream operator<<(QDataStream&, QColor const&)(QDataStream &, const QColor &);
+extern QDataStream operator>>(QDataStream&, QColor&)(QDataStream &, QColor &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

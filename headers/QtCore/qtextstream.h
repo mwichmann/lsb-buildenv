@@ -22,7 +22,7 @@ typedef class QTextStreamQTS
 
 class QTextStream;
 
-enum _ZN11QTextStream18RealNumberNotationE	
+enum QTextStream::RealNumberNotation	
 {
 SmartNotation = 0,	
 FixedNotation = 1,	
@@ -30,7 +30,7 @@ ScientificNotation = 2
 }
 ;
 
-enum _ZN11QTextStream14FieldAlignmentE	
+enum QTextStream::FieldAlignment	
 {
 AlignLeft = 0,	
 AlignRight = 1,	
@@ -39,7 +39,7 @@ AlignAccountingStyle = 3
 }
 ;
 
-enum _ZN11QTextStream6StatusE	
+enum QTextStream::Status	
 {
 Ok = 0,	
 ReadPastEnd = 1,	
@@ -47,7 +47,7 @@ ReadCorruptData = 2
 }
 ;
 
-enum _ZN11QTextStream10NumberFlagE	
+enum QTextStream::NumberFlag	
 {
 ShowBase = 1,	
 ForcePoint = 2,	
@@ -59,7 +59,7 @@ UppercaseDigits = 16
 
 class QFlags<QTextStream::NumberFlag>;
 
-enum _ZN11QTextStream8EncodingE	
+enum QTextStream::Encoding	
 {
 Locale = 0,	
 Latin1 = 1,	
@@ -80,30 +80,30 @@ class QTextOStream;
 
 /* Function prototypes */
 
-extern QTextStream _Z10forcepointR11QTextStream(QTextStream &);
-extern QTextStream _Z10noshowbaseR11QTextStream(QTextStream &);
-extern QTextStream _Z10scientificR11QTextStream(QTextStream &);
-extern QTextStream _Z11noforcesignR11QTextStream(QTextStream &);
-extern QTextStream _Z12noforcepointR11QTextStream(QTextStream &);
-extern QTextStream _Z13lowercasebaseR11QTextStream(QTextStream &);
-extern QTextStream _Z13uppercasebaseR11QTextStream(QTextStream &);
-extern QTextStream _Z15lowercasedigitsR11QTextStream(QTextStream &);
-extern QTextStream _Z15uppercasedigitsR11QTextStream(QTextStream &);
-extern QTextStream _Z2wsR11QTextStream(QTextStream &);
-extern QTextStream _Z3binR11QTextStream(QTextStream &);
-extern QTextStream _Z3bomR11QTextStream(QTextStream &);
-extern QTextStream _Z3decR11QTextStream(QTextStream &);
-extern QTextStream _Z3hexR11QTextStream(QTextStream &);
-extern QTextStream _Z3octR11QTextStream(QTextStream &);
-extern QTextStream _Z4endlR11QTextStream(QTextStream &);
-extern QTextStream _Z4leftR11QTextStream(QTextStream &);
-extern QTextStream _Z5fixedR11QTextStream(QTextStream &);
-extern QTextStream _Z5flushR11QTextStream(QTextStream &);
-extern QTextStream _Z5resetR11QTextStream(QTextStream &);
-extern QTextStream _Z5rightR11QTextStream(QTextStream &);
-extern QTextStream _Z6centerR11QTextStream(QTextStream &);
-extern QTextStream _Z8showbaseR11QTextStream(QTextStream &);
-extern QTextStream _Z9forcesignR11QTextStream(QTextStream &);
+extern QTextStream forcepoint(QTextStream&)(QTextStream &);
+extern QTextStream noshowbase(QTextStream&)(QTextStream &);
+extern QTextStream scientific(QTextStream&)(QTextStream &);
+extern QTextStream noforcesign(QTextStream&)(QTextStream &);
+extern QTextStream noforcepoint(QTextStream&)(QTextStream &);
+extern QTextStream lowercasebase(QTextStream&)(QTextStream &);
+extern QTextStream uppercasebase(QTextStream&)(QTextStream &);
+extern QTextStream lowercasedigits(QTextStream&)(QTextStream &);
+extern QTextStream uppercasedigits(QTextStream&)(QTextStream &);
+extern QTextStream ws(QTextStream&)(QTextStream &);
+extern QTextStream bin(QTextStream&)(QTextStream &);
+extern QTextStream bom(QTextStream&)(QTextStream &);
+extern QTextStream dec(QTextStream&)(QTextStream &);
+extern QTextStream hex(QTextStream&)(QTextStream &);
+extern QTextStream oct(QTextStream&)(QTextStream &);
+extern QTextStream endl(QTextStream&)(QTextStream &);
+extern QTextStream left(QTextStream&)(QTextStream &);
+extern QTextStream fixed(QTextStream&)(QTextStream &);
+extern QTextStream flush(QTextStream&)(QTextStream &);
+extern QTextStream reset(QTextStream&)(QTextStream &);
+extern QTextStream right(QTextStream&)(QTextStream &);
+extern QTextStream center(QTextStream&)(QTextStream &);
+extern QTextStream showbase(QTextStream&)(QTextStream &);
+extern QTextStream forcesign(QTextStream&)(QTextStream &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

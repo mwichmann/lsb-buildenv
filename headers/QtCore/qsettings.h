@@ -16,7 +16,7 @@ typedef bool	QSettings::WriteFunc
 
 class QSettings;
 
-enum _ZN9QSettings6StatusE	
+enum QSettings::Status	
 {
 NoError = 0,	
 AccessError = 1,	
@@ -24,7 +24,7 @@ FormatError = 2
 }
 ;
 
-enum _ZN9QSettings6FormatE	
+enum QSettings::Format	
 {
 NativeFormat = 0,	
 IniFormat = 1,	
@@ -48,7 +48,7 @@ CustomFormat16 = 32
 }
 ;
 
-enum _ZN9QSettings5ScopeE	
+enum QSettings::Scope	
 {
 UserScope = 0,	
 User = 0,	
@@ -57,7 +57,7 @@ Global = 1
 }
 ;
 
-enum _ZN9QSettings6SystemE	
+enum QSettings::System	
 {
 Unix = 0,	
 Windows = 1,	

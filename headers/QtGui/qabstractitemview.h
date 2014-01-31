@@ -10,7 +10,7 @@ typedef class QFlags<QAbstractItemView::EditTrigger>QAbstractItemView::EditTrigg
 
 class QAbstractItemView;
 
-enum _ZN17QAbstractItemView13SelectionModeE	
+enum QAbstractItemView::SelectionMode	
 {
 NoSelection = 0,	
 SingleSelection = 1,	
@@ -20,7 +20,7 @@ ContiguousSelection = 4
 }
 ;
 
-enum _ZN17QAbstractItemView17SelectionBehaviorE	
+enum QAbstractItemView::SelectionBehavior	
 {
 SelectItems = 0,	
 SelectRows = 1,	
@@ -28,7 +28,7 @@ SelectColumns = 2
 }
 ;
 
-enum _ZN17QAbstractItemView10ScrollHintE	
+enum QAbstractItemView::ScrollHint	
 {
 EnsureVisible = 0,	
 PositionAtTop = 1,	
@@ -36,7 +36,7 @@ PositionAtBottom = 2
 }
 ;
 
-enum _ZN17QAbstractItemView11EditTriggerE	
+enum QAbstractItemView::EditTrigger	
 {
 NoEditTriggers = 0,	
 CurrentChanged = 1,	
@@ -50,7 +50,7 @@ AllEditTriggers = 31
 
 class QFlags<QAbstractItemView::EditTrigger>;
 
-enum _ZN17QAbstractItemView12CursorActionE	
+enum QAbstractItemView::CursorAction	
 {
 MoveUp = 0,	
 MoveDown = 1,	
@@ -65,7 +65,7 @@ MovePrevious = 9
 }
 ;
 
-enum _ZN17QAbstractItemView5StateE	
+enum QAbstractItemView::State	
 {
 NoState = 0,	
 DraggingState = 1,	
@@ -76,7 +76,7 @@ CollapsingState = 5
 }
 ;
 
-enum _ZN17QAbstractItemView21DropIndicatorPositionE	
+enum QAbstractItemView::DropIndicatorPosition	
 {
 OnItem = 0,	
 AboveItem = 1,	

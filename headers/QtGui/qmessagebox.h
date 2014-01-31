@@ -7,7 +7,7 @@ class QMessageBox;
 
 class QMessageBox;
 
-enum _ZN11QMessageBox4IconE	
+enum QMessageBox::Icon	
 {
 NoIcon = 0,	
 Information = 1,	
@@ -17,7 +17,7 @@ Question = 4
 }
 ;
 
-enum _ZN11QMessageBox6ButtonE	
+enum QMessageBox::Button	
 {
 NoButton = 0,	
 Ok = 1,	

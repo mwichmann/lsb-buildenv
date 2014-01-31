@@ -15,7 +15,7 @@ class QWheelEvent;
 
 class QTabletEvent;
 
-enum _ZN12QTabletEvent12TabletDeviceE	
+enum QTabletEvent::TabletDevice	
 {
 NoDevice = 0,	
 Puck = 1,	
@@ -27,7 +27,7 @@ RotationStylus = 6
 }
 ;
 
-enum _ZN12QTabletEvent11PointerTypeE	
+enum QTabletEvent::PointerType	
 {
 UnknownPointer = 0,	
 Pen = 1,	
@@ -40,7 +40,7 @@ class QKeyEvent;
 
 class QFocusEvent;
 
-enum _ZN11QFocusEvent6ReasonE	
+enum QFocusEvent::Reason	
 {
 Mouse = 0,	
 Tab = 1,	
@@ -69,7 +69,7 @@ class QHideEvent;
 
 class QContextMenuEvent;
 
-enum _ZN17QContextMenuEvent6ReasonE	
+enum QContextMenuEvent::Reason	
 {
 Mouse = 0,	
 Keyboard = 1,	
@@ -79,7 +79,7 @@ Other = 2
 
 class QInputMethodEvent;
 
-enum _ZN17QInputMethodEvent13AttributeTypeE	
+enum QInputMethodEvent::AttributeType	
 {
 TextFormat = 0,	
 Cursor = 1,	
@@ -92,7 +92,7 @@ class QInputMethodEvent::Attribute;
 
 class QDropEvent;
 
-enum _ZN10QDropEvent6ActionE	
+enum QDropEvent::Action	
 {
 Copy = 0,	
 Link = 1,	
@@ -133,7 +133,7 @@ class QMenubarUpdatedEvent;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugPK6QEvent(_Z6QDebug, const QEvent *);
+extern QDebug operator<<(QDebug, QEvent const*)(_Z6QDebug, const QEvent *);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

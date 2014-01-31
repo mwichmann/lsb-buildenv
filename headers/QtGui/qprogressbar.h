@@ -7,7 +7,7 @@ class QProgressBar;
 
 class QProgressBar;
 
-enum _ZN12QProgressBar9DirectionE	
+enum QProgressBar::Direction	
 {
 TopToBottom = 0,	
 BottomToTop = 1

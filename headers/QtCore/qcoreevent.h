@@ -7,7 +7,7 @@ class QCustomEvent;
 
 class QEvent;
 
-enum _ZN6QEvent4TypeE	
+enum QEvent::Type	
 {
 None = 0,	
 Timer = 1,	

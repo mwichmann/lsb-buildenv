@@ -9,7 +9,7 @@ class QLayoutIterator;
 
 class QLayout;
 
-enum _ZN7QLayout14SizeConstraintE	
+enum QLayout::SizeConstraint	
 {
 SetDefaultConstraint = 0,	
 Auto = 0,	

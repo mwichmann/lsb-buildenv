@@ -7,7 +7,7 @@ class QAbstractSlider;
 
 class QAbstractSlider;
 
-enum _ZN15QAbstractSlider12SliderActionE	
+enum QAbstractSlider::SliderAction	
 {
 SliderNoAction = 0,	
 SliderSingleStepAdd = 1,	
@@ -20,7 +20,7 @@ SliderMove = 7
 }
 ;
 
-enum _ZN15QAbstractSlider12SliderChangeE	
+enum QAbstractSlider::SliderChange	
 {
 SliderRangeChange = 0,	
 SliderOrientationChange = 1,	

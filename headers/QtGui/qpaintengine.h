@@ -16,7 +16,7 @@ typedef class QFlags<QPaintEngine::DirtyFlag>QPaintEngine::DirtyFlags
 
 class QTextItem;
 
-enum _ZN9QTextItem10RenderFlagE	
+enum QTextItem::RenderFlag	
 {
 Dummy = -1,	
 RightToLeft = 1,	
@@ -30,7 +30,7 @@ class QFlags<QTextItem::RenderFlag>;
 
 class QPaintEngine;
 
-enum _ZN12QPaintEngine18PaintEngineFeatureE	
+enum QPaintEngine::PaintEngineFeature	
 {
 AllFeatures = -1,	
 PrimitiveTransform = 1,	
@@ -51,7 +51,7 @@ PaintOutsidePaintEvent = 536870912
 
 class QFlags<QPaintEngine::PaintEngineFeature>;
 
-enum _ZN12QPaintEngine9DirtyFlagE	
+enum QPaintEngine::DirtyFlag	
 {
 DirtyPen = 1,	
 DirtyBrush = 2,	
@@ -71,7 +71,7 @@ AllDirty = 65535
 
 class QFlags<QPaintEngine::DirtyFlag>;
 
-enum _ZN12QPaintEngine15PolygonDrawModeE	
+enum QPaintEngine::PolygonDrawMode	
 {
 OddEvenMode = 0,	
 WindingMode = 1,	
@@ -80,7 +80,7 @@ PolylineMode = 3
 }
 ;
 
-enum _ZN12QPaintEngine4TypeE	
+enum QPaintEngine::Type	
 {
 X11 = 0,	
 Windows = 1,	

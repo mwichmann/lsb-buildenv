@@ -1,7 +1,7 @@
 
 class QItemSelectionRange;
 class QItemSelectionModel;
-enum _ZN19QItemSelectionModel13SelectionFlagE {
+enum QItemSelectionModel::SelectionFlag {
     NoUpdate = 0,
     Clear = 1,
     Select = 2,

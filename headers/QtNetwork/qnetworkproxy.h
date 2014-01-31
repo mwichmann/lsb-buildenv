@@ -7,7 +7,7 @@ class QNetworkProxy;
 
 class QNetworkProxy;
 
-enum _ZN13QNetworkProxy9ProxyTypeE	
+enum QNetworkProxy::ProxyType	
 {
 DefaultProxy = 0,	
 Socks5Proxy = 1,	

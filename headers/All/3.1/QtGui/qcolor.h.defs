@@ -1,6 +1,6 @@
 
 class QColor;
-enum _ZN6QColor4SpecE {
+enum QColor::Spec {
     Invalid = 0,
     Rgb = 1,
     Hsv = 2,

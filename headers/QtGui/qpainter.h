@@ -10,7 +10,7 @@ typedef class QFlags<QPainter::RenderHint>QPainter::RenderHints
 
 class QPainter;
 
-enum _ZN8QPainter10RenderHintE	
+enum QPainter::RenderHint	
 {
 Antialiasing = 1,	
 TextAntialiasing = 2,	
@@ -20,7 +20,7 @@ SmoothPixmapTransform = 4
 
 class QFlags<QPainter::RenderHint>;
 
-enum _ZN8QPainter15CompositionModeE	
+enum QPainter::CompositionMode	
 {
 CompositionMode_SourceOver = 0,	
 CompositionMode_DestinationOver = 1,	

@@ -7,7 +7,7 @@ class QImageReader;
 
 class QImageReader;
 
-enum _ZN12QImageReader16ImageReaderErrorE	
+enum QImageReader::ImageReaderError	
 {
 UnknownError = 0,	
 FileNotFoundError = 1,	

@@ -10,7 +10,7 @@ typedef class QFlags<QImageIOPlugin::Capability>QImageIOPlugin::Capabilities
 
 class QImageIOHandler;
 
-enum _ZN15QImageIOHandler11ImageOptionE	
+enum QImageIOHandler::ImageOption	
 {
 Size = 0,	
 ClipRect = 1,	
@@ -33,7 +33,7 @@ struct QImageIOHandlerFactoryInterface	;
 
 class QImageIOPlugin;
 
-enum _ZN14QImageIOPlugin10CapabilityE	
+enum QImageIOPlugin::Capability	
 {
 CanRead = 1,	
 CanWrite = 2,	

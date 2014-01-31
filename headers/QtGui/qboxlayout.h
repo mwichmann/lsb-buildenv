@@ -7,7 +7,7 @@ class QBoxLayout;
 
 class QBoxLayout;
 
-enum _ZN10QBoxLayout9DirectionE	
+enum QBoxLayout::Direction	
 {
 LeftToRight = 0,	
 RightToLeft = 1,	

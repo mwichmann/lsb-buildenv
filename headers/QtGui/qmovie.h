@@ -7,7 +7,7 @@ class QMovie;
 
 class QMovie;
 
-enum _ZN6QMovie10MovieStateE	
+enum QMovie::MovieState	
 {
 NotRunning = 0,	
 Paused = 1,	
@@ -15,7 +15,7 @@ Running = 2
 }
 ;
 
-enum _ZN6QMovie9CacheModeE	
+enum QMovie::CacheMode	
 {
 CacheNone = 0,	
 CacheAll = 1

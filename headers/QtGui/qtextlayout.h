@@ -11,7 +11,7 @@ class QTextLayout;
 
 struct QTextLayout::FormatRange	;
 
-enum _ZN11QTextLayout10CursorModeE	
+enum QTextLayout::CursorMode	
 {
 SkipCharacters = 0,	
 SkipWords = 1
@@ -20,14 +20,14 @@ SkipWords = 1
 
 class QTextLine;
 
-enum _ZN9QTextLine4EdgeE	
+enum QTextLine::Edge	
 {
 Leading = 0,	
 Trailing = 1
 }
 ;
 
-enum _ZN9QTextLine14CursorPositionE	
+enum QTextLine::CursorPosition	
 {
 CursorBetweenCharacters = 0,	
 CursorOnCharacter = 1

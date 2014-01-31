@@ -7,7 +7,7 @@ class QTabBar;
 
 class QTabBar;
 
-enum _ZN7QTabBar5ShapeE	
+enum QTabBar::Shape	
 {
 RoundedNorth = 0,	
 RoundedAbove = 0,	

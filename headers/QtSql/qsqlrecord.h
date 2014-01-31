@@ -10,7 +10,7 @@ class QSqlRecord;
 
 /* Function prototypes */
 
-extern QDebug _Zls6QDebugRK10QSqlRecord(const QSqlRecord &);
+extern QDebug operator<<(QDebug, QSqlRecord const&)(const QSqlRecord &);
 // *INDENT-ON*
 #endif				/* protection */
 #endif				/* LSB version */

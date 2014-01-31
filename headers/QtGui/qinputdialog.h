@@ -7,7 +7,7 @@ class QInputDialog;
 
 class QInputDialog;
 
-enum _ZN12QInputDialog4TypeE	
+enum QInputDialog::Type	
 {
 LineEdit = 0,	
 SpinBox = 1,	

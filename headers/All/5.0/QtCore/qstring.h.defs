@@ -1,6 +1,6 @@
 
 class QString;
-enum _ZN7QString11SectionFlagE {
+enum QString::SectionFlag {
     SectionDefault = 0,
     SectionSkipEmpty = 1,
     SectionIncludeLeadingSep = 2,
@@ -9,11 +9,11 @@ enum _ZN7QString11SectionFlagE {
 };
 class QFlags < QString::SectionFlag >;
 typedef class QFlags < QString::SectionFlag > QString::SectionFlags;
-enum _ZN7QString13SplitBehaviorE {
+enum QString::SplitBehavior {
     KeepEmptyParts = 0,
     SkipEmptyParts = 1
 };
-enum _ZN7QString17NormalizationFormE {
+enum QString::NormalizationForm {
     NormalizationForm_D = 0,
     NormalizationForm_C = 1,
     NormalizationForm_KD = 2,

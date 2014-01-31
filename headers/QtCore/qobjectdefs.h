@@ -11,7 +11,7 @@ class QGenericReturnArgument;
 
 struct QMetaObject	;
 
-enum _ZN11QMetaObject4CallE	
+enum QMetaObject::Call	
 {
 InvokeMetaMethod = 0,	
 ReadProperty = 1,	

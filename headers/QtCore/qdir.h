@@ -19,7 +19,7 @@ typedef QDir::SortFlags	QDir::SortSpec
 
 class QDir;
 
-enum _ZN4QDir6FilterE	
+enum QDir::Filter	
 {
 DefaultFilter = -1,	
 NoFilter = -1,	
@@ -47,7 +47,7 @@ NoDotAndDotDot = 4096
 
 class QFlags<QDir::Filter>;
 
-enum _ZN4QDir8SortFlagE	
+enum QDir::SortFlag	
 {
 DefaultSort = -1,	
 NoSort = -1,	
