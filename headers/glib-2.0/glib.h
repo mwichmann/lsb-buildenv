@@ -2724,9 +2724,17 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void g_allocator_free(GAllocator * allocator);
+    extern void g_allocator_free(GAllocator * allocator)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern GAllocator *g_allocator_new(const gchar * name,
-				       guint n_preallocs);
+				       guint n_preallocs)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern GArray *g_array_append_vals(GArray * array, gconstpointer data,
 				       guint len);
     extern gchar *g_array_free(GArray * array, gboolean free_segment);
@@ -2767,7 +2775,11 @@ extern "C" {
     extern void g_assert_warning(const char *log_domain, const char *file,
 				 const int line,
 				 const char *pretty_function,
-				 const char *expression);
+				 const char *expression)
+#if __LSB_VERSION__ >= 50
+     LSB_DECL_DEPRECATED
+#endif				/* __LSB_VERSION__ >= 50 */
+    ;
     extern gint g_async_queue_length(GAsyncQueue * queue);
     extern gint g_async_queue_length_unlocked(GAsyncQueue * queue);
     extern void g_async_queue_lock(GAsyncQueue * queue);
