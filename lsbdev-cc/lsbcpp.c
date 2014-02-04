@@ -58,26 +58,10 @@ char *cppname = "cpp";
 char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
 
-/* 'Normal' version name */
-char *lsbcc_lsbversion = DEFAULT_LSB_VERSION;
-/* Version name with dot removed */
-char *lsbversion_option;
-
-/*
- * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
- * that corresponds to the bits defined below.
- */
-#define DEBUG_ENV_OVERRIDES	0x0001
-#define DEBUG_ARGUMENTS		0x0002
-#define DEBUG_RECOGNIZED_ARGS	0x0004
-#define DEBUG_UNRECOGNIZED_ARGS	0x0008
-#define DEBUG_INCLUDE_CHANGES	0x0010
-#define DEBUG_LIB_CHANGES	0x0020
-#define DEBUG_MODIFIED_ARGS	0x0040
-
-#define WARN_LIB_CHANGES	0x0001
-
-int lsbcc_debug = 0;	/* Default to none. autocon likes things to be quiet. */
+char *lsbcc_lsbversion = DEFAULT_LSB_VERSION; /* 'Normal' version name */
+char *lsbversion_option;		/* Version name with dot removed */
+/* Debugging interface: Set LSBCC_DEBUG to a bitmask (see lsbcc_argv.h) */
+int lsbcc_debug = 0;	/* Default to none. autoconf likes things quiet. */
 int lsbcc_warn = 0;
 int lsbcc_buildingshared = 0;
 
@@ -180,8 +164,8 @@ int main(int argc, char *argv[])
     /*
      * Initialize various argv groups.
      */
-    cppargs = argvinit();
-    options = argvinit();
+    cppargs = argvinit("cppargs");
+    options = argvinit("options");
 
     /*
      * Set up the paths we will need

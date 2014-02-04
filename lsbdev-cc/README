@@ -1,0 +1,16 @@
+This is the compiler front-end tool for the LSB SDK.
+
+It munches the command line to produce something suitable for passing to
+the back-end compiler, normally gcc, although there's at least nominal
+support for Intel's icc compiler.
+
+This tool is only interesting in the presence of LSB SDK headers and
+build-time libraries ("stub libraries"). While the normal situation is
+to put LSB SDK materials in /opt/lsb, the default in this directory
+(set in the Makefile) is to build as if files were going in /usr/local,
+normal for most pieces of add-on software. If experimenting with lsbcc
+to debug an environment that's already installed, the usual path options
+can be used, for example:
+
+    INSTALL_ROOT=/opt/lsb make
+

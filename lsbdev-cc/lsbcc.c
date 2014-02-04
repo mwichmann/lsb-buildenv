@@ -75,10 +75,9 @@
 #include "elf_utils.h"
 
 /*
- * These are the catagories of options that we are going to be grouping
+ * These are the categories of options that we are going to be grouping
  * together.
  */
-
 struct argvgroup *proginterp;
 struct argvgroup *target;
 struct argvgroup *options;
@@ -94,7 +93,6 @@ struct argvgroup *gccstartargs;
  * Find out if we are being used for C++. If so, we need to do a couple
  * of extra things.
  */
-
 #define LSBCC		0
 #define LSBCPLUS	1
 
@@ -113,35 +111,18 @@ char *ccname = "cc";
 char incpath[PATH_MAX];
 char cxxincpath[PATH_MAX];
 char libpath[PATH_MAX];
-/* 'Normal' version name */
-char *lsbcc_lsbversion = DEFAULT_LSB_VERSION;
-/* Version name with dot removed */
-char *lsbversion_option;
+char *lsbcc_lsbversion = DEFAULT_LSB_VERSION; /* 'Normal' version name */
+char *lsbversion_option;		/* Version name with dot removed */
 /* Index in the lsb_libs array corresponding to the target LSB version */
 int lsbversion_index = 0;
-
-/*
- * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
- * that corresponds to the bits defined below.
- */
-
-#define DEBUG_ENV_OVERRIDES	0x0001
-#define DEBUG_ARGUMENTS		0x0002
-#define DEBUG_RECOGNIZED_ARGS	0x0004
-#define DEBUG_UNRECOGNIZED_ARGS	0x0008
-#define DEBUG_INCLUDE_CHANGES	0x0010
-#define DEBUG_LIB_CHANGES	0x0020
-#define DEBUG_MODIFIED_ARGS	0x0040
-
-#define WARN_LIB_CHANGES	0x0001
-
-int lsbcc_debug = 0;		/* off by default, autoconf fails on msg to stderr */
-int cpp_only = 0;		/* another flag to help autoconf */
+/* Debugging interface: Set LSBCC_DEBUG to a bitmask (see lsbcc_argv.h) */
+int lsbcc_debug = 0;	/* Default to none. autoconf likes things quiet. */
+int cpp_only = 0;	/* another flag to help autoconf */
 int lsbcc_warn = 0;
 int lsbcc_buildingshared = 0;
 
 /*
- * State variable to determine if we need to add -Wl,-Bdynamic before an LSB lib.
+ * State variable to determine if we need to add -Wl,-Bdynamic before an LSB lib
  */
 int b_dynamic = 1;
 
@@ -153,7 +134,6 @@ int optind_old;
 /*
  * Lookup table for extra include paths for each LSB version.
  */
-
 char *lsb30_version_include_paths[] = { NULL };
 char *lsb31_version_include_paths[] = { BASE_PATH "/include/libpng12", NULL };
 char *lsb32_version_include_paths[] = { BASE_PATH "/include/libpng12", NULL };
@@ -187,13 +167,15 @@ int process_opt_l(char *val)
     for (i = 0; i < lsblibs->numargv; i++) {
 	if (strcmp(lsblibs->argv[i], val) == 0) {
 	    if (!b_dynamic) {
+		if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		    fprintf(stderr, "Appending -Wl,-Bdynamic\n");
 		argvaddstring(userlibs, "-Wl,-Bdynamic");
 		b_dynamic = 1;
 	    }
 	    argvaddstring(userlibs, strdup(buf));
 
 	    /* If it's pthread, add pthread_nonshared. */
-	    if (strcmp("pthread", val) == 0) {
+	    if (strcmp(val, "pthread") == 0) {
 		if (lsbcc_debug & DEBUG_LIB_CHANGES)
 		    fprintf(stderr, "Appending -lpthread_nonshared\n");
 		argvaddstring(userlibs, "-lpthread_nonshared");
@@ -211,6 +193,8 @@ int process_opt_l(char *val)
 	fprintf(stderr, "Warning: forcing %s to be linked statically\n", val);
 
     if (b_dynamic) {
+	if (lsbcc_debug & DEBUG_LIB_CHANGES)
+	    fprintf(stderr, "Appending -Wl,-Bstatic\n");
 	argvaddstring(userlibs, "-Wl,-Bstatic");
 	b_dynamic = 0;
     }
@@ -1007,18 +991,18 @@ int main(int argc, char *argv[])
     struct stat st_buf;
 
     /*
-     * Initialize various argv groups.
+     * Initialize the argv groups.
      */
-    gccstartargs = argvinit();
-    lsblibs = argvinit();
-    proginterp = argvinit();
-    target = argvinit();
-    options = argvinit();
-    incpaths = argvinit();
-    libpaths = argvinit();
-    userlibs = argvinit();
-    syslibs = argvinit();
-    gccargs = argvinit();
+    gccstartargs = argvinit("gccstartargs");
+    lsblibs = argvinit("lsblibs");
+    proginterp = argvinit("proginterp");
+    target = argvinit("target");
+    options = argvinit("options");
+    incpaths = argvinit("incpaths");
+    libpaths = argvinit("libpaths");
+    userlibs = argvinit("userlibs");
+    syslibs = argvinit("syslibs");
+    gccargs = argvinit("gccargs");
 
     /* Determine if we are being called for C or C++ */
     if (strcmp(basename(argv[0]), "lsbc++") == 0) {
@@ -1306,8 +1290,7 @@ int main(int argc, char *argv[])
 	case 0:
 	    found_gcc_arg = 1;
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS) {
-		fprintf(stderr, "option0: -%s",
-			long_options[option_index].name);
+		fprintf(stderr, "option0: -%s",long_options[option_index].name);
 		if (optarg) {
 		    fprintf(stderr, " with arg %s", optarg);
 		}
@@ -1336,8 +1319,7 @@ int main(int argc, char *argv[])
 	    /* special case: file fed to stdin */
 	    if (strcmp(optarg, "-") == 0) {
 		if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS) {
-		    fprintf(stderr, "option1: %s, process stdin\n",
-			    optarg);
+		    fprintf(stderr, "option1: %s, process stdin\n", optarg);
 		}
 		found_file = 1;
 	    }
@@ -1474,7 +1456,7 @@ int main(int argc, char *argv[])
 	case 'l':
 	    found_gcc_arg = 1;
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
-		fprintf(stderr, "option: - %s\n", optarg);
+		fprintf(stderr, "option: -l %s\n", optarg);
 	    found_l_opt = 1;
 	    process_opt_l(optarg);
 	    break;
@@ -1492,6 +1474,8 @@ int main(int argc, char *argv[])
 		 * and have to stay with these flags. stuff it onto the 
 		 * unrecognized list, although of course we did recognize this
 		 */
+		if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
+		    fprintf(stderr, "option: %s\n", argv[optind - 1]);
 		argvaddstring(options, argv[optind - 1]);
 		break;
 	    }
@@ -1661,6 +1645,9 @@ int main(int argc, char *argv[])
      * Set up per-LSB-version include paths.
      */
     for (i = 0; lsb_version_include_paths[lsbversion_index][i] != NULL; i++) {
+      if (lsbcc_debug & DEBUG_INCLUDE_CHANGES)
+        fprintf(stderr, "Prepending %s to system include path\n", 
+                        lsb_version_include_paths[lsbversion_index][i]);
       argvadd(incpaths, "I", lsb_version_include_paths[lsbversion_index][i]);
     }
 
@@ -1726,8 +1713,7 @@ int main(int argc, char *argv[])
 
     if (!no_link) {
 	if (lsbcc_debug & DEBUG_LIB_CHANGES) {
-	    fprintf(stderr, "Prepending %s to the linker path\n",
-		    gccbasedir);
+	    fprintf(stderr, "Prepending %s to the linker path\n", gccbasedir);
 	}
 	argvadd(syslibs, "L", gccbasedir);
 
@@ -1865,8 +1851,7 @@ int main(int argc, char *argv[])
 	 */
 	argvappend(gccargs, incpaths);
 	if (lsbcc_debug & DEBUG_INCLUDE_CHANGES)
-	    fprintf(stderr, "Prepending %s to system include path\n",
-		    incpath);
+	    fprintf(stderr, "Prepending %s to system include path\n", incpath);
 	argvadd(gccargs, "isystem", incpath);
 
 	if (lsbccmode == LSBCPLUS) {
@@ -1928,7 +1913,7 @@ int main(int argc, char *argv[])
 	if (auto_pthread) {
 	    if (lsbcc_debug & DEBUG_LIB_CHANGES) {
 		fprintf(stderr,
-			"Appending -lpthread -lpthread_nonshared to the library list\n");
+			"Appending -lpthread -lpthread_nonshared to the library list due to auto_pthread\n");
 	    }
 	    if (!b_dynamic && !force_static) {
 		argvaddstring(gccargs, "-Wl,-Bdynamic");

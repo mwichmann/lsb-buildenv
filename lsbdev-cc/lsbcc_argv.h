@@ -14,11 +14,12 @@ struct argvgroup {
     int numargv;
     int maxargv;
     char **argv;
+    char *groupname;	/* for debugging */
 };
 
 #define ARGVCHUNKSIZE	100
 
-struct argvgroup *argvinit(void);
+struct argvgroup *argvinit(const char *name);
 
 void argvreset(struct argvgroup *ag);
 
@@ -40,5 +41,21 @@ void argvdump(struct argvgroup *ag);
 
 void argvprint(struct argvgroup *ag);
 
-/* end lsbcc.h */
+/*
+ * Debugging interface: Set the environment variable LSBCC_DEBUG to a value
+ * that corresponds to the bits defined below.
+ * These flags are shared between lsbcc and lsbcpp so moved here
+ */
+#define DEBUG_ENV_OVERRIDES	0x0001
+#define DEBUG_ARGUMENTS		0x0002
+#define DEBUG_RECOGNIZED_ARGS	0x0004
+#define DEBUG_UNRECOGNIZED_ARGS	0x0008
+#define DEBUG_INCLUDE_CHANGES	0x0010
+#define DEBUG_LIB_CHANGES	0x0020
+#define DEBUG_MODIFIED_ARGS	0x0040
+#define DEBUG_LISTADDS		0x0080
+
+#define WARN_LIB_CHANGES	0x0001
+
+extern int lsbcc_debug;
 #endif

@@ -26,23 +26,22 @@
  * Create an abstract data type to maintain the options that are collected
  * into groups, and then put together to pass to gcc.
  */
-struct argvgroup *argvinit(void)
+struct argvgroup *argvinit(const char *name)
 {
     struct argvgroup *ag;
 
-    if ((ag =
-	 (struct argvgroup *) malloc(sizeof(struct argvgroup))) == NULL) {
+    if ((ag = (struct argvgroup *) malloc(sizeof(struct argvgroup))) == NULL) {
 	fprintf(stderr, "Unable to allocate memory for a new argvgroup\n");
 	exit(2);
     }
 
-    if ((ag->argv =
-	 (char **) malloc(sizeof(char *) * ARGVCHUNKSIZE)) == NULL) {
-	fprintf(stderr, "Unable to allocate memory for a argv items\n");
+    if ((ag->argv = (char **) malloc(sizeof(char *) * ARGVCHUNKSIZE)) == NULL) {
+	fprintf(stderr, "Unable to allocate memory for argv items\n");
 	exit(2);
     }
     ag->numargv = 0;
     ag->maxargv = ARGVCHUNKSIZE;
+    ag->groupname = strdup(name);
 
     return ag;
 }
@@ -69,6 +68,8 @@ void argvaddstring(struct argvgroup *ag, char *str)
 	}
     }
 
+    if (lsbcc_debug & DEBUG_LISTADDS)
+	fprintf(stderr, "%s += %s\n", ag->groupname, str);
     ag->argv[ag->numargv++] = str;
 }
 
@@ -90,9 +91,8 @@ void argvadd(struct argvgroup *ag, const char *opt, char *val)
     strcat(dashopt, opt);
     argvaddstring(ag, dashopt);
 
-    if (val) {
-	ag->argv[ag->numargv++] = val;
-    }
+    if (val)
+	argvaddstring(ag, val);
 }
 
 void argvappend(struct argvgroup *to, struct argvgroup *from)
