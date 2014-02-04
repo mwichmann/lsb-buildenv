@@ -681,7 +681,7 @@ struct option long_options[] = {
     {"aux-info", no_argument, NULL, 102},
     {"param", no_argument, NULL, 103},
     {"idirafter", no_argument, NULL, 104},
-    {"include", no_argument, NULL, 105},
+    /* {"include", no_argument, NULL, 105}, */ /* already listed above */
     {"Xpreprocessor", no_argument, NULL, 106},
     {"Xassembler", no_argument, NULL, 107},
     {"b", no_argument, NULL, 108},
