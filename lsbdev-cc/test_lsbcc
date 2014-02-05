@@ -7,6 +7,24 @@
 
 # Regression tests for lsbcc
 
+# files used:
+# WARNING: Do not set TSRC or the others to any existing (valuable) file
+# as those will be clobbered
+TSRC=test.c
+TPROG=test
+TOBJ=test.o
+TLDIR=./testlib
+TLIB=libtest.so
+TARCH=libtest.a
+
+trap 'cleanup' 0 1 2 3 13 15
+
+cleanup() 
+{
+    echo Cleaning up
+    rm -fr $TSRC $TPROG $TOBJ $TLDIR $TLIB
+}
+
 # Try executing lsbcc with no arguments
 # We expect it to return with error code 1
 printf "Running lsbcc with no arguments. Expect non-zero exit code... "
@@ -14,39 +32,87 @@ printf "Running lsbcc with no arguments. Expect non-zero exit code... "
 if [ $? -ne 1 ]; then
   echo "Unexpected result of lsbcc called with no arguments."
   exit 1
-else
-  echo "OK"
 fi
+echo "OK"
 
-# Try to compile a minimalistic program with lsbcc
-# WARNING: Do not set PROG to any existing (valuable) file
-PROG=test.c
-echo "int main() { return 0; }" >test.c
-printf "Compiling $PROG with lsbcc..."
-./lsbcc $PROG > /dev/null 2>&1
+# First try to compile a minimalistic program with lsbcc
+echo "int main() { return 0; }" > $TSRC
+printf "Compiling $TSRC to $TPROG with lsbcc..."
+./lsbcc $TSRC -o $TPROG > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-  echo "Failed to compile $PROG with lsbcc"
-  rm -f $PROG
+  echo "Failed to compile $TSRC with lsbcc"
   exit 1
-else
-  # Check that the journal file exists.
-  if [ \! -e "a.out" ]; then
-    echo "Output file not found."
-    rm -f $PROG
-    exit 1
-  fi
-
-  # Check that the journal file is complete (it has an end marker)
-  ./a.out
-  if [ $? -ne 0 ]; then
-    echo "Failed to execute a.out"
-    rm -f a.out $PROG
-    exit 1
-  else
-    rm -f a.out $PROG
-    echo OK
-  fi
 fi
+
+# Check that the journal file exists.
+if [ ! -e "$TPROG" ]; then
+  echo "Output file $TPROG not found."
+  exit 1
+fi
+
+# Check that the journal file is complete (it has an end marker)
+./$TPROG
+if [ $? -ne 0 ]; then
+  echo "Failed to execute $TPROG"
+  exit 1
+fi
+echo OK
+
+# now replace the source file - we do not want a main() for the rest
+echo "int test() { return 0; }" > $TSRC
+
+# first build the .o file
+# if the above worked, this will work, so don't print a message
+./lsbcc -c -fPIC -o $TOBJ $TSRC > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "Failed to compile $TSRC with lsbcc"
+  exit 1
+fi
+# Check that the object file exists.
+if [ \! -e $TOBJ ]; then
+  echo "object file $TOBJ not found."
+  exit 1
+fi
+
+# convert the object to an archive
+rm -fr $TLDIR
+mkdir -p $TLDIR
+ar -q $TLDIR/$TARCH $TOBJ > /dev/null 2>&1
+
+# 1. link against the .a by name
+printf "Compiling $TLIB from $TLDIR/$TARCH with lsbcc..."
+./lsbcc -o $TLIB --shared -Wl,--whole-archive $TLDIR/$TARCH -Wl,--no-whole-archive 
+#./lsbcc -o $TLIB --shared -Wl,--whole-archive $TLDIR/$TARCH -Wl,--no-whole-archive > /dev/null 2>&1
+# check the shared lib build did not fail
+if [ $? -ne 0 ]; then
+  echo "Failed to make $TLIB with lsbcc"
+  exit 1
+fi
+
+# Check that the shared lib file exists.
+if [ \! -e $TLIB ]; then
+  echo "shared library file $TLIB not found."
+  exit 1
+fi
+echo OK
+
+# 2. link against the .a by using -L, -l flags
+printf "Compiling $TLIB from -L$TLDIR -ltest with lsbcc..."
+./lsbcc -o $TLIB --shared -L$TLDIR -Wl,--whole-archive -ltest -Wl,--no-whole-archive 
+#./lsbcc -o $TLIB --shared -L$TLDIR -Wl,--whole-archive -ltest -Wl,--no-whole-archive > /dev/null 2>&1
+
+# check the shared lib build did not fail
+if [ $? -ne 0 ]; then
+  echo "Failed to make $TLIB with lsbcc"
+  exit 1
+fi
+
+# Check that the shared lib file exists.
+if [ \! -e $TLIB ]; then
+  echo "shared library file $TLIB not found."
+  exit 1
+fi
+echo OK
 
 echo 
 echo All tests succeeded
