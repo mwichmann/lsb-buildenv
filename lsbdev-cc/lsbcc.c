@@ -172,7 +172,7 @@ int process_opt_l(char *val)
 		argvaddstring(userlibs, "-Wl,-Bdynamic");
 		b_dynamic = 1;
 	    }
-	    argvaddstring(userlibs, strdup(buf));
+	    argvaddstring(userlibs, buf);
 
 	    /* If it's pthread, add pthread_nonshared. */
 	    if (strcmp(val, "pthread") == 0) {
@@ -198,7 +198,7 @@ int process_opt_l(char *val)
 	argvaddstring(userlibs, "-Wl,-Bstatic");
 	b_dynamic = 0;
     }
-    argvaddstring(userlibs, strdup(buf));
+    argvaddstring(userlibs, buf);
 
     return 0;
 }
@@ -922,18 +922,7 @@ void process_shared_lib_path(char *libarg)
 		    strdup((dirents[num_libs]->d_name) + strlen("lib"));
 		*(strstr(libstr, ".so")) = '\0';
 		argvaddstring(lsblibs, libstr);
-		/* 
-		 * Coverity will flag this as a leak, because we don't
-		 * free the strdup above; this is true, but it's not
-		 * a major concern.  We use this memory through the 
-		 * program's lifetime, and it doesn't grow without
-		 * bounds.  At some point, we should probably have
-		 * argvaddstring do the strdup itself and write a
-		 * cleanup function to do the right thing.  See bug
-		 * 3908 for the instance where this problem got caught,
-		 * and bug 3911 for the proper solution to all this.
-		 */
-		/* free(libstr); */
+		free(libstr);
 	    }
 	    free(dirents);
 	} else {
@@ -1175,12 +1164,12 @@ int main(int argc, char *argv[])
 	exit(EXIT_FAILURE);
     }
     for (i = 0; lsb_libs[lsbversion_index][i]; i++) {
-	argvaddstring(lsblibs, strdup(lsb_libs[lsbversion_index][i]));
+	argvaddstring(lsblibs, lsb_libs[lsbversion_index][i]);
     }
 
     if (LSBCPLUS == lsbccmode) {
 	for (i = 0; lsb_cplus_libs[i]; i++) {
-	    argvaddstring(lsblibs, strdup(lsb_cplus_libs[i]));
+	    argvaddstring(lsblibs, lsb_cplus_libs[i]);
 	}
     }
 
@@ -1204,9 +1193,7 @@ int main(int argc, char *argv[])
 			       module_name) == 0) {
 		    if (lsb_module->lib_names != NULL) {
 			for (; lsb_module->lib_names[j] != NULL; j++) {
-			    argvaddstring(lsblibs,
-					  strdup(lsb_module->
-						 lib_names[j]));
+			    argvaddstring(lsblibs, lsb_module-> lib_names[j]);
 			}
 		    }
 		    found = 1;
@@ -1275,7 +1262,7 @@ int main(int argc, char *argv[])
 	    if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
 		fprintf(stderr, "added %s to allowed dsos\n", lib);
 	    }
-	    argvaddstring(lsblibs, strdup(lib));
+	    argvaddstring(lsblibs, lib);
 	    lib = strtok(NULL, ":");
 	}
     }
@@ -1314,7 +1301,7 @@ int main(int argc, char *argv[])
 		    }
 		}
 	    }
-	    argvaddstring(options, strdup(optarg));
+	    argvaddstring(options, optarg);
 	    found_gcc_arg = 1;
 	    /* special case: file fed to stdin */
 	    if (strcmp(optarg, "-") == 0) {
@@ -1327,7 +1314,7 @@ int main(int argc, char *argv[])
 	case 2:		
 	    /* --help intended for gcc, we'll add our 2cents however */
 	    found_gcc_standalone = 1;
-	    argvaddstring(gccstartargs, strdup("--help"));
+	    argvaddstring(gccstartargs, "--help");
 	    /* fallthrough */
 	case 3:		/* --lsb-help */
 	    usage(argv[0]);
@@ -1371,7 +1358,7 @@ int main(int argc, char *argv[])
 		while (lib) {
 		    if (lsbcc_debug & DEBUG_ENV_OVERRIDES)
 			fprintf(stderr, "added %s to allowed dsos\n", lib);
-		    argvaddstring(lsblibs, strdup(lib));
+		    argvaddstring(lsblibs, lib);
 		    lib = strtok(NULL, ":");
 		}
 	    }
@@ -1400,8 +1387,7 @@ int main(int argc, char *argv[])
 				     lsb_module->lib_names[j] != NULL;
 				     j++) {
 				    argvaddstring(lsblibs,
-						  strdup(lsb_module->
-							 lib_names[j]));
+						  lsb_module->lib_names[j]);
 				}
 			    }
 			    found = 1;
@@ -1731,7 +1717,7 @@ int main(int argc, char *argv[])
 	 *   multiple times.
 	 */
 	sprintf(tmpbuf, "-Wl,-rpath-link,%s", libpath);
-	argvaddstring(syslibs, strdup(tmpbuf));
+	argvaddstring(syslibs, tmpbuf);
 	if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
 	    fprintf(stderr, "Adding %s to args\n", tmpbuf);
 	}
@@ -1773,7 +1759,7 @@ int main(int argc, char *argv[])
 	/* Best-effort dynamic linking. */
 	if (best_effort && !lsbcc_buildingshared) {
 	    sprintf(tmpbuf, "%s/besteffort.o", libpath);
-	    argvaddstring(syslibs, strdup(tmpbuf));
+	    argvaddstring(syslibs, tmpbuf);
 	    default_linker = 1;
 	}
 
@@ -1829,7 +1815,7 @@ int main(int argc, char *argv[])
 	while (flag) {
 	    if (lsbcc_debug & DEBUG_UNRECOGNIZED_ARGS)
 		fprintf(stderr, "added %s to options\n", flag);
-	    argvaddstring(options, strdup(flag));
+	    argvaddstring(options, flag);
 	    flag = strtok(NULL, ":");
 	}
     }
@@ -1861,7 +1847,7 @@ int main(int argc, char *argv[])
 	    argvadd(gccargs, "isystem", cxxincpath);
 	    /* this is grotty: looks like we also need -Icxxincpath/backward */
 	    sprintf(tmpbuf, "-isystem %s/backward", cxxincpath);
-	    argvaddstring(incpaths, strdup(tmpbuf));
+	    argvaddstring(incpaths, tmpbuf);
 	    argvappend(gccargs, incpaths);
 	}
 
@@ -1890,7 +1876,7 @@ int main(int argc, char *argv[])
 	    argvappend(gccargs, libpaths);
 
 	    if (found_l_opt && !no_as_needed) {
-		argvaddstring(gccargs, strdup("-Wl,--as-needed"));
+		argvaddstring(gccargs, "-Wl,--as-needed");
 	    }
 	}
 

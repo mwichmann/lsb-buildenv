@@ -306,12 +306,12 @@ int main(int argc, char *argv[])
 	    argvadd(options, long_options[option_index].name, optarg);
 	    break;
 	case 1:		/* all args not prefixed by - */
-	    argvaddstring(options, strdup(optarg));
+	    argvaddstring(options, optarg);
 	    break;
 	case 2:		
 	    /* --help intended for cpp, we'll add our 2cents however */
 	    /*gccstartargs*/
-	    argvaddstring(options, strdup("--help"));
+	    argvaddstring(options, "--help");
 	    /* fallthrough */
 	case 3:		/* --lsb-help */
 	    usage(argv[0]);
@@ -368,14 +368,13 @@ int main(int argc, char *argv[])
 	    }
 	    /*
 	     * This is an attempt to catch things that we don't
-	     * explicitly recognize, and just pass it through to cpp.
+	     * explicitly recognize, and just pass them through to cpp.
 	     */
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS) {
 		fprintf(stderr, "option?: %s optopt %x %c\n",
 			argv[optind - 1], optopt, optopt);
 	    }
-	    if ((optopt && (optopt != '?'))
-		|| (argv[optind - 1][0] == '-')) {
+	    if ((optopt && (optopt != '?')) || (argv[optind - 1][0] == '-')) {
 		argvaddstring(options, argv[optind - 1]);
 	    } else {
 		fprintf(stderr, "ERROR: Dropping argument %s\n",
@@ -391,21 +390,21 @@ int main(int argc, char *argv[])
 	}
     }
 
-/*
- * determine if the cppname is actually lsbcc - this might
- * just be somebody messing with us, but it might also be
- * an innocent freudian typo.
- */
+    /*
+     * determine if the cppname is actually lsbcpp - this might
+     * just be somebody messing with us, but it might also be
+     * an innocent freudian typo.
+     */
     if (strcmp(basename(cppname), "lsbcpp") == 0) {
 	printf("You can not use %s as your cpp!\n", argv[0]);
 	exit(EXIT_FAILURE);
     }
 
-/*
- * Only force feature settings if LSBCC_FORCEFEATURES is defined
- * Otherwise assume the app developer knew what they where doing
- * with feature define flags.
- */
+    /*
+     * Only force feature settings if LSBCC_FORCEFEATURES is defined
+     * Otherwise assume the app developer knew what they where doing
+     * with feature define flags.
+     */
     if (feature_settings) {
 	for (i = 0; i < numfeaturesettings; i++) {
 	    argvaddstring(options, featuresettings[i]);
