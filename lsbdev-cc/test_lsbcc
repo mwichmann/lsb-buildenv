@@ -81,8 +81,7 @@ ar -q $TLDIR/$TARCH $TOBJ > /dev/null 2>&1
 
 # 1. link against the .a by name
 printf "Compiling $TLIB from $TLDIR/$TARCH with lsbcc..."
-./lsbcc -o $TLIB --shared -Wl,--whole-archive $TLDIR/$TARCH -Wl,--no-whole-archive 
-#./lsbcc -o $TLIB --shared -Wl,--whole-archive $TLDIR/$TARCH -Wl,--no-whole-archive > /dev/null 2>&1
+./lsbcc -o $TLIB --shared -Wl,--whole-archive $TLDIR/$TARCH -Wl,--no-whole-archive > /dev/null 2>&1
 # check the shared lib build did not fail
 if [ $? -ne 0 ]; then
   echo "Failed to make $TLIB with lsbcc"
@@ -98,8 +97,7 @@ echo OK
 
 # 2. link against the .a by using -L, -l flags
 printf "Compiling $TLIB from -L$TLDIR -ltest with lsbcc..."
-./lsbcc -o $TLIB --shared -L$TLDIR -Wl,--whole-archive -ltest -Wl,--no-whole-archive 
-#./lsbcc -o $TLIB --shared -L$TLDIR -Wl,--whole-archive -ltest -Wl,--no-whole-archive > /dev/null 2>&1
+./lsbcc -o $TLIB --shared -L$TLDIR -Wl,--whole-archive -ltest -Wl,--no-whole-archive > /dev/null 2>&1
 
 # check the shared lib build did not fail
 if [ $? -ne 0 ]; then

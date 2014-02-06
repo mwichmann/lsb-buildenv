@@ -127,6 +127,13 @@ int lsbcc_buildingshared = 0;
 int b_dynamic = 1;
 
 /*
+ * State variables to track adding of -Wl,whole-archive and -Wl,no-whole-archive
+ */
+int whole_archive_seen = 0;
+int whole_archive_emitted = 0;
+struct argvgroup *whole_archive_list = NULL;
+
+/*
  * Variable to store optind value - we'll have to process command line twice.
  */
 int optind_old;
@@ -163,7 +170,12 @@ int process_opt_l(char *val)
 
     sprintf(buf, "-l%s", val);
 
-    /* check if it is an LSB library. If so, just pass it through */
+    /*
+     * If the library is in the LSB list, we make sure it's 
+     * dynamically linked.  The exception is if static linking
+     * has been explicitly requested, which we have to honor.
+     * TODO
+     */
     for (i = 0; i < lsblibs->numargv; i++) {
 	if (strcmp(lsblibs->argv[i], val) == 0) {
 	    if (!b_dynamic) {
@@ -185,7 +197,16 @@ int process_opt_l(char *val)
 	}
     }
 
-    /* Not an LSB library. Force static linking */
+    /* Not an LSB library. Check if we need to emit whole-archive flag */
+    if (whole_archive_seen && !whole_archive_emitted) {
+	if (lsbcc_debug & DEBUG_LIB_CHANGES)
+	    fprintf(stderr, "Appending -Wl,--whole-archive\n");
+	argvaddstring(userlibs, "-Wl,--whole-archive");
+	whole_archive_list = userlibs;
+	whole_archive_emitted = 1;
+    }
+
+    /* and force static linking */
     if (lsbcc_debug & DEBUG_LIB_CHANGES)
 	fprintf(stderr, "Forcing %s to be linked statically\n", val);
 
@@ -1301,8 +1322,19 @@ int main(int argc, char *argv[])
 		    }
 		}
 	    }
+
+	    /* Check if we need to emit whole-archive flag */
+	    if (whole_archive_seen && !whole_archive_emitted) {
+		if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		    fprintf(stderr, "Appending -Wl,--whole-archive\n");
+		argvaddstring(options, "-Wl,--whole-archive");
+		whole_archive_list = options;
+		whole_archive_emitted = 1;
+	    }
+
 	    argvaddstring(options, optarg);
 	    found_gcc_arg = 1;
+
 	    /* special case: file fed to stdin */
 	    if (strcmp(optarg, "-") == 0) {
 		if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS) {
@@ -1456,13 +1488,27 @@ int main(int argc, char *argv[])
 	    if ((strstr(argv[optind - 1], "no-whole-archive") != NULL) ||
 		(strstr(argv[optind - 1], "whole-archive") != NULL)) {
 		/*
-		 * .a files affected will look like unrecognized options, 
-		 * and have to stay with these flags. stuff it onto the 
-		 * unrecognized list, although of course we did recognize this
+		 * Tricky case.  If an archive is being specified by name
+		 * as libname.a, it is "unrecognized" and will go on the 
+		 * "options" list.  It if it being specified by way of 
+		 * -lname, then is will be recognized as a library and go 
+		 * on the "userlibs" list.  The problem is, whole-archive 
+		 * has to stay together with the archive it applies to,
+		 * but we haven't gotten to the library argument(s) yet, 
+		 * so we don't know where to put this. We have to solve
+		 * this by deferring processing.
 		 */
-		if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
-		    fprintf(stderr, "option: %s\n", argv[optind - 1]);
-		argvaddstring(options, argv[optind - 1]);
+	        if (strstr(argv[optind - 1], "whole-archive") != NULL) {
+		    whole_archive_seen = 1;
+		    whole_archive_emitted = 0;
+		}
+	        if (strstr(argv[optind - 1], "no-whole-archive") != NULL) {
+		    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
+		        fprintf(stderr, "option: %s\n", argv[optind - 1]);
+		    argvaddstring(whole_archive_list, argv[optind - 1]);
+		    whole_archive_list = NULL;
+		    whole_archive_seen = 0;
+		}
 		break;
 	    }
 
