@@ -331,6 +331,7 @@ kinds of debugging output to produce. The bits in this pattern are
 0x0010   Display changes made to the include arguments
 0x0020   Display changes made to the library arguments
 0x0040   Display the modified argument list
+0x0080   Display strings as they are added to argument chains
 .fi
 .TP
 LSBCC_WARN
