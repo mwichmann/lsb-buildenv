@@ -1888,13 +1888,13 @@ int main(int argc, char *argv[])
 
 	if (lsbccmode == LSBCPLUS) {
 	    if (lsbcc_debug & DEBUG_INCLUDE_CHANGES)
-		fprintf(stderr, "Prepending %s to system include path\n",
-			cxxincpath);
+		fprintf(stderr,"Prepending %s to system include path\n",cxxincpath);
 	    argvadd(gccargs, "isystem", cxxincpath);
-	    /* this is grotty: looks like we also need -Icxxincpath/backward */
-	    sprintf(tmpbuf, "-isystem %s/backward", cxxincpath);
-	    argvaddstring(incpaths, tmpbuf);
-	    argvappend(gccargs, incpaths);
+	    /* also need to add $cxxincpath/backward */
+	    sprintf(tmpbuf, "%s/backward", cxxincpath);
+	    if (lsbcc_debug & DEBUG_INCLUDE_CHANGES)
+		fprintf(stderr,"Prepending %s to system include path\n",tmpbuf);
+	    argvadd(gccargs, "isystem", tmpbuf);
 	}
 
 	argvappend(gccargs, options);
