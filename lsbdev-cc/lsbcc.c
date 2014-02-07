@@ -122,9 +122,12 @@ int lsbcc_warn = 0;
 int lsbcc_buildingshared = 0;
 
 /*
- * State variable to determine if we need to add -Wl,-Bdynamic before an LSB lib
+ * State variables to determine if we need to add -Wl,-Bdynamic 
+ * or -Wl,-Bstatic before a library
+ * b_dynamic tracks the mode we're currently in, b_dynamic_req which we want
  */
 int b_dynamic = 1;
+int b_dynamic_req = 1;
 
 /*
  * State variables to track adding of -Wl,whole-archive and -Wl,no-whole-archive
@@ -174,15 +177,30 @@ int process_opt_l(char *val)
      * If the library is in the LSB list, we make sure it's 
      * dynamically linked.  The exception is if static linking
      * has been explicitly requested, which we have to honor.
-     * TODO
      */
     for (i = 0; i < lsblibs->numargv; i++) {
 	if (strcmp(lsblibs->argv[i], val) == 0) {
-	    if (!b_dynamic) {
+	    /*
+	     * A state machine here (d=b_dynamic, r=b_dynamic_req):
+	     * 1. d=1,r=1: already in right mode (dyn) - do nothing 
+	     * 2. d=0,r=1: in static mode, dynamic requested - flip
+	     * 3. d=0,r=0: already in right mode (stat) - do nothing
+	     * 4. d=1,r=0: in dynamic, static requested - flip
+	     * Request comes from command-line argument.
+	     * if the last thing we saw was a non-LSB lib, it leaves us
+	     * in state 2 so we'll go back to dynamic here
+	     */
+	    if (b_dynamic_req && !b_dynamic) {
 		if (lsbcc_debug & DEBUG_LIB_CHANGES)
-		    fprintf(stderr, "Appending -Wl,-Bdynamic\n");
+		    fprintf(stderr, "Inserting -Wl,-Bdynamic\n");
 		argvaddstring(userlibs, "-Wl,-Bdynamic");
 		b_dynamic = 1;
+	    }
+	    if (!b_dynamic_req && b_dynamic) {
+		if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		    fprintf(stderr, "Inserting -Wl,-Bstatic\n");
+		argvaddstring(userlibs, "-Wl,-Bstatic");
+		b_dynamic = 0;
 	    }
 	    argvaddstring(userlibs, buf);
 
@@ -215,9 +233,17 @@ int process_opt_l(char *val)
 
     if (b_dynamic) {
 	if (lsbcc_debug & DEBUG_LIB_CHANGES)
-	    fprintf(stderr, "Appending -Wl,-Bstatic\n");
+	    fprintf(stderr, "Inserting -Wl,-Bstatic\n");
 	argvaddstring(userlibs, "-Wl,-Bstatic");
 	b_dynamic = 0;
+	/*
+	 * in case next lib is an LSB lib, this indicates we should flip
+	 * to dynamic mode. If it's another non-LSB lib, we won't look
+	 * at b_dynamic_req and so remain in static mode as we should.
+	 * If the next interesting event is -Wl,-Bstatic on the command
+	 * line, this flag will be turned off so there's no flip.
+	 */
+	b_dynamic_req = 1;
     }
     argvaddstring(userlibs, buf);
 
@@ -1513,13 +1539,34 @@ int main(int argc, char *argv[])
 	    }
 
 	    found_gcc_arg = 1;
+	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
+		fprintf(stderr, "option: -W %s\n", optarg);
 
+	    /*
+	     * A bit like the above, we wait to emit the dyamic/static
+	     * flags until we see a library argument
+	     */
 	    if (strstr(argv[optind - 1], "Bdynamic") != NULL) {
-		b_dynamic = 1;
+		if (!b_dynamic)
+		    /* 
+		     * If not in dynamic mode, ask for it
+		     * b_dynamic will be set when the arg is emitted
+		     */
+		    b_dynamic_req = 1;
+		break;
 	    }
 
 	    if (strstr(argv[optind - 1], "Bstatic") != NULL) {
-		b_dynamic = 0;
+		if (b_dynamic || b_dynamic_req)
+		    /* 
+		     * If not in static mode, ask for it
+		     * b_dynamic will be cleared when the arg is emitted
+		     * If there's a pending dynamic mode request, clear it
+		     * this is if the last thing was a non-LSB lib, it
+		     * will have left b_dynamic_req set
+		     */
+		    b_dynamic_req = 0;
+		break;
 	    }
 
 	    if ((strstr(argv[optind - 1], "no-as-needed") != NULL) ||
@@ -1530,8 +1577,6 @@ int main(int argc, char *argv[])
 		 */
 		no_as_needed = 1;
 	    }
-	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
-		fprintf(stderr, "option: -W %s\n", optarg);
 	    argvaddstring(userlibs, argv[optind - 1]);
 	    break;
 	case 'V':
@@ -1559,6 +1604,7 @@ int main(int argc, char *argv[])
 	    /* no -Wl,Bdynamic, add -Wl,--start-group, add -lgcc_eh */
 	    found_gcc_arg = 1;
 	    b_dynamic = 0;
+	   
 	    force_static = 1;
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
 		fprintf(stderr, "option: -%s\n",
