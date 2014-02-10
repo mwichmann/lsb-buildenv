@@ -1016,7 +1016,7 @@ int main(int argc, char *argv[])
     int found_gcc_standalone = 0;
     int found_l_opt = 0;
     int found_file = 0;
-    int no_link = 1;
+    int no_link = 0;
     int no_as_needed = 1;
     int cc_is_icc = 0;
     int libtool_fixups = 0;
@@ -1781,11 +1781,12 @@ int main(int argc, char *argv[])
 	argvaddstring(syslibs, "-fno-stack-protector");
     }
 
-    /*
-     * If we found a file to work against, we can go ahead and
-     * do the linking work.
-     */
-    if (found_file || (lsbcc_buildingshared && found_l_opt)) {
+    /* If we didn't find a file to work against, we don't need to link */
+    if (!found_file) {
+	no_link = 1;
+    }
+    /* except if we are building a shared lib and saw a -lfoo */
+    if (lsbcc_buildingshared && found_l_opt) {
 	no_link = 0;
     }
 
