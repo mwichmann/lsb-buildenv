@@ -134,7 +134,7 @@ int b_dynamic_req = 1;
  */
 int whole_archive_seen = 0;
 int whole_archive_emitted = 0;
-struct argvgroup *whole_archive_list = NULL;
+struct argvgroup *whole_archive_list = NULL;	/* pointer to list to add to */
 
 /*
  * Variable to store optind value - we'll have to process command line twice.
@@ -1529,10 +1529,12 @@ int main(int argc, char *argv[])
 		    whole_archive_emitted = 0;
 		}
 	        if (strstr(argv[optind - 1], "no-whole-archive") != NULL) {
-		    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
-		        fprintf(stderr, "option: %s\n", argv[optind - 1]);
-		    argvaddstring(whole_archive_list, argv[optind - 1]);
-		    whole_archive_list = NULL;
+		    if (whole_archive_list) {
+		        if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
+		            fprintf(stderr, "option: %s\n", argv[optind - 1]);
+			argvaddstring(whole_archive_list, argv[optind - 1]);
+			whole_archive_list = NULL;
+		    }
 		    whole_archive_seen = 0;
 		}
 		break;
