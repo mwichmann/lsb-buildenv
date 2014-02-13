@@ -12,10 +12,6 @@ GLIBC_2.15 {
   posix_spawn;
   posix_spawnp;
 };
-GLIBC_2.2 {
-  ioperm;
-  iopl;
-};
 GLIBC_2.2.5 {
   _Exit;
   _IO_feof;
@@ -403,6 +399,8 @@ GLIBC_2.2.5 {
   initstate_r;
   insque;
   ioctl;
+  ioperm;
+  iopl;
   isalnum;
   isalpha;
   isascii;
