@@ -7,21 +7,21 @@
 
 #ifdef SKIP_DEVEL_VERSIONS
 
-#define DEFAULT_LSB_VERSION "4.1"
+#define DEFAULT_LSB_VERSION "4.1"	/* hand-edit: temporary, not 5.0 */
 #ifndef LSBCC_VERSION
-#define LSBCC_VERSION "4.1.unreleased"
-#endif
-
-static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1";
-
-#else
-
-#define DEFAULT_LSB_VERSION "5.0"
-#ifndef LSBCC_VERSION
-#define LSBCC_VERSION "4.1.development (for 5.0)"
+#define LSBCC_VERSION "5.0.unreleased"
 #endif
 
 static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1,5.0";
+
+#else
+
+#define DEFAULT_LSB_VERSION "5.0"	/* hand-edit: temporary, not 5.1 */
+#ifndef LSBCC_VERSION
+#define LSBCC_VERSION "5.0.development (for 5.1)"
+#endif
+
+static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1,5.0,5.1";
 
 #endif /* SKIP_DEVEL_VERSIONS */
 

@@ -1,0 +1,12 @@
+
+prefix=/usr
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: libpng15
+Description: Loads and saves PNG files
+Version: 1.5.10
+Libs: -L${libdir} -lpng15
+Libs.private: -lm -lz -lm 
+Cflags: -I${includedir}/libpng15

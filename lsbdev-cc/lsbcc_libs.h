@@ -302,6 +302,75 @@ char *lsb_libs_50[] = {
 	"z",
 NULL
 };
+char *lsb_libs_51[] = {
+	"GL",
+	"GLU",
+	"ICE",
+	"QtCore",
+	"QtGui",
+	"QtNetwork",
+	"QtOpenGL",
+	"QtSql",
+	"QtSvg",
+	"QtXml",
+	"SM",
+	"X11",
+	"Xext",
+	"Xft",
+	"Xi",
+	"Xrender",
+	"Xt",
+	"Xtst",
+	"asound",
+	"atk-1.0",
+	"c",
+	"cairo",
+	"cairo-gobject",
+	"cairo-script-interpreter",
+	"crypt",
+	"cups",
+	"cupsimage",
+	"dl",
+	"fontconfig",
+	"freetype",
+	"gcc_s",
+	"gdk-3",
+	"gdk-x11-2.0",
+	"gdk_pixbuf-2.0",
+	"gdk_pixbuf_xlib-2.0",
+	"gio-2.0",
+	"glib-2.0",
+	"gmodule-2.0",
+	"gobject-2.0",
+	"gthread-2.0",
+	"gtk-3",
+	"gtk-x11-2.0",
+	"jpeg",
+	"m",
+	"ncurses",
+	"ncursesw",
+	"nspr4",
+	"nss3",
+	"pam",
+	"pango-1.0",
+	"pangocairo-1.0",
+	"pangoft2-1.0",
+	"pangoxft-1.0",
+	"png12",
+	"png",
+	"png15",
+	"pthread",
+	"rt",
+	"sane",
+	"ssl3",
+	"tiff",
+	"util",
+	"xcb",
+	"xml2",
+	"xslt",
+	"z",
+NULL
+};
 char **lsb_libs[] = {
 	lsb_libs_30,
 	lsb_libs_31,
@@ -309,6 +378,7 @@ char **lsb_libs[] = {
 	lsb_libs_40,
 	lsb_libs_41,
 	lsb_libs_50,
+	lsb_libs_51,
 	NULL
 };
 
@@ -374,6 +444,11 @@ lsb_lib_modules_t lsb_modules_41[] = {
 lsb_lib_modules_t lsb_modules_50[] = {
 };
 
+#define lsb_num_modules_51 0
+
+lsb_lib_modules_t lsb_modules_51[] = {
+};
+
 lsb_lib_modules_t *lsb_modules[] = {
 	lsb_modules_30,
 	lsb_modules_31,
@@ -381,6 +456,7 @@ lsb_lib_modules_t *lsb_modules[] = {
 	lsb_modules_40,
 	lsb_modules_41,
 	lsb_modules_50,
+	lsb_modules_51,
 	NULL
 };
 
@@ -391,6 +467,7 @@ int lsb_num_modules[] = {
 	lsb_num_modules_40,
 	lsb_num_modules_41,
 	lsb_num_modules_50,
+	lsb_num_modules_51,
 	0
 };
 
@@ -442,6 +519,11 @@ lsb_lib_modules_t lsb_deprecated_modules_41[] = {
 lsb_lib_modules_t lsb_deprecated_modules_50[] = {
 };
 
+#define lsb_num_deprecated_modules_51 0
+
+lsb_lib_modules_t lsb_deprecated_modules_51[] = {
+};
+
 lsb_lib_modules_t *lsb_deprecated_modules[] = {
 	lsb_deprecated_modules_30,
 	lsb_deprecated_modules_31,
@@ -449,6 +531,7 @@ lsb_lib_modules_t *lsb_deprecated_modules[] = {
 	lsb_deprecated_modules_40,
 	lsb_deprecated_modules_41,
 	lsb_deprecated_modules_50,
+	lsb_deprecated_modules_51,
 	NULL
 };
 
@@ -459,6 +542,7 @@ int lsb_num_deprecated_modules[] = {
 	lsb_num_deprecated_modules_40,
 	lsb_num_deprecated_modules_41,
 	lsb_num_deprecated_modules_50,
+	lsb_num_deprecated_modules_51,
 	0
 };
 
@@ -478,9 +562,12 @@ inline int get_version_index( char* vername ) {
 	if( strcmp(vername, "4.1") == 0 ) {
 		 return 4;
 	}
-#ifndef SKIP_DEVEL_VERSIONS
 	if( strcmp(vername, "5.0") == 0 ) {
 		 return 5;
+	}
+#ifndef SKIP_DEVEL_VERSIONS
+	if( strcmp(vername, "5.1") == 0 ) {
+		 return 6;
 	}
 #endif /* SKIP_DEVEL_VERSIONS */
 	else {
