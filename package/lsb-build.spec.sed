@@ -483,7 +483,7 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Thu Feb 13 2013 Mats Wichmann <mats@linuxfounation.org
+* Thu Feb 13 2014 Mats Wichmann <mats@linuxfounation.org
 - generate as if 5.0 were released. Adds 5.1 as devel version,
   but leaves 4.1 as the default for production build, 5.0 for devel
 
