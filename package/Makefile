@@ -46,7 +46,7 @@ SUB_VERSION=.67
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=4
+RPM_PACKAGE_RELEASE=5
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)
@@ -126,7 +126,7 @@ tarball: $(TARBALL)
 	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	for libdir in lib lib64; do \
-	  for version in 5.0; do \
+	  for version in 5.1; do \
 	    grep -v $$libdir-$$version $@ > $@.nodev; \
 	    rm -f $@; \
 	    mv $@.nodev $@; \
@@ -137,7 +137,7 @@ endif
 %_pruned: %
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	cp $< $@
-	for version in 5.0; do \
+	for version in 5.1; do \
 	    grep -v LIB-$$version $@ > $@.nodev; \
 	    rm -f $@; \
 	    mv $@.nodev $@; \
