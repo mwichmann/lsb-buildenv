@@ -104,7 +104,7 @@ mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
 ( for v in 3.1 3.2 4.0 4.1; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng12.so libpng.so; done )
-( for v in 5.0; do if [ -d $RPM_BUILD_ROOT/opt/lsb/%xlib-$v ]; then cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng15.so libpng.so; fi; done )
+( for v in 5.0 5.1; do if [ -d $RPM_BUILD_ROOT/opt/lsb/%xlib-$v ]; then cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng15.so libpng.so; fi; done )
 
 # specifics for cc part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
@@ -156,6 +156,7 @@ done
 %dir /opt/lsb/%xlib-4.0
 %dir /opt/lsb/%xlib-4.1
 %dir /opt/lsb/%xlib-5.0
+%dir /opt/lsb/%xlib-5.1
 
 # extra files
 /opt/lsb/bin/cups-config
@@ -165,15 +166,18 @@ done
 /opt/lsb/doc/lsb-build-base/README
 %dir /opt/lsb/%xlib-3.1/pkgconfig
 %dir /opt/lsb/%xlib-3.2/pkgconfig
+%dir /opt/lsb/%xlib-4.0/pkgconfig
 %dir /opt/lsb/%xlib-4.1/pkgconfig
 %dir /opt/lsb/%xlib-5.0/pkgconfig
-%dir /opt/lsb/%xlib-4.0/pkgconfig
+%dir /opt/lsb/%xlib-5.1/pkgconfig
 /opt/lsb/%xlib-4.0/pkgconfig/nss.pc
 /opt/lsb/%xlib-4.0/pkgconfig/nspr.pc
 /opt/lsb/%xlib-4.1/pkgconfig/nss.pc
 /opt/lsb/%xlib-4.1/pkgconfig/nspr.pc
 /opt/lsb/%xlib-5.0/pkgconfig/nss.pc
 /opt/lsb/%xlib-5.0/pkgconfig/nspr.pc
+/opt/lsb/%xlib-5.1/pkgconfig/nss.pc
+/opt/lsb/%xlib-5.1/pkgconfig/nspr.pc
 
 # locally created symlinks
 /opt/lsb/include/ncurses.h
@@ -182,37 +186,42 @@ done
 /opt/lsb/%xlib-3.0/libcurses.so
 /opt/lsb/%xlib-3.1/libcurses.so
 /opt/lsb/%xlib-3.2/libcurses.so
+/opt/lsb/%xlib-4.0/libcurses.so
 /opt/lsb/%xlib-4.1/libcurses.so
 /opt/lsb/%xlib-5.0/libcurses.so
-/opt/lsb/%xlib-4.0/libcurses.so
+/opt/lsb/%xlib-5.1/libcurses.so
 
 # handle a special case
 %ifarch ia64
 /opt/lsb/%xlib-3.0/libc.so.6.1
 /opt/lsb/%xlib-3.1/libc.so.6.1
 /opt/lsb/%xlib-3.2/libc.so.6.1
+/opt/lsb/%xlib-4.0/libc.so.6.1
 /opt/lsb/%xlib-4.1/libc.so.6.1
 /opt/lsb/%xlib-5.0/libc.so.6.1
-/opt/lsb/%xlib-4.0/libc.so.6.1
+/opt/lsb/%xlib-5.1/libc.so.6.1
 /opt/lsb/%xlib-3.0/libm.so.6.1
 /opt/lsb/%xlib-3.1/libm.so.6.1
 /opt/lsb/%xlib-3.2/libm.so.6.1
+/opt/lsb/%xlib-4.0/libm.so.6.1
 /opt/lsb/%xlib-4.1/libm.so.6.1
 /opt/lsb/%xlib-5.0/libm.so.6.1
-/opt/lsb/%xlib-4.0/libm.so.6.1
+/opt/lsb/%xlib-5.1/libm.so.6.1
 %else
 /opt/lsb/%xlib-3.0/libc.so.6
 /opt/lsb/%xlib-3.1/libc.so.6
 /opt/lsb/%xlib-3.2/libc.so.6
+/opt/lsb/%xlib-4.0/libc.so.6
 /opt/lsb/%xlib-4.1/libc.so.6
 /opt/lsb/%xlib-5.0/libc.so.6
-/opt/lsb/%xlib-4.0/libc.so.6
+/opt/lsb/%xlib-5.1/libc.so.6
 /opt/lsb/%xlib-3.0/libm.so.6
 /opt/lsb/%xlib-3.1/libm.so.6
 /opt/lsb/%xlib-3.2/libm.so.6
+/opt/lsb/%xlib-4.0/libm.so.6
 /opt/lsb/%xlib-4.1/libm.so.6
 /opt/lsb/%xlib-5.0/libm.so.6
-/opt/lsb/%xlib-4.0/libm.so.6
+/opt/lsb/%xlib-5.1/libm.so.6
 %endif
 
 %files desktop -f desktop_pkglist_final
@@ -306,6 +315,40 @@ done
 /opt/lsb/%xlib-3.2/pkgconfig/QtSql.pc
 /opt/lsb/%xlib-3.2/pkgconfig/QtSvg.pc
 /opt/lsb/%xlib-3.2/pkgconfig/QtXml.pc
+/opt/lsb/%xlib-4.0/pkgconfig/atk.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo-ft.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo-pdf.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo-png.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo-ps.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo-xlib.pc
+/opt/lsb/%xlib-4.0/pkgconfig/cairo-xlib-xrender.pc
+/opt/lsb/%xlib-4.0/pkgconfig/fontconfig.pc
+/opt/lsb/%xlib-4.0/pkgconfig/freetype2.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gdk-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gdk-pixbuf-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gdk-pixbuf-xlib-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gdk-x11-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/glib-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gmodule-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gobject-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gthread-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/gtk+-x11-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/libpng12.pc
+/opt/lsb/%xlib-4.0/pkgconfig/libpng.pc
+/opt/lsb/%xlib-4.0/pkgconfig/libxml-2.0.pc
+/opt/lsb/%xlib-4.0/pkgconfig/pangocairo.pc
+/opt/lsb/%xlib-4.0/pkgconfig/pangoft2.pc
+/opt/lsb/%xlib-4.0/pkgconfig/pango.pc
+/opt/lsb/%xlib-4.0/pkgconfig/pangoxft.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtCore.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtGui.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtNetwork.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtOpenGL.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtSql.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtSvg.pc
+/opt/lsb/%xlib-4.0/pkgconfig/QtXml.pc
 /opt/lsb/%xlib-4.1/pkgconfig/atk.pc
 /opt/lsb/%xlib-4.1/pkgconfig/cairo-ft.pc
 /opt/lsb/%xlib-4.1/pkgconfig/cairo.pc
@@ -405,40 +448,71 @@ done
 /opt/lsb/%xlib-5.0/pkgconfig/xrender.pc
 /opt/lsb/%xlib-5.0/pkgconfig/xt.pc
 /opt/lsb/%xlib-5.0/pkgconfig/xtst.pc
-/opt/lsb/%xlib-4.0/pkgconfig/atk.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo-ft.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo-pdf.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo-png.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo-ps.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo-xlib.pc
-/opt/lsb/%xlib-4.0/pkgconfig/cairo-xlib-xrender.pc
-/opt/lsb/%xlib-4.0/pkgconfig/fontconfig.pc
-/opt/lsb/%xlib-4.0/pkgconfig/freetype2.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gdk-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gdk-pixbuf-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gdk-pixbuf-xlib-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gdk-x11-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/glib-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gmodule-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gobject-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gthread-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gtk+-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/gtk+-x11-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/libpng12.pc
-/opt/lsb/%xlib-4.0/pkgconfig/libpng.pc
-/opt/lsb/%xlib-4.0/pkgconfig/libxml-2.0.pc
-/opt/lsb/%xlib-4.0/pkgconfig/pangocairo.pc
-/opt/lsb/%xlib-4.0/pkgconfig/pangoft2.pc
-/opt/lsb/%xlib-4.0/pkgconfig/pango.pc
-/opt/lsb/%xlib-4.0/pkgconfig/pangoxft.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtCore.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtGui.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtNetwork.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtOpenGL.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtSql.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtSvg.pc
-/opt/lsb/%xlib-4.0/pkgconfig/QtXml.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gdk-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gdk-broadway-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gdk-x11-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-broadway-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-unix-print-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-x11-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/atk.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo-ft.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo-pdf.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo-png.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo-ps.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo-xlib.pc
+/opt/lsb/%xlib-5.1/pkgconfig/cairo-xlib-xrender.pc
+/opt/lsb/%xlib-5.1/pkgconfig/fontconfig.pc
+/opt/lsb/%xlib-5.1/pkgconfig/freetype2.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-pixbuf-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-pixbuf-xlib-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-x11-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/glib-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gmodule-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gobject-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gthread-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-unix-print-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-x11-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/libpng12.pc
+/opt/lsb/%xlib-5.1/pkgconfig/libpng15.pc
+/opt/lsb/%xlib-5.1/pkgconfig/libpng.pc
+/opt/lsb/%xlib-5.1/pkgconfig/libxml-2.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/pangocairo.pc
+/opt/lsb/%xlib-5.1/pkgconfig/pangoft2.pc
+/opt/lsb/%xlib-5.1/pkgconfig/pango.pc
+/opt/lsb/%xlib-5.1/pkgconfig/pangoxft.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtCore.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtGui.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtNetwork.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtOpenGL.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtSql.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtSvg.pc
+/opt/lsb/%xlib-5.1/pkgconfig/QtXml.pc
+/opt/lsb/%xlib-5.1/pkgconfig/ice.pc
+/opt/lsb/%xlib-5.1/pkgconfig/inputproto.pc
+/opt/lsb/%xlib-5.1/pkgconfig/recordproto.pc
+/opt/lsb/%xlib-5.1/pkgconfig/renderproto.pc
+/opt/lsb/%xlib-5.1/pkgconfig/sm.pc
+/opt/lsb/%xlib-5.1/pkgconfig/x11.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xext.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xextproto.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xft.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xi.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xproto.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xrender.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xt.pc
+/opt/lsb/%xlib-5.1/pkgconfig/xtst.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-broadway-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gdk-x11-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-broadway-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-unix-print-3.0.pc
+/opt/lsb/%xlib-5.1/pkgconfig/gtk+-x11-3.0.pc
+
 
 # locally created symlinks
 #/opt/lsb/%xlib-4.0         # covered in lsb-build-base, don't duplicate
@@ -447,6 +521,7 @@ done
 /opt/lsb/%xlib-3.2/libpng.so
 /opt/lsb/%xlib-4.1/libpng.so
 /opt/lsb/%xlib-5.0/libpng.so
+/opt/lsb/%xlib-5.1/libpng.so
 
 %files cc
 %defattr(-,root,root)
@@ -468,6 +543,8 @@ done
 /opt/lsb/%xlib-4.1/libgcc34compat.a
 /opt/lsb/%xlib-5.0/besteffort.o
 /opt/lsb/%xlib-5.0/libgcc34compat.a
+/opt/lsb/%xlib-5.1/besteffort.o
+/opt/lsb/%xlib-5.1/libgcc34compat.a
 /opt/lsb/man/man1/lsbc++.1.gz
 /opt/lsb/man/man1/lsbcc.1.gz
 /opt/lsb/man/man1/lsbcpp.1.gz
