@@ -799,7 +799,7 @@ void usage(const char *progname)
 "                           Add path to the list of non-lsb lib paths to link\n"
 "                           as shared libs (product internal shared libs),\n"
 "                           these paths will be appended to the list\n"
-"                           specified through the LSB_SHAREDLIBPATH environment\n"
+"                           specified through the LSBCC_SHAREDLIBPATH environment\n"
 "                           setting.  Shared lib paths must be added before any\n"
 "                           -l options to have effect.\n"
 "  --lsb-modules=<module,..>\n"
@@ -1294,7 +1294,13 @@ int main(int argc, char *argv[])
 	}
     }
 
-    if ((ptr = getenv("LSB_SHAREDLIBPATH")) != NULL) {
+    /*
+     * this was documented as LSBCC_SHAREDLIBPATH but then implemented
+     * as LSB_SHAREDLIBPATH. To match the related LSBCC_SHAREDLIB we
+     * not prefer the former, but accept both to not silently fail things
+     */
+    if ((ptr = getenv("LSBCC_SHAREDLIBPATH")) != NULL ||
+        (ptr = getenv("LSB_SHAREDLIBPATH")) != NULL) {
 	process_shared_lib_path(strdup(ptr));
     }
 

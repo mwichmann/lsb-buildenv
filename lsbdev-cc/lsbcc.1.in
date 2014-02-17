@@ -270,7 +270,8 @@ use the name
 LSB_SHAREDLIBPATH
 This option adds paths to be searched for shared libraries. Libraries found in
 the given set of paths will be added to the list of non-lsb libraries to link
-as shared libraries.
+as shared libraries. Note this was erroneously called LSB_SHARELIBPATH
+in earlier versions.
 .TP
 LSB_MODULES
 Specify which optional/trial-use LSB modules to include interfaces for.
