@@ -32,11 +32,15 @@ endif
 LSBVERSION=4.1
 
 # True LSB version for multiversion support (affects build-base, build-desktop)
+# it would be nice to have a more precise rule than "last line in file"
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 TRUELSBVERSION := $(shell tail -n 1 ../stub_libs/lsb_versions)
 else
 TRUELSBVERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
 endif
+
+# save the devel version in case we're building an "official release"
+LSB_DEVEL_VERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
 
 # Release number of package relative to specification version
 # Should have leading "."
@@ -46,7 +50,7 @@ SUB_VERSION=.67
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=5
+RPM_PACKAGE_RELEASE=6
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)
@@ -122,11 +126,12 @@ tarball: $(TARBALL)
 
 # Rules to build rpms
 # Specfile generation rule
+# if building an "official release" edit out devel versions
 %.spec : %.spec.sed Makefile .need_config_update
 	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	for libdir in lib lib64; do \
-	  for version in 5.1; do \
+	  for version in $(LSB_DEVEL_VERSION); do \
 	    grep -v $$libdir-$$version $@ > $@.nodev; \
 	    rm -f $@; \
 	    mv $@.nodev $@; \
@@ -134,10 +139,13 @@ ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	done
 endif
 
+# intermediate step for file lists:
+# if building an "official release" edit out devel versions
+# these files will be munched once more by the .spec to paste in lib/lib64
 %_pruned: %
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	cp $< $@
-	for version in 5.1; do \
+	for version in $(LSB_DEVEL_VERSION); do \
 	    grep -v LIB-$$version $@ > $@.nodev; \
 	    rm -f $@; \
 	    mv $@.nodev $@; \

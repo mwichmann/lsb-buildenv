@@ -100,6 +100,7 @@ cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
 (cd $RPM_BUILD_ROOT/opt/lsb; ln -s %xlib-%lsbver %xlib)
 
 # specifics for desktop part:
+# note versionlists for png: tweak for a new LSB version
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
