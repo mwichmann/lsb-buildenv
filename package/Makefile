@@ -46,7 +46,7 @@ LSB_DEVEL_VERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
 # Should have leading "."
 # a big number (80-99) is leading up to the next minor spec
 # build_env is version-independent so can wait till late to bump this
-SUB_VERSION=.68
+SUB_VERSION=.69
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
