@@ -1,0 +1,3 @@
+
+class QSpinBox;
+class QDoubleSpinBox;

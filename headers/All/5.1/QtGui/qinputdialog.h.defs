@@ -1,0 +1,9 @@
+
+class QInputDialog;
+enum QInputDialog::Type {
+    LineEdit = 0,
+    SpinBox = 1,
+    DoubleSpinBox = 2,
+    ComboBox = 3,
+    EditableComboBox = 4
+};

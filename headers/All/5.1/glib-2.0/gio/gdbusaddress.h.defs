@@ -1,0 +1,19 @@
+
+extern gchar *g_dbus_address_get_for_bus_sync(GBusType bus_type,
+					      GCancellable * cancellable,
+					      GError * *error);
+extern void g_dbus_address_get_stream(const gchar * address,
+				      GCancellable * cancellable,
+				      GAsyncReadyCallback callback,
+				      gpointer user_data);
+extern GIOStream *g_dbus_address_get_stream_finish(GAsyncResult * res,
+						   gchar * *out_guid,
+						   GError * *error);
+extern GIOStream *g_dbus_address_get_stream_sync(const gchar * address,
+						 gchar * *out_guid,
+						 GCancellable *
+						 cancellable,
+						 GError * *error);
+extern gboolean g_dbus_is_address(const gchar * string);
+extern gboolean g_dbus_is_supported_address(const gchar * string,
+					    GError * *error);

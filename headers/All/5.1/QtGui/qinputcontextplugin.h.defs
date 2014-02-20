@@ -1,0 +1,3 @@
+
+struct QInputContextFactoryInterface;
+class QInputContextPlugin;

@@ -1,0 +1,8 @@
+
+class QColor;
+enum QColor::Spec {
+    Invalid = 0,
+    Rgb = 1,
+    Hsv = 2,
+    Cmyk = 3
+};

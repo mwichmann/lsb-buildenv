@@ -1,0 +1,18 @@
+
+extern TERMINAL *cur_term;
+extern int del_curterm(TERMINAL *);
+extern int putp(const char *);
+extern int restartterm(char *, int, int *);
+extern TERMINAL *set_curterm(TERMINAL *);
+extern int setupterm(char *, int, int *);
+extern int tgetent(char *, const char *);
+extern int tgetflag(char *);
+extern int tgetnum(char *);
+extern char *tgetstr(char *, char **);
+extern char *tgoto(const char *, int, int);
+extern int tigetflag(const char *);
+extern int tigetnum(const char *);
+extern char *tigetstr(const char *);
+extern char *tparm(const char *, ...);
+extern int tputs(const char *, int, int (*)(int));
+extern char ttytype[];

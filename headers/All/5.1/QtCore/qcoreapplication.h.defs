@@ -1,0 +1,8 @@
+
+class QCoreApplication;
+enum QCoreApplication::Encoding {
+    DefaultCodec = 0,
+    UnicodeUTF8 = 1
+};
+typedef bool QCoreApplication::EventFilter;
+typedef void QtCleanUpFunction;

@@ -1,0 +1,5 @@
+
+#define XSLTCALL
+#define XSLTPUBFUN
+#define XSLTPUBVAR	extern
+#define LIBXSLT_PUBLIC	XSLTPUBVAR

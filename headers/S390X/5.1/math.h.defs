@@ -1,0 +1,23 @@
+
+typedef double float_t;
+typedef double double_t;
+
+#define isfinite(x)	\
+  (sizeof (x) == sizeof (float) ? __finitef (x) : sizeof (x) == sizeof (double)? __finite (x) : __finitel (x))	/* Return nonzero value if X is not +-Inf or NaN. */
+#define fpclassify(x)	\
+  (sizeof (x) == sizeof (float) ? __fpclassifyf (x) :sizeof (x) == sizeof (double) ? __fpclassify (x) : __fpclassifyl (x))	/* Return number of classification appropriate for X. */
+#define isinf(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#define isnan(x)	\
+  (sizeof (x) == sizeof (float) ? __isnanf (x)  : sizeof (x) == sizeof (double) ? __isnan (x) : __isnanl (x))
+#define signbit(x)	\
+  (sizeof (x) == sizeof (float)? __signbitf (x): sizeof (x) == sizeof (double)? __signbit (x) : __signbitl (x)	/* Return nonzero value if sign of X is negative. */
+
+#define HUGE_VALL	0x1.0p2047L
+
+#define FP_ILOGB0	-2147483647
+#define FP_ILOGBNAN	2147483647
+
+extern int __fpclassifyl(long double);
+extern int __signbitl(long double);
+extern long double exp2l(long double);

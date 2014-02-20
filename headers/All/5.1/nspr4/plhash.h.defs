@@ -1,0 +1,28 @@
+
+#define plhash_h___
+
+typedef PRUint32 PLHashNumber;
+typedef PRIntn(*PLHashComparator) (const void *, const void *);
+typedef struct PLHashAllocOps {
+    void *(*allocTable) (void *, PRSize);
+    void (*freeTable) (void *, void *);
+    struct PLHashEntry *(*allocEntry) (void *, const void *);
+    void (*freeEntry) (void *, struct PLHashEntry *, PRUintn);
+} PLHashAllocOps;
+typedef PLHashNumber(*PLHashFunction) (const void *);
+struct PLHashEntry {
+    struct PLHashEntry *next;
+    PLHashNumber keyHash;
+    const void *key;
+    void *value;
+};
+struct PLHashTable {
+    struct PLHashEntry **buckets;
+    PRUint32 nentries;
+    PRUint32 shift;
+    PLHashFunction keyHash;
+    PLHashComparator keyCompare;
+    PLHashComparator valueCompare;
+    const PLHashAllocOps *allocOps;
+    void *allocPriv;
+};

@@ -1,0 +1,35 @@
+
+#define prthread_h___
+
+typedef struct PRThread PRThread;
+typedef enum PRThreadType {
+    PR_USER_THREAD,
+    PR_SYSTEM_THREAD
+} PRThreadType;
+typedef enum PRThreadScope {
+    PR_LOCAL_THREAD,
+    PR_GLOBAL_THREAD,
+    PR_GLOBAL_BOUND_THREAD
+} PRThreadScope;
+typedef enum PRThreadState {
+    PR_JOINABLE_THREAD,
+    PR_UNJOINABLE_THREAD
+} PRThreadState;
+typedef enum PRThreadPriority {
+    PR_PRIORITY_FIRST = 0,
+    PR_PRIORITY_LOW = 0,
+    PR_PRIORITY_NORMAL = 1,
+    PR_PRIORITY_HIGH = 2,
+    PR_PRIORITY_URGENT = 3,
+    PR_PRIORITY_LAST = 3
+} PRThreadPriority;
+typedef void (*PRThreadPrivateDTOR) (void *priv);
+extern PRStatus PR_ClearInterrupt(void);
+extern void *PR_GetThreadPrivate(PRUintn tpdIndex);
+extern PRThreadScope PR_GetThreadScope(const PRThread * thread);
+extern PRThreadState PR_GetThreadState(const PRThread * thread);
+extern PRStatus PR_Interrupt(PRThread * thread);
+extern PRStatus PR_NewThreadPrivateIndex(PRUintn * newIndex,
+					 PRThreadPrivateDTOR destructor);
+extern PRStatus PR_SetThreadPrivate(PRUintn tpIndex, void *priv);
+extern PRStatus PR_Sleep(PRIntervalTime ticks);

@@ -1,0 +1,13 @@
+
+class QTextCodec;
+enum QTextCodec::ConversionFlag {
+    ConvertInvalidToNull = -2147483648,
+    DefaultConversion = 0,
+    IgnoreHeader = 1
+};
+class QFlags < QTextCodec::ConversionFlag >;
+typedef class QFlags < QTextCodec::ConversionFlag >
+    QTextCodec::ConversionFlags;
+struct QTextCodec::ConverterState;
+class QTextEncoder;
+class QTextDecoder;

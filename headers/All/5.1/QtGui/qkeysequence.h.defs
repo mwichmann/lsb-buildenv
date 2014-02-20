@@ -1,0 +1,12 @@
+
+class QKeySequence;
+enum QKeySequence::SequenceMatch {
+    NoMatch = 0,
+    PartialMatch = 1,
+    ExactMatch = 2,
+    Identical = 2
+};
+enum QKeySequence::SequenceFormat {
+    NativeText = 0,
+    PortableText = 1
+};

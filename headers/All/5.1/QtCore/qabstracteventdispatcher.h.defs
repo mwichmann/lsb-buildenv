@@ -1,0 +1,4 @@
+
+class QAbstractEventDispatcher;
+typedef struct QPair <int, int >QAbstractEventDispatcher::TimerInfo;
+typedef bool QAbstractEventDispatcher::EventFilter;

@@ -1,0 +1,62 @@
+
+enum {
+    REG_GS = 0,
+    REG_FS = 1,
+    REG_ES = 2,
+    REG_DS = 3,
+    REG_EDI = 4,
+    REG_ESI = 5,
+    REG_EBP = 6,
+    REG_ESP = 7,
+    REG_EBX = 8,
+    REG_EDX = 9,
+    REG_ECX = 10,
+    REG_EAX = 11,
+    REG_TRAPNO = 12,
+    REG_ERR = 13,
+    REG_EIP = 14,
+    REG_CS = 15,
+    REG_EFL = 16,
+    REG_UESP = 17,
+    REG_SS = 18
+};
+
+typedef int greg_t;
+
+#define NGREG	19
+
+typedef greg_t gregset_t[19];
+
+struct _libc_fpreg {
+    unsigned short significand[4];
+    unsigned short exponent;
+};
+
+struct _libc_fpstate {
+    unsigned long int cw;
+    unsigned long int sw;
+    unsigned long int tag;
+    unsigned long int ipoff;
+    unsigned long int cssel;
+    unsigned long int dataoff;
+    unsigned long int datasel;
+    struct _libc_fpreg _st[8];
+    unsigned long int status;
+};
+typedef struct _libc_fpstate *fpregset_t;
+
+typedef struct {
+    gregset_t gregs;
+    fpregset_t fpregs;
+    unsigned long int oldmask;
+    unsigned long int cr2;
+} mcontext_t;
+
+typedef struct ucontext {
+    unsigned long int uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    mcontext_t uc_mcontext;
+    sigset_t uc_sigmask;
+    struct _libc_fpstate __fpregs_mem;
+} ucontext_t;

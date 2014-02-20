@@ -1,0 +1,29 @@
+
+#define FamilyLocalHost	(252)
+#define FamilyKrb5Principal	(253)
+#define FamilyNetname	(254)
+#define FamilyLocal	(256)
+#define FamilyWild	(65535)
+#define LOCK_SUCCESS	0
+#define LOCK_ERROR	1
+#define _Xauth_h	1
+#define LOCK_TIMEOUT	2
+
+typedef struct xauth {
+    unsigned short family;
+    unsigned short address_length;
+    char *address;
+    unsigned short number_length;
+    char *number;
+    unsigned short name_length;
+    char *name;
+    unsigned short data_length;
+    char *data;
+} Xauth;
+extern void XauDisposeAuth(Xauth *);
+extern char *XauFileName(void);
+extern Xauth *XauGetBestAuthByAddr(unsigned int, unsigned int,
+				   const char *, unsigned int,
+				   const char *, int, char **,
+				   const int *);
+extern Xauth *XauReadAuth(FILE *);

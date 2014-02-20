@@ -1,0 +1,7 @@
+
+class QRegion;
+enum QRegion::RegionType {
+    Rectangle = 0,
+    Ellipse = 1
+};
+struct QRegion::QRegionData;

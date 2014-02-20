@@ -1,0 +1,23 @@
+
+#define RTLD_NEXT	((void *) -1l)
+#define RTLD_DEFAULT	((void *) 0)
+#define RTLD_LOCAL	0
+#define RTLD_LAZY	0x00001
+#define RTLD_NOW	0x00002
+#define RTLD_NOLOAD	0x00004
+#define RTLD_DEEPBIND	0x00008
+#define RTLD_GLOBAL	0x00100
+#define RTLD_NODELETE	0x01000
+
+typedef struct {
+    char *dli_fname;
+    void *dli_fbase;
+    char *dli_sname;
+    void *dli_saddr;
+} Dl_info;
+extern int dladdr(const void *__address, Dl_info * __info);
+extern int dlclose(void *__handle);
+extern char *dlerror(void);
+extern void *dlopen(const char *__file, int __mode);
+extern void *dlsym(void *__handle, const char *__name);
+extern void *dlvsym(void *handle, const char *name, const char *version);

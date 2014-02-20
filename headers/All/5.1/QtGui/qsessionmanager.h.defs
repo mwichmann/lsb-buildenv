@@ -1,0 +1,8 @@
+
+class QSessionManager;
+enum QSessionManager::RestartHint {
+    RestartIfRunning = 0,
+    RestartAnyway = 1,
+    RestartImmediately = 2,
+    RestartNever = 3
+};

@@ -1,0 +1,7 @@
+
+class QLineEdit;
+enum QLineEdit::EchoMode {
+    Normal = 0,
+    NoEcho = 1,
+    Password = 2
+};

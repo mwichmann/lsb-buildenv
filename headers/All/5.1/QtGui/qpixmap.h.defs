@@ -1,0 +1,11 @@
+
+class QPixmap;
+enum QPixmap::ColorMode {
+    Auto = 0,
+    Color = 1,
+    Mono = 2
+};
+enum QPixmap::Type {
+    PixmapType = 0,
+    BitmapType = 1
+};

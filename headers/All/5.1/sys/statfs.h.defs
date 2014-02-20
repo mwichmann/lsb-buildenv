@@ -1,0 +1,7 @@
+
+#define NFS_SUPER_MAGIC	0x6969
+
+extern int fstatfs(int __fildes, struct statfs *__buf);
+extern int fstatfs64(int __fildes, struct statfs64 *__buf);
+extern int statfs(const char *__file, struct statfs *__buf);
+extern int statfs64(const char *__file, struct statfs64 *__buf);

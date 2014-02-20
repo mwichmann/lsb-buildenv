@@ -1,0 +1,9 @@
+
+class QSplitter;
+enum QSplitter::ResizeMode {
+    Stretch = 0,
+    KeepSize = 1,
+    FollowSizeHint = 2,
+    Auto = 3
+};
+class QSplitterHandle;

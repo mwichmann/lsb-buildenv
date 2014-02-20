@@ -1,0 +1,17 @@
+
+typedef enum QtValidLicenseForXmlModule QtXmlModule;
+class QXmlNamespaceSupport;
+class QXmlAttributes;
+struct QXmlAttributes::Attribute;
+class QXmlInputSource;
+class QXmlParseException;
+class QXmlReader;
+class QXmlSimpleReader;
+class QXmlLocator;
+class QXmlContentHandler;
+class QXmlErrorHandler;
+class QXmlDTDHandler;
+class QXmlEntityResolver;
+class QXmlLexicalHandler;
+class QXmlDeclHandler;
+class QXmlDefaultHandler;

@@ -1,0 +1,24 @@
+
+class QHttpHeader;
+class QHttpResponseHeader;
+class QHttpRequestHeader;
+class QHttp;
+enum QHttp::State {
+    Unconnected = 0,
+    HostLookup = 1,
+    Connecting = 2,
+    Sending = 3,
+    Reading = 4,
+    Connected = 5,
+    Closing = 6
+};
+enum QHttp::Error {
+    NoError = 0,
+    UnknownError = 1,
+    HostNotFound = 2,
+    ConnectionRefused = 3,
+    UnexpectedClose = 4,
+    InvalidResponseHeader = 5,
+    WrongContentLength = 6,
+    Aborted = 7
+};

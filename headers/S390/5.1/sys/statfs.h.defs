@@ -1,0 +1,27 @@
+
+struct statfs {
+    int f_type;			/* type of filesystem */
+    int f_bsize;		/* optimal transfer block size */
+    fsblkcnt_t f_blocks;	/* total data blocks in file system */
+    fsblkcnt_t f_bfree;		/* free blocks in fs */
+    fsblkcnt_t f_bavail;	/* free blocks avail to non-superuser */
+    fsfilcnt_t f_files;		/* total file nodes in file system */
+    fsfilcnt_t f_ffree;		/* free file nodes in file system */
+    fsid_t f_fsid;		/* file system id */
+    int f_namelen;		/* maximum length of filenames */
+    int f_frsize;		/* fragment size */
+    int f_spare[5];		/* spare for later */
+};
+struct statfs64 {
+    int f_type;			/* type of filesystem */
+    int f_bsize;		/* optimal transfer block size */
+    fsblkcnt64_t f_blocks;	/* total data blocks in file system */
+    fsblkcnt64_t f_bfree;	/* free blocks in fs */
+    fsblkcnt64_t f_bavail;	/* free blocks avail to non-superuser */
+    fsfilcnt64_t f_files;	/* total file nodes in file system */
+    fsfilcnt64_t f_ffree;	/* free file nodes in file system */
+    fsid_t f_fsid;		/* file system id */
+    int f_namelen;		/* maximum length of filenames */
+    int f_frsize;		/* fragment size */
+    int f_spare[5];		/* spare for later */
+};

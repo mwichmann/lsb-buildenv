@@ -1,0 +1,8 @@
+
+#define _SECDIGT_H_
+
+typedef struct SGNDigestInfoStr {
+    PLArenaPool *arena;
+    SECAlgorithmID digestAlgorithm;
+    SECItem digest;
+} SGNDigestInfo;

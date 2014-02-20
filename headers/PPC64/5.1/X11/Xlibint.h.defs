@@ -1,0 +1,2 @@
+
+#define MakeBigReq(req,n)	{ CARD64 _BRdat; CARD32 _BRlen = req->length - 1; req->length = 0; _BRdat = ((CARD32 *)req)[_BRlen]; memmove(((char *)req) + 8, ((char *)req) + 4, _BRlen << 2); ((CARD32 *)req)[1] = _BRlen + n + 2; Data32(dpy, &_BRdat, 4); }

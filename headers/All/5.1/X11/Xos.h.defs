@@ -1,0 +1,3 @@
+
+#define _XOS_H_
+#define X_GETTIMEOFDAY(t)	gettimeofday(t, (struct timezone*)0)

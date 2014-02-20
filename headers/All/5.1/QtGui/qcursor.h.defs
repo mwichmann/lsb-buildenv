@@ -1,0 +1,3 @@
+
+class QCursor;
+typedef enum Qt::CursorShape QCursorShape;

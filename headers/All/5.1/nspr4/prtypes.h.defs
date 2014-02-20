@@ -1,0 +1,21 @@
+
+#define prtypes_h___
+
+typedef int PRInt32;
+typedef unsigned long int PRUword;
+typedef int PRIntn;
+typedef unsigned long int PRUint64;
+typedef unsigned char PRUint8;
+typedef short int PRInt16;
+typedef long int PRInt64;
+typedef PRIntn PRBool;
+typedef unsigned short PRUint16;
+typedef unsigned int PRUint32;
+typedef size_t PRSize;
+typedef unsigned int PRUintn;
+typedef PRInt64 PROffset64;
+typedef PRInt32 PROffset32;
+typedef enum {
+    PR_FAILURE = -1,
+    PR_SUCCESS = 0
+} PRStatus;

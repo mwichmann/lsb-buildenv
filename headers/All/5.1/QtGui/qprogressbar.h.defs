@@ -1,0 +1,6 @@
+
+class QProgressBar;
+enum QProgressBar::Direction {
+    TopToBottom = 0,
+    BottomToTop = 1
+};

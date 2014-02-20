@@ -1,0 +1,11 @@
+
+class QSqlResult;
+enum QSqlResult::BindingSyntax {
+    PositionalBinding = 0,
+    BindByPosition = 0,
+    NamedBinding = 1,
+    BindByName = 1
+};
+enum QSqlResult::VirtualHookOperation {
+    BatchOperation = 0
+};

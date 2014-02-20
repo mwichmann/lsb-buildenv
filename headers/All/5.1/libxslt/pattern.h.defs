@@ -1,0 +1,21 @@
+
+typedef struct _xsltCompMatch xsltCompMatch;
+typedef xsltCompMatch *xsltCompMatchPtr;
+extern int xsltAddTemplate(xsltStylesheetPtr style, xsltTemplatePtr cur,
+			   const unsigned char *mode,
+			   const unsigned char *modeURI);
+extern void xsltCleanupTemplates(xsltStylesheetPtr style);
+extern xsltCompMatchPtr xsltCompilePattern(const unsigned char *pattern,
+					   xmlDocPtr doc, xmlNodePtr node,
+					   xsltStylesheetPtr style,
+					   xsltTransformContextPtr
+					   runtime);
+extern void xsltFreeCompMatchList(xsltCompMatchPtr comp);
+extern void xsltFreeTemplateHashes(xsltStylesheetPtr style);
+extern xsltTemplatePtr xsltGetTemplate(xsltTransformContextPtr ctxt,
+				       xmlNodePtr node,
+				       xsltStylesheetPtr style);
+extern void xsltNormalizeCompSteps(void *payload, void *data,
+				   const unsigned char *name);
+extern int xsltTestCompMatchList(xsltTransformContextPtr ctxt,
+				 xmlNodePtr node, xsltCompMatchPtr comp);

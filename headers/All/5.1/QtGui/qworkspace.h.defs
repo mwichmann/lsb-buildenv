@@ -1,0 +1,6 @@
+
+class QWorkspace;
+enum QWorkspace::WindowOrder {
+    CreationOrder = 0,
+    StackingOrder = 1
+};

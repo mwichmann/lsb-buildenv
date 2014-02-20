@@ -1,0 +1,6 @@
+
+class QClipboard;
+enum QClipboard::Mode {
+    Clipboard = 0,
+    Selection = 1
+};

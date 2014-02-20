@@ -1,0 +1,50 @@
+
+#define SIGEV_PAD_SIZE	((SIGEV_MAX_SIZE/sizeof(int))-4)
+
+#define SI_PAD_SIZE	((SI_MAX_SIZE/sizeof(int))-4)
+
+struct sigaction {
+    union {
+	sighandler_t _sa_handler;
+	void (*_sa_sigaction) (int, siginfo_t *, void *);
+    } __sigaction_handler;
+    unsigned long int sa_flags;
+    sigset_t sa_mask;		/* mask last for extensibility */
+};
+
+#define MINSIGSTKSZ	131027	/* Minimum stack size for a signal handler. */
+#define SIGSTKSZ	262144	/* System default stack size. */
+
+struct ia64_fpreg {
+    union {
+	unsigned long int bits[2];
+	long double __dummy;	/* force 16-byte alignment */
+    } u;
+};
+
+struct sigcontext {
+    unsigned long int sc_flags;
+    unsigned long int sc_nat;
+    stack_t sc_stack;
+    unsigned long int sc_ip;
+    unsigned long int sc_cfm;
+    unsigned long int sc_um;
+    unsigned long int sc_ar_rsc;
+    unsigned long int sc_ar_bsp;
+    unsigned long int sc_ar_rnat;
+    unsigned long int sc_ar_ccv;
+    unsigned long int sc_ar_unat;
+    unsigned long int sc_ar_fpsr;
+    unsigned long int sc_ar_pfs;
+    unsigned long int sc_ar_lc;
+    unsigned long int sc_pr;
+    unsigned long int sc_br[8];
+    unsigned long int sc_gr[32];
+    struct ia64_fpreg sc_fr[128];
+    unsigned long int sc_rbs_base;	/* NULL or new base of sighandler's rbs */
+    unsigned long int sc_loadrs;	/* see description above */
+    unsigned long int sc_ar25;	/* cmp8xchg16 uses this */
+    unsigned long int sc_ar26;	/*  rsvd for scratch use */
+    unsigned long int sc_rsvd[12];
+    unsigned long int sc_mask;	/* really sigset_t, but unsigned long for convenience at the us */
+};

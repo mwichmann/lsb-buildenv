@@ -1,0 +1,8 @@
+
+extern void xsltApplyAttributeSet(xsltTransformContextPtr ctxt,
+				  xmlNodePtr node, xmlNodePtr inst,
+				  const unsigned char *attributes);
+extern void xsltFreeAttributeSetsHashes(xsltStylesheetPtr style);
+extern void xsltParseStylesheetAttributeSet(xsltStylesheetPtr style,
+					    xmlNodePtr cur);
+extern void xsltResolveStylesheetAttributeSet(xsltStylesheetPtr style);

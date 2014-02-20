@@ -1,0 +1,7 @@
+
+class QColormap;
+enum QColormap::Mode {
+    Direct = 0,
+    Indexed = 1,
+    Gray = 2
+};

@@ -1,0 +1,6 @@
+
+class QDialog;
+enum QDialog::DialogCode {
+    Rejected = 0,
+    Accepted = 1
+};

@@ -1,0 +1,6 @@
+
+class QRubberBand;
+enum QRubberBand::Shape {
+    Line = 0,
+    Rectangle = 1
+};

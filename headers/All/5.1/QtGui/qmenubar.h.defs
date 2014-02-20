@@ -1,0 +1,6 @@
+
+class QMenuBar;
+enum QMenuBar::Separator {
+    Never = 0,
+    InWindowsStyle = 1
+};

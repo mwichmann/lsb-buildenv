@@ -1,0 +1,8 @@
+
+class QLine;
+class QLineF;
+enum QLineF::IntersectType {
+    NoIntersection = 0,
+    BoundedIntersection = 1,
+    UnboundedIntersection = 2
+};

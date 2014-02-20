@@ -1,0 +1,30 @@
+
+class QString;
+enum QString::SectionFlag {
+    SectionDefault = 0,
+    SectionSkipEmpty = 1,
+    SectionIncludeLeadingSep = 2,
+    SectionIncludeTrailingSep = 4,
+    SectionCaseInsensitiveSeps = 8
+};
+class QFlags < QString::SectionFlag >;
+typedef class QFlags < QString::SectionFlag > QString::SectionFlags;
+enum QString::SplitBehavior {
+    KeepEmptyParts = 0,
+    SkipEmptyParts = 1
+};
+enum QString::NormalizationForm {
+    NormalizationForm_D = 0,
+    NormalizationForm_C = 1,
+    NormalizationForm_KD = 2,
+    NormalizationForm_KC = 3
+};
+typedef class QCharQString::iterator;
+typedef class QCharQString::const_iterator;
+typedef QString::iterator QString::Iterator;
+typedef QString::const_iterator QString::ConstIterator;
+struct QString::Null;
+struct QString::Data;
+class QLatin1String;
+class QCharRef;
+class QConstString;

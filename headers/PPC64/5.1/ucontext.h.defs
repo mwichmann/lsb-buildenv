@@ -1,0 +1,41 @@
+
+#define define NFPREG	33
+#define define NVRREG	34
+
+typedef struct _libc_vscr {
+    int __pad[3];
+    int vscr_word;
+} vscr_t;
+typedef struct _libc_vrstate {
+    unsigned int vrregs[128];
+    vscr_t vscr;
+    unsigned int vrsave;
+    unsigned int __pad[3];
+} vrregset_t __attribute__ ((__aligned__(16)));
+
+#define NGREG	48
+
+typedef unsigned long int gregset_t[48];
+
+typedef double fpregset_t[33];
+
+typedef struct {
+    unsigned long int __unused[4];
+    int signal;
+    int pad0;
+    unsigned long int handler;
+    unsigned long int oldmask;
+    struct pt_regs *regs;
+    gregset_t gp_regs;
+    fpregset_t fp_regs;
+    vrregset_t *v_regs;
+    long int vmx_reserve[69];
+} mcontext_t;
+
+typedef struct ucontext {
+    unsigned long int uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    sigset_t uc_sigmask;
+    mcontext_t uc_mcontext;
+} ucontext_t;

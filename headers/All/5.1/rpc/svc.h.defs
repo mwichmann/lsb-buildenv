@@ -1,0 +1,71 @@
+
+#define svc_getcaller(x)	(&(x)->xp_raddr)
+#define svc_destroy(xprt)	(*(xprt)->xp_ops->xp_destroy)(xprt)
+#define svc_recv(xprt,msg)	(*(xprt)->xp_ops->xp_recv)((xprt), (msg))
+#define svc_reply(xprt,msg)	(*(xprt)->xp_ops->xp_reply) ((xprt), (msg))
+#define svc_stat(xprt)	(*(xprt)->xp_ops->xp_stat)(xprt)
+#define RPC_ANYSOCK	-1
+#define svc_freeargs(xprt,xargs, argsp)	\
+	(*(xprt)->xp_ops->xp_freeargs)((xprt), (xargs), (argsp))
+#define svc_getargs(xprt,xargs, argsp)	\
+	(*(xprt)->xp_ops->xp_getargs)((xprt), (xargs), (argsp))
+
+enum xprt_stat {
+    XPRT_DIED,
+    XPRT_MOREREQS,
+    XPRT_IDLE
+};
+
+typedef struct SVCXPRT {
+    int xp_sock;
+    u_short xp_port;
+    struct xp_ops *xp_ops;
+    int xp_addrlen;
+    struct sockaddr_in xp_raddr;
+    struct opaque_auth xp_verf;
+    caddr_t xp_p1;
+    caddr_t xp_p2;
+    char xp_pad[256];
+} SVCXPRT;
+
+struct svc_req {
+    rpcprog_t rq_prog;
+    rpcvers_t rq_vers;
+    rpcproc_t rq_proc;
+    struct opaque_auth rq_cred;
+    caddr_t rq_clntcred;
+    SVCXPRT *rq_xprt;
+};
+
+typedef void (*__dispatch_fn_t) (struct svc_req *, SVCXPRT *);
+
+struct xp_ops {
+    bool_t(*xp_recv) (SVCXPRT * __xprt, struct rpc_msg * __msg);
+    enum xprt_stat (*xp_stat) (SVCXPRT * __xprt);
+     bool_t(*xp_getargs) (SVCXPRT * __xprt, xdrproc_t __xdr_args,
+			  caddr_t args_ptr);
+     bool_t(*xp_reply) (SVCXPRT * __xprt, struct rpc_msg * __msg);
+     bool_t(*xp_freeargs) (SVCXPRT * __xprt, xdrproc_t __xdr_args,
+			   caddr_t args_ptr);
+    void (*xp_destroy) (SVCXPRT * __xprt);
+};
+extern void svc_getreqset(fd_set * __readfds);
+extern bool_t svc_register(SVCXPRT * __xprt, rpcprog_t __prog,
+			   rpcvers_t __vers, __dispatch_fn_t __dispatch,
+			   rpcprot_t __protocol);
+extern void svc_run(void);
+extern bool_t svc_sendreply(SVCXPRT * xprt, xdrproc_t __xdr_results,
+			    caddr_t __xdr_location);
+extern void svcerr_auth(SVCXPRT * __xprt, enum auth_stat __why);
+extern void svcerr_decode(SVCXPRT * __xprt);
+extern void svcerr_noproc(SVCXPRT * __xprt);
+extern void svcerr_noprog(SVCXPRT * __xprt);
+extern void svcerr_progvers(SVCXPRT * __xprt, rpcvers_t __low_vers,
+			    rpcvers_t __high_vers);
+extern void svcerr_systemerr(SVCXPRT * __xprt);
+extern void svcerr_weakauth(SVCXPRT * __xprt);
+extern SVCXPRT *svcfd_create(int, unsigned int, unsigned int);
+extern SVCXPRT *svcraw_create(void);
+extern SVCXPRT *svctcp_create(int __sock, u_int __sendsize,
+			      u_int __recvsize);
+extern SVCXPRT *svcudp_create(int __sock);

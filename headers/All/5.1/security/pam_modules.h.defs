@@ -1,0 +1,5 @@
+
+extern int pam_get_data(const pam_handle_t *, const char *, const void **);
+extern int pam_get_user(pam_handle_t *, const char **, const char *);
+extern int pam_set_data(pam_handle_t *, const char *, void *,
+			void (*)(pam_handle_t *, void *, int));

@@ -1,0 +1,11 @@
+
+class QPainterPath;
+enum QPainterPath::ElementType {
+    MoveToElement = 0,
+    LineToElement = 1,
+    CurveToElement = 2,
+    CurveToDataElement = 3
+};
+class QPainterPath::Element;
+class QPainterPathPrivate;
+class QPainterPathStroker;

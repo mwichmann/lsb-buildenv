@@ -1,0 +1,16 @@
+
+struct QUuid;
+enum QUuid::Variant {
+    VarUnknown = -1,
+    NCS = 0,
+    DCE = 2,
+    Microsoft = 6,
+    Reserved = 7
+};
+enum QUuid::Version {
+    VerUnknown = -1,
+    Time = 1,
+    EmbeddedPOSIX = 2,
+    Name = 3,
+    Random = 4
+};

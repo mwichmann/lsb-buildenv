@@ -1,0 +1,7 @@
+
+class QHostInfo;
+enum QHostInfo::HostInfoError {
+    NoError = 0,
+    HostNotFound = 1,
+    UnknownError = 2
+};

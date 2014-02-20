@@ -1,0 +1,7 @@
+
+class QNetworkProxy;
+enum QNetworkProxy::ProxyType {
+    DefaultProxy = 0,
+    Socks5Proxy = 1,
+    NoProxy = 2
+};

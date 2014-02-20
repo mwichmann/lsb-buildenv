@@ -1,0 +1,3 @@
+
+extern _Unwind_Ptr _Unwind_GetDataRelBase(struct _Unwind_Context *);
+extern _Unwind_Ptr _Unwind_GetTextRelBase(struct _Unwind_Context *);

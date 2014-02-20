@@ -1,0 +1,14 @@
+
+class QTabWidget;
+enum QTabWidget::TabPosition {
+    North = 0,
+    Top = 0,
+    South = 1,
+    Bottom = 1,
+    West = 2,
+    East = 3
+};
+enum QTabWidget::TabShape {
+    Rounded = 0,
+    Triangular = 1
+};

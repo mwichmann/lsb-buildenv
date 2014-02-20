@@ -1,0 +1,7 @@
+
+extern xsltElemPreCompPtr xsltDocumentComp(xsltStylesheetPtr style,
+					   xmlNodePtr inst,
+					   xsltTransformFunction function);
+extern const xmlChar *xsltExtMarker;
+extern void xsltFreeStylePreComps(xsltStylesheetPtr style);
+extern void xsltStylePreCompute(xsltStylesheetPtr style, xmlNodePtr inst);

@@ -1,0 +1,228 @@
+
+#define _CUPS_CUPS_H_
+#define CUPS_VERSION_MAJOR	1
+#define CUPS_VERSION_MINOR	1
+#define CUPS_VERSION	1.0123
+#define CUPS_VERSION_PATCH	23
+#define cupsLangDefault()	cupsLangGet(NULL)
+
+typedef enum {
+    CUPS_AUTO_ENCODING = -1,
+    CUPS_US_ASCII = 0,
+    CUPS_ISO8859_1 = 1,
+    CUPS_ISO8859_2 = 2,
+    CUPS_ISO8859_3 = 3,
+    CUPS_ISO8859_4 = 4,
+    CUPS_ISO8859_5 = 5,
+    CUPS_ISO8859_6 = 6,
+    CUPS_ISO8859_7 = 7,
+    CUPS_ISO8859_8 = 8,
+    CUPS_ISO8859_9 = 9,
+    CUPS_ISO8859_10 = 10,
+    CUPS_UTF8 = 11,
+    CUPS_ISO8859_13 = 12,
+    CUPS_ISO8859_14 = 13,
+    CUPS_ISO8859_15 = 14,
+    CUPS_WINDOWS_874 = 15,
+    CUPS_WINDOWS_1250 = 16,
+    CUPS_WINDOWS_1251 = 17,
+    CUPS_WINDOWS_1252 = 18,
+    CUPS_WINDOWS_1253 = 19,
+    CUPS_WINDOWS_1254 = 20,
+    CUPS_WINDOWS_1255 = 21,
+    CUPS_WINDOWS_1256 = 22,
+    CUPS_WINDOWS_1257 = 23,
+    CUPS_WINDOWS_1258 = 24,
+    CUPS_KOI8_R = 25,
+    CUPS_KOI8_U = 26
+} cups_encoding_t;
+typedef struct cups_lang_s {
+    struct cups_lang_s *next;
+    int used;
+    cups_encoding_t encoding;
+    char language[16];
+    cups_array_t *strings;
+} cups_lang_t;
+typedef enum {
+    HTTP_ENCRYPT_IF_REQUESTED = 0,
+    HTTP_ENCRYPT_NEVER = 1,
+    HTTP_ENCRYPT_REQUIRED = 2,
+    HTTP_ENCRYPT_ALWAYS = 3
+} http_encryption_t;
+typedef struct {
+    char *name;
+    char *value;
+} cups_option_t;
+typedef struct {
+    char *name;
+    char *instance;
+    int is_default;
+    int num_options;
+    cups_option_t *options;
+} cups_dest_t;
+typedef enum {
+    HTTP_WAITING = 0,
+    HTTP_OPTIONS = 1,
+    HTTP_GET = 2,
+    HTTP_GET_SEND = 3,
+    HTTP_HEAD = 4,
+    HTTP_POST = 5,
+    HTTP_POST_RECV = 6,
+    HTTP_POST_SEND = 7,
+    HTTP_PUT = 8,
+    HTTP_PUT_RECV = 9,
+    HTTP_DELETE = 10,
+    HTTP_TRACE = 11,
+    HTTP_CLOSE = 12,
+    HTTP_STATUS = 13
+} http_state_t;
+typedef enum {
+    HTTP_ERROR = -1,
+    HTTP_CONTINUE = 100,
+    HTTP_SWITCHING_PROTOCOLS = 101,
+    HTTP_OK = 200,
+    HTTP_CREATED = 201,
+    HTTP_ACCEPTED = 202,
+    HTTP_NOT_AUTHORITATIVE = 203,
+    HTTP_NO_CONTENT = 204,
+    HTTP_RESET_CONTENT = 205,
+    HTTP_PARTIAL_CONTENT = 206,
+    HTTP_MULTIPLE_CHOICES = 300,
+    HTTP_MOVED_PERMANENTLY = 301,
+    HTTP_MOVED_TEMPORARILY = 302,
+    HTTP_SEE_OTHER = 303,
+    HTTP_NOT_MODIFIED = 304,
+    HTTP_USE_PROXY = 305,
+    HTTP_BAD_REQUEST = 400,
+    HTTP_UNAUTHORIZED = 401,
+    HTTP_PAYMENT_REQUIRED = 402,
+    HTTP_FORBIDDEN = 403,
+    HTTP_NOT_FOUND = 404,
+    HTTP_METHOD_NOT_ALLOWED = 405,
+    HTTP_NOT_ACCEPTABLE = 406,
+    HTTP_PROXY_AUTHENTICATION = 407,
+    HTTP_REQUEST_TIMEOUT = 408,
+    HTTP_CONFLICT = 409,
+    HTTP_GONE = 410,
+    HTTP_LENGTH_REQUIRED = 411,
+    HTTP_PRECONDITION = 412,
+    HTTP_REQUEST_TOO_LARGE = 413,
+    HTTP_URI_TOO_LONG = 414,
+    HTTP_UNSUPPORTED_MEDIATYPE = 415,
+    HTTP_UPGRADE_REQUIRED = 426,
+    HTTP_SERVER_ERROR = 500,
+    HTTP_NOT_IMPLEMENTED = 501,
+    HTTP_BAD_GATEWAY = 502,
+    HTTP_SERVICE_UNAVAILABLE = 503,
+    HTTP_GATEWAY_TIMEOUT = 504,
+    HTTP_NOT_SUPPORTED = 505
+} http_status_t;
+typedef enum {
+    HTTP_0_9 = 9,
+    HTTP_1_0 = 100,
+    HTTP_1_1 = 101
+} http_version_t;
+typedef enum {
+    HTTP_KEEPALIVE_OFF = 0,
+    HTTP_KEEPALIVE_ON = 1
+} http_keepalive_t;
+typedef enum {
+    HTTP_ENCODE_LENGTH = 0,
+    HTTP_ENCODE_CHUNKED = 1
+} http_encoding_t;
+typedef enum {
+    IPP_JOB_PENDING = 3,
+    IPP_JOB_HELD = 4,
+    IPP_JOB_PROCESSING = 5,
+    IPP_JOB_STOPPED = 6,
+    IPP_JOB_CANCELLED = 7,
+    IPP_JOB_ABORTED = 8,
+    IPP_JOB_COMPLETED = 9
+} ipp_jstate_t;
+typedef struct {
+    int id;
+    char *dest;
+    char *title;
+    char *user;
+    char *format;
+    ipp_jstate_t state;
+    int size;
+    int priority;
+    time_t completed_time;
+    time_t creation_time;
+    time_t processing_time;
+} cups_job_t;
+typedef struct _cups_array_s cups_array_t;
+
+typedef struct _http_s http_t;
+extern int cupsAddDest(const char *name, const char *instance,
+		       int num_dests, cups_dest_t * *dests);
+extern int cupsAddOption(const char *name, const char *value,
+			 int num_options, cups_option_t * *options);
+extern int cupsCancelJob(const char *printer, int job);
+extern int cupsDoAuthentication(http_t * http, const char *method,
+				const char *resource);
+extern ipp_t *cupsDoFileRequest(http_t * http, ipp_t * request,
+				const char *resource,
+				const char *filename);
+extern void cupsEncodeOptions(ipp_t * ipp, int num_options,
+			      cups_option_t * options);
+extern http_encryption_t cupsEncryption(void);
+extern void cupsFreeDests(int num_dests, cups_dest_t * dests);
+extern void cupsFreeJobs(int num_jobs, cups_job_t * jobs);
+extern void cupsFreeOptions(int num_options, cups_option_t * options);
+extern const char *cupsGetDefault(void);
+extern const char *cupsGetDefault2(http_t * http);
+extern cups_dest_t *cupsGetDest(const char *name, const char *instance,
+				int num_dests, cups_dest_t * dests);
+extern int cupsGetDests(cups_dest_t * *dests);
+extern int cupsGetDests2(http_t * http, cups_dest_t * *dests);
+extern http_status_t cupsGetFd(http_t * http, const char *resource,
+			       int fd);
+extern http_status_t cupsGetFile(http_t * http, const char *resource,
+				 const char *filename);
+extern int cupsGetJobs(cups_job_t * *jobs, const char *dest, int myjobs,
+		       int completed);
+extern int cupsGetJobs2(http_t * http, cups_job_t * *jobs,
+			const char *dest, int myjobs, int completed);
+extern const char *cupsGetOption(const char *name, int num_options,
+				 cups_option_t * options);
+extern const char *cupsGetPPD(const char *printer);
+extern const char *cupsGetPPD2(http_t * http, const char *printer);
+extern const char *cupsGetPassword(const char *prompt);
+extern const char *cupsLangEncoding(cups_lang_t * lang);
+extern void cupsLangFlush(void);
+extern void cupsLangFree(cups_lang_t * lang);
+extern cups_lang_t *cupsLangGet(const char *language);
+extern ipp_status_t cupsLastError(void);
+extern int cupsMarkOptions(ppd_file_t * ppd, int num_options,
+			   cups_option_t * options);
+extern int cupsParseOptions(const char *arg, int num_options,
+			    cups_option_t * *options);
+extern int cupsPrintFile(const char *printer, const char *filename,
+			 const char *title, int num_options,
+			 cups_option_t * options);
+extern int cupsPrintFile2(http_t * http, const char *printer,
+			  const char *filename, const char *title,
+			  int num_options, cups_option_t * options);
+extern int cupsPrintFiles(const char *printer, int num_files,
+			  const char **files, const char *title,
+			  int num_options, cups_option_t * options);
+extern int cupsPrintFiles2(http_t * http, const char *printer,
+			   int num_files, const char **files,
+			   const char *title, int num_options,
+			   cups_option_t * options);
+extern http_status_t cupsPutFd(http_t * http, const char *resource,
+			       int fd);
+extern http_status_t cupsPutFile(http_t * http, const char *resource,
+				 const char *filename);
+extern const char *cupsServer(void);
+extern void cupsSetDests(int num_dests, cups_dest_t * dests);
+extern int cupsSetDests2(http_t * http, int num_dests,
+			 cups_dest_t * dests);
+extern void cupsSetEncryption(http_encryption_t e);
+extern void cupsSetPasswordCB(const char *(*cb) (const char *));
+extern void cupsSetServer(const char *server);
+extern void cupsSetUser(const char *user);
+extern int cupsTempFd(char *filename, int len);
+extern const char *cupsUser(void);

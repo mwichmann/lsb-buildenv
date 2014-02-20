@@ -1,0 +1,20 @@
+
+#define UNDEFINED_DEFAULT_NS	(const xmlChar *) -1L
+
+extern xmlNsPtr xsltCopyNamespace(xsltTransformContextPtr ctxt,
+				  xmlNodePtr elem, xmlNsPtr ns);
+extern xmlNsPtr xsltCopyNamespaceList(xsltTransformContextPtr ctxt,
+				      xmlNodePtr node, xmlNsPtr cur);
+extern void xsltFreeNamespaceAliasHashes(xsltStylesheetPtr style);
+extern xmlNsPtr xsltGetNamespace(xsltTransformContextPtr ctxt,
+				 xmlNodePtr cur, xmlNsPtr ns,
+				 xmlNodePtr out);
+extern xmlNsPtr xsltGetPlainNamespace(xsltTransformContextPtr ctxt,
+				      xmlNodePtr cur, xmlNsPtr ns,
+				      xmlNodePtr out);
+extern xmlNsPtr xsltGetSpecialNamespace(xsltTransformContextPtr ctxt,
+					xmlNodePtr cur,
+					const unsigned char *URI,
+					const unsigned char *prefix,
+					xmlNodePtr out);
+extern void xsltNamespaceAlias(xsltStylesheetPtr style, xmlNodePtr node);

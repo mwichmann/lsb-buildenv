@@ -1,0 +1,7 @@
+
+class QCheckBox;
+enum QCheckBox::ToggleState {
+    Off = 0,
+    NoChange = 1,
+    On = 2
+};

@@ -1,0 +1,16 @@
+
+#define FD_ISSET(d,set)	(((set)->fds_bits[((d)/(8*sizeof(long)))]&(1L<<((d)%(8*sizeof(long)))))!=0)
+#define FD_CLR(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]&=~(1L<<((d)%(8*sizeof(long)))))
+#define FD_SET(d,set)	((set)->fds_bits[((d)/(8*sizeof(long)))]|=(1L<<((d)%(8*sizeof(long)))))
+#define NFDBITS	(8 * sizeof (long))
+#define FD_SETSIZE	1024
+#define FD_ZERO(fdsetp)	bzero(fdsetp, sizeof(*(fdsetp)))
+
+typedef struct {
+    unsigned long int fds_bits[FD_SETSIZE / NFDBITS];
+} fd_set;
+extern int pselect(int __nfds, fd_set * __readfds, fd_set * __writefds,
+		   fd_set * __exceptfds, const struct timespec *__timeout,
+		   const sigset_t * __sigmask);
+extern int select(int __nfds, fd_set * __readfds, fd_set * __writefds,
+		  fd_set * __exceptfds, struct timeval *__timeout);

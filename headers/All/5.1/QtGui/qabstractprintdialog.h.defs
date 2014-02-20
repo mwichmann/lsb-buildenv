@@ -1,0 +1,17 @@
+
+class QAbstractPrintDialog;
+enum QAbstractPrintDialog::PrintRange {
+    AllPages = 0,
+    Selection = 1,
+    PageRange = 2
+};
+enum QAbstractPrintDialog::PrintDialogOption {
+    None = 0,
+    PrintToFile = 1,
+    PrintSelection = 2,
+    PrintPageRange = 4,
+    PrintCollateCopies = 16
+};
+class QFlags < QAbstractPrintDialog::PrintDialogOption >;
+typedef class QFlags < QAbstractPrintDialog::PrintDialogOption >
+    QAbstractPrintDialog::PrintDialogOptions;

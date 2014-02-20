@@ -1,0 +1,7 @@
+
+typedef struct PRCondVar PRCondVar;
+extern void PR_DestroyCondVar(PRCondVar * cvar);
+extern PRCondVar *PR_NewCondVar(PRLock * lock);
+extern PRStatus PR_NotifyAllCondVar(PRCondVar * cvar);
+extern PRStatus PR_NotifyCondVar(PRCondVar * cvar);
+extern PRStatus PR_WaitCondVar(PRCondVar * cvar, PRIntervalTime timeout);

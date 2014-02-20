@@ -1,0 +1,19 @@
+
+class QDateTimeEdit;
+enum QDateTimeEdit::Section {
+    NoSection = 0,
+    AmPmSection = 1,
+    MSecSection = 2,
+    SecondSection = 4,
+    MinuteSection = 8,
+    HourSection = 16,
+    TimeSections_Mask = 31,
+    DaySection = 256,
+    MonthSection = 512,
+    YearSection = 1024,
+    DateSections_Mask = 1792
+};
+class QFlags < QDateTimeEdit::Section >;
+typedef class QFlags < QDateTimeEdit::Section > QDateTimeEdit::Sections;
+class QTimeEdit;
+class QDateEdit;

@@ -1,0 +1,18 @@
+
+#define _CERT_H_
+
+extern SECCertTimeValidity CERT_CheckCertValidTimes(CERTCertificate * cert,
+						    PRTime t,
+						    PRBool allowOverride);
+extern void CERT_DestroyCertificate(CERTCertificate * cert);
+extern CERTCertificate *CERT_DupCertificate(CERTCertificate * c);
+extern void CERT_FreeNicknames(CERTCertNicknames * nicknames);
+extern CERTCertNicknames *CERT_GetCertNicknames(CERTCertDBHandle * handle,
+						int what, void *wincx);
+extern CERTCertDBHandle *CERT_GetDefaultCertDB(void);
+extern SECStatus CERT_VerifyCertName(CERTCertificate * cert,
+				     const char *hostname);
+extern SECStatus CERT_VerifyCertNow(CERTCertDBHandle * handle,
+				    CERTCertificate * cert,
+				    PRBool checkSig,
+				    SECCertUsage certUsage, void *wincx);

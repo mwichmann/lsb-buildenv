@@ -1,0 +1,40 @@
+
+#define ELF_NGREG	48
+
+typedef struct _libc_vrstate {
+    unsigned int vrregs[128];
+    unsigned int vrsave;
+    unsigned int _pad[2];
+    unsigned int vscr;
+} vrregset_t __attribute__ ((__aligned__(16)));
+
+#define NGREG	48
+
+typedef unsigned long int gregset_t[48];
+
+typedef struct _libc_fpstate {
+    double fpregs[32];
+    double fpscr;
+    int _pad[2];
+} fpregset_t;
+
+typedef struct {
+    gregset_t gregs;
+    fpregset_t fpregs;
+    vrregset_t vrregs;
+} mcontext_t;
+
+union uc_regs_ptr {
+    struct pt_regs *regs;
+    mcontext_t *uc_regs;
+};
+
+typedef struct ucontext {
+    unsigned long int uc_flags;
+    struct ucontext *uc_link;
+    stack_t uc_stack;
+    int uc_pad[7];
+    union uc_regs_ptr uc_mcontext;
+    sigset_t uc_sigmask;
+    char uc_reg_space[sizeof(mcontext_t) + 12];
+} ucontext_t;

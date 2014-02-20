@@ -1,0 +1,4 @@
+
+class QPicture;
+typedef void picture_io_handler;
+class QPictureIO;

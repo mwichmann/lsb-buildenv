@@ -1,0 +1,8 @@
+
+#define prlock_h___
+
+typedef struct PRLock PRLock;
+extern void PR_DestroyLock(PRLock * lock);
+extern void PR_Lock(PRLock * lock);
+extern PRLock *PR_NewLock(void);
+extern PRStatus PR_Unlock(PRLock * lock);

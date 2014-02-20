@@ -1,0 +1,53 @@
+
+class QAbstractFileEngine;
+enum QAbstractFileEngine::FileFlag {
+    ExeOtherPerm = 1,
+    WriteOtherPerm = 2,
+    ReadOtherPerm = 4,
+    ExeGroupPerm = 16,
+    WriteGroupPerm = 32,
+    ReadGroupPerm = 64,
+    ExeUserPerm = 256,
+    WriteUserPerm = 512,
+    ReadUserPerm = 1024,
+    ExeOwnerPerm = 4096,
+    WriteOwnerPerm = 8192,
+    ReadOwnerPerm = 16384,
+    PermsMask = 65535,
+    LinkType = 65536,
+    FileType = 131072,
+    DirectoryType = 262144,
+    TypesMask = 983040,
+    HiddenFlag = 1048576,
+    LocalDiskFlag = 2097152,
+    ExistsFlag = 4194304,
+    RootFlag = 8388608,
+    FlagsMask = 267386880,
+    FileInfoAll = 268435455
+};
+class QFlags < QAbstractFileEngine::FileFlag >;
+typedef class QFlags < QAbstractFileEngine::FileFlag >
+    QAbstractFileEngine::FileFlags;
+enum QAbstractFileEngine::FileName {
+    DefaultName = 0,
+    BaseName = 1,
+    PathName = 2,
+    AbsoluteName = 3,
+    AbsolutePathName = 4,
+    LinkName = 5,
+    CanonicalName = 6,
+    CanonicalPathName = 7
+};
+enum QAbstractFileEngine::FileOwner {
+    OwnerUser = 0,
+    OwnerGroup = 1
+};
+enum QAbstractFileEngine::FileTime {
+    CreationTime = 0,
+    ModificationTime = 1,
+    AccessTime = 2
+};
+enum QAbstractFileEngine::Extension;
+class QAbstractFileEngine::ExtensionOption;
+class QAbstractFileEngine::ExtensionReturn;
+class QAbstractFileEngineHandler;

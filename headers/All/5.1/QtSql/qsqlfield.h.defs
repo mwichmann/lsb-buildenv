@@ -1,0 +1,7 @@
+
+class QSqlField;
+enum QSqlField::RequiredStatus {
+    Unknown = -1,
+    Optional = 0,
+    Required = 1
+};

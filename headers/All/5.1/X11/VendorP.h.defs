@@ -1,0 +1,22 @@
+
+typedef struct {
+    XtPointer extension;
+} VendorShellClassPart;
+typedef struct _VendorShellClassRec {
+    CoreClassPart core_class;
+    CompositeClassPart composite_class;
+    ShellClassPart shell_class;
+    WMShellClassPart wm_shell_class;
+    VendorShellClassPart vendor_shell_class;
+} VendorShellClassRec;
+typedef struct {
+    int vendor_specific;
+} VendorShellPart;
+typedef struct {
+    CorePart core;
+    CompositePart composite;
+    ShellPart shell;
+    WMShellPart wm;
+    VendorShellPart vendor;
+} VendorShellRec;
+typedef VendorShellRec *VendorShellWidget;

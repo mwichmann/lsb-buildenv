@@ -1,0 +1,28 @@
+
+#define G_TYPE_INITABLE	(g_initable_get_type ())
+#define G_INITABLE(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_INITABLE, GInitable))
+#define G_IS_INITABLE(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), G_TYPE_INITABLE))
+#define G_INITABLE_GET_IFACE(obj)	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), G_TYPE_INITABLE, GInitableIface))
+#define G_TYPE_IS_INITABLE(type)	(g_type_is_a ((type), G_TYPE_INITABLE))
+
+typedef struct _GInitableIface {
+    GTypeInterface g_iface;
+     gboolean(*init) (GInitable * initable, GCancellable * cancellable,
+		      GError * *error);
+} GInitableIface;
+extern GType g_initable_get_type(void);
+extern gboolean g_initable_init(GInitable * initable,
+				GCancellable * cancellable,
+				GError * *error);
+extern gpointer g_initable_new(GType object_type,
+			       GCancellable * cancellable, GError * *error,
+			       const gchar * first_property_name, ...);
+extern GObject *g_initable_new_valist(GType object_type,
+				      const gchar * first_property_name,
+				      va_list var_args,
+				      GCancellable * cancellable,
+				      GError * *error);
+extern gpointer g_initable_newv(GType object_type, guint n_parameters,
+				GParameter * parameters,
+				GCancellable * cancellable,
+				GError * *error);

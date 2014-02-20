@@ -1,0 +1,6 @@
+
+class QAction;
+enum QAction::ActionEvent {
+    Trigger = 0,
+    Hover = 1
+};

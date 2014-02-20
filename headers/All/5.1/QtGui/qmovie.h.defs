@@ -1,0 +1,11 @@
+
+class QMovie;
+enum QMovie::MovieState {
+    NotRunning = 0,
+    Paused = 1,
+    Running = 2
+};
+enum QMovie::CacheMode {
+    CacheNone = 0,
+    CacheAll = 1
+};

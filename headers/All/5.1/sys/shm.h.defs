@@ -1,0 +1,14 @@
+
+#define SHM_RDONLY	010000
+#define SHM_W	0200
+#define SHM_RND	020000
+#define SHM_R	0400
+#define SHM_REMAP	040000
+#define SHM_LOCK	11
+#define SHM_UNLOCK	12
+
+extern int __getpagesize(void);
+extern void *shmat(int __shmid, const void *__shmaddr, int __shmflg);
+extern int shmctl(int __shmid, int __cmd, struct shmid_ds *__buf);
+extern int shmdt(const void *__shmaddr);
+extern int shmget(key_t __key, size_t __size, int __shmflg);
