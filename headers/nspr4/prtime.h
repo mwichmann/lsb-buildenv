@@ -39,7 +39,7 @@ extern "C" {
 	PRInt16 tm_year;
 	PRInt8 tm_wday;
 	PRInt16 tm_yday;
-	PRTimeParameters tm_yday;
+	PRTimeParameters tm_params;
     };
 
 #endif				/* __LSB_VERSION__ >= 5.0 */

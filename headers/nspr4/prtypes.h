@@ -45,6 +45,11 @@ extern "C" {
 	PR_SUCCESS = 0
     } PRStatus;
 
+#if __LSB_VERSION__ >= 50
+    typedef signed char PRInt8;
+
+#endif				/* __LSB_VERSION__ >= 5.0 */
+
 #ifdef __cplusplus
 }
 #endif
