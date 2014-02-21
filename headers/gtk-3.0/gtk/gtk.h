@@ -827,11 +827,14 @@ extern "C" {
 	GTK_FILE_FILTER_MIME_TYPE
     } GtkFileFilterFlags;
 
-    typedef gboolean(*GtkFileFilterFunc) (void);
+    typedef gboolean(*GtkFileFilterFunc) (const GtkFileFilterInfo *
+					  filter_info, gpointer data);
 
     typedef struct _GtkThemingEngine GtkThemingEngine;
 
-    typedef gboolean(*GtkFontFilterFunc) (void);
+    typedef gboolean(*GtkFontFilterFunc) (const PangoFontFamily * family,
+					  const PangoFontFace * face,
+					  gpointer data);
 
     typedef struct _GtkFontChooser GtkFontChooser;
 
@@ -917,7 +920,9 @@ extern "C" {
     typedef enum
 	GtkRecentFilterFlags;
 
-    typedef gboolean(*GtkRecentFilterFunc) (void);
+    typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *
+					    filter_info,
+					    gpointer user_data);
 
     typedef struct _GtkSwitch GtkSwitch;
 

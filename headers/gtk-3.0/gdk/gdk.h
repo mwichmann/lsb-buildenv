@@ -338,7 +338,9 @@ extern "C" {
 	GDK_FILTER_REMOVE
     } GdkFilterReturn;
 
-    typedef GdkFilterReturn(*GdkFilterFunc) (void);
+    typedef GdkFilterReturn(*GdkFilterFunc) (GdkXEvent * xevent,
+					     GdkEvent * event,
+					     gpointer data);
 
     typedef enum {
 	GDK_NOTHING,
@@ -933,7 +935,7 @@ extern "C" {
     extern gboolean gdk_display_pointer_is_grabbed(GdkDisplay * display);
     extern void gdk_display_pointer_ungrab(GdkDisplay * display, guint32);
     extern void gdk_display_put_event(GdkDisplay * display,
-				      const GdkEvent *);
+				      const GdkEvent * event);
     extern gboolean gdk_display_request_selection_notification(GdkDisplay *
 							       display,
 							       GdkAtom);

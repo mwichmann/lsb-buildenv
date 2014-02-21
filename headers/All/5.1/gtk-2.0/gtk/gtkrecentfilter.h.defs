@@ -22,8 +22,8 @@ typedef enum {
     GTK_RECENT_FILTER_GROUP,
     GTK_RECENT_FILTER_AGE
 } GtkRecentFilterFlags;
-typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *,
-					gpointer);
+typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *
+					filter_info, gpointer user_data);
 extern void gtk_recent_filter_add_age(GtkRecentFilter * filter, gint days);
 extern void gtk_recent_filter_add_application(GtkRecentFilter * filter,
 					      const char *application);

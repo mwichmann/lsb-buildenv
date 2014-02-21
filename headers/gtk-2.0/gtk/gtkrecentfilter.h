@@ -29,8 +29,9 @@ extern "C" {
 	GTK_RECENT_FILTER_AGE
     } GtkRecentFilterFlags;
 
-    typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *,
-					    gpointer);
+    typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *
+					    filter_info,
+					    gpointer user_data);
 
     struct _GtkRecentFilterInfo {
 	GtkRecentFilterFlags contains;

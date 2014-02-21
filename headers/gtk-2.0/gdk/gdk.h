@@ -640,8 +640,9 @@ extern "C" {
 
     typedef union _GdkEvent GdkEvent;
 
-    typedef GdkFilterReturn(*GdkFilterFunc) (GdkXEvent *, GdkEvent *,
-					     gpointer);
+    typedef GdkFilterReturn(*GdkFilterFunc) (GdkXEvent * xevent,
+					     GdkEvent * event,
+					     gpointer data);
 
     typedef struct _GdkDrawable GdkPixmap;
 

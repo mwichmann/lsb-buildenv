@@ -3799,7 +3799,8 @@ typedef struct _GtkAspectFrame {
     gboolean obey_child;
     GtkAllocation center_allocation;
 } GtkAspectFrame;
-typedef gboolean(*GtkFileFilterFunc) (const GtkFileFilterInfo *, gpointer);
+typedef gboolean(*GtkFileFilterFunc) (const GtkFileFilterInfo *
+				      filter_info, gpointer data);
 typedef struct _GtkIMMulticontextPrivate GtkIMMulticontextPrivate;
 typedef struct _GtkIMMulticontext {
     GtkIMContext object;

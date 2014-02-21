@@ -2917,8 +2917,8 @@ extern "C" {
 
     typedef struct _GtkAspectFrame GtkAspectFrame;
 
-    typedef gboolean(*GtkFileFilterFunc) (const GtkFileFilterInfo *,
-					  gpointer);
+    typedef gboolean(*GtkFileFilterFunc) (const GtkFileFilterInfo *
+					  filter_info, gpointer data);
 
     typedef struct _GtkIMMulticontextPrivate GtkIMMulticontextPrivate;
 
