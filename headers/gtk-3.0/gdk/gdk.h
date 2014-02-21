@@ -933,7 +933,7 @@ extern "C" {
     extern gboolean gdk_display_pointer_is_grabbed(GdkDisplay * display);
     extern void gdk_display_pointer_ungrab(GdkDisplay * display, guint32);
     extern void gdk_display_put_event(GdkDisplay * display,
-				      const union _GdkEvent *);
+				      const GdkEvent *);
     extern gboolean gdk_display_request_selection_notification(GdkDisplay *
 							       display,
 							       GdkAtom);

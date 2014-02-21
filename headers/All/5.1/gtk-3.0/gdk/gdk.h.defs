@@ -848,8 +848,7 @@ extern GdkDisplay *gdk_display_open_default_libgtk_only(void);
 extern GdkEvent *gdk_display_peek_event(GdkDisplay * display);
 extern gboolean gdk_display_pointer_is_grabbed(GdkDisplay * display);
 extern void gdk_display_pointer_ungrab(GdkDisplay * display, guint32);
-extern void gdk_display_put_event(GdkDisplay * display,
-				  const union _GdkEvent *);
+extern void gdk_display_put_event(GdkDisplay * display, const GdkEvent *);
 extern gboolean gdk_display_request_selection_notification(GdkDisplay *
 							   display,
 							   GdkAtom);
