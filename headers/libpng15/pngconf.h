@@ -79,7 +79,7 @@ extern "C" {
 
     typedef const char *png_const_charp;
 
-    typedef png_fixed_point *png_fixed_pointp;
+    typedef png_fixed_point *png_fixed_point_p;
 
     typedef FILE *png_FILE_p;
 
