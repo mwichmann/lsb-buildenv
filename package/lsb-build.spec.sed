@@ -179,6 +179,13 @@ done
 /opt/lsb/%xlib-5.0/pkgconfig/nspr.pc
 /opt/lsb/%xlib-5.1/pkgconfig/nss.pc
 /opt/lsb/%xlib-5.1/pkgconfig/nspr.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gdk-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gdk-broadway-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gdk-x11-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-broadway-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-unix-print-3.0.pc
+/opt/lsb/%xlib-5.0/pkgconfig/gtk+-x11-3.0.pc
 
 # locally created symlinks
 /opt/lsb/include/ncurses.h
@@ -401,6 +408,7 @@ done
 /opt/lsb/%xlib-4.1/pkgconfig/xtst.pc
 /opt/lsb/%xlib-5.0/pkgconfig/atk.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo-ft.pc
+/opt/lsb/%xlib-5.0/pkgconfig/cairo-gobject.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo-pdf.pc
 /opt/lsb/%xlib-5.0/pkgconfig/cairo-png.pc
