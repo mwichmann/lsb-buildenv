@@ -330,7 +330,7 @@ extern "C" {
 
     typedef union _GdkEvent GdkEvent;
 
-    typedef void (*GdkEventFunc) (void);
+    typedef void (*GdkEventFunc) (GdkEvent * filter_info, gpointer data);
 
     typedef void GdkXEvent;
 
@@ -516,7 +516,8 @@ extern "C" {
 	GDK_WINDOW_EDGE_SOUTH_EAST
     } GdkWindowEdge;
 
-    typedef gboolean(*GdkWindowChildFunc) (void);
+    typedef gboolean(*GdkWindowChildFunc) (GdkWindow * window,
+					   gpointer user_data);
 
     typedef struct _GdkTimeCoord GdkTimeCoord;
 
