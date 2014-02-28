@@ -311,6 +311,7 @@ typedef struct _GdkEventMotion GdkEventMotion;
 typedef struct _GdkEventSequence GdkEventSequence;
 typedef union _GdkEvent GdkEvent;
 typedef void (*GdkEventFunc) (void);
+typedef void GdkXEvent;
 typedef enum {
     GDK_FILTER_CONTINUE,
     GDK_FILTER_TRANSLATE,

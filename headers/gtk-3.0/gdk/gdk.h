@@ -332,6 +332,8 @@ extern "C" {
 
     typedef void (*GdkEventFunc) (void);
 
+    typedef void GdkXEvent;
+
     typedef enum {
 	GDK_FILTER_CONTINUE,
 	GDK_FILTER_TRANSLATE,
