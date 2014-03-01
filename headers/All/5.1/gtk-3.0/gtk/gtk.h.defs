@@ -1173,12 +1173,35 @@ typedef struct _GtkCellAreaContext GtkCellAreaContext;
 typedef gboolean(*GtkCellCallback) (void);
 typedef gboolean(*GtkCellAllocCallback) (void);
 typedef struct _GtkPrintOperation GtkPrintOperation;
-typedef enum
-    GtkPrintStatus;
-typedef enum
-    GtkPrintOperationResult;
-typedef enum
-    GtkPrintOperationAction;
+typedef enum {
+    GTK_PRINT_STATUS_INITIAL,
+    GTK_PRINT_STATUS_PREPARING,
+    GTK_PRINT_STATUS_GENERATING_DATA,
+    GTK_PRINT_STATUS_SENDING_DATA,
+    GTK_PRINT_STATUS_PENDING,
+    GTK_PRINT_STATUS_PENDING_ISSUE,
+    GTK_PRINT_STATUS_PRINTING,
+    GTK_PRINT_STATUS_FINISHED,
+    GTK_PRINT_STATUS_FINISHED_ABORTED
+} GtkPrintStatus;
+typedef enum {
+    GTK_PRINT_OPERATION_RESULT_ERROR,
+    GTK_PRINT_OPERATION_RESULT_APPLY,
+    GTK_PRINT_OPERATION_RESULT_CANCEL,
+    GTK_PRINT_OPERATION_RESULT_IN_PROGRESS
+} GtkPrintOperationResult;
+typedef enum {
+    GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+    GTK_PRINT_OPERATION_ACTION_PRINT,
+    GTK_PRINT_OPERATION_ACTION_PREVIEW,
+    GTK_PRINT_OPERATION_ACTION_EXPORT
+} GtkPrintOperationAction;
+typedef enum {
+    GTK_PRINT_ERROR_GENERAL,
+    GTK_PRINT_ERROR_INTERNAL_ERROR,
+    GTK_PRINT_ERROR_NOMEM,
+    GTK_PRINT_ERROR_INVALID_FILE
+} GtkPrintError;
 typedef void (*GtkPageSetupDoneFunc) (void);
 typedef guint8 *(*GtkTextBufferSerializeFunc) (void);
 typedef gboolean(*GtkTextBufferDeserializeFunc) (void);
