@@ -771,8 +771,12 @@ extern "C" {
 
     typedef struct _GtkListStore GtkListStore;
 
-    typedef enum
-	GtkRecentSortType;
+    typedef enum {
+	GTK_RECENT_SORT_NONE = 0,
+	GTK_RECENT_SORT_MRU = 1,
+	GTK_RECENT_SORT_LRU = 2,
+	GTK_RECENT_SORT_CUSTOM = 3
+    } GtkRecentSortType;
 
     typedef gint(*GtkRecentSortFunc) (void);
 
@@ -917,8 +921,14 @@ extern "C" {
 
     typedef struct _GtkRecentFilterInfo GtkRecentFilterInfo;
 
-    typedef enum
-	GtkRecentFilterFlags;
+    typedef enum {
+	GTK_RECENT_FILTER_URI = 0,
+	GTK_RECENT_FILTER_DISPLAY_NAME = 1,
+	GTK_RECENT_FILTER_MIME_TYPE = 2,
+	GTK_RECENT_FILTER_APPLICATION = 3,
+	GTK_RECENT_FILTER_GROUP = 4,
+	GTK_RECENT_FILTER_AGE = 5
+    } GtkRecentFilterFlags;
 
     typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *
 					    filter_info,
@@ -948,8 +958,13 @@ extern "C" {
 
     typedef struct _GtkFrame GtkFrame;
 
-    typedef enum
-	GtkAssistantPageType;
+    typedef enum {
+	GTK_ASSISTANT_PAGE_CONTENT = 0,
+	GTK_ASSISTANT_PAGE_INTRO = 1,
+	GTK_ASSISTANT_PAGE_CONFIRM = 2,
+	GTK_ASSISTANT_PAGE_SUMMARY = 3,
+	GTK_ASSISTANT_PAGE_PROGRESS = 4
+    } GtkAssistantPageType;
 
     typedef struct _GtkAssistant GtkAssistant;
 
@@ -1122,20 +1137,48 @@ extern "C" {
 
     typedef struct _GtkButton GtkButton;
 
-    typedef enum
-	GtkAlign;
+    typedef enum {
+	GTK_RECENT_FILTER_URI = 1 << 0,
+	GTK_RECENT_FILTER_DISPLAY_NAME = 1 << 1,
+	GTK_RECENT_FILTER_MIME_TYPE = 1 << 2,
+	GTK_RECENT_FILTER_APPLICATION = 1 << 3,
+	GTK_RECENT_FILTER_GROUP = 1 << 4,
+	GTK_RECENT_FILTER_AGE = 1 << 5
+    } GtkAlign;
 
-    typedef enum
-	GtkArrowType;
+    typedef enum {
+	GTK_ARROW_UP = 0,
+	GTK_ARROW_DOWN = 1,
+	GTK_ARROW_LEFT = 2,
+	GTK_ARROW_RIGHT = 3
+    } GtkArrowType;
 
-    typedef enum
-	GtkButtonBoxStyle;
+    typedef enum {
+	GTK_BUTTONBOX_DEFAULT_STYLE = 0,
+	GTK_BUTTONBOX_SPREAD = 1,
+	GTK_BUTTONBOX_EDGE = 2,
+	GTK_BUTTONBOX_START = 3,
+	GTK_BUTTONBOX_END = 4
+    } GtkButtonBoxStyle;
 
-    typedef enum
-	GtkDirectionType;
+    typedef enum {
+	GTK_DIR_TAB_FORWARD = 0,
+	GTK_DIR_TAB_BACKWARD = 1,
+	GTK_DIR_UP = 2,
+	GTK_DIR_DOWN = 3,
+	GTK_DIR_LEFT = 4,
+	GTK_DIR_RIGHT = 5
+    } GtkDirectionType;
 
-    typedef enum
-	GtkIconSize;
+    typedef enum {
+	GTK_ICON_SIZE_INVALID = 0,
+	GTK_ICON_SIZE_MENU = 1,
+	GTK_ICON_SIZE_SMALL_TOOLBAR = 2,
+	GTK_ICON_SIZE_LARGE_TOOLBAR = 3,
+	GTK_ICON_SIZE_BUTTON = 4,
+	GTK_ICON_SIZE_DND = 5,
+	GTK_ICON_SIZE_DIALOG = 6
+    } GtkIconSize;
 
     typedef enum {
 	GTK_SENSITIVITY_AUTO,
