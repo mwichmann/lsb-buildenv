@@ -330,7 +330,7 @@ extern "C" {
 
     typedef union _GdkEvent GdkEvent;
 
-    typedef void (*GdkEventFunc) (GdkEvent * filter_info, gpointer data);
+    typedef void (*GdkEventFunc) (GdkEvent * event, gpointer data);
 
     typedef void GdkXEvent;
 

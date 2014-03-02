@@ -606,7 +606,9 @@ typedef enum {
 typedef struct _GtkTextBuffer GtkTextBuffer;
 typedef gboolean(*GtkTextCharPredicate) (void);
 typedef struct _GtkPrintSettings GtkPrintSettings;
-typedef void (*GtkPrintSettingsFunc) (void);
+typedef void (*GtkPrintSettingsFunc) (const gchar * key,
+				      const gchar * value,
+				      gpointer user_data);
 typedef struct _GtkPageRange GtkPageRange;
 typedef struct _GtkEventBox GtkEventBox;
 typedef struct _GtkActivatable GtkActivatable;
@@ -638,7 +640,8 @@ typedef struct _GtkRecentManager GtkRecentManager;
 typedef struct _GtkIMContextSimple GtkIMContextSimple;
 typedef struct _GtkRadioButton GtkRadioButton;
 typedef struct _GtkPageSetup GtkPageSetup;
-typedef gint(*GtkKeySnoopFunc) (void);
+typedef gint(*GtkKeySnoopFunc) (GtkWidget * grab_widget,
+				GdkEventKey * event, gpointer func_data);
 typedef struct _GtkLinkButton GtkLinkButton;
 typedef struct _GtkAdjustment GtkAdjustment;
 typedef struct _GtkClipboard GtkClipboard;
@@ -656,15 +659,25 @@ typedef struct _GtkWindow GtkWindow;
 typedef gboolean(*GtkRcPropertyParser) (void);
 typedef struct _GtkRange GtkRange;
 typedef struct _GtkTextMark GtkTextMark;
-typedef gboolean(*GtkTreeSelectionFunc) (void);
-typedef void (*GtkTreeSelectionForeachFunc) (void);
+typedef gboolean(*GtkTreeSelectionFunc) (GtkTreeSelection * selection,
+					 GtkTreeModel * model,
+					 GtkTreePath * path,
+					 gboolean path_currently_selected,
+					 gpointer data);
+typedef void (*GtkTreeSelectionForeachFunc) (GtkTreeModel * model,
+					     GtkTreePath * path,
+					     GtkTreeIter * iter,
+					     gpointer data);
 typedef struct _GtkTreeViewColumn GtkTreeViewColumn;
 typedef enum {
     GTK_TREE_VIEW_COLUMN_GROW_ONLY,
     GTK_TREE_VIEW_COLUMN_AUTOSIZE,
     GTK_TREE_VIEW_COLUMN_FIXED
 } GtkTreeViewColumnSizing;
-typedef void (*GtkTreeCellDataFunc) (void);
+typedef void (*GtkTreeCellDataFunc) (GtkTreeViewColumn * tree_column,
+				     GtkCellRenderer * cell,
+				     GtkTreeModel * tree_model,
+				     GtkTreeIter * iter, gpointer data);
 typedef struct _GtkTreeModelSort GtkTreeModelSort;
 typedef struct _GtkViewport GtkViewport;
 typedef struct _GtkStatusIcon GtkStatusIcon;
@@ -677,7 +690,9 @@ typedef enum {
     GTK_CALENDAR_SHOW_WEEK_NUMBERS,
     GTK_CALENDAR_SHOW_DETAILS
 } GtkCalendarDisplayOptions;
-typedef gchar *(*GtkCalendarDetailFunc) (void);
+typedef gchar *(*GtkCalendarDetailFunc) (GtkCalendar * calendar,
+					 guint year, guint month,
+					 guint day, gpointer user_data);
 typedef enum {
     GTK_DIALOG_MODAL,
     GTK_DIALOG_DESTROY_WITH_PARENT
@@ -691,19 +706,38 @@ typedef enum {
     GTK_RECENT_SORT_LRU = 2,
     GTK_RECENT_SORT_CUSTOM = 3
 } GtkRecentSortType;
-typedef gint(*GtkRecentSortFunc) (void);
+typedef gint(*GtkRecentSortFunc) (GtkRecentInfo * a, GtkRecentInfo * b,
+				  gpointer user_data);
 typedef struct _GtkRecentChooser GtkRecentChooser;
 typedef struct _GtkScrollable GtkScrollable;
 typedef struct _GtkRadioAction GtkRadioAction;
 typedef struct _GtkPlug GtkPlug;
-typedef void (*GtkClipboardReceivedFunc) (void);
-typedef void (*GtkClipboardTextReceivedFunc) (void);
-typedef void (*GtkClipboardRichTextReceivedFunc) (void);
-typedef void (*GtkClipboardImageReceivedFunc) (void);
-typedef void (*GtkClipboardURIReceivedFunc) (void);
-typedef void (*GtkClipboardTargetsReceivedFunc) (void);
-typedef void (*GtkClipboardGetFunc) (void);
-typedef void (*GtkClipboardClearFunc) (void);
+typedef void (*GtkClipboardReceivedFunc) (GtkClipboard * clipboard,
+					  GtkSelectionData *
+					  selection_data, gpointer data);
+typedef void (*GtkClipboardTextReceivedFunc) (GtkClipboard * clipboard,
+					      const gchar * text,
+					      gpointer data);
+typedef void (*GtkClipboardRichTextReceivedFunc) (GtkClipboard * clipboard,
+						  GdkAtom format,
+						  const guint8 * text,
+						  gsize length,
+						  gpointer data);
+typedef void (*GtkClipboardImageReceivedFunc) (GtkClipboard * clipboard,
+					       GdkPixbuf * pixbuf,
+					       gpointer data);
+typedef void (*GtkClipboardURIReceivedFunc) (GtkClipboard * clipboard,
+					     gchar * *uris, gpointer data);
+typedef void (*GtkClipboardTargetsReceivedFunc) (GtkClipboard * clipboard,
+						 GdkAtom * atoms,
+						 gint n_atoms,
+						 gpointer data);
+typedef void (*GtkClipboardGetFunc) (GtkClipboard * clipboard,
+				     GtkSelectionData * selection_data,
+				     guint info,
+				     gpointer user_data_or_owner);
+typedef void (*GtkClipboardClearFunc) (GtkClipboard * clipboard,
+				       gpointer user_data_or_owner);
 typedef struct _GtkNotebook GtkNotebook;
 typedef struct _GtkLockButton GtkLockButton;
 typedef struct _GtkTreeDragSource GtkTreeDragSource;
@@ -733,7 +767,7 @@ typedef struct _GtkWidgetClass GtkWidgetClass;
 typedef struct _cairo_rectangle_int GtkAllocation;
 typedef void (*GtkCallback) (void);
 typedef struct _GtkTreeStore GtkTreeStore;
-typedef gchar *(*GtkTranslateFunc) (void);
+typedef gchar *(*GtkTranslateFunc) (const char *path, gpointer func_data);
 typedef struct _GtkStockItem GtkStockItem;
 typedef enum {
     GTK_ENTRY_ICON_PRIMARY,
@@ -812,7 +846,7 @@ typedef enum {
     GTK_ASSISTANT_PAGE_PROGRESS = 4
 } GtkAssistantPageType;
 typedef struct _GtkAssistant GtkAssistant;
-typedef gint(*GtkAssistantPageFunc) (void);
+typedef gint(*GtkAssistantPageFunc) (gint current_page, gpointer data);
 typedef struct _GtkBorder GtkBorder;
 typedef struct _GtkToolItem GtkToolItem;
 typedef struct _GtkTextAttributes GtkTextAttributes;
@@ -821,8 +855,13 @@ typedef struct _GtkCellAreaBox GtkCellAreaBox;
 typedef struct _GtkPrintOperationPreview GtkPrintOperationPreview;
 typedef struct _GtkToggleAction GtkToggleAction;
 typedef struct _GtkCssProvider GtkCssProvider;
-typedef gboolean(*GtkTreeModelFilterVisibleFunc) (void);
-typedef void (*GtkTreeModelFilterModifyFunc) (void);
+typedef gboolean(*GtkTreeModelFilterVisibleFunc) (GtkTreeModel * model,
+						  GtkTreeIter * iter,
+						  gpointer data);
+typedef void (*GtkTreeModelFilterModifyFunc) (GtkTreeModel * model,
+					      GtkTreeIter * iter,
+					      GValue * value, gint column,
+					      gpointer data);
 typedef struct _GtkTreeModelFilter GtkTreeModelFilter;
 typedef struct _GtkSizeGroup GtkSizeGroup;
 typedef enum {
@@ -910,7 +949,11 @@ typedef struct _GtkArrow GtkArrow;
 typedef struct _GtkStyleProvider GtkStyleProvider;
 typedef struct _GtkApplicationWindow GtkApplicationWindow;
 typedef struct _GtkEntryCompletion GtkEntryCompletion;
-typedef gboolean(*GtkEntryCompletionMatchFunc) (void);
+typedef gboolean(*GtkEntryCompletionMatchFunc) (GtkEntryCompletion *
+						completion,
+						const gchar * key,
+						GtkTreeIter * iter,
+						gpointer user_data);
 typedef struct _GtkCellEditable GtkCellEditable;
 typedef struct _GtkCheckMenuItem GtkCheckMenuItem;
 typedef struct _GtkFontButton GtkFontButton;
@@ -1206,7 +1249,9 @@ typedef enum {
 typedef struct _GtkAccelGroup GtkAccelGroup;
 typedef struct _GtkAccelKey GtkAccelKey;
 typedef struct _GtkAccelGroupEntry GtkAccelGroupEntry;
-typedef gboolean(*GtkAccelGroupFindFunc) (void);
+typedef gboolean(*GtkAccelGroupFindFunc) (GtkAccelKey * key,
+					  GClosure * closure,
+					  gpointer data);
 typedef struct _GtkIconFactory GtkIconFactory;
 typedef struct _GtkAppChooserWidget GtkAppChooserWidget;
 typedef struct _GtkButtonBox GtkButtonBox;
@@ -1245,9 +1290,26 @@ typedef enum {
     GTK_PRINT_ERROR_NOMEM,
     GTK_PRINT_ERROR_INVALID_FILE
 } GtkPrintError;
-typedef void (*GtkPageSetupDoneFunc) (void);
-typedef guint8 *(*GtkTextBufferSerializeFunc) (void);
-typedef gboolean(*GtkTextBufferDeserializeFunc) (void);
+typedef void (*GtkPageSetupDoneFunc) (GtkPageSetup * page_setup,
+				      gpointer data);
+typedef guint8 *(*GtkTextBufferSerializeFunc) (GtkTextBuffer *
+					       register_buffer,
+					       GtkTextBuffer *
+					       content_buffer,
+					       GtkTextIter * start,
+					       GtkTextIter * end,
+					       gsize * length,
+					       gpointer user_data);
+typedef gboolean(*GtkTextBufferDeserializeFunc) (GtkTextBuffer *
+						 register_buffer,
+						 GtkTextBuffer *
+						 content_buffer,
+						 GtkTextIter * iter,
+						 const guint8 * data,
+						 gsize length,
+						 gboolean create_tags,
+						 gpointer user_data,
+						 GError * *error);
 typedef struct _GtkAlignment GtkAlignment;
 typedef enum {
     GTK_TREE_VIEW_DROP_BEFORE,
@@ -1257,12 +1319,29 @@ typedef enum {
 } GtkTreeViewDropPosition;
 typedef struct _GtkTreeView GtkTreeView;
 typedef struct _GtkTreeSelection GtkTreeSelection;
-typedef gboolean(*GtkTreeViewColumnDropFunc) (void);
-typedef void (*GtkTreeViewMappingFunc) (void);
-typedef gboolean(*GtkTreeViewSearchEqualFunc) (void);
-typedef gboolean(*GtkTreeViewRowSeparatorFunc) (void);
-typedef void (*GtkTreeViewSearchPositionFunc) (void);
-typedef void (*GtkTreeDestroyCountFunc) (void);
+typedef gboolean(*GtkTreeViewColumnDropFunc) (GtkTreeView * tree_view,
+					      GtkTreeViewColumn * column,
+					      GtkTreeViewColumn *
+					      prev_column,
+					      GtkTreeViewColumn *
+					      next_column, gpointer data);
+typedef void (*GtkTreeViewMappingFunc) (GtkTreeView * tree_view,
+					GtkTreePath * path,
+					gpointer user_data);
+typedef gboolean(*GtkTreeViewSearchEqualFunc) (GtkTreeModel * model,
+					       gint column,
+					       const gchar * key,
+					       GtkTreeIter * iter,
+					       gpointer search_data);
+typedef gboolean(*GtkTreeViewRowSeparatorFunc) (GtkTreeModel * model,
+						GtkTreeIter * iter,
+						gpointer data);
+typedef void (*GtkTreeViewSearchPositionFunc) (GtkTreeView * tree_view,
+					       GtkWidget * search_dialog,
+					       gpointer user_data);
+typedef void (*GtkTreeDestroyCountFunc) (GtkTreeView * tree_view,
+					 GtkTreePath * path, gint children,
+					 gpointer user_data);
 typedef struct _GtkPaperSize GtkPaperSize;
 typedef struct _GtkOrientable GtkOrientable;
 typedef struct _GtkCellRendererToggle GtkCellRendererToggle;
@@ -1282,7 +1361,10 @@ typedef struct _GtkTreeIter GtkTreeIter;
 typedef struct _GtkTreePath GtkTreePath;
 typedef struct _GtkTreeRowReference GtkTreeRowReference;
 typedef struct _GtkTreeModel GtkTreeModel;
-typedef gboolean(*GtkTreeModelForeachFunc) (void);
+typedef gboolean(*GtkTreeModelForeachFunc) (GtkTreeModel * model,
+					    GtkTreePath * path,
+					    GtkTreeIter * iter,
+					    gpointer data);
 typedef enum {
     GTK_TREE_MODEL_ITERS_PERSIST,
     GTK_TREE_MODEL_LIST_ONLY
@@ -1290,8 +1372,11 @@ typedef enum {
 typedef struct _GtkCheckButton GtkCheckButton;
 typedef struct _GtkWindowGroup GtkWindowGroup;
 typedef struct _GtkMenu GtkMenu;
-typedef void (*GtkMenuPositionFunc) (void);
-typedef void (*GtkMenuDetachFunc) (void);
+typedef void (*GtkMenuPositionFunc) (GtkMenu * menu, gint * x, gint * y,
+				     gboolean * push_in,
+				     gpointer user_data);
+typedef void (*GtkMenuDetachFunc) (GtkWidget * attach_widget,
+				   GtkMenu * menu);
 typedef struct _GtkLevelBar GtkLevelBar;
 typedef struct _GtkComboBox GtkComboBox;
 typedef struct _GtkSpinner GtkSpinner;
@@ -1301,7 +1386,13 @@ typedef enum {
     GTK_TOOL_PALETTE_DRAG_GROUPS
 } GtkToolPaletteDragTargets;
 typedef struct _GtkBuilder GtkBuilder;
-typedef void (*GtkBuilderConnectFunc) (void);
+typedef void (*GtkBuilderConnectFunc) (GtkBuilder * builder,
+				       GObject * object,
+				       const gchar * signal_name,
+				       const gchar * handler_name,
+				       GObject * connect_object,
+				       GConnectFlags flags,
+				       gpointer user_data);
 typedef struct _GtkTextBTree GtkTextBTree;
 typedef struct _GtkIconInfo GtkIconInfo;
 typedef struct _GtkIconTheme GtkIconTheme;
@@ -1314,7 +1405,10 @@ typedef enum {
 } GtkIconLookupFlags;
 typedef struct _GtkBindingSet GtkBindingSet;
 typedef struct _GtkCellLayout GtkCellLayout;
-typedef void (*GtkCellLayoutDataFunc) (void);
+typedef void (*GtkCellLayoutDataFunc) (GtkClipboard * cell_layout,
+				       GtkCellRenderer * cell,
+				       GtkTreeModel * tree_model,
+				       GtkTreeIter * iter, gpointer data);
 typedef struct _GtkToolbar GtkToolbar;
 typedef struct _GtkMenuToolButton GtkMenuToolButton;
 typedef struct _GtkStatusbar GtkStatusbar;
@@ -1325,7 +1419,9 @@ typedef struct _GtkSeparatorToolItem GtkSeparatorToolItem;
 typedef struct _GtkAspectFrame GtkAspectFrame;
 typedef struct _GtkLabel GtkLabel;
 typedef struct _GtkTreeSortable GtkTreeSortable;
-typedef gint(*GtkTreeIterCompareFunc) (void);
+typedef gint(*GtkTreeIterCompareFunc) (GtkTreeModel * model,
+				       GtkTreeIter * a, GtkTreeIter * b,
+				       gpointer user_data);
 typedef struct _GtkFileChooserButton GtkFileChooserButton;
 typedef struct _GtkAccelMap GtkAccelMap;
 typedef void (*GtkAccelMapForeach) (void);
@@ -1333,7 +1429,8 @@ typedef struct _GtkProgressBar GtkProgressBar;
 typedef struct _GtkContainer GtkContainer;
 typedef struct _GtkContainerClass GtkContainerClass;
 typedef struct _GtkIconView GtkIconView;
-typedef void (*GtkIconViewForeachFunc) (void);
+typedef void (*GtkIconViewForeachFunc) (GtkIconView * icon_view,
+					GtkTreePath * path, gpointer data);
 typedef enum {
     GTK_ICON_VIEW_NO_DROP,
     GTK_ICON_VIEW_DROP_INTO,
