@@ -1878,7 +1878,7 @@ extern "C" {
 						  gboolean);
     extern GType gtk_accel_flags_get_type(void);
     extern gboolean gtk_accel_group_activate(GtkAccelGroup * accel_group,
-					     GQuark accel_group,
+					     GQuark accel_quark,
 					     GObject * accelratable,
 					     guint accel_key,
 					     GdkModifierType accel_mods);
