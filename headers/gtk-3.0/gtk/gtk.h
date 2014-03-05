@@ -965,12 +965,12 @@ extern "C" {
     typedef struct _GtkRecentFilterInfo GtkRecentFilterInfo;
 
     typedef enum {
-	GTK_RECENT_FILTER_URI = 0,
-	GTK_RECENT_FILTER_DISPLAY_NAME = 1,
-	GTK_RECENT_FILTER_MIME_TYPE = 2,
-	GTK_RECENT_FILTER_APPLICATION = 3,
-	GTK_RECENT_FILTER_GROUP = 4,
-	GTK_RECENT_FILTER_AGE = 5
+	GTK_RECENT_FILTER_URI = 1 << 0,
+	GTK_RECENT_FILTER_DISPLAY_NAME = 1 << 1,
+	GTK_RECENT_FILTER_MIME_TYPE = 1 << 2,
+	GTK_RECENT_FILTER_APPLICATION = 1 << 3,
+	GTK_RECENT_FILTER_GROUP = 1 << 4,
+	GTK_RECENT_FILTER_AGE = 1 << 5
     } GtkRecentFilterFlags;
 
     typedef gboolean(*GtkRecentFilterFunc) (const GtkRecentFilterInfo *
@@ -1191,12 +1191,10 @@ extern "C" {
     typedef struct _GtkButton GtkButton;
 
     typedef enum {
-	GTK_RECENT_FILTER_URI = 1 << 0,
-	GTK_RECENT_FILTER_DISPLAY_NAME = 1 << 1,
-	GTK_RECENT_FILTER_MIME_TYPE = 1 << 2,
-	GTK_RECENT_FILTER_APPLICATION = 1 << 3,
-	GTK_RECENT_FILTER_GROUP = 1 << 4,
-	GTK_RECENT_FILTER_AGE = 1 << 5
+	GTK_ALIGN_FILL = 0,
+	GTK_ALIGN_START = 1,
+	GTK_ALIGN_END = 2,
+	GTK_ALIGN_CENTER = 3
     } GtkAlign;
 
     typedef enum {
