@@ -14,7 +14,6 @@
 #include <gtk-2.0/gtk/gtkprintoperationpreview.h>
 #include <gtk-2.0/gtk/gtkrecentfilter.h>
 #include <gtk-2.0/gtk/gtkrecentmanager.h>
-#include <gtk-3.0/gdk/gdk.h>
 
 #if !defined(LSB_DECL_DEPRECATED)
 #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && (__GNUC__ - 0 > 3 || (__GNUC__ - 0 == 3 && __GNUC_MINOR__ - 0 >= 2))
