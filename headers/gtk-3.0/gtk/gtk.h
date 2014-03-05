@@ -4,6 +4,7 @@
 
 #include <sys/types.h>
 #include <X11/X.h>
+#include <stdarg.h>
 #include <glib-2.0/glib.h>
 #include <glib-2.0/glib-object.h>
 #include <atk-1.0/atk/atk.h>
@@ -2667,9 +2668,10 @@ extern "C" {
 						GtkCellRenderer *,
 						const char *, GValue *);
     extern void gtk_cell_area_cell_get_valist(GtkCellArea * area,
-					      GtkCellRenderer *,
+					      const gchar *
+					      first_property_name,
 					      const char *,
-					      struct __va_list_tag *);
+					      va_list var_args);
     extern void gtk_cell_area_cell_set(GtkCellArea * area,
 				       GtkCellRenderer *, const char *,
 				       ...);
@@ -2678,9 +2680,10 @@ extern "C" {
 						const char *,
 						const struct _GValue *);
     extern void gtk_cell_area_cell_set_valist(GtkCellArea * area,
-					      GtkCellRenderer *,
+					      const gchar *
+					      first_property_name,
 					      const char *,
-					      struct __va_list_tag *);
+					      va_list var_args);
     extern GParamSpec
 	*gtk_cell_area_class_find_cell_property(GtkCellAreaClass * aclass,
 						const char *);
@@ -3265,8 +3268,10 @@ extern "C" {
 						 GtkWidget *, const char *,
 						 GValue *);
     extern void gtk_container_child_get_valist(GtkContainer * container,
-					       GtkWidget *, const char *,
-					       struct __va_list_tag *);
+					       const gchar *
+					       first_property_name,
+					       const char *,
+					       va_list var_args);
     extern void gtk_container_child_notify(GtkContainer * container,
 					   GtkWidget *, const char *);
     extern void gtk_container_child_set(GtkContainer * container,
@@ -3275,8 +3280,10 @@ extern "C" {
 						 GtkWidget *, const char *,
 						 const struct _GValue *);
     extern void gtk_container_child_set_valist(GtkContainer * container,
-					       GtkWidget *, const char *,
-					       struct __va_list_tag *);
+					       const gchar *
+					       first_property_name,
+					       const char *,
+					       va_list var_args);
     extern GType gtk_container_child_type(GtkContainer * container);
     extern GParamSpec *gtk_container_class_find_child_property(GObjectClass
 							       * cclass,
@@ -4686,8 +4693,8 @@ extern "C" {
     extern void gtk_list_store_set_column_types(GtkListStore * list_store,
 						gint, GType *);
     extern void gtk_list_store_set_valist(GtkListStore * list_store,
-					  GtkTreeIter *,
-					  struct __va_list_tag *);
+					  GtkTreeIter * iter,
+					  va_list var_args);
     extern void gtk_list_store_set_value(GtkListStore * list_store,
 					 GtkTreeIter *, gint, GValue *);
     extern void gtk_list_store_set_valuesv(GtkListStore * list_store,
@@ -6341,8 +6348,8 @@ extern "C" {
 						   struct __va_list_tag *);
     extern GType gtk_style_context_get_type(void);
     extern void gtk_style_context_get_valist(GtkStyleContext * context,
-					     GtkStateFlags,
-					     struct __va_list_tag *);
+					     GtkStateFlags state,
+					     va_list var_args);
     extern gboolean gtk_style_context_has_class(GtkStyleContext * context,
 						const char *);
     extern gboolean gtk_style_context_has_region(GtkStyleContext * context,
@@ -6415,8 +6422,8 @@ extern "C" {
 						      GValue *);
     extern GType gtk_style_properties_get_type(void);
     extern void gtk_style_properties_get_valist(GtkStyleProperties * props,
-						GtkStateFlags,
-						struct __va_list_tag *);
+						GtkStateFlags state,
+						va_list var_args);
     extern GtkSymbolicColor
 	*gtk_style_properties_lookup_color(GtkStyleProperties * props,
 					   const char *);
@@ -6442,7 +6449,7 @@ extern "C" {
 						  GtkStateFlags,
 						  const struct _GValue *);
     extern void gtk_style_properties_set_valist(GtkStyleProperties * props,
-						GtkStateFlags,
+						GtkStateFlags state,
 						struct __va_list_tag *);
     extern void gtk_style_properties_unset_property(GtkStyleProperties *
 						    props, const char *,
@@ -7226,12 +7233,11 @@ extern "C" {
 						      GValue *);
     extern void gtk_theming_engine_get_style_valist(GtkThemingEngine *
 						    engine,
-						    struct __va_list_tag
-						    *);
+						    va_list var_args);
     extern GType gtk_theming_engine_get_type(void);
     extern void gtk_theming_engine_get_valist(GtkThemingEngine * engine,
-					      GtkStateFlags,
-					      struct __va_list_tag *);
+					      GtkStateFlags state,
+					      va_list var_args);
     extern gboolean gtk_theming_engine_has_class(GtkThemingEngine * engine,
 						 const char *);
     extern gboolean gtk_theming_engine_has_region(GtkThemingEngine *
@@ -7618,8 +7624,8 @@ extern "C" {
 						      GtkTreeIter *);
     extern GType gtk_tree_model_get_type(void);
     extern void gtk_tree_model_get_valist(GtkTreeModel * tree_model,
-					  GtkTreeIter *,
-					  struct __va_list_tag *);
+					  GtkTreeIter * iter,
+					  va_list var_args);
     extern void gtk_tree_model_get_value(GtkTreeModel * tree_model,
 					 GtkTreeIter *, gint, GValue *);
     extern gboolean gtk_tree_model_iter_children(GtkTreeModel * tree_model,
@@ -7865,8 +7871,8 @@ extern "C" {
     extern void gtk_tree_store_set_column_types(GtkTreeStore * tree_store,
 						gint, GType *);
     extern void gtk_tree_store_set_valist(GtkTreeStore * tree_store,
-					  GtkTreeIter *,
-					  struct __va_list_tag *);
+					  GtkTreeIter * iter,
+					  va_list var_args);
     extern void gtk_tree_store_set_value(GtkTreeStore * tree_store,
 					 GtkTreeIter *, gint, GValue *);
     extern void gtk_tree_store_set_valuesv(GtkTreeStore * tree_store,
@@ -8716,8 +8722,9 @@ extern "C" {
     extern void gtk_widget_style_get_property(GtkWidget * widget,
 					      const char *, GValue *);
     extern void gtk_widget_style_get_valist(GtkWidget * widget,
-					    const char *,
-					    struct __va_list_tag *);
+					    const gchar *
+					    first_property_name,
+					    va_list var_args);
     extern void gtk_widget_thaw_child_notify(GtkWidget * widget);
     extern gboolean gtk_widget_translate_coordinates(GtkWidget *
 						     src_widget,
