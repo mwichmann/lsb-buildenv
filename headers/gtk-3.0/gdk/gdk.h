@@ -77,6 +77,8 @@ extern "C" {
 
     typedef struct _GdkEventMotion GdkEventMotion;
 
+    typedef struct _GdkEventKey GdkEventKey;
+
     typedef struct _GdkEventSequence GdkEventSequence;
 
     typedef union _GdkEvent GdkEvent;
@@ -199,6 +201,8 @@ extern "C" {
 
     typedef struct _GdkWindowAttr GdkWindowAttr;
 
+    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
+
     typedef enum {
 	GDK_WINDOW_ROOT,
 	GDK_WINDOW_TOPLEVEL,
@@ -255,6 +259,19 @@ extern "C" {
 	GDK_FUNC_MAXIMIZE,
 	GDK_FUNC_CLOSE
     } GdkWMFunction;
+
+    typedef enum {
+	GDK_GRAVITY_NORTH_WEST = 1,
+	GDK_GRAVITY_NORTH = 2,
+	GDK_GRAVITY_NORTH_EAST = 3,
+	GDK_GRAVITY_WEST = 4,
+	GDK_GRAVITY_CENTER = 5,
+	GDK_GRAVITY_EAST = 6,
+	GDK_GRAVITY_SOUTH_WEST = 7,
+	GDK_GRAVITY_SOUTH = 8,
+	GDK_GRAVITY_SOUTH_EAST = 9,
+	GDK_GRAVITY_STATIC = 10
+    } GdkGravity;
 
     typedef enum {
 	GDK_WINDOW_EDGE_NORTH_WEST,
@@ -388,6 +405,8 @@ extern "C" {
 	GDK_CURSOR_IS_PIXMAP
     } GdkCursorType;
 
+    typedef struct _GdkPoint GdkPoint;
+
     typedef struct _cairo_rectangle_int GdkRectangle;
 
     typedef struct _GdkAtom *GdkAtom;
@@ -412,7 +431,7 @@ extern "C" {
 
     typedef struct _GdkScreen GdkScreen;
 
-    typedef struct _GdkWindow GdkWindow;
+    /* typedef struct _GdkWindow GdkWindow;	XXX hand-edit: move up */
 
     typedef struct _GdkKeymap GdkKeymap;
 

@@ -1,2 +1,3 @@
 cups/cups.h cups-hack.patch
 X11/ShellP.h ShellP-hack.patch
+gtk-3.0/gdk/gdk.h gtk-3.0-gdk.patch

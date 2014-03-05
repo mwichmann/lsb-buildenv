@@ -1,0 +1,22 @@
+=== modified file 'gtk-3.0/gdk/gdk.h'
+--- gtk-3.0/gdk/gdk.h	2014-03-03 17:00:14 +0000
++++ gtk-3.0/gdk/gdk.h	2014-03-05 15:49:09 +0000
+@@ -201,6 +201,8 @@
+ 
+     typedef struct _GdkWindowAttr GdkWindowAttr;
+ 
++    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
++
+     typedef enum {
+ 	GDK_WINDOW_ROOT,
+ 	GDK_WINDOW_TOPLEVEL,
+@@ -429,7 +431,7 @@
+ 
+     typedef struct _GdkScreen GdkScreen;
+ 
+-    typedef struct _GdkWindow GdkWindow;
++    /* typedef struct _GdkWindow GdkWindow;	XXX hand-edit: move up */
+ 
+     typedef struct _GdkKeymap GdkKeymap;
+ 
+
