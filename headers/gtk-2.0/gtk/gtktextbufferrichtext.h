@@ -6,6 +6,7 @@
 #include <glib-2.0/glib-object.h>
 #include <gtk-2.0/gdk/gdk.h>
 #include <gtk-2.0/gtk/gtk.h>
+#include <gtk-3.0/gdk/gdk.h>
 
 #ifdef __cplusplus
 extern "C" {
