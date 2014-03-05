@@ -691,6 +691,8 @@ extern "C" {
 
     typedef struct _GtkPageSetup GtkPageSetup;
 
+    typedef struct _GtkWidget GtkWidget;	   /* XXX move from below */
+
     typedef gint(*GtkKeySnoopFunc) (GtkWidget * grab_widget,
 				    GdkEventKey * event,
 				    gpointer func_data);
@@ -717,7 +719,7 @@ extern "C" {
 
     typedef struct _GtkTooltip GtkTooltip;
 
-    typedef struct _GtkWidget GtkWidget;
+    /* typedef struct _GtkWidget GtkWidget;		XXX move up */
 
     typedef struct _GtkWidgetPath GtkWidgetPath;
 
@@ -728,6 +730,16 @@ extern "C" {
     typedef struct _GtkRange GtkRange;
 
     typedef struct _GtkTextMark GtkTextMark;
+
+    typedef struct _GtkCellRenderer GtkCellRenderer;  /* XXX move from below */
+
+    typedef struct _GtkTreeIter GtkTreeIter;	      /* XXX move from below */
+
+    typedef struct _GtkTreePath GtkTreePath;	      /* XXX move from below */
+
+    typedef struct _GtkTreeModel GtkTreeModel;	      /* XXX move from below */
+
+    typedef struct _GtkTreeSelection GtkTreeSelection;/* XXX move from below */
 
     typedef gboolean(*GtkTreeSelectionFunc) (GtkTreeSelection * selection,
 					     GtkTreeModel * model,
@@ -989,7 +1001,7 @@ extern "C" {
 	GTK_CELL_RENDERER_EXPANDED
     } GtkCellRendererState;
 
-    typedef struct _GtkCellRenderer GtkCellRenderer;
+    /* typedef struct _GtkCellRenderer GtkCellRenderer;  XXX move up */
 
     typedef struct _GtkCellRendererClass GtkCellRendererClass;
 
@@ -1611,7 +1623,7 @@ extern "C" {
 
     typedef struct _GtkTreeView GtkTreeView;
 
-    typedef struct _GtkTreeSelection GtkTreeSelection;
+    /* typedef struct _GtkTreeSelection GtkTreeSelection;   XXX move up */
 
     typedef gboolean(*GtkTreeViewColumnDropFunc) (GtkTreeView * tree_view,
 						  GtkTreeViewColumn *
@@ -1666,13 +1678,13 @@ extern "C" {
 	GTK_LICENSE_ARTISTIC
     } GtkLicense;
 
-    typedef struct _GtkTreeIter GtkTreeIter;
+    /* typedef struct _GtkTreeIter GtkTreeIter;		XXX move up */
 
-    typedef struct _GtkTreePath GtkTreePath;
+    /* typedef struct _GtkTreePath GtkTreePath;		XXX move up */
 
     typedef struct _GtkTreeRowReference GtkTreeRowReference;
 
-    typedef struct _GtkTreeModel GtkTreeModel;
+    /* typedef struct _GtkTreeModel GtkTreeModel;	XXX move up */
 
     typedef gboolean(*GtkTreeModelForeachFunc) (GtkTreeModel * model,
 						GtkTreePath * path,
