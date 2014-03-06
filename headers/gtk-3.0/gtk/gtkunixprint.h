@@ -11,6 +11,69 @@ extern "C" {
 #endif
 
 
+    typedef struct _GtkPageSetupUnixDialog GtkPageSetupUnixDialog;
+
+    typedef struct _GtkPageSetupUnixDialogClass
+	GtkPageSetupUnixDialogClass;
+
+    typedef struct _GtkPageSetupUnixDialogPrivate
+	GtkPageSetupUnixDialogPrivate;
+
+    typedef enum {
+	GTK_PRINT_CAPABILITY_PAGE_SET = 1 << 0,
+	GTK_PRINT_CAPABILITY_COPIES = 1 << 1,
+	GTK_PRINT_CAPABILITY_COLLATE = 1 << 2,
+	GTK_PRINT_CAPABILITY_REVERSE = 1 << 3,
+	GTK_PRINT_CAPABILITY_SCALE = 1 << 4,
+	GTK_PRINT_CAPABILITY_GENERATE_PDF = 1 << 5,
+	GTK_PRINT_CAPABILITY_GENERATE_PS = 1 << 6,
+	GTK_PRINT_CAPABILITY_PREVIEW = 1 << 7,
+	GTK_PRINT_CAPABILITY_NUMBER_UP = 1 << 8,
+	GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT = 1 << 9
+    } GtkPrintCapabilities;
+
+    typedef struct _GtkPrinter GtkPrinter;
+
+    typedef struct _GtkPrinterClass GtkPrinterClass;
+
+    typedef struct _GtkPrinterPrivate GtkPrinterPrivate;
+
+    typedef struct _GtkPrintBackend GtkPrintBackend;
+
+    typedef gboolean(*GtkPrinterFunc) (GtkPrinter * printer,
+				       gpointer data);
+
+    struct _GtkPageSetupUnixDialog {
+	GtkDialog parent_instance;
+	GtkPageSetupUnixDialogPrivate *priv;
+    };
+
+    struct _GtkPageSetupUnixDialogClass {
+	GtkDialogClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkPrinter {
+	GObject parent_instance;
+	GtkPrinterPrivate *priv;
+    };
+
+    struct _GtkPrinterClass {
+	GObjectClass parent_class;
+	void (*details_acquired) (GtkPrinter * printer, gboolean success);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
+
 
 /* Function prototypes */
 
