@@ -50,7 +50,7 @@ SUB_VERSION=.72
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=2
+RPM_PACKAGE_RELEASE=3
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)

@@ -651,6 +651,10 @@ extern "C" {
 
     typedef struct _GtkBin GtkBin;
 
+    typedef struct _GtkBinPrivate GtkBinPrivate;
+
+    typedef struct _GtkBinClass GtkBinClass;
+
     typedef struct _GtkPrintContext GtkPrintContext;
 
     typedef enum {
@@ -1717,7 +1721,17 @@ extern "C" {
 
     typedef struct _GtkCheckButton GtkCheckButton;
 
+    typedef struct _GtkWindowPrivate GtkWindowPrivate;
+
+    typedef struct _GtkWindowClass GtkWindowClass;
+
+    typedef struct _GtkWindowGeometryInfo GtkWindowGeometryInfo;
+
     typedef struct _GtkWindowGroup GtkWindowGroup;
+
+    typedef struct _GtkWindowGroupClass GtkWindowGroupClass;
+
+    typedef struct _GtkWindowGroupPrivate GtkWindowGroupPrivate;
 
     typedef struct _GtkMenu GtkMenu;
 
@@ -1827,6 +1841,24 @@ extern "C" {
 	GTK_ICON_VIEW_DROP_BELOW
     } GtkIconViewDropPosition;
 
+    struct _GtkBin {
+	GtkContainer container;
+	GtkBinPrivate *priv;
+    };
+
+    struct _GtkBinClass {
+	GtkContainerClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkWindow {
+	GtkBin bin;
+	GtkWindowPrivate *priv;
+    };
+
     struct _GtkDialog {
 	GtkWindow window;
 	GtkDialogPrivate *priv;
@@ -1836,6 +1868,31 @@ extern "C" {
 	GtkWindowClass parent_class;
 	void (*response) (GtkDialog, gint);
 	void (*close) (GtkDialog);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkWindowClass {
+	GtkBinClass parent_class;
+	void (*set_focus) (GtkWindow * window, GtkWidget * focus);
+	void (*activate_focus) (GtkWindow * window);
+	void (*activate_default) (GtkWindow * window);
+	void (*keys_changed) (GtkWindow * window);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkWindowGroup {
+	GObject parent_instance;
+	GtkWindowPrivate *priv;
+    };
+
+    struct _GtkWindowGroupClass {
+	GObjectClass parent_class;
 	void (*_gtk_reserved1) (void);
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
