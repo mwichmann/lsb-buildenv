@@ -1824,6 +1824,8 @@ extern "C" {
 
     typedef struct _GtkContainer GtkContainer;
 
+    typedef struct _GtkContainerPrivate GtkContainerPrivate;
+
     typedef struct _GtkContainerClass GtkContainerClass;
 
     typedef struct _GtkIconView GtkIconView;
@@ -1897,6 +1899,44 @@ extern "C" {
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkContainer {
+	GtkWidget widget;
+	GtkContainerPrivate *priv;
+    };
+
+    struct _GtkContainerClass {
+	GtkWidgetClass parent_class;
+	void (*add) (GtkContainer * container, GtkWidget * widget);
+	void (*remove) (GtkContainer * container, GtkWidget * widget);
+	void (*check_resize) (GtkContainer * container);
+	void (*forall) (GtkContainer * container,
+			gboolean include_internals, GtkCallback callback,
+			gpointer callback_data);
+	void (*set_focus_child) (GtkContainer * container,
+				 GtkWidget * widget);
+	 GType(*child_type) (GtkContainer * container);
+	gchar *(*composite_name) (GtkContainer * container,
+				  GtkWidget * child);
+	void (*set_child_property) (GtkContainer * container,
+				    GtkWidget * child, guint property_id,
+				    const GValue * value,
+				    GParamSpec * pspec);
+	void (*get_child_property) (GtkContainer * container,
+				    GtkWidget * child, guint property_id,
+				    GValue * value, GParamSpec * pspec);
+	GtkWidgetPath *(*get_path_for_child) (GtkContainer * container,
+					      GtkWidget * child);
+	unsigned int _handle_border_width;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
     };
 
 
