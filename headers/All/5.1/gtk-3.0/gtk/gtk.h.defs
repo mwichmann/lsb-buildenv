@@ -694,10 +694,36 @@ typedef gchar *(*GtkCalendarDetailFunc) (GtkCalendar * calendar,
 					 guint year, guint month,
 					 guint day, gpointer user_data);
 typedef enum {
-    GTK_DIALOG_MODAL,
-    GTK_DIALOG_DESTROY_WITH_PARENT
+    GTK_DIALOG_MODAL = 1 << 0,
+    GTK_DIALOG_DESTROY_WITH_PARENT = 1 << 1
 } GtkDialogFlags;
-typedef struct _GtkDialog GtkDialog;
+typedef enum {
+    GTK_RESPONSE_NONE = -1,
+    GTK_RESPONSE_REJECT = -2,
+    GTK_RESPONSE_ACCEPT = -3,
+    GTK_RESPONSE_DELETE_EVENT = -4,
+    GTK_RESPONSE_OK = -5,
+    GTK_RESPONSE_CANCEL = -6,
+    GTK_RESPONSE_CLOSE = -7,
+    GTK_RESPONSE_YES = -8,
+    GTK_RESPONSE_NO = -9,
+    GTK_RESPONSE_APPLY = -10,
+    GTK_RESPONSE_HELP = -11
+} GtkResponseType;
+typedef struct _GtkDialog {
+    GtkWindow window;
+    GtkDialogPrivate *priv;
+} GtkDialog;
+typedef struct _GtkDialogPrivate GtkDialogPrivate;
+typedef struct _GtkDialogClass {
+    GtkWindowClass parent_class;
+    void (*response) (GtkDialog, gint);
+    void (*close) (GtkDialog);
+    void (*_gtk_reserved1) (void);
+    void (*_gtk_reserved2) (void);
+    void (*_gtk_reserved3) (void);
+    void (*_gtk_reserved4) (void);
+} GtkDialogClass;
 typedef struct _GtkActionable GtkActionable;
 typedef struct _GtkListStore GtkListStore;
 typedef enum {
