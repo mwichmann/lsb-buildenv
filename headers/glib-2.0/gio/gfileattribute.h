@@ -34,7 +34,7 @@ extern "C" {
     extern GFileAttributeInfoList
 	*g_file_attribute_info_list_dup(GFileAttributeInfoList * list);
     extern GType g_file_attribute_info_list_get_type(void);
-    extern const struct _GFileAttributeInfo
+    extern const GFileAttributeInfo
 	*g_file_attribute_info_list_lookup(GFileAttributeInfoList * list,
 					   const char *name);
     extern GFileAttributeInfoList *g_file_attribute_info_list_new(void);

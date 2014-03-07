@@ -78,8 +78,7 @@ extern "C" {
     extern void
 	g_dbus_method_invocation_return_gerror(GDBusMethodInvocation *
 					       invocation,
-					       const struct _GError
-					       *error);
+					       const GError * error);
     extern void g_dbus_method_invocation_return_value(GDBusMethodInvocation
 						      * invocation,
 						      GVariant *

@@ -4748,7 +4748,7 @@ extern "C" {
 					  const char *file, int line,
 					  const char *func,
 					  const char *expr,
-					  const struct _GError *error,
+					  const GError * error,
 					  GQuark error_domain,
 					  int error_code);
     extern void g_assertion_message_expr(const char *domain,
@@ -5094,7 +5094,7 @@ extern "C" {
 						first_type,
 						const gchar * first_attr,
 						...);
-    extern const struct _GSList
+    extern const GSList
 	*g_markup_parse_context_get_element_stack(GMarkupParseContext *
 						  context);
     extern void *g_markup_parse_context_get_user_data(GMarkupParseContext *

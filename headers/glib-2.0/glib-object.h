@@ -2447,8 +2447,7 @@ type_name##_get_type (void) \
     extern GParamSpec *g_param_spec_variant(const gchar * name,
 					    const gchar * nick,
 					    const gchar * blurb,
-					    const struct _GVariantType
-					    *type,
+					    GVariantType * type,
 					    GVariant * default_value,
 					    GParamFlags flags);
     extern GType g_ptr_array_get_type(void);

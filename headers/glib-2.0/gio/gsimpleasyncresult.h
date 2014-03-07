@@ -37,8 +37,7 @@ extern "C" {
 						     GAsyncReadyCallback
 						     callback,
 						     gpointer user_data,
-						     const struct _GError
-						     *error);
+						     const GError * error);
     extern void g_simple_async_report_take_gerror_in_idle(GObject * object,
 							  GAsyncReadyCallback
 							  callback,
@@ -92,9 +91,9 @@ extern "C" {
 								    gpointer
 								    user_data,
 								    const
-								    struct
-								    _GError
-								    *error);
+								    GError
+								    *
+								    error);
     extern GSimpleAsyncResult *g_simple_async_result_new_take_error(GObject
 								    *
 								    source_object,
@@ -130,8 +129,7 @@ extern "C" {
 						   va_list args);
     extern void g_simple_async_result_set_from_error(GSimpleAsyncResult *
 						     simple,
-						     const struct _GError
-						     *error);
+						     const GError * error);
     extern void
 	g_simple_async_result_set_handle_cancellation(GSimpleAsyncResult *
 						      simple,
