@@ -1,4 +1,7 @@
 #!/usr/bin/python
+
+from __future__ import print_function
+
 """mkfilelists - create lists of headers and libs for core and desktop
 
 Options:
@@ -6,7 +9,7 @@ Options:
 --headers          -- generate lists of header files
 --libs             -- generate lists of libraries, per LSB version
 --package          -- generate packaging lists
---lsbversion=VER   -- target different LSB version than 4.1
+--lsbversion=VER   -- target different LSB version than 5.0
 -h, --help         -- print this text and exit
 """
 
@@ -29,7 +32,7 @@ HANDLE = None
 #============== Editable section ==============
 # for package lists, one library-version name corresponding to the
 # default version vanishes and becomes just lib - this version:
-DEFAULTVER = "4.1"
+DEFAULTVER = "5.0"
 
 # Lists of names of submodules from the database, divided into
 # the two packages -base (CORE) and -desktop (DESKTOP)
@@ -102,9 +105,9 @@ CORE_LIBS_REMOVE = [
 def usage(code, msg=''):
     """print usage message and quit"""
     if msg:
-        print "ERROR:", msg
-        print
-    print __doc__
+        print("ERROR:", msg)
+        print()
+    print(__doc__)
     sys.exit(code)
 
 
@@ -318,7 +321,7 @@ def main():
 
     try:
         (opts, args) = getopt.getopt(sys.argv[1:], shortopts, longopts)
-    except getopt.error, msg:
+    except getopt.error as msg:
         usage(2, msg)
     if args:
         usage(2, msg)
