@@ -718,8 +718,7 @@ extern "C" {
 						  guint);
     extern void gdk_display_store_clipboard(GdkDisplay * display,
 					    GdkWindow *, guint32,
-					    struct _GdkAtom *const *,
-					    gint);
+					    const GdkAtom *, gint);
     extern gboolean gdk_display_supports_clipboard_persistence(GdkDisplay *
 							       display);
     extern gboolean gdk_display_supports_composite(GdkDisplay * display);
@@ -920,14 +919,13 @@ extern "C" {
     extern void gdk_pointer_ungrab(guint32 time_);
     extern void gdk_pre_parse_libgtk_only(void);
     extern GType gdk_prop_mode_get_type(void);
-    extern void gdk_property_change(GdkWindow * window, struct _GdkAtom *,
-				    struct _GdkAtom *, gint, GdkPropMode,
+    extern void gdk_property_change(GdkWindow * window, GdkAtom, GdkAtom,
+				    gint, GdkPropMode,
 				    const unsigned char *, gint);
-    extern void gdk_property_delete(GdkWindow * window, struct _GdkAtom *);
+    extern void gdk_property_delete(GdkWindow * window, GdkAtom);
     extern gboolean gdk_property_get(GdkWindow * window, GdkAtom, GdkAtom,
-				     gulong, gulong, gint,
-				     struct _GdkAtom **, gint *, gint *,
-				     guchar * *);
+				     gulong, gulong, gint, GdkAtom *,
+				     gint *, gint *, guchar * *);
     extern GType gdk_property_state_get_type(void);
     extern void gdk_query_depths(gint * *depths, gint *);
     extern void gdk_query_visual_types(GdkVisualType * *visual_types,
@@ -1008,17 +1006,12 @@ extern "C" {
 							GdkAtom, guint32,
 							gboolean);
     extern gint gdk_selection_property_get(GdkWindow * requestor,
-					   guchar * *, struct _GdkAtom **,
-					   gint *);
-    extern void gdk_selection_send_notify(GdkWindow * requestor,
-					  struct _GdkAtom *,
-					  struct _GdkAtom *,
-					  struct _GdkAtom *, guint32);
+					   guchar * *, GdkAtom *, gint *);
+    extern void gdk_selection_send_notify(GdkWindow * requestor, GdkAtom,
+					  GdkAtom, GdkAtom, guint32);
     extern void gdk_selection_send_notify_for_display(GdkDisplay * display,
-						      GdkWindow *,
-						      struct _GdkAtom *,
-						      struct _GdkAtom *,
-						      struct _GdkAtom *,
+						      GdkWindow *, GdkAtom,
+						      GdkAtom, GdkAtom,
 						      guint32);
     extern void gdk_set_double_click_time(guint msec);
     extern void gdk_set_program_class(const char *program_class);
@@ -1035,8 +1028,7 @@ extern "C" {
 					  GdkEventType);
     extern gint gdk_text_property_to_utf8_list_for_display(GdkDisplay *
 							   display,
-							   struct _GdkAtom
-							   *, gint,
+							   GdkAtom, gint,
 							   const unsigned
 							   char *, gint,
 							   gchar * **);

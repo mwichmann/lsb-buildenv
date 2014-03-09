@@ -155,8 +155,8 @@ extern "C" {
     extern gint gdk_x11_display_string_to_compound_text(GdkDisplay *
 							display,
 							const char *,
-							struct _GdkAtom **,
-							gint *, guchar * *,
+							GdkAtom *, gint *,
+							guchar * *,
 							gint *);
     extern gint gdk_x11_display_text_property_to_text_list(GdkDisplay *
 							   display,
@@ -168,8 +168,8 @@ extern "C" {
     extern gboolean gdk_x11_display_utf8_to_compound_text(GdkDisplay *
 							  display,
 							  const char *,
-							  struct _GdkAtom
-							  **, gint *,
+							  GdkAtom *,
+							  gint *,
 							  guchar * *,
 							  gint *);
     extern GType gdk_x11_drag_context_get_type(void);

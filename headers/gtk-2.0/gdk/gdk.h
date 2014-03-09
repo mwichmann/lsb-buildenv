@@ -1924,7 +1924,7 @@ extern "C" {
     extern void gdk_draw_segments(GdkDrawable * drawable, GdkGC * gc,
 				  const GdkSegment * segs, gint nsegs);
     extern void gdk_draw_trapezoids(GdkDrawable * drawable, GdkGC * gc,
-				    const struct _GdkTrapezoid *trapezoids,
+				    const GdkTrapezoid * trapezoids,
 				    gint n_trapezoids);
     extern GdkImage *gdk_drawable_copy_to_image(GdkDrawable * drawable,
 						GdkImage * image,

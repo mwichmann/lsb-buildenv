@@ -3176,15 +3176,14 @@ extern "C" {
     extern const char *gtk_check_version(guint required_major, guint,
 					 guint);
     extern void gtk_clipboard_clear(GtkClipboard * clipboard);
-    extern GtkClipboard *gtk_clipboard_get(struct _GdkAtom *selection);
+    extern GtkClipboard *gtk_clipboard_get(GdkAtom selection);
     extern GdkDisplay *gtk_clipboard_get_display(GtkClipboard * clipboard);
     extern GtkClipboard *gtk_clipboard_get_for_display(GdkDisplay *
-						       display,
-						       struct _GdkAtom *);
+						       display, GdkAtom);
     extern GObject *gtk_clipboard_get_owner(GtkClipboard * clipboard);
     extern GType gtk_clipboard_get_type(void);
     extern void gtk_clipboard_request_contents(GtkClipboard * clipboard,
-					       struct _GdkAtom *,
+					       GdkAtom,
 					       GtkClipboardReceivedFunc,
 					       gpointer);
     extern void gtk_clipboard_request_image(GtkClipboard * clipboard,
@@ -3225,18 +3224,15 @@ extern "C" {
     extern void gtk_clipboard_store(GtkClipboard * clipboard);
     extern GtkSelectionData *gtk_clipboard_wait_for_contents(GtkClipboard *
 							     clipboard,
-							     struct
-							     _GdkAtom *);
+							     GdkAtom);
     extern GdkPixbuf *gtk_clipboard_wait_for_image(GtkClipboard *
 						   clipboard);
     extern guint8 *gtk_clipboard_wait_for_rich_text(GtkClipboard *
 						    clipboard,
 						    GtkTextBuffer *,
-						    struct _GdkAtom **,
-						    gsize *);
+						    GdkAtom *, gsize *);
     extern gboolean gtk_clipboard_wait_for_targets(GtkClipboard *
-						   clipboard,
-						   struct _GdkAtom ***,
+						   clipboard, GdkAtom * *,
 						   gint *);
     extern gchar *gtk_clipboard_wait_for_text(GtkClipboard * clipboard);
     extern gchar **gtk_clipboard_wait_for_uris(GtkClipboard * clipboard);
@@ -3248,8 +3244,7 @@ extern "C" {
 							      *);
     extern gboolean gtk_clipboard_wait_is_target_available(GtkClipboard *
 							   clipboard,
-							   struct _GdkAtom
-							   *);
+							   GdkAtom);
     extern gboolean gtk_clipboard_wait_is_text_available(GtkClipboard *
 							 clipboard);
     extern gboolean gtk_clipboard_wait_is_uris_available(GtkClipboard *
@@ -6166,8 +6161,7 @@ extern "C" {
     extern gboolean gtk_selection_data_get_targets(const struct
 						   _GtkSelectionData
 						   *selection_data,
-						   struct _GdkAtom ***,
-						   gint *);
+						   GdkAtom * *, gint *);
     extern guchar *gtk_selection_data_get_text(const struct
 					       _GtkSelectionData
 					       *selection_data);
@@ -6657,15 +6651,12 @@ extern "C" {
     extern void gtk_target_table_free(GtkTargetEntry * targets, gint);
     extern GtkTargetEntry *gtk_target_table_new_from_list(GtkTargetList *
 							  list, gint *);
-    extern gboolean gtk_targets_include_image(struct _GdkAtom **targets,
-					      gint, gboolean);
-    extern gboolean gtk_targets_include_rich_text(struct _GdkAtom
-						  **targets, gint,
+    extern gboolean gtk_targets_include_image(GdkAtom * targets, gint,
+					      gboolean);
+    extern gboolean gtk_targets_include_rich_text(GdkAtom * targets, gint,
 						  GtkTextBuffer *);
-    extern gboolean gtk_targets_include_text(struct _GdkAtom **targets,
-					     gint);
-    extern gboolean gtk_targets_include_uri(struct _GdkAtom **targets,
-					    gint);
+    extern gboolean gtk_targets_include_text(GdkAtom * targets, gint);
+    extern gboolean gtk_targets_include_uri(GdkAtom * targets, gint);
     extern GtkWidget *gtk_test_create_simple_window(const char
 						    *window_title,
 						    const char *);
@@ -6706,20 +6697,18 @@ extern "C" {
     extern void gtk_text_attributes_unref(GtkTextAttributes * values);
     extern void gtk_text_buffer_add_mark(GtkTextBuffer * buffer,
 					 GtkTextMark *,
-					 const struct _GtkTextIter *);
+					 const GtkTextIter *);
     extern void gtk_text_buffer_add_selection_clipboard(GtkTextBuffer *
 							buffer,
 							GtkClipboard *);
     extern void gtk_text_buffer_apply_tag(GtkTextBuffer * buffer,
 					  GtkTextTag *,
-					  const struct _GtkTextIter *,
-					  const struct _GtkTextIter *);
+					  const GtkTextIter *,
+					  const GtkTextIter *);
     extern void gtk_text_buffer_apply_tag_by_name(GtkTextBuffer * buffer,
 						  const char *,
-						  const struct _GtkTextIter
-						  *,
-						  const struct _GtkTextIter
-						  *);
+						  const GtkTextIter *,
+						  const GtkTextIter *);
     extern gboolean gtk_text_buffer_backspace(GtkTextBuffer * buffer,
 					      GtkTextIter *, gboolean,
 					      gboolean);
@@ -6731,8 +6720,7 @@ extern "C" {
 					     GtkTextIter *);
     extern GtkTextMark *gtk_text_buffer_create_mark(GtkTextBuffer * buffer,
 						    const char *,
-						    const struct
-						    _GtkTextIter *,
+						    const GtkTextIter *,
 						    gboolean);
     extern GtkTextTag *gtk_text_buffer_create_tag(GtkTextBuffer * buffer,
 						  const char *,
@@ -6755,8 +6743,7 @@ extern "C" {
 						     gboolean);
     extern gboolean gtk_text_buffer_deserialize(GtkTextBuffer *
 						register_buffer,
-						GtkTextBuffer *,
-						struct _GdkAtom *,
+						GtkTextBuffer *, GdkAtom,
 						GtkTextIter *,
 						const unsigned char *,
 						gsize, GError * *);
@@ -6776,9 +6763,9 @@ extern "C" {
     extern gint gtk_text_buffer_get_char_count(GtkTextBuffer * buffer);
     extern GtkTargetList
 	*gtk_text_buffer_get_copy_target_list(GtkTextBuffer * buffer);
-    extern struct _GdkAtom
-	**gtk_text_buffer_get_deserialize_formats(GtkTextBuffer * buffer,
-						  gint *);
+    extern GdkAtom *gtk_text_buffer_get_deserialize_formats(GtkTextBuffer *
+							    buffer,
+							    gint *);
     extern void gtk_text_buffer_get_end_iter(GtkTextBuffer * buffer,
 					     GtkTextIter *);
     extern gboolean gtk_text_buffer_get_has_selection(GtkTextBuffer *
@@ -6816,21 +6803,18 @@ extern "C" {
 							 buffer,
 							 GtkTextIter *,
 							 GtkTextIter *);
-    extern struct _GdkAtom
-	**gtk_text_buffer_get_serialize_formats(GtkTextBuffer * buffer,
-						gint *);
+    extern GdkAtom *gtk_text_buffer_get_serialize_formats(GtkTextBuffer *
+							  buffer, gint *);
     extern gchar *gtk_text_buffer_get_slice(GtkTextBuffer * buffer,
-					    const struct _GtkTextIter *,
-					    const struct _GtkTextIter *,
-					    gboolean);
+					    const GtkTextIter *,
+					    const GtkTextIter *, gboolean);
     extern void gtk_text_buffer_get_start_iter(GtkTextBuffer * buffer,
 					       GtkTextIter *);
     extern GtkTextTagTable *gtk_text_buffer_get_tag_table(GtkTextBuffer *
 							  buffer);
     extern gchar *gtk_text_buffer_get_text(GtkTextBuffer * buffer,
-					   const struct _GtkTextIter *,
-					   const struct _GtkTextIter *,
-					   gboolean);
+					   const GtkTextIter *,
+					   const GtkTextIter *, gboolean);
     extern GType gtk_text_buffer_get_type(void);
     extern void gtk_text_buffer_insert(GtkTextBuffer * buffer,
 				       GtkTextIter *, const char *, gint);
@@ -6852,17 +6836,16 @@ extern "C" {
 					      GtkTextIter *, GdkPixbuf *);
     extern void gtk_text_buffer_insert_range(GtkTextBuffer * buffer,
 					     GtkTextIter *,
-					     const struct _GtkTextIter *,
-					     const struct _GtkTextIter *);
+					     const GtkTextIter *,
+					     const GtkTextIter *);
     extern gboolean gtk_text_buffer_insert_range_interactive(GtkTextBuffer
 							     * buffer,
 							     GtkTextIter *,
-							     const struct
-							     _GtkTextIter
-							     *,
-							     const struct
-							     _GtkTextIter
-							     *, gboolean);
+							     const
+							     GtkTextIter *,
+							     const
+							     GtkTextIter *,
+							     gboolean);
     extern void gtk_text_buffer_insert_with_tags(GtkTextBuffer * buffer,
 						 GtkTextIter *,
 						 const char *, gint,
@@ -6876,17 +6859,16 @@ extern "C" {
 							 ...);
     extern void gtk_text_buffer_move_mark(GtkTextBuffer * buffer,
 					  GtkTextMark *,
-					  const struct _GtkTextIter *);
+					  const GtkTextIter *);
     extern void gtk_text_buffer_move_mark_by_name(GtkTextBuffer * buffer,
 						  const char *,
-						  const struct _GtkTextIter
-						  *);
+						  const GtkTextIter *);
     extern GtkTextBuffer *gtk_text_buffer_new(GtkTextTagTable * table);
     extern void gtk_text_buffer_paste_clipboard(GtkTextBuffer * buffer,
 						GtkClipboard *,
 						GtkTextIter *, gboolean);
     extern void gtk_text_buffer_place_cursor(GtkTextBuffer * buffer,
-					     const struct _GtkTextIter *);
+					     const GtkTextIter *);
     extern GdkAtom
 	gtk_text_buffer_register_deserialize_format(GtkTextBuffer * buffer,
 						    const char *,
@@ -6906,33 +6888,27 @@ extern "C" {
 							     * buffer,
 							     const char *);
     extern void gtk_text_buffer_remove_all_tags(GtkTextBuffer * buffer,
-						const struct _GtkTextIter
-						*,
-						const struct _GtkTextIter
-						*);
+						const GtkTextIter *,
+						const GtkTextIter *);
     extern void gtk_text_buffer_remove_selection_clipboard(GtkTextBuffer *
 							   buffer,
 							   GtkClipboard *);
     extern void gtk_text_buffer_remove_tag(GtkTextBuffer * buffer,
 					   GtkTextTag *,
-					   const struct _GtkTextIter *,
-					   const struct _GtkTextIter *);
+					   const GtkTextIter *,
+					   const GtkTextIter *);
     extern void gtk_text_buffer_remove_tag_by_name(GtkTextBuffer * buffer,
 						   const char *,
-						   const struct
-						   _GtkTextIter *,
-						   const struct
-						   _GtkTextIter *);
+						   const GtkTextIter *,
+						   const GtkTextIter *);
     extern void gtk_text_buffer_select_range(GtkTextBuffer * buffer,
-					     const struct _GtkTextIter *,
-					     const struct _GtkTextIter *);
+					     const GtkTextIter *,
+					     const GtkTextIter *);
     extern guint8 *gtk_text_buffer_serialize(GtkTextBuffer *
 					     register_buffer,
-					     GtkTextBuffer *,
-					     struct _GdkAtom *,
-					     const struct _GtkTextIter *,
-					     const struct _GtkTextIter *,
-					     gsize *);
+					     GtkTextBuffer *, GdkAtom,
+					     const GtkTextIter *,
+					     const GtkTextIter *, gsize *);
     extern void gtk_text_buffer_set_modified(GtkTextBuffer * buffer,
 					     gboolean);
     extern void gtk_text_buffer_set_text(GtkTextBuffer * buffer,
@@ -6954,7 +6930,7 @@ extern "C" {
     extern GtkTextChildAnchor *gtk_text_child_anchor_new(void);
     extern GType gtk_text_direction_get_type(void);
     extern void gtk_text_iter_assign(GtkTextIter * iter,
-				     const struct _GtkTextIter *);
+				     const GtkTextIter *);
     extern gboolean gtk_text_iter_backward_char(GtkTextIter * iter);
     extern gboolean gtk_text_iter_backward_chars(GtkTextIter * iter, gint);
     extern gboolean gtk_text_iter_backward_cursor_position(GtkTextIter *
@@ -6964,17 +6940,15 @@ extern "C" {
     extern gboolean gtk_text_iter_backward_find_char(GtkTextIter * iter,
 						     GtkTextCharPredicate,
 						     gpointer,
-						     const struct
-						     _GtkTextIter *);
+						     const GtkTextIter *);
     extern gboolean gtk_text_iter_backward_line(GtkTextIter * iter);
     extern gboolean gtk_text_iter_backward_lines(GtkTextIter * iter, gint);
-    extern gboolean gtk_text_iter_backward_search(const struct _GtkTextIter
-						  *iter, const char *,
+    extern gboolean gtk_text_iter_backward_search(const GtkTextIter * iter,
+						  const char *,
 						  GtkTextSearchFlags,
 						  GtkTextIter *,
 						  GtkTextIter *,
-						  const struct _GtkTextIter
-						  *);
+						  const GtkTextIter *);
     extern gboolean gtk_text_iter_backward_sentence_start(GtkTextIter *
 							  iter);
     extern gboolean gtk_text_iter_backward_sentence_starts(GtkTextIter *
@@ -6999,26 +6973,22 @@ extern "C" {
     extern gboolean gtk_text_iter_backward_word_start(GtkTextIter * iter);
     extern gboolean gtk_text_iter_backward_word_starts(GtkTextIter * iter,
 						       gint);
-    extern gboolean gtk_text_iter_begins_tag(const struct _GtkTextIter
-					     *iter, GtkTextTag *);
-    extern gboolean gtk_text_iter_can_insert(const struct _GtkTextIter
-					     *iter, gboolean);
-    extern gint gtk_text_iter_compare(const struct _GtkTextIter *lhs,
-				      const struct _GtkTextIter *);
-    extern GtkTextIter *gtk_text_iter_copy(const struct _GtkTextIter
-					   *iter);
-    extern gboolean gtk_text_iter_editable(const struct _GtkTextIter *iter,
+    extern gboolean gtk_text_iter_begins_tag(const GtkTextIter * iter,
+					     GtkTextTag *);
+    extern gboolean gtk_text_iter_can_insert(const GtkTextIter * iter,
+					     gboolean);
+    extern gint gtk_text_iter_compare(const GtkTextIter * lhs,
+				      const GtkTextIter *);
+    extern GtkTextIter *gtk_text_iter_copy(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_editable(const GtkTextIter * iter,
 					   gboolean);
-    extern gboolean gtk_text_iter_ends_line(const struct _GtkTextIter
-					    *iter);
-    extern gboolean gtk_text_iter_ends_sentence(const struct _GtkTextIter
-						*iter);
-    extern gboolean gtk_text_iter_ends_tag(const struct _GtkTextIter *iter,
+    extern gboolean gtk_text_iter_ends_line(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_ends_sentence(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_ends_tag(const GtkTextIter * iter,
 					   GtkTextTag *);
-    extern gboolean gtk_text_iter_ends_word(const struct _GtkTextIter
-					    *iter);
-    extern gboolean gtk_text_iter_equal(const struct _GtkTextIter *lhs,
-					const struct _GtkTextIter *);
+    extern gboolean gtk_text_iter_ends_word(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_equal(const GtkTextIter * lhs,
+					const GtkTextIter *);
     extern gboolean gtk_text_iter_forward_char(GtkTextIter * iter);
     extern gboolean gtk_text_iter_forward_chars(GtkTextIter * iter, gint);
     extern gboolean gtk_text_iter_forward_cursor_position(GtkTextIter *
@@ -7028,17 +6998,15 @@ extern "C" {
     extern gboolean gtk_text_iter_forward_find_char(GtkTextIter * iter,
 						    GtkTextCharPredicate,
 						    gpointer,
-						    const struct
-						    _GtkTextIter *);
+						    const GtkTextIter *);
     extern gboolean gtk_text_iter_forward_line(GtkTextIter * iter);
     extern gboolean gtk_text_iter_forward_lines(GtkTextIter * iter, gint);
-    extern gboolean gtk_text_iter_forward_search(const struct _GtkTextIter
-						 *iter, const char *,
+    extern gboolean gtk_text_iter_forward_search(const GtkTextIter * iter,
+						 const char *,
 						 GtkTextSearchFlags,
 						 GtkTextIter *,
 						 GtkTextIter *,
-						 const struct _GtkTextIter
-						 *);
+						 const GtkTextIter *);
     extern gboolean gtk_text_iter_forward_sentence_end(GtkTextIter * iter);
     extern gboolean gtk_text_iter_forward_sentence_ends(GtkTextIter * iter,
 							gint);
@@ -7062,66 +7030,53 @@ extern "C" {
     extern gboolean gtk_text_iter_forward_word_ends(GtkTextIter * iter,
 						    gint);
     extern void gtk_text_iter_free(GtkTextIter * iter);
-    extern gboolean gtk_text_iter_get_attributes(const struct _GtkTextIter
-						 *iter,
+    extern gboolean gtk_text_iter_get_attributes(const GtkTextIter * iter,
 						 GtkTextAttributes *);
-    extern GtkTextBuffer *gtk_text_iter_get_buffer(const struct
-						   _GtkTextIter *iter);
-    extern gint gtk_text_iter_get_bytes_in_line(const struct _GtkTextIter
-						*iter);
-    extern gunichar gtk_text_iter_get_char(const struct _GtkTextIter
-					   *iter);
-    extern gint gtk_text_iter_get_chars_in_line(const struct _GtkTextIter
-						*iter);
-    extern GtkTextChildAnchor *gtk_text_iter_get_child_anchor(const struct
-							      _GtkTextIter
-							      *iter);
-    extern PangoLanguage *gtk_text_iter_get_language(const struct
-						     _GtkTextIter *iter);
-    extern gint gtk_text_iter_get_line(const struct _GtkTextIter *iter);
-    extern gint gtk_text_iter_get_line_index(const struct _GtkTextIter
-					     *iter);
-    extern gint gtk_text_iter_get_line_offset(const struct _GtkTextIter
-					      *iter);
-    extern GSList *gtk_text_iter_get_marks(const struct _GtkTextIter
-					   *iter);
-    extern gint gtk_text_iter_get_offset(const struct _GtkTextIter *iter);
-    extern GdkPixbuf *gtk_text_iter_get_pixbuf(const struct _GtkTextIter
-					       *iter);
-    extern gchar *gtk_text_iter_get_slice(const struct _GtkTextIter *start,
-					  const struct _GtkTextIter *);
-    extern GSList *gtk_text_iter_get_tags(const struct _GtkTextIter *iter);
-    extern gchar *gtk_text_iter_get_text(const struct _GtkTextIter *start,
-					 const struct _GtkTextIter *);
-    extern GSList *gtk_text_iter_get_toggled_tags(const struct _GtkTextIter
-						  *iter, gboolean);
+    extern GtkTextBuffer *gtk_text_iter_get_buffer(const GtkTextIter *
+						   iter);
+    extern gint gtk_text_iter_get_bytes_in_line(const GtkTextIter * iter);
+    extern gunichar gtk_text_iter_get_char(const GtkTextIter * iter);
+    extern gint gtk_text_iter_get_chars_in_line(const GtkTextIter * iter);
+    extern GtkTextChildAnchor *gtk_text_iter_get_child_anchor(const
+							      GtkTextIter *
+							      iter);
+    extern PangoLanguage *gtk_text_iter_get_language(const GtkTextIter *
+						     iter);
+    extern gint gtk_text_iter_get_line(const GtkTextIter * iter);
+    extern gint gtk_text_iter_get_line_index(const GtkTextIter * iter);
+    extern gint gtk_text_iter_get_line_offset(const GtkTextIter * iter);
+    extern GSList *gtk_text_iter_get_marks(const GtkTextIter * iter);
+    extern gint gtk_text_iter_get_offset(const GtkTextIter * iter);
+    extern GdkPixbuf *gtk_text_iter_get_pixbuf(const GtkTextIter * iter);
+    extern gchar *gtk_text_iter_get_slice(const GtkTextIter * start,
+					  const GtkTextIter *);
+    extern GSList *gtk_text_iter_get_tags(const GtkTextIter * iter);
+    extern gchar *gtk_text_iter_get_text(const GtkTextIter * start,
+					 const GtkTextIter *);
+    extern GSList *gtk_text_iter_get_toggled_tags(const GtkTextIter * iter,
+						  gboolean);
     extern GType gtk_text_iter_get_type(void);
-    extern gint gtk_text_iter_get_visible_line_index(const struct
-						     _GtkTextIter *iter);
-    extern gint gtk_text_iter_get_visible_line_offset(const struct
-						      _GtkTextIter *iter);
-    extern gchar *gtk_text_iter_get_visible_slice(const struct _GtkTextIter
-						  *start,
-						  const struct _GtkTextIter
-						  *);
-    extern gchar *gtk_text_iter_get_visible_text(const struct _GtkTextIter
-						 *start,
-						 const struct _GtkTextIter
-						 *);
-    extern gboolean gtk_text_iter_has_tag(const struct _GtkTextIter *iter,
+    extern gint gtk_text_iter_get_visible_line_index(const GtkTextIter *
+						     iter);
+    extern gint gtk_text_iter_get_visible_line_offset(const GtkTextIter *
+						      iter);
+    extern gchar *gtk_text_iter_get_visible_slice(const GtkTextIter *
+						  start,
+						  const GtkTextIter *);
+    extern gchar *gtk_text_iter_get_visible_text(const GtkTextIter * start,
+						 const GtkTextIter *);
+    extern gboolean gtk_text_iter_has_tag(const GtkTextIter * iter,
 					  GtkTextTag *);
-    extern gboolean gtk_text_iter_in_range(const struct _GtkTextIter *iter,
-					   const struct _GtkTextIter *,
-					   const struct _GtkTextIter *);
-    extern gboolean gtk_text_iter_inside_sentence(const struct _GtkTextIter
-						  *iter);
-    extern gboolean gtk_text_iter_inside_word(const struct _GtkTextIter
-					      *iter);
-    extern gboolean gtk_text_iter_is_cursor_position(const struct
-						     _GtkTextIter *iter);
-    extern gboolean gtk_text_iter_is_end(const struct _GtkTextIter *iter);
-    extern gboolean gtk_text_iter_is_start(const struct _GtkTextIter
-					   *iter);
+    extern gboolean gtk_text_iter_in_range(const GtkTextIter * iter,
+					   const GtkTextIter *,
+					   const GtkTextIter *);
+    extern gboolean gtk_text_iter_inside_sentence(const GtkTextIter *
+						  iter);
+    extern gboolean gtk_text_iter_inside_word(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_is_cursor_position(const GtkTextIter *
+						     iter);
+    extern gboolean gtk_text_iter_is_end(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_is_start(const GtkTextIter * iter);
     extern void gtk_text_iter_order(GtkTextIter * first, GtkTextIter *);
     extern void gtk_text_iter_set_line(GtkTextIter * iter, gint);
     extern void gtk_text_iter_set_line_index(GtkTextIter * iter, gint);
@@ -7131,14 +7086,12 @@ extern "C" {
 						     gint);
     extern void gtk_text_iter_set_visible_line_offset(GtkTextIter * iter,
 						      gint);
-    extern gboolean gtk_text_iter_starts_line(const struct _GtkTextIter
-					      *iter);
-    extern gboolean gtk_text_iter_starts_sentence(const struct _GtkTextIter
-						  *iter);
-    extern gboolean gtk_text_iter_starts_word(const struct _GtkTextIter
-					      *iter);
-    extern gboolean gtk_text_iter_toggles_tag(const struct _GtkTextIter
-					      *iter, GtkTextTag *);
+    extern gboolean gtk_text_iter_starts_line(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_starts_sentence(const GtkTextIter *
+						  iter);
+    extern gboolean gtk_text_iter_starts_word(const GtkTextIter * iter);
+    extern gboolean gtk_text_iter_toggles_tag(const GtkTextIter * iter,
+					      GtkTextTag *);
     extern GtkTextBuffer *gtk_text_mark_get_buffer(GtkTextMark * mark);
     extern gboolean gtk_text_mark_get_deleted(GtkTextMark * mark);
     extern gboolean gtk_text_mark_get_left_gravity(GtkTextMark * mark);
@@ -7198,8 +7151,7 @@ extern "C" {
     extern GtkTextBuffer *gtk_text_view_get_buffer(GtkTextView *
 						   text_view);
     extern void gtk_text_view_get_cursor_locations(GtkTextView * text_view,
-						   const struct
-						   _GtkTextIter *,
+						   const GtkTextIter *,
 						   GdkRectangle *,
 						   GdkRectangle *);
     extern gboolean gtk_text_view_get_cursor_visible(GtkTextView *
@@ -7221,16 +7173,16 @@ extern "C" {
 						   GtkTextIter *, gint *,
 						   gint, gint);
     extern void gtk_text_view_get_iter_location(GtkTextView * text_view,
-						const struct _GtkTextIter
-						*, GdkRectangle *);
+						const GtkTextIter *,
+						GdkRectangle *);
     extern GtkJustification gtk_text_view_get_justification(GtkTextView *
 							    text_view);
     extern gint gtk_text_view_get_left_margin(GtkTextView * text_view);
     extern void gtk_text_view_get_line_at_y(GtkTextView * text_view,
 					    GtkTextIter *, gint, gint *);
     extern void gtk_text_view_get_line_yrange(GtkTextView * text_view,
-					      const struct _GtkTextIter *,
-					      gint *, gint *);
+					      const GtkTextIter *, gint *,
+					      gint *);
     extern gboolean gtk_text_view_get_overwrite(GtkTextView * text_view);
     extern gint gtk_text_view_get_pixels_above_lines(GtkTextView *
 						     text_view);
@@ -7315,8 +7267,7 @@ extern "C" {
 					    GtkWrapMode);
     extern gboolean gtk_text_view_starts_display_line(GtkTextView *
 						      text_view,
-						      const struct
-						      _GtkTextIter *);
+						      const GtkTextIter *);
     extern void gtk_text_view_window_to_buffer_coords(GtkTextView *
 						      text_view,
 						      GtkTextWindowType,

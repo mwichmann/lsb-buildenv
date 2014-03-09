@@ -17,10 +17,8 @@ extern "C" {
 
     typedef guint8 *(*GtkTextBufferSerializeFunc) (GtkTextBuffer *,
 						   GtkTextBuffer *,
-						   const struct
-						   _GtkTextIter *,
-						   const struct
-						   _GtkTextIter *, gsize *,
+						   GtkTextIter *,
+						   GtkTextIter *, gsize *,
 						   gpointer);
 
     typedef gboolean(*GtkTextBufferDeserializeFunc) (GtkTextBuffer *,
@@ -37,7 +35,7 @@ extern "C" {
 						register_buffer,
 						GtkTextBuffer *
 						content_buffer,
-						struct _GdkAtom *format,
+						GdkAtom format,
 						GtkTextIter * iter,
 						const unsigned char *data,
 						gsize length,
@@ -52,12 +50,14 @@ extern "C" {
 							GdkAtom format,
 							gboolean
 							can_create_tags);
-    extern struct _GdkAtom
-	**gtk_text_buffer_get_deserialize_formats(GtkTextBuffer * buffer,
-						  gint * n_formats);
-    extern struct _GdkAtom
-	**gtk_text_buffer_get_serialize_formats(GtkTextBuffer * buffer,
-						gint * n_formats);
+    extern GdkAtom *gtk_text_buffer_get_deserialize_formats(GtkTextBuffer *
+							    buffer,
+							    gint *
+							    n_formats);
+    extern GdkAtom *gtk_text_buffer_get_serialize_formats(GtkTextBuffer *
+							  buffer,
+							  gint *
+							  n_formats);
     extern GdkAtom
 	gtk_text_buffer_register_deserialize_format(GtkTextBuffer * buffer,
 						    const char *mime_type,
@@ -88,11 +88,10 @@ extern "C" {
 					     register_buffer,
 					     GtkTextBuffer *
 					     content_buffer,
-					     struct _GdkAtom *format,
-					     const struct _GtkTextIter
-					     *start,
-					     const struct _GtkTextIter
-					     *end, gsize * length);
+					     GdkAtom format,
+					     GtkTextIter * start,
+					     GtkTextIter * end,
+					     gsize * length);
     extern void gtk_text_buffer_unregister_deserialize_format(GtkTextBuffer
 							      * buffer,
 							      GdkAtom
