@@ -730,7 +730,9 @@ extern "C" {
 
     typedef struct _GtkWindow GtkWindow;
 
-    typedef gboolean(*GtkRcPropertyParser) (void);
+    typedef gboolean(*GtkRcPropertyParser) (const GParamSpec * pspec,
+					    const GString * rc_string,
+					    GValue * property_value);
 
     typedef struct _GtkRange GtkRange;
 
@@ -1575,7 +1577,12 @@ extern "C" {
 
     typedef gboolean(*GtkCellCallback) (void);
 
-    typedef gboolean(*GtkCellAllocCallback) (void);
+    typedef gboolean(*GtkCellAllocCallback) (GtkCellRenderer * renderer,
+					     const GdkRectangle *
+					     cell_area,
+					     const GdkRectangle *
+					     cell_background,
+					     gpointer data);
 
     typedef struct _GtkPrintOperation GtkPrintOperation;
 
@@ -2614,8 +2621,7 @@ extern "C" {
 						     buildable,
 						     GtkBuilder *,
 						     const char *,
-						     const struct _GValue
-						     *);
+						     const GValue *);
     extern void gtk_buildable_set_name(GtkBuildable * buildable,
 				       const char *);
     extern guint gtk_builder_add_from_file(GtkBuilder * builder,
@@ -2754,15 +2760,13 @@ extern "C" {
     extern gboolean gtk_cell_area_activate(GtkCellArea * area,
 					   GtkCellAreaContext *,
 					   GtkWidget *,
-					   const struct
-					   _cairo_rectangle_int *,
+					   const GdkRectangle *,
 					   GtkCellRendererState, gboolean);
     extern gboolean gtk_cell_area_activate_cell(GtkCellArea * area,
 						GtkWidget *,
 						GtkCellRenderer *,
 						GdkEvent *,
-						const struct
-						_cairo_rectangle_int *,
+						const GdkRectangle *,
 						GtkCellRendererState);
     extern void gtk_cell_area_add(GtkCellArea * area, GtkCellRenderer *);
     extern void gtk_cell_area_add_focus_sibling(GtkCellArea * area,
@@ -2808,7 +2812,7 @@ extern "C" {
     extern void gtk_cell_area_cell_set_property(GtkCellArea * area,
 						GtkCellRenderer *,
 						const char *,
-						const struct _GValue *);
+						const GValue *);
     extern void gtk_cell_area_cell_set_valist(GtkCellArea * area,
 					      const gchar *
 					      first_property_name,
@@ -2859,8 +2863,7 @@ extern "C" {
 							    area);
     extern gint gtk_cell_area_event(GtkCellArea * area,
 				    GtkCellAreaContext *, GtkWidget *,
-				    GdkEvent *,
-				    const struct _cairo_rectangle_int *,
+				    GdkEvent *, const GdkRectangle *,
 				    GtkCellRendererState);
     extern gboolean gtk_cell_area_focus(GtkCellArea * area,
 					GtkDirectionType);
@@ -2869,26 +2872,23 @@ extern "C" {
     extern void gtk_cell_area_foreach_alloc(GtkCellArea * area,
 					    GtkCellAreaContext *,
 					    GtkWidget *,
-					    const struct
-					    _cairo_rectangle_int *,
-					    const struct
-					    _cairo_rectangle_int *,
+					    const GdkRectangle *,
+					    const GdkRectangle *,
 					    GtkCellAllocCallback,
 					    gpointer);
     extern void gtk_cell_area_get_cell_allocation(GtkCellArea * area,
 						  GtkCellAreaContext *,
 						  GtkWidget *,
 						  GtkCellRenderer *,
-						  const struct
-						  _cairo_rectangle_int *,
+						  const GdkRectangle *,
 						  GdkRectangle *);
     extern GtkCellRenderer *gtk_cell_area_get_cell_at_position(GtkCellArea
 							       * area,
 							       GtkCellAreaContext
 							       *,
 							       GtkWidget *,
-							       const struct
-							       _cairo_rectangle_int
+							       const
+							       GdkRectangle
 							       *, gint,
 							       gint,
 							       GdkRectangle
@@ -2904,9 +2904,10 @@ extern "C" {
     extern GtkCellRenderer
 	*gtk_cell_area_get_focus_from_sibling(GtkCellArea * area,
 					      GtkCellRenderer *);
-    extern const struct _GList
-	*gtk_cell_area_get_focus_siblings(GtkCellArea * area,
-					  GtkCellRenderer *);
+    extern const GList *gtk_cell_area_get_focus_siblings(GtkCellArea *
+							 area,
+							 GtkCellRenderer
+							 *);
     extern void gtk_cell_area_get_preferred_height(GtkCellArea * area,
 						   GtkCellAreaContext *,
 						   GtkWidget *, gint *,
@@ -2936,8 +2937,7 @@ extern "C" {
 					       GtkCellRenderer *);
     extern void gtk_cell_area_inner_cell_area(GtkCellArea * area,
 					      GtkWidget *,
-					      const struct
-					      _cairo_rectangle_int *,
+					      const GdkRectangle *,
 					      GdkRectangle *);
     extern gboolean gtk_cell_area_is_activatable(GtkCellArea * area);
     extern gboolean gtk_cell_area_is_focus_sibling(GtkCellArea * area,
@@ -2950,9 +2950,8 @@ extern "C" {
 						   GtkCellRenderer *);
     extern void gtk_cell_area_render(GtkCellArea * area,
 				     GtkCellAreaContext *, GtkWidget *,
-				     cairo_t *,
-				     const struct _cairo_rectangle_int *,
-				     const struct _cairo_rectangle_int *,
+				     cairo_t *, const GdkRectangle *,
+				     const GdkRectangle *,
 				     GtkCellRendererState, gboolean);
     extern void gtk_cell_area_request_renderer(GtkCellArea * area,
 					       GtkCellRenderer *,
@@ -2999,18 +2998,15 @@ extern "C" {
     extern gboolean gtk_cell_renderer_activate(GtkCellRenderer * cell,
 					       GdkEvent *, GtkWidget *,
 					       const char *,
-					       const struct
-					       _cairo_rectangle_int *,
-					       const struct
-					       _cairo_rectangle_int *,
+					       const GdkRectangle *,
+					       const GdkRectangle *,
 					       GtkCellRendererState);
     extern GType gtk_cell_renderer_combo_get_type(void);
     extern GtkCellRenderer *gtk_cell_renderer_combo_new(void);
     extern void gtk_cell_renderer_get_aligned_area(GtkCellRenderer * cell,
 						   GtkWidget *,
 						   GtkCellRendererState,
-						   const struct
-						   _cairo_rectangle_int *,
+						   const GdkRectangle *,
 						   GdkRectangle *);
     extern void gtk_cell_renderer_get_alignment(GtkCellRenderer * cell,
 						gfloat *, gfloat *);
@@ -3044,8 +3040,7 @@ extern "C" {
 						    cell);
     extern void gtk_cell_renderer_get_size(GtkCellRenderer * cell,
 					   GtkWidget *,
-					   const struct
-					   _cairo_rectangle_int *, gint *,
+					   const GdkRectangle *, gint *,
 					   gint *, gint *, gint *);
     extern GtkStateFlags gtk_cell_renderer_get_state(GtkCellRenderer *
 						     cell, GtkWidget *,
@@ -3060,11 +3055,9 @@ extern "C" {
     extern GType gtk_cell_renderer_progress_get_type(void);
     extern GtkCellRenderer *gtk_cell_renderer_progress_new(void);
     extern void gtk_cell_renderer_render(GtkCellRenderer * cell, cairo_t *,
-					 GtkWidget *,
-					 const struct _cairo_rectangle_int
-					 *,
-					 const struct _cairo_rectangle_int
-					 *, GtkCellRendererState);
+					 GtkWidget *, const GdkRectangle *,
+					 const GdkRectangle *,
+					 GtkCellRendererState);
     extern void gtk_cell_renderer_set_alignment(GtkCellRenderer * cell,
 						gfloat, gfloat);
     extern void gtk_cell_renderer_set_fixed_size(GtkCellRenderer * cell,
@@ -3084,12 +3077,10 @@ extern "C" {
 							    GdkEvent *,
 							    GtkWidget *,
 							    const char *,
-							    const struct
-							    _cairo_rectangle_int
-							    *,
-							    const struct
-							    _cairo_rectangle_int
-							    *,
+							    const
+							    GdkRectangle *,
+							    const
+							    GdkRectangle *,
 							    GtkCellRendererState);
     extern GType gtk_cell_renderer_state_get_type(void);
     extern void gtk_cell_renderer_stop_editing(GtkCellRenderer * cell,
@@ -3133,10 +3124,9 @@ extern "C" {
     extern GtkWidget *gtk_cell_view_new_with_pixbuf(GdkPixbuf * pixbuf);
     extern GtkWidget *gtk_cell_view_new_with_text(const char *text);
     extern void gtk_cell_view_set_background_color(GtkCellView * cell_view,
-						   const struct _GdkColor
-						   *);
+						   const GdkColor *);
     extern void gtk_cell_view_set_background_rgba(GtkCellView * cell_view,
-						  const struct _GdkRGBA *);
+						  const GdkRGBA *);
     extern void gtk_cell_view_set_displayed_row(GtkCellView * cell_view,
 						GtkTreePath *);
     extern void gtk_cell_view_set_draw_sensitive(GtkCellView * cell_view,
@@ -3203,21 +3193,19 @@ extern "C" {
 					   GtkClipboardURIReceivedFunc,
 					   gpointer);
     extern void gtk_clipboard_set_can_store(GtkClipboard * clipboard,
-					    const struct _GtkTargetEntry *,
-					    gint);
+					    const GtkTargetEntry *, gint);
     extern void gtk_clipboard_set_image(GtkClipboard * clipboard,
 					GdkPixbuf *);
     extern void gtk_clipboard_set_text(GtkClipboard * clipboard,
 				       const char *, gint);
     extern gboolean gtk_clipboard_set_with_data(GtkClipboard * clipboard,
-						const struct
-						_GtkTargetEntry *, guint,
-						GtkClipboardGetFunc,
+						const GtkTargetEntry *,
+						guint, GtkClipboardGetFunc,
 						GtkClipboardClearFunc,
 						gpointer);
     extern gboolean gtk_clipboard_set_with_owner(GtkClipboard * clipboard,
-						 const struct
-						 _GtkTargetEntry *, guint,
+						 const GtkTargetEntry *,
+						 guint,
 						 GtkClipboardGetFunc,
 						 GtkClipboardClearFunc,
 						 GObject *);
@@ -3259,16 +3247,15 @@ extern "C" {
     extern gboolean gtk_color_button_get_use_alpha(GtkColorButton *
 						   button);
     extern GtkWidget *gtk_color_button_new(void);
-    extern GtkWidget *gtk_color_button_new_with_color(const struct
-						      _GdkColor *color);
-    extern GtkWidget *gtk_color_button_new_with_rgba(const struct _GdkRGBA
-						     *rgba);
+    extern GtkWidget *gtk_color_button_new_with_color(const GdkColor *
+						      color);
+    extern GtkWidget *gtk_color_button_new_with_rgba(const GdkRGBA * rgba);
     extern void gtk_color_button_set_alpha(GtkColorButton * button,
 					   guint16);
     extern void gtk_color_button_set_color(GtkColorButton * button,
-					   const struct _GdkColor *);
+					   const GdkColor *);
     extern void gtk_color_button_set_rgba(GtkColorButton * button,
-					  const struct _GdkRGBA *);
+					  const GdkRGBA *);
     extern void gtk_color_button_set_title(GtkColorButton * button,
 					   const char *);
     extern void gtk_color_button_set_use_alpha(GtkColorButton * button,
@@ -3285,7 +3272,7 @@ extern "C" {
     extern gboolean gtk_color_chooser_get_use_alpha(GtkColorChooser *
 						    chooser);
     extern void gtk_color_chooser_set_rgba(GtkColorChooser * chooser,
-					   const struct _GdkRGBA *);
+					   const GdkRGBA *);
     extern void gtk_color_chooser_set_use_alpha(GtkColorChooser * chooser,
 						gboolean);
     extern GType gtk_color_chooser_widget_get_type(void);
@@ -3403,7 +3390,7 @@ extern "C" {
 					GtkWidget *, const char *, ...);
     extern void gtk_container_child_set_property(GtkContainer * container,
 						 GtkWidget *, const char *,
-						 const struct _GValue *);
+						 const GValue *);
     extern void gtk_container_child_set_valist(GtkContainer * container,
 					       const gchar *
 					       first_property_name,
@@ -3612,9 +3599,8 @@ extern "C" {
     extern void gtk_drag_source_unset(GtkWidget * widget);
     extern void gtk_drag_unhighlight(GtkWidget * widget);
     extern void gtk_draw_insertion_cursor(GtkWidget * widget, cairo_t *,
-					  const struct _cairo_rectangle_int
-					  *, gboolean, GtkTextDirection,
-					  gboolean);
+					  const GdkRectangle *, gboolean,
+					  GtkTextDirection, gboolean);
     extern GType gtk_drawing_area_get_type(void);
     extern GtkWidget *gtk_drawing_area_new(void);
     extern void gtk_editable_copy_clipboard(GtkEditable * editable);
@@ -3763,8 +3749,7 @@ extern "C" {
 						    GtkEntryIconPosition);
     extern gchar *gtk_entry_get_icon_tooltip_text(GtkEntry * entry,
 						  GtkEntryIconPosition);
-    extern const struct _GtkBorder *gtk_entry_get_inner_border(GtkEntry *
-							       entry);
+    extern const GtkBorder *gtk_entry_get_inner_border(GtkEntry * entry);
     extern GtkInputHints gtk_entry_get_input_hints(GtkEntry * entry);
     extern GtkInputPurpose gtk_entry_get_input_purpose(GtkEntry * entry);
     extern gunichar gtk_entry_get_invisible_char(GtkEntry * entry);
@@ -3832,7 +3817,7 @@ extern "C" {
 						GtkEntryIconPosition,
 						const char *);
     extern void gtk_entry_set_inner_border(GtkEntry * entry,
-					   const struct _GtkBorder *);
+					   const GtkBorder *);
     extern void gtk_entry_set_input_hints(GtkEntry * entry, GtkInputHints);
     extern void gtk_entry_set_input_purpose(GtkEntry * entry,
 					    GtkInputPurpose);
@@ -4127,8 +4112,8 @@ extern "C" {
 					  const char *);
     extern void gtk_font_chooser_set_font_desc(GtkFontChooser *
 					       fontchooser,
-					       const struct
-					       _PangoFontDescription *);
+					       const PangoFontDescription
+					       *);
     extern void gtk_font_chooser_set_preview_text(GtkFontChooser *
 						  fontchooser,
 						  const char *);
@@ -4234,10 +4219,10 @@ extern "C" {
     extern GdkPixbuf *gtk_icon_info_load_icon(GtkIconInfo * icon_info,
 					      GError * *);
     extern GdkPixbuf *gtk_icon_info_load_symbolic(GtkIconInfo * icon_info,
-						  const struct _GdkRGBA *,
-						  const struct _GdkRGBA *,
-						  const struct _GdkRGBA *,
-						  const struct _GdkRGBA *,
+						  const GdkRGBA *,
+						  const GdkRGBA *,
+						  const GdkRGBA *,
+						  const GdkRGBA *,
 						  gboolean *, GError * *);
     extern GdkPixbuf *gtk_icon_info_load_symbolic_for_context(GtkIconInfo *
 							      icon_info,
@@ -4258,7 +4243,7 @@ extern "C" {
 						  gboolean);
     extern GType gtk_icon_lookup_flags_get_type(void);
     extern void gtk_icon_set_add_source(GtkIconSet * icon_set,
-					const struct _GtkIconSource *);
+					const GtkIconSource *);
     extern GtkIconSet *gtk_icon_set_copy(GtkIconSet * icon_set);
     extern void gtk_icon_set_get_sizes(GtkIconSet * icon_set,
 				       GtkIconSize * *, gint *);
@@ -4288,33 +4273,30 @@ extern "C" {
 					      gint);
     extern void gtk_icon_size_register_alias(const char *alias,
 					     GtkIconSize);
-    extern GtkIconSource *gtk_icon_source_copy(const struct _GtkIconSource
-					       *source);
+    extern GtkIconSource *gtk_icon_source_copy(const GtkIconSource *
+					       source);
     extern void gtk_icon_source_free(GtkIconSource * source);
-    extern GtkTextDirection gtk_icon_source_get_direction(const struct
-							  _GtkIconSource
-							  *source);
-    extern gboolean gtk_icon_source_get_direction_wildcarded(const struct
-							     _GtkIconSource
-							     *source);
-    extern const char *gtk_icon_source_get_filename(const struct
-						    _GtkIconSource
-						    *source);
-    extern const char *gtk_icon_source_get_icon_name(const struct
-						     _GtkIconSource
-						     *source);
-    extern GdkPixbuf *gtk_icon_source_get_pixbuf(const struct
-						 _GtkIconSource *source);
-    extern GtkIconSize gtk_icon_source_get_size(const struct _GtkIconSource
-						*source);
-    extern gboolean gtk_icon_source_get_size_wildcarded(const struct
-							_GtkIconSource
-							*source);
-    extern GtkStateType gtk_icon_source_get_state(const struct
-						  _GtkIconSource *source);
-    extern gboolean gtk_icon_source_get_state_wildcarded(const struct
-							 _GtkIconSource
-							 *source);
+    extern GtkTextDirection gtk_icon_source_get_direction(const
+							  GtkIconSource *
+							  source);
+    extern gboolean gtk_icon_source_get_direction_wildcarded(const
+							     GtkIconSource
+							     * source);
+    extern const char *gtk_icon_source_get_filename(const GtkIconSource *
+						    source);
+    extern const char *gtk_icon_source_get_icon_name(const GtkIconSource *
+						     source);
+    extern GdkPixbuf *gtk_icon_source_get_pixbuf(const GtkIconSource *
+						 source);
+    extern GtkIconSize gtk_icon_source_get_size(const GtkIconSource *
+						source);
+    extern gboolean gtk_icon_source_get_size_wildcarded(const GtkIconSource
+							* source);
+    extern GtkStateType gtk_icon_source_get_state(const GtkIconSource *
+						  source);
+    extern gboolean gtk_icon_source_get_state_wildcarded(const
+							 GtkIconSource *
+							 source);
     extern GType gtk_icon_source_get_type(void);
     extern GtkIconSource *gtk_icon_source_new(void);
     extern void gtk_icon_source_set_direction(GtkIconSource * source,
@@ -4542,8 +4524,7 @@ extern "C" {
     extern void gtk_im_context_set_client_window(GtkIMContext * context,
 						 GdkWindow *);
     extern void gtk_im_context_set_cursor_location(GtkIMContext * context,
-						   const struct
-						   _cairo_rectangle_int *);
+						   const GdkRectangle *);
     extern void gtk_im_context_set_surrounding(GtkIMContext * context,
 					       const char *, gint, gint);
     extern void gtk_im_context_set_use_preedit(GtkIMContext * context,
@@ -4662,8 +4643,7 @@ extern "C" {
     extern void gtk_init(int *argc, char ***);
     extern gboolean gtk_init_check(int *argc, char ***);
     extern gboolean gtk_init_with_args(gint * argc, gchar * **,
-				       const char *,
-				       const struct _GOptionEntry *,
+				       const char *, const GOptionEntry *,
 				       const char *, GError * *);
     extern GType gtk_input_hints_get_type(void);
     extern GType gtk_input_purpose_get_type(void);
@@ -5702,26 +5682,19 @@ extern "C" {
 							GtkSensitivityType);
     extern void gtk_range_set_value(GtkRange * range, gdouble);
     extern GType gtk_rc_flags_get_type(void);
-    extern gboolean gtk_rc_property_parse_border(const struct _GParamSpec
-						 *pspec,
-						 const struct _GString *,
+    extern gboolean gtk_rc_property_parse_border(const GParamSpec * pspec,
+						 const GString *,
 						 GValue *);
-    extern gboolean gtk_rc_property_parse_color(const struct _GParamSpec
-						*pspec,
-						const struct _GString *,
-						GValue *);
-    extern gboolean gtk_rc_property_parse_enum(const struct _GParamSpec
-					       *pspec,
-					       const struct _GString *,
-					       GValue *);
-    extern gboolean gtk_rc_property_parse_flags(const struct _GParamSpec
-						*pspec,
-						const struct _GString *,
-						GValue *);
-    extern gboolean gtk_rc_property_parse_requisition(const struct
-						      _GParamSpec *pspec,
-						      const struct _GString
-						      *, GValue *);
+    extern gboolean gtk_rc_property_parse_color(const GParamSpec * pspec,
+						const GString *, GValue *);
+    extern gboolean gtk_rc_property_parse_enum(const GParamSpec * pspec,
+					       const GString *, GValue *);
+    extern gboolean gtk_rc_property_parse_flags(const GParamSpec * pspec,
+						const GString *, GValue *);
+    extern gboolean gtk_rc_property_parse_requisition(const GParamSpec *
+						      pspec,
+						      const GString *,
+						      GValue *);
     extern GType gtk_rc_token_type_get_type(void);
     extern gboolean gtk_recent_action_get_show_numbers(GtkRecentAction *
 						       action);
@@ -5952,8 +5925,8 @@ extern "C" {
     extern void gtk_render_icon(GtkStyleContext * context, cairo_t *,
 				GdkPixbuf *, gdouble, gdouble);
     extern GdkPixbuf *gtk_render_icon_pixbuf(GtkStyleContext * context,
-					     const struct _GtkIconSource *,
-					     GtkIconSize);
+					     const GtkIconSource * source,
+					     GtkIconSize size);
     extern void gtk_render_insertion_cursor(GtkStyleContext * context,
 					    cairo_t *, gdouble, gdouble,
 					    PangoLayout *, int,
@@ -6439,7 +6412,7 @@ extern "C" {
 					    GtkStateFlags, GdkRGBA *);
     extern GtkTextDirection gtk_style_context_get_direction(GtkStyleContext
 							    * context);
-    extern const struct _PangoFontDescription
+    extern const PangoFontDescription
 	*gtk_style_context_get_font(GtkStyleContext * context,
 				    GtkStateFlags);
     extern GtkJunctionSides
@@ -6450,8 +6423,8 @@ extern "C" {
 					      GtkStateFlags, GtkBorder *);
     extern GtkStyleContext *gtk_style_context_get_parent(GtkStyleContext *
 							 context);
-    extern const struct _GtkWidgetPath
-	*gtk_style_context_get_path(GtkStyleContext * context);
+    extern const GtkWidgetPath *gtk_style_context_get_path(GtkStyleContext
+							   * context);
     extern void gtk_style_context_get_property(GtkStyleContext * context,
 					       const char *, GtkStateFlags,
 					       GValue *);
@@ -6468,8 +6441,7 @@ extern "C" {
 						     context, const char *,
 						     GValue *);
     extern void gtk_style_context_get_style_valist(GtkStyleContext *
-						   context,
-						   struct __va_list_tag *);
+						   context, va_list);
     extern GType gtk_style_context_get_type(void);
     extern void gtk_style_context_get_valist(GtkStyleContext * context,
 					     GtkStateFlags state,
@@ -6571,10 +6543,10 @@ extern "C" {
     extern void gtk_style_properties_set_property(GtkStyleProperties *
 						  props, const char *,
 						  GtkStateFlags,
-						  const struct _GValue *);
+						  const GValue *);
     extern void gtk_style_properties_set_valist(GtkStyleProperties * props,
 						GtkStateFlags state,
-						struct __va_list_tag *);
+						va_list);
     extern void gtk_style_properties_unset_property(GtkStyleProperties *
 						    props, const char *,
 						    GtkStateFlags);
@@ -6599,9 +6571,8 @@ extern "C" {
     extern GtkSymbolicColor *gtk_symbolic_color_new_alpha(GtkSymbolicColor
 							  * color,
 							  gdouble);
-    extern GtkSymbolicColor *gtk_symbolic_color_new_literal(const struct
-							    _GdkRGBA
-							    *color);
+    extern GtkSymbolicColor *gtk_symbolic_color_new_literal(const GdkRGBA *
+							    color);
     extern GtkSymbolicColor *gtk_symbolic_color_new_mix(GtkSymbolicColor *
 							color1,
 							GtkSymbolicColor *,
@@ -7289,7 +7260,7 @@ extern "C" {
 					     GtkStateFlags, GdkRGBA *);
     extern GtkTextDirection
 	gtk_theming_engine_get_direction(GtkThemingEngine * engine);
-    extern const struct _PangoFontDescription
+    extern const PangoFontDescription
 	*gtk_theming_engine_get_font(GtkThemingEngine * engine,
 				     GtkStateFlags);
     extern GtkJunctionSides
@@ -7298,7 +7269,7 @@ extern "C" {
 					      GtkStateFlags, GtkBorder *);
     extern void gtk_theming_engine_get_padding(GtkThemingEngine * engine,
 					       GtkStateFlags, GtkBorder *);
-    extern const struct _GtkWidgetPath
+    extern const GtkWidgetPath
 	*gtk_theming_engine_get_path(GtkThemingEngine * engine);
     extern void gtk_theming_engine_get_property(GtkThemingEngine * engine,
 						const char *,
@@ -7508,9 +7479,9 @@ extern "C" {
 						     palette,
 						     const struct
 						     _GtkSelectionData *);
-    extern const struct _GtkTargetEntry
+    extern const GtkTargetEntry
 	*gtk_tool_palette_get_drag_target_group(void);
-    extern const struct _GtkTargetEntry
+    extern const GtkTargetEntry
 	*gtk_tool_palette_get_drag_target_item(void);
     extern GtkToolItemGroup *gtk_tool_palette_get_drop_group(GtkToolPalette
 							     * palette,
@@ -7608,8 +7579,7 @@ extern "C" {
     extern void gtk_tooltip_set_markup(GtkTooltip * tooltip, const char *);
     extern void gtk_tooltip_set_text(GtkTooltip * tooltip, const char *);
     extern void gtk_tooltip_set_tip_area(GtkTooltip * tooltip,
-					 const struct _cairo_rectangle_int
-					 *);
+					 const GdkRectangle *);
     extern void gtk_tooltip_trigger_tooltip_query(GdkDisplay * display);
     extern gboolean gtk_tree_drag_dest_drag_data_received(GtkTreeDragDest *
 							  drag_dest,
@@ -7977,8 +7947,7 @@ extern "C" {
 					       gint *);
     extern void gtk_tree_view_column_cell_get_size(GtkTreeViewColumn *
 						   tree_column,
-						   const struct
-						   _cairo_rectangle_int *,
+						   const GdkRectangle *,
 						   gint *, gint *, gint *,
 						   gint *);
     extern gboolean gtk_tree_view_column_cell_is_visible(GtkTreeViewColumn
@@ -8586,8 +8555,8 @@ extern "C" {
 					       const char *,
 					       GActionGroup *);
     extern gboolean gtk_widget_intersect(GtkWidget * widget,
-					 const struct _cairo_rectangle_int
-					 *, GdkRectangle *);
+					 const GdkRectangle *,
+					 GdkRectangle *);
     extern gboolean gtk_widget_is_ancestor(GtkWidget * widget,
 					   GtkWidget *);
     extern gboolean gtk_widget_is_composited(GtkWidget * widget);
@@ -8605,37 +8574,32 @@ extern "C" {
     extern GtkWidget *gtk_widget_new(GType type, const char *, ...);
     extern void gtk_widget_override_background_color(GtkWidget * widget,
 						     GtkStateFlags,
-						     const struct _GdkRGBA
-						     *);
+						     const GdkRGBA *);
     extern void gtk_widget_override_color(GtkWidget * widget,
-					  GtkStateFlags,
-					  const struct _GdkRGBA *);
+					  GtkStateFlags, const GdkRGBA *);
     extern void gtk_widget_override_cursor(GtkWidget * widget,
-					   const struct _GdkRGBA *,
-					   const struct _GdkRGBA *);
+					   const GdkRGBA *,
+					   const GdkRGBA *);
     extern void gtk_widget_override_font(GtkWidget * widget,
-					 const struct _PangoFontDescription
-					 *);
+					 const PangoFontDescription *);
     extern void gtk_widget_override_symbolic_color(GtkWidget * widget,
 						   const char *,
-						   const struct _GdkRGBA
-						   *);
+						   const GdkRGBA *);
     extern gint gtk_widget_path_append_for_widget(GtkWidgetPath * path,
 						  GtkWidget *);
     extern gint gtk_widget_path_append_type(GtkWidgetPath * path, GType);
     extern gint gtk_widget_path_append_with_siblings(GtkWidgetPath * path,
 						     GtkWidgetPath *,
 						     guint);
-    extern GtkWidgetPath *gtk_widget_path_copy(const struct _GtkWidgetPath
-					       *path);
+    extern GtkWidgetPath *gtk_widget_path_copy(const GtkWidgetPath * path);
     extern void gtk_widget_path_free(GtkWidgetPath * path);
-    extern GType gtk_widget_path_get_object_type(const struct
-						 _GtkWidgetPath *path);
+    extern GType gtk_widget_path_get_object_type(const GtkWidgetPath *
+						 path);
     extern GType gtk_widget_path_get_type(void);
-    extern gboolean gtk_widget_path_has_parent(const struct _GtkWidgetPath
-					       *path, GType);
-    extern gboolean gtk_widget_path_is_type(const struct _GtkWidgetPath
-					    *path, GType);
+    extern gboolean gtk_widget_path_has_parent(const GtkWidgetPath * path,
+					       GType);
+    extern gboolean gtk_widget_path_is_type(const GtkWidgetPath * path,
+					    GType);
     extern void gtk_widget_path_iter_add_class(GtkWidgetPath * path, gint,
 					       const char *);
     extern void gtk_widget_path_iter_add_region(GtkWidgetPath * path, gint,
@@ -8645,44 +8609,37 @@ extern "C" {
 						   gint);
     extern void gtk_widget_path_iter_clear_regions(GtkWidgetPath * path,
 						   gint);
-    extern const char *gtk_widget_path_iter_get_name(const struct
-						     _GtkWidgetPath *path,
-						     gint);
-    extern GType gtk_widget_path_iter_get_object_type(const struct
-						      _GtkWidgetPath *path,
-						      gint);
-    extern guint gtk_widget_path_iter_get_sibling_index(const struct
-							_GtkWidgetPath
-							*path, gint);
-    extern const struct _GtkWidgetPath
-	*gtk_widget_path_iter_get_siblings(const struct _GtkWidgetPath
-					   *path, gint);
-    extern gboolean gtk_widget_path_iter_has_class(const struct
-						   _GtkWidgetPath *path,
-						   gint, const char *);
-    extern gboolean gtk_widget_path_iter_has_name(const struct
-						  _GtkWidgetPath *path,
-						  gint, const char *);
-    extern gboolean gtk_widget_path_iter_has_qclass(const struct
-						    _GtkWidgetPath *path,
-						    gint, GQuark);
-    extern gboolean gtk_widget_path_iter_has_qname(const struct
-						   _GtkWidgetPath *path,
-						   gint, GQuark);
-    extern gboolean gtk_widget_path_iter_has_qregion(const struct
-						     _GtkWidgetPath *path,
-						     gint, GQuark,
+    extern const char *gtk_widget_path_iter_get_name(const GtkWidgetPath *
+						     path, gint);
+    extern GType gtk_widget_path_iter_get_object_type(const GtkWidgetPath *
+						      path, gint);
+    extern guint gtk_widget_path_iter_get_sibling_index(const GtkWidgetPath
+							* path, gint);
+    extern const GtkWidgetPath *gtk_widget_path_iter_get_siblings(const
+								  GtkWidgetPath
+								  * path,
+								  gint);
+    extern gboolean gtk_widget_path_iter_has_class(const GtkWidgetPath *
+						   path, gint,
+						   const char *);
+    extern gboolean gtk_widget_path_iter_has_name(const GtkWidgetPath *
+						  path, gint,
+						  const char *);
+    extern gboolean gtk_widget_path_iter_has_qclass(const GtkWidgetPath *
+						    path, gint, GQuark);
+    extern gboolean gtk_widget_path_iter_has_qname(const GtkWidgetPath *
+						   path, gint, GQuark);
+    extern gboolean gtk_widget_path_iter_has_qregion(const GtkWidgetPath *
+						     path, gint, GQuark,
 						     GtkRegionFlags *);
-    extern gboolean gtk_widget_path_iter_has_region(const struct
-						    _GtkWidgetPath *path,
-						    gint, const char *,
+    extern gboolean gtk_widget_path_iter_has_region(const GtkWidgetPath *
+						    path, gint,
+						    const char *,
 						    GtkRegionFlags *);
-    extern GSList *gtk_widget_path_iter_list_classes(const struct
-						     _GtkWidgetPath *path,
-						     gint);
-    extern GSList *gtk_widget_path_iter_list_regions(const struct
-						     _GtkWidgetPath *path,
-						     gint);
+    extern GSList *gtk_widget_path_iter_list_classes(const GtkWidgetPath *
+						     path, gint);
+    extern GSList *gtk_widget_path_iter_list_regions(const GtkWidgetPath *
+						     path, gint);
     extern void gtk_widget_path_iter_remove_class(GtkWidgetPath * path,
 						  gint, const char *);
     extern void gtk_widget_path_iter_remove_region(GtkWidgetPath * path,
@@ -8691,12 +8648,11 @@ extern "C" {
 					      const char *);
     extern void gtk_widget_path_iter_set_object_type(GtkWidgetPath * path,
 						     gint, GType);
-    extern gint gtk_widget_path_length(const struct _GtkWidgetPath *path);
+    extern gint gtk_widget_path_length(const GtkWidgetPath * path);
     extern GtkWidgetPath *gtk_widget_path_new(void);
     extern void gtk_widget_path_prepend_type(GtkWidgetPath * path, GType);
     extern GtkWidgetPath *gtk_widget_path_ref(GtkWidgetPath * path);
-    extern char *gtk_widget_path_to_string(const struct _GtkWidgetPath
-					   *path);
+    extern char *gtk_widget_path_to_string(const GtkWidgetPath * path);
     extern void gtk_widget_path_unref(GtkWidgetPath * path);
     extern void gtk_widget_pop_composite_child(void);
     extern void gtk_widget_push_composite_child(void);
@@ -8705,13 +8661,13 @@ extern "C" {
     extern void gtk_widget_queue_draw_area(GtkWidget * widget, gint, gint,
 					   gint, gint);
     extern void gtk_widget_queue_draw_region(GtkWidget * widget,
-					     const struct _cairo_region *);
+					     const cairo_region_t);
     extern void gtk_widget_queue_resize(GtkWidget * widget);
     extern void gtk_widget_queue_resize_no_redraw(GtkWidget * widget);
     extern void gtk_widget_realize(GtkWidget * widget);
     extern cairo_region_t *gtk_widget_region_intersect(GtkWidget * widget,
-						       const struct
-						       _cairo_region *);
+						       const
+						       cairo_region_t);
     extern gboolean gtk_widget_remove_accelerator(GtkWidget * widget,
 						  GtkAccelGroup *
 						  accel_group,
