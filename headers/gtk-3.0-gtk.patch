@@ -1,7 +1,7 @@
 === modified file 'gtk-3.0/gtk/gtk.h'
---- gtk-3.0/gtk/gtk.h	revid:mats@linuxfoundation.org-20140305163759-0y8mg11rwxllvcqe
-+++ gtk-3.0/gtk/gtk.h	2014-03-05 16:55:05 +0000
-@@ -691,6 +691,8 @@
+--- gtk-3.0/gtk/gtk.h	revid:mats@linuxfoundation.org-20140313174225-0k65ydcs72im4x85
++++ gtk-3.0/gtk/gtk.h	2014-03-13 11:50:42.608726881 -0600
+@@ -708,6 +708,8 @@
  
      typedef struct _GtkPageSetup GtkPageSetup;
  
@@ -10,7 +10,7 @@
      typedef gint(*GtkKeySnoopFunc) (GtkWidget * grab_widget,
  				    GdkEventKey * event,
  				    gpointer func_data);
-@@ -717,7 +719,7 @@
+@@ -734,7 +736,7 @@
  
      typedef struct _GtkTooltip GtkTooltip;
  
@@ -19,7 +19,7 @@
  
      typedef struct _GtkWidgetPath GtkWidgetPath;
  
-@@ -729,6 +731,16 @@
+@@ -748,6 +750,16 @@
  
      typedef struct _GtkTextMark GtkTextMark;
  
@@ -36,7 +36,7 @@
      typedef gboolean(*GtkTreeSelectionFunc) (GtkTreeSelection * selection,
  					     GtkTreeModel * model,
  					     GtkTreePath * path,
-@@ -989,7 +1001,7 @@
+@@ -1087,7 +1099,7 @@
  	GTK_CELL_RENDERER_EXPANDED
      } GtkCellRendererState;
  
@@ -45,7 +45,7 @@
  
      typedef struct _GtkCellRendererClass GtkCellRendererClass;
  
-@@ -1611,7 +1623,7 @@
+@@ -1751,7 +1763,7 @@
  
      typedef struct _GtkTreeView GtkTreeView;
  
@@ -54,7 +54,7 @@
  
      typedef gboolean(*GtkTreeViewColumnDropFunc) (GtkTreeView * tree_view,
  						  GtkTreeViewColumn *
-@@ -1666,13 +1678,13 @@
+@@ -1806,13 +1818,13 @@
  	GTK_LICENSE_ARTISTIC
      } GtkLicense;
  
