@@ -619,9 +619,21 @@ extern "C" {
 
     typedef struct _GtkScaleButton GtkScaleButton;
 
+    typedef struct _GtkScaleButtonClass GtkScaleButtonClass;
+
+    typedef struct _GtkScaleButtonPrivate GtkScaleButtonPrivate;
+
     typedef struct _GtkComboBoxText GtkComboBoxText;
 
+    typedef struct _GtkComboBoxTextPrivate GtkComboBoxTextPrivate;
+
+    typedef struct _GtkComboBoxTextClass GtkComboBoxTextClass;
+
     typedef struct _GtkToolItemGroup GtkToolItemGroup;
+
+    typedef struct _GtkToolItemGroupClass GtkToolItemGroupClass;
+
+    typedef struct _GtkToolItemGroupPrivate GtkToolItemGroupPrivate;
 
     typedef struct _GtkTextChildAnchor GtkTextChildAnchor;
 
@@ -887,6 +899,10 @@ extern "C" {
 
     typedef struct _GtkLockButton GtkLockButton;
 
+    typedef struct _GtkLockButtonClass GtkLockButtonClass;
+
+    typedef struct _GtkLockButtonPrivate GtkLockButtonPrivate;
+
     typedef struct _GtkTreeDragSource GtkTreeDragSource;
 
     typedef struct _GtkTreeDragDest GtkTreeDragDest;
@@ -895,7 +911,15 @@ extern "C" {
 
     typedef struct _GtkGrid GtkGrid;
 
+    typedef struct _GtkGridPrivate GtkGridPrivate;
+
+    typedef struct _GtkGridClass GtkGridClass;
+
     typedef struct _GtkEntryBuffer GtkEntryBuffer;
+
+    typedef struct _GtkEntryBufferClass GtkEntryBufferClass;
+
+    typedef struct _GtkEntryBufferPrivate GtkEntryBufferPrivate;
 
     typedef struct _GtkRequestedSize GtkRequestedSize;
 
@@ -915,6 +939,8 @@ extern "C" {
 
     typedef struct _GtkThemingEngine GtkThemingEngine;
 
+    typedef struct _GtkThemingEngineClass GtkThemingEngineClass;
+
     typedef gboolean(*GtkFontFilterFunc) (const PangoFontFamily * family,
 					  const PangoFontFace * face,
 					  gpointer data);
@@ -923,9 +949,28 @@ extern "C" {
 
     typedef struct _GtkAppChooserButton GtkAppChooserButton;
 
+    typedef struct _GtkAppChooserButtonClass GtkAppChooserButtonClass;
+
+    typedef struct _GtkAppChooserButtonPrivate GtkAppChooserButtonPrivate;
+
     typedef struct _GtkMountOperation GtkMountOperation;
 
+    typedef struct _GtkMountOperationClass GtkMountOperationClass;
+
+    typedef struct _GtkMountOperationPrivate GtkMountOperationPrivate;
+
+    typedef enum {
+	GTK_WIDGET_HELP_TOOLTIP,
+	GTK_WIDGET_HELP_WHATS_THIS
+    } GtkWidgetHelpType;
+
+    typedef struct _GtkWidgetPrivate GtkWidgetPrivate;
+
     typedef struct _GtkWidgetClass GtkWidgetClass;
+
+    typedef struct _GtkWidgetClassPrivate GtkWidgetClassPrivate;
+
+    typedef struct _GtkWidgetAuxInfo GtkWidgetAuxInfo;
 
     typedef struct _cairo_rectangle_int GtkAllocation;
 
@@ -953,7 +998,15 @@ extern "C" {
 
     typedef struct _GtkMenuButton GtkMenuButton;
 
+    typedef struct _GtkMenuButtonClass GtkMenuButtonClass;
+
+    typedef struct _GtkMenuButtonPrivate GtkMenuButtonPrivate;
+
     typedef struct _GtkAppChooserDialog GtkAppChooserDialog;
+
+    typedef struct _GtkAppChooserDialogClass GtkAppChooserDialogClass;
+
+    typedef struct _GtkAppChooserDialogPrivate GtkAppChooserDialogPrivate;
 
     typedef struct _GtkColorButton GtkColorButton;
 
@@ -977,6 +1030,10 @@ extern "C" {
 
     typedef struct _GtkOverlay GtkOverlay;
 
+    typedef struct _GtkOverlayClass GtkOverlayClass;
+
+    typedef struct _GtkOverlayPrivate GtkOverlayPrivate;
+
     typedef enum {
 	GTK_TEXT_WINDOW_PRIVATE,
 	GTK_TEXT_WINDOW_WIDGET,
@@ -989,11 +1046,23 @@ extern "C" {
 
     typedef struct _GtkTextView GtkTextView;
 
+    typedef struct _GtkInfoBarPrivate GtkInfoBarPrivate;
+
+    typedef struct _GtkInfoBarClass GtkInfoBarClass;
+
     typedef struct _GtkInfoBar GtkInfoBar;
 
     typedef struct _GtkRecentAction GtkRecentAction;
 
+    typedef struct _GtkRecentActionPrivate GtkRecentActionPrivate;
+
+    typedef struct _GtkRecentActionClass GtkRecentActionClass;
+
     typedef struct _GtkNumerableIcon GtkNumerableIcon;
+
+    typedef struct _GtkNumerableIconClass GtkNumerableIconClass;
+
+    typedef struct _GtkNumerableIconPrivate GtkNumerableIconPrivate;
 
     typedef void (*GtkTextTagTableForeach) (void);
 
@@ -1015,6 +1084,10 @@ extern "C" {
 					    gpointer user_data);
 
     typedef struct _GtkSwitch GtkSwitch;
+
+    typedef struct _GtkSwitchPrivate GtkSwitchPrivate;
+
+    typedef struct _GtkSwitchClass GtkSwitchClass;
 
     typedef enum {
 	GTK_CELL_RENDERER_SELECTED,
@@ -1060,11 +1133,19 @@ extern "C" {
 
     typedef struct _GtkCellAreaBox GtkCellAreaBox;
 
+    typedef struct _GtkCellAreaBoxClass GtkCellAreaBoxClass;
+
+    typedef struct _GtkCellAreaBoxPrivate GtkCellAreaBoxPrivate;
+
     typedef struct _GtkPrintOperationPreview GtkPrintOperationPreview;
 
     typedef struct _GtkToggleAction GtkToggleAction;
 
     typedef struct _GtkCssProvider GtkCssProvider;
+
+    typedef struct _GtkCssProviderClass GtkCssProviderClass;
+
+    typedef struct _GtkCssProviderPrivate GtkCssProviderPrivate;
 
     typedef gboolean(*GtkTreeModelFilterVisibleFunc) (GtkTreeModel * model,
 						      GtkTreeIter * iter,
@@ -1090,6 +1171,8 @@ extern "C" {
     typedef struct _GtkSocket GtkSocket;
 
     typedef struct _GtkOffscreenWindow GtkOffscreenWindow;
+
+    typedef struct _GtkOffscreenWindowClass GtkOffscreenWindowClass;
 
     typedef enum {
 	GTK_CSS_SECTION_DOCUMENT,
@@ -1167,6 +1250,10 @@ extern "C" {
 
     typedef struct _GtkApplication GtkApplication;
 
+    typedef struct _GtkApplicationClass GtkApplicationClass;
+
+    typedef struct _GtkApplicationPrivate GtkApplicationPrivate;
+
     typedef enum {
 	GTK_APPLICATION_INHIBIT_LOGOUT,
 	GTK_APPLICATION_INHIBIT_SWITCH,
@@ -1175,6 +1262,10 @@ extern "C" {
     } GtkApplicationInhibitFlags;
 
     typedef struct _GtkAccessible GtkAccessible;
+
+    typedef struct _GtkAccessiblePrivate GtkAccessiblePrivate;
+
+    typedef struct _GtkAccessibleClass GtkAccessibleClass;
 
     typedef struct _GtkMessageDialog GtkMessageDialog;
 
@@ -1191,6 +1282,10 @@ extern "C" {
 
     typedef struct _GtkStyleProperties GtkStyleProperties;
 
+    typedef struct _GtkStylePropertiesClass GtkStylePropertiesClass;
+
+    typedef struct _GtkStylePropertiesPrivate GtkStylePropertiesPrivate;
+
     typedef struct _GtkSymbolicColor GtkSymbolicColor;
 
     typedef struct _GtkGradient GtkGradient;
@@ -1200,6 +1295,11 @@ extern "C" {
     typedef struct _GtkArrow GtkArrow;
 
     typedef struct _GtkStyleProvider GtkStyleProvider;
+
+    typedef struct _GtkApplicationWindowPrivate
+	GtkApplicationWindowPrivate;
+
+    typedef struct _GtkApplicationWindowClass GtkApplicationWindowClass;
 
     typedef struct _GtkApplicationWindow GtkApplicationWindow;
 
@@ -1567,11 +1667,17 @@ extern "C" {
 
     typedef struct _GtkAppChooserWidget GtkAppChooserWidget;
 
+    typedef struct _GtkAppChooserWidgetClass GtkAppChooserWidgetClass;
+
+    typedef struct _GtkAppChooserWidgetPrivate GtkAppChooserWidgetPrivate;
+
     typedef struct _GtkButtonBox GtkButtonBox;
 
     typedef struct _GtkCellArea GtkCellArea;
 
     typedef struct _GtkCellAreaClass GtkCellAreaClass;
+
+    typedef struct _GtkCellAreaPrivate GtkCellAreaPrivate;
 
     typedef struct _GtkCellAreaContext GtkCellAreaContext;
 
@@ -1583,6 +1689,10 @@ extern "C" {
 					     const GdkRectangle *
 					     cell_background,
 					     gpointer data);
+
+    typedef struct _GtkCellAreaContextPrivate GtkCellAreaContextPrivate;
+
+    typedef struct _GtkCellAreaContextClass GtkCellAreaContextClass;
 
     typedef struct _GtkPrintOperation GtkPrintOperation;
 
@@ -1749,13 +1859,25 @@ extern "C" {
     typedef void (*GtkMenuDetachFunc) (GtkWidget * attach_widget,
 				       GtkMenu * menu);
 
+    typedef struct _GtkLevelBarClass GtkLevelBarClass;
+
     typedef struct _GtkLevelBar GtkLevelBar;
+
+    typedef struct _GtkLevelBarPrivate GtkLevelBarPrivate;
 
     typedef struct _GtkComboBox GtkComboBox;
 
     typedef struct _GtkSpinner GtkSpinner;
 
+    typedef struct _GtkSpinnerClass GtkSpinnerClass;
+
+    typedef struct _GtkSpinnerPrivate GtkSpinnerPrivate;
+
     typedef struct _GtkToolPalette GtkToolPalette;
+
+    typedef struct _GtkToolPaletteClass GtkToolPaletteClass;
+
+    typedef struct _GtkToolPalettePrivate GtkToolPalettePrivate;
 
     typedef enum {
 	GTK_TOOL_PALETTE_DRAG_ITEMS,
@@ -1763,6 +1885,10 @@ extern "C" {
     } GtkToolPaletteDragTargets;
 
     typedef struct _GtkBuilder GtkBuilder;
+
+    typedef struct _GtkBuilderClass GtkBuilderClass;
+
+    typedef struct _GtkBuilderPrivate GtkBuilderPrivate;
 
     typedef void (*GtkBuilderConnectFunc) (GtkBuilder * builder,
 					   GObject * object,
@@ -1808,6 +1934,10 @@ extern "C" {
 
     typedef struct _GtkRecentChooserMenu GtkRecentChooserMenu;
 
+    typedef struct _GtkStyleContextClass GtkStyleContextClass;
+
+    typedef struct _GtkStyleContextPrivate GtkStyleContextPrivate;
+
     typedef struct _GtkSeparatorToolItem GtkSeparatorToolItem;
 
     typedef struct _GtkAspectFrame GtkAspectFrame;
@@ -1849,6 +1979,138 @@ extern "C" {
 	GTK_ICON_VIEW_DROP_ABOVE,
 	GTK_ICON_VIEW_DROP_BELOW
     } GtkIconViewDropPosition;
+
+    struct _GtkScaleButton;
+
+    struct _GtkScaleButtonClass;
+
+    struct _GtkComboBoxText;
+
+    struct _GtkComboBoxTextClass;
+
+    struct _GtkToolItemGroup;
+
+    struct _GtkToolItemGroupClass;
+
+    struct _GtkStyleContext;
+
+    struct _GtkWidget;
+
+    struct _GtkLockButton;
+
+    struct _GtkLockButtonClass;
+
+    struct _GtkGrid;
+
+    struct _GtkGridClass;
+
+    struct _GtkEntryBuffer;
+
+    struct _GtkEntryBufferClass;
+
+    struct _GtkRequestedSize;
+
+    struct _GtkThemingEngine;
+
+    struct _GtkThemingEngineClass;
+
+    struct _GtkAppChooserButton;
+
+    struct _GtkAppChooserButtonClass;
+
+    struct _GtkMountOperation;
+
+    struct _GtkMountOperationClass;
+
+    struct _GtkWidgetClass;
+
+    struct _GtkWidgetAuxInfo;
+
+    struct _GtkMenuButton;
+
+    struct _GtkMenuButtonClass;
+
+    struct _GtkAppChooserDialog;
+
+    struct _GtkAppChooserDialogClass;
+
+    struct _GtkOverlay;
+
+    struct _GtkOverlayClass;
+
+    struct _GtkInfoBar;
+
+    struct _GtkInfoBarClass;
+
+    struct _GtkRecentAction;
+
+    struct _GtkRecentActionClass;
+
+    struct _GtkNumerableIcon;
+
+    struct _GtkNumerableIconClass;
+
+    struct _GtkSwitch;
+
+    struct _GtkSwitchClass;
+
+    struct _GtkCellAreaBox;
+
+    struct _GtkCellAreaBoxClass;
+
+    struct _GtkCssProvider;
+
+    struct _GtkCssProviderClass;
+
+    struct _GtkOffscreenWindow;
+
+    struct _GtkOffscreenWindowClass;
+
+    struct _GtkApplication;
+
+    struct _GtkApplicationClass;
+
+    struct _GtkAccessible;
+
+    struct _GtkAccessibleClass;
+
+    struct _GtkStyleProperties;
+
+    struct _GtkStylePropertiesClass;
+
+    struct _GtkApplicationWindow;
+
+    struct _GtkApplicationWindowClass;
+
+    struct _GtkAppChooserWidget;
+
+    struct _GtkAppChooserWidgetClass;
+
+    struct _GtkCellAreaContext;
+
+    struct _GtkCellArea;
+
+    struct _GtkCellAreaClass;
+
+    struct _GtkCellAreaContextClass;
+
+    struct _GtkLevelBar;
+
+    struct _GtkLevelBarClass;
+
+    struct _GtkSpinner;
+
+    struct _GtkSpinnerClass;
+
+    struct _GtkToolPalette;
+
+    struct _GtkToolPaletteClass;
+
+    struct _GtkBuilder;
+
+    struct _GtkBuilderClass;
+
+    struct _GtkStyleContextClass;
 
     struct _GtkBin {
 	GtkContainer container;
