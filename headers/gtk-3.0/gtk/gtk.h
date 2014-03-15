@@ -661,6 +661,13 @@ extern "C" {
 
     typedef struct _GtkMisc GtkMisc;
 
+    typedef struct _GtkColorChooserDialog GtkColorChooserDialog;
+
+    typedef struct _GtkColorChooserDialogPrivate
+	GtkColorChooserDialogPrivate;
+
+    typedef struct _GtkColorChooserDialogClass GtkColorChooserDialogClass;
+
     typedef struct _GtkBin GtkBin;
 
     typedef struct _GtkBinPrivate GtkBinPrivate;
@@ -696,11 +703,25 @@ extern "C" {
 
     typedef struct _GtkMenuShell GtkMenuShell;
 
+    typedef struct _GtkFileChooserDialog GtkFileChooserDialog;
+
+    typedef struct _GtkFileChooserDialogPrivate
+	GtkFileChooserDialogPrivate;
+
+    typedef struct _GtkFileChooserDialogClass GtkFileChooserDialogClass;
+
     typedef struct _GtkRecentInfo GtkRecentInfo;
 
     typedef struct _GtkRecentData GtkRecentData;
 
     typedef struct _GtkRecentManager GtkRecentManager;
+
+    typedef struct _GtkFileChooserWidget GtkFileChooserWidget;
+
+    typedef struct _GtkFileChooserWidgetPrivate
+	GtkFileChooserWidgetPrivate;
+
+    typedef struct _GtkFileChooserWidgetClass GtkFileChooserWidgetClass;
 
     typedef struct _GtkIMContextSimple GtkIMContextSimple;
 
@@ -850,9 +871,24 @@ extern "C" {
 
     typedef struct _GtkRecentChooser GtkRecentChooser;
 
+    typedef struct _GtkRecentChooserIface GtkRecentChooserIface;
+
+    typedef enum {
+	GTK_RECENT_CHOOSER_ERROR_NOT_FOUND,
+	GTK_RECENT_CHOOSER_ERROR_INVALID_URI
+    } GtkRecentChooserError;
+
     typedef struct _GtkScrollable GtkScrollable;
 
     typedef struct _GtkRadioAction GtkRadioAction;
+
+    typedef struct _GtkRecentChooserWidget GtkRecentChooserWidget;
+
+    typedef struct _GtkRecentChooserWidgetClass
+	GtkRecentChooserWidgetClass;
+
+    typedef struct _GtkRecentChooserWidgetPrivate
+	GtkRecentChooserWidgetPrivate;
 
     typedef struct _GtkPlug GtkPlug;
 
@@ -947,11 +983,21 @@ extern "C" {
 
     typedef struct _GtkFontChooser GtkFontChooser;
 
+    typedef struct _GtkFontChooserIface GtkFontChooserIface;
+
     typedef struct _GtkAppChooserButton GtkAppChooserButton;
 
     typedef struct _GtkAppChooserButtonClass GtkAppChooserButtonClass;
 
     typedef struct _GtkAppChooserButtonPrivate GtkAppChooserButtonPrivate;
+
+    typedef struct _GtkCellRendererSpinner GtkCellRendererSpinner;
+
+    typedef struct _GtkCellRendererSpinnerClass
+	GtkCellRendererSpinnerClass;
+
+    typedef struct _GtkCellRendererSpinnerPrivate
+	GtkCellRendererSpinnerPrivate;
 
     typedef struct _GtkMountOperation GtkMountOperation;
 
@@ -991,6 +1037,8 @@ extern "C" {
     typedef struct _GtkEntry GtkEntry;
 
     typedef struct _GtkColorChooser GtkColorChooser;
+
+    typedef struct _GtkColorChooserInterface GtkColorChooserInterface;
 
     typedef struct _GtkAccelLabel GtkAccelLabel;
 
@@ -1127,7 +1175,17 @@ extern "C" {
 
     typedef struct _GtkToolItem GtkToolItem;
 
+    typedef struct _GtkToolItemClass GtkToolItemClass;
+
+    typedef struct _GtkToolItemPrivate GtkToolItemPrivate;
+
     typedef struct _GtkTextAttributes GtkTextAttributes;
+
+    typedef struct _GtkCellRendererSpin GtkCellRendererSpin;
+
+    typedef struct _GtkCellRendererSpinClass GtkCellRendererSpinClass;
+
+    typedef struct _GtkCellRendererSpinPrivate GtkCellRendererSpinPrivate;
 
     typedef struct _GtkIMMulticontext GtkIMMulticontext;
 
@@ -1136,6 +1194,13 @@ extern "C" {
     typedef struct _GtkCellAreaBoxClass GtkCellAreaBoxClass;
 
     typedef struct _GtkCellAreaBoxPrivate GtkCellAreaBoxPrivate;
+
+    typedef struct _GtkFontChooserDialog GtkFontChooserDialog;
+
+    typedef struct _GtkFontChooserDialogPrivate
+	GtkFontChooserDialogPrivate;
+
+    typedef struct _GtkFontChooserDialogClass GtkFontChooserDialogClass;
 
     typedef struct _GtkPrintOperationPreview GtkPrintOperationPreview;
 
@@ -1215,6 +1280,19 @@ extern "C" {
 	GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
 	GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER
     } GtkFileChooserAction;
+
+    typedef enum {
+	GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM,
+	GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME,
+	GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
+    } GtkFileChooserConfirmation;
+
+    typedef enum {
+	GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
+	GTK_FILE_CHOOSER_ERROR_BAD_FILENAME,
+	GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS,
+	GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME
+    } GtkFileChooserError;
 
     typedef struct _GtkPaned GtkPaned;
 
@@ -1314,6 +1392,13 @@ extern "C" {
     typedef struct _GtkCellEditable GtkCellEditable;
 
     typedef struct _GtkCheckMenuItem GtkCheckMenuItem;
+
+    typedef struct _GtkFontChooserWidget GtkFontChooserWidget;
+
+    typedef struct _GtkFontChooserWidgetPrivate
+	GtkFontChooserWidgetPrivate;
+
+    typedef struct _GtkFontChooserWidgetClass GtkFontChooserWidgetClass;
 
     typedef struct _GtkFontButton GtkFontButton;
 
@@ -1867,6 +1952,10 @@ extern "C" {
 
     typedef struct _GtkComboBox GtkComboBox;
 
+    typedef struct _GtkComboBoxClass GtkComboBoxClass;
+
+    typedef struct _GtkComboBoxPrivate GtkComboBoxPrivate;
+
     typedef struct _GtkSpinner GtkSpinner;
 
     typedef struct _GtkSpinnerClass GtkSpinnerClass;
@@ -1883,6 +1972,14 @@ extern "C" {
 	GTK_TOOL_PALETTE_DRAG_ITEMS,
 	GTK_TOOL_PALETTE_DRAG_GROUPS
     } GtkToolPaletteDragTargets;
+
+    typedef struct _GtkRecentChooserDialog GtkRecentChooserDialog;
+
+    typedef struct _GtkRecentChooserDialogClass
+	GtkRecentChooserDialogClass;
+
+    typedef struct _GtkRecentChooserDialogPrivate
+	GtkRecentChooserDialogPrivate;
 
     typedef struct _GtkBuilder GtkBuilder;
 
@@ -1934,11 +2031,21 @@ extern "C" {
 
     typedef struct _GtkRecentChooserMenu GtkRecentChooserMenu;
 
+    typedef struct _GtkRecentChooserMenuClass GtkRecentChooserMenuClass;
+
+    typedef struct _GtkRecentChooserMenuPrivate
+	GtkRecentChooserMenuPrivate;
+
     typedef struct _GtkStyleContextClass GtkStyleContextClass;
 
     typedef struct _GtkStyleContextPrivate GtkStyleContextPrivate;
 
     typedef struct _GtkSeparatorToolItem GtkSeparatorToolItem;
+
+    typedef struct _GtkSeparatorToolItemClass GtkSeparatorToolItemClass;
+
+    typedef struct _GtkSeparatorToolItemPrivate
+	GtkSeparatorToolItemPrivate;
 
     typedef struct _GtkAspectFrame GtkAspectFrame;
 
@@ -1952,6 +2059,11 @@ extern "C" {
 					   gpointer user_data);
 
     typedef struct _GtkFileChooserButton GtkFileChooserButton;
+
+    typedef struct _GtkFileChooserButtonPrivate
+	GtkFileChooserButtonPrivate;
+
+    typedef struct _GtkFileChooserButtonClass GtkFileChooserButtonClass;
 
     typedef struct _GtkAccelMap GtkAccelMap;
 
@@ -1992,9 +2104,27 @@ extern "C" {
 
     struct _GtkToolItemGroupClass;
 
+    struct _GtkColorChooserDialog;
+
+    struct _GtkColorChooserDialogClass;
+
+    struct _GtkFileChooserDialog;
+
+    struct _GtkFileChooserDialogClass;
+
+    struct _GtkFileChooserWidget;
+
+    struct _GtkFileChooserWidgetClass;
+
     struct _GtkStyleContext;
 
     struct _GtkWidget;
+
+    struct _GtkRecentChooserIface;
+
+    struct _GtkRecentChooserWidget;
+
+    struct _GtkRecentChooserWidgetClass;
 
     struct _GtkLockButton;
 
@@ -2014,9 +2144,15 @@ extern "C" {
 
     struct _GtkThemingEngineClass;
 
+    struct _GtkFontChooserIface;
+
     struct _GtkAppChooserButton;
 
     struct _GtkAppChooserButtonClass;
+
+    struct _GtkCellRendererSpinner;
+
+    struct _GtkCellRendererSpinnerClass;
 
     struct _GtkMountOperation;
 
@@ -2025,6 +2161,8 @@ extern "C" {
     struct _GtkWidgetClass;
 
     struct _GtkWidgetAuxInfo;
+
+    struct _GtkColorChooserInterface;
 
     struct _GtkMenuButton;
 
@@ -2054,9 +2192,21 @@ extern "C" {
 
     struct _GtkSwitchClass;
 
+    struct _GtkToolItem;
+
+    struct _GtkToolItemClass;
+
+    struct _GtkCellRendererSpin;
+
+    struct _GtkCellRendererSpinClass;
+
     struct _GtkCellAreaBox;
 
     struct _GtkCellAreaBoxClass;
+
+    struct _GtkFontChooserDialog;
+
+    struct _GtkFontChooserDialogClass;
 
     struct _GtkCssProvider;
 
@@ -2082,6 +2232,10 @@ extern "C" {
 
     struct _GtkApplicationWindowClass;
 
+    struct _GtkFontChooserWidget;
+
+    struct _GtkFontChooserWidgetClass;
+
     struct _GtkAppChooserWidget;
 
     struct _GtkAppChooserWidgetClass;
@@ -2098,6 +2252,10 @@ extern "C" {
 
     struct _GtkLevelBarClass;
 
+    struct _GtkComboBox;
+
+    struct _GtkComboBoxClass;
+
     struct _GtkSpinner;
 
     struct _GtkSpinnerClass;
@@ -2106,11 +2264,27 @@ extern "C" {
 
     struct _GtkToolPaletteClass;
 
+    struct _GtkRecentChooserDialog;
+
+    struct _GtkRecentChooserDialogClass;
+
     struct _GtkBuilder;
 
     struct _GtkBuilderClass;
 
+    struct _GtkRecentChooserMenu;
+
+    struct _GtkRecentChooserMenuClass;
+
     struct _GtkStyleContextClass;
+
+    struct _GtkSeparatorToolItem;
+
+    struct _GtkSeparatorToolItemClass;
+
+    struct _GtkFileChooserButton;
+
+    struct _GtkFileChooserButtonClass;
 
     struct _GtkBin {
 	GtkContainer container;
