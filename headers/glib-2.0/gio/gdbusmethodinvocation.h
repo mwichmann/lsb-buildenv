@@ -29,7 +29,7 @@ extern "C" {
     extern GDBusMessage
 	*g_dbus_method_invocation_get_message(GDBusMethodInvocation *
 					      invocation);
-    extern const struct _GDBusMethodInfo
+    extern const GDBusMethodInfo
 	*g_dbus_method_invocation_get_method_info(GDBusMethodInvocation *
 						  invocation);
     extern const char

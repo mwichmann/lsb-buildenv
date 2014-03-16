@@ -6548,49 +6548,39 @@ extern "C" {
     extern gboolean gtk_selection_convert(GtkWidget * widget,
 					  GdkAtom selection,
 					  GdkAtom target, guint32 time_);
-    extern GtkSelectionData *gtk_selection_data_copy(const struct
-						     _GtkSelectionData
-						     *data);
+    extern GtkSelectionData *gtk_selection_data_copy(const GtkSelectionData
+						     * data);
     extern void gtk_selection_data_free(GtkSelectionData * data);
-    extern const unsigned char *gtk_selection_data_get_data(const struct
-							    _GtkSelectionData
-							    *selection_data);
-    extern GdkAtom gtk_selection_data_get_data_type(const struct
-						    _GtkSelectionData
-						    *selection_data);
+    extern const unsigned char *gtk_selection_data_get_data(const
+							    GtkSelectionData
+							    *
+							    selection_data);
+    extern GdkAtom gtk_selection_data_get_data_type(const GtkSelectionData
+						    * selection_data);
     extern const unsigned char
-	*gtk_selection_data_get_data_with_length(const struct
-						 _GtkSelectionData
-						 *selection_data, gint *);
-    extern GdkDisplay *gtk_selection_data_get_display(const struct
-						      _GtkSelectionData
-						      *selection_data);
-    extern gint gtk_selection_data_get_format(const struct
-					      _GtkSelectionData
-					      *selection_data);
-    extern gint gtk_selection_data_get_length(const struct
-					      _GtkSelectionData
-					      *selection_data);
-    extern GdkPixbuf *gtk_selection_data_get_pixbuf(const struct
-						    _GtkSelectionData
-						    *selection_data);
-    extern GdkAtom gtk_selection_data_get_selection(const struct
-						    _GtkSelectionData
-						    *selection_data);
-    extern GdkAtom gtk_selection_data_get_target(const struct
-						 _GtkSelectionData
-						 *selection_data);
-    extern gboolean gtk_selection_data_get_targets(const struct
-						   _GtkSelectionData
-						   *selection_data,
+	*gtk_selection_data_get_data_with_length(const GtkSelectionData *
+						 selection_data, gint *);
+    extern GdkDisplay *gtk_selection_data_get_display(const
+						      GtkSelectionData *
+						      selection_data);
+    extern gint gtk_selection_data_get_format(const GtkSelectionData *
+					      selection_data);
+    extern gint gtk_selection_data_get_length(const GtkSelectionData *
+					      selection_data);
+    extern GdkPixbuf *gtk_selection_data_get_pixbuf(const GtkSelectionData
+						    * selection_data);
+    extern GdkAtom gtk_selection_data_get_selection(const GtkSelectionData
+						    * selection_data);
+    extern GdkAtom gtk_selection_data_get_target(const GtkSelectionData *
+						 selection_data);
+    extern gboolean gtk_selection_data_get_targets(const GtkSelectionData *
+						   selection_data,
 						   GdkAtom * *, gint *);
-    extern guchar *gtk_selection_data_get_text(const struct
-					       _GtkSelectionData
-					       *selection_data);
+    extern guchar *gtk_selection_data_get_text(const GtkSelectionData *
+					       selection_data);
     extern GType gtk_selection_data_get_type(void);
-    extern gchar **gtk_selection_data_get_uris(const struct
-					       _GtkSelectionData
-					       *selection_data);
+    extern gchar **gtk_selection_data_get_uris(const GtkSelectionData *
+					       selection_data);
     extern void gtk_selection_data_set(GtkSelectionData * selection_data,
 				       GdkAtom type, gint format,
 				       const guchar * data, gint length);
@@ -6602,22 +6592,25 @@ extern "C" {
 						const char *, gint);
     extern gboolean gtk_selection_data_set_uris(GtkSelectionData *
 						selection_data, gchar * *);
-    extern gboolean gtk_selection_data_targets_include_image(const struct
-							     _GtkSelectionData
-							     *selection_data,
+    extern gboolean gtk_selection_data_targets_include_image(const
+							     GtkSelectionData
+							     *
+							     selection_data,
 							     gboolean);
     extern gboolean gtk_selection_data_targets_include_rich_text(const
-								 struct
-								 _GtkSelectionData
-								 *selection_data,
+								 GtkSelectionData
+								 *
+								 selection_data,
 								 GtkTextBuffer
 								 *);
-    extern gboolean gtk_selection_data_targets_include_text(const struct
-							    _GtkSelectionData
-							    *selection_data);
-    extern gboolean gtk_selection_data_targets_include_uri(const struct
-							   _GtkSelectionData
-							   *selection_data);
+    extern gboolean gtk_selection_data_targets_include_text(const
+							    GtkSelectionData
+							    *
+							    selection_data);
+    extern gboolean gtk_selection_data_targets_include_uri(const
+							   GtkSelectionData
+							   *
+							   selection_data);
     extern GType gtk_selection_mode_get_type(void);
     extern gboolean gtk_selection_owner_set(GtkWidget * widget,
 					    GdkAtom selection,
@@ -7926,8 +7919,8 @@ extern "C" {
     extern GType gtk_tool_palette_drag_targets_get_type(void);
     extern GtkWidget *gtk_tool_palette_get_drag_item(GtkToolPalette *
 						     palette,
-						     const struct
-						     _GtkSelectionData *);
+						     const GtkSelectionData
+						     *);
     extern const GtkTargetEntry
 	*gtk_tool_palette_get_drag_target_group(void);
     extern const GtkTargetEntry
