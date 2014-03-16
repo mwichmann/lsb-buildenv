@@ -673,13 +673,19 @@ typedef struct _GtkAdjustment GtkAdjustment;
 typedef struct _GtkClipboard GtkClipboard;
 typedef struct _GtkIconSet GtkIconSet;
 typedef struct _GtkIconSource GtkIconSource;
-typedef struct _GtkRequisition GtkRequisition;
+typedef struct _GtkRequisition {
+    gint width;
+    gint height;
+} GtkRequisition;
 typedef struct _GtkSelectionData GtkSelectionData;
 typedef struct _GtkSettings GtkSettings;
 typedef struct _GtkStyle GtkStyle;
 typedef struct _GtkStyleContext GtkStyleContext;
 typedef struct _GtkTooltip GtkTooltip;
-typedef struct _GtkWidget GtkWidget;
+typedef struct _GtkWidget {
+    GInitiallyUnowned parent_instance;
+    GtkWidgetPrivate *priv;
+} GtkWidget;
 typedef struct _GtkWidgetPath GtkWidgetPath;
 typedef struct _GtkWindow {
     GtkBin bin;
@@ -852,7 +858,13 @@ typedef enum {
 typedef struct _GtkWidgetPrivate GtkWidgetPrivate;
 typedef struct _GtkWidgetClass GtkWidgetClass;
 typedef struct _GtkWidgetClassPrivate GtkWidgetClassPrivate;
-typedef struct _GtkWidgetAuxInfo GtkWidgetAuxInfo;
+typedef struct _GtkWidgetAuxInfo {
+    gint width;
+    gint height;
+    guint halign:4;
+    guint valign:4;
+    GtkBorder margin;
+} GtkWidgetAuxInfo;
 typedef struct _cairo_rectangle_int GtkAllocation;
 typedef void (*GtkCallback) (void);
 typedef struct _GtkTreeStore GtkTreeStore;
@@ -5207,8 +5219,8 @@ extern void gtk_render_option(GtkStyleContext * context, cairo_t *,
 extern void gtk_render_slider(GtkStyleContext * context, cairo_t *,
 			      gdouble, gdouble, gdouble, gdouble,
 			      GtkOrientation);
-extern GtkRequisition *gtk_requisition_copy(const struct _GtkRequisition
-					    *requisition);
+extern GtkRequisition *gtk_requisition_copy(const GtkRequisition *
+					    requisition);
 extern void gtk_requisition_free(GtkRequisition * requisition);
 extern GType gtk_requisition_get_type(void);
 extern GtkRequisition *gtk_requisition_new(void);

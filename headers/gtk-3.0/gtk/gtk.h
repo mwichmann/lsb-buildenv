@@ -2116,9 +2116,17 @@ extern "C" {
 
     struct _GtkFileChooserWidgetClass;
 
+    struct _GtkRequisition {
+	gint width;
+	gint height;
+    };
+
     struct _GtkStyleContext;
 
-    struct _GtkWidget;
+    struct _GtkWidget {
+	GInitiallyUnowned parent_instance;
+	GtkWidgetPrivate *priv;
+    };
 
     struct _GtkRecentChooserIface;
 
@@ -2160,7 +2168,13 @@ extern "C" {
 
     struct _GtkWidgetClass;
 
-    struct _GtkWidgetAuxInfo;
+    struct _GtkWidgetAuxInfo {
+	gint width;
+	gint height;
+	guint halign:4;
+	guint valign:4;
+	GtkBorder margin;
+    };
 
     struct _GtkColorChooserInterface;
 
@@ -6376,9 +6390,8 @@ extern "C" {
     extern void gtk_render_slider(GtkStyleContext * context, cairo_t *,
 				  gdouble, gdouble, gdouble, gdouble,
 				  GtkOrientation);
-    extern GtkRequisition *gtk_requisition_copy(const struct
-						_GtkRequisition
-						*requisition);
+    extern GtkRequisition *gtk_requisition_copy(const GtkRequisition *
+						requisition);
     extern void gtk_requisition_free(GtkRequisition * requisition);
     extern GType gtk_requisition_get_type(void);
     extern GtkRequisition *gtk_requisition_new(void);
