@@ -58,8 +58,25 @@
 #define GDK_UNAVAILABLE(maj,min)	G_UNAVAILABLE(maj,min)
 
 typedef struct _GdkKeymapKey GdkKeymapKey;
+typedef struct _GdkEventAny GdkEventAny;
+typedef struct _GdkEventExpose GdkEventExpose;
+typedef struct _GdkEventVisibility GdkEventVisibility;
 typedef struct _GdkEventMotion GdkEventMotion;
+typedef struct _GdkEventButton GdkEventButton;
+typedef struct _GdkEventTouch GdkEventTouch;
+typedef struct _GdkEventScroll GdkEventScroll;
 typedef struct _GdkEventKey GdkEventKey;
+typedef struct _GdkEventFocus GdkEventFocus;
+typedef struct _GdkEventCrossing GdkEventCrossing;
+typedef struct _GdkEventConfigure GdkEventConfigure;
+typedef struct _GdkEventProperty GdkEventProperty;
+typedef struct _GdkEventSelection GdkEventSelection;
+typedef struct _GdkEventOwnerChange GdkEventOwnerChange;
+typedef struct _GdkEventProximity GdkEventProximity;
+typedef struct _GdkEventDND GdkEventDND;
+typedef struct _GdkEventWindowState GdkEventWindowState;
+typedef struct _GdkEventSetting GdkEventSetting;
+typedef struct _GdkEventGrabBroken GdkEventGrabBroken;
 typedef struct _GdkEventSequence GdkEventSequence;
 typedef union _GdkEvent GdkEvent;
 typedef void (*GdkEventFunc) (GdkEvent * event, gpointer data);
@@ -124,6 +141,12 @@ typedef enum {
     GDK_SCROLL_RIGHT,
     GDK_SCROLL_SMOOTH
 } GdkScrollDirection;
+typedef enum
+    GdkNotifyType;
+typedef enum
+    GdkCrossingMode;
+typedef enum
+    GdkPropertyState;
 typedef enum {
     GDK_WINDOW_STATE_WITHDRAWN,
     GDK_WINDOW_STATE_ICONIFIED,
@@ -134,6 +157,11 @@ typedef enum {
     GDK_WINDOW_STATE_BELOW,
     GDK_WINDOW_STATE_FOCUSED
 } GdkWindowState;
+typedef enum
+    GdkSettingAction;
+typedef enum
+    GdkOwnerChange;
+union _GdkEvent;
 typedef enum {
     GDK_PROP_MODE_REPLACE,
     GDK_PROP_MODE_PREPEND,
@@ -166,6 +194,9 @@ typedef enum {
 } GdkDragProtocol;
 typedef struct _GdkGeometry GdkGeometry;
 typedef struct _GdkWindowAttr GdkWindowAttr;
+typedef struct _GdkWindowRedirect GdkWindowRedirect;
+typedef enum
+    GdkWindowWindowClass;
 typedef enum {
     GDK_WINDOW_ROOT,
     GDK_WINDOW_TOPLEVEL,
@@ -174,6 +205,8 @@ typedef enum {
     GDK_WINDOW_FOREIGN,
     GDK_WINDOW_OFFSCREEN
 } GdkWindowType;
+typedef enum
+    GdkWindowAttributesType;
 typedef enum {
     GDK_HINT_POS,
     GDK_HINT_MIN_SIZE,
@@ -240,6 +273,7 @@ typedef enum {
     GDK_WINDOW_EDGE_SOUTH,
     GDK_WINDOW_EDGE_SOUTH_EAST
 } GdkWindowEdge;
+typedef struct _GdkWindowClass GdkWindowClass;
 typedef gboolean(*GdkWindowChildFunc) (GdkWindow * window,
 				       gpointer user_data);
 typedef struct _GdkTimeCoord GdkTimeCoord;
@@ -421,6 +455,8 @@ typedef enum {
     GDK_MODIFIER_INTENT_NO_TEXT_INPUT,
     GDK_MODIFIER_INTENT_SHIFT_GROUP
 } GdkModifierIntent;
+typedef enum
+    GdkStatus;
 typedef enum {
     GDK_GRAB_SUCCESS,
     GDK_GRAB_ALREADY_GRABBED,

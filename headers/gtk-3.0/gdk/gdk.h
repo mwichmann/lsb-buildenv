@@ -75,9 +75,43 @@ extern "C" {
 
     typedef struct _GdkKeymapKey GdkKeymapKey;
 
+    typedef struct _GdkEventAny GdkEventAny;
+
+    typedef struct _GdkEventExpose GdkEventExpose;
+
+    typedef struct _GdkEventVisibility GdkEventVisibility;
+
     typedef struct _GdkEventMotion GdkEventMotion;
 
+    typedef struct _GdkEventButton GdkEventButton;
+
+    typedef struct _GdkEventTouch GdkEventTouch;
+
+    typedef struct _GdkEventScroll GdkEventScroll;
+
     typedef struct _GdkEventKey GdkEventKey;
+
+    typedef struct _GdkEventFocus GdkEventFocus;
+
+    typedef struct _GdkEventCrossing GdkEventCrossing;
+
+    typedef struct _GdkEventConfigure GdkEventConfigure;
+
+    typedef struct _GdkEventProperty GdkEventProperty;
+
+    typedef struct _GdkEventSelection GdkEventSelection;
+
+    typedef struct _GdkEventOwnerChange GdkEventOwnerChange;
+
+    typedef struct _GdkEventProximity GdkEventProximity;
+
+    typedef struct _GdkEventDND GdkEventDND;
+
+    typedef struct _GdkEventWindowState GdkEventWindowState;
+
+    typedef struct _GdkEventSetting GdkEventSetting;
+
+    typedef struct _GdkEventGrabBroken GdkEventGrabBroken;
 
     typedef struct _GdkEventSequence GdkEventSequence;
 
@@ -152,6 +186,17 @@ extern "C" {
 	GDK_SCROLL_SMOOTH
     } GdkScrollDirection;
 
+    typedef enum
+	GdkNotifyType;
+
+    typedef enum
+	GdkCrossingMode;
+
+    typedef enum
+	GdkPropertyState;
+
+    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
+
     typedef enum {
 	GDK_WINDOW_STATE_WITHDRAWN,
 	GDK_WINDOW_STATE_ICONIFIED,
@@ -162,6 +207,12 @@ extern "C" {
 	GDK_WINDOW_STATE_BELOW,
 	GDK_WINDOW_STATE_FOCUSED
     } GdkWindowState;
+
+    typedef enum
+	GdkSettingAction;
+
+    typedef enum
+	GdkOwnerChange;
 
     typedef enum {
 	GDK_PROP_MODE_REPLACE,
@@ -201,7 +252,10 @@ extern "C" {
 
     typedef struct _GdkWindowAttr GdkWindowAttr;
 
-    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
+    typedef struct _GdkWindowRedirect GdkWindowRedirect;
+
+    typedef enum
+	GdkWindowWindowClass;
 
     typedef enum {
 	GDK_WINDOW_ROOT,
@@ -211,6 +265,9 @@ extern "C" {
 	GDK_WINDOW_FOREIGN,
 	GDK_WINDOW_OFFSCREEN
     } GdkWindowType;
+
+    typedef enum
+	GdkWindowAttributesType;
 
     typedef enum {
 	GDK_HINT_POS,
@@ -283,6 +340,8 @@ extern "C" {
 	GDK_WINDOW_EDGE_SOUTH,
 	GDK_WINDOW_EDGE_SOUTH_EAST
     } GdkWindowEdge;
+
+    typedef struct _GdkWindowClass GdkWindowClass;
 
     typedef gboolean(*GdkWindowChildFunc) (GdkWindow * window,
 					   gpointer user_data);
@@ -486,6 +545,9 @@ extern "C" {
 	GDK_MODIFIER_INTENT_SHIFT_GROUP
     } GdkModifierIntent;
 
+    typedef enum
+	GdkStatus;
+
     typedef enum {
 	GDK_GRAB_SUCCESS,
 	GDK_GRAB_ALREADY_GRABBED,
@@ -527,12 +589,66 @@ extern "C" {
 	GDK_ALL_EVENTS_MASK
     } GdkEventMask;
 
+    struct _GdkKeymapKey;
+
     struct _GdkRGBA {
 	gdouble red;
 	gdouble green;
 	gdouble blue;
 	gdouble alpha;
     };
+
+    struct _GdkEventAny;
+
+    struct _GdkEventExpose;
+
+    struct _GdkEventVisibility;
+
+    struct _GdkEventMotion;
+
+    struct _GdkEventButton;
+
+    struct _GdkEventTouch;
+
+    struct _GdkEventScroll;
+
+    struct _GdkEventKey;
+
+    struct _GdkEventCrossing;
+
+    struct _GdkEventFocus;
+
+    struct _GdkEventConfigure;
+
+    struct _GdkEventProperty;
+
+    struct _GdkEventSelection;
+
+    struct _GdkEventOwnerChange;
+
+    struct _GdkEventProximity;
+
+    struct _GdkEventSetting;
+
+    struct _GdkEventWindowState;
+
+    struct _GdkEventGrabBroken;
+
+    struct _GdkEventDND;
+
+    union _GdkEvent;
+
+    struct _GdkColor;
+
+    struct _GdkWindowAttr;
+
+    struct _GdkGeometry;
+
+    struct _GdkWindowClass;
+
+    struct _GdkTimeCoord;
+
+    struct _GdkPoint;
 
 
 /* Function prototypes */
