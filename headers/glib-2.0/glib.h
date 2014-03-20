@@ -1872,6 +1872,8 @@ extern "C" {
 	G_SHELL_ERROR_FAILED
     } GShellError;
 
+    typedef short int gshort;
+
 #if __LSB_VERSION__ < 50
     typedef struct _GMutex GMutex;
 

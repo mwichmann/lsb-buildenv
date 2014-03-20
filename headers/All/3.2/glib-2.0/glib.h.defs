@@ -1233,6 +1233,7 @@ typedef enum {
     G_SHELL_ERROR_EMPTY_STRING,
     G_SHELL_ERROR_FAILED
 } GShellError;
+typedef short int gshort;
 
 typedef struct _GStaticRecMutex GStaticRecMutex;
 typedef struct _GStaticRWLock GStaticRWLock;

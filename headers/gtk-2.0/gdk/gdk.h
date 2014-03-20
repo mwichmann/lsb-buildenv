@@ -614,8 +614,6 @@ extern "C" {
 
     typedef struct _GdkDragContext GdkDragContext;
 
-    typedef short int gshort;
-
     typedef struct _GdkEventDND GdkEventDND;
 
     typedef enum {
