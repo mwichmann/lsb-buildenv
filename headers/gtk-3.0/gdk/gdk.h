@@ -622,7 +622,11 @@ extern "C" {
 	GDK_ALL_EVENTS_MASK = 0xFFFFFE
     } GdkEventMask;
 
-    struct _GdkKeymapKey;
+    struct _GdkKeymapKey {
+	guint keycode;
+	gint group;
+	gint level;
+    };
 
     struct _GdkRGBA {
 	gdouble red;
@@ -631,57 +635,281 @@ extern "C" {
 	gdouble alpha;
     };
 
-    struct _GdkEventAny;
+    struct _GdkEventAny {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+    };
 
-    struct _GdkEventExpose;
+    struct _GdkEventExpose {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkRectangle area;
+	cairo_region_t *region;
+	gint count;
+    };
 
-    struct _GdkEventVisibility;
+    struct _GdkEventVisibility {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkVisibilityState state;
+    };
 
-    struct _GdkEventMotion;
+    struct _GdkEventMotion {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	guint32 time;
+	gdouble x;
+	gdouble y;
+	gdouble *axes;
+	guint state;
+	gint16 is_hint;
+	GdkDevice *device;
+	gdouble x_root;
+	gdouble y_root;
+    };
 
-    struct _GdkEventButton;
+    struct _GdkEventButton {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	guint32 time;
+	gdouble x;
+	gdouble y;
+	gdouble *axes;
+	guint state;
+	guint button;
+	GdkDevice *device;
+	gdouble x_root;
+	gdouble y_root;
+    };
 
-    struct _GdkEventTouch;
+    struct _GdkEventTouch {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	guint32 time;
+	gdouble x;
+	gdouble y;
+	gdouble *axes;
+	guint state;
+	GdkEventSequence *sequence;
+	gboolean emulating_pointer;
+	GdkDevice *device;
+	gdouble x_root;
+	gdouble y_root;
+    };
 
-    struct _GdkEventScroll;
+    struct _GdkEventScroll {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	guint32 time;
+	gdouble x;
+	gdouble y;
+	guint state;
+	GdkScrollDirection direction;
+	GdkDevice *device;
+	gdouble x_root;
+	gdouble y_root;
+    };
 
-    struct _GdkEventKey;
+    struct _GdkEventKey {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	guint32 time;
+	guint state;
+	guint keyval;
+	gint length;
+	gchar *string;
+	guint16 hardware_keycode;
+	guint8 group;
+	guint is_modifier;
+    };
 
-    struct _GdkEventCrossing;
+    struct _GdkEventCrossing {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkWindow *subwindow;
+	guint32 time;
+	gdouble x;
+	gdouble y;
+	gdouble x_root;
+	gdouble y_root;
+	GdkCrossingMode mode;
+	GdkNotifyType detail;
+	gboolean focus;
+	guint state;
+    };
 
-    struct _GdkEventFocus;
+    struct _GdkEventFocus {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	gint16 in;
+    };
 
-    struct _GdkEventConfigure;
+    struct _GdkEventConfigure {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	gint x;
+	gint y;
+	gint width;
+	gint height;
+    };
 
-    struct _GdkEventProperty;
+    struct _GdkEventProperty {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkAtom atom;
+	guint32 time;
+	guint state;
+    };
 
-    struct _GdkEventSelection;
+    struct _GdkEventSelection {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkAtom selection;
+	GdkAtom target;
+	GdkAtom property;
+	guint32 time;
+	GdkWindow *requestor;
+    };
 
-    struct _GdkEventOwnerChange;
+    struct _GdkEventOwnerChange {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkWindow *owner;
+	GdkOwnerChange reason;
+	GdkAtom selection;
+	guint32 time;
+	guint32 selection_time;
+    };
 
-    struct _GdkEventProximity;
+    struct _GdkEventProximity {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	guint32 time;
+	GdkDevice *device;
+    };
 
-    struct _GdkEventSetting;
+    struct _GdkEventSetting {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkSettingAction action;
+	char *name;
+    };
 
-    struct _GdkEventWindowState;
+    struct _GdkEventWindowState {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkWindowState changed_mask;
+	GdkWindowState new_window_state;
+    };
 
-    struct _GdkEventGrabBroken;
+    struct _GdkEventGrabBroken {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	gboolean keyboard;
+	gboolean implicit;
+	GdkWindow *grab_window;
+    };
 
-    struct _GdkEventDND;
+    struct _GdkEventDND {
+	GdkEventType type;
+	GdkWindow *window;
+	gint8 send_event;
+	GdkDragContext *context;
+	guint32 time;
+	gshort x_root;
+	gshort y_root;
+    };
 
-    union _GdkEvent;
+    union _GdkEvent {
+	GdkEventType type;
+	GdkEventAny any;
+	GdkEventExpose expose;
+	GdkEventVisibility visibility;
+	GdkEventMotion motion;
+	GdkEventButton button;
+	GdkEventTouch touch;
+	GdkEventScroll scroll;
+	GdkEventKey key;
+	GdkEventCrossing crossing;
+	GdkEventFocus focus_change;
+	GdkEventConfigure configure;
+	GdkEventProperty property;
+	GdkEventSelection selection;
+	GdkEventOwnerChange owner_change;
+	GdkEventProximity proximity;
+	GdkEventDND dnd;
+	GdkEventWindowState window_state;
+	GdkEventSetting setting;
+	GdkEventGrabBroken grab_broken;
+    };
 
-    struct _GdkColor;
+    struct _GdkColor {
+	guint32 pixel;
+	guint16 red;
+	guint16 green;
+	guint16 blue;
+    };
 
-    struct _GdkWindowAttr;
+    struct _GdkWindowAttr {
+	gchar *title;
+	gint event_mask;
+	gint x;
+	gint y;
+	gint width;
+	gint height;
+	GdkWindowWindowClass wclass;
+	GdkVisual *visual;
+	GdkWindowType window_type;
+	GdkCursor *cursor;
+	gchar *wmclass_name;
+	gchar *wmclass_class;
+	gboolean override_redirect;
+	GdkWindowTypeHint type_hint;
+    };
 
-    struct _GdkGeometry;
+    struct _GdkGeometry {
+	gint min_width;
+	gint min_height;
+	gint max_width;
+	gint max_height;
+	gint base_width;
+	gint base_height;
+	gint width_inc;
+	gint height_inc;
+	gdouble min_aspect;
+	gdouble max_aspect;
+	GdkGravity win_gravity;
+    };
 
     struct _GdkWindowClass;
 
-    struct _GdkTimeCoord;
+    struct _GdkTimeCoord {
+	guint32 time;
+	gdouble axes[128];
+    };
 
-    struct _GdkPoint;
+    struct _GdkPoint {
+	gint x;
+	gint y;
+    };
 
 
 /* Function prototypes */
