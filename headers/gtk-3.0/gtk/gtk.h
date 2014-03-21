@@ -2173,13 +2173,31 @@ extern "C" {
 
     struct _GtkToggleButtonClass;
 
-    struct _GtkFileChooserDialog;
+    struct _GtkFileChooserDialog {
+	GtkDialog parent_instance;
+	GtkFileChooserDialogPrivate *priv;
+    };
 
-    struct _GtkFileChooserDialogClass;
+    struct _GtkFileChooserDialogClass {
+	GtkDialogClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
-    struct _GtkFileChooserWidget;
+    struct _GtkFileChooserWidget {
+	GtkBox parent_instance;
+	GtkFileChooserWidgetPrivate *priv;
+    };
 
-    struct _GtkFileChooserWidgetClass;
+    struct _GtkFileChooserWidgetClass {
+	GtkBoxClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkRequisition {
 	gint width;
@@ -2265,7 +2283,11 @@ extern "C" {
 
     struct _GtkEntryBufferClass;
 
-    struct _GtkRequestedSize;
+    struct _GtkRequestedSize {
+	gint data;
+	gpointer minimum_size;
+	gpointer natural_size;
+    };
 
     struct _GtkThemingEngine {
 	GObject parent_object;
@@ -2397,9 +2419,18 @@ extern "C" {
 
     struct _GtkCellAreaBoxClass;
 
-    struct _GtkFontChooserDialog;
+    struct _GtkFontChooserDialog {
+	GtkDialog parent_instance;
+	GtkFontChooserDialogPrivate *priv;
+    };
 
-    struct _GtkFontChooserDialogClass;
+    struct _GtkFontChooserDialogClass {
+	GtkDialogClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkCssProvider {
 	GObject parent_instance;
@@ -2408,9 +2439,17 @@ extern "C" {
 
     struct _GtkCssProviderClass;
 
-    struct _GtkOffscreenWindow;
+    struct _GtkOffscreenWindow {
+	GtkWindow parent_object;
+    };
 
-    struct _GtkOffscreenWindowClass;
+    struct _GtkOffscreenWindowClass {
+	GtkWindowClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkActionClass;
 
@@ -2448,9 +2487,22 @@ extern "C" {
 
     struct _GtkApplicationWindowClass;
 
-    struct _GtkFontChooserWidget;
+    struct _GtkFontChooserWidget {
+	GtkBox parent_instance;
+	GtkFontChooserWidgetPrivate *priv;
+    };
 
-    struct _GtkFontChooserWidgetClass;
+    struct _GtkFontChooserWidgetClass {
+	GtkBoxClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkButtonClass;
 
@@ -2484,7 +2536,10 @@ extern "C" {
 
     struct _GtkLevelBarClass;
 
-    struct _GtkComboBox;
+    struct _GtkComboBox {
+	GtkBin parent_instance;
+	GtkComboBoxPrivate *priv;
+    };
 
     struct _GtkComboBoxClass;
 
@@ -2562,7 +2617,10 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkFileChooserButton;
+    struct _GtkFileChooserButton {
+	GtkBox parent;
+	GtkFileChooserButtonPrivate *priv;
+    };
 
     struct _GtkFileChooserButtonClass;
 
