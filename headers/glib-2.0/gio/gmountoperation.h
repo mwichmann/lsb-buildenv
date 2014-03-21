@@ -20,7 +20,33 @@ extern "C" {
 #define G_MOUNT_OPERATION_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), G_TYPE_MOUNT_OPERATION, GMountOperationClass))
 
 
+    typedef struct _GMountOperationClass GMountOperationClass;
+
     typedef struct _GMountOperationPrivate GMountOperationPrivate;
+
+    struct _GMountOperation {
+	GObject parent_instance;
+	GMountOperationPrivate *priv;
+    };
+
+    struct _GMountOperationClass {
+	GObjectClass parent_class;
+	void (*ask_password) (void);
+	void (*ask_question) (void);
+	void (*reply) (void);
+	void (*aborted) (void);
+	void (*show_processes) (void);
+	void (*show_unmount_progress) (void);
+	void (*_g_reserved1) (void);
+	void (*_g_reserved2) (void);
+	void (*_g_reserved3) (void);
+	void (*_g_reserved4) (void);
+	void (*_g_reserved5) (void);
+	void (*_g_reserved6) (void);
+	void (*_g_reserved7) (void);
+	void (*_g_reserved8) (void);
+	void (*_g_reserved9) (void);
+    };
 
 
 /* Function prototypes */

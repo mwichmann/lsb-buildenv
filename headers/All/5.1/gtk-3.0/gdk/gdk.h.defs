@@ -325,6 +325,11 @@ typedef enum {
     GDK_EVENT_LAST
 } GdkEventType;
 typedef enum {
+    GDK_VISIBILITY_UNOBSCURED,
+    GDK_VISIBILITY_PARTIAL,
+    GDK_VISIBILITY_FULLY_OBSCURED
+} GdkVisibilityState;
+typedef enum {
     GDK_SCROLL_UP,
     GDK_SCROLL_DOWN,
     GDK_SCROLL_LEFT,

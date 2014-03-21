@@ -682,7 +682,12 @@ typedef struct _GtkSpinButton GtkSpinButton;
 typedef struct _GtkToolButton GtkToolButton;
 typedef struct _GtkIMContext GtkIMContext;
 typedef struct _GtkToolShell GtkToolShell;
-typedef struct _GtkToggleButton GtkToggleButton;
+typedef struct _GtkToggleButton {
+    GtkButton button;
+    GtkToggleButtonPrivate *priv;
+} GtkToggleButton;
+typedef struct _GtkToggleButtonPrivate GtkToggleButtonPrivate;
+typedef struct _GtkToggleButtonClass GtkToggleButtonClass;
 typedef struct _GtkMenuShell GtkMenuShell;
 typedef struct _GtkFileChooserDialog GtkFileChooserDialog;
 typedef struct _GtkFileChooserDialogPrivate GtkFileChooserDialogPrivate;
@@ -1199,7 +1204,12 @@ typedef enum {
 } GtkFileChooserError;
 typedef struct _GtkPaned GtkPaned;
 typedef struct _GtkEditable GtkEditable;
-typedef struct _GtkAction GtkAction;
+typedef struct _GtkAction {
+    GObject object;
+    GtkActionPrivate *private_data;
+} GtkAction;
+typedef struct _GtkActionClass GtkActionClass;
+typedef struct _GtkActionPrivate GtkActionPrivate;
 typedef struct _GtkScrolledWindow GtkScrolledWindow;
 typedef struct _GtkScale GtkScale;
 typedef struct _GtkImage GtkImage;
@@ -1284,7 +1294,12 @@ typedef struct _GtkImageMenuItem GtkImageMenuItem;
 typedef struct _GtkAppChooser GtkAppChooser;
 typedef struct _GtkFixed GtkFixed;
 typedef struct _GtkBuildable GtkBuildable;
-typedef struct _GtkButton GtkButton;
+typedef struct _GtkButton {
+    GtkBin bin;
+    GtkButtonPrivate *priv;
+} GtkButton;
+typedef struct _GtkButtonPrivate GtkButtonPrivate;
+typedef struct _GtkButtonClass GtkButtonClass;
 typedef enum {
     GTK_ALIGN_FILL = 0,
     GTK_ALIGN_START = 1,
@@ -1733,7 +1748,12 @@ typedef struct _GtkWindowGroupClass {
     void (*_gtk_reserved4) (void);
 } GtkWindowGroupClass;
 typedef struct _GtkWindowGroupPrivate GtkWindowGroupPrivate;
-typedef struct _GtkMenu GtkMenu;
+typedef struct _GtkMenu {
+    GtkMenuShell menu_shell;
+    GtkMenuPrivate *priv;
+} GtkMenu;
+typedef struct _GtkMenuClass GtkMenuClass;
+typedef struct _GtkMenuPrivate GtkMenuPrivate;
 typedef void (*GtkMenuPositionFunc) (GtkMenu * menu, gint * x, gint * y,
 				     gboolean * push_in,
 				     gpointer user_data);

@@ -179,6 +179,12 @@ extern "C" {
     } GdkEventType;
 
     typedef enum {
+	GDK_VISIBILITY_UNOBSCURED,
+	GDK_VISIBILITY_PARTIAL,
+	GDK_VISIBILITY_FULLY_OBSCURED
+    } GdkVisibilityState;
+
+    typedef enum {
 	GDK_SCROLL_UP,
 	GDK_SCROLL_DOWN,
 	GDK_SCROLL_LEFT,
@@ -195,6 +201,8 @@ extern "C" {
 	GDK_NOTIFY_UNKNOWN = 5
     } GdkNotifyType;
 
+    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
+
     typedef enum {
 	GDK_CROSSING_NORMAL,
 	GDK_CROSSING_GRAB,
@@ -206,8 +214,6 @@ extern "C" {
 	GDK_CROSSING_TOUCH_END,
 	GDK_CROSSING_DEVICE_SWITCH
     } GdkCrossingMode;
-
-    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
 
     typedef enum {
 	GDK_PROPERTY_NEW_VALUE,

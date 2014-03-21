@@ -11,6 +11,7 @@
 #include <pango-1.0/pango/pango.h>
 #include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
 #include <cairo/cairo.h>
+#include <glib-2.0/gio/gmountoperation.h>
 #include <glib-2.0/gio/gioenums.h>
 #include <glib-2.0/gio/gemblemedicon.h>
 #include <glib-2.0/gio/giotypes.h>
@@ -702,6 +703,10 @@ extern "C" {
 
     typedef struct _GtkToggleButton GtkToggleButton;
 
+    typedef struct _GtkToggleButtonPrivate GtkToggleButtonPrivate;
+
+    typedef struct _GtkToggleButtonClass GtkToggleButtonClass;
+
     typedef struct _GtkMenuShell GtkMenuShell;
 
     typedef struct _GtkFileChooserDialog GtkFileChooserDialog;
@@ -1316,6 +1321,10 @@ extern "C" {
 
     typedef struct _GtkAction GtkAction;
 
+    typedef struct _GtkActionClass GtkActionClass;
+
+    typedef struct _GtkActionPrivate GtkActionPrivate;
+
     typedef struct _GtkScrolledWindow GtkScrolledWindow;
 
     typedef struct _GtkScale GtkScale;
@@ -1427,6 +1436,10 @@ extern "C" {
     typedef struct _GtkBuildable GtkBuildable;
 
     typedef struct _GtkButton GtkButton;
+
+    typedef struct _GtkButtonPrivate GtkButtonPrivate;
+
+    typedef struct _GtkButtonClass GtkButtonClass;
 
     typedef enum {
 	GTK_ALIGN_FILL = 0,
@@ -1953,6 +1966,10 @@ extern "C" {
 
     typedef struct _GtkMenu GtkMenu;
 
+    typedef struct _GtkMenuClass GtkMenuClass;
+
+    typedef struct _GtkMenuPrivate GtkMenuPrivate;
+
     typedef void (*GtkMenuPositionFunc) (GtkMenu * menu, gint * x,
 					 gint * y, gboolean * push_in,
 					 gpointer user_data);
@@ -2153,6 +2170,8 @@ extern "C" {
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
     };
+
+    struct _GtkToggleButtonClass;
 
     struct _GtkFileChooserDialog;
 
@@ -2393,6 +2412,8 @@ extern "C" {
 
     struct _GtkOffscreenWindowClass;
 
+    struct _GtkActionClass;
+
     struct _GtkApplication {
 	GApplication parent;
 	GtkApplicationPrivate *priv;
@@ -2431,6 +2452,8 @@ extern "C" {
 
     struct _GtkFontChooserWidgetClass;
 
+    struct _GtkButtonClass;
+
     struct _GtkAppChooserWidget {
 	GtkBox parent;
 	GtkAppChooserWidgetPrivate *priv;
@@ -2451,6 +2474,8 @@ extern "C" {
     struct _GtkCellAreaClass;
 
     struct _GtkCellAreaContextClass;
+
+    struct _GtkMenuClass;
 
     struct _GtkLevelBar {
 	GtkWidget parent;
@@ -2554,6 +2579,11 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
+    struct _GtkToggleButton {
+	GtkButton button;
+	GtkToggleButtonPrivate *priv;
+    };
+
     struct _GtkWindow {
 	GtkBin bin;
 	GtkWindowPrivate *priv;
@@ -2572,6 +2602,16 @@ extern "C" {
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkAction {
+	GObject object;
+	GtkActionPrivate *private_data;
+    };
+
+    struct _GtkButton {
+	GtkBin bin;
+	GtkButtonPrivate *priv;
     };
 
     struct _GtkWindowClass {
@@ -2597,6 +2637,11 @@ extern "C" {
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
+    };
+
+    struct _GtkMenu {
+	GtkMenuShell menu_shell;
+	GtkMenuPrivate *priv;
     };
 
     struct _GtkContainer {
