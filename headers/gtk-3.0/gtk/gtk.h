@@ -3118,6 +3118,20 @@ extern "C" {
 	GtkAccelLabelPrivate *priv;
     };
 
+    struct _GtkAccelLabelClass {
+	GtkLabelClass parent_class;
+	gchar *signal_quote1;
+	gchar *signal_quote2;
+	gchar *mod_name_shift;
+	gchar *mod_name_control;
+	gchar *mod_name_alt;
+	gchar *mod_separator;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
+
     struct _GtkMenuButton {
 	GtkToggleButton parent;
 	GtkMenuButtonPrivate *priv;
@@ -3136,7 +3150,10 @@ extern "C" {
 	GtkAppChooserDialogPrivate *priv;
     };
 
-    struct _GtkAppChooserDialogClass;
+    struct _GtkAppChooserDialogClass {
+	GtkDialogClass parent_class;
+	gpointer padding[16];
+    };
 
     struct _GtkColorButton {
 	GtkButton button;
@@ -3195,7 +3212,10 @@ extern "C" {
 	GtkNumerableIconPrivate *priv;
     };
 
-    struct _GtkNumerableIconClass;
+    struct _GtkNumerableIconClass {
+	GEmblemedIconClass parent_class;
+	gpointer padding[16];
+    };
 
     struct _GtkTextTagTable {
 	GObject parent_instance;
@@ -3334,7 +3354,13 @@ extern "C" {
 	GtkCellAreaBoxPrivate *priv;
     };
 
-    struct _GtkCellAreaBoxClass;
+    struct _GtkCellAreaBoxClass {
+	GtkCellAreaClass parent_class;
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkFontChooserDialog {
 	GtkDialog parent_instance;
@@ -3601,7 +3627,10 @@ extern "C" {
 	GtkApplicationWindowPrivate *priv;
     };
 
-    struct _GtkApplicationWindowClass;
+    struct _GtkApplicationWindowClass {
+	GtkWindowClass parent_class;
+	gpointer padding[14];
+    };
 
     struct _GtkEntryCompletion {
 	GObject parent_instance;

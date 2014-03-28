@@ -1296,7 +1296,19 @@ typedef struct _GtkAccelLabel {
     GtkDialog label;
     GtkAccelLabelPrivate *priv;
 } GtkAccelLabel;
-typedef struct _GtkAccelLabelClass GtkAccelLabelClass;
+typedef struct _GtkAccelLabelClass {
+    GtkLabelClass parent_class;
+    gchar *signal_quote1;
+    gchar *signal_quote2;
+    gchar *mod_name_shift;
+    gchar *mod_name_control;
+    gchar *mod_name_alt;
+    gchar *mod_separator;
+    void (*_gtk_reserved1) (void);
+    void (*_gtk_reserved2) (void);
+    void (*_gtk_reserved3) (void);
+    void (*_gtk_reserved4) (void);
+} GtkAccelLabelClass;
 typedef struct _GtkAccelLabelPrivate GtkAccelLabelPrivate;
 typedef struct _GtkMenuButton {
     GtkToggleButton parent;
@@ -1314,7 +1326,10 @@ typedef struct _GtkAppChooserDialog {
     GtkDialog parent;
     GtkAppChooserDialogPrivate *priv;
 } GtkAppChooserDialog;
-typedef struct _GtkAppChooserDialogClass GtkAppChooserDialogClass;
+typedef struct _GtkAppChooserDialogClass {
+    GtkDialogClass parent_class;
+    gpointer padding[16];
+} GtkAppChooserDialogClass;
 typedef struct _GtkAppChooserDialogPrivate GtkAppChooserDialogPrivate;
 typedef struct _GtkColorButton {
     GtkButton button;
@@ -1400,7 +1415,10 @@ typedef struct _GtkNumerableIcon {
     GEmblemedIcon parent;
     GtkNumerableIconPrivate *priv;
 } GtkNumerableIcon;
-typedef struct _GtkNumerableIconClass GtkNumerableIconClass;
+typedef struct _GtkNumerableIconClass {
+    GEmblemedIconClass parent_class;
+    gpointer padding[16];
+} GtkNumerableIconClass;
 typedef struct _GtkNumerableIconPrivate GtkNumerableIconPrivate;
 typedef void (*GtkTextTagTableForeach) (void);
 typedef struct _GtkTextTagTablePrivate GtkTextTagTablePrivate;
@@ -1565,7 +1583,13 @@ typedef struct _GtkCellAreaBox {
     GtkCellArea parent_instance;
     GtkCellAreaBoxPrivate *priv;
 } GtkCellAreaBox;
-typedef struct _GtkCellAreaBoxClass GtkCellAreaBoxClass;
+typedef struct _GtkCellAreaBoxClass {
+    GtkCellAreaClass parent_class;
+    void (*_gtk_reserved1) (void);
+    void (*_gtk_reserved2) (void);
+    void (*_gtk_reserved3) (void);
+    void (*_gtk_reserved4) (void);
+} GtkCellAreaBoxClass;
 typedef struct _GtkCellAreaBoxPrivate GtkCellAreaBoxPrivate;
 typedef struct _GtkFontChooserDialog {
     GtkDialog parent_instance;
@@ -1931,7 +1955,10 @@ typedef struct _GtkVolumeButtonClass {
 typedef struct _GtkStyleProviderIface GtkStyleProviderIface;
 typedef struct _GtkStyleProvider GtkStyleProvider;
 typedef struct _GtkApplicationWindowPrivate GtkApplicationWindowPrivate;
-typedef struct _GtkApplicationWindowClass GtkApplicationWindowClass;
+typedef struct _GtkApplicationWindowClass {
+    GtkWindowClass parent_class;
+    gpointer padding[14];
+} GtkApplicationWindowClass;
 typedef struct _GtkApplicationWindow {
     GtkWindow instance;
     GtkApplicationWindowPrivate *priv;
