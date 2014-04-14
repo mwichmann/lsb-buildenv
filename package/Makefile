@@ -16,13 +16,13 @@ PWD:=$(shell pwd)
 # Handle different version generation for daily snapshots than official builds
 # OFFICIAL_RELEASE should be set to the bzr tag to use for exporting
 ifdef OFFICIAL_RELEASE
-VERSION_SUFFIX=
+RPM_PACKAGE_RELEASE=$(BUILDNO)
 EXPORT_TAG=--revision=$(OFFICIAL_RELEASE)
 ifndef SKIP_DEVEL_VERSIONS
 SKIP_DEVEL_VERSIONS=yes
 endif
 else
-VERSION_SUFFIX=.0.$(ISO_DATE)
+RPM_PACKAGE_RELEASE=0.$(ISO_DATE).$(BUILDNO)
 EXPORT_TAG=
 endif
 
@@ -50,7 +50,7 @@ SUB_VERSION=.76
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-RPM_PACKAGE_RELEASE=5
+BUILDNO=6
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)
@@ -59,11 +59,11 @@ export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esa
 RPM_BUILD_ROOT=$(HOME)/tmp/$(FULL_PACKAGE_NAME)
 TMP_BUILD_DIR=$(HOME)/tmp/$(FULL_PACKAGE_NAME)
 
-FULL_PACKAGE_NAME=$(PACKAGE)-$(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)
-FULL_PACKAGE_CC=$(PACKAGE)-cc-$(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)
-FULL_PACKAGE_BASE=$(PACKAGE)-base-$(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)
-FULL_PACKAGE_DESKTOP=$(PACKAGE)-desktop-$(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)
-FULL_PACKAGE_LSBRUN=lsb-runner-$(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)
+FULL_PACKAGE_NAME=$(PACKAGE)-$(LSBVERSION)$(SUB_VERSION)
+FULL_PACKAGE_CC=$(PACKAGE)-cc-$(LSBVERSION)$(SUB_VERSION)
+FULL_PACKAGE_BASE=$(PACKAGE)-base-$(LSBVERSION)$(SUB_VERSION)
+FULL_PACKAGE_DESKTOP=$(PACKAGE)-desktop-$(LSBVERSION)$(SUB_VERSION)
+FULL_PACKAGE_LSBRUN=lsb-runner-$(LSBVERSION)$(SUB_VERSION)
 
 FULL_PACKAGE_NAME_CLEAN=$(PACKAGE)-$(LSBVERSION)$(SUB_VERSION)*
 FULL_PACKAGE_NAME_CC=$(PACKAGE)-cc-$(LSBVERSION)$(SUB_VERSION)*
@@ -116,7 +116,7 @@ all: rpm_package
 # If OFFICIAL_RELEASE has changed value since last time we compiled or 
 # the date has changed in case of a snapshot we need to regenerate
 # the configuration files to get the correct version information
-CURRENT_CONFIG=$(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)-$(RPM_PACKAGE_RELEASE)
+CURRENT_CONFIG=$(LSBVERSION)$(SUB_VERSION)-$(RPM_PACKAGE_RELEASE)
 .need_config_update: 
 	if test ! -e .need_config_update || test $(CURRENT_CONFIG) != `cat .need_config_update`; \
 	  then echo $(CURRENT_CONFIG) > .need_config_update; \
@@ -128,7 +128,7 @@ tarball: $(TARBALL)
 # Specfile generation rule
 # if building an "official release" edit out devel versions
 %.spec : %.spec.sed Makefile .need_config_update
-	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)$(VERSION_SUFFIX)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
+	sed -e "s#@LSBVERSION@#`echo $(LSBVERSION)$(SUB_VERSION)`#" -e "s#@PACKAGE_RELEASE@#`echo $(RPM_PACKAGE_RELEASE)`#" -e "s#@TRUELSBVERSION@#`echo $(TRUELSBVERSION)`#" < $< > $@
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
 	for libdir in lib lib64; do \
 	  for version in $(LSB_DEVEL_VERSION); do \
