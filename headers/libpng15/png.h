@@ -48,6 +48,7 @@ extern "C" {
 #define png_libpng_ver	png_get_header_ver(NULL)
 #define PNG_TEXT_COMPRESSION_NONE_WR	-3
 #define PNG_TEXT_COMPRESSION_zTXt_WR	-2
+#define PNG_TEXT_COMPRESSION_zTXt	0
 #define PNG_TEXT_COMPRESSION_NONE	-1
 #define PNG_ITXT_COMPRESSION_NONE	1
 #define PNG_ITXT_COMPRESSION_zTXt	2
