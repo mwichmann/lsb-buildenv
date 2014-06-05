@@ -3402,8 +3402,8 @@ extern "C" {
 	GdkColor bg_color;
 	GdkColor fg_color;
 	gint rise;
-	guint underline;
-	guint strikethrough:4;
+	guint underline:4;
+	guint strikethrough:1;
 	guint draw_bg:1;
 	guint inside_selection:1;
 	guint is_text:1;
