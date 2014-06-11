@@ -136,6 +136,8 @@ typedef struct _GdkEventScroll {
     GdkDevice *device;
     gdouble x_root;
     gdouble y_root;
+    gdouble delta_x;
+    gdouble delta_y;
 } GdkEventScroll;
 typedef struct _GdkEventKey {
     GdkEventType type;

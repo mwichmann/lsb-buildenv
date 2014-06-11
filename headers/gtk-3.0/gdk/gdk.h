@@ -726,6 +726,8 @@ extern "C" {
 	GdkDevice *device;
 	gdouble x_root;
 	gdouble y_root;
+	gdouble delta_x;
+	gdouble delta_y;
     };
 
     struct _GdkEventKey {
