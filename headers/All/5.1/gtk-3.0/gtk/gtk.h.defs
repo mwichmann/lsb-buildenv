@@ -1237,7 +1237,7 @@ typedef struct _GtkMountOperation {
     GtkMountOperationPrivate *priv;
 } GtkMountOperation;
 typedef struct _GtkMountOperationClass {
-    GMountOperationClass parent_instance;
+    GMountOperationClass parent_class;
     void (*_gtk_reserved1) (void);
     void (*_gtk_reserved2) (void);
     void (*_gtk_reserved3) (void);
@@ -1315,7 +1315,7 @@ typedef struct _GtkMenuButton {
     GtkMenuButtonPrivate *priv;
 } GtkMenuButton;
 typedef struct _GtkMenuButtonClass {
-    GtkToggleButtonClass parent;
+    GtkToggleButtonClass parent_class;
     void (*_gtk_reserved1) (void);
     void (*_gtk_reserved2) (void);
     void (*_gtk_reserved3) (void);
@@ -1960,7 +1960,7 @@ typedef struct _GtkApplicationWindowClass {
     gpointer padding[14];
 } GtkApplicationWindowClass;
 typedef struct _GtkApplicationWindow {
-    GtkWindow instance;
+    GtkWindow parent_instance;
     GtkApplicationWindowPrivate *priv;
 } GtkApplicationWindow;
 typedef struct _GtkEntryCompletion {
@@ -2863,7 +2863,7 @@ typedef struct _GtkMenuToolButton {
 } GtkMenuToolButton;
 typedef struct _GtkMenuToolButtonPrivate GtkMenuToolButtonPrivate;
 typedef struct _GtkColorChooserWidget {
-    GtkBox widget;
+    GtkBox parent_instance;
     GtkColorChooserWidgetPrivate *priv;
 } GtkColorChooserWidget;
 typedef struct _GtkColorChooserWidgetPrivate GtkColorChooserWidgetPrivate;

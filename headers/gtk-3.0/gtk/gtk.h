@@ -3261,7 +3261,7 @@ extern "C" {
     };
 
     struct _GtkMountOperationClass {
-	GMountOperationClass parent_instance;
+	GMountOperationClass parent_class;
 	void (*_gtk_reserved1) (void);
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
@@ -3333,7 +3333,7 @@ extern "C" {
     };
 
     struct _GtkMenuButtonClass {
-	GtkToggleButtonClass parent;
+	GtkToggleButtonClass parent_class;
 	void (*_gtk_reserved1) (void);
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
@@ -3869,7 +3869,7 @@ extern "C" {
     struct _GtkStyleProviderIface;
 
     struct _GtkApplicationWindow {
-	GtkWindow instance;
+	GtkWindow parent_instance;
 	GtkApplicationWindowPrivate *priv;
     };
 
@@ -4280,7 +4280,7 @@ extern "C" {
     struct _GtkMenuToolButtonClass;
 
     struct _GtkColorChooserWidget {
-	GtkBox widget;
+	GtkBox parent_instance;
 	GtkColorChooserWidgetPrivate *priv;
     };
 
