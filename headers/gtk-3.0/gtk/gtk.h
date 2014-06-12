@@ -3963,6 +3963,8 @@ extern "C" {
 	gint y;
     };
 
+    struct _GtkBuildableIface;
+
     struct _GtkButton {
 	GtkBin bin;
 	GtkButtonPrivate *priv;
