@@ -6779,7 +6779,7 @@ extern "C" {
 	void *__gtk_reserved1;
 #endif				/* __LSB_VERSION__ < 50 */
 #if __LSB_VERSION__ >= 50
-	void (*file_set) (void);
+	void (*file_set) (GtkFileChooserButton * fc);
 #endif				/* __LSB_VERSION__ >= 50 */
 	void *__gtk_reserved2;
 	void *__gtk_reserved3;
