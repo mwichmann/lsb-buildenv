@@ -2671,6 +2671,13 @@ extern "C" {
 	GTK_ICON_VIEW_DROP_BELOW
     } GtkIconViewDropPosition;
 
+    typedef enum {
+	GTK_RC_FG = 1 << 0,
+	GTK_RC_BG = 1 << 1,
+	GTK_RC_TEXT = 1 << 2,
+	GTK_RC_BASE = 1 << 3
+    } GtkRcFlags;
+
     struct _GtkSettings {
 	GObject parent_instance;
 	GtkSettingsPrivate *priv;

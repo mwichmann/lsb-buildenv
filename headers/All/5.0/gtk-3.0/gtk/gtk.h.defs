@@ -3022,6 +3022,12 @@ typedef enum {
     GTK_ICON_VIEW_DROP_ABOVE,
     GTK_ICON_VIEW_DROP_BELOW
 } GtkIconViewDropPosition;
+typedef enum {
+    GTK_RC_FG = 1 << 0,
+    GTK_RC_BG = 1 << 1,
+    GTK_RC_TEXT = 1 << 2,
+    GTK_RC_BASE = 1 << 3
+} GtkRcFlags;
 extern void gtk_about_dialog_add_credit_section(GtkAboutDialog * about,
 						const char *,
 						const char **);
