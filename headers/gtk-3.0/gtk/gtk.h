@@ -10,7 +10,6 @@
 #include <atk-1.0/atk/atk.h>
 #include <pango-1.0/pango/pango.h>
 #include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
-#include <gtk-2.0/gdk/gdk.h>
 #include <cairo/cairo.h>
 #include <glib-2.0/gio/gapplication.h>
 #include <glib-2.0/gio/gmountoperation.h>
