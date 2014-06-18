@@ -10,7 +10,9 @@
 #include <atk-1.0/atk/atk.h>
 #include <pango-1.0/pango/pango.h>
 #include <gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk-2.0/gdk/gdk.h>
 #include <cairo/cairo.h>
+#include <glib-2.0/gio/gapplication.h>
 #include <glib-2.0/gio/gmountoperation.h>
 #include <glib-2.0/gio/gioenums.h>
 #include <glib-2.0/gio/gemblemedicon.h>
@@ -2701,7 +2703,14 @@ extern "C" {
 	GtkScaleButtonPrivate *priv;
     };
 
-    struct _GtkScaleButtonClass;
+    struct _GtkScaleButtonClass {
+	GtkButtonClass parent_class;
+	void (*value_changed) (GtkScaleButton * button, gdouble value);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkComboBoxText {
 	GtkComboBox parent_instance;
@@ -2734,7 +2743,15 @@ extern "C" {
 	GtkAdjustmentPrivate *priv;
     };
 
-    struct _GtkAdjustmentClass;
+    struct _GtkAdjustmentClass {
+	GInitiallyUnownedClass parent_class;
+	void (*changed) (GtkAdjustment * adjustment);
+	void (*value_changed) (GtkAdjustment * adjustment);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTextChildAnchor {
 	GObject parent_instance;
@@ -2801,7 +2818,13 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkActivatableIface;
+    struct _GtkActivatableIface {
+	GTypeInterface g_iface;
+	void (*update) (GtkActivatable * activatable, GtkAction * action,
+			const gchar * property_name);
+	void (*sync_action_properties) (GtkActivatable * activatable,
+					GtkAction * action);
+    };
 
     struct _GtkMisc {
 	GtkWidget widget;
@@ -2847,36 +2870,128 @@ extern "C" {
 	GtkSpinButtonPrivate *priv;
     };
 
-    struct _GtkSpinButtonClass;
+    struct _GtkSpinButtonClass {
+	GtkEntryClass parent_class;
+	 gint(*input) (GtkSpinButton * spin_button, gdouble * new_value);
+	 gint(*output) (GtkSpinButton * spin_button);
+	void (*value_changed) (GtkSpinButton * spin_button);
+	void (*change_value) (GtkSpinButton * spin_button,
+			      GtkScrollType scroll);
+	void (*wrapped) (GtkSpinButton * spin_button);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkToolButton {
 	GtkToolItem parent;
 	GtkToolButtonPrivate *priv;
     };
 
-    struct _GtkToolButtonClass;
+    struct _GtkToolButtonClass {
+	GtkToolItemClass parent_class;
+	GType button_type;
+	void (*clicked) (GtkToolButton * tool_item);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkIMContext {
 	GObject parent_instance;
     };
 
-    struct _GtkIMContextClass;
+    struct _GtkIMContextClass {
+	GObjectClass parent_class;
+	void (*preedit_start) (GtkIMContext * context);
+	void (*preedit_end) (GtkIMContext * context);
+	void (*preedit_changed) (GtkIMContext * context);
+	void (*commit) (GtkIMContext * context, const gchar * str);
+	 gboolean(*retrieve_surrounding) (GtkIMContext * context);
+	 gboolean(*delete_surrounding) (GtkIMContext * context,
+					gint offset, gint n_chars);
+	void (*set_client_window) (GtkIMContext * context,
+				   GdkWindow * window);
+	void (*get_preedit_string) (GtkIMContext * context, gchar * *str,
+				    PangoAttrList * *attrs,
+				    gint * cursor_pos);
+	 gboolean(*filter_keypress) (GtkIMContext * context, event);
+	void (*focus_in) (GtkIMContext * context);
+	void (*focus_out) (GtkIMContext * context);
+	void (*reset) (GtkIMContext * context);
+	void (*set_cursor_location) (GtkIMContext * context,
+				     GdkRectangle * area);
+	void (*set_use_preedit) (GtkIMContext * context,
+				 gboolean use_preedit);
+	void (*set_surrounding) (GtkIMContext * context,
+				 const gchar * text, gint len,
+				 gint cursor_index);
+	 gboolean(*get_surrounding) (GtkIMContext * context, gchar * *text,
+				     gint * cursor_index);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+    };
 
-    struct _GtkToolShellIface;
+    struct _GtkToolShellIface {
+	GTypeInterface g_iface;
+	 GtkIconSize(*get_icon_size) (GtkToolShell * shell);
+	 GtkOrientation(*get_orientation) (GtkToolShell * shell);
+	 GtkToolbarStyle(*get_style) (GtkToolShell * shell);
+	 GtkReliefStyle(*get_relief_style) (GtkToolShell * shell);
+	void (*rebuild_menu) (GtkToolShell * shell);
+	 GtkOrientation(*get_text_orientation) (GtkToolShell * shell);
+	 gfloat(*get_text_alignment) (GtkToolShell * shell);
+	 PangoEllipsizeMode(*get_ellipsize_mode) (GtkToolShell * shell);
+	GtkSizeGroup *(*get_text_size_group) (GtkToolShell * shell);
+    };
 
     struct _GtkToggleButton {
 	GtkButton button;
 	GtkToggleButtonPrivate *priv;
     };
 
-    struct _GtkToggleButtonClass;
+    struct _GtkToggleButtonClass {
+	GtkButtonClass parent_class;
+	void (*toggled) (GtkToggleButton * toggle_button);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkMenuShell {
 	GtkContainer container;
 	GtkMenuShellPrivate *priv;
     };
 
-    struct _GtkMenuShellClass;
+    struct _GtkMenuShellClass {
+	GtkContainerClass parent_class;
+	guint submenu_placement:1;
+	void (*deactivate) (GtkMenuShell * menu_shell);
+	void (*selection_done) (GtkMenuShell * menu_shell);
+	void (*move_current) (GtkMenuShell * menu_shell,
+			      GtkMenuDirectionType direction);
+	void (*activate_current) (GtkMenuShell * menu_shell,
+				  gboolean force_hide);
+	void (*cancel) (GtkMenuShell * menu_shell);
+	void (*select_item) (GtkMenuShell * menu_shell,
+			     GtkWidget * menu_item);
+	void (*insert) (GtkMenuShell * menu_shell, GtkWidget * child,
+			gint position);
+	 gint(*get_popup_delay) (GtkMenuShell * menu_shell);
+	 gboolean(*move_selected) (GtkMenuShell * menu_shell,
+				   gint distance);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkFileChooserDialog {
 	GtkDialog parent_instance;
@@ -2906,7 +3021,14 @@ extern "C" {
 	GtkRecentManagerPrivate *priv;
     };
 
-    struct _GtkRecentManagerClass;
+    struct _GtkRecentManagerClass {
+	GObjectClass parent_class;
+	void (*changed) (GtkRecentManager * manager);
+	void (*_gtk_recent1) (void);
+	void (*_gtk_recent2) (void);
+	void (*_gtk_recent3) (void);
+	void (*_gtk_recent4) (void);
+    };
 
     struct _GtkFileChooserWidget {
 	GtkBox parent_instance;
@@ -2935,7 +3057,14 @@ extern "C" {
 	GtkRadioButtonPrivate *priv;
     };
 
-    struct _GtkRadioButtonClass;
+    struct _GtkRadioButtonClass {
+	GtkCheckButtonClass parent_class;
+	void (*group_changed) (GtkRadioButton * radio_button);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkSeparatorMenuItem {
 	GtkMenuItem menu_item;
@@ -2954,9 +3083,32 @@ extern "C" {
 	GtkLinkButtonPrivate *priv;
     };
 
-    struct _GtkLinkButtonClass;
+    struct _GtkLinkButtonClass {
+	GtkButtonClass parent_class;
+	 gboolean(*activate_link) (GtkLinkButton * button);
+	void (*_gtk_padding1) (void);
+	void (*_gtk_padding2) (void);
+	void (*_gtk_padding3) (void);
+	void (*_gtk_padding4) (void);
+    };
 
-    struct _GtkRcStyle;
+    struct _GtkRcStyle {
+	GObject parent_instance;
+	gchar *name;
+	gchar *bg_pixmap_name;
+	PangoFontDescription *font_desc;
+	GtkRcFlags color_flags;
+	GdkColor fg;
+	GdkColor bg;
+	GdkColor text;
+	GdkColor base;
+	gint xthickness;
+	gint ythickness;
+	GArray *rc_properties;
+	GSList *rc_style_lists;
+	GSList *icon_factories;
+	guint engine_specified:1;
+    };
 
     struct _GtkRequisition {
 	gint width;
@@ -2983,7 +3135,21 @@ extern "C" {
 	GtkRangePrivate *priv;
     };
 
-    struct _GtkRangeClass;
+    struct _GtkRangeClass {
+	GtkWidgetClass parent_class;
+	gchar *slider_detail;
+	gchar *stepper_detail;
+	void (*value_changed) (GtkRange * range);
+	void (*adjust_bounds) (GtkRange * range, gdouble new_value);
+	void (*move_slider) (GtkRange * range, GtkScrollType scroll);
+	void (*get_range_border) (GtkRange * range, GtkBorder * border_);
+	 gboolean(*change_value) (GtkRange * range, GtkScrollType scroll,
+				  gdouble new_value);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTextMark {
 	GObject parent_instance;
@@ -3003,7 +3169,14 @@ extern "C" {
 	GtkTreeSelectionPrivate *priv;
     };
 
-    struct _GtkTreeSelectionClass;
+    struct _GtkTreeSelectionClass {
+	GObjectClass parent_class;
+	void (*changed) (GtkTreeSelection * selection);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkSeparator {
 	GtkWidget widget;
@@ -3023,7 +3196,14 @@ extern "C" {
 	GtkTreeViewColumnPrivate *priv;
     };
 
-    struct _GtkTreeViewColumnClass;
+    struct _GtkTreeViewColumnClass {
+	GInitiallyUnownedClass parent_class;
+	void (*clicked) (GtkTreeViewColumn * tree_column);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTreeModelSort {
 	GObject parent;
@@ -3056,7 +3236,21 @@ extern "C" {
 	GtkStatusIconPrivate *priv;
     };
 
-    struct _GtkStatusIconClass;
+    struct _GtkStatusIconClass {
+	GObjectClass parent_class;
+	void (*activate) (GtkStatusIcon * status_icon);
+	void (*popup_menu) (GtkStatusIcon * status_icon, guint button,
+			    guint32 activate_time);
+	 gboolean(*size_changed) (GtkStatusIcon * status_icon, gint size);
+	 gboolean(*button_press_event) (GtkStatusIcon * status_icon,
+					event);
+	 gboolean(*button_release_event) (GtkStatusIcon * status_icon,
+					  event);
+	 gboolean(*scroll_event) (GtkStatusIcon * status_icon, event);
+	 gboolean(*query_tooltip) (GtkStatusIcon * status_icon, gint x,
+				   gint y, gboolean keyboard_mode,
+				   GtkTooltip * tooltip);
+    };
 
     struct _GtkBox {
 	GtkContainer container;
@@ -3076,7 +3270,20 @@ extern "C" {
 	GtkCalendarPrivate *priv;
     };
 
-    struct _GtkCalendarClass;
+    struct _GtkCalendarClass {
+	GtkWidgetClass parent_class;
+	void (*month_changed) (GtkCalendar * calendar);
+	void (*day_selected) (GtkCalendar * calendar);
+	void (*day_selected_double_click) (GtkCalendar * calendar);
+	void (*prev_month) (GtkCalendar * calendar);
+	void (*next_month) (GtkCalendar * calendar);
+	void (*prev_year) (GtkCalendar * calendar);
+	void (*next_year) (GtkCalendar * calendar);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkCellRendererProgress {
 	GtkCellRenderer parent_instance;
@@ -3106,7 +3313,15 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkActionableInterface;
+    struct _GtkActionableInterface {
+	GTypeInterface g_iface;
+	const gchar *(*get_action_name) (GtkActionable * actionable);
+	void (*set_action_name) (GtkActionable * actionable,
+				 const gchar * action_name);
+	GVariant *(*get_action_target_value) (GtkActionable * actionable);
+	void (*set_action_target_value) (GtkActionable * actionable,
+					 GVariant * target_value);
+    };
 
     struct _GtkListStore {
 	GObject parent;
@@ -3121,7 +3336,32 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkRecentChooserIface;
+    struct _GtkRecentChooserIface {
+	GTypeInterface base_iface;
+	 gboolean(*set_current_uri) (GtkRecentChooser * chooser,
+				     const gchar * uri, GError * *error);
+	gchar *(*get_current_uri) (GtkRecentChooser * chooser);
+	 gboolean(*select_uri) (GtkRecentChooser * chooser,
+				const gchar * uri, GError * *error);
+	void (*unselect_uri) (GtkRecentChooser * chooser,
+			      const gchar * uri);
+	void (*select_all) (GtkRecentChooser * chooser);
+	void (*unselect_all) (GtkRecentChooser * chooser);
+	GList *(*get_items) (GtkRecentChooser * chooser);
+	GtkRecentManager *(*get_recent_manager) (GtkRecentChooser *
+						 chooser);
+	void (*add_filter) (GtkRecentChooser * chooser,
+			    GtkRecentFilter * filter);
+	void (*remove_filter) (GtkRecentChooser * chooser,
+			       GtkRecentFilter * filter);
+	GSList *(*list_filters) (GtkRecentChooser * chooser);
+	void (*set_sort_func) (GtkRecentChooser * chooser,
+			       GtkRecentSortFunc sort_func,
+			       gpointer sort_data,
+			       GDestroyNotify data_destroy);
+	void (*item_activated) (GtkRecentChooser * chooser);
+	void (*selection_changed) (GtkRecentChooser * chooser);
+    };
 
     struct _GtkScrollableInterface {
 	GTypeInterface base_iface;
@@ -3132,7 +3372,15 @@ extern "C" {
 	GtkRadioActionPrivate *private_data;
     };
 
-    struct _GtkRadioActionClass;
+    struct _GtkRadioActionClass {
+	GtkToggleActionClass parent_class;
+	void (*changed) (GtkRadioAction * action,
+			 GtkRadioAction * current);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkRecentChooserWidget {
 	GtkBox parent_instance;
@@ -3152,14 +3400,55 @@ extern "C" {
 	GtkPlugPrivate *priv;
     };
 
-    struct _GtkPlugClass;
+    struct _GtkPlugClass {
+	GtkWindowClass parent_class;
+	void (*embedded) (GtkPlug * plug);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkNotebook {
 	GtkContainer widget;
 	GtkNotebookPrivate *priv;
     };
 
-    struct _GtkNotebookClass;
+    struct _GtkNotebookClass {
+	GtkContainerClass parent_class;
+	void (*switch_page) (GtkNotebook * notebook, GtkWidget * page,
+			     guint page_num);
+	 gboolean(*select_page) (GtkNotebook * notebook,
+				 gboolean move_focus);
+	 gboolean(*focus_tab) (GtkNotebook * notebook,
+			       GtkNotebookTab type);
+	 gboolean(*change_current_page) (GtkNotebook * notebook,
+					 gint offset);
+	void (*move_focus_out) (GtkNotebook * notebook,
+				GtkDirectionType direction);
+	 gboolean(*reorder_tab) (GtkNotebook * notebook,
+				 GtkDirectionType direction,
+				 gboolean move_to_last);
+	 gint(*insert_page) (GtkNotebook * notebook, GtkWidget * child,
+			     GtkWidget * tab_label, GtkWidget * menu_label,
+			     gint position);
+	GtkNotebook *(*create_window) (GtkNotebook * notebook,
+				       GtkWidget * page, gint x, gint y);
+	void (*page_reordered) (GtkNotebook * notebook, GtkWidget * page,
+				guint page_num);
+	void (*page_removed) (GtkNotebook * notebook, GtkWidget * page,
+			      guint page_num);
+	void (*page_added) (GtkNotebook * notebook, GtkWidget * page,
+			    guint page_num);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkLockButton {
 	GtkButton parent;
@@ -3178,9 +3467,26 @@ extern "C" {
 	void (*_gtk_reserved8) (void);
     };
 
-    struct _GtkTreeDragSourceIface;
+    struct _GtkTreeDragSourceIface {
+	GTypeInterface g_iface;
+	 gboolean(*row_draggable) (GtkTreeDragSource * drag_source,
+				   GtkTreePath * path);
+	 gboolean(*drag_data_get) (GtkTreeDragSource * drag_source,
+				   GtkTreePath * path,
+				   GtkSelectionData * selection_data);
+	 gboolean(*drag_data_delete) (GtkTreeDragSource * drag_source,
+				      GtkTreePath * path);
+    };
 
-    struct _GtkTreeDragDestIface;
+    struct _GtkTreeDragDestIface {
+	GTypeInterface g_iface;
+	 gboolean(*drag_data_received) (GtkTreeDragDest * drag_dest,
+					GtkTreePath * dest,
+					GtkSelectionData * selection_data);
+	 gboolean(*row_drop_possible) (GtkTreeDragDest * drag_dest,
+				       GtkTreePath * dest,
+				       GtkSelectionData * selection_data);
+    };
 
     struct _GtkLayout {
 	GtkContainer container;
@@ -3217,7 +3523,27 @@ extern "C" {
 	GtkEntryBufferPrivate *priv;
     };
 
-    struct _GtkEntryBufferClass;
+    struct _GtkEntryBufferClass {
+	GObjectClass parent_class;
+	void (*inserted_text) (GtkEntryBuffer * buffer, guint position,
+			       const gchar * chars, guint n_chars);
+	void (*deleted_text) (GtkEntryBuffer * buffer, guint position,
+			      guint n_chars);
+	 (*get_text) (GtkEntryBuffer * buffer, gsize * n_bytes);
+	 guint(*get_length) (GtkEntryBuffer * buffer);
+	 guint(*insert_text) (GtkEntryBuffer * buffer, guint position,
+			      const gchar * chars, guint n_chars);
+	 guint(*delete_text) (GtkEntryBuffer * buffer, guint position,
+			      guint n_chars);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkRequestedSize {
 	gint data;
@@ -3238,16 +3564,84 @@ extern "C" {
 	GtkThemingEnginePrivate *priv;
     };
 
-    struct _GtkThemingEngineClass;
+    struct _GtkThemingEngineClass {
+	GObjectClass parent_class;
+	void (*render_line) (GtkThemingEngine * engine, cairo_t * cr,
+			     gdouble x0, gdouble y0, gdouble x1,
+			     gdouble y1);
+	void (*render_background) (GtkThemingEngine * engine, cairo_t * cr,
+				   gdouble x0, gdouble y0, gdouble x1,
+				   gdouble y1);
+	void (*render_frame) (GtkThemingEngine * engine, cairo_t * cr,
+			      gdouble x0, gdouble y0, gdouble x1,
+			      gdouble y1);
+	void (*render_frame_gap) (GtkThemingEngine * engine, cairo_t * cr,
+				  gdouble x, gdouble y, gdouble width,
+				  gdouble height, GtkPositionType gap_side,
+				  gdouble xy0_gap, gdouble xy1_gap);
+	void (*render_extension) (GtkThemingEngine * engine, cairo_t * cr,
+				  gdouble x, gdouble y, gdouble width,
+				  gdouble height,
+				  GtkPositionType gap_side);
+	void (*render_check) (GtkThemingEngine * engine, cairo_t * cr,
+			      gdouble x0, gdouble y0, gdouble x1,
+			      gdouble y1);
+	void (*render_option) (GtkThemingEngine * engine, cairo_t * cr,
+			       gdouble x0, gdouble y0, gdouble x1,
+			       gdouble y1);
+	void (*render_arrow) (GtkThemingEngine * engine, cairo_t * cr,
+			      gdouble x0, gdouble y0, gdouble x1,
+			      gdouble y1);
+	void (*render_expander) (GtkThemingEngine * engine, cairo_t * cr,
+				 gdouble x0, gdouble y0, gdouble x1,
+				 gdouble y1);
+	void (*render_focus) (GtkThemingEngine * engine, cairo_t * cr,
+			      gdouble x0, gdouble y0, gdouble x1,
+			      gdouble y1);
+	void (*render_layout) (GtkThemingEngine * engine, cairo_t * cr,
+			       gdouble x, gdouble y, PangoLayout * layout);
+	void (*render_slider) (GtkThemingEngine * engine, cairo_t * cr,
+			       gdouble x, gdouble y, gdouble width,
+			       gdouble height, GtkOrientation orientation);
+	void (*render_handle) (GtkThemingEngine * engine, cairo_t * cr,
+			       gdouble x0, gdouble y0, gdouble x1,
+			       gdouble y1);
+	void (*render_activity) (GtkThemingEngine * engine, cairo_t * cr,
+				 gdouble x0, gdouble y0, gdouble x1,
+				 gdouble y1);
+	 (*render_icon_pixbuf) (GtkThemingEngine * engine,
+				const GtkIconSource * source,
+				GtkIconSize size);
+	void (*render_icon) (GtkThemingEngine * engine, cairo_t * cr,
+			     pixbuf, gdouble x, gdouble y);
+	gpointer padding;
+    };
 
-    struct _GtkFontChooserIface;
+    struct _GtkFontChooserIface {
+	GTypeInterface base_iface;
+	PangoFontFamily *(*get_font_family) (GtkFontChooser * fontchooser);
+	PangoFontFace *(*get_font_face) (GtkFontChooser * fontchooser);
+	 gint(*get_font_size) (GtkFontChooser * fontchooser);
+	void (*set_filter_func) (GtkFontChooser * fontchooser,
+				 GtkFontFilterFunc filter,
+				 gpointer user_data,
+				 GDestroyNotify destroy);
+	void (*font_activated) (GtkFontChooser * chooser,
+				const gchar * fontname);
+	gpointer padding;
+    };
 
     struct _GtkAppChooserButton {
 	GtkComboBox parent;
 	GtkAppChooserButtonPrivate *priv;
     };
 
-    struct _GtkAppChooserButtonClass;
+    struct _GtkAppChooserButtonClass {
+	GtkComboBoxClass parent_class;
+	void (*custom_item_activated) (GtkAppChooserButton * self,
+				       const gchar * item_name);
+	gpointer padding;
+    };
 
     struct _GtkCellRendererSpinner {
 	GtkCellRenderer parent;
@@ -3275,7 +3669,150 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkWidgetClass;
+    struct _GtkWidgetClass {
+	GInitiallyUnownedClass parent_class;
+	guint activate_signal;
+	void (*dispatch_child_properties_changed) (GtkWidget * widget,
+						   guint n_pspecs,
+						   GParamSpec * *pspecs);
+	void (*destroy) (GtkWidget * widget);
+	void (*show) (GtkWidget * widget);
+	void (*show_all) (GtkWidget * widget);
+	void (*hide) (GtkWidget * widget);
+	void (*map) (GtkWidget * widget);
+	void (*unmap) (GtkWidget * widget);
+	void (*realize) (GtkWidget * widget);
+	void (*unrealize) (GtkWidget * widget);
+	void (*size_allocate) (GtkWidget * widget,
+			       GtkAllocation * allocation);
+	void (*state_changed) (GtkWidget * widget,
+			       GtkStateType previous_state);
+	void (*state_flags_changed) (GtkWidget * widget,
+				     GtkStateFlags previous_state_flags);
+	void (*parent_set) (GtkWidget * widget,
+			    GtkWidget * previous_parent);
+	void (*hierarchy_changed) (GtkWidget * widget,
+				   GtkWidget * previous_parent);
+	void (*style_set) (GtkWidget * widget, GtkStyle * previous_style);
+	void (*direction_changed) (GtkWidget * widget,
+				   GtkTextDirection previous_direction);
+	void (*grab_notify) (GtkWidget * widget, gboolean was_grabbed);
+	void (*child_notify) (GtkWidget * widget,
+			      GParamSpec * child_property);
+	 gboolean(*draw) (GtkWidget * widget, cairo_t * cr);
+	 GtkSizeRequestMode(*get_request_mode) (GtkWidget * widget);
+	void (*get_preferred_height) (GtkWidget * widget,
+				      gint * minimum_height,
+				      gint * natural_height);
+	void (*get_preferred_width_for_height) (GtkWidget * widget,
+						gint height,
+						gint * minimum_width,
+						gint * natural_width);
+	void (*get_preferred_width) (GtkWidget * widget,
+				     gint * minimum_height,
+				     gint * natural_height);
+	void (*get_preferred_height_for_width) (GtkWidget * widget,
+						gint height,
+						gint * minimum_width,
+						gint * natural_width);
+	 gboolean(*mnemonic_activate) (GtkWidget * widget,
+				       gboolean group_cycling);
+	void (*grab_focus) (GtkWidget * widget);
+	 gboolean(*focus) (GtkWidget * widget, GtkDirectionType direction);
+	void (*move_focus) (GtkWidget * widget,
+			    GtkDirectionType direction);
+	 gboolean(*keynav_failed) (GtkWidget * widget,
+				   GtkDirectionType direction);
+	 gboolean(*event) (GtkWidget * widget, GdkEvent * event);
+	 gboolean(*button_press_event) (GtkWidget * widget, event);
+	 gboolean(*button_release_event) (GtkWidget * widget, event);
+	 gboolean(*scroll_event) (GtkWidget * widget, event);
+	 gboolean(*motion_notify_event) (GtkWidget * widget, event);
+	 gboolean(*delete_event) (GtkWidget * widget, event);
+	 gboolean(*destroy_event) (GtkWidget * widget, event);
+	 gboolean(*key_press_event) (GtkWidget * widget, event);
+	 gboolean(*key_release_event) (GtkWidget * widget, event);
+	 gboolean(*enter_notify_event) (GtkWidget * widget, event);
+	 gboolean(*leave_notify_event) (GtkWidget * widget, event);
+	 gboolean(*configure_event) (GtkWidget * widget, event);
+	 gboolean(*focus_in_event) (GtkWidget * widget, event);
+	 gboolean(*focus_out_event) (GtkWidget * widget, event);
+	 gboolean(*map_event) (GtkWidget * widget, event);
+	 gboolean(*unmap_event) (GtkWidget * widget, event);
+	 gboolean(*property_notify_event) (GtkWidget * widget, event);
+	 gboolean(*selection_clear_event) (GtkWidget * widget, event);
+	 gboolean(*selection_request_event) (GtkWidget * widget, event);
+	 gboolean(*selection_notify_event) (GtkWidget * widget, event);
+	 gboolean(*proximity_in_event) (GtkWidget * widget, event);
+	 gboolean(*proximity_out_event) (GtkWidget * widget, event);
+	 gboolean(*visibility_notify_event) (GtkWidget * widget, event);
+	 gboolean(*window_state_event) (GtkWidget * widget, event);
+	 gboolean(*damage_event) (GtkWidget * widget, event);
+	 gboolean(*grab_broken_event) (GtkWidget * widget, event);
+	void (*selection_get) (GtkWidget * widget,
+			       GtkSelectionData * selection_data,
+			       guint info, guint time_);
+	void (*selection_received) (GtkWidget * widget,
+				    GtkSelectionData * selection_data,
+				    guint time_);
+	void (*drag_begin) (GtkWidget * widget, GdkDragContext * context);
+	void (*drag_end) (GtkWidget * widget, GdkDragContext * context);
+	void (*drag_data_get) (GtkWidget * widget,
+			       GdkDragContext * context,
+			       GtkSelectionData * selection_data,
+			       guint info, guint time_);
+	void (*drag_data_delete) (GtkWidget * widget,
+				  GdkDragContext * context);
+	void (*drag_leave) (GtkWidget * widget, GdkDragContext * context,
+			    guint time_);
+	 gboolean(*drag_motion) (GtkWidget * widget,
+				 GdkDragContext * context, gint x, gint y,
+				 guint time_);
+	 gboolean(*drag_drop) (GtkWidget * widget,
+			       GdkDragContext * context, gint x, gint y,
+			       guint time_);
+	void (*drag_data_received) (GtkWidget * widget,
+				    GdkDragContext * context, gint x,
+				    gint y,
+				    GtkSelectionData * selection_data,
+				    guint info, guint time_);
+	 gboolean(*drag_failed) (GtkWidget * widget,
+				 GdkDragContext * context,
+				 GtkDragResult result);
+	 gboolean(*popup_menu) (GtkWidget * widget);
+	 gboolean(*show_help) (GtkWidget * widget,
+			       GtkWidgetHelpType help_type);
+	AtkObject *(*get_accessible) (GtkWidget * widget);
+	void (*screen_changed) (GtkWidget * widget,
+				GdkScreen * previous_screen);
+	 gboolean(*can_activate_accel) (GtkWidget * widget,
+					guint signal_id);
+	void (*composited_changed) (GtkWidget * widget);
+	 gboolean(*query_tooltip) (GtkWidget * widget, gint x, gint y,
+				   gboolean keyboard_tooltip,
+				   GtkTooltip * tooltip);
+	void (*compute_expand) (GtkWidget * widget, gboolean * hexpand_p,
+				gboolean * vexpand_p);
+	void (*adjust_size_request) (GtkWidget * widget,
+				     GtkOrientation orientation,
+				     gint * minimum_size,
+				     gint * natural_size);
+	void (*adjust_size_allocation) (GtkWidget * widget,
+					GtkOrientation orientation,
+					gint * minimum_size,
+					gint * natural_size,
+					gint * allocated_pos,
+					gint * allocated_size);
+	void (*style_updated) (GtkWidget * widget);
+	 gboolean(*touch_event) (GtkWidget * widget, event);
+	GtkWidgetClassPrivate *priv;
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+    };
 
     struct _GtkWidgetAuxInfo {
 	gint width;
@@ -3311,9 +3848,46 @@ extern "C" {
 	GtkEntryPrivate *priv;
     };
 
-    struct _GtkEntryClass;
+    struct _GtkEntryClass {
+	GtkWidgetClass parent_class;
+	void (*populate_popup) (GtkEntry * entry, GtkMenu * menu);
+	void (*activate) (GtkEntry * entry);
+	void (*move_cursor) (GtkEntry * entry, GtkMovementStep step,
+			     gint count, gboolean extend_selection);
+	void (*insert_at_cursor) (GtkEntry * entry, const gchar * str);
+	void (*delete_from_cursor) (GtkEntry * entry, GtkDeleteType type,
+				    gint count);
+	void (*backspace) (GtkEntry * entry);
+	void (*cut_clipboard) (GtkEntry * entry);
+	void (*copy_clipboard) (GtkEntry * entry);
+	void (*paste_clipboard) (GtkEntry * entry);
+	void (*toggle_overwrite) (GtkEntry * entry);
+	void (*get_text_area_size) (GtkEntry * entry, gint * x, gint * y,
+				    gint * width, gint * height);
+	void (*get_frame_size) (GtkEntry * entry, gint * x, gint * y,
+				gint * width, gint * height);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+    };
 
-    struct _GtkColorChooserInterface;
+    struct _GtkColorChooserInterface {
+	GTypeInterface base_interface;
+	void (*get_rgba) (GtkColorChooser * chooser, GdkRGBA * color);
+	void (*set_rgba) (GtkColorChooser * chooser,
+			  const GdkRGBA * color);
+	void (*add_palette) (GtkColorChooser * chooser,
+			     GtkOrientation orientation,
+			     gint colors_per_line, gint n_colors,
+			     GdkRGBA * colors);
+	void (*color_activated) (GtkColorChooser * chooser,
+				 const GdkRGBA * color);
+	gpointer padding;
+    };
 
     struct _GtkAccelLabel {
 	GtkDialog label;
@@ -3362,49 +3936,136 @@ extern "C" {
 	GtkColorButtonPrivate *priv;
     };
 
-    struct _GtkColorButtonClass;
+    struct _GtkColorButtonClass {
+	GtkButtonClass parent_class;
+	void (*color_set) (GtkColorButton * cp);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkUIManager {
 	GObject parent;
 	GtkUIManagerPrivate *priv;
     };
 
-    struct _GtkUIManagerClass;
+    struct _GtkUIManagerClass {
+	GObjectClass parent_class;
+	void (*add_widget) (GtkUIManager * manager, GtkWidget * widget);
+	void (*actions_changed) (GtkUIManager * manager);
+	void (*connect_proxy) (GtkUIManager * manager, GtkAction * action,
+			       GtkWidget * proxy);
+	void (*disconnect_proxy) (GtkUIManager * manager,
+				  GtkAction * action, GtkWidget * proxy);
+	void (*pre_activate) (GtkUIManager * manager, GtkAction * action);
+	void (*post_activate) (GtkUIManager * manager, GtkAction * action);
+	GtkWidget *(*get_widget) (GtkUIManager * manager,
+				  const gchar * path);
+	GtkAction *(*get_action) (GtkUIManager * manager,
+				  const gchar * path);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkToggleToolButton {
 	GtkToolButton parent;
 	GtkToggleToolButtonPrivate *priv;
     };
 
-    struct _GtkToggleToolButtonClass;
+    struct _GtkToggleToolButtonClass {
+	GtkToolButtonClass parent_class;
+	void (*toggled) (GtkToggleToolButton * button);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkCellRendererAccel {
 	GtkCellRendererText parent;
 	GtkCellRendererAccelPrivate *priv;
     };
 
-    struct _GtkCellRendererAccelClass;
+    struct _GtkCellRendererAccelClass {
+	GtkCellRendererTextClass parent_class;
+	void (*accel_edited) (accel, const gchar * path_string,
+			      guint accel_key, GdkModifierType accel_mods,
+			      guint hardware_keycode);
+	void (*accel_cleared) (accel, const gchar * path_string);
+	void (*_gtk_reserved0) (void);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkOverlay {
 	GtkBin parent;
 	GtkOverlayPrivate *priv;
     };
 
-    struct _GtkOverlayClass;
+    struct _GtkOverlayClass {
+	GtkBinClass parent_class;
+	 gboolean(*get_child_position) (GtkOverlay * overlay,
+					GtkWidget * widget,
+					GtkAllocation * allocation);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkTextView {
 	GtkContainer parent_instance;
 	GtkTextViewPrivate *priv;
     };
 
-    struct _GtkTextViewClass;
+    struct _GtkTextViewClass {
+	GtkContainerClass parent_class;
+	void (*populate_popup) (GtkTextView * text_view, GtkMenu * menu);
+	void (*move_cursor) (GtkTextView * text_view, GtkMovementStep step,
+			     gint count, gboolean extend_selection);
+	void (*set_anchor) (GtkTextView * text_view);
+	void (*insert_at_cursor) (GtkTextView * text_view,
+				  const gchar * str);
+	void (*delete_from_cursor) (GtkTextView * text_view,
+				    GtkDeleteType type, gint count);
+	void (*backspace) (GtkTextView * text_view);
+	void (*cut_clipboard) (GtkTextView * text_view);
+	void (*copy_clipboard) (GtkTextView * text_view);
+	void (*paste_clipboard) (GtkTextView * text_view);
+	void (*toggle_overwrite) (GtkTextView * text_view);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkInfoBar {
 	GtkBox parent;
 	GtkInfoBarPrivate *priv;
     };
 
-    struct _GtkInfoBarClass;
+    struct _GtkInfoBarClass {
+	GtkBoxClass parent_class;
+	void (*response) (GtkInfoBar * info_bar, gint response_id);
+	void (*close) (GtkInfoBar * info_bar);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkRecentAction {
 	GtkAction parent_instance;
@@ -3434,7 +4095,17 @@ extern "C" {
 	GtkTextTagTablePrivate *priv;
     };
 
-    struct _GtkTextTagTableClass;
+    struct _GtkTextTagTableClass {
+	GObjectClass parent_class;
+	void (*tag_changed) (GtkTextTagTable * table, GtkTextTag * tag,
+			     gboolean size_changed);
+	void (*tag_added) (GtkTextTagTable * table, GtkTextTag * tag);
+	void (*tag_removed) (GtkTextTagTable * table, GtkTextTag * tag);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkRecentFilterInfo {
 	GtkRecentFilterFlags contains;
@@ -3451,14 +4122,78 @@ extern "C" {
 	GtkSwitchPrivate *priv;
     };
 
-    struct _GtkSwitchClass;
+    struct _GtkSwitchClass {
+	GtkWidgetClass parent_class;
+	void (*activate) (GtkSwitch * sw);
+	void (*_switch_padding_1) (void);
+	void (*_switch_padding_2) (void);
+	void (*_switch_padding_3) (void);
+	void (*_switch_padding_4) (void);
+	void (*_switch_padding_5) (void);
+	void (*_switch_padding_6) (void);
+    };
 
     struct _GtkCellRenderer {
 	GInitiallyUnowned parent_instance;
 	GtkCellRendererPrivate *priv;
     };
 
-    struct _GtkCellRendererClass;
+    struct _GtkCellRendererClass {
+	GInitiallyUnownedClass parent_class;
+	 GtkSizeRequestMode(*get_request_mode) (GtkCellRenderer * cell);
+	void (*get_preferred_width) (GtkCellRenderer * cell,
+				     GtkWidget * widget,
+				     gint * minimum_size,
+				     gint * natural_size);
+	void (*get_preferred_height_for_width) (GtkCellRenderer * cell,
+						GtkWidget * widget,
+						gint width,
+						gint * minimum_height,
+						gint * natural_height);
+	void (*get_preferred_height) (GtkCellRenderer * cell,
+				      GtkWidget * widget,
+				      gint * minimum_size,
+				      gint * natural_size);
+	void (*get_preferred_width_for_height) (GtkCellRenderer * cell,
+						GtkWidget * widget,
+						gint width,
+						gint * minimum_height,
+						gint * natural_height);
+	void (*get_aligned_area) (GtkCellRenderer * cell,
+				  GtkWidget * widget,
+				  GtkCellRendererState flags,
+				  const GdkRectangle * cell_area,
+				  GdkRectangle * aligned_area);
+	void (*get_size) (GtkCellRenderer * cell, GtkWidget * widget,
+			  const GdkRectangle * cell_area, gint * x_offset,
+			  gint * y_offset, gint * width, gint * height);
+	void (*render) (GtkCellRenderer * cell, cairo_t * cr,
+			GtkWidget * widget,
+			const GdkRectangle * background_area,
+			const GdkRectangle * cell_area,
+			GtkCellRendererState flags);
+	 gboolean(*activate) (GtkCellRenderer * cell, GdkEvent * event,
+			      GtkWidget * widget, const gchar * path,
+			      const GdkRectangle * background_area,
+			      const GdkRectangle * cell_area,
+			      GtkCellRendererState flags);
+	GtkCellEditable *(*start_editing) (GtkCellRenderer * cell,
+					   GdkEvent * event,
+					   GtkWidget * widget,
+					   const gchar * path,
+					   const GdkRectangle *
+					   background_area,
+					   const GdkRectangle * cell_area,
+					   GtkCellRendererState flags);
+	void (*editing_canceled) (GtkCellRenderer * cell);
+	void (*editing_started) (GtkCellRenderer * cell,
+				 GtkCellEditable * editable,
+				 const gchar * path);
+	GtkCellRendererClassPrivate *priv;
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTargetEntry {
 	gchar *target;
@@ -3484,14 +4219,33 @@ extern "C" {
 	GtkFramePrivate *priv;
     };
 
-    struct _GtkFrameClass;
+    struct _GtkFrameClass {
+	GtkBinClass parent_class;
+	void (*compute_child_allocation) (GtkFrame * frame,
+					  GtkAllocation * allocation);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkAssistant {
 	GtkWindow parent;
 	GtkAssistantPrivate *priv;
     };
 
-    struct _GtkAssistantClass;
+    struct _GtkAssistantClass {
+	GtkWindowClass parent_class;
+	void (*prepare) (GtkAssistant * assistant, GtkWidget * page);
+	void (*apply) (GtkAssistant * assistant);
+	void (*close) (GtkAssistant * assistant);
+	void (*cancel) (GtkAssistant * assistant);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+    };
 
     struct _GtkBorder {
 	gint16 left;
@@ -3505,7 +4259,15 @@ extern "C" {
 	GtkToolItemPrivate *priv;
     };
 
-    struct _GtkToolItemClass;
+    struct _GtkToolItemClass {
+	GtkBinClass parent_class;
+	 gboolean(*create_menu_proxy) (GtkToolItem * tool_item);
+	void (*toolbar_reconfigured) (GtkToolItem * tool_item);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTextAppearance {
 	GdkColor bg_color;
@@ -3595,28 +4357,75 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkPrintOperationPreviewIface;
+    struct _GtkPrintOperationPreviewIface {
+	GTypeInterface g_iface;
+	void (*ready) (GtkPrintOperationPreview * preview,
+		       GtkPrintContext * context);
+	void (*got_page_size) (GtkPrintOperationPreview * preview,
+			       GtkPrintContext * context,
+			       GtkPageSetup * page_setup);
+	void (*render_page) (GtkPrintOperationPreview * preview,
+			     gint page_nr);
+	 gboolean(*is_selected) (GtkPrintOperationPreview * preview,
+				 gint page_nr);
+	void (*end_preview) (GtkPrintOperationPreview * preview);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkToggleAction {
 	GtkAction parent;
 	GtkToggleActionPrivate *priv;
     };
 
-    struct _GtkToggleActionClass;
+    struct _GtkToggleActionClass {
+	GtkActionClass parent_class;
+	void (*toggled) (GtkToggleAction * action);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkCssProvider {
 	GObject parent_instance;
 	GtkCssProviderPrivate *priv;
     };
 
-    struct _GtkCssProviderClass;
+    struct _GtkCssProviderClass {
+	GObjectClass parent_class;
+	void (*parsing_error) (GtkCssProvider * provider,
+			       GtkCssSection * section,
+			       const GError * error);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTreeModelFilter {
 	GObject parent;
 	GtkTreeModelFilterPrivate *priv;
     };
 
-    struct _GtkTreeModelFilterClass;
+    struct _GtkTreeModelFilterClass {
+	GObjectClass parent_class;
+	 gboolean(*visible) (GtkTreeModelFilter * self,
+			     GtkTreeModel * child_model,
+			     GtkTreeIter * iter);
+	void (*modify) (GtkTreeModelFilter * self,
+			GtkTreeModel * child_model, GtkTreeIter * iter,
+			GValue * value, gint column);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkSizeGroup {
 	GObject parent_instance;
@@ -3648,7 +4457,15 @@ extern "C" {
 	GtkSocketPrivate *priv;
     };
 
-    struct _GtkSocketClass;
+    struct _GtkSocketClass {
+	GtkContainerClass parent_class;
+	void (*plug_added) (GtkSocket * socket_);
+	 gboolean(*plug_removed) (GtkSocket * socket_);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkOffscreenWindow {
 	GtkWindow parent_object;
@@ -3680,7 +4497,24 @@ extern "C" {
 	GtkMenuItemPrivate *priv;
     };
 
-    struct _GtkMenuItemClass;
+    struct _GtkMenuItemClass {
+	GtkBinClass parent_class;
+	guint hide_on_activate:1;
+	void (*activate) (GtkMenuItem * menu_item);
+	void (*activate_item) (GtkMenuItem * menu_item);
+	void (*toggle_size_request) (GtkMenuItem * menu_item,
+				     gint * requisition);
+	void (*toggle_size_allocate) (GtkMenuItem * menu_item,
+				      gint allocation);
+	void (*set_label) (GtkMenuItem * menu_item, const gchar * label);
+	const gchar *(*get_label) (GtkMenuItem * menu_item);
+	void (*select) (GtkMenuItem * menu_item);
+	void (*deselect) (GtkMenuItem * menu_item);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkIMContextInfo {
 	const gchar *context_id;
@@ -3695,7 +4529,15 @@ extern "C" {
 	GtkActionGroupPrivate *priv;
     };
 
-    struct _GtkActionGroupClass;
+    struct _GtkActionGroupClass {
+	GObjectClass parent_class;
+	GtkAction *(*get_action) (GtkActionGroup * action_group,
+				  const gchar * action_name);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkActionEntry {
 	const gchar *name;
@@ -3730,30 +4572,100 @@ extern "C" {
 	GtkPanedPrivate *priv;
     };
 
-    struct _GtkPanedClass;
+    struct _GtkPanedClass {
+	GtkContainerClass parent_class;
+	 gboolean(*cycle_child_focus) (GtkPaned * paned, gboolean reverse);
+	 gboolean(*toggle_handle_focus) (GtkPaned * paned);
+	 gboolean(*move_handle) (GtkPaned * paned, GtkScrollType scroll);
+	 gboolean(*cycle_handle_focus) (GtkPaned * paned,
+					gboolean reverse);
+	 gboolean(*accept_position) (GtkPaned * paned);
+	 gboolean(*cancel_position) (GtkPaned * paned);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
-    struct _GtkEditableInterface;
+    struct _GtkEditableInterface {
+	GTypeInterface base_iface;
+	void (*insert_text) (GtkEditable * editable,
+			     const gchar * new_text, gint new_text_length,
+			     gint * position);
+	void (*delete_text) (GtkEditable * editable, gint start_pos,
+			     gint end_pos);
+	void (*changed) (GtkEditable * editable);
+	void (*do_insert_text) (GtkEditable * editable,
+				const gchar * new_text,
+				gint new_text_length, gint * position);
+	void (*do_delete_text) (GtkEditable * editable, gint start_pos,
+				gint end_pos);
+	 (*get_chars) (GtkEditable * editable, gint start_pos,
+		       gint end_pos);
+	void (*set_selection_bounds) (GtkEditable * editable,
+				      gint start_pos, gint end_pos);
+	 gboolean(*get_selection_bounds) (GtkEditable * editable,
+					  gint * start_pos,
+					  gint * end_pos);
+	void (*set_position) (GtkEditable * editable, gint position);
+	 gint(*get_position) (GtkEditable * editable);
+    };
 
     struct _GtkAction {
 	GObject object;
 	GtkActionPrivate *private_data;
     };
 
-    struct _GtkActionClass;
+    struct _GtkActionClass {
+	GObjectClass parent_class;
+	void (*activate) (GtkAction * action);
+	GType menu_item_type;
+	GType toolbar_item_type;
+	GtkWidget *(*create_menu_item) (GtkAction * action);
+	GtkWidget *(*create_tool_item) (GtkAction * action);
+	void (*connect_proxy) (GtkAction * action, GtkWidget * proxy);
+	void (*disconnect_proxy) (GtkAction * action, GtkWidget * proxy);
+	GtkWidget *(*create_menu) (GtkAction * action);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkScrolledWindow {
 	GtkBin container;
 	GtkScrolledWindowPrivate *priv;
     };
 
-    struct _GtkScrolledWindowClass;
+    struct _GtkScrolledWindowClass {
+	GtkBinClass parent_class;
+	gint scrollbar_spacing;
+	 gboolean(*scroll_child) (GtkScrolledWindow * scrolled_window,
+				  GtkScrollType scroll,
+				  gboolean horizontal);
+	void (*move_focus_out) (GtkScrolledWindow * scrolled_window,
+				GtkDirectionType direction);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkScale {
 	GtkRange parent;
 	GtkScalePrivate *priv;
     };
 
-    struct _GtkScaleClass;
+    struct _GtkScaleClass {
+	GtkRangeClass parent_class;
+	 (*format_value) (GtkScale * scale, gdouble value);
+	void (*draw_value) (GtkScale * scale);
+	void (*get_layout_offsets) (GtkScale * scale, gint * x, gint * y);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkImage {
 	GtkMisc misc;
@@ -3773,7 +4685,15 @@ extern "C" {
 	GtkCellRendererTextPrivate *priv;
     };
 
-    struct _GtkCellRendererTextClass;
+    struct _GtkCellRendererTextClass {
+	GtkCellRendererClass parent_class;
+	void (*edited) (GtkCellRendererText * cell_renderer_text,
+			const gchar * path, const gchar * new_text);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkRadioToolButton {
 	GtkToggleToolButton parent;
@@ -3792,14 +4712,29 @@ extern "C" {
 	GtkTextTagPrivate *priv;
     };
 
-    struct _GtkTextTagClass;
+    struct _GtkTextTagClass {
+	GObjectClass parent_class;
+	 gboolean(*event) (GtkTextTag * tag, GObject * event_object,
+			   GdkEvent * event, const GtkTextIter * iter);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkApplication {
 	GApplication parent;
 	GtkApplicationPrivate *priv;
     };
 
-    struct _GtkApplicationClass;
+    struct _GtkApplicationClass {
+	GApplicationClass parent_class;
+	void (*window_added) (GtkApplication * application,
+			      GtkWindow * window);
+	void (*window_removed) (GtkApplication * application,
+				GtkWindow * window);
+	gpointer padding;
+    };
 
     struct _GtkAccessible {
 	AtkObject parent;
@@ -3833,7 +4768,14 @@ extern "C" {
 	GtkRadioMenuItemPrivate *priv;
     };
 
-    struct _GtkRadioMenuItemClass;
+    struct _GtkRadioMenuItemClass {
+	GtkCheckMenuItemClass parent_class;
+	void (*group_changed) (GtkRadioMenuItem * radio_menu_item);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkStyleProperties {
 	GObject parent_object;
@@ -3873,7 +4815,18 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkStyleProviderIface;
+    struct _GtkStyleProviderIface {
+	GTypeInterface g_iface;
+	GtkStyleProperties *(*get_style) (GtkStyleProvider * provider,
+					  GtkWidgetPath * path);
+	 gboolean(*get_style_property) (GtkStyleProvider * provider,
+					GtkWidgetPath * path,
+					GtkStateFlags state,
+					GParamSpec * pspec,
+					GValue * value);
+	GtkIconFactory *(*get_icon_factory) (GtkStyleProvider * provider,
+					     GtkWidgetPath * path);
+    };
 
     struct _GtkApplicationWindow {
 	GtkWindow parent_instance;
@@ -3890,16 +4843,47 @@ extern "C" {
 	GtkEntryCompletionPrivate *priv;
     };
 
-    struct _GtkEntryCompletionClass;
+    struct _GtkEntryCompletionClass {
+	GObjectClass parent_class;
+	 gboolean(*match_selected) (GtkEntryCompletion * completion,
+				    GtkTreeModel * model,
+				    GtkTreeIter * iter);
+	void (*action_activated) (GtkEntryCompletion * completion,
+				  gint index_);
+	 gboolean(*insert_prefix) (GtkEntryCompletion * completion,
+				   const gchar * prefix);
+	 gboolean(*cursor_on_match) (GtkEntryCompletion * completion,
+				     GtkTreeModel * model,
+				     GtkTreeIter * iter);
+	void (*_gtk_reserved0) (void);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+    };
 
-    struct _GtkCellEditableIface;
+    struct _GtkCellEditableIface {
+	GTypeInterface g_iface;
+	void (*editing_done) (GtkCellEditable * cell_editable);
+	void (*remove_widget) (GtkCellEditable * cell_editable);
+	void (*start_editing) (GtkCellEditable * cell_editable,
+			       GdkEvent * event);
+    };
 
     struct _GtkCheckMenuItem {
 	GtkMenuItem menu_item;
 	GtkCheckMenuItemPrivate *priv;
     };
 
-    struct _GtkCheckMenuItemClass;
+    struct _GtkCheckMenuItemClass {
+	GtkMenuItemClass parent_class;
+	void (*toggled) (GtkCheckMenuItem * check_menu_item);
+	void (*draw_indicator) (GtkCheckMenuItem * check_menu_item,
+				cairo_t * cr);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkFontChooserWidget {
 	GtkBox parent_instance;
@@ -3923,7 +4907,14 @@ extern "C" {
 	GtkFontButtonPrivate *priv;
     };
 
-    struct _GtkFontButtonClass;
+    struct _GtkFontButtonClass {
+	GtkButtonClass parent_class;
+	void (*font_set) (GtkFontButton * gfp);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkImageMenuItem {
 	GtkMenuItem menu_item;
@@ -3970,21 +4961,72 @@ extern "C" {
 	gint y;
     };
 
-    struct _GtkBuildableIface;
+    struct _GtkBuildableIface {
+	GTypeInterface g_iface;
+	void (*set_name) (GtkBuildable * buildable, const gchar * name);
+	const gchar *(*get_name) (GtkBuildable * buildable);
+	void (*add_child) (GtkBuildable * buildable, GtkBuilder * builder,
+			   GObject * child, const gchar * type);
+	void (*set_buildable_property) (GtkBuildable * buildable,
+					GtkBuilder * builder,
+					const gchar * name,
+					const GValue * value);
+	GObject *(*construct_child) (GtkBuildable * buildable,
+				     GtkBuilder * builder,
+				     const gchar * name);
+	 gboolean(*custom_tag_start) (GtkBuildable * buildable,
+				      GtkBuilder * builder,
+				      GObject * child,
+				      const gchar * tagname,
+				      GMarkupParser * parser,
+				      gpointer * data);
+	void (*custom_tag_end) (GtkBuildable * buildable,
+				GtkBuilder * builder, GObject * child,
+				const gchar * tagname, gpointer * data);
+	void (*custom_finished) (GtkBuildable * buildable,
+				 GtkBuilder * builder, GObject * child,
+				 const gchar * tagname, gpointer data);
+	void (*parser_finished) (GtkBuildable * buildable,
+				 GtkBuilder * builder);
+	GObject *(*get_internal_child) (GtkBuildable * buildable,
+					GtkBuilder * builder,
+					const gchar * name);
+    };
 
     struct _GtkButton {
 	GtkBin bin;
 	GtkButtonPrivate *priv;
     };
 
-    struct _GtkButtonClass;
+    struct _GtkButtonClass {
+	GtkBinClass parent_class;
+	void (*pressed) (GtkButton * button);
+	void (*released) (GtkButton * button);
+	void (*clicked) (GtkButton * button);
+	void (*enter) (GtkButton * button);
+	void (*leave) (GtkButton * button);
+	void (*activate) (GtkButton * button);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkAccelGroup {
 	GObject parent;
 	GtkAccelGroupPrivate *priv;
     };
 
-    struct _GtkAccelGroupClass;
+    struct _GtkAccelGroupClass {
+	GObjectClass parent_class;
+	void (*accel_changed) (GtkAccelGroup * accel_group, guint keyval,
+			       GdkModifierType modifier,
+			       GClosure * accel_closure);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkAccelKey {
 	guint accel_key;
@@ -4016,7 +5058,16 @@ extern "C" {
 	GtkAppChooserWidgetPrivate *priv;
     };
 
-    struct _GtkAppChooserWidgetClass;
+    struct _GtkAppChooserWidgetClass {
+	GtkBoxClass parent_class;
+	void (*application_selected) (GtkAppChooserWidget * self,
+				      GAppInfo * app_info);
+	void (*application_activated) (GtkAppChooserWidget * self,
+				       GAppInfo * app_info);
+	void (*populate_popup) (GtkAppChooserWidget * self, GtkMenu * menu,
+				GAppInfo * app_info);
+	gpointer padding;
+    };
 
     struct _GtkButtonBox {
 	GtkBox box;
@@ -4041,16 +5092,148 @@ extern "C" {
 	GtkCellAreaPrivate *priv;
     };
 
-    struct _GtkCellAreaClass;
+    struct _GtkCellAreaClass {
+	GInitiallyUnownedClass parent_class;
+	void (*add) (GtkCellArea * area, GtkCellRenderer * renderer);
+	void (*remove) (GtkCellArea * area, GtkCellRenderer * renderer);
+	void (*foreach) (GtkCellArea * area, GtkCellCallback callback,
+			 gpointer callback_data);
+	void (*foreach_alloc) (GtkCellArea * area,
+			       GtkCellAreaContext * context,
+			       GtkWidget * widget,
+			       const GdkRectangle * cell_area,
+			       const GdkRectangle * background_area,
+			       GtkCellAllocCallback callback,
+			       gpointer callback_data);
+	 gint(*event) (GtkCellArea * area, GtkCellAreaContext * context,
+		       GtkWidget * widget, GdkEvent * event,
+		       const GdkRectangle * cell_area,
+		       GtkCellRendererState flags);
+	void (*render) (GtkCellArea * area, GtkCellAreaContext * context,
+			GtkWidget * widget, cairo_t * cr,
+			const GdkRectangle * background_area,
+			const GdkRectangle * cell_area,
+			GtkCellRendererState flags, gboolean paint_focus);
+	void (*apply_attributes) (GtkCellArea * area,
+				  GtkTreeModel * tree_model,
+				  GtkTreeIter * iter, gboolean is_expander,
+				  gboolean is_expanded);
+	GtkCellAreaContext *(*create_context) (GtkCellArea * area);
+	GtkCellAreaContext *(*copy_context) (GtkCellArea * area,
+					     GtkCellAreaContext * context);
+	 GtkSizeRequestMode(*get_request_mode) (GtkCellArea * area);
+	void (*get_preferred_width) (GtkCellArea * area,
+				     GtkCellAreaContext * context,
+				     GtkWidget * widget,
+				     gint * minimum_width,
+				     gint * natural_width);
+	void (*get_preferred_height_for_width) (GtkCellArea * area,
+						GtkCellAreaContext *
+						context,
+						GtkWidget * widget,
+						gint width,
+						gint * minimum_height,
+						gint * natural_height);
+	void (*get_preferred_height) (GtkCellArea * area,
+				      GtkCellAreaContext * context,
+				      GtkWidget * widget,
+				      gint * minimum_width,
+				      gint * natural_width);
+	void (*get_preferred_width_for_height) (GtkCellArea * area,
+						GtkCellAreaContext *
+						context,
+						GtkWidget * widget,
+						gint width,
+						gint * minimum_height,
+						gint * natural_height);
+	void (*set_cell_property) (GtkCellArea * area,
+				   GtkCellRenderer * renderer,
+				   guint property_id, const GValue * value,
+				   GParamSpec * pspec);
+	void (*get_cell_property) (GtkCellArea * area,
+				   GtkCellRenderer * renderer,
+				   guint property_id, GValue * value,
+				   GParamSpec * pspec);
+	 gboolean(*focus) (GtkCellArea * area, GtkDirectionType direction);
+	 gboolean(*is_activatable) (GtkCellArea * area);
+	 gboolean(*activate) (GtkCellArea * area,
+			      GtkCellAreaContext * context,
+			      GtkWidget * widget,
+			      const GdkRectangle * cell_area,
+			      GtkCellRendererState flags,
+			      gboolean edit_only);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
-    struct _GtkCellAreaContextClass;
+    struct _GtkCellAreaContextClass {
+	GObjectClass parent_class;
+	void (*allocate) (GtkCellAreaContext * context, gint width,
+			  gint height);
+	void (*reset) (GtkCellAreaContext * context);
+	void (*get_preferred_height_for_width) (GtkCellAreaContext *
+						context, gint width,
+						gint * minimum_height,
+						gint * natural_height);
+	void (*get_preferred_width_for_height) (GtkCellAreaContext *
+						context, gint width,
+						gint * minimum_height,
+						gint * natural_height);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+    };
 
     struct _GtkPrintOperation {
 	GObject parent_instance;
 	GtkPrintOperationPrivate *priv;
     };
 
-    struct _GtkPrintOperationClass;
+    struct _GtkPrintOperationClass {
+	GObjectClass parent_class;
+	void (*done) (GtkPrintOperation * operation,
+		      GtkPrintOperationResult result);
+	void (*begin_print) (GtkPrintOperation * operation,
+			     GtkPrintContext * context);
+	 gboolean(*paginate) (GtkPrintOperation * operation,
+			      GtkPrintContext * context);
+	void (*request_page_setup) (GtkPrintOperation * operation,
+				    GtkPrintContext * context,
+				    gint page_nr, GtkPageSetup * setup);
+	void (*draw_page) (GtkPrintOperation * operation,
+			   GtkPrintContext * context, gint page_nr);
+	void (*end_print) (GtkPrintOperation * operation,
+			   GtkPrintContext * context);
+	void (*status_changed) (GtkPrintOperation * operation);
+	GtkWidget *(*create_custom_widget) (GtkPrintOperation * operation);
+	void (*custom_widget_apply) (GtkPrintOperation * operation,
+				     GtkWidget * widget);
+	 gboolean(*preview) (GtkPrintOperation * operation,
+			     GtkPrintOperationPreview * preview,
+			     GtkPrintContext * context,
+			     GtkWindow * parent);
+	void (*update_custom_widget) (GtkPrintOperation * operation,
+				      GtkWidget * widget,
+				      GtkPageSetup * setup,
+				      GtkPrintSettings * settings);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkCellRendererPixbuf {
 	GtkCellRenderer parent;
@@ -4083,7 +5266,44 @@ extern "C" {
 	GtkTreeViewPrivate *priv;
     };
 
-    struct _GtkTreeViewClass;
+    struct _GtkTreeViewClass {
+	GtkContainerClass parent_class;
+	void (*row_activated) (GtkTreeView * tree_view, GtkTreePath * path,
+			       GtkTreeViewColumn * column);
+	 gboolean(*test_expand_row) (GtkTreeView * tree_view,
+				     GtkTreeIter * iter,
+				     GtkTreePath * path);
+	 gboolean(*test_collapse_row) (GtkTreeView * tree_view,
+				       GtkTreeIter * iter,
+				       GtkTreePath * path);
+	void (*row_expanded) (GtkTreeView * tree_view, GtkTreeIter * iter,
+			      GtkTreePath * path);
+	void (*row_collapsed) (GtkTreeView * tree_view, GtkTreeIter * iter,
+			       GtkTreePath * path);
+	void (*columns_changed) (GtkTreeView * tree_view);
+	void (*cursor_changed) (GtkTreeView * tree_view);
+	 gboolean(*move_cursor) (GtkTreeView * tree_view,
+				 GtkMovementStep step, gint count);
+	 gboolean(*select_all) (GtkTreeView * tree_view);
+	 gboolean(*unselect_all) (GtkTreeView * tree_view);
+	 gboolean(*select_cursor_row) (GtkTreeView * tree_view,
+				       gboolean start_editing);
+	 gboolean(*toggle_cursor_row) (GtkTreeView * tree_view);
+	 gboolean(*expand_collapse_cursor_row) (GtkTreeView * tree_view,
+						gboolean logical,
+						gboolean expand,
+						gboolean open_all);
+	 gboolean(*select_cursor_parent) (GtkTreeView * tree_view);
+	 gboolean(*start_interactive_search) (GtkTreeView * tree_view);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
     struct _GtkOrientableIface {
 	GTypeInterface base_iface;
@@ -4094,14 +5314,30 @@ extern "C" {
 	GtkCellRendererTogglePrivate *priv;
     };
 
-    struct _GtkCellRendererToggleClass;
+    struct _GtkCellRendererToggleClass {
+	GtkCellRendererClass parent_class;
+	void (*toggled) (GtkCellRendererToggle * cell_renderer_toggle,
+			 const gchar * path);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkAboutDialog {
 	GtkDialog parent_instance;
 	GtkAboutDialogPrivate *priv;
     };
 
-    struct _GtkAboutDialogClass;
+    struct _GtkAboutDialogClass {
+	GtkDialogClass parent_class;
+	 gboolean(*activate_link) (GtkAboutDialog * dialog,
+				   const gchar * uri);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkTreeIter {
 	gint stamp;
@@ -4110,13 +5346,62 @@ extern "C" {
 	gpointer user_data3;
     };
 
-    struct _GtkTreeModelIface;
+    struct _GtkTreeModelIface {
+	GTypeInterface g_iface;
+	void (*row_changed) (GtkTreeModel * tree_model, GtkTreePath * path,
+			     GtkTreeIter * iter);
+	void (*row_inserted) (GtkTreeModel * tree_model,
+			      GtkTreePath * path, GtkTreeIter * iter);
+	void (*row_has_child_toggled) (GtkTreeModel * tree_model,
+				       GtkTreePath * path,
+				       GtkTreeIter * iter);
+	void (*row_deleted) (GtkTreeModel * tree_model,
+			     GtkTreePath * path);
+	void (*rows_reordered) (GtkTreeModel * tree_model,
+				GtkTreePath * path, GtkTreeIter * iter,
+				gint * new_order);
+	 GtkTreeModelFlags(*get_flags) (GtkTreeModel * tree_model);
+	 gint(*get_n_columns) (GtkTreeModel * tree_model);
+	 GType(*get_column_type) (GtkTreeModel * tree_model, gint index_);
+	 gboolean(*get_iter) (GtkTreeModel * tree_model,
+			      GtkTreeIter * iter, GtkTreePath * path);
+	GtkTreePath *(*get_path) (GtkTreeModel * tree_model,
+				  GtkTreeIter * iter);
+	void (*get_value) (GtkTreeModel * tree_model, GtkTreeIter * iter,
+			   gint column, GValue * value);
+	 gboolean(*iter_next) (GtkTreeModel * tree_model,
+			       GtkTreeIter * iter);
+	 gboolean(*iter_previous) (GtkTreeModel * tree_model,
+				   GtkTreeIter * iter);
+	 gboolean(*iter_children) (GtkTreeModel * tree_model,
+				   GtkTreeIter * iter,
+				   GtkTreeIter * parent);
+	 gboolean(*iter_has_child) (GtkTreeModel * tree_model,
+				    GtkTreeIter * iter);
+	 gint(*iter_n_children) (GtkTreeModel * tree_model,
+				 GtkTreeIter * iter);
+	 gboolean(*iter_nth_child) (GtkTreeModel * tree_model,
+				    GtkTreeIter * iter,
+				    GtkTreeIter * parent, gint n);
+	 gboolean(*iter_parent) (GtkTreeModel * tree_model,
+				 GtkTreeIter * iter, GtkTreeIter * parent);
+	void (*ref_node) (GtkTreeModel * tree_model, GtkTreeIter * iter);
+	void (*unref_node) (GtkTreeModel * tree_model, GtkTreeIter * iter);
+    };
 
     struct _GtkCheckButton {
 	GtkToggleButton toggle_button;
     };
 
-    struct _GtkCheckButtonClass;
+    struct _GtkCheckButtonClass {
+	GtkToggleButtonClass parent_class;
+	void (*draw_indicator) (GtkCheckButton * check_button,
+				cairo_t * cr);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkWindowClass {
 	GtkBinClass parent_class;
@@ -4156,14 +5441,26 @@ extern "C" {
 	GtkLevelBarPrivate *priv;
     };
 
-    struct _GtkLevelBarClass;
+    struct _GtkLevelBarClass {
+	GtkWidgetClass parent_class;
+	void (*offset_changed) (GtkLevelBar * self, const gchar * name);
+	gpointer padding;
+    };
 
     struct _GtkComboBox {
 	GtkBin parent_instance;
 	GtkComboBoxPrivate *priv;
     };
 
-    struct _GtkComboBoxClass;
+    struct _GtkComboBoxClass {
+	GtkBinClass parent_class;
+	void (*changed) (GtkComboBox * combo_box);
+	gchar *(*format_entry_text) (GtkComboBox * combo_box,
+				     const gchar * path);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+    };
 
     struct _GtkSpinner {
 	GtkWidget parent;
@@ -4222,16 +5519,66 @@ extern "C" {
 	GtkBuilderPrivate *priv;
     };
 
-    struct _GtkBuilderClass;
+    struct _GtkBuilderClass {
+	GObjectClass parent_class;
+	 GType(*get_type_from_name) (GtkBuilder * builder,
+				     const char *type_name);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
-    struct _GtkTextBufferClass;
+    struct _GtkTextBufferClass {
+	GObjectClass parent_class;
+	void (*insert_text) (GtkTextBuffer * buffer, GtkTextIter * pos,
+			     const gchar * new_text, gint new_text_length);
+	void (*insert_pixbuf) (GtkTextBuffer * buffer, GtkTextIter * iter,
+			       pixbuf);
+	void (*insert_child_anchor) (GtkTextBuffer * buffer,
+				     GtkTextIter * iter,
+				     GtkTextChildAnchor * anchor);
+	void (*delete_range) (GtkTextBuffer * buffer, GtkTextIter * start,
+			      GtkTextIter * end);
+	void (*changed) (GtkTextBuffer * buffer);
+	void (*modified_changed) (GtkTextBuffer * buffer);
+	void (*mark_set) (GtkTextBuffer * buffer,
+			  const GtkTextIter * location,
+			  GtkTextMark * mark);
+	void (*mark_deleted) (GtkTextBuffer * buffer, GtkTextMark * mark);
+	void (*apply_tag) (GtkTextBuffer * buffer, GtkTextTag * tag,
+			   const GtkTextIter * start,
+			   const GtkTextIter * end);
+	void (*remove_tag) (GtkTextBuffer * buffer, GtkTextTag * tag,
+			    const GtkTextIter * start,
+			    const GtkTextIter * end);
+	void (*begin_user_action) (GtkTextBuffer * buffer);
+	void (*end_user_action) (GtkTextBuffer * buffer);
+	void (*paste_done) (GtkTextBuffer * buffer,
+			    GtkClipboard * clipboard);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkIconTheme {
 	GObject parent_instance;
 	GtkIconThemePrivate *priv;
     };
 
-    struct _GtkIconThemeClass;
+    struct _GtkIconThemeClass {
+	GObjectClass parent_class;
+	void (*changed) (GtkIconTheme * icon_theme);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkBindingSet {
 	gchar *set_name;
@@ -4272,21 +5619,61 @@ extern "C" {
 	GtkBindingArg *args;
     };
 
-    struct _GtkCellLayoutIface;
+    struct _GtkCellLayoutIface {
+	GTypeInterface g_iface;
+	void (*pack_start) (GtkCellLayout * cell_layout,
+			    GtkCellRenderer * cell, gboolean expand);
+	void (*pack_end) (GtkCellLayout * cell_layout,
+			  GtkCellRenderer * cell, gboolean expand);
+	void (*clear) (GtkCellLayout * cell_layout);
+	void (*add_attribute) (GtkCellLayout * cell_layout,
+			       GtkCellRenderer * cell,
+			       const gchar * attribute, gint column);
+	void (*set_cell_data_func) (GtkCellLayout * cell_layout,
+				    GtkCellRenderer * cell,
+				    GtkCellLayoutDataFunc func,
+				    gpointer func_data,
+				    GDestroyNotify destroy);
+	void (*clear_attributes) (GtkCellLayout * cell_layout,
+				  GtkCellRenderer * cell);
+	void (*reorder) (GtkCellLayout * cell_layout,
+			 GtkCellRenderer * cell, gint position);
+	 (*get_cells) (GtkCellLayout * cell_layout);
+	GtkCellArea *(*get_area) (GtkCellLayout * cell_layout);
+    };
 
     struct _GtkToolbar {
 	GtkContainer container;
 	GtkToolbarPrivate *priv;
     };
 
-    struct _GtkToolbarClass;
+    struct _GtkToolbarClass {
+	GtkContainerClass parent_class;
+	void (*orientation_changed) (GtkToolbar * toolbar,
+				     GtkOrientation orientation);
+	void (*style_changed) (GtkToolbar * toolbar,
+			       GtkToolbarStyle style);
+	 gboolean(*popup_context_menu) (GtkToolbar * toolbar, gint x,
+					gint y, gint button_number);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkMenuToolButton {
 	GtkToolButton parent;
 	GtkMenuToolButtonPrivate *priv;
     };
 
-    struct _GtkMenuToolButtonClass;
+    struct _GtkMenuToolButtonClass {
+	GtkToolButtonClass parent_class;
+	void (*show_menu) (GtkMenuToolButton * button);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkColorChooserWidget {
 	GtkBox parent_instance;
@@ -4310,7 +5697,18 @@ extern "C" {
 	GtkStatusbarPrivate *priv;
     };
 
-    struct _GtkStatusbarClass;
+    struct _GtkStatusbarClass {
+	GtkBoxClass parent_class;
+	gpointer reserved;
+	void (*text_pushed) (GtkStatusbar * statusbar, guint context_id,
+			     const gchar * text);
+	void (*text_popped) (GtkStatusbar * statusbar, guint context_id,
+			     const gchar * text);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkInvisible {
 	GtkWidget widget;
@@ -4330,7 +5728,14 @@ extern "C" {
 	GtkExpanderPrivate *priv;
     };
 
-    struct _GtkExpanderClass;
+    struct _GtkExpanderClass {
+	GtkBinClass parent_class;
+	void (*activate) (GtkExpander * expander);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkRecentChooserMenu {
 	GtkMenu parent_instance;
@@ -4345,7 +5750,14 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
-    struct _GtkStyleContextClass;
+    struct _GtkStyleContextClass {
+	GObjectClass parent_class;
+	void (*changed) (GtkStyleContext * context);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkSeparatorToolItem {
 	GtkToolItem parent;
@@ -4378,16 +5790,52 @@ extern "C" {
 	GtkLabelPrivate *priv;
     };
 
-    struct _GtkLabelClass;
+    struct _GtkLabelClass {
+	GtkMiscClass parent_class;
+	void (*move_cursor) (GtkLabel * label, GtkMovementStep step,
+			     gint count, gboolean extend_selection);
+	void (*copy_clipboard) (GtkLabel * label);
+	void (*populate_popup) (GtkLabel * label, GtkMenu * menu);
+	 gboolean(*activate_link) (GtkLabel * label, const gchar * uri);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+	void (*_gtk_reserved5) (void);
+	void (*_gtk_reserved6) (void);
+	void (*_gtk_reserved7) (void);
+	void (*_gtk_reserved8) (void);
+    };
 
-    struct _GtkTreeSortableIface;
+    struct _GtkTreeSortableIface {
+	GTypeInterface g_iface;
+	void (*sort_column_changed) (GtkTreeSortable * sortable);
+	 gboolean(*get_sort_column_id) (GtkTreeSortable * sortable,
+					gint * sort_column_id,
+					GtkSortType * order);
+	void (*set_sort_column_id) (GtkTreeSortable * sortable,
+				    gint sort_column_id,
+				    GtkSortType order);
+	void (*set_sort_func) (GtkTreeSortable * sortable,
+			       gint sort_column_id,
+			       GtkTreeIterCompareFunc sort_func,
+			       gpointer user_data, GDestroyNotify destroy);
+	void (*set_default_sort_func) (GtkTreeSortable * sortable,
+				       GtkTreeIterCompareFunc sort_func,
+				       gpointer user_data,
+				       GDestroyNotify destroy);
+	 gboolean(*has_default_sort_func) (GtkTreeSortable * sortable);
+    };
 
     struct _GtkFileChooserButton {
 	GtkBox parent;
 	GtkFileChooserButtonPrivate *priv;
     };
 
-    struct _GtkFileChooserButtonClass;
+    struct _GtkFileChooserButtonClass {
+	GtkBoxClass parent_class;
+	void (*file_set) (GtkFileChooserButton * fc);
+    };
 
     struct _GtkProgressBar {
 	GtkWidget parent;
@@ -4445,7 +5893,23 @@ extern "C" {
 	GtkIconViewPrivate *priv;
     };
 
-    struct _GtkIconViewClass;
+    struct _GtkIconViewClass {
+	GtkContainerClass parent_class;
+	void (*item_activated) (GtkIconView * icon_view,
+				GtkTreePath * path);
+	void (*selection_changed) (GtkIconView * icon_view);
+	void (*select_all) (GtkIconView * icon_view);
+	void (*unselect_all) (GtkIconView * icon_view);
+	void (*select_cursor_item) (GtkIconView * icon_view);
+	void (*toggle_cursor_item) (GtkIconView * icon_view);
+	 gboolean(*move_cursor) (GtkIconView * icon_view,
+				 GtkMovementStep step, gint count);
+	 gboolean(*activate_cursor_item) (GtkIconView * icon_view);
+	void (*_gtk_reserved1) (void);
+	void (*_gtk_reserved2) (void);
+	void (*_gtk_reserved3) (void);
+	void (*_gtk_reserved4) (void);
+    };
 
     struct _GtkWindowGroup {
 	GObject parent_instance;
