@@ -3249,6 +3249,10 @@ extern "C" {
 	 gboolean(*query_tooltip) (GtkStatusIcon * status_icon, gint x,
 				   gint y, gboolean keyboard_mode,
 				   GtkTooltip * tooltip);
+	void *__gtk_reserved1;
+	void *__gtk_reserved2;
+	void *__gtk_reserved3;
+	void *__gtk_reserved4;
     };
 
     struct _GtkBox {
@@ -5834,6 +5838,10 @@ extern "C" {
     struct _GtkFileChooserButtonClass {
 	GtkBoxClass parent_class;
 	void (*file_set) (GtkFileChooserButton * fc);
+	void *__gtk_reserved1;
+	void *__gtk_reserved2;
+	void *__gtk_reserved3;
+	void *__gtk_reserved4;
     };
 
     struct _GtkProgressBar {
