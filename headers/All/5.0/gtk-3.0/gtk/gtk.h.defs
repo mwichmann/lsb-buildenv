@@ -1691,31 +1691,48 @@ typedef struct _GtkWidgetClass {
      gboolean(*keynav_failed) (GtkWidget * widget,
 			       GtkDirectionType direction);
      gboolean(*event) (GtkWidget * widget, GdkEvent * event);
-     gboolean(*button_press_event) (GtkWidget * widget, event);
-     gboolean(*button_release_event) (GtkWidget * widget, event);
-     gboolean(*scroll_event) (GtkWidget * widget, event);
-     gboolean(*motion_notify_event) (GtkWidget * widget, event);
-     gboolean(*delete_event) (GtkWidget * widget, event);
-     gboolean(*destroy_event) (GtkWidget * widget, event);
-     gboolean(*key_press_event) (GtkWidget * widget, event);
-     gboolean(*key_release_event) (GtkWidget * widget, event);
-     gboolean(*enter_notify_event) (GtkWidget * widget, event);
-     gboolean(*leave_notify_event) (GtkWidget * widget, event);
-     gboolean(*configure_event) (GtkWidget * widget, event);
-     gboolean(*focus_in_event) (GtkWidget * widget, event);
-     gboolean(*focus_out_event) (GtkWidget * widget, event);
-     gboolean(*map_event) (GtkWidget * widget, event);
-     gboolean(*unmap_event) (GtkWidget * widget, event);
-     gboolean(*property_notify_event) (GtkWidget * widget, event);
-     gboolean(*selection_clear_event) (GtkWidget * widget, event);
-     gboolean(*selection_request_event) (GtkWidget * widget, event);
-     gboolean(*selection_notify_event) (GtkWidget * widget, event);
-     gboolean(*proximity_in_event) (GtkWidget * widget, event);
-     gboolean(*proximity_out_event) (GtkWidget * widget, event);
-     gboolean(*visibility_notify_event) (GtkWidget * widget, event);
-     gboolean(*window_state_event) (GtkWidget * widget, event);
-     gboolean(*damage_event) (GtkWidget * widget, event);
-     gboolean(*grab_broken_event) (GtkWidget * widget, event);
+     gboolean(*button_press_event) (GtkWidget * widget,
+				    GdkEventKey * event);
+     gboolean(*button_release_event) (GtkWidget * widget,
+				      GdkEventKey * event);
+     gboolean(*scroll_event) (GtkWidget * widget, GdkEventScroll * event);
+     gboolean(*motion_notify_event) (GtkWidget * widget,
+				     GdkEventMotion * event);
+     gboolean(*delete_event) (GtkWidget * widget, GdkEventAny * event);
+     gboolean(*destroy_event) (GtkWidget * widget, GdkEventAny * event);
+     gboolean(*key_press_event) (GtkWidget * widget, GdkEventKey * event);
+     gboolean(*key_release_event) (GtkWidget * widget,
+				   GdkEventKey * event);
+     gboolean(*enter_notify_event) (GtkWidget * widget,
+				    GdkEventCrossing * event);
+     gboolean(*leave_notify_event) (GtkWidget * widget,
+				    GdkEventCrossing * event);
+     gboolean(*configure_event) (GtkWidget * widget,
+				 GdkEventConfigure * event);
+     gboolean(*focus_in_event) (GtkWidget * widget, GdkEventFocus * event);
+     gboolean(*focus_out_event) (GtkWidget * widget,
+				 GdkEventFocus * event);
+     gboolean(*map_event) (GtkWidget * widget, GdkEventAny * event);
+     gboolean(*unmap_event) (GtkWidget * widget, GdkEventAny * event);
+     gboolean(*property_notify_event) (GtkWidget * widget,
+				       GdkEventProperty * event);
+     gboolean(*selection_clear_event) (GtkWidget * widget,
+				       GdkEventSelection * event);
+     gboolean(*selection_request_event) (GtkWidget * widget,
+					 GdkEventSelection * event);
+     gboolean(*selection_notify_event) (GtkWidget * widget,
+					GdkEventSelection * event);
+     gboolean(*proximity_in_event) (GtkWidget * widget,
+				    GdkEventProximity * event);
+     gboolean(*proximity_out_event) (GtkWidget * widget,
+				     GdkEventProximity * event);
+     gboolean(*visibility_notify_event) (GtkWidget * widget,
+					 GdkEventVisibility * event);
+     gboolean(*window_state_event) (GtkWidget * widget,
+				    GdkEventWindowState * event);
+     gboolean(*damage_event) (GtkWidget * widget, GdkEventExpose * event);
+     gboolean(*grab_broken_event) (GtkWidget * widget,
+				   GdkEventGrabBroken * event);
     void (*selection_get) (GtkWidget * widget,
 			   GtkSelectionData * selection_data, guint info,
 			   guint time_);
@@ -1764,7 +1781,7 @@ typedef struct _GtkWidgetClass {
 				    gint * allocated_pos,
 				    gint * allocated_size);
     void (*style_updated) (GtkWidget * widget);
-     gboolean(*touch_event) (GtkWidget * widget, event);
+     gboolean(*touch_event) (GtkWidget * widget, GdkEventTouch * event);
     GtkWidgetClassPrivate *priv;
     void (*_gtk_reserved2) (void);
     void (*_gtk_reserved3) (void);
