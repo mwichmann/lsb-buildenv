@@ -1004,7 +1004,30 @@ typedef struct _GtkSettings {
     GObject parent_instance;
     GtkSettingsPrivate *priv;
 } GtkSettings;
-typedef struct _GtkStyle GtkStyle;
+typedef struct _GtkStyle {
+    GObject parent_instance;
+    GdkColor fg;
+    GdkColor bg;
+    GdkColor light;
+    GdkColor dark;
+    GdkColor mid;
+    GdkColor text;
+    GdkColor base;
+    GdkColor text_aa;
+    GdkColor black;
+    GdkColor white;
+    PangoFontDescription *font_desc;
+    gint xthickness;
+    gint ythickness;
+    cairo_pattern_t *background;
+    gint attach_count;
+    GdkVisual *visual;
+    PangoFontDescription *private_font_desc;
+    GtkRcStyle *rc_style;
+    GSList *styles;
+    GArray *property_cache;
+    GSList *icon_factories;
+} GtkStyle;
 typedef struct _GtkStyleContext {
     GObject parent_object;
     GtkStyleContextPrivate *priv;

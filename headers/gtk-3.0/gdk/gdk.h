@@ -912,7 +912,27 @@ extern "C" {
 	GdkGravity win_gravity;
     };
 
-    struct _GdkWindowClass;
+    struct _GdkWindowClass {
+	GObjectClass parent_class;
+	GdkWindow *(*pick_embedded_child) (GdkWindow * window, gdouble x,
+					   gdouble y);
+	void (*to_embedder) (GdkWindow * window, gdouble offscreen_x,
+			     gdouble offscreen_y, gdouble * embedder_x,
+			     gdouble * embedder_y);
+	void (*from_embedder) (GdkWindow * window, gdouble offscreen_x,
+			       gdouble offscreen_y, gdouble * embedder_x,
+			       gdouble * embedder_y);
+	cairo_surface_t *(*create_surface) (GdkWindow * window, gint width,
+					    gint height);
+	void (*_gdk_reserved1) (void);
+	void (*_gdk_reserved2) (void);
+	void (*_gdk_reserved3) (void);
+	void (*_gdk_reserved4) (void);
+	void (*_gdk_reserved5) (void);
+	void (*_gdk_reserved6) (void);
+	void (*_gdk_reserved7) (void);
+	void (*_gdk_reserved8) (void);
+    };
 
     struct _GdkTimeCoord {
 	guint32 time;

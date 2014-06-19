@@ -3114,6 +3114,31 @@ extern "C" {
 	gint height;
     };
 
+    struct _GtkStyle {
+	GObject parent_instance;
+	GdkColor fg;
+	GdkColor bg;
+	GdkColor light;
+	GdkColor dark;
+	GdkColor mid;
+	GdkColor text;
+	GdkColor base;
+	GdkColor text_aa;
+	GdkColor black;
+	GdkColor white;
+	PangoFontDescription *font_desc;
+	gint xthickness;
+	gint ythickness;
+	cairo_pattern_t *background;
+	gint attach_count;
+	GdkVisual *visual;
+	PangoFontDescription *private_font_desc;
+	GtkRcStyle *rc_style;
+	GSList *styles;
+	GArray *property_cache;
+	GSList *icon_factories;
+    };
+
     struct _GtkStyleContext {
 	GObject parent_object;
 	GtkStyleContextPrivate *priv;
@@ -5418,6 +5443,11 @@ extern "C" {
 	void (*_gtk_reserved4) (void);
     };
 
+    struct _GtkWindowGroup {
+	GObject parent_instance;
+	GtkWindowPrivate *priv;
+    };
+
     struct _GtkWindowGroupClass {
 	GObjectClass parent_class;
 	void (*_gtk_reserved1) (void);
@@ -5916,11 +5946,6 @@ extern "C" {
 	void (*_gtk_reserved2) (void);
 	void (*_gtk_reserved3) (void);
 	void (*_gtk_reserved4) (void);
-    };
-
-    struct _GtkWindowGroup {
-	GObject parent_instance;
-	GtkWindowPrivate *priv;
     };
 
 
