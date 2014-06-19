@@ -3640,9 +3640,9 @@ extern "C" {
 	void (*render_activity) (GtkThemingEngine * engine, cairo_t * cr,
 				 gdouble x0, gdouble y0, gdouble x1,
 				 gdouble y1);
-	 (*render_icon_pixbuf) (GtkThemingEngine * engine,
-				const GtkIconSource * source,
-				GtkIconSize size);
+	GdkPixbuf *(*render_icon_pixbuf) (GtkThemingEngine * engine,
+					  const GtkIconSource * source,
+					  GtkIconSize size);
 	void (*render_icon) (GtkThemingEngine * engine, cairo_t * cr,
 			     pixbuf, gdouble x, gdouble y);
 	gpointer padding;
