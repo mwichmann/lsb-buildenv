@@ -2916,7 +2916,8 @@ extern "C" {
 	void (*get_preedit_string) (GtkIMContext * context, gchar * *str,
 				    PangoAttrList * *attrs,
 				    gint * cursor_pos);
-	 gboolean(*filter_keypress) (GtkIMContext * context, event);
+	 gboolean(*filter_keypress) (GtkIMContext * context,
+				     GdkEventKey * event);
 	void (*focus_in) (GtkIMContext * context);
 	void (*focus_out) (GtkIMContext * context);
 	void (*reset) (GtkIMContext * context);
@@ -3267,10 +3268,11 @@ extern "C" {
 			    guint32 activate_time);
 	 gboolean(*size_changed) (GtkStatusIcon * status_icon, gint size);
 	 gboolean(*button_press_event) (GtkStatusIcon * status_icon,
-					event);
+					GdkEventKey * event);
 	 gboolean(*button_release_event) (GtkStatusIcon * status_icon,
-					  event);
-	 gboolean(*scroll_event) (GtkStatusIcon * status_icon, event);
+					  GdkEventKey * event);
+	 gboolean(*scroll_event) (GtkStatusIcon * status_icon,
+				  GdkEventScroll * event);
 	 gboolean(*query_tooltip) (GtkStatusIcon * status_icon, gint x,
 				   gint y, gboolean keyboard_mode,
 				   GtkTooltip * tooltip);
@@ -5571,7 +5573,7 @@ extern "C" {
 	void (*insert_text) (GtkTextBuffer * buffer, GtkTextIter * pos,
 			     const gchar * new_text, gint new_text_length);
 	void (*insert_pixbuf) (GtkTextBuffer * buffer, GtkTextIter * iter,
-			       pixbuf);
+			       GdkPixbuf * pixbuf);
 	void (*insert_child_anchor) (GtkTextBuffer * buffer,
 				     GtkTextIter * iter,
 				     GtkTextChildAnchor * anchor);
