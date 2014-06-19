@@ -3559,7 +3559,8 @@ extern "C" {
 			       const gchar * chars, guint n_chars);
 	void (*deleted_text) (GtkEntryBuffer * buffer, guint position,
 			      guint n_chars);
-	 (*get_text) (GtkEntryBuffer * buffer, gsize * n_bytes);
+	const gchar *(*get_text) (GtkEntryBuffer * buffer,
+				  gsize * n_bytes);
 	 guint(*get_length) (GtkEntryBuffer * buffer);
 	 guint(*insert_text) (GtkEntryBuffer * buffer, guint position,
 			      const gchar * chars, guint n_chars);
@@ -4044,10 +4045,12 @@ extern "C" {
 
     struct _GtkCellRendererAccelClass {
 	GtkCellRendererTextClass parent_class;
-	void (*accel_edited) (accel, const gchar * path_string,
-			      guint accel_key, GdkModifierType accel_mods,
+	void (*accel_edited) (GtkCellRendererAccel * accel,
+			      const gchar * path_string, guint accel_key,
+			      GdkModifierType accel_mods,
 			      guint hardware_keycode);
-	void (*accel_cleared) (accel, const gchar * path_string);
+	void (*accel_cleared) (GtkCellRendererAccel * accel,
+			       const gchar * path_string);
 	void (*_gtk_reserved0) (void);
 	void (*_gtk_reserved1) (void);
 	void (*_gtk_reserved2) (void);
@@ -4653,8 +4656,8 @@ extern "C" {
 				gint new_text_length, gint * position);
 	void (*do_delete_text) (GtkEditable * editable, gint start_pos,
 				gint end_pos);
-	 (*get_chars) (GtkEditable * editable, gint start_pos,
-		       gint end_pos);
+	gchar *(*get_chars) (GtkEditable * editable, gint start_pos,
+			     gint end_pos);
 	void (*set_selection_bounds) (GtkEditable * editable,
 				      gint start_pos, gint end_pos);
 	 gboolean(*get_selection_bounds) (GtkEditable * editable,
@@ -4711,7 +4714,7 @@ extern "C" {
 
     struct _GtkScaleClass {
 	GtkRangeClass parent_class;
-	 (*format_value) (GtkScale * scale, gdouble value);
+	gchar *(*format_value) (GtkScale * scale, gdouble value);
 	void (*draw_value) (GtkScale * scale);
 	void (*get_layout_offsets) (GtkScale * scale, gint * x, gint * y);
 	void (*_gtk_reserved1) (void);
@@ -5696,7 +5699,7 @@ extern "C" {
 				  GtkCellRenderer * cell);
 	void (*reorder) (GtkCellLayout * cell_layout,
 			 GtkCellRenderer * cell, gint position);
-	 (*get_cells) (GtkCellLayout * cell_layout);
+	GList *(*get_cells) (GtkCellLayout * cell_layout);
 	GtkCellArea *(*get_area) (GtkCellLayout * cell_layout);
     };
 
