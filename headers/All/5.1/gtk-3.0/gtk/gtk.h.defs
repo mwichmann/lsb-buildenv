@@ -1580,8 +1580,8 @@ typedef struct _GtkThemingEngineClass {
     GdkPixbuf *(*render_icon_pixbuf) (GtkThemingEngine * engine,
 				      const GtkIconSource * source,
 				      GtkIconSize size);
-    void (*render_icon) (GtkThemingEngine * engine, cairo_t * cr, pixbuf,
-			 gdouble x, gdouble y);
+    void (*render_icon) (GtkThemingEngine * engine, cairo_t * cr,
+			 GdkPixbuf * pixbuf, gdouble x, gdouble y);
     gpointer padding;
 } GtkThemingEngineClass;
 typedef gboolean(*GtkFontFilterFunc) (const PangoFontFamily * family,

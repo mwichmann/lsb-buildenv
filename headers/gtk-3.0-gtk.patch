@@ -1,7 +1,7 @@
 === modified file 'gtk-3.0/gtk/gtk.h'
---- gtk-3.0/gtk/gtk.h	revid:mats@linuxfoundation.org-20140313174225-0k65ydcs72im4x85
-+++ gtk-3.0/gtk/gtk.h	2014-03-13 11:50:42.608726881 -0600
-@@ -708,6 +708,8 @@
+--- gtk-3.0/gtk/gtk.h	revid:mats@linuxfoundation.org-20140619214605-xixla3qtz48b4enp
++++ gtk-3.0/gtk/gtk.h	2014-06-21 12:49:02 +0000
+@@ -792,6 +792,8 @@
  
      typedef struct _GtkPageSetup GtkPageSetup;
  
@@ -10,7 +10,7 @@
      typedef gint(*GtkKeySnoopFunc) (GtkWidget * grab_widget,
  				    GdkEventKey * event,
  				    gpointer func_data);
-@@ -734,7 +736,7 @@
+@@ -824,7 +826,7 @@
  
      typedef struct _GtkTooltip GtkTooltip;
  
@@ -19,9 +19,9 @@
  
      typedef struct _GtkWidgetPath GtkWidgetPath;
  
-@@ -748,6 +750,16 @@
+@@ -846,6 +848,16 @@
  
-     typedef struct _GtkTextMark GtkTextMark;
+     typedef struct _GtkTreeSelectionPrivate GtkTreeSelectionPrivate;
  
 +    typedef struct _GtkCellRenderer GtkCellRenderer;  /* XXX move from below */
 +
@@ -36,25 +36,25 @@
      typedef gboolean(*GtkTreeSelectionFunc) (GtkTreeSelection * selection,
  					     GtkTreeModel * model,
  					     GtkTreePath * path,
-@@ -1087,7 +1099,7 @@
- 	GTK_CELL_RENDERER_EXPANDED
-     } GtkCellRendererState;
+@@ -1333,7 +1345,7 @@
+ 	GTK_CELL_RENDERER_MODE_EDITABLE
+     } GtkCellRendererMode;
  
 -    typedef struct _GtkCellRenderer GtkCellRenderer;
 +    /* typedef struct _GtkCellRenderer GtkCellRenderer;  XXX move up */
  
-     typedef struct _GtkCellRendererClass GtkCellRendererClass;
+     typedef struct _GtkCellRendererPrivate GtkCellRendererPrivate;
  
-@@ -1751,7 +1763,7 @@
+@@ -2330,7 +2342,7 @@
  
-     typedef struct _GtkTreeView GtkTreeView;
+     typedef struct _GtkTreeViewPrivate GtkTreeViewPrivate;
  
 -    typedef struct _GtkTreeSelection GtkTreeSelection;
 +    /* typedef struct _GtkTreeSelection GtkTreeSelection;   XXX move up */
  
-     typedef gboolean(*GtkTreeViewColumnDropFunc) (GtkTreeView * tree_view,
- 						  GtkTreeViewColumn *
-@@ -1806,13 +1818,13 @@
+     typedef struct _GtkTreeSelectionClass GtkTreeSelectionClass;
+ 
+@@ -2398,13 +2410,13 @@
  	GTK_LICENSE_ARTISTIC
      } GtkLicense;
  
@@ -69,6 +69,6 @@
 -    typedef struct _GtkTreeModel GtkTreeModel;
 +    /* typedef struct _GtkTreeModel GtkTreeModel;	XXX move up */
  
-     typedef gboolean(*GtkTreeModelForeachFunc) (GtkTreeModel * model,
- 						GtkTreePath * path,
+     typedef struct _GtkTreeModelIface GtkTreeModelIface;
+ 
 
