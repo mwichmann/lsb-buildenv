@@ -201,8 +201,6 @@ extern "C" {
 	GDK_NOTIFY_UNKNOWN = 5
     } GdkNotifyType;
 
-    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
-
     typedef enum {
 	GDK_CROSSING_NORMAL,
 	GDK_CROSSING_GRAB,
@@ -278,6 +276,8 @@ extern "C" {
     } GdkDragProtocol;
 
     typedef struct _GdkGeometry GdkGeometry;
+
+    typedef struct _GdkWindow GdkWindow;   /*XXX hand-edit: move from below */
 
     typedef struct _GdkWindowAttr GdkWindowAttr;
 
