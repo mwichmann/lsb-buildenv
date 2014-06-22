@@ -8,7 +8,10 @@ extern "C" {
 #endif
 
 
-/* Special header to avoid header inclusion loops */
+/* 
+   Special header to avoid header inclusion loops.
+   DO NOT include this header directly.
+*/
     typedef unsigned int wint_t;
 
 #if __LSB_VERSION__ >= 12
