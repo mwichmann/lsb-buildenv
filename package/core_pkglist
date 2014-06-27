@@ -243,6 +243,7 @@ BASE/include/dlfcn.h
 BASE/include/elf.h
 BASE/include/endian.h
 BASE/include/envz.h
+BASE/include/err.h
 BASE/include/errno.h
 BASE/include/execinfo.h
 BASE/include/fcntl.h

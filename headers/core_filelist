@@ -39,6 +39,7 @@ dlfcn.h
 elf.h
 endian.h
 envz.h
+err.h
 errno.h
 execinfo.h
 fcntl.h

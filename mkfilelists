@@ -84,7 +84,6 @@ CORE_HEADERS_ADD = [
 ]
 
 CORE_HEADERS_REMOVE = [
-    'err.h',
 ]
 
 # some libraries need to be dropped here (for package lists)
