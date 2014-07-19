@@ -41,6 +41,7 @@ endian.h
 envz.h
 err.h
 errno.h
+error.h
 execinfo.h
 fcntl.h
 fenv.h

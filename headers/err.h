@@ -12,12 +12,11 @@ extern "C" {
 
 /* Function prototypes */
 
-    extern void err(int __status, const char *__format, ...);
-    extern void error(int, int, const char *, ...);
-    extern void errx(int __status, const char *__format, ...);
-    extern void verrx(int, const char *, va_list);
-    extern void warn(const char *__format, ...);
-    extern void warnx(const char *__format, ...);
+    extern void err(int eval, const char *fmt, ...);
+    extern void errx(int eval, const char *fmt, ...);
+    extern void verrx(int eval, const char *fmt, va_list args);
+    extern void warn(const char *fmt, ...);
+    extern void warnx(const char *fmt, ...);
 #ifdef __cplusplus
 }
 #endif

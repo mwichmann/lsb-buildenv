@@ -245,6 +245,7 @@ BASE/include/endian.h
 BASE/include/envz.h
 BASE/include/err.h
 BASE/include/errno.h
+BASE/include/error.h
 BASE/include/execinfo.h
 BASE/include/fcntl.h
 BASE/include/fenv.h
