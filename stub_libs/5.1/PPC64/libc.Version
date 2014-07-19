@@ -929,6 +929,8 @@ GLIBC_2.3 {
   xdrstdio_create;
   __daylight;
   __environ;
+  __progname;
+  __progname_full;
   __timezone;
   __tzname;
   _environ;
@@ -942,6 +944,8 @@ GLIBC_2.3 {
   opterr;
   optind;
   optopt;
+  program_invocation_name;
+  program_invocation_short_name;
   stderr;
   stdin;
   stdout;
