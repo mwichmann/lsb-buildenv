@@ -2030,6 +2030,10 @@ int main(int argc, char *argv[])
 	argvprint(gccargs);
     }
 
+    /* just in case... */
+    fflush(stdout);
+    fflush(stderr);
+
     assert(gccargs->numargv > 0);
     /* exec to gcc */
     execvp(gccargs->argv[0], gccargs->argv);

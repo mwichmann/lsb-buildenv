@@ -347,7 +347,7 @@ int main(int argc, char *argv[])
 	    argvaddstring(options, argv[optind - 1]);
 	    /* fallthrough to add this program's version */
 	case 22:		/* --lsbcc-version */
-	    printf("%s (lsbcc) %s\n", argv[0], LSBCC_VERSION);
+	    printf("%s (lsbcpp) %s\n", argv[0], LSBCC_VERSION);
 	    if (c == 22) {
 		exit(EXIT_SUCCESS);
 	    }
@@ -455,6 +455,10 @@ int main(int argc, char *argv[])
     if (display_cmd) {
 	argvprint(cppargs);
     }
+
+    /* just in case... */
+    fflush(stdout);
+    fflush(stderr);
 
     assert(cppargs->numargv > 0);
     /* exec to cpp */
