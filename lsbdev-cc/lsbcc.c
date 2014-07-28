@@ -766,7 +766,7 @@ void usage(const char *progname)
 
     printf("Usage %s:\n"
 "  --lsb-help               Display this message\n"
-"  --lsb-version            Display the version of LSB this tool can build for.\n"
+"  --lsb-version            Display the LSB versions this tool can build for.\n"
 "  --lsbcc-version          Display the version of the tool itself.\n"
 "  --lsb-verbose            Print out full commands to system compiler.\n"
 "  --lsb-cc=<path to c compiler>\n"

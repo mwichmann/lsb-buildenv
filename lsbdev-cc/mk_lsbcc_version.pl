@@ -37,7 +37,7 @@ print <<HEADER;
 #define LSBCC_VERSION "$default.unreleased"
 #endif
 
-static char lsbcc_lsb_version [] = "LSB version $version";
+static char lsbcc_lsb_version [] = "LSB version $default; supports $version";
 
 #else
 
@@ -46,7 +46,7 @@ static char lsbcc_lsb_version [] = "LSB version $version";
 #define LSBCC_VERSION "$default.development (for $devdefault)"
 #endif
 
-static char lsbcc_lsb_version [] = "LSB version $devversion";
+static char lsbcc_lsb_version [] = "LSB version $devdefault; supports $devversion";
 
 #endif /* SKIP_DEVEL_VERSIONS */
 

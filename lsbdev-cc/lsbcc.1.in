@@ -68,7 +68,8 @@ Display help message.  The compiler
 option will also display the output from --lsb-help.
 .TP 
 --lsb-version
-Display the version of LSB this tool can build for.
+Display the LSB versions this tool can build for.
+The default version is listed first.
 .TP 
 --lsb-verbose
 The complete command line passed to either the C or C++ compiler

@@ -12,7 +12,7 @@
 #define LSBCC_VERSION "5.0.unreleased"
 #endif
 
-static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1,5.0";
+static char lsbcc_lsb_version [] = "LSB version 4.1; supports 3.0,3.1,3.2,4.0,4.1,5.0";
 
 #else
 
@@ -21,7 +21,7 @@ static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1,5.0";
 #define LSBCC_VERSION "5.0.development (for 5.1)"
 #endif
 
-static char lsbcc_lsb_version [] = "LSB version 3.0,3.1,3.2,4.0,4.1,5.0,5.1";
+static char lsbcc_lsb_version [] = "LSB version 5.0; supports 3.0,3.1,3.2,4.0,4.1,5.0,5.1";
 
 #endif /* SKIP_DEVEL_VERSIONS */
 
