@@ -68,8 +68,13 @@ Display help message.  The compiler
 option will also display the output from --lsb-help.
 .TP 
 --lsb-version
-Display the LSB versions this tool can build for.
+Display the LSB versions this tool can build against
+(that is, valid arguments for --lsb-target-version).
 The default version is listed first.
+The output string can be parsed: the default
+version is the last word before the semicolon,
+while the comma-separated version list is the
+last word (and comes after the semicolon).
 .TP 
 --lsb-verbose
 The complete command line passed to either the C or C++ compiler
@@ -155,7 +160,8 @@ by the LSBCC_SHAREDLIBPATH environment variable, if any.
 Enable support for the optional/trial-use LSB modules listed.  
 Modules specified by this option are appended to the list specified
 by the LSB_MODULES environment variable, if any. For a list of modules
-supported in any LSB version, use 'lsbcc --lsb-target-version=ver --help'.
+supported in any LSB version, use 'lsbcc --lsb-target-version=ver --help'
+and look for the line comtaining "Known modules".
 .TP
 --lsb-use-default-linker
 Do not set dynamic linker to the LSB one.
