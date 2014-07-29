@@ -50,7 +50,7 @@ extern "C" {
 	ssize_t __return_value;
 	off_t aio_offset;	/* File offset. */
 	char __pad[1];
-	char __unused[1];
+	char __unused[32];
     };
 
     struct aiocb64 {
@@ -66,7 +66,7 @@ extern "C" {
 	int __error_code;
 	ssize_t __return_value;
 	off64_t aio_offset;
-	char __unused[1];
+	char __unused[32];
     };
 
 

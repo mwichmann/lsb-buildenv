@@ -24,7 +24,7 @@ struct aiocb {
     ssize_t __return_value;
     off_t aio_offset;		/* File offset. */
     char __pad[1];
-    char __unused[1];
+    char __unused[32];
 };
 struct aiocb64 {
     int aio_fildes;
@@ -39,7 +39,7 @@ struct aiocb64 {
     int __error_code;
     ssize_t __return_value;
     off64_t aio_offset;
-    char __unused[1];
+    char __unused[32];
 };
 extern int aio_cancel(int fildes, struct aiocb *aiocbp);
 extern int aio_cancel64(int fildes, struct aiocb64 *aiocbp);
