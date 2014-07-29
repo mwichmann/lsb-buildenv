@@ -49,7 +49,7 @@ extern "C" {
 	int __error_code;
 	ssize_t __return_value;
 	off_t aio_offset;	/* File offset. */
-	char __pad[1];
+	char __pad[sizeof(off64_t) - sizeof(off_t)];
 	char __unused[32];
     };
 
