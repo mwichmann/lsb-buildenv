@@ -37,35 +37,35 @@ extern "C" {
 
 /* I/O control block*/
     struct aiocb {
-	int aio_fildes;		/* File desriptor. */
-	int aio_lio_opcode;	/* Operation to be performed. */
-	int aio_reqprio;	/* Request priority offset. */
-	void *aio_buf;		/* Location of buffer. */
-	size_t aio_nbytes;	/* Length of transfer. */
-	struct sigevent aio_sigevent;	/* Signal number and value. */
-	struct aiocb *__next_prio;
-	int __abs_prio;
-	int __policy;
-	int __error_code;
-	ssize_t __return_value;
-	off_t aio_offset;	/* File offset. */
+	int aio_fildes;		/* File desriptor */
+	int aio_lio_opcode;	/* Operation to be performed */
+	int aio_reqprio;	/* Request priority offset */
+	void *aio_buf;		/* Location of buffer */
+	size_t aio_nbytes;	/* Length of transfer */
+	struct sigevent aio_sigevent;	/* Signal number and value */
+	struct aiocb *__next_prio;	/* internal, do not use */
+	int __abs_prio;		/* internal, do not use */
+	int __policy;		/* internal, do not use */
+	int __error_code;	/* internal, do not use */
+	ssize_t __return_value;	/* internal, do not use */
+	off_t aio_offset;	/* File offset */
 	char __pad[sizeof(off64_t) - sizeof(off_t)];
 	char __unused[32];
     };
 
     struct aiocb64 {
-	int aio_fildes;
-	int aio_lio_opcode;
-	int aio_reqprio;
-	void *aio_buf;
-	size_t aio_nbytes;
-	struct sigevent aio_sigevent;
-	struct aiocb *__next_prio;
-	int __abs_prio;
-	int __policy;
-	int __error_code;
-	ssize_t __return_value;
-	off64_t aio_offset;
+	int aio_fildes;		/* File desriptor */
+	int aio_lio_opcode;	/* Operation to be performed */
+	int aio_reqprio;	/* Request priority offset */
+	void *aio_buf;		/* Location of buffer */
+	size_t aio_nbytes;	/* Length of transfer */
+	struct sigevent aio_sigevent;	/* Signal number and value */
+	struct aiocb *__next_prio;	/* internal, do not use */
+	int __abs_prio;		/* internal, do not use */
+	int __policy;		/* internal, do not use */
+	int __error_code;	/* internal, do not use */
+	ssize_t __return_value;	/* internal, do not use */
+	off64_t aio_offset;	/* File offset */
 	char __unused[32];
     };
 
