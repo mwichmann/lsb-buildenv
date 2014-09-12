@@ -518,6 +518,7 @@ int need_stack_prot_suppression()
     case '5':
     case '6':
     case '7':
+    case '8':
 	/* 
          * pretty much need it for all newer versions of 4.x, though here
 	 * we hedge our bets and only test for known gcc versions.
