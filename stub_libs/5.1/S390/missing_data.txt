@@ -1,0 +1,3 @@
+libc _sys_errlist 21c
+libncursesw ttytype 100
+libncurses ttytype 100
