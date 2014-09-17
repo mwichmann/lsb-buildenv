@@ -1144,7 +1144,7 @@ __asm__(".globl __timezone; .pushsection .data; .type __timezone,@object; .size 
 __asm__(".globl __tzname; .pushsection .data; .type __tzname,@object; .size __tzname, 16; __tzname: .long 0; .popsection");
 __asm__(".weak _environ; _environ = __environ");
 __asm__(".comm _nl_msg_cat_cntr,4");
-__asm__(".globl _sys_errlist; .pushsection .data; .type _sys_errlist,@object; .size _sys_errlist, 4; _sys_errlist: .long 0; .popsection");
+__asm__(".globl _sys_errlist; .pushsection .data; .type _sys_errlist,@object; .size _sys_errlist, 1080; _sys_errlist: .long 0; .popsection");
 __asm__(".comm _sys_siglist,64");
 __asm__(".weak daylight; daylight = __daylight");
 __asm__(".weak environ; environ = __environ");

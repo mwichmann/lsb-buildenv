@@ -29,7 +29,7 @@ endif
 # Supply default LSBVERSION - target spec version.
 # a big second number (80-99) is leading up to next major spec
 # build_env is version-independent so can wait till late to bump this
-LSBVERSION=4.1
+LSBVERSION=4.98
 
 # True LSB version for multiversion support (affects build-base, build-desktop)
 # it would be nice to have a more precise rule than "last line in file"
@@ -46,11 +46,11 @@ LSB_DEVEL_VERSION := $(shell head -n 1 ../stub_libs/lsb_devel_versions)
 # Should have leading "."
 # a big number (80-99) is leading up to the next minor spec
 # build_env is version-independent so can wait till late to bump this
-SUB_VERSION=.84
+SUB_VERSION=.0
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-BUILDNO=5
+BUILDNO=1
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)

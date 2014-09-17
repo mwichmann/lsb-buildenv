@@ -376,8 +376,6 @@ BASE/LIB-5.0/libpangoxft-1.0.so
 BASE/LIB-5.0/libpangoxft-1.0.so.0
 BASE/LIB-5.0/libpng12.so
 BASE/LIB-5.0/libpng12.so.0
-BASE/LIB-5.0/libpng15.so
-BASE/LIB-5.0/libpng15.so.15
 BASE/LIB-5.0/libtiff.so
 BASE/LIB-5.0/libtiff.so.5
 BASE/LIB-5.0/libxcb.so
@@ -468,8 +466,6 @@ BASE/LIB-5.1/libpangoxft-1.0.so
 BASE/LIB-5.1/libpangoxft-1.0.so.0
 BASE/LIB-5.1/libpng12.so
 BASE/LIB-5.1/libpng12.so.0
-BASE/LIB-5.1/libpng15.so
-BASE/LIB-5.1/libpng15.so.15
 BASE/LIB-5.1/libtiff.so
 BASE/LIB-5.1/libtiff.so.5
 BASE/LIB-5.1/libxcb.so
@@ -797,9 +793,6 @@ BASE/include/gtk-unix-print-2.0/gtk/gtkunixprint.h
 BASE/include/jerror.h
 BASE/include/jpeglib.h
 BASE/include/libpng12/png.h
-BASE/include/libpng15/png.h
-BASE/include/libpng15/pngconf.h
-BASE/include/libpng15/pnglibconf.h
 BASE/include/libxml2/libxml/HTMLparser.h
 BASE/include/libxml2/libxml/HTMLtree.h
 BASE/include/libxml2/libxml/SAX2.h
