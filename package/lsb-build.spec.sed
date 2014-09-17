@@ -101,15 +101,15 @@ cp package/README-base $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-base/README
 
 # specifics for desktop part:
 # note versionlists for png: tweak for a new LSB version
-# per bug 4026, drop png15 from LSB5. dropping the versionlist stuff,
-# but leaving the code here commented out.
+# per bug 4026, drop png15 from LSB5, change the versionlists
+# but leaving the old code here commented out.
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/Licence $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop
 cp package/README-desktop $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-desktop/README
 #( for v in 3.1 3.2 4.0 4.1; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng12.so libpng.so; done )
 #( for v in 5.0 5.1; do if [ -d $RPM_BUILD_ROOT/opt/lsb/%xlib-$v ]; then cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng15.so libpng.so; fi; done )
 # replacement for versionlist-driven linkinge
-( cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng12.so libpng.so )
+( for v in 3.1 3.2 4.0 4.1 5.0 5.1; do cd $RPM_BUILD_ROOT/opt/lsb/%xlib-$v && ln -s libpng12.so libpng.so; done )
 
 # specifics for cc part:
 mkdir -p $RPM_BUILD_ROOT/opt/lsb/doc/lsb-build-cc
