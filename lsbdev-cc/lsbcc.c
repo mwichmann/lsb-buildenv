@@ -37,14 +37,17 @@
  * items within each category is preserved. The extra options are easily 
  * inserted in between the categories.
  *
- * NOTE: the above claim turn out to be a lie; there are known
+ * NOTE: the above claim turns out to be a lie; there are known
  * problems caused by reordering things from the command line the
- * user originally passed in. LSB bug 2941 describes an instance of this.
+ * user originally passed in (LSB bug 2941 describes an instance of this).
+ * Keeping track of state in the face of sorting things into multiple
+ * argument chains is very expensive and has led to far more bug fixing
+ * than should be the case for what is ultimately a relatively simple tool.
  * The solution unfortunately appears to involve yet another rewrite,
- * which has not yet been attempted.
+ * which nobody has had time to do.
  *
  * There are some problems that complicate this process (and this is what 
- * ended the life of the shellscript-based lsbcc). For one, some of the 
+ * ended the life of the shell script-based lsbcc). For one, some of the 
  * options have optional parameters (i.e. -W and -O) and the getopt command 
  * wasn't able to communicate this to the rest of the shell script. Another 
  * is that when strings are passed in as a define (ie -DFOO="A String Here"),
@@ -122,15 +125,17 @@ int lsbcc_warn = 0;
 int lsbcc_buildingshared = 0;
 
 /*
- * State variables to determine if we need to add -Wl,-Bdynamic 
- * or -Wl,-Bstatic before a library
- * b_dynamic tracks the mode we're currently in, b_dynamic_req which we want
+ * State variables to determine if we need to add -Wl,-Bdynamic / -Wl,-Bstatic 
+ * before a library
+ * b_dynamic tracks the mode we're currently in
+ * b_dynamic_req, b_static_req track requests to change mode
  */
 int b_dynamic = 1;
-int b_dynamic_req = 1;
+int b_dynamic_req = 0;
+int b_static_req = 0;
 
 /*
- * State variables to track adding of -Wl,whole-archive and -Wl,no-whole-archive
+ * State variables to track adding of -Wl,whole-archive / -Wl,no-whole-archive
  */
 int whole_archive_seen = 0;
 int whole_archive_emitted = 0;
@@ -165,8 +170,7 @@ char **lsb_version_include_paths[] = {
 /* begin option processing routines */
 
 /*
- * Some options require a little bit of additional processing, so we have
- * a few routines here that are used to do the special processing.
+ * Helper routines: some options require a little bit of additional processing
  */
 int process_opt_l(char *val)
 {
@@ -176,33 +180,43 @@ int process_opt_l(char *val)
     sprintf(buf, "-l%s", val);
 
     /*
-     * If the library is in the LSB list, we make sure it's 
-     * dynamically linked.  The exception is if static linking
-     * has been explicitly requested, which we have to honor.
+     * If the library is in the LSB list (note this includes libraries
+     * marked for dynamic linking by command-line args), make sure it's 
+     * dynamically linked.  If there's a pending argument to go into
+     * dynamic or static linking mode we honor it.
      */
     for (i = 0; i < lsblibs->numargv; i++) {
 	if (strcmp(lsblibs->argv[i], val) == 0) {
 	    /*
-	     * A state machine here (d=b_dynamic, r=b_dynamic_req):
-	     * 1. d=1,r=1: already in right mode (dyn) - do nothing 
-	     * 2. d=0,r=1: in static mode, dynamic requested - flip
-	     * 3. d=0,r=0: already in right mode (stat) - do nothing
-	     * 4. d=1,r=0: in dynamic, static requested - flip
-	     * Request comes from command-line argument.
-	     * if the last thing we saw was a non-LSB lib, it leaves us
-	     * in state 2 so we'll go back to dynamic here
+	     * The previous iteration implemented a four-value state machine
+	     * using b_dynamic to track state and b_dynamic_req to track
+	     * state change requests. It fixed long standing problems with
+	     * sane usage but did not stand up to apparently insane usage:
+	     * bug 4034 notes autotools may emit empty Bstatic/Bdynamic pairs.
+	     * This failed when the second state change arg is seen while
+	     * the first is still pending, the conditions are not right to do 
+	     * anything with the second request.
+	     *
+	     * Now we add b_static_req and the algorithm is simply to act
+	     * on the current request if there is one.
 	     */
-	    if (b_dynamic_req && !b_dynamic) {
+	    if (b_static_req) {		/* 1: cmdline asked for static */
+		if (b_dynamic) {
+		    argvaddstring(userlibs, "-Wl,-Bstatic");
+		    b_dynamic = 0;
+		}
+		b_static_req = 0;
+	    } else if (b_dynamic_req) {	/* 2: cmdline asked for dynamic */
+		 if (!b_dynamic) {
+		    argvaddstring(userlibs, "-Wl,-Bdynamic");
+		    b_dynamic = 1;
+		}
+		b_dynamic_req = 0;
+	    } else if (!b_dynamic) {	/* 3: no pending arg; not dynamic mode*/
 		if (lsbcc_debug & DEBUG_LIB_CHANGES)
 		    fprintf(stderr, "Inserting -Wl,-Bdynamic\n");
 		argvaddstring(userlibs, "-Wl,-Bdynamic");
 		b_dynamic = 1;
-	    }
-	    if (!b_dynamic_req && b_dynamic) {
-		if (lsbcc_debug & DEBUG_LIB_CHANGES)
-		    fprintf(stderr, "Inserting -Wl,-Bstatic\n");
-		argvaddstring(userlibs, "-Wl,-Bstatic");
-		b_dynamic = 0;
 	    }
 	    argvaddstring(userlibs, buf);
 
@@ -214,10 +228,16 @@ int process_opt_l(char *val)
 	    }
 
 	    return 1;
-	}
+        }
     }
 
-    /* Not an LSB library. Check if we need to emit whole-archive flag */
+    /* 
+     * If we've fallen through, this is a non-LSB library
+     * Check if we need to emit the whole-archive flag
+     * and make sure the library is statically linked
+     * Note if there's a pending Bstatic or Bdynamic, we ignore it
+     * here and leave the flag alone for handling when we see an LSB library
+     */
     if (whole_archive_seen && !whole_archive_emitted) {
 	if (lsbcc_debug & DEBUG_LIB_CHANGES)
 	    fprintf(stderr, "Appending -Wl,--whole-archive\n");
@@ -226,7 +246,6 @@ int process_opt_l(char *val)
 	whole_archive_emitted = 1;
     }
 
-    /* and force static linking */
     if (lsbcc_debug & DEBUG_LIB_CHANGES)
 	fprintf(stderr, "Forcing %s to be linked statically\n", val);
 
@@ -238,14 +257,6 @@ int process_opt_l(char *val)
 	    fprintf(stderr, "Inserting -Wl,-Bstatic\n");
 	argvaddstring(userlibs, "-Wl,-Bstatic");
 	b_dynamic = 0;
-	/*
-	 * in case next lib is an LSB lib, this indicates we should flip
-	 * to dynamic mode. If it's another non-LSB lib, we won't look
-	 * at b_dynamic_req and so remain in static mode as we should.
-	 * If the next interesting event is -Wl,-Bstatic on the command
-	 * line, this flag will be turned off so there's no flip.
-	 */
-	b_dynamic_req = 1;
     }
     argvaddstring(userlibs, buf);
 
@@ -347,10 +358,8 @@ int perform_libtool_fixups(const char *optarg)
 	for (i = 0; i < efile->numdynents; i++) {
 	    if (efile->dyns[i].d_tag == DT_NEEDED) {
 		libfile = strdup(ElfGetStringIndex(efile,
-						   efile->dyns[i].d_un.
-						   d_val,
-						   efile->dynhdr->
-						   sh_link));
+						   efile->dyns[i].d_un.d_val,
+						   efile->dynhdr->sh_link));
 		if (lsbcc_debug & DEBUG_LIB_CHANGES) {
 		    printf("Adding DT_NEEDED lib %s from %s\n",
 			   libfile, optarg);
@@ -1556,27 +1565,18 @@ int main(int argc, char *argv[])
 	    /*
 	     * A bit like the above, we wait to emit the dyamic/static
 	     * flags until we see a library argument
+	     * Make sure this request cancels any pending complementary request
+	     * (see bug 4034)
 	     */
 	    if (strstr(argv[optind - 1], "Bdynamic") != NULL) {
-		if (!b_dynamic)
-		    /* 
-		     * If not in dynamic mode, ask for it
-		     * b_dynamic will be set when the arg is emitted
-		     */
-		    b_dynamic_req = 1;
+		b_dynamic_req = 1;
+		b_static_req = 0;
 		break;
 	    }
 
 	    if (strstr(argv[optind - 1], "Bstatic") != NULL) {
-		if (b_dynamic || b_dynamic_req)
-		    /* 
-		     * If not in static mode, ask for it
-		     * b_dynamic will be cleared when the arg is emitted
-		     * If there's a pending dynamic mode request, clear it
-		     * this is if the last thing was a non-LSB lib, it
-		     * will have left b_dynamic_req set
-		     */
-		    b_dynamic_req = 0;
+		b_static_req = 1;
+		b_dynamic_req = 0;
 		break;
 	    }
 
@@ -1621,6 +1621,8 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "option: -%s\n",
 			long_options[option_index].name);
 	    argvaddstring(gccstartargs, "-static");
+	    if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		fprintf(stderr, "Appending -Wl,--start-group -lgcc_eh\n");
 	    argvaddstring(syslibs, "-Wl,--start-group");
 	    argvaddstring(syslibs, "-lgcc_eh");
 	    break;
@@ -1993,6 +1995,8 @@ int main(int argc, char *argv[])
 	 */
 	if (cc_is_icc && !no_link) {
 	    if (b_dynamic) {
+		if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		    fprintf(stderr, "Inserting -Wl,-Bstatic\n");
 		argvaddstring(gccargs, "-Wl,-Bstatic");
 		b_dynamic = 0;
 	    }
@@ -2006,6 +2010,8 @@ int main(int argc, char *argv[])
 			"Appending -lpthread -lpthread_nonshared to the library list due to auto_pthread\n");
 	    }
 	    if (!b_dynamic && !force_static) {
+		if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		    fprintf(stderr, "Inserting -Wl,-Bdynamic\n");
 		argvaddstring(gccargs, "-Wl,-Bdynamic");
 		b_dynamic = 1;
 	    }

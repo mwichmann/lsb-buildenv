@@ -58,7 +58,29 @@ if [ $? -ne 0 ]; then
 fi
 echo OK
 
-# now replace the source file - we do not want a main() for the rest
+# regression test for unexpected empty Bstatic/Bdynamic pairs
+# also makes sure lsbc++ mode works
+cat > $TSRC <<EOF
+#include <time.h>
+
+int main()
+{
+    timespec ts;
+
+    clock_gettime(CLOCK_REALTIME,&ts);
+    return 0;
+}
+EOF
+printf "Compiling $TSRC regression test to $TPROG with lsbc++..."
+# the -L. is so we can pick up libgcc34-compat.a
+./lsbc++ -Wl,--no-undefined -Wl,-Bstatic -Wl,-Bdynamic -lrt -L. $TSRC -o $TPROG > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "Failed to compile $TSRC with lsbcc"
+  exit 1
+fi
+echo OK
+
+# for the rest, want a source file without a main() 
 echo "int test() { return 0; }" > $TSRC
 
 # first build the .o file
