@@ -10,6 +10,12 @@ extern "C" {
 #endif
 
 
+#if __LSB_VERSION__ >= 11
+#define MAXNAMLEN	NAME_MAX
+#endif				/* __LSB_VERSION__ >= 1.1 */
+
+
+
 
 /* structure describing an open directory*/
 #if __LSB_VERSION__ >= 11

@@ -14,6 +14,7 @@ extern "C" {
 #define LONG_MAX	0x7FFFFFFFL
 #define ULONG_MAX	0xFFFFFFFFUL
 #endif
+#define NAME_MAX	255
 #define PATH_MAX	4096
 #if __LSB_VERSION__ < 40
 #define OPEN_MAX	256

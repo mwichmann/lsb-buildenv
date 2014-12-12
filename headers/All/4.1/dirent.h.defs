@@ -1,4 +1,6 @@
 
+#define MAXNAMLEN	NAME_MAX
+
 typedef struct __dirstream DIR;
 
 struct dirent {
