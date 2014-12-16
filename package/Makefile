@@ -31,6 +31,10 @@ endif
 # build_env is version-independent so can wait till late to bump this
 LSBVERSION=5.0
 
+# Target LSB version.  This means lsbcc and friends might not run
+# on systems that don't conform with at least this version of the LSB.
+LSBCC_LSBVERSION=4.0
+
 # True LSB version for multiversion support (affects build-base, build-desktop)
 # it would be nice to have a more precise rule than "last line in file"
 ifeq ($(SKIP_DEVEL_VERSIONS),yes)
@@ -50,7 +54,7 @@ SUB_VERSION=.3
 
 # We define this here instead of directly in the spec file as
 # we need to be able to work out what the produced rpm files will be called
-BUILDNO=1
+BUILDNO=2
 
 # Initialize LIB64 to proper value for 64-bit architectures
 export LIB64:=$(shell case `uname -m` in (ppc64 | s390x | x86_64) echo 64 ;; esac)
