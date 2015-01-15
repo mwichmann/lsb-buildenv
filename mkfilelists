@@ -52,6 +52,7 @@ CORE_MODULES = [
 DESKTOP_MODULES = [
     'LSB_Graphics',
     'LSB_Toolkit_Gtk',
+    'LSB_Toolkit_Gtk3',
     'LSB_Toolkit_Qt',
     'LSB_Graphics_Ext',
     'LSB_XML',

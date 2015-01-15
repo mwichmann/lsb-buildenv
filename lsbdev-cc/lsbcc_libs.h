@@ -265,7 +265,6 @@ char *lsb_libs_50[] = {
 	"fontconfig",
 	"freetype",
 	"gcc_s",
-	"gdk-3",
 	"gdk-x11-2.0",
 	"gdk_pixbuf-2.0",
 	"gdk_pixbuf_xlib-2.0",
@@ -274,7 +273,6 @@ char *lsb_libs_50[] = {
 	"gmodule-2.0",
 	"gobject-2.0",
 	"gthread-2.0",
-	"gtk-3",
 	"gtk-x11-2.0",
 	"jpeg",
 	"m",
@@ -357,6 +355,7 @@ char *lsb_libs_51[] = {
 	"pangoxft-1.0",
 	"png12",
 	"png",
+	"png15",
 	"pthread",
 	"rt",
 	"sane",
@@ -437,9 +436,22 @@ lsb_lib_modules_t lsb_modules_40[] = {
 lsb_lib_modules_t lsb_modules_41[] = {
 };
 
-#define lsb_num_modules_50 0
+char *lsb_TUM_libs_50[] = {
+	"png15",
+	NULL
+};
+
+char *lsb_Toolkit_Gtk3_libs_50[] = {
+	"gdk-3",
+	"gtk-3",
+	NULL
+};
+
+#define lsb_num_modules_50 2
 
 lsb_lib_modules_t lsb_modules_50[] = {
+	{"TUM", lsb_TUM_libs_50 },
+	{"Toolkit_Gtk3", lsb_Toolkit_Gtk3_libs_50 },
 };
 
 #define lsb_num_modules_51 0
