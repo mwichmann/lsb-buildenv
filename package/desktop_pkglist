@@ -376,6 +376,8 @@ BASE/LIB-5.0/libpangoxft-1.0.so
 BASE/LIB-5.0/libpangoxft-1.0.so.0
 BASE/LIB-5.0/libpng12.so
 BASE/LIB-5.0/libpng12.so.0
+BASE/LIB-5.0/libpng15.so
+BASE/LIB-5.0/libpng15.so.15
 BASE/LIB-5.0/libtiff.so
 BASE/LIB-5.0/libtiff.so.5
 BASE/LIB-5.0/libxcb.so
@@ -466,6 +468,8 @@ BASE/LIB-5.1/libpangoxft-1.0.so
 BASE/LIB-5.1/libpangoxft-1.0.so.0
 BASE/LIB-5.1/libpng12.so
 BASE/LIB-5.1/libpng12.so.0
+BASE/LIB-5.1/libpng15.so
+BASE/LIB-5.1/libpng15.so.15
 BASE/LIB-5.1/libtiff.so
 BASE/LIB-5.1/libtiff.so.5
 BASE/LIB-5.1/libxcb.so

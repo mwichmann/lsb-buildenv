@@ -29,11 +29,11 @@ install-desktop:
 install-bootstrap: install-core
 
 gensrc:
-	for d in $(SUBDIRS);do (cd $$d && $(MAKE) gensrc);done
+	for d in $(SUBDIRS) package;do (cd $$d && $(MAKE) gensrc);done
 
 clean:
-	for d in $(SUBDIRS);do (cd $$d && $(MAKE) clean);done
+	for d in $(SUBDIRS) package;do (cd $$d && $(MAKE) clean);done
 
 distclean:
-	for d in $(SUBDIRS);do (cd $$d && $(MAKE) distclean);done
+	for d in $(SUBDIRS) package;do (cd $$d && $(MAKE) distclean);done
 
