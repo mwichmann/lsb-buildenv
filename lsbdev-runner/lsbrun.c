@@ -68,7 +68,7 @@ void handle_mem_error()
 
 const char *find_binary_path(const char *binary)
 {
-  char buf[PATH_MAX];
+  char buf[PATH_MAX+1];
   char *path;
   char *path_item;
   char *result = NULL;
@@ -96,8 +96,8 @@ const char *find_binary_path(const char *binary)
 
   if (result == NULL) {
     getcwd(buf, PATH_MAX);
-    strncat(buf, "/", PATH_MAX);
-    strncat(buf, binary, PATH_MAX);
+    strcat(buf, "/");
+    strncat(buf, binary, PATH_MAX-1);
     result = strdup(buf);
     if (result == NULL) handle_mem_error();
   }
@@ -110,7 +110,7 @@ const char *find_binary_path(const char *binary)
 
 void check_binary(const char *binary_path, const char *lsbrun_path)
 {
-  char buf[PATH_MAX];
+  char buf[PATH_MAX+1];
   char *binary_basename;
   char *new_binary_path;
   char *binary_dir;
@@ -178,6 +178,9 @@ void check_binary(const char *binary_path, const char *lsbrun_path)
 	      "warning: check the target binary, it may not be executable\n");
       exit(1);
     }
+    free (new_binary_path);
+    free (binary_basename);
+    free (binary_dir);
   }
 }
 
@@ -204,7 +207,7 @@ int main(int argc, char *argv[])
   char *abs_exec_dir;
   char *lsbrun_path;
 
-  char buf[PATH_MAX];
+  char buf[PATH_MAX+1];
   int index;
 
   /* First, let's figure out how we were started. */

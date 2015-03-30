@@ -110,7 +110,7 @@ void _lsb_init()
     if ((result == -1) || (result == PATH_MAX))
 	return;
     exebuf[result] = '\0';
-    argv[1] = exebuf;
+    argv[1] = exebuf;		/* coverity notes tainted string here */
 
     /* Finally, do the re-exec. */
 

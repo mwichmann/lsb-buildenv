@@ -321,6 +321,7 @@ int perform_libtool_fixups(const char *optarg)
 		"Warning: Shared library %s does not follow the libfoo.so convention\n",
 		optarg);
 	CloseElfFile(efile);
+        free (libdir);
 	return 0;
     }
     *tmp = '\0';
