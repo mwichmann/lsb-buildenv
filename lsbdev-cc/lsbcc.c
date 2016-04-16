@@ -77,6 +77,9 @@
 
 #include "elf_utils.h"
 
+/* C99 rules: have to declare extern here to get inline from another file */
+extern inline int get_version_index(char* vername);
+
 /*
  * These are the categories of options that we are going to be grouping
  * together.
