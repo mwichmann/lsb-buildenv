@@ -520,6 +520,10 @@ int need_stack_prot_suppression()
     if (!need_gcc34_compat())
 	return 0;
 
+    /* XXX experimental, bug 4157: don't suppress for LSB >= 4.0 */
+    if (strcmp(lsbcc_lsbversion, "4.0") >= 0)
+	return 0;
+
     /* 
      * If we're here, we know we're running a gcc 4.x version.
      * Check the minor version number in this case.
