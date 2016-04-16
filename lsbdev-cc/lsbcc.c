@@ -491,6 +491,10 @@ int need_gcc34_compat()
 	/* gcc 4.x */
 	return 1;
 
+    case '5':
+	/* gcc 5.x - bug 4156: treat it like gcc 4.x */
+	return 1;
+
     default:
 	/* Some other value we don't recognize. */
 	fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
@@ -519,13 +523,15 @@ int need_stack_prot_suppression()
     /* 
      * If we're here, we know we're running a gcc 4.x version.
      * Check the minor version number in this case.
+     * Add: running 4.x or 5.x
      */
     switch (gccversion[2]) {
 
     case '0':
-	/* Don't need it for gcc 4.0. */
-	return 0;
-
+	/* Don't need it for gcc 4.0, but flag it for 5.0. */
+	if (gccversion[0] == '4')
+	    return 0;
+	/* else fallthrough */
     case '1':
     case '2':
     case '3':
@@ -534,10 +540,13 @@ int need_stack_prot_suppression()
     case '6':
     case '7':
     case '8':
+    case '9':
 	/* 
-         * pretty much need it for all newer versions of 4.x, though here
+	 * pretty much need it for all newer versions of 4.x, though here
 	 * we hedge our bets and only test for known gcc versions.
 	 * There's usually some other issue anyway (usually c++)
+	 * This is now accepting 4.1-4.9, and 5.0-5.9: the latter
+	 * is not really the intent but what the heck.
 	 */
 	return 1;
 
@@ -622,7 +631,7 @@ int need_long_double_64()
     case '5':
     case '6':
 	/* 
-         * pretty much need it for all newer versions of 4.x, though here
+	 * pretty much need it for all newer versions of 4.x, though here
 	 * we hedge our bets and only test for known gcc versions.
 	 * There's usually some other issue anyway (usually c++)
 	 */
