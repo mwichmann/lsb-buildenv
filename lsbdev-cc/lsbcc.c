@@ -2029,11 +2029,11 @@ int main(int argc, char *argv[])
 	    if (!b_dynamic && !force_static) {
 		if (lsbcc_debug & DEBUG_LIB_CHANGES)
 		    fprintf(stderr, "Inserting -Wl,-Bdynamic\n");
-		argvaddstring(gccargs, "-Wl,-Bdynamic");
+		argvaddstring(syslibs, "-Wl,-Bdynamic");
 		b_dynamic = 1;
 	    }
-	    argvaddstring(gccargs, "-lpthread");
-	    argvaddstring(gccargs, "-lpthread_nonshared");
+	    argvaddstring(syslibs, "-lpthread");
+	    argvaddstring(syslibs, "-lpthread_nonshared");
 	}
 	if (!cc_is_icc) {
 	    argvappend(gccargs, proginterp);
