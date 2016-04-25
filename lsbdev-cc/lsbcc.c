@@ -1858,7 +1858,7 @@ int main(int argc, char *argv[])
 	    if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
 		fprintf(stderr, "Adding -Wl,--hash-style=sysv to args\n");
 	    }
-	    argvaddstring(syslibs, "-Wl,--hash-style=sysv");
+	    argvaddstring(gccargs, "-Wl,--hash-style=sysv");
 	}
 
 	if (lsbccmode == LSBCPLUS) {
