@@ -2038,7 +2038,10 @@ int main(int argc, char *argv[])
 	if (!cc_is_icc) {
 	    argvappend(gccargs, proginterp);
 	}
-	argvappend(gccargs, syslibs);
+
+	/* bug 4161: don't add syslibs if linking a shared library */
+	if (!lsbcc_buildingshared)
+	    argvappend(gccargs, syslibs);
     }
 
 
