@@ -2020,17 +2020,18 @@ int main(int argc, char *argv[])
 	    argvaddstring(gccargs, "-lirc");
 	}
 
+	if (!b_dynamic && !force_static) {
+	    if (lsbcc_debug & DEBUG_LIB_CHANGES)
+		fprintf(stderr, "Inserting -Wl,-Bdynamic\n");
+	    argvaddstring(gccargs, "-Wl,-Bdynamic");
+	    b_dynamic = 1;
+	}
+
 	/* force pthread always */
 	if (auto_pthread) {
 	    if (lsbcc_debug & DEBUG_LIB_CHANGES) {
 		fprintf(stderr,
 			"Appending -lpthread -lpthread_nonshared to the library list due to auto_pthread\n");
-	    }
-	    if (!b_dynamic && !force_static) {
-		if (lsbcc_debug & DEBUG_LIB_CHANGES)
-		    fprintf(stderr, "Inserting -Wl,-Bdynamic\n");
-		argvaddstring(syslibs, "-Wl,-Bdynamic");
-		b_dynamic = 1;
 	    }
 	    argvaddstring(syslibs, "-lpthread");
 	    argvaddstring(syslibs, "-lpthread_nonshared");
