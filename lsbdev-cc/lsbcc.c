@@ -93,6 +93,7 @@ struct argvgroup *userlibs;
 struct argvgroup *syslibs;
 struct argvgroup *gccargs;
 struct argvgroup *lsblibs;
+struct argvgroup *dsolibs;
 struct argvgroup *gccstartargs;
 
 /*
@@ -1067,6 +1068,7 @@ int main(int argc, char *argv[])
     libpaths = argvinit("libpaths");
     userlibs = argvinit("userlibs");
     syslibs = argvinit("syslibs");
+    dsolibs = argvinit("dsolibs");
     gccargs = argvinit("gccargs");
 
     /* Determine if we are being called for C or C++ */
@@ -1897,6 +1899,8 @@ int main(int argc, char *argv[])
 	argvaddstring(syslibs, "-lm");
 	argvaddstring(syslibs, "-lc");
 	argvaddstring(syslibs, "-lc_nonshared");
+	/* and in case we need to use the alternate chain for shared libs */
+	argvaddstring(dsolibs, "-lc_nonshared");
 
 	/* to be pedantic, we do gcc_s and gcc again */
 	if (lsbccmode == LSBCPLUS) {
@@ -2040,11 +2044,15 @@ int main(int argc, char *argv[])
 	    argvappend(gccargs, proginterp);
 	}
 
-	/* bug 4161: don't add syslibs if linking a shared library */
-	if (!lsbcc_buildingshared)
+	/* 
+	 * bug 4161: don't add syslibs if linking a shared library
+	 * we do need libc_nonshared, though. Maybe also pthread_nonshared?
+	 */
+	if (lsbcc_buildingshared)
+	    argvappend(gccargs, dsolibs);
+	else
 	    argvappend(gccargs, syslibs);
     }
-
 
     /* ensure argument list is null terminated */
     gccargs->argv[gccargs->numargv] = NULL;
