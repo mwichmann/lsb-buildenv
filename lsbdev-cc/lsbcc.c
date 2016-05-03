@@ -233,7 +233,7 @@ int process_opt_l(char *val)
 	    }
 
 	    return 1;
-        }
+	}
     }
 
     /* 
@@ -326,7 +326,7 @@ int perform_libtool_fixups(const char *optarg)
 		"Warning: Shared library %s does not follow the libfoo.so convention\n",
 		optarg);
 	CloseElfFile(efile);
-        free (libdir);
+	free (libdir);
 	return 0;
     }
     *tmp = '\0';
@@ -783,11 +783,11 @@ char *get_modules_strings(void)
 	if (lsb_module->lib_names == NULL)
 	    continue;
 	modules = realloc(modules, (modules ? strlen(modules) : 0) +
-			            strlen(lsb_module->module_name) + 2);
+				    strlen(lsb_module->module_name) + 2);
 	strcat(modules, lsb_module->module_name);
     }
     if (!modules)
-        modules = strdup("None");
+	modules = strdup("None");
     return modules;
 }
 
@@ -1332,7 +1332,7 @@ int main(int argc, char *argv[])
      * not prefer the former, but accept both to not silently fail things
      */
     if ((ptr = getenv("LSBCC_SHAREDLIBPATH")) != NULL ||
-        (ptr = getenv("LSB_SHAREDLIBPATH")) != NULL) {
+	(ptr = getenv("LSB_SHAREDLIBPATH")) != NULL) {
 	process_shared_lib_path(strdup(ptr));
     }
 
@@ -1562,14 +1562,14 @@ int main(int argc, char *argv[])
 		 * so we don't know where to put this. We have to solve
 		 * this by deferring processing.
 		 */
-	        if (strstr(argv[optind - 1], "whole-archive") != NULL) {
+		if (strstr(argv[optind - 1], "whole-archive") != NULL) {
 		    whole_archive_seen = 1;
 		    whole_archive_emitted = 0;
 		}
-	        if (strstr(argv[optind - 1], "no-whole-archive") != NULL) {
+		if (strstr(argv[optind - 1], "no-whole-archive") != NULL) {
 		    if (whole_archive_list) {
-		        if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
-		            fprintf(stderr, "option: %s\n", argv[optind - 1]);
+			if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
+			    fprintf(stderr, "option: %s\n", argv[optind - 1]);
 			argvaddstring(whole_archive_list, argv[optind - 1]);
 			whole_archive_list = NULL;
 		    }
@@ -1757,8 +1757,8 @@ int main(int argc, char *argv[])
      */
     for (i = 0; lsb_version_include_paths[lsbversion_index][i] != NULL; i++) {
       if (lsbcc_debug & DEBUG_INCLUDE_CHANGES)
-        fprintf(stderr, "Prepending %s to system include path\n", 
-                        lsb_version_include_paths[lsbversion_index][i]);
+	fprintf(stderr, "Prepending %s to system include path\n", 
+			lsb_version_include_paths[lsbversion_index][i]);
       argvadd(incpaths, "I", lsb_version_include_paths[lsbversion_index][i]);
     }
 
