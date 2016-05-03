@@ -228,7 +228,7 @@ int process_opt_l(char *val)
 	    if (strcmp(val, "pthread") == 0) {
 		if (lsbcc_debug & DEBUG_LIB_CHANGES)
 		    fprintf(stderr, "Appending -lpthread_nonshared\n");
-		argvaddstring(userlibs, "-lpthread_nonshared");
+		argvaddstring(syslibs, "-lpthread_nonshared");
 	    }
 
 	    return 1;
@@ -1892,6 +1892,7 @@ int main(int argc, char *argv[])
 	    fprintf(stderr, "Appending -lgcc\n");
 	}
 	argvaddstring(syslibs, "-lgcc");
+	argvaddstring(dsolibs, "-lgcc");	/* at least once for a DSO */
 	if (lsbcc_debug & DEBUG_LIB_CHANGES) {
 	    fprintf(stderr,
 		    "Appending -lm -lc -lc_nonshared -lgcc to the library list\n");
@@ -2039,6 +2040,7 @@ int main(int argc, char *argv[])
 	    }
 	    argvaddstring(syslibs, "-lpthread");
 	    argvaddstring(syslibs, "-lpthread_nonshared");
+	    argvaddstring(dsolibs, "-lpthread_nonshared");
 	}
 	if (!cc_is_icc) {
 	    argvappend(gccargs, proginterp);
