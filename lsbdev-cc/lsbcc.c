@@ -229,6 +229,7 @@ int process_opt_l(char *val)
 		if (lsbcc_debug & DEBUG_LIB_CHANGES)
 		    fprintf(stderr, "Appending -lpthread_nonshared\n");
 		argvaddstring(syslibs, "-lpthread_nonshared");
+		argvaddstring(dsolibs, "-lpthread_nonshared");
 	    }
 
 	    return 1;
@@ -1889,13 +1890,14 @@ int main(int argc, char *argv[])
 	}
 
 	if (lsbcc_debug & DEBUG_LIB_CHANGES) {
-	    fprintf(stderr, "Appending -lgcc\n");
+	    fprintf(stderr, "Appending -lgcc to the library list\n");
 	}
 	argvaddstring(syslibs, "-lgcc");
 	argvaddstring(dsolibs, "-lgcc");	/* at least once for a DSO */
+
 	if (lsbcc_debug & DEBUG_LIB_CHANGES) {
 	    fprintf(stderr,
-		    "Appending -lm -lc -lc_nonshared -lgcc to the library list\n");
+		    "Appending -lm -lc -lc_nonshared to the library list\n");
 	}
 	argvaddstring(syslibs, "-lm");
 	argvaddstring(syslibs, "-lc");
@@ -1981,10 +1983,6 @@ int main(int argc, char *argv[])
 
 	argvappend(gccargs, options);
 
-	if (lsbcc_debug & DEBUG_LIB_CHANGES) {
-	    fprintf(stderr,
-		    "Turning off default libraries with -nodefaultlibs\n");
-	}
 
 	if (!no_link) {
 	    /*
@@ -1995,7 +1993,13 @@ int main(int argc, char *argv[])
 		argvappend(gccargs, proginterp);
 	    }
 
+	    if (lsbcc_debug & DEBUG_LIB_CHANGES) {
+		fprintf(stderr,
+			"Turning off default libraries with -nodefaultlibs\n");
+	    }
+	    /* note implies have to manaully include -lgcc for a GCC compiler */
 	    argvaddstring(gccargs, "-nodefaultlibs");
+
 	    if (lsbcc_debug & DEBUG_LIB_CHANGES) {
 		fprintf(stderr, "Prepending %s to the linker path\n",
 			libpath);
