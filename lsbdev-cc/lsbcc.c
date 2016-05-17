@@ -7,17 +7,17 @@
  * under the terms of the BSD license.
  */
 /*
- * This is the lsbcc wrapper (which can also be known as lsbc++). 
+ * This is the lsbcc wrapper (which can also be known as lsbc++).
  * It is used to aid in building LSB conforming applications.
  * LSB conforming applications can be built without this tool, but using
- * lsbcc make it easier to get everything right. 
+ * lsbcc make it easier to get everything right.
  * This is a re-implementation of the original shell script.
  *
  * The basic premise is this: The LSB development environment provides
- * a set of headers and libraries found in /opt/lsb/include and 
+ * a set of headers and libraries found in /opt/lsb/include and
  * /opt/lsb/lib respectively (configurable). These headers and libraries have
- * been carefully constructed so that they contain only the interfaces 
- * provided by the LSB. An LSB conforming application must also be linked 
+ * been carefully constructed so that they contain only the interfaces
+ * provided by the LSB. An LSB conforming application must also be linked
  * with a special program intepreter, usually ld-lsb.so.3 but the name
  * is defined in each LSB architecture supplement). lsbcc arranges the
  * task of including these headers and link-editing against these libraries
@@ -30,11 +30,11 @@
  * inserting a couple of extra options in the right place before actually
  * calling gcc (or other specified native compiler).
  *
- * The approach is to recognize enough of the regular options to allow the 
+ * The approach is to recognize enough of the regular options to allow the
  * extra options to be inserted into the right place. Fortunately,
  * the options can be grouped into a few categories, and the order in which
  * the categories are passed to gcc is not important, as long as the order of
- * items within each category is preserved. The extra options are easily 
+ * items within each category is preserved. The extra options are easily
  * inserted in between the categories.
  *
  * NOTE: the above claim turns out to be a lie; there are known
@@ -46,10 +46,10 @@
  * The solution unfortunately appears to involve yet another rewrite,
  * which nobody has had time to do.
  *
- * There are some problems that complicate this process (and this is what 
- * ended the life of the shell script-based lsbcc). For one, some of the 
- * options have optional parameters (i.e. -W and -O) and the getopt command 
- * wasn't able to communicate this to the rest of the shell script. Another 
+ * There are some problems that complicate this process (and this is what
+ * ended the life of the shell script-based lsbcc). For one, some of the
+ * options have optional parameters (i.e. -W and -O) and the getopt command
+ * wasn't able to communicate this to the rest of the shell script. Another
  * is that when strings are passed in as a define (ie -DFOO="A String Here"),
  * the quotes were getting stripped off, so what got passed to gcc was a bunch
  * of invalid options.
@@ -129,7 +129,7 @@ int lsbcc_warn = 0;
 int lsbcc_buildingshared = 0;
 
 /*
- * State variables to determine if we need to add -Wl,-Bdynamic / -Wl,-Bstatic 
+ * State variables to determine if we need to add -Wl,-Bdynamic / -Wl,-Bstatic
  * before a library
  * b_dynamic tracks the mode we're currently in
  * b_dynamic_req, b_static_req track requests to change mode
@@ -185,7 +185,7 @@ int process_opt_l(char *val)
 
     /*
      * If the library is in the LSB list (note this includes libraries
-     * marked for dynamic linking by command-line args), make sure it's 
+     * marked for dynamic linking by command-line args), make sure it's
      * dynamically linked.  If there's a pending argument to go into
      * dynamic or static linking mode we honor it.
      */
@@ -198,7 +198,7 @@ int process_opt_l(char *val)
 	     * sane usage but did not stand up to apparently insane usage:
 	     * bug 4034 notes autotools may emit empty Bstatic/Bdynamic pairs.
 	     * This failed when the second state change arg is seen while
-	     * the first is still pending, the conditions are not right to do 
+	     * the first is still pending, the conditions are not right to do
 	     * anything with the second request.
 	     *
 	     * Now we add b_static_req and the algorithm is simply to act
@@ -236,7 +236,7 @@ int process_opt_l(char *val)
 	}
     }
 
-    /* 
+    /*
      * If we've fallen through, this is a non-LSB library
      * Check if we need to emit the whole-archive flag
      * and make sure the library is statically linked
@@ -515,7 +515,7 @@ int need_gcc34_compat()
 
 int need_stack_prot_suppression()
 {
-    /* 
+    /*
      * If we don't need the gcc 3.4 workaround, we don't need this.
      * This also conveniently loads the gcc version for us.
      */
@@ -526,7 +526,7 @@ int need_stack_prot_suppression()
     if (strcmp(lsbcc_lsbversion, "4.0") >= 0)
 	return 0;
 
-    /* 
+    /*
      * If we're here, we know we're running a gcc 4.x version.
      * Check the minor version number in this case.
      * Add: running 4.x or 5.x
@@ -547,7 +547,7 @@ int need_stack_prot_suppression()
     case '7':
     case '8':
     case '9':
-	/* 
+	/*
 	 * pretty much need it for all newer versions of 4.x, though here
 	 * we hedge our bets and only test for known gcc versions.
 	 * There's usually some other issue anyway (usually c++)
@@ -558,11 +558,11 @@ int need_stack_prot_suppression()
 
     default:
 	/*
-	 * Some other value we don't recognize.  
+	 * Some other value we don't recognize.
 	 * Following the previous pattern, assume we need it here.
 	 *
-	 * Bug 3816 comment #4 notes that it breaks autoconf scripts if 
-	 * "lsbcc -E" writes to stderr.  Since we're trying to let untested 
+	 * Bug 3816 comment #4 notes that it breaks autoconf scripts if
+	 * "lsbcc -E" writes to stderr.  Since we're trying to let untested
 	 * new versions still work, avoid doing this in the preprocessor case.
 	 */
 	if (! cpp_only)
@@ -616,7 +616,7 @@ int need_long_double_64()
     if (strcmp(lsbcc_lsbversion, "4.0") >= 0)
 	return 0;
 
-    /* 
+    /*
      * If we don't need the gcc 3.4 workaround, we don't need this.
      * This also conveniently loads the gcc version for us.
      */
@@ -636,7 +636,7 @@ int need_long_double_64()
     case '4':
     case '5':
     case '6':
-	/* 
+	/*
 	 * pretty much need it for all newer versions of 4.x, though here
 	 * we hedge our bets and only test for known gcc versions.
 	 * There's usually some other issue anyway (usually c++)
@@ -645,7 +645,7 @@ int need_long_double_64()
 
     default:
 	/*
-	 * Some other value we don't recognize.  
+	 * Some other value we don't recognize.
 	 * Following the previous pattern, assume we need it here.
 	 */
 	fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
@@ -768,7 +768,7 @@ struct option long_options[] = {
 };
 
 /*
- * return string of available optional/trial-use module names for 
+ * return string of available optional/trial-use module names for
  * the target LSB version, or "None"
  * Used only for the usage message at the moment
  * Side effect: memory is allocated for the string
@@ -917,8 +917,8 @@ int is_file_so(const struct dirent *ent)
  * Returns the number of directory entries selected or -1 if an error occurs
  *
  * FIXME: If LSB adds scandir, drop this code.
- * UPDATE: as described in bug 1997, scandir was added @LSB 4.0, but LSB 
- * builds lsbcc "pessimistically" (targeting oldest possible LSB version), 
+ * UPDATE: as described in bug 1997, scandir was added @LSB 4.0, but LSB
+ * builds lsbcc "pessimistically" (targeting oldest possible LSB version),
  * so this needs to remain.
  */
 int lsbcc_scandir(const char *dir,
@@ -936,12 +936,12 @@ int lsbcc_scandir(const char *dir,
     if ((dirp = opendir(dir)) == NULL)
 	return -1;
     while ((tmpent = readdir(dirp)) != NULL) {
-	if (!sel(tmpent)) 
+	if (!sel(tmpent))
 	    continue;
 	if (num_ents == ents_available) {
 	    /* grow the return array buffer in 1k chunks as needed */
-	    *namelist = realloc(*namelist, 1024 + 
-				    ents_available * sizeof(struct dirent*));
+	    *namelist = realloc(*namelist,
+				1024 + ents_available * sizeof(struct dirent*));
 	    ents_available += 1024 / sizeof(struct dirent*);
 	}
 
@@ -987,13 +987,13 @@ void process_shared_lib_path(char *libarg)
 	    while (num_libs--) {
 		/*
 		 * The filter is_file_so() selects only names which match
-		 * a pattern which includes starting with "lib" and 
+		 * a pattern which includes starting with "lib" and
 		 * containing a ".so" somewhere after that (e.g.
 		 * libfoo.so.1.37 is a match, as is libfoo.so).
-		 * Unfortunately, this is too complex for external scanning 
-		 * tools, so for example Coverity flags this as a 
-		 * high-priority defect, due to dereferencing null pointer 
-		 * if the strstr returns NULL - which we know can't happen 
+		 * Unfortunately, this is too complex for external scanning
+		 * tools, so for example Coverity flags this as a
+		 * high-priority defect, due to dereferencing null pointer
+		 * if the strstr returns NULL - which we know can't happen
 		 * because of is_file_so.
 		 */
 		char *libstr =
@@ -1281,8 +1281,8 @@ int main(int argc, char *argv[])
 	    }
 
 	    /*
-	     * FIXME temporary hack: just accept names of deprecated modules - 
-	     * no need to do anything with them. This is just for the Qt3 
+	     * FIXME temporary hack: just accept names of deprecated modules -
+	     * no need to do anything with them. This is just for the Qt3
 	     * scripts until a better answer is developed
 	     */
 	    for (i = 0; i < lsb_num_deprecated_modules[lsbversion_index];
@@ -1297,7 +1297,7 @@ int main(int argc, char *argv[])
 	    }
 
 	    /*
-	     * If the module has just been withdrawn, 
+	     * If the module has just been withdrawn,
 	     * print a warning instead of an error.
 	     */
 	    if (!found) {
@@ -1553,12 +1553,12 @@ int main(int argc, char *argv[])
 		(strstr(argv[optind - 1], "whole-archive") != NULL)) {
 		/*
 		 * Tricky case.  If an archive is being specified by name
-		 * as libname.a, it is "unrecognized" and will go on the 
-		 * "options" list.  It if it being specified by way of 
-		 * -lname, then is will be recognized as a library and go 
-		 * on the "userlibs" list.  The problem is, whole-archive 
+		 * as libname.a, it is "unrecognized" and will go on the
+		 * "options" list.  It if it being specified by way of
+		 * -lname, then is will be recognized as a library and go
+		 * on the "userlibs" list.  The problem is, whole-archive
 		 * has to stay together with the archive it applies to,
-		 * but we haven't gotten to the library argument(s) yet, 
+		 * but we haven't gotten to the library argument(s) yet,
 		 * so we don't know where to put this. We have to solve
 		 * this by deferring processing.
 		 */
@@ -1635,7 +1635,7 @@ int main(int argc, char *argv[])
 	    /* no -Wl,Bdynamic, add -Wl,--start-group, add -lgcc_eh */
 	    found_gcc_arg = 1;
 	    b_dynamic = 0;
-	   
+
 	    force_static = 1;
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS)
 		fprintf(stderr, "option: -%s\n",
@@ -1661,8 +1661,8 @@ int main(int argc, char *argv[])
 	case '?':
 	    if (strncmp(argv[optind_old], "--lsb-", 6) == 0) {
 		/*
-		 * Refuse to pass unrecognized --lsb- prefixed options 
-		 * along to the real compiler. Likely just typos of 
+		 * Refuse to pass unrecognized --lsb- prefixed options
+		 * along to the real compiler. Likely just typos of
 		 * legitmate --lsb- options.
 		 * No chance compiler would recognize anyway.
 		 */
@@ -1690,7 +1690,7 @@ int main(int argc, char *argv[])
 	default:
 	    /* the option from 100-200 range, copy argument after it */
 	    if (c >= COPY_ARG_START && c < COPY_ARG_END) {
-		/* 
+		/*
 		 * In this case the next argument from command line is
 		 * immediately appended to the option list.
 		 */
@@ -1757,7 +1757,7 @@ int main(int argc, char *argv[])
      */
     for (i = 0; lsb_version_include_paths[lsbversion_index][i] != NULL; i++) {
       if (lsbcc_debug & DEBUG_INCLUDE_CHANGES)
-	fprintf(stderr, "Prepending %s to system include path\n", 
+	fprintf(stderr, "Prepending %s to system include path\n",
 			lsb_version_include_paths[lsbversion_index][i]);
       argvadd(incpaths, "I", lsb_version_include_paths[lsbversion_index][i]);
     }
@@ -2050,7 +2050,7 @@ int main(int argc, char *argv[])
 	    argvappend(gccargs, proginterp);
 	}
 
-	/* 
+	/*
 	 * bug 4161: don't add syslibs if linking a shared library
 	 * we do need libc_nonshared, though. Maybe also pthread_nonshared?
 	 */

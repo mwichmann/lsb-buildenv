@@ -72,7 +72,7 @@ int lsbcc_buildingshared = 0;
  * Variable to store optind value - we'll have to process command line twice.
  */
 int optind_old;
- 
+
 /* TODO XXX
  * The code to add per-LSB-version include paths that was added
  * to lsbcc.c should probably be ported over to lsbcpp.c
@@ -178,8 +178,8 @@ int main(int argc, char *argv[])
 
     /*
      * figure out if the user has requested a change to the target LSB vers.
-     * In lsbcc, this has to happen first because it may affect other 
-     * constructions like library paths.  In lsbcpp this should not be a 
+     * In lsbcc, this has to happen first because it may affect other
+     * constructions like library paths.  In lsbcpp this should not be a
      * problem, but it seems easier to keep the order in sync between the two.
      */
     if ((ptr = getenv("LSBCC_LSBVERSION")) != NULL) {
@@ -361,8 +361,8 @@ int main(int argc, char *argv[])
 	case '?':
 	    if (strncmp(argv[optind - 1], "--lsb-", 6) == 0) {
 		/*
-		 * Refuse to pass unrecognized --lsb- prefixed options 
-		 * along to the real compiler. Likely just typos of 
+		 * Refuse to pass unrecognized --lsb- prefixed options
+		 * along to the real compiler. Likely just typos of
 		 * legitmate --lsb- options.
 		 * No chance compiler would recognize anyway.
 		 */

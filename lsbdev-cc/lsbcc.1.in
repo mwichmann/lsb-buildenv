@@ -1,6 +1,6 @@
 .TH lsbcc "1" "" "lsbcc (LSB)" LSB
 .SH NAME
-lsbcc, lsbc++, lsbcpp \- compiler driver for building LSB conforming applications
+lsbcc, lsbc++, lsbcpp \- compiler helper for building LSB conforming applications
 .SH SYNOPSIS
 .B lsbcc
 .RI [ lsbcc-options ]
@@ -15,36 +15,39 @@ lsbcc, lsbc++, lsbcpp \- compiler driver for building LSB conforming application
 .RI [ compiler-options ]
 .SH DESCRIPTION
 .P
-This tool should be used in place of the
+This tool should be used in place of the corresponding
 .I cc, c++
 or
-.IR cpp 
-command when
-building an LSB-conforming program.
+.IR cpp
+command when building an LSB-conforming program.
 .P
 LSB-conforming programs must link dynamically only with
 LSB-required and application-supplied shared libraries,
 as no other libraries can be guaranteed to be present on
-an LSB-compliant system.  They must only use specified
-interfaces from LSB-required shared libraries. 
-LSB programs also need to be linked with 
+an LSB-compliant system.  Additionally, they must only use specified
+interfaces and symbol versions from LSB-required shared libraries,
+as the compatibility promise only extended to what is included
+in the LSB specification.
+LSB programs also need to be linked with
 a special program interpreter which identifies
 them as LSB conforming.
 .P
 The LSB development environment provides
-a set of replacement system headers and 
+a set of replacement system headers and
 stub dynamic libraries.
 These headers and libraries have been
 carefully built so that they contain only the interfaces
 specified in the LSB. When the stub libraries are
 used for link-time symbol resolution, the use of
 unspecified interfaces in those libraries will
-result in link failures.
+result in link failures. In effect, these files are
+a "trick" which controls the scope of the compilation
+environment, rather than making any actual changed.
 .P
 .I lsbcc
 is designed to apply the LSB build conventions with a
 minimum of changes to existing build setups.
-When invoked as the compiler, 
+When invoked as the compiler,
 it first modifies the command line to follow the
 LSB build conventions, then passes the resulting
 command line on to the regular compiler, so
@@ -53,93 +56,94 @@ is effectively a wrapper program.
 .P
 .IR lsbcc
 takes a number of options prefixed with --lsb-, or
-alternatively; 
-behavior other than the default can be controlled
+alternatively, behavior other than the default can be controlled
 by a set of environment variables.  Typically command
 line options will override options set through environment
 variables.
 
 .P
 .SH LSBCC OPTIONS
-.TP 
+.TP
 --lsb-help
-Display help message.  The compiler 
-.I --help 
-option will also display the output from --lsb-help.
-.TP 
+Display help message just for lsbcc.  The compiler
+.I --help
+option is intercepted and also displays the output from --lsb-help
+in addition to the compiler's own help message.
+.TP
 --lsb-version
-Display the LSB versions this tool can build against
-(that is, valid arguments for --lsb-target-version).
+Display the LSB versions the tool can build against
+(that is, show valid arguments for --lsb-target-version).
 The default version is listed first.
-The output string can be parsed: the default
-version is the last word before the semicolon,
-while the comma-separated version list is the
-last word (and comes after the semicolon).
-.TP 
+The output string can be parsed by other tools. It begins
+with the words "LSB version", followed by the default
+version number and a semicolon. Next is the word "supports",
+then the entire list of supported versions is presented as
+a single comma-separated word.
+.TP
 --lsb-verbose
 The complete command line passed to either the C or C++ compiler
 will be printed to stderr just prior to execution.  This helps
-see the effects of 
-.I lsbcc 
+see the effects of
+.I lsbcc
 and options.
-.TP 
+.TP
 --lsb-cc=<path to c compiler>
 Specifies the name of the C compiler to invoke with the modified
 argument list. If this option or the LSBCC environment
-variable is not set, the default 
+variable is not set, the default
 .I cc
 will be used.  This setting overrides the LSBCC environment setting.
-.TP 
+.TP
 --lsb-cxx=<path to c++ compiler>
 Specifies the name of the C++ compiler to invoke with the modified
 argument list.  If this option or the LSBCCX environment
-variable is not set, the default 
+variable is not set, the default
 .I c++
 will be used.  This setting overrides the LSBCXX environment setting.
 .TP
 --lsb-cpp=<path to c preprocessor>
 Specifies the name of the C preprocessor to invoke with the modified
 argument list. If this option or the LSBCPP environment
-variable is not set, the default 
+variable is not set, the default
 .I cpp
 will be used. This option overrides the LSBCPP environment setting.
-.TP 
+.TP
 --lsb-forcefeatures
-This causes 
-.I lsbcc 
-to insert macro defines for all of the 
+This causes
+.I lsbcc
+to insert macro defines for all of the
 interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
 These macros are not needed for the LSB headers but may
 select necessary behavior in non-LSB headers that have
 conditionals. However, predefining the macros may collide with
 application definitions of the macros, so this is no longer
-the default behavior for 
+the default behavior for
 .IR lsbcc .
-.TP 
+.TP
 --lsb-libpath=<lsb_lib_path>
 Specifies the location of the LSB stub libraries that will
 be linked against.  If this option or the LSBCC_LIBS environment
-variable is not set, the default 
+variable is not set, the default
 .I /opt/lsb/lib
 will be used.  This option overrides the LSBCC_LIBS environment setting.
-.TP 
+.TP
 --lsb-includepath=<include_path>
 Specifies the location of the LSB header files that will
 be linked against.  If this option or the LSBCC_INCLUDES environment
-variable is not set, the default 
+variable is not set, the default
 .I /opt/lsb/include
 will be used.  This option overrides the LSBCC_INCLUDES environment setting.
-.TP 
+.TP
 --lsb-cxx-includepath=<include_path>
 Specifies the location of the LSB header files that will
 be linked against.  If this option or the LSBCXX_INCLUDES environment
-variable is not set, the default 
+variable is not set, the default
 .I /opt/lsb/include
 will be used.  This option overrides the LSBCXX_INCLUDES environment setting.
-.TP 
+.TP
 --lsb-shared-libs=<shared_lib:...>
 This option adds libraries to the list of non-lsb libraries to link as
-shared libraries (such as product internal shared libraries). 
+shared libraries (such as product internal shared libraries).
 A library name or colon-separated list of library names to
 add to the default list. The name should be the base part
 of the library only, for example to add
@@ -155,9 +159,9 @@ the given set of paths will be added to the list of non-lsb libraries to link
 as shared libraries.
 Paths specified by this option are appended to the list specified
 by the LSBCC_SHAREDLIBPATH environment variable, if any.
-.TP 
+.TP
 --lsb-modules=<module,..>
-Enable support for the optional/trial-use LSB modules listed.  
+Enable support for the optional/trial-use LSB modules listed.
 Modules specified by this option are appended to the list specified
 by the LSB_MODULES environment variable, if any. For a list of modules
 supported in any LSB version, use 'lsbcc --lsb-target-version=ver --help'
@@ -170,22 +174,22 @@ Do not set dynamic linker to the LSB one.
 This will unset the dynamic linker (like --lsb-use-default-linker),
 but will also link in code that tries to use the LSB dynamic linker if
 needed.
-.TP 
+.TP
 --lsb-target-version=<LSB_version>
 Set the version of LSB to build for.
-For the list of valid values, call 
+For the list of valid values, call
 .I lsbcc
 with the
-.I --lsb-version 
-option.  If set to a valid value, 
-this option overrides the LSBCC_LSBVERSION environment variable. 
+.I --lsb-version
+option.  If set to a valid value,
+this option overrides the LSBCC_LSBVERSION environment variable.
 If neither are set, the default
 .I '@DEFAULT_LSB_VERSION@'
 will be used.
-.TP 
+.TP
 --lsbcc-version
 Print the version of this program, and quit.
-.TP 
+.TP
 --lsb-libtool_fixups
 Enable semantics that assist in compiling applications with
 .I lsbcc
@@ -195,11 +199,10 @@ Libtool in some situations will pass filesystem paths to shared libraries
 to the compiler rather than as -l arguments.
 .I lsbcc
 needs to evaluate all shared libraries to determine if they should be linked
-shared or statically, 
-.I lsbcc 
-does this by analyzing -l arguments.  This option 
-causes 
-.I lsbcc 
+shared or statically,
+.I lsbcc
+does this by analyzing -l arguments.  This option causes
+.I lsbcc
 to evaluate all files on the command line to determine if they are
 shared libraries and to re-write shared libraries found in terms of -L and -l
 either as shared or static depending upon if the library is in the list of
@@ -211,7 +214,7 @@ library must be linked statically.
 .P
 .SH ENVIRONMENT
 The following environment variables affect the behavior of
-.I lsbcc 
+.I lsbcc
 and
 .IR lsbc++ .
 Not all apply to
@@ -220,7 +223,7 @@ Not all apply to
 LSBCC
 Specifies the name of the C compiler to invoke with the modified
 argument set. If this environment variable is not found,
-the default 
+the default
 .I cc
 will be used. (Not for
 .IR lsbcpp ).
@@ -228,7 +231,7 @@ will be used. (Not for
 LSBCXX
 Specifies the name of the C++ compiler to invoke with the modified
 argument set. If this environment variable is not found,
-the default 
+the default
 .I c++
 will be used. (Not for
 .IR lsbcpp ).
@@ -238,14 +241,14 @@ Specifies the name of the C preprocessor to invoke with the modified
 argument set.  If this environment variable is not found, the default
 .I cpp
 will be used
-.RI ( lsbcpp 
+.RI ( lsbcpp
 only).
 .P
 .TP
 LSBCC_LIBS
 Specifies the location of the LSB stub libraries that will
 be linked against.  If this environment variable is not found,
-the default 
+the default
 .I /opt/lsb/lib
 will be used (or /opt/lsb/lib64 on certain 64-bit architectures).
 .P
@@ -253,7 +256,7 @@ will be used (or /opt/lsb/lib64 on certain 64-bit architectures).
 LSBCC_INCLUDES
 Specifies the location of the LSB header files that will
 be linked against.  If this environment variable is not found,
-the default 
+the default
 .I /opt/lsb/include
 will be used.
 .P
@@ -261,7 +264,7 @@ will be used.
 LSBCXX_INCLUDES
 Specifies the location of the LSB C++ header files that will
 be linked against.  If this environment variable is not found,
-the default 
+the default
 .I /opt/lsb/include/c++
 will be used.
 .P
@@ -282,21 +285,21 @@ in earlier versions.
 .TP
 LSB_MODULES
 Specify which optional/trial-use LSB modules to include interfaces for.
-For a list of modules supported in any LSB version, 
+For a list of modules supported in any LSB version,
 use 'lsbcc --lsb-target-version=ver --help'.
 .TP
 LSBCC_FORCEFEATURES
-This causes 
-.I lsbcc 
-to insert macro defines for all of the 
+This causes
+.I lsbcc
+to insert macro defines for all of the
 interface features it supports (e.g. -DHAVE_BSD, -DHAVE_GNU...).
 This can be helpful in some situations and was formerly
-the default behavior for 
-.IR lsbcc , 
+the default behavior for
+.IR lsbcc ,
 but also can collide with feature macro definitions from other sources,
-so is no longer the default behavior for 
+so is no longer the default behavior for
 .IR lsbcc .
-.TP 
+.TP
 LSBCC_LIBTOOLFIXUPS
 Enable semantics that assist in compiling applications with
 .I lsbcc
@@ -306,11 +309,11 @@ Libtool in some situations will pass filesystem paths to shared libraries
 to the compiler rather than as -l arguments.
 .I lsbcc
 needs to evaluate all shared libraries to determine if they should be linked
-shared or statically, 
-.I lsbcc 
-does this by analyzing -l arguments.  This option 
-causes 
-.I lsbcc 
+shared or statically,
+.I lsbcc
+does this by analyzing -l arguments.  This option
+causes
+.I lsbcc
 to evaluate all files on the command line to determine if they are
 shared libraries and to re-write shared libraries found in terms of -L and -l
 either as shared or static depending upon if the library is in the list of
@@ -355,8 +358,8 @@ an LSBCC_WARN where the low bit is set to zero.
 LSBCC_VERBOSE
 The complete command line passed to either the C or C++ compiler
 will be printed to stderr just prior to execution.  This helps
-see the effects of 
-.I lsbcc 
+see the effects of
+.I lsbcc
 and options.
 .P
 .TP
@@ -378,15 +381,15 @@ methods can be used to selectively override
 rule of forcing static linking. The application may not depend
 on such a library being present on a system, so it must either
 be shipped with the application, or with another LSB conforming
-application on which this application depends.  
+application on which this application depends.
 .P
-Libs added with any of these options will be cumulative. Shared 
-libs added with command line options must appear on the command 
+Libs added with any of these options will be cumulative. Shared
+libs added with command line options must appear on the command
 line before any -l options to have effect.
-.TP 
+.TP
 --lsb-shared-libs=<shared_lib:...>
 This option adds libraries to the list of non-lsb libraries to link as
-shared libraries (such as product internal shared libraries). 
+shared libraries (such as product internal shared libraries).
 A library name or colon-separated list of library names to
 add to the default list. The name should be the base part
 of the library only, for example to add
@@ -428,15 +431,15 @@ Report bugs at http://bugs.linuxbase.org.
 .SH "BUGS"
 .P
 It is possible to confuse the automatic library processing of
-.I lsbcc (and 
+.I lsbcc (and
 .IR lsbc++ ).
 In particular, build systems that include "clever" tools
-to manage which libraries to use, such as GNU 
+to manage which libraries to use, such as GNU
 .I libtool
-and 
-.IR pkgconfig , 
+and
+.IR pkgconfig ,
 may defeat the checks for non-LSB libraries
-by silently supplying full pathnames instead of the 
+by silently supplying full pathnames instead of the
 .BI -l lib
 form.
 .SH FILES
@@ -446,7 +449,7 @@ the LSB header files
 .TP
 /opt/lsb/lib
 the LSB stub libraries. To be more precise, these will appear
-as a set of directories 
+as a set of directories
 .IR /opt/lsb/lib-3.0 ,
 .IR /opt/lsb/lib-3.1 ,
 and so on, for each supported version and
@@ -485,7 +488,7 @@ is commonly delivered as a package named
 .IR lsb-build-cc .
 If this package is used, the support package
 .I lsb-build-base
-must also be installed; 
+must also be installed;
 .I lsb-build-desktop
 is optional but would normally be used.
 .P
@@ -495,7 +498,7 @@ it is a separate package as the c++ headers come
 from a different source than the base headers,
 and may be under a separate license as well.
 .\" .P
-.\" lsbcc will add 
+.\" lsbcc will add
 .\" .I -Wl,--as-needed
 '\" to all compiler commands that will invoke the linker.  This option causes
 '\" the linker to only include explicit dependencies on shared libraries
@@ -506,10 +509,10 @@ and may be under a separate license as well.
 '\" not also referenced by the objects being linked.  This is no longer
 '\" necessary and this option reduces the number of direct run-time shared
 '\" library dependencies.  If either
-.\" .I -Wl,--as-needed 
-.\" or 
-.\" .I -Wl,--no-as-needed 
-.\" are passed in the compiler options to lsbcc, lsbcc will not insert 
+.\" .I -Wl,--as-needed
+.\" or
+.\" .I -Wl,--no-as-needed
+.\" are passed in the compiler options to lsbcc, lsbcc will not insert
 .\" -IR -Wl,--as-needed .
 .\" See the
 .\" .BI ld
