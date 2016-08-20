@@ -405,7 +405,7 @@ int perform_libtool_fixups(const char *optarg)
  * This would need tweaking if a non-gcc compiler didn't recognize
  * option -print-libgcc-file-name.
  */
-char *gccbasedir;
+char *gccbasedir = NULL;
 
 void find_gcc_base_dir()
 {
@@ -434,6 +434,35 @@ void find_gcc_base_dir()
 }
 
 /*
+ * For certain checks we need to know the version of gcc.
+ * Figure that out here. Can be called multiple places,
+ * so just return if already set
+ */
+char gccversion[16] = "\0";
+
+void find_gcc_version()
+{
+    FILE *cccmd;
+    char cmd[PATH_MAX];
+
+    if (gccversion[0])
+        return;
+	
+    sprintf(cmd, "%s -dumpversion", ccname);
+
+    if ((cccmd = popen(cmd, "r")) == NULL) {
+	fprintf(stderr, "Failed to popen \"%s\"\n", cmd);
+	return;
+    }
+
+    fgets(gccversion, 16, cccmd);
+    pclose(cccmd);
+
+    /* Strip the trailing newline. */
+    gccversion[strcspn(gccversion, "\n")] = 0;
+}
+
+/*
  * Although the C++ ABI was supposed to be the same for gcc 3.4 and
  * 4.0, a small change was made to the ABI to fix a problem with
  * rethrowing exception objects with complex constructors.  In order
@@ -449,33 +478,9 @@ void find_gcc_base_dir()
  * In any situation where there's doubt, this function will report
  * that the compatibility library is not needed.
  */
-
-char gccversion[16] = "\0";
-
 int need_gcc34_compat()
 {
-    FILE *cccmd;
-    char cmd[PATH_MAX];
-    size_t resultlen;
-
-    if (gccversion[0] == '\0') {
-	/* Ask gcc for its version, if we haven't already. */
-	sprintf(cmd, "%s -dumpversion", ccname);
-
-	if ((cccmd = popen(cmd, "r")) == NULL) {
-	    fprintf(stderr, "Failed to popen \"%s\"\n", cmd);
-	    return 0;
-	}
-
-	fgets(gccversion, 16, cccmd);
-	pclose(cccmd);
-
-	/* Strip the trailing newline. */
-	resultlen = strlen(gccversion);
-	if (resultlen > 0) {
-	    gccversion[resultlen - 1] = '\0';
-	}
-    }
+    find_gcc_version();
 
     /* Figure out what we need by looking at the gcc major version number */
     switch (gccversion[0]) {
@@ -497,6 +502,10 @@ int need_gcc34_compat()
 	/* gcc 5.x - bug 4156: treat it like gcc 4.x */
 	return 1;
 
+    case '6':
+	/* gcc 6.x - bug 4171: treat it like gcc 4.x */
+	return 1;
+
     default:
 	/* Some other value we don't recognize. */
 	fprintf(stderr, "unrecognized gcc version: \"%s\"\n", gccversion);
@@ -512,7 +521,6 @@ int need_gcc34_compat()
  * code to add -fno-stack-protector to the command line.  As with
  * need_gcc34_compat, when in doubt, don't add the option.
  */
-
 int need_stack_prot_suppression()
 {
     /*
@@ -529,8 +537,10 @@ int need_stack_prot_suppression()
     /*
      * If we're here, we know we're running a gcc 4.x version.
      * Check the minor version number in this case.
-     * Add: running 4.x or 5.x
+     * Add: running 4.x, 5.x, 6.x
      */
+    find_gcc_version();
+
     switch (gccversion[2]) {
 
     case '0':
@@ -624,6 +634,7 @@ int need_long_double_64()
 	return 0;
 
     /* This option became available on gcc 4.1. */
+    find_gcc_version();
     switch (gccversion[2]) {
 
     case '0':
@@ -1179,7 +1190,6 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "cc name set to %s\n", ccname);
 	}
     } else {
-
 	if ((ptr = getenv("LSBCXX")) != NULL) {
 	    ccname = strdup(ptr);
 	    if (lsbcc_debug & DEBUG_ENV_OVERRIDES) {
@@ -1790,6 +1800,7 @@ int main(int argc, char *argv[])
 	    fprintf(stderr, "\n");
 	}
     }
+
 #if __powerpc__ && !__powerpc64__
     /*
      * new defaults in gcc no longer produce the ppc32 cpu instructions
