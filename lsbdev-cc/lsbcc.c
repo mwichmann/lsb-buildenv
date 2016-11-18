@@ -669,6 +669,30 @@ int need_long_double_64()
 }
 
 /*
+ * Starting with gcc6, the default C++ standard is c++14.
+ * For LSB up to and including 5.0, that's not going to fly,
+ * we have old C++ headers (and library) that aren't compatible.
+ */
+
+int need_old_cxx()
+{
+    /* Guessing that we won't need this after 5.0 */
+    if (strcmp(lsbcc_lsbversion, "5.1") >= 0)
+	return 0;
+
+    /* This option became available on gcc 4.1. */
+    find_gcc_version();
+    switch (gccversion[1]) {
+
+    case '6':
+	return 1;
+
+    default:
+	return 0;
+    }
+}
+
+/*
  * Tools which force gcc to include system headers are some of the
  * most troublesome causes of build issues with the LSB.  As part of
  * the fix to this problem, we now check include paths against a list
@@ -1806,6 +1830,14 @@ int main(int argc, char *argv[])
      */
     argvaddstring(gccargs, "-mcpu=603");
 #endif
+
+    /* Check if we need to force a particular C++ standard */
+    if ((LSBCPLUS == lsbccmode) && need_old_cxx()) {
+	if (lsbcc_debug & DEBUG_MODIFIED_ARGS) {
+	    fprintf(stderr, "Adding -std=gnu++98 to args\n");
+	}
+	argvaddstring(gccargs, "-std=gnu++98");
+    }
 
     /* Check if we need to specify the length of long double. */
     if (!cc_is_icc && need_long_double_64()) {
