@@ -202,9 +202,8 @@ int main(int argc, char *argv[])
      */
     optind_old = optind;
     opterr = 0;
-    while ((c =
-	    getopt_long_only(argc, argv, optstr, long_options,
-			     &option_index)) >= 0) {
+    while ((c = getopt_long_only(argc, argv, optstr, long_options,
+			         &option_index)) >= 0) {
 	if (c == 21) {		/* --lsb-target-version=<LSB_version> */
 	    if (get_version_index(optarg) >= 0) {
 		lsbcc_lsbversion = strdup(optarg);
@@ -293,9 +292,8 @@ int main(int argc, char *argv[])
     /* Process the options passed in */
     opterr = 0;
 
-    while ((c =
-	    getopt_long_only(argc, argv, optstr, long_options,
-			     &option_index)) >= 0) {
+    while ((c = getopt_long_only(argc, argv, optstr, long_options,
+			         &option_index)) >= 0) {
 	switch (c) {
 	case 0:
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS) {
