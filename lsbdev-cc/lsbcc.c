@@ -1395,7 +1395,7 @@ int main(int argc, char *argv[])
 	    found_gcc_arg = 1;
 	    if (lsbcc_debug & DEBUG_RECOGNIZED_ARGS) {
 		fprintf(stderr, "option0: -%s",long_options[option_index].name);
-		if (optarg) {
+		if (long_options[option_index].has_arg) {
 		    fprintf(stderr, " with arg %s", optarg);
 		}
 		fprintf(stderr, "\n");

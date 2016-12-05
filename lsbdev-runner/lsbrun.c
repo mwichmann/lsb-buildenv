@@ -170,9 +170,8 @@ void check_binary(const char *binary_path, const char *lsbrun_path)
     /* Make sure the lsbrun copy has the same permissions as the old
        binary. */
 
-    if (stat(new_binary_path, &binary_stat) == 0) {
-      chmod(binary_path, binary_stat.st_mode & 07777);
-    } else {
+    if (! (stat(new_binary_path, &binary_stat) == 0 &&
+           chmod(binary_path, binary_stat.st_mode & 07777) == 0)) {
       perror("lsbrun");
       fprintf(stderr, 
 	      "warning: check the target binary, it may not be executable\n");
@@ -212,7 +211,7 @@ int main(int argc, char *argv[])
 
   /* First, let's figure out how we were started. */
 
-  strcpy(buf, argv[0]);
+  strncpy(buf, argv[0], PATH_MAX);
   if (strstr(basename(buf), "lsbrun") != NULL) {
     if ((argc < 2) || (strcmp(argv[1], "--help") == 0)) {
 
